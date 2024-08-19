@@ -1,0 +1,40 @@
+{
+  "name": "prl-e2e-tests",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "dependencies": {
+    "@axe-core/playwright": "^4.10.0",
+    "playwright-core": "^1.46.1",
+    "typescript": "^5.5.4"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.46.1",
+    "@types/node": "^22.4.1",
+    "axios": "^1.7.4",
+    "pre-commit": "^1.2.2",
+    "prettier": "^3.3.3",
+    "ts-node": "^10.9.2"
+  },
+  "resolutions": {
+    "jackspeak": "2.1.1"
+  },
+  "scripts": {
+    "configure": "yarn playwright install && yarn playwright install webkit && yarn playwright install firefox && yarn playwright install msedge",
+    "lint": "yarn prettier . --write",
+    "test:manageCasesChrome": "yarn playwright install && yarn playwright test --project chromium --grep @manageCases",
+    "test:manageCasesFirefox": "yarn playwright install firefox && yarn playwright test --project firefox --grep @crossbrowserManageCases",
+    "test:manageCasesSafari": "yarn playwright install webkit && yarn playwright test --project webkit --grep @crossbrowserManageCases",
+    "test:manageCasesAccessibility": "yarn playwright install && yarn playwright test --project chromium --grep @accessibilityManageCases",
+    "test:citizenFrontendChrome": "yarn playwright install && yarn playwright test --project chromium --grep @citizenFrontend",
+    "test:citizenFrontendFirefox": "yarn playwright install firefox && yarn playwright test --project firefox --grep @crossbrowsercitizenFrontend",
+    "test:citizenFrontendSafari": "yarn playwright install webkit && yarn playwright test --project webkit --grep @crossbrowsercitizenFrontend",
+    "test:citizenFrontendAccessibility": "yarn playwright install && yarn playwright test --project chromium --grep @accessibilitycitizenFrontend"
+  },
+  "pre-commit": [
+    "lint"
+  ],
+  "packageManager": "yarn@4.4.0"
+}
