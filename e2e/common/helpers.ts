@@ -47,6 +47,22 @@ export class Helpers {
     }
   }
 
+  public static async goToCase(
+    page: Page,
+    baseURL: string,
+    caseNumber: string,
+  ): Promise<void> {
+    try {
+      await page.goto(Helpers.generateUrl(baseURL, caseNumber));
+    } catch (error) {
+      console.error(
+        "An error occurred while navigating to the case: ",
+        error,
+      );
+      throw error;
+    }
+  }
+
   public static async signOutAndGoToCase(
     page: Page,
     user: UserRole,
@@ -57,7 +73,7 @@ export class Helpers {
       await page.locator(`a:text-is(" Sign out ")`).click();
       await page.waitForLoadState("domcontentloaded");
       await idamLoginHelper.signInUser(page, user, baseURL);
-      await page.goto(Helpers.generateUrl(baseURL, caseNumber));
+      await Helpers.goToCase(page, baseURL, caseNumber);
     } catch (error) {
       console.error(
         "An error occurred while signing out and navigating to the case:",
