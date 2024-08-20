@@ -49,7 +49,7 @@ static Map < String, Object > secret(String secretName, String envVariable) {
 }
 
 def secrets = [
-  'sptribs-${env}': [
+  'prl-${env}': [
     secret('caseworker-user', 'CASEWORKER_USERNAME'),
     secret('caseworker-password', 'CASEWORKER_PASSWORD'),
     secret('seniorCaseworker-user', 'SENIOR_CASEWORKER_USERNAME'),
