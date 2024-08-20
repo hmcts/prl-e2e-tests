@@ -50,7 +50,7 @@ Please install the dependencies with the following cmd:
 
 `yarn install`
 
-You will also need the config.js file from a current developer, which should be located in e2e/config.ts, this file should **NEVER** be committed.
+You will also need the config.ts file from a current developer, which should be located in e2e/config.ts, this file should **NEVER** be committed.
 
 ### Running the application locally.
 
