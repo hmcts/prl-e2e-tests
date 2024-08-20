@@ -1,4 +1,4 @@
-import { expect, Page } from "@playwright/test";
+import { expect, Locator, Page } from "@playwright/test";
 import { Events, UserRole } from "./types";
 import idamLoginHelper from "./idamLoginHelper";
 
@@ -11,7 +11,7 @@ export class Helpers {
       await page.waitForLoadState("domcontentloaded");
       await page.waitForSelector("#next-step", { state: "visible" });
       await page.selectOption("#next-step", chosenEvent);
-      const goButton = page.getByRole("button", { name: "Go" });
+      const goButton: Locator = page.getByRole("button", { name: "Go" });
       await expect(goButton).toBeEnabled();
       await goButton.click();
     } catch (error) {
@@ -29,10 +29,10 @@ export class Helpers {
     count: number,
   ): Promise<void> {
     try {
-      const visibilityPromises = Array.from({ length: count }, (_, i) =>
+      const visibilityPromises: Promise<void>[] = Array.from({ length: count }, (_, i) =>
         expect.soft(page.locator(selector).nth(i)).toBeVisible(),
       );
-      const countPromise = expect
+      const countPromise: Promise<void> = expect
         .soft(page.locator(selector))
         .toHaveCount(count);
       await Promise.all([...visibilityPromises, countPromise]);
@@ -66,13 +66,13 @@ export class Helpers {
   }
 
   public static todayDate(): string {
-    const now = new Date();
+    const now: Date = new Date();
     const options: Intl.DateTimeFormatOptions = {
       year: "numeric",
       month: "2-digit",
       day: "numeric",
     };
-    const dateString = now.toLocaleDateString("en-US", options);
+    const dateString: string = now.toLocaleDateString("en-US", options);
     const [month, day, year] = dateString.split("/");
     return `${day} ${Helpers.shortMonth(parseInt(month, 10))} ${year}`;
   }
@@ -82,14 +82,14 @@ export class Helpers {
     month: string,
     year: string,
   ): string {
-    const monthIndex = parseInt(month, 10);
+    const monthIndex: number = parseInt(month, 10);
     if (isNaN(monthIndex) || monthIndex < 1 || monthIndex > 12) {
       throw new Error("Invalid month value");
     }
     return `${day} ${Helpers.shortMonth(monthIndex)} ${year}`;
   }
 
-  private static readonly months = [
+  private static readonly months: string[] = [
     "January",
     "February",
     "March",
@@ -105,7 +105,7 @@ export class Helpers {
   ];
 
   private static generateUrl(baseURL: string, caseNumber: string): string {
-    const caseNumberDigits = caseNumber.replace(/\D/g, "");
+    const caseNumberDigits: string = caseNumber.replace(/\D/g, "");
     return `${baseURL}/case-details/${caseNumberDigits}#History`;
   }
 
