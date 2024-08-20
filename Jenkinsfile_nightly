@@ -1,0 +1,192 @@
+#!groovy
+
+properties([
+  // H allow predefined but random minute see https://en.wikipedia.org/wiki/Cron#Non-standard_characters
+  pipelineTriggers([cron('H 8 * * 1-5')]),
+  parameters([
+    string(
+      name: 'CITIZEN_FRONTEND_BASE_URL',
+      defaultValue: 'https://sptribs-frontend.aat.platform.hmcts.net',
+      description: 'The Citizen URL to test against'
+    ),
+    string(
+      name: 'MANAGE_CASES_BASE_URL',
+      defaultValue: 'https://manage-case.aat.platform.hmcts.net/cases',
+      description: 'The Manage Cases URL to test against'
+    ),
+    string(
+      name: 'FUNCTIONAL_TESTS_WORKERS',
+      defaultValue: '5',
+      description: 'Number of workers running functional tests'
+    ),
+    booleanParam(
+      name: 'skipCitizenTests',
+      defaultValue: false,
+      description: 'Tick the checkbox for skipping Citizen application tests.'
+    ),
+    booleanParam(
+      name: 'skipManageCasesTests',
+      defaultValue: false,
+      description: 'Tick the checkbox for skipping Manage Cases application tests.'
+    ),
+  ])
+])
+
+@Library("Infrastructure")
+
+def type = "nodejs"
+def product = "prl"
+def component = "e2e-tests"
+def channel = "#prl-tech-notifications"
+
+static Map < String, Object > secret(String secretName, String envVariable) {
+  [
+    $class: 'AzureKeyVaultSecret',
+    secretType: 'Secret',
+    name: secretName,
+    envVariable: envVariable
+  ]
+}
+
+def secrets = [
+  'sptribs-${env}': [
+    secret('caseworker-user', 'CASEWORKER_USERNAME'),
+    secret('caseworker-password', 'CASEWORKER_PASSWORD'),
+    secret('seniorCaseworker-user', 'SENIOR_CASEWORKER_USERNAME'),
+    secret('seniorCaseworker-password', 'SENIOR_CASEWORKER_PASSWORD'),
+  ]
+]
+
+def yarnBuilder = new uk.gov.hmcts.contino.YarnBuilder(this)
+
+withNightlyPipeline(type, product, component, 600) {
+  loadVaultSecrets(secrets)
+  env.CITIZEN_FRONTEND_BASE_URL = params.CITIZEN_FRONTEND_BASE_URL
+  env.MANAGE_CASES_BASE_URL = params.MANAGE_CASES_BASE_URL
+  enableSlackNotifications(channel)
+  afterAlways('DependencyCheckNightly') {
+    if (!params.skipCitizenTests) {
+      stage('Citizen E2E tests - Chrome') {
+        try {
+          yarnBuilder.yarn('test:citizenFrontendChrome')
+        } catch (Error) {
+          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+        } finally {
+          publishHTML([
+            allowMissing: true,
+            alwaysLinkToLastBuild: true,
+            keepAll: true,
+            reportDir: "playwright-report",
+            reportFiles: 'index.html',
+            reportName: 'Citizen Chrome E2E Test Report'
+          ])
+          steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CitizenFunctional/*'
+        }
+      }
+      stage('Citizen E2E tests - Firefox') {
+        try {
+          yarnBuilder.yarn('test:citizenFrontendFirefox')
+        } catch (Error) {
+          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+        } finally {
+          publishHTML([
+            allowMissing: true,
+            alwaysLinkToLastBuild: true,
+            keepAll: true,
+            reportDir: "playwright-report",
+            reportFiles: 'index.html',
+            reportName: 'Citizen Firefox E2E Test Report'
+          ])
+          steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CitizenFunctional/*'
+        }
+      }
+      stage('Citizen E2E tests - Webkit') {
+        try {
+          yarnBuilder.yarn('test:citizenFrontendSafari')
+        } catch (Error) {
+          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+        } finally {
+          publishHTML([
+            allowMissing: true,
+            alwaysLinkToLastBuild: true,
+            keepAll: true,
+            reportDir: "playwright-report",
+            reportFiles: 'index.html',
+            reportName: 'Citizen Webkit E2E Test Report'
+          ])
+          steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CitizenFunctional/*'
+        }
+      }
+      stage('Citizen accessibility tests') {
+        try {
+          yarnBuilder.yarn('test:citizenFrontendAccessibility')
+        } catch (Error) {
+          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+        } finally {
+          publishHTML([
+            allowMissing: true,
+            alwaysLinkToLastBuild: true,
+            keepAll: true,
+            reportDir: "playwright-report",
+            reportFiles: 'index.html',
+            reportName: 'Citizen Accessibility Test Report'
+          ])
+          steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CitizenFunctional/*'
+        }
+      }
+    }
+    if (!params.skipManageCasesTests) {
+      stage('Manage Cases E2E tests - Chrome') {
+        try {
+          yarnBuilder.yarn('test:manageCasesChrome')
+        } catch (Error) {
+          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+        } finally {
+          publishHTML([
+            allowMissing: true,
+            alwaysLinkToLastBuild: true,
+            keepAll: true,
+            reportDir: "playwright-report",
+            reportFiles: 'index.html',
+            reportName: 'Manage Cases Chrome E2E Test Report'
+          ])
+          steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/ManageCasesFunctional/*'
+        }
+      }
+      stage('Manage Cases E2E tests - Firefox') {
+        try {
+          yarnBuilder.yarn('test:manageCasesFirefox')
+        } catch (Error) {
+          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+        } finally {
+          publishHTML([
+            allowMissing: true,
+            alwaysLinkToLastBuild: true,
+            keepAll: true,
+            reportDir: "playwright-report",
+            reportFiles: 'index.html',
+            reportName: 'Manage Cases Firefox E2E Test Report'
+          ])
+          steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/ManageCasesFunctional/*'
+        }
+      }
+      stage('Manage Cases accessibility tests') {
+        try {
+          yarnBuilder.yarn('test:manageCasesAccessibility')
+        } catch (Error) {
+          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+        } finally {
+          publishHTML([
+            allowMissing: true,
+            alwaysLinkToLastBuild: true,
+            keepAll: true,
+            reportDir: "playwright-report",
+            reportFiles: 'index.html',
+            reportName: 'Manage Cases Accessibility Test Report'
+          ])
+          steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/ManageCasesFunctional/*'
+        }
+      }
+    }
+  }
+}

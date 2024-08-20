@@ -24,6 +24,8 @@
   "scripts": {
     "configure": "yarn playwright install && yarn playwright install webkit && yarn playwright install firefox && yarn playwright install msedge",
     "lint": "yarn prettier . --write",
+    "test:fullfunctional": "echo 'This is a placeholder'",
+    "test:crossbrowser": "echo 'This is a placeholder'",
     "test:manageCasesChrome": "yarn playwright install && yarn playwright test --project chromium --grep @manageCases",
     "test:manageCasesFirefox": "yarn playwright install firefox && yarn playwright test --project firefox --grep @crossbrowserManageCases",
     "test:manageCasesSafari": "yarn playwright install webkit && yarn playwright test --project webkit --grep @crossbrowserManageCases",

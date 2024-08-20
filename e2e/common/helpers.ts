@@ -30,9 +30,11 @@ export class Helpers {
   ): Promise<void> {
     try {
       const visibilityPromises = Array.from({ length: count }, (_, i) =>
-        expect(page.locator(selector).nth(i)).toBeVisible(),
+        expect.soft(page.locator(selector).nth(i)).toBeVisible(),
       );
-      const countPromise = expect(page.locator(selector)).toHaveCount(count);
+      const countPromise = expect
+        .soft(page.locator(selector))
+        .toHaveCount(count);
       await Promise.all([...visibilityPromises, countPromise]);
     } catch (error) {
       console.error(
