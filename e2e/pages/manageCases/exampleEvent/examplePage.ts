@@ -4,6 +4,7 @@ import config from "../../../config";
 import { Selectors } from "../../../common/selectors";
 import { UserRole } from "../../../common/types";
 import { ExampleContent } from "../../../fixtures/manageCases/exampleEvent/exampleContent";
+import AxeTest from "../../../common/accessibilityTestHelper";
 
 export class ExamplePage {
   public static async checkPageLoads(
@@ -23,5 +24,6 @@ export class ExamplePage {
       `${Selectors.Header}:text-is("${ExampleContent.pageTitle}")`,
       1,
     );
+    await AxeTest.run(page);
   }
 }
