@@ -14,7 +14,7 @@ export class AxeTest {
       ])
       .analyze();
 
-    expect(accessibilityScanResults.violations).toEqual([]);
+    expect.soft(accessibilityScanResults.violations).toEqual([]);
   }
 }
 
