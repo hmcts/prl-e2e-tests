@@ -46,9 +46,9 @@ Node.JS >v22.0.0
 
 Please install the dependencies with the following cmd:
 
-`yarn configure`
-
 `yarn install`
+
+`yarn configure`
 
 You will also need the config.ts file from a current developer, which should be located in e2e/config.ts, this file should **NEVER** be committed.
 
