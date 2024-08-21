@@ -55,10 +55,7 @@ export class Helpers {
     try {
       await page.goto(Helpers.generateUrl(baseURL, caseNumber));
     } catch (error) {
-      console.error(
-        "An error occurred while navigating to the case: ",
-        error,
-      );
+      console.error("An error occurred while navigating to the case: ", error);
       throw error;
     }
   }
