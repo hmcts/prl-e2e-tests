@@ -53,25 +53,25 @@ describe("Helpers", () => {
     it("should throw an error for invalid month (0)", () => {
       expect(() => {
         Helpers.dayAbbreviatedMonthYear("21", "0", "2024");
-      }).toThrowError("Invalid month value");
+      }).toThrow("Invalid month value");
     });
 
     it("should throw an error for invalid month (13)", () => {
       expect(() => {
         Helpers.dayAbbreviatedMonthYear("21", "13", "2024");
-      }).toThrowError("Invalid month value");
+      }).toThrow("Invalid month value");
     });
 
     it("should throw an error for non-numeric month", () => {
       expect(() => {
         Helpers.dayAbbreviatedMonthYear("21", "abc", "2024");
-      }).toThrowError("Invalid month value");
+      }).toThrow("Invalid month value");
     });
 
     it("should throw an error for empty month", () => {
       expect(() => {
         Helpers.dayAbbreviatedMonthYear("21", "", "2024");
-      }).toThrowError("Invalid month value");
+      }).toThrow("Invalid month value");
     });
 
     it("should handle single-digit days and months", () => {
