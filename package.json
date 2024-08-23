@@ -22,9 +22,6 @@
     "ts-jest": "^29.2.4",
     "ts-node": "^10.9.2"
   },
-  "resolutions": {
-    "jackspeak": "2.1.1"
-  },
   "scripts": {
     "configure": "yarn playwright install && yarn playwright install webkit && yarn playwright install firefox && git update-index --skip-worktree e2e/config.ts",
     "changeConfig": "git update-index --no-skip-worktree e2e/config.ts && echo 'Commit the config changes and then rerun yarn configure'",
