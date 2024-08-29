@@ -8,7 +8,7 @@ Enter the ticket description
 **Before merging a pull request make sure that:**
 
 - [ ] Commits are meaningful and simple
-- [ ] All commits into a single commit
+- [ ] All commits are squashed into a single commit
 - [ ] README and other documentation has been updated / added (if needed)
 
 
