@@ -1,11 +1,11 @@
 export enum Selectors {
   // Header
-  Header = "header",
+  Header = ".header",
   GovukHeader = ".govuk-header",
+  headingH2 = ".heading-h2",
 
   // Navigation
   GovukNavLink = ".govuk-nav-link",
-  GovukHeaderLink = ".govuk-header__link",
   GovukPhaseBanner = ".govuk-phase-banner",
 
   // Forms
@@ -17,9 +17,13 @@ export enum Selectors {
   GovukRadios = ".govuk-radios",
   GovukCheckboxes = ".govuk-checkboxes",
   GovukText16 = ".text-16",
+  GovukFormLabel = ".form-label",
+  ResetLink = ".search-result-reset-link",
+  ColumnLabel = ".search-result-column-label",
 
   // Buttons
   GovukButton = ".govuk-button",
+  button = ".button",
   GovukButtonSecondary = ".govuk-button--secondary",
   GovukButtonStart = ".govuk-button--start",
 
@@ -35,10 +39,15 @@ export enum Selectors {
   GovukHeadingM = ".govuk-heading-m",
   GovukHeadingS = ".govuk-heading-s",
   GovukSummaryList = ".govuk-summary-list",
+  GovukSummaryText = ".govuk-details__summary-text",
+  GovukDetailsText = ".govuk-details__text",
 
   // Links
   GovukLink = ".govuk-link",
   GovukLinkNoVisitedState = ".govuk-link--no-visited-state",
+  GovukHeaderLink = ".hmcts-header__link",
+  GovukHeaderNavigationLink = ".hmcts-header__navigation-link",
+  GovukNavigationLink = ".hmcts-primary-navigation__link",
 
   // Tables
   GovukTable = ".govuk-table",
@@ -65,4 +74,7 @@ export enum Selectors {
   GovukPanel = ".govuk-panel",
   GovukPanelTitle = ".govuk-panel__title",
   GovukPanelBody = ".govuk-panel__body",
+
+  // Logos
+  GovukLogo = ".govuk-header__logotype-text",
 }

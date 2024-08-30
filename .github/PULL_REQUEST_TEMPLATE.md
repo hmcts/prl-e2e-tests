@@ -1,7 +1,8 @@
-### Change description ###
+### Change description
+
 Enter the ticket description
 
-### JIRA link ###
+### JIRA link
 
 [PRL-](https://tools.hmcts.net/jira/browse/PRL-)
 
@@ -10,5 +11,3 @@ Enter the ticket description
 - [ ] Commits are meaningful and simple
 - [ ] All commits are squashed into a single commit
 - [ ] README and other documentation has been updated / added (if needed)
-
-

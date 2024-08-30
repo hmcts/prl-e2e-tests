@@ -6,15 +6,10 @@
   },
   "packageRules": [
     {
-      "matchUpdateTypes": [
-        "minor",
-        "patch"
-      ],
+      "matchUpdateTypes": ["minor", "patch"],
       "groupName": "All patch-minor dependencies",
       "groupSlug": "All-minor-patch",
-      "addLabels": [
-        "Renovate All-minor-patch"
-      ],
+      "addLabels": ["Renovate All-minor-patch"],
       "automerge": true
     }
   ]
