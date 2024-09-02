@@ -4,6 +4,7 @@ import { Selectors } from "../../../common/selectors";
 import { CaseListContent } from "../../../fixtures/manageCases/caseList/caseListContent";
 import AccessibilityTestHelper from "../../../common/accessibilityTestHelper";
 import { Helpers } from "../../../common/helpers";
+import { CommonContent } from "../../../fixtures/manageCases/commonContent";
 
 export class CaseListPage extends CommonPage {
   public static async casesListPage(
@@ -11,6 +12,12 @@ export class CaseListPage extends CommonPage {
     accessibilityTest: boolean,
   ): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest);
+  }
+
+  public static async startCreateCaseEvent(page: Page): Promise<void> {
+    await page.click(
+      `${Selectors.GovukNavigationLink}:text-is("${CommonContent.createCase}")`,
+    );
   }
 
   private static async checkPageLoads(
@@ -42,14 +49,13 @@ export class CaseListPage extends CommonPage {
         `${Selectors.headingH2}:text-is("${CaseListContent.filtersSubtitle}")`,
         1,
       ),
-      ...Array.from({ length: 13 }, (_, index) => {
-        const formLabel = (CaseListContent as any)[`formLabel${index + 1}`];
-        return Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukFormLabel}:text-is("${formLabel}")`,
-          1,
-        );
-      }),
+      Helpers.checkGroup(
+        page,
+        13,
+        CaseListContent,
+        "formLabel",
+        Selectors.GovukFormLabel,
+      ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.button}:text-is("${CaseListContent.applyButton}")`,
