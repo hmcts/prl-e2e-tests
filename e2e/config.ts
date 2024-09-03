@@ -3,14 +3,9 @@ import { UserCredentials, UserRole } from "./common/types";
 
 export class Config {
   public static readonly userCredentials: Record<UserRole, UserCredentials> = {
-    caseWorker: {
-      email: process.env.CASEWORKER_USERNAME || "caseworker-user",
-      password: process.env.CASEWORKER_PASSWORD || "caseworker-password",
-    },
-    seniorCaseworker: {
-      email: process.env.SENIOR_CASEWORKER_USERNAME || "seniorCaseworker-user",
-      password:
-        process.env.SENIOR_CASEWORKER_PASSWORD || "seniorCaseworker-password",
+    solicitor: {
+      email: process.env.SOLICITOR_USERNAME || "solicitor-user",
+      password: process.env.SOLICITOR_PASSWORD || "solicitor-password",
     },
   };
 
