@@ -13,8 +13,7 @@ export type State = "undefined";
 export type Events = "undefined";
 
 const UserRoles = {
-  CaseWorker: "caseWorker",
-  SeniorCaseworker: "seniorCaseworker",
+  solicitor: "solicitor",
 } as const;
 
 export type UserRole = (typeof UserRoles)[keyof typeof UserRoles];

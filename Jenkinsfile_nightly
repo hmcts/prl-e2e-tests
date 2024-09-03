@@ -6,7 +6,7 @@ properties([
   parameters([
     string(
       name: 'CITIZEN_FRONTEND_BASE_URL',
-      defaultValue: 'https://sptribs-frontend.aat.platform.hmcts.net',
+      defaultValue: 'https://privatelaw.aat.platform.hmcts.net/',
       description: 'The Citizen URL to test against'
     ),
     string(
@@ -21,7 +21,7 @@ properties([
     ),
     booleanParam(
       name: 'skipCitizenTests',
-      defaultValue: false,
+      defaultValue: true,
       description: 'Tick the checkbox for skipping Citizen application tests.'
     ),
     booleanParam(
@@ -50,10 +50,8 @@ static Map < String, Object > secret(String secretName, String envVariable) {
 
 def secrets = [
   'prl-${env}': [
-    secret('caseworker-user', 'CASEWORKER_USERNAME'),
-    secret('caseworker-password', 'CASEWORKER_PASSWORD'),
-    secret('seniorCaseworker-user', 'SENIOR_CASEWORKER_USERNAME'),
-    secret('seniorCaseworker-password', 'SENIOR_CASEWORKER_PASSWORD'),
+    secret('caseworker-user', 'SOLICITOR_USERNAME'),
+    secret('caseworker-password', 'SOLICITOR_PASSWORD'),
   ]
 ]
 
