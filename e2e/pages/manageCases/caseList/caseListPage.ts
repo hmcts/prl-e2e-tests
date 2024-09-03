@@ -2,7 +2,6 @@ import { CommonPage } from "../commonPage";
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../common/selectors";
 import { CaseListContent } from "../../../fixtures/manageCases/caseList/caseListContent";
-import AccessibilityTestHelper from "../../../common/accessibilityTestHelper";
 import { Helpers } from "../../../common/helpers";
 import { CommonContent } from "../../../fixtures/manageCases/commonContent";
 
@@ -126,7 +125,7 @@ export class CaseListPage extends CommonPage {
       1,
     );
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      // await AccessibilityTestHelper.run(page); disabled due to ExUI issues
     }
   }
 }

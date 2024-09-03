@@ -51,7 +51,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   });
 });
 
-test("Check the accessibility of a C100 solicitor create journey. @crossbrowserManageCases", async ({
+test("Check the accessibility of a C100 solicitor create journey. @accessibilityManageCases", async ({
   page,
 }): Promise<void> => {
   await SolicitorCreateInitial.createInitialCase(
@@ -63,7 +63,7 @@ test("Check the accessibility of a C100 solicitor create journey. @crossbrowserM
   );
 });
 
-test("Check the accessibility of a FL401 solicitor create journey. @crossbrowserManageCases", async ({
+test("Check the accessibility of a FL401 solicitor create journey. @accessibilityManageCases", async ({
   page,
 }): Promise<void> => {
   await SolicitorCreateInitial.createInitialCase(
