@@ -5,12 +5,12 @@ test.describe("Manage cases case list tests. @manageCases", (): void => {
   test("Check the case list is visible. @crossbrowserManageCases", async ({
     page,
   }): Promise<void> => {
-    await CaseList.caseList(page, "caseWorker", false);
+    await CaseList.caseList(page, "solicitor", false);
   });
 });
 
 test("Check the case list is accessible @accessibilityManageCases", async ({
   page,
 }): Promise<void> => {
-  await CaseList.caseList(page, "caseWorker", true);
+  await CaseList.caseList(page, "solicitor", true);
 });

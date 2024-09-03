@@ -3,10 +3,13 @@ export enum Selectors {
   Header = ".header",
   GovukHeader = ".govuk-header",
   headingH2 = ".heading-h2",
+  h2 = "h2",
+  h3 = "h3",
 
   // Navigation
   GovukNavLink = ".govuk-nav-link",
   GovukPhaseBanner = ".govuk-phase-banner",
+  formControl = ".form-control",
 
   // Forms
   GovukFormGroup = ".govuk-form-group",
@@ -18,6 +21,7 @@ export enum Selectors {
   GovukCheckboxes = ".govuk-checkboxes",
   GovukText16 = ".text-16",
   GovukFormLabel = ".form-label",
+  GovukFormHint = ".form-hint",
   ResetLink = ".search-result-reset-link",
   ColumnLabel = ".search-result-column-label",
 
@@ -30,7 +34,6 @@ export enum Selectors {
   // Notifications
   GovukNotificationBanner = ".govuk-notification-banner",
   GovukErrorSummary = ".govuk-error-summary",
-  GovukErrorMessage = ".govuk-error-message",
 
   // Content
   GovukBody = ".govuk-body",
@@ -41,6 +44,12 @@ export enum Selectors {
   GovukSummaryList = ".govuk-summary-list",
   GovukSummaryText = ".govuk-details__summary-text",
   GovukDetailsText = ".govuk-details__text",
+  GovukErrorSummaryTitle = ".govuk-error-summary__title",
+  GovukErrorValidation = ".validation-error",
+  GovukErrorMessage = ".error-message",
+  p = "p",
+  li = "li",
+  strong = "strong",
 
   // Links
   GovukLink = ".govuk-link",

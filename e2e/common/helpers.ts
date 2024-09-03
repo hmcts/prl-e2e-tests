@@ -104,6 +104,30 @@ export class Helpers {
     return `${day} ${Helpers.shortMonth(monthIndex)} ${year}`;
   }
 
+  public static async checkGroup<E extends Record<string, string>>(
+    page: Page,
+    count: number,
+    file: E, // Generic type E allows any enum type
+    name: string,
+    selector: string,
+  ): Promise<void[]> {
+    return Promise.all([
+      ...Array.from({ length: count }, (_, index) => {
+        const text = file[`${name}${index + 1}` as keyof E]; // Safely access the enum
+        return Helpers.checkVisibleAndPresent(
+          page,
+          `${selector}:text-is("${text}")`,
+          1,
+        );
+      }),
+    ]);
+  }
+
+  public static generateCaseName(): string {
+    const randomNumber: number = Math.floor(Math.random() * 100) + 1;
+    return `Automated tester${randomNumber.toString()}`;
+  }
+
   private static readonly months: string[] = [
     "January",
     "February",
