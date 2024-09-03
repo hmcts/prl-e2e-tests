@@ -89,4 +89,44 @@ describe("Helpers", () => {
       expect(result).toBe("15 Dec 9999");
     });
   });
+
+  describe("generateCaseName", () => {
+    it("should generate a string starting with 'Automated tester'", () => {
+      // Mock Math.random() to control its output for deterministic testing
+      jest.spyOn(Math, "random").mockReturnValue(0.5);
+
+      const result = Helpers.generateCaseName();
+
+      // Assert that the result starts with "Automated tester"
+      expect(result.startsWith("Automated tester")).toBe(true);
+    });
+
+    it("should generate a string with a number between 1 and 100", () => {
+      // Mock Math.random() to return specific values for testing
+      jest.spyOn(Math, "random").mockReturnValue(0.75);
+
+      const result = Helpers.generateCaseName();
+
+      // Assert that the number part is correctly generated
+      expect(result).toMatch(/^Automated tester\d{1,3}$/);
+    });
+
+    it("should generate unique names for subsequent calls", () => {
+      // Mock Math.random() with different return values for each call
+      jest
+        .spyOn(Math, "random")
+        .mockReturnValueOnce(0.1)
+        .mockReturnValueOnce(0.2)
+        .mockReturnValueOnce(0.3);
+
+      const result1 = Helpers.generateCaseName();
+      const result2 = Helpers.generateCaseName();
+      const result3 = Helpers.generateCaseName();
+
+      // Assert that each generated name is unique
+      expect(result1).not.toBe(result2);
+      expect(result2).not.toBe(result3);
+      expect(result3).not.toBe(result1);
+    });
+  });
 });

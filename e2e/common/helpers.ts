@@ -123,6 +123,11 @@ export class Helpers {
     ]);
   }
 
+  public static generateCaseName(): string {
+    const randomNumber: number = Math.floor(Math.random() * 100) + 1;
+    return `Automated tester${randomNumber.toString()}`;
+  }
+
   private static readonly months: string[] = [
     "January",
     "February",

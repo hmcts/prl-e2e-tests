@@ -1,0 +1,16 @@
+export enum SolicitorCreate3Content {
+  pageTitle = "Solicitor application",
+  h2 = "Confidentiality Statement",
+  strong1 = "When completing this form, you have the option to mark information as",
+  strong2 = "confidential and you do not need to complete a C8 form.",
+  p1 = "You should do this if you wish to keep certain information private.",
+  h3 = "Who will have access to the confidential information",
+  p2 = "If you mark information as confidential, it will only be accessible to:",
+  li1 = "the court",
+  li2 = "the judiciary",
+  p3 = "The information will not be revealed to anyone else, unless ordered by the court.",
+  formLabel = "I understand that information should be marked as confidential if it is to be kept private.",
+  continue = "Continue",
+  errorBanner = "There is a problem",
+  errorText = "Field is required",
+}

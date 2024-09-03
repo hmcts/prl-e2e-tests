@@ -1,15 +1,15 @@
 import { Page } from "@playwright/test";
-import { SolicitorCreate4Content } from "../../../../fixtures/manageCases/createCase/initialJourney/solicitorCreate4Content";
 import { Selectors } from "../../../../common/selectors";
 import { Helpers } from "../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+import { SolicitorCreate5Content } from "../../../../fixtures/manageCases/createCase/initialJourney/solicitorCreate5Content";
 
 enum caseName {
-  fieldID = "#applicantCaseName",
+  fieldID = "#applicantOrRespondentCaseName",
 }
 
-export class SolicitorCreate4Page {
-  public static async solicitorCreate4Page(
+export class SolicitorCreate5Page {
+  public static async solicitorCreate5Page(
     page: Page,
     errorMessaging: boolean,
     accessibilityTest: boolean,
@@ -26,24 +26,17 @@ export class SolicitorCreate4Page {
     accessibilityTest: boolean,
   ): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukFormHint}:text-is("${SolicitorCreate4Content.formHint1}")`,
+      `${Selectors.GovukFormHint}:text-is("${SolicitorCreate5Content.formHint1}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHeadingL}:text-is("${SolicitorCreate4Content.pageTitle}")`,
+        `${Selectors.GovukHeadingL}:text-is("${SolicitorCreate5Content.pageTitle}")`,
         1,
-      ),
-      Helpers.checkGroup(
-        page,
-        2,
-        SolicitorCreate4Content,
-        "p",
-        `${Selectors.p}`,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukFormLabel}:text-is("${SolicitorCreate4Content.formLabel1}")`,
+        `${Selectors.GovukFormLabel}:text-is("${SolicitorCreate5Content.formLabel1}")`,
         1,
       ),
     ]);
@@ -54,22 +47,22 @@ export class SolicitorCreate4Page {
 
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${SolicitorCreate4Content.continue}")`,
+      `${Selectors.button}:text-is("${SolicitorCreate5Content.continue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorSummaryTitle}:text-is("${SolicitorCreate4Content.errorBanner}")`,
+        `${Selectors.GovukErrorSummaryTitle}:text-is("${SolicitorCreate5Content.errorBanner}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorSummary}:has-text("${SolicitorCreate4Content.errorText}")`,
+        `${Selectors.GovukErrorSummary}:has-text("${SolicitorCreate5Content.errorText}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${SolicitorCreate4Content.errorText}")`,
+        `${Selectors.GovukErrorMessage}:text-is("${SolicitorCreate5Content.errorText}")`,
         1,
       ),
     ]);
@@ -79,7 +72,7 @@ export class SolicitorCreate4Page {
     const generatedName: string = Helpers.generateCaseName();
     await page.fill(`${caseName.fieldID}`, generatedName);
     await page.click(
-      `${Selectors.button}:text-is("${SolicitorCreate4Content.continue}")`,
+      `${Selectors.button}:text-is("${SolicitorCreate5Content.continue}")`,
     );
     return generatedName;
   }

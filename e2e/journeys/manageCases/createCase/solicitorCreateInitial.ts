@@ -6,6 +6,9 @@ import { SolicitorCreatePage } from "../../../pages/manageCases/createCase/initi
 import { SolicitorCreate2Page } from "../../../pages/manageCases/createCase/initialJourney/solicitorCreate2Page";
 import { SolicitorCreate6Page } from "../../../pages/manageCases/createCase/initialJourney/solicitorCreate6Page";
 import { SolicitorCreate4Page } from "../../../pages/manageCases/createCase/initialJourney/solicitorCreate4Page";
+import { SolicitorCreate3Page } from "../../../pages/manageCases/createCase/initialJourney/solicitorCreate3Page";
+import { SolicitorCreate5Page } from "../../../pages/manageCases/createCase/initialJourney/solicitorCreate5Page";
+import { SubmitPage } from "../../../pages/manageCases/createCase/initialJourney/submitPage";
 
 export class SolicitorCreateInitial {
   public static async createInitialCase(
@@ -15,6 +18,7 @@ export class SolicitorCreateInitial {
     solicitorCaseType: solicitorCaseCreateType,
     errorMessaging: boolean,
   ): Promise<void> {
+    let caseName: string;
     await CaseList.caseList(page, user, false);
     await CaseListPage.startCreateCaseEvent(page);
     await SolicitorCreatePage.solicitorCreatePage(page, accessibilityTest);
@@ -31,16 +35,28 @@ export class SolicitorCreateInitial {
           accessibilityTest,
           errorMessaging,
         );
-        await SolicitorCreate4Page.solicitorCreate4Page(
+        caseName = await SolicitorCreate4Page.solicitorCreate4Page(
           page,
           errorMessaging,
           accessibilityTest,
         );
         break;
       case "FL401":
+        await SolicitorCreate3Page.solicitorCreate3Page(
+          page,
+          errorMessaging,
+          accessibilityTest,
+        );
+        caseName = await SolicitorCreate5Page.solicitorCreate5Page(
+          page,
+          errorMessaging,
+          accessibilityTest,
+        );
         break;
       default:
+        caseName = "null";
         console.error("An invalid case type was selected");
     }
+    await SubmitPage.submitPage(page, accessibilityTest, caseName);
   }
 }

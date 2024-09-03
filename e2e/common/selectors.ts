@@ -49,6 +49,7 @@ export enum Selectors {
   GovukErrorMessage = ".error-message",
   p = "p",
   li = "li",
+  strong = "strong",
 
   // Links
   GovukLink = ".govuk-link",
