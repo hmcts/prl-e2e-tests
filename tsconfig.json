@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
-    "target": "es2016", // Keep your existing target
-    "module": "commonjs", // Keep your existing module
-    "moduleResolution": "node10", // Keep your existing moduleResolution
-    "types": ["node", "jest"], // Add Node.js and Jest types
+    "target": "es2016",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "types": ["node", "jest"],
     "allowImportingTsExtensions": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
@@ -13,6 +13,6 @@
     "outDir": "dist",
     "allowJs": false
   },
-  "include": ["src/**/*", "__tests__/**/*"], // Include test files
+  "include": ["src/**/*", "__tests__/**/*"],
   "exclude": ["node_modules"]
 }
