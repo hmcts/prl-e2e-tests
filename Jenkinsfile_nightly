@@ -63,6 +63,13 @@ withNightlyPipeline(type, product, component, 600) {
   env.MANAGE_CASES_BASE_URL = params.MANAGE_CASES_BASE_URL
   enableSlackNotifications(channel)
   afterAlways('DependencyCheckNightly') {
+    stage('Unit tests') {
+      try {
+        yarnBuilder.yarn('test:unit')
+      } catch (Error) {
+        unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+      }
+    }
     if (!params.skipCitizenTests) {
       stage('Citizen E2E tests - Chrome') {
         try {
