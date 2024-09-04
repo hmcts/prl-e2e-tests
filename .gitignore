@@ -1,7 +1,11 @@
 .idea/
-.yarn/
+.yarn/cache
 prl-e2e-tests.iml
 node_modules/
 playwright-report/
 test-results/
 tests-examples
+.pnp.cjs
+.pnp.loader.mjs
+.yarn/unplugged
+.yarn/install-state.gz
