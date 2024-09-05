@@ -4,17 +4,23 @@ import idamLoginHelper from "./idamLoginHelper";
 import { Selectors } from "./selectors.ts";
 
 export class Helpers {
-  public static async checkCaseNumberRegex(
-    page: Page,
-  ): Promise<void> {
-    const caseNumberRegex = /Casenumber: \d{4}-\d{4}-\d{4}-\d{4}/
-    await expect(page.locator('h2', { hasText: caseNumberRegex})).toBeVisible();
+  public static async checkCaseNumberRegex(page: Page): Promise<void> {
+    const caseNumberRegex = /Casenumber: \d{4}-\d{4}-\d{4}-\d{4}/;
+    await expect(
+      page.locator("h2", { hasText: caseNumberRegex }),
+    ).toBeVisible();
 
     try {
       const visibilityPromises: Promise<void>[] = Array.from(
         { length: 1 },
         (_, i: number) =>
-          expect.soft(page.locator(`${Selectors.h2}`, { hasText: caseNumberRegex }).nth(i)).toBeVisible(),
+          expect
+            .soft(
+              page
+                .locator(`${Selectors.h2}`, { hasText: caseNumberRegex })
+                .nth(i),
+            )
+            .toBeVisible(),
       );
       const countPromise: Promise<void> = expect
         .soft(page.locator(`${Selectors.h2}`, { hasText: caseNumberRegex }))
