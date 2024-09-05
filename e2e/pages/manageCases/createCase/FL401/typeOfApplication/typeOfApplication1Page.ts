@@ -33,16 +33,7 @@ export class TypeOfApplication1Page {
       `${Selectors.GovukHeadingL}:text-is("${TypeOfApplication1Content.pageTitle}")`,
     );
     await Promise.all([
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.h2}:text-is("${TypeOfApplication1Content.familyManHeading}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.h2}:text-is("${TypeOfApplication1Content.caseNumberHeading}")`,
-        1,
-      ),
+      Helpers.checkCaseNumberRegex(page),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.p}:text-is("${TypeOfApplication1Content.p1}")`,
