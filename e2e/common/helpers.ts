@@ -6,7 +6,6 @@ import { Selectors } from "./selectors.ts";
 export class Helpers {
   public static async checkCaseNumberRegex(page: Page): Promise<void> {
     const caseNumberRegex = /Casenumber: \d{4}-\d{4}-\d{4}-\d{4}/;
-
     try {
       const visibilityPromises: Promise<void>[] = Array.from(
         { length: 1 },
@@ -25,7 +24,7 @@ export class Helpers {
       await Promise.all([...visibilityPromises, countPromise]);
     } catch (error) {
       console.error(
-        `An error occurred while checking visibility and count of '${selector}':`,
+        `An error occurred while checking visibility and accuracy of the case number heading:`,
         error,
       );
       throw error;
