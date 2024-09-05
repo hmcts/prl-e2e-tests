@@ -169,4 +169,31 @@ export class Helpers {
     }
     return Helpers.months[index - 1].substring(0, 3);
   }
+
+  private static async checkCaseNumberRegex(page: Page): Promise<void> {
+    const caseNumberRegex = /^Casenumber: \d{4}-\d{4}-\d{4}-\d{4}$/;
+    try {
+      const visibilityPromises: Promise<void>[] = Array.from(
+        { length: 1 },
+        (_, i: number) =>
+          expect
+            .soft(
+              page
+                .locator(`${Selectors.h2}`, { hasText: caseNumberRegex })
+                .nth(i),
+            )
+            .toBeVisible(),
+      );
+      const countPromise: Promise<void> = expect
+        .soft(page.locator(`${Selectors.h2}`, { hasText: caseNumberRegex }))
+        .toHaveCount(1);
+      await Promise.all([...visibilityPromises, countPromise]);
+    } catch (error) {
+      console.error(
+        `An error occurred while checking visibility and accuracy of the case number heading:`,
+        error,
+      );
+      throw error;
+    }
+  }
 }
