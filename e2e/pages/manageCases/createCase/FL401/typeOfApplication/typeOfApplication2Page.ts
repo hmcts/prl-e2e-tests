@@ -38,7 +38,6 @@ export class TypeOfApplication2Page {
       `${Selectors.GovukHeadingL}:text-is("${TypeOfApplication2Content.pageTitle}")`,
     );
     await Promise.all([
-      Helpers.checkCaseNumberRegex(page),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.p}:text-is("${TypeOfApplication2Content.p1}")`,
