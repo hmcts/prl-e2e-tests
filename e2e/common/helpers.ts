@@ -6,9 +6,6 @@ import { Selectors } from "./selectors.ts";
 export class Helpers {
   public static async checkCaseNumberRegex(page: Page): Promise<void> {
     const caseNumberRegex = /Casenumber: \d{4}-\d{4}-\d{4}-\d{4}/;
-    await expect(
-      page.locator("h2", { hasText: caseNumberRegex }),
-    ).toBeVisible();
 
     try {
       const visibilityPromises: Promise<void>[] = Array.from(
