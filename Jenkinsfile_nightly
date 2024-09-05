@@ -37,7 +37,7 @@ properties([
 def type = "nodejs"
 def product = "prl"
 def component = "e2e-tests"
-def channel = "#prl-qa-automation"
+def channel = "#prl-tech-notifications"
 
 static Map < String, Object > secret(String secretName, String envVariable) {
   [

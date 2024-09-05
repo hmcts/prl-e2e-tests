@@ -1,8 +1,6 @@
 #!groovy
 
 properties([
-  // H allow predefined but random minute see https://en.wikipedia.org/wiki/Cron#Non-standard_characters
-  pipelineTriggers([cron('H 8 * * 1-5')]),
   parameters([
     string(
       name: 'CITIZEN_FRONTEND_BASE_URL',
@@ -37,7 +35,7 @@ properties([
 def type = "nodejs"
 def product = "prl"
 def component = "e2e-tests"
-def channel = "#prl-qa-automation"
+def channel = "#prl-tech-notifications"
 
 static Map < String, Object > secret(String secretName, String envVariable) {
   [
