@@ -5,6 +5,9 @@ import {
   TypeOfApplication1Page
 } from "../../../pages/manageCases/createCase/FL401/typeOfApplication/typeOfApplication1Page";
 import { Selectors } from "../../../common/selectors";
+import {
+  TypeOfApplication2Page
+} from "../../../pages/manageCases/createCase/FL401/typeOfApplication/typeOfApplication2Page";
 
 export class FL401 {
   public static async fl401 (
@@ -13,6 +16,7 @@ export class FL401 {
     accessibilityTest: boolean,
     solicitorCaseType: solicitorCaseCreateType = "FL401",
     errorMessaging: boolean,
+    isLinkedToC100: boolean,
   ): Promise<void> {
     await SolicitorCreateInitial.createInitialCase(
       page,
@@ -22,16 +26,25 @@ export class FL401 {
       errorMessaging,
     );
 
+    console.log('Clicking')
     await this.navigateToEvent(
       page,
       "Type of application"
     )
 
-    await TypeOfApplication1Page.typeOfApplication1Page(
+      await TypeOfApplication1Page.typeOfApplication1Page(
       page,
       errorMessaging,
       accessibilityTest
     );
+    console.log('Post Application')
+
+    await TypeOfApplication2Page.typeOfApplication2Page(
+      page,
+      errorMessaging,
+      accessibilityTest,
+      isLinkedToC100
+    )
   }
 
   private static async navigateToEvent(
