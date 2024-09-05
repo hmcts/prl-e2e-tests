@@ -2,6 +2,18 @@ import { Page } from "@playwright/test";
 import {Selectors} from "../../../../../common/selectors";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import {
+  TypeOfApplication2Content
+} from "../../../../../fixtures/manageCases/createCase/FL401/typeOfApplication/typeOfApplication2Content";
+
+
+enum isLinkedSelectionIds {
+  no = '#typeOfApplicationLinkToCA_linkToCaApplication_No',
+  yes = '#typeOfApplicationLinkToCA_linkToCaApplication_Yes',
+  applicationNumber = '#typeOfApplicationLinkToCA_caApplicationNumber'
+}
+
+const dummyCaseNumber: string = "1111-2222-3333-4444"
 
 
 export class TypeOfApplication2Page {
@@ -9,12 +21,13 @@ export class TypeOfApplication2Page {
     page: Page,
     errorMessaging: boolean,
     accessibilityTest: boolean,
+    isLinked: boolean
   ): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest);
     if (errorMessaging) {
       await this.checkErrorMessaging(page);
     }
-    await this.fillInFields(page)
+    await this.fillInFields(page, isLinked, accessibilityTest)
   }
 
   private static async checkPageLoads(
@@ -25,25 +38,16 @@ export class TypeOfApplication2Page {
       `${Selectors.GovukHeadingL}:text-is("${TypeOfApplication2Content.pageTitle}")`,
     );
     await Promise.all([
+      Helpers.checkCaseNumberRegex(page),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h2}:text-is("${TypeOfApplication2Content.familyManHeading}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.h2}:text-is("${TypeOfApplication2Content.caseNumberHeading}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.p}:text-is("${TypeOfApplication2Content.}")`,
+        `${Selectors.p}:text-is("${TypeOfApplication2Content.p1}")`,
         1,
       ),
       Helpers.checkGroup(
         page,
         3,
-        TypeOfApplication1Content,
+        TypeOfApplication2Content,
         "formLabel",
         `${Selectors.GovukFormLabel}`,
       ),
@@ -55,36 +59,57 @@ export class TypeOfApplication2Page {
 
   private static async checkErrorMessaging(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${TypeOfApplication1Content.continue}")`,
+      `${Selectors.GovukFormLabel}:text-is("${TypeOfApplication2Content.formLabel2}")`,
     );
-    await Promise.all([
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukErrorSummaryTitle}:text-is("${TypeOfApplication1Content.errorBanner}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukErrorSummary}:has-text("${TypeOfApplication1Content.errorText}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukErrorMessage}:text-is("${TypeOfApplication1Content.errorText}")`,
-        1,
-      ),
-    ]);
+    await page.click(
+      `${Selectors.button}:text-is("${TypeOfApplication2Content.continue}")`,
+    );
   }
 
   private static async fillInFields(
     page: Page,
+    isLinked: boolean,
+    accessibilityTest: boolean
   ): Promise<void> {
-    for (let [key, selector] of Object.entries(applicationOrderSelectionIds)) {
-      await page.locator(selector).check();
+    if (!isLinked) {
+      await page.click(
+        isLinkedSelectionIds['no']
+      )
+    } else {
+        await page.click(
+          isLinkedSelectionIds['yes']
+        )
+        await this.checkLinkedCaseTextLoads(page, accessibilityTest)
+        await page.fill(
+          `${isLinkedSelectionIds['applicationNumber']}`,
+          dummyCaseNumber
+        )
     }
+  }
 
+  private static async checkLinkedCaseTextLoads(
+    page: Page,
+    accessibilityTest: boolean
+  ): Promise<void> {
+    await Promise.all(
+      [
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.p}:text-is("${TypeOfApplication2Content.pLinkedC100}")`,
+          1
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukFormLabel}:text-is("${TypeOfApplication2Content.formLabelLinkedC100}")`,
+          1
+        )
+      ]
+    )
+    if (accessibilityTest) {
+      await AccessibilityTestHelper.run(page);
+    }
     await page.click(
-      `${Selectors.button}:text-is("${TypeOfApplication1Content.continue}")`
+      `${Selectors.button}:text-is("${TypeOfApplication2Content.continue}")`
     )
   }
 }
