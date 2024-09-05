@@ -1,10 +1,6 @@
 export enum SelectApplicationType1Content {
   title = "Type of application",
 
-  subTitle1 = "",
-  subTitle2 = "FamilyMan ID:",
-  subTitle3 = "Casenumber:",
-
   p1 = "You can save and return to this page at any time. Questions marked with a * need to be completed before you can send your application.",
 
   textOnPage1 = "*What order(s) are you applying for?",
@@ -13,9 +9,9 @@ export enum SelectApplicationType1Content {
   formLabel3 = "Specific Issue Order",
 
   textOnPage2 = "*Select type of child arrangements order",
-  formLabel4 = "Spend time with order",
-  formLabel5 = "Live with order",
-  formLabel6 = "Both live with and spend time with order",
+  formLabel11 = "Spend time with order",
+  formLabel22 = "Live with order",
+  formLabel33 = "Both live with and spend time with order",
 
   p2 = "Provide more information on the type of order you are requesting.",
 
