@@ -3,7 +3,7 @@ import { Page } from "@playwright/test";
 import { SolicitorCreateInitial } from "./solicitorCreateInitial";
 
 export class C100 {
-  public static async c100 (
+  public static async c100(
     page: Page,
     user: UserRole,
     accessibilityTest: boolean,
@@ -17,7 +17,5 @@ export class C100 {
       "C100",
       false,
     );
-
   }
-
 }

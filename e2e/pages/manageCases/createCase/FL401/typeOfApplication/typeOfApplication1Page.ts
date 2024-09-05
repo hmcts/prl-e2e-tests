@@ -1,16 +1,13 @@
 import { Page } from "@playwright/test";
-import {Selectors} from "../../../../../common/selectors";
+import { Selectors } from "../../../../../common/selectors";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import {
-  TypeOfApplication1Content
-} from "../../../../../fixtures/manageCases/createCase/FL401/typeOfApplication/typeOfApplication1Content";
+import { TypeOfApplication1Content } from "../../../../../fixtures/manageCases/createCase/FL401/typeOfApplication/typeOfApplication1Content";
 
 enum applicationOrderSelectionIds {
-  nonMolestationOrder = '#typeOfApplicationOrders_orderType-nonMolestationOrder',
-  occupationOrder = '#typeOfApplicationOrders_orderType-occupationOrder'
+  nonMolestationOrder = "#typeOfApplicationOrders_orderType-nonMolestationOrder",
+  occupationOrder = "#typeOfApplicationOrders_orderType-occupationOrder",
 }
-
 
 export class TypeOfApplication1Page {
   public static async typeOfApplication1Page(
@@ -22,7 +19,7 @@ export class TypeOfApplication1Page {
     if (errorMessaging) {
       await this.checkErrorMessaging(page);
     }
-    await this.fillInFields(page)
+    await this.fillInFields(page);
   }
 
   private static async checkPageLoads(
@@ -49,7 +46,7 @@ export class TypeOfApplication1Page {
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }
-  };
+  }
 
   private static async checkErrorMessaging(page: Page): Promise<void> {
     await page.click(
@@ -74,15 +71,12 @@ export class TypeOfApplication1Page {
     ]);
   }
 
-  private static async fillInFields(
-    page: Page,
-  ): Promise<void> {
-    for (let [key, selector] of Object.entries(applicationOrderSelectionIds)) {
+  private static async fillInFields(page: Page): Promise<void> {
+    for (let selector of Object.values(applicationOrderSelectionIds)) {
       await page.locator(selector).check();
     }
-
     await page.click(
-      `${Selectors.button}:text-is("${TypeOfApplication1Content.continue}")`
-    )
+      `${Selectors.button}:text-is("${TypeOfApplication1Content.continue}")`,
+    );
   }
 }

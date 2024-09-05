@@ -1,33 +1,29 @@
 import { Page } from "@playwright/test";
-import {Selectors} from "../../../../../common/selectors";
+import { Selectors } from "../../../../../common/selectors";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import {
-  TypeOfApplication2Content
-} from "../../../../../fixtures/manageCases/createCase/FL401/typeOfApplication/typeOfApplication2Content";
-
+import { TypeOfApplication2Content } from "../../../../../fixtures/manageCases/createCase/FL401/typeOfApplication/typeOfApplication2Content";
 
 enum isLinkedSelectionIds {
-  no = '#typeOfApplicationLinkToCA_linkToCaApplication_No',
-  yes = '#typeOfApplicationLinkToCA_linkToCaApplication_Yes',
-  applicationNumber = '#typeOfApplicationLinkToCA_caApplicationNumber'
+  no = "#typeOfApplicationLinkToCA_linkToCaApplication_No",
+  yes = "#typeOfApplicationLinkToCA_linkToCaApplication_Yes",
+  applicationNumber = "#typeOfApplicationLinkToCA_caApplicationNumber",
 }
 
-const dummyCaseNumber: string = "1111-2222-3333-4444"
-
+export const dummyCaseNumber: string = "1111-2222-3333-4444";
 
 export class TypeOfApplication2Page {
   public static async typeOfApplication2Page(
     page: Page,
     errorMessaging: boolean,
     accessibilityTest: boolean,
-    isLinked: boolean
+    isLinked: boolean,
   ): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest);
     if (errorMessaging) {
       await this.checkErrorMessaging(page);
     }
-    await this.fillInFields(page, isLinked, accessibilityTest)
+    await this.fillInFields(page, isLinked, accessibilityTest);
   }
 
   private static async checkPageLoads(
@@ -54,7 +50,7 @@ export class TypeOfApplication2Page {
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }
-  };
+  }
 
   private static async checkErrorMessaging(page: Page): Promise<void> {
     await page.click(
@@ -68,47 +64,44 @@ export class TypeOfApplication2Page {
   private static async fillInFields(
     page: Page,
     isLinked: boolean,
-    accessibilityTest: boolean
+    accessibilityTest: boolean,
   ): Promise<void> {
     if (!isLinked) {
-      await page.click(
-        isLinkedSelectionIds['no']
-      )
+      await page.click(isLinkedSelectionIds["no"]);
     } else {
-        await page.click(
-          isLinkedSelectionIds['yes']
-        )
-        await this.checkLinkedCaseTextLoads(page, accessibilityTest)
-        await page.fill(
-          `${isLinkedSelectionIds['applicationNumber']}`,
-          dummyCaseNumber
-        )
+      await page.click(isLinkedSelectionIds["yes"]);
+      await this.checkLinkedCaseTextLoads(page, accessibilityTest);
+      await page.fill(
+        `${isLinkedSelectionIds["applicationNumber"]}`,
+        dummyCaseNumber,
+      );
     }
+    await page.click(
+      `${Selectors.button}:text-is("${TypeOfApplication2Content.continue}")`,
+    );
   }
 
   private static async checkLinkedCaseTextLoads(
     page: Page,
-    accessibilityTest: boolean
+    accessibilityTest: boolean,
   ): Promise<void> {
-    await Promise.all(
-      [
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.p}:text-is("${TypeOfApplication2Content.pLinkedC100}")`,
-          1
-        ),
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukFormLabel}:text-is("${TypeOfApplication2Content.formLabelLinkedC100}")`,
-          1
-        )
-      ]
-    )
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${TypeOfApplication2Content.pLinkedC100}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${TypeOfApplication2Content.formLabelLinkedC100}")`,
+        1,
+      ),
+    ]);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }
     await page.click(
-      `${Selectors.button}:text-is("${TypeOfApplication2Content.continue}")`
-    )
+      `${Selectors.button}:text-is("${TypeOfApplication2Content.continue}")`,
+    );
   }
 }
