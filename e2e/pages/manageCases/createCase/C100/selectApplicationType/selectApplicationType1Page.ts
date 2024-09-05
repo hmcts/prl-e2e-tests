@@ -6,6 +6,8 @@ import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelp
 import { SolicitorCreate2Content } from "../../../../../fixtures/manageCases/createCase/initialJourney/solicitorCreate2Content";
 import { solicitorCaseCreateType } from "../../../../../common/types";
 
+
+
 enum checkbox {
   yes = "#ordersApplyingFor-childArrangementsOrder",
   no1 = "#ordersApplyingFor-prohibitedStepsOrder",
@@ -132,6 +134,8 @@ export class selectApplicationType1Page {
       `${Selectors.button}:text-is("${SelectApplicationType1Content.continue}")`,
     );
   }
+
+ //Type
 
   private static async childArrangementOrderContent(page: Page): Promise<void> {
     await Promise.all([
