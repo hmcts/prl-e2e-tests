@@ -21,7 +21,6 @@ export class selectApplicationType1Page {
     page: Page,
     errorMessaging: boolean,
     accessibilityTest: boolean,
-    solicitorCaseType: solicitorCaseCreateType,
   ): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest);
     if (errorMessaging) {
@@ -124,9 +123,6 @@ export class selectApplicationType1Page {
       await this.childArrangementOrderContent(page);
       await page.click(checkbox.no1);
       await page.click(checkbox.no2);
-
-
-
     } else {
       await page.click(checkbox.no1);
       await page.click(checkbox.no2);
