@@ -6,7 +6,6 @@ export enum SubmitContent {
   text161 = "Check the information below carefully.",
   text162 = "Case Name",
   text163 = "Change",
-
   previousButton = 'Previous',
   saveAndContinue = "Save and continue",
   cancelLink = 'Cancel'
