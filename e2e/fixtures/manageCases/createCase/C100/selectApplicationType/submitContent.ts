@@ -1,5 +1,5 @@
 export enum SubmitContent {
-  pageTitle = "Solicitor application",
+  pageTitle = "Type of application",
   h2 = "Check your answers",
 
   text161 = "Check the information below carefully.",

@@ -13,10 +13,12 @@ export enum SelectApplicationType2Content {
 
   textOnPage2 = "*Draft Consent Order",
   textOnPage3 = "Upload a scanned PDF or DOCX of the draft consent order, signed by both parties. Wherever possible, documents should be scanned in greyscale.",
+  chooseFile = "Choose file",
 
   cancelUpload = "Cancel upload",
   previous = "Previous",
   continue = "Continue",
+  cancel = "Cancel",
 
   errorBanner = "There is a problem",
   errorText = "*Do you have a draft consent order? is required",

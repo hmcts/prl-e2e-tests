@@ -16,6 +16,7 @@ export enum SelectApplicationType3Content {
 
   previous = "Previous",
   continue = "Continue",
+  cancel = "Cancel",
 
   errorBanner = "There is a problem",
   errorText = "*Have you applied to the court for permission to make this application? is required",
