@@ -1,18 +1,32 @@
 import { expect, Locator, Page } from "@playwright/test";
 import { Events, UserRole } from "./types";
 import idamLoginHelper from "./idamLoginHelper";
+import { Selectors } from "./selectors.ts";
 
 export class Helpers {
   public static async checkCaseNumberRegex(
     page: Page,
   ): Promise<void> {
-    const caseNumberRegex = /Casenumber: \d{4,}-\d{4,}-\d{4,}-\d{4,}/;
-    const caseNumberSelector = `h2:text-matches("^${caseNumberRegex}$")`;
-    await this.checkVisibleAndPresent(
-      page,
-      caseNumberSelector,
-      1
-    );
+    const caseNumberRegex = /Casenumber: \d{4}-\d{4}-\d{4}-\d{4}/
+    await expect(page.locator('h2', { hasText: caseNumberRegex})).toBeVisible();
+
+    try {
+      const visibilityPromises: Promise<void>[] = Array.from(
+        { length: 1 },
+        (_, i: number) =>
+          expect.soft(page.locator(`${Selectors.h2}`, { hasText: caseNumberRegex }).nth(i)).toBeVisible(),
+      );
+      const countPromise: Promise<void> = expect
+        .soft(page.locator(`${Selectors.h2}`, { hasText: caseNumberRegex }))
+        .toHaveCount(1);
+      await Promise.all([...visibilityPromises, countPromise]);
+    } catch (error) {
+      console.error(
+        `An error occurred while checking visibility and count of '${selector}':`,
+        error,
+      );
+      throw error;
+    }
   }
 
   public static async chooseEventFromDropdown(
