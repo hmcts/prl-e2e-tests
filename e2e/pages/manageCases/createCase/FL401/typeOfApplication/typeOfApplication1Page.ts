@@ -5,8 +5,6 @@ import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelp
 import {
   TypeOfApplication1Content
 } from "../../../../../fixtures/manageCases/createCase/FL401/typeOfApplication/typeOfApplication1Content";
-import { ApplicationOrder } from "../../../../../common/types";
-
 
 enum applicationOrderSelectionIds {
   nonMolestationOrder = '#typeOfApplicationOrders_orderType-nonMolestationOrder',
@@ -17,7 +15,6 @@ enum applicationOrderSelectionIds {
 export class TypeOfApplication1Page {
   public static async typeOfApplication1Page(
     page: Page,
-    applicationOrders: ApplicationOrder[],
     errorMessaging: boolean,
     accessibilityTest: boolean,
   ): Promise<void> {
@@ -25,7 +22,7 @@ export class TypeOfApplication1Page {
     if (errorMessaging) {
       await this.checkErrorMessaging(page);
     }
-    // await this.fillInFields(page, applicationOrders)
+    await this.fillInFields(page)
   }
 
   private static async checkPageLoads(
@@ -89,16 +86,13 @@ export class TypeOfApplication1Page {
 
   private static async fillInFields(
     page: Page,
-    applicationOrders: ApplicationOrder[],
   ): Promise<void> {
-    for (const order of applicationOrders) {
-      const checkboxSelector: string = applicationOrderSelectionIds[order];
-      await page.locator(checkboxSelector).check();
+    for (let [key, selector] of Object.entries(applicationOrderSelectionIds)) {
+      await page.locator(selector).check();
     }
 
     await page.click(
       `${Selectors.button}:text-is("${TypeOfApplication1Content.continue}")`
     )
-
   }
 }
