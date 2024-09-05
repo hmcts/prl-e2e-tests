@@ -6,8 +6,8 @@ export class Helpers {
   public static async checkCaseNumberRegex(
     page: Page,
   ): Promise<void> {
-    const caseNumberRegex = /Casenumber: \d{4,}-\d{4,}-\d{4,}-\d{4,}/
-    const caseNumberSelector = `h2:text-matches("^${caseNumberRegex}$")`
+    const caseNumberRegex = /Casenumber: \d{4,}-\d{4,}-\d{4,}-\d{4,}/;
+    const caseNumberSelector = `h2:text-matches("^${caseNumberRegex}$")`;
     await this.checkVisibleAndPresent(
       page,
       caseNumberSelector,
