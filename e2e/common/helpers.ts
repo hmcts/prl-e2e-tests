@@ -3,6 +3,18 @@ import { Events, UserRole } from "./types";
 import idamLoginHelper from "./idamLoginHelper";
 
 export class Helpers {
+  public static async checkCaseNumberRegex(
+    page: Page,
+  ): Promise<void> {
+    const caseNumberRegex = /Casenumber: \d{4,}-\d{4,}-\d{4,}-\d{4,}/;
+    const caseNumberSelector = `h2:text-matches("^${caseNumberRegex}$")`;
+    await this.checkVisibleAndPresent(
+      page,
+      caseNumberSelector,
+      1
+    );
+  }
+
   public static async chooseEventFromDropdown(
     page: Page,
     chosenEvent: Events,
