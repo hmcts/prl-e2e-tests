@@ -50,6 +50,9 @@ export enum Selectors {
   p = "p",
   li = "li",
   strong = "strong",
+  div = "div",
+  markdown = "markdown",
+  a = "a",
 
   // Links
   GovukLink = ".govuk-link",

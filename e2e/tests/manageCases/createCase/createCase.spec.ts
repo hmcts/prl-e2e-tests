@@ -1,17 +1,12 @@
 import { test } from "@playwright/test";
 import { SolicitorCreateInitial } from "../../../journeys/manageCases/createCase/solicitorCreateInitial";
+import { C100 } from "../../../journeys/manageCases/createCase/C100";
 
 test.describe("Manage cases case solicitor create case tests. @manageCases", (): void => {
   test("Create a C100 case. @crossbrowserManageCases", async ({
     page,
   }): Promise<void> => {
-    await SolicitorCreateInitial.createInitialCase(
-      page,
-      "solicitor",
-      false,
-      "C100",
-      false,
-    );
+    await C100.c100(page, "solicitor", false, false, true);
   });
 
   test("Create a FL401 case. @crossbrowserManageCases", async ({
