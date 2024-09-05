@@ -21,3 +21,5 @@ const UserRoles = {
 export type UserRole = (typeof UserRoles)[keyof typeof UserRoles];
 
 export { UserRoles };
+
+export type ApplicationOrder = "nonMolestationOrder" | "occupationOrder"
