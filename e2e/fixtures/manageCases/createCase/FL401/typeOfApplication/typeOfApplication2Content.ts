@@ -1,4 +1,4 @@
-export enum TypeOfApplication2ContentFL401 {
+export enum TypeOfApplication2Content {
   pageTitle = 'Type of application',
   familyManHeading = 'FamilyMan ID:',
   caseNumberHeading = 'Casenumber: ',
