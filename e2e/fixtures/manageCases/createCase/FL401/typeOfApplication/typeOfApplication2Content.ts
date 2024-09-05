@@ -8,4 +8,5 @@ export enum TypeOfApplication2Content {
   formLabel3 = 'No',
   pLinkedC100 = "If you have also completed a Child Arrangements Order application enter the case number below.",
   formLabelLinkedC100 = "Child Arrangements Case Number (FamilyMan cases not supported) (Optional)",
+  continue = "Continue"
 }
