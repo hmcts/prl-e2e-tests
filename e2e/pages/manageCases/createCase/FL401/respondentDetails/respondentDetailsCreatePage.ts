@@ -6,8 +6,8 @@ import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelp
 import { solicitorCaseCreateType } from "../../../../../common/types";
 
 enum fieldIds {
-  firstName = "respondentsFL401_firstName",
-  lastName = "respondentsFL401_lastName",
+  firstName = "#respondentsFL401_firstName",
+  lastName = "#respondentsFL401_lastName",
 }
 
 export class RespondentDetailsCreatePage {
@@ -39,6 +39,46 @@ export class RespondentDetailsCreatePage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.p}:text-is("${RespondentDetailsContent.textOnPage}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${RespondentDetailsContent.formLabel1}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${RespondentDetailsContent.formLabel2}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${RespondentDetailsContent.formLabel3}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${RespondentDetailsContent.formLabel4}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${RespondentDetailsContent.formLabel5}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${RespondentDetailsContent.formLabel6}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${RespondentDetailsContent.formLabel7}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${RespondentDetailsContent.formLabel9}")`,
         1,
       ),
     ]);

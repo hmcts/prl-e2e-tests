@@ -11,6 +11,7 @@ export enum RespondentDetailsContent {
   formLabel7 = "*Can you provide email address? (Optional)",
   formLabel8 = "*Email address (Optional)",
   formLabel9 = "*Can you provide a contact number? (Optional)",
+  formLabel10 = "*Contact Number (Optional)",
 
   continue = "Continue",
 
