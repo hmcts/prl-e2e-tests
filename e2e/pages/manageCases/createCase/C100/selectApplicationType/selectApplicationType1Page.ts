@@ -4,9 +4,6 @@ import { SelectApplicationType1Content } from "../../../../../fixtures/manageCas
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { SolicitorCreate2Content } from "../../../../../fixtures/manageCases/createCase/initialJourney/solicitorCreate2Content";
-import { solicitorCaseCreateType } from "../../../../../common/types";
-
-
 
 enum checkbox {
   yes = "#ordersApplyingFor-childArrangementsOrder",
@@ -135,7 +132,7 @@ export class selectApplicationType1Page {
     );
   }
 
- //Type
+  //Type
 
   private static async childArrangementOrderContent(page: Page): Promise<void> {
     await Promise.all([
