@@ -1,5 +1,5 @@
 export enum TypeOfApplication1Content {
-  pageTitle = 'Type of Application',
+  pageTitle = 'Type of application',
   familyManHeading = 'FamilyMan ID:',
   caseNumberHeading = 'Casenumber: ',
   p1 = 'You can save and return to this page at any time. Questions marked with a * need to be completed before you can send your application.',
