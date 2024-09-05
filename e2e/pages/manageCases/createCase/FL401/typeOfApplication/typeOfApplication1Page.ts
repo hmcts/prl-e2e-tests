@@ -1,0 +1,104 @@
+import { Page } from "@playwright/test";
+import {Selectors} from "../../../../../common/selectors";
+import { Helpers } from "../../../../../common/helpers";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import {
+  TypeOfApplication1Content
+} from "../../../../../fixtures/manageCases/createCase/FL401/typeOfApplication/typeOfApplication1Content";
+import { ApplicationOrder } from "../../../../../common/types";
+
+
+enum applicationOrderSelectionIds {
+  nonMolestationOrder = '#typeOfApplicationOrders_orderType-nonMolestationOrder',
+  occupationOrder = '#typeOfApplicationOrders_orderType-occupationOrder'
+}
+
+
+export class TypeOfApplication1Page {
+  public static async typeOfApplication1Page(
+    page: Page,
+    applicationOrders: ApplicationOrder[],
+    errorMessaging: boolean,
+    accessibilityTest: boolean,
+  ): Promise<void> {
+    await this.checkPageLoads(page, accessibilityTest);
+    if (errorMessaging) {
+      await this.checkErrorMessaging(page);
+    }
+    // await this.fillInFields(page, applicationOrders)
+  }
+
+  private static async checkPageLoads(
+    page: Page,
+    accessibilityTest: boolean,
+  ): Promise<void> {
+    await page.waitForSelector(
+      `${Selectors.GovukHeadingL}:text-is("${TypeOfApplication1Content.pageTitle}")`,
+    );
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.h2}:text-is("${TypeOfApplication1Content.familyManHeading}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.h2}:text-is("${TypeOfApplication1Content.caseNumberHeading}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${TypeOfApplication1Content.p1}")`,
+        1,
+      ),
+      Helpers.checkGroup(
+        page,
+        3,
+        TypeOfApplication1Content,
+        "formLabel",
+        `${Selectors.GovukFormLabel}`,
+      ),
+    ]);
+    if (accessibilityTest) {
+      await AccessibilityTestHelper.run(page);
+    }
+  };
+
+  private static async checkErrorMessaging(page: Page): Promise<void> {
+    await page.click(
+      `${Selectors.button}:text-is("${TypeOfApplication1Content.continue}")`,
+    );
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorSummaryTitle}:text-is("${TypeOfApplication1Content.errorBanner}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorSummary}:has-text("${TypeOfApplication1Content.errorText}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorMessage}:text-is("${TypeOfApplication1Content.errorText}")`,
+        1,
+      ),
+    ]);
+  }
+
+  private static async fillInFields(
+    page: Page,
+    applicationOrders: ApplicationOrder[],
+  ): Promise<void> {
+    for (const order of applicationOrders) {
+      const checkboxSelector: string = applicationOrderSelectionIds[order];
+      await page.locator(checkboxSelector).check();
+    }
+
+    await page.click(
+      `${Selectors.button}:text-is("${TypeOfApplication1Content.continue}")`
+    )
+
+  }
+}
