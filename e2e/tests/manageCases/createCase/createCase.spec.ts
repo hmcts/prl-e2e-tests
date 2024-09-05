@@ -18,13 +18,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   test("Create a FL401 case. @crossbrowserManageCases", async ({
     page,
   }): Promise<void> => {
-    await FL401.fl401(
-      page,
-      "solicitor",
-      false,
-      "FL401",
-      false,
-    );
+    await FL401.fl401(page, "solicitor", false, "FL401", false);
   });
 
   test("Check the errors of a C100 solicitor create journey. @crossbrowserManageCases", async ({

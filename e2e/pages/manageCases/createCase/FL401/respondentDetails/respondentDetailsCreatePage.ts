@@ -70,11 +70,9 @@ export class RespondentDetailsCreatePage {
     ]);
   }
 
-  private static async fillInFields(
-    page: Page
-  ): Promise<void> {
-    await page.fill(`${fieldIds.firstName}`, 'firstName');
-    await page.fill(`${fieldIds.lastName}`, 'lastName');
+  private static async fillInFields(page: Page): Promise<void> {
+    await page.fill(`${fieldIds.firstName}`, "firstName");
+    await page.fill(`${fieldIds.lastName}`, "lastName");
 
     // await page.selectOption(fieldIds.jurisdiction, options.familyPrivateLaw);
     // await page.selectOption(fieldIds.caseType, options.caseType);
