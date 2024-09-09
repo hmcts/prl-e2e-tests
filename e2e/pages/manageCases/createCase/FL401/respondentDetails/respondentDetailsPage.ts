@@ -25,13 +25,13 @@ enum fieldIds {
   email = "#respondentsFL401_email",
 }
 
-const exampleFirstName = "firstName"
-const exampleLastName = "lastName"
-const exampleDay = "12"
-const exampleMonth = "10"
-const exampleYear = "2008"
-const examplePostCode = "AB1 CDE"
-const exampleEmailAddress = "repondent1@example.net"
+const exampleFirstName = "firstName";
+const exampleLastName = "lastName";
+const exampleDay = "12";
+const exampleMonth = "10";
+const exampleYear = "2008";
+const examplePostCode = "AB1 CDE";
+const exampleEmailAddress = "repondent1@example.net";
 
 export class RespondentDetailsPage {
   public static async respondentDetailsPage(
@@ -134,7 +134,11 @@ export class RespondentDetailsPage {
     ]);
   }
 
-  private static async fillInFields(page: Page, allOptionsYes: boolean, accessibilityTest: boolean): Promise<void> {
+  private static async fillInFields(
+    page: Page,
+    allOptionsYes: boolean,
+    accessibilityTest: boolean,
+  ): Promise<void> {
     await page.fill(`${fieldIds.firstName}`, exampleFirstName);
     await page.fill(`${fieldIds.lastName}`, exampleLastName);
 
@@ -153,14 +157,12 @@ export class RespondentDetailsPage {
 
       await page.fill(`${fieldIds.address_postcodeInput}`, examplePostCode);
       await page.fill(`${fieldIds.email}`, exampleEmailAddress);
-
     } else {
       await page.click(fieldIds.isDateOfBirthKnown_No);
       await page.click(fieldIds.respondentLivedWithApplicant_No);
       await page.click(fieldIds.isCurrentAddressKnown_No);
       await page.click(fieldIds.canYouProvideEmailAddress_No);
       await page.click(fieldIds.canYouProvidePhoneNumber_No);
-
     }
 
     await page.click(
