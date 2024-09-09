@@ -3,10 +3,20 @@ import { SolicitorCreateInitial } from "../../../journeys/manageCases/createCase
 import { C100 } from "../../../journeys/manageCases/createCase/C100";
 
 test.describe("Manage cases case solicitor create case tests. @manageCases", (): void => {
-  test("Create a C100 case. @crossbrowserManageCases", async ({
+  test("Create a C100 case with the following options:" +
+    "Hearing urgency: yes to all values " +
+    "@crossbrowserManageCases", async ({
     page,
   }): Promise<void> => {
     await C100.c100(page, "solicitor", false, false, true);
+  });
+
+  test("Create a C100 case with the following options:" +
+    "Hearing urgency: no to all values " +
+    "@crossbrowserManageCases", async ({
+    page,
+  }): Promise<void> => {
+    await C100.c100(page, "solicitor", false, false, false);
   });
 
   test("Create a FL401 case. @crossbrowserManageCases", async ({
