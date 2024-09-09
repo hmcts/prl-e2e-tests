@@ -24,6 +24,7 @@ export enum Selectors {
   GovukFormHint = ".form-hint",
   ResetLink = ".search-result-reset-link",
   ColumnLabel = ".search-result-column-label",
+  Span = "span",
 
   // Buttons
   GovukButton = ".govuk-button",
@@ -51,6 +52,9 @@ export enum Selectors {
   p = "p",
   li = "li",
   strong = "strong",
+  div = "div",
+  markdown = "markdown",
+  a = "a",
 
   // Common Components
   ErrorSummaryList = ".ccd-error-summary-li",
