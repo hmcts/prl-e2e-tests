@@ -128,7 +128,7 @@ export class Helpers {
   ): Promise<void[]> {
     return Promise.all([
       ...Array.from({ length: count }, (_, index) => {
-        const text = file[`${name}${index + 1}` as keyof E]; // Safely access the enum
+        const text: E[keyof E] = file[`${name}${index + 1}` as keyof E]; // Safely access the enum
         return Helpers.checkVisibleAndPresent(
           page,
           `${selector}:text-is("${text}")`,
@@ -171,7 +171,7 @@ export class Helpers {
   }
 
   private static async checkCaseNumberRegex(page: Page): Promise<void> {
-    const caseNumberRegex = /^Casenumber: \d{4}-\d{4}-\d{4}-\d{4}$/;
+    const caseNumberRegex: RegExp = /^Casenumber: \d{4}-\d{4}-\d{4}-\d{4}$/;
     try {
       const visibilityPromises: Promise<void>[] = Array.from(
         { length: 1 },
