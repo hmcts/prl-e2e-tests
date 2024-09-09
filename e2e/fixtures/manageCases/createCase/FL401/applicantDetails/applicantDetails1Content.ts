@@ -1,9 +1,12 @@
 export enum ApplicantDetails1Content {
+  // Headings
   headingL = "Applicant details",
   saveP = "You can save and return to this page at any time. Questions marked with a * need to be completed before you can send your application.",
+  // Section Titles (h2 Headings)
   h2Heading1 = "Applicant",
-  h2Heading2 = " Search for an organisation ",
+  h2Heading2 = "Search for an organisation",
   h2Heading3 = "Organisation name and address",
+  // Form Labels
   formLabel1 = "*First name(s)",
   formLabel2 = "*Last name",
   formLabel3 = "Previous name (if any) (Optional)",
@@ -15,13 +18,30 @@ export enum ApplicantDetails1Content {
   formLabel9 = "Female",
   formLabel10 = "Male",
   formLabel11 = "They identify in another way",
-  _formLabel12 = "*Applicant gender",
   formLabel13 = "Enter a UK postcode",
-  _formLabel14 = "Building and Street",
-  _formLabel15 = "Address Line 2 (Optional)",
-  _formLabel16 = "Address Line 3 (Optional)",
-  _formLabel17 = "County (Optional)",
-  _formLabel18 = "Postcode/Zipcode (Optional)",
-
-
+  formLabel19 = "*Do you need to keep the address confidential?",
+  formLabel20 = "*Can you provide email address?",
+  formLabel22 = "*Contact Number",
+  formLabel23 = "*Do you need to keep the contact number confidential?",
+  formLabel24 = "*Representative's first name (Optional)",
+  formLabel25 = "*Representative's last name (Optional)",
+  formLabel26 = "*Email address (Optional)",
+  formLabel27 = "*Telephone number (Optional)",
+  formLabel28 = "Solicitor reference (Optional)",
+  formLabel29 = "DX Number (Optional)",
+  formLabel30 = "Enter a UK postcode",
+  // Hidden Labels (renamed from _ keys)
+  hiddenLabel1 = "*Applicant gender",
+  hiddenLabel2 = "Building and Street",
+  hiddenLabel3 = "Address Line 2 (Optional)",
+  hiddenLabel4 = "Address Line 3 (Optional)",
+  hiddenLabel5 = "County (Optional)",
+  hiddenLabel6 = "Postcode/Zipcode (Optional)",
+  hiddenLabel7 = "*Email address",
+  hiddenLabel8 = "Building and Street (Optional)",
+  hiddenLabel9 = "Address Line 2 (Optional)",
+  hiddenLabel10 = "Address Line 3 (Optional)",
+  hiddenLabel11 = "County (Optional)",
+  hiddenLabel12 = "Postcode/Zipcode (Optional)",
+  hiddenLabel13 = "Country (Optional)"
 }
