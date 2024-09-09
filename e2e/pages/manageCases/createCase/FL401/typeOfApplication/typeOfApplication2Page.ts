@@ -10,8 +10,8 @@ enum isLinkedSelectionIds {
   applicationNumber = "#typeOfApplicationLinkToCA_caApplicationNumber",
 }
 enum incorrectCaseNumbers {
-  tooShort = '12345678',
-  nonNumeric = '123abc123abc123abc'
+  tooShort = "12345678",
+  nonNumeric = "123abc123abc123abc",
 }
 export const dummyCaseNumber: string = "0000000000000000";
 
@@ -25,11 +25,11 @@ export class TypeOfApplication2Page {
     await this.checkPageLoads(page, accessibilityTest);
     if (errorMessaging) {
       await this.checkErrorMessaging(page);
-      console.log('Finished all checks P2')
+      console.log("Finished all checks P2");
     }
-    console.log('Filling In Fields P2')
+    console.log("Filling In Fields P2");
     await this.fillInFields(page, isLinked, accessibilityTest);
-    console.log('Done P2')
+    console.log("Done P2");
   }
 
   private static async checkPageLoads(
@@ -39,7 +39,7 @@ export class TypeOfApplication2Page {
     await page.waitForSelector(
       `${Selectors.GovukHeadingL}:text-is("${TypeOfApplication2Content.pageTitle}")`,
     );
-    console.log('Check Static Text P2')
+    console.log("Check Static Text P2");
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
@@ -54,7 +54,7 @@ export class TypeOfApplication2Page {
         `${Selectors.GovukFormLabel}`,
       ),
     ]);
-    console.log('Checked Static Text')
+    console.log("Checked Static Text");
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }
@@ -82,20 +82,12 @@ export class TypeOfApplication2Page {
   }
 
   private static async checkErrorMessaging(page: Page): Promise<void> {
-    await page.click(
-      isLinkedSelectionIds.yes
-    );
+    await page.click(isLinkedSelectionIds.yes);
     for (let caseNumberInput of Object.values(incorrectCaseNumbers)) {
-      await page.fill(
-        isLinkedSelectionIds.applicationNumber,
-        ''
-      );
-      console.log('Clear fieeld')
-      await page.fill(
-        isLinkedSelectionIds.applicationNumber,
-        caseNumberInput,
-      );
-      console.log('Filled Number')
+      await page.fill(isLinkedSelectionIds.applicationNumber, "");
+      console.log("Clear fieeld");
+      await page.fill(isLinkedSelectionIds.applicationNumber, caseNumberInput);
+      console.log("Filled Number");
       await page.click(
         `${Selectors.button}:text-is("${TypeOfApplication2Content.continue}")`,
       );
@@ -103,20 +95,20 @@ export class TypeOfApplication2Page {
         Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.p}:text-is("${TypeOfApplication2Content.errorP}")`,
-          1
+          1,
         ),
         Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.ErrorSummaryList}:text-is("${TypeOfApplication2Content.errorSummaryLi}")`,
-          1
+          1,
         ),
         Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukErrorMessage}:text-is("${TypeOfApplication2Content.errorMessage}")`,
-          1
+          1,
         ),
       ]);
-      console.log('Finsiehd Checks for P2 Errors')
+      console.log("Finsiehd Checks for P2 Errors");
     }
   }
 
@@ -125,23 +117,22 @@ export class TypeOfApplication2Page {
     isLinked: boolean,
     accessibilityTest: boolean,
   ): Promise<void> {
-    console.log('Filling Out Radio: ', isLinked)
+    console.log("Filling Out Radio: ", isLinked);
     if (!isLinked) {
       await page.click(isLinkedSelectionIds["no"]);
     } else {
-      console.log('Not Linked')
+      console.log("Not Linked");
       await page.click(isLinkedSelectionIds["yes"]);
       await this.checkLinkedCaseTextLoads(page, accessibilityTest);
-      console.log('Loaded Link Text')
+      console.log("Loaded Link Text");
       await page.fill(
         `${isLinkedSelectionIds["applicationNumber"]}`,
         dummyCaseNumber,
-        { force: true }
+        { force: true },
       );
     }
     await page.click(
       `${Selectors.button}:text-is("${TypeOfApplication2Content.continue}")`,
     );
   }
-
 }

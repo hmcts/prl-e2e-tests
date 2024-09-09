@@ -10,5 +10,5 @@ export enum TypeOfApplication2Content {
   errorSummaryHeading = " The event could not be created ",
   errorP = "Case data validation failed",
   errorSummaryLi = "The data entered is not valid for this type of field, please delete and re-enter using only valid data",
-  errorMessage = " The data entered is not valid for this type of field, please delete and re-enter using only valid data "
+  errorMessage = " The data entered is not valid for this type of field, please delete and re-enter using only valid data ",
 }
