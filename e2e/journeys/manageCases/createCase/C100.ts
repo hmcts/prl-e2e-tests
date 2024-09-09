@@ -14,7 +14,7 @@ export class C100 {
   ): Promise<void> {
     await SolicitorCreateInitial.createInitialCase(
       page,
-      "solicitor",
+      user,
       false,
       "C100",
       false,
@@ -22,7 +22,7 @@ export class C100 {
     await C100TasksTabPage.c100TasksTabPage(page, accessibilityTest);
     await C100HearingUrgency.c100HearingUrgency(
       page,
-      "solicitor",
+      user,
       accessibilityTest,
       errorMessaging,
       yesNo,

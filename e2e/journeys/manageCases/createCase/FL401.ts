@@ -5,6 +5,7 @@ import { TypeOfApplication1Page } from "../../../pages/manageCases/createCase/FL
 import { TypeOfApplication2Page } from "../../../pages/manageCases/createCase/FL401/typeOfApplication/typeOfApplication2Page";
 import { TypeOfApplicationSubmitPage } from "../../../pages/manageCases/createCase/FL401/typeOfApplication/typeOfApplicationSubmitPage";
 import { Helpers } from "../../../common/helpers";
+import { Fl401TasksTabPage } from "../../../pages/manageCases/caseTabs/fl401TasksTabPage";
 
 export class FL401 {
   public static async fl401(
@@ -21,6 +22,7 @@ export class FL401 {
       "FL401",
       errorMessaging,
     );
+    await Fl401TasksTabPage.fl401TasksTabPage(page, accessibilityTest);
     await Helpers.selectSolicitorEvent(
       page,
       "Type of application"

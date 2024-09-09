@@ -25,6 +25,7 @@ export enum Selectors {
   ResetLink = ".search-result-reset-link",
   ColumnLabel = ".search-result-column-label",
   Span = "span",
+  Panel = ".panel",
 
   // Buttons
   GovukButton = ".govuk-button",
