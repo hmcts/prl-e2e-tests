@@ -4,6 +4,7 @@ import { SolicitorCreateInitial } from "./solicitorCreateInitial";
 import { TypeOfApplication1Page } from "../../../pages/manageCases/createCase/FL401/typeOfApplication/typeOfApplication1Page";
 import { TypeOfApplication2Page } from "../../../pages/manageCases/createCase/FL401/typeOfApplication/typeOfApplication2Page";
 import { TypeOfApplicationSubmitPage } from "../../../pages/manageCases/createCase/FL401/typeOfApplication/typeOfApplicationSubmitPage";
+import { Helpers } from "../../../common/helpers";
 
 export class FL401 {
   public static async fl401(
@@ -20,7 +21,10 @@ export class FL401 {
       "FL401",
       errorMessaging,
     );
-    await this.navigateToEvent(page, "Type of application");
+    await Helpers.selectSolicitorEvent(
+      page,
+      "Type of application"
+    )
     await TypeOfApplication1Page.typeOfApplication1Page(
       page,
       errorMessaging,
@@ -37,13 +41,5 @@ export class FL401 {
       isLinkedToC100,
       accessibilityTest,
     );
-  }
-
-  private static async navigateToEvent(
-    page: Page,
-    linkText: string,
-  ): Promise<void> {
-    let linkSelector = `a:text-is("${linkText}")`;
-    await page.click(linkSelector);
   }
 }
