@@ -1,4 +1,4 @@
-import { solicitorCaseCreateType, UserRole } from "../../../common/types";
+import { UserRole } from "../../../common/types";
 import { Page } from "@playwright/test";
 import { SolicitorCreateInitial } from "./solicitorCreateInitial";
 import { TypeOfApplication1Page } from "../../../pages/manageCases/createCase/FL401/typeOfApplication/typeOfApplication1Page";
