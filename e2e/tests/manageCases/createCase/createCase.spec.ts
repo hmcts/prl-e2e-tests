@@ -1,5 +1,4 @@
 import { test } from "@playwright/test";
-import { FL401 } from "../../../journeys/manageCases/createCase/FL401";
 import { C100 } from "../../../journeys/manageCases/createCase/C100";
 import { FL401 } from "../../../journeys/manageCases/createCase/FL401";
 
