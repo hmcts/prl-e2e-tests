@@ -6,12 +6,12 @@ properties([
   parameters([
     string(
       name: 'CITIZEN_FRONTEND_BASE_URL',
-      defaultValue: 'https://privatelaw.aat.platform.hmcts.net/',
+      defaultValue: 'https://privatelaw.demo.platform.hmcts.net/',
       description: 'The Citizen URL to test against'
     ),
     string(
       name: 'MANAGE_CASES_BASE_URL',
-      defaultValue: 'https://manage-case.aat.platform.hmcts.net/cases',
+      defaultValue: 'https://manage-case.demo.platform.hmcts.net/cases',
       description: 'The Manage Cases URL to test against'
     ),
     string(

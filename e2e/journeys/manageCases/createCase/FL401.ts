@@ -3,7 +3,7 @@ import { Page } from "@playwright/test";
 import { SolicitorCreateInitial } from "./solicitorCreateInitial";
 
 export class FL401 {
-  public static async fl401 (
+  public static async fl401(
     page: Page,
     user: UserRole,
     accessibilityTest: boolean,
@@ -17,7 +17,5 @@ export class FL401 {
       "FL401",
       false,
     );
-
   }
-
 }

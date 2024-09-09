@@ -1,5 +1,10 @@
 import { expect, Locator, Page } from "@playwright/test";
-import { Events, UserRole } from "./types";
+import {
+  c100SolicitorEvents,
+  Events,
+  fl401SolicitorEvents,
+  UserRole,
+} from "./types";
 import idamLoginHelper from "./idamLoginHelper";
 import { Selectors } from "./selectors.ts";
 
@@ -22,6 +27,15 @@ export class Helpers {
       );
       throw error;
     }
+  }
+
+  public static async selectSolicitorEvent(
+    page: Page,
+    event: c100SolicitorEvents | fl401SolicitorEvents,
+  ): Promise<void> {
+    await page.click(
+      `${Selectors.markdown} > ${Selectors.div} > ${Selectors.p} > ${Selectors.a}:text-is("${event}")`,
+    );
   }
 
   public static async checkVisibleAndPresent(
