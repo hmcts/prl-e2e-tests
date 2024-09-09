@@ -32,7 +32,7 @@ export class selectApplicationType1Page {
     errorMessaging: boolean,
     accessibilityTest: boolean,
     typeOfOrder: typeOfOrderID,
-    typeOfChildArrangementOrder?: typeOfChildArrangementOrderID
+    typeOfChildArrangementOrder?: typeOfChildArrangementOrderID,
   ): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest);
     if (errorMessaging) {
@@ -106,7 +106,6 @@ export class selectApplicationType1Page {
     await page.click(`${PageIDs.prohibitedStepsOrder}`);
     await page.click(`${PageIDs.specificIssueOrder}`);
 
-
     await Promise.all([
       Helpers.checkGroup(
         page,
@@ -116,7 +115,6 @@ export class selectApplicationType1Page {
         `${Selectors.GovukFormLabel}`,
       ),
     ]);
-
 
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -145,7 +143,6 @@ export class selectApplicationType1Page {
         1,
       ),
     ]);
-
   }
 
   private static async fillInFields(
