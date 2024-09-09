@@ -1,11 +1,6 @@
 import { UserRole } from "../../../common/types";
 import { Page } from "@playwright/test";
-import { SolicitorCreateInitial } from "./solicitorCreateInitial";
-import { TypeOfApplication1Page } from "../../../pages/manageCases/createCase/FL401/typeOfApplication/typeOfApplication1Page";
-import { TypeOfApplication2Page } from "../../../pages/manageCases/createCase/FL401/typeOfApplication/typeOfApplication2Page";
-import { TypeOfApplicationSubmitPage } from "../../../pages/manageCases/createCase/FL401/typeOfApplication/typeOfApplicationSubmitPage";
-import { Helpers } from "../../../common/helpers";
-import { Fl401TasksTabPage } from "../../../pages/manageCases/caseTabs/fl401TasksTabPage";
+import { FL401TypeOfApplication } from "./FL401TypeOfApplication/FL401TypeOfApplication";
 
 export class FL401 {
   public static async fl401(
@@ -15,33 +10,12 @@ export class FL401 {
     errorMessaging: boolean,
     isLinkedToC100: boolean,
   ): Promise<void> {
-    await SolicitorCreateInitial.createInitialCase(
+    await FL401TypeOfApplication.fl401TypeOfApplication(
       page,
       user,
       accessibilityTest,
-      "FL401",
       errorMessaging,
-    );
-    await Fl401TasksTabPage.fl401TasksTabPage(page, accessibilityTest);
-    await Helpers.selectSolicitorEvent(
-      page,
-      "Type of application"
-    )
-    await TypeOfApplication1Page.typeOfApplication1Page(
-      page,
-      errorMessaging,
-      accessibilityTest,
-    );
-    await TypeOfApplication2Page.typeOfApplication2Page(
-      page,
-      errorMessaging,
-      accessibilityTest,
-      isLinkedToC100,
-    );
-    await TypeOfApplicationSubmitPage.typeOfApplicationSubmitPage(
-      page,
-      isLinkedToC100,
-      accessibilityTest,
+      isLinkedToC100
     );
   }
 }
