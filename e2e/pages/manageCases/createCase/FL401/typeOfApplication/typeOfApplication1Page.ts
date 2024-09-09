@@ -73,7 +73,8 @@ export class TypeOfApplication1Page {
 
   private static async fillInFields(page: Page): Promise<void> {
     for (let selector of Object.values(applicationOrderSelectionIds)) {
-      await page.locator(selector).check();
+      const checkbox = page.locator(selector);
+      await checkbox.check();
     }
     await page.click(
       `${Selectors.button}:text-is("${TypeOfApplication1Content.continue}")`,
