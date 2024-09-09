@@ -10,7 +10,6 @@ export class FL401 {
     page: Page,
     user: UserRole,
     accessibilityTest: boolean,
-    solicitorCaseType: solicitorCaseCreateType = "FL401",
     errorMessaging: boolean,
     isLinkedToC100: boolean,
   ): Promise<void> {
@@ -18,7 +17,7 @@ export class FL401 {
       page,
       user,
       accessibilityTest,
-      solicitorCaseType,
+      "FL401",
       errorMessaging,
     );
     await this.navigateToEvent(page, "Type of application");
