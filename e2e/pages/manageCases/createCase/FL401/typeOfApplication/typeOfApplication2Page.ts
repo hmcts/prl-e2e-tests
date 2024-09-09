@@ -9,8 +9,11 @@ enum isLinkedSelectionIds {
   yes = "#typeOfApplicationLinkToCA_linkToCaApplication_Yes",
   applicationNumber = "#typeOfApplicationLinkToCA_caApplicationNumber",
 }
-
-export const dummyCaseNumber: string = "1111-2222-3333-4444";
+enum incorrectCaseNumbers {
+  tooShort = '12345678',
+  hasLetters = '123abc123abc123abc'
+}
+export const dummyCaseNumber: string = "0000000000000000";
 
 export class TypeOfApplication2Page {
   public static async typeOfApplication2Page(
@@ -52,13 +55,62 @@ export class TypeOfApplication2Page {
     }
   }
 
-  private static async checkErrorMessaging(page: Page): Promise<void> {
+  private static async checkLinkedCaseTextLoads(
+    page: Page,
+    accessibilityTest: boolean,
+  ): Promise<void> {
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${TypeOfApplication2Content.pLinkedC100}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${TypeOfApplication2Content.formLabelLinkedC100}")`,
+        1,
+      ),
+    ]);
+    if (accessibilityTest) {
+      await AccessibilityTestHelper.run(page);
+    }
+  }
+
+  private static async checkErrorMessaging(page: Page): Promsie<void> {
     await page.click(
-      `${Selectors.GovukFormLabel}:text-is("${TypeOfApplication2Content.formLabel2}")`,
+      isLinkedSelectionIds.yes
     );
-    await page.click(
-      `${Selectors.button}:text-is("${TypeOfApplication2Content.continue}")`,
-    );
+    for (let caseNumberInput of Object.values(incorrectCaseNumbers)) {
+      await page.fill(
+        isLinkedSelectionIds.applicationNumber,
+        caseNumberInput
+      )
+      await page.click(
+        `${Selectors.button}:text-is("${TypeOfApplication2Content.continue}")`,
+      );
+      await Promise.all([
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukErrorySummaryHeading}:text-is("${TypeOfApplication2Content.errorSummaryHeading}")`,
+          1,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.p}:text-is("${TypeOfApplication2Content.errorP}")`,
+          1
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.ErrorSummaryList}:text-is("${TypeOfApplication2Content.errorSummaryLi}")`,
+          1
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukErrorMessage}:text-is("${TypeOfApplication2Content.errorMessage}")`,
+          1
+        ),
+      ]);
+    }
   }
 
   private static async fillInFields(
@@ -81,27 +133,4 @@ export class TypeOfApplication2Page {
     );
   }
 
-  private static async checkLinkedCaseTextLoads(
-    page: Page,
-    accessibilityTest: boolean,
-  ): Promise<void> {
-    await Promise.all([
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.p}:text-is("${TypeOfApplication2Content.pLinkedC100}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukFormLabel}:text-is("${TypeOfApplication2Content.formLabelLinkedC100}")`,
-        1,
-      ),
-    ]);
-    if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
-    }
-    await page.click(
-      `${Selectors.button}:text-is("${TypeOfApplication2Content.continue}")`,
-    );
-  }
 }
