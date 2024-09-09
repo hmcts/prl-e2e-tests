@@ -1,7 +1,7 @@
 import { solicitorCaseCreateType, UserRole } from "../../../common/types";
 import { Page } from "@playwright/test";
 import { SolicitorCreateInitial } from "./solicitorCreateInitial";
-import { RespondentDetailsCreatePage } from "../../../pages/manageCases/createCase/FL401/respondentDetails/respondentDetailsCreatePage";
+import { RespondentDetailsPage } from "../../../pages/manageCases/createCase/FL401/respondentDetails/respondentDetailsPage";
 
 export class FL401 {
   public static async fl401(
@@ -10,6 +10,7 @@ export class FL401 {
     accessibilityTest: boolean,
     solicitorCaseType: solicitorCaseCreateType,
     errorMessaging: boolean,
+    allOptionsYes: boolean,
   ): Promise<void> {
     await SolicitorCreateInitial.createInitialCase(
       page,
@@ -21,10 +22,11 @@ export class FL401 {
 
     await this.navigateToEvent(page, "Respondent details");
 
-    await RespondentDetailsCreatePage.respondentDetailsCreatePage(
+    await RespondentDetailsPage.respondentDetailsPage(
       page,
       errorMessaging,
       accessibilityTest,
+      allOptionsYes,
     );
   }
 

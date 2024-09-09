@@ -12,6 +12,10 @@ export enum RespondentDetailsContent {
   formLabel8 = "*Email address (Optional)",
   formLabel9 = "*Can you provide a contact number? (Optional)",
   formLabel10 = "*Contact Number (Optional)",
+  formLabelPopUp1 = "*Date of birth (Optional)",
+  formLabelPopUp2 = "Enter a UK postcode",
+  formLabelPopUp3 = "*Email address (Optional)",
+  formLabelPopUp4 = "*Contact Number (Optional)",
 
   continue = "Continue",
 
