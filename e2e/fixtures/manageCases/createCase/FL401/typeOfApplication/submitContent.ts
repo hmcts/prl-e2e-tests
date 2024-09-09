@@ -7,7 +7,7 @@ export enum SubmitContent {
   text164 = "Non-molestation order",
   text165 = "Occupation order",
   textChange = "Change",
-  saveAndContinue = "Save and continue",
+  saveAndContinue = " Save and continue ",
   isNotLinkedText = "No",
   isLinkedText = "Yes",
   caseNumberLinkQuestion = "Child Arrangements Case Number (FamilyMan cases not supported)",
