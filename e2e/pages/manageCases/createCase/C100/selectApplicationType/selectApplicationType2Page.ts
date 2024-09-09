@@ -55,9 +55,6 @@ export class selectApplicationType2Page {
   }
 }
 
-
-
-
 // fillInFields - radio button check  argument yesNo: Boolean - if (yesNo) {click radio-1}
 
 // fill in form to check for draft consent order content
