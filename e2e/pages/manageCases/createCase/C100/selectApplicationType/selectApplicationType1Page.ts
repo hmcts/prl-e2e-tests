@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test";
+import { Page, selectors } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { SelectApplicationType1Content } from "../../../../../fixtures/manageCases/createCase/C100/selectApplicationType/selectApplicationType1Content";
 import { Helpers } from "../../../../../common/helpers";
@@ -128,38 +128,36 @@ export class selectApplicationType1Page {
     typeOfOrder: typeOfOrderID,
     typeOfChildArrangementOrder?: typeOfChildArrangementOderID,
   ): Promise<void> {
-    if (typeOfOrder.includes("Child Arrangements Order")) {
-      await page.click(checkbox.childArrangementsOrder);
-      if (typeOfChildArrangementOrder === "Spend time with order") {
-        await page.click(checkbox.spend);
-      } else if (typeOfChildArrangementOrder === "Live with order") {
-        await page.click(checkbox.live);
-      } else {
-        await page.click(checkbox.both);
-      }
-    } else {
-      if (typeOfOrder.includes("Prohibited Steps Order")) {
-        await page.click(checkbox.prohibitedStepsOrder);
-      }
-
-      if (typeOfOrder.includes("Specific Issue Order")) {
-        await page.click(checkbox.specificIssueOrder);
-      }
-    }
-    await this.fillTextarea(page);
-    await this.childArrangementOrderContent(page);
+  //   if (typeOfOrder.includes("Child Arrangements Order")) {
+  //     await page.click(checkbox.childArrangementsOrder);
+  //     if (typeOfChildArrangementOrder === "Spend time with order") {
+  //       await page.click(checkbox.spend);
+  //     } else if (typeOfChildArrangementOrder === "Live with order") {
+  //       await page.click(checkbox.live);
+  //     } else {
+  //       await page.click(checkbox.both);
+  //     }
+  //   } else {
+  //     if (typeOfOrder.includes("Prohibited Steps Order")) {
+  //       await page.click(checkbox.prohibitedStepsOrder);
+  //     }
+  //
+  //     if (typeOfOrder.includes("Specific Issue Order")) {
+  //       await page.click(checkbox.specificIssueOrder);
+  //     }
+  //   }
+  //   await this.fillTextarea(page);
+  //   await this.childArrangementOrderContent(page);
   }
-
-  // const selector: string = caseTypeSelectionIds[solicitorCaseType];
-  // await page.click(selector);
-  // if (solicitorCaseType === "FL401") {
-  // await this.checkFL401(page, errorMessaging);
-  // await page.click(`${caseTypeSelectionIds.yes}`);
+  //
+  // // const selector: string = caseTypeSelectionIds[solicitorCaseType];
+  // // await page.click(selector);
+  // // if (solicitorCaseType === "FL401") {
+  // // await this.checkFL401(page, errorMessaging);
+  // // await page.click(`${caseTypeSelectionIds.yes}`);
 
   private static async fillTextarea(page: Page): Promise<void> {
-    const loremIpsumText =
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
-    await page.fill(checkbox.textarea, loremIpsumText);
+    await page.fill(`${checkbox.textarea}`, `${SelectApplicationType1Content.loremIpsumText}`);
   }
 
   private static async childArrangementOrderContent(page: Page): Promise<void> {

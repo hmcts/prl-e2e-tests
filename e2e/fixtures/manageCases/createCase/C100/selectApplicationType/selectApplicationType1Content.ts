@@ -17,6 +17,8 @@ export enum SelectApplicationType1Content {
 
   textOnPage3 = "*For example-does the order detail who the child will live with, or how often they will spend type with a parent.",
 
+  loremIpsumText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+
   previous = "Previous",
   continue = "Continue",
   cancel = "Cancel",
