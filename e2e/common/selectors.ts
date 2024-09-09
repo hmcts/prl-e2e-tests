@@ -45,11 +45,15 @@ export enum Selectors {
   GovukSummaryText = ".govuk-details__summary-text",
   GovukDetailsText = ".govuk-details__text",
   GovukErrorSummaryTitle = ".govuk-error-summary__title",
+  GovukErrorySummaryHeading = ".error-summary-heading",
   GovukErrorValidation = ".validation-error",
   GovukErrorMessage = ".error-message",
   p = "p",
   li = "li",
   strong = "strong",
+
+  // Common Components
+  ErrorSummaryList = ".ccd-error-summary-li",
 
   // Links
   GovukLink = ".govuk-link",
