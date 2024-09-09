@@ -124,6 +124,15 @@ export class HearingUrgency1Page {
     await page.click(`${pageFields.withoutNoticeYes}`);
     await page.click(`${pageFields.reducedNoticeYes}`);
     await page.click(`${pageFields.respondentsAwareYes}`);
+    await Promise.all([
+      Helpers.checkGroup(
+        page,
+        4,
+        HearingUrgency1Content,
+        "additionalFormLabel",
+        `${Selectors.GovukFormLabel}`,
+      ),
+    ]);
     await page.click(
       `${Selectors.button}:text-is("${HearingUrgency1Content.continue}")`,
     );
@@ -188,6 +197,15 @@ export class HearingUrgency1Page {
         HearingUrgency1Content.loremIpsum,
       );
       await page.click(`${pageFields.respondentsAwareYes}`);
+      await Promise.all([
+        Helpers.checkGroup(
+          page,
+          4,
+          HearingUrgency1Content,
+          "additionalFormLabel",
+          `${Selectors.GovukFormLabel}`,
+        ),
+      ]);
     } else {
       await page.click(`${pageFields.caseUrgentNo}`);
       await page.click(`${pageFields.withoutNoticeNo}`);
