@@ -1,10 +1,6 @@
 export enum SelectApplicationType2Content {
   title = "Type of application",
 
-  subTitle1 = "",
-  subTitle2 = "FamilyMan ID:",
-  subTitle3 = "Casenumber:",
-
   p1 = "You can save and return to this page at any time. Questions marked with a * need to be completed before you can send your application.",
 
   textOnPage1 = "*Do you have a draft consent order?",
@@ -14,8 +10,8 @@ export enum SelectApplicationType2Content {
   textOnPage2 = "*Draft Consent Order",
   textOnPage3 = "Upload a scanned PDF or DOCX of the draft consent order, signed by both parties. Wherever possible, documents should be scanned in greyscale.",
   chooseFile = "Choose file",
-
   cancelUpload = "Cancel upload",
+
   previous = "Previous",
   continue = "Continue",
   cancel = "Cancel",

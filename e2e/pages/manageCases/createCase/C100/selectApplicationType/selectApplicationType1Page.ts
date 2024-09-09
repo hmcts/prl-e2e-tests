@@ -3,16 +3,27 @@ import { Selectors } from "../../../../../common/selectors";
 import { SelectApplicationType1Content } from "../../../../../fixtures/manageCases/createCase/C100/selectApplicationType/selectApplicationType1Content";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { SolicitorCreate2Content } from "../../../../../fixtures/manageCases/createCase/initialJourney/solicitorCreate2Content";
+
+type typeOfOrderID =
+  | "Child Arrangements Order"
+  | "Prohibited Steps Order"
+  | "Specific Issue Order";
+
+type typeOfChildArrangementOderID =
+  | "Spend time with order"
+  | "Live with order"
+  | "Both live with and spend time with order";
 
 enum checkbox {
-  yes = "#ordersApplyingFor-childArrangementsOrder",
-  no1 = "#ordersApplyingFor-prohibitedStepsOrder",
-  no2 = "#ordersApplyingFor-specificIssueOrder",
+  childArrangementsOrder = "#ordersApplyingFor-childArrangementsOrder",
+  prohibitedStepsOrder = "#ordersApplyingFor-prohibitedStepsOrder",
+  specificIssueOrder = "#ordersApplyingFor-specificIssueOrder",
 
   spend = "#typeOfChildArrangementsOrder-spendTimeWithOrder",
   live = "#typeOfChildArrangementsOrder-liveWithOrder",
   both = "#typeOfChildArrangementsOrder-bothLiveWithAndSpendTimeWithOrder",
+
+  textarea = "#natureOfOrder",
 }
 
 export class selectApplicationType1Page {
@@ -25,8 +36,7 @@ export class selectApplicationType1Page {
     if (errorMessaging) {
       await this.triggerErrorMessages(page);
     }
-    await this.fillInFields(page, true);
-    await this.childArrangementOrderContent(page);
+    // await this.fillInFields(page,  );
   }
 
   private static async checkPageLoads(
@@ -46,7 +56,7 @@ export class selectApplicationType1Page {
         page,
         3,
         SelectApplicationType1Content,
-        "fromLabel",
+        "formLabel",
         `${Selectors.GovukFormLabel}`,
       ),
       Helpers.checkVisibleAndPresent(
@@ -72,7 +82,7 @@ export class selectApplicationType1Page {
 
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${SolicitorCreate2Content.continue}")`,
+      `${Selectors.button}:text-is("${SelectApplicationType1Content.continue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -115,24 +125,42 @@ export class selectApplicationType1Page {
 
   private static async fillInFields(
     page: Page,
-    yesClicked: Boolean,
+    typeOfOrder: typeOfOrderID,
+    typeOfChildArrangementOrder?: typeOfChildArrangementOderID,
   ): Promise<void> {
-    if (yesClicked) {
-      await page.click(checkbox.yes);
-      await this.childArrangementOrderContent(page);
-      await page.click(checkbox.no1);
-      await page.click(checkbox.no2);
+    if (typeOfOrder.includes("Child Arrangements Order")) {
+      await page.click(checkbox.childArrangementsOrder);
+      if (typeOfChildArrangementOrder === "Spend time with order") {
+        await page.click(checkbox.spend);
+      } else if (typeOfChildArrangementOrder === "Live with order") {
+        await page.click(checkbox.live);
+      } else {
+        await page.click(checkbox.both);
+      }
     } else {
-      await page.click(checkbox.no1);
-      await page.click(checkbox.no2);
-    }
+      if (typeOfOrder.includes("Prohibited Steps Order")) {
+        await page.click(checkbox.prohibitedStepsOrder);
+      }
 
-    await page.click(
-      `${Selectors.button}:text-is("${SelectApplicationType1Content.continue}")`,
-    );
+      if (typeOfOrder.includes("Specific Issue Order")) {
+        await page.click(checkbox.specificIssueOrder);
+      }
+    }
+    await this.fillTextarea(page);
+    await this.childArrangementOrderContent(page);
   }
 
-  //Type
+  // const selector: string = caseTypeSelectionIds[solicitorCaseType];
+  // await page.click(selector);
+  // if (solicitorCaseType === "FL401") {
+  // await this.checkFL401(page, errorMessaging);
+  // await page.click(`${caseTypeSelectionIds.yes}`);
+
+  private static async fillTextarea(page: Page): Promise<void> {
+    const loremIpsumText =
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+    await page.fill(checkbox.textarea, loremIpsumText);
+  }
 
   private static async childArrangementOrderContent(page: Page): Promise<void> {
     await Promise.all([
