@@ -1,5 +1,10 @@
 import { expect, Locator, Page } from "@playwright/test";
-import { Events, UserRole } from "./types";
+import {
+  c100SolicitorEvents,
+  Events,
+  fl401SolicitorEvents,
+  UserRole,
+} from "./types";
 import idamLoginHelper from "./idamLoginHelper";
 import { Selectors } from "./selectors.ts";
 
@@ -22,6 +27,15 @@ export class Helpers {
       );
       throw error;
     }
+  }
+
+  public static async selectSolicitorEvent(
+    page: Page,
+    event: c100SolicitorEvents | fl401SolicitorEvents,
+  ): Promise<void> {
+    await page.click(
+      `${Selectors.markdown} > ${Selectors.div} > ${Selectors.p} > ${Selectors.a}:text-is("${event}")`,
+    );
   }
 
   public static async checkVisibleAndPresent(
@@ -114,7 +128,7 @@ export class Helpers {
   ): Promise<void[]> {
     return Promise.all([
       ...Array.from({ length: count }, (_, index) => {
-        const text = file[`${name}${index + 1}` as keyof E]; // Safely access the enum
+        const text: E[keyof E] = file[`${name}${index + 1}` as keyof E]; // Safely access the enum
         return Helpers.checkVisibleAndPresent(
           page,
           `${selector}:text-is("${text}")`,
@@ -157,7 +171,7 @@ export class Helpers {
   }
 
   private static async checkCaseNumberRegex(page: Page): Promise<void> {
-    const caseNumberRegex = /^Casenumber: \d{4}-\d{4}-\d{4}-\d{4}$/;
+    const caseNumberRegex: RegExp = /^Casenumber: \d{4}-\d{4}-\d{4}-\d{4}$/;
     try {
       const visibilityPromises: Promise<void>[] = Array.from(
         { length: 1 },

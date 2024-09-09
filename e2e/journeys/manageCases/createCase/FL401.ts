@@ -2,6 +2,7 @@ import { solicitorCaseCreateType, UserRole } from "../../../common/types";
 import { Page } from "@playwright/test";
 import { SolicitorCreateInitial } from "./solicitorCreateInitial";
 import { RespondentDetailsPage } from "../../../pages/manageCases/createCase/FL401/respondentDetails/respondentDetailsPage";
+import { Fl401TasksTabPage } from "../../../pages/manageCases/caseTabs/fl401TasksTabPage";
 
 export class FL401 {
   public static async fl401(
@@ -14,11 +15,13 @@ export class FL401 {
   ): Promise<void> {
     await SolicitorCreateInitial.createInitialCase(
       page,
-      "solicitor",
+      user,
       false,
-      "FL401",
+      solicitorCaseType,
       false,
     );
+
+    await Fl401TasksTabPage.fl401TasksTabPage(page, accessibilityTest);
 
     await this.navigateToEvent(page, "Respondent details");
 
