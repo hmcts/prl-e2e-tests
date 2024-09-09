@@ -1,12 +1,10 @@
 export enum ApplicantDetails1Content {
-  // Headings
   headingL = "Applicant details",
   saveP = "You can save and return to this page at any time. Questions marked with a * need to be completed before you can send your application.",
-  // Section Titles (h2 Headings)
   h2Heading1 = "Applicant",
   h2Heading2 = "Search for an organisation",
   h2Heading3 = "Organisation name and address",
-  // Form Labels
+  postcodeForm_2 = "Enter a UK postcode",
   formLabel1 = "*First name(s)",
   formLabel2 = "*Last name",
   formLabel3 = "Previous name (if any) (Optional)",
@@ -18,7 +16,6 @@ export enum ApplicantDetails1Content {
   formLabel9 = "Female",
   formLabel10 = "Male",
   formLabel11 = "They identify in another way",
-  formLabel13 = "Enter a UK postcode",
   formLabel19 = "*Do you need to keep the address confidential?",
   formLabel20 = "*Can you provide email address?",
   formLabel22 = "*Contact Number",
@@ -29,8 +26,7 @@ export enum ApplicantDetails1Content {
   formLabel27 = "*Telephone number (Optional)",
   formLabel28 = "Solicitor reference (Optional)",
   formLabel29 = "DX Number (Optional)",
-  formLabel30 = "Enter a UK postcode",
-  // Hidden Labels (renamed from _ keys)
+  formHint1 = "For example, 12 11 2007",
   hiddenLabel1 = "*Applicant gender",
   hiddenLabel2 = "Building and Street",
   hiddenLabel3 = "Address Line 2 (Optional)",
@@ -43,5 +39,5 @@ export enum ApplicantDetails1Content {
   hiddenLabel10 = "Address Line 3 (Optional)",
   hiddenLabel11 = "County (Optional)",
   hiddenLabel12 = "Postcode/Zipcode (Optional)",
-  hiddenLabel13 = "Country (Optional)"
+  hiddenLabel13 = "Country (Optional)",
 }
