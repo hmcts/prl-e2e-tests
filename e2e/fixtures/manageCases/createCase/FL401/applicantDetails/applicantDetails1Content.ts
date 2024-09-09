@@ -1,0 +1,27 @@
+export enum ApplicantDetails1Content {
+  headingL = "Applicant details",
+  saveP = "You can save and return to this page at any time. Questions marked with a * need to be completed before you can send your application.",
+  h2Heading1 = "Applicant",
+  h2Heading2 = " Search for an organisation ",
+  h2Heading3 = "Organisation name and address",
+  formLabel1 = "*First name(s)",
+  formLabel2 = "*Last name",
+  formLabel3 = "Previous name (if any) (Optional)",
+  formLabel4 = "*Date of birth",
+  formLabel5 = "Day",
+  formLabel6 = "Month",
+  formLabel7 = "Year",
+  formLabel8 = "*Gender",
+  formLabel9 = "Female",
+  formLabel10 = "Male",
+  formLabel11 = "They identify in another way",
+  _formLabel12 = "*Applicant gender",
+  formLabel13 = "Enter a UK postcode",
+  _formLabel14 = "Building and Street",
+  _formLabel15 = "Address Line 2 (Optional)",
+  _formLabel16 = "Address Line 3 (Optional)",
+  _formLabel17 = "County (Optional)",
+  _formLabel18 = "Postcode/Zipcode (Optional)",
+
+
+}
