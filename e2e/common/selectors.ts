@@ -24,6 +24,7 @@ export enum Selectors {
   GovukFormHint = ".form-hint",
   ResetLink = ".search-result-reset-link",
   ColumnLabel = ".search-result-column-label",
+  Span = "span",
 
   // Buttons
   GovukButton = ".govuk-button",
