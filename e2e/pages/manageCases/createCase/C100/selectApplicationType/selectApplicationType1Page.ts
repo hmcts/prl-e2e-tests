@@ -9,12 +9,12 @@ type typeOfOrderID =
   | "Prohibited Steps Order"
   | "Specific Issue Order";
 
-type typeOfChildArrangementOderID =
+type typeOfChildArrangementOrderID =
   | "Spend time with order"
   | "Live with order"
   | "Both live with and spend time with order";
 
-enum checkbox {
+enum PageIDs {
   childArrangementsOrder = "#ordersApplyingFor-childArrangementsOrder",
   prohibitedStepsOrder = "#ordersApplyingFor-prohibitedStepsOrder",
   specificIssueOrder = "#ordersApplyingFor-specificIssueOrder",
@@ -31,12 +31,14 @@ export class selectApplicationType1Page {
     page: Page,
     errorMessaging: boolean,
     accessibilityTest: boolean,
+    typeOfOrder: typeOfOrderID,
+    typeOfChildArrangementOrder?: typeOfChildArrangementOrderID
   ): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest);
     if (errorMessaging) {
       await this.triggerErrorMessages(page);
     }
-    // await this.fillInFields(page,  );
+    await this.fillInFields(page, typeOfOrder, typeOfChildArrangementOrder);
   }
 
   private static async checkPageLoads(
@@ -44,24 +46,12 @@ export class selectApplicationType1Page {
     accessibilityTest: boolean,
   ): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukFormLabel}:text-is("${SelectApplicationType1Content.textOnPage1}")`,
+      `${Selectors.GovukFormLabel}:text-is("${SelectApplicationType1Content.formLabel0}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukHeadingL}:text-is("${SelectApplicationType1Content.title}")`,
-        1,
-      ),
-      Helpers.checkGroup(
-        page,
-        3,
-        SelectApplicationType1Content,
-        "formLabel",
-        `${Selectors.GovukFormLabel}`,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukFormLabel}:text-is("${SelectApplicationType1Content.textOnPage3}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -71,7 +61,17 @@ export class selectApplicationType1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${SelectApplicationType1Content.p2}")`,
+        `${Selectors.GovukFormLabel}:text-is("${SelectApplicationType1Content.formLabel1}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${SelectApplicationType1Content.formLabel2}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${SelectApplicationType1Content.formLabel3}")`,
         1,
       ),
     ]);
@@ -92,90 +92,127 @@ export class selectApplicationType1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorValidation}:has-text("${SelectApplicationType1Content.errorText1}")`,
+        `${Selectors.GovukErrorSummary}:has-text("${SelectApplicationType1Content.errorMessageOrdersApplyingFor}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorValidation}:text-is("${SelectApplicationType1Content.errorText2}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukErrorValidation}:text-is("${SelectApplicationType1Content.errorText3}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukErrorMessage}:has-text("${SelectApplicationType1Content.errorText1}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukErrorMessage}:text-is("${SelectApplicationType1Content.errorText2}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukErrorMessage}:text-is("${SelectApplicationType1Content.errorText3}")`,
+        `${Selectors.GovukErrorMessage}:has-text("${SelectApplicationType1Content.errorMessageOrdersApplyingFor}")`,
         1,
       ),
     ]);
+
+    await page.click(`${PageIDs.childArrangementsOrder}`);
+    await page.click(`${PageIDs.prohibitedStepsOrder}`);
+    await page.click(`${PageIDs.specificIssueOrder}`);
+
+
+    await Promise.all([
+      Helpers.checkGroup(
+        page,
+        5,
+        SelectApplicationType1Content,
+        "additionalFormLabel",
+        `${Selectors.GovukFormLabel}`,
+      ),
+    ]);
+
+
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorSummary}:text-is("${SelectApplicationType1Content.errorBanner}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorSummary}:has-text("${SelectApplicationType1Content.errorMessageSelectChildArrangementOrder}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorMessage}:has-text("${SelectApplicationType1Content.errorMessageSelectChildArrangementOrder}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorSummary}:has-text("${SelectApplicationType1Content.errorMessageProvideMoreInfo}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorMessage}:has-text("${SelectApplicationType1Content.errorMessageProvideMoreInfo}")`,
+        1,
+      ),
+    ]);
+
   }
 
   private static async fillInFields(
     page: Page,
     typeOfOrder: typeOfOrderID,
-    typeOfChildArrangementOrder?: typeOfChildArrangementOderID,
+    typeOfChildArrangementOrder?: typeOfChildArrangementOrderID,
   ): Promise<void> {
-    //   if (typeOfOrder.includes("Child Arrangements Order")) {
-    //     await page.click(checkbox.childArrangementsOrder);
-    //     if (typeOfChildArrangementOrder === "Spend time with order") {
-    //       await page.click(checkbox.spend);
-    //     } else if (typeOfChildArrangementOrder === "Live with order") {
-    //       await page.click(checkbox.live);
-    //     } else {
-    //       await page.click(checkbox.both);
-    //     }
-    //   } else {
-    //     if (typeOfOrder.includes("Prohibited Steps Order")) {
-    //       await page.click(checkbox.prohibitedStepsOrder);
-    //     }
-    //
-    //     if (typeOfOrder.includes("Specific Issue Order")) {
-    //       await page.click(checkbox.specificIssueOrder);
-    //     }
-    //   }
-    //   await this.fillTextarea(page);
-    //   await this.childArrangementOrderContent(page);
-  }
-  //
-  // // const selector: string = caseTypeSelectionIds[solicitorCaseType];
-  // // await page.click(selector);
-  // // if (solicitorCaseType === "FL401") {
-  // // await this.checkFL401(page, errorMessaging);
-  // // await page.click(`${caseTypeSelectionIds.yes}`);
-
-  private static async fillTextarea(page: Page): Promise<void> {
-    await page.fill(
-      `${checkbox.textarea}`,
-      `${SelectApplicationType1Content.loremIpsumText}`,
-    );
+    if (typeOfOrder === "Child Arrangements Order") {
+      await page.click(`${PageIDs.childArrangementsOrder}`);
+      await this.childArrangementOrderContent(page);
+      switch (typeOfChildArrangementOrder) {
+        case "Spend time with order":
+          await page.click(`${PageIDs.spend}`);
+          break;
+        case "Live with order":
+          await page.click(`${PageIDs.live}`);
+          break;
+        case "Both live with and spend time with order":
+          await page.click(`${PageIDs.both}`);
+          break;
+      }
+      await page.fill(
+        `${PageIDs.textarea}`,
+        `${SelectApplicationType1Content.loremIpsumText}`,
+      );
+    } else if (
+      typeOfOrder === "Prohibited Steps Order" ||
+      typeOfOrder === "Specific Issue Order"
+    ) {
+      await page.fill(
+        `${PageIDs.textarea}`,
+        `${SelectApplicationType1Content.loremIpsumText}`,
+      );
+      this.provideMoreInfoContent(page);
+    } else {
+      console.error("Invalid order type");
+    }
   }
 
   private static async childArrangementOrderContent(page: Page): Promise<void> {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukFormLabel}:text-is("${SelectApplicationType1Content.textOnPage2}")`,
+        `${Selectors.GovukFormLabel}:text-is("${SelectApplicationType1Content.additionalFormLabel0}")`,
         1,
       ),
       Helpers.checkGroup(
         page,
         3,
         SelectApplicationType1Content,
-        "fromLabel",
+        "formLabel",
         `${Selectors.GovukFormLabel}`,
+      ),
+    ]);
+  }
+
+  private static async provideMoreInfoContent(page: Page): Promise<void> {
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${SelectApplicationType1Content.additionalFormLabel4}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${SelectApplicationType1Content.p2}")`,
+        1,
       ),
     ]);
   }
