@@ -9,4 +9,8 @@ export enum TypeOfApplication2Content {
   pLinkedC100 = "If you have also completed a Child Arrangements Order application enter the case number below.",
   formLabelLinkedC100 = "Child Arrangements Case Number (FamilyMan cases not supported) (Optional)",
   continue = "Continue",
+  errorSummaryHeading = " The event could not be created ",
+  errorP = "Case data validation failed",
+  errorSummaryLi = "The data entered is not valid for this type of field, please delete and re-enter using only valid data",
+  errorMessage = " The data entered is not valid for this type of field, please delete and re-enter using only valid data "
 }
