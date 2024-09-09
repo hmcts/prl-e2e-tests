@@ -2,7 +2,6 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { solicitorCaseCreateType } from "../../../../../common/types";
 import { SelectApplicationType2Content } from "../../../../../fixtures/manageCases/createCase/C100/selectApplicationType/selectApplicationType2Content";
 
 export class selectApplicationType2Page {
@@ -55,3 +54,10 @@ export class selectApplicationType2Page {
     ]);
   }
 }
+
+
+
+
+// fillInFields - radio button check  argument yesNo: Boolean - if (yesNo) {click radio-1}
+
+// fill in form to check for draft consent order content
