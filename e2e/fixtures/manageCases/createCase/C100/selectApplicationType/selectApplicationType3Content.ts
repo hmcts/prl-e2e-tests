@@ -1,7 +1,6 @@
 export enum SelectApplicationType3Content {
   title = "Type of application",
 
-
   p1 = "You can save and return to this page at any time. Questions marked with a * need to be completed before you can send your application.",
 
   formLabel1 = "*Have you applied to the court for permission to make this application?",
@@ -17,5 +16,5 @@ export enum SelectApplicationType3Content {
 
   errorBanner = "There is a problem",
   errorMessage1 = "*Have you applied to the court for permission to make this application? is required",
-  errorMessage2 = "*Give details of why permission is required from the court. is required"
+  errorMessage2 = "*Give details of why permission is required from the court. is required",
 }

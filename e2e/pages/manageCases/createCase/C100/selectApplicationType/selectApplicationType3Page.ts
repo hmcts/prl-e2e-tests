@@ -4,13 +4,12 @@ import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { SelectApplicationType3Content } from "../../../../../fixtures/manageCases/createCase/C100/selectApplicationType/selectApplicationType3Content";
 
-
 type radioButtons = "Yes" | "No";
 
 enum PageIDs {
   yes = "#",
   noPermissionNotRequired = "#",
-  noPermissionSought = "#"
+  noPermissionSought = "#",
 }
 
 export class selectApplicationType2Page {
@@ -18,7 +17,7 @@ export class selectApplicationType2Page {
     page: Page,
     errorMessaging: boolean,
     accessibilityTest: boolean,
-    selection: radioButtons
+    selection: radioButtons,
   ): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest);
     if (errorMessaging) {
@@ -71,26 +70,18 @@ export class selectApplicationType2Page {
     await page.click(
       `${Selectors.button}:text-is("${SelectApplicationType3Content.continue}")`,
     );
-    await Promise.all([
-
-    ])
-
-
+    await Promise.all([]);
 
     await page.click(`${PageIDs.yes}`),
-    await page.click(
-      `${Selectors.button}:text-is("${SelectApplicationType3Content.continue}")`,
-    );
-
-
+      await page.click(
+        `${Selectors.button}:text-is("${SelectApplicationType3Content.continue}")`,
+      );
   }
 
   private static async fillInFields(
     page: Page,
     selection: radioButtons,
   ): Promise<void> {
-
-
     await page.click(
       `${Selectors.button}:text-is("${SelectApplicationType3Content.continue}")`,
     );

@@ -18,7 +18,7 @@ export class selectApplicationType2Page {
     page: Page,
     errorMessaging: boolean,
     accessibilityTest: boolean,
-    selection: yesNo
+    selection: yesNo,
   ): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest);
     if (errorMessaging) {
