@@ -6,8 +6,8 @@ import {
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 
-enum applicantDoBInputs {
-  dayInput = '#dateOfBirth-day'
+enum applicantDoBLabels {
+  dobFormLabel = 'div > ccd-field-write > div > ccd-write-complex-type-field > div > fieldset > ccd-field-write > div > ccd-write-date-container-field > ccd-write-date-field > div > fieldset > cut-date-input > div > div > .form-label',
 }
 
 enum applicantInputIDs {
@@ -17,7 +17,7 @@ enum applicantInputIDs {
 
   applicantGenderFemale = '#applicantsFL401_gender-female',
   applicantGenderMale = '#applicantsFL401_gender-male',
-  applicantGenderOther = '#applicantsFL401_gender-female',
+  applicantGenderOther = '#applicantsFL401_gender-other',
   applicantGenderOtherInput = '#applicantsFL401_otherGender',
   applicantPostcodeInput = "#applicantsFL401_address_address_postcodeInput",
   applicantSelectAddress = "#applicantsFL401_address_address_addressList",
@@ -66,13 +66,11 @@ enum buckinghamPalace {
   _Country = 'United Kingdom'
 }
 
-enum applicantDetailsTextValues {
+enum topLevelInputFields {
   applicantFirstName = 'Charlie',
   applicantLastName = 'Alpha',
   applicantPreviousName = 'Morgan',
-  applicantGenderOtherInput = 'Non-Binary',
   applicantPostcodeInput = buckinghamPalace._PostalCode,
-  applicantEmailAddress = 'name@email.com',
   applicantPhoneNumber = '+44123456789',
   solicitorFirstName = 'Tony',
   solicitorLastName = 'Stark',
@@ -84,6 +82,11 @@ enum applicantDetailsTextValues {
   solicitorPostCode = buckinghamPalace._PostalCode,
 }
 
+enum secondLevelInputFields {
+  applicantGenderOtherInput = 'Non-Binary',
+  applicantEmailAddress = 'name@email.com',
+}
+
 export class ApplicantDetails1Page{
   public static async applicantDetails1Page(
     page: Page,
@@ -91,6 +94,7 @@ export class ApplicantDetails1Page{
     errorMessaging: boolean
   ): Promise <void> {
     await this.checkPageLoads(page, accessibilityTest)
+    await this.fillInFields(page)
   }
 
   private static async checkPageLoads(
@@ -107,18 +111,18 @@ export class ApplicantDetails1Page{
           `${Selectors.GovukFormHint}:text-is("${ApplicantDetails1Content.formHintDoB}")`,
           1
         ),
-        // ...[
-        //   ['day', 'month', 'year'].map(
-        //     (el) => {
-        //       let formKey = `${el}FormLabel`
-        //       Helpers.checkVisibleAndPresent(
-        //         page,
-        //         `${Selectors.GovukFormLabel}:text-is("${ApplicantDetails1Content[formKey as keyof typeof ApplicantDetails1Content]}")`,
-        //         1
-        //       )
-        //     }
-        //   )
-        // ],
+        ...[
+          ['day', 'month', 'year'].map(
+            (el) => {
+              let formKey = `${el}FormLabel`
+              Helpers.checkVisibleAndPresent(
+                page,
+                `${applicantDoBLabels.dobFormLabel}:text-is("${ApplicantDetails1Content[formKey as keyof typeof ApplicantDetails1Content]}")`,
+                1
+              )
+            }
+          )
+        ],
         Helpers.checkGroup(
           page,
           3,
@@ -150,22 +154,8 @@ export class ApplicantDetails1Page{
           `${Selectors.button}:text-is("${ApplicantDetails1Content.postcodeButton_2}")`,
           2
         ),
-        // expect.soft(
-        //   page.locator('#dateOfBirth-day').locator('preceding-sibling::label')
-        // ).toBeVisible()
-    // getByRole('group', { name: '*Date of birth' }).locator('label').first()
       ]
     );
-    const element = page.locator('.form-label:text-is("*Date of birth")')
-      .locator('..')
-      .locator('..')
-      .locator('.form-label:text-is("Day")');
-
-    // Get the outer HTML of the element
-    const outerHTML = await element.evaluate(el => el.outerHTML);
-
-    // Print the outer HTML to the console
-    console.log('Element outer HTML:', outerHTML);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }
@@ -173,10 +163,49 @@ export class ApplicantDetails1Page{
 
   private static async fillInFields(
     page: Page,
-    errorMessaging: boolean
   ): Promise<void> {
-
+    await this.fillInTopLevelFields(page)
+    await this.fillInRadios(page)
+    await this.fillInSecondLevelFields(page)
   }
 
-  // private static async
+  private static async fillInTopLevelFields(
+    page:Page,
+  ): Promise<void> {
+    for (let [key, input_value] of Object.entries(topLevelInputFields)) {
+      let input_id = applicantInputIDs[key as keyof typeof applicantInputIDs]
+      await page.fill(input_id, '');
+      await page.fill(input_id, input_value);
+      console.log(input_value, 'Inputted')
+    }
+  }
+
+  private static async fillInRadios(
+    page:Page,
+  ): Promise<void> {
+    const radiosToClick = [
+      applicantInputIDs.applicantGenderOther,
+      applicantInputIDs.confidentialAddressYes,
+      applicantInputIDs.canProvideEmailAddressYes,
+      applicantInputIDs.confidentialEmailYes,
+      applicantInputIDs.confidentialPhoneNumberYes,
+    ]
+    for (let radioID of radiosToClick) {
+      await page.click(
+        radioID
+      );
+      console.log(radioID, 'Clicked')
+    }
+  }
+
+  private static async fillInSecondLevelFields(
+    page:Page,
+  ): Promise<void> {
+    for (let [key, input_value] of Object.entries(secondLevelInputFields)) {
+      let input_id = applicantInputIDs[key as keyof typeof applicantInputIDs]
+      await page.fill(input_id, '')
+      await page.fill(input_id, input_value)
+      console.log('Inputted', input_value)
+    }
+  }
 }
