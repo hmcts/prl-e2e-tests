@@ -9,6 +9,8 @@ import { SolicitorCreate4Page } from "../../../pages/manageCases/createCase/init
 import { SolicitorCreate3Page } from "../../../pages/manageCases/createCase/initialJourney/solicitorCreate3Page";
 import { SolicitorCreate5Page } from "../../../pages/manageCases/createCase/initialJourney/solicitorCreate5Page";
 import { SubmitPage } from "../../../pages/manageCases/createCase/initialJourney/submitPage";
+import { Fl401TasksTabPage } from "../../../pages/manageCases/caseTabs/fl401TasksTabPage";
+import { C100TasksTabPage } from "../../../pages/manageCases/caseTabs/c100TasksTabPage";
 
 export class SolicitorCreateInitial {
   public static async createInitialCase(
@@ -40,6 +42,10 @@ export class SolicitorCreateInitial {
           errorMessaging,
           accessibilityTest,
         );
+        await SubmitPage.submitPage(page, accessibilityTest, caseName);
+        await C100TasksTabPage.c100TasksTabPage(
+          page, accessibilityTest
+        )
         break;
       case "FL401":
         await SolicitorCreate3Page.solicitorCreate3Page(
@@ -52,11 +58,16 @@ export class SolicitorCreateInitial {
           errorMessaging,
           accessibilityTest,
         );
+        await SubmitPage.submitPage(page, accessibilityTest, caseName);
+        await Fl401TasksTabPage.fl401TasksTabPage(
+          page,
+          accessibilityTest
+        )
         break;
       default:
         caseName = "null";
         console.error("An invalid case type was selected");
+        await SubmitPage.submitPage(page, accessibilityTest, caseName);
     }
-    await SubmitPage.submitPage(page, accessibilityTest, caseName);
   }
 }
