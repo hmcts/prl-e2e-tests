@@ -15,7 +15,6 @@ export class FL401ApplicantDetails {
       page,
       "Applicant details"
     )
-    console.log('Navigated successfully')
     await ApplicantDetails1Page.applicantDetails1Page(
       page,
       accessibilityTest,

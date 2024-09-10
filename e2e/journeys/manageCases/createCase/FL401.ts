@@ -25,7 +25,6 @@ export class FL401 {
     //   errorMessaging,
     //   isLinkedToC100
     // );
-    console.log('Details')
     await FL401ApplicantDetails.fl401ApplicantDetails(
       page,
       accessibilityTest,
