@@ -54,8 +54,8 @@ enum applicantInputIDs {
 
 enum uniqueSelectorPaths {
   dobFormLabel = 'div > ccd-field-write > div > ccd-write-complex-type-field > div > fieldset > ccd-field-write > div > ccd-write-date-container-field > ccd-write-date-field > div > fieldset > cut-date-input > div > div > .form-label',
-  applicantFindAddress = `div#applicantsFL401_address_address_postcodeLookup > button:text-is("${ApplicantDetails1Content.postcodeButton_2}")`,
-  solicitorFindAddress = `div#applicantsFL401_solicitorAddress_solicitorAddress_postcodeLookup > button:text-is("${ApplicantDetails1Content.postcodeButton_2}")`,
+  applicantFindAddress = `div#applicantsFL401_address_address_postcodeLookup`,
+  solicitorFindAddress = `div#applicantsFL401_solicitorAddress_solicitorAddress_postcodeLookup`,
   applicantAddressForm = 'div#applicantsFL401_address_address',
   solicitorAddressForm = 'div#applicantsFL401_solicitorAddress_solicitorAddress'
 }
@@ -67,7 +67,8 @@ enum buckinghamPalace {
   _City = 'London',
   _County = '',
   _PostalCode = 'SW1A 1AA',
-  _Country = 'United Kingdom'
+  _Country = 'United Kingdom',
+  _dropdownValue = " Buckingham Palace, London "
 }
 
 enum topLevelInputFields {
@@ -98,6 +99,10 @@ export class ApplicantDetails1Page{
     errorMessaging: boolean
   ): Promise <void> {
     await this.checkPageLoads(page, accessibilityTest)
+    if (errorMessaging) {
+      await this.checkErrors(page)
+    }
+    console.log('Successful Errors')
     await this.fillInFields(page)
   }
 
@@ -168,10 +173,14 @@ export class ApplicantDetails1Page{
   private static async fillInFields(
     page: Page,
   ): Promise<void> {
-    await this.fillInTopLevelFields(page)
-    await this.fillInRadios(page)
-    await this.fillInSecondLevelFields(page)
-    await this.fillAndCheckAddressFields(page)
+    await this.fillInTopLevelFields(page);
+    await this.fillInRadios(page);
+    await this.fillInSecondLevelFields(page);
+    await this.fillAndCheckAddressFields(page);
+    await this.selectOrganisation(page);
+    await page.click(
+      `${Selectors.button}:text-is("${ApplicantDetails1Content.continue}")`
+    );
   }
 
   private static async fillInTopLevelFields(
@@ -181,7 +190,6 @@ export class ApplicantDetails1Page{
       let input_id: string = applicantInputIDs[key as keyof typeof applicantInputIDs]
       await page.fill(input_id, '');
       await page.fill(input_id, input_value);
-      console.log(input_value, 'Inputted')
     }
   }
 
@@ -199,7 +207,6 @@ export class ApplicantDetails1Page{
       await page.click(
         radioID
       );
-      console.log(radioID, 'Clicked')
     }
   }
 
@@ -210,7 +217,6 @@ export class ApplicantDetails1Page{
       let input_id: string = applicantInputIDs[key as keyof typeof applicantInputIDs]
       await page.fill(input_id, '')
       await page.fill(input_id, input_value)
-      console.log('Inputted', input_value)
     }
   }
 
@@ -218,26 +224,71 @@ export class ApplicantDetails1Page{
     page: Page,
   ): Promise<void> {
     for (let person of ['applicant', 'solicitor']) {
-      let findAddressUniqueKey = `${person}AddressForm` as keyof typeof uniqueSelectorPaths
+      let findAddressUniqueKey = `${person}FindAddress` as keyof typeof uniqueSelectorPaths
       await page.click(
         `${uniqueSelectorPaths[findAddressUniqueKey]} > button:text-is("${ApplicantDetails1Content.postcodeButton_2}")`
       );
       let selectAddressID = `${person}SelectAddress` as keyof typeof applicantInputIDs
-      console.log('Address Selection: ', selectAddressID)
       await page.locator(
         applicantInputIDs[selectAddressID]
       ).selectOption(
+        // `${buckinghamPalace._dropdownValue}`
         { index: 1 }
       )
-      console.log('Address Selected'
-      )
-      await Helpers.checkGroup(
-        page,
-        7,
-        ApplicantDetails1Content,
-        `${uniqueSelectorPaths.applicantAddressForm} > ${Selectors.GovukFormLabel}`,
-        `${person}Address`
-      )
     }
+  }
+
+  private static async selectOrganisation(
+    page: Page
+  ): Promise<void> {
+    const orgSelector = `${Selectors.a}[title="Select the organisation ${topLevelInputFields.organisationSearch}"]`;
+    await page.click(orgSelector)
+    await Helpers.checkVisibleAndPresent(
+      page,
+      `${Selectors.a}[title="Clear the organisation ${topLevelInputFields.organisationSearch}"]:text-is("${ApplicantDetails1Content.clearOrganisation}")`,
+      1
+    )
+  }
+
+  private static async checkErrors(
+    page: Page,
+  ): Promise<void> {
+  await this.checkTopLevelErrors(page)
+  }
+
+  private static async checkTopLevelErrors(
+    page: Page
+  ): Promise<void> {
+    await page.click(
+      `${Selectors.button}:text-is("${ApplicantDetails1Content.continue}")`
+    );
+    await Promise.all(
+      [
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukErrorSummaryTitle}:text-is("${ApplicantDetails1Content.errorSummaryTitle}")`,
+          1
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukErrorMessage}:text-is("${ApplicantDetails1Content.postcodeErrorMessage_2}")`,
+          2
+        ),
+        Helpers.checkGroup(
+          page,
+          9,
+          ApplicantDetails1Content,
+          'topLevelInputErrorSummary',
+          `${Selectors.GovukErrorValidation}`
+        ),
+        Helpers.checkGroup(
+          page,
+          8,
+          ApplicantDetails1Content,
+          `topLevelInputErrorMessage`,
+          `${Selectors.GovukErrorMessage}`
+        )
+      ]
+    )
   }
 }
