@@ -13,9 +13,7 @@ export enum SelectApplicationType4Content {
 
   loremIpsumText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
 
-
   continue = "Continue",
-
 
   errorBanner = "There is a problem",
   errorMessage = "Field is required",

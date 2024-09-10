@@ -89,7 +89,7 @@ export class selectApplicationType2Page {
         page,
         `${Selectors.GovukErrorValidation}:has-text("${SelectApplicationType2Content.errorMessage2}")`,
         1,
-      )
+      ),
     ]);
     const fileInput = page.locator(`${PageIDs.uploadFileInput}`);
     await fileInput.setInputFiles(config.testOdtFile);
@@ -103,7 +103,7 @@ export class selectApplicationType2Page {
       await page.click(`${PageIDs.yes}`);
       const fileInput = page.locator(`${PageIDs.uploadFileInput}`);
       await fileInput.setInputFiles(config.testPdfFile);
-      await this.draftConsentContent(page)
+      await this.draftConsentContent(page);
     } else if (selection === "No") {
       await page.click(`${PageIDs.no}`);
     }
@@ -113,8 +113,7 @@ export class selectApplicationType2Page {
     );
   }
 
-  private static async draftConsentContent(page: Page): Promise<void>{
-
+  private static async draftConsentContent(page: Page): Promise<void> {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
@@ -126,6 +125,6 @@ export class selectApplicationType2Page {
         `${Selectors.GovukFormHint}:text-is("${SelectApplicationType2Content.formHint}")`,
         1,
       ),
-    ])
+    ]);
   }
 }

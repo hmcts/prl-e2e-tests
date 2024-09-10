@@ -4,7 +4,6 @@ import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { SelectApplicationType4Content } from "../../../../../fixtures/manageCases/createCase/C100/selectApplicationType/selectApplicationType4Content";
 
-
 enum PageIDs {
   textbox = "#applicationDetails",
 }
@@ -82,14 +81,11 @@ export class selectApplicationType4Page {
     ]);
   }
 
-  private static async fillInFields(
-    page: Page,
-  ): Promise<void> {
-
-      await page.fill(
-        `${PageIDs.textbox}`,
-        `${SelectApplicationType4Content.loremIpsumText}`,
-      );
+  private static async fillInFields(page: Page): Promise<void> {
+    await page.fill(
+      `${PageIDs.textbox}`,
+      `${SelectApplicationType4Content.loremIpsumText}`,
+    );
 
     await page.click(
       `${Selectors.button}:text-is("${SelectApplicationType4Content.continue}")`,

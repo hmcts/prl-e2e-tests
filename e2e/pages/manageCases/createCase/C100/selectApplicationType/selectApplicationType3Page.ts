@@ -124,10 +124,7 @@ export class selectApplicationType3Page {
     );
   }
 
-
-  private static async permissionFormContent(
-    page: Page,
-  ): Promise<void> {
+  private static async permissionFormContent(page: Page): Promise<void> {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
@@ -136,6 +133,4 @@ export class selectApplicationType3Page {
       ),
     ]);
   }
-
-
 }
