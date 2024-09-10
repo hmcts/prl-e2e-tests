@@ -6,10 +6,6 @@ import {
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 
-enum applicantDoBLabels {
-  dobFormLabel = 'div > ccd-field-write > div > ccd-write-complex-type-field > div > fieldset > ccd-field-write > div > ccd-write-date-container-field > ccd-write-date-field > div > fieldset > cut-date-input > div > div > .form-label',
-}
-
 enum applicantInputIDs {
   applicantFirstName = '#applicantsFL401_firstName',
   applicantLastName = '#applicantsFL401_lastName',
@@ -54,6 +50,14 @@ enum applicantInputIDs {
   solicitorCounty = '#applicantsFL401_solicitorAddress__detailCounty',
   solicitorPostalCode = '#applicantsFL401_solicitorAddress__detailPostCode',
   solicitorCountry = '#applicantsFL401_solicitorAddress__detailCountry',
+}
+
+enum uniqueSelectorPaths {
+  dobFormLabel = 'div > ccd-field-write > div > ccd-write-complex-type-field > div > fieldset > ccd-field-write > div > ccd-write-date-container-field > ccd-write-date-field > div > fieldset > cut-date-input > div > div > .form-label',
+  applicantFindAddress = `div#applicantsFL401_address_address_postcodeLookup > button:text-is("${ApplicantDetails1Content.postcodeButton_2}")`,
+  solicitorFindAddress = `div#applicantsFL401_solicitorAddress_solicitorAddress_postcodeLookup > button:text-is("${ApplicantDetails1Content.postcodeButton_2}")`,
+  applicantAddressForm = 'div#applicantsFL401_address_address',
+  solicitorAddressForm = 'div#applicantsFL401_solicitorAddress_solicitorAddress'
 }
 
 enum buckinghamPalace {
@@ -117,7 +121,7 @@ export class ApplicantDetails1Page{
               let formKey = `${el}FormLabel`
               Helpers.checkVisibleAndPresent(
                 page,
-                `${applicantDoBLabels.dobFormLabel}:text-is("${ApplicantDetails1Content[formKey as keyof typeof ApplicantDetails1Content]}")`,
+                `${uniqueSelectorPaths.dobFormLabel}:text-is("${ApplicantDetails1Content[formKey as keyof typeof ApplicantDetails1Content]}")`,
                 1
               )
             }
@@ -167,13 +171,14 @@ export class ApplicantDetails1Page{
     await this.fillInTopLevelFields(page)
     await this.fillInRadios(page)
     await this.fillInSecondLevelFields(page)
+    await this.fillAndCheckAddressFields(page)
   }
 
   private static async fillInTopLevelFields(
     page:Page,
   ): Promise<void> {
     for (let [key, input_value] of Object.entries(topLevelInputFields)) {
-      let input_id = applicantInputIDs[key as keyof typeof applicantInputIDs]
+      let input_id: string = applicantInputIDs[key as keyof typeof applicantInputIDs]
       await page.fill(input_id, '');
       await page.fill(input_id, input_value);
       console.log(input_value, 'Inputted')
@@ -202,10 +207,37 @@ export class ApplicantDetails1Page{
     page:Page,
   ): Promise<void> {
     for (let [key, input_value] of Object.entries(secondLevelInputFields)) {
-      let input_id = applicantInputIDs[key as keyof typeof applicantInputIDs]
+      let input_id: string = applicantInputIDs[key as keyof typeof applicantInputIDs]
       await page.fill(input_id, '')
       await page.fill(input_id, input_value)
       console.log('Inputted', input_value)
+    }
+  }
+
+  private static async fillAndCheckAddressFields(
+    page: Page,
+  ): Promise<void> {
+    for (let person of ['applicant', 'solicitor']) {
+      let findAddressUniqueKey = `${person}AddressForm` as keyof typeof uniqueSelectorPaths
+      await page.click(
+        `${uniqueSelectorPaths[findAddressUniqueKey]} > button:text-is("${ApplicantDetails1Content.postcodeButton_2}")`
+      );
+      let selectAddressID = `${person}SelectAddress` as keyof typeof applicantInputIDs
+      console.log('Address Selection: ', selectAddressID)
+      await page.locator(
+        applicantInputIDs[selectAddressID]
+      ).selectOption(
+        { index: 1 }
+      )
+      console.log('Address Selected'
+      )
+      await Helpers.checkGroup(
+        page,
+        7,
+        ApplicantDetails1Content,
+        `${uniqueSelectorPaths.applicantAddressForm} > ${Selectors.GovukFormLabel}`,
+        `${person}Address`
+      )
     }
   }
 }
