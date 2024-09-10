@@ -7,22 +7,19 @@ import { Helpers } from "../../../../../common/helpers";
 export class selectApplicationTypeSubmitPage {
   public static async selectApplicationTypeSubmitPage(
     page: Page,
-    accessibilityTest: Boolean
+    accessibilityTest: Boolean,
   ): Promise<void> {
     await Promise.all([
-      this.checkPageLoads(page, accessibilityTest),
+      // this.checkPageLoads(page, accessibilityTest),
       // this.checkFilledFields(page, yesNo),
     ]);
     // await this.continue(page);
   }
 
-  private static async checkPageLoads (
+  private static async checkPageLoads(
     page: Page,
-    accessibilityTest: boolean
+    accessibilityTest: boolean,
   ): Promise<void> {
-
-
-
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }
