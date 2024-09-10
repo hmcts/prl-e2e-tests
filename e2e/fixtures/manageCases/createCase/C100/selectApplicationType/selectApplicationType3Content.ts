@@ -9,6 +9,7 @@ export enum SelectApplicationType3Content {
   formLabel4 = "No, permission now sought",
 
   formLabel5 = "*Give details of why permission is required from the court.",
+  loremIpsumText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
 
   previous = "Previous",
   continue = "Continue",
