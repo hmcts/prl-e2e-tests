@@ -47,5 +47,14 @@ export enum ApplicantDetails1Content {
   cantEnterPostcode_2 = " I can't enter a UK postcode ",
   spanOrganisation = " Can’t find the organisation you are looking for? ",
   spanOrganisationContent = " If you know that the solicitor is already registered with MyHMCTS, check that you have entered their details correctly. Remember that organisations can only register one office address. This means that the details could be slightly different from what you're expecting. Contact the solicitor directly if you have any concerns. ",
-
+  errorSummaryTitle = 'There is a problem',
+  validationError1 = ' *First name(s) is required ',
+  validationError2 = ' *Last name is required ',
+  validationError3 = ' *Date of birth is required ',
+  validationError4 = ' *Gender is required ',
+  validationError5 = ' An address is required ',
+  validationError6 = ' *Do you need to keep the address confidential? is required ',
+  validationError7 = ' *Can you provide email address? is required ',
+  validationError8 = ' *Contact Number is required ',
+  validationError9 = ' *Do you need to keep the contact number confidential? is required '
 }
