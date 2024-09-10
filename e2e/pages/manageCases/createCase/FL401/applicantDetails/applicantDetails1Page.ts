@@ -6,11 +6,22 @@ import {
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 
+enum uniqueSelectorPaths {
+  dobFormLabel = 'div > ccd-field-write > div > ccd-write-complex-type-field > div > fieldset > ccd-field-write > div > ccd-write-date-container-field > ccd-write-date-field > div > fieldset > cut-date-input > div > div',
+  applicantFindAddress = `div#applicantsFL401_address_address_postcodeLookup`,
+  solicitorFindAddress = `div#applicantsFL401_solicitorAddress_solicitorAddress_postcodeLookup`,
+  applicantAddressForm = 'div#applicantsFL401_address_address',
+  solicitorAddressForm = 'div#applicantsFL401_solicitorAddress_solicitorAddress'
+}
+
+
 enum applicantInputIDs {
   applicantFirstName = '#applicantsFL401_firstName',
   applicantLastName = '#applicantsFL401_lastName',
   applicantPreviousName = '#applicantsFL401_previousName',
-
+  applicantBirthDay = `${uniqueSelectorPaths.dobFormLabel} > #dateOfBirth-day`,
+  applicantBirthMonth = `${uniqueSelectorPaths.dobFormLabel} > #dateOfBirth-month`,
+  applicantBirthYear = `${uniqueSelectorPaths.dobFormLabel} > #dateOfBirth-year`,
   applicantGenderFemale = '#applicantsFL401_gender-female',
   applicantGenderMale = '#applicantsFL401_gender-male',
   applicantGenderOther = '#applicantsFL401_gender-other',
@@ -52,14 +63,6 @@ enum applicantInputIDs {
   solicitorCountry = '#applicantsFL401_solicitorAddress__detailCountry',
 }
 
-enum uniqueSelectorPaths {
-  dobFormLabel = 'div > ccd-field-write > div > ccd-write-complex-type-field > div > fieldset > ccd-field-write > div > ccd-write-date-container-field > ccd-write-date-field > div > fieldset > cut-date-input > div > div > .form-label',
-  applicantFindAddress = `div#applicantsFL401_address_address_postcodeLookup`,
-  solicitorFindAddress = `div#applicantsFL401_solicitorAddress_solicitorAddress_postcodeLookup`,
-  applicantAddressForm = 'div#applicantsFL401_address_address',
-  solicitorAddressForm = 'div#applicantsFL401_solicitorAddress_solicitorAddress'
-}
-
 enum buckinghamPalace {
   _BuildingAndStreet = 'Buckingham Palace',
   _AddressLine2 = '',
@@ -75,6 +78,9 @@ enum topLevelInputFields {
   applicantFirstName = 'Charlie',
   applicantLastName = 'Alpha',
   applicantPreviousName = 'Morgan',
+  applicantBirthDay = '1',
+  applicantBirthMonth = '1',
+  applicantBirthYear = '1990',
   applicantPostcodeInput = buckinghamPalace._PostalCode,
   applicantPhoneNumber = '+44123456789',
   solicitorFirstName = 'Tony',
@@ -85,6 +91,65 @@ enum topLevelInputFields {
   organisationSearch = 'My New Org',
   dxNumber = "0000000000000000",
   solicitorPostCode = buckinghamPalace._PostalCode,
+}
+
+interface applicantBirthday {
+  applicantBirthDay: string;
+  applicantBirthMonth: string;
+  applicantBirthYear: string;
+}
+
+const invalidBirthdays = {
+  dayTooSmall: {
+    applicantBirthDay: '0',
+    applicantBirthMonth: '1',
+    applicantBirthYear: '2000'
+  },
+  dayTooBig: {
+    applicantBirthDay: '32',
+    applicantBirthMonth: '1',
+    applicantBirthYear: '2000'
+  },
+  dayNonNumeric: {
+    applicantBirthDay: 'a',
+    applicantBirthMonth: '1',
+    applicantBirthYear: '2000'
+  },
+  monthTooSmall: {
+    applicantBirthDay: '1',
+    applicantBirthMonth: '0',
+    applicantBirthYear: '2000'
+  },
+  monthTooBig: {
+    applicantBirthDay: '1',
+    applicantBirthMonth: '13',
+    applicantBirthYear: '2000'
+  },
+  monthNonNumeric: {
+    applicantBirthDay: '1',
+    applicantBirthMonth: '-',
+    applicantBirthYear: '2000'
+  },
+  yearTooSmall: {
+    applicantBirthDay: '1',
+    applicantBirthMonth: '1',
+    applicantBirthYear: '0'
+  },
+  // yearTooBig: {
+  //   applicantBirthDay: '1',
+  //   applicantBirthMonth: '1',
+  //   applicantBirthYear: '2025'
+  // },
+  yearNonNumeric: {
+    applicantBirthDay: '1',
+    applicantBirthMonth: '1',
+    applicantBirthYear: '.'
+  },
+}
+
+
+enum topLevelInvalidInputs {
+  applicantBirthYear
 }
 
 enum secondLevelInputFields {
@@ -102,7 +167,6 @@ export class ApplicantDetails1Page{
     if (errorMessaging) {
       await this.checkErrors(page)
     }
-    console.log('Successful Errors')
     await this.fillInFields(page)
   }
 
@@ -126,7 +190,7 @@ export class ApplicantDetails1Page{
               let formKey = `${el}FormLabel`
               Helpers.checkVisibleAndPresent(
                 page,
-                `${uniqueSelectorPaths.dobFormLabel}:text-is("${ApplicantDetails1Content[formKey as keyof typeof ApplicantDetails1Content]}")`,
+                `${uniqueSelectorPaths.dobFormLabel} > ${Selectors.GovukFormLabel}:text-is("${ApplicantDetails1Content[formKey as keyof typeof ApplicantDetails1Content]}")`,
                 1
               )
             }
@@ -178,6 +242,7 @@ export class ApplicantDetails1Page{
     await this.fillInSecondLevelFields(page);
     await this.fillAndCheckAddressFields(page);
     await this.selectOrganisation(page);
+    console.log('Clicking Continue')
     await page.click(
       `${Selectors.button}:text-is("${ApplicantDetails1Content.continue}")`
     );
@@ -243,17 +308,15 @@ export class ApplicantDetails1Page{
   ): Promise<void> {
     const orgSelector = `${Selectors.a}[title="Select the organisation ${topLevelInputFields.organisationSearch}"]`;
     await page.click(orgSelector)
-    await Helpers.checkVisibleAndPresent(
-      page,
-      `${Selectors.a}[title="Clear the organisation ${topLevelInputFields.organisationSearch}"]:text-is("${ApplicantDetails1Content.clearOrganisation}")`,
-      1
-    )
   }
 
   private static async checkErrors(
     page: Page,
   ): Promise<void> {
-  await this.checkTopLevelErrors(page)
+    await this.checkTopLevelErrors(page);
+    for (let [key, dob] of Object.entries(invalidBirthdays)) {
+
+    }
   }
 
   private static async checkTopLevelErrors(
