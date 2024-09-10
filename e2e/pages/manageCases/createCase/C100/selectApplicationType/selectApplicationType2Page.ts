@@ -89,17 +89,7 @@ export class selectApplicationType2Page {
         page,
         `${Selectors.GovukErrorValidation}:has-text("${SelectApplicationType2Content.errorMessage2}")`,
         1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukFormLabel}:text-is("${SelectApplicationType2Content.formLabel4}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukFormHint}:text-is("${SelectApplicationType2Content.formHint}")`,
-        1,
-      ),
+      )
     ]);
     const fileInput = page.locator(`${PageIDs.uploadFileInput}`);
     await fileInput.setInputFiles(config.testOdtFile);
@@ -113,6 +103,7 @@ export class selectApplicationType2Page {
       await page.click(`${PageIDs.yes}`);
       const fileInput = page.locator(`${PageIDs.uploadFileInput}`);
       await fileInput.setInputFiles(config.testPdfFile);
+      await this.draftConsentContent(page)
     } else if (selection === "No") {
       await page.click(`${PageIDs.no}`);
     }
@@ -120,5 +111,21 @@ export class selectApplicationType2Page {
     await page.click(
       `${Selectors.button}:text-is("${SelectApplicationType2Content.continue}")`,
     );
+  }
+
+  private static async draftConsentContent(page: Page): Promise<void>{
+
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${SelectApplicationType2Content.formLabel4}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormHint}:text-is("${SelectApplicationType2Content.formHint}")`,
+        1,
+      ),
+    ])
   }
 }

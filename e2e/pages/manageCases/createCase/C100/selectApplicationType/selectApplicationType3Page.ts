@@ -44,25 +44,12 @@ export class selectApplicationType3Page {
         `${Selectors.GovukHeadingL}:text-is("${SelectApplicationType3Content.title}")`,
         1,
       ),
-      Helpers.checkVisibleAndPresent(
+      Helpers.checkGroup(
         page,
-        `${Selectors.GovukFormLabel}:text-is("${SelectApplicationType3Content.formLabel1}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukFormLabel}:text-is("${SelectApplicationType3Content.formLabel2}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukFormLabel}:text-is("${SelectApplicationType3Content.formLabel3}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukFormLabel}:text-is("${SelectApplicationType3Content.formLabel4}")`,
-        1,
+        4,
+        SelectApplicationType3Content,
+        "formLabel",
+        `${Selectors.GovukFormLabel}`,
       ),
     ]);
     if (accessibilityTest) {
@@ -100,11 +87,6 @@ export class selectApplicationType3Page {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukFormLabel}:text-is("${SelectApplicationType3Content.formLabel5}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
         `${Selectors.GovukErrorSummaryTitle}:text-is("${SelectApplicationType3Content.errorBanner}")`,
         1,
       ),
@@ -127,7 +109,7 @@ export class selectApplicationType3Page {
   ): Promise<void> {
     if (selection === "Yes") {
       await page.click(`${PageIDs.yes}`);
-
+      await this.permissionFormContent(page);
       await page.fill(
         `${PageIDs.textbox}`,
         `${SelectApplicationType3Content.loremIpsumText}`,
@@ -141,4 +123,19 @@ export class selectApplicationType3Page {
       `${Selectors.button}:text-is("${SelectApplicationType3Content.continue}")`,
     );
   }
+
+
+  private static async permissionFormContent(
+    page: Page,
+  ): Promise<void> {
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${SelectApplicationType3Content.formLabel5}")`,
+        1,
+      ),
+    ]);
+  }
+
+
 }

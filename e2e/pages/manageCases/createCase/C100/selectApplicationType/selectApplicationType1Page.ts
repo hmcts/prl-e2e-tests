@@ -180,7 +180,7 @@ export class selectApplicationType1Page {
         `${PageIDs.textarea}`,
         `${SelectApplicationType1Content.loremIpsumText}`,
       );
-      this.provideMoreInfoContent(page);
+      await this.provideMoreInfoContent(page);
     } else {
       console.error("Invalid order type");
     }
