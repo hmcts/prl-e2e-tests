@@ -24,7 +24,7 @@ export class FL401 {
       page,
       accessibilityTest,
       errorMessaging,
-      isLinkedToC100
+      isLinkedToC100,
     );
 
     await this.navigateToEvent(page, "Respondent details");
