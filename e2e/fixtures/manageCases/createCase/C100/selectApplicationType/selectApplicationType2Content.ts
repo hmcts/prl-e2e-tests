@@ -3,12 +3,12 @@ export enum SelectApplicationType2Content {
 
   p1 = "You can save and return to this page at any time. Questions marked with a * need to be completed before you can send your application.",
 
-  textOnPage1 = "*Do you have a draft consent order?",
-  formLabel1 = "Yes",
-  formLabel2 = "No",
+  formLabel1 = "*Do you have a draft consent order?",
+  formLabel2 = "Yes",
+  formLabel3 = "No",
 
-  textOnPage2 = "*Draft Consent Order",
-  textOnPage3 = "Upload a scanned PDF or DOCX of the draft consent order, signed by both parties. Wherever possible, documents should be scanned in greyscale.",
+  formLabel4 = "*Draft Consent Order",
+  formHint = "Upload a scanned PDF or DOCX of the draft consent order, signed by both parties. Wherever possible, documents should be scanned in greyscale.",
   chooseFile = "Choose file",
   cancelUpload = "Cancel upload",
 
@@ -17,5 +17,6 @@ export enum SelectApplicationType2Content {
   cancel = "Cancel",
 
   errorBanner = "There is a problem",
-  errorText = "*Do you have a draft consent order? is required",
+  errorMessage1 = "*Do you have a draft consent order? is required",
+  errorMessage2 = " Select or fill the required *Draft Consent Order field ",
 }

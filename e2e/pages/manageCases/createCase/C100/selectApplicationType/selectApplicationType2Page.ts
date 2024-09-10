@@ -3,20 +3,31 @@ import { Selectors } from "../../../../../common/selectors";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { SelectApplicationType2Content } from "../../../../../fixtures/manageCases/createCase/C100/selectApplicationType/selectApplicationType2Content";
+import config from "../../../../../config";
+
+type yesNo = "Yes" | "No";
+
+enum PageIDs {
+  yes = "#consentOrder_Yes",
+  no = "#consentOrder_No",
+  uploadFileInput = "#draftConsentOrderFile",
+}
 
 export class selectApplicationType2Page {
   public static async selectApplicationType2Page(
     page: Page,
     errorMessaging: boolean,
     accessibilityTest: boolean,
+    selection: yesNo
   ): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest);
     if (errorMessaging) {
       await this.triggerErrorMessages(page);
     }
-    // await this.fillInFields(page,  );
+    await this.fillInFields(page, selection);
   }
 
+  // @ts-ignore
   private static async checkPageLoads(
     page: Page,
     accessibilityTest: boolean,
@@ -27,7 +38,12 @@ export class selectApplicationType2Page {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHeadingL}:text-is("${SelectApplicationType2Content.textOnPage1}")`,
+        `${Selectors.GovukHeadingL}:text-is("${SelectApplicationType2Content.title}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${SelectApplicationType2Content.formLabel1}")`,
         1,
       ),
     ]);
@@ -48,13 +64,61 @@ export class selectApplicationType2Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorValidation}:has-text("${SelectApplicationType2Content.errorText}")`,
+        `${Selectors.GovukErrorValidation}:has-text("${SelectApplicationType2Content.errorMessage1}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorMessage}:has-text("${SelectApplicationType2Content.errorMessage1}")`,
         1,
       ),
     ]);
+
+    await page.click(`${PageIDs.yes}`);
+    await page.click(
+      `${Selectors.button}:text-is("${SelectApplicationType2Content.continue}")`,
+    );
+
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorSummaryTitle}:text-is("${SelectApplicationType2Content.errorBanner}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorValidation}:has-text("${SelectApplicationType2Content.errorMessage2}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${SelectApplicationType2Content.formLabel4}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormHint}:text-is("${SelectApplicationType2Content.formHint}")`,
+        1,
+      ),
+    ]);
+    const fileInput = page.locator(`${PageIDs.uploadFileInput}`);
+    await fileInput.setInputFiles(config.testOdtFile);
+  }
+
+  private static async fillInFields(
+    page: Page,
+    selection: yesNo,
+  ): Promise<void> {
+    if (selection === "Yes") {
+      await page.click(`${PageIDs.yes}`);
+      const fileInput = page.locator(`${PageIDs.uploadFileInput}`);
+      await fileInput.setInputFiles(config.testPdfFile);
+    } else if (selection === "No") {
+      await page.click(`${PageIDs.no}`);
+    }
+
+    await page.click(
+      `${Selectors.button}:text-is("${SelectApplicationType2Content.continue}")`,
+    );
   }
 }
-
-// fillInFields - radio button check  argument yesNo: Boolean - if (yesNo) {click radio-1}
-
-// fill in form to check for draft consent order content

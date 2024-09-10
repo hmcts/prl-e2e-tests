@@ -106,6 +106,10 @@ export class selectApplicationType1Page {
     await page.click(`${PageIDs.prohibitedStepsOrder}`);
     await page.click(`${PageIDs.specificIssueOrder}`);
 
+    await page.click(
+      `${Selectors.button}:text-is("${SelectApplicationType1Content.continue}")`,
+    );
+
     await Promise.all([
       Helpers.checkGroup(
         page,
@@ -180,6 +184,9 @@ export class selectApplicationType1Page {
     } else {
       console.error("Invalid order type");
     }
+    await page.click(
+      `${Selectors.button}:text-is("${SelectApplicationType1Content.continue}")`,
+    );
   }
 
   private static async childArrangementOrderContent(page: Page): Promise<void> {
