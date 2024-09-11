@@ -1,7 +1,8 @@
 import { Helpers } from "../../../../common/helpers";
 import { Page } from "@playwright/test";
 import { RespondentDetailsPage } from "../../../../pages/manageCases/createCase/FL401/respondentDetails/respondentDetailsPage";
-// import { Fl401TasksTabPage } from "../../../../pages/manageCases/caseTabs/fl401TasksTabPage";
+import { Fl401TasksTabPage } from "../../../../pages/manageCases/caseTabs/fl401TasksTabPage";
+import { RespondentDetailsSubmitPage } from "../../../../pages/manageCases/createCase/FL401/respondentDetails/respondentDetailsSubmitPage";
 
 export class FL401RespondentDetails {
   public static async fl401RespondentDetails(
@@ -17,6 +18,11 @@ export class FL401RespondentDetails {
       accessibilityTest,
       allOptionsYes,
     );
-    // await Fl401TasksTabPage.fl401TasksTabPage(page, accessibilityTest);
+    await RespondentDetailsSubmitPage.respondentDetailsSubmitPage(
+      page,
+      accessibilityTest,
+      allOptionsYes,
+    );
+    await Fl401TasksTabPage.fl401TasksTabPage(page, accessibilityTest);
   }
 }

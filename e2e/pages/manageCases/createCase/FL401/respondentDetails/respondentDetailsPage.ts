@@ -34,7 +34,7 @@ enum inputFieldIds {
   email = "#respondentsFL401_email",
 }
 
-enum exampleData {
+export enum exampleData {
   exampleFirstName = "firstName",
   exampleLastName = "lastName",
   exampleDay = "12",
