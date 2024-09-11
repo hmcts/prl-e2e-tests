@@ -76,9 +76,9 @@ export enum topLevelInputFields {
   applicantFirstName = 'Charlie',
   applicantLastName = 'Alpha',
   applicantPreviousName = 'Morgan',
-  applicantBirthDay = '1',
-  applicantBirthMonth = '1',
-  applicantBirthYear = '1990',
+  applicantBirthDay = '12',
+  applicantBirthMonth = '12',
+  applicantBirthYear = '1980',
   applicantInputPostCode = buckinghamPalace.bpPostalCode,
   applicantPhoneNumber = '+44123456789',
   solicitorFirstName = 'Tony',
@@ -91,16 +91,19 @@ export enum topLevelInputFields {
   solicitorPostCode = buckinghamPalace.bpPostalCode,
 }
 
-enum invalidApplicantPhoneNumber {
-  applicantPhoneNumber = 'abcdef',
+enum invalidPhoneNumbers {
+  nonNumeric = 'abcdef',
+  tooShort = '12345678'
 }
 
-enum invalidTopLevelFields {
+enum invalidEmailAddress {
+  applicantEmailAddress = 'noEmailHere.com'
+}
+
+enum invalidDoB {
   applicantBirthDay = '0',
   applicantBirthMonth = '10',
   applicantBirthYear = '1990',
-  applicantEmailAddress = 'noEmailHere',
-  applicantPhoneNumber = '123345678',
 }
 
 export enum secondLevelInputFields {
@@ -265,7 +268,6 @@ export class ApplicantDetails1Page{
   ): Promise<void> {
     await this.checkTopLevelInputErrors(page);
     await this.checkSecondLevelInputErrors(page);
-    console.log('Validations')
     await this.checkValidationErrors(page);
   }
 
@@ -312,10 +314,7 @@ export class ApplicantDetails1Page{
     await page.click(
       applicantInputIDs.canProvideEmailAddressYes
     );
-    await page.click(
-      `${Selectors.button}:text-is("${ApplicantDetails1Content.continue}")`,
-      { force: true }
-    );
+    await this.delayedClickContinue(page)
     await Promise.all(
       [
         Helpers.checkVisibleAndPresent(
@@ -341,20 +340,47 @@ export class ApplicantDetails1Page{
     )
   }
 
-  private static async checkValidationErrors(
+  private static async checkInvalidDoB(
     page: Page
   ): Promise<void> {
-    for (let [key, inputData] of Object.entries(invalidTopLevelFields)) {
+    for (let [key, inputData] of Object.entries(invalidDoB)) {
       let inputKeyID = key as keyof typeof applicantInputIDs;
+      await page.fill(
+        applicantInputIDs[inputKeyID],
+        ''
+      );
       await page.fill(
         applicantInputIDs[inputKeyID],
         inputData
       );
     }
-    console.log('INvalid Inputrs done')
-    await page.click(
-      `${Selectors.button}:text-is("${ApplicantDetails1Content.continue}")`
-    )
+
+  }
+
+  private static async checkInvalidPhoneNumbers(
+    page: Page
+  ): Promise<void> {
+    await page.fill(
+      applicantInputIDs.applicantPhoneNumber,
+      invalidPhoneNumbers.nonNumeric
+    );
+    await this.delayedClickContinue(page);
+    await this.checkPhoneNumberValidationError(page);
+    await page.fill(
+      applicantInputIDs.applicantPhoneNumber,
+      ''
+    );
+    await page.fill(
+      applicantInputIDs.applicantPhoneNumber,
+      invalidPhoneNumbers.tooShort
+    );
+    await this.delayedClickContinue(page)
+    await this.checkPhoneNumberValidationError(page);
+  }
+
+  private static async checkPhoneNumberValidationError(
+    page: Page
+  ): Promise<void> {
     await Promise.all(
       [
         Helpers.checkVisibleAndPresent(
@@ -376,62 +402,111 @@ export class ApplicantDetails1Page{
     )
   }
 
-  private static async checkTopLevelValidationErrors(
-    page: Page,
+  private static async checkValidationErrors(
+    page: Page
   ): Promise<void> {
-    await this.fillInTopLevelFields(page);
-    const invalidInputsArray = Object.entries(invalidTopLevelFields).map(
-      ([key, invalidInput]) => {
-        let keyID = key as keyof typeof applicantInputIDs
-        return page.fill(
-          applicantInputIDs[keyID],
-          invalidInput
+    for (let [key, inputData] of Object.entries(invalidTopLevelFields)) {
+      let inputKeyID = key as keyof typeof applicantInputIDs;
+      await page.fill(
+        applicantInputIDs[inputKeyID],
+        ''
+      );
+      await page.fill(
+        applicantInputIDs[inputKeyID],
+        inputData
+      );
+    }
+    await this.delayedClickContinue(page)
+    await Promise.all(
+      [
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukErrorSummaryTitle}:text-is("${ApplicantDetails1Content.errorSummaryTitle}")`,
+          1
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukErrorValidation}:text-is("${ApplicantDetails1Content.invalidApplicantPhoneSummary}")`,
+          1
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukErrorMessage}:text-is("${ApplicantDetails1Content.invalidApplicantPhoneMessage}")`,
+          1
         )
+      ]
+    )
+    for (let [key, input_value] of Object.entries({ ...topLevelInputFields, ...secondLevelInputFields })) {
+      if (key !== "applicantEmailAddress") {
+        let input_id: string =
+          applicantInputIDs[key as keyof typeof applicantInputIDs];
+        await page.fill(input_id, '');
+        await page.fill(input_id, input_value);
       }
-    )
-    console.log('Here is my array: ', invalidInputsArray)
+    }
+    console.log('email should be blank')
+    for (let [key, input_value] of Object.entries(secondInvalidPhoneNumber)) {
+      let input_id: string = applicantInputIDs[key as keyof typeof applicantInputIDs]
+      await page.fill(input_id, '');
+      await page.fill(input_id, input_value);
+    }
+    await this.fillInRadios(page)
+    await this.fillAndCheckAddressFields(page)
+    console.log('Filled new invalid inputs')
+    await this.delayedClickContinue(page)
+    console.log('Last Check')
     await Promise.all(
       [
-        ...invalidInputsArray
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukErrorSummaryTitle}:text-is("${ApplicantDetails1Content.errorSummaryTitle}")`,
+          1
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukErrorValidation}:text-is("${ApplicantDetails1Content.invalidApplicantPhoneSummary}")`,
+          1
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukErrorMessage}:text-is("${ApplicantDetails1Content.invalidApplicantPhoneMessage}")`,
+          1
+        ),
       ]
     )
+    await page.fill(
+      applicantInputIDs.applicantPhoneNumber,
+      topLevelInputFields.applicantPhoneNumber
+    );
+    await page.fill(
+      applicantInputIDs.applicantEmailAddress,
+      invalidEmailAddress.applicantEmailAddress
+    );
+    await this.delayedClickContinue(page)
+    console.log('Finally the last check')
     await Promise.all(
       [
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukErrorySummaryHeading}:text-is("${ApplicantDetails1Content.invalidErrorHeading}")`,
+          `${Selectors.GovukErrorValidation}:text-is("${ApplicantDetails1Content.invalidEmailSummary}")`,
           1
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.p}:text-is("${ApplicantDetails1Content.invalidErrorP}")`,
+          `${Selectors.GovukErrorMessage}:text-is("${ApplicantDetails1Content.invalidEmailMessage}")`,
           1
-        ),
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.ErrorSummaryList}:text-is("${invalidTopLevelFields.solicitorEmailAddress + ApplicantDetails1Content.topLevelInvalidEmailSummary}")`,
-          1
-        ),
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukErrorMessage}:text-is("${invalidTopLevelFields.solicitorEmailAddress + ApplicantDetails1Content.topLevelInvalidEmailMessage}")`,
-          1
-        ),
-        Helpers.checkGroup(
-          page,
-          2,
-          ApplicantDetails1Content,
-          'topLevelInvalidSummary',
-          `${Selectors.GovukErrorSummary}`
-        ),
-        Helpers.checkGroup(
-          page,
-          2,
-          ApplicantDetails1Content,
-          'topLevelInvalidMessage',
-          `${Selectors.GovukErrorMessage}`
         )
       ]
     )
+  }
+
+  private static async delayedClickContinue(
+    page: Page,
+    msDelay: number = 2000
+  ): Promise<void> {
+    await page.waitForTimeout(msDelay);
+    await page.click(
+      `${Selectors.button}:text-is("${ApplicantDetails1Content.continue}")`
+    );
   }
 }
