@@ -10,6 +10,13 @@ export enum SelectApplicationTypeSubmitContent {
   text166 = "*Draft Consent Order",
   text167 = "*Have you applied to the court for permission to make this application?",
   text168 = "*Give details of why permission is required from the court.",
+  text16Change = "Change",
+
+  //constantAnswers
+
+  text16Answer1 = "Child Arrangements Order",
+  text16Answer2 = "Prohibited Steps Order",
+  text16Answer3 = "Specific Issue Order",
 
   h3 = "*Why are you making this application?",
 

@@ -93,6 +93,14 @@ export class selectApplicationType2Page {
     ]);
     const fileInput = page.locator(`${PageIDs.uploadFileInput}`);
     await fileInput.setInputFiles(config.testOdtFile);
+
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorMessage}:text-is("${SelectApplicationType2Content.errorMessage3}")`,
+        1,
+      ),
+    ]);
   }
 
   private static async fillInFields(

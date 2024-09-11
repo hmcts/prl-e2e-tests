@@ -15,10 +15,6 @@ type typeOfChildArrangementOrderID =
   | "Both live with and spend time with order";
 
 enum PageIDs {
-  childArrangementsOrder = "#ordersApplyingFor-childArrangementsOrder",
-  prohibitedStepsOrder = "#ordersApplyingFor-prohibitedStepsOrder",
-  specificIssueOrder = "#ordersApplyingFor-specificIssueOrder",
-
   spend = "#typeOfChildArrangementsOrder-spendTimeWithOrder",
   live = "#typeOfChildArrangementsOrder-liveWithOrder",
   both = "#typeOfChildArrangementsOrder-bothLiveWithAndSpendTimeWithOrder",
@@ -26,19 +22,25 @@ enum PageIDs {
   textarea = "#natureOfOrder",
 }
 
+enum SelectButtonIDs {
+  childArrangementsOrder = "#ordersApplyingFor-childArrangementsOrder",
+  prohibitedStepsOrder = "#ordersApplyingFor-prohibitedStepsOrder",
+  specificIssueOrder = "#ordersApplyingFor-specificIssueOrder",
+}
+
 export class selectApplicationType1Page {
   public static async selectApplicationType1Page(
     page: Page,
     errorMessaging: boolean,
     accessibilityTest: boolean,
-    typeOfOrder: typeOfOrderID,
-    typeOfChildArrangementOrder?: typeOfChildArrangementOrderID,
+    selectButtonIDs: SelectButtonIDs,
+    typeOfChildArrangementOrder: typeOfChildArrangementOrderID,
   ): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest);
     if (errorMessaging) {
       await this.triggerErrorMessages(page);
     }
-    await this.fillInFields(page, typeOfOrder, typeOfChildArrangementOrder);
+    await this.fillInFields(page, selectButtonIDs, typeOfChildArrangementOrder);
   }
 
   private static async checkPageLoads(
@@ -102,9 +104,9 @@ export class selectApplicationType1Page {
       ),
     ]);
 
-    await page.click(`${PageIDs.childArrangementsOrder}`);
-    await page.click(`${PageIDs.prohibitedStepsOrder}`);
-    await page.click(`${PageIDs.specificIssueOrder}`);
+    await page.click(`${SelectButtonIDs.childArrangementsOrder}`);
+    await page.click(`${SelectButtonIDs.prohibitedStepsOrder}`);
+    await page.click(`${SelectButtonIDs.specificIssueOrder}`);
 
     await page.click(
       `${Selectors.button}:text-is("${SelectApplicationType1Content.continue}")`,
@@ -151,39 +153,30 @@ export class selectApplicationType1Page {
 
   private static async fillInFields(
     page: Page,
-    typeOfOrder: typeOfOrderID,
-    typeOfChildArrangementOrder?: typeOfChildArrangementOrderID,
+    selectButtonIDs: SelectButtonIDs,
+    typeOfChildArrangementOrder: typeOfChildArrangementOrderID,
   ): Promise<void> {
-    if (typeOfOrder === "Child Arrangements Order") {
-      await page.click(`${PageIDs.childArrangementsOrder}`);
-      await this.childArrangementOrderContent(page);
-      switch (typeOfChildArrangementOrder) {
-        case "Spend time with order":
-          await page.click(`${PageIDs.spend}`);
-          break;
-        case "Live with order":
-          await page.click(`${PageIDs.live}`);
-          break;
-        case "Both live with and spend time with order":
-          await page.click(`${PageIDs.both}`);
-          break;
-      }
-      await page.fill(
-        `${PageIDs.textarea}`,
-        `${SelectApplicationType1Content.loremIpsumText}`,
-      );
-    } else if (
-      typeOfOrder === "Prohibited Steps Order" ||
-      typeOfOrder === "Specific Issue Order"
-    ) {
-      await page.fill(
-        `${PageIDs.textarea}`,
-        `${SelectApplicationType1Content.loremIpsumText}`,
-      );
-      await this.provideMoreInfoContent(page);
-    } else {
-      console.error("Invalid order type");
+    for (let selectButton of Object.values(selectButtonIDs)) {
+      let buttonSelector = `${selectButton}`;
+
+      await page.click(buttonSelector);
     }
+    switch (typeOfChildArrangementOrder) {
+      case "Spend time with order":
+        await page.click(`${PageIDs.spend}`);
+        break;
+      case "Live with order":
+        await page.click(`${PageIDs.live}`);
+        break;
+      case "Both live with and spend time with order":
+        await page.click(`${PageIDs.both}`);
+        break;
+    }
+    await page.fill(
+      `${PageIDs.textarea}`,
+      `${SelectApplicationType1Content.loremIpsumText}`,
+    );
+    await this.childArrangementOrderContent(page);
     await page.click(
       `${Selectors.button}:text-is("${SelectApplicationType1Content.continue}")`,
     );
