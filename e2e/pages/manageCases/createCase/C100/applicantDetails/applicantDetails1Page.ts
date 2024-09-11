@@ -7,6 +7,7 @@ import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelp
 enum UniqueSelectors {
   dayMonthYear = "div > ccd-field-write > div > ccd-write-complex-type-field > div > fieldset > ccd-field-write > div > ccd-write-date-container-field > ccd-write-date-field > div > fieldset > cut-date-input > div > div > .form-label",
   applicantAddressDropdown = "#applicants_0_address_address_addressList",
+  solicitorAddressDropdown = "applicants_0_solicitorAddress_solicitorAddress_addressList",
   previousAddresses = "#applicants_0_addressLivedLessThan5YearsDetails",
   applicantEmailAddress = "#applicants_0_email",
   applicantEmailAddressConfidential = "#applicants_0_isEmailAddressConfidential_Yes",
@@ -316,7 +317,21 @@ export class ApplicantDetails1Page {
       `${UniqueSelectors.applicantAddressDropdown}`,
       ApplicantDetails1Content.address,
     );
-    await this.applicantAddressValidation(page);
+    await page.fill(
+      `${PageLoadFields.solicitorAddress}`,
+      ApplicantDetails1Content.postcode,
+    );
+    await page
+      .locator(
+        `${Selectors.button}:text-is("${ApplicantDetails1Content.findAddressButton}")`,
+      )
+      .nth(1)
+      .click();
+    await page.selectOption(
+      `${UniqueSelectors.solicitorAddressDropdown}`,
+      ApplicantDetails1Content.address,
+    );
+    await this.AddressValidation(page);
     if (yesNoApplicantDetails) {
       await page.click(`${PageLoadFields.addressConfidentialYes}`);
       await page.click(`${PageLoadFields.address5YearsYes}`);
@@ -371,23 +386,13 @@ export class ApplicantDetails1Page {
       `${PageLoadFields.dxNumber}`,
       ApplicantDetails1Content.dxNumber,
     );
-    await page.fill(
-      `${PageLoadFields.solicitorAddress}`,
-      ApplicantDetails1Content.postcode,
-    );
-    await page
-      .locator(
-        `${Selectors.button}:text-is("${ApplicantDetails1Content.findAddressButton}")`,
-      )
-      .nth(1)
-      .click();
     await this.solicitorAddressValidation(page);
     await page.click(
       `${Selectors.button}:text-is("${ApplicantDetails1Content.continue}")`,
     );
   }
 
-  private static async applicantAddressValidation(page: Page): Promise<void> {
+  private static async AddressValidation(page: Page): Promise<void> {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
