@@ -22,7 +22,7 @@ export class FL401 {
       page,
       accessibilityTest,
       errorMessaging,
-      isLinkedToC100
+      isLinkedToC100,
     );
   }
 }
