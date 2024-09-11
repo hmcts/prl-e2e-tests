@@ -6,8 +6,6 @@ import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelp
 
 enum UniqueSelectors {
   dayMonthYear = "div > ccd-field-write > div > ccd-write-complex-type-field > div > fieldset > ccd-field-write > div > ccd-write-date-container-field > ccd-write-date-field > div > fieldset > cut-date-input > div > div > .form-label",
-  yesNo = "form > fieldset > ccd-case-edit-form > div > ccd-field-write > div >ccd-write-collection-field > div > div > div > div > ccd-field-write > div > ccd-write-complex-type-field > div > fieldset > ccd-field-write > div > ccd-write-yes-no-field > div > fieldset > div > div > label.form-label",
-  applicantAddressList = "#applicants_0_address_address_addressList",
   applicantAddressDropdown = "#applicants_0_address_address_addressList",
   previousAddresses = "#applicants_0_addressLivedLessThan5YearsDetails",
   applicantEmailAddress = "#applicants_0_email",
@@ -19,8 +17,8 @@ enum PageLoadFields {
   applicantLastName = "#applicants_0_lastName",
   previousName = "#applicants_0_previousName",
   dateOfBirthDay = "#dateOfBirth-day",
-  dateOfBirthMonth = "#dateOfBirth-Month",
-  dateOfBirthYear = "#dateOfBirth-Year",
+  dateOfBirthMonth = "#dateOfBirth-month",
+  dateOfBirthYear = "#dateOfBirth-year",
   placeOfBirth = "#applicants_0_placeOfBirth",
   applicantPostCode = "#applicants_0_address_address_postcodeInput",
   addressConfidentialYes = "#applicants_0_isAddressConfidential_Yes",
@@ -86,7 +84,12 @@ export class ApplicantDetails1Page {
       `${Selectors.GovukHeadingL}:text-is("${ApplicantDetails1Content.pageTitle}")`,
     );
     await Promise.all([
-      Helpers.checkGroup(page, 4, ApplicantDetails1Content, "p", Selectors.p),
+      Helpers.checkGroup(page, 2, ApplicantDetails1Content, "p", Selectors.p),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.strong}:text-is("${ApplicantDetails1Content.strong}")`,
+        1,
+      ),
       Helpers.checkGroup(page, 4, ApplicantDetails1Content, "h2", Selectors.h2),
       Helpers.checkVisibleAndPresent(
         page,
@@ -95,10 +98,15 @@ export class ApplicantDetails1Page {
       ),
       Helpers.checkGroup(
         page,
-        19,
+        18,
         ApplicantDetails1Content,
         "formLabel",
         Selectors.GovukFormLabel,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${ApplicantDetails1Content.formLabelApplicantAddress5Years}"):first`,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -114,16 +122,6 @@ export class ApplicantDetails1Page {
         page,
         `${UniqueSelectors.dayMonthYear}:text-is("${ApplicantDetails1Content.formLabelYear}")`,
         1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${UniqueSelectors.yesNo}:text-is("${ApplicantDetails1Content.formLabelYes}")`,
-        12,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${UniqueSelectors.yesNo}:text-is("${ApplicantDetails1Content.formLabelNo}")`,
-        12,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -394,42 +392,42 @@ export class ApplicantDetails1Page {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukFormLabel}:text-is("${ApplicantDetails1Content.formLabelSelectAddress}")`,
-        1,
+        2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukFormLabel}:text-is("${ApplicantDetails1Content.formLabelBuildingAndStreet}")`,
-        1,
+        2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukFormLabel}:text-is("${ApplicantDetails1Content.formLabelAddressLine2}")`,
-        1,
+        2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukFormLabel}:text-is("${ApplicantDetails1Content.formLabelAddressLine3}")`,
-        1,
+        2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukFormLabel}:text-is("${ApplicantDetails1Content.formLabelTownOrCity}")`,
-        1,
+        2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukFormLabel}:text-is("${ApplicantDetails1Content.formLabelCounty}")`,
-        1,
+        2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukFormLabel}:text-is("${ApplicantDetails1Content.formLabelPostcode}")`,
-        1,
+        2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukFormLabel}:text-is("${ApplicantDetails1Content.formLabelCountry}")`,
-        1,
+        2,
       ),
       expect(page.inputValue(ApplicantAddressFields.line1)).toEqual(
         ApplicantDetails1Content.buildingAndStreet,
