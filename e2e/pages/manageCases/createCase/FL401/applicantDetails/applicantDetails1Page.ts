@@ -14,7 +14,6 @@ enum uniqueSelectorPaths {
   solicitorAddressForm = 'div#applicantsFL401_solicitorAddress_solicitorAddress'
 }
 
-
 enum applicantInputIDs {
   applicantFirstName = '#applicantsFL401_firstName',
   applicantLastName = '#applicantsFL401_lastName',
@@ -26,7 +25,7 @@ enum applicantInputIDs {
   applicantGenderMale = '#applicantsFL401_gender-male',
   applicantGenderOther = '#applicantsFL401_gender-other',
   applicantGenderOtherInput = '#applicantsFL401_otherGender',
-  applicantPostcodeInput = "#applicantsFL401_address_address_postcodeInput",
+  applicantInputPostCode = "#applicantsFL401_address_address_postcodeInput",
   applicantSelectAddress = "#applicantsFL401_address_address_addressList",
   applicantBuildingAndStreet = '#applicantsFL401_address__detailAddressLine1',
   applicantAddressLine2 = '#applicantsFL401_address__detailAddressLine2',
@@ -63,25 +62,24 @@ enum applicantInputIDs {
   solicitorCountry = '#applicantsFL401_solicitorAddress__detailCountry',
 }
 
-enum buckinghamPalace {
-  _BuildingAndStreet = 'Buckingham Palace',
-  _AddressLine2 = '',
-  _AddressLine3 = '',
-  _City = 'London',
-  _County = '',
-  _PostalCode = 'SW1A 1AA',
-  _Country = 'United Kingdom',
-  _dropdownValue = " Buckingham Palace, London "
+export enum buckinghamPalace {
+  bpBuildingAndStreet = 'Buckingham Palace',
+  bpAddressLine2 = '',
+  bpAddressLine3 = '',
+  bpCity = 'London',
+  bpCounty = '',
+  bpPostalCode = 'SW1A 1AA',
+  bpCountry = 'United Kingdom',
 }
 
-enum topLevelInputFields {
+export enum topLevelInputFields {
   applicantFirstName = 'Charlie',
   applicantLastName = 'Alpha',
   applicantPreviousName = 'Morgan',
   applicantBirthDay = '1',
   applicantBirthMonth = '1',
   applicantBirthYear = '1990',
-  applicantPostcodeInput = buckinghamPalace._PostalCode,
+  applicantInputPostCode = buckinghamPalace.bpPostalCode,
   applicantPhoneNumber = '+44123456789',
   solicitorFirstName = 'Tony',
   solicitorLastName = 'Stark',
@@ -90,69 +88,22 @@ enum topLevelInputFields {
   solicitorReference = 'Some kind of reference',
   organisationSearch = 'My New Org',
   dxNumber = "0000000000000000",
-  solicitorPostCode = buckinghamPalace._PostalCode,
+  solicitorPostCode = buckinghamPalace.bpPostalCode,
 }
 
-interface applicantBirthday {
-  applicantBirthDay: string;
-  applicantBirthMonth: string;
-  applicantBirthYear: string;
+enum invalidApplicantPhoneNumber {
+  applicantPhoneNumber = 'abcdef',
 }
 
-const invalidBirthdays = {
-  dayTooSmall: {
-    applicantBirthDay: '0',
-    applicantBirthMonth: '1',
-    applicantBirthYear: '2000'
-  },
-  dayTooBig: {
-    applicantBirthDay: '32',
-    applicantBirthMonth: '1',
-    applicantBirthYear: '2000'
-  },
-  dayNonNumeric: {
-    applicantBirthDay: 'a',
-    applicantBirthMonth: '1',
-    applicantBirthYear: '2000'
-  },
-  monthTooSmall: {
-    applicantBirthDay: '1',
-    applicantBirthMonth: '0',
-    applicantBirthYear: '2000'
-  },
-  monthTooBig: {
-    applicantBirthDay: '1',
-    applicantBirthMonth: '13',
-    applicantBirthYear: '2000'
-  },
-  monthNonNumeric: {
-    applicantBirthDay: '1',
-    applicantBirthMonth: '-',
-    applicantBirthYear: '2000'
-  },
-  yearTooSmall: {
-    applicantBirthDay: '1',
-    applicantBirthMonth: '1',
-    applicantBirthYear: '0'
-  },
-  // yearTooBig: {
-  //   applicantBirthDay: '1',
-  //   applicantBirthMonth: '1',
-  //   applicantBirthYear: '2025'
-  // },
-  yearNonNumeric: {
-    applicantBirthDay: '1',
-    applicantBirthMonth: '1',
-    applicantBirthYear: '.'
-  },
+enum invalidTopLevelFields {
+  applicantBirthDay = '0',
+  applicantBirthMonth = '10',
+  applicantBirthYear = '1990',
+  solicitorEmailAddress = 'noEmailHere',
+  solicitorPhoneNumber = '123345678',
 }
 
-
-enum topLevelInvalidInputs {
-  applicantBirthYear
-}
-
-enum secondLevelInputFields {
+export enum secondLevelInputFields {
   applicantGenderOtherInput = 'Non-Binary',
   applicantEmailAddress = 'name@email.com',
 }
@@ -165,7 +116,8 @@ export class ApplicantDetails1Page{
   ): Promise <void> {
     await this.checkPageLoads(page, accessibilityTest)
     if (errorMessaging) {
-      await this.checkErrors(page)
+      console.log('Checking Errors')
+      await this.checkTopLevelErrors(page)
     }
     await this.fillInFields(page)
   }
@@ -184,8 +136,7 @@ export class ApplicantDetails1Page{
           `${Selectors.GovukFormHint}:text-is("${ApplicantDetails1Content.formHintDoB}")`,
           1
         ),
-        ...[
-          ['day', 'month', 'year'].map(
+        ...['day', 'month', 'year'].map(
             (el) => {
               let formKey = `${el}FormLabel`
               Helpers.checkVisibleAndPresent(
@@ -195,7 +146,7 @@ export class ApplicantDetails1Page{
               )
             }
           )
-        ],
+        ,
         Helpers.checkGroup(
           page,
           3,
@@ -297,7 +248,6 @@ export class ApplicantDetails1Page{
       await page.locator(
         applicantInputIDs[selectAddressID]
       ).selectOption(
-        // `${buckinghamPalace._dropdownValue}`
         { index: 1 }
       )
     }
@@ -310,16 +260,14 @@ export class ApplicantDetails1Page{
     await page.click(orgSelector)
   }
 
-  private static async checkErrors(
+  private static async checkTopLevelErrors(
     page: Page,
   ): Promise<void> {
-    await this.checkTopLevelErrors(page);
-    for (let [key, dob] of Object.entries(invalidBirthdays)) {
-
-    }
+    await this.checkTopLevelInputErrors(page);
+    await this.checkTopLevelValidationErrors(page)
   }
 
-  private static async checkTopLevelErrors(
+  private static async checkTopLevelInputErrors(
     page: Page
   ): Promise<void> {
     await page.click(
@@ -349,6 +297,65 @@ export class ApplicantDetails1Page{
           8,
           ApplicantDetails1Content,
           `topLevelInputErrorMessage`,
+          `${Selectors.GovukErrorMessage}`
+        )
+      ]
+    )
+  }
+
+  private static async checkTopLevelValidationErrors(
+    page: Page,
+  ): Promise<void> {
+    await this.fillInTopLevelFields(page);
+    const invalidInputsArray = Object.entries(invalidTopLevelFields).map(
+      ([key, invalidInput]) => {
+        let keyID = key as keyof typeof applicantInputIDs
+        return page.fill(
+          applicantInputIDs[keyID],
+          invalidInput
+        )
+      }
+    )
+    console.log('Here is my array: ', invalidInputsArray)
+    await Promise.all(
+      [
+        ...invalidInputsArray
+      ]
+    )
+    await Promise.all(
+      [
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukErrorySummaryHeading}:text-is("${ApplicantDetails1Content.invalidErrorHeading}")`,
+          1
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.p}:text-is("${ApplicantDetails1Content.invalidErrorP}")`,
+          1
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.ErrorSummaryList}:text-is("${invalidTopLevelFields.solicitorEmailAddress + ApplicantDetails1Content.topLevelInvalidEmailSummary}")`,
+          1
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukErrorMessage}:text-is("${invalidTopLevelFields.solicitorEmailAddress + ApplicantDetails1Content.topLevelInvalidEmailMessage}")`,
+          1
+        ),
+        Helpers.checkGroup(
+          page,
+          2,
+          ApplicantDetails1Content,
+          'topLevelInvalidSummary',
+          `${Selectors.GovukErrorSummary}`
+        ),
+        Helpers.checkGroup(
+          page,
+          2,
+          ApplicantDetails1Content,
+          'topLevelInvalidMessage',
           `${Selectors.GovukErrorMessage}`
         )
       ]

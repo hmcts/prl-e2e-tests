@@ -4,6 +4,9 @@ import { Fl401TasksTabPage } from "../../../../pages/manageCases/caseTabs/fl401T
 import {
   ApplicantDetails1Page
 } from "../../../../pages/manageCases/createCase/FL401/applicantDetails/applicantDetails1Page";
+import {
+  ApplicantDetailsSubmitPage
+} from "../../../../pages/manageCases/createCase/FL401/applicantDetails/applicantDetailsSubmitPage";
 
 export class FL401ApplicantDetails {
   public static async fl401ApplicantDetails(
@@ -19,10 +22,16 @@ export class FL401ApplicantDetails {
       page,
       accessibilityTest,
       errorMessaging
+    );
+    console.log('Submitting')
+    await ApplicantDetailsSubmitPage.applicantDetailsSubmitPage(
+      page,
+      accessibilityTest
     )
-    // await Fl401TasksTabPage.fl401TasksTabPage(
-    //   page,
-    //   accessibilityTest
-    // )
+    console.log('Submitted')
+    await Fl401TasksTabPage.fl401TasksTabPage(
+      page,
+      accessibilityTest
+    )
   }
 }
