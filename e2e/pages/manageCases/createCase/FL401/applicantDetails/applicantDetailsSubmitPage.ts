@@ -151,22 +151,22 @@ export class ApplicantDetailsSubmitPage {
         Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukText16}:text-is("${buckinghamPalace.bpBuildingAndStreet}")`,
-          1
+          2
         ),
         Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukText16}:text-is("${buckinghamPalace.bpCity}")`,
-          1
+          2
         ),
         Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukText16}:text-is("${buckinghamPalace.bpPostalCode}")`,
-          1
+          2
         ),
         Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukText16}:text-is("${buckinghamPalace.bpBuildingAndStreet}")`,
-          1
+          2
         ),
       ]
     )

@@ -99,8 +99,8 @@ enum invalidTopLevelFields {
   applicantBirthDay = '0',
   applicantBirthMonth = '10',
   applicantBirthYear = '1990',
-  solicitorEmailAddress = 'noEmailHere',
-  solicitorPhoneNumber = '123345678',
+  applicantEmailAddress = 'noEmailHere',
+  applicantPhoneNumber = '123345678',
 }
 
 export enum secondLevelInputFields {
@@ -264,7 +264,9 @@ export class ApplicantDetails1Page{
     page: Page,
   ): Promise<void> {
     await this.checkTopLevelInputErrors(page);
-    await this.checkTopLevelValidationErrors(page)
+    await this.checkSecondLevelInputErrors(page);
+    console.log('Validations')
+    await this.checkValidationErrors(page);
   }
 
   private static async checkTopLevelInputErrors(
@@ -273,13 +275,11 @@ export class ApplicantDetails1Page{
     await page.click(
       `${Selectors.button}:text-is("${ApplicantDetails1Content.continue}")`
     );
+    await page.waitForSelector(
+      `${Selectors.GovukErrorSummaryTitle}:text-is("${ApplicantDetails1Content.errorSummaryTitle}")`,
+    )
     await Promise.all(
       [
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukErrorSummaryTitle}:text-is("${ApplicantDetails1Content.errorSummaryTitle}")`,
-          1
-        ),
         Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukErrorMessage}:text-is("${ApplicantDetails1Content.postcodeErrorMessage_2}")`,
@@ -298,6 +298,79 @@ export class ApplicantDetails1Page{
           ApplicantDetails1Content,
           `topLevelInputErrorMessage`,
           `${Selectors.GovukErrorMessage}`
+        )
+      ]
+    );
+  }
+
+  private static async checkSecondLevelInputErrors(
+    page: Page
+  ): Promise<void> {
+    await page.click(
+      applicantInputIDs.applicantGenderOther
+    );
+    await page.click(
+      applicantInputIDs.canProvideEmailAddressYes
+    );
+    await page.click(
+      `${Selectors.button}:text-is("${ApplicantDetails1Content.continue}")`,
+      { force: true }
+    );
+    await Promise.all(
+      [
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukErrorSummaryTitle}:text-is("${ApplicantDetails1Content.errorSummaryTitle}")`,
+          1
+        ),
+        Helpers.checkGroup(
+          page,
+          3,
+          ApplicantDetails1Content,
+          'secondLevelInputErrorSummary',
+          `${Selectors.GovukErrorValidation}`
+        ),
+        Helpers.checkGroup(
+          page,
+          3,
+          ApplicantDetails1Content,
+          'secondLevelInputErrorMessage',
+          `${Selectors.GovukErrorMessage}`
+        ),
+      ]
+    )
+  }
+
+  private static async checkValidationErrors(
+    page: Page
+  ): Promise<void> {
+    for (let [key, inputData] of Object.entries(invalidTopLevelFields)) {
+      let inputKeyID = key as keyof typeof applicantInputIDs;
+      await page.fill(
+        applicantInputIDs[inputKeyID],
+        inputData
+      );
+    }
+    console.log('INvalid Inputrs done')
+    await page.click(
+      `${Selectors.button}:text-is("${ApplicantDetails1Content.continue}")`
+    )
+    await Promise.all(
+      [
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukErrorSummaryTitle}:text-is("${ApplicantDetails1Content.errorSummaryTitle}")`,
+          1
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukErrorValidation}:text-is("${ApplicantDetails1Content.invalidApplicantPhoneSummary}")`,
+          1
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukErrorMessage}:text-is("${ApplicantDetails1Content.invalidApplicantPhoneMessage}")`,
+          1
         )
       ]
     )
