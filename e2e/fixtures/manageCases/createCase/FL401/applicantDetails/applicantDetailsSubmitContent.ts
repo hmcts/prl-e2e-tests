@@ -1,4 +1,4 @@
-export enum SubmitContent {
+export enum ApplicantDetailsSubmitContent {
   pageTitle = "Type of application",
   h2 = "Check your answers",
   applicantText16_2 = "Applicant",
