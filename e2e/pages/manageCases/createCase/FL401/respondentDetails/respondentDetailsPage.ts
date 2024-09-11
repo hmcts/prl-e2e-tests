@@ -1,23 +1,32 @@
-import { Page } from "@playwright/test";
+import { expect, Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { RespondentDetailsContent } from "../../../../../fixtures/manageCases/createCase/FL401/respondentDetails/respondentDetailsContent";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { solicitorCaseCreateType } from "../../../../../common/types";
 
-enum fieldIds {
+enum nameFieldIds {
   firstName = "#respondentsFL401_firstName",
   lastName = "#respondentsFL401_lastName",
+}
+
+enum radioIdsYes {
   isDateOfBirthKnown_Yes = "#respondentsFL401_isDateOfBirthKnown_Yes",
-  isDateOfBirthKnown_No = "#respondentsFL401_isDateOfBirthKnown_No",
   respondentLivedWithApplicant_Yes = "#respondentsFL401_respondentLivedWithApplicant_Yes",
-  respondentLivedWithApplicant_No = "#respondentsFL401_respondentLivedWithApplicant_No",
   isCurrentAddressKnown_Yes = "#respondentsFL401_isCurrentAddressKnown_Yes",
-  isCurrentAddressKnown_No = "#respondentsFL401_isCurrentAddressKnown_No",
   canYouProvideEmailAddress_Yes = "#respondentsFL401_canYouProvideEmailAddress_Yes",
-  canYouProvideEmailAddress_No = "#respondentsFL401_canYouProvideEmailAddress_No",
   canYouProvidePhoneNumber_Yes = "#respondentsFL401_canYouProvidePhoneNumber_Yes",
+}
+
+enum radioIdsNo {
+  isDateOfBirthKnown_No = "#respondentsFL401_isDateOfBirthKnown_No",
+  respondentLivedWithApplicant_No = "#respondentsFL401_respondentLivedWithApplicant_No",
+  isCurrentAddressKnown_No = "#respondentsFL401_isCurrentAddressKnown_No",
+  canYouProvideEmailAddress_No = "#respondentsFL401_canYouProvideEmailAddress_No",
   canYouProvidePhoneNumber_No = "#respondentsFL401_canYouProvidePhoneNumber_No",
+}
+
+enum inputFieldIds {
   dateOfBirth_day = "#dateOfBirth-day",
   dateOfBirth_month = "#dateOfBirth-month",
   dateOfBirth_year = "#dateOfBirth-year",
@@ -25,13 +34,28 @@ enum fieldIds {
   email = "#respondentsFL401_email",
 }
 
-const exampleFirstName = "firstName";
-const exampleLastName = "lastName";
-const exampleDay = "12";
-const exampleMonth = "10";
-const exampleYear = "2008";
-const examplePostCode = "AB1 CDE";
-const exampleEmailAddress = "repondent1@example.net";
+enum exampleData {
+  exampleFirstName = "firstName",
+  exampleLastName = "lastName",
+  exampleDay = "12",
+  exampleMonth = "10",
+  exampleYear = "2008",
+  examplePostCode = "SW1A 1AA",
+  exampleEmailAddress = "repondent1@example.net",
+}
+
+const fieldToDataMapping: {
+  [key in keyof typeof inputFieldIds]: keyof typeof exampleData;
+} = {
+  dateOfBirth_day: "exampleDay",
+  dateOfBirth_month: "exampleMonth",
+  dateOfBirth_year: "exampleYear",
+  address_postcodeInput: "examplePostCode",
+  email: "exampleEmailAddress",
+};
+
+const addressListId = "#respondentsFL401_address_address_addressList";
+const expectedAddresses = ["1 address found", "Buckingham Palace, London"];
 
 export class RespondentDetailsPage {
   public static async respondentDetailsPage(
@@ -139,30 +163,28 @@ export class RespondentDetailsPage {
     allOptionsYes: boolean,
     accessibilityTest: boolean,
   ): Promise<void> {
-    await page.fill(`${fieldIds.firstName}`, exampleFirstName);
-    await page.fill(`${fieldIds.lastName}`, exampleLastName);
+    await page.fill(`${nameFieldIds.firstName}`, exampleData.exampleFirstName);
+    await page.fill(`${nameFieldIds.lastName}`, exampleData.exampleLastName);
 
     if (allOptionsYes) {
-      await page.click(fieldIds.isDateOfBirthKnown_Yes);
-      await page.click(fieldIds.respondentLivedWithApplicant_Yes);
-      await page.click(fieldIds.isCurrentAddressKnown_Yes);
-      await page.click(fieldIds.canYouProvideEmailAddress_Yes);
-      await page.click(fieldIds.canYouProvidePhoneNumber_Yes);
+      for (let selector of Object.values(radioIdsYes)) {
+        await page.click(selector);
+      }
 
       await this.checkPopupTextLoads(page, accessibilityTest);
 
-      await page.fill(`${fieldIds.dateOfBirth_day}`, exampleDay);
-      await page.fill(`${fieldIds.dateOfBirth_month}`, exampleMonth);
-      await page.fill(`${fieldIds.dateOfBirth_year}`, exampleYear);
+      for (const [fieldId, dataKey] of Object.entries(fieldToDataMapping)) {
+        await page.fill(
+          inputFieldIds[fieldId as keyof typeof inputFieldIds],
+          exampleData[dataKey],
+        );
+      }
 
-      await page.fill(`${fieldIds.address_postcodeInput}`, examplePostCode);
-      await page.fill(`${fieldIds.email}`, exampleEmailAddress);
+      await this.checkFindAddressWorks(page, accessibilityTest);
     } else {
-      await page.click(fieldIds.isDateOfBirthKnown_No);
-      await page.click(fieldIds.respondentLivedWithApplicant_No);
-      await page.click(fieldIds.isCurrentAddressKnown_No);
-      await page.click(fieldIds.canYouProvideEmailAddress_No);
-      await page.click(fieldIds.canYouProvidePhoneNumber_No);
+      for (let selector of Object.values(radioIdsNo)) {
+        await page.click(selector);
+      }
     }
 
     await page.click(
@@ -196,6 +218,32 @@ export class RespondentDetailsPage {
         1,
       ),
     ]);
+    if (accessibilityTest) {
+      await AccessibilityTestHelper.run(page);
+    }
+  }
+
+  private static async checkFindAddressWorks(
+    page: Page,
+    accessibilityTest: boolean,
+  ): Promise<void> {
+    await page.click(
+      `${Selectors.button}:text-is("${RespondentDetailsContent.findAddress}")`,
+    );
+
+    await page.waitForFunction((addressListId) => {
+      const selectElement = document.querySelector(`select${addressListId}`);
+      return selectElement && selectElement.options.length > 1;
+    }, addressListId);
+
+    const dropdown = await page.$(`select${addressListId}`);
+
+    const receivedAddresses = await dropdown?.evaluate((select) =>
+      Array.from(select.options).map((option) => option.text.trim()),
+    );
+
+    expect(receivedAddresses).toEqual(expectedAddresses);
+
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }

@@ -21,12 +21,12 @@ export class FL401 {
       "FL401",
       errorMessaging,
     );
-    await FL401TypeOfApplication.fl401TypeOfApplication(
-      page,
-      accessibilityTest,
-      errorMessaging,
-      isLinkedToC100,
-    );
+    // await FL401TypeOfApplication.fl401TypeOfApplication(
+    //   page,
+    //   accessibilityTest,
+    //   errorMessaging,
+    //   isLinkedToC100,
+    // );
     await FL401RespondentDetails.fl401RespondentDetails(
       page,
       accessibilityTest,

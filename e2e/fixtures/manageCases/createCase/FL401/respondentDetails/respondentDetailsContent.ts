@@ -18,6 +18,7 @@ export enum RespondentDetailsContent {
   formLabelPopUp4 = "*Contact Number (Optional)",
 
   continue = "Continue",
+  findAddress = "Find address",
 
   errorBanner = "There is a problem",
   errorText = "Field is required",
