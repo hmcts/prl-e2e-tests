@@ -23,9 +23,9 @@ export class selectApplicationTypeSubmitPage {
   ): Promise<void> {
     await Promise.all([
       this.checkPageLoads(page, accessibilityTest, yesNo),
-      // this.checkFilledFields(page, yesNo),
+      this.checkFilledFields(page, yesNo),
     ]);
-    // await this.continue(page);
+    await this.continue(page);
   }
 
   private static async checkPageLoads(
@@ -77,9 +77,9 @@ export class selectApplicationTypeSubmitPage {
       ),
     ]);
 
-    await this.page1RadioButtons(page, "Spend time with order")
+    await this.page1RadioButtons(page, "Spend time with order");
     await this.yesNoRadioButtons(page, true);
-    await this.page3RadioButtons(page, "Yes")
+    await this.page3RadioButtons(page, "Yes");
 
     if (yesNo) {
       await Helpers.checkVisibleAndPresent(
@@ -106,25 +106,27 @@ export class selectApplicationTypeSubmitPage {
     page: Page,
     p1SelectedRadio: typeOfChildArrangementOrder,
   ): Promise<void> {
-
-
-      await Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukText16}:text-is("${p1SelectedRadio}")`,
-        1,
-      );
-
+    await Helpers.checkVisibleAndPresent(
+      page,
+      `${Selectors.GovukText16}:text-is("${p1SelectedRadio}")`,
+      1,
+    );
   }
 
   private static async page3RadioButtons(
     page: Page,
     p3SelectedRadio: courtPermission,
   ): Promise<void> {
-
     await Helpers.checkVisibleAndPresent(
       page,
       `${Selectors.GovukText16}:text-is("${p3SelectedRadio}")`,
       1,
+    );
+  }
+
+  private static async continue(page: Page): Promise<void> {
+    await page.click(
+      `${Selectors.button}:text-is("${SelectApplicationTypeSubmitContent.saveAndContinue}")`,
     );
   }
 }
