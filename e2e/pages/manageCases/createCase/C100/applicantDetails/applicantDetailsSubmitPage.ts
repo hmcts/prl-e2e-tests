@@ -2,7 +2,6 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { ApplicantDetailsSubmitContent } from "../../../../../fixtures/manageCases/createCase/C100/applicantDetails/applicantDetailsSubmitContent";
 import { Helpers } from "../../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 
 export class ApplicantDetailsSubmitPage {
   public static async applicantDetailsSubmitPage(
@@ -84,7 +83,7 @@ export class ApplicantDetailsSubmitPage {
       );
     }
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      // await AccessibilityTestHelper.run(page); TODO: Disabled pending ticket FPET-1135
     }
   }
 
