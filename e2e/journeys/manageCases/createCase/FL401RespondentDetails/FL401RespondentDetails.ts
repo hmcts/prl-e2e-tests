@@ -9,19 +9,19 @@ export class FL401RespondentDetails {
     page: Page,
     accessibilityTest: boolean,
     errorMessaging: boolean,
-    allOptionsYes: boolean,
+    respondentDetailsAllOptionsYes: boolean,
   ): Promise<void> {
     await Helpers.selectSolicitorEvent(page, "Respondent details");
     await RespondentDetailsPage.respondentDetailsPage(
       page,
       errorMessaging,
       accessibilityTest,
-      allOptionsYes,
+      respondentDetailsAllOptionsYes,
     );
     await RespondentDetailsSubmitPage.respondentDetailsSubmitPage(
       page,
       accessibilityTest,
-      allOptionsYes,
+      respondentDetailsAllOptionsYes,
     );
     await Fl401TasksTabPage.fl401TasksTabPage(page, accessibilityTest);
   }

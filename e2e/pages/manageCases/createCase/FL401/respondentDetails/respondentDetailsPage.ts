@@ -67,13 +67,13 @@ export class RespondentDetailsPage {
     page: Page,
     errorMessaging: boolean,
     accessibilityTest: boolean,
-    allOptionsYes: boolean,
+    respondentDetailsAllOptionsYes: boolean,
   ): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest);
     if (errorMessaging) {
       await this.checkErrorMessaging(page);
     }
-    await this.fillInFields(page, allOptionsYes, accessibilityTest);
+    await this.fillInFields(page, respondentDetailsAllOptionsYes, accessibilityTest);
   }
 
   private static async checkPageLoads(
@@ -188,13 +188,13 @@ export class RespondentDetailsPage {
 
   private static async fillInFields(
     page: Page,
-    allOptionsYes: boolean,
+    respondentDetailsAllOptionsYes: boolean,
     accessibilityTest: boolean,
   ): Promise<void> {
     await page.fill(`${nameFieldIds.firstName}`, exampleData.exampleFirstName);
     await page.fill(`${nameFieldIds.lastName}`, exampleData.exampleLastName);
 
-    if (allOptionsYes) {
+    if (respondentDetailsAllOptionsYes) {
       for (let selector of Object.values(radioIdsYes)) {
         await page.click(selector);
       }

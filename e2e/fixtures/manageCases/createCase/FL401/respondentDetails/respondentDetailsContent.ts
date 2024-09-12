@@ -16,10 +16,8 @@ export enum RespondentDetailsContent {
   formLabelPopUp2 = "Enter a UK postcode",
   formLabelPopUp3 = "*Email address (Optional)",
   formLabelPopUp4 = "*Contact Number (Optional)",
-
   continue = "Continue",
   findAddress = "Find address",
-
   errorBanner = "The event could not be created",
   errorValidationFailed = "Case data validation failed",
   errorInvalidEmailAddress = "invalidEmailAddress is not a valid Email address",

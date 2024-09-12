@@ -12,7 +12,7 @@ export class FL401 {
     accessibilityTest: boolean,
     errorMessaging: boolean,
     isLinkedToC100: boolean,
-    allOptionsYes: boolean,
+    respondentDetailsAllOptionsYes: boolean,
   ): Promise<void> {
     await SolicitorCreateInitial.createInitialCase(
       page,
@@ -31,7 +31,7 @@ export class FL401 {
       page,
       accessibilityTest,
       errorMessaging,
-      allOptionsYes,
+      respondentDetailsAllOptionsYes,
     );
   }
 }

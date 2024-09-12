@@ -9,20 +9,20 @@ export class RespondentDetailsSubmitPage {
   public static async respondentDetailsSubmitPage(
     page: Page,
     accessibilityTest: boolean,
-    allOptionsYes: boolean,
+    respondentDetailsAllOptionsYes: boolean,
   ): Promise<void> {
-    await this.checkPageContent(page, accessibilityTest, allOptionsYes);
+    await this.checkPageContent(page, accessibilityTest, respondentDetailsAllOptionsYes);
     await this.fillInFields(page);
   }
 
   private static async checkPageContent(
     page: Page,
     accessibilityTest: boolean,
-    allOptionsYes: boolean,
+    respondentDetailsAllOptionsYes: boolean,
   ): Promise<void> {
     await Promise.all([
       this.checkPageLoads(page),
-      this.checkFilledInData(page, allOptionsYes),
+      this.checkFilledInData(page, respondentDetailsAllOptionsYes),
     ]);
     if (accessibilityTest) {
       await accessibilityTestHelper.run(page);
@@ -54,7 +54,7 @@ export class RespondentDetailsSubmitPage {
 
   private static async checkFilledInData(
     page: Page,
-    allOptionsYes: boolean,
+    respondentDetailsAllOptionsYes: boolean,
   ): Promise<void> {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -104,7 +104,7 @@ export class RespondentDetailsSubmitPage {
       ),
     ]);
 
-    if (allOptionsYes) {
+    if (respondentDetailsAllOptionsYes) {
       await Promise.all([
         Helpers.checkVisibleAndPresent(
           page,
