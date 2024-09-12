@@ -25,3 +25,15 @@ export { UserRoles };
 export type c100SolicitorEvents = "Type of application" | "Hearing urgency";
 
 export type fl401SolicitorEvents = "Type of application";
+
+export type yesNo = "Yes" | "No";
+
+export type typeOfOrderID =
+  | "Child Arrangements Order"
+  | "Prohibited Steps Order"
+  | "Specific Issue Order";
+
+export type typeOfChildArrangementOrderID =
+  | "Spend time with order"
+  | "Live with order"
+  | "Both live with and spend time with order";

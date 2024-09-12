@@ -50,7 +50,7 @@ export class selectApplicationType4Page {
         4,
         SelectApplicationType4Content,
         "li",
-        `${Selectors.markdown}`,
+        `${Selectors.li}`,
       ),
     ]);
     if (accessibilityTest) {

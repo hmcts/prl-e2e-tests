@@ -23,7 +23,7 @@ export class selectApplicationTypeSubmitPage {
   ): Promise<void> {
     await Promise.all([
       this.checkPageLoads(page, accessibilityTest, yesNo),
-      this.checkFilledFields(page, yesNo),
+      this.checkFilledFields(page, true),
     ]);
     await this.continue(page);
   }
@@ -49,7 +49,12 @@ export class selectApplicationTypeSubmitPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukText16}:text-is("${SelectApplicationTypeSubmitContent.text16Change}")`,
-        changeAbleFields,
+        3,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.a}:text-is("${SelectApplicationTypeSubmitContent.a}")`,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,

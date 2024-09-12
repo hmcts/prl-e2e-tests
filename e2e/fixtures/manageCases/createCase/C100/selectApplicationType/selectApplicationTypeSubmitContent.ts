@@ -18,6 +18,8 @@ export enum SelectApplicationTypeSubmitContent {
   text16Answer2 = "Prohibited Steps Order",
   text16Answer3 = "Specific Issue Order",
 
+  a = " mockFile.pdf",
+
   h3 = "*Why are you making this application?",
 
   saveAndContinue = "Save and continue",

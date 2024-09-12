@@ -33,14 +33,12 @@ export class selectApplicationType1Page {
     page: Page,
     errorMessaging: boolean,
     accessibilityTest: boolean,
-    selectButtonIDs: SelectButtonIDs,
-    typeOfChildArrangementOrder: typeOfChildArrangementOrderID,
   ): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest);
     if (errorMessaging) {
       await this.triggerErrorMessages(page);
     }
-    await this.fillInFields(page, selectButtonIDs, typeOfChildArrangementOrder);
+    await this.fillInFields(page, "Spend time with order");
   }
 
   private static async checkPageLoads(
@@ -153,10 +151,9 @@ export class selectApplicationType1Page {
 
   private static async fillInFields(
     page: Page,
-    selectButtonIDs: SelectButtonIDs,
     typeOfChildArrangementOrder: typeOfChildArrangementOrderID,
   ): Promise<void> {
-    for (let selectButton of Object.values(selectButtonIDs)) {
+    for (let selectButton of Object.values(SelectButtonIDs)) {
       let buttonSelector = `${selectButton}`;
 
       await page.click(buttonSelector);
@@ -177,6 +174,7 @@ export class selectApplicationType1Page {
       `${SelectApplicationType1Content.loremIpsumText}`,
     );
     await this.childArrangementOrderContent(page);
+    await this.provideMoreInfoContent(page);
     await page.click(
       `${Selectors.button}:text-is("${SelectApplicationType1Content.continue}")`,
     );

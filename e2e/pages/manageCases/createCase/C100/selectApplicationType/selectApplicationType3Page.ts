@@ -21,13 +21,12 @@ export class selectApplicationType3Page {
     page: Page,
     errorMessaging: boolean,
     accessibilityTest: boolean,
-    selection: radioButtons,
   ): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest);
     if (errorMessaging) {
       await this.triggerErrorMessages(page);
     }
-    await this.fillInFields(page, selection);
+    await this.fillInFields(page, "Yes");
   }
 
   // @ts-ignore
@@ -36,7 +35,7 @@ export class selectApplicationType3Page {
     accessibilityTest: boolean,
   ): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukFormLabel}:text-is("${SelectApplicationType3Content.p1}")`,
+      `${Selectors.p}:text-is("${SelectApplicationType3Content.p1}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(

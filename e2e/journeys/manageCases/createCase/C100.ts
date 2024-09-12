@@ -1,6 +1,7 @@
 import { UserRole } from "../../../common/types";
 import { Page } from "@playwright/test";
 import { SolicitorCreateInitial } from "./solicitorCreateInitial";
+import { C100TypeOfApplication } from "./C100TypeOfApplication/C100TypeOfAplication";
 import { C100HearingUrgency } from "./C100HearingUrgency/C100HearingUrgency";
 
 export class C100 {
@@ -17,6 +18,12 @@ export class C100 {
       false,
       "C100",
       false,
+    );
+    await C100TypeOfApplication.c100TypeOfApplication(
+      page,
+      errorMessaging,
+      accessibilityTest,
+      yesNo,
     );
     await C100HearingUrgency.c100HearingUrgency(
       page,
