@@ -2,6 +2,7 @@ import { UserRole } from "../../../common/types";
 import { Page } from "@playwright/test";
 import { FL401TypeOfApplication } from "./FL401TypeOfApplication/FL401TypeOfApplication";
 import { SolicitorCreateInitial } from "./solicitorCreateInitial";
+import { FL401WithoutNoticeOrder } from "./FL401WithoutNoticeOrder/FL401WIthoutNoticeOrder";
 
 export class FL401 {
   public static async fl401(
@@ -10,6 +11,7 @@ export class FL401 {
     accessibilityTest: boolean,
     errorMessaging: boolean,
     isLinkedToC100: boolean,
+    isWithoutNotice: boolean
   ): Promise<void> {
     await SolicitorCreateInitial.createInitialCase(
       page,
@@ -18,11 +20,17 @@ export class FL401 {
       "FL401",
       errorMessaging,
     );
-    await FL401TypeOfApplication.fl401TypeOfApplication(
+    // await FL401TypeOfApplication.fl401TypeOfApplication(
+    //   page,
+    //   accessibilityTest,
+    //   errorMessaging,
+    //   isLinkedToC100
+    // );
+    await FL401WithoutNoticeOrder.fl401WithoutNoticeOrder(
       page,
       accessibilityTest,
       errorMessaging,
-      isLinkedToC100
-    );
+      isWithoutNotice
+    )
   }
 }

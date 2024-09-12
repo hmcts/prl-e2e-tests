@@ -25,9 +25,10 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
     "Create a FL401 case with the following options: " +
       "Type of Application: Check All Boxes, " +
       "Is this linked to a C100 Application: No " +
+      "Would you like to give notice to the respondent: No " +
       "@crossbrowserManageCases",
     async ({ page }): Promise<void> => {
-      await FL401.fl401(page, "solicitor", false, false, false);
+      await FL401.fl401(page, "solicitor", false, false, false, false);
     },
   );
 
@@ -35,9 +36,10 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
     "Create a FL401 case with the following options: " +
       "Type of Application: Check All Boxes, " +
       "Is this linked to a C100 Application: Yes " +
+      "Would you like to give notice to the respondent: Yes " +
       "@crossbrowserManageCases",
     async ({ page }): Promise<void> => {
-      await FL401.fl401(page, "solicitor", false, false, true);
+      await FL401.fl401(page, "solicitor", false, false, true, true);
     },
   );
 
