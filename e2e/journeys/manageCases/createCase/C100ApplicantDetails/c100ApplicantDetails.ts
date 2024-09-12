@@ -29,6 +29,7 @@ export class C100ApplicantDetails {
       page,
       accessibilityTest,
       yesNoApplicantDetails,
+      applicantGender,
     );
     await C100TasksTabPage.c100TasksTabPage(page, accessibilityTest);
   }
