@@ -141,10 +141,13 @@ export class RespondentDetailsPage {
   }
 
   private static async checkErrorMessaging(page: Page): Promise<void> {
-    await page.click(radioIdsYes.canYouProvideEmailAddress_Yes)
-    await page.click(radioIdsYes.canYouProvidePhoneNumber_Yes)
+    await page.click(radioIdsYes.canYouProvideEmailAddress_Yes);
+    await page.click(radioIdsYes.canYouProvidePhoneNumber_Yes);
     await page.fill(`${inputFieldIds.email}`, exampleData.invalidEmailAddress);
-    await page.fill(`${inputFieldIds.contactNumber}`, exampleData.invalidContactNumber);
+    await page.fill(
+      `${inputFieldIds.contactNumber}`,
+      exampleData.invalidContactNumber,
+    );
 
     await page.click(
       `${Selectors.button}:text-is("${RespondentDetailsContent.continue}")`,
