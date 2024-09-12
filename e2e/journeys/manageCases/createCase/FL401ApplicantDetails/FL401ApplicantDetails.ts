@@ -16,12 +16,10 @@ export class FL401ApplicantDetails {
       accessibilityTest,
       errorMessaging,
     );
-    console.log("Submitting");
     await ApplicantDetailsSubmitPage.applicantDetailsSubmitPage(
       page,
       accessibilityTest,
     );
-    console.log("Submitted");
     await Fl401TasksTabPage.fl401TasksTabPage(page, accessibilityTest);
   }
 }

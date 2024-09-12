@@ -36,7 +36,6 @@ export class ApplicantDetailsSubmitPage {
     await page.waitForSelector(
       `${Selectors.GovukHeadingL}:text-is("${ApplicantDetailsSubmitContent.pageTitle}")`,
     );
-    console.log("Submit Page Loaded");
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
@@ -68,10 +67,6 @@ export class ApplicantDetailsSubmitPage {
       ...Array.from({ length: 4 }, (_, i) => {
         let addressLineKey =
           `addressLine${i + 1}_2` as keyof typeof ApplicantDetailsSubmitContent;
-        console.log(
-          addressLineKey,
-          ApplicantDetailsSubmitContent[addressLineKey],
-        );
         Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukText16}:text-is("${ApplicantDetailsSubmitContent[addressLineKey]}")`,
@@ -125,7 +120,7 @@ export class ApplicantDetailsSubmitPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukText16}:text-is("${topLevelInputFields.solicitorEmailAddress}")`,
+        `${Selectors.a}:text-is("${topLevelInputFields.solicitorEmailAddress}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -145,7 +140,7 @@ export class ApplicantDetailsSubmitPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukText16}:text-is("${secondLevelInputFields.applicantEmailAddress}")`,
+        `${Selectors.a}:text-is("${secondLevelInputFields.applicantEmailAddress}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
