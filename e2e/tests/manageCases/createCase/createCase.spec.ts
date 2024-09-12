@@ -44,7 +44,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   test("Check the errors of a C100 solicitor create journey. @crossbrowserManageCases", async ({
     page,
   }): Promise<void> => {
-    await C100.c100(page, "solicitor", false, true, true, true, "male");
+    await C100.c100(page, "solicitor", false, true, true, true, "female");
   });
 
   test("Check the errors of a FL401 solicitor create journey. @crossbrowserManageCases", async ({

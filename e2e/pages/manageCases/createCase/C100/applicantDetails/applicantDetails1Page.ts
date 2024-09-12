@@ -291,6 +291,7 @@ export class ApplicantDetails1Page {
       ApplicantDetails1Content.year,
     );
     await page.click(`#applicants_0_gender-${applicantGender}`);
+    await page.click(`#applicants_0_gender-${applicantGender}`);
     await page.fill(
       `${PageLoadFields.placeOfBirth}`,
       ApplicantDetails1Content.placeOfBirth,
@@ -448,19 +449,24 @@ export class ApplicantDetails1Page {
       expect(await page.inputValue(RepresentativeAddressFields.line1)).toEqual(
         ApplicantDetails1Content.buildingAndStreet,
       ),
-      expect(await page.inputValue(RepresentativeAddressFields.line2)).toEqual(""),
-      expect(await page.inputValue(RepresentativeAddressFields.line3)).toEqual(""),
+      expect(await page.inputValue(RepresentativeAddressFields.line2)).toEqual(
+        "",
+      ),
+      expect(await page.inputValue(RepresentativeAddressFields.line3)).toEqual(
+        "",
+      ),
       expect(await page.inputValue(RepresentativeAddressFields.town)).toEqual(
         ApplicantDetails1Content.townOrCity,
       ),
-      expect(await page.inputValue(RepresentativeAddressFields.county)).toEqual(""),
-      expect(await page.inputValue(RepresentativeAddressFields.postcode)).toEqual(
-        ApplicantDetails1Content.postcode,
+      expect(await page.inputValue(RepresentativeAddressFields.county)).toEqual(
+        "",
       ),
-      expect(await page.inputValue(RepresentativeAddressFields.country)).toEqual(
-        ApplicantDetails1Content.country,
-      ),
-
+      expect(
+        await page.inputValue(RepresentativeAddressFields.postcode),
+      ).toEqual(ApplicantDetails1Content.postcode),
+      expect(
+        await page.inputValue(RepresentativeAddressFields.country),
+      ).toEqual(ApplicantDetails1Content.country),
     ]);
   }
 

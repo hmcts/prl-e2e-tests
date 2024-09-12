@@ -5,6 +5,8 @@ import {
   ApplicantDetails1Page,
   ApplicantGender,
 } from "../../../../pages/manageCases/createCase/C100/applicantDetails/applicantDetails1Page";
+import { ApplicantDetailsSubmitPage } from "../../../../pages/manageCases/createCase/C100/applicantDetails/applicantDetailsSubmitPage";
+import { C100TasksTabPage } from "../../../../pages/manageCases/caseTabs/c100TasksTabPage";
 
 export class C100ApplicantDetails {
   public static async C100ApplicantDetails(
@@ -23,5 +25,11 @@ export class C100ApplicantDetails {
       yesNoApplicantDetails,
       applicantGender,
     );
+    await ApplicantDetailsSubmitPage.applicantDetailsSubmitPage(
+      page,
+      accessibilityTest,
+      yesNoApplicantDetails,
+    );
+    await C100TasksTabPage.c100TasksTabPage(page, accessibilityTest);
   }
 }
