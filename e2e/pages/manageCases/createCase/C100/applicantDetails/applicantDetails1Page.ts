@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test";
+import { expect, Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { ApplicantDetails1Content } from "../../../../../fixtures/manageCases/createCase/C100/applicantDetails/applicantDetails1Content";
 import { Helpers } from "../../../../../common/helpers";
@@ -7,10 +7,12 @@ import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelp
 enum UniqueSelectors {
   dayMonthYear = "div > ccd-field-write > div > ccd-write-complex-type-field > div > fieldset > ccd-field-write > div > ccd-write-date-container-field > ccd-write-date-field > div > fieldset > cut-date-input > div > div > .form-label",
   applicantAddressDropdown = "#applicants_0_address_address_addressList",
-  solicitorAddressDropdown = "applicants_0_solicitorAddress_solicitorAddress_addressList",
+  solicitorAddressDropdown = "#applicants_0_solicitorAddress_solicitorAddress_addressList",
   previousAddresses = "#applicants_0_addressLivedLessThan5YearsDetails",
   applicantEmailAddress = "#applicants_0_email",
   applicantEmailAddressConfidential = "#applicants_0_isEmailAddressConfidential_Yes",
+  addressFields = "div > ccd-field-write > div > ccd-write-complex-type-field > div > fieldset > ccd-field-write > div > ccd-write-address-field > div > ccd-write-complex-type-field > div > fieldset > ccd-field-write > div > ccd-write-text-field > div > label > span.form-label",
+  emailAddressFields = "ccd-write-email-field > div > label > span.form-label",
 }
 
 enum PageLoadFields {
@@ -103,11 +105,6 @@ export class ApplicantDetails1Page {
         ApplicantDetails1Content,
         "formLabel",
         Selectors.GovukFormLabel,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukFormLabel}:text-is("${ApplicantDetails1Content.formLabelApplicantAddress5Years}"):first`,
-        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -208,11 +205,6 @@ export class ApplicantDetails1Page {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukErrorValidation}:text-is("${ApplicantDetails1Content.errorMessageAddressRequired}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukErrorMessage}:text-is("${ApplicantDetails1Content.errorMessageAddressRequired}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -386,7 +378,6 @@ export class ApplicantDetails1Page {
       `${PageLoadFields.dxNumber}`,
       ApplicantDetails1Content.dxNumber,
     );
-    await this.solicitorAddressValidation(page);
     await page.click(
       `${Selectors.button}:text-is("${ApplicantDetails1Content.continue}")`,
     );
@@ -401,54 +392,75 @@ export class ApplicantDetails1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukFormLabel}:text-is("${ApplicantDetails1Content.formLabelBuildingAndStreet}")`,
+        `${UniqueSelectors.addressFields}:text-is("${ApplicantDetails1Content.formLabelBuildingAndStreet}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${UniqueSelectors.addressFields}:text-is("${ApplicantDetails1Content.formLabelBuildingAndStreetOptional}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${UniqueSelectors.addressFields}:text-is("${ApplicantDetails1Content.formLabelAddressLine2}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukFormLabel}:text-is("${ApplicantDetails1Content.formLabelAddressLine2}")`,
+        `${UniqueSelectors.addressFields}:text-is("${ApplicantDetails1Content.formLabelAddressLine3}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukFormLabel}:text-is("${ApplicantDetails1Content.formLabelAddressLine3}")`,
+        `${UniqueSelectors.addressFields}:text-is("${ApplicantDetails1Content.formLabelTownOrCity}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukFormLabel}:text-is("${ApplicantDetails1Content.formLabelTownOrCity}")`,
+        `${UniqueSelectors.addressFields}:text-is("${ApplicantDetails1Content.formLabelCounty}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukFormLabel}:text-is("${ApplicantDetails1Content.formLabelCounty}")`,
+        `${UniqueSelectors.addressFields}:text-is("${ApplicantDetails1Content.formLabelPostcode}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukFormLabel}:text-is("${ApplicantDetails1Content.formLabelPostcode}")`,
+        `${UniqueSelectors.addressFields}:text-is("${ApplicantDetails1Content.formLabelCountry}")`,
         2,
       ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukFormLabel}:text-is("${ApplicantDetails1Content.formLabelCountry}")`,
-        2,
-      ),
-      expect(page.inputValue(ApplicantAddressFields.line1)).toEqual(
+      expect(await page.inputValue(ApplicantAddressFields.line1)).toEqual(
         ApplicantDetails1Content.buildingAndStreet,
       ),
-      expect(page.inputValue(ApplicantAddressFields.line2)).toEqual(""),
-      expect(page.inputValue(ApplicantAddressFields.line3)).toEqual(""),
-      expect(page.inputValue(ApplicantAddressFields.town)).toEqual(
+      expect(await page.inputValue(ApplicantAddressFields.line2)).toEqual(""),
+      expect(await page.inputValue(ApplicantAddressFields.line3)).toEqual(""),
+      expect(await page.inputValue(ApplicantAddressFields.town)).toEqual(
         ApplicantDetails1Content.townOrCity,
       ),
-      expect(page.inputValue(ApplicantAddressFields.county)).toEqual(""),
-      expect(page.inputValue(ApplicantAddressFields.postcode)).toEqual(
+      expect(await page.inputValue(ApplicantAddressFields.county)).toEqual(""),
+      expect(await page.inputValue(ApplicantAddressFields.postcode)).toEqual(
         ApplicantDetails1Content.postcode,
       ),
-      expect(page.inputValue(ApplicantAddressFields.country)).toEqual(
+      expect(await page.inputValue(ApplicantAddressFields.country)).toEqual(
         ApplicantDetails1Content.country,
       ),
+      expect(page.inputValue(RepresentativeAddressFields.line1)).toEqual(
+        ApplicantDetails1Content.buildingAndStreet,
+      ),
+      expect(page.inputValue(RepresentativeAddressFields.line2)).toEqual(""),
+      expect(page.inputValue(RepresentativeAddressFields.line3)).toEqual(""),
+      expect(page.inputValue(RepresentativeAddressFields.town)).toEqual(
+        ApplicantDetails1Content.townOrCity,
+      ),
+      expect(page.inputValue(RepresentativeAddressFields.county)).toEqual(""),
+      expect(page.inputValue(RepresentativeAddressFields.postcode)).toEqual(
+        ApplicantDetails1Content.postcode,
+      ),
+      expect(page.inputValue(RepresentativeAddressFields.country)).toEqual(
+        ApplicantDetails1Content.country,
+      ),
+
     ]);
   }
 
@@ -484,6 +496,9 @@ export class ApplicantDetails1Page {
       ),
     ]);
     await page.click(`${PageLoadFields.applicantsEmailAddressYes}`);
+    await page.click(
+      `${Selectors.button}:text-is("${ApplicantDetails1Content.continue}")`,
+    );
     await this.checkEmailAddress(page);
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -508,73 +523,13 @@ export class ApplicantDetails1Page {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukFormLabel}:text-is("${ApplicantDetails1Content.formLabelApplicantEmailAddress}")`,
+        `${UniqueSelectors.emailAddressFields}:text-is("${ApplicantDetails1Content.formLabelApplicantEmailAddress}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukFormLabel}:text-is("${ApplicantDetails1Content.formLabelEmailAddressConfidential}")`,
         1,
-      ),
-    ]);
-  }
-
-  private static async solicitorAddressValidation(page: Page): Promise<void> {
-    await Promise.all([
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukFormLabel}:text-is("${ApplicantDetails1Content.formLabelSelectAddress}")`,
-        2,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukFormLabel}:text-is("${ApplicantDetails1Content.formLabelBuildingAndStreet}")`,
-        2,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukFormLabel}:text-is("${ApplicantDetails1Content.formLabelAddressLine2}")`,
-        2,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukFormLabel}:text-is("${ApplicantDetails1Content.formLabelAddressLine3}")`,
-        2,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukFormLabel}:text-is("${ApplicantDetails1Content.formLabelTownOrCity}")`,
-        2,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukFormLabel}:text-is("${ApplicantDetails1Content.formLabelCounty}")`,
-        2,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukFormLabel}:text-is("${ApplicantDetails1Content.formLabelPostcode}")`,
-        2,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukFormLabel}:text-is("${ApplicantDetails1Content.formLabelCountry}")`,
-        2,
-      ),
-      expect(page.inputValue(RepresentativeAddressFields.line1)).toEqual(
-        ApplicantDetails1Content.buildingAndStreet,
-      ),
-      expect(page.inputValue(RepresentativeAddressFields.line2)).toEqual(""),
-      expect(page.inputValue(RepresentativeAddressFields.line3)).toEqual(""),
-      expect(page.inputValue(RepresentativeAddressFields.town)).toEqual(
-        ApplicantDetails1Content.townOrCity,
-      ),
-      expect(page.inputValue(RepresentativeAddressFields.county)).toEqual(""),
-      expect(page.inputValue(RepresentativeAddressFields.postcode)).toEqual(
-        ApplicantDetails1Content.postcode,
-      ),
-      expect(page.inputValue(RepresentativeAddressFields.country)).toEqual(
-        ApplicantDetails1Content.country,
       ),
     ]);
   }

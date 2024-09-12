@@ -35,6 +35,7 @@ export enum ApplicantDetails1Content {
   formLabelUkPostCode = "Enter a UK postcode",
   formLabelSelectAddress = "Select an address",
   formLabelBuildingAndStreet = "Building and Street",
+  formLabelBuildingAndStreetOptional = "Building and Street (Optional)",
   formLabelAddressLine2 = "Address Line 2 (Optional)",
   formLabelAddressLine3 = "Address Line 3 (Optional)",
   formLabelTownOrCity = "Town or City (Optional)",
@@ -83,6 +84,6 @@ export enum ApplicantDetails1Content {
   representativeEmail = "repautomated@test.com",
   representativeRef = "A reference",
   org = "Test",
-  select = "select",
+  select = "Select",
   dxNumber = "1234",
 }
