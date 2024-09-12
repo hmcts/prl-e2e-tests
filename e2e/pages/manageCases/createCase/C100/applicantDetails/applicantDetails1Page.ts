@@ -57,9 +57,9 @@ enum RepresentativeAddressFields {
   line2 = "#applicants_0_solicitorAddress__detailAddressLine2",
   line3 = "#applicants_0_solicitorAddress__detailAddressLine3",
   town = "#applicants_0_solicitorAddress__detailPostTown",
-  county = "applicants_0_solicitorAddress__detailPostTown",
-  postcode = "applicants_0_solicitorAddress__detailPostCode",
-  country = "applicants_0_solicitorAddress__detailCountry",
+  county = "#applicants_0_solicitorAddress__detailCounty",
+  postcode = "#applicants_0_solicitorAddress__detailPostCode",
+  country = "#applicants_0_solicitorAddress__detailCountry",
 }
 
 export type ApplicantGender = "female" | "male" | "other";
