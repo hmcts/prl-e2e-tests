@@ -22,6 +22,7 @@ export enum Selectors {
   GovukText16 = ".text-16",
   GovukFormLabel = ".form-label",
   GovukFormHint = ".form-hint",
+  GovukHint = ".govuk-hint",
   ResetLink = ".search-result-reset-link",
   ColumnLabel = ".search-result-column-label",
   Span = "span",
