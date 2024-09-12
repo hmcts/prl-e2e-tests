@@ -28,7 +28,7 @@ export class FL401 {
     await FL401ApplicantDetails.fl401ApplicantDetails(
       page,
       accessibilityTest,
-      errorMessaging
-    )
+      errorMessaging,
+    );
   }
 }
