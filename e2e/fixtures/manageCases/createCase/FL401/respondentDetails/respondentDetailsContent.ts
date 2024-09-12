@@ -20,6 +20,8 @@ export enum RespondentDetailsContent {
   continue = "Continue",
   findAddress = "Find address",
 
-  errorBanner = "There is a problem",
-  errorText = "Field is required",
+  errorBanner = "The event could not be created",
+  errorValidationFailed = "Case data validation failed",
+  errorInvalidEmailAddress = "invalidEmailAddress is not a valid Email address",
+  errorInvalidContactNumber = "The data entered is not valid for this type of field, please delete and re-enter using only valid data",
 }

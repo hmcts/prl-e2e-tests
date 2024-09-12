@@ -32,6 +32,7 @@ enum inputFieldIds {
   dateOfBirth_year = "#dateOfBirth-year",
   address_postcodeInput = "#respondentsFL401_address_address_postcodeInput",
   email = "#respondentsFL401_email",
+  contactNumber = "#respondentsFL401_phoneNumber",
 }
 
 export enum exampleData {
@@ -42,6 +43,9 @@ export enum exampleData {
   exampleYear = "2008",
   examplePostCode = "SW1A 1AA",
   exampleEmailAddress = "repondent1@example.net",
+  exampleContactNumber = "00000000000",
+  invalidEmailAddress = "invalidEmailAddress",
+  invalidContactNumber = "invalidContactNumber",
 }
 
 const fieldToDataMapping: {
@@ -52,6 +56,7 @@ const fieldToDataMapping: {
   dateOfBirth_year: "exampleYear",
   address_postcodeInput: "examplePostCode",
   email: "exampleEmailAddress",
+  contactNumber: "exampleContactNumber",
 };
 
 const addressListId = "#respondentsFL401_address_address_addressList";
@@ -136,23 +141,43 @@ export class RespondentDetailsPage {
   }
 
   private static async checkErrorMessaging(page: Page): Promise<void> {
+    await page.click(radioIdsYes.canYouProvideEmailAddress_Yes)
+    await page.click(radioIdsYes.canYouProvidePhoneNumber_Yes)
+    await page.fill(`${inputFieldIds.email}`, exampleData.invalidEmailAddress);
+    await page.fill(`${inputFieldIds.contactNumber}`, exampleData.invalidContactNumber);
+
     await page.click(
       `${Selectors.button}:text-is("${RespondentDetailsContent.continue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorSummaryTitle}:text-is("${RespondentDetailsContent.errorBanner}")`,
+        `${Selectors.GovukErrorySummaryHeading}:text-is("${RespondentDetailsContent.errorBanner}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorSummary}:has-text("${RespondentDetailsContent.errorText}")`,
+        `${Selectors.p}:has-text("${RespondentDetailsContent.errorValidationFailed}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${RespondentDetailsContent.errorText}")`,
+        `${Selectors.ErrorSummaryList}:text-is("${RespondentDetailsContent.errorInvalidEmailAddress}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.ErrorSummaryList}:text-is("${RespondentDetailsContent.errorInvalidContactNumber}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorMessage}:text-is("${RespondentDetailsContent.errorInvalidEmailAddress}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorMessage}:text-is("${RespondentDetailsContent.errorInvalidContactNumber}")`,
         1,
       ),
     ]);
