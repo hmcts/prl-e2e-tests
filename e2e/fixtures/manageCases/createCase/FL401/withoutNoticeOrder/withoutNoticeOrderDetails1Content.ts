@@ -1,0 +1,11 @@
+export enum WithoutNoticeOrderDetails1Content {
+  pageTitle = 'Without notice order',
+  p1 = 'You can save and return to this page at any time. Questions marked with a * need to be completed before you can send your application.',
+  formLabel = '*Do you want to apply for the order without giving notice to the respondent?',
+  radioYes = 'Yes',
+  radioNo = 'No',
+  continue = 'Continue',
+  errorSummary = ' There is a problem ',
+  validationError = ' There is a problem ',
+  errorMessage = ' *Do you want to apply for the order without giving notice to the respondent? is required '
+}
