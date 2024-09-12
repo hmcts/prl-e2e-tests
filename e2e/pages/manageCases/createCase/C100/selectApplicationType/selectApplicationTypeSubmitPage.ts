@@ -10,11 +10,6 @@ type typeOfChildArrangementOrder =
   | "Live with order"
   | "Both live with and spend time with order";
 
-type courtPermission =
-  | "Yes"
-  | "No, permission is not required"
-  | "No, permission now sought";
-
 export class selectApplicationTypeSubmitPage {
   public static async selectApplicationTypeSubmitPage(
     page: Page,
@@ -25,7 +20,6 @@ export class selectApplicationTypeSubmitPage {
       this.checkPageLoads(page, accessibilityTest, yesNo),
       this.checkFilledFields(page, true),
     ]);
-    await this.continue(page);
   }
 
   private static async checkPageLoads(
@@ -36,12 +30,11 @@ export class selectApplicationTypeSubmitPage {
     await page.waitForSelector(
       `${Selectors.h2}:text-is("${SelectApplicationTypeSubmitContent.h2}")`,
     );
-
-    let changeAbleFields: number = yesNo ? 8 : 5;
+    let changeAbleFields: number = yesNo ? 8 : 7;
     await Promise.all([
       Helpers.checkGroup(
         page,
-        changeAbleFields + 1,
+        changeAbleFields,
         SelectApplicationTypeSubmitContent,
         "text16",
         `${Selectors.GovukText16}`,
@@ -49,19 +42,47 @@ export class selectApplicationTypeSubmitPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukText16}:text-is("${SelectApplicationTypeSubmitContent.text16Change}")`,
-        3,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.a}:text-is("${SelectApplicationTypeSubmitContent.a}")`,
-        1,
+        changeAbleFields,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.h3}:text-is("${SelectApplicationTypeSubmitContent.h3}")`,
-        changeAbleFields,
+        1,
       ),
     ]);
+    if (yesNo) {
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${SelectApplicationTypeSubmitContent.text16Yes}")`,
+        2,
+      );
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.a}:text-is("${SelectApplicationTypeSubmitContent.a}")`,
+        1,
+      )
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${SelectApplicationTypeSubmitContent.text16Change}")`,
+        8,
+      );
+    } else {
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${SelectApplicationTypeSubmitContent.text16Yes}")`,
+        1,
+      );
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${SelectApplicationTypeSubmitContent.text16No}")`,
+        1,
+      );
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${SelectApplicationTypeSubmitContent.text16Change}")`,
+        7,
+      );
+    }
 
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
@@ -83,8 +104,6 @@ export class selectApplicationTypeSubmitPage {
     ]);
 
     await this.page1RadioButtons(page, "Spend time with order");
-    await this.yesNoRadioButtons(page, true);
-    await this.page3RadioButtons(page, "Yes");
 
     if (yesNo) {
       await Helpers.checkVisibleAndPresent(
@@ -93,18 +112,7 @@ export class selectApplicationTypeSubmitPage {
         3,
       );
     }
-  }
-
-  private static async yesNoRadioButtons(
-    page: Page,
-    yesNo: boolean,
-  ): Promise<void> {
-    let yesOrNo: string = yesNo ? "yes" : "No";
-    await Helpers.checkVisibleAndPresent(
-      page,
-      `${Selectors.GovukText16}:text-is("${yesOrNo}")`,
-      4,
-    );
+    await this.continue(page);
   }
 
   private static async page1RadioButtons(
@@ -114,17 +122,6 @@ export class selectApplicationTypeSubmitPage {
     await Helpers.checkVisibleAndPresent(
       page,
       `${Selectors.GovukText16}:text-is("${p1SelectedRadio}")`,
-      1,
-    );
-  }
-
-  private static async page3RadioButtons(
-    page: Page,
-    p3SelectedRadio: courtPermission,
-  ): Promise<void> {
-    await Helpers.checkVisibleAndPresent(
-      page,
-      `${Selectors.GovukText16}:text-is("${p3SelectedRadio}")`,
       1,
     );
   }
