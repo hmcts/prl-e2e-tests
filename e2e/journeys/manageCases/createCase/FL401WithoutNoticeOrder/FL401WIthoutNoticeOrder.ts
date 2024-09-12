@@ -5,6 +5,9 @@ import {
   WithoutNoticeOrderSubmitPage
 } from "../../../../pages/manageCases/createCase/FL401/withoutNoticeOrder/withoutNoticeOrderSubmitPage";
 import { Fl401TasksTabPage } from "../../../../pages/manageCases/caseTabs/fl401TasksTabPage";
+import {
+  WithoutOrderNotice2Page
+} from "../../../../pages/manageCases/createCase/FL401/withoutNoticeOrder/withoutOrderNotice2Page";
 
 export class FL401WithoutNoticeOrder {
   public static async fl401WithoutNoticeOrder(
@@ -22,8 +25,13 @@ export class FL401WithoutNoticeOrder {
     await WithoutNoticeOrder1Page.withoutOrderNotice1Page(
       page, accessibilityTest, errorMessaging, isWithoutNotice
     );
-    if (!isWithoutNotice) {
-
+    if (isWithoutNotice) {
+      await WithoutOrderNotice2Page.withoutOrderNotice2Page(
+        page,
+        accessibilityTest,
+        errorMessaging
+      );
+      console.log('Hi')
     }
     await WithoutNoticeOrderSubmitPage.withoutNoticeOrderSubmitPage(
       page, accessibilityTest, isWithoutNotice

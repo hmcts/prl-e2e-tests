@@ -70,7 +70,7 @@ export class WithoutNoticeOrder1Page{
       [
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukErrorSummary}:text-is("${WithoutNoticeOrderDetails1Content.errorSummary}")`,
+          `${Selectors.GovukErrorSummaryTitle}:text-is("${WithoutNoticeOrderDetails1Content.errorSummary}")`,
           1
         ),
         Helpers.checkVisibleAndPresent(

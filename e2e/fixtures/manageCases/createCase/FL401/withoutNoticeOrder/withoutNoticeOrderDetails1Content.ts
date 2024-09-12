@@ -6,6 +6,6 @@ export enum WithoutNoticeOrderDetails1Content {
   formControl2 = 'No',
   continue = 'Continue',
   errorSummary = ' There is a problem ',
-  validationError = ' There is a problem ',
+  validationError = ' *Do you want to apply for the order without giving notice to the respondent? is required ',
   errorMessage = ' *Do you want to apply for the order without giving notice to the respondent? is required '
 }
