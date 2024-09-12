@@ -1,13 +1,7 @@
 import { Helpers } from "../../../../common/helpers";
-import {
-  TypeOfApplication1Page
-} from "../../../../pages/manageCases/createCase/FL401/typeOfApplication/typeOfApplication1Page";
-import {
-  TypeOfApplication2Page
-} from "../../../../pages/manageCases/createCase/FL401/typeOfApplication/typeOfApplication2Page";
-import {
-  TypeOfApplicationSubmitPage
-} from "../../../../pages/manageCases/createCase/FL401/typeOfApplication/typeOfApplicationSubmitPage";
+import { TypeOfApplication1Page } from "../../../../pages/manageCases/createCase/FL401/typeOfApplication/typeOfApplication1Page";
+import { TypeOfApplication2Page } from "../../../../pages/manageCases/createCase/FL401/typeOfApplication/typeOfApplication2Page";
+import { TypeOfApplicationSubmitPage } from "../../../../pages/manageCases/createCase/FL401/typeOfApplication/typeOfApplicationSubmitPage";
 import { Page } from "@playwright/test";
 import { Fl401TasksTabPage } from "../../../../pages/manageCases/caseTabs/fl401TasksTabPage";
 
@@ -18,10 +12,7 @@ export class FL401TypeOfApplication {
     errorMessaging: boolean,
     isLinkedToC100: boolean,
   ): Promise<void> {
-    await Helpers.selectSolicitorEvent(
-      page,
-      "Type of application"
-    )
+    await Helpers.selectSolicitorEvent(page, "Type of application");
     await TypeOfApplication1Page.typeOfApplication1Page(
       page,
       errorMessaging,
@@ -38,9 +29,6 @@ export class FL401TypeOfApplication {
       isLinkedToC100,
       accessibilityTest,
     );
-    await Fl401TasksTabPage.fl401TasksTabPage(
-      page,
-      accessibilityTest
-    )
+    await Fl401TasksTabPage.fl401TasksTabPage(page, accessibilityTest);
   }
 }

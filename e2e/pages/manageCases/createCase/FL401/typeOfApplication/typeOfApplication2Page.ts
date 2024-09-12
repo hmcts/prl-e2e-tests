@@ -116,10 +116,7 @@ export class TypeOfApplication2Page {
     } else {
       await page.click(isLinkedSelectionIds["yes"]);
       await this.checkLinkedCaseTextLoads(page, accessibilityTest);
-      await page.fill(
-        `${isLinkedSelectionIds["applicationNumber"]}`,
-        '',
-      );
+      await page.fill(`${isLinkedSelectionIds["applicationNumber"]}`, "");
       await page.fill(
         `${isLinkedSelectionIds["applicationNumber"]}`,
         dummyCaseNumber,
