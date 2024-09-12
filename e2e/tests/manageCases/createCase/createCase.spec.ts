@@ -8,7 +8,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       "Hearing urgency: yes to all values " +
       "@crossbrowserManageCases",
     async ({ page }): Promise<void> => {
-      await C100.c100(page, "solicitor", false, false, true);
+      await C100.c100(page, "solicitor", false, false, true, true, "male");
     },
   );
 
@@ -17,7 +17,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       "Hearing urgency: no to all values " +
       "@crossbrowserManageCases",
     async ({ page }): Promise<void> => {
-      await C100.c100(page, "solicitor", false, false, false);
+      await C100.c100(page, "solicitor", false, false, false, false, "male");
     },
   );
 
@@ -44,7 +44,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   test("Check the errors of a C100 solicitor create journey. @crossbrowserManageCases", async ({
     page,
   }): Promise<void> => {
-    await C100.c100(page, "solicitor", false, true, true);
+    await C100.c100(page, "solicitor", false, true, true, true, "female");
   });
 
   test("Check the errors of a FL401 solicitor create journey. @crossbrowserManageCases", async ({
@@ -57,7 +57,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
 test("Check the accessibility of a C100 solicitor create journey. @accessibilityManageCases", async ({
   page,
 }): Promise<void> => {
-  await C100.c100(page, "solicitor", true, false, true);
+  await C100.c100(page, "solicitor", true, false, true, true, "male");
 });
 
 test("Check the accessibility of a FL401 solicitor create journey. @accessibilityManageCases", async ({
