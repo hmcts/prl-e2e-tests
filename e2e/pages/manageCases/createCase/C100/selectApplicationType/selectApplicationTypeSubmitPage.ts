@@ -60,7 +60,7 @@ export class selectApplicationTypeSubmitPage {
         page,
         `${Selectors.a}:text-is("${SelectApplicationTypeSubmitContent.a}")`,
         1,
-      )
+      );
       await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukText16}:text-is("${SelectApplicationTypeSubmitContent.text16Change}")`,
