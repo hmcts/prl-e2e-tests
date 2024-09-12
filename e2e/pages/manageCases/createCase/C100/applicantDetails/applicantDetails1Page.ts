@@ -445,19 +445,19 @@ export class ApplicantDetails1Page {
       expect(await page.inputValue(ApplicantAddressFields.country)).toEqual(
         ApplicantDetails1Content.country,
       ),
-      expect(page.inputValue(RepresentativeAddressFields.line1)).toEqual(
+      expect(await page.inputValue(RepresentativeAddressFields.line1)).toEqual(
         ApplicantDetails1Content.buildingAndStreet,
       ),
-      expect(page.inputValue(RepresentativeAddressFields.line2)).toEqual(""),
-      expect(page.inputValue(RepresentativeAddressFields.line3)).toEqual(""),
-      expect(page.inputValue(RepresentativeAddressFields.town)).toEqual(
+      expect(await page.inputValue(RepresentativeAddressFields.line2)).toEqual(""),
+      expect(await page.inputValue(RepresentativeAddressFields.line3)).toEqual(""),
+      expect(await page.inputValue(RepresentativeAddressFields.town)).toEqual(
         ApplicantDetails1Content.townOrCity,
       ),
-      expect(page.inputValue(RepresentativeAddressFields.county)).toEqual(""),
-      expect(page.inputValue(RepresentativeAddressFields.postcode)).toEqual(
+      expect(await page.inputValue(RepresentativeAddressFields.county)).toEqual(""),
+      expect(await page.inputValue(RepresentativeAddressFields.postcode)).toEqual(
         ApplicantDetails1Content.postcode,
       ),
-      expect(page.inputValue(RepresentativeAddressFields.country)).toEqual(
+      expect(await page.inputValue(RepresentativeAddressFields.country)).toEqual(
         ApplicantDetails1Content.country,
       ),
 
