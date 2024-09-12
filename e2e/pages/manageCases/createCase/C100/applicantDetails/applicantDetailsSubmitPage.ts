@@ -30,7 +30,7 @@ export class ApplicantDetailsSubmitPage {
       ),
       Helpers.checkGroup(
         page,
-        30,
+        21,
         ApplicantDetailsSubmitContent,
         `text16`,
         `${Selectors.GovukText16}`,
@@ -39,6 +39,26 @@ export class ApplicantDetailsSubmitPage {
         page,
         `${Selectors.p}:text-is("${ApplicantDetailsSubmitContent.p}")`,
         1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${ApplicantDetailsSubmitContent.text16A1}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${ApplicantDetailsSubmitContent.text16A2}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${ApplicantDetailsSubmitContent.text16A3}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${ApplicantDetailsSubmitContent.text16A4}")`,
+        2,
       ),
     ]);
     if (yesNoApplicantDetails) {
