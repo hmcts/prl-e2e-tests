@@ -59,8 +59,7 @@ const fieldToDataMapping: {
   contactNumber: "exampleContactNumber",
 };
 
-const addressListId = "#respondentsFL401_address_address_addressList";
-const expectedAddresses = ["1 address found", "Buckingham Palace, London"];
+const addressList = "select#respondentsFL401_address_address_addressList";
 
 export class RespondentDetailsPage {
   public static async respondentDetailsPage(
@@ -259,18 +258,15 @@ export class RespondentDetailsPage {
       `${Selectors.button}:text-is("${RespondentDetailsContent.findAddress}")`,
     );
 
-    await page.waitForFunction((addressListId) => {
-      const selectElement = document.querySelector(`select${addressListId}`);
-      return selectElement && selectElement.options.length > 1;
-    }, addressListId);
+    await page.selectOption(`${addressList}`, { label: `${RespondentDetailsContent.buckinghamPalace}` })
 
-    const dropdown = await page.$(`select${addressListId}`);
+    const dropdown = await page.$(`${addressList}`);
 
     const receivedAddresses = await dropdown?.evaluate((select) =>
       Array.from(select.options).map((option) => option.text.trim()),
     );
 
-    expect(receivedAddresses).toEqual(expectedAddresses);
+    expect(receivedAddresses).toEqual(RespondentDetailsContent.expectedAddresses);
 
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
