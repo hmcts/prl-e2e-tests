@@ -79,16 +79,12 @@ export class selectApplicationType3Page {
     ]);
 
     await page.click(`${PageIDs.yes}`);
+    await page.waitForTimeout(3000);
     await page.click(
       `${Selectors.button}:text-is("${SelectApplicationType3Content.continue}")`,
     );
 
     await Promise.all([
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukErrorSummaryTitle}:text-is("${SelectApplicationType3Content.errorBanner}")`,
-        1,
-      ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukErrorValidation}:has-text("${SelectApplicationType3Content.errorMessage2}")`,

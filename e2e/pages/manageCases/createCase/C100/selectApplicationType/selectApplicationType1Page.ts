@@ -4,10 +4,7 @@ import { SelectApplicationType1Content } from "../../../../../fixtures/manageCas
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 
-type typeOfOrderID =
-  | "Child Arrangements Order"
-  | "Prohibited Steps Order"
-  | "Specific Issue Order";
+
 
 type typeOfChildArrangementOrderID =
   | "Spend time with order"
@@ -103,13 +100,7 @@ export class selectApplicationType1Page {
     ]);
 
     await page.click(`${SelectButtonIDs.childArrangementsOrder}`);
-
-    console.log("clicked all options")
-
-    await page.click(
-      `${Selectors.button}:text-is("${SelectApplicationType1Content.continue}")`,
-    );
-
+  console.log("clicked first option")
     await Promise.all([
       Helpers.checkGroup(
         page,
@@ -120,7 +111,10 @@ export class selectApplicationType1Page {
       ),
     ]);
 
-    console.log("clicked continue")
+    await page.click(
+      `${Selectors.button}:text-is("${SelectApplicationType1Content.continue}")`,
+    );
+
 
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -144,6 +138,7 @@ export class selectApplicationType1Page {
         1,
       ),
     ]);
+    await page.click(`${SelectButtonIDs.childArrangementsOrder}`);
   }
 
   private static async fillInFields(
@@ -155,7 +150,8 @@ export class selectApplicationType1Page {
 
       await page.click(buttonSelector);
     }
-    console.log("filling fields starting")
+    console.log("all should be selected")
+    console.log("clicked all options")
     switch (typeOfChildArrangementOrder) {
       case "Spend time with order":
         await page.click(`${PageIDs.spend}`);

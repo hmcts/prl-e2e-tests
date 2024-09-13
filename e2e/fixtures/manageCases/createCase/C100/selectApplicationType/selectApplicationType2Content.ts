@@ -12,9 +12,7 @@ export enum SelectApplicationType2Content {
   chooseFile = "Choose file",
   cancelUpload = "Cancel upload",
 
-
   continue = "Continue",
-
 
   errorBanner = "There is a problem",
   errorMessage1 = "*Do you have a draft consent order? is required",
