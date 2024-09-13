@@ -1,4 +1,4 @@
-import { UserRole } from "../../../common/types";
+import { ApplicantGender, UserRole } from "../../../common/types";
 import { Page } from "@playwright/test";
 import { FL401TypeOfApplication } from "./FL401TypeOfApplication/FL401TypeOfApplication";
 import { SolicitorCreateInitial } from "./solicitorCreateInitial";
@@ -11,6 +11,8 @@ export class FL401 {
     accessibilityTest: boolean,
     errorMessaging: boolean,
     isLinkedToC100: boolean,
+    yesNoFL401ApplicantDetails: boolean,
+    applicantGender: ApplicantGender
   ): Promise<void> {
     await SolicitorCreateInitial.createInitialCase(
       page,
@@ -29,6 +31,8 @@ export class FL401 {
       page,
       accessibilityTest,
       errorMessaging,
+      yesNoFL401ApplicantDetails,
+      applicantGender
     );
   }
 }

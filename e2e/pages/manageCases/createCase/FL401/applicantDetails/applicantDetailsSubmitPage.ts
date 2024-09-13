@@ -4,38 +4,44 @@ import { ApplicantDetailsSubmitContent } from "../../../../../fixtures/manageCas
 import { Helpers } from "../../../../../common/helpers";
 import { SubmitContent } from "../../../../../fixtures/manageCases/createCase/FL401/typeOfApplication/submitContent";
 import accessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import {
-  applicantDetails1Content,
-  ApplicantDetails1Content,
-  ApplicantDetails1Content,
-} from "./applicantDetails1Page";
+import { ApplicantGender } from "../../../../../common/types";
 
 export class ApplicantDetailsSubmitPage {
   public static async applicantDetailsSubmitPage(
     page: Page,
     accessibilityTest: boolean,
+    yesNoFL401ApplicantDetails: boolean,
+    applicantGender: ApplicantGender
   ): Promise<void> {
-    await this.checkPageContent(page, accessibilityTest);
+    await this.checkPageContent(page, accessibilityTest, yesNoFL401ApplicantDetails, applicantGender);
     await this.fillInFields(page);
   }
 
   private static async checkPageContent(
     page: Page,
     accessibilityTest: boolean,
+    yesNoFL401ApplicantDetails: boolean,
+    applicantGender: ApplicantGender
   ): Promise<void> {
     await Promise.all([
-      this.checkPageLoads(page),
-      this.checkFilledInData(page),
+      this.checkPageLoads(page, yesNoFL401ApplicantDetails, applicantGender),
+      this.checkFilledInData(page, yesNoFL401ApplicantDetails, applicantGender),
     ]);
     if (accessibilityTest) {
       // await AccessibilityTestHelper.run(page); TODO: Disabled pending ticket FPET-1135
     }
   }
 
-  private static async checkPageLoads(page: Page): Promise<void> {
+  private static async checkPageLoads(
+    page: Page,
+    yesNoFL401ApplicantDetails: boolean,
+    applicantGender: ApplicantGender
+  ): Promise<void> {
     await page.waitForSelector(
       `${Selectors.GovukHeadingL}:text-is("${ApplicantDetailsSubmitContent.pageTitle}")`,
     );
+    const text16Count: number = yesNoFL401ApplicantDetails ? 19 : 20
+    const emailCount: number = yesNoFL401ApplicantDetails ? 2 : 1
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
@@ -49,123 +55,159 @@ export class ApplicantDetailsSubmitPage {
       ),
       Helpers.checkGroup(
         page,
-        20,
+        text16Count,
         ApplicantDetailsSubmitContent,
         "text16",
         `${Selectors.GovukText16}`,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukText16}:text-is("${ApplicantDetailsSubmitContent.emailAddress_2}")`,
-        2,
+        `${Selectors.GovukText16}:text-is("${ApplicantDetailsSubmitContent.emailAddress}")`,
+        emailCount,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukText16}:text-is("${ApplicantDetailsSubmitContent.textChange}")`,
         1,
       ),
-      ...Array.from({ length: 4 }, (_, i) => {
-        let addressLineKey =
-          `addressLine${i + 1}_2` as keyof typeof ApplicantDetailsSubmitContent;
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukText16}:text-is("${ApplicantDetailsSubmitContent[addressLineKey]}")`,
-          2,
-        );
-      }),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${ApplicantDetailsSubmitContent.addressLine1_2}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${ApplicantDetailsSubmitContent.addressLine2_2}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${ApplicantDetailsSubmitContent.addressLine3_2}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${ApplicantDetailsSubmitContent.addressLine4_2}")`,
+        2,
+      ),
     ]);
   }
 
-  private static async checkFilledInData(page: Page): Promise<void> {
-    const applicantDoB: string = Helpers.dayAbbreviatedMonthYear(
-      ApplicantDetails1Content.applicantBirthDay,
-      ApplicantDetails1Content.applicantBirthMonth,
-      ApplicantDetails1Content.applicantBirthYear,
-    );
+  private static async checkFilledInData(
+    page: Page,
+    yesNoFl401ApplicantDetails: boolean,
+    applicantGender: ApplicantGender
+  ): Promise<void> {
+    let gender: string
+    switch (applicantGender) {
+      case 'male':
+        gender = ApplicantDetailsSubmitContent.applicantGenderMale
+        break
+      case 'female':
+        gender = ApplicantDetailsSubmitContent.applicantGenderFemale
+        break
+      case 'other':
+        gender = ApplicantDetailsSubmitContent.applicantGenderOther
+        break
+    }
+    let yesNoCount: number;
+    let yesNoKey: keyof typeof ApplicantDetailsSubmitContent;
+    if (yesNoFl401ApplicantDetails) {
+      yesNoCount = 4;
+      yesNoKey = 'radioYes';
+    } else {
+      yesNoCount = 3;
+      yesNoKey = 'radioNo';
+    }
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukText16}:text-is("${ApplicantDetails1Content.applicantFirstName}")`,
+        `${Selectors.GovukText16}:text-is("${ApplicantDetailsSubmitContent[yesNoKey]}")`,
+        yesNoCount
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${ApplicantDetailsSubmitContent.applicantFirstName}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukText16}:text-is("${ApplicantDetails1Content.applicantLastName}")`,
+        `${Selectors.GovukText16}:text-is("${ApplicantDetailsSubmitContent.applicantLastName}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukText16}:text-is("${ApplicantDetails1Content.applicantPreviousName}")`,
+        `${Selectors.GovukText16}:text-is("${ApplicantDetailsSubmitContent.applicantPreviousName}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukText16}:text-is("${applicantDoB}")`,
+        `${Selectors.GovukText16}:text-is("${ApplicantDetailsSubmitContent.applicantBirthday}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukText16}:text-is("${ApplicantDetails1Content.applicantPhoneNumber}")`,
+        `${Selectors.GovukText16}:text-is("${ApplicantDetailsSubmitContent.applicantPhoneNumber}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukText16}:text-is("${ApplicantDetails1Content.solicitorFirstName}")`,
+        `${Selectors.GovukText16}:text-is("${ApplicantDetailsSubmitContent.solicitorFirstName}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukText16}:text-is("${ApplicantDetails1Content.solicitorLastName}")`,
+        `${Selectors.GovukText16}:text-is("${ApplicantDetailsSubmitContent.solicitorLastName}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${ApplicantDetails1Content.solicitorEmailAddress}")`,
+        `${Selectors.a}:text-is("${ApplicantDetailsSubmitContent.solicitorEmailAddress}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukText16}:text-is("${ApplicantDetails1Content.solicitorReference}")`,
+        `${Selectors.GovukText16}:text-is("${ApplicantDetailsSubmitContent.solicitorReference}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukText16}:text-is("${ApplicantDetails1Content.solicitorPhoneNumber}")`,
+        `${Selectors.GovukText16}:text-is("${ApplicantDetailsSubmitContent.solicitorPhoneNumber}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukText16}:text-is("${ApplicantDetails1Content.dxNumber}")`,
+        `${Selectors.GovukText16}:text-is("${ApplicantDetailsSubmitContent.dxNumber}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${ApplicantDetails1Content.applicantEmailAddress}")`,
+        `${Selectors.a}:text-is("${ApplicantDetailsSubmitContent.applicantEmailAddress}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukText16}:text-is("${ApplicantDetails1Content.applicantGenderOtherInput}")`,
+        `${Selectors.GovukText16}:text-is("${gender}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukText16}:text-is("${applicantDetails1Content.bpBuildingAndStreet}")`,
+        `${Selectors.GovukText16}:text-is("${ApplicantDetailsSubmitContent.bpBuildingAndStreet}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukText16}:text-is("${applicantDetails1Content.bpCity}")`,
+        `${Selectors.GovukText16}:text-is("${ApplicantDetailsSubmitContent.bpCity}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukText16}:text-is("${applicantDetails1Content.bpPostalCode}")`,
+        `${Selectors.GovukText16}:text-is("${ApplicantDetailsSubmitContent.bpPostalCode}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukText16}:text-is("${applicantDetails1Content.bpBuildingAndStreet}")`,
+        `${Selectors.GovukText16}:text-is("${ApplicantDetailsSubmitContent.bpBuildingAndStreet}")`,
         2,
       ),
     ]);
