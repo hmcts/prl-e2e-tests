@@ -1,16 +1,18 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
-import {
-  WithoutNoticeOrderDetails2Content
-} from "../../../../../fixtures/manageCases/createCase/FL401/withoutNoticeOrder/withoutNoticeOrderDetails2Content";
 import { Helpers } from "../../../../../common/helpers";
 import accessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import {
   WithoutNoticeOrderDetails3Content
 } from "../../../../../fixtures/manageCases/createCase/FL401/withoutNoticeOrder/withoutNoticeOrderDetails3Content";
+import {
+  bailConditionRadios
+} from "../../../../../journeys/manageCases/createCase/FL401";
 
 enum withoutNoticeOrderInputIDs {
   radioYes = '#bailDetails_isRespondentAlreadyInBailCondition-yes',
+  radioNo = '#bailDetails_isRespondentAlreadyInBailCondition-no',
+  radioDK = '#bailDetails_isRespondentAlreadyInBailCondition-dontKnow',
   dayBail = '#bailConditionEndDate-day',
   monthBail = '#bailConditionEndDate-month',
   yearBail = '#bailConditionEndDate-year'
@@ -32,13 +34,14 @@ export class WithoutNoticeOrder3Page{
   public static async withoutNoticeOrder3Page(
     page: Page,
     accessibilityTest: boolean,
-    errorMessaging: boolean
+    errorMessaging: boolean,
+    bailConditions: bailConditionRadios
   ): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest);
     if (errorMessaging) {
       await this.checkErrorMessaging(page);
     }
-    await this.fillInFields(page, accessibilityTest);
+    await this.fillInFields(page, accessibilityTest, bailConditions);
   }
 
   private static async checkPageLoads(
@@ -170,11 +173,29 @@ export class WithoutNoticeOrder3Page{
 
   private static async fillInFields(
     page: Page,
-    accessibilityTest: boolean
+    accessibilityTest: boolean,
+    bailConditions: bailConditionRadios
   ): Promise<void> {
-    await page.click(
-      withoutNoticeOrderInputIDs.radioYes
-    );
+    switch (bailConditions) {
+      case "Yes":
+        await page.click(
+          withoutNoticeOrderInputIDs.radioYes
+        );
+        break
+      case "No":
+        await page.click(
+          withoutNoticeOrderInputIDs.radioNo
+        );
+        break
+      case "Don't know":
+        await page.click(
+          withoutNoticeOrderInputIDs.radioDK
+        );
+        break
+      default:
+        console.log('Unknown bail condition: ', bailConditions);
+        break
+    }
     await this.checkExpandedFields(
       page,
       accessibilityTest

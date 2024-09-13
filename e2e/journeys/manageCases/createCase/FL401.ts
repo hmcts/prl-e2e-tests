@@ -4,6 +4,8 @@ import { FL401TypeOfApplication } from "./FL401TypeOfApplication/FL401TypeOfAppl
 import { SolicitorCreateInitial } from "./solicitorCreateInitial";
 import { FL401WithoutNoticeOrder } from "./FL401WithoutNoticeOrder/FL401WIthoutNoticeOrder";
 
+export type bailConditionRadios = "Yes" | "No" | "Don't know";
+
 export class FL401 {
   public static async fl401(
     page: Page,
@@ -11,7 +13,8 @@ export class FL401 {
     accessibilityTest: boolean,
     errorMessaging: boolean,
     isLinkedToC100: boolean,
-    isWithoutNotice: boolean
+    isWithoutNotice: boolean,
+    bailConditions: bailConditionRadios
   ): Promise<void> {
     await SolicitorCreateInitial.createInitialCase(
       page,
@@ -30,7 +33,8 @@ export class FL401 {
       page,
       accessibilityTest,
       errorMessaging,
-      isWithoutNotice
+      isWithoutNotice,
+      bailConditions
     )
   }
 }

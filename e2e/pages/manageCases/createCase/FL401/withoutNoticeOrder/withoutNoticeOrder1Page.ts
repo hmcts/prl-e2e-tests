@@ -16,7 +16,7 @@ export class WithoutNoticeOrder1Page{
     page: Page,
     accessibilityTest: boolean,
     errorMessaging: boolean,
-    isWithoutNotice: boolean
+    isWithoutNotice: boolean,
   ): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest);
     if (errorMessaging) {

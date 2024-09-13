@@ -14,13 +14,15 @@ import {
 import {
   WithoutNoticeOrder4Page
 } from "../../../../pages/manageCases/createCase/FL401/withoutNoticeOrder/withoutNoticeOrder4Page";
+import { bailConditionRadios } from "../FL401";
 
 export class FL401WithoutNoticeOrder {
   public static async fl401WithoutNoticeOrder(
     page: Page,
     accessibilityTest: boolean,
     errorMessaging: boolean,
-    isWithoutNotice: boolean
+    isWithoutNotice: boolean,
+    bailConditions: bailConditionRadios
   ): Promise<void> {
     await Helpers.selectSolicitorEvent(
       page,
@@ -40,7 +42,8 @@ export class FL401WithoutNoticeOrder {
       await WithoutNoticeOrder3Page.withoutNoticeOrder3Page(
         page,
         accessibilityTest,
-        errorMessaging
+        errorMessaging,
+        bailConditions
       );
       console.log('Done w Page3')
       await WithoutNoticeOrder4Page.withoutNoticeOrder4Page(
@@ -50,7 +53,7 @@ export class FL401WithoutNoticeOrder {
       console.log('Done w P4')
     }
     await WithoutNoticeOrderSubmitPage.withoutNoticeOrderSubmitPage(
-      page, accessibilityTest, isWithoutNotice
+      page, accessibilityTest, isWithoutNotice, bailConditions
     );
     await Fl401TasksTabPage.fl401TasksTabPage(page, accessibilityTest);
     console.log("Checked")
