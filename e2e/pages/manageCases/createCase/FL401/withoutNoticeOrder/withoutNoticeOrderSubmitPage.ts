@@ -92,7 +92,7 @@ export class WithoutNoticeOrderSubmitPage {
       await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukText16}:text-is("${bailConditions}")`,
-        2,
+        1,
       );
     }
   }
