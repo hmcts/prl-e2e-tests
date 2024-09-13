@@ -27,4 +27,6 @@ export type c100SolicitorEvents =
   | "Hearing urgency"
   | "Applicant details";
 
-export type fl401SolicitorEvents = "Type of application" | "Without notice order";
+export type fl401SolicitorEvents =
+  | "Type of application"
+  | "Without notice order";

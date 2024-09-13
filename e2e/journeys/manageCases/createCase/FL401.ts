@@ -14,7 +14,7 @@ export class FL401 {
     errorMessaging: boolean,
     isLinkedToC100: boolean,
     isWithoutNotice: boolean,
-    bailConditions: bailConditionRadios
+    bailConditions: bailConditionRadios,
   ): Promise<void> {
     await SolicitorCreateInitial.createInitialCase(
       page,
@@ -27,14 +27,14 @@ export class FL401 {
       page,
       accessibilityTest,
       errorMessaging,
-      isLinkedToC100
+      isLinkedToC100,
     );
     await FL401WithoutNoticeOrder.fl401WithoutNoticeOrder(
       page,
       accessibilityTest,
       errorMessaging,
       isWithoutNotice,
-      bailConditions
-    )
+      bailConditions,
+    );
   }
 }
