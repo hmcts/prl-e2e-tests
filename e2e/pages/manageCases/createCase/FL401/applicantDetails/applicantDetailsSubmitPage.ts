@@ -98,6 +98,7 @@ export class ApplicantDetailsSubmitPage {
     yesNoFl401ApplicantDetails: boolean,
     applicantGender: ApplicantGender
   ): Promise<void> {
+    console.log('Filled In Data', yesNoFl401ApplicantDetails, applicantGender)
     let gender: string
     switch (applicantGender) {
       case 'male':

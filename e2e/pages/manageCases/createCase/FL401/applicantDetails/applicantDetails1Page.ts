@@ -279,7 +279,7 @@ export class ApplicantDetails1Page {
   private static async fillInSecondLevelFields(page: Page, applicantGender: ApplicantGender): Promise<void> {
     await page.fill(
       applicantInputIDs.applicantEmailAddress,
-      ApplicantDetails1Content.applicantEmail
+      ApplicantDetails1Content.applicantEmailAddress
     );
     if (applicantGender === 'other') {
       await page.fill(
