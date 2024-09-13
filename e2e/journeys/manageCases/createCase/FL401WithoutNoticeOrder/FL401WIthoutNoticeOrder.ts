@@ -8,6 +8,12 @@ import { Fl401TasksTabPage } from "../../../../pages/manageCases/caseTabs/fl401T
 import {
   WithoutOrderNotice2Page
 } from "../../../../pages/manageCases/createCase/FL401/withoutNoticeOrder/withoutOrderNotice2Page";
+import {
+  WithoutNoticeOrder3Page
+} from "../../../../pages/manageCases/createCase/FL401/withoutNoticeOrder/withoutNoticeOrder3Page";
+import {
+  WithoutNoticeOrder4Page
+} from "../../../../pages/manageCases/createCase/FL401/withoutNoticeOrder/withoutNoticeOrder4Page";
 
 export class FL401WithoutNoticeOrder {
   public static async fl401WithoutNoticeOrder(
@@ -31,12 +37,23 @@ export class FL401WithoutNoticeOrder {
         accessibilityTest,
         errorMessaging
       );
-      console.log('Hi')
+      await WithoutNoticeOrder3Page.withoutNoticeOrder3Page(
+        page,
+        accessibilityTest,
+        errorMessaging
+      );
+      console.log('Done w Page3')
+      await WithoutNoticeOrder4Page.withoutNoticeOrder4Page(
+        page,
+        accessibilityTest
+      );
+      console.log('Done w P4')
     }
     await WithoutNoticeOrderSubmitPage.withoutNoticeOrderSubmitPage(
       page, accessibilityTest, isWithoutNotice
     );
     await Fl401TasksTabPage.fl401TasksTabPage(page, accessibilityTest);
     console.log("Checked")
+
   }
 }

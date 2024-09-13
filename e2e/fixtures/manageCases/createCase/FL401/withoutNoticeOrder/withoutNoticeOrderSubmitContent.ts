@@ -13,6 +13,6 @@ export enum WithoutNoticeOrderSubmitContent {
   text16Yes6 = 'The applicant believes that the respondent is aware of the proceedings but is deliberately evading service and that the applicant or a relevant child will be seriously prejudiced by the delay in effecting substituted service',
   text16Yes7 = 'Provide further details of why a without notice hearing is required.',
   text16Yes8 = 'Is the respondent subject to any bail conditions?',
-  text16Yes9 = 'Is the respondent subject to any bail conditions?',
+  text16Yes9 = 'Is there anything else about the applicant\'s situation that you would like the court to be aware of, or know about or consider?',
   continue = ' Save and continue '
 }

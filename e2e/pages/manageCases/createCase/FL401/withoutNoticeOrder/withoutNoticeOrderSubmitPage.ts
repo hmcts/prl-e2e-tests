@@ -23,6 +23,7 @@ export class WithoutNoticeOrderSubmitPage{
     await page.waitForSelector(
       `${Selectors.h2}:text-is("${WithoutNoticeOrderSubmitContent.pageHeading}")`
     );
+    console.log('Checking Submit Static Content')
     await Promise.all(
       [
         Helpers.checkVisibleAndPresent(
@@ -50,7 +51,23 @@ export class WithoutNoticeOrderSubmitPage{
   private static async checkPageLoadsYes(
     page: Page,
   ): Promise<void> {
-
+    console.log('Check Submit Yes')
+    await Promise.all(
+      [
+        Helpers.checkGroup(
+          page,
+          9,
+          WithoutNoticeOrderSubmitContent,
+          'text16Yes',
+          `${Selectors.GovukText16}`
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukText16}:text-is("${WithoutNoticeOrderSubmitContent.textChange}")`,
+          4
+        )
+      ]
+    );
   }
 
   private static async checkPageLoadsNo(
@@ -71,7 +88,7 @@ export class WithoutNoticeOrderSubmitPage{
           1
         )
       ]
-    )
+    );
   }
 
   private static async fillInFields(

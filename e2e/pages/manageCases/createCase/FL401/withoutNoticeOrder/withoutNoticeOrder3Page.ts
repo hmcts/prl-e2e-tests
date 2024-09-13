@@ -46,19 +46,20 @@ export class WithoutNoticeOrder3Page{
     accessibilityTest: boolean
   ): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukHeadingL}:text-is("${WithoutNoticeOrderDetails2Content.pageTitle}")`
+      `${Selectors.GovukHeadingL}:text-is("${WithoutNoticeOrderDetails3Content.pageTitle}")`
     );
+    console.log('Checking static fields of P3')
     await Promise.all(
       [
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.p}:text-is("${WithoutNoticeOrderDetails2Content.p1}")`,
+          `${Selectors.p}:text-is("${WithoutNoticeOrderDetails3Content.p1}")`,
           1
         ),
         Helpers.checkGroup(
           page,
           4,
-          WithoutNoticeOrderDetails2Content,
+          WithoutNoticeOrderDetails3Content,
           'formLabel',
           `${Selectors.GovukFormLabel}`
         ),
@@ -119,9 +120,15 @@ export class WithoutNoticeOrder3Page{
         ),
       ]
     );
+    await page.click(
+      withoutNoticeOrderInputIDs.radioYes
+    );
     await this.fillInDates(
       page,
       incompleteBailDate
+    );
+    await page.click(
+      `${Selectors.button}:text-is("${WithoutNoticeOrderDetails3Content.continue}")`
     );
     await Promise.all(
       [
