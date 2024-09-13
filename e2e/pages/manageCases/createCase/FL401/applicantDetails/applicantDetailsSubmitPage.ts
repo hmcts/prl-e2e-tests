@@ -3,7 +3,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { ApplicantDetailsSubmitContent } from "../../../../../fixtures/manageCases/createCase/FL401/applicantDetails/applicantDetailsSubmitContent";
 import { Helpers } from "../../../../../common/helpers";
 import { SubmitContent } from "../../../../../fixtures/manageCases/createCase/FL401/typeOfApplication/submitContent";
-import accessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { ApplicantGender } from "../../../../../common/types";
 
 export class ApplicantDetailsSubmitPage {

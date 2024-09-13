@@ -307,6 +307,9 @@ export class ApplicantDetails1Page {
       await page.click(
         `${uniqueSelectorPaths[findAddressUniqueKey]} > button:text-is("${ApplicantDetails1Content.postcodeButton_2}")`,
       );
+      await page.waitForSelector(
+        `${Selectors.GovukFormLabel}:text-is("${ApplicantDetails1Content.selectAddress}")`
+      )
       let selectAddressID =
         `${person}SelectAddress` as keyof typeof applicantInputIDs;
       await page
