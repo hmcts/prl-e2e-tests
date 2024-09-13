@@ -59,34 +59,7 @@ enum applicantInputIDs {
   solicitorCountry = "#applicantsFL401_solicitorAddress__detailCountry",
 }
 
-export enum buckinghamPalace {
-  bpBuildingAndStreet = "Buckingham Palace",
-  bpAddressLine2 = "",
-  bpAddressLine3 = "",
-  bpCity = "London",
-  bpCounty = "",
-  bpPostalCode = "SW1A 1AA",
-  bpCountry = "United Kingdom",
-}
 
-export enum topLevelInputFields {
-  applicantFirstName = "Charlie",
-  applicantLastName = "Alpha",
-  applicantPreviousName = "Morgan",
-  applicantBirthDay = "12",
-  applicantBirthMonth = "12",
-  applicantBirthYear = "1980",
-  applicantInputPostCode = buckinghamPalace.bpPostalCode,
-  applicantPhoneNumber = "+44123456789",
-  solicitorFirstName = "Tony",
-  solicitorLastName = "Stark",
-  solicitorEmailAddress = "iron@man.com",
-  solicitorPhoneNumber = "123456789",
-  solicitorReference = "Some kind of reference",
-  organisationSearch = "My New Org",
-  dxNumber = "0000000000000000",
-  solicitorPostCode = buckinghamPalace.bpPostalCode,
-}
 
 enum invalidPhoneNumbers {
   nonNumeric = "abcdef",
@@ -99,10 +72,6 @@ enum invalidDoB {
   applicantBirthYear = "1990",
 }
 
-export enum secondLevelInputFields {
-  applicantGenderOtherInput = "Non-Binary",
-  applicantEmailAddress = "name@email.com",
-}
 
 export class ApplicantDetails1Page {
   public static async applicantDetails1Page(
@@ -130,14 +99,13 @@ export class ApplicantDetails1Page {
         `${Selectors.GovukFormHint}:text-is("${ApplicantDetails1Content.formHintDoB}")`,
         1,
       ),
-      ...["day", "month", "year"].map((el) => {
-        let formKey = `${el}FormLabel`;
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${uniqueSelectorPaths.dobFormLabel} > ${Selectors.GovukFormLabel}:text-is("${ApplicantDetails1Content[formKey as keyof typeof ApplicantDetails1Content]}")`,
-          1,
-        );
-      }),
+      Helpers.checkGroup(
+        page,
+        3,
+        ApplicantDetails1Content,
+        'dateLabel',
+        `${Selectors.GovukFormLabel}`
+      ),
       Helpers.checkGroup(
         page,
         3,
@@ -187,7 +155,7 @@ export class ApplicantDetails1Page {
   }
 
   private static async fillInTopLevelFields(page: Page): Promise<void> {
-    for (let [key, input_value] of Object.entries(topLevelInputFields)) {
+    for (let [key, input_value] of Object.entries(ApplicantDetails1Content)) {
       let input_id: string =
         applicantInputIDs[key as keyof typeof applicantInputIDs];
       await page.fill(input_id, "");
@@ -209,7 +177,7 @@ export class ApplicantDetails1Page {
   }
 
   private static async fillInSecondLevelFields(page: Page): Promise<void> {
-    for (let [key, input_value] of Object.entries(secondLevelInputFields)) {
+    for (let [key, input_value] of Object.entries(ApplicantDetails1Content)) {
       let input_id: string =
         applicantInputIDs[key as keyof typeof applicantInputIDs];
       await page.fill(input_id, "");
@@ -291,24 +259,24 @@ export class ApplicantDetails1Page {
     await Promise.all([
       expect(
         page.locator(applicantInputIDs.applicantBuildingAndStreet),
-      ).toHaveValue(buckinghamPalace.bpBuildingAndStreet),
+      ).toHaveValue(applicantDetails1Content.bpBuildingAndStreet),
       expect(page.locator(applicantInputIDs.applicantAddressLine2)).toHaveValue(
-        buckinghamPalace.bpAddressLine2,
+        applicantDetails1Content.bpAddressLine2,
       ),
       expect(page.locator(applicantInputIDs.applicantAddressLine3)).toHaveValue(
-        buckinghamPalace.bpAddressLine3,
+        applicantDetails1Content.bpAddressLine3,
       ),
       expect(page.locator(applicantInputIDs.applicantCity)).toHaveValue(
-        buckinghamPalace.bpCity,
+        applicantDetails1Content.bpCity,
       ),
       expect(page.locator(applicantInputIDs.applicantCounty)).toHaveValue(
-        buckinghamPalace.bpCounty,
+        applicantDetails1Content.bpCounty,
       ),
       expect(page.locator(applicantInputIDs.applicantPostalCode)).toHaveValue(
-        buckinghamPalace.bpPostalCode,
+        applicantDetails1Content.bpPostalCode,
       ),
       expect(page.locator(applicantInputIDs.applicantCountry)).toHaveValue(
-        buckinghamPalace.bpCountry,
+        applicantDetails1Content.bpCountry,
       ),
     ]);
   }
@@ -317,30 +285,30 @@ export class ApplicantDetails1Page {
     await Promise.all([
       expect(
         page.locator(applicantInputIDs.solicitorBuildingAndStreet),
-      ).toHaveValue(buckinghamPalace.bpBuildingAndStreet),
+      ).toHaveValue(applicantDetails1Content.bpBuildingAndStreet),
       expect(page.locator(applicantInputIDs.solicitorAddressLine2)).toHaveValue(
-        buckinghamPalace.bpAddressLine2,
+        applicantDetails1Content.bpAddressLine2,
       ),
       expect(page.locator(applicantInputIDs.solicitorAddressLine3)).toHaveValue(
-        buckinghamPalace.bpAddressLine3,
+        applicantDetails1Content.bpAddressLine3,
       ),
       expect(page.locator(applicantInputIDs.solicitorCity)).toHaveValue(
-        buckinghamPalace.bpCity,
+        applicantDetails1Content.bpCity,
       ),
       expect(page.locator(applicantInputIDs.solicitorCounty)).toHaveValue(
-        buckinghamPalace.bpCounty,
+        applicantDetails1Content.bpCounty,
       ),
       expect(page.locator(applicantInputIDs.solicitorPostalCode)).toHaveValue(
-        buckinghamPalace.bpPostalCode,
+        applicantDetails1Content.bpPostalCode,
       ),
       expect(page.locator(applicantInputIDs.solicitorCountry)).toHaveValue(
-        buckinghamPalace.bpCountry,
+        applicantDetails1Content.bpCountry,
       ),
     ]);
   }
 
   private static async selectOrganisation(page: Page): Promise<void> {
-    const orgSelector = `${Selectors.a}[title="Select the organisation ${topLevelInputFields.organisationSearch}"]`;
+    const orgSelector = `${Selectors.a}[title="Select the organisation ${ApplicantDetails1Content.organisationSearch}"]`;
     await page.click(orgSelector);
   }
 
