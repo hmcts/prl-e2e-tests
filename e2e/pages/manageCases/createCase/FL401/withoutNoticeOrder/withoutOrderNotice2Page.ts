@@ -3,7 +3,6 @@ import { Selectors } from "../../../../../common/selectors";
 import { WithoutNoticeOrderDetails2Content } from "../../../../../fixtures/manageCases/createCase/FL401/withoutNoticeOrder/withoutNoticeOrderDetails2Content";
 import { Helpers } from "../../../../../common/helpers";
 import accessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { WithoutNoticeOrderDetails3Content } from "../../../../../fixtures/manageCases/createCase/FL401/withoutNoticeOrder/withoutNoticeOrderDetails3Content";
 
 enum withoutNoticeOrder4IDs {
   harmToChild = "#reasonForOrderWithoutGivingNotice_reasonForOrderWithoutGivingNotice-harmToApplicantOrChild",
