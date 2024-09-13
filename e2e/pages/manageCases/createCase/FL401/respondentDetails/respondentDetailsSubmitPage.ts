@@ -3,7 +3,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { SubmitContent } from "../../../../../fixtures/manageCases/createCase/FL401/respondentDetails/submitContent";
 import { Helpers } from "../../../../../common/helpers";
 import accessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { exampleData } from "./respondentDetailsPage";
+import { RespondentDetailsContent } from "../../../../../fixtures/manageCases/createCase/FL401/respondentDetails/respondentDetailsContent";
 
 export class RespondentDetailsSubmitPage {
   public static async respondentDetailsSubmitPage(
@@ -73,12 +73,12 @@ export class RespondentDetailsSubmitPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukText16}:text-is("${exampleData.exampleFirstName}")`,
+        `${Selectors.GovukText16}:text-is("${RespondentDetailsContent.exampleFirstName}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukText16}:text-is("${exampleData.exampleLastName}")`,
+        `${Selectors.GovukText16}:text-is("${RespondentDetailsContent.exampleLastName}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -127,12 +127,12 @@ export class RespondentDetailsSubmitPage {
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukText16}:text-is("${Helpers.dayAbbreviatedMonthYear(exampleData.exampleDay, exampleData.exampleMonth, exampleData.exampleYear)}")`,
+          `${Selectors.GovukText16}:text-is("${Helpers.dayAbbreviatedMonthYear(RespondentDetailsContent.exampleDay, RespondentDetailsContent.exampleMonth, RespondentDetailsContent.exampleYear)}")`,
           1,
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.a}:text-is("${exampleData.exampleEmailAddress}")`,
+          `${Selectors.a}:text-is("${RespondentDetailsContent.exampleEmailAddress}")`,
           1,
         ),
       ]);

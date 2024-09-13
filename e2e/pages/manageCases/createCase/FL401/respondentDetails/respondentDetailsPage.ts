@@ -33,33 +33,8 @@ enum inputFieldIds {
   address_postcodeInput = "#respondentsFL401_address_address_postcodeInput",
   email = "#respondentsFL401_email",
   contactNumber = "#respondentsFL401_phoneNumber",
+  addressList = "select#respondentsFL401_address_address_addressList",
 }
-
-export enum exampleData {
-  exampleFirstName = "firstName",
-  exampleLastName = "lastName",
-  exampleDay = "12",
-  exampleMonth = "10",
-  exampleYear = "2008",
-  examplePostCode = "SW1A 1AA",
-  exampleEmailAddress = "repondent1@example.net",
-  exampleContactNumber = "00000000000",
-  invalidEmailAddress = "invalidEmailAddress",
-  invalidContactNumber = "invalidContactNumber",
-}
-
-const fieldToDataMapping: {
-  [key in keyof typeof inputFieldIds]: keyof typeof exampleData;
-} = {
-  dateOfBirth_day: "exampleDay",
-  dateOfBirth_month: "exampleMonth",
-  dateOfBirth_year: "exampleYear",
-  address_postcodeInput: "examplePostCode",
-  email: "exampleEmailAddress",
-  contactNumber: "exampleContactNumber",
-};
-
-const addressList = "select#respondentsFL401_address_address_addressList";
 
 export class RespondentDetailsPage {
   public static async respondentDetailsPage(
@@ -97,45 +72,12 @@ export class RespondentDetailsPage {
         `${Selectors.p}:text-is("${RespondentDetailsContent.textOnPage}")`,
         1,
       ),
-      Helpers.checkVisibleAndPresent(
+      Helpers.checkGroup(
         page,
-        `${Selectors.GovukFormLabel}:text-is("${RespondentDetailsContent.formLabel1}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukFormLabel}:text-is("${RespondentDetailsContent.formLabel2}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukFormLabel}:text-is("${RespondentDetailsContent.formLabel3}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukFormLabel}:text-is("${RespondentDetailsContent.formLabel4}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukFormLabel}:text-is("${RespondentDetailsContent.formLabel5}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukFormLabel}:text-is("${RespondentDetailsContent.formLabel6}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukFormLabel}:text-is("${RespondentDetailsContent.formLabel7}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukFormLabel}:text-is("${RespondentDetailsContent.formLabel9}")`,
-        1,
+        8,
+        RespondentDetailsContent,
+        "formLabel",
+        `${Selectors.GovukFormLabel}`,
       ),
     ]);
     if (accessibilityTest) {
@@ -146,10 +88,13 @@ export class RespondentDetailsPage {
   private static async checkErrorMessaging(page: Page): Promise<void> {
     await page.click(radioIdsYes.canYouProvideEmailAddress_Yes);
     await page.click(radioIdsYes.canYouProvidePhoneNumber_Yes);
-    await page.fill(`${inputFieldIds.email}`, exampleData.invalidEmailAddress);
+    await page.fill(
+      `${inputFieldIds.email}`,
+      RespondentDetailsContent.invalidEmailAddress,
+    );
     await page.fill(
       `${inputFieldIds.contactNumber}`,
-      exampleData.invalidContactNumber,
+      RespondentDetailsContent.invalidContactNumber,
     );
 
     await page.click(
@@ -194,8 +139,14 @@ export class RespondentDetailsPage {
     respondentDetailsAllOptionsYes: boolean,
     accessibilityTest: boolean,
   ): Promise<void> {
-    await page.fill(`${nameFieldIds.firstName}`, exampleData.exampleFirstName);
-    await page.fill(`${nameFieldIds.lastName}`, exampleData.exampleLastName);
+    await page.fill(
+      `${nameFieldIds.firstName}`,
+      RespondentDetailsContent.exampleFirstName,
+    );
+    await page.fill(
+      `${nameFieldIds.lastName}`,
+      RespondentDetailsContent.exampleLastName,
+    );
 
     if (respondentDetailsAllOptionsYes) {
       for (let selector of Object.values(radioIdsYes)) {
@@ -204,12 +155,30 @@ export class RespondentDetailsPage {
 
       await this.checkPopupTextLoads(page, accessibilityTest);
 
-      for (const [fieldId, dataKey] of Object.entries(fieldToDataMapping)) {
-        await page.fill(
-          inputFieldIds[fieldId as keyof typeof inputFieldIds],
-          exampleData[dataKey],
-        );
-      }
+      await page.fill(
+        `${inputFieldIds.dateOfBirth_day}`,
+        RespondentDetailsContent.exampleDay,
+      );
+      await page.fill(
+        `${inputFieldIds.dateOfBirth_month}`,
+        RespondentDetailsContent.exampleMonth,
+      );
+      await page.fill(
+        `${inputFieldIds.dateOfBirth_year}`,
+        RespondentDetailsContent.exampleYear,
+      );
+      await page.fill(
+        `${inputFieldIds.address_postcodeInput}`,
+        RespondentDetailsContent.examplePostCode,
+      );
+      await page.fill(
+        `${inputFieldIds.email}`,
+        RespondentDetailsContent.exampleEmailAddress,
+      );
+      await page.fill(
+        `${inputFieldIds.contactNumber}`,
+        RespondentDetailsContent.exampleContactNumber,
+      );
 
       await this.checkFindAddressWorks(page, accessibilityTest);
     } else {
@@ -262,11 +231,11 @@ export class RespondentDetailsPage {
       `${Selectors.button}:text-is("${RespondentDetailsContent.findAddress}")`,
     );
 
-    await page.selectOption(`${addressList}`, {
+    await page.selectOption(`${inputFieldIds.addressList}`, {
       label: `${RespondentDetailsContent.buckinghamPalace}`,
     });
 
-    const dropdown = await page.$(`${addressList}`);
+    const dropdown = await page.$(`${inputFieldIds.addressList}`);
 
     const receivedAddresses = await dropdown?.evaluate((select) =>
       Array.from(select.options).map((option) => option.text.trim()),
