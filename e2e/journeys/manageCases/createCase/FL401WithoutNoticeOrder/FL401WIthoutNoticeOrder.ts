@@ -17,7 +17,6 @@ export class FL401WithoutNoticeOrder {
     bailConditions: bailConditionRadios,
   ): Promise<void> {
     await Helpers.selectSolicitorEvent(page, "Without notice order");
-
     await WithoutNoticeOrder1Page.withoutOrderNotice1Page(
       page,
       accessibilityTest,

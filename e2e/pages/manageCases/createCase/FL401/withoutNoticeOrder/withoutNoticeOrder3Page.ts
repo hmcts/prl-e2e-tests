@@ -70,11 +70,11 @@ export class WithoutNoticeOrder3Page {
     accessibilityTest: boolean,
   ): Promise<void> {
     await Promise.all([
-      // Helpers.checkVisibleAndPresent(
-      //   page,
-      //   `${Selectors.GovukFormHint}:text-is("${WithoutNoticeOrderDetails3Content.yesFormHint}")`,
-      //   1
-      // ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormHint}:text-is("${WithoutNoticeOrderDetails3Content.yesFormHint}")`,
+        1
+      ),
       Helpers.checkGroup(
         page,
         3,
@@ -153,9 +153,6 @@ export class WithoutNoticeOrder3Page {
         await page.click(withoutNoticeOrderInputIDs.radioYes);
         await this.fillInDates(page, WithoutNoticeOrderDetails3Content);
         await this.checkExpandedFields(page, accessibilityTest);
-        await page.waitForSelector(
-          `${Selectors.GovukFormHint}:text-is("${WithoutNoticeOrderDetails3Content.yesFormHint}")`,
-        );
         break;
       case "No":
         await page.click(withoutNoticeOrderInputIDs.radioNo);

@@ -90,7 +90,6 @@ export class WithoutOrderNotice2Page {
         await page.check(selector);
       }
     }
-
     await page.click(
       `${Selectors.button}:text-is("${WithoutNoticeOrderDetails2Content.continue}")`,
     );
