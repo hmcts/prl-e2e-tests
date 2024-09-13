@@ -54,7 +54,7 @@ export class selectApplicationType4Page {
       ),
     ]);
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page); TODO: Disabled pending ticket
+      // await AccessibilityTestHelper.run(page);
     }
   }
 
