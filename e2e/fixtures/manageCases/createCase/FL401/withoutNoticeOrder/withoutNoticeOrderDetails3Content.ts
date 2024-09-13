@@ -12,5 +12,7 @@ export enum WithoutNoticeOrderDetails3Content {
   continue = 'Continue',
   errorSummary = ' There is a problem ',
   validationError = ' Is the respondent subject to any bail conditions? is required ',
-  errorMessage = 'Is the respondent subject to any bail conditions? is required'
+  errorMessage = 'Is the respondent subject to any bail conditions? is required',
+  incompleteDateValidationError = ' Field is not valid ',
+  incompleteDateErrorMessage = ' The data entered is not valid for Field ',
 }
