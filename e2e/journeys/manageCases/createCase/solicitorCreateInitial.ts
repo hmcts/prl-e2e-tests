@@ -43,9 +43,7 @@ export class SolicitorCreateInitial {
           accessibilityTest,
         );
         await SubmitPage.submitPage(page, accessibilityTest, caseName);
-        await C100TasksTabPage.c100TasksTabPage(
-          page, accessibilityTest
-        )
+        await C100TasksTabPage.c100TasksTabPage(page, accessibilityTest);
         break;
       case "FL401":
         await SolicitorCreate3Page.solicitorCreate3Page(
@@ -59,10 +57,7 @@ export class SolicitorCreateInitial {
           accessibilityTest,
         );
         await SubmitPage.submitPage(page, accessibilityTest, caseName);
-        await Fl401TasksTabPage.fl401TasksTabPage(
-          page,
-          accessibilityTest
-        )
+        await Fl401TasksTabPage.fl401TasksTabPage(page, accessibilityTest);
         break;
       default:
         caseName = "null";

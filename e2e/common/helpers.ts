@@ -143,6 +143,11 @@ export class Helpers {
     return `Automated tester${randomNumber.toString()}`;
   }
 
+  public static capitalizeFirstPart(string: string): string {
+    if (!string) return string;
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
   private static readonly months: string[] = [
     "January",
     "February",

@@ -18,12 +18,6 @@ enum withoutNoticeOrderInputIDs {
   yearBail = '#bailConditionEndDate-year'
 }
 
-export enum bailEndDate {
-  day = '1',
-  month = '6',
-  year = '2028'
-}
-
 enum incompleteBailDate {
   day = '1',
   month = '',
@@ -49,9 +43,8 @@ export class WithoutNoticeOrder3Page{
     accessibilityTest: boolean
   ): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukHeadingL}:text-is("${WithoutNoticeOrderDetails3Content.pageTitle}")`
+      `${Selectors.GovukFormLabel}:text-is("${WithoutNoticeOrderDetails3Content.pageLoadText}")`
     );
-    console.log('Checking static fields of P3')
     await Promise.all(
       [
         Helpers.checkVisibleAndPresent(
@@ -59,9 +52,14 @@ export class WithoutNoticeOrder3Page{
           `${Selectors.p}:text-is("${WithoutNoticeOrderDetails3Content.p1}")`,
           1
         ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukHeadingL}:text-is("${WithoutNoticeOrderDetails3Content.pageTitle}")`,
+          1
+        ),
         Helpers.checkGroup(
           page,
-          4,
+          3,
           WithoutNoticeOrderDetails3Content,
           'formLabel',
           `${Selectors.GovukFormLabel}`
@@ -79,11 +77,11 @@ export class WithoutNoticeOrder3Page{
   ): Promise<void> {
     await Promise.all(
       [
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukFormHint}:text-is("${WithoutNoticeOrderDetails3Content.yesFormHint}")`,
-          1
-        ),
+        // Helpers.checkVisibleAndPresent(
+        //   page,
+        //   `${Selectors.GovukFormHint}:text-is("${WithoutNoticeOrderDetails3Content.yesFormHint}")`,
+        //   1
+        // ),
         Helpers.checkGroup(
           page,
           3,
@@ -158,17 +156,19 @@ export class WithoutNoticeOrder3Page{
     page: Page,
     file: E
   ): Promise<void> {
-    for (let [key, inputValue] of Object.entries(file)) {
-      let keyID = `${key}Bail` as keyof typeof withoutNoticeOrderInputIDs;
-      await page.fill(
-        withoutNoticeOrderInputIDs[keyID],
-        ''
-      );
-      await page.fill(
-        withoutNoticeOrderInputIDs[keyID],
-        inputValue
-      );
-    }
+    await page.fill(
+      withoutNoticeOrderInputIDs.dayBail,
+      file.day
+    );
+    await page.fill(
+      withoutNoticeOrderInputIDs.monthBail,
+      file.month
+    );
+    await page.fill(
+      withoutNoticeOrderInputIDs.yearBail,
+      file.year
+    );
+    await page.keyboard.press('Escape');
   }
 
   private static async fillInFields(
@@ -181,6 +181,17 @@ export class WithoutNoticeOrder3Page{
         await page.click(
           withoutNoticeOrderInputIDs.radioYes
         );
+        await this.fillInDates(
+          page,
+          WithoutNoticeOrderDetails3Content
+        )
+        await this.checkExpandedFields(
+          page,
+          accessibilityTest
+        );
+        await page.waitForSelector(
+          `${Selectors.GovukFormHint}:text-is("${WithoutNoticeOrderDetails3Content.yesFormHint}")`
+        )
         break
       case "No":
         await page.click(
@@ -192,18 +203,7 @@ export class WithoutNoticeOrder3Page{
           withoutNoticeOrderInputIDs.radioDK
         );
         break
-      default:
-        console.log('Unknown bail condition: ', bailConditions);
-        break
     }
-    await this.checkExpandedFields(
-      page,
-      accessibilityTest
-    );
-    await this.fillInDates(
-      page,
-      bailEndDate
-    )
     await page.click(
       `${Selectors.button}:text-is("${WithoutNoticeOrderDetails3Content.continue}")`
     );

@@ -5,13 +5,9 @@ import {
 } from "../../../../../fixtures/manageCases/createCase/FL401/withoutNoticeOrder/withoutNoticeOrderDetails4Content";
 import { Helpers } from "../../../../../common/helpers";
 import accessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import {
-  WithoutNoticeOrderDetails3Content
-} from "../../../../../fixtures/manageCases/createCase/FL401/withoutNoticeOrder/withoutNoticeOrderDetails3Content";
 
 export enum anyOtherDetails {
-  anyOtherDetailsID = 'anyOtherDtailsForWithoutNoticeOrder_otherDetails',
-  anyOtherDetailsContent = 'Some Other Details'
+  anyOtherDetailsID = '#anyOtherDtailsForWithoutNoticeOrder_otherDetails',
 }
 
 export class WithoutNoticeOrder4Page{
@@ -31,7 +27,7 @@ export class WithoutNoticeOrder4Page{
     accessibilityTest: boolean
   ): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukHeadingL}:text-is("${WithoutNoticeOrderDetails4Content.pageTitle}")`
+      `${Selectors.GovukFormLabel}:text-is("${WithoutNoticeOrderDetails4Content.pageLoadText}")`
     );
     await Promise.all(
       [
@@ -40,12 +36,10 @@ export class WithoutNoticeOrder4Page{
           `${Selectors.p}:text-is("${WithoutNoticeOrderDetails4Content.p1}")`,
           1
         ),
-        Helpers.checkGroup(
+        Helpers.checkVisibleAndPresent(
           page,
-          4,
-          WithoutNoticeOrderDetails4Content,
-          'formLabel',
-          `${Selectors.GovukFormLabel}`
+          `${Selectors.GovukHeadingL}:text-is("${WithoutNoticeOrderDetails4Content.pageTitle}")`,
+          1
         ),
       ]
     );
@@ -59,7 +53,7 @@ export class WithoutNoticeOrder4Page{
   ): Promise<void> {
     await page.fill(
       anyOtherDetails.anyOtherDetailsID,
-      anyOtherDetails.anyOtherDetailsContent
+      WithoutNoticeOrderDetails4Content.anyOtherDetailsContent
     )
     await page.click(
       `${Selectors.button}:text-is("${WithoutNoticeOrderDetails4Content.continue}")`

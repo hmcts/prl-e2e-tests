@@ -2,6 +2,8 @@ import { UserRole } from "../../../common/types";
 import { Page } from "@playwright/test";
 import { SolicitorCreateInitial } from "./solicitorCreateInitial";
 import { C100HearingUrgency } from "./C100HearingUrgency/C100HearingUrgency";
+import { C100ApplicantDetails } from "./C100ApplicantDetails/c100ApplicantDetails";
+import { ApplicantGender } from "../../../pages/manageCases/createCase/C100/applicantDetails/applicantDetails1Page";
 
 export class C100 {
   public static async c100(
@@ -10,6 +12,8 @@ export class C100 {
     accessibilityTest: boolean,
     errorMessaging: boolean,
     yesNo: boolean,
+    yesNoApplicantDetails: boolean,
+    applicantGender: ApplicantGender,
   ): Promise<void> {
     await SolicitorCreateInitial.createInitialCase(
       page,
@@ -24,6 +28,14 @@ export class C100 {
       accessibilityTest,
       errorMessaging,
       yesNo,
+    );
+    await C100ApplicantDetails.C100ApplicantDetails(
+      page,
+      user,
+      accessibilityTest,
+      errorMessaging,
+      yesNoApplicantDetails,
+      applicantGender,
     );
   }
 }

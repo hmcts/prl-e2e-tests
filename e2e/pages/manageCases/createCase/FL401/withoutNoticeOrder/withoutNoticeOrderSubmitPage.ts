@@ -4,7 +4,6 @@ import { Selectors } from "../../../../../common/selectors";
 import { WithoutNoticeOrderSubmitContent } from "../../../../../fixtures/manageCases/createCase/FL401/withoutNoticeOrder/withoutNoticeOrderSubmitContent";
 import accessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { bailConditionRadios } from "../../../../../journeys/manageCases/createCase/FL401";
-import { bailEndDate } from "./withoutNoticeOrder3Page";
 
 export class WithoutNoticeOrderSubmitPage{
   public static async withoutNoticeOrderSubmitPage(
@@ -26,7 +25,6 @@ export class WithoutNoticeOrderSubmitPage{
     await page.waitForSelector(
       `${Selectors.h2}:text-is("${WithoutNoticeOrderSubmitContent.pageHeading}")`
     );
-    console.log('Checking Submit Static Content')
     await Promise.all(
       [
         Helpers.checkVisibleAndPresent(
@@ -38,7 +36,7 @@ export class WithoutNoticeOrderSubmitPage{
           page,
           `${Selectors.GovukText16}:text-is("${WithoutNoticeOrderSubmitContent.checkInfo}")`,
           1
-        )
+        ),
       ]
     );
     if (isWithoutNotice) {
@@ -54,7 +52,7 @@ export class WithoutNoticeOrderSubmitPage{
     page: Page,
     bailConditions: bailConditionRadios
   ): Promise<void> {
-    console.log('Check Submit Yes')
+    let yesCount: number = (bailConditions === 'Yes') ? 2 : 1
     await Promise.all(
       [
         Helpers.checkGroup(
@@ -64,6 +62,13 @@ export class WithoutNoticeOrderSubmitPage{
           'text16Yes',
           `${Selectors.GovukText16}`
         ),
+        Helpers.checkGroup(
+          page,
+          2,
+          WithoutNoticeOrderSubmitContent,
+          'span',
+          `${Selectors.Span}`
+        ),
         Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukText16}:text-is("${WithoutNoticeOrderSubmitContent.textChange}")`,
@@ -71,20 +76,23 @@ export class WithoutNoticeOrderSubmitPage{
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukText16}:text-is("${bailConditions}")`,
-          1
+          `${Selectors.GovukText16}:text-is("${WithoutNoticeOrderSubmitContent.yesText}")`,
+          yesCount
         ),
       ]
     );
     if (bailConditions === 'Yes') {
-     let formattedDate: string = Helpers.dayAbbreviatedMonthYear(
-       bailEndDate.day, bailEndDate.month, bailEndDate.year
-     )
-     await Helpers.checkVisibleAndPresent(
+      await Helpers.checkVisibleAndPresent(
        page,
-       `${Selectors.GovukText16}:text-is("${formattedDate}")`,
+       `${Selectors.GovukText16}:text-is("${WithoutNoticeOrderSubmitContent.bailEndDate}")`,
        1
      );
+    } else {
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${bailConditions}")`,
+        2
+      );
     }
   }
 

@@ -28,7 +28,6 @@ export class FL401WithoutNoticeOrder {
       page,
       "Without notice order"
     );
-    console.log('Checking Static Text')
 
     await WithoutNoticeOrder1Page.withoutOrderNotice1Page(
       page, accessibilityTest, errorMessaging, isWithoutNotice
@@ -45,18 +44,14 @@ export class FL401WithoutNoticeOrder {
         errorMessaging,
         bailConditions
       );
-      console.log('Done w Page3')
       await WithoutNoticeOrder4Page.withoutNoticeOrder4Page(
         page,
         accessibilityTest
       );
-      console.log('Done w P4')
     }
     await WithoutNoticeOrderSubmitPage.withoutNoticeOrderSubmitPage(
       page, accessibilityTest, isWithoutNotice, bailConditions
     );
     await Fl401TasksTabPage.fl401TasksTabPage(page, accessibilityTest);
-    console.log("Checked")
-
   }
 }

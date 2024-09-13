@@ -13,5 +13,9 @@ export enum WithoutNoticeOrderSubmitContent {
   text16Yes6 = 'Provide further details of why a without notice hearing is required.',
   text16Yes7 = 'Is the respondent subject to any bail conditions?',
   text16Yes8 = 'Is there anything else about the applicant\'s situation that you would like the court to be aware of, or know about or consider?',
-  continue = ' Save and continue '
+  span1 = 'Some Reasons for my Case',
+  span2 = 'Some Other Details',
+  continue = ' Save and continue ',
+  bailEndDate = '6 Dec 2020',
+  yesText = 'Yes'
 }
