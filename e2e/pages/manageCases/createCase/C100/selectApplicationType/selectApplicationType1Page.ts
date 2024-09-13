@@ -4,8 +4,6 @@ import { SelectApplicationType1Content } from "../../../../../fixtures/manageCas
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 
-
-
 type typeOfChildArrangementOrderID =
   | "Spend time with order"
   | "Live with order"
@@ -100,7 +98,7 @@ export class selectApplicationType1Page {
     ]);
 
     await page.click(`${SelectButtonIDs.childArrangementsOrder}`);
-  console.log("clicked first option")
+
     await Promise.all([
       Helpers.checkGroup(
         page,
@@ -114,7 +112,6 @@ export class selectApplicationType1Page {
     await page.click(
       `${Selectors.button}:text-is("${SelectApplicationType1Content.continue}")`,
     );
-
 
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -150,8 +147,6 @@ export class selectApplicationType1Page {
 
       await page.click(buttonSelector);
     }
-    console.log("all should be selected")
-    console.log("clicked all options")
     switch (typeOfChildArrangementOrder) {
       case "Spend time with order":
         await page.click(`${PageIDs.spend}`);

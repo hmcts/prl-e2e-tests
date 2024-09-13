@@ -98,8 +98,6 @@ export class selectApplicationType2Page {
       `${Selectors.button}:text-is("${SelectApplicationType2Content.continue}")`,
     );
 
-
-
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
