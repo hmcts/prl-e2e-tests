@@ -21,6 +21,7 @@ export class selectApplicationType2Page {
   ): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest);
     if (errorMessaging) {
+      console.log("")
       await this.triggerErrorMessages(page);
     }
     await this.fillInFields(page, yesNo);
@@ -31,6 +32,7 @@ export class selectApplicationType2Page {
     page: Page,
     accessibilityTest: boolean,
   ): Promise<void> {
+
     await page.waitForSelector(
       `${Selectors.p}:text-is("${SelectApplicationType2Content.p1}")`,
     );
@@ -74,6 +76,7 @@ export class selectApplicationType2Page {
     ]);
 
     await page.click(`${PageIDs.yes}`);
+    await this.draftConsentContent(page);
     await page.click(
       `${Selectors.button}:text-is("${SelectApplicationType2Content.continue}")`,
     );

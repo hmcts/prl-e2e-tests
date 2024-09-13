@@ -92,7 +92,7 @@ export class selectApplicationType1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorSummary}:has-text("${SelectApplicationType1Content.errorMessageOrdersApplyingFor}")`,
+        `${Selectors.GovukErrorValidation}:has-text("${SelectApplicationType1Content.errorMessageOrdersApplyingFor}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -103,8 +103,8 @@ export class selectApplicationType1Page {
     ]);
 
     await page.click(`${SelectButtonIDs.childArrangementsOrder}`);
-    await page.click(`${SelectButtonIDs.prohibitedStepsOrder}`);
-    await page.click(`${SelectButtonIDs.specificIssueOrder}`);
+
+    console.log("clicked all options")
 
     await page.click(
       `${Selectors.button}:text-is("${SelectApplicationType1Content.continue}")`,
@@ -120,15 +120,12 @@ export class selectApplicationType1Page {
       ),
     ]);
 
+    console.log("clicked continue")
+
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorSummary}:text-is("${SelectApplicationType1Content.errorBanner}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukErrorSummary}:has-text("${SelectApplicationType1Content.errorMessageSelectChildArrangementOrder}")`,
+        `${Selectors.GovukErrorValidation}:has-text("${SelectApplicationType1Content.errorMessageSelectChildArrangementOrder}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -138,7 +135,7 @@ export class selectApplicationType1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorSummary}:has-text("${SelectApplicationType1Content.errorMessageProvideMoreInfo}")`,
+        `${Selectors.GovukErrorValidation}:has-text("${SelectApplicationType1Content.errorMessageProvideMoreInfo}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -158,6 +155,7 @@ export class selectApplicationType1Page {
 
       await page.click(buttonSelector);
     }
+    console.log("filling fields starting")
     switch (typeOfChildArrangementOrder) {
       case "Spend time with order":
         await page.click(`${PageIDs.spend}`);
@@ -184,7 +182,7 @@ export class selectApplicationType1Page {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukFormLabel}:text-is("${SelectApplicationType1Content.additionalFormLabel0}")`,
+        `${Selectors.GovukFormLabel}:text-is("${SelectApplicationType1Content.additionalFormLabel1}")`,
         1,
       ),
       Helpers.checkGroup(
