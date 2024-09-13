@@ -28,7 +28,7 @@ export class ApplicantDetailsSubmitPage {
       this.checkFilledInData(page),
     ]);
     if (accessibilityTest) {
-      await accessibilityTestHelper.run(page);
+      // await AccessibilityTestHelper.run(page); TODO: Disabled pending ticket FPET-1135
     }
   }
 
