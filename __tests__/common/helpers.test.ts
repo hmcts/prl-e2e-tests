@@ -117,4 +117,36 @@ describe("Helpers", () => {
       expect(result3).not.toBe(result1);
     });
   });
+
+  describe("capitalizeFirstPart", () => {
+    it("should capitalize the first letter of a string", () => {
+      const result = Helpers.capitalizeFirstPart("hello world");
+      expect(result).toBe("Hello world");
+    });
+
+    it("should return an empty string if input is empty", () => {
+      const result = Helpers.capitalizeFirstPart("");
+      expect(result).toBe("");
+    });
+
+    it("should handle a single character string", () => {
+      const result = Helpers.capitalizeFirstPart("a");
+      expect(result).toBe("A");
+    });
+
+    it("should not alter the rest of the string", () => {
+      const result = Helpers.capitalizeFirstPart("hELLO world");
+      expect(result).toBe("HELLO world");
+    });
+
+    it("should handle strings with leading whitespace", () => {
+      const result = Helpers.capitalizeFirstPart("  hello world");
+      expect(result).toBe("  hello world");
+    });
+
+    it("should handle already capitalized strings", () => {
+      const result = Helpers.capitalizeFirstPart("Hello world");
+      expect(result).toBe("Hello world");
+    });
+  });
 });
