@@ -72,7 +72,11 @@ export class RespondentDetailsPage {
     if (errorMessaging) {
       await this.checkErrorMessaging(page);
     }
-    await this.fillInFields(page, respondentDetailsAllOptionsYes, accessibilityTest);
+    await this.fillInFields(
+      page,
+      respondentDetailsAllOptionsYes,
+      accessibilityTest,
+    );
   }
 
   private static async checkPageLoads(
@@ -258,7 +262,9 @@ export class RespondentDetailsPage {
       `${Selectors.button}:text-is("${RespondentDetailsContent.findAddress}")`,
     );
 
-    await page.selectOption(`${addressList}`, { label: `${RespondentDetailsContent.buckinghamPalace}` })
+    await page.selectOption(`${addressList}`, {
+      label: `${RespondentDetailsContent.buckinghamPalace}`,
+    });
 
     const dropdown = await page.$(`${addressList}`);
 
@@ -266,7 +272,9 @@ export class RespondentDetailsPage {
       Array.from(select.options).map((option) => option.text.trim()),
     );
 
-    expect(receivedAddresses).toEqual(RespondentDetailsContent.expectedAddresses);
+    expect(receivedAddresses).toEqual(
+      RespondentDetailsContent.expectedAddresses,
+    );
 
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);

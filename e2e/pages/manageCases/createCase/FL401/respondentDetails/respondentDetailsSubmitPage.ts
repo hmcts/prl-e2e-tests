@@ -11,7 +11,11 @@ export class RespondentDetailsSubmitPage {
     accessibilityTest: boolean,
     respondentDetailsAllOptionsYes: boolean,
   ): Promise<void> {
-    await this.checkPageContent(page, accessibilityTest, respondentDetailsAllOptionsYes);
+    await this.checkPageContent(
+      page,
+      accessibilityTest,
+      respondentDetailsAllOptionsYes,
+    );
     await this.fillInFields(page);
   }
 
