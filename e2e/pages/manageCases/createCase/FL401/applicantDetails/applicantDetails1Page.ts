@@ -3,6 +3,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { ApplicantDetails1Content } from "../../../../../fixtures/manageCases/createCase/FL401/applicantDetails/applicantDetails1Content";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { ApplicantGender } from "../../../../../common/types";
 
 enum uniqueSelectorPaths {
   dobFormLabel = "div > ccd-field-write > div > ccd-write-complex-type-field > div > fieldset > ccd-field-write > div > ccd-write-date-container-field > ccd-write-date-field > div > fieldset > cut-date-input > div > div",
@@ -59,8 +60,6 @@ enum applicantInputIDs {
   solicitorCountry = "#applicantsFL401_solicitorAddress__detailCountry",
 }
 
-
-
 enum invalidPhoneNumbers {
   nonNumeric = "abcdef",
   tooShort = "12345678",
@@ -71,7 +70,6 @@ enum invalidDoB {
   applicantBirthMonth = "10",
   applicantBirthYear = "1990",
 }
-
 
 export class ApplicantDetails1Page {
   public static async applicantDetails1Page(
@@ -143,9 +141,9 @@ export class ApplicantDetails1Page {
     }
   }
 
-  private static async fillInFields(page: Page): Promise<void> {
+  private static async fillInFields(page: Page, yesNoFL401ApplicantDetails: boolean): Promise<void> {
     await this.fillInTopLevelFields(page);
-    await this.fillInRadios(page);
+    await this.fillInYesNoRadios(page, yesNoFL401ApplicantDetails);
     await this.fillInSecondLevelFields(page);
     await this.fillAndCheckAddressFields(page);
     await this.selectOrganisation(page);
@@ -163,18 +161,56 @@ export class ApplicantDetails1Page {
     }
   }
 
-  private static async fillInRadios(page: Page): Promise<void> {
-    const radiosToClick = [
-      applicantInputIDs.applicantGenderOther,
-      applicantInputIDs.confidentialAddressYes,
-      applicantInputIDs.canProvideEmailAddressYes,
-      applicantInputIDs.confidentialEmailYes,
-      applicantInputIDs.confidentialPhoneNumberYes,
-    ];
-    for (let radioID of radiosToClick) {
-      await page.click(radioID);
+  private static async fillInYesNoRadios(page: Page, yesNoFL401ApplicantDetails: boolean): Promise<void> {
+      if (yesNoFL401ApplicantDetails) {
+        const radiosToClick = [
+          applicantInputIDs.confidentialAddressYes,
+          applicantInputIDs.canProvideEmailAddressYes,
+          applicantInputIDs.confidentialEmailYes,
+          applicantInputIDs.confidentialPhoneNumberYes,
+        ];
+        for (let radioID of radiosToClick) {
+          await page.click(radioID);
+        }
+      } else {
+          const radiosToClick = [
+            applicantInputIDs.confidentialAddressNo,
+            applicantInputIDs.canProvideEmailAddressNo,
+            applicantInputIDs.confidentialEmailNo,
+            applicantInputIDs.confidentialPhoneNumberNo,
+          ];
+          for (let radioID of radiosToClick) {
+            await page.click(radioID);
+          }
+        }
     }
-  }
+
+  private static async fillInGenderRadio(
+    page: Page,
+    applicantGender: ApplicantGender
+  ): Promise<void> {
+    switch (applicantGender) {
+      case ('female'):
+        await page.click(
+          applicantInputIDs.applicantGenderFemale
+        );
+        break
+      case ('male'):
+        await page.click(
+          applicantInputIDs.applicantGenderMale
+        );
+        break
+      case ('other'):
+        await page.click(
+          applicantInputIDs.applicantGenderOther
+        );
+        await page.fill(
+          applicantInputIDs.applicantGenderOtherInput,
+          ApplicantDetails1Content.applicantGenderOtherInput
+        )
+        break
+    }
+}
 
   private static async fillInSecondLevelFields(page: Page): Promise<void> {
     for (let [key, input_value] of Object.entries(ApplicantDetails1Content)) {

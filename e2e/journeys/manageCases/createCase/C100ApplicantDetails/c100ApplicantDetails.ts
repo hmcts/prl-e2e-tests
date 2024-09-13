@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { UserRole } from "../../../../common/types";
+import { ApplicantGender, UserRole } from "../../../../common/types";
 import { Helpers } from "../../../../common/helpers";
 import {
   ApplicantDetails1Page,
-  ApplicantGender,
+
 } from "../../../../pages/manageCases/createCase/C100/applicantDetails/applicantDetails1Page";
 import { ApplicantDetailsSubmitPage } from "../../../../pages/manageCases/createCase/C100/applicantDetails/applicantDetailsSubmitPage";
 import { C100TasksTabPage } from "../../../../pages/manageCases/caseTabs/c100TasksTabPage";
