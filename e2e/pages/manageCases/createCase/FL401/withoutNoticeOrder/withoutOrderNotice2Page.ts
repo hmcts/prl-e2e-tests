@@ -7,9 +7,9 @@ import { Helpers } from "../../../../../common/helpers";
 import accessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 
 enum checkboxInputIDs {
-  harmToChild = 'reasonForOrderWithoutGivingNotice_reasonForOrderWithoutGivingNotice-harmToApplicantOrChild',
-  deferringApplication = 'reasonForOrderWithoutGivingNotice_reasonForOrderWithoutGivingNotice-deferringApplicationIfNotImmediate',
-  isPrejudiced = 'reasonForOrderWithoutGivingNotice_reasonForOrderWithoutGivingNotice-prejudiced'
+  harmToChild = '#reasonForOrderWithoutGivingNotice_reasonForOrderWithoutGivingNotice-harmToApplicantOrChild',
+  deferringApplication = '#reasonForOrderWithoutGivingNotice_reasonForOrderWithoutGivingNotice-deferringApplicationIfNotImmediate',
+  isPrejudiced = '#reasonForOrderWithoutGivingNotice_reasonForOrderWithoutGivingNotice-prejudiced'
 }
 
 export class WithoutOrderNotice2Page{
