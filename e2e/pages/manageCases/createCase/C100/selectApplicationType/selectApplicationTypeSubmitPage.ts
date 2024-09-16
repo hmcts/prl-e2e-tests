@@ -18,11 +18,11 @@ export class selectApplicationTypeSubmitPage {
     page: Page,
     accessibilityTest: boolean,
     yesNo: boolean,
-    selection: radioButtons
+    selection: radioButtons,
   ): Promise<void> {
     await Promise.all([
       this.checkPageLoads(page, accessibilityTest, yesNo),
-      this.checkFilledFields(page, selection)
+      this.checkFilledFields(page, selection),
     ]);
   }
 
@@ -95,7 +95,7 @@ export class selectApplicationTypeSubmitPage {
 
   private static async checkFilledFields(
     page: Page,
-    selection: radioButtons
+    selection: radioButtons,
   ): Promise<void> {
     await Promise.all([
       Helpers.checkGroup(
