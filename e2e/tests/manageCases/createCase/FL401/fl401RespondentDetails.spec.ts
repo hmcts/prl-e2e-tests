@@ -8,26 +8,26 @@ test.describe("FL401 Create case respondent details tests @manageCases", (): voi
   Saying yes to all options, @crossbrowserManageCases`, async ({
     page,
   }): Promise<void> => {
-    await FL401RespondentDetails.fl401RespondentDetails(
-      page,
-      false,
-      false,
-      true,
-      true,
-    );
+    await FL401RespondentDetails.fl401RespondentDetails({
+      page: page,
+      accessibilityTest: false,
+      errorMessaging: false,
+      respondentDetailsAllOptionsYes: true,
+      subJourney: true,
+    });
   });
 
   test(`Complete the FL401 respondent details event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
   Saying no to all options,`, async ({ page }): Promise<void> => {
-    await FL401RespondentDetails.fl401RespondentDetails(
-      page,
-      false,
-      false,
-      false,
-      true,
-    );
+    await FL401RespondentDetails.fl401RespondentDetails({
+      page: page,
+      accessibilityTest: false,
+      errorMessaging: false,
+      respondentDetailsAllOptionsYes: false,
+      subJourney: true,
+    });
   });
 
   test(`Complete the FL401 respondent details event as a solicitor with the following options:
@@ -36,13 +36,13 @@ test.describe("FL401 Create case respondent details tests @manageCases", (): voi
   Saying yes to all options, @crossbrowserManageCases`, async ({
     page,
   }): Promise<void> => {
-    await FL401RespondentDetails.fl401RespondentDetails(
-      page,
-      false,
-      true,
-      true,
-      true,
-    );
+    await FL401RespondentDetails.fl401RespondentDetails({
+      page: page,
+      accessibilityTest: false,
+      errorMessaging: true,
+      respondentDetailsAllOptionsYes: true,
+      subJourney: true,
+    });
   });
 });
 
@@ -52,11 +52,11 @@ test(`Accessibility test the FL401 respondent details event as a solicitor with 
   Saying yes to all options, @accessibilityManageCases`, async ({
   page,
 }): Promise<void> => {
-  await FL401RespondentDetails.fl401RespondentDetails(
-    page,
-    true,
-    false,
-    true,
-    true,
-  );
+  await FL401RespondentDetails.fl401RespondentDetails({
+    page: page,
+    accessibilityTest: true,
+    errorMessaging: false,
+    respondentDetailsAllOptionsYes: true,
+    subJourney: true,
+  });
 });

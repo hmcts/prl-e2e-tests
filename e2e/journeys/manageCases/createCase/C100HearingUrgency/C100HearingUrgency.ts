@@ -6,35 +6,44 @@ import { C100HearingUrgencySubmitPage } from "../../../../pages/manageCases/crea
 import { C100TasksTabPage } from "../../../../pages/manageCases/caseTabs/c100TasksTabPage";
 import { SolicitorCreateInitial } from "../solicitorCreateInitial";
 
+interface c100HearingUrgencyOptions {
+  page: Page;
+  user: UserRole;
+  accessibilityTest: boolean;
+  errorMessaging: boolean;
+  yesNoHearingUrgency: boolean;
+  subJourney: boolean;
+}
+
 export class C100HearingUrgency {
-  public static async c100HearingUrgency(
-    page: Page,
-    user: UserRole,
-    accessibilityTest: boolean,
-    errorMessaging: boolean,
-    yesNo: boolean,
-    subJourney: boolean,
-  ): Promise<void> {
+  public static async c100HearingUrgency({
+    page,
+    user,
+    accessibilityTest,
+    errorMessaging,
+    yesNoHearingUrgency,
+    subJourney,
+  }: c100HearingUrgencyOptions): Promise<void> {
     if (subJourney) {
-      await SolicitorCreateInitial.createInitialCase(
-        page,
-        user,
-        false,
-        "C100",
-        false,
-      );
+      await SolicitorCreateInitial.createInitialCase({
+        page: page,
+        user: user,
+        accessibilityTest: false,
+        solicitorCaseType: "C100",
+        errorMessaging: false,
+      });
     }
     await Helpers.selectSolicitorEvent(page, "Hearing urgency");
     await HearingUrgency1Page.hearingUrgency1Page(
       page,
       accessibilityTest,
       errorMessaging,
-      yesNo,
+      yesNoHearingUrgency,
     );
     await C100HearingUrgencySubmitPage.C100HearingUrgencySubmitPage(
       page,
       accessibilityTest,
-      yesNo,
+      yesNoHearingUrgency,
     );
     await C100TasksTabPage.c100TasksTabPage(page, accessibilityTest);
   }

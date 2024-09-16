@@ -8,28 +8,28 @@ test.describe("C100 Create case hearing urgency tests @manageCases", (): void =>
   Saying yes to all options, @crossbrowserManageCases`, async ({
     page,
   }): Promise<void> => {
-    await C100HearingUrgency.c100HearingUrgency(
+    await C100HearingUrgency.c100HearingUrgency({
       page,
-      "solicitor",
-      false,
-      false,
-      true,
-      true,
-    );
+      user: "solicitor",
+      accessibilityTest: false,
+      errorMessaging: false,
+      yesNoHearingUrgency: true,
+      subJourney: true,
+    });
   });
 
   test(`Complete the C100 hearing urgency event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
   Saying no to all options,`, async ({ page }): Promise<void> => {
-    await C100HearingUrgency.c100HearingUrgency(
+    await C100HearingUrgency.c100HearingUrgency({
       page,
-      "solicitor",
-      false,
-      false,
-      false,
-      true,
-    );
+      user: "solicitor",
+      accessibilityTest: false,
+      errorMessaging: false,
+      yesNoHearingUrgency: false,
+      subJourney: true,
+    });
   });
 
   test(`Complete the C100 hearing urgency event as a solicitor with the following options:
@@ -38,14 +38,14 @@ test.describe("C100 Create case hearing urgency tests @manageCases", (): void =>
   Saying yes to all options, @crossbrowserManageCases`, async ({
     page,
   }): Promise<void> => {
-    await C100HearingUrgency.c100HearingUrgency(
+    await C100HearingUrgency.c100HearingUrgency({
       page,
-      "solicitor",
-      false,
-      true,
-      false,
-      true,
-    );
+      user: "solicitor",
+      accessibilityTest: false,
+      errorMessaging: true,
+      yesNoHearingUrgency: true,
+      subJourney: true,
+    });
   });
 });
 
@@ -55,12 +55,12 @@ test(`Accessibility test the C100 hearing urgency event as a solicitor with the 
   Saying yes to all options, @accessibilityManageCases`, async ({
   page,
 }): Promise<void> => {
-  await C100HearingUrgency.c100HearingUrgency(
+  await C100HearingUrgency.c100HearingUrgency({
     page,
-    "solicitor",
-    true,
-    false,
-    true,
-    true,
-  );
+    user: "solicitor",
+    accessibilityTest: true,
+    errorMessaging: false,
+    yesNoHearingUrgency: true,
+    subJourney: true,
+  });
 });

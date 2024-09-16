@@ -10,7 +10,15 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Saying yes to all applicant details questions with a male applicant @crossbrowserManageCases`, async ({
     page,
   }): Promise<void> => {
-    await C100.c100(page, "solicitor", false, false, true, true, "male");
+    await C100.c100({
+      page: page,
+      user: "solicitor",
+      accessibilityTest: false,
+      errorMessaging: false,
+      yesNoHearingUrgency: true,
+      yesNoApplicantDetails: true,
+      applicantGender: "male",
+    });
   });
 
   test(`Complete the C100 create case event as a solicitor with the following options:
@@ -20,7 +28,15 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Saying no to all applicant details questions with a female applicant @crossbrowserManageCases`, async ({
     page,
   }): Promise<void> => {
-    await C100.c100(page, "solicitor", false, false, false, false, "female");
+    await C100.c100({
+      page: page,
+      user: "solicitor",
+      accessibilityTest: false,
+      errorMessaging: false,
+      yesNoHearingUrgency: false,
+      yesNoApplicantDetails: false,
+      applicantGender: "male",
+    });
   });
 
   test(`Complete the FL401 create case event as a solicitor with the following options:
@@ -30,7 +46,14 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Saying yes to all Type of application questions @crossbrowserManageCases`, async ({
     page,
   }): Promise<void> => {
-    await FL401.fl401(page, "solicitor", false, false, true, true);
+    await FL401.fl401({
+      page: page,
+      user: "solicitor",
+      accessibilityTest: false,
+      errorMessaging: false,
+      isLinkedToC100: true,
+      respondentDetailsAllOptionsYes: true,
+    });
   });
 
   test(`Complete the FL401 create case event as a solicitor with the following options:
@@ -40,6 +63,13 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Saying no to all Type of application questions @crossbrowserManageCases`, async ({
     page,
   }): Promise<void> => {
-    await FL401.fl401(page, "solicitor", false, false, false, false);
+    await FL401.fl401({
+      page: page,
+      user: "solicitor",
+      accessibilityTest: false,
+      errorMessaging: false,
+      isLinkedToC100: false,
+      respondentDetailsAllOptionsYes: false,
+    });
   });
 });
