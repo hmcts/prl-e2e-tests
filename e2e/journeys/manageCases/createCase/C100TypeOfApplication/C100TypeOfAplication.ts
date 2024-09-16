@@ -1,6 +1,9 @@
 import { Page } from "@playwright/test";
 import { Helpers } from "../../../../common/helpers";
-import { selectApplicationType1Page } from "../../../../pages/manageCases/createCase/C100/selectApplicationType/selectApplicationType1Page";
+import {
+  selectApplicationType1Page,
+  typeOfChildArrangementOrderID
+} from "../../../../pages/manageCases/createCase/C100/selectApplicationType/selectApplicationType1Page";
 import { selectApplicationType2Page } from "../../../../pages/manageCases/createCase/C100/selectApplicationType/selectApplicationType2Page";
 import { selectApplicationType3Page } from "../../../../pages/manageCases/createCase/C100/selectApplicationType/selectApplicationType3Page";
 import { selectApplicationType4Page } from "../../../../pages/manageCases/createCase/C100/selectApplicationType/selectApplicationType4Page";
@@ -13,12 +16,14 @@ export class C100TypeOfApplication {
     errorMessaging: boolean,
     accessibilityTest: boolean,
     yesNo: boolean,
+    typeOfChildArrangementOrder: typeOfChildArrangementOrderID,
   ): Promise<void> {
-    await Helpers.selectSolicitorEvent(page, "Type of application");
+    await Helpers.selectSolicitorEvent(page, "Type of application", );
     await selectApplicationType1Page.selectApplicationType1Page(
       page,
       errorMessaging,
       accessibilityTest,
+      typeOfChildArrangementOrder
     );
     await selectApplicationType2Page.selectApplicationType2Page(
       page,

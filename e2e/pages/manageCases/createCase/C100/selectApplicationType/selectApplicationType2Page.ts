@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test";
+import { Page, expect } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
@@ -20,7 +20,6 @@ export class selectApplicationType2Page {
   ): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest);
     if (errorMessaging) {
-      console.log("");
       await this.triggerErrorMessages(page);
     }
     await this.fillInFields(page, yesNo);
@@ -98,13 +97,11 @@ export class selectApplicationType2Page {
       `${Selectors.button}:text-is("${SelectApplicationType2Content.continue}")`,
     );
 
-    await Promise.all([
-      Helpers.checkVisibleAndPresent(
+    await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukErrorMessage}:text-is("${SelectApplicationType2Content.errorMessage3}")`,
         1,
-      ),
-    ]);
+      );
   }
 
   private static async fillInFields(page: Page, yesNo: boolean): Promise<void> {
@@ -117,7 +114,7 @@ export class selectApplicationType2Page {
     } else {
       await page.click(`${PageIDs.no}`);
     }
-    await page.waitForTimeout(5000);
+    await expect(page.locator(".error-message")).toHaveCount(0);
 
     await page.click(
       `${Selectors.button}:text-is("${SelectApplicationType2Content.continue}")`,

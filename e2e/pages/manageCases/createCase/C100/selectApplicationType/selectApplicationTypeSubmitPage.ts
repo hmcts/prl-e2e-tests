@@ -4,6 +4,8 @@ import { SelectApplicationTypeSubmitContent } from "../../../../../fixtures/mana
 import { SelectApplicationType1Content } from "../../../../../fixtures/manageCases/createCase/C100/selectApplicationType/selectApplicationType1Content";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Helpers } from "../../../../../common/helpers";
+import config from "../../../../../config";
+import path from "path";
 
 type typeOfChildArrangementOrder =
   | "Spend time with order"
@@ -58,7 +60,7 @@ export class selectApplicationTypeSubmitPage {
       );
       await Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${SelectApplicationTypeSubmitContent.a}")`,
+        `${Selectors.a}:text-is("${path.basename(config.testPdfFile)}")`,
         1,
       );
       await Helpers.checkVisibleAndPresent(
