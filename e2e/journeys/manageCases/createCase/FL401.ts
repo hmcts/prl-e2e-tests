@@ -14,6 +14,8 @@ interface fl401Options {
   errorMessaging: boolean;
   isLinkedToC100: boolean;
   respondentDetailsAllOptionsYes: boolean;
+  isWithoutNotice: boolean;
+  bailConditions: bailConditionRadios
 }
 
 export class FL401 {
@@ -24,6 +26,8 @@ export class FL401 {
     errorMessaging,
     isLinkedToC100,
     respondentDetailsAllOptionsYes,
+    isWithoutNotice,
+    bailConditions
   }: fl401Options): Promise<void> {
     await SolicitorCreateInitial.createInitialCase({
       page: page,
@@ -46,5 +50,13 @@ export class FL401 {
       respondentDetailsAllOptionsYes: respondentDetailsAllOptionsYes,
       subJourney: false,
     });
+    await FL401WithoutNoticeOrder.fl401WithoutNoticeOrder({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      isWithoutNotice: isWithoutNotice,
+      bailConditions: bailConditions,
+      subJourney: false,
+    })
   }
 }

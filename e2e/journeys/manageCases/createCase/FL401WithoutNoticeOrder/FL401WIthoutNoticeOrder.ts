@@ -7,15 +7,37 @@ import { WithoutOrderNotice2Page } from "../../../../pages/manageCases/createCas
 import { WithoutNoticeOrder3Page } from "../../../../pages/manageCases/createCase/FL401/withoutNoticeOrder/withoutNoticeOrder3Page";
 import { WithoutNoticeOrder4Page } from "../../../../pages/manageCases/createCase/FL401/withoutNoticeOrder/withoutNoticeOrder4Page";
 import { bailConditionRadios } from "../FL401";
+import { SolicitorCreateInitial } from "../solicitorCreateInitial";
+
+interface fl401WithoutNoticeOrder {
+  page: Page,
+  accessibilityTest: boolean,
+  errorMessaging: boolean,
+  isWithoutNotice: boolean,
+  bailConditions: bailConditionRadios,
+  subJourney: boolean
+}
 
 export class FL401WithoutNoticeOrder {
   public static async fl401WithoutNoticeOrder(
-    page: Page,
-    accessibilityTest: boolean,
-    errorMessaging: boolean,
-    isWithoutNotice: boolean,
-    bailConditions: bailConditionRadios,
+    {
+      page,
+      accessibilityTest,
+      errorMessaging,
+      isWithoutNotice,
+      bailConditions,
+      subJourney
+    }: fl401WithoutNoticeOrder
   ): Promise<void> {
+    if (subJourney) {
+      await SolicitorCreateInitial.createInitialCase({
+        page: page,
+        user: "solicitor",
+        accessibilityTest: false,
+        solicitorCaseType: "FL401",
+        errorMessaging: false,
+      });
+    }
     await Helpers.selectSolicitorEvent(page, "Without notice order");
     await WithoutNoticeOrder1Page.withoutOrderNotice1Page(
       page,

@@ -43,7 +43,8 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Not Accessibility testing,
   Not Error message testing,
   Saying yes to all Respondent details questions,
-  Saying yes to all Type of application questions @crossbrowserManageCases`, async ({
+  Saying yes to all Type of application questions,
+  Saying yes to Without Notice Order questions @crossbrowserManageCases`, async ({
     page,
   }): Promise<void> => {
     await FL401.fl401({
@@ -53,6 +54,8 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       errorMessaging: false,
       isLinkedToC100: true,
       respondentDetailsAllOptionsYes: true,
+      isWithoutNotice: true,
+      bailConditions: "Yes"
     });
   });
 
@@ -60,9 +63,10 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Not Accessibility testing,
   Not Error message testing,
   Saying no to all Respondent details questions,
-  Saying no to all Type of application questions @crossbrowserManageCases`, async ({
-    page,
-  }): Promise<void> => {
+  Saying no to all Type of application questions,
+  Saying no to Without Notice Order questions @crossbrowserManageCases`, async ({
+     page,
+   }): Promise<void> => {
     await FL401.fl401({
       page: page,
       user: "solicitor",
@@ -70,6 +74,29 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       errorMessaging: false,
       isLinkedToC100: false,
       respondentDetailsAllOptionsYes: false,
+      isWithoutNotice: false,
+      bailConditions: "No"
+    });
+  });
+
+  test(`Complete the FL401 create case event as a solicitor with the following options:
+  Not Accessibility testing,
+  Not Error message testing,
+  Saying yes to all Respondent details questions,
+  Saying yes to all Type of application questions,
+  Saying yes to Without Notice Order questions,
+  Saying 'Don't know' to bail conditions @crossbrowserManageCases`, async ({
+     page,
+   }): Promise<void> => {
+    await FL401.fl401({
+      page: page,
+      user: "solicitor",
+      accessibilityTest: false,
+      errorMessaging: false,
+      isLinkedToC100: true,
+      respondentDetailsAllOptionsYes: true,
+      isWithoutNotice: true,
+      bailConditions: "Don't know"
     });
   });
 });

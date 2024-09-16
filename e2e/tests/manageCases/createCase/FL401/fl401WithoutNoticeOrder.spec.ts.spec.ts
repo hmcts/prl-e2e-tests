@@ -1,0 +1,106 @@
+import { test } from "@playwright/test";
+import {
+  FL401WithoutNoticeOrder
+} from "../../../../journeys/manageCases/createCase/FL401WithoutNoticeOrder/FL401WIthoutNoticeOrder";
+
+test.describe("FL401 Create case without notice order tests @manageCases", (): void => {
+  test(`Complete the FL401 without notice order event as a solicitor with the following options:
+  Not Accessibility testing,
+  Not Error message testing,
+  Saying yes to all options, @crossbrowserManageCases`, async ({
+    page,
+  }): Promise<void> => {
+    await FL401WithoutNoticeOrder.fl401WithoutNoticeOrder({
+      page: page,
+      accessibilityTest: false,
+      errorMessaging: false,
+      isWithoutNotice: true,
+      bailConditions: 'Yes',
+      subJourney: true,
+    });
+  });
+
+  test(`Complete the FL401 without notice order event as a solicitor with the following options:
+  Not Accessibility testing,
+  Not Error message testing,
+  Saying no to all options, @crossbrowserManageCases`, async ({
+     page,
+   }): Promise<void> => {
+    await FL401WithoutNoticeOrder.fl401WithoutNoticeOrder({
+      page: page,
+      accessibilityTest: false,
+      errorMessaging: false,
+      isWithoutNotice: false,
+      bailConditions: 'No',
+      subJourney: true,
+    });
+  });
+
+  test(`Complete the FL401 without notice order event as a solicitor with the following options:
+  Not Accessibility testing,
+  Not Error message testing,
+  Saying 'Dont know' to bail conditions,
+  Saying yes to all other options, @crossbrowserManageCases`, async ({
+     page,
+   }): Promise<void> => {
+    await FL401WithoutNoticeOrder.fl401WithoutNoticeOrder({
+      page: page,
+      accessibilityTest: false,
+      errorMessaging: false,
+      isWithoutNotice: true,
+      bailConditions: "Don't know",
+      subJourney: true,
+    });
+  });
+  test(`Complete the FL401 without notice order event as a solicitor with the following options:
+  Not Accessibility testing,
+  Error message testing,
+  Saying yes to all options, @crossbrowserManageCases`, async ({
+     page,
+   }): Promise<void> => {
+    await FL401WithoutNoticeOrder.fl401WithoutNoticeOrder({
+      page: page,
+      accessibilityTest: false,
+      errorMessaging: true,
+      isWithoutNotice: true,
+      bailConditions: 'Yes',
+      subJourney: true,
+    });
+  });
+});
+
+test(`Accessibility test the FL401 without notice order event as a solicitor with the following options:
+  Accessibility testing,
+  Not Error message testing,
+  Saying yes to all options, @accessibilityManageCases`, async ({
+  page,
+}): Promise<void> => {
+  await FL401WithoutNoticeOrder.fl401WithoutNoticeOrder(
+    {
+      page: page,
+      accessibilityTest: true,
+      errorMessaging: false,
+      isWithoutNotice: true,
+      bailConditions: 'Yes',
+      subJourney: true
+    }
+  )
+});
+
+test(`Accessibility test the FL401 without notice order event as a solicitor with the following options:
+  Accessibility testing,
+  Not Error message testing,
+  Saying no to all options, @accessibilityManageCases`, async ({
+    page,
+  }): Promise<void> => {
+  await FL401WithoutNoticeOrder.fl401WithoutNoticeOrder(
+    {
+      page: page,
+      accessibilityTest: true,
+      errorMessaging: false,
+      isWithoutNotice: false,
+      bailConditions: 'No',
+      subJourney: true
+    }
+  )
+});
