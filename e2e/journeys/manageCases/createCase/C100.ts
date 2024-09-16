@@ -1,54 +1,53 @@
 import { UserRole } from "../../../common/types";
 import { Page } from "@playwright/test";
 import { SolicitorCreateInitial } from "./solicitorCreateInitial";
-import { C100TypeOfApplication } from "./C100TypeOfApplication/C100TypeOfAplication";
 import { C100HearingUrgency } from "./C100HearingUrgency/C100HearingUrgency";
 import { C100ApplicantDetails } from "./C100ApplicantDetails/c100ApplicantDetails";
 import { ApplicantGender } from "../../../pages/manageCases/createCase/C100/applicantDetails/applicantDetails1Page";
-import { typeOfChildArrangementOrderID } from "../../../pages/manageCases/createCase/C100/selectApplicationType/selectApplicationType1Page";
-import { radioButtons } from "../../../pages/manageCases/createCase/C100/selectApplicationType/selectApplicationType3Page";
+
+interface c100Options {
+  page: Page;
+  user: UserRole;
+  accessibilityTest: boolean;
+  errorMessaging: boolean;
+  yesNoHearingUrgency: boolean;
+  yesNoApplicantDetails: boolean;
+  applicantGender: ApplicantGender;
+}
 
 export class C100 {
-  public static async c100(
-    page: Page,
-    user: UserRole,
-    accessibilityTest: boolean,
-    errorMessaging: boolean,
-    yesNo: boolean,
-    yesNoApplicantDetails: boolean,
-    applicantGender: ApplicantGender,
-    typeOfChildArrangementOrder: typeOfChildArrangementOrderID,
-    selection: radioButtons,
-  ): Promise<void> {
-    await SolicitorCreateInitial.createInitialCase(
-      page,
-      user,
-      false,
-      "C100",
-      false,
-    );
-    await C100TypeOfApplication.c100TypeOfApplication(
-      page,
-      errorMessaging,
-      accessibilityTest,
-      yesNo,
-      typeOfChildArrangementOrder,
-      selection,
-    );
-    await C100HearingUrgency.c100HearingUrgency(
-      page,
-      user,
-      accessibilityTest,
-      errorMessaging,
-      yesNo,
-    );
-    await C100ApplicantDetails.C100ApplicantDetails(
-      page,
-      user,
-      accessibilityTest,
-      errorMessaging,
-      yesNoApplicantDetails,
-      applicantGender,
-    );
+  public static async c100({
+    page,
+    user,
+    accessibilityTest,
+    errorMessaging,
+    yesNoHearingUrgency,
+    yesNoApplicantDetails,
+    applicantGender,
+  }: c100Options): Promise<void> {
+    await SolicitorCreateInitial.createInitialCase({
+      page: page,
+      user: user,
+      accessibilityTest: false,
+      solicitorCaseType: "C100",
+      errorMessaging: false,
+    });
+    await C100HearingUrgency.c100HearingUrgency({
+      page: page,
+      user: user,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      yesNoHearingUrgency: yesNoHearingUrgency,
+      subJourney: false,
+    });
+    await C100ApplicantDetails.C100ApplicantDetails({
+      page: page,
+      user: user,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      yesNoApplicantDetails: yesNoApplicantDetails,
+      applicantGender: applicantGender,
+      subJourney: false,
+    });
   }
 }
