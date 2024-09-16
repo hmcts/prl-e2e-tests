@@ -49,7 +49,7 @@ test.describe("C100 Create case applicant details tests @manageCases", (): void 
       false,
       false,
       false,
-      "other",
+      "female",
       true,
     );
   });
