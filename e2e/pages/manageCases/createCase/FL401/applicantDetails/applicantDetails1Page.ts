@@ -1,6 +1,6 @@
 import { Page, expect } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
-import { ApplicantDetails1Content } from "../../../../../fixtures/manageCases/createCase/FL401/applicantDetails/ApplicantDetails1Content";
+import { ApplicantDetails1Content } from "../../../../../fixtures/manageCases/createCase/FL401/applicantDetails/applicantDetails1Content";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { ApplicantGender } from "../../../../../common/types";
