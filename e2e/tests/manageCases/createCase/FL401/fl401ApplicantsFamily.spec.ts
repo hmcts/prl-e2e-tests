@@ -20,9 +20,7 @@ test.describe("FL401 Create case applicants family tests @manageCases", (): void
   test(`Complete the FL401 applicants family event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
-  Saying no to all options,`, async ({
-    page
-  }): Promise<void> => {
+  Saying no to all options,`, async ({ page }): Promise<void> => {
     await FL401ApplicantsFamily.fl401ApplicantsFamily({
       page: page,
       accessibilityTest: false,
@@ -52,8 +50,8 @@ test(`Accessibility test the FL401 applicants family event as a solicitor with t
   Accessibility testing,
   Not Error message testing,
   Saying yes to all options, @accessibilityManageCases`, async ({
-    page,
-  }): Promise<void> => {
+  page,
+}): Promise<void> => {
   await FL401ApplicantsFamily.fl401ApplicantsFamily({
     page: page,
     accessibilityTest: true,

@@ -9,7 +9,7 @@ interface fl401ApplicantsFamilyOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
-  applicantHasChildren: boolean,
+  applicantHasChildren: boolean;
   subJourney: boolean;
 }
 
