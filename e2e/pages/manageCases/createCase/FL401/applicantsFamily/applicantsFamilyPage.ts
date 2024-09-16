@@ -21,17 +21,12 @@ export class ApplicantsFamilyPage {
     page: Page,
     accessibilityTest: boolean,
   ): Promise<void> {
-
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }
   }
 
-  private static async checkErrorMessaging(page: Page): Promise<void> {
+  private static async checkErrorMessaging(page: Page): Promise<void> {}
 
-  }
-
-  private static async fillInFields(page: Page): Promise<void> {
-
-  }
+  private static async fillInFields(page: Page): Promise<void> {}
 }

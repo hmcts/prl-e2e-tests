@@ -27,4 +27,7 @@ export type c100SolicitorEvents =
   | "Hearing urgency"
   | "Applicant details";
 
-export type fl401SolicitorEvents = "Type of application" | "Respondent details" | "Applicant's family";
+export type fl401SolicitorEvents =
+  | "Type of application"
+  | "Respondent details"
+  | "Applicant's family";

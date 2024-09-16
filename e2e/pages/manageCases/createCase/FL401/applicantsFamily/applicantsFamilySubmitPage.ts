@@ -10,10 +10,7 @@ export class ApplicantsFamilySubmitPage {
     page: Page,
     accessibilityTest: boolean,
   ): Promise<void> {
-    await this.checkPageContent(
-      page,
-      accessibilityTest,
-    );
+    await this.checkPageContent(page, accessibilityTest);
     await this.fillInFields(page);
   }
 
@@ -21,23 +18,14 @@ export class ApplicantsFamilySubmitPage {
     page: Page,
     accessibilityTest: boolean,
   ): Promise<void> {
-
     if (accessibilityTest) {
       await accessibilityTestHelper.run(page);
     }
   }
 
-  private static async checkPageLoads(page: Page): Promise<void> {
+  private static async checkPageLoads(page: Page): Promise<void> {}
 
-  }
+  private static async checkFilledInData(page: Page): Promise<void> {}
 
-  private static async checkFilledInData(
-    page: Page,
-  ): Promise<void> {
-
-  }
-
-  private static async fillInFields(page: Page): Promise<void> {
-
-  }
+  private static async fillInFields(page: Page): Promise<void> {}
 }
