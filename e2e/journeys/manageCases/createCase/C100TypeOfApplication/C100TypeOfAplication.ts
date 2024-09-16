@@ -50,7 +50,7 @@ export class C100TypeOfApplication {
       page,
       accessibilityTest,
       yesNo,
-      selection
+      selection,
     );
     await C100TasksTabPage.c100TasksTabPage(page, accessibilityTest);
   }

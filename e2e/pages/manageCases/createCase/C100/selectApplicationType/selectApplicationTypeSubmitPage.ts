@@ -22,7 +22,7 @@ export class selectApplicationTypeSubmitPage {
   ): Promise<void> {
     await Promise.all([
       this.checkPageLoads(page, accessibilityTest, yesNo),
-      this.checkFilledFields(page, selection),
+      this.checkFilledFields(page, yesNo, selection),
     ]);
   }
 
@@ -34,7 +34,7 @@ export class selectApplicationTypeSubmitPage {
     await page.waitForSelector(
       `${Selectors.h2}:text-is("${SelectApplicationTypeSubmitContent.h2}")`,
     );
-    let changeAbleFields: number = yesNo ? 8 : 7;
+    let changeAbleFields: number = yesNo ? 8 : 6;
     await Promise.all([
       Helpers.checkGroup(
         page,
@@ -73,18 +73,13 @@ export class selectApplicationTypeSubmitPage {
     } else {
       await Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukText16}:text-is("${SelectApplicationTypeSubmitContent.text16Yes}")`,
-        1,
-      );
-      await Helpers.checkVisibleAndPresent(
-        page,
         `${Selectors.GovukText16}:text-is("${SelectApplicationTypeSubmitContent.text16No}")`,
         1,
       );
       await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukText16}:text-is("${SelectApplicationTypeSubmitContent.text16Change}")`,
-        7,
+        6,
       );
     }
 
@@ -95,6 +90,7 @@ export class selectApplicationTypeSubmitPage {
 
   private static async checkFilledFields(
     page: Page,
+    yesNo: boolean,
     selection: radioButtons,
   ): Promise<void> {
     await Promise.all([
@@ -109,11 +105,17 @@ export class selectApplicationTypeSubmitPage {
 
     await this.page1RadioButtons(page, "Spend time with order");
 
-    if (selection === "Yes") {
+    if (yesNo && selection === "Yes") {
       await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.Span}:text-is("${SelectApplicationType1Content.loremIpsumText}")`,
         3,
+      );
+    } else if (yesNo && selection === "No, permission now sought" || yesNo && selection === "No, permission is not required") {
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${SelectApplicationType1Content.loremIpsumText}")`,
+        2,
       );
     }
     await this.continue(page);

@@ -85,7 +85,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       true,
       "female",
       "Spend time with order",
-      "Yes"
+      "Yes",
     );
   });
 
