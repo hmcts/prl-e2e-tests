@@ -12,16 +12,40 @@ import {
 import { selectApplicationType4Page } from "../../../../pages/manageCases/createCase/C100/selectApplicationType/selectApplicationType4Page";
 import { selectApplicationTypeSubmitPage } from "../../../../pages/manageCases/createCase/C100/selectApplicationType/selectApplicationTypeSubmitPage";
 import { C100TasksTabPage } from "../../../../pages/manageCases/caseTabs/c100TasksTabPage";
+import { UserRole } from "../../../../common/types";
+import { SolicitorCreateInitial } from "../solicitorCreateInitial";
+
+interface C100TypeOfApplicationParams {
+  page: Page;
+  user: UserRole;
+  errorMessaging: boolean;
+  accessibilityTest: boolean;
+  yesNo: boolean;
+  typeOfChildArrangementOrder: typeOfChildArrangementOrderID;
+  selection: radioButtons;
+  subJourney: boolean;
+}
 
 export class C100TypeOfApplication {
-  public static async c100TypeOfApplication(
-    page: Page,
-    errorMessaging: boolean,
-    accessibilityTest: boolean,
-    yesNo: boolean,
-    typeOfChildArrangementOrder: typeOfChildArrangementOrderID,
-    selection: radioButtons,
-  ): Promise<void> {
+  public static async c100TypeOfApplication({
+    page,
+    user,
+    errorMessaging,
+    accessibilityTest,
+    yesNo,
+    typeOfChildArrangementOrder,
+    selection,
+    subJourney,
+  }: C100TypeOfApplicationParams): Promise<void> {
+    if (subJourney) {
+      await SolicitorCreateInitial.createInitialCase({
+        page: page,
+        user: user,
+        accessibilityTest: false,
+        solicitorCaseType: "C100",
+        errorMessaging: false,
+      });
+    }
     await Helpers.selectSolicitorEvent(page, "Type of application");
     await selectApplicationType1Page.selectApplicationType1Page(
       page,

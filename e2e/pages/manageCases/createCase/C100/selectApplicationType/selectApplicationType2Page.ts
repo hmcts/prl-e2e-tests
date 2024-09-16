@@ -107,10 +107,10 @@ export class selectApplicationType2Page {
       const fileInput = page.locator(`${PageIDs.uploadFileInput}`);
       await fileInput.setInputFiles(config.testPdfFile);
       await this.draftConsentContent(page);
+      await expect(page.locator(".error-message")).toHaveCount(0);
     } else {
       await page.click(`${PageIDs.no}`);
     }
-    await expect(page.locator(".error-message")).toHaveCount(0);
 
     await page.click(
       `${Selectors.button}:text-is("${SelectApplicationType2Content.continue}")`,
