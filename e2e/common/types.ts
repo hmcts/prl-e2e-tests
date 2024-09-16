@@ -27,6 +27,9 @@ export type c100SolicitorEvents =
   | "Hearing urgency"
   | "Applicant details";
 
-export type fl401SolicitorEvents = "Type of application" | "Applicant details";
+export type fl401SolicitorEvents =
+  "Type of application"
+  | "Applicant details"
+  | "Respondent details";
 
 export type ApplicantGender = "female" | "male" | "other";

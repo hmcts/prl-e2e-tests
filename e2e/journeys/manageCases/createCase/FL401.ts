@@ -2,6 +2,7 @@ import { ApplicantGender, UserRole } from "../../../common/types";
 import { Page } from "@playwright/test";
 import { FL401TypeOfApplication } from "./FL401TypeOfApplication/FL401TypeOfApplication";
 import { SolicitorCreateInitial } from "./solicitorCreateInitial";
+import { FL401RespondentDetails } from "./FL401RespondentDetails/FL401RespondentDetails";
 import { FL401ApplicantDetails } from "./FL401ApplicantDetails/FL401ApplicantDetails";
 
 export class FL401 {
@@ -11,6 +12,7 @@ export class FL401 {
     accessibilityTest: boolean,
     errorMessaging: boolean,
     isLinkedToC100: boolean,
+    respondentDetailsAllOptionsYes: boolean,
     yesNoFL401ApplicantDetails: boolean,
     applicantGender: ApplicantGender
   ): Promise<void> {
@@ -26,6 +28,12 @@ export class FL401 {
       accessibilityTest,
       errorMessaging,
       isLinkedToC100,
+    );
+    await FL401RespondentDetails.fl401RespondentDetails(
+      page,
+      accessibilityTest,
+      errorMessaging,
+      respondentDetailsAllOptionsYes,
     );
     await FL401ApplicantDetails.fl401ApplicantDetails(
       page,
