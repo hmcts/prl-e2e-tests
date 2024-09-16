@@ -3,7 +3,6 @@ import { Selectors } from "../../../../../common/selectors";
 import { ApplicantDetailsSubmitContent } from "../../../../../fixtures/manageCases/createCase/FL401/applicantDetails/applicantDetailsSubmitContent";
 import { Helpers } from "../../../../../common/helpers";
 import { SubmitContent } from "../../../../../fixtures/manageCases/createCase/FL401/typeOfApplication/submitContent";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { ApplicantGender } from "../../../../../common/types";
 
 export class ApplicantDetailsSubmitPage {
@@ -105,7 +104,7 @@ export class ApplicantDetailsSubmitPage {
     yesNoFl401ApplicantDetails: boolean,
     applicantGender: ApplicantGender
   ): Promise<void> {
-    let gender: string
+    let gender: string;
     let yesNoCount: number;
     let yesNoKey: keyof typeof ApplicantDetailsSubmitContent;
     if (yesNoFl401ApplicantDetails) {
@@ -132,6 +131,7 @@ export class ApplicantDetailsSubmitPage {
         break
       default:
         console.log('Unexpected input for applicantGender: ', applicantGender)
+        gender = "null";
         break
     }
     await Promise.all([
