@@ -21,7 +21,6 @@ export class selectApplicationType4Page {
     await this.fillInFields(page);
   }
 
-  // @ts-ignore
   private static async checkPageLoads(
     page: Page,
     accessibilityTest: boolean,
