@@ -24,13 +24,13 @@ export class HearingUrgency1Page {
     page: Page,
     accessibilityTest: boolean,
     errorMessaging: boolean,
-    yesNo: boolean,
+    yesNoHearingUrgency: boolean,
   ): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest);
     if (errorMessaging) {
       await this.checkErrorMessaging(page);
     }
-    await this.fillInFields(page, yesNo);
+    await this.fillInFields(page, yesNoHearingUrgency);
   }
 
   private static async checkPageLoads(
@@ -175,8 +175,11 @@ export class HearingUrgency1Page {
     ]);
   }
 
-  private static async fillInFields(page: Page, yesNo: boolean): Promise<void> {
-    if (yesNo) {
+  private static async fillInFields(
+    page: Page,
+    yesNoHearingUrgency: boolean,
+  ): Promise<void> {
+    if (yesNoHearingUrgency) {
       await page.click(`${pageFields.caseUrgentYes}`);
       await page.fill(
         `${pageFields.caseUrgencyTimeAndReason}`,
