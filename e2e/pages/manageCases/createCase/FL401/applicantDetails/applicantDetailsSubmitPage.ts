@@ -40,7 +40,7 @@ export class ApplicantDetailsSubmitPage {
     await page.waitForSelector(
       `${Selectors.GovukHeadingL}:text-is("${ApplicantDetailsSubmitContent.pageTitle}")`,
     );
-    const text16Count: number = yesNoFL401ApplicantDetails ? 18 : 19
+    const text16Count: number = yesNoFL401ApplicantDetails ? 19 : 18
     const emailCount: number = yesNoFL401ApplicantDetails ? 2 : 1
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -92,12 +92,10 @@ export class ApplicantDetailsSubmitPage {
       ),
     ]);
     if (applicantGender === 'other') {
-      await Helpers.checkGroup(
+      await Helpers.checkVisibleAndPresent(
         page,
-        2,
-        ApplicantDetailsSubmitContent,
-        'applicantGenderOther',
-        `${Selectors.GovukText16}`
+        `${Selectors.GovukText16}:text-is("${ApplicantDetailsSubmitContent.applicantGenderOtherLabel}")`,
+        1
       )
     }
   }
@@ -113,6 +111,11 @@ export class ApplicantDetailsSubmitPage {
     if (yesNoFl401ApplicantDetails) {
       yesNoCount = 4;
       yesNoKey = 'radioYes';
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.a}:text-is("${ApplicantDetailsSubmitContent.applicantEmailAddress}")`,
+        1,
+      );
     } else {
       yesNoCount = 3;
       yesNoKey = 'radioNo';
@@ -125,7 +128,10 @@ export class ApplicantDetailsSubmitPage {
         gender = ApplicantDetailsSubmitContent.applicantGenderFemale
         break
       case 'other':
-        gender = ApplicantDetailsSubmitContent.applicantGenderOther
+        gender = ApplicantDetailsSubmitContent.applicantGenderOtherInput
+        break
+      default:
+        console.log('Unexpected input for applicantGender: ', applicantGender)
         break
     }
     await Promise.all([
@@ -191,11 +197,6 @@ export class ApplicantDetailsSubmitPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${ApplicantDetailsSubmitContent.applicantEmailAddress}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
         `${Selectors.GovukText16}:text-is("${gender}")`,
         1,
       ),
@@ -218,6 +219,11 @@ export class ApplicantDetailsSubmitPage {
         page,
         `${Selectors.GovukText16}:text-is("${ApplicantDetailsSubmitContent.bpBuildingAndStreet}")`,
         2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${ApplicantDetailsSubmitContent.organisationSearch}")`,
+        1
       ),
     ]);
   }

@@ -151,8 +151,10 @@ export class ApplicantDetails1Page {
     await this.fillInTopLevelFields(page);
     await this.fillInYesNoRadios(page, yesNoFL401ApplicantDetails);
     await this.fillInGenderRadio(page, applicantGender);
-    await this.fillInSecondLevelFields(page, applicantGender);
-    await this.fillInSecondLevelRadios(page, yesNoFL401ApplicantDetails)
+    if (yesNoFL401ApplicantDetails) {
+      await this.fillInSecondLevelFields(page, applicantGender);
+      await this.fillInSecondLevelRadios(page, yesNoFL401ApplicantDetails);
+    }
     await this.fillAndCheckAddressFields(page);
     await this.selectOrganisation(page);
     await page.click(
