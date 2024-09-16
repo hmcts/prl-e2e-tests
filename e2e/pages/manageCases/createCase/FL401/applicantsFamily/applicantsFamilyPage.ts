@@ -3,11 +3,13 @@ import { Selectors } from "../../../../../common/selectors";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { ApplicantsFamilyContent } from "../../../../../fixtures/manageCases/createCase/FL401/applicantsFamily/applicantsFamilyContent";
+import { RespondentDetailsContent } from "../../../../../fixtures/manageCases/createCase/FL401/respondentDetails/respondentDetailsContent";
 
 enum radioIds {
   doesApplicantHaveChildren_Yes = "#applicantFamilyDetails_doesApplicantHaveChildren_Yes",
   doesApplicantHaveChildren_No = "#applicantFamilyDetails_doesApplicantHaveChildren_No",
   applicantRespondentShareParental_Yes = "#applicantChildDetails_0_applicantRespondentShareParental_Yes",
+  applicantRespondentShareParental_Yes_1 = "#applicantChildDetails_1_applicantRespondentShareParental_Yes",
   applicantRespondentShareParental_No = "#applicantChildDetails_0_applicantRespondentShareParental_No",
 }
 
@@ -31,7 +33,12 @@ export class ApplicantsFamilyPage {
     if (errorMessaging) {
       await this.checkErrorMessaging(page);
     }
-    await this.fillInFields(page, accessibilityTest, applicantHasChildren);
+    await this.fillInFields(
+      page,
+      accessibilityTest,
+      errorMessaging,
+      applicantHasChildren,
+    );
   }
 
   private static async checkPageLoads(
@@ -61,11 +68,80 @@ export class ApplicantsFamilyPage {
     }
   }
 
-  private static async checkErrorMessaging(page: Page): Promise<void> {}
+  private static async checkErrorMessaging(page: Page): Promise<void> {
+    await page.click(
+      `${Selectors.button}:text-is("${RespondentDetailsContent.continue}")`,
+    );
+
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorSummaryTitle}:text-is("${ApplicantsFamilyContent.errorBanner}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorValidation}:text-is("${ApplicantsFamilyContent.errorRequiredText}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorMessage}:text-is("${ApplicantsFamilyContent.errorRequiredText}")`,
+        1,
+      ),
+    ]);
+
+    await page.click(radioIds.doesApplicantHaveChildren_Yes);
+    await page.click(
+      `${Selectors.button}:text-is("${ApplicantsFamilyContent.addNew}")`,
+    );
+    await page.fill(
+      `${inputIds.dateOfBirth_day}`,
+      ApplicantsFamilyContent.invalidDay,
+    );
+    await page.fill(
+      `${inputIds.dateOfBirth_month}`,
+      ApplicantsFamilyContent.invalidMonth,
+    );
+    await page.fill(
+      `${inputIds.dateOfBirth_year}`,
+      ApplicantsFamilyContent.invalidYear,
+    );
+    await page.click(
+      `${Selectors.button}:text-is("${ApplicantsFamilyContent.continue}")`,
+    );
+
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorSummaryTitle}:text-is("${ApplicantsFamilyContent.errorBanner}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorValidation}:text-is("${ApplicantsFamilyContent.errorDOBInvalidText}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorMessage}:text-is("${ApplicantsFamilyContent.errorDataInvalidText}")`,
+        1,
+      ),
+    ]);
+
+    await page.click(
+      `${Selectors.button}:text-is("${ApplicantsFamilyContent.remove}")`,
+    );
+    await page.waitForSelector("#mat-dialog-0");
+    await page.click(
+      `#mat-dialog-0 ${Selectors.button}:text-is("${ApplicantsFamilyContent.remove}")`,
+    );
+  }
 
   private static async fillInFields(
     page: Page,
     accessibilityTest: boolean,
+    errorMessaging: boolean,
     applicantHasChildren: boolean,
   ): Promise<void> {
     if (applicantHasChildren) {
@@ -73,7 +149,17 @@ export class ApplicantsFamilyPage {
       await page.click(
         `${Selectors.button}:text-is("${ApplicantsFamilyContent.addNew}")`,
       );
-      await page.click(radioIds.applicantRespondentShareParental_Yes);
+
+      await page.waitForSelector(
+        errorMessaging
+          ? radioIds.applicantRespondentShareParental_Yes_1
+          : radioIds.applicantRespondentShareParental_Yes,
+      );
+      await page.click(
+        errorMessaging
+          ? radioIds.applicantRespondentShareParental_Yes_1
+          : radioIds.applicantRespondentShareParental_Yes,
+      );
       await this.checkFormLoads(page, accessibilityTest);
 
       await page.fill(
@@ -100,7 +186,15 @@ export class ApplicantsFamilyPage {
         `${inputIds.respondentChildRelationship}`,
         ApplicantsFamilyContent.exampleRespondentsRelationshipToChild,
       );
+
+      await page.click(
+        `${Selectors.button}:text-is("${ApplicantsFamilyContent.continue}")`,
+      );
     } else {
+      await page.click(radioIds.doesApplicantHaveChildren_No);
+      await page.click(
+        `${Selectors.button}:text-is("${ApplicantsFamilyContent.continue}")`,
+      );
     }
   }
 
@@ -108,6 +202,11 @@ export class ApplicantsFamilyPage {
     page: Page,
     accessibilityTest: boolean,
   ): Promise<void> {
+    // await Helpers.checkVisibleAndPresent(
+    //   page,
+    //   ``,
+    //   1
+    // )
     await Helpers.checkGroup(
       page,
       8,
