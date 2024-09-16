@@ -26,9 +26,10 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       "Type of Application: Check All Boxes, " +
       "Is this linked to a C100 Application: No " +
       "Applicant Details: No to All" +
-      "@crossbrowserManageCases",
+      "Respondent Details All Options: Yes " +
+    "@crossbrowserManageCases",
     async ({ page }): Promise<void> => {
-      await FL401.fl401(page, "solicitor", false, false, false, false, 'female');
+      await FL401.fl401(page, "solicitor", false, false, false, false, false, 'female');
     },
   );
 
@@ -36,10 +37,11 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
     "Create a FL401 case with the following options: " +
       "Type of Application: Check All Boxes, " +
       "Is this linked to a C100 Application: Yes " +
+      "Respondent Details All Options: Yes " +
       "Applicant Details: Yes to All" +
       "@crossbrowserManageCases",
     async ({ page }): Promise<void> => {
-      await FL401.fl401(page, "solicitor", false, false, true, true, 'male');
+      await FL401.fl401(page, "solicitor", false, false, true, true, true, 'male');
     },
   );
 
@@ -52,7 +54,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   test("Check the errors of a FL401 solicitor create journey. @crossbrowserManageCases", async ({
     page,
   }): Promise<void> => {
-    await FL401.fl401(page, "solicitor", false, true, true, true, "other");
+    await FL401.fl401(page, "solicitor", false, true, true, true, true, "other");
   });
 });
 
@@ -65,5 +67,5 @@ test("Check the accessibility of a C100 solicitor create journey. @accessibility
 test("Check the accessibility of a FL401 solicitor create journey. @accessibilityManageCases", async ({
   page,
 }): Promise<void> => {
-  await FL401.fl401(page, "solicitor", true, false, true, true, 'other');
+  await FL401.fl401(page, "solicitor", true, false, true, true, true, 'other');
 });
