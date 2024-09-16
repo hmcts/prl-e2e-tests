@@ -1,5 +1,4 @@
 import { test } from "@playwright/test";
-import { SolicitorCreateInitial } from "../../../journeys/manageCases/createCase/solicitorCreateInitial";
 import { C100 } from "../../../journeys/manageCases/createCase/C100";
 import { FL401 } from "../../../journeys/manageCases/createCase/FL401";
 
@@ -18,7 +17,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
         true,
         "male",
         "Spend time with order",
-        "Yes"
+        "Yes",
       );
     },
   );
@@ -86,7 +85,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       true,
       "female",
       "Spend time with order",
-      "Yes"
+      "Yes",
     );
   });
 
