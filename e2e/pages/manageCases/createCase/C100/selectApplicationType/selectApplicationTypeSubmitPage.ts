@@ -111,7 +111,10 @@ export class selectApplicationTypeSubmitPage {
         `${Selectors.Span}:text-is("${SelectApplicationType1Content.loremIpsumText}")`,
         3,
       );
-    } else if (yesNo && selection === "No, permission now sought" || yesNo && selection === "No, permission is not required") {
+    } else if (
+      (yesNo && selection === "No, permission now sought") ||
+      (yesNo && selection === "No, permission is not required")
+    ) {
       await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.Span}:text-is("${SelectApplicationType1Content.loremIpsumText}")`,
