@@ -42,5 +42,5 @@
   "pre-commit": [
     "lint"
   ],
-  "packageManager": "yarn@4.4.1"
+  "packageManager": "yarn@4.5.0"
 }
