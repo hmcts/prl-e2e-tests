@@ -9,11 +9,11 @@ export class C100HearingUrgencySubmitPage {
   public static async C100HearingUrgencySubmitPage(
     page: Page,
     accessibilityTest: boolean,
-    yesNo: boolean,
+    yesNoHearingUrgency: boolean,
   ): Promise<void> {
     await Promise.all([
-      this.checkPageLoads(page, accessibilityTest, yesNo),
-      this.checkFilledFields(page, yesNo),
+      this.checkPageLoads(page, accessibilityTest, yesNoHearingUrgency),
+      this.checkFilledFields(page, yesNoHearingUrgency),
     ]);
     await this.continue(page);
   }
@@ -21,12 +21,12 @@ export class C100HearingUrgencySubmitPage {
   private static async checkPageLoads(
     page: Page,
     accessibilityTest: boolean,
-    yesNo: boolean,
+    yesNoHearingUrgency: boolean,
   ): Promise<void> {
     await page.waitForSelector(
       `${Selectors.h2}:text-is("${HearingUrgencySubmitContent.pageSubTitle}")`,
     );
-    let changeAbleFields: number = yesNo ? 8 : 4;
+    let changeAbleFields: number = yesNoHearingUrgency ? 8 : 4;
     await Promise.all([
       Helpers.checkGroup(
         page,
@@ -53,15 +53,15 @@ export class C100HearingUrgencySubmitPage {
 
   private static async checkFilledFields(
     page: Page,
-    yesNo: boolean,
+    yesNoHearingUrgency: boolean,
   ): Promise<void> {
-    let yesOrNo: string = yesNo ? "Yes" : "No";
+    let yesOrNo: string = yesNoHearingUrgency ? "Yes" : "No";
     await Helpers.checkVisibleAndPresent(
       page,
       `${Selectors.GovukText16}:text-is("${yesOrNo}")`,
       4,
     );
-    if (yesNo) {
+    if (yesNoHearingUrgency) {
       await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.Span}:text-is("${HearingUrgency1Content.loremIpsum}")`,
