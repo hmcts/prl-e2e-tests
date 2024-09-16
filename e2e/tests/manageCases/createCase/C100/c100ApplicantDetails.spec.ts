@@ -16,6 +16,7 @@ test.describe("C100 Create case applicant details tests @manageCases", (): void 
       false,
       true,
       "male",
+      true,
     );
   });
 
@@ -31,6 +32,7 @@ test.describe("C100 Create case applicant details tests @manageCases", (): void 
       false,
       false,
       "female",
+      true,
     );
   });
 
@@ -48,6 +50,7 @@ test.describe("C100 Create case applicant details tests @manageCases", (): void 
       false,
       false,
       "other",
+      true,
     );
   });
 });
@@ -66,5 +69,6 @@ test(`Accessibility test the C100 applicant details event as a solicitor with th
     false,
     false,
     "male",
+    true,
   );
 });

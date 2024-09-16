@@ -28,6 +28,7 @@ export class C100 {
       accessibilityTest,
       errorMessaging,
       yesNo,
+      false,
     );
     await C100ApplicantDetails.C100ApplicantDetails(
       page,
@@ -36,6 +37,7 @@ export class C100 {
       errorMessaging,
       yesNoApplicantDetails,
       applicantGender,
+      false,
     );
   }
 }

@@ -13,6 +13,7 @@ test.describe("FL401 Create case type of application tests @manageCases", (): vo
       false,
       false,
       true,
+      true,
     );
   });
 
@@ -25,6 +26,7 @@ test.describe("FL401 Create case type of application tests @manageCases", (): vo
       false,
       false,
       false,
+      true,
     );
   });
 
@@ -39,6 +41,7 @@ test.describe("FL401 Create case type of application tests @manageCases", (): vo
       false,
       true,
       true,
+      true,
     );
   });
 });
@@ -49,5 +52,11 @@ test(`Accessibility test the FL401 type of application event as a solicitor with
   Saying yes to linked to C100, @accessibilityManageCases`, async ({
   page,
 }): Promise<void> => {
-  await FL401TypeOfApplication.fl401TypeOfApplication(page, true, false, true);
+  await FL401TypeOfApplication.fl401TypeOfApplication(
+    page,
+    true,
+    false,
+    true,
+    true,
+  );
 });

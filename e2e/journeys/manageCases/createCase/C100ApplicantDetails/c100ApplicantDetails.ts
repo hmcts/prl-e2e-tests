@@ -7,6 +7,7 @@ import {
 } from "../../../../pages/manageCases/createCase/C100/applicantDetails/applicantDetails1Page";
 import { ApplicantDetailsSubmitPage } from "../../../../pages/manageCases/createCase/C100/applicantDetails/applicantDetailsSubmitPage";
 import { C100TasksTabPage } from "../../../../pages/manageCases/caseTabs/c100TasksTabPage";
+import { SolicitorCreateInitial } from "../solicitorCreateInitial";
 
 export class C100ApplicantDetails {
   public static async C100ApplicantDetails(
@@ -16,7 +17,17 @@ export class C100ApplicantDetails {
     errorMessaging: boolean,
     yesNoApplicantDetails: boolean,
     applicantGender: ApplicantGender,
+    subJourney: boolean,
   ): Promise<void> {
+    if (subJourney) {
+      await SolicitorCreateInitial.createInitialCase(
+        page,
+        user,
+        false,
+        "C100",
+        false,
+      );
+    }
     await Helpers.selectSolicitorEvent(page, "Applicant details");
     await ApplicantDetails1Page.applicantDetails1Page(
       page,

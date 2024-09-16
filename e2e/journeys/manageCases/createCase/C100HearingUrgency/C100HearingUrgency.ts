@@ -4,6 +4,7 @@ import { Helpers } from "../../../../common/helpers";
 import { HearingUrgency1Page } from "../../../../pages/manageCases/createCase/C100/hearingUrgency/hearingUrgency1Page";
 import { C100HearingUrgencySubmitPage } from "../../../../pages/manageCases/createCase/C100/hearingUrgency/c100HearingUrgencySubmitPage";
 import { C100TasksTabPage } from "../../../../pages/manageCases/caseTabs/c100TasksTabPage";
+import { SolicitorCreateInitial } from "../solicitorCreateInitial";
 
 export class C100HearingUrgency {
   public static async c100HearingUrgency(
@@ -12,7 +13,17 @@ export class C100HearingUrgency {
     accessibilityTest: boolean,
     errorMessaging: boolean,
     yesNo: boolean,
+    subJourney: boolean,
   ): Promise<void> {
+    if (subJourney) {
+      await SolicitorCreateInitial.createInitialCase(
+        page,
+        user,
+        false,
+        "C100",
+        false,
+      );
+    }
     await Helpers.selectSolicitorEvent(page, "Hearing urgency");
     await HearingUrgency1Page.hearingUrgency1Page(
       page,

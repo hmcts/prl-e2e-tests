@@ -13,6 +13,7 @@ test.describe("FL401 Create case respondent details tests @manageCases", (): voi
       false,
       false,
       true,
+      true,
     );
   });
 
@@ -25,6 +26,7 @@ test.describe("FL401 Create case respondent details tests @manageCases", (): voi
       false,
       false,
       false,
+      true,
     );
   });
 
@@ -39,6 +41,7 @@ test.describe("FL401 Create case respondent details tests @manageCases", (): voi
       false,
       true,
       true,
+      true,
     );
   });
 });
@@ -49,5 +52,11 @@ test(`Accessibility test the FL401 respondent details event as a solicitor with 
   Saying yes to all options, @accessibilityManageCases`, async ({
   page,
 }): Promise<void> => {
-  await FL401RespondentDetails.fl401RespondentDetails(page, true, false, true);
+  await FL401RespondentDetails.fl401RespondentDetails(
+    page,
+    true,
+    false,
+    true,
+    true,
+  );
 });

@@ -4,6 +4,7 @@ import { TypeOfApplication2Page } from "../../../../pages/manageCases/createCase
 import { TypeOfApplicationSubmitPage } from "../../../../pages/manageCases/createCase/FL401/typeOfApplication/typeOfApplicationSubmitPage";
 import { Page } from "@playwright/test";
 import { Fl401TasksTabPage } from "../../../../pages/manageCases/caseTabs/fl401TasksTabPage";
+import { SolicitorCreateInitial } from "../solicitorCreateInitial";
 
 export class FL401TypeOfApplication {
   public static async fl401TypeOfApplication(
@@ -11,7 +12,17 @@ export class FL401TypeOfApplication {
     accessibilityTest: boolean,
     errorMessaging: boolean,
     isLinkedToC100: boolean,
+    subJourney: boolean,
   ): Promise<void> {
+    if (subJourney) {
+      await SolicitorCreateInitial.createInitialCase(
+        page,
+        "solicitor",
+        false,
+        "FL401",
+        false,
+      );
+    }
     await Helpers.selectSolicitorEvent(page, "Type of application");
     await TypeOfApplication1Page.typeOfApplication1Page(
       page,

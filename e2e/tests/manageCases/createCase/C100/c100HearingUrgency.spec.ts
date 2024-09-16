@@ -14,6 +14,7 @@ test.describe("C100 Create case hearing urgency tests @manageCases", (): void =>
       false,
       false,
       true,
+      true,
     );
   });
 
@@ -27,6 +28,7 @@ test.describe("C100 Create case hearing urgency tests @manageCases", (): void =>
       false,
       false,
       false,
+      true,
     );
   });
 
@@ -42,6 +44,7 @@ test.describe("C100 Create case hearing urgency tests @manageCases", (): void =>
       false,
       true,
       false,
+      true,
     );
   });
 });
@@ -57,6 +60,7 @@ test(`Accessibility test the C100 hearing urgency event as a solicitor with the 
     "solicitor",
     true,
     false,
+    true,
     true,
   );
 });
