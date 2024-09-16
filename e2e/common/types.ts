@@ -27,16 +27,4 @@ export type c100SolicitorEvents =
   | "Hearing urgency"
   | "Applicant details";
 
-export type fl401SolicitorEvents = "Type of application";
-
-export type yesNo = "Yes" | "No";
-
-export type typeOfOrderID =
-  | "Child Arrangements Order"
-  | "Prohibited Steps Order"
-  | "Specific Issue Order";
-
-export type typeOfChildArrangementOrderID =
-  | "Spend time with order"
-  | "Live with order"
-  | "Both live with and spend time with order";
+export type fl401SolicitorEvents = "Type of application" | "Respondent details";

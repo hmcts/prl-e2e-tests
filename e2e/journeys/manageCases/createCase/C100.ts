@@ -33,7 +33,7 @@ export class C100 {
       accessibilityTest,
       yesNo,
       typeOfChildArrangementOrder,
-      selection
+      selection,
     );
     await C100HearingUrgency.c100HearingUrgency(
       page,
