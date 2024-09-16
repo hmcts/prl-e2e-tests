@@ -13,13 +13,19 @@ import { Fl401TasksTabPage } from "../../../pages/manageCases/caseTabs/fl401Task
 import { C100TasksTabPage } from "../../../pages/manageCases/caseTabs/c100TasksTabPage";
 
 export class SolicitorCreateInitial {
-  public static async createInitialCase(
-    page: Page,
-    user: UserRole,
-    accessibilityTest: boolean,
-    solicitorCaseType: solicitorCaseCreateType,
-    errorMessaging: boolean,
-  ): Promise<void> {
+  public static async createInitialCase({
+    page,
+    user,
+    accessibilityTest,
+    solicitorCaseType,
+    errorMessaging,
+  }: {
+    page: Page;
+    user: UserRole;
+    accessibilityTest: boolean;
+    solicitorCaseType: solicitorCaseCreateType;
+    errorMessaging: boolean;
+  }): Promise<void> {
     let caseName: string;
     await CaseList.caseList(page, user, false);
     await CaseListPage.startCreateCaseEvent(page);
