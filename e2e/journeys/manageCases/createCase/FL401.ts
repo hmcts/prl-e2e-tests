@@ -2,6 +2,8 @@ import { UserRole } from "../../../common/types";
 import { Page } from "@playwright/test";
 import { FL401TypeOfApplication } from "./FL401TypeOfApplication/FL401TypeOfApplication";
 import { SolicitorCreateInitial } from "./solicitorCreateInitial";
+import { RespondentDetailsPage } from "../../../pages/manageCases/createCase/FL401/respondentDetails/respondentDetailsPage";
+import { FL401RespondentDetails } from "./FL401RespondentDetails/FL401RespondentDetails";
 
 export class FL401 {
   public static async fl401(
@@ -10,6 +12,7 @@ export class FL401 {
     accessibilityTest: boolean,
     errorMessaging: boolean,
     isLinkedToC100: boolean,
+    respondentDetailsAllOptionsYes: boolean,
   ): Promise<void> {
     await SolicitorCreateInitial.createInitialCase(
       page,
@@ -23,6 +26,12 @@ export class FL401 {
       accessibilityTest,
       errorMessaging,
       isLinkedToC100,
+    );
+    await FL401RespondentDetails.fl401RespondentDetails(
+      page,
+      accessibilityTest,
+      errorMessaging,
+      respondentDetailsAllOptionsYes,
     );
   }
 }

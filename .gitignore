@@ -11,3 +11,6 @@ test-results/
 tests-examples
 .pnp.cjs
 .pnp.loader.mjs
+package-lock.json
+yarn.lock
+.yarnrc.yml
