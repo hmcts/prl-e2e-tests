@@ -28,6 +28,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
 test(`Complete the C100 create case event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
+  Saying no to all Application
   Saying no to all hearing urgency questions,
   Saying no to all applicant details questions with a female applicant @crossbrowserManageCases`, async ({
   page,

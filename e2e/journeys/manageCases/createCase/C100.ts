@@ -30,6 +30,7 @@ export class C100 {
     yesNoHearingUrgency,
     yesNoApplicantDetails,
     applicantGender,
+    yesNo,
     typeOfChildArrangementOrder,
     selection,
   }: c100Options): Promise<void> {
@@ -45,7 +46,7 @@ export class C100 {
       user: user,
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
-      yesNo: true,
+      yesNo: yesNo,
       typeOfChildArrangementOrder: typeOfChildArrangementOrder,
       selection: selection,
       subJourney: false,

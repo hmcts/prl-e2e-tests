@@ -34,25 +34,31 @@ export class selectApplicationTypeSubmitPage {
     await page.waitForSelector(
       `${Selectors.h2}:text-is("${SelectApplicationTypeSubmitContent.h2}")`,
     );
-    let changeAbleFields: number = yesNo ? 8 : 6;
+    let changeAbleFields: number[] = [8, 7, 6];
     await Promise.all([
-      Helpers.checkGroup(
-        page,
-        changeAbleFields,
-        SelectApplicationTypeSubmitContent,
-        "text16",
-        `${Selectors.GovukText16}`,
+      changeAbleFields.map(field =>
+          Helpers.checkGroup(
+            page,
+            field,
+            SelectApplicationTypeSubmitContent,
+            "text16",
+            `${Selectors.GovukText16}`,
+          ),
       ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukText16}:text-is("${SelectApplicationTypeSubmitContent.text16Change}")`,
-        changeAbleFields,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.h3}:text-is("${SelectApplicationTypeSubmitContent.h3}")`,
-        1,
-      ),
+        changeAbleFields.map(field =>
+            Helpers.checkGroup(
+              page,
+              field,
+              SelectApplicationTypeSubmitContent,
+              "textChange",
+              `${Selectors.GovukText16}`
+            ),
+          Helpers.checkVisibleAndPresent(
+            page,
+            `${Selectors.h3}:text-is("${SelectApplicationTypeSubmitContent.h3}")`,
+            1,
+          ),
+        ),
     ]);
     if (yesNo) {
       await Helpers.checkVisibleAndPresent(
@@ -120,6 +126,7 @@ export class selectApplicationTypeSubmitPage {
         `${Selectors.Span}:text-is("${SelectApplicationType1Content.loremIpsumText}")`,
         2,
       );
+
     }
     await this.continue(page);
   }
