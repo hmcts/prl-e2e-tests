@@ -16,6 +16,7 @@ interface c100Options {
   yesNoHearingUrgency: boolean;
   yesNoApplicantDetails: boolean;
   applicantGender: ApplicantGender;
+  yesNo: boolean;
   typeOfChildArrangementOrder: typeOfChildArrangementOrderID;
   selection: radioButtons;
 }
@@ -41,11 +42,13 @@ export class C100 {
     });
     await C100TypeOfApplication.c100TypeOfApplication({
       page: page,
-      errorMessaging: false,
+      user: user,
       accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
       yesNo: true,
       typeOfChildArrangementOrder: typeOfChildArrangementOrder,
       selection: selection,
+      subJourney: false,
     });
     await C100HearingUrgency.c100HearingUrgency({
       page: page,
