@@ -42,7 +42,9 @@ test.describe("C100 Create case type of application tests @manageCases", (): voi
 test(`Accessibility test the C100type of application event as a solicitor with the following options:
   Accessibility testing,
   Not Error message testing,
-  Saying yes to all options, @accessibilityManageCases`, async ({ page }): Promise<void> => {
+  Saying yes to all options, @accessibilityManageCases`, async ({
+  page,
+}): Promise<void> => {
   await C100TypeOfApplication.c100TypeOfApplication({
     page,
     user: "solicitor",
