@@ -120,7 +120,6 @@ export class selectApplicationTypeSubmitPage {
         `${Selectors.Span}:text-is("${SelectApplicationType1Content.loremIpsumText}")`,
         2,
       );
-
     }
     await this.continue(page);
   }
