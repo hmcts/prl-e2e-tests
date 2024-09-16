@@ -28,7 +28,7 @@ export class selectApplicationType1Page {
     page: Page,
     errorMessaging: boolean,
     accessibilityTest: boolean,
-    typeOfChildArrangementOrder: typeOfChildArrangementOrderID
+    typeOfChildArrangementOrder: typeOfChildArrangementOrderID,
   ): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest);
     if (errorMessaging) {

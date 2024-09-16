@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import { Helpers } from "../../../../common/helpers";
 import {
   selectApplicationType1Page,
-  typeOfChildArrangementOrderID
+  typeOfChildArrangementOrderID,
 } from "../../../../pages/manageCases/createCase/C100/selectApplicationType/selectApplicationType1Page";
 import { selectApplicationType2Page } from "../../../../pages/manageCases/createCase/C100/selectApplicationType/selectApplicationType2Page";
 import { selectApplicationType3Page } from "../../../../pages/manageCases/createCase/C100/selectApplicationType/selectApplicationType3Page";
@@ -18,12 +18,12 @@ export class C100TypeOfApplication {
     yesNo: boolean,
     typeOfChildArrangementOrder: typeOfChildArrangementOrderID,
   ): Promise<void> {
-    await Helpers.selectSolicitorEvent(page, "Type of application", );
+    await Helpers.selectSolicitorEvent(page, "Type of application");
     await selectApplicationType1Page.selectApplicationType1Page(
       page,
       errorMessaging,
       accessibilityTest,
-      typeOfChildArrangementOrder
+      typeOfChildArrangementOrder,
     );
     await selectApplicationType2Page.selectApplicationType2Page(
       page,

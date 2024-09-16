@@ -98,10 +98,10 @@ export class selectApplicationType2Page {
     );
 
     await Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukErrorMessage}:text-is("${SelectApplicationType2Content.errorMessage3}")`,
-        1,
-      );
+      page,
+      `${Selectors.GovukErrorMessage}:text-is("${SelectApplicationType2Content.errorMessage3}")`,
+      1,
+    );
   }
 
   private static async fillInFields(page: Page, yesNo: boolean): Promise<void> {
