@@ -9,7 +9,7 @@ import { WithoutNoticeOrder4Page } from "../../../../pages/manageCases/createCas
 import { bailConditionRadios } from "../FL401";
 import { SolicitorCreateInitial } from "../solicitorCreateInitial";
 
-interface fl401WithoutNoticeOrder {
+interface fl401WithoutNoticeOrderOptions {
   page: Page,
   accessibilityTest: boolean,
   errorMessaging: boolean,
@@ -27,7 +27,7 @@ export class FL401WithoutNoticeOrder {
       isWithoutNotice,
       bailConditions,
       subJourney
-    }: fl401WithoutNoticeOrder
+    }: fl401WithoutNoticeOrderOptions
   ): Promise<void> {
     if (subJourney) {
       await SolicitorCreateInitial.createInitialCase({
