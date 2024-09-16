@@ -140,6 +140,9 @@ export class WithoutNoticeOrder3Page {
     await page.fill(withoutNoticeOrderInputIDs.dayBail, file.day);
     await page.fill(withoutNoticeOrderInputIDs.monthBail, file.month);
     await page.fill(withoutNoticeOrderInputIDs.yearBail, file.year);
+    // Due to potential performance issues, playwright can't click continue after filling in the date fields.
+    // Without this command, the browser displays an error associated with the date field, even though it is filled in.
+    // I tried using waitForSelector but it didn't work.
     await page.keyboard.press("Escape");
   }
 
@@ -160,6 +163,11 @@ export class WithoutNoticeOrder3Page {
       case "Don't know":
         await page.click(withoutNoticeOrderInputIDs.radioDK);
         break;
+      default:
+        console.log(
+          'Unexpected value for bailConditions: ', bailConditions
+        )
+        break
     }
     await page.click(
       `${Selectors.button}:text-is("${WithoutNoticeOrderDetails3Content.continue}")`,
