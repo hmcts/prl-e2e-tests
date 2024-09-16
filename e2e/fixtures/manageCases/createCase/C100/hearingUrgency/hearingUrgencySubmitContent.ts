@@ -11,7 +11,6 @@ export enum HearingUrgencySubmitContent {
   text167 = "*What efforts have you made to notify each respondent of the application?",
   text168 = "*Set out the reasons for the application to be considered without notice. This information must be provided - if reasons are not given, the case will not be heard without notice.",
   text169 = "*Set out the reasons below",
-
   text16Change = "Change",
   continue = "Save and continue",
 }
