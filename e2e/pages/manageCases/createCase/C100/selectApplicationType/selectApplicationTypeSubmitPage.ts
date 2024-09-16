@@ -6,6 +6,7 @@ import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelp
 import { Helpers } from "../../../../../common/helpers";
 import config from "../../../../../config";
 import path from "path";
+import { radioButtons } from "./selectApplicationType3Page";
 
 type typeOfChildArrangementOrder =
   | "Spend time with order"
@@ -17,10 +18,11 @@ export class selectApplicationTypeSubmitPage {
     page: Page,
     accessibilityTest: boolean,
     yesNo: boolean,
+    selection: radioButtons
   ): Promise<void> {
     await Promise.all([
       this.checkPageLoads(page, accessibilityTest, yesNo),
-      this.checkFilledFields(page, true),
+      this.checkFilledFields(page, selection)
     ]);
   }
 
@@ -93,7 +95,7 @@ export class selectApplicationTypeSubmitPage {
 
   private static async checkFilledFields(
     page: Page,
-    yesNo: boolean,
+    selection: radioButtons
   ): Promise<void> {
     await Promise.all([
       Helpers.checkGroup(
@@ -107,7 +109,7 @@ export class selectApplicationTypeSubmitPage {
 
     await this.page1RadioButtons(page, "Spend time with order");
 
-    if (yesNo) {
+    if (selection === "Yes") {
       await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.Span}:text-is("${SelectApplicationType1Content.loremIpsumText}")`,
