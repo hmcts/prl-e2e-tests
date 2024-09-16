@@ -17,7 +17,7 @@ enum inputIds {
   dateOfBirth_month = "#dateOfBirth-month",
   dateOfBirth_year = "#dateOfBirth-year",
   applicantChildRelationship = "#applicantChildDetails_0_applicantChildRelationship",
-  respondentChildRelationship = "#applicantChildDetails_0_respondentChildRelationship"
+  respondentChildRelationship = "#applicantChildDetails_0_respondentChildRelationship",
 }
 
 export class ApplicantsFamilyPage {
@@ -63,24 +63,44 @@ export class ApplicantsFamilyPage {
 
   private static async checkErrorMessaging(page: Page): Promise<void> {}
 
-  private static async fillInFields(page: Page, accessibilityTest: boolean, applicantHasChildren: boolean): Promise<void> {
+  private static async fillInFields(
+    page: Page,
+    accessibilityTest: boolean,
+    applicantHasChildren: boolean,
+  ): Promise<void> {
     if (applicantHasChildren) {
       await page.click(radioIds.doesApplicantHaveChildren_Yes);
       await page.click(
         `${Selectors.button}:text-is("${ApplicantsFamilyContent.addNew}")`,
       );
-      await page.click(radioIds.applicantRespondentShareParental_Yes)
-      await this.checkFormLoads(page, accessibilityTest)
+      await page.click(radioIds.applicantRespondentShareParental_Yes);
+      await this.checkFormLoads(page, accessibilityTest);
 
-      await page.fill(`${inputIds.fullName}`, ApplicantsFamilyContent.exampleFullName)
-      await page.fill(`${inputIds.dateOfBirth_day}`, ApplicantsFamilyContent.exampleDay)
-      await page.fill(`${inputIds.dateOfBirth_month}`, ApplicantsFamilyContent.exampleMonth)
-      await page.fill(`${inputIds.dateOfBirth_year}`, ApplicantsFamilyContent.exampleYear)
-      await page.fill(`${inputIds.applicantChildRelationship}`, ApplicantsFamilyContent.exampleApplicantsRelationshipToChild)
-      await page.fill(`${inputIds.respondentChildRelationship}`, ApplicantsFamilyContent.exampleRespondentsRelationshipToChild)
-
+      await page.fill(
+        `${inputIds.fullName}`,
+        ApplicantsFamilyContent.exampleFullName,
+      );
+      await page.fill(
+        `${inputIds.dateOfBirth_day}`,
+        ApplicantsFamilyContent.exampleDay,
+      );
+      await page.fill(
+        `${inputIds.dateOfBirth_month}`,
+        ApplicantsFamilyContent.exampleMonth,
+      );
+      await page.fill(
+        `${inputIds.dateOfBirth_year}`,
+        ApplicantsFamilyContent.exampleYear,
+      );
+      await page.fill(
+        `${inputIds.applicantChildRelationship}`,
+        ApplicantsFamilyContent.exampleApplicantsRelationshipToChild,
+      );
+      await page.fill(
+        `${inputIds.respondentChildRelationship}`,
+        ApplicantsFamilyContent.exampleRespondentsRelationshipToChild,
+      );
     } else {
-
     }
   }
 
@@ -94,7 +114,7 @@ export class ApplicantsFamilyPage {
       ApplicantsFamilyContent,
       "formLabel",
       `${Selectors.GovukFormLabel}`,
-    )
+    );
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }
