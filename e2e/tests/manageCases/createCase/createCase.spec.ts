@@ -1,5 +1,4 @@
 import { test } from "@playwright/test";
-import { SolicitorCreateInitial } from "../../../journeys/manageCases/createCase/solicitorCreateInitial";
 import { C100 } from "../../../journeys/manageCases/createCase/C100";
 import { FL401 } from "../../../journeys/manageCases/createCase/FL401";
 
@@ -26,17 +25,50 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
     "Create a FL401 case with the following options: " +
       "Type of Application: Check All Boxes, " +
       "Is this linked to a C100 Application: No " +
+      "Respondent Details All Options: No " +
       "Would you like to give notice to the respondent: No " +
       "@crossbrowserManageCases",
     async ({ page }): Promise<void> => {
-      await FL401.fl401(page, "solicitor", false, false, false, false, "No");
+      await FL401.fl401(
+        page,
+        "solicitor",
+        false,
+        false,
+        false,
+        false,
+        false,
+        "No",
+      );
     },
   );
 
   test(
     "Create a FL401 case with the following options: " +
       "Type of Application: Check All Boxes, " +
-      "Is this linked to a C100 Application: No " +
+      "Is this linked to a C100 Application: Yes " +
+      "Would you like to give notice to the respondent: Yes " +
+      "Respondent Details All Options: Yes " +
+      "Is respondent subject to any bail conditions: Yes " +
+      "@crossbrowserManageCases",
+    async ({ page }): Promise<void> => {
+      await FL401.fl401(
+        page,
+        "solicitor",
+        false,
+        false,
+        true,
+        true,
+        true,
+        "Yes",
+      );
+    },
+  );
+
+  test(
+    "Create a FL401 case with the following options: " +
+      "Type of Application: Check All Boxes, " +
+      "Is this linked to a C100 Application: Yes " +
+      "Respondent Details All Options: Yes " +
       "Would you like to give notice to the respondent: Yes " +
       "Is respondent subject to any bail conditions: Don't Know " +
       "@crossbrowserManageCases",
@@ -46,48 +78,13 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
         "solicitor",
         false,
         false,
-        false,
+        true,
+        true,
         true,
         "Don't know",
       );
     },
   );
-
-  test(
-    "Create a FL401 case with the following options: " +
-      "Type of Application: Check All Boxes, " +
-      "Is this linked to a C100 Application: No " +
-      "Would you like to give notice to the respondent: Yes " +
-      "Is respondent subject to any bail conditions: No " +
-      "@crossbrowserManageCases",
-    async ({ page }): Promise<void> => {
-      await FL401.fl401(page, "solicitor", false, false, false, true, "No");
-    },
-  );
-
-  test(
-    "Create a FL401 case with the following options: " +
-      "Type of Application: Check All Boxes, " +
-      "Is this linked to a C100 Application: Yes " +
-      "Would you like to give notice to the respondent: Yes " +
-      "Is respondent subject to any bail conditions: Yes " +
-      "@crossbrowserManageCases",
-    async ({ page }): Promise<void> => {
-      await FL401.fl401(page, "solicitor", false, false, true, true, "Yes");
-    },
-  );
-
-  test("Create a FL401 case. Respondent Details all options are no @crossbrowserManageCases", async ({
-    page,
-  }): Promise<void> => {
-    await FL401.fl401(page, "solicitor", false, false, false, false); // <- page, user, accessibilityTest, errorMessaging, isLinkedToC100, allOptionsYes
-  });
-
-  test("Create a FL401 case. Respondent Details all options are yes @crossbrowserManageCases", async ({
-    page,
-  }): Promise<void> => {
-    await FL401.fl401(page, "solicitor", false, false, false, true); // <- page, user, accessibilityTest, errorMessaging, isLinkedToC100, allOptionsYes
-  });
 
   test("Check the errors of a C100 solicitor create journey. @crossbrowserManageCases", async ({
     page,
@@ -98,8 +95,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   test("Check the errors of a FL401 solicitor create journey. @crossbrowserManageCases", async ({
     page,
   }): Promise<void> => {
-    await FL401.fl401(page, "solicitor", false, true, true, true, "Yes");
-    await FL401.fl401(page, "solicitor", false, true, true, true); // <- page, user, accessibilityTest, errorMessaging, isLinkedToC100, allOptionsYes
+    await FL401.fl401(page, "solicitor", false, true, true, true, true, "Yes"); // <- page, user, accessibilityTest, errorMessaging, isLinkedToC100, allOptionsYes
   });
 });
 
@@ -112,5 +108,5 @@ test("Check the accessibility of a C100 solicitor create journey. @accessibility
 test("Check the accessibility of a FL401 solicitor create journey. @accessibilityManageCases", async ({
   page,
 }): Promise<void> => {
-  await FL401.fl401(page, "solicitor", true, false, false, false); // <- page, user, accessibilityTest, errorMessaging, isLinkedToC100, allOptionsYes
+  await FL401.fl401(page, "solicitor", true, false, true, true, true, "Yes"); // <- page, user, accessibilityTest, errorMessaging, isLinkedToC100, allOptionsYes
 });

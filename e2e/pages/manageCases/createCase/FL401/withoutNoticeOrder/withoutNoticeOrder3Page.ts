@@ -73,7 +73,7 @@ export class WithoutNoticeOrder3Page {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukFormHint}:text-is("${WithoutNoticeOrderDetails3Content.yesFormHint}")`,
-        1
+        1,
       ),
       Helpers.checkGroup(
         page,
@@ -164,10 +164,8 @@ export class WithoutNoticeOrder3Page {
         await page.click(withoutNoticeOrderInputIDs.radioDK);
         break;
       default:
-        console.log(
-          'Unexpected value for bailConditions: ', bailConditions
-        )
-        break
+        console.log("Unexpected value for bailConditions: ", bailConditions);
+        break;
     }
     await page.click(
       `${Selectors.button}:text-is("${WithoutNoticeOrderDetails3Content.continue}")`,
