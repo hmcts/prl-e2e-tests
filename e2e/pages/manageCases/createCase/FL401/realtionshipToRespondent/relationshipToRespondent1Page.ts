@@ -1,0 +1,163 @@
+import { Page } from "@playwright/test";
+import { Selectors } from "../../../../../common/selectors";
+import {
+  RelationshipToRespondent1Content
+} from "../../../../../fixtures/manageCases/createCase/FL401/relationshipToRespondent/relationshipToRespondent1Content";
+import { Helpers } from "../../../../../common/helpers";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+
+type respondentRelationship =
+  | "Married or in a civil partnership"
+  | "Formerly married or in a civil partnership"
+  | "Engaged or proposed civil partnership"
+  | "Formerly engaged or proposed civil partnership"
+  | "Live together as a couple"
+  | "Formerly lived together as a couple"
+  | "Boyfriend, girlfriend or partner who does not live with them"
+  | "Formerly boyfriend, girlfriend or partner who has not lived with them"
+  | "None of the above";
+
+type respondentRelationshipOther =
+  | "Father"
+  | "Mother"
+  | "Son"
+  | "Daughter"
+  | "Brother"
+  | "Sister"
+  | "Grandfather"
+  | "Grandmother"
+  | "Uncle"
+  | "Aunt"
+  | "Nephew"
+  | "Niece"
+  | "Cousin"
+  | "Other";
+
+enum respondentRelationshipIDs {
+  marriedOrCivil = '#respondentRelationObject_applicantRelationship-marriedOrCivil',
+  formerlyMarriedOrCivil = '#respondentRelationObject_applicantRelationship-formerlyMarriedOrCivil',
+  engagedOrProposed = '#respondentRelationObject_applicantRelationship-engagedOrProposed',
+  formerlyEngagedOrProposed = '#respondentRelationObject_applicantRelationship-formerlyEngagedOrProposed',
+  liveTogether = '#respondentRelationObject_applicantRelationship-liveTogether',
+  formerlyLivedTogether = '#respondentRelationObject_applicantRelationship-foremerlyLivedTogether',
+  bfGfOrPartner = '#respondentRelationObject_applicantRelationship-bfGfOrPartnerNotLivedTogether',
+  formerlyBfGfOrPartner = '#respondentRelationObject_applicantRelationship-formerBfGfOrPartnerNotLivedTogether',
+  noneOfTheAbove = '#respondentRelationObject_applicantRelationship-noneOfTheAbove'
+}
+
+interface relationshipToRespondent1PageOptions {
+  page: Page,
+  accessibilityTest: boolean,
+  errorMessaging: boolean,
+  respondentRelationship: respondentRelationship,
+}
+
+export class RelationshipToRespondent1Page {
+  public static async relationshipToRespondent1Page({
+    page,
+    accessibilityTest,
+    errorMessaging,
+    respondentRelationship,
+  }: relationshipToRespondent1PageOptions): Promise<void> {
+    await this.checkPageLoads(page, accessibilityTest);
+    if (errorMessaging) {
+      await this.checkErrorMessaging(page)
+    }
+    await this.fillInFields(page, respondentRelationship)
+  }
+
+  private static async checkPageLoads(
+    page: Page,
+    accessibilityTest: boolean
+  ): Promise<void> {
+    await page.waitForSelector(
+      `${Selectors.GovukHeadingL}:text-is("${RelationshipToRespondent1Content.pageTitle}")`
+    );
+    await Promise.all(
+      [
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.p}:text-is("${RelationshipToRespondent1Content.p1}")`,
+          1
+        ),
+        Helpers.checkGroup(
+          page,
+          10,
+          RelationshipToRespondent1Content,
+          'formLabel',
+          `${Selectors.GovukFormLabel}`
+        )
+      ]
+    );
+    if (accessibilityTest) {
+      await AccessibilityTestHelper.run(page)
+    }
+  }
+
+  private static async checkErrorMessaging(
+    page: Page
+  ): Promise<void> {
+    await page.click(
+      `${Selectors.button}:text-is("${RelationshipToRespondent1Content.continue}")`
+    )
+    await Promise.all(
+      [
+        HHelpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukErrorSummaryTitle}:text-is("${RelationshipToRespondent1Content.errorSummaryTitle}")`,
+          1,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukErrorValidation}:text-is("${RelationshipToRespondent1Content.errorValidation}")`,
+          1,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukErrorMessage}:text-is("${RelationshipToRespondent1Content.errorMessage}")`,
+          1,
+        ),
+      ]
+    )
+  }
+
+  private static async fillInFields(
+    page: Page,
+    respondentRelationship: respondentRelationship,
+  ): Promise<void> {
+    switch (respondentRelationship) {
+      case 'Married or in a civil partnership':
+        await page.click(respondentRelationshipIDs.marriedOrCivil);
+        break;
+      case 'Formerly married or in a civil partnership':
+        await page.click(respondentRelationshipIDs.formerlyMarriedOrCivil);
+        break;
+      case 'Engaged or proposed civil partnership':
+        await page.click(respondentRelationshipIDs.engagedOrProposed);
+        break;
+      case 'Formerly engaged or proposed civil partnership':
+        await page.click(respondentRelationshipIDs.formerlyEngagedOrProposed);
+        break;
+      case 'Live together as a couple':
+        await page.click(respondentRelationshipIDs.liveTogether);
+        break;
+      case 'Formerly lived together as a couple':
+        await page.click(respondentRelationshipIDs.formerlyLivedTogether);
+        break;
+      case 'Boyfriend, girlfriend or partner who does not live with them':
+        await page.click(respondentRelationshipIDs.bfGfOrPartner);
+        break;
+      case 'Formerly boyfriend, girlfriend or partner who has not lived with them':
+        await page.click(respondentRelationshipIDs.formerlyBfGfOrPartner);
+        break;
+      case 'None of the above':
+        await page.click(respondentRelationshipIDs.noneOfTheAbove);
+        break;
+      default:
+        console.log(`Unknown respondent relationship: ${respondentRelationship}`);
+    }
+    await page.click(
+      `${Selectors.button}:text-is("${RelationshipToRespondent1Content.continue}")`
+    )
+  }
+}
