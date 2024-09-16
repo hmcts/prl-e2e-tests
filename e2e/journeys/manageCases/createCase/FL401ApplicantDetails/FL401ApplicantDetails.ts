@@ -35,6 +35,7 @@ export class FL401ApplicantDetails {
         errorMessaging: false,
       });
     }
+    console.log('Created case')
     await Helpers.selectSolicitorEvent(page, "Applicant details");
     await ApplicantDetails1Page.applicantDetails1Page(
       page,
