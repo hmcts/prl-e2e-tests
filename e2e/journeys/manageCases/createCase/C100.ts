@@ -6,6 +6,7 @@ import { C100HearingUrgency } from "./C100HearingUrgency/C100HearingUrgency";
 import { C100ApplicantDetails } from "./C100ApplicantDetails/c100ApplicantDetails";
 import { ApplicantGender } from "../../../pages/manageCases/createCase/C100/applicantDetails/applicantDetails1Page";
 import { typeOfChildArrangementOrderID } from "../../../pages/manageCases/createCase/C100/selectApplicationType/selectApplicationType1Page";
+import { radioButtons } from "../../../pages/manageCases/createCase/C100/selectApplicationType/selectApplicationType3Page";
 
 export class C100 {
   public static async c100(
@@ -17,6 +18,7 @@ export class C100 {
     yesNoApplicantDetails: boolean,
     applicantGender: ApplicantGender,
     typeOfChildArrangementOrder: typeOfChildArrangementOrderID,
+    selection: radioButtons,
   ): Promise<void> {
     await SolicitorCreateInitial.createInitialCase(
       page,
@@ -31,6 +33,7 @@ export class C100 {
       accessibilityTest,
       yesNo,
       typeOfChildArrangementOrder,
+      selection
     );
     await C100HearingUrgency.c100HearingUrgency(
       page,

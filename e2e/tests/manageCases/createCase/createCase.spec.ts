@@ -17,6 +17,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
         true,
         "male",
         "Spend time with order",
+        "Yes"
       );
     },
   );
@@ -35,6 +36,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
         false,
         "male",
         "Spend time with order",
+        "No, permission is not required"
       );
     },
   );
@@ -71,6 +73,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       true,
       "female",
       "Spend time with order",
+      "Yes"
     );
   });
 
@@ -93,6 +96,7 @@ test("Check the accessibility of a C100 solicitor create journey. @accessibility
     true,
     "male",
     "Spend time with order",
+    "Yes"
   );
 });
 

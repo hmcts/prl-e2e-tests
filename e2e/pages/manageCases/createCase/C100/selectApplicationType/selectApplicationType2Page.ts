@@ -25,7 +25,6 @@ export class selectApplicationType2Page {
     await this.fillInFields(page, yesNo);
   }
 
-  // @ts-ignore
   private static async checkPageLoads(
     page: Page,
     accessibilityTest: boolean,
@@ -71,13 +70,11 @@ export class selectApplicationType2Page {
         1,
       ),
     ]);
-
     await page.click(`${PageIDs.yes}`);
     await this.draftConsentContent(page);
     await page.click(
       `${Selectors.button}:text-is("${SelectApplicationType2Content.continue}")`,
     );
-
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
@@ -96,7 +93,6 @@ export class selectApplicationType2Page {
     await page.click(
       `${Selectors.button}:text-is("${SelectApplicationType2Content.continue}")`,
     );
-
     await Helpers.checkVisibleAndPresent(
       page,
       `${Selectors.GovukErrorMessage}:text-is("${SelectApplicationType2Content.errorMessage3}")`,
