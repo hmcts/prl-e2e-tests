@@ -29,4 +29,5 @@ export type c100SolicitorEvents =
 
 export type fl401SolicitorEvents =
   | "Type of application"
-  | "Without notice order";
+  | "Without notice order"
+  | "Respondent details";

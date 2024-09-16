@@ -1,4 +1,5 @@
 import { test } from "@playwright/test";
+import { SolicitorCreateInitial } from "../../../journeys/manageCases/createCase/solicitorCreateInitial";
 import { C100 } from "../../../journeys/manageCases/createCase/C100";
 import { FL401 } from "../../../journeys/manageCases/createCase/FL401";
 
@@ -76,6 +77,18 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
     },
   );
 
+  test("Create a FL401 case. Respondent Details all options are no @crossbrowserManageCases", async ({
+    page,
+  }): Promise<void> => {
+    await FL401.fl401(page, "solicitor", false, false, false, false); // <- page, user, accessibilityTest, errorMessaging, isLinkedToC100, allOptionsYes
+  });
+
+  test("Create a FL401 case. Respondent Details all options are yes @crossbrowserManageCases", async ({
+    page,
+  }): Promise<void> => {
+    await FL401.fl401(page, "solicitor", false, false, false, true); // <- page, user, accessibilityTest, errorMessaging, isLinkedToC100, allOptionsYes
+  });
+
   test("Check the errors of a C100 solicitor create journey. @crossbrowserManageCases", async ({
     page,
   }): Promise<void> => {
@@ -86,6 +99,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
     page,
   }): Promise<void> => {
     await FL401.fl401(page, "solicitor", false, true, true, true, "Yes");
+    await FL401.fl401(page, "solicitor", false, true, true, true); // <- page, user, accessibilityTest, errorMessaging, isLinkedToC100, allOptionsYes
   });
 });
 
@@ -98,5 +112,5 @@ test("Check the accessibility of a C100 solicitor create journey. @accessibility
 test("Check the accessibility of a FL401 solicitor create journey. @accessibilityManageCases", async ({
   page,
 }): Promise<void> => {
-  await FL401.fl401(page, "solicitor", true, false, true);
+  await FL401.fl401(page, "solicitor", true, false, false, false); // <- page, user, accessibilityTest, errorMessaging, isLinkedToC100, allOptionsYes
 });
