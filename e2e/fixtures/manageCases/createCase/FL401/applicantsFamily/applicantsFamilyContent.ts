@@ -1,6 +1,5 @@
 export enum ApplicantsFamilyContent {
   title = "Applicant’s family",
-  subTitle = "Respondent",
   textOnPage = "You can save and return to this page at any time. Questions marked with a * need to be completed before you can send your application.",
   questionLabel = "*Does the applicant have any children, have parental responsibility for any children or need to protect other children with this application?",
   formTitle = "Child",
