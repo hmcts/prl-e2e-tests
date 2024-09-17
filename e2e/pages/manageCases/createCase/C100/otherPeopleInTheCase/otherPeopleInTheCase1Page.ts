@@ -57,10 +57,10 @@ export class OtherPeopleInTheCase1Page {
     accessibilityTest: boolean,
     errorMessaging: boolean,
   ): Promise<void> {
-    // await this.checkPageLoads(page, accessibilityTest);
-    // if (errorMessaging) {
-    //   await this.triggerErrorMessages(page);
-    // }
+    await this.checkPageLoads(page, accessibilityTest);
+    if (errorMessaging) {
+      await this.triggerErrorMessages(page);
+    }
     // await this.fillInFields(page);
   }
 
@@ -112,7 +112,11 @@ export class OtherPeopleInTheCase1Page {
         1,
       ),
     ]);
+    await page.click(`${UniqueSelectors.applicantCurrentAddressYes}`);
     await page.click(`${UniqueSelectors.applicantEmailAddressYes}`);
+    await page.click(`${UniqueSelectors.applicantContactNumberYes}`);
+    await page.click(`${UniqueSelectors.applicantEmailAddressYes}`);
+    await page.click(`${Selectors.button}:text-is("${OtherPeopleInTheCase1Content.continue}")`);
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
@@ -124,7 +128,38 @@ export class OtherPeopleInTheCase1Page {
         `${Selectors.GovukErrorMessage}:text-is("${OtherPeopleInTheCase1Content.errorMessage5YearsDetailsRequired}")`,
         1,
       ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorValidation}:text-is("${OtherPeopleInTheCase1Content.errorMessageAddressConfidential}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorMessage}:text-is("${OtherPeopleInTheCase1Content.errorMessageAddressConfidential}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorValidation}:text-is("${OtherPeopleInTheCase1Content.errorMessageEmailConfidential}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorMessage}:text-is("${OtherPeopleInTheCase1Content.errorMessageEmailConfidential}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorValidation}:text-is("${OtherPeopleInTheCase1Content.errorMessageContactNumberConfidential}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorMessage}:text-is("${OtherPeopleInTheCase1Content.errorMessageContactNumberConfidential}")`,
+        1,
+      ),
     ]);
+
   }
 
   private static async fillInFields(
