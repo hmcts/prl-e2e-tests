@@ -127,18 +127,9 @@ export class ApplicantsFamilyPage {
         1,
       ),
     ]);
-    await page.fill(
-      `${inputIds.dateOfBirth_day}`,
-      '',
-    );
-    await page.fill(
-      `${inputIds.dateOfBirth_month}`,
-      '',
-    );
-    await page.fill(
-      `${inputIds.dateOfBirth_year}`,
-      '',
-    );
+    await page.fill(`${inputIds.dateOfBirth_day}`, "");
+    await page.fill(`${inputIds.dateOfBirth_month}`, "");
+    await page.fill(`${inputIds.dateOfBirth_year}`, "");
   }
 
   private static async fillInFields(
