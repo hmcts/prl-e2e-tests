@@ -20,22 +20,23 @@ module.exports = defineConfig({
   reporter: process.env.CI ? "html" : "list",
   projects: [
     {
-      name: 'setup',
-      testMatch: /global\.setup\.ts/
+      name: "setup",
+      testMatch: /global\.setup\.ts/,
     },
     {
       name: "chromium",
-      dependencies: ['setup'],
+      dependencies: ["setup"],
       use: {
         ...devices["Desktop Chrome"],
         channel: "chrome",
+        screenshot: "on",
         trace: "on",
         javaScriptEnabled: true,
       },
     },
     {
       name: "firefox",
-      dependencies: ['setup'],
+      dependencies: ["setup"],
       use: {
         ...devices["Desktop Firefox"],
         screenshot: "off",
@@ -45,7 +46,7 @@ module.exports = defineConfig({
     },
     {
       name: "webkit",
-      dependencies: ['setup'],
+      dependencies: ["setup"],
       use: {
         ...devices["Desktop Safari"],
         screenshot: "off",
@@ -55,7 +56,7 @@ module.exports = defineConfig({
     },
     {
       name: "MobileChrome",
-      dependencies: ['setup'],
+      dependencies: ["setup"],
       use: {
         ...devices["Pixel 5"],
         screenshot: "only-on-failure",
@@ -64,7 +65,7 @@ module.exports = defineConfig({
     },
     {
       name: "MobileSafari",
-      dependencies: ['setup'],
+      dependencies: ["setup"],
       use: {
         ...devices["iPhone 12"],
         screenshot: "only-on-failure",
@@ -73,7 +74,7 @@ module.exports = defineConfig({
     },
     {
       name: "MicrosoftEdge",
-      dependencies: ['setup'],
+      dependencies: ["setup"],
       use: {
         ...devices["Desktop Edge"],
         channel: "msedge",
