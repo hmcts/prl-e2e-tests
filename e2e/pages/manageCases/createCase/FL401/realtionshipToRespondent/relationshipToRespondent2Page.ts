@@ -51,6 +51,18 @@ enum relationshipPeriodIDs {
   relationshipDateYear = '#applicantRelationshipDate-year'
 }
 
+enum invalidRelationshipDates {
+  startDateDay = '1',
+  startDateMonth = '0',
+  startDateYear = '12',
+  endDateDay = 'a',
+  endDateMonth = '1',
+  endDateYear = 'c',
+  relationshipDateDay = '1',
+  relationshipDateMonth = '',
+  relationshipDateYear = ''
+}
+
 interface relationshipToRespondent2PageOptions {
   page: Page,
   accessibilityTest: boolean,
@@ -140,7 +152,7 @@ export class RelationshipToRespondent2Page {
       [
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukErrorSummaryTitle}:text-is("${RelationshipToRespondent2Content.isNoneErrorSummaryTitle}")`,
+          `${Selectors.GovukErrorSummaryTitle}:text-is("${RelationshipToRespondent2Content.errorSummaryTitle}")`,
           1,
         ),
         Helpers.checkVisibleAndPresent(
@@ -177,9 +189,9 @@ export class RelationshipToRespondent2Page {
   ): Promise<void> {
     await this.relationshipPeriodCheckPageLoads(page, accessibilityTest);
     if (errorMessaging) {
-
+      await this.relationshipPeriodCheckErrors(page);
     }
-
+    await this.relationshipPeriodFillInFields(page)
   }
 
   private static async relationshipPeriodCheckPageLoads(
@@ -235,5 +247,70 @@ export class RelationshipToRespondent2Page {
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }
+  }
+
+  private static async relationshipPeriodCheckErrors(
+    page: Page
+  ): Promise<void> {
+    for (let [key, inputValue] of Object.entries(invalidRelationshipDates)) {
+      let typedKey = key as keyof typeof relationshipPeriodIDs;
+      await page.fill(
+        relationshipPeriodIDs[typedKey],
+        inputValue
+      );
+    }
+    await page.click(
+      `${Selectors.button}:text-is("${RelationshipToRespondent2Content.continue}")`
+    );
+    await Promise.all(
+      [
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukErrorSummaryTitle}:text-is("${RelationshipToRespondent2Content.errorSummaryTitle}")`,
+          1,
+        ),
+        Helpers.checkGroup(
+          page,
+          3,
+          RelationshipToRespondent2Content,
+          'relationshipErrorValidation',
+          `${Selectors.GovukErrorValidation}`
+        ),
+        Helpers.checkGroup(
+          page,
+          3,
+          RelationshipToRespondent2Content,
+          'relationshipErrorMessage',
+          `${Selectors.GovukErrorMessage}`
+        )
+      ]
+    );
+  }
+
+  private static async relationshipPeriodFillInFields(
+    page: Page
+  ): Promise<void> {
+    let dateKeys: string[] = [
+      'startDateDay',
+      'startDateMonth',
+      'startDateYear',
+      'endDateDay',
+      'endDateMonth',
+      'endDateYear',
+      'relationshipDateDay',
+      'relationshipDateMonth',
+      'relationshipDateYear',
+    ]
+    for (let key of dateKeys) {
+      let fieldKey = key as keyof typeof relationshipPeriodIDs;
+      let contentKey = key as keyof typeof RelationshipToRespondent2Content;
+      await page.fill(
+        relationshipPeriodIDs[fieldKey],
+        RelationshipToRespondent2Content[contentKey]
+      );
+    }
+    await page.click(
+      `${Selectors.button}:text-is("${RelationshipToRespondent2Content.continue}")`
+    )
   }
 }
