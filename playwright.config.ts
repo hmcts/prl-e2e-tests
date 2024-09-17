@@ -20,7 +20,12 @@ module.exports = defineConfig({
   reporter: process.env.CI ? "html" : "list",
   projects: [
     {
+      name: 'setup',
+      testMatch: /global\.setup\.ts/
+    },
+    {
       name: "chromium",
+      dependencies: ['setup'],
       use: {
         ...devices["Desktop Chrome"],
         channel: "chrome",
@@ -30,6 +35,7 @@ module.exports = defineConfig({
     },
     {
       name: "firefox",
+      dependencies: ['setup'],
       use: {
         ...devices["Desktop Firefox"],
         screenshot: "off",
@@ -39,6 +45,7 @@ module.exports = defineConfig({
     },
     {
       name: "webkit",
+      dependencies: ['setup'],
       use: {
         ...devices["Desktop Safari"],
         screenshot: "off",

@@ -1,3 +1,4 @@
+import path from "path";
 import Config from "../config.ts";
 import { Page } from "@playwright/test";
 import { UserCredentials, UserLoginInfo } from "./types.ts";
@@ -7,7 +8,6 @@ export class IdamLoginHelper {
     username: "#username",
     password: "#password",
   };
-
   private static submitButton: string = 'input[value="Sign in"]';
 
   public static async signInUser(
@@ -33,6 +33,10 @@ export class IdamLoginHelper {
       await page.fill(this.fields.username, userCredentials.email);
       await page.fill(this.fields.password, userCredentials.password);
       await page.click(this.submitButton);
+
+      await page
+        .context()
+        .storageState({ path: Config.sessionStoragePath + `${user}.json` });
     } else {
       console.error("Invalid credential type");
     }

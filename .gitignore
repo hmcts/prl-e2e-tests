@@ -9,6 +9,7 @@ node_modules/
 playwright-report/
 test-results/
 tests-examples
+e2e/.sessions/
 .pnp.cjs
 .pnp.loader.mjs
 package-lock.json
