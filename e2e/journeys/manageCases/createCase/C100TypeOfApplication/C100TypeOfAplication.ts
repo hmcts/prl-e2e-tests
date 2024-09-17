@@ -20,9 +20,9 @@ interface C100TypeOfApplicationParams {
   user: UserRole;
   errorMessaging: boolean;
   accessibilityTest: boolean;
-  yesNo: boolean;
+  yesNoC100TypeOfApplication: boolean;
   typeOfChildArrangementOrder: typeOfChildArrangementOrderID;
-  selection: radioButtons;
+  selectionC100TypeOfApplication: radioButtons;
   subJourney: boolean;
 }
 
@@ -32,9 +32,9 @@ export class C100TypeOfApplication {
     user,
     errorMessaging,
     accessibilityTest,
-    yesNo,
+    yesNoC100TypeOfApplication,
     typeOfChildArrangementOrder,
-    selection,
+    selectionC100TypeOfApplication,
     subJourney,
   }: C100TypeOfApplicationParams): Promise<void> {
     if (subJourney) {
@@ -57,13 +57,13 @@ export class C100TypeOfApplication {
       page,
       errorMessaging,
       accessibilityTest,
-      yesNo,
+      yesNoC100TypeOfApplication,
     );
     await selectApplicationType3Page.selectApplicationType3Page(
       page,
       errorMessaging,
       accessibilityTest,
-      selection,
+      selectionC100TypeOfApplication,
     );
     await selectApplicationType4Page.selectApplicationType4Page(
       page,
@@ -73,8 +73,8 @@ export class C100TypeOfApplication {
     await selectApplicationTypeSubmitPage.selectApplicationTypeSubmitPage(
       page,
       accessibilityTest,
-      yesNo,
-      selection,
+      yesNoC100TypeOfApplication,
+      selectionC100TypeOfApplication,
     );
     await C100TasksTabPage.c100TasksTabPage(page, accessibilityTest);
   }

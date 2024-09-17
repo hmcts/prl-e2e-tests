@@ -13,9 +13,9 @@ test.describe("C100 Create case type of application tests @manageCases", (): voi
       user: "solicitor",
       accessibilityTest: false,
       errorMessaging: false,
-      yesNo: true,
+      yesNoC100TypeOfApplication: true,
       typeOfChildArrangementOrder: "Spend time with order",
-      selection: "Yes",
+      selectionC100TypeOfApplication: "Yes",
       subJourney: true,
     });
   });
@@ -31,9 +31,9 @@ test.describe("C100 Create case type of application tests @manageCases", (): voi
       user: "solicitor",
       accessibilityTest: false,
       errorMessaging: true,
-      yesNo: false,
+      yesNoC100TypeOfApplication: false,
       typeOfChildArrangementOrder: "Spend time with order",
-      selection: "No, permission now sought",
+      selectionC100TypeOfApplication: "No, permission now sought",
       subJourney: true,
     });
   });
@@ -50,9 +50,9 @@ test(`Accessibility test the C100type of application event as a solicitor with t
     user: "solicitor",
     accessibilityTest: true,
     errorMessaging: false,
-    yesNo: true,
+    yesNoC100TypeOfApplication: true,
     typeOfChildArrangementOrder: "Spend time with order",
-    selection: "Yes",
+    selectionC100TypeOfApplication: "Yes",
     subJourney: true,
   });
 });

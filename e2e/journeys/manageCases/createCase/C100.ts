@@ -46,7 +46,7 @@ export class C100 {
       user: user,
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
-      yesNo: yesNo,
+      yesNoC100TypeOfApplication: yesNo,
       typeOfChildArrangementOrder: typeOfChildArrangementOrder,
       selection: selection,
       subJourney: false,
