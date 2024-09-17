@@ -5,14 +5,9 @@ import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { ApplicantGender } from "../applicantDetails/applicantDetails1Page";
 
+enum pageLoadFields {}
 
-enum pageLoadFields {
-
-}
-
-enum UniqueSelectors {
-
-}
+enum UniqueSelectors {}
 
 enum ApplicantAddressFields {
   line1 = "#",
@@ -23,7 +18,6 @@ enum ApplicantAddressFields {
   postcode = "#",
   country = "#",
 }
-
 
 export class OtherPeopleInTheCase1Page {
   public static async otherPeopleInTheCase1Page(
