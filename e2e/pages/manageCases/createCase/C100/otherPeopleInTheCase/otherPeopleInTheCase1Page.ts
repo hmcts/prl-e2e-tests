@@ -174,5 +174,4 @@ export class OtherPeopleInTheCase1Page {
   private static async checkApplicantAddress5Years(page: Page): Promise<void> {}
 
   private static async checkEmailAddress(page: Page): Promise<void> {}
-
 }
