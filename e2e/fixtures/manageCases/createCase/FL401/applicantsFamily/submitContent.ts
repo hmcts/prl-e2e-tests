@@ -1,8 +1,8 @@
 export enum SubmitContent {
-  pageTitle = "Respondent details",
+  pageTitle = "Applicant’s family",
   h2 = "Check your answers",
-  questionLabel = "*Does the applicant have any children, have parental responsibility for any children or need to protect other children with this application?",
-  text161 = "Check the information below carefully.",
+  checkInfoLabel = "Check the information below carefully.",
+  text161 = "*Does the applicant have any children, have parental responsibility for any children or need to protect other children with this application?",
   text162 = "*Child's full name",
   text163 = "*Child’s date of birth",
   text164 = "*Applicant’s relationship to child",

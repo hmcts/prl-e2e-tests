@@ -189,11 +189,6 @@ export class ApplicantsFamilyPage {
     page: Page,
     accessibilityTest: boolean,
   ): Promise<void> {
-    // await Helpers.checkVisibleAndPresent(
-    //   page,
-    //   ``,
-    //   1
-    // )
     await Helpers.checkGroup(
       page,
       8,

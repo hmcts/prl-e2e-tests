@@ -2,8 +2,8 @@ import { Helpers } from "../../../../common/helpers";
 import { Page } from "@playwright/test";
 import { ApplicantsFamilyPage } from "../../../../pages/manageCases/createCase/FL401/applicantsFamily/applicantsFamilyPage";
 import { SolicitorCreateInitial } from "../solicitorCreateInitial";
-// import { ApplicantsFamilySubmitPage } from "../../../../pages/manageCases/createCase/FL401/applicantsFamily/applicantsFamilySubmitPage";
-// import { Fl401TasksTabPage } from "../../../../pages/manageCases/caseTabs/fl401TasksTabPage";
+import { ApplicantsFamilySubmitPage } from "../../../../pages/manageCases/createCase/FL401/applicantsFamily/applicantsFamilySubmitPage";
+import { Fl401TasksTabPage } from "../../../../pages/manageCases/caseTabs/fl401TasksTabPage";
 
 interface fl401ApplicantsFamilyOptions {
   page: Page;
@@ -37,10 +37,11 @@ export class FL401ApplicantsFamily {
       accessibilityTest,
       applicantHasChildren,
     );
-    // await ApplicantsFamilySubmitPage.applicantsFamilySubmitPage(
-    //   page,
-    //   accessibilityTest,
-    // );
-    // await Fl401TasksTabPage.fl401TasksTabPage(page, accessibilityTest);
+    await ApplicantsFamilySubmitPage.applicantsFamilySubmitPage(
+      page,
+      accessibilityTest,
+      applicantHasChildren,
+    );
+    await Fl401TasksTabPage.fl401TasksTabPage(page, accessibilityTest);
   }
 }
