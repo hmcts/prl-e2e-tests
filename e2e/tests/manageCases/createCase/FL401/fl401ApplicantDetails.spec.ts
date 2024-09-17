@@ -25,7 +25,7 @@ test.describe("FL401 Create case applicant details tests @manageCases", (): void
   Not Accessibility testing,
   Not Error message testing,
   Saying yes to all options,
-  Female applicant @crossbrowserManageCases`, async ({
+  Female applicant`, async ({
      page,
    }): Promise<void> => {
     await FL401ApplicantDetails.fl401ApplicantDetails({
@@ -42,7 +42,7 @@ test.describe("FL401 Create case applicant details tests @manageCases", (): void
   Not Accessibility testing,
   Not Error message testing,
   Saying yes to all options,
-  Other gender applicant @crossbrowserManageCases`, async ({
+  Other gender applicant`, async ({
       page,
   }): Promise<void> => {
     await FL401ApplicantDetails.fl401ApplicantDetails({
@@ -76,7 +76,7 @@ test.describe("FL401 Create case applicant details tests @manageCases", (): void
   Not Accessibility testing,
   Not Error message testing,
   Saying no to all options,
-  Female applicant @crossbrowserManageCases`, async ({
+  Female applicant`, async ({
      page,
    }): Promise<void> => {
     await FL401ApplicantDetails.fl401ApplicantDetails({
@@ -93,7 +93,7 @@ test.describe("FL401 Create case applicant details tests @manageCases", (): void
   Not Accessibility testing,
   Not Error message testing,
   Saying no to all options,
-  Other Gender applicant @crossbrowserManageCases`, async ({
+  Other Gender applicant`, async ({
      page,
    }): Promise<void> => {
     await FL401ApplicantDetails.fl401ApplicantDetails({
@@ -127,7 +127,7 @@ test.describe("FL401 Create case applicant details tests @manageCases", (): void
   Not Accessibility testing,
   Error message testing,
   Saying yes to all options,
-  Male applicant @crossbrowserManageCases`, async ({
+  Male applicant`, async ({
      page,
    }): Promise<void> => {
     await FL401ApplicantDetails.fl401ApplicantDetails({
@@ -162,7 +162,7 @@ test(`Complete the FL401 applicant details event as a solicitor with the followi
   Accessibility testing,
   Not Error message testing,
   Saying yes to all options,
-  Male applicant @crossbrowserManageCases`, async ({
+  Male applicant`, async ({
    page,
  }): Promise<void> => {
   await FL401ApplicantDetails.fl401ApplicantDetails({
