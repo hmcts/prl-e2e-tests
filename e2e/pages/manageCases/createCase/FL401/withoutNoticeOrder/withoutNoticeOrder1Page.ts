@@ -14,13 +14,13 @@ export class WithoutNoticeOrder1Page {
     page: Page,
     accessibilityTest: boolean,
     errorMessaging: boolean,
-    isWithoutNotice: boolean,
+    isWithoutNoticeDetailsYes: boolean,
   ): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest);
     if (errorMessaging) {
       await this.checkErrorMessaging(page);
     }
-    await this.fillInFields(page, isWithoutNotice);
+    await this.fillInFields(page, isWithoutNoticeDetailsYes);
   }
 
   private static async checkPageLoads(

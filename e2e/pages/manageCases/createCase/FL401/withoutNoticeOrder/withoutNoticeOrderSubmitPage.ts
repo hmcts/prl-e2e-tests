@@ -9,14 +9,14 @@ export class WithoutNoticeOrderSubmitPage {
   public static async withoutNoticeOrderSubmitPage(
     page: Page,
     accessibilityTest: boolean,
-    isWithoutNotice: boolean,
-    bailConditions: bailConditionRadios,
+    isWithoutNoticeDetailsYes: boolean,
+    isWithoutNoticeDetailsBailConditions: bailConditionRadios,
   ): Promise<void> {
     await this.checkPageLoads(
       page,
       accessibilityTest,
-      isWithoutNotice,
-      bailConditions,
+      isWithoutNoticeDetailsYes,
+      isWithoutNoticeDetailsBailConditions,
     );
     await this.fillInFields(page);
   }

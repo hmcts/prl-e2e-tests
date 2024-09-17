@@ -25,13 +25,13 @@ export class WithoutNoticeOrder3Page {
     page: Page,
     accessibilityTest: boolean,
     errorMessaging: boolean,
-    bailConditions: bailConditionRadios,
+    isWithoutNoticeDetailsBailConditions: bailConditionRadios,
   ): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest);
     if (errorMessaging) {
       await this.checkErrorMessaging(page);
     }
-    await this.fillInFields(page, accessibilityTest, bailConditions);
+    await this.fillInFields(page, accessibilityTest, isWithoutNoticeDetailsBailConditions);
   }
 
   private static async checkPageLoads(

@@ -54,8 +54,8 @@ export class FL401 {
       page: page,
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
-      isWithoutNotice: isWithoutNoticeDetailsYes,
-      bailConditions: isWithoutNoticeDetailsBailConditions,
+      isWithoutNoticeDetailsYes: isWithoutNoticeDetailsYes,
+      isWithoutNoticeDetailsBailConditions: isWithoutNoticeDetailsBailConditions,
       subJourney: false,
     })
   }

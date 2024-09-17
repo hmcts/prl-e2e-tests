@@ -13,8 +13,8 @@ interface fl401WithoutNoticeOrderOptions {
   page: Page,
   accessibilityTest: boolean,
   errorMessaging: boolean,
-  isWithoutNotice: boolean,
-  bailConditions: bailConditionRadios,
+  isWithoutNoticeDetailsYes: boolean,
+  isWithoutNoticeDetailsBailConditions: bailConditionRadios,
   subJourney: boolean
 }
 
@@ -24,8 +24,8 @@ export class FL401WithoutNoticeOrder {
       page,
       accessibilityTest,
       errorMessaging,
-      isWithoutNotice,
-      bailConditions,
+      isWithoutNoticeDetailsYes,
+      isWithoutNoticeDetailsBailConditions,
       subJourney
     }: fl401WithoutNoticeOrderOptions
   ): Promise<void> {
@@ -43,9 +43,9 @@ export class FL401WithoutNoticeOrder {
       page,
       accessibilityTest,
       errorMessaging,
-      isWithoutNotice,
+      isWithoutNoticeDetailsYes,
     );
-    if (isWithoutNotice) {
+    if (isWithoutNoticeDetailsYes) {
       await WithoutOrderNotice2Page.withoutOrderNotice2Page(
         page,
         accessibilityTest,
@@ -55,7 +55,7 @@ export class FL401WithoutNoticeOrder {
         page,
         accessibilityTest,
         errorMessaging,
-        bailConditions,
+        isWithoutNoticeDetailsBailConditions,
       );
       await WithoutNoticeOrder4Page.withoutNoticeOrder4Page(
         page,
@@ -65,8 +65,8 @@ export class FL401WithoutNoticeOrder {
     await WithoutNoticeOrderSubmitPage.withoutNoticeOrderSubmitPage(
       page,
       accessibilityTest,
-      isWithoutNotice,
-      bailConditions,
+      isWithoutNoticeDetailsYes,
+      isWithoutNoticeDetailsBailConditions,
     );
     await Fl401TasksTabPage.fl401TasksTabPage(page, accessibilityTest);
   }

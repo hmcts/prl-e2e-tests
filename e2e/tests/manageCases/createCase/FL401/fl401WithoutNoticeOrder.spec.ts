@@ -14,8 +14,8 @@ test.describe("FL401 Create case without notice order tests @manageCases", (): v
       page: page,
       accessibilityTest: false,
       errorMessaging: false,
-      isWithoutNotice: true,
-      bailConditions: 'Yes',
+      isWithoutNoticeDetailsYes: true,
+      isWithoutNoticeDetailsBailConditions: 'Yes',
       subJourney: true,
     });
   });
@@ -30,8 +30,8 @@ test.describe("FL401 Create case without notice order tests @manageCases", (): v
       page: page,
       accessibilityTest: false,
       errorMessaging: false,
-      isWithoutNotice: false,
-      bailConditions: 'No',
+      isWithoutNoticeDetailsYes: false,
+      isWithoutNoticeDetailsBailConditions: 'No',
       subJourney: true,
     });
   });
@@ -47,8 +47,8 @@ test.describe("FL401 Create case without notice order tests @manageCases", (): v
       page: page,
       accessibilityTest: false,
       errorMessaging: false,
-      isWithoutNotice: true,
-      bailConditions: "Don't know",
+      isWithoutNoticeDetailsYes: true,
+      isWithoutNoticeDetailsBailConditions: "Don't know",
       subJourney: true,
     });
   });
@@ -62,8 +62,8 @@ test.describe("FL401 Create case without notice order tests @manageCases", (): v
       page: page,
       accessibilityTest: false,
       errorMessaging: true,
-      isWithoutNotice: true,
-      bailConditions: 'Yes',
+      isWithoutNoticeDetailsYes: true,
+      isWithoutNoticeDetailsBailConditions: 'Yes',
       subJourney: true,
     });
   });
@@ -80,8 +80,8 @@ test(`Accessibility test the FL401 without notice order event as a solicitor wit
       page: page,
       accessibilityTest: true,
       errorMessaging: false,
-      isWithoutNotice: true,
-      bailConditions: 'Yes',
+      isWithoutNoticeDetailsYes: true,
+      isWithoutNoticeDetailsBailConditions: 'Yes',
       subJourney: true
     }
   )
@@ -98,8 +98,8 @@ test(`Accessibility test the FL401 without notice order event as a solicitor wit
       page: page,
       accessibilityTest: true,
       errorMessaging: false,
-      isWithoutNotice: false,
-      bailConditions: 'No',
+      isWithoutNoticeDetailsYes: false,
+      isWithoutNoticeDetailsBailConditions: 'No',
       subJourney: true
     }
   )
