@@ -1,4 +1,3 @@
-import path from "path";
 import Config from "../config.ts";
 import { Page } from "@playwright/test";
 import { UserCredentials, UserLoginInfo } from "./types.ts";
