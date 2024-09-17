@@ -83,6 +83,9 @@ export class OtherPeopleInTheCase1Page {
         1,
       ),
     ]);
+    if (accessibilityTest) {
+      await AccessibilityTestHelper.run(page);
+    }
   }
 
   private static async triggerErrorMessages(page: Page): Promise<void> {
