@@ -46,15 +46,39 @@ enum invalidRelationshipDates {
   relationshipDateYear = "",
 }
 
-interface relationshipToRespondent2PageOptions {
+interface RelationshipToRespondent2PageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
   respondentRelationshipOther?: respondentRelationshipOther;
 }
 
-interface otherRelationshipPageOptions {
+interface OtherRelationshipCheckPageLoadsOptions {
+  page: Page;
+  accessibilityTest: boolean;
+}
 
+interface OtherRelationshipFillInFieldsOptions {
+  page: Page;
+  respondentRelationshipOther: respondentRelationshipOther;
+}
+
+interface RelationshipPeriodPageOptions {
+  page: Page;
+  accessibilityTest: boolean;
+  errorMessaging: boolean;
+}
+
+interface OtherRelationshipPageOptions {
+  page: Page;
+  accessibilityTest: boolean;
+  errorMessaging: boolean;
+  respondentRelationshipOther: respondentRelationshipOther;
+}
+
+interface RelationshipPeriodCheckPageLoadsOptions {
+  page: Page;
+  accessibilityTest: boolean;
 }
 
 export class RelationshipToRespondent2Page {
@@ -63,40 +87,43 @@ export class RelationshipToRespondent2Page {
     accessibilityTest,
     errorMessaging,
     respondentRelationshipOther,
-  }: relationshipToRespondent2PageOptions): Promise<void> {
+  }: RelationshipToRespondent2PageOptions): Promise<void> {
     if (respondentRelationshipOther) {
-      await this.otherRelationshipPage(
+      await this.otherRelationshipPage({
         page,
         accessibilityTest,
         errorMessaging,
         respondentRelationshipOther,
-      );
+      });
     } else {
-      await this.relationshipPeriodPage(
+      await this.relationshipPeriodPage({
         page,
         accessibilityTest,
         errorMessaging,
-      );
+      });
     }
   }
 
-  private static async otherRelationshipPage(
-    page: Page,
-    accessibilityTest: boolean,
-    errorMessaging: boolean,
-    respondentRelationshipOther: respondentRelationshipOther,
-  ): Promise<void> {
-    await this.otherRelationshipCheckPageLoads(page, accessibilityTest);
+  private static async otherRelationshipPage({
+     page,
+     accessibilityTest,
+     errorMessaging,
+     respondentRelationshipOther,
+   }: OtherRelationshipPageOptions): Promise<void> {
+    await this.otherRelationshipCheckPageLoads({ page, accessibilityTest });
     if (errorMessaging) {
       await this.otherRelationshipCheckErrors(page);
     }
-    await this.otherRelationshipFillInFields(page, respondentRelationshipOther);
+    await this.otherRelationshipFillInFields({
+      page,
+      respondentRelationshipOther,
+    });
   }
 
-  private static async otherRelationshipCheckPageLoads(
-    page: Page,
-    accessibilityTest: boolean,
-  ): Promise<void> {
+  private static async otherRelationshipCheckPageLoads({
+     page,
+     accessibilityTest,
+   }: OtherRelationshipCheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.GovukFormLabel}:text-is("${RelationshipToRespondent2Content.pageLoadCheckOther}")`,
     );
@@ -147,10 +174,10 @@ export class RelationshipToRespondent2Page {
     ]);
   }
 
-  private static async otherRelationshipFillInFields(
-    page: Page,
-    respondentRelationshipOther: respondentRelationshipOther,
-  ): Promise<void> {
+  private static async otherRelationshipFillInFields({
+     page,
+     respondentRelationshipOther,
+   }: OtherRelationshipFillInFieldsOptions): Promise<void> {
     let radioKey =
       `radio${respondentRelationshipOther}` as keyof typeof otherRelationshipIDs;
     await page.click(otherRelationshipIDs[radioKey]);
@@ -159,22 +186,22 @@ export class RelationshipToRespondent2Page {
     );
   }
 
-  private static async relationshipPeriodPage(
-    page: Page,
-    accessibilityTest: boolean,
-    errorMessaging: boolean,
-  ): Promise<void> {
-    await this.relationshipPeriodCheckPageLoads(page, accessibilityTest);
+  private static async relationshipPeriodPage({
+    page,
+    accessibilityTest,
+    errorMessaging,
+  }: RelationshipPeriodPageOptions): Promise<void> {
+    await this.relationshipPeriodCheckPageLoads({ page, accessibilityTest });
     if (errorMessaging) {
       await this.relationshipPeriodCheckErrors(page);
     }
     await this.relationshipPeriodFillInFields(page);
   }
 
-  private static async relationshipPeriodCheckPageLoads(
-    page: Page,
-    accessibilityTest: boolean,
-  ): Promise<void> {
+  private static async relationshipPeriodCheckPageLoads({
+    page,
+    accessibilityTest,
+  }: RelationshipPeriodCheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.h2}:text-is("${RelationshipToRespondent2Content.notNoneHeading}")`,
     );
@@ -200,7 +227,6 @@ export class RelationshipToRespondent2Page {
         "monthLabel",
         `${Selectors.GovukFormLabel}`,
       ),
-
       Helpers.checkGroup(
         page,
         3,
