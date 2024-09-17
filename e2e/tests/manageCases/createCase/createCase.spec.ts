@@ -43,7 +43,7 @@ test(`Complete the C100 create case event as a solicitor with the following opti
     applicantGender: "male",
     yesNoC100TypeOfApplication: false,
     typeOfChildArrangementOrder: "Spend time with order",
-    selectionC100TypeOfApplication: "No, permission now sought"
+    selectionC100TypeOfApplication: "No, permission now sought",
   });
 });
 

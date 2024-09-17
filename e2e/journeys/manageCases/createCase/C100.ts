@@ -30,9 +30,9 @@ export class C100 {
     yesNoHearingUrgency,
     yesNoApplicantDetails,
     applicantGender,
-                             yesNoC100TypeOfApplication,
+    yesNoC100TypeOfApplication,
     typeOfChildArrangementOrder,
-                             selectionC100TypeOfApplication,
+    selectionC100TypeOfApplication,
   }: c100Options): Promise<void> {
     await SolicitorCreateInitial.createInitialCase({
       page: page,
