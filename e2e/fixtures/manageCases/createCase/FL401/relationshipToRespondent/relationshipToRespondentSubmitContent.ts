@@ -20,7 +20,8 @@ export enum RelationshipToRespondentSubmitContent {
   relationshipDateText161 = '1 Jun 2012',
   relationshipDateText162 = '12 Jan 2024',
   relationshipDateText163 = '17 Aug 2020',
-  isNoneText16Static = '*What is the respondent’s relationship with the applicant?',
+  isNoneText16Static1 = '*What is the respondent’s relationship with the applicant?',
+  isNoneText16Static2 = 'Please specify other below',
   isNoneText16Father = "Father",
   isNoneText16Mother = "Mother",
   isNoneText16Son = "Son",
@@ -35,5 +36,6 @@ export enum RelationshipToRespondentSubmitContent {
   isNoneText16Niece = "Niece",
   isNoneText16Cousin = "Cousin",
   isNoneText16Other = "Other",
+  relationshipOtherInput = 'Sister-in-law',
   continue = 'Save and continue'
 }

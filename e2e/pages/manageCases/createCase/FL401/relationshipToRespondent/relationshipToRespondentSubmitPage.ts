@@ -1,6 +1,6 @@
 import { Page } from "@playwright/test";
 import {
-  respondentRelationship, respondentRelationshipOther
+  relationshipToRespondent, respondentRelationshipOther
 } from "../../../../../journeys/manageCases/createCase/FL401RelationshipToRespondent/FL401RelationshipToRespondent";
 import { Selectors } from "../../../../../common/selectors";
 import {
@@ -12,26 +12,26 @@ import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelp
 interface relationshipToRespondentSubmitPageOptions {
   page: Page,
   accessibilityTest: boolean,
-  respondentRelationship: respondentRelationship,
+  relationshipToRespondent: relationshipToRespondent,
   respondentRelationshipOther?: respondentRelationshipOther
 }
 
 interface checkPageLoadsOptions {
   page: Page,
   accessibilityTest: boolean,
-  respondentRelationship: respondentRelationship,
+  respondentRelationship: relationshipToRespondent,
   respondentRelationshipOther?: respondentRelationshipOther
 }
 
 interface checkStaticTextOptions {
   page: Page,
-  respondentRelationship: respondentRelationship,
+  relationshipToRespondent: relationshipToRespondent,
+  respondentRelationshipOther: respondentRelationshipOther
 }
-
 
 interface checkFilledDataOptions {
   page: Page,
-  respondentRelationship: respondentRelationship,
+  relationshipToRespondent: relationshipToRespondent,
   respondentRelationshipOther?: respondentRelationshipOther
 }
 
@@ -39,15 +39,16 @@ export class RelationshipToRespondentSubmitPage {
   public static async relationshipToRespondentSubmitPage({
      page,
      accessibilityTest,
-     respondentRelationship,
+     relationshipToRespondent,
      respondentRelationshipOther
   }: relationshipToRespondentSubmitPageOptions): Promise<void> {
     await this.checkPageLoads({
-      page,
-      accessibilityTest,
-      respondentRelationship,
-      respondentRelationshipOther
-    })
+      page: page,
+      accessibilityTest: accessibilityTest,
+      respondentRelationship: relationshipToRespondent,
+      respondentRelationshipOther: respondentRelationshipOther
+    });
+    await this.fillInFields(page);
   }
 
   private static async checkPageLoads({
@@ -57,13 +58,14 @@ export class RelationshipToRespondentSubmitPage {
     respondentRelationshipOther
   }: checkPageLoadsOptions): Promise<void> {
     await this.checkStaticText({
-      page,
-      respondentRelationship,
+      page: page,
+      relationshipToRespondent: respondentRelationship,
+      respondentRelationshipOther: respondentRelationshipOther
     })
     await this.checkFilledData({
-      page,
-      respondentRelationship,
-      respondentRelationshipOther
+      page: page,
+      relationshipToRespondent: respondentRelationship,
+      respondentRelationshipOther: respondentRelationshipOther
     });
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page)
@@ -72,7 +74,8 @@ export class RelationshipToRespondentSubmitPage {
 
   private static async checkStaticText({
     page,
-    respondentRelationship,
+    relationshipToRespondent,
+    respondentRelationshipOther
   }: checkStaticTextOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.h2}:text-is("${RelationshipToRespondentSubmitContent.h2}")`
@@ -93,11 +96,14 @@ export class RelationshipToRespondentSubmitPage {
         ),
       ]
     );
-    if (respondentRelationship === 'None of the above') {
-      await Helpers.checkVisibleAndPresent(
+    if (relationshipToRespondent === 'None of the above') {
+      let staticTextCount = (respondentRelationshipOther === 'Other') ? 2 : 1;
+      await Helpers.checkGroup(
         page,
-        `${Selectors.GovukText16}:text-is("${RelationshipToRespondentSubmitContent.isNoneText16Static}")`,
-        1
+        staticTextCount,
+        RelationshipToRespondentSubmitContent,
+        'isNoneText16Static',
+        `${Selectors.GovukText16}`
       );
     } else {
       await Helpers.checkGroup(
@@ -112,20 +118,27 @@ export class RelationshipToRespondentSubmitPage {
   
   private static async checkFilledData({
    page,
-   respondentRelationship,
+   relationshipToRespondent,
    respondentRelationshipOther
   }: checkFilledDataOptions): Promise<void> {
     await Helpers.checkVisibleAndPresent(
       page,
-      `${Selectors.GovukText16}:text-is("${respondentRelationship}")`,
+      `${Selectors.GovukText16}:text-is("${relationshipToRespondent}")`,
       1
     );
-    if (respondentRelationship === 'None of the above') {
+    if (relationshipToRespondent === 'None of the above') {
       await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukText16}:text-is("${respondentRelationshipOther}")`,
         1
       );
+      if (respondentRelationshipOther === 'Other') {
+        await Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukText16}:text-is("${RelationshipToRespondentSubmitContent.relationshipOtherInput}")`,
+          1
+        );
+      }
     } else {
       await Helpers.checkGroup(
         page,

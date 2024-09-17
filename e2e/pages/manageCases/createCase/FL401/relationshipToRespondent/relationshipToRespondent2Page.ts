@@ -20,6 +20,7 @@ enum otherRelationshipIDs {
   radioNiece = "#respondentRelationOptions_applicantRelationshipOptions-niece",
   radioCousin = "#respondentRelationOptions_applicantRelationshipOptions-cousin",
   radioOther = "#respondentRelationOptions_applicantRelationshipOptions-other",
+  radioOtherInput = '#respondentRelationOptions_relationOptionsOther'
 }
 
 enum relationshipPeriodIDs {
@@ -90,16 +91,16 @@ export class RelationshipToRespondent2Page {
   }: RelationshipToRespondent2PageOptions): Promise<void> {
     if (respondentRelationshipOther) {
       await this.otherRelationshipPage({
-        page,
-        accessibilityTest,
-        errorMessaging,
-        respondentRelationshipOther,
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
+        respondentRelationshipOther: respondentRelationshipOther,
       });
     } else {
       await this.relationshipPeriodPage({
-        page,
-        accessibilityTest,
-        errorMessaging,
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
       });
     }
   }
@@ -110,13 +111,13 @@ export class RelationshipToRespondent2Page {
      errorMessaging,
      respondentRelationshipOther,
    }: OtherRelationshipPageOptions): Promise<void> {
-    await this.otherRelationshipCheckPageLoads({ page, accessibilityTest });
+    await this.otherRelationshipCheckPageLoads({ page: page, accessibilityTest: accessibilityTest });
     if (errorMessaging) {
       await this.otherRelationshipCheckErrors(page);
     }
     await this.otherRelationshipFillInFields({
-      page,
-      respondentRelationshipOther,
+      page: page,
+      respondentRelationshipOther: respondentRelationshipOther,
     });
   }
 
@@ -172,6 +173,29 @@ export class RelationshipToRespondent2Page {
         1,
       ),
     ]);
+    await page.click(
+      otherRelationshipIDs.radioOther
+    );
+    await page.click(
+      `${Selectors.button}:text-is("${RelationshipToRespondent2Content.continue}")`,
+    );
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorSummaryTitle}:text-is("${RelationshipToRespondent2Content.errorSummaryTitle}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorValidation}:text-is("${RelationshipToRespondent2Content.relationshipOtherErrorValidation}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorMessage}:text-is("${RelationshipToRespondent2Content.relationshipOtherErrorMessage}")`,
+        1,
+      ),
+    ]);
   }
 
   private static async otherRelationshipFillInFields({
@@ -181,6 +205,15 @@ export class RelationshipToRespondent2Page {
     let radioKey =
       `radio${respondentRelationshipOther}` as keyof typeof otherRelationshipIDs;
     await page.click(otherRelationshipIDs[radioKey]);
+    if (respondentRelationshipOther === 'Other') {
+      await page.waitForSelector(
+        `${Selectors.GovukFormLabel}:text-is("${RelationshipToRespondent2Content.relationshipOtherLabel}")`
+      );
+      await page.fill(
+        otherRelationshipIDs.radioOtherInput,
+        RelationshipToRespondent2Content.relationshipOtherInput
+      );
+    }
     await page.click(
       `${Selectors.button}:text-is("${RelationshipToRespondent2Content.continue}")`,
     );
@@ -191,7 +224,7 @@ export class RelationshipToRespondent2Page {
     accessibilityTest,
     errorMessaging,
   }: RelationshipPeriodPageOptions): Promise<void> {
-    await this.relationshipPeriodCheckPageLoads({ page, accessibilityTest });
+    await this.relationshipPeriodCheckPageLoads({ page: page, accessibilityTest: accessibilityTest });
     if (errorMessaging) {
       await this.relationshipPeriodCheckErrors(page);
     }
@@ -205,6 +238,7 @@ export class RelationshipToRespondent2Page {
     await page.waitForSelector(
       `${Selectors.h2}:text-is("${RelationshipToRespondent2Content.notNoneHeading}")`,
     );
+    console.log('RShipPeriod')
     await Promise.all([
       Helpers.checkGroup(
         page,
@@ -213,26 +247,20 @@ export class RelationshipToRespondent2Page {
         "notNoneFormLabel",
         `${Selectors.GovukFormLabel}`,
       ),
-      Helpers.checkGroup(
+      Helpers.checkVisibleAndPresent(
         page,
+        `${Selectors.GovukFormLabel}:text-is("${RelationshipToRespondent2Content.dayLabel}")`,
         3,
-        RelationshipToRespondent2Content,
-        "dayLabel",
-        `${Selectors.GovukFormLabel}`,
       ),
-      Helpers.checkGroup(
+      Helpers.checkVisibleAndPresent(
         page,
+        `${Selectors.GovukFormLabel}:text-is("${RelationshipToRespondent2Content.monthLabel}")`,
         3,
-        RelationshipToRespondent2Content,
-        "monthLabel",
-        `${Selectors.GovukFormLabel}`,
       ),
-      Helpers.checkGroup(
+      Helpers.checkVisibleAndPresent(
         page,
+        `${Selectors.GovukFormLabel}:text-is("${RelationshipToRespondent2Content.yearLabel}")`,
         3,
-        RelationshipToRespondent2Content,
-        "yearLabel",
-        `${Selectors.GovukFormLabel}`,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -245,6 +273,7 @@ export class RelationshipToRespondent2Page {
         1,
       ),
     ]);
+    console.log('axe')
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }

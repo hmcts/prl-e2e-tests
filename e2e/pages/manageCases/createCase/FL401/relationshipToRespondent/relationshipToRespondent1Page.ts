@@ -3,7 +3,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { RelationshipToRespondent1Content } from "../../../../../fixtures/manageCases/createCase/FL401/relationshipToRespondent/relationshipToRespondent1Content";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { respondentRelationship } from "../../../../../journeys/manageCases/createCase/FL401RelationshipToRespondent/FL401RelationshipToRespondent";
+import { relationshipToRespondent } from "../../../../../journeys/manageCases/createCase/FL401RelationshipToRespondent/FL401RelationshipToRespondent";
 
 enum respondentRelationshipIDs {
   marriedOrCivil = "#respondentRelationObject_applicantRelationship-marriedOrCivil",
@@ -21,7 +21,7 @@ interface relationshipToRespondent1PageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
-  respondentRelationship: respondentRelationship;
+  relationshipToRespondent: relationshipToRespondent;
 }
 
 interface checkPageLoadsOptions {
@@ -31,7 +31,7 @@ interface checkPageLoadsOptions {
 
 interface fillInFieldsOptions {
   page: Page,
-  respondentRelationship: respondentRelationship,
+  relationshipToRespondent: relationshipToRespondent,
 }
 
 export class RelationshipToRespondent1Page {
@@ -39,13 +39,13 @@ export class RelationshipToRespondent1Page {
     page,
     accessibilityTest,
     errorMessaging,
-    respondentRelationship,
+    relationshipToRespondent,
   }: relationshipToRespondent1PageOptions): Promise<void> {
-    await this.checkPageLoads({ page, accessibilityTest });
+    await this.checkPageLoads({ page: page, accessibilityTest: accessibilityTest });
     if (errorMessaging) {
       await this.checkErrorMessaging(page);
     }
-    await this.fillInFields({ page, respondentRelationship });
+    await this.fillInFields({ page: page, relationshipToRespondent: relationshipToRespondent });
   }
 
   private static async checkPageLoads({
@@ -99,9 +99,9 @@ export class RelationshipToRespondent1Page {
 
   private static async fillInFields({
     page,
-    respondentRelationship
+    relationshipToRespondent
   }: fillInFieldsOptions): Promise<void> {
-    switch (respondentRelationship) {
+    switch (relationshipToRespondent) {
       case "Married or in a civil partnership":
         await page.click(respondentRelationshipIDs.marriedOrCivil);
         break;
@@ -131,7 +131,7 @@ export class RelationshipToRespondent1Page {
         break;
       default:
         console.log(
-          `Unknown respondent relationship: ${respondentRelationship}`,
+          `Unknown respondent relationship: ${relationshipToRespondent}`,
         );
     }
     await page.click(
