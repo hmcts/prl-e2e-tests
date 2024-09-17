@@ -54,8 +54,8 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       errorMessaging: false,
       isLinkedToC100: true,
       respondentDetailsAllOptionsYes: true,
-      isWithoutNotice: true,
-      bailConditions: "Yes"
+      isWithoutNoticeDetailsYes: true,
+      isWithoutNoticeDetailsBailConditions: "Yes"
     });
   });
 
@@ -74,8 +74,8 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       errorMessaging: false,
       isLinkedToC100: false,
       respondentDetailsAllOptionsYes: false,
-      isWithoutNotice: false,
-      bailConditions: "No"
+      isWithoutNoticeDetailsYes: false,
+      isWithoutNoticeDetailsBailConditions: "No"
     });
   });
 
@@ -95,8 +95,8 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       errorMessaging: false,
       isLinkedToC100: true,
       respondentDetailsAllOptionsYes: true,
-      isWithoutNotice: true,
-      bailConditions: "Don't know"
+      isWithoutNoticeDetailsYes: true,
+      isWithoutNoticeDetailsBailConditions: "Don't know"
     });
   });
 });

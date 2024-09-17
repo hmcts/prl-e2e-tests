@@ -23,7 +23,7 @@ test.describe("FL401 Create case without notice order tests @manageCases", (): v
   test(`Complete the FL401 without notice order event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
-  Saying no to all options, @crossbrowserManageCases`, async ({
+  Saying no to all options`, async ({
      page,
    }): Promise<void> => {
     await FL401WithoutNoticeOrder.fl401WithoutNoticeOrder({
@@ -40,7 +40,7 @@ test.describe("FL401 Create case without notice order tests @manageCases", (): v
   Not Accessibility testing,
   Not Error message testing,
   Saying 'Dont know' to bail conditions,
-  Saying yes to all other options, @crossbrowserManageCases`, async ({
+  Saying yes to all other options`, async ({
      page,
    }): Promise<void> => {
     await FL401WithoutNoticeOrder.fl401WithoutNoticeOrder({
