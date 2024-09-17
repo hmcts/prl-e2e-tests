@@ -116,7 +116,9 @@ export class OtherPeopleInTheCase1Page {
     await page.click(`${UniqueSelectors.applicantEmailAddressYes}`);
     await page.click(`${UniqueSelectors.applicantContactNumberYes}`);
     await page.click(`${UniqueSelectors.applicantEmailAddressYes}`);
-    await page.click(`${Selectors.button}:text-is("${OtherPeopleInTheCase1Content.continue}")`);
+    await page.click(
+      `${Selectors.button}:text-is("${OtherPeopleInTheCase1Content.continue}")`,
+    );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
@@ -159,7 +161,6 @@ export class OtherPeopleInTheCase1Page {
         1,
       ),
     ]);
-
   }
 
   private static async fillInFields(
@@ -167,4 +168,11 @@ export class OtherPeopleInTheCase1Page {
     yesNoOtherPeopleInTheCase: boolean,
     applicantGender: ApplicantGender, // type ApplicantGender = "female" | "male" | "other";
   ): Promise<void> {}
+
+  private static async AddressValidation(page: Page): Promise<void> {}
+
+  private static async checkApplicantAddress5Years(page: Page): Promise<void> {}
+
+  private static async checkEmailAddress(page: Page): Promise<void> {}
+
 }
