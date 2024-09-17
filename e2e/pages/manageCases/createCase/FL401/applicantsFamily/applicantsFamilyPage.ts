@@ -9,7 +9,6 @@ enum radioIds {
   doesApplicantHaveChildren_Yes = "#applicantFamilyDetails_doesApplicantHaveChildren_Yes",
   doesApplicantHaveChildren_No = "#applicantFamilyDetails_doesApplicantHaveChildren_No",
   applicantRespondentShareParental_Yes = "#applicantChildDetails_0_applicantRespondentShareParental_Yes",
-  applicantRespondentShareParental_Yes_1 = "#applicantChildDetails_1_applicantRespondentShareParental_Yes",
   applicantRespondentShareParental_No = "#applicantChildDetails_0_applicantRespondentShareParental_No",
 }
 
@@ -128,13 +127,17 @@ export class ApplicantsFamilyPage {
         1,
       ),
     ]);
-
-    await page.click(
-      `${Selectors.button}:text-is("${ApplicantsFamilyContent.remove}")`,
+    await page.fill(
+      `${inputIds.dateOfBirth_day}`,
+      '',
     );
-    await page.waitForSelector("#mat-dialog-0");
-    await page.click(
-      `#mat-dialog-0 ${Selectors.button}:text-is("${ApplicantsFamilyContent.remove}")`,
+    await page.fill(
+      `${inputIds.dateOfBirth_month}`,
+      '',
+    );
+    await page.fill(
+      `${inputIds.dateOfBirth_year}`,
+      '',
     );
   }
 
@@ -146,20 +149,13 @@ export class ApplicantsFamilyPage {
   ): Promise<void> {
     if (applicantHasChildren) {
       await page.click(radioIds.doesApplicantHaveChildren_Yes);
-      await page.click(
-        `${Selectors.button}:text-is("${ApplicantsFamilyContent.addNew}")`,
-      );
-
-      await page.waitForSelector(
-        errorMessaging
-          ? radioIds.applicantRespondentShareParental_Yes_1
-          : radioIds.applicantRespondentShareParental_Yes,
-      );
-      await page.click(
-        errorMessaging
-          ? radioIds.applicantRespondentShareParental_Yes_1
-          : radioIds.applicantRespondentShareParental_Yes,
-      );
+      if (!errorMessaging) {
+        await page.click(
+          `${Selectors.button}:text-is("${ApplicantsFamilyContent.addNew}")`,
+        );
+      }
+      await page.waitForSelector(radioIds.applicantRespondentShareParental_Yes);
+      await page.click(radioIds.applicantRespondentShareParental_Yes);
       await this.checkFormLoads(page, accessibilityTest);
 
       await page.fill(
