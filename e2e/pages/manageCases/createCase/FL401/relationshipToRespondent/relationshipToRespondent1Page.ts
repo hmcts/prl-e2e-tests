@@ -3,7 +3,8 @@ import { Selectors } from "../../../../../common/selectors";
 import { RelationshipToRespondent1Content } from "../../../../../fixtures/manageCases/createCase/FL401/relationshipToRespondent/relationshipToRespondent1Content";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { relationshipToRespondent } from "../../../../../journeys/manageCases/createCase/FL401RelationshipToRespondent/FL401RelationshipToRespondent";
+
+import { relationshipToRespondent } from "../../../../../journeys/manageCases/createCase/FL401";
 
 enum respondentRelationshipIDs {
   marriedOrCivil = "#respondentRelationObject_applicantRelationship-marriedOrCivil",

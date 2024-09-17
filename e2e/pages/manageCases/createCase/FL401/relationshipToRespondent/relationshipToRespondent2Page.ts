@@ -3,7 +3,8 @@ import { Selectors } from "../../../../../common/selectors";
 import { RelationshipToRespondent2Content } from "../../../../../fixtures/manageCases/createCase/FL401/relationshipToRespondent/relationshipToRespondent2Content";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { respondentRelationshipOther } from "../../../../../journeys/manageCases/createCase/FL401RelationshipToRespondent/FL401RelationshipToRespondent";
+
+import { respondentRelationshipOther } from "../../../../../journeys/manageCases/createCase/FL401";
 
 enum otherRelationshipIDs {
   radioFather = "#respondentRelationOptions_applicantRelationshipOptions-father",
@@ -176,6 +177,9 @@ export class RelationshipToRespondent2Page {
     await page.click(
       otherRelationshipIDs.radioOther
     );
+    await page.waitForSelector(
+      `${Selectors.GovukFormLabel}:text-is("${RelationshipToRespondent2Content.relationshipOtherLabel}")`
+    );
     await page.click(
       `${Selectors.button}:text-is("${RelationshipToRespondent2Content.continue}")`,
     );
@@ -238,7 +242,6 @@ export class RelationshipToRespondent2Page {
     await page.waitForSelector(
       `${Selectors.h2}:text-is("${RelationshipToRespondent2Content.notNoneHeading}")`,
     );
-    console.log('RShipPeriod')
     await Promise.all([
       Helpers.checkGroup(
         page,
@@ -273,7 +276,6 @@ export class RelationshipToRespondent2Page {
         1,
       ),
     ]);
-    console.log('axe')
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }

@@ -1,13 +1,14 @@
 import { Page } from "@playwright/test";
-import {
-  relationshipToRespondent, respondentRelationshipOther
-} from "../../../../../journeys/manageCases/createCase/FL401RelationshipToRespondent/FL401RelationshipToRespondent";
 import { Selectors } from "../../../../../common/selectors";
 import {
   RelationshipToRespondentSubmitContent
 } from "../../../../../fixtures/manageCases/createCase/FL401/relationshipToRespondent/relationshipToRespondentSubmitContent";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import {
+  relationshipToRespondent,
+  respondentRelationshipOther
+} from "../../../../../journeys/manageCases/createCase/FL401";
 
 interface relationshipToRespondentSubmitPageOptions {
   page: Page,
@@ -26,7 +27,7 @@ interface checkPageLoadsOptions {
 interface checkStaticTextOptions {
   page: Page,
   relationshipToRespondent: relationshipToRespondent,
-  respondentRelationshipOther: respondentRelationshipOther
+  respondentRelationshipOther?: respondentRelationshipOther
 }
 
 interface checkFilledDataOptions {

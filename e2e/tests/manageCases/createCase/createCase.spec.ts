@@ -43,7 +43,8 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Not Accessibility testing,
   Not Error message testing,
   Saying yes to all Respondent details questions,
-  Saying yes to all Type of application questions @crossbrowserManageCases`, async ({
+  Saying yes to all Type of application questions,
+  Relationship is 'Married or in a civil partnership', @crossbrowserManageCases`, async ({
     page,
   }): Promise<void> => {
     await FL401.fl401({
@@ -53,6 +54,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       errorMessaging: false,
       isLinkedToC100: true,
       respondentDetailsAllOptionsYes: true,
+      relationshipToRespondent: 'Married or in a civil partnership',
     });
   });
 
@@ -60,7 +62,9 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Not Accessibility testing,
   Not Error message testing,
   Saying no to all Respondent details questions,
-  Saying no to all Type of application questions @crossbrowserManageCases`, async ({
+  Saying no to all Type of application questions,
+  Relationship is 'None of the above',
+  Other Relationship Is: 'Son', @crossbrowserManageCases`, async ({
     page,
   }): Promise<void> => {
     await FL401.fl401({
@@ -70,6 +74,8 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       errorMessaging: false,
       isLinkedToC100: false,
       respondentDetailsAllOptionsYes: false,
+      relationshipToRespondent: 'None of the above',
+      relationshipToRespondentOther: 'Son'
     });
   });
 });
