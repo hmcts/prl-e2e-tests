@@ -38,7 +38,7 @@ enum UniqueSelectors {
   emailAddressConfidentialNo = "#otherPartyInTheCaseRevised_0_isEmailAddressConfidential_No",
   contactNumberInput = "#otherPartyInTheCaseRevised_0_phoneNumber",
   contactNumberConfidentialityYes = "#otherPartyInTheCaseRevised_0_isPhoneNumberConfidential_Yes",
-  contactNumberConfidentialityNo = "#otherPartyInTheCaseRevised_0_isPhoneNumberConfidential_No"
+  contactNumberConfidentialityNo = "#otherPartyInTheCaseRevised_0_isPhoneNumberConfidential_No",
 }
 
 enum ApplicantAddressFields {
@@ -75,14 +75,14 @@ export class OtherPeopleInTheCase1Page {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.p}:text-is("${OtherPeopleInTheCase1Content.p1}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.h2}:text-is("${OtherPeopleInTheCase1Content.h2}")`,
-        1
+        1,
       ),
-    ])
+    ]);
   }
 
   private static async triggerErrorMessages(page: Page): Promise<void> {
@@ -96,34 +96,33 @@ export class OtherPeopleInTheCase1Page {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukErrorSummaryTitle}:text-is("${OtherPeopleInTheCase1Content.errorBanner}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukErrorValidation}:text-is("${OtherPeopleInTheCase1Content.errorMessageLived5YearsInAddress}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukErrorMessage}:text-is("${OtherPeopleInTheCase1Content.errorMessageLived5YearsInAddress}")`,
-        1
-      )
+        1,
+      ),
     ]);
     await page.click(`${UniqueSelectors.applicantEmailAddressYes}`);
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukErrorValidation}:text-is("${OtherPeopleInTheCase1Content.errorMessage5YearsDetailsRequired}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukErrorMessage}:text-is("${OtherPeopleInTheCase1Content.errorMessage5YearsDetailsRequired}")`,
-        1
-      )
+        1,
+      ),
     ]);
   }
-
 
   private static async fillInFields(
     page: Page,
