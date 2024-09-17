@@ -17,22 +17,6 @@ type respondentRelationship =
   | "Formerly boyfriend, girlfriend or partner who has not lived with them"
   | "None of the above";
 
-type respondentRelationshipOther =
-  | "Father"
-  | "Mother"
-  | "Son"
-  | "Daughter"
-  | "Brother"
-  | "Sister"
-  | "Grandfather"
-  | "Grandmother"
-  | "Uncle"
-  | "Aunt"
-  | "Nephew"
-  | "Niece"
-  | "Cousin"
-  | "Other";
-
 enum respondentRelationshipIDs {
   marriedOrCivil = '#respondentRelationObject_applicantRelationship-marriedOrCivil',
   formerlyMarriedOrCivil = '#respondentRelationObject_applicantRelationship-formerlyMarriedOrCivil',
@@ -102,7 +86,7 @@ export class RelationshipToRespondent1Page {
     )
     await Promise.all(
       [
-        HHelpers.checkVisibleAndPresent(
+        Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukErrorSummaryTitle}:text-is("${RelationshipToRespondent1Content.errorSummaryTitle}")`,
           1,
