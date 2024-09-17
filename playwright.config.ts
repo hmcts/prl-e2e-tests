@@ -55,6 +55,7 @@ module.exports = defineConfig({
     },
     {
       name: "MobileChrome",
+      dependencies: ['setup'],
       use: {
         ...devices["Pixel 5"],
         screenshot: "only-on-failure",
@@ -63,6 +64,7 @@ module.exports = defineConfig({
     },
     {
       name: "MobileSafari",
+      dependencies: ['setup'],
       use: {
         ...devices["iPhone 12"],
         screenshot: "only-on-failure",
@@ -71,6 +73,7 @@ module.exports = defineConfig({
     },
     {
       name: "MicrosoftEdge",
+      dependencies: ['setup'],
       use: {
         ...devices["Desktop Edge"],
         channel: "msedge",
