@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test";
+import { Page, expect } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { C100RespondentDetails1Content } from "../../../../../fixtures/manageCases/createCase/C100/respondentDetails/c100RespondentDetails1Content";
 import { Helpers } from "../../../../../common/helpers";
@@ -60,6 +60,11 @@ enum uniqueSelectors {
   numberKnownYes = "#respondents_0_canYouProvidePhoneNumber_Yes",
   numberKnownNo = "#respondents_0_canYouProvidePhoneNumber_No",
   numberField = "#respondents_0_phoneNumber",
+  representativeFirstNameField = "#respondents_0_representativeFirstName",
+  representativeLastNameField = "#respondents_0_representativeLastName",
+  representativeEmailField = "#respondents_0_solicitorEmail",
+  representativeOrgSearchField = "#search-org-text",
+  representativeDXNumberField = "#respondents_0_dxNumber",
 }
 
 enum RespondentAddressFields {
@@ -67,7 +72,7 @@ enum RespondentAddressFields {
   line2 = "#respondents_0_address__detailAddressLine2",
   line3 = "#respondents_0_address__detailAddressLine3",
   town = "#respondents_0_address__detailPostTown",
-  county = "#id=respondents_0_address__detailCounty",
+  county = "#respondents_0_address__detailCounty",
   postcode = "#respondents_0_address__detailPostCode",
   country = "#respondents_0_address__detailCountry",
 }
@@ -77,19 +82,19 @@ enum RepresentativeAddressFields {
   line2 = "#respondents_0_solicitorAddress__detailAddressLine2",
   line3 = "#respondents_0_solicitorAddress__detailAddressLine3",
   town = "#respondents_0_solicitorAddress__detailPostTown",
-  county = "#id=respondents_0_solicitorAddress__detailCounty",
+  county = "#respondents_0_solicitorAddress__detailCounty",
   postcode = "#respondents_0_solicitorAddress__detailPostCode",
   country = "#respondents_0_solicitorAddress__detailCountry",
 }
 
 export class RespondentDetails1Page {
   public static async respondent1DetailsPage({
-    page,
-    accessibilityTest,
-    yesNoRespondentDetailsC100,
-    respondentGender,
-    respondentAddress5Years,
-    respondentLegalRepresentation,
+    page: page,
+    accessibilityTest: accessibilityTest,
+    yesNoRespondentDetailsC100: yesNoRespondentDetailsC100,
+    respondentGender: respondentGender,
+    respondentAddress5Years: respondentAddress5Years,
+    respondentLegalRepresentation: respondentLegalRepresentation,
   }: respondent1DetailsPageOptions): Promise<void> {
     await this.checkPageLoads({ page, accessibilityTest });
     await this.fillInFields({
@@ -102,8 +107,8 @@ export class RespondentDetails1Page {
   }
 
   private static async checkPageLoads({
-    page,
-    accessibilityTest,
+    page: page,
+    accessibilityTest: accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.h2}:text-is("${C100RespondentDetails1Content.h21}")`,
@@ -133,11 +138,11 @@ export class RespondentDetails1Page {
   }
 
   private static async fillInFields({
-    page,
-    yesNoRespondentDetailsC100,
-    respondentGender,
-    respondentAddress5Years,
-    respondentLegalRepresentation,
+    page: page,
+    yesNoRespondentDetailsC100: yesNoRespondentDetailsC100,
+    respondentGender: respondentGender,
+    respondentAddress5Years: respondentAddress5Years,
+    respondentLegalRepresentation: respondentLegalRepresentation,
   }: fillInFieldsOptions): Promise<void> {
     await page.fill(
       `${uniqueSelectors.respondentFirstName}`,
@@ -184,6 +189,7 @@ export class RespondentDetails1Page {
       await page.click(
         `${uniqueSelectors.representativePresent}${respondentLegalRepresentation}`,
       );
+      await this.handleLegalRepresentationDetails(page);
       await page.fill(
         `${uniqueSelectors.representativePostcodeField}`,
         C100RespondentDetails1Content.postcode,
@@ -192,7 +198,7 @@ export class RespondentDetails1Page {
         .locator(
           `${Selectors.button}:text-is("${C100RespondentDetails1Content.findAddressButton}")`,
         )
-        .first()
+        .nth(1)
         .click();
       await page.selectOption(
         `${uniqueSelectors.representativeAddressDropdown}`,
@@ -216,6 +222,9 @@ export class RespondentDetails1Page {
       await page.click(`${uniqueSelectors.emailKnownNo}`);
       await page.click(`${uniqueSelectors.numberKnownNo}`);
     }
+    await page.click(
+      `${Selectors.button}:text-is("${C100RespondentDetails1Content.continue}")`,
+    );
   }
 
   private static async handleOtherGender(page: Page): Promise<void> {
@@ -267,6 +276,7 @@ export class RespondentDetails1Page {
 
   private static async handlePlaceOfBirthYes(page: Page): Promise<void> {
     await page.click(`${uniqueSelectors.placeOfBirthKnownYes}`);
+    await page.click(`${uniqueSelectors.placeOfBirthKnownYes}`);
     await Helpers.checkVisibleAndPresent(
       page,
       `${Selectors.GovukFormLabel}:text-is("${C100RespondentDetails1Content.formLabelYes1}")`,
@@ -317,21 +327,63 @@ export class RespondentDetails1Page {
     );
   }
 
+  private static async handleLegalRepresentationDetails(
+    page: Page,
+  ): Promise<void> {
+    await Promise.all([
+      Helpers.checkGroup(
+        page,
+        5,
+        C100RespondentDetails1Content,
+        `formLabelSolicitorYes`,
+        `${Selectors.GovukFormLabel}`,
+      ),
+      Helpers.checkGroup(
+        page,
+        5,
+        C100RespondentDetails1Content,
+        `h2Yes`,
+        `${Selectors.h2}`,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.strong}:text-is("${C100RespondentDetails1Content.strong}")`,
+        1,
+      ),
+    ]);
+    await page.fill(
+      `${uniqueSelectors.representativeFirstNameField}`,
+      `${C100RespondentDetails1Content.representativeFirstName}`,
+    );
+    await page.fill(
+      `${uniqueSelectors.representativeLastNameField}`,
+      `${C100RespondentDetails1Content.representativeLastName}`,
+    );
+    await page.fill(
+      `${uniqueSelectors.representativeEmailField}`,
+      `${C100RespondentDetails1Content.representativeEmail}`,
+    );
+    await page.fill(
+      `${uniqueSelectors.representativeOrgSearchField}`,
+      `${C100RespondentDetails1Content.org}`,
+    );
+    await page
+      .locator(
+        `${Selectors.a}:text-is("${C100RespondentDetails1Content.select}")`,
+      )
+      .first()
+      .click();
+    await page.fill(
+      `${uniqueSelectors.representativeDXNumberField}`,
+      `${C100RespondentDetails1Content.dxNumber}`,
+    );
+  }
+
   private static async handleAddress(page: Page): Promise<void> {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukFormLabel}:text-is("${C100RespondentDetails1Content.formLabelSelectAddress}")`,
-        2,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukFormLabel}:text-is("${C100RespondentDetails1Content.formLabelBuildingAndStreet}")`,
-        2,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukFormLabel}:text-is("${C100RespondentDetails1Content.formLabelBuildingAndStreetOptional}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
