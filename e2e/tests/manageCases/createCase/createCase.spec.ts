@@ -18,9 +18,9 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       yesNoHearingUrgency: true,
       yesNoApplicantDetails: true,
       applicantGender: "male",
-      yesNo: true,
+      yesNoC100TypeOfApplication: true,
       typeOfChildArrangementOrder: "Spend time with order",
-      selection: "Yes",
+      selectionC100TypeOfApplication: "Yes",
     });
   });
 });
@@ -41,9 +41,9 @@ test(`Complete the C100 create case event as a solicitor with the following opti
     yesNoHearingUrgency: false,
     yesNoApplicantDetails: false,
     applicantGender: "male",
-    yesNo: false,
+    yesNoC100TypeOfApplication: false,
     typeOfChildArrangementOrder: "Spend time with order",
-    selection: "No, permission now sought",
+    selectionC100TypeOfApplication: "No, permission now sought"
   });
 });
 

@@ -16,9 +16,9 @@ interface c100Options {
   yesNoHearingUrgency: boolean;
   yesNoApplicantDetails: boolean;
   applicantGender: ApplicantGender;
-  yesNo: boolean;
+  yesNoC100TypeOfApplication: boolean;
   typeOfChildArrangementOrder: typeOfChildArrangementOrderID;
-  selection: radioButtons;
+  selectionC100TypeOfApplication: radioButtons;
 }
 
 export class C100 {
@@ -30,9 +30,9 @@ export class C100 {
     yesNoHearingUrgency,
     yesNoApplicantDetails,
     applicantGender,
-    yesNo,
+                             yesNoC100TypeOfApplication,
     typeOfChildArrangementOrder,
-    selection,
+                             selectionC100TypeOfApplication,
   }: c100Options): Promise<void> {
     await SolicitorCreateInitial.createInitialCase({
       page: page,
@@ -46,9 +46,9 @@ export class C100 {
       user: user,
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
-      yesNoC100TypeOfApplication: yesNo,
+      yesNoC100TypeOfApplication: yesNoC100TypeOfApplication,
       typeOfChildArrangementOrder: typeOfChildArrangementOrder,
-      selection: selection,
+      selectionC100TypeOfApplication: selectionC100TypeOfApplication,
       subJourney: false,
     });
     await C100HearingUrgency.c100HearingUrgency({
