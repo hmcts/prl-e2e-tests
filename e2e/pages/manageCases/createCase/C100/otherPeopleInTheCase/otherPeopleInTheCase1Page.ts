@@ -3,6 +3,27 @@ import { Selectors } from "../../../../../common/selectors";
 import { OtherPeopleInTheCase1Content } from "../../../../../fixtures/manageCases/createCase/C100/otherPeopleInTheCaseRevised/otherPeopleInTheCaseRevised1Content.";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { ApplicantGender } from "../applicantDetails/applicantDetails1Page";
+
+
+enum pageLoadFields {
+
+}
+
+enum UniqueSelectors {
+
+}
+
+enum ApplicantAddressFields {
+  line1 = "#",
+  line2 = "#",
+  line3 = "#",
+  town = "#",
+  county = "#",
+  postcode = "#",
+  country = "#",
+}
+
 
 export class OtherPeopleInTheCase1Page {
   public static async otherPeopleInTheCase1Page(
@@ -26,7 +47,7 @@ export class OtherPeopleInTheCase1Page {
 
   private static async fillInFields(
     page: Page,
-    yesNoApplicantDetails: boolean,
-    // applicantGender: ApplicantGender,
+    yesNoOtherPeopleInTheCase: boolean,
+    applicantGender: ApplicantGender, // type ApplicantGender = "female" | "male" | "other";
   ): Promise<void> {}
 }
