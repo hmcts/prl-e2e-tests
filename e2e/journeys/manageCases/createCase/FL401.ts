@@ -12,8 +12,8 @@ interface fl401Options {
   errorMessaging: boolean;
   isLinkedToC100: boolean;
   respondentDetailsAllOptionsYes: boolean;
-  yesNoFL401ApplicantDetails: boolean,
-  applicantGender: ApplicantGender,
+  yesNoFL401ApplicantDetails: boolean;
+  applicantGender: ApplicantGender;
 }
 
 export class FL401 {
@@ -25,7 +25,7 @@ export class FL401 {
     isLinkedToC100,
     respondentDetailsAllOptionsYes,
     yesNoFL401ApplicantDetails,
-    applicantGender
+    applicantGender,
   }: fl401Options): Promise<void> {
     await SolicitorCreateInitial.createInitialCase({
       page: page,
@@ -48,7 +48,7 @@ export class FL401 {
       yesNoFL401ApplicantDetails: yesNoFL401ApplicantDetails,
       applicantGender: applicantGender,
       subJourney: false,
-    })
+    });
     await FL401RespondentDetails.fl401RespondentDetails({
       page: page,
       accessibilityTest: accessibilityTest,

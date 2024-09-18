@@ -1,8 +1,5 @@
 import { test } from "@playwright/test";
-import { C100ApplicantDetails } from "../../../../journeys/manageCases/createCase/C100ApplicantDetails/c100ApplicantDetails";
-import {
-  C100RespondentDetails
-} from "../../../../journeys/manageCases/createCase/C100RespondentDetails/C100RespondentDetails";
+import { C100RespondentDetails } from "../../../../journeys/manageCases/createCase/C100RespondentDetails/C100RespondentDetails";
 
 test.describe("C100 Create case respondent details tests @manageCases", (): void => {
   test(`Complete the C100 respondent details event as a solicitor with the following options:
