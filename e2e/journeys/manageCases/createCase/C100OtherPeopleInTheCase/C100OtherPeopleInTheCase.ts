@@ -34,7 +34,7 @@ export class C100OtherPeopleInTheCase {
         solicitorCaseType: "C100",
         errorMessaging: false,
       });
-      await Helpers.selectSolicitorEvent(page, "Hearing urgency");
+      await Helpers.selectSolicitorEvent(page, "Other people in the case");
       await OtherPeopleInTheCase1Page.otherPeopleInTheCase1Page(
         page,
         accessibilityTest,

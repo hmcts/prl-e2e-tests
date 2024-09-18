@@ -25,6 +25,7 @@ export { UserRoles };
 export type c100SolicitorEvents =
   | "Type of application"
   | "Hearing urgency"
-  | "Applicant details";
+  | "Applicant details"
+  | "Other people in the case";
 
 export type fl401SolicitorEvents = "Type of application" | "Respondent details";
