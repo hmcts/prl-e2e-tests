@@ -3,7 +3,8 @@ import { Selectors } from "../../../../../common/selectors";
 import { ApplicantDetailsSubmitContent } from "../../../../../fixtures/manageCases/createCase/C100/applicantDetails/applicantDetailsSubmitContent";
 import { Helpers } from "../../../../../common/helpers";
 import { ApplicantDetails1Content } from "../../../../../fixtures/manageCases/createCase/C100/applicantDetails/applicantDetails1Content";
-import { ApplicantGender } from "./applicantDetails1Page";
+
+import { ApplicantGender } from "../../../../../common/types";
 
 export class ApplicantDetailsSubmitPage {
   public static async applicantDetailsSubmitPage(
