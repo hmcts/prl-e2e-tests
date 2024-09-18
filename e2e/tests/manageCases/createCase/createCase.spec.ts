@@ -82,6 +82,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       errorMessaging: false,
       isLinkedToC100: true,
       respondentDetailsAllOptionsYes: true,
+      applicantHasChildren: true,
       yesNoFL401ApplicantDetails: true,
       applicantGender: "male",
       isWithoutNoticeDetailsYes: true,
