@@ -41,13 +41,6 @@ export class FL401 {
       isLinkedToC100: isLinkedToC100,
       subJourney: false,
     });
-    await FL401RespondentDetails.fl401RespondentDetails({
-      page: page,
-      accessibilityTest: accessibilityTest,
-      errorMessaging: errorMessaging,
-      respondentDetailsAllOptionsYes: respondentDetailsAllOptionsYes,
-      subJourney: false,
-    });
     await FL401ApplicantDetails.fl401ApplicantDetails({
       page: page,
       accessibilityTest: accessibilityTest,
@@ -56,5 +49,12 @@ export class FL401 {
       applicantGender: applicantGender,
       subJourney: false,
     })
+    await FL401RespondentDetails.fl401RespondentDetails({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      respondentDetailsAllOptionsYes: respondentDetailsAllOptionsYes,
+      subJourney: false,
+    });
   }
 }
