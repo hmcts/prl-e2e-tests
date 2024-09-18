@@ -23,8 +23,12 @@ export type UserRole = (typeof UserRoles)[keyof typeof UserRoles];
 export { UserRoles };
 
 export type c100SolicitorEvents =
+  | "Case name"
   | "Type of application"
   | "Hearing urgency"
   | "Applicant details";
 
-export type fl401SolicitorEvents = "Type of application" | "Respondent details";
+export type fl401SolicitorEvents =
+  | "Case name"
+  | "Type of application"
+  | "Respondent details";
