@@ -5,6 +5,7 @@ import { SolicitorCreateInitial } from "./solicitorCreateInitial";
 import { FL401RespondentDetails } from "./FL401RespondentDetails/FL401RespondentDetails";
 import { FL401ApplicantDetails } from "./FL401ApplicantDetails/FL401ApplicantDetails";
 import { FL401ApplicantsFamily } from "./FL401ApplicantsFamily/FL401ApplicantsFamily";
+import { FL401RespondentsBehaviour } from "./FL401RespondentsBehaviour/FL401RespondentsBehaviour";
 
 interface fl401Options {
   page: Page;
@@ -14,8 +15,9 @@ interface fl401Options {
   isLinkedToC100: boolean;
   respondentDetailsAllOptionsYes: boolean;
   applicantHasChildren: boolean;
-  yesNoFL401ApplicantDetails: boolean,
-  applicantGender: ApplicantGender,
+  yesNoFL401ApplicantDetails: boolean;
+  applicantGender: ApplicantGender;
+  respondentsBehaviourAllOptionsYes: boolean;
 }
 
 export class FL401 {
@@ -28,7 +30,8 @@ export class FL401 {
     respondentDetailsAllOptionsYes,
     applicantHasChildren,
     yesNoFL401ApplicantDetails,
-    applicantGender
+    applicantGender,
+    respondentsBehaviourAllOptionsYes,
   }: fl401Options): Promise<void> {
     await SolicitorCreateInitial.createInitialCase({
       page: page,
@@ -51,7 +54,7 @@ export class FL401 {
       yesNoFL401ApplicantDetails: yesNoFL401ApplicantDetails,
       applicantGender: applicantGender,
       subJourney: false,
-    })
+    });
     await FL401RespondentDetails.fl401RespondentDetails({
       page: page,
       accessibilityTest: accessibilityTest,
@@ -64,6 +67,13 @@ export class FL401 {
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
       applicantHasChildren: applicantHasChildren,
+      subJourney: false,
+    });
+    await FL401RespondentsBehaviour.fl401RespondentsBehaviour({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      respondentsBehaviourAllOptionsYes: respondentsBehaviourAllOptionsYes,
       subJourney: false,
     });
   }

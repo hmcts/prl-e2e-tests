@@ -58,6 +58,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       applicantHasChildren: true,
       yesNoFL401ApplicantDetails: true,
       applicantGender: "male",
+      respondentsBehaviourAllOptionsYes: true,
     });
   });
 
@@ -80,6 +81,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       applicantHasChildren: false,
       yesNoFL401ApplicantDetails: false,
       applicantGender: "female",
+      respondentsBehaviourAllOptionsYes: false,
     });
   });
 });
