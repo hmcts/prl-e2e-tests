@@ -30,7 +30,7 @@ export class FL401 {
     isLinkedToC100,
     respondentDetailsAllOptionsYes,
     yesNoFL401ApplicantDetails,
-    applicantGender
+    applicantGender,
     isWithoutNoticeDetailsYes,
     isWithoutNoticeDetailsBailConditions
   }: fl401Options): Promise<void> {
