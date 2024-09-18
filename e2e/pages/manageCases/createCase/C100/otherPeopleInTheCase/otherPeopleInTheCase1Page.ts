@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test";
+import { Page, expect } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { OtherPeopleInTheCase1Content } from "../../../../../fixtures/manageCases/createCase/C100/otherPeopleInTheCaseRevised/otherPeopleInTheCaseRevised1Content.";
 import { Helpers } from "../../../../../common/helpers";
@@ -18,7 +18,9 @@ enum UniqueSelectors {
   applicantPlaceOfBirthKnownNo = "#otherPartyInTheCaseRevised_0_isPlaceOfBirthKnown_No",
   applicantCurrentAddressYes = "#otherPartyInTheCaseRevised_0_isCurrentAddressKnown_Yes",
   applicantCurrentAddressNo = "#otherPartyInTheCaseRevised_0_isCurrentAddressKnown_No",
+  applicantAddressDropdown = "otherPartyInTheCaseRevised_0_address_address_addressList",
   applicantLivedAtAddressLessThan5YearsYes = "#otherPartyInTheCaseRevised_0_isAtAddressLessThan5Years_Yes",
+  addressFields = "div > ccd-field-write > div > ccd-write-complex-type-field > div > fieldset > ccd-field-write > div > ccd-write-address-field > div > ccd-write-complex-type-field > div > fieldset > ccd-field-write > div > ccd-write-text-field > div > label > span.form-label",
   applicantLivedAtAddressLessThan5YearsNo = "#otherPartyInTheCaseRevised_0_isAtAddressLessThan5Years_No",
   applicantEmailAddressYes = "#otherPartyInTheCaseRevised_0_canYouProvideEmailAddress_Yes",
   applicantEmailAddressNo = "#otherPartyInTheCaseRevised_0_canYouProvideEmailAddress_No",
@@ -56,12 +58,14 @@ export class OtherPeopleInTheCase1Page {
     page: Page,
     accessibilityTest: boolean,
     errorMessaging: boolean,
+    yesNoOtherPeopleInTheCase: boolean,
+    applicantGender: ApplicantGender,
   ): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest);
     if (errorMessaging) {
       await this.triggerErrorMessages(page);
     }
-    // await this.fillInFields(page);
+    await this.fillInFields(page, yesNoOtherPeopleInTheCase, applicantGender);
   }
 
   private static async checkPageLoads(
@@ -176,11 +180,30 @@ export class OtherPeopleInTheCase1Page {
   private static async fillInFields(
     page: Page,
     yesNoOtherPeopleInTheCase: boolean,
-    applicantGender: ApplicantGender, // type ApplicantGender = "female" | "male" | "other";
+    applicantGender: ApplicantGender,
   ): Promise<void> {
     await page.click(
       `${Selectors.button}:text-is("${OtherPeopleInTheCase1Content.addNew}")`,
     );
+    await Promise.all([
+      Helpers.checkGroup(
+        page,
+        13,
+        OtherPeopleInTheCase1Content,
+        "formLabel",
+        Selectors.GovukFormLabel
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${OtherPeopleInTheCase1Content.formLabelYes}")`,
+        6,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${OtherPeopleInTheCase1Content.formLabelNo}")`,
+        6,
+      ),
+    ])
     await page.fill(
       `${UniqueSelectors.applicantFirstNameInput}`,
       OtherPeopleInTheCase1Content.applicantFirstName,
@@ -202,6 +225,7 @@ export class OtherPeopleInTheCase1Page {
         break;
       case "other":
         await page.click(`${UniqueSelectors.applicantGenderOther}`);
+        await this.preferredGenderValidation(page);
         await page.fill(
           `${UniqueSelectors.preferredGenderInput}`,
           OtherPeopleInTheCase1Content.loremIpsum,
@@ -210,11 +234,220 @@ export class OtherPeopleInTheCase1Page {
       default:
         console.log("Please select a gender");
     }
+
+    if (yesNoOtherPeopleInTheCase) {
+      await page.click(`${UniqueSelectors.applicantBirthDateYes}`);
+      await this.dateOfBirthValidation(page);
+      await page.fill(
+        `${UniqueSelectors.dateOfBirthDay}`,
+        OtherPeopleInTheCase1Content.day,
+      );
+      await page.fill(
+        `${UniqueSelectors.dateOfBirthMonth}`,
+        OtherPeopleInTheCase1Content.month,
+      );
+      await page.fill(
+        `${UniqueSelectors.dateOfBirthYear}`,
+        OtherPeopleInTheCase1Content.year,
+      );
+
+      await page.click(`${UniqueSelectors.applicantPlaceOfBirthKnownYes}`);
+      await this.placeOfBirthValidation(page);
+      await page.fill(
+        `${UniqueSelectors.placeOfBirthInput}`,
+        OtherPeopleInTheCase1Content.placeOfBirth,
+      );
+
+      await page.click(`${UniqueSelectors.applicantCurrentAddressYes}`);
+      await page.fill(
+        `${UniqueSelectors.applicantCurrentAddressInput}`,
+        OtherPeopleInTheCase1Content.postcode,
+      );
+      await page
+        .locator(
+          `${Selectors.button}:text-is("${OtherPeopleInTheCase1Content.findAddressButton}")`,
+        )
+        .first()
+        .click();
+      await page.selectOption(
+        `${UniqueSelectors.applicantAddressDropdown}`,
+        OtherPeopleInTheCase1Content.address,
+      );
+      await this.AddressValidation(page);
+      await page.click(`${UniqueSelectors.addressConfidentialYes}`);
+      await page.click(`${UniqueSelectors.applicantLivedAtAddressLessThan5YearsYes}`);
+      await this.checkApplicantAddress5Years(page);
+      await page.fill(`${UniqueSelectors.address5YearsDetailsRequiredInput}`, OtherPeopleInTheCase1Content.last5Years);
+      await page.click(`${UniqueSelectors.applicantEmailAddressYes}`);
+      await this.checkEmailAddress(page);
+      await page.fill(`${UniqueSelectors.emailAddressInput}`, OtherPeopleInTheCase1Content.applicantEmail);
+      await page.click(`${UniqueSelectors.emailAddressConfidentialYes}`);
+      await page.click(`${UniqueSelectors.applicantContactNumberYes}`);
+      await this.checkContactNumber(page);
+      await page.fill(`${UniqueSelectors.contactNumberInput}`, OtherPeopleInTheCase1Content.phoneNumber);
+      await page.click(`${UniqueSelectors.contactNumberConfidentialityYes}`);
+    } else {
+      await page.click(`${UniqueSelectors.applicantBirthDateNo}`);
+      await page.click(`${UniqueSelectors.applicantPlaceOfBirthKnownNo}`);
+      await page.click(`${UniqueSelectors.applicantCurrentAddressNo}`);
+      await page.click(`${UniqueSelectors.applicantLivedAtAddressLessThan5YearsNo}`);
+      await page.click(`${UniqueSelectors.applicantEmailAddressNo}`);
+      await page.click(`${UniqueSelectors.applicantContactNumberNo}`);
+    }
+    await page.click(
+      `${Selectors.button}:text-is("${OtherPeopleInTheCase1Content.continue}")`,
+    );
   }
 
-  private static async AddressValidation(page: Page): Promise<void> {}
+  private static async preferredGenderValidation(page: Page): Promise<void> {
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${OtherPeopleInTheCase1Content.formLabel5}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormHint}:text-is("${OtherPeopleInTheCase1Content.formHint1}")`,
+        1,
+      )
+    ])
+  }
 
-  private static async checkApplicantAddress5Years(page: Page): Promise<void> {}
+  private static async dateOfBirthValidation(page: Page): Promise<void> {
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is(${OtherPeopleInTheCase1Content.formLabelDateOfBirth})`,
+        1
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is(${OtherPeopleInTheCase1Content.formLabelDay})`,
+        1
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is(${OtherPeopleInTheCase1Content.formLabelMonth})`,
+        1
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is(${OtherPeopleInTheCase1Content.formLabelYear})`,
+        1
+      ),
 
-  private static async checkEmailAddress(page: Page): Promise<void> {}
+    ])
+  }
+
+  private static async placeOfBirthValidation(page: Page): Promise<void> {
+    await Helpers.checkVisibleAndPresent(
+      page,
+      `${Selectors.GovukFormLabel}:text-is(${OtherPeopleInTheCase1Content.FormLabelPlaceOfBirth})`,
+      1
+    )
+  }
+
+  private static async AddressValidation(page: Page): Promise<void> {
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${OtherPeopleInTheCase1Content.FormLabelPostcode}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${UniqueSelectors.addressFields}:text-is("${OtherPeopleInTheCase1Content.formLabelBuildingAndStreet}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${UniqueSelectors.addressFields}:text-is("${OtherPeopleInTheCase1Content.formLabelAddressLine2}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${UniqueSelectors.addressFields}:text-is("${OtherPeopleInTheCase1Content.formLabelAddressLine3}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${UniqueSelectors.addressFields}:text-is("${OtherPeopleInTheCase1Content.formLabelTownOrCity}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${UniqueSelectors.addressFields}:text-is("${OtherPeopleInTheCase1Content.formLabelCounty}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${UniqueSelectors.addressFields}:text-is("${OtherPeopleInTheCase1Content.formLabelPostcodeZipcode}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${UniqueSelectors.addressFields}:text-is("${OtherPeopleInTheCase1Content.formLabelCountry}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${OtherPeopleInTheCase1Content.formLabelAddressConfidential}")`,
+        1,
+      ),
+      expect(await page.inputValue(ApplicantAddressFields.line1)).toEqual(
+        OtherPeopleInTheCase1Content.buildingAndStreet,
+      ),
+      expect(await page.inputValue(ApplicantAddressFields.line2)).toEqual(""),
+      expect(await page.inputValue(ApplicantAddressFields.line3)).toEqual(""),
+      expect(await page.inputValue(ApplicantAddressFields.town)).toEqual(
+        OtherPeopleInTheCase1Content.townOrCity,
+      ),
+      expect(await page.inputValue(ApplicantAddressFields.county)).toEqual(""),
+      expect(await page.inputValue(ApplicantAddressFields.postcode)).toEqual(
+        OtherPeopleInTheCase1Content.postcode,
+      ),
+      expect(await page.inputValue(ApplicantAddressFields.country)).toEqual(
+        OtherPeopleInTheCase1Content.country,
+      ),
+    ]);
+  }
+
+  private static async checkApplicantAddress5Years(page: Page): Promise<void> {
+    await Helpers.checkVisibleAndPresent(
+      page,
+      `${Selectors.GovukFormLabel}:text-is("${OtherPeopleInTheCase1Content.formLabelApplicantAddressLessThan5Years}")`,
+      1
+    )
+  }
+
+  private static async checkEmailAddress(page: Page): Promise<void> {
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${OtherPeopleInTheCase1Content.formLabelApplicantEmailAddress}")`,
+        1
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${OtherPeopleInTheCase1Content.formLabelEmailAddressConfidential}")`,
+        1
+      ),
+    ])
+  }
+
+  private static async checkContactNumber(page: Page): Promise<void> {
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${OtherPeopleInTheCase1Content.formLabelApplicantContactNumber}")`,
+        1
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${OtherPeopleInTheCase1Content.formLabelContactNumberConfidential}")`,
+        1
+      ),
+    ])
+  }
 }
