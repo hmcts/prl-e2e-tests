@@ -125,8 +125,8 @@ export class OtherPeopleInTheCase1Page {
       page,
       `${Selectors.GovukErrorMessage}:text-is("${OtherPeopleInTheCase1Content.errorMessageInvalidDOB}")`,
       1,
-    ),
-      await page.click(`${UniqueSelectors.applicantCurrentAddressYes}`);
+    );
+    await page.click(`${UniqueSelectors.applicantCurrentAddressYes}`);
     await page.click(`${UniqueSelectors.applicantEmailAddressYes}`);
     await page.click(`${UniqueSelectors.applicantContactNumberYes}`);
     await page.click(`${UniqueSelectors.applicantEmailAddressYes}`);
@@ -188,9 +188,16 @@ export class OtherPeopleInTheCase1Page {
     await Promise.all([
       Helpers.checkGroup(
         page,
-        13,
+        10,
         OtherPeopleInTheCase1Content,
         "formLabel",
+        Selectors.GovukFormLabel,
+      ),
+      Helpers.checkGroup(
+        page,
+        3,
+        OtherPeopleInTheCase1Content,
+        "formLabelGender",
         Selectors.GovukFormLabel,
       ),
       Helpers.checkVisibleAndPresent(
