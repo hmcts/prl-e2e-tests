@@ -42,8 +42,10 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   test(`Complete the FL401 create case event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
+  Male applicant,
+  Saying yes to all Type of application questions
+  Saying yes to applicant details questions
   Saying yes to all Respondent details questions,
-  Saying yes to all Type of application questions,
   Relationship is 'Married or in a civil partnership', @crossbrowserManageCases`, async ({
     page,
   }): Promise<void> => {
@@ -54,6 +56,8 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       errorMessaging: false,
       isLinkedToC100: true,
       respondentDetailsAllOptionsYes: true,
+      yesNoFL401ApplicantDetails: true,
+      applicantGender: "male",
       relationshipToRespondent: 'Married or in a civil partnership',
     });
   });
@@ -61,8 +65,10 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   test(`Complete the FL401 create case event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
+  Female applicant,
+  Saying no to all Type of application questions
+  Saying no to applicant details questions
   Saying no to all Respondent details questions,
-  Saying no to all Type of application questions,
   Relationship is 'None of the above',
   Other Relationship Is: 'Son', @crossbrowserManageCases`, async ({
     page,
@@ -74,6 +80,8 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       errorMessaging: false,
       isLinkedToC100: false,
       respondentDetailsAllOptionsYes: false,
+      yesNoFL401ApplicantDetails: false,
+      applicantGender: "female",
       relationshipToRespondent: 'None of the above',
       relationshipToRespondentOther: 'Son'
     });
