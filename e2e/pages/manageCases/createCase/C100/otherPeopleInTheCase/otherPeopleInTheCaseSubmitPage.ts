@@ -51,7 +51,7 @@ export class OtherPeopleInTheCaseSubmitPage {
     await Helpers.checkVisibleAndPresent(
       page,
       `${Selectors.GovukHeadingL}:text-is("${OtherPeopleInTheCaseSubmitContent.pageTitle}",)`,
-      1
+      1,
     );
     if (yesNoOtherPeopleInTheCase) {
       await Promise.all([
@@ -60,14 +60,14 @@ export class OtherPeopleInTheCaseSubmitPage {
           13,
           OtherPeopleInTheCaseSubmitContent,
           "text16",
-          `${Selectors.GovukText16}`
+          `${Selectors.GovukText16}`,
         ),
         Helpers.checkGroup(
           page,
           12,
           OtherPeopleInTheCaseSubmitContent,
           "text16A",
-          `${Selectors.GovukText16}`
+          `${Selectors.GovukText16}`,
         ),
       ]);
     } else {
@@ -76,8 +76,8 @@ export class OtherPeopleInTheCaseSubmitPage {
         13,
         OtherPeopleInTheCaseSubmitContent,
         "text16",
-        `${Selectors.GovukText16}`
-      )
+        `${Selectors.GovukText16}`,
+      );
     }
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
@@ -92,22 +92,22 @@ export class OtherPeopleInTheCaseSubmitPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukText16}:text-is("${OtherPeopleInTheCase1Content.applicantFirstName}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukText16}:text-is("${OtherPeopleInTheCase1Content.applicantLastName}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukText16}:text-is("${OtherPeopleInTheCase1Content.applicantPrevName}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukText16}:text-is("${applicantGender}")`,
-        1
+        1,
       ),
     ]);
 
@@ -116,7 +116,7 @@ export class OtherPeopleInTheCaseSubmitPage {
         Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukText16}:text-is("${OtherPeopleInTheCase1Content.formLabelYes}")`,
-          9
+          9,
         ),
         Helpers.checkVisibleAndPresent(
           page,
@@ -126,50 +126,50 @@ export class OtherPeopleInTheCaseSubmitPage {
         Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukText16}:text-is("${OtherPeopleInTheCase1Content.placeOfBirth}")`,
-          1
+          1,
         ),
         Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukText16}:text-is("${OtherPeopleInTheCase1Content.buildingAndStreet}")`,
-          1
+          1,
         ),
         Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukText16}:text-is("${OtherPeopleInTheCase1Content.townOrCity}")`,
-          1
+          1,
         ),
         Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukText16}:text-is("${OtherPeopleInTheCase1Content.postcode}")`,
-          1
+          1,
         ),
         Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukText16}:text-is("${OtherPeopleInTheCase1Content.country}")`,
-          1
+          1,
         ),
         Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukText16}:text-is("${OtherPeopleInTheCase1Content.last5Years}")`,
-          1
+          1,
         ),
         Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.a}:text-is("${OtherPeopleInTheCase1Content.applicantEmail}")`,
-          1
+          1,
         ),
         Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukText16}:text-is("${OtherPeopleInTheCase1Content.phoneNumber}")`,
-          1
+          1,
         ),
-      ])
+      ]);
     } else {
       await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukText16}:text-is("${OtherPeopleInTheCase1Content.formLabelNo}")`,
-        6
-      )
+        6,
+      );
     }
   }
 
