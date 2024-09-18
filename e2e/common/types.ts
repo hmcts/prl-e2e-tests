@@ -23,12 +23,14 @@ export type UserRole = (typeof UserRoles)[keyof typeof UserRoles];
 export { UserRoles };
 
 export type c100SolicitorEvents =
+  | "Case name"
   | "Type of application"
   | "Hearing urgency"
   | "Applicant details";
 
 export type fl401SolicitorEvents =
-  "Type of application"
+  | "Case name"
+  | "Type of application"
   | "Applicant details"
   | "Respondent details";
 
