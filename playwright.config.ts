@@ -16,7 +16,7 @@ module.exports = defineConfig({
   reportSlowTests: null,
 
   /* Opt out of parallel tests on CI. */
-  workers: process.env.FUNCTIONAL_TESTS_WORKERS ? 5 : 5,
+  workers: process.env.FUNCTIONAL_TESTS_WORKERS ? 3 : 1,
   reporter: process.env.CI ? "html" : "list",
   projects: [
     {
