@@ -3,6 +3,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { ApplicantDetails1Content } from "../../../../../fixtures/manageCases/createCase/C100/applicantDetails/applicantDetails1Content";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { ApplicantGender } from "../../../../../common/types";
 
 enum UniqueSelectors {
   dayMonthYear = "div > ccd-field-write > div > ccd-write-complex-type-field > div > fieldset > ccd-field-write > div > ccd-write-date-container-field > ccd-write-date-field > div > fieldset > cut-date-input > div > div > .form-label",
@@ -61,8 +62,6 @@ enum RepresentativeAddressFields {
   postcode = "#applicants_0_solicitorAddress__detailPostCode",
   country = "#applicants_0_solicitorAddress__detailCountry",
 }
-
-export type ApplicantGender = "female" | "male" | "other";
 
 export class ApplicantDetails1Page {
   public static async applicantDetails1Page(

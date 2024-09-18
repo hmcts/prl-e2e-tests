@@ -1,7 +1,6 @@
 import { expect, Locator, Page } from "@playwright/test";
 import {
   c100SolicitorEvents,
-  Events,
   fl401SolicitorEvents,
   UserRole,
 } from "./types";
@@ -11,7 +10,7 @@ import { Selectors } from "./selectors.ts";
 export class Helpers {
   public static async chooseEventFromDropdown(
     page: Page,
-    chosenEvent: Events,
+    chosenEvent: c100SolicitorEvents | fl401SolicitorEvents,
   ): Promise<void> {
     try {
       await page.waitForLoadState("domcontentloaded");
@@ -33,9 +32,42 @@ export class Helpers {
     page: Page,
     event: c100SolicitorEvents | fl401SolicitorEvents,
   ): Promise<void> {
-    await page.click(
-      `${Selectors.markdown} > ${Selectors.div} > ${Selectors.p} > ${Selectors.a}:text-is("${event}")`,
+    await this.checkVisibleAndPresent(
+      page,
+      `.mat-tab-label-content:text-is("Tasks")`,
+      1,
     );
+    for (let i = 0; i < 5; i++) {
+      try {
+        if (await page.locator(`h1`).isVisible()) {
+          break;
+        } else {
+          if (
+            await page
+              .locator(
+                `${Selectors.markdown} > ${Selectors.div} > ${Selectors.p} > ${Selectors.a}:text-is("${event}")`,
+              )
+              .isVisible()
+          ) {
+            await page.click(
+              `${Selectors.markdown} > ${Selectors.div} > ${Selectors.p} > ${Selectors.a}:text-is("${event}")`,
+            );
+          } else {
+            await page.reload();
+            await this.chooseEventFromDropdown(page, event);
+          }
+        }
+      } catch (err) {
+        if (err instanceof Error) {
+          console.log(`Attempt ${i + 1} failed: ${err.message}`);
+        } else {
+          console.log(`Attempt ${i + 1} failed: Unknown error`);
+        }
+      }
+      if (i < 4) {
+        await new Promise((resolve) => setTimeout(resolve, 10000));
+      }
+    }
   }
 
   public static async checkVisibleAndPresent(
