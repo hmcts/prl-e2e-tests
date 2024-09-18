@@ -5,6 +5,7 @@ import { SolicitorCreateInitial } from "./solicitorCreateInitial";
 import { FL401RespondentDetails } from "./FL401RespondentDetails/FL401RespondentDetails";
 import { FL401WithoutNoticeOrder } from "./FL401WithoutNoticeOrder/FL401WIthoutNoticeOrder";
 import { FL401ApplicantDetails } from "./FL401ApplicantDetails/FL401ApplicantDetails";
+import { FL401ApplicantsFamily } from "./FL401ApplicantsFamily/FL401ApplicantsFamily";
 
 export type bailConditionRadios = "Yes" | "No" | "Don't know";
 
@@ -15,6 +16,7 @@ interface fl401Options {
   errorMessaging: boolean;
   isLinkedToC100: boolean;
   respondentDetailsAllOptionsYes: boolean;
+  applicantHasChildren: boolean;
   yesNoFL401ApplicantDetails: boolean,
   applicantGender: ApplicantGender,
   isWithoutNoticeDetailsYes: boolean;
@@ -29,6 +31,7 @@ export class FL401 {
     errorMessaging,
     isLinkedToC100,
     respondentDetailsAllOptionsYes,
+    applicantHasChildren,
     yesNoFL401ApplicantDetails,
     applicantGender,
     isWithoutNoticeDetailsYes,
@@ -69,6 +72,13 @@ export class FL401 {
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
       respondentDetailsAllOptionsYes: respondentDetailsAllOptionsYes,
+      subJourney: false,
+    });
+    await FL401ApplicantsFamily.fl401ApplicantsFamily({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      applicantHasChildren: applicantHasChildren,
       subJourney: false,
     });
   }
