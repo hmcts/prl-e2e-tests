@@ -1,6 +1,16 @@
 #!groovy
 
-properties([
+properties(
+  [
+          $class       : 'GithubProjectProperty',
+          displayName  : 'Next Hearing Date Updater',
+          projectUrlStr: 'https://github.com/hmcts/ccd-next-hearing-date-updater'
+  ],
+  pipelineTriggers([
+          [$class: 'GitHubPushTrigger']
+  ]),
+  disableConcurrentBuilds(),
+  [
   parameters([
     string(
       name: 'CITIZEN_FRONTEND_BASE_URL',
@@ -57,7 +67,6 @@ def yarnBuilder = new uk.gov.hmcts.contino.YarnBuilder(this)
 
 withNightlyPipeline(type, product, component, 600) {
   loadVaultSecrets(secrets)
-  disableConcurrentBuilds()
   env.CITIZEN_FRONTEND_BASE_URL = params.CITIZEN_FRONTEND_BASE_URL
   env.MANAGE_CASES_BASE_URL = params.MANAGE_CASES_BASE_URL
   enableSlackNotifications(channel)
