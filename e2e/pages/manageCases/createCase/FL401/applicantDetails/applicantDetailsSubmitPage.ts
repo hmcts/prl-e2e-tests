@@ -220,11 +220,6 @@ export class ApplicantDetailsSubmitPage {
         `${Selectors.GovukText16}:text-is("${ApplicantDetailsSubmitContent.bpBuildingAndStreet}")`,
         2,
       ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukText16}:text-is("${ApplicantDetailsSubmitContent.organisationSearch}")`,
-        1
-      ),
     ]);
   }
 

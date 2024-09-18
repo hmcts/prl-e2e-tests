@@ -100,4 +100,5 @@ export enum ApplicantDetails1Content {
   dxNumber = "0000000000000000",
   applicantGenderOtherInput = "Non-Binary",
   applicantEmailAddress = "name@email.com",
+  select = "Select",
 }

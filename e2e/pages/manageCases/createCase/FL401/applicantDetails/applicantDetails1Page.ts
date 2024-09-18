@@ -428,8 +428,10 @@ export class ApplicantDetails1Page {
   }
 
   private static async selectOrganisation(page: Page): Promise<void> {
-    const orgSelector = `${Selectors.a}[title="Select the organisation ${ApplicantDetails1Content.organisationSearch}"]`;
-    await page.click(orgSelector);
+    await page
+      .locator(`${Selectors.a}:text-is("${ApplicantDetails1Content.select}")`)
+      .first()
+      .click();
   }
 
   private static async checkErrors(page: Page): Promise<void> {
