@@ -1,9 +1,8 @@
-import { UserRole } from "../../../common/types";
+import { ApplicantGender, UserRole } from "../../../common/types";
 import { Page } from "@playwright/test";
 import { SolicitorCreateInitial } from "./solicitorCreateInitial";
 import { C100HearingUrgency } from "./C100HearingUrgency/C100HearingUrgency";
 import { C100ApplicantDetails } from "./C100ApplicantDetails/c100ApplicantDetails";
-import { ApplicantGender } from "../../../pages/manageCases/createCase/C100/applicantDetails/applicantDetails1Page";
 
 interface c100Options {
   page: Page;

@@ -31,4 +31,7 @@ export type c100SolicitorEvents =
 export type fl401SolicitorEvents =
   | "Case name"
   | "Type of application"
+  | "Applicant details"
   | "Respondent details";
+
+export type ApplicantGender = "female" | "male" | "other";
