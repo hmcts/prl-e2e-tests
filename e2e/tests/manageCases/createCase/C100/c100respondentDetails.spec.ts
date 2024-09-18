@@ -6,7 +6,7 @@ test.describe("C100 Create case respondent details tests @manageCases", (): void
   Not Accessibility testing,
   Not Error message testing,
   Saying yes to all options,
-  Setting the applicant Gender to male. @crossbrowserManageCases`, async ({
+  Setting the respondent Gender to male. @crossbrowserManageCases`, async ({
     page,
   }): Promise<void> => {
     await C100RespondentDetails.c100RespondentDetails({
@@ -25,7 +25,9 @@ test.describe("C100 Create case respondent details tests @manageCases", (): void
   Not Accessibility testing,
   Not Error message testing,
   Saying no to all options,
-  Setting the applicant Gender to female.`, async ({ page }): Promise<void> => {
+  Setting the respondent Gender to female.`, async ({
+    page,
+  }): Promise<void> => {
     await C100RespondentDetails.c100RespondentDetails({
       page: page,
       user: "solicitor",
@@ -42,7 +44,7 @@ test.describe("C100 Create case respondent details tests @manageCases", (): void
   Not Accessibility testing,
   Not Error message testing,
   Saying no to all options apart from don't know fields,
-  Setting the applicant Gender to other.`, async ({ page }): Promise<void> => {
+  Setting the respondent Gender to other.`, async ({ page }): Promise<void> => {
     await C100RespondentDetails.c100RespondentDetails({
       page: page,
       user: "solicitor",
@@ -60,7 +62,7 @@ test(`Accessibility test the C100 respondent details event as a solicitor with t
   Accessibility testing,
   Not Error message testing,
   Saying yes to all options,
-  Setting the applicant Gender to female. @accessibilityManageCases`, async ({
+  Setting the respondent Gender to female. @accessibilityManageCases`, async ({
   page,
 }): Promise<void> => {
   await C100RespondentDetails.c100RespondentDetails({

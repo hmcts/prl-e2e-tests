@@ -6,6 +6,12 @@ import { C100ApplicantDetails } from "./C100ApplicantDetails/c100ApplicantDetail
 import { typeOfChildArrangementOrderID } from "../../../pages/manageCases/createCase/C100/selectApplicationType/selectApplicationType1Page";
 import { radioButtons } from "../../../pages/manageCases/createCase/C100/selectApplicationType/selectApplicationType3Page";
 import { C100TypeOfApplication } from "./C100TypeOfApplication/C100TypeOfAplication";
+import { C100RespondentDetails } from "./C100RespondentDetails/C100RespondentDetails";
+import {
+  C100RespondentAddress5Years,
+  C100RespondentGender,
+  C100RespondentLegalRepresentation,
+} from "../../../pages/manageCases/createCase/C100/respondentDetails/respondentDetails1Page";
 
 interface c100Options {
   page: Page;
@@ -18,20 +24,28 @@ interface c100Options {
   yesNoC100TypeOfApplication: boolean;
   typeOfChildArrangementOrder: typeOfChildArrangementOrderID;
   selectionC100TypeOfApplication: radioButtons;
+  yesNoRespondentDetails: boolean;
+  respondentGender: C100RespondentGender;
+  respondentAddress5Years: C100RespondentAddress5Years;
+  respondentLegalRepresentation: C100RespondentLegalRepresentation;
 }
 
 export class C100 {
   public static async c100({
-    page,
-    user,
-    accessibilityTest,
-    errorMessaging,
-    yesNoHearingUrgency,
-    yesNoApplicantDetails,
-    yesNoC100TypeOfApplication,
-    typeOfChildArrangementOrder,
-    selectionC100TypeOfApplication,
-    applicantGender,
+    page: page,
+    user: user,
+    accessibilityTest: accessibilityTest,
+    errorMessaging: errorMessaging,
+    yesNoHearingUrgency: yesNoHearingUrgency,
+    yesNoApplicantDetails: yesNoApplicantDetails,
+    applicantGender: applicantGender,
+    yesNoC100TypeOfApplication: yesNoC100TypeOfApplication,
+    typeOfChildArrangementOrder: typeOfChildArrangementOrder,
+    selectionC100TypeOfApplication: selectionC100TypeOfApplication,
+    yesNoRespondentDetails: yesNoRespondentDetails,
+    respondentGender: respondentGender,
+    respondentAddress5Years: respondentAddress5Years,
+    respondentLegalRepresentation: respondentLegalRepresentation,
   }: c100Options): Promise<void> {
     await SolicitorCreateInitial.createInitialCase({
       page: page,
@@ -65,6 +79,16 @@ export class C100 {
       errorMessaging: errorMessaging,
       yesNoApplicantDetails: yesNoApplicantDetails,
       applicantGender: applicantGender,
+      subJourney: false,
+    });
+    await C100RespondentDetails.c100RespondentDetails({
+      page: page,
+      user: user,
+      accessibilityTest: accessibilityTest,
+      yesNoRespondentDetailsC100: yesNoRespondentDetails,
+      respondentGender: respondentGender,
+      respondentAddress5Years: respondentAddress5Years,
+      respondentLegalRepresentation: respondentLegalRepresentation,
       subJourney: false,
     });
   }
