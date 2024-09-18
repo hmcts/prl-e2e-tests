@@ -1,6 +1,6 @@
 #!groovy
 
-properties(
+properties([
   [
           $class       : 'GithubProjectProperty',
           displayName  : 'prl e2e tests',
@@ -10,7 +10,6 @@ properties(
           [$class: 'GitHubPushTrigger']
   ]),
   disableConcurrentBuilds(),
-  [
   parameters([
     string(
       name: 'CITIZEN_FRONTEND_BASE_URL',
