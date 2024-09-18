@@ -66,7 +66,7 @@ withNightlyPipeline(type, product, component, 600) {
       try {
         yarnBuilder.yarn('test:unit')
       } catch (Error) {
-        unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+        unstable(message: "${STAGE_NAME} is unstabl: " + Error.toString())
       }
     }
     if (!params.skipCitizenTests) {
