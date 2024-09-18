@@ -58,7 +58,7 @@ export enum C100RespondentDetails1Content {
   day = "1",
   month = "1",
   year = "2020",
-  placeOfBirth = "London",
+  placeOfBirth = "Lorem ipsum Place of birth",
   postcode = "SW1A 1AA",
   findAddressButton = "Find address",
   address = "Buckingham Palace, London",

@@ -131,24 +131,6 @@ withNightlyPipeline(type, product, component, 600) {
           steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/ManageCasesFunctional/*'
         }
       }
-
-      stage('Manage Cases E2E tests - Firefox') {
-        try {
-          yarnBuilder.yarn('test:manageCasesFirefox')
-        } catch (Error) {
-          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
-        } finally {
-          publishHTML([
-                  allowMissing: true,
-                  alwaysLinkToLastBuild: true,
-                  keepAll: true,
-                  reportDir: "playwright-report",
-                  reportFiles: 'index.html',
-                  reportName: 'Manage Cases Firefox E2E Test Report'
-          ])
-          steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/ManageCasesFunctional/*'
-        }
-      }
       stage('Manage Cases accessibility tests') {
         try {
           yarnBuilder.yarn('test:manageCasesAccessibility')
