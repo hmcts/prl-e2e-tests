@@ -55,6 +55,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       errorMessaging: false,
       isLinkedToC100: true,
       respondentDetailsAllOptionsYes: true,
+      applicantHasChildren: true,
       yesNoFL401ApplicantDetails: true,
       applicantGender: "male",
     });
@@ -76,6 +77,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       errorMessaging: false,
       isLinkedToC100: false,
       respondentDetailsAllOptionsYes: false,
+      applicantHasChildren: false,
       yesNoFL401ApplicantDetails: false,
       applicantGender: "female",
     });

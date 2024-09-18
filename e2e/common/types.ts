@@ -32,6 +32,7 @@ export type fl401SolicitorEvents =
   | "Case name"
   | "Type of application"
   | "Applicant details"
-  | "Respondent details";
+  | "Respondent details"
+  | "Applicant's family";
 
 export type ApplicantGender = "female" | "male" | "other";
