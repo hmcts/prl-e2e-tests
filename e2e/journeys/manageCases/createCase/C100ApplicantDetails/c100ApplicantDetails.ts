@@ -1,10 +1,7 @@
 import { Page } from "@playwright/test";
 import { ApplicantGender, UserRole } from "../../../../common/types";
 import { Helpers } from "../../../../common/helpers";
-import {
-  ApplicantDetails1Page,
-
-} from "../../../../pages/manageCases/createCase/C100/applicantDetails/applicantDetails1Page";
+import { ApplicantDetails1Page } from "../../../../pages/manageCases/createCase/C100/applicantDetails/applicantDetails1Page";
 import { ApplicantDetailsSubmitPage } from "../../../../pages/manageCases/createCase/C100/applicantDetails/applicantDetailsSubmitPage";
 import { C100TasksTabPage } from "../../../../pages/manageCases/caseTabs/c100TasksTabPage";
 import { SolicitorCreateInitial } from "../solicitorCreateInitial";

@@ -7,25 +7,23 @@ import { ApplicantGender } from "../../../../common/types";
 import { SolicitorCreateInitial } from "../solicitorCreateInitial";
 
 interface fl401ApplicantDetailsOptions {
-  page: Page,
-  accessibilityTest: boolean,
-  errorMessaging: boolean,
-  yesNoFL401ApplicantDetails: boolean,
-  applicantGender: ApplicantGender,
-  subJourney: boolean
+  page: Page;
+  accessibilityTest: boolean;
+  errorMessaging: boolean;
+  yesNoFL401ApplicantDetails: boolean;
+  applicantGender: ApplicantGender;
+  subJourney: boolean;
 }
 
 export class FL401ApplicantDetails {
-  public static async fl401ApplicantDetails(
-    {
-      page,
-      accessibilityTest,
-      errorMessaging,
-      yesNoFL401ApplicantDetails,
-      applicantGender,
-      subJourney
-    }: fl401ApplicantDetailsOptions
-  ): Promise<void> {
+  public static async fl401ApplicantDetails({
+    page,
+    accessibilityTest,
+    errorMessaging,
+    yesNoFL401ApplicantDetails,
+    applicantGender,
+    subJourney,
+  }: fl401ApplicantDetailsOptions): Promise<void> {
     if (subJourney) {
       await SolicitorCreateInitial.createInitialCase({
         page: page,
@@ -41,13 +39,13 @@ export class FL401ApplicantDetails {
       accessibilityTest,
       errorMessaging,
       yesNoFL401ApplicantDetails,
-      applicantGender
+      applicantGender,
     );
     await ApplicantDetailsSubmitPage.applicantDetailsSubmitPage(
       page,
       accessibilityTest,
       yesNoFL401ApplicantDetails,
-      applicantGender
+      applicantGender,
     );
     await Fl401TasksTabPage.fl401TasksTabPage(page, accessibilityTest);
   }

@@ -28,7 +28,7 @@ export enum ApplicantDetailsSubmitContent {
   addressLine4_2 = "Country",
   textChange = "Change",
   saveAndContinue = " Save and continue ",
-  applicantBirthday = '19 Dec 1980',
+  applicantBirthday = "19 Dec 1980",
   applicantFirstName = "Automated",
   applicantLastName = "Tester",
   applicantPreviousName = "Automation",
@@ -52,6 +52,6 @@ export enum ApplicantDetailsSubmitContent {
   bpCounty = "",
   bpPostalCode = "SW1A 1AA",
   bpCountry = "United Kingdom",
-  radioYes = 'Yes',
-  radioNo = 'No',
+  radioYes = "Yes",
+  radioNo = "No",
 }
