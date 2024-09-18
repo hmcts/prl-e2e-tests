@@ -10,9 +10,14 @@ export class ApplicantDetailsSubmitPage {
     page: Page,
     accessibilityTest: boolean,
     yesNoFL401ApplicantDetails: boolean,
-    applicantGender: ApplicantGender
+    applicantGender: ApplicantGender,
   ): Promise<void> {
-    await this.checkPageContent(page, accessibilityTest, yesNoFL401ApplicantDetails, applicantGender);
+    await this.checkPageContent(
+      page,
+      accessibilityTest,
+      yesNoFL401ApplicantDetails,
+      applicantGender,
+    );
     await this.fillInFields(page);
   }
 
@@ -20,7 +25,7 @@ export class ApplicantDetailsSubmitPage {
     page: Page,
     accessibilityTest: boolean,
     yesNoFL401ApplicantDetails: boolean,
-    applicantGender: ApplicantGender
+    applicantGender: ApplicantGender,
   ): Promise<void> {
     await Promise.all([
       this.checkPageLoads(page, yesNoFL401ApplicantDetails, applicantGender),
@@ -34,13 +39,13 @@ export class ApplicantDetailsSubmitPage {
   private static async checkPageLoads(
     page: Page,
     yesNoFL401ApplicantDetails: boolean,
-    applicantGender: ApplicantGender
+    applicantGender: ApplicantGender,
   ): Promise<void> {
     await page.waitForSelector(
       `${Selectors.GovukHeadingL}:text-is("${ApplicantDetailsSubmitContent.pageTitle}")`,
     );
-    const text16Count: number = yesNoFL401ApplicantDetails ? 19 : 18
-    const emailCount: number = yesNoFL401ApplicantDetails ? 2 : 1
+    const text16Count: number = yesNoFL401ApplicantDetails ? 19 : 18;
+    const emailCount: number = yesNoFL401ApplicantDetails ? 2 : 1;
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
@@ -90,26 +95,26 @@ export class ApplicantDetailsSubmitPage {
         2,
       ),
     ]);
-    if (applicantGender === 'other') {
+    if (applicantGender === "other") {
       await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukText16}:text-is("${ApplicantDetailsSubmitContent.applicantGenderOtherLabel}")`,
-        1
-      )
+        1,
+      );
     }
   }
 
   private static async checkFilledInData(
     page: Page,
     yesNoFl401ApplicantDetails: boolean,
-    applicantGender: ApplicantGender
+    applicantGender: ApplicantGender,
   ): Promise<void> {
     let gender: string;
     let yesNoCount: number;
     let yesNoKey: keyof typeof ApplicantDetailsSubmitContent;
     if (yesNoFl401ApplicantDetails) {
       yesNoCount = 4;
-      yesNoKey = 'radioYes';
+      yesNoKey = "radioYes";
       await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.a}:text-is("${ApplicantDetailsSubmitContent.applicantEmailAddress}")`,
@@ -117,28 +122,28 @@ export class ApplicantDetailsSubmitPage {
       );
     } else {
       yesNoCount = 3;
-      yesNoKey = 'radioNo';
+      yesNoKey = "radioNo";
     }
     switch (applicantGender) {
-      case 'male':
-        gender = ApplicantDetailsSubmitContent.applicantGenderMale
-        break
-      case 'female':
-        gender = ApplicantDetailsSubmitContent.applicantGenderFemale
-        break
-      case 'other':
-        gender = ApplicantDetailsSubmitContent.applicantGenderOtherInput
-        break
+      case "male":
+        gender = ApplicantDetailsSubmitContent.applicantGenderMale;
+        break;
+      case "female":
+        gender = ApplicantDetailsSubmitContent.applicantGenderFemale;
+        break;
+      case "other":
+        gender = ApplicantDetailsSubmitContent.applicantGenderOtherInput;
+        break;
       default:
-        console.log('Unexpected input for applicantGender: ', applicantGender)
+        console.log("Unexpected input for applicantGender: ", applicantGender);
         gender = "null";
-        break
+        break;
     }
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukText16}:text-is("${ApplicantDetailsSubmitContent[yesNoKey]}")`,
-        yesNoCount
+        yesNoCount,
       ),
       Helpers.checkVisibleAndPresent(
         page,
