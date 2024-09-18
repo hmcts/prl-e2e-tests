@@ -112,6 +112,17 @@ export class OtherPeopleInTheCase1Page {
         1,
       ),
     ]);
+    await page.click(`${UniqueSelectors.applicantBirthDateYes}`)
+    await page.fill(
+      `${UniqueSelectors.dateOfBirthDay}`,
+      OtherPeopleInTheCase1Content.day
+    );
+    await Helpers.checkVisibleAndPresent(
+      page,
+      `${Selectors.GovukErrorMessage}:text-is("${OtherPeopleInTheCase1Content.errorMessageInvalidDOB}")`,
+      1,
+    ),
+
     await page.click(`${UniqueSelectors.applicantCurrentAddressYes}`);
     await page.click(`${UniqueSelectors.applicantEmailAddressYes}`);
     await page.click(`${UniqueSelectors.applicantContactNumberYes}`);
@@ -167,7 +178,28 @@ export class OtherPeopleInTheCase1Page {
     page: Page,
     yesNoOtherPeopleInTheCase: boolean,
     applicantGender: ApplicantGender, // type ApplicantGender = "female" | "male" | "other";
-  ): Promise<void> {}
+  ): Promise<void> {
+    await page.click(
+      `${Selectors.button}:text-is("${OtherPeopleInTheCase1Content.addNew}")`,
+    );
+    await page.fill(`${UniqueSelectors.applicantFirstNameInput}`, OtherPeopleInTheCase1Content.applicantFirstName)
+    await page.fill(`${UniqueSelectors.applicantLastNameInput}`, OtherPeopleInTheCase1Content.applicantLastName)
+    await page.fill(`${UniqueSelectors.applicantPreviousNameInput}`, OtherPeopleInTheCase1Content.applicantPrevName)
+    switch (applicantGender) {
+      case "female":
+        await page.click(`${UniqueSelectors.applicantGenderFemale}`)
+        break;
+      case "male":
+        await page.click(`${UniqueSelectors.applicantGenderMale}`)
+        break;
+      case "other":
+        await page.click(`${UniqueSelectors.applicantGenderOther}`);
+        await page.fill(`${UniqueSelectors.preferredGenderInput}`, OtherPeopleInTheCase1Content.loremIpsum)
+        break;
+      default:
+        console.log("Please select a gender")
+    }
+  }
 
   private static async AddressValidation(page: Page): Promise<void> {}
 
