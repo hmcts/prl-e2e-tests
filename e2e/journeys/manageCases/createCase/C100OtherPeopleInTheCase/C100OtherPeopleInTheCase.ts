@@ -2,13 +2,9 @@ import { Page } from "@playwright/test";
 import { ApplicantGender } from "../../../../pages/manageCases/createCase/C100/applicantDetails/applicantDetails1Page";
 import { UserRole } from "../../../../common/types";
 import { Helpers } from "../../../../common/helpers";
-import {
-  OtherPeopleInTheCase1Page
-} from "../../../../pages/manageCases/createCase/C100/otherPeopleInTheCase/otherPeopleInTheCase1Page";
+import { OtherPeopleInTheCase1Page } from "../../../../pages/manageCases/createCase/C100/otherPeopleInTheCase/otherPeopleInTheCase1Page";
 import { SolicitorCreateInitial } from "../solicitorCreateInitial";
-import {
-  OtherPeopleInTheCaseSubmitPage
-} from "../../../../pages/manageCases/createCase/C100/otherPeopleInTheCase/otherPeopleInTheCaseSubmitPage";
+import { OtherPeopleInTheCaseSubmitPage } from "../../../../pages/manageCases/createCase/C100/otherPeopleInTheCase/otherPeopleInTheCaseSubmitPage";
 
 interface c100OtherPeopleInTheCaseOptions {
   page: Page;
@@ -22,14 +18,14 @@ interface c100OtherPeopleInTheCaseOptions {
 
 export class C100OtherPeopleInTheCase {
   public static async c100OtherPeopleInTheCase({
-                                                 page,
-                                                 user,
-                                                 accessibilityTest,
-                                                 errorMessaging,
-                                                 yesNoOtherPeopleInTheCase,
-                                                 applicantGender,
-                                                 subJourney,
-                                               }: c100OtherPeopleInTheCaseOptions): Promise<void> {
+    page,
+    user,
+    accessibilityTest,
+    errorMessaging,
+    yesNoOtherPeopleInTheCase,
+    applicantGender,
+    subJourney,
+  }: c100OtherPeopleInTheCaseOptions): Promise<void> {
     if (subJourney) {
       await SolicitorCreateInitial.createInitialCase({
         page: page,
@@ -44,7 +40,7 @@ export class C100OtherPeopleInTheCase {
         accessibilityTest,
         errorMessaging,
         yesNoOtherPeopleInTheCase,
-        applicantGender
+        applicantGender,
       );
       await OtherPeopleInTheCaseSubmitPage.otherPeopleInTheCaseSubmitPage(
         page,
