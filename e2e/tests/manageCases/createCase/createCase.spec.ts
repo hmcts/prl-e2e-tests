@@ -17,6 +17,9 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       errorMessaging: false,
       yesNoHearingUrgency: true,
       yesNoApplicantDetails: true,
+      yesNoC100TypeOfApplication: true,
+      typeOfChildArrangementOrder: "Spend time with order",
+      selectionC100TypeOfApplication: "Yes",
       applicantGender: "male",
     });
   });
@@ -35,6 +38,9 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       errorMessaging: false,
       yesNoHearingUrgency: false,
       yesNoApplicantDetails: false,
+      yesNoC100TypeOfApplication: false,
+      typeOfChildArrangementOrder: "Spend time with order",
+      selectionC100TypeOfApplication: "No, permission now sought",
       applicantGender: "male",
     });
   });

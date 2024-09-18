@@ -3,6 +3,9 @@ import { Page } from "@playwright/test";
 import { SolicitorCreateInitial } from "./solicitorCreateInitial";
 import { C100HearingUrgency } from "./C100HearingUrgency/C100HearingUrgency";
 import { C100ApplicantDetails } from "./C100ApplicantDetails/c100ApplicantDetails";
+import { typeOfChildArrangementOrderID } from "../../../pages/manageCases/createCase/C100/selectApplicationType/selectApplicationType1Page";
+import { radioButtons } from "../../../pages/manageCases/createCase/C100/selectApplicationType/selectApplicationType3Page";
+import { C100TypeOfApplication } from "./C100TypeOfApplication/C100TypeOfAplication";
 
 interface c100Options {
   page: Page;
@@ -12,6 +15,9 @@ interface c100Options {
   yesNoHearingUrgency: boolean;
   yesNoApplicantDetails: boolean;
   applicantGender: ApplicantGender;
+  yesNoC100TypeOfApplication: boolean;
+  typeOfChildArrangementOrder: typeOfChildArrangementOrderID;
+  selectionC100TypeOfApplication: radioButtons;
 }
 
 export class C100 {
@@ -22,6 +28,9 @@ export class C100 {
     errorMessaging,
     yesNoHearingUrgency,
     yesNoApplicantDetails,
+    yesNoC100TypeOfApplication,
+    typeOfChildArrangementOrder,
+    selectionC100TypeOfApplication,
     applicantGender,
   }: c100Options): Promise<void> {
     await SolicitorCreateInitial.createInitialCase({
@@ -30,6 +39,16 @@ export class C100 {
       accessibilityTest: false,
       solicitorCaseType: "C100",
       errorMessaging: false,
+    });
+    await C100TypeOfApplication.c100TypeOfApplication({
+      page: page,
+      user: user,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      yesNoC100TypeOfApplication: yesNoC100TypeOfApplication,
+      typeOfChildArrangementOrder: typeOfChildArrangementOrder,
+      selectionC100TypeOfApplication: selectionC100TypeOfApplication,
+      subJourney: false,
     });
     await C100HearingUrgency.c100HearingUrgency({
       page: page,
