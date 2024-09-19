@@ -24,11 +24,24 @@ enum checkboxIDs {
   needsContents = '#home_familyHome-useHouseholdContents'
 }
 
-enum radioIDs {
-  livedAtHomeYesBothOfThem = '#home_everLivedAtTheAddress-yesBothOfThem',
-  livedAtHomeYesApplicant = '#home_everLivedAtTheAddress-yesApplicant',
-  livedAtHomeYesRespondent = '#home_everLivedAtTheAddress-yesRespondent',
-  neverLivedAtAddress = '#home_everLivedAtTheAddress-No',
+enum inputIDs {
+  postcodeInput = '#home_address_address_postcodeInput',
+  selectAddress = '#home_address_address_addressList',
+  buildingAndStreet = '#home_address__detailAddressLine1',
+  addressLine2 = '#home_address__detailAddressLine2',
+  addressLine3 = '#home_address__detailAddressLine3',
+  townOrCity = '#home_address__detailPostTown',
+  addressCounty = '#home_address__detailCounty',
+  postalCode = '#home_address__detailPostCode',
+  addressCountry = '#home_address__detailCountry',
+  topLevelYesBothOfThem = '#home_everLivedAtTheAddress-yesBothOfThem',
+  topLevelYesApplicant = '#home_everLivedAtTheAddress-yesApplicant',
+  topLevelYesRespondent = '#home_everLivedAtTheAddress-yesRespondent',
+  topLevelNotHomeAddress = '#home_everLivedAtTheAddress-No',
+  secondLevelYesBothOfThem = '#home_intendToLiveAtTheAddress-yesBothOfThem',
+  secondLevelYesApplicant = '#home_intendToLiveAtTheAddress-yesApplicant',
+  secondLevelYesRespondent = '#home_intendToLiveAtTheAddress-yesRespondent',
+  secondLevelNotHomeAddress = '#home_intendToLiveAtTheAddress-No',
   childrenAtAddressYes = '#home_doAnyChildrenLiveAtAddress_Yes',
   childrenAtAddressNo = '#home_doAnyChildrenLiveAtAddress_No',
   propertyAdaptedYes = '#home_isPropertyAdapted_Yes',
@@ -39,19 +52,15 @@ enum radioIDs {
   rentedPropertyNo = '#home_isPropertyRented_No',
   applicantHomeRightsYes = '#home_doesApplicantHaveHomeRights_Yes',
   applicantHomeRightsNo = '#home_doesApplicantHaveHomeRights_No',
-  intendToLiveAtHomeYesBoth = '#home_intendToLiveAtTheAddress-yesBothOfThem',
-  intendToLiveAtHomeYesApplicant = '#home_intendToLiveAtTheAddress-yesApplicant',
-  intendToLiveAtHomeYesRespondent = '#home_intendToLiveAtTheAddress-yesRespondent',
-  intendToLiveAtHomeNo = '#home_intendToLiveAtTheAddress-No',
+  confidentialInfoYes = '#home_children_0_keepChildrenInfoConfidential_Yes',
+  confidentialInfoNo = '#home_children_0_keepChildrenInfoConfidential_No',
+  childFullName = '#home_children_0_childFullName',
+  childAge = '#home_children_0_childsAge',
+  respondentResponsibleForChildYes = '#home_children_0_isRespondentResponsibleForChild_Yes',
+  respondentResponsibleForChildNo = '#home_children_0_isRespondentResponsibleForChild_No',
 }
 
-export type FL401ApplicantOrRespondentNotCurrentlyHome =
-  'Yes, both of them'
-  | 'Yes, the applicant'
-  | 'Yes, the respondent'
-  | 'No'
-
-export type FL401ApplicantOrRespondentIntendedHome =
+export type addressRadios =
   'Yes, both of them'
   | 'Yes, the applicant'
   | 'Yes, the respondent'
@@ -60,10 +69,16 @@ export type FL401ApplicantOrRespondentIntendedHome =
 interface FL401HomePageOptions {
   page: Page;
   accessibilityTest: boolean;
-  errorMessaging: boolean;
   fl401HomeYesNo: boolean;
-  fl401ApplicantOrRespondentNotCurrentlyHome: FL401ApplicantOrRespondentNotCurrentlyHome;
-  fl401ApplicantOrRespondentIntendedHome?: FL401ApplicantOrRespondentIntendedHome;
+  fl401ApplicantOrRespondentNotCurrentlyHome: addressRadios;
+  fl401ApplicantOrRespondentIntendedHome?: addressRadios;
+}
+
+interface FillInFieldsOptions {
+  page: Page;
+  fl401HomeYesNo: boolean;
+  fl401ApplicantOrRespondentNotCurrentlyHome: addressRadios;
+  fl401ApplicantOrRespondentIntendedHome?: addressRadios;
 }
 
 interface CheckPageLoadsOptions {
@@ -75,7 +90,8 @@ interface CheckPageLoadsOptions {
 interface FillInTopLevelFieldsOptions {
   page: Page,
   fl401HomeYesNo: boolean,
-  fl401ApplicantOrRespondentNotCurrentlyHome: FL401ApplicantOrRespondentNotCurrentlyHome,
+  fl401ApplicantOrRespondentNotCurrentlyHome: addressRadios,
+  fl401ApplicantOrRespondentIntendedHome?: addressRadios;
 }
 
 interface AddNewChildOptions {
@@ -83,12 +99,16 @@ interface AddNewChildOptions {
   fl401HomeYesNo: boolean,
 }
 
+interface FillInAddressRadiosOptions {
+  page: Page;
+  applicantOrRespondentResponse: addressRadios;
+  isTopLevel: boolean
+}
 
 export class Fl401Home1Page {
   public static async fl401Home1Page({
      page,
      accessibilityTest,
-     errorMessaging,
      fl401HomeYesNo,
      fl401ApplicantOrRespondentNotCurrentlyHome,
      fl401ApplicantOrRespondentIntendedHome
@@ -147,43 +167,6 @@ export class Fl401Home1Page {
     )
   }
 
-  private static async fillInTopLevelFields({
-    page,
-    fl401HomeYesNo,
-    fl401ApplicantOrRespondentNotCurrentlyHome,
-  }: FillInTopLevelFieldsOptions): Promise<void> {
-    for (let checkboxID of Object.values(checkboxIDs)) {
-      await page.check(checkboxID);
-    }
-    switch (fl401ApplicantOrRespondentNotCurrentlyHome) {
-      case 'Yes, both of them':
-        await page.click(
-          radioIDs.livedAtHomeYesBothOfThem
-        );
-        break
-      case 'Yes, the applicant':
-        await page.click(
-          radioIDs.livedAtHomeYesApplicant
-        );
-        break
-      case 'Yes, the respondent':
-        await page.click(
-          radioIDs.livedAtHomeYesRespondent
-        );
-        break
-      case 'No':
-        await page.click(
-          radioIDs.neverLivedAtAddress
-        );
-        break
-      default:
-        console.log(
-          `Unexpected value for fl401ApplicantOrRespondentNotCurrentlyHome: ${fl401ApplicantOrRespondentNotCurrentlyHome}`
-        );
-        break
-    }
-  }
-
   private static async addNewChild({
     page,
     fl401HomeYesNo
@@ -217,6 +200,183 @@ export class Fl401Home1Page {
         )
       ]
     );
+    if (fl401HomeYesNo) {
+      await page.click(
+        inputIDs.confidentialInfoYes
+      );
+      await page.click(
+        inputIDs.respondentResponsibleForChildYes
+      );
+    } else {
+      await page.click(
+        inputIDs.confidentialInfoNo
+      );
+      await page.click(
+        inputIDs.respondentResponsibleForChildNo
+      );
+    }
+    await page.fill(
+      inputIDs.childFullName,
+      Fl401Home1Content.childFullName
+    );
+    await page.fill(
+      inputIDs.childAge,
+      Fl401Home1Content.childAge
+    );
+  }
 
+  private static async fillInFields({
+    page,
+    fl401HomeYesNo,
+    fl401ApplicantOrRespondentNotCurrentlyHome,
+    fl401ApplicantOrRespondentIntendedHome
+  }: FillInFieldsOptions): Promise<void> {
+    await this.fillAndCheckAddressFields(page);
+    await this.fillInTopLevelFields({
+      page, fl401HomeYesNo, fl401ApplicantOrRespondentNotCurrentlyHome, fl401ApplicantOrRespondentIntendedHome
+    })
+  }
+
+  private static async fillInAddressRadios({
+    page,
+    applicantOrRespondentResponse,
+    isTopLevel
+   }: FillInAddressRadiosOptions): Promise<void> { 
+    const keyPrefix = (isTopLevel) ? 'topLevel' : 'secondLevel';
+    let homeAddressRadioKey: keyof typeof inputIDs
+    switch (applicantOrRespondentResponse) {
+      case 'Yes, both of them':
+         homeAddressRadioKey = `${keyPrefix}YesBothOfThem`
+        await page.click(
+          inputIDs[homeAddressRadioKey]
+        );
+        break
+      case 'Yes, the applicant':
+        homeAddressRadioKey = `${keyPrefix}YesBothOfThem`
+        await page.click(
+          inputIDs[homeAddressRadioKey]
+        );
+        break
+      case 'Yes, the respondent':
+        homeAddressRadioKey = `${keyPrefix}YesBothOfThem`
+        await page.click(
+          inputIDs[homeAddressRadioKey]
+        );
+        break
+      case 'No':
+        homeAddressRadioKey = `${keyPrefix}YesBothOfThem`
+        await page.click(
+          inputIDs[homeAddressRadioKey]
+        );
+        break
+      default:
+        console.log(
+          `Unexpected value for applicantOrRespondentResponse: ${applicantOrRespondentResponse}`
+        );
+        break
+    }
+  }
+
+  private static async fillInTopLevelFields({
+    page,
+    fl401HomeYesNo,
+    fl401ApplicantOrRespondentNotCurrentlyHome,
+  }: FillInTopLevelFieldsOptions): Promise<void> {
+    for (let checkboxID of Object.values(checkboxIDs)) {
+      await page.check(checkboxID);
+    }
+    const applicantOrRespondentResponse = fl401ApplicantOrRespondentNotCurrentlyHome
+    const isTopLevel = true
+    await this.fillInAddressRadios({
+      page,
+      applicantOrRespondentResponse,
+      isTopLevel
+    });
+  }
+
+
+  private static async fillAndCheckAddressFields(page: Page): Promise<void> {
+    await page.click(
+      `button:text-is("${Fl401Home1Content.findAddress}")`,
+    );
+    await page.waitForSelector(
+      `${Selectors.GovukFormLabel}:text-is("${Fl401Home1Content.selectAddress}")`,
+    );
+    await page
+      .locator(inputIDs.selectAddress)
+      .selectOption({ index: 1 });
+    await this.addressLabelValidation(page);
+    await this.addressValueValidation(page);
+  }
+
+  private static async addressLabelValidation(page: Page): Promise<void> {
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${Fl401Home1Content.buildingAndStreet}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${FL401Home1Content.buildingAndStreetOptional}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${FL401Home1Content.addressLine2}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${FL401Home1Content.addressLine3}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${FL401Home1Content.townOrCity}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${FL401Home1Content.addressCounty}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${FL401Home1Content.postalCode}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${FL401Home1Content.addressCountry}")`,
+        1,
+      ),
+    ]);
+  }
+
+  private static async addressValueValidation(page: Page): Promise<void> {
+    await Promise.all([
+      expect(
+        page.locator(inputIDs.buildingAndStreet),
+      ).toHaveValue(FL401Home1Content.bpBuildingAndStreet),
+      expect(page.locator(inputIDs.addressLine2)).toHaveValue(
+        FL401Home1Content.bpAddressLine2,
+      ),
+      expect(page.locator(inputIDs.addressLine3)).toHaveValue(
+        FL401Home1Content.bpAddressLine3,
+      ),
+      expect(page.locator(inputIDs.townOrCity)).toHaveValue(
+        FL401Home1Content.bpCity,
+      ),
+      expect(page.locator(inputIDs.addressCounty)).toHaveValue(
+        FL401Home1Content.bpCounty,
+      ),
+      expect(page.locator(inputIDs.postalCode)).toHaveValue(
+        FL401Home1Content.bpPostalCode,
+      ),
+      expect(page.locator(inputIDs.addressCountry)).toHaveValue(
+        FL401Home1Content.bpCountry,
+      ),
+    ]);
   }
 }
