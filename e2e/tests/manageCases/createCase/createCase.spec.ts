@@ -55,11 +55,13 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
     });
   });
 
-  test(`Complete the FL401 create case event as a solicitor with the following options:
+  test(\`Complete the FL401 create case event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
   Male applicant,
   Saying yes to all Type of application questions
+  Saying yes to applicant details questions,
+  Saying yes to all Without Notice Order questions 
   Saying yes to applicant details questions
   Saying yes to all Respondent details questions,
   Relationship is 'Married or in a civil partnership', @crossbrowserManageCases`, async ({
@@ -75,6 +77,8 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       applicantHasChildren: true,
       yesNoFL401ApplicantDetails: true,
       applicantGender: "male",
+      isWithoutNoticeDetailsYes: true,
+      isWithoutNoticeDetailsBailConditions: "Yes"
       relationshipToRespondent: 'Married or in a civil partnership',
     });
   });
@@ -82,6 +86,12 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   test(`Complete the FL401 create case event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
+  Male applicant,
+  Saying yes to all Respondent details questions,
+  Saying yes to all Type of application questions
+  Saying yes to applicant details questions,
+  Saying yes to Without Notice Order questions,
+  Saying "Don't know" to Without Notice Order bail conditions
   Female applicant,
   Saying no to all Type of application questions
   Saying no to applicant details questions
@@ -95,13 +105,37 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       user: "solicitor",
       accessibilityTest: false,
       errorMessaging: false,
+      isLinkedToC100: true,
+      respondentDetailsAllOptionsYes: true,
+      applicantHasChildren: true,
+      yesNoFL401ApplicantDetails: true,
+      applicantGender: "male",
+      isWithoutNoticeDetailsYes: true,
+      isWithoutNoticeDetailsBailConditions: "Don't know"
+    });
+  });
+
+  test(`Complete the FL401 create case event as a solicitor with the following options:
+  Not Accessibility testing,
+  Not Error message testing,
+  Female applicant,
+  Saying no to all Respondent details questions,
+  Saying no to all Type of application questions,
+  Saying no to Without Notice Order questions`, async ({
+     page,
+   }): Promise<void> => {
+    await FL401.fl401({
+      page: page,
+      user: "solicitor",
+      accessibilityTest: false,
+      errorMessaging: false,
       isLinkedToC100: false,
       respondentDetailsAllOptionsYes: false,
       applicantHasChildren: false,
       yesNoFL401ApplicantDetails: false,
       applicantGender: "female",
-      relationshipToRespondent: 'None of the above',
-      relationshipToRespondentOther: 'Son'
+      isWithoutNoticeDetailsYes: false,
+      isWithoutNoticeDetailsBailConditions: "No"
     });
   });
 });

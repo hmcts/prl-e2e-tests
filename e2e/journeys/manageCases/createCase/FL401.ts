@@ -3,6 +3,7 @@ import { Page } from "@playwright/test";
 import { FL401TypeOfApplication } from "./FL401TypeOfApplication/FL401TypeOfApplication";
 import { SolicitorCreateInitial } from "./solicitorCreateInitial";
 import { FL401RespondentDetails } from "./FL401RespondentDetails/FL401RespondentDetails";
+import { FL401WithoutNoticeOrder } from "./FL401WithoutNoticeOrder/FL401WIthoutNoticeOrder";
 import { FL401ApplicantDetails } from "./FL401ApplicantDetails/FL401ApplicantDetails";
 import { FL401ApplicantsFamily } from "./FL401ApplicantsFamily/FL401ApplicantsFamily";
 import { FL401RelationshipToRespondent } from "./FL401RelationshipToRespondent/FL401RelationshipToRespondent";
@@ -34,6 +35,8 @@ export type respondentRelationshipOther =
   | "Cousin"
   | "Other";
 
+export type bailConditionRadios = "Yes" | "No" | "Don't know";
+
 interface fl401Options {
   page: Page;
   user: UserRole;
@@ -44,6 +47,8 @@ interface fl401Options {
   applicantHasChildren: boolean;
   yesNoFL401ApplicantDetails: boolean;
   applicantGender: ApplicantGender;
+  isWithoutNoticeDetailsYes: boolean;
+  isWithoutNoticeDetailsBailConditions: bailConditionRadios;
   relationshipToRespondent: relationshipToRespondent;
   relationshipToRespondentOther?: respondentRelationshipOther;
 }
@@ -59,6 +64,8 @@ export class FL401 {
     applicantHasChildren,
     yesNoFL401ApplicantDetails,
     applicantGender,
+    isWithoutNoticeDetailsYes,
+    isWithoutNoticeDetailsBailConditions,
     relationshipToRespondent,
     relationshipToRespondentOther
   }: fl401Options): Promise<void> {
@@ -76,6 +83,14 @@ export class FL401 {
       isLinkedToC100: isLinkedToC100,
       subJourney: false,
     });
+    await FL401WithoutNoticeOrder.fl401WithoutNoticeOrder({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      isWithoutNoticeDetailsYes: isWithoutNoticeDetailsYes,
+      isWithoutNoticeDetailsBailConditions: isWithoutNoticeDetailsBailConditions,
+      subJourney: false,
+    })
     await FL401ApplicantDetails.fl401ApplicantDetails({
       page: page,
       accessibilityTest: accessibilityTest,

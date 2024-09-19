@@ -31,6 +31,7 @@ export type c100SolicitorEvents =
 export type fl401SolicitorEvents =
   | "Case name"
   | "Type of application"
+  | "Without notice order"
   | "Applicant details"
   | "Respondent details"
   | "Applicant's family"
