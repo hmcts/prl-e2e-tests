@@ -72,8 +72,6 @@ export class RespondentsBehaviourPage {
     }
   }
 
-  private static async checkErrorMessaging(page: Page): Promise<void> {}
-
   private static async fillInFields(
     page: Page,
     respondentsBehaviourAllOptionsYes: boolean,
