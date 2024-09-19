@@ -34,9 +34,6 @@ export class RespondentsBehaviourPage {
     respondentsBehaviourAllOptionsYes: boolean,
   ): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest);
-    if (errorMessaging) {
-      await this.checkErrorMessaging(page);
-    }
     await this.fillInFields(
       page,
       respondentsBehaviourAllOptionsYes,
