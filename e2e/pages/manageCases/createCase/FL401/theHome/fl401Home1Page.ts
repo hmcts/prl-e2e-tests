@@ -292,8 +292,46 @@ export class Fl401Home1Page {
       applicantOrRespondentResponse,
       isTopLevel
     });
+    if (fl401HomeYesNo) {
+      await page.click(
+        inputIDs.childrenAtAddressYes
+      );
+      await page.click(
+        inputIDs.propertyAdaptedYes
+      );
+      await page.click(
+        inputIDs.mortgagePropertyYes
+      );
+      await page.click(
+        inputIDs.rentedPropertyYes
+      );
+      await page.click(
+        inputIDs.applicantHomeRightsYes
+      );
+    } else {
+      await page.click(
+        inputIDs.childrenAtAddressNo
+      );
+      await page.click(
+        inputIDs.propertyAdaptedNo
+      );
+      await page.click(
+        inputIDs.mortgagePropertyNo
+      );
+      await page.click(
+        inputIDs.rentedPropertyNo
+      );
+      await page.click(
+        inputIDs.applicantHomeRightsNo
+      );
+    }
   }
 
+  private static async fillInSecondLevelFields(
+    page: Page
+  ): Promise<void> {
+
+  }
 
   private static async fillAndCheckAddressFields(page: Page): Promise<void> {
     await page.click(
