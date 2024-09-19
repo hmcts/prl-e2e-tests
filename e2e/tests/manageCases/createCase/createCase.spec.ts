@@ -26,6 +26,8 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       respondentGender: "male",
       respondentAddress5Years: "yes",
       respondentLegalRepresentation: "yes",
+      c100ChildGender: "male",
+      yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions: "yes",
     });
   });
 
@@ -52,6 +54,8 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       respondentGender: "female",
       respondentAddress5Years: "no",
       respondentLegalRepresentation: "no",
+      c100ChildGender: "female",
+      yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions: "no",
     });
   });
 
