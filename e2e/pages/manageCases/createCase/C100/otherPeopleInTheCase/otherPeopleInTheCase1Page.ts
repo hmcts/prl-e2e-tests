@@ -133,6 +133,7 @@ export class OtherPeopleInTheCase1Page {
       OtherPeopleInTheCase1Content.day,
     );
     await page.click(`${UniqueSelectors.applicantCurrentAddressYes}`);
+    await page.click(`${UniqueSelectors.applicantCurrentAddressYes}`);
     await page.click(
       `${UniqueSelectors.applicantLivedAtAddressLessThan5YearsYes}`,
     );
@@ -253,9 +254,8 @@ export class OtherPeopleInTheCase1Page {
         OtherPeopleInTheCase1Content.year,
       );
       await this.dateOfBirthValidation(page);
-      await page.click(`${UniqueSelectors.applicantPlaceOfBirthKnownYes}`, {
-        force: true,
-      });
+      await page.click(`${UniqueSelectors.applicantPlaceOfBirthKnownYes}`);
+      await page.click(`${UniqueSelectors.applicantPlaceOfBirthKnownYes}`);
       await page.fill(
         `${UniqueSelectors.placeOfBirthInput}`,
         OtherPeopleInTheCase1Content.townOrCity,
