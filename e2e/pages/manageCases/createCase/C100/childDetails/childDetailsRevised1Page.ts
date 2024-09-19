@@ -57,6 +57,11 @@ export class ChildDetailsRevised1Page {
       `${Selectors.h2}:text-is("${ChildDetailsRevised1Content.h2}")`,
     );
     await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukHeadingL}:text-is("${ChildDetailsRevised1Content.pageTitle}")`,
+        1,
+      ),
       Helpers.checkGroup(
         page,
         2,

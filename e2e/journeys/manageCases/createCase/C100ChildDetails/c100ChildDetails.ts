@@ -6,13 +6,17 @@ import { Page } from "@playwright/test";
 import { SolicitorCreateInitial } from "../solicitorCreateInitial";
 import { UserRole } from "../../../../common/types";
 import { Helpers } from "../../../../common/helpers";
+import {
+  ChildDetailsRevised2Page,
+  yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions
+} from "../../../../pages/manageCases/createCase/C100/childDetails/childDetailsRevised2Page";
 
 interface c100ChildDetailsOptions {
   page: Page;
   user: UserRole;
   accessibilityTest: boolean;
   c100ChildGender: C100ChildGender;
-  errorMessaging: boolean;
+  yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions: yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions;
   subJourney: boolean;
 }
 
@@ -22,7 +26,7 @@ export class C100ChildDetails {
     user: user,
     accessibilityTest: accessibilityTest,
     c100ChildGender: c100ChildGender,
-    errorMessaging: errorMessaging,
+    yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions: yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,
     subJourney: subJourney,
   }: c100ChildDetailsOptions): Promise<void> {
     if (subJourney) {
@@ -40,5 +44,9 @@ export class C100ChildDetails {
       accessibilityTest: accessibilityTest,
       c100ChildGender: c100ChildGender,
     });
+    await ChildDetailsRevised2Page.childDetailsRevised2Page({page: page,
+      accessibilityTest: accessibilityTest,
+      yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions:
+      yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,})
   }
 }
