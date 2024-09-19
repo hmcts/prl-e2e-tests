@@ -4,6 +4,7 @@ import { Helpers } from "../../../../common/helpers";
 import { OtherPeopleInTheCase1Page } from "../../../../pages/manageCases/createCase/C100/otherPeopleInTheCase/otherPeopleInTheCase1Page";
 import { SolicitorCreateInitial } from "../solicitorCreateInitial";
 import { OtherPeopleInTheCaseSubmitPage } from "../../../../pages/manageCases/createCase/C100/otherPeopleInTheCase/otherPeopleInTheCaseSubmitPage";
+import { C100TasksTabPage } from "../../../../pages/manageCases/caseTabs/c100TasksTabPage";
 
 interface c100OtherPeopleInTheCaseOptions {
   page: Page;
@@ -33,6 +34,7 @@ export class C100OtherPeopleInTheCase {
         solicitorCaseType: "C100",
         errorMessaging: false,
       });
+    }
       await Helpers.selectSolicitorEvent(page, "Other people in the case");
       await OtherPeopleInTheCase1Page.otherPeopleInTheCase1Page(
         page,
@@ -47,6 +49,6 @@ export class C100OtherPeopleInTheCase {
         yesNoOtherPeopleInTheCase,
         applicantGender,
       );
+    await C100TasksTabPage.c100TasksTabPage(page, accessibilityTest);
     }
   }
-}

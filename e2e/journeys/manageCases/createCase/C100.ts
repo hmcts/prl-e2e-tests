@@ -12,6 +12,7 @@ import {
   C100RespondentGender,
   C100RespondentLegalRepresentation,
 } from "../../../pages/manageCases/createCase/C100/respondentDetails/respondentDetails1Page";
+import { C100OtherPeopleInTheCase } from "./C100OtherPeopleInTheCase/C100OtherPeopleInTheCase";
 
 interface c100Options {
   page: Page;
@@ -28,6 +29,7 @@ interface c100Options {
   respondentGender: C100RespondentGender;
   respondentAddress5Years: C100RespondentAddress5Years;
   respondentLegalRepresentation: C100RespondentLegalRepresentation;
+  yesNoOtherPeopleInTheCase: boolean;
 }
 
 export class C100 {
@@ -39,7 +41,8 @@ export class C100 {
     yesNoHearingUrgency: yesNoHearingUrgency,
     yesNoApplicantDetails: yesNoApplicantDetails,
     applicantGender: applicantGender,
-    yesNoC100TypeOfApplication: yesNoC100TypeOfApplication,
+    yesNoOtherPeopleInTheCase: yesNoOtherPeopleInTheCase,
+                             yesNoC100TypeOfApplication: yesNoC100TypeOfApplication,
     typeOfChildArrangementOrder: typeOfChildArrangementOrder,
     selectionC100TypeOfApplication: selectionC100TypeOfApplication,
     yesNoRespondentDetails: yesNoRespondentDetails,
@@ -89,6 +92,15 @@ export class C100 {
       respondentGender: respondentGender,
       respondentAddress5Years: respondentAddress5Years,
       respondentLegalRepresentation: respondentLegalRepresentation,
+      subJourney: false,
+    });
+    await C100OtherPeopleInTheCase.c100OtherPeopleInTheCase({
+      page: page,
+      user: user,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      yesNoOtherPeopleInTheCase: yesNoOtherPeopleInTheCase,
+      applicantGender: applicantGender,
       subJourney: false,
     });
   }

@@ -26,6 +26,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       respondentGender: "male",
       respondentAddress5Years: "yes",
       respondentLegalRepresentation: "yes",
+      yesNoOtherPeopleInTheCase: true,
     });
   });
 
@@ -42,16 +43,17 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       user: "solicitor",
       accessibilityTest: false,
       errorMessaging: false,
-      yesNoHearingUrgency: false,
-      yesNoApplicantDetails: false,
       yesNoC100TypeOfApplication: false,
       typeOfChildArrangementOrder: "Spend time with order",
       selectionC100TypeOfApplication: "No, permission now sought",
+      yesNoHearingUrgency: false,
+      yesNoApplicantDetails: false,
       applicantGender: "female",
       yesNoRespondentDetails: false,
       respondentGender: "female",
       respondentAddress5Years: "no",
       respondentLegalRepresentation: "no",
+      yesNoOtherPeopleInTheCase: false,
     });
   });
 

@@ -2,9 +2,14 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { OtherPeopleInTheCaseSubmitContent } from "../../../../../fixtures/manageCases/createCase/C100/otherPeopleInTheCaseRevised/otherPeopleInTheCaseSubmitContent";
 import { Helpers } from "../../../../../common/helpers";
-import { ApplicantGender } from "../applicantDetails/applicantDetails1Page";
+
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { OtherPeopleInTheCase1Content } from "../../../../../fixtures/manageCases/createCase/C100/otherPeopleInTheCaseRevised/otherPeopleInTheCaseRevised1Content.";
+import { ApplicantGender } from "../../../../../common/types";
+
+enum UniquesFields {
+  last5yearsLocator = ".text-16 > ccd-field-read > div > ccd-field-read-label > div > ccd-read-text-area-field > span",
+}
 
 export class OtherPeopleInTheCaseSubmitPage {
   public static async otherPeopleInTheCaseSubmitPage(
@@ -50,7 +55,7 @@ export class OtherPeopleInTheCaseSubmitPage {
     );
     await Helpers.checkVisibleAndPresent(
       page,
-      `${Selectors.GovukHeadingL}:text-is("${OtherPeopleInTheCaseSubmitContent.pageTitle}",)`,
+      `${Selectors.GovukHeadingL}:text-is("${OtherPeopleInTheCaseSubmitContent.pageTitle}")`,
       1,
     );
     if (yesNoOtherPeopleInTheCase) {
@@ -106,7 +111,7 @@ export class OtherPeopleInTheCaseSubmitPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukText16}:text-is("${applicantGender}")`,
+        `${Selectors.GovukText16}:text-is("${Helpers.capitalizeFirstPart(applicantGender)}")`,
         1,
       ),
     ]);
@@ -125,18 +130,13 @@ export class OtherPeopleInTheCaseSubmitPage {
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukText16}:text-is("${OtherPeopleInTheCase1Content.placeOfBirth}")`,
-          1,
-        ),
-        Helpers.checkVisibleAndPresent(
-          page,
           `${Selectors.GovukText16}:text-is("${OtherPeopleInTheCase1Content.buildingAndStreet}")`,
           1,
         ),
         Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukText16}:text-is("${OtherPeopleInTheCase1Content.townOrCity}")`,
-          1,
+          2,
         ),
         Helpers.checkVisibleAndPresent(
           page,
@@ -150,7 +150,7 @@ export class OtherPeopleInTheCaseSubmitPage {
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukText16}:text-is("${OtherPeopleInTheCase1Content.last5Years}")`,
+          `${UniquesFields.last5yearsLocator}:text-is("${OtherPeopleInTheCase1Content.last5Years}")`,
           1,
         ),
         Helpers.checkVisibleAndPresent(
