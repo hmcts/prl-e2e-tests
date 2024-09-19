@@ -35,20 +35,20 @@ export class C100OtherPeopleInTheCase {
         errorMessaging: false,
       });
     }
-      await Helpers.selectSolicitorEvent(page, "Other people in the case");
-      await OtherPeopleInTheCase1Page.otherPeopleInTheCase1Page(
-        page,
-        accessibilityTest,
-        errorMessaging,
-        yesNoOtherPeopleInTheCase,
-        applicantGender,
-      );
-      await OtherPeopleInTheCaseSubmitPage.otherPeopleInTheCaseSubmitPage(
-        page,
-        accessibilityTest,
-        yesNoOtherPeopleInTheCase,
-        applicantGender,
-      );
+    await Helpers.selectSolicitorEvent(page, "Other people in the case");
+    await OtherPeopleInTheCase1Page.otherPeopleInTheCase1Page(
+      page,
+      accessibilityTest,
+      errorMessaging,
+      yesNoOtherPeopleInTheCase,
+      applicantGender,
+    );
+    await OtherPeopleInTheCaseSubmitPage.otherPeopleInTheCaseSubmitPage(
+      page,
+      accessibilityTest,
+      yesNoOtherPeopleInTheCase,
+      applicantGender,
+    );
     await C100TasksTabPage.c100TasksTabPage(page, accessibilityTest);
-    }
   }
+}

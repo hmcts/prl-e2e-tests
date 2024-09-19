@@ -42,7 +42,7 @@ export class C100 {
     yesNoApplicantDetails: yesNoApplicantDetails,
     applicantGender: applicantGender,
     yesNoOtherPeopleInTheCase: yesNoOtherPeopleInTheCase,
-                             yesNoC100TypeOfApplication: yesNoC100TypeOfApplication,
+    yesNoC100TypeOfApplication: yesNoC100TypeOfApplication,
     typeOfChildArrangementOrder: typeOfChildArrangementOrder,
     selectionC100TypeOfApplication: selectionC100TypeOfApplication,
     yesNoRespondentDetails: yesNoRespondentDetails,
