@@ -1,4 +1,5 @@
 import { defineConfig, devices } from "@playwright/test";
+import * as process from "node:process";
 
 module.exports = defineConfig({
   testDir: "./e2e/tests",
@@ -16,8 +17,8 @@ module.exports = defineConfig({
   reportSlowTests: null,
 
   /* Opt out of parallel tests on CI. */
-  workers: process.env.FUNCTIONAL_TESTS_WORKERS ? 5 : 5,
-  reporter: process.env.CI ? "html" : "list",
+  workers: process.env.FUNCTIONAL_TESTS_WORKERS ? process.env.FUNCTIONAL_TESTS_WORKERS : 1,
+  reporter: process.env.CI ? [['html'], ['list']] : [['list']],
   projects: [
     {
       name: "chromium",

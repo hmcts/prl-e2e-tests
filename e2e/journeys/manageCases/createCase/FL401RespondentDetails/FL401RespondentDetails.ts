@@ -35,8 +35,8 @@ export class FL401RespondentDetails {
         accessibilityTest: false,
         errorMessaging: false,
         yesNoFL401ApplicantDetails: false,
-        applicantGender: 'male',
-        subJourney: false
+        applicantGender: "male",
+        subJourney: false,
       });
     }
     await Helpers.selectSolicitorEvent(page, "Respondent details");

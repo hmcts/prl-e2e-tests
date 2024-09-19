@@ -4,6 +4,7 @@ import { FL401TypeOfApplication } from "./FL401TypeOfApplication/FL401TypeOfAppl
 import { SolicitorCreateInitial } from "./solicitorCreateInitial";
 import { FL401RespondentDetails } from "./FL401RespondentDetails/FL401RespondentDetails";
 import { FL401ApplicantDetails } from "./FL401ApplicantDetails/FL401ApplicantDetails";
+import { FL401ApplicantsFamily } from "./FL401ApplicantsFamily/FL401ApplicantsFamily";
 import { FL401RelationshipToRespondent } from "./FL401RelationshipToRespondent/FL401RelationshipToRespondent";
 
 export type relationshipToRespondent =
@@ -40,8 +41,9 @@ interface fl401Options {
   errorMessaging: boolean;
   isLinkedToC100: boolean;
   respondentDetailsAllOptionsYes: boolean;
-  yesNoFL401ApplicantDetails: boolean,
-  applicantGender: ApplicantGender,
+  applicantHasChildren: boolean;
+  yesNoFL401ApplicantDetails: boolean;
+  applicantGender: ApplicantGender;
   relationshipToRespondent: relationshipToRespondent;
   relationshipToRespondentOther?: respondentRelationshipOther;
 }
@@ -54,6 +56,7 @@ export class FL401 {
     errorMessaging,
     isLinkedToC100,
     respondentDetailsAllOptionsYes,
+    applicantHasChildren,
     yesNoFL401ApplicantDetails,
     applicantGender,
     relationshipToRespondent,
@@ -80,12 +83,19 @@ export class FL401 {
       yesNoFL401ApplicantDetails: yesNoFL401ApplicantDetails,
       applicantGender: applicantGender,
       subJourney: false,
-    })
+    });
     await FL401RespondentDetails.fl401RespondentDetails({
       page: page,
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
       respondentDetailsAllOptionsYes: respondentDetailsAllOptionsYes,
+      subJourney: false,
+    });
+    await FL401ApplicantsFamily.fl401ApplicantsFamily({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      applicantHasChildren: applicantHasChildren,
       subJourney: false,
     });
     await FL401RelationshipToRespondent.fl401RelationshipToRespondent({
