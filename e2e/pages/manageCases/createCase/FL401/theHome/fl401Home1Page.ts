@@ -34,6 +34,7 @@ enum inputIDs {
   addressCounty = '#home_address__detailCounty',
   postalCode = '#home_address__detailPostCode',
   addressCountry = '#home_address__detailCountry',
+  secondLevelOccupantDetails = 'home_textAreaSomethingElse',
   topLevelYesBothOfThem = '#home_everLivedAtTheAddress-yesBothOfThem',
   topLevelYesApplicant = '#home_everLivedAtTheAddress-yesApplicant',
   topLevelYesRespondent = '#home_everLivedAtTheAddress-yesRespondent',
@@ -327,10 +328,40 @@ export class Fl401Home1Page {
     }
   }
 
+  private static async checkSecondLevelLoads(
+    page: Page
+  ): Promise<void> {
+    await Promise.all(
+      [
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.h2}:text-is("${Fl401Home1Content.childHeading2}")`,
+          1
+        ),
+        Helpers.checkGroup(
+          page,
+          6,
+          Fl401Home1Content,
+          'secondLevelFormLabel',
+          `${Selectors.GovukFormLabel}`
+        ),
+        Helpers.checkGroup(
+          page,
+          2,
+          Fl401Home1Content,
+          'secondLevelFormHint',
+          `${Selectors.GovukFormHint}`
+        ),
+      ]
+    )
+  }
+
   private static async fillInSecondLevelFields(
     page: Page
   ): Promise<void> {
-
+    await page.fill(
+      `${inputIDs.som}`
+    )
   }
 
   private static async fillAndCheckAddressFields(page: Page): Promise<void> {
