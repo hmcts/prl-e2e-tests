@@ -338,16 +338,6 @@ export class OtherPeopleInTheCase1Page {
         `${HiddenFields.lessThan5Years} > ${Selectors.GovukFormLabel}:text-is("${OtherPeopleInTheCase1Content.formLabel13}")`,
         1,
       ),
-      // Helpers.checkVisibleAndPresent(
-      //   page,
-      //   `${Selectors.GovukFormLabel}:text-is("${OtherPeopleInTheCase1Content.formLabelYes}")`,
-      //   6,
-      // ),
-      // Helpers.checkVisibleAndPresent(
-      //   page,
-      //   `${Selectors.GovukFormLabel}:text-is("${OtherPeopleInTheCase1Content.formLabelNo}")`,
-      //   6,
-      // ),
     ]);
   }
 
