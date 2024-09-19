@@ -8,8 +8,10 @@ import { UserRole } from "../../../../common/types";
 import { Helpers } from "../../../../common/helpers";
 import {
   ChildDetailsRevised2Page,
-  yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions
+  yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,
 } from "../../../../pages/manageCases/createCase/C100/childDetails/childDetailsRevised2Page";
+import { C100ChildDetailsSubmitPage } from "../../../../pages/manageCases/createCase/C100/childDetails/childDetailsSubmitPage";
+import { C100TasksTabPage } from "../../../../pages/manageCases/caseTabs/c100TasksTabPage";
 
 interface c100ChildDetailsOptions {
   page: Page;
@@ -26,7 +28,8 @@ export class C100ChildDetails {
     user: user,
     accessibilityTest: accessibilityTest,
     c100ChildGender: c100ChildGender,
-    yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions: yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,
+    yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions:
+      yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,
     subJourney: subJourney,
   }: c100ChildDetailsOptions): Promise<void> {
     if (subJourney) {
@@ -44,9 +47,19 @@ export class C100ChildDetails {
       accessibilityTest: accessibilityTest,
       c100ChildGender: c100ChildGender,
     });
-    await ChildDetailsRevised2Page.childDetailsRevised2Page({page: page,
+    await ChildDetailsRevised2Page.childDetailsRevised2Page({
+      page: page,
       accessibilityTest: accessibilityTest,
       yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions:
-      yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,})
+        yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,
+    });
+    await C100ChildDetailsSubmitPage.c100ChildDetailsSubmitPage({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      c100ChildGender: c100ChildGender,
+      yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions:
+        yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,
+    });
+    await C100TasksTabPage.c100TasksTabPage(page, accessibilityTest);
   }
 }

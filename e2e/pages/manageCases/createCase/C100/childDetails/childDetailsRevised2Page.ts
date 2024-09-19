@@ -39,7 +39,10 @@ export class ChildDetailsRevised2Page {
       yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,
   }: ChildDetailsRevised2PageOptions): Promise<void> {
     await this.checkPageLoads({ page, accessibilityTest });
-    await this.fillInFields({page, yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions});
+    await this.fillInFields({
+      page,
+      yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,
+    });
   }
 
   private static async checkPageLoads({
@@ -53,7 +56,7 @@ export class ChildDetailsRevised2Page {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukHeadingL}:text-is("${ChildDetailsRevised2Content.pageTitle}")`,
-        2,
+        1,
       ),
       Helpers.checkGroup(
         page,
@@ -88,18 +91,29 @@ export class ChildDetailsRevised2Page {
     yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions:
       yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,
   }: fillInFieldsOptions): Promise<void> {
-    await page.click(`${uniqueSelectors.childrenKnownToAuthorityRadio}${yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions}`);
-    await page.click(`${uniqueSelectors.childrenKnownToAuthorityRadio}${yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions}`);
+    await page.click(
+      `${uniqueSelectors.childrenKnownToAuthorityRadio}${yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions}`,
+    );
+    await page.click(
+      `${uniqueSelectors.childrenKnownToAuthorityRadio}${yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions}`,
+    );
     if (yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions === "yes") {
       await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukFormLabel}:text-is("${ChildDetailsRevised2Content.formLabelChildrenKnown}")`,
         1,
       );
-      await page.fill(`${uniqueSelectors.childrenKnownToAuthorityField}`, `${ChildDetailsRevised2Content.childNameAndLocalAuthority}`)
+      await page.fill(
+        `${uniqueSelectors.childrenKnownToAuthorityField}`,
+        `${ChildDetailsRevised2Content.childNameAndLocalAuthority}`,
+      );
     }
-    await page.click(`${uniqueSelectors.childrenProtectionPlanRadio}${yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions}`);
-    await page.click(`${uniqueSelectors.childrenProtectionPlanRadio}${yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions}`);
+    await page.click(
+      `${uniqueSelectors.childrenProtectionPlanRadio}${yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions}`,
+    );
+    await page.click(
+      `${uniqueSelectors.childrenProtectionPlanRadio}${yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions}`,
+    );
     await page.click(
       `${Selectors.button}:text-is("${ChildDetailsRevised2Content.continue}")`,
     );
