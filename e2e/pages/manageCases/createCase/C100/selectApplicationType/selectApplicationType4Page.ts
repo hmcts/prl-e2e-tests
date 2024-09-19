@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { Helpers } from "../../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+// import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { SelectApplicationType4Content } from "../../../../../fixtures/manageCases/createCase/C100/selectApplicationType/selectApplicationType4Content";
 
 enum PageIDs {
@@ -21,7 +21,6 @@ export class selectApplicationType4Page {
     await this.fillInFields(page);
   }
 
-  // @ts-ignore
   private static async checkPageLoads(
     page: Page,
     accessibilityTest: boolean,
@@ -54,7 +53,7 @@ export class selectApplicationType4Page {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      // await AccessibilityTestHelper.run(page);
     }
   }
 

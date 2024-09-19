@@ -1,9 +1,5 @@
 import { expect, Locator, Page } from "@playwright/test";
-import {
-  c100SolicitorEvents,
-  fl401SolicitorEvents,
-  UserRole,
-} from "./types";
+import { c100SolicitorEvents, fl401SolicitorEvents, UserRole } from "./types";
 import idamLoginHelper from "./idamLoginHelper";
 import { Selectors } from "./selectors.ts";
 
@@ -59,9 +55,9 @@ export class Helpers {
         }
       } catch (err) {
         if (err instanceof Error) {
-          console.log(`Attempt ${i + 1} failed: ${err.message}`);
+          console.log(`Attempt ${i + 1} failed.`);
         } else {
-          console.log(`Attempt ${i + 1} failed: Unknown error`);
+          console.log(`Attempt ${i + 1} failed.`);
         }
       }
       if (i < 4) {

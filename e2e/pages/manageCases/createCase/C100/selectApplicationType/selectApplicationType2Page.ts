@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test";
+import { Page, expect } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
@@ -20,13 +20,11 @@ export class selectApplicationType2Page {
   ): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest);
     if (errorMessaging) {
-      console.log("");
       await this.triggerErrorMessages(page);
     }
     await this.fillInFields(page, yesNo);
   }
 
-  // @ts-ignore
   private static async checkPageLoads(
     page: Page,
     accessibilityTest: boolean,
@@ -72,13 +70,11 @@ export class selectApplicationType2Page {
         1,
       ),
     ]);
-
     await page.click(`${PageIDs.yes}`);
     await this.draftConsentContent(page);
     await page.click(
       `${Selectors.button}:text-is("${SelectApplicationType2Content.continue}")`,
     );
-
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
@@ -97,14 +93,11 @@ export class selectApplicationType2Page {
     await page.click(
       `${Selectors.button}:text-is("${SelectApplicationType2Content.continue}")`,
     );
-
-    await Promise.all([
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukErrorMessage}:text-is("${SelectApplicationType2Content.errorMessage3}")`,
-        1,
-      ),
-    ]);
+    await Helpers.checkVisibleAndPresent(
+      page,
+      `${Selectors.GovukErrorMessage}:text-is("${SelectApplicationType2Content.errorMessage3}")`,
+      1,
+    );
   }
 
   private static async fillInFields(page: Page, yesNo: boolean): Promise<void> {
@@ -114,10 +107,10 @@ export class selectApplicationType2Page {
       const fileInput = page.locator(`${PageIDs.uploadFileInput}`);
       await fileInput.setInputFiles(config.testPdfFile);
       await this.draftConsentContent(page);
+      await expect(page.locator(".error-message")).toHaveCount(0);
     } else {
       await page.click(`${PageIDs.no}`);
     }
-    await page.waitForTimeout(5000);
 
     await page.click(
       `${Selectors.button}:text-is("${SelectApplicationType2Content.continue}")`,

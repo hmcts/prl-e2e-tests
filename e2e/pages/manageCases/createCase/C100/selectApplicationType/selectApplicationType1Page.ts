@@ -4,7 +4,7 @@ import { SelectApplicationType1Content } from "../../../../../fixtures/manageCas
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 
-type typeOfChildArrangementOrderID =
+export type typeOfChildArrangementOrderID =
   | "Spend time with order"
   | "Live with order"
   | "Both live with and spend time with order";
@@ -28,12 +28,13 @@ export class selectApplicationType1Page {
     page: Page,
     errorMessaging: boolean,
     accessibilityTest: boolean,
+    typeOfChildArrangementOrder: typeOfChildArrangementOrderID,
   ): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest);
     if (errorMessaging) {
       await this.triggerErrorMessages(page);
     }
-    await this.fillInFields(page, "Spend time with order");
+    await this.fillInFields(page, typeOfChildArrangementOrder);
   }
 
   private static async checkPageLoads(
@@ -54,20 +55,12 @@ export class selectApplicationType1Page {
         `${Selectors.p}:text-is("${SelectApplicationType1Content.p1}")`,
         1,
       ),
-      Helpers.checkVisibleAndPresent(
+      Helpers.checkGroup(
         page,
-        `${Selectors.GovukFormLabel}:text-is("${SelectApplicationType1Content.formLabel1}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukFormLabel}:text-is("${SelectApplicationType1Content.formLabel2}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukFormLabel}:text-is("${SelectApplicationType1Content.formLabel3}")`,
-        1,
+        3,
+        SelectApplicationType1Content,
+        "formLabel",
+        `${Selectors.GovukFormLabel}`,
       ),
     ]);
     if (accessibilityTest) {

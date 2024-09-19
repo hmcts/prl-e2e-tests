@@ -4,6 +4,9 @@ import { SelectApplicationTypeSubmitContent } from "../../../../../fixtures/mana
 import { SelectApplicationType1Content } from "../../../../../fixtures/manageCases/createCase/C100/selectApplicationType/selectApplicationType1Content";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Helpers } from "../../../../../common/helpers";
+import config from "../../../../../config";
+import path from "path";
+import { radioButtons } from "./selectApplicationType3Page";
 
 type typeOfChildArrangementOrder =
   | "Spend time with order"
@@ -15,10 +18,11 @@ export class selectApplicationTypeSubmitPage {
     page: Page,
     accessibilityTest: boolean,
     yesNo: boolean,
+    selection: radioButtons,
   ): Promise<void> {
     await Promise.all([
       this.checkPageLoads(page, accessibilityTest, yesNo),
-      this.checkFilledFields(page, true),
+      this.checkFilledFields(page, yesNo, selection),
     ]);
   }
 
@@ -30,7 +34,7 @@ export class selectApplicationTypeSubmitPage {
     await page.waitForSelector(
       `${Selectors.h2}:text-is("${SelectApplicationTypeSubmitContent.h2}")`,
     );
-    let changeAbleFields: number = yesNo ? 8 : 7;
+    let changeAbleFields: number = yesNo ? 8 : 6;
     await Promise.all([
       Helpers.checkGroup(
         page,
@@ -58,7 +62,7 @@ export class selectApplicationTypeSubmitPage {
       );
       await Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${SelectApplicationTypeSubmitContent.a}")`,
+        `${Selectors.a}:text-is("${path.basename(config.testPdfFile)}")`,
         1,
       );
       await Helpers.checkVisibleAndPresent(
@@ -69,18 +73,13 @@ export class selectApplicationTypeSubmitPage {
     } else {
       await Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukText16}:text-is("${SelectApplicationTypeSubmitContent.text16Yes}")`,
-        1,
-      );
-      await Helpers.checkVisibleAndPresent(
-        page,
         `${Selectors.GovukText16}:text-is("${SelectApplicationTypeSubmitContent.text16No}")`,
         1,
       );
       await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukText16}:text-is("${SelectApplicationTypeSubmitContent.text16Change}")`,
-        7,
+        6,
       );
     }
 
@@ -92,6 +91,7 @@ export class selectApplicationTypeSubmitPage {
   private static async checkFilledFields(
     page: Page,
     yesNo: boolean,
+    selection: radioButtons,
   ): Promise<void> {
     await Promise.all([
       Helpers.checkGroup(
@@ -105,11 +105,20 @@ export class selectApplicationTypeSubmitPage {
 
     await this.page1RadioButtons(page, "Spend time with order");
 
-    if (yesNo) {
+    if (yesNo && selection === "Yes") {
       await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.Span}:text-is("${SelectApplicationType1Content.loremIpsumText}")`,
         3,
+      );
+    } else if (
+      (yesNo && selection === "No, permission now sought") ||
+      (yesNo && selection === "No, permission is not required")
+    ) {
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${SelectApplicationType1Content.loremIpsumText}")`,
+        2,
       );
     }
     await this.continue(page);

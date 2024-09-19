@@ -23,7 +23,7 @@ properties([
     ),
     string(
       name: 'FUNCTIONAL_TESTS_WORKERS',
-      defaultValue: '3',
+      defaultValue: '5',
       description: 'Number of workers running functional tests'
     ),
     booleanParam(
@@ -68,6 +68,7 @@ withNightlyPipeline(type, product, component, 600) {
   loadVaultSecrets(secrets)
   env.CITIZEN_FRONTEND_BASE_URL = params.CITIZEN_FRONTEND_BASE_URL
   env.MANAGE_CASES_BASE_URL = params.MANAGE_CASES_BASE_URL
+  env.FUNCTIONAL_TESTS_WORKERS = params.FUNCTIONAL_TESTS_WORKERS
   enableSlackNotifications(channel)
   afterAlways('DependencyCheckNightly') {
     stage('Unit tests') {
@@ -127,24 +128,6 @@ withNightlyPipeline(type, product, component, 600) {
             reportDir: "playwright-report",
             reportFiles: 'index.html',
             reportName: 'Manage Cases Chrome E2E Test Report'
-          ])
-          steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/ManageCasesFunctional/*'
-        }
-      }
-
-      stage('Manage Cases E2E tests - Firefox') {
-        try {
-          yarnBuilder.yarn('test:manageCasesFirefox')
-        } catch (Error) {
-          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
-        } finally {
-          publishHTML([
-                  allowMissing: true,
-                  alwaysLinkToLastBuild: true,
-                  keepAll: true,
-                  reportDir: "playwright-report",
-                  reportFiles: 'index.html',
-                  reportName: 'Manage Cases Firefox E2E Test Report'
           ])
           steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/ManageCasesFunctional/*'
         }

@@ -4,7 +4,7 @@ import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { SelectApplicationType3Content } from "../../../../../fixtures/manageCases/createCase/C100/selectApplicationType/selectApplicationType3Content";
 
-type radioButtons =
+export type radioButtons =
   | "Yes"
   | "No, permission is not required"
   | "No, permission now sought";
@@ -21,15 +21,15 @@ export class selectApplicationType3Page {
     page: Page,
     errorMessaging: boolean,
     accessibilityTest: boolean,
+    selection: radioButtons,
   ): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest);
     if (errorMessaging) {
       await this.triggerErrorMessages(page);
     }
-    await this.fillInFields(page, "Yes");
+    await this.fillInFields(page, selection);
   }
 
-  // @ts-ignore
   private static async checkPageLoads(
     page: Page,
     accessibilityTest: boolean,
@@ -77,13 +77,11 @@ export class selectApplicationType3Page {
         1,
       ),
     ]);
-
     await page.click(`${PageIDs.yes}`);
     await page.waitForTimeout(3000);
     await page.click(
       `${Selectors.button}:text-is("${SelectApplicationType3Content.continue}")`,
     );
-
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
@@ -102,17 +100,23 @@ export class selectApplicationType3Page {
     page: Page,
     selection: radioButtons,
   ): Promise<void> {
-    if (selection === "Yes") {
-      await page.click(`${PageIDs.yes}`);
-      await this.permissionFormContent(page);
-      await page.fill(
-        `${PageIDs.textbox}`,
-        `${SelectApplicationType3Content.loremIpsumText}`,
-      );
-    } else if (selection === "No, permission is not required") {
-      await page.click(`${PageIDs.noPermissionNotRequired}`);
-    } else if (selection === "No, permission now sought") {
-      await page.click(`${PageIDs.noPermissionSought}`);
+    switch (selection) {
+      case "Yes":
+        await page.click(`${PageIDs.yes}`);
+        await this.permissionFormContent(page);
+        await page.fill(
+          `${PageIDs.textbox}`,
+          `${SelectApplicationType3Content.loremIpsumText}`,
+        );
+        break;
+      case "No, permission is not required":
+        await page.click(`${PageIDs.noPermissionNotRequired}`);
+        break;
+      case "No, permission now sought":
+        await page.click(`${PageIDs.noPermissionSought}`);
+        break;
+      default:
+        throw new Error(`Unexpected selection: ${selection}`);
     }
     await page.click(
       `${Selectors.button}:text-is("${SelectApplicationType3Content.continue}")`,
@@ -120,12 +124,10 @@ export class selectApplicationType3Page {
   }
 
   private static async permissionFormContent(page: Page): Promise<void> {
-    await Promise.all([
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukFormLabel}:text-is("${SelectApplicationType3Content.formLabel5}")`,
-        1,
-      ),
-    ]);
+    await Helpers.checkVisibleAndPresent(
+      page,
+      `${Selectors.GovukFormLabel}:text-is("${SelectApplicationType3Content.formLabel5}")`,
+      1,
+    );
   }
 }
