@@ -5,33 +5,45 @@ import {
 } from "../../../../../fixtures/manageCases/createCase/FL401/relationshipToRespondent/relationshipToRespondentSubmitContent";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { relationshipToRespondent } from "./relationshipToRespondent1Page";
-import { respondentRelationshipOther } from "./relationshipToRespondent2Page";
+import { fl401RelationshipToRespondent } from "./relationshipToRespondent1Page";
+import { fl401RespondentRelationshipOther } from "./relationshipToRespondent2Page";
+
+enum FL401RelationshipToRespondentValues {
+  marriedOrCivil = "Married or in a civil partnership",
+  formerlyMarriedOrCivil = "Formerly married or in a civil partnership",
+  engagedOrProposed = "Engaged or proposed civil partnership",
+  formerlyEngagedOrProposed = "Formerly engaged or proposed civil partnership",
+  liveTogether = "Live together as a couple",
+  foremerlyLivedTogether = "Formerly lived together as a couple",
+  bfGfOrPartnerNotLivedTogether = "Boyfriend, girlfriend or partner who does not live with them",
+  formerBfGfOrPartnerNotLivedTogether = "Formerly boyfriend, girlfriend or partner who has not lived with them",
+  noneOfTheAbove = "None of the above",
+}
 
 interface relationshipToRespondentSubmitPageOptions {
   page: Page,
   accessibilityTest: boolean,
-  relationshipToRespondent: relationshipToRespondent,
-  respondentRelationshipOther?: respondentRelationshipOther
+  relationshipToRespondent: fl401RelationshipToRespondent,
+  respondentRelationshipOther?: fl401RespondentRelationshipOther
 }
 
 interface checkPageLoadsOptions {
   page: Page,
   accessibilityTest: boolean,
-  respondentRelationship: relationshipToRespondent,
-  respondentRelationshipOther?: respondentRelationshipOther
+  respondentRelationship: fl401RelationshipToRespondent,
+  respondentRelationshipOther?: fl401RespondentRelationshipOther
 }
 
 interface checkStaticTextOptions {
   page: Page,
-  relationshipToRespondent: relationshipToRespondent,
-  respondentRelationshipOther?: respondentRelationshipOther
+  relationshipToRespondent: fl401RelationshipToRespondent,
+  respondentRelationshipOther?: fl401RespondentRelationshipOther
 }
 
 interface checkFilledDataOptions {
   page: Page,
-  relationshipToRespondent: relationshipToRespondent,
-  respondentRelationshipOther?: respondentRelationshipOther
+  relationshipToRespondent: fl401RelationshipToRespondent,
+  respondentRelationshipOther?: fl401RespondentRelationshipOther
 }
 
 export class RelationshipToRespondentSubmitPage {
@@ -95,7 +107,7 @@ export class RelationshipToRespondentSubmitPage {
         ),
       ]
     );
-    if (relationshipToRespondent === 'None of the above') {
+    if (relationshipToRespondent === 'noneOfTheAbove') {
       let staticTextCount = (respondentRelationshipOther === 'Other') ? 2 : 1;
       await Helpers.checkGroup(
         page,
@@ -120,12 +132,13 @@ export class RelationshipToRespondentSubmitPage {
    relationshipToRespondent,
    respondentRelationshipOther
   }: checkFilledDataOptions): Promise<void> {
+    let relationshipToRespondentKey = relationshipToRespondent as keyof typeof FL401RelationshipToRespondentValues
     await Helpers.checkVisibleAndPresent(
       page,
-      `${Selectors.GovukText16}:text-is("${relationshipToRespondent}")`,
+      `${Selectors.GovukText16}:text-is("${FL401RelationshipToRespondentValues[relationshipToRespondentKey]}")`,
       1
     );
-    if (relationshipToRespondent === 'None of the above') {
+    if (relationshipToRespondent === 'noneOfTheAbove') {
       await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukText16}:text-is("${respondentRelationshipOther}")`,

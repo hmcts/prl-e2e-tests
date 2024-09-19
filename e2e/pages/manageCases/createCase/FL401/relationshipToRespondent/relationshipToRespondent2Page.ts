@@ -46,7 +46,7 @@ enum invalidRelationshipDates {
   relationshipDateYear = "",
 }
 
-export type respondentRelationshipOther =
+export type fl401RespondentRelationshipOther =
   | "Father"
   | "Mother"
   | "Son"
@@ -66,7 +66,7 @@ interface RelationshipToRespondent2PageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
-  respondentRelationshipOther?: respondentRelationshipOther;
+  respondentRelationshipOther?: fl401RespondentRelationshipOther;
 }
 
 interface OtherRelationshipCheckPageLoadsOptions {
@@ -76,7 +76,7 @@ interface OtherRelationshipCheckPageLoadsOptions {
 
 interface OtherRelationshipFillInFieldsOptions {
   page: Page;
-  respondentRelationshipOther: respondentRelationshipOther;
+  respondentRelationshipOther: fl401RespondentRelationshipOther;
 }
 
 interface RelationshipPeriodPageOptions {
@@ -89,7 +89,7 @@ interface OtherRelationshipPageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
-  respondentRelationshipOther: respondentRelationshipOther;
+  respondentRelationshipOther: fl401RespondentRelationshipOther;
 }
 
 interface RelationshipPeriodCheckPageLoadsOptions {

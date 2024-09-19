@@ -8,13 +8,13 @@ test.describe("FL401 Create case relationship to respondent tests @manageCases",
   Not Accessibility testing,
   Not Error message testing,
   Relationship is 'Married or in a civil partnership', @crossbrowserManageCases`, async ({
-      page,
-    }): Promise<void> => {
+                                                                                                   page,
+                                                                                                 }): Promise<void> => {
     await FL401RelationshipToRespondent.fl401RelationshipToRespondent({
       page: page,
       accessibilityTest: false,
       errorMessaging: false,
-      relationshipToRespondent: "Married or in a civil partnership",
+      relationshipToRespondent: "marriedOrCivil",  // Changed here
       subJourney: true
     })
   });
@@ -23,13 +23,13 @@ test.describe("FL401 Create case relationship to respondent tests @manageCases",
   Not Accessibility testing,
   Not Error message testing,
   Relationship is 'Formerly married or in a civil partnership'`, async ({
-    page,
-  }): Promise<void> => {
+                                                                                  page,
+                                                                                }): Promise<void> => {
     await FL401RelationshipToRespondent.fl401RelationshipToRespondent({
       page: page,
       accessibilityTest: false,
       errorMessaging: false,
-      relationshipToRespondent: "Formerly married or in a civil partnership",
+      relationshipToRespondent: "formerlyMarriedOrCivil",  // Changed here
       subJourney: true
     })
   });
@@ -38,13 +38,13 @@ test.describe("FL401 Create case relationship to respondent tests @manageCases",
   Not Accessibility testing,
   Not Error message testing,
   Relationship is 'Engaged or proposed civil partnership'`, async ({
-     page,
-   }): Promise<void> => {
+                                                                             page,
+                                                                           }): Promise<void> => {
     await FL401RelationshipToRespondent.fl401RelationshipToRespondent({
       page: page,
       accessibilityTest: false,
       errorMessaging: false,
-      relationshipToRespondent: "Engaged or proposed civil partnership",
+      relationshipToRespondent: "engagedOrProposed",  // Changed here
       subJourney: true
     })
   });
@@ -53,13 +53,13 @@ test.describe("FL401 Create case relationship to respondent tests @manageCases",
   Not Accessibility testing,
   Not Error message testing,
   Relationship is 'Formerly engaged or proposed civil partnership'`, async ({
-    page,
-  }): Promise<void> => {
+                                                                                      page,
+                                                                                    }): Promise<void> => {
     await FL401RelationshipToRespondent.fl401RelationshipToRespondent({
       page: page,
       accessibilityTest: false,
       errorMessaging: false,
-      relationshipToRespondent: "Formerly engaged or proposed civil partnership",
+      relationshipToRespondent: "formerlyEngagedOrProposed",  // Changed here
       subJourney: true
     })
   });
@@ -68,13 +68,13 @@ test.describe("FL401 Create case relationship to respondent tests @manageCases",
   Not Accessibility testing,
   Not Error message testing,
   Relationship is 'Live together as a couple'`, async ({
-     page,
-   }): Promise<void> => {
+                                                                 page,
+                                                               }): Promise<void> => {
     await FL401RelationshipToRespondent.fl401RelationshipToRespondent({
       page: page,
       accessibilityTest: false,
       errorMessaging: false,
-      relationshipToRespondent: "Live together as a couple",
+      relationshipToRespondent: "liveTogether",  // Changed here
       subJourney: true
     })
   });
@@ -83,13 +83,13 @@ test.describe("FL401 Create case relationship to respondent tests @manageCases",
   Not Accessibility testing,
   Not Error message testing,
   Relationship is 'Formerly lived together as a couple'`, async ({
-     page,
-   }): Promise<void> => {
+                                                                           page,
+                                                                         }): Promise<void> => {
     await FL401RelationshipToRespondent.fl401RelationshipToRespondent({
       page: page,
       accessibilityTest: false,
       errorMessaging: false,
-      relationshipToRespondent: "Formerly lived together as a couple",
+      relationshipToRespondent: "foremerlyLivedTogether",  // Changed here
       subJourney: true
     })
   });
@@ -98,13 +98,13 @@ test.describe("FL401 Create case relationship to respondent tests @manageCases",
   Not Accessibility testing,
   Not Error message testing,
   Relationship is 'Boyfriend, girlfriend or partner who does not live with them'`, async ({
-    page,
-  }): Promise<void> => {
+                                                                                                    page,
+                                                                                                  }): Promise<void> => {
     await FL401RelationshipToRespondent.fl401RelationshipToRespondent({
       page: page,
       accessibilityTest: false,
       errorMessaging: false,
-      relationshipToRespondent: "Boyfriend, girlfriend or partner who does not live with them",
+      relationshipToRespondent: "bfGfOrPartnerNotLivedTogether",  // Changed here
       subJourney: true
     })
   });
@@ -113,17 +113,17 @@ test.describe("FL401 Create case relationship to respondent tests @manageCases",
   Not Accessibility testing,
   Not Error message testing,
   Relationship is 'Formerly boyfriend, girlfriend or partner who has not lived with them'`, async ({
-     page,
-   }): Promise<void> => {
+                                                                                                             page,
+                                                                                                           }): Promise<void> => {
     await FL401RelationshipToRespondent.fl401RelationshipToRespondent({
       page: page,
       accessibilityTest: false,
       errorMessaging: false,
-      relationshipToRespondent: "Formerly boyfriend, girlfriend or partner who has not lived with them",
+      relationshipToRespondent: "formerBfGfOrPartnerNotLivedTogether",  // Changed here
       subJourney: true
     })
   });
-
+  
   test(`Complete the FL401 relationship to respondent event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
@@ -135,12 +135,12 @@ test.describe("FL401 Create case relationship to respondent tests @manageCases",
       page: page,
       accessibilityTest: false,
       errorMessaging: false,
-      relationshipToRespondent: "None of the above",
+      relationshipToRespondent: "noneOfTheAbove",
       relationshipToRespondentOther: 'Father',
       subJourney: true
     })
   });
-  
+
   test(`Complete the FL401 relationship to respondent event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
@@ -152,7 +152,7 @@ test.describe("FL401 Create case relationship to respondent tests @manageCases",
       page: page,
       accessibilityTest: false,
       errorMessaging: false,
-      relationshipToRespondent: "None of the above",
+      relationshipToRespondent: "noneOfTheAbove",
       relationshipToRespondentOther: 'Mother',
       subJourney: true
     })
@@ -169,7 +169,7 @@ test.describe("FL401 Create case relationship to respondent tests @manageCases",
       page: page,
       accessibilityTest: false,
       errorMessaging: false,
-      relationshipToRespondent: "None of the above",
+      relationshipToRespondent: "noneOfTheAbove",
       relationshipToRespondentOther: 'Son',
       subJourney: true
     })
@@ -186,7 +186,7 @@ test.describe("FL401 Create case relationship to respondent tests @manageCases",
       page: page,
       accessibilityTest: false,
       errorMessaging: false,
-      relationshipToRespondent: "None of the above",
+      relationshipToRespondent: "noneOfTheAbove",
       relationshipToRespondentOther: 'Daughter',
       subJourney: true
     })
@@ -203,7 +203,7 @@ test.describe("FL401 Create case relationship to respondent tests @manageCases",
       page: page,
       accessibilityTest: false,
       errorMessaging: false,
-      relationshipToRespondent: "None of the above",
+      relationshipToRespondent: "noneOfTheAbove",
       relationshipToRespondentOther: 'Brother',
       subJourney: true
     })
@@ -220,7 +220,7 @@ test.describe("FL401 Create case relationship to respondent tests @manageCases",
       page: page,
       accessibilityTest: false,
       errorMessaging: false,
-      relationshipToRespondent: "None of the above",
+      relationshipToRespondent: "noneOfTheAbove",
       relationshipToRespondentOther: 'Sister',
       subJourney: true
     })
@@ -237,7 +237,7 @@ test.describe("FL401 Create case relationship to respondent tests @manageCases",
       page: page,
       accessibilityTest: false,
       errorMessaging: false,
-      relationshipToRespondent: "None of the above",
+      relationshipToRespondent: "noneOfTheAbove",
       relationshipToRespondentOther: 'Grandfather',
       subJourney: true
     })
@@ -254,7 +254,7 @@ test.describe("FL401 Create case relationship to respondent tests @manageCases",
       page: page,
       accessibilityTest: false,
       errorMessaging: false,
-      relationshipToRespondent: "None of the above",
+      relationshipToRespondent: "noneOfTheAbove",
       relationshipToRespondentOther: 'Grandmother',
       subJourney: true
     })
@@ -271,7 +271,7 @@ test.describe("FL401 Create case relationship to respondent tests @manageCases",
       page: page,
       accessibilityTest: false,
       errorMessaging: false,
-      relationshipToRespondent: "None of the above",
+      relationshipToRespondent: "noneOfTheAbove",
       relationshipToRespondentOther: 'Uncle',
       subJourney: true
     })
@@ -288,7 +288,7 @@ test.describe("FL401 Create case relationship to respondent tests @manageCases",
       page: page,
       accessibilityTest: false,
       errorMessaging: false,
-      relationshipToRespondent: "None of the above",
+      relationshipToRespondent: "noneOfTheAbove",
       relationshipToRespondentOther: 'Aunt',
       subJourney: true
     })
@@ -305,7 +305,7 @@ test.describe("FL401 Create case relationship to respondent tests @manageCases",
       page: page,
       accessibilityTest: false,
       errorMessaging: false,
-      relationshipToRespondent: "None of the above",
+      relationshipToRespondent: "noneOfTheAbove",
       relationshipToRespondentOther: 'Nephew',
       subJourney: true
     })
@@ -322,7 +322,7 @@ test.describe("FL401 Create case relationship to respondent tests @manageCases",
       page: page,
       accessibilityTest: false,
       errorMessaging: false,
-      relationshipToRespondent: "None of the above",
+      relationshipToRespondent: "noneOfTheAbove",
       relationshipToRespondentOther: 'Niece',
       subJourney: true
     })
@@ -339,7 +339,7 @@ test.describe("FL401 Create case relationship to respondent tests @manageCases",
       page: page,
       accessibilityTest: false,
       errorMessaging: false,
-      relationshipToRespondent: "None of the above",
+      relationshipToRespondent: "noneOfTheAbove",
       relationshipToRespondentOther: 'Cousin',
       subJourney: true
     })
@@ -356,7 +356,7 @@ test.describe("FL401 Create case relationship to respondent tests @manageCases",
       page: page,
       accessibilityTest: false,
       errorMessaging: false,
-      relationshipToRespondent: "None of the above",
+      relationshipToRespondent: "noneOfTheAbove",
       relationshipToRespondentOther: 'Other',
       subJourney: true
     })
@@ -372,7 +372,7 @@ test.describe("FL401 Create case relationship to respondent tests @manageCases",
       page: page,
       accessibilityTest: false,
       errorMessaging: true,
-      relationshipToRespondent: "Formerly lived together as a couple",
+      relationshipToRespondent: "foremerlyLivedTogether",
       subJourney: true
     })
   });
@@ -388,7 +388,7 @@ test.describe("FL401 Create case relationship to respondent tests @manageCases",
       page: page,
       accessibilityTest: false,
       errorMessaging: true,
-      relationshipToRespondent: "None of the above",
+      relationshipToRespondent: "noneOfTheAbove",
       relationshipToRespondentOther: 'Other',
       subJourney: true
     })
@@ -405,7 +405,7 @@ test(`Accessibility test the FL401 relationship to respondent event as a solicit
     page: page,
     accessibilityTest: true,
     errorMessaging: false,
-    relationshipToRespondent: "Formerly boyfriend, girlfriend or partner who has not lived with them",
+    relationshipToRespondent: "bfGfOrPartnerNotLivedTogether",
     subJourney: true
   })
 });
@@ -421,7 +421,7 @@ test(`Accessibility test the FL401 relationship to respondent event as a solicit
     page: page,
     accessibilityTest: true,
     errorMessaging: false,
-    relationshipToRespondent: "None of the above",
+    relationshipToRespondent: "noneOfTheAbove",
     relationshipToRespondentOther: 'Father',
     subJourney: true
   })

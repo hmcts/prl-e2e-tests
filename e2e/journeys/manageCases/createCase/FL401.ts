@@ -7,8 +7,8 @@ import { FL401WithoutNoticeOrder } from "./FL401WithoutNoticeOrder/FL401WIthoutN
 import { FL401ApplicantDetails } from "./FL401ApplicantDetails/FL401ApplicantDetails";
 import { FL401ApplicantsFamily } from "./FL401ApplicantsFamily/FL401ApplicantsFamily";
 import { FL401RelationshipToRespondent } from "./FL401RelationshipToRespondent/FL401RelationshipToRespondent";
-import { relationshipToRespondent } from "../../../pages/manageCases/createCase/FL401/relationshipToRespondent/relationshipToRespondent1Page";
-import { respondentRelationshipOther } from "../../../pages/manageCases/createCase/FL401/relationshipToRespondent/relationshipToRespondent2Page";
+import { fl401RelationshipToRespondent } from "../../../pages/manageCases/createCase/FL401/relationshipToRespondent/relationshipToRespondent1Page";
+import { fl401RespondentRelationshipOther } from "../../../pages/manageCases/createCase/FL401/relationshipToRespondent/relationshipToRespondent2Page";
 import { bailConditionRadios } from "../../../pages/manageCases/createCase/FL401/withoutNoticeOrder/withoutNoticeOrder3Page";
 
 interface fl401Options {
@@ -23,8 +23,8 @@ interface fl401Options {
   applicantGender: ApplicantGender;
   isWithoutNoticeDetailsYes: boolean;
   isWithoutNoticeDetailsBailConditions: bailConditionRadios;
-  relationshipToRespondent: relationshipToRespondent;
-  relationshipToRespondentOther?: respondentRelationshipOther;
+  relationshipToRespondent: fl401RelationshipToRespondent;
+  relationshipToRespondentOther?: fl401RespondentRelationshipOther;
 }
 
 export class FL401 {

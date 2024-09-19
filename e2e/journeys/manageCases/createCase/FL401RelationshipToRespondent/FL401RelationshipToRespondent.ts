@@ -2,12 +2,12 @@ import { Page } from "@playwright/test";
 import { SolicitorCreateInitial } from "../solicitorCreateInitial";
 import { Helpers } from "../../../../common/helpers";
 import {
-  relationshipToRespondent,
+  fl401RelationshipToRespondent,
   RelationshipToRespondent1Page
 } from "../../../../pages/manageCases/createCase/FL401/relationshipToRespondent/relationshipToRespondent1Page";
 import {
   RelationshipToRespondent2Page,
-  respondentRelationshipOther
+  fl401RespondentRelationshipOther
 } from "../../../../pages/manageCases/createCase/FL401/relationshipToRespondent/relationshipToRespondent2Page";
 import { RelationshipToRespondentSubmitPage } from "../../../../pages/manageCases/createCase/FL401/relationshipToRespondent/relationshipToRespondentSubmitPage";
 import { Fl401TasksTabPage } from "../../../../pages/manageCases/caseTabs/fl401TasksTabPage";
@@ -16,8 +16,8 @@ interface fl401RelationshipToRespondentOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
-  relationshipToRespondent: relationshipToRespondent;
-  relationshipToRespondentOther?: respondentRelationshipOther;
+  relationshipToRespondent: fl401RelationshipToRespondent;
+  relationshipToRespondentOther?: fl401RespondentRelationshipOther;
   subJourney: boolean;
 }
 

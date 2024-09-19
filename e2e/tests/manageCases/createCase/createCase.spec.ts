@@ -55,18 +55,18 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
     });
   });
 
-  test(\`Complete the FL401 create case event as a solicitor with the following options:
+  test(`Complete the FL401 create case event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
-  Male applicant,
-  Saying yes to all Type of application questions
-  Saying yes to applicant details questions,
-  Saying yes to all Without Notice Order questions 
-  Saying yes to applicant details questions
+  Female applicant,
   Saying yes to all Respondent details questions,
-  Relationship is 'Married or in a civil partnership', @crossbrowserManageCases`, async ({
-    page,
-  }): Promise<void> => {
+  Saying yes to all Type of application questions,
+  Saying yes to applicant details questions,
+  Saying yes to all Without Notice Order questions, 
+  Relationship is 'Formerly lived together as a couple', 
+  @crossbrowserManageCases`, async ({
+     page,
+   }): Promise<void> => {
     await FL401.fl401({
       page: page,
       user: "solicitor",
@@ -76,10 +76,10 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       respondentDetailsAllOptionsYes: true,
       applicantHasChildren: true,
       yesNoFL401ApplicantDetails: true,
-      applicantGender: "male",
+      applicantGender: "female",
       isWithoutNoticeDetailsYes: true,
-      isWithoutNoticeDetailsBailConditions: "Yes"
-      relationshipToRespondent: 'Married or in a civil partnership',
+      isWithoutNoticeDetailsBailConditions: "Yes",
+      relationshipToRespondent: 'foremerlyLivedTogether'
     });
   });
 
@@ -88,18 +88,14 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Not Error message testing,
   Male applicant,
   Saying yes to all Respondent details questions,
-  Saying yes to all Type of application questions
-  Saying yes to applicant details questions,
-  Saying yes to Without Notice Order questions,
-  Saying "Don't know" to Without Notice Order bail conditions
-  Female applicant,
-  Saying no to all Type of application questions
-  Saying no to applicant details questions
-  Saying no to all Respondent details questions,
-  Relationship is 'None of the above',
-  Other Relationship Is: 'Son', @crossbrowserManageCases`, async ({
-    page,
-  }): Promise<void> => {
+  Saying yes to all Type of application questions, 
+  Saying yes to applicant details questions, 
+  Saying yes to Without Notice Order questions, 
+  Saying "Don't know" to Without Notice Order bail conditions, 
+  Relationship is 'Married or in a civil partnership', 
+  @crossbrowserManageCases`, async ({
+   page,
+ }): Promise<void> => {
     await FL401.fl401({
       page: page,
       user: "solicitor",
@@ -111,7 +107,8 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       yesNoFL401ApplicantDetails: true,
       applicantGender: "male",
       isWithoutNoticeDetailsYes: true,
-      isWithoutNoticeDetailsBailConditions: "Don't know"
+      isWithoutNoticeDetailsBailConditions: "Don't know",
+      relationshipToRespondent: 'marriedOrCivil',
     });
   });
 
@@ -121,9 +118,12 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Female applicant,
   Saying no to all Respondent details questions,
   Saying no to all Type of application questions,
-  Saying no to Without Notice Order questions`, async ({
-     page,
-   }): Promise<void> => {
+  Saying no to Without Notice Order questions,
+  Relationship is 'None of the above',
+  Other Relationship Is: 'Cousin'
+  `, async ({
+   page,
+ }): Promise<void> => {
     await FL401.fl401({
       page: page,
       user: "solicitor",
@@ -135,7 +135,9 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       yesNoFL401ApplicantDetails: false,
       applicantGender: "female",
       isWithoutNoticeDetailsYes: false,
-      isWithoutNoticeDetailsBailConditions: "No"
+      isWithoutNoticeDetailsBailConditions: "No",
+      relationshipToRespondent: 'noneOfTheAbove',
+      relationshipToRespondentOther: 'Cousin'
     });
   });
 });

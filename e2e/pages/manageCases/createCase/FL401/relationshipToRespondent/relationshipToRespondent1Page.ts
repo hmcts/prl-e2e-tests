@@ -4,34 +4,24 @@ import { RelationshipToRespondent1Content } from "../../../../../fixtures/manage
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 
-enum respondentRelationshipIDs {
-  marriedOrCivil = "#respondentRelationObject_applicantRelationship-marriedOrCivil",
-  formerlyMarriedOrCivil = "#respondentRelationObject_applicantRelationship-formerlyMarriedOrCivil",
-  engagedOrProposed = "#respondentRelationObject_applicantRelationship-engagedOrProposed",
-  formerlyEngagedOrProposed = "#respondentRelationObject_applicantRelationship-formerlyEngagedOrProposed",
-  liveTogether = "#respondentRelationObject_applicantRelationship-liveTogether",
-  formerlyLivedTogether = "#respondentRelationObject_applicantRelationship-foremerlyLivedTogether",
-  bfGfOrPartner = "#respondentRelationObject_applicantRelationship-bfGfOrPartnerNotLivedTogether",
-  formerlyBfGfOrPartner = "#respondentRelationObject_applicantRelationship-formerBfGfOrPartnerNotLivedTogether",
-  noneOfTheAbove = "#respondentRelationObject_applicantRelationship-noneOfTheAbove",
-}
+const respondentRelationshipSelector = "#respondentRelationObject_applicantRelationship-"
 
-export type relationshipToRespondent =
-  | "Married or in a civil partnership"
-  | "Formerly married or in a civil partnership"
-  | "Engaged or proposed civil partnership"
-  | "Formerly engaged or proposed civil partnership"
-  | "Live together as a couple"
-  | "Formerly lived together as a couple"
-  | "Boyfriend, girlfriend or partner who does not live with them"
-  | "Formerly boyfriend, girlfriend or partner who has not lived with them"
-  | "None of the above";
+export type fl401RelationshipToRespondent =
+  | "marriedOrCivil"
+  | "formerlyMarriedOrCivil"
+  | "engagedOrProposed"
+  | "formerlyEngagedOrProposed"
+  | "liveTogether"
+  | "foremerlyLivedTogether"
+  | "bfGfOrPartnerNotLivedTogether"
+  | "formerBfGfOrPartnerNotLivedTogether"
+  | "noneOfTheAbove";
 
 interface relationshipToRespondent1PageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
-  relationshipToRespondent: relationshipToRespondent;
+  relationshipToRespondent: fl401RelationshipToRespondent;
 }
 
 interface checkPageLoadsOptions {
@@ -41,7 +31,7 @@ interface checkPageLoadsOptions {
 
 interface fillInFieldsOptions {
   page: Page;
-  relationshipToRespondent: relationshipToRespondent;
+  relationshipToRespondent: fl401RelationshipToRespondent;
 }
 
 export class RelationshipToRespondent1Page {
@@ -117,39 +107,9 @@ export class RelationshipToRespondent1Page {
     page,
     relationshipToRespondent,
   }: fillInFieldsOptions): Promise<void> {
-    switch (relationshipToRespondent) {
-      case "Married or in a civil partnership":
-        await page.click(respondentRelationshipIDs.marriedOrCivil);
-        break;
-      case "Formerly married or in a civil partnership":
-        await page.click(respondentRelationshipIDs.formerlyMarriedOrCivil);
-        break;
-      case "Engaged or proposed civil partnership":
-        await page.click(respondentRelationshipIDs.engagedOrProposed);
-        break;
-      case "Formerly engaged or proposed civil partnership":
-        await page.click(respondentRelationshipIDs.formerlyEngagedOrProposed);
-        break;
-      case "Live together as a couple":
-        await page.click(respondentRelationshipIDs.liveTogether);
-        break;
-      case "Formerly lived together as a couple":
-        await page.click(respondentRelationshipIDs.formerlyLivedTogether);
-        break;
-      case "Boyfriend, girlfriend or partner who does not live with them":
-        await page.click(respondentRelationshipIDs.bfGfOrPartner);
-        break;
-      case "Formerly boyfriend, girlfriend or partner who has not lived with them":
-        await page.click(respondentRelationshipIDs.formerlyBfGfOrPartner);
-        break;
-      case "None of the above":
-        await page.click(respondentRelationshipIDs.noneOfTheAbove);
-        break;
-      default:
-        console.log(
-          `Unknown respondent relationship: ${relationshipToRespondent}`,
-        );
-    }
+    await page.click(
+      `${respondentRelationshipSelector}${relationshipToRespondent}`
+    );
     await page.click(
       `${Selectors.button}:text-is("${RelationshipToRespondent1Content.continue}")`,
     );
