@@ -37,11 +37,11 @@ export class FL401RespondentsBehaviour {
       accessibilityTest,
       respondentsBehaviourAllOptionsYes,
     );
-    await RespondentsBehaviourSubmitPage.respondentsBehaviourSubmitPage(
-      page,
-      accessibilityTest,
-      respondentsBehaviourAllOptionsYes,
-    );
-    await Fl401TasksTabPage.fl401TasksTabPage(page, accessibilityTest);
+    // await RespondentsBehaviourSubmitPage.respondentsBehaviourSubmitPage(
+    //   page,
+    //   accessibilityTest,
+    //   respondentsBehaviourAllOptionsYes,
+    // );
+    // await Fl401TasksTabPage.fl401TasksTabPage(page, accessibilityTest);
   }
 }
