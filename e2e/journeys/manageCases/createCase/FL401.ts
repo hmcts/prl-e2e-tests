@@ -17,10 +17,10 @@ interface fl401Options {
   isLinkedToC100: boolean;
   respondentDetailsAllOptionsYes: boolean;
   applicantHasChildren: boolean;
-  yesNoFL401ApplicantDetails: boolean,
-  applicantGender: ApplicantGender,
+  yesNoFL401ApplicantDetails: boolean;
+  applicantGender: ApplicantGender;
   isWithoutNoticeDetailsYes: boolean;
-  isWithoutNoticeDetailsBailConditions: bailConditionRadios
+  isWithoutNoticeDetailsBailConditions: bailConditionRadios;
 }
 
 export class FL401 {
@@ -66,7 +66,7 @@ export class FL401 {
       yesNoFL401ApplicantDetails: yesNoFL401ApplicantDetails,
       applicantGender: applicantGender,
       subJourney: false,
-    })
+    });
     await FL401RespondentDetails.fl401RespondentDetails({
       page: page,
       accessibilityTest: accessibilityTest,

@@ -77,7 +77,7 @@ export class ApplicantDetails1Page {
     accessibilityTest: boolean,
     errorMessaging: boolean,
     yesNoFL401ApplicantDetails: boolean,
-    applicantGender: ApplicantGender
+    applicantGender: ApplicantGender,
   ): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest);
     if (errorMessaging) {
@@ -103,8 +103,8 @@ export class ApplicantDetails1Page {
         page,
         3,
         ApplicantDetails1Content,
-        'dateLabel',
-        `${uniqueSelectorPaths.dobFormLabel} > ${Selectors.GovukFormLabel}`
+        "dateLabel",
+        `${uniqueSelectorPaths.dobFormLabel} > ${Selectors.GovukFormLabel}`,
       ),
       Helpers.checkGroup(
         page,
@@ -146,7 +146,7 @@ export class ApplicantDetails1Page {
   private static async fillInFields(
     page: Page,
     yesNoFL401ApplicantDetails: boolean,
-    applicantGender: ApplicantGender
+    applicantGender: ApplicantGender,
   ): Promise<void> {
     await this.fillInTopLevelFields(page);
     await this.fillInYesNoRadios(page, yesNoFL401ApplicantDetails);
@@ -165,135 +165,135 @@ export class ApplicantDetails1Page {
   private static async fillInTopLevelFields(page: Page): Promise<void> {
     await page.fill(
       applicantInputIDs.applicantFirstName,
-      ApplicantDetails1Content.applicantFirstName
+      ApplicantDetails1Content.applicantFirstName,
     );
     await page.fill(
       applicantInputIDs.applicantLastName,
-      ApplicantDetails1Content.applicantLastName
+      ApplicantDetails1Content.applicantLastName,
     );
     await page.fill(
       applicantInputIDs.applicantPreviousName,
-      ApplicantDetails1Content.applicantPreviousName
+      ApplicantDetails1Content.applicantPreviousName,
     );
     await page.fill(
       applicantInputIDs.applicantBirthDay,
-      ApplicantDetails1Content.applicantBirthDay
+      ApplicantDetails1Content.applicantBirthDay,
     );
     await page.fill(
       applicantInputIDs.applicantBirthMonth,
-      ApplicantDetails1Content.applicantBirthMonth
+      ApplicantDetails1Content.applicantBirthMonth,
     );
     await page.fill(
       applicantInputIDs.applicantBirthYear,
-      ApplicantDetails1Content.applicantBirthYear
+      ApplicantDetails1Content.applicantBirthYear,
     );
     await page.fill(
       applicantInputIDs.applicantInputPostCode,
-      ApplicantDetails1Content.bpPostalCode
+      ApplicantDetails1Content.bpPostalCode,
     );
     await page.fill(
       applicantInputIDs.applicantPhoneNumber,
-      ApplicantDetails1Content.applicantPhoneNumber
+      ApplicantDetails1Content.applicantPhoneNumber,
     );
     await page.fill(
       applicantInputIDs.solicitorFirstName,
-      ApplicantDetails1Content.solicitorFirstName
+      ApplicantDetails1Content.solicitorFirstName,
     );
     await page.fill(
       applicantInputIDs.solicitorLastName,
-      ApplicantDetails1Content.solicitorLastName
+      ApplicantDetails1Content.solicitorLastName,
     );
     await page.fill(
       applicantInputIDs.solicitorEmailAddress,
-      ApplicantDetails1Content.solicitorEmailAddress
+      ApplicantDetails1Content.solicitorEmailAddress,
     );
     await page.fill(
       applicantInputIDs.solicitorPhoneNumber,
-      ApplicantDetails1Content.solicitorPhoneNumber
+      ApplicantDetails1Content.solicitorPhoneNumber,
     );
     await page.fill(
       applicantInputIDs.solicitorReference,
-      ApplicantDetails1Content.solicitorReference
+      ApplicantDetails1Content.solicitorReference,
     );
     await page.fill(
       applicantInputIDs.solicitorInputPostCode,
-      ApplicantDetails1Content.bpPostalCode
+      ApplicantDetails1Content.bpPostalCode,
     );
     await page.fill(
       applicantInputIDs.dxNumber,
-      ApplicantDetails1Content.dxNumber
+      ApplicantDetails1Content.dxNumber,
     );
     await page.fill(
       applicantInputIDs.organisationSearch,
-      ApplicantDetails1Content.organisationSearch
+      ApplicantDetails1Content.organisationSearch,
     );
   }
 
-  private static async fillInYesNoRadios(page: Page, yesNoFL401ApplicantDetails: boolean): Promise<void> {
-      if (yesNoFL401ApplicantDetails) {
-        const radiosToClick = [
-          applicantInputIDs.confidentialAddressYes,
-          applicantInputIDs.canProvideEmailAddressYes,
-          applicantInputIDs.confidentialPhoneNumberYes,
-        ];
-        for (let radioID of radiosToClick) {
-          await page.click(radioID);
-        }
-      } else {
-          const radiosToClick = [
-            applicantInputIDs.confidentialAddressNo,
-            applicantInputIDs.canProvideEmailAddressNo,
-            applicantInputIDs.confidentialPhoneNumberNo,
-          ];
-          for (let radioID of radiosToClick) {
-            await page.click(radioID);
-          }
-        }
+  private static async fillInYesNoRadios(
+    page: Page,
+    yesNoFL401ApplicantDetails: boolean,
+  ): Promise<void> {
+    if (yesNoFL401ApplicantDetails) {
+      const radiosToClick = [
+        applicantInputIDs.confidentialAddressYes,
+        applicantInputIDs.canProvideEmailAddressYes,
+        applicantInputIDs.confidentialPhoneNumberYes,
+      ];
+      for (let radioID of radiosToClick) {
+        await page.click(radioID);
+      }
+    } else {
+      const radiosToClick = [
+        applicantInputIDs.confidentialAddressNo,
+        applicantInputIDs.canProvideEmailAddressNo,
+        applicantInputIDs.confidentialPhoneNumberNo,
+      ];
+      for (let radioID of radiosToClick) {
+        await page.click(radioID);
+      }
     }
+  }
 
   private static async fillInGenderRadio(
     page: Page,
-    applicantGender: ApplicantGender
+    applicantGender: ApplicantGender,
   ): Promise<void> {
     switch (applicantGender) {
-      case ('female'):
-        await page.click(
-          applicantInputIDs.applicantGenderFemale
-        );
-        break
-      case ('male'):
-        await page.click(
-          applicantInputIDs.applicantGenderMale
-        );
-        break
-      case ('other'):
-        await page.click(
-          applicantInputIDs.applicantGenderOther
-        );
+      case "female":
+        await page.click(applicantInputIDs.applicantGenderFemale);
+        break;
+      case "male":
+        await page.click(applicantInputIDs.applicantGenderMale);
+        break;
+      case "other":
+        await page.click(applicantInputIDs.applicantGenderOther);
         await page.fill(
           applicantInputIDs.applicantGenderOtherInput,
-          ApplicantDetails1Content.applicantGenderOtherInput
-        )
-        break
+          ApplicantDetails1Content.applicantGenderOtherInput,
+        );
+        break;
     }
-}
+  }
 
-  private static async fillInSecondLevelFields(page: Page, applicantGender: ApplicantGender): Promise<void> {
+  private static async fillInSecondLevelFields(
+    page: Page,
+    applicantGender: ApplicantGender,
+  ): Promise<void> {
     await page.fill(
       applicantInputIDs.applicantEmailAddress,
-      ApplicantDetails1Content.applicantEmailAddress
+      ApplicantDetails1Content.applicantEmailAddress,
     );
-    if (applicantGender === 'other') {
+    if (applicantGender === "other") {
       await page.fill(
         applicantInputIDs.applicantGenderOtherInput,
-        ApplicantDetails1Content.applicantGenderOtherInput
+        ApplicantDetails1Content.applicantGenderOtherInput,
       );
     }
   }
 
   private static async fillInSecondLevelRadios(
     page: Page,
-    yesNoFL401ApplicantDetails: boolean
+    yesNoFL401ApplicantDetails: boolean,
   ): Promise<void> {
     if (yesNoFL401ApplicantDetails) {
       await page.click(applicantInputIDs.confidentialEmailYes);
@@ -310,8 +310,8 @@ export class ApplicantDetails1Page {
         `${uniqueSelectorPaths[findAddressUniqueKey]} > button:text-is("${ApplicantDetails1Content.postcodeButton_2}")`,
       );
       await page.waitForSelector(
-        `${Selectors.GovukFormLabel}:text-is("${ApplicantDetails1Content.selectAddress}")`
-      )
+        `${Selectors.GovukFormLabel}:text-is("${ApplicantDetails1Content.selectAddress}")`,
+      );
       let selectAddressID =
         `${person}SelectAddress` as keyof typeof applicantInputIDs;
       await page
@@ -478,8 +478,8 @@ export class ApplicantDetails1Page {
     await page.click(applicantInputIDs.applicantGenderOther);
     await page.click(applicantInputIDs.canProvideEmailAddressYes);
     await page.waitForSelector(
-      `${Selectors.GovukFormLabel}:text-is("${ApplicantDetails1Content.applicantEmail}")`
-    )
+      `${Selectors.GovukFormLabel}:text-is("${ApplicantDetails1Content.applicantEmail}")`,
+    );
     await page.click(
       `${Selectors.button}:text-is("${ApplicantDetails1Content.continue}")`,
     );
