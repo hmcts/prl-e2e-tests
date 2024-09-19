@@ -13,6 +13,9 @@ import {
   C100RespondentLegalRepresentation,
 } from "../../../pages/manageCases/createCase/C100/respondentDetails/respondentDetails1Page";
 import { C100OtherPeopleInTheCase } from "./C100OtherPeopleInTheCase/C100OtherPeopleInTheCase";
+import { C100ChildDetails } from "./C100ChildDetails/c100ChildDetails";
+import { C100ChildGender } from "../../../pages/manageCases/createCase/C100/childDetails/childDetailsRevised1Page";
+import { yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions } from "../../../pages/manageCases/createCase/C100/childDetails/childDetailsRevised2Page";
 
 interface c100Options {
   page: Page;
@@ -29,6 +32,8 @@ interface c100Options {
   respondentGender: C100RespondentGender;
   respondentAddress5Years: C100RespondentAddress5Years;
   respondentLegalRepresentation: C100RespondentLegalRepresentation;
+  c100ChildGender: C100ChildGender;
+  yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions: yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions;
   yesNoOtherPeopleInTheCase: boolean;
 }
 
@@ -49,6 +54,9 @@ export class C100 {
     respondentGender: respondentGender,
     respondentAddress5Years: respondentAddress5Years,
     respondentLegalRepresentation: respondentLegalRepresentation,
+    c100ChildGender: C100ChildGender,
+    yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions:
+      yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,
   }: c100Options): Promise<void> {
     await SolicitorCreateInitial.createInitialCase({
       page: page,
@@ -101,6 +109,15 @@ export class C100 {
       errorMessaging: errorMessaging,
       yesNoOtherPeopleInTheCase: yesNoOtherPeopleInTheCase,
       applicantGender: applicantGender,
+      subJourney: false,
+    });
+    await C100ChildDetails.c100ChildDetails({
+      page: page,
+      user: user,
+      accessibilityTest: accessibilityTest,
+      c100ChildGender: C100ChildGender,
+      yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions:
+        yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,
       subJourney: false,
     });
   }
