@@ -87,7 +87,7 @@ export class RespondentsBehaviourPage {
       await page.fill(
         `${inputIds.otherReasonApplicantWantToStopFromRespondentDoing}`,
         RespondentsBehaviourContent.exampleText,
-      )
+      );
       await page.click(
         `${Selectors.button}:text-is("${RespondentsBehaviourContent.continue}")`,
       );
