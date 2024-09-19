@@ -3,7 +3,8 @@ import { Selectors } from "../../../../../common/selectors";
 import { OtherPeopleInTheCase1Content } from "../../../../../fixtures/manageCases/createCase/C100/otherPeopleInTheCaseRevised/otherPeopleInTheCaseRevised1Content.";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { ApplicantGender } from "../applicantDetails/applicantDetails1Page";
+import { ApplicantGender } from "../../../../../common/types";
+
 
 enum UniqueSelectors {
   applicantFirstNameInput = "#otherPartyInTheCaseRevised_0_firstName",
@@ -185,32 +186,6 @@ export class OtherPeopleInTheCase1Page {
     await page.click(
       `${Selectors.button}:text-is("${OtherPeopleInTheCase1Content.addNew}")`,
     );
-    await Promise.all([
-      Helpers.checkGroup(
-        page,
-        10,
-        OtherPeopleInTheCase1Content,
-        "formLabel",
-        Selectors.GovukFormLabel,
-      ),
-      Helpers.checkGroup(
-        page,
-        3,
-        OtherPeopleInTheCase1Content,
-        "formLabelGender",
-        Selectors.GovukFormLabel,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukFormLabel}:text-is("${OtherPeopleInTheCase1Content.formLabelYes}")`,
-        6,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukFormLabel}:text-is("${OtherPeopleInTheCase1Content.formLabelNo}")`,
-        6,
-      ),
-    ]);
     await page.fill(
       `${UniqueSelectors.applicantFirstNameInput}`,
       OtherPeopleInTheCase1Content.applicantFirstName,
@@ -223,6 +198,7 @@ export class OtherPeopleInTheCase1Page {
       `${UniqueSelectors.applicantPreviousNameInput}`,
       OtherPeopleInTheCase1Content.applicantPrevName,
     );
+    // await this.checkFormLabelsWhenAddNewClicked(page);
     switch (applicantGender) {
       case "female":
         await page.click(`${UniqueSelectors.applicantGenderFemale}`);
@@ -241,7 +217,6 @@ export class OtherPeopleInTheCase1Page {
       default:
         console.log("Please select a gender");
     }
-
     if (yesNoOtherPeopleInTheCase) {
       await page.click(`${UniqueSelectors.applicantBirthDateYes}`);
       await this.dateOfBirthValidation(page);
@@ -259,11 +234,11 @@ export class OtherPeopleInTheCase1Page {
       );
 
       await page.click(`${UniqueSelectors.applicantPlaceOfBirthKnownYes}`);
-      await this.placeOfBirthValidation(page);
       await page.fill(
         `${UniqueSelectors.placeOfBirthInput}`,
         OtherPeopleInTheCase1Content.placeOfBirth,
       );
+      await this.placeOfBirthValidation(page);
 
       await page.click(`${UniqueSelectors.applicantCurrentAddressYes}`);
       await page.fill(
@@ -285,25 +260,25 @@ export class OtherPeopleInTheCase1Page {
       await page.click(
         `${UniqueSelectors.applicantLivedAtAddressLessThan5YearsYes}`,
       );
-      await this.checkApplicantAddress5Years(page);
       await page.fill(
         `${UniqueSelectors.address5YearsDetailsRequiredInput}`,
         OtherPeopleInTheCase1Content.last5Years,
       );
+      await this.checkApplicantAddress5Years(page);
       await page.click(`${UniqueSelectors.applicantEmailAddressYes}`);
-      await this.checkEmailAddress(page);
       await page.fill(
         `${UniqueSelectors.emailAddressInput}`,
         OtherPeopleInTheCase1Content.applicantEmail,
       );
       await page.click(`${UniqueSelectors.emailAddressConfidentialYes}`);
+      await this.checkEmailAddress(page);
       await page.click(`${UniqueSelectors.applicantContactNumberYes}`);
-      await this.checkContactNumber(page);
       await page.fill(
         `${UniqueSelectors.contactNumberInput}`,
         OtherPeopleInTheCase1Content.phoneNumber,
       );
       await page.click(`${UniqueSelectors.contactNumberConfidentialityYes}`);
+      await this.checkContactNumber(page);
     } else {
       await page.click(`${UniqueSelectors.applicantBirthDateNo}`);
       await page.click(`${UniqueSelectors.applicantPlaceOfBirthKnownNo}`);
@@ -318,6 +293,36 @@ export class OtherPeopleInTheCase1Page {
       `${Selectors.button}:text-is("${OtherPeopleInTheCase1Content.continue}")`,
     );
   }
+
+  private static async checkFormLabelsWhenAddNewClicked(page: Page): Promise<void> {
+    await Promise.all([
+      Helpers.checkGroup(
+        page,
+        10,
+        OtherPeopleInTheCase1Content,
+        "formLabel",
+        Selectors.GovukFormLabel,
+      ),
+      Helpers.checkGroup(
+        page,
+        3,
+        OtherPeopleInTheCase1Content,
+        "formLabelGender",
+        Selectors.GovukFormLabel,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${OtherPeopleInTheCase1Content.formLabelYes}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${OtherPeopleInTheCase1Content.formLabelNo}")`,
+        1,
+      ),
+    ]);
+  }
+
 
   private static async preferredGenderValidation(page: Page): Promise<void> {
     await Promise.all([
