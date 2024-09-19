@@ -310,7 +310,7 @@ export class OtherPeopleInTheCase1Page {
       );
       await page.click(`${UniqueSelectors.applicantEmailAddressNo}`);
       await page.click(`${UniqueSelectors.applicantContactNumberNo}`);
-      await page.waitForTimeout(1000)
+      await page.waitForTimeout(1000);
     }
     await page.waitForTimeout(2000);
     await page.click(

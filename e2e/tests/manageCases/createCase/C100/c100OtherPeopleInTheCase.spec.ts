@@ -21,7 +21,7 @@ test.describe("C100 Create case Other people in the case Tests @manageCases", ()
   });
   test(`Complete the C100 Create case Other people in the case as a solicitor with the following options:
   Not Accessibility testing,
-  Not Error message testing,
+  Error message testing,
   Saying no to all options,
   Setting the applicant Gender to female. @crossbrowserManageCases`, async ({
     page,
@@ -38,9 +38,9 @@ test.describe("C100 Create case Other people in the case Tests @manageCases", ()
   });
   test(`Complete the C100 Create case Other people in the case as a solicitor with the following options:
   Not Accessibility testing,
-  Error message testing,
+  Not Error message testing,
   Saying yes to all options,
-  Setting the applicant Gender to male. @crossbrowserManageCases`, async ({
+  Setting the applicant Gender to other. @crossbrowserManageCases`, async ({
     page,
   }): Promise<void> => {
     await C100OtherPeopleInTheCase.c100OtherPeopleInTheCase({
@@ -49,7 +49,7 @@ test.describe("C100 Create case Other people in the case Tests @manageCases", ()
       accessibilityTest: false,
       errorMessaging: false,
       yesNoOtherPeopleInTheCase: true,
-      applicantGender: "male",
+      applicantGender: "other",
       subJourney: true,
     });
   });
