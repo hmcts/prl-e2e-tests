@@ -3,9 +3,12 @@ import { Page } from "@playwright/test";
 import { FL401TypeOfApplication } from "./FL401TypeOfApplication/FL401TypeOfApplication";
 import { SolicitorCreateInitial } from "./solicitorCreateInitial";
 import { FL401RespondentDetails } from "./FL401RespondentDetails/FL401RespondentDetails";
+import { FL401WithoutNoticeOrder } from "./FL401WithoutNoticeOrder/FL401WIthoutNoticeOrder";
 import { FL401ApplicantDetails } from "./FL401ApplicantDetails/FL401ApplicantDetails";
 import { FL401ApplicantsFamily } from "./FL401ApplicantsFamily/FL401ApplicantsFamily";
 import { FL401RespondentsBehaviour } from "./FL401RespondentsBehaviour/FL401RespondentsBehaviour";
+
+export type bailConditionRadios = "Yes" | "No" | "Don't know";
 
 interface fl401Options {
   page: Page;
@@ -18,6 +21,8 @@ interface fl401Options {
   yesNoFL401ApplicantDetails: boolean;
   applicantGender: ApplicantGender;
   respondentsBehaviourAllOptionsYes: boolean;
+  isWithoutNoticeDetailsYes: boolean;
+  isWithoutNoticeDetailsBailConditions: bailConditionRadios;
 }
 
 export class FL401 {
@@ -32,6 +37,8 @@ export class FL401 {
     yesNoFL401ApplicantDetails,
     applicantGender,
     respondentsBehaviourAllOptionsYes,
+    isWithoutNoticeDetailsYes,
+    isWithoutNoticeDetailsBailConditions
   }: fl401Options): Promise<void> {
     await SolicitorCreateInitial.createInitialCase({
       page: page,
@@ -47,6 +54,14 @@ export class FL401 {
       isLinkedToC100: isLinkedToC100,
       subJourney: false,
     });
+    await FL401WithoutNoticeOrder.fl401WithoutNoticeOrder({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      isWithoutNoticeDetailsYes: isWithoutNoticeDetailsYes,
+      isWithoutNoticeDetailsBailConditions: isWithoutNoticeDetailsBailConditions,
+      subJourney: false,
+    })
     await FL401ApplicantDetails.fl401ApplicantDetails({
       page: page,
       accessibilityTest: accessibilityTest,

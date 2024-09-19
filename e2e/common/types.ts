@@ -33,7 +33,8 @@ export type fl401SolicitorEvents =
   | "Type of application"
   | "Applicant details"
   | "Respondent details"
-  | "Applicant's family"
-  | "Respondent's behaviour";
+  | "Respondent's behaviour"
+  | "Without notice order"
+  | "Applicant's family";
 
 export type ApplicantGender = "female" | "male" | "other";

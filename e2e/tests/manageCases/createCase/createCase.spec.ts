@@ -61,7 +61,9 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Male applicant,
   Saying yes to all Respondent details questions,
   Saying yes to all Type of application questions
-  Saying yes to applicant details questions @crossbrowserManageCases`, async ({
+  Saying yes to applicant details questions,
+  Saying yes to respondents behaviour questions,
+  Saying yes to all Without Notice Order questions @crossbrowserManageCases`, async ({
     page,
   }): Promise<void> => {
     await FL401.fl401({
@@ -75,6 +77,36 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       yesNoFL401ApplicantDetails: true,
       applicantGender: "male",
       respondentsBehaviourAllOptionsYes: true,
+      isWithoutNoticeDetailsYes: true,
+      isWithoutNoticeDetailsBailConditions: "Yes"
+    });
+  });
+
+  test(`Complete the FL401 create case event as a solicitor with the following options:
+  Not Accessibility testing,
+  Not Error message testing,
+  Male applicant,
+  Saying yes to all Respondent details questions,
+  Saying yes to all Type of application questions
+  Saying yes to applicant details questions,
+  Saying yes to respondents behaviour questions,
+  Saying yes to Without Notice Order questions,
+  Saying "Don't know" to Without Notice Order bail conditions`, async ({
+     page,
+   }): Promise<void> => {
+    await FL401.fl401({
+      page: page,
+      user: "solicitor",
+      accessibilityTest: false,
+      errorMessaging: false,
+      isLinkedToC100: true,
+      respondentDetailsAllOptionsYes: true,
+      applicantHasChildren: true,
+      yesNoFL401ApplicantDetails: true,
+      applicantGender: "male",
+      respondentsBehaviourAllOptionsYes: true,
+      isWithoutNoticeDetailsYes: true,
+      isWithoutNoticeDetailsBailConditions: "Don't know"
     });
   });
 
@@ -82,11 +114,12 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Not Accessibility testing,
   Not Error message testing,
   Female applicant,
-  Saying yes to all Respondent details questions,
-  Saying yes to all Type of application questions
-  Saying yes to applicant details questions @crossbrowserManageCases`, async ({
-    page,
-  }): Promise<void> => {
+  Saying no to all Respondent details questions,
+  Saying no to all Type of application questions,
+  Saying no to respondents behaviour questions,
+  Saying no to Without Notice Order questions`, async ({
+     page,
+   }): Promise<void> => {
     await FL401.fl401({
       page: page,
       user: "solicitor",
@@ -98,6 +131,8 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       yesNoFL401ApplicantDetails: false,
       applicantGender: "female",
       respondentsBehaviourAllOptionsYes: false,
+      isWithoutNoticeDetailsYes: false,
+      isWithoutNoticeDetailsBailConditions: "No"
     });
   });
 });
