@@ -25,7 +25,7 @@ export class RespondentsBehaviourSubmitPage {
     respondentsBehaviourAllOptionsYes: boolean,
   ): Promise<void> {
     await Promise.all([
-      this.checkPageLoads(page),
+      this.checkPageLoads(page, respondentsBehaviourAllOptionsYes),
       this.checkFilledInData(page, respondentsBehaviourAllOptionsYes),
     ]);
     if (accessibilityTest) {
@@ -33,12 +33,59 @@ export class RespondentsBehaviourSubmitPage {
     }
   }
 
-  private static async checkPageLoads(page: Page): Promise<void> {}
+  private static async checkPageLoads(
+    page: Page,
+    respondentsBehaviourAllOptionsYes: boolean,
+  ): Promise<void> {
+    await page.waitForSelector(
+      `${Selectors.GovukHeadingL}:text-is("${SubmitContent.pageTitle}")`,
+    );
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.h2}:text-is("${SubmitContent.h2}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${SubmitContent.checkInfoLabel}")`,
+        1,
+      ),
+    ]);
+    if (respondentsBehaviourAllOptionsYes) {
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${SubmitContent.change}")`,
+        1,
+      );
+    }
+  }
 
   private static async checkFilledInData(
     page: Page,
     respondentsBehaviourAllOptionsYes: boolean,
-  ): Promise<void> {}
+  ): Promise<void> {
+    if (respondentsBehaviourAllOptionsYes) {
+      await Promise.all([
+        Helpers.checkGroup(
+          page,
+          17,
+          RespondentsBehaviourContent,
+          "formLabel",
+          `${Selectors.GovukFormLabel}`,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.Span}:text-is("${RespondentsBehaviourContent.exampleText}")`,
+          1,
+        ),
+      ]);
+    }
+  }
 
-  private static async fillInFields(page: Page): Promise<void> {}
+  private static async fillInFields(page: Page): Promise<void> {
+    await page.click(
+      `${Selectors.button}:text-is("${SubmitContent.saveAndContinue}")`,
+    );
+  }
 }

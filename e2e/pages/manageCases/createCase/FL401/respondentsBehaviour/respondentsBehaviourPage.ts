@@ -48,7 +48,6 @@ export class RespondentsBehaviourPage {
     page: Page,
     accessibilityTest: boolean,
   ): Promise<void> {
-    // noinspection TypeScriptValidateTypes
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
