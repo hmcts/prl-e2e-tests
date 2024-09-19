@@ -78,7 +78,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       applicantGender: "male",
       respondentsBehaviourAllOptionsYes: true,
       isWithoutNoticeDetailsYes: true,
-      isWithoutNoticeDetailsBailConditions: "Yes"
+      isWithoutNoticeDetailsBailConditions: "Yes",
     });
   });
 
@@ -92,8 +92,8 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Saying yes to respondents behaviour questions,
   Saying yes to Without Notice Order questions,
   Saying "Don't know" to Without Notice Order bail conditions`, async ({
-     page,
-   }): Promise<void> => {
+    page,
+  }): Promise<void> => {
     await FL401.fl401({
       page: page,
       user: "solicitor",
@@ -106,7 +106,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       applicantGender: "male",
       respondentsBehaviourAllOptionsYes: true,
       isWithoutNoticeDetailsYes: true,
-      isWithoutNoticeDetailsBailConditions: "Don't know"
+      isWithoutNoticeDetailsBailConditions: "Don't know",
     });
   });
 
@@ -118,8 +118,8 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Saying no to all Type of application questions,
   Saying no to respondents behaviour questions,
   Saying no to Without Notice Order questions`, async ({
-     page,
-   }): Promise<void> => {
+    page,
+  }): Promise<void> => {
     await FL401.fl401({
       page: page,
       user: "solicitor",
@@ -132,7 +132,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       applicantGender: "female",
       respondentsBehaviourAllOptionsYes: false,
       isWithoutNoticeDetailsYes: false,
-      isWithoutNoticeDetailsBailConditions: "No"
+      isWithoutNoticeDetailsBailConditions: "No",
     });
   });
 });
