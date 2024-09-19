@@ -1,14 +1,16 @@
 import { Page } from "@playwright/test";
 import { SolicitorCreateInitial } from "../solicitorCreateInitial";
 import { Helpers } from "../../../../common/helpers";
-import { RelationshipToRespondent1Page } from "../../../../pages/manageCases/createCase/FL401/relationshipToRespondent/relationshipToRespondent1Page";
-import { RelationshipToRespondent2Page } from "../../../../pages/manageCases/createCase/FL401/relationshipToRespondent/relationshipToRespondent2Page";
-import { RelationshipToRespondentSubmitPage } from "../../../../pages/manageCases/createCase/FL401/relationshipToRespondent/relationshipToRespondentSubmitPage";
-import { Fl401TasksTabPage } from "../../../../pages/manageCases/caseTabs/fl401TasksTabPage";
 import {
   relationshipToRespondent,
-  respondentRelationshipOther,
-} from "../FL401";
+  RelationshipToRespondent1Page
+} from "../../../../pages/manageCases/createCase/FL401/relationshipToRespondent/relationshipToRespondent1Page";
+import {
+  RelationshipToRespondent2Page,
+  respondentRelationshipOther
+} from "../../../../pages/manageCases/createCase/FL401/relationshipToRespondent/relationshipToRespondent2Page";
+import { RelationshipToRespondentSubmitPage } from "../../../../pages/manageCases/createCase/FL401/relationshipToRespondent/relationshipToRespondentSubmitPage";
+import { Fl401TasksTabPage } from "../../../../pages/manageCases/caseTabs/fl401TasksTabPage";
 
 interface fl401RelationshipToRespondentOptions {
   page: Page;

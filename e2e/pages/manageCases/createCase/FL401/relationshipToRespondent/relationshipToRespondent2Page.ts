@@ -4,8 +4,6 @@ import { RelationshipToRespondent2Content } from "../../../../../fixtures/manage
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 
-import { respondentRelationshipOther } from "../../../../../journeys/manageCases/createCase/FL401";
-
 enum otherRelationshipIDs {
   radioFather = "#respondentRelationOptions_applicantRelationshipOptions-father",
   radioMother = "#respondentRelationOptions_applicantRelationshipOptions-mother",
@@ -21,7 +19,7 @@ enum otherRelationshipIDs {
   radioNiece = "#respondentRelationOptions_applicantRelationshipOptions-niece",
   radioCousin = "#respondentRelationOptions_applicantRelationshipOptions-cousin",
   radioOther = "#respondentRelationOptions_applicantRelationshipOptions-other",
-  radioOtherInput = '#respondentRelationOptions_relationOptionsOther'
+  radioOtherInput = "#respondentRelationOptions_relationOptionsOther",
 }
 
 enum relationshipPeriodIDs {
@@ -47,6 +45,22 @@ enum invalidRelationshipDates {
   relationshipDateMonth = "",
   relationshipDateYear = "",
 }
+
+export type respondentRelationshipOther =
+  | "Father"
+  | "Mother"
+  | "Son"
+  | "Daughter"
+  | "Brother"
+  | "Sister"
+  | "Grandfather"
+  | "Grandmother"
+  | "Uncle"
+  | "Aunt"
+  | "Nephew"
+  | "Niece"
+  | "Cousin"
+  | "Other";
 
 interface RelationshipToRespondent2PageOptions {
   page: Page;
@@ -107,12 +121,15 @@ export class RelationshipToRespondent2Page {
   }
 
   private static async otherRelationshipPage({
-     page,
-     accessibilityTest,
-     errorMessaging,
-     respondentRelationshipOther,
-   }: OtherRelationshipPageOptions): Promise<void> {
-    await this.otherRelationshipCheckPageLoads({ page: page, accessibilityTest: accessibilityTest });
+    page,
+    accessibilityTest,
+    errorMessaging,
+    respondentRelationshipOther,
+  }: OtherRelationshipPageOptions): Promise<void> {
+    await this.otherRelationshipCheckPageLoads({
+      page: page,
+      accessibilityTest: accessibilityTest,
+    });
     if (errorMessaging) {
       await this.otherRelationshipCheckErrors(page);
     }
@@ -123,9 +140,9 @@ export class RelationshipToRespondent2Page {
   }
 
   private static async otherRelationshipCheckPageLoads({
-     page,
-     accessibilityTest,
-   }: OtherRelationshipCheckPageLoadsOptions): Promise<void> {
+    page,
+    accessibilityTest,
+  }: OtherRelationshipCheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.GovukFormLabel}:text-is("${RelationshipToRespondent2Content.pageLoadCheckOther}")`,
     );
@@ -174,11 +191,9 @@ export class RelationshipToRespondent2Page {
         1,
       ),
     ]);
-    await page.click(
-      otherRelationshipIDs.radioOther
-    );
+    await page.click(otherRelationshipIDs.radioOther);
     await page.waitForSelector(
-      `${Selectors.GovukFormLabel}:text-is("${RelationshipToRespondent2Content.relationshipOtherLabel}")`
+      `${Selectors.GovukFormLabel}:text-is("${RelationshipToRespondent2Content.relationshipOtherLabel}")`,
     );
     await page.click(
       `${Selectors.button}:text-is("${RelationshipToRespondent2Content.continue}")`,
@@ -203,19 +218,19 @@ export class RelationshipToRespondent2Page {
   }
 
   private static async otherRelationshipFillInFields({
-     page,
-     respondentRelationshipOther,
-   }: OtherRelationshipFillInFieldsOptions): Promise<void> {
+    page,
+    respondentRelationshipOther,
+  }: OtherRelationshipFillInFieldsOptions): Promise<void> {
     let radioKey =
       `radio${respondentRelationshipOther}` as keyof typeof otherRelationshipIDs;
     await page.click(otherRelationshipIDs[radioKey]);
-    if (respondentRelationshipOther === 'Other') {
+    if (respondentRelationshipOther === "Other") {
       await page.waitForSelector(
-        `${Selectors.GovukFormLabel}:text-is("${RelationshipToRespondent2Content.relationshipOtherLabel}")`
+        `${Selectors.GovukFormLabel}:text-is("${RelationshipToRespondent2Content.relationshipOtherLabel}")`,
       );
       await page.fill(
         otherRelationshipIDs.radioOtherInput,
-        RelationshipToRespondent2Content.relationshipOtherInput
+        RelationshipToRespondent2Content.relationshipOtherInput,
       );
     }
     await page.click(
@@ -228,7 +243,10 @@ export class RelationshipToRespondent2Page {
     accessibilityTest,
     errorMessaging,
   }: RelationshipPeriodPageOptions): Promise<void> {
-    await this.relationshipPeriodCheckPageLoads({ page: page, accessibilityTest: accessibilityTest });
+    await this.relationshipPeriodCheckPageLoads({
+      page: page,
+      accessibilityTest: accessibilityTest,
+    });
     if (errorMessaging) {
       await this.relationshipPeriodCheckErrors(page);
     }

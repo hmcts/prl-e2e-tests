@@ -3,7 +3,6 @@ import { Selectors } from "../../../../../common/selectors";
 import { Helpers } from "../../../../../common/helpers";
 import accessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { WithoutNoticeOrderDetails3Content } from "../../../../../fixtures/manageCases/createCase/FL401/withoutNoticeOrder/withoutNoticeOrderDetails3Content";
-import { bailConditionRadios } from "../../../../../journeys/manageCases/createCase/FL401";
 
 enum withoutNoticeOrderInputIDs {
   radioYes = "#bailDetails_isRespondentAlreadyInBailCondition-yes",
@@ -20,6 +19,8 @@ enum incompleteBailDate {
   year = "",
 }
 
+export type bailConditionRadios = "Yes" | "No" | "Don't know";
+
 export class WithoutNoticeOrder3Page {
   public static async withoutNoticeOrder3Page(
     page: Page,
@@ -31,7 +32,11 @@ export class WithoutNoticeOrder3Page {
     if (errorMessaging) {
       await this.checkErrorMessaging(page);
     }
-    await this.fillInFields(page, accessibilityTest, isWithoutNoticeDetailsBailConditions);
+    await this.fillInFields(
+      page,
+      accessibilityTest,
+      isWithoutNoticeDetailsBailConditions,
+    );
   }
 
   private static async checkPageLoads(

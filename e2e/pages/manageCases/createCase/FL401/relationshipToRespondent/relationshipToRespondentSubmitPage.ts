@@ -5,10 +5,8 @@ import {
 } from "../../../../../fixtures/manageCases/createCase/FL401/relationshipToRespondent/relationshipToRespondentSubmitContent";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import {
-  relationshipToRespondent,
-  respondentRelationshipOther
-} from "../../../../../journeys/manageCases/createCase/FL401";
+import { relationshipToRespondent } from "./relationshipToRespondent1Page";
+import { respondentRelationshipOther } from "./relationshipToRespondent2Page";
 
 interface relationshipToRespondentSubmitPageOptions {
   page: Page,

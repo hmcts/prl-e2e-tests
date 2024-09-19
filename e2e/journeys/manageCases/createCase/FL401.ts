@@ -7,35 +7,9 @@ import { FL401WithoutNoticeOrder } from "./FL401WithoutNoticeOrder/FL401WIthoutN
 import { FL401ApplicantDetails } from "./FL401ApplicantDetails/FL401ApplicantDetails";
 import { FL401ApplicantsFamily } from "./FL401ApplicantsFamily/FL401ApplicantsFamily";
 import { FL401RelationshipToRespondent } from "./FL401RelationshipToRespondent/FL401RelationshipToRespondent";
-
-export type relationshipToRespondent =
-  | "Married or in a civil partnership"
-  | "Formerly married or in a civil partnership"
-  | "Engaged or proposed civil partnership"
-  | "Formerly engaged or proposed civil partnership"
-  | "Live together as a couple"
-  | "Formerly lived together as a couple"
-  | "Boyfriend, girlfriend or partner who does not live with them"
-  | "Formerly boyfriend, girlfriend or partner who has not lived with them"
-  | "None of the above";
-
-export type respondentRelationshipOther =
-  | "Father"
-  | "Mother"
-  | "Son"
-  | "Daughter"
-  | "Brother"
-  | "Sister"
-  | "Grandfather"
-  | "Grandmother"
-  | "Uncle"
-  | "Aunt"
-  | "Nephew"
-  | "Niece"
-  | "Cousin"
-  | "Other";
-
-export type bailConditionRadios = "Yes" | "No" | "Don't know";
+import { relationshipToRespondent } from "../../../pages/manageCases/createCase/FL401/relationshipToRespondent/relationshipToRespondent1Page";
+import { respondentRelationshipOther } from "../../../pages/manageCases/createCase/FL401/relationshipToRespondent/relationshipToRespondent2Page";
+import { bailConditionRadios } from "../../../pages/manageCases/createCase/FL401/withoutNoticeOrder/withoutNoticeOrder3Page";
 
 interface fl401Options {
   page: Page;
@@ -67,7 +41,7 @@ export class FL401 {
     isWithoutNoticeDetailsYes,
     isWithoutNoticeDetailsBailConditions,
     relationshipToRespondent,
-    relationshipToRespondentOther
+    relationshipToRespondentOther,
   }: fl401Options): Promise<void> {
     await SolicitorCreateInitial.createInitialCase({
       page: page,
@@ -88,9 +62,10 @@ export class FL401 {
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
       isWithoutNoticeDetailsYes: isWithoutNoticeDetailsYes,
-      isWithoutNoticeDetailsBailConditions: isWithoutNoticeDetailsBailConditions,
+      isWithoutNoticeDetailsBailConditions:
+        isWithoutNoticeDetailsBailConditions,
       subJourney: false,
-    })
+    });
     await FL401ApplicantDetails.fl401ApplicantDetails({
       page: page,
       accessibilityTest: accessibilityTest,
@@ -119,7 +94,7 @@ export class FL401 {
       errorMessaging: errorMessaging,
       relationshipToRespondent: relationshipToRespondent,
       relationshipToRespondentOther: relationshipToRespondentOther,
-      subJourney: false
+      subJourney: false,
     });
   }
 }

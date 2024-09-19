@@ -4,8 +4,6 @@ import { RelationshipToRespondent1Content } from "../../../../../fixtures/manage
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 
-import { relationshipToRespondent } from "../../../../../journeys/manageCases/createCase/FL401";
-
 enum respondentRelationshipIDs {
   marriedOrCivil = "#respondentRelationObject_applicantRelationship-marriedOrCivil",
   formerlyMarriedOrCivil = "#respondentRelationObject_applicantRelationship-formerlyMarriedOrCivil",
@@ -18,6 +16,17 @@ enum respondentRelationshipIDs {
   noneOfTheAbove = "#respondentRelationObject_applicantRelationship-noneOfTheAbove",
 }
 
+export type relationshipToRespondent =
+  | "Married or in a civil partnership"
+  | "Formerly married or in a civil partnership"
+  | "Engaged or proposed civil partnership"
+  | "Formerly engaged or proposed civil partnership"
+  | "Live together as a couple"
+  | "Formerly lived together as a couple"
+  | "Boyfriend, girlfriend or partner who does not live with them"
+  | "Formerly boyfriend, girlfriend or partner who has not lived with them"
+  | "None of the above";
+
 interface relationshipToRespondent1PageOptions {
   page: Page;
   accessibilityTest: boolean;
@@ -26,13 +35,13 @@ interface relationshipToRespondent1PageOptions {
 }
 
 interface checkPageLoadsOptions {
-  page: Page,
-  accessibilityTest: boolean
+  page: Page;
+  accessibilityTest: boolean;
 }
 
 interface fillInFieldsOptions {
-  page: Page,
-  relationshipToRespondent: relationshipToRespondent,
+  page: Page;
+  relationshipToRespondent: relationshipToRespondent;
 }
 
 export class RelationshipToRespondent1Page {
@@ -42,11 +51,17 @@ export class RelationshipToRespondent1Page {
     errorMessaging,
     relationshipToRespondent,
   }: relationshipToRespondent1PageOptions): Promise<void> {
-    await this.checkPageLoads({ page: page, accessibilityTest: accessibilityTest });
+    await this.checkPageLoads({
+      page: page,
+      accessibilityTest: accessibilityTest,
+    });
     if (errorMessaging) {
       await this.checkErrorMessaging(page);
     }
-    await this.fillInFields({ page: page, relationshipToRespondent: relationshipToRespondent });
+    await this.fillInFields({
+      page: page,
+      relationshipToRespondent: relationshipToRespondent,
+    });
   }
 
   private static async checkPageLoads({
@@ -100,7 +115,7 @@ export class RelationshipToRespondent1Page {
 
   private static async fillInFields({
     page,
-    relationshipToRespondent
+    relationshipToRespondent,
   }: fillInFieldsOptions): Promise<void> {
     switch (relationshipToRespondent) {
       case "Married or in a civil partnership":
