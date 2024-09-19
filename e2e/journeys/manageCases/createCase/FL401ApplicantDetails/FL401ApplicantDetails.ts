@@ -1,37 +1,35 @@
 import { Page } from "@playwright/test";
-import { ApplicantGender, UserRole } from "../../../../common/types";
 import { Helpers } from "../../../../common/helpers";
-import { ApplicantDetails1Page } from "../../../../pages/manageCases/createCase/C100/applicantDetails/applicantDetails1Page";
-import { ApplicantDetailsSubmitPage } from "../../../../pages/manageCases/createCase/C100/applicantDetails/applicantDetailsSubmitPage";
-import { C100TasksTabPage } from "../../../../pages/manageCases/caseTabs/c100TasksTabPage";
+import { Fl401TasksTabPage } from "../../../../pages/manageCases/caseTabs/fl401TasksTabPage";
+import { ApplicantDetails1Page } from "../../../../pages/manageCases/createCase/FL401/applicantDetails/applicantDetails1Page";
+import { ApplicantDetailsSubmitPage } from "../../../../pages/manageCases/createCase/FL401/applicantDetails/applicantDetailsSubmitPage";
+import { ApplicantGender } from "../../../../common/types";
 import { SolicitorCreateInitial } from "../solicitorCreateInitial";
 
-interface c100ApplicantDetailsOptions {
+interface fl401ApplicantDetailsOptions {
   page: Page;
-  user: UserRole;
   accessibilityTest: boolean;
   errorMessaging: boolean;
-  yesNoApplicantDetails: boolean;
+  yesNoFL401ApplicantDetails: boolean;
   applicantGender: ApplicantGender;
   subJourney: boolean;
 }
 
-export class C100ApplicantDetails {
-  public static async C100ApplicantDetails({
+export class FL401ApplicantDetails {
+  public static async fl401ApplicantDetails({
     page,
-    user,
     accessibilityTest,
     errorMessaging,
-    yesNoApplicantDetails,
+    yesNoFL401ApplicantDetails,
     applicantGender,
     subJourney,
-  }: c100ApplicantDetailsOptions): Promise<void> {
+  }: fl401ApplicantDetailsOptions): Promise<void> {
     if (subJourney) {
       await SolicitorCreateInitial.createInitialCase({
         page: page,
-        user: user,
+        user: "solicitor",
         accessibilityTest: false,
-        solicitorCaseType: "C100",
+        solicitorCaseType: "FL401",
         errorMessaging: false,
       });
     }
@@ -40,15 +38,15 @@ export class C100ApplicantDetails {
       page,
       accessibilityTest,
       errorMessaging,
-      yesNoApplicantDetails,
+      yesNoFL401ApplicantDetails,
       applicantGender,
     );
     await ApplicantDetailsSubmitPage.applicantDetailsSubmitPage(
       page,
       accessibilityTest,
-      yesNoApplicantDetails,
+      yesNoFL401ApplicantDetails,
       applicantGender,
     );
-    await C100TasksTabPage.c100TasksTabPage(page, accessibilityTest);
+    await Fl401TasksTabPage.fl401TasksTabPage(page, accessibilityTest);
   }
 }

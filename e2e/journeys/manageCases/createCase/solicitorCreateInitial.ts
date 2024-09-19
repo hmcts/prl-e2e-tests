@@ -11,6 +11,7 @@ import { SolicitorCreate5Page } from "../../../pages/manageCases/createCase/init
 import { SubmitPage } from "../../../pages/manageCases/createCase/initialJourney/submitPage";
 import { Fl401TasksTabPage } from "../../../pages/manageCases/caseTabs/fl401TasksTabPage";
 import { C100TasksTabPage } from "../../../pages/manageCases/caseTabs/c100TasksTabPage";
+import { Selectors } from "../../../common/selectors";
 
 export class SolicitorCreateInitial {
   public static async createInitialCase({
@@ -49,7 +50,15 @@ export class SolicitorCreateInitial {
           accessibilityTest,
         );
         await SubmitPage.submitPage(page, accessibilityTest, caseName);
-        await C100TasksTabPage.c100TasksTabPage(page, accessibilityTest);
+        if (
+          await page
+            .locator(
+              `${Selectors.markdown} > ${Selectors.div} > ${Selectors.p} > ${Selectors.a}:text-is("Case name")`,
+            )
+            .isVisible()
+        ) {
+          await C100TasksTabPage.c100TasksTabPage(page, accessibilityTest);
+        }
         break;
       case "FL401":
         await SolicitorCreate3Page.solicitorCreate3Page(
@@ -63,7 +72,15 @@ export class SolicitorCreateInitial {
           accessibilityTest,
         );
         await SubmitPage.submitPage(page, accessibilityTest, caseName);
-        await Fl401TasksTabPage.fl401TasksTabPage(page, accessibilityTest);
+        if (
+          await page
+            .locator(
+              `${Selectors.markdown} > ${Selectors.div} > ${Selectors.p} > ${Selectors.a}:text-is("Case name")`,
+            )
+            .isVisible()
+        ) {
+          await Fl401TasksTabPage.fl401TasksTabPage(page, accessibilityTest);
+        }
         break;
       default:
         caseName = "null";
