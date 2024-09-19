@@ -1,7 +1,6 @@
 import { Page, test } from "@playwright/test";
 import { C100OtherPeopleInTheCase } from "../../../../journeys/manageCases/createCase/C100OtherPeopleInTheCase/C100OtherPeopleInTheCase";
 
-
 test.describe("C100 Create case Other people in the case Tests @manageCases", (): void => {
   test(`Complete the C100 Create case Other people in the case as a solicitor with the following options:
   Not Accessibility testing,
@@ -17,7 +16,7 @@ test.describe("C100 Create case Other people in the case Tests @manageCases", ()
       errorMessaging: false,
       yesNoOtherPeopleInTheCase: true,
       applicantGender: "male",
-      subJourney: true
-    })
+      subJourney: true,
+    });
   });
 });

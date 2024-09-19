@@ -5,7 +5,6 @@ import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { ApplicantGender } from "../../../../../common/types";
 
-
 enum UniqueSelectors {
   applicantFirstNameInput = "#otherPartyInTheCaseRevised_0_firstName",
   applicantLastNameInput = "#otherPartyInTheCaseRevised_0_lastName",
@@ -294,7 +293,9 @@ export class OtherPeopleInTheCase1Page {
     );
   }
 
-  private static async checkFormLabelsWhenAddNewClicked(page: Page): Promise<void> {
+  private static async checkFormLabelsWhenAddNewClicked(
+    page: Page,
+  ): Promise<void> {
     await Promise.all([
       Helpers.checkGroup(
         page,
@@ -322,7 +323,6 @@ export class OtherPeopleInTheCase1Page {
       ),
     ]);
   }
-
 
   private static async preferredGenderValidation(page: Page): Promise<void> {
     await Promise.all([
