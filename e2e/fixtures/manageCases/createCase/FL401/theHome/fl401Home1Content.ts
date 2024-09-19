@@ -5,6 +5,14 @@ export enum Fl401Home1Content {
   labelYes = 'Yes',
   labelNo = 'No',
   postcodeLink = " I can't enter a UK postcode ",
+  findAddress = 'Find address',
+  bpBuildingAndStreet = "Buckingham Palace",
+  bpAddressLine2 = "",
+  bpAddressLine3 = "",
+  bpCity = "London",
+  bpCounty = "",
+  bpPostalCode = "SW1A 1AA",
+  bpCountry = "United Kingdom",
   topFormLabel1 = 'Enter a UK postcode',
   topFormLabel2 = '*Who currently lives at the above address (please select all that apply)? (Optional)',
   topFormLabel3 = 'The applicant',
@@ -43,6 +51,10 @@ export enum Fl401Home1Content {
   childFormLabel2 = '*Child’s full name (Optional)',
   childFormLabel3 = 'Child’s age (Optional)',
   childFormLabel4 = '*Is the respondent also responsible for the child? (Optional)',
+  childFullName = 'Automated Tester Child',
+  childAge = '12',
+  intendedAddressFormLabel = '*Did the applicant or the respondent ever intend to live in the address? (Optional)',
+
 
   continue='Continue'
 }

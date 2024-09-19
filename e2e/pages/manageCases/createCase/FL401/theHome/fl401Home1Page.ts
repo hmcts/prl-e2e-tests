@@ -4,6 +4,11 @@ import { Selectors } from "../../../../../common/selectors";
 import { Fl401Home1Content } from "../../../../../fixtures/manageCases/createCase/FL401/theHome/fl401Home1Content";
 import { Helpers } from "../../../../../common/helpers";
 
+enum uniqueSelectors {
+  intendedHomeDiv = 'div#home_intendToLiveAtTheAddress > fieldset > div',
+  homeChildrenDiv = 'div#home_children > div',
+}
+
 enum checkboxIDs {
   applicantHome = '#home_peopleLivingAtThisAddress-applicant',
   respondentHome = '#home_peopleLivingAtThisAddress-respondent',
@@ -46,12 +51,19 @@ export type FL401ApplicantOrRespondentNotCurrentlyHome =
   | 'Yes, the respondent'
   | 'No'
 
+export type FL401ApplicantOrRespondentIntendedHome =
+  'Yes, both of them'
+  | 'Yes, the applicant'
+  | 'Yes, the respondent'
+  | 'No'
+
 interface FL401HomePageOptions {
-  page: Page,
-  accessibilityTest: boolean,
-  errorMessaging: boolean,
-  fl401HomeYesNo: boolean,
-  fl401ApplicantOrRespondentNotCurrentlyHome: FL401ApplicantOrRespondentNotCurrentlyHome
+  page: Page;
+  accessibilityTest: boolean;
+  errorMessaging: boolean;
+  fl401HomeYesNo: boolean;
+  fl401ApplicantOrRespondentNotCurrentlyHome: FL401ApplicantOrRespondentNotCurrentlyHome;
+  fl401ApplicantOrRespondentIntendedHome?: FL401ApplicantOrRespondentIntendedHome;
 }
 
 interface CheckPageLoadsOptions {
@@ -63,7 +75,12 @@ interface CheckPageLoadsOptions {
 interface FillInTopLevelFieldsOptions {
   page: Page,
   fl401HomeYesNo: boolean,
-  fl401ApplicantOrRespondentNotCurrentlyHome: FL401ApplicantOrRespondentNotCurrentlyHome
+  fl401ApplicantOrRespondentNotCurrentlyHome: FL401ApplicantOrRespondentNotCurrentlyHome,
+}
+
+interface AddNewChildOptions {
+  page: Page,
+  fl401HomeYesNo: boolean,
 }
 
 
@@ -73,7 +90,8 @@ export class Fl401Home1Page {
      accessibilityTest,
      errorMessaging,
      fl401HomeYesNo,
-     fl401ApplicantOrRespondentNotCurrentlyHome
+     fl401ApplicantOrRespondentNotCurrentlyHome,
+     fl401ApplicantOrRespondentIntendedHome
    }: FL401HomePageOptions): Promise<void> {
     page
   }
@@ -132,14 +150,73 @@ export class Fl401Home1Page {
   private static async fillInTopLevelFields({
     page,
     fl401HomeYesNo,
-    fl401ApplicantOrRespondentNotCurrentlyHome
+    fl401ApplicantOrRespondentNotCurrentlyHome,
   }: FillInTopLevelFieldsOptions): Promise<void> {
     for (let checkboxID of Object.values(checkboxIDs)) {
       await page.check(checkboxID);
     }
     switch (fl401ApplicantOrRespondentNotCurrentlyHome) {
+      case 'Yes, both of them':
+        await page.click(
+          radioIDs.livedAtHomeYesBothOfThem
+        );
+        break
+      case 'Yes, the applicant':
+        await page.click(
+          radioIDs.livedAtHomeYesApplicant
+        );
+        break
       case 'Yes, the respondent':
-
+        await page.click(
+          radioIDs.livedAtHomeYesRespondent
+        );
+        break
+      case 'No':
+        await page.click(
+          radioIDs.neverLivedAtAddress
+        );
+        break
+      default:
+        console.log(
+          `Unexpected value for fl401ApplicantOrRespondentNotCurrentlyHome: ${fl401ApplicantOrRespondentNotCurrentlyHome}`
+        );
+        break
     }
+  }
+
+  private static async addNewChild({
+    page,
+    fl401HomeYesNo
+ }: AddNewChildOptions) : Promise<void> {
+    await page.click(
+      `${Selectors.button}:text-is("${Fl401Home1Content.childAddNewButton}")`
+    );
+    await Promise.all(
+      [
+        Helpers.checkGroup(
+          page,
+          4,
+          Fl401Home1Content,
+          'childLabel',
+          `${uniqueSelectors.homeChildrenDiv} > ${Selectors.GovukFormLabel}`
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${uniqueSelectors.homeChildrenDiv} > ${Selectors.GovukFormLabel}:text-is("${Fl401Home1Content.labelYes}")`,
+          2
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${uniqueSelectors.homeChildrenDiv} > ${Selectors.GovukFormLabel}:text-is("${Fl401Home1Content.labelNo}")`,
+          2
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.h3}:text-is("${Fl401Home1Content.childHeading3}")`,
+          1
+        )
+      ]
+    );
+
   }
 }
