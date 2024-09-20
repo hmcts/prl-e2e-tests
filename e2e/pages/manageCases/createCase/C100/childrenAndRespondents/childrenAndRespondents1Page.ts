@@ -7,7 +7,7 @@ import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelp
 enum UniqueSelectors {
   respondentsRelationshipInput = "#buffChildAndRespondentRelations_0_childAndRespondentRelation",
   childLiveWithThisPersonYes = "#buffChildAndRespondentRelations_0_childLivesWith_Yes",
-  childLiveWithThisPersonNo = "#buffChildAndRespondentRelations_0_childLivesWith_No"
+  childLiveWithThisPersonNo = "#buffChildAndRespondentRelations_0_childLivesWith_No",
 }
 
 enum dtAndDdTags {
@@ -82,7 +82,7 @@ export class ChildrenAndRespondents1Page {
 
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${ChildrenAndRespondents1Content.continue}")`
+      `${Selectors.button}:text-is("${ChildrenAndRespondents1Content.continue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -100,7 +100,7 @@ export class ChildrenAndRespondents1Page {
         `${Selectors.GovukErrorMessage}:text-is("${ChildrenAndRespondents1Content.errorBanner}")`,
         1,
       ),
-      ])
+    ]);
   }
 
   private static async fillInFields(page: Page): Promise<void> {}
