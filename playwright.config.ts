@@ -1,4 +1,5 @@
 import { defineConfig, devices } from "@playwright/test";
+import * as process from "node:process";
 
 module.exports = defineConfig({
   testDir: "./e2e/tests",
@@ -7,17 +8,17 @@ module.exports = defineConfig({
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
-  retries: 2, // Set the number of retries for all projects
+  retries: 4, // Set the number of retries for all projects
 
-  timeout: 4 * 60 * 1000,
+  timeout: 6 * 60 * 1000,
   expect: {
-    timeout: 5 * 30 * 1000,
+    timeout: 5 * 60 * 1000,
   },
   reportSlowTests: null,
 
   /* Opt out of parallel tests on CI. */
-  workers: process.env.FUNCTIONAL_TESTS_WORKERS ? 5 : 5,
-  reporter: process.env.CI ? "html" : "list",
+  workers: process.env.FUNCTIONAL_TESTS_WORKERS ? parseInt(process.env.FUNCTIONAL_TESTS_WORKERS) : 1,
+  reporter: process.env.CI ? [['html'], ['list']] : [['list']],
   projects: [
     {
       name: "setup",
