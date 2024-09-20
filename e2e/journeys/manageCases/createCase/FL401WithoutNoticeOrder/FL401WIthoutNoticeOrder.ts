@@ -12,25 +12,23 @@ import { WithoutNoticeOrder4Page } from "../../../../pages/manageCases/createCas
 import { SolicitorCreateInitial } from "../solicitorCreateInitial";
 
 interface fl401WithoutNoticeOrderOptions {
-  page: Page,
-  accessibilityTest: boolean,
-  errorMessaging: boolean,
-  isWithoutNoticeDetailsYes: boolean,
-  isWithoutNoticeDetailsBailConditions: bailConditionRadios,
-  subJourney: boolean
+  page: Page;
+  accessibilityTest: boolean;
+  errorMessaging: boolean;
+  isWithoutNoticeDetailsYes: boolean;
+  isWithoutNoticeDetailsBailConditions: bailConditionRadios;
+  subJourney: boolean;
 }
 
 export class FL401WithoutNoticeOrder {
-  public static async fl401WithoutNoticeOrder(
-    {
-      page,
-      accessibilityTest,
-      errorMessaging,
-      isWithoutNoticeDetailsYes,
-      isWithoutNoticeDetailsBailConditions,
-      subJourney
-    }: fl401WithoutNoticeOrderOptions
-  ): Promise<void> {
+  public static async fl401WithoutNoticeOrder({
+    page,
+    accessibilityTest,
+    errorMessaging,
+    isWithoutNoticeDetailsYes,
+    isWithoutNoticeDetailsBailConditions,
+    subJourney,
+  }: fl401WithoutNoticeOrderOptions): Promise<void> {
     if (subJourney) {
       await SolicitorCreateInitial.createInitialCase({
         page: page,
