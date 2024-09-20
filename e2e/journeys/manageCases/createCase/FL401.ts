@@ -35,7 +35,7 @@ export class FL401 {
     yesNoFL401ApplicantDetails,
     applicantGender,
     isWithoutNoticeDetailsYes,
-    isWithoutNoticeDetailsBailConditions
+    isWithoutNoticeDetailsBailConditions,
   }: fl401Options): Promise<void> {
     await SolicitorCreateInitial.createInitialCase({
       page: page,
@@ -56,9 +56,10 @@ export class FL401 {
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
       isWithoutNoticeDetailsYes: isWithoutNoticeDetailsYes,
-      isWithoutNoticeDetailsBailConditions: isWithoutNoticeDetailsBailConditions,
+      isWithoutNoticeDetailsBailConditions:
+        isWithoutNoticeDetailsBailConditions,
       subJourney: false,
-    })
+    });
     await FL401ApplicantDetails.fl401ApplicantDetails({
       page: page,
       accessibilityTest: accessibilityTest,
