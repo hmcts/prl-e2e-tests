@@ -5,28 +5,31 @@ import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 
 enum UniqueSelectors {
-  respondentsRelationshipInput = "#buffChildAndRespondentRelations_0_childAndRespondentRelation",
+  respondentsRelationshipDropdown = "#buffChildAndRespondentRelations_0_childAndRespondentRelation",
+  giveDetailsForOtherRelationshipInput = "#buffChildAndRespondentRelations_0_childAndRespondentRelationOtherDetails",
   childLiveWithThisPersonYes = "#buffChildAndRespondentRelations_0_childLivesWith_Yes",
   childLiveWithThisPersonNo = "#buffChildAndRespondentRelations_0_childLivesWith_No",
 }
 
-enum dtAndDdTags {
-  respondentsFullNameLabel = "#buffChildAndRespondentRelations_0_0 > fieldset > ccd-field-read > div > ccd-field-read-label > div > .case-field > dt", // this picks up both labels
-  respondentsFullName = "",
-  childNameLabel = "",
-  childName = "",
-}
+// enum dtAndDdTags {
+//   respondentsFullNameLabel = "#buffChildAndRespondentRelations_0_0 > fieldset > ccd-field-read > div > ccd-field-read-label > div > .case-field > dt", // this picks up both labels
+//   respondentsFullName = "",
+//   childNameLabel = "",
+//   childName = "",
+// }
 
 export class ChildrenAndRespondents1Page {
   public static async childrenAndRespondents1Page(
     page: Page,
     accessibilityTest: boolean,
+    errorMessaging: boolean,
+    yesNoChildrenAndRespondents: boolean,
   ): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest);
-    // if (errorMessaging) {
-    //   await this.triggerErrorMessages(page);
-    // }
-    // await this.fillInFields(page);
+    if (errorMessaging) {
+      await this.triggerErrorMessages(page);
+    }
+    await this.fillInFields(page, yesNoChildrenAndRespondents);
   }
 
   private static async checkPageLoads(
@@ -92,16 +95,90 @@ export class ChildrenAndRespondents1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorValidation}:text-is("${ChildrenAndRespondents1Content.errorBanner}")`,
+        `${Selectors.GovukErrorValidation}:text-is("${ChildrenAndRespondents1Content.errorMessageRespondentsRelationship}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${ChildrenAndRespondents1Content.errorBanner}")`,
+        `${Selectors.GovukErrorMessage}:text-is("${ChildrenAndRespondents1Content.errorMessageRespondentsRelationship}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorValidation}:text-is("${ChildrenAndRespondents1Content.errorMessageDoesChildLiveWithPerson}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorMessage}:text-is("${ChildrenAndRespondents1Content.errorMessageDoesChildLiveWithPerson}")`,
+        1,
+      ),
+    ]);
+    await page.selectOption(
+      `${UniqueSelectors.respondentsRelationshipDropdown}`,
+      ChildrenAndRespondents1Content.selectionForOtherRelationship,
+    );
+    await page.click(
+      `${Selectors.button}:text-is("${ChildrenAndRespondents1Content.continue}")`,
+    );
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorValidation}:text-is("${ChildrenAndRespondents1Content.errorMessageDoesChildLiveWithPerson}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorMessage}:text-is("${ChildrenAndRespondents1Content.errorMessageDoesChildLiveWithPerson}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorValidation}:text-is("${ChildrenAndRespondents1Content.errorMessageRelationshipOtherGiveDetails}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorMessage}:text-is("${ChildrenAndRespondents1Content.errorMessageRelationshipOtherGiveDetails}")`,
         1,
       ),
     ]);
   }
 
-  private static async fillInFields(page: Page): Promise<void> {}
+  private static async fillInFields(
+    page: Page,
+    yesNoChildrenAndRespondents: boolean,
+  ): Promise<void> {
+    if (yesNoChildrenAndRespondents) {
+      await page.selectOption(
+        `${UniqueSelectors.respondentsRelationshipDropdown}`,
+        ChildrenAndRespondents1Content.selectionForMotherRelationship,
+      );
+      await page.click(`${UniqueSelectors.childLiveWithThisPersonYes}`);
+    } else {
+      await page.selectOption(
+        `${UniqueSelectors.respondentsRelationshipDropdown}`,
+        ChildrenAndRespondents1Content.selectionForOtherRelationship,
+      );
+      await page.fill(
+        `${UniqueSelectors.giveDetailsForOtherRelationshipInput}`,
+        ChildrenAndRespondents1Content.loremIpsum,
+      );
+      await this.giveDetailsOtherRelationshipStaticText(page);
+      await page.click(`${UniqueSelectors.childLiveWithThisPersonNo}`);
+    }
+    await page.click(
+      `${Selectors.button}:text-is("${ChildrenAndRespondents1Content.continue}")`,
+    );
+  }
+
+  private static async giveDetailsOtherRelationshipStaticText(
+    page: Page,
+  ): Promise<void> {
+    await Helpers.checkVisibleAndPresent(
+      page,
+      `${Selectors.GovukFormLabel}:text-is("${ChildrenAndRespondents1Content.formLabelOtherRelationship}")`,
+      1,
+    );
+  }
 }

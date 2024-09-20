@@ -27,8 +27,9 @@ export type c100SolicitorEvents =
   | "Type of application"
   | "Hearing urgency"
   | "Applicant details"
+  | "Other people in the case"
   | "Child details"
-  | "Other people in the case";
+  | "Children and respondents";
 
 export type fl401SolicitorEvents =
   | "Case name"
