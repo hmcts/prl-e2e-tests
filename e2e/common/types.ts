@@ -35,6 +35,7 @@ export type fl401SolicitorEvents =
   | "Applicant details"
   | "Respondent details"
   | "Without notice order"
-  | "Applicant's family";
+  | "Applicant's family"
+  | "Other proceedings";
 
 export type ApplicantGender = "female" | "male" | "other";

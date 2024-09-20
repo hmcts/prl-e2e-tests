@@ -6,8 +6,10 @@ import { FL401RespondentDetails } from "./FL401RespondentDetails/FL401Respondent
 import { FL401WithoutNoticeOrder } from "./FL401WithoutNoticeOrder/FL401WIthoutNoticeOrder";
 import { FL401ApplicantDetails } from "./FL401ApplicantDetails/FL401ApplicantDetails";
 import { FL401ApplicantsFamily } from "./FL401ApplicantsFamily/FL401ApplicantsFamily";
+import { FL401OtherProceedings } from "./FL401OtherProceedings/FL401OtherProceedings";
 
 export type bailConditionRadios = "Yes" | "No" | "Don't know";
+export type otherProceedingsRadios = "Yes" | "No" | "Don't know";
 
 interface fl401Options {
   page: Page;
@@ -21,6 +23,7 @@ interface fl401Options {
   applicantGender: ApplicantGender;
   isWithoutNoticeDetailsYes: boolean;
   isWithoutNoticeDetailsBailConditions: bailConditionRadios;
+  otherProceedingsRadios: otherProceedingsRadios;
 }
 
 export class FL401 {
@@ -35,7 +38,8 @@ export class FL401 {
     yesNoFL401ApplicantDetails,
     applicantGender,
     isWithoutNoticeDetailsYes,
-    isWithoutNoticeDetailsBailConditions
+    isWithoutNoticeDetailsBailConditions,
+    otherProceedingsRadios,
   }: fl401Options): Promise<void> {
     await SolicitorCreateInitial.createInitialCase({
       page: page,
@@ -56,9 +60,10 @@ export class FL401 {
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
       isWithoutNoticeDetailsYes: isWithoutNoticeDetailsYes,
-      isWithoutNoticeDetailsBailConditions: isWithoutNoticeDetailsBailConditions,
+      isWithoutNoticeDetailsBailConditions:
+        isWithoutNoticeDetailsBailConditions,
       subJourney: false,
-    })
+    });
     await FL401ApplicantDetails.fl401ApplicantDetails({
       page: page,
       accessibilityTest: accessibilityTest,
@@ -79,6 +84,13 @@ export class FL401 {
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
       applicantHasChildren: applicantHasChildren,
+      subJourney: false,
+    });
+    await FL401OtherProceedings.fl401OtherProceedings({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      otherProceedingsRadios: otherProceedingsRadios,
       subJourney: false,
     });
   }
