@@ -2,10 +2,10 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { OtherPeopleInTheCaseSubmitContent } from "../../../../../fixtures/manageCases/createCase/C100/otherPeopleInTheCaseRevised/otherPeopleInTheCaseSubmitContent";
 import { Helpers } from "../../../../../common/helpers";
-
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { OtherPeopleInTheCase1Content } from "../../../../../fixtures/manageCases/createCase/C100/otherPeopleInTheCaseRevised/otherPeopleInTheCaseRevised1Content.";
 import { ApplicantGender } from "../../../../../common/types";
+
 
 enum UniquesFields {
   last5yearsLocator = ".text-16 > ccd-field-read > div > ccd-field-read-label > div > ccd-read-text-area-field > span",
@@ -37,6 +37,7 @@ export class OtherPeopleInTheCaseSubmitPage {
       page,
       accessibilityTest,
       yesNoOtherPeopleInTheCase,
+      applicantGender
     );
     await this.checkFilledData(
       page,
@@ -49,6 +50,7 @@ export class OtherPeopleInTheCaseSubmitPage {
     page: Page,
     accessibilityTest: boolean,
     yesNoOtherPeopleInTheCase: boolean,
+    applicantGender: ApplicantGender
   ): Promise<void> {
     await page.waitForSelector(
       `${Selectors.h2}:text-is("${OtherPeopleInTheCaseSubmitContent.h2}")`,
@@ -58,11 +60,11 @@ export class OtherPeopleInTheCaseSubmitPage {
       `${Selectors.GovukHeadingL}:text-is("${OtherPeopleInTheCaseSubmitContent.pageTitle}")`,
       1,
     );
-    if (yesNoOtherPeopleInTheCase) {
+    if (yesNoOtherPeopleInTheCase && applicantGender === "male" || yesNoOtherPeopleInTheCase && applicantGender === "female") {
       await Promise.all([
         Helpers.checkGroup(
           page,
-          13,
+          12,
           OtherPeopleInTheCaseSubmitContent,
           "text16",
           `${Selectors.GovukText16}`,
@@ -74,15 +76,49 @@ export class OtherPeopleInTheCaseSubmitPage {
           "text16A",
           `${Selectors.GovukText16}`,
         ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukText16}:text-is("${OtherPeopleInTheCaseSubmitContent.gender}")`,
+          1,
+        ),
+      ]);
+    } else if (yesNoOtherPeopleInTheCase && applicantGender === "other") {
+      await Promise.all([
+        Helpers.checkGroup(
+          page,
+          12,
+          OtherPeopleInTheCaseSubmitContent,
+          "text16",
+          `${Selectors.GovukText16}`,
+        ),
+        Helpers.checkGroup(
+          page,
+          12,
+          OtherPeopleInTheCaseSubmitContent,
+          "text16A",
+          `${Selectors.GovukText16}`,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukText16}:text-is("${OtherPeopleInTheCaseSubmitContent.gender}")`,
+          2,
+        ),
       ]);
     } else {
-      await Helpers.checkGroup(
-        page,
-        13,
-        OtherPeopleInTheCaseSubmitContent,
-        "text16",
-        `${Selectors.GovukText16}`,
-      );
+      await Promise.all([
+        Helpers.checkGroup(
+          page,
+          12,
+          OtherPeopleInTheCaseSubmitContent,
+          "text16",
+          `${Selectors.GovukText16}`,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukText16}:text-is("${OtherPeopleInTheCaseSubmitContent.gender}")`,
+          1,
+        ),
+      ])
     }
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
@@ -109,12 +145,32 @@ export class OtherPeopleInTheCaseSubmitPage {
         `${Selectors.GovukText16}:text-is("${OtherPeopleInTheCase1Content.applicantPrevName}")`,
         1,
       ),
-      Helpers.checkVisibleAndPresent(
+    ]);
+    if (applicantGender === "male" || applicantGender === "female") {
+      await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukText16}:text-is("${Helpers.capitalizeFirstPart(applicantGender)}")`,
         1,
-      ),
-    ]);
+      )
+    } else if (applicantGender === "other") {
+      await Promise.all([
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukText16}:text-is("${OtherPeopleInTheCaseSubmitContent.preferredGender}")`,
+          1,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukText16}:text-is("${OtherPeopleInTheCaseSubmitContent.preferredGender}")`,
+          1,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukText16}:text-is("${OtherPeopleInTheCase1Content.loremIpsum}")`,
+          1,
+        )
+      ])
+    }
 
     if (yesNoOtherPeopleInTheCase) {
       await Promise.all([

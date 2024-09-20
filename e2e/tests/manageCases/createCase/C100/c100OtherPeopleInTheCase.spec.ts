@@ -4,7 +4,7 @@ import { C100OtherPeopleInTheCase } from "../../../../journeys/manageCases/creat
 test.describe("C100 Create case Other people in the case Tests @manageCases", (): void => {
   test(`Complete the C100 Create case Other people in the case as a solicitor with the following options:
   Not Accessibility testing,
-  Not Error message testing,
+  Error message testing,
   Saying yes to all options,
   Setting the applicant Gender to male. @crossbrowserManageCases`, async ({
     page,
@@ -13,7 +13,7 @@ test.describe("C100 Create case Other people in the case Tests @manageCases", ()
       page: page,
       user: "solicitor",
       accessibilityTest: false,
-      errorMessaging: false,
+      errorMessaging: true,
       yesNoOtherPeopleInTheCase: true,
       applicantGender: "male",
       subJourney: true,
@@ -21,7 +21,7 @@ test.describe("C100 Create case Other people in the case Tests @manageCases", ()
   });
   test(`Complete the C100 Create case Other people in the case as a solicitor with the following options:
   Not Accessibility testing,
-  Error message testing,
+  Not Error message testing,
   Saying no to all options,
   Setting the applicant Gender to female. @crossbrowserManageCases`, async ({
     page,
@@ -30,7 +30,7 @@ test.describe("C100 Create case Other people in the case Tests @manageCases", ()
       page: page,
       user: "solicitor",
       accessibilityTest: false,
-      errorMessaging: true,
+      errorMessaging: false,
       yesNoOtherPeopleInTheCase: false,
       applicantGender: "female",
       subJourney: true,
