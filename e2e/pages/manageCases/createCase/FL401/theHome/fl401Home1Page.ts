@@ -7,7 +7,7 @@ import { FL401 } from "../../../../../journeys/manageCases/createCase/FL401";
 
 enum uniqueSelectors {
   intendedHomeDiv = 'div#home_intendToLiveAtTheAddress > fieldset > div > ',
-  homeChildrenDiv = 'div#home_children > div > ',
+  homeChildrenDiv = 'div#home_children > div ',
   homeAddressLookupDiv = 'div#home_address_address ',
   homePeopleLiveAtAddress = 'div#home_peopleLivingAtThisAddress > fieldset > div > ',
   homeEverLivedAtAddress = 'div#home_everLivedAtTheAddress > fieldset > div > ',
@@ -49,25 +49,25 @@ enum inputIDs {
   homeAddressTownOrCity = '#home_address__detailPostTown',
   homeAddressAddressCounty = '#home_address__detailCounty',
   homeAddressPostalCode = '#home_address__detailPostCode',
-  homeAddressCountry = '#home_address__detailCountry',
+  homeAddressAddressCountry = '#home_address__detailCountry',
   homeMortgagePostcodeInput = '#home_mortgages_address_address_postcodeInput',
   homeMortgageSelectAddress = '#home_mortgages_address_address_addressList',
-  homeMortgageBuildingAndStreet = '#home_mortgages__detailAddressLine1',
-  homeMortgageAddressLine2 = '#home_mortgages__detailAddressLine2',
-  homeMortgageAddressLine3 = '#home_mortgages__detailAddressLine3',
-  homeMortgageTownOrCity = '#home_mortgages__detailPostTown',
-  homeMortgageAddressCounty = '#home_mortgages__detailCounty',
-  homeMortgagePostalCode = '#home_mortgages__detailPostCode',
-  homeMortgageAddressCountry = '#home_mortgages__detailCountry',
+  homeMortgageBuildingAndStreet = '#home_mortgages_address__detailAddressLine1',
+  homeMortgageAddressLine2 = '#home_mortgages_address__detailAddressLine2',
+  homeMortgageAddressLine3 = '#home_mortgages_address__detailAddressLine3',
+  homeMortgageTownOrCity = '#home_mortgages_address__detailPostTown',
+  homeMortgageAddressCounty = '#home_mortgages_address__detailCounty',
+  homeMortgagePostalCode = '#home_mortgages_address__detailPostCode',
+  homeMortgageAddressCountry = '#home_mortgages_address__detailCountry',
   homeLandlordPostcodeInput = '#home_landlords_address_address_postcodeInput',
   homeLandlordSelectAddress = '#home_landlords_address_address_addressList',
-  homeLandlordBuildingAndStreet = '#home_landlords__detailAddressLine1',
-  homeLandlordAddressLine2 = '#home_landlords__detailAddressLine2',
-  homeLandlordAddressLine3 = '#home_landlords__detailAddressLine3',
-  homeLandlordTownOrCity = '#home_landlords__detailPostTown',
-  homeLandlordAddressCounty = '#home_landlords__detailCounty',
-  homeLandlordPostalCode = '#home_landlords__detailPostCode',
-  homeLandlordAddressCountry = '#home_landlords__detailCountry',
+  homeLandlordBuildingAndStreet = '#home_landlords_address__detailAddressLine1',
+  homeLandlordAddressLine2 = '#home_landlords_address__detailAddressLine2',
+  homeLandlordAddressLine3 = '#home_landlords_address__detailAddressLine3',
+  homeLandlordTownOrCity = '#home_landlords_address__detailPostTown',
+  homeLandlordAddressCounty = '#home_landlords_address__detailCounty',
+  homeLandlordPostalCode = '#home_landlords_address__detailPostCode',
+  homeLandlordAddressCountry = '#home_landlords_address__detailCountry',
   secondLevelOccupantDetails = 'home_textAreaSomethingElse',
   everLivedAtAddress = '#home_everLivedAtTheAddress-',
   intendToLiveAtAddress = '#home_intendToLiveAtTheAddress-',
@@ -98,6 +98,7 @@ export type addressRadios =
 interface FL401HomePageOptions {
   page: Page;
   accessibilityTest: boolean;
+  applicantHasChildren: boolean;
   fl401HomeYesNo: boolean;
   fl401EverLivedAtAddress: addressRadios;
   fl401IntendToLiveAtAddress?: addressRadios;
@@ -118,6 +119,7 @@ interface CheckPageLoadsOptions {
 
 interface FillInTopLevelFieldsOptions {
   page: Page,
+  applicantHasChildren: boolean;
   fl401HomeYesNo: boolean,
 }
 
@@ -154,6 +156,7 @@ export class Fl401Home1Page {
   public static async fl401Home1Page({
      page,
      accessibilityTest,
+     applicantHasChildren,
      fl401HomeYesNo,
      fl401EverLivedAtAddress,
      fl401IntendToLiveAtAddress
@@ -162,16 +165,20 @@ export class Fl401Home1Page {
       page, accessibilityTest
     });
     await this.fillInTopLevelFields({
-      page, fl401HomeYesNo
+      page, fl401HomeYesNo, applicantHasChildren
     })
-    console.log('pause')
     await this.fillInAddressFields({
       page,
       fl401HomeYesNo,
       fl401EverLivedAtAddress,
       fl401IntendToLiveAtAddress
     })
-    console.log('Filled In')
+    if (applicantHasChildren) {
+      await this.addNewChild({
+        page,
+        fl401HomeYesNo
+      })
+    }
   }
 
   private static async fillInAddressFields({
@@ -210,30 +217,9 @@ export class Fl401Home1Page {
         page, addressType
       )
     }
-    // await page.fill(
-    //   `${inputIDs.homeAddressPostcodeInput}`,
-    //   `${Fl401Home1Content.bpPostalCode}`
-    // );
-    // await page.click(
-    //   `${uniqueSelectors.homeAddressLookupDiv}${Selectors.button}:text-is("${Fl401Home1Content.findAddress}")`
-    // );
-    // if (fl401HomeYesNo) {
-    //   await page.fill(
-    //     `${inputIDs.homeMortgagePostcodeInput}`,
-    //     `${Fl401Home1Content.bpPostalCode}`
-    //   );
-    //   await page.click(
-    //     `${uniqueSelectors.mortgagesDiv}${Selectors.button}:text-is("${Fl401Home1Content.findAddress}")`
-    //   );
-    //   await page.fill(
-    //     `${inputIDs.homeLandlordPostcodeInput}`,
-    //     `${Fl401Home1Content.bpPostalCode}`
-    //   );
-    //   await page.click(
-    //     `${uniqueSelectors.landlordDiv}${Selectors.button}:text-is("${Fl401Home1Content.findAddress}")`
-    //   );
-    // }
   }
+
+
 
   // private static async checkPageLoads({
   //   page,
@@ -338,7 +324,7 @@ export class Fl401Home1Page {
           page,
           4,
           Fl401Home1Content,
-          'childLabel',
+          'childFormLabel',
           `${uniqueSelectors.homeChildrenDiv}${Selectors.GovukFormLabel}`
         ),
         Helpers.checkVisibleAndPresent(
@@ -464,13 +450,15 @@ export class Fl401Home1Page {
 
   private static async fillInTopLevelFields({
     page,
+    applicantHasChildren,
     fl401HomeYesNo,
   }: FillInTopLevelFieldsOptions): Promise<void> {
     for (let checkboxID of Object.values(checkboxIDs)) {
       await page.check(checkboxID);
     }
     const yesNoString = fl401HomeYesNo ? 'Yes' : 'No'
-    const childrenAtAddressKey = `childrenAtAddress${yesNoString}` as keyof typeof inputIDs;
+    const hasChildren = applicantHasChildren ? 'Yes' : 'No'
+    const childrenAtAddressKey = `childrenAtAddress${hasChildren}` as keyof typeof inputIDs;
     await page.click(inputIDs[childrenAtAddressKey]);
     const propertyAdaptedKey = `propertyAdapted${yesNoString}` as keyof typeof inputIDs;
     await page.click(inputIDs[propertyAdaptedKey]);
@@ -588,7 +576,6 @@ export class Fl401Home1Page {
     const addressCountyKey = `${addressType}AddressCounty` as keyof typeof inputIDs;
     const postalCodeKey = `${addressType}PostalCode` as keyof typeof inputIDs;
     const addressCountryKey = `${addressType}AddressCountry` as keyof typeof inputIDs;
-    console.log(addressType)
     await Promise.all([
       expect(
         page.locator(inputIDs[buildingKey]),
@@ -614,6 +601,5 @@ export class Fl401Home1Page {
         Fl401Home1Content.bpCountry,
       ),
     ]);
-    console.log('done validat')
   }
 }

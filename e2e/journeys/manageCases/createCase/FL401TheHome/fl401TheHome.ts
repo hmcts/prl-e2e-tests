@@ -7,6 +7,7 @@ import { addressRadios, Fl401Home1Page } from "../../../../pages/manageCases/cre
 interface FL401TheHomeOptions {
   page: Page;
   accessibilityTest: boolean;
+  applicantHasChildren: boolean;
   fl401HomeYesNo: boolean;
   fl401EverLiveAtAddress: addressRadios;
   fl401IntendToLiveAtAddress: addressRadios;
@@ -17,6 +18,7 @@ export class FL401TheHome {
   public static async fl401TheHome({
     page,
     accessibilityTest,
+    applicantHasChildren,
     fl401HomeYesNo,
     fl401EverLiveAtAddress,
     fl401IntendToLiveAtAddress,
@@ -35,6 +37,7 @@ export class FL401TheHome {
     await Fl401Home1Page.fl401Home1Page({
       page,
       accessibilityTest,
+      applicantHasChildren,
       fl401HomeYesNo,
       fl401EverLivedAtAddress: fl401EverLiveAtAddress,
       fl401IntendToLiveAtAddress
