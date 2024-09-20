@@ -89,10 +89,22 @@ export class OtherProceedingsPage {
           `${Selectors.button}:text-is("${OtherProceedingsContent.addNew}")`,
         );
         await this.checkFormLoads(page, accessibilityTest);
-        await page.fill(`${inputIds.nameOfCourt}`, OtherProceedingsContent.exampleNameOfCourt);
-        await page.fill(`${inputIds.caseNumber}`, OtherProceedingsContent.exampleCaseNumber);
-        await page.fill(`${inputIds.typeOfCase}`, OtherProceedingsContent.exampleTypeOfCase);
-        await page.fill(`${inputIds.anyOtherDetails}`, OtherProceedingsContent.exampleOtherDetails);
+        await page.fill(
+          `${inputIds.nameOfCourt}`,
+          OtherProceedingsContent.exampleNameOfCourt,
+        );
+        await page.fill(
+          `${inputIds.caseNumber}`,
+          OtherProceedingsContent.exampleCaseNumber,
+        );
+        await page.fill(
+          `${inputIds.typeOfCase}`,
+          OtherProceedingsContent.exampleTypeOfCase,
+        );
+        await page.fill(
+          `${inputIds.anyOtherDetails}`,
+          OtherProceedingsContent.exampleOtherDetails,
+        );
         const fileInput = page.locator(`${inputIds.uploadRelevantOrder}`);
         await fileInput.setInputFiles(config.testPdfFile);
         await page.click(
@@ -112,7 +124,10 @@ export class OtherProceedingsPage {
         );
         break;
       default:
-        console.log('Unexpected input for otherProceedingsRadios: ', otherProceedingsRadios)
+        console.log(
+          "Unexpected input for otherProceedingsRadios: ",
+          otherProceedingsRadios,
+        );
         await page.click(radioIds.dontKnow);
         await page.click(
           `${Selectors.button}:text-is("${OtherProceedingsContent.continue}")`,
