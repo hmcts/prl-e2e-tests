@@ -6,7 +6,6 @@ import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelp
 import { OtherPeopleInTheCase1Content } from "../../../../../fixtures/manageCases/createCase/C100/otherPeopleInTheCaseRevised/otherPeopleInTheCaseRevised1Content.";
 import { ApplicantGender } from "../../../../../common/types";
 
-
 enum UniquesFields {
   last5yearsLocator = ".text-16 > ccd-field-read > div > ccd-field-read-label > div > ccd-read-text-area-field > span",
 }
@@ -37,7 +36,7 @@ export class OtherPeopleInTheCaseSubmitPage {
       page,
       accessibilityTest,
       yesNoOtherPeopleInTheCase,
-      applicantGender
+      applicantGender,
     );
     await this.checkFilledData(
       page,
@@ -50,7 +49,7 @@ export class OtherPeopleInTheCaseSubmitPage {
     page: Page,
     accessibilityTest: boolean,
     yesNoOtherPeopleInTheCase: boolean,
-    applicantGender: ApplicantGender
+    applicantGender: ApplicantGender,
   ): Promise<void> {
     await page.waitForSelector(
       `${Selectors.h2}:text-is("${OtherPeopleInTheCaseSubmitContent.h2}")`,
@@ -60,7 +59,10 @@ export class OtherPeopleInTheCaseSubmitPage {
       `${Selectors.GovukHeadingL}:text-is("${OtherPeopleInTheCaseSubmitContent.pageTitle}")`,
       1,
     );
-    if (yesNoOtherPeopleInTheCase && applicantGender === "male" || yesNoOtherPeopleInTheCase && applicantGender === "female") {
+    if (
+      (yesNoOtherPeopleInTheCase && applicantGender === "male") ||
+      (yesNoOtherPeopleInTheCase && applicantGender === "female")
+    ) {
       await Promise.all([
         Helpers.checkGroup(
           page,
@@ -118,7 +120,7 @@ export class OtherPeopleInTheCaseSubmitPage {
           `${Selectors.GovukText16}:text-is("${OtherPeopleInTheCaseSubmitContent.gender}")`,
           1,
         ),
-      ])
+      ]);
     }
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
@@ -151,7 +153,7 @@ export class OtherPeopleInTheCaseSubmitPage {
         page,
         `${Selectors.GovukText16}:text-is("${Helpers.capitalizeFirstPart(applicantGender)}")`,
         1,
-      )
+      );
     } else if (applicantGender === "other") {
       await Promise.all([
         Helpers.checkVisibleAndPresent(
@@ -168,8 +170,8 @@ export class OtherPeopleInTheCaseSubmitPage {
           page,
           `${Selectors.GovukText16}:text-is("${OtherPeopleInTheCase1Content.loremIpsum}")`,
           1,
-        )
-      ])
+        ),
+      ]);
     }
 
     if (yesNoOtherPeopleInTheCase) {
