@@ -1,6 +1,5 @@
 import { test } from "@playwright/test";
 import { FL401OtherProceedings } from "../../../../journeys/manageCases/createCase/FL401OtherProceedings/FL401OtherProceedings";
-import { otherProceedingsRadios } from "../../../../journeys/manageCases/createCase/FL401";
 
 test.describe("FL401 Create case other proceedings tests @manageCases", (): void => {
   test(`Complete the FL401 other proceedings event as a solicitor with the following options:

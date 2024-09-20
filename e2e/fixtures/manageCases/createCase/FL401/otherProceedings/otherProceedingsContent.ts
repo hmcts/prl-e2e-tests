@@ -16,4 +16,7 @@ export enum OtherProceedingsContent {
   exampleCaseNumber = "exampleCaseNumber",
   exampleTypeOfCase = "exampleTypeOfCase",
   exampleOtherDetails = "exampleOtherDetails",
+  yes = "Yes",
+  no = "No",
+  dontKnow = "Don't know",
 }
