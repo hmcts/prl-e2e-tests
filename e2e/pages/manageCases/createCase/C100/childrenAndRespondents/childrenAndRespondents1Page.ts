@@ -4,7 +4,11 @@ import { ChildrenAndRespondents1Content } from "../../../../../fixtures/manageCa
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 
-enum UniqueSelectors {}
+enum UniqueSelectors {
+  respondentsRelationshipInput = "#buffChildAndRespondentRelations_0_childAndRespondentRelation",
+  childLiveWithThisPersonYes = "#buffChildAndRespondentRelations_0_childLivesWith_Yes",
+  childLiveWithThisPersonNo = "#buffChildAndRespondentRelations_0_childLivesWith_No"
+}
 
 enum dtAndDdTags {
   respondentsFullNameLabel = "#buffChildAndRespondentRelations_0_0 > fieldset > ccd-field-read > div > ccd-field-read-label > div > .case-field > dt", // this picks up both labels
@@ -76,7 +80,28 @@ export class ChildrenAndRespondents1Page {
     }
   }
 
-  private static async triggerErrorMessages(page: Page): Promise<void> {}
+  private static async triggerErrorMessages(page: Page): Promise<void> {
+    await page.click(
+      `${Selectors.button}:text-is("${ChildrenAndRespondents1Content.continue}")`
+    );
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorSummaryTitle}:text-is("${ChildrenAndRespondents1Content.errorBanner}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorValidation}:text-is("${ChildrenAndRespondents1Content.errorBanner}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorMessage}:text-is("${ChildrenAndRespondents1Content.errorBanner}")`,
+        1,
+      ),
+      ])
+  }
 
   private static async fillInFields(page: Page): Promise<void> {}
 }
