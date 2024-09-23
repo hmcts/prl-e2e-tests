@@ -25,6 +25,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       yesNoRespondentDetails: true,
       respondentGender: "male",
       respondentAddress5Years: "yes",
+      yesNoOtherPeopleInTheCase: true,
       respondentLegalRepresentation: "yes",
       c100ChildGender: "male",
       yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions: "yes",
@@ -44,16 +45,17 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       user: "solicitor",
       accessibilityTest: false,
       errorMessaging: false,
-      yesNoHearingUrgency: false,
-      yesNoApplicantDetails: false,
       yesNoC100TypeOfApplication: false,
       typeOfChildArrangementOrder: "Spend time with order",
       selectionC100TypeOfApplication: "No, permission now sought",
+      yesNoHearingUrgency: false,
+      yesNoApplicantDetails: false,
       applicantGender: "female",
       yesNoRespondentDetails: false,
       respondentGender: "female",
       respondentAddress5Years: "no",
       respondentLegalRepresentation: "no",
+      yesNoOtherPeopleInTheCase: false,
       c100ChildGender: "female",
       yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions: "no",
     });
@@ -80,7 +82,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       yesNoFL401ApplicantDetails: true,
       applicantGender: "male",
       isWithoutNoticeDetailsYes: true,
-      isWithoutNoticeDetailsBailConditions: "Yes"
+      isWithoutNoticeDetailsBailConditions: "Yes",
     });
   });
 
@@ -93,8 +95,8 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Saying yes to applicant details questions,
   Saying yes to Without Notice Order questions,
   Saying "Don't know" to Without Notice Order bail conditions`, async ({
-     page,
-   }): Promise<void> => {
+    page,
+  }): Promise<void> => {
     await FL401.fl401({
       page: page,
       user: "solicitor",
@@ -106,7 +108,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       yesNoFL401ApplicantDetails: true,
       applicantGender: "male",
       isWithoutNoticeDetailsYes: true,
-      isWithoutNoticeDetailsBailConditions: "Don't know"
+      isWithoutNoticeDetailsBailConditions: "Don't know",
     });
   });
 
@@ -117,8 +119,8 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Saying no to all Respondent details questions,
   Saying no to all Type of application questions,
   Saying no to Without Notice Order questions`, async ({
-     page,
-   }): Promise<void> => {
+    page,
+  }): Promise<void> => {
     await FL401.fl401({
       page: page,
       user: "solicitor",
@@ -130,7 +132,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       yesNoFL401ApplicantDetails: false,
       applicantGender: "female",
       isWithoutNoticeDetailsYes: false,
-      isWithoutNoticeDetailsBailConditions: "No"
+      isWithoutNoticeDetailsBailConditions: "No",
     });
   });
 });
