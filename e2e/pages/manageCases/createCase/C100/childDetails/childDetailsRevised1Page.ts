@@ -135,7 +135,7 @@ export class ChildDetailsRevised1Page {
     await page.selectOption(
       `${uniqueSelectors.whoDoesChildLiveWithDropdown}`,
       C100RespondentDetails1Content.respondentFullNameAndAddress,
-    ),
+    );
       await page.click(
         `${Selectors.button}:text-is("${ChildDetailsRevised1Content.continue}")`,
       );
