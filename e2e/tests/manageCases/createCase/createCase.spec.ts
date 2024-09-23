@@ -8,10 +8,12 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Not Error message testing,
   Saying yes to all hearing urgency questions,
   Saying yes to all applicant details questions with a male applicant
+  Saying yes to all respondent details questions with a female respondent 
   Saying yes to all respondent details questions with a male respondent
   Saying yes to all other people in the case questions with a male applicant
   Saying yes to all child details question with a male child 
-  Saying yes to all children and respondents questions @crossbrowserManageCases`, async ({
+  Saying yes to all children and respondents questions
+  With no other child present @crossbrowserManageCases`, async ({
     page,
   }): Promise<void> => {
     await C100.c100({
@@ -32,6 +34,9 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       respondentLegalRepresentation: "yes",
       c100ChildGender: "male",
       yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions: "yes",
+      otherChildPresent: false,
+      otherChildGender: "Male",
+      otherChildDOBKnown: false,
       yesNoChildrenAndRespondents: true,
     });
   });
@@ -41,6 +46,8 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Not Error message testing,
   Saying no to all hearing urgency questions,
   Saying no to all applicant details questions with a female applicant
+  Saying yes to all respondent details questions with a female respondent 
+  With another female child present, with a known DOB
   Saying no to all respondent details questions with a female respondent
   Saying no to all other people in the case questions with a male applicant
   Saying no to all child details question with a female child 
@@ -65,6 +72,9 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       yesNoOtherPeopleInTheCase: false,
       c100ChildGender: "female",
       yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions: "no",
+      otherChildPresent: true,
+      otherChildGender: "Female",
+      otherChildDOBKnown: true,
       yesNoChildrenAndRespondents: false,
     });
   });
