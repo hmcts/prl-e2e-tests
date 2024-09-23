@@ -16,6 +16,8 @@ import { C100OtherPeopleInTheCase } from "./C100OtherPeopleInTheCase/C100OtherPe
 import { C100ChildDetails } from "./C100ChildDetails/c100ChildDetails";
 import { C100ChildGender } from "../../../pages/manageCases/createCase/C100/childDetails/childDetailsRevised1Page";
 import { yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions } from "../../../pages/manageCases/createCase/C100/childDetails/childDetailsRevised2Page";
+import { C100OtherChildrenNotInTheCase } from "./C100OtherChildrenNotInTheCase/C100OtherChildrenNotInTheCase";
+import { C100OtherChildGender } from "../../../pages/manageCases/createCase/C100/otherChildrenNotInTheCase/otherChildNotInTheCase1Page";
 
 interface c100Options {
   page: Page;
@@ -35,6 +37,9 @@ interface c100Options {
   c100ChildGender: C100ChildGender;
   yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions: yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions;
   yesNoOtherPeopleInTheCase: boolean;
+  otherChildPresent: boolean;
+  otherChildGender: C100OtherChildGender;
+  otherChildDOBKnown: boolean;
 }
 
 export class C100 {
@@ -57,6 +62,9 @@ export class C100 {
     c100ChildGender: C100ChildGender,
     yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions:
       yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,
+    otherChildPresent: otherChildPresent,
+    otherChildGender: otherChildGender,
+    otherChildDOBKnown: otherChildDOBKnown,
   }: c100Options): Promise<void> {
     await SolicitorCreateInitial.createInitialCase({
       page: page,
@@ -118,6 +126,15 @@ export class C100 {
       c100ChildGender: C100ChildGender,
       yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions:
         yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,
+      subJourney: false,
+    });
+    await C100OtherChildrenNotInTheCase.c100OtherChildrenNotInTheCase({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      otherChildPresent: otherChildPresent,
+      otherChildGender: otherChildGender,
+      otherChildDOBKnown: otherChildDOBKnown,
       subJourney: false,
     });
   }

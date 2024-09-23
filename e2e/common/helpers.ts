@@ -28,42 +28,10 @@ export class Helpers {
     page: Page,
     event: c100SolicitorEvents | fl401SolicitorEvents,
   ): Promise<void> {
-    await this.checkVisibleAndPresent(
-      page,
-      `.mat-tab-label-content:text-is("Tasks")`,
-      1,
+    await page.waitForSelector(`.mat-tab-label-content:text-is("Tasks")`);
+    await page.click(
+      `${Selectors.markdown} > ${Selectors.div} > ${Selectors.p} > ${Selectors.a}:text-is("${event}")`,
     );
-    for (let i = 0; i < 5; i++) {
-      try {
-        if (await page.locator(`h1`).isVisible()) {
-          break;
-        } else {
-          if (
-            await page
-              .locator(
-                `${Selectors.markdown} > ${Selectors.div} > ${Selectors.p} > ${Selectors.a}:text-is("${event}")`,
-              )
-              .isVisible()
-          ) {
-            await page.click(
-              `${Selectors.markdown} > ${Selectors.div} > ${Selectors.p} > ${Selectors.a}:text-is("${event}")`,
-            );
-          } else {
-            await page.reload();
-            await this.chooseEventFromDropdown(page, event);
-          }
-        }
-      } catch (err) {
-        if (err instanceof Error) {
-          console.log(`Attempt ${i + 1} failed.`);
-        } else {
-          console.log(`Attempt ${i + 1} failed.`);
-        }
-      }
-      if (i < 4) {
-        await new Promise((resolve) => setTimeout(resolve, 10000));
-      }
-    }
   }
 
   public static async checkVisibleAndPresent(
