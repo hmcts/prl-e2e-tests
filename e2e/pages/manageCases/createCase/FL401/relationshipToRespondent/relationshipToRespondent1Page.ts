@@ -4,7 +4,8 @@ import { RelationshipToRespondent1Content } from "../../../../../fixtures/manage
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 
-const respondentRelationshipSelector = "#respondentRelationObject_applicantRelationship-"
+const respondentRelationshipSelector =
+  "#respondentRelationObject_applicantRelationship-";
 
 export type fl401RelationshipToRespondent =
   | "marriedOrCivil"
@@ -108,7 +109,7 @@ export class RelationshipToRespondent1Page {
     relationshipToRespondent,
   }: fillInFieldsOptions): Promise<void> {
     await page.click(
-      `${respondentRelationshipSelector}${relationshipToRespondent}`
+      `${respondentRelationshipSelector}${relationshipToRespondent}`,
     );
     await page.click(
       `${Selectors.button}:text-is("${RelationshipToRespondent1Content.continue}")`,
