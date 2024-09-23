@@ -6,7 +6,7 @@ import Config from "../../../config";
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
 test.describe("Manage cases case solicitor create case tests. @manageCases", (): void => {
-  test.only(`Complete the C100 create case event as a solicitor with the following options:
+  test(`Complete the C100 create case event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
   Saying yes to all hearing urgency questions,
