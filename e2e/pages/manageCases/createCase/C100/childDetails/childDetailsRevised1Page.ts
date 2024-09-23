@@ -131,10 +131,11 @@ export class ChildDetailsRevised1Page {
       `${uniqueSelectors.parentalResponsibilityField}`,
       `${ChildDetailsRevised1Content.parentalResponsibility}`,
     );
-    console.log("stop")
+    console.log("stop");
     await page.selectOption(
       `${uniqueSelectors.whoDoesChildLiveWithDropdown}`,
-      ChildDetailsRevised1Content.selectOptionForEverythingNoTestCases || ChildDetailsRevised1Content.respondentFullNameAndAddress
+      ChildDetailsRevised1Content.selectOptionForEverythingNoTestCases ||
+        ChildDetailsRevised1Content.respondentFullNameAndAddress,
     );
     await page.click(
       `${Selectors.button}:text-is("${ChildDetailsRevised1Content.continue}")`,
