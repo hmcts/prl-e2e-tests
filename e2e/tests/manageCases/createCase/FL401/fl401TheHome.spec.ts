@@ -1,6 +1,6 @@
 import { test } from "@playwright/test";
 import { FL401TheHome } from "../../../../journeys/manageCases/createCase/FL401TheHome/fl401TheHome";
-import { addressRadios } from "../../../../pages/manageCases/createCase/FL401/theHome/fl401Home1Page";
+import { addressRadios } from "../../../../pages/manageCases/createCase/FL401/theHome/fl401TheHome1Page";
 
 test.describe("FL401 Create cases The Home tests @manageCases", (): void => {
   test(`Complete the FL401 The Home Journey with the following options:
@@ -16,8 +16,8 @@ test.describe("FL401 Create cases The Home tests @manageCases", (): void => {
       page: page,
       accessibilityTest: false,
       applicantHasChildren: true,
-      fl401HomeYesNo: true,
-      fl401EverLiveAtAddress: 'No',
+      fl401TheHomeYesNo: true,
+      fl401EverLivedAtAddress: 'No',
       fl401IntendToLiveAtAddress: 'No',
       subJourney: true,
     })
@@ -36,8 +36,8 @@ test.describe("FL401 Create cases The Home tests @manageCases", (): void => {
       page: page,
       accessibilityTest: false,
       applicantHasChildren: false,
-      fl401HomeYesNo: false,
-      fl401EverLiveAtAddress: 'No',
+      fl401TheHomeYesNo: false,
+      fl401EverLivedAtAddress: 'No',
       fl401IntendToLiveAtAddress: 'No',
       subJourney: true,
     })

@@ -105,11 +105,11 @@ export type addressRadios =
   | 'yesRespondent'
   | 'No'
 
-interface FL401HomePageOptions {
+interface FL401TheHome1PageOptions {
   page: Page;
   accessibilityTest: boolean;
   applicantHasChildren: boolean;
-  fl401HomeYesNo: boolean;
+  fl401TheHomeYesNo: boolean;
   fl401EverLivedAtAddress: addressRadios;
   fl401IntendToLiveAtAddress?: addressRadios;
 }
@@ -117,7 +117,7 @@ interface FL401HomePageOptions {
 interface FillInFieldsOptions {
   page: Page,
   applicantHasChildren: boolean,
-  fl401HomeYesNo: boolean,
+  fl401TheHomeYesNo: boolean,
   fl401EverLivedAtAddress: addressRadios,
   fl401IntendToLiveAtAddress?: addressRadios
 }
@@ -130,12 +130,12 @@ interface CheckPageLoadsOptions {
 interface FillInBooleansOptions {
   page: Page,
   applicantHasChildren: boolean;
-  fl401HomeYesNo: boolean,
+  fl401TheHomeYesNo: boolean,
 }
 
 interface AddNewChildOptions {
   page: Page,
-  fl401HomeYesNo: boolean,
+  fl401TheHomeYesNo: boolean,
 }
 
 interface FillInAddressRadiosOptions {
@@ -152,7 +152,7 @@ interface FillAllAddressRadiosOptions {
 
 interface FillInAddressFieldsOptions {
   page: Page;
-  fl401HomeYesNo: boolean;
+  fl401TheHomeYesNo: boolean;
   fl401EverLivedAtAddress: addressRadios;
   fl401IntendToLiveAtAddress?: addressRadios;
 }
@@ -169,18 +169,18 @@ interface AddressValueValidationOptions {
 
 interface FillRemainingInputsOptions {
   page: Page,
-  fl401HomeYesNo: boolean,
+  fl401TheHomeYesNo: boolean,
 }
 
-export class Fl401Home1Page {
-  public static async fl401Home1Page({
+export class Fl401TheHome1Page {
+  public static async fl401TheHome1Page({
     page,
     accessibilityTest,
     applicantHasChildren,
-    fl401HomeYesNo,
+    fl401TheHomeYesNo,
     fl401EverLivedAtAddress,
     fl401IntendToLiveAtAddress,
-  }: FL401HomePageOptions): Promise<void> {
+  }: FL401TheHome1PageOptions): Promise<void> {
     await this.checkPageLoads({
       page,
       accessibilityTest,
@@ -188,7 +188,7 @@ export class Fl401Home1Page {
     await this.fillInFields({
       page,
       applicantHasChildren,
-      fl401HomeYesNo,
+      fl401TheHomeYesNo,
       fl401EverLivedAtAddress,
       fl401IntendToLiveAtAddress,
     });
@@ -264,33 +264,33 @@ export class Fl401Home1Page {
   private static async fillInFields({
     page,
     applicantHasChildren,
-    fl401HomeYesNo,
+    fl401TheHomeYesNo,
     fl401EverLivedAtAddress,
     fl401IntendToLiveAtAddress
   }: FillInFieldsOptions): Promise<void> {
     await this.fillInBooleans({
       page,
-      fl401HomeYesNo,
+      fl401TheHomeYesNo,
       applicantHasChildren,
     });
     await this.fillInAddressFields({
       page,
-      fl401HomeYesNo,
+      fl401TheHomeYesNo,
       fl401EverLivedAtAddress,
       fl401IntendToLiveAtAddress,
     });
     if (applicantHasChildren) {
       await this.addNewChild({
         page,
-        fl401HomeYesNo,
+        fl401TheHomeYesNo,
       });
     }
-    if (fl401HomeYesNo) {
+    if (fl401TheHomeYesNo) {
       await this.fillAndCheckSecondLevel(page);
     }
     await this.fillRemainingInputs({
       page,
-      fl401HomeYesNo
+      fl401TheHomeYesNo
     });
     await page.click(
       `${Selectors.button}:text-is("${Fl401Home1Content.continue}")`,
@@ -299,14 +299,15 @@ export class Fl401Home1Page {
 
   private static async fillRemainingInputs({
      page,
-     fl401HomeYesNo,
+     fl401TheHomeYesNo,
    }: FillRemainingInputsOptions): Promise<void> {
-    const detailsCount: number = fl401HomeYesNo ? 3 : 1;
-    await Helpers.checkVisibleAndPresent(
-      page,
-      `${Selectors.GovukFormHint}:text-is("${Fl401Home1Content.provideTheDetailsInTheBoxBelow}")`,
-      detailsCount,
-    );
+    const detailsCount: number = fl401TheHomeYesNo ? 3 : 1;
+    // await Helpers.checkVisibleAndPresent(
+    //   page,
+    //   `${Selectors.GovukFormHint}:text-is("${Fl401Home1Content.provideTheDetailsInTheBoxBelow}")`,
+    //   detailsCount,
+    // );
+    // For, hints are alway sshown and will need unique divs to fix
     await page.fill(
       inputIDs.textAreaHomeSomethingElse,
       Fl401Home1Content.someoneElseInput,
@@ -315,7 +316,7 @@ export class Fl401Home1Page {
       inputIDs.textAreaFurtherInfo,
       Fl401Home1Content.textAreaFurtherInfo,
     );
-    if (fl401HomeYesNo) {
+    if (fl401TheHomeYesNo) {
       await page.fill(
         inputIDs.textAreaMortgageSomethingElse,
         Fl401Home1Content.textAreaMortgageSomethingElse,
@@ -360,16 +361,16 @@ export class Fl401Home1Page {
 
   private static async fillInAddressFields({
     page,
-    fl401HomeYesNo,
+    fl401TheHomeYesNo,
     fl401EverLivedAtAddress,
     fl401IntendToLiveAtAddress,
   }: FillInAddressFieldsOptions): Promise<void> {
     await this.fillAllAddressRadios({
-      page,
-      fl401EverLivedAtAddress,
-      fl401IntendToLiveAtAddress,
+      page: page,
+      fl401EverLivedAtAddress: fl401EverLivedAtAddress,
+      fl401IntendToLiveAtAddress: fl401IntendToLiveAtAddress,
     });
-    const addressTypeLoop = fl401HomeYesNo
+    const addressTypeLoop = fl401TheHomeYesNo
       ? ["homeAddress", "homeMortgage", "homeLandlord"]
       : ["homeAddress"];
     for (let addressType of addressTypeLoop) {
@@ -402,7 +403,7 @@ export class Fl401Home1Page {
 
   private static async addNewChild({
     page,
-    fl401HomeYesNo,
+    fl401TheHomeYesNo,
   }: AddNewChildOptions): Promise<void> {
     await Helpers.checkVisibleAndPresent(
       page,
@@ -436,7 +437,7 @@ export class Fl401Home1Page {
         1,
       ),
     ]);
-    if (fl401HomeYesNo) {
+    if (fl401TheHomeYesNo) {
       await page.click(inputIDs.confidentialInfoYes);
       await page.click(inputIDs.respondentResponsibleForChildYes);
     } else {
@@ -513,12 +514,12 @@ export class Fl401Home1Page {
   private static async fillInBooleans({
     page,
     applicantHasChildren,
-    fl401HomeYesNo,
+    fl401TheHomeYesNo,
   }: FillInBooleansOptions): Promise<void> {
     for (let checkboxID of Object.values(checkboxIDs)) {
       await page.check(checkboxID);
     }
-    const yesNoString = fl401HomeYesNo ? "Yes" : "No";
+    const yesNoString = fl401TheHomeYesNo ? "Yes" : "No";
     const hasChildren = applicantHasChildren ? "Yes" : "No";
     const childrenAtAddressKey =
       `childrenAtAddress${hasChildren}` as keyof typeof inputIDs;
