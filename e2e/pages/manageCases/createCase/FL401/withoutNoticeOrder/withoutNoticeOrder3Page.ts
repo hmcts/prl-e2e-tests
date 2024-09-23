@@ -31,7 +31,11 @@ export class WithoutNoticeOrder3Page {
     if (errorMessaging) {
       await this.checkErrorMessaging(page);
     }
-    await this.fillInFields(page, accessibilityTest, isWithoutNoticeDetailsBailConditions);
+    await this.fillInFields(
+      page,
+      accessibilityTest,
+      isWithoutNoticeDetailsBailConditions,
+    );
   }
 
   private static async checkPageLoads(
