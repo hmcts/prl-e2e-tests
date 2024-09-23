@@ -28,7 +28,9 @@ test.describe("C100 Create case Children and respondents Tests @manageCases", ()
   Not Accessibility testing,
   Error message testing,
   Saying no to all options,
-  Setting the applicant Gender to female. @crossbrowserManageCases`, async ({ page, }): Promise<void> => {
+  Setting the applicant Gender to female. @crossbrowserManageCases`, async ({
+    page,
+  }): Promise<void> => {
     await IndividualC100ChildAndRespondents.c100ChildrenAndRespondents({
       page: page,
       user: "solicitor",
@@ -50,19 +52,21 @@ test(`Complete the C100 Create case Children and respondents as a solicitor with
   Accessibility testing,
   Not Error message testing,
   Saying Yes to all options,
-  Setting the applicant Gender to female. @crossbrowserManageCases`, async ({ page, }): Promise<void> => {
-    await IndividualC100ChildAndRespondents.c100ChildrenAndRespondents({
-      page: page,
-      user: "solicitor",
-      accessibilityTest: true,
-      errorMessaging: false,
-      yesNoRespondentDetailsC100: true,
-      respondentGender: "male",
-      respondentAddress5Years: "yes",
-      respondentLegalRepresentation: "yes",
-      c100ChildGender: "male",
-      yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions: "yes",
-      yesNoChildrenAndRespondents: false,
-      subJourney: true,
-    });
+  Setting the applicant Gender to female. @crossbrowserManageCases`, async ({
+  page,
+}): Promise<void> => {
+  await IndividualC100ChildAndRespondents.c100ChildrenAndRespondents({
+    page: page,
+    user: "solicitor",
+    accessibilityTest: true,
+    errorMessaging: false,
+    yesNoRespondentDetailsC100: true,
+    respondentGender: "male",
+    respondentAddress5Years: "yes",
+    respondentLegalRepresentation: "yes",
+    c100ChildGender: "male",
+    yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions: "yes",
+    yesNoChildrenAndRespondents: false,
+    subJourney: true,
+  });
 });
