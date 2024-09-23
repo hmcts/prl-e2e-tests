@@ -124,7 +124,6 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Female applicant,
   Saying no to all Respondent details questions,
   Saying no to all Type of application questions,
-  }): Promise<void> => {
   Saying no to Without Notice Order questions,
   Relationship is 'None of the above',
   Other Relationship Is: 'Cousin'
