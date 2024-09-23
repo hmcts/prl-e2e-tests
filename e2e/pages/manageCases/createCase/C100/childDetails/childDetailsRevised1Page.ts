@@ -136,9 +136,9 @@ export class ChildDetailsRevised1Page {
       `${uniqueSelectors.whoDoesChildLiveWithDropdown}`,
       C100RespondentDetails1Content.respondentFullNameAndAddress,
     );
-      await page.click(
-        `${Selectors.button}:text-is("${ChildDetailsRevised1Content.continue}")`,
-      );
+    await page.click(
+      `${Selectors.button}:text-is("${ChildDetailsRevised1Content.continue}")`,
+    );
   }
 
   private static async handleOtherChildGender(page: Page): Promise<void> {
