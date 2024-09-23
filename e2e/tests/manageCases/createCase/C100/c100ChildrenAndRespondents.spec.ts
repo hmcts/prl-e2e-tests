@@ -4,7 +4,7 @@ import { IndividualC100ChildAndRespondents } from "../../../../journeys/manageCa
 test.describe("C100 Create case Children and respondents Tests @manageCases", (): void => {
   test(`Complete the C100 Create case Children and respondents as a solicitor with the following options:
   Not Accessibility testing,
-  Not Error message testing,
+  Error message testing,
   Saying yes to all options,
   Setting the applicant Gender to male. @crossbrowserManageCases`, async ({
     page,
@@ -13,7 +13,7 @@ test.describe("C100 Create case Children and respondents Tests @manageCases", ()
       page: page,
       user: "solicitor",
       accessibilityTest: false,
-      errorMessaging: false,
+      errorMessaging: true,
       yesNoRespondentDetailsC100: true,
       respondentGender: "male",
       respondentAddress5Years: "yes",
@@ -26,7 +26,7 @@ test.describe("C100 Create case Children and respondents Tests @manageCases", ()
   });
   test(`Complete the C100 Create case Children and respondents as a solicitor with the following options:
   Not Accessibility testing,
-  Error message testing,
+  Not Error message testing,
   Saying no to all options,
   Setting the applicant Gender to female. @crossbrowserManageCases`, async ({
     page,

@@ -103,6 +103,9 @@ export class ChildrenAndRespondents1Page {
     await page.click(
       `${Selectors.button}:text-is("${ChildrenAndRespondents1Content.continue}")`,
     );
+    await page.click(
+      `${Selectors.button}:text-is("${ChildrenAndRespondents1Content.continue}")`,
+    );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
@@ -133,6 +136,9 @@ export class ChildrenAndRespondents1Page {
     await page.selectOption(
       `${UniqueSelectors.respondentsRelationshipDropdown}`,
       ChildrenAndRespondents1Content.selectionForOtherRelationship,
+    );
+    await page.click(
+      `${Selectors.button}:text-is("${ChildrenAndRespondents1Content.continue}")`,
     );
     await page.click(
       `${Selectors.button}:text-is("${ChildrenAndRespondents1Content.continue}")`,
