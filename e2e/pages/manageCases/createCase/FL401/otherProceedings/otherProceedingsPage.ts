@@ -31,7 +31,12 @@ export class OtherProceedingsPage {
     if (errorMessaging) {
       await this.checkErrorMessaging(page);
     }
-    await this.fillInFields(page, otherProceedingsRadios, errorMessaging, accessibilityTest);
+    await this.fillInFields(
+      page,
+      otherProceedingsRadios,
+      errorMessaging,
+      accessibilityTest,
+    );
   }
 
   private static async checkPageLoads(
