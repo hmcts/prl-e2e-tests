@@ -23,4 +23,5 @@ export enum OtherProceedingsContent {
   errorMessage = "*Are there previous or ongoing family court proceedings involving the applicant and respondent? is required",
   errorTypeOfCase = "*Type of case is required",
   errorOtherDetails = "*Any other details is required",
+  uploading = "Uploading...",
 }

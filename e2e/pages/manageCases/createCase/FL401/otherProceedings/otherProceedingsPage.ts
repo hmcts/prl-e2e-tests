@@ -146,6 +146,10 @@ export class OtherProceedingsPage {
         );
         const fileInput = page.locator(`${inputIds.uploadRelevantOrder}`);
         await fileInput.setInputFiles(config.testPdfFile);
+        await page.waitForSelector(
+          `${Selectors.GovukErrorMessage}:text-is("${OtherProceedingsContent.uploading}")`,
+          { state: "hidden" },
+        );
         await page.click(
           `${Selectors.button}:text-is("${OtherProceedingsContent.continue}")`,
         );

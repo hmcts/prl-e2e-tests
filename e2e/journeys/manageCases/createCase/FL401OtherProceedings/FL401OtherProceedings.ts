@@ -38,11 +38,11 @@ export class FL401OtherProceedings {
       accessibilityTest,
       otherProceedingsRadios,
     );
-    // await OtherProceedingsSubmitPage.otherProceedingsSubmitPage(
-    //   page,
-    //   accessibilityTest,
-    //   otherProceedingsRadios,
-    // );
-    // await Fl401TasksTabPage.fl401TasksTabPage(page, accessibilityTest);
+    await OtherProceedingsSubmitPage.otherProceedingsSubmitPage(
+      page,
+      accessibilityTest,
+      otherProceedingsRadios,
+    );
+    await Fl401TasksTabPage.fl401TasksTabPage(page, accessibilityTest);
   }
 }
