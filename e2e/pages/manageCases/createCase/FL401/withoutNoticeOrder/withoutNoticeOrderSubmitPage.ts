@@ -3,7 +3,8 @@ import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { WithoutNoticeOrderSubmitContent } from "../../../../../fixtures/manageCases/createCase/FL401/withoutNoticeOrder/withoutNoticeOrderSubmitContent";
 import accessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { bailConditionRadios } from "../../../../../journeys/manageCases/createCase/FL401";
+
+import { bailConditionRadios } from "./withoutNoticeOrder3Page";
 
 export class WithoutNoticeOrderSubmitPage {
   public static async withoutNoticeOrderSubmitPage(

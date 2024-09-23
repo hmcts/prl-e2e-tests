@@ -4,9 +4,11 @@ import { WithoutNoticeOrder1Page } from "../../../../pages/manageCases/createCas
 import { WithoutNoticeOrderSubmitPage } from "../../../../pages/manageCases/createCase/FL401/withoutNoticeOrder/withoutNoticeOrderSubmitPage";
 import { Fl401TasksTabPage } from "../../../../pages/manageCases/caseTabs/fl401TasksTabPage";
 import { WithoutOrderNotice2Page } from "../../../../pages/manageCases/createCase/FL401/withoutNoticeOrder/withoutOrderNotice2Page";
-import { WithoutNoticeOrder3Page } from "../../../../pages/manageCases/createCase/FL401/withoutNoticeOrder/withoutNoticeOrder3Page";
+import {
+  bailConditionRadios,
+  WithoutNoticeOrder3Page,
+} from "../../../../pages/manageCases/createCase/FL401/withoutNoticeOrder/withoutNoticeOrder3Page";
 import { WithoutNoticeOrder4Page } from "../../../../pages/manageCases/createCase/FL401/withoutNoticeOrder/withoutNoticeOrder4Page";
-import { bailConditionRadios } from "../FL401";
 import { SolicitorCreateInitial } from "../solicitorCreateInitial";
 
 interface fl401WithoutNoticeOrderOptions {

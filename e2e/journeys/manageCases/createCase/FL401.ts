@@ -7,8 +7,11 @@ import { FL401WithoutNoticeOrder } from "./FL401WithoutNoticeOrder/FL401WIthoutN
 import { FL401ApplicantDetails } from "./FL401ApplicantDetails/FL401ApplicantDetails";
 import { FL401ApplicantsFamily } from "./FL401ApplicantsFamily/FL401ApplicantsFamily";
 import { FL401OtherProceedings } from "./FL401OtherProceedings/FL401OtherProceedings";
+import { FL401RelationshipToRespondent } from "./FL401RelationshipToRespondent/FL401RelationshipToRespondent";
+import { fl401RelationshipToRespondent } from "../../../pages/manageCases/createCase/FL401/relationshipToRespondent/relationshipToRespondent1Page";
+import { fl401RespondentRelationshipOther } from "../../../pages/manageCases/createCase/FL401/relationshipToRespondent/relationshipToRespondent2Page";
+import { bailConditionRadios } from "../../../pages/manageCases/createCase/FL401/withoutNoticeOrder/withoutNoticeOrder3Page";
 
-export type bailConditionRadios = "Yes" | "No" | "Don't know";
 export type otherProceedingsRadios = "Yes" | "No" | "Don't know";
 
 interface fl401Options {
@@ -24,6 +27,8 @@ interface fl401Options {
   isWithoutNoticeDetailsYes: boolean;
   isWithoutNoticeDetailsBailConditions: bailConditionRadios;
   otherProceedingsRadios: otherProceedingsRadios;
+  relationshipToRespondent: fl401RelationshipToRespondent;
+  relationshipToRespondentOther?: fl401RespondentRelationshipOther;
 }
 
 export class FL401 {
@@ -40,6 +45,8 @@ export class FL401 {
     isWithoutNoticeDetailsYes,
     isWithoutNoticeDetailsBailConditions,
     otherProceedingsRadios,
+    relationshipToRespondent,
+    relationshipToRespondentOther,
   }: fl401Options): Promise<void> {
     await SolicitorCreateInitial.createInitialCase({
       page: page,
@@ -91,6 +98,14 @@ export class FL401 {
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
       otherProceedingsRadios: otherProceedingsRadios,
+      subJourney: false,
+    });
+    await FL401RelationshipToRespondent.fl401RelationshipToRespondent({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      relationshipToRespondent: relationshipToRespondent,
+      relationshipToRespondentOther: relationshipToRespondentOther,
       subJourney: false,
     });
   }
