@@ -31,7 +31,7 @@ export class OtherProceedingsPage {
     if (errorMessaging) {
       await this.checkErrorMessaging(page);
     }
-    await this.fillInFields(page, otherProceedingsRadios, accessibilityTest);
+    await this.fillInFields(page, otherProceedingsRadios, errorMessaging, accessibilityTest);
   }
 
   private static async checkPageLoads(
@@ -75,19 +75,53 @@ export class OtherProceedingsPage {
     }
   }
 
-  private static async checkErrorMessaging(page: Page): Promise<void> {}
+  private static async checkErrorMessaging(page: Page): Promise<void> {
+    await page.click(
+      `${Selectors.button}:text-is("${OtherProceedingsContent.continue}")`,
+    );
+    await Helpers.checkVisibleAndPresent(
+      page,
+      `${Selectors.GovukErrorSummaryTitle}:text-is("${OtherProceedingsContent.errorBanner}")`,
+      1,
+    );
+    await Helpers.checkVisibleAndPresent(
+      page,
+      `${Selectors.GovukErrorValidation}:text-is("${OtherProceedingsContent.errorMessage}")`,
+      1,
+    );
+    await page.click(radioIds.yes);
+    await page.click(
+      `${Selectors.button}:text-is("${OtherProceedingsContent.addNew}")`,
+    );
+    await page.click(
+      `${Selectors.button}:text-is("${OtherProceedingsContent.continue}")`,
+    );
+    await Helpers.checkVisibleAndPresent(
+      page,
+      `${Selectors.GovukErrorMessage}:text-is("${OtherProceedingsContent.errorTypeOfCase}")`,
+      1,
+    );
+    await Helpers.checkVisibleAndPresent(
+      page,
+      `${Selectors.GovukErrorMessage}:text-is("${OtherProceedingsContent.errorOtherDetails}")`,
+      1,
+    );
+  }
 
   private static async fillInFields(
     page: Page,
     otherProceedingsRadios: otherProceedingsRadios,
+    errorMessaging: boolean,
     accessibilityTest: boolean,
   ): Promise<void> {
     switch (otherProceedingsRadios) {
       case "Yes":
-        await page.click(radioIds.yes);
-        await page.click(
-          `${Selectors.button}:text-is("${OtherProceedingsContent.addNew}")`,
-        );
+        if (!errorMessaging) {
+          await page.click(radioIds.yes);
+          await page.click(
+            `${Selectors.button}:text-is("${OtherProceedingsContent.addNew}")`,
+          );
+        }
         await this.checkFormLoads(page, accessibilityTest);
         await page.fill(
           `${inputIds.nameOfCourt}`,

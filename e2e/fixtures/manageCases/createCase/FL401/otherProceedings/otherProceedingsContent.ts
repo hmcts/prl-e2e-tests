@@ -19,4 +19,8 @@ export enum OtherProceedingsContent {
   yes = "Yes",
   no = "No",
   dontKnow = "Don't know",
+  errorBanner = "There is a problem",
+  errorMessage = "*Are there previous or ongoing family court proceedings involving the applicant and respondent? is required",
+  errorTypeOfCase = "*Type of case is required",
+  errorOtherDetails = "*Any other details is required",
 }
