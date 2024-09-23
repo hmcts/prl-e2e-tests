@@ -4,6 +4,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { Fl401Home1Content } from "../../../../../fixtures/manageCases/createCase/FL401/theHome/fl401Home1Content";
 import { Helpers } from "../../../../../common/helpers";
 import { FL401 } from "../../../../../journeys/manageCases/createCase/FL401";
+import { FL401TheHome } from "../../../../../journeys/manageCases/createCase/FL401TheHome/fl401TheHome";
 
 enum uniqueSelectors {
   intendedHomeDiv = 'div#home_intendToLiveAtTheAddress > fieldset > div > ',
@@ -87,6 +88,15 @@ enum inputIDs {
   childAge = '#home_children_0_childsAge',
   respondentResponsibleForChildYes = '#home_children_0_isRespondentResponsibleForChild_Yes',
   respondentResponsibleForChildNo = '#home_children_0_isRespondentResponsibleForChild_No',
+  textAreaHomeSomethingElse = '#home_textAreaSomethingElse',
+  textAreaSpeciallyAdapted = '#home_howIsThePropertyAdapted',
+  textAreaMortgageSomethingElse = '#home_mortgages_textAreaSomethingElse',
+  textAreaLandlordSomethingElse = '#home_landlords_textAreaSomethingElse',
+  textAreaFurtherInfo = '#home_furtherInformation',
+  mortgageNumber = '#home_mortgages_mortgageNumber',
+  mortgageLender = '#home_mortgages_mortgageLenderName',
+  landlordName = '#home_landlords_landlordName',
+  adaptedProperty = '#home_howIsThePropertyAdapted'
 }
 
 export type addressRadios =
@@ -105,19 +115,19 @@ interface FL401HomePageOptions {
 }
 
 interface FillInFieldsOptions {
-  page: Page;
-  fl401HomeYesNo: boolean;
-  fl401EverLivedAtAddress: addressRadios;
-  fl401IntendToLiveAtAddress?: addressRadios;
+  page: Page,
+  applicantHasChildren: boolean,
+  fl401HomeYesNo: boolean,
+  fl401EverLivedAtAddress: addressRadios,
+  fl401IntendToLiveAtAddress?: addressRadios
 }
 
 interface CheckPageLoadsOptions {
   page: Page,
   accessibilityTest: boolean,
-  fl401HomeYesNo: boolean
 }
 
-interface FillInTopLevelFieldsOptions {
+interface FillInBooleansOptions {
   page: Page,
   applicantHasChildren: boolean;
   fl401HomeYesNo: boolean,
@@ -134,15 +144,10 @@ interface FillInAddressRadiosOptions {
   isTopLevel: boolean
 }
 
-interface CheckTopLevelPageLoadsOptions {
-  page: Page,
-  accessibilityTest: boolean
-}
-
 interface FillAllAddressRadiosOptions {
-  page: Page,
-  fl401EverLivedAtAddress: addressRadios,
-  fl401IntendToLiveAtAddress?: addressRadios
+  page: Page;
+  fl401EverLivedAtAddress: addressRadios;
+  fl401IntendToLiveAtAddress?: addressRadios;
 }
 
 interface FillInAddressFieldsOptions {
@@ -152,32 +157,204 @@ interface FillInAddressFieldsOptions {
   fl401IntendToLiveAtAddress?: addressRadios;
 }
 
+interface AddressLabelValidationOptions {
+  page: Page;
+  uniqueSelectorKey: keyof typeof uniqueSelectors;
+}
+
+interface AddressValueValidationOptions {
+  page: Page;
+  addressType: string;
+}
+
+interface FillRemainingInputsOptions {
+  page: Page,
+  fl401HomeYesNo: boolean,
+}
+
 export class Fl401Home1Page {
   public static async fl401Home1Page({
-     page,
-     accessibilityTest,
-     applicantHasChildren,
-     fl401HomeYesNo,
-     fl401EverLivedAtAddress,
-     fl401IntendToLiveAtAddress
-   }: FL401HomePageOptions): Promise<void> {
-    await this.checkTopLevelPageLoads({
-      page, accessibilityTest
+    page,
+    accessibilityTest,
+    applicantHasChildren,
+    fl401HomeYesNo,
+    fl401EverLivedAtAddress,
+    fl401IntendToLiveAtAddress,
+  }: FL401HomePageOptions): Promise<void> {
+    await this.checkPageLoads({
+      page,
+      accessibilityTest,
     });
-    await this.fillInTopLevelFields({
-      page, fl401HomeYesNo, applicantHasChildren
-    })
+    await this.fillInFields({
+      page,
+      applicantHasChildren,
+      fl401HomeYesNo,
+      fl401EverLivedAtAddress,
+      fl401IntendToLiveAtAddress,
+    });
+  }
+
+  private static async checkPageLoads({
+    page,
+    accessibilityTest,
+  }: CheckPageLoadsOptions): Promise<void> {
+    await page.waitForSelector(
+      `${Selectors.GovukHeadingL}:text-is("${Fl401Home1Content.pageTitle}")`,
+    );
+    await Promise.all([
+      Helpers.checkGroup(page, 2, Fl401Home1Content, "p", `${Selectors.p}`),
+      Helpers.checkGroup(
+        page,
+        19,
+        Fl401Home1Content,
+        "topFormLabel",
+        `${uniqueSelectors.topLevelSelectors}${Selectors.GovukFormLabel}`,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${uniqueSelectors.topLevelSelectors}${Selectors.GovukFormLabel}:text-is("${Fl401Home1Content.labelYes}")`,
+        5,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${uniqueSelectors.topLevelSelectors}${Selectors.GovukFormLabel}:text-is("${Fl401Home1Content.labelNo}")`,
+        6,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${uniqueSelectors.homeAddressLookupDiv}${Selectors.GovukFormLabel}:text-is("${Fl401Home1Content.enterUKPostcode}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${uniqueSelectors.homePeopleLiveAtAddress}${Selectors.GovukFormLabel}:text-is("${Fl401Home1Content.theApplicant}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${uniqueSelectors.homePeopleLiveAtAddress}${Selectors.GovukFormLabel}:text-is("${Fl401Home1Content.theRespondent}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${uniqueSelectors.homePeopleLiveAtAddress}${Selectors.GovukFormLabel}:text-is("${Fl401Home1Content.someoneElsePleaseSpecify}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${uniqueSelectors.homeEverLivedAtAddress}${Selectors.GovukFormLabel}:text-is("${Fl401Home1Content.yesTheApplicant}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${uniqueSelectors.homeEverLivedAtAddress}${Selectors.GovukFormLabel}:text-is("${Fl401Home1Content.yesTheRespondent}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${uniqueSelectors.homeEverLivedAtAddress}${Selectors.GovukFormLabel}:text-is("${Fl401Home1Content.yesBothOfThem}")`,
+        1,
+      ),
+    ]);
+    if (accessibilityTest) {
+      await AccessibilityTestHelper.run(page);
+    }
+  }
+
+  private static async fillInFields({
+    page,
+    applicantHasChildren,
+    fl401HomeYesNo,
+    fl401EverLivedAtAddress,
+    fl401IntendToLiveAtAddress
+  }: FillInFieldsOptions): Promise<void> {
+    await this.fillInBooleans({
+      page,
+      fl401HomeYesNo,
+      applicantHasChildren,
+    });
     await this.fillInAddressFields({
       page,
       fl401HomeYesNo,
       fl401EverLivedAtAddress,
-      fl401IntendToLiveAtAddress
-    })
+      fl401IntendToLiveAtAddress,
+    });
     if (applicantHasChildren) {
       await this.addNewChild({
         page,
-        fl401HomeYesNo
-      })
+        fl401HomeYesNo,
+      });
+    }
+    if (fl401HomeYesNo) {
+      await this.fillAndCheckSecondLevel(page);
+    }
+    await this.fillRemainingInputs({
+      page,
+      fl401HomeYesNo
+    });
+    await page.click(
+      `${Selectors.button}:text-is("${Fl401Home1Content.continue}")`,
+    );
+  }
+
+  private static async fillRemainingInputs({
+     page,
+     fl401HomeYesNo,
+   }: FillRemainingInputsOptions): Promise<void> {
+    const detailsCount: number = fl401HomeYesNo ? 3 : 1;
+    await Helpers.checkVisibleAndPresent(
+      page,
+      `${Selectors.GovukFormHint}:text-is("${Fl401Home1Content.provideTheDetailsInTheBoxBelow}")`,
+      detailsCount,
+    );
+    await page.fill(
+      inputIDs.textAreaHomeSomethingElse,
+      Fl401Home1Content.someoneElseInput,
+    );
+    await page.fill(
+      inputIDs.textAreaFurtherInfo,
+      Fl401Home1Content.textAreaFurtherInfo,
+    );
+    if (fl401HomeYesNo) {
+      await page.fill(
+        inputIDs.textAreaMortgageSomethingElse,
+        Fl401Home1Content.textAreaMortgageSomethingElse,
+      );
+      await page.fill(
+        inputIDs.textAreaLandlordSomethingElse,
+        Fl401Home1Content.textAreaLandlordSomethingElse,
+      );
+    }
+  }
+
+  private static async fillAndCheckSecondLevel(page: Page): Promise<void> {
+    await Promise.all([
+      Helpers.checkGroup(
+        page,
+        5,
+        Fl401Home1Content,
+        "secondLevelFormLabel",
+        `${Selectors.GovukFormLabel}`,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormHint}:text-is("${Fl401Home1Content.adaptedPropertyFormHint}")`,
+        1,
+      ),
+    ]);
+    for (let checkboxID of Object.values(secondLevelCheckboxIDs)) {
+      await page.check(checkboxID);
+    }
+    const secondLevelInputs: string[] = [
+      "mortgageNumber",
+      "mortgageLender",
+      "landlordName",
+      "adaptedProperty",
+    ];
+    for (const key of secondLevelInputs) {
+      let inputKey = key as keyof typeof inputIDs;
+      let contentKey = key as keyof typeof Fl401Home1Content;
+      await page.fill(inputIDs[inputKey], Fl401Home1Content[contentKey]);
     }
   }
 
@@ -185,402 +362,243 @@ export class Fl401Home1Page {
     page,
     fl401HomeYesNo,
     fl401EverLivedAtAddress,
-    fl401IntendToLiveAtAddress
+    fl401IntendToLiveAtAddress,
   }: FillInAddressFieldsOptions): Promise<void> {
     await this.fillAllAddressRadios({
       page,
       fl401EverLivedAtAddress,
-      fl401IntendToLiveAtAddress
+      fl401IntendToLiveAtAddress,
     });
-    const addressTypeLoop = fl401HomeYesNo ? ['homeAddress', 'homeMortgage', 'homeLandlord'] : ['homeAddress'];
+    const addressTypeLoop = fl401HomeYesNo
+      ? ["homeAddress", "homeMortgage", "homeLandlord"]
+      : ["homeAddress"];
     for (let addressType of addressTypeLoop) {
-      let postcodeInput = `${addressType}PostcodeInput` as keyof typeof inputIDs;
+      let postcodeInput =
+        `${addressType}PostcodeInput` as keyof typeof inputIDs;
       await page.fill(
         `${inputIDs[postcodeInput]}`,
-        `${Fl401Home1Content.bpPostalCode}`
+        `${Fl401Home1Content.bpPostalCode}`,
       );
-      let uniqueSelectorKey = `${addressType}LookupDiv` as keyof typeof uniqueSelectors;
+      let uniqueSelectorKey =
+        `${addressType}LookupDiv` as keyof typeof uniqueSelectors;
       await page.click(
-        `${uniqueSelectors[uniqueSelectorKey]}${Selectors.button}:text-is("${Fl401Home1Content.findAddress}")`
+        `${uniqueSelectors[uniqueSelectorKey]}${Selectors.button}:text-is("${Fl401Home1Content.findAddress}")`,
       );
       await page.waitForSelector(
         `${uniqueSelectors[uniqueSelectorKey]}${Selectors.GovukFormLabel}:text-is("${Fl401Home1Content.selectAddress}")`,
       );
-      let selectAddressInput = `${addressType}SelectAddress` as keyof typeof inputIDs;
+      let selectAddressInput =
+        `${addressType}SelectAddress` as keyof typeof inputIDs;
       await page
         .locator(inputIDs[selectAddressInput])
         .selectOption({ index: 1 });
-      await this.addressLabelValidation(
-        page, uniqueSelectorKey
-      );
-      await this.addressValueValidation(
-        page, addressType
-      )
-    }
-  }
-
-
-
-  // private static async checkPageLoads({
-  //   page,
-  //   accessibilityTest,
-  //   fl401HomeYesNo
-  // }: CheckPageLoadsOptions): Promise<void> {
-  //   await this.checkTopLevelPageLoads(page);
-  //   if (!fl401HomeYesNo) {
-  //     await this.fillInTopLevelFields({
-  //       page, fl401HomeYesNo, fl401EverLivedAtAddress
-  //     })
-  //   }
-  //   if (accessibilityTest) {
-  //     await AccessibilityTestHelper.run(page);
-  //   }
-  // }
-
-  private static async checkTopLevelPageLoads(
-    {page, accessibilityTest}: CheckTopLevelPageLoadsOptions
-  ): Promise<void> {
-    await page.waitForSelector(
-      `${Selectors.GovukHeadingL}:text-is("${Fl401Home1Content.pageTitle}")`
-    );
-    await Promise.all(
-      [
-        Helpers.checkGroup(
-          page,
-          2,
-          Fl401Home1Content,
-          'p',
-          `${Selectors.p}`
-        ),
-        Helpers.checkGroup(
-          page,
-          19,
-          Fl401Home1Content,
-          'topFormLabel',
-          `${uniqueSelectors.topLevelSelectors}${Selectors.GovukFormLabel}`
-        ),
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${uniqueSelectors.topLevelSelectors}${Selectors.GovukFormLabel}:text-is("${Fl401Home1Content.labelYes}")`,
-          5
-        ),
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${uniqueSelectors.topLevelSelectors}${Selectors.GovukFormLabel}:text-is("${Fl401Home1Content.labelNo}")`,
-          6
-        ),
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${uniqueSelectors.homeAddressLookupDiv}${Selectors.GovukFormLabel}:text-is("${Fl401Home1Content.enterUKPostcode}")`,
-          1
-        ),
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${uniqueSelectors.homePeopleLiveAtAddress}${Selectors.GovukFormLabel}:text-is("${Fl401Home1Content.theApplicant}")`,
-          1
-        ),
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${uniqueSelectors.homePeopleLiveAtAddress}${Selectors.GovukFormLabel}:text-is("${Fl401Home1Content.theRespondent}")`,
-          1
-        ),
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${uniqueSelectors.homePeopleLiveAtAddress}${Selectors.GovukFormLabel}:text-is("${Fl401Home1Content.someoneElsePleaseSpecify}")`,
-          1
-        ),
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${uniqueSelectors.homeEverLivedAtAddress}${Selectors.GovukFormLabel}:text-is("${Fl401Home1Content.yesTheApplicant}")`,
-          1
-        ),
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${uniqueSelectors.homeEverLivedAtAddress}${Selectors.GovukFormLabel}:text-is("${Fl401Home1Content.yesTheRespondent}")`,
-          1
-        ),
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${uniqueSelectors.homeEverLivedAtAddress}${Selectors.GovukFormLabel}:text-is("${Fl401Home1Content.yesBothOfThem}")`,
-          1
-        ),
-      ]
-    );
-    if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await this.addressLabelValidation({
+        page,
+        uniqueSelectorKey
+      });
+      await this.addressValueValidation({ page, addressType });
     }
   }
 
   private static async addNewChild({
     page,
-    fl401HomeYesNo
- }: AddNewChildOptions) : Promise<void> {
-    await page.click(
-      `${Selectors.button}:text-is("${Fl401Home1Content.childAddNewButton}")`
-    );
-    await Promise.all(
-      [
-        Helpers.checkGroup(
-          page,
-          4,
-          Fl401Home1Content,
-          'childFormLabel',
-          `${uniqueSelectors.homeChildrenDiv}${Selectors.GovukFormLabel}`
-        ),
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${uniqueSelectors.homeChildrenDiv}${Selectors.GovukFormLabel}:text-is("${Fl401Home1Content.labelYes}")`,
-          2
-        ),
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${uniqueSelectors.homeChildrenDiv}${Selectors.GovukFormLabel}:text-is("${Fl401Home1Content.labelNo}")`,
-          2
-        ),
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.h3}:text-is("${Fl401Home1Content.childHeading3}")`,
-          1
-        )
-      ]
-    );
-    if (fl401HomeYesNo) {
-      await page.click(
-        inputIDs.confidentialInfoYes
-      );
-      await page.click(
-        inputIDs.respondentResponsibleForChildYes
-      );
-    } else {
-      await page.click(
-        inputIDs.confidentialInfoNo
-      );
-      await page.click(
-        inputIDs.respondentResponsibleForChildNo
-      );
-    }
-    await page.fill(
-      inputIDs.childFullName,
-      Fl401Home1Content.childFullName
-    );
-    await page.fill(
-      inputIDs.childAge,
-      Fl401Home1Content.childAge
-    );
-  }
-
-  private static async fillInFields({
-    page,
     fl401HomeYesNo,
-    fl401EverLivedAtAddress,
-    fl401IntendToLiveAtAddress
-  }: FillInFieldsOptions): Promise<void> {
-    await this.fillAndCheckAddressFields(page);
-    await this.fillInTopLevelFields({
+  }: AddNewChildOptions): Promise<void> {
+    await Helpers.checkVisibleAndPresent(
       page,
-      fl401HomeYesNo,
-    });
-    await this.fillAllAddressRadios({
-      page,
-      fl401EverLivedAtAddress,
-      fl401IntendToLiveAtAddress
-    })
+      `${Selectors.h2}:text-is("${Fl401Home1Content.childHeading2}")`,
+      1,
+    )
+    await page.click(
+      `${Selectors.button}:text-is("${Fl401Home1Content.childAddNewButton}")`,
+    );
+    await Promise.all([
+      Helpers.checkGroup(
+        page,
+        4,
+        Fl401Home1Content,
+        "childFormLabel",
+        `${uniqueSelectors.homeChildrenDiv}${Selectors.GovukFormLabel}`,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${uniqueSelectors.homeChildrenDiv}${Selectors.GovukFormLabel}:text-is("${Fl401Home1Content.labelYes}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${uniqueSelectors.homeChildrenDiv}${Selectors.GovukFormLabel}:text-is("${Fl401Home1Content.labelNo}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.h3}:text-is("${Fl401Home1Content.childHeading3}")`,
+        1,
+      ),
+    ]);
+    if (fl401HomeYesNo) {
+      await page.click(inputIDs.confidentialInfoYes);
+      await page.click(inputIDs.respondentResponsibleForChildYes);
+    } else {
+      await page.click(inputIDs.confidentialInfoNo);
+      await page.click(inputIDs.respondentResponsibleForChildNo);
+    }
+    await page.fill(inputIDs.childFullName, Fl401Home1Content.childFullName);
+    await page.fill(inputIDs.childAge, Fl401Home1Content.childAge);
   }
 
   private static async fillAllAddressRadios({
     page,
     fl401EverLivedAtAddress,
-    fl401IntendToLiveAtAddress
+    fl401IntendToLiveAtAddress,
   }: FillAllAddressRadiosOptions): Promise<void> {
-    let applicantOrRespondentResponse = fl401EverLivedAtAddress
-    let isTopLevel: boolean = true
     await this.fillInAddressRadios({
-      page,
-      applicantOrRespondentResponse,
-      isTopLevel
+      page: page,
+      applicantOrRespondentResponse: fl401EverLivedAtAddress,
+      isTopLevel: true,
     });
-    if (fl401EverLivedAtAddress === 'No') {
+    if (fl401EverLivedAtAddress === "No") {
       await Promise.all([
         Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukFormLabel}:text-is("${Fl401Home1Content.intendedAddressLabel}")`,
-          1
+          1,
         ),
         Helpers.checkVisibleAndPresent(
           page,
           `${uniqueSelectors.intendedHomeDiv}${Selectors.GovukFormLabel}:text-is("${Fl401Home1Content.labelNo}")`,
-          1
+          1,
         ),
         Helpers.checkVisibleAndPresent(
           page,
           `${uniqueSelectors.intendedHomeDiv}${Selectors.GovukFormLabel}:text-is("${Fl401Home1Content.yesTheApplicant}")`,
-          1
+          1,
         ),
         Helpers.checkVisibleAndPresent(
           page,
           `${uniqueSelectors.intendedHomeDiv}${Selectors.GovukFormLabel}:text-is("${Fl401Home1Content.yesTheRespondent}")`,
-          1
+          1,
         ),
         Helpers.checkVisibleAndPresent(
           page,
           `${uniqueSelectors.intendedHomeDiv}${Selectors.GovukFormLabel}:text-is("${Fl401Home1Content.yesBothOfThem}")`,
-          1
+          1,
         ),
-      ])
-      applicantOrRespondentResponse = fl401IntendToLiveAtAddress
-      isTopLevel = false
-      await this.fillInAddressRadios({
-        page,
-        applicantOrRespondentResponse,
-        isTopLevel
-      });
+      ]);
+      if (fl401IntendToLiveAtAddress) {
+        await this.fillInAddressRadios({
+          page: page,
+          applicantOrRespondentResponse: fl401IntendToLiveAtAddress,
+          isTopLevel: false,
+        });
+      } else {
+        console.log(
+          'fl401IntendToLiveAtAddress cannot be null if fl401EverLivedAtAddress is "No"',
+        );
+      }
     }
   }
 
   private static async fillInAddressRadios({
     page,
     applicantOrRespondentResponse,
-    isTopLevel
-   }: FillInAddressRadiosOptions): Promise<void> { 
-    const multipleChoiceID = (isTopLevel) ? inputIDs.everLivedAtAddress : inputIDs.intendToLiveAtAddress;
-    await page.click(
-      `${multipleChoiceID}${applicantOrRespondentResponse}`
-    );
+    isTopLevel,
+  }: FillInAddressRadiosOptions): Promise<void> {
+    const multipleChoiceID = isTopLevel
+      ? inputIDs.everLivedAtAddress
+      : inputIDs.intendToLiveAtAddress;
+    await page.click(`${multipleChoiceID}${applicantOrRespondentResponse}`);
   }
 
-  private static async fillInTopLevelFields({
+  private static async fillInBooleans({
     page,
     applicantHasChildren,
     fl401HomeYesNo,
-  }: FillInTopLevelFieldsOptions): Promise<void> {
+  }: FillInBooleansOptions): Promise<void> {
     for (let checkboxID of Object.values(checkboxIDs)) {
       await page.check(checkboxID);
     }
-    const yesNoString = fl401HomeYesNo ? 'Yes' : 'No'
-    const hasChildren = applicantHasChildren ? 'Yes' : 'No'
-    const childrenAtAddressKey = `childrenAtAddress${hasChildren}` as keyof typeof inputIDs;
+    const yesNoString = fl401HomeYesNo ? "Yes" : "No";
+    const hasChildren = applicantHasChildren ? "Yes" : "No";
+    const childrenAtAddressKey =
+      `childrenAtAddress${hasChildren}` as keyof typeof inputIDs;
     await page.click(inputIDs[childrenAtAddressKey]);
-    const propertyAdaptedKey = `propertyAdapted${yesNoString}` as keyof typeof inputIDs;
+    const propertyAdaptedKey =
+      `propertyAdapted${yesNoString}` as keyof typeof inputIDs;
     await page.click(inputIDs[propertyAdaptedKey]);
-    const mortgagePropertyKey = `mortgageProperty${yesNoString}` as keyof typeof inputIDs;
+    const mortgagePropertyKey =
+      `mortgageProperty${yesNoString}` as keyof typeof inputIDs;
     await page.click(inputIDs[mortgagePropertyKey]);
-    const rentedPropertyKey = `rentedProperty${yesNoString}` as keyof typeof inputIDs;
+    const rentedPropertyKey =
+      `rentedProperty${yesNoString}` as keyof typeof inputIDs;
     await page.click(inputIDs[rentedPropertyKey]);
-    const applicantHomeRightsKey = `applicantHomeRights${yesNoString}` as keyof typeof inputIDs;
+    const applicantHomeRightsKey =
+      `applicantHomeRights${yesNoString}` as keyof typeof inputIDs;
     await page.click(inputIDs[applicantHomeRightsKey]);
   }
 
-  private static async checkSecondLevelLoads(
-    page: Page, fl401HomeYesNo: boolean, fl401
-  ): Promise<void> {
-    await Promise.all(
-      [
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.h2}:text-is("${Fl401Home1Content.childHeading2}")`,
-          1
-        ),
-        Helpers.checkGroup(
-          page,
-          6,
-          Fl401Home1Content,
-          'secondLevelFormLabel',
-          `${Selectors.GovukFormLabel}`
-        ),
-        Helpers.checkGroup(
-          page,
-          2,
-          Fl401Home1Content,
-          'secondLevelFormHint',
-          `${Selectors.GovukFormHint}`
-        ),
-      ]
-    )
-  }
-
-  // private static async fillInSecondLevelFields(
-  //   page: Page
-  // ): Promise<void> {
-  //   await page.fill(
-  //     `${inputIDs.som}`
-  //   )
-  // }
-
-  private static async fillAndCheckAddressFields(
-    page: Page,
-    uniqueSelector: keyof typeof uniqueSelectors
-  ): Promise<void> {
-    await page.click(
-      `button:text-is("${Fl401Home1Content.findAddress}")`,
-    );
-    await page.waitForSelector(
-      `${Selectors.GovukFormLabel}:text-is("${Fl401Home1Content.selectAddress}")`,
-    );
-    await page
-      .locator(inputIDs.homeSelectAddress)
-      .selectOption({ index: 1 });
-    await this.addressLabelValidation(page);
-    await this.addressValueValidation(page);
-  }
-
-  private static async addressLabelValidation(
-    page: Page,
-    uniqueSelector: keyof typeof uniqueSelectors
-  ): Promise<void> {
+  private static async addressLabelValidation({
+    page,
+    uniqueSelectorKey,
+  }: AddressLabelValidationOptions): Promise<void> {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${uniqueSelectors[uniqueSelector]}${Selectors.GovukFormLabel}:text-is("${Fl401Home1Content.buildingAndStreet}")`,
+        `${uniqueSelectors[uniqueSelectorKey]}${Selectors.GovukFormLabel}:text-is("${Fl401Home1Content.buildingAndStreet}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${uniqueSelectors[uniqueSelector]}${Selectors.GovukFormLabel}:text-is("${Fl401Home1Content.addressLine2}")`,
+        `${uniqueSelectors[uniqueSelectorKey]}${Selectors.GovukFormLabel}:text-is("${Fl401Home1Content.addressLine2}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${uniqueSelectors[uniqueSelector]}${Selectors.GovukFormLabel}:text-is("${Fl401Home1Content.addressLine3}")`,
+        `${uniqueSelectors[uniqueSelectorKey]}${Selectors.GovukFormLabel}:text-is("${Fl401Home1Content.addressLine3}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${uniqueSelectors[uniqueSelector]}${Selectors.GovukFormLabel}:text-is("${Fl401Home1Content.townOrCity}")`,
+        `${uniqueSelectors[uniqueSelectorKey]}${Selectors.GovukFormLabel}:text-is("${Fl401Home1Content.townOrCity}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${uniqueSelectors[uniqueSelector]}${Selectors.GovukFormLabel}:text-is("${Fl401Home1Content.addressCounty}")`,
+        `${uniqueSelectors[uniqueSelectorKey]}${Selectors.GovukFormLabel}:text-is("${Fl401Home1Content.addressCounty}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${uniqueSelectors[uniqueSelector]}${Selectors.GovukFormLabel}:text-is("${Fl401Home1Content.postalCode}")`,
+        `${uniqueSelectors[uniqueSelectorKey]}${Selectors.GovukFormLabel}:text-is("${Fl401Home1Content.postalCode}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${uniqueSelectors[uniqueSelector]}${Selectors.GovukFormLabel}:text-is("${Fl401Home1Content.addressCountry}")`,
+        `${uniqueSelectors[uniqueSelectorKey]}${Selectors.GovukFormLabel}:text-is("${Fl401Home1Content.addressCountry}")`,
         1,
       ),
     ]);
   }
 
-  private static async addressValueValidation(
-    page: Page, addressType: string
-  ): Promise<void> {
-    const buildingKey = `${addressType}BuildingAndStreet` as keyof typeof inputIDs;
-    const addressLine2Key = `${addressType}AddressLine2` as keyof typeof inputIDs;
-    const addressLine3Key = `${addressType}AddressLine3` as keyof typeof inputIDs;
+  private static async addressValueValidation({
+    page,
+    addressType,
+  }: AddressValueValidationOptions): Promise<void> {
+    const buildingKey =
+      `${addressType}BuildingAndStreet` as keyof typeof inputIDs;
+    const addressLine2Key =
+      `${addressType}AddressLine2` as keyof typeof inputIDs;
+    const addressLine3Key =
+      `${addressType}AddressLine3` as keyof typeof inputIDs;
     const townOrCityKey = `${addressType}TownOrCity` as keyof typeof inputIDs;
-    const addressCountyKey = `${addressType}AddressCounty` as keyof typeof inputIDs;
+    const addressCountyKey =
+      `${addressType}AddressCounty` as keyof typeof inputIDs;
     const postalCodeKey = `${addressType}PostalCode` as keyof typeof inputIDs;
-    const addressCountryKey = `${addressType}AddressCountry` as keyof typeof inputIDs;
+    const addressCountryKey =
+      `${addressType}AddressCountry` as keyof typeof inputIDs;
     await Promise.all([
-      expect(
-        page.locator(inputIDs[buildingKey]),
-      ).toHaveValue(
-        Fl401Home1Content.bpBuildingAndStreet
+      expect(page.locator(inputIDs[buildingKey])).toHaveValue(
+        Fl401Home1Content.bpBuildingAndStreet,
       ),
       expect(page.locator(inputIDs[addressLine2Key])).toHaveValue(
         Fl401Home1Content.bpAddressLine2,
