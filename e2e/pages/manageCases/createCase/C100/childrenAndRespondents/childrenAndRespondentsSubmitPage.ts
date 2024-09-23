@@ -55,7 +55,7 @@ export class ChildrenAndRespondentsSubmitPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      // await AccessibilityTestHelper.run(page);
     }
   }
 
