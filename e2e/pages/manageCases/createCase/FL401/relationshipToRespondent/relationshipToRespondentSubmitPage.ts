@@ -1,8 +1,6 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
-import {
-  RelationshipToRespondentSubmitContent
-} from "../../../../../fixtures/manageCases/createCase/FL401/relationshipToRespondent/relationshipToRespondentSubmitContent";
+import { RelationshipToRespondentSubmitContent } from "../../../../../fixtures/manageCases/createCase/FL401/relationshipToRespondent/relationshipToRespondentSubmitContent";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { fl401RelationshipToRespondent } from "./relationshipToRespondent1Page";
@@ -21,43 +19,43 @@ enum FL401RelationshipToRespondentValues {
 }
 
 interface relationshipToRespondentSubmitPageOptions {
-  page: Page,
-  accessibilityTest: boolean,
-  relationshipToRespondent: fl401RelationshipToRespondent,
-  respondentRelationshipOther?: fl401RespondentRelationshipOther
+  page: Page;
+  accessibilityTest: boolean;
+  relationshipToRespondent: fl401RelationshipToRespondent;
+  respondentRelationshipOther?: fl401RespondentRelationshipOther;
 }
 
 interface checkPageLoadsOptions {
-  page: Page,
-  accessibilityTest: boolean,
-  respondentRelationship: fl401RelationshipToRespondent,
-  respondentRelationshipOther?: fl401RespondentRelationshipOther
+  page: Page;
+  accessibilityTest: boolean;
+  respondentRelationship: fl401RelationshipToRespondent;
+  respondentRelationshipOther?: fl401RespondentRelationshipOther;
 }
 
 interface checkStaticTextOptions {
-  page: Page,
-  relationshipToRespondent: fl401RelationshipToRespondent,
-  respondentRelationshipOther?: fl401RespondentRelationshipOther
+  page: Page;
+  relationshipToRespondent: fl401RelationshipToRespondent;
+  respondentRelationshipOther?: fl401RespondentRelationshipOther;
 }
 
 interface checkFilledDataOptions {
-  page: Page,
-  relationshipToRespondent: fl401RelationshipToRespondent,
-  respondentRelationshipOther?: fl401RespondentRelationshipOther
+  page: Page;
+  relationshipToRespondent: fl401RelationshipToRespondent;
+  respondentRelationshipOther?: fl401RespondentRelationshipOther;
 }
 
 export class RelationshipToRespondentSubmitPage {
   public static async relationshipToRespondentSubmitPage({
-     page,
-     accessibilityTest,
-     relationshipToRespondent,
-     respondentRelationshipOther
+    page,
+    accessibilityTest,
+    relationshipToRespondent,
+    respondentRelationshipOther,
   }: relationshipToRespondentSubmitPageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
       accessibilityTest: accessibilityTest,
       respondentRelationship: relationshipToRespondent,
-      respondentRelationshipOther: respondentRelationshipOther
+      respondentRelationshipOther: respondentRelationshipOther,
     });
     await this.fillInFields(page);
   }
@@ -66,89 +64,88 @@ export class RelationshipToRespondentSubmitPage {
     page,
     accessibilityTest,
     respondentRelationship,
-    respondentRelationshipOther
+    respondentRelationshipOther,
   }: checkPageLoadsOptions): Promise<void> {
     await this.checkStaticText({
       page: page,
       relationshipToRespondent: respondentRelationship,
-      respondentRelationshipOther: respondentRelationshipOther
-    })
+      respondentRelationshipOther: respondentRelationshipOther,
+    });
     await this.checkFilledData({
       page: page,
       relationshipToRespondent: respondentRelationship,
-      respondentRelationshipOther: respondentRelationshipOther
+      respondentRelationshipOther: respondentRelationshipOther,
     });
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page)
+      await AccessibilityTestHelper.run(page);
     }
   }
 
   private static async checkStaticText({
     page,
     relationshipToRespondent,
-    respondentRelationshipOther
+    respondentRelationshipOther,
   }: checkStaticTextOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.h2}:text-is("${RelationshipToRespondentSubmitContent.h2}")`
+      `${Selectors.h2}:text-is("${RelationshipToRespondentSubmitContent.h2}")`,
     );
-    await Promise.all(
-      [
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukText16}:text-is("${RelationshipToRespondentSubmitContent.text16Change}")`,
-          2
-        ),
-        Helpers.checkGroup(
-          page,
-          2,
-          RelationshipToRespondentSubmitContent,
-          'defaultText16',
-          `${Selectors.GovukText16}`
-        ),
-      ]
-    );
-    if (relationshipToRespondent === 'noneOfTheAbove') {
-      let staticTextCount = (respondentRelationshipOther === 'Other') ? 2 : 1;
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${RelationshipToRespondentSubmitContent.text16Change}")`,
+        2,
+      ),
+      Helpers.checkGroup(
+        page,
+        2,
+        RelationshipToRespondentSubmitContent,
+        "defaultText16",
+        `${Selectors.GovukText16}`,
+      ),
+    ]);
+    if (relationshipToRespondent === "noneOfTheAbove") {
+      let staticTextCount = respondentRelationshipOther === "Other" ? 2 : 1;
       await Helpers.checkGroup(
         page,
         staticTextCount,
         RelationshipToRespondentSubmitContent,
-        'isNoneText16Static',
-        `${Selectors.GovukText16}`
+        "isNoneText16Static",
+        `${Selectors.GovukText16}`,
       );
     } else {
       await Helpers.checkGroup(
         page,
         4,
         RelationshipToRespondentSubmitContent,
-        'relationshipPeriodText16',
-        `${Selectors.GovukText16}`
+        "relationshipPeriodText16",
+        `${Selectors.GovukText16}`,
       );
     }
   }
-  
+
   private static async checkFilledData({
-   page,
-   relationshipToRespondent,
-   respondentRelationshipOther
+    page,
+    relationshipToRespondent,
+    respondentRelationshipOther,
   }: checkFilledDataOptions): Promise<void> {
-    let relationshipToRespondentKey = relationshipToRespondent as keyof typeof FL401RelationshipToRespondentValues
+    let relationshipToRespondentKey =
+      relationshipToRespondent as keyof typeof FL401RelationshipToRespondentValues;
     await Helpers.checkVisibleAndPresent(
       page,
       `${Selectors.GovukText16}:text-is("${FL401RelationshipToRespondentValues[relationshipToRespondentKey]}")`,
-      1
+      1,
     );
-    if (relationshipToRespondent === 'noneOfTheAbove') {
+    if (relationshipToRespondent === "noneOfTheAbove") {
       await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukText16}:text-is("${respondentRelationshipOther}")`,
-        1
+        1,
       );
-      if (respondentRelationshipOther === 'Other') {
+      if (respondentRelationshipOther === "Other") {
         await Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukText16}:text-is("${RelationshipToRespondentSubmitContent.relationshipOtherInput}")`,
-          1
+          1,
         );
       }
     } else {
@@ -156,15 +153,15 @@ export class RelationshipToRespondentSubmitPage {
         page,
         3,
         RelationshipToRespondentSubmitContent,
-        'relationshipPeriodText16',
-        `${Selectors.GovukText16}`
-      )
+        "relationshipPeriodText16",
+        `${Selectors.GovukText16}`,
+      );
     }
   }
 
   private static async fillInFields(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${RelationshipToRespondentSubmitContent.continue}")`
-    )
+      `${Selectors.button}:text-is("${RelationshipToRespondentSubmitContent.continue}")`,
+    );
   }
 }

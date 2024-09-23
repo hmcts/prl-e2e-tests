@@ -3,6 +3,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { ChildDetailsRevised1Content } from "../../../../../fixtures/manageCases/createCase/C100/childDetails/childDetailsRevised1Content";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Helpers } from "../../../../../common/helpers";
+import { C100RespondentDetails1Content } from "../../../../../fixtures/manageCases/createCase/C100/respondentDetails/c100RespondentDetails1Content";
 
 interface childDetailsRevised1PageOptions {
   page: Page;
@@ -34,6 +35,7 @@ enum uniqueSelectors {
   prohibitedStepsCheckbox = "#newChildDetails_0_orderAppliedFor-prohibitedStepsOrder",
   specificIssueCheckbox = "#newChildDetails_0_orderAppliedFor-specificIssueOrder",
   parentalResponsibilityField = "#newChildDetails_0_parentalResponsibilityDetails",
+  whoDoesChildLiveWithDropdown = "#newChildDetails_0_whoDoesTheChildLiveWith",
 }
 
 export class ChildDetailsRevised1Page {
@@ -130,9 +132,13 @@ export class ChildDetailsRevised1Page {
       `${uniqueSelectors.parentalResponsibilityField}`,
       `${ChildDetailsRevised1Content.parentalResponsibility}`,
     );
-    await page.click(
-      `${Selectors.button}:text-is("${ChildDetailsRevised1Content.continue}")`,
-    );
+    await page.selectOption(
+      `${uniqueSelectors.whoDoesChildLiveWithDropdown}`,
+      C100RespondentDetails1Content.respondentFullNameAndAddress,
+    ),
+      await page.click(
+        `${Selectors.button}:text-is("${ChildDetailsRevised1Content.continue}")`,
+      );
   }
 
   private static async handleOtherChildGender(page: Page): Promise<void> {

@@ -55,6 +55,7 @@ export enum C100RespondentDetails1Content {
   respondentFirstName = "Automated respondent",
   respondentLastName = "TestRespondentLastName",
   respondentPrevName = "CaseRespondentPrevName",
+  respondentFullNameAndAddress = "Automated respondent TestRespondentLastName - Buckingham Palace, SW1A 1AA",
   day = "1",
   month = "1",
   year = "2020",

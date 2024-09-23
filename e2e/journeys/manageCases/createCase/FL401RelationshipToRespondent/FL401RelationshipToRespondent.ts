@@ -3,11 +3,11 @@ import { SolicitorCreateInitial } from "../solicitorCreateInitial";
 import { Helpers } from "../../../../common/helpers";
 import {
   fl401RelationshipToRespondent,
-  RelationshipToRespondent1Page
+  RelationshipToRespondent1Page,
 } from "../../../../pages/manageCases/createCase/FL401/relationshipToRespondent/relationshipToRespondent1Page";
 import {
   RelationshipToRespondent2Page,
-  fl401RespondentRelationshipOther
+  fl401RespondentRelationshipOther,
 } from "../../../../pages/manageCases/createCase/FL401/relationshipToRespondent/relationshipToRespondent2Page";
 import { RelationshipToRespondentSubmitPage } from "../../../../pages/manageCases/createCase/FL401/relationshipToRespondent/relationshipToRespondentSubmitPage";
 import { Fl401TasksTabPage } from "../../../../pages/manageCases/caseTabs/fl401TasksTabPage";

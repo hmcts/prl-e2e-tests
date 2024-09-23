@@ -114,6 +114,7 @@ export class C100 {
       applicantGender: applicantGender,
       subJourney: false,
     });
+    console.log("C100ChildDetails Start");
     await C100ChildDetails.c100ChildDetails({
       page: page,
       user: user,
@@ -123,6 +124,7 @@ export class C100 {
         yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,
       subJourney: false,
     });
+    console.log("C100ChildDetails Stop");
     await C100ChildAndRespondents.c100ChildrenAndRespondents({
       page: page,
       user: user,
