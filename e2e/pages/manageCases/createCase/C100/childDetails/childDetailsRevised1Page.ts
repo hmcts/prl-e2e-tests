@@ -3,7 +3,6 @@ import { Selectors } from "../../../../../common/selectors";
 import { ChildDetailsRevised1Content } from "../../../../../fixtures/manageCases/createCase/C100/childDetails/childDetailsRevised1Content";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Helpers } from "../../../../../common/helpers";
-import { C100RespondentDetails1Content } from "../../../../../fixtures/manageCases/createCase/C100/respondentDetails/c100RespondentDetails1Content";
 
 interface childDetailsRevised1PageOptions {
   page: Page;
@@ -132,9 +131,10 @@ export class ChildDetailsRevised1Page {
       `${uniqueSelectors.parentalResponsibilityField}`,
       `${ChildDetailsRevised1Content.parentalResponsibility}`,
     );
+    console.log("stop")
     await page.selectOption(
       `${uniqueSelectors.whoDoesChildLiveWithDropdown}`,
-      C100RespondentDetails1Content.respondentFullNameAndAddress,
+      ChildDetailsRevised1Content.selectOptionForEverythingNoTestCases || ChildDetailsRevised1Content.respondentFullNameAndAddress
     );
     await page.click(
       `${Selectors.button}:text-is("${ChildDetailsRevised1Content.continue}")`,

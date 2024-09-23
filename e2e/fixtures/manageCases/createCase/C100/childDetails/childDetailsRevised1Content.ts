@@ -30,5 +30,7 @@ export enum ChildDetailsRevised1Content {
   childYearOfBirth = "2010",
   optionalChildGender = "Lorem ipsum gender",
   parentalResponsibility = "Lorem ipsum parental responsibility",
+  respondentFullNameAndAddress = "Automated respondent TestRespondentLastName - Buckingham Palace, SW1A 1AA",
+  selectOptionForEverythingNoTestCases = "Automated applicant TestapplicantLastName - Buckingham Palace, SW1A 1AA",
   continue = "Continue",
 }
