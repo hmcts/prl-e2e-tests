@@ -20,6 +20,11 @@ interface fillInFieldsOptions {
   c100ChildGender: C100ChildGender;
 }
 
+const optionToSelect =
+  ChildDetailsRevised1Content.selectOptionNameTestCases1 ||
+  ChildDetailsRevised1Content.selectOptionNameTestCases2 ||
+  ChildDetailsRevised1Content.selectOptionNameTestCases3;
+
 export type C100ChildGender = "female" | "male" | "other";
 
 enum uniqueSelectors {
@@ -131,12 +136,13 @@ export class ChildDetailsRevised1Page {
       `${uniqueSelectors.parentalResponsibilityField}`,
       `${ChildDetailsRevised1Content.parentalResponsibility}`,
     );
-    console.log("stop");
-    await page.selectOption(
-      `${uniqueSelectors.whoDoesChildLiveWithDropdown}`,
-      ChildDetailsRevised1Content.selectOptionForEverythingNoTestCases ||
-        ChildDetailsRevised1Content.respondentFullNameAndAddress,
-    );
+    await page.waitForTimeout(2000);
+    if (optionToSelect) {
+      await page.selectOption(
+        `${uniqueSelectors.whoDoesChildLiveWithDropdown}`,
+        optionToSelect,
+      );
+    }
     await page.click(
       `${Selectors.button}:text-is("${ChildDetailsRevised1Content.continue}")`,
     );
