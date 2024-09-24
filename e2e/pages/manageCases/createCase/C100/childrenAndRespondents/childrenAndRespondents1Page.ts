@@ -106,6 +106,7 @@ export class ChildrenAndRespondents1Page {
     await page.click(
       `${Selectors.button}:text-is("${ChildrenAndRespondents1Content.continue}")`,
     );
+    await page.waitForTimeout(1000);
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
@@ -133,10 +134,12 @@ export class ChildrenAndRespondents1Page {
         1,
       ),
     ]);
+    await page.waitForTimeout(1000);
     await page.selectOption(
       `${UniqueSelectors.respondentsRelationshipDropdown}`,
       ChildrenAndRespondents1Content.selectionForOtherRelationship,
     );
+    await page.waitForTimeout(1000);
     await page.click(
       `${Selectors.button}:text-is("${ChildrenAndRespondents1Content.continue}")`,
     );
@@ -189,6 +192,7 @@ export class ChildrenAndRespondents1Page {
       await this.giveDetailsOtherRelationshipStaticText(page);
       await page.click(`${UniqueSelectors.childLiveWithThisPersonNo}`);
     }
+    await page.waitForTimeout(1000);
     await page.click(
       `${Selectors.button}:text-is("${ChildrenAndRespondents1Content.continue}")`,
     );
