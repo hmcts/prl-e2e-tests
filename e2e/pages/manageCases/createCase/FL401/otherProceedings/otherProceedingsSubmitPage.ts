@@ -5,6 +5,7 @@ import { Helpers } from "../../../../../common/helpers";
 import accessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { OtherProceedingsContent } from "../../../../../fixtures/manageCases/createCase/FL401/otherProceedings/otherProceedingsContent";
 import { otherProceedingsRadios } from "../../../../../journeys/manageCases/createCase/FL401";
+import Path from "path";
 
 export class OtherProceedingsSubmitPage {
   public static async otherProceedingsSubmitPage(
@@ -63,7 +64,6 @@ export class OtherProceedingsSubmitPage {
   ): Promise<void> {
     switch (otherProceedingsRadios) {
       case "Yes":
-        // noinspection TypeScriptValidateTypes
         await Promise.all([
           Helpers.checkGroup(
             page,
@@ -99,7 +99,7 @@ export class OtherProceedingsSubmitPage {
           ),
           Helpers.checkVisibleAndPresent(
             page,
-            `${Selectors.a}:text-is("${SubmitContent.mockFileText}")`,
+            `${Selectors.a}:text-is("${Path.basename("../../../../../assets/mockFile.pdf")}")`,
             1,
           ),
         ]);

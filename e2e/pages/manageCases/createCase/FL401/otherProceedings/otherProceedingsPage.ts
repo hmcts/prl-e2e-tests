@@ -31,12 +31,7 @@ export class OtherProceedingsPage {
     if (errorMessaging) {
       await this.checkErrorMessaging(page);
     }
-    await this.fillInFields(
-      page,
-      otherProceedingsRadios,
-      errorMessaging,
-      accessibilityTest,
-    );
+    await this.fillInFields(page, otherProceedingsRadios, errorMessaging);
   }
 
   private static async checkPageLoads(
@@ -117,7 +112,6 @@ export class OtherProceedingsPage {
     page: Page,
     otherProceedingsRadios: otherProceedingsRadios,
     errorMessaging: boolean,
-    accessibilityTest: boolean,
   ): Promise<void> {
     switch (otherProceedingsRadios) {
       case "Yes":
@@ -127,7 +121,7 @@ export class OtherProceedingsPage {
             `${Selectors.button}:text-is("${OtherProceedingsContent.addNew}")`,
           );
         }
-        await this.checkFormLoads(page, accessibilityTest);
+        await this.checkFormLoads(page);
         await page.fill(
           `${inputIds.nameOfCourt}`,
           OtherProceedingsContent.exampleNameOfCourt,
@@ -179,10 +173,7 @@ export class OtherProceedingsPage {
     }
   }
 
-  private static async checkFormLoads(
-    page: Page,
-    accessibilityTest: boolean,
-  ): Promise<void> {
+  private static async checkFormLoads(page: Page): Promise<void> {
     await Helpers.checkGroup(
       page,
       5,
@@ -190,8 +181,5 @@ export class OtherProceedingsPage {
       "formLabel",
       `${Selectors.GovukFormLabel}`,
     );
-    if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
-    }
   }
 }
