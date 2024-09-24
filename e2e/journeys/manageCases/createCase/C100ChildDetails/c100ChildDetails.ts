@@ -3,7 +3,6 @@ import {
   ChildDetailsRevised1Page,
 } from "../../../../pages/manageCases/createCase/C100/childDetails/childDetailsRevised1Page";
 import { Page } from "@playwright/test";
-import { SolicitorCreateInitial } from "../solicitorCreateInitial";
 import { UserRole } from "../../../../common/types";
 import { Helpers } from "../../../../common/helpers";
 import {
@@ -12,6 +11,7 @@ import {
 } from "../../../../pages/manageCases/createCase/C100/childDetails/childDetailsRevised2Page";
 import { C100ChildDetailsSubmitPage } from "../../../../pages/manageCases/createCase/C100/childDetails/childDetailsSubmitPage";
 import { C100TasksTabPage } from "../../../../pages/manageCases/caseTabs/c100TasksTabPage";
+import { C100ApplicantDetails } from "../C100ApplicantDetails/c100ApplicantDetails";
 
 interface c100ChildDetailsOptions {
   page: Page;
@@ -33,12 +33,14 @@ export class C100ChildDetails {
     subJourney: subJourney,
   }: c100ChildDetailsOptions): Promise<void> {
     if (subJourney) {
-      await SolicitorCreateInitial.createInitialCase({
-        page: page,
+      await C100ApplicantDetails.C100ApplicantDetails({
+        page,
         user: user,
         accessibilityTest: false,
-        solicitorCaseType: "C100",
         errorMessaging: false,
+        yesNoApplicantDetails: true,
+        applicantGender: "male",
+        subJourney: true,
       });
     }
     await Helpers.selectSolicitorEvent(page, "Child details");

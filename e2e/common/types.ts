@@ -31,7 +31,8 @@ export type c100SolicitorEvents =
   | "Other people in the case"
   | "Other children not in the case"
   | "Children and respondents"
-  | "Children and other people";
+  | "Children and other people"
+  | "Children and applicants";
 
 export type fl401SolicitorEvents =
   | "Case name"
@@ -39,6 +40,7 @@ export type fl401SolicitorEvents =
   | "Without notice order"
   | "Applicant details"
   | "Respondent details"
+  | "Other proceedings"
   | "Respondent's behaviour"
   | "Applicant's family"
   | "Relationship to respondent";

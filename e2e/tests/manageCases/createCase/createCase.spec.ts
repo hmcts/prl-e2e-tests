@@ -8,13 +8,14 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Not Error message testing,
   Saying yes to all hearing urgency questions,
   Saying yes to all applicant details questions with a male applicant
-  Saying yes to all respondent details questions with a female respondent 
+  Saying yes to all respondent details questions with a female respondent
   Saying yes to all respondent details questions with a male respondent
   Saying yes to all other people in the case questions with a male applicant
   Saying yes to all child details question with a male child 
   Saying yes to all children and respondents questions
-  Saying yes to all children and Other People questions
-  With no other child present @crossbrowserManageCases`, async ({
+  Saying yes to all children and Other People questions 
+  With no other child present
+  Where the child lives with their applicant father @crossbrowserManageCases`, async ({
     page,
   }): Promise<void> => {
     await C100.c100({
@@ -40,6 +41,8 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       otherChildDOBKnown: false,
       yesNoChildrenAndRespondents: true,
       yesNoChildrenAndOtherPeople: true,
+      applicantChildRelationship: "Father",
+      childLiveWithApplicant: true,
     });
   });
 
@@ -54,7 +57,8 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Saying no to all other people in the case questions with a male applicant
   Saying no to all child details question with a female child 
   Saying no to all children and respondents questions
-  Saying no to all children and Other People questions@crossbrowserManageCases`, async ({
+  Saying no to all children and Other People questionsWith another female child present, with a known DOB 
+  Where the child does not live with their applicant mother @crossbrowserManageCases`, async ({
     page,
   }): Promise<void> => {
     await C100.c100({
@@ -80,6 +84,8 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       otherChildDOBKnown: true,
       yesNoChildrenAndRespondents: false,
       yesNoChildrenAndOtherPeople: false,
+      applicantChildRelationship: "Mother",
+      childLiveWithApplicant: false,
     });
   });
 
@@ -108,6 +114,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       applicantGender: "female",
       isWithoutNoticeDetailsYes: true,
       isWithoutNoticeDetailsBailConditions: "Yes",
+      otherProceedingsRadios: "Yes",
       relationshipToRespondent: "foremerlyLivedTogether",
     });
   });
@@ -141,6 +148,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       respondentsBehaviourAllOptionsYes: true,
       isWithoutNoticeDetailsYes: true,
       isWithoutNoticeDetailsBailConditions: "Don't know",
+      otherProceedingsRadios: "Yes",
       relationshipToRespondent: "marriedOrCivil",
     });
   });
@@ -169,6 +177,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       respondentsBehaviourAllOptionsYes: false,
       isWithoutNoticeDetailsYes: false,
       isWithoutNoticeDetailsBailConditions: "No",
+      otherProceedingsRadios: "Yes",
       relationshipToRespondent: "noneOfTheAbove",
       relationshipToRespondentOther: "Cousin",
     });

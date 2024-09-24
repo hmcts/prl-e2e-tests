@@ -20,6 +20,8 @@ import { C100OtherChildrenNotInTheCase } from "./C100OtherChildrenNotInTheCase/C
 import { C100OtherChildGender } from "../../../pages/manageCases/createCase/C100/otherChildrenNotInTheCase/otherChildNotInTheCase1Page";
 import { C100ChildAndRespondents } from "./C100ChildrenAndRespondents/c100ChildrenAndRespondents";
 import { C100ChildrenAndOtherPeople } from "./C100ChildrenAndOtherPeople/c100ChildrenAndOtherPeople";
+import { C100ChildrenAndApplicantsRelationship } from "../../../pages/manageCases/createCase/C100/childrenAndApplicants/childrenAndApplicants1Page";
+import { C100ChildrenAndApplicants } from "./C100ChildrenAndApplicants/C100ChildrenAndApplicants";
 
 interface c100Options {
   page: Page;
@@ -44,6 +46,8 @@ interface c100Options {
   otherChildDOBKnown: boolean;
   yesNoChildrenAndRespondents: boolean;
   yesNoChildrenAndOtherPeople: boolean;
+  applicantChildRelationship: C100ChildrenAndApplicantsRelationship;
+  childLiveWithApplicant: boolean;
 }
 
 export class C100 {
@@ -71,6 +75,8 @@ export class C100 {
     otherChildDOBKnown: otherChildDOBKnown,
     yesNoChildrenAndRespondents: yesNoChildrenAndRespondents,
     yesNoChildrenAndOtherPeople: yesNoChildrenAndOtherPeople,
+    applicantChildRelationship: applicantChildRelationship,
+    childLiveWithApplicant: childLiveWithApplicant,
   }: c100Options): Promise<void> {
     await SolicitorCreateInitial.createInitialCase({
       page: page,
@@ -141,6 +147,14 @@ export class C100 {
       otherChildPresent: otherChildPresent,
       otherChildGender: otherChildGender,
       otherChildDOBKnown: otherChildDOBKnown,
+      subJourney: false,
+    });
+    await C100ChildrenAndApplicants.c100ChildrenAndApplicants({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      applicantChildRelationship: applicantChildRelationship,
+      childLiveWithApplicant: childLiveWithApplicant,
       subJourney: false,
     });
     await C100ChildAndRespondents.c100ChildrenAndRespondents({
