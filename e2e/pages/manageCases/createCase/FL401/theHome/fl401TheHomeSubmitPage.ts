@@ -179,7 +179,6 @@ export class Fl401TheHomeSubmitPage {
         noCount += 1;
       }
     }
-    console.log(filledTextCount)
     await Promise.all(
       [
         Helpers.checkVisibleAndPresent(
