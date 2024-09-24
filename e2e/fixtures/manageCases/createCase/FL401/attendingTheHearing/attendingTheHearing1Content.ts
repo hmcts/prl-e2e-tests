@@ -6,14 +6,13 @@ export enum AttendingTheHearing1Content {
   p4 = 'The court can appoint an intermediary for vulnerable applicants.',
   p5 = 'The intermediary helps the applicant to communicate and give evidence during the case.',
 
-  p6 = '*Describe the adjustments that the court needs to make.',
-  p7 = 'For example - someone with a hearing impairment may need an induction loop to be fitted in the courtroom.',
-  p8 = '*Give details of the special arrangements that are required.',
-  p9 = 'For example, a screen to separate the applicant from the respondent.',
-  p10 = '*Describe their relationship to the case.',
-  p11 = 'For example - grandmother of the applicant.',
-  p12 = '*Describe the adjustments that the court needs to make.',
-  p13 = 'For example - someone with a hearing impairment may need an induction loop to be fitted in the courtroom.',
+  subP1 = '*Describe the adjustments that the court needs to make.',
+  subP2 = 'For example - someone with a hearing impairment may need an induction loop to be fitted in the courtroom.',
+  subP3 = '*Give details of the special arrangements that are required.',
+  subP4 = 'For example, a screen to separate the applicant from the respondent.',
+
+  interpreterP1 = '*Describe their relationship to the case.',
+  interpreterP2 = 'For example - grandmother of the applicant.',
 
   yes = 'Yes',
   no = 'No',
@@ -23,14 +22,20 @@ export enum AttendingTheHearing1Content {
   h32 = 'Accessibility',
   h33 = 'Special arrangements',
 
-  h34 = 'Welsh needs',
-  h35 = ' Interpreter needs ',
+  welshNeedsSubHeading = 'Welsh needs',
+  interpreterNeedsSubHeading = ' Interpreter needs ',
 
-  h21 = ' Welsh needs ',
-  h22 = ' Interpreter needs ',
-  h23 = 'Add new welsh need',
-  h24 = 'Add new interpreter need',
+  sectionHeading1 = ' Welsh needs ',
+  sectionHeading2 = ' Interpreter needs ',
 
+  newWelshNeed = 'Add new welsh need',
+  automatedTester = 'Automated Tester',
+  newInterpreterNeed = 'Add new interpreter need',
+  interpreterNeedsName = 'Automated Interpreter',
+  interpreterNeedsLanguage = 'Automated Language',
+  interpreterNeedsAssistance = 'Automated Assistance',
+  specialArrangements = 'Automated Arrangements',
+  intermediaryReasons = '#reasonsForIntermediary',
 
   formLabel1 = '*Will the applicant, or anyone else attending court, need to speak Welsh or read and write in Welsh during the proceedings?',
   formLabel2 = '*Do you know if an interpreter will be needed in the court to explain information in a certain language?',
@@ -38,16 +43,18 @@ export enum AttendingTheHearing1Content {
   formLabel4 = '*Will the court need to make special arrangements for the applicant, or any child involved in the case?',
   formLabel5 = '*Do you know if an intermediary will be required?',
 
-  formLabel6 = '*Set out the reasons that an intermediary is required.',
-  formLabel7 = '*Provide the names of the people involved in the case who need to speak Welsh or read and write in Welsh.',
-  formLabel8 = 'Will need to speak Welsh',
-  formLabel9 = 'Will need to read and write in Welsh',
-  formLabel10 = '*Who will require the interpreter?',
-  formLabel11 = 'Applicant',
-  formLabel12 = 'Respondent',
-  formLabel13 = 'Other people in the case',
-  formLabel14 = '*Enter details of the language or dialect required.',
-  formLabel15 = 'Any other assistance required (e.g. sign language) (Optional)',
+  welshLabel1 = '*Provide the names of the people involved in the case who need to speak Welsh or read and write in Welsh.',
+  welshLabel2 = 'Will need to speak Welsh',
+  welshLabel3 = 'Will need to read and write in Welsh',
+
+  interpreterLabel1 = '*Who will require the interpreter?',
+  interpreterLabel2 = 'Applicant',
+  interpreterLabel3 = 'Respondent',
+  interpreterLabel4 = 'Other people in the case',
+  interpreterLabel5 = '*Enter details of the language or dialect required.',
+  interpreterLabel6 = 'Any other assistance required (e.g. sign language) (Optional)',
+
+  intermediaryFormLabel = '*Set out the reasons that an intermediary is required.',
 
   errorSummaryTitle = "There is a problem",
   inputValidationError1 = " *Will the applicant, or anyone else attending court, need to speak Welsh or read and write in Welsh during the proceedings? is required ",
@@ -60,6 +67,16 @@ export enum AttendingTheHearing1Content {
   inputErrorMessage3 = " *Will the court need to make special arrangements for the applicant, or any child involved in the case? is required ",
   inputErrorMessage4 = " *Do you know if an intermediary will be required? is required ",
   inputErrorMessage5 = " *Do you know if an interpreter will be needed in the court to explain information in a certain language? is required ",
+
+  secondValidationError1 = ' *Provide the names of the people involved in the case who need to speak Welsh or read and write in Welsh. is required ',
+  secondValidationError2 = ' *Who will require the interpreter? is required ',
+  secondValidationError3 = ' *Enter details of the language or dialect required. is required ',
+  secondErrorMessage1 = ' *Provide the names of the people involved in the case who need to speak Welsh or read and write in Welsh. is required ',
+  secondErrorMessage2 = ' *Who will require the interpreter? is required ',
+  secondErrorMessage3 = ' *Enter details of the language or dialect required. is required ',
+
+  fieldIsRequiredValidation = ' Field is required ',
+  fieldISRequiredMessage = ' Field is required ',
 
   continue = 'Continue'
 }
