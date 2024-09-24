@@ -14,7 +14,8 @@ enum uniqueSelectors {
   homeEverLivedAtAddress = 'div#home_everLivedAtTheAddress > fieldset > div > ',
   topLevelSelectors = 'div#home_home.form-group > fieldset > ccd-field-write > div:visible ',
   homeMortgageLookupDiv = 'div#home_mortgages_mortgages ',
-  homeLandlordLookupDiv = 'div#home_landlords_landlords '
+  homeLandlordLookupDiv = 'div#home_landlords_landlords ',
+  homeTextAreaSibling = "label[for='home_textAreaSomethingElse'] + ",
 }
 
 enum checkboxIDs {
@@ -301,13 +302,27 @@ export class Fl401TheHome1Page {
      page,
      fl401TheHomeYesNo,
    }: FillRemainingInputsOptions): Promise<void> {
-    const detailsCount: number = fl401TheHomeYesNo ? 3 : 1;
-    // await Helpers.checkVisibleAndPresent(
-    //   page,
-    //   `${Selectors.GovukFormHint}:text-is("${Fl401Home1Content.provideTheDetailsInTheBoxBelow}")`,
-    //   detailsCount,
-    // );
-    // For, hints are alway sshown and will need unique divs to fix
+    await Helpers.checkVisibleAndPresent(
+      page,
+      `${uniqueSelectors.homeTextAreaSibling}${Selectors.GovukFormHint}:text-is("${Fl401Home1Content.provideTheDetailsInTheBoxBelow}")`,
+      1
+    )
+    if (fl401TheHomeYesNo) {
+      await Promise.all(
+        [
+          Helpers.checkVisibleAndPresent(
+            page,
+            `${uniqueSelectors.homeMortgageLookupDiv}${Selectors.GovukFormHint}:text-is("${Fl401Home1Content.provideTheDetailsInTheBoxBelow}")`,
+            1
+          ),
+          Helpers.checkVisibleAndPresent(
+            page,
+            `${uniqueSelectors.homeLandlordLookupDiv}${Selectors.GovukFormHint}:text-is("${Fl401Home1Content.provideTheDetailsInTheBoxBelow}")`,
+            1
+          )
+        ]
+      );
+    }
     await page.fill(
       inputIDs.textAreaHomeSomethingElse,
       Fl401Home1Content.someoneElseInput,

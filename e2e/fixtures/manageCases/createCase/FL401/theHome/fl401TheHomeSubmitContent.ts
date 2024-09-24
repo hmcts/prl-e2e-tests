@@ -32,6 +32,8 @@ export enum Fl401TheHomeSubmitContent {
   childText164 = '*Child’s full name',
   childText165 = 'Child’s age',
   childText166 = '*Is the respondent also responsible for the child?',
+  childFullName = 'Automated Tester Child',
+  childAge = '12',
 
   filledText161 = 'The applicant wants to be able to stay in their home',
   filledText162 = 'The applicant wants to be able to return home',
