@@ -1,0 +1,18 @@
+export enum SubmitContent {
+  pageTitle = "Other proceedings",
+  h2 = "Check your answers",
+  checkInfoLabel = "Check the information below carefully.",
+  text161 = "*Are there previous or ongoing family court proceedings involving the applicant and respondent?",
+  text162 = "Other Proceedings",
+  text163 = "Name of the court",
+  text164 = "Case number",
+  text165 = "*Type of case",
+  text166 = "*Any other details",
+  text167 = "Upload relevant order(s)",
+  mockFileText = "mockFile.pdf",
+  change = "Change",
+  yes = "Yes",
+  no = "No",
+  dontKnow = "Don't know",
+  saveAndContinue = "Save and continue",
+}
