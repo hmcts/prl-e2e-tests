@@ -6,8 +6,10 @@ import { FL401RespondentDetails } from "./FL401RespondentDetails/FL401Respondent
 import { FL401WithoutNoticeOrder } from "./FL401WithoutNoticeOrder/FL401WIthoutNoticeOrder";
 import { FL401ApplicantDetails } from "./FL401ApplicantDetails/FL401ApplicantDetails";
 import { FL401ApplicantsFamily } from "./FL401ApplicantsFamily/FL401ApplicantsFamily";
-
-export type bailConditionRadios = "Yes" | "No" | "Don't know";
+import { FL401RelationshipToRespondent } from "./FL401RelationshipToRespondent/FL401RelationshipToRespondent";
+import { fl401RelationshipToRespondent } from "../../../pages/manageCases/createCase/FL401/relationshipToRespondent/relationshipToRespondent1Page";
+import { fl401RespondentRelationshipOther } from "../../../pages/manageCases/createCase/FL401/relationshipToRespondent/relationshipToRespondent2Page";
+import { bailConditionRadios } from "../../../pages/manageCases/createCase/FL401/withoutNoticeOrder/withoutNoticeOrder3Page";
 
 interface fl401Options {
   page: Page;
@@ -21,6 +23,8 @@ interface fl401Options {
   applicantGender: ApplicantGender;
   isWithoutNoticeDetailsYes: boolean;
   isWithoutNoticeDetailsBailConditions: bailConditionRadios;
+  relationshipToRespondent: fl401RelationshipToRespondent;
+  relationshipToRespondentOther?: fl401RespondentRelationshipOther;
 }
 
 export class FL401 {
@@ -36,6 +40,8 @@ export class FL401 {
     applicantGender,
     isWithoutNoticeDetailsYes,
     isWithoutNoticeDetailsBailConditions,
+    relationshipToRespondent,
+    relationshipToRespondentOther,
   }: fl401Options): Promise<void> {
     await SolicitorCreateInitial.createInitialCase({
       page: page,
@@ -80,6 +86,14 @@ export class FL401 {
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
       applicantHasChildren: applicantHasChildren,
+      subJourney: false,
+    });
+    await FL401RelationshipToRespondent.fl401RelationshipToRespondent({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      relationshipToRespondent: relationshipToRespondent,
+      relationshipToRespondentOther: relationshipToRespondentOther,
       subJourney: false,
     });
   }
