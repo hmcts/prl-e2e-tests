@@ -9,7 +9,8 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Saying yes to all hearing urgency questions,
   Saying yes to all applicant details questions with a male applicant
   Saying yes to all respondent details questions with a female respondent 
-  With no other child present @crossbrowserManageCases`, async ({
+  With no other child present
+  Where the child lives with their applicant father @crossbrowserManageCases`, async ({
     page,
   }): Promise<void> => {
     await C100.c100({
@@ -33,6 +34,8 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       otherChildPresent: false,
       otherChildGender: "Male",
       otherChildDOBKnown: false,
+      applicantChildRelationship: "Father",
+      childLiveWithApplicant: true,
     });
   });
 
@@ -42,7 +45,8 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Saying no to all hearing urgency questions,
   Saying no to all applicant details questions with a female applicant
   Saying yes to all respondent details questions with a female respondent 
-  With another female child present, with a known DOB @crossbrowserManageCases`, async ({
+  With another female child present, with a known DOB 
+  Where the child does not live with their applicant mother @crossbrowserManageCases`, async ({
     page,
   }): Promise<void> => {
     await C100.c100({
@@ -66,6 +70,8 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       otherChildPresent: true,
       otherChildGender: "Female",
       otherChildDOBKnown: true,
+      applicantChildRelationship: "Mother",
+      childLiveWithApplicant: false,
     });
   });
 
