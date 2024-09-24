@@ -2,7 +2,10 @@ import { SolicitorCreateInitial } from "../solicitorCreateInitial";
 import { Helpers } from "../../../../common/helpers";
 import { Page } from "@playwright/test";
 import { Fl401TasksTabPage } from "../../../../pages/manageCases/caseTabs/fl401TasksTabPage";
-import { addressRadios, Fl401TheHome1Page } from "../../../../pages/manageCases/createCase/FL401/theHome/fl401TheHome1Page";
+import {
+  addressRadios,
+  Fl401TheHome1Page,
+} from "../../../../pages/manageCases/createCase/FL401/theHome/fl401TheHome1Page";
 import { Fl401TheHomeSubmitPage } from "../../../../pages/manageCases/createCase/FL401/theHome/fl401TheHomeSubmitPage";
 
 interface FL401TheHomeOptions {
@@ -41,7 +44,7 @@ export class FL401TheHome {
       applicantHasChildren,
       fl401TheHomeYesNo,
       fl401EverLivedAtAddress,
-      fl401IntendToLiveAtAddress
+      fl401IntendToLiveAtAddress,
     });
     await Fl401TheHomeSubmitPage.fl401TheHomeSubmitPage({
       page,
@@ -49,7 +52,7 @@ export class FL401TheHome {
       applicantHasChildren,
       fl401TheHomeYesNo,
       fl401EverLivedAtAddress,
-      fl401IntendToLiveAtAddress
+      fl401IntendToLiveAtAddress,
     });
     await Fl401TasksTabPage.fl401TasksTabPage(page, accessibilityTest);
   }

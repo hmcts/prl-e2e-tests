@@ -3,108 +3,106 @@ import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelp
 import { Selectors } from "../../../../../common/selectors";
 import { Fl401Home1Content } from "../../../../../fixtures/manageCases/createCase/FL401/theHome/fl401Home1Content";
 import { Helpers } from "../../../../../common/helpers";
-import { FL401 } from "../../../../../journeys/manageCases/createCase/FL401";
-import { FL401TheHome } from "../../../../../journeys/manageCases/createCase/FL401TheHome/fl401TheHome";
 
 enum uniqueSelectors {
-  intendedHomeDiv = 'div#home_intendToLiveAtTheAddress > fieldset > div > ',
-  homeChildrenDiv = 'div#home_children > div ',
-  homeAddressLookupDiv = 'div#home_address_address ',
-  homePeopleLiveAtAddress = 'div#home_peopleLivingAtThisAddress > fieldset > div > ',
-  homeEverLivedAtAddress = 'div#home_everLivedAtTheAddress > fieldset > div > ',
-  topLevelSelectors = 'div#home_home.form-group > fieldset > ccd-field-write > div:visible ',
-  homeMortgageLookupDiv = 'div#home_mortgages_mortgages ',
-  homeLandlordLookupDiv = 'div#home_landlords_landlords ',
+  intendedHomeDiv = "div#home_intendToLiveAtTheAddress > fieldset > div > ",
+  homeChildrenDiv = "div#home_children > div ",
+  homeAddressLookupDiv = "div#home_address_address ",
+  homePeopleLiveAtAddress = "div#home_peopleLivingAtThisAddress > fieldset > div > ",
+  homeEverLivedAtAddress = "div#home_everLivedAtTheAddress > fieldset > div > ",
+  topLevelSelectors = "div#home_home.form-group > fieldset > ccd-field-write > div:visible ",
+  homeMortgageLookupDiv = "div#home_mortgages_mortgages ",
+  homeLandlordLookupDiv = "div#home_landlords_landlords ",
   homeTextAreaSibling = "label[for='home_textAreaSomethingElse'] + ",
 }
 
 enum checkboxIDs {
-  applicantHome = '#home_peopleLivingAtThisAddress-applicant',
-  respondentHome = '#home_peopleLivingAtThisAddress-respondent',
-  childrenHome = '#home_peopleLivingAtThisAddress-applicantChildren',
-  someoneElseHome = '#home_peopleLivingAtThisAddress-someoneElse',
-  applicantWantsToStayHome = '#home_livingSituation-ableToStayInHome',
-  applicantWantsToReturnHome = '#home_livingSituation-ableToReturnHome',
-  applicantsWantsEntryRestriction = '#home_livingSituation-restrictFromEnteringHome',
-  awayFromHome = '#home_livingSituation-awayFromHome',
-  limitRespondentInHome = '#home_livingSituation-limitRespondentInHome',
-  payForRepairs = '#home_familyHome-payForRepairs',
-  payRent = '#home_familyHome-payOrContributeRent',
-  needsContents = '#home_familyHome-useHouseholdContents'
+  applicantHome = "#home_peopleLivingAtThisAddress-applicant",
+  respondentHome = "#home_peopleLivingAtThisAddress-respondent",
+  childrenHome = "#home_peopleLivingAtThisAddress-applicantChildren",
+  someoneElseHome = "#home_peopleLivingAtThisAddress-someoneElse",
+  applicantWantsToStayHome = "#home_livingSituation-ableToStayInHome",
+  applicantWantsToReturnHome = "#home_livingSituation-ableToReturnHome",
+  applicantsWantsEntryRestriction = "#home_livingSituation-restrictFromEnteringHome",
+  awayFromHome = "#home_livingSituation-awayFromHome",
+  limitRespondentInHome = "#home_livingSituation-limitRespondentInHome",
+  payForRepairs = "#home_familyHome-payForRepairs",
+  payRent = "#home_familyHome-payOrContributeRent",
+  needsContents = "#home_familyHome-useHouseholdContents",
 }
 
 enum secondLevelCheckboxIDs {
-  applicantMortgage = '#home_mortgages_mortgageNamedAfter-applicant',
-  respondentMortgage = '#home_mortgages_mortgageNamedAfter-respondent',
-  someoneElseMortgage = '#home_mortgages_mortgageNamedAfter-someoneElse',
-  applicantLandlord = '#home_landlords_mortgageNamedAfterList-applicant',
-  respondentLandlord = '#home_landlords_mortgageNamedAfterList-respondent',
-  someoneElseLandlord = '#home_landlords_mortgageNamedAfterList-someoneElse',
+  applicantMortgage = "#home_mortgages_mortgageNamedAfter-applicant",
+  respondentMortgage = "#home_mortgages_mortgageNamedAfter-respondent",
+  someoneElseMortgage = "#home_mortgages_mortgageNamedAfter-someoneElse",
+  applicantLandlord = "#home_landlords_mortgageNamedAfterList-applicant",
+  respondentLandlord = "#home_landlords_mortgageNamedAfterList-respondent",
+  someoneElseLandlord = "#home_landlords_mortgageNamedAfterList-someoneElse",
 }
 
 enum inputIDs {
-  homeAddressPostcodeInput = '#home_address_address_postcodeInput',
-  homeAddressSelectAddress = '#home_address_address_addressList',
-  homeAddressBuildingAndStreet = '#home_address__detailAddressLine1',
-  homeAddressAddressLine2 = '#home_address__detailAddressLine2',
-  homeAddressAddressLine3 = '#home_address__detailAddressLine3',
-  homeAddressTownOrCity = '#home_address__detailPostTown',
-  homeAddressAddressCounty = '#home_address__detailCounty',
-  homeAddressPostalCode = '#home_address__detailPostCode',
-  homeAddressAddressCountry = '#home_address__detailCountry',
-  homeMortgagePostcodeInput = '#home_mortgages_address_address_postcodeInput',
-  homeMortgageSelectAddress = '#home_mortgages_address_address_addressList',
-  homeMortgageBuildingAndStreet = '#home_mortgages_address__detailAddressLine1',
-  homeMortgageAddressLine2 = '#home_mortgages_address__detailAddressLine2',
-  homeMortgageAddressLine3 = '#home_mortgages_address__detailAddressLine3',
-  homeMortgageTownOrCity = '#home_mortgages_address__detailPostTown',
-  homeMortgageAddressCounty = '#home_mortgages_address__detailCounty',
-  homeMortgagePostalCode = '#home_mortgages_address__detailPostCode',
-  homeMortgageAddressCountry = '#home_mortgages_address__detailCountry',
-  homeLandlordPostcodeInput = '#home_landlords_address_address_postcodeInput',
-  homeLandlordSelectAddress = '#home_landlords_address_address_addressList',
-  homeLandlordBuildingAndStreet = '#home_landlords_address__detailAddressLine1',
-  homeLandlordAddressLine2 = '#home_landlords_address__detailAddressLine2',
-  homeLandlordAddressLine3 = '#home_landlords_address__detailAddressLine3',
-  homeLandlordTownOrCity = '#home_landlords_address__detailPostTown',
-  homeLandlordAddressCounty = '#home_landlords_address__detailCounty',
-  homeLandlordPostalCode = '#home_landlords_address__detailPostCode',
-  homeLandlordAddressCountry = '#home_landlords_address__detailCountry',
-  secondLevelOccupantDetails = 'home_textAreaSomethingElse',
-  everLivedAtAddress = '#home_everLivedAtTheAddress-',
-  intendToLiveAtAddress = '#home_intendToLiveAtTheAddress-',
-  childrenAtAddressYes = '#home_doAnyChildrenLiveAtAddress_Yes',
-  childrenAtAddressNo = '#home_doAnyChildrenLiveAtAddress_No',
-  propertyAdaptedYes = '#home_isPropertyAdapted_Yes',
-  propertyAdaptedNo = '#home_isPropertyAdapted_No',
-  mortgagePropertyYes = '#home_isThereMortgageOnProperty_Yes',
-  mortgagePropertyNo = '#home_isThereMortgageOnProperty_No',
-  rentedPropertyYes = '#home_isPropertyRented_Yes',
-  rentedPropertyNo = '#home_isPropertyRented_No',
-  applicantHomeRightsYes = '#home_doesApplicantHaveHomeRights_Yes',
-  applicantHomeRightsNo = '#home_doesApplicantHaveHomeRights_No',
-  confidentialInfoYes = '#home_children_0_keepChildrenInfoConfidential_Yes',
-  confidentialInfoNo = '#home_children_0_keepChildrenInfoConfidential_No',
-  childFullName = '#home_children_0_childFullName',
-  childAge = '#home_children_0_childsAge',
-  respondentResponsibleForChildYes = '#home_children_0_isRespondentResponsibleForChild_Yes',
-  respondentResponsibleForChildNo = '#home_children_0_isRespondentResponsibleForChild_No',
-  textAreaHomeSomethingElse = '#home_textAreaSomethingElse',
-  textAreaSpeciallyAdapted = '#home_howIsThePropertyAdapted',
-  textAreaMortgageSomethingElse = '#home_mortgages_textAreaSomethingElse',
-  textAreaLandlordSomethingElse = '#home_landlords_textAreaSomethingElse',
-  textAreaFurtherInfo = '#home_furtherInformation',
-  mortgageNumber = '#home_mortgages_mortgageNumber',
-  mortgageLender = '#home_mortgages_mortgageLenderName',
-  landlordName = '#home_landlords_landlordName',
-  adaptedProperty = '#home_howIsThePropertyAdapted'
+  homeAddressPostcodeInput = "#home_address_address_postcodeInput",
+  homeAddressSelectAddress = "#home_address_address_addressList",
+  homeAddressBuildingAndStreet = "#home_address__detailAddressLine1",
+  homeAddressAddressLine2 = "#home_address__detailAddressLine2",
+  homeAddressAddressLine3 = "#home_address__detailAddressLine3",
+  homeAddressTownOrCity = "#home_address__detailPostTown",
+  homeAddressAddressCounty = "#home_address__detailCounty",
+  homeAddressPostalCode = "#home_address__detailPostCode",
+  homeAddressAddressCountry = "#home_address__detailCountry",
+  homeMortgagePostcodeInput = "#home_mortgages_address_address_postcodeInput",
+  homeMortgageSelectAddress = "#home_mortgages_address_address_addressList",
+  homeMortgageBuildingAndStreet = "#home_mortgages_address__detailAddressLine1",
+  homeMortgageAddressLine2 = "#home_mortgages_address__detailAddressLine2",
+  homeMortgageAddressLine3 = "#home_mortgages_address__detailAddressLine3",
+  homeMortgageTownOrCity = "#home_mortgages_address__detailPostTown",
+  homeMortgageAddressCounty = "#home_mortgages_address__detailCounty",
+  homeMortgagePostalCode = "#home_mortgages_address__detailPostCode",
+  homeMortgageAddressCountry = "#home_mortgages_address__detailCountry",
+  homeLandlordPostcodeInput = "#home_landlords_address_address_postcodeInput",
+  homeLandlordSelectAddress = "#home_landlords_address_address_addressList",
+  homeLandlordBuildingAndStreet = "#home_landlords_address__detailAddressLine1",
+  homeLandlordAddressLine2 = "#home_landlords_address__detailAddressLine2",
+  homeLandlordAddressLine3 = "#home_landlords_address__detailAddressLine3",
+  homeLandlordTownOrCity = "#home_landlords_address__detailPostTown",
+  homeLandlordAddressCounty = "#home_landlords_address__detailCounty",
+  homeLandlordPostalCode = "#home_landlords_address__detailPostCode",
+  homeLandlordAddressCountry = "#home_landlords_address__detailCountry",
+  secondLevelOccupantDetails = "home_textAreaSomethingElse",
+  everLivedAtAddress = "#home_everLivedAtTheAddress-",
+  intendToLiveAtAddress = "#home_intendToLiveAtTheAddress-",
+  childrenAtAddressYes = "#home_doAnyChildrenLiveAtAddress_Yes",
+  childrenAtAddressNo = "#home_doAnyChildrenLiveAtAddress_No",
+  propertyAdaptedYes = "#home_isPropertyAdapted_Yes",
+  propertyAdaptedNo = "#home_isPropertyAdapted_No",
+  mortgagePropertyYes = "#home_isThereMortgageOnProperty_Yes",
+  mortgagePropertyNo = "#home_isThereMortgageOnProperty_No",
+  rentedPropertyYes = "#home_isPropertyRented_Yes",
+  rentedPropertyNo = "#home_isPropertyRented_No",
+  applicantHomeRightsYes = "#home_doesApplicantHaveHomeRights_Yes",
+  applicantHomeRightsNo = "#home_doesApplicantHaveHomeRights_No",
+  confidentialInfoYes = "#home_children_0_keepChildrenInfoConfidential_Yes",
+  confidentialInfoNo = "#home_children_0_keepChildrenInfoConfidential_No",
+  childFullName = "#home_children_0_childFullName",
+  childAge = "#home_children_0_childsAge",
+  respondentResponsibleForChildYes = "#home_children_0_isRespondentResponsibleForChild_Yes",
+  respondentResponsibleForChildNo = "#home_children_0_isRespondentResponsibleForChild_No",
+  textAreaHomeSomethingElse = "#home_textAreaSomethingElse",
+  textAreaSpeciallyAdapted = "#home_howIsThePropertyAdapted",
+  textAreaMortgageSomethingElse = "#home_mortgages_textAreaSomethingElse",
+  textAreaLandlordSomethingElse = "#home_landlords_textAreaSomethingElse",
+  textAreaFurtherInfo = "#home_furtherInformation",
+  mortgageNumber = "#home_mortgages_mortgageNumber",
+  mortgageLender = "#home_mortgages_mortgageLenderName",
+  landlordName = "#home_landlords_landlordName",
+  adaptedProperty = "#home_howIsThePropertyAdapted",
 }
 
 export type addressRadios =
-  'yesBothOfThem'
-  | 'yesApplicant'
-  | 'yesRespondent'
-  | 'No'
+  | "yesBothOfThem"
+  | "yesApplicant"
+  | "yesRespondent"
+  | "No";
 
 interface FL401TheHome1PageOptions {
   page: Page;
@@ -116,33 +114,33 @@ interface FL401TheHome1PageOptions {
 }
 
 interface FillInFieldsOptions {
-  page: Page,
-  applicantHasChildren: boolean,
-  fl401TheHomeYesNo: boolean,
-  fl401EverLivedAtAddress: addressRadios,
-  fl401IntendToLiveAtAddress?: addressRadios
+  page: Page;
+  applicantHasChildren: boolean;
+  fl401TheHomeYesNo: boolean;
+  fl401EverLivedAtAddress: addressRadios;
+  fl401IntendToLiveAtAddress?: addressRadios;
 }
 
 interface CheckPageLoadsOptions {
-  page: Page,
-  accessibilityTest: boolean,
+  page: Page;
+  accessibilityTest: boolean;
 }
 
 interface FillInBooleansOptions {
-  page: Page,
+  page: Page;
   applicantHasChildren: boolean;
-  fl401TheHomeYesNo: boolean,
+  fl401TheHomeYesNo: boolean;
 }
 
 interface AddNewChildOptions {
-  page: Page,
-  fl401TheHomeYesNo: boolean,
+  page: Page;
+  fl401TheHomeYesNo: boolean;
 }
 
 interface FillInAddressRadiosOptions {
   page: Page;
   applicantOrRespondentResponse: addressRadios;
-  isTopLevel: boolean
+  isTopLevel: boolean;
 }
 
 interface FillAllAddressRadiosOptions {
@@ -169,8 +167,8 @@ interface AddressValueValidationOptions {
 }
 
 interface FillRemainingInputsOptions {
-  page: Page,
-  fl401TheHomeYesNo: boolean,
+  page: Page;
+  fl401TheHomeYesNo: boolean;
 }
 
 export class Fl401TheHome1Page {
@@ -267,7 +265,7 @@ export class Fl401TheHome1Page {
     applicantHasChildren,
     fl401TheHomeYesNo,
     fl401EverLivedAtAddress,
-    fl401IntendToLiveAtAddress
+    fl401IntendToLiveAtAddress,
   }: FillInFieldsOptions): Promise<void> {
     await this.fillInBooleans({
       page,
@@ -291,7 +289,7 @@ export class Fl401TheHome1Page {
     }
     await this.fillRemainingInputs({
       page,
-      fl401TheHomeYesNo
+      fl401TheHomeYesNo,
     });
     await page.click(
       `${Selectors.button}:text-is("${Fl401Home1Content.continue}")`,
@@ -299,29 +297,27 @@ export class Fl401TheHome1Page {
   }
 
   private static async fillRemainingInputs({
-     page,
-     fl401TheHomeYesNo,
-   }: FillRemainingInputsOptions): Promise<void> {
+    page,
+    fl401TheHomeYesNo,
+  }: FillRemainingInputsOptions): Promise<void> {
     await Helpers.checkVisibleAndPresent(
       page,
       `${uniqueSelectors.homeTextAreaSibling}${Selectors.GovukFormHint}:text-is("${Fl401Home1Content.provideTheDetailsInTheBoxBelow}")`,
-      1
-    )
+      1,
+    );
     if (fl401TheHomeYesNo) {
-      await Promise.all(
-        [
-          Helpers.checkVisibleAndPresent(
-            page,
-            `${uniqueSelectors.homeMortgageLookupDiv}${Selectors.GovukFormHint}:text-is("${Fl401Home1Content.provideTheDetailsInTheBoxBelow}")`,
-            1
-          ),
-          Helpers.checkVisibleAndPresent(
-            page,
-            `${uniqueSelectors.homeLandlordLookupDiv}${Selectors.GovukFormHint}:text-is("${Fl401Home1Content.provideTheDetailsInTheBoxBelow}")`,
-            1
-          )
-        ]
-      );
+      await Promise.all([
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${uniqueSelectors.homeMortgageLookupDiv}${Selectors.GovukFormHint}:text-is("${Fl401Home1Content.provideTheDetailsInTheBoxBelow}")`,
+          1,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${uniqueSelectors.homeLandlordLookupDiv}${Selectors.GovukFormHint}:text-is("${Fl401Home1Content.provideTheDetailsInTheBoxBelow}")`,
+          1,
+        ),
+      ]);
     }
     await page.fill(
       inputIDs.textAreaHomeSomethingElse,
@@ -410,7 +406,7 @@ export class Fl401TheHome1Page {
         .selectOption({ index: 1 });
       await this.addressLabelValidation({
         page,
-        uniqueSelectorKey
+        uniqueSelectorKey,
       });
       await this.addressValueValidation({ page, addressType });
     }
@@ -424,7 +420,7 @@ export class Fl401TheHome1Page {
       page,
       `${Selectors.h2}:text-is("${Fl401Home1Content.childHeading2}")`,
       1,
-    )
+    );
     await page.click(
       `${Selectors.button}:text-is("${Fl401Home1Content.childAddNewButton}")`,
     );

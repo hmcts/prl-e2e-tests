@@ -79,7 +79,9 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Saying yes to respondents behaviour questions,
   Saying yes to all Without Notice Order questions @crossbrowserManageCases,
   Saying yes to all Without Notice Order questions, 
-  Relationship is 'Formerly lived together as a couple', 
+  Relationship is 'Formerly lived together as a couple'
+  Saying yes to all 'The Home' Questions,
+  'Yes, both of them' ever lived at the address 
   @crossbrowserManageCases`, async ({ page }): Promise<void> => {
     await FL401.fl401({
       page: page,
@@ -95,6 +97,8 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       isWithoutNoticeDetailsYes: true,
       isWithoutNoticeDetailsBailConditions: "Yes",
       relationshipToRespondent: "foremerlyLivedTogether",
+      fl401TheHomeYesNo: true,
+      fl401EverLivedAtAddress: "yesBothOfThem",
     });
   });
 
@@ -113,7 +117,6 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Saying yes to Without Notice Order questions, 
   Saying "Don't know" to Without Notice Order bail conditions, 
   Relationship is 'Married or in a civil partnership', 
-  @crossbrowserManageCases
   Saying yes to applicant details questions,
   Saying yes to all 'The Home' booleans, 
   'Yes, applicant' to has the applicant or respondent ever lived at the home address @crossbrowserManageCases`, async ({
@@ -134,7 +137,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       isWithoutNoticeDetailsBailConditions: "Don't know",
       relationshipToRespondent: "marriedOrCivil",
       fl401TheHomeYesNo: true,
-      fl401EverLivedAtAddress: 'yesApplicant'
+      fl401EverLivedAtAddress: "yesApplicant",
     });
   });
 
@@ -172,8 +175,8 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       relationshipToRespondent: "noneOfTheAbove",
       relationshipToRespondentOther: "Cousin",
       fl401TheHomeYesNo: false,
-      fl401EverLivedAtAddress: 'No',
-      fl401IntendToLiveAtAddress: 'No'
+      fl401EverLivedAtAddress: "No",
+      fl401IntendToLiveAtAddress: "No",
     });
   });
 });

@@ -23,14 +23,14 @@ interface CheckPageContentOptions {
   fl401IntendToLiveAtAddress?: addressRadios;
 }
 
-interface CheckPageLoadsOptions{
+interface CheckPageLoadsOptions {
   page: Page;
   applicantHasChildren: boolean;
   fl401TheHomeYesNo: boolean;
   fl401EverLivedAtAddress: addressRadios;
 }
 
-interface CheckFilledInDataOptions{
+interface CheckFilledInDataOptions {
   page: Page;
   applicantHasChildren: boolean;
   fl401TheHomeYesNo: boolean;
@@ -40,20 +40,20 @@ interface CheckFilledInDataOptions{
 
 export class Fl401TheHomeSubmitPage {
   public static async fl401TheHomeSubmitPage({
-     page,
-     accessibilityTest,
-     applicantHasChildren,
-     fl401TheHomeYesNo,
-     fl401EverLivedAtAddress,
-     fl401IntendToLiveAtAddress,
-   }: FL401HomeSubmitPageOptions): Promise<void> {
+    page,
+    accessibilityTest,
+    applicantHasChildren,
+    fl401TheHomeYesNo,
+    fl401EverLivedAtAddress,
+    fl401IntendToLiveAtAddress,
+  }: FL401HomeSubmitPageOptions): Promise<void> {
     await this.checkPageContent({
       page,
       accessibilityTest,
       applicantHasChildren,
       fl401TheHomeYesNo,
       fl401EverLivedAtAddress,
-      fl401IntendToLiveAtAddress
+      fl401IntendToLiveAtAddress,
     });
     await this.fillInFields(page);
   }
@@ -64,7 +64,7 @@ export class Fl401TheHomeSubmitPage {
     applicantHasChildren,
     fl401TheHomeYesNo,
     fl401EverLivedAtAddress,
-    fl401IntendToLiveAtAddress
+    fl401IntendToLiveAtAddress,
   }: CheckPageContentOptions): Promise<void> {
     await Promise.all([
       this.checkPageLoads({
@@ -78,8 +78,8 @@ export class Fl401TheHomeSubmitPage {
         applicantHasChildren,
         fl401TheHomeYesNo,
         fl401EverLivedAtAddress,
-        fl401IntendToLiveAtAddress
-      })
+        fl401IntendToLiveAtAddress,
+      }),
     ]);
     if (accessibilityTest) {
       await accessibilityTestHelper.run(page);
@@ -95,8 +95,8 @@ export class Fl401TheHomeSubmitPage {
     await page.waitForSelector(
       `${Selectors.GovukHeadingL}:text-is("${Fl401TheHomeSubmitContent.pageTitle}")`,
     );
-    const textCount: number = (fl401TheHomeYesNo) ? 12 : 16
-    const buildingCount: number = (fl401TheHomeYesNo) ? 3 : 1
+    const textCount: number = fl401TheHomeYesNo ? 16 : 12;
+    const buildingCount: number = fl401TheHomeYesNo ? 3 : 1;
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
@@ -107,7 +107,7 @@ export class Fl401TheHomeSubmitPage {
         page,
         textCount,
         Fl401TheHomeSubmitContent,
-        'text16',
+        "text16",
         `${Selectors.GovukText16}`,
       ),
       Helpers.checkVisibleAndPresent(
@@ -141,122 +141,120 @@ export class Fl401TheHomeSubmitPage {
         page,
         6,
         Fl401TheHomeSubmitContent,
-        'childText16',
-        `${Selectors.GovukText16}`
+        "childText16",
+        `${Selectors.GovukText16}`,
       );
     }
-    if (fl401EverLivedAtAddress === 'No') {
+    if (fl401EverLivedAtAddress === "No") {
       await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukText16}:text-is("${Fl401TheHomeSubmitContent.intendedAddress}")`,
-        1
+        1,
       );
     }
   }
 
   private static async checkFilledInData({
-     page,
-     applicantHasChildren,
-     fl401TheHomeYesNo,
-     fl401EverLivedAtAddress,
-    fl401IntendToLiveAtAddress
-   }: CheckFilledInDataOptions): Promise<void> {
+    page,
+    applicantHasChildren,
+    fl401TheHomeYesNo,
+    fl401EverLivedAtAddress,
+    fl401IntendToLiveAtAddress,
+  }: CheckFilledInDataOptions): Promise<void> {
     let yesCount: number = 0;
     let noCount: number = 0;
-    let bpCount = (fl401TheHomeYesNo) ? 3 : 1
-    let applicantRespondentCount = (fl401TheHomeYesNo) ? 3 : 1
-    let filledTextCount = (fl401TheHomeYesNo) ? 12 : 10
-    let spanCount = (fl401TheHomeYesNo) ? 3 : 2
+    let bpCount = fl401TheHomeYesNo ? 3 : 1;
+    let applicantRespondentCount = fl401TheHomeYesNo ? 3 : 1;
+    let filledTextCount = fl401TheHomeYesNo ? 12 : 9;
+    let spanCount = fl401TheHomeYesNo ? 3 : 2;
     yesCount += fl401TheHomeYesNo ? 4 : 0;
     noCount += fl401TheHomeYesNo ? 0 : 4;
     if (applicantHasChildren) {
       yesCount += 1;
-      fl401TheHomeYesNo ? yesCount += 2 : noCount += 2;
-    }
-    if (fl401EverLivedAtAddress === 'No') {
+      fl401TheHomeYesNo ? (yesCount += 2) : (noCount += 2);
+    } else {
       noCount += 1;
-      if (fl401IntendToLiveAtAddress === 'No') {
+    }
+    if (fl401EverLivedAtAddress === "No") {
+      noCount += 1;
+      if (fl401IntendToLiveAtAddress === "No") {
         noCount += 1;
       }
     }
-    await Promise.all(
-      [
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukText16}:text-is("${Fl401TheHomeSubmitContent.bpBuildingAndStreet}")`,
-          bpCount
-        ),
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukText16}:text-is("${Fl401TheHomeSubmitContent.bpCity}")`,
-          bpCount
-        ),
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukText16}:text-is("${Fl401TheHomeSubmitContent.bpCountry}")`,
-          bpCount
-        ),
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukText16}:text-is("${Fl401TheHomeSubmitContent.bpPostalCode}")`,
-          bpCount
-        ),
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukText16}:text-is("${Fl401TheHomeSubmitContent.theApplicant}")`,
-          applicantRespondentCount
-        ),
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukText16}:text-is("${Fl401TheHomeSubmitContent.theRespondent}")`,
-          applicantRespondentCount
-        ),
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukText16}:text-is("${Fl401TheHomeSubmitContent.someoneElsePleaseSpecify}")`,
-          applicantRespondentCount
-        ),
-        Helpers.checkGroup(
-          page,
-          filledTextCount,
-          Fl401TheHomeSubmitContent,
-          'filledText16',
-          `${Selectors.GovukText16}`
-        ),
-        Helpers.checkGroup(
-          page,
-          spanCount,
-          Fl401TheHomeSubmitContent,
-          'textArea',
-          `${Selectors.Span}`
-        ),
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukText16}:text-is("${Fl401TheHomeSubmitContent.yes}")`,
-          yesCount
-        ),
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukText16}:text-is("${Fl401TheHomeSubmitContent.no}")`,
-          noCount
-        ),
-      ]
-    )
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${Fl401TheHomeSubmitContent.bpBuildingAndStreet}")`,
+        bpCount,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${Fl401TheHomeSubmitContent.bpCity}")`,
+        bpCount,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${Fl401TheHomeSubmitContent.bpCountry}")`,
+        bpCount,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${Fl401TheHomeSubmitContent.bpPostalCode}")`,
+        bpCount,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${Fl401TheHomeSubmitContent.theApplicant}")`,
+        applicantRespondentCount,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${Fl401TheHomeSubmitContent.theRespondent}")`,
+        applicantRespondentCount,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${Fl401TheHomeSubmitContent.someoneElsePleaseSpecify}")`,
+        applicantRespondentCount,
+      ),
+      Helpers.checkGroup(
+        page,
+        filledTextCount,
+        Fl401TheHomeSubmitContent,
+        "filledText16",
+        `${Selectors.GovukText16}`,
+      ),
+      Helpers.checkGroup(
+        page,
+        spanCount,
+        Fl401TheHomeSubmitContent,
+        "textArea",
+        `${Selectors.Span}`,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${Fl401TheHomeSubmitContent.yes}")`,
+        yesCount,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${Fl401TheHomeSubmitContent.no}")`,
+        noCount,
+      ),
+    ]);
     if (applicantHasChildren) {
-      await Promise.all(
-        [
-          Helpers.checkVisibleAndPresent(
-            page,
-            `${Selectors.GovukText16}:text-is("${Fl401TheHomeSubmitContent.childFullName}")`,
-            1
-          ),
-          Helpers.checkVisibleAndPresent(
-            page,
-            `${Selectors.GovukText16}:text-is("${Fl401TheHomeSubmitContent.childAge}")`,
-            1
-          ),
-        ]
-      )
+      await Promise.all([
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukText16}:text-is("${Fl401TheHomeSubmitContent.childFullName}")`,
+          1,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukText16}:text-is("${Fl401TheHomeSubmitContent.childAge}")`,
+          1,
+        ),
+      ]);
     }
   }
 

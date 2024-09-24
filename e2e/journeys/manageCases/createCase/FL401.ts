@@ -31,7 +31,7 @@ interface fl401Options {
   relationshipToRespondentOther?: fl401RespondentRelationshipOther;
   fl401TheHomeYesNo: boolean;
   fl401EverLivedAtAddress: addressRadios;
-  fl401IntendToLiveAtAddress?: addressRadios
+  fl401IntendToLiveAtAddress?: addressRadios;
 }
 
 export class FL401 {
@@ -52,7 +52,7 @@ export class FL401 {
     relationshipToRespondentOther,
     fl401TheHomeYesNo,
     fl401EverLivedAtAddress,
-    fl401IntendToLiveAtAddress
+    fl401IntendToLiveAtAddress,
   }: fl401Options): Promise<void> {
     await SolicitorCreateInitial.createInitialCase({
       page: page,
@@ -121,7 +121,7 @@ export class FL401 {
       fl401TheHomeYesNo: fl401TheHomeYesNo,
       fl401EverLivedAtAddress: fl401EverLivedAtAddress,
       fl401IntendToLiveAtAddress: fl401IntendToLiveAtAddress,
-      subJourney: false
+      subJourney: false,
     });
   }
 }

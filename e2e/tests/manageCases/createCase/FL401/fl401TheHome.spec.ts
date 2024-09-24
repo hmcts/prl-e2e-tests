@@ -9,17 +9,17 @@ test.describe("FL401 Create cases The Home tests @manageCases", (): void => {
         yes to all other booleans, 
         'No' to has the applicant or respondent ever lived at the address, 
         'No' do they ever intend to live at the address, @crossbrowserManagecases`, async ({
-    page
+    page,
   }): Promise<void> => {
     await FL401TheHome.fl401TheHome({
       page: page,
       accessibilityTest: false,
       applicantHasChildren: true,
       fl401TheHomeYesNo: true,
-      fl401EverLivedAtAddress: 'No',
-      fl401IntendToLiveAtAddress: 'No',
+      fl401EverLivedAtAddress: "No",
+      fl401IntendToLiveAtAddress: "No",
       subJourney: true,
-    })
+    });
   });
 
   test(`Complete the FL401 The Home Journey with the following options:
@@ -29,17 +29,17 @@ test.describe("FL401 Create cases The Home tests @manageCases", (): void => {
         yes to all other booleans, 
         'No' to has the applicant or respondent ever lived at the address, 
         'Yes, the Applicant' do they ever intend to live at the address`, async ({
-       page
-     }): Promise<void> => {
-  await FL401TheHome.fl401TheHome({
+    page,
+  }): Promise<void> => {
+    await FL401TheHome.fl401TheHome({
       page: page,
       accessibilityTest: false,
       applicantHasChildren: true,
       fl401TheHomeYesNo: true,
-      fl401EverLivedAtAddress: 'No',
-      fl401IntendToLiveAtAddress: 'yesApplicant',
+      fl401EverLivedAtAddress: "No",
+      fl401IntendToLiveAtAddress: "yesApplicant",
       subJourney: true,
-    })
+    });
   });
 
   test(`Complete the FL401 The Home Journey with the following options:
@@ -49,17 +49,17 @@ test.describe("FL401 Create cases The Home tests @manageCases", (): void => {
         yes to all other booleans, 
         'No' to has the applicant or respondent ever lived at the address, 
         'Yes, the Respondent' do they ever intend to live at the address`, async ({
-     page
-   }): Promise<void> => {
+    page,
+  }): Promise<void> => {
     await FL401TheHome.fl401TheHome({
       page: page,
       accessibilityTest: false,
       applicantHasChildren: true,
       fl401TheHomeYesNo: true,
-      fl401EverLivedAtAddress: 'No',
-      fl401IntendToLiveAtAddress: 'yesRespondent',
+      fl401EverLivedAtAddress: "No",
+      fl401IntendToLiveAtAddress: "yesRespondent",
       subJourney: true,
-    })
+    });
   });
 
   test(`Complete the FL401 The Home Journey with the following options:
@@ -69,17 +69,17 @@ test.describe("FL401 Create cases The Home tests @manageCases", (): void => {
         yes to all other booleans, 
         'No' to has the applicant or respondent ever lived at the address, 
         'Yes, Both of them' do they ever intend to live at the address`, async ({
-     page
-   }): Promise<void> => {
+    page,
+  }): Promise<void> => {
     await FL401TheHome.fl401TheHome({
       page: page,
       accessibilityTest: false,
       applicantHasChildren: true,
       fl401TheHomeYesNo: true,
-      fl401EverLivedAtAddress: 'No',
-      fl401IntendToLiveAtAddress: 'yesBothOfThem',
+      fl401EverLivedAtAddress: "No",
+      fl401IntendToLiveAtAddress: "yesBothOfThem",
       subJourney: true,
-    })
+    });
   });
 
   test(`Complete the FL401 The Home Journey with the following options:
@@ -88,16 +88,16 @@ test.describe("FL401 Create cases The Home tests @manageCases", (): void => {
         applicant has child
         yes to all other booleans, 
         'Yes, the applicant' to has the applicant or respondent ever lived at the address`, async ({
-     page
-   }): Promise<void> => {
+    page,
+  }): Promise<void> => {
     await FL401TheHome.fl401TheHome({
       page: page,
       accessibilityTest: false,
       applicantHasChildren: true,
       fl401TheHomeYesNo: true,
-      fl401EverLivedAtAddress: 'yesApplicant',
+      fl401EverLivedAtAddress: "yesApplicant",
       subJourney: true,
-    })
+    });
   });
 
   test(`Complete the FL401 The Home Journey with the following options:
@@ -106,16 +106,16 @@ test.describe("FL401 Create cases The Home tests @manageCases", (): void => {
         applicant has child
         yes to all other booleans, 
         'Yes, the respondent' to has the applicant or respondent ever lived at the address`, async ({
-     page
-   }): Promise<void> => {
+    page,
+  }): Promise<void> => {
     await FL401TheHome.fl401TheHome({
       page: page,
       accessibilityTest: false,
       applicantHasChildren: true,
       fl401TheHomeYesNo: true,
-      fl401EverLivedAtAddress: 'yesRespondent',
+      fl401EverLivedAtAddress: "yesRespondent",
       subJourney: true,
-    })
+    });
   });
 
   test(`Complete the FL401 The Home Journey with the following options:
@@ -124,16 +124,16 @@ test.describe("FL401 Create cases The Home tests @manageCases", (): void => {
         applicant has child
         yes to all other booleans, 
         'Yes, both of them' to has the applicant or respondent ever lived at the address`, async ({
-     page
-   }): Promise<void> => {
+    page,
+  }): Promise<void> => {
     await FL401TheHome.fl401TheHome({
       page: page,
       accessibilityTest: false,
       applicantHasChildren: true,
       fl401TheHomeYesNo: true,
-      fl401EverLivedAtAddress: 'yesBothOfThem',
+      fl401EverLivedAtAddress: "yesBothOfThem",
       subJourney: true,
-    })
+    });
   });
 
   test(`Complete the FL401 The Home Journey with the following options:
@@ -143,17 +143,17 @@ test.describe("FL401 Create cases The Home tests @manageCases", (): void => {
         No to all booleans, 
         'No' to has the applicant or respondent ever lived at the address, 
         'No' do they ever intend to live at the address, @crossbrowserManagecases`, async ({
-           page
-         }): Promise<void> => {
+    page,
+  }): Promise<void> => {
     await FL401TheHome.fl401TheHome({
       page: page,
       accessibilityTest: false,
       applicantHasChildren: false,
       fl401TheHomeYesNo: false,
-      fl401EverLivedAtAddress: 'No',
-      fl401IntendToLiveAtAddress: 'No',
+      fl401EverLivedAtAddress: "No",
+      fl401IntendToLiveAtAddress: "No",
       subJourney: true,
-    })
+    });
   });
 
   test(`Complete the FL401 The Home Journey with the following options:
@@ -162,61 +162,61 @@ test.describe("FL401 Create cases The Home tests @manageCases", (): void => {
         applicant doesn't have children
         no to all other booleans, 
         'Yes, both of them' to has the applicant or respondent ever lived at the address`, async ({
-          page
-        }): Promise<void> => {
-      await FL401TheHome.fl401TheHome({
-        page: page,
-        accessibilityTest: false,
-        applicantHasChildren: true,
-        fl401TheHomeYesNo: false,
-        fl401EverLivedAtAddress: 'yesBothOfThem',
-        subJourney: true,
-      })
+    page,
+  }): Promise<void> => {
+    await FL401TheHome.fl401TheHome({
+      page: page,
+      accessibilityTest: false,
+      applicantHasChildren: true,
+      fl401TheHomeYesNo: false,
+      fl401EverLivedAtAddress: "yesBothOfThem",
+      subJourney: true,
     });
+  });
 
-    test(`Complete the FL401 The Home Journey with the following options:
+  test(`Complete the FL401 The Home Journey with the following options:
         Not accessibility testing, 
         Not Error Messaging (There isn't any), 
         Applicant doesn't have children
         No to all booleans, 
         'Yes the applicant' to has the applicant or respondent ever lived at the address`, async ({
-       page
-     }): Promise<void> => {
-      await FL401TheHome.fl401TheHome({
-        page: page,
-        accessibilityTest: false,
-        applicantHasChildren: false,
-        fl401TheHomeYesNo: false,
-        fl401EverLivedAtAddress: 'yesApplicant',
-        subJourney: true,
-      })
+    page,
+  }): Promise<void> => {
+    await FL401TheHome.fl401TheHome({
+      page: page,
+      accessibilityTest: false,
+      applicantHasChildren: false,
+      fl401TheHomeYesNo: false,
+      fl401EverLivedAtAddress: "yesApplicant",
+      subJourney: true,
+    });
   });
 });
 
 test(`Test the accessibility of the fl401 The Home Journey saying No to all, @accessibilityManageCases`, async ({
-     page
-   }): Promise<void> => {
+  page,
+}): Promise<void> => {
   await FL401TheHome.fl401TheHome({
     page: page,
     accessibilityTest: true,
     applicantHasChildren: false,
     fl401TheHomeYesNo: false,
-    fl401EverLivedAtAddress: 'No',
-    fl401IntendToLiveAtAddress: 'No',
+    fl401EverLivedAtAddress: "No",
+    fl401IntendToLiveAtAddress: "No",
     subJourney: true,
-  })
+  });
 });
 
 test(`Test the accessibility of the fl401 The Home Journey saying yes to all, @accessibilityManageCases`, async ({
-  page
+  page,
 }): Promise<void> => {
   await FL401TheHome.fl401TheHome({
     page: page,
     accessibilityTest: true,
     applicantHasChildren: true,
     fl401TheHomeYesNo: true,
-    fl401EverLivedAtAddress: 'yesApplicant',
-    fl401IntendToLiveAtAddress: 'yesRespondent',
+    fl401EverLivedAtAddress: "yesApplicant",
+    fl401IntendToLiveAtAddress: "yesRespondent",
     subJourney: true,
-  })
+  });
 });
