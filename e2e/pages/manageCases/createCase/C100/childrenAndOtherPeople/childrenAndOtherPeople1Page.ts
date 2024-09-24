@@ -170,13 +170,51 @@ export class ChildrenAndOtherPeople1Page {
   private static async fillInFields(
     page: Page,
     yesNoChildrenAndOtherPeople: boolean,
-  ): Promise<void> {}
+  ): Promise<void> {
+    if (yesNoChildrenAndOtherPeople) {
+      await page.selectOption(
+        `${UniqueSelectors.relationshipDropdown}`,
+        ChildrenAndOtherPeople1Content.selectionForFatherRelationship,
+      );
+      await page.click(`${UniqueSelectors.childLiveWithThisPersonYes}`);
+      await page.click(`${UniqueSelectors.identityConfidentialityYes}`);
+      await this.identityConfidentialityFormLabel(page);
+    } else {
+      await page.selectOption(
+        `${UniqueSelectors.relationshipDropdown}`,
+        ChildrenAndOtherPeople1Content.selectionForOtherRelationship,
+      );
+      await page.waitForTimeout(1000);
+      await this.giveDetailsOtherRelationshipStaticText(page);
+
+      await page.fill(
+        `${UniqueSelectors.giveDetailsForOtherRelationshipInput}`,
+        ChildrenAndOtherPeople1Content.loremIpsum,
+      );
+      await page.click(`${UniqueSelectors.childLiveWithThisPersonNo}`);
+    }
+    await page.click(
+      `${Selectors.button}:text-is("${ChildrenAndOtherPeople1Content.continue}")`,
+    );
+  }
 
   private static async giveDetailsOtherRelationshipStaticText(
     page: Page,
-  ): Promise<void> {}
+  ): Promise<void> {
+    await Helpers.checkVisibleAndPresent(
+      page,
+      `${Selectors.GovukFormLabel}:text-is("${ChildrenAndOtherPeople1Content.formLabelOtherRelationship}")`,
+      1,
+    );
+  }
 
   private static async identityConfidentialityFormLabel(
     page: Page,
-  ): Promise<void> {}
+  ): Promise<void> {
+    await Helpers.checkVisibleAndPresent(
+      page,
+      `${Selectors.GovukFormLabel}:text-is("${ChildrenAndOtherPeople1Content.formLabelConfidentiality}")`,
+      1,
+    );
+  }
 }
