@@ -38,6 +38,7 @@ export type fl401SolicitorEvents =
   | "Without notice order"
   | "Applicant details"
   | "Respondent details"
+  | "Respondent's behaviour"
   | "Applicant's family"
   | "Relationship to respondent";
 
