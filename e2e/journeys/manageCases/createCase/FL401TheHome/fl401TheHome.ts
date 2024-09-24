@@ -11,7 +11,7 @@ interface FL401TheHomeOptions {
   applicantHasChildren: boolean;
   fl401TheHomeYesNo: boolean;
   fl401EverLivedAtAddress: addressRadios;
-  fl401IntendToLiveAtAddress: addressRadios;
+  fl401IntendToLiveAtAddress?: addressRadios;
   subJourney: boolean;
 }
 
@@ -51,7 +51,6 @@ export class FL401TheHome {
       fl401EverLivedAtAddress,
       fl401IntendToLiveAtAddress
     });
-
-    // await Fl401TasksTabPage.fl401TasksTabPage(page, accessibilityTest);
+    await Fl401TasksTabPage.fl401TasksTabPage(page, accessibilityTest);
   }
 }

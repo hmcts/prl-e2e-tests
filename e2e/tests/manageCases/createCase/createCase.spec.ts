@@ -61,7 +61,9 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Male applicant,
   Saying yes to all Respondent details questions,
   Saying yes to all Type of application questions
-  Saying yes to applicant details questions @crossbrowserManageCases`, async ({
+  Saying yes to applicant details questions,
+  Saying yes to all 'The Home' booleans, 
+  'Yes, applicant' to has the applicant or respondent ever lived at the home address @crossbrowserManageCases`, async ({
     page,
   }): Promise<void> => {
     await FL401.fl401({
@@ -74,6 +76,8 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       applicantHasChildren: true,
       yesNoFL401ApplicantDetails: true,
       applicantGender: "male",
+      fl401TheHomeYesNo: true,
+      fl401EverLivedAtAddress: 'yesApplicant'
     });
   });
 
@@ -81,9 +85,11 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Not Accessibility testing,
   Not Error message testing,
   Female applicant,
-  Saying yes to all Respondent details questions,
-  Saying yes to all Type of application questions
-  Saying yes to applicant details questions @crossbrowserManageCases`, async ({
+  Saying no to all Respondent details questions,
+  Saying no to all Type of application questions
+  Saying no to applicant details questions
+  Saying 'No' to ever lived at the home address, 
+  Saying 'No' to ever intend to live at home address, @crossbrowserManageCases`, async ({
     page,
   }): Promise<void> => {
     await FL401.fl401({
@@ -96,6 +102,9 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       applicantHasChildren: false,
       yesNoFL401ApplicantDetails: false,
       applicantGender: "female",
+      fl401TheHomeYesNo: false,
+      fl401EverLivedAtAddress: 'No',
+      fl401IntendToLiveAtAddress: 'No'
     });
   });
 });

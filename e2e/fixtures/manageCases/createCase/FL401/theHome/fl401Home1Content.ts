@@ -61,7 +61,7 @@ export enum Fl401Home1Content {
   childAge = '12',
   provideTheDetailsInTheBoxBelow = 'Provide the details in the box below',
   adaptedPropertyFormHint = '*Please provide details of how the property is specially adapted',
-  adaptedProperty ='Automated Property Adaptions',
+  adaptedProperty ='Automated Property Adaptations',
   intendedAddressLabel = '*Did the applicant or the respondent ever intend to live in the address? (Optional)',
   secondLevelFormLabel1 = '*Who is named on the mortgage (please select all that apply)? (Optional)',
   secondLevelFormLabel2 = 'Mortgage number (if known) (Optional)',
