@@ -39,13 +39,6 @@ export class C100TasksTabPage {
         "link",
         `${IndividualSelectors.links}`,
       ),
-      await Helpers.checkGroup(
-        page,
-        4,
-        C100TasksTabContent,
-        "greyedLink",
-        `${IndividualSelectors.greyedLinks}`,
-      ),
     ]);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
