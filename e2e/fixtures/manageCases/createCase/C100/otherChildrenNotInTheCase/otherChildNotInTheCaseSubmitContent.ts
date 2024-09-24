@@ -1,0 +1,17 @@
+export enum OtherChildNotInTheCaseSubmitContent {
+  pageTitle = "Other children not in the case",
+  subTitle = "Check your answers",
+  text161 = "Check the information below carefully.",
+  text162 = "Do you or respondents have other children who are not part of this application?",
+  text16Yes = "Yes",
+  text16No = "No",
+  text16Yes1 = "*Child",
+  text16Yes2 = "*Child 1",
+  text16Yes3 = "*First name(s)",
+  text16Yes4 = "*Last name(s)",
+  text16Yes5 = "*Gender",
+  text16Yes6 = "Is the date of birth known?",
+  text16GenderOther = "*Child's gender",
+  text16DOB = "*Date of birth",
+  button = "Save and continue",
+}

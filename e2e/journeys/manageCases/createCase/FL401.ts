@@ -3,8 +3,14 @@ import { Page } from "@playwright/test";
 import { FL401TypeOfApplication } from "./FL401TypeOfApplication/FL401TypeOfApplication";
 import { SolicitorCreateInitial } from "./solicitorCreateInitial";
 import { FL401RespondentDetails } from "./FL401RespondentDetails/FL401RespondentDetails";
+import { FL401WithoutNoticeOrder } from "./FL401WithoutNoticeOrder/FL401WIthoutNoticeOrder";
 import { FL401ApplicantDetails } from "./FL401ApplicantDetails/FL401ApplicantDetails";
 import { FL401ApplicantsFamily } from "./FL401ApplicantsFamily/FL401ApplicantsFamily";
+import { FL401RespondentsBehaviour } from "./FL401RespondentsBehaviour/FL401RespondentsBehaviour";
+import { FL401RelationshipToRespondent } from "./FL401RelationshipToRespondent/FL401RelationshipToRespondent";
+import { fl401RelationshipToRespondent } from "../../../pages/manageCases/createCase/FL401/relationshipToRespondent/relationshipToRespondent1Page";
+import { fl401RespondentRelationshipOther } from "../../../pages/manageCases/createCase/FL401/relationshipToRespondent/relationshipToRespondent2Page";
+import { bailConditionRadios } from "../../../pages/manageCases/createCase/FL401/withoutNoticeOrder/withoutNoticeOrder3Page";
 import { FL401TheHome } from "./FL401TheHome/fl401TheHome";
 import { addressRadios } from "../../../pages/manageCases/createCase/FL401/theHome/fl401TheHome1Page";
 
@@ -18,6 +24,11 @@ interface fl401Options {
   applicantHasChildren: boolean;
   yesNoFL401ApplicantDetails: boolean;
   applicantGender: ApplicantGender;
+  respondentsBehaviourAllOptionsYes: boolean;
+  isWithoutNoticeDetailsYes: boolean;
+  isWithoutNoticeDetailsBailConditions: bailConditionRadios;
+  relationshipToRespondent: fl401RelationshipToRespondent;
+  relationshipToRespondentOther?: fl401RespondentRelationshipOther;
   fl401TheHomeYesNo: boolean;
   fl401EverLivedAtAddress: addressRadios;
   fl401IntendToLiveAtAddress?: addressRadios
@@ -34,6 +45,11 @@ export class FL401 {
     applicantHasChildren,
     yesNoFL401ApplicantDetails,
     applicantGender,
+    respondentsBehaviourAllOptionsYes,
+    isWithoutNoticeDetailsYes,
+    isWithoutNoticeDetailsBailConditions,
+    relationshipToRespondent,
+    relationshipToRespondentOther,
     fl401TheHomeYesNo,
     fl401EverLivedAtAddress,
     fl401IntendToLiveAtAddress
@@ -50,6 +66,15 @@ export class FL401 {
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
       isLinkedToC100: isLinkedToC100,
+      subJourney: false,
+    });
+    await FL401WithoutNoticeOrder.fl401WithoutNoticeOrder({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      isWithoutNoticeDetailsYes: isWithoutNoticeDetailsYes,
+      isWithoutNoticeDetailsBailConditions:
+        isWithoutNoticeDetailsBailConditions,
       subJourney: false,
     });
     await FL401ApplicantDetails.fl401ApplicantDetails({
@@ -72,6 +97,21 @@ export class FL401 {
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
       applicantHasChildren: applicantHasChildren,
+      subJourney: false,
+    });
+    await FL401RespondentsBehaviour.fl401RespondentsBehaviour({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      respondentsBehaviourAllOptionsYes: respondentsBehaviourAllOptionsYes,
+      subJourney: false,
+    });
+    await FL401RelationshipToRespondent.fl401RelationshipToRespondent({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      relationshipToRespondent: relationshipToRespondent,
+      relationshipToRespondentOther: relationshipToRespondentOther,
       subJourney: false,
     });
     await FL401TheHome.fl401TheHome({
