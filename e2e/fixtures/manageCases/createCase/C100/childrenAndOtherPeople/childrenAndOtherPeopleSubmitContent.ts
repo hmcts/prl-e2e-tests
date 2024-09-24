@@ -19,7 +19,6 @@ export enum ChildrenAndOtherPeopleSubmitContent {
   noText167 = "Give details",
   noText168 = "Does the child live with this person?",
 
-
   text16Change = "Change",
   father = "Father",
   other = "Other",

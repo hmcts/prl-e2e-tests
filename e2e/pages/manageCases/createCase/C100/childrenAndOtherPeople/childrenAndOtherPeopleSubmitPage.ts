@@ -35,7 +35,7 @@ export class ChildrenAndOtherPeopleSubmitPage {
   public static async checkPageLoads(
     page: Page,
     accessibilityTest: boolean,
-    yesNoChildrenAndOtherPeople: boolean
+    yesNoChildrenAndOtherPeople: boolean,
   ): Promise<void> {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -73,7 +73,7 @@ export class ChildrenAndOtherPeopleSubmitPage {
 
   public static async checkFilledData(
     page: Page,
-    yesNoChildrenAndOtherPeople: boolean
+    yesNoChildrenAndOtherPeople: boolean,
   ): Promise<void> {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -122,6 +122,8 @@ export class ChildrenAndOtherPeopleSubmitPage {
   }
 
   public static async continue(page: Page): Promise<void> {
-    await page.click(`${Selectors.button}:text-is("${ChildrenAndRespondentsSubmitContent.continue}")`)
+    await page.click(
+      `${Selectors.button}:text-is("${ChildrenAndRespondentsSubmitContent.continue}")`,
+    );
   }
 }
