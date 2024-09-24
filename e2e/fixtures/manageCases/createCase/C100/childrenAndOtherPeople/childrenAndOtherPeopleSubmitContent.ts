@@ -1,0 +1,18 @@
+export enum ChildrenAndOtherPeopleSubmitContent {
+  pageTitle = "Children and respondents",
+  h2 = "Check your answers",
+  text161 = "Check the information below carefully.",
+  text162 = "Other party",
+  text163 = "Other party 1",
+  text164 = "Full name:",
+  text165 = "Child's name:",
+  text166 = "What is their relationship to the child?",
+  text167 = "Does the child live with this person?",
+  text168 = "Give details",
+  text16Change = "Change",
+  father = "Father",
+  other = "Other",
+  text16Yes = "Yes",
+  text16No = "No",
+  continue = "Save and continue",
+}
