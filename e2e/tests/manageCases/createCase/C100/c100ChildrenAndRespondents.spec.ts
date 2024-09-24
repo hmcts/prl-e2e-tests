@@ -1,5 +1,5 @@
 import { test } from "@playwright/test";
-import { IndividualC100ChildAndRespondents } from "../../../../journeys/manageCases/createCase/C100ChildrenAndRespondents/Individualc100ChildrenAndRespondents";
+import { IndividualC100ChildAndRespondents } from "../../../../journeys/manageCases/createCase/C100ChildrenAndRespondents/IndividualC100ChildrenAndRespondents";
 
 test.describe("C100 Create case Children and respondents Tests @manageCases", (): void => {
   test(`Complete the C100 Create case Children and respondents as a solicitor with the following options:

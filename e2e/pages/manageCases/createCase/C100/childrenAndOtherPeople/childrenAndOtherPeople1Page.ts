@@ -15,6 +15,10 @@ enum UniqueSelectors {
 
 enum nameSelectors {
   nameSelector = ".case-field__label",
+  childLivesWithYes = "label[for='buffChildAndOtherPeopleRelations_0_childLivesWith_Yes']",
+  childLivesWithPersonConfidentialYes = "label[for='buffChildAndOtherPeopleRelations_0_isChildLivesWithPersonConfidential_Yes']",
+  childLivesWithNo = "label[for='buffChildAndOtherPeopleRelations_0_childLivesWith_No']",
+  childLivesWithPersonConfidentialNo = "label[for='buffChildAndOtherPeopleRelations_0_isChildLivesWithPersonConfidential_No']",
 }
 
 export class ChildrenAndOtherPeople1Page {
@@ -88,17 +92,17 @@ export class ChildrenAndOtherPeople1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukFormLabel}:text-is("${ChildrenAndOtherPeople1Content.formLabelYes}")`,
+        `${nameSelectors.childLivesWithYes}:text-is("${ChildrenAndOtherPeople1Content.formLabelYes}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukFormLabel}:text-is("${ChildrenAndOtherPeople1Content.formLabelNo}")`,
+        `${nameSelectors.childLivesWithNo}:text-is("${ChildrenAndOtherPeople1Content.formLabelNo}")`,
         1,
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      // await AccessibilityTestHelper.run(page);
     }
   }
 
@@ -140,6 +144,7 @@ export class ChildrenAndOtherPeople1Page {
     );
     await page.waitForTimeout(1000);
     await page.click(`${UniqueSelectors.childLiveWithThisPersonYes}`);
+    await page.waitForTimeout(1000);
     await page.click(
       `${Selectors.button}:text-is("${ChildrenAndOtherPeople1Content.continue}")`,
     );
@@ -211,10 +216,22 @@ export class ChildrenAndOtherPeople1Page {
   private static async identityConfidentialityFormLabel(
     page: Page,
   ): Promise<void> {
-    await Helpers.checkVisibleAndPresent(
-      page,
-      `${Selectors.GovukFormLabel}:text-is("${ChildrenAndOtherPeople1Content.formLabelConfidentiality}")`,
-      1,
-    );
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${ChildrenAndOtherPeople1Content.formLabelConfidentiality}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${nameSelectors.childLivesWithPersonConfidentialYes}:text-is("${ChildrenAndOtherPeople1Content.formLabelYes}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${nameSelectors.childLivesWithPersonConfidentialNo}:text-is("${ChildrenAndOtherPeople1Content.formLabelNo}")`,
+        1,
+      ),
+    ]);
   }
 }

@@ -4,7 +4,7 @@ export enum ChildrenAndOtherPeople1Content {
   h22 = "Other party ",
   h3 = "Other party",
   p = "Do not use 'Add new' button to include additional parties.",
-  formLabel1 = "What is the respondent's relationship to the child?",
+  formLabel1 = "What is their relationship to the child?",
   formLabel2 = "Does the child live with this person?",
   formLabelOtherRelationship = "Give details",
   loremIpsum = "loremIpsum",
