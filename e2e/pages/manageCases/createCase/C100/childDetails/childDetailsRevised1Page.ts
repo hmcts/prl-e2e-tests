@@ -137,9 +137,14 @@ export class ChildDetailsRevised1Page {
       `${ChildDetailsRevised1Content.parentalResponsibility}`,
     );
     await page.waitForTimeout(2000);
-    await page.waitForSelector(`${uniqueSelectors.whoDoesChildLiveWithDropdown}`, { state: 'visible' });
-    const dropdown = page.locator(`${uniqueSelectors.whoDoesChildLiveWithDropdown}`);
-    const options = await dropdown.locator('option').allTextContents();
+    await page.waitForSelector(
+      `${uniqueSelectors.whoDoesChildLiveWithDropdown}`,
+      { state: "visible" },
+    );
+    const dropdown = page.locator(
+      `${uniqueSelectors.whoDoesChildLiveWithDropdown}`,
+    );
+    const options = await dropdown.locator("option").allTextContents();
     if (optionToSelect && options.includes(optionToSelect)) {
       await page.selectOption(
         `${uniqueSelectors.whoDoesChildLiveWithDropdown}`,
