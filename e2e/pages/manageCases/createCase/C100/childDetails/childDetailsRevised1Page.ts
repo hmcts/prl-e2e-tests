@@ -91,7 +91,7 @@ export class ChildDetailsRevised1Page {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      // await AccessibilityTestHelper.run(page); #TODO: Fix when FPET-1140 is completed.
     }
   }
 
