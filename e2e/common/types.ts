@@ -38,6 +38,7 @@ export type fl401SolicitorEvents =
   | "Applicant details"
   | "Respondent details"
   | "Other proceedings"
+  | "Respondent's behaviour"
   | "Applicant's family"
   | "Relationship to respondent";
 

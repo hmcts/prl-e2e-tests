@@ -7,6 +7,7 @@ import { FL401WithoutNoticeOrder } from "./FL401WithoutNoticeOrder/FL401WIthoutN
 import { FL401ApplicantDetails } from "./FL401ApplicantDetails/FL401ApplicantDetails";
 import { FL401ApplicantsFamily } from "./FL401ApplicantsFamily/FL401ApplicantsFamily";
 import { FL401OtherProceedings } from "./FL401OtherProceedings/FL401OtherProceedings";
+import { FL401RespondentsBehaviour } from "./FL401RespondentsBehaviour/FL401RespondentsBehaviour";
 import { FL401RelationshipToRespondent } from "./FL401RelationshipToRespondent/FL401RelationshipToRespondent";
 import { fl401RelationshipToRespondent } from "../../../pages/manageCases/createCase/FL401/relationshipToRespondent/relationshipToRespondent1Page";
 import { fl401RespondentRelationshipOther } from "../../../pages/manageCases/createCase/FL401/relationshipToRespondent/relationshipToRespondent2Page";
@@ -24,6 +25,7 @@ interface fl401Options {
   applicantHasChildren: boolean;
   yesNoFL401ApplicantDetails: boolean;
   applicantGender: ApplicantGender;
+  respondentsBehaviourAllOptionsYes: boolean;
   isWithoutNoticeDetailsYes: boolean;
   isWithoutNoticeDetailsBailConditions: bailConditionRadios;
   otherProceedingsRadios: otherProceedingsRadios;
@@ -42,6 +44,7 @@ export class FL401 {
     applicantHasChildren,
     yesNoFL401ApplicantDetails,
     applicantGender,
+    respondentsBehaviourAllOptionsYes,
     isWithoutNoticeDetailsYes,
     isWithoutNoticeDetailsBailConditions,
     otherProceedingsRadios,
@@ -93,19 +96,26 @@ export class FL401 {
       applicantHasChildren: applicantHasChildren,
       subJourney: false,
     });
-    await FL401OtherProceedings.fl401OtherProceedings({
-      page: page,
-      accessibilityTest: accessibilityTest,
-      errorMessaging: errorMessaging,
-      otherProceedingsRadios: otherProceedingsRadios,
-      subJourney: false,
-    });
     await FL401RelationshipToRespondent.fl401RelationshipToRespondent({
       page: page,
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
       relationshipToRespondent: relationshipToRespondent,
       relationshipToRespondentOther: relationshipToRespondentOther,
+      subJourney: false,
+    });
+    await FL401RespondentsBehaviour.fl401RespondentsBehaviour({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      respondentsBehaviourAllOptionsYes: respondentsBehaviourAllOptionsYes,
+      subJourney: false,
+    });
+    await FL401OtherProceedings.fl401OtherProceedings({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      otherProceedingsRadios: otherProceedingsRadios,
       subJourney: false,
     });
   }
