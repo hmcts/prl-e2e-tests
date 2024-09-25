@@ -18,7 +18,7 @@ export class ChangedTestsRunner {
     try {
       console.log("Fetching master branch...");
       await this.git.fetch(
-        `https://${process.env.GITHUB_USERNAME}:${process.env.GITHUB_PAT}@github.com/hmcts/prl-e2e-tests.git`,
+        `https://github.com/hmcts/prl-e2e-tests.git`,
         "master",
       );
       console.log("Master branch fetched successfully.");
