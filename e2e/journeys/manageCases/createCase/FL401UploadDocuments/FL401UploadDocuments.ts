@@ -4,6 +4,9 @@ import { Helpers } from "../../../../common/helpers";
 import {
   UploadDocuments1Page
 } from "../../../../pages/manageCases/createCase/FL401/uploadDocuments/uploadDocuments1Page";
+import {
+  UploadDocumentsSubmitPage
+} from "../../../../pages/manageCases/createCase/FL401/uploadDocuments/uploadDocumentsSubmitPage";
 
 interface FL401UploadDocumentsOptions {
   page: Page;
@@ -34,7 +37,9 @@ export class FL401UploadDocuments {
       accessibilityTest,
       errorMessaging,
     });
-
-    console.log()
+    await UploadDocumentsSubmitPage.uploadDocumentsSubmitPage({
+      page,
+      accessibilityTest
+    });
   }
 }

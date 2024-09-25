@@ -137,6 +137,9 @@ export class UploadDocuments1Page {
     await page.click(
       `${Selectors.button}:text-is("${UploadDocuments1Content.continue}")`
     );
+    await page.click(
+      `${Selectors.button}:text-is("${UploadDocuments1Content.continue}")`
+    );
   }
 
   private static async uploadWordDocuments({
