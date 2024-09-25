@@ -1,5 +1,8 @@
 import { test } from "@playwright/test";
 import { FL401WithoutNoticeOrder } from "../../../../journeys/manageCases/createCase/FL401WithoutNoticeOrder/FL401WIthoutNoticeOrder";
+import Config from "../../../../config";
+
+test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
 test.describe("FL401 Create case without notice order tests @manageCases", (): void => {
   test(`Complete the FL401 without notice order event as a solicitor with the following options:
