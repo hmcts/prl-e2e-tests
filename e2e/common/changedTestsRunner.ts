@@ -1,9 +1,6 @@
 import { SimpleGit, simpleGit } from "simple-git";
-import * as process from "node:process";
 
 export class ChangedTestsRunner {
-  private static git: SimpleGit = simpleGit();
-
   public static async run(): Promise<void> {
     try {
       await this.fetchMasterBranch();
@@ -14,6 +11,8 @@ export class ChangedTestsRunner {
       process.exit(1);
     }
   }
+
+  private static git: SimpleGit = simpleGit();
 
   private static async fetchMasterBranch(): Promise<void> {
     try {

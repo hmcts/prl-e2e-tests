@@ -93,7 +93,7 @@ withNightlyPipeline(type, product, component, 600) {
                   keepAll              : true,
                   reportDir            : "playwright-report",
                   reportFiles          : 'index.html',
-                  reportName           : 'Citizen Chrome E2E Test Report'
+                  reportName           : 'Changed Chrome E2E Test Report'
           ])
           steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/ChangedTests/*'
         }
