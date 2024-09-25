@@ -79,7 +79,7 @@ export class IndividualC100ChildAndRespondents {
       accessibilityTest: accessibilityTest,
       c100ChildGender: c100ChildGender,
       yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions:
-      yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,
+        yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,
       subJourney: false,
     });
     await Helpers.selectSolicitorEvent(page, "Children and respondents");
