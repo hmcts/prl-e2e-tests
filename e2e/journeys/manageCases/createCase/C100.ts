@@ -160,6 +160,10 @@ export class C100 {
       user: user,
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
+      c100ChildGender: C100ChildGender,
+      yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions: yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,
+      yesNoOtherPeopleInTheCase,
+      applicantGender: applicantGender,
       yesNoChildrenAndOtherPeople: yesNoChildrenAndOtherPeople,
       subJourney: false,
     });

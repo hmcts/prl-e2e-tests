@@ -14,7 +14,6 @@ enum UniqueSelectors {
 }
 
 enum nameSelectors {
-  nameSelector = ".case-field__label",
   childLivesWithYes = "label[for='buffChildAndOtherPeopleRelations_0_childLivesWith_Yes']",
   childLivesWithPersonConfidentialYes = "label[for='buffChildAndOtherPeopleRelations_0_isChildLivesWithPersonConfidential_Yes']",
   childLivesWithNo = "label[for='buffChildAndOtherPeopleRelations_0_childLivesWith_No']",
@@ -70,25 +69,19 @@ export class ChildrenAndOtherPeople1Page {
         "formLabel",
         Selectors.GovukFormLabel,
       ),
-      Helpers.checkVisibleAndPresent(
+      Helpers.checkGroup(
         page,
-        `${nameSelectors.nameSelector}:text-is("${ChildrenAndOtherPeople1Content.formLabelOtherFullName}")`,
-        1,
+        2,
+        ChildrenAndOtherPeople1Content,
+        "textField",
+        Selectors.GovukTextFieldLabel,
       ),
-      Helpers.checkVisibleAndPresent(
+      Helpers.checkGroup(
         page,
-        `${nameSelectors.nameSelector}:text-is("${ChildrenAndOtherPeople1Content.formLabelChildName}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukText16}:text-is("${ChildrenAndOtherPeople1Content.fullNameOther}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukText16}:text-is("${ChildrenAndOtherPeople1Content.fullNameChild}")`,
-        1,
+        2,
+        ChildrenAndOtherPeople1Content,
+        "text16",
+        Selectors.GovukText16,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -137,12 +130,10 @@ export class ChildrenAndOtherPeople1Page {
         1,
       ),
     ]);
-    await page.waitForTimeout(1000);
     await page.selectOption(
       `${UniqueSelectors.relationshipDropdown}`,
       ChildrenAndOtherPeople1Content.selectionForOtherRelationship,
     );
-    await page.waitForTimeout(1000);
     await page.click(`${UniqueSelectors.childLiveWithThisPersonYes}`);
     await page.waitForTimeout(1000);
     await page.click(
@@ -189,7 +180,6 @@ export class ChildrenAndOtherPeople1Page {
         `${UniqueSelectors.relationshipDropdown}`,
         ChildrenAndOtherPeople1Content.selectionForOtherRelationship,
       );
-      await page.waitForTimeout(1000);
       await this.giveDetailsOtherRelationshipStaticText(page);
 
       await page.fill(

@@ -1,6 +1,8 @@
 import { test } from "@playwright/test";
-import { IndividualC100ChildrenAndOtherPeople } from "../../../../journeys/manageCases/createCase/C100ChildrenAndOtherPeople/individualC100ChildrenAndOtherPeople";
 import Config from "../../../../config";
+import {
+  C100ChildrenAndOtherPeople
+} from "../../../../journeys/manageCases/createCase/C100ChildrenAndOtherPeople/c100ChildrenAndOtherPeople";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
@@ -12,7 +14,7 @@ test.describe("C100 Create case Children and respondents Tests @manageCases", ()
   Setting the applicant Gender to male. @crossbrowserManageCases`, async ({
     page,
   }): Promise<void> => {
-    await IndividualC100ChildrenAndOtherPeople.c100ChildrenAndOtherPeople({
+    await C100ChildrenAndOtherPeople.c100ChildrenAndOtherPeople({
       page: page,
       user: "solicitor",
       accessibilityTest: false,
@@ -29,10 +31,10 @@ test.describe("C100 Create case Children and respondents Tests @manageCases", ()
   Not Accessibility testing,
   Not Error message testing,
   Saying no to all options,
-  Setting the applicant Gender to female. @crossbrowserManageCases`, async ({
+  Setting the applicant Gender to female.`, async ({
     page,
   }): Promise<void> => {
-    await IndividualC100ChildrenAndOtherPeople.c100ChildrenAndOtherPeople({
+    await C100ChildrenAndOtherPeople.c100ChildrenAndOtherPeople({
       page: page,
       user: "solicitor",
       accessibilityTest: false,
@@ -51,10 +53,10 @@ test(`Complete the C100 Create case Children and Other people as a solicitor wit
   Accessibility testing,
   Not Error message testing,
   Saying Yes to all options,
-  Setting the applicant Gender to Other. @crossbrowserManageCases`, async ({
+  Setting the applicant Gender to Other. @accessibilityManageCases`, async ({
   page,
 }): Promise<void> => {
-  await IndividualC100ChildrenAndOtherPeople.c100ChildrenAndOtherPeople({
+  await C100ChildrenAndOtherPeople.c100ChildrenAndOtherPeople({
     page: page,
     user: "solicitor",
     accessibilityTest: true,
