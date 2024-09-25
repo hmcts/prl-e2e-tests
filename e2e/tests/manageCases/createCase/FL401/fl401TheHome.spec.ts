@@ -1,5 +1,8 @@
 import { test } from "@playwright/test";
 import { FL401TheHome } from "../../../../journeys/manageCases/createCase/FL401TheHome/fl401TheHome";
+import Config from "../../../../config";
+
+test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
 test.describe("FL401 Create cases The Home tests @manageCases", (): void => {
   test(`Complete the FL401 The Home Journey with the following options:
