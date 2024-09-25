@@ -89,6 +89,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Saying yes to all Without Notice Order questions @crossbrowserManageCases,
   Saying yes to all Without Notice Order questions, 
   Relationship is 'Formerly lived together as a couple', 
+  Saying Yes to all attending the hearing question,
   @crossbrowserManageCases`, async ({ page }): Promise<void> => {
     await FL401.fl401({
       page: page,
@@ -105,6 +106,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       isWithoutNoticeDetailsBailConditions: "Yes",
       otherProceedingsRadios: "Yes",
       relationshipToRespondent: "foremerlyLivedTogether",
+      fl401AttendingTheHearingYesNo: true
     });
   });
 
@@ -122,7 +124,8 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Saying yes to applicant details questions, 
   Saying yes to Without Notice Order questions, 
   Saying "Don't know" to Without Notice Order bail conditions, 
-  Relationship is 'Married or in a civil partnership', 
+  Relationship is 'Married or in a civil partnership',
+  Saying yes to all attending the hearing questions
   @crossbrowserManageCases`, async ({ page }): Promise<void> => {
     await FL401.fl401({
       page: page,
@@ -139,6 +142,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       isWithoutNoticeDetailsBailConditions: "Don't know",
       otherProceedingsRadios: "Yes",
       relationshipToRespondent: "marriedOrCivil",
+      fl401AttendingTheHearingYesNo: true
     });
   });
 
@@ -152,7 +156,8 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Saying no to Without Notice Order questions,
   Saying no to Without Notice Order questions,
   Relationship is 'None of the above',
-  Other Relationship Is: 'Cousin'`, async ({ page }): Promise<void> => {
+  Other Relationship Is: 'Cousin'
+  saying no to all attending the hearing questions`, async ({ page }): Promise<void> => {
     await FL401.fl401({
       page: page,
       user: "solicitor",
@@ -169,6 +174,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       otherProceedingsRadios: "Yes",
       relationshipToRespondent: "noneOfTheAbove",
       relationshipToRespondentOther: "Cousin",
+      fl401AttendingTheHearingYesNo: false
     });
   });
 });

@@ -12,6 +12,7 @@ import { FL401RelationshipToRespondent } from "./FL401RelationshipToRespondent/F
 import { fl401RelationshipToRespondent } from "../../../pages/manageCases/createCase/FL401/relationshipToRespondent/relationshipToRespondent1Page";
 import { fl401RespondentRelationshipOther } from "../../../pages/manageCases/createCase/FL401/relationshipToRespondent/relationshipToRespondent2Page";
 import { bailConditionRadios } from "../../../pages/manageCases/createCase/FL401/withoutNoticeOrder/withoutNoticeOrder3Page";
+import { Fl401AttendingTheHearing } from "./FL401AttendingTheHearing/fl401AttendingTheHearing";
 
 export type otherProceedingsRadios = "Yes" | "No" | "Don't know";
 
@@ -31,6 +32,7 @@ interface fl401Options {
   otherProceedingsRadios: otherProceedingsRadios;
   relationshipToRespondent: fl401RelationshipToRespondent;
   relationshipToRespondentOther?: fl401RespondentRelationshipOther;
+  fl401AttendingTheHearingYesNo: boolean
 }
 
 export class FL401 {
@@ -50,6 +52,7 @@ export class FL401 {
     otherProceedingsRadios,
     relationshipToRespondent,
     relationshipToRespondentOther,
+    fl401AttendingTheHearingYesNo
   }: fl401Options): Promise<void> {
     await SolicitorCreateInitial.createInitialCase({
       page: page,
@@ -118,5 +121,12 @@ export class FL401 {
       otherProceedingsRadios: otherProceedingsRadios,
       subJourney: false,
     });
+    await Fl401AttendingTheHearing.fl401AttendingTheHearing({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      fl401AttendingTheHearingYesNo: fl401AttendingTheHearingYesNo,
+      subJourney: false
+    })
   }
 }
