@@ -48,7 +48,7 @@ export class AttendingTheHearingSubmitPage {
     fl401AttendingTheHearingYesNo
   }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.h2}:text-is("${AttendingTheHearingSubmitContent.pageHeading}")`
+      `${Selectors.GovukText16}:text-is("${AttendingTheHearingSubmitContent.checkInfo}")`
     );
     await Promise.all(
       [
@@ -91,6 +91,11 @@ export class AttendingTheHearingSubmitPage {
           page,
           `${Selectors.GovukText16}:text-is("${AttendingTheHearingSubmitContent.change}")`,
           changeCount
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.h2}:text-is("${AttendingTheHearingSubmitContent.pageHeading}")`,
+          1
         )
       ]
     );

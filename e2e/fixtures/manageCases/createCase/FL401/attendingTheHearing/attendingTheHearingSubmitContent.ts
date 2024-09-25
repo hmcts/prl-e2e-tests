@@ -20,7 +20,6 @@ export enum AttendingTheHearingSubmitContent {
   text1610 = '*Enter details of the language or dialect required.',
   text1611 = 'Any other assistance required (e.g. sign language)',
   text1612 = '*Set out the reasons that an intermediary is required.',
-
   filledText1 = 'Automated Interpreter',
   filledText2 = 'Automated Language',
   filledText3 = 'Automated Assistance',
@@ -30,15 +29,11 @@ export enum AttendingTheHearingSubmitContent {
   filledText7 = 'Will need to speak Welsh',
   filledText8 = 'Will need to read and write in Welsh',
   filledText9 = 'Automated Tester',
-
   filledSpanText1 = 'Automated Arrangements',
   filledSpanText2 = 'Intermediary Reasons',
-
-
   p1 = '*Describe the adjustments that the court needs to make.',
   p2 = 'For example - someone with a hearing impairment may need an induction loop to be fitted in the courtroom.',
   p3 = '*Give details of the special arrangements that are required.',
   p4 = 'For example, a screen to separate the applicant from the respondent.',
-
   continue = 'Save and continue'
 }
