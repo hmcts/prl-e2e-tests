@@ -11,8 +11,12 @@ type wordOrPdfType = "word" | "pdf"
 
 enum uniqueSelectors {
   addNewWitnessDocuments = 'div#fl401UploadWitnessDocuments > div > ',
-  supportingDocuments = 'div#fl401UploadSupportDocuments > div > '
+  removeWitnessDocuments = 'div#fl401UploadWitnessDocuments_0 ',
+  addNewSupportingDocuments = 'div#fl401UploadSupportDocuments > div > ',
+  removeSupportingDocuments = 'div#fl401UploadSupportDocuments_0 ',
+  removeItemModal = 'ccd-remove-dialog '
 }
+
 
 enum inputIDs {
   uploadWitnessDocuments =  '#fl401UploadWitnessDocuments_value',
@@ -121,6 +125,60 @@ export class UploadDocuments1Page {
         1
       ),
     ]);
+    const addNewWitnessDocsLocator = page
+      .locator(
+        `${uniqueSelectors.addNewWitnessDocuments}${Selectors.button}:text-is("${UploadDocuments1Content.addNew}")`,
+      )
+      .nth(0);
+    await addNewWitnessDocsLocator.click();
+    const addNewSupportingDocsLocator = page
+      .locator(
+        `${uniqueSelectors.addNewSupportingDocuments}${Selectors.button}:text-is("${UploadDocuments1Content.addNew}")`,
+      )
+      .nth(0);
+    await addNewSupportingDocsLocator.click();
+    const witnessUpload = page.locator(
+      inputIDs.uploadWitnessDocuments
+    ).nth(0)
+    await page.waitForTimeout(5000);
+    await witnessUpload.setInputFiles(Config.testOdtFile);
+    const supportingUpload = page.locator(
+      inputIDs.uploadSupportingDocuments
+    ).nth(0)
+    await page.waitForTimeout(5000);
+    await supportingUpload.setInputFiles(Config.testOdtFile);
+    await page.click(
+      `${Selectors.button}:text-is("${UploadDocuments1Content.continue}")`
+    );
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorMessage}:text-is("${UploadDocuments1Content.uploadErrorMessage}")`,
+        2
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorSummaryTitle}:text-is("${UploadDocuments1Content.errorSummaryTitle}")`,
+        1
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorValidation}:text-is("${UploadDocuments1Content.witnessStatementErrorValidation}")`,
+        1
+      ),
+    ])
+    await page.click(
+      `${uniqueSelectors.removeWitnessDocuments}${Selectors.button}:text-is("${UploadDocuments1Content.remove}")`
+    );
+    await page.click(
+      `${uniqueSelectors.removeItemModal}${Selectors.button}:text-is("${UploadDocuments1Content.remove}")`
+    )
+    await page.click(
+      `${uniqueSelectors.removeSupportingDocuments}${Selectors.button}:text-is("${UploadDocuments1Content.remove}")`
+    );
+    await page.click(
+      `${uniqueSelectors.removeItemModal}${Selectors.button}:text-is("${UploadDocuments1Content.remove}")`
+    )
   }
 
   private static async fillInFields(page: Page): Promise<void> {
@@ -132,9 +190,6 @@ export class UploadDocuments1Page {
       page: page,
       wordOrPdf: 'pdf'
     });
-    await page.click(
-      `${Selectors.button}:text-is("${UploadDocuments1Content.continue}")`
-    );
     await page.click(
       `${Selectors.button}:text-is("${UploadDocuments1Content.continue}")`
     );
@@ -172,7 +227,7 @@ export class UploadDocuments1Page {
     await addNewWitnessDocsLocator.click();
     const addNewSupportingDocsLocator = page
       .locator(
-        `${uniqueSelectors.supportingDocuments}${Selectors.button}:text-is("${UploadDocuments1Content.addNew}")`,
+        `${uniqueSelectors.addNewSupportingDocuments}${Selectors.button}:text-is("${UploadDocuments1Content.addNew}")`,
       )
       .nth(docIndex);
     await addNewSupportingDocsLocator.click();
@@ -186,10 +241,13 @@ export class UploadDocuments1Page {
     const witnessUpload = page.locator(
       inputIDs.uploadWitnessDocuments
     ).nth(docIndex)
+    await page.waitForTimeout(5000);
     await witnessUpload.setInputFiles(docFile);
     const supportingUpload = page.locator(
       inputIDs.uploadSupportingDocuments
     ).nth(docIndex)
+    await page.waitForTimeout(5000);
     await supportingUpload.setInputFiles(docFile);
+    await page.waitForTimeout(5000);
   }
 }

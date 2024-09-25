@@ -13,6 +13,7 @@ import { fl401RelationshipToRespondent } from "../../../pages/manageCases/create
 import { fl401RespondentRelationshipOther } from "../../../pages/manageCases/createCase/FL401/relationshipToRespondent/relationshipToRespondent2Page";
 import { bailConditionRadios } from "../../../pages/manageCases/createCase/FL401/withoutNoticeOrder/withoutNoticeOrder3Page";
 import { Fl401AttendingTheHearing } from "./FL401AttendingTheHearing/fl401AttendingTheHearing";
+import { FL401UploadDocuments } from "./FL401UploadDocuments/FL401UploadDocuments";
 
 export type otherProceedingsRadios = "Yes" | "No" | "Don't know";
 
@@ -128,5 +129,11 @@ export class FL401 {
       fl401AttendingTheHearingYesNo: fl401AttendingTheHearingYesNo,
       subJourney: false,
     });
+    await FL401UploadDocuments.fl401UploadDocuments({
+      page,
+      accessibilityTest,
+      errorMessaging,
+      subJourney: false
+    })
   }
 }

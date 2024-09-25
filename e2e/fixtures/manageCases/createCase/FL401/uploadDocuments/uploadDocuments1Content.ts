@@ -14,8 +14,11 @@ export enum UploadDocuments1Content {
   h21 = ' Witness statement ',
   h22 = ' Supporting documents (Optional) ',
   addNew = 'Add new',
+  remove = 'Remove',
   errorSummaryTitle = ' There is a problem ',
   validationError = ' Witness statement is required ',
   errorMessage = ' Witness statement is required ',
+  uploadErrorMessage = 'Error Uploading File',
+  witnessStatementErrorValidation = ' Select or fill the required Witness statement field ',
   continue = 'Continue'
 }
