@@ -2,6 +2,9 @@ import { test } from "@playwright/test";
 import {
   Fl401AttendingTheHearing
 } from "../../../../journeys/manageCases/createCase/FL401AttendingTheHearing/fl401AttendingTheHearing";
+import Config from "../../../../config";
+
+test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
 test.describe("FL401 Create case respondent’s behaviour tests @manageCases", (): void => {
   test(`Test the FL401 Attending The Hearing Journey with the following options:
