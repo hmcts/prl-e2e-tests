@@ -1,5 +1,8 @@
 import { test } from "@playwright/test";
 import { FL401ApplicantDetails } from "../../../../journeys/manageCases/createCase/FL401ApplicantDetails/FL401ApplicantDetails";
+import Config from "../../../../config";
+
+test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
 test.describe("FL401 Create case applicant details tests @manageCases", (): void => {
   test(`Complete the FL401 applicant details event as a solicitor with the following options:
