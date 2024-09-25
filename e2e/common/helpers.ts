@@ -68,26 +68,12 @@ export class Helpers {
 
   public static async checkVisibleAndPresent(
     page: Page,
-    selector: string,
-    count: number,
+    event: c100SolicitorEvents | fl401SolicitorEvents,
   ): Promise<void> {
-    try {
-      const visibilityPromises: Promise<void>[] = Array.from(
-        { length: count },
-        (_, i: number) =>
-          expect.soft(page.locator(selector).nth(i)).toBeVisible(),
-      );
-      const countPromise: Promise<void> = expect
-        .soft(page.locator(selector))
-        .toHaveCount(count);
-      await Promise.all([...visibilityPromises, countPromise]);
-    } catch (error) {
-      console.error(
-        `An error occurred while checking visibility and count of '${selector}':`,
-        error,
-      );
-      throw error;
-    }
+    await page.waitForSelector(`.mat-tab-label-content:text-is("Tasks")`);
+    await page.click(
+      `${Selectors.markdown} > ${Selectors.div} > ${Selectors.p} > ${Selectors.a}:text-is("${event}")`,
+    );
   }
 
   public static async goToCase(
