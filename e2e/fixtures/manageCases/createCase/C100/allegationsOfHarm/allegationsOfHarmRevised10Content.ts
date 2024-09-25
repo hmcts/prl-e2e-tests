@@ -27,5 +27,5 @@ export enum AllegationsOfHarmRevised10Content {
   previousThreats = "Lorem ipsum previous threats",
   childrenLocation = "Lorem ipsum children location",
   policeNotified = "Lorem ipsum police notified",
-  otherParentPassport = "Lorem ipsum other parent"
+  otherParentPassport = "Lorem ipsum other parent",
 }
