@@ -1,5 +1,5 @@
 import { test } from "@playwright/test";
-import { IndividualC100ChildAndRespondents } from "../../../../journeys/manageCases/createCase/C100ChildrenAndRespondents/Individualc100ChildrenAndRespondents";
+import { C100ChildAndRespondents } from "../../../../journeys/manageCases/createCase/C100ChildrenAndRespondents/c100ChildrenAndRespondents";
 import Config from "../../../../config";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
@@ -12,12 +12,12 @@ test.describe("C100 Create case Children and respondents Tests @manageCases", ()
   Setting the applicant Gender to male. @crossbrowserManageCases`, async ({
     page,
   }): Promise<void> => {
-    await IndividualC100ChildAndRespondents.c100ChildrenAndRespondents({
+    await C100ChildAndRespondents.c100ChildrenAndRespondents({
       page: page,
       user: "solicitor",
       accessibilityTest: false,
       errorMessaging: true,
-      yesNoRespondentDetailsC100: true,
+      yesNoRespondentDetails: true,
       respondentGender: "male",
       respondentAddress5Years: "yes",
       respondentLegalRepresentation: "yes",
@@ -31,15 +31,15 @@ test.describe("C100 Create case Children and respondents Tests @manageCases", ()
   Not Accessibility testing,
   Not Error message testing,
   Saying no to all options,
-  Setting the applicant Gender to female. @crossbrowserManageCases`, async ({
+  Setting the applicant Gender to female.`, async ({
     page,
   }): Promise<void> => {
-    await IndividualC100ChildAndRespondents.c100ChildrenAndRespondents({
+    await C100ChildAndRespondents.c100ChildrenAndRespondents({
       page: page,
       user: "solicitor",
       accessibilityTest: false,
       errorMessaging: false,
-      yesNoRespondentDetailsC100: true,
+      yesNoRespondentDetails: true,
       respondentGender: "male",
       respondentAddress5Years: "yes",
       respondentLegalRepresentation: "yes",
@@ -55,15 +55,15 @@ test(`Complete the C100 Create case Children and respondents as a solicitor with
   Accessibility testing,
   Not Error message testing,
   Saying Yes to all options,
-  Setting the applicant Gender to female. @crossbrowserManageCases`, async ({
+  Setting the applicant Gender to female. @accessibilityManageCases`, async ({
   page,
 }): Promise<void> => {
-  await IndividualC100ChildAndRespondents.c100ChildrenAndRespondents({
+  await C100ChildAndRespondents.c100ChildrenAndRespondents({
     page: page,
     user: "solicitor",
     accessibilityTest: false,
     errorMessaging: false,
-    yesNoRespondentDetailsC100: true,
+    yesNoRespondentDetails: true,
     respondentGender: "female",
     respondentAddress5Years: "yes",
     respondentLegalRepresentation: "yes",

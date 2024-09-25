@@ -159,6 +159,12 @@ export class C100 {
       user: user,
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
+      yesNoRespondentDetails: yesNoRespondentDetails,
+      respondentGender: respondentGender,
+      respondentAddress5Years: respondentAddress5Years,
+      respondentLegalRepresentation: respondentLegalRepresentation,
+      c100ChildGender: C100ChildGender,
+      yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions: yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,
       yesNoChildrenAndRespondents: yesNoChildrenAndRespondents,
       subJourney: false,
     });

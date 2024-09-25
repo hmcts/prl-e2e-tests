@@ -11,10 +11,6 @@ enum UniqueSelectors {
   childLiveWithThisPersonNo = "#buffChildAndRespondentRelations_0_childLivesWith_No",
 }
 
-enum nameSelectors {
-  nameSelector = ".case-field__label",
-}
-
 export class ChildrenAndRespondents1Page {
   public static async childrenAndRespondents1Page(
     page: Page,
@@ -64,25 +60,19 @@ export class ChildrenAndRespondents1Page {
         "formLabel",
         Selectors.GovukFormLabel,
       ),
-      Helpers.checkVisibleAndPresent(
+      Helpers.checkGroup(
         page,
-        `${nameSelectors.nameSelector}:text-is("${ChildrenAndRespondents1Content.respondentsNameFormLabel}")`,
-        1,
+        2,
+        ChildrenAndRespondents1Content,
+        "textFieldLabel",
+        Selectors.GovukTextFieldLabel,
       ),
-      Helpers.checkVisibleAndPresent(
+      Helpers.checkGroup(
         page,
-        `${nameSelectors.nameSelector}:text-is("${ChildrenAndRespondents1Content.childNameFormLabel}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukText16}:text-is("${ChildrenAndRespondents1Content.fullNameRespondent}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukText16}:text-is("${ChildrenAndRespondents1Content.fullNameChild}")`,
-        1,
+        2,
+        ChildrenAndRespondents1Content,
+        "text16",
+        Selectors.GovukText16,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -96,9 +86,10 @@ export class ChildrenAndRespondents1Page {
       ),
     ]);
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page);
+      // await AccessibilityTestHelper.run(page); #TODO Disabled pending ticket FPET-
     }
   }
+
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(
       `${Selectors.button}:text-is("${ChildrenAndRespondents1Content.continue}")`,
@@ -134,12 +125,10 @@ export class ChildrenAndRespondents1Page {
         1,
       ),
     ]);
-    await page.waitForTimeout(1000);
     await page.selectOption(
       `${UniqueSelectors.respondentsRelationshipDropdown}`,
       ChildrenAndRespondents1Content.selectionForOtherRelationship,
     );
-    await page.waitForTimeout(1000);
     await page.click(
       `${Selectors.button}:text-is("${ChildrenAndRespondents1Content.continue}")`,
     );
@@ -189,7 +178,11 @@ export class ChildrenAndRespondents1Page {
         `${UniqueSelectors.giveDetailsForOtherRelationshipInput}`,
         ChildrenAndRespondents1Content.loremIpsum,
       );
-      await this.giveDetailsOtherRelationshipStaticText(page);
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${ChildrenAndRespondents1Content.formLabelOtherRelationship}")`,
+        1,
+      );
       await page.click(`${UniqueSelectors.childLiveWithThisPersonNo}`);
     }
     await page.waitForTimeout(1000);
@@ -197,14 +190,5 @@ export class ChildrenAndRespondents1Page {
       `${Selectors.button}:text-is("${ChildrenAndRespondents1Content.continue}")`,
     );
   }
-
-  private static async giveDetailsOtherRelationshipStaticText(
-    page: Page,
-  ): Promise<void> {
-    await Helpers.checkVisibleAndPresent(
-      page,
-      `${Selectors.GovukFormLabel}:text-is("${ChildrenAndRespondents1Content.formLabelOtherRelationship}")`,
-      1,
-    );
-  }
 }
+
