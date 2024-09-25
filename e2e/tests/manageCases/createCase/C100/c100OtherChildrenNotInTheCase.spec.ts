@@ -1,5 +1,8 @@
 import { test } from "@playwright/test";
 import { C100OtherChildrenNotInTheCase } from "../../../../journeys/manageCases/createCase/C100OtherChildrenNotInTheCase/C100OtherChildrenNotInTheCase";
+import Config from "../../../../config";
+
+test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
 test.describe("C100 Create case Other children not in the case tests @manageCases", (): void => {
   test(`Complete the C100 Other children not in the case event as a solicitor with the following options:

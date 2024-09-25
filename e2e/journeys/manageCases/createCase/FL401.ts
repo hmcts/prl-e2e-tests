@@ -6,6 +6,7 @@ import { FL401RespondentDetails } from "./FL401RespondentDetails/FL401Respondent
 import { FL401WithoutNoticeOrder } from "./FL401WithoutNoticeOrder/FL401WIthoutNoticeOrder";
 import { FL401ApplicantDetails } from "./FL401ApplicantDetails/FL401ApplicantDetails";
 import { FL401ApplicantsFamily } from "./FL401ApplicantsFamily/FL401ApplicantsFamily";
+import { FL401OtherProceedings } from "./FL401OtherProceedings/FL401OtherProceedings";
 import { FL401RespondentsBehaviour } from "./FL401RespondentsBehaviour/FL401RespondentsBehaviour";
 import { FL401RelationshipToRespondent } from "./FL401RelationshipToRespondent/FL401RelationshipToRespondent";
 import { fl401RelationshipToRespondent } from "../../../pages/manageCases/createCase/FL401/relationshipToRespondent/relationshipToRespondent1Page";
@@ -13,6 +14,8 @@ import { fl401RespondentRelationshipOther } from "../../../pages/manageCases/cre
 import { bailConditionRadios } from "../../../pages/manageCases/createCase/FL401/withoutNoticeOrder/withoutNoticeOrder3Page";
 import { FL401TheHome } from "./FL401TheHome/fl401TheHome";
 import { addressRadios } from "../../../pages/manageCases/createCase/FL401/theHome/fl401TheHome1Page";
+
+export type otherProceedingsRadios = "Yes" | "No" | "Don't know";
 
 interface fl401Options {
   page: Page;
@@ -27,6 +30,7 @@ interface fl401Options {
   respondentsBehaviourAllOptionsYes: boolean;
   isWithoutNoticeDetailsYes: boolean;
   isWithoutNoticeDetailsBailConditions: bailConditionRadios;
+  otherProceedingsRadios: otherProceedingsRadios;
   relationshipToRespondent: fl401RelationshipToRespondent;
   relationshipToRespondentOther?: fl401RespondentRelationshipOther;
   fl401TheHomeYesNo: boolean;
@@ -48,6 +52,7 @@ export class FL401 {
     respondentsBehaviourAllOptionsYes,
     isWithoutNoticeDetailsYes,
     isWithoutNoticeDetailsBailConditions,
+    otherProceedingsRadios,
     relationshipToRespondent,
     relationshipToRespondentOther,
     fl401TheHomeYesNo,
@@ -99,6 +104,14 @@ export class FL401 {
       applicantHasChildren: applicantHasChildren,
       subJourney: false,
     });
+    await FL401RelationshipToRespondent.fl401RelationshipToRespondent({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      relationshipToRespondent: relationshipToRespondent,
+      relationshipToRespondentOther: relationshipToRespondentOther,
+      subJourney: false,
+    });
     await FL401RespondentsBehaviour.fl401RespondentsBehaviour({
       page: page,
       accessibilityTest: accessibilityTest,
@@ -106,12 +119,11 @@ export class FL401 {
       respondentsBehaviourAllOptionsYes: respondentsBehaviourAllOptionsYes,
       subJourney: false,
     });
-    await FL401RelationshipToRespondent.fl401RelationshipToRespondent({
+    await FL401OtherProceedings.fl401OtherProceedings({
       page: page,
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
-      relationshipToRespondent: relationshipToRespondent,
-      relationshipToRespondentOther: relationshipToRespondentOther,
+      otherProceedingsRadios: otherProceedingsRadios,
       subJourney: false,
     });
     await FL401TheHome.fl401TheHome({
