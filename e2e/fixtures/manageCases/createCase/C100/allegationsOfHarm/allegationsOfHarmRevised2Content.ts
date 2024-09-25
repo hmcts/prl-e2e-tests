@@ -1,7 +1,7 @@
 export enum AllegationsOfHarmRevised2Content {
   pageTitle = "Allegations of harm",
   p1 = "Are there allegations that the child(ren) or applicants(s) have experienced, or are at risk of experiencing, harm from any of the following by any person who has had contact with the child?",
-  pr = "Has the applicant had (or does the applicant currently have) any of the these orders?",
+  p2 = "Has the applicant had (or does the applicant currently have) any of the these orders?",
   h3 = "Orders",
   formLabel1 = "Any form of domestic abuse towards the applicant",
   formLabel2 = "Child abuse towards the children in this application",
@@ -14,8 +14,6 @@ export enum AllegationsOfHarmRevised2Content {
   formLabel9 = "Restraining order",
   formLabel10 = "Other injunctive order",
   formLabel11 = "Undertaking in place of order",
-  formLabelYes = "Yes",
-  formLabelNo = "No",
   formLabelYesFields = "Give details",
   formLabelDateIssued = "Date issued (Optional)",
   formLabelEndDate = "End date (Optional)",
