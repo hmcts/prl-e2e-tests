@@ -5,9 +5,6 @@ import {
   UploadDocumentsSubmitContent
 } from "../../../../../fixtures/manageCases/createCase/FL401/uploadDocuments/uploadDocumentsSubmitContent";
 import { Helpers } from "../../../../../common/helpers";
-import {
-  UploadDocuments1Content
-} from "../../../../../fixtures/manageCases/createCase/FL401/uploadDocuments/uploadDocuments1Content";
 
 interface UploadDocumentsSubmitPageOptions {
   page: Page;
@@ -26,7 +23,8 @@ export class UploadDocumentsSubmitPage {
   }: UploadDocumentsSubmitPageOptions): Promise<void> {
     await this.checkPageContent({
       page, accessibilityTest
-    })
+    });
+    await this.fillInFields(page);
   }
 
   private static async checkPageContent({
@@ -38,11 +36,12 @@ export class UploadDocumentsSubmitPage {
     )
     await Promise.all(
       [
-        this.checkStaticContent(page)
+        this.checkStaticContent(page),
+        this.checkFilledInData(page)
       ]
     )
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page)
+      await AccessibilityTestHelper.run(page);
     }
   }
 
@@ -106,5 +105,13 @@ export class UploadDocumentsSubmitPage {
         ),
       ]
     )
+  }
+
+  private static async fillInFields(
+    page: Page
+  ): Promise<void> {
+    await page.click(
+      `${Selectors.button}:text-is("${UploadDocumentsSubmitContent.continue}")`
+    );
   }
 }
