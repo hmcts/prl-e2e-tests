@@ -18,5 +18,6 @@ export enum AllegationsOfHarm3Content {
   text16YesExtra = "Who did they seek help from, and what they did to help? (Optional)",
   natureOfBehaviour = "Lorem ipsum nature of behaviour",
   behaviourLength = "Length of behaviour",
-  helpSoughtFrom = "Lorem ipsum help sought"
+  helpSoughtFrom = "Lorem ipsum help sought",
+  button = "Continue",
 }
