@@ -1,0 +1,17 @@
+export enum UploadDocuments1Content {
+  pageTitle = 'Upload documents',
+  strong1 = 'Upload any relevant documents that support this application.',
+  p1 = 'Files should be:',
+  li1 = 'a maximum of 100MB in size (larger files must be split)',
+  li2 = 'labelled clearly, e.g. Draft_Order.pdf',
+  li3 = 'in a word or PDF format',
+  h31 = '1. Upload witness statement',
+  h32 = '2. Upload any other supporting documents',
+  h3Subtitle1 = 'Witness statement',
+  h3Subtitle2 = 'Supporting documents',
+  h21 = ' Witness statement ',
+  h22 = ' Supporting documents (Optional) ',
+  addNew = 'Add new',
+  removeButton = 'Remove',
+  continue = 'Continue'
+}
