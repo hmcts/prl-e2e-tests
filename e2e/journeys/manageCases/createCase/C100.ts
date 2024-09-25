@@ -164,7 +164,8 @@ export class C100 {
       respondentAddress5Years: respondentAddress5Years,
       respondentLegalRepresentation: respondentLegalRepresentation,
       c100ChildGender: C100ChildGender,
-      yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions: yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,
+      yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions:
+        yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,
       yesNoChildrenAndRespondents: yesNoChildrenAndRespondents,
       subJourney: false,
     });

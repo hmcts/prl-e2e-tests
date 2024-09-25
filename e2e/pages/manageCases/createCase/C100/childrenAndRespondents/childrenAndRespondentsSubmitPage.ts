@@ -27,13 +27,9 @@ export class ChildrenAndRespondentsSubmitPage {
     yesNoChildrenAndRespondents: boolean,
   ): Promise<void> {
     await Promise.all([
-      this.checkPageLoads(
-      page,
-      accessibilityTest,
-      yesNoChildrenAndRespondents,
-    ),
-    this.checkFilledData(page, yesNoChildrenAndRespondents),
-    ])
+      this.checkPageLoads(page, accessibilityTest, yesNoChildrenAndRespondents),
+      this.checkFilledData(page, yesNoChildrenAndRespondents),
+    ]);
   }
 
   private static async checkPageLoads(
