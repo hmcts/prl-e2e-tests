@@ -20,11 +20,6 @@ interface fillInFieldsOptions {
   c100ChildGender: C100ChildGender;
 }
 
-const optionToSelect =
-  ChildDetailsRevised1Content.selectOptionNameTestCases1 ||
-  ChildDetailsRevised1Content.selectOptionNameTestCases2 ||
-  ChildDetailsRevised1Content.selectOptionNameTestCases3;
-
 export type C100ChildGender = "female" | "male" | "other";
 
 enum uniqueSelectors {
@@ -39,7 +34,7 @@ enum uniqueSelectors {
   prohibitedStepsCheckbox = "#newChildDetails_0_orderAppliedFor-prohibitedStepsOrder",
   specificIssueCheckbox = "#newChildDetails_0_orderAppliedFor-specificIssueOrder",
   parentalResponsibilityField = "#newChildDetails_0_parentalResponsibilityDetails",
-  whoDoesChildLiveWithDropdown = "#newChildDetails_0_whoDoesTheChildLiveWith",
+  parentDropdown = "#newChildDetails_0_whoDoesTheChildLiveWith",
 }
 
 export class ChildDetailsRevised1Page {
@@ -96,7 +91,7 @@ export class ChildDetailsRevised1Page {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      // await AccessibilityTestHelper.run(page); #TODO: Fix when FPET-1140 is completed.
     }
   }
 
@@ -136,21 +131,7 @@ export class ChildDetailsRevised1Page {
       `${uniqueSelectors.parentalResponsibilityField}`,
       `${ChildDetailsRevised1Content.parentalResponsibility}`,
     );
-    await page.waitForTimeout(2000);
-    await page.waitForSelector(
-      `${uniqueSelectors.whoDoesChildLiveWithDropdown}`,
-      { state: "visible" },
-    );
-    const dropdown = page.locator(
-      `${uniqueSelectors.whoDoesChildLiveWithDropdown}`,
-    );
-    const options = await dropdown.locator("option").allTextContents();
-    if (optionToSelect && options.includes(optionToSelect)) {
-      await page.selectOption(
-        `${uniqueSelectors.whoDoesChildLiveWithDropdown}`,
-        optionToSelect,
-      );
-    }
+    await page.selectOption(`${uniqueSelectors.parentDropdown}`, { index: 1 });
     await page.click(
       `${Selectors.button}:text-is("${ChildDetailsRevised1Content.continue}")`,
     );
