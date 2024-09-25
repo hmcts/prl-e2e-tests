@@ -28,7 +28,7 @@ export class ChangedTestsRunner {
       return;
     }
     try {
-      const command: string = `yarn playwright test ${testFiles.join(' ')}`
+      const command: string = `yarn playwright test ${testFiles.join(' ')} --project chromium`
       console.log(`Running playwright tests on": ${testFiles.join(', ')}`)
       execSync(command, { stdio: 'inherit'});
     } catch (error) {
