@@ -1,4 +1,5 @@
-import { SimpleGit, simpleGit } from 'simple-git';
+import { SimpleGit, simpleGit } from "simple-git";
+import * as process from "node:process";
 
 export class ChangedTestsRunner {
   private static git: SimpleGit = simpleGit();
@@ -9,52 +10,58 @@ export class ChangedTestsRunner {
       const changedTestFiles: string[] = await this.getChangedTestFiles();
       await this.runPlaywrightTests(changedTestFiles);
     } catch (error) {
-      console.error('Failed to run tests:', error);
+      console.error("Failed to run tests:", error);
       process.exit(1);
     }
   }
 
   private static async fetchMasterBranch(): Promise<void> {
     try {
-      console.log('Fetching master branch...');
-      await this.git.fetch('origin', 'master');
-      console.log('Master branch fetched successfully.');
+      console.log("Fetching master branch...");
+      await this.git.fetch(
+        `https://${process.env.GITHUB_USERNAME}:${process.env.GITHUB_PAT}@github.com/hmcts/prl-e2e-tests.git`,
+        "master",
+      );
+      console.log("Master branch fetched successfully.");
     } catch (error) {
-      console.error('Error fetching master branch: ', error);
+      console.error("Error fetching master branch: ", error);
       process.exit(1);
     }
   }
 
   private static async getChangedTestFiles(): Promise<string[]> {
     try {
-      console.log('Getting changed test files...');
-      const diff: string = await this.git.diff(['--name-only', 'origin/master...HEAD']);
-      const changedFiles: string[] = diff.split('\n').filter(Boolean);
-      return changedFiles.filter(file => file.endsWith('.spec.ts'));
+      console.log("Getting changed test files...");
+      const diff: string = await this.git.diff([
+        "--name-only",
+        "origin/master...HEAD",
+      ]);
+      const changedFiles: string[] = diff.split("\n").filter(Boolean);
+      return changedFiles.filter((file) => file.endsWith(".spec.ts"));
     } catch (error) {
-      console.error('Error detecting changed test files: ', error);
+      console.error("Error detecting changed test files: ", error);
       process.exit(1);
     }
   }
 
   private static async runPlaywrightTests(testFiles: string[]): Promise<void> {
     if (testFiles.length === 0) {
-      console.log('No test files changed, skipping tests.');
+      console.log("No test files changed, skipping tests.");
       return;
     }
     try {
-      const command: string = `yarn playwright test ${testFiles.join(' ')} --project chromium`;
-      console.log(`Running Playwright tests on: ${testFiles.join(', ')}`);
+      const command: string = `yarn playwright test ${testFiles.join(" ")} --project chromium`;
+      console.log(`Running Playwright tests on: ${testFiles.join(", ")}`);
       await this.execCommand(command);
     } catch (error) {
-      console.error('Error running Playwright tests: ', error);
+      console.error("Error running Playwright tests: ", error);
       process.exit(1);
     }
   }
 
   private static execCommand(command: string): Promise<void> {
     return new Promise((resolve, reject) => {
-      const child = require('child_process').exec(command, (error: Error) => {
+      const child = require("child_process").exec(command, (error: Error) => {
         if (error) {
           reject(error);
         } else {
@@ -68,6 +75,6 @@ export class ChangedTestsRunner {
 }
 
 ChangedTestsRunner.run().catch((error) => {
-  console.error('Execution failed:', error);
+  console.error("Execution failed:", error);
   process.exit(1);
 });
