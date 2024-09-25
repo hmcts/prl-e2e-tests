@@ -1,5 +1,8 @@
 import { test } from "@playwright/test";
 import { IndividualC100ChildrenAndOtherPeople } from "../../../../journeys/manageCases/createCase/C100ChildrenAndOtherPeople/individualC100ChildrenAndOtherPeople";
+import Config from "../../../../config";
+
+test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
 test.describe("C100 Create case Children and respondents Tests @manageCases", (): void => {
   test(`Complete the C100 Create case Children and Other people as a solicitor with the following options:
@@ -19,7 +22,7 @@ test.describe("C100 Create case Children and respondents Tests @manageCases", ()
       c100ChildGender: "male",
       yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions: "yes",
       yesNoChildrenAndOtherPeople: true,
-      subJourney: false,
+      subJourney: true,
     });
   });
   test(`Complete the C100 Create case Children and Other people as a solicitor with the following options:
@@ -39,7 +42,7 @@ test.describe("C100 Create case Children and respondents Tests @manageCases", ()
       c100ChildGender: "female",
       yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions: "no",
       yesNoChildrenAndOtherPeople: false,
-      subJourney: false,
+      subJourney: true,
     });
   });
 });

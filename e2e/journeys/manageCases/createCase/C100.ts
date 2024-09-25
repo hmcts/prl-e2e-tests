@@ -157,14 +157,6 @@ export class C100 {
       childLiveWithApplicant: childLiveWithApplicant,
       subJourney: false,
     });
-    await C100ChildAndRespondents.c100ChildrenAndRespondents({
-      page: page,
-      user: user,
-      accessibilityTest: accessibilityTest,
-      errorMessaging: errorMessaging,
-      yesNoChildrenAndRespondents: yesNoChildrenAndRespondents,
-      subJourney: false,
-    });
     await C100ChildrenAndOtherPeople.c100ChildrenAndOtherPeople({
       page: page,
       user: user,

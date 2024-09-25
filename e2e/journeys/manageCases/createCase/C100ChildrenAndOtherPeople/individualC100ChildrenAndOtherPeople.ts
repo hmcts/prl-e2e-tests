@@ -1,11 +1,34 @@
 import { Page } from "@playwright/test";
 import { ApplicantGender, UserRole } from "../../../../common/types";
-import { C100ChildGender } from "../../../../pages/manageCases/createCase/C100/childDetails/childDetailsRevised1Page";
-import { yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions } from "../../../../pages/manageCases/createCase/C100/childDetails/childDetailsRevised2Page";
+import {
+  C100ChildGender,
+  ChildDetailsRevised1Page
+} from "../../../../pages/manageCases/createCase/C100/childDetails/childDetailsRevised1Page";
+import {
+  ChildDetailsRevised2Page,
+  yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions
+} from "../../../../pages/manageCases/createCase/C100/childDetails/childDetailsRevised2Page";
 import { SolicitorCreateInitial } from "../solicitorCreateInitial";
 import { C100ChildDetails } from "../C100ChildDetails/c100ChildDetails";
 import { C100OtherPeopleInTheCase } from "../C100OtherPeopleInTheCase/C100OtherPeopleInTheCase";
 import { C100ChildrenAndOtherPeople } from "./c100ChildrenAndOtherPeople";
+import { Helpers } from "../../../../common/helpers";
+import {
+  OtherPeopleInTheCase1Page
+} from "../../../../pages/manageCases/createCase/C100/otherPeopleInTheCase/otherPeopleInTheCase1Page";
+import {
+  OtherPeopleInTheCaseSubmitPage
+} from "../../../../pages/manageCases/createCase/C100/otherPeopleInTheCase/otherPeopleInTheCaseSubmitPage";
+import { C100TasksTabPage } from "../../../../pages/manageCases/caseTabs/c100TasksTabPage";
+import {
+  C100ChildDetailsSubmitPage
+} from "../../../../pages/manageCases/createCase/C100/childDetails/childDetailsSubmitPage";
+import {
+  ChildrenAndOtherPeople1Page
+} from "../../../../pages/manageCases/createCase/C100/childrenAndOtherPeople/childrenAndOtherPeople1Page";
+import {
+  ChildrenAndOtherPeopleSubmitPage
+} from "../../../../pages/manageCases/createCase/C100/childrenAndOtherPeople/childrenAndOtherPeopleSubmitPage";
 
 interface c100ChildrenAndOtherPeopleOptions {
   page: Page;
@@ -42,38 +65,53 @@ export class IndividualC100ChildrenAndOtherPeople {
         errorMessaging: false,
       });
     }
-    await SolicitorCreateInitial.createInitialCase({
+    await Helpers.selectSolicitorEvent(page, "Other people in the case");
+    await OtherPeopleInTheCase1Page.otherPeopleInTheCase1Page(
+      page,
+      accessibilityTest,
+      errorMessaging,
+      yesNoOtherPeopleInTheCase,
+      applicantGender,
+    );
+    await OtherPeopleInTheCaseSubmitPage.otherPeopleInTheCaseSubmitPage(
+      page,
+      accessibilityTest,
+      yesNoOtherPeopleInTheCase,
+      applicantGender,
+    );
+    await C100TasksTabPage.c100TasksTabPage(page, accessibilityTest);
+    await Helpers.selectSolicitorEvent(page, "Child details");
+    await ChildDetailsRevised1Page.childDetailsRevised1Page({
       page: page,
-      user: user,
-      accessibilityTest: false,
-      solicitorCaseType: "C100",
-      errorMessaging: false,
-    });
-    await C100OtherPeopleInTheCase.c100OtherPeopleInTheCase({
-      page: page,
-      user: user,
       accessibilityTest: accessibilityTest,
-      errorMessaging: errorMessaging,
-      yesNoOtherPeopleInTheCase: yesNoOtherPeopleInTheCase,
-      applicantGender: applicantGender,
-      subJourney: subJourney,
+      c100ChildGender: c100ChildGender,
     });
-    await C100ChildDetails.c100ChildDetails({
+    await ChildDetailsRevised2Page.childDetailsRevised2Page({
       page: page,
-      user: user,
+      accessibilityTest: accessibilityTest,
+      yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions:
+      yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,
+    });
+    await C100ChildDetailsSubmitPage.c100ChildDetailsSubmitPage({
+      page: page,
       accessibilityTest: accessibilityTest,
       c100ChildGender: c100ChildGender,
       yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions:
-        yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,
-      subJourney: subJourney,
+      yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,
     });
-    await C100ChildrenAndOtherPeople.c100ChildrenAndOtherPeople({
-      page: page,
-      user: user,
-      accessibilityTest: accessibilityTest,
-      errorMessaging: errorMessaging,
-      yesNoChildrenAndOtherPeople: yesNoChildrenAndOtherPeople,
-      subJourney: subJourney,
-    });
+    await C100TasksTabPage.c100TasksTabPage(page, accessibilityTest);
+    await Helpers.selectSolicitorEvent(page, "Children and other people");
+    await ChildrenAndOtherPeople1Page.childrenAndOtherPeople1Page(
+      page,
+      accessibilityTest,
+      errorMessaging,
+      yesNoChildrenAndOtherPeople,
+    );
+    await ChildrenAndOtherPeopleSubmitPage.childrenAndOtherPeopleSubmitPage(
+      page,
+      accessibilityTest,
+      yesNoChildrenAndOtherPeople,
+    );
+    await C100TasksTabPage.c100TasksTabPage(page, accessibilityTest);
   }
 }
