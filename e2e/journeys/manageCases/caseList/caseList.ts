@@ -10,7 +10,7 @@ export class CaseList {
     user: UserRole,
     accessibilityTest: boolean,
   ): Promise<void> {
-    await IdamLoginHelper.signInUser(page, user, config.manageCasesBaseURL);
+    await page.goto(config.manageCasesBaseURL);
     await CaseListPage.casesListPage(page, accessibilityTest);
   }
 }

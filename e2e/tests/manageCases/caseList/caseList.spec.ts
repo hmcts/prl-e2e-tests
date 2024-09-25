@@ -1,5 +1,8 @@
 import { test } from "@playwright/test";
 import { CaseList } from "../../../journeys/manageCases/caseList/caseList";
+import Config from "../../../config";
+
+test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
 test.describe("Manage cases case list tests. @manageCases", (): void => {
   test("Check the case list is visible. @crossbrowserManageCases", async ({
