@@ -15,9 +15,7 @@ enum uniqueSelectors {
 }
 
 enum inputIDs {
-  witnessDocuments0 = 'div#fl401UploadWitnessDocuments_0 ',
   uploadWitnessDocuments =  '#fl401UploadWitnessDocuments_value',
-  witnessDocuments1 = 'div#fl401UploadWitnessDocuments_1 ',
   uploadSupportingDocuments = '#fl401UploadSupportDocuments_value'
 }
 
