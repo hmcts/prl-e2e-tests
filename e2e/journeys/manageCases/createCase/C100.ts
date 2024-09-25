@@ -161,7 +161,8 @@ export class C100 {
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
       c100ChildGender: C100ChildGender,
-      yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions: yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,
+      yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions:
+        yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,
       yesNoOtherPeopleInTheCase,
       applicantGender: applicantGender,
       yesNoChildrenAndOtherPeople: yesNoChildrenAndOtherPeople,
