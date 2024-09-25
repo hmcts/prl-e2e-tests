@@ -32,7 +32,7 @@ interface fl401Options {
   otherProceedingsRadios: otherProceedingsRadios;
   relationshipToRespondent: fl401RelationshipToRespondent;
   relationshipToRespondentOther?: fl401RespondentRelationshipOther;
-  fl401AttendingTheHearingYesNo: boolean
+  fl401AttendingTheHearingYesNo: boolean;
 }
 
 export class FL401 {
@@ -52,7 +52,7 @@ export class FL401 {
     otherProceedingsRadios,
     relationshipToRespondent,
     relationshipToRespondentOther,
-    fl401AttendingTheHearingYesNo
+    fl401AttendingTheHearingYesNo,
   }: fl401Options): Promise<void> {
     await SolicitorCreateInitial.createInitialCase({
       page: page,
@@ -126,7 +126,7 @@ export class FL401 {
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
       fl401AttendingTheHearingYesNo: fl401AttendingTheHearingYesNo,
-      subJourney: false
-    })
+      subJourney: false,
+    });
   }
 }

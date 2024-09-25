@@ -106,7 +106,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       isWithoutNoticeDetailsBailConditions: "Yes",
       otherProceedingsRadios: "Yes",
       relationshipToRespondent: "foremerlyLivedTogether",
-      fl401AttendingTheHearingYesNo: true
+      fl401AttendingTheHearingYesNo: true,
     });
   });
 
@@ -142,7 +142,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       isWithoutNoticeDetailsBailConditions: "Don't know",
       otherProceedingsRadios: "Yes",
       relationshipToRespondent: "marriedOrCivil",
-      fl401AttendingTheHearingYesNo: true
+      fl401AttendingTheHearingYesNo: true,
     });
   });
 
@@ -157,7 +157,9 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Saying no to Without Notice Order questions,
   Relationship is 'None of the above',
   Other Relationship Is: 'Cousin'
-  saying no to all attending the hearing questions`, async ({ page }): Promise<void> => {
+  saying no to all attending the hearing questions`, async ({
+    page,
+  }): Promise<void> => {
     await FL401.fl401({
       page: page,
       user: "solicitor",
@@ -174,7 +176,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       otherProceedingsRadios: "Yes",
       relationshipToRespondent: "noneOfTheAbove",
       relationshipToRespondentOther: "Cousin",
-      fl401AttendingTheHearingYesNo: false
+      fl401AttendingTheHearingYesNo: false,
     });
   });
 });
