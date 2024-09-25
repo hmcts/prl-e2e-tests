@@ -22,5 +22,10 @@ export enum AllegationsOfHarmRevised10Content {
   errorChildrenLocation = "Where is/are the child(ren) now? is required",
   errorPassportOffice = "Has the passport office been notifed? is required",
   errorPolice = "Were the police or any other organisation/agency involved in any previous incident of attempted abduction or abduction? is required",
-  errorChildPassport = "Do any of the children have a passport? is required"
+  errorChildPassport = "Do any of the children have a passport? is required",
+  childrenAbducted = "Lorem ipsum children abducted",
+  previousThreats = "Lorem ipsum previous threats",
+  childrenLocation = "Lorem ipsum children location",
+  policeNotified = "Lorem ipsum police notified",
+  otherParentPassport = "Lorem ipsum other parent"
 }

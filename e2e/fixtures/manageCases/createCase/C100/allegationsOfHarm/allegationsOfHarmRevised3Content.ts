@@ -1,4 +1,4 @@
-export enum AllegationsOfHarm3Content {
+export enum AllegationsOfHarmRevised3Content {
   pageTitle = "Allegations of harm",
   h21 = "Domestic abuse - Behaviours",
   h22 = "Behaviour",
