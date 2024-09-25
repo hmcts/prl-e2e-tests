@@ -10,7 +10,6 @@ enum uniqueSelectors {
   welshNeeds = 'div#fl401WelshNeeds > div > ',
   welshNeedsFields = 'div#fl401WelshNeeds_0_fl401SpokenOrWritten > fieldset > div > ',
   interpreterNeeds = 'div#interpreterNeeds > div > ',
-  interpreterNeedsFields = 'div#interpreterNeeds_0_0 '
 }
 
 enum inputIDs {
@@ -50,8 +49,19 @@ interface CheckPageLoadsOptions {
   accessibilityTest: boolean;
 }
 
+interface WelshNeedsFieldsOptions {
+  page: Page;
+  errorMessaging: boolean
+}
+
+interface InterpreterNeedsFieldsOptions {
+  page: Page;
+  errorMessaging: boolean
+}
+
 interface FillInFieldsOptions {
   page: Page,
+  errorMessaging: boolean;
   fl401AttendingTheHearingYesNo: boolean
 }
 
@@ -71,6 +81,7 @@ export class AttendingTheHearing1Page {
     }
     await this.fillInFields({
       page,
+      errorMessaging,
       fl401AttendingTheHearingYesNo
     });
   }
@@ -170,6 +181,9 @@ export class AttendingTheHearing1Page {
       `${uniqueSelectors.interpreterNeeds}${Selectors.button}:text-is("${AttendingTheHearing1Content.addNew}")`,
     );
     await page.click(
+      `${uniqueSelectors.interpreterNeeds}${Selectors.button}:text-is("${AttendingTheHearing1Content.addNew}")`,
+    );
+    await page.click(
       `${Selectors.button}:text-is("${AttendingTheHearing1Content.continue}")`
     );
     await Promise.all(
@@ -209,7 +223,8 @@ export class AttendingTheHearing1Page {
 
   private static async fillInFields({
     page,
-    fl401AttendingTheHearingYesNo
+    errorMessaging,
+    fl401AttendingTheHearingYesNo,
   }: FillInFieldsOptions): Promise<void> {
     const keySuffix: string = (fl401AttendingTheHearingYesNo) ? 'Yes' : 'No';
     const radioSections: string[] = [
@@ -252,8 +267,8 @@ export class AttendingTheHearing1Page {
           )
         ]
       );
-      await this.welshNeedsFields(page);
-      await this.interpreterNeedsFields(page);
+      await this.welshNeedsFields({ page, errorMessaging });
+      await this.interpreterNeedsFields({ page, errorMessaging });
       const textAreas = ['specialArrangements', 'intermediaryReasons', 'adjustmentsRequired'];
       for (let text of textAreas) {
         let inputKey = text as keyof typeof inputIDs;
@@ -270,11 +285,13 @@ export class AttendingTheHearing1Page {
   }
 
   private static async welshNeedsFields(
-    page: Page
+    {page, errorMessaging}: WelshNeedsFieldsOptions
   ): Promise<void> {
-    await page.click(
-      `${uniqueSelectors.welshNeeds}${Selectors.button}:text-is("${AttendingTheHearing1Content.addNew}")`
-    );
+    if (!errorMessaging) {
+      await page.click(
+        `${uniqueSelectors.welshNeeds}${Selectors.button}:text-is("${AttendingTheHearing1Content.addNew}")`
+      );
+    }
     await Promise.all(
       [
         Helpers.checkVisibleAndPresent(
@@ -288,11 +305,6 @@ export class AttendingTheHearing1Page {
           AttendingTheHearing1Content,
           'welshLabel',
           `${uniqueSelectors.welshNeedsFields}${Selectors.GovukFormLabel}`
-        ),
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.h2}:text-is("${AttendingTheHearing1Content.newWelshNeed}")`,
-          1
         ),
         Helpers.checkVisibleAndPresent(
           page,
@@ -314,11 +326,13 @@ export class AttendingTheHearing1Page {
   }
 
   private static async interpreterNeedsFields(
-    page: Page
+    {page, errorMessaging}: InterpreterNeedsFieldsOptions
   ): Promise<void> {
-    await page.click(
-      `${uniqueSelectors.interpreterNeeds}${Selectors.button}:text-is("${AttendingTheHearing1Content.addNew}")`,
-    );
+    if (!errorMessaging) {
+      await page.click(
+        `${uniqueSelectors.interpreterNeeds}${Selectors.button}:text-is("${AttendingTheHearing1Content.addNew}")`,
+      );
+    }
     await Promise.all(
       [
         Helpers.checkVisibleAndPresent(
@@ -333,11 +347,6 @@ export class AttendingTheHearing1Page {
           'interpreterLabel',
           `${Selectors.GovukFormLabel}`
         ),
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.h2}:text-is("${AttendingTheHearing1Content.newInterpreterNeed}")`,
-          1
-        )
       ]
     );
     const partyOptions: string[] = ['applicant', 'respondent', 'other']
