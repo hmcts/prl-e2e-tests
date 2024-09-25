@@ -102,7 +102,7 @@ export class ChildrenAndOtherPeople1Page {
       ),
     ]);
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page);
+      // await AccessibilityTestHelper.run(page); #TODO Disabled pending ticket FPET-1143
     }
   }
 
