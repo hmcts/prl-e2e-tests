@@ -96,6 +96,8 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       isWithoutNoticeDetailsBailConditions: "Yes",
       otherProceedingsRadios: "Yes",
       relationshipToRespondent: "foremerlyLivedTogether",
+      welshLanguageRequirementsAllOptionsYes: true,
+      welshLanguageRequirementsSelectWelsh: false,
     });
   });
 
@@ -130,6 +132,8 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       isWithoutNoticeDetailsBailConditions: "Don't know",
       otherProceedingsRadios: "Yes",
       relationshipToRespondent: "marriedOrCivil",
+      welshLanguageRequirementsAllOptionsYes: true,
+      welshLanguageRequirementsSelectWelsh: false,
     });
   });
 
@@ -160,6 +164,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       otherProceedingsRadios: "Yes",
       relationshipToRespondent: "noneOfTheAbove",
       relationshipToRespondentOther: "Cousin",
+      welshLanguageRequirementsAllOptionsYes: false,
     });
   });
 });

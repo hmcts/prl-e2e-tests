@@ -11,6 +11,7 @@ import { FL401RespondentsBehaviour } from "./FL401RespondentsBehaviour/FL401Resp
 import { FL401RelationshipToRespondent } from "./FL401RelationshipToRespondent/FL401RelationshipToRespondent";
 import { fl401RelationshipToRespondent } from "../../../pages/manageCases/createCase/FL401/relationshipToRespondent/relationshipToRespondent1Page";
 import { fl401RespondentRelationshipOther } from "../../../pages/manageCases/createCase/FL401/relationshipToRespondent/relationshipToRespondent2Page";
+import { FL401WelshLanguageRequirements } from "./FL401WelshLanguageRequirements/FL401WelshLanguageRequirements";
 import { bailConditionRadios } from "../../../pages/manageCases/createCase/FL401/withoutNoticeOrder/withoutNoticeOrder3Page";
 
 export type otherProceedingsRadios = "Yes" | "No" | "Don't know";
@@ -31,6 +32,8 @@ interface fl401Options {
   otherProceedingsRadios: otherProceedingsRadios;
   relationshipToRespondent: fl401RelationshipToRespondent;
   relationshipToRespondentOther?: fl401RespondentRelationshipOther;
+  welshLanguageRequirementsAllOptionsYes: boolean;
+  welshLanguageRequirementsSelectWelsh?: boolean;
 }
 
 export class FL401 {
@@ -50,6 +53,8 @@ export class FL401 {
     otherProceedingsRadios,
     relationshipToRespondent,
     relationshipToRespondentOther,
+    welshLanguageRequirementsAllOptionsYes,
+    welshLanguageRequirementsSelectWelsh,
   }: fl401Options): Promise<void> {
     await SolicitorCreateInitial.createInitialCase({
       page: page,
@@ -116,6 +121,16 @@ export class FL401 {
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
       otherProceedingsRadios: otherProceedingsRadios,
+      subJourney: false,
+    });
+    await FL401WelshLanguageRequirements.fl401WelshLanguageRequirements({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      welshLanguageRequirementsAllOptionsYes:
+        welshLanguageRequirementsAllOptionsYes,
+      welshLanguageRequirementsSelectWelsh:
+        welshLanguageRequirementsSelectWelsh,
       subJourney: false,
     });
   }
