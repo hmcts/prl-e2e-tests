@@ -59,8 +59,6 @@ def secrets = [
   'prl-${env}': [
     secret('solicitor-user', 'SOLICITOR_USERNAME'),
     secret('solicitor-password', 'SOLICITOR_PASSWORD'),
-    secret('github-pat', 'GITHUB_PAT'),
-    secret('github-username', 'GITHUB_USERNAME'),
   ]
 ]
 
