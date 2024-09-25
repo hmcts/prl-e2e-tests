@@ -7,6 +7,7 @@ import {
 import {
   UploadDocumentsSubmitPage
 } from "../../../../pages/manageCases/createCase/FL401/uploadDocuments/uploadDocumentsSubmitPage";
+import { Fl401TasksTabPage } from "../../../../pages/manageCases/caseTabs/fl401TasksTabPage";
 
 interface FL401UploadDocumentsOptions {
   page: Page;
@@ -41,5 +42,8 @@ export class FL401UploadDocuments {
       page,
       accessibilityTest
     });
+    await Fl401TasksTabPage.fl401TasksTabPage(
+      page, accessibilityTest
+    );
   }
 }
