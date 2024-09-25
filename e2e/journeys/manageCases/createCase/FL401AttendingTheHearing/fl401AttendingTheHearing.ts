@@ -4,6 +4,10 @@ import { Helpers } from "../../../../common/helpers";
 import {
   AttendingTheHearing1Page
 } from "../../../../pages/manageCases/createCase/FL401/attendingTheHearing/attendingTheHearing1Page";
+import {
+  AttendingTheHearingSubmitPage
+} from "../../../../pages/manageCases/createCase/FL401/attendingTheHearing/attendingTheHearingSubmitPage";
+import { Fl401TasksTabPage } from "../../../../pages/manageCases/caseTabs/fl401TasksTabPage";
 
 interface Fl401AttendingTheHearingOptions {
   page: Page;
@@ -40,5 +44,14 @@ export class Fl401AttendingTheHearing {
       errorMessaging,
       fl401AttendingTheHearingYesNo
     });
+    await AttendingTheHearingSubmitPage.attendingTheHearingSubmitPage({
+      page,
+      accessibilityTest,
+      fl401AttendingTheHearingYesNo
+    });
+    await Fl401TasksTabPage.fl401TasksTabPage(
+      page,
+      accessibilityTest
+    );
   }
 }

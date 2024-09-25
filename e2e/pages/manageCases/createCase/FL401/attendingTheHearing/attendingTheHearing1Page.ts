@@ -8,14 +8,16 @@ import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelp
 
 enum uniqueSelectors {
   welshNeeds = 'div#fl401WelshNeeds > div > ',
-  interpreterNeeds = 'div#interpreterNeeds > div > '
+  welshNeedsFields = 'div#fl401WelshNeeds_0_fl401SpokenOrWritten > fieldset > div > ',
+  interpreterNeeds = 'div#interpreterNeeds > div > ',
+  interpreterNeedsFields = 'div#interpreterNeeds_0_0 '
 }
 
 enum inputIDs {
   welshYes = '#isWelshNeeded_Yes',
   welshNo = '#isWelshNeeded_No',
-  interpreterYes = '#isWelshNeeded_Yes',
-  interpreterNo = '#isWelshNeeded_No',
+  interpreterYes = '#isInterpreterNeeded_Yes',
+  interpreterNo = '#isInterpreterNeeded_No',
   disabilityYes = '#isDisabilityPresent_Yes',
   disabilityNo = '#isDisabilityPresent_No',
   specialArrangementsYes = '#isSpecialArrangementsRequired_Yes',
@@ -33,6 +35,7 @@ enum inputIDs {
   interpreterNeedsAssistance = '#interpreterNeeds_0_otherAssistance',
   specialArrangements = '#specialArrangementsRequired',
   intermediaryReasons = '#reasonsForIntermediary',
+  adjustmentsRequired = '#adjustmentsRequired',
 }
 
 interface AttendingTheHearing1PageOptions {
@@ -150,7 +153,7 @@ export class AttendingTheHearing1Page {
     const radioSections: string[] = [
       'welsh',
       'interpreter',
-      'disabled',
+      'disability',
       'specialArrangements',
       'intermediaryNeeded'
     ];
@@ -160,6 +163,12 @@ export class AttendingTheHearing1Page {
         inputIDs[sectionKey]
       );
     }
+    await page.click(
+      `${uniqueSelectors.welshNeeds}${Selectors.button}:text-is("${AttendingTheHearing1Content.addNew}")`
+    );
+    await page.click(
+      `${uniqueSelectors.interpreterNeeds}${Selectors.button}:text-is("${AttendingTheHearing1Content.addNew}")`,
+    );
     await page.click(
       `${Selectors.button}:text-is("${AttendingTheHearing1Content.continue}")`
     );
@@ -206,7 +215,7 @@ export class AttendingTheHearing1Page {
     const radioSections: string[] = [
       'welsh',
       'interpreter',
-      'disabled',
+      'disability',
       'specialArrangements',
       'intermediaryNeeded'
     ];
@@ -219,12 +228,15 @@ export class AttendingTheHearing1Page {
     if (fl401AttendingTheHearingYesNo) {
       await Promise.all(
         [
-          Helpers.checkGroup(
+          Helpers.checkVisibleAndPresent(
             page,
-            2,
-            AttendingTheHearing1Content,
-            'sectionHeading',
-            `${Selectors.h2}`
+            `${uniqueSelectors.welshNeeds}${Selectors.h2}:text-is("${AttendingTheHearing1Content.welshHeading}")`,
+            1
+          ),
+          Helpers.checkVisibleAndPresent(
+            page,
+            `${uniqueSelectors.interpreterNeeds}${Selectors.h2}:text-is("${AttendingTheHearing1Content.interpreterHeading}")`,
+            1
           ),
           Helpers.checkGroup(
             page,
@@ -242,7 +254,7 @@ export class AttendingTheHearing1Page {
       );
       await this.welshNeedsFields(page);
       await this.interpreterNeedsFields(page);
-      const textAreas = ['specialArrangements', 'intermediaryReasons'];
+      const textAreas = ['specialArrangements', 'intermediaryReasons', 'adjustmentsRequired'];
       for (let text of textAreas) {
         let inputKey = text as keyof typeof inputIDs;
         let contentKey = text as keyof typeof AttendingTheHearing1Content
@@ -272,14 +284,19 @@ export class AttendingTheHearing1Page {
         ),
         Helpers.checkGroup(
           page,
-          3,
+          2,
           AttendingTheHearing1Content,
           'welshLabel',
-          `${Selectors.GovukFormLabel}`
+          `${uniqueSelectors.welshNeedsFields}${Selectors.GovukFormLabel}`
         ),
         Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.h2}:text-is("${AttendingTheHearing1Content.newWelshNeed}")`,
+          1
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukFormLabel}:text-is("${AttendingTheHearing1Content.peopleInvolved}")`,
           1
         )
       ]
@@ -300,7 +317,7 @@ export class AttendingTheHearing1Page {
     page: Page
   ): Promise<void> {
     await page.click(
-      `${uniqueSelectors.interpreterNeeds}${Selectors.button}:text-is("${AttendingTheHearing1Content.addNew}")`
+      `${uniqueSelectors.interpreterNeeds}${Selectors.button}:text-is("${AttendingTheHearing1Content.addNew}")`,
     );
     await Promise.all(
       [
