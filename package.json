@@ -28,6 +28,7 @@
     "changeConfig": "git update-index --no-skip-worktree e2e/config.ts && echo 'Commit the config changes and then rerun yarn configure'",
     "lint": "yarn prettier . --write",
     "test:unit": "jest",
+    "test:changes": "ts-node ./e2e/common/changedTestsRunner.ts",
     "test:fullfunctional": "echo 'This is a placeholder'",
     "test:crossbrowser": "echo 'This is a placeholder'",
     "test:manageCasesChrome": "yarn playwright install && yarn playwright test --project chromium --grep @manageCases",
