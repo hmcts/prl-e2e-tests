@@ -48,7 +48,7 @@ export class UploadDocuments1Page {
       accessibilityTest,
     });
     if (errorMessaging) {
-
+      await this.checkErrorMessaging(page)
     }
     await this.fillInFields(
       page
@@ -136,7 +136,7 @@ export class UploadDocuments1Page {
     });
     await page.click(
       `${Selectors.button}:text-is("${UploadDocuments1Content.continue}")`
-    )
+    );
   }
 
   private static async uploadWordDocuments({

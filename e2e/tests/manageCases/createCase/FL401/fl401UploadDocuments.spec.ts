@@ -16,5 +16,27 @@ test.describe("FL401 Create case type of application tests @manageCases", (): vo
       errorMessaging: false,
       subJourney: true
     })
+  });
+
+  test(`Test the FL401 Upload Documents journey with following options:
+  Not accessibility testing,
+  Yes error messaging, @crossbrowserManageCases`, async({ page }): Promise<void> => {
+    await FL401UploadDocuments.fl401UploadDocuments({
+      page: page,
+      accessibilityTest: false,
+      errorMessaging: true,
+      subJourney: true
+    })
+  })
+})
+
+test(`Test the FL401 Upload Documents journey with following options:
+  Yes accessibility testing,
+  Not error messaging, @accessibilityManageCases`, async({ page }): Promise<void> => {
+  await FL401UploadDocuments.fl401UploadDocuments({
+    page: page,
+    accessibilityTest: false,
+    errorMessaging: true,
+    subJourney: true
   })
 })
