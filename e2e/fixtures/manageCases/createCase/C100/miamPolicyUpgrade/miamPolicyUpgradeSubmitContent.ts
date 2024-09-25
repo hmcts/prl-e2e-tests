@@ -1,3 +1,1 @@
-export enum MiamPolicyUpgradeSubmitContent {
-
-}
+export enum MiamPolicyUpgradeSubmitContent {}
