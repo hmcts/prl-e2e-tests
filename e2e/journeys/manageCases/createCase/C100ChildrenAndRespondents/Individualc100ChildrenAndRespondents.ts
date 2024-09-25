@@ -21,6 +21,8 @@ import {
   RespondentDetails1Page,
 } from "../../../../pages/manageCases/createCase/C100/respondentDetails/respondentDetails1Page";
 import { RespondentDetailsSubmitPage } from "../../../../pages/manageCases/createCase/C100/respondentDetails/respondentDetailsSubmitPage";
+import { C100RespondentDetails } from "../C100RespondentDetails/C100RespondentDetails";
+import { C100ChildDetails } from "../C100ChildDetails/c100ChildDetails";
 
 interface c100ChildrenAndRespondentsOptions {
   page: Page;
@@ -61,44 +63,25 @@ export class IndividualC100ChildAndRespondents {
         errorMessaging: false,
       });
     }
-    await Helpers.selectSolicitorEvent(page, "Respondent details");
-    await RespondentDetails1Page.respondent1DetailsPage({
-      page,
-      accessibilityTest,
-      yesNoRespondentDetailsC100,
-      respondentGender,
-      respondentAddress5Years,
-      respondentLegalRepresentation,
-    });
-    await RespondentDetailsSubmitPage.RespondentDetailsSubmitPage({
-      page,
-      accessibilityTest,
-      yesNoRespondentDetailsC100,
-      respondentGender,
-      respondentAddress5Years,
-      respondentLegalRepresentation,
-    });
-    await C100TasksTabPage.c100TasksTabPage(page, accessibilityTest);
-    await Helpers.selectSolicitorEvent(page, "Child details");
-    await ChildDetailsRevised1Page.childDetailsRevised1Page({
+    await C100RespondentDetails.c100RespondentDetails({
       page: page,
+      user: user,
       accessibilityTest: accessibilityTest,
-      c100ChildGender: c100ChildGender,
+      yesNoRespondentDetailsC100: yesNoRespondentDetailsC100,
+      respondentGender: respondentGender,
+      respondentAddress5Years: respondentAddress5Years,
+      respondentLegalRepresentation: respondentLegalRepresentation,
+      subJourney: false,
     });
-    await ChildDetailsRevised2Page.childDetailsRevised2Page({
+    await C100ChildDetails.c100ChildDetails({
       page: page,
-      accessibilityTest: accessibilityTest,
-      yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions:
-        yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,
-    });
-    await C100ChildDetailsSubmitPage.c100ChildDetailsSubmitPage({
-      page: page,
+      user: user,
       accessibilityTest: accessibilityTest,
       c100ChildGender: c100ChildGender,
       yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions:
-        yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,
+      yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,
+      subJourney: false,
     });
-    await C100TasksTabPage.c100TasksTabPage(page, accessibilityTest);
     await Helpers.selectSolicitorEvent(page, "Children and respondents");
     await ChildrenAndRespondents1Page.childrenAndRespondents1Page(
       page,
