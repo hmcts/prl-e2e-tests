@@ -9,6 +9,11 @@ export class Config {
     },
   };
 
+  public static readonly sessionStoragePath: string = path.join(
+    __dirname,
+    ".sessions/",
+  );
+
   public static readonly citizenFrontendBaseURL: string =
     process.env.CITIZEN_FRONTEND_BASE_URL || "citizenFrontendBaseURL";
   public static readonly manageCasesBaseURL: string =
