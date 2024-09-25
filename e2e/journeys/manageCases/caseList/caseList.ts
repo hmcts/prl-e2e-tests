@@ -1,5 +1,4 @@
 import { Page } from "@playwright/test";
-import IdamLoginHelper from "../../../common/idamLoginHelper";
 import config from "../../../config";
 import { UserRole } from "../../../common/types";
 import { CaseListPage } from "../../../pages/manageCases/caseList/caseListPage";
