@@ -34,7 +34,7 @@ export class ChangedTestsRunner {
       console.log("Getting changed test files...");
       const diff: string = await this.git.diff([
         "--name-only",
-        "origin/master...HEAD",
+        "FETCH_HEAD...HEAD",
       ]);
       const changedFiles: string[] = diff.split("\n").filter(Boolean);
       return changedFiles.filter((file) => file.endsWith(".spec.ts"));
