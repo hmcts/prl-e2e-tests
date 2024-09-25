@@ -5,13 +5,13 @@ import { Helpers } from "../../../../common/helpers";
 import { ChildrenAndRespondents1Page } from "../../../../pages/manageCases/createCase/C100/childrenAndRespondents/childrenAndRespondents1Page";
 import { ChildrenAndRespondentsSubmitPage } from "../../../../pages/manageCases/createCase/C100/childrenAndRespondents/childrenAndRespondentsSubmitPage";
 import { C100TasksTabPage } from "../../../../pages/manageCases/caseTabs/c100TasksTabPage";
-import { C100ChildGender, } from "../../../../pages/manageCases/createCase/C100/childDetails/childDetailsRevised1Page";
-import { yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions, } from "../../../../pages/manageCases/createCase/C100/childDetails/childDetailsRevised2Page";
+import { C100ChildGender } from "../../../../pages/manageCases/createCase/C100/childDetails/childDetailsRevised1Page";
+import { yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions } from "../../../../pages/manageCases/createCase/C100/childDetails/childDetailsRevised2Page";
 import {
   C100RespondentAddress5Years,
   C100RespondentGender,
   C100RespondentLegalRepresentation,
-} from "../../../../pages/manageCases/createCase/C100/respondentDetails/respondentDetails1Page"
+} from "../../../../pages/manageCases/createCase/C100/respondentDetails/respondentDetails1Page";
 import { C100RespondentDetails } from "../C100RespondentDetails/C100RespondentDetails";
 import { C100ChildDetails } from "../C100ChildDetails/c100ChildDetails";
 
