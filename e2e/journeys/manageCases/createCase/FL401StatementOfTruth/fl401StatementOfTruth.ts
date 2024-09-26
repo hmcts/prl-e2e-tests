@@ -90,8 +90,6 @@ export class Fl401StatementOfTruth {
       await FL401RespondentsBehaviour.fl401RespondentsBehaviour({
         page: page,
         accessibilityTest: false,
-        errorMessaging: false,
-        respondentsBehaviourAllOptionsYes: true,
         subJourney: false,
       });
       await FL401TheHome.fl401TheHome({
