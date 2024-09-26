@@ -17,6 +17,7 @@ export enum AllegationsOfHarmRevised10Content {
   formLabelYes = "Yes",
   formLabelNo = "No",
   continue = "Continue",
+  errorBanner = "There is a problem",
   errorChildrenAbducted = "Why do you believe the child(ren) may be abducted? is required",
   errorPreviousThreats = "Have there been any previous threats, attempts to abduct or actual abduction of the child(ren)? is required",
   errorChildrenLocation = "Where is/are the child(ren) now? is required",
