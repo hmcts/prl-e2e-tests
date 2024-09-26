@@ -16,8 +16,9 @@ export enum AllegationsOfHarmRevised3Content {
   text169 = "Yes",
   text1610 = "No",
   text16YesExtra = "Who did they seek help from, and what they did to help? (Optional)",
+  addNewButton = "Add new",
   natureOfBehaviour = "Lorem ipsum nature of behaviour",
-  behaviourLength = "Length of behaviour",
-  helpSoughtFrom = "Lorem ipsum help sought",
-  button = "Continue",
+  behaviourLength = "lorem ipsum length of behaviour",
+  helpSoughtFrom = "Lorem ipsum help sought domestic abuse",
+  continueButton = "Continue",
 }
