@@ -26,12 +26,10 @@ export class ChildrenAndRespondentsSubmitPage {
     accessibilityTest: boolean,
     yesNoChildrenAndRespondents: boolean,
   ): Promise<void> {
-    await this.checkPageLoads(
-      page,
-      accessibilityTest,
-      yesNoChildrenAndRespondents,
-    );
-    await this.checkFilledData(page, yesNoChildrenAndRespondents);
+    await Promise.all([
+      this.checkPageLoads(page, accessibilityTest, yesNoChildrenAndRespondents),
+      this.checkFilledData(page, yesNoChildrenAndRespondents),
+    ]);
   }
 
   private static async checkPageLoads(
@@ -55,7 +53,7 @@ export class ChildrenAndRespondentsSubmitPage {
       ),
     ]);
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page);
+      // await AccessibilityTestHelper.run(page); #TODO Disabled pending ticket FPET-1142
     }
   }
 

@@ -33,6 +33,6 @@ export enum ChildDetailsRevised1Content {
   selectOptionNameTestCases1 = "Automated respondent TestRespondentLastName - Buckingham Palace, SW1A 1AA",
   selectOptionNameTestCases2 = "Automated applicant TestapplicantLastName - Buckingham Palace, SW1A 1AA",
   selectOptionNameTestCases3 = "Automated respondent TestRespondentLastName - Buckingham Palace, SW1A 1AA",
-  selectOptionNameTestCases4 = "",
+  selectOptionNameTestCases4 = "--Select a value--",
   continue = "Continue",
 }
