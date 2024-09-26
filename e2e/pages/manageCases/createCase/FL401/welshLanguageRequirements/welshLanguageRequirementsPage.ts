@@ -10,7 +10,7 @@ enum radioIds {
   welshLanguageRequirementApplication_english = "#welshLanguageRequirementApplication-english",
   welshLanguageRequirementApplication_welsh = "#welshLanguageRequirementApplication-welsh",
   languageRequirementApplicationNeedWelsh_Yes = "#languageRequirementApplicationNeedWelsh_Yes",
-  welshLanguageRequirementApplicationNeedEnglish_Yes = "#welshLanguageRequirementApplicationNeedEnglish_Yes"
+  welshLanguageRequirementApplicationNeedEnglish_Yes = "#welshLanguageRequirementApplicationNeedEnglish_Yes",
 }
 
 export class WelshLanguageRequirementsPage {
@@ -35,21 +35,21 @@ export class WelshLanguageRequirementsPage {
     accessibilityTest: boolean,
   ): Promise<void> {
     await Promise.all([
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukHeadingL}:text-is("${WelshLanguageRequirementsContent.title}")`,
-          1,
-        ),
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.p}:text-is("${WelshLanguageRequirementsContent.textOnPage}")`,
-          1,
-        ),
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukFormLabel}:text-is("${WelshLanguageRequirementsContent.formLabel1}")`,
-          1,
-        ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukHeadingL}:text-is("${WelshLanguageRequirementsContent.title}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${WelshLanguageRequirementsContent.textOnPage}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${WelshLanguageRequirementsContent.formLabel1}")`,
+        1,
+      ),
     ]);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
@@ -64,26 +64,34 @@ export class WelshLanguageRequirementsPage {
   ): Promise<void> {
     if (welshLanguageRequirementsAllOptionsYes) {
       await page.click(radioIds.welshLanguageRequirement_Yes);
-      await page.waitForSelector(`${Selectors.GovukFormLabel}:text-is("${WelshLanguageRequirementsContent.formLabel2}")`)
+      await page.waitForSelector(
+        `${Selectors.GovukFormLabel}:text-is("${WelshLanguageRequirementsContent.formLabel2}")`,
+      );
       if (welshLanguageRequirementsSelectWelsh) {
         await page.click(radioIds.welshLanguageRequirementApplication_welsh);
-        await page.waitForSelector(`${Selectors.GovukFormLabel}:text-is("${WelshLanguageRequirementsContent.formLabel3}")`)
-        await page.click(radioIds.welshLanguageRequirementApplicationNeedEnglish_Yes);
+        await page.waitForSelector(
+          `${Selectors.GovukFormLabel}:text-is("${WelshLanguageRequirementsContent.formLabel3}")`,
+        );
         await page.click(
-            `${Selectors.button}:text-is("${WelshLanguageRequirementsContent.continue}")`,
+          radioIds.welshLanguageRequirementApplicationNeedEnglish_Yes,
+        );
+        await page.click(
+          `${Selectors.button}:text-is("${WelshLanguageRequirementsContent.continue}")`,
         );
       } else {
         await page.click(radioIds.welshLanguageRequirementApplication_english);
-        await page.waitForSelector(`${Selectors.GovukFormLabel}:text-is("${WelshLanguageRequirementsContent.formLabel4}")`)
-        await page.click(radioIds.languageRequirementApplicationNeedWelsh_Yes)
+        await page.waitForSelector(
+          `${Selectors.GovukFormLabel}:text-is("${WelshLanguageRequirementsContent.formLabel4}")`,
+        );
+        await page.click(radioIds.languageRequirementApplicationNeedWelsh_Yes);
         await page.click(
-            `${Selectors.button}:text-is("${WelshLanguageRequirementsContent.continue}")`,
+          `${Selectors.button}:text-is("${WelshLanguageRequirementsContent.continue}")`,
         );
       }
     } else {
       await page.click(radioIds.welshLanguageRequirement_No);
       await page.click(
-          `${Selectors.button}:text-is("${WelshLanguageRequirementsContent.continue}")`,
+        `${Selectors.button}:text-is("${WelshLanguageRequirementsContent.continue}")`,
       );
     }
   }
