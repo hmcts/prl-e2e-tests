@@ -191,6 +191,9 @@ export class ChildrenAndOtherPeople1Page {
     await page.click(
       `${Selectors.button}:text-is("${ChildrenAndOtherPeople1Content.continue}")`,
     );
+    await page.click(
+      `${Selectors.button}:text-is("${ChildrenAndOtherPeople1Content.continue}")`,
+    );
   }
 
   private static async giveDetailsOtherRelationshipStaticText(
