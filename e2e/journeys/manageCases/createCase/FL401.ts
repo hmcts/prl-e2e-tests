@@ -154,8 +154,10 @@ export class FL401 {
       page: page,
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
-      welshLanguageRequirementsAllOptionsYes: welshLanguageRequirementsAllOptionsYes,
-      welshLanguageRequirementsSelectWelsh: welshLanguageRequirementsSelectWelsh,
+      welshLanguageRequirementsAllOptionsYes:
+        welshLanguageRequirementsAllOptionsYes,
+      welshLanguageRequirementsSelectWelsh:
+        welshLanguageRequirementsSelectWelsh,
       subJourney: false,
     });
   }
