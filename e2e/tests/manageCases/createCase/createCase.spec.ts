@@ -92,6 +92,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Saying yes to all 'The Home' Questions,
   'Yes, both of them' ever lived at the address 
   Saying Yes to all attending the hearing question,
+  Submit Statement of Truth
   @crossbrowserManageCases`, async ({ page }): Promise<void> => {
     await FL401.fl401({
       page: page,
@@ -132,6 +133,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   'Yes, applicant' to has the applicant or respondent ever lived at the home address,
   Relationship is 'Married or in a civil partnership',
   Saying yes to all attending the hearing questions
+  Submit Statement of Truth
   @crossbrowserManageCases`, async ({ page }): Promise<void> => {
     await FL401.fl401({
       page: page,
@@ -167,7 +169,8 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Saying 'No' to ever lived at the home address, 
   Saying 'No' to ever intend to live at home address
   Other Relationship Is: 'Cousin'
-  saying no to all attending the hearing questions`, async ({
+  saying no to all attending the hearing questions
+  Submit statement of truth`, async ({
     page,
   }): Promise<void> => {
     await FL401.fl401({
