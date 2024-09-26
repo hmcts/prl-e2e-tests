@@ -6,7 +6,10 @@ export enum AllegationsOfHarmRevised5Content {
   formLabel2 = "Describe the nature of the behaviour, what happened and who was involved. (Optional)",
   formLabel3 = "When did the behaviour start and how long did it continue? (Does not need to be exact date and indicate if abuse is ongoing). (Optional)",
   formLabel4 = "Did the applicant seek help? (Optional)",
+  formLabelSeekHelp = "Who did they seek help from, and what they did to help? (Optional)",
   formLabelYes = "Yes",
   formLabelNo = "No",
   continue = "Continue",
+  natureOfBehaviour = "Lorem ipsum nature of behaviour physical abuse",
+  durationOfBehaviour = "Lorem ipsum duration of behaviour physical abuse",
 }
