@@ -4,7 +4,7 @@ import Config from "../../../../config";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-test.describe("FL401 Create case type of application tests @manageCases", (): void => {
+test.describe("FL401 Create case Upload Documents tests @manageCases", (): void => {
   test(`Test the FL401 Upload Documents journey with following options:
   Not accessibility testing,
   Not error messaging, @crossbrowserManageCases`, async ({
