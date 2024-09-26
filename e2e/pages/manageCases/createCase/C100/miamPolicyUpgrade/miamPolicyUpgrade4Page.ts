@@ -1,8 +1,6 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
-import {
-  MiamPolicyUpgrade4Content
-} from "../../../../../fixtures/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade4Content";
+import { MiamPolicyUpgrade4Content } from "../../../../../fixtures/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade4Content";
 import { Helpers } from "../../../../../common/helpers";
 
 interface MiamPolicyUpgrade4PageOptions {
@@ -30,7 +28,7 @@ export class MiamPolicyUpgrade1Page {
   public static async miamPolicyUpgrade1Page({
     page: page,
     accessibilityTest: accessibilityTest,
-                                               yesNoMiamPolicyUpgrade: yesNoMiamPolicyUpgrade,
+    yesNoMiamPolicyUpgrade: yesNoMiamPolicyUpgrade,
   }: MiamPolicyUpgrade4PageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
@@ -45,7 +43,9 @@ export class MiamPolicyUpgrade1Page {
     page: page,
     accessibilityTest: accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
-    await page.waitForSelector(`${Selectors.h2}:text-is("${MiamPolicyUpgrade4Content.h2}")`);
+    await page.waitForSelector(
+      `${Selectors.h2}:text-is("${MiamPolicyUpgrade4Content.h2}")`,
+    );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
@@ -64,18 +64,20 @@ export class MiamPolicyUpgrade1Page {
         "formLabel",
         `${Selectors.GovukFormLabel}`,
       ),
-    ])
+    ]);
   }
 
   private static async fillInFields({
     page: page,
-    yesNoMiamPolicyUpgrade: yesNoMiamPolicyUpgrade
+    yesNoMiamPolicyUpgrade: yesNoMiamPolicyUpgrade,
   }: fillinFieldsOptions): Promise<void> {
     if (yesNoMiamPolicyUpgrade) {
       await page.click(`${UniqueSelectors.subjectOfEnquiries}`);
     } else {
       await page.click(`${UniqueSelectors.subjectOfChildProtection}`);
     }
-    await page.click(`${Selectors.button}:text-is("${MiamPolicyUpgrade4Content.continue}")`);
+    await page.click(
+      `${Selectors.button}:text-is("${MiamPolicyUpgrade4Content.continue}")`,
+    );
   }
 }
