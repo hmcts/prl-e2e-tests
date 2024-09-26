@@ -8,8 +8,6 @@ import { Fl401TasksTabPage } from "../../../../pages/manageCases/caseTabs/fl401T
 interface fl401RespondentsBehaviourOptions {
   page: Page;
   accessibilityTest: boolean;
-  errorMessaging: boolean;
-  respondentsBehaviourAllOptionsYes: boolean;
   subJourney: boolean;
 }
 
@@ -17,8 +15,6 @@ export class FL401RespondentsBehaviour {
   public static async fl401RespondentsBehaviour({
     page,
     accessibilityTest,
-    errorMessaging,
-    respondentsBehaviourAllOptionsYes,
     subJourney,
   }: fl401RespondentsBehaviourOptions): Promise<void> {
     if (subJourney) {
@@ -33,14 +29,11 @@ export class FL401RespondentsBehaviour {
     await Helpers.selectSolicitorEvent(page, "Respondent's behaviour");
     await RespondentsBehaviourPage.respondentsBehaviourPage(
       page,
-      errorMessaging,
       accessibilityTest,
-      respondentsBehaviourAllOptionsYes,
     );
     await RespondentsBehaviourSubmitPage.respondentsBehaviourSubmitPage(
       page,
       accessibilityTest,
-      respondentsBehaviourAllOptionsYes,
     );
     await Fl401TasksTabPage.fl401TasksTabPage(page, accessibilityTest);
   }

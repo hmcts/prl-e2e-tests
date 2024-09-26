@@ -29,7 +29,6 @@ interface fl401Options {
   applicantHasChildren: boolean;
   yesNoFL401ApplicantDetails: boolean;
   applicantGender: ApplicantGender;
-  respondentsBehaviourAllOptionsYes: boolean;
   isWithoutNoticeDetailsYes: boolean;
   isWithoutNoticeDetailsBailConditions: bailConditionRadios;
   otherProceedingsRadios: otherProceedingsRadios;
@@ -52,7 +51,6 @@ export class FL401 {
     applicantHasChildren,
     yesNoFL401ApplicantDetails,
     applicantGender,
-    respondentsBehaviourAllOptionsYes,
     isWithoutNoticeDetailsYes,
     isWithoutNoticeDetailsBailConditions,
     otherProceedingsRadios,
@@ -119,8 +117,6 @@ export class FL401 {
     await FL401RespondentsBehaviour.fl401RespondentsBehaviour({
       page: page,
       accessibilityTest: accessibilityTest,
-      errorMessaging: errorMessaging,
-      respondentsBehaviourAllOptionsYes: respondentsBehaviourAllOptionsYes,
       subJourney: false,
     });
     await FL401OtherProceedings.fl401OtherProceedings({
