@@ -133,7 +133,7 @@ export class FL401 {
       page,
       accessibilityTest,
       errorMessaging,
-      subJourney: false
-    })
+      subJourney: false,
+    });
   }
 }
