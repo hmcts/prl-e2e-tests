@@ -52,7 +52,7 @@ test.describe("FL401 Create case respondent details tests @manageCases", (): voi
 test(`Accessibility test the FL401 respondent details event as a solicitor with the following options:
   Accessibility testing,
   Not Error message testing,
-  Saying yes to all options, @accessibilityManageCases`, async ({
+Saying yes to all options, @accessibilityManageCases`, async ({
   page,
 }): Promise<void> => {
   await FL401RespondentDetails.fl401RespondentDetails({
