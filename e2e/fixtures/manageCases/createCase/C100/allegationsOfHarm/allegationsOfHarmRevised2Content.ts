@@ -14,6 +14,8 @@ export enum AllegationsOfHarmRevised2Content {
   formLabel9 = "Restraining order",
   formLabel10 = "Other injunctive order",
   formLabel11 = "Undertaking in place of order",
+  formLabelYes = "Yes",
+  formLabelNo = "No",
   formLabelYesFields = "Give details",
   formLabelDateIssued = "Date issued (Optional)",
   formLabelEndDate = "End date (Optional)",
