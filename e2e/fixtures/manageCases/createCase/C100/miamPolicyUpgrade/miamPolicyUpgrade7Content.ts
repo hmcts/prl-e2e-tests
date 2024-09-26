@@ -11,8 +11,7 @@ export enum MiamPolicyUpgrade7Content {
   formLabel7 = "The prospective applicant cannot attend a MIAM because the prospective applicant is (i) in prison or any other institution in which the prospective applicant is required to be detained and facilities cannot be made available for them to attend a MIAM online or by video link; or (ii) subject to conditions of bail that prevent contact with the other person; or (iii) subject to a licence with a prohibited contact requirement in relation to the other person.",
   AdditionalFormLabel = "*Explain why the applicant is unable to attend MIAM (Optional)",
 
-
   formHint = "*Select one",
   additionalFormHint = "Include the names, addresses, telephone numbers or e-mail addresses for the authorised family mediators and when they were contacted.",
-  continue = "Continue"
+  continue = "Continue",
 }

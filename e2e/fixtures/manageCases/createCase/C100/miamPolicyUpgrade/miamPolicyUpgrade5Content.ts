@@ -11,5 +11,5 @@ export enum MiamPolicyUpgrade5Content {
   formLabel7 = "Any delay caused by attending a MIAM would cause irretrievable problems in dealing with the dispute (including the irretrievable loss of significant evidence).",
   formLabel8 = "There is a significant risk that in the period necessary to schedule and attend a MIAM, proceedings relating to the dispute will be brought in another state in which a valid claim to jurisdiction may exist, such that a court in that other State would be seized of the dispute before a court in England and Wales.",
   formHint = "*Select one",
-  continue = "Continue"
+  continue = "Continue",
 }

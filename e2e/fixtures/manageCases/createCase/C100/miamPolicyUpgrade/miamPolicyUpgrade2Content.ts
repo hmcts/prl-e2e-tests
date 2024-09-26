@@ -9,5 +9,5 @@ export enum MiamPolicyUpgrade2Content {
   formLabel5 = "Previous attendance of a MIAM or non-court dispute resolution",
   formLabel6 = "Other",
   formHint = "*Select all reasons that apply",
-  continue = "Continue"
+  continue = "Continue",
 }

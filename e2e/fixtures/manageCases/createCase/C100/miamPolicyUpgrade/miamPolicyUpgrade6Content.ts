@@ -16,6 +16,5 @@ export enum MiamPolicyUpgrade6Content {
   formLabelEvidence4 = "*Provide the mediator details (Optional)",
   formHintEvidence = "Provide the date of the MIAM, as well as the name and contact details of the MIAM provider",
 
-
-  continue = "Continue"
+  continue = "Continue",
 }

@@ -33,4 +33,4 @@ export enum MiamPolicyUpgrade3Content {
   formLabelUpload = "Upload evidence (Optional)",
   Evidence = "Evidence",
   continue = "Continue",
-  }
+}
