@@ -4,6 +4,15 @@ import { WelshLanguageRequirementsContent } from "../../../../../fixtures/manage
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 
+enum radioIds {
+  welshLanguageRequirement_Yes = "#welshLanguageRequirement_Yes",
+  welshLanguageRequirement_No = "#welshLanguageRequirement_No",
+  welshLanguageRequirementApplication_english = "#welshLanguageRequirementApplication-english",
+  welshLanguageRequirementApplication_welsh = "#welshLanguageRequirementApplication-welsh",
+  languageRequirementApplicationNeedWelsh_Yes = "#languageRequirementApplicationNeedWelsh_Yes",
+  welshLanguageRequirementApplicationNeedEnglish_Yes = "#welshLanguageRequirementApplicationNeedEnglish_Yes"
+}
+
 export class WelshLanguageRequirementsPage {
   public static async welshLanguageRequirementsPage(
     page: Page,
@@ -13,9 +22,6 @@ export class WelshLanguageRequirementsPage {
     welshLanguageRequirementsSelectWelsh?: boolean,
   ): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest);
-    if (errorMessaging) {
-      await this.checkErrorMessaging(page);
-    }
     await this.fillInFields(
       page,
       welshLanguageRequirementsAllOptionsYes,
@@ -28,17 +34,57 @@ export class WelshLanguageRequirementsPage {
     page: Page,
     accessibilityTest: boolean,
   ): Promise<void> {
+    await Promise.all([
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukHeadingL}:text-is("${WelshLanguageRequirementsContent.title}")`,
+          1,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.p}:text-is("${WelshLanguageRequirementsContent.textOnPage}")`,
+          1,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukFormLabel}:text-is("${WelshLanguageRequirementsContent.formLabel1}")`,
+          1,
+        ),
+    ]);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }
   }
-
-  private static async checkErrorMessaging(page: Page): Promise<void> {}
 
   private static async fillInFields(
     page: Page,
     accessibilityTest: boolean,
     welshLanguageRequirementsAllOptionsYes: boolean,
     welshLanguageRequirementsSelectWelsh?: boolean,
-  ): Promise<void> {}
+  ): Promise<void> {
+    if (welshLanguageRequirementsAllOptionsYes) {
+      await page.click(radioIds.welshLanguageRequirement_Yes);
+      await page.waitForSelector(`${Selectors.GovukFormLabel}:text-is("${WelshLanguageRequirementsContent.formLabel2}")`)
+      if (welshLanguageRequirementsSelectWelsh) {
+        await page.click(radioIds.welshLanguageRequirementApplication_welsh);
+        await page.waitForSelector(`${Selectors.GovukFormLabel}:text-is("${WelshLanguageRequirementsContent.formLabel3}")`)
+        await page.click(radioIds.welshLanguageRequirementApplicationNeedEnglish_Yes);
+        await page.click(
+            `${Selectors.button}:text-is("${WelshLanguageRequirementsContent.continue}")`,
+        );
+      } else {
+        await page.click(radioIds.welshLanguageRequirementApplication_english);
+        await page.waitForSelector(`${Selectors.GovukFormLabel}:text-is("${WelshLanguageRequirementsContent.formLabel4}")`)
+        await page.click(radioIds.languageRequirementApplicationNeedWelsh_Yes)
+        await page.click(
+            `${Selectors.button}:text-is("${WelshLanguageRequirementsContent.continue}")`,
+        );
+      }
+    } else {
+      await page.click(radioIds.welshLanguageRequirement_No);
+      await page.click(
+          `${Selectors.button}:text-is("${WelshLanguageRequirementsContent.continue}")`,
+      );
+    }
+  }
 }

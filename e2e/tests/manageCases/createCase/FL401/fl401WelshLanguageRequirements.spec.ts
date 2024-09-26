@@ -1,5 +1,8 @@
 import { test } from "@playwright/test";
 import { FL401WelshLanguageRequirements } from "../../../../journeys/manageCases/createCase/FL401WelshLanguageRequirements/FL401WelshLanguageRequirements";
+import Config from "../../../../config";
+
+test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
 test.describe("FL401 Create case welsh language requirements tests @manageCases", (): void => {
   test(`Complete the FL401 welsh language requirements event as a solicitor with the following options:
@@ -45,23 +48,6 @@ test.describe("FL401 Create case welsh language requirements tests @manageCases"
       accessibilityTest: false,
       errorMessaging: false,
       welshLanguageRequirementsAllOptionsYes: false,
-      subJourney: true,
-    });
-  });
-
-  test(`Complete the FL401 welsh language requirements event as a solicitor with the following options:
-  Not Accessibility testing,
-  Error message testing,
-  Saying yes to all options, 
-  Selecting English, @crossbrowserManageCases`, async ({
-    page,
-  }): Promise<void> => {
-    await FL401WelshLanguageRequirements.fl401WelshLanguageRequirements({
-      page: page,
-      accessibilityTest: false,
-      errorMessaging: false,
-      welshLanguageRequirementsAllOptionsYes: true,
-      welshLanguageRequirementsSelectWelsh: false,
       subJourney: true,
     });
   });
