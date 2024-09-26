@@ -7,6 +7,7 @@ export enum AllegationsOfHarmRevised11Content {
   formLabel4 = "Do you agree to the child having other forms of contact with the other person in receipt of this form? (by telephone, text, email, social media)",
   formLabelYes = "Yes",
   formLabelNo = "No",
+  errorBanner = "There is a problem",
   errorMessageStepsCourt = "What steps or orders does the applicant want the court to take or make to protect the safety of the child(ren) and/or themselves? is required",
   errorMessageUnsupervised = "Do you agree to the child(ren) spending unsupervised time with the other person(s) in receipt of this form? is required",
   errorMessageSupervised = "Do you agree to the child(ren) spending supervised time with the other person(s) in receipt of this form? is required",
