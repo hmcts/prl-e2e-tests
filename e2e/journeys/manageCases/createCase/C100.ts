@@ -20,6 +20,7 @@ import { C100OtherChildrenNotInTheCase } from "./C100OtherChildrenNotInTheCase/C
 import { C100OtherChildGender } from "../../../pages/manageCases/createCase/C100/otherChildrenNotInTheCase/otherChildNotInTheCase1Page";
 import { C100ChildrenAndApplicantsRelationship } from "../../../pages/manageCases/createCase/C100/childrenAndApplicants/childrenAndApplicants1Page";
 import { C100ChildrenAndApplicants } from "./C100ChildrenAndApplicants/C100ChildrenAndApplicants";
+import { C100ChildAndRespondents } from "./C100ChildrenAndRespondents/c100ChildrenAndRespondents";
 
 interface c100Options {
   page: Page;
@@ -44,6 +45,7 @@ interface c100Options {
   otherChildDOBKnown: boolean;
   applicantChildRelationship: C100ChildrenAndApplicantsRelationship;
   childLiveWithApplicant: boolean;
+  yesNoChildrenAndRespondents: boolean;
 }
 
 export class C100 {
@@ -71,6 +73,7 @@ export class C100 {
     otherChildDOBKnown: otherChildDOBKnown,
     applicantChildRelationship: applicantChildRelationship,
     childLiveWithApplicant: childLiveWithApplicant,
+    yesNoChildrenAndRespondents: yesNoChildrenAndRespondents,
   }: c100Options): Promise<void> {
     await SolicitorCreateInitial.createInitialCase({
       page: page,
@@ -149,6 +152,21 @@ export class C100 {
       errorMessaging: errorMessaging,
       applicantChildRelationship: applicantChildRelationship,
       childLiveWithApplicant: childLiveWithApplicant,
+      subJourney: false,
+    });
+    await C100ChildAndRespondents.c100ChildrenAndRespondents({
+      page: page,
+      user: user,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      yesNoRespondentDetails: yesNoRespondentDetails,
+      respondentGender: respondentGender,
+      respondentAddress5Years: respondentAddress5Years,
+      respondentLegalRepresentation: respondentLegalRepresentation,
+      c100ChildGender: C100ChildGender,
+      yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions:
+        yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,
+      yesNoChildrenAndRespondents: yesNoChildrenAndRespondents,
       subJourney: false,
     });
   }
