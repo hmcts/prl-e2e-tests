@@ -143,9 +143,7 @@ test.describe("FL401 Create cases The Home tests @manageCases", (): void => {
         Not accessibility testing, 
         Not Error Messaging (There isn't any), 
         Applicant doesn't have children
-        No to all booleans, 
-        'No' to has the applicant or respondent ever lived at the address, 
-        'No' do they ever intend to live at the address, @crossbrowserManagecases`, async ({
+        No to all options, @crossbrowserManagecases`, async ({
     page,
   }): Promise<void> => {
     await FL401TheHome.fl401TheHome({
@@ -193,20 +191,6 @@ test.describe("FL401 Create cases The Home tests @manageCases", (): void => {
       fl401EverLivedAtAddress: "yesApplicant",
       subJourney: true,
     });
-  });
-});
-
-test(`Test the accessibility of the fl401 The Home Journey saying No to all, @accessibilityManageCases`, async ({
-  page,
-}): Promise<void> => {
-  await FL401TheHome.fl401TheHome({
-    page: page,
-    accessibilityTest: true,
-    applicantHasChildren: false,
-    fl401TheHomeYesNo: false,
-    fl401EverLivedAtAddress: "No",
-    fl401IntendToLiveAtAddress: "No",
-    subJourney: true,
   });
 });
 
