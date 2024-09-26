@@ -77,15 +77,12 @@ export class ChildrenAndOtherPeopleSubmitPage {
     yesNoChildrenAndOtherPeople: boolean,
   ): Promise<void> {
     await Promise.all([
-      Helpers.checkVisibleAndPresent(
+      Helpers.checkGroup(
         page,
-        `${Selectors.GovukText16}:text-is("${ChildrenAndOtherPeople1Content.fullNameOther}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukText16}:text-is("${ChildrenAndOtherPeople1Content.fullNameChild}")`,
-        1,
+        2,
+        ChildrenAndOtherPeople1Content,
+        "text16",
+        Selectors.GovukText16,
       ),
     ]);
     if (yesNoChildrenAndOtherPeople) {
