@@ -67,6 +67,16 @@ export class MiamPolicyUpgrade1Page {
         `${Selectors.GovukFormLabel}:text-is("${MiamPolicyUpgrade1Content.formLabel1}")`,
         1,
       ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${MiamPolicyUpgrade1Content.formLabelYes}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${MiamPolicyUpgrade1Content.formLabelNo}")`,
+        1,
+      ),
     ]);
   }
 
@@ -76,18 +86,6 @@ export class MiamPolicyUpgrade1Page {
   }: fillinFieldsOptions): Promise<void> {
     switch (C100MiamPolicyUpgrade1PageType) {
       case "yes":
-        await Promise.all([
-          Helpers.checkVisibleAndPresent(
-            page,
-            `${Selectors.GovukFormLabel}:text-is("${MiamPolicyUpgrade1Content.formLabelYes}")`,
-            1,
-          ),
-          Helpers.checkVisibleAndPresent(
-            page,
-            `${Selectors.GovukFormLabel}:text-is("${MiamPolicyUpgrade1Content.formLabelNo}")`,
-            1,
-          ),
-        ]);
         await page.click(`${UniqueSelectors.invovledInEmergencyProtectionYes}`);
         break;
       case "yesAttendedMiam":
