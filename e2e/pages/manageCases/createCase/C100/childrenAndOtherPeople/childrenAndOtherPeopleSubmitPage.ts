@@ -17,6 +17,7 @@ export class ChildrenAndOtherPeopleSubmitPage {
       accessibilityTest,
       yesNoChildrenAndOtherPeople,
     );
+    console.log("stop");
     await this.continue(page);
   }
 
@@ -120,8 +121,15 @@ export class ChildrenAndOtherPeopleSubmitPage {
   }
 
   public static async continue(page: Page): Promise<void> {
+    await page
+      .locator(
+        `${Selectors.button}:text-is("${ChildrenAndOtherPeopleSubmitContent.continue}")`,
+      )
+      .waitFor({
+        state: "visible",
+      });
     await page.click(
-      `${Selectors.button}:text-is("${ChildrenAndRespondentsSubmitContent.continue}")`,
+      `${Selectors.button}:text-is("${ChildrenAndOtherPeopleSubmitContent.continue}")`,
     );
   }
 }
