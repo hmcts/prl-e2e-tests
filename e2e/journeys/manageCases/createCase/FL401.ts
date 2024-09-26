@@ -14,6 +14,7 @@ import { fl401RespondentRelationshipOther } from "../../../pages/manageCases/cre
 import { FL401WelshLanguageRequirements } from "./FL401WelshLanguageRequirements/FL401WelshLanguageRequirements";
 import { bailConditionRadios } from "../../../pages/manageCases/createCase/FL401/withoutNoticeOrder/withoutNoticeOrder3Page";
 import { Fl401AttendingTheHearing } from "./FL401AttendingTheHearing/fl401AttendingTheHearing";
+import { FL401UploadDocuments } from "./FL401UploadDocuments/FL401UploadDocuments";
 import { FL401TheHome } from "./FL401TheHome/fl401TheHome";
 import { addressRadios } from "../../../pages/manageCases/createCase/FL401/theHome/fl401TheHome1Page";
 
@@ -158,6 +159,12 @@ export class FL401 {
         welshLanguageRequirementsAllOptionsYes,
       welshLanguageRequirementsSelectWelsh:
         welshLanguageRequirementsSelectWelsh,
+      subJourney: false,
+    });
+    await FL401UploadDocuments.fl401UploadDocuments({
+      page,
+      accessibilityTest,
+      errorMessaging,
       subJourney: false,
     });
   }
