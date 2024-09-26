@@ -13,6 +13,7 @@ import { fl401RelationshipToRespondent } from "../../../pages/manageCases/create
 import { fl401RespondentRelationshipOther } from "../../../pages/manageCases/createCase/FL401/relationshipToRespondent/relationshipToRespondent2Page";
 import { FL401WelshLanguageRequirements } from "./FL401WelshLanguageRequirements/FL401WelshLanguageRequirements";
 import { bailConditionRadios } from "../../../pages/manageCases/createCase/FL401/withoutNoticeOrder/withoutNoticeOrder3Page";
+import { Fl401AttendingTheHearing } from "./FL401AttendingTheHearing/fl401AttendingTheHearing";
 
 export type otherProceedingsRadios = "Yes" | "No" | "Don't know";
 
@@ -32,6 +33,7 @@ interface fl401Options {
   otherProceedingsRadios: otherProceedingsRadios;
   relationshipToRespondent: fl401RelationshipToRespondent;
   relationshipToRespondentOther?: fl401RespondentRelationshipOther;
+  fl401AttendingTheHearingYesNo: boolean;
   welshLanguageRequirementsAllOptionsYes: boolean;
   welshLanguageRequirementsSelectWelsh?: boolean;
 }
@@ -53,6 +55,7 @@ export class FL401 {
     otherProceedingsRadios,
     relationshipToRespondent,
     relationshipToRespondentOther,
+    fl401AttendingTheHearingYesNo,
     welshLanguageRequirementsAllOptionsYes,
     welshLanguageRequirementsSelectWelsh,
   }: fl401Options): Promise<void> {
@@ -121,6 +124,13 @@ export class FL401 {
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
       otherProceedingsRadios: otherProceedingsRadios,
+      subJourney: false,
+    });
+    await Fl401AttendingTheHearing.fl401AttendingTheHearing({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      fl401AttendingTheHearingYesNo: fl401AttendingTheHearingYesNo,
       subJourney: false,
     });
     await FL401WelshLanguageRequirements.fl401WelshLanguageRequirements({
