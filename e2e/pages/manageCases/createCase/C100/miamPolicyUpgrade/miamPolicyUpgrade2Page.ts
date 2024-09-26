@@ -47,29 +47,29 @@ export class MiamPolicyUpgrade2Page {
       `${Selectors.h2}:text-is("${MiamPolicyUpgrade2Content.h2}")`,
     );
     await Promise.all([
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukHeadingL}:text-is("${MiamPolicyUpgrade2Content.pageTitle}")`,
-          1,
-        ),
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.p}:text-is("${MiamPolicyUpgrade2Content.p}")`,
-          1,
-        ),
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukFormHint}:text-is("${MiamPolicyUpgrade2Content.formHint}")`,
-          1,
-        ),
-        Helpers.checkGroup(
-          page,
-          6,
-          MiamPolicyUpgrade2Content,
-          "FormLabel",
-          `${Selectors.GovukFormLabel}`,
-        ),
-    ])
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukHeadingL}:text-is("${MiamPolicyUpgrade2Content.pageTitle}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${MiamPolicyUpgrade2Content.p}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormHint}:text-is("${MiamPolicyUpgrade2Content.formHint}")`,
+        1,
+      ),
+      Helpers.checkGroup(
+        page,
+        6,
+        MiamPolicyUpgrade2Content,
+        "FormLabel",
+        `${Selectors.GovukFormLabel}`,
+      ),
+    ]);
   }
 
   public static async fillInFields({
@@ -80,6 +80,8 @@ export class MiamPolicyUpgrade2Page {
     await page.click(`${UniqueSelectors.urgency}`);
     await page.click(`${UniqueSelectors.previousAttendenceMian}`);
     await page.click(`${UniqueSelectors.other}`);
-    await page.click(`${Selectors.button}:text-is("${MiamPolicyUpgrade2Content.continue}")`);
+    await page.click(
+      `${Selectors.button}:text-is("${MiamPolicyUpgrade2Content.continue}")`,
+    );
   }
 }
