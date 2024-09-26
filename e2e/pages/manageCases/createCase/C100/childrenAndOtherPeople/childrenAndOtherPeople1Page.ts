@@ -103,6 +103,9 @@ export class ChildrenAndOtherPeople1Page {
     await page.click(
       `${Selectors.button}:text-is("${ChildrenAndOtherPeople1Content.continue}")`,
     );
+    await page.click(
+      `${Selectors.button}:text-is("${ChildrenAndOtherPeople1Content.continue}")`,
+    );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
@@ -136,6 +139,9 @@ export class ChildrenAndOtherPeople1Page {
     );
     await page.click(`${UniqueSelectors.childLiveWithThisPersonYes}`);
     await page.waitForTimeout(1000);
+    await page.click(
+      `${Selectors.button}:text-is("${ChildrenAndOtherPeople1Content.continue}")`,
+    );
     await page.click(
       `${Selectors.button}:text-is("${ChildrenAndOtherPeople1Content.continue}")`,
     );
@@ -188,6 +194,12 @@ export class ChildrenAndOtherPeople1Page {
       );
       await page.click(`${UniqueSelectors.childLiveWithThisPersonNo}`);
     }
+    await page.click(
+      `${Selectors.button}:text-is("${ChildrenAndOtherPeople1Content.continue}")`,
+    );
+    await page.click(
+      `${Selectors.button}:text-is("${ChildrenAndOtherPeople1Content.continue}")`,
+    );
     await page.click(
       `${Selectors.button}:text-is("${ChildrenAndOtherPeople1Content.continue}")`,
     );
