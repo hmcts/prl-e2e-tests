@@ -13,6 +13,12 @@ import {
   StatementOfTruth1Page
 } from "../../../../pages/manageCases/createCase/FL401/statementOfTruth/statementOfTruth1Page";
 import { Helpers } from "../../../../common/helpers";
+import {
+  StatementOfTruth2Page
+} from "../../../../pages/manageCases/createCase/FL401/statementOfTruth/statementOfTruth2Page";
+import {
+  StatementOfTruth3Page
+} from "../../../../pages/manageCases/createCase/FL401/statementOfTruth/statementOfTruth3Page";
 
 interface Fl401StatementOfTruthOptions {
   page: Page;
@@ -85,21 +91,14 @@ export class Fl401StatementOfTruth {
         page: page,
         accessibilityTest: false,
         errorMessaging: false,
-        respondentsBehaviourAllOptionsYes: false,
-        subJourney: false,
-      });
-      await FL401OtherProceedings.fl401OtherProceedings({
-        page: page,
-        accessibilityTest: false,
-        errorMessaging: false,
-        otherProceedingsRadios: 'No',
+        respondentsBehaviourAllOptionsYes: true,
         subJourney: false,
       });
       await FL401TheHome.fl401TheHome({
         page: page,
         accessibilityTest: false,
         applicantHasChildren: false,
-        fl401TheHomeYesNo: false,
+        fl401TheHomeYesNo: true,
         fl401EverLivedAtAddress: 'No',
         fl401IntendToLiveAtAddress: 'No',
         subJourney: false,
@@ -110,6 +109,16 @@ export class Fl401StatementOfTruth {
       'Statement of truth and submit'
     );
     await StatementOfTruth1Page.statementOfTruth1Page({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging
+    });
+    await StatementOfTruth2Page.statementOfTruth2Page({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging
+    });
+    await StatementOfTruth3Page.statementOfTruth3Page({
       page: page,
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging

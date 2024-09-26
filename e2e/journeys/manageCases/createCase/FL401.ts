@@ -15,6 +15,7 @@ import { bailConditionRadios } from "../../../pages/manageCases/createCase/FL401
 import { Fl401AttendingTheHearing } from "./FL401AttendingTheHearing/fl401AttendingTheHearing";
 import { FL401TheHome } from "./FL401TheHome/fl401TheHome";
 import { addressRadios } from "../../../pages/manageCases/createCase/FL401/theHome/fl401TheHome1Page";
+import { Fl401StatementOfTruth } from "./FL401StatementOfTruth/fl401StatementOfTruth";
 
 export type otherProceedingsRadios = "Yes" | "No" | "Don't know";
 
@@ -144,6 +145,12 @@ export class FL401 {
       errorMessaging: errorMessaging,
       fl401AttendingTheHearingYesNo: fl401AttendingTheHearingYesNo,
       subJourney: false,
+    });
+    await Fl401StatementOfTruth.fl401StatementOfTruth({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      subJourney: false
     });
   }
 }

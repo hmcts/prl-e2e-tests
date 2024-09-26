@@ -9,7 +9,7 @@ export enum StatementOfTruth1Content {
   formLabel6 = "Your full name",
   formLabel7 = "Name of your firm",
   formLabel8 = "If signing on behalf of firm or company give position or office held",
-  errorSummaryTitle = '',
+  errorSummaryTitle = ' There is a problem ',
   errorValidation1 = " Field is required ",
   errorValidation2 = " Date is required ",
   errorValidation3 = " Your full name is required ",

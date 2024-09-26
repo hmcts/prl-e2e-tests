@@ -70,7 +70,7 @@ export class RespondentsBehaviourSubmitPage {
         Helpers.checkGroup(
           page,
           17,
-          RespondentsBehaviourContent,
+          SubmitContent,
           "formLabel",
           `${Selectors.GovukFormLabel}`,
         ),
