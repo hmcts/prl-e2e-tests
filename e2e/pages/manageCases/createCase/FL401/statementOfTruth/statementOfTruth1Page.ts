@@ -5,9 +5,6 @@ import {
   StatementOfTruth1Content
 } from "../../../../../fixtures/manageCases/createCase/FL401/statementOfTruth/statementOfTruth1Content";
 import { Helpers } from "../../../../../common/helpers";
-import {
-  UploadDocuments1Content
-} from "../../../../../fixtures/manageCases/createCase/FL401/uploadDocuments/uploadDocuments1Content";
 
 enum inputIDs {
   applicantConsent = '#fl401StmtOfTruth_applicantConsent-fl401Consent',
@@ -42,10 +39,14 @@ export class StatementOfTruth1Page {
     accessibilityTest,
     errorMessaging
   }: StatementOfTruth1PageOptions): Promise<void> {
-
+    await this.checkPageLoads({
+      page,
+      accessibilityTest
+    });
     if (errorMessaging) {
-
+      await this.checkErrorMessaging(page);
     }
+    await this.fillInFields(page);
   }
 
   private static async checkPageLoads({
