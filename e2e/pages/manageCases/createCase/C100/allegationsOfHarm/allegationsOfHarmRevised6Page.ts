@@ -1,27 +1,27 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
-import { AllegationsOfHarmRevised5Content } from "../../../../../fixtures/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevised5Content";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { AllegationsOfHarmRevised6Content } from "../../../../../fixtures/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevised6Content";
 
-interface AllegationsOfHarmRevised5PageOptions {
+interface AllegationsOfHarmRevised6PageOptions {
   page: Page;
   accessibilityTest: boolean;
 }
 
 enum uniqueSelectors {
-  allChildrenAtRiskYesRadio = "#allChildrenAreRiskPhysicalAbuse_Yes",
-  natureOfBehaviourField = "#childPhysicalAbuse_abuseNatureDescription",
-  durationOfBehaviourField = "#childPhysicalAbuse_behavioursStartDateAndLength",
-  applicantSeekHelpYesRadio = "#childPhysicalAbuse_behavioursApplicantSoughtHelp_Yes",
-  applicantSeekHelpYesField = "#childPhysicalAbuse_behavioursApplicantHelpSoughtWho",
+  allChildrenAtRiskYesRadio = "#allChildrenAreRiskPsychologicalAbuse_Yes",
+  natureOfBehaviourField = "#childPsychologicalAbuse_abuseNatureDescription",
+  durationOfBehaviourField = "#childPsychologicalAbuse_behavioursStartDateAndLength",
+  applicantSeekHelpYesRadio = "#childPsychologicalAbuse_behavioursApplicantSoughtHelp_Yes",
+  applicantSeekHelpYesField = "#childPsychologicalAbuse_behavioursApplicantHelpSoughtWho",
 }
 
-export class AllegationsOfHarmRevised5Page {
-  public static async allegationsOfHarmRevised5Page({
+export class AllegationsOfHarmRevised6Page {
+  public static async allegationsOfHarmRevised6Page({
     page: page,
     accessibilityTest: accessibilityTest,
-  }: AllegationsOfHarmRevised5PageOptions): Promise<void> {
+  }: AllegationsOfHarmRevised6PageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
       accessibilityTest: accessibilityTest,
@@ -32,40 +32,40 @@ export class AllegationsOfHarmRevised5Page {
   private static async checkPageLoads({
     page: page,
     accessibilityTest: accessibilityTest,
-  }: AllegationsOfHarmRevised5PageOptions): Promise<void> {
+  }: AllegationsOfHarmRevised6PageOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.h2}:text-is("${AllegationsOfHarmRevised5Content.h2}")`,
+      `${Selectors.h2}:text-is("${AllegationsOfHarmRevised6Content.h2}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHeadingL}:text-is("${AllegationsOfHarmRevised5Content.pageTitle}")`,
+        `${Selectors.GovukHeadingL}:text-is("${AllegationsOfHarmRevised6Content.pageTitle}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${AllegationsOfHarmRevised5Content.p}")`,
+        `${Selectors.p}:text-is("${AllegationsOfHarmRevised6Content.p}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${AllegationsOfHarmRevised5Content.p}")`,
+        `${Selectors.p}:text-is("${AllegationsOfHarmRevised6Content.p}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukFormLabel}:text-is("${AllegationsOfHarmRevised5Content.formLabelYes}")`,
+        `${Selectors.GovukFormLabel}:text-is("${AllegationsOfHarmRevised6Content.formLabelYes}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukFormLabel}:text-is("${AllegationsOfHarmRevised5Content.formLabelNo}")`,
+        `${Selectors.GovukFormLabel}:text-is("${AllegationsOfHarmRevised6Content.formLabelNo}")`,
         2,
       ),
       Helpers.checkGroup(
         page,
         4,
-        AllegationsOfHarmRevised5Content,
+        AllegationsOfHarmRevised6Content,
         `formLabel`,
         `${Selectors.GovukFormLabel}`,
       ),
@@ -79,15 +79,15 @@ export class AllegationsOfHarmRevised5Page {
     await page.click(`${uniqueSelectors.allChildrenAtRiskYesRadio}`);
     await page.fill(
       `${uniqueSelectors.natureOfBehaviourField}`,
-      `${AllegationsOfHarmRevised5Content.natureOfBehaviour}`,
+      `${AllegationsOfHarmRevised6Content.natureOfBehaviour}`,
     );
     await page.fill(
       `${uniqueSelectors.durationOfBehaviourField}`,
-      `${AllegationsOfHarmRevised5Content.durationOfBehaviour}`,
+      `${AllegationsOfHarmRevised6Content.durationOfBehaviour}`,
     );
     await this.handleSeekHelp(page);
     await page.click(
-      `${Selectors.button}:text-is("${AllegationsOfHarmRevised5Content.continue}")`,
+      `${Selectors.button}:text-is("${AllegationsOfHarmRevised6Content.continue}")`,
     );
   }
 
@@ -95,12 +95,12 @@ export class AllegationsOfHarmRevised5Page {
     await page.click(`${uniqueSelectors.applicantSeekHelpYesRadio}`);
     await Helpers.checkVisibleAndPresent(
       page,
-      `${Selectors.GovukFormLabel}:text-is("${AllegationsOfHarmRevised5Content.formLabelSeekHelp}")`,
+      `${Selectors.GovukFormLabel}:text-is("${AllegationsOfHarmRevised6Content.formLabelSeekHelp}")`,
       1,
     );
     await page.fill(
       `${uniqueSelectors.applicantSeekHelpYesField}`,
-      `${AllegationsOfHarmRevised5Content.seekHelp}`,
+      `${AllegationsOfHarmRevised6Content.seekHelp}`,
     );
   }
 }

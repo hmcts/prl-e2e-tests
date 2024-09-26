@@ -12,4 +12,5 @@ export enum AllegationsOfHarmRevised5Content {
   continue = "Continue",
   natureOfBehaviour = "Lorem ipsum nature of behaviour physical abuse",
   durationOfBehaviour = "Lorem ipsum duration of behaviour physical abuse",
+  seekHelp = "Lorem ipsum seek help physical abuse",
 }
