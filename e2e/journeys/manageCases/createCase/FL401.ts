@@ -12,6 +12,7 @@ import { FL401RelationshipToRespondent } from "./FL401RelationshipToRespondent/F
 import { fl401RelationshipToRespondent } from "../../../pages/manageCases/createCase/FL401/relationshipToRespondent/relationshipToRespondent1Page";
 import { fl401RespondentRelationshipOther } from "../../../pages/manageCases/createCase/FL401/relationshipToRespondent/relationshipToRespondent2Page";
 import { bailConditionRadios } from "../../../pages/manageCases/createCase/FL401/withoutNoticeOrder/withoutNoticeOrder3Page";
+import { Fl401AttendingTheHearing } from "./FL401AttendingTheHearing/fl401AttendingTheHearing";
 import { FL401TheHome } from "./FL401TheHome/fl401TheHome";
 import { addressRadios } from "../../../pages/manageCases/createCase/FL401/theHome/fl401TheHome1Page";
 
@@ -33,6 +34,7 @@ interface fl401Options {
   otherProceedingsRadios: otherProceedingsRadios;
   relationshipToRespondent: fl401RelationshipToRespondent;
   relationshipToRespondentOther?: fl401RespondentRelationshipOther;
+  fl401AttendingTheHearingYesNo: boolean;
   fl401TheHomeYesNo: boolean;
   fl401EverLivedAtAddress: addressRadios;
   fl401IntendToLiveAtAddress?: addressRadios;
@@ -55,6 +57,7 @@ export class FL401 {
     otherProceedingsRadios,
     relationshipToRespondent,
     relationshipToRespondentOther,
+    fl401AttendingTheHearingYesNo,
     fl401TheHomeYesNo,
     fl401EverLivedAtAddress,
     fl401IntendToLiveAtAddress,
@@ -133,6 +136,13 @@ export class FL401 {
       fl401TheHomeYesNo: fl401TheHomeYesNo,
       fl401EverLivedAtAddress: fl401EverLivedAtAddress,
       fl401IntendToLiveAtAddress: fl401IntendToLiveAtAddress,
+      subJourney: false,
+    });
+    await Fl401AttendingTheHearing.fl401AttendingTheHearing({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      fl401AttendingTheHearingYesNo: fl401AttendingTheHearingYesNo,
       subJourney: false,
     });
   }
