@@ -76,7 +76,7 @@ export class C100 {
     applicantChildRelationship: applicantChildRelationship,
     childLiveWithApplicant: childLiveWithApplicant,
     yesNoChildrenAndRespondents: yesNoChildrenAndRespondents,
-                             yesNoChildrenAndOtherPeople: yesNoChildrenAndOtherPeople,
+    yesNoChildrenAndOtherPeople: yesNoChildrenAndOtherPeople,
   }: c100Options): Promise<void> {
     await SolicitorCreateInitial.createInitialCase({
       page: page,
