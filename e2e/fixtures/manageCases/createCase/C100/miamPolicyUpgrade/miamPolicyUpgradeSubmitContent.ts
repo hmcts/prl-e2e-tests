@@ -29,6 +29,7 @@ export enum MiamPolicyUpgradeSubmitContent {
 
   text16Yes = "Yes",
   text16No = "no",
+  text16Change = "Change",
 
   continue = "Save and continue",
 }
