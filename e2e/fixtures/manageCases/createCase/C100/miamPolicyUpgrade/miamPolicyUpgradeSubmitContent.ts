@@ -3,7 +3,6 @@ export enum MiamPolicyUpgradeSubmitContent {
   h2 = "Check your answers",
   text16CheckInfo = "Check the information below carefully.",
 
-
   text16 = "*Are the children involved in any emergency protection, care or supervision proceedings (or have they been)?",
 
   text16Attended1 = "*Are the children involved in any emergency protection, care or supervision proceedings (or have they been)?",
@@ -28,10 +27,8 @@ export enum MiamPolicyUpgradeSubmitContent {
   text162Exemption13 = "What other grounds of exemption apply?",
   text162Exemption14 = "*Explain why the applicant is unable to attend MIAM",
 
-
   text16Yes = "Yes",
   text16No = "no",
 
-
-  continue = "Save and continue"
+  continue = "Save and continue",
 }
