@@ -88,7 +88,9 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Saying yes to respondents behaviour questions,
   Saying yes to all Without Notice Order questions @crossbrowserManageCases,
   Saying yes to all Without Notice Order questions, 
-  Relationship is 'Formerly lived together as a couple', 
+  Relationship is 'Formerly lived together as a couple'
+  Saying yes to all 'The Home' Questions,
+  'Yes, both of them' ever lived at the address 
   Saying Yes to all attending the hearing question,
   @crossbrowserManageCases`, async ({ page }): Promise<void> => {
     await FL401.fl401({
@@ -106,6 +108,8 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       isWithoutNoticeDetailsBailConditions: "Yes",
       otherProceedingsRadios: "Yes",
       relationshipToRespondent: "foremerlyLivedTogether",
+      fl401TheHomeYesNo: true,
+      fl401EverLivedAtAddress: "yesBothOfThem",
       fl401AttendingTheHearingYesNo: true,
       welshLanguageRequirementsAllOptionsYes: true,
       welshLanguageRequirementsSelectWelsh: false,
@@ -126,6 +130,8 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Saying yes to applicant details questions, 
   Saying yes to Without Notice Order questions, 
   Saying "Don't know" to Without Notice Order bail conditions, 
+  Saying yes to all 'The Home' booleans, 
+  'Yes, applicant' to has the applicant or respondent ever lived at the home address,
   Relationship is 'Married or in a civil partnership',
   Saying yes to all attending the hearing questions
   @crossbrowserManageCases`, async ({ page }): Promise<void> => {
@@ -144,6 +150,8 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       isWithoutNoticeDetailsBailConditions: "Don't know",
       otherProceedingsRadios: "Yes",
       relationshipToRespondent: "marriedOrCivil",
+      fl401TheHomeYesNo: true,
+      fl401EverLivedAtAddress: "yesApplicant",
       fl401AttendingTheHearingYesNo: true,
       welshLanguageRequirementsAllOptionsYes: true,
       welshLanguageRequirementsSelectWelsh: false,
@@ -159,7 +167,9 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Saying no to respondents behaviour questions,
   Saying no to Without Notice Order questions,
   Saying no to Without Notice Order questions,
-  Relationship is 'None of the above',
+  Saying no to applicant details questions
+  Saying 'No' to ever lived at the home address, 
+  Saying 'No' to ever intend to live at home address
   Other Relationship Is: 'Cousin'
   saying no to all attending the hearing questions`, async ({
     page,
@@ -180,6 +190,9 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       otherProceedingsRadios: "Yes",
       relationshipToRespondent: "noneOfTheAbove",
       relationshipToRespondentOther: "Cousin",
+      fl401TheHomeYesNo: false,
+      fl401EverLivedAtAddress: "No",
+      fl401IntendToLiveAtAddress: "No",
       fl401AttendingTheHearingYesNo: false,
       welshLanguageRequirementsAllOptionsYes: false,
     });

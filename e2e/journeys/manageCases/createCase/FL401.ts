@@ -14,6 +14,8 @@ import { fl401RespondentRelationshipOther } from "../../../pages/manageCases/cre
 import { FL401WelshLanguageRequirements } from "./FL401WelshLanguageRequirements/FL401WelshLanguageRequirements";
 import { bailConditionRadios } from "../../../pages/manageCases/createCase/FL401/withoutNoticeOrder/withoutNoticeOrder3Page";
 import { Fl401AttendingTheHearing } from "./FL401AttendingTheHearing/fl401AttendingTheHearing";
+import { FL401TheHome } from "./FL401TheHome/fl401TheHome";
+import { addressRadios } from "../../../pages/manageCases/createCase/FL401/theHome/fl401TheHome1Page";
 
 export type otherProceedingsRadios = "Yes" | "No" | "Don't know";
 
@@ -34,6 +36,9 @@ interface fl401Options {
   relationshipToRespondent: fl401RelationshipToRespondent;
   relationshipToRespondentOther?: fl401RespondentRelationshipOther;
   fl401AttendingTheHearingYesNo: boolean;
+  fl401TheHomeYesNo: boolean;
+  fl401EverLivedAtAddress: addressRadios;
+  fl401IntendToLiveAtAddress?: addressRadios;
   welshLanguageRequirementsAllOptionsYes: boolean;
   welshLanguageRequirementsSelectWelsh?: boolean;
 }
@@ -56,6 +61,9 @@ export class FL401 {
     relationshipToRespondent,
     relationshipToRespondentOther,
     fl401AttendingTheHearingYesNo,
+    fl401TheHomeYesNo,
+    fl401EverLivedAtAddress,
+    fl401IntendToLiveAtAddress,
     welshLanguageRequirementsAllOptionsYes,
     welshLanguageRequirementsSelectWelsh,
   }: fl401Options): Promise<void> {
@@ -126,6 +134,15 @@ export class FL401 {
       otherProceedingsRadios: otherProceedingsRadios,
       subJourney: false,
     });
+    await FL401TheHome.fl401TheHome({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      applicantHasChildren: applicantHasChildren,
+      fl401TheHomeYesNo: fl401TheHomeYesNo,
+      fl401EverLivedAtAddress: fl401EverLivedAtAddress,
+      fl401IntendToLiveAtAddress: fl401IntendToLiveAtAddress,
+      subJourney: false,
+    });
     await Fl401AttendingTheHearing.fl401AttendingTheHearing({
       page: page,
       accessibilityTest: accessibilityTest,
@@ -137,10 +154,8 @@ export class FL401 {
       page: page,
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
-      welshLanguageRequirementsAllOptionsYes:
-        welshLanguageRequirementsAllOptionsYes,
-      welshLanguageRequirementsSelectWelsh:
-        welshLanguageRequirementsSelectWelsh,
+      welshLanguageRequirementsAllOptionsYes: welshLanguageRequirementsAllOptionsYes,
+      welshLanguageRequirementsSelectWelsh: welshLanguageRequirementsSelectWelsh,
       subJourney: false,
     });
   }
