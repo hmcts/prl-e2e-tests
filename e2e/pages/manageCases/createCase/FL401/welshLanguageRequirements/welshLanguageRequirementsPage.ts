@@ -24,9 +24,9 @@ export class WelshLanguageRequirementsPage {
     await this.checkPageLoads(page, accessibilityTest);
     await this.fillInFields(
       page,
+      accessibilityTest,
       welshLanguageRequirementsAllOptionsYes,
       welshLanguageRequirementsSelectWelsh,
-      accessibilityTest,
     );
   }
 
