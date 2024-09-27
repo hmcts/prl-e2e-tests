@@ -3,6 +3,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { ChildrenAndOtherPeople1Content } from "../../../../../fixtures/manageCases/createCase/C100/childrenAndOtherPeople/childrenAndOtherPeople1Content";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { ChildrenAndOtherPeopleSubmitPage } from "./childrenAndOtherPeopleSubmitPage";
 
 enum UniqueSelectors {
   relationshipDropdown = "#buffChildAndOtherPeopleRelations_0_childAndOtherPeopleRelation",
@@ -194,16 +195,15 @@ export class ChildrenAndOtherPeople1Page {
       );
       await page.click(`${UniqueSelectors.childLiveWithThisPersonNo}`);
     }
-    await page
-      .locator(
-        `${Selectors.button}:text-is("${ChildrenAndOtherPeople1Content.continue}")`,
-      )
-      .waitFor({
-        state: "visible",
-      });
-    await page.click(
-      `${Selectors.button}:text-is("${ChildrenAndOtherPeople1Content.continue}")`,
-    );
+    await page.waitForTimeout(1000);
+    // await page
+    //   .locator(
+    //     `${Selectors.button}:text-is("${ChildrenAndOtherPeople1Content.continue}")`,
+    //   )
+    //   .waitFor({
+    //     state: "visible",
+    //   });
+    await page.getByRole('button', { name: `${ChildrenAndOtherPeople1Content.continue}` }).waitFor();
     await page.click(
       `${Selectors.button}:text-is("${ChildrenAndOtherPeople1Content.continue}")`,
     );
