@@ -7,7 +7,7 @@ import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelp
 interface AllegationsOfHarmRevised3PageOptions {
   page: Page;
   accessibilityTest: boolean;
-  c100DomesticAbuseType: C100AllegationsOfHarmTypeOfDomesticAbuse;
+  c100DomesticAbuseTypePage3: C100AllegationsOfHarmTypeOfDomesticAbuse;
 }
 
 interface checkPageLoadsOptions {
@@ -17,7 +17,7 @@ interface checkPageLoadsOptions {
 
 interface fillInFieldsOptions {
   page: Page;
-  c100DomesticAbuseType: C100AllegationsOfHarmTypeOfDomesticAbuse;
+  c100DomesticAbuseTypePage3: C100AllegationsOfHarmTypeOfDomesticAbuse;
 }
 
 enum uniqueSelectors {
@@ -43,7 +43,7 @@ export class AllegationsOfHarmRevised3Page {
   public static async allegationsOfHarmRevised3Page({
     page: page,
     accessibilityTest: accessibilityTest,
-    c100DomesticAbuseType: c100DomesticAbuseType,
+    c100DomesticAbuseTypePage3: c100DomesticAbuseTypePage3,
   }: AllegationsOfHarmRevised3PageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
@@ -51,7 +51,7 @@ export class AllegationsOfHarmRevised3Page {
     });
     await this.fillInFields({
       page: page,
-      c100DomesticAbuseType: c100DomesticAbuseType,
+      c100DomesticAbuseTypePage3: c100DomesticAbuseTypePage3,
     });
   }
 
@@ -95,12 +95,12 @@ export class AllegationsOfHarmRevised3Page {
 
   private static async fillInFields({
     page: page,
-    c100DomesticAbuseType: c100DomesticAbuseType,
+    c100DomesticAbuseTypePage3: c100DomesticAbuseTypePage3,
   }: fillInFieldsOptions): Promise<void> {
     await page.click(
       `${Selectors.button}:text-is("${AllegationsOfHarmRevised3Content.addNewButton}")`,
     );
-    switch (c100DomesticAbuseType) {
+    switch (c100DomesticAbuseTypePage3) {
       case "Physical abuse":
         await page.click(`${uniqueSelectors.physicalRadio}`);
         break;
