@@ -195,18 +195,13 @@ export class ChildrenAndOtherPeople1Page {
       await page.click(`${UniqueSelectors.childLiveWithThisPersonNo}`);
     }
     await page.waitForTimeout(1000);
-    // await page
-    //   .locator(
-    //     `${Selectors.button}:text-is("${ChildrenAndOtherPeople1Content.continue}")`,
-    //   )
-    //   .waitFor({
-    //     state: "visible",
-    //   });
     await page
-      .getByRole("button", {
-        name: `${ChildrenAndOtherPeople1Content.continue}`,
-      })
-      .waitFor();
+      .locator(
+        `${Selectors.button}:text-is("${ChildrenAndOtherPeople1Content.continue}")`,
+      )
+      .waitFor({
+        state: "visible",
+      });
     await page.click(
       `${Selectors.button}:text-is("${ChildrenAndOtherPeople1Content.continue}")`,
     );
