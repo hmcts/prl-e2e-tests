@@ -2,6 +2,7 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { MiamPolicyUpgrade2Content } from "../../../../../fixtures/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade2Content";
 import { Helpers } from "../../../../../common/helpers";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 
 interface MiamPolicyUpgrade1PageOptions {
   page: Page;
@@ -70,6 +71,9 @@ export class MiamPolicyUpgrade2Page {
         `${Selectors.GovukFormLabel}`,
       ),
     ]);
+    if (accessibilityTest) {
+      await AccessibilityTestHelper.run(page);
+    }
   }
 
   public static async fillInFields({

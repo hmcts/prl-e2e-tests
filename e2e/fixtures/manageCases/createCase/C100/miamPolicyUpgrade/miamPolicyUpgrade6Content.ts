@@ -13,7 +13,8 @@ export enum MiamPolicyUpgrade6Content {
   formLabelEvidence1 = "*What evidence of MIAM attendance are you submitting? (Optional)",
   formLabelEvidence2 = "A MIAM certificate",
   formLabelEvidence3 = "MIAM attendance details",
-  formLabelEvidence4 = "*Provide the mediator details (Optional)",
+  formLabelEvidenceUploadMiam = "*Upload the MIAM certificate signed by the mediator. (Optional)",
+  formLabelEvidenceProvideMediator = "*Provide the mediator details (Optional)",
   formHintEvidence = "Provide the date of the MIAM, as well as the name and contact details of the MIAM provider",
 
   continue = "Continue",

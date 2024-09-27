@@ -2,6 +2,7 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { MiamPolicyUpgrade4Content } from "../../../../../fixtures/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade4Content";
 import { Helpers } from "../../../../../common/helpers";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 
 interface MiamPolicyUpgrade4PageOptions {
   page: Page;
@@ -14,7 +15,7 @@ interface checkPageLoadsOptions {
   accessibilityTest: boolean;
 }
 
-interface fillinFieldsOptions {
+interface fillInFieldsOptions {
   page: Page;
   yesNoMiamPolicyUpgrade: boolean;
 }
@@ -65,12 +66,15 @@ export class MiamPolicyUpgrade1Page {
         `${Selectors.GovukFormLabel}`,
       ),
     ]);
+    if (accessibilityTest) {
+      await AccessibilityTestHelper.run(page);
+    }
   }
 
   private static async fillInFields({
     page: page,
     yesNoMiamPolicyUpgrade: yesNoMiamPolicyUpgrade,
-  }: fillinFieldsOptions): Promise<void> {
+  }: fillInFieldsOptions): Promise<void> {
     if (yesNoMiamPolicyUpgrade) {
       await page.click(`${UniqueSelectors.subjectOfEnquiries}`);
     } else {

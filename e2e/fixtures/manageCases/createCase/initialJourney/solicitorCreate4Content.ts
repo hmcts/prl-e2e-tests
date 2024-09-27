@@ -1,4 +1,6 @@
-export enum SolicitorCreate4Content {
+import { MiamPolicyUpgrade6Content } from "../C100/miamPolicyUpgrade/miamPolicyUpgrade6Content";
+
+export enum MiamPolicyUpgrade6ContentSolicitorCreate4Content {
   pageTitle = "Solicitor application",
   p1 = "If the applicant has applied for Help with Fees, you should email or post this application to the court instead.",
   p2 = "If you continue online, you will still have to pay the fee. You can apply for a refund by contacting the court and providing the applicant's Help with Fees reference.",

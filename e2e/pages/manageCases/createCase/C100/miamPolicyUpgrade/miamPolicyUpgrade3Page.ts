@@ -3,6 +3,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { MiamPolicyUpgrade3Content } from "../../../../../fixtures/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade3Content";
 import { Helpers } from "../../../../../common/helpers";
 import config from "../../../../../config";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 
 interface MiamPolicyUpgrade3PageOptions {
   page: Page;
@@ -108,6 +109,9 @@ export class MiamPolicyUpgrade3Page {
         `${Selectors.GovukFormLabel}`,
       ),
     ]);
+    if (accessibilityTest) {
+      await AccessibilityTestHelper.run(page);
+    }
   }
 
   public static async triggerErrorMessages(page: Page): Promise<void> {
