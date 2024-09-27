@@ -61,7 +61,7 @@ export class FL401 {
     fl401TheHomeYesNo,
     fl401EverLivedAtAddress,
     fl401IntendToLiveAtAddress,
-    fl401YesNoToEverything
+    fl401YesNoToEverything,
   }: fl401Options): Promise<void> {
     await SolicitorCreateInitial.createInitialCase({
       page: page,
@@ -149,7 +149,7 @@ export class FL401 {
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
       fl401YesNoToEverything: fl401YesNoToEverything,
-      subJourney: false
+      subJourney: false,
     });
   }
 }

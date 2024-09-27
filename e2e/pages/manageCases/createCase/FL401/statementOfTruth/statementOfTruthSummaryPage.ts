@@ -3,9 +3,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { StatementOfTruthSummaryContent } from "../../../../../fixtures/manageCases/createCase/FL401/statementOfTruth/statementOfTruthSummaryContent";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import {
-  StatementOfTruth1Content
-} from "../../../../../fixtures/manageCases/createCase/FL401/statementOfTruth/statementOfTruth1Content";
+import { StatementOfTruth1Content } from "../../../../../fixtures/manageCases/createCase/FL401/statementOfTruth/statementOfTruth1Content";
 
 interface StatementOfTruthSummaryPageOptions {
   page: Page;
@@ -32,8 +30,8 @@ interface CheckFilledInDataOptions {
 enum uniqueSelectors {
   dtElements = "dt > ",
   thElements = "th > ",
-  proceedingsText = '#case-viewer-field-read--otherProceedingsForSummaryTab > span > ccd-field-read > div > ccd-field-read-label > div > ccd-read-collection-field > table > tbody > tr > td > ccd-field-read > div > ccd-field-read-label > div > ccd-read-complex-field > ccd-read-complex-field-table > div > table > tbody > tr > td > span > ccd-field-read > div > ccd-field-read-label > div > ccd-read-text-field > ',
-  proceedingsHeader = '#case-viewer-field-read--otherProceedingsForSummaryTab > span > ccd-field-read > div > ccd-field-read-label > div > ccd-read-collection-field > table > tbody > tr > td > ccd-field-read > div > ccd-field-read-label > div > ccd-read-complex-field > ccd-read-complex-field-table > div > table > tbody > tr > th > '
+  proceedingsText = "#case-viewer-field-read--otherProceedingsForSummaryTab > span > ccd-field-read > div > ccd-field-read-label > div > ccd-read-collection-field > table > tbody > tr > td > ccd-field-read > div > ccd-field-read-label > div > ccd-read-complex-field > ccd-read-complex-field-table > div > table > tbody > tr > td > span > ccd-field-read > div > ccd-field-read-label > div > ccd-read-text-field > ",
+  proceedingsHeader = "#case-viewer-field-read--otherProceedingsForSummaryTab > span > ccd-field-read > div > ccd-field-read-label > div > ccd-read-collection-field > table > tbody > tr > td > ccd-field-read > div > ccd-field-read-label > div > ccd-read-complex-field > ccd-read-complex-field-table > div > table > tbody > tr > th > ",
 }
 
 export class StatementOfTruthSummaryPage {
@@ -71,10 +69,10 @@ export class StatementOfTruthSummaryPage {
 
   private static async checkPageLoads({
     page,
-    fl401YesNoToEverything
+    fl401YesNoToEverything,
   }: CheckPageLoadsOptions): Promise<void> {
-    const headerCount: number = (fl401YesNoToEverything) ? 9 : 10
-    const dtCount: number = (fl401YesNoToEverything) ? 7 : 8
+    const headerCount: number = fl401YesNoToEverything ? 9 : 10;
+    const dtCount: number = fl401YesNoToEverything ? 7 : 8;
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
@@ -109,14 +107,14 @@ export class StatementOfTruthSummaryPage {
           page,
           3,
           StatementOfTruthSummaryContent,
-          'proceedingHeader',
-          `${uniqueSelectors.proceedingsHeader}${Selectors.GovukText16}`
+          "proceedingHeader",
+          `${uniqueSelectors.proceedingsHeader}${Selectors.GovukText16}`,
         ),
         Helpers.checkVisibleAndPresent(
           page,
           `${uniqueSelectors.dtElements}${Selectors.GovukText16}:text-is("${StatementOfTruthSummaryContent.dtProceeding}")`,
-          1
-        )
+          1,
+        ),
       ]);
     }
   }
@@ -125,9 +123,9 @@ export class StatementOfTruthSummaryPage {
     page,
     fl401YesNoToEverything,
   }: CheckFilledInDataOptions): Promise<void> {
-    const todayDate = new Date()
-    const day = String(todayDate.getDate()).padStart(2, '0');
-    const month = String(todayDate.getMonth() + 1).padStart(2, '0');
+    const todayDate = new Date();
+    const day = String(todayDate.getDate()).padStart(2, "0");
+    const month = String(todayDate.getMonth() + 1).padStart(2, "0");
     const year = todayDate.getFullYear();
     const currentDate: string = `${day} ${month} ${year}`;
     const noticeText: string = fl401YesNoToEverything
@@ -137,7 +135,7 @@ export class StatementOfTruthSummaryPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.Span}:text-is("${StatementOfTruthSummaryContent.typeOfApplicationText}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -153,17 +151,17 @@ export class StatementOfTruthSummaryPage {
         page,
         2,
         StatementOfTruthSummaryContent,
-        'filledText',
-        `${Selectors.GovukText16}`
-      )
+        "filledText",
+        `${Selectors.GovukText16}`,
+      ),
     ]);
     if (fl401YesNoToEverything) {
       await Helpers.checkGroup(
         page,
         3,
         StatementOfTruthSummaryContent,
-        'proceedingText',
-        `${uniqueSelectors.proceedingsText}${Selectors.GovukText16}`
+        "proceedingText",
+        `${uniqueSelectors.proceedingsText}${Selectors.GovukText16}`,
       );
     }
   }

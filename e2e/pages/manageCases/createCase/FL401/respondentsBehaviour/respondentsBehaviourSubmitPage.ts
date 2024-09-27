@@ -10,10 +10,7 @@ export class RespondentsBehaviourSubmitPage {
     page: Page,
     accessibilityTest: boolean,
   ): Promise<void> {
-    await this.checkPageContent(
-      page,
-      accessibilityTest,
-    );
+    await this.checkPageContent(page, accessibilityTest);
     await this.fillInFields(page);
   }
 
@@ -30,9 +27,7 @@ export class RespondentsBehaviourSubmitPage {
     }
   }
 
-  private static async checkPageLoads(
-    page: Page,
-  ): Promise<void> {
+  private static async checkPageLoads(page: Page): Promise<void> {
     await page.waitForSelector(
       `${Selectors.GovukHeadingL}:text-is("${SubmitContent.pageTitle}")`,
     );
@@ -55,9 +50,7 @@ export class RespondentsBehaviourSubmitPage {
     );
   }
 
-  private static async checkFilledInData(
-    page: Page,
-  ): Promise<void> {
+  private static async checkFilledInData(page: Page): Promise<void> {
     await Promise.all([
       Helpers.checkGroup(
         page,

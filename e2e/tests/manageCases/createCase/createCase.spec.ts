@@ -110,7 +110,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       fl401TheHomeYesNo: true,
       fl401EverLivedAtAddress: "yesBothOfThem",
       fl401AttendingTheHearingYesNo: true,
-      fl401YesNoToEverything: true
+      fl401YesNoToEverything: true,
     });
   });
 
@@ -150,7 +150,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       fl401TheHomeYesNo: true,
       fl401EverLivedAtAddress: "yesApplicant",
       fl401AttendingTheHearingYesNo: true,
-      fl401YesNoToEverything: true
+      fl401YesNoToEverything: true,
     });
   });
 
@@ -167,9 +167,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Saying 'No' to ever intend to live at home address
   Other Relationship Is: 'Cousin'
   saying no to all attending the hearing questions
-  Submit statement of truth`, async ({
-    page,
-  }): Promise<void> => {
+  Submit statement of truth`, async ({ page }): Promise<void> => {
     await FL401.fl401({
       page: page,
       user: "solicitor",
@@ -189,7 +187,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       fl401EverLivedAtAddress: "No",
       fl401IntendToLiveAtAddress: "No",
       fl401AttendingTheHearingYesNo: false,
-      fl401YesNoToEverything: false
+      fl401YesNoToEverything: false,
     });
   });
 });

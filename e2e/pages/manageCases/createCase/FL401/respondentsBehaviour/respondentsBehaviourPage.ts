@@ -32,9 +32,7 @@ export class RespondentsBehaviourPage {
     accessibilityTest: boolean,
   ): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest);
-    await this.fillInFields(
-      page,
-    );
+    await this.fillInFields(page);
   }
 
   private static async checkPageLoads(
@@ -65,9 +63,7 @@ export class RespondentsBehaviourPage {
     }
   }
 
-  private static async fillInFields(
-    page: Page,
-  ): Promise<void> {
+  private static async fillInFields(page: Page): Promise<void> {
     for (let selector of Object.values(checkBoxIds)) {
       await page.click(selector);
     }
