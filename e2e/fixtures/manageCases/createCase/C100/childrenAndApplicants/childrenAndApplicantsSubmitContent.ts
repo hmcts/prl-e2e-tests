@@ -1,0 +1,15 @@
+export enum ChildrenAndApplicantsSubmitContent {
+  pageTitle = "Children and applicants",
+  h2 = "Check your answers",
+  text161 = "Check the information below carefully.",
+  text162 = "Applicant",
+  text163 = "Applicant 1",
+  text164 = "Applicant's full name:",
+  text165 = "Child's name:",
+  text166 = "What is the applicant's relationship to the child?",
+  text167 = "Does the child live with this person?",
+  text16OtherRelationship = "Give details",
+  text16Yes = "Yes",
+  text16No = "No",
+  button = "Save and continue",
+}

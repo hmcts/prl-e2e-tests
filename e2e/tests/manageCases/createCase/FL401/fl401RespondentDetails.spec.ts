@@ -1,5 +1,8 @@
 import { test } from "@playwright/test";
 import { FL401RespondentDetails } from "../../../../journeys/manageCases/createCase/FL401RespondentDetails/FL401RespondentDetails";
+import Config from "../../../../config";
+
+test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
 test.describe("FL401 Create case respondent details tests @manageCases", (): void => {
   test(`Complete the FL401 respondent details event as a solicitor with the following options:
@@ -49,7 +52,7 @@ test.describe("FL401 Create case respondent details tests @manageCases", (): voi
 test(`Accessibility test the FL401 respondent details event as a solicitor with the following options:
   Accessibility testing,
   Not Error message testing,
-  Saying yes to all options, @accessibilityManageCases`, async ({
+Saying yes to all options, @accessibilityManageCases`, async ({
   page,
 }): Promise<void> => {
   await FL401RespondentDetails.fl401RespondentDetails({

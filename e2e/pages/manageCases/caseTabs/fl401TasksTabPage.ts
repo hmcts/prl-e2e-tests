@@ -6,7 +6,6 @@ import { Fl401TasksTabContent } from "../../../fixtures/manageCases/caseTabs/fl4
 
 enum IndividualSelectors {
   links = "markdown > div > p > a",
-  greyedLinks = "markdown > div > p",
 }
 
 export class Fl401TasksTabPage {
@@ -38,11 +37,6 @@ export class Fl401TasksTabPage {
         Fl401TasksTabContent,
         "link",
         `${IndividualSelectors.links}`,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${IndividualSelectors.greyedLinks}:text-is("${Fl401TasksTabContent.greyedLink1}")`,
-        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,

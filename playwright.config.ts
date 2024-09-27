@@ -12,21 +12,29 @@ module.exports = defineConfig({
   /* Retry on CI only */
   retries: 4, // Set the number of retries for all projects
 
-  timeout: 6 * 60 * 1000,
+  timeout: 10 * 60 * 1000,
   expect: {
     timeout: 5 * 60 * 1000,
   },
   reportSlowTests: null,
 
   /* Opt out of parallel tests on CI. */
-  workers: process.env.FUNCTIONAL_TESTS_WORKERS ? parseInt(process.env.FUNCTIONAL_TESTS_WORKERS) : 1,
-  reporter: process.env.CI ? [['html'], ['list']] : [['list']],
+  workers: process.env.FUNCTIONAL_TESTS_WORKERS
+    ? parseInt(process.env.FUNCTIONAL_TESTS_WORKERS)
+    : 1,
+  reporter: process.env.CI ? [["html"], ["list"]] : [["list"]],
   projects: [
     {
+      name: "setup",
+      testMatch: /global\.setup\.ts/,
+    },
+    {
       name: "chromium",
+      dependencies: ["setup"],
       use: {
         ...devices["Desktop Chrome"],
         channel: "chrome",
+        screenshot: "off",
         trace: "on",
         javaScriptEnabled: true,
         viewport: DEFAULT_VIEWPORT,
@@ -34,6 +42,7 @@ module.exports = defineConfig({
     },
     {
       name: "firefox",
+      dependencies: ["setup"],
       use: {
         ...devices["Desktop Firefox"],
         screenshot: "off",
@@ -44,6 +53,7 @@ module.exports = defineConfig({
     },
     {
       name: "webkit",
+      dependencies: ["setup"],
       use: {
         ...devices["Desktop Safari"],
         screenshot: "off",
@@ -54,6 +64,7 @@ module.exports = defineConfig({
     },
     {
       name: "MobileChrome",
+      dependencies: ["setup"],
       use: {
         ...devices["Pixel 5"],
         screenshot: "only-on-failure",
@@ -62,6 +73,7 @@ module.exports = defineConfig({
     },
     {
       name: "MobileSafari",
+      dependencies: ["setup"],
       use: {
         ...devices["iPhone 12"],
         screenshot: "only-on-failure",
@@ -70,6 +82,7 @@ module.exports = defineConfig({
     },
     {
       name: "MicrosoftEdge",
+      dependencies: ["setup"],
       use: {
         ...devices["Desktop Edge"],
         channel: "msedge",

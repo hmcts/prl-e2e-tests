@@ -27,14 +27,23 @@ export type c100SolicitorEvents =
   | "Type of application"
   | "Hearing urgency"
   | "Applicant details"
-  | "Child details";
+  | "Child details"
+  | "Other people in the case"
+  | "Other children not in the case"
+  | "Children and applicants"
+  | "Children and respondents";
 
 export type fl401SolicitorEvents =
   | "Case name"
   | "Type of application"
+  | "Without notice order"
   | "Applicant details"
   | "Respondent details"
-  | "Without notice order"
-  | "Applicant's family";
+  | "Respondent's behaviour"
+  | "Applicant's family"
+  | "Relationship to respondent"
+  | "Attending the hearing"
+  | "The home"
+  | "Upload documents";
 
 export type ApplicantGender = "female" | "male" | "other";

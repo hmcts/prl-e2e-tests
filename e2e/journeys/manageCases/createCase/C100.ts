@@ -12,9 +12,15 @@ import {
   C100RespondentGender,
   C100RespondentLegalRepresentation,
 } from "../../../pages/manageCases/createCase/C100/respondentDetails/respondentDetails1Page";
+import { C100OtherPeopleInTheCase } from "./C100OtherPeopleInTheCase/C100OtherPeopleInTheCase";
+import { C100ChildDetails } from "./C100ChildDetails/c100ChildDetails";
 import { C100ChildGender } from "../../../pages/manageCases/createCase/C100/childDetails/childDetailsRevised1Page";
 import { yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions } from "../../../pages/manageCases/createCase/C100/childDetails/childDetailsRevised2Page";
-import { C100ChildDetails } from "./C100ChildDetails/c100ChildDetails";
+import { C100OtherChildrenNotInTheCase } from "./C100OtherChildrenNotInTheCase/C100OtherChildrenNotInTheCase";
+import { C100OtherChildGender } from "../../../pages/manageCases/createCase/C100/otherChildrenNotInTheCase/otherChildNotInTheCase1Page";
+import { C100ChildrenAndApplicantsRelationship } from "../../../pages/manageCases/createCase/C100/childrenAndApplicants/childrenAndApplicants1Page";
+import { C100ChildrenAndApplicants } from "./C100ChildrenAndApplicants/C100ChildrenAndApplicants";
+import { C100ChildAndRespondents } from "./C100ChildrenAndRespondents/c100ChildrenAndRespondents";
 
 interface c100Options {
   page: Page;
@@ -33,6 +39,13 @@ interface c100Options {
   respondentLegalRepresentation: C100RespondentLegalRepresentation;
   c100ChildGender: C100ChildGender;
   yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions: yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions;
+  yesNoOtherPeopleInTheCase: boolean;
+  otherChildPresent: boolean;
+  otherChildGender: C100OtherChildGender;
+  otherChildDOBKnown: boolean;
+  applicantChildRelationship: C100ChildrenAndApplicantsRelationship;
+  childLiveWithApplicant: boolean;
+  yesNoChildrenAndRespondents: boolean;
 }
 
 export class C100 {
@@ -44,6 +57,7 @@ export class C100 {
     yesNoHearingUrgency: yesNoHearingUrgency,
     yesNoApplicantDetails: yesNoApplicantDetails,
     applicantGender: applicantGender,
+    yesNoOtherPeopleInTheCase: yesNoOtherPeopleInTheCase,
     yesNoC100TypeOfApplication: yesNoC100TypeOfApplication,
     typeOfChildArrangementOrder: typeOfChildArrangementOrder,
     selectionC100TypeOfApplication: selectionC100TypeOfApplication,
@@ -51,9 +65,15 @@ export class C100 {
     respondentGender: respondentGender,
     respondentAddress5Years: respondentAddress5Years,
     respondentLegalRepresentation: respondentLegalRepresentation,
-    c100ChildGender: c100ChildGender,
+    c100ChildGender: C100ChildGender,
     yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions:
       yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,
+    otherChildPresent: otherChildPresent,
+    otherChildGender: otherChildGender,
+    otherChildDOBKnown: otherChildDOBKnown,
+    applicantChildRelationship: applicantChildRelationship,
+    childLiveWithApplicant: childLiveWithApplicant,
+    yesNoChildrenAndRespondents: yesNoChildrenAndRespondents,
   }: c100Options): Promise<void> {
     await SolicitorCreateInitial.createInitialCase({
       page: page,
@@ -99,13 +119,54 @@ export class C100 {
       respondentLegalRepresentation: respondentLegalRepresentation,
       subJourney: false,
     });
+    await C100OtherPeopleInTheCase.c100OtherPeopleInTheCase({
+      page: page,
+      user: user,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      yesNoOtherPeopleInTheCase: yesNoOtherPeopleInTheCase,
+      applicantGender: applicantGender,
+      subJourney: false,
+    });
     await C100ChildDetails.c100ChildDetails({
       page: page,
       user: user,
       accessibilityTest: accessibilityTest,
-      c100ChildGender: c100ChildGender,
+      c100ChildGender: C100ChildGender,
       yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions:
         yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,
+      subJourney: false,
+    });
+    await C100OtherChildrenNotInTheCase.c100OtherChildrenNotInTheCase({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      otherChildPresent: otherChildPresent,
+      otherChildGender: otherChildGender,
+      otherChildDOBKnown: otherChildDOBKnown,
+      subJourney: false,
+    });
+    await C100ChildrenAndApplicants.c100ChildrenAndApplicants({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      applicantChildRelationship: applicantChildRelationship,
+      childLiveWithApplicant: childLiveWithApplicant,
+      subJourney: false,
+    });
+    await C100ChildAndRespondents.c100ChildrenAndRespondents({
+      page: page,
+      user: user,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      yesNoRespondentDetails: yesNoRespondentDetails,
+      respondentGender: respondentGender,
+      respondentAddress5Years: respondentAddress5Years,
+      respondentLegalRepresentation: respondentLegalRepresentation,
+      c100ChildGender: C100ChildGender,
+      yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions:
+        yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,
+      yesNoChildrenAndRespondents: yesNoChildrenAndRespondents,
       subJourney: false,
     });
   }
