@@ -17,7 +17,6 @@ export class ChildrenAndOtherPeopleSubmitPage {
       accessibilityTest,
       yesNoChildrenAndOtherPeople,
     );
-    console.log("stop");
     await this.continue(page);
   }
 
