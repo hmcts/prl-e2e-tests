@@ -1,9 +1,8 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
-import {
-  MiamPolicyUpgrade6Content
-} from "../../../../../fixtures/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade6Content";
+import { MiamPolicyUpgrade6Content } from "../../../../../fixtures/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade6Content";
 import { Helpers } from "../../../../../common/helpers";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 
 interface MiamPolicyUpgrade6PageOptions {
   page: Page;
@@ -28,18 +27,20 @@ enum UniqueSelectors {
   fileUpload = "#mpuDocFromDisputeResolutionProvider",
   initiatedMIAMBeforeProceedings = "#mpuPreviousMiamAttendanceReason-miamPolicyUpgradePreviousAttendance_Value_2",
   aMiamCertificate = "#mpuTypeOfPreviousMiamAttendanceEvidence-miamCertificate",
-  MiamAttendenceDetails = "#mpuTypeOfPreviousMiamAttendanceEvidence-miamAttendanceDetails"
-
+  MiamAttendenceDetails = "#mpuTypeOfPreviousMiamAttendanceEvidence-miamAttendanceDetails",
 }
 
-export type miamSelection = "attended4MonthsPrior" | "initiatedMIAMBeforeProceedings_MIAMCertificate" | "initiatedMIAMBeforeProceedings_MIAMDetails"
+export type miamSelection =
+  | "attended4MonthsPrior"
+  | "initiatedMIAMBeforeProceedings_MIAMCertificate"
+  | "initiatedMIAMBeforeProceedings_MIAMDetails";
 
 export class MiamPolicyUpgrade6Page {
   public static async miamPolicyUpgrade1Page({
     page: page,
     accessibilityTest: accessibilityTest,
     yesNoMiamPolicyUpgrade: yesNoMiamPolicyUpgrade,
-                                               miamSelection: miamSelection
+    miamSelection: miamSelection,
   }: MiamPolicyUpgrade6PageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
@@ -55,7 +56,9 @@ export class MiamPolicyUpgrade6Page {
     page: page,
     accessibilityTest: accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
-    await page.waitForSelector(`${Selectors.h2}:text-is("${MiamPolicyUpgrade6Content.h2}")`);
+    await page.waitForSelector(
+      `${Selectors.h2}:text-is("${MiamPolicyUpgrade6Content.h2}")`,
+    );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
@@ -80,23 +83,20 @@ export class MiamPolicyUpgrade6Page {
         `${Selectors.GovukFormLabel}`,
       ),
     ]);
+    if (accessibilityTest) {
+      await AccessibilityTestHelper.run(page);
+    }
   }
 
   private static async fillInFields({
     page: page,
-    yesNoMiamPolicyUpgrade: yesNoMiamPolicyUpgrade,
-                                      miamSelection: miamSelection
-
+    miamSelection: miamSelection,
   }: fillInFieldsOptions): Promise<void> {
-
     switch (miamSelection) {
       case "attended4MonthsPrior":
         await page.click(`${UniqueSelectors.attended4MonthsPrior}`);
         await this.fileUploadContent(page);
         break;
-
-
-
 
       case "initiatedMIAMBeforeProceedings_MIAMCertificate":
         await page.click(`${UniqueSelectors.initiatedMIAMBeforeProceedings}`);
@@ -113,11 +113,6 @@ export class MiamPolicyUpgrade6Page {
           `${Selectors.GovukFormLabel}:text-is("${MiamPolicyUpgrade6Content.formLabelEvidenceUploadMiam}")`,
           1,
         );
-
-
-
-
-
 
         break;
       case "initiatedMIAMBeforeProceedings_MIAMDetails":
@@ -142,14 +137,11 @@ export class MiamPolicyUpgrade6Page {
             1,
           ),
         ]);
-        // await page.fill();
-
-
+      // await page.fill();
     }
     await page.click(
       `${Selectors.button}:text-is("${MiamPolicyUpgrade6Content.continue}")`,
     );
-
   }
 
   private static async fileUploadContent(page: Page): Promise<void> {
@@ -166,6 +158,4 @@ export class MiamPolicyUpgrade6Page {
       ),
     ]);
   }
-
-
 }

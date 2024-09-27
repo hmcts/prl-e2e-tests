@@ -1,5 +1,3 @@
-import { MiamPolicyUpgrade6Content } from "../C100/miamPolicyUpgrade/miamPolicyUpgrade6Content";
-
 export enum MiamPolicyUpgrade6ContentSolicitorCreate4Content {
   pageTitle = "Solicitor application",
   p1 = "If the applicant has applied for Help with Fees, you should email or post this application to the court instead.",
