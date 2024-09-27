@@ -11,8 +11,10 @@ import { FL401RespondentsBehaviour } from "./FL401RespondentsBehaviour/FL401Resp
 import { FL401RelationshipToRespondent } from "./FL401RelationshipToRespondent/FL401RelationshipToRespondent";
 import { fl401RelationshipToRespondent } from "../../../pages/manageCases/createCase/FL401/relationshipToRespondent/relationshipToRespondent1Page";
 import { fl401RespondentRelationshipOther } from "../../../pages/manageCases/createCase/FL401/relationshipToRespondent/relationshipToRespondent2Page";
+import { FL401WelshLanguageRequirements } from "./FL401WelshLanguageRequirements/FL401WelshLanguageRequirements";
 import { bailConditionRadios } from "../../../pages/manageCases/createCase/FL401/withoutNoticeOrder/withoutNoticeOrder3Page";
 import { Fl401AttendingTheHearing } from "./FL401AttendingTheHearing/fl401AttendingTheHearing";
+import { FL401UploadDocuments } from "./FL401UploadDocuments/FL401UploadDocuments";
 import { FL401TheHome } from "./FL401TheHome/fl401TheHome";
 import { addressRadios } from "../../../pages/manageCases/createCase/FL401/theHome/fl401TheHome1Page";
 import { Fl401StatementOfTruth } from "./FL401StatementOfTruth/fl401StatementOfTruth";
@@ -38,6 +40,8 @@ interface fl401Options {
   fl401TheHomeYesNo: boolean;
   fl401EverLivedAtAddress: addressRadios;
   fl401IntendToLiveAtAddress?: addressRadios;
+  welshLanguageRequirementsAllOptionsYes: boolean;
+  welshLanguageRequirementsSelectWelsh?: boolean;
   fl401YesNoToEverything: boolean;
 }
 
@@ -61,6 +65,8 @@ export class FL401 {
     fl401TheHomeYesNo,
     fl401EverLivedAtAddress,
     fl401IntendToLiveAtAddress,
+    welshLanguageRequirementsAllOptionsYes,
+    welshLanguageRequirementsSelectWelsh,
     fl401YesNoToEverything,
   }: fl401Options): Promise<void> {
     await SolicitorCreateInitial.createInitialCase({
@@ -144,11 +150,20 @@ export class FL401 {
       fl401AttendingTheHearingYesNo: fl401AttendingTheHearingYesNo,
       subJourney: false,
     });
-    await Fl401StatementOfTruth.fl401StatementOfTruth({
+    await FL401WelshLanguageRequirements.fl401WelshLanguageRequirements({
       page: page,
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
-      fl401YesNoToEverything: fl401YesNoToEverything,
+      welshLanguageRequirementsAllOptionsYes:
+        welshLanguageRequirementsAllOptionsYes,
+      welshLanguageRequirementsSelectWelsh:
+        welshLanguageRequirementsSelectWelsh,
+      subJourney: false,
+    });
+    await FL401UploadDocuments.fl401UploadDocuments({
+      page,
+      accessibilityTest,
+      errorMessaging,
       subJourney: false,
     });
   }
