@@ -105,14 +105,19 @@ export class StatementOfTruthSummaryPage {
       await Promise.all([
         Helpers.checkGroup(
           page,
-          3,
+          2,
           StatementOfTruthSummaryContent,
           "proceedingHeader",
-          `${uniqueSelectors.proceedingsHeader}${Selectors.GovukText16}`,
+          `${Selectors.GovukText16}`,
         ),
         Helpers.checkVisibleAndPresent(
           page,
           `${uniqueSelectors.dtElements}${Selectors.GovukText16}:text-is("${StatementOfTruthSummaryContent.dtProceeding}")`,
+          1,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${uniqueSelectors.proceedingsHeader}${Selectors.GovukText16}:text-is("${StatementOfTruthSummaryContent.numberHeader}")`,
           1,
         ),
       ]);

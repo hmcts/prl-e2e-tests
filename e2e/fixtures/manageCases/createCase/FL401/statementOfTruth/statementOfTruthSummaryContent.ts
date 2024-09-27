@@ -40,6 +40,6 @@ export enum StatementOfTruthSummaryContent {
   otherProceedings = " Other proceeding",
   dtProceeding = "Other proceeding 1",
   proceedingHeader1 = "Type",
-  proceedingHeader2 = "Case number",
-  proceedingHeader3 = "Court",
+  proceedingHeader2 = "Court",
+  numberHeader = "Case number",
 }

@@ -31,6 +31,7 @@ export class Fl401StatementOfTruth {
     fl401YesNoToEverything,
     subJourney,
   }: Fl401StatementOfTruthOptions): Promise<void> {
+    const otherProceedingsRadioSelection = (fl401YesNoToEverything) ? 'Yes' : 'No'
     if (subJourney) {
       await SolicitorCreateInitial.createInitialCase({
         page: page,
@@ -96,6 +97,13 @@ export class Fl401StatementOfTruth {
         fl401TheHomeYesNo: fl401YesNoToEverything,
         fl401EverLivedAtAddress: "No",
         fl401IntendToLiveAtAddress: "No",
+        subJourney: false,
+      });
+      await FL401OtherProceedings.fl401OtherProceedings({
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
+        otherProceedingsRadios: otherProceedingsRadioSelection,
         subJourney: false,
       });
     }

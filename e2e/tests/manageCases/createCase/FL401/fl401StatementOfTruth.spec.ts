@@ -21,8 +21,22 @@ test.describe("FL401 Statement of truth tests @manageCases", (): void => {
 
   test(`Test the FL401 statement of truth journey with following options:
   Not accessibility testing,
+  Not error messaging, 
+  No to everything before,
+  @crossbrowserManageCases`, async ({ page }): Promise<void> => {
+    await Fl401StatementOfTruth.fl401StatementOfTruth({
+      page: page,
+      accessibilityTest: false,
+      errorMessaging: false,
+      fl401YesNoToEverything: false,
+      subJourney: true,
+    });
+  });
+
+  test(`Test the FL401 statement of truth journey with following options:
+  Not accessibility testing,
   Yes error messaging, 
-  No to everythign before,
+  No to everything before,
   @crossbrowserManageCases`, async ({ page }): Promise<void> => {
     await Fl401StatementOfTruth.fl401StatementOfTruth({
       page: page,
