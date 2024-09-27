@@ -38,6 +38,7 @@ interface fl401Options {
   fl401TheHomeYesNo: boolean;
   fl401EverLivedAtAddress: addressRadios;
   fl401IntendToLiveAtAddress?: addressRadios;
+  fl401YesNoToEverything: boolean;
 }
 
 export class FL401 {
@@ -60,6 +61,7 @@ export class FL401 {
     fl401TheHomeYesNo,
     fl401EverLivedAtAddress,
     fl401IntendToLiveAtAddress,
+    fl401YesNoToEverything
   }: fl401Options): Promise<void> {
     await SolicitorCreateInitial.createInitialCase({
       page: page,
@@ -146,6 +148,7 @@ export class FL401 {
       page: page,
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
+      fl401YesNoToEverything: fl401YesNoToEverything,
       subJourney: false
     });
   }

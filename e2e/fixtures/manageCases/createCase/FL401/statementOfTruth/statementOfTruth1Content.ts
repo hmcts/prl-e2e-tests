@@ -21,7 +21,7 @@ export enum StatementOfTruth1Content {
   errorMessage4 = " Name of your firm is required ",
   errorMessage5 = " If signing on behalf of firm or company give position or office held is required ",
   invalidDateErrorValidation = ' Date is not valid ',
-  invalidDateErrorMessage = ' Date is not valid ',
+  invalidDateErrorMessage = ' The data entered is not valid for Date ',
   day = '1',
   month = '6',
   year = '2024',

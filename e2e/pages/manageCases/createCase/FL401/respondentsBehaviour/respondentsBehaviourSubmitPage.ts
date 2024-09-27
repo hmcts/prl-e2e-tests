@@ -64,7 +64,7 @@ export class RespondentsBehaviourSubmitPage {
         17,
         SubmitContent,
         "formLabel",
-        `${Selectors.GovukFormLabel}`,
+        `${Selectors.GovukText16}`,
       ),
       Helpers.checkVisibleAndPresent(
         page,

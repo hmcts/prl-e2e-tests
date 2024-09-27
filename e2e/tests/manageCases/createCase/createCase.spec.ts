@@ -85,8 +85,8 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Saying yes to all Respondent details questions,
   Saying yes to all Type of application questions,
   Saying yes to applicant details questions,
-  Saying yes to all Without Notice Order questions @crossbrowserManageCases,
-  Saying yes to all Without Notice Order questions, 
+  Saying yes to all Without Notice Order questions,
+  Saying yes to all Without Notice Order questions,
   Relationship is 'Formerly lived together as a couple'
   Saying yes to all 'The Home' Questions,
   'Yes, both of them' ever lived at the address 
@@ -110,6 +110,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       fl401TheHomeYesNo: true,
       fl401EverLivedAtAddress: "yesBothOfThem",
       fl401AttendingTheHearingYesNo: true,
+      fl401YesNoToEverything: true
     });
   });
 
@@ -149,6 +150,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       fl401TheHomeYesNo: true,
       fl401EverLivedAtAddress: "yesApplicant",
       fl401AttendingTheHearingYesNo: true,
+      fl401YesNoToEverything: true
     });
   });
 
@@ -187,6 +189,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       fl401EverLivedAtAddress: "No",
       fl401IntendToLiveAtAddress: "No",
       fl401AttendingTheHearingYesNo: false,
+      fl401YesNoToEverything: false
     });
   });
 });

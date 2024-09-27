@@ -19,11 +19,15 @@ import {
 import {
   StatementOfTruth3Page
 } from "../../../../pages/manageCases/createCase/FL401/statementOfTruth/statementOfTruth3Page";
+import {
+  StatementOfTruthSummaryPage
+} from "../../../../pages/manageCases/createCase/FL401/statementOfTruth/statementOfTruthSummaryPage";
 
 interface Fl401StatementOfTruthOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
+  fl401YesNoToEverything: boolean;
   subJourney: boolean
 }
 
@@ -32,6 +36,7 @@ export class Fl401StatementOfTruth {
     page,
     accessibilityTest,
     errorMessaging,
+    fl401YesNoToEverything,
     subJourney
   }: Fl401StatementOfTruthOptions): Promise<void> {
     if (subJourney) {
@@ -46,22 +51,22 @@ export class Fl401StatementOfTruth {
         page: page,
         accessibilityTest: false,
         errorMessaging: false,
-        isLinkedToC100: false,
+        isLinkedToC100: fl401YesNoToEverything,
         subJourney: false,
       });
       await FL401WithoutNoticeOrder.fl401WithoutNoticeOrder({
         page: page,
         accessibilityTest: false,
         errorMessaging: false,
-        isWithoutNoticeDetailsYes: false,
-        isWithoutNoticeDetailsBailConditions: 'No',
+        isWithoutNoticeDetailsYes: fl401YesNoToEverything,
+        isWithoutNoticeDetailsBailConditions: 'Yes',
         subJourney: false,
       });
       await FL401ApplicantDetails.fl401ApplicantDetails({
         page: page,
         accessibilityTest: false,
         errorMessaging: false,
-        yesNoFL401ApplicantDetails: false,
+        yesNoFL401ApplicantDetails: fl401YesNoToEverything,
         applicantGender: 'female',
         subJourney: false,
       });
@@ -69,14 +74,14 @@ export class Fl401StatementOfTruth {
         page: page,
         accessibilityTest: false,
         errorMessaging: false,
-        respondentDetailsAllOptionsYes: false,
+        respondentDetailsAllOptionsYes: fl401YesNoToEverything,
         subJourney: false,
       });
       await FL401ApplicantsFamily.fl401ApplicantsFamily({
         page: page,
         accessibilityTest: false,
         errorMessaging: false,
-        applicantHasChildren: false,
+        applicantHasChildren: fl401YesNoToEverything,
         subJourney: false,
       });
       await FL401RelationshipToRespondent.fl401RelationshipToRespondent({
@@ -96,7 +101,7 @@ export class Fl401StatementOfTruth {
         page: page,
         accessibilityTest: false,
         applicantHasChildren: false,
-        fl401TheHomeYesNo: true,
+        fl401TheHomeYesNo: fl401YesNoToEverything,
         fl401EverLivedAtAddress: 'No',
         fl401IntendToLiveAtAddress: 'No',
         subJourney: false,
@@ -120,6 +125,11 @@ export class Fl401StatementOfTruth {
       page: page,
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging
+    });
+    await StatementOfTruthSummaryPage.statementOfTruthSummaryPage({
+      page,
+      accessibilityTest,
+      fl401YesNoToEverything
     })
   }
 }
