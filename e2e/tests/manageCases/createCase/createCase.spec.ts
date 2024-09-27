@@ -124,6 +124,8 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       fl401TheHomeYesNo: true,
       fl401EverLivedAtAddress: "yesBothOfThem",
       fl401AttendingTheHearingYesNo: true,
+      welshLanguageRequirementsAllOptionsYes: true,
+      welshLanguageRequirementsSelectWelsh: false,
     });
   });
 
@@ -165,6 +167,8 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       fl401TheHomeYesNo: true,
       fl401EverLivedAtAddress: "yesApplicant",
       fl401AttendingTheHearingYesNo: true,
+      welshLanguageRequirementsAllOptionsYes: true,
+      welshLanguageRequirementsSelectWelsh: false,
     });
   });
 
@@ -207,6 +211,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       fl401EverLivedAtAddress: "No",
       fl401IntendToLiveAtAddress: "No",
       fl401AttendingTheHearingYesNo: false,
+      welshLanguageRequirementsAllOptionsYes: false,
     });
   });
 });

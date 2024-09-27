@@ -44,6 +44,7 @@ export type fl401SolicitorEvents =
   | "Relationship to respondent"
   | "Attending the hearing"
   | "The home"
-  | "Upload documents";
+  | "Upload documents"
+  | "Welsh language requirements";
 
 export type ApplicantGender = "female" | "male" | "other";
