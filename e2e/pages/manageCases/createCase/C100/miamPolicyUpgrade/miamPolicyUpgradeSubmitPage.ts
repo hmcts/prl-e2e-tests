@@ -86,18 +86,22 @@ export class MiamPolicyUpgradeSubmitPage {
         break;
 
       case "yesAttendedMiam":
-
         break;
 
       case "yesExemption":
-        if (yesNoMiamPolicyUpgrade && miamSelection === "attended4MonthsPrior" ) {
-
-        } else if (yesNoMiamPolicyUpgrade && miamSelection === "initiatedMIAMBeforeProceedings_MIAMCertificate" ) {
-
-        } else if (miamSelection === "initiatedMIAMBeforeProceedings_MIAMDetails") {
-
+        if (
+          yesNoMiamPolicyUpgrade &&
+          miamSelection === "attended4MonthsPrior"
+        ) {
+        } else if (
+          yesNoMiamPolicyUpgrade &&
+          miamSelection === "initiatedMIAMBeforeProceedings_MIAMCertificate"
+        ) {
+        } else if (
+          miamSelection === "initiatedMIAMBeforeProceedings_MIAMDetails"
+        ) {
         } else {
-          console.log("Need to select at least one miamSelection option")
+          console.log("Need to select at least one miamSelection option");
         }
         break;
     }
@@ -115,18 +119,22 @@ export class MiamPolicyUpgradeSubmitPage {
         break;
 
       case "yesAttendedMiam":
-
         break;
 
       case "yesExemption":
-        if (yesNoMiamPolicyUpgrade && miamSelection === "attended4MonthsPrior" ) {
-
-        } else if (yesNoMiamPolicyUpgrade && miamSelection === "initiatedMIAMBeforeProceedings_MIAMCertificate" ) {
-
-        } else if (miamSelection === "initiatedMIAMBeforeProceedings_MIAMDetails") {
-
+        if (
+          yesNoMiamPolicyUpgrade &&
+          miamSelection === "attended4MonthsPrior"
+        ) {
+        } else if (
+          yesNoMiamPolicyUpgrade &&
+          miamSelection === "initiatedMIAMBeforeProceedings_MIAMCertificate"
+        ) {
+        } else if (
+          miamSelection === "initiatedMIAMBeforeProceedings_MIAMDetails"
+        ) {
         } else {
-          console.log("Need to select at least one miamSelection option")
+          console.log("Need to select at least one miamSelection option");
         }
         break;
     }
