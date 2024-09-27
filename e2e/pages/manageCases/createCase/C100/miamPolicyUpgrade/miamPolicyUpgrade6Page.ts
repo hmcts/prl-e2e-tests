@@ -95,8 +95,6 @@ export class MiamPolicyUpgrade6Page {
     }
   }
 
-
-
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(`${UniqueSelectors.attended4MonthsPrior}`);
     await this.fileUploadContent(page);
