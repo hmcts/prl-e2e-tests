@@ -25,8 +25,8 @@ enum UniqueSelectors {
   subjectOfChildProtection = "#mpuChildProtectionConcernReason-mpuChildProtectionConcern_value_2",
 }
 
-export class MiamPolicyUpgrade1Page {
-  public static async miamPolicyUpgrade1Page({
+export class MiamPolicyUpgrade4Page {
+  public static async miamPolicyUpgrade4Page({
     page: page,
     accessibilityTest: accessibilityTest,
     yesNoMiamPolicyUpgrade: yesNoMiamPolicyUpgrade,

@@ -118,6 +118,11 @@ export class MiamPolicyUpgrade3Page {
     const fileInput = page.locator(`${UniqueSelectors.uploadFileInput}`);
     await fileInput.setInputFiles(config.testOdtFile);
     await page.waitForTimeout(5000);
+    await Helpers.checkVisibleAndPresent(
+      page,
+      `${Selectors.GovukErrorMessage}:text-is("${MiamPolicyUpgrade3Content.errorMessageFileUpload}")`,
+      1,
+    );
   }
 
   private static async fillInFields({

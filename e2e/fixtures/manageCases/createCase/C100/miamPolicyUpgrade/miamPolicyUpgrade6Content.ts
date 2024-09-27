@@ -16,6 +16,7 @@ export enum MiamPolicyUpgrade6Content {
   formLabelEvidenceUploadMiam = "*Upload the MIAM certificate signed by the mediator. (Optional)",
   formLabelEvidenceProvideMediator = "*Provide the mediator details (Optional)",
   formHintEvidence = "Provide the date of the MIAM, as well as the name and contact details of the MIAM provider",
-
+  loremIpsum = "loremIpsum",
+  errorMessageUpload = "Error Uploading File",
   continue = "Continue",
 }

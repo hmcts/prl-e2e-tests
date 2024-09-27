@@ -7,5 +7,9 @@ export enum MiamPolicyUpgrade8Content {
   formLabel2 = "*Family Mediation Service Name (Optional)",
   formLabel3 = "*Sole Trader Name (Optional)",
   formLabel4 = "*MIAM certificate (Optional)",
+  mediatorRegistrationNumber = "0123456789",
+  familyMediationServiceNumber = "0123456789",
+  soleTraderName = "SoleTraderFirstName SoleTraderLastName",
+  errorMessageUpload = "Error Uploading File",
   continue = "Continue",
 }

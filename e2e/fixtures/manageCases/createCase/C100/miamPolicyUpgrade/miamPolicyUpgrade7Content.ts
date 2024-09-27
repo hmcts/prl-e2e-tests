@@ -1,5 +1,5 @@
 export enum MiamPolicyUpgrade7Content {
-  pageTitle = "",
+  pageTitle = "MIAM",
   h2 = "MIAM exemption",
   p = "You can save and return to this page at any time. Questions marked with a * need to be completed before you can send your application.",
   formLabel1 = "What other grounds of exemption apply? (Optional)",
@@ -10,7 +10,7 @@ export enum MiamPolicyUpgrade7Content {
   formLabel6 = "(i) The prospective applicant is not able to attend a MIAM online or by video-link; and (ii) there is no authorised family mediator with an office within 15 miles of the prospective applicant’s home.",
   formLabel7 = "The prospective applicant cannot attend a MIAM because the prospective applicant is (i) in prison or any other institution in which the prospective applicant is required to be detained and facilities cannot be made available for them to attend a MIAM online or by video link; or (ii) subject to conditions of bail that prevent contact with the other person; or (iii) subject to a licence with a prohibited contact requirement in relation to the other person.",
   AdditionalFormLabel = "*Explain why the applicant is unable to attend MIAM (Optional)",
-
+  loremIpsum = "loremIpsum",
   formHint = "*Select one",
   additionalFormHint = "Include the names, addresses, telephone numbers or e-mail addresses for the authorised family mediators and when they were contacted.",
   continue = "Continue",
