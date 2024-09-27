@@ -62,6 +62,6 @@ test(`Complete the C100 Create case Children and Other people as a solicitor wit
     c100ChildGender: "male",
     yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions: "yes",
     yesNoChildrenAndOtherPeople: true,
-    subJourney: false,
+    subJourney: true,
   });
 });
