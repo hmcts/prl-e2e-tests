@@ -1,0 +1,28 @@
+export enum ChildrenAndOtherPeopleSubmitContent {
+  pageTitle = "Children and other people",
+  h2 = "Check your answers",
+  text1611 = "Check the information below carefully.",
+  text1612 = "Other party",
+  text1613 = "Other party 1",
+  text1614 = "Full name:",
+  text1615 = "Child's name:",
+  text1616 = "What is their relationship to the child?",
+  text1617 = "Does the child live with this person?",
+  text1618 = "Do you need to keep the identify of the person that the child live with confidential?",
+
+  text1621 = "Check the information below carefully.",
+  text1622 = "Other party",
+  text1623 = "Other party 1",
+  text1624 = "Full name:",
+  text1625 = "Child's name:",
+  text1626 = "What is their relationship to the child?",
+  text1627 = "Give details",
+  text1628 = "Does the child live with this person?",
+
+  text16Change = "Change",
+  father = "Father",
+  other = "Other",
+  text16Yes = "Yes",
+  text16No = "No",
+  continue = "Save and continue",
+}
