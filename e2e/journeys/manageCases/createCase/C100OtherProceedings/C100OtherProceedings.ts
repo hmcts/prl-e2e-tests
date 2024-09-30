@@ -33,7 +33,7 @@ export class C100OtherProceedings {
       page,
       'Other Proceedings'
     );
-    await OtherProceedings1Page.c100OtherProceedinsg1Page({
+    await OtherProceedings1Page.otherProceedings1Page({
       page: page,
       accessibilityTest: accessibilityTest,
       c100OtherProceedings: c100OtherProceedings
