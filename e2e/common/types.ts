@@ -31,7 +31,8 @@ export type c100SolicitorEvents =
   | "Other people in the case"
   | "Other children not in the case"
   | "Children and applicants"
-  | "Children and respondents";
+  | "Children and respondents"
+  | "Other Proceedings";
 
 export type fl401SolicitorEvents =
   | "Case name"
@@ -48,3 +49,5 @@ export type fl401SolicitorEvents =
   | "Welsh language requirements";
 
 export type ApplicantGender = "female" | "male" | "other";
+
+export type otherProceedingsRadios = "Yes" | "No" | "Don't know";
