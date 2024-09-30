@@ -2,7 +2,7 @@ export enum OtherProceedingsContent {
   pageTitle = "Other proceedings",
   p1 = "You can save and return to this page at any time. Questions marked with a * need to be completed before you can send your application.",
   otherProceedingsHeader = ' Other proceedings ',
-  formLabel1 = "*Are there previous or ongoing proceedings for the child(ren)? (Optional)",
+  formLabel1 = "Are there previous or ongoing proceedings for the child(ren)? (Optional)",
   formLabel2 = "Yes",
   formLabel3 = "No",
   formLabel4 = "Don't know",

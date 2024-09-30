@@ -10,6 +10,7 @@ interface C100OtherProceedingsOptions {
   page: Page;
   accessibilityTest: boolean;
   c100OtherProceedings: otherProceedingsRadios;
+  c100OtherProceedingsOngoing?: boolean;
   subJourney: boolean
 }
 
@@ -18,6 +19,7 @@ export class C100OtherProceedings {
     page,
     accessibilityTest,
     c100OtherProceedings,
+    c100OtherProceedingsOngoing,
     subJourney
   }: C100OtherProceedingsOptions): Promise<void> {
     if (subJourney) {
@@ -36,7 +38,8 @@ export class C100OtherProceedings {
     await OtherProceedings1Page.otherProceedings1Page({
       page: page,
       accessibilityTest: accessibilityTest,
-      c100OtherProceedings: c100OtherProceedings
+      c100OtherProceedings: c100OtherProceedings,
+      c100OtherProceedingsOngoing: c100OtherProceedingsOngoing
     });
   }
 }

@@ -7,7 +7,6 @@ import {
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import Config from "../../../../../config";
-import * as assert from "node:assert";
 
 enum inputIDs {
   radioYes = '#previousOrOngoingProceedingsForChildren-yes',
@@ -142,9 +141,9 @@ export class OtherProceedings1Page {
       inputIDs[radioKey]
     );
     if (c100OtherProceedings === 'Yes') {
-      if (c100OtherProceedingsOngoing == null) {
+      if (typeof c100OtherProceedingsOngoing !== 'boolean') {
         throw new Error(
-          'c100OtherProceedings cannot be null if c100OtherProceedings is Yes'
+          'c100OtherProceedings must be boolean if c100OtherProceedings is Yes'
         )
       }
       await this.addNewProceeding({
@@ -189,6 +188,7 @@ export class OtherProceedings1Page {
       );
     }
     const textKeys = [
+      'caseNumber',
       'startDateDay',
       'startDateMonth',
       'startDateYear',

@@ -8,13 +8,61 @@ test.describe("C100 Create case other proceedings tests @manageCases", (): void 
   test(`Complete the C100 other proceedings event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
-  Saying yes to previous or ongoing proceedings for the child(ren)?, @crossbrowserManageCases`, async ({
+  Saying yes to previous or ongoing proceedings for the child(ren)?,
+  Ongoing Proceedings, @crossbrowserManageCases`, async ({
     page,
   }): Promise<void> => {
     await C100OtherProceedings.c100OtherProceedings({
       page: page,
       accessibilityTest: false,
       c100OtherProceedings: "Yes",
+      c100OtherProceedingsOngoing: true,
+      subJourney: true,
+    });
+  });
+
+  test(`Complete the C100 other proceedings event as a solicitor with the following options:
+  Not Accessibility testing,
+  Not Error message testing,
+  Saying yes to previous or ongoing proceedings for the child(ren)?,
+  Previous Proceedings, @crossbrowserManageCases`, async ({
+    page,
+  }): Promise<void> => {
+    await C100OtherProceedings.c100OtherProceedings({
+      page: page,
+      accessibilityTest: false,
+      c100OtherProceedings: "Yes",
+      c100OtherProceedingsOngoing: false,
+      subJourney: true,
+    });
+  });
+
+  test(`Complete the C100 other proceedings event as a solicitor with the following options:
+  Not Accessibility testing,
+  Not Error message testing,
+  Saying No to previous or ongoing proceedings for the child(ren)?,
+   @crossbrowserManageCases`, async ({
+     page,
+   }): Promise<void> => {
+    await C100OtherProceedings.c100OtherProceedings({
+      page: page,
+      accessibilityTest: false,
+      c100OtherProceedings: "No",
+      subJourney: true,
+    });
+  });
+
+  test(`Complete the C100 other proceedings event as a solicitor with the following options:
+  Not Accessibility testing,
+  Not Error message testing,
+  Saying Don't know to previous or ongoing proceedings for the child(ren)?,
+   @crossbrowserManageCases`, async ({
+     page,
+   }): Promise<void> => {
+    await C100OtherProceedings.c100OtherProceedings({
+      page: page,
+      accessibilityTest: false,
+      c100OtherProceedings: "Don't know",
       subJourney: true,
     });
   });
