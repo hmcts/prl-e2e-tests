@@ -18,6 +18,7 @@ import { C100ChildGender } from "../../../pages/manageCases/createCase/C100/chil
 import { yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions } from "../../../pages/manageCases/createCase/C100/childDetails/childDetailsRevised2Page";
 import { C100OtherChildrenNotInTheCase } from "./C100OtherChildrenNotInTheCase/C100OtherChildrenNotInTheCase";
 import { C100OtherChildGender } from "../../../pages/manageCases/createCase/C100/otherChildrenNotInTheCase/otherChildNotInTheCase1Page";
+import { C100ChildrenAndOtherPeople } from "./C100ChildrenAndOtherPeople/c100ChildrenAndOtherPeople";
 import { C100ChildrenAndApplicantsRelationship } from "../../../pages/manageCases/createCase/C100/childrenAndApplicants/childrenAndApplicants1Page";
 import { C100ChildrenAndApplicants } from "./C100ChildrenAndApplicants/C100ChildrenAndApplicants";
 import { C100ChildAndRespondents } from "./C100ChildrenAndRespondents/c100ChildrenAndRespondents";
@@ -43,9 +44,10 @@ interface c100Options {
   otherChildPresent: boolean;
   otherChildGender: C100OtherChildGender;
   otherChildDOBKnown: boolean;
+  yesNoChildrenAndRespondents: boolean;
+  yesNoChildrenAndOtherPeople: boolean;
   applicantChildRelationship: C100ChildrenAndApplicantsRelationship;
   childLiveWithApplicant: boolean;
-  yesNoChildrenAndRespondents: boolean;
 }
 
 export class C100 {
@@ -74,6 +76,7 @@ export class C100 {
     applicantChildRelationship: applicantChildRelationship,
     childLiveWithApplicant: childLiveWithApplicant,
     yesNoChildrenAndRespondents: yesNoChildrenAndRespondents,
+    yesNoChildrenAndOtherPeople: yesNoChildrenAndOtherPeople,
   }: c100Options): Promise<void> {
     await SolicitorCreateInitial.createInitialCase({
       page: page,
@@ -167,6 +170,19 @@ export class C100 {
       yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions:
         yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,
       yesNoChildrenAndRespondents: yesNoChildrenAndRespondents,
+      subJourney: false,
+    });
+    await C100ChildrenAndOtherPeople.c100ChildrenAndOtherPeople({
+      page: page,
+      user: user,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      c100ChildGender: C100ChildGender,
+      yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions:
+        yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,
+      yesNoOtherPeopleInTheCase,
+      applicantGender: applicantGender,
+      yesNoChildrenAndOtherPeople: yesNoChildrenAndOtherPeople,
       subJourney: false,
     });
   }
