@@ -6,9 +6,7 @@ import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelp
 import { MiamPolicyUpgradeSubmitContent } from "../../../../../fixtures/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgradeSubmitContent";
 import { Helpers } from "../../../../../common/helpers";
 
-import {
-  MiamPolicyUpgrade8Content
-} from "../../../../../fixtures/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade8Content";
+import { MiamPolicyUpgrade8Content } from "../../../../../fixtures/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade8Content";
 import path from "path";
 import config from "../../../../../config";
 
@@ -87,8 +85,9 @@ export class MiamPolicyUpgradeSubmitPage {
     yesNoMiamPolicyUpgrade: yesNoMiamPolicyUpgrade,
     miamSelection: miamSelection,
   }: checkFieldsOptions): Promise<void> {
-
-    await page.waitForSelector(`${Selectors.h2}:text-is("${MiamPolicyUpgradeSubmitContent.h2}")`);
+    await page.waitForSelector(
+      `${Selectors.h2}:text-is("${MiamPolicyUpgradeSubmitContent.h2}")`,
+    );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
@@ -105,13 +104,11 @@ export class MiamPolicyUpgradeSubmitPage {
     switch (C100MiamPolicyUpgrade1PageType) {
       case "yes":
         await Helpers.checkVisibleAndPresent(
-            page,
-            `${Selectors.GovukText16}:text-is("${MiamPolicyUpgradeSubmitContent.text16ChildrenInvolvedInEmergencyProtection}")`,
-            1,
-          );
+          page,
+          `${Selectors.GovukText16}:text-is("${MiamPolicyUpgradeSubmitContent.text16ChildrenInvolvedInEmergencyProtection}")`,
+          1,
+        );
         break;
-
-
 
       case "yesAttendedMiam":
         await Helpers.checkGroup(
@@ -119,12 +116,9 @@ export class MiamPolicyUpgradeSubmitPage {
           6,
           MiamPolicyUpgradeSubmitContent,
           "text16Attended",
-          `${Selectors.GovukText16}`
+          `${Selectors.GovukText16}`,
         );
         break;
-
-
-
 
       case "yesExemption":
         await Helpers.checkGroup(
@@ -132,7 +126,7 @@ export class MiamPolicyUpgradeSubmitPage {
           6,
           MiamPolicyUpgradeSubmitContent,
           "text16CoreExemption",
-          `${Selectors.GovukText16}`
+          `${Selectors.GovukText16}`,
         );
         if (
           yesNoMiamPolicyUpgrade &&
@@ -143,7 +137,7 @@ export class MiamPolicyUpgradeSubmitPage {
             6,
             MiamPolicyUpgradeSubmitContent,
             "text16Exemption",
-            `${Selectors.GovukText16}`
+            `${Selectors.GovukText16}`,
           );
         } else if (
           yesNoMiamPolicyUpgrade &&
@@ -154,7 +148,7 @@ export class MiamPolicyUpgradeSubmitPage {
             7,
             MiamPolicyUpgradeSubmitContent,
             "text161Exemption",
-            `${Selectors.GovukText16}`
+            `${Selectors.GovukText16}`,
           );
         } else if (
           miamSelection === "initiatedMIAMBeforeProceedings_MIAMDetails"
@@ -164,7 +158,7 @@ export class MiamPolicyUpgradeSubmitPage {
             8,
             MiamPolicyUpgradeSubmitContent,
             "text162Exemption",
-            `${Selectors.GovukText16}`
+            `${Selectors.GovukText16}`,
           );
         } else {
           console.log("Need to select at least one miamSelection option");
@@ -179,8 +173,6 @@ export class MiamPolicyUpgradeSubmitPage {
     yesNoMiamPolicyUpgrade: yesNoMiamPolicyUpgrade,
     miamSelection: miamSelection,
   }: checkFilledDataOptions): Promise<void> {
-
-
     switch (C100MiamPolicyUpgrade1PageType) {
       case "yes":
         await Helpers.checkVisibleAndPresent(
@@ -223,12 +215,6 @@ export class MiamPolicyUpgradeSubmitPage {
           ),
         ]);
         break;
-
-
-
-
-
-
 
       case "yesExemption":
         if (
