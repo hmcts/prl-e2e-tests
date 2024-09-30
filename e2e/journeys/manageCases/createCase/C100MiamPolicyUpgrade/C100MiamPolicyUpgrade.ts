@@ -31,14 +31,14 @@ interface c100MiamPolicyUpgradeOptions {
 
 export class C100MiamPolicyUpgrade {
   public static async c100MiamPolicyUpgrade({
-    page,
-    user,
-    accessibilityTest,
-    errorMessaging,
-    C100MiamPolicyUpgrade1PageType,
-    yesNoMiamPolicyUpgrade,
-    miamSelection,
-    subJourney,
+    page: page,
+    user: user,
+    accessibilityTest: accessibilityTest,
+    errorMessaging: errorMessaging,
+    C100MiamPolicyUpgrade1PageType: C100MiamPolicyUpgrade1PageType,
+    yesNoMiamPolicyUpgrade: yesNoMiamPolicyUpgrade,
+    miamSelection: miamSelection,
+    subJourney: subJourney,
   }: c100MiamPolicyUpgradeOptions): Promise<void> {
     if (subJourney) {
       await SolicitorCreateInitial.createInitialCase({
@@ -49,9 +49,7 @@ export class C100MiamPolicyUpgrade {
         errorMessaging: false,
       });
     }
-    console.log("stop");
     await Helpers.selectSolicitorEvent(page, "MIAM");
-    console.log("stop1");
     await MiamPolicyUpgrade1Page.miamPolicyUpgrade1Page({
       page: page,
       accessibilityTest: accessibilityTest,

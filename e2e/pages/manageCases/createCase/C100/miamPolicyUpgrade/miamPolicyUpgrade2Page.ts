@@ -23,7 +23,7 @@ enum UniqueSelectors {
   childProtectionConcerns = "#mpuExemptionReasons-mpuChildProtectionConcern",
   urgency = "#mpuExemptionReasons-mpuUrgency",
   previousAttendenceMian = "#mpuExemptionReasons-mpuPreviousMiamAttendance",
-  other = "#mpuExemptionReasons",
+  other = "#mpuExemptionReasons-mpuOther",
 }
 
 export class MiamPolicyUpgrade2Page {
@@ -72,7 +72,7 @@ export class MiamPolicyUpgrade2Page {
         page,
         5,
         MiamPolicyUpgrade2Content,
-        "FormLabel",
+        "formLabel",
         `${Selectors.GovukFormLabel}`,
       ),
     ]);

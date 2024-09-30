@@ -31,6 +31,7 @@ enum UniqueSelectors {
   initiatedMIAMBeforeProceedings = "#mpuPreviousMiamAttendanceReason-miamPolicyUpgradePreviousAttendance_Value_2",
   aMiamCertificate = "#mpuTypeOfPreviousMiamAttendanceEvidence-miamCertificate",
   MiamAttendenceDetails = "#mpuTypeOfPreviousMiamAttendanceEvidence-miamAttendanceDetails",
+  miamAttendanceDetailInput = "#mpuMediatorDetails",
 }
 
 export type miamSelection =
@@ -99,8 +100,8 @@ export class MiamPolicyUpgrade6Page {
     await page.click(`${UniqueSelectors.attended4MonthsPrior}`);
     await this.fileUploadContent(page);
     const fileInput1 = page.locator(`${UniqueSelectors.uploadFileInput1}`);
-    await fileInput1.setInputFiles(config.testPdfFile);
-    await page.waitForTimeout(5000);
+    await fileInput1.setInputFiles(config.testOdtFile);
+    await page.waitForTimeout(8000);
     await Helpers.checkVisibleAndPresent(
       page,
       `${Selectors.GovukErrorMessage}:text-is("${MiamPolicyUpgrade6Content.errorMessageUpload}")`,
@@ -163,7 +164,7 @@ export class MiamPolicyUpgrade6Page {
           ),
         ]);
         await page.fill(
-          `${UniqueSelectors.MiamAttendenceDetails}`,
+          `${UniqueSelectors.miamAttendanceDetailInput}`,
           MiamPolicyUpgrade6Content.loremIpsum,
         );
     }

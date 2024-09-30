@@ -44,7 +44,7 @@ export enum MiamPolicyUpgradeSubmitContent {
   text162Exemption8 = "*Explain why the applicant is unable to attend MIAM",
 
   text16Yes = "Yes",
-  text16No = "no",
+  text16No = "No",
   text16Change = "Change",
 
   continue = "Save and continue",

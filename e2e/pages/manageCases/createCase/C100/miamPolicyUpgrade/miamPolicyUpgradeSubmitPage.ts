@@ -202,12 +202,7 @@ export class MiamPolicyUpgradeSubmitPage {
           Helpers.checkVisibleAndPresent(
             page,
             `${Selectors.GovukText16}:text-is("${MiamPolicyUpgrade8Content.mediatorRegistrationNumber}")`,
-            1,
-          ),
-          Helpers.checkVisibleAndPresent(
-            page,
-            `${Selectors.GovukText16}:text-is("${MiamPolicyUpgrade8Content.familyMediationServiceNumber}")`,
-            1,
+            2,
           ),
           Helpers.checkVisibleAndPresent(
             page,
@@ -228,15 +223,15 @@ export class MiamPolicyUpgradeSubmitPage {
             page,
             5,
             MiamPolicyUpgrade2Content,
-            "FormLabel",
-            `${Selectors.GovukFormLabel}`,
+            "formLabel",
+            `${Selectors.GovukText16}`,
           ),
           Helpers.checkGroup(
             page,
             22,
             MiamPolicyUpgrade3Content,
             "formLabel",
-            `${Selectors.GovukFormLabel}`,
+            `${Selectors.GovukText16}`,
           ),
         ]);
         if (
@@ -347,8 +342,8 @@ export class MiamPolicyUpgradeSubmitPage {
             ),
             Helpers.checkVisibleAndPresent(
               page,
-              `${Selectors.GovukText16}:text-is("${MiamPolicyUpgrade7Content.loremIpsum}")`,
-              2,
+              `${Selectors.Span}:text-is("${MiamPolicyUpgrade7Content.loremIpsum}")`,
+              3,
             ),
             Helpers.checkVisibleAndPresent(
               page,
@@ -378,7 +373,7 @@ export class MiamPolicyUpgradeSubmitPage {
             Helpers.checkVisibleAndPresent(
               page,
               `${Selectors.GovukText16}:text-is("${MiamPolicyUpgradeSubmitContent.text16Change}")`,
-              13,
+              14,
             ),
           ]);
         } else {

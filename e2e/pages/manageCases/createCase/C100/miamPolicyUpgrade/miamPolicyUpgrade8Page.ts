@@ -66,7 +66,7 @@ export class MiamPolicyUpgrade8Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${MiamPolicyUpgrade8Content.p2}")`,
+        `${Selectors.strong}:text-is("${MiamPolicyUpgrade8Content.p2}")`,
         1,
       ),
       Helpers.checkGroup(

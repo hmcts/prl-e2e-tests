@@ -70,12 +70,12 @@ export class MiamPolicyUpgrade1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukFormLabel}:text-is("${MiamPolicyUpgrade1Content.formLabelYes}")`,
+        `${Selectors.GovukFormLabel}[for="mpuChildInvolvedInMiam_Yes"]:text-is("${MiamPolicyUpgrade1Content.formLabelYes}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukFormLabel}:text-is("${MiamPolicyUpgrade1Content.formLabelNo}")`,
+        `${Selectors.GovukFormLabel}[for="mpuChildInvolvedInMiam_No"]:text-is("${MiamPolicyUpgrade1Content.formLabelNo}")`,
         1,
       ),
     ]);
@@ -102,20 +102,20 @@ export class MiamPolicyUpgrade1Page {
           ),
           Helpers.checkVisibleAndPresent(
             page,
-            `${Selectors.GovukFormLabel}:text-is("${MiamPolicyUpgrade1Content.formLabelYes}")`,
-            2,
+            `${Selectors.GovukFormLabel}[for="mpuApplicantAttendedMiam_Yes"]:text-is("${MiamPolicyUpgrade1Content.formLabelYes}")`,
+            1,
           ),
           Helpers.checkVisibleAndPresent(
             page,
-            `${Selectors.GovukFormLabel}:text-is("${MiamPolicyUpgrade1Content.formLabelNo}")`,
-            2,
+            `${Selectors.GovukFormLabel}[for="mpuApplicantAttendedMiam_No"]:text-is("${MiamPolicyUpgrade1Content.formLabelNo}")`,
+            1,
           ),
         ]);
         await page.click(`${UniqueSelectors.attendedMiamYes}`);
         break;
       case "yesExemption":
         await page.click(`${UniqueSelectors.invovledInEmergencyProtectionNo}`);
-        await page.click(`${UniqueSelectors.attendedMiamYes}`);
+        await page.click(`${UniqueSelectors.attendedMiamNo}`);
         await Helpers.checkGroup(
           page,
           2,
@@ -133,13 +133,23 @@ export class MiamPolicyUpgrade1Page {
           ),
           Helpers.checkVisibleAndPresent(
             page,
-            `${Selectors.GovukFormLabel}:text-is("${MiamPolicyUpgrade1Content.formLabelYes}")`,
-            2,
+            `${Selectors.GovukFormLabel}[for="mpuApplicantAttendedMiam_Yes"]:text-is("${MiamPolicyUpgrade1Content.formLabelYes}")`,
+            1,
           ),
           Helpers.checkVisibleAndPresent(
             page,
-            `${Selectors.GovukFormLabel}:text-is("${MiamPolicyUpgrade1Content.formLabelNo}")`,
-            2,
+            `${Selectors.GovukFormLabel}[for="mpuClaimingExemptionMiam_Yes"]:text-is("${MiamPolicyUpgrade1Content.formLabelYes}")`,
+            1,
+          ),
+          Helpers.checkVisibleAndPresent(
+            page,
+            `${Selectors.GovukFormLabel}[for="mpuApplicantAttendedMiam_No"]:text-is("${MiamPolicyUpgrade1Content.formLabelNo}")`,
+            1,
+          ),
+          Helpers.checkVisibleAndPresent(
+            page,
+            `${Selectors.GovukFormLabel}[for="mpuClaimingExemptionMiam_No"]:text-is("${MiamPolicyUpgrade1Content.formLabelNo}")`,
+            1,
           ),
         ]);
         await page.click(`${UniqueSelectors.applicantExemptionYes}`);

@@ -125,6 +125,8 @@ export class MiamPolicyUpgrade3Page {
   }
 
   public static async triggerErrorMessages(page: Page): Promise<void> {
+    await page.click(`${UniqueSelectors.provideEvidenceYes}`);
+    await this.provideEvidence_yes(page);
     const fileInput = page.locator(`${UniqueSelectors.uploadFileInput}`);
     await fileInput.setInputFiles(config.testOdtFile);
     await page.waitForTimeout(5000);
@@ -139,30 +141,12 @@ export class MiamPolicyUpgrade3Page {
     page: page,
     yesNoMiamPolicyUpgrade: yesNoMiamPolicyUpgrade,
   }: fillinFieldsOptions): Promise<void> {
-    await page.click(`${UniqueSelectors.radio1}`);
-    await page.click(`${UniqueSelectors.radio2}`);
-    await page.click(`${UniqueSelectors.radio3}`);
-    await page.click(`${UniqueSelectors.radio4}`);
-    await page.click(`${UniqueSelectors.radio5}`);
-    await page.click(`${UniqueSelectors.radio6}`);
-    await page.click(`${UniqueSelectors.radio7}`);
-    await page.click(`${UniqueSelectors.radio8}`);
-    await page.click(`${UniqueSelectors.radio8}`);
-    await page.click(`${UniqueSelectors.radio10}`);
-    await page.click(`${UniqueSelectors.radio11}`);
-    await page.click(`${UniqueSelectors.radio12}`);
-    await page.click(`${UniqueSelectors.radio13}`);
-    await page.click(`${UniqueSelectors.radio14}`);
-    await page.click(`${UniqueSelectors.radio15}`);
-    await page.click(`${UniqueSelectors.radio16}`);
-    await page.click(`${UniqueSelectors.radio17}`);
-    await page.click(`${UniqueSelectors.radio17}`);
-    await page.click(`${UniqueSelectors.radio18}`);
-    await page.click(`${UniqueSelectors.radio19}`);
-    await page.click(`${UniqueSelectors.radio20}`);
-    await page.click(`${UniqueSelectors.radio21}`);
-    await page.click(`${UniqueSelectors.radio22}`);
-
+    for (let i = 1; i <= 22; i++) {
+      const selector =
+        UniqueSelectors[`radio${i}` as keyof typeof UniqueSelectors];
+      await page.click(selector);
+      await page.waitForTimeout(100);
+    }
     if (yesNoMiamPolicyUpgrade) {
       await page.click(`${UniqueSelectors.provideEvidenceYes}`);
       await this.provideEvidence_yes(page);
@@ -171,9 +155,9 @@ export class MiamPolicyUpgrade3Page {
         `${Selectors.GovukFormLabel}:text-is("${MiamPolicyUpgrade3Content.formLabelUpload}")`,
         1,
       );
-      await page.waitForTimeout(5000);
       const fileInput = page.locator(`${UniqueSelectors.uploadFileInput}`);
       await fileInput.setInputFiles(config.testPdfFile);
+      await page.waitForTimeout(7000);
     } else {
       await page.click(`${UniqueSelectors.provideEvidenceNo}`);
       await Helpers.checkVisibleAndPresent(
@@ -205,7 +189,7 @@ export class MiamPolicyUpgrade3Page {
       ),
     ]);
     await page.click(
-      `${Selectors.button}:text-is("${MiamPolicyUpgrade3Content.addNew}");`,
+      `${Selectors.button}:text-is("${MiamPolicyUpgrade3Content.addNew}")`,
     );
   }
 }

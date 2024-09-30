@@ -46,6 +46,9 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       childLiveWithApplicant: true,
       yesNoChildrenAndRespondents: true,
       yesNoChildrenAndOtherPeople: true,
+      C100MiamPolicyUpgrade1PageType: "yesAttendedMiam",
+      yesNoMiamPolicyUpgrade: true,
+      miamSelection: "attended4MonthsPrior",
     });
   });
 
@@ -89,6 +92,9 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       childLiveWithApplicant: false,
       yesNoChildrenAndRespondents: false,
       yesNoChildrenAndOtherPeople: false,
+      C100MiamPolicyUpgrade1PageType: "yesExemption",
+      yesNoMiamPolicyUpgrade: false,
+      miamSelection: "attended4MonthsPrior",
     });
   });
 

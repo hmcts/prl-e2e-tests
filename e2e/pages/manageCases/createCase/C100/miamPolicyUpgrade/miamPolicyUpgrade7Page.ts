@@ -27,7 +27,7 @@ enum UniqueSelectors {
   input4 = "#mpuOtherExemptionReasons-miamPolicyUpgradeOtherGrounds_Value_4",
   input5 = "#mpuOtherExemptionReasons-miamPolicyUpgradeOtherGrounds_Value_5",
   input6 = "#mpuOtherExemptionReasons-miamPolicyUpgradeOtherGrounds_Value_6",
-  unableToAttendInput = "#mpuOtherExemptionReasons-miamPolicyUpgradeOtherGrounds_Value_1",
+  unableToAttendInput = "#mpuApplicantUnableToAttendMiamReason1",
 }
 
 export class MiamPolicyUpgrade7Page {

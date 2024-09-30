@@ -22,6 +22,9 @@ import { C100ChildrenAndOtherPeople } from "./C100ChildrenAndOtherPeople/c100Chi
 import { C100ChildrenAndApplicantsRelationship } from "../../../pages/manageCases/createCase/C100/childrenAndApplicants/childrenAndApplicants1Page";
 import { C100ChildrenAndApplicants } from "./C100ChildrenAndApplicants/C100ChildrenAndApplicants";
 import { C100ChildAndRespondents } from "./C100ChildrenAndRespondents/c100ChildrenAndRespondents";
+import { C100MiamPolicyUpgrade } from "./C100MiamPolicyUpgrade/C100MiamPolicyUpgrade";
+import { C100MiamPolicyUpgrade1PageType } from "../../../pages/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade1Page";
+import { miamSelection } from "../../../pages/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade6Page";
 
 interface c100Options {
   page: Page;
@@ -48,6 +51,9 @@ interface c100Options {
   yesNoChildrenAndOtherPeople: boolean;
   applicantChildRelationship: C100ChildrenAndApplicantsRelationship;
   childLiveWithApplicant: boolean;
+  C100MiamPolicyUpgrade1PageType: C100MiamPolicyUpgrade1PageType;
+  yesNoMiamPolicyUpgrade: boolean;
+  miamSelection: miamSelection;
 }
 
 export class C100 {
@@ -77,6 +83,9 @@ export class C100 {
     childLiveWithApplicant: childLiveWithApplicant,
     yesNoChildrenAndRespondents: yesNoChildrenAndRespondents,
     yesNoChildrenAndOtherPeople: yesNoChildrenAndOtherPeople,
+    C100MiamPolicyUpgrade1PageType: C100MiamPolicyUpgrade1PageType,
+    yesNoMiamPolicyUpgrade: yesNoMiamPolicyUpgrade,
+    miamSelection: miamSelection,
   }: c100Options): Promise<void> {
     await SolicitorCreateInitial.createInitialCase({
       page: page,
@@ -183,6 +192,16 @@ export class C100 {
       yesNoOtherPeopleInTheCase,
       applicantGender: applicantGender,
       yesNoChildrenAndOtherPeople: yesNoChildrenAndOtherPeople,
+      subJourney: false,
+    });
+    await C100MiamPolicyUpgrade.c100MiamPolicyUpgrade({
+      page: page,
+      user: user,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      C100MiamPolicyUpgrade1PageType: C100MiamPolicyUpgrade1PageType,
+      yesNoMiamPolicyUpgrade: yesNoMiamPolicyUpgrade,
+      miamSelection: miamSelection,
       subJourney: false,
     });
   }
