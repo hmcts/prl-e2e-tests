@@ -8,7 +8,8 @@ test.describe("C100 Create case MIAM Tests @manageCases", (): void => {
   test(`Complete the C100 Create case MIAM as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
-  Saying yes to all options. @crossbrowserManageCases`, async ({
+  Saying yes to all options,
+  MiamSelection is attended4MonthsPrior. @crossbrowserManageCases`, async ({
     page,
   }): Promise<void> => {
     await C100MiamPolicyUpgrade.c100MiamPolicyUpgrade({
@@ -25,7 +26,8 @@ test.describe("C100 Create case MIAM Tests @manageCases", (): void => {
   test(`Complete the C100 Create case MIAM as a solicitor with the following options:
   Not Accessibility testing,
   Error message testing,
-  Saying yes to attended MIAM. @crossbrowserManageCases`, async ({
+  Saying yes to attended MIAM,
+  MiamSelection is attended4MonthsPrior. @crossbrowserManageCases`, async ({
     page,
   }): Promise<void> => {
     await C100MiamPolicyUpgrade.c100MiamPolicyUpgrade({
@@ -102,9 +104,8 @@ test.describe("C100 Create case MIAM Tests @accessibilityManageCases", (): void 
   test(`Accessibility test the C100 Miam event as a solicitor with the following options:
   Accessibility testing,
   Not Error message testing,
-  Answering yes to the other child being present,
-  With a unknown DOB,
-  Setting the child Gender to female.@accessibilityManageCases`, async ({
+  C100MiamPolicyUpgrade1PageType is "yes"
+  miamSelection is "initiatedMIAMBeforeProceedings_MIAMDetails".@accessibilityManageCases`, async ({
     page,
   }): Promise<void> => {
     await C100MiamPolicyUpgrade.c100MiamPolicyUpgrade({
@@ -121,7 +122,9 @@ test.describe("C100 Create case MIAM Tests @accessibilityManageCases", (): void 
   test(`Complete the C100 Create case MIAM as a solicitor with the following options:
   Accessibility testing,
   Error message testing,
-  Saying yes to attended MIAM. @crossbrowserManageCases`, async ({
+  Saying yes to attended MIAM
+  C100MiamPolicyUpgrade1PageType is "yesAttendedMiam"
+  miamSelection is "attended4MonthsPrior". @crossbrowserManageCases`, async ({
     page,
   }): Promise<void> => {
     await C100MiamPolicyUpgrade.c100MiamPolicyUpgrade({

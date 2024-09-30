@@ -18,7 +18,9 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Saying yes to all children and respondents questions
   With no other child present
   Where the child lives with their applicant father,
-  With no other child present @crossbrowserManageCases`, async ({
+  With no other child present
+  Saying no to all Miam
+  C100MiamPolicyUpgrade1PageType is "yesExemption"@crossbrowserManageCases`, async ({
     page,
   }): Promise<void> => {
     await C100.c100({
@@ -64,9 +66,10 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Saying no to all respondent details questions with a female respondent
   Saying no to all other people in the case questions with a male applicant
   Saying no to all child details question with a female child 
-  Saying no to all children and respondents questions @crossbrowserManageCases`, async ({
-    page,
-  }): Promise<void> => {
+  Saying no to all children and respondents questions
+  Saying no to all Miam
+  C100MiamPolicyUpgrade1PageType is "yesExemption"
+   @crossbrowserManageCases`, async ({ page }): Promise<void> => {
     await C100.c100({
       page: page,
       user: "solicitor",
