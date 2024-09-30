@@ -13,8 +13,6 @@ enum uniqueSelectors {
   interpreterNeeds = "div#interpreterNeeds > div > ",
 }
 
-enum c100inputIDs {}
-
 enum inputIDs {
   welshYes = "#isWelshNeeded_Yes",
   welshNo = "#isWelshNeeded_No",
@@ -332,7 +330,7 @@ export class AttendingTheHearing1Page {
     let whoNeedsWelshKey: keyof typeof inputIDs;
     let spokenWelshKey: keyof typeof inputIDs;
     let writtenWelshKey: keyof typeof inputIDs;
-    let spokenAndWrittenKey: keyof typeof inputIDs;
+    let spokenAndWrittenKey: keyof typeof inputIDs | null;
     switch (caseType) {
       case "FL401":
         welshNeedsSelector = "fl401WelshNeeds";
@@ -340,7 +338,7 @@ export class AttendingTheHearing1Page {
         whoNeedsWelshKey = "fl401WhoNeedsWelsh";
         spokenWelshKey = "fl401SpokenWelsh";
         writtenWelshKey = "fl401WrittenWelsh";
-        spokenAndWrittenKey = "fl401SpokenAndWritten";
+        spokenAndWrittenKey = null;
         break;
       case "C100":
         welshNeedsSelector = "c100WelshNeeds";
@@ -383,7 +381,9 @@ export class AttendingTheHearing1Page {
     );
     await page.check(inputIDs[spokenWelshKey]);
     await page.check(inputIDs[writtenWelshKey]);
-    await page.check(inputIDs[spokenAndWrittenKey]);
+    if (spokenAndWrittenKey) {
+      await page.check(inputIDs[spokenAndWrittenKey]);
+    }
   }
 
   private static async interpreterNeedsFields({
