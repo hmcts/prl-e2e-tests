@@ -32,6 +32,7 @@ export type c100SolicitorEvents =
   | "Other children not in the case"
   | "Children and applicants"
   | "Children and respondents"
+  | "Children and other people"
   | "Allegations of harm";
 
 export type fl401SolicitorEvents =
@@ -45,6 +46,7 @@ export type fl401SolicitorEvents =
   | "Relationship to respondent"
   | "Attending the hearing"
   | "The home"
-  | "Upload documents";
+  | "Upload documents"
+  | "Welsh language requirements";
 
 export type ApplicantGender = "female" | "male" | "other";

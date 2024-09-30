@@ -46,6 +46,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       applicantChildRelationship: "Father",
       childLiveWithApplicant: true,
       yesNoChildrenAndRespondents: true,
+      yesNoChildrenAndOtherPeople: true,
       c100YesNoAllegationsOfHarm: true,
       c100DomesticAbuseTypePage3: "Physical abuse",
     });
@@ -91,6 +92,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       applicantChildRelationship: "Mother",
       childLiveWithApplicant: false,
       yesNoChildrenAndRespondents: false,
+      yesNoChildrenAndOtherPeople: false,
       c100YesNoAllegationsOfHarm: false,
       c100DomesticAbuseTypePage3: "Financial abuse",
     });
@@ -130,6 +132,8 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       fl401TheHomeYesNo: true,
       fl401EverLivedAtAddress: "yesBothOfThem",
       fl401AttendingTheHearingYesNo: true,
+      welshLanguageRequirementsAllOptionsYes: true,
+      welshLanguageRequirementsSelectWelsh: false,
     });
   });
 
@@ -171,6 +175,8 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       fl401TheHomeYesNo: true,
       fl401EverLivedAtAddress: "yesApplicant",
       fl401AttendingTheHearingYesNo: true,
+      welshLanguageRequirementsAllOptionsYes: true,
+      welshLanguageRequirementsSelectWelsh: false,
     });
   });
 
@@ -213,6 +219,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       fl401EverLivedAtAddress: "No",
       fl401IntendToLiveAtAddress: "No",
       fl401AttendingTheHearingYesNo: false,
+      welshLanguageRequirementsAllOptionsYes: false,
     });
   });
 });
