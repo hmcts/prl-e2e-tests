@@ -7,35 +7,35 @@ import { Helpers } from "../../../../../common/helpers";
 interface AttendingTheHearingSubmitPageOptions {
   page: Page;
   accessibilityTest: boolean;
-  fl401AttendingTheHearingYesNo: boolean;
+  attendingTheHearingYesNo: boolean;
 }
 
 interface CheckPageLoadsOptions {
   page: Page;
   accessibilityTest: boolean;
-  fl401AttendingTheHearingYesNo: boolean;
+  attendingTheHearingYesNo: boolean;
 }
 
 interface CheckStaticContentOptions {
   page: Page;
-  fl401AttendingTheHearingYesNo: boolean;
+  attendingTheHearingYesNo: boolean;
 }
 
 interface CheckFilledInDataOptions {
   page: Page;
-  fl401AttendingTheHearingYesNo: boolean;
+  attendingTheHearingYesNo: boolean;
 }
 
 export class AttendingTheHearingSubmitPage {
   public static async attendingTheHearingSubmitPage({
     page,
     accessibilityTest,
-    fl401AttendingTheHearingYesNo,
+    attendingTheHearingYesNo,
   }: AttendingTheHearingSubmitPageOptions): Promise<void> {
     await this.checkPageLoads({
       page,
       accessibilityTest,
-      fl401AttendingTheHearingYesNo,
+      attendingTheHearingYesNo,
     });
     await this.fillInFields(page);
   }
@@ -43,7 +43,7 @@ export class AttendingTheHearingSubmitPage {
   private static async checkPageLoads({
     page,
     accessibilityTest,
-    fl401AttendingTheHearingYesNo,
+    attendingTheHearingYesNo,
   }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.GovukText16}:text-is("${AttendingTheHearingSubmitContent.checkInfo}")`,
@@ -51,11 +51,11 @@ export class AttendingTheHearingSubmitPage {
     await Promise.all([
       this.checkStaticContent({
         page,
-        fl401AttendingTheHearingYesNo,
+        attendingTheHearingYesNo,
       }),
       this.checkFilledInData({
         page,
-        fl401AttendingTheHearingYesNo,
+        attendingTheHearingYesNo,
       }),
     ]);
     if (accessibilityTest) {
@@ -65,10 +65,10 @@ export class AttendingTheHearingSubmitPage {
 
   private static async checkStaticContent({
     page,
-    fl401AttendingTheHearingYesNo,
+    attendingTheHearingYesNo,
   }: CheckStaticContentOptions): Promise<void> {
-    const changeCount: number = fl401AttendingTheHearingYesNo ? 10 : 5;
-    const textCount: number = fl401AttendingTheHearingYesNo ? 12 : 5;
+    const changeCount: number = attendingTheHearingYesNo ? 10 : 5;
+    const textCount: number = attendingTheHearingYesNo ? 12 : 5;
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
@@ -93,7 +93,7 @@ export class AttendingTheHearingSubmitPage {
         1,
       ),
     ]);
-    if (fl401AttendingTheHearingYesNo) {
+    if (attendingTheHearingYesNo) {
       await Helpers.checkGroup(
         page,
         4,
@@ -106,16 +106,16 @@ export class AttendingTheHearingSubmitPage {
 
   private static async checkFilledInData({
     page,
-    fl401AttendingTheHearingYesNo,
+    attendingTheHearingYesNo,
   }: CheckFilledInDataOptions): Promise<void> {
     const booleanKey: keyof typeof AttendingTheHearingSubmitContent =
-      fl401AttendingTheHearingYesNo ? "yes" : "no";
+      attendingTheHearingYesNo ? "yes" : "no";
     await Helpers.checkVisibleAndPresent(
       page,
       `${Selectors.GovukText16}:text-is("${AttendingTheHearingSubmitContent[booleanKey]}")`,
       5,
     );
-    if (fl401AttendingTheHearingYesNo) {
+    if (attendingTheHearingYesNo) {
       await Helpers.checkGroup(
         page,
         9,
