@@ -103,7 +103,14 @@ export class MiamPolicyUpgrade3Page {
       ),
       Helpers.checkGroup(
         page,
-        25,
+        2,
+        MiamPolicyUpgrade3Content,
+        "formLabelQuestion",
+        `${Selectors.GovukFormLabel}`,
+      ),
+      Helpers.checkGroup(
+        page,
+        22,
         MiamPolicyUpgrade3Content,
         "formLabel",
         `${Selectors.GovukFormLabel}`,

@@ -60,12 +60,17 @@ export class MiamPolicyUpgrade2Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
+        `${Selectors.GovukFormLabel}:text-is("${MiamPolicyUpgrade2Content.formLabelQuestion}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
         `${Selectors.GovukFormHint}:text-is("${MiamPolicyUpgrade2Content.formHint}")`,
         1,
       ),
       Helpers.checkGroup(
         page,
-        6,
+        5,
         MiamPolicyUpgrade2Content,
         "FormLabel",
         `${Selectors.GovukFormLabel}`,

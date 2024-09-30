@@ -9,6 +9,12 @@ import { Helpers } from "../../../../../common/helpers";
 import { MiamPolicyUpgrade8Content } from "../../../../../fixtures/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade8Content";
 import path from "path";
 import config from "../../../../../config";
+import { MiamPolicyUpgrade2Content } from "../../../../../fixtures/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade2Content";
+import { MiamPolicyUpgrade3Content } from "../../../../../fixtures/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade3Content";
+import { MiamPolicyUpgrade4Content } from "../../../../../fixtures/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade4Content";
+import { MiamPolicyUpgrade5Content } from "../../../../../fixtures/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade5Content";
+import { MiamPolicyUpgrade6Content } from "../../../../../fixtures/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade6Content";
+import { MiamPolicyUpgrade7Content } from "../../../../../fixtures/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade7Content";
 
 interface MiamPolicyUpgradeSubmitPageOptions {
   page: Page;
@@ -221,13 +227,126 @@ export class MiamPolicyUpgradeSubmitPage {
           yesNoMiamPolicyUpgrade &&
           miamSelection === "attended4MonthsPrior"
         ) {
+          await Promise.all([
+            Helpers.checkVisibleAndPresent(
+              page,
+              `${Selectors.GovukText16}:text-is("${MiamPolicyUpgradeSubmitContent.text16No}")`,
+              2,
+            ),
+            Helpers.checkVisibleAndPresent(
+              page,
+              `${Selectors.GovukText16}:text-is("${MiamPolicyUpgradeSubmitContent.text16Yes}")`,
+              2,
+            ),
+            Helpers.checkGroup(
+              page,
+              5,
+              MiamPolicyUpgrade2Content,
+              "FormLabel",
+              `${Selectors.GovukFormLabel}`,
+            ),
+            Helpers.checkGroup(
+              page,
+              22,
+              MiamPolicyUpgrade3Content,
+              "formLabel",
+              `${Selectors.GovukFormLabel}`,
+            ),
+            Helpers.checkVisibleAndPresent(
+              page,
+              `${Selectors.a}:text-is("${path.basename(config.testPdfFile)}")`,
+              2,
+            ),
+            Helpers.checkVisibleAndPresent(
+              page,
+              `${Selectors.GovukText16}:text-is("${MiamPolicyUpgrade4Content.formLabel2}")`,
+              1,
+            ),
+            Helpers.checkVisibleAndPresent(
+              page,
+              `${Selectors.GovukText16}:text-is("${MiamPolicyUpgrade5Content.formLabel6}")`,
+              1,
+            ),
+            Helpers.checkVisibleAndPresent(
+              page,
+              `${Selectors.GovukText16}:text-is("${MiamPolicyUpgrade6Content.formLabel2}")`,
+              1,
+            ),
+            Helpers.checkVisibleAndPresent(
+              page,
+              `${Selectors.GovukText16}:text-is("${MiamPolicyUpgrade7Content.formLabel2}")`,
+              1,
+            ),
+          ]);
         } else if (
           yesNoMiamPolicyUpgrade &&
           miamSelection === "initiatedMIAMBeforeProceedings_MIAMCertificate"
         ) {
+          await Promise.all([
+            Helpers.checkVisibleAndPresent(
+              page,
+              `${Selectors.GovukText16}:text-is("${MiamPolicyUpgradeSubmitContent.text16No}")`,
+              2,
+            ),
+            Helpers.checkVisibleAndPresent(
+              page,
+              `${Selectors.GovukText16}:text-is("${MiamPolicyUpgradeSubmitContent.text16Yes}")`,
+              2,
+            ),
+            Helpers.checkGroup(
+              page,
+              5,
+              MiamPolicyUpgrade2Content,
+              "FormLabel",
+              `${Selectors.GovukFormLabel}`,
+            ),
+            Helpers.checkGroup(
+              page,
+              22,
+              MiamPolicyUpgrade3Content,
+              "formLabel",
+              `${Selectors.GovukFormLabel}`,
+            ),
+            Helpers.checkVisibleAndPresent(
+              page,
+              `${Selectors.a}:text-is("${path.basename(config.testPdfFile)}")`,
+              2,
+            ),
+            Helpers.checkVisibleAndPresent(
+              page,
+              `${Selectors.GovukText16}:text-is("${MiamPolicyUpgrade4Content.formLabel2}")`,
+              1,
+            ),
+            Helpers.checkVisibleAndPresent(
+              page,
+              `${Selectors.GovukText16}:text-is("${MiamPolicyUpgrade5Content.formLabel6}")`,
+              1,
+            ),
+            Helpers.checkVisibleAndPresent(
+              page,
+              `${Selectors.GovukText16}:text-is("${MiamPolicyUpgrade6Content.formLabel3}")`,
+              1,
+            ),
+            Helpers.checkVisibleAndPresent(
+              page,
+              `${Selectors.GovukText16}:text-is("${MiamPolicyUpgrade6Content.formLabelEvidence2}")`,
+              1,
+            ),
+            Helpers.checkVisibleAndPresent(
+              page,
+              `${Selectors.GovukText16}:text-is("${MiamPolicyUpgrade7Content.formLabel2}")`,
+              1,
+            ),
+            Helpers.checkVisibleAndPresent(
+              page,
+              `${Selectors.GovukText16}:text-is("${MiamPolicyUpgradeSubmitContent.text16Change}")`,
+              13,
+            ),
+          ]);
         } else if (
           miamSelection === "initiatedMIAMBeforeProceedings_MIAMDetails"
         ) {
+          await Promise.all([]);
         } else {
           console.log("Need to select at least one miamSelection option");
         }
