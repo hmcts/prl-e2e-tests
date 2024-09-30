@@ -26,7 +26,8 @@ enum inputIDs {
   childrenInvolved = '#existingProceedings_0_nameOfChildrenInvolved',
   guardianName = '#existingProceedings_0_nameOfGuardian',
   cymruOfficer = '#existingProceedings_0_nameAndOffice',
-  fileUpload = '#existingProceedings_0_uploadRelevantOrder'
+  fileUpload = '#existingProceedings_0_uploadRelevantOrder',
+  typeOfOrder = '#existingProceedings_0_otherTypeOfOrder'
 }
 
 enum checkboxIDs {
@@ -47,6 +48,15 @@ enum checkboxIDs {
   restrainingOrder = "#existingProceedings_0_typeOfOrder-restrainingOrder",
   otherInjunctiveOrder = "#existingProceedings_0_typeOfOrder-otherInjunctiveOrder",
   undertakingInPlaceOfAnOrder = "#existingProceedings_0_typeOfOrder-undertakingInPlaceOfAnOrder"
+}
+
+enum invalidDateFields {
+  startDateDay = '#',
+  startDateMonth = 'h',
+  startDateYear = 't',
+  endDateDay = '&',
+  endDateMonth = '8',
+  endDateYear = ',',
 }
 
 interface C100OtherProceedings1PageOptions {
@@ -170,7 +180,7 @@ export class OtherProceedings1Page {
     );
     await Helpers.checkGroup(
       page,
-      25,
+      26,
       OtherProceedingsContent,
       'proceedingsFormLabel',
       `${Selectors.GovukFormLabel}`
@@ -187,7 +197,7 @@ export class OtherProceedings1Page {
         inputIDs.previousProceedings
       );
     }
-    const textKeys = [
+    const textKeys: string[] = [
       'caseNumber',
       'startDateDay',
       'startDateMonth',
@@ -199,7 +209,8 @@ export class OtherProceedings1Page {
       'courtName',
       'childrenInvolved',
       'guardianName',
-      'cymruOfficer'
+      'cymruOfficer',
+      'typeOfOrder'
     ]
     for (let textKey of textKeys) {
       let contentKey = textKey as keyof typeof OtherProceedingsContent;
@@ -214,5 +225,59 @@ export class OtherProceedings1Page {
       inputIDs.fileUpload,
       Config.testPdfFile
     );
+    await page.click(
+      `${Selectors.button}:text-is("${OtherProceedingsContent.continue}")`
+    );
+  }
+
+  private static async checkErrorMessaging(
+    page: Page
+  ): Promise<void> {
+    await page.click(
+      inputIDs.radioYes
+    );
+    await page.click(
+      `${Selectors.button}:text-is("${OtherProceedingsContent.addNew}")`
+    );
+    const textKeys = [
+      'startDateDay',
+      'startDateMonth',
+      'startDateYear',
+      'endDateDay',
+      'endDateMonth',
+      'endDateYear',
+    ]
+    for (let textKey of textKeys) {
+      let invalidInputKey = textKey as keyof typeof invalidDateFields;
+      let inputKey = textKey as keyof typeof inputIDs;
+      await page.fill(
+        inputIDs[inputKey],
+        invalidDateFields[invalidInputKey]
+      );
+      await page.click(
+        `${Selectors.button}:text-is("${OtherProceedingsContent.continue}")`
+      );
+      await Promise.all([
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukErrorSummaryTitle}:text-is("${OtherProceedingsContent.errorSummaryTitle}")`,
+          1
+        ),
+        Helpers.checkGroup(
+          page,
+          2,
+          OtherProceedingsContent,
+          'errorValidation',
+          `${Selectors.GovukErrorValidation}`
+        ),
+        Helpers.checkGroup(
+          page,
+          2,
+          OtherProceedingsContent,
+          'errorMessage',
+          `${Selectors.GovukErrorMessage}`
+        ),
+      ])
+    }
   }
 }
