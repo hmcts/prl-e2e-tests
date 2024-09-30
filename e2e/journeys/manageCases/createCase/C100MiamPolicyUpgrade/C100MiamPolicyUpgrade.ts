@@ -49,9 +49,9 @@ export class C100MiamPolicyUpgrade {
         errorMessaging: false,
       });
     }
-    console.log("stop")
+    console.log("stop");
     await Helpers.selectSolicitorEvent(page, "MIAM");
-    console.log("stop1")
+    console.log("stop1");
     await MiamPolicyUpgrade1Page.miamPolicyUpgrade1Page({
       page: page,
       accessibilityTest: accessibilityTest,
