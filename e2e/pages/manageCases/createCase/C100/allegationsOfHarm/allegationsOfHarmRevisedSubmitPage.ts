@@ -14,11 +14,13 @@ import { AllegationsOfHarmRevised8Content } from "../../../../../fixtures/manage
 import { AllegationsOfHarmRevised9Content } from "../../../../../fixtures/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevised9Content";
 import { AllegationsOfHarmRevised10Content } from "../../../../../fixtures/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevised10Content";
 import { AllegationsOfHarmRevised11Content } from "../../../../../fixtures/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevised11Content";
+import { C100AllegationsOfHarmTypeOfDomesticAbuse } from "./allegationsOfHarmRevised3Page";
 
 interface AllegationsOfHarmRevisedSubmitPageOptions {
   page: Page;
   accessibilityTest: boolean;
   c100YesNoAllegationsOfHarm: boolean;
+  c100DomesticAbuseTypePage3: C100AllegationsOfHarmTypeOfDomesticAbuse;
 }
 
 export class AllegationsOfHarmRevisedSubmitPage {
@@ -26,16 +28,19 @@ export class AllegationsOfHarmRevisedSubmitPage {
     page: page,
     accessibilityTest: accessibilityTest,
     c100YesNoAllegationsOfHarm: c100YesNoAllegationsOfHarm,
+    c100DomesticAbuseTypePage3: C100AllegationsOfHarmTypeOfDomesticAbuse,
   }: AllegationsOfHarmRevisedSubmitPageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
       accessibilityTest: accessibilityTest,
       c100YesNoAllegationsOfHarm: c100YesNoAllegationsOfHarm,
+      c100DomesticAbuseTypePage3: C100AllegationsOfHarmTypeOfDomesticAbuse,
     });
     await this.checkFilledFields({
       page: page,
       accessibilityTest: accessibilityTest,
       c100YesNoAllegationsOfHarm: c100YesNoAllegationsOfHarm,
+      c100DomesticAbuseTypePage3: C100AllegationsOfHarmTypeOfDomesticAbuse,
     });
     await this.continueOn(page);
   }
@@ -44,9 +49,10 @@ export class AllegationsOfHarmRevisedSubmitPage {
     page: page,
     accessibilityTest: accessibilityTest,
     c100YesNoAllegationsOfHarm: c100YesNoAllegationsOfHarm,
+    c100DomesticAbuseTypePage3: c100DomesticAbuseTypePage3,
   }: AllegationsOfHarmRevisedSubmitPageOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukText16}:text-is("${AllegationsOfHarmRevisedSubmitContent.text161})`,
+      `${Selectors.GovukText16}:text-is("${AllegationsOfHarmRevisedSubmitContent.text161}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -87,7 +93,7 @@ export class AllegationsOfHarmRevisedSubmitPage {
         ),
         Helpers.checkGroup(
           page,
-          29,
+          25,
           AllegationsOfHarmRevisedSubmitContent,
           `text16Yes`,
           `${Selectors.GovukText16}`,
@@ -154,15 +160,108 @@ export class AllegationsOfHarmRevisedSubmitPage {
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukText16}:text-is("${AllegationsOfHarmRevisedSubmitContent.text16YesPhysicalAbuse}")`,
-          2,
-        ),
-        Helpers.checkVisibleAndPresent(
-          page,
           `${Selectors.GovukText16}:text-is("${AllegationsOfHarmRevisedSubmitContent.text16YesAreAllChildrenAtRisk}")`,
           5,
         ),
       ]);
+      switch (c100DomesticAbuseTypePage3) {
+        case "Physical abuse":
+          await Promise.all([
+            Helpers.checkVisibleAndPresent(
+              page,
+              `${Selectors.GovukText16}:text-is("${AllegationsOfHarmRevisedSubmitContent.text16YesPhysicalAbuse}")`,
+              2,
+            ),
+            Helpers.checkVisibleAndPresent(
+              page,
+              `${Selectors.GovukText16}:text-is("${AllegationsOfHarmRevisedSubmitContent.text16YesPsychologicalAbuse}")`,
+              1,
+            ),
+            Helpers.checkVisibleAndPresent(
+              page,
+              `${Selectors.GovukText16}:text-is("${AllegationsOfHarmRevisedSubmitContent.text16YesSexualAbuse}")`,
+              1,
+            ),
+            Helpers.checkVisibleAndPresent(
+              page,
+              `${Selectors.GovukText16}:text-is("${AllegationsOfHarmRevisedSubmitContent.text16YesFinancial}")`,
+              1,
+            ),
+          ]);
+          break;
+        case "Psychological abuse":
+          await Promise.all([
+            Helpers.checkVisibleAndPresent(
+              page,
+              `${Selectors.GovukText16}:text-is("${AllegationsOfHarmRevisedSubmitContent.text16YesPhysicalAbuse}")`,
+              1,
+            ),
+            Helpers.checkVisibleAndPresent(
+              page,
+              `${Selectors.GovukText16}:text-is("${AllegationsOfHarmRevisedSubmitContent.text16YesPsychologicalAbuse}")`,
+              2,
+            ),
+            Helpers.checkVisibleAndPresent(
+              page,
+              `${Selectors.GovukText16}:text-is("${AllegationsOfHarmRevisedSubmitContent.text16YesSexualAbuse}")`,
+              1,
+            ),
+            Helpers.checkVisibleAndPresent(
+              page,
+              `${Selectors.GovukText16}:text-is("${AllegationsOfHarmRevisedSubmitContent.text16YesFinancial}")`,
+              1,
+            ),
+          ]);
+          break;
+        case "Sexual abuse":
+          await Promise.all([
+            Helpers.checkVisibleAndPresent(
+              page,
+              `${Selectors.GovukText16}:text-is("${AllegationsOfHarmRevisedSubmitContent.text16YesPhysicalAbuse}")`,
+              1,
+            ),
+            Helpers.checkVisibleAndPresent(
+              page,
+              `${Selectors.GovukText16}:text-is("${AllegationsOfHarmRevisedSubmitContent.text16YesPsychologicalAbuse}")`,
+              1,
+            ),
+            Helpers.checkVisibleAndPresent(
+              page,
+              `${Selectors.GovukText16}:text-is("${AllegationsOfHarmRevisedSubmitContent.text16YesSexualAbuse}")`,
+              2,
+            ),
+            Helpers.checkVisibleAndPresent(
+              page,
+              `${Selectors.GovukText16}:text-is("${AllegationsOfHarmRevisedSubmitContent.text16YesFinancial}")`,
+              1,
+            ),
+          ]);
+          break;
+        case "Financial abuse":
+          await Promise.all([
+            Helpers.checkVisibleAndPresent(
+              page,
+              `${Selectors.GovukText16}:text-is("${AllegationsOfHarmRevisedSubmitContent.text16YesPhysicalAbuse}")`,
+              1,
+            ),
+            Helpers.checkVisibleAndPresent(
+              page,
+              `${Selectors.GovukText16}:text-is("${AllegationsOfHarmRevisedSubmitContent.text16YesPsychologicalAbuse}")`,
+              1,
+            ),
+            Helpers.checkVisibleAndPresent(
+              page,
+              `${Selectors.GovukText16}:text-is("${AllegationsOfHarmRevisedSubmitContent.text16YesSexualAbuse}")`,
+              1,
+            ),
+            Helpers.checkVisibleAndPresent(
+              page,
+              `${Selectors.GovukText16}:text-is("${AllegationsOfHarmRevisedSubmitContent.text16YesFinancial}")`,
+              2,
+            ),
+          ]);
+          break;
+      }
     }
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
@@ -323,7 +422,7 @@ export class AllegationsOfHarmRevisedSubmitPage {
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukText16}:text-is("${AllegationsOfHarmRevised3Content.natureOfBehaviour}")`,
+          `${Selectors.Span}:text-is("${AllegationsOfHarmRevised3Content.natureOfBehaviour}")`,
           1,
         ),
         Helpers.checkVisibleAndPresent(
@@ -333,12 +432,12 @@ export class AllegationsOfHarmRevisedSubmitPage {
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukText16}:text-is("${AllegationsOfHarmRevised3Content.helpSoughtFrom}")`,
+          `${Selectors.Span}:text-is("${AllegationsOfHarmRevised3Content.helpSoughtFrom}")`,
           1,
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukText16}:text-is("${AllegationsOfHarmRevised5Content.natureOfBehaviour}")`,
+          `${Selectors.Span}:text-is("${AllegationsOfHarmRevised5Content.natureOfBehaviour}")`,
           1,
         ),
         Helpers.checkVisibleAndPresent(
@@ -348,12 +447,12 @@ export class AllegationsOfHarmRevisedSubmitPage {
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukText16}:text-is("${AllegationsOfHarmRevised5Content.seekHelp}")`,
+          `${Selectors.Span}:text-is("${AllegationsOfHarmRevised5Content.seekHelp}")`,
           1,
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukText16}:text-is("${AllegationsOfHarmRevised6Content.natureOfBehaviour}")`,
+          `${Selectors.Span}:text-is("${AllegationsOfHarmRevised6Content.natureOfBehaviour}")`,
           1,
         ),
         Helpers.checkVisibleAndPresent(
@@ -363,12 +462,12 @@ export class AllegationsOfHarmRevisedSubmitPage {
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukText16}:text-is("${AllegationsOfHarmRevised6Content.seekHelp}")`,
+          `${Selectors.Span}:text-is("${AllegationsOfHarmRevised6Content.seekHelp}")`,
           1,
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukText16}:text-is("${AllegationsOfHarmRevised7Content.natureOfBehaviour}")`,
+          `${Selectors.Span}:text-is("${AllegationsOfHarmRevised7Content.natureOfBehaviour}")`,
           1,
         ),
         Helpers.checkVisibleAndPresent(
@@ -378,12 +477,12 @@ export class AllegationsOfHarmRevisedSubmitPage {
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukText16}:text-is("${AllegationsOfHarmRevised7Content.seekHelp}")`,
+          `${Selectors.Span}:text-is("${AllegationsOfHarmRevised7Content.seekHelp}")`,
           1,
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukText16}:text-is("${AllegationsOfHarmRevised8Content.natureOfBehaviour}")`,
+          `${Selectors.Span}:text-is("${AllegationsOfHarmRevised8Content.natureOfBehaviour}")`,
           1,
         ),
         Helpers.checkVisibleAndPresent(
@@ -393,12 +492,12 @@ export class AllegationsOfHarmRevisedSubmitPage {
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukText16}:text-is("${AllegationsOfHarmRevised8Content.seekHelp}")`,
+          `${Selectors.Span}:text-is("${AllegationsOfHarmRevised8Content.seekHelp}")`,
           1,
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukText16}:text-is("${AllegationsOfHarmRevised9Content.natureOfBehaviour}")`,
+          `${Selectors.Span}:text-is("${AllegationsOfHarmRevised9Content.natureOfBehaviour}")`,
           1,
         ),
         Helpers.checkVisibleAndPresent(
@@ -408,7 +507,7 @@ export class AllegationsOfHarmRevisedSubmitPage {
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukText16}:text-is("${AllegationsOfHarmRevised9Content.seekHelp}")`,
+          `${Selectors.Span}:text-is("${AllegationsOfHarmRevised9Content.seekHelp}")`,
           1,
         ),
         Helpers.checkVisibleAndPresent(

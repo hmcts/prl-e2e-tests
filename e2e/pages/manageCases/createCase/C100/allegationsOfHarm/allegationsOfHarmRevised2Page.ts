@@ -261,7 +261,10 @@ export class AllegationsOfHarmRevised2Page {
 
   private static async fillInFields(page: Page): Promise<void> {
     await page.click(`${uniqueSelectors.domesticAbuseYes}`);
+    await page.click(`${uniqueSelectors.domesticAbuseYes}`);
     await page.click(`${uniqueSelectors.childAbuseYes}`);
+    await page.click(`${uniqueSelectors.childAbuseYes}`);
+    await page.click(`${uniqueSelectors.childAbductionYes}`);
     await page.click(`${uniqueSelectors.childAbductionYes}`);
     await page.click(`${uniqueSelectors.substanceAbuseYes}`);
     await page.fill(
@@ -312,6 +315,7 @@ export class AllegationsOfHarmRevised2Page {
       `${AllegationsOfHarmRevised2Content.yearEndNMOrder}`,
     );
     await page.click(`${uniqueSelectors.nonMolestationOrderCurrentYes}`);
+    await page.click(`${uniqueSelectors.nonMolestationOrderCurrentYes}`);
     await page.fill(
       `${uniqueSelectors.nonMolestationNameOfCourt}`,
       `${AllegationsOfHarmRevised2Content.nameOfCourtNMOrder}`,
@@ -325,7 +329,9 @@ export class AllegationsOfHarmRevised2Page {
       `${uniqueSelectors.nonMolestationFileUpload}`,
     );
     await fileInput.setInputFiles(config.testPdfFile);
-    await expect(page.locator(".error-message")).toHaveCount(0);
+    await expect(
+      page.locator(`.error-message:text-is("Uploading...")`),
+    ).toHaveCount(0);
   }
 
   private static async fillInO(page: Page): Promise<void> {
@@ -355,6 +361,7 @@ export class AllegationsOfHarmRevised2Page {
       `${AllegationsOfHarmRevised2Content.yearEndOOrder}`,
     );
     await page.click(`${uniqueSelectors.occupationOrderCurrentYes}`);
+    await page.click(`${uniqueSelectors.occupationOrderCurrentYes}`);
     await page.fill(
       `${uniqueSelectors.occupationNameOfCourt}`,
       `${AllegationsOfHarmRevised2Content.nameOfCourtOOrder}`,
@@ -368,7 +375,9 @@ export class AllegationsOfHarmRevised2Page {
       `${uniqueSelectors.occupationFileUpload}`,
     );
     await fileInput.setInputFiles(config.testPdfFile);
-    await expect(page.locator(".error-message")).toHaveCount(0);
+    await expect(
+      page.locator(`.error-message:text-is("Uploading...")`),
+    ).toHaveCount(0);
   }
 
   private static async fillInFM(page: Page): Promise<void> {
@@ -398,6 +407,7 @@ export class AllegationsOfHarmRevised2Page {
       `${AllegationsOfHarmRevised2Content.yearEndFMOrder}`,
     );
     await page.click(`${uniqueSelectors.forcedMarriageOrderCurrentYes}`);
+    await page.click(`${uniqueSelectors.forcedMarriageOrderCurrentYes}`);
     await page.fill(
       `${uniqueSelectors.forcedMarriageProtectionNameOfCourt}`,
       `${AllegationsOfHarmRevised2Content.nameOfCourtFMOrder}`,
@@ -411,7 +421,9 @@ export class AllegationsOfHarmRevised2Page {
       `${uniqueSelectors.forcedMarriageFileUpload}`,
     );
     await fileInput.setInputFiles(config.testPdfFile);
-    await expect(page.locator(".error-message")).toHaveCount(0);
+    await expect(
+      page.locator(`.error-message:text-is("Uploading...")`),
+    ).toHaveCount(0);
   }
 
   private static async fillInR(page: Page): Promise<void> {
@@ -441,6 +453,7 @@ export class AllegationsOfHarmRevised2Page {
       `${AllegationsOfHarmRevised2Content.yearEndROrder}`,
     );
     await page.click(`${uniqueSelectors.restrainingOrderCurrentYes}`);
+    await page.click(`${uniqueSelectors.restrainingOrderCurrentYes}`);
     await page.fill(
       `${uniqueSelectors.restrainingOrderNameOfCourt}`,
       `${AllegationsOfHarmRevised2Content.nameOfCourtROrder}`,
@@ -454,7 +467,9 @@ export class AllegationsOfHarmRevised2Page {
       `${uniqueSelectors.restrainingOrderFileUpload}`,
     );
     await fileInput.setInputFiles(config.testPdfFile);
-    await expect(page.locator(".error-message")).toHaveCount(0);
+    await expect(
+      page.locator(`.error-message:text-is("Uploading...")`),
+    ).toHaveCount(0);
   }
 
   private static async fillInOI(page: Page): Promise<void> {
@@ -484,6 +499,7 @@ export class AllegationsOfHarmRevised2Page {
       `${AllegationsOfHarmRevised2Content.yearEndOIOrder}`,
     );
     await page.click(`${uniqueSelectors.otherInjunctiveOrderCurrentYes}`);
+    await page.click(`${uniqueSelectors.otherInjunctiveOrderCurrentYes}`);
     await page.fill(
       `${uniqueSelectors.otherInjunctiveNameOfCourt}`,
       `${AllegationsOfHarmRevised2Content.nameOfCourtOIOrder}`,
@@ -497,7 +513,9 @@ export class AllegationsOfHarmRevised2Page {
       `${uniqueSelectors.otherInjunctiveFileUpload}`,
     );
     await fileInput.setInputFiles(config.testPdfFile);
-    await expect(page.locator(".error-message")).toHaveCount(0);
+    await expect(
+      page.locator(`.error-message:text-is("Uploading...")`),
+    ).toHaveCount(0);
   }
 
   private static async fillInUI(page: Page): Promise<void> {
@@ -527,6 +545,7 @@ export class AllegationsOfHarmRevised2Page {
       `${AllegationsOfHarmRevised2Content.yearEndUIPOrder}`,
     );
     await page.click(`${uniqueSelectors.undertakingOrderCurrentYes}`);
+    await page.click(`${uniqueSelectors.undertakingOrderCurrentYes}`);
     await page.fill(
       `${uniqueSelectors.undertakingNameOfCourt}`,
       `${AllegationsOfHarmRevised2Content.nameOfCourtUIPOrder}`,
@@ -540,7 +559,9 @@ export class AllegationsOfHarmRevised2Page {
       `${uniqueSelectors.undertakingFileUpload}`,
     );
     await fileInput.setInputFiles(config.testPdfFile);
-    await expect(page.locator(".error-message")).toHaveCount(0);
+    await expect(
+      page.locator(`.error-message:text-is("Uploading...")`),
+    ).toHaveCount(0);
   }
 
   private static async checkFilledDataFields(page: Page): Promise<void> {

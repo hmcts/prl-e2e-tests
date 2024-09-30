@@ -104,6 +104,7 @@ export class C100AllegationsOfHarm {
         page: page,
         accessibilityTest: accessibilityTest,
         c100YesNoAllegationsOfHarm: c100YesNoAllegationsOfHarm,
+        c100DomesticAbuseTypePage3: c100DomesticAbuseTypePage3,
       },
     );
     await C100TasksTabPage.c100TasksTabPage(page, accessibilityTest);

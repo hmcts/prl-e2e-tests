@@ -59,6 +59,9 @@ export class AllegationsOfHarmRevised3Page {
     page: page,
     accessibilityTest: accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
+    await page.click(
+      `${Selectors.button}:text-is("${AllegationsOfHarmRevised3Content.addNewButton}")`,
+    );
     await page.waitForSelector(
       `${Selectors.p}:text-is("${AllegationsOfHarmRevised3Content.p}")`,
     );
@@ -84,8 +87,8 @@ export class AllegationsOfHarmRevised3Page {
         page,
         10,
         AllegationsOfHarmRevised3Content,
-        `text16`,
-        `${Selectors.GovukText16}`,
+        `formLabel`,
+        `${Selectors.GovukFormLabel}`,
       ),
     ]);
     if (accessibilityTest) {
@@ -97,23 +100,25 @@ export class AllegationsOfHarmRevised3Page {
     page: page,
     c100DomesticAbuseTypePage3: c100DomesticAbuseTypePage3,
   }: fillInFieldsOptions): Promise<void> {
-    await page.click(
-      `${Selectors.button}:text-is("${AllegationsOfHarmRevised3Content.addNewButton}")`,
-    );
     switch (c100DomesticAbuseTypePage3) {
       case "Physical abuse":
+        await page.click(`${uniqueSelectors.physicalRadio}`);
         await page.click(`${uniqueSelectors.physicalRadio}`);
         break;
       case "Psychological abuse":
         await page.click(`${uniqueSelectors.psychologicalRadio}`);
+        await page.click(`${uniqueSelectors.psychologicalRadio}`);
         break;
       case "Sexual abuse":
+        await page.click(`${uniqueSelectors.sexualRadio}`);
         await page.click(`${uniqueSelectors.sexualRadio}`);
         break;
       case "Emotional abuse":
         await page.click(`${uniqueSelectors.emotionalRadio}`);
+        await page.click(`${uniqueSelectors.emotionalRadio}`);
         break;
       case "Financial abuse":
+        await page.click(`${uniqueSelectors.financialRadio}`);
         await page.click(`${uniqueSelectors.financialRadio}`);
         break;
     }
@@ -126,6 +131,12 @@ export class AllegationsOfHarmRevised3Page {
       `${AllegationsOfHarmRevised3Content.behaviourLength}`,
     );
     await page.click(`${uniqueSelectors.applicantHelpRadioYes}`);
+    await page.click(`${uniqueSelectors.applicantHelpRadioYes}`);
+    await Helpers.checkVisibleAndPresent(
+      page,
+      `${Selectors.GovukFormLabel}:text-is("${AllegationsOfHarmRevised3Content.formLabelYesExtra}")`,
+      1,
+    );
     await page.fill(
       `${uniqueSelectors.helpSoughtField}`,
       `${AllegationsOfHarmRevised3Content.helpSoughtFrom}`,

@@ -61,11 +61,6 @@ export class AllegationsOfHarmRevised1Page {
         `formLabel`,
         `${Selectors.GovukFormLabel}`,
       ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.p}:text-is("${AllegationsOfHarmRevised1Content.pYes}")`,
-        1,
-      ),
     ]);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
@@ -101,8 +96,16 @@ export class AllegationsOfHarmRevised1Page {
   }: fillInFieldsOptions): Promise<void> {
     if (c100YesNoAllegationsOfHarm) {
       await page.click(`${uniqueSelectors.allegationsOfHarmYes}`);
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${AllegationsOfHarmRevised1Content.pYes}")`,
+        1,
+      );
     } else {
       await page.click(`${uniqueSelectors.allegationsOfHarmNo}`);
     }
+    await page.click(
+      `${Selectors.button}:text-is("${AllegationsOfHarmRevised1Content.continue}")`,
+    );
   }
 }

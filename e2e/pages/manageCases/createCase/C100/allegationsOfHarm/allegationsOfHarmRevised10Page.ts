@@ -205,7 +205,7 @@ export class AllegationsOfHarmRevised10Page {
         1,
       ),
     ]);
-    for (const person in ["mother", "father", "other"]) {
+    for (const person of ["mother", "father", "otherPerson"]) {
       await page.click(`${uniqueSelectors.generalPassportPossession}${person}`);
     }
     await Helpers.checkVisibleAndPresent(
