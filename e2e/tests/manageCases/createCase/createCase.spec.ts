@@ -46,8 +46,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       applicantChildRelationship: "Father",
       childLiveWithApplicant: true,
       yesNoChildrenAndRespondents: true,
-      c100AttendingTheHearingYesNo: true
-
+      c100AttendingTheHearingYesNo: true,
     });
   });
 
@@ -91,7 +90,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       applicantChildRelationship: "Mother",
       childLiveWithApplicant: false,
       yesNoChildrenAndRespondents: false,
-      c100AttendingTheHearingYesNo: false
+      c100AttendingTheHearingYesNo: false,
     });
   });
 

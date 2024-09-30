@@ -36,7 +36,7 @@ export class Fl401AttendingTheHearing {
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
       attendingTheHearingYesNo: fl401AttendingTheHearingYesNo,
-      caseType: 'FL401'
+      caseType: "FL401",
     });
     await AttendingTheHearingSubmitPage.attendingTheHearingSubmitPage({
       page: page,

@@ -36,7 +36,7 @@ export class C100AttendingTheHearing {
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
       attendingTheHearingYesNo: c100AttendingTheHearingYesNo,
-      caseType: 'C100'
+      caseType: "C100",
     });
     await AttendingTheHearingSubmitPage.attendingTheHearingSubmitPage({
       page: page,

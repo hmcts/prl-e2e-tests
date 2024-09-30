@@ -37,8 +37,8 @@ test.describe("C100 Create case respondent’s behaviour tests @manageCases", ()
   Not Accessibility testing,
   Yes error Messaging,
   Yes to All Options, @crossbrowserManageCases`, async ({
-     page,
-   }): Promise<void> => {
+    page,
+  }): Promise<void> => {
     await C100AttendingTheHearing.c100AttendingTheHearing({
       page: page,
       accessibilityTest: false,
@@ -50,7 +50,7 @@ test.describe("C100 Create case respondent’s behaviour tests @manageCases", ()
 });
 
 test(`Test the accessibility of the C100 Attending The Hearing Journey, @accessibilityManageCases`, async ({
-  page
+  page,
 }): Promise<void> => {
   await C100AttendingTheHearing.c100AttendingTheHearing({
     page: page,

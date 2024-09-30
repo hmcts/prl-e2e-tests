@@ -75,7 +75,7 @@ export class C100 {
     applicantChildRelationship,
     childLiveWithApplicant,
     yesNoChildrenAndRespondents,
-    c100AttendingTheHearingYesNo
+    c100AttendingTheHearingYesNo,
   }: c100Options): Promise<void> {
     await SolicitorCreateInitial.createInitialCase({
       page: page,
@@ -176,7 +176,7 @@ export class C100 {
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
       c100AttendingTheHearingYesNo: c100AttendingTheHearingYesNo,
-      subJourney: false
-    })
+      subJourney: false,
+    });
   }
 }
