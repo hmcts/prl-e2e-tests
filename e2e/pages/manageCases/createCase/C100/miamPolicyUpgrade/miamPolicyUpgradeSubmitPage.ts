@@ -4,6 +4,13 @@ import { miamSelection } from "./miamPolicyUpgrade6Page";
 import { Selectors } from "../../../../../common/selectors";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { MiamPolicyUpgradeSubmitContent } from "../../../../../fixtures/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgradeSubmitContent";
+import { Helpers } from "../../../../../common/helpers";
+
+import {
+  MiamPolicyUpgrade8Content
+} from "../../../../../fixtures/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade8Content";
+import path from "path";
+import config from "../../../../../config";
 
 interface MiamPolicyUpgradeSubmitPageOptions {
   page: Page;
@@ -80,26 +87,85 @@ export class MiamPolicyUpgradeSubmitPage {
     yesNoMiamPolicyUpgrade: yesNoMiamPolicyUpgrade,
     miamSelection: miamSelection,
   }: checkFieldsOptions): Promise<void> {
-    await page.waitForTimeout(1000);
+
+    await page.waitForSelector(`${Selectors.h2}:text-is("${MiamPolicyUpgradeSubmitContent.h2}")`);
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukHeadingL}:text-is("${MiamPolicyUpgradeSubmitContent.pageTitle}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${MiamPolicyUpgradeSubmitContent.text16CheckInfo}")`,
+        1,
+      ),
+    ]);
+
     switch (C100MiamPolicyUpgrade1PageType) {
       case "yes":
+        await Helpers.checkVisibleAndPresent(
+            page,
+            `${Selectors.GovukText16}:text-is("${MiamPolicyUpgradeSubmitContent.text16ChildrenInvolvedInEmergencyProtection}")`,
+            1,
+          );
         break;
+
+
 
       case "yesAttendedMiam":
+        await Helpers.checkGroup(
+          page,
+          6,
+          MiamPolicyUpgradeSubmitContent,
+          "text16Attended",
+          `${Selectors.GovukText16}`
+        );
         break;
 
+
+
+
       case "yesExemption":
+        await Helpers.checkGroup(
+          page,
+          6,
+          MiamPolicyUpgradeSubmitContent,
+          "text16CoreExemption",
+          `${Selectors.GovukText16}`
+        );
         if (
           yesNoMiamPolicyUpgrade &&
           miamSelection === "attended4MonthsPrior"
         ) {
+          await Helpers.checkGroup(
+            page,
+            6,
+            MiamPolicyUpgradeSubmitContent,
+            "text16Exemption",
+            `${Selectors.GovukText16}`
+          );
         } else if (
           yesNoMiamPolicyUpgrade &&
           miamSelection === "initiatedMIAMBeforeProceedings_MIAMCertificate"
         ) {
+          await Helpers.checkGroup(
+            page,
+            7,
+            MiamPolicyUpgradeSubmitContent,
+            "text161Exemption",
+            `${Selectors.GovukText16}`
+          );
         } else if (
           miamSelection === "initiatedMIAMBeforeProceedings_MIAMDetails"
         ) {
+          await Helpers.checkGroup(
+            page,
+            8,
+            MiamPolicyUpgradeSubmitContent,
+            "text162Exemption",
+            `${Selectors.GovukText16}`
+          );
         } else {
           console.log("Need to select at least one miamSelection option");
         }
@@ -113,13 +179,56 @@ export class MiamPolicyUpgradeSubmitPage {
     yesNoMiamPolicyUpgrade: yesNoMiamPolicyUpgrade,
     miamSelection: miamSelection,
   }: checkFilledDataOptions): Promise<void> {
-    await page.waitForTimeout(1000);
+
+
     switch (C100MiamPolicyUpgrade1PageType) {
       case "yes":
+        await Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukText16}:text-is("${MiamPolicyUpgradeSubmitContent.text16Yes}")`,
+          1,
+        );
+        break;
+      case "yesAttendedMiam":
+        await Promise.all([
+          Helpers.checkVisibleAndPresent(
+            page,
+            `${Selectors.GovukText16}:text-is("${MiamPolicyUpgradeSubmitContent.text16No}")`,
+            1,
+          ),
+          Helpers.checkVisibleAndPresent(
+            page,
+            `${Selectors.GovukText16}:text-is("${MiamPolicyUpgradeSubmitContent.text16Yes}")`,
+            1,
+          ),
+          Helpers.checkVisibleAndPresent(
+            page,
+            `${Selectors.GovukText16}:text-is("${MiamPolicyUpgrade8Content.mediatorRegistrationNumber}")`,
+            1,
+          ),
+          Helpers.checkVisibleAndPresent(
+            page,
+            `${Selectors.GovukText16}:text-is("${MiamPolicyUpgrade8Content.familyMediationServiceNumber}")`,
+            1,
+          ),
+          Helpers.checkVisibleAndPresent(
+            page,
+            `${Selectors.GovukText16}:text-is("${MiamPolicyUpgrade8Content.soleTraderName}")`,
+            1,
+          ),
+          Helpers.checkVisibleAndPresent(
+            page,
+            `${Selectors.a}:text-is("${path.basename(config.testPdfFile)}")`,
+            1,
+          ),
+        ]);
         break;
 
-      case "yesAttendedMiam":
-        break;
+
+
+
+
+
 
       case "yesExemption":
         if (
