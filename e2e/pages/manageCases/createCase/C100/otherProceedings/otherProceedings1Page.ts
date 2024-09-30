@@ -7,6 +7,7 @@ import {
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import Config from "../../../../../config";
+import * as assert from "node:assert";
 
 enum inputIDs {
   radioYes = '#previousOrOngoingProceedingsForChildren-yes',
@@ -141,7 +142,15 @@ export class OtherProceedings1Page {
       inputIDs[radioKey]
     );
     if (c100OtherProceedings === 'Yes') {
-
+      if (c100OtherProceedingsOngoing == null) {
+        throw new Error(
+          'c100OtherProceedings cannot be null if c100OtherProceedings is Yes'
+        )
+      }
+      await this.addNewProceeding({
+        page,
+        c100OtherProceedingsOngoing
+      });
     }
     await page.click(
       `${Selectors.button}:text-is("${OtherProceedingsContent.continue}")`
