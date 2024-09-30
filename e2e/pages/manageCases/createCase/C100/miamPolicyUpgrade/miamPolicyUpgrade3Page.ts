@@ -52,16 +52,19 @@ enum UniqueSelectors {
 }
 
 export class MiamPolicyUpgrade3Page {
-  public static async miamPolicyUpgrade1Page({
+  public static async miamPolicyUpgrade3Page({
     page: page,
     accessibilityTest: accessibilityTest,
+    errorMessaging: errorMessaging,
     yesNoMiamPolicyUpgrade: yesNoMiamPolicyUpgrade,
   }: MiamPolicyUpgrade3PageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
       accessibilityTest: accessibilityTest,
     });
-    await this.triggerErrorMessages(page);
+    if (errorMessaging) {
+      await this.triggerErrorMessages(page);
+    }
     await this.fillInFields({
       page: page,
       yesNoMiamPolicyUpgrade: yesNoMiamPolicyUpgrade,

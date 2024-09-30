@@ -223,6 +223,22 @@ export class MiamPolicyUpgradeSubmitPage {
         break;
 
       case "yesExemption":
+        await Promise.all([
+          Helpers.checkGroup(
+            page,
+            5,
+            MiamPolicyUpgrade2Content,
+            "FormLabel",
+            `${Selectors.GovukFormLabel}`,
+          ),
+          Helpers.checkGroup(
+            page,
+            22,
+            MiamPolicyUpgrade3Content,
+            "formLabel",
+            `${Selectors.GovukFormLabel}`,
+          ),
+        ]);
         if (
           yesNoMiamPolicyUpgrade &&
           miamSelection === "attended4MonthsPrior"
@@ -237,20 +253,6 @@ export class MiamPolicyUpgradeSubmitPage {
               page,
               `${Selectors.GovukText16}:text-is("${MiamPolicyUpgradeSubmitContent.text16Yes}")`,
               2,
-            ),
-            Helpers.checkGroup(
-              page,
-              5,
-              MiamPolicyUpgrade2Content,
-              "FormLabel",
-              `${Selectors.GovukFormLabel}`,
-            ),
-            Helpers.checkGroup(
-              page,
-              22,
-              MiamPolicyUpgrade3Content,
-              "formLabel",
-              `${Selectors.GovukFormLabel}`,
             ),
             Helpers.checkVisibleAndPresent(
               page,
@@ -293,20 +295,6 @@ export class MiamPolicyUpgradeSubmitPage {
               `${Selectors.GovukText16}:text-is("${MiamPolicyUpgradeSubmitContent.text16Yes}")`,
               2,
             ),
-            Helpers.checkGroup(
-              page,
-              5,
-              MiamPolicyUpgrade2Content,
-              "FormLabel",
-              `${Selectors.GovukFormLabel}`,
-            ),
-            Helpers.checkGroup(
-              page,
-              22,
-              MiamPolicyUpgrade3Content,
-              "formLabel",
-              `${Selectors.GovukFormLabel}`,
-            ),
             Helpers.checkVisibleAndPresent(
               page,
               `${Selectors.a}:text-is("${path.basename(config.testPdfFile)}")`,
@@ -346,7 +334,53 @@ export class MiamPolicyUpgradeSubmitPage {
         } else if (
           miamSelection === "initiatedMIAMBeforeProceedings_MIAMDetails"
         ) {
-          await Promise.all([]);
+          await Promise.all([
+            Helpers.checkVisibleAndPresent(
+              page,
+              `${Selectors.GovukText16}:text-is("${MiamPolicyUpgradeSubmitContent.text16No}")`,
+              3,
+            ),
+            Helpers.checkVisibleAndPresent(
+              page,
+              `${Selectors.GovukText16}:text-is("${MiamPolicyUpgradeSubmitContent.text16Yes}")`,
+              1,
+            ),
+            Helpers.checkVisibleAndPresent(
+              page,
+              `${Selectors.GovukText16}:text-is("${MiamPolicyUpgrade7Content.loremIpsum}")`,
+              2,
+            ),
+            Helpers.checkVisibleAndPresent(
+              page,
+              `${Selectors.GovukText16}:text-is("${MiamPolicyUpgrade4Content.formLabel3}")`,
+              1,
+            ),
+            Helpers.checkVisibleAndPresent(
+              page,
+              `${Selectors.GovukText16}:text-is("${MiamPolicyUpgrade5Content.formLabel3}")`,
+              1,
+            ),
+            Helpers.checkVisibleAndPresent(
+              page,
+              `${Selectors.GovukText16}:text-is("${MiamPolicyUpgrade6Content.formLabel3}")`,
+              1,
+            ),
+            Helpers.checkVisibleAndPresent(
+              page,
+              `${Selectors.GovukText16}:text-is("${MiamPolicyUpgrade6Content.formLabelEvidence3}")`,
+              1,
+            ),
+            Helpers.checkVisibleAndPresent(
+              page,
+              `${Selectors.GovukText16}:text-is("${MiamPolicyUpgrade7Content.formLabel4}")`,
+              1,
+            ),
+            Helpers.checkVisibleAndPresent(
+              page,
+              `${Selectors.GovukText16}:text-is("${MiamPolicyUpgradeSubmitContent.text16Change}")`,
+              13,
+            ),
+          ]);
         } else {
           console.log("Need to select at least one miamSelection option");
         }

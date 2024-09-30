@@ -27,7 +27,7 @@ enum UniqueSelectors {
 }
 
 export class MiamPolicyUpgrade2Page {
-  public static async miamPolicyUpgrade1Page({
+  public static async miamPolicyUpgrade2Page({
     page: page,
     accessibilityTest: accessibilityTest,
   }: MiamPolicyUpgrade1PageOptions): Promise<void> {

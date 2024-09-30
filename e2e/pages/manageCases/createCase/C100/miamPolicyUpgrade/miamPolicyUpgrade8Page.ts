@@ -27,8 +27,8 @@ enum UniqueSelectors {
   uploadFileInput = "#miamCertificationDocumentUpload",
 }
 
-export class MiamPolicyUpgrade4Page {
-  public static async miamPolicyUpgrade4Page({
+export class MiamPolicyUpgrade8Page {
+  public static async miamPolicyUpgrade8Page({
     page: page,
     accessibilityTest: accessibilityTest,
     errorMessaging: errorMessaging,

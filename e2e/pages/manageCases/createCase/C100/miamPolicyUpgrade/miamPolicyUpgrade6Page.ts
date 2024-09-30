@@ -39,7 +39,7 @@ export type miamSelection =
   | "initiatedMIAMBeforeProceedings_MIAMDetails";
 
 export class MiamPolicyUpgrade6Page {
-  public static async miamPolicyUpgrade1Page({
+  public static async miamPolicyUpgrade6Page({
     page: page,
     accessibilityTest: accessibilityTest,
     errorMessaging: errorMessaging,
