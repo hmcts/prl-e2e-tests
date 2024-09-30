@@ -47,5 +47,10 @@ export enum OtherProceedingsContent {
   childrenInvolved = 'Automated Child',
   guardianName = 'Automated Guardian',
   cymruOfficer = 'Automated Cymru Officer',
+  errorSummaryTitle = ' There is a problem ',
+  errorValidation1 = ' Date started is not valid ',
+  errorValidation2 = ' Date ended is not valid ',
+  errorMessage1 = ' The data entered is not valid for Date started ',
+  errorMessage2 = ' The data entered is not valid for Date ended ',
   continue = "Continue",
 }

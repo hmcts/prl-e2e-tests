@@ -31,7 +31,7 @@ export class C100OtherProceedings {
     }
     await Helpers.selectSolicitorEvent(
       page,
-      'Other Proceedings'
+      'Other proceedings'
     );
     await OtherProceedings1Page.otherProceedings1Page({
       page: page,

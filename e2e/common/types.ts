@@ -32,7 +32,7 @@ export type c100SolicitorEvents =
   | "Other children not in the case"
   | "Children and applicants"
   | "Children and respondents"
-  | "Other Proceedings";
+  | "Other proceedings";
 
 export type fl401SolicitorEvents =
   | "Case name"

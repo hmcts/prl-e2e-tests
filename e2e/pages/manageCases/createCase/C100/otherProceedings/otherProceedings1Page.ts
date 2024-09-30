@@ -192,9 +192,9 @@ export class OtherProceedings1Page {
       'guardianName',
       'cymruOfficer'
     ]
-    for (let dateKey of textKeys) {
-      let contentKey = dateKey as keyof typeof OtherProceedingsContent;
-      let inputKey = dateKey as keyof typeof inputIDs;
+    for (let textKey of textKeys) {
+      let contentKey = textKey as keyof typeof OtherProceedingsContent;
+      let inputKey = textKey as keyof typeof inputIDs;
       await page.fill(
         inputIDs[inputKey],
         OtherProceedingsContent[contentKey]
@@ -204,6 +204,6 @@ export class OtherProceedings1Page {
     await page.setInputFiles(
       inputIDs.fileUpload,
       Config.testPdfFile
-    )
+    );
   }
 }
