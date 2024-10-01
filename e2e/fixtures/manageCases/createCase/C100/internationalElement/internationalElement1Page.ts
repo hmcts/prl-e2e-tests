@@ -8,5 +8,5 @@ export enum InternationalElement1Page {
   loremIpsum = "loremIpsum",
   formLabelYes = "Yes",
   formLabelNo = "No",
-  continue = "Continue"
+  continue = "Continue",
 }

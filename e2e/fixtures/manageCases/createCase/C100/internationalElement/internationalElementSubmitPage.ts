@@ -7,5 +7,5 @@ export enum InternationalElementSubmitPage {
   text164 = "Has a request been made or should a request be made to a Central Authority or other competent authority in a foreign state or a consular authority in England and Wales?",
   text16GiveReasons = "*Give reason",
   text16Change = "Change",
-  continue = "Save and continue"
+  continue = "Save and continue",
 }
