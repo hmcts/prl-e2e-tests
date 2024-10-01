@@ -103,7 +103,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       c100AttendingTheHearingYesNo: false,
       C100MiamPolicyUpgrade1PageType: "yesExemption",
       yesNoMiamPolicyUpgrade: false,
-      miamSelection: "attended4MonthsPrior",
+      miamSelection: "initiatedMIAMBeforeProceedings_MIAMCertificate",
     });
   });
 
