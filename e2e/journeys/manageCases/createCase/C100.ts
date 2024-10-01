@@ -23,6 +23,7 @@ import { C100ChildrenAndApplicantsRelationship } from "../../../pages/manageCase
 import { C100ChildrenAndApplicants } from "./C100ChildrenAndApplicants/C100ChildrenAndApplicants";
 import { C100ChildAndRespondents } from "./C100ChildrenAndRespondents/c100ChildrenAndRespondents";
 import { C100AttendingTheHearing } from "./C100AttendingTheHearing/c100AttendingTheHearing";
+import { C100LitigationCapacity } from "./C100LitigationCapacity/C100LitigationCapacity";
 
 interface c100Options {
   page: Page;
@@ -50,6 +51,7 @@ interface c100Options {
   applicantChildRelationship: C100ChildrenAndApplicantsRelationship;
   childLiveWithApplicant: boolean;
   c100AttendingTheHearingYesNo: boolean;
+  yesNoLitigationCapacity: boolean,
 }
 
 export class C100 {
@@ -79,6 +81,7 @@ export class C100 {
     yesNoChildrenAndRespondents,
     c100AttendingTheHearingYesNo,
     yesNoChildrenAndOtherPeople,
+                             yesNoLitigationCapacity,
   }: c100Options): Promise<void> {
     await SolicitorCreateInitial.createInitialCase({
       page: page,
@@ -192,6 +195,13 @@ export class C100 {
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
       c100AttendingTheHearingYesNo: c100AttendingTheHearingYesNo,
+      subJourney: false,
+    });
+    await C100LitigationCapacity.c100LitigationCapacity({
+      page: page,
+      user: user,
+      accessibilityTest: accessibilityTest,
+      yesNoLitigationCapacity: yesNoLitigationCapacity,
       subJourney: false,
     });
   }

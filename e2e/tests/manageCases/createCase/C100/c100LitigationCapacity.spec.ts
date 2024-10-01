@@ -19,6 +19,7 @@ test.describe("C100 Create case Litigation Capacity Tests @manageCases", (): voi
       subJourney: true,
     });
   });
+
   test(`Complete the C100 Create case Litigation Capacity as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
