@@ -107,7 +107,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
     });
   });
 
-   test(`Complete the FL401 create case event as a solicitor with the following options:
+  test(`Complete the FL401 create case event as a solicitor with the following options:
       Not Accessibility testing,
       Not Error message testing,
       Female applicant,
@@ -121,7 +121,9 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
     Saying yes to all 'The Home' Questions,
       'Yes, both of them' ever lived at the address
     Saying Yes to all attending the hearing question,
-      Upload document files@crossbrowserManageCases`, async ({ page }): Promise<void> => {
+      Upload document files@crossbrowserManageCases`, async ({
+    page,
+  }): Promise<void> => {
     await FL401.fl401({
       page: page,
       user: "solicitor",
