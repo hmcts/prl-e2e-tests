@@ -5,6 +5,9 @@ import {
 } from "../../../../pages/manageCases/createCase/C100/otherProceedings/otherProceedings1Page";
 import { SolicitorCreateInitial } from "../solicitorCreateInitial";
 import { Helpers } from "../../../../common/helpers";
+import {
+  OtherProceedingsSubmitPage
+} from "../../../../pages/manageCases/createCase/C100/otherProceedings/otherProceedingsSubmitPage";
 
 interface C100OtherProceedingsOptions {
   page: Page;
@@ -36,6 +39,12 @@ export class C100OtherProceedings {
       'Other proceedings'
     );
     await OtherProceedings1Page.otherProceedings1Page({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      c100OtherProceedings: c100OtherProceedings,
+      c100OtherProceedingsOngoing: c100OtherProceedingsOngoing
+    });
+    await OtherProceedingsSubmitPage.otherProceedingsSubmitPage({
       page: page,
       accessibilityTest: accessibilityTest,
       c100OtherProceedings: c100OtherProceedings,
