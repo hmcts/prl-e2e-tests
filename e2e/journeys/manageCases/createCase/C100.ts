@@ -196,13 +196,6 @@ export class C100 {
       yesNoChildrenAndOtherPeople: yesNoChildrenAndOtherPeople,
       subJourney: false,
     });
-    await C100AttendingTheHearing.c100AttendingTheHearing({
-      page: page,
-      accessibilityTest: accessibilityTest,
-      errorMessaging: errorMessaging,
-      c100AttendingTheHearingYesNo: c100AttendingTheHearingYesNo,
-      subJourney: false,
-    });
     await C100MiamPolicyUpgrade.c100MiamPolicyUpgrade({
       page: page,
       user: user,
@@ -211,6 +204,13 @@ export class C100 {
       C100MiamPolicyUpgrade1PageType: C100MiamPolicyUpgrade1PageType,
       yesNoMiamPolicyUpgrade: yesNoMiamPolicyUpgrade,
       miamSelection: miamSelection,
+      subJourney: false,
+    });
+    await C100AttendingTheHearing.c100AttendingTheHearing({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      c100AttendingTheHearingYesNo: c100AttendingTheHearingYesNo,
       subJourney: false,
     });
   }
