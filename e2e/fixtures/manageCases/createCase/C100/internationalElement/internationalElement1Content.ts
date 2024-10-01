@@ -1,4 +1,4 @@
-export enum InternationalElement1Page {
+export enum InternationalElement1Content {
   pageTitle = "International element",
   p1 = "You can save and return to this page at any time. Questions marked with a * need to be completed before you can send your application.",
   formLabel1 = "Do you have any reason to believe that any child, parent or potentially significant adult in the child's life may be habitually resident in another state? (Optional)",

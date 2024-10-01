@@ -1,4 +1,4 @@
-export enum InternationalElementSubmitPage {
+export enum InternationalElementSubmitContent {
   pageTitle = "International element",
   h2 = "Check your answers",
   text161 = "Check the information below carefully.\n",
