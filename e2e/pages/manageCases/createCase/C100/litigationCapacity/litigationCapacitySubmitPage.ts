@@ -2,9 +2,7 @@ import { Page } from "@playwright/test";
 import { C100ChildrenAndApplicantsRelationship } from "../childrenAndApplicants/childrenAndApplicants1Page";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Selectors } from "../../../../../common/selectors";
-import {
-  LitigationCapacitySubmitContent
-} from "../../../../../fixtures/manageCases/createCase/C100/litigationCapacity/litigationCapacitySubmitContent";
+import { LitigationCapacitySubmitContent } from "../../../../../fixtures/manageCases/createCase/C100/litigationCapacity/litigationCapacitySubmitContent";
 
 interface LitigationCapacityOptions {
   page: Page;
@@ -42,41 +40,40 @@ export class LitigationCapacitySubmitPage {
     accessibilityTest: accessibilityTest,
     yesNoLitigationCapacity: yesNoLitigationCapacity,
   }: LitigationCapacityOptions): Promise<void> {
-    await page.waitForSelector(`${Selectors.h2}:text-is("${LitigationCapacitySubmitContent.h2}")`);
+    await page.waitForSelector(
+      `${Selectors.h2}:text-is("${LitigationCapacitySubmitContent.h2}")`,
+    );
     await Promise.all([
-    this.checkPageFields({
-      page: page,
-      accessibilityTest: accessibilityTest,
-      yesNoLitigationCapacity: yesNoLitigationCapacity,
-    }),
-    this.checkPageData({
-      page: page,
-      yesNoLitigationCapacity: yesNoLitigationCapacity,
-    }),
-  ]);
+      this.checkPageFields({
+        page: page,
+        accessibilityTest: accessibilityTest,
+        yesNoLitigationCapacity: yesNoLitigationCapacity,
+      }),
+      this.checkPageData({
+        page: page,
+        yesNoLitigationCapacity: yesNoLitigationCapacity,
+      }),
+    ]);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }
   }
 
   private static async checkPageFields({
-                                         page: page,
-                                         yesNoLitigationCapacity: yesNoLitigationCapacity,
-                                       }:checkFieldsOptions): Promise<void> {
-    await Promise.all([
-
-    ]);
+    page: page,
+    yesNoLitigationCapacity: yesNoLitigationCapacity,
+  }: checkFieldsOptions): Promise<void> {
+    await Promise.all([]);
   }
-
 
   private static async checkPageData({
-                                       page: page,
-                                       yesNoLitigationCapacity: yesNoLitigationCapacity,
-                                     }:checkFilledDataOptions): Promise<void> {
-
-  }
+    page: page,
+    yesNoLitigationCapacity: yesNoLitigationCapacity,
+  }: checkFilledDataOptions): Promise<void> {}
 
   private static async continue(page: Page): Promise<void> {
-    await page.click(`${Selectors.button}:text-is("${LitigationCapacitySubmitContent.continue}")`)
+    await page.click(
+      `${Selectors.button}:text-is("${LitigationCapacitySubmitContent.continue}")`,
+    );
   }
 }

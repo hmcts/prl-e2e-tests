@@ -10,5 +10,5 @@ export enum LitigationCapacitySubmitContent {
   text16No = "No",
   text16Change = "Change",
   loremIpsum = "LoremIpsum",
-  continue = "Save and continue"
+  continue = "Save and continue",
 }
