@@ -5,8 +5,8 @@ export enum LitigationCapacity1Content {
   formLabel2 = "Provide details of any referral to or assessment by the Adult Learning Disability team, and/or any adult health service, where known, together with the outcome (Optional)",
   formLabel3 = "Are you aware of any other factors which may affect the ability of the person concerned to take part in the proceedings? (Optional)",
   additionalFormLabel = "*Give Details (Optional)",
-  formLabelYes = "",
-  formLabelNo = "",
-  loremIpsum = "",
+  formLabelYes = "Yes",
+  formLabelNo = "No",
+  loremIpsum = "loremIpsum",
   continue = "Continue",
 }

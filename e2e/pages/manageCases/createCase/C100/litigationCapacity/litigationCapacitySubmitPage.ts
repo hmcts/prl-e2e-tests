@@ -1,5 +1,4 @@
 import { Page } from "@playwright/test";
-import { C100ChildrenAndApplicantsRelationship } from "../childrenAndApplicants/childrenAndApplicants1Page";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Selectors } from "../../../../../common/selectors";
 import { LitigationCapacitySubmitContent } from "../../../../../fixtures/manageCases/createCase/C100/litigationCapacity/litigationCapacitySubmitContent";
@@ -74,7 +73,7 @@ export class LitigationCapacitySubmitPage {
         page,
         4,
         LitigationCapacitySubmitContent,
-        "formLabel",
+        "text16",
         `${Selectors.GovukText16}`,
       ),
     ]);
