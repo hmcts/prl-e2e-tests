@@ -23,6 +23,7 @@ test.describe("C100 Create case MIAM Tests @manageCases", (): void => {
       subJourney: true,
     });
   });
+
   test(`Complete the C100 Create case MIAM as a solicitor with the following options:
   Not Accessibility testing,
   Error message testing,
@@ -41,12 +42,13 @@ test.describe("C100 Create case MIAM Tests @manageCases", (): void => {
       subJourney: true,
     });
   });
+
   test(`Complete the C100 Create case MIAM as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
   Saying yes to yesExemption
   miamSelection "attended4MonthsPrior"
-  Saying Yes to all options. @crossbrowserManageCases`, async ({
+  Saying Yes to all options.`, async ({
     page,
   }): Promise<void> => {
     await C100MiamPolicyUpgrade.c100MiamPolicyUpgrade({
@@ -60,12 +62,13 @@ test.describe("C100 Create case MIAM Tests @manageCases", (): void => {
       subJourney: true,
     });
   });
+
   test(`Complete the C100 Create case MIAM as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
   Saying yes to yesExemption
   miamSelection "initiatedMIAMBeforeProceedings_MIAMCertificate"
-  Saying no to all options. @crossbrowserManageCases`, async ({
+  Saying no to all options.`, async ({
     page,
   }): Promise<void> => {
     await C100MiamPolicyUpgrade.c100MiamPolicyUpgrade({
@@ -79,6 +82,7 @@ test.describe("C100 Create case MIAM Tests @manageCases", (): void => {
       subJourney: true,
     });
   });
+
   test(`Complete the C100 Create case MIAM as a solicitor with the following options:
   Not Accessibility testing,
   Error message testing,
@@ -119,6 +123,7 @@ test.describe("C100 Create case MIAM Tests @accessibilityManageCases", (): void 
       subJourney: true,
     });
   });
+
   test(`Complete the C100 Create case MIAM as a solicitor with the following options:
   Accessibility testing,
   Error message testing,
@@ -138,6 +143,7 @@ test.describe("C100 Create case MIAM Tests @accessibilityManageCases", (): void 
       subJourney: true,
     });
   });
+
   test(`Complete the C100 Create case MIAM as a solicitor with the following options:
   Accessibility testing,
   Not Error message testing,
