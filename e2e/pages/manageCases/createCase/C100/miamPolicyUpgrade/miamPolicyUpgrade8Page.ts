@@ -108,6 +108,7 @@ export class MiamPolicyUpgrade8Page {
       `${UniqueSelectors.soleTraderNameInput}`,
       MiamPolicyUpgrade8Content.soleTraderName,
     );
+    await page.waitForTimeout(1000);
     const fileInput = page.locator(`${UniqueSelectors.uploadFileInput}`);
     await fileInput.setInputFiles(config.testPdfFile);
     await page.waitForTimeout(5000);
