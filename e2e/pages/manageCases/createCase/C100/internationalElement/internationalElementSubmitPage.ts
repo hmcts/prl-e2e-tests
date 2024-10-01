@@ -2,9 +2,7 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { InternationalElementSubmitContent } from "../../../../../fixtures/manageCases/createCase/C100/internationalElement/internationalElementSubmitContent";
-import {
-  ChildrenAndApplicantsSubmitContent
-} from "../../../../../fixtures/manageCases/createCase/C100/childrenAndApplicants/childrenAndApplicantsSubmitContent";
+import { ChildrenAndApplicantsSubmitContent } from "../../../../../fixtures/manageCases/createCase/C100/childrenAndApplicants/childrenAndApplicantsSubmitContent";
 
 interface InternationalElementSubmitPageOption {
   page: Page;
@@ -64,9 +62,7 @@ export class InternationalElementSubmitPage {
     yesNoInternationalElement: yesNoInternationalElement,
   }: checkFieldsOptions): Promise<void> {
     if (yesNoInternationalElement) {
-
     } else {
-
     }
   }
 
@@ -75,12 +71,9 @@ export class InternationalElementSubmitPage {
     yesNoInternationalElement: yesNoInternationalElement,
   }: checkFilledDataOptions): Promise<void> {
     if (yesNoInternationalElement) {
-
     } else {
-
     }
   }
-
 
   private static async continue(page: Page): Promise<void> {
     await page.click(
