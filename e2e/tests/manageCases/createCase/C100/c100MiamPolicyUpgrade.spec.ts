@@ -145,7 +145,7 @@ test.describe("C100 Create case MIAM Tests @accessibilityManageCases", (): void 
   Not Error message testing,
   Saying yes to yesExemption
   miamSelection "attended4MonthsPrior"
-  Saying Yes to all options. @accessibilityManageCases`, async ({
+  Saying Yes to all options. @accessibilityManageCases `, async ({
     page,
   }): Promise<void> => {
     await C100MiamPolicyUpgrade.c100MiamPolicyUpgrade({
