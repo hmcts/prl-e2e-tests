@@ -15,8 +15,9 @@ test.describe("C100 Create case other proceedings tests @manageCases", (): void 
     await C100OtherProceedings.c100OtherProceedings({
       page: page,
       accessibilityTest: false,
+      errorMessaging: false,
       c100OtherProceedings: "Yes",
-      c100OtherProceedingsOngoing: true,
+      c100OngoingProceedingsAndDocX: true,
       subJourney: true,
     });
   });
@@ -31,8 +32,9 @@ test.describe("C100 Create case other proceedings tests @manageCases", (): void 
     await C100OtherProceedings.c100OtherProceedings({
       page: page,
       accessibilityTest: false,
+      errorMessaging: false,
       c100OtherProceedings: "Yes",
-      c100OtherProceedingsOngoing: false,
+      c100OngoingProceedingsAndDocX: false,
       subJourney: true,
     });
   });
@@ -47,6 +49,7 @@ test.describe("C100 Create case other proceedings tests @manageCases", (): void 
     await C100OtherProceedings.c100OtherProceedings({
       page: page,
       accessibilityTest: false,
+      errorMessaging: false,
       c100OtherProceedings: "No",
       subJourney: true,
     });
@@ -62,7 +65,25 @@ test.describe("C100 Create case other proceedings tests @manageCases", (): void 
     await C100OtherProceedings.c100OtherProceedings({
       page: page,
       accessibilityTest: false,
+      errorMessaging: false,
       c100OtherProceedings: "Don't know",
+      subJourney: true,
+    });
+  });
+
+  test(`Complete the C100 other proceedings event as a solicitor with the following options:
+  Not Accessibility testing,
+  Yes Error message testing,
+  Saying yes to previous or ongoing proceedings for the child(ren)?,
+  Ongoing Proceedings, @crossbrowserManageCases`, async ({
+    page,
+  }): Promise<void> => {
+    await C100OtherProceedings.c100OtherProceedings({
+      page: page,
+      accessibilityTest: false,
+      errorMessaging: true,
+      c100OtherProceedings: "Yes",
+      c100OngoingProceedingsAndDocX: true,
       subJourney: true,
     });
   });
@@ -77,6 +98,7 @@ test(`Accessibility test the C100 other proceedings event as a solicitor with th
   await C100OtherProceedings.c100OtherProceedings({
     page: page,
     accessibilityTest: true,
+    errorMessaging: false,
     c100OtherProceedings: "Yes",
     subJourney: true,
   });

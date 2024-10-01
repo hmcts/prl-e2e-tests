@@ -22,7 +22,7 @@ enum inputIDs {
   endDateMonth = '#dateEnded-month',
   endDateYear = '#dateEnded-year',
   judgeName = '#existingProceedings_0_nameOfJudge',
-  courtName = '#existingProceedings_0_nameOfJudge',
+  courtName = '#existingProceedings_0_nameOfCourt',
   childrenInvolved = '#existingProceedings_0_nameOfChildrenInvolved',
   guardianName = '#existingProceedings_0_nameOfGuardian',
   cymruOfficer = '#existingProceedings_0_nameAndOffice',
@@ -62,8 +62,9 @@ enum invalidDateFields {
 interface C100OtherProceedings1PageOptions {
   page: Page,
   accessibilityTest: boolean,
+  errorMessaging: boolean;
   c100OtherProceedings: otherProceedingsRadios;
-  c100OtherProceedingsOngoing?: boolean;
+  c100OngoingProceedingsAndDocX?: boolean;
 }
 
 interface CheckPageLoadsOptions {
@@ -73,30 +74,35 @@ interface CheckPageLoadsOptions {
 
 interface FillInFieldsOptions {
   page: Page,
+
   c100OtherProceedings: otherProceedingsRadios;
-  c100OtherProceedingsOngoing?: boolean;
+  c100OngoingProceedingsAndDocX?: boolean;
 }
 
 interface AddNewProceedingsOptions {
   page: Page,
-  c100OtherProceedingsOngoing: boolean;
+  c100OngoingProceedingsAndDocX: boolean;
 }
 
 export class OtherProceedings1Page {
   public static async otherProceedings1Page({
     page,
     accessibilityTest,
+    errorMessaging,
     c100OtherProceedings,
-    c100OtherProceedingsOngoing
+    c100OngoingProceedingsAndDocX
   }: C100OtherProceedings1PageOptions): Promise<void> {
     await this.checkPageLoads({
       page,
       accessibilityTest,
     });
+    if (errorMessaging) {
+      await this.checkErrorMessaging(page);
+    }
     await this.fillInFields({
       page,
       c100OtherProceedings,
-      c100OtherProceedingsOngoing
+      c100OngoingProceedingsAndDocX
     });
   }
   
@@ -129,7 +135,7 @@ export class OtherProceedings1Page {
   private static async fillInFields({
     page,
     c100OtherProceedings,
-    c100OtherProceedingsOngoing
+    c100OngoingProceedingsAndDocX
   }: FillInFieldsOptions): Promise<void> {
     let radioKey: keyof typeof inputIDs
     switch (c100OtherProceedings) {
@@ -151,14 +157,14 @@ export class OtherProceedings1Page {
       inputIDs[radioKey]
     );
     if (c100OtherProceedings === 'Yes') {
-      if (typeof c100OtherProceedingsOngoing !== 'boolean') {
+      if (typeof c100OngoingProceedingsAndDocX !== 'boolean') {
         throw new Error(
           'c100OtherProceedings must be boolean if c100OtherProceedings is Yes'
         )
       }
       await this.addNewProceeding({
         page,
-        c100OtherProceedingsOngoing
+        c100OngoingProceedingsAndDocX
       });
     }
     await page.click(
@@ -168,7 +174,7 @@ export class OtherProceedings1Page {
 
   private static async addNewProceeding({
     page,
-    c100OtherProceedingsOngoing
+    c100OngoingProceedingsAndDocX
   }: AddNewProceedingsOptions): Promise<void> {
     await Helpers.checkVisibleAndPresent(
       page,
@@ -188,14 +194,18 @@ export class OtherProceedings1Page {
     for (let checkbox of Object.values(checkboxIDs)) {
       await page.click(checkbox);
     }
-    if (c100OtherProceedingsOngoing) {
+    let filePath: string;
+    if (c100OngoingProceedingsAndDocX) {
       await page.click(
         inputIDs.ongoingProceedings
       );
+      filePath = Config.testWordFile
+
     } else {
       await page.click(
         inputIDs.previousProceedings
       );
+      filePath = Config.testPdfFile
     }
     const textKeys: string[] = [
       'caseNumber',
@@ -223,11 +233,14 @@ export class OtherProceedings1Page {
     await page.waitForTimeout(6000);
     await page.setInputFiles(
       inputIDs.fileUpload,
-      Config.testPdfFile
+      filePath
     );
-    await page.click(
-      `${Selectors.button}:text-is("${OtherProceedingsContent.continue}")`
+    await Helpers.checkVisibleAndPresent(
+      page,
+      `${Selectors.GovukErrorMessage}:text-is("${OtherProceedingsContent.uploadingFile}")`,
+      1
     );
+    await page.waitForSelector(`${Selectors.GovukErrorMessage}:text-is("${OtherProceedingsContent.uploadingFile}")`, { state: 'hidden' });
   }
 
   private static async checkErrorMessaging(

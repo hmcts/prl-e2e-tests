@@ -1,4 +1,4 @@
-import { ApplicantGender, UserRole } from "../../../common/types";
+import { ApplicantGender, otherProceedingsRadios, UserRole } from "../../../common/types";
 import { Page } from "@playwright/test";
 import { SolicitorCreateInitial } from "./solicitorCreateInitial";
 import { C100HearingUrgency } from "./C100HearingUrgency/C100HearingUrgency";
@@ -21,6 +21,7 @@ import { C100OtherChildGender } from "../../../pages/manageCases/createCase/C100
 import { C100ChildrenAndApplicantsRelationship } from "../../../pages/manageCases/createCase/C100/childrenAndApplicants/childrenAndApplicants1Page";
 import { C100ChildrenAndApplicants } from "./C100ChildrenAndApplicants/C100ChildrenAndApplicants";
 import { C100ChildAndRespondents } from "./C100ChildrenAndRespondents/c100ChildrenAndRespondents";
+import { C100OtherProceedings } from "./C100OtherProceedings/C100OtherProceedings";
 
 interface c100Options {
   page: Page;
@@ -46,6 +47,8 @@ interface c100Options {
   applicantChildRelationship: C100ChildrenAndApplicantsRelationship;
   childLiveWithApplicant: boolean;
   yesNoChildrenAndRespondents: boolean;
+  c100OtherProceedings: otherProceedingsRadios;
+  c100OngoingProceedingsAndDocX?: boolean;
 }
 
 export class C100 {
@@ -74,6 +77,8 @@ export class C100 {
     applicantChildRelationship: applicantChildRelationship,
     childLiveWithApplicant: childLiveWithApplicant,
     yesNoChildrenAndRespondents: yesNoChildrenAndRespondents,
+    c100OtherProceedings: c100OtherProceedings,
+    c100OngoingProceedingsAndDocX: c100OngoingProceedingsAndDocX
   }: c100Options): Promise<void> {
     await SolicitorCreateInitial.createInitialCase({
       page: page,
@@ -169,5 +174,13 @@ export class C100 {
       yesNoChildrenAndRespondents: yesNoChildrenAndRespondents,
       subJourney: false,
     });
+    await C100OtherProceedings.c100OtherProceedings({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      c100OtherProceedings: c100OtherProceedings,
+      c100OngoingProceedingsAndDocX: c100OngoingProceedingsAndDocX,
+      subJourney: false
+    })
   }
 }
