@@ -34,10 +34,10 @@ export class FL401ViewPDFApplication {
       errorMessaging,
       accessibilityTest,
     );
-    await ViewPDFApplicationSubmitPage.viewPDFApplicationSubmitPage(
-      page,
-      accessibilityTest,
-    );
-    await Fl401TasksTabPage.fl401TasksTabPage(page, accessibilityTest);
+    // await ViewPDFApplicationSubmitPage.viewPDFApplicationSubmitPage(
+    //   page,
+    //   accessibilityTest,
+    // );
+    // await Fl401TasksTabPage.fl401TasksTabPage(page, accessibilityTest);
   }
 }

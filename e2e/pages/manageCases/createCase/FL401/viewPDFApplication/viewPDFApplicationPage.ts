@@ -18,6 +18,20 @@ export class ViewPDFApplicationPage {
     page: Page,
     accessibilityTest: boolean,
   ): Promise<void> {
+    // noinspection TypeScriptValidateTypes
+    const [pdfPage] = await Promise.all([
+        page.waitForEvent('popup'),
+        page.click(`${Selectors.a}:text-is("Draft_DA_application.pdf")`),
+    ]);
+
+    await pdfPage.waitForLoadState();
+
+    await Helpers.checkVisibleAndPresent(
+        pdfPage,
+        `${Selectors.Span}:text-is("Do you want to apply for the order without")`,
+        1,
+    );
+    await pdfPage.close();
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }
