@@ -83,6 +83,7 @@ export class InternationalElement1Page {
       await AccessibilityTestHelper.run(page);
     }
   }
+
   private static async fillInFields({
     page: page,
     yesNoInternationalElement: yesNoInternationalElement,
