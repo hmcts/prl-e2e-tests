@@ -3,30 +3,30 @@ import { SolicitorCreateInitial } from "../solicitorCreateInitial";
 import { Helpers } from "../../../../common/helpers";
 import { AttendingTheHearing1Page } from "../../../../pages/manageCases/createCase/Common/attendingTheHearing/attendingTheHearing1Page";
 import { AttendingTheHearingSubmitPage } from "../../../../pages/manageCases/createCase/Common/attendingTheHearing/attendingTheHearingSubmitPage";
-import { Fl401TasksTabPage } from "../../../../pages/manageCases/caseTabs/fl401TasksTabPage";
+import { C100TasksTabPage } from "../../../../pages/manageCases/caseTabs/c100TasksTabPage";
 
-interface Fl401AttendingTheHearingOptions {
+interface C100AttendingTheHearingOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
-  fl401AttendingTheHearingYesNo: boolean;
+  c100AttendingTheHearingYesNo: boolean;
   subJourney: boolean;
 }
 
-export class Fl401AttendingTheHearing {
-  public static async fl401AttendingTheHearing({
+export class C100AttendingTheHearing {
+  public static async c100AttendingTheHearing({
     page,
     accessibilityTest,
     errorMessaging,
-    fl401AttendingTheHearingYesNo,
+    c100AttendingTheHearingYesNo,
     subJourney,
-  }: Fl401AttendingTheHearingOptions): Promise<void> {
+  }: C100AttendingTheHearingOptions): Promise<void> {
     if (subJourney) {
       await SolicitorCreateInitial.createInitialCase({
         page: page,
         user: "solicitor",
         accessibilityTest: false,
-        solicitorCaseType: "FL401",
+        solicitorCaseType: "C100",
         errorMessaging: false,
       });
     }
@@ -35,14 +35,14 @@ export class Fl401AttendingTheHearing {
       page: page,
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
-      attendingTheHearingYesNo: fl401AttendingTheHearingYesNo,
-      caseType: "FL401",
+      attendingTheHearingYesNo: c100AttendingTheHearingYesNo,
+      caseType: "C100",
     });
     await AttendingTheHearingSubmitPage.attendingTheHearingSubmitPage({
       page: page,
       accessibilityTest: accessibilityTest,
-      attendingTheHearingYesNo: fl401AttendingTheHearingYesNo,
+      attendingTheHearingYesNo: c100AttendingTheHearingYesNo,
     });
-    await Fl401TasksTabPage.fl401TasksTabPage(page, accessibilityTest);
+    await C100TasksTabPage.c100TasksTabPage(page, accessibilityTest);
   }
 }
