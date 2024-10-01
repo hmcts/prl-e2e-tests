@@ -27,6 +27,7 @@ test.describe("C100 Create case Children and respondents Tests @manageCases", ()
       subJourney: true,
     });
   });
+
   test(`Complete the C100 Create case Children and respondents as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
