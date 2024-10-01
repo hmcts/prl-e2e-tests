@@ -3,10 +3,13 @@ import { Selectors } from "../../../../../common/selectors";
 import { AttendingTheHearing1Content } from "../../../../../fixtures/manageCases/createCase/FL401/attendingTheHearing/attendingTheHearing1Content";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { solicitorCaseCreateType } from "../../../../../common/types";
 
 enum uniqueSelectors {
-  welshNeeds = "div#fl401WelshNeeds > div > ",
-  welshNeedsFields = "div#fl401WelshNeeds_0_fl401SpokenOrWritten > fieldset > div > ",
+  fl401WelshNeeds = "div#fl401WelshNeeds > div > ",
+  fl401WelshNeedsFields = "div#fl401WelshNeeds_0_fl401SpokenOrWritten > fieldset > div > ",
+  c100WelshNeeds = "div#welshNeeds > div > ",
+  c100WelshNeedsFields = "div#welshNeeds_0_spokenOrWritten > fieldset > div > ",
   interpreterNeeds = "div#interpreterNeeds > div > ",
 }
 
@@ -21,9 +24,14 @@ enum inputIDs {
   specialArrangementsNo = "#isSpecialArrangementsRequired_No",
   intermediaryNeededYes = "#isIntermediaryNeeded_Yes",
   intermediaryNeededNo = "#isIntermediaryNeeded_No",
-  whoNeedsWelsh = "#fl401WelshNeeds_0_whoNeedsWelsh",
-  spokenWelsh = "#fl401WelshNeeds_0_fl401SpokenOrWritten-spoken",
-  writtenWelsh = "#fl401WelshNeeds_0_fl401SpokenOrWritten-written",
+  fl401WhoNeedsWelsh = "#fl401WelshNeeds_0_whoNeedsWelsh",
+  fl401SpokenWelsh = "#fl401WelshNeeds_0_fl401SpokenOrWritten-spoken",
+  fl401WrittenWelsh = "#fl401WelshNeeds_0_fl401SpokenOrWritten-written",
+  fl401SpokenAndWritten = "#fl401WelshNeeds_0_fl401SpokenOrWritten-both",
+  c100WhoNeedsWelsh = "#welshNeeds_0_whoNeedsWelsh",
+  c100SpokenWelsh = "#welshNeeds_0_spokenOrWritten-spoken",
+  c100WrittenWelsh = "#welshNeeds_0_spokenOrWritten-written",
+  c100SpokenAndWritten = "#welshNeeds_0_spokenOrWritten-both",
   applicantNeedsInterpreter = "#interpreterNeeds_0_party-applicant",
   respondentNeedsInterpreter = "#interpreterNeeds_0_party-respondent",
   otherNeedsInterpreter = "#interpreterNeeds_0_party-other",
@@ -39,7 +47,8 @@ interface AttendingTheHearing1PageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
-  fl401AttendingTheHearingYesNo: boolean;
+  attendingTheHearingYesNo: boolean;
+  caseType: solicitorCaseCreateType;
 }
 
 interface CheckPageLoadsOptions {
@@ -47,9 +56,15 @@ interface CheckPageLoadsOptions {
   accessibilityTest: boolean;
 }
 
+interface CheckErrorMessagingOptions {
+  page: Page;
+  caseType: solicitorCaseCreateType;
+}
+
 interface WelshNeedsFieldsOptions {
   page: Page;
   errorMessaging: boolean;
+  caseType: solicitorCaseCreateType;
 }
 
 interface InterpreterNeedsFieldsOptions {
@@ -60,7 +75,8 @@ interface InterpreterNeedsFieldsOptions {
 interface FillInFieldsOptions {
   page: Page;
   errorMessaging: boolean;
-  fl401AttendingTheHearingYesNo: boolean;
+  attendingTheHearingYesNo: boolean;
+  caseType: solicitorCaseCreateType;
 }
 
 export class AttendingTheHearing1Page {
@@ -68,19 +84,24 @@ export class AttendingTheHearing1Page {
     page,
     accessibilityTest,
     errorMessaging,
-    fl401AttendingTheHearingYesNo,
+    attendingTheHearingYesNo,
+    caseType,
   }: AttendingTheHearing1PageOptions): Promise<void> {
     await this.checkPageLoads({
       page,
       accessibilityTest,
     });
     if (errorMessaging) {
-      await this.checkErrorMessaging(page);
+      await this.checkErrorMessaging({
+        page,
+        caseType,
+      });
     }
     await this.fillInFields({
-      page,
-      errorMessaging,
-      fl401AttendingTheHearingYesNo,
+      page: page,
+      errorMessaging: errorMessaging,
+      attendingTheHearingYesNo: attendingTheHearingYesNo,
+      caseType: caseType,
     });
   }
 
@@ -122,7 +143,10 @@ export class AttendingTheHearing1Page {
     }
   }
 
-  private static async checkErrorMessaging(page: Page): Promise<void> {
+  private static async checkErrorMessaging({
+    page,
+    caseType,
+  }: CheckErrorMessagingOptions): Promise<void> {
     await page.click(
       `${Selectors.button}:text-is("${AttendingTheHearing1Content.continue}")`,
     );
@@ -147,11 +171,12 @@ export class AttendingTheHearing1Page {
         `${Selectors.GovukErrorMessage}`,
       ),
     ]);
-    await this.checkAdditionalErrorMessaging(page);
+    await this.checkAdditionalErrorMessaging(page, caseType);
   }
 
   private static async checkAdditionalErrorMessaging(
     page: Page,
+    caseType: solicitorCaseCreateType,
   ): Promise<void> {
     const radioSections: string[] = [
       "welsh",
@@ -164,8 +189,19 @@ export class AttendingTheHearing1Page {
       let sectionKey = `${section}Yes` as keyof typeof inputIDs;
       await page.click(inputIDs[sectionKey]);
     }
+    let welshNeedsSelector: keyof typeof uniqueSelectors;
+    switch (caseType) {
+      case "FL401":
+        welshNeedsSelector = "fl401WelshNeeds";
+        break;
+      case "C100":
+        welshNeedsSelector = "c100WelshNeeds";
+        break;
+      default:
+        throw new Error(`Unrecognised solicitor case type: ${caseType}`);
+    }
     await page.click(
-      `${uniqueSelectors.welshNeeds}${Selectors.button}:text-is("${AttendingTheHearing1Content.addNew}")`,
+      `${uniqueSelectors[welshNeedsSelector]}${Selectors.button}:text-is("${AttendingTheHearing1Content.addNew}")`,
     );
     await page.click(
       `${uniqueSelectors.interpreterNeeds}${Selectors.button}:text-is("${AttendingTheHearing1Content.addNew}")`,
@@ -212,9 +248,10 @@ export class AttendingTheHearing1Page {
   private static async fillInFields({
     page,
     errorMessaging,
-    fl401AttendingTheHearingYesNo,
+    attendingTheHearingYesNo,
+    caseType,
   }: FillInFieldsOptions): Promise<void> {
-    const keySuffix: string = fl401AttendingTheHearingYesNo ? "Yes" : "No";
+    const keySuffix: string = attendingTheHearingYesNo ? "Yes" : "No";
     const radioSections: string[] = [
       "welsh",
       "interpreter",
@@ -226,11 +263,22 @@ export class AttendingTheHearing1Page {
       let sectionKey = `${section}${keySuffix}` as keyof typeof inputIDs;
       await page.click(inputIDs[sectionKey]);
     }
-    if (fl401AttendingTheHearingYesNo) {
+    let welshNeedsSelector: keyof typeof uniqueSelectors;
+    switch (caseType) {
+      case "FL401":
+        welshNeedsSelector = "fl401WelshNeeds";
+        break;
+      case "C100":
+        welshNeedsSelector = "c100WelshNeeds";
+        break;
+      default:
+        throw new Error(`Unrecognised solicitor case type: ${caseType}`);
+    }
+    if (attendingTheHearingYesNo) {
       await Promise.all([
         Helpers.checkVisibleAndPresent(
           page,
-          `${uniqueSelectors.welshNeeds}${Selectors.h2}:text-is("${AttendingTheHearing1Content.welshHeading}")`,
+          `${uniqueSelectors[welshNeedsSelector]}${Selectors.h2}:text-is("${AttendingTheHearing1Content.welshHeading}")`,
           1,
         ),
         Helpers.checkVisibleAndPresent(
@@ -251,7 +299,7 @@ export class AttendingTheHearing1Page {
           1,
         ),
       ]);
-      await this.welshNeedsFields({ page, errorMessaging });
+      await this.welshNeedsFields({ page, errorMessaging, caseType });
       await this.interpreterNeedsFields({ page, errorMessaging });
       const textAreas = [
         "specialArrangements",
@@ -275,10 +323,37 @@ export class AttendingTheHearing1Page {
   private static async welshNeedsFields({
     page,
     errorMessaging,
+    caseType,
   }: WelshNeedsFieldsOptions): Promise<void> {
+    let welshNeedsSelector: keyof typeof uniqueSelectors;
+    let welshNeedsFieldsSelector: keyof typeof uniqueSelectors;
+    let whoNeedsWelshKey: keyof typeof inputIDs;
+    let spokenWelshKey: keyof typeof inputIDs;
+    let writtenWelshKey: keyof typeof inputIDs;
+    let spokenAndWrittenKey: keyof typeof inputIDs | null;
+    switch (caseType) {
+      case "FL401":
+        welshNeedsSelector = "fl401WelshNeeds";
+        welshNeedsFieldsSelector = "fl401WelshNeedsFields";
+        whoNeedsWelshKey = "fl401WhoNeedsWelsh";
+        spokenWelshKey = "fl401SpokenWelsh";
+        writtenWelshKey = "fl401WrittenWelsh";
+        spokenAndWrittenKey = null;
+        break;
+      case "C100":
+        welshNeedsSelector = "c100WelshNeeds";
+        welshNeedsFieldsSelector = "c100WelshNeedsFields";
+        whoNeedsWelshKey = "c100WhoNeedsWelsh";
+        spokenWelshKey = "c100SpokenWelsh";
+        writtenWelshKey = "c100WrittenWelsh";
+        spokenAndWrittenKey = "c100SpokenAndWritten";
+        break;
+      default:
+        throw new Error(`Unrecognised solicitor case type: ${caseType}`);
+    }
     if (!errorMessaging) {
       await page.click(
-        `${uniqueSelectors.welshNeeds}${Selectors.button}:text-is("${AttendingTheHearing1Content.addNew}")`,
+        `${uniqueSelectors[welshNeedsSelector]}${Selectors.button}:text-is("${AttendingTheHearing1Content.addNew}")`,
       );
     }
     await Promise.all([
@@ -292,7 +367,7 @@ export class AttendingTheHearing1Page {
         2,
         AttendingTheHearing1Content,
         "welshLabel",
-        `${uniqueSelectors.welshNeedsFields}${Selectors.GovukFormLabel}`,
+        `${uniqueSelectors[welshNeedsFieldsSelector]}${Selectors.GovukFormLabel}`,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -301,11 +376,14 @@ export class AttendingTheHearing1Page {
       ),
     ]);
     await page.fill(
-      `${inputIDs.whoNeedsWelsh}`,
+      `${inputIDs[whoNeedsWelshKey]}`,
       `${AttendingTheHearing1Content.automatedTester}`,
     );
-    await page.check(inputIDs.spokenWelsh);
-    await page.check(inputIDs.writtenWelsh);
+    await page.check(inputIDs[spokenWelshKey]);
+    await page.check(inputIDs[writtenWelshKey]);
+    if (spokenAndWrittenKey) {
+      await page.check(inputIDs[spokenAndWrittenKey]);
+    }
   }
 
   private static async interpreterNeedsFields({

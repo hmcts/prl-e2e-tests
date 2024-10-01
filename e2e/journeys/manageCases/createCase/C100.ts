@@ -22,6 +22,7 @@ import { C100ChildrenAndOtherPeople } from "./C100ChildrenAndOtherPeople/c100Chi
 import { C100ChildrenAndApplicantsRelationship } from "../../../pages/manageCases/createCase/C100/childrenAndApplicants/childrenAndApplicants1Page";
 import { C100ChildrenAndApplicants } from "./C100ChildrenAndApplicants/C100ChildrenAndApplicants";
 import { C100ChildAndRespondents } from "./C100ChildrenAndRespondents/c100ChildrenAndRespondents";
+import { C100AttendingTheHearing } from "./C100AttendingTheHearing/c100AttendingTheHearing";
 
 interface c100Options {
   page: Page;
@@ -48,35 +49,36 @@ interface c100Options {
   yesNoChildrenAndOtherPeople: boolean;
   applicantChildRelationship: C100ChildrenAndApplicantsRelationship;
   childLiveWithApplicant: boolean;
+  c100AttendingTheHearingYesNo: boolean;
 }
 
 export class C100 {
   public static async c100({
-    page: page,
-    user: user,
-    accessibilityTest: accessibilityTest,
-    errorMessaging: errorMessaging,
-    yesNoHearingUrgency: yesNoHearingUrgency,
-    yesNoApplicantDetails: yesNoApplicantDetails,
-    applicantGender: applicantGender,
-    yesNoOtherPeopleInTheCase: yesNoOtherPeopleInTheCase,
-    yesNoC100TypeOfApplication: yesNoC100TypeOfApplication,
-    typeOfChildArrangementOrder: typeOfChildArrangementOrder,
-    selectionC100TypeOfApplication: selectionC100TypeOfApplication,
-    yesNoRespondentDetails: yesNoRespondentDetails,
-    respondentGender: respondentGender,
-    respondentAddress5Years: respondentAddress5Years,
-    respondentLegalRepresentation: respondentLegalRepresentation,
-    c100ChildGender: C100ChildGender,
-    yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions:
-      yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,
-    otherChildPresent: otherChildPresent,
-    otherChildGender: otherChildGender,
-    otherChildDOBKnown: otherChildDOBKnown,
-    applicantChildRelationship: applicantChildRelationship,
-    childLiveWithApplicant: childLiveWithApplicant,
-    yesNoChildrenAndRespondents: yesNoChildrenAndRespondents,
-    yesNoChildrenAndOtherPeople: yesNoChildrenAndOtherPeople,
+    page,
+    user,
+    accessibilityTest,
+    errorMessaging,
+    yesNoHearingUrgency,
+    yesNoApplicantDetails,
+    applicantGender,
+    yesNoOtherPeopleInTheCase,
+    yesNoC100TypeOfApplication,
+    typeOfChildArrangementOrder,
+    selectionC100TypeOfApplication,
+    yesNoRespondentDetails,
+    respondentGender,
+    respondentAddress5Years,
+    respondentLegalRepresentation,
+    c100ChildGender,
+    yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,
+    otherChildPresent,
+    otherChildGender,
+    otherChildDOBKnown,
+    applicantChildRelationship,
+    childLiveWithApplicant,
+    yesNoChildrenAndRespondents,
+    c100AttendingTheHearingYesNo,
+    yesNoChildrenAndOtherPeople,
   }: c100Options): Promise<void> {
     await SolicitorCreateInitial.createInitialCase({
       page: page,
@@ -135,7 +137,7 @@ export class C100 {
       page: page,
       user: user,
       accessibilityTest: accessibilityTest,
-      c100ChildGender: C100ChildGender,
+      c100ChildGender: c100ChildGender,
       yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions:
         yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,
       subJourney: false,
@@ -166,7 +168,7 @@ export class C100 {
       respondentGender: respondentGender,
       respondentAddress5Years: respondentAddress5Years,
       respondentLegalRepresentation: respondentLegalRepresentation,
-      c100ChildGender: C100ChildGender,
+      c100ChildGender: c100ChildGender,
       yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions:
         yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,
       yesNoChildrenAndRespondents: yesNoChildrenAndRespondents,
@@ -177,12 +179,19 @@ export class C100 {
       user: user,
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
-      c100ChildGender: C100ChildGender,
+      c100ChildGender: c100ChildGender,
       yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions:
         yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,
       yesNoOtherPeopleInTheCase,
       applicantGender: applicantGender,
       yesNoChildrenAndOtherPeople: yesNoChildrenAndOtherPeople,
+      subJourney: false,
+    });
+    await C100AttendingTheHearing.c100AttendingTheHearing({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      c100AttendingTheHearingYesNo: c100AttendingTheHearingYesNo,
       subJourney: false,
     });
   }
