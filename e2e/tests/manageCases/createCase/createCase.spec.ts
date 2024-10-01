@@ -17,7 +17,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Saying yes to all child details question with a male child 
   Saying yes to all children and respondents questions
   Saying yes to all attending the hearing options
-  Saying yes to all Litigation Capacity options
+  Saying yes to all Litigation Capacity option
   With no other child present
   Where the child lives with their applicant father,
   With no other child present @crossbrowserManageCases`, async ({
