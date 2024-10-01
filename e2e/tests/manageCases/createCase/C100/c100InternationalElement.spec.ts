@@ -4,8 +4,8 @@ import { C100InternationalElement } from "../../../../journeys/manageCases/creat
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-test.describe("C100 Create case Children and respondents Tests @manageCases", (): void => {
-  test(`Complete the C100 Create case Children and respondents as a solicitor with the following options:
+test.describe("C100 Create case International Element Tests @manageCases", (): void => {
+  test(`Complete the C100 International Element as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
   Saying yes to all options,
@@ -20,7 +20,7 @@ test.describe("C100 Create case Children and respondents Tests @manageCases", ()
       subJourney: true,
     });
   });
-  test(`Complete the C100 Create case Children and respondents as a solicitor with the following options:
+  test(`Complete the C100 Create case International Element as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
   Saying no to all options,
@@ -37,7 +37,7 @@ test.describe("C100 Create case Children and respondents Tests @manageCases", ()
   });
 });
 
-test(`Complete the C100 Create case Children and respondents as a solicitor with the following options:
+test(`Complete the C100 Create case International Element as a solicitor with the following options:
   Accessibility testing,
   Not Error message testing,
   Saying yes to all options,
