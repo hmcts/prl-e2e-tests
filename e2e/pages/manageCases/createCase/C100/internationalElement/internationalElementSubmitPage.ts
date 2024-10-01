@@ -93,12 +93,11 @@ export class InternationalElementSubmitPage {
         ),
       ]);
     } else {
-      await
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukText16}:text-is("${InternationalElementSubmitContent.text16Change}")`,
-          3,
-        );
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${InternationalElementSubmitContent.text16Change}")`,
+        3,
+      );
     }
   }
 
@@ -118,7 +117,7 @@ export class InternationalElementSubmitPage {
           `${Selectors.Span}:text-is("${InternationalElement1Content.loremIpsum}")`,
           3,
         ),
-      ])
+      ]);
     } else {
       await Helpers.checkVisibleAndPresent(
         page,
