@@ -51,7 +51,7 @@ interface c100Options {
   applicantChildRelationship: C100ChildrenAndApplicantsRelationship;
   childLiveWithApplicant: boolean;
   c100AttendingTheHearingYesNo: boolean;
-  yesNoLitigationCapacity: boolean,
+  yesNoLitigationCapacity: boolean;
 }
 
 export class C100 {
@@ -81,7 +81,7 @@ export class C100 {
     yesNoChildrenAndRespondents,
     c100AttendingTheHearingYesNo,
     yesNoChildrenAndOtherPeople,
-                             yesNoLitigationCapacity,
+    yesNoLitigationCapacity,
   }: c100Options): Promise<void> {
     await SolicitorCreateInitial.createInitialCase({
       page: page,
