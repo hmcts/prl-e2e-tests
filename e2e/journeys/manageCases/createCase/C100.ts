@@ -22,6 +22,7 @@ import { C100ChildrenAndOtherPeople } from "./C100ChildrenAndOtherPeople/c100Chi
 import { C100ChildrenAndApplicantsRelationship } from "../../../pages/manageCases/createCase/C100/childrenAndApplicants/childrenAndApplicants1Page";
 import { C100ChildrenAndApplicants } from "./C100ChildrenAndApplicants/C100ChildrenAndApplicants";
 import { C100ChildAndRespondents } from "./C100ChildrenAndRespondents/c100ChildrenAndRespondents";
+import { C100InternationalElement } from "./C100InternationalElement/C100InternationalElement";
 
 interface c100Options {
   page: Page;
@@ -48,6 +49,7 @@ interface c100Options {
   yesNoChildrenAndOtherPeople: boolean;
   applicantChildRelationship: C100ChildrenAndApplicantsRelationship;
   childLiveWithApplicant: boolean;
+  yesNoInternationalElement: boolean;
 }
 
 export class C100 {
@@ -77,6 +79,7 @@ export class C100 {
     childLiveWithApplicant: childLiveWithApplicant,
     yesNoChildrenAndRespondents: yesNoChildrenAndRespondents,
     yesNoChildrenAndOtherPeople: yesNoChildrenAndOtherPeople,
+    yesNoInternationalElement: yesNoInternationalElement,
   }: c100Options): Promise<void> {
     await SolicitorCreateInitial.createInitialCase({
       page: page,
@@ -183,6 +186,13 @@ export class C100 {
       yesNoOtherPeopleInTheCase,
       applicantGender: applicantGender,
       yesNoChildrenAndOtherPeople: yesNoChildrenAndOtherPeople,
+      subJourney: false,
+    });
+    await C100InternationalElement.c100InternationalElement({
+      page: page,
+      user: user,
+      accessibilityTest: accessibilityTest,
+      yesNoInternationalElement: yesNoInternationalElement,
       subJourney: false,
     });
   }

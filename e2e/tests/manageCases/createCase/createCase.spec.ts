@@ -46,6 +46,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       childLiveWithApplicant: true,
       yesNoChildrenAndRespondents: true,
       yesNoChildrenAndOtherPeople: true,
+      yesNoInternationalElement: true
     });
   });
 
@@ -89,6 +90,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       childLiveWithApplicant: false,
       yesNoChildrenAndRespondents: false,
       yesNoChildrenAndOtherPeople: false,
+      yesNoInternationalElement: false
     });
   });
 
