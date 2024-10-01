@@ -24,6 +24,7 @@ import { C100ChildrenAndApplicants } from "./C100ChildrenAndApplicants/C100Child
 import { C100ChildAndRespondents } from "./C100ChildrenAndRespondents/c100ChildrenAndRespondents";
 import { C100AllegationsOfHarmTypeOfDomesticAbuse } from "../../../pages/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevised3Page";
 import { C100AllegationsOfHarm } from "./C100AllegationsOfHarm/c100AllegationsOfHarm";
+import { C100AttendingTheHearing } from "./C100AttendingTheHearing/c100AttendingTheHearing";
 
 interface c100Options {
   page: Page;
@@ -53,6 +54,7 @@ interface c100Options {
   yesNoChildrenAndRespondents: boolean;
   c100YesNoAllegationsOfHarm: boolean;
   c100DomesticAbuseTypePage3: C100AllegationsOfHarmTypeOfDomesticAbuse;
+  c100AttendingTheHearingYesNo: boolean;
 }
 
 export class C100 {
@@ -84,6 +86,7 @@ export class C100 {
     yesNoChildrenAndOtherPeople: yesNoChildrenAndOtherPeople,
     c100YesNoAllegationsOfHarm: c100YesNoAllegationsOfHarm,
     c100DomesticAbuseTypePage3: c100DomesticAbuseTypePage3,
+    c100AttendingTheHearingYesNo: c100AttendingTheHearingYesNo,
   }: c100Options): Promise<void> {
     await SolicitorCreateInitial.createInitialCase({
       page: page,
@@ -198,6 +201,13 @@ export class C100 {
       errorMessaging: errorMessaging,
       c100YesNoAllegationsOfHarm: c100YesNoAllegationsOfHarm,
       c100DomesticAbuseTypePage3: c100DomesticAbuseTypePage3,
+      subJourney: false,
+    });
+    await C100AttendingTheHearing.c100AttendingTheHearing({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      c100AttendingTheHearingYesNo: c100AttendingTheHearingYesNo,
       subJourney: false,
     });
   }

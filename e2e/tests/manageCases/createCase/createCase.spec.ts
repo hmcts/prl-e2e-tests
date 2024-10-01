@@ -16,6 +16,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Saying yes to all other people in the case questions with a male applicant
   Saying yes to all child details question with a male child 
   Saying yes to all children and respondents questions
+  Saying yes to all attending the hearing options
   With no other child present
   Where the child lives with their applicant father,
   With no other child present
@@ -49,6 +50,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       yesNoChildrenAndOtherPeople: true,
       c100YesNoAllegationsOfHarm: true,
       c100DomesticAbuseTypePage3: "Physical abuse",
+      c100AttendingTheHearingYesNo: true,
     });
   });
 
@@ -65,7 +67,9 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Saying no to all other people in the case questions with a male applicant
   Saying no to all child details question with a female child 
   Saying no to all children and respondents questions 
-  Setting the allegations of harm to none. @crossbrowserManageCases`, async ({
+  Setting the allegations of harm to none.
+  Saying no to all attending the hearing questions
+  Saying no to all children and respondents questions @crossbrowserManageCases`, async ({
     page,
   }): Promise<void> => {
     await C100.c100({
@@ -95,6 +99,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       yesNoChildrenAndOtherPeople: false,
       c100YesNoAllegationsOfHarm: false,
       c100DomesticAbuseTypePage3: "Financial abuse",
+      c100AttendingTheHearingYesNo: false,
     });
   });
 
