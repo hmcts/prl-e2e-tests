@@ -81,7 +81,7 @@ export class C100 {
     yesNoChildrenAndRespondents,
     c100AttendingTheHearingYesNo,
     yesNoChildrenAndOtherPeople,
-                             yesNoInternationalElement
+    yesNoInternationalElement,
   }: c100Options): Promise<void> {
     await SolicitorCreateInitial.createInitialCase({
       page: page,
@@ -182,7 +182,7 @@ export class C100 {
       user: user,
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
-      c100ChildGender: C100ChildGender,
+      c100ChildGender: c100ChildGender,
       yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions:
         yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,
       yesNoOtherPeopleInTheCase,
