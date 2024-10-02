@@ -1,3 +1,1 @@
-export enum WelshLanguageRequirementsSubmitContent {
-
-}
+export enum WelshLanguageRequirementsSubmitContent {}
