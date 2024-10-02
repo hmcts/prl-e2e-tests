@@ -10,5 +10,5 @@ export enum WelshLanguageRequirementsSubmitContent {
   text16Yes = "Yes",
   text16No = "No",
   text16Change = "Change",
-  continue = "Save and continue"
+  continue = "Save and continue",
 }

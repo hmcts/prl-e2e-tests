@@ -8,5 +8,5 @@ export enum WelshLanguageRequirements1Content {
   formLabelWelsh = "Welsh",
   formLabelYes = "Yes",
   formLabelNo = "No",
-  continue = "Continue"
+  continue = "Continue",
 }
