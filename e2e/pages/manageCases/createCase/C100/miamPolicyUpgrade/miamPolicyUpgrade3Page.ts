@@ -129,6 +129,7 @@ export class MiamPolicyUpgrade3Page {
     await this.provideEvidence_yes(page);
     const fileInput = page.locator(`${UniqueSelectors.uploadFileInput}`);
     await fileInput.setInputFiles(config.testOdtFile);
+    await page.waitForSelector(`${Selectors.GovukErrorMessage}:text-is("${MiamPolicyUpgrade3Content.uploadingFile}")`, { state: 'hidden' });
     await Helpers.checkVisibleAndPresent(
       page,
       `${Selectors.GovukErrorMessage}:text-is("${MiamPolicyUpgrade3Content.errorMessageFileUpload}")`,
