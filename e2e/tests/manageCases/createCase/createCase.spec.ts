@@ -2,6 +2,7 @@ import { test } from "@playwright/test";
 import { C100 } from "../../../journeys/manageCases/createCase/C100";
 import { FL401 } from "../../../journeys/manageCases/createCase/FL401";
 import Config from "../../../config";
+import { FL401ViewPDFApplication } from "../../../journeys/manageCases/createCase/FL401ViewPDFApplication/FL401ViewPDFApplication";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
