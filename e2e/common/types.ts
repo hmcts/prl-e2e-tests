@@ -35,6 +35,7 @@ export type c100SolicitorEvents =
   | "Children and other people"
   | "Attending the hearing"
   | "MIAM"
+  | "International element"
   | "Litigation capacity";
 
 export type fl401SolicitorEvents =

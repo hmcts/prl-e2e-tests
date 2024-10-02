@@ -17,6 +17,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Saying yes to all child details question with a male child 
   Saying yes to all children and respondents questions
   Saying yes to all attending the hearing options
+  Saying Yes to all International element options
   Saying yes to all Litigation Capacity option
   With no other child present
   Where the child lives with their applicant father,
@@ -54,6 +55,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       C100MiamPolicyUpgrade1PageType: "yesAttendedMiam",
       yesNoMiamPolicyUpgrade: true,
       miamSelection: "attended4MonthsPrior",
+      yesNoInternationalElement: true,
       yesNoLitigationCapacity: true,
     });
   });
@@ -75,6 +77,9 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
    Saying no to all children and respondents questions
   Saying no to all Miam
   C100MiamPolicyUpgrade1PageType is "yesExemption"
+  Saying no to all International element options
+  Saying no to all children and respondents questions
+    C100MiamPolicyUpgrade1PageType is "yesExemption"
   Saying no to all children and respondents questions
   Saying no to all Litigation Capacity options@crossbrowserManageCases`, async ({
     page,
@@ -108,6 +113,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       C100MiamPolicyUpgrade1PageType: "yesExemption",
       yesNoMiamPolicyUpgrade: false,
       miamSelection: "initiatedMIAMBeforeProceedings_MIAMCertificate",
+      yesNoInternationalElement: false,
       yesNoLitigationCapacity: true,
     });
   });
