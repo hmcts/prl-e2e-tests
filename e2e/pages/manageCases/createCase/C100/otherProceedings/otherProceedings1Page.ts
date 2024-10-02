@@ -8,6 +8,8 @@ import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import Config from "../../../../../config";
 
+const modalSelector: string = '#mat-dialog-0 > ccd-remove-dialog > div > div > '
+
 enum inputIDs {
   radioYes = '#previousOrOngoingProceedingsForChildren-yes',
   radioNo = '#previousOrOngoingProceedingsForChildren-no',
@@ -159,7 +161,7 @@ export class OtherProceedings1Page {
     if (c100OtherProceedings === 'Yes') {
       if (typeof c100OngoingProceedingsAndDocX !== 'boolean') {
         throw new Error(
-          'c100OtherProceedings must be boolean if c100OtherProceedings is Yes'
+          'c100OtherProceedingsAndDocX must be boolean if c100OtherProceedings is Yes'
         )
       }
       await this.addNewProceeding({
@@ -267,30 +269,36 @@ export class OtherProceedings1Page {
         inputIDs[inputKey],
         invalidDateFields[invalidInputKey]
       );
-      await page.click(
-        `${Selectors.button}:text-is("${OtherProceedingsContent.continue}")`
-      );
-      await Promise.all([
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukErrorSummaryTitle}:text-is("${OtherProceedingsContent.errorSummaryTitle}")`,
-          1
-        ),
-        Helpers.checkGroup(
-          page,
-          2,
-          OtherProceedingsContent,
-          'errorValidation',
-          `${Selectors.GovukErrorValidation}`
-        ),
-        Helpers.checkGroup(
-          page,
-          2,
-          OtherProceedingsContent,
-          'errorMessage',
-          `${Selectors.GovukErrorMessage}`
-        ),
-      ])
     }
+    await page.click(
+      `${Selectors.button}:text-is("${OtherProceedingsContent.continue}")`
+    );
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorSummaryTitle}:text-is("${OtherProceedingsContent.errorSummaryTitle}")`,
+        1
+      ),
+      Helpers.checkGroup(
+        page,
+        2,
+        OtherProceedingsContent,
+        'errorValidation',
+        `${Selectors.GovukErrorValidation}`
+      ),
+      Helpers.checkGroup(
+        page,
+        2,
+        OtherProceedingsContent,
+        'errorMessage',
+        `${Selectors.GovukErrorMessage}`
+      ),
+    ]);
+    await page.click(
+      `${Selectors.button}:text-is("${OtherProceedingsContent.remove}")`
+    );
+    await page.click(
+      `${modalSelector}${Selectors.button}:text-is("${OtherProceedingsContent.remove}")`
+    );
   }
 }

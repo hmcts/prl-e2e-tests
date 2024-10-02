@@ -59,5 +59,6 @@ export enum OtherProceedingsContent {
   errorValidation2 = ' Date ended is not valid ',
   errorMessage1 = ' The data entered is not valid for Date started ',
   errorMessage2 = ' The data entered is not valid for Date ended ',
+  remove = 'Remove',
   continue = "Continue",
 }
