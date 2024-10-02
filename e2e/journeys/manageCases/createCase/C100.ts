@@ -23,6 +23,9 @@ import { C100ChildrenAndApplicantsRelationship } from "../../../pages/manageCase
 import { C100ChildrenAndApplicants } from "./C100ChildrenAndApplicants/C100ChildrenAndApplicants";
 import { C100ChildAndRespondents } from "./C100ChildrenAndRespondents/c100ChildrenAndRespondents";
 import { C100AttendingTheHearing } from "./C100AttendingTheHearing/c100AttendingTheHearing";
+import { C100MiamPolicyUpgrade } from "./C100MiamPolicyUpgrade/C100MiamPolicyUpgrade";
+import { C100MiamPolicyUpgrade1PageType } from "../../../pages/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade1Page";
+import { miamSelection } from "../../../pages/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade6Page";
 import { C100OtherProceedings } from "./C100OtherProceedings/C100OtherProceedings";
 
 interface c100Options {
@@ -53,6 +56,9 @@ interface c100Options {
   c100OtherProceedings: otherProceedingsRadios;
   c100OngoingProceedingsAndDocX?: boolean;
   c100AttendingTheHearingYesNo: boolean;
+  C100MiamPolicyUpgrade1PageType: C100MiamPolicyUpgrade1PageType;
+  yesNoMiamPolicyUpgrade: boolean;
+  miamSelection: miamSelection;
 }
 
 export class C100 {
@@ -82,6 +88,9 @@ export class C100 {
     yesNoChildrenAndRespondents,
     c100AttendingTheHearingYesNo,
     yesNoChildrenAndOtherPeople,
+    C100MiamPolicyUpgrade1PageType,
+    yesNoMiamPolicyUpgrade,
+    miamSelection,
     c100OtherProceedings,
     c100OngoingProceedingsAndDocX
   }: c100Options): Promise<void> {
@@ -190,6 +199,16 @@ export class C100 {
       yesNoOtherPeopleInTheCase,
       applicantGender: applicantGender,
       yesNoChildrenAndOtherPeople: yesNoChildrenAndOtherPeople,
+      subJourney: false,
+    });
+    await C100MiamPolicyUpgrade.c100MiamPolicyUpgrade({
+      page: page,
+      user: user,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      C100MiamPolicyUpgrade1PageType: C100MiamPolicyUpgrade1PageType,
+      yesNoMiamPolicyUpgrade: yesNoMiamPolicyUpgrade,
+      miamSelection: miamSelection,
       subJourney: false,
     });
     await C100AttendingTheHearing.c100AttendingTheHearing({
