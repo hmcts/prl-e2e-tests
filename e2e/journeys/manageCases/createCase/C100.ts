@@ -22,6 +22,7 @@ import { C100ChildrenAndOtherPeople } from "./C100ChildrenAndOtherPeople/c100Chi
 import { C100ChildrenAndApplicantsRelationship } from "../../../pages/manageCases/createCase/C100/childrenAndApplicants/childrenAndApplicants1Page";
 import { C100ChildrenAndApplicants } from "./C100ChildrenAndApplicants/C100ChildrenAndApplicants";
 import { C100ChildAndRespondents } from "./C100ChildrenAndRespondents/c100ChildrenAndRespondents";
+import { C100InternationalElement } from "./C100InternationalElement/C100InternationalElement";
 import { C100AttendingTheHearing } from "./C100AttendingTheHearing/c100AttendingTheHearing";
 import { C100MiamPolicyUpgrade } from "./C100MiamPolicyUpgrade/C100MiamPolicyUpgrade";
 import { C100MiamPolicyUpgrade1PageType } from "../../../pages/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade1Page";
@@ -56,6 +57,7 @@ interface c100Options {
   C100MiamPolicyUpgrade1PageType: C100MiamPolicyUpgrade1PageType;
   yesNoMiamPolicyUpgrade: boolean;
   miamSelection: miamSelection;
+  yesNoInternationalElement: boolean;
 }
 
 export class C100 {
@@ -88,6 +90,7 @@ export class C100 {
     C100MiamPolicyUpgrade1PageType,
     yesNoMiamPolicyUpgrade,
     miamSelection,
+    yesNoInternationalElement,
   }: c100Options): Promise<void> {
     await SolicitorCreateInitial.createInitialCase({
       page: page,
@@ -211,6 +214,13 @@ export class C100 {
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
       c100AttendingTheHearingYesNo: c100AttendingTheHearingYesNo,
+      subJourney: false,
+    });
+    await C100InternationalElement.c100InternationalElement({
+      page: page,
+      user: user,
+      accessibilityTest: accessibilityTest,
+      yesNoInternationalElement: yesNoInternationalElement,
       subJourney: false,
     });
   }
