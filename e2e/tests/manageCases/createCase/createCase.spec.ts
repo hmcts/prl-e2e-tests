@@ -16,6 +16,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Saying yes to all other people in the case questions with a male applicant
   Saying yes to all child details question with a male child 
   Saying yes to all children and respondents questions
+  Saying yes to all attending the hearing options
   Saying yes to other proceedings and ongoing proceedings
   With no other child present
   Where the child lives with their applicant father,
@@ -46,6 +47,8 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       applicantChildRelationship: "Father",
       childLiveWithApplicant: true,
       yesNoChildrenAndRespondents: true,
+      yesNoChildrenAndOtherPeople: true,
+      c100AttendingTheHearingYesNo: true,
       c100OtherProceedings: 'Yes',
       c100OngoingProceedingsAndDocX: true
     });
@@ -58,11 +61,12 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Saying no to all applicant details questions with a female applicant
   Saying yes to all respondent details questions with a female respondent 
   With another female child present, with a known DOB
-    With another female child present, with a known DOB 
   Where the child does not live with their applicant mother
   Saying no to all respondent details questions with a female respondent
   Saying no to all other people in the case questions with a male applicant
   Saying no to all child details question with a female child 
+  Saying no to all attending the hearing questions
+  Saying no to all children and respondents questions
   Saying no to all children and respondents questions
   Saying Don't know to other proceedings
   @crossbrowserManageCases`, async ({
@@ -92,6 +96,8 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       applicantChildRelationship: "Mother",
       childLiveWithApplicant: false,
       yesNoChildrenAndRespondents: false,
+      yesNoChildrenAndOtherPeople: false,
+      c100AttendingTheHearingYesNo: false,
       c100OtherProceedings: 'No'
     });
   });

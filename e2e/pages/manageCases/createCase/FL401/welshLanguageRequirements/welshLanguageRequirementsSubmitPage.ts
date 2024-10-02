@@ -24,8 +24,8 @@ export class WelshLanguageRequirementsSubmitPage {
   private static async checkPageContent(
     page: Page,
     accessibilityTest: boolean,
-    welshLanguageRequirementsAllOptionsYes,
-    welshLanguageRequirementsSelectWelsh,
+    welshLanguageRequirementsAllOptionsYes: boolean,
+    welshLanguageRequirementsSelectWelsh?: boolean,
   ): Promise<void> {
     await Promise.all([
       this.checkPageLoads(page, welshLanguageRequirementsAllOptionsYes),
