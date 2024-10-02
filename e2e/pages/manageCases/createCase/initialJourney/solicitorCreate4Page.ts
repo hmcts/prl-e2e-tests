@@ -20,7 +20,6 @@ export class SolicitorCreate4Page {
     }
     return await this.fillInFields(page);
   }
-
   private static async checkPageLoads(
     page: Page,
     accessibilityTest: boolean,
