@@ -24,7 +24,9 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Where the child lives with their applicant father,
   With no other child present
   Saying no to all Miam
-  C100MiamPolicyUpgrade1PageType is "yesExemption"@crossbrowserManageCases`, async ({
+  C100MiamPolicyUpgrade1PageType is "yesExemption"
+  Setting WelshPageRequirementType to "english"
+  Saying yes to all WelshRequirement options@crossbrowserManageCases`, async ({
     page,
   }): Promise<void> => {
     await C100.c100({
@@ -84,6 +86,10 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Saying no to all children and respondents questions
   Saying no to all children and respondents questions
   Saying no to all Litigation Capacity options
+  Setting WelshPageRequirementType to "english"
+  Saying no to all WelshRequirement options
+  
+  
   C100MiamPolicyUpgrade1PageType is "yesExemption"
   Saying Don't know to other proceedings
   @crossbrowserManageCases`, async ({ page }): Promise<void> => {
