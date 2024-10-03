@@ -22,10 +22,12 @@ import { C100ChildrenAndOtherPeople } from "./C100ChildrenAndOtherPeople/c100Chi
 import { C100ChildrenAndApplicantsRelationship } from "../../../pages/manageCases/createCase/C100/childrenAndApplicants/childrenAndApplicants1Page";
 import { C100ChildrenAndApplicants } from "./C100ChildrenAndApplicants/C100ChildrenAndApplicants";
 import { C100ChildAndRespondents } from "./C100ChildrenAndRespondents/c100ChildrenAndRespondents";
+import { C100InternationalElement } from "./C100InternationalElement/C100InternationalElement";
 import { C100AttendingTheHearing } from "./C100AttendingTheHearing/c100AttendingTheHearing";
 import { C100MiamPolicyUpgrade } from "./C100MiamPolicyUpgrade/C100MiamPolicyUpgrade";
 import { C100MiamPolicyUpgrade1PageType } from "../../../pages/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade1Page";
 import { miamSelection } from "../../../pages/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade6Page";
+import { C100LitigationCapacity } from "./C100LitigationCapacity/C100LitigationCapacity";
 import { C100OtherProceedings } from "./C100OtherProceedings/C100OtherProceedings";
 
 interface c100Options {
@@ -59,6 +61,8 @@ interface c100Options {
   C100MiamPolicyUpgrade1PageType: C100MiamPolicyUpgrade1PageType;
   yesNoMiamPolicyUpgrade: boolean;
   miamSelection: miamSelection;
+  yesNoInternationalElement: boolean;
+  yesNoLitigationCapacity: boolean;
 }
 
 export class C100 {
@@ -91,6 +95,8 @@ export class C100 {
     C100MiamPolicyUpgrade1PageType,
     yesNoMiamPolicyUpgrade,
     miamSelection,
+    yesNoInternationalElement,
+    yesNoLitigationCapacity,
     c100OtherProceedings,
     c100OngoingProceedingsAndDocX
   }: c100Options): Promise<void> {
@@ -216,6 +222,20 @@ export class C100 {
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
       c100AttendingTheHearingYesNo: c100AttendingTheHearingYesNo,
+      subJourney: false,
+    });
+    await C100InternationalElement.c100InternationalElement({
+      page: page,
+      user: user,
+      accessibilityTest: accessibilityTest,
+      yesNoInternationalElement: yesNoInternationalElement,
+      subJourney: false,
+    });
+    await C100LitigationCapacity.c100LitigationCapacity({
+      page: page,
+      user: user,
+      accessibilityTest: accessibilityTest,
+      yesNoLitigationCapacity: yesNoLitigationCapacity,
       subJourney: false,
     });
     await C100OtherProceedings.c100OtherProceedings({
