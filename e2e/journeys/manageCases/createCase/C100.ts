@@ -27,6 +27,7 @@ import { C100AttendingTheHearing } from "./C100AttendingTheHearing/c100Attending
 import { C100MiamPolicyUpgrade } from "./C100MiamPolicyUpgrade/C100MiamPolicyUpgrade";
 import { C100MiamPolicyUpgrade1PageType } from "../../../pages/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade1Page";
 import { miamSelection } from "../../../pages/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade6Page";
+import { C100LitigationCapacity } from "./C100LitigationCapacity/C100LitigationCapacity";
 
 interface c100Options {
   page: Page;
@@ -58,6 +59,7 @@ interface c100Options {
   yesNoMiamPolicyUpgrade: boolean;
   miamSelection: miamSelection;
   yesNoInternationalElement: boolean;
+  yesNoLitigationCapacity: boolean;
 }
 
 export class C100 {
@@ -91,6 +93,7 @@ export class C100 {
     yesNoMiamPolicyUpgrade,
     miamSelection,
     yesNoInternationalElement,
+    yesNoLitigationCapacity,
   }: c100Options): Promise<void> {
     await SolicitorCreateInitial.createInitialCase({
       page: page,
@@ -221,6 +224,13 @@ export class C100 {
       user: user,
       accessibilityTest: accessibilityTest,
       yesNoInternationalElement: yesNoInternationalElement,
+      subJourney: false,
+    });
+    await C100LitigationCapacity.c100LitigationCapacity({
+      page: page,
+      user: user,
+      accessibilityTest: accessibilityTest,
+      yesNoLitigationCapacity: yesNoLitigationCapacity,
       subJourney: false,
     });
   }

@@ -18,6 +18,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Saying yes to all children and respondents questions
   Saying yes to all attending the hearing options
   Saying Yes to all International element options
+  Saying yes to all Litigation Capacity option
   With no other child present
   Where the child lives with their applicant father,
   With no other child present
@@ -55,6 +56,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       yesNoMiamPolicyUpgrade: true,
       miamSelection: "attended4MonthsPrior",
       yesNoInternationalElement: true,
+      yesNoLitigationCapacity: true,
     });
   });
 
@@ -76,7 +78,10 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Saying no to all Miam
   C100MiamPolicyUpgrade1PageType is "yesExemption"
   Saying no to all International element options
-  Saying no to all children and respondents questions @crossbrowserManageCases`, async ({
+  Saying no to all children and respondents questions
+    C100MiamPolicyUpgrade1PageType is "yesExemption"
+  Saying no to all children and respondents questions
+  Saying no to all Litigation Capacity options@crossbrowserManageCases`, async ({
     page,
   }): Promise<void> => {
     await C100.c100({
@@ -109,6 +114,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       yesNoMiamPolicyUpgrade: false,
       miamSelection: "initiatedMIAMBeforeProceedings_MIAMCertificate",
       yesNoInternationalElement: false,
+      yesNoLitigationCapacity: true,
     });
   });
 
