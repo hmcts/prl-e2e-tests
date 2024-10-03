@@ -1,4 +1,4 @@
-import { ApplicantGender, UserRole } from "../../../common/types";
+import { ApplicantGender, otherProceedingsRadios, UserRole } from "../../../common/types";
 import { Page } from "@playwright/test";
 import { SolicitorCreateInitial } from "./solicitorCreateInitial";
 import { C100HearingUrgency } from "./C100HearingUrgency/C100HearingUrgency";
@@ -65,6 +65,8 @@ interface c100Options {
   miamSelection: miamSelection;
   yesNoInternationalElement: boolean;
   yesNoLitigationCapacity: boolean;
+  c100YesNoAllegationsOfHarm: boolean;
+  c100DomesticAbuseTypePage3: C100AllegationsOfHarmTypeOfDomesticAbuse;
 }
 
 export class C100 {
@@ -100,7 +102,9 @@ export class C100 {
     yesNoInternationalElement,
     yesNoLitigationCapacity,
     c100OtherProceedings,
-    c100OngoingProceedingsAndDocX
+    c100OngoingProceedingsAndDocX,
+    c100YesNoAllegationsOfHarm,
+    c100DomesticAbuseTypePage3,
   }: c100Options): Promise<void> {
     await SolicitorCreateInitial.createInitialCase({
       page: page,
@@ -209,6 +213,14 @@ export class C100 {
       yesNoChildrenAndOtherPeople: yesNoChildrenAndOtherPeople,
       subJourney: false,
     });
+    await C100AllegationsOfHarm.c100AllegationsOfHarm({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      c100YesNoAllegationsOfHarm: c100YesNoAllegationsOfHarm,
+      subJourney: false,
+      c100DomesticAbuseTypePage3: c100DomesticAbuseTypePage3,
+    })
     await C100MiamPolicyUpgrade.c100MiamPolicyUpgrade({
       page: page,
       user: user,
