@@ -58,8 +58,8 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       miamSelection: "attended4MonthsPrior",
       yesNoInternationalElement: true,
       yesNoLitigationCapacity: true,
-      c100OtherProceedings: 'Yes',
-      c100OngoingProceedingsAndDocX: true
+      c100OtherProceedings: "Yes",
+      c100OngoingProceedingsAndDocX: true,
     });
   });
 
@@ -84,9 +84,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Saying no to all Litigation Capacity options
   C100MiamPolicyUpgrade1PageType is "yesExemption"
   Saying Don't know to other proceedings
-  @crossbrowserManageCases`, async ({
-    page,
-  }): Promise<void> => {
+  @crossbrowserManageCases`, async ({ page }): Promise<void> => {
     await C100.c100({
       page: page,
       user: "solicitor",
@@ -118,7 +116,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       miamSelection: "initiatedMIAMBeforeProceedings_MIAMCertificate",
       yesNoInternationalElement: false,
       yesNoLitigationCapacity: true,
-      c100OtherProceedings: 'No'
+      c100OtherProceedings: "No",
     });
   });
 
@@ -136,9 +134,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
      'Yes, both of them' ever lived at the address
      Saying Yes to all attending the hearing question,
      Upload document files
-     @crossbrowserManageCases`, async ({
-    page,
-  }): Promise<void> => {
+     @crossbrowserManageCases`, async ({ page }): Promise<void> => {
     await FL401.fl401({
       page: page,
       user: "solicitor",

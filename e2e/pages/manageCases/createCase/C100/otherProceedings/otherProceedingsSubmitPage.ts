@@ -48,11 +48,9 @@ export class OtherProceedingsSubmitPage {
       page,
       accessibilityTest,
       c100OtherProceedings,
-      c100OngoingProceedingsAndDocX
+      c100OngoingProceedingsAndDocX,
     });
-    await this.fillInFields(
-      page
-    );
+    await this.fillInFields(page);
   }
 
   private static async checkPageContent({
@@ -146,14 +144,14 @@ export class OtherProceedingsSubmitPage {
         );
         break;
       case "Yes":
-        if (typeof c100OngoingProceedingsAndDocX !== 'boolean') {
+        if (typeof c100OngoingProceedingsAndDocX !== "boolean") {
           throw new Error(
-            'c100OtherProceedings must be boolean if c100OtherProceedings is Yes'
-          )
+            "c100OtherProceedings must be boolean if c100OtherProceedings is Yes",
+          );
         }
         await this.checkOtherProceedings({
           page,
-          c100OngoingProceedingsAndDocX
+          c100OngoingProceedingsAndDocX,
         });
     }
   }
@@ -162,43 +160,41 @@ export class OtherProceedingsSubmitPage {
     page,
     c100OngoingProceedingsAndDocX,
   }: CheckOtherProceedingsOptions): Promise<void> {
-    let ongoingProceedingsText: string = (c100OngoingProceedingsAndDocX)
+    let ongoingProceedingsText: string = c100OngoingProceedingsAndDocX
       ? OtherProceedingsSubmitContent.ongoing
       : OtherProceedingsSubmitContent.previous;
-    let filePath: string = (c100OngoingProceedingsAndDocX)
+    let filePath: string = c100OngoingProceedingsAndDocX
       ? path.basename(Config.testWordFile)
       : path.basename(Config.testPdfFile);
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukText16}:text-is("${ongoingProceedingsText}")`,
-        1
+        1,
       ),
       Helpers.checkGroup(
         page,
         25,
         OtherProceedingsSubmitContent,
-        'filledText16',
-        `${Selectors.GovukText16}`
+        "filledText16",
+        `${Selectors.GovukText16}`,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.a}:text-is("${filePath}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.Span}:text-is("${OtherProceedingsSubmitContent.childSpan}")`,
-        1
-      )
-    ])
+        1,
+      ),
+    ]);
   }
 
-  private static async fillInFields(
-    page: Page
-  ): Promise<void> {
+  private static async fillInFields(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${OtherProceedingsSubmitContent.continue}")`
+      `${Selectors.button}:text-is("${OtherProceedingsSubmitContent.continue}")`,
     );
   }
 }
