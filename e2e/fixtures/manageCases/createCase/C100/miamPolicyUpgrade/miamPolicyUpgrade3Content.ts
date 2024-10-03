@@ -37,4 +37,5 @@ export enum MiamPolicyUpgrade3Content {
   loremIpsum = "loremIpsum",
   errorMessageFileUpload = "Error Uploading File",
   continue = "Continue",
+  uploadingFile = 'Uploading...',
 }

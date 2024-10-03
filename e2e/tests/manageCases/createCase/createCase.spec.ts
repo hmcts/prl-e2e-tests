@@ -18,6 +18,8 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Saying yes to all children and respondents questions
   Saying yes to all attending the hearing options
   Saying Yes to all International element options
+  Saying yes to all Litigation Capacity option
+  Saying yes to other proceedings and ongoing proceedings
   With no other child present
   Where the child lives with their applicant father,
   With no other child present
@@ -55,6 +57,9 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       yesNoMiamPolicyUpgrade: true,
       miamSelection: "attended4MonthsPrior",
       yesNoInternationalElement: true,
+      yesNoLitigationCapacity: true,
+      c100OtherProceedings: 'Yes',
+      c100OngoingProceedingsAndDocX: true
     });
   });
 
@@ -65,18 +70,21 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Saying no to all applicant details questions with a female applicant
   Saying yes to all respondent details questions with a female respondent 
   With another female child present, with a known DOB
-    With another female child present, with a known DOB 
   Where the child does not live with their applicant mother
   Saying no to all respondent details questions with a female respondent
   Saying no to all other people in the case questions with a male applicant
   Saying no to all child details question with a female child 
   Saying no to all attending the hearing questions
   Saying no to all children and respondents questions
-   Saying no to all children and respondents questions
+  Saying no to all children and respondents questions
   Saying no to all Miam
-  C100MiamPolicyUpgrade1PageType is "yesExemption"
   Saying no to all International element options
-  Saying no to all children and respondents questions @crossbrowserManageCases`, async ({
+  Saying no to all children and respondents questions
+  Saying no to all children and respondents questions
+  Saying no to all Litigation Capacity options
+  C100MiamPolicyUpgrade1PageType is "yesExemption"
+  Saying Don't know to other proceedings
+  @crossbrowserManageCases`, async ({
     page,
   }): Promise<void> => {
     await C100.c100({
@@ -109,24 +117,26 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       yesNoMiamPolicyUpgrade: false,
       miamSelection: "initiatedMIAMBeforeProceedings_MIAMCertificate",
       yesNoInternationalElement: false,
+      yesNoLitigationCapacity: true,
+      c100OtherProceedings: 'No'
     });
   });
 
   test(`Complete the FL401 create case event as a solicitor with the following options:
-      Not Accessibility testing,
-      Not Error message testing,
-      Female applicant,
-      Saying yes to all Respondent details questions,
-      Saying yes to all Type of application questions,
-      Saying yes to applicant details questions,
-      Saying yes to respondents behaviour questions,
-      Saying yes to all Without Notice Order questions
-    Saying yes to all Without Notice Order questions,
-      Relationship is 'Formerly lived together as a couple'
-    Saying yes to all 'The Home' Questions,
-      'Yes, both of them' ever lived at the address
-    Saying Yes to all attending the hearing question,
-      Upload document files@crossbrowserManageCases`, async ({
+     Not Accessibility testing,
+     Not Error message testing,
+     Female applicant,
+     Saying yes to all Respondent details questions,
+     Saying yes to all Type of application questions,
+     Saying yes to applicant details questions,
+     Saying yes to respondents behaviour questions,     Saying yes to all Without Notice Order questions
+     Saying yes to all Without Notice Order questions,
+     Relationship is 'Formerly lived together as a couple'
+     Saying yes to all 'The Home' Questions,
+     'Yes, both of them' ever lived at the address
+     Saying Yes to all attending the hearing question,
+     Upload document files
+     @crossbrowserManageCases`, async ({
     page,
   }): Promise<void> => {
     await FL401.fl401({
@@ -153,24 +163,21 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   });
 
   test(`Complete the FL401 create case event as a solicitor with the following options:
-      Not Accessibility testing,
-      Not Error message testing,
-      Male applicant,
-      Saying yes to all Respondent details questions,
-      Saying yes to all Type of application questions
-    Saying yes to applicant details questions,
-      Saying yes to respondents behaviour questions,
-      Saying yes to Without Notice Order questions,
-      Saying "Don't know" to Without Notice Order bail conditions,
-      Saying yes to all Type of application questions,
-      Saying yes to applicant details questions,
-      Saying yes to Without Notice Order questions,
-      Saying "Don't know" to Without Notice Order bail conditions,
-      Saying yes to all 'The Home' booleans,
-      'Yes, applicant' to has the applicant or respondent ever lived at the home address,
-      Relationship is 'Married or in a civil partnership',
-      Saying yes to all attending the hearing questions,
-      upload document files
+     Not Accessibility testing,
+     Not Error message testing,
+     Male applicant,
+     Saying yes to all Respondent details questions,
+     Saying yes to all Type of application questions
+     Saying yes to applicant details questions,
+     Saying yes to respondents behaviour questions,      Saying yes to Without Notice Order questions,
+     Saying "Don't know" to Without Notice Order bail conditions,
+     Saying yes to all Type of application questions,
+     Saying yes to applicant details questions,
+     Saying yes to Without Notice Order questions,
+     Saying "Don't know" to Without Notice Order bail conditions,      Saying yes to all 'The Home' booleans,
+     'Yes, applicant' to has the applicant or respondent ever lived at the home address,
+     Relationship is 'Married or in a civil partnership',
+     Saying yes to all attending the hearing questions,      upload document files
   @crossbrowserManageCases`, async ({ page }): Promise<void> => {
     await FL401.fl401({
       page: page,
@@ -196,22 +203,22 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   });
 
   test(`Complete the FL401 create case event as a solicitor with the following options:
-      Not Accessibility testing,
-      Not Error message testing,
-      Female applicant,
-      Saying no to all Respondent details questions,
-      Saying no to all Type of application questions,
-      Saying no to respondents behaviour questions,
-      Saying no to Without Notice Order questions,
-      Saying no to Without Notice Order questions,
-      Relationship is 'None of the above',
-      Other Relationship Is: 'Cousin',
-      upload document files,
-      Saying no to applicant details questions
-    Saying 'No' to ever lived at the home address,
-      Saying 'No' to ever intend to live at home address
-    Other Relationship Is: 'Cousin'
-    saying no to all attending the hearing questions`, async ({
+  Not Accessibility testing,
+  Not Error message testing,
+  Female applicant,
+  Saying no to all Respondent details questions,
+  Saying no to all Type of application questions,
+  Saying no to respondents behaviour questions,
+  Saying no to Without Notice Order questions,
+  Saying no to Without Notice Order questions,
+  Relationship is 'None of the above',
+  Other Relationship Is: 'Cousin',
+  upload document files,
+  Saying no to applicant details questions
+  Saying 'No' to ever lived at the home address, 
+  Saying 'No' to ever intend to live at home address
+  Other Relationship Is: 'Cousin'
+  saying no to all attending the hearing questions`, async ({
     page,
   }): Promise<void> => {
     await FL401.fl401({
