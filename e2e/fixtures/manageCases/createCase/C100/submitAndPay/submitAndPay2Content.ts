@@ -1,0 +1,21 @@
+export enum SubmitAndPay2Content {
+  pageTitle = "Submit and pay",
+  h3 = "Declaration",
+  p1 = "I understand that proceedings for contempt of court may be brought against anyone who makes, or causes to be made, a false statement in a document verified by a statement of truth without an honest belief in its truth.",
+  p2 = "The applicant believes that the facts stated in this form and any continuation sheets are true. AAT Solicitor is authorised by the applicant to sign this statement.",
+  formHint = "This option should only be selected if the legal representative is signing the form on behalf of the applicant.",
+  formLabelAgreeWithStatement = "I agree with this statement",
+  h3Hidden1 = "Next step - Submit the application",
+  h3Hidden2 = "Help with Fees is not yet available in the Family Private Law digital service.",
+  h3Hidden3 = "If the applicant has applied for Help with Fees, you should email or post this application to the court instead.",
+  h3Hidden4 = "If you continue online, you will still have to pay the fee. You can apply for a refund by contacting the court and providing the applicant's Help with Fees reference.",
+  h3Hidden5 = "Application fee due to be paid",
+  h3Hidden6 = "Final checks",
+  h3Hidden7 = "C100 draft",
+  formLabelDraftConsent = "Draft Document",
+  formLabelDraftDocumentWelsh = "Draft Document (Welsh)",
+  a1 = "Draft_C100_application.pdf",
+  a2 = "Draft_C100_application_welsh.pdf",
+  price = "£255.00",
+  continue = "Continue"
+}
