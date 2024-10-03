@@ -15,7 +15,6 @@ interface WelshLanguageRequirementsSubmitPageOptions {
 interface checkFieldsOptions {
   page: Page;
   WelshPageRequirementType: WelshPageRequirementType;
-  yesNoWelshLanguage: boolean;
 }
 
 interface checkFilledDataOptions {
@@ -47,13 +46,12 @@ export class WelshLanguageRequirementsSubmitPage {
     yesNoWelshLanguage: yesNoWelshLanguage,
   }: WelshLanguageRequirementsSubmitPageOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.h2}:text-is("${WelshLanguageRequirementsSubmitContent.h2}")"`,
+      `${Selectors.h2}:text-is("${WelshLanguageRequirementsSubmitContent.h2}")`,
     );
     await Promise.all([
       this.checkPageFields({
         page: page,
         WelshPageRequirementType: WelshPageRequirementType,
-        yesNoWelshLanguage: yesNoWelshLanguage,
       }),
       this.checkPageData({
         page: page,
@@ -69,7 +67,6 @@ export class WelshLanguageRequirementsSubmitPage {
   private static async checkPageFields({
     page: page,
     WelshPageRequirementType: WelshPageRequirementType,
-    yesNoWelshLanguage: yesNoWelshLanguage,
   }: checkFieldsOptions): Promise<void> {
     await Helpers.checkVisibleAndPresent(
       page,
@@ -91,7 +88,7 @@ export class WelshLanguageRequirementsSubmitPage {
           page,
           4,
           WelshLanguageRequirementsSubmitContent,
-          "text16",
+          "text16English",
           `${Selectors.GovukText16}`,
         );
         break;
@@ -100,7 +97,7 @@ export class WelshLanguageRequirementsSubmitPage {
           page,
           4,
           WelshLanguageRequirementsSubmitContent,
-          "text16",
+          "text16Welsh",
           `${Selectors.GovukText16}`,
         );
         break;
@@ -151,7 +148,7 @@ export class WelshLanguageRequirementsSubmitPage {
             Helpers.checkVisibleAndPresent(
               page,
               `${Selectors.GovukText16}:text-is("${WelshLanguageRequirementsSubmitContent.text16Yes}")`,
-              2,
+              1,
             ),
             Helpers.checkVisibleAndPresent(
               page,
