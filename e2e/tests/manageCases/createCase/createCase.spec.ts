@@ -88,8 +88,6 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Saying no to all Litigation Capacity options
   Setting WelshPageRequirementType to "english"
   Saying no to all WelshRequirement options
-  
-  
   C100MiamPolicyUpgrade1PageType is "yesExemption"
   Saying Don't know to other proceedings
   @crossbrowserManageCases`, async ({ page }): Promise<void> => {
