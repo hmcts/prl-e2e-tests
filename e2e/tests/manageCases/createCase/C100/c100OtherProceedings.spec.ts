@@ -43,9 +43,7 @@ test.describe("C100 Create case other proceedings tests @manageCases", (): void 
   Not Accessibility testing,
   Not Error message testing,
   Saying No to previous or ongoing proceedings for the child(ren)?,
-   @crossbrowserManageCases`, async ({
-     page,
-   }): Promise<void> => {
+   @crossbrowserManageCases`, async ({ page }): Promise<void> => {
     await C100OtherProceedings.c100OtherProceedings({
       page: page,
       accessibilityTest: false,
@@ -59,9 +57,7 @@ test.describe("C100 Create case other proceedings tests @manageCases", (): void 
   Not Accessibility testing,
   Not Error message testing,
   Saying Don't know to previous or ongoing proceedings for the child(ren)?,
-   @crossbrowserManageCases`, async ({
-     page,
-   }): Promise<void> => {
+   @crossbrowserManageCases`, async ({ page }): Promise<void> => {
     await C100OtherProceedings.c100OtherProceedings({
       page: page,
       accessibilityTest: false,
