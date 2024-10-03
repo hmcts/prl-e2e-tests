@@ -3,8 +3,8 @@ import { Selectors } from "../../../../../common/selectors";
 import { OtherProceedingsContent } from "../../../../../fixtures/manageCases/createCase/FL401/otherProceedings/otherProceedingsContent";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { otherProceedingsRadios } from "../../../../../journeys/manageCases/createCase/FL401";
 import config from "../../../../../config";
+import { otherProceedingsRadios } from "../../../../../common/types";
 
 enum radioIds {
   yes = "#fl401OtherProceedingDetails_hasPrevOrOngoingOtherProceeding-yes",

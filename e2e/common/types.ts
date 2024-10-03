@@ -34,7 +34,11 @@ export type c100SolicitorEvents =
   | "Children and respondents"
   | "Allegations of harm"
   | "Children and other people"
-  | "Attending the hearing";
+  | "Attending the hearing"
+  | "MIAM"
+  | "International element"
+  | "Litigation capacity"
+  | "Other proceedings";
 
 export type fl401SolicitorEvents =
   | "Case name"
@@ -51,3 +55,5 @@ export type fl401SolicitorEvents =
   | "Welsh language requirements";
 
 export type ApplicantGender = "female" | "male" | "other";
+
+export type otherProceedingsRadios = "Yes" | "No" | "Don't know";
