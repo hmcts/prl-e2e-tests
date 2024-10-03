@@ -33,6 +33,8 @@ import { C100MiamPolicyUpgrade1PageType } from "../../../pages/manageCases/creat
 import { miamSelection } from "../../../pages/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade6Page";
 import { C100LitigationCapacity } from "./C100LitigationCapacity/C100LitigationCapacity";
 import { C100OtherProceedings } from "./C100OtherProceedings/C100OtherProceedings";
+import { C100WelshLanguageRequirements } from "./C100welshLanguageRequirements/C100welshLanguageRequirements";
+import { WelshPageRequirementType } from "../../../pages/manageCases/createCase/C100/welshLanguageRequirements/welshLanguageRequirements1Page";
 
 interface c100Options {
   page: Page;
@@ -67,6 +69,8 @@ interface c100Options {
   miamSelection: miamSelection;
   yesNoInternationalElement: boolean;
   yesNoLitigationCapacity: boolean;
+  WelshPageRequirementType: WelshPageRequirementType;
+  yesNoWelshLanguage: boolean;
 }
 
 export class C100 {
@@ -103,6 +107,8 @@ export class C100 {
     yesNoLitigationCapacity,
     c100OtherProceedings,
     c100OngoingProceedingsAndDocX,
+    WelshPageRequirementType,
+    yesNoWelshLanguage,
   }: c100Options): Promise<void> {
     await SolicitorCreateInitial.createInitialCase({
       page: page,
@@ -221,6 +227,14 @@ export class C100 {
       miamSelection: miamSelection,
       subJourney: false,
     });
+    await C100OtherProceedings.c100OtherProceedings({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      c100OtherProceedings: c100OtherProceedings,
+      c100OngoingProceedingsAndDocX: c100OngoingProceedingsAndDocX,
+      subJourney: false,
+    });
     await C100AttendingTheHearing.c100AttendingTheHearing({
       page: page,
       accessibilityTest: accessibilityTest,
@@ -242,12 +256,12 @@ export class C100 {
       yesNoLitigationCapacity: yesNoLitigationCapacity,
       subJourney: false,
     });
-    await C100OtherProceedings.c100OtherProceedings({
+    await C100WelshLanguageRequirements.c100WelshLanguageRequirements({
       page: page,
+      user: user,
       accessibilityTest: accessibilityTest,
-      errorMessaging: errorMessaging,
-      c100OtherProceedings: c100OtherProceedings,
-      c100OngoingProceedingsAndDocX: c100OngoingProceedingsAndDocX,
+      WelshPageRequirementType: WelshPageRequirementType,
+      yesNoWelshLanguage: yesNoWelshLanguage,
       subJourney: false,
     });
   }

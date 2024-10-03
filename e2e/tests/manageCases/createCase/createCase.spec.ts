@@ -60,6 +60,8 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       yesNoLitigationCapacity: true,
       c100OtherProceedings: "Yes",
       c100OngoingProceedingsAndDocX: true,
+      WelshPageRequirementType: "english",
+      yesNoWelshLanguage: true,
     });
   });
 
@@ -115,8 +117,10 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       yesNoMiamPolicyUpgrade: false,
       miamSelection: "initiatedMIAMBeforeProceedings_MIAMCertificate",
       yesNoInternationalElement: false,
-      yesNoLitigationCapacity: true,
+      yesNoLitigationCapacity: false,
       c100OtherProceedings: "No",
+      WelshPageRequirementType: "english",
+      yesNoWelshLanguage: false,
     });
   });
 

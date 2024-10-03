@@ -37,7 +37,8 @@ export type c100SolicitorEvents =
   | "MIAM"
   | "International element"
   | "Litigation capacity"
-  | "Other proceedings";
+  | "Other proceedings"
+  | "Welsh language requirements";
 
 export type fl401SolicitorEvents =
   | "Case name"

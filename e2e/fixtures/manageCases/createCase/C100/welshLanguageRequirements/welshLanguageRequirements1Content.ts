@@ -4,6 +4,7 @@ export enum WelshLanguageRequirements1Content {
   formLabel1 = "Does any person in this case need orders or documents in Welsh? (Optional)",
   hiddenFormLabel1 = "*Which language are you using to complete this application? (Optional)",
   hiddenFormLabel2 = "*Does this application need to be translated into Welsh? (Optional)",
+  hiddenFormLabel3 = "*Does this application need to be translated into English? (Optional)",
   formLabelEnglish = "English",
   formLabelWelsh = "Welsh",
   formLabelYes = "Yes",

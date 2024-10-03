@@ -24,17 +24,28 @@ interface fillinFieldsOptions {
 
 export type WelshPageRequirementType = "no" | "english" | "welsh";
 
+enum UniqueSelectors_Yes_No_formLabels {
+  formLabelWelshLanguageRequirement_Yes = "label[for='welshLanguageRequirement_Yes']",
+  formLabelWelshLanguageRequirement_No = "label[for='welshLanguageRequirement_No']",
+  formLabelWelshLanguageRequirementApplicationNeedEnglish_Yes = "label[for='welshLanguageRequirementApplicationNeedEnglish_Yes']",
+  formLabelWelshLanguageRequirementApplicationNeedEnglish_No = "label[for='welshLanguageRequirementApplicationNeedEnglish_No']",
+  languageRequirementApplicationNeedWelsh_Yes = "label[for='languageRequirementApplicationNeedWelsh_Yes']",
+  languageRequirementApplicationNeedWelsh_No = "label[for='languageRequirementApplicationNeedWelsh_No']",
+}
+
 enum UniqueSelectors {
   welshLanguageRequirement_Yes = "#welshLanguageRequirement_Yes",
-  welshLanguageRequirement_No = "welshLanguageRequirement_No",
+  welshLanguageRequirement_No = "#welshLanguageRequirement_No",
   english = "#welshLanguageRequirementApplication-english",
   welsh = "#welshLanguageRequirementApplication-welsh",
+  welshLanguageRequirementApplicationNeedEnglish_Yes = "#welshLanguageRequirementApplicationNeedEnglish_Yes",
+  welshLanguageRequirementApplicationNeedEnglish_no = "#welshLanguageRequirementApplicationNeedEnglish_No",
   languageRequirementApplicationNeedWelsh_Yes = "#languageRequirementApplicationNeedWelsh_Yes",
   languageRequirementApplicationNeedWelsh_No = "#languageRequirementApplicationNeedWelsh_No",
 }
 
 export class WelshLanguageRequirements1Page {
-  public static async welshLanguageReqirements1Pgae({
+  public static async welshLanguageRequirements1Page({
     page: page,
     accessibilityTest: accessibilityTest,
     WelshPageRequirementType: WelshPageRequirementType,
@@ -56,7 +67,7 @@ export class WelshLanguageRequirements1Page {
     accessibilityTest: accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.p}:text-is(${WelshLanguageRequirements1Content.p})`,
+      `${Selectors.p}:text-is("${WelshLanguageRequirements1Content.p}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -71,12 +82,12 @@ export class WelshLanguageRequirements1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukFormLabel}:text-is("${WelshLanguageRequirements1Content.formLabelYes}")`,
+        `${UniqueSelectors_Yes_No_formLabels.formLabelWelshLanguageRequirement_Yes}:text-is("${WelshLanguageRequirements1Content.formLabelYes}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukFormLabel}:text-is("${WelshLanguageRequirements1Content.formLabelNo}")`,
+        `${UniqueSelectors_Yes_No_formLabels.formLabelWelshLanguageRequirement_No}:text-is("${WelshLanguageRequirements1Content.formLabelNo}")`,
         1,
       ),
     ]);
@@ -114,11 +125,23 @@ export class WelshLanguageRequirements1Page {
           ),
         ]);
         await page.click(`${UniqueSelectors.english}`);
-        await Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukFormLabel}:text-is("${WelshLanguageRequirements1Content.hiddenFormLabel2}")`,
-          1,
-        );
+        await Promise.all([
+          Helpers.checkVisibleAndPresent(
+            page,
+            `${Selectors.GovukFormLabel}:text-is("${WelshLanguageRequirements1Content.hiddenFormLabel2}")`,
+            1,
+          ),
+          Helpers.checkVisibleAndPresent(
+            page,
+            `${UniqueSelectors_Yes_No_formLabels.languageRequirementApplicationNeedWelsh_Yes}:text-is("${WelshLanguageRequirements1Content.formLabelYes}")`,
+            1,
+          ),
+          Helpers.checkVisibleAndPresent(
+            page,
+            `${UniqueSelectors_Yes_No_formLabels.languageRequirementApplicationNeedWelsh_No}:text-is("${WelshLanguageRequirements1Content.formLabelNo}")`,
+            1,
+          ),
+        ]);
         if (yesNoWelshLanguage) {
           await page.click(
             `${UniqueSelectors.languageRequirementApplicationNeedWelsh_Yes}`,
@@ -149,18 +172,30 @@ export class WelshLanguageRequirements1Page {
           ),
         ]);
         await page.click(`${UniqueSelectors.welsh}`);
-        await Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukFormLabel}:text-is("${WelshLanguageRequirements1Content.hiddenFormLabel2}")`,
-          1,
-        );
+        await Promise.all([
+          Helpers.checkVisibleAndPresent(
+            page,
+            `${Selectors.GovukFormLabel}:text-is("${WelshLanguageRequirements1Content.hiddenFormLabel3}")`,
+            1,
+          ),
+          Helpers.checkVisibleAndPresent(
+            page,
+            `${UniqueSelectors_Yes_No_formLabels.formLabelWelshLanguageRequirementApplicationNeedEnglish_Yes}:text-is("${WelshLanguageRequirements1Content.formLabelYes}")`,
+            1,
+          ),
+          Helpers.checkVisibleAndPresent(
+            page,
+            `${UniqueSelectors_Yes_No_formLabels.formLabelWelshLanguageRequirementApplicationNeedEnglish_No}:text-is("${WelshLanguageRequirements1Content.formLabelNo}")`,
+            1,
+          ),
+        ]);
         if (yesNoWelshLanguage) {
           await page.click(
-            `${UniqueSelectors.languageRequirementApplicationNeedWelsh_Yes}`,
+            `${UniqueSelectors.welshLanguageRequirementApplicationNeedEnglish_Yes}`,
           );
         } else {
           await page.click(
-            `${UniqueSelectors.languageRequirementApplicationNeedWelsh_No}`,
+            `${UniqueSelectors.welshLanguageRequirementApplicationNeedEnglish_no}`,
           );
         }
     }
