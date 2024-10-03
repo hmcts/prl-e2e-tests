@@ -1,4 +1,8 @@
-import { ApplicantGender, UserRole } from "../../../common/types";
+import {
+  ApplicantGender,
+  otherProceedingsRadios,
+  UserRole,
+} from "../../../common/types";
 import { Page } from "@playwright/test";
 import { FL401TypeOfApplication } from "./FL401TypeOfApplication/FL401TypeOfApplication";
 import { SolicitorCreateInitial } from "./solicitorCreateInitial";
@@ -18,8 +22,6 @@ import { Fl401AttendingTheHearing } from "./FL401AttendingTheHearing/fl401Attend
 import { FL401UploadDocuments } from "./FL401UploadDocuments/FL401UploadDocuments";
 import { FL401TheHome } from "./FL401TheHome/fl401TheHome";
 import { addressRadios } from "../../../pages/manageCases/createCase/FL401/theHome/fl401TheHome1Page";
-
-export type otherProceedingsRadios = "Yes" | "No" | "Don't know";
 
 interface fl401Options {
   page: Page;
