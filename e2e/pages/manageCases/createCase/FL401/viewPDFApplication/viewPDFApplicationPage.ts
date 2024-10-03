@@ -30,20 +30,25 @@ export class ViewPDFApplicationPage {
     ]);
     await pdfPage.waitForLoadState();
 
-    const numOfPagesLocator = pdfPage.locator(ids.numPages);
-    await expect(numOfPagesLocator).not.toHaveText(/0/); // <- Wait for number of pages not to be 0 (i.e., page has loaded)
-
-    const numOfPageText = await numOfPagesLocator.textContent();
-    const numOfPages = parseInt(numOfPageText?.replace("/", "").trim(), 10);
-
-    for (let i = 0; i < numOfPages - 1; i++) {
-      await pdfPage.click(ids.mvDownBtn);
-    }
+    await this.scrollToBottom(pdfPage);
 
     await this.checkApplicationData1(pdfPage);
     await pdfPage.close();
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
+    }
+  }
+
+  private static async scrollToBottom(page: Page) {
+    const numOfPagesLocator = page.locator(ids.numPages);
+    await expect(numOfPagesLocator).not.toHaveText(/0/); // <- Wait for number of pages not to be 0 (i.e., page has loaded)
+
+    const numOfPageText = await numOfPagesLocator.textContent();
+    const numOfPages = parseInt(numOfPageText?.replace("/", "").trim(), 10); // <- numOfPageText is in format "/ 7", strip
+    //                                                                             the '/' out and convert to int so can
+    //                                                                             be used in loop
+    for (let i = 0; i < numOfPages - 1; i++) {
+      await page.click(ids.mvDownBtn);
     }
   }
 

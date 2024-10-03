@@ -1,35 +1,34 @@
 import { Page } from "@playwright/test";
 import { otherProceedingsRadios } from "../../../../../common/types";
 import { Selectors } from "../../../../../common/selectors";
-import {
-  OtherProceedingsContent
-} from "../../../../../fixtures/manageCases/createCase/C100/otherProceedings/otherProceedingsContent";
+import { OtherProceedingsContent } from "../../../../../fixtures/manageCases/createCase/C100/otherProceedings/otherProceedingsContent";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import Config from "../../../../../config";
 
-const modalSelector: string = '#mat-dialog-0 > ccd-remove-dialog > div > div > '
+const modalSelector: string =
+  "#mat-dialog-0 > ccd-remove-dialog > div > div > ";
 
 enum inputIDs {
-  radioYes = '#previousOrOngoingProceedingsForChildren-yes',
-  radioNo = '#previousOrOngoingProceedingsForChildren-no',
-  radioDK = '#previousOrOngoingProceedingsForChildren-dontKnow',
-  ongoingProceedings = '#existingProceedings_0_previousOrOngoingProceedings-ongoing',
-  previousProceedings = '#existingProceedings_0_previousOrOngoingProceedings-previous',
-  caseNumber = '#existingProceedings_0_caseNumber',
-  startDateDay = '#dateStarted-day',
-  startDateMonth = '#dateStarted-month',
-  startDateYear = '#dateStarted-year',
-  endDateDay = '#dateEnded-day',
-  endDateMonth = '#dateEnded-month',
-  endDateYear = '#dateEnded-year',
-  judgeName = '#existingProceedings_0_nameOfJudge',
-  courtName = '#existingProceedings_0_nameOfCourt',
-  childrenInvolved = '#existingProceedings_0_nameOfChildrenInvolved',
-  guardianName = '#existingProceedings_0_nameOfGuardian',
-  cymruOfficer = '#existingProceedings_0_nameAndOffice',
-  fileUpload = '#existingProceedings_0_uploadRelevantOrder',
-  typeOfOrder = '#existingProceedings_0_otherTypeOfOrder'
+  radioYes = "#previousOrOngoingProceedingsForChildren-yes",
+  radioNo = "#previousOrOngoingProceedingsForChildren-no",
+  radioDK = "#previousOrOngoingProceedingsForChildren-dontKnow",
+  ongoingProceedings = "#existingProceedings_0_previousOrOngoingProceedings-ongoing",
+  previousProceedings = "#existingProceedings_0_previousOrOngoingProceedings-previous",
+  caseNumber = "#existingProceedings_0_caseNumber",
+  startDateDay = "#dateStarted-day",
+  startDateMonth = "#dateStarted-month",
+  startDateYear = "#dateStarted-year",
+  endDateDay = "#dateEnded-day",
+  endDateMonth = "#dateEnded-month",
+  endDateYear = "#dateEnded-year",
+  judgeName = "#existingProceedings_0_nameOfJudge",
+  courtName = "#existingProceedings_0_nameOfCourt",
+  childrenInvolved = "#existingProceedings_0_nameOfChildrenInvolved",
+  guardianName = "#existingProceedings_0_nameOfGuardian",
+  cymruOfficer = "#existingProceedings_0_nameAndOffice",
+  fileUpload = "#existingProceedings_0_uploadRelevantOrder",
+  typeOfOrder = "#existingProceedings_0_otherTypeOfOrder",
 }
 
 enum checkboxIDs {
@@ -49,40 +48,40 @@ enum checkboxIDs {
   forcedMarriageProtectionOrder = "#existingProceedings_0_typeOfOrder-fmpo",
   restrainingOrder = "#existingProceedings_0_typeOfOrder-restrainingOrder",
   otherInjunctiveOrder = "#existingProceedings_0_typeOfOrder-otherInjunctiveOrder",
-  undertakingInPlaceOfAnOrder = "#existingProceedings_0_typeOfOrder-undertakingInPlaceOfAnOrder"
+  undertakingInPlaceOfAnOrder = "#existingProceedings_0_typeOfOrder-undertakingInPlaceOfAnOrder",
 }
 
 enum invalidDateFields {
-  startDateDay = '#',
-  startDateMonth = 'h',
-  startDateYear = 't',
-  endDateDay = '&',
-  endDateMonth = '8',
-  endDateYear = ',',
+  startDateDay = "#",
+  startDateMonth = "h",
+  startDateYear = "t",
+  endDateDay = "&",
+  endDateMonth = "8",
+  endDateYear = ",",
 }
 
 interface C100OtherProceedings1PageOptions {
-  page: Page,
-  accessibilityTest: boolean,
+  page: Page;
+  accessibilityTest: boolean;
   errorMessaging: boolean;
   c100OtherProceedings: otherProceedingsRadios;
   c100OngoingProceedingsAndDocX?: boolean;
 }
 
 interface CheckPageLoadsOptions {
-  page: Page,
-  accessibilityTest: boolean,
+  page: Page;
+  accessibilityTest: boolean;
 }
 
 interface FillInFieldsOptions {
-  page: Page,
+  page: Page;
 
   c100OtherProceedings: otherProceedingsRadios;
   c100OngoingProceedingsAndDocX?: boolean;
 }
 
 interface AddNewProceedingsOptions {
-  page: Page,
+  page: Page;
   c100OngoingProceedingsAndDocX: boolean;
 }
 
@@ -92,7 +91,7 @@ export class OtherProceedings1Page {
     accessibilityTest,
     errorMessaging,
     c100OtherProceedings,
-    c100OngoingProceedingsAndDocX
+    c100OngoingProceedingsAndDocX,
   }: C100OtherProceedings1PageOptions): Promise<void> {
     await this.checkPageLoads({
       page,
@@ -104,201 +103,182 @@ export class OtherProceedings1Page {
     await this.fillInFields({
       page,
       c100OtherProceedings,
-      c100OngoingProceedingsAndDocX
+      c100OngoingProceedingsAndDocX,
     });
   }
-  
+
   private static async checkPageLoads({
     page,
     accessibilityTest,
   }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukHeadingL}:text-is("${OtherProceedingsContent.pageTitle}")`
+      `${Selectors.GovukHeadingL}:text-is("${OtherProceedingsContent.pageTitle}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.p}:text-is("${OtherProceedingsContent.p1}")`,
-        1
+        1,
       ),
       Helpers.checkGroup(
         page,
         4,
         OtherProceedingsContent,
-        'formLabel',
-        `${Selectors.GovukFormLabel}`
-      )
-    ])
+        "formLabel",
+        `${Selectors.GovukFormLabel}`,
+      ),
+    ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page)
+      await AccessibilityTestHelper.run(page);
     }
   }
 
   private static async fillInFields({
     page,
     c100OtherProceedings,
-    c100OngoingProceedingsAndDocX
+    c100OngoingProceedingsAndDocX,
   }: FillInFieldsOptions): Promise<void> {
-    let radioKey: keyof typeof inputIDs
+    let radioKey: keyof typeof inputIDs;
     switch (c100OtherProceedings) {
-      case 'Yes':
-        radioKey = 'radioYes'
-        break
-      case 'No':
-        radioKey = 'radioNo'
-        break
+      case "Yes":
+        radioKey = "radioYes";
+        break;
+      case "No":
+        radioKey = "radioNo";
+        break;
       case "Don't know":
-        radioKey = 'radioDK'
-        break
+        radioKey = "radioDK";
+        break;
       default:
-        throw new Error(
-          `Unrecognised radio option: ${c100OtherProceedings}`
-        )
+        throw new Error(`Unrecognised radio option: ${c100OtherProceedings}`);
     }
-    await page.click(
-      inputIDs[radioKey]
-    );
-    if (c100OtherProceedings === 'Yes') {
-      if (typeof c100OngoingProceedingsAndDocX !== 'boolean') {
+    await page.click(inputIDs[radioKey]);
+    if (c100OtherProceedings === "Yes") {
+      if (typeof c100OngoingProceedingsAndDocX !== "boolean") {
         throw new Error(
-          'c100OtherProceedingsAndDocX must be boolean if c100OtherProceedings is Yes'
-        )
+          "c100OtherProceedingsAndDocX must be boolean if c100OtherProceedings is Yes",
+        );
       }
       await this.addNewProceeding({
         page,
-        c100OngoingProceedingsAndDocX
+        c100OngoingProceedingsAndDocX,
       });
     }
     await page.click(
-      `${Selectors.button}:text-is("${OtherProceedingsContent.continue}")`
-    )
+      `${Selectors.button}:text-is("${OtherProceedingsContent.continue}")`,
+    );
   }
 
   private static async addNewProceeding({
     page,
-    c100OngoingProceedingsAndDocX
+    c100OngoingProceedingsAndDocX,
   }: AddNewProceedingsOptions): Promise<void> {
     await Helpers.checkVisibleAndPresent(
       page,
       `${Selectors.h2}:text-is("${OtherProceedingsContent.otherProceedingsHeader}")`,
-      1
+      1,
     );
     await page.click(
-      `${Selectors.button}:text-is("${OtherProceedingsContent.addNew}")`
+      `${Selectors.button}:text-is("${OtherProceedingsContent.addNew}")`,
     );
     await Helpers.checkGroup(
       page,
       26,
       OtherProceedingsContent,
-      'proceedingsFormLabel',
-      `${Selectors.GovukFormLabel}`
+      "proceedingsFormLabel",
+      `${Selectors.GovukFormLabel}`,
     );
     for (let checkbox of Object.values(checkboxIDs)) {
       await page.click(checkbox);
     }
     let filePath: string;
     if (c100OngoingProceedingsAndDocX) {
-      await page.click(
-        inputIDs.ongoingProceedings
-      );
-      filePath = Config.testWordFile
-
+      await page.click(inputIDs.ongoingProceedings);
+      filePath = Config.testWordFile;
     } else {
-      await page.click(
-        inputIDs.previousProceedings
-      );
-      filePath = Config.testPdfFile
+      await page.click(inputIDs.previousProceedings);
+      filePath = Config.testPdfFile;
     }
     const textKeys: string[] = [
-      'caseNumber',
-      'startDateDay',
-      'startDateMonth',
-      'startDateYear',
-      'endDateDay',
-      'endDateMonth',
-      'endDateYear',
-      'judgeName',
-      'courtName',
-      'childrenInvolved',
-      'guardianName',
-      'cymruOfficer',
-      'typeOfOrder'
-    ]
+      "caseNumber",
+      "startDateDay",
+      "startDateMonth",
+      "startDateYear",
+      "endDateDay",
+      "endDateMonth",
+      "endDateYear",
+      "judgeName",
+      "courtName",
+      "childrenInvolved",
+      "guardianName",
+      "cymruOfficer",
+      "typeOfOrder",
+    ];
     for (let textKey of textKeys) {
       let contentKey = textKey as keyof typeof OtherProceedingsContent;
       let inputKey = textKey as keyof typeof inputIDs;
-      await page.fill(
-        inputIDs[inputKey],
-        OtherProceedingsContent[contentKey]
-      );
+      await page.fill(inputIDs[inputKey], OtherProceedingsContent[contentKey]);
     }
     await page.waitForTimeout(6000);
-    await page.setInputFiles(
-      inputIDs.fileUpload,
-      filePath
-    );
+    await page.setInputFiles(inputIDs.fileUpload, filePath);
     await Helpers.checkVisibleAndPresent(
       page,
       `${Selectors.GovukErrorMessage}:text-is("${OtherProceedingsContent.uploadingFile}")`,
-      1
+      1,
     );
-    await page.waitForSelector(`${Selectors.GovukErrorMessage}:text-is("${OtherProceedingsContent.uploadingFile}")`, { state: 'hidden' });
+    await page.waitForSelector(
+      `${Selectors.GovukErrorMessage}:text-is("${OtherProceedingsContent.uploadingFile}")`,
+      { state: "hidden" },
+    );
   }
 
-  private static async checkErrorMessaging(
-    page: Page
-  ): Promise<void> {
+  private static async checkErrorMessaging(page: Page): Promise<void> {
+    await page.click(inputIDs.radioYes);
     await page.click(
-      inputIDs.radioYes
-    );
-    await page.click(
-      `${Selectors.button}:text-is("${OtherProceedingsContent.addNew}")`
+      `${Selectors.button}:text-is("${OtherProceedingsContent.addNew}")`,
     );
     const textKeys = [
-      'startDateDay',
-      'startDateMonth',
-      'startDateYear',
-      'endDateDay',
-      'endDateMonth',
-      'endDateYear',
-    ]
+      "startDateDay",
+      "startDateMonth",
+      "startDateYear",
+      "endDateDay",
+      "endDateMonth",
+      "endDateYear",
+    ];
     for (let textKey of textKeys) {
       let invalidInputKey = textKey as keyof typeof invalidDateFields;
       let inputKey = textKey as keyof typeof inputIDs;
-      await page.fill(
-        inputIDs[inputKey],
-        invalidDateFields[invalidInputKey]
-      );
+      await page.fill(inputIDs[inputKey], invalidDateFields[invalidInputKey]);
     }
     await page.click(
-      `${Selectors.button}:text-is("${OtherProceedingsContent.continue}")`
+      `${Selectors.button}:text-is("${OtherProceedingsContent.continue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukErrorSummaryTitle}:text-is("${OtherProceedingsContent.errorSummaryTitle}")`,
-        1
+        1,
       ),
       Helpers.checkGroup(
         page,
         2,
         OtherProceedingsContent,
-        'errorValidation',
-        `${Selectors.GovukErrorValidation}`
+        "errorValidation",
+        `${Selectors.GovukErrorValidation}`,
       ),
       Helpers.checkGroup(
         page,
         2,
         OtherProceedingsContent,
-        'errorMessage',
-        `${Selectors.GovukErrorMessage}`
+        "errorMessage",
+        `${Selectors.GovukErrorMessage}`,
       ),
     ]);
     await page.click(
-      `${Selectors.button}:text-is("${OtherProceedingsContent.remove}")`
+      `${Selectors.button}:text-is("${OtherProceedingsContent.remove}")`,
     );
     await page.click(
-      `${modalSelector}${Selectors.button}:text-is("${OtherProceedingsContent.remove}")`
+      `${modalSelector}${Selectors.button}:text-is("${OtherProceedingsContent.remove}")`,
     );
   }
 }

@@ -1,4 +1,8 @@
-import { ApplicantGender, otherProceedingsRadios, UserRole } from "../../../common/types";
+import {
+  ApplicantGender,
+  otherProceedingsRadios,
+  UserRole,
+} from "../../../common/types";
 import { Page } from "@playwright/test";
 import { SolicitorCreateInitial } from "./solicitorCreateInitial";
 import { C100HearingUrgency } from "./C100HearingUrgency/C100HearingUrgency";
@@ -98,7 +102,7 @@ export class C100 {
     yesNoInternationalElement,
     yesNoLitigationCapacity,
     c100OtherProceedings,
-    c100OngoingProceedingsAndDocX
+    c100OngoingProceedingsAndDocX,
   }: c100Options): Promise<void> {
     await SolicitorCreateInitial.createInitialCase({
       page: page,
@@ -244,7 +248,7 @@ export class C100 {
       errorMessaging: errorMessaging,
       c100OtherProceedings: c100OtherProceedings,
       c100OngoingProceedingsAndDocX: c100OngoingProceedingsAndDocX,
-      subJourney: false
-    })
+      subJourney: false,
+    });
   }
 }
