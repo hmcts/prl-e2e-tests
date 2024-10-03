@@ -6,5 +6,5 @@ export enum SubmitAndPay3Content {
   formLabelYes = "Yes",
   formLabelNo = "No",
   hwfReferenceNumber = "0123456789",
-  continue = "Continue"
+  continue = "Continue",
 }

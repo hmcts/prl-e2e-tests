@@ -6,5 +6,5 @@ export enum SubmitAndPaySubmitContent {
   text16Change = "Change",
   text16Yes = "Yes",
   textNo = "No",
-  submit = "Submit"
+  submit = "Submit",
 }

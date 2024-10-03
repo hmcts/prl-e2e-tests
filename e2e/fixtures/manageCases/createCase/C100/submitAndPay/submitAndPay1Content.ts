@@ -9,5 +9,5 @@ export enum SubmitAndPay1Content {
   li2 = "any documents you complete in the future",
   li3 = "documents received from other people, such as financial statements",
   formLabel = "I have checked the application to ensure private information has not been disclosed.",
-  continue = "Continue"
+  continue = "Continue",
 }
