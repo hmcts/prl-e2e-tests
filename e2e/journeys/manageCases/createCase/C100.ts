@@ -1,4 +1,4 @@
-import { ApplicantGender, UserRole } from "../../../common/types";
+import { ApplicantGender, otherProceedingsRadios, UserRole } from "../../../common/types";
 import { Page } from "@playwright/test";
 import { SolicitorCreateInitial } from "./solicitorCreateInitial";
 import { C100HearingUrgency } from "./C100HearingUrgency/C100HearingUrgency";
@@ -28,6 +28,7 @@ import { C100MiamPolicyUpgrade } from "./C100MiamPolicyUpgrade/C100MiamPolicyUpg
 import { C100MiamPolicyUpgrade1PageType } from "../../../pages/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade1Page";
 import { miamSelection } from "../../../pages/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade6Page";
 import { C100LitigationCapacity } from "./C100LitigationCapacity/C100LitigationCapacity";
+import { C100OtherProceedings } from "./C100OtherProceedings/C100OtherProceedings";
 
 interface c100Options {
   page: Page;
@@ -54,6 +55,8 @@ interface c100Options {
   yesNoChildrenAndOtherPeople: boolean;
   applicantChildRelationship: C100ChildrenAndApplicantsRelationship;
   childLiveWithApplicant: boolean;
+  c100OtherProceedings: otherProceedingsRadios;
+  c100OngoingProceedingsAndDocX?: boolean;
   c100AttendingTheHearingYesNo: boolean;
   C100MiamPolicyUpgrade1PageType: C100MiamPolicyUpgrade1PageType;
   yesNoMiamPolicyUpgrade: boolean;
@@ -94,6 +97,8 @@ export class C100 {
     miamSelection,
     yesNoInternationalElement,
     yesNoLitigationCapacity,
+    c100OtherProceedings,
+    c100OngoingProceedingsAndDocX
   }: c100Options): Promise<void> {
     await SolicitorCreateInitial.createInitialCase({
       page: page,
@@ -233,5 +238,13 @@ export class C100 {
       yesNoLitigationCapacity: yesNoLitigationCapacity,
       subJourney: false,
     });
+    await C100OtherProceedings.c100OtherProceedings({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      c100OtherProceedings: c100OtherProceedings,
+      c100OngoingProceedingsAndDocX: c100OngoingProceedingsAndDocX,
+      subJourney: false
+    })
   }
 }

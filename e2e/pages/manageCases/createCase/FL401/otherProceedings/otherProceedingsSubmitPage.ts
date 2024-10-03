@@ -4,8 +4,8 @@ import { SubmitContent } from "../../../../../fixtures/manageCases/createCase/FL
 import { Helpers } from "../../../../../common/helpers";
 import accessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { OtherProceedingsContent } from "../../../../../fixtures/manageCases/createCase/FL401/otherProceedings/otherProceedingsContent";
-import { otherProceedingsRadios } from "../../../../../journeys/manageCases/createCase/FL401";
 import Path from "path";
+import { otherProceedingsRadios } from "../../../../../common/types";
 
 export class OtherProceedingsSubmitPage {
   public static async otherProceedingsSubmitPage(

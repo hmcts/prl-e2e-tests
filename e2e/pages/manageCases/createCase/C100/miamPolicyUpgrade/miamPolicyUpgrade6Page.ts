@@ -101,7 +101,7 @@ export class MiamPolicyUpgrade6Page {
     await this.fileUploadContent(page);
     const fileInput1 = page.locator(`${UniqueSelectors.uploadFileInput1}`);
     await fileInput1.setInputFiles(config.testOdtFile);
-    await page.waitForTimeout(8000);
+    await page.waitForSelector(`${Selectors.GovukErrorMessage}:text-is("${MiamPolicyUpgrade6Content.uploadingFile}")`, { state: 'hidden' });
     await Helpers.checkVisibleAndPresent(
       page,
       `${Selectors.GovukErrorMessage}:text-is("${MiamPolicyUpgrade6Content.errorMessageUpload}")`,
@@ -119,7 +119,7 @@ export class MiamPolicyUpgrade6Page {
         await this.fileUploadContent(page);
         const fileInput1 = page.locator(`${UniqueSelectors.uploadFileInput1}`);
         await fileInput1.setInputFiles(config.testPdfFile);
-        await page.waitForTimeout(5000);
+        await page.waitForSelector(`${Selectors.GovukErrorMessage}:text-is("${MiamPolicyUpgrade6Content.uploadingFile}")`, { state: 'hidden' });
         break;
 
       case "initiatedMIAMBeforeProceedings_MIAMCertificate":
@@ -139,7 +139,7 @@ export class MiamPolicyUpgrade6Page {
         );
         const fileInput2 = page.locator(`${UniqueSelectors.uploadFileInput2}`);
         await fileInput2.setInputFiles(config.testPdfFile);
-        await page.waitForTimeout(5000);
+        await page.waitForSelector(`${Selectors.GovukErrorMessage}:text-is("${MiamPolicyUpgrade6Content.uploadingFile}")`, { state: 'hidden' });
         break;
       case "initiatedMIAMBeforeProceedings_MIAMDetails":
         await page.click(`${UniqueSelectors.initiatedMIAMBeforeProceedings}`);

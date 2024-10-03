@@ -36,7 +36,8 @@ export type c100SolicitorEvents =
   | "Attending the hearing"
   | "MIAM"
   | "International element"
-  | "Litigation capacity";
+  | "Litigation capacity"
+  | "Other proceedings";
 
 export type fl401SolicitorEvents =
   | "Case name"
@@ -53,3 +54,5 @@ export type fl401SolicitorEvents =
   | "Welsh language requirements";
 
 export type ApplicantGender = "female" | "male" | "other";
+
+export type otherProceedingsRadios = "Yes" | "No" | "Don't know";
