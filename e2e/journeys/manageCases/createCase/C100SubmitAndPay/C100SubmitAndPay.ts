@@ -17,7 +17,7 @@ export class C100SubmitAndPay {
     accessibilityTest: accessibilityTest,
     yesNoHelpWithFees: yesNoHelpWithFees,
   }: C100SubmitAndPayOptions): Promise<void> {
-    await Helpers.selectSolicitorEvent(page, "Respondent details");
+    await Helpers.selectSolicitorEvent(page, "Submit and pay");
     await SubmitAndPay1Page.submitAndPay1Page({
       page,
       accessibilityTest,

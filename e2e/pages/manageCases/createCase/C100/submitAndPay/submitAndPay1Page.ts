@@ -59,13 +59,35 @@ export class SubmitAndPay1Page {
         `${Selectors.GovukFormLabel}:text-is("${SubmitAndPay1Content.formLabel}")`,
         1,
       ),
-      Helpers.checkGroup(page, 2, SubmitAndPay1Content, "p", `${Selectors.p}`),
-      Helpers.checkGroup(
+      Helpers.checkVisibleAndPresent(
         page,
-        3,
-        SubmitAndPay1Content,
-        "li",
-        `${Selectors.li}`,
+        `${Selectors.p}:text-is("${SubmitAndPay1Content.p1}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${SubmitAndPay1Content.p2}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${SubmitAndPay1Content.p3}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${SubmitAndPay1Content.li1}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${SubmitAndPay1Content.li2}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${SubmitAndPay1Content.li3}")`,
+        2,
       ),
     ]);
     if (accessibilityTest) {
