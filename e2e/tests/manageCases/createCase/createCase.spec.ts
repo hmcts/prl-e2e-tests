@@ -23,8 +23,9 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   With no other child present
   Where the child lives with their applicant father,
   With no other child present
+  Setting the allegations of harm to Physical 
   Saying no to all Miam
-  C100MiamPolicyUpgrade1PageType is "yesExemption"@crossbrowserManageCases`, async ({
+  C100MiamPolicyUpgrade1PageType is "yesExemption" @crossbrowserManageCases`, async ({
     page,
   }): Promise<void> => {
     await C100.c100({
@@ -52,6 +53,8 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       childLiveWithApplicant: true,
       yesNoChildrenAndRespondents: true,
       yesNoChildrenAndOtherPeople: true,
+      c100YesNoAllegationsOfHarm: true,
+      c100DomesticAbuseTypePage3: "Physical abuse",
       c100AttendingTheHearingYesNo: true,
       C100MiamPolicyUpgrade1PageType: "yesAttendedMiam",
       yesNoMiamPolicyUpgrade: true,
@@ -70,10 +73,13 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Saying no to all applicant details questions with a female applicant
   Saying yes to all respondent details questions with a female respondent 
   With another female child present, with a known DOB
+    With another female child present, with a known DOB 
   Where the child does not live with their applicant mother
   Saying no to all respondent details questions with a female respondent
   Saying no to all other people in the case questions with a male applicant
   Saying no to all child details question with a female child 
+  Saying no to all children and respondents questions 
+  Setting the allegations of harm to none.
   Saying no to all attending the hearing questions
   Saying no to all children and respondents questions
   Saying no to all children and respondents questions
@@ -110,6 +116,8 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       childLiveWithApplicant: false,
       yesNoChildrenAndRespondents: false,
       yesNoChildrenAndOtherPeople: false,
+      c100YesNoAllegationsOfHarm: false,
+      c100DomesticAbuseTypePage3: "Financial abuse",
       c100AttendingTheHearingYesNo: false,
       C100MiamPolicyUpgrade1PageType: "yesExemption",
       yesNoMiamPolicyUpgrade: false,

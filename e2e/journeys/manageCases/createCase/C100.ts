@@ -1,8 +1,4 @@
-import {
-  ApplicantGender,
-  otherProceedingsRadios,
-  UserRole,
-} from "../../../common/types";
+import { ApplicantGender, otherProceedingsRadios, UserRole } from "../../../common/types";
 import { Page } from "@playwright/test";
 import { SolicitorCreateInitial } from "./solicitorCreateInitial";
 import { C100HearingUrgency } from "./C100HearingUrgency/C100HearingUrgency";
@@ -26,6 +22,8 @@ import { C100ChildrenAndOtherPeople } from "./C100ChildrenAndOtherPeople/c100Chi
 import { C100ChildrenAndApplicantsRelationship } from "../../../pages/manageCases/createCase/C100/childrenAndApplicants/childrenAndApplicants1Page";
 import { C100ChildrenAndApplicants } from "./C100ChildrenAndApplicants/C100ChildrenAndApplicants";
 import { C100ChildAndRespondents } from "./C100ChildrenAndRespondents/c100ChildrenAndRespondents";
+import { C100AllegationsOfHarmTypeOfDomesticAbuse } from "../../../pages/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevised3Page";
+import { C100AllegationsOfHarm } from "./C100AllegationsOfHarm/c100AllegationsOfHarm";
 import { C100InternationalElement } from "./C100InternationalElement/C100InternationalElement";
 import { C100AttendingTheHearing } from "./C100AttendingTheHearing/c100AttendingTheHearing";
 import { C100MiamPolicyUpgrade } from "./C100MiamPolicyUpgrade/C100MiamPolicyUpgrade";
@@ -68,6 +66,8 @@ interface c100Options {
   miamSelection: miamSelection;
   yesNoInternationalElement: boolean;
   yesNoLitigationCapacity: boolean;
+  c100YesNoAllegationsOfHarm: boolean;
+  c100DomesticAbuseTypePage3: C100AllegationsOfHarmTypeOfDomesticAbuse;
   yesNoHelpWithFees: boolean;
 }
 
@@ -105,6 +105,8 @@ export class C100 {
     yesNoLitigationCapacity,
     c100OtherProceedings,
     c100OngoingProceedingsAndDocX,
+    c100YesNoAllegationsOfHarm,
+    c100DomesticAbuseTypePage3,
     yesNoHelpWithFees,
   }: c100Options): Promise<void> {
     await SolicitorCreateInitial.createInitialCase({
@@ -214,6 +216,14 @@ export class C100 {
       yesNoChildrenAndOtherPeople: yesNoChildrenAndOtherPeople,
       subJourney: false,
     });
+    await C100AllegationsOfHarm.c100AllegationsOfHarm({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      c100YesNoAllegationsOfHarm: c100YesNoAllegationsOfHarm,
+      subJourney: false,
+      c100DomesticAbuseTypePage3: c100DomesticAbuseTypePage3,
+    })
     await C100MiamPolicyUpgrade.c100MiamPolicyUpgrade({
       page: page,
       user: user,
