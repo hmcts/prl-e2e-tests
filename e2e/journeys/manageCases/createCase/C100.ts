@@ -33,6 +33,7 @@ import { C100MiamPolicyUpgrade1PageType } from "../../../pages/manageCases/creat
 import { miamSelection } from "../../../pages/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade6Page";
 import { C100LitigationCapacity } from "./C100LitigationCapacity/C100LitigationCapacity";
 import { C100OtherProceedings } from "./C100OtherProceedings/C100OtherProceedings";
+import { C100SubmitAndPay } from "./C100SubmitAndPay/C100SubmitAndPay";
 
 interface c100Options {
   page: Page;
@@ -67,6 +68,7 @@ interface c100Options {
   miamSelection: miamSelection;
   yesNoInternationalElement: boolean;
   yesNoLitigationCapacity: boolean;
+  yesNoHelpWithFees: boolean;
 }
 
 export class C100 {
@@ -103,6 +105,7 @@ export class C100 {
     yesNoLitigationCapacity,
     c100OtherProceedings,
     c100OngoingProceedingsAndDocX,
+    yesNoHelpWithFees,
   }: c100Options): Promise<void> {
     await SolicitorCreateInitial.createInitialCase({
       page: page,
@@ -249,6 +252,11 @@ export class C100 {
       c100OtherProceedings: c100OtherProceedings,
       c100OngoingProceedingsAndDocX: c100OngoingProceedingsAndDocX,
       subJourney: false,
+    });
+    await C100SubmitAndPay.c100SubmitAndPay({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      yesNoHelpWithFees: yesNoHelpWithFees,
     });
   }
 }

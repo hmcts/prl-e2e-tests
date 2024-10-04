@@ -1,5 +1,5 @@
 export enum SubmitAndPay1Content {
-  pageTitle = "",
+  pageTitle = "Submit and pay",
   h1 = "Confidentiality Statement",
   h2 = "Confidentiality checks",
   p1 = "Ensure that no private information has been disclosed in the application.",

@@ -12,6 +12,8 @@ export enum SubmitAndPay2Content {
   h3Hidden5 = "Application fee due to be paid",
   h3Hidden6 = "Final checks",
   h3Hidden7 = "C100 draft",
+  hiddenP1 = "After you have submitted your application, you will be asked to pay the application fee.",
+  hiddenP2 = "Download and check the application before you proceed. Make sure that all details are correct.",
   formLabelDraftConsent = "Draft Document",
   formLabelDraftDocumentWelsh = "Draft Document (Welsh)",
   a1 = "Draft_C100_application.pdf",
