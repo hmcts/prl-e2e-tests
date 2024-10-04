@@ -32,12 +32,14 @@ export type c100SolicitorEvents =
   | "Other children not in the case"
   | "Children and applicants"
   | "Children and respondents"
+  | "Allegations of harm"
   | "Children and other people"
   | "Attending the hearing"
   | "MIAM"
   | "International element"
   | "Litigation capacity"
-  | "Other proceedings";
+  | "Other proceedings"
+  | "Welsh language requirements";
 
 export type fl401SolicitorEvents =
   | "Case name"

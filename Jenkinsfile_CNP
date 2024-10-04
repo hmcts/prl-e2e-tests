@@ -71,6 +71,7 @@ withNightlyPipeline(type, product, component, 600) {
   env.FUNCTIONAL_TESTS_WORKERS = params.FUNCTIONAL_TESTS_WORKERS
   enableSlackNotifications(channel)
   onPR() {
+    env.FUNCTIONAL_TESTS_WORKERS = '3'
     afterAlways('DependencyCheckNightly') {
       stage('Unit tests') {
         try {
