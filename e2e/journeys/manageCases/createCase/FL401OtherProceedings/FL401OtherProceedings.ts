@@ -4,7 +4,8 @@ import { OtherProceedingsPage } from "../../../../pages/manageCases/createCase/F
 import { Fl401TasksTabPage } from "../../../../pages/manageCases/caseTabs/fl401TasksTabPage";
 import { OtherProceedingsSubmitPage } from "../../../../pages/manageCases/createCase/FL401/otherProceedings/otherProceedingsSubmitPage";
 import { SolicitorCreateInitial } from "../solicitorCreateInitial";
-import { otherProceedingsRadios } from "../FL401";
+
+import { otherProceedingsRadios } from "../../../../common/types";
 
 interface fl401OtherProceedingsOptions {
   page: Page;

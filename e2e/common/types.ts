@@ -31,7 +31,13 @@ export type c100SolicitorEvents =
   | "Other people in the case"
   | "Other children not in the case"
   | "Children and applicants"
-  | "Children and respondents";
+  | "Children and respondents"
+  | "Children and other people"
+  | "Attending the hearing"
+  | "MIAM"
+  | "International element"
+  | "Litigation capacity"
+  | "Other proceedings";
 
 export type fl401SolicitorEvents =
   | "Case name"
@@ -50,3 +56,5 @@ export type fl401SolicitorEvents =
   | "Statement of truth and submit";
 
 export type ApplicantGender = "female" | "male" | "other";
+
+export type otherProceedingsRadios = "Yes" | "No" | "Don't know";
