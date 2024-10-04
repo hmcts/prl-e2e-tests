@@ -113,7 +113,6 @@ export class C100 {
     c100OngoingProceedingsAndDocX,
     WelshPageRequirementType,
     yesNoWelshLanguage,
-    c100OngoingProceedingsAndDocX,
     c100YesNoAllegationsOfHarm,
     c100DomesticAbuseTypePage3,
   }: c100Options): Promise<void> {
