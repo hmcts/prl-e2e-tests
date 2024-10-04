@@ -57,3 +57,5 @@ export type fl401SolicitorEvents =
 export type ApplicantGender = "female" | "male" | "other";
 
 export type otherProceedingsRadios = "Yes" | "No" | "Don't know";
+
+export type viewPdfTestCases = "1" | "2" | "3";

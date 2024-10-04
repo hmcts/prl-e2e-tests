@@ -4,11 +4,13 @@ import { ViewPDFApplicationPage } from "../../../../pages/manageCases/createCase
 import { Fl401TasksTabPage } from "../../../../pages/manageCases/caseTabs/fl401TasksTabPage";
 import { ViewPDFApplicationSubmitPage } from "../../../../pages/manageCases/createCase/FL401/viewPDFApplication/viewPDFApplicationSubmitPage";
 import { SolicitorCreateInitial } from "../solicitorCreateInitial";
+import { viewPdfTestCases } from "../../../../common/types";
 
 interface fl401ViewPDFApplicationOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
+  viewPdfTestCases: viewPdfTestCases;
   subJourney: boolean;
 }
 
@@ -17,6 +19,7 @@ export class FL401ViewPDFApplication {
     page,
     accessibilityTest,
     errorMessaging,
+    viewPdfTestCases,
     subJourney,
   }: fl401ViewPDFApplicationOptions): Promise<void> {
     if (subJourney) {
@@ -33,6 +36,7 @@ export class FL401ViewPDFApplication {
       page,
       errorMessaging,
       accessibilityTest,
+      viewPdfTestCases,
     );
     // await ViewPDFApplicationSubmitPage.viewPDFApplicationSubmitPage(
     //   page,

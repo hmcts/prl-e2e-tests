@@ -3,6 +3,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { ViewPDFApplicationContent } from "../../../../../fixtures/manageCases/createCase/FL401/viewPDFApplication/viewPDFApplicationContent";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { viewPdfTestCases } from "../../../../../common/types";
 
 enum ids {
   mvDownBtn = "#mvDownBtn",
@@ -14,25 +15,47 @@ export class ViewPDFApplicationPage {
     page: Page,
     errorMessaging: boolean,
     accessibilityTest: boolean,
+    viewPdfTestCases: viewPdfTestCases,
   ): Promise<void> {
-    await this.checkPageLoads(page, accessibilityTest);
+    await this.checkPageLoads(page, accessibilityTest, viewPdfTestCases);
     await this.fillInFields(page, accessibilityTest);
   }
 
   private static async checkPageLoads(
     page: Page,
     accessibilityTest: boolean,
+    viewPdfTestCases: viewPdfTestCases,
   ): Promise<void> {
     // noinspection TypeScriptValidateTypes
     const [pdfPage] = await Promise.all([
       page.waitForEvent("popup"),
-      page.click(`${Selectors.a}:text-is("Draft_DA_application.pdf")`),
+      page.click(
+        `${Selectors.a}:text-is("${ViewPDFApplicationContent.pdfName}")`,
+      ),
     ]);
     await pdfPage.waitForLoadState();
 
     await this.scrollToBottom(pdfPage);
 
-    await this.checkApplicationData1(pdfPage);
+    switch (viewPdfTestCases) {
+      case "1":
+        await this.checkCommonData(pdfPage);
+        await this.checkApplicationData1(pdfPage);
+        break;
+      case "2":
+        await this.checkCommonData(pdfPage);
+        await this.checkApplicationData2(pdfPage);
+        break;
+      case "3":
+        await this.checkApplicationData3(pdfPage);
+        break;
+      default:
+        console.log(
+          `Unexpected value for viewPdfTestCases: ${viewPdfTestCases}`,
+        );
+        break;
+    }
+
     await pdfPage.close();
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
@@ -52,35 +75,45 @@ export class ViewPDFApplicationPage {
     }
   }
 
-  private static async checkApplicationData1(page: Page) {
+  private static async checkCommonData(page: Page) {
     // noinspection TypeScriptValidateTypes
     await Promise.all([
       Helpers.checkGroup(
         page,
-        66,
+        62,
         ViewPDFApplicationContent,
         "applicationLabel",
         `${Selectors.Span}`,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${ViewPDFApplicationContent.exampleNumber}")`,
+        `${Selectors.Span}:text-is("${ViewPDFApplicationContent.repeatedLabel1}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${ViewPDFApplicationContent.repeatedLabel2}")`,
+        6,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${ViewPDFApplicationContent.repeatedLabel3}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${ViewPDFApplicationContent.repeatedLabel4}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${ViewPDFApplicationContent.repeatedLabel5}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.Span}:text-is("${ViewPDFApplicationContent.yes}")`,
         27,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.Span}:text-is("${ViewPDFApplicationContent.infoToBeKeptConfidential}")`,
-        6,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.Span}:text-is("${ViewPDFApplicationContent.exampleNumber2}")`,
-        2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -102,15 +135,63 @@ export class ViewPDFApplicationPage {
         `${Selectors.Span}:text-is("${ViewPDFApplicationContent.uk}")`,
         5,
       ),
-      Helpers.checkVisibleAndPresent(
+    ]);
+  }
+
+  private static async checkApplicationData1(page: Page) {
+    await Helpers.checkGroup(
+      page,
+      4,
+      ViewPDFApplicationContent,
+      "testCase1Label",
+      `${Selectors.Span}`,
+    );
+  }
+
+  private static async checkApplicationData2(page: Page) {
+    await Helpers.checkGroup(
+      page,
+      4,
+      ViewPDFApplicationContent,
+      "testCase2Label",
+      `${Selectors.Span}`,
+    );
+  }
+
+  private static async checkApplicationData3(page: Page) {
+    // noinspection TypeScriptValidateTypes
+    await Promise.all([
+      Helpers.checkGroup(
         page,
-        `${Selectors.Span}:text-is("${ViewPDFApplicationContent.dob}")`,
-        2,
+        26,
+        ViewPDFApplicationContent,
+        "testCase3Label",
+        `${Selectors.Span}`,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${ViewPDFApplicationContent.applicantRespondentSomeoneElse}")`,
-        2,
+        `${Selectors.Span}:text-is("${ViewPDFApplicationContent.no}")`,
+        23,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${ViewPDFApplicationContent.buckinghamPalace}")`,
+        3,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${ViewPDFApplicationContent.london}")`,
+        3,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${ViewPDFApplicationContent.bpPostcode}")`,
+        3,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${ViewPDFApplicationContent.uk}")`,
+        3,
       ),
     ]);
   }

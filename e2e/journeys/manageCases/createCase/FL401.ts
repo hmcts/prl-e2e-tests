@@ -1,6 +1,7 @@
 import {
   ApplicantGender,
   otherProceedingsRadios,
+  viewPdfTestCases,
   UserRole,
 } from "../../../common/types";
 import { Page } from "@playwright/test";
@@ -45,6 +46,7 @@ interface fl401Options {
   fl401IntendToLiveAtAddress?: addressRadios;
   welshLanguageRequirementsAllOptionsYes: boolean;
   welshLanguageRequirementsSelectWelsh?: boolean;
+  viewPdfTestCases: viewPdfTestCases;
 }
 
 export class FL401 {
@@ -70,6 +72,7 @@ export class FL401 {
     fl401IntendToLiveAtAddress,
     welshLanguageRequirementsAllOptionsYes,
     welshLanguageRequirementsSelectWelsh,
+    viewPdfTestCases,
   }: fl401Options): Promise<void> {
     await SolicitorCreateInitial.createInitialCase({
       page: page,
