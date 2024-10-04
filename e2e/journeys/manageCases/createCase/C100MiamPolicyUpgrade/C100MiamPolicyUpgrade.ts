@@ -17,6 +17,7 @@ import { MiamPolicyUpgrade3Page } from "../../../../pages/manageCases/createCase
 import { MiamPolicyUpgrade4Page } from "../../../../pages/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade4Page";
 import { MiamPolicyUpgrade5Page } from "../../../../pages/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade5Page";
 import { MiamPolicyUpgrade7Page } from "../../../../pages/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade7Page";
+import { C100TasksTabPage } from "../../../../pages/manageCases/caseTabs/c100TasksTabPage";
 
 interface c100MiamPolicyUpgradeOptions {
   page: Page;
@@ -121,5 +122,6 @@ export class C100MiamPolicyUpgrade {
         });
         break;
     }
+    await C100TasksTabPage.c100TasksTabPage(page, accessibilityTest);
   }
 }
