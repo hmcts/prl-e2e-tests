@@ -25,7 +25,9 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   With no other child present
   Setting the allegations of harm to Physical 
   Saying no to all Miam
-  C100MiamPolicyUpgrade1PageType is "yesExemption" @crossbrowserManageCases`, async ({
+  C100MiamPolicyUpgrade1PageType is "yesExemption" 
+  Setting WelshPageRequirementType to "english"
+  Saying yes to all WelshRequirement options @crossbrowserManageCases`, async ({
     page,
   }): Promise<void> => {
     await C100.c100({
@@ -63,6 +65,10 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       yesNoLitigationCapacity: true,
       c100OtherProceedings: "Yes",
       c100OngoingProceedingsAndDocX: true,
+      WelshPageRequirementType: "english",
+      yesNoWelshLanguage: true,
+      c100OtherProceedings: "Yes",
+      c100OngoingProceedingsAndDocX: true,
     });
   });
 
@@ -88,6 +94,8 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Saying no to all children and respondents questions
   Saying no to all children and respondents questions
   Saying no to all Litigation Capacity options
+  Setting WelshPageRequirementType to "english"
+  Saying no to all WelshRequirement options
   C100MiamPolicyUpgrade1PageType is "yesExemption"
   Saying Don't know to other proceedings
   @crossbrowserManageCases`, async ({ page }): Promise<void> => {
@@ -123,6 +131,10 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       yesNoMiamPolicyUpgrade: false,
       miamSelection: "initiatedMIAMBeforeProceedings_MIAMCertificate",
       yesNoInternationalElement: false,
+      yesNoLitigationCapacity: false,
+      c100OtherProceedings: "No",
+      WelshPageRequirementType: "english",
+      yesNoWelshLanguage: false,
       yesNoLitigationCapacity: true,
       c100OtherProceedings: "No",
     });
