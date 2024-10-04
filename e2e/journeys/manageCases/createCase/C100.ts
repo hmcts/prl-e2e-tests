@@ -26,6 +26,8 @@ import { C100ChildrenAndOtherPeople } from "./C100ChildrenAndOtherPeople/c100Chi
 import { C100ChildrenAndApplicantsRelationship } from "../../../pages/manageCases/createCase/C100/childrenAndApplicants/childrenAndApplicants1Page";
 import { C100ChildrenAndApplicants } from "./C100ChildrenAndApplicants/C100ChildrenAndApplicants";
 import { C100ChildAndRespondents } from "./C100ChildrenAndRespondents/c100ChildrenAndRespondents";
+import { C100AllegationsOfHarmTypeOfDomesticAbuse } from "../../../pages/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevised3Page";
+import { C100AllegationsOfHarm } from "./C100AllegationsOfHarm/c100AllegationsOfHarm";
 import { C100InternationalElement } from "./C100InternationalElement/C100InternationalElement";
 import { C100AttendingTheHearing } from "./C100AttendingTheHearing/c100AttendingTheHearing";
 import { C100MiamPolicyUpgrade } from "./C100MiamPolicyUpgrade/C100MiamPolicyUpgrade";
@@ -71,6 +73,8 @@ interface c100Options {
   yesNoLitigationCapacity: boolean;
   WelshPageRequirementType: WelshPageRequirementType;
   yesNoWelshLanguage: boolean;
+  c100YesNoAllegationsOfHarm: boolean;
+  c100DomesticAbuseTypePage3: C100AllegationsOfHarmTypeOfDomesticAbuse;
 }
 
 export class C100 {
@@ -109,6 +113,9 @@ export class C100 {
     c100OngoingProceedingsAndDocX,
     WelshPageRequirementType,
     yesNoWelshLanguage,
+    c100OngoingProceedingsAndDocX,
+    c100YesNoAllegationsOfHarm,
+    c100DomesticAbuseTypePage3,
   }: c100Options): Promise<void> {
     await SolicitorCreateInitial.createInitialCase({
       page: page,
@@ -217,6 +224,14 @@ export class C100 {
       yesNoChildrenAndOtherPeople: yesNoChildrenAndOtherPeople,
       subJourney: false,
     });
+    await C100AllegationsOfHarm.c100AllegationsOfHarm({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      c100YesNoAllegationsOfHarm: c100YesNoAllegationsOfHarm,
+      subJourney: false,
+      c100DomesticAbuseTypePage3: c100DomesticAbuseTypePage3,
+    })
     await C100MiamPolicyUpgrade.c100MiamPolicyUpgrade({
       page: page,
       user: user,
