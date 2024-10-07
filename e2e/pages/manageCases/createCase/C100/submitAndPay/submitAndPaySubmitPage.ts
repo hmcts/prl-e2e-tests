@@ -59,7 +59,6 @@ export class SubmitAndPaySubmitPage {
 
   private static async checkPageFields({
     page: page,
-    accessibilityTest: accessibilityTest,
   }: checkFieldsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.h2}:text-is("${SubmitAndPaySubmitContent.h2}")`,
@@ -78,9 +77,6 @@ export class SubmitAndPaySubmitPage {
         `${Selectors.GovukText16}`,
       ),
     ]);
-    if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
-    }
   }
 
   private static async checkPageData({

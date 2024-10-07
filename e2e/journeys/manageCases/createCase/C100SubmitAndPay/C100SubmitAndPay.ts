@@ -4,6 +4,9 @@ import { SubmitAndPay1Page } from "../../../../pages/manageCases/createCase/C100
 import { SubmitAndPay2Page } from "../../../../pages/manageCases/createCase/C100/submitAndPay/submitAndPay2Page";
 import { SubmitAndPay3Page } from "../../../../pages/manageCases/createCase/C100/submitAndPay/submitAndPay3Page";
 import { SubmitAndPaySubmitPage } from "../../../../pages/manageCases/createCase/C100/submitAndPay/submitAndPaySubmitPage";
+import {
+  SubmitAndPayConfirmPage
+} from "../../../../pages/manageCases/createCase/C100/submitAndPay/submitAndPayConfirmPage";
 
 interface C100SubmitAndPayOptions {
   page: Page;
@@ -36,5 +39,9 @@ export class C100SubmitAndPay {
       accessibilityTest,
       yesNoHelpWithFees,
     });
+    await SubmitAndPayConfirmPage.submitAndPayConfirmPage({
+      page,
+      accessibilityTest
+    })
   }
 }

@@ -19,7 +19,7 @@ interface fillInFieldsOptions {
 }
 
 enum UniqueSelectors {
-  payAgreeStatementAgree = "payAgreeStatement-agree",
+  payAgreeStatementAgree = "#payAgreeStatement-agree",
 }
 
 export class SubmitAndPay2Page {
