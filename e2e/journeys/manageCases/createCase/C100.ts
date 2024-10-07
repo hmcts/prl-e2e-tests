@@ -117,7 +117,7 @@ export class C100 {
     yesNoWelshLanguage,
     c100YesNoAllegationsOfHarm,
     c100DomesticAbuseTypePage3,
-    c100YesNoToAll
+    c100YesNoToAll,
   }: c100Options): Promise<void> {
     await SolicitorCreateInitial.createInitialCase({
       page: page,
@@ -233,7 +233,7 @@ export class C100 {
       c100YesNoAllegationsOfHarm: c100YesNoAllegationsOfHarm,
       subJourney: false,
       c100DomesticAbuseTypePage3: c100DomesticAbuseTypePage3,
-    })
+    });
     await C100MiamPolicyUpgrade.c100MiamPolicyUpgrade({
       page: page,
       user: user,
@@ -281,7 +281,7 @@ export class C100 {
       yesNoWelshLanguage: yesNoWelshLanguage,
       subJourney: false,
     });
-    console.log('Viewing PDF')
+    console.log("Viewing PDF");
     await C100ViewPDFApplication.c100ViewPDFApplication({
       page: page,
       accessibilityTest: accessibilityTest,

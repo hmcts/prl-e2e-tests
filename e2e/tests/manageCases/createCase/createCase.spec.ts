@@ -66,7 +66,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       c100OngoingProceedingsAndDocX: true,
       WelshPageRequirementType: "english",
       yesNoWelshLanguage: true,
-      c100YesNoToAll: true
+      c100YesNoToAll: true,
     });
   });
 
@@ -132,7 +132,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       c100OtherProceedings: "No",
       WelshPageRequirementType: "english",
       yesNoWelshLanguage: false,
-      c100YesNoToAll: false
+      c100YesNoToAll: false,
     });
   });
 
@@ -150,9 +150,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
      'Yes, both of them' ever lived at the address
      Saying Yes to all attending the hearing question,
      Upload document files
-     @crossbrowserManageCases`, async ({
-    page,
-  }): Promise<void> => {
+     @crossbrowserManageCases`, async ({ page }): Promise<void> => {
     await FL401.fl401({
       page: page,
       user: "solicitor",
