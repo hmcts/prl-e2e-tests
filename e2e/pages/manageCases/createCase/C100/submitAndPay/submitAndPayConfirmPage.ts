@@ -32,17 +32,17 @@ export class SubmitAndPayConfirmPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.h1}:text-is("${SubmitAndPayConfirmContent.pageTitle}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.h3}:text-is("${SubmitAndPayConfirmContent.h3}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.p}:text-is("${SubmitAndPayConfirmContent.p}")`,
-        1
+        1,
       ),
     ]);
     if (accessibilityTest) {
