@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
 import { SolicitorCreateInitial } from "../solicitorCreateInitial";
 import { Helpers } from "../../../../common/helpers";
-import { AttendingTheHearing1Page } from "../../../../pages/manageCases/createCase/FL401/attendingTheHearing/attendingTheHearing1Page";
-import { AttendingTheHearingSubmitPage } from "../../../../pages/manageCases/createCase/FL401/attendingTheHearing/attendingTheHearingSubmitPage";
+import { AttendingTheHearing1Page } from "../../../../pages/manageCases/createCase/Common/attendingTheHearing/attendingTheHearing1Page";
+import { AttendingTheHearingSubmitPage } from "../../../../pages/manageCases/createCase/Common/attendingTheHearing/attendingTheHearingSubmitPage";
 import { Fl401TasksTabPage } from "../../../../pages/manageCases/caseTabs/fl401TasksTabPage";
 
 interface Fl401AttendingTheHearingOptions {
@@ -32,15 +32,16 @@ export class Fl401AttendingTheHearing {
     }
     await Helpers.selectSolicitorEvent(page, "Attending the hearing");
     await AttendingTheHearing1Page.attendingTheHearing1Page({
-      page,
-      accessibilityTest,
-      errorMessaging,
-      fl401AttendingTheHearingYesNo,
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      attendingTheHearingYesNo: fl401AttendingTheHearingYesNo,
+      caseType: "FL401",
     });
     await AttendingTheHearingSubmitPage.attendingTheHearingSubmitPage({
-      page,
-      accessibilityTest,
-      fl401AttendingTheHearingYesNo,
+      page: page,
+      accessibilityTest: accessibilityTest,
+      attendingTheHearingYesNo: fl401AttendingTheHearingYesNo,
     });
     await Fl401TasksTabPage.fl401TasksTabPage(page, accessibilityTest);
   }
