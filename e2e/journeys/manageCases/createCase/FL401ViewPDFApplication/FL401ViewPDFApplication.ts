@@ -4,13 +4,13 @@ import { ViewPDFApplicationPage } from "../../../../pages/manageCases/createCase
 import { Fl401TasksTabPage } from "../../../../pages/manageCases/caseTabs/fl401TasksTabPage";
 import { ViewPDFApplicationSubmitPage } from "../../../../pages/manageCases/createCase/FL401/viewPDFApplication/viewPDFApplicationSubmitPage";
 import { SolicitorCreateInitial } from "../solicitorCreateInitial";
-import { viewPdfTestCases } from "../../../../common/types";
+import { ViewPdfTestCases } from "../../../../common/types";
 
 interface fl401ViewPDFApplicationOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
-  viewPdfTestCases: viewPdfTestCases;
+  viewPdfTestCases: ViewPdfTestCases;
   subJourney: boolean;
 }
 

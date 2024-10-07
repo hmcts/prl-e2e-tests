@@ -60,4 +60,4 @@ export type ApplicantGender = "female" | "male" | "other";
 
 export type otherProceedingsRadios = "Yes" | "No" | "Don't know";
 
-export type viewPdfTestCases = "1" | "2" | "3";
+export type ViewPdfTestCases = "1" | "2" | "3";

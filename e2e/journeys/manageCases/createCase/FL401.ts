@@ -1,7 +1,7 @@
 import {
   ApplicantGender,
   otherProceedingsRadios,
-  viewPdfTestCases,
+  ViewPdfTestCases,
   UserRole,
 } from "../../../common/types";
 import { Page } from "@playwright/test";
@@ -46,7 +46,7 @@ interface fl401Options {
   fl401IntendToLiveAtAddress?: addressRadios;
   welshLanguageRequirementsAllOptionsYes: boolean;
   welshLanguageRequirementsSelectWelsh?: boolean;
-  viewPdfTestCases: viewPdfTestCases;
+  viewPdfTestCases: ViewPdfTestCases;
 }
 
 export class FL401 {
@@ -177,6 +177,7 @@ export class FL401 {
       page,
       accessibilityTest,
       errorMessaging,
+      viewPdfTestCases,
       subJourney: false,
     });
   }

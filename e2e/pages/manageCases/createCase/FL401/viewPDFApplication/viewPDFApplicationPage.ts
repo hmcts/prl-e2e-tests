@@ -3,7 +3,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { ViewPDFApplicationContent } from "../../../../../fixtures/manageCases/createCase/FL401/viewPDFApplication/viewPDFApplicationContent";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { viewPdfTestCases } from "../../../../../common/types";
+import { ViewPdfTestCases } from "../../../../../common/types";
 
 enum ids {
   mvDownBtn = "#mvDownBtn",
@@ -15,7 +15,7 @@ export class ViewPDFApplicationPage {
     page: Page,
     errorMessaging: boolean,
     accessibilityTest: boolean,
-    viewPdfTestCases: viewPdfTestCases,
+    viewPdfTestCases: ViewPdfTestCases,
   ): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest, viewPdfTestCases);
     await this.fillInFields(page, accessibilityTest);
@@ -24,7 +24,7 @@ export class ViewPDFApplicationPage {
   private static async checkPageLoads(
     page: Page,
     accessibilityTest: boolean,
-    viewPdfTestCases: viewPdfTestCases,
+    viewPdfTestCases: ViewPdfTestCases,
   ): Promise<void> {
     // noinspection TypeScriptValidateTypes
     const [pdfPage] = await Promise.all([
@@ -37,13 +37,15 @@ export class ViewPDFApplicationPage {
 
     await this.scrollToBottom(pdfPage);
 
+    await this.checkQuestions(pdfPage, viewPdfTestCases);
+
     switch (viewPdfTestCases) {
       case "1":
-        await this.checkCommonData(pdfPage);
+        await this.checkCommonData(pdfPage, viewPdfTestCases);
         await this.checkApplicationData1(pdfPage);
         break;
       case "2":
-        await this.checkCommonData(pdfPage);
+        await this.checkCommonData(pdfPage, viewPdfTestCases);
         await this.checkApplicationData2(pdfPage);
         break;
       case "3":
@@ -75,7 +77,74 @@ export class ViewPDFApplicationPage {
     }
   }
 
-  private static async checkCommonData(page: Page) {
+  private static async checkQuestions(
+    page: Page,
+    viewPdfTestCases: ViewPdfTestCases,
+  ) {
+    if (viewPdfTestCases === "3") {
+      await Helpers.checkGroup(
+        page,
+        81,
+        ViewPDFApplicationContent,
+        "testCase3QuestionLabel",
+        `${Selectors.Span}`,
+      );
+    } else {
+      // noinspection TypeScriptValidateTypes
+      await Promise.all([
+        Helpers.checkGroup(
+          page,
+          94,
+          ViewPDFApplicationContent,
+          "questionLabel",
+          `${Selectors.Span}`,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.Span}:text-is("${ViewPDFApplicationContent.repeatedQuestionLabel5}")`,
+          2,
+        ),
+      ]);
+    }
+
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${ViewPDFApplicationContent.repeatedQuestionLabel1}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${ViewPDFApplicationContent.repeatedQuestionLabel2}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${ViewPDFApplicationContent.repeatedQuestionLabel3}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${ViewPDFApplicationContent.repeatedQuestionLabel4}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${ViewPDFApplicationContent.repeatedQuestionLabel6}")`,
+        3,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${ViewPDFApplicationContent.repeatedQuestionLabel7}")`,
+        2,
+      ),
+    ]);
+  }
+
+  private static async checkCommonData(
+    page: Page,
+    viewPdfTestCases: ViewPdfTestCases,
+  ) {
     // noinspection TypeScriptValidateTypes
     await Promise.all([
       Helpers.checkGroup(
@@ -113,7 +182,7 @@ export class ViewPDFApplicationPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.Span}:text-is("${ViewPDFApplicationContent.yes}")`,
-        27,
+        viewPdfTestCases === "2" ? 26 : 27,
       ),
       Helpers.checkVisibleAndPresent(
         page,
