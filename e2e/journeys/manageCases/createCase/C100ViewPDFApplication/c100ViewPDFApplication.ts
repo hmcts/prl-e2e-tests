@@ -3,6 +3,10 @@ import { Helpers } from "../../../../common/helpers";
 import {
   ViewPDFApplication1Page
 } from "../../../../pages/manageCases/createCase/C100/viewPDFApplication/viewPDFApplication1Page";
+import { Selectors } from "../../../../common/selectors";
+import {
+  ViewPDFApplication1Content
+} from "../../../../fixtures/manageCases/createCase/C100/viewPDFApplication/viewPDFApplication1Content";
 
 
 interface C100ViewPDFApplicationOptions {
@@ -25,7 +29,10 @@ export class C100ViewPDFApplication {
       page: page,
       accessibilityTest: accessibilityTest,
       c100YesNoToAll: c100YesNoToAll
-    })
+    });
+    await page.click(
+      `${Selectors.button}:text-is("Save and continue")`
+    );
   }
 
 }
