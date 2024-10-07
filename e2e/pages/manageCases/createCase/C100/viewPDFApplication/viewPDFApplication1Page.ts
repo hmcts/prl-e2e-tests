@@ -409,8 +409,8 @@ export class ViewPDFApplication1Page {
       page.waitForEvent("popup"),
       page.click(`${Selectors.a}:text-is("${ViewPDFApplication1Content.pdfLink}")`),
     ]);
-    await this.scrollToBottom(page)
     await pdfPage.waitForLoadState();
+    await this.scrollToBottom(page)
     console.log('bruh')
     await Promise.all([
       Helpers.checkGroup(
