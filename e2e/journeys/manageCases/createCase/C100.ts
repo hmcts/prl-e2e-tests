@@ -37,6 +37,7 @@ import { C100LitigationCapacity } from "./C100LitigationCapacity/C100LitigationC
 import { C100OtherProceedings } from "./C100OtherProceedings/C100OtherProceedings";
 import { C100WelshLanguageRequirements } from "./C100welshLanguageRequirements/C100welshLanguageRequirements";
 import { WelshPageRequirementType } from "../../../pages/manageCases/createCase/C100/welshLanguageRequirements/welshLanguageRequirements1Page";
+import { C100ViewPDFApplication } from "./C100ViewPDFApplication/c100ViewPDFApplication";
 
 interface c100Options {
   page: Page;
@@ -75,6 +76,7 @@ interface c100Options {
   yesNoWelshLanguage: boolean;
   c100YesNoAllegationsOfHarm: boolean;
   c100DomesticAbuseTypePage3: C100AllegationsOfHarmTypeOfDomesticAbuse;
+  c100YesNoToAll: boolean;
 }
 
 export class C100 {
@@ -115,6 +117,7 @@ export class C100 {
     yesNoWelshLanguage,
     c100YesNoAllegationsOfHarm,
     c100DomesticAbuseTypePage3,
+    c100YesNoToAll
   }: c100Options): Promise<void> {
     await SolicitorCreateInitial.createInitialCase({
       page: page,
@@ -277,6 +280,12 @@ export class C100 {
       WelshPageRequirementType: WelshPageRequirementType,
       yesNoWelshLanguage: yesNoWelshLanguage,
       subJourney: false,
+    });
+    console.log('Viewing PDF')
+    await C100ViewPDFApplication.c100ViewPDFApplication({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      c100YesNoToAll: c100YesNoToAll,
     });
   }
 }

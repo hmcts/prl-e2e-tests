@@ -12,7 +12,6 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Saying yes to all hearing urgency questions,
   Saying yes to all applicant details questions with a male applicant
   Saying yes to all respondent details questions with a female respondent 
-  Saying yes to all respondent details questions with a male respondent
   Saying yes to all other people in the case questions with a male applicant
   Saying yes to all child details question with a male child 
   Saying yes to all children and respondents questions
@@ -67,6 +66,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       c100OngoingProceedingsAndDocX: true,
       WelshPageRequirementType: "english",
       yesNoWelshLanguage: true,
+      c100YesNoToAll: true
     });
   });
 
@@ -77,7 +77,6 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Saying no to all applicant details questions with a female applicant
   Saying yes to all respondent details questions with a female respondent 
   With another female child present, with a known DOB
-    With another female child present, with a known DOB 
   Where the child does not live with their applicant mother
   Saying no to all respondent details questions with a female respondent
   Saying no to all other people in the case questions with a male applicant
@@ -133,6 +132,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       c100OtherProceedings: "No",
       WelshPageRequirementType: "english",
       yesNoWelshLanguage: false,
+      c100YesNoToAll: false
     });
   });
 
