@@ -1,4 +1,4 @@
-import { Page, expect } from "@playwright/test";
+import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import {
   ViewPDFApplication1Content
@@ -14,8 +14,6 @@ import {
 import {
   EnglishMediaContentNoToAll
 } from "../../../../../fixtures/manageCases/createCase/C100/viewPDFApplication/englishMediaContentNoToAll";
-
-const todayDate: string = Helpers.todayDate()
 
 enum englishNoSpanCounts {
   page1 = 18,
@@ -46,6 +44,22 @@ enum englishYesSpanCounts {
   page10 = 24,
   page11 = 19,
   page12 = 12,
+  page13 = 3
+}
+
+enum welshSpanCounts {
+  page1 = 21,
+  page2 = 23,
+  page3 = 15,
+  page4 = 20,
+  page5 = 18,
+  page6 = 20,
+  page7 = 17,
+  page8 = 30,
+  page9 = 18,
+  page10 = 26,
+  page11 = 23,
+  page12 = 13,
   page13 = 3
 }
 
@@ -81,6 +95,22 @@ enum englishYesFilledSpanCounts {
   page13 = 0
 }
 
+enum welshFilledCounts {
+  page1 = 5,
+  page2 = 0,
+  page3 = 8,
+  page4 = 9,
+  page5 = 11,
+  page6 = 5,
+  page7 = 0,
+  page8 = 3,
+  page9 = 6,
+  page10 = 6,
+  page11 = 5,
+  page12 = 11,
+  page13 = 0
+}
+
 enum englishNoOtherSpanCounts {
   page1 = 6,
   page2 = 4,
@@ -94,7 +124,7 @@ enum englishNoOtherSpanCounts {
   page10 = 0,
   page11 = 2,
   page12 = 3,
-  page13 = 10
+  page13 = 9
 }
 
 enum englishYesOtherSpanCounts {
@@ -109,8 +139,24 @@ enum englishYesOtherSpanCounts {
   page9 = 1,
   page10 = 2,
   page11 = 6,
-  page12 = 10,
+  page12 = 9,
   page13 = 1
+}
+
+enum welshOtherSpanCounts {
+  page1 = 9,
+  page2 = 3,
+  page3 = 7,
+  page4 = 2,
+  page5 = 3,
+  page6 = 10,
+  page7 = 11,
+  page8 = 2,
+  page9 = 20,
+  page10 = 2,
+  page11 = 8,
+  page12 = 11,
+  page13 = 2
 }
 
 enum inputIDs {
@@ -127,11 +173,6 @@ interface ViewPDFApplication1PageOptions {
 interface CheckPageLoadsOptions {
   page: Page;
   accessibilityTest: boolean;
-  c100YesNoToAll: boolean
-}
-
-interface CheckEnglishPDFContentOptions {
-  page: Page;
   c100YesNoToAll: boolean
 }
 
@@ -214,7 +255,7 @@ export class ViewPDFApplication1Page {
     c100YesNoToAll
   }: CheckPDFContentOptions): Promise<void> {
     if (c100YesNoToAll) {
-      // await this.checkEnglishPDFContentYesToAll(page)
+      await this.checkEnglishPDFContentYesToAll(page)
       await this.checkWelshPDFContent(
         page
       );
@@ -863,5 +904,319 @@ export class ViewPDFApplication1Page {
     await pdfPage.waitForSelector(
       `${Selectors.Span}:text-is("C100")`
     )
+    for (let i = 1; i <= 14 - 1; i++) {
+      let uniquePageSelector = pdfPage.locator(
+        `div[data-page-number="${i}"] > .textLayer > `
+      )
+      let spanCount = welshSpanCounts[`page${i}}` as keyof typeof welshSpanCounts]
+      let filledSpanCount = welshFilledCounts[`page${i}}` as keyof typeof welshFilledCounts]
+      let otherSpanCount = welshOtherSpanCounts[`page${i}}` as keyof typeof welshOtherSpanCounts]
+      await Promise.all([
+        Helpers.checkGroup(
+          pdfPage,
+          spanCount,
+          WelshMediaContent,
+          `page${i}Span`,
+          `${uniquePageSelector}${Selectors.Span}`
+        ),
+        Helpers.checkGroup(
+          pdfPage,
+          filledSpanCount,
+          WelshMediaContent,
+          `page${i}FilledSpan`,
+          `${uniquePageSelector}${Selectors.Span}`
+        ),
+        Helpers.checkGroup(
+          pdfPage,
+          otherSpanCount,
+          WelshMediaContent,
+          `page${i}OtherSpan`,
+          `${uniquePageSelector}${Selectors.Span}`
+        ),
+      ]);
+      await this.checkWelshRepeatedTextByPage(
+        pdfPage, i
+      )
+      if (i < 12) {
+        await pdfPage.click(inputIDs.mvDownBtn);
+      }
+    }
+  }
+
+  private static async checkWelshRepeatedTextByPage(page: Page, i: number): Promise<void> {
+    switch (i) {
+      case 1:
+        await this.checkWelshPage1RepeatedText(page);
+        break;
+      case 2:
+        await this.checkWelshPage2RepeatedText(page);
+        break;
+      case 3:
+        await this.checkWelshPage3RepeatedText(page);
+        break;
+      case 4:
+        await this.checkWelshPage4RepeatedText(page);
+        break;
+      case 5:
+        await this.checkWelshPage5RepeatedText(page);
+        break;
+      case 6:
+        await this.checkWelshPage6RepeatedText(page);
+        break;
+      case 7:
+        await this.checkWelshPage7RepeatedText(page);
+        break;
+      case 8:
+        await this.checkWelshPage8RepeatedText(page);
+        break;
+      case 10:
+        await this.checkWelshPage10RepeatedText(page);
+        break;
+      case 11:
+        await this.checkWelshPage11RepeatedText(page);
+        break;
+      default:
+        console.log(`Page number ${i} is not supported.`);
+    }
+  }
+
+  private static async checkWelshPage1RepeatedText(page: Page): Promise<void> {
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `div[data-page-number="1"] > .textLayer > ${Selectors.Span}:text-is("${WelshMediaContent.page1LoremIpsumLine1}")`,
+        3
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `div[data-page-number="1"] > .textLayer > ${Selectors.Span}:text-is("${WelshMediaContent.page1LoremIpsumLine2}")`,
+        3
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `div[data-page-number="1"] > .textLayer > ${Selectors.Span}:text-is("${WelshMediaContent.page1LoremIpsumLine3}")`,
+        3
+      ),
+    ]);
+  }
+
+  private static async checkWelshPage2RepeatedText(page: Page): Promise<void> {
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `div[data-page-number="2"] > .textLayer > ${Selectors.Span}:text-is("${WelshMediaContent.page2Ydy}")`,
+        8
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `div[data-page-number="2"] > .textLayer > ${Selectors.Span}:text-is("${WelshMediaContent.page2LoremIpsum}")`,
+        4
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `div[data-page-number="2"] > .textLayer > ${Selectors.Span}:text-is("${WelshMediaContent.page2Ydw}")`,
+        2
+      ),
+    ]);
+  }
+
+  private static async checkWelshPage3RepeatedText(page: Page): Promise<void> {
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `div[data-page-number="3"] > .textLayer > ${Selectors.Span}:text-is("${WelshMediaContent.page3Enwaucyntaf}")`,
+        2
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `div[data-page-number="3"] > .textLayer > ${Selectors.Span}:text-is("${WelshMediaContent.page3Enwolaf}")`,
+        2
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `div[data-page-number="3"] > .textLayer > ${Selectors.Span}:text-is("${WelshMediaContent.page3Rhywedd}")`,
+        2
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `div[data-page-number="3"] > .textLayer > ${Selectors.Span}:text-is("${WelshMediaContent.page3Gwryw}")`,
+        2
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `div[data-page-number="3"] > .textLayer > ${Selectors.Span}:text-is("${WelshMediaContent.page3Ydy}")`,
+        2
+      ),
+    ]);
+  }
+
+  private static async checkWelshPage4RepeatedText(page: Page): Promise<void> {
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `div[data-page-number="4"] > .textLayer > ${Selectors.Span}:text-is("${WelshMediaContent.page4London}")`,
+        2
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `div[data-page-number="4"] > .textLayer > ${Selectors.Span}:text-is("${WelshMediaContent.page4Dylidcadwrwybodaethhonyngyfrinachol}")`,
+        3
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `div[data-page-number="4"] > .textLayer > ${Selectors.Span}:text-is("${WelshMediaContent.page4gyfrinachol}")`,
+        3
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `div[data-page-number="4"] > .textLayer > ${Selectors.Span}:text-is("${WelshMediaContent.page4Ydw}")`,
+        2
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `div[data-page-number="4"] > .textLayer > ${Selectors.Span}:text-is("${WelshMediaContent.page4Ydy}")`,
+        2
+      ),
+    ]);
+  }
+
+  private static async checkWelshPage5RepeatedText(page: Page): Promise<void> {
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `div[data-page-number="5"] > .textLayer > ${Selectors.Span}:text-is("${WelshMediaContent.page5SWAAA}")`,
+        2
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `div[data-page-number="5"] > .textLayer > ${Selectors.Span}:text-is("${WelshMediaContent.page5UnitedKingdom}")`,
+        2
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `div[data-page-number="5"] > .textLayer > ${Selectors.Span}:text-is("${WelshMediaContent.page5Ydy}")`,
+        6
+      ),
+    ]);
+  }
+
+  private static async checkWelshPage6RepeatedText(page: Page): Promise<void> {
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `div[data-page-number="6"] > .textLayer > ${Selectors.Span}:text-is("${WelshMediaContent.page6BuckinghamPalace}")`,
+        2
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `div[data-page-number="6"] > .textLayer > ${Selectors.Span}:text-is("${WelshMediaContent.page6London}")`,
+        3
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `div[data-page-number="6"] > .textLayer > ${Selectors.Span}:text-is("${WelshMediaContent.page6SWAAA}")`,
+        2
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `div[data-page-number="6"] > .textLayer > ${Selectors.Span}:text-is("${WelshMediaContent.page6UnitedKingdom}")`,
+        2
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `div[data-page-number="6"] > .textLayer > ${Selectors.Span}:text-is("${WelshMediaContent.page6Ydy}")`,
+        2
+      ),
+    ]);
+  }
+
+  private static async checkWelshPage7RepeatedText(page: Page): Promise<void> {
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `div[data-page-number="7"] > .textLayer > ${Selectors.Span}:text-is("${WelshMediaContent.page7Yes}")`,
+        2
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `div[data-page-number="7"] > .textLayer > ${Selectors.Span}:text-is("${WelshMediaContent.page7gyfrinachol}")`,
+        2
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `div[data-page-number="7"] > .textLayer > ${Selectors.Span}:text-is("${WelshMediaContent.page7Ydy}")`,
+        4
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `div[data-page-number="7"] > .textLayer > ${Selectors.Span}:text-is("${WelshMediaContent.page7Enwrplentyn}")`,
+        2
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `div[data-page-number="7"] > .textLayer > ${Selectors.Span}:text-is("${WelshMediaContent.page7AutomatedChildFirstNameAutomatedChildLastName}")`,
+        3
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `div[data-page-number="7"] > .textLayer > ${Selectors.Span}:text-is("${WelshMediaContent.page7Tad}")`,
+        2
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `div[data-page-number="7"] > .textLayer > ${Selectors.Span}:text-is("${WelshMediaContent.page7Aywrplentynynbywgydarunigolynhwn}")`,
+        3
+      ),
+    ]);
+  }
+
+  private static async checkWelshPage8RepeatedText(page: Page): Promise<void> {
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `div[data-page-number="8"] > .textLayer > ${Selectors.Span}:text-is("${WelshMediaContent.page8Ydy}")`,
+        2
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `div[data-page-number="8"] > .textLayer > ${Selectors.Span}:text-is("${WelshMediaContent.page8}")`,
+        2
+      ),
+    ]);
+  }
+
+  private static async checkWelshPage10RepeatedText(page: Page): Promise<void> {
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `div[data-page-number="10"] > .textLayer > ${Selectors.Span}:text-is("${WelshMediaContent.page10Oes}")`,
+        3
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `div[data-page-number="10"] > .textLayer > ${Selectors.Span}:text-is("${WelshMediaContent.page10Rhesymauaddarparwyd}")`,
+        3
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `div[data-page-number="10"] > .textLayer > ${Selectors.Span}:text-is("${WelshMediaContent.page10loremIpsum}")`,
+        5
+      ),
+    ]);
+  }
+
+  private static async checkWelshPage11RepeatedText(page: Page): Promise<void> {
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `div[data-page-number="11"] > .textLayer > ${Selectors.Span}:text-is("${WelshMediaContent.page11GofynionoranyriaithGymraeg}")`,
+        2
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `div[data-page-number="11"] > .textLayer > ${Selectors.Span}:text-is("${WelshMediaContent.page11Ydy}")`,
+        3
+      ),
+    ]);
   }
 }
