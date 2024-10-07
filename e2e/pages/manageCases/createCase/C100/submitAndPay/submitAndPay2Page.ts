@@ -132,7 +132,7 @@ export class SubmitAndPay2Page {
           SubmitAndPay2Content,
           "a",
           `${Selectors.a}`,
-        )
+        ),
       ]);
     } else {
       await Promise.all([
