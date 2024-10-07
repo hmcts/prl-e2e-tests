@@ -1,114 +1,45 @@
 import { CommonPage } from "../commonPage";
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../common/selectors";
-import { CaseListContent } from "../../../fixtures/manageCases/caseList/caseListContent";
 import { Helpers } from "../../../common/helpers";
 import { CommonContent } from "../../../fixtures/manageCases/commonContent";
+import { DummyPaymentAwpContent } from "../../../fixtures/manageCases/caseWorker/dummyPaymentContent1";
 
-export class DummyPaymentAwp extends CommonPage {
-  public static async dummyPaymentForAwpPage(
+export class DummyPaymentAwpPage extends CommonPage {
+  public static async DummyPaymentAwpPage({
+    page: page,
+    accessibilityTest: accessibilityTest,
+  }): Promise<void> {
+    await this.checkCommonContent({ page });
+    await this.checkPageLoads({ page, accessibilityTest });
+  }
+
+  private static async checkPageLoads(
     page: Page,
     accessibilityTest: boolean,
   ): Promise<void> {
-    await this.checkPageLoads(page, accessibilityTest);
-  }
+    await page.waitForSelector(
+      `${Selectors.GovukHeadingL}:text-is("${DummyPaymentAwpContent.pageTitle}")`,
+    );
+    await Promise.all([
+      Helpers.checkGroup(
+        page,
+        2,
+        DummyPaymentAwpContent,
+        `formLabel`,
+        `${Selectors.GovukFormLabel}`,
+      ),
 
-
-    private static async checkPageLoads(
-        page: Page,
-        accessibilityTest: boolean,
-    ): Promise<void> {
-        await page.waitForSelector(
-        `${Selectors.headingH2}:text-is("${CaseListContent.yourCasesSubtitle}")`,
-        );
-        await Promise.all([
-        CommonPage.checkCommonContent(page),
-        Helpers.checkVisibleAndPresent(
-            page,
-            `${Selectors.GovukHeadingXL}:text-is("${CaseListContent.pageTitle}")`,
-            1,
-        ),
-        Helpers.checkVisibleAndPresent(
-            page,
-            `${Selectors.GovukButton}:text-is("${CaseListContent.hideFilterButton}")`,
-            1,
-        ),
-        Helpers.checkVisibleAndPresent(
-            page,
-            `${Selectors.GovukButton}:text-is("${CaseListContent.shareCaseButton}")`,
-            1,
-        ),
-        Helpers.checkVisibleAndPresent(
-            page,
-            `${Selectors.headingH2}:text-is("${CaseListContent.filtersSubtitle}")`,
-            1,
-        ),
-        Helpers.checkGroup(
-            page,
-            13,
-            CaseListContent,
-            "formLabel",
-            Selectors.GovukFormLabel,
-        ),
-        Helpers.checkVisibleAndPresent(
-            page,
-            `${Selectors.button}:text-is("${CaseListContent.applyButton}")`,
-            1,
-        ),
-        Helpers.checkVisibleAndPresent(
-            page,
-            `${Selectors.button}:text-is("${CaseListContent.resetButton}")`,
-            1,
-        ),
-        Helpers.checkVisibleAndPresent(
-            page,
-            `${Selectors.GovukText16}:has-text("${CaseListContent.caseListAmount}")`,
-            1,
-        ),
-        Helpers.checkVisibleAndPresent(
-            page,
-            `${Selectors.ResetLink}:text-is("${CaseListContent.resetLink}")`,
-            1,
-        ),
-        Helpers.checkVisibleAndPresent(
-            page,
-            `${Selectors.ColumnLabel}:text-is("${CaseListContent.caseColumnLabel}")`,
-            1,
-        ),
-        Helpers.checkVisibleAndPresent(
-            page,
-            `${Selectors.ColumnLabel}:text-is("${CaseListContent.familyManColumnLabel}")`,
-            1,
-        ),
-        Helpers.checkVisibleAndPresent(
-            page,
-            `${Selectors.ColumnLabel}:text-is("${CaseListContent.caseTypeColumnLabel}")`,
-            1,
-        ),
-        Helpers.checkVisibleAndPresent(
-            page,
-            `${Selectors.ColumnLabel}:text-is("${CaseListContent.stateColumnLabel}")`,
-            1,
-        ),
-        Helpers.checkVisibleAndPresent(
-            page,
-            `${Selectors.ColumnLabel}:text-is("${CaseListContent.applicantColumnLabel}")`,
-            1,
-        ),
-        Helpers.checkVisibleAndPresent(
-            page,
-            `${Selectors.ColumnLabel}:text-is("${CaseListContent.respondentColumnLabel}")`,
-            1,
-        ),
-        Helpers.checkVisibleAndPresent(
-            page,
-            `${Selectors.ColumnLabel}:text-is("${CaseListContent.submittedDateAndTimeColumnLabel}")`,
-            1,
-        ),
-        Helpers.checkVisibleAndPresent(
-            page,
-            `${Selectors.GovukSummaryText}:text-is("${CaseListContent.unselectableDropdown}")`,
-            1,
-        ),
-        ]);
+      Helpers.checkGroup(
+        page,
+        2,
+        DummyPaymentAwpContent,
+        `formHint`,
+        `${Selectors.GovukFormHint}`,
+      ),
+    ]);
+    if (accessibilityTest) {
+      await AccessibilityTestHelper.run(page);
     }
+  }
+}
