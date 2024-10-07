@@ -22,7 +22,6 @@ export class C100ViewPDFApplication {
       accessibilityTest: accessibilityTest,
       c100YesNoToAll: c100YesNoToAll,
     });
-    console.log("Yay");
     await page.click(`${Selectors.button}:text-is("Save and continue")`);
   }
 }
