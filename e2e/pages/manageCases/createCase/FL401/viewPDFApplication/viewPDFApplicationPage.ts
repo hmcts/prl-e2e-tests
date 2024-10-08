@@ -301,7 +301,58 @@ export class ViewPDFApplicationPage {
   private static async checkQuestionsWelsh(
     page: Page,
     viewPdfTestCases: ViewPdfTestCases,
-  ) {}
+  ) {
+    // noinspection TypeScriptValidateTypes
+    await Promise.all([
+      Helpers.checkGroup(
+        page,
+        87,
+        ViewPDFApplicationContent,
+        "questionLabelWelsh",
+        `${Selectors.Span}`,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${ViewPDFApplicationContent.questionLabelRepeatedWelsh1}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${ViewPDFApplicationContent.questionLabelRepeatedWelsh2}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${ViewPDFApplicationContent.questionLabelRepeatedWelsh3}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${ViewPDFApplicationContent.questionLabelRepeatedWelsh4}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${ViewPDFApplicationContent.questionLabelRepeatedWelsh5}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${ViewPDFApplicationContent.questionLabelRepeatedWelsh6}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${ViewPDFApplicationContent.questionLabelRepeatedWelsh7}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${ViewPDFApplicationContent.questionLabelRepeatedWelsh8}")`,
+        3,
+      ),
+    ]);
+  }
 
   private static async checkCommonDataWelsh(
     page: Page,
