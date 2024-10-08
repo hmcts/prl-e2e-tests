@@ -1,5 +1,4 @@
 export enum SubmitAndPay2Content {
-  pageTitle = "Submit and pay",
   h3 = "Declaration",
   p1 = "I understand that proceedings for contempt of court may be brought against anyone who makes, or causes to be made, a false statement in a document verified by a statement of truth without an honest belief in its truth.",
   p2 = "The applicant believes that the facts stated in this form and any continuation sheets are true. AAT Solicitor is authorised by the applicant to sign this statement.",

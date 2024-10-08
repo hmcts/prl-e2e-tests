@@ -3,6 +3,9 @@ import { Selectors } from "../../../../../common/selectors";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Helpers } from "../../../../../common/helpers";
 import { SubmitAndPayConfirmContent } from "../../../../../fixtures/manageCases/createCase/C100/submitAndPay/submitAndPayConfirmContent";
+import {
+  SubmitAndPay1Content
+} from "../../../../../fixtures/manageCases/createCase/C100/submitAndPay/submitAndPay1Content";
 
 interface SubmitAndPayOptions {
   page: Page;
@@ -27,7 +30,7 @@ export class SubmitAndPayConfirmPage {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h1}:text-is("${SubmitAndPayConfirmContent.pageTitle}")`,
+        `${Selectors.h1}:text-is("${SubmitAndPay1Content.pageTitle}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(

@@ -3,6 +3,9 @@ import { Selectors } from "../../../../../common/selectors";
 import { SubmitAndPay2Content } from "../../../../../fixtures/manageCases/createCase/C100/submitAndPay/submitAndPay2Content";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import {
+  SubmitAndPay1Content
+} from "../../../../../fixtures/manageCases/createCase/C100/submitAndPay/submitAndPay1Content";
 
 interface SubmitAndPay2PageOptions {
   page: Page;
@@ -50,7 +53,7 @@ export class SubmitAndPay2Page {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHeadingL}:text-is("${SubmitAndPay2Content.pageTitle}")`,
+        `${Selectors.GovukHeadingL}:text-is("${SubmitAndPay1Content.pageTitle}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
