@@ -1,5 +1,8 @@
 import { Page } from "@playwright/test";
 import { C100ScreeningSectionStartPage } from "../pages/c100ScreeningSections/c100ScreeningSectionStartPage";
+import {
+  C100ScreeningSectionsChildAddressPage
+} from "../pages/c100ScreeningSections/c100ScreeningSectionsChildAddressPage";
 
 interface C100ScreeningSectionsOptions {
   page: Page;
@@ -18,6 +21,11 @@ export class C100ScreeningSections{
     await C100ScreeningSectionStartPage.c100ScreeningSectionStartPage({
       page,
       accessibilityTest
+    });
+    await C100ScreeningSectionsChildAddressPage.c100ScreeningSectionsChildAddressPage({
+      page,
+      accessibilityTest,
+      errorMessaging
     });
   }
 }
