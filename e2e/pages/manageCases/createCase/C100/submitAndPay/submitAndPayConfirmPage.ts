@@ -6,24 +6,20 @@ import { SubmitAndPayConfirmContent } from "../../../../../fixtures/manageCases/
 
 interface SubmitAndPayOptions {
   page: Page;
-  accessibilityTest: boolean;
 }
 
 export class SubmitAndPayConfirmPage {
   public static async submitAndPayConfirmPage({
     page: page,
-    accessibilityTest: accessibilityTest,
   }: SubmitAndPayOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
-      accessibilityTest: accessibilityTest,
     });
     await this.continue(page);
   }
 
   private static async checkPageLoads({
     page: page,
-    accessibilityTest: accessibilityTest,
   }: SubmitAndPayOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.h1}:text-is("${SubmitAndPayConfirmContent.h1}")`,
@@ -45,9 +41,7 @@ export class SubmitAndPayConfirmPage {
         1,
       ),
     ]);
-    if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
-    }
+    await AccessibilityTestHelper.run(page);
   }
 
   private static async continue(page: Page): Promise<void> {

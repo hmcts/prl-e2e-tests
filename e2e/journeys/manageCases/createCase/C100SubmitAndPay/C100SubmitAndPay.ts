@@ -8,38 +8,34 @@ import { SubmitAndPayConfirmPage } from "../../../../pages/manageCases/createCas
 
 interface C100SubmitAndPayOptions {
   page: Page;
-  accessibilityTest: boolean;
   yesNoHelpWithFees: boolean;
+  yesNoWelshLanguage: boolean;
 }
 
 export class C100SubmitAndPay {
   public static async c100SubmitAndPay({
     page: page,
-    accessibilityTest: accessibilityTest,
+    yesNoWelshLanguage: yesNoWelshLanguage,
     yesNoHelpWithFees: yesNoHelpWithFees,
   }: C100SubmitAndPayOptions): Promise<void> {
     await Helpers.selectSolicitorEvent(page, "Submit and pay");
     await SubmitAndPay1Page.submitAndPay1Page({
       page,
-      accessibilityTest,
     });
     await SubmitAndPay2Page.submitAndPay2Page({
       page,
-      accessibilityTest,
+      yesNoWelshLanguage,
     });
     await SubmitAndPay3Page.submitAndPay3Page({
       page,
-      accessibilityTest,
       yesNoHelpWithFees,
     });
     await SubmitAndPaySubmitPage.submitAndPaySubmitPage({
       page,
-      accessibilityTest,
       yesNoHelpWithFees,
     });
     await SubmitAndPayConfirmPage.submitAndPayConfirmPage({
       page,
-      accessibilityTest,
     });
   }
 }

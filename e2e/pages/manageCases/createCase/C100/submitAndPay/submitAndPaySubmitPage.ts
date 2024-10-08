@@ -6,13 +6,11 @@ import { Helpers } from "../../../../../common/helpers";
 
 interface SubmitAndPayOptions {
   page: Page;
-  accessibilityTest: boolean;
   yesNoHelpWithFees: boolean;
 }
 
 interface checkFieldsOptions {
   page: Page;
-  accessibilityTest: boolean;
 }
 
 interface checkFilledDataOptions {
@@ -23,12 +21,10 @@ interface checkFilledDataOptions {
 export class SubmitAndPaySubmitPage {
   public static async submitAndPaySubmitPage({
     page: page,
-    accessibilityTest: accessibilityTest,
     yesNoHelpWithFees: yesNoHelpWithFees,
   }: SubmitAndPayOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
-      accessibilityTest: accessibilityTest,
       yesNoHelpWithFees: yesNoHelpWithFees,
     });
     await this.continue(page);
@@ -36,7 +32,6 @@ export class SubmitAndPaySubmitPage {
 
   private static async checkPageLoads({
     page: page,
-    accessibilityTest: accessibilityTest,
     yesNoHelpWithFees: yesNoHelpWithFees,
   }: SubmitAndPayOptions): Promise<void> {
     await page.waitForSelector(
@@ -45,16 +40,13 @@ export class SubmitAndPaySubmitPage {
     await Promise.all([
       this.checkPageFields({
         page: page,
-        accessibilityTest: accessibilityTest,
       }),
       this.checkPageData({
         page: page,
         yesNoHelpWithFees: yesNoHelpWithFees,
       }),
     ]);
-    if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
-    }
+    await AccessibilityTestHelper.run(page);
   }
 
   private static async checkPageFields({

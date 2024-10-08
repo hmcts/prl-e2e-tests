@@ -6,12 +6,10 @@ import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelp
 
 interface SubmitAndPay1PageOptions {
   page: Page;
-  accessibilityTest: boolean;
 }
 
 interface checkPageLoadsOptions {
   page: Page;
-  accessibilityTest: boolean;
 }
 
 interface fillInFieldsOptions {
@@ -34,11 +32,9 @@ enum contentSelectors {
 export class SubmitAndPay1Page {
   public static async submitAndPay1Page({
     page: page,
-    accessibilityTest: accessibilityTest,
   }: SubmitAndPay1PageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
-      accessibilityTest: accessibilityTest,
     });
     await this.fillInFields({
       page: page,
@@ -47,7 +43,6 @@ export class SubmitAndPay1Page {
 
   private static async checkPageLoads({
     page: page,
-    accessibilityTest: accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.h1}:text-is("${SubmitAndPay1Content.h1}")`,
@@ -99,9 +94,7 @@ export class SubmitAndPay1Page {
         1,
       ),
     ]);
-    if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
-    }
+    await AccessibilityTestHelper.run(page);
   }
 
   private static async fillInFields({
