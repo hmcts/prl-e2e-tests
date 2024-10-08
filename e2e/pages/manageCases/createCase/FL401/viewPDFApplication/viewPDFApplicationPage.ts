@@ -5,6 +5,8 @@ import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { ViewPdfTestCases } from "../../../../../common/types";
 
+type Language = "English" | "Welsh";
+
 enum ids {
   mvDownBtn = "#mvDownBtn",
   numPages = "#numPages",
@@ -26,30 +28,48 @@ export class ViewPDFApplicationPage {
     accessibilityTest: boolean,
     viewPdfTestCases: ViewPdfTestCases,
   ): Promise<void> {
+    await this.checkEnglishPdf(page, viewPdfTestCases);
+    if (viewPdfTestCases !== "3") {
+      await this.checkWelshPdf(page, viewPdfTestCases);
+    }
+
+    if (accessibilityTest) {
+      await AccessibilityTestHelper.run(page);
+    }
+  }
+
+  private static async openMediaViewer(page: Page, language: Language) {
     // noinspection TypeScriptValidateTypes
     const [pdfPage] = await Promise.all([
       page.waitForEvent("popup"),
       page.click(
-        `${Selectors.a}:text-is("${ViewPDFApplicationContent.pdfName}")`,
+        `${Selectors.a}:text-is("${language === "English" ? ViewPDFApplicationContent.pdfName : ViewPDFApplicationContent.pdfNameWelsh}")`,
       ),
     ]);
     await pdfPage.waitForLoadState();
-
     await this.scrollToBottom(pdfPage);
 
-    await this.checkQuestions(pdfPage, viewPdfTestCases);
+    return pdfPage;
+  }
+
+  private static async checkEnglishPdf(
+    page: Page,
+    viewPdfTestCases: ViewPdfTestCases,
+  ) {
+    const pdfPage = await this.openMediaViewer(page, "English");
+    await this.checkQuestionsEnglish(pdfPage, viewPdfTestCases);
 
     switch (viewPdfTestCases) {
       case "1":
-        await this.checkCommonData(pdfPage, viewPdfTestCases);
-        await this.checkApplicationData1(pdfPage);
+        await this.checkCommonDataEnglish(pdfPage, viewPdfTestCases);
+        await this.checkAnswers1English(pdfPage);
         break;
       case "2":
-        await this.checkCommonData(pdfPage, viewPdfTestCases);
-        await this.checkApplicationData2(pdfPage);
+        await this.checkCommonDataEnglish(pdfPage, viewPdfTestCases);
+        await this.checkAnswers2English(pdfPage);
         break;
       case "3":
-        await this.checkApplicationData3(pdfPage);
+        await this.checkAnswers3English(pdfPage);
         break;
       default:
         console.log(
@@ -57,11 +77,24 @@ export class ViewPDFApplicationPage {
         );
         break;
     }
-
     await pdfPage.close();
-    if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+  }
+
+  private static async checkWelshPdf(
+    page: Page,
+    viewPdfTestCases: ViewPdfTestCases,
+  ) {
+    const pdfPage = await this.openMediaViewer(page, "Welsh");
+    await this.checkQuestionsWelsh(pdfPage, viewPdfTestCases);
+
+    if (viewPdfTestCases === "1") {
+      await this.checkCommonDataWelsh(pdfPage, viewPdfTestCases);
+      await this.checkAnswers1Welsh(pdfPage);
+    } else {
+      await this.checkCommonDataWelsh(pdfPage, viewPdfTestCases);
+      await this.checkAnswers2Welsh(pdfPage);
     }
+    await pdfPage.close();
   }
 
   private static async scrollToBottom(page: Page) {
@@ -77,7 +110,7 @@ export class ViewPDFApplicationPage {
     }
   }
 
-  private static async checkQuestions(
+  private static async checkQuestionsEnglish(
     page: Page,
     viewPdfTestCases: ViewPdfTestCases,
   ) {
@@ -141,7 +174,7 @@ export class ViewPDFApplicationPage {
     ]);
   }
 
-  private static async checkCommonData(
+  private static async checkCommonDataEnglish(
     page: Page,
     viewPdfTestCases: ViewPdfTestCases,
   ) {
@@ -207,7 +240,7 @@ export class ViewPDFApplicationPage {
     ]);
   }
 
-  private static async checkApplicationData1(page: Page) {
+  private static async checkAnswers1English(page: Page) {
     await Helpers.checkGroup(
       page,
       4,
@@ -217,7 +250,7 @@ export class ViewPDFApplicationPage {
     );
   }
 
-  private static async checkApplicationData2(page: Page) {
+  private static async checkAnswers2English(page: Page) {
     await Helpers.checkGroup(
       page,
       4,
@@ -227,7 +260,7 @@ export class ViewPDFApplicationPage {
     );
   }
 
-  private static async checkApplicationData3(page: Page) {
+  private static async checkAnswers3English(page: Page) {
     // noinspection TypeScriptValidateTypes
     await Promise.all([
       Helpers.checkGroup(
@@ -263,6 +296,112 @@ export class ViewPDFApplicationPage {
         3,
       ),
     ]);
+  }
+
+  private static async checkQuestionsWelsh(
+    page: Page,
+    viewPdfTestCases: ViewPdfTestCases,
+  ) {}
+
+  private static async checkCommonDataWelsh(
+    page: Page,
+    viewPdfTestCases: ViewPdfTestCases,
+  ) {
+    // noinspection TypeScriptValidateTypes
+    await Promise.all([
+      Helpers.checkGroup(
+        page,
+        64,
+        ViewPDFApplicationContent,
+        "answerLabelWelsh",
+        `${Selectors.Span}`,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${ViewPDFApplicationContent.repeatedLabelWelsh1}")`,
+        viewPdfTestCases === "1" ? 9 : 8,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${ViewPDFApplicationContent.repeatedLabelWelsh2}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${ViewPDFApplicationContent.repeatedLabelWelsh3}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${ViewPDFApplicationContent.repeatedLabelWelsh4}")`,
+        6,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${ViewPDFApplicationContent.repeatedLabelWelsh5}")`,
+        12,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${ViewPDFApplicationContent.repeatedLabelWelsh6}")`,
+        3,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${ViewPDFApplicationContent.repeatedLabelWelsh7}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${ViewPDFApplicationContent.repeatedLabelWelsh8}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${ViewPDFApplicationContent.repeatedLabelWelsh9}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${ViewPDFApplicationContent.buckinghamPalace}")`,
+        5,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${ViewPDFApplicationContent.london}")`,
+        5,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${ViewPDFApplicationContent.bpPostcode}")`,
+        5,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${ViewPDFApplicationContent.uk}")`,
+        5,
+      ),
+    ]);
+  }
+
+  private static async checkAnswers1Welsh(page: Page) {
+    await Helpers.checkGroup(
+      page,
+      4,
+      ViewPDFApplicationContent,
+      "testCase1LabelWelsh",
+      `${Selectors.Span}`,
+    );
+  }
+
+  private static async checkAnswers2Welsh(page: Page) {
+    await Helpers.checkGroup(
+      page,
+      4,
+      ViewPDFApplicationContent,
+      "testCase2LabelWelsh",
+      `${Selectors.Span}`,
+    );
   }
 
   private static async fillInFields(

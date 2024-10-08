@@ -1,5 +1,9 @@
 export enum ViewPDFApplicationContent {
   pdfName = "Draft_DA_application.pdf",
+  pdfNameWelsh = "Draft_DA_Welsh_application.pdf",
+
+  // ----------------------------------------
+  // ENGLISH
 
   questionLabel1 = "The family court sitting at:",
   questionLabel2 = "Case number:",
@@ -302,6 +306,102 @@ export enum ViewPDFApplicationContent {
   testCase3Label24 = "+44123456789",
   testCase3Label25 = "None of the above",
   testCase3Label26 = "Cousin",
+
+  // ----------------------------------------
+  // WELSH
+
+  answerLabelWelsh1 = "Gorchymyn rhag molestu ,Gorchymyn anheddu",
+  answerLabelWelsh2 = "Mae risg o niwed sylweddol i'r ceisydd neu i blentyn",
+  answerLabelWelsh3 = "Mae'n debygol y bydd y ceisydd yn cael ei rwystro neu ei",
+  answerLabelWelsh4 = "Mae'r ceisydd yn credu bod yr atebydd yn ymwybodol o'r",
+  answerLabelWelsh5 = applicationLabel5,
+  answerLabelWelsh6 = applicationLabel6,
+  answerLabelWelsh7 = applicationLabel7,
+  answerLabelWelsh8 = applicationLabel8,
+  answerLabelWelsh9 = applicationLabel9,
+  answerLabelWelsh10 = applicationLabel10,
+  answerLabelWelsh11 = applicationLabel11,
+  answerLabelWelsh12 = applicationLabel12,
+  answerLabelWelsh13 = applicationLabel13,
+  answerLabelWelsh14 = applicationLabel14,
+  answerLabelWelsh15 = applicationLabel15,
+  answerLabelWelsh16 = applicationLabel16,
+  answerLabelWelsh17 = applicationLabel17,
+  answerLabelWelsh18 = applicationLabel18,
+  answerLabelWelsh19 = applicationLabel19,
+  answerLabelWelsh20 = applicationLabel20,
+  answerLabelWelsh21 = applicationLabel21,
+  answerLabelWelsh22 = applicationLabel22,
+  answerLabelWelsh23 = applicationLabel23,
+  answerLabelWelsh24 = "Tad",
+  answerLabelWelsh25 = "Mam",
+  answerLabelWelsh26 = "Bod yn dreisgar neu fygythiol tuag ato ef/hi",
+  answerLabelWelsh27 = "Bygwth neu aflonyddu arno ef/hi",
+  answerLabelWelsh28 = "Postio neu gyhoeddi unrhyw beth amdano ef/hi mewn print",
+  answerLabelWelsh29 = "Cysylltu ag ef/hi yn uniongyrchol",
+  answerLabelWelsh30 = "Achosi difrod i'w eiddo ef/hi",
+  answerLabelWelsh31 = "Mynd at ei gartref ef/hi",
+  answerLabelWelsh32 = "Mynd yn agos i'w gartref ef/hi",
+  answerLabelWelsh33 = "Mynd yn agos i'w weithle ef/hi",
+  answerLabelWelsh34 = "Bod yn dreisgar neu fygythiol tuag at y plentyn neu blant",
+  answerLabelWelsh35 = "Bygwth neu aflonyddu ar y plentyn neu blant",
+  answerLabelWelsh36 = "Postio neu gyhoeddi unrhyw beth am y plentyn neu blant",
+  answerLabelWelsh37 = "Cysylltu â'r plentyn neu blant yn uniongyrchol heb",
+  answerLabelWelsh38 = "Mynd at neu'n agos i ysgol y plentyn neu blant",
+  answerLabelWelsh39 = applicationLabel40,
+  answerLabelWelsh40 = "Y ceisydd ,Yr atebydd ,Plentyn neu blant y ceisydd ,Rhywun",
+  answerLabelWelsh41 = applicationLabel42,
+  answerLabelWelsh42 = applicationLabel43,
+  answerLabelWelsh43 = applicationLabel44,
+  answerLabelWelsh44 = applicationLabel45,
+  answerLabelWelsh45 = applicationLabel46,
+  answerLabelWelsh46 = applicationLabel47,
+  answerLabelWelsh47 = "Mae'r ceisydd am allu aros yn ei gartref ,Mae'r ceisydd am",
+  answerLabelWelsh48 = "Mae ar y ceisydd angen i'r atebydd dalu am neu gyfrannu at",
+  answerLabelWelsh49 = applicationLabel50,
+  answerLabelWelsh50 = applicationLabel51,
+  answerLabelWelsh51 = applicationLabel52,
+  answerLabelWelsh52 = applicationLabel53,
+  answerLabelWelsh53 = applicationLabel54,
+  answerLabelWelsh54 = applicationLabel55,
+  answerLabelWelsh55 = "Ceisydd",
+  answerLabelWelsh56 = "Atebydd",
+  answerLabelWelsh57 = "Pobl eraill yn yr achos",
+  answerLabelWelsh58 = applicationLabel56,
+  answerLabelWelsh59 = applicationLabel57,
+  answerLabelWelsh60 = applicationLabel58,
+  answerLabelWelsh61 = applicationLabel59,
+  answerLabelWelsh62 = applicationLabel60,
+  answerLabelWelsh63 = applicationLabel61,
+  answerLabelWelsh64 = "Saesneg",
+
+  // ----------------------------------------
+  // Both test case 1 and 2 repeated:
+  repeatedLabelWelsh1 = "Ydy", // 9 TC1, 8, TC2
+  repeatedLabelWelsh2 = repeatedLabel1, // 2
+  repeatedLabelWelsh3 = "Ydw", // 2
+  repeatedLabelWelsh4 = "Rhaid cadw’r wybodaeth hon yn gyfrinachol", // 6
+  repeatedLabelWelsh5 = "Oes", // 12
+  repeatedLabelWelsh6 = "Gallaf", // 3
+  repeatedLabelWelsh7 = repeatedLabel3, // 2
+  repeatedLabelWelsh8 = repeatedLabel4, // 2
+  repeatedLabelWelsh9 = "Y ceisydd ,Yr atebydd ,Rhywun arall - noder", // 2
+
+  // ----------------------------------------
+  // Unique to test case 1:
+  testCase1LabelWelsh1 = "Benywaidd",
+  testCase1LabelWelsh2 = "Yn cyd-fyw fel cwpl o'r blaen",
+  testCase1LabelWelsh3 = "Ydynt, y ddau ohonynt",
+  testCase1LabelWelsh4 = testCase1Label1,
+
+  // ----------------------------------------
+  // Unique to test case 2:
+  testCase2LabelWelsh1 = "Ddim yn gwybod",
+  testCase2LabelWelsh2 = "Gwrywaidd",
+  testCase2LabelWelsh3 = "Achosi difrod i'w gartref ef/hi",
+  testCase2LabelWelsh4 = "Ydy, y ceisydd",
+  testCase2LabelWelsh5 = "Yn briod neu mewn partneriaeth sifil",
+  testCase2LabelWelsh6 = "Bydd",
 
   // ----------------------------------------
   // Misc
