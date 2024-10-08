@@ -84,7 +84,7 @@ export class AllegationsOfHarmRevised1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${AllegationsOfHarmRevised1Content.errorMessageAllegationsOfHarm}")`,
+        `${Selectors.ErrorMessage}:text-is("${AllegationsOfHarmRevised1Content.errorMessageAllegationsOfHarm}")`,
         1,
       ),
     ]);

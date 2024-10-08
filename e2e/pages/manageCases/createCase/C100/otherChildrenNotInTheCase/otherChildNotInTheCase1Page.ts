@@ -134,7 +134,7 @@ export class OtherChildNotInTheCase1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${OtherChildNotInTheCase1Content.errorMessageFirstName}")`,
+        `${Selectors.ErrorMessage}:text-is("${OtherChildNotInTheCase1Content.errorMessageFirstName}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -144,7 +144,7 @@ export class OtherChildNotInTheCase1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${OtherChildNotInTheCase1Content.errorMessageLastName}")`,
+        `${Selectors.ErrorMessage}:text-is("${OtherChildNotInTheCase1Content.errorMessageLastName}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -154,7 +154,7 @@ export class OtherChildNotInTheCase1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${OtherChildNotInTheCase1Content.errorMessageGender}")`,
+        `${Selectors.ErrorMessage}:text-is("${OtherChildNotInTheCase1Content.errorMessageGender}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -164,7 +164,7 @@ export class OtherChildNotInTheCase1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${OtherChildNotInTheCase1Content.errorMessageDOB}")`,
+        `${Selectors.ErrorMessage}:text-is("${OtherChildNotInTheCase1Content.errorMessageDOB}")`,
         1,
       ),
     ]);

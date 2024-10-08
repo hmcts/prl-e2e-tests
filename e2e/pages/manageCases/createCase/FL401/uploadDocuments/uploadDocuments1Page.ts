@@ -114,7 +114,7 @@ export class UploadDocuments1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${UploadDocuments1Content.errorMessage}")`,
+        `${Selectors.ErrorMessage}:text-is("${UploadDocuments1Content.errorMessage}")`,
         1,
       ),
     ]);
@@ -135,7 +135,7 @@ export class UploadDocuments1Page {
     await witnessUpload.setInputFiles(Config.testOdtFile);
     await expect(
       page.locator(
-        `${Selectors.GovukErrorMessage}:text-is("${UploadDocuments1Content.uploadingFile}")`,
+        `${Selectors.ErrorMessage}:text-is("${UploadDocuments1Content.uploadingFile}")`,
       ),
     ).toHaveCount(0);
     const supportingUpload = page
@@ -145,7 +145,7 @@ export class UploadDocuments1Page {
     await supportingUpload.setInputFiles(Config.testOdtFile);
     await expect(
       page.locator(
-        `${Selectors.GovukErrorMessage}:text-is("${UploadDocuments1Content.uploadingFile}")`,
+        `${Selectors.ErrorMessage}:text-is("${UploadDocuments1Content.uploadingFile}")`,
       ),
     ).toHaveCount(0);
     await page.click(
@@ -154,7 +154,7 @@ export class UploadDocuments1Page {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${UploadDocuments1Content.uploadErrorMessage}")`,
+        `${Selectors.ErrorMessage}:text-is("${UploadDocuments1Content.uploadErrorMessage}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
@@ -246,7 +246,7 @@ export class UploadDocuments1Page {
     await witnessUpload.setInputFiles(docFile);
     await expect(
       page.locator(
-        `${Selectors.GovukErrorMessage}:text-is("${UploadDocuments1Content.uploadingFile}")`,
+        `${Selectors.ErrorMessage}:text-is("${UploadDocuments1Content.uploadingFile}")`,
       ),
     ).toHaveCount(0);
     const supportingUpload = page
@@ -256,7 +256,7 @@ export class UploadDocuments1Page {
     await supportingUpload.setInputFiles(docFile);
     await expect(
       page.locator(
-        `${Selectors.GovukErrorMessage}:text-is("${UploadDocuments1Content.uploadingFile}")`,
+        `${Selectors.ErrorMessage}:text-is("${UploadDocuments1Content.uploadingFile}")`,
       ),
     ).toHaveCount(0);
   }

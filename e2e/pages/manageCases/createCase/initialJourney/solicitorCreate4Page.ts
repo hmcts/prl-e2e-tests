@@ -68,7 +68,7 @@ export class SolicitorCreate4Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${SolicitorCreate4Content.errorText}")`,
+        `${Selectors.ErrorMessage}:text-is("${SolicitorCreate4Content.errorText}")`,
         1,
       ),
     ]);

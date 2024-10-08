@@ -86,7 +86,7 @@ export class HearingUrgency1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${HearingUrgency1Content.errorMessageIsCaseUrgent}")`,
+        `${Selectors.ErrorMessage}:text-is("${HearingUrgency1Content.errorMessageIsCaseUrgent}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -96,7 +96,7 @@ export class HearingUrgency1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${HearingUrgency1Content.errorMessageWithoutNoticeHearing}")`,
+        `${Selectors.ErrorMessage}:text-is("${HearingUrgency1Content.errorMessageWithoutNoticeHearing}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -106,7 +106,7 @@ export class HearingUrgency1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${HearingUrgency1Content.errorMessageReducedNoticeHearing}")`,
+        `${Selectors.ErrorMessage}:text-is("${HearingUrgency1Content.errorMessageReducedNoticeHearing}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -116,7 +116,7 @@ export class HearingUrgency1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${HearingUrgency1Content.errorMessageAwareOfProceedings}")`,
+        `${Selectors.ErrorMessage}:text-is("${HearingUrgency1Content.errorMessageAwareOfProceedings}")`,
         1,
       ),
     ]);
@@ -149,7 +149,7 @@ export class HearingUrgency1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${HearingUrgency1Content.errorMessageHowSoon}")`,
+        `${Selectors.ErrorMessage}:text-is("${HearingUrgency1Content.errorMessageHowSoon}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -159,7 +159,7 @@ export class HearingUrgency1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${HearingUrgency1Content.errorMessageReasonsShortNotice}")`,
+        `${Selectors.ErrorMessage}:text-is("${HearingUrgency1Content.errorMessageReasonsShortNotice}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -169,7 +169,7 @@ export class HearingUrgency1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${HearingUrgency1Content.errorMessageReasons}")`,
+        `${Selectors.ErrorMessage}:text-is("${HearingUrgency1Content.errorMessageReasons}")`,
         1,
       ),
     ]);

@@ -1,6 +1,6 @@
 export enum C100ScreeningSectionStartContent {
   pageTitle = " Before you start your application ",
-  span = "Getting started",
+  caption = "Getting started",
   p1 = "If you are currently involved in Child Arrangements, Prohibited Steps or Specific Issue Order proceedings for the same child or children you can apply to the same court using the shorter form C2. You need to state the case number when you submit the form",
   p2 = " to the same court if you are involved in any of the following:",
   p3 = "Your application will be processed faster if you have the following information available:",

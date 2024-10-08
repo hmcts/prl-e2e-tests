@@ -454,7 +454,7 @@ export class ApplicantDetails1Page {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${ApplicantDetails1Content.postcodeErrorMessage_2}")`,
+        `${Selectors.ErrorMessage}:text-is("${ApplicantDetails1Content.postcodeErrorMessage_2}")`,
         2,
       ),
       Helpers.checkGroup(
@@ -469,7 +469,7 @@ export class ApplicantDetails1Page {
         8,
         ApplicantDetails1Content,
         `topLevelInputErrorMessage`,
-        `${Selectors.GovukErrorMessage}`,
+        `${Selectors.ErrorMessage}`,
       ),
     ]);
   }
@@ -501,7 +501,7 @@ export class ApplicantDetails1Page {
         3,
         ApplicantDetails1Content,
         "secondLevelInputErrorMessage",
-        `${Selectors.GovukErrorMessage}`,
+        `${Selectors.ErrorMessage}`,
       ),
     ]);
   }
@@ -528,7 +528,7 @@ export class ApplicantDetails1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${ApplicantDetails1Content.invalidDoBMessage}")`,
+        `${Selectors.ErrorMessage}:text-is("${ApplicantDetails1Content.invalidDoBMessage}")`,
         1,
       ),
     ]);
@@ -570,7 +570,7 @@ export class ApplicantDetails1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${ApplicantDetails1Content.invalidApplicantPhoneMessage}")`,
+        `${Selectors.ErrorMessage}:text-is("${ApplicantDetails1Content.invalidApplicantPhoneMessage}")`,
         1,
       ),
     ]);

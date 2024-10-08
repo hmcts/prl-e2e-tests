@@ -136,7 +136,7 @@ export class ChildrenAndApplicants1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${ChildrenAndApplicants1Content.errorApplicantRelationship}")`,
+        `${Selectors.ErrorMessage}:text-is("${ChildrenAndApplicants1Content.errorApplicantRelationship}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -146,7 +146,7 @@ export class ChildrenAndApplicants1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${ChildrenAndApplicants1Content.errorChildLiveWithParty}")`,
+        `${Selectors.ErrorMessage}:text-is("${ChildrenAndApplicants1Content.errorChildLiveWithParty}")`,
         1,
       ),
     ]);

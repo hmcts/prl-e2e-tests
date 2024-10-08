@@ -88,7 +88,7 @@ export class AllegationsOfHarmRevised10Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${AllegationsOfHarmRevised10Content.errorChildrenAbducted}")`,
+        `${Selectors.ErrorMessage}:text-is("${AllegationsOfHarmRevised10Content.errorChildrenAbducted}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -98,7 +98,7 @@ export class AllegationsOfHarmRevised10Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${AllegationsOfHarmRevised10Content.errorPreviousThreats}")`,
+        `${Selectors.ErrorMessage}:text-is("${AllegationsOfHarmRevised10Content.errorPreviousThreats}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -108,7 +108,7 @@ export class AllegationsOfHarmRevised10Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${AllegationsOfHarmRevised10Content.errorChildrenLocation}")`,
+        `${Selectors.ErrorMessage}:text-is("${AllegationsOfHarmRevised10Content.errorChildrenLocation}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -118,7 +118,7 @@ export class AllegationsOfHarmRevised10Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${AllegationsOfHarmRevised10Content.errorPassportOffice}")`,
+        `${Selectors.ErrorMessage}:text-is("${AllegationsOfHarmRevised10Content.errorPassportOffice}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -128,7 +128,7 @@ export class AllegationsOfHarmRevised10Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${AllegationsOfHarmRevised10Content.errorPolice}")`,
+        `${Selectors.ErrorMessage}:text-is("${AllegationsOfHarmRevised10Content.errorPolice}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -138,7 +138,7 @@ export class AllegationsOfHarmRevised10Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${AllegationsOfHarmRevised10Content.errorChildPassport}")`,
+        `${Selectors.ErrorMessage}:text-is("${AllegationsOfHarmRevised10Content.errorChildPassport}")`,
         1,
       ),
     ]);

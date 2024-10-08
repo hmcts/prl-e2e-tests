@@ -123,12 +123,12 @@ export class RespondentDetailsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${RespondentDetailsContent.errorInvalidEmailAddress}")`,
+        `${Selectors.ErrorMessage}:text-is("${RespondentDetailsContent.errorInvalidEmailAddress}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${RespondentDetailsContent.errorInvalidContactNumber}")`,
+        `${Selectors.ErrorMessage}:text-is("${RespondentDetailsContent.errorInvalidContactNumber}")`,
         1,
       ),
     ]);

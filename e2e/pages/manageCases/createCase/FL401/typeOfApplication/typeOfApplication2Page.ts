@@ -99,7 +99,7 @@ export class TypeOfApplication2Page {
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukErrorMessage}:text-is("${TypeOfApplication2Content.errorMessage}")`,
+          `${Selectors.ErrorMessage}:text-is("${TypeOfApplication2Content.errorMessage}")`,
           1,
         ),
       ]);

@@ -85,7 +85,7 @@ export class selectApplicationType1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:has-text("${SelectApplicationType1Content.errorMessageOrdersApplyingFor}")`,
+        `${Selectors.ErrorMessage}:has-text("${SelectApplicationType1Content.errorMessageOrdersApplyingFor}")`,
         1,
       ),
     ]);
@@ -114,7 +114,7 @@ export class selectApplicationType1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:has-text("${SelectApplicationType1Content.errorMessageSelectChildArrangementOrder}")`,
+        `${Selectors.ErrorMessage}:has-text("${SelectApplicationType1Content.errorMessageSelectChildArrangementOrder}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -124,7 +124,7 @@ export class selectApplicationType1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:has-text("${SelectApplicationType1Content.errorMessageProvideMoreInfo}")`,
+        `${Selectors.ErrorMessage}:has-text("${SelectApplicationType1Content.errorMessageProvideMoreInfo}")`,
         1,
       ),
     ]);

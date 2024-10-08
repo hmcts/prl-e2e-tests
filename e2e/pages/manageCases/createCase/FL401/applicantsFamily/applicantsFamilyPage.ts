@@ -85,7 +85,7 @@ export class ApplicantsFamilyPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${ApplicantsFamilyContent.errorRequiredText}")`,
+        `${Selectors.ErrorMessage}:text-is("${ApplicantsFamilyContent.errorRequiredText}")`,
         1,
       ),
     ]);
@@ -123,7 +123,7 @@ export class ApplicantsFamilyPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${ApplicantsFamilyContent.errorDataInvalidText}")`,
+        `${Selectors.ErrorMessage}:text-is("${ApplicantsFamilyContent.errorDataInvalidText}")`,
         1,
       ),
     ]);

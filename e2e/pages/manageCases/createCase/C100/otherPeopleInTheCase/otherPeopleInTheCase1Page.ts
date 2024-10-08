@@ -123,7 +123,7 @@ export class OtherPeopleInTheCase1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${OtherPeopleInTheCase1Content.errorMessageLived5YearsInAddress}")`,
+        `${Selectors.ErrorMessage}:text-is("${OtherPeopleInTheCase1Content.errorMessageLived5YearsInAddress}")`,
         1,
       ),
     ]);
@@ -151,7 +151,7 @@ export class OtherPeopleInTheCase1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${OtherPeopleInTheCase1Content.errorMessageInvalidDOBErrorMessage}")`,
+        `${Selectors.ErrorMessage}:text-is("${OtherPeopleInTheCase1Content.errorMessageInvalidDOBErrorMessage}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -161,7 +161,7 @@ export class OtherPeopleInTheCase1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${OtherPeopleInTheCase1Content.errorMessage5YearsDetailsRequired}")`,
+        `${Selectors.ErrorMessage}:text-is("${OtherPeopleInTheCase1Content.errorMessage5YearsDetailsRequired}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -171,7 +171,7 @@ export class OtherPeopleInTheCase1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${OtherPeopleInTheCase1Content.errorMessageAddressConfidential}")`,
+        `${Selectors.ErrorMessage}:text-is("${OtherPeopleInTheCase1Content.errorMessageAddressConfidential}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -181,7 +181,7 @@ export class OtherPeopleInTheCase1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${OtherPeopleInTheCase1Content.errorMessageEmailConfidential}")`,
+        `${Selectors.ErrorMessage}:text-is("${OtherPeopleInTheCase1Content.errorMessageEmailConfidential}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -191,7 +191,7 @@ export class OtherPeopleInTheCase1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${OtherPeopleInTheCase1Content.errorMessageContactNumberConfidential}")`,
+        `${Selectors.ErrorMessage}:text-is("${OtherPeopleInTheCase1Content.errorMessageContactNumberConfidential}")`,
         1,
       ),
     ]);

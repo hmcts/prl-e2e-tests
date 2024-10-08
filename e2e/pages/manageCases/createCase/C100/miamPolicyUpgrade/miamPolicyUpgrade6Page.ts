@@ -102,12 +102,12 @@ export class MiamPolicyUpgrade6Page {
     const fileInput1 = page.locator(`${UniqueSelectors.uploadFileInput1}`);
     await fileInput1.setInputFiles(config.testOdtFile);
     await page.waitForSelector(
-      `${Selectors.GovukErrorMessage}:text-is("${MiamPolicyUpgrade6Content.uploadingFile}")`,
+      `${Selectors.ErrorMessage}:text-is("${MiamPolicyUpgrade6Content.uploadingFile}")`,
       { state: "hidden" },
     );
     await Helpers.checkVisibleAndPresent(
       page,
-      `${Selectors.GovukErrorMessage}:text-is("${MiamPolicyUpgrade6Content.errorMessageUpload}")`,
+      `${Selectors.ErrorMessage}:text-is("${MiamPolicyUpgrade6Content.errorMessageUpload}")`,
       1,
     );
   }
@@ -123,7 +123,7 @@ export class MiamPolicyUpgrade6Page {
         const fileInput1 = page.locator(`${UniqueSelectors.uploadFileInput1}`);
         await fileInput1.setInputFiles(config.testPdfFile);
         await page.waitForSelector(
-          `${Selectors.GovukErrorMessage}:text-is("${MiamPolicyUpgrade6Content.uploadingFile}")`,
+          `${Selectors.ErrorMessage}:text-is("${MiamPolicyUpgrade6Content.uploadingFile}")`,
           { state: "hidden" },
         );
         break;
@@ -146,7 +146,7 @@ export class MiamPolicyUpgrade6Page {
         const fileInput2 = page.locator(`${UniqueSelectors.uploadFileInput2}`);
         await fileInput2.setInputFiles(config.testPdfFile);
         await page.waitForSelector(
-          `${Selectors.GovukErrorMessage}:text-is("${MiamPolicyUpgrade6Content.uploadingFile}")`,
+          `${Selectors.ErrorMessage}:text-is("${MiamPolicyUpgrade6Content.uploadingFile}")`,
           { state: "hidden" },
         );
         break;

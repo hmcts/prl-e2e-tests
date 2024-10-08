@@ -158,7 +158,7 @@ export class ApplicantDetails1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${ApplicantDetails1Content.errorMessageFirstNameRequired}")`,
+        `${Selectors.ErrorMessage}:text-is("${ApplicantDetails1Content.errorMessageFirstNameRequired}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -168,7 +168,7 @@ export class ApplicantDetails1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${ApplicantDetails1Content.errorMessageLastNameRequired}")`,
+        `${Selectors.ErrorMessage}:text-is("${ApplicantDetails1Content.errorMessageLastNameRequired}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -178,7 +178,7 @@ export class ApplicantDetails1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${ApplicantDetails1Content.errorMessageDateOfBirthRequired}")`,
+        `${Selectors.ErrorMessage}:text-is("${ApplicantDetails1Content.errorMessageDateOfBirthRequired}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -188,7 +188,7 @@ export class ApplicantDetails1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${ApplicantDetails1Content.errorMessageGenderRequired}")`,
+        `${Selectors.ErrorMessage}:text-is("${ApplicantDetails1Content.errorMessageGenderRequired}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -198,7 +198,7 @@ export class ApplicantDetails1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${ApplicantDetails1Content.errorMessagePlaceOfBirthRequired}")`,
+        `${Selectors.ErrorMessage}:text-is("${ApplicantDetails1Content.errorMessagePlaceOfBirthRequired}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -213,7 +213,7 @@ export class ApplicantDetails1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${ApplicantDetails1Content.errorMessageAddressConfidentialRequired}")`,
+        `${Selectors.ErrorMessage}:text-is("${ApplicantDetails1Content.errorMessageAddressConfidentialRequired}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -223,7 +223,7 @@ export class ApplicantDetails1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${ApplicantDetails1Content.errorMessageLivedAtAddressLessThan5YearsRequired}")`,
+        `${Selectors.ErrorMessage}:text-is("${ApplicantDetails1Content.errorMessageLivedAtAddressLessThan5YearsRequired}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -233,7 +233,7 @@ export class ApplicantDetails1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${ApplicantDetails1Content.errorMessageEmailAddressProvidedRequired}")`,
+        `${Selectors.ErrorMessage}:text-is("${ApplicantDetails1Content.errorMessageEmailAddressProvidedRequired}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -243,7 +243,7 @@ export class ApplicantDetails1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${ApplicantDetails1Content.errorMessageContactNumberRequired}")`,
+        `${Selectors.ErrorMessage}:text-is("${ApplicantDetails1Content.errorMessageContactNumberRequired}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -253,7 +253,7 @@ export class ApplicantDetails1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${ApplicantDetails1Content.errorMessageContactNumberConfidentialRequired}")`,
+        `${Selectors.ErrorMessage}:text-is("${ApplicantDetails1Content.errorMessageContactNumberConfidentialRequired}")`,
         1,
       ),
     ]);
@@ -496,7 +496,7 @@ export class ApplicantDetails1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${ApplicantDetails1Content.errorMessage5YearsDetailsRequired}")`,
+        `${Selectors.ErrorMessage}:text-is("${ApplicantDetails1Content.errorMessage5YearsDetailsRequired}")`,
         1,
       ),
     ]);
@@ -518,7 +518,7 @@ export class ApplicantDetails1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${ApplicantDetails1Content.errorMessageEmailAddressRequired}")`,
+        `${Selectors.ErrorMessage}:text-is("${ApplicantDetails1Content.errorMessageEmailAddressRequired}")`,
         1,
       ),
     ]);

@@ -41,6 +41,8 @@ export enum Selectors {
 
   // Content
   GovukBody = ".govuk-body",
+  GovukBodyL = ".govuk-body-l",
+  GovukBodyM = ".govuk-body-m",
   GovukHeadingXL = ".govuk-heading-xl",
   GovukHeadingL = ".govuk-heading-l",
   GovukHeadingM = ".govuk-heading-m",
@@ -51,7 +53,10 @@ export enum Selectors {
   GovukErrorSummaryTitle = ".govuk-error-summary__title",
   GovukErrorySummaryHeading = ".error-summary-heading",
   GovukErrorValidation = ".validation-error",
-  GovukErrorMessage = ".error-message",
+  GovukErrorMessage = ".govuk-error-message",
+  ErrorMessage = ".error-message",
+  GovukCaptionL = ".govuk-caption-l",
+  GovukInsetText = ".govuk-inset-text",
   p = "p",
   li = "li",
   strong = "strong",

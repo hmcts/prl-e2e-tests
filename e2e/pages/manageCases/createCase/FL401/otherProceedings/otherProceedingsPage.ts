@@ -98,12 +98,12 @@ export class OtherProceedingsPage {
     );
     await Helpers.checkVisibleAndPresent(
       page,
-      `${Selectors.GovukErrorMessage}:text-is("${OtherProceedingsContent.errorTypeOfCase}")`,
+      `${Selectors.ErrorMessage}:text-is("${OtherProceedingsContent.errorTypeOfCase}")`,
       1,
     );
     await Helpers.checkVisibleAndPresent(
       page,
-      `${Selectors.GovukErrorMessage}:text-is("${OtherProceedingsContent.errorOtherDetails}")`,
+      `${Selectors.ErrorMessage}:text-is("${OtherProceedingsContent.errorOtherDetails}")`,
       1,
     );
   }
@@ -141,7 +141,7 @@ export class OtherProceedingsPage {
         const fileInput = page.locator(`${inputIds.uploadRelevantOrder}`);
         await fileInput.setInputFiles(config.testPdfFile);
         await page.waitForSelector(
-          `${Selectors.GovukErrorMessage}:text-is("${OtherProceedingsContent.uploading}")`,
+          `${Selectors.ErrorMessage}:text-is("${OtherProceedingsContent.uploading}")`,
           { state: "hidden" },
         );
         await page.click(

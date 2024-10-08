@@ -110,7 +110,7 @@ export class WithoutNoticeOrder3Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${WithoutNoticeOrderDetails3Content.errorMessage}")`,
+        `${Selectors.ErrorMessage}:text-is("${WithoutNoticeOrderDetails3Content.errorMessage}")`,
         1,
       ),
     ]);
@@ -132,7 +132,7 @@ export class WithoutNoticeOrder3Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${WithoutNoticeOrderDetails3Content.incompleteDateErrorMessage}")`,
+        `${Selectors.ErrorMessage}:text-is("${WithoutNoticeOrderDetails3Content.incompleteDateErrorMessage}")`,
         1,
       ),
     ]);

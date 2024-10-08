@@ -73,7 +73,7 @@ export class selectApplicationType3Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${SelectApplicationType3Content.errorMessage1}")`,
+        `${Selectors.ErrorMessage}:text-is("${SelectApplicationType3Content.errorMessage1}")`,
         1,
       ),
     ]);
@@ -90,7 +90,7 @@ export class selectApplicationType3Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${SelectApplicationType3Content.errorMessage2}")`,
+        `${Selectors.ErrorMessage}:text-is("${SelectApplicationType3Content.errorMessage2}")`,
         1,
       ),
     ]);

@@ -88,7 +88,7 @@ export class MiamPolicyUpgrade8Page {
     await page.waitForTimeout(5000);
     await Helpers.checkVisibleAndPresent(
       page,
-      `${Selectors.GovukErrorMessage}:text-is("${MiamPolicyUpgrade8Content.errorMessageUpload}")`,
+      `${Selectors.ErrorMessage}:text-is("${MiamPolicyUpgrade8Content.errorMessageUpload}")`,
       1,
     );
   }
