@@ -18,6 +18,7 @@ enum inputIds {
   typeOfCase = "#fl401OtherProceedingDetails_fl401OtherProceedings_0_typeOfCase",
   anyOtherDetails = "#fl401OtherProceedingDetails_fl401OtherProceedings_0_anyOtherDetails",
   uploadRelevantOrder = "#fl401OtherProceedingDetails_fl401OtherProceedings_0_uploadRelevantOrder",
+  modalSelector = "#mat-dialog-0 > ccd-remove-dialog > div > div:nth-child(4) > "
 }
 
 export class OtherProceedingsPage {
@@ -105,6 +106,12 @@ export class OtherProceedingsPage {
       page,
       `${Selectors.GovukErrorMessage}:text-is("${OtherProceedingsContent.errorOtherDetails}")`,
       1,
+    );
+    await page.click(
+      `${Selectors.button}:text-is("${OtherProceedingsContent.remove}")`
+    );
+    await page.click(
+      `${inputIds.modalSelector}${Selectors.button}:text-is("${OtherProceedingsContent.remove}")`
     );
   }
 
