@@ -107,6 +107,9 @@ export class OtherProceedingsPage {
       `${Selectors.GovukErrorMessage}:text-is("${OtherProceedingsContent.errorOtherDetails}")`,
       1,
     );
+    // Remove the created proceeding so that you avoid the invalid error message
+    // Without removing the new proceeding, you can't go on to select No or Don't Know
+    // FPET-1151
     await page.click(
       `${Selectors.button}:text-is("${OtherProceedingsContent.remove}")`
     );
