@@ -695,7 +695,7 @@ export class ViewPDFApplication1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `div[data-page-number="11"] > .textLayer > ${Selectors.Span}:text-is("${EnglishMediaContentYesToAll.page12Yes}")`,
+        `div[data-page-number="12"] > .textLayer > ${Selectors.Span}:text-is("${EnglishMediaContentYesToAll.page12Yes}")`,
         3,
       ),
     ]);
