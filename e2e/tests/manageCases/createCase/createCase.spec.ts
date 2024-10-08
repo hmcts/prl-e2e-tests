@@ -143,7 +143,8 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
      Saying yes to all Respondent details questions,
      Saying yes to all Type of application questions,
      Saying yes to applicant details questions,
-     Saying yes to respondents behaviour questions,     Saying yes to all Without Notice Order questions
+     Saying yes to respondents behaviour questions,
+     Saying yes to other proceedings
      Saying yes to all Without Notice Order questions,
      Relationship is 'Formerly lived together as a couple'
      Saying yes to all 'The Home' Questions,
@@ -185,6 +186,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
      Saying yes to applicant details questions,
      Saying yes to respondents behaviour questions,      Saying yes to Without Notice Order questions,
      Saying "Don't know" to Without Notice Order bail conditions,
+     Saying "Don't know" to other proceedings
      Saying yes to all Type of application questions,
      Saying yes to applicant details questions,
      Saying yes to Without Notice Order questions,
@@ -206,7 +208,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       respondentsBehaviourAllOptionsYes: true,
       isWithoutNoticeDetailsYes: true,
       isWithoutNoticeDetailsBailConditions: "Don't know",
-      otherProceedingsRadios: "Yes",
+      otherProceedingsRadios: "Don't know",
       relationshipToRespondent: "marriedOrCivil",
       fl401TheHomeYesNo: true,
       fl401EverLivedAtAddress: "yesApplicant",
@@ -223,7 +225,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Saying no to all Respondent details questions,
   Saying no to all Type of application questions,
   Saying no to respondents behaviour questions,
-  Saying no to Without Notice Order questions,
+  Saying No to Other Proceedings
   Saying no to Without Notice Order questions,
   Relationship is 'None of the above',
   Other Relationship Is: 'Cousin',
@@ -248,7 +250,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       respondentsBehaviourAllOptionsYes: false,
       isWithoutNoticeDetailsYes: false,
       isWithoutNoticeDetailsBailConditions: "No",
-      otherProceedingsRadios: "Yes",
+      otherProceedingsRadios: "No",
       relationshipToRespondent: "noneOfTheAbove",
       relationshipToRespondentOther: "Cousin",
       fl401TheHomeYesNo: false,
