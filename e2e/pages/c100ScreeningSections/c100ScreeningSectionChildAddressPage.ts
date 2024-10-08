@@ -20,7 +20,7 @@ interface CheckPageLoadsOptions {
   accessibilityTest: boolean;
 }
 
-export class C100ScreeningSectionsChildAddressPage {
+export class C100ScreeningSectionChildAddressPage {
   public static async c100ScreeningSectionsChildAddressPage({
     page,
     accessibilityTest,

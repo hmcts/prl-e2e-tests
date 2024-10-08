@@ -1,6 +1,9 @@
 import { Page } from "@playwright/test";
 import { C100ScreeningSectionStartPage } from "../pages/c100ScreeningSections/c100ScreeningSectionStartPage";
-import { C100ScreeningSectionsChildAddressPage } from "../pages/c100ScreeningSections/c100ScreeningSectionsChildAddressPage";
+import { C100ScreeningSectionChildAddressPage } from "../pages/c100ScreeningSections/c100ScreeningSectionChildAddressPage";
+import {
+  C100ScreeningSectionConsentAgreementPage
+} from "../pages/c100ScreeningSections/c100ScreeningSectionConsentAgreementPage";
 
 interface C100ScreeningSectionsOptions {
   page: Page;
@@ -20,12 +23,18 @@ export class C100ScreeningSections {
       page,
       accessibilityTest,
     });
-    await C100ScreeningSectionsChildAddressPage.c100ScreeningSectionsChildAddressPage(
+    await C100ScreeningSectionChildAddressPage.c100ScreeningSectionsChildAddressPage(
       {
         page,
         accessibilityTest,
         errorMessaging,
       },
     );
+    await C100ScreeningSectionConsentAgreementPage.c100ScreeningSectionsConsentAgreementPage({
+      page,
+      accessibilityTest,
+      errorMessaging,
+      c100ScreeningWrittenAgreementReview,
+    });
   }
 }

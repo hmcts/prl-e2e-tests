@@ -7,4 +7,7 @@ export enum C100ScreeningSectionConsentAgreementContent {
   formLabel2 = " No ",
   consentFormLabel = " You will be asked to upload the draft consent order later in the application. ",
   continue = " Continue ",
+  errorSummaryTitle = " There is a problem on this page ",
+  errorSummaryLi = "Select yes if you have a written agreement with the other people in the case, that you want the court to review",
+  errorMessage = " Select yes if you have a written agreement with the other people in the case, that you want the court to review ",
 }
