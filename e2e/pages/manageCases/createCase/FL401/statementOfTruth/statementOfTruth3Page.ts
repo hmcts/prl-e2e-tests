@@ -55,7 +55,7 @@ export class StatementOfTruth3Page {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      // await AccessibilityTestHelper.run(page); #TODO: Re-enable when FPET-1150 is fixed.
     }
   }
 

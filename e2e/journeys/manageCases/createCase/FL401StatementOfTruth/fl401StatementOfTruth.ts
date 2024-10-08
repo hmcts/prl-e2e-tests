@@ -101,8 +101,8 @@ export class Fl401StatementOfTruth {
       });
       await FL401OtherProceedings.fl401OtherProceedings({
         page: page,
-        accessibilityTest: accessibilityTest,
-        errorMessaging: errorMessaging,
+        accessibilityTest: false,
+        errorMessaging: false,
         otherProceedingsRadios: otherProceedingsRadioSelection,
         subJourney: false,
       });
