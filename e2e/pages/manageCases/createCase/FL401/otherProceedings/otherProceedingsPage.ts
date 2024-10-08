@@ -18,27 +18,44 @@ enum inputIds {
   typeOfCase = "#fl401OtherProceedingDetails_fl401OtherProceedings_0_typeOfCase",
   anyOtherDetails = "#fl401OtherProceedingDetails_fl401OtherProceedings_0_anyOtherDetails",
   uploadRelevantOrder = "#fl401OtherProceedingDetails_fl401OtherProceedings_0_uploadRelevantOrder",
-  modalSelector = "#mat-dialog-0 > ccd-remove-dialog > div > div:nth-child(4) > "
+  modalSelector = "#mat-dialog-0 > ccd-remove-dialog > div > div:nth-child(4) > ",
+}
+
+interface OtherProceedingsPageOptions {
+  page: Page;
+  errorMessaging: boolean;
+  accessibilityTest: boolean;
+  otherProceedingsRadios: otherProceedingsRadios;
+}
+
+interface CheckPageLoadsOptions {
+  page: Page;
+  accessibilityTest: boolean;
+}
+
+interface FillInFieldsOptions {
+  page: Page;
+  otherProceedingsRadios: otherProceedingsRadios
 }
 
 export class OtherProceedingsPage {
-  public static async otherProceedingsPage(
-    page: Page,
-    errorMessaging: boolean,
-    accessibilityTest: boolean,
-    otherProceedingsRadios: otherProceedingsRadios,
-  ): Promise<void> {
-    await this.checkPageLoads(page, accessibilityTest);
+  public static async otherProceedingsPage({
+    page,
+    accessibilityTest,
+    errorMessaging,
+    otherProceedingsRadios
+  }: OtherProceedingsPageOptions): Promise<void> {
+    await this.checkPageLoads({page, accessibilityTest});
     if (errorMessaging) {
       await this.checkErrorMessaging(page);
     }
-    await this.fillInFields(page, otherProceedingsRadios, errorMessaging);
+    await this.fillInFields({page, otherProceedingsRadios});
   }
 
-  private static async checkPageLoads(
-    page: Page,
-    accessibilityTest: boolean,
-  ): Promise<void> {
+  private static async checkPageLoads({
+    page,
+    accessibilityTest
+  }: CheckPageLoadsOptions): Promise<void> {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
@@ -111,26 +128,25 @@ export class OtherProceedingsPage {
     // Without removing the new proceeding, you can't go on to select No or Don't Know
     // FPET-1151
     await page.click(
-      `${Selectors.button}:text-is("${OtherProceedingsContent.remove}")`
+      `${Selectors.button}:text-is("${OtherProceedingsContent.remove}")`,
     );
     await page.click(
-      `${inputIds.modalSelector}${Selectors.button}:text-is("${OtherProceedingsContent.remove}")`
+      `${inputIds.modalSelector}${Selectors.button}:text-is("${OtherProceedingsContent.remove}")`,
     );
+    // This timeout is needed because, otherwise, the IDs are 1-indexed because proceeding was created to soon after removing the first.
+    await page.waitForTimeout(5000);
   }
 
-  private static async fillInFields(
-    page: Page,
-    otherProceedingsRadios: otherProceedingsRadios,
-    errorMessaging: boolean,
-  ): Promise<void> {
+  private static async fillInFields({
+    page,
+    otherProceedingsRadios,
+  }: FillInFieldsOptions): Promise<void> {
     switch (otherProceedingsRadios) {
       case "Yes":
-        if (!errorMessaging) {
-          await page.click(radioIds.yes);
-          await page.click(
-            `${Selectors.button}:text-is("${OtherProceedingsContent.addNew}")`,
-          );
-        }
+        await page.click(radioIds.yes);
+        await page.click(
+          `${Selectors.button}:text-is("${OtherProceedingsContent.addNew}")`,
+        );
         await this.checkFormLoads(page);
         await page.fill(
           `${inputIds.nameOfCourt}`,
@@ -149,6 +165,7 @@ export class OtherProceedingsPage {
           OtherProceedingsContent.exampleOtherDetails,
         );
         const fileInput = page.locator(`${inputIds.uploadRelevantOrder}`);
+        await page.waitForTimeout(6000);
         await fileInput.setInputFiles(config.testPdfFile);
         await page.waitForSelector(
           `${Selectors.GovukErrorMessage}:text-is("${OtherProceedingsContent.uploading}")`,
