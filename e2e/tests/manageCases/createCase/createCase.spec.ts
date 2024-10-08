@@ -67,6 +67,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       WelshPageRequirementType: "english",
       yesNoWelshLanguage: true,
       c100YesNoToAll: true,
+      yesNoHelpWithFees: false,
     });
   });
 
@@ -133,6 +134,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       WelshPageRequirementType: "english",
       yesNoWelshLanguage: false,
       c100YesNoToAll: false,
+      yesNoHelpWithFees: false,
     });
   });
 

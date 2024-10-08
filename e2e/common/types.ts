@@ -40,7 +40,8 @@ export type c100SolicitorEvents =
   | "Litigation capacity"
   | "Other proceedings"
   | "Welsh language requirements"
-  | "View PDF application";
+  | "View PDF application"
+  | "Submit and pay";
 
 export type fl401SolicitorEvents =
   | "Case name"
