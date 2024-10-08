@@ -2,6 +2,7 @@ export enum Selectors {
   // Header
   Header = ".header",
   GovukHeader = ".govuk-header",
+  h1 = "h1",
   headingH2 = ".heading-h2",
   h2 = "h2",
   h3 = "h3",
