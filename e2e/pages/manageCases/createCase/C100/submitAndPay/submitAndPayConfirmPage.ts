@@ -3,9 +3,7 @@ import { Selectors } from "../../../../../common/selectors";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Helpers } from "../../../../../common/helpers";
 import { SubmitAndPayConfirmContent } from "../../../../../fixtures/manageCases/createCase/C100/submitAndPay/submitAndPayConfirmContent";
-import {
-  SubmitAndPay1Content
-} from "../../../../../fixtures/manageCases/createCase/C100/submitAndPay/submitAndPay1Content";
+import { SubmitAndPay1Content } from "../../../../../fixtures/manageCases/createCase/C100/submitAndPay/submitAndPay1Content";
 
 interface SubmitAndPayOptions {
   page: Page;
