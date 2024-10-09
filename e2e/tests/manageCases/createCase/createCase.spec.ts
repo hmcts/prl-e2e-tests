@@ -149,8 +149,9 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
      Saying yes to all 'The Home' Questions,
      'Yes, both of them' ever lived at the address
      Saying Yes to all attending the hearing question,
-     Upload document files
-     @crossbrowserManageCases`, async ({ page }): Promise<void> => {
+     Upload document files,
+    Submit Statement of Truth
+    @crossbrowserManageCases`, async ({ page }): Promise<void> => {
     await FL401.fl401({
       page: page,
       user: "solicitor",
@@ -160,7 +161,6 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       respondentDetailsAllOptionsYes: true,
       applicantHasChildren: true,
       yesNoFL401ApplicantDetails: true,
-      respondentsBehaviourAllOptionsYes: true,
       applicantGender: "female",
       isWithoutNoticeDetailsYes: true,
       isWithoutNoticeDetailsBailConditions: "Yes",
@@ -172,6 +172,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       welshLanguageRequirementsAllOptionsYes: true,
       welshLanguageRequirementsSelectWelsh: false,
       viewPdfTestCases: "1",
+      fl401YesNoToEverything: true,
     });
   });
 
@@ -206,7 +207,6 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       applicantHasChildren: true,
       yesNoFL401ApplicantDetails: true,
       applicantGender: "male",
-      respondentsBehaviourAllOptionsYes: true,
       isWithoutNoticeDetailsYes: true,
       isWithoutNoticeDetailsBailConditions: "Don't know",
       otherProceedingsRadios: "Don't know",
@@ -217,6 +217,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       welshLanguageRequirementsAllOptionsYes: true,
       welshLanguageRequirementsSelectWelsh: false,
       viewPdfTestCases: "2",
+      fl401YesNoToEverything: true,
     });
   });
 
@@ -236,9 +237,8 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Saying 'No' to ever lived at the home address, 
   Saying 'No' to ever intend to live at home address
   Other Relationship Is: 'Cousin'
-  saying no to all attending the hearing questions`, async ({
-    page,
-  }): Promise<void> => {
+  saying no to all attending the hearing questions
+  Submit statement of truth`, async ({ page }): Promise<void> => {
     await FL401.fl401({
       page: page,
       user: "solicitor",
@@ -249,7 +249,6 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       applicantHasChildren: false,
       yesNoFL401ApplicantDetails: false,
       applicantGender: "female",
-      respondentsBehaviourAllOptionsYes: false,
       isWithoutNoticeDetailsYes: false,
       isWithoutNoticeDetailsBailConditions: "No",
       otherProceedingsRadios: "No",
@@ -261,6 +260,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       fl401AttendingTheHearingYesNo: false,
       welshLanguageRequirementsAllOptionsYes: false,
       viewPdfTestCases: "3",
+      fl401YesNoToEverything: false,
     });
   });
 });

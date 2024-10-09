@@ -23,6 +23,7 @@ import { Fl401AttendingTheHearing } from "./FL401AttendingTheHearing/fl401Attend
 import { FL401UploadDocuments } from "./FL401UploadDocuments/FL401UploadDocuments";
 import { FL401TheHome } from "./FL401TheHome/fl401TheHome";
 import { addressRadios } from "../../../pages/manageCases/createCase/FL401/theHome/fl401TheHome1Page";
+import { Fl401StatementOfTruth } from "./FL401StatementOfTruth/fl401StatementOfTruth";
 
 interface fl401Options {
   page: Page;
@@ -34,7 +35,6 @@ interface fl401Options {
   applicantHasChildren: boolean;
   yesNoFL401ApplicantDetails: boolean;
   applicantGender: ApplicantGender;
-  respondentsBehaviourAllOptionsYes: boolean;
   isWithoutNoticeDetailsYes: boolean;
   isWithoutNoticeDetailsBailConditions: bailConditionRadios;
   otherProceedingsRadios: otherProceedingsRadios;
@@ -47,6 +47,7 @@ interface fl401Options {
   welshLanguageRequirementsAllOptionsYes: boolean;
   welshLanguageRequirementsSelectWelsh?: boolean;
   viewPdfTestCases: ViewPdfTestCases;
+  fl401YesNoToEverything: boolean;
 }
 
 export class FL401 {
@@ -60,7 +61,6 @@ export class FL401 {
     applicantHasChildren,
     yesNoFL401ApplicantDetails,
     applicantGender,
-    respondentsBehaviourAllOptionsYes,
     isWithoutNoticeDetailsYes,
     isWithoutNoticeDetailsBailConditions,
     otherProceedingsRadios,
@@ -73,6 +73,7 @@ export class FL401 {
     welshLanguageRequirementsAllOptionsYes,
     welshLanguageRequirementsSelectWelsh,
     viewPdfTestCases,
+    fl401YesNoToEverything,
   }: fl401Options): Promise<void> {
     await SolicitorCreateInitial.createInitialCase({
       page: page,
@@ -130,8 +131,6 @@ export class FL401 {
     await FL401RespondentsBehaviour.fl401RespondentsBehaviour({
       page: page,
       accessibilityTest: accessibilityTest,
-      errorMessaging: errorMessaging,
-      respondentsBehaviourAllOptionsYes: respondentsBehaviourAllOptionsYes,
       subJourney: false,
     });
     await FL401OtherProceedings.fl401OtherProceedings({

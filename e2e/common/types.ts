@@ -49,6 +49,7 @@ export type fl401SolicitorEvents =
   | "Without notice order"
   | "Applicant details"
   | "Respondent details"
+  | "Other proceedings"
   | "Respondent's behaviour"
   | "Applicant's family"
   | "Relationship to respondent"
@@ -56,7 +57,8 @@ export type fl401SolicitorEvents =
   | "The home"
   | "Upload documents"
   | "Welsh language requirements"
-  | "View PDF application";
+  | "View PDF application"
+  | "Statement of truth and submit";
 
 export type ApplicantGender = "female" | "male" | "other";
 
