@@ -49,13 +49,15 @@ export type fl401SolicitorEvents =
   | "Without notice order"
   | "Applicant details"
   | "Respondent details"
+  | "Other proceedings"
   | "Respondent's behaviour"
   | "Applicant's family"
   | "Relationship to respondent"
   | "Attending the hearing"
   | "The home"
   | "Upload documents"
-  | "Welsh language requirements";
+  | "Welsh language requirements"
+  | "Statement of truth and submit";
 
 export type ApplicantGender = "female" | "male" | "other";
 

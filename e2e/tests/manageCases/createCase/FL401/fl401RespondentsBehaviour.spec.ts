@@ -7,43 +7,12 @@ test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 test.describe("FL401 Create case respondent’s behaviour tests @manageCases", (): void => {
   test(`Complete the FL401 respondent’s behaviour event as a solicitor with the following options:
   Not Accessibility testing,
-  Not Error message testing,
-  Saying yes to all options, @crossbrowserManageCases`, async ({
+  Not Error message testing @crossbrowserManageCases`, async ({
     page,
   }): Promise<void> => {
     await FL401RespondentsBehaviour.fl401RespondentsBehaviour({
       page: page,
       accessibilityTest: false,
-      errorMessaging: false,
-      respondentsBehaviourAllOptionsYes: true,
-      subJourney: true,
-    });
-  });
-
-  test(`Complete the FL401 respondent’s behaviour event as a solicitor with the following options:
-  Not Accessibility testing,
-  Not Error message testing,
-  Saying no to all options,`, async ({ page }): Promise<void> => {
-    await FL401RespondentsBehaviour.fl401RespondentsBehaviour({
-      page: page,
-      accessibilityTest: false,
-      errorMessaging: false,
-      respondentsBehaviourAllOptionsYes: false,
-      subJourney: true,
-    });
-  });
-
-  test(`Complete the FL401 respondent’s behaviour event as a solicitor with the following options:
-  Not Accessibility testing,
-  Error message testing,
-  Saying yes to all options, @crossbrowserManageCases`, async ({
-    page,
-  }): Promise<void> => {
-    await FL401RespondentsBehaviour.fl401RespondentsBehaviour({
-      page: page,
-      accessibilityTest: false,
-      errorMessaging: true,
-      respondentsBehaviourAllOptionsYes: true,
       subJourney: true,
     });
   });
@@ -51,15 +20,12 @@ test.describe("FL401 Create case respondent’s behaviour tests @manageCases", (
 
 test(`Accessibility test the FL401 respondent’s behaviour event as a solicitor with the following options:
   Accessibility testing,
-  Not Error message testing,
-  Saying yes to all options, @accessibilityManageCases`, async ({
+  Not Error message testing, @accessibilityManageCases`, async ({
   page,
 }): Promise<void> => {
   await FL401RespondentsBehaviour.fl401RespondentsBehaviour({
     page: page,
     accessibilityTest: true,
-    errorMessaging: false,
-    respondentsBehaviourAllOptionsYes: true,
     subJourney: true,
   });
 });
