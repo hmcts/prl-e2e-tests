@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { StartPage } from "../../../../pages/c100ScreeningSections/startPage";
-import { ChildAddressPage } from "../../../../pages/c100ScreeningSections/childAddressPage";
+import { StartPage } from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/startPage";
+import { ChildAddressPage } from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/childAddressPage";
 import {
   ConsentAgreementPage
-} from "../../../../pages/c100ScreeningSections/consentAgreementPage";
+} from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/consentAgreementPage";
 
 interface C100ScreeningSectionsOptions {
   page: Page;

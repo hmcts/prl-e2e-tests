@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../common/selectors";
-import AccessibilityTestHelper from "../../common/accessibilityTestHelper";
-import { ConsentAgreementContent } from "../../fixtures/c100ScreeningSections/consentAgreementContent";
-import { Helpers } from "../../common/helpers";
+import { Selectors } from "../../../../../common/selectors";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { ConsentAgreementContent } from "../../../../../fixtures/citizen/createCase/C100/c100ScreeningSections/consentAgreementContent";
+import { Helpers } from "../../../../../common/helpers";
 
 enum uniqueSelectors {
   errorList = ".govuk-list govuk-error-summary__list > li > ",

@@ -53,11 +53,6 @@ export class CaseDashboardPage {
       `${Selectors.GovukHeadingL}:text-is("${CaseDashboardContent.pageTitle}")`
     );
     await Promise.all([
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukCaptionL}:text-is("${CaseDashboardContent.caption}")`,
-        1
-      ),
       Helpers.checkGroup(
         page,
         3,

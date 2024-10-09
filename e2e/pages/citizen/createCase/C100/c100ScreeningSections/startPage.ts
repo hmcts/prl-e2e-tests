@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../common/selectors";
-import { StartContent } from "../../fixtures/c100ScreeningSections/startContent";
-import { Helpers } from "../../common/helpers";
-import AccessibilityTestHelper from "../../common/accessibilityTestHelper";
+import { Selectors } from "../../../../../common/selectors";
+import { StartContent } from "../../../../../fixtures/citizen/createCase/C100/c100ScreeningSections/startContent";
+import { Helpers } from "../../../../../common/helpers";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 
 interface StartPageOptions {
   page: Page;
