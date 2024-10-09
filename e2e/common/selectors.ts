@@ -4,7 +4,6 @@ export enum Selectors {
   GovukHeader = ".govuk-header",
   h1 = "h1",
   headingH2 = ".heading-h2",
-  h1 = "h1",
   h2 = "h2",
   h3 = "h3",
 
