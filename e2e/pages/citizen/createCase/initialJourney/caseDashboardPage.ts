@@ -1,6 +1,6 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors";
-import { CaseDashboardContent } from "../../../../fixtures/citizenCreateCase/initialJourney/caseDashboardContent";
+import { CaseDashboardContent } from "../../../../fixtures/citizen/initialJourney/caseDashboardContent";
 import { Helpers } from "../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
 import { solicitorCaseCreateType } from "../../../../common/types";
@@ -30,7 +30,7 @@ interface CheckPageLoadsOptions {
 }
 
 export class CaseDashboardPage {
-  private static async caseDashBoardPage({
+  public static async caseDashboardPage({
     page,
     accessibilityTest,
     childArrangementsJourney
