@@ -85,11 +85,8 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Saying no to all children and respondents questions 
   Setting the allegations of harm to none.
   Saying no to all attending the hearing questions
-  Saying no to all children and respondents questions
-  Saying no to all children and respondents questions
   Saying no to all Miam
   Saying no to all International element options
-  Saying no to all children and respondents questions
   Saying no to all children and respondents questions
   Saying no to all Litigation Capacity options
   Setting WelshPageRequirementType to "english"
@@ -145,7 +142,8 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
      Saying yes to all Respondent details questions,
      Saying yes to all Type of application questions,
      Saying yes to applicant details questions,
-     Saying yes to respondents behaviour questions,     Saying yes to all Without Notice Order questions
+     Saying yes to respondents behaviour questions,
+     Saying yes to other proceedings
      Saying yes to all Without Notice Order questions,
      Relationship is 'Formerly lived together as a couple'
      Saying yes to all 'The Home' Questions,
@@ -183,15 +181,19 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
      Saying yes to all Respondent details questions,
      Saying yes to all Type of application questions
      Saying yes to applicant details questions,
-     Saying yes to respondents behaviour questions,      Saying yes to Without Notice Order questions,
+     Saying yes to respondents behaviour questions,
+     Saying yes to Without Notice Order questions,
      Saying "Don't know" to Without Notice Order bail conditions,
+     Saying "Don't know" to other proceedings
      Saying yes to all Type of application questions,
      Saying yes to applicant details questions,
      Saying yes to Without Notice Order questions,
-     Saying "Don't know" to Without Notice Order bail conditions,      Saying yes to all 'The Home' booleans,
+     Saying "Don't know" to Without Notice Order bail conditions,
+     Saying yes to all 'The Home' booleans,
      'Yes, applicant' to has the applicant or respondent ever lived at the home address,
      Relationship is 'Married or in a civil partnership',
-     Saying yes to all attending the hearing questions,      upload document files
+     Saying yes to all attending the hearing questions,
+     upload document files
   @crossbrowserManageCases`, async ({ page }): Promise<void> => {
     await FL401.fl401({
       page: page,
@@ -206,7 +208,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       respondentsBehaviourAllOptionsYes: true,
       isWithoutNoticeDetailsYes: true,
       isWithoutNoticeDetailsBailConditions: "Don't know",
-      otherProceedingsRadios: "Yes",
+      otherProceedingsRadios: "Don't know",
       relationshipToRespondent: "marriedOrCivil",
       fl401TheHomeYesNo: true,
       fl401EverLivedAtAddress: "yesApplicant",
@@ -223,7 +225,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Saying no to all Respondent details questions,
   Saying no to all Type of application questions,
   Saying no to respondents behaviour questions,
-  Saying no to Without Notice Order questions,
+  Saying No to Other Proceedings
   Saying no to Without Notice Order questions,
   Relationship is 'None of the above',
   Other Relationship Is: 'Cousin',
@@ -248,7 +250,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       respondentsBehaviourAllOptionsYes: false,
       isWithoutNoticeDetailsYes: false,
       isWithoutNoticeDetailsBailConditions: "No",
-      otherProceedingsRadios: "Yes",
+      otherProceedingsRadios: "No",
       relationshipToRespondent: "noneOfTheAbove",
       relationshipToRespondentOther: "Cousin",
       fl401TheHomeYesNo: false,
