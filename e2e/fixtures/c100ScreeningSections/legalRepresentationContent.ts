@@ -1,4 +1,4 @@
-export enum C100ScreeningSectionLegalRepresentation {
+export enum LegalRepresentationContent {
   pageTitle = "Will you be using a legal representative in these proceedings?",
   formLabel1 = "Yes",
   formLabel2 = "No",
