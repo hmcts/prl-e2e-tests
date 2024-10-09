@@ -18,18 +18,21 @@ export class ViewPDFApplicationSubmitPage {
     page: Page,
     accessibilityTest: boolean,
   ): Promise<void> {
-    await Promise.all([
-      this.checkPageLoads(page),
-      this.checkFilledInData(page),
-    ]);
+    await Promise.all([this.checkPageLoads(page)]);
     if (accessibilityTest) {
       await accessibilityTestHelper.run(page);
     }
   }
 
-  private static async checkPageLoads(page: Page): Promise<void> {}
+  private static async checkPageLoads(page: Page): Promise<void> {
+    await page.waitForSelector(
+      `${Selectors.GovukHeadingL}:text-is("${SubmitContent.pageTitle}")`,
+    );
+  }
 
-  private static async checkFilledInData(page: Page): Promise<void> {}
-
-  private static async fillInFields(page: Page): Promise<void> {}
+  private static async fillInFields(page: Page): Promise<void> {
+    await page.click(
+      `${Selectors.button}:text-is("${SubmitContent.saveAndContinue}")`,
+    );
+  }
 }

@@ -39,7 +39,6 @@ export class ViewPDFApplicationPage {
   }
 
   private static async openMediaViewer(page: Page, language: Language) {
-    // noinspection TypeScriptValidateTypes
     const [pdfPage] = await Promise.all([
       page.waitForEvent("popup"),
       page.click(
@@ -117,17 +116,25 @@ export class ViewPDFApplicationPage {
     if (viewPdfTestCases === "3") {
       await Helpers.checkGroup(
         page,
-        81,
+        77,
         ViewPDFApplicationContent,
         "testCase3QuestionLabel",
         `${Selectors.Span}`,
       );
     } else {
-      // noinspection TypeScriptValidateTypes
+      if (viewPdfTestCases === "1") {
+        await Helpers.checkGroup(
+          page,
+          4,
+          ViewPDFApplicationContent,
+          "testCase1QuestionLabel",
+          `${Selectors.Span}`,
+        );
+      }
       await Promise.all([
         Helpers.checkGroup(
           page,
-          94,
+          90,
           ViewPDFApplicationContent,
           "questionLabel",
           `${Selectors.Span}`,
@@ -178,11 +185,10 @@ export class ViewPDFApplicationPage {
     page: Page,
     viewPdfTestCases: ViewPdfTestCases,
   ) {
-    // noinspection TypeScriptValidateTypes
     await Promise.all([
       Helpers.checkGroup(
         page,
-        62,
+        58,
         ViewPDFApplicationContent,
         "applicationLabel",
         `${Selectors.Span}`,
@@ -215,7 +221,7 @@ export class ViewPDFApplicationPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.Span}:text-is("${ViewPDFApplicationContent.yes}")`,
-        viewPdfTestCases === "2" ? 26 : 27,
+        viewPdfTestCases === "2" ? 25 : 27,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -243,7 +249,7 @@ export class ViewPDFApplicationPage {
   private static async checkAnswers1English(page: Page) {
     await Helpers.checkGroup(
       page,
-      4,
+      8,
       ViewPDFApplicationContent,
       "testCase1Label",
       `${Selectors.Span}`,
@@ -251,21 +257,27 @@ export class ViewPDFApplicationPage {
   }
 
   private static async checkAnswers2English(page: Page) {
-    await Helpers.checkGroup(
-      page,
-      4,
-      ViewPDFApplicationContent,
-      "testCase2Label",
-      `${Selectors.Span}`,
-    );
-  }
-
-  private static async checkAnswers3English(page: Page) {
-    // noinspection TypeScriptValidateTypes
     await Promise.all([
       Helpers.checkGroup(
         page,
-        26,
+        3,
+        ViewPDFApplicationContent,
+        "testCase2Label",
+        `${Selectors.Span}`,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${ViewPDFApplicationContent.testCase2LabelRepeated}")`,
+        2,
+      ),
+    ]);
+  }
+
+  private static async checkAnswers3English(page: Page) {
+    await Promise.all([
+      Helpers.checkGroup(
+        page,
+        22,
         ViewPDFApplicationContent,
         "testCase3Label",
         `${Selectors.Span}`,
@@ -273,7 +285,7 @@ export class ViewPDFApplicationPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.Span}:text-is("${ViewPDFApplicationContent.no}")`,
-        23,
+        24,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -302,11 +314,10 @@ export class ViewPDFApplicationPage {
     page: Page,
     viewPdfTestCases: ViewPdfTestCases,
   ) {
-    // noinspection TypeScriptValidateTypes
     await Promise.all([
       Helpers.checkGroup(
         page,
-        87,
+        83,
         ViewPDFApplicationContent,
         "questionLabelWelsh",
         `${Selectors.Span}`,
@@ -352,17 +363,25 @@ export class ViewPDFApplicationPage {
         3,
       ),
     ]);
+    if (viewPdfTestCases === "1") {
+      await Helpers.checkGroup(
+        page,
+        4,
+        ViewPDFApplicationContent,
+        "testCase1QuestionLabelWelsh",
+        `${Selectors.Span}`,
+      );
+    }
   }
 
   private static async checkCommonDataWelsh(
     page: Page,
     viewPdfTestCases: ViewPdfTestCases,
   ) {
-    // noinspection TypeScriptValidateTypes
     await Promise.all([
       Helpers.checkGroup(
         page,
-        64,
+        60,
         ViewPDFApplicationContent,
         "answerLabelWelsh",
         `${Selectors.Span}`,
@@ -390,7 +409,7 @@ export class ViewPDFApplicationPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.Span}:text-is("${ViewPDFApplicationContent.repeatedLabelWelsh5}")`,
-        12,
+        viewPdfTestCases === "1" ? 12 : 11,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -446,17 +465,28 @@ export class ViewPDFApplicationPage {
   }
 
   private static async checkAnswers2Welsh(page: Page) {
-    await Helpers.checkGroup(
-      page,
-      4,
-      ViewPDFApplicationContent,
-      "testCase2LabelWelsh",
-      `${Selectors.Span}`,
-    );
+    await Promise.all([
+      Helpers.checkGroup(
+        page,
+        5,
+        ViewPDFApplicationContent,
+        "testCase2LabelWelsh",
+        `${Selectors.Span}`,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${ViewPDFApplicationContent.testCase2LabelWelshRepeated1}")`,
+        2,
+      ),
+    ]);
   }
 
   private static async fillInFields(
     page: Page,
     accessibilityTest: boolean,
-  ): Promise<void> {}
+  ): Promise<void> {
+    await page.click(
+      `${Selectors.button}:text-is("${ViewPDFApplicationContent.continue}")`,
+    );
+  }
 }

@@ -46,10 +46,10 @@ export enum ViewPDFApplicationContent {
   questionLabel39 = "If the applicant is, or was, married or in a civil",
   questionLabel40 = "What was the respondent’s relationship with",
   questionLabel41 = "Does the applicant have any children (or",
-  questionLabel42 = "Child’s date of birth:", //
-  questionLabel43 = "Applicant’s relationship to the child:", //
-  questionLabel44 = "Do the applicant and the respondent have", //
-  questionLabel45 = "Respondent’s relationship to the child:", //
+  questionLabel42 = "Child’s date of birth:",
+  questionLabel43 = "Applicant’s relationship to the child:",
+  questionLabel44 = "Do the applicant and the respondent have",
+  questionLabel45 = "Respondent’s relationship to the child:",
   questionLabel46 = "What does the applicant want to stop the",
   questionLabel47 = "What does the applicant want the respondent",
   questionLabel48 = "Is there anything else that the applicant wants",
@@ -58,9 +58,9 @@ export enum ViewPDFApplicationContent {
   questionLabel51 = "Has the applicant or respondent ever lived at",
   questionLabel52 = "Did the applicant or respondent ever intend to",
   questionLabel53 = "Do any children live at the address that the",
-  questionLabel54 = "Do you need to keep this information", //
-  questionLabel55 = "Child’s age:", //
-  questionLabel56 = "Is the respondent also responsible for the", //
+  questionLabel54 = "Do you need to keep this information",
+  questionLabel55 = "Child’s age:",
+  questionLabel56 = "Is the respondent also responsible for the",
   questionLabel57 = "Is the property adapted in any way for the",
   questionLabel58 = "Details of special adaptations:",
   questionLabel59 = "Is there a mortgage on the property?",
@@ -77,29 +77,27 @@ export enum ViewPDFApplicationContent {
   questionLabel70 = "Is there anything else the applicant wants to",
   questionLabel71 = "Any further information the applicant would",
   questionLabel72 = "Are there ongoing family court proceedings",
-  questionLabel73 = "Name of court:",
-  questionLabel74 = "Case number (optional):",
-  questionLabel75 = "Type of case:",
-  questionLabel76 = "Any other details:",
-  questionLabel77 = "Will the applicant, or anyone else attending",
-  questionLabel78 = "Provide the names of people involved in the", //
-  questionLabel79 = "Welsh language requirements:", //
-  questionLabel80 = "Do you know if an interpreter will be needed",
-  questionLabel81 = "Who will require the interpreter?", //
-  questionLabel82 = "Describe their relationship to the case:", //
-  questionLabel83 = "Enter details of language or dialect required:", //
-  questionLabel84 = "Any other assistance required (e.g. sign", //
-  questionLabel85 = "Does the applicant, or anyone else attending",
-  questionLabel86 = "Describe the adjustments the court needs to",
-  questionLabel87 = "Will the court need to make special",
-  questionLabel88 = "Give details of the special arrangements that",
-  questionLabel89 = "Do you know if an intermediary will be",
-  questionLabel90 = "Set out the reasons that an intermediary will",
-  questionLabel91 = "Does any person in this case need orders or",
-  questionLabel92 = "Which language are you using to complete",
-  questionLabel93 = "Court:",
-  questionLabel94 = "Date:",
+  questionLabel73 = "Will the applicant, or anyone else attending",
+  questionLabel74 = "Provide the names of people involved in the",
+  questionLabel75 = "Welsh language requirements:",
+  questionLabel76 = "Do you know if an interpreter will be needed",
+  questionLabel77 = "Who will require the interpreter?",
+  questionLabel78 = "Describe their relationship to the case:",
+  questionLabel79 = "Enter details of language or dialect required:",
+  questionLabel80 = "Any other assistance required (e.g. sign",
+  questionLabel81 = "Does the applicant, or anyone else attending",
+  questionLabel82 = "Describe the adjustments the court needs to",
+  questionLabel83 = "Will the court need to make special",
+  questionLabel84 = "Give details of the special arrangements that",
+  questionLabel85 = "Do you know if an intermediary will be",
+  questionLabel86 = "Set out the reasons that an intermediary will",
+  questionLabel87 = "Does any person in this case need orders or",
+  questionLabel88 = "Which language are you using to complete",
+  questionLabel89 = "Court:",
+  questionLabel90 = "Date:",
 
+  // ----------------------------------------
+  // Test case 3 questions
   testCase3QuestionLabel1 = questionLabel1,
   testCase3QuestionLabel2 = questionLabel2,
   testCase3QuestionLabel3 = questionLabel3,
@@ -166,21 +164,24 @@ export enum ViewPDFApplicationContent {
   testCase3QuestionLabel64 = questionLabel71,
   testCase3QuestionLabel65 = questionLabel72,
   testCase3QuestionLabel66 = questionLabel73,
-  testCase3QuestionLabel67 = questionLabel74,
-  testCase3QuestionLabel68 = questionLabel75,
-  testCase3QuestionLabel69 = questionLabel76,
-  testCase3QuestionLabel70 = questionLabel77,
-  testCase3QuestionLabel71 = questionLabel80,
+  testCase3QuestionLabel67 = questionLabel76,
+  testCase3QuestionLabel68 = questionLabel81,
+  testCase3QuestionLabel69 = questionLabel82,
+  testCase3QuestionLabel70 = questionLabel83,
+  testCase3QuestionLabel71 = questionLabel84,
   testCase3QuestionLabel72 = questionLabel85,
   testCase3QuestionLabel73 = questionLabel86,
   testCase3QuestionLabel74 = questionLabel87,
   testCase3QuestionLabel75 = questionLabel88,
   testCase3QuestionLabel76 = questionLabel89,
   testCase3QuestionLabel77 = questionLabel90,
-  testCase3QuestionLabel78 = questionLabel91,
-  testCase3QuestionLabel79 = questionLabel92,
-  testCase3QuestionLabel80 = questionLabel93,
-  testCase3QuestionLabel81 = questionLabel94,
+
+  // ----------------------------------------
+  // Unique to test case 1:
+  testCase1QuestionLabel1 = "Name of court:",
+  testCase1QuestionLabel2 = "Case number (optional):",
+  testCase1QuestionLabel3 = "Type of case:",
+  testCase1QuestionLabel4 = "Any other details:",
 
   // ----------------------------------------
   // Repeated questions
@@ -188,28 +189,29 @@ export enum ViewPDFApplicationContent {
   repeatedQuestionLabel2 = "Previous name (if any):", // 2
   repeatedQuestionLabel3 = "Can you provide an email address?", // 2
   repeatedQuestionLabel4 = "Email address:", // 2
-  repeatedQuestionLabel5 = "Child’s full name:", // 2 NO TC3
+  repeatedQuestionLabel5 = "Child’s full name:", // 2 TC1, TC2, 0 TC3
   repeatedQuestionLabel6 = "Provide the details in the box below", // 3
   repeatedQuestionLabel7 = "Does this application need to be translated", // 2
 
+  // ----------------------------------------
   // Both test case 1 and 2:
-  applicationLabel1 = "Non-molestation order ,Occupation order", // TC 3
+  applicationLabel1 = "Non-molestation order ,Occupation order",
   applicationLabel2 = "There is risk of significant harm to the applicant or a",
   applicationLabel3 = "It is likely that the applicant will be deterred or prevented",
   applicationLabel4 = "The applicant believes that the respondent is aware of the",
   applicationLabel5 = "Some Reasons for my Case",
   applicationLabel6 = "Some Other Details",
-  applicationLabel7 = "Automated", // TC 3
-  applicationLabel8 = "Tester", // TC 3
-  applicationLabel9 = "Automation", // TC 3
-  applicationLabel10 = "19/12/1980", // TC 3
-  applicationLabel11 = "Automatic", // TC 3
-  applicationLabel12 = "Testing", // TC 3
-  applicationLabel13 = "iron@man.com", // TC 3
-  applicationLabel14 = "Some kind of reference", // TC 3
-  applicationLabel15 = "My New Org", // TC 3
-  applicationLabel16 = "firstName", // TC 3
-  applicationLabel17 = "lastName", // TC 3
+  applicationLabel7 = "Automated",
+  applicationLabel8 = "Tester",
+  applicationLabel9 = "Automation",
+  applicationLabel10 = "19/12/1980",
+  applicationLabel11 = "Automatic",
+  applicationLabel12 = "Testing",
+  applicationLabel13 = "iron@man.com",
+  applicationLabel14 = "Some kind of reference",
+  applicationLabel15 = "My New Org",
+  applicationLabel16 = "firstName",
+  applicationLabel17 = "lastName",
   applicationLabel18 = "repondent1@example.net",
   applicationLabel19 = "00000000000",
   applicationLabel20 = "01/06/2012",
@@ -232,29 +234,25 @@ export enum ViewPDFApplicationContent {
   applicationLabel37 = "Posting or publishing anything about their child or children",
   applicationLabel38 = "Contacting their child or children directly without the",
   applicationLabel39 = "Going to or near the child or child's school or Nursery",
-  applicationLabel40 = "exampleText", // Moved up to fill gap
-  applicationLabel41 = "The applicant ,The respondent ,The applicant’s child or", // TC 3
-  applicationLabel42 = "Automated Grandparents", // TC 3
+  applicationLabel40 = "exampleText",
+  applicationLabel41 = "The applicant ,The respondent ,The applicant’s child or",
+  applicationLabel42 = "Automated Grandparents",
   applicationLabel43 = "Automated Property Adaptations",
   applicationLabel44 = "Automated mortgage reasons",
   applicationLabel45 = "Automated Mortgage Lender",
-  applicationLabel46 = "Automated Landlord Reasons", // Moved up to fill gap
+  applicationLabel46 = "Automated Landlord Reasons",
   applicationLabel47 = "Automated Landlord",
-  applicationLabel48 = "The applicant wants to be able to stay in their home ,The", // TC 3
-  applicationLabel49 = "The applicant needs the respondent to pay for or contribute to", // TC 3
+  applicationLabel48 = "The applicant wants to be able to stay in their home ,The",
+  applicationLabel49 = "The applicant needs the respondent to pay for or contribute to",
   applicationLabel50 = "Some automated details to be considered by court",
-  applicationLabel51 = "exampleNameOfCourt", // TC 3
-  applicationLabel52 = "exampleCaseNumber", // TC 3
-  applicationLabel53 = "exampleTypeOfCase", // TC 3
-  applicationLabel54 = "exampleOtherDetails", // TC 3
-  applicationLabel55 = "Automated Tester",
-  applicationLabel56 = "Automated Interpreter",
-  applicationLabel57 = "Automated Language",
-  applicationLabel58 = "Automated Assistance",
-  applicationLabel59 = "Automated Adjustments",
-  applicationLabel60 = "Automated Arrangements",
-  applicationLabel61 = "Intermediary Reasons",
-  applicationLabel62 = "English",
+  applicationLabel51 = "Automated Tester",
+  applicationLabel52 = "Automated Interpreter",
+  applicationLabel53 = "Automated Language",
+  applicationLabel54 = "Automated Assistance",
+  applicationLabel55 = "Automated Adjustments",
+  applicationLabel56 = "Automated Arrangements",
+  applicationLabel57 = "Intermediary Reasons",
+  applicationLabel58 = "English",
 
   // ----------------------------------------
   // Both test case 1 and 2 repeated:
@@ -270,13 +268,17 @@ export enum ViewPDFApplicationContent {
   testCase1Label2 = "Female",
   testCase1Label3 = "Formerly lived together as a couple",
   testCase1Label4 = "Yes, both of them",
+  testCase1Label5 = "exampleNameOfCourt",
+  testCase1Label6 = "exampleCaseNumber",
+  testCase1Label7 = "exampleTypeOfCase",
+  testCase1Label8 = "exampleOtherDetails",
 
   // ----------------------------------------
   // Unique to test case 2
   testCase2Label1 = "Male",
   testCase2Label2 = "Yes, the applicant",
-  testCase2Label3 = "Don't know",
-  testCase2Label4 = "Married or in a civil partnership",
+  testCase2Label3 = "Married or in a civil partnership",
+  testCase2LabelRepeated = "Don't know", // 2
 
   // ----------------------------------------
   // Test case 3
@@ -296,16 +298,12 @@ export enum ViewPDFApplicationContent {
   testCase3Label14 = applicationLabel42,
   testCase3Label15 = applicationLabel48,
   testCase3Label16 = applicationLabel49,
-  testCase3Label17 = applicationLabel51,
-  testCase3Label18 = applicationLabel52,
-  testCase3Label19 = applicationLabel53,
-  testCase3Label20 = applicationLabel54,
-  testCase3Label21 = repeatedLabel1,
-  testCase3Label22 = repeatedLabel3,
-  testCase3Label23 = testCase1Label2,
-  testCase3Label24 = "+44123456789",
-  testCase3Label25 = "None of the above",
-  testCase3Label26 = "Cousin",
+  testCase3Label17 = repeatedLabel1,
+  testCase3Label18 = repeatedLabel3,
+  testCase3Label19 = testCase1Label2,
+  testCase3Label20 = "+44123456789",
+  testCase3Label21 = "None of the above",
+  testCase3Label22 = "Cousin",
 
   // ----------------------------------------
   // WELSH
@@ -373,31 +371,36 @@ export enum ViewPDFApplicationContent {
   questionLabelWelsh61 = "Beth yn union y mae’r ceisydd eisiau gweld",
   questionLabelWelsh62 = "Unrhyw wybodaeth bellach hoffai’r ceisydd i’r",
   questionLabelWelsh63 = "A oes unrhyw achosion yn y llys teulu ar hyn",
-  questionLabelWelsh64 = "Enw’r llys:",
-  questionLabelWelsh65 = "Rhif yr achos (dewisol):",
-  questionLabelWelsh66 = "Math o achos:",
-  questionLabelWelsh67 = "Unrhyw fanylion eraill:",
-  questionLabelWelsh68 = "A fydd y ceisydd, neu unrhyw un arall sy’n",
-  questionLabelWelsh69 = "Rhowch enwau’r bobl sy’n rhan o’r achos sy’n",
-  questionLabelWelsh70 = "Gofynion o ran yr iaith Gymraeg:",
-  questionLabelWelsh71 = "A ydych yn gwybod os bydd angen",
-  questionLabelWelsh72 = "Pwy fydd angen y cyfieithydd?",
-  questionLabelWelsh73 = "Disgrifiwch eu perthynas â’r achos:",
-  questionLabelWelsh74 = "Nodwch fanylion yr iaith a thafodiaith:",
-  questionLabelWelsh75 = "A oes angen unrhyw gymorth arall (e.e. iaith",
-  questionLabelWelsh76 = "A oes gan y ceisydd, neu unrhyw un arall sy’n",
-  questionLabelWelsh77 = "Disgrifiwch yr addasiadau y bydd angen i’r",
-  questionLabelWelsh78 = "A fydd angen i’r llys wneud trefniadau",
-  questionLabelWelsh79 = "Rhowch fanylion y trefniadau arbennig sydd",
-  questionLabelWelsh80 = "A ydych yn gwybod a fydd angen cyfryngwr?",
-  questionLabelWelsh81 = "Nodwch y rhesymau dros fod angen",
-  questionLabelWelsh82 = "A oes unrhyw unigolyn yn yr achos hwn yn",
-  questionLabelWelsh83 = "Ym mha iaith yr ydych yn cwblhau’r cais?",
-  questionLabelWelsh84 = "A oes angen cyfieithu’r cais hwn i Saesneg?",
-  questionLabelWelsh85 = "A oes angen cyfieithu’r cais hwn i Gymraeg?",
-  questionLabelWelsh86 = "Llys:",
-  questionLabelWelsh87 = "Dyddiad:",
+  questionLabelWelsh64 = "A fydd y ceisydd, neu unrhyw un arall sy’n",
+  questionLabelWelsh65 = "Rhowch enwau’r bobl sy’n rhan o’r achos sy’n",
+  questionLabelWelsh66 = "Gofynion o ran yr iaith Gymraeg:",
+  questionLabelWelsh67 = "A ydych yn gwybod os bydd angen",
+  questionLabelWelsh68 = "Pwy fydd angen y cyfieithydd?",
+  questionLabelWelsh69 = "Disgrifiwch eu perthynas â’r achos:",
+  questionLabelWelsh70 = "Nodwch fanylion yr iaith a thafodiaith:",
+  questionLabelWelsh71 = "A oes angen unrhyw gymorth arall (e.e. iaith",
+  questionLabelWelsh72 = "A oes gan y ceisydd, neu unrhyw un arall sy’n",
+  questionLabelWelsh73 = "Disgrifiwch yr addasiadau y bydd angen i’r",
+  questionLabelWelsh74 = "A fydd angen i’r llys wneud trefniadau",
+  questionLabelWelsh75 = "Rhowch fanylion y trefniadau arbennig sydd",
+  questionLabelWelsh76 = "A ydych yn gwybod a fydd angen cyfryngwr?",
+  questionLabelWelsh77 = "Nodwch y rhesymau dros fod angen",
+  questionLabelWelsh78 = "A oes unrhyw unigolyn yn yr achos hwn yn",
+  questionLabelWelsh79 = "Ym mha iaith yr ydych yn cwblhau’r cais?",
+  questionLabelWelsh80 = "A oes angen cyfieithu’r cais hwn i Saesneg?",
+  questionLabelWelsh81 = "A oes angen cyfieithu’r cais hwn i Gymraeg?",
+  questionLabelWelsh82 = "Llys:",
+  questionLabelWelsh83 = "Dyddiad:",
 
+  // ----------------------------------------
+  // Unique to test case 1:
+  testCase1QuestionLabelWelsh1 = "Enw’r llys:",
+  testCase1QuestionLabelWelsh2 = "Rhif yr achos (dewisol):",
+  testCase1QuestionLabelWelsh3 = "Math o achos:",
+  testCase1QuestionLabelWelsh4 = "Unrhyw fanylion eraill:",
+
+  // ----------------------------------------
+  // Repeated questions
   questionLabelRepeatedWelsh1 = "Enw olaf:", // 2
   questionLabelRepeatedWelsh2 = "Enw blaenorol (os oedd un):", // 2
   questionLabelRepeatedWelsh3 = "Allwch chi ddarparu cyfeiriad e-bost?", // 2
@@ -407,6 +410,8 @@ export enum ViewPDFApplicationContent {
   questionLabelRepeatedWelsh7 = "A oes yna unrhyw beth arall y mae’r ceisydd", // 2
   questionLabelRepeatedWelsh8 = "Rhowch y manylion yn y blwch isod", // 3
 
+  // ----------------------------------------
+  // Both test case 1 and 2:
   answerLabelWelsh1 = "Gorchymyn rhag molestu ,Gorchymyn anheddu",
   answerLabelWelsh2 = "Mae risg o niwed sylweddol i'r ceisydd neu i blentyn",
   answerLabelWelsh3 = "Mae'n debygol y bydd y ceisydd yn cael ei rwystro neu ei",
@@ -457,20 +462,16 @@ export enum ViewPDFApplicationContent {
   answerLabelWelsh48 = "Mae ar y ceisydd angen i'r atebydd dalu am neu gyfrannu at",
   answerLabelWelsh49 = applicationLabel50,
   answerLabelWelsh50 = applicationLabel51,
-  answerLabelWelsh51 = applicationLabel52,
-  answerLabelWelsh52 = applicationLabel53,
-  answerLabelWelsh53 = applicationLabel54,
-  answerLabelWelsh54 = applicationLabel55,
-  answerLabelWelsh55 = "Ceisydd",
-  answerLabelWelsh56 = "Atebydd",
-  answerLabelWelsh57 = "Pobl eraill yn yr achos",
+  answerLabelWelsh51 = "Ceisydd",
+  answerLabelWelsh52 = "Atebydd",
+  answerLabelWelsh53 = "Pobl eraill yn yr achos",
+  answerLabelWelsh54 = applicationLabel52,
+  answerLabelWelsh55 = applicationLabel53,
+  answerLabelWelsh56 = applicationLabel54,
+  answerLabelWelsh57 = applicationLabel55,
   answerLabelWelsh58 = applicationLabel56,
   answerLabelWelsh59 = applicationLabel57,
-  answerLabelWelsh60 = applicationLabel58,
-  answerLabelWelsh61 = applicationLabel59,
-  answerLabelWelsh62 = applicationLabel60,
-  answerLabelWelsh63 = applicationLabel61,
-  answerLabelWelsh64 = "Saesneg",
+  answerLabelWelsh60 = "Saesneg",
 
   // ----------------------------------------
   // Both test case 1 and 2 repeated:
@@ -478,7 +479,7 @@ export enum ViewPDFApplicationContent {
   repeatedLabelWelsh2 = repeatedLabel1, // 2
   repeatedLabelWelsh3 = "Ydw", // 2
   repeatedLabelWelsh4 = "Rhaid cadw’r wybodaeth hon yn gyfrinachol", // 6
-  repeatedLabelWelsh5 = "Oes", // 12
+  repeatedLabelWelsh5 = "Oes", // 12 TC1, 11 TC2
   repeatedLabelWelsh6 = "Gallaf", // 3
   repeatedLabelWelsh7 = repeatedLabel3, // 2
   repeatedLabelWelsh8 = repeatedLabel4, // 2
@@ -493,19 +494,20 @@ export enum ViewPDFApplicationContent {
 
   // ----------------------------------------
   // Unique to test case 2:
-  testCase2LabelWelsh1 = "Ddim yn gwybod",
-  testCase2LabelWelsh2 = "Gwrywaidd",
-  testCase2LabelWelsh3 = "Achosi difrod i'w gartref ef/hi",
-  testCase2LabelWelsh4 = "Ydy, y ceisydd",
-  testCase2LabelWelsh5 = "Yn briod neu mewn partneriaeth sifil",
-  testCase2LabelWelsh6 = "Bydd",
+  testCase2LabelWelsh1 = "Gwrywaidd",
+  testCase2LabelWelsh2 = "Achosi difrod i'w gartref ef/hi",
+  testCase2LabelWelsh3 = "Ydy, y ceisydd",
+  testCase2LabelWelsh4 = "Yn briod neu mewn partneriaeth sifil",
+  testCase2LabelWelsh5 = "Bydd",
+  testCase2LabelWelshRepeated1 = "Ddim yn gwybod", // 2
 
   // ----------------------------------------
   // Misc
-  yes = "Yes", // 27 TC1 & TC2, 1 TC3
-  no = "No", // 23 TC3
+  yes = "Yes", // 27 TC1, 25 TC2, 1 TC3
+  no = "No", // 24 TC3
   buckinghamPalace = "Buckingham Palace", // 5 TC1 & TC2, 3 TC3
   london = "London", // 5 TC1 & TC2, 3 TC3
   bpPostcode = "SW1A 1AA", // 5 TC1 & TC2, 3 TC3
   uk = "United Kingdom", // 5 TC1 & TC2, 3 TC3
+  continue = "Continue",
 }
