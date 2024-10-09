@@ -39,7 +39,9 @@ export type c100SolicitorEvents =
   | "International element"
   | "Litigation capacity"
   | "Other proceedings"
-  | "Welsh language requirements";
+  | "Welsh language requirements"
+  | "View PDF application"
+  | "Submit and pay";
 
 export type fl401SolicitorEvents =
   | "Case name"
