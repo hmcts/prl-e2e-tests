@@ -50,7 +50,7 @@ export class LegalRepresentationPage {
         `${Selectors.GovukLabel}`
       ),
     ])
-    if (accessibilityTestHelper) {
+    if (accessibilityTest) {
       await AccessibilityTestHelper.run(
         page
       );
@@ -59,5 +59,12 @@ export class LegalRepresentationPage {
 
   private static async checkErrorMessaging(
     page: Page
-  ): Promise<void>
+  ): Promise<void> {
+    await page.click(
+      `${Selectors.button}:text-is("${LegalRepresentationContent.continue}")`
+    );
+    await Promise.all([
+
+    ])
+  }
 }
