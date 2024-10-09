@@ -5,6 +5,7 @@ import { Helpers } from "../../../common/helpers";
 import { CommonContent } from "../../../fixtures/manageCases/commonContent";
 import { DummyPaymentAwpContent } from "../../../fixtures/manageCases/caseWorker/dummyPaymentContent1";
 
+// test comment
 export class DummyPaymentAwpPage extends CommonPage {
   public static async DummyPaymentAwpPage({
     page: page,
