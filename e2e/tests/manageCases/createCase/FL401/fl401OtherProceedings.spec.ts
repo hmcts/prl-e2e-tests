@@ -53,7 +53,22 @@ test.describe("FL401 Create case other proceedings tests @manageCases", (): void
   test(`Complete the FL401 other proceedings event as a solicitor with the following options:
   Not Accessibility testing,
   Error message testing,
-  Saying yes to previous or ongoing family court proceedings involving the applicant and respondent, @crossbrowserManageCases`, async ({
+  Saying no to previous or ongoing family court proceedings involving the applicant and respondent, @crossbrowserManageCases`, async ({
+    page,
+  }): Promise<void> => {
+    await FL401OtherProceedings.fl401OtherProceedings({
+      page: page,
+      accessibilityTest: false,
+      errorMessaging: true,
+      otherProceedingsRadios: "No",
+      subJourney: true,
+    });
+  });
+
+  test(`Complete the FL401 other proceedings event as a solicitor with the following options:
+  Not Accessibility testing,
+  Error message testing,
+  Saying Yes to previous or ongoing family court proceedings involving the applicant and respondent, @crossbrowserManageCases`, async ({
     page,
   }): Promise<void> => {
     await FL401OtherProceedings.fl401OtherProceedings({
