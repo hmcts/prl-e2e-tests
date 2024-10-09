@@ -1,4 +1,4 @@
-export enum C100ScreeningSectionAlternativeRoutesContent {
+export enum AlternativeRoutesContent {
   pageTitle = 'Reaching an agreement without going to court',
   headingM = 'Types of NCDR',
   headingS = 'Getting help towards family mediation',

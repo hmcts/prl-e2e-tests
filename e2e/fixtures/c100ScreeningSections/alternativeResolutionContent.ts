@@ -1,4 +1,4 @@
-export enum C100ScreeningSectionAlternativeResolutionContent {
+export enum AlternativeResolutionContent {
   pageTitle = 'Before you go to court',
   headingM1 = 'Mediation Information and Assessment Meeting (MIAM)',
   headingM2 = 'Legal aid',
