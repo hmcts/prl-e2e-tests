@@ -1,10 +1,10 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../common/selectors";
-import { C100ScreeningSectionStartContent } from "../../fixtures/c100ScreeningSections/c100ScreeningSectionStartContent";
+import { StartContent } from "../../fixtures/c100ScreeningSections/startContent";
 import { Helpers } from "../../common/helpers";
 import AccessibilityTestHelper from "../../common/accessibilityTestHelper";
 
-interface C100ScreeningSectionStartPageOptions {
+interface StartPageOptions {
   page: Page;
   accessibilityTest: boolean;
 }
@@ -14,11 +14,11 @@ interface CheckPageLoadsOptions {
   accessibilityTest: boolean;
 }
 
-export class C100ScreeningSectionStartPage {
-  public static async c100ScreeningSectionStartPage({
+export class StartPage {
+  public static async startPage({
     page,
     accessibilityTest,
-  }: C100ScreeningSectionStartPageOptions): Promise<void> {
+  }: StartPageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
       accessibilityTest: accessibilityTest,
@@ -31,43 +31,43 @@ export class C100ScreeningSectionStartPage {
     accessibilityTest,
   }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukHeadingXL}:text-is("${C100ScreeningSectionStartContent.pageTitle}")`,
+      `${Selectors.GovukHeadingXL}:text-is("${StartContent.pageTitle}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukCaptionL}:text-is("${C100ScreeningSectionStartContent.caption}}")`,
+        `${Selectors.GovukCaptionL}:text-is("${StartContent.caption}}")`,
         1,
       ),
       Helpers.checkGroup(
         page,
         4,
-        C100ScreeningSectionStartContent,
+        StartContent,
         "p",
         `${Selectors.p}`,
       ),
       Helpers.checkGroup(
         page,
         3,
-        C100ScreeningSectionStartContent,
+        StartContent,
         "embeddedLink",
         `${Selectors.GovukLink}`,
       ),
       Helpers.checkGroup(
         page,
         6,
-        C100ScreeningSectionStartContent,
+        StartContent,
         "li",
         `${Selectors.li}`,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h2}:text-is("${C100ScreeningSectionStartContent.h2}")`,
+        `${Selectors.h2}:text-is("${StartContent.h2}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukInsetText}:text-is("${C100ScreeningSectionStartContent.insetText}")`,
+        `${Selectors.GovukInsetText}:text-is("${StartContent.insetText}")`,
         1,
       ),
     ]);
@@ -78,7 +78,7 @@ export class C100ScreeningSectionStartPage {
 
   private static async fillInFields(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${C100ScreeningSectionStartContent.startNow}")`,
+      `${Selectors.button}:text-is("${StartContent.startNow}")`,
     );
   }
 }

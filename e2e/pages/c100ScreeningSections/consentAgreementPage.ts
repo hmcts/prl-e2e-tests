@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../common/selectors";
 import AccessibilityTestHelper from "../../common/accessibilityTestHelper";
-import { C100ScreeningSectionConsentAgreementContent } from "../../fixtures/c100ScreeningSections/c100ScreeningSectionConsentAgreementContent";
+import { ConsentAgreementContent } from "../../fixtures/c100ScreeningSections/consentAgreementContent";
 import { Helpers } from "../../common/helpers";
 
 enum uniqueSelectors {
@@ -10,7 +10,7 @@ enum uniqueSelectors {
   radioNo = "#sq_writtenAgreement-2",
 }
 
-interface C100ScreeningSectionsConsentAgreementPageOptions {
+interface ConsentAgreementPageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
@@ -27,13 +27,13 @@ interface CheckPageLoadsOptions {
   accessibilityTest: boolean;
 }
 
-export class C100ScreeningSectionConsentAgreementPage {
-  public static async c100ScreeningSectionsConsentAgreementPage({
+export class ConsentAgreementPage {
+  public static async consentAgreementPage({
     page,
     accessibilityTest,
     errorMessaging,
     c100ScreeningWrittenAgreementReview,
-  }: C100ScreeningSectionsConsentAgreementPageOptions): Promise<void> {
+  }: ConsentAgreementPageOptions): Promise<void> {
     await this.checkPageLoads({
       page,
       accessibilityTest,
@@ -52,26 +52,26 @@ export class C100ScreeningSectionConsentAgreementPage {
     accessibilityTest,
   }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukHeadingXL}:text-is("${C100ScreeningSectionConsentAgreementContent.pageTitle}")`,
+      `${Selectors.GovukHeadingXL}:text-is("${ConsentAgreementContent.pageTitle}")`,
     );
     await Promise.all([
       Helpers.checkGroup(
         page,
         2,
-        C100ScreeningSectionConsentAgreementContent,
+        ConsentAgreementContent,
         "p",
         `${Selectors.p}`,
       ),
       Helpers.checkGroup(
         page,
         2,
-        C100ScreeningSectionConsentAgreementContent,
+        ConsentAgreementContent,
         "formLabel",
         `${Selectors.GovukLabel}`,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLink}:text-is("${C100ScreeningSectionConsentAgreementContent.externalLink}"):`,
+        `${Selectors.GovukLink}:text-is("${ConsentAgreementContent.externalLink}"):`,
         1,
       ),
     ]);
@@ -82,22 +82,22 @@ export class C100ScreeningSectionConsentAgreementPage {
 
   private static async checkErrorMessaging(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${C100ScreeningSectionConsentAgreementContent.continue}")`,
+      `${Selectors.button}:text-is("${ConsentAgreementContent.continue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorSummaryTitle}:text-is("${C100ScreeningSectionConsentAgreementContent.errorSummaryTitle}")`,
+        `${Selectors.GovukErrorSummaryTitle}:text-is("${ConsentAgreementContent.errorSummaryTitle}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${C100ScreeningSectionConsentAgreementContent.errorMessage}")`,
+        `${Selectors.GovukErrorMessage}:text-is("${ConsentAgreementContent.errorMessage}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${uniqueSelectors.errorList}${Selectors.a}:text-is("${C100ScreeningSectionConsentAgreementContent.errorSummaryLi}")`,
+        `${uniqueSelectors.errorList}${Selectors.a}:text-is("${ConsentAgreementContent.errorSummaryLi}")`,
         1,
       ),
     ]);
@@ -111,14 +111,14 @@ export class C100ScreeningSectionConsentAgreementPage {
       await page.click(uniqueSelectors.radioYes);
       await Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${C100ScreeningSectionConsentAgreementContent.consentFormLabel}")`,
+        `${Selectors.GovukLabel}:text-is("${ConsentAgreementContent.consentFormLabel}")`,
         1,
       );
     } else {
       await page.click(uniqueSelectors.radioNo);
     }
     await page.click(
-      `${Selectors.button}:text-is("${C100ScreeningSectionConsentAgreementContent.continue}")`,
+      `${Selectors.button}:text-is("${ConsentAgreementContent.continue}")`,
     );
   }
 }

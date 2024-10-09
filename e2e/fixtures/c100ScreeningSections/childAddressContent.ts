@@ -1,4 +1,4 @@
-export enum C100ScreeningSectionChildAddressContent {
+export enum ChildAddressContent {
   pageTitle = "Where do the children live?",
   bodyL = "Please tell us the postcode of the children you’re making this application about.",
   bodyM = "This information will be used to identify which court will handle your application. If the children have a different postcode, enter the one that is most convenient to most children in the application.",

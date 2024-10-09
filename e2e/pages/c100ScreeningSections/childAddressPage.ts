@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
 import AccessibilityTestHelper from "../../common/accessibilityTestHelper";
 import { Selectors } from "../../common/selectors";
-import { C100ScreeningSectionChildAddressContent } from "../../fixtures/c100ScreeningSections/c100ScreeningSectionChildAddressContent";
+import { ChildAddressContent } from "../../fixtures/c100ScreeningSections/childAddressContent";
 import { Helpers } from "../../common/helpers";
 
 enum uniqueSelectors {
@@ -9,7 +9,7 @@ enum uniqueSelectors {
   childPostcode = "#c100RebuildChildPostCode",
 }
 
-interface C100ScreeningSectionsChildAddressPageOptions {
+interface ChildAddressPageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
@@ -20,12 +20,12 @@ interface CheckPageLoadsOptions {
   accessibilityTest: boolean;
 }
 
-export class C100ScreeningSectionChildAddressPage {
-  public static async c100ScreeningSectionsChildAddressPage({
+export class ChildAddressPage {
+  public static async childAddressPage({
     page,
     accessibilityTest,
     errorMessaging,
-  }: C100ScreeningSectionsChildAddressPageOptions): Promise<void> {
+  }: ChildAddressPageOptions): Promise<void> {
     await this.checkPageLoads({
       page,
       accessibilityTest,
@@ -40,41 +40,41 @@ export class C100ScreeningSectionChildAddressPage {
     accessibilityTest,
   }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukHeadingXL}:text-is("${C100ScreeningSectionChildAddressContent.pageTitle}")`,
+      `${Selectors.GovukHeadingXL}:text-is("${ChildAddressContent.pageTitle}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukBodyL}:text-is("${C100ScreeningSectionChildAddressContent.bodyL}")`,
+        `${Selectors.GovukBodyL}:text-is("${ChildAddressContent.bodyL}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukBodyM}:text-is("${C100ScreeningSectionChildAddressContent.bodyM}")`,
+        `${Selectors.GovukBodyM}:text-is("${ChildAddressContent.bodyM}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.strong}:text-is("${C100ScreeningSectionChildAddressContent.strong}")`,
+        `${Selectors.strong}:text-is("${ChildAddressContent.strong}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${C100ScreeningSectionChildAddressContent.span}")`,
+        `${Selectors.Span}:text-is("${ChildAddressContent.span}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukSummaryText}:text-is("${C100ScreeningSectionChildAddressContent.summaryText}")`,
+        `${Selectors.GovukSummaryText}:text-is("${ChildAddressContent.summaryText}")`,
         1,
       ),
     ]);
     await page.click(
-      `${Selectors.GovukSummaryText}:text-is("${C100ScreeningSectionChildAddressContent.summaryText}")`,
+      `${Selectors.GovukSummaryText}:text-is("${ChildAddressContent.summaryText}")`,
     );
     await Helpers.checkVisibleAndPresent(
       page,
-      `${Selectors.GovukDetailsText}:text-is("${C100ScreeningSectionChildAddressContent.detailsText}")`,
+      `${Selectors.GovukDetailsText}:text-is("${ChildAddressContent.detailsText}")`,
       1,
     );
     if (accessibilityTest) {
@@ -84,22 +84,22 @@ export class C100ScreeningSectionChildAddressPage {
 
   private static async checkErrorMessaging(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${C100ScreeningSectionChildAddressContent.continue}")`,
+      `${Selectors.button}:text-is("${ChildAddressContent.continue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorSummaryTitle}:text-is("${C100ScreeningSectionChildAddressContent.errorSummaryTitle}")`,
+        `${Selectors.GovukErrorSummaryTitle}:text-is("${ChildAddressContent.errorSummaryTitle}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${C100ScreeningSectionChildAddressContent.errorMessage}")`,
+        `${Selectors.GovukErrorMessage}:text-is("${ChildAddressContent.errorMessage}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${uniqueSelectors.errorList}${Selectors.a}:text-is("${C100ScreeningSectionChildAddressContent.errorSummaryLi}")`,
+        `${uniqueSelectors.errorList}${Selectors.a}:text-is("${ChildAddressContent.errorSummaryLi}")`,
         1,
       ),
     ]);
@@ -108,10 +108,10 @@ export class C100ScreeningSectionChildAddressPage {
   private static async fillInFields(page: Page): Promise<void> {
     await page.fill(
       `${uniqueSelectors.childPostcode}`,
-      `${C100ScreeningSectionChildAddressContent.swanseaPostcode}`,
+      `${ChildAddressContent.swanseaPostcode}`,
     );
     await page.click(
-      `${Selectors.button}:text-is("${C100ScreeningSectionChildAddressContent.continue}")`,
+      `${Selectors.button}:text-is("${ChildAddressContent.continue}")`,
     );
   }
 }
