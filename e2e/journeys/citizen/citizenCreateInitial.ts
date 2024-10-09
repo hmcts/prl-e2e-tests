@@ -4,6 +4,7 @@ import {
 } from "../../pages/citizen/createCase/initialJourney/caseDashboardPage";
 import { Page } from "@playwright/test";
 import config from "../../config";
+import { ApplicantPage } from "../../pages/citizen/createCase/initialJourney/applicantPage";
 
 interface CitizenCreateInitialOptions {
   page: Page;
@@ -19,9 +20,24 @@ export class CitizenCreateInitial {
   }: CitizenCreateInitialOptions): Promise<void> {
     await page.goto(config.citizenFrontendBaseURL);
     await CaseDashboardPage.caseDashboardPage({
-      page,
-      accessibilityTest,
-      childArrangementsJourney
+      page: page,
+      accessibilityTest: accessibilityTest,
+      childArrangementsJourney: childArrangementsJourney
     });
+    switch (childArrangementsJourney) {
+      case 'C100':
+        await ApplicantPage.applicantPage({
+          page: page,
+          accessibilityTest: accessibilityTest
+        })
+        break
+      case 'FL401':
+        break
+      case 'accessCode':
+        break
+      default:
+        throw new Error(`Unrecognised childArrangementsJourney: ${childArrangementsJourney}`)
+        break
+    }
   }
 }

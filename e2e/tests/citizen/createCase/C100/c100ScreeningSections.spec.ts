@@ -2,6 +2,7 @@ import { test } from "@playwright/test";
 import {
   C100ScreeningSections
 } from "../../../../journeys/citizen/createCase/C100ScreeningSections/C100ScreeningSections";
+import { C100 } from "../../../../journeys/citizen/C100";
 
 test.describe("Manage citizen cases screening sections tests. @citizen", (): void => {
   test(`Test the screening sections part of the citizen journey with the following options:
@@ -38,7 +39,7 @@ test.describe("Manage citizen cases screening sections tests. @citizen", (): voi
   No Screening and Written Review`, async ({
     page,
   }): Promise<void> => {
-    await C100ScreeningSections.c100ScreeningSections({
+    await C100.c100({
       page: page,
       accessibilityTest: false,
       errorMessaging: true,
@@ -50,7 +51,7 @@ test.describe("Manage citizen cases screening sections tests. @citizen", (): voi
 test(`Test the accessibility of the C100 Screening Sections`, async ({
     page,
   }): Promise<void> => {
-  await C100ScreeningSections.c100ScreeningSections({
+  await C100.c100({
     page: page,
     accessibilityTest: true,
     errorMessaging: false,
