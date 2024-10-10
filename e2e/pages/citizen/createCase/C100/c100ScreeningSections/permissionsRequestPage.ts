@@ -1,13 +1,11 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
-import {
-  PermissionsRequestContent
-} from "../../../../../fixtures/citizen/createCase/C100/c100ScreeningSections/permissionsRequestContent";
+import { PermissionsRequestContent } from "../../../../../fixtures/citizen/createCase/C100/c100ScreeningSections/permissionsRequestContent";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 
 enum inputIDs {
-  permissionReasoning = '#sq_permissionsRequest'
+  permissionReasoning = "#sq_permissionsRequest",
 }
 
 interface PermissionsRequestPageOptions {
@@ -25,69 +23,65 @@ export class PermissionsRequestPage {
   public static async permissionsRequestPage({
     page,
     accessibilityTest,
-    errorMessaging
+    errorMessaging,
   }: PermissionsRequestPageOptions): Promise<void> {
     await this.checkPageLoads({
       page,
-      accessibilityTest
+      accessibilityTest,
     });
     if (errorMessaging) {
-      await this.checkErrorMessaging(page)
+      await this.checkErrorMessaging(page);
     }
-    await this.fillInFields(page)
+    await this.fillInFields(page);
   }
 
   private static async checkPageLoads({
     page,
-    accessibilityTest
+    accessibilityTest,
   }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukHeadingXL}:text-is("${PermissionsRequestContent.pageTitle}")`
+      `${Selectors.GovukHeadingXL}:text-is("${PermissionsRequestContent.pageTitle}")`,
     );
     await Helpers.checkVisibleAndPresent(
       page,
       `${Selectors.GovukBody}:text-is("${PermissionsRequestContent.body}")`,
-      1
+      1,
     );
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page)
+      await AccessibilityTestHelper.run(page);
     }
   }
 
-  private static async checkErrorMessaging(
-    page: Page
-  ): Promise<void> {
+  private static async checkErrorMessaging(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${PermissionsRequestContent.continue}")`
+      `${Selectors.button}:text-is("${PermissionsRequestContent.continue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukErrorSummaryTitle}:text-is("${PermissionsRequestContent.errorSummaryTitle}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukErrorMessage}:text-is("${PermissionsRequestContent.errorMessage}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukErrorList} ${Selectors.li}:text-is("${PermissionsRequestContent.errorSummaryList}")`,
-        1
+        1,
       ),
-    ])
+    ]);
   }
 
-  private static async fillInFields(
-    page: Page
-  ): Promise<void> {
+  private static async fillInFields(page: Page): Promise<void> {
     await page.fill(
       inputIDs.permissionReasoning,
-      PermissionsRequestContent.permissionReasoning
+      PermissionsRequestContent.permissionReasoning,
     );
     await page.click(
-      `${Selectors.button}:text-is("${PermissionsRequestContent.continue}")`
+      `${Selectors.button}:text-is("${PermissionsRequestContent.continue}")`,
     );
   }
 }
