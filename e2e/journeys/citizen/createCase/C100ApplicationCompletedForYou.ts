@@ -14,8 +14,8 @@ interface C100Options {
   c100ScreeningWrittenAgreementReview: boolean;
 }
 
-export class C100 {
-  public static async c100({
+export class C100ApplicationCompletedForYou {
+  public static async c100ApplicationCompletedForYou({
     page,
     accessibilityTest,
     errorMessaging,
