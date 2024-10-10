@@ -1,0 +1,15 @@
+export enum PermissionsWhyContent {
+  pageTitle = 'Why do you need a permission from the court to make this application? (optional)',
+  body1 = 'Consult ',
+  body2 = ' if you are not sure if you need permission to apply',
+  govLink = 'the CB1 guidance',
+  govHint1 = ' Select all that apply ',
+  govHint2 = ' parental responsibility means that you are responsible for the children and their property ',
+  formLabel1 = ' I do not have parental responsibility for the children ',
+  fromLabel2 = ' There is a court order preventing me from making an application without first getting the permission of the court ',
+  formLabel3 = ' Another reason ',
+  details1 = ' Provide details ',
+  details2 = ' Provide details of the court order in place ',
+  details3 = ' Provide details for why you need permission to make this application ',
+  continue = ' Continue ',
+}
