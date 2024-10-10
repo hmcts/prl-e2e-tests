@@ -209,7 +209,7 @@ export enum ViewPDFApplicationContent {
   applicationLabel12 = "Testing",
   applicationLabel13 = "iron@man.com",
   applicationLabel14 = "Some kind of reference",
-  applicationLabel15 = "My New Org",
+  applicationLabel15 = "Some kind of reference",
   applicationLabel16 = "firstName",
   applicationLabel17 = "lastName",
   applicationLabel18 = "repondent1@example.net",
