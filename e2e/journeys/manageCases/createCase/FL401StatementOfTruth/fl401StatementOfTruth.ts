@@ -31,7 +31,9 @@ export class Fl401StatementOfTruth {
     fl401YesNoToEverything,
     subJourney,
   }: Fl401StatementOfTruthOptions): Promise<void> {
-    const otherProceedingsRadioSelection = (fl401YesNoToEverything) ? 'Yes' : 'No'
+    const otherProceedingsRadioSelection = fl401YesNoToEverything
+      ? "Yes"
+      : "No";
     if (subJourney) {
       await SolicitorCreateInitial.createInitialCase({
         page: page,

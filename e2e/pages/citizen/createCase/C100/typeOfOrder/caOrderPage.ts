@@ -67,17 +67,17 @@ export class CaOrderPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukLabel}:text-is("${SelectCourtOrderContent.formLabelDuplicateHidden1}")`,
-        2
+        2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukLabel}:text-is("${SelectCourtOrderContent.formLabelDuplicateHidden2}")`,
-        2
+        2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukLabel}:text-is("${SelectCourtOrderContent.formLabelDuplicateHidden3}")`,
-        2
+        2,
       ),
     ]);
     if (accessibilityTest) {
