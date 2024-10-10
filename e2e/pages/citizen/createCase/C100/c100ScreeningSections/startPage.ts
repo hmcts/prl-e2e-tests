@@ -4,6 +4,10 @@ import { StartContent } from "../../../../../fixtures/citizen/createCase/C100/c1
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 
+enum uniqueSelectors {
+  uniquePSelector = 'div.govuk-grid-column-two-thirds > '
+}
+
 interface StartPageOptions {
   page: Page;
   accessibilityTest: boolean;
@@ -68,6 +72,11 @@ export class StartPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukInsetText}:text-is("${StartContent.insetText}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${uniqueSelectors.uniquePSelector}${Selectors.p}:text-is("${StartContent.nestedP}")`,
         1,
       ),
     ]);
