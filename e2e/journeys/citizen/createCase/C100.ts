@@ -10,7 +10,7 @@ interface C100Options {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
-  c100ScreeningWrittenAgreementReview: boolean;
+  c100ScreeningWrittenAgreementReview: boolean; // If true -> Type Of Order Journey
   c100LegalRepresentation: boolean;
 }
 
@@ -48,6 +48,8 @@ export class C100 {
           c100ApplicationCompletedForYou: false // false for this journey because otherwise the application ends
         });
       }
+      // Remaining Journey PRL-6359
+      // MIAM Journey
     }
   }
 }
