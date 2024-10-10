@@ -1,31 +1,29 @@
 import { Page } from "@playwright/test";
 import AccessibilityTestHelper from "../../common/accessibilityTestHelper";
 import { Selectors } from "../../common/selectors";
-import {
-  LegalRepresentationApplicationContent
-} from "../../fixtures/c100ScreeningSections/legalRepresentationApplicationContent";
+import { LegalRepresentationApplicationContent } from "../../fixtures/c100ScreeningSections/legalRepresentationApplicationContent";
 import { Helpers } from "../../common/helpers";
 
 enum inputIDs {
-  radioYes = '#sq_legalRepresentationApplication',
-  radioNo = '#sq_legalRepresentationApplication-2'
+  radioYes = "#sq_legalRepresentationApplication",
+  radioNo = "#sq_legalRepresentationApplication-2",
 }
 
 interface LegalRepresentationApplicationPageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
-  c100ApplicationCompletedForYou: boolean
+  c100ApplicationCompletedForYou: boolean;
 }
 
 interface FillInFieldsOptions {
   page: Page;
-  c100ApplicationCompletedForYou: boolean
+  c100ApplicationCompletedForYou: boolean;
 }
 
 interface CheckPageLoadsOptions {
   page: Page;
-  accessibilityTest: boolean
+  accessibilityTest: boolean;
 }
 
 export class LegalRepresentationApplicationPage {
@@ -33,82 +31,76 @@ export class LegalRepresentationApplicationPage {
     page,
     accessibilityTest,
     errorMessaging,
-    c100ApplicationCompletedForYou
+    c100ApplicationCompletedForYou,
   }: LegalRepresentationApplicationPageOptions): Promise<void> {
     await this.checkPageLoads({
       page,
-      accessibilityTest
+      accessibilityTest,
     });
     if (errorMessaging) {
-      await this.checkErrorMessaging(page)
+      await this.checkErrorMessaging(page);
     }
     await this.fillInFields({
       page,
-      c100ApplicationCompletedForYou
-    })
+      c100ApplicationCompletedForYou,
+    });
   }
 
   private static async checkPageLoads({
     page,
-    accessibilityTest
+    accessibilityTest,
   }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukHeadingXL}:text-is("${LegalRepresentationApplicationContent.pageTitle}")`
+      `${Selectors.GovukHeadingXL}:text-is("${LegalRepresentationApplicationContent.pageTitle}")`,
     );
     await Promise.all([
       Helpers.checkGroup(
         page,
         2,
         LegalRepresentationApplicationContent,
-        'formLabel',
-        `${Selectors.GovukLabel}`
-      )
-    ])
+        "formLabel",
+        `${Selectors.GovukLabel}`,
+      ),
+    ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page)
+      await AccessibilityTestHelper.run(page);
     }
   }
 
-  private static async checkErrorMessaging(
-    page: Page
-  ): Promise<void> {
+  private static async checkErrorMessaging(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${LegalRepresentationApplicationContent.continue}")`
+      `${Selectors.button}:text-is("${LegalRepresentationApplicationContent.continue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukErrorSummaryTitle}:text-is("${LegalRepresentationApplicationContent.errorSummaryTitle}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukErrorList} ${Selectors.a}:text-is("${LegalRepresentationApplicationContent.errorSummaryList}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukErrorMessage}:text-is("${LegalRepresentationApplicationContent.errorMessage}")`,
-        1
-      )
+        1,
+      ),
     ]);
   }
 
   private static async fillInFields({
     page,
-    c100ApplicationCompletedForYou
+    c100ApplicationCompletedForYou,
   }: FillInFieldsOptions): Promise<void> {
     if (c100ApplicationCompletedForYou) {
-      await page.click(
-        inputIDs.radioYes
-      );
+      await page.click(inputIDs.radioYes);
     } else {
-      await page.click(
-        inputIDs.radioNo
-      );
+      await page.click(inputIDs.radioNo);
     }
     await page.click(
-      `${Selectors.button}:text-is("${LegalRepresentationApplicationContent.continue}")`
-    )
+      `${Selectors.button}:text-is("${LegalRepresentationApplicationContent.continue}")`,
+    );
   }
 }

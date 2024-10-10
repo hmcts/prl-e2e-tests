@@ -2,9 +2,7 @@ import { Page } from "@playwright/test";
 import { AlternativeResolutionPage } from "../../../pages/c100ScreeningSections/alternativeResolutionPage";
 import { AlternativeRoutesPage } from "../../../pages/c100ScreeningSections/alternativeRoutesPage";
 import { LegalRepresentationPage } from "../../../pages/c100ScreeningSections/legalRepresentationPage";
-import {
-  LegalRepresentationApplicationPage
-} from "../../../pages/c100ScreeningSections/legalRepresentationApplicationPage";
+import { LegalRepresentationApplicationPage } from "../../../pages/c100ScreeningSections/legalRepresentationApplicationPage";
 import { ContactRepresentativePage } from "../../../pages/c100ScreeningSections/contactRepresentativePage";
 
 interface C100Options {
@@ -27,27 +25,29 @@ export class C100ApplicationCompletedForYou {
     } else {
       await AlternativeResolutionPage.alternativeResolutionPage({
         page,
-        accessibilityTest
+        accessibilityTest,
       });
       await AlternativeRoutesPage.alternativeRoutesPage({
         page,
-        accessibilityTest
+        accessibilityTest,
       });
       await LegalRepresentationPage.legalRepresentationPage({
         page: page,
         accessibilityTest: accessibilityTest,
         errorMessaging: errorMessaging,
-        c100LegalRepresentation: true
+        c100LegalRepresentation: true,
       });
-      await LegalRepresentationApplicationPage.legalRepresentationApplicationPage({
-        page: page,
-        accessibilityTest: accessibilityTest,
-        errorMessaging: errorMessaging,
-        c100ApplicationCompletedForYou: false
-      });
+      await LegalRepresentationApplicationPage.legalRepresentationApplicationPage(
+        {
+          page: page,
+          accessibilityTest: accessibilityTest,
+          errorMessaging: errorMessaging,
+          c100ApplicationCompletedForYou: false,
+        },
+      );
       await ContactRepresentativePage.contactRepresentativePage({
         page: page,
-        accessibilityTest: accessibilityTest
+        accessibilityTest: accessibilityTest,
       });
       // Check Dashboard Loads
     }

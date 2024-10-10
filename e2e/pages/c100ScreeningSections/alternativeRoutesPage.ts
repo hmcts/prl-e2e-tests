@@ -6,64 +6,64 @@ import { AlternativeRoutesContent } from "../../fixtures/c100ScreeningSections/a
 
 interface AlternativeRoutesPageOptions {
   page: Page;
-  accessibilityTest: boolean
+  accessibilityTest: boolean;
 }
 
 interface CheckPageLoadsOptions {
   page: Page;
-  accessibilityTest: boolean
+  accessibilityTest: boolean;
 }
 
 export class AlternativeRoutesPage {
   public static async alternativeRoutesPage({
     page,
-    accessibilityTest
+    accessibilityTest,
   }: AlternativeRoutesPageOptions) {
     await this.checkPageLoads({
       page,
-      accessibilityTest
+      accessibilityTest,
     });
-    await this.fillInFields(page)
+    await this.fillInFields(page);
   }
 
   private static async checkPageLoads({
     page,
-    accessibilityTest
+    accessibilityTest,
   }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukHeadingXL}:text-is("${AlternativeRoutesContent.pageTitle}")`
+      `${Selectors.GovukHeadingXL}:text-is("${AlternativeRoutesContent.pageTitle}")`,
     );
     await Promise.all([
       Helpers.checkGroup(
         page,
         6,
         AlternativeRoutesContent,
-        'body',
-        `${Selectors.GovukBody}`
+        "body",
+        `${Selectors.GovukBody}`,
       ),
       Helpers.checkGroup(
         page,
         6,
         AlternativeRoutesContent,
-        'link',
-        `${Selectors.GovukLink}`
+        "link",
+        `${Selectors.GovukLink}`,
       ),
       Helpers.checkGroup(
         page,
         7,
         AlternativeRoutesContent,
-        'list',
-        `${Selectors.li}`
+        "list",
+        `${Selectors.li}`,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukHeadingM}:text-is("${AlternativeRoutesContent.headingM}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukHeadingS}:text-is("${AlternativeRoutesContent.headingS}")`,
-        1
+        1,
       ),
     ]);
     if (accessibilityTest) {
@@ -71,11 +71,9 @@ export class AlternativeRoutesPage {
     }
   }
 
-  private static async fillInFields(
-    page: Page
-  ): Promise<void> {
+  private static async fillInFields(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${AlternativeRoutesContent.continue}")`
+      `${Selectors.button}:text-is("${AlternativeRoutesContent.continue}")`,
     );
   }
 }

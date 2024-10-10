@@ -20,13 +20,12 @@ export class C100ScreeningSections {
     if (!c100ScreeningWrittenAgreementReview) {
       await AlternativeResolutionPage.alternativeResolutionPage({
         page: page,
-        accessibilityTest: accessibilityTest
+        accessibilityTest: accessibilityTest,
       });
       await AlternativeRoutesPage.alternativeRoutesPage({
         page,
-        accessibilityTest
+        accessibilityTest,
       });
-      
     }
   }
 }

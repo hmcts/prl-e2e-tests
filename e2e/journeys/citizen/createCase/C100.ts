@@ -2,9 +2,7 @@ import { Page } from "@playwright/test";
 import { AlternativeResolutionPage } from "../../../pages/c100ScreeningSections/alternativeResolutionPage";
 import { AlternativeRoutesPage } from "../../../pages/c100ScreeningSections/alternativeRoutesPage";
 import { LegalRepresentationPage } from "../../../pages/c100ScreeningSections/legalRepresentationPage";
-import {
-  LegalRepresentationApplicationPage
-} from "../../../pages/c100ScreeningSections/legalRepresentationApplicationPage";
+import { LegalRepresentationApplicationPage } from "../../../pages/c100ScreeningSections/legalRepresentationApplicationPage";
 
 interface C100Options {
   page: Page;
@@ -20,7 +18,7 @@ export class C100 {
     accessibilityTest,
     errorMessaging,
     c100ScreeningWrittenAgreementReview,
-    c100LegalRepresentation
+    c100LegalRepresentation,
   }: C100Options): Promise<void> {
     // Start Pages
     if (c100ScreeningWrittenAgreementReview) {
@@ -28,25 +26,27 @@ export class C100 {
     } else {
       await AlternativeResolutionPage.alternativeResolutionPage({
         page,
-        accessibilityTest
+        accessibilityTest,
       });
       await AlternativeRoutesPage.alternativeRoutesPage({
         page,
-        accessibilityTest
+        accessibilityTest,
       });
       await LegalRepresentationPage.legalRepresentationPage({
         page,
         accessibilityTest,
         errorMessaging,
-        c100LegalRepresentation
+        c100LegalRepresentation,
       });
       if (c100LegalRepresentation) {
-        await LegalRepresentationApplicationPage.legalRepresentationApplicationPage({
-          page: page,
-          accessibilityTest: accessibilityTest,
-          errorMessaging: errorMessaging,
-          c100ApplicationCompletedForYou: false // false for this journey because otherwise the application ends
-        });
+        await LegalRepresentationApplicationPage.legalRepresentationApplicationPage(
+          {
+            page: page,
+            accessibilityTest: accessibilityTest,
+            errorMessaging: errorMessaging,
+            c100ApplicationCompletedForYou: false, // false for this journey because otherwise the application ends
+          },
+        );
       }
       // Remaining Journey PRL-6359
       // MIAM Journey

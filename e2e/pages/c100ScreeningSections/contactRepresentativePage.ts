@@ -11,7 +11,7 @@ interface ContactRepresentativePageOptions {
 
 interface CheckPageLoadsOptions {
   page: Page;
-  accessibilityTest: boolean
+  accessibilityTest: boolean;
 }
 
 export class ContactRepresentativePage {
@@ -21,52 +21,50 @@ export class ContactRepresentativePage {
   }: ContactRepresentativePageOptions): Promise<void> {
     await this.checkPageLoads({
       page,
-      accessibilityTest
+      accessibilityTest,
     });
     await this.fillInFields(page);
   }
 
   private static async checkPageLoads({
     page,
-    accessibilityTest
+    accessibilityTest,
   }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukHeadingXL}:text-is("${ContactRepresentativeContent.pageTitle}")`
+      `${Selectors.GovukHeadingXL}:text-is("${ContactRepresentativeContent.pageTitle}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukBody}:text-is("${ContactRepresentativeContent.body}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.Span}:text-is("${ContactRepresentativeContent.span}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.strong}:text-is("${ContactRepresentativeContent.strong}")`,
-        1
+        1,
       ),
       Helpers.checkGroup(
         page,
         3,
         ContactRepresentativeContent,
-        'list',
-        `${Selectors.li}`
-      )
+        "list",
+        `${Selectors.li}`,
+      ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page)
+      await AccessibilityTestHelper.run(page);
     }
   }
 
-  private static async fillInFields(
-    page: Page
-  ): Promise<void> {
+  private static async fillInFields(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${ContactRepresentativeContent.closeApplication}")`
-    )
+      `${Selectors.button}:text-is("${ContactRepresentativeContent.closeApplication}")`,
+    );
   }
 }

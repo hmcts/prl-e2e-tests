@@ -5,8 +5,8 @@ import { LegalRepresentationContent } from "../../fixtures/c100ScreeningSections
 import { Helpers } from "../../common/helpers";
 
 enum inputIDs {
-  radioYes = '#sq_legalRepresentation',
-  radioNo = '#sq_legalRepresentation-2'
+  radioYes = "#sq_legalRepresentation",
+  radioNo = "#sq_legalRepresentation-2",
 }
 
 interface LegalRepresentationPageOptions {
@@ -23,100 +23,91 @@ interface FillInFieldsOptions {
 
 interface CheckPageLoadsOptions {
   page: Page;
-  accessibilityTest: boolean
+  accessibilityTest: boolean;
 }
-
 
 export class LegalRepresentationPage {
   public static async legalRepresentationPage({
     page,
     accessibilityTest,
     errorMessaging,
-    c100LegalRepresentation
+    c100LegalRepresentation,
   }: LegalRepresentationPageOptions) {
     await this.checkPageLoads({
       page,
-      accessibilityTest
+      accessibilityTest,
     });
     if (errorMessaging) {
       await this.checkErrorMessaging(page);
     }
     await this.fillInFields({
       page,
-      c100LegalRepresentation
+      c100LegalRepresentation,
     });
   }
 
   private static async checkPageLoads({
     page,
-    accessibilityTest
+    accessibilityTest,
   }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukHeadingXL}:text-is("${LegalRepresentationContent.pageTitle}")`
+      `${Selectors.GovukHeadingXL}:text-is("${LegalRepresentationContent.pageTitle}")`,
     );
     await Promise.all([
       Helpers.checkGroup(
         page,
         2,
         LegalRepresentationContent,
-        'formLabel',
-        `${Selectors.GovukLabel}`
+        "formLabel",
+        `${Selectors.GovukLabel}`,
       ),
       Helpers.checkGroup(
         page,
         2,
         LegalRepresentationContent,
-        'link',
-        `${Selectors.GovukLink}`
+        "link",
+        `${Selectors.GovukLink}`,
       ),
-    ])
+    ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(
-        page
-      );
+      await AccessibilityTestHelper.run(page);
     }
   }
 
-  private static async checkErrorMessaging(
-    page: Page
-  ): Promise<void> {
+  private static async checkErrorMessaging(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${LegalRepresentationContent.continue}")`
+      `${Selectors.button}:text-is("${LegalRepresentationContent.continue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukErrorSummaryTitle}:text-is("${LegalRepresentationContent.errorSummaryTitle}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukErrorList} ${Selectors.a}:text-is("${LegalRepresentationContent.errorSummaryList}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukErrorMessage}:text-is("${LegalRepresentationContent.errorMessage}")`,
-        1
-      )
+        1,
+      ),
     ]);
   }
 
   private static async fillInFields({
     page,
-    c100LegalRepresentation
+    c100LegalRepresentation,
   }: FillInFieldsOptions): Promise<void> {
     if (c100LegalRepresentation) {
-      await page.click(
-        inputIDs.radioYes
-      );
+      await page.click(inputIDs.radioYes);
     } else {
-      await page.click(
-        inputIDs.radioNo
-      )
+      await page.click(inputIDs.radioNo);
     }
     await page.click(
-      `${Selectors.button}:text-is("${LegalRepresentationContent.continue}")`
+      `${Selectors.button}:text-is("${LegalRepresentationContent.continue}")`,
     );
   }
 }
