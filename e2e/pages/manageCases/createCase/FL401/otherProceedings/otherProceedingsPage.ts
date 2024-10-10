@@ -47,7 +47,7 @@ export class OtherProceedingsPage {
   }: OtherProceedingsPageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
-      accessibilityTest: accessibilityTest
+      accessibilityTest: accessibilityTest,
     });
     if (errorMessaging) {
       await this.checkErrorMessaging(page);
