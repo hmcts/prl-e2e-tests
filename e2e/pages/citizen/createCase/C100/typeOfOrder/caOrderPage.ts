@@ -64,12 +64,20 @@ export class CaOrderPage {
         "formLabelResolveSpecificIssue",
         `${Selectors.GovukLabel}`,
       ),
-      Helpers.checkGroup(
+      Helpers.checkVisibleAndPresent(
         page,
-        3,
-        SelectCourtOrderContent,
-        "formLabelDuplicateHidden",
-        `${Selectors.GovukLabel}`,
+        `${Selectors.GovukLabel}:text-is("${SelectCourtOrderContent.formLabelDuplicateHidden1}")`,
+        2
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukLabel}:text-is("${SelectCourtOrderContent.formLabelDuplicateHidden2}")`,
+        2
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukLabel}:text-is("${SelectCourtOrderContent.formLabelDuplicateHidden3}")`,
+        2
       ),
     ]);
     if (accessibilityTest) {
