@@ -23,8 +23,8 @@ enum inputIds {
 
 interface OtherProceedingsPageOptions {
   page: Page;
-  errorMessaging: boolean;
   accessibilityTest: boolean;
+  errorMessaging: boolean;
   otherProceedingsRadios: otherProceedingsRadios;
 }
 
@@ -45,7 +45,10 @@ export class OtherProceedingsPage {
     errorMessaging,
     otherProceedingsRadios,
   }: OtherProceedingsPageOptions): Promise<void> {
-    await this.checkPageLoads({ page, accessibilityTest });
+    await this.checkPageLoads({
+      page: page,
+      accessibilityTest: accessibilityTest
+    });
     if (errorMessaging) {
       await this.checkErrorMessaging(page);
     }
