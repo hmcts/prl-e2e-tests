@@ -56,8 +56,11 @@ export type fl401SolicitorEvents =
   | "The home"
   | "Upload documents"
   | "Welsh language requirements"
+  | "View PDF application"
   | "Statement of truth and submit";
 
 export type ApplicantGender = "female" | "male" | "other";
 
 export type otherProceedingsRadios = "Yes" | "No" | "Don't know";
+
+export type ViewPdfTestCases = "1" | "2" | "3";
