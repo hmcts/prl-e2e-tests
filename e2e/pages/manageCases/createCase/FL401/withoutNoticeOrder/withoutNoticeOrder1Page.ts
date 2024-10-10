@@ -71,7 +71,7 @@ export class WithoutNoticeOrder1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${WithoutNoticeOrderDetails1Content.errorMessage}")`,
+        `${Selectors.ErrorMessage}:text-is("${WithoutNoticeOrderDetails1Content.errorMessage}")`,
         1,
       ),
     ]);

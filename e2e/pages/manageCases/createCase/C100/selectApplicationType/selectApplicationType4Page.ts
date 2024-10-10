@@ -74,7 +74,7 @@ export class selectApplicationType4Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${SelectApplicationType4Content.errorMessage}")`,
+        `${Selectors.ErrorMessage}:text-is("${SelectApplicationType4Content.errorMessage}")`,
         1,
       ),
     ]);

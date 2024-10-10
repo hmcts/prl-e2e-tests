@@ -73,7 +73,7 @@ export class SolicitorCreate2Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${SolicitorCreate2Content.errorText}")`,
+        `${Selectors.ErrorMessage}:text-is("${SolicitorCreate2Content.errorText}")`,
         1,
       ),
     ]);
@@ -117,7 +117,7 @@ export class SolicitorCreate2Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${SolicitorCreate2Content.errorFL401}")`,
+        `${Selectors.ErrorMessage}:text-is("${SolicitorCreate2Content.errorFL401}")`,
         1,
       ),
     ]);

@@ -91,7 +91,7 @@ export class AllegationsOfHarmRevised11Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${AllegationsOfHarmRevised11Content.errorMessageStepsCourt}")`,
+        `${Selectors.ErrorMessage}:text-is("${AllegationsOfHarmRevised11Content.errorMessageStepsCourt}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -101,7 +101,7 @@ export class AllegationsOfHarmRevised11Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${AllegationsOfHarmRevised11Content.errorMessageUnsupervised}")`,
+        `${Selectors.ErrorMessage}:text-is("${AllegationsOfHarmRevised11Content.errorMessageUnsupervised}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -111,7 +111,7 @@ export class AllegationsOfHarmRevised11Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${AllegationsOfHarmRevised11Content.errorMessageSupervised}")`,
+        `${Selectors.ErrorMessage}:text-is("${AllegationsOfHarmRevised11Content.errorMessageSupervised}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -121,7 +121,7 @@ export class AllegationsOfHarmRevised11Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${AllegationsOfHarmRevised11Content.errorMessageFormsOfContact}")`,
+        `${Selectors.ErrorMessage}:text-is("${AllegationsOfHarmRevised11Content.errorMessageFormsOfContact}")`,
         1,
       ),
     ]);

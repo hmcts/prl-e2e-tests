@@ -12,6 +12,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Saying yes to all hearing urgency questions,
   Saying yes to all applicant details questions with a male applicant
   Saying yes to all respondent details questions with a female respondent 
+  Saying yes to all respondent details questions with a male respondent
   Saying yes to all other people in the case questions with a male applicant
   Saying yes to all child details question with a male child 
   Saying yes to all children and respondents questions
@@ -66,8 +67,6 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       c100OngoingProceedingsAndDocX: true,
       WelshPageRequirementType: "english",
       yesNoWelshLanguage: true,
-      c100YesNoToAll: true,
-      yesNoHelpWithFees: false,
     });
   });
 
@@ -78,6 +77,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Saying no to all applicant details questions with a female applicant
   Saying yes to all respondent details questions with a female respondent 
   With another female child present, with a known DOB
+    With another female child present, with a known DOB 
   Where the child does not live with their applicant mother
   Saying no to all respondent details questions with a female respondent
   Saying no to all other people in the case questions with a male applicant
@@ -85,8 +85,11 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Saying no to all children and respondents questions 
   Setting the allegations of harm to none.
   Saying no to all attending the hearing questions
+  Saying no to all children and respondents questions
+  Saying no to all children and respondents questions
   Saying no to all Miam
   Saying no to all International element options
+  Saying no to all children and respondents questions
   Saying no to all children and respondents questions
   Saying no to all Litigation Capacity options
   Setting WelshPageRequirementType to "english"
@@ -130,8 +133,6 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       c100OtherProceedings: "No",
       WelshPageRequirementType: "english",
       yesNoWelshLanguage: false,
-      c100YesNoToAll: false,
-      yesNoHelpWithFees: false,
     });
   });
 
@@ -142,8 +143,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
      Saying yes to all Respondent details questions,
      Saying yes to all Type of application questions,
      Saying yes to applicant details questions,
-     Saying yes to respondents behaviour questions,
-     Saying yes to other proceedings
+     Saying yes to respondents behaviour questions,     Saying yes to all Without Notice Order questions
      Saying yes to all Without Notice Order questions,
      Relationship is 'Formerly lived together as a couple'
      Saying yes to all 'The Home' Questions,
@@ -183,19 +183,15 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
      Saying yes to all Respondent details questions,
      Saying yes to all Type of application questions
      Saying yes to applicant details questions,
-     Saying yes to respondents behaviour questions,
-     Saying yes to Without Notice Order questions,
+     Saying yes to respondents behaviour questions,      Saying yes to Without Notice Order questions,
      Saying "Don't know" to Without Notice Order bail conditions,
-     Saying "Don't know" to other proceedings
      Saying yes to all Type of application questions,
      Saying yes to applicant details questions,
      Saying yes to Without Notice Order questions,
-     Saying "Don't know" to Without Notice Order bail conditions,
-     Saying yes to all 'The Home' booleans,
+     Saying "Don't know" to Without Notice Order bail conditions,      Saying yes to all 'The Home' booleans,
      'Yes, applicant' to has the applicant or respondent ever lived at the home address,
      Relationship is 'Married or in a civil partnership',
-     Saying yes to all attending the hearing questions,
-     upload document files
+     Saying yes to all attending the hearing questions,      upload document files
   @crossbrowserManageCases`, async ({ page }): Promise<void> => {
     await FL401.fl401({
       page: page,
@@ -209,7 +205,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       applicantGender: "male",
       isWithoutNoticeDetailsYes: true,
       isWithoutNoticeDetailsBailConditions: "Don't know",
-      otherProceedingsRadios: "Don't know",
+      otherProceedingsRadios: "Yes",
       relationshipToRespondent: "marriedOrCivil",
       fl401TheHomeYesNo: true,
       fl401EverLivedAtAddress: "yesApplicant",
@@ -228,7 +224,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Saying no to all Respondent details questions,
   Saying no to all Type of application questions,
   Saying no to respondents behaviour questions,
-  Saying No to Other Proceedings
+  Saying no to Without Notice Order questions,
   Saying no to Without Notice Order questions,
   Relationship is 'None of the above',
   Other Relationship Is: 'Cousin',
@@ -251,7 +247,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
       applicantGender: "female",
       isWithoutNoticeDetailsYes: false,
       isWithoutNoticeDetailsBailConditions: "No",
-      otherProceedingsRadios: "No",
+      otherProceedingsRadios: "Yes",
       relationshipToRespondent: "noneOfTheAbove",
       relationshipToRespondentOther: "Cousin",
       fl401TheHomeYesNo: false,

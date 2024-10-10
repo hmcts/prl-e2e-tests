@@ -223,11 +223,11 @@ export class OtherProceedings1Page {
     await page.setInputFiles(inputIDs.fileUpload, filePath);
     await Helpers.checkVisibleAndPresent(
       page,
-      `${Selectors.GovukErrorMessage}:text-is("${OtherProceedingsContent.uploadingFile}")`,
+      `${Selectors.ErrorMessage}:text-is("${OtherProceedingsContent.uploadingFile}")`,
       1,
     );
     await page.waitForSelector(
-      `${Selectors.GovukErrorMessage}:text-is("${OtherProceedingsContent.uploadingFile}")`,
+      `${Selectors.ErrorMessage}:text-is("${OtherProceedingsContent.uploadingFile}")`,
       { state: "hidden" },
     );
   }
@@ -271,7 +271,7 @@ export class OtherProceedings1Page {
         2,
         OtherProceedingsContent,
         "errorMessage",
-        `${Selectors.GovukErrorMessage}`,
+        `${Selectors.ErrorMessage}`,
       ),
     ]);
     await page.click(

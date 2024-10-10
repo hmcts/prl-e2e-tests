@@ -111,7 +111,7 @@ export class ChildrenAndRespondents1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${ChildrenAndRespondents1Content.errorMessageRespondentsRelationship}")`,
+        `${Selectors.ErrorMessage}:text-is("${ChildrenAndRespondents1Content.errorMessageRespondentsRelationship}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -121,7 +121,7 @@ export class ChildrenAndRespondents1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${ChildrenAndRespondents1Content.errorMessageDoesChildLiveWithPerson}")`,
+        `${Selectors.ErrorMessage}:text-is("${ChildrenAndRespondents1Content.errorMessageDoesChildLiveWithPerson}")`,
         1,
       ),
     ]);
@@ -143,7 +143,7 @@ export class ChildrenAndRespondents1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${ChildrenAndRespondents1Content.errorMessageDoesChildLiveWithPerson}")`,
+        `${Selectors.ErrorMessage}:text-is("${ChildrenAndRespondents1Content.errorMessageDoesChildLiveWithPerson}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -153,7 +153,7 @@ export class ChildrenAndRespondents1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${ChildrenAndRespondents1Content.errorMessageRelationshipOtherGiveDetails}")`,
+        `${Selectors.ErrorMessage}:text-is("${ChildrenAndRespondents1Content.errorMessageRelationshipOtherGiveDetails}")`,
         1,
       ),
     ]);

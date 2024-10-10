@@ -98,7 +98,7 @@ export class RelationshipToRespondent1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${RelationshipToRespondent1Content.errorMessage}")`,
+        `${Selectors.ErrorMessage}:text-is("${RelationshipToRespondent1Content.errorMessage}")`,
         1,
       ),
     ]);

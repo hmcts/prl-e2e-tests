@@ -23,8 +23,8 @@ enum inputIds {
 
 interface OtherProceedingsPageOptions {
   page: Page;
-  errorMessaging: boolean;
   accessibilityTest: boolean;
+  errorMessaging: boolean;
   otherProceedingsRadios: otherProceedingsRadios;
 }
 
@@ -45,7 +45,10 @@ export class OtherProceedingsPage {
     errorMessaging,
     otherProceedingsRadios,
   }: OtherProceedingsPageOptions): Promise<void> {
-    await this.checkPageLoads({ page, accessibilityTest });
+    await this.checkPageLoads({
+      page: page,
+      accessibilityTest: accessibilityTest,
+    });
     if (errorMessaging) {
       await this.checkErrorMessaging(page);
     }
@@ -116,12 +119,12 @@ export class OtherProceedingsPage {
     );
     await Helpers.checkVisibleAndPresent(
       page,
-      `${Selectors.GovukErrorMessage}:text-is("${OtherProceedingsContent.errorTypeOfCase}")`,
+      `${Selectors.ErrorMessage}:text-is("${OtherProceedingsContent.errorTypeOfCase}")`,
       1,
     );
     await Helpers.checkVisibleAndPresent(
       page,
-      `${Selectors.GovukErrorMessage}:text-is("${OtherProceedingsContent.errorOtherDetails}")`,
+      `${Selectors.ErrorMessage}:text-is("${OtherProceedingsContent.errorOtherDetails}")`,
       1,
     );
     // Remove the created proceeding so that you avoid the invalid error message
@@ -168,7 +171,7 @@ export class OtherProceedingsPage {
         await page.waitForTimeout(6000);
         await fileInput.setInputFiles(config.testPdfFile);
         await page.waitForSelector(
-          `${Selectors.GovukErrorMessage}:text-is("${OtherProceedingsContent.uploading}")`,
+          `${Selectors.ErrorMessage}:text-is("${OtherProceedingsContent.uploading}")`,
           { state: "hidden" },
         );
         await page.click(

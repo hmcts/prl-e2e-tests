@@ -62,7 +62,7 @@ export class SolicitorCreate5Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${SolicitorCreate5Content.errorText}")`,
+        `${Selectors.ErrorMessage}:text-is("${SolicitorCreate5Content.errorText}")`,
         1,
       ),
     ]);

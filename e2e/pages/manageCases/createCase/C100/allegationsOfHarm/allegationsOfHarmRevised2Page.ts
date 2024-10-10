@@ -153,7 +153,7 @@ export class AllegationsOfHarmRevised2Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${AllegationsOfHarmRevised2Content.errorMessageDomesticAbuse}")`,
+        `${Selectors.ErrorMessage}:text-is("${AllegationsOfHarmRevised2Content.errorMessageDomesticAbuse}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -163,7 +163,7 @@ export class AllegationsOfHarmRevised2Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${AllegationsOfHarmRevised2Content.errorMessageAbuseToChildren}")`,
+        `${Selectors.ErrorMessage}:text-is("${AllegationsOfHarmRevised2Content.errorMessageAbuseToChildren}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -173,7 +173,7 @@ export class AllegationsOfHarmRevised2Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${AllegationsOfHarmRevised2Content.errorMessageAbduction}")`,
+        `${Selectors.ErrorMessage}:text-is("${AllegationsOfHarmRevised2Content.errorMessageAbduction}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -183,7 +183,7 @@ export class AllegationsOfHarmRevised2Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${AllegationsOfHarmRevised2Content.errorMessageDrugsAlcoholSubstance}")`,
+        `${Selectors.ErrorMessage}:text-is("${AllegationsOfHarmRevised2Content.errorMessageDrugsAlcoholSubstance}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -193,7 +193,7 @@ export class AllegationsOfHarmRevised2Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${AllegationsOfHarmRevised2Content.errorMessageSafetyAndWelfare}")`,
+        `${Selectors.ErrorMessage}:text-is("${AllegationsOfHarmRevised2Content.errorMessageSafetyAndWelfare}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -203,7 +203,7 @@ export class AllegationsOfHarmRevised2Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${AllegationsOfHarmRevised2Content.errorMessageNonMolestation}")`,
+        `${Selectors.ErrorMessage}:text-is("${AllegationsOfHarmRevised2Content.errorMessageNonMolestation}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -213,7 +213,7 @@ export class AllegationsOfHarmRevised2Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${AllegationsOfHarmRevised2Content.errorMessageOccupationOrder}")`,
+        `${Selectors.ErrorMessage}:text-is("${AllegationsOfHarmRevised2Content.errorMessageOccupationOrder}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -223,7 +223,7 @@ export class AllegationsOfHarmRevised2Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${AllegationsOfHarmRevised2Content.errorMessageForcedMarriage}")`,
+        `${Selectors.ErrorMessage}:text-is("${AllegationsOfHarmRevised2Content.errorMessageForcedMarriage}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -233,7 +233,7 @@ export class AllegationsOfHarmRevised2Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${AllegationsOfHarmRevised2Content.errorMessageRestrainingOrder}")`,
+        `${Selectors.ErrorMessage}:text-is("${AllegationsOfHarmRevised2Content.errorMessageRestrainingOrder}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -243,7 +243,7 @@ export class AllegationsOfHarmRevised2Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${AllegationsOfHarmRevised2Content.errorMessageOtherInjunctive}")`,
+        `${Selectors.ErrorMessage}:text-is("${AllegationsOfHarmRevised2Content.errorMessageOtherInjunctive}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -253,7 +253,7 @@ export class AllegationsOfHarmRevised2Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${AllegationsOfHarmRevised2Content.errorMessageUndertakingInPlace}")`,
+        `${Selectors.ErrorMessage}:text-is("${AllegationsOfHarmRevised2Content.errorMessageUndertakingInPlace}")`,
         1,
       ),
     ]);

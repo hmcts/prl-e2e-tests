@@ -34,10 +34,10 @@ export class FL401OtherProceedings {
     }
     await Helpers.selectSolicitorEvent(page, "Other proceedings");
     await OtherProceedingsPage.otherProceedingsPage({
-      page,
-      errorMessaging,
-      accessibilityTest,
-      otherProceedingsRadios,
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      otherProceedingsRadios: otherProceedingsRadios,
     });
     await OtherProceedingsSubmitPage.otherProceedingsSubmitPage(
       page,

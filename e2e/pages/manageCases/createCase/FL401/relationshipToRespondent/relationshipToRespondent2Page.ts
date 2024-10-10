@@ -187,7 +187,7 @@ export class RelationshipToRespondent2Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${RelationshipToRespondent2Content.isNoneErrorMessage}")`,
+        `${Selectors.ErrorMessage}:text-is("${RelationshipToRespondent2Content.isNoneErrorMessage}")`,
         1,
       ),
     ]);
@@ -211,7 +211,7 @@ export class RelationshipToRespondent2Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${RelationshipToRespondent2Content.relationshipOtherErrorMessage}")`,
+        `${Selectors.ErrorMessage}:text-is("${RelationshipToRespondent2Content.relationshipOtherErrorMessage}")`,
         1,
       ),
     ]);
@@ -327,7 +327,7 @@ export class RelationshipToRespondent2Page {
         3,
         RelationshipToRespondent2Content,
         "relationshipErrorMessage",
-        `${Selectors.GovukErrorMessage}`,
+        `${Selectors.ErrorMessage}`,
       ),
     ]);
   }

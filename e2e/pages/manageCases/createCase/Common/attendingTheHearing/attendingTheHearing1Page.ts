@@ -168,7 +168,7 @@ export class AttendingTheHearing1Page {
         5,
         AttendingTheHearing1Content,
         "inputErrorMessage",
-        `${Selectors.GovukErrorMessage}`,
+        `${Selectors.ErrorMessage}`,
       ),
     ]);
     await this.checkAdditionalErrorMessaging(page, caseType);
@@ -230,7 +230,7 @@ export class AttendingTheHearing1Page {
         3,
         AttendingTheHearing1Content,
         "secondErrorMessage",
-        `${Selectors.GovukErrorMessage}`,
+        `${Selectors.ErrorMessage}`,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -239,7 +239,7 @@ export class AttendingTheHearing1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${AttendingTheHearing1Content.fieldISRequiredMessage}")`,
+        `${Selectors.ErrorMessage}:text-is("${AttendingTheHearing1Content.fieldISRequiredMessage}")`,
         4,
       ),
     ]);

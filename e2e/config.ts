@@ -7,6 +7,10 @@ export class Config {
       email: process.env.SOLICITOR_USERNAME || "solicitor-user",
       password: process.env.SOLICITOR_PASSWORD || "solicitor-password",
     },
+    citizen: {
+      email: process.env.CITIZEN_USERNAME || "citizen-user",
+      password: process.env.CITIZEN_PASSWORD || "citizen-password",
+    },
   };
 
   public static readonly sessionStoragePath: string = path.join(

@@ -130,12 +130,12 @@ export class MiamPolicyUpgrade3Page {
     const fileInput = page.locator(`${UniqueSelectors.uploadFileInput}`);
     await fileInput.setInputFiles(config.testOdtFile);
     await page.waitForSelector(
-      `${Selectors.GovukErrorMessage}:text-is("${MiamPolicyUpgrade3Content.uploadingFile}")`,
+      `${Selectors.ErrorMessage}:text-is("${MiamPolicyUpgrade3Content.uploadingFile}")`,
       { state: "hidden" },
     );
     await Helpers.checkVisibleAndPresent(
       page,
-      `${Selectors.GovukErrorMessage}:text-is("${MiamPolicyUpgrade3Content.errorMessageFileUpload}")`,
+      `${Selectors.ErrorMessage}:text-is("${MiamPolicyUpgrade3Content.errorMessageFileUpload}")`,
       1,
     );
   }
@@ -161,7 +161,7 @@ export class MiamPolicyUpgrade3Page {
       const fileInput = page.locator(`${UniqueSelectors.uploadFileInput}`);
       await fileInput.setInputFiles(config.testPdfFile);
       await page.waitForSelector(
-        `${Selectors.GovukErrorMessage}:text-is("${MiamPolicyUpgrade3Content.uploadingFile}")`,
+        `${Selectors.ErrorMessage}:text-is("${MiamPolicyUpgrade3Content.uploadingFile}")`,
         { state: "hidden" },
       );
     } else {
