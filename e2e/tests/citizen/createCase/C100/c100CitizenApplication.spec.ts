@@ -1,17 +1,17 @@
 import { test } from "@playwright/test";
-import {
-  C100ScreeningSections
-} from "../../../../journeys/citizen/createCase/C100ScreeningSections/C100ScreeningSections";
 import { C100 } from "../../../../journeys/citizen/C100";
+import Config from "../../../../config";
 
-test.describe("Manage citizen cases screening sections tests. @citizen", (): void => {
-  test(`Test the screening sections part of the citizen journey with the following options:
+test.use({ storageState: Config.sessionStoragePath + "citizen.json" });
+
+test.describe("C100 Citizen Application tests. @citizen", (): void => {
+  test(`Test the C100 of the citizen journey with the following options:
   Not Accessibility Testing,
   Not Error Messaging,
   Yes Screening and Written Review`, async ({
     page,
   }): Promise<void> => {
-    await C100ScreeningSections.c100ScreeningSections({
+    await C100.c100({
       page: page,
       accessibilityTest: false,
       errorMessaging: false,
@@ -19,13 +19,13 @@ test.describe("Manage citizen cases screening sections tests. @citizen", (): voi
     })
   });
 
-  test(`Test the screening sections part of the citizen journey with the following options:
+  test(`Test the C100 of the citizen journey with the following options:
   Not Accessibility Testing,
   Not Error Messaging,
   No Screening and Written Review`, async ({
     page,
   }): Promise<void> => {
-    await C100ScreeningSections.c100ScreeningSections({
+    await C100.c100({
       page: page,
       accessibilityTest: false,
       errorMessaging: false,
@@ -33,7 +33,7 @@ test.describe("Manage citizen cases screening sections tests. @citizen", (): voi
     })
   });
 
-  test(`Test the screening sections part of the citizen journey with the following options:
+  test(`Test the C100 of the citizen journey with the following options:
   Not Accessibility Testing,
   Yes Error Messaging,
   No Screening and Written Review`, async ({
