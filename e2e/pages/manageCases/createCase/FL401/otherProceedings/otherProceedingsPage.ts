@@ -35,7 +35,7 @@ interface CheckPageLoadsOptions {
 
 interface FillInFieldsOptions {
   page: Page;
-  otherProceedingsRadios: otherProceedingsRadios
+  otherProceedingsRadios: otherProceedingsRadios;
 }
 
 export class OtherProceedingsPage {
@@ -43,18 +43,18 @@ export class OtherProceedingsPage {
     page,
     accessibilityTest,
     errorMessaging,
-    otherProceedingsRadios
+    otherProceedingsRadios,
   }: OtherProceedingsPageOptions): Promise<void> {
-    await this.checkPageLoads({page, accessibilityTest});
+    await this.checkPageLoads({ page, accessibilityTest });
     if (errorMessaging) {
       await this.checkErrorMessaging(page);
     }
-    await this.fillInFields({page, otherProceedingsRadios});
+    await this.fillInFields({ page, otherProceedingsRadios });
   }
 
   private static async checkPageLoads({
     page,
-    accessibilityTest
+    accessibilityTest,
   }: CheckPageLoadsOptions): Promise<void> {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
