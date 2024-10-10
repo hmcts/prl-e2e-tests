@@ -1,6 +1,12 @@
 import path from "path";
 import { UserCredentials, UserRole } from "./common/types";
 
+type UrlConfig = {
+  idamUrl: string;
+  serviceUrl: string;
+  frontEndBaseURL: string;
+};
+
 export class Config {
   public static readonly userCredentials: Record<UserRole, UserCredentials> = {
     solicitor: {
@@ -42,6 +48,14 @@ export class Config {
 
   public static getUserCredentials(role: UserRole): UserCredentials {
     return this.userCredentials[role];
+  }
+
+  public static readonly urlConfig: Record<string, UrlConfig> = {
+    default: {
+      idamUrl: process.env.IDAM_API_URL || `https://idam-api.aat.platform.hmcts.net`,
+      serviceUrl: process.env.CASE_SERVICE_URL || `http://prl-cos-aat.service.core-compute-aat.internal`,
+      frontEndBaseURL: process.env.FE_BASE_URL || `https://manage-case.aat.platform.hmcts.net`,
+    },
   }
 }
 
