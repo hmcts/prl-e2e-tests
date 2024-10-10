@@ -5,7 +5,6 @@ import { ChildAddressContent } from "../../../../../fixtures/citizen/createCase/
 import { Helpers } from "../../../../../common/helpers";
 
 enum uniqueSelectors {
-  errorList = ".govuk-list govuk-error-summary__list > li > ",
   childPostcode = "#c100RebuildChildPostCode",
 }
 
@@ -100,7 +99,7 @@ export class ChildAddressPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${uniqueSelectors.errorList}${Selectors.a}:text-is("${ChildAddressContent.errorSummaryLi}")`,
+        `${Selectors.GovukErrorList} ${Selectors.a}:text-is("${ChildAddressContent.errorSummaryLi}")`,
         1,
       ),
     ]);
