@@ -43,7 +43,7 @@ export class ConsentAgreementPage {
     }
     await this.fillInFields({
       page,
-      c100ScreeningWrittenAgreementReview
+      c100ScreeningWrittenAgreementReview,
     });
   }
 

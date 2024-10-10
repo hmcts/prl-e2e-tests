@@ -11,8 +11,8 @@ test.describe("Manage citizen cases case dashboard tests. @citizen", (): void =>
     await CitizenCreateInitial.citizenCreateInitial({
       page: page,
       accessibilityTest: false,
-      childArrangementsJourney: 'C100'
-    })
+      childArrangementsJourney: "C100",
+    });
   });
 });
 
@@ -22,6 +22,6 @@ test("Check the case dashboard is accessible @accessibilityCitizen", async ({
   await CitizenCreateInitial.citizenCreateInitial({
     page: page,
     accessibilityTest: true,
-    childArrangementsJourney: 'C100'
-  })
+    childArrangementsJourney: "C100",
+  });
 });

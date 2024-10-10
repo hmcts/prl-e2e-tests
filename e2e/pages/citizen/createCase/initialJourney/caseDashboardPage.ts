@@ -5,7 +5,9 @@ import { Helpers } from "../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
 import { solicitorCaseCreateType } from "../../../../common/types";
 
-export type ChildArrangementsJourneyType = 'accessCode' | solicitorCaseCreateType
+export type ChildArrangementsJourneyType =
+  | "accessCode"
+  | solicitorCaseCreateType;
 
 enum linkSelectors {
   accessCode = `${Selectors.GovukLink}:text-is("${CaseDashboardContent.link1}")`,
@@ -16,12 +18,12 @@ enum linkSelectors {
 interface CaseDashboardPageOptions {
   page: Page;
   accessibilityTest: boolean;
-  childArrangementsJourney: ChildArrangementsJourneyType
+  childArrangementsJourney: ChildArrangementsJourneyType;
 }
 
 interface SelectChildArrangementJourneyOptions {
   page: Page;
-  childArrangementsJourney: ChildArrangementsJourneyType
+  childArrangementsJourney: ChildArrangementsJourneyType;
 }
 
 interface CheckPageLoadsOptions {
@@ -33,39 +35,39 @@ export class CaseDashboardPage {
   public static async caseDashboardPage({
     page,
     accessibilityTest,
-    childArrangementsJourney
+    childArrangementsJourney,
   }: CaseDashboardPageOptions): Promise<void> {
     await this.checkPageLoads({
       page,
-      accessibilityTest
-    })
+      accessibilityTest,
+    });
     await this.selectChildArrangementJourney({
       page,
-      childArrangementsJourney
+      childArrangementsJourney,
     });
   }
 
   private static async checkPageLoads({
     page,
-    accessibilityTest
+    accessibilityTest,
   }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukHeadingL}:text-is("${CaseDashboardContent.pageTitle}")`
+      `${Selectors.GovukHeadingL}:text-is("${CaseDashboardContent.pageTitle}")`,
     );
     await Promise.all([
       Helpers.checkGroup(
         page,
         3,
         CaseDashboardContent,
-        'link',
-        `${Selectors.GovukLink}`
+        "link",
+        `${Selectors.GovukLink}`,
       ),
       Helpers.checkGroup(
         page,
         3,
         CaseDashboardContent,
-        'tab',
-        `${Selectors.GovukTabs}`
+        "tab",
+        `${Selectors.GovukTabs}`,
       ),
     ]);
     if (accessibilityTest) {
@@ -75,11 +77,10 @@ export class CaseDashboardPage {
 
   private static async selectChildArrangementJourney({
     page,
-    childArrangementsJourney
+    childArrangementsJourney,
   }: SelectChildArrangementJourneyOptions): Promise<void> {
-    const journeyTypeKey = childArrangementsJourney as keyof typeof linkSelectors;
-    await page.click(
-      linkSelectors[journeyTypeKey]
-    );
+    const journeyTypeKey =
+      childArrangementsJourney as keyof typeof linkSelectors;
+    await page.click(linkSelectors[journeyTypeKey]);
   }
 }

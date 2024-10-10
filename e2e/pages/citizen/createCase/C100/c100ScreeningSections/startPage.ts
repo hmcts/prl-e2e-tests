@@ -5,7 +5,7 @@ import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 
 enum uniqueSelectors {
-  uniquePSelector = 'div.govuk-grid-column-two-thirds > '
+  uniquePSelector = "div.govuk-grid-column-two-thirds > ",
 }
 
 interface StartPageOptions {
@@ -43,13 +43,7 @@ export class StartPage {
         `${Selectors.GovukCaptionL}:text-is("${StartContent.caption}}")`,
         1,
       ),
-      Helpers.checkGroup(
-        page,
-        4,
-        StartContent,
-        "p",
-        `${Selectors.p}`,
-      ),
+      Helpers.checkGroup(page, 4, StartContent, "p", `${Selectors.p}`),
       Helpers.checkGroup(
         page,
         3,
@@ -57,13 +51,7 @@ export class StartPage {
         "embeddedLink",
         `${Selectors.GovukLink}`,
       ),
-      Helpers.checkGroup(
-        page,
-        6,
-        StartContent,
-        "li",
-        `${Selectors.li}`,
-      ),
+      Helpers.checkGroup(page, 6, StartContent, "li", `${Selectors.li}`),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.h2}:text-is("${StartContent.h2}")`,
@@ -86,8 +74,6 @@ export class StartPage {
   }
 
   private static async fillInFields(page: Page): Promise<void> {
-    await page.click(
-      `${Selectors.button}:text-is("${StartContent.startNow}")`,
-    );
+    await page.click(`${Selectors.button}:text-is("${StartContent.startNow}")`);
   }
 }

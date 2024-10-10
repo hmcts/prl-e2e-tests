@@ -14,18 +14,18 @@ export class C100 {
     page,
     accessibilityTest,
     errorMessaging,
-    c100ScreeningWrittenAgreementReview
+    c100ScreeningWrittenAgreementReview,
   }: C100Options): Promise<void> {
     await CitizenCreateInitial.citizenCreateInitial({
       page: page,
       accessibilityTest: false,
-      childArrangementsJourney: 'C100'
+      childArrangementsJourney: "C100",
     });
     await C100ScreeningSections.c100ScreeningSections({
       page,
       accessibilityTest,
       errorMessaging,
-      c100ScreeningWrittenAgreementReview
+      c100ScreeningWrittenAgreementReview,
     });
     if (c100ScreeningWrittenAgreementReview) {
       // Type Of Order Journey

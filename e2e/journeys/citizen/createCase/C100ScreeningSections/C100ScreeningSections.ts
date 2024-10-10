@@ -1,9 +1,7 @@
 import { Page } from "@playwright/test";
 import { StartPage } from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/startPage";
 import { ChildAddressPage } from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/childAddressPage";
-import {
-  ConsentAgreementPage
-} from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/consentAgreementPage";
+import { ConsentAgreementPage } from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/consentAgreementPage";
 
 interface C100ScreeningSectionsOptions {
   page: Page;
@@ -23,13 +21,11 @@ export class C100ScreeningSections {
       page,
       accessibilityTest,
     });
-    await ChildAddressPage.childAddressPage(
-      {
-        page,
-        accessibilityTest,
-        errorMessaging,
-      },
-    );
+    await ChildAddressPage.childAddressPage({
+      page,
+      accessibilityTest,
+      errorMessaging,
+    });
     await ConsentAgreementPage.consentAgreementPage({
       page,
       accessibilityTest,

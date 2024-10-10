@@ -32,7 +32,7 @@ export class ChildAddressPage {
     if (errorMessaging) {
       await this.checkErrorMessaging(page);
     }
-    await this.fillInFields(page)
+    await this.fillInFields(page);
   }
 
   private static async checkPageLoads({
