@@ -53,6 +53,7 @@ export enum Selectors {
   GovukErrorySummaryHeading = ".error-summary-heading",
   GovukErrorValidation = ".validation-error",
   GovukErrorMessage = ".error-message",
+  GovukErrorList = '.govuk-error-summary__list',
   p = "p",
   li = "li",
   strong = "strong",

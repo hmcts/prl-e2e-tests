@@ -5,4 +5,5 @@ export enum PermissionsRequestContent {
   errorSummaryTitle = ' There is a problem on this page ',
   errorSummaryList = 'Explain why the court should grant you permission to submit this application',
   errorMessage = "Explain why the court should grant you permission to submit this application",
+  permissionReasoning = 'Automated Permission Reasoning'
 }
