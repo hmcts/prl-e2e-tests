@@ -6,22 +6,16 @@ import { ShortStatementPage } from "../../../../pages/citizen/createCase/C100/ty
 
 interface C100TypeOfOrderOptions {
   page: Page;
-  user: UserRole;
   accessibilityTest: boolean;
   errorMessaging: boolean;
-  subJourney: boolean;
 }
 
 export class C100TypeOfOrder {
   public static async c100TypeOfOrder({
     page,
-    user,
     accessibilityTest,
     errorMessaging,
-    subJourney,
   }: C100TypeOfOrderOptions): Promise<void> {
-    if (subJourney) {
-    }
     await SelectCourtOrderPage.selectCourtOrderPage({
       page: page,
       accessibilityTest: accessibilityTest,
