@@ -41,7 +41,7 @@ export class C100OtherProceedings1 {
         errorMessaging,
       });
       await OrderDetailsPage.orderDetailsPage({
-        ////yesNo needs to be true to move to next page
+        //yesNo needs to be true to move to next page
         page,
         accessibilityTest,
         errorMessaging,
