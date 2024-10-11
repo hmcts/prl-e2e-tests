@@ -5,9 +5,6 @@ import { Page } from "@playwright/test";
 import { Helpers } from "../../../../../../common/helpers";
 import { DocumentUploadContent1 } from "../../../../../../fixtures/citizen/createCase/C100/otherProceedings1/childArrangementOrder/documentUploadContent1";
 import config from "../../../../../../config";
-import {
-  MiamPolicyUpgrade6Content
-} from "../../../../../../fixtures/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade6Content";
 
 interface OrderDetailsPagePageOptions {
   page: Page;
@@ -77,13 +74,15 @@ export class OrderDetailsPage {
         1,
       ),
     ]);
-    await page.click(`${Selectors.Span}:text-is("${DocumentUploadContent1.spanA}")`);
+    await page.click(
+      `${Selectors.Span}:text-is("${DocumentUploadContent1.spanA}")`,
+    );
     await Helpers.checkGroup(
       page,
       5,
       DocumentUploadContent1,
       "li",
-      `${Selectors.li}`
+      `${Selectors.li}`,
     );
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
@@ -118,6 +117,5 @@ export class OrderDetailsPage {
   }: fillInFieldsOptions): Promise<void> {
     const fileInput = page.locator(`${UniqueSelectors.documentUpload}`);
     await fileInput.setInputFiles(config.testPdfFile);
-
   }
 }
