@@ -6,7 +6,7 @@ import { Helpers } from "../../../../../../common/helpers";
 import { DocumentUploadContent1 } from "../../../../../../fixtures/citizen/createCase/C100/otherProceedings1/childArrangementOrder/documentUploadContent1";
 import config from "../../../../../../config";
 
-interface OrderDetailsPagePageOptions {
+interface DocumentUploadPageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
@@ -26,12 +26,12 @@ enum UniqueSelectors {
   uploadConfirmationSelector = ".govuk-summary-list__value",
 }
 
-export class OrderDetailsPage {
-  public static async orderDetailsPage({
+export class DocumentUploadPage {
+  public static async documentUploadPage({
     page: page,
     accessibilityTest: accessibilityTest,
     errorMessaging: errorMessaging,
-  }: OrderDetailsPagePageOptions): Promise<void> {
+  }: DocumentUploadPageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
       accessibilityTest: accessibilityTest,
