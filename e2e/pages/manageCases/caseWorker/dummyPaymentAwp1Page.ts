@@ -64,10 +64,6 @@ export class DummyPaymentAwp1Page extends CommonPage {
   }
 
   private static async checkErrorMessaging(page: Page): Promise<void> {
-    // temporary fix - clear fields as the inputs are pre-filled when resubmitting dummy payment for the same case
-    await page.fill(`${UniqueSelectors.paymentServiceRefInput}`, ``);
-    await page.fill(`${UniqueSelectors.paymentStatusInput}`, ``);
-
     await page.click(
       `${Selectors.button}:text-is("${DummyPaymentAwp1Content.submit}")`,
     );
