@@ -23,6 +23,7 @@ interface fillInFieldsOptions {
 
 enum UniqueSelectors {
   documentUpload = "#document",
+  uploadConfirmationSelector = ".govuk-summary-list__value"
 }
 
 export class OrderDetailsPage {
@@ -117,5 +118,19 @@ export class OrderDetailsPage {
   }: fillInFieldsOptions): Promise<void> {
     const fileInput = page.locator(`${UniqueSelectors.documentUpload}`);
     await fileInput.setInputFiles(config.testPdfFile);
+    await page.click(
+      `${Selectors.button}:text-is("${DocumentUploadContent1.uploadFile}")`,
+    );
+    await page.waitForSelector(`${UniqueSelectors.uploadConfirmationSelector}`, { timeout: 5000 });
+    const isUploaded = await page.isVisible(`${UniqueSelectors.uploadConfirmationSelector}`);
+    expect(isUploaded).toBeTruthy();
+    await Helpers.checkVisibleAndPresent(
+      page,
+      `${Selectors.a}:text-is("${DocumentUploadContent1.remove}")`,
+      1,
+    );
+    await page.click(
+      `${Selectors.button}:text-is("${DocumentUploadContent1.continue}")`,
+    );
   }
 }
