@@ -19,7 +19,11 @@ export enum OrderDetailsContent {
   year = "Year",
   dayNumber = "10",
   monthNumber = "07",
+  errorMonthNumber = "33",
   yearNumber1 = "2016",
   yearNumber2 = "2017",
+  errorBanner = "There is a problem on this page",
+  errorMessageOrderDate = "Order date must be a real date",
+  errorMessageOrderEndDate = "Order end date must be a real date",
   continue = "Continue",
 }

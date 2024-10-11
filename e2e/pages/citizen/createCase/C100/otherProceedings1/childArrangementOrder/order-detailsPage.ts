@@ -114,10 +114,60 @@ export class OrderDetailsPage {
   }
 
   private static async triggerErrorMessages(page: Page): Promise<void> {
+    await page.fill(
+      `${UniqueSelectors.orderDate1day}`,
+      OrderDetailsContent.dayNumber,
+    );
+    await page.fill(
+      `${UniqueSelectors.orderDate1month}`,
+      OrderDetailsContent.errorMonthNumber,
+    );
+    await page.fill(
+      `${UniqueSelectors.orderDate1year}`,
+      OrderDetailsContent.yearNumber1,
+    );
+    await page.fill(
+      `${UniqueSelectors.orderEndDate1day}`,
+      OrderDetailsContent.dayNumber,
+    );
+    await page.fill(
+      `${UniqueSelectors.orderEndDate1month}`,
+      OrderDetailsContent.errorMonthNumber,
+    );
+    await page.fill(
+      `${UniqueSelectors.orderEndDate1year}`,
+      OrderDetailsContent.yearNumber2,
+    );
     await page.click(
       `${Selectors.button}:text-is("${OrderDetailsContent.continue}")`,
     );
-    await Promise.all([]);
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorSummaryTitle}:text-is("${OrderDetailsContent.errorBanner}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.a}:text-is("${OrderDetailsContent.errorMessageOrderDate}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.ErrorMessage}:text-is("${OrderDetailsContent.errorMessageOrderDate}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.a}:text-is("${OrderDetailsContent.errorMessageOrderEndDate}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.ErrorMessage}:text-is("${OrderDetailsContent.errorMessageOrderEndDate}")`,
+        1,
+      ),
+    ]);
   }
 
   private static async fillInFields({
