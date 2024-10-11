@@ -23,7 +23,7 @@ interface fillInFieldsOptions {
 
 enum UniqueSelectors {
   documentUpload = "#document",
-  uploadConfirmationSelector = ".govuk-summary-list__value"
+  uploadConfirmationSelector = ".govuk-summary-list__value",
 }
 
 export class OrderDetailsPage {
@@ -121,8 +121,13 @@ export class OrderDetailsPage {
     await page.click(
       `${Selectors.button}:text-is("${DocumentUploadContent1.uploadFile}")`,
     );
-    await page.waitForSelector(`${UniqueSelectors.uploadConfirmationSelector}`, { timeout: 5000 });
-    const isUploaded = await page.isVisible(`${UniqueSelectors.uploadConfirmationSelector}`);
+    await page.waitForSelector(
+      `${UniqueSelectors.uploadConfirmationSelector}`,
+      { timeout: 5000 },
+    );
+    const isUploaded = await page.isVisible(
+      `${UniqueSelectors.uploadConfirmationSelector}`,
+    );
     expect(isUploaded).toBeTruthy();
     await Helpers.checkVisibleAndPresent(
       page,
