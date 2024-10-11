@@ -1,5 +1,7 @@
 import { Page } from "@playwright/test";
 import { C100ScreeningSections } from "../../c100ScreeningSections";
+import { CitizenCreateInitial } from "../citizenCreateInitial";
+import { C100TypeOfOrder } from "./C100TypeOfOrder/C100TypeOfOrder";
 
 interface C100Options {
   page: Page;
@@ -17,7 +19,11 @@ export class C100 {
     c100ScreeningWrittenAgreementReview,
     c100LegalRepresentation,
   }: C100Options): Promise<void> {
-    // Start Pages
+    await CitizenCreateInitial.citizenCreateInitial({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      childArrangementsJourney: 'C100'
+    })
     await C100ScreeningSections.c100ScreeningSections({
       page: page,
       accessibilityTest: accessibilityTest,
@@ -26,10 +32,12 @@ export class C100 {
       c100LegalRepresentation: c100LegalRepresentation
     })
     if (c100ScreeningWrittenAgreementReview) {
-      // Type Of Order Journey
+      await C100TypeOfOrder.c100TypeOfOrder({
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging
+      })
     } else {
-
-      // Remaining Journey PRL-6359
       // MIAM Journey
     }
   }
