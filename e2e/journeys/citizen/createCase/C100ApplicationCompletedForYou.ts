@@ -6,9 +6,7 @@ import { LegalRepresentationApplicationPage } from "../../../pages/c100Screening
 import { ContactRepresentativePage } from "../../../pages/c100ScreeningSections/contactRepresentativePage";
 import { StartPage } from "../../../pages/citizen/createCase/C100/c100ScreeningSections/startPage";
 import { ChildAddressPage } from "../../../pages/citizen/createCase/C100/c100ScreeningSections/childAddressPage";
-import {
-  ConsentAgreementPage
-} from "../../../pages/citizen/createCase/C100/c100ScreeningSections/consentAgreementPage";
+import { ConsentAgreementPage } from "../../../pages/citizen/createCase/C100/c100ScreeningSections/consentAgreementPage";
 import { CitizenCreateInitial } from "../citizenCreateInitial";
 import { CaseDashboardPage } from "../../../pages/citizen/createCase/initialJourney/caseDashboardPage";
 
@@ -27,22 +25,22 @@ export class C100ApplicationCompletedForYou {
     await CitizenCreateInitial.citizenCreateInitial({
       page: page,
       accessibilityTest: accessibilityTest,
-      childArrangementsJourney: 'C100'
-    })
+      childArrangementsJourney: "C100",
+    });
     await StartPage.startPage({
       page: page,
-      accessibilityTest: accessibilityTest
-    })
+      accessibilityTest: accessibilityTest,
+    });
     await ChildAddressPage.childAddressPage({
       page: page,
       accessibilityTest: accessibilityTest,
-      errorMessaging: errorMessaging
+      errorMessaging: errorMessaging,
     });
     await ConsentAgreementPage.consentAgreementPage({
       page: page,
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
-      c100ScreeningWrittenAgreementReview: false
+      c100ScreeningWrittenAgreementReview: false,
     });
     await AlternativeResolutionPage.alternativeResolutionPage({
       page,
@@ -73,6 +71,6 @@ export class C100ApplicationCompletedForYou {
     await CaseDashboardPage.caseDashboardPage({
       page: page,
       accessibilityTest: false,
-    })
+    });
   }
 }

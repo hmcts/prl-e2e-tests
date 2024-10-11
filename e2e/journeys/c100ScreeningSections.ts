@@ -21,22 +21,22 @@ export class C100ScreeningSections {
     accessibilityTest,
     errorMessaging,
     c100ScreeningWrittenAgreementReview,
-    c100LegalRepresentation
+    c100LegalRepresentation,
   }: C100ScreeningSectionsOptions): Promise<void> {
     await StartPage.startPage({
       page: page,
-      accessibilityTest: accessibilityTest
+      accessibilityTest: accessibilityTest,
     });
     await ChildAddressPage.childAddressPage({
       page: page,
       accessibilityTest: accessibilityTest,
-      errorMessaging: errorMessaging
+      errorMessaging: errorMessaging,
     });
     await ConsentAgreementPage.consentAgreementPage({
       page: page,
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
-      c100ScreeningWrittenAgreementReview: c100ScreeningWrittenAgreementReview
+      c100ScreeningWrittenAgreementReview: c100ScreeningWrittenAgreementReview,
     });
     if (!c100ScreeningWrittenAgreementReview) {
       await AlternativeResolutionPage.alternativeResolutionPage({

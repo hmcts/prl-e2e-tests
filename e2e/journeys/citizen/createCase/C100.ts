@@ -22,21 +22,21 @@ export class C100 {
     await CitizenCreateInitial.citizenCreateInitial({
       page: page,
       accessibilityTest: accessibilityTest,
-      childArrangementsJourney: 'C100'
-    })
+      childArrangementsJourney: "C100",
+    });
     await C100ScreeningSections.c100ScreeningSections({
       page: page,
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
       c100ScreeningWrittenAgreementReview: c100ScreeningWrittenAgreementReview,
-      c100LegalRepresentation: c100LegalRepresentation
-    })
+      c100LegalRepresentation: c100LegalRepresentation,
+    });
     if (c100ScreeningWrittenAgreementReview) {
       await C100TypeOfOrder.c100TypeOfOrder({
         page: page,
         accessibilityTest: accessibilityTest,
-        errorMessaging: errorMessaging
-      })
+        errorMessaging: errorMessaging,
+      });
     } else {
       // MIAM Journey
     }
