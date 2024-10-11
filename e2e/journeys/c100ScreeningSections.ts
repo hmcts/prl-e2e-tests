@@ -3,6 +3,9 @@ import { AlternativeResolutionPage } from "../pages/c100ScreeningSections/altern
 import { AlternativeRoutesPage } from "../pages/c100ScreeningSections/alternativeRoutesPage";
 import { LegalRepresentationPage } from "../pages/c100ScreeningSections/legalRepresentationPage";
 import { LegalRepresentationApplicationPage } from "../pages/c100ScreeningSections/legalRepresentationApplicationPage";
+import { StartPage } from "../pages/citizen/createCase/C100/c100ScreeningSections/startPage";
+import { ChildAddressPage } from "../pages/citizen/createCase/C100/c100ScreeningSections/childAddressPage";
+import { ConsentAgreementPage } from "../pages/citizen/createCase/C100/c100ScreeningSections/consentAgreementPage";
 
 interface C100ScreeningSectionsOptions {
   page: Page;
@@ -20,21 +23,35 @@ export class C100ScreeningSections {
     c100ScreeningWrittenAgreementReview,
     c100LegalRepresentation
   }: C100ScreeningSectionsOptions): Promise<void> {
-    // PRL-6357 work
+    await StartPage.startPage({
+      page: page,
+      accessibilityTest: accessibilityTest
+    });
+    await ChildAddressPage.childAddressPage({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging
+    });
+    await ConsentAgreementPage.consentAgreementPage({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      c100ScreeningWrittenAgreementReview: c100ScreeningWrittenAgreementReview
+    });
     if (!c100ScreeningWrittenAgreementReview) {
       await AlternativeResolutionPage.alternativeResolutionPage({
-        page,
-        accessibilityTest,
+        page: page,
+        accessibilityTest: accessibilityTest,
       });
       await AlternativeRoutesPage.alternativeRoutesPage({
-        page,
-        accessibilityTest,
+        page: page,
+        accessibilityTest: accessibilityTest,
       });
       await LegalRepresentationPage.legalRepresentationPage({
-        page,
-        accessibilityTest,
-        errorMessaging,
-        c100LegalRepresentation,
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
+        c100LegalRepresentation: c100LegalRepresentation,
       });
       if (c100LegalRepresentation) {
         await LegalRepresentationApplicationPage.legalRepresentationApplicationPage(
