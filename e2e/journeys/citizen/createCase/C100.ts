@@ -1,7 +1,6 @@
 import { Page } from "@playwright/test";
 import { C100ScreeningSections } from "./C100ScreeningSections/C100ScreeningSections";
 import { C100TypeOfOrder } from "./C100TypeOfOrder/C100TypeOfOrder";
-import { CaseDashboardPage } from "../../../pages/citizen/createCase/initialJourney/caseDashboardPage";
 import { CitizenCreateInitial } from "../citizenCreateInitial";
 
 interface C100Options {
