@@ -29,16 +29,10 @@ enum inputIds {
 export class RespondentsBehaviourPage {
   public static async respondentsBehaviourPage(
     page: Page,
-    errorMessaging: boolean,
     accessibilityTest: boolean,
-    respondentsBehaviourAllOptionsYes: boolean,
   ): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest);
-    await this.fillInFields(
-      page,
-      respondentsBehaviourAllOptionsYes,
-      accessibilityTest,
-    );
+    await this.fillInFields(page);
   }
 
   private static async checkPageLoads(
@@ -69,26 +63,16 @@ export class RespondentsBehaviourPage {
     }
   }
 
-  private static async fillInFields(
-    page: Page,
-    respondentsBehaviourAllOptionsYes: boolean,
-    accessibilityTest: boolean,
-  ): Promise<void> {
-    if (respondentsBehaviourAllOptionsYes) {
-      for (let selector of Object.values(checkBoxIds)) {
-        await page.click(selector);
-      }
-      await page.fill(
-        `${inputIds.otherReasonApplicantWantToStopFromRespondentDoing}`,
-        RespondentsBehaviourContent.exampleText,
-      );
-      await page.click(
-        `${Selectors.button}:text-is("${RespondentsBehaviourContent.continue}")`,
-      );
-    } else {
-      await page.click(
-        `${Selectors.button}:text-is("${RespondentsBehaviourContent.continue}")`,
-      );
+  private static async fillInFields(page: Page): Promise<void> {
+    for (let selector of Object.values(checkBoxIds)) {
+      await page.click(selector);
     }
+    await page.fill(
+      `${inputIds.otherReasonApplicantWantToStopFromRespondentDoing}`,
+      RespondentsBehaviourContent.exampleText,
+    );
+    await page.click(
+      `${Selectors.button}:text-is("${RespondentsBehaviourContent.continue}")`,
+    );
   }
 }

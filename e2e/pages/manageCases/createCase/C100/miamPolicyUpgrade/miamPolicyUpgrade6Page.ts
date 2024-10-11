@@ -126,6 +126,7 @@ export class MiamPolicyUpgrade6Page {
           `${Selectors.GovukErrorMessage}:text-is("${MiamPolicyUpgrade6Content.uploadingFile}")`,
           { state: "hidden" },
         );
+        await page.waitForTimeout(1000);
         break;
 
       case "initiatedMIAMBeforeProceedings_MIAMCertificate":

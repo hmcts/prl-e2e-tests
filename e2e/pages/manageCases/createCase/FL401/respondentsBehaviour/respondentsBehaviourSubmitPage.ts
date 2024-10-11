@@ -9,34 +9,25 @@ export class RespondentsBehaviourSubmitPage {
   public static async respondentsBehaviourSubmitPage(
     page: Page,
     accessibilityTest: boolean,
-    respondentsBehaviourAllOptionsYes: boolean,
   ): Promise<void> {
-    await this.checkPageContent(
-      page,
-      accessibilityTest,
-      respondentsBehaviourAllOptionsYes,
-    );
+    await this.checkPageContent(page, accessibilityTest);
     await this.fillInFields(page);
   }
 
   private static async checkPageContent(
     page: Page,
     accessibilityTest: boolean,
-    respondentsBehaviourAllOptionsYes: boolean,
   ): Promise<void> {
     await Promise.all([
-      this.checkPageLoads(page, respondentsBehaviourAllOptionsYes),
-      this.checkFilledInData(page, respondentsBehaviourAllOptionsYes),
+      this.checkPageLoads(page),
+      this.checkFilledInData(page),
     ]);
     if (accessibilityTest) {
       await accessibilityTestHelper.run(page);
     }
   }
 
-  private static async checkPageLoads(
-    page: Page,
-    respondentsBehaviourAllOptionsYes: boolean,
-  ): Promise<void> {
+  private static async checkPageLoads(page: Page): Promise<void> {
     await page.waitForSelector(
       `${Selectors.GovukHeadingL}:text-is("${SubmitContent.pageTitle}")`,
     );
@@ -52,35 +43,28 @@ export class RespondentsBehaviourSubmitPage {
         1,
       ),
     ]);
-    if (respondentsBehaviourAllOptionsYes) {
-      await Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukText16}:text-is("${SubmitContent.change}")`,
-        1,
-      );
-    }
+    await Helpers.checkVisibleAndPresent(
+      page,
+      `${Selectors.GovukText16}:text-is("${SubmitContent.change}")`,
+      1,
+    );
   }
 
-  private static async checkFilledInData(
-    page: Page,
-    respondentsBehaviourAllOptionsYes: boolean,
-  ): Promise<void> {
-    if (respondentsBehaviourAllOptionsYes) {
-      await Promise.all([
-        Helpers.checkGroup(
-          page,
-          17,
-          RespondentsBehaviourContent,
-          "formLabel",
-          `${Selectors.GovukFormLabel}`,
-        ),
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.Span}:text-is("${RespondentsBehaviourContent.exampleText}")`,
-          1,
-        ),
-      ]);
-    }
+  private static async checkFilledInData(page: Page): Promise<void> {
+    await Promise.all([
+      Helpers.checkGroup(
+        page,
+        17,
+        SubmitContent,
+        "formLabel",
+        `${Selectors.GovukText16}`,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${RespondentsBehaviourContent.exampleText}")`,
+        1,
+      ),
+    ]);
   }
 
   private static async fillInFields(page: Page): Promise<void> {
