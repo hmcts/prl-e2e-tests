@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../common/selectors";
 import { Helpers } from "../../common/helpers";
 import AccessibilityTestHelper from "../../common/accessibilityTestHelper";
-import { AlternativeRoutesContent } from "../../fixtures/c100ScreeningSections/alternativeRoutesContent";
+import { AlternativeRoutesContent } from "../../fixtures/citizen/createCase/C100/c100ScreeningSections/alternativeRoutesContent";
 
 interface AlternativeRoutesPageOptions {
   page: Page;

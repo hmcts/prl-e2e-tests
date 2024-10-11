@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
 import AccessibilityTestHelper from "../../common/accessibilityTestHelper";
 import { Selectors } from "../../common/selectors";
-import { LegalRepresentationApplicationContent } from "../../fixtures/c100ScreeningSections/legalRepresentationApplicationContent";
+import { LegalRepresentationApplicationContent } from "../../fixtures/citizen/createCase/C100/c100ScreeningSections/legalRepresentationApplicationContent";
 import { Helpers } from "../../common/helpers";
 
 enum inputIDs {
