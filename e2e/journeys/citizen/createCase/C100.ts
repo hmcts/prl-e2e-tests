@@ -1,4 +1,6 @@
 import { Page } from "@playwright/test";
+import { C100ScreeningSections } from "./C100ScreeningSections/C100ScreeningSections";
+import { C100TypeOfOrder } from "./C100TypeOfOrder/C100TypeOfOrder";
 
 interface C100Options {
   page: Page;
@@ -14,9 +16,18 @@ export class C100 {
     errorMessaging,
     c100ScreeningWrittenAgreementReview,
   }: C100Options): Promise<void> {
-    // PRL-6357
+    await C100ScreeningSections.c100ScreeningSections({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      c100ScreeningWrittenAgreementReview: c100ScreeningWrittenAgreementReview
+    });
     if (c100ScreeningWrittenAgreementReview) {
-      // Type Of Order Journey
+      await C100TypeOfOrder.c100TypeOfOrder({
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging
+      });
       // Consent Order Upload
       // Urgency & Without Notice
       // People
