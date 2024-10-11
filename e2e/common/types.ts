@@ -16,6 +16,7 @@ export type Events = "undefined";
 
 const UserRoles = {
   solicitor: "solicitor",
+  citizen: "citizen",
 } as const;
 
 export type UserRole = (typeof UserRoles)[keyof typeof UserRoles];
@@ -39,9 +40,7 @@ export type c100SolicitorEvents =
   | "International element"
   | "Litigation capacity"
   | "Other proceedings"
-  | "Welsh language requirements"
-  | "View PDF application"
-  | "Submit and pay";
+  | "Welsh language requirements";
 
 export type fl401SolicitorEvents =
   | "Case name"
