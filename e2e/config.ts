@@ -10,6 +10,7 @@ export class Config {
     citizen: {
       email: process.env.CITIZEN_EMAIL || "citizen-user",
       password: process.env.CITIZEN_PASSWORD || "citizen-password"
+    }
   };
 
   public static readonly sessionStoragePath: string = path.join(
