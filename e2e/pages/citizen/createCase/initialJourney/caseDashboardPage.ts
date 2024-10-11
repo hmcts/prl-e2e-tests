@@ -18,7 +18,7 @@ enum linkSelectors {
 interface CaseDashboardPageOptions {
   page: Page;
   accessibilityTest: boolean;
-  childArrangementsJourney: ChildArrangementsJourneyType;
+  childArrangementsJourney?: ChildArrangementsJourneyType;
 }
 
 interface SelectChildArrangementJourneyOptions {
@@ -41,10 +41,12 @@ export class CaseDashboardPage {
       page,
       accessibilityTest,
     });
-    await this.selectChildArrangementJourney({
-      page,
-      childArrangementsJourney,
-    });
+    if (childArrangementsJourney) {
+      await this.selectChildArrangementJourney({
+        page,
+        childArrangementsJourney,
+      });
+    }
   }
 
   private static async checkPageLoads({
