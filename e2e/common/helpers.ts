@@ -1,12 +1,12 @@
 import { expect, Locator, Page } from "@playwright/test";
-import { c100SolicitorEvents, fl401SolicitorEvents, UserRole } from "./types";
+import { c100SolicitorEvents, fl401SolicitorEvents, fl401SubmittedSolicitorEvents, UserRole } from "./types";
 import idamLoginHelper from "./idamLoginHelper";
 import { Selectors } from "./selectors.ts";
 
 export class Helpers {
   public static async chooseEventFromDropdown(
     page: Page,
-    chosenEvent: c100SolicitorEvents | fl401SolicitorEvents,
+    chosenEvent: c100SolicitorEvents | fl401SolicitorEvents | fl401SubmittedSolicitorEvents,
   ): Promise<void> {
     try {
       await page.waitForLoadState("domcontentloaded");

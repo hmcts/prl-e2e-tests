@@ -1,21 +1,14 @@
 import { DummyPaymentAwp1Page } from "../../../pages/manageCases/caseWorker/dummyPaymentAwp1Page";
 import { Page } from "@playwright/test";
 import { DummyPaymentAwpSubmitPage } from "../../../pages/manageCases/caseWorker/dummyPaymentAwpSubmitPage";
-import { Selectors } from "../../../common/selectors";
 import { Fl401StatementOfTruth } from "../createCase/FL401StatementOfTruth/fl401StatementOfTruth";
+import { Helpers } from "../../../common/helpers";
 
 interface DummyPaymentAwpParams {
   page: Page;
   errorMessaging: boolean;
   accessibilityTest: boolean;
   paymentStatusPaid: boolean;
-}
-
-const nextStepDropdownSelector = "#next-step";
-
-enum NextStepSelectorContent {
-  dummyPaymentAwp = "Dummy Payment for AwP",
-  go = "Go",
 }
 
 export class DummyPaymentAwp {
@@ -33,7 +26,7 @@ export class DummyPaymentAwp {
       fl401YesNoToEverything: false,
       subJourney: true,
     });
-    await this.goToDummyPaymentAwp(page);
+    await Helpers.chooseEventFromDropdown(page, "Dummy Payment for AwP");
     await DummyPaymentAwp1Page.dummyPaymentAwp1Page(
       page,
       errorMessaging,
@@ -44,17 +37,6 @@ export class DummyPaymentAwp {
       page,
       accessibilityTest,
       paymentStatusPaid,
-    );
-  }
-
-  private static async goToDummyPaymentAwp(page: Page): Promise<void> {
-    await page.selectOption(
-      `${nextStepDropdownSelector}`,
-      `${NextStepSelectorContent.dummyPaymentAwp}`,
-    );
-    await page.waitForTimeout(2000);
-    await page.click(
-      `${Selectors.button}:text-is("${NextStepSelectorContent.go}")`,
     );
   }
 }
