@@ -46,7 +46,9 @@ export class ConsentOrderUploadPage {
     page: page,
     accessibilityTest: accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
-    await page.waitForSelector(`${Selectors.h1}:text-is("${ConsentOrderUploadContent.pageTitle}")`,);
+    await page.waitForSelector(
+      `${Selectors.h1}:text-is("${ConsentOrderUploadContent.pageTitle}")`,
+    );
     // noinspection TypeScriptValidateTypes
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -69,7 +71,9 @@ export class ConsentOrderUploadPage {
         `${Selectors.GovukLabel}:text-is("${ConsentOrderUploadContent.label}")`,
         1,
       ),
-      page.click(`${Selectors.GovukSummaryText}:text-is("${ConsentOrderUploadContent.link}")`,),
+      page.click(
+        `${Selectors.GovukSummaryText}:text-is("${ConsentOrderUploadContent.link}")`,
+      ),
       Helpers.checkGroup(
         page,
         5,
@@ -114,7 +118,9 @@ export class ConsentOrderUploadPage {
     await page.click(
       `${Selectors.button}:text-is("${ConsentOrderUploadContent.uploadFile}")`,
     );
-    await page.waitForSelector(`${Selectors.a}:text-is("${ConsentOrderUploadContent.remove}")`);
+    await page.waitForSelector(
+      `${Selectors.a}:text-is("${ConsentOrderUploadContent.remove}")`,
+    );
     await page.click(
       `${Selectors.button}:text-is("${ConsentOrderUploadContent.continue}")`,
     );
