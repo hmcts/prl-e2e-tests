@@ -50,7 +50,7 @@ test.describe("Dummy payment for AWP tests @manageCases", (): void => {
   test(`Complete the Dummy payment for AWP action  as a solicitor with the following options:
   Accessibility testing,
   Not Error message testing,
-  Payment status is paid. @crossbrowserManageCases`, async ({
+  Payment status is paid. @accessibilityManageCases`, async ({
     page,
   }): Promise<void> => {
     await DummyPaymentAwp.dummyPaymentAwp({

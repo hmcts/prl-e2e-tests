@@ -61,8 +61,7 @@ export type fl401SolicitorEvents =
   | "View PDF application"
   | "Statement of truth and submit";
 
-export type fl401SubmittedSolicitorEvents =
-  "Dummy Payment for AwP"
+export type fl401SubmittedSolicitorEvents = "Dummy Payment for AwP";
 
 export type ApplicantGender = "female" | "male" | "other";
 
