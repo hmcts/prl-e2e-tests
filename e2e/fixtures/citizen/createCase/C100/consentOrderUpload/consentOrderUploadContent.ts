@@ -1,1 +1,18 @@
-export enum ConsentOrderUploadContent {}
+export enum ConsentOrderUploadContent {
+  pageTitle = "Upload the draft of your consent order",
+  p1 = "The draft of the consent order must be signed by you (the applicant) and the other person (respondent).",
+  p2 = "If you are uploading documents from a computer, name the files clearly. For example, consent-order-draft.doc.",
+  p3 = "Files must end with JPG, BMP, PNG,TIF, PDF, DOC or DOCX.",
+  link = "How to take a picture of a document on your phone and upload it",
+  label = "Select documents to upload",
+  li1 = "Place your document on a flat service in a well-lit room. Use a flash if you need to.",
+  li2 = "Take a picture of the whole document. You should be able to see its edges.",
+  li3 = "Check you can read all the writing, including the handwriting.",
+  li4 = "Email or send the photo or scan to the device you are using now.",
+  li5 = "Upload it here.",
+  errorSummaryTitle = "There is a problem on this page",
+  errorLink = "Please choose a file.",
+  continue = "Continue",
+  uploadFile = "Upload file",
+  remove = "Remove",
+}

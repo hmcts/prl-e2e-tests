@@ -29,7 +29,6 @@ export class C100ConsentOrderUpload {
     await SuccessPage.successPage({
       page,
       accessibilityTest,
-      errorMessaging,
     });
   }
 }
