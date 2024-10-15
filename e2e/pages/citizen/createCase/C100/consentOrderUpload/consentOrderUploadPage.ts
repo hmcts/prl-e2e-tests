@@ -49,7 +49,6 @@ export class ConsentOrderUploadPage {
     await page.waitForSelector(
       `${Selectors.h1}:text-is("${ConsentOrderUploadContent.pageTitle}")`,
     );
-    // noinspection TypeScriptValidateTypes
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
