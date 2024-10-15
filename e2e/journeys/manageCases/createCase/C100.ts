@@ -291,7 +291,7 @@ export class C100 {
     });
     await C100SubmitAndPay.c100SubmitAndPay({
       page: page,
-      accessibilityTest: accessibilityTest,
+      yesNoWelshLanguage: yesNoWelshLanguage,
       yesNoHelpWithFees: yesNoHelpWithFees,
     });
   }
