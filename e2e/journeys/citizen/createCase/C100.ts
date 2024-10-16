@@ -29,7 +29,6 @@ export class C100 {
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
       c100ScreeningWrittenAgreementReview: c100ScreeningWrittenAgreementReview,
-      c100LegalRepresentation: c100LegalRepresentation,
     });
     if (c100ScreeningWrittenAgreementReview) {
       await C100TypeOfOrder.c100TypeOfOrder({
