@@ -1,11 +1,16 @@
 import { Page } from "@playwright/test";
-import { AlternativeResolutionPage } from "../pages/c100ScreeningSections/alternativeResolutionPage";
-import { AlternativeRoutesPage } from "../pages/c100ScreeningSections/alternativeRoutesPage";
-import { LegalRepresentationPage } from "../pages/c100ScreeningSections/legalRepresentationPage";
-import { LegalRepresentationApplicationPage } from "../pages/c100ScreeningSections/legalRepresentationApplicationPage";
-import { StartPage } from "../pages/citizen/createCase/C100/c100ScreeningSections/startPage";
-import { ChildAddressPage } from "../pages/citizen/createCase/C100/c100ScreeningSections/childAddressPage";
-import { ConsentAgreementPage } from "../pages/citizen/createCase/C100/c100ScreeningSections/consentAgreementPage";
+import { AlternativeResolutionPage } from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/alternativeResolutionPage";
+import { AlternativeRoutesPage } from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/alternativeRoutesPage";
+import { LegalRepresentationPage } from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/legalRepresentationPage";
+import { LegalRepresentationApplicationPage } from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/legalRepresentationApplicationPage";
+import { StartPage } from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/startPage";
+import { ChildAddressPage } from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/childAddressPage";
+import { ConsentAgreementPage } from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/consentAgreementPage";
+import { PermissionPage } from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/permissionPage";
+import { PermissionsWhyPage } from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/permissionsWhyPage";
+import {
+  PermissionsRequestPage
+} from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/permissionsRequestPage";
 
 interface C100ScreeningSectionsOptions {
   page: Page;
@@ -13,6 +18,7 @@ interface C100ScreeningSectionsOptions {
   errorMessaging: boolean;
   c100ScreeningWrittenAgreementReview: boolean;
   c100LegalRepresentation: boolean;
+  c100CourtPermissionNeeded: boolean;
 }
 
 export class C100ScreeningSections {
@@ -22,6 +28,7 @@ export class C100ScreeningSections {
     errorMessaging,
     c100ScreeningWrittenAgreementReview,
     c100LegalRepresentation,
+    c100CourtPermissionNeeded
   }: C100ScreeningSectionsOptions): Promise<void> {
     await StartPage.startPage({
       page: page,
@@ -63,7 +70,24 @@ export class C100ScreeningSections {
           },
         );
       }
-      // PRL-6359 work
+      await PermissionPage.permissionPage({
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
+        c100CourtPermissionNeeded: c100CourtPermissionNeeded
+      });
+      if (c100CourtPermissionNeeded) {
+        await PermissionsWhyPage.permissionsWhyPage({
+          page: page,
+          accessibilityTest: accessibilityTest,
+          errorMessaging: errorMessaging
+        });
+        await PermissionsRequestPage.permissionsRequestPage({
+          page: page,
+          accessibilityTest: accessibilityTest,
+          errorMessaging: errorMessaging
+        });
+      }
     }
   }
 }
