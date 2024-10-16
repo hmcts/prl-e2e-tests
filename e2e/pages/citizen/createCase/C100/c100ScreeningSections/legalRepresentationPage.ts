@@ -3,6 +3,7 @@ import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelp
 import { Selectors } from "../../../../../common/selectors";
 import { LegalRepresentationContent } from "../../../../../fixtures/citizen/createCase/C100/c100ScreeningSections/legalRepresentationContent";
 import { Helpers } from "../../../../../common/helpers";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
 
 enum inputIDs {
   radioYes = "#sq_legalRepresentation",
@@ -54,12 +55,15 @@ export class LegalRepresentationPage {
       `${Selectors.GovukHeadingXL}:text-is("${LegalRepresentationContent.pageTitle}")`,
     );
     await Promise.all([
-      Helpers.checkGroup(
+      Helpers.checkVisibleAndPresent(
         page,
-        2,
-        LegalRepresentationContent,
-        "formLabel",
-        `${Selectors.GovukLabel}`,
+        `${Selectors.GovukLabel}:text-is("${CommonStaticText.strippedYes}")`,
+        1
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukLabel}:text-is("${CommonStaticText.strippedNo}")`,
+        1
       ),
       Helpers.checkGroup(
         page,
@@ -76,12 +80,12 @@ export class LegalRepresentationPage {
 
   private static async checkErrorMessaging(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${LegalRepresentationContent.continue}")`,
+      `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorSummaryTitle}:text-is("${LegalRepresentationContent.errorSummaryTitle}")`,
+        `${Selectors.GovukErrorSummaryTitle}:text-is("${CommonStaticText.errorSummaryTitle}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -107,7 +111,7 @@ export class LegalRepresentationPage {
       await page.click(inputIDs.radioNo);
     }
     await page.click(
-      `${Selectors.button}:text-is("${LegalRepresentationContent.continue}")`,
+      `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`,
     );
   }
 }

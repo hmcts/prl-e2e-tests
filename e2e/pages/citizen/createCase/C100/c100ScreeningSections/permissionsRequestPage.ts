@@ -3,6 +3,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { PermissionsRequestContent } from "../../../../../fixtures/citizen/createCase/C100/c100ScreeningSections/permissionsRequestContent";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
 
 enum inputIDs {
   permissionReasoning = "#sq_permissionsRequest",
@@ -54,7 +55,7 @@ export class PermissionsRequestPage {
 
   private static async checkErrorMessaging(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${PermissionsRequestContent.continue}")`,
+      `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -81,7 +82,7 @@ export class PermissionsRequestPage {
       PermissionsRequestContent.permissionReasoning,
     );
     await page.click(
-      `${Selectors.button}:text-is("${PermissionsRequestContent.continue}")`,
+      `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`,
     );
   }
 }

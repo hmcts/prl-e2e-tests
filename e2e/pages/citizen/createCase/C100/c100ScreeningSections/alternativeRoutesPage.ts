@@ -3,6 +3,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { AlternativeRoutesContent } from "../../../../../fixtures/citizen/createCase/C100/c100ScreeningSections/alternativeRoutesContent";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
 
 interface AlternativeRoutesPageOptions {
   page: Page;
@@ -73,7 +74,7 @@ export class AlternativeRoutesPage {
 
   private static async fillInFields(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${AlternativeRoutesContent.continue}")`,
+      `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`,
     );
   }
 }

@@ -14,12 +14,10 @@ export enum PermissionsWhyContent {
   parentalResponsibility = "Automated Parental Responsibility",
   courtOrder = "Automated Court Order",
   anotherReason = "Automated Another Reason",
-  errorSummaryTitle = " There is a problem on this page ",
   errorSummaryList1 = "Provide details for 'I do not have parental responsibility for the children'",
   errorSummaryList2 = "Provide details for 'There is a court order preventing me from making an application'\n",
   errorSummaryList3 = "Provide details for another reason",
   errorMessage1 = "Provide details for 'I do not have parental responsibility for the children'",
   errorMessage2 = "Provide details for 'There is a court order preventing me from making an application'\n",
   errorMessage3 = "Provide details for another reason",
-  continue = " Continue ",
 }

@@ -7,10 +7,6 @@ export enum PermissionContent {
   list2 = "guardian",
   list3 = "special guardian",
   aLink = "Section C of the Form CB1 guidance",
-  formLabel1 = "Yes",
-  formLabel2 = "No",
-  errorSummaryTitle = " There is a problem on this page ",
   errorSummaryList = "Select yes if there is any reason why you would need permission from the court to make this application",
   errorMessage = " Select yes if there is any reason why you would need permission from the court to make this application ",
-  continue = " Continue ",
 }

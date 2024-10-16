@@ -3,6 +3,7 @@ import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelp
 import { Selectors } from "../../../../../common/selectors";
 import { PermissionsWhyContent } from "../../../../../fixtures/citizen/createCase/C100/c100ScreeningSections/permissionsWhyContent";
 import { Helpers } from "../../../../../common/helpers";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
 
 enum checkboxIDs {
   permission1 = "#sq_permissionsWhy",
@@ -88,12 +89,12 @@ export class PermissionsWhyPage {
       await page.check(checkbox);
     }
     await page.click(
-      `${Selectors.button}:text-is("${PermissionsWhyContent.continue}")`,
+      `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorSummaryTitle}:text-is("${PermissionsWhyContent.errorSummaryTitle}")`,
+        `${Selectors.GovukErrorSummaryTitle}:text-is("${CommonStaticText.errorSummaryTitle}")`,
         1,
       ),
       Helpers.checkGroup(
@@ -129,7 +130,7 @@ export class PermissionsWhyPage {
       await page.fill(textField, PermissionsWhyContent[contentKey]);
     }
     await page.click(
-      `${Selectors.button}:text-is("${PermissionsWhyContent.continue}")`,
+      `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`,
     );
   }
 }

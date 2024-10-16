@@ -3,6 +3,7 @@ import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelp
 import { Selectors } from "../../../../../common/selectors";
 import { LegalRepresentationApplicationContent } from "../../../../../fixtures/citizen/createCase/C100/c100ScreeningSections/legalRepresentationApplicationContent";
 import { Helpers } from "../../../../../common/helpers";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
 
 enum inputIDs {
   radioYes = "#sq_legalRepresentationApplication",
@@ -54,12 +55,15 @@ export class LegalRepresentationApplicationPage {
       `${Selectors.GovukHeadingXL}:text-is("${LegalRepresentationApplicationContent.pageTitle}")`,
     );
     await Promise.all([
-      Helpers.checkGroup(
+      Helpers.checkVisibleAndPresent(
         page,
-        2,
-        LegalRepresentationApplicationContent,
-        "formLabel",
-        `${Selectors.GovukLabel}`,
+        `${Selectors.GovukLabel}:text-is("${CommonStaticText.strippedYes}")`,
+        1
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukLabel}:text-is("${CommonStaticText.strippedNo}")`,
+        1
       ),
     ]);
     if (accessibilityTest) {
@@ -69,12 +73,12 @@ export class LegalRepresentationApplicationPage {
 
   private static async checkErrorMessaging(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${LegalRepresentationApplicationContent.continue}")`,
+      `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorSummaryTitle}:text-is("${LegalRepresentationApplicationContent.errorSummaryTitle}")`,
+        `${Selectors.GovukErrorSummaryTitle}:text-is("${CommonStaticText.errorSummaryTitle}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -100,7 +104,7 @@ export class LegalRepresentationApplicationPage {
       await page.click(inputIDs.radioNo);
     }
     await page.click(
-      `${Selectors.button}:text-is("${LegalRepresentationApplicationContent.continue}")`,
+      `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`,
     );
   }
 }

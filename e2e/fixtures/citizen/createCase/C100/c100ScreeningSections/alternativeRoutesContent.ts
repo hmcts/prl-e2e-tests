@@ -21,5 +21,4 @@ export enum AlternativeRoutesContent {
   list5 = ", for example if you want an independent professional to help you reach an agreement",
   list6 = ", if you prefer a lawyer to communicate with the other person on your behalf",
   list7 = ", if you’re still communicating with the other person but have complex legal issues to resolve",
-  continue = " Continue ",
 }
