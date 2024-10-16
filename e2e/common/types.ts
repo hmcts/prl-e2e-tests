@@ -61,6 +61,15 @@ export type fl401SolicitorEvents =
   | "View PDF application"
   | "Statement of truth and submit";
 
+export type fl401SubmittedSolicitorEvents =
+  | "Draft an order"
+  | "Dummy Payment for AwP"
+  | "Manage support"
+  | "Manage documents"
+  | "Request support"
+  | "Upload additional applications"
+  | "Withdraw application";
+
 export type ApplicantGender = "female" | "male" | "other";
 
 export type otherProceedingsRadios = "Yes" | "No" | "Don't know";
