@@ -18,6 +18,17 @@ interface checkPageLoadsOptions {
 
 interface fillInFieldsOptions {
   page: Page;
+  urgencyAndWithoutNoticeAllOptionsYes: boolean;
+}
+
+export enum uniqueSelectors {
+  warning = ".govuk-warning-text__assistive",
+  legend = ".govuk-fieldset__legend",
+}
+
+enum radioIds {
+  yes = "#hu_urgentHearingReasons",
+  no = "#hu_urgentHearingReasons-2",
 }
 
 export class UrgentFirstHearingPage {
@@ -36,6 +47,8 @@ export class UrgentFirstHearingPage {
     }
     await this.fillInFields({
       page: page,
+      urgencyAndWithoutNoticeAllOptionsYes:
+        urgencyAndWithoutNoticeAllOptionsYes,
     });
   }
 
@@ -43,14 +56,65 @@ export class UrgentFirstHearingPage {
     page: page,
     accessibilityTest: accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
+    await page.waitForSelector(
+      `${Selectors.GovukHeadingXL}:text-is("${UrgentFirstHearingContent.pageTitle}")`,
+    );
+    await Promise.all([
+      Helpers.checkGroup(
+        page,
+        3,
+        UrgentFirstHearingContent,
+        "p",
+        `${Selectors.GovukBody}`,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${uniqueSelectors.warning}:text-is("${UrgentFirstHearingContent.warning}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${uniqueSelectors.legend}:text-is("${UrgentFirstHearingContent.question}")`,
+        1,
+      ),
+    ]);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }
   }
 
-  private static async triggerErrorMessages(page: Page): Promise<void> {}
+  private static async triggerErrorMessages(page: Page): Promise<void> {
+    await page.click(
+      `${Selectors.button}:text-is("${UrgentFirstHearingContent.continue}")`,
+    );
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorSummaryTitle}:text-is("${UrgentFirstHearingContent.errorTitle}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.a}:text-is("${UrgentFirstHearingContent.errorLink}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorMessage}:text-is("${UrgentFirstHearingContent.errorLink}")`,
+        1,
+      ),
+    ]);
+  }
 
   private static async fillInFields({
     page: page,
-  }: fillInFieldsOptions): Promise<void> {}
+    urgencyAndWithoutNoticeAllOptionsYes: urgencyAndWithoutNoticeAllOptionsYes,
+  }: fillInFieldsOptions): Promise<void> {
+    await page.click(
+      urgencyAndWithoutNoticeAllOptionsYes ? radioIds.yes : radioIds.no,
+    );
+    await page.click(
+      `${Selectors.button}:text-is("${UrgentFirstHearingContent.continue}")`,
+    );
+  }
 }

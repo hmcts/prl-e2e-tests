@@ -3,6 +3,7 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { WithoutNoticeHearingDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/urgencyAndWithoutNotice/withoutNoticeHearingDetailsContent";
 import { Helpers } from "../../../../../common/helpers";
+import { uniqueSelectors } from "/urgentFirstHearingPage";
 
 interface WithoutNoticeHearingDetailsPageOptions {
   page: Page;
@@ -19,6 +20,23 @@ interface checkPageLoadsOptions {
 interface fillInFieldsOptions {
   page: Page;
 }
+
+enum radioIds {
+  yes1 = "hwn_doYouNeedAWithoutNoticeHearing",
+  yes2 = "hwn_doYouRequireAHearingWithReducedNotice",
+}
+
+enum inputIds {
+  input1 = "hwn_reasonsForApplicationWithoutNotice",
+  input2 = "hwn_doYouNeedAWithoutNoticeHearingDetails",
+  input3 = "hwn_doYouRequireAHearingWithReducedNoticeDetails",
+}
+
+// Untested, don't know if this works yet
+const combinedSelectors = [
+  ...Object.values(radioIds).map((selector) => ({ selector, action: "click" })),
+  ...Object.values(inputIds).map((selector) => ({ selector, action: "fill" })),
+];
 
 export class WithoutNoticeHearingDetailsPage {
   public static async withoutNoticeHearingDetailsPage({
@@ -43,14 +61,74 @@ export class WithoutNoticeHearingDetailsPage {
     page: page,
     accessibilityTest: accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
+    await page.waitForSelector(
+      `${Selectors.GovukHeadingXL}:text-is("${WithoutNoticeHearingDetailsContent.pageTitle}")`,
+    );
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukHeadingM}:text-is("${WithoutNoticeHearingDetailsContent.heading}")`,
+        1,
+      ),
+      Helpers.checkGroup(
+        page,
+        2,
+        WithoutNoticeHearingDetailsContent,
+        "hint",
+        `${Selectors.GovukHint}`,
+      ),
+      Helpers.checkGroup(
+        page,
+        2,
+        WithoutNoticeHearingDetailsContent,
+        "question",
+        `${uniqueSelectors.legend}`,
+      ),
+    ]);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }
   }
 
-  private static async triggerErrorMessages(page: Page): Promise<void> {}
+  private static async triggerErrorMessages(page: Page): Promise<void> {
+    await page.click(
+      `${Selectors.button}:text-is("${WithoutNoticeHearingDetailsContent.continue}")`,
+    );
+    await page.waitForSelector(
+      `${Selectors.GovukErrorSummaryTitle}:text-is("${WithoutNoticeHearingDetailsContent.errorTitle}")`,
+    );
+    await Promise.all([
+      Helpers.checkGroup(
+        page,
+        3,
+        WithoutNoticeHearingDetailsContent,
+        "errorLink",
+        `${Selectors.a}`,
+      ),
+      Helpers.checkGroup(
+        page,
+        3,
+        WithoutNoticeHearingDetailsContent,
+        "errorLink",
+        `${Selectors.GovukErrorMessage}`,
+      ),
+    ]);
+  }
 
   private static async fillInFields({
     page: page,
-  }: fillInFieldsOptions): Promise<void> {}
+  }: fillInFieldsOptions): Promise<void> {
+    // Untested, don't know if this works yet
+    // The alternative is to just use two separate loops
+    for (const { selector, action } of combinedSelectors) {
+      if (action === "click") {
+        await page.click(selector);
+      } else if (action === "fill") {
+        await page.fill(
+          `${selector}`,
+          WithoutNoticeHearingDetailsContent.exampleText,
+        );
+      }
+    }
+  }
 }
