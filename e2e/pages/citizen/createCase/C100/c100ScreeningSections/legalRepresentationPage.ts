@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
-import AccessibilityTestHelper from "../../common/accessibilityTestHelper";
-import { Selectors } from "../../common/selectors";
-import { LegalRepresentationContent } from "../../fixtures/citizen/createCase/C100/c100ScreeningSections/legalRepresentationContent";
-import { Helpers } from "../../common/helpers";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { Selectors } from "../../../../../common/selectors";
+import { LegalRepresentationContent } from "../../../../../fixtures/citizen/createCase/C100/c100ScreeningSections/legalRepresentationContent";
+import { Helpers } from "../../../../../common/helpers";
 
 enum inputIDs {
   radioYes = "#sq_legalRepresentation",

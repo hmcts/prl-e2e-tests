@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
-import AccessibilityTestHelper from "../../common/accessibilityTestHelper";
-import { Selectors } from "../../common/selectors";
-import { AlternativeResolutionContent } from "../../fixtures/citizen/createCase/C100/c100ScreeningSections/alternativeResolutionContent";
-import { Helpers } from "../../common/helpers";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { Selectors } from "../../../../../common/selectors";
+import { AlternativeResolutionContent } from "../../../../../fixtures/citizen/createCase/C100/c100ScreeningSections/alternativeResolutionContent";
+import { Helpers } from "../../../../../common/helpers";
 
 interface AlternativeResolutionPageOptions {
   page: Page;
