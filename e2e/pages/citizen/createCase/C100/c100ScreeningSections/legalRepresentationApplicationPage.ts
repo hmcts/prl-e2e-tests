@@ -58,12 +58,12 @@ export class LegalRepresentationApplicationPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukLabel}:text-is("${CommonStaticText.strippedYes}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukLabel}:text-is("${CommonStaticText.strippedNo}")`,
-        1
+        1,
       ),
     ]);
     if (accessibilityTest) {

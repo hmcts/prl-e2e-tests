@@ -8,9 +8,7 @@ import { ChildAddressPage } from "../../../../pages/citizen/createCase/C100/c100
 import { ConsentAgreementPage } from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/consentAgreementPage";
 import { PermissionPage } from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/permissionPage";
 import { PermissionsWhyPage } from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/permissionsWhyPage";
-import {
-  PermissionsRequestPage
-} from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/permissionsRequestPage";
+import { PermissionsRequestPage } from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/permissionsRequestPage";
 
 interface C100ScreeningSectionsOptions {
   page: Page;
@@ -28,7 +26,7 @@ export class C100ScreeningSections {
     errorMessaging,
     c100ScreeningWrittenAgreementReview,
     c100LegalRepresentation,
-    c100CourtPermissionNeeded
+    c100CourtPermissionNeeded,
   }: C100ScreeningSectionsOptions): Promise<void> {
     await StartPage.startPage({
       page: page,
@@ -74,18 +72,18 @@ export class C100ScreeningSections {
         page: page,
         accessibilityTest: accessibilityTest,
         errorMessaging: errorMessaging,
-        c100CourtPermissionNeeded: c100CourtPermissionNeeded
+        c100CourtPermissionNeeded: c100CourtPermissionNeeded,
       });
       if (c100CourtPermissionNeeded) {
         await PermissionsWhyPage.permissionsWhyPage({
           page: page,
           accessibilityTest: accessibilityTest,
-          errorMessaging: errorMessaging
+          errorMessaging: errorMessaging,
         });
         await PermissionsRequestPage.permissionsRequestPage({
           page: page,
           accessibilityTest: accessibilityTest,
-          errorMessaging: errorMessaging
+          errorMessaging: errorMessaging,
         });
       }
     }

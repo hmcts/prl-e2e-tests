@@ -58,12 +58,12 @@ export class LegalRepresentationPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukLabel}:text-is("${CommonStaticText.strippedYes}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukLabel}:text-is("${CommonStaticText.strippedNo}")`,
-        1
+        1,
       ),
       Helpers.checkGroup(
         page,
