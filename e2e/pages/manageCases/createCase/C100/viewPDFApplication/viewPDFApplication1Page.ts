@@ -310,6 +310,7 @@ export class ViewPDFApplication1Page {
         await pdfPage.click(inputIDs.mvDownBtn);
       }
     }
+    await pdfPage.close();
   }
 
   private static async checkEnglishPDFContentNoToAll(
@@ -369,6 +370,7 @@ export class ViewPDFApplication1Page {
         await pdfPage.click(inputIDs.mvDownBtn);
       }
     }
+    await pdfPage.close();
   }
 
   private static async checkEnglishNoRepeatedText(
@@ -946,6 +948,7 @@ export class ViewPDFApplication1Page {
         await pdfPage.click(inputIDs.mvDownBtn);
       }
     }
+    await pdfPage.close();
   }
 
   private static async checkWelshRepeatedTextByPage(
