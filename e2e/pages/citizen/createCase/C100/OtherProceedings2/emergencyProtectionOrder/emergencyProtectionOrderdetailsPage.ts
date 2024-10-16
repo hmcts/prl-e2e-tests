@@ -1,14 +1,15 @@
-import { OrderDetailsContent } from "../../../../../../fixtures/citizen/createCase/C100/otherProceedings1/childArrangementOrder/order-detailsContent";
 import { Selectors } from "../../../../../../common/selectors";
 import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
 import { Helpers } from "../../../../../../common/helpers";
+import { EmergencyProtectionOrderDetailsContent } from "../../../../../../fixtures/citizen/createCase/C100/OtherProceedings2/emergencyProtectionOrder/EmergencyProtectionOrderDetailsContent";
+import { CommonStaticText } from "../../../../../../common/commonStaticText";
 
-interface OrderDetailsPageOptions {
+interface EmergencyProtectionOrderDetailsPageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
-  yesNoOrderDetails: boolean;
+  yesNoEmergencyProtectionOrderDetails: boolean;
 }
 
 interface checkPageLoadsOptions {
@@ -18,7 +19,7 @@ interface checkPageLoadsOptions {
 
 interface fillInFieldsOptions {
   page: Page;
-  yesNoOrderDetails: boolean;
+  yesNoEmergencyProtectionOrderDetails: boolean;
 }
 
 enum UniqueSelectors {
@@ -36,13 +37,13 @@ enum UniqueSelectors {
   orderCopyNo = "#orderCopy-1-2",
 }
 
-export class OrderDetailsPage {
-  public static async orderDetailsPage({
+export class EmergencyProtectionOrderDetailsPage {
+  public static async emergencyProtectionOrderDetailsPage({
     page: page,
     accessibilityTest: accessibilityTest,
     errorMessaging: errorMessaging,
-    yesNoOrderDetails: yesNoOrderDetails,
-  }: OrderDetailsPageOptions): Promise<void> {
+    yesNoEmergencyProtectionOrderDetails: yesNoEmergencyProtectionOrderDetails,
+  }: EmergencyProtectionOrderDetailsPageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
       accessibilityTest: accessibilityTest,
@@ -52,7 +53,8 @@ export class OrderDetailsPage {
     }
     await this.fillInFields({
       page: page,
-      yesNoOrderDetails: yesNoOrderDetails,
+      yesNoEmergencyProtectionOrderDetails:
+        yesNoEmergencyProtectionOrderDetails,
     });
   }
 
@@ -61,50 +63,56 @@ export class OrderDetailsPage {
     accessibilityTest: accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.p}:text-is("${OrderDetailsContent.p}")`,
+      `${Selectors.p}:text-is("${EmergencyProtectionOrderDetailsContent.p}")`,
     );
     await Promise.all([
-      Helpers.checkGroup(page, 2, OrderDetailsContent, "h1", `${Selectors.h1}`),
+      Helpers.checkGroup(
+        page,
+        5,
+        EmergencyProtectionOrderDetailsContent,
+        "h1",
+        `${Selectors.h1}`,
+      ),
       Helpers.checkGroup(
         page,
         2,
-        OrderDetailsContent,
+        EmergencyProtectionOrderDetailsContent,
         "formLabel",
         `${Selectors.h1}`,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${OrderDetailsContent.formHint1}")`,
+        `${Selectors.GovukHint}:text-is("${EmergencyProtectionOrderDetailsContent.formHint1}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${OrderDetailsContent.formHint2}")`,
+        `${Selectors.GovukHint}:text-is("${EmergencyProtectionOrderDetailsContent.formHint2}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${OrderDetailsContent.formLabelYes}")`,
+        `${Selectors.GovukHint}:text-is("${CommonStaticText.strippedYes}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${OrderDetailsContent.formLabelNo}")`,
+        `${Selectors.GovukHint}:text-is("${CommonStaticText.strippedNo}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${OrderDetailsContent.day}")`,
+        `${Selectors.GovukLabel}:text-is("${EmergencyProtectionOrderDetailsContent.day}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${OrderDetailsContent.month}")`,
+        `${Selectors.GovukLabel}:text-is("${EmergencyProtectionOrderDetailsContent.month}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${OrderDetailsContent.year}")`,
+        `${Selectors.GovukLabel}:text-is("${EmergencyProtectionOrderDetailsContent.year}")`,
         2,
       ),
     ]);
@@ -116,55 +124,55 @@ export class OrderDetailsPage {
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.fill(
       `${UniqueSelectors.orderDate1day}`,
-      OrderDetailsContent.dayNumber,
+      EmergencyProtectionOrderDetailsContent.dayNumber,
     );
     await page.fill(
       `${UniqueSelectors.orderDate1month}`,
-      OrderDetailsContent.errorMonthNumber,
+      EmergencyProtectionOrderDetailsContent.errorMonthNumber,
     );
     await page.fill(
       `${UniqueSelectors.orderDate1year}`,
-      OrderDetailsContent.yearNumber1,
+      EmergencyProtectionOrderDetailsContent.yearNumber1,
     );
     await page.fill(
       `${UniqueSelectors.orderEndDate1day}`,
-      OrderDetailsContent.dayNumber,
+      EmergencyProtectionOrderDetailsContent.dayNumber,
     );
     await page.fill(
       `${UniqueSelectors.orderEndDate1month}`,
-      OrderDetailsContent.errorMonthNumber,
+      EmergencyProtectionOrderDetailsContent.errorMonthNumber,
     );
     await page.fill(
       `${UniqueSelectors.orderEndDate1year}`,
-      OrderDetailsContent.yearNumber2,
+      EmergencyProtectionOrderDetailsContent.yearNumber2,
     );
     await page.click(
-      `${Selectors.button}:text-is("${OrderDetailsContent.continue}")`,
+      `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorSummaryTitle}:text-is("${OrderDetailsContent.errorBanner}")`,
+        `${Selectors.GovukErrorSummaryTitle}:text-is("${CommonStaticText.errorSummaryTitle}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${OrderDetailsContent.errorMessageOrderDate}")`,
+        `${Selectors.a}:text-is("${EmergencyProtectionOrderDetailsContent.errorMessageOrderDate}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${OrderDetailsContent.errorMessageOrderDate}")`,
+        `${Selectors.ErrorMessage}:text-is("${EmergencyProtectionOrderDetailsContent.errorMessageOrderDate}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${OrderDetailsContent.errorMessageOrderEndDate}")`,
+        `${Selectors.a}:text-is("${EmergencyProtectionOrderDetailsContent.errorMessageOrderEndDate}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${OrderDetailsContent.errorMessageOrderEndDate}")`,
+        `${Selectors.ErrorMessage}:text-is("${EmergencyProtectionOrderDetailsContent.errorMessageOrderEndDate}")`,
         1,
       ),
     ]);
@@ -172,42 +180,42 @@ export class OrderDetailsPage {
 
   private static async fillInFields({
     page: page,
-    yesNoOrderDetails: yesNoOrderDetails,
+    yesNoEmergencyProtectionOrderDetails: yesNoEmergencyProtectionOrderDetails,
   }: fillInFieldsOptions): Promise<void> {
     await page.fill(
       `${UniqueSelectors.orderDetail1}`,
-      OrderDetailsContent.courtIssued,
+      EmergencyProtectionOrderDetailsContent.courtIssued,
     );
     await page.fill(
       `${UniqueSelectors.caseNo1}`,
-      OrderDetailsContent.caseNumber,
+      EmergencyProtectionOrderDetailsContent.caseNumber,
     );
     await page.fill(
       `${UniqueSelectors.orderDate1day}`,
-      OrderDetailsContent.dayNumber,
+      EmergencyProtectionOrderDetailsContent.dayNumber,
     );
     await page.fill(
       `${UniqueSelectors.orderDate1month}`,
-      OrderDetailsContent.monthNumber,
+      EmergencyProtectionOrderDetailsContent.monthNumber,
     );
     await page.fill(
       `${UniqueSelectors.orderDate1year}`,
-      OrderDetailsContent.yearNumber1,
+      EmergencyProtectionOrderDetailsContent.yearNumber1,
     );
     await page.fill(
       `${UniqueSelectors.orderEndDate1day}`,
-      OrderDetailsContent.dayNumber,
+      EmergencyProtectionOrderDetailsContent.dayNumber,
     );
     await page.fill(
       `${UniqueSelectors.orderEndDate1month}`,
-      OrderDetailsContent.monthNumber,
+      EmergencyProtectionOrderDetailsContent.monthNumber,
     );
     await page.fill(
       `${UniqueSelectors.orderEndDate1year}`,
-      OrderDetailsContent.yearNumber2,
+      EmergencyProtectionOrderDetailsContent.yearNumber2,
     );
     // Selecting 'true' will move onto next page
-    if (yesNoOrderDetails) {
+    if (yesNoEmergencyProtectionOrderDetails) {
       await page.click(`${UniqueSelectors.currentOrderYes}`);
       await page.click(`${UniqueSelectors.orderCopyYes}`);
     } else {

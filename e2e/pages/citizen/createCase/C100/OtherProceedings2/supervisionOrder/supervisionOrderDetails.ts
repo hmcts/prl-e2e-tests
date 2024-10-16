@@ -1,14 +1,15 @@
-import { OrderDetailsContent } from "../../../../../../fixtures/citizen/createCase/C100/otherProceedings1/childArrangementOrder/order-detailsContent";
 import { Selectors } from "../../../../../../common/selectors";
 import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
 import { Helpers } from "../../../../../../common/helpers";
+import { SupervisionOrderDetailsContent } from "../../../../../../fixtures/citizen/createCase/C100/OtherProceedings2/supervisionOrder/SupervisionOrderDetailsContent";
+import { CommonStaticText } from "../../../../../../common/commonStaticText";
 
-interface OrderDetailsPageOptions {
+interface SupervisionOrderDetailsPageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
-  yesNoOrderDetails: boolean;
+  yesNoSupervisionOrderDetails: boolean;
 }
 
 interface checkPageLoadsOptions {
@@ -18,7 +19,7 @@ interface checkPageLoadsOptions {
 
 interface fillInFieldsOptions {
   page: Page;
-  yesNoOrderDetails: boolean;
+  yesNoSupervisionOrderDetails: boolean;
 }
 
 enum UniqueSelectors {
@@ -36,13 +37,13 @@ enum UniqueSelectors {
   orderCopyNo = "#orderCopy-1-2",
 }
 
-export class OrderDetailsPage {
-  public static async orderDetailsPage({
+export class SupervisionOrderDetailsPage {
+  public static async supervisionOrderDetailsPage({
     page: page,
     accessibilityTest: accessibilityTest,
     errorMessaging: errorMessaging,
-    yesNoOrderDetails: yesNoOrderDetails,
-  }: OrderDetailsPageOptions): Promise<void> {
+    yesNoSupervisionOrderDetails: yesNoSupervisionOrderDetails,
+  }: SupervisionOrderDetailsPageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
       accessibilityTest: accessibilityTest,
@@ -52,7 +53,7 @@ export class OrderDetailsPage {
     }
     await this.fillInFields({
       page: page,
-      yesNoOrderDetails: yesNoOrderDetails,
+      yesNoSupervisionOrderDetails: yesNoSupervisionOrderDetails,
     });
   }
 
@@ -61,50 +62,56 @@ export class OrderDetailsPage {
     accessibilityTest: accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.p}:text-is("${OrderDetailsContent.p}")`,
+      `${Selectors.p}:text-is("${SupervisionOrderDetailsContent.p}")`,
     );
     await Promise.all([
-      Helpers.checkGroup(page, 2, OrderDetailsContent, "h1", `${Selectors.h1}`),
+      Helpers.checkGroup(
+        page,
+        5,
+        SupervisionOrderDetailsContent,
+        "h1",
+        `${Selectors.h1}`,
+      ),
       Helpers.checkGroup(
         page,
         2,
-        OrderDetailsContent,
+        SupervisionOrderDetailsContent,
         "formLabel",
         `${Selectors.h1}`,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${OrderDetailsContent.formHint1}")`,
+        `${Selectors.GovukHint}:text-is("${SupervisionOrderDetailsContent.formHint1}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${OrderDetailsContent.formHint2}")`,
+        `${Selectors.GovukHint}:text-is("${SupervisionOrderDetailsContent.formHint2}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${OrderDetailsContent.formLabelYes}")`,
+        `${Selectors.GovukHint}:text-is("${CommonStaticText.strippedYes}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${OrderDetailsContent.formLabelNo}")`,
+        `${Selectors.GovukHint}:text-is("${CommonStaticText.strippedNo}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${OrderDetailsContent.day}")`,
+        `${Selectors.GovukLabel}:text-is("${SupervisionOrderDetailsContent.day}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${OrderDetailsContent.month}")`,
+        `${Selectors.GovukLabel}:text-is("${SupervisionOrderDetailsContent.month}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${OrderDetailsContent.year}")`,
+        `${Selectors.GovukLabel}:text-is("${SupervisionOrderDetailsContent.year}")`,
         2,
       ),
     ]);
@@ -116,55 +123,55 @@ export class OrderDetailsPage {
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.fill(
       `${UniqueSelectors.orderDate1day}`,
-      OrderDetailsContent.dayNumber,
+      SupervisionOrderDetailsContent.dayNumber,
     );
     await page.fill(
       `${UniqueSelectors.orderDate1month}`,
-      OrderDetailsContent.errorMonthNumber,
+      SupervisionOrderDetailsContent.errorMonthNumber,
     );
     await page.fill(
       `${UniqueSelectors.orderDate1year}`,
-      OrderDetailsContent.yearNumber1,
+      SupervisionOrderDetailsContent.yearNumber1,
     );
     await page.fill(
       `${UniqueSelectors.orderEndDate1day}`,
-      OrderDetailsContent.dayNumber,
+      SupervisionOrderDetailsContent.dayNumber,
     );
     await page.fill(
       `${UniqueSelectors.orderEndDate1month}`,
-      OrderDetailsContent.errorMonthNumber,
+      SupervisionOrderDetailsContent.errorMonthNumber,
     );
     await page.fill(
       `${UniqueSelectors.orderEndDate1year}`,
-      OrderDetailsContent.yearNumber2,
+      SupervisionOrderDetailsContent.yearNumber2,
     );
     await page.click(
-      `${Selectors.button}:text-is("${OrderDetailsContent.continue}")`,
+      `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorSummaryTitle}:text-is("${OrderDetailsContent.errorBanner}")`,
+        `${Selectors.GovukErrorSummaryTitle}:text-is("${CommonStaticText.errorSummaryTitle}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${OrderDetailsContent.errorMessageOrderDate}")`,
+        `${Selectors.a}:text-is("${SupervisionOrderDetailsContent.errorMessageOrderDate}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${OrderDetailsContent.errorMessageOrderDate}")`,
+        `${Selectors.ErrorMessage}:text-is("${SupervisionOrderDetailsContent.errorMessageOrderDate}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${OrderDetailsContent.errorMessageOrderEndDate}")`,
+        `${Selectors.a}:text-is("${SupervisionOrderDetailsContent.errorMessageOrderEndDate}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${OrderDetailsContent.errorMessageOrderEndDate}")`,
+        `${Selectors.ErrorMessage}:text-is("${SupervisionOrderDetailsContent.errorMessageOrderEndDate}")`,
         1,
       ),
     ]);
@@ -172,42 +179,42 @@ export class OrderDetailsPage {
 
   private static async fillInFields({
     page: page,
-    yesNoOrderDetails: yesNoOrderDetails,
+    yesNoSupervisionOrderDetails: yesNoSupervisionOrderDetails,
   }: fillInFieldsOptions): Promise<void> {
     await page.fill(
       `${UniqueSelectors.orderDetail1}`,
-      OrderDetailsContent.courtIssued,
+      SupervisionOrderDetailsContent.courtIssued,
     );
     await page.fill(
       `${UniqueSelectors.caseNo1}`,
-      OrderDetailsContent.caseNumber,
+      SupervisionOrderDetailsContent.caseNumber,
     );
     await page.fill(
       `${UniqueSelectors.orderDate1day}`,
-      OrderDetailsContent.dayNumber,
+      SupervisionOrderDetailsContent.dayNumber,
     );
     await page.fill(
       `${UniqueSelectors.orderDate1month}`,
-      OrderDetailsContent.monthNumber,
+      SupervisionOrderDetailsContent.monthNumber,
     );
     await page.fill(
       `${UniqueSelectors.orderDate1year}`,
-      OrderDetailsContent.yearNumber1,
+      SupervisionOrderDetailsContent.yearNumber1,
     );
     await page.fill(
       `${UniqueSelectors.orderEndDate1day}`,
-      OrderDetailsContent.dayNumber,
+      SupervisionOrderDetailsContent.dayNumber,
     );
     await page.fill(
       `${UniqueSelectors.orderEndDate1month}`,
-      OrderDetailsContent.monthNumber,
+      SupervisionOrderDetailsContent.monthNumber,
     );
     await page.fill(
       `${UniqueSelectors.orderEndDate1year}`,
-      OrderDetailsContent.yearNumber2,
+      SupervisionOrderDetailsContent.yearNumber2,
     );
     // Selecting 'true' will move onto next page
-    if (yesNoOrderDetails) {
+    if (yesNoSupervisionOrderDetails) {
       await page.click(`${UniqueSelectors.currentOrderYes}`);
       await page.click(`${UniqueSelectors.orderCopyYes}`);
     } else {
