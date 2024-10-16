@@ -19,7 +19,7 @@ export class C100 {
     errorMessaging,
     c100ScreeningWrittenAgreementReview,
     c100LegalRepresentation,
-    c100CourtPermissionNeeded
+    c100CourtPermissionNeeded,
   }: C100Options): Promise<void> {
     await CitizenCreateInitial.citizenCreateInitial({
       page: page,
@@ -32,7 +32,7 @@ export class C100 {
       errorMessaging: errorMessaging,
       c100ScreeningWrittenAgreementReview: c100ScreeningWrittenAgreementReview,
       c100LegalRepresentation: c100LegalRepresentation,
-      c100CourtPermissionNeeded: c100CourtPermissionNeeded
+      c100CourtPermissionNeeded: c100CourtPermissionNeeded,
     });
     if (c100ScreeningWrittenAgreementReview) {
       await C100TypeOfOrder.c100TypeOfOrder({
