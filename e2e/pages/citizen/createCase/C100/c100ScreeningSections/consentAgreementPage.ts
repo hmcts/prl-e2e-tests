@@ -66,12 +66,12 @@ export class ConsentAgreementPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukLabel}:text-is("${CommonStaticText.paddedYes}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukLabel}:text-is("${CommonStaticText.paddedYes}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
