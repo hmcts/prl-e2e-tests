@@ -11,7 +11,5 @@ export enum EmergencyProtectionDocumentUploadContent {
   formLabel = "Upload a file",
   uploadFile = "Upload file",
   remove = "Remove",
-  errorBanner = "There is a problem on this page",
   errorMessageChooseFile = "Please choose a file.",
-  continue = "Continue",
 }

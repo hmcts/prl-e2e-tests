@@ -3,6 +3,7 @@ import AccessibilityTestHelper from "../../../../../../common/accessibilityTestH
 import { Page } from "@playwright/test";
 import { Helpers } from "../../../../../../common/helpers";
 import { EmergencyProtectionOrderDetailsContent } from "../../../../../../fixtures/citizen/createCase/C100/OtherProceedings2/emergencyProtectionOrder/EmergencyProtectionOrderDetailsContent";
+import { CommonStaticText } from "../../../../../../common/commonStaticText";
 
 interface EmergencyProtectionOrderDetailsPageOptions {
   page: Page;
@@ -91,12 +92,12 @@ export class EmergencyProtectionOrderDetailsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${EmergencyProtectionOrderDetailsContent.formLabelYes}")`,
+        `${Selectors.GovukHint}:text-is("${CommonStaticText.strippedYes}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${EmergencyProtectionOrderDetailsContent.formLabelNo}")`,
+        `${Selectors.GovukHint}:text-is("${CommonStaticText.strippedNo}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
@@ -146,12 +147,12 @@ export class EmergencyProtectionOrderDetailsPage {
       EmergencyProtectionOrderDetailsContent.yearNumber2,
     );
     await page.click(
-      `${Selectors.button}:text-is("${EmergencyProtectionOrderDetailsContent.continue}")`,
+      `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorSummaryTitle}:text-is("${EmergencyProtectionOrderDetailsContent.errorBanner}")`,
+        `${Selectors.GovukErrorSummaryTitle}:text-is("${CommonStaticText.errorSummaryTitle}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(

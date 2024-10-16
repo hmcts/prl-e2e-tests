@@ -11,8 +11,6 @@ export enum CareOrderDocumentUploadContent {
   formLabel = "Upload a file",
   uploadFile = "Upload file",
   remove = "Remove",
-  errorBanner = "There is a problem on this page",
   errorMessageChooseFile = "Please choose a file.",
   errorMessageUploadCorrectFile = "The file you uploaded is in the wrong format. Upload your file again in the correct format",
-  continue = "Continue",
 }

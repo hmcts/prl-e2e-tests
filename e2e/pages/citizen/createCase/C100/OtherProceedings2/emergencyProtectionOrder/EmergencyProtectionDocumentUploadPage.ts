@@ -5,6 +5,7 @@ import { Helpers } from "../../../../../../common/helpers";
 import config from "../../../../../../config";
 import { EmergencyProtectionDocumentUploadContent } from "../../../../../../fixtures/citizen/createCase/C100/OtherProceedings2/emergencyProtectionOrder/EmergencyProtectionDocumentUploadContent";
 import { CareOrderDocumentUploadContent } from "../../../../../../fixtures/citizen/createCase/C100/OtherProceedings2/careOrder/CareOrderDocumentUploadContent";
+import { CommonStaticText } from "../../../../../../common/commonStaticText";
 
 interface EmergencyProtectionDocumentUploadPageOptions {
   page: Page;
@@ -87,12 +88,12 @@ export class EmergencyProtectionDocumentUploadPage {
 
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${EmergencyProtectionDocumentUploadContent.continue}")`,
+      `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorSummaryTitle}:text-is("${EmergencyProtectionDocumentUploadContent.errorBanner}")`,
+        `${Selectors.GovukErrorSummaryTitle}:text-is("${CommonStaticText.errorSummaryTitle}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -150,7 +151,7 @@ export class EmergencyProtectionDocumentUploadPage {
       1,
     );
     await page.click(
-      `${Selectors.button}:text-is("${EmergencyProtectionDocumentUploadContent.continue}")`,
+      `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`,
     );
   }
 }
