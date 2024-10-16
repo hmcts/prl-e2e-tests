@@ -4,6 +4,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { WithoutNoticeHearingDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/urgencyAndWithoutNotice/withoutNoticeHearingDetailsContent";
 import { Helpers } from "../../../../../common/helpers";
 import { uniqueSelectors } from "/urgentFirstHearingPage";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
 
 interface WithoutNoticeHearingDetailsPageOptions {
   page: Page;
@@ -92,10 +93,10 @@ export class WithoutNoticeHearingDetailsPage {
 
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${WithoutNoticeHearingDetailsContent.continue}")`,
+      `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`,
     );
     await page.waitForSelector(
-      `${Selectors.GovukErrorSummaryTitle}:text-is("${WithoutNoticeHearingDetailsContent.errorTitle}")`,
+      `${Selectors.GovukErrorSummaryTitle}:text-is("${CommonStaticText.errorSummaryTitle}")`,
     );
     await Promise.all([
       Helpers.checkGroup(
@@ -130,5 +131,8 @@ export class WithoutNoticeHearingDetailsPage {
         );
       }
     }
+    await page.click(
+      `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`,
+    );
   }
 }

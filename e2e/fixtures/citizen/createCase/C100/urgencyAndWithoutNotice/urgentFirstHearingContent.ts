@@ -5,9 +5,5 @@ export enum UrgentFirstHearingContent {
   p3 = "If you get an urgent hearing, this may not mean that your case will be over sooner, and you may not receive a final decision on your case at this stage.",
   warning = "Only ask for an urgent hearing if you have a good reason. The court will only agree to an urgent hearing if they think the situation is critical.",
   question = "Do you have a good reason to request an urgent hearing?",
-  yes = "Yes",
-  no = "No",
-  continue = "Continue",
-  errorTitle = "There is a problem on this page",
   errorLink = "Select yes if you have a good reason to request an urgent hearing",
 }

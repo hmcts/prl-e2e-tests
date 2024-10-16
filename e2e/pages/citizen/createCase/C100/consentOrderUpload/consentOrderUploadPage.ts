@@ -4,6 +4,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { ConsentOrderUploadContent } from "../../../../../fixtures/citizen/createCase/C100/consentOrderUpload/consentOrderUploadContent";
 import { Helpers } from "../../../../../common/helpers";
 import config from "../../../../../config";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
 
 interface ConsentOrderUploadPageOptions {
   page: Page;
@@ -88,12 +89,12 @@ export class ConsentOrderUploadPage {
 
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${ConsentOrderUploadContent.continue}")`,
+      `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorSummaryTitle}:text-is("${ConsentOrderUploadContent.errorSummaryTitle}")`,
+        `${Selectors.GovukErrorSummaryTitle}:text-is("${CommonStaticText.errorSummaryTitle}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -121,7 +122,7 @@ export class ConsentOrderUploadPage {
       `${Selectors.a}:text-is("${ConsentOrderUploadContent.remove}")`,
     );
     await page.click(
-      `${Selectors.button}:text-is("${ConsentOrderUploadContent.continue}")`,
+      `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`,
     );
   }
 }

@@ -4,6 +4,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { WithoutNoticeHearingContent } from "../../../../../fixtures/citizen/createCase/C100/urgencyAndWithoutNotice/withoutNoticeHearingContent";
 import { Helpers } from "../../../../../common/helpers";
 import { uniqueSelectors } from "/urgentFirstHearingPage";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
 
 interface WithoutNoticeHearingPageOptions {
   page: Page;
@@ -74,10 +75,10 @@ export class WithoutNoticeHearingPage {
 
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${WithoutNoticeHearingContent.continue}")`,
+      `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`,
     );
     await page.waitForSelector(
-      `${Selectors.GovukErrorSummaryTitle}:text-is("${WithoutNoticeHearingContent.errorTitle}")`,
+      `${Selectors.GovukErrorSummaryTitle}:text-is("${CommonStaticText.errorSummaryTitle}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -99,7 +100,7 @@ export class WithoutNoticeHearingPage {
   }: fillInFieldsOptions): Promise<void> {
     await page.click(urgencyAndWithoutNoticeAllOptionsYes ? ids.yes : ids.no);
     await page.click(
-      `${Selectors.button}:text-is("${WithoutNoticeHearingContent.continue}")`,
+      `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`,
     );
   }
 }

@@ -4,6 +4,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { TellUsAboutYourSituationContent } from "../../../../../fixtures/citizen/createCase/C100/urgencyAndWithoutNotice/tellUsAboutYourSituationContent";
 import { Helpers } from "../../../../../common/helpers";
 import { uniqueSelectors } from "/urgentFirstHearingPage";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
 
 interface TellUsAboutYourSituationPageOptions {
   page: Page;
@@ -114,10 +115,10 @@ export class TellUsAboutYourSituationPage {
 
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${TellUsAboutYourSituationContent.continue}")`,
+      `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`,
     );
     await page.waitForSelector(
-      `${Selectors.GovukErrorSummaryTitle}:text-is("${TellUsAboutYourSituationContent.errorTitle}")`,
+      `${Selectors.GovukErrorSummaryTitle}:text-is("${CommonStaticText.errorSummaryTitle}")`,
     );
     await Promise.all([
       Helpers.checkGroup(
@@ -152,5 +153,8 @@ export class TellUsAboutYourSituationPage {
         );
       }
     }
+    await page.click(
+      `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`,
+    );
   }
 }

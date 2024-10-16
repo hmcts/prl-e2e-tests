@@ -3,6 +3,7 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { UrgentFirstHearingContent } from "../../../../../fixtures/citizen/createCase/C100/urgencyAndWithoutNotice/urgentFirstHearingContent";
 import { Helpers } from "../../../../../common/helpers";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
 
 interface UrgentFirstHearingPageOptions {
   page: Page;
@@ -85,12 +86,12 @@ export class UrgentFirstHearingPage {
 
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${UrgentFirstHearingContent.continue}")`,
+      `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorSummaryTitle}:text-is("${UrgentFirstHearingContent.errorTitle}")`,
+        `${Selectors.GovukErrorSummaryTitle}:text-is("${CommonStaticText.errorSummaryTitle}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -114,7 +115,7 @@ export class UrgentFirstHearingPage {
       urgencyAndWithoutNoticeAllOptionsYes ? radioIds.yes : radioIds.no,
     );
     await page.click(
-      `${Selectors.button}:text-is("${UrgentFirstHearingContent.continue}")`,
+      `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`,
     );
   }
 }

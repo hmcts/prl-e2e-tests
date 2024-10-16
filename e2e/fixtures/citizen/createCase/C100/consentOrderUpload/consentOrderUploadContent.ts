@@ -10,9 +10,7 @@ export enum ConsentOrderUploadContent {
   li3 = "Check you can read all the writing, including the handwriting.",
   li4 = "Email or send the photo or scan to the device you are using now.",
   li5 = "Upload it here.",
-  errorSummaryTitle = "There is a problem on this page",
   errorLink = "Please choose a file.",
-  continue = "Continue",
   uploadFile = "Upload file",
   remove = "Remove",
 }
