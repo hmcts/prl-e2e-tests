@@ -1,8 +1,9 @@
 import { Page } from "@playwright/test";
-import AccessibilityTestHelper from "../../common/accessibilityTestHelper";
-import { Selectors } from "../../common/selectors";
-import { AlternativeResolutionContent } from "../../fixtures/citizen/createCase/C100/c100ScreeningSections/alternativeResolutionContent";
-import { Helpers } from "../../common/helpers";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { Selectors } from "../../../../../common/selectors";
+import { AlternativeResolutionContent } from "../../../../../fixtures/citizen/createCase/C100/c100ScreeningSections/alternativeResolutionContent";
+import { Helpers } from "../../../../../common/helpers";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
 
 interface AlternativeResolutionPageOptions {
   page: Page;
@@ -70,7 +71,7 @@ export class AlternativeResolutionPage {
 
   private static async fillInFields(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${AlternativeResolutionContent.continue}")`,
+      `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`,
     );
   }
 }

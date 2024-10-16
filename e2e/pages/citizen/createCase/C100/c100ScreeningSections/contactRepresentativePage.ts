@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../common/selectors";
-import { ContactRepresentativeContent } from "../../fixtures/citizen/createCase/C100/c100ScreeningSections/contactRepresentativeContent";
-import { Helpers } from "../../common/helpers";
-import AccessibilityTestHelper from "../../common/accessibilityTestHelper";
+import { Selectors } from "../../../../../common/selectors";
+import { ContactRepresentativeContent } from "../../../../../fixtures/citizen/createCase/C100/c100ScreeningSections/contactRepresentativeContent";
+import { Helpers } from "../../../../../common/helpers";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 
 interface ContactRepresentativePageOptions {
   page: Page;
