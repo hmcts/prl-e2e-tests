@@ -1,18 +1,25 @@
 import { Page } from "@playwright/test";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Selectors } from "../../../../../common/selectors";
-import { ChildAddressContent } from "../../../../../fixtures/citizen/createCase/C100/c100ScreeningSections/childAddressContent";
+import { LegalRepresentationContent } from "../../../../../fixtures/citizen/createCase/C100/c100ScreeningSections/legalRepresentationContent";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 
-enum uniqueSelectors {
-  childPostcode = "#c100RebuildChildPostCode",
+enum inputIDs {
+  radioYes = "#sq_legalRepresentation",
+  radioNo = "#sq_legalRepresentation-2",
 }
 
-interface ChildAddressPageOptions {
+interface LegalRepresentationPageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
+  c100LegalRepresentation: boolean;
+}
+
+interface FillInFieldsOptions {
+  page: Page;
+  c100LegalRepresentation: boolean;
 }
 
 interface CheckPageLoadsOptions {
@@ -20,12 +27,13 @@ interface CheckPageLoadsOptions {
   accessibilityTest: boolean;
 }
 
-export class ChildAddressPage {
-  public static async childAddressPage({
+export class LegalRepresentationPage {
+  public static async legalRepresentationPage({
     page,
     accessibilityTest,
     errorMessaging,
-  }: ChildAddressPageOptions): Promise<void> {
+    c100LegalRepresentation,
+  }: LegalRepresentationPageOptions) {
     await this.checkPageLoads({
       page,
       accessibilityTest,
@@ -33,7 +41,10 @@ export class ChildAddressPage {
     if (errorMessaging) {
       await this.checkErrorMessaging(page);
     }
-    await this.fillInFields(page);
+    await this.fillInFields({
+      page,
+      c100LegalRepresentation,
+    });
   }
 
   private static async checkPageLoads({
@@ -41,43 +52,27 @@ export class ChildAddressPage {
     accessibilityTest,
   }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukHeadingXL}:text-is("${ChildAddressContent.pageTitle}")`,
+      `${Selectors.GovukHeadingXL}:text-is("${LegalRepresentationContent.pageTitle}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukBodyL}:text-is("${ChildAddressContent.bodyL}")`,
-        1,
+        `${Selectors.GovukLabel}:text-is("${CommonStaticText.strippedYes}")`,
+        1
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukBodyM}:text-is("${ChildAddressContent.bodyM}")`,
-        1,
+        `${Selectors.GovukLabel}:text-is("${CommonStaticText.strippedNo}")`,
+        1
       ),
-      Helpers.checkVisibleAndPresent(
+      Helpers.checkGroup(
         page,
-        `${Selectors.strong}:text-is("${ChildAddressContent.strong}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.Span}:text-is("${ChildAddressContent.span}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryText}:text-is("${ChildAddressContent.summaryText}")`,
-        1,
+        2,
+        LegalRepresentationContent,
+        "link",
+        `${Selectors.GovukLink}`,
       ),
     ]);
-    await page.click(
-      `${Selectors.GovukSummaryText}:text-is("${ChildAddressContent.summaryText}")`,
-    );
-    await Helpers.checkVisibleAndPresent(
-      page,
-      `${Selectors.GovukDetailsText}:text-is("${ChildAddressContent.detailsText}")`,
-      1,
-    );
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }
@@ -95,22 +90,26 @@ export class ChildAddressPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${ChildAddressContent.errorMessage}")`,
+        `${Selectors.GovukErrorList} ${Selectors.a}:text-is("${LegalRepresentationContent.errorSummaryList}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorList} ${Selectors.a}:text-is("${ChildAddressContent.errorSummaryLi}")`,
+        `${Selectors.GovukErrorMessage}:text-is("${LegalRepresentationContent.errorMessage}")`,
         1,
       ),
     ]);
   }
 
-  private static async fillInFields(page: Page): Promise<void> {
-    await page.fill(
-      `${uniqueSelectors.childPostcode}`,
-      `${ChildAddressContent.swanseaPostcode}`,
-    );
+  private static async fillInFields({
+    page,
+    c100LegalRepresentation,
+  }: FillInFieldsOptions): Promise<void> {
+    if (c100LegalRepresentation) {
+      await page.click(inputIDs.radioYes);
+    } else {
+      await page.click(inputIDs.radioNo);
+    }
     await page.click(
       `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`,
     );
