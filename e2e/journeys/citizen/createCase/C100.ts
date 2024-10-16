@@ -7,7 +7,8 @@ interface C100Options {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
-  c100ScreeningWrittenAgreementReview: boolean; // If true -> Type Of Order
+  c100ScreeningWrittenAgreementReview: boolean; // If true -> Type Of Order Journey
+  c100LegalRepresentation: boolean;
 }
 
 export class C100 {
@@ -16,17 +17,19 @@ export class C100 {
     accessibilityTest,
     errorMessaging,
     c100ScreeningWrittenAgreementReview,
+    c100LegalRepresentation,
   }: C100Options): Promise<void> {
     await CitizenCreateInitial.citizenCreateInitial({
       page: page,
       accessibilityTest: accessibilityTest,
-      childArrangementsJourney: 'C100'
-    })
+      childArrangementsJourney: "C100",
+    });
     await C100ScreeningSections.c100ScreeningSections({
       page: page,
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
-      c100ScreeningWrittenAgreementReview: c100ScreeningWrittenAgreementReview
+      c100ScreeningWrittenAgreementReview: c100ScreeningWrittenAgreementReview,
+      c100LegalRepresentation: c100LegalRepresentation,
     });
     if (c100ScreeningWrittenAgreementReview) {
       await C100TypeOfOrder.c100TypeOfOrder({
@@ -46,6 +49,7 @@ export class C100 {
       // Reasonable Adjustments
       // Help with Fees
     } else {
+      // MIAM Journey
       // PRL-6358 Screening 2 (Done in screening journey)
       // PRL-6359 Screening 3 (done in screening journey)
       // MIAM journey
