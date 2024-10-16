@@ -1,20 +1,10 @@
 import { Page } from "@playwright/test";
-import { EmergencyProtectionOrderDetailsPage, } from "../../../../pages/citizen/createCase/C100/OtherProceedings2/emergencyProtectionOrder/emergencyProtectionOrderdetailsPage";
-import {
-  EmergencyProtectionDocumentUploadPage
-} from "../../../../pages/citizen/createCase/C100/OtherProceedings2/emergencyProtectionOrder/EmergencyProtectionDocumentUploadPage";
-import {
-  SupervisionOrderDetailsPage
-} from "../../../../pages/citizen/createCase/C100/OtherProceedings2/supervisionOrder/supervisionOrderDetails";
-import {
-  SupervisionDocumentUploadPage
-} from "../../../../pages/citizen/createCase/C100/OtherProceedings2/supervisionOrder/supervisionDocumentUpload";
-import {
-  CareOrderDetailsPage
-} from "../../../../pages/citizen/createCase/C100/OtherProceedings2/careOrder/careOrderOrderDetailsPage";
-import {
-  CareOrderDocumentUploadPage
-} from "../../../../pages/citizen/createCase/C100/OtherProceedings2/careOrder/CareOrderDocumentUploadPage";
+import { EmergencyProtectionOrderDetailsPage } from "../../../../pages/citizen/createCase/C100/OtherProceedings2/emergencyProtectionOrder/emergencyProtectionOrderdetailsPage";
+import { EmergencyProtectionDocumentUploadPage } from "../../../../pages/citizen/createCase/C100/OtherProceedings2/emergencyProtectionOrder/EmergencyProtectionDocumentUploadPage";
+import { SupervisionOrderDetailsPage } from "../../../../pages/citizen/createCase/C100/OtherProceedings2/supervisionOrder/supervisionOrderDetails";
+import { SupervisionDocumentUploadPage } from "../../../../pages/citizen/createCase/C100/OtherProceedings2/supervisionOrder/supervisionDocumentUpload";
+import { CareOrderDetailsPage } from "../../../../pages/citizen/createCase/C100/OtherProceedings2/careOrder/careOrderOrderDetailsPage";
+import { CareOrderDocumentUploadPage } from "../../../../pages/citizen/createCase/C100/OtherProceedings2/careOrder/CareOrderDocumentUploadPage";
 
 interface C100OtherProceedings2Options {
   page: Page;
@@ -31,43 +21,45 @@ export class C100OtherProceedings2 {
     accessibilityTest,
     errorMessaging,
     yesNoEmergencyProtectionOrderDetails,
-                                              yesNoSupervisionOrderDetails,
-                                              yesNoCareOrderOrderDetails
-
+    yesNoSupervisionOrderDetails,
+    yesNoCareOrderOrderDetails,
   }: C100OtherProceedings2Options): Promise<void> {
-    await EmergencyProtectionOrderDetailsPage.emergencyProtectionOrderDetailsPage({
-      page,
-      accessibilityTest,
-      errorMessaging,
-      yesNoEmergencyProtectionOrderDetails,
-
-    });
-    await EmergencyProtectionDocumentUploadPage.emergencyProtectionDocumentUploadPage({
-      page,
-      accessibilityTest,
-      errorMessaging,
-    });
+    await EmergencyProtectionOrderDetailsPage.emergencyProtectionOrderDetailsPage(
+      {
+        page,
+        accessibilityTest,
+        errorMessaging,
+        yesNoEmergencyProtectionOrderDetails,
+      },
+    );
+    await EmergencyProtectionDocumentUploadPage.emergencyProtectionDocumentUploadPage(
+      {
+        page,
+        accessibilityTest,
+        errorMessaging,
+      },
+    );
     await SupervisionOrderDetailsPage.supervisionOrderDetailsPage({
       page,
       accessibilityTest,
       errorMessaging,
-      yesNoSupervisionOrderDetails
+      yesNoSupervisionOrderDetails,
     });
     await SupervisionDocumentUploadPage.supervisionDocumentUploadPage({
       page,
       accessibilityTest,
-      errorMessaging
+      errorMessaging,
     });
     await CareOrderDetailsPage.careOrderDetailsPage({
       page,
       accessibilityTest,
       errorMessaging,
-      yesNoCareOrderOrderDetails
+      yesNoCareOrderOrderDetails,
     });
     await CareOrderDocumentUploadPage.careOrderDocumentUploadPage({
       page,
       accessibilityTest,
-      errorMessaging
+      errorMessaging,
     });
   }
 }
