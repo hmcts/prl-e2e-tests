@@ -1,4 +1,4 @@
-import { OrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/order-detailsContent";
+import { ChildArrangementOrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/ChildArrangementOrderDetailsContent";
 import { Selectors } from "../../../../../common/selectors";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
@@ -61,50 +61,50 @@ export class ChildArrangementOrderDetailsPage {
     accessibilityTest: accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.p}:text-is("${OrderDetailsContent.p}")`,
+      `${Selectors.p}:text-is("${ChildArrangementOrderDetailsContent.p}")`,
     );
     await Promise.all([
-      Helpers.checkGroup(page, 2, OrderDetailsContent, "h1", `${Selectors.h1}`),
+      Helpers.checkGroup(page, 2, ChildArrangementOrderDetailsContent, "h1", `${Selectors.h1}`),
       Helpers.checkGroup(
         page,
         2,
-        OrderDetailsContent,
+        ChildArrangementOrderDetailsContent,
         "formLabel",
         `${Selectors.h1}`,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${OrderDetailsContent.formHint1}")`,
+        `${Selectors.GovukHint}:text-is("${ChildArrangementOrderDetailsContent.formHint1}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${OrderDetailsContent.formHint2}")`,
+        `${Selectors.GovukHint}:text-is("${ChildArrangementOrderDetailsContent.formHint2}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${OrderDetailsContent.formLabelYes}")`,
+        `${Selectors.GovukHint}:text-is("${ChildArrangementOrderDetailsContent.formLabelYes}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${OrderDetailsContent.formLabelNo}")`,
+        `${Selectors.GovukHint}:text-is("${ChildArrangementOrderDetailsContent.formLabelNo}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${OrderDetailsContent.day}")`,
+        `${Selectors.GovukLabel}:text-is("${ChildArrangementOrderDetailsContent.day}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${OrderDetailsContent.month}")`,
+        `${Selectors.GovukLabel}:text-is("${ChildArrangementOrderDetailsContent.month}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${OrderDetailsContent.year}")`,
+        `${Selectors.GovukLabel}:text-is("${ChildArrangementOrderDetailsContent.year}")`,
         2,
       ),
     ]);
@@ -116,55 +116,55 @@ export class ChildArrangementOrderDetailsPage {
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.fill(
       `${UniqueSelectors.orderDate1day}`,
-      OrderDetailsContent.dayNumber,
+      ChildArrangementOrderDetailsContent.dayNumber,
     );
     await page.fill(
       `${UniqueSelectors.orderDate1month}`,
-      OrderDetailsContent.errorMonthNumber,
+      ChildArrangementOrderDetailsContent.errorMonthNumber,
     );
     await page.fill(
       `${UniqueSelectors.orderDate1year}`,
-      OrderDetailsContent.yearNumber1,
+      ChildArrangementOrderDetailsContent.yearNumber1,
     );
     await page.fill(
       `${UniqueSelectors.orderEndDate1day}`,
-      OrderDetailsContent.dayNumber,
+      ChildArrangementOrderDetailsContent.dayNumber,
     );
     await page.fill(
       `${UniqueSelectors.orderEndDate1month}`,
-      OrderDetailsContent.errorMonthNumber,
+      ChildArrangementOrderDetailsContent.errorMonthNumber,
     );
     await page.fill(
       `${UniqueSelectors.orderEndDate1year}`,
-      OrderDetailsContent.yearNumber2,
+      ChildArrangementOrderDetailsContent.yearNumber2,
     );
     await page.click(
-      `${Selectors.button}:text-is("${OrderDetailsContent.continue}")`,
+      `${Selectors.button}:text-is("${ChildArrangementOrderDetailsContent.continue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorSummaryTitle}:text-is("${OrderDetailsContent.errorBanner}")`,
+        `${Selectors.GovukErrorSummaryTitle}:text-is("${ChildArrangementOrderDetailsContent.errorBanner}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${OrderDetailsContent.errorMessageOrderDate}")`,
+        `${Selectors.a}:text-is("${ChildArrangementOrderDetailsContent.errorMessageOrderDate}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${OrderDetailsContent.errorMessageOrderDate}")`,
+        `${Selectors.ErrorMessage}:text-is("${ChildArrangementOrderDetailsContent.errorMessageOrderDate}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${OrderDetailsContent.errorMessageOrderEndDate}")`,
+        `${Selectors.a}:text-is("${ChildArrangementOrderDetailsContent.errorMessageOrderEndDate}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${OrderDetailsContent.errorMessageOrderEndDate}")`,
+        `${Selectors.ErrorMessage}:text-is("${ChildArrangementOrderDetailsContent.errorMessageOrderEndDate}")`,
         1,
       ),
     ]);
@@ -176,35 +176,35 @@ export class ChildArrangementOrderDetailsPage {
   }: fillInFieldsOptions): Promise<void> {
     await page.fill(
       `${UniqueSelectors.orderDetail1}`,
-      OrderDetailsContent.courtIssued,
+      ChildArrangementOrderDetailsContent.courtIssued,
     );
     await page.fill(
       `${UniqueSelectors.caseNo1}`,
-      OrderDetailsContent.caseNumber,
+      ChildArrangementOrderDetailsContent.caseNumber,
     );
     await page.fill(
       `${UniqueSelectors.orderDate1day}`,
-      OrderDetailsContent.dayNumber,
+      ChildArrangementOrderDetailsContent.dayNumber,
     );
     await page.fill(
       `${UniqueSelectors.orderDate1month}`,
-      OrderDetailsContent.monthNumber,
+      ChildArrangementOrderDetailsContent.monthNumber,
     );
     await page.fill(
       `${UniqueSelectors.orderDate1year}`,
-      OrderDetailsContent.yearNumber1,
+      ChildArrangementOrderDetailsContent.yearNumber1,
     );
     await page.fill(
       `${UniqueSelectors.orderEndDate1day}`,
-      OrderDetailsContent.dayNumber,
+      ChildArrangementOrderDetailsContent.dayNumber,
     );
     await page.fill(
       `${UniqueSelectors.orderEndDate1month}`,
-      OrderDetailsContent.monthNumber,
+      ChildArrangementOrderDetailsContent.monthNumber,
     );
     await page.fill(
       `${UniqueSelectors.orderEndDate1year}`,
-      OrderDetailsContent.yearNumber2,
+      ChildArrangementOrderDetailsContent.yearNumber2,
     );
     // Selecting 'true' will move onto next page
     if (yesNoOrderDetails) {

@@ -1,4 +1,4 @@
-export enum DocumentUploadContent1 {
+export enum ChildArrangementDocumentUploadContent {
   h1 = "Upload Care Order",
   p1 = "If you are uploading documents from a computer, name the files clearly. For example, emergency-protection-order.doc.",
   p2 = "Files must end with JPG, BMP, PNG,TIF, PDF, DOC or DOCX.",
@@ -11,7 +11,7 @@ export enum DocumentUploadContent1 {
   li4 = "Email or send the photo or scan to the device you are using now.",
   li5 = "Upload it here.",
   remove = "Remove",
-  errorBanner = "There is a problem on this page",
   errorMessageChooseFile = "Please choose a file.",
+  errorMessageUploadCorrectFile = "The file you uploaded is in the wrong format. Upload your file again in the correct format",
   continue = "Continue",
 }

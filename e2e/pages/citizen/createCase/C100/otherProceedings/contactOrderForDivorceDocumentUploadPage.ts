@@ -111,7 +111,7 @@ export class ContactOrderForDivorceDocumentUploadPage {
 
     // # Not sure if you need to press the button
     // await page.click(
-    //   `${Selectors.button}:text-is("${CareOrderDocumentUploadContent.uploadFile}")`,
+    //   `${Selectors.button}:text-is("${ContactOrderForDivorceDocumentUploadContent.uploadFile}")`,
     // );
 
     await Promise.all([

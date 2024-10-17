@@ -4,7 +4,6 @@ import { Page } from "@playwright/test";
 import { Helpers } from "../../../../../common/helpers";
 import config from "../../../../../config";
 import { EmergencyProtectionDocumentUploadContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/EmergencyProtectionDocumentUploadContent";
-import { CareOrderDocumentUploadContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/CareOrderDocumentUploadContent";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 
 interface EmergencyProtectionDocumentUploadPageOptions {
@@ -112,18 +111,18 @@ export class EmergencyProtectionDocumentUploadPage {
 
     // # Not sure if you need to press the button
     // await page.click(
-    //   `${Selectors.button}:text-is("${CareOrderDocumentUploadContent.uploadFile}")`,
+    //   `${Selectors.button}:text-is("${EmergencyProtectionDocumentUploadContent.uploadFile}")`,
     // );
 
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${CareOrderDocumentUploadContent.errorMessageUploadCorrectFile}")`,
+        `${Selectors.a}:text-is("${EmergencyProtectionDocumentUploadContent.errorMessageUploadCorrectFile}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${CareOrderDocumentUploadContent.errorMessageUploadCorrectFile}")`,
+        `${Selectors.ErrorMessage}:text-is("${EmergencyProtectionDocumentUploadContent.errorMessageUploadCorrectFile}")`,
         1,
       ),
     ]);
