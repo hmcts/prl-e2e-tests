@@ -3,7 +3,7 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { TellUsAboutYourSituationContent } from "../../../../../fixtures/citizen/createCase/C100/urgencyAndWithoutNotice/tellUsAboutYourSituationContent";
 import { Helpers } from "../../../../../common/helpers";
-import { uniqueSelectors } from "/urgentFirstHearingPage";
+import { uniqueSelectors } from "./urgentFirstHearingPage";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 
 interface TellUsAboutYourSituationPageOptions {
@@ -84,7 +84,7 @@ export class TellUsAboutYourSituationPage {
       Helpers.checkGroup(
         page,
         6,
-        TellUsAboutYourSituationPage,
+        TellUsAboutYourSituationContent,
         "label",
         `${Selectors.GovukLabel}`,
       ),
@@ -133,7 +133,7 @@ export class TellUsAboutYourSituationPage {
         4,
         TellUsAboutYourSituationContent,
         "errorLink",
-        `${Selectors.GovukErrorMessage}`,
+        `${Selectors.ErrorMessage}`,
       ),
     ]);
   }

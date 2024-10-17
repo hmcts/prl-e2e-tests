@@ -95,7 +95,7 @@ export class StartPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${StartContent.errorMessage}")`,
+        `${Selectors.ErrorMessage}:text-is("${StartContent.errorMessage}")`,
         1,
       ),
     ]);

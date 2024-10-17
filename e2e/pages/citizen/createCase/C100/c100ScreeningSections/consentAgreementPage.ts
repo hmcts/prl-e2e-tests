@@ -96,7 +96,7 @@ export class ConsentAgreementPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${ConsentAgreementContent.errorMessage}")`,
+        `${Selectors.ErrorMessage}:text-is("${ConsentAgreementContent.errorMessage}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
