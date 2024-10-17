@@ -3,7 +3,7 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { WithoutNoticeHearingDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/urgencyAndWithoutNotice/withoutNoticeHearingDetailsContent";
 import { Helpers } from "../../../../../common/helpers";
-import { uniqueSelectors } from "/urgentFirstHearingPage";
+import { uniqueSelectors } from "./urgentFirstHearingPage";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 
 interface WithoutNoticeHearingDetailsPageOptions {
@@ -111,7 +111,7 @@ export class WithoutNoticeHearingDetailsPage {
         3,
         WithoutNoticeHearingDetailsContent,
         "errorLink",
-        `${Selectors.GovukErrorMessage}`,
+        `${Selectors.ErrorMessage}`,
       ),
     ]);
   }

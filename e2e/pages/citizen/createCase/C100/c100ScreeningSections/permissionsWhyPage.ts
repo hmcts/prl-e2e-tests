@@ -102,7 +102,7 @@ export class PermissionsWhyPage {
         3,
         PermissionsWhyContent,
         "errorMessage",
-        `${Selectors.GovukErrorMessage}`,
+        `${Selectors.ErrorMessage}`,
       ),
       Helpers.checkGroup(
         page,
