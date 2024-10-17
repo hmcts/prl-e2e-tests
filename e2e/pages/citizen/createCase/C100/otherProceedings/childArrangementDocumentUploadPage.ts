@@ -1,13 +1,13 @@
-import { Selectors } from "../../../../../../common/selectors";
-import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper";
+import { ChildArrangementOrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/ChildArrangementOrderDetailsContent";
+import { Selectors } from "../../../../../common/selectors";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
-import { Helpers } from "../../../../../../common/helpers";
-import config from "../../../../../../config";
-import { EmergencyProtectionDocumentUploadContent } from "../../../../../../fixtures/citizen/createCase/C100/OtherProceedings2/emergencyProtectionOrder/EmergencyProtectionDocumentUploadContent";
-import { CareOrderDocumentUploadContent } from "../../../../../../fixtures/citizen/createCase/C100/OtherProceedings2/careOrder/CareOrderDocumentUploadContent";
-import { CommonStaticText } from "../../../../../../common/commonStaticText";
+import { Helpers } from "../../../../../common/helpers";
+import { ChildArrangementDocumentUploadContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/ChildArrangementDocumentUploadContent";
+import config from "../../../../../config";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
 
-interface EmergencyProtectionDocumentUploadPageOptions {
+interface ChildArrangementDocumentUploadPageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
@@ -27,12 +27,12 @@ enum UniqueSelectors {
   uploadConfirmationSelector = ".govuk-summary-list__value",
 }
 
-export class EmergencyProtectionDocumentUploadPage {
-  public static async emergencyProtectionDocumentUploadPage({
+export class ChildArrangementDocumentUploadPage {
+  public static async documentUploadPage({
     page: page,
     accessibilityTest: accessibilityTest,
     errorMessaging: errorMessaging,
-  }: EmergencyProtectionDocumentUploadPageOptions): Promise<void> {
+  }: ChildArrangementDocumentUploadPageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
       accessibilityTest: accessibilityTest,
@@ -50,34 +50,39 @@ export class EmergencyProtectionDocumentUploadPage {
     accessibilityTest: accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukHeadingXL}:text-is("${EmergencyProtectionDocumentUploadContent.pageTitle}")`,
+      `${Selectors.p}:text-is("${ChildArrangementOrderDetailsContent.p}")`,
     );
     await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.h1}:text-is("${ChildArrangementDocumentUploadContent.h1}")`,
+        1,
+      ),
       Helpers.checkGroup(
         page,
         2,
-        EmergencyProtectionDocumentUploadContent,
+        ChildArrangementDocumentUploadContent,
         "p",
         `${Selectors.p}`,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${EmergencyProtectionDocumentUploadContent.spanA}")`,
+        `${Selectors.Span}:text-is("${ChildArrangementDocumentUploadContent.spanA}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${EmergencyProtectionDocumentUploadContent.formLabel}")`,
+        `${Selectors.GovukLabel}:text-is("${ChildArrangementDocumentUploadContent.formLabel}")`,
         1,
       ),
     ]);
     await page.click(
-      `${Selectors.Span}:text-is("${EmergencyProtectionDocumentUploadContent.spanA}")`,
+      `${Selectors.Span}:text-is("${ChildArrangementDocumentUploadContent.spanA}")`,
     );
     await Helpers.checkGroup(
       page,
       5,
-      EmergencyProtectionDocumentUploadContent,
+      ChildArrangementDocumentUploadContent,
       "li",
       `${Selectors.li}`,
     );
@@ -88,7 +93,7 @@ export class EmergencyProtectionDocumentUploadPage {
 
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.button}:text-is("${ChildArrangementDocumentUploadContent.continue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -98,12 +103,12 @@ export class EmergencyProtectionDocumentUploadPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${EmergencyProtectionDocumentUploadContent.errorMessageChooseFile}")`,
+        `${Selectors.a}:text-is("${ChildArrangementDocumentUploadContent.errorMessageChooseFile}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${EmergencyProtectionDocumentUploadContent.errorMessageChooseFile}")`,
+        `${Selectors.ErrorMessage}:text-is("${ChildArrangementDocumentUploadContent.errorMessageChooseFile}")`,
         1,
       ),
     ]);
@@ -112,18 +117,18 @@ export class EmergencyProtectionDocumentUploadPage {
 
     // # Not sure if you need to press the button
     // await page.click(
-    //   `${Selectors.button}:text-is("${CareOrderDocumentUploadContent.uploadFile}")`,
+    //   `${Selectors.button}:text-is("${ChildAbductionDocumentUploadContent.uploadFile}")`,
     // );
 
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${CareOrderDocumentUploadContent.errorMessageUploadCorrectFile}")`,
+        `${Selectors.a}:text-is("${ChildArrangementDocumentUploadContent.errorMessageUploadCorrectFile}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${CareOrderDocumentUploadContent.errorMessageUploadCorrectFile}")`,
+        `${Selectors.ErrorMessage}:text-is("${ChildArrangementDocumentUploadContent.errorMessageUploadCorrectFile}")`,
         1,
       ),
     ]);
@@ -135,7 +140,7 @@ export class EmergencyProtectionDocumentUploadPage {
     const fileInput = page.locator(`${UniqueSelectors.documentUpload}`);
     await fileInput.setInputFiles(config.testPdfFile);
     await page.click(
-      `${Selectors.button}:text-is("${EmergencyProtectionDocumentUploadContent.uploadFile}")`,
+      `${Selectors.button}:text-is("${ChildArrangementDocumentUploadContent.uploadFile}")`,
     );
     await page.waitForSelector(
       `${UniqueSelectors.uploadConfirmationSelector}`,
@@ -147,11 +152,11 @@ export class EmergencyProtectionDocumentUploadPage {
     expect(isUploaded).toBeTruthy();
     await Helpers.checkVisibleAndPresent(
       page,
-      `${Selectors.a}:text-is("${EmergencyProtectionDocumentUploadContent.remove}")`,
+      `${Selectors.a}:text-is("${ChildArrangementDocumentUploadContent.remove}")`,
       1,
     );
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.button}:text-is("${ChildArrangementDocumentUploadContent.continue}")`,
     );
   }
 }

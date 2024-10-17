@@ -10,7 +10,7 @@ export enum CareOrderDetailsContent {
   formLabel2 = "Which court issued the order? (optional)",
   formHint1 = "For example, BS19F99999",
   formHint2 = "For example, 31 3 2015",
-  courtIssued = "Automated Supervision Order Court",
+  courtIssued = "Automated Care Order Court",
   caseNumber = "BS19F99999",
   day = "Day",
   month = "Month",
