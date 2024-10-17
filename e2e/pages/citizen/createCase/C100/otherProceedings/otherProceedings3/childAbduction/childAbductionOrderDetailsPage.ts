@@ -2,7 +2,6 @@ import { Selectors } from "../../../../../../../common/selectors";
 import AccessibilityTestHelper from "../../../../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
 import { Helpers } from "../../../../../../../common/helpers";
-import { CareOrderDetailsContent } from "../../../../../../../fixtures/citizen/createCase/C100/otherProceedings/otherProceedings2/careOrder/CareOrderDetailsContent";
 import { CommonStaticText } from "../../../../../../../common/commonStaticText";
 import { ChildAbductionOrderDetailsContent } from "../../../../../../../fixtures/citizen/createCase/C100/otherProceedings/otherProceedings3/childAbductionOrder/childAbductionOrderDetailsContent";
 
