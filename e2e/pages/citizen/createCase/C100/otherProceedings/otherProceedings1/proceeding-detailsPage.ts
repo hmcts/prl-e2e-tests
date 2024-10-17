@@ -1,8 +1,8 @@
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { Helpers } from "../../../../../common/helpers";
-import { ProceedingDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings1/proceeding-detailsContent";
+import { Selectors } from "../../../../../../common/selectors";
+import { Helpers } from "../../../../../../common/helpers";
+import { ProceedingDetailsContent } from "../../../../../../fixtures/citizen/createCase/C100/otherProceedings/otherProceedings1/proceeding-detailsContent";
 
 interface ProceedingDetailsPageOptions {
   page: Page;

@@ -1,13 +1,13 @@
-import { Selectors } from "../../../../../../common/selectors";
-import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper";
+import { Selectors } from "../../../../../../../common/selectors";
+import AccessibilityTestHelper from "../../../../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
-import { Helpers } from "../../../../../../common/helpers";
-import config from "../../../../../../config";
-import { SupervisionDocumentUpload } from "../../../../../../fixtures/citizen/createCase/C100/OtherProceedings2/supervisionOrder/SupervisionDocumentUpload";
-import { CareOrderDocumentUploadContent } from "../../../../../../fixtures/citizen/createCase/C100/OtherProceedings2/careOrder/CareOrderDocumentUploadContent";
-import { CommonStaticText } from "../../../../../../common/commonStaticText";
+import { Helpers } from "../../../../../../../common/helpers";
+import config from "../../../../../../../config";
+import { EmergencyProtectionDocumentUploadContent } from "../../../../../../../fixtures/citizen/createCase/C100/otherProceedings/otherProceedings2/emergencyProtectionOrder/EmergencyProtectionDocumentUploadContent";
+import { CareOrderDocumentUploadContent } from "../../../../../../../fixtures/citizen/createCase/C100/otherProceedings/otherProceedings2/careOrder/CareOrderDocumentUploadContent";
+import { CommonStaticText } from "../../../../../../../common/commonStaticText";
 
-interface SupervisionDocumentUploadPageOptions {
+interface EmergencyProtectionDocumentUploadPageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
@@ -27,12 +27,12 @@ enum UniqueSelectors {
   uploadConfirmationSelector = ".govuk-summary-list__value",
 }
 
-export class SupervisionDocumentUploadPage {
-  public static async supervisionDocumentUploadPage({
+export class EmergencyProtectionDocumentUploadPage {
+  public static async emergencyProtectionDocumentUploadPage({
     page: page,
     accessibilityTest: accessibilityTest,
     errorMessaging: errorMessaging,
-  }: SupervisionDocumentUploadPageOptions): Promise<void> {
+  }: EmergencyProtectionDocumentUploadPageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
       accessibilityTest: accessibilityTest,
@@ -50,34 +50,34 @@ export class SupervisionDocumentUploadPage {
     accessibilityTest: accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukHeadingXL}:text-is("${SupervisionDocumentUpload.pageTitle}")`,
+      `${Selectors.GovukHeadingXL}:text-is("${EmergencyProtectionDocumentUploadContent.pageTitle}")`,
     );
     await Promise.all([
       Helpers.checkGroup(
         page,
         2,
-        SupervisionDocumentUpload,
+        EmergencyProtectionDocumentUploadContent,
         "p",
         `${Selectors.p}`,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${SupervisionDocumentUpload.spanA}")`,
+        `${Selectors.Span}:text-is("${EmergencyProtectionDocumentUploadContent.spanA}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${SupervisionDocumentUpload.formLabel}")`,
+        `${Selectors.GovukLabel}:text-is("${EmergencyProtectionDocumentUploadContent.formLabel}")`,
         1,
       ),
     ]);
     await page.click(
-      `${Selectors.Span}:text-is("${SupervisionDocumentUpload.spanA}")`,
+      `${Selectors.Span}:text-is("${EmergencyProtectionDocumentUploadContent.spanA}")`,
     );
     await Helpers.checkGroup(
       page,
       5,
-      SupervisionDocumentUpload,
+      EmergencyProtectionDocumentUploadContent,
       "li",
       `${Selectors.li}`,
     );
@@ -98,12 +98,12 @@ export class SupervisionDocumentUploadPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${SupervisionDocumentUpload.errorMessageChooseFile}")`,
+        `${Selectors.a}:text-is("${EmergencyProtectionDocumentUploadContent.errorMessageChooseFile}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${SupervisionDocumentUpload.errorMessageChooseFile}")`,
+        `${Selectors.ErrorMessage}:text-is("${EmergencyProtectionDocumentUploadContent.errorMessageChooseFile}")`,
         1,
       ),
     ]);
@@ -132,10 +132,10 @@ export class SupervisionDocumentUploadPage {
   private static async fillInFields({
     page: page,
   }: fillInFieldsOptions): Promise<void> {
-    let fileInput = page.locator(`${UniqueSelectors.documentUpload}`);
+    const fileInput = page.locator(`${UniqueSelectors.documentUpload}`);
     await fileInput.setInputFiles(config.testPdfFile);
     await page.click(
-      `${Selectors.button}:text-is("${SupervisionDocumentUpload.uploadFile}")`,
+      `${Selectors.button}:text-is("${EmergencyProtectionDocumentUploadContent.uploadFile}")`,
     );
     await page.waitForSelector(
       `${UniqueSelectors.uploadConfirmationSelector}`,
@@ -147,7 +147,7 @@ export class SupervisionDocumentUploadPage {
     expect(isUploaded).toBeTruthy();
     await Helpers.checkVisibleAndPresent(
       page,
-      `${Selectors.a}:text-is("${SupervisionDocumentUpload.remove}")`,
+      `${Selectors.a}:text-is("${EmergencyProtectionDocumentUploadContent.remove}")`,
       1,
     );
     await page.click(
