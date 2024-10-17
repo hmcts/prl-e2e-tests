@@ -1,15 +1,14 @@
-import { Selectors } from "../../../../../../../common/selectors";
-import AccessibilityTestHelper from "../../../../../../../common/accessibilityTestHelper";
+import { OrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/otherProceedings1/childArrangementOrder/order-detailsContent";
+import { Selectors } from "../../../../../common/selectors";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
-import { Helpers } from "../../../../../../../common/helpers";
-import { CommonStaticText } from "../../../../../../../common/commonStaticText";
-import { ContactOrderForDivorceOrderDetailsContent } from "../../../../../../../fixtures/citizen/createCase/C100/otherProceedings/otherProceedings3/contactOrderForDivorce/contactOrderForDivorceOrderDetailsContent";
+import { Helpers } from "../../../../../common/helpers";
 
-interface contactOrderForDivorceOrderDetailsPageOptions {
+interface OrderDetailsPageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
-  yesNoContactOrderForDivorceOrderDetails: boolean;
+  yesNoOrderDetails: boolean;
 }
 
 interface checkPageLoadsOptions {
@@ -19,7 +18,7 @@ interface checkPageLoadsOptions {
 
 interface fillInFieldsOptions {
   page: Page;
-  yesNoContactOrderForDivorceOrderDetails: boolean;
+  yesNoOrderDetails: boolean;
 }
 
 enum UniqueSelectors {
@@ -37,14 +36,13 @@ enum UniqueSelectors {
   orderCopyNo = "#orderCopy-1-2",
 }
 
-export class ContactOrderForDivorceOrderDetailsPage {
-  public static async contactOrderForDivorceOrderDetailsPageOptions({
+export class ChildArrangementOrderDetailsPage {
+  public static async orderDetailsPage({
     page: page,
     accessibilityTest: accessibilityTest,
     errorMessaging: errorMessaging,
-    yesNoContactOrderForDivorceOrderDetails:
-      yesNoContactOrderForDivorceOrderDetails,
-  }: contactOrderForDivorceOrderDetailsPageOptions): Promise<void> {
+    yesNoOrderDetails: yesNoOrderDetails,
+  }: OrderDetailsPageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
       accessibilityTest: accessibilityTest,
@@ -54,8 +52,7 @@ export class ContactOrderForDivorceOrderDetailsPage {
     }
     await this.fillInFields({
       page: page,
-      yesNoContactOrderForDivorceOrderDetails:
-        yesNoContactOrderForDivorceOrderDetails,
+      yesNoOrderDetails: yesNoOrderDetails,
     });
   }
 
@@ -64,56 +61,50 @@ export class ContactOrderForDivorceOrderDetailsPage {
     accessibilityTest: accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.p}:text-is("${ContactOrderForDivorceOrderDetailsContent.p}")`,
+      `${Selectors.p}:text-is("${OrderDetailsContent.p}")`,
     );
     await Promise.all([
-      Helpers.checkGroup(
-        page,
-        5,
-        ContactOrderForDivorceOrderDetailsContent,
-        "h1",
-        `${Selectors.h1}`,
-      ),
+      Helpers.checkGroup(page, 2, OrderDetailsContent, "h1", `${Selectors.h1}`),
       Helpers.checkGroup(
         page,
         2,
-        ContactOrderForDivorceOrderDetailsContent,
+        OrderDetailsContent,
         "formLabel",
         `${Selectors.h1}`,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${ContactOrderForDivorceOrderDetailsContent.formHint1}")`,
+        `${Selectors.GovukHint}:text-is("${OrderDetailsContent.formHint1}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${ContactOrderForDivorceOrderDetailsContent.formHint2}")`,
+        `${Selectors.GovukHint}:text-is("${OrderDetailsContent.formHint2}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${CommonStaticText.strippedYes}")`,
+        `${Selectors.GovukHint}:text-is("${OrderDetailsContent.formLabelYes}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${CommonStaticText.strippedNo}")`,
+        `${Selectors.GovukHint}:text-is("${OrderDetailsContent.formLabelNo}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${ContactOrderForDivorceOrderDetailsContent.day}")`,
+        `${Selectors.GovukLabel}:text-is("${OrderDetailsContent.day}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${ContactOrderForDivorceOrderDetailsContent.month}")`,
+        `${Selectors.GovukLabel}:text-is("${OrderDetailsContent.month}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${ContactOrderForDivorceOrderDetailsContent.year}")`,
+        `${Selectors.GovukLabel}:text-is("${OrderDetailsContent.year}")`,
         2,
       ),
     ]);
@@ -125,55 +116,55 @@ export class ContactOrderForDivorceOrderDetailsPage {
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.fill(
       `${UniqueSelectors.orderDate1day}`,
-      ContactOrderForDivorceOrderDetailsContent.dayNumber,
+      OrderDetailsContent.dayNumber,
     );
     await page.fill(
       `${UniqueSelectors.orderDate1month}`,
-      ContactOrderForDivorceOrderDetailsContent.errorMonthNumber,
+      OrderDetailsContent.errorMonthNumber,
     );
     await page.fill(
       `${UniqueSelectors.orderDate1year}`,
-      ContactOrderForDivorceOrderDetailsContent.yearNumber1,
+      OrderDetailsContent.yearNumber1,
     );
     await page.fill(
       `${UniqueSelectors.orderEndDate1day}`,
-      ContactOrderForDivorceOrderDetailsContent.dayNumber,
+      OrderDetailsContent.dayNumber,
     );
     await page.fill(
       `${UniqueSelectors.orderEndDate1month}`,
-      ContactOrderForDivorceOrderDetailsContent.errorMonthNumber,
+      OrderDetailsContent.errorMonthNumber,
     );
     await page.fill(
       `${UniqueSelectors.orderEndDate1year}`,
-      ContactOrderForDivorceOrderDetailsContent.yearNumber2,
+      OrderDetailsContent.yearNumber2,
     );
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.button}:text-is("${OrderDetailsContent.continue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorSummaryTitle}:text-is("${CommonStaticText.errorSummaryTitle}")`,
+        `${Selectors.GovukErrorSummaryTitle}:text-is("${OrderDetailsContent.errorBanner}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${ContactOrderForDivorceOrderDetailsContent.errorMessageOrderDate}")`,
+        `${Selectors.a}:text-is("${OrderDetailsContent.errorMessageOrderDate}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${ContactOrderForDivorceOrderDetailsContent.errorMessageOrderDate}")`,
+        `${Selectors.ErrorMessage}:text-is("${OrderDetailsContent.errorMessageOrderDate}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${ContactOrderForDivorceOrderDetailsContent.errorMessageOrderEndDate}")`,
+        `${Selectors.a}:text-is("${OrderDetailsContent.errorMessageOrderEndDate}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${ContactOrderForDivorceOrderDetailsContent.errorMessageOrderEndDate}")`,
+        `${Selectors.ErrorMessage}:text-is("${OrderDetailsContent.errorMessageOrderEndDate}")`,
         1,
       ),
     ]);
@@ -181,43 +172,42 @@ export class ContactOrderForDivorceOrderDetailsPage {
 
   private static async fillInFields({
     page: page,
-    yesNoContactOrderForDivorceOrderDetails:
-      yesNoContactOrderForDivorceOrderDetails,
+    yesNoOrderDetails: yesNoOrderDetails,
   }: fillInFieldsOptions): Promise<void> {
     await page.fill(
       `${UniqueSelectors.orderDetail1}`,
-      ContactOrderForDivorceOrderDetailsContent.courtIssued,
+      OrderDetailsContent.courtIssued,
     );
     await page.fill(
       `${UniqueSelectors.caseNo1}`,
-      ContactOrderForDivorceOrderDetailsContent.caseNumber,
+      OrderDetailsContent.caseNumber,
     );
     await page.fill(
       `${UniqueSelectors.orderDate1day}`,
-      ContactOrderForDivorceOrderDetailsContent.dayNumber,
+      OrderDetailsContent.dayNumber,
     );
     await page.fill(
       `${UniqueSelectors.orderDate1month}`,
-      ContactOrderForDivorceOrderDetailsContent.monthNumber,
+      OrderDetailsContent.monthNumber,
     );
     await page.fill(
       `${UniqueSelectors.orderDate1year}`,
-      ContactOrderForDivorceOrderDetailsContent.yearNumber1,
+      OrderDetailsContent.yearNumber1,
     );
     await page.fill(
       `${UniqueSelectors.orderEndDate1day}`,
-      ContactOrderForDivorceOrderDetailsContent.dayNumber,
+      OrderDetailsContent.dayNumber,
     );
     await page.fill(
       `${UniqueSelectors.orderEndDate1month}`,
-      ContactOrderForDivorceOrderDetailsContent.monthNumber,
+      OrderDetailsContent.monthNumber,
     );
     await page.fill(
       `${UniqueSelectors.orderEndDate1year}`,
-      ContactOrderForDivorceOrderDetailsContent.yearNumber2,
+      OrderDetailsContent.yearNumber2,
     );
     // Selecting 'true' will move onto next page
-    if (yesNoContactOrderForDivorceOrderDetails) {
+    if (yesNoOrderDetails) {
       await page.click(`${UniqueSelectors.currentOrderYes}`);
       await page.click(`${UniqueSelectors.orderCopyYes}`);
     } else {

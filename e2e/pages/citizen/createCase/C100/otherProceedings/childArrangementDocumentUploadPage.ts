@@ -1,10 +1,10 @@
-import { OrderDetailsContent } from "../../../../../../../fixtures/citizen/createCase/C100/otherProceedings/otherProceedings1/childArrangementOrder/order-detailsContent";
-import { Selectors } from "../../../../../../../common/selectors";
-import AccessibilityTestHelper from "../../../../../../../common/accessibilityTestHelper";
+import { OrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/otherProceedings1/childArrangementOrder/order-detailsContent";
+import { Selectors } from "../../../../../common/selectors";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
-import { Helpers } from "../../../../../../../common/helpers";
-import { DocumentUploadContent1 } from "../../../../../../../fixtures/citizen/createCase/C100/otherProceedings/otherProceedings1/childArrangementOrder/documentUploadContent1";
-import config from "../../../../../../../config";
+import { Helpers } from "../../../../../common/helpers";
+import { DocumentUploadContent1 } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/otherProceedings1/childArrangementOrder/documentUploadContent1";
+import config from "../../../../../config";
 
 interface DocumentUploadPageOptions {
   page: Page;
@@ -26,7 +26,7 @@ enum UniqueSelectors {
   uploadConfirmationSelector = ".govuk-summary-list__value",
 }
 
-export class DocumentUploadPage {
+export class ChildArrangementDocumentUploadPage {
   public static async documentUploadPage({
     page: page,
     accessibilityTest: accessibilityTest,

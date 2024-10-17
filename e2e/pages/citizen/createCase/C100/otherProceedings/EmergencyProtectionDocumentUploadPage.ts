@@ -1,12 +1,13 @@
-import { Selectors } from "../../../../../../../common/selectors";
-import AccessibilityTestHelper from "../../../../../../../common/accessibilityTestHelper";
+import { Selectors } from "../../../../../common/selectors";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
-import { Helpers } from "../../../../../../../common/helpers";
-import config from "../../../../../../../config";
-import { CommonStaticText } from "../../../../../../../common/commonStaticText";
-import { ContactOrderForAdoptionDocumentUploadContent } from "../../../../../../../fixtures/citizen/createCase/C100/otherProceedings/otherProceedings3/contactOrderForAdoption/contactOrderForAdoptionDocumentUploadContent";
+import { Helpers } from "../../../../../common/helpers";
+import config from "../../../../../config";
+import { EmergencyProtectionDocumentUploadContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/otherProceedings2/emergencyProtectionOrder/EmergencyProtectionDocumentUploadContent";
+import { CareOrderDocumentUploadContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/otherProceedings2/careOrder/CareOrderDocumentUploadContent";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
 
-interface ContactOrderForAdoptionDocumentUploadPageOptions {
+interface EmergencyProtectionDocumentUploadPageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
@@ -26,12 +27,12 @@ enum UniqueSelectors {
   uploadConfirmationSelector = ".govuk-summary-list__value",
 }
 
-export class ContactOrderForAdoptionDocumentUploadPage {
-  public static async contactOrderForAdoptionDocumentUploadPage({
+export class EmergencyProtectionDocumentUploadPage {
+  public static async emergencyProtectionDocumentUploadPage({
     page: page,
     accessibilityTest: accessibilityTest,
     errorMessaging: errorMessaging,
-  }: ContactOrderForAdoptionDocumentUploadPageOptions): Promise<void> {
+  }: EmergencyProtectionDocumentUploadPageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
       accessibilityTest: accessibilityTest,
@@ -49,34 +50,34 @@ export class ContactOrderForAdoptionDocumentUploadPage {
     accessibilityTest: accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukHeadingXL}:text-is("${ContactOrderForAdoptionDocumentUploadContent.pageTitle}")`,
+      `${Selectors.GovukHeadingXL}:text-is("${EmergencyProtectionDocumentUploadContent.pageTitle}")`,
     );
     await Promise.all([
       Helpers.checkGroup(
         page,
         2,
-        ContactOrderForAdoptionDocumentUploadContent,
+        EmergencyProtectionDocumentUploadContent,
         "p",
         `${Selectors.p}`,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${ContactOrderForAdoptionDocumentUploadContent.spanA}")`,
+        `${Selectors.Span}:text-is("${EmergencyProtectionDocumentUploadContent.spanA}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${ContactOrderForAdoptionDocumentUploadContent.formLabel}")`,
+        `${Selectors.GovukLabel}:text-is("${EmergencyProtectionDocumentUploadContent.formLabel}")`,
         1,
       ),
     ]);
     await page.click(
-      `${Selectors.Span}:text-is("${ContactOrderForAdoptionDocumentUploadContent.spanA}")`,
+      `${Selectors.Span}:text-is("${EmergencyProtectionDocumentUploadContent.spanA}")`,
     );
     await Helpers.checkGroup(
       page,
       5,
-      ContactOrderForAdoptionDocumentUploadContent,
+      EmergencyProtectionDocumentUploadContent,
       "li",
       `${Selectors.li}`,
     );
@@ -97,12 +98,12 @@ export class ContactOrderForAdoptionDocumentUploadPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${ContactOrderForAdoptionDocumentUploadContent.errorMessageChooseFile}")`,
+        `${Selectors.a}:text-is("${EmergencyProtectionDocumentUploadContent.errorMessageChooseFile}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${ContactOrderForAdoptionDocumentUploadContent.errorMessageChooseFile}")`,
+        `${Selectors.ErrorMessage}:text-is("${EmergencyProtectionDocumentUploadContent.errorMessageChooseFile}")`,
         1,
       ),
     ]);
@@ -117,12 +118,12 @@ export class ContactOrderForAdoptionDocumentUploadPage {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${ContactOrderForAdoptionDocumentUploadContent.errorMessageUploadCorrectFile}")`,
+        `${Selectors.a}:text-is("${CareOrderDocumentUploadContent.errorMessageUploadCorrectFile}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${ContactOrderForAdoptionDocumentUploadContent.errorMessageUploadCorrectFile}")`,
+        `${Selectors.ErrorMessage}:text-is("${CareOrderDocumentUploadContent.errorMessageUploadCorrectFile}")`,
         1,
       ),
     ]);
@@ -131,10 +132,10 @@ export class ContactOrderForAdoptionDocumentUploadPage {
   private static async fillInFields({
     page: page,
   }: fillInFieldsOptions): Promise<void> {
-    let fileInput = page.locator(`${UniqueSelectors.documentUpload}`);
+    const fileInput = page.locator(`${UniqueSelectors.documentUpload}`);
     await fileInput.setInputFiles(config.testPdfFile);
     await page.click(
-      `${Selectors.button}:text-is("${ContactOrderForAdoptionDocumentUploadContent.uploadFile}")`,
+      `${Selectors.button}:text-is("${EmergencyProtectionDocumentUploadContent.uploadFile}")`,
     );
     await page.waitForSelector(
       `${UniqueSelectors.uploadConfirmationSelector}`,
@@ -146,7 +147,7 @@ export class ContactOrderForAdoptionDocumentUploadPage {
     expect(isUploaded).toBeTruthy();
     await Helpers.checkVisibleAndPresent(
       page,
-      `${Selectors.a}:text-is("${ContactOrderForAdoptionDocumentUploadContent.remove}")`,
+      `${Selectors.a}:text-is("${EmergencyProtectionDocumentUploadContent.remove}")`,
       1,
     );
     await page.click(
