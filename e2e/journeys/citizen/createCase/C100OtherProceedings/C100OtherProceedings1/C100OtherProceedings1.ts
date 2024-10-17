@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
-import { CurrentPreviousProceedingsPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/otherProceedings1/current-previous-proceedingsPage";
-import { ProceedingDetailsPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/otherProceedings1/proceeding-detailsPage";
-import { OrderDetailsPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/otherProceedings1/childArrangementOrder/order-detailsPage";
-import { DocumentUploadPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/otherProceedings1/childArrangementOrder/documentUploadPage";
+import { CurrentPreviousProceedingsPage } from "../../../../../pages/citizen/createCase/C100/otherProceedings/otherProceedings1/current-previous-proceedingsPage";
+import { ProceedingDetailsPage } from "../../../../../pages/citizen/createCase/C100/otherProceedings/otherProceedings1/proceeding-detailsPage";
+import { OrderDetailsPage } from "../../../../../pages/citizen/createCase/C100/otherProceedings/otherProceedings1/childArrangementOrder/order-detailsPage";
+import { DocumentUploadPage } from "../../../../../pages/citizen/createCase/C100/otherProceedings/otherProceedings1/childArrangementOrder/documentUploadPage";
 
 interface C100OtherProceedings1Options {
   page: Page;
@@ -10,7 +10,6 @@ interface C100OtherProceedings1Options {
   errorMessaging: boolean;
   yesNoCurrentProceedings1: boolean;
   yesNoOrderDetails: boolean;
-  subJourney: boolean;
 }
 
 export class C100OtherProceedings1 {

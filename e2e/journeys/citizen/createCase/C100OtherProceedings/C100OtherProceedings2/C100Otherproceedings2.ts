@@ -1,10 +1,10 @@
 import { Page } from "@playwright/test";
-import { EmergencyProtectionOrderDetailsPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/otherProceedings2/emergencyProtectionOrder/emergencyProtectionOrderdetailsPage";
-import { EmergencyProtectionDocumentUploadPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/otherProceedings2/emergencyProtectionOrder/EmergencyProtectionDocumentUploadPage";
-import { SupervisionOrderDetailsPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/otherProceedings2/supervisionOrder/supervisionOrderDetails";
-import { SupervisionDocumentUploadPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/otherProceedings2/supervisionOrder/supervisionDocumentUpload";
-import { CareOrderDetailsPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/otherProceedings2/careOrder/careOrderOrderDetailsPage";
-import { CareOrderDocumentUploadPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/otherProceedings2/careOrder/CareOrderDocumentUploadPage";
+import { EmergencyProtectionOrderDetailsPage } from "../../../../../pages/citizen/createCase/C100/otherProceedings/otherProceedings2/emergencyProtectionOrder/emergencyProtectionOrderdetailsPage";
+import { EmergencyProtectionDocumentUploadPage } from "../../../../../pages/citizen/createCase/C100/otherProceedings/otherProceedings2/emergencyProtectionOrder/EmergencyProtectionDocumentUploadPage";
+import { SupervisionOrderDetailsPage } from "../../../../../pages/citizen/createCase/C100/otherProceedings/otherProceedings2/supervisionOrder/supervisionOrderDetails";
+import { SupervisionDocumentUploadPage } from "../../../../../pages/citizen/createCase/C100/otherProceedings/otherProceedings2/supervisionOrder/supervisionDocumentUpload";
+import { CareOrderDetailsPage } from "../../../../../pages/citizen/createCase/C100/otherProceedings/otherProceedings2/careOrder/careOrderOrderDetailsPage";
+import { CareOrderDocumentUploadPage } from "../../../../../pages/citizen/createCase/C100/otherProceedings/otherProceedings2/careOrder/CareOrderDocumentUploadPage";
 
 interface C100OtherProceedings2Options {
   page: Page;
