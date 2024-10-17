@@ -1,22 +1,20 @@
 import { Page } from "@playwright/test";
-import { yesNoDontKnow } from "../../../../../common/types";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Selectors } from "../../../../../common/selectors";
-import { DetailsKnowContent } from "../../../../../fixtures/citizen/createCase/C100/confidentiality/detailsKnowContent";
+import {StartContent} from "../../../../../fixtures/citizen/createCase/C100/confidentiality/startContent";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 
 enum inputIDs {
-  yes = '#detailsKnown',
-  no = '#detailsKnown-2',
-  dontKnow = '#detailsKnown-3'
+  yes = '#start',
+  no = '#start-2',
 }
 
-interface DetailsKnowPageOptions {
+interface StartPageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
-  c100OthersKnowApplicantsContact: yesNoDontKnow
+  c100PrivateDetails: boolean;
 }
 
 interface CheckPageLoadsOptions {
@@ -26,16 +24,16 @@ interface CheckPageLoadsOptions {
 
 interface FillInFieldsOptions {
   page: Page;
-  c100OthersKnowApplicantsContact: yesNoDontKnow
+  c100PrivateDetails: boolean
 }
 
-export class DetailsKnowPage {
-  public static async detailsKnowPage({
+export class StartPage {
+  public static async startPage({
     page,
     accessibilityTest,
     errorMessaging,
-    c100OthersKnowApplicantsContact
-  }: DetailsKnowPageOptions): Promise<void> {
+    c100PrivateDetails
+  }: StartPageOptions): Promise<void> {
     await this.checkPageLoads({
       page,
       accessibilityTest
@@ -45,7 +43,7 @@ export class DetailsKnowPage {
     }
     await this.fillInFields({
       page,
-      c100OthersKnowApplicantsContact
+      c100PrivateDetails: c100PrivateDetails
     })
   }
 
@@ -54,9 +52,16 @@ export class DetailsKnowPage {
     accessibilityTest
   }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukHeadingXL}:text-is("${DetailsKnowContent.pageTitle}")`
+      `${Selectors.GovukHeadingXL}:text-is("${StartContent.pageTitle}")`
     );
     await Promise.all([
+      Helpers.checkGroup(
+        page,
+        2,
+        StartContent,
+        'bodyM',
+        `${Selectors.GovukBodyM}`
+      ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukLabel}:text-is("${CommonStaticText.paddedYes}")`,
@@ -65,11 +70,6 @@ export class DetailsKnowPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukLabel}:text-is("${CommonStaticText.paddedNo}")`,
-        1
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukLabel}:text-is("${DetailsKnowContent.iDontKnow}")`,
         1
       ),
     ])
@@ -92,30 +92,30 @@ export class DetailsKnowPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorSummaryList} ${Selectors.a}:text-is("${DetailsKnowContent.errorSummaryList}")`,
+        `${Selectors.ErrorSummaryList} ${Selectors.a}:text-is("${StartContent.errorSummaryList}")`,
         1
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${DetailsKnowContent.errorMessage}")`,
+        `${Selectors.GovukErrorMessage}:text-is("${StartContent.errorMessage}")`,
         1
       ),
     ]);
   }
 
   private static async fillInFields({
-    page,
-    c100OthersKnowApplicantsContact
-  }: FillInFieldsOptions): Promise<void> {
-    if (!(c100OthersKnowApplicantsContact in Object.keys(inputIDs))) {
-      throw new Error(
-        `The value c100OthersKnowApplicantsContact must be one of 'yes', 'no', 'dontKnow'. You used ${c100OthersKnowApplicantsContact}`
+  page,
+  c100PrivateDetails
+}: FillInFieldsOptions): Promise<void> {
+    if (c100PrivateDetails) {
+      await page.click(
+        inputIDs.yes
+      );
+    } else {
+      await page.click(
+        inputIDs.no
       );
     }
-    let inputKey = c100OthersKnowApplicantsContact as keyof typeof inputIDs
-    await page.click(
-      inputIDs[inputKey]
-    );
     await page.click(
       `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`
     );
