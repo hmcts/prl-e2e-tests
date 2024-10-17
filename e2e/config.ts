@@ -8,13 +8,12 @@ dotenv.config()
 export class Config {
   public static readonly userCredentials: Record<UserRole, UserCredentials> = {
     solicitor: {
-      email:
-        process.env.SOLICITOR_USERNAME,
-      password: process.env.SOLICITOR_PASSWORD,
+      email: process.env.SOLICITOR_USERNAME as string,
+      password: process.env.SOLICITOR_PASSWORD as string,
     },
     citizen: {
-      email: process.env.CITIZEN_USERNAME,
-      password: process.env.CITIZEN_PASSWORD,
+      email: process.env.CITIZEN_USERNAME as string,
+      password: process.env.CITIZEN_PASSWORD as string,
     },
   };
 
