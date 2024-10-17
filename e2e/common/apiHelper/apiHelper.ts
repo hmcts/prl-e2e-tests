@@ -1,5 +1,4 @@
 import { APIRequestContext, request } from "@playwright/test";
-import lodash from "lodash";
 import Config from "../../config.ts";
 
 class CaseManagerAPI {
@@ -110,26 +109,26 @@ class CaseManagerAPI {
 //     }
 //   }
 
-  // Give access to a case
-  public async giveAccessToCase(
-    caseID: string,
-    user: { email: string; password: string },
-    role: string,
-  ) {
-    const data = {
-      email: user.email,
-      password: user.password,
-      role: role,
-    };
-
-    const postURL = `${this.baseUrl}/testing-support/case/${caseID}/access`;
-
-    try {
-      await this.apiRequest(postURL, systemUpdateUser, "POST", data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  // Give access to a case - to be amended/used once apihelper is working
+  // public async giveAccessToCase(
+  //   caseID: string,
+  //   user: { email: string; password: string },
+  //   role: string,
+  // ) {
+  //   const data = {
+  //     email: user.email,
+  //     password: user.password,
+  //     role: role,
+  //   };
+  //
+  //   const postURL = `${this.baseUrl}/testing-support/case/${caseID}/access`;
+  //
+  //   try {
+  //     await this.apiRequest(postURL, systemUpdateUser, "POST", data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
 
   // Error handling
   private handleError(error: any) {
