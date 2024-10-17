@@ -1,13 +1,12 @@
-import { Selectors } from "../../../../../../../common/selectors";
-import AccessibilityTestHelper from "../../../../../../../common/accessibilityTestHelper";
+import { Selectors } from "../../../../../common/selectors";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
-import { Helpers } from "../../../../../../../common/helpers";
-import config from "../../../../../../../config";
-import { SupervisionDocumentUpload } from "../../../../../../../fixtures/citizen/createCase/C100/otherProceedings/otherProceedings2/supervisionOrder/SupervisionDocumentUpload";
-import { CareOrderDocumentUploadContent } from "../../../../../../../fixtures/citizen/createCase/C100/otherProceedings/otherProceedings2/careOrder/CareOrderDocumentUploadContent";
-import { CommonStaticText } from "../../../../../../../common/commonStaticText";
+import { Helpers } from "../../../../../common/helpers";
+import config from "../../../../../config";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { ChildAbductionDocumentUploadContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/otherProceedings3/childAbductionOrder/childAbductionDocumentUploadContent";
 
-interface SupervisionDocumentUploadPageOptions {
+interface ChildAbductionDocumentUploadPageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
@@ -27,12 +26,12 @@ enum UniqueSelectors {
   uploadConfirmationSelector = ".govuk-summary-list__value",
 }
 
-export class SupervisionDocumentUploadPage {
-  public static async supervisionDocumentUploadPage({
+export class ChildAbductionDocumentUploadPage {
+  public static async childAbductionDocumentUploadPageOptions({
     page: page,
     accessibilityTest: accessibilityTest,
     errorMessaging: errorMessaging,
-  }: SupervisionDocumentUploadPageOptions): Promise<void> {
+  }: ChildAbductionDocumentUploadPageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
       accessibilityTest: accessibilityTest,
@@ -50,34 +49,34 @@ export class SupervisionDocumentUploadPage {
     accessibilityTest: accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukHeadingXL}:text-is("${SupervisionDocumentUpload.pageTitle}")`,
+      `${Selectors.GovukHeadingXL}:text-is("${ChildAbductionDocumentUploadContent.pageTitle}")`,
     );
     await Promise.all([
       Helpers.checkGroup(
         page,
         2,
-        SupervisionDocumentUpload,
+        ChildAbductionDocumentUploadContent,
         "p",
         `${Selectors.p}`,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${SupervisionDocumentUpload.spanA}")`,
+        `${Selectors.Span}:text-is("${ChildAbductionDocumentUploadContent.spanA}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${SupervisionDocumentUpload.formLabel}")`,
+        `${Selectors.GovukLabel}:text-is("${ChildAbductionDocumentUploadContent.formLabel}")`,
         1,
       ),
     ]);
     await page.click(
-      `${Selectors.Span}:text-is("${SupervisionDocumentUpload.spanA}")`,
+      `${Selectors.Span}:text-is("${ChildAbductionDocumentUploadContent.spanA}")`,
     );
     await Helpers.checkGroup(
       page,
       5,
-      SupervisionDocumentUpload,
+      ChildAbductionDocumentUploadContent,
       "li",
       `${Selectors.li}`,
     );
@@ -98,12 +97,12 @@ export class SupervisionDocumentUploadPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${SupervisionDocumentUpload.errorMessageChooseFile}")`,
+        `${Selectors.a}:text-is("${ChildAbductionDocumentUploadContent.errorMessageChooseFile}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${SupervisionDocumentUpload.errorMessageChooseFile}")`,
+        `${Selectors.ErrorMessage}:text-is("${ChildAbductionDocumentUploadContent.errorMessageChooseFile}")`,
         1,
       ),
     ]);
@@ -118,12 +117,12 @@ export class SupervisionDocumentUploadPage {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${CareOrderDocumentUploadContent.errorMessageUploadCorrectFile}")`,
+        `${Selectors.a}:text-is("${ChildAbductionDocumentUploadContent.errorMessageUploadCorrectFile}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${CareOrderDocumentUploadContent.errorMessageUploadCorrectFile}")`,
+        `${Selectors.ErrorMessage}:text-is("${ChildAbductionDocumentUploadContent.errorMessageUploadCorrectFile}")`,
         1,
       ),
     ]);
@@ -135,7 +134,7 @@ export class SupervisionDocumentUploadPage {
     let fileInput = page.locator(`${UniqueSelectors.documentUpload}`);
     await fileInput.setInputFiles(config.testPdfFile);
     await page.click(
-      `${Selectors.button}:text-is("${SupervisionDocumentUpload.uploadFile}")`,
+      `${Selectors.button}:text-is("${ChildAbductionDocumentUploadContent.uploadFile}")`,
     );
     await page.waitForSelector(
       `${UniqueSelectors.uploadConfirmationSelector}`,
@@ -147,7 +146,7 @@ export class SupervisionDocumentUploadPage {
     expect(isUploaded).toBeTruthy();
     await Helpers.checkVisibleAndPresent(
       page,
-      `${Selectors.a}:text-is("${SupervisionDocumentUpload.remove}")`,
+      `${Selectors.a}:text-is("${ChildAbductionDocumentUploadContent.remove}")`,
       1,
     );
     await page.click(

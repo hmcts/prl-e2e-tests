@@ -1,15 +1,15 @@
-import { Selectors } from "../../../../../../../common/selectors";
-import AccessibilityTestHelper from "../../../../../../../common/accessibilityTestHelper";
+import { Selectors } from "../../../../../common/selectors";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
-import { Helpers } from "../../../../../../../common/helpers";
-import { CommonStaticText } from "../../../../../../../common/commonStaticText";
-import { ChildAbductionOrderDetailsContent } from "../../../../../../../fixtures/citizen/createCase/C100/otherProceedings/otherProceedings3/childAbductionOrder/childAbductionOrderDetailsContent";
+import { Helpers } from "../../../../../common/helpers";
+import { EmergencyProtectionOrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/otherProceedings2/emergencyProtectionOrder/EmergencyProtectionOrderDetailsContent";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
 
-interface ChildAbductionOrderDetailsPageOptions {
+interface EmergencyProtectionOrderDetailsPageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
-  yesNoChildAbductionOrderDetails: boolean;
+  yesNoEmergencyProtectionOrderDetails: boolean;
 }
 
 interface checkPageLoadsOptions {
@@ -19,7 +19,7 @@ interface checkPageLoadsOptions {
 
 interface fillInFieldsOptions {
   page: Page;
-  yesNoChildAbductionOrderDetails: boolean;
+  yesNoEmergencyProtectionOrderDetails: boolean;
 }
 
 enum UniqueSelectors {
@@ -37,13 +37,13 @@ enum UniqueSelectors {
   orderCopyNo = "#orderCopy-1-2",
 }
 
-export class ChildAbductionOrderDetailsPage {
-  public static async childAbductionOrderDetailsPage({
+export class EmergencyProtectionOrderDetailsPage {
+  public static async emergencyProtectionOrderDetailsPage({
     page: page,
     accessibilityTest: accessibilityTest,
     errorMessaging: errorMessaging,
-    yesNoChildAbductionOrderDetails: yesNoChildAbductionOrderDetails,
-  }: ChildAbductionOrderDetailsPageOptions): Promise<void> {
+    yesNoEmergencyProtectionOrderDetails: yesNoEmergencyProtectionOrderDetails,
+  }: EmergencyProtectionOrderDetailsPageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
       accessibilityTest: accessibilityTest,
@@ -53,7 +53,8 @@ export class ChildAbductionOrderDetailsPage {
     }
     await this.fillInFields({
       page: page,
-      yesNoChildAbductionOrderDetails: yesNoChildAbductionOrderDetails,
+      yesNoEmergencyProtectionOrderDetails:
+        yesNoEmergencyProtectionOrderDetails,
     });
   }
 
@@ -62,31 +63,31 @@ export class ChildAbductionOrderDetailsPage {
     accessibilityTest: accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.p}:text-is("${ChildAbductionOrderDetailsContent.p}")`,
+      `${Selectors.p}:text-is("${EmergencyProtectionOrderDetailsContent.p}")`,
     );
     await Promise.all([
       Helpers.checkGroup(
         page,
         5,
-        ChildAbductionOrderDetailsContent,
+        EmergencyProtectionOrderDetailsContent,
         "h1",
         `${Selectors.h1}`,
       ),
       Helpers.checkGroup(
         page,
         2,
-        ChildAbductionOrderDetailsContent,
+        EmergencyProtectionOrderDetailsContent,
         "formLabel",
         `${Selectors.h1}`,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${ChildAbductionOrderDetailsContent.formHint1}")`,
+        `${Selectors.GovukHint}:text-is("${EmergencyProtectionOrderDetailsContent.formHint1}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${ChildAbductionOrderDetailsContent.formHint2}")`,
+        `${Selectors.GovukHint}:text-is("${EmergencyProtectionOrderDetailsContent.formHint2}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
@@ -101,17 +102,17 @@ export class ChildAbductionOrderDetailsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${ChildAbductionOrderDetailsContent.day}")`,
+        `${Selectors.GovukLabel}:text-is("${EmergencyProtectionOrderDetailsContent.day}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${ChildAbductionOrderDetailsContent.month}")`,
+        `${Selectors.GovukLabel}:text-is("${EmergencyProtectionOrderDetailsContent.month}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${ChildAbductionOrderDetailsContent.year}")`,
+        `${Selectors.GovukLabel}:text-is("${EmergencyProtectionOrderDetailsContent.year}")`,
         2,
       ),
     ]);
@@ -123,27 +124,27 @@ export class ChildAbductionOrderDetailsPage {
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.fill(
       `${UniqueSelectors.orderDate1day}`,
-      ChildAbductionOrderDetailsContent.dayNumber,
+      EmergencyProtectionOrderDetailsContent.dayNumber,
     );
     await page.fill(
       `${UniqueSelectors.orderDate1month}`,
-      ChildAbductionOrderDetailsContent.errorMonthNumber,
+      EmergencyProtectionOrderDetailsContent.errorMonthNumber,
     );
     await page.fill(
       `${UniqueSelectors.orderDate1year}`,
-      ChildAbductionOrderDetailsContent.yearNumber1,
+      EmergencyProtectionOrderDetailsContent.yearNumber1,
     );
     await page.fill(
       `${UniqueSelectors.orderEndDate1day}`,
-      ChildAbductionOrderDetailsContent.dayNumber,
+      EmergencyProtectionOrderDetailsContent.dayNumber,
     );
     await page.fill(
       `${UniqueSelectors.orderEndDate1month}`,
-      ChildAbductionOrderDetailsContent.errorMonthNumber,
+      EmergencyProtectionOrderDetailsContent.errorMonthNumber,
     );
     await page.fill(
       `${UniqueSelectors.orderEndDate1year}`,
-      ChildAbductionOrderDetailsContent.yearNumber2,
+      EmergencyProtectionOrderDetailsContent.yearNumber2,
     );
     await page.click(
       `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`,
@@ -156,22 +157,22 @@ export class ChildAbductionOrderDetailsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${ChildAbductionOrderDetailsContent.errorMessageOrderDate}")`,
+        `${Selectors.a}:text-is("${EmergencyProtectionOrderDetailsContent.errorMessageOrderDate}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${ChildAbductionOrderDetailsContent.errorMessageOrderDate}")`,
+        `${Selectors.ErrorMessage}:text-is("${EmergencyProtectionOrderDetailsContent.errorMessageOrderDate}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${ChildAbductionOrderDetailsContent.errorMessageOrderEndDate}")`,
+        `${Selectors.a}:text-is("${EmergencyProtectionOrderDetailsContent.errorMessageOrderEndDate}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${ChildAbductionOrderDetailsContent.errorMessageOrderEndDate}")`,
+        `${Selectors.ErrorMessage}:text-is("${EmergencyProtectionOrderDetailsContent.errorMessageOrderEndDate}")`,
         1,
       ),
     ]);
@@ -179,42 +180,42 @@ export class ChildAbductionOrderDetailsPage {
 
   private static async fillInFields({
     page: page,
-    yesNoChildAbductionOrderDetails: yesNoChildAbductionOrderDetails,
+    yesNoEmergencyProtectionOrderDetails: yesNoEmergencyProtectionOrderDetails,
   }: fillInFieldsOptions): Promise<void> {
     await page.fill(
       `${UniqueSelectors.orderDetail1}`,
-      ChildAbductionOrderDetailsContent.courtIssued,
+      EmergencyProtectionOrderDetailsContent.courtIssued,
     );
     await page.fill(
       `${UniqueSelectors.caseNo1}`,
-      ChildAbductionOrderDetailsContent.caseNumber,
+      EmergencyProtectionOrderDetailsContent.caseNumber,
     );
     await page.fill(
       `${UniqueSelectors.orderDate1day}`,
-      ChildAbductionOrderDetailsContent.dayNumber,
+      EmergencyProtectionOrderDetailsContent.dayNumber,
     );
     await page.fill(
       `${UniqueSelectors.orderDate1month}`,
-      ChildAbductionOrderDetailsContent.monthNumber,
+      EmergencyProtectionOrderDetailsContent.monthNumber,
     );
     await page.fill(
       `${UniqueSelectors.orderDate1year}`,
-      ChildAbductionOrderDetailsContent.yearNumber1,
+      EmergencyProtectionOrderDetailsContent.yearNumber1,
     );
     await page.fill(
       `${UniqueSelectors.orderEndDate1day}`,
-      ChildAbductionOrderDetailsContent.dayNumber,
+      EmergencyProtectionOrderDetailsContent.dayNumber,
     );
     await page.fill(
       `${UniqueSelectors.orderEndDate1month}`,
-      ChildAbductionOrderDetailsContent.monthNumber,
+      EmergencyProtectionOrderDetailsContent.monthNumber,
     );
     await page.fill(
       `${UniqueSelectors.orderEndDate1year}`,
-      ChildAbductionOrderDetailsContent.yearNumber2,
+      EmergencyProtectionOrderDetailsContent.yearNumber2,
     );
     // Selecting 'true' will move onto next page
-    if (yesNoChildAbductionOrderDetails) {
+    if (yesNoEmergencyProtectionOrderDetails) {
       await page.click(`${UniqueSelectors.currentOrderYes}`);
       await page.click(`${UniqueSelectors.orderCopyYes}`);
     } else {
