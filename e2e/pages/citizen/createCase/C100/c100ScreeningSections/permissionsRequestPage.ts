@@ -65,7 +65,7 @@ export class PermissionsRequestPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${PermissionsRequestContent.errorMessage}")`,
+        `${Selectors.ErrorMessage}:text-is("${PermissionsRequestContent.errorMessage}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
