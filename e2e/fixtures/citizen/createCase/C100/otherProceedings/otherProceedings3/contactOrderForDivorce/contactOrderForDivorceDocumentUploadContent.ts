@@ -13,5 +13,4 @@ export enum ContactOrderForDivorceDocumentUploadContent {
   remove = "Remove",
   errorMessageChooseFile = "Please choose a file.",
   errorMessageUploadCorrectFile = "The file you uploaded is in the wrong format. Upload your file again in the correct format",
-
 }

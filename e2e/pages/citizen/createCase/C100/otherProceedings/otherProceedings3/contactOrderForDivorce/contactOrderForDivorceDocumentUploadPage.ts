@@ -4,9 +4,7 @@ import { Page } from "@playwright/test";
 import { Helpers } from "../../../../../../../common/helpers";
 import config from "../../../../../../../config";
 import { CommonStaticText } from "../../../../../../../common/commonStaticText";
-import {
-  ContactOrderForDivorceDocumentUploadContent
-} from "../../../../../../../fixtures/citizen/createCase/C100/otherProceedings/otherProceedings3/contactOrderForDivorce/contactOrderForDivorceDocumentUploadContent";
+import { ContactOrderForDivorceDocumentUploadContent } from "../../../../../../../fixtures/citizen/createCase/C100/otherProceedings/otherProceedings3/contactOrderForDivorce/contactOrderForDivorceDocumentUploadContent";
 
 interface ContactOrderForDivorceDocumentUploadPageOptions {
   page: Page;
@@ -30,10 +28,10 @@ enum UniqueSelectors {
 
 export class ContactOrderForDivorceDocumentUploadPage {
   public static async contactOrderForDivorceDocumentUploadPage({
-                                                                page: page,
-                                                                accessibilityTest: accessibilityTest,
-                                                                errorMessaging: errorMessaging,
-                                                              }: ContactOrderForDivorceDocumentUploadPageOptions): Promise<void> {
+    page: page,
+    accessibilityTest: accessibilityTest,
+    errorMessaging: errorMessaging,
+  }: ContactOrderForDivorceDocumentUploadPageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
       accessibilityTest: accessibilityTest,
@@ -47,9 +45,9 @@ export class ContactOrderForDivorceDocumentUploadPage {
   }
 
   private static async checkPageLoads({
-                                        page: page,
-                                        accessibilityTest: accessibilityTest,
-                                      }: checkPageLoadsOptions): Promise<void> {
+    page: page,
+    accessibilityTest: accessibilityTest,
+  }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.GovukHeadingXL}:text-is("${ContactOrderForDivorceDocumentUploadContent.pageTitle}")`,
     );
@@ -131,8 +129,8 @@ export class ContactOrderForDivorceDocumentUploadPage {
   }
 
   private static async fillInFields({
-                                      page: page,
-                                    }: fillInFieldsOptions): Promise<void> {
+    page: page,
+  }: fillInFieldsOptions): Promise<void> {
     let fileInput = page.locator(`${UniqueSelectors.documentUpload}`);
     await fileInput.setInputFiles(config.testPdfFile);
     await page.click(
