@@ -17,19 +17,19 @@ export class C100Confidentiality {
     accessibilityTest,
     errorMessaging,
     c100OthersKnowApplicantsContact,
-    c100PrivateDetails
+    c100PrivateDetails,
   }: C100ConfidentialityOptions): Promise<void> {
     await DetailsKnowPage.detailsKnowPage({
       page: page,
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
-      c100OthersKnowApplicantsContact: c100OthersKnowApplicantsContact
+      c100OthersKnowApplicantsContact: c100OthersKnowApplicantsContact,
     });
     await StartPage.startPage({
       page: page,
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
-      c100PrivateDetails: c100PrivateDetails
-    })
+      c100PrivateDetails: c100PrivateDetails,
+    });
   }
 }
