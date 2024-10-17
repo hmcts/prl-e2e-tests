@@ -64,7 +64,13 @@ export class ChildArrangementOrderDetailsPage {
       `${Selectors.p}:text-is("${ChildArrangementOrderDetailsContent.p}")`,
     );
     await Promise.all([
-      Helpers.checkGroup(page, 2, ChildArrangementOrderDetailsContent, "h1", `${Selectors.h1}`),
+      Helpers.checkGroup(
+        page,
+        2,
+        ChildArrangementOrderDetailsContent,
+        "h1",
+        `${Selectors.h1}`,
+      ),
       Helpers.checkGroup(
         page,
         2,
