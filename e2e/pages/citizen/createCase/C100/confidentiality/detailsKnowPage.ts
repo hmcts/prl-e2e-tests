@@ -95,7 +95,7 @@ export class DetailsKnowPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${DetailsKnowContent.errorMessage}")`,
+        `${Selectors.ErrorMessage}:text-is("${DetailsKnowContent.errorMessage}")`,
         1,
       ),
     ]);

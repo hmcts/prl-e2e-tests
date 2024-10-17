@@ -95,7 +95,7 @@ export class ChildAddressPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${ChildAddressContent.errorMessage}")`,
+        `${Selectors.ErrorMessage}:text-is("${ChildAddressContent.errorMessage}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(

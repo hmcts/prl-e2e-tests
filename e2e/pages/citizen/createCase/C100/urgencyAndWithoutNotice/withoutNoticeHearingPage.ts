@@ -3,7 +3,7 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { WithoutNoticeHearingContent } from "../../../../../fixtures/citizen/createCase/C100/urgencyAndWithoutNotice/withoutNoticeHearingContent";
 import { Helpers } from "../../../../../common/helpers";
-import { uniqueSelectors } from "/urgentFirstHearingPage";
+import { uniqueSelectors } from "./urgentFirstHearingPage";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 
 interface WithoutNoticeHearingPageOptions {
@@ -88,7 +88,7 @@ export class WithoutNoticeHearingPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${WithoutNoticeHearingContent.errorLink}")`,
+        `${Selectors.ErrorMessage}:text-is("${WithoutNoticeHearingContent.errorLink}")`,
         1,
       ),
     ]);
