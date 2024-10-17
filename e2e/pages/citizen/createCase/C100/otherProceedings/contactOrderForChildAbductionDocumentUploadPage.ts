@@ -4,7 +4,7 @@ import { Page } from "@playwright/test";
 import { Helpers } from "../../../../../common/helpers";
 import config from "../../../../../config";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-import { ContactOrderForAdoptionDocumentUploadContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/otherProceedings3/contactOrderForAdoption/contactOrderForAdoptionDocumentUploadContent";
+import { ContactOrderForAdoptionDocumentUploadContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/contactOrderForAdoptionDocumentUploadContent";
 
 interface ContactOrderForAdoptionDocumentUploadPageOptions {
   page: Page;

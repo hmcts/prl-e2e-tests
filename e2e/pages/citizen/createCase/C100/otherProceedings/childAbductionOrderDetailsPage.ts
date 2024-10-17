@@ -3,7 +3,7 @@ import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelp
 import { Page } from "@playwright/test";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-import { ChildAbductionOrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/otherProceedings3/childAbductionOrder/childAbductionOrderDetailsContent";
+import { ChildAbductionOrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/childAbductionOrderDetailsContent";
 
 interface ChildAbductionOrderDetailsPageOptions {
   page: Page;

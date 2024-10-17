@@ -4,7 +4,7 @@ import { Page } from "@playwright/test";
 import { Helpers } from "../../../../../common/helpers";
 import config from "../../../../../config";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-import { ChildAbductionDocumentUploadContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/otherProceedings3/childAbductionOrder/childAbductionDocumentUploadContent";
+import { ChildAbductionDocumentUploadContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/childAbductionDocumentUploadContent";
 
 interface ChildAbductionDocumentUploadPageOptions {
   page: Page;

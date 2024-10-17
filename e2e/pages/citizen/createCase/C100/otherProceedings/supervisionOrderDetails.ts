@@ -2,7 +2,7 @@ import { Selectors } from "../../../../../common/selectors";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
 import { Helpers } from "../../../../../common/helpers";
-import { SupervisionOrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/otherProceedings2/supervisionOrder/SupervisionOrderDetailsContent";
+import { SupervisionOrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/SupervisionOrderDetailsContent";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 
 interface SupervisionOrderDetailsPageOptions {

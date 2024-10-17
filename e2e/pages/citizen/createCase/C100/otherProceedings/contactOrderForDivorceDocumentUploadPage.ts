@@ -4,7 +4,7 @@ import { Page } from "@playwright/test";
 import { Helpers } from "../../../../../common/helpers";
 import config from "../../../../../config";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-import { ContactOrderForDivorceDocumentUploadContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/otherProceedings3/contactOrderForDivorce/contactOrderForDivorceDocumentUploadContent";
+import { ContactOrderForDivorceDocumentUploadContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/contactOrderForDivorceDocumentUploadContent";
 
 interface ContactOrderForDivorceDocumentUploadPageOptions {
   page: Page;

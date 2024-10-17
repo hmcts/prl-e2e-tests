@@ -3,8 +3,8 @@ import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelp
 import { Page } from "@playwright/test";
 import { Helpers } from "../../../../../common/helpers";
 import config from "../../../../../config";
-import { EmergencyProtectionDocumentUploadContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/otherProceedings2/emergencyProtectionOrder/EmergencyProtectionDocumentUploadContent";
-import { CareOrderDocumentUploadContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/otherProceedings2/careOrder/CareOrderDocumentUploadContent";
+import { EmergencyProtectionDocumentUploadContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/EmergencyProtectionDocumentUploadContent";
+import { CareOrderDocumentUploadContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/CareOrderDocumentUploadContent";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 
 interface EmergencyProtectionDocumentUploadPageOptions {

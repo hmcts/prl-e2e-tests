@@ -1,4 +1,4 @@
-import { OrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/otherProceedings1/childArrangementOrder/order-detailsContent";
+import { OrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/order-detailsContent";
 import { Selectors } from "../../../../../common/selectors";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";

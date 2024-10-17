@@ -1,9 +1,9 @@
-import { OrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/otherProceedings1/childArrangementOrder/order-detailsContent";
+import { OrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/order-detailsContent";
 import { Selectors } from "../../../../../common/selectors";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
 import { Helpers } from "../../../../../common/helpers";
-import { DocumentUploadContent1 } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/otherProceedings1/childArrangementOrder/documentUploadContent1";
+import { DocumentUploadContent1 } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/documentUploadContent1";
 import config from "../../../../../config";
 
 interface DocumentUploadPageOptions {

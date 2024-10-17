@@ -2,7 +2,7 @@ import { Selectors } from "../../../../../common/selectors";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
 import { Helpers } from "../../../../../common/helpers";
-import { CareOrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/otherProceedings2/careOrder/CareOrderDetailsContent";
+import { CareOrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/CareOrderDetailsContent";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 
 interface CareOrderDetailsPageOptions {

@@ -2,7 +2,7 @@ import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelp
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { Helpers } from "../../../../../common/helpers";
-import { ProceedingDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/otherProceedings1/proceeding-detailsContent";
+import { ProceedingDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/proceeding-detailsContent";
 
 interface ProceedingDetailsPageOptions {
   page: Page;
