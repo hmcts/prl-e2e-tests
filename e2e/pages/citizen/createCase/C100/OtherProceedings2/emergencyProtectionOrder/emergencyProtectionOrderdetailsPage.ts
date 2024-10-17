@@ -92,12 +92,12 @@ export class EmergencyProtectionOrderDetailsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${CommonStaticText.strippedYes}")`,
+        `${Selectors.GovukHint}:text-is("${CommonStaticText.yes}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${CommonStaticText.strippedNo}")`,
+        `${Selectors.GovukHint}:text-is("${CommonStaticText.no}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
@@ -147,7 +147,7 @@ export class EmergencyProtectionOrderDetailsPage {
       EmergencyProtectionOrderDetailsContent.yearNumber2,
     );
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(

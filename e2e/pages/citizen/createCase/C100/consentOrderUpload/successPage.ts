@@ -64,7 +64,7 @@ export class SuccessPage {
     page: page,
   }: fillInFieldsOptions): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
     );
   }
 }

@@ -55,7 +55,7 @@ export class PermissionsRequestPage {
 
   private static async checkErrorMessaging(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -82,7 +82,7 @@ export class PermissionsRequestPage {
       PermissionsRequestContent.permissionReasoning,
     );
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
     );
   }
 }

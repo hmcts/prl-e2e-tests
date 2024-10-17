@@ -74,7 +74,7 @@ export class AlternativeRoutesPage {
 
   private static async fillInFields(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
     );
   }
 }

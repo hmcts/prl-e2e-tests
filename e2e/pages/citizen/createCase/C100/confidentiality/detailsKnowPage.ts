@@ -59,12 +59,12 @@ export class DetailsKnowPage {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${CommonStaticText.paddedYes}")`,
+        `${Selectors.GovukLabel}:text-is("${CommonStaticText.yes}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${CommonStaticText.paddedNo}")`,
+        `${Selectors.GovukLabel}:text-is("${CommonStaticText.no}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -80,7 +80,7 @@ export class DetailsKnowPage {
 
   private static async checkErrorMessaging(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -113,7 +113,7 @@ export class DetailsKnowPage {
     let inputKey = c100OthersKnowApplicantsContact as keyof typeof inputIDs;
     await page.click(inputIDs[inputKey]);
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
     );
   }
 }

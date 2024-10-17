@@ -65,12 +65,12 @@ export class ConsentAgreementPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${CommonStaticText.paddedYes}")`,
+        `${Selectors.GovukLabel}:text-is("${CommonStaticText.yes}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${CommonStaticText.paddedYes}")`,
+        `${Selectors.GovukLabel}:text-is("${CommonStaticText.yes}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -86,7 +86,7 @@ export class ConsentAgreementPage {
 
   private static async checkErrorMessaging(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -122,7 +122,7 @@ export class ConsentAgreementPage {
       await page.click(uniqueSelectors.radioNo);
     }
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
     );
   }
 }

@@ -1,22 +1,23 @@
 import { Page } from "@playwright/test";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Selectors } from "../../../../../common/selectors";
-import { StartContent } from "../../../../../fixtures/citizen/createCase/C100/confidentiality/startContent";
+import { StartAlternativeContent } from "../../../../../fixtures/citizen/createCase/C100/confidentiality/StartAlternativeContent";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 
+
 enum inputIDs {
-  yes = "#start",
-  no = "#start-2",
+  yes = "#startAlternative",
+  no = "#startAlternative-2",
 }
 
 enum checkboxIDs {
-  address = '#contactDetailsPrivate',
-  telephone = '#contactDetailsPrivate-2',
-  email = '#contactDetailsPrivate-3'
+  address = '#contactDetailsPrivateAlternative',
+  telephone = '#contactDetailsPrivateAlternative-2',
+  email = '#contactDetailsPrivateAlternative-3'
 }
 
-interface StartPageOptions {
+interface StartAlternativePageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
@@ -33,13 +34,13 @@ interface FillInFieldsOptions {
   c100PrivateDetails: boolean;
 }
 
-export class StartPage {
-  public static async startPage({
+export class StartAlternativePage {
+  public static async startAlternativePage({
     page,
     accessibilityTest,
     errorMessaging,
     c100PrivateDetails,
-  }: StartPageOptions): Promise<void> {
+  }: StartAlternativePageOptions): Promise<void> {
     await this.checkPageLoads({
       page,
       accessibilityTest,
@@ -58,13 +59,13 @@ export class StartPage {
     accessibilityTest,
   }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukHeadingXL}:text-is("${StartContent.pageTitle}")`,
+      `${Selectors.GovukHeadingXL}:text-is("${StartAlternativeContent.pageTitle}")`,
     );
     await Promise.all([
       Helpers.checkGroup(
         page,
         2,
-        StartContent,
+        StartAlternativeContent,
         "bodyM",
         `${Selectors.GovukBodyM}`,
       ),
@@ -96,16 +97,16 @@ export class StartPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorSummaryList} ${Selectors.a}:text-is("${StartContent.errorSummaryList}")`,
+        `${Selectors.ErrorSummaryList} ${Selectors.a}:text-is("${StartAlternativeContent.errorSummaryList}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${StartContent.errorMessage}")`,
+        `${Selectors.ErrorMessage}:text-is("${StartAlternativeContent.errorMessage}")`,
         1,
       ),
     ]);
-    await this.checkboxErrorMessages(page);
+    await this.checkboxErrorMessages(page)
   }
 
   private static async checkboxErrorMessages(
@@ -125,33 +126,33 @@ export class StartPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorList} ${Selectors.a}:text-is("${StartContent.checkboxErrorSummaryList}")`,
+        `${Selectors.GovukErrorList} ${Selectors.a}:text-is("${StartAlternativeContent.checkboxErrorSummaryList}")`,
         1
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${StartContent.checkboxErrorMessage}")`,
+        `${Selectors.ErrorMessage}:text-is("${StartAlternativeContent.checkboxErrorMessage}")`,
         1
       ),
     ])
   }
 
   private static async fillInFields({
-    page,
-    c100PrivateDetails,
-  }: FillInFieldsOptions): Promise<void> {
+  page,
+  c100PrivateDetails,
+}: FillInFieldsOptions): Promise<void> {
     if (c100PrivateDetails) {
       await page.click(inputIDs.yes);
       await Promise.all([
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukFormHint}:text-is("${StartContent.formHint}")`,
+          `${Selectors.GovukFormHint}:text-is("${StartAlternativeContent.formHint}")`,
           1
         ),
         Helpers.checkGroup(
           page,
           3,
-          StartContent,
+          StartAlternativeContent,
           'formLabel',
           `${Selectors.GovukFormLabel}`
         )
