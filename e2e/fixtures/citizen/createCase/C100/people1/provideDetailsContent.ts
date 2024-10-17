@@ -1,1 +1,19 @@
-export enum ProvideDetailsContent {}
+export enum ProvideDetailsContent {
+  pageTitle = "Provide details for exampleText exampleText",
+  legend1 = "Date of birth",
+  legend2 = "Gender",
+  hint = "For example, 31 3 2016",
+  label1 = "Day",
+  label2 = "Month",
+  label3 = "Year",
+  label4 = "I don’t know their date of birth",
+  label5 = "Female",
+  label6 = "Male",
+  label7 = "They identify in another way",
+  label8 = "Child's gender (Optional)",
+  exampleDay = "12",
+  exampleMonth = "10",
+  exampleYear = "2008",
+  errorLink1 = "Enter the date of birth",
+  errorLink2 = "Select the gender",
+}

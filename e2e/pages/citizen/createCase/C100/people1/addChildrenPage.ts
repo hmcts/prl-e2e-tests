@@ -20,6 +20,11 @@ interface fillInFieldsOptions {
   page: Page;
 }
 
+enum inputIds {
+  firstName = "#c100TempFirstName",
+  lastName = "#c100TempLastName",
+}
+
 export class AddChildrenPage {
   public static async addChildrenPage({
     page: page,
@@ -42,14 +47,73 @@ export class AddChildrenPage {
     page: page,
     accessibilityTest: accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
+    await page.waitForSelector(
+      `${Selectors.GovukHeadingXL}:text-is("${AddChildrenContent.pageTitle}")`,
+    );
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukInsetText}:text-is("${AddChildrenContent.insetText}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.h1}:text-is("${AddChildrenContent.heading}")`,
+        1,
+      ),
+      Helpers.checkGroup(
+        page,
+        2,
+        AddChildrenContent,
+        "label",
+        `${Selectors.GovukLabel}`,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukHint}:text-is("${AddChildrenContent.hint}")`,
+        1,
+      ),
+    ]);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }
   }
 
-  private static async triggerErrorMessages(page: Page): Promise<void> {}
+  private static async triggerErrorMessages(page: Page): Promise<void> {
+    await page.click(
+      `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`,
+    );
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorSummaryTitle}:text-is("${CommonStaticText.errorSummaryTitle}")`,
+        1,
+      ),
+      Helpers.checkGroup(
+        page,
+        2,
+        AddChildrenContent,
+        "errorLink",
+        `${Selectors.a}`,
+      ),
+      Helpers.checkGroup(
+        page,
+        2,
+        AddChildrenContent,
+        "errorLink",
+        `${Selectors.ErrorMessage}`,
+      ),
+    ]);
+  }
 
   private static async fillInFields({
     page: page,
-  }: fillInFieldsOptions): Promise<void> {}
+  }: fillInFieldsOptions): Promise<void> {
+    for (const selector of Object.values(inputIds)) {
+      await page.fill(`${selector}`, AddChildrenContent.exampleText);
+    }
+    await page.click(
+      `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`,
+    );
+  }
 }
