@@ -4,8 +4,8 @@ export interface UserLoginInfo {
 }
 
 export interface UserCredentials {
-  readonly email: string | void;
-  readonly password: string | void;
+  readonly email: string | undefined;
+  readonly password: string | undefined;
 }
 
 export type solicitorCaseCreateType = "C100" | "FL401";
