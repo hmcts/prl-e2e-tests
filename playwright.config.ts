@@ -1,6 +1,8 @@
 import { defineConfig, devices } from "@playwright/test";
 import * as process from "node:process";
 
+const DEFAULT_VIEWPORT = { width: 1920, height: 1080 };
+
 module.exports = defineConfig({
   testDir: "./e2e/tests",
   /* Run tests in files in parallel */
@@ -35,6 +37,7 @@ module.exports = defineConfig({
         screenshot: "off",
         trace: "on",
         javaScriptEnabled: true,
+        viewport: DEFAULT_VIEWPORT,
       },
     },
     {
@@ -45,6 +48,7 @@ module.exports = defineConfig({
         screenshot: "off",
         trace: "on",
         javaScriptEnabled: true,
+        viewport: DEFAULT_VIEWPORT,
       },
     },
     {
@@ -55,6 +59,7 @@ module.exports = defineConfig({
         screenshot: "off",
         trace: "on",
         javaScriptEnabled: true,
+        viewport: DEFAULT_VIEWPORT,
       },
     },
     {
