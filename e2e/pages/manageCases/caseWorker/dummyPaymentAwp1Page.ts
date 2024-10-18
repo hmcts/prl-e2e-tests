@@ -85,12 +85,12 @@ export class DummyPaymentAwp1Page extends CommonPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:has-text("${DummyPaymentAwp1Content.errorMessagePaymentService}")`,
+        `${Selectors.GovukErrorMessage}:has-text("${DummyPaymentAwp1Content.errorMessagePaymentService}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:has-text("${DummyPaymentAwp1Content.errorMessagePaymentStatus}")`,
+        `${Selectors.GovukErrorMessage}:has-text("${DummyPaymentAwp1Content.errorMessagePaymentStatus}")`,
         1,
       ),
     ]);
