@@ -1,6 +1,7 @@
 import {
   ApplicantGender,
   otherProceedingsRadios,
+  ViewPdfTestCases,
   UserRole,
 } from "../../../common/types";
 import { Page } from "@playwright/test";
@@ -16,11 +17,13 @@ import { FL401RelationshipToRespondent } from "./FL401RelationshipToRespondent/F
 import { fl401RelationshipToRespondent } from "../../../pages/manageCases/createCase/FL401/relationshipToRespondent/relationshipToRespondent1Page";
 import { fl401RespondentRelationshipOther } from "../../../pages/manageCases/createCase/FL401/relationshipToRespondent/relationshipToRespondent2Page";
 import { FL401WelshLanguageRequirements } from "./FL401WelshLanguageRequirements/FL401WelshLanguageRequirements";
+import { FL401ViewPDFApplication } from "./FL401ViewPDFApplication/FL401ViewPDFApplication";
 import { bailConditionRadios } from "../../../pages/manageCases/createCase/FL401/withoutNoticeOrder/withoutNoticeOrder3Page";
 import { Fl401AttendingTheHearing } from "./FL401AttendingTheHearing/fl401AttendingTheHearing";
 import { FL401UploadDocuments } from "./FL401UploadDocuments/FL401UploadDocuments";
 import { FL401TheHome } from "./FL401TheHome/fl401TheHome";
 import { addressRadios } from "../../../pages/manageCases/createCase/FL401/theHome/fl401TheHome1Page";
+import { Fl401StatementOfTruth } from "./FL401StatementOfTruth/fl401StatementOfTruth";
 
 interface fl401Options {
   page: Page;
@@ -32,7 +35,6 @@ interface fl401Options {
   applicantHasChildren: boolean;
   yesNoFL401ApplicantDetails: boolean;
   applicantGender: ApplicantGender;
-  respondentsBehaviourAllOptionsYes: boolean;
   isWithoutNoticeDetailsYes: boolean;
   isWithoutNoticeDetailsBailConditions: bailConditionRadios;
   otherProceedingsRadios: otherProceedingsRadios;
@@ -44,6 +46,8 @@ interface fl401Options {
   fl401IntendToLiveAtAddress?: addressRadios;
   welshLanguageRequirementsAllOptionsYes: boolean;
   welshLanguageRequirementsSelectWelsh?: boolean;
+  viewPdfTestCases: ViewPdfTestCases;
+  fl401YesNoToEverything: boolean;
 }
 
 export class FL401 {
@@ -57,7 +61,6 @@ export class FL401 {
     applicantHasChildren,
     yesNoFL401ApplicantDetails,
     applicantGender,
-    respondentsBehaviourAllOptionsYes,
     isWithoutNoticeDetailsYes,
     isWithoutNoticeDetailsBailConditions,
     otherProceedingsRadios,
@@ -69,6 +72,8 @@ export class FL401 {
     fl401IntendToLiveAtAddress,
     welshLanguageRequirementsAllOptionsYes,
     welshLanguageRequirementsSelectWelsh,
+    viewPdfTestCases,
+    fl401YesNoToEverything,
   }: fl401Options): Promise<void> {
     await SolicitorCreateInitial.createInitialCase({
       page: page,
@@ -126,8 +131,6 @@ export class FL401 {
     await FL401RespondentsBehaviour.fl401RespondentsBehaviour({
       page: page,
       accessibilityTest: accessibilityTest,
-      errorMessaging: errorMessaging,
-      respondentsBehaviourAllOptionsYes: respondentsBehaviourAllOptionsYes,
       subJourney: false,
     });
     await FL401OtherProceedings.fl401OtherProceedings({
@@ -167,6 +170,13 @@ export class FL401 {
       page,
       accessibilityTest,
       errorMessaging,
+      subJourney: false,
+    });
+    await FL401ViewPDFApplication.fl401ViewPDFApplication({
+      page,
+      accessibilityTest,
+      errorMessaging,
+      viewPdfTestCases,
       subJourney: false,
     });
   }

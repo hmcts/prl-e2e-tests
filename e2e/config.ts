@@ -1,11 +1,19 @@
 import path from "path";
+import dotenv from 'dotenv';
+
 import { UserCredentials, UserRole } from "./common/types";
+
+dotenv.config()
 
 export class Config {
   public static readonly userCredentials: Record<UserRole, UserCredentials> = {
     solicitor: {
-      email: process.env.SOLICITOR_USERNAME || "solicitor-user",
-      password: process.env.SOLICITOR_PASSWORD || "solicitor-password",
+      email: process.env.SOLICITOR_USERNAME as string,
+      password: process.env.SOLICITOR_PASSWORD as string,
+    },
+    citizen: {
+      email: process.env.CITIZEN_USERNAME as string,
+      password: process.env.CITIZEN_PASSWORD as string,
     },
   };
 
@@ -15,9 +23,11 @@ export class Config {
   );
 
   public static readonly citizenFrontendBaseURL: string =
-    process.env.CITIZEN_FRONTEND_BASE_URL || "citizenFrontendBaseURL";
+    process.env.CITIZEN_FRONTEND_BASE_URL ||
+    "https://privatelaw.aat.platform.hmcts.net/";
   public static readonly manageCasesBaseURL: string =
-    process.env.MANAGE_CASES_BASE_URL || "manageCasesBaseURL";
+    process.env.MANAGE_CASES_BASE_URL ||
+    "https://manage-case.aat.platform.hmcts.net/cases";
 
   public static readonly testFile: string = path.resolve(
     __dirname,

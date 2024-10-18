@@ -16,6 +16,7 @@ export type Events = "undefined";
 
 const UserRoles = {
   solicitor: "solicitor",
+  citizen: "citizen",
 } as const;
 
 export type UserRole = (typeof UserRoles)[keyof typeof UserRoles];
@@ -39,7 +40,9 @@ export type c100SolicitorEvents =
   | "International element"
   | "Litigation capacity"
   | "Other proceedings"
-  | "Welsh language requirements";
+  | "Welsh language requirements"
+  | "View PDF application"
+  | "Submit and pay";
 
 export type fl401SolicitorEvents =
   | "Case name"
@@ -47,14 +50,30 @@ export type fl401SolicitorEvents =
   | "Without notice order"
   | "Applicant details"
   | "Respondent details"
+  | "Other proceedings"
   | "Respondent's behaviour"
   | "Applicant's family"
   | "Relationship to respondent"
   | "Attending the hearing"
   | "The home"
   | "Upload documents"
-  | "Welsh language requirements";
+  | "Welsh language requirements"
+  | "View PDF application"
+  | "Statement of truth and submit";
+
+export type fl401SubmittedSolicitorEvents =
+  | "Draft an order"
+  | "Dummy Payment for AwP"
+  | "Manage support"
+  | "Manage documents"
+  | "Request support"
+  | "Upload additional applications"
+  | "Withdraw application";
 
 export type ApplicantGender = "female" | "male" | "other";
 
+export type yesNoDontKnow = "yes" | "no" | "dontKnow";
+
 export type otherProceedingsRadios = "Yes" | "No" | "Don't know";
+
+export type ViewPdfTestCases = "1" | "2" | "3";
