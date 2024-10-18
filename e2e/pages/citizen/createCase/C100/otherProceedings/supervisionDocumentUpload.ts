@@ -1,11 +1,10 @@
-import { Selectors } from "../../../../../../common/selectors";
-import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper";
+import { Selectors } from "../../../../../common/selectors";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
-import { Helpers } from "../../../../../../common/helpers";
-import config from "../../../../../../config";
-import { SupervisionDocumentUpload } from "../../../../../../fixtures/citizen/createCase/C100/OtherProceedings2/supervisionOrder/SupervisionDocumentUpload";
-import { CareOrderDocumentUploadContent } from "../../../../../../fixtures/citizen/createCase/C100/OtherProceedings2/careOrder/CareOrderDocumentUploadContent";
-import { CommonStaticText } from "../../../../../../common/commonStaticText";
+import { Helpers } from "../../../../../common/helpers";
+import config from "../../../../../config";
+import { SupervisionDocumentUpload } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/SupervisionDocumentUpload";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
 
 interface SupervisionDocumentUploadPageOptions {
   page: Page;
@@ -88,7 +87,7 @@ export class SupervisionDocumentUploadPage {
 
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -109,21 +108,18 @@ export class SupervisionDocumentUploadPage {
     ]);
     let fileInput = page.locator(`${UniqueSelectors.documentUpload}`);
     await fileInput.setInputFiles(config.testOdtFile);
-
-    // # Not sure if you need to press the button
-    // await page.click(
-    //   `${Selectors.button}:text-is("${CareOrderDocumentUploadContent.uploadFile}")`,
-    // );
-
+    await page.click(
+      `${Selectors.GovukButton}:text-is("${SupervisionDocumentUpload.uploadFile}")`,
+    );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${CareOrderDocumentUploadContent.errorMessageUploadCorrectFile}")`,
+        `${Selectors.a}:text-is("${SupervisionDocumentUpload.errorMessageUploadCorrectFile}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${CareOrderDocumentUploadContent.errorMessageUploadCorrectFile}")`,
+        `${Selectors.ErrorMessage}:text-is("${SupervisionDocumentUpload.errorMessageUploadCorrectFile}")`,
         1,
       ),
     ]);
@@ -135,7 +131,7 @@ export class SupervisionDocumentUploadPage {
     let fileInput = page.locator(`${UniqueSelectors.documentUpload}`);
     await fileInput.setInputFiles(config.testPdfFile);
     await page.click(
-      `${Selectors.button}:text-is("${SupervisionDocumentUpload.uploadFile}")`,
+      `${Selectors.GovukButton}:text-is("${SupervisionDocumentUpload.uploadFile}")`,
     );
     await page.waitForSelector(
       `${UniqueSelectors.uploadConfirmationSelector}`,
@@ -151,7 +147,7 @@ export class SupervisionDocumentUploadPage {
       1,
     );
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
     );
   }
 }

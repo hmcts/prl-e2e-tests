@@ -1,11 +1,10 @@
-import { Selectors } from "../../../../../../common/selectors";
-import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper";
+import { Selectors } from "../../../../../common/selectors";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
-import { Helpers } from "../../../../../../common/helpers";
-import config from "../../../../../../config";
-import { EmergencyProtectionDocumentUploadContent } from "../../../../../../fixtures/citizen/createCase/C100/OtherProceedings2/emergencyProtectionOrder/EmergencyProtectionDocumentUploadContent";
-import { CareOrderDocumentUploadContent } from "../../../../../../fixtures/citizen/createCase/C100/OtherProceedings2/careOrder/CareOrderDocumentUploadContent";
-import { CommonStaticText } from "../../../../../../common/commonStaticText";
+import { Helpers } from "../../../../../common/helpers";
+import config from "../../../../../config";
+import { EmergencyProtectionDocumentUploadContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/EmergencyProtectionDocumentUploadContent";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
 
 interface EmergencyProtectionDocumentUploadPageOptions {
   page: Page;
@@ -88,7 +87,7 @@ export class EmergencyProtectionDocumentUploadPage {
 
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -109,21 +108,18 @@ export class EmergencyProtectionDocumentUploadPage {
     ]);
     let fileInput = page.locator(`${UniqueSelectors.documentUpload}`);
     await fileInput.setInputFiles(config.testOdtFile);
-
-    // # Not sure if you need to press the button
-    // await page.click(
-    //   `${Selectors.button}:text-is("${CareOrderDocumentUploadContent.uploadFile}")`,
-    // );
-
+    await page.click(
+      `${Selectors.GovukButton}:text-is("${EmergencyProtectionDocumentUploadContent.uploadFile}")`,
+    );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${CareOrderDocumentUploadContent.errorMessageUploadCorrectFile}")`,
+        `${Selectors.a}:text-is("${EmergencyProtectionDocumentUploadContent.errorMessageUploadCorrectFile}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${CareOrderDocumentUploadContent.errorMessageUploadCorrectFile}")`,
+        `${Selectors.ErrorMessage}:text-is("${EmergencyProtectionDocumentUploadContent.errorMessageUploadCorrectFile}")`,
         1,
       ),
     ]);
@@ -135,7 +131,7 @@ export class EmergencyProtectionDocumentUploadPage {
     const fileInput = page.locator(`${UniqueSelectors.documentUpload}`);
     await fileInput.setInputFiles(config.testPdfFile);
     await page.click(
-      `${Selectors.button}:text-is("${EmergencyProtectionDocumentUploadContent.uploadFile}")`,
+      `${Selectors.GovukButton}:text-is("${EmergencyProtectionDocumentUploadContent.uploadFile}")`,
     );
     await page.waitForSelector(
       `${UniqueSelectors.uploadConfirmationSelector}`,
@@ -151,7 +147,7 @@ export class EmergencyProtectionDocumentUploadPage {
       1,
     );
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
     );
   }
 }
