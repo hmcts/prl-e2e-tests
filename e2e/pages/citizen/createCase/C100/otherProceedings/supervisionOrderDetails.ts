@@ -65,6 +65,11 @@ export class SupervisionOrderDetailsPage {
       `${Selectors.p}:text-is("${SupervisionOrderDetailsContent.p}")`,
     );
     await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukHeadingXL}:text-is("${SupervisionOrderDetailsContent.pageTitle}")`,
+        1,
+      ),
       Helpers.checkGroup(
         page,
         5,

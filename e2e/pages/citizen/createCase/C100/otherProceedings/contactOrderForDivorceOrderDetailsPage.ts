@@ -67,6 +67,11 @@ export class ContactOrderForDivorceOrderDetailsPage {
       `${Selectors.p}:text-is("${ContactOrderForDivorceOrderDetailsContent.p}")`,
     );
     await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukHeadingXL}:text-is("${ContactOrderForDivorceOrderDetailsContent.pageTitle}")`,
+        1,
+      ),
       Helpers.checkGroup(
         page,
         5,

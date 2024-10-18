@@ -65,6 +65,11 @@ export class ChildAbductionOrderDetailsPage {
       `${Selectors.p}:text-is("${ChildAbductionOrderDetailsContent.p}")`,
     );
     await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukHeadingXL}:text-is("${ChildAbductionOrderDetailsContent.pageTitle}")`,
+        1,
+      ),
       Helpers.checkGroup(
         page,
         5,
