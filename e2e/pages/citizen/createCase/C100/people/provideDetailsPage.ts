@@ -1,7 +1,7 @@
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
-import { ProvideDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/people1/provideDetailsContent";
+import { ProvideDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/people/provideDetailsContent";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { ApplicantGender } from "../../../../../common/types";
