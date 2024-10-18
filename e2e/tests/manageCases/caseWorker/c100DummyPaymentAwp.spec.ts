@@ -4,7 +4,7 @@ import Config from "../../../config";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-test.describe("Dummy payment for AWP tests @manageCases", (): void => {
+test.describe("C100 Dummy payment for AWP tests @manageCases", (): void => {
   test(`Complete the Dummy payment for AWP action as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
@@ -15,6 +15,7 @@ test.describe("Dummy payment for AWP tests @manageCases", (): void => {
       page,
       errorMessaging: false,
       accessibilityTest: false,
+      isC100: true,
       paymentStatusPaid: true,
     });
   });
@@ -29,6 +30,7 @@ test.describe("Dummy payment for AWP tests @manageCases", (): void => {
       page,
       errorMessaging: false,
       accessibilityTest: false,
+      isC100: true,
       paymentStatusPaid: false,
     });
   });
@@ -43,6 +45,7 @@ test.describe("Dummy payment for AWP tests @manageCases", (): void => {
       page,
       errorMessaging: true,
       accessibilityTest: false,
+      isC100: true,
       paymentStatusPaid: true,
     });
   });
@@ -57,6 +60,7 @@ test.describe("Dummy payment for AWP tests @manageCases", (): void => {
       page,
       errorMessaging: false,
       accessibilityTest: true,
+      isC100: true,
       paymentStatusPaid: true,
     });
   });

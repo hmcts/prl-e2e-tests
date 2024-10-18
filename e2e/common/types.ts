@@ -42,7 +42,8 @@ export type c100SolicitorEvents =
   | "Other proceedings"
   | "Welsh language requirements"
   | "View PDF application"
-  | "Submit and pay";
+  | "Submit and pay"
+  | "Dummy Payment confirmation";
 
 export type fl401SolicitorEvents =
   | "Case name"
