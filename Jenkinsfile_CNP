@@ -28,7 +28,7 @@ properties([
     ),
     booleanParam(
       name: 'skipCitizenTests',
-      defaultValue: true,
+      defaultValue: false,
       description: 'Tick the checkbox for skipping Citizen application tests.'
     ),
     booleanParam(
@@ -59,6 +59,8 @@ def secrets = [
   'prl-${env}': [
     secret('solicitor-user', 'SOLICITOR_USERNAME'),
     secret('solicitor-password', 'SOLICITOR_PASSWORD'),
+    secret('citizen-user', 'CITIZEN_USERNAME'),
+    secret('citizen-password', 'CITIZEN_PASSWORD'),
   ]
 ]
 
