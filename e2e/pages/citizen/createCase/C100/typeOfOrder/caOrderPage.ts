@@ -3,7 +3,6 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { CaOrderContent } from "../../../../../fixtures/citizen/createCase/C100/typeOfOrder/caOrderContent";
 import { Helpers } from "../../../../../common/helpers";
-import { SelectCourtOrderContent } from "../../../../../fixtures/citizen/createCase/C100/typeOfOrder/selectCourtOrderContent";
 
 interface caOrderPageOptions {
   page: Page;
@@ -43,40 +42,20 @@ export class CaOrderPage {
     await Promise.all([
       Helpers.checkGroup(page, 3, CaOrderContent, "h2", `${Selectors.h2}`),
       Helpers.checkGroup(page, 3, CaOrderContent, "p", `${Selectors.p}`),
-      Helpers.checkGroup(
-        page,
-        2,
-        SelectCourtOrderContent,
-        "formLabel",
-        `${Selectors.GovukLabel}`,
-      ),
-      Helpers.checkGroup(
-        page,
-        2,
-        SelectCourtOrderContent,
-        "formLabelStopOtherPeople",
-        `${Selectors.GovukLabel}`,
-      ),
-      Helpers.checkGroup(
-        page,
-        6,
-        SelectCourtOrderContent,
-        "formLabelResolveSpecificIssue",
-        `${Selectors.GovukLabel}`,
-      ),
+      Helpers.checkGroup(page, 9, CaOrderContent, "li", `${Selectors.li}`),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${SelectCourtOrderContent.formLabelDuplicateHidden1}")`,
+        `${Selectors.li}:text-is("${CaOrderContent.liDupe1}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${SelectCourtOrderContent.formLabelDuplicateHidden2}")`,
+        `${Selectors.li}:text-is("${CaOrderContent.liDupe2}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${SelectCourtOrderContent.formLabelDuplicateHidden3}")`,
+        `${Selectors.li}:text-is("${CaOrderContent.liDupe3}")`,
         2,
       ),
     ]);
@@ -89,7 +68,7 @@ export class CaOrderPage {
     page: page,
   }: fillinFieldsOptions): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${CaOrderContent.continue}")`,
+      `${Selectors.GovukButton}:text-is("${CaOrderContent.continue}")`,
     );
   }
 }

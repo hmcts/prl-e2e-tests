@@ -17,5 +17,5 @@ export enum StartContent {
   li6 = "your help with fees reference number if you have one",
   h2 = "Check you have the right documents ready",
   insetText = " You will need to pay the court fee of £255.00 before your application can be processed. You may be able to ",
-  startNow = " Start now ",
+  startNow = "Start now",
 }
