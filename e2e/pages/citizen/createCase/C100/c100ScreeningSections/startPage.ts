@@ -40,7 +40,7 @@ export class StartPage {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukCaptionL}:text-is("${StartContent.caption}}")`,
+        `${Selectors.GovukCaptionL}:text-is("${StartContent.caption}")`,
         1,
       ),
       Helpers.checkGroup(page, 4, StartContent, "p", `${Selectors.p}`),
@@ -74,6 +74,8 @@ export class StartPage {
   }
 
   private static async fillInFields(page: Page): Promise<void> {
-    await page.click(`${Selectors.button}:text-is("${StartContent.startNow}")`);
+    await page.click(
+      `${Selectors.GovukButton}:text-is("${StartContent.startNow}")`,
+    );
   }
 }

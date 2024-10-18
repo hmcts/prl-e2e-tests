@@ -64,7 +64,7 @@ export class ContactRepresentativePage {
 
   private static async fillInFields(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${ContactRepresentativeContent.closeApplication}")`,
+      `${Selectors.GovukButton}:text-is("${ContactRepresentativeContent.closeApplication}")`,
     );
   }
 }

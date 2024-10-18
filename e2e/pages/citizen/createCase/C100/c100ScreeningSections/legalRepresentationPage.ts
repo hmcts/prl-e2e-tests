@@ -80,7 +80,7 @@ export class LegalRepresentationPage {
 
   private static async checkErrorMessaging(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -111,7 +111,7 @@ export class LegalRepresentationPage {
       await page.click(inputIDs.radioNo);
     }
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
     );
   }
 }
