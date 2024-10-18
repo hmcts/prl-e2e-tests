@@ -93,7 +93,7 @@ export class ChildArrangementDocumentUploadPage {
 
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${ChildArrangementDocumentUploadContent.continue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -156,7 +156,7 @@ export class ChildArrangementDocumentUploadPage {
       1,
     );
     await page.click(
-      `${Selectors.button}:text-is("${ChildArrangementDocumentUploadContent.continue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
     );
   }
 }

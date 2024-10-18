@@ -3,6 +3,7 @@ import { Selectors } from "../../../../../common/selectors";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
 import { Helpers } from "../../../../../common/helpers";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
 
 interface OrderDetailsPageOptions {
   page: Page;
@@ -145,7 +146,7 @@ export class ChildArrangementOrderDetailsPage {
       ChildArrangementOrderDetailsContent.yearNumber2,
     );
     await page.click(
-      `${Selectors.button}:text-is("${ChildArrangementOrderDetailsContent.continue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -220,5 +221,8 @@ export class ChildArrangementOrderDetailsPage {
       await page.click(`${UniqueSelectors.currentOrderNo}`);
       await page.click(`${UniqueSelectors.orderCopyNo}`);
     }
+    await page.click(
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
+    );
   }
 }

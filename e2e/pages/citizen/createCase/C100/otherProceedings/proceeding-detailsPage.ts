@@ -3,6 +3,7 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { Helpers } from "../../../../../common/helpers";
 import { ProceedingDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/proceeding-detailsContent";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
 
 interface ProceedingDetailsPageOptions {
   page: Page;
@@ -86,7 +87,7 @@ export class ProceedingDetailsPage {
 
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${ProceedingDetailsContent.continue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -116,7 +117,7 @@ export class ProceedingDetailsPage {
       await page.click(selector);
     }
     await page.click(
-      `${Selectors.button}:text-is("${ProceedingDetailsContent.continue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
     );
   }
 }

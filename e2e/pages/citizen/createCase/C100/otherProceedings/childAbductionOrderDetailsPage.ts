@@ -146,7 +146,7 @@ export class ChildAbductionOrderDetailsPage {
       ChildAbductionOrderDetailsContent.yearNumber2,
     );
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -221,5 +221,8 @@ export class ChildAbductionOrderDetailsPage {
       await page.click(`${UniqueSelectors.currentOrderNo}`);
       await page.click(`${UniqueSelectors.orderCopyNo}`);
     }
+    await page.click(
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
+    );
   }
 }

@@ -148,7 +148,7 @@ export class ContactOrderForDivorceOrderDetailsPage {
       ContactOrderForDivorceOrderDetailsContent.yearNumber2,
     );
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -224,5 +224,8 @@ export class ContactOrderForDivorceOrderDetailsPage {
       await page.click(`${UniqueSelectors.currentOrderNo}`);
       await page.click(`${UniqueSelectors.orderCopyNo}`);
     }
+    await page.click(
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
+    );
   }
 }
