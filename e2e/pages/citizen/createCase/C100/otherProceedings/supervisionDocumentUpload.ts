@@ -108,12 +108,9 @@ export class SupervisionDocumentUploadPage {
     ]);
     let fileInput = page.locator(`${UniqueSelectors.documentUpload}`);
     await fileInput.setInputFiles(config.testOdtFile);
-
-    // # Not sure if you need to press the button
-    // await page.click(
-    //   `${Selectors.button}:text-is("${SupervisionDocumentUpload.uploadFile}")`,
-    // );
-
+    await page.click(
+      `${Selectors.GovukButton}:text-is("${SupervisionDocumentUpload.uploadFile}")`,
+    );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
@@ -134,7 +131,7 @@ export class SupervisionDocumentUploadPage {
     let fileInput = page.locator(`${UniqueSelectors.documentUpload}`);
     await fileInput.setInputFiles(config.testPdfFile);
     await page.click(
-      `${Selectors.button}:text-is("${SupervisionDocumentUpload.uploadFile}")`,
+      `${Selectors.GovukButton}:text-is("${SupervisionDocumentUpload.uploadFile}")`,
     );
     await page.waitForSelector(
       `${UniqueSelectors.uploadConfirmationSelector}`,

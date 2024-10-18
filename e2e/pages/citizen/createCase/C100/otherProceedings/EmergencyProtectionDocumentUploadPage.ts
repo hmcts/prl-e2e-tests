@@ -108,12 +108,9 @@ export class EmergencyProtectionDocumentUploadPage {
     ]);
     let fileInput = page.locator(`${UniqueSelectors.documentUpload}`);
     await fileInput.setInputFiles(config.testOdtFile);
-
-    // # Not sure if you need to press the button
-    // await page.click(
-    //   `${Selectors.button}:text-is("${EmergencyProtectionDocumentUploadContent.uploadFile}")`,
-    // );
-
+    await page.click(
+      `${Selectors.GovukButton}:text-is("${EmergencyProtectionDocumentUploadContent.uploadFile}")`,
+    );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
@@ -134,7 +131,7 @@ export class EmergencyProtectionDocumentUploadPage {
     const fileInput = page.locator(`${UniqueSelectors.documentUpload}`);
     await fileInput.setInputFiles(config.testPdfFile);
     await page.click(
-      `${Selectors.button}:text-is("${EmergencyProtectionDocumentUploadContent.uploadFile}")`,
+      `${Selectors.GovukButton}:text-is("${EmergencyProtectionDocumentUploadContent.uploadFile}")`,
     );
     await page.waitForSelector(
       `${UniqueSelectors.uploadConfirmationSelector}`,
