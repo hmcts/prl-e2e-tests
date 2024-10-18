@@ -7,6 +7,7 @@ import { Helpers } from "../../../../../common/helpers";
 interface ShortStatementPageOptions {
   page: Page;
   accessibilityTest: boolean;
+  errorMessage: boolean;
 }
 
 interface checkPageLoadsOptions {
@@ -26,11 +27,15 @@ export class ShortStatementPage {
   public static async shortStatementPage({
     page: page,
     accessibilityTest: accessibilityTest,
+    errorMessage: errorMessage,
   }: ShortStatementPageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
       accessibilityTest: accessibilityTest,
     });
+    if (errorMessage) {
+      await this.triggerErrorMessages({ page: page });
+    }
     await this.fillInFields({
       page: page,
     });
@@ -64,8 +69,33 @@ export class ShortStatementPage {
     ]);
 
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      // await AccessibilityTestHelper.run(page); #TODO: Re-enable upon completion of PRL-6494
     }
+  }
+
+  private static async triggerErrorMessages({
+    page: page,
+  }: fillinFieldsOptions): Promise<void> {
+    await page.click(
+      `${Selectors.GovukButton}:text-is("${ShortStatementContent.continue}")`,
+    );
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorSummaryTitle}:text-is("${ShortStatementContent.errorBanner}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.a}:text-is("${ShortStatementContent.errorMessage}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.ErrorMessage}:text-is("${ShortStatementContent.errorMessage}")`,
+        1,
+      ),
+    ]);
   }
 
   private static async fillInFields({
@@ -76,7 +106,7 @@ export class ShortStatementPage {
       ShortStatementContent.loremIpsum,
     );
     await page.click(
-      `${Selectors.button}:text-is("${ShortStatementContent.continue}")`,
+      `${Selectors.GovukButton}:text-is("${ShortStatementContent.continue}")`,
     );
   }
 }

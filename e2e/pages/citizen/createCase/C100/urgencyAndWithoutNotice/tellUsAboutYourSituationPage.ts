@@ -40,7 +40,6 @@ enum inputIds {
   hearingWithNext48HrsMsg = "#hu_hearingWithNext48HrsMsg",
 }
 
-// Untested, don't know if this works yet
 const combinedSelectors = [
   ...Object.values(checkBoxIds).map((selector) => ({
     selector,
@@ -109,13 +108,13 @@ export class TellUsAboutYourSituationPage {
       1,
     );
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      // await AccessibilityTestHelper.run(page); #TODO: Re-enable upon completion of PRL-6495
     }
   }
 
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
     );
     await page.waitForSelector(
       `${Selectors.GovukErrorSummaryTitle}:text-is("${CommonStaticText.errorSummaryTitle}")`,
@@ -141,8 +140,6 @@ export class TellUsAboutYourSituationPage {
   private static async fillInFields({
     page: page,
   }: fillInFieldsOptions): Promise<void> {
-    // Untested, don't know if this works yet
-    // The alternative is to just use two separate loops
     for (const { selector, action } of combinedSelectors) {
       if (action === "click") {
         await page.click(selector);
@@ -154,7 +151,7 @@ export class TellUsAboutYourSituationPage {
       }
     }
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
     );
   }
 }

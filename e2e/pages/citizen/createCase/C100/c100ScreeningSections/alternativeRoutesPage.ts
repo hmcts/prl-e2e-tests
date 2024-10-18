@@ -32,7 +32,7 @@ export class AlternativeRoutesPage {
     accessibilityTest,
   }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukHeadingXL}:text-is("${AlternativeRoutesContent.pageTitle}")`,
+      `${Selectors.GovukHeadingL}:text-is("${AlternativeRoutesContent.pageTitle}")`,
     );
     await Promise.all([
       Helpers.checkGroup(
@@ -74,7 +74,7 @@ export class AlternativeRoutesPage {
 
   private static async fillInFields(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
     );
   }
 }

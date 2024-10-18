@@ -1,7 +1,6 @@
 export enum ApplicantContent {
-  pageTitle = "",
   notificationBannerTitle = " Important ",
-  notificationBannerHeading = "You have not started your application\n",
+  notificationBannerHeading = "You have not started your application",
   body = "Once you have started your application, you have 28 days to submit it or your application will be deleted and you will need to start again. This is for security reasons.",
   startApplication = "Start the application",
   h2 = " Your application ",
