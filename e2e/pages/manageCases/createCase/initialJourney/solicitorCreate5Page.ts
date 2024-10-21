@@ -11,10 +11,11 @@ enum caseName {
 export class SolicitorCreate5Page {
   public static async solicitorCreate5Page(
     page: Page,
+    isDummyCase: boolean,
     errorMessaging: boolean,
     accessibilityTest: boolean,
   ): Promise<string> {
-    await this.checkPageLoads(page, accessibilityTest);
+    await this.checkPageLoads(page, isDummyCase, accessibilityTest);
     if (errorMessaging) {
       await this.triggerErrorMessages(page);
     }
@@ -23,23 +24,39 @@ export class SolicitorCreate5Page {
 
   private static async checkPageLoads(
     page: Page,
+    isDummyCase: boolean,
     accessibilityTest: boolean,
   ): Promise<void> {
     await page.waitForSelector(
       `${Selectors.GovukFormHint}:text-is("${SolicitorCreate5Content.formHint1}")`,
     );
-    await Promise.all([
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukHeadingL}:text-is("${SolicitorCreate5Content.pageTitle}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukFormLabel}:text-is("${SolicitorCreate5Content.formLabel1}")`,
-        1,
-      ),
-    ]);
+    if (isDummyCase) {
+      await Promise.all([
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukHeadingL}:text-is("${SolicitorCreate5Content.dummyPageTitle}")`,
+          1,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukFormLabel}:text-is("${SolicitorCreate5Content.formLabel1}")`,
+          1,
+        ),
+      ]);
+    } else {
+      await Promise.all([
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukHeadingL}:text-is("${SolicitorCreate5Content.pageTitle}")`,
+          1,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukFormLabel}:text-is("${SolicitorCreate5Content.formLabel1}")`,
+          1,
+        ),
+      ]);
+    }
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }

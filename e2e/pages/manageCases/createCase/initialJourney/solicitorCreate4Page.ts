@@ -11,10 +11,11 @@ enum caseName {
 export class SolicitorCreate4Page {
   public static async solicitorCreate4Page(
     page: Page,
+    isDummyCase: boolean,
     errorMessaging: boolean,
     accessibilityTest: boolean,
   ): Promise<string> {
-    await this.checkPageLoads(page, accessibilityTest);
+    await this.checkPageLoads(page, isDummyCase, accessibilityTest);
     if (errorMessaging) {
       await this.triggerErrorMessages(page);
     }
@@ -22,30 +23,41 @@ export class SolicitorCreate4Page {
   }
   private static async checkPageLoads(
     page: Page,
+    isDummyCase: boolean,
     accessibilityTest: boolean,
   ): Promise<void> {
     await page.waitForSelector(
       `${Selectors.GovukFormHint}:text-is("${SolicitorCreate4Content.formHint1}")`,
     );
-    await Promise.all([
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukHeadingL}:text-is("${SolicitorCreate4Content.pageTitle}")`,
-        1,
-      ),
-      Helpers.checkGroup(
-        page,
-        2,
-        SolicitorCreate4Content,
-        "p",
-        `${Selectors.p}`,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukFormLabel}:text-is("${SolicitorCreate4Content.formLabel1}")`,
-        1,
-      ),
-    ]);
+    if (isDummyCase) {
+      await Promise.all([
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukHeadingL}:text-is("${SolicitorCreate4Content.dummyPageTitle}")`,
+          1,
+        ),
+      ]);
+    } else {
+      await Promise.all([
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukHeadingL}:text-is("${SolicitorCreate4Content.pageTitle}")`,
+          1,
+        ),
+        Helpers.checkGroup(
+          page,
+          2,
+          SolicitorCreate4Content,
+          "p",
+          `${Selectors.p}`,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukFormLabel}:text-is("${SolicitorCreate4Content.formLabel1}")`,
+          1,
+        ),
+      ]);
+    }
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }

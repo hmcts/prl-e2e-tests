@@ -17,8 +17,9 @@ export class SolicitorCreate2Page {
     errorMessaging: boolean,
     accessibilityTest: boolean,
     solicitorCaseType: solicitorCaseCreateType,
+    isDummyCase: boolean,
   ): Promise<void> {
-    await this.checkPageLoads(page, accessibilityTest);
+    await this.checkPageLoads(page, accessibilityTest, isDummyCase);
     if (errorMessaging) {
       await this.checkErrorMessaging(page);
     }
@@ -28,16 +29,25 @@ export class SolicitorCreate2Page {
   private static async checkPageLoads(
     page: Page,
     accessibilityTest: boolean,
+    isDummyCase: boolean,
   ): Promise<void> {
     await page.waitForSelector(
       `${Selectors.h2}:text-is("${SolicitorCreate2Content.subTitle}")`,
     );
-    await Promise.all([
+    if (isDummyCase) {
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukHeadingL}:text-is("${SolicitorCreate2Content.dummyPageTitle}")`,
+        1,
+      );
+    } else {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukHeadingL}:text-is("${SolicitorCreate2Content.title}")`,
         1,
-      ),
+      );
+    }
+    await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.p}:text-is("${SolicitorCreate2Content.textOnPage}")`,
