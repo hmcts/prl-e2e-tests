@@ -22,7 +22,7 @@ interface fillInFieldsOptions {
   yesNoCareOrderOrderDetails: boolean;
 }
 
-enum UniqueSelectors {
+export enum OtherProceedingsUniqueSelectors {
   orderDetail1 = "#orderDetail-1",
   caseNo1 = "#caseNo-1",
   orderDate1day = "#orderDate-1-day",
@@ -127,27 +127,27 @@ export class CareOrderDetailsPage {
 
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.fill(
-      `${UniqueSelectors.orderDate1day}`,
+      `${OtherProceedingsUniqueSelectors.orderDate1day}`,
       CareOrderDetailsContent.dayNumber,
     );
     await page.fill(
-      `${UniqueSelectors.orderDate1month}`,
+      `${OtherProceedingsUniqueSelectors.orderDate1month}`,
       CareOrderDetailsContent.errorMonthNumber,
     );
     await page.fill(
-      `${UniqueSelectors.orderDate1year}`,
+      `${OtherProceedingsUniqueSelectors.orderDate1year}`,
       CareOrderDetailsContent.yearNumber1,
     );
     await page.fill(
-      `${UniqueSelectors.orderEndDate1day}`,
+      `${OtherProceedingsUniqueSelectors.orderEndDate1day}`,
       CareOrderDetailsContent.dayNumber,
     );
     await page.fill(
-      `${UniqueSelectors.orderEndDate1month}`,
+      `${OtherProceedingsUniqueSelectors.orderEndDate1month}`,
       CareOrderDetailsContent.errorMonthNumber,
     );
     await page.fill(
-      `${UniqueSelectors.orderEndDate1year}`,
+      `${OtherProceedingsUniqueSelectors.orderEndDate1year}`,
       CareOrderDetailsContent.yearNumber2,
     );
     await page.click(
@@ -187,44 +187,44 @@ export class CareOrderDetailsPage {
     yesNoCareOrderOrderDetails: yesNoCareOrderOrderDetails,
   }: fillInFieldsOptions): Promise<void> {
     await page.fill(
-      `${UniqueSelectors.orderDetail1}`,
+      `${OtherProceedingsUniqueSelectors.orderDetail1}`,
       CareOrderDetailsContent.courtIssued,
     );
     await page.fill(
-      `${UniqueSelectors.caseNo1}`,
+      `${OtherProceedingsUniqueSelectors.caseNo1}`,
       CareOrderDetailsContent.caseNumber,
     );
     await page.fill(
-      `${UniqueSelectors.orderDate1day}`,
+      `${OtherProceedingsUniqueSelectors.orderDate1day}`,
       CareOrderDetailsContent.dayNumber,
     );
     await page.fill(
-      `${UniqueSelectors.orderDate1month}`,
+      `${OtherProceedingsUniqueSelectors.orderDate1month}`,
       CareOrderDetailsContent.monthNumber,
     );
     await page.fill(
-      `${UniqueSelectors.orderDate1year}`,
+      `${OtherProceedingsUniqueSelectors.orderDate1year}`,
       CareOrderDetailsContent.yearNumber1,
     );
     await page.fill(
-      `${UniqueSelectors.orderEndDate1day}`,
+      `${OtherProceedingsUniqueSelectors.orderEndDate1day}`,
       CareOrderDetailsContent.dayNumber,
     );
     await page.fill(
-      `${UniqueSelectors.orderEndDate1month}`,
+      `${OtherProceedingsUniqueSelectors.orderEndDate1month}`,
       CareOrderDetailsContent.monthNumber,
     );
     await page.fill(
-      `${UniqueSelectors.orderEndDate1year}`,
+      `${OtherProceedingsUniqueSelectors.orderEndDate1year}`,
       CareOrderDetailsContent.yearNumber2,
     );
     // Selecting 'true' will move onto next page
     if (yesNoCareOrderOrderDetails) {
-      await page.click(`${UniqueSelectors.currentOrderYes}`);
-      await page.click(`${UniqueSelectors.orderCopyYes}`);
+      await page.click(`${OtherProceedingsUniqueSelectors.currentOrderYes}`);
+      await page.click(`${OtherProceedingsUniqueSelectors.orderCopyYes}`);
     } else {
-      await page.click(`${UniqueSelectors.currentOrderNo}`);
-      await page.click(`${UniqueSelectors.orderCopyNo}`);
+      await page.click(`${OtherProceedingsUniqueSelectors.currentOrderNo}`);
+      await page.click(`${OtherProceedingsUniqueSelectors.orderCopyNo}`);
     }
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
