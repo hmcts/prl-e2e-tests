@@ -1,9 +1,9 @@
 import path from "path";
-import dotenv from 'dotenv';
+import dotenv from "dotenv";
 
 import { UserCredentials, UserRole } from "./common/types";
 
-dotenv.config()
+dotenv.config();
 
 export class Config {
   public static readonly userCredentials: Record<UserRole, UserCredentials> = {

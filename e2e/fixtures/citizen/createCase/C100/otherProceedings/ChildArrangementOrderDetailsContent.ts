@@ -1,4 +1,4 @@
-export enum OrderDetailsContent {
+export enum ChildArrangementOrderDetailsContent {
   h11 = "Provide details of court cases you or the children have been involved in",
   h12 = "Child Arrangements Order",
   p = "If you do not have the specific details, you can skip this section and proceed with the application.",

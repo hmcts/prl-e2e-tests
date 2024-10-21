@@ -1,12 +1,12 @@
-import { Selectors } from "../../../../../../common/selectors";
-import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper";
+import { Selectors } from "../../../../../common/selectors";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
-import { Helpers } from "../../../../../../common/helpers";
-import config from "../../../../../../config";
-import { CareOrderDocumentUploadContent } from "../../../../../../fixtures/citizen/createCase/C100/OtherProceedings2/careOrder/CareOrderDocumentUploadContent";
-import { CommonStaticText } from "../../../../../../common/commonStaticText";
+import { Helpers } from "../../../../../common/helpers";
+import config from "../../../../../config";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { ContactOrderForDivorceDocumentUploadContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/contactOrderForDivorceDocumentUploadContent";
 
-interface CareOrderDocumentUploadPageOptions {
+interface ContactOrderForDivorceDocumentUploadPageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
@@ -26,12 +26,12 @@ enum UniqueSelectors {
   uploadConfirmationSelector = ".govuk-summary-list__value",
 }
 
-export class CareOrderDocumentUploadPage {
-  public static async careOrderDocumentUploadPage({
+export class ContactOrderForDivorceDocumentUploadPage {
+  public static async contactOrderForDivorceDocumentUploadPage({
     page: page,
     accessibilityTest: accessibilityTest,
     errorMessaging: errorMessaging,
-  }: CareOrderDocumentUploadPageOptions): Promise<void> {
+  }: ContactOrderForDivorceDocumentUploadPageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
       accessibilityTest: accessibilityTest,
@@ -49,34 +49,34 @@ export class CareOrderDocumentUploadPage {
     accessibilityTest: accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukHeadingXL}:text-is("${CareOrderDocumentUploadContent.pageTitle}")`,
+      `${Selectors.GovukHeadingXL}:text-is("${ContactOrderForDivorceDocumentUploadContent.pageTitle}")`,
     );
     await Promise.all([
       Helpers.checkGroup(
         page,
         2,
-        CareOrderDocumentUploadContent,
+        ContactOrderForDivorceDocumentUploadContent,
         "p",
         `${Selectors.p}`,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${CareOrderDocumentUploadContent.spanA}")`,
+        `${Selectors.Span}:text-is("${ContactOrderForDivorceDocumentUploadContent.spanA}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${CareOrderDocumentUploadContent.formLabel}")`,
+        `${Selectors.GovukLabel}:text-is("${ContactOrderForDivorceDocumentUploadContent.formLabel}")`,
         1,
       ),
     ]);
     await page.click(
-      `${Selectors.Span}:text-is("${CareOrderDocumentUploadContent.spanA}")`,
+      `${Selectors.Span}:text-is("${ContactOrderForDivorceDocumentUploadContent.spanA}")`,
     );
     await Helpers.checkGroup(
       page,
       5,
-      CareOrderDocumentUploadContent,
+      ContactOrderForDivorceDocumentUploadContent,
       "li",
       `${Selectors.li}`,
     );
@@ -87,7 +87,7 @@ export class CareOrderDocumentUploadPage {
 
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -97,32 +97,29 @@ export class CareOrderDocumentUploadPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${CareOrderDocumentUploadContent.errorMessageChooseFile}")`,
+        `${Selectors.a}:text-is("${ContactOrderForDivorceDocumentUploadContent.errorMessageChooseFile}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${CareOrderDocumentUploadContent.errorMessageChooseFile}")`,
+        `${Selectors.ErrorMessage}:text-is("${ContactOrderForDivorceDocumentUploadContent.errorMessageChooseFile}")`,
         1,
       ),
     ]);
     let fileInput = page.locator(`${UniqueSelectors.documentUpload}`);
     await fileInput.setInputFiles(config.testOdtFile);
-
-    // # Not sure if you need to press the button
-    // await page.click(
-    //   `${Selectors.button}:text-is("${CareOrderDocumentUploadContent.uploadFile}")`,
-    // );
-
+    await page.click(
+      `${Selectors.GovukButton}:text-is("${ContactOrderForDivorceDocumentUploadContent.uploadFile}")`,
+    );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${CareOrderDocumentUploadContent.errorMessageUploadCorrectFile}")`,
+        `${Selectors.a}:text-is("${ContactOrderForDivorceDocumentUploadContent.errorMessageUploadCorrectFile}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${CareOrderDocumentUploadContent.errorMessageUploadCorrectFile}")`,
+        `${Selectors.ErrorMessage}:text-is("${ContactOrderForDivorceDocumentUploadContent.errorMessageUploadCorrectFile}")`,
         1,
       ),
     ]);
@@ -134,7 +131,7 @@ export class CareOrderDocumentUploadPage {
     let fileInput = page.locator(`${UniqueSelectors.documentUpload}`);
     await fileInput.setInputFiles(config.testPdfFile);
     await page.click(
-      `${Selectors.button}:text-is("${CareOrderDocumentUploadContent.uploadFile}")`,
+      `${Selectors.GovukButton}:text-is("${ContactOrderForDivorceDocumentUploadContent.uploadFile}")`,
     );
     await page.waitForSelector(
       `${UniqueSelectors.uploadConfirmationSelector}`,
@@ -146,11 +143,11 @@ export class CareOrderDocumentUploadPage {
     expect(isUploaded).toBeTruthy();
     await Helpers.checkVisibleAndPresent(
       page,
-      `${Selectors.a}:text-is("${CareOrderDocumentUploadContent.remove}")`,
+      `${Selectors.a}:text-is("${ContactOrderForDivorceDocumentUploadContent.remove}")`,
       1,
     );
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
     );
   }
 }

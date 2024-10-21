@@ -1,8 +1,9 @@
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
-import { CurrentPreviousProceedingsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings1/current-previous-proceedingsContent";
+import { CurrentPreviousProceedingsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/current-previous-proceedingsContent";
 import { Helpers } from "../../../../../common/helpers";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
 
 interface CurrentPreviousProceedingsPageOptions {
   page: Page;
@@ -84,7 +85,7 @@ export class CurrentPreviousProceedingsPage {
 
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${CurrentPreviousProceedingsContent.continue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -127,7 +128,7 @@ export class CurrentPreviousProceedingsPage {
       await page.click(`${UniqueSelectors.op_courtOrderProtectionNo}`);
     }
     await page.click(
-      `${Selectors.button}:text-is("${CurrentPreviousProceedingsContent.continue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
     );
   }
 }
