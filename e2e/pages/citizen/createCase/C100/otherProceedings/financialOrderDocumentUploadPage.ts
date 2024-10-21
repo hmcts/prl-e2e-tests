@@ -1,10 +1,10 @@
 import { Page } from "@playwright/test";
-import { FinancialOrderDocumentUploadContent } from "../../../../../../fixtures/citizen/createCase/C100/otherProceedings/otherProceedings4/financialOrder/financialOrderDocumentUploadContent";
-import { Selectors } from "../../../../../../common/selectors";
-import { Helpers } from "../../../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper";
-import { CommonStaticText } from "../../../../../../common/commonStaticText";
-import config from "../../../../../../config";
+import { FinancialOrderDocumentUploadContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/financialOrderDocumentUploadContent";
+import { Selectors } from "../../../../../common/selectors";
+import { Helpers } from "../../../../../common/helpers";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
+import config from "../../../../../config";
 
 interface childMaintenanceOrderDocumentUploadPageOptions {
   page: Page;

@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { FinancialOrderDetailsContent } from "../../../../../../fixtures/citizen/createCase/C100/otherProceedings/otherProceedings4/financialOrder/financialOrderDetailsContent";
-import { Selectors } from "../../../../../../common/selectors";
-import { Helpers } from "../../../../../../common/helpers";
-import { CommonStaticText } from "../../../../../../common/commonStaticText";
-import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper";
+import { FinancialOrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/financialOrderDetailsContent";
+import { Selectors } from "../../../../../common/selectors";
+import { Helpers } from "../../../../../common/helpers";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 
 interface FinancialOrderDetailsPageOptions {
   page: Page;
