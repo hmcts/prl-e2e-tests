@@ -3,6 +3,7 @@ import { Page } from "@playwright/test";
 import { DummyPaymentAwpSubmitPage } from "../../../pages/manageCases/caseWorker/dummyPaymentAwpSubmitPage";
 import { Fl401StatementOfTruth } from "../createCase/FL401StatementOfTruth/fl401StatementOfTruth";
 import { Helpers } from "../../../common/helpers";
+import { DummyC100 } from "../createCase/dummyCase/dummyC100";
 import { DummyPaymentConfirmation } from "./dummyPaymentConfirmation";
 
 interface DummyPaymentAwpParams {
@@ -23,6 +24,13 @@ export class DummyPaymentAwp {
   }: DummyPaymentAwpParams): Promise<void> {
     // submit a case before dummy payment Awp journey
     if (isC100) {
+      const yesNoWelshLanguage: boolean = false;
+      const yesNoHelpWithFees: boolean = false;
+      await DummyC100.dummyC100({
+        page,
+        yesNoWelshLanguage,
+        yesNoHelpWithFees,
+      });
       await DummyPaymentConfirmation.dummyPaymentConfirmation({
         page,
         accessibilityTest,
