@@ -19,6 +19,7 @@ test.describe("C100 Citizen Application tests on the top MIRO set. @citizenFront
       c100LegalRepresentation: false,
       c100CourtPermissionNeeded: false,
       urgencyAndWithoutNoticeAllOptionsYes: true,
+      c100PeopleGender: "male",
     });
   });
 
@@ -37,6 +38,7 @@ test.describe("C100 Citizen Application tests on the top MIRO set. @citizenFront
       c100LegalRepresentation: false,
       c100CourtPermissionNeeded: false,
       urgencyAndWithoutNoticeAllOptionsYes: false,
+      c100PeopleGender: "female",
     });
   });
 
@@ -52,6 +54,7 @@ test.describe("C100 Citizen Application tests on the top MIRO set. @citizenFront
       c100LegalRepresentation: false,
       c100CourtPermissionNeeded: false,
       urgencyAndWithoutNoticeAllOptionsYes: true,
+      c100PeopleGender: "other",
     });
   });
 });
@@ -67,5 +70,6 @@ test(`C100 Citizen Application tests on the top MIRO set. @accessibilityCitizenF
     c100LegalRepresentation: false,
     c100CourtPermissionNeeded: false,
     urgencyAndWithoutNoticeAllOptionsYes: true,
+    c100PeopleGender: "other",
   });
 });

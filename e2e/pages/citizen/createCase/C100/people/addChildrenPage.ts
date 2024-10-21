@@ -81,7 +81,7 @@ export class AddChildrenPage {
 
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -113,7 +113,7 @@ export class AddChildrenPage {
       await page.fill(`${selector}`, AddChildrenContent.exampleText);
     }
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
     );
   }
 }

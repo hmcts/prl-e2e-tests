@@ -1,5 +1,4 @@
 import { Page } from "@playwright/test";
-import { UserRole } from "../../../../common/types";
 import { AddChildrenPage } from "../../../../pages/citizen/createCase/C100/people/addChildrenPage";
 import { ProvideDetailsPage } from "../../../../pages/citizen/createCase/C100/people/provideDetailsPage";
 import { WhichDecisionsPage } from "../../../../pages/citizen/createCase/C100/people/whichDecisionsPage";
@@ -7,7 +6,6 @@ import { ApplicantGender } from "../../../../common/types";
 
 interface C100People1Options {
   page: Page;
-  user: UserRole;
   accessibilityTest: boolean;
   errorMessaging: boolean;
   gender: ApplicantGender;
@@ -17,7 +15,6 @@ interface C100People1Options {
 export class C100People1 {
   public static async c100People1({
     page,
-    user,
     accessibilityTest,
     errorMessaging,
     gender,
