@@ -4,6 +4,7 @@ import { CitizenCreateInitial } from "../citizenCreateInitial";
 import { C100TypeOfOrder } from "./C100TypeOfOrder/C100TypeOfOrder";
 import { C100ConsentOrderUpload } from "./C100ConsentOrderUpload/C100ConsentOrderUpload";
 import { C100UrgencyAndWithoutNotice } from "./C100UrgencyAndWithoutNotice/C100UrgencyAndWithoutNotice";
+import { MIAM } from "./C100MIAM/MIAM";
 
 interface C100Options {
   page: Page;
@@ -13,6 +14,10 @@ interface C100Options {
   c100LegalRepresentation: boolean;
   c100CourtPermissionNeeded: boolean;
   urgencyAndWithoutNoticeAllOptionsYes: boolean;
+  MIAMChildrenInvolvedOtherProceedings: boolean;
+  miamAlreadyAttended: boolean;
+  documentSignedByMediator: boolean;
+  MIAMValidReasonNoAttendance: boolean;
 }
 
 export class C100 {
@@ -24,6 +29,10 @@ export class C100 {
     c100LegalRepresentation,
     c100CourtPermissionNeeded,
     urgencyAndWithoutNoticeAllOptionsYes,
+    MIAMChildrenInvolvedOtherProceedings,
+    miamAlreadyAttended,
+    documentSignedByMediator,
+                             MIAMValidReasonNoAttendance,
   }: C100Options): Promise<void> {
     await CitizenCreateInitial.citizenCreateInitial({
       page: page,
@@ -57,7 +66,16 @@ export class C100 {
           urgencyAndWithoutNoticeAllOptionsYes,
       });
     } else {
-      // MIAM Journey
+      await MIAM.MIAM({
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
+        MIAMChildrenInvolvedOtherProceedings:
+          MIAMChildrenInvolvedOtherProceedings,
+        miamAlreadyAttended: miamAlreadyAttended,
+        documentSignedByMediator: documentSignedByMediator,
+        MIAMValidReasonNoAttendance: MIAMValidReasonNoAttendance,
+      });
     }
   }
 }

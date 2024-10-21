@@ -63,7 +63,7 @@ export class PermissionsWhyPage {
         page,
         2,
         PermissionsWhyContent,
-        "gobHint",
+        "govHint",
         `${Selectors.GovukHint}`,
       ),
       Helpers.checkGroup(
@@ -109,9 +109,12 @@ export class PermissionsWhyPage {
         3,
         PermissionsWhyContent,
         "errorSummaryList",
-        `${Selectors.GovukErrorList} ${Selectors.li}`,
+        `${Selectors.a}`,
       ),
     ]);
+    for (let checkbox of Object.values(checkboxIDs)) {
+      await page.check(checkbox);
+    }
   }
 
   private static async fillInFields(page: Page): Promise<void> {
