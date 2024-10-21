@@ -8,7 +8,7 @@ import { EmergencyProtectionDocumentUploadPage } from "../../../../pages/citizen
 import { SupervisionOrderDetailsPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/supervisionOrderDetails";
 import { SupervisionDocumentUploadPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/supervisionDocumentUpload";
 import { CareOrderDetailsPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/careOrderOrderDetailsPage";
-import { CareOrderDocumentUploadPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/CareOrderDocumentUploadPage";
+import { CareOrderDocumentUploadPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/careOrderDocumentUploadPage";
 import { ChildAbductionOrderDetailsPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/childAbductionOrderDetailsPage";
 import { ChildAbductionDocumentUploadPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/childAbductionDocumentUploadPage";
 import { ContactOrderForDivorceOrderDetailsPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/contactOrderForDivorceOrderDetailsPage";
