@@ -1,15 +1,16 @@
-import { ChildArrangementOrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/ChildArrangementOrderDetailsContent";
+import { ChildArrangementOrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/childArrangementOrderDetailsContent";
 import { Selectors } from "../../../../../common/selectors";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { FinancialOrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/otherProceedings4/financialOrder/financialOrderDetailsContent";
 
-interface OrderDetailsPageOptions {
+interface ChildArrangementOrderDetailsPageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
-  yesNoOrderDetails: boolean;
+  yesNoChildArrangementOrderDetails: boolean;
 }
 
 interface checkPageLoadsOptions {
@@ -19,7 +20,7 @@ interface checkPageLoadsOptions {
 
 interface fillInFieldsOptions {
   page: Page;
-  yesNoOrderDetails: boolean;
+  yesNoChildArrangementOrderDetails: boolean;
 }
 
 enum UniqueSelectors {
@@ -42,8 +43,8 @@ export class ChildArrangementOrderDetailsPage {
     page: page,
     accessibilityTest: accessibilityTest,
     errorMessaging: errorMessaging,
-    yesNoOrderDetails: yesNoOrderDetails,
-  }: OrderDetailsPageOptions): Promise<void> {
+    yesNoChildArrangementOrderDetails: yesNoChildArrangementOrderDetails,
+  }: ChildArrangementOrderDetailsPageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
       accessibilityTest: accessibilityTest,
@@ -53,7 +54,7 @@ export class ChildArrangementOrderDetailsPage {
     }
     await this.fillInFields({
       page: page,
-      yesNoOrderDetails: yesNoOrderDetails,
+      yesNoChildArrangementOrderDetails: yesNoChildArrangementOrderDetails,
     });
   }
 
@@ -65,9 +66,14 @@ export class ChildArrangementOrderDetailsPage {
       `${Selectors.p}:text-is("${ChildArrangementOrderDetailsContent.p}")`,
     );
     await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukHeadingXL}:text-is("${ChildArrangementOrderDetailsContent.pageTitle}")`,
+        1,
+      ),
       Helpers.checkGroup(
         page,
-        2,
+        5,
         ChildArrangementOrderDetailsContent,
         "h1",
         `${Selectors.h1}`,
@@ -91,12 +97,12 @@ export class ChildArrangementOrderDetailsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${ChildArrangementOrderDetailsContent.formLabelYes}")`,
+        `${Selectors.GovukHint}:text-is("${CommonStaticText.strippedYes}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${ChildArrangementOrderDetailsContent.formLabelNo}")`,
+        `${Selectors.GovukHint}:text-is("${CommonStaticText.strippedNo}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
@@ -151,7 +157,7 @@ export class ChildArrangementOrderDetailsPage {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorSummaryTitle}:text-is("${ChildArrangementOrderDetailsContent.errorBanner}")`,
+        `${Selectors.GovukErrorSummaryTitle}:text-is("${CommonStaticText.errorSummaryTitle}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -179,7 +185,7 @@ export class ChildArrangementOrderDetailsPage {
 
   private static async fillInFields({
     page: page,
-    yesNoOrderDetails: yesNoOrderDetails,
+    yesNoChildArrangementOrderDetails: yesNoChildArrangementOrderDetails,
   }: fillInFieldsOptions): Promise<void> {
     await page.fill(
       `${UniqueSelectors.orderDetail1}`,
@@ -214,7 +220,7 @@ export class ChildArrangementOrderDetailsPage {
       ChildArrangementOrderDetailsContent.yearNumber2,
     );
     // Selecting 'true' will move onto next page
-    if (yesNoOrderDetails) {
+    if (yesNoChildArrangementOrderDetails) {
       await page.click(`${UniqueSelectors.currentOrderYes}`);
       await page.click(`${UniqueSelectors.orderCopyYes}`);
     } else {

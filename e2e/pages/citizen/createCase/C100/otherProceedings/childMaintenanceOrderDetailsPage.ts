@@ -1,15 +1,15 @@
-import { ChildMaintenanceOrderDetailsContent } from "../../../../../../../fixtures/citizen/createCase/C100/otherProceedings/otherProceedings4/childMaintenanceOrder/childMaintenanceOrderDetailsContent";
+import { ChildMaintenanceOrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/childMaintenanceOrderDetailsContent";
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../../../common/selectors";
-import { Helpers } from "../../../../../../../common/helpers";
-import { CommonStaticText } from "../../../../../../../common/commonStaticText";
-import AccessibilityTestHelper from "../../../../../../../common/accessibilityTestHelper";
+import { Selectors } from "../../../../../common/selectors";
+import { Helpers } from "../../../../../common/helpers";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 
 interface ChildMaintenanceOrderDetailsPageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
-  yesNoCareOrderOrderDetails: boolean;
+  yesNoChildMaintenanceOrderDetails: boolean;
 }
 
 interface checkPageLoadsOptions {
@@ -19,7 +19,7 @@ interface checkPageLoadsOptions {
 
 interface fillInFieldsOptions {
   page: Page;
-  yesNoCareOrderOrderDetails: boolean;
+  yesNoChildMaintenanceOrderDetails: boolean;
 }
 
 enum UniqueSelectors {
@@ -42,7 +42,7 @@ export class ChildMaintenanceOrderDetailsPage {
     page: page,
     accessibilityTest: accessibilityTest,
     errorMessaging: errorMessaging,
-    yesNoCareOrderOrderDetails: yesNoCareOrderOrderDetails,
+    yesNoChildMaintenanceOrderDetails: yesNoChildMaintenanceOrderDetails,
   }: ChildMaintenanceOrderDetailsPageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
@@ -53,7 +53,7 @@ export class ChildMaintenanceOrderDetailsPage {
     }
     await this.fillInFields({
       page: page,
-      yesNoCareOrderOrderDetails: yesNoCareOrderOrderDetails,
+      yesNoChildMaintenanceOrderDetails: yesNoChildMaintenanceOrderDetails,
     });
   }
 
@@ -184,7 +184,7 @@ export class ChildMaintenanceOrderDetailsPage {
 
   private static async fillInFields({
     page: page,
-    yesNoCareOrderOrderDetails: yesNoCareOrderOrderDetails,
+    yesNoChildMaintenanceOrderDetails: yesNoChildMaintenanceOrderDetails,
   }: fillInFieldsOptions): Promise<void> {
     await page.fill(
       `${UniqueSelectors.orderDetail1}`,
@@ -219,7 +219,7 @@ export class ChildMaintenanceOrderDetailsPage {
       ChildMaintenanceOrderDetailsContent.yearNumber2,
     );
     // Selecting 'true' will move onto next page
-    if (yesNoCareOrderOrderDetails) {
+    if (yesNoChildMaintenanceOrderDetails) {
       await page.click(`${UniqueSelectors.currentOrderYes}`);
       await page.click(`${UniqueSelectors.orderCopyYes}`);
     } else {

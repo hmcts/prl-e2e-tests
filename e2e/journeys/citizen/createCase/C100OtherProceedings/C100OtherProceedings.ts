@@ -21,7 +21,7 @@ interface C100OtherProceedings1Options {
   accessibilityTest: boolean;
   errorMessaging: boolean;
   yesNoCurrentProceedings1: boolean;
-  yesNoOrderDetails: boolean;
+  yesNoChildArrangementOrderDetails: boolean;
   yesNoEmergencyProtectionOrderDetails: boolean;
   yesNoSupervisionOrderDetails: boolean;
   yesNoCareOrderOrderDetails: boolean;
@@ -36,7 +36,7 @@ export class C100OtherProceedings {
     accessibilityTest,
     errorMessaging,
     yesNoCurrentProceedings1,
-    yesNoOrderDetails,
+    yesNoChildArrangementOrderDetails,
     yesNoEmergencyProtectionOrderDetails,
     yesNoSupervisionOrderDetails,
     yesNoCareOrderOrderDetails,
@@ -62,9 +62,9 @@ export class C100OtherProceedings {
         page,
         accessibilityTest,
         errorMessaging,
-        yesNoOrderDetails,
+        yesNoChildArrangementOrderDetails,
       });
-      if (yesNoOrderDetails) {
+      if (yesNoChildArrangementOrderDetails) {
         await ChildArrangementDocumentUploadPage.documentUploadPage({
           page,
           accessibilityTest,

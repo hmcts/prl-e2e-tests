@@ -1,10 +1,10 @@
-import { ChildMaintenanceOrderDocumentUploadContent } from "../../../../../../../fixtures/citizen/createCase/C100/otherProceedings/otherProceedings4/childMaintenanceOrder/childMaintenanceOrderDocumentUploadContent";
+import { ChildMaintenanceOrderDocumentUploadContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/childMaintenanceOrderDocumentUploadContent";
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../../../common/selectors";
-import { Helpers } from "../../../../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../../../../common/accessibilityTestHelper";
-import config from "../../../../../../../config";
-import { CommonStaticText } from "../../../../../../../common/commonStaticText";
+import { Selectors } from "../../../../../common/selectors";
+import { Helpers } from "../../../../../common/helpers";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import config from "../../../../../config";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
 
 interface childMaintenanceOrderDocumentUploadPageOptions {
   page: Page;
