@@ -26,15 +26,15 @@ interface fillInFieldsOptions {
 }
 
 enum radioIds {
-  female = "gender",
-  male = "gender-2",
-  other = "gender-3",
+  female = "#gender",
+  male = "#gender-2",
+  other = "#gender-3",
 }
 
 enum inputIds {
-  day = "dateOfBirth-day",
-  month = "dateOfBirth-month",
-  year = "dateOfBirth-year",
+  day = "#dateOfBirth-day",
+  month = "#dateOfBirth-month",
+  year = "#dateOfBirth-year",
 }
 
 export class ProvideDetailsPage {
