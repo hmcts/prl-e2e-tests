@@ -15,6 +15,11 @@ import { ContactOrderForDivorceOrderDetailsPage } from "../../../../pages/citize
 import { ContactOrderForDivorceDocumentUploadPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/contactOrderForDivorceDocumentUploadPage";
 import { ContactOrderForAdoptionOrderDetailsPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/contactOrderForChildAbductionOrderDetailsPage";
 import { ContactOrderForAdoptionDocumentUploadPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/contactOrderForChildAbductionDocumentUploadPage";
+import { ChildMaintenanceOrderDetailsPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/childMaintenanceOrderDetailsPage";
+import { ChildMaintenanceOrderDocumentUploadPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/childMaintenanceOrderDocumentUploadPage";
+import { FinancialOrderDetailsPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/financialOrderDetailsPage";
+import { FinancialOrderDocumentUploadPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/financialOrderDocumentUploadPage";
+import { NonMolestationOrderDetailsPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/nonMolestationOrderOrderDetailsPage";
 
 interface C100OtherProceedings1Options {
   page: Page;
@@ -28,6 +33,9 @@ interface C100OtherProceedings1Options {
   yesNoChildAbductionOrderDetails: boolean;
   yesNoContactOrderForAdoptionOrderDetails: boolean;
   yesNoContactOrderForDivorceOrderDetails: boolean;
+  yesNoChildMaintenanceOrderDetails: boolean;
+  yesNoFinancialOrderDetails: boolean;
+  yesNoNonMolestationOrderDetails: boolean;
 }
 
 export class C100OtherProceedings {
@@ -43,6 +51,9 @@ export class C100OtherProceedings {
     yesNoChildAbductionOrderDetails,
     yesNoContactOrderForAdoptionOrderDetails,
     yesNoContactOrderForDivorceOrderDetails,
+    yesNoChildMaintenanceOrderDetails,
+    yesNoFinancialOrderDetails,
+    yesNoNonMolestationOrderDetails,
   }: C100OtherProceedings1Options): Promise<void> {
     await CurrentPreviousProceedingsPage.currentPreviousProceedingsPage({
       //yesNo needs to be true to move to next page
@@ -150,6 +161,40 @@ export class C100OtherProceedings {
             errorMessaging,
           },
         );
+        await ChildMaintenanceOrderDetailsPage.childMaintenanceOrderDetailsPage(
+          {
+            page,
+            accessibilityTest,
+            errorMessaging,
+            yesNoChildMaintenanceOrderDetails,
+          },
+        );
+        await ChildMaintenanceOrderDocumentUploadPage.childMaintenanceOrderDocumentUploadPage(
+          {
+            page,
+            accessibilityTest,
+            errorMessaging,
+          },
+        );
+        await FinancialOrderDetailsPage.financialOrderDetailsPage({
+          page,
+          accessibilityTest,
+          errorMessaging,
+          yesNoFinancialOrderDetails,
+        });
+        await FinancialOrderDocumentUploadPage.financialOrderDocumentUploadPage(
+          {
+            page,
+            accessibilityTest,
+            errorMessaging,
+          },
+        );
+        await NonMolestationOrderDetailsPage.nonMolestationOrderDetailsPage({
+          page,
+          accessibilityTest,
+          errorMessaging,
+          yesNoNonMolestationOrderDetails,
+        });
       }
     }
   }
