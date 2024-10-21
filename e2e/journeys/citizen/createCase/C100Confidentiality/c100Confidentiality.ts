@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
 import { yesNoDontKnow } from "../../../../common/types";
-import { DetailsKnowPage } from "../../../../pages/citizen/createCase/C100/confidentiality/detailsKnowPage";
 import { StartPage } from "../../../../pages/citizen/createCase/C100/confidentiality/startPage";
-
+import { DetailsKnowPage } from "../../../../pages/citizen/createCase/C100/confidentiality/detailsKnowPage";
+import { FeedbackNoPage } from "../../../../pages/citizen/createCase/C100/confidentiality/feedbackNoPage";
 interface C100ConfidentialityOptions {
   page: Page;
   accessibilityTest: boolean;
@@ -30,6 +30,10 @@ export class C100Confidentiality {
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
       c100PrivateDetails: c100PrivateDetails,
+    });
+    await FeedbackNoPage.feedbackNoPage({
+      page: page,
+      accessibilityTest: accessibilityTest,
     });
   }
 }
