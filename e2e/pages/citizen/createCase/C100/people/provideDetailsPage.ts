@@ -112,7 +112,7 @@ export class ProvideDetailsPage {
     if (gender === "other") {
       await page.click(radioIds.other);
       await page.waitForSelector(
-        `${Selectors.GovukHint}:text-is("${ProvideDetailsContent.label5}")`,
+        `${Selectors.GovukLabel}:text-is("${ProvideDetailsContent.label5}")`,
       );
     }
     if (accessibilityTest) {
