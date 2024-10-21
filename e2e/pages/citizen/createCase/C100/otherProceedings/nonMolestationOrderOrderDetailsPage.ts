@@ -1,9 +1,9 @@
-import { NonMolestationOrderDetailsContent } from "../../../../../../fixtures/citizen/createCase/C100/otherProceedings/otherProceedings4/nonMolestationOrder/nonMolestationOrderDetailsContent";
+import { NonMolestationOrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/nonMolestationOrderDetailsContent";
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../../common/selectors";
-import { Helpers } from "../../../../../../common/helpers";
-import { CommonStaticText } from "../../../../../../common/commonStaticText";
-import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper";
+import { Selectors } from "../../../../../common/selectors";
+import { Helpers } from "../../../../../common/helpers";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 
 interface NonMolestationOrderDetailsPageOptions {
   page: Page;

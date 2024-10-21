@@ -1,10 +1,10 @@
-import { NonMolestationOrderDocumentUploadContent } from "../../../../../../fixtures/citizen/createCase/C100/otherProceedings/otherProceedings4/nonMolestationOrder/nonMolestationOrderDocumentUploadContent";
-import { Selectors } from "../../../../../../common/selectors";
-import { CommonStaticText } from "../../../../../../common/commonStaticText";
-import { Helpers } from "../../../../../../common/helpers";
-import config from "../../../../../../config";
+import { NonMolestationOrderDocumentUploadContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/nonMolestationOrderDocumentUploadContent";
+import { Selectors } from "../../../../../common/selectors";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { Helpers } from "../../../../../common/helpers";
+import config from "../../../../../config";
 import { Page } from "@playwright/test";
-import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 
 interface NonMolestationOrderDocumentUploadPageOptions {
   page: Page;

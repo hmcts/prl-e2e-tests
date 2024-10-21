@@ -10,7 +10,7 @@ export enum NonMolestationOrderDetailsContent {
   formLabel2 = "Case number (optional)",
   formHint1 = "For example, BS19F99999",
   formHint2 = "For example, 31 3 2015",
-  courtIssued = "Automated Child Abduction Order Court",
+  courtIssued = "Automated Non Molestation Order Court",
   caseNumber = "BS19F99999",
   day = "Day",
   month = "Month",
