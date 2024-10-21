@@ -5,7 +5,7 @@ import { Helpers } from "../../../../../common/helpers";
 import AxeTest from "../../../../../common/accessibilityTestHelper";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 
-export interface MiamGetDocPageOptions {
+interface MiamGetDocPageOptions {
   page: Page;
   accessibilityTest: boolean;
 }

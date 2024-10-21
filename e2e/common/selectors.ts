@@ -15,11 +15,13 @@ export enum Selectors {
   // Forms
   GovukFormGroup = ".govuk-form-group",
   GovukLabel = ".govuk-label",
+  GovukFieldsetLegend = ".govuk-fieldset__legend",
   GovukInput = ".govuk-input",
   GovukTextarea = ".govuk-textarea",
   GovukSelect = ".govuk-select",
   GovukRadios = ".govuk-radios",
   GovukCheckboxes = ".govuk-checkboxes",
+  GovukCheckboxesDivider = ".govuk-checkboxes__divider",
   GovukTextFieldLabel = ".case-field__label",
   GovukText16 = ".text-16",
   GovukFormLabel = ".form-label",

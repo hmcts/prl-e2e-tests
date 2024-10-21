@@ -5,7 +5,7 @@ import { Helpers } from "../../../../../common/helpers";
 import AxeTest from "../../../../../common/accessibilityTestHelper";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 
-export interface AttendancePageOptions {
+interface AttendancePageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;

@@ -5,7 +5,7 @@ import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import AxeTest from "../../../../../common/accessibilityTestHelper";
 
-export interface NoNeedPageOptions {
+interface NoNeedPageOptions {
   page: Page;
   accessibilityTest: boolean;
 }

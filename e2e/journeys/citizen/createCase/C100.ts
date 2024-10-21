@@ -18,6 +18,8 @@ interface C100Options {
   miamAlreadyAttended: boolean;
   documentSignedByMediator: boolean;
   MIAMValidReasonNoAttendance: boolean;
+  MiamGeneralExemptions: boolean,
+  MiamDomesticAbuse: boolean;
 }
 
 export class C100 {
@@ -33,6 +35,8 @@ export class C100 {
     miamAlreadyAttended,
     documentSignedByMediator,
                              MIAMValidReasonNoAttendance,
+                             MiamGeneralExemptions,
+                             MiamDomesticAbuse,
   }: C100Options): Promise<void> {
     await CitizenCreateInitial.citizenCreateInitial({
       page: page,
@@ -75,6 +79,8 @@ export class C100 {
         miamAlreadyAttended: miamAlreadyAttended,
         documentSignedByMediator: documentSignedByMediator,
         MIAMValidReasonNoAttendance: MIAMValidReasonNoAttendance,
+        MiamGeneralExemptions: MiamGeneralExemptions,
+        MiamDomesticAbuse: MiamDomesticAbuse,
       });
     }
   }

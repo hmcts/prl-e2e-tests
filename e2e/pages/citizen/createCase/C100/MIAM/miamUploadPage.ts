@@ -6,7 +6,7 @@ import AxeTest from "../../../../../common/accessibilityTestHelper";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import config from "../../../../../config";
 
-export interface MiamUploadPageOptions {
+interface MiamUploadPageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
