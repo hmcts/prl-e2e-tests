@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Selectors } from "../../../../../common/selectors";
-import { FeedbackNoContent } from "../../../../../fixtures/citizen/createCase/C100/confidentiality/feedbackNo";
+import { FeedbackNoContent } from "../../../../../fixtures/citizen/createCase/C100/confidentiality/feedbackNoContent";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 
@@ -36,11 +36,23 @@ export class FeedbackNoPage {
     await page.waitForSelector(
       `${Selectors.GovukHeadingXL}:text-is("${FeedbackNoContent.pageTitle}")`
     );
-    await Helpers.checkVisibleAndPresent(
-      page,
-      `${Selectors.GovukBodyM}:text-is("${FeedbackNoContent.bodyM}")`,
-      1
-    )
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukBodyM}:text-is("${FeedbackNoContent.bodyM}")`,
+        1
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukCaptionXL}:has-text("${FeedbackNoContent.caption}")`,
+        1
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukCaptionXL}:has-text("${FeedbackNoContent.caption}")`,
+        1
+      )
+    ])
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page)
     }
