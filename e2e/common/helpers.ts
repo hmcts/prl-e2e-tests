@@ -214,8 +214,6 @@ export class Helpers {
       : (today.getFullYear() - 22).toString(); // More than 21 years
     const month = (today.getMonth() + 1).toString(); // getMonth() is 0-based
     const day = today.getDate().toString();
-
     return [day, month, year];
   }
-
 }

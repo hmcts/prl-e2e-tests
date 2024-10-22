@@ -33,4 +33,3 @@ export enum PersonalDetailsContent {
   errorMessage3 = "Enter the date of birth",
   errorMessage4 = "Enter your place of birth",
 }
-

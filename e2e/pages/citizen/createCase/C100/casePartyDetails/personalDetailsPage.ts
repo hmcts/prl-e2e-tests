@@ -4,7 +4,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { PersonalDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/casePartyDetails/personalDetailsContent";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-import { ApplicantGender } from "../../../../../common/types";
+
 
 interface personalDetailsPageOptions {
   page: Page;
