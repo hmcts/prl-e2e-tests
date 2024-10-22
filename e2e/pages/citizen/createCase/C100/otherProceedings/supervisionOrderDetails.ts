@@ -206,11 +206,19 @@ export class SupervisionOrderDetailsPage {
     );
     // Selecting 'true' will move onto next page
     if (yesNoSupervisionOrderDetails) {
-      await page.click(`${CitizensOtherProceedingsUniqueSelectors.currentOrderYes}`);
-      await page.click(`${CitizensOtherProceedingsUniqueSelectors.orderCopyYes}`);
+      await page.click(
+        `${CitizensOtherProceedingsUniqueSelectors.currentOrderYes}`,
+      );
+      await page.click(
+        `${CitizensOtherProceedingsUniqueSelectors.orderCopyYes}`,
+      );
     } else {
-      await page.click(`${CitizensOtherProceedingsUniqueSelectors.currentOrderNo}`);
-      await page.click(`${CitizensOtherProceedingsUniqueSelectors.orderCopyNo}`);
+      await page.click(
+        `${CitizensOtherProceedingsUniqueSelectors.currentOrderNo}`,
+      );
+      await page.click(
+        `${CitizensOtherProceedingsUniqueSelectors.orderCopyNo}`,
+      );
     }
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
