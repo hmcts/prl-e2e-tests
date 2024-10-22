@@ -4,6 +4,8 @@ import { CitizenCreateInitial } from "../citizenCreateInitial";
 import { C100TypeOfOrder } from "./C100TypeOfOrder/C100TypeOfOrder";
 import { C100ConsentOrderUpload } from "./C100ConsentOrderUpload/C100ConsentOrderUpload";
 import { C100UrgencyAndWithoutNotice } from "./C100UrgencyAndWithoutNotice/C100UrgencyAndWithoutNotice";
+import { C100Confidentiality } from "./C100Confidentiality/c100Confidentiality";
+import { yesNoDontKnow } from "../../../common/types";
 
 interface C100Options {
   page: Page;
@@ -13,6 +15,8 @@ interface C100Options {
   c100LegalRepresentation: boolean;
   c100CourtPermissionNeeded: boolean;
   urgencyAndWithoutNoticeAllOptionsYes: boolean;
+  c100OthersKnowApplicantsContact: yesNoDontKnow;
+  c100PrivateDetails: boolean;
 }
 
 export class C100 {
@@ -24,6 +28,8 @@ export class C100 {
     c100LegalRepresentation,
     c100CourtPermissionNeeded,
     urgencyAndWithoutNoticeAllOptionsYes,
+    c100OthersKnowApplicantsContact,
+    c100PrivateDetails
   }: C100Options): Promise<void> {
     await CitizenCreateInitial.citizenCreateInitial({
       page: page,
@@ -56,6 +62,14 @@ export class C100 {
         urgencyAndWithoutNoticeAllOptionsYes:
           urgencyAndWithoutNoticeAllOptionsYes,
       });
+      // People
+      await C100Confidentiality.c100Confidentiality({
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
+        c100OthersKnowApplicantsContact: c100OthersKnowApplicantsContact,
+        c100PrivateDetails: c100PrivateDetails
+      })
     } else {
       // MIAM Journey
     }
