@@ -66,7 +66,7 @@ export class ChildMaintenanceOrderDocumentUploadPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${ChildMaintenanceOrderDocumentUploadContent.formLabel}")`,
+        `${Selectors.GovukLabel}:text-is("${CommonStaticText.formLabel}")`,
         1,
       ),
     ]);
@@ -109,7 +109,7 @@ export class ChildMaintenanceOrderDocumentUploadPage {
     let fileInput = page.locator(`${UniqueSelectors.documentUpload}`);
     await fileInput.setInputFiles(config.testOdtFile);
     await page.click(
-      `${Selectors.GovukButton}:text-is("${ChildMaintenanceOrderDocumentUploadContent.uploadFile}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.uploadFile}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -131,7 +131,7 @@ export class ChildMaintenanceOrderDocumentUploadPage {
     let fileInput = page.locator(`${UniqueSelectors.documentUpload}`);
     await fileInput.setInputFiles(config.testPdfFile);
     await page.click(
-      `${Selectors.GovukButton}:text-is("${ChildMaintenanceOrderDocumentUploadContent.uploadFile}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.uploadFile}")`,
     );
     await page.waitForSelector(
       `${UniqueSelectors.uploadConfirmationSelector}`,
@@ -143,7 +143,7 @@ export class ChildMaintenanceOrderDocumentUploadPage {
     expect(isUploaded).toBeTruthy();
     await Helpers.checkVisibleAndPresent(
       page,
-      `${Selectors.a}:text-is("${ChildMaintenanceOrderDocumentUploadContent.remove}")`,
+      `${Selectors.a}:text-is("${CommonStaticText.remove}")`,
       1,
     );
     await page.click(

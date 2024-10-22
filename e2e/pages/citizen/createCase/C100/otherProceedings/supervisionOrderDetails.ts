@@ -4,7 +4,7 @@ import { Page } from "@playwright/test";
 import { Helpers } from "../../../../../common/helpers";
 import { SupervisionOrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/SupervisionOrderDetailsContent";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-import { OtherProceedingsUniqueSelectors } from "./careOrderOrderDetailsPage";
+import { CitizensOtherProceedingsUniqueSelectors } from "../../../../../common/enums";
 
 interface SupervisionOrderDetailsPageOptions {
   page: Page;
@@ -92,17 +92,17 @@ export class SupervisionOrderDetailsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${SupervisionOrderDetailsContent.day}")`,
+        `${Selectors.GovukLabel}:text-is("${CommonStaticText.day}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${SupervisionOrderDetailsContent.month}")`,
+        `${Selectors.GovukLabel}:text-is("${CommonStaticText.month}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${SupervisionOrderDetailsContent.year}")`,
+        `${Selectors.GovukLabel}:text-is("${CommonStaticText.year}")`,
         2,
       ),
     ]);
@@ -113,27 +113,27 @@ export class SupervisionOrderDetailsPage {
 
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.fill(
-      `${OtherProceedingsUniqueSelectors.orderDate1day}`,
+      `${CitizensOtherProceedingsUniqueSelectors.orderDate1day}`,
       SupervisionOrderDetailsContent.dayNumber,
     );
     await page.fill(
-      `${OtherProceedingsUniqueSelectors.orderDate1month}`,
+      `${CitizensOtherProceedingsUniqueSelectors.orderDate1month}`,
       SupervisionOrderDetailsContent.errorMonthNumber,
     );
     await page.fill(
-      `${OtherProceedingsUniqueSelectors.orderDate1year}`,
+      `${CitizensOtherProceedingsUniqueSelectors.orderDate1year}`,
       SupervisionOrderDetailsContent.yearNumber1,
     );
     await page.fill(
-      `${OtherProceedingsUniqueSelectors.orderEndDate1day}`,
+      `${CitizensOtherProceedingsUniqueSelectors.orderEndDate1day}`,
       SupervisionOrderDetailsContent.dayNumber,
     );
     await page.fill(
-      `${OtherProceedingsUniqueSelectors.orderEndDate1month}`,
+      `${CitizensOtherProceedingsUniqueSelectors.orderEndDate1month}`,
       SupervisionOrderDetailsContent.errorMonthNumber,
     );
     await page.fill(
-      `${OtherProceedingsUniqueSelectors.orderEndDate1year}`,
+      `${CitizensOtherProceedingsUniqueSelectors.orderEndDate1year}`,
       SupervisionOrderDetailsContent.yearNumber2,
     );
     await page.click(
@@ -173,44 +173,44 @@ export class SupervisionOrderDetailsPage {
     yesNoSupervisionOrderDetails: yesNoSupervisionOrderDetails,
   }: fillInFieldsOptions): Promise<void> {
     await page.fill(
-      `${OtherProceedingsUniqueSelectors.orderDetail1}`,
+      `${CitizensOtherProceedingsUniqueSelectors.orderDetail1}`,
       SupervisionOrderDetailsContent.courtIssued,
     );
     await page.fill(
-      `${OtherProceedingsUniqueSelectors.caseNo1}`,
+      `${CitizensOtherProceedingsUniqueSelectors.caseNo1}`,
       SupervisionOrderDetailsContent.caseNumber,
     );
     await page.fill(
-      `${OtherProceedingsUniqueSelectors.orderDate1day}`,
+      `${CitizensOtherProceedingsUniqueSelectors.orderDate1day}`,
       SupervisionOrderDetailsContent.dayNumber,
     );
     await page.fill(
-      `${OtherProceedingsUniqueSelectors.orderDate1month}`,
+      `${CitizensOtherProceedingsUniqueSelectors.orderDate1month}`,
       SupervisionOrderDetailsContent.monthNumber,
     );
     await page.fill(
-      `${OtherProceedingsUniqueSelectors.orderDate1year}`,
+      `${CitizensOtherProceedingsUniqueSelectors.orderDate1year}`,
       SupervisionOrderDetailsContent.yearNumber1,
     );
     await page.fill(
-      `${OtherProceedingsUniqueSelectors.orderEndDate1day}`,
+      `${CitizensOtherProceedingsUniqueSelectors.orderEndDate1day}`,
       SupervisionOrderDetailsContent.dayNumber,
     );
     await page.fill(
-      `${OtherProceedingsUniqueSelectors.orderEndDate1month}`,
+      `${CitizensOtherProceedingsUniqueSelectors.orderEndDate1month}`,
       SupervisionOrderDetailsContent.monthNumber,
     );
     await page.fill(
-      `${OtherProceedingsUniqueSelectors.orderEndDate1year}`,
+      `${CitizensOtherProceedingsUniqueSelectors.orderEndDate1year}`,
       SupervisionOrderDetailsContent.yearNumber2,
     );
     // Selecting 'true' will move onto next page
     if (yesNoSupervisionOrderDetails) {
-      await page.click(`${OtherProceedingsUniqueSelectors.currentOrderYes}`);
-      await page.click(`${OtherProceedingsUniqueSelectors.orderCopyYes}`);
+      await page.click(`${CitizensOtherProceedingsUniqueSelectors.currentOrderYes}`);
+      await page.click(`${CitizensOtherProceedingsUniqueSelectors.orderCopyYes}`);
     } else {
-      await page.click(`${OtherProceedingsUniqueSelectors.currentOrderNo}`);
-      await page.click(`${OtherProceedingsUniqueSelectors.orderCopyNo}`);
+      await page.click(`${CitizensOtherProceedingsUniqueSelectors.currentOrderNo}`);
+      await page.click(`${CitizensOtherProceedingsUniqueSelectors.orderCopyNo}`);
     }
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,

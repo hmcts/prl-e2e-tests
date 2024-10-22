@@ -4,7 +4,7 @@ import { Page } from "@playwright/test";
 import { Helpers } from "../../../../../common/helpers";
 import { EmergencyProtectionOrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/EmergencyProtectionOrderDetailsContent";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-import { OtherProceedingsUniqueSelectors } from "./careOrderOrderDetailsPage";
+import { CitizensOtherProceedingsUniqueSelectors } from "../../../../../common/enums";
 
 interface EmergencyProtectionOrderDetailsPageOptions {
   page: Page;
@@ -93,17 +93,17 @@ export class EmergencyProtectionOrderDetailsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${EmergencyProtectionOrderDetailsContent.day}")`,
+        `${Selectors.GovukLabel}:text-is("${CommonStaticText.day}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${EmergencyProtectionOrderDetailsContent.month}")`,
+        `${Selectors.GovukLabel}:text-is("${CommonStaticText.month}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${EmergencyProtectionOrderDetailsContent.year}")`,
+        `${Selectors.GovukLabel}:text-is("${CommonStaticText.year}")`,
         2,
       ),
     ]);
@@ -114,27 +114,27 @@ export class EmergencyProtectionOrderDetailsPage {
 
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.fill(
-      `${OtherProceedingsUniqueSelectors.orderDate1day}`,
+      `${CitizensOtherProceedingsUniqueSelectors.orderDate1day}`,
       EmergencyProtectionOrderDetailsContent.dayNumber,
     );
     await page.fill(
-      `${OtherProceedingsUniqueSelectors.orderDate1month}`,
+      `${CitizensOtherProceedingsUniqueSelectors.orderDate1month}`,
       EmergencyProtectionOrderDetailsContent.errorMonthNumber,
     );
     await page.fill(
-      `${OtherProceedingsUniqueSelectors.orderDate1year}`,
+      `${CitizensOtherProceedingsUniqueSelectors.orderDate1year}`,
       EmergencyProtectionOrderDetailsContent.yearNumber1,
     );
     await page.fill(
-      `${OtherProceedingsUniqueSelectors.orderEndDate1day}`,
+      `${CitizensOtherProceedingsUniqueSelectors.orderEndDate1day}`,
       EmergencyProtectionOrderDetailsContent.dayNumber,
     );
     await page.fill(
-      `${OtherProceedingsUniqueSelectors.orderEndDate1month}`,
+      `${CitizensOtherProceedingsUniqueSelectors.orderEndDate1month}`,
       EmergencyProtectionOrderDetailsContent.errorMonthNumber,
     );
     await page.fill(
-      `${OtherProceedingsUniqueSelectors.orderEndDate1year}`,
+      `${CitizensOtherProceedingsUniqueSelectors.orderEndDate1year}`,
       EmergencyProtectionOrderDetailsContent.yearNumber2,
     );
     await page.click(
@@ -174,44 +174,44 @@ export class EmergencyProtectionOrderDetailsPage {
     yesNoEmergencyProtectionOrderDetails: yesNoEmergencyProtectionOrderDetails,
   }: fillInFieldsOptions): Promise<void> {
     await page.fill(
-      `${OtherProceedingsUniqueSelectors.orderDetail1}`,
+      `${CitizensOtherProceedingsUniqueSelectors.orderDetail1}`,
       EmergencyProtectionOrderDetailsContent.courtIssued,
     );
     await page.fill(
-      `${OtherProceedingsUniqueSelectors.caseNo1}`,
+      `${CitizensOtherProceedingsUniqueSelectors.caseNo1}`,
       EmergencyProtectionOrderDetailsContent.caseNumber,
     );
     await page.fill(
-      `${OtherProceedingsUniqueSelectors.orderDate1day}`,
+      `${CitizensOtherProceedingsUniqueSelectors.orderDate1day}`,
       EmergencyProtectionOrderDetailsContent.dayNumber,
     );
     await page.fill(
-      `${OtherProceedingsUniqueSelectors.orderDate1month}`,
+      `${CitizensOtherProceedingsUniqueSelectors.orderDate1month}`,
       EmergencyProtectionOrderDetailsContent.monthNumber,
     );
     await page.fill(
-      `${OtherProceedingsUniqueSelectors.orderDate1year}`,
+      `${CitizensOtherProceedingsUniqueSelectors.orderDate1year}`,
       EmergencyProtectionOrderDetailsContent.yearNumber1,
     );
     await page.fill(
-      `${OtherProceedingsUniqueSelectors.orderEndDate1day}`,
+      `${CitizensOtherProceedingsUniqueSelectors.orderEndDate1day}`,
       EmergencyProtectionOrderDetailsContent.dayNumber,
     );
     await page.fill(
-      `${OtherProceedingsUniqueSelectors.orderEndDate1month}`,
+      `${CitizensOtherProceedingsUniqueSelectors.orderEndDate1month}`,
       EmergencyProtectionOrderDetailsContent.monthNumber,
     );
     await page.fill(
-      `${OtherProceedingsUniqueSelectors.orderEndDate1year}`,
+      `${CitizensOtherProceedingsUniqueSelectors.orderEndDate1year}`,
       EmergencyProtectionOrderDetailsContent.yearNumber2,
     );
     // Selecting 'true' will move onto next page
     if (yesNoEmergencyProtectionOrderDetails) {
-      await page.click(`${OtherProceedingsUniqueSelectors.currentOrderYes}`);
-      await page.click(`${OtherProceedingsUniqueSelectors.orderCopyYes}`);
+      await page.click(`${CitizensOtherProceedingsUniqueSelectors.currentOrderYes}`);
+      await page.click(`${CitizensOtherProceedingsUniqueSelectors.orderCopyYes}`);
     } else {
-      await page.click(`${OtherProceedingsUniqueSelectors.currentOrderNo}`);
-      await page.click(`${OtherProceedingsUniqueSelectors.orderCopyNo}`);
+      await page.click(`${CitizensOtherProceedingsUniqueSelectors.currentOrderNo}`);
+      await page.click(`${CitizensOtherProceedingsUniqueSelectors.orderCopyNo}`);
     }
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,

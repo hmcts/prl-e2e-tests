@@ -10,7 +10,6 @@ export enum ChildArrangementDocumentUploadContent {
   li3 = "Check you can read all the writing, including the handwriting.",
   li4 = "Email or send the photo or scan to the device you are using now.",
   li5 = "Upload it here.",
-  remove = "Remove",
   errorMessageChooseFile = "Please choose a file.",
   errorMessageUploadCorrectFile = "The file you uploaded is in the wrong format. Upload your file again in the correct format",
   continue = "Continue",
