@@ -6,7 +6,6 @@ import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { ApplicantGender } from "../../../../../common/types";
 
-
 interface personalDetailsPageOptions {
   page: Page;
   accessibilityTest: boolean;
@@ -38,61 +37,61 @@ enum inputIds {
   placeOfBirth = '#applicantPlaceOfBirth',
 }
 
-
-
 export class PersonalDetailsPage {
   public static async personalDetailsPage({
-                                        page: page,
-                                        accessibilityTest: accessibilityTest,
-                                        errorMessaging: errorMessaging,
-                                      }: personalDetailsPageOptions): Promise<void> {
+                                            page,
+                                            accessibilityTest,
+                                            errorMessaging,
+                                          }: personalDetailsPageOptions): Promise<void> {
     await this.checkPageLoads({
-      page: page,
-      accessibilityTest: accessibilityTest,
+      page,
+      accessibilityTest,
     });
     if (errorMessaging) {
       await this.triggerErrorMessages(page);
     }
     await this.fillInFields({
-      page: page,
+      page,
     });
   }
 
   private static async checkPageLoads({
-                                        page: page,
-                                        accessibilityTest: accessibilityTest,
+                                        page,
+                                        accessibilityTest,
                                       }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukHeadingXL}:text-has("${PersonalDetailsContent.pageTitle}")`,
+      `${Selectors.GovukHeadingXL}:text-has("${PersonalDetailsContent.pageTitle}")`
     );
+
     await Promise.all([
       Helpers.checkGroup(
         page,
         3,
         PersonalDetailsContent,
         "legend",
-        `${uniqueSelectors.legendSelector1}`,
+        `${uniqueSelectors.legendSelector1}`
       ),
       Helpers.checkGroup(
         page,
         3,
         PersonalDetailsContent,
         "hint",
-        `${Selectors.GovukHint}`,
+        `${Selectors.GovukHint}`
       ),
       Helpers.checkGroup(
         page,
         8,
         PersonalDetailsContent,
         "label",
-        `${Selectors.GovukHint}`,
+        `${Selectors.GovukHint}`
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${uniqueSelectors.legendSelector2}:text-is("${PersonalDetailsContent.legend4}")`,
-        1,
+        1
       ),
     ]);
+
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }
@@ -100,42 +99,41 @@ export class PersonalDetailsPage {
 
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`
     );
+
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukErrorSummaryTitle}:text-is("${CommonStaticText.errorSummaryTitle}")`,
-        1,
+        1
       ),
       Helpers.checkGroup(
         page,
         4,
         PersonalDetailsContent,
         "errorSummaryList",
-        `${Selectors.ErrorSummaryList}`,
+        `${Selectors.ErrorSummaryList}`
       ),
       Helpers.checkGroup(
         page,
         4,
         PersonalDetailsContent,
         "errorMessage",
-        `${Selectors.GovukErrorMessage}`,
+        `${Selectors.GovukErrorMessage}`
       ),
     ]);
+  }
 
   private static async fillInFields({
-      page: page,
-
-    }: fillInFieldsOptions): Promise<void> {
-
-      const [day, month, year] = Helpers.generateDOB(false); //over 21 date of birth
+                                      page,
+                                    }: fillInFieldsOptions): Promise<void> {
+    const [day, month, year] = Helpers.generateDOB(false); // over 21 date of birth
 
     await Promise.all([
-        page.fill(`${inputIds.day}`, day),
-        page.fill(`${inputIds.month}`, month),
-        page.fill(`${inputIds.year}`, year),
-      ]);
-
-    }
+      page.fill(`${inputIds.day}`, day),
+      page.fill(`${inputIds.month}`, month),
+      page.fill(`${inputIds.year}`, year),
+    ]);
   }
+}

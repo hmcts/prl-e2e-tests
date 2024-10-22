@@ -32,5 +32,5 @@ export enum PersonalDetailsContent {
   errorMessage2 = "Select the gender",
   errorMessage3 = "Enter the date of birth",
   errorMessage4 = "Enter your place of birth",
-
 }
+
