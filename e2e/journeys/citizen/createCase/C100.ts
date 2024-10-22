@@ -56,8 +56,6 @@ export class C100 {
         urgencyAndWithoutNoticeAllOptionsYes:
           urgencyAndWithoutNoticeAllOptionsYes,
       });
-      // Consent Order Upload
-      // Urgency & Without Notice
       // People
       // Applicant Details
       // Confidentiality C7
