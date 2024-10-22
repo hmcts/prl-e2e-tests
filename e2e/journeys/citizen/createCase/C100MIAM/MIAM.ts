@@ -32,6 +32,10 @@ import {
   MiamMiamOtherPage,
   MiamOtherReasonForNotAttending,
 } from "../../../../pages/citizen/createCase/C100/MIAM/miamMiamOtherPage";
+import {
+  MiamNoAccessToMediatorPage,
+  MiamReasonForNoAccessToMediator,
+} from "../../../../pages/citizen/createCase/C100/MIAM/miamNoAccessToMediatorPage";
 
 interface MIAMOptions {
   page: Page;
@@ -49,6 +53,7 @@ interface MIAMOptions {
   miamAttendanceType: MiamAttendanceType;
   miamPreviousAttendanceMediatorSignedDocument: boolean;
   miamOtherReasonForNotAttending: MiamOtherReasonForNotAttending;
+  miamReasonForNoAccessToMediator: MiamReasonForNoAccessToMediator;
 }
 
 export class MIAM {
@@ -69,6 +74,7 @@ export class MIAM {
     miamPreviousAttendanceMediatorSignedDocument:
       miamPreviousAttendanceMediatorSignedDocument,
     miamOtherReasonForNotAttending: miamOtherReasonForNotAttending,
+    miamReasonForNoAccessToMediator: miamReasonForNoAccessToMediator,
   }: MIAMOptions): Promise<void> {
     await MiamOtherProceedingsPage.otherProceedingsPage({
       page: page,
@@ -226,6 +232,14 @@ export class MIAM {
               accessibilityTest: accessibilityTest,
             });
             return;
+          }
+          if (miamOtherReasonForNotAttending === "Cannot access mediator") {
+            await MiamNoAccessToMediatorPage.miamNoAccessToMediatorPage({
+              page: page,
+              accessibilityTest: accessibilityTest,
+              errorMessaging: errorMessaging,
+              reasonForNoAccessToMediator: miamReasonForNoAccessToMediator,
+            });
           }
         }
       }

@@ -9,6 +9,7 @@ import { MiamChildProtectionConcernsType } from "../../../pages/citizen/createCa
 import { MiamUrgencyType } from "../../../pages/citizen/createCase/C100/MIAM/miamUrgencyPage";
 import { MiamAttendanceType } from "../../../pages/citizen/createCase/C100/MIAM/miamPreviousAttendancePage";
 import { MiamOtherReasonForNotAttending } from "../../../pages/citizen/createCase/C100/MIAM/miamMiamOtherPage";
+import { MiamReasonForNoAccessToMediator } from "../../../pages/citizen/createCase/C100/MIAM/miamNoAccessToMediatorPage";
 
 interface C100Options {
   page: Page;
@@ -30,6 +31,7 @@ interface C100Options {
   miamAttendanceType: MiamAttendanceType;
   miamPreviousAttendanceMediatorSignedDocument: boolean;
   miamOtherReasonForNotAttending: MiamOtherReasonForNotAttending;
+  miamReasonForNoAccessToMediator: MiamReasonForNoAccessToMediator;
 }
 
 export class C100 {
@@ -53,6 +55,7 @@ export class C100 {
     miamAttendanceType,
     miamPreviousAttendanceMediatorSignedDocument,
     miamOtherReasonForNotAttending,
+    miamReasonForNoAccessToMediator,
   }: C100Options): Promise<void> {
     await CitizenCreateInitial.citizenCreateInitial({
       page: page,
@@ -104,6 +107,7 @@ export class C100 {
         miamPreviousAttendanceMediatorSignedDocument:
           miamPreviousAttendanceMediatorSignedDocument,
         miamOtherReasonForNotAttending: miamOtherReasonForNotAttending,
+        miamReasonForNoAccessToMediator: miamReasonForNoAccessToMediator,
       });
     }
   }
