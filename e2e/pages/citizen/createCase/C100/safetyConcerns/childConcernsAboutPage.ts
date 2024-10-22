@@ -8,14 +8,14 @@ import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 
 enum CheckboxInputIds {
-  physicalAbuse = "c1A_concernAboutChild",
-  psychologicalAbuse = "c1A_concernAboutChild-2",
-  emotionalAbuse = "c1A_concernAboutChild-3",
-  sexualAbuse = "c1A_concernAboutChild-4",
-  financialAbuse = "c1A_concernAboutChild-5",
-  abduction = "c1A_concernAboutChild-6",
-  witnessingDomesticAbuse = "c1A_concernAboutChild-7",
-  somethingElse = "c1A_concernAboutChild-8"
+  physicalAbuse = "#c1A_concernAboutChild",
+  psychologicalAbuse = "#c1A_concernAboutChild-2",
+  emotionalAbuse = "#c1A_concernAboutChild-3",
+  sexualAbuse = "#c1A_concernAboutChild-4",
+  financialAbuse = "#c1A_concernAboutChild-5",
+  abduction = "#c1A_concernAboutChild-6",
+  witnessingDomesticAbuse = "#c1A_concernAboutChild-7",
+  somethingElse = "#c1A_concernAboutChild-8"
 }
 
 interface ChildConcernsAboutPageOptions {
