@@ -1,9 +1,7 @@
 import { Page } from "@playwright/test";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Selectors } from "../../../../../common/selectors";
-import {
-  ChildConcernsAboutContent
-} from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/ChildConcernsAboutContent";
+import { ChildConcernsAboutContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/ChildConcernsAboutContent";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 
@@ -15,7 +13,7 @@ enum CheckboxInputIds {
   financialAbuse = "#c1A_concernAboutChild-5",
   abduction = "#c1A_concernAboutChild-6",
   witnessingDomesticAbuse = "#c1A_concernAboutChild-7",
-  somethingElse = "#c1A_concernAboutChild-8"
+  somethingElse = "#c1A_concernAboutChild-8",
 }
 
 interface ChildConcernsAboutPageOptions {
@@ -37,90 +35,86 @@ export class ChildConcernsAboutPage {
   }: ChildConcernsAboutPageOptions): Promise<void> {
     await this.checkPageLoads({
       page,
-      accessibilityTest
-    })
+      accessibilityTest,
+    });
     if (errorMessaging) {
       await this.checkErrorMessaging(page);
     }
-    await this.fillInFields(page)
+    await this.fillInFields(page);
   }
 
   private static async checkPageLoads({
-   page,
-   accessibilityTest
+    page,
+    accessibilityTest,
   }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukHeadingXL}:text-is("${ChildConcernsAboutContent.pageTitle}")`
+      `${Selectors.GovukHeadingXL}:text-is("${ChildConcernsAboutContent.pageTitle}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukCaptionXL}:text-is("${ChildConcernsAboutContent.caption}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukLink}:text-is("${ChildConcernsAboutContent.link}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukBodyM}:text-is("${ChildConcernsAboutContent.bodyM}")`,
-        1
+        1,
       ),
       Helpers.checkGroup(
         page,
         8,
         ChildConcernsAboutContent,
-        'formLabel',
-        `${Selectors.GovukLabel}`
+        "formLabel",
+        `${Selectors.GovukLabel}`,
       ),
       Helpers.checkGroup(
         page,
         9,
         ChildConcernsAboutContent,
-        'formHint',
-        `${Selectors.GovukHint}`
-      )
+        "formHint",
+        `${Selectors.GovukHint}`,
+      ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page)
+      await AccessibilityTestHelper.run(page);
     }
   }
 
-  private static async checkErrorMessaging(
-    page: Page
-  ): Promise<void> {
+  private static async checkErrorMessaging(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.continue}")`
+      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukErrorSummaryTitle}:text-is("${CommonStaticText.errorSummaryTitle}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukErrorList} ${Selectors.a}:text-is("${ChildConcernsAboutContent.errorSummaryList}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.ErrorMessage}:text-is("${ChildConcernsAboutContent.errorMessage}")`,
-        1
+        1,
       ),
     ]);
   }
 
-  private static async fillInFields(
-    page: Page
-  ): Promise<void> {
+  private static async fillInFields(page: Page): Promise<void> {
     for (let checkbox of Object.values(CheckboxInputIds)) {
-      await page.check(checkbox)
+      await page.check(checkbox);
     }
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.continue}")`
+      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
     );
   }
 }

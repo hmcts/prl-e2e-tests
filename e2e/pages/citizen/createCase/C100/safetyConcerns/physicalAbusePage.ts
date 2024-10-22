@@ -1,29 +1,12 @@
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
-import {
-  PhysicalAbuseContent
-} from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/physicalAbuseContent";
-import { Helpers } from "../../../../../common/helpers";
+import { PhysicalAbuseContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/physicalAbuseContent";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-import {
-  ReportAbuseCommonContent
-} from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/reportAbuseCommonContent";
 import { ReportAbuseHelpers } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/reportAbuseHelpers";
-
-enum checkboxIDs {
-  child1 = '#childrenConcernedAbout'
-}
-
-enum inputIDs {
-  ongoingBehaviorYes = "#isOngoingBehaviour",
-  ongoingBehaviorNo = "#isOngoingBehaviour-2",
-  seekHelpYes = "#seekHelpFromPersonOrAgency",
-  seekHelpNo = "#seekHelpFromPersonOrAgency-2",
-  behaviourDetails = '#behaviourDetails',
-  behaviourStartDate = '#behaviourStartDate',
-  seekHelpDetails = '#seekHelpDetails'
-}
+import {
+  reportAbuseCheckboxIDs, reportAbuseInputIDs
+} from "../../../../../journeys/citizen/createCase/C100SafetyConcerns/c100SafetyConcerns";
 
 interface PhysicalAbusePageOptions {
   page: Page;
@@ -45,64 +28,60 @@ export class PhysicalAbusePage {
   public static async physicalAbusePage({
     page,
     accessibilityTest,
-    c100PhysicalAbuseYesNoToAll
+    c100PhysicalAbuseYesNoToAll,
   }: PhysicalAbusePageOptions): Promise<void> {
     await this.checkPageLoads({
       page,
-      accessibilityTest
+      accessibilityTest,
     });
     await this.fillInFields({
       page,
-      c100PhysicalAbuseYesNoToAll
+      c100PhysicalAbuseYesNoToAll,
     });
   }
 
   private static async checkPageLoads({
     page,
-    accessibilityTest
+    accessibilityTest,
   }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukHeadingXL}:text-is("${PhysicalAbuseContent.pageTitle}")`
+      `${Selectors.GovukHeadingXL}:text-is("${PhysicalAbuseContent.pageTitle}")`,
     );
     await ReportAbuseHelpers.checkStaticText(page);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page)
+      await AccessibilityTestHelper.run(page);
     }
   }
 
   private static async fillInFields({
     page,
-    c100PhysicalAbuseYesNoToAll
+    c100PhysicalAbuseYesNoToAll,
   }: FillInFieldsOptions): Promise<void> {
-    for (let checkbox of Object.values(checkboxIDs)) {
-      await page.check(
-        checkbox
-      );
+    for (let checkbox of Object.values(reportAbuseCheckboxIDs)) {
+      await page.check(checkbox);
     }
     const textToFill: [string, string] = [
-      'behaviourDetails', 'behaviourStartDate'
+      "behaviourDetails",
+      "behaviourStartDate",
     ];
     for (let key of textToFill) {
-      let inputKey = key as keyof typeof inputIDs;
+      let inputKey = key as keyof typeof reportAbuseInputIDs;
       let contentKey = key as keyof typeof PhysicalAbuseContent;
-      await page.fill(
-        inputIDs[inputKey],
-        PhysicalAbuseContent[contentKey]
-      )
+      await page.fill(reportAbuseInputIDs[inputKey], PhysicalAbuseContent[contentKey]);
     }
     await ReportAbuseHelpers.ongoingBehaviourFields({
       page: page,
       c100ReportAbuseYesNoToAll: c100PhysicalAbuseYesNoToAll,
-      inputIDs: inputIDs,
+      inputIDs: reportAbuseInputIDs,
     });
     await ReportAbuseHelpers.seekHelpFields({
       page: page,
       c100ReportAbuseYesNoToAll: c100PhysicalAbuseYesNoToAll,
-      inputIDs: inputIDs,
-      abuseContent: PhysicalAbuseContent
+      inputIDs: reportAbuseInputIDs,
+      abuseContent: PhysicalAbuseContent,
     });
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.continue}")`
-    )
+      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+    );
   }
 }

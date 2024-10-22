@@ -76,7 +76,7 @@ export class PsychologicalAbusePage {
     await ReportAbuseHelpers.ongoingBehaviourFields({
       page: page,
       c100ReportAbuseYesNoToAll: c100PsychologicalAbuseYesNoToAll,
-      inputIDs: reportAbuseInputIDs
+      inputIDs: reportAbuseInputIDs,
     });
     await ReportAbuseHelpers.seekHelpFields({
       page: page,
