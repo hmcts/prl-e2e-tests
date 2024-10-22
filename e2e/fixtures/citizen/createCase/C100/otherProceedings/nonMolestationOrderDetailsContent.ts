@@ -1,7 +1,7 @@
-export enum ContactOrderForDivorceOrderDetailsContent {
+export enum NonMolestationOrderDetailsContent {
   pageTitle = "Provide details of court cases you or the children have been involved in",
   p = "If you do not have the specific details, you can skip this section and proceed with the application.",
-  h11 = "A contact or residence order (Section 8 Children Act 1989) made within proceedings for a divorce or dissolution of a civil partnership",
+  h11 = "Non-molestation Order",
   h12 = "What date was it made? (optional)",
   h13 = "Is this a current order? (optional)",
   h14 = "What date did it end? (optional)",
@@ -10,10 +10,10 @@ export enum ContactOrderForDivorceOrderDetailsContent {
   formLabel2 = "Case number (optional)",
   formHint1 = "For example, BS19F99999",
   formHint2 = "For example, 31 3 2015",
-  courtIssued = "Automated Child Abduction Order Court",
+  courtIssued = "Automated Non Molestation Order Court",
   caseNumber = "BS19F99999",
-  dayNumber = "10",
-  monthNumber = "06",
+  dayNumber = "09",
+  monthNumber = "04",
   errorMonthNumber = "83",
   yearNumber1 = "2015",
   yearNumber2 = "2017",

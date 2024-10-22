@@ -4,6 +4,7 @@ import { Page } from "@playwright/test";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { ChildAbductionOrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/childAbductionOrderDetailsContent";
+import { CitizensOtherProceedingsUniqueSelectors } from "../../../../../common/commonUniqueSelectors";
 
 interface ChildAbductionOrderDetailsPageOptions {
   page: Page;
@@ -20,21 +21,6 @@ interface checkPageLoadsOptions {
 interface fillInFieldsOptions {
   page: Page;
   yesNoChildAbductionOrderDetails: boolean;
-}
-
-enum UniqueSelectors {
-  orderDetail1 = "#orderDetail-1",
-  caseNo1 = "#caseNo-1",
-  orderDate1day = "#orderDate-1-day",
-  orderDate1month = "#orderDate-1-month",
-  orderDate1year = "#orderDate-1-year",
-  currentOrderYes = "#currentOrder-1",
-  currentOrderNo = "#currentOrder-1-2",
-  orderEndDate1day = "#orderEndDate-1-day",
-  orderEndDate1month = "#orderEndDate-1-month",
-  orderEndDate1year = "#orderEndDate-1-year",
-  orderCopyYes = "#orderCopy-1",
-  orderCopyNo = "#orderCopy-1-2",
 }
 
 export class ChildAbductionOrderDetailsPage {
@@ -106,17 +92,17 @@ export class ChildAbductionOrderDetailsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${ChildAbductionOrderDetailsContent.day}")`,
+        `${Selectors.GovukLabel}:text-is("${CommonStaticText.day}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${ChildAbductionOrderDetailsContent.month}")`,
+        `${Selectors.GovukLabel}:text-is("${CommonStaticText.month}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${ChildAbductionOrderDetailsContent.year}")`,
+        `${Selectors.GovukLabel}:text-is("${CommonStaticText.year}")`,
         2,
       ),
     ]);
@@ -127,27 +113,27 @@ export class ChildAbductionOrderDetailsPage {
 
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.fill(
-      `${UniqueSelectors.orderDate1day}`,
+      `${CitizensOtherProceedingsUniqueSelectors.orderDate1day}`,
       ChildAbductionOrderDetailsContent.dayNumber,
     );
     await page.fill(
-      `${UniqueSelectors.orderDate1month}`,
+      `${CitizensOtherProceedingsUniqueSelectors.orderDate1month}`,
       ChildAbductionOrderDetailsContent.errorMonthNumber,
     );
     await page.fill(
-      `${UniqueSelectors.orderDate1year}`,
+      `${CitizensOtherProceedingsUniqueSelectors.orderDate1year}`,
       ChildAbductionOrderDetailsContent.yearNumber1,
     );
     await page.fill(
-      `${UniqueSelectors.orderEndDate1day}`,
+      `${CitizensOtherProceedingsUniqueSelectors.orderEndDate1day}`,
       ChildAbductionOrderDetailsContent.dayNumber,
     );
     await page.fill(
-      `${UniqueSelectors.orderEndDate1month}`,
+      `${CitizensOtherProceedingsUniqueSelectors.orderEndDate1month}`,
       ChildAbductionOrderDetailsContent.errorMonthNumber,
     );
     await page.fill(
-      `${UniqueSelectors.orderEndDate1year}`,
+      `${CitizensOtherProceedingsUniqueSelectors.orderEndDate1year}`,
       ChildAbductionOrderDetailsContent.yearNumber2,
     );
     await page.click(
@@ -187,44 +173,52 @@ export class ChildAbductionOrderDetailsPage {
     yesNoChildAbductionOrderDetails: yesNoChildAbductionOrderDetails,
   }: fillInFieldsOptions): Promise<void> {
     await page.fill(
-      `${UniqueSelectors.orderDetail1}`,
+      `${CitizensOtherProceedingsUniqueSelectors.orderDetail1}`,
       ChildAbductionOrderDetailsContent.courtIssued,
     );
     await page.fill(
-      `${UniqueSelectors.caseNo1}`,
+      `${CitizensOtherProceedingsUniqueSelectors.caseNo1}`,
       ChildAbductionOrderDetailsContent.caseNumber,
     );
     await page.fill(
-      `${UniqueSelectors.orderDate1day}`,
+      `${CitizensOtherProceedingsUniqueSelectors.orderDate1day}`,
       ChildAbductionOrderDetailsContent.dayNumber,
     );
     await page.fill(
-      `${UniqueSelectors.orderDate1month}`,
+      `${CitizensOtherProceedingsUniqueSelectors.orderDate1month}`,
       ChildAbductionOrderDetailsContent.monthNumber,
     );
     await page.fill(
-      `${UniqueSelectors.orderDate1year}`,
+      `${CitizensOtherProceedingsUniqueSelectors.orderDate1year}`,
       ChildAbductionOrderDetailsContent.yearNumber1,
     );
     await page.fill(
-      `${UniqueSelectors.orderEndDate1day}`,
+      `${CitizensOtherProceedingsUniqueSelectors.orderEndDate1day}`,
       ChildAbductionOrderDetailsContent.dayNumber,
     );
     await page.fill(
-      `${UniqueSelectors.orderEndDate1month}`,
+      `${CitizensOtherProceedingsUniqueSelectors.orderEndDate1month}`,
       ChildAbductionOrderDetailsContent.monthNumber,
     );
     await page.fill(
-      `${UniqueSelectors.orderEndDate1year}`,
+      `${CitizensOtherProceedingsUniqueSelectors.orderEndDate1year}`,
       ChildAbductionOrderDetailsContent.yearNumber2,
     );
     // Selecting 'true' will move onto next page
     if (yesNoChildAbductionOrderDetails) {
-      await page.click(`${UniqueSelectors.currentOrderYes}`);
-      await page.click(`${UniqueSelectors.orderCopyYes}`);
+      await page.click(
+        `${CitizensOtherProceedingsUniqueSelectors.currentOrderYes}`,
+      );
+      await page.click(
+        `${CitizensOtherProceedingsUniqueSelectors.orderCopyYes}`,
+      );
     } else {
-      await page.click(`${UniqueSelectors.currentOrderNo}`);
-      await page.click(`${UniqueSelectors.orderCopyNo}`);
+      await page.click(
+        `${CitizensOtherProceedingsUniqueSelectors.currentOrderNo}`,
+      );
+      await page.click(
+        `${CitizensOtherProceedingsUniqueSelectors.orderCopyNo}`,
+      );
     }
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,

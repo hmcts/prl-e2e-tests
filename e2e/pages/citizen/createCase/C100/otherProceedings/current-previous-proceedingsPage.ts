@@ -1,9 +1,9 @@
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
-import { CurrentPreviousProceedingsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/current-previous-proceedingsContent";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { CurrentPreviousProceedingsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/current-previous-proceedingsContent";
 
 interface CurrentPreviousProceedingsPageOptions {
   page: Page;
@@ -17,7 +17,7 @@ interface checkPageLoadsOptions {
   accessibilityTest: boolean;
 }
 
-interface fillinFieldsOptions {
+interface fillInFieldsOptions {
   page: Page;
   yesNoCurrentProceedings1: boolean;
 }
@@ -69,12 +69,12 @@ export class CurrentPreviousProceedingsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${CurrentPreviousProceedingsContent.formLabelYes}")`,
+        `${Selectors.GovukLabel}:text-is("${CommonStaticText.strippedYes}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${CurrentPreviousProceedingsContent.formLabelNo}")`,
+        `${Selectors.GovukLabel}:text-is("${CommonStaticText.strippedNo}")`,
         2,
       ),
     ]);
@@ -119,7 +119,7 @@ export class CurrentPreviousProceedingsPage {
   private static async fillInFields({
     page: page,
     yesNoCurrentProceedings1: yesNoCurrentProceedings1,
-  }: fillinFieldsOptions): Promise<void> {
+  }: fillInFieldsOptions): Promise<void> {
     if (yesNoCurrentProceedings1) {
       await page.click(`${UniqueSelectors.op_childrenInvolvedCourtCaseYes}`);
       await page.click(`${UniqueSelectors.op_courtOrderProtectionYes}`);

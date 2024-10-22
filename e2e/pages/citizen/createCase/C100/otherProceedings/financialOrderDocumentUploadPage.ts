@@ -1,12 +1,12 @@
-import { Selectors } from "../../../../../common/selectors";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
+import { FinancialOrderDocumentUploadContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/financialOrderDocumentUploadContent";
+import { Selectors } from "../../../../../common/selectors";
 import { Helpers } from "../../../../../common/helpers";
-import config from "../../../../../config";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-import { ContactOrderForDivorceDocumentUploadContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/contactOrderForDivorceDocumentUploadContent";
+import config from "../../../../../config";
 
-interface ContactOrderForDivorceDocumentUploadPageOptions {
+interface childMaintenanceOrderDocumentUploadPageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
@@ -26,12 +26,12 @@ enum UniqueSelectors {
   uploadConfirmationSelector = ".govuk-summary-list__value",
 }
 
-export class ContactOrderForDivorceDocumentUploadPage {
-  public static async contactOrderForDivorceDocumentUploadPage({
+export class FinancialOrderDocumentUploadPage {
+  public static async financialOrderDocumentUploadPage({
     page: page,
     accessibilityTest: accessibilityTest,
     errorMessaging: errorMessaging,
-  }: ContactOrderForDivorceDocumentUploadPageOptions): Promise<void> {
+  }: childMaintenanceOrderDocumentUploadPageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
       accessibilityTest: accessibilityTest,
@@ -49,19 +49,19 @@ export class ContactOrderForDivorceDocumentUploadPage {
     accessibilityTest: accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukHeadingXL}:text-is("${ContactOrderForDivorceDocumentUploadContent.pageTitle}")`,
+      `${Selectors.GovukHeadingXL}:text-is("${FinancialOrderDocumentUploadContent.pageTitle}")`,
     );
     await Promise.all([
       Helpers.checkGroup(
         page,
         2,
-        ContactOrderForDivorceDocumentUploadContent,
+        FinancialOrderDocumentUploadContent,
         "p",
         `${Selectors.p}`,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${ContactOrderForDivorceDocumentUploadContent.spanA}")`,
+        `${Selectors.Span}:text-is("${FinancialOrderDocumentUploadContent.spanA}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -71,12 +71,12 @@ export class ContactOrderForDivorceDocumentUploadPage {
       ),
     ]);
     await page.click(
-      `${Selectors.Span}:text-is("${ContactOrderForDivorceDocumentUploadContent.spanA}")`,
+      `${Selectors.Span}:text-is("${FinancialOrderDocumentUploadContent.spanA}")`,
     );
     await Helpers.checkGroup(
       page,
       5,
-      ContactOrderForDivorceDocumentUploadContent,
+      FinancialOrderDocumentUploadContent,
       "li",
       `${Selectors.li}`,
     );
@@ -97,12 +97,12 @@ export class ContactOrderForDivorceDocumentUploadPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${ContactOrderForDivorceDocumentUploadContent.errorMessageChooseFile}")`,
+        `${Selectors.a}:text-is("${FinancialOrderDocumentUploadContent.errorMessageChooseFile}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${ContactOrderForDivorceDocumentUploadContent.errorMessageChooseFile}")`,
+        `${Selectors.ErrorMessage}:text-is("${FinancialOrderDocumentUploadContent.errorMessageChooseFile}")`,
         1,
       ),
     ]);
@@ -114,12 +114,12 @@ export class ContactOrderForDivorceDocumentUploadPage {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${ContactOrderForDivorceDocumentUploadContent.errorMessageUploadCorrectFile}")`,
+        `${Selectors.a}:text-is("${FinancialOrderDocumentUploadContent.errorMessageUploadCorrectFile}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${ContactOrderForDivorceDocumentUploadContent.errorMessageUploadCorrectFile}")`,
+        `${Selectors.ErrorMessage}:text-is("${FinancialOrderDocumentUploadContent.errorMessageUploadCorrectFile}")`,
         1,
       ),
     ]);
