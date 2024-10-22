@@ -52,7 +52,7 @@ export class C100 {
     miamUrgencyType,
     miamAttendanceType,
     miamPreviousAttendanceMediatorSignedDocument,
-                             miamOtherReasonForNotAttending
+    miamOtherReasonForNotAttending,
   }: C100Options): Promise<void> {
     await CitizenCreateInitial.citizenCreateInitial({
       page: page,

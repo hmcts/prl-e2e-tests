@@ -27,12 +27,10 @@ import {
   MiamPreviousAttendancePage,
 } from "../../../../pages/citizen/createCase/C100/MIAM/miamPreviousAttendancePage";
 import { MiamOtherAttendanceOrNCDRPage } from "../../../../pages/citizen/createCase/C100/MIAM/miamOtherAttendanceOrNCDRPage";
-import {
-  MiamUploadEvidenceOfAttendingMiamOrNCDRPage
-} from "../../../../pages/citizen/createCase/C100/MIAM/miamUploadEvidenceOfAttendingMiamOrNCDRPage";
+import { MiamUploadEvidenceOfAttendingMiamOrNCDRPage } from "../../../../pages/citizen/createCase/C100/MIAM/miamUploadEvidenceOfAttendingMiamOrNCDRPage";
 import {
   MiamMiamOtherPage,
-  MiamOtherReasonForNotAttending
+  MiamOtherReasonForNotAttending,
 } from "../../../../pages/citizen/createCase/C100/MIAM/miamMiamOtherPage";
 
 interface MIAMOptions {
@@ -50,7 +48,7 @@ interface MIAMOptions {
   miamUrgencyType: MiamUrgencyType;
   miamAttendanceType: MiamAttendanceType;
   miamPreviousAttendanceMediatorSignedDocument: boolean;
-  miamOtherReasonForNotAttending : MiamOtherReasonForNotAttending;
+  miamOtherReasonForNotAttending: MiamOtherReasonForNotAttending;
 }
 
 export class MIAM {
@@ -202,12 +200,27 @@ export class MIAM {
             miamAttendanceType !== "None of these" &&
             miamPreviousAttendanceMediatorSignedDocument === true
           ) {
-            await MiamUploadEvidenceOfAttendingMiamOrNCDRPage.miamUploadEvidenceOfAttendingMiamOrNCDRPage({page: page,
-              accessibilityTest: accessibilityTest,
-              errorMessaging: errorMessaging,});
+            await MiamUploadEvidenceOfAttendingMiamOrNCDRPage.miamUploadEvidenceOfAttendingMiamOrNCDRPage(
+              {
+                page: page,
+                accessibilityTest: accessibilityTest,
+                errorMessaging: errorMessaging,
+              },
+            );
           }
-          await MiamMiamOtherPage.miamMiamOtherPage({page: page, accessibilityTest: accessibilityTest, errorMessaging: errorMessaging, miamOtherReasonForNotAttending: miamOtherReasonForNotAttending});
-          if (miamDomesticAbuseProvidingEvidence && miamChildProtectionConcernsType === "None of the above" && miamUrgencyType === "None of these" && miamAttendanceType === "None of these" && miamOtherReasonForNotAttending == "None of the above") {
+          await MiamMiamOtherPage.miamMiamOtherPage({
+            page: page,
+            accessibilityTest: accessibilityTest,
+            errorMessaging: errorMessaging,
+            miamOtherReasonForNotAttending: miamOtherReasonForNotAttending,
+          });
+          if (
+            miamDomesticAbuseProvidingEvidence &&
+            miamChildProtectionConcernsType === "None of the above" &&
+            miamUrgencyType === "None of these" &&
+            miamAttendanceType === "None of these" &&
+            miamOtherReasonForNotAttending == "None of the above"
+          ) {
             await MiamGetMediatorPage.miamGetMediatorPage({
               page: page,
               accessibilityTest: accessibilityTest,
