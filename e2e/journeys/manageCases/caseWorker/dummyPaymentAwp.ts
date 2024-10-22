@@ -36,7 +36,7 @@ export class DummyPaymentAwp {
         accessibilityTest,
       });
     } else {
-      await DummyFL401.dummyFL401({page});
+      await DummyFL401.dummyFL401({ page });
     }
     await Helpers.chooseEventFromDropdown(page, "Dummy Payment for AwP");
     await DummyPaymentAwp1Page.dummyPaymentAwp1Page(
