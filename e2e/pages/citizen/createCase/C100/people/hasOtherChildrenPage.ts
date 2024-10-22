@@ -20,6 +20,12 @@ interface checkPageLoadsOptions {
 
 interface fillInFieldsOptions {
   page: Page;
+  c100PeopleYesNoDontKnow: yesNoDontKnow;
+}
+
+enum radioIds {
+  hasOtherChildren = "#ocd_hasOtherChildren",
+  hasOtherChildren_2 = "#ocd_hasOtherChildren-2",
 }
 
 export class HasOtherChildrenPage {
@@ -38,6 +44,7 @@ export class HasOtherChildrenPage {
     }
     await this.fillInFields({
       page: page,
+      c100PeopleYesNoDontKnow: c100PeopleYesNoDontKnow,
     });
   }
 
@@ -45,14 +52,58 @@ export class HasOtherChildrenPage {
     page: page,
     accessibilityTest: accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
+    await page.waitForSelector(
+      `${Selectors.GovukHeadingXL}:text-is("${HasOtherChildrenContent.pageTitle}")`,
+    );
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukLabel}:text-is("${CommonStaticText.strippedYes}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukLabel}:text-is("${CommonStaticText.strippedNo}")`,
+        1,
+      ),
+    ]);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }
   }
 
-  private static async triggerErrorMessages(page: Page): Promise<void> {}
+  private static async triggerErrorMessages(page: Page): Promise<void> {
+    await page.click(
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
+    );
+    await page.waitForSelector(
+      `${Selectors.GovukErrorSummaryTitle}:text-is("${CommonStaticText.errorSummaryTitle}")`,
+    );
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.a}:text-is("${HasOtherChildrenContent.errorLink}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${HasOtherChildrenContent.errorLink}")`,
+        1,
+      ),
+    ]);
+  }
 
   private static async fillInFields({
     page: page,
-  }: fillInFieldsOptions): Promise<void> {}
+    c100PeopleYesNoDontKnow: c100PeopleYesNoDontKnow,
+  }: fillInFieldsOptions): Promise<void> {
+    if (c100PeopleYesNoDontKnow === "yes") {
+      await page.click(radioIds.hasOtherChildren);
+    } else {
+      await page.click(radioIds.hasOtherChildren_2);
+    }
+    await page.click(
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
+    );
+  }
 }

@@ -5,7 +5,7 @@ import { C100TypeOfOrder } from "./C100TypeOfOrder/C100TypeOfOrder";
 import { C100ConsentOrderUpload } from "./C100ConsentOrderUpload/C100ConsentOrderUpload";
 import { C100UrgencyAndWithoutNotice } from "./C100UrgencyAndWithoutNotice/C100UrgencyAndWithoutNotice";
 import { C100People1 } from "./C100People/C100People1";
-import { ApplicantGender } from "../../../common/types";
+import { ApplicantGender, yesNoDontKnow } from "../../../common/types";
 
 interface C100Options {
   page: Page;
@@ -16,6 +16,7 @@ interface C100Options {
   c100CourtPermissionNeeded: boolean;
   urgencyAndWithoutNoticeAllOptionsYes: boolean;
   c100PeopleGender: ApplicantGender;
+  c100PeopleYesNoDontKnow: yesNoDontKnow;
 }
 
 export class C100 {
@@ -28,6 +29,7 @@ export class C100 {
     c100CourtPermissionNeeded,
     urgencyAndWithoutNoticeAllOptionsYes,
     c100PeopleGender,
+    c100PeopleYesNoDontKnow,
   }: C100Options): Promise<void> {
     await CitizenCreateInitial.citizenCreateInitial({
       page: page,
@@ -65,6 +67,7 @@ export class C100 {
         accessibilityTest: accessibilityTest,
         errorMessaging: errorMessaging,
         gender: c100PeopleGender,
+        c100PeopleYesNoDontKnow: c100PeopleYesNoDontKnow,
         subJourney: true,
       });
     } else {

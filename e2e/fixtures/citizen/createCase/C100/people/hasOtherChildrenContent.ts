@@ -1,1 +1,4 @@
-export enum HasOtherChildrenContent {}
+export enum HasOtherChildrenContent {
+  pageTitle = "Do you or any respondents have other children who are not part of this application?",
+  errorLink = "Select yes if you have other children",
+}
