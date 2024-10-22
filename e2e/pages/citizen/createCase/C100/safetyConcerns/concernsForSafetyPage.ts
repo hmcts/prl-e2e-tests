@@ -79,12 +79,12 @@ export class ConcernsForSafetyPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${CommonStaticText.strippedYes}")`,
+        `${Selectors.GovukLabel}:text-is("${CommonStaticText.yes}")`,
         1
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${CommonStaticText.strippedNo}")`,
+        `${Selectors.GovukLabel}:text-is("${CommonStaticText.no}")`,
         1
       ),
       Helpers.checkGroup(
@@ -104,7 +104,7 @@ export class ConcernsForSafetyPage {
     page: Page
   ): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`
+      `${Selectors.button}:text-is("${CommonStaticText.continue}")`
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -153,7 +153,7 @@ export class ConcernsForSafetyPage {
       );
     }
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`
+      `${Selectors.button}:text-is("${CommonStaticText.continue}")`
     );
   }
 }
