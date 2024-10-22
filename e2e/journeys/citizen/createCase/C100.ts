@@ -7,6 +7,8 @@ import { C100UrgencyAndWithoutNotice } from "./C100UrgencyAndWithoutNotice/C100U
 import { MIAM } from "./C100MIAM/MIAM";
 import { MiamChildProtectionConcernsType } from "../../../pages/citizen/createCase/C100/MIAM/miamChildProtectionPage";
 import { MiamUrgencyType } from "../../../pages/citizen/createCase/C100/MIAM/miamUrgencyPage";
+import { MiamAttendanceType } from "../../../pages/citizen/createCase/C100/MIAM/miamPreviousAttendancePage";
+import { MiamOtherReasonForNotAttending } from "../../../pages/citizen/createCase/C100/MIAM/miamMiamOtherPage";
 
 interface C100Options {
   page: Page;
@@ -25,6 +27,9 @@ interface C100Options {
   miamDomesticAbuseProvidingEvidence: boolean;
   miamChildProtectionConcernsType: MiamChildProtectionConcernsType;
   miamUrgencyType: MiamUrgencyType;
+  miamAttendanceType: MiamAttendanceType;
+  miamPreviousAttendanceMediatorSignedDocument: boolean;
+  miamOtherReasonForNotAttending: MiamOtherReasonForNotAttending;
 }
 
 export class C100 {
@@ -45,6 +50,9 @@ export class C100 {
     miamDomesticAbuseProvidingEvidence,
     miamChildProtectionConcernsType,
     miamUrgencyType,
+    miamAttendanceType,
+    miamPreviousAttendanceMediatorSignedDocument,
+                             miamOtherReasonForNotAttending
   }: C100Options): Promise<void> {
     await CitizenCreateInitial.citizenCreateInitial({
       page: page,
@@ -92,6 +100,10 @@ export class C100 {
         miamDomesticAbuseProvidingEvidence: miamDomesticAbuseProvidingEvidence,
         miamChildProtectionConcernsType: miamChildProtectionConcernsType,
         miamUrgencyType: miamUrgencyType,
+        miamAttendanceType: miamAttendanceType,
+        miamPreviousAttendanceMediatorSignedDocument:
+          miamPreviousAttendanceMediatorSignedDocument,
+        miamOtherReasonForNotAttending: miamOtherReasonForNotAttending,
       });
     }
   }

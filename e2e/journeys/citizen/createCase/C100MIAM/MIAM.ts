@@ -22,6 +22,18 @@ import {
   MiamUrgencyPage,
   MiamUrgencyType,
 } from "../../../../pages/citizen/createCase/C100/MIAM/miamUrgencyPage";
+import {
+  MiamAttendanceType,
+  MiamPreviousAttendancePage,
+} from "../../../../pages/citizen/createCase/C100/MIAM/miamPreviousAttendancePage";
+import { MiamOtherAttendanceOrNCDRPage } from "../../../../pages/citizen/createCase/C100/MIAM/miamOtherAttendanceOrNCDRPage";
+import {
+  MiamUploadEvidenceOfAttendingMiamOrNCDRPage
+} from "../../../../pages/citizen/createCase/C100/MIAM/miamUploadEvidenceOfAttendingMiamOrNCDRPage";
+import {
+  MiamMiamOtherPage,
+  MiamOtherReasonForNotAttending
+} from "../../../../pages/citizen/createCase/C100/MIAM/miamMiamOtherPage";
 
 interface MIAMOptions {
   page: Page;
@@ -36,6 +48,9 @@ interface MIAMOptions {
   miamDomesticAbuseProvidingEvidence: boolean;
   miamChildProtectionConcernsType: MiamChildProtectionConcernsType;
   miamUrgencyType: MiamUrgencyType;
+  miamAttendanceType: MiamAttendanceType;
+  miamPreviousAttendanceMediatorSignedDocument: boolean;
+  miamOtherReasonForNotAttending : MiamOtherReasonForNotAttending;
 }
 
 export class MIAM {
@@ -52,6 +67,10 @@ export class MIAM {
     miamDomesticAbuseProvidingEvidence: miamDomesticAbuseProvidingEvidence,
     miamChildProtectionConcernsType: miamChildProtectionConcernsType,
     miamUrgencyType: miamUrgencyType,
+    miamAttendanceType: miamAttendanceType,
+    miamPreviousAttendanceMediatorSignedDocument:
+      miamPreviousAttendanceMediatorSignedDocument,
+    miamOtherReasonForNotAttending: miamOtherReasonForNotAttending,
   }: MIAMOptions): Promise<void> {
     await MiamOtherProceedingsPage.otherProceedingsPage({
       page: page,
@@ -162,6 +181,39 @@ export class MIAM {
             errorMessaging: errorMessaging,
             miamUrgencyType: miamUrgencyType,
           });
+          await MiamPreviousAttendancePage.miamPreviousAttendancePage({
+            page: page,
+            accessibilityTest: accessibilityTest,
+            errorMessaging: errorMessaging,
+            miamAttendanceType: miamAttendanceType,
+          });
+          if (
+            miamAttendanceType === "Application made in existing proceedings"
+          ) {
+            await MiamOtherAttendanceOrNCDRPage.miamOtherAttendanceOrNCDRPage({
+              page: page,
+              accessibilityTest: accessibilityTest,
+              errorMessaging: errorMessaging,
+              miamPreviousAttendanceMediatorSignedDocument:
+                miamPreviousAttendanceMediatorSignedDocument,
+            });
+          }
+          if (
+            miamAttendanceType !== "None of these" &&
+            miamPreviousAttendanceMediatorSignedDocument === true
+          ) {
+            await MiamUploadEvidenceOfAttendingMiamOrNCDRPage.miamUploadEvidenceOfAttendingMiamOrNCDRPage({page: page,
+              accessibilityTest: accessibilityTest,
+              errorMessaging: errorMessaging,});
+          }
+          await MiamMiamOtherPage.miamMiamOtherPage({page: page, accessibilityTest: accessibilityTest, errorMessaging: errorMessaging, miamOtherReasonForNotAttending: miamOtherReasonForNotAttending});
+          if (miamDomesticAbuseProvidingEvidence && miamChildProtectionConcernsType === "None of the above" && miamUrgencyType === "None of these" && miamAttendanceType === "None of these" && miamOtherReasonForNotAttending == "None of the above") {
+            await MiamGetMediatorPage.miamGetMediatorPage({
+              page: page,
+              accessibilityTest: accessibilityTest,
+            });
+            return;
+          }
         }
       }
     }
