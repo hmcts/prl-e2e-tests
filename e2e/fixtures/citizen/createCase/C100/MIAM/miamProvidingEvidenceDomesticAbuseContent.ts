@@ -33,6 +33,7 @@ export enum MiamProvidingEvidenceDomesticAbuseContent {
   govukFieldsetLegend = "Can you provide evidence?",
   govukLabel1 = "Yes",
   govukLabel2 = "No",
-  govukLabel3 = "Explain why you cannot provide evidence",
-
+  govukLabelIndent = "Explain why you cannot provide evidence",
+  errorMessage = "Select yes if you can provide evidence",
+  canProvideEvidenceNoField = "Lorem ipsum explain why you cannot provide evidence",
 }

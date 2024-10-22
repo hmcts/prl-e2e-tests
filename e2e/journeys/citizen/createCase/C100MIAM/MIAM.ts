@@ -12,6 +12,16 @@ import { MiamValidReasonPage } from "../../../../pages/citizen/createCase/C100/M
 import { MiamGetMediatorPage } from "../../../../pages/citizen/createCase/C100/MIAM/miamGetMediatorPage";
 import { MiamGeneralReasonsPage } from "../../../../pages/citizen/createCase/C100/MIAM/miamGeneralReasonsPage";
 import { MiamDomesticAbusePage } from "../../../../pages/citizen/createCase/C100/MIAM/miamDomesticAbusePage";
+import { MiamProvidingEvidenceDomesticAbusePage } from "../../../../pages/citizen/createCase/C100/MIAM/miamProvidingEvidenceDomesticAbusePage";
+import { MiamDomesticAbuseUploadEvidencePage } from "../../../../pages/citizen/createCase/C100/MIAM/miamDomesticAbuseUploadEvidencePage";
+import {
+  MiamChildProtectionConcernsType,
+  MiamChildProtectionPage,
+} from "../../../../pages/citizen/createCase/C100/MIAM/miamChildProtectionPage";
+import {
+  MiamUrgencyPage,
+  MiamUrgencyType,
+} from "../../../../pages/citizen/createCase/C100/MIAM/miamUrgencyPage";
 
 interface MIAMOptions {
   page: Page;
@@ -23,6 +33,9 @@ interface MIAMOptions {
   MIAMValidReasonNoAttendance: boolean;
   MiamGeneralExemptions: boolean;
   MiamDomesticAbuse: boolean;
+  miamDomesticAbuseProvidingEvidence: boolean;
+  miamChildProtectionConcernsType: MiamChildProtectionConcernsType;
+  miamUrgencyType: MiamUrgencyType;
 }
 
 export class MIAM {
@@ -33,9 +46,12 @@ export class MIAM {
     MIAMChildrenInvolvedOtherProceedings: MIAMChildrenInvolvedOtherProceedings,
     miamAlreadyAttended: miamAlreadyAttended,
     documentSignedByMediator: documentSignedByMediator,
-                             MIAMValidReasonNoAttendance: MIAMValidReasonNoAttendance,
-                             MiamGeneralExemptions: MiamGeneralExemptions,
-                             MiamDomesticAbuse: MiamDomesticAbuse,
+    MIAMValidReasonNoAttendance: MIAMValidReasonNoAttendance,
+    MiamGeneralExemptions: MiamGeneralExemptions,
+    MiamDomesticAbuse: MiamDomesticAbuse,
+    miamDomesticAbuseProvidingEvidence: miamDomesticAbuseProvidingEvidence,
+    miamChildProtectionConcernsType: miamChildProtectionConcernsType,
+    miamUrgencyType: miamUrgencyType,
   }: MIAMOptions): Promise<void> {
     await MiamOtherProceedingsPage.otherProceedingsPage({
       page: page,
@@ -89,20 +105,63 @@ export class MIAM {
           });
         }
       } else {
-        await MiamValidReasonPage.miamValidReasonPage({page: page, accessibilityTest: accessibilityTest, errorMessaging: errorMessaging, MIAMValidReasonNoAttendance: MIAMValidReasonNoAttendance});
+        await MiamValidReasonPage.miamValidReasonPage({
+          page: page,
+          accessibilityTest: accessibilityTest,
+          errorMessaging: errorMessaging,
+          MIAMValidReasonNoAttendance: MIAMValidReasonNoAttendance,
+        });
         if (!MIAMValidReasonNoAttendance) {
-          await MiamGetMediatorPage.miamGetMediatorPage({page: page, accessibilityTest: accessibilityTest})
+          await MiamGetMediatorPage.miamGetMediatorPage({
+            page: page,
+            accessibilityTest: accessibilityTest,
+          });
         } else {
-          await MiamGeneralReasonsPage.miamGeneralReasonsPage({page: page, accessibilityTest: accessibilityTest, errorMessaging: errorMessaging, MiamGeneralExemptions: MiamGeneralExemptions})
+          await MiamGeneralReasonsPage.miamGeneralReasonsPage({
+            page: page,
+            accessibilityTest: accessibilityTest,
+            errorMessaging: errorMessaging,
+            MiamGeneralExemptions: MiamGeneralExemptions,
+          });
           if (!MiamGeneralExemptions) {
-            await MiamGetMediatorPage.miamGetMediatorPage({page: page, accessibilityTest: accessibilityTest})
+            await MiamGetMediatorPage.miamGetMediatorPage({
+              page: page,
+              accessibilityTest: accessibilityTest,
+            });
             return;
           }
-          await MiamDomesticAbusePage.miamDomesticAbusePage({page: page, accessibilityTest: accessibilityTest, errorMessaging: errorMessaging, MiamDomesticAbuse: MiamDomesticAbuse});
-          if (!MiamDomesticAbuse) {
-            await MiamGetMediatorPage.miamGetMediatorPage({page: page, accessibilityTest: accessibilityTest})
-            return;
+          await MiamDomesticAbusePage.miamDomesticAbusePage({
+            page: page,
+            accessibilityTest: accessibilityTest,
+            errorMessaging: errorMessaging,
+            MiamDomesticAbuse: MiamDomesticAbuse,
+          });
+          await MiamProvidingEvidenceDomesticAbusePage.miamProvidingEvidenceDomesticAbusePage(
+            {
+              page: page,
+              accessibilityTest: accessibilityTest,
+              errorMessaging: errorMessaging,
+              miamDomesticAbuseProvidingEvidence:
+                miamDomesticAbuseProvidingEvidence,
+            },
+          );
+          if (miamDomesticAbuseProvidingEvidence) {
+            await MiamDomesticAbuseUploadEvidencePage.miamDomesticAbuseUploadEvidencePage(
+              { page: page, accessibilityTest: accessibilityTest },
+            );
           }
+          await MiamChildProtectionPage.miamChildProtectionPage({
+            page: page,
+            accessibilityTest: accessibilityTest,
+            errorMessaging: errorMessaging,
+            miamChildProtectionConcernsType: miamChildProtectionConcernsType,
+          });
+          await MiamUrgencyPage.miamUrgencyPage({
+            page: page,
+            accessibilityTest: accessibilityTest,
+            errorMessaging: errorMessaging,
+            miamUrgencyType: miamUrgencyType,
+          });
         }
       }
     }

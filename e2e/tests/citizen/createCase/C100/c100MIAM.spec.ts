@@ -26,6 +26,8 @@ test.describe("C100 Citizen Application tests on the MIAM set. @citizenFrontend 
       MIAMValidReasonNoAttendance: false,
       MiamGeneralExemptions: false,
       MiamDomesticAbuse: false,
+      miamDomesticAbuseProvidingEvidence: false,
+      miamChildProtectionConcernsType: "None of the above",
     });
   });
 
@@ -53,6 +55,8 @@ test.describe("C100 Citizen Application tests on the MIAM set. @citizenFrontend 
       MIAMValidReasonNoAttendance: false,
       MiamGeneralExemptions: false,
       MiamDomesticAbuse: false,
+      miamDomesticAbuseProvidingEvidence: false,
+      miamChildProtectionConcernsType: "None of the above",
     });
   });
 
@@ -78,6 +82,35 @@ test.describe("C100 Citizen Application tests on the MIAM set. @citizenFrontend 
       MIAMValidReasonNoAttendance: false,
       MiamGeneralExemptions: false,
       MiamDomesticAbuse: false,
+      miamDomesticAbuseProvidingEvidence: false,
+      miamChildProtectionConcernsType: "None of the above",
+    });
+  });
+
+  test(`Test the C100 of the citizen journey with the following options:
+  Not Accessibility Testing,
+  Not Error Messaging,
+  No Screening and Written Review
+  Children not involved in other proceedings
+  With urgency and without notice options
+  With a Miam already attended
+  And a document signed by the mediator 2`, async ({ page }): Promise<void> => {
+    await C100.c100({
+      page: page,
+      accessibilityTest: false,
+      errorMessaging: false,
+      c100ScreeningWrittenAgreementReview: false,
+      c100LegalRepresentation: false,
+      c100CourtPermissionNeeded: true,
+      MIAMChildrenInvolvedOtherProceedings: false,
+      urgencyAndWithoutNoticeAllOptionsYes: true,
+      miamAlreadyAttended: true,
+      documentSignedByMediator: true,
+      MIAMValidReasonNoAttendance: false,
+      MiamGeneralExemptions: false,
+      MiamDomesticAbuse: false,
+      miamDomesticAbuseProvidingEvidence: false,
+      miamChildProtectionConcernsType: "None of the above",
     });
   });
 
@@ -90,7 +123,8 @@ test.describe("C100 Citizen Application tests on the MIAM set. @citizenFrontend 
   Without a Miam already attended
   With a valid reason for not attending
   And Selecting valid general reasons
-  And selecting valid domestic abuse reasons`, async ({ page }): Promise<void> => {
+  And selecting valid domestic abuse reasons
+  With evidence`, async ({ page }): Promise<void> => {
     await C100.c100({
       page: page,
       accessibilityTest: false,
@@ -105,6 +139,38 @@ test.describe("C100 Citizen Application tests on the MIAM set. @citizenFrontend 
       MIAMValidReasonNoAttendance: true,
       MiamGeneralExemptions: true,
       MiamDomesticAbuse: true,
+      miamDomesticAbuseProvidingEvidence: true,
+      miamChildProtectionConcernsType: "Child protection plan",
+    });
+  });
+
+  test(`Test the C100 of the citizen journey with the following options:
+  Not Accessibility Testing,
+  Not Error Messaging,
+  No Screening and Written Review
+  Children not involved in other proceedings
+  Without urgency and without notice options
+  Without a Miam already attended
+  With a valid reason for not attending
+  And Selecting valid general reasons
+  And selecting valid domestic abuse reasons
+  With no evidence`, async ({ page }): Promise<void> => {
+    await C100.c100({
+      page: page,
+      accessibilityTest: false,
+      errorMessaging: false,
+      c100ScreeningWrittenAgreementReview: false,
+      c100LegalRepresentation: false,
+      c100CourtPermissionNeeded: true,
+      MIAMChildrenInvolvedOtherProceedings: false,
+      urgencyAndWithoutNoticeAllOptionsYes: false,
+      miamAlreadyAttended: false,
+      documentSignedByMediator: false,
+      MIAMValidReasonNoAttendance: true,
+      MiamGeneralExemptions: true,
+      MiamDomesticAbuse: true,
+      miamDomesticAbuseProvidingEvidence: false,
+      miamChildProtectionConcernsType: "Section 47",
     });
   });
 
@@ -131,6 +197,8 @@ test.describe("C100 Citizen Application tests on the MIAM set. @citizenFrontend 
       MIAMValidReasonNoAttendance: true,
       MiamGeneralExemptions: false,
       MiamDomesticAbuse: false,
+      miamDomesticAbuseProvidingEvidence: false,
+      miamChildProtectionConcernsType: "None of the above",
     });
   });
 
@@ -143,7 +211,9 @@ test.describe("C100 Citizen Application tests on the MIAM set. @citizenFrontend 
   Without a Miam already attended
   With a valid reason for not attending
   And Selecting valid general reasons
-  And selecting invalid domestic abuse reasons`, async ({ page }): Promise<void> => {
+  And selecting invalid domestic abuse reasons`, async ({
+    page,
+  }): Promise<void> => {
     await C100.c100({
       page: page,
       accessibilityTest: false,
@@ -158,6 +228,8 @@ test.describe("C100 Citizen Application tests on the MIAM set. @citizenFrontend 
       MIAMValidReasonNoAttendance: true,
       MiamGeneralExemptions: true,
       MiamDomesticAbuse: false,
+      miamDomesticAbuseProvidingEvidence: false,
+      miamChildProtectionConcernsType: "None of the above",
     });
   });
 
@@ -168,7 +240,9 @@ test.describe("C100 Citizen Application tests on the MIAM set. @citizenFrontend 
   Children not involved in other proceedings
   Without urgency and without notice options
   Without a Miam already attended
-  Without a valid reason for not attending`, async ({ page }): Promise<void> => {
+  Without a valid reason for not attending`, async ({
+    page,
+  }): Promise<void> => {
     await C100.c100({
       page: page,
       accessibilityTest: false,
@@ -183,6 +257,8 @@ test.describe("C100 Citizen Application tests on the MIAM set. @citizenFrontend 
       MIAMValidReasonNoAttendance: false,
       MiamGeneralExemptions: false,
       MiamDomesticAbuse: false,
+      miamDomesticAbuseProvidingEvidence: false,
+      miamChildProtectionConcernsType: "None of the above",
     });
   });
 
@@ -206,6 +282,8 @@ test.describe("C100 Citizen Application tests on the MIAM set. @citizenFrontend 
       MIAMValidReasonNoAttendance: false,
       MiamGeneralExemptions: false,
       MiamDomesticAbuse: false,
+      miamDomesticAbuseProvidingEvidence: false,
+      miamChildProtectionConcernsType: "None of the above",
     });
   });
 
@@ -229,6 +307,8 @@ test.describe("C100 Citizen Application tests on the MIAM set. @citizenFrontend 
       MIAMValidReasonNoAttendance: false,
       MiamGeneralExemptions: false,
       MiamDomesticAbuse: false,
+      miamDomesticAbuseProvidingEvidence: false,
+      miamChildProtectionConcernsType: "None of the above",
     });
   });
 });
@@ -250,5 +330,7 @@ test(`C100 Citizen Application tests on the top MIAM set. @accessibilityCitizenF
     MIAMValidReasonNoAttendance: false,
     MiamGeneralExemptions: false,
     MiamDomesticAbuse: false,
+    miamDomesticAbuseProvidingEvidence: false,
+    miamChildProtectionConcernsType: "None of the above",
   });
 });

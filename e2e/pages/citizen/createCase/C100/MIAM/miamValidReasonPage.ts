@@ -18,29 +18,57 @@ enum uniqueSelectors {
 }
 
 export class MiamValidReasonPage {
-  public static async miamValidReasonPage({page: page, accessibilityTest: accessibilityTest, errorMessaging: errorMessaging, MIAMValidReasonNoAttendance: MIAMValidReasonNoAttendance}: MiamValidReasonPageOptions): Promise<void> {
-    await this.checkPageLoads({page: page, accessibilityTest: accessibilityTest});
+  public static async miamValidReasonPage({
+    page: page,
+    accessibilityTest: accessibilityTest,
+    errorMessaging: errorMessaging,
+    MIAMValidReasonNoAttendance: MIAMValidReasonNoAttendance,
+  }: MiamValidReasonPageOptions): Promise<void> {
+    await this.checkPageLoads({
+      page: page,
+      accessibilityTest: accessibilityTest,
+    });
     if (errorMessaging) {
-      await this.triggerErrorMessages({page: page});
+      await this.triggerErrorMessages({ page: page });
     }
-    await this.fillInFields({page: page, MIAMValidReasonNoAttendance: MIAMValidReasonNoAttendance});
+    await this.fillInFields({
+      page: page,
+      MIAMValidReasonNoAttendance: MIAMValidReasonNoAttendance,
+    });
   }
 
-  private static async checkPageLoads({ page: page, accessibilityTest: accessibilityTest}: Partial<MiamValidReasonPageOptions>): Promise<void> {
+  private static async checkPageLoads({
+    page: page,
+    accessibilityTest: accessibilityTest,
+  }: Partial<MiamValidReasonPageOptions>): Promise<void> {
     if (!page) {
       throw new Error();
     }
-    await page.waitForSelector(`${Selectors.GovukHeadingL}:text-is("${MiamValidReasonContent.pageTitle}")`);
+    await page.waitForSelector(
+      `${Selectors.GovukHeadingL}:text-is("${MiamValidReasonContent.pageTitle}")`,
+    );
     await Promise.all([
-      Helpers.checkVisibleAndPresent(page, `${Selectors.GovukBodyL}:has-text("${MiamValidReasonContent.govukBodyL}")`, 1),
-      Helpers.checkGroup(page, 2, MiamValidReasonContent, `govukLabel`, Selectors.GovukLabel),
-    ])
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukBodyL}:has-text("${MiamValidReasonContent.govukBodyL}")`,
+        1,
+      ),
+      Helpers.checkGroup(
+        page,
+        2,
+        MiamValidReasonContent,
+        `govukLabel`,
+        Selectors.GovukLabel,
+      ),
+    ]);
     if (accessibilityTest) {
       await AxeTest.run(page);
     }
   }
 
-  private static async triggerErrorMessages({page: page}: Partial<MiamValidReasonPageOptions>): Promise<void> {
+  private static async triggerErrorMessages({
+    page: page,
+  }: Partial<MiamValidReasonPageOptions>): Promise<void> {
     if (!page) {
       throw new Error();
     }
@@ -66,7 +94,10 @@ export class MiamValidReasonPage {
     ]);
   }
 
-  private static async fillInFields({page: page, MIAMValidReasonNoAttendance: MIAMValidReasonNoAttendance}: Partial<MiamValidReasonPageOptions>): Promise<void> {
+  private static async fillInFields({
+    page: page,
+    MIAMValidReasonNoAttendance: MIAMValidReasonNoAttendance,
+  }: Partial<MiamValidReasonPageOptions>): Promise<void> {
     if (!page) {
       throw new Error();
     }

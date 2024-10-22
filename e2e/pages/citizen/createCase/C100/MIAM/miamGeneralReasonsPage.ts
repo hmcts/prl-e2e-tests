@@ -1,8 +1,6 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
-import {
-  MiamGeneralReasonsContent
-} from "../../../../../fixtures/citizen/createCase/C100/MIAM/miamGeneralReasonsContent";
+import { MiamGeneralReasonsContent } from "../../../../../fixtures/citizen/createCase/C100/MIAM/miamGeneralReasonsContent";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import AxeTest from "../../../../../common/accessibilityTestHelper";
@@ -24,32 +22,72 @@ enum uniqueSelectors {
 }
 
 export class MiamGeneralReasonsPage {
-  public static async miamGeneralReasonsPage({page: page, accessibilityTest: accessibilityTest, errorMessaging: errorMessaging, MiamGeneralExemptions: MiamGeneralExemptions}: MiamGeneralReasonsPageOptions): Promise<void> {
-    await this.checkPageLoads({page: page, accessibilityTest: accessibilityTest});
+  public static async miamGeneralReasonsPage({
+    page: page,
+    accessibilityTest: accessibilityTest,
+    errorMessaging: errorMessaging,
+    MiamGeneralExemptions: MiamGeneralExemptions,
+  }: MiamGeneralReasonsPageOptions): Promise<void> {
+    await this.checkPageLoads({
+      page: page,
+      accessibilityTest: accessibilityTest,
+    });
     if (errorMessaging) {
-      await this.triggerErrorMessages({page: page});
+      await this.triggerErrorMessages({ page: page });
     }
-    await this.fillInFields({page: page, MiamGeneralExemptions: MiamGeneralExemptions});
+    await this.fillInFields({
+      page: page,
+      MiamGeneralExemptions: MiamGeneralExemptions,
+    });
   }
 
-  private static async checkPageLoads({page: page, accessibilityTest: accessibilityTest}: Partial<MiamGeneralReasonsPageOptions>): Promise<void> {
+  private static async checkPageLoads({
+    page: page,
+    accessibilityTest: accessibilityTest,
+  }: Partial<MiamGeneralReasonsPageOptions>): Promise<void> {
     if (!page) {
       throw new Error();
     }
-    await page.waitForSelector(`${Selectors.GovukHeadingL}:text-is("${MiamGeneralReasonsContent.pageTitle}")`);
+    await page.waitForSelector(
+      `${Selectors.GovukHeadingL}:text-is("${MiamGeneralReasonsContent.pageTitle}")`,
+    );
     await Promise.all([
-      Helpers.checkVisibleAndPresent(page, `${Selectors.GovukBody}:text-is("${MiamGeneralReasonsContent.govukBody}")`, 1),
-      Helpers.checkVisibleAndPresent(page, `${Selectors.GovukFieldsetLegend}:text-is("${MiamGeneralReasonsContent.govukFieldsetLegend}")`, 1),
-      Helpers.checkVisibleAndPresent(page, `${Selectors.GovukHint}:text-is("${MiamGeneralReasonsContent.govukHint}")`, 1),
-      Helpers.checkGroup(page, 6, MiamGeneralReasonsContent, `govukLabel`, Selectors.GovukLabel),
-      Helpers.checkVisibleAndPresent(page, `${Selectors.GovukCheckboxesDivider}:text-is("${MiamGeneralReasonsContent.govukCheckboxesDivider}")`, 1),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukBody}:text-is("${MiamGeneralReasonsContent.govukBody}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFieldsetLegend}:text-is("${MiamGeneralReasonsContent.govukFieldsetLegend}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukHint}:text-is("${MiamGeneralReasonsContent.govukHint}")`,
+        1,
+      ),
+      Helpers.checkGroup(
+        page,
+        6,
+        MiamGeneralReasonsContent,
+        `govukLabel`,
+        Selectors.GovukLabel,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukCheckboxesDivider}:text-is("${MiamGeneralReasonsContent.govukCheckboxesDivider}")`,
+        1,
+      ),
     ]);
     if (accessibilityTest) {
       await AxeTest.run(page);
     }
   }
 
-  private static async triggerErrorMessages({page: page}: Partial<MiamGeneralReasonsPageOptions>): Promise<void> {
+  private static async triggerErrorMessages({
+    page: page,
+  }: Partial<MiamGeneralReasonsPageOptions>): Promise<void> {
     if (!page) {
       throw new Error();
     }
@@ -75,11 +113,16 @@ export class MiamGeneralReasonsPage {
     ]);
   }
 
-  private static async fillInFields({page: page, MiamGeneralExemptions: MiamGeneralExemptions}: Partial<MiamGeneralReasonsPageOptions>): Promise<void> {
+  private static async fillInFields({
+    page: page,
+    MiamGeneralExemptions: MiamGeneralExemptions,
+  }: Partial<MiamGeneralReasonsPageOptions>): Promise<void> {
     if (!page) {
       throw new Error();
     }
-    const selectorsArray: uniqueSelectors[] = Object.values(uniqueSelectors).slice(0, -1);
+    const selectorsArray: uniqueSelectors[] = Object.values(
+      uniqueSelectors,
+    ).slice(0, -1);
     for (const selector of selectorsArray) {
       await page.click(selector);
     }

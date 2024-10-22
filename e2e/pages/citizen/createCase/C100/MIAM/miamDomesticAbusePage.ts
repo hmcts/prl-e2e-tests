@@ -1,10 +1,8 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
-import { MiamDomesticAbuseContent } from "./miamDomesticAbuseContent";
+import { MiamDomesticAbuseContent } from "../../../../../fixtures/citizen/createCase/C100/MIAM/miamDomesticAbuseContent";
 import { Helpers } from "../../../../../common/helpers";
-import {
-  MiamGeneralReasonsContent
-} from "../../../../../fixtures/citizen/createCase/C100/MIAM/miamGeneralReasonsContent";
+import { MiamGeneralReasonsContent } from "../../../../../fixtures/citizen/createCase/C100/MIAM/miamGeneralReasonsContent";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import AxeTest from "../../../../../common/accessibilityTestHelper";
 
@@ -50,39 +48,96 @@ enum uniqueInnerSelectors {
 }
 
 export class MiamDomesticAbusePage {
-  public static async miamDomesticAbusePage({page: page, accessibilityTest: accessibilityTest, errorMessaging: errorMessaging, MiamDomesticAbuse: MiamDomesticAbuse}: Partial<MiamDomesticAbusePageOptions>): Promise<void> {
-    await this.checkPageLoads({page, accessibilityTest});
+  public static async miamDomesticAbusePage({
+    page: page,
+    accessibilityTest: accessibilityTest,
+    errorMessaging: errorMessaging,
+    MiamDomesticAbuse: MiamDomesticAbuse,
+  }: Partial<MiamDomesticAbusePageOptions>): Promise<void> {
+    await this.checkPageLoads({ page, accessibilityTest });
     if (errorMessaging) {
-      await this.triggerErrorMessages({page: page});
+      await this.triggerErrorMessages({ page: page });
     }
-    await this.fillInFields({page: page, MiamDomesticAbuse: MiamDomesticAbuse});
+    await this.fillInFields({
+      page: page,
+      MiamDomesticAbuse: MiamDomesticAbuse,
+    });
   }
 
-  private static async checkPageLoads({page: page, accessibilityTest: accessibilityTest}: Partial<MiamDomesticAbusePageOptions>): Promise<void> {
+  private static async checkPageLoads({
+    page: page,
+    accessibilityTest: accessibilityTest,
+  }: Partial<MiamDomesticAbusePageOptions>): Promise<void> {
     if (!page) {
       throw new Error();
     }
-    await page.waitForSelector(`${Selectors.GovukHeadingXL}:text-is("${MiamDomesticAbuseContent.pageTitle}")`);
-    const selectorsArray: uniqueOuterSelectors[] = Object.values(uniqueOuterSelectors).slice(0, -1);
+    await page.waitForSelector(
+      `${Selectors.GovukHeadingXL}:text-is("${MiamDomesticAbuseContent.pageTitle}")`,
+    );
+    const selectorsArray: uniqueOuterSelectors[] = Object.values(
+      uniqueOuterSelectors,
+    ).slice(0, -1);
     for (const selector of selectorsArray) {
       await page.click(selector);
     }
     await Promise.all([
-      Helpers.checkVisibleAndPresent(page, `${Selectors.GovukCaptionXL}:text-is("${MiamDomesticAbuseContent.pageCaptionXL}")`, 1),
-      Helpers.checkGroup(page, 2, MiamDomesticAbuseContent, `govukBodyM`, Selectors.GovukBodyM),
-      Helpers.checkVisibleAndPresent(page, `${Selectors.GovukFieldsetLegend}:text-is("${MiamDomesticAbuseContent.govukFieldsetLegend}")`, 1),
-      Helpers.checkGroup(page, 9, MiamDomesticAbuseContent, `govukHint`, Selectors.GovukHint),
-      Helpers.checkVisibleAndPresent(page, `${Selectors.GovukBody}:text-is("${MiamDomesticAbuseContent.govukBodyLetters}")`, 3),
-      Helpers.checkVisibleAndPresent(page, `${Selectors.GovukBody}:text-is("${MiamDomesticAbuseContent.govukBodyEvidence}")`, 2),
-      Helpers.checkGroup(page, 28, MiamDomesticAbuseContent, `govukLabel`, Selectors.GovukLabel),
-      Helpers.checkGroup(page, 16, MiamDomesticAbuseContent, `li`, Selectors.li),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukCaptionXL}:text-is("${MiamDomesticAbuseContent.pageCaptionXL}")`,
+        1,
+      ),
+      Helpers.checkGroup(
+        page,
+        2,
+        MiamDomesticAbuseContent,
+        `govukBodyM`,
+        Selectors.GovukBodyM,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFieldsetLegend}:text-is("${MiamDomesticAbuseContent.govukFieldsetLegend}")`,
+        1,
+      ),
+      Helpers.checkGroup(
+        page,
+        9,
+        MiamDomesticAbuseContent,
+        `govukHint`,
+        Selectors.GovukHint,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukBody}:text-is("${MiamDomesticAbuseContent.govukBodyLetters}")`,
+        3,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukBody}:text-is("${MiamDomesticAbuseContent.govukBodyEvidence}")`,
+        2,
+      ),
+      Helpers.checkGroup(
+        page,
+        28,
+        MiamDomesticAbuseContent,
+        `govukLabel`,
+        Selectors.GovukLabel,
+      ),
+      Helpers.checkGroup(
+        page,
+        16,
+        MiamDomesticAbuseContent,
+        `li`,
+        Selectors.li,
+      ),
     ]);
     if (accessibilityTest) {
       await AxeTest.run(page);
     }
   }
 
-  private static async triggerErrorMessages({page: page}: Partial<MiamDomesticAbusePageOptions>): Promise<void> {
+  private static async triggerErrorMessages({
+    page: page,
+  }: Partial<MiamDomesticAbusePageOptions>): Promise<void> {
     if (!page) {
       throw new Error();
     }
@@ -95,12 +150,27 @@ export class MiamDomesticAbusePage {
         `${Selectors.GovukErrorSummaryTitle}:text-is("${CommonStaticText.errorSummaryTitle}")`,
         1,
       ),
-      Helpers.checkGroup(page, 5, MiamGeneralReasonsContent, `errorMessage`, Selectors.a),
-      Helpers.checkGroup(page, 5, MiamGeneralReasonsContent, `errorMessage`, Selectors.ErrorMessage),
+      Helpers.checkGroup(
+        page,
+        5,
+        MiamGeneralReasonsContent,
+        `errorMessage`,
+        Selectors.a,
+      ),
+      Helpers.checkGroup(
+        page,
+        5,
+        MiamGeneralReasonsContent,
+        `errorMessage`,
+        Selectors.ErrorMessage,
+      ),
     ]);
   }
 
-  private static async fillInFields({page: page, MiamDomesticAbuse: MiamDomesticAbuse}: Partial<MiamDomesticAbusePageOptions>): Promise<void> {
+  private static async fillInFields({
+    page: page,
+    MiamDomesticAbuse: MiamDomesticAbuse,
+  }: Partial<MiamDomesticAbusePageOptions>): Promise<void> {
     if (!page) {
       throw new Error();
     }

@@ -5,6 +5,8 @@ import { C100TypeOfOrder } from "./C100TypeOfOrder/C100TypeOfOrder";
 import { C100ConsentOrderUpload } from "./C100ConsentOrderUpload/C100ConsentOrderUpload";
 import { C100UrgencyAndWithoutNotice } from "./C100UrgencyAndWithoutNotice/C100UrgencyAndWithoutNotice";
 import { MIAM } from "./C100MIAM/MIAM";
+import { MiamChildProtectionConcernsType } from "../../../pages/citizen/createCase/C100/MIAM/miamChildProtectionPage";
+import { MiamUrgencyType } from "../../../pages/citizen/createCase/C100/MIAM/miamUrgencyPage";
 
 interface C100Options {
   page: Page;
@@ -18,8 +20,11 @@ interface C100Options {
   miamAlreadyAttended: boolean;
   documentSignedByMediator: boolean;
   MIAMValidReasonNoAttendance: boolean;
-  MiamGeneralExemptions: boolean,
+  MiamGeneralExemptions: boolean;
   MiamDomesticAbuse: boolean;
+  miamDomesticAbuseProvidingEvidence: boolean;
+  miamChildProtectionConcernsType: MiamChildProtectionConcernsType;
+  miamUrgencyType: MiamUrgencyType;
 }
 
 export class C100 {
@@ -34,9 +39,12 @@ export class C100 {
     MIAMChildrenInvolvedOtherProceedings,
     miamAlreadyAttended,
     documentSignedByMediator,
-                             MIAMValidReasonNoAttendance,
-                             MiamGeneralExemptions,
-                             MiamDomesticAbuse,
+    MIAMValidReasonNoAttendance,
+    MiamGeneralExemptions,
+    MiamDomesticAbuse,
+    miamDomesticAbuseProvidingEvidence,
+    miamChildProtectionConcernsType,
+    miamUrgencyType,
   }: C100Options): Promise<void> {
     await CitizenCreateInitial.citizenCreateInitial({
       page: page,
@@ -81,6 +89,9 @@ export class C100 {
         MIAMValidReasonNoAttendance: MIAMValidReasonNoAttendance,
         MiamGeneralExemptions: MiamGeneralExemptions,
         MiamDomesticAbuse: MiamDomesticAbuse,
+        miamDomesticAbuseProvidingEvidence: miamDomesticAbuseProvidingEvidence,
+        miamChildProtectionConcernsType: miamChildProtectionConcernsType,
+        miamUrgencyType: miamUrgencyType,
       });
     }
   }
