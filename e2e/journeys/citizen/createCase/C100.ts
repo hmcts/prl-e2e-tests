@@ -13,6 +13,7 @@ interface C100Options {
   c100LegalRepresentation: boolean;
   c100CourtPermissionNeeded: boolean;
   urgencyAndWithoutNoticeAllOptionsYes: boolean;
+  c100ChildrenSafetyConcerns: boolean;
 }
 
 export class C100 {

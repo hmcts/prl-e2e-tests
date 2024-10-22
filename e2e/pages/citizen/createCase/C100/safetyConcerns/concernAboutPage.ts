@@ -24,7 +24,7 @@ interface CheckPageLoadsOptions {
 }
 
 export class ConcernAboutPage {
-  public static async ConcernAboutPage({
+  public static async concernAboutPage({
     page,
     accessibilityTest,
     errorMessaging,
