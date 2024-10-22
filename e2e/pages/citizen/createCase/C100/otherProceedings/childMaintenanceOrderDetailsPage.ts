@@ -4,7 +4,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { CitizensOtherProceedingsUniqueSelectors } from "../../../../../common/commonIds";
+import { CitizensOtherProceedingsUniqueSelectors } from "../../../../../common/commonUniqueSelectors";
 
 interface ChildMaintenanceOrderDetailsPageOptions {
   page: Page;

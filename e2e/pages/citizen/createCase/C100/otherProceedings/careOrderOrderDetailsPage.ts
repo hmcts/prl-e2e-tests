@@ -4,7 +4,7 @@ import { Page } from "@playwright/test";
 import { Helpers } from "../../../../../common/helpers";
 import { CareOrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/careOrderDetailsContent";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-import { CitizensOtherProceedingsUniqueSelectors } from "../../../../../common/commonIds";
+import { CitizensOtherProceedingsUniqueSelectors } from "../../../../../common/commonUniqueSelectors";
 
 interface CareOrderDetailsPageOptions {
   page: Page;
