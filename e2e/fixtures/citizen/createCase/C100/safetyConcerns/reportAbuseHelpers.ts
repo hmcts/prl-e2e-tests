@@ -6,14 +6,14 @@ import { PhysicalAbuseContent } from "./physicalAbuseContent";
 
 interface SeekHelpOptions {
   page: Page;
-  c100PhysicalAbuseYesNoToAll: boolean;
+  c100ReportAbuseYesNoToAll: boolean;
   inputIDs: Record<string, string>;
   abuseContent: Record<string, string>;
 }
 
 interface OngoingBehaviourOptions {
   page: Page;
-  c100PhysicalAbuseYesNoToAll: boolean;
+  c100ReportAbuseYesNoToAll: boolean;
   inputIDs: Record<string, string>;
 }
 
@@ -76,10 +76,10 @@ export class ReportAbuseHelpers {
 
   public static async ongoingBehaviourFields({
     page,
-    c100PhysicalAbuseYesNoToAll,
+    c100ReportAbuseYesNoToAll,
     inputIDs
   }: OngoingBehaviourOptions): Promise<void> {
-    if (c100PhysicalAbuseYesNoToAll) {
+    if (c100ReportAbuseYesNoToAll) {
       await page.click(
         inputIDs.ongoingBehaviorYes
       );
@@ -108,11 +108,11 @@ export class ReportAbuseHelpers {
 
   public static async seekHelpFields({
     page,
-    c100PhysicalAbuseYesNoToAll,
+    c100ReportAbuseYesNoToAll,
     inputIDs,
     abuseContent
   }: SeekHelpOptions): Promise<void> {
-    if (c100PhysicalAbuseYesNoToAll) {
+    if (c100ReportAbuseYesNoToAll) {
       await page.click(
         inputIDs.seekHelpYes
       );

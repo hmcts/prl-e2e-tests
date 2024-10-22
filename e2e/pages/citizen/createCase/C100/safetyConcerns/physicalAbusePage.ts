@@ -92,12 +92,12 @@ export class PhysicalAbusePage {
     }
     await ReportAbuseHelpers.ongoingBehaviourFields({
       page: page,
-      c100PhysicalAbuseYesNoToAll: c100PhysicalAbuseYesNoToAll,
+      c100ReportAbuseYesNoToAll: c100PhysicalAbuseYesNoToAll,
       inputIDs: inputIDs,
     });
     await ReportAbuseHelpers.seekHelpFields({
       page: page,
-      c100PhysicalAbuseYesNoToAll: c100PhysicalAbuseYesNoToAll,
+      c100ReportAbuseYesNoToAll: c100PhysicalAbuseYesNoToAll,
       inputIDs: inputIDs,
       abuseContent: PhysicalAbuseContent
     });
