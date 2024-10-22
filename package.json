@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "@axe-core/playwright": "^4.10.0",
+    "dotenv": "^16.4.5",
     "playwright-core": "^1.46.1",
     "typescript": "^5.5.4"
   },
@@ -25,8 +26,7 @@
     "ts-node": "^10.9.2"
   },
   "scripts": {
-    "configure": "yarn playwright install && yarn playwright install webkit && yarn playwright install firefox && git update-index --skip-worktree e2e/config.ts",
-    "changeConfig": "git update-index --no-skip-worktree e2e/config.ts && echo 'Commit the config changes and then rerun yarn configure'",
+    "configure": "yarn playwright install && yarn playwright install webkit && yarn playwright install firefox",
     "lint": "yarn prettier . --write",
     "test:unit": "jest",
     "test:changes": "yarn playwright install && ts-node ./e2e/common/changedTestsRunner.ts",
@@ -37,12 +37,12 @@
     "test:manageCasesSafari": "yarn playwright install webkit && yarn playwright test --project webkit --grep @crossbrowserManageCases",
     "test:manageCasesAccessibility": "yarn playwright install && yarn playwright test --project chromium --grep @accessibilityManageCases",
     "test:citizenFrontendChrome": "yarn playwright install && yarn playwright test --project chromium --grep @citizenFrontend",
-    "test:citizenFrontendFirefox": "yarn playwright install firefox && yarn playwright test --project firefox --grep @crossbrowsercitizenFrontend",
-    "test:citizenFrontendSafari": "yarn playwright install webkit && yarn playwright test --project webkit --grep @crossbrowsercitizenFrontend",
-    "test:citizenFrontendAccessibility": "yarn playwright install && yarn playwright test --project chromium --grep @accessibilitycitizenFrontend"
+    "test:citizenFrontendFirefox": "yarn playwright install firefox && yarn playwright test --project firefox --grep @crossbrowserCitizenFrontend",
+    "test:citizenFrontendSafari": "yarn playwright install webkit && yarn playwright test --project webkit --grep @crossbrowserCitizenFrontend",
+    "test:citizenFrontendAccessibility": "yarn playwright install && yarn playwright test --project chromium --grep @accessibilityCitizenFrontend"
   },
   "pre-commit": [
     "lint"
   ],
-  "packageManager": "yarn@4.5.0"
+  "packageManager": "yarn@4.5.1"
 }

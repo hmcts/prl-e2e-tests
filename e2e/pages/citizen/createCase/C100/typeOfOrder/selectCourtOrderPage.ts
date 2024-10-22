@@ -94,14 +94,9 @@ export class SelectCourtOrderPage {
 
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${SelectCourtOrderContent.continue}")`,
+      `${Selectors.GovukButton}:text-is("${SelectCourtOrderContent.continue}")`,
     );
     await Promise.all([
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukErrorSummaryTitle}:text-is("${SelectCourtOrderContent.errorBanner}")`,
-        1,
-      ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukErrorSummaryTitle}:text-is("${SelectCourtOrderContent.errorBanner}")`,
@@ -121,7 +116,7 @@ export class SelectCourtOrderPage {
     await page.click(`${UniqueSelectors.too_courtOrder3}`);
     await page.click(`${UniqueSelectors.too_courtOrder4}`);
     await page.click(
-      `${Selectors.button}:text-is("${SelectCourtOrderContent.continue}")`,
+      `${Selectors.GovukButton}:text-is("${SelectCourtOrderContent.continue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -145,6 +140,8 @@ export class SelectCourtOrderPage {
         1,
       ),
     ]);
+    await page.click(`${UniqueSelectors.too_courtOrder3}`);
+    await page.click(`${UniqueSelectors.too_courtOrder4}`);
   }
 
   private static async fillInFields({
@@ -168,7 +165,7 @@ export class SelectCourtOrderPage {
     }
     await page.waitForTimeout(100);
     await page.click(
-      `${Selectors.button}:text-is("${CaOrderContent.continue}")`,
+      `${Selectors.GovukButton}:text-is("${CaOrderContent.continue}")`,
     );
   }
 
@@ -183,7 +180,7 @@ export class SelectCourtOrderPage {
       ),
       Helpers.checkGroup(
         page,
-        6,
+        5,
         SelectCourtOrderContent,
         "formLabelResolveSpecificIssue",
         `${Selectors.GovukLabel}`,

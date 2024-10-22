@@ -3,6 +3,7 @@ import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelp
 import { Selectors } from "../../../../../common/selectors";
 import { ChildAddressContent } from "../../../../../fixtures/citizen/createCase/C100/c100ScreeningSections/childAddressContent";
 import { Helpers } from "../../../../../common/helpers";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
 
 enum uniqueSelectors {
   childPostcode = "#c100RebuildChildPostCode",
@@ -84,17 +85,17 @@ export class ChildAddressPage {
 
   private static async checkErrorMessaging(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${ChildAddressContent.continue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorSummaryTitle}:text-is("${ChildAddressContent.errorSummaryTitle}")`,
+        `${Selectors.GovukErrorSummaryTitle}:text-is("${CommonStaticText.errorSummaryTitle}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${ChildAddressContent.errorMessage}")`,
+        `${Selectors.ErrorMessage}:text-is("${ChildAddressContent.errorMessage}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -111,7 +112,7 @@ export class ChildAddressPage {
       `${ChildAddressContent.swanseaPostcode}`,
     );
     await page.click(
-      `${Selectors.button}:text-is("${ChildAddressContent.continue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
     );
   }
 }

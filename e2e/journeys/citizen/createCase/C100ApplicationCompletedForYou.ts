@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { AlternativeResolutionPage } from "../../../pages/c100ScreeningSections/alternativeResolutionPage";
-import { AlternativeRoutesPage } from "../../../pages/c100ScreeningSections/alternativeRoutesPage";
-import { LegalRepresentationPage } from "../../../pages/c100ScreeningSections/legalRepresentationPage";
-import { LegalRepresentationApplicationPage } from "../../../pages/c100ScreeningSections/legalRepresentationApplicationPage";
-import { ContactRepresentativePage } from "../../../pages/c100ScreeningSections/contactRepresentativePage";
+import { AlternativeResolutionPage } from "../../../pages/citizen/createCase/C100/c100ScreeningSections/alternativeResolutionPage";
+import { AlternativeRoutesPage } from "../../../pages/citizen/createCase/C100/c100ScreeningSections/alternativeRoutesPage";
+import { LegalRepresentationPage } from "../../../pages/citizen/createCase/C100/c100ScreeningSections/legalRepresentationPage";
+import { LegalRepresentationApplicationPage } from "../../../pages/citizen/createCase/C100/c100ScreeningSections/legalRepresentationApplicationPage";
+import { ContactRepresentativePage } from "../../../pages/citizen/createCase/C100/c100ScreeningSections/contactRepresentativePage";
 import { StartPage } from "../../../pages/citizen/createCase/C100/c100ScreeningSections/startPage";
 import { ChildAddressPage } from "../../../pages/citizen/createCase/C100/c100ScreeningSections/childAddressPage";
 import { ConsentAgreementPage } from "../../../pages/citizen/createCase/C100/c100ScreeningSections/consentAgreementPage";
@@ -61,7 +61,7 @@ export class C100ApplicationCompletedForYou {
         page: page,
         accessibilityTest: accessibilityTest,
         errorMessaging: errorMessaging,
-        c100ApplicationCompletedForYou: false,
+        c100ApplicationCompletedForYou: true,
       },
     );
     await ContactRepresentativePage.contactRepresentativePage({

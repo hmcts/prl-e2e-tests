@@ -5,11 +5,9 @@ export enum ChildAddressContent {
   strong = " You should only enter your own postcode if the children live with you at the address, or you don't know where the children are living. ",
   span = "!",
   formLabel = " Postcode ",
-  continue = " Continue ",
   summaryText = " Why we use the term 'children' ",
   detailsText = " We use ‘children’ as a general term to mean whether you have a child or children. We do this to avoid repetition. ",
   swanseaPostcode = "SA1 2FA",
-  errorSummaryTitle = " There is a problem on this page ",
   errorSummaryLi = "Enter a full postcode, with or without a space",
   errorMessage = " Enter a full postcode, with or without a space ",
 }
