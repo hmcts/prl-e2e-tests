@@ -48,7 +48,7 @@ export class ChildConcernsAboutPage {
   private static async checkPageLoads({
    page,
    accessibilityTest
- }: CheckPageLoadsOptions): Promise<void> {
+  }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.GovukHeadingXL}:text-is("${ChildConcernsAboutContent.pageTitle}")`
     );
