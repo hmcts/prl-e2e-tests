@@ -32,7 +32,7 @@ export class C100Confidentiality {
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
       c100PrivateDetails: c100PrivateDetails,
-      c100OthersKnowApplicantsContact: c100OthersKnowApplicantsContact
+      c100OthersKnowApplicantsContact: c100OthersKnowApplicantsContact,
     });
     if (c100PrivateDetails) {
       await FeedbackPage.feedbackPage({

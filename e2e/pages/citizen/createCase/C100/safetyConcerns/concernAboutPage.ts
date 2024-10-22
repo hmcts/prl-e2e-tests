@@ -1,15 +1,13 @@
 import { Page } from "@playwright/test";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Selectors } from "../../../../../common/selectors";
-import {
-  ConcernAboutContent
-} from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/concernAboutContent";
+import { ConcernAboutContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/concernAboutContent";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 
 enum inputIDs {
-  child = '#c1A_safetyConernAbout',
-  yourself = '#c1A_safetyConernAbout-2-2'
+  child = "#c1A_safetyConernAbout",
+  yourself = "#c1A_safetyConernAbout-2-2",
 }
 
 interface ConcernAboutPageOptions {
@@ -31,78 +29,74 @@ export class ConcernAboutPage {
   }: ConcernAboutPageOptions): Promise<void> {
     await this.checkPageLoads({
       page,
-      accessibilityTest
-    })
+      accessibilityTest,
+    });
     if (errorMessaging) {
       await this.checkErrorMessaging(page);
     }
-    await this.fillInFields(page)
+    await this.fillInFields(page);
   }
 
   private static async checkPageLoads({
     page,
-    accessibilityTest
+    accessibilityTest,
   }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukHeadingXL}:text-is("${ConcernAboutContent.pageTitle}")`
+      `${Selectors.GovukHeadingXL}:text-is("${ConcernAboutContent.pageTitle}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukCaptionXL}:text-is("${ConcernAboutContent.caption}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukHint}:text-is("${ConcernAboutContent.hint}")`,
-        1
+        1,
       ),
       Helpers.checkGroup(
         page,
         2,
         ConcernAboutContent,
-        'formLabel',
-        `${Selectors.GovukLabel}`
-      )
+        "formLabel",
+        `${Selectors.GovukLabel}`,
+      ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page)
+      await AccessibilityTestHelper.run(page);
     }
   }
 
-  private static async checkErrorMessaging(
-    page: Page
-  ): Promise<void> {
+  private static async checkErrorMessaging(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.continue}")`
+      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukErrorSummaryTitle}:text-is("${CommonStaticText.errorSummaryTitle}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukErrorList} ${Selectors.a}:text-is("${ConcernAboutContent.errorSummaryList}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.ErrorMessage}:text-is("${ConcernAboutContent.errorMessage}")`,
-        1
+        1,
       ),
     ]);
   }
 
-  private static async fillInFields(
-    page: Page
-  ): Promise<void> {
+  private static async fillInFields(page: Page): Promise<void> {
     for (let checkbox of Object.values(inputIDs)) {
-      await page.check(checkbox)
+      await page.check(checkbox);
     }
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.continue}")`
+      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
     );
   }
 }

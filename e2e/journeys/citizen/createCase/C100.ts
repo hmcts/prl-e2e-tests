@@ -30,7 +30,7 @@ export class C100 {
     c100CourtPermissionNeeded,
     urgencyAndWithoutNoticeAllOptionsYes,
     c100OthersKnowApplicantsContact,
-    c100PrivateDetails
+    c100PrivateDetails,
   }: C100Options): Promise<void> {
     await CitizenCreateInitial.citizenCreateInitial({
       page: page,
@@ -69,8 +69,8 @@ export class C100 {
         accessibilityTest: accessibilityTest,
         errorMessaging: errorMessaging,
         c100OthersKnowApplicantsContact: c100OthersKnowApplicantsContact,
-        c100PrivateDetails: c100PrivateDetails
-      })
+        c100PrivateDetails: c100PrivateDetails,
+      });
     } else {
       // MIAM Journey
     }

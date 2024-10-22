@@ -15,23 +15,23 @@ export class C100SafetyConcerns {
     page,
     accessibilityTest,
     errorMessaging,
-    c100ChildrenSafetyConcerns
+    c100ChildrenSafetyConcerns,
   }: C100SafetyConcernsOptions): Promise<void> {
     await ConcernGuidancePage.concernGuidancePage({
       page: page,
-      accessibilityTest: accessibilityTest
+      accessibilityTest: accessibilityTest,
     });
     await ConcernsForSafetyPage.concernsForSafetyPage({
       page: page,
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
-      c100ChildrenSafetyConcerns: c100ChildrenSafetyConcerns
-    })
+      c100ChildrenSafetyConcerns: c100ChildrenSafetyConcerns,
+    });
     if (c100ChildrenSafetyConcerns) {
       await ConcernAboutPage.concernAboutPage({
         page: page,
         accessibilityTest: accessibilityTest,
-        errorMessaging: errorMessaging
+        errorMessaging: errorMessaging,
       });
     }
   }
