@@ -215,7 +215,7 @@ export class MIAM {
             miamOtherReasonForNotAttending: miamOtherReasonForNotAttending,
           });
           if (
-            miamDomesticAbuseProvidingEvidence &&
+            !miamDomesticAbuseProvidingEvidence &&
             miamChildProtectionConcernsType === "None of the above" &&
             miamUrgencyType === "None of these" &&
             miamAttendanceType === "None of these" &&
