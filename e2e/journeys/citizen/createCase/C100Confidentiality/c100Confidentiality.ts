@@ -3,6 +3,8 @@ import { yesNoDontKnow } from "../../../../common/types";
 import { StartPage } from "../../../../pages/citizen/createCase/C100/confidentiality/startPage";
 import { DetailsKnowPage } from "../../../../pages/citizen/createCase/C100/confidentiality/detailsKnowPage";
 import { FeedbackNoPage } from "../../../../pages/citizen/createCase/C100/confidentiality/feedbackNoPage";
+import { FeedbackPage } from "../../../../pages/citizen/createCase/C100/confidentiality/feedbackPage";
+
 interface C100ConfidentialityOptions {
   page: Page;
   accessibilityTest: boolean;
@@ -32,6 +34,10 @@ export class C100Confidentiality {
       c100PrivateDetails: c100PrivateDetails,
     });
     await FeedbackNoPage.feedbackNoPage({
+      page: page,
+      accessibilityTest: accessibilityTest,
+    });
+    await FeedbackPage.feedbackPage({
       page: page,
       accessibilityTest: accessibilityTest,
     });

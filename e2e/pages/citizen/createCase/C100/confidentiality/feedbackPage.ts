@@ -1,11 +1,12 @@
 import { Page } from "@playwright/test";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Selectors } from "../../../../../common/selectors";
-import { FeedbackNoContent } from "../../../../../fixtures/citizen/createCase/C100/confidentiality/feedbackNo";
+import { FeedbackContent } from "../../../../../fixtures/citizen/createCase/C100/confidentiality/feedback";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 
-interface FeedbackNoPageOptions {
+
+interface FeedbackPageOptions {
   page: Page;
   accessibilityTest: boolean;
 }
@@ -15,11 +16,11 @@ interface CheckPageLoadsOptions {
   accessibilityTest: boolean;
 }
 
-export class FeedbackNoPage {
-  public static async feedbackNoPage({
+export class FeedbackPage {
+  public static async feedbackPage({
                                        page,
                                        accessibilityTest,
-                                     }: FeedbackNoPageOptions): Promise<void> {
+                                     }: FeedbackPageOptions): Promise<void> {
     await this.checkPageLoads({ page, accessibilityTest });
     await this.fillInFields(page);
   }
@@ -28,19 +29,36 @@ export class FeedbackNoPage {
                                         page,
                                         accessibilityTest,
                                       }: CheckPageLoadsOptions): Promise<void> {
-    await page.waitForSelector(`${Selectors.GovukHeadingXL}:text-is("${FeedbackNoContent.pageTitle}")`);
-
-    const elementSelectors = [
-      `${Selectors.GovukLabel}:text-is("${FeedbackNoContent.bodyM1}")`,
-      `${Selectors.GovukLabel}:text-is("${FeedbackNoContent.caption}")`,
-    ];
-
-    const visibilityPromises = elementSelectors.map(selector =>
-      Helpers.checkVisibleAndPresent(page, selector, 1)
+    await page.waitForSelector(
+      `${Selectors.GovukHeadingXL}:text-is("${FeedbackContent.pageTitle}")`,
     );
+    await Promise.all([
+      Helpers.checkGroup(
+        page,
+        2,
+        FeedbackContent,
+        "bodyM",
+        `${Selectors.GovukBodyM}`,
+      ),
+      Helpers.checkGroup(
+        page,
+        3,
+        FeedbackContent,
+        "l",
+        `${Selectors.li}`,
+      ),
 
-    await Promise.all(visibilityPromises);
-
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukCaptionXL}:text-is("${FeedbackContent.caption}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukHeadingM}:text-is("${FeedbackContent.h2}")`,
+        1,
+      ),
+    ]);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }
