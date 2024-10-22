@@ -21,6 +21,7 @@ interface Fl401StatementOfTruthOptions {
   errorMessaging: boolean;
   fl401YesNoToEverything: boolean;
   subJourney: boolean;
+  isDummyCase: boolean;
 }
 
 export class Fl401StatementOfTruth {
@@ -30,6 +31,7 @@ export class Fl401StatementOfTruth {
     errorMessaging,
     fl401YesNoToEverything,
     subJourney,
+    isDummyCase,
   }: Fl401StatementOfTruthOptions): Promise<void> {
     const otherProceedingsRadioSelection = fl401YesNoToEverything
       ? "Yes"
@@ -125,10 +127,12 @@ export class Fl401StatementOfTruth {
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
     });
-    await StatementOfTruthSummaryPage.statementOfTruthSummaryPage({
-      page,
-      accessibilityTest,
-      fl401YesNoToEverything,
-    });
+    if (!isDummyCase) {
+      await StatementOfTruthSummaryPage.statementOfTruthSummaryPage({
+        page,
+        accessibilityTest,
+        fl401YesNoToEverything,
+      });
+    }
   }
 }

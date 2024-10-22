@@ -23,7 +23,12 @@ export class SolicitorCreate2Page {
     if (errorMessaging) {
       await this.checkErrorMessaging(page);
     }
-    await this.fillInFields(page, solicitorCaseType, errorMessaging);
+    await this.fillInFields(
+      page,
+      solicitorCaseType,
+      errorMessaging,
+      isDummyCase,
+    );
   }
 
   private static async checkPageLoads(
@@ -137,10 +142,11 @@ export class SolicitorCreate2Page {
     page: Page,
     solicitorCaseType: solicitorCaseCreateType,
     errorMessaging: boolean,
+    isDummyCase: boolean,
   ): Promise<void> {
     const selector: string = caseTypeSelectionIds[solicitorCaseType];
     await page.click(selector);
-    if (solicitorCaseType === "FL401") {
+    if (!isDummyCase && solicitorCaseType === "FL401") {
       await this.checkFL401(page, errorMessaging);
       await page.click(`${caseTypeSelectionIds.yes}`);
     }

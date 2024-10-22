@@ -37,11 +37,6 @@ export class SolicitorCreate5Page {
           `${Selectors.GovukHeadingL}:text-is("${SolicitorCreate5Content.dummyPageTitle}")`,
           1,
         ),
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukFormLabel}:text-is("${SolicitorCreate5Content.formLabel1}")`,
-          1,
-        ),
       ]);
     } else {
       await Promise.all([
