@@ -4,7 +4,7 @@ import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelp
 import { Page } from "@playwright/test";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-import { CitizensOtherProceedingsUniqueSelectors } from "../../../../../common/enums";
+import { CitizensOtherProceedingsUniqueSelectors } from "../../../../../common/commonIds";
 
 interface ChildArrangementOrderDetailsPageOptions {
   page: Page;

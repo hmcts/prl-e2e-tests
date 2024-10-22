@@ -4,7 +4,7 @@ import { Page } from "@playwright/test";
 import { Helpers } from "../../../../../common/helpers";
 import { SupervisionOrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/SupervisionOrderDetailsContent";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-import { CitizensOtherProceedingsUniqueSelectors } from "../../../../../common/enums";
+import { CitizensOtherProceedingsUniqueSelectors } from "../../../../../common/commonIds";
 
 interface SupervisionOrderDetailsPageOptions {
   page: Page;

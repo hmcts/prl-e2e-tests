@@ -4,7 +4,7 @@ import { Page } from "@playwright/test";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { ContactOrderForDivorceOrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/contactOrderForDivorceOrderDetailsContent";
-import { CitizensOtherProceedingsUniqueSelectors } from "../../../../../common/enums";
+import { CitizensOtherProceedingsUniqueSelectors } from "../../../../../common/commonIds";
 
 interface contactOrderForDivorceOrderDetailsPageOptions {
   page: Page;
