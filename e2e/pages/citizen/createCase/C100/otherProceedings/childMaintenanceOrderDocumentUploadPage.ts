@@ -1,12 +1,12 @@
-import { Selectors } from "../../../../../common/selectors";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { ChildMaintenanceOrderDocumentUploadContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/childMaintenanceOrderDocumentUploadContent";
 import { Page } from "@playwright/test";
+import { Selectors } from "../../../../../common/selectors";
 import { Helpers } from "../../../../../common/helpers";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import config from "../../../../../config";
-import { CareOrderDocumentUploadContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/CareOrderDocumentUploadContent";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 
-interface CareOrderDocumentUploadPageOptions {
+interface childMaintenanceOrderDocumentUploadPageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
@@ -26,12 +26,12 @@ enum UniqueSelectors {
   uploadConfirmationSelector = ".govuk-summary-list__value",
 }
 
-export class CareOrderDocumentUploadPage {
-  public static async careOrderDocumentUploadPage({
+export class ChildMaintenanceOrderDocumentUploadPage {
+  public static async childMaintenanceOrderDocumentUploadPage({
     page: page,
     accessibilityTest: accessibilityTest,
     errorMessaging: errorMessaging,
-  }: CareOrderDocumentUploadPageOptions): Promise<void> {
+  }: childMaintenanceOrderDocumentUploadPageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
       accessibilityTest: accessibilityTest,
@@ -49,34 +49,34 @@ export class CareOrderDocumentUploadPage {
     accessibilityTest: accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukHeadingXL}:text-is("${CareOrderDocumentUploadContent.pageTitle}")`,
+      `${Selectors.GovukHeadingXL}:text-is("${ChildMaintenanceOrderDocumentUploadContent.pageTitle}")`,
     );
     await Promise.all([
       Helpers.checkGroup(
         page,
         2,
-        CareOrderDocumentUploadContent,
+        ChildMaintenanceOrderDocumentUploadContent,
         "p",
         `${Selectors.p}`,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${CareOrderDocumentUploadContent.spanA}")`,
+        `${Selectors.Span}:text-is("${ChildMaintenanceOrderDocumentUploadContent.spanA}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${CareOrderDocumentUploadContent.formLabel}")`,
+        `${Selectors.GovukLabel}:text-is("${CommonStaticText.formLabel}")`,
         1,
       ),
     ]);
     await page.click(
-      `${Selectors.Span}:text-is("${CareOrderDocumentUploadContent.spanA}")`,
+      `${Selectors.Span}:text-is("${ChildMaintenanceOrderDocumentUploadContent.spanA}")`,
     );
     await Helpers.checkGroup(
       page,
       5,
-      CareOrderDocumentUploadContent,
+      ChildMaintenanceOrderDocumentUploadContent,
       "li",
       `${Selectors.li}`,
     );
@@ -97,29 +97,29 @@ export class CareOrderDocumentUploadPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${CareOrderDocumentUploadContent.errorMessageChooseFile}")`,
+        `${Selectors.a}:text-is("${ChildMaintenanceOrderDocumentUploadContent.errorMessageChooseFile}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${CareOrderDocumentUploadContent.errorMessageChooseFile}")`,
+        `${Selectors.ErrorMessage}:text-is("${ChildMaintenanceOrderDocumentUploadContent.errorMessageChooseFile}")`,
         1,
       ),
     ]);
     let fileInput = page.locator(`${UniqueSelectors.documentUpload}`);
     await fileInput.setInputFiles(config.testOdtFile);
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CareOrderDocumentUploadContent.uploadFile}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.uploadFile}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${CareOrderDocumentUploadContent.errorMessageUploadCorrectFile}")`,
+        `${Selectors.a}:text-is("${ChildMaintenanceOrderDocumentUploadContent.errorMessageUploadCorrectFile}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${CareOrderDocumentUploadContent.errorMessageUploadCorrectFile}")`,
+        `${Selectors.ErrorMessage}:text-is("${ChildMaintenanceOrderDocumentUploadContent.errorMessageUploadCorrectFile}")`,
         1,
       ),
     ]);
@@ -131,7 +131,7 @@ export class CareOrderDocumentUploadPage {
     let fileInput = page.locator(`${UniqueSelectors.documentUpload}`);
     await fileInput.setInputFiles(config.testPdfFile);
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CareOrderDocumentUploadContent.uploadFile}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.uploadFile}")`,
     );
     await page.waitForSelector(
       `${UniqueSelectors.uploadConfirmationSelector}`,
@@ -143,7 +143,7 @@ export class CareOrderDocumentUploadPage {
     expect(isUploaded).toBeTruthy();
     await Helpers.checkVisibleAndPresent(
       page,
-      `${Selectors.a}:text-is("${CareOrderDocumentUploadContent.remove}")`,
+      `${Selectors.a}:text-is("${CommonStaticText.remove}")`,
       1,
     );
     await page.click(

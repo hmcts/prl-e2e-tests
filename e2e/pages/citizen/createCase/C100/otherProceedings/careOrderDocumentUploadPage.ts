@@ -3,10 +3,10 @@ import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelp
 import { Page } from "@playwright/test";
 import { Helpers } from "../../../../../common/helpers";
 import config from "../../../../../config";
+import { CareOrderDocumentUploadContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/careOrderDocumentUploadContent";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-import { ContactOrderForDivorceDocumentUploadContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/contactOrderForDivorceDocumentUploadContent";
 
-interface ContactOrderForDivorceDocumentUploadPageOptions {
+interface CareOrderDocumentUploadPageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
@@ -26,12 +26,12 @@ enum UniqueSelectors {
   uploadConfirmationSelector = ".govuk-summary-list__value",
 }
 
-export class ContactOrderForDivorceDocumentUploadPage {
-  public static async contactOrderForDivorceDocumentUploadPage({
+export class CareOrderDocumentUploadPage {
+  public static async careOrderDocumentUploadPage({
     page: page,
     accessibilityTest: accessibilityTest,
     errorMessaging: errorMessaging,
-  }: ContactOrderForDivorceDocumentUploadPageOptions): Promise<void> {
+  }: CareOrderDocumentUploadPageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
       accessibilityTest: accessibilityTest,
@@ -49,19 +49,19 @@ export class ContactOrderForDivorceDocumentUploadPage {
     accessibilityTest: accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukHeadingXL}:text-is("${ContactOrderForDivorceDocumentUploadContent.pageTitle}")`,
+      `${Selectors.GovukHeadingXL}:text-is("${CareOrderDocumentUploadContent.pageTitle}")`,
     );
     await Promise.all([
       Helpers.checkGroup(
         page,
         2,
-        ContactOrderForDivorceDocumentUploadContent,
+        CareOrderDocumentUploadContent,
         "p",
         `${Selectors.p}`,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${ContactOrderForDivorceDocumentUploadContent.spanA}")`,
+        `${Selectors.Span}:text-is("${CareOrderDocumentUploadContent.spanA}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -71,12 +71,12 @@ export class ContactOrderForDivorceDocumentUploadPage {
       ),
     ]);
     await page.click(
-      `${Selectors.Span}:text-is("${ContactOrderForDivorceDocumentUploadContent.spanA}")`,
+      `${Selectors.Span}:text-is("${CareOrderDocumentUploadContent.spanA}")`,
     );
     await Helpers.checkGroup(
       page,
       5,
-      ContactOrderForDivorceDocumentUploadContent,
+      CareOrderDocumentUploadContent,
       "li",
       `${Selectors.li}`,
     );
@@ -97,12 +97,12 @@ export class ContactOrderForDivorceDocumentUploadPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${ContactOrderForDivorceDocumentUploadContent.errorMessageChooseFile}")`,
+        `${Selectors.a}:text-is("${CareOrderDocumentUploadContent.errorMessageChooseFile}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${ContactOrderForDivorceDocumentUploadContent.errorMessageChooseFile}")`,
+        `${Selectors.ErrorMessage}:text-is("${CareOrderDocumentUploadContent.errorMessageChooseFile}")`,
         1,
       ),
     ]);
@@ -114,12 +114,12 @@ export class ContactOrderForDivorceDocumentUploadPage {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${ContactOrderForDivorceDocumentUploadContent.errorMessageUploadCorrectFile}")`,
+        `${Selectors.a}:text-is("${CareOrderDocumentUploadContent.errorMessageUploadCorrectFile}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${ContactOrderForDivorceDocumentUploadContent.errorMessageUploadCorrectFile}")`,
+        `${Selectors.ErrorMessage}:text-is("${CareOrderDocumentUploadContent.errorMessageUploadCorrectFile}")`,
         1,
       ),
     ]);
