@@ -1,9 +1,10 @@
 import { Page } from "@playwright/test";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Selectors } from "../../../../../common/selectors";
-import { FeedbackContent } from "../../../../../fixtures/citizen/createCase/C100/confidentiality/feedbackContent";
+import { FeedbackContent } from "../../../../../fixtures/citizen/createCase/C100/confidentiality/feedback";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
+
 
 interface FeedbackPageOptions {
   page: Page;

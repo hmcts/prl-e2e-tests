@@ -1,25 +1,25 @@
 import { Page } from "@playwright/test";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Selectors } from "../../../../../common/selectors";
-import { FeedbackNoContent } from "../../../../../fixtures/citizen/createCase/C100/confidentiality/feedbackNoContent";
+import { FeedbackNoContent } from "../../../../../fixtures/citizen/createCase/C100/confidentiality/feedbackNo";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 
-interface FeedbackPageOptions {
+interface FeedbackNoPageOptions {
   page: Page;
-  accessibilityTest: boolean
+  accessibilityTest: boolean;
 }
 
 interface CheckPageLoadsOptions {
   page: Page;
-  accessibilityTest: boolean
+  accessibilityTest: boolean;
 }
 
 export class FeedbackNoPage {
   public static async feedbackNoPage({
     page,
     accessibilityTest
-  }: FeedbackPageOptions): Promise<void> {
+  }: FeedbackNoPageOptions): Promise<void> {
     await this.checkPageLoads({
       page,
       accessibilityTest

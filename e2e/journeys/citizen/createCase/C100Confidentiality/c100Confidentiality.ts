@@ -31,38 +31,19 @@ export class C100Confidentiality {
       errorMessaging: errorMessaging,
       c100OthersKnowApplicantsContact: c100OthersKnowApplicantsContact,
     });
-    if (c100OthersKnowApplicantsContact === 'yes') {
-      await StartPage.startPage({
-        page: page,
-        accessibilityTest: accessibilityTest,
-        errorMessaging: errorMessaging,
-        c100PrivateDetails: c100PrivateDetails,
-      });
-    } else if (
-      c100OthersKnowApplicantsContact === 'no' ||
-      c100OthersKnowApplicantsContact === 'dontKnow'
-    ) {
-      await StartAlternativePage.startAlternativePage({
-        page: page,
-        accessibilityTest: accessibilityTest,
-        errorMessaging: errorMessaging,
-        c100PrivateDetails: c100PrivateDetails
-      });
-    } else {
-      throw new Error(
-        `Unrecognised value for c100OthersKnowApplicantsContact: ${c100OthersKnowApplicantsContact}`
-      )
-    }
-    if (c100PrivateDetails) {
-      await FeedbackPage.feedbackPage({
-        page: page,
-        accessibilityTest: accessibilityTest
-      })
-    } else {
-      await FeedbackNoPage.feedbackNoPage({
-        page: page,
-        accessibilityTest: accessibilityTest
-      })
-    }
+    await StartPage.startPage({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      c100PrivateDetails: c100PrivateDetails,
+    });
+    await FeedbackNoPage.feedbackNoPage({
+      page: page,
+      accessibilityTest: accessibilityTest,
+    });
+    await FeedbackPage.feedbackPage({
+      page: page,
+      accessibilityTest: accessibilityTest,
+    });
   }
 }
