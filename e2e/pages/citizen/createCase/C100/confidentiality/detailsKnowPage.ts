@@ -59,6 +59,11 @@ export class DetailsKnowPage {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
+        `${Selectors.GovukCaptionXL}:has-text("${DetailsKnowContent.caption}")`,
+        1
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
         `${Selectors.GovukLabel}:text-is("${CommonStaticText.yes}")`,
         1,
       ),

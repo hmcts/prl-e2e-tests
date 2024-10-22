@@ -4,6 +4,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { StartContent } from "../../../../../fixtures/citizen/createCase/C100/confidentiality/startContent";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { yesNoDontKnow } from "../../../../../common/types";
 
 enum inputIDs {
   yes = "#start",
@@ -21,6 +22,7 @@ interface StartPageOptions {
   accessibilityTest: boolean;
   errorMessaging: boolean;
   c100PrivateDetails: boolean;
+  c100OthersKnowApplicantsContact: yesNoDontKnow;
 }
 
 interface CheckPageLoadsOptions {
@@ -31,6 +33,7 @@ interface CheckPageLoadsOptions {
 interface FillInFieldsOptions {
   page: Page;
   c100PrivateDetails: boolean;
+  c100OthersKnowApplicantsContact: yesNoDontKnow;
 }
 
 export class StartPage {
@@ -39,6 +42,7 @@ export class StartPage {
     accessibilityTest,
     errorMessaging,
     c100PrivateDetails,
+    c100OthersKnowApplicantsContact
   }: StartPageOptions): Promise<void> {
     await this.checkPageLoads({
       page,
@@ -48,8 +52,9 @@ export class StartPage {
       await this.checkErrorMessaging(page);
     }
     await this.fillInFields({
-      page,
+      page: page,
       c100PrivateDetails: c100PrivateDetails,
+      c100OthersKnowApplicantsContact: c100OthersKnowApplicantsContact
     });
   }
 
@@ -71,6 +76,11 @@ export class StartPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukLabel}:text-is("${CommonStaticText.yes}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukCaptionXL}:has-text("${StartContent.caption}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -139,13 +149,27 @@ export class StartPage {
   private static async fillInFields({
     page,
     c100PrivateDetails,
+    c100OthersKnowApplicantsContact
   }: FillInFieldsOptions): Promise<void> {
     if (c100PrivateDetails) {
+      let formHintContentKey: keyof typeof StartContent;
+      if (c100OthersKnowApplicantsContact === 'yes') {
+        formHintContentKey = 'formHint'
+      } else if (
+        c100OthersKnowApplicantsContact === 'no' ||
+        c100OthersKnowApplicantsContact === 'dontKnow'
+      ) {
+        formHintContentKey = 'alternativeFormHint'
+      } else {
+        throw new Error(
+          `Unrecognised argument for c100OthersKnowApplicantsContact: ${c100OthersKnowApplicantsContact}`
+        )
+      }
       await page.click(inputIDs.yes);
       await Promise.all([
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukFormHint}:text-is("${StartContent.formHint}")`,
+          `${Selectors.GovukFormHint}:text-is("${StartContent[formHintContentKey]}")`,
           1
         ),
         Helpers.checkGroup(
