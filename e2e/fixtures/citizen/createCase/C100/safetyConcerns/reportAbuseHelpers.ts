@@ -2,6 +2,20 @@ import { Page } from "@playwright/test";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { ReportAbuseCommonContent } from "./reportAbuseCommonContent";
+import { PhysicalAbuseContent } from "./physicalAbuseContent";
+
+interface SeekHelpOptions {
+  page: Page;
+  c100PhysicalAbuseYesNoToAll: boolean;
+  inputIDs: Record<string, string>;
+  abuseContent: Record<string, string>;
+}
+
+interface OngoingBehaviourOptions {
+  page: Page;
+  c100PhysicalAbuseYesNoToAll: boolean;
+  inputIDs: Record<string, string>;
+}
 
 export class ReportAbuseHelpers {
   public static async checkStaticText(
@@ -58,5 +72,79 @@ export class ReportAbuseHelpers {
         `${Selectors.GovukLabel}`
       ),
     ])
+  }
+
+  public static async ongoingBehaviourFields({
+    page,
+    c100PhysicalAbuseYesNoToAll,
+    inputIDs
+  }: OngoingBehaviourOptions): Promise<void> {
+    if (c100PhysicalAbuseYesNoToAll) {
+      await page.click(
+        inputIDs.ongoingBehaviorYes
+      );
+      await Promise.all([
+        Helpers.checkGroup(
+          page,
+          2,
+          ReportAbuseCommonContent,
+          'ongoingBehaviourLink',
+          `${Selectors.GovukLink}`
+        ),
+        Helpers.checkGroup(
+          page,
+          2,
+          ReportAbuseCommonContent,
+          'ongoingBehaviourBody',
+          `${Selectors.GovukBody}`
+        ),
+      ]);
+    } else {
+      await page.click(
+        inputIDs.ongoingBehaviorNo
+      );
+    }
+  }
+
+  public static async seekHelpFields({
+    page,
+    c100PhysicalAbuseYesNoToAll,
+    inputIDs,
+    abuseContent
+  }: SeekHelpOptions): Promise<void> {
+    if (c100PhysicalAbuseYesNoToAll) {
+      await page.click(
+        inputIDs.seekHelpYes
+      );
+      await Helpers.checkGroup(
+        page,
+        2,
+        ReportAbuseCommonContent,
+        'seekHelpBody',
+        `${Selectors.GovukBody}`
+      );
+      await page.fill(
+        inputIDs.seekHelpDetails,
+        abuseContent.seekHelpDetails
+      );
+    } else {
+      await page.click(
+        inputIDs.seekHelpYes
+      );
+      await Promise.all([
+        Helpers.checkGroup(
+          page,
+          2,
+          ReportAbuseCommonContent,
+          'nspccGuidanceBody',
+          `${Selectors.GovukBody}`
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukLink}:text-is("${ReportAbuseCommonContent.nspccGuidanceLink}")`,
+          1
+        )
+      ])
+    }
   }
 }
