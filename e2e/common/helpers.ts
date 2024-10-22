@@ -206,4 +206,15 @@ export class Helpers {
       throw error;
     }
   }
+
+  public static generateDOB(under18: boolean = true): [string, string, string] {
+    const today = new Date();
+    const year = under18
+      ? (today.getFullYear() - 17).toString()  // Less than 18 years
+      : (today.getFullYear() - 22).toString(); // More than 21 years
+    const month = (today.getMonth() + 1).toString(); // getMonth() is 0-based
+    const day = today.getDate().toString();
+
+    return [day, month, year];
+  }
 }
