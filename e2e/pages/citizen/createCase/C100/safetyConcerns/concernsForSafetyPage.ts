@@ -1,4 +1,4 @@
-import { errors, Page } from "@playwright/test";
+import { Page } from "@playwright/test";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Selectors } from "../../../../../common/selectors";
 import {
@@ -43,6 +43,10 @@ export class ConcernsForSafetyPage {
     if (errorMessaging) {
       await this.checkErrorMessaging(page);
     }
+    await this.fillInFields({
+      page,
+      c100ChildrenSafetyConcerns
+    })
   }
 
   private static async checkPageLoads({
