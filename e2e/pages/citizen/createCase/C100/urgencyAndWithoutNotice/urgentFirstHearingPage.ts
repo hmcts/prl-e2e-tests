@@ -23,7 +23,7 @@ interface fillInFieldsOptions {
 }
 
 export enum uniqueSelectors {
-  warning = ".govuk-warning-text__assistive",
+  warning = ".govuk-warning-text__text",
   legend = ".govuk-fieldset__legend",
 }
 
@@ -86,7 +86,7 @@ export class UrgentFirstHearingPage {
 
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -115,7 +115,7 @@ export class UrgentFirstHearingPage {
       urgencyAndWithoutNoticeAllOptionsYes ? radioIds.yes : radioIds.no,
     );
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
     );
   }
 }

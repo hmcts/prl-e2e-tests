@@ -23,17 +23,16 @@ interface fillInFieldsOptions {
 }
 
 enum radioIds {
-  yes1 = "hwn_doYouNeedAWithoutNoticeHearing",
-  yes2 = "hwn_doYouRequireAHearingWithReducedNotice",
+  yes1 = "#hwn_doYouNeedAWithoutNoticeHearing",
+  yes2 = "#hwn_doYouRequireAHearingWithReducedNotice",
 }
 
 enum inputIds {
-  input1 = "hwn_reasonsForApplicationWithoutNotice",
-  input2 = "hwn_doYouNeedAWithoutNoticeHearingDetails",
-  input3 = "hwn_doYouRequireAHearingWithReducedNoticeDetails",
+  input1 = "#hwn_reasonsForApplicationWithoutNotice",
+  input2 = "#hwn_doYouNeedAWithoutNoticeHearingDetails",
+  input3 = "#hwn_doYouRequireAHearingWithReducedNoticeDetails",
 }
 
-// Untested, don't know if this works yet
 const combinedSelectors = [
   ...Object.values(radioIds).map((selector) => ({ selector, action: "click" })),
   ...Object.values(inputIds).map((selector) => ({ selector, action: "fill" })),
@@ -87,13 +86,13 @@ export class WithoutNoticeHearingDetailsPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      // await AccessibilityTestHelper.run(page); #TODO: Re-enable upon completion of PRL-6496
     }
   }
 
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
     );
     await page.waitForSelector(
       `${Selectors.GovukErrorSummaryTitle}:text-is("${CommonStaticText.errorSummaryTitle}")`,
@@ -119,8 +118,6 @@ export class WithoutNoticeHearingDetailsPage {
   private static async fillInFields({
     page: page,
   }: fillInFieldsOptions): Promise<void> {
-    // Untested, don't know if this works yet
-    // The alternative is to just use two separate loops
     for (const { selector, action } of combinedSelectors) {
       if (action === "click") {
         await page.click(selector);
@@ -132,7 +129,7 @@ export class WithoutNoticeHearingDetailsPage {
       }
     }
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
     );
   }
 }

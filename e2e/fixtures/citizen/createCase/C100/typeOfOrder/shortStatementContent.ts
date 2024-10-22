@@ -6,6 +6,8 @@ export enum ShortStatementContent {
   li2 = "what happened in the previous agreements, and if they broke down",
   li3 = "why you are bringing this matter to the court",
   li4 = "what you would like the court to do",
-  loremIpsum = "loremIpsum",
+  loremIpsum = "Lorem ipsum describe what you want the court to do regarding the children in this application",
   continue = "Continue",
+  errorBanner = "There is a problem on this page",
+  errorMessage = "Describe what you want the court to do regarding the children in this application",
 }

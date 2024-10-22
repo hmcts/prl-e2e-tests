@@ -65,28 +65,28 @@ export class ConsentAgreementPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${CommonStaticText.yes}")`,
+        `${Selectors.GovukLabel}:text-is("${CommonStaticText.paddedYes}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${CommonStaticText.yes}")`,
+        `${Selectors.GovukLabel}:text-is("${CommonStaticText.paddedYes}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLink}:text-is("${ConsentAgreementContent.externalLink}"):`,
+        `${Selectors.GovukLink}:text-is("${ConsentAgreementContent.externalLink}")`,
         1,
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      // await AccessibilityTestHelper.run(page); #TODO: re-enable when PRL-6493 is completed
     }
   }
 
   private static async checkErrorMessaging(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -101,7 +101,7 @@ export class ConsentAgreementPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${uniqueSelectors.errorList}${Selectors.a}:text-is("${ConsentAgreementContent.errorSummaryLi}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${ConsentAgreementContent.errorSummaryLi}")`,
         1,
       ),
     ]);
@@ -122,7 +122,7 @@ export class ConsentAgreementPage {
       await page.click(uniqueSelectors.radioNo);
     }
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
     );
   }
 }

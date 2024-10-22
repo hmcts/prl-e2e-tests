@@ -57,12 +57,12 @@ export class LegalRepresentationApplicationPage {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${CommonStaticText.yes}")`,
+        `${Selectors.GovukLabel}:text-is("${CommonStaticText.strippedYes}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${CommonStaticText.no}")`,
+        `${Selectors.GovukLabel}:text-is("${CommonStaticText.strippedNo}")`,
         1,
       ),
     ]);
@@ -73,7 +73,7 @@ export class LegalRepresentationApplicationPage {
 
   private static async checkErrorMessaging(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -104,7 +104,7 @@ export class LegalRepresentationApplicationPage {
       await page.click(inputIDs.radioNo);
     }
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
     );
   }
 }

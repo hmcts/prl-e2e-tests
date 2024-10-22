@@ -61,7 +61,7 @@ export class C100ApplicationCompletedForYou {
         page: page,
         accessibilityTest: accessibilityTest,
         errorMessaging: errorMessaging,
-        c100ApplicationCompletedForYou: false,
+        c100ApplicationCompletedForYou: true,
       },
     );
     await ContactRepresentativePage.contactRepresentativePage({

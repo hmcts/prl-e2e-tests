@@ -13,8 +13,11 @@ export class AxeTest {
         "wcag22aa",
       ])
       .analyze();
-
-    expect.soft(accessibilityScanResults.violations).toEqual([]);
+    const violations = accessibilityScanResults.violations;
+    if (violations.length !== 0) {
+      console.log(`${page.url()}`);
+    }
+    expect.soft(violations).toEqual([]);
   }
 }
 

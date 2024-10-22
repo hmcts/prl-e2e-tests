@@ -89,7 +89,7 @@ export class PermissionsWhyPage {
       await page.check(checkbox);
     }
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -130,7 +130,7 @@ export class PermissionsWhyPage {
       await page.fill(textField, PermissionsWhyContent[contentKey]);
     }
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
     );
   }
 }
