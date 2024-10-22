@@ -28,10 +28,10 @@ enum UniqueSelectors {
 
 export class ForcedMarriageProtectionDocumentUploadPage {
   public static async forcedMarriageProtectionDocumentUploadPage({
-                                                          page: page,
-                                                          accessibilityTest: accessibilityTest,
-                                                          errorMessaging: errorMessaging,
-                                                        }: ForcedMarriageProtectionDocumentUploadPageOptions): Promise<void> {
+    page: page,
+    accessibilityTest: accessibilityTest,
+    errorMessaging: errorMessaging,
+  }: ForcedMarriageProtectionDocumentUploadPageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
       accessibilityTest: accessibilityTest,
@@ -45,9 +45,9 @@ export class ForcedMarriageProtectionDocumentUploadPage {
   }
 
   private static async checkPageLoads({
-                                        page: page,
-                                        accessibilityTest: accessibilityTest,
-                                      }: checkPageLoadsOptions): Promise<void> {
+    page: page,
+    accessibilityTest: accessibilityTest,
+  }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.GovukHeadingXL}:text-is("${ForcedMarriageProtectionDocumentUploadContent.pageTitle}")`,
     );
@@ -126,8 +126,8 @@ export class ForcedMarriageProtectionDocumentUploadPage {
   }
 
   private static async fillInFields({
-                                      page: page,
-                                    }: fillInFieldsOptions): Promise<void> {
+    page: page,
+  }: fillInFieldsOptions): Promise<void> {
     let fileInput = page.locator(`${UniqueSelectors.documentUpload}`);
     await fileInput.setInputFiles(config.testPdfFile);
     await page.click(
