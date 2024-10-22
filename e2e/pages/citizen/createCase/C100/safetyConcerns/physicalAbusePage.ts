@@ -6,19 +6,20 @@ import {
 } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/physicalAbuseContent";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
+import {
+  ReportAbuseCommonContent
+} from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/reportAbuseCommonContent";
+import { ReportAbuseHelpers } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/reportAbuseHelpers";
 
 enum checkboxIDs {
   child1 = '#childrenConcernedAbout'
 }
 
-enum radioInputIDs {
+enum inputIDs {
   ongoingBehaviorYes = "#isOngoingBehaviour",
   ongoingBehaviorNo = "#isOngoingBehaviour-2",
   seekHelpYes = "#seekHelpFromPersonOrAgency",
-  seekHelpNo = "#seekHelpFromPersonOrAgency-2"
-}
-
-enum textFieldIDs {
+  seekHelpNo = "#seekHelpFromPersonOrAgency-2",
   behaviourDetails = '#behaviourDetails',
   behaviourStartDate = '#behaviourStartDate',
   seekHelpDetails = '#seekHelpDetails'
@@ -27,21 +28,10 @@ enum textFieldIDs {
 interface PhysicalAbusePageOptions {
   page: Page;
   accessibilityTest: boolean;
-  errorMessaging: boolean;
   c100PhysicalAbuseYesNoToAll: boolean;
 }
 
 interface FillInFieldsOptions {
-  page: Page;
-  c100PhysicalAbuseYesNoToAll: boolean;
-}
-
-interface SeekHelpOptions {
-  page: Page;
-  c100PhysicalAbuseYesNoToAll: boolean;
-}
-
-interface OngoingBehaviourOptions {
   page: Page;
   c100PhysicalAbuseYesNoToAll: boolean;
 }
@@ -55,15 +45,16 @@ export class PhysicalAbusePage {
   public static async physicalAbusePage({
     page,
     accessibilityTest,
-    errorMessaging
+    c100PhysicalAbuseYesNoToAll
   }: PhysicalAbusePageOptions): Promise<void> {
     await this.checkPageLoads({
       page,
       accessibilityTest
     });
-    if (errorMessaging) {
-      await this.checkErrorMessaging(page)
-    }
+    await this.fillInFields({
+      page,
+      c100PhysicalAbuseYesNoToAll
+    });
   }
 
   private static async checkPageLoads({
@@ -73,75 +64,10 @@ export class PhysicalAbusePage {
     await page.waitForSelector(
       `${Selectors.GovukHeadingXL}:text-is("${PhysicalAbuseContent.pageTitle}")`
     );
-    // There should also be a checkVisibleAndPresent for the child's name, but this is dynamic and not added yet
-    await Promise.all([
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukCaptionXL}:text-is("${PhysicalAbuseContent.caption}")`,
-        1
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukLink}:text-is("${PhysicalAbuseContent.injunctionLink}")`,
-        1
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.Span}:text-is("${PhysicalAbuseContent.span}")`,
-        1
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.strong}:text-is("${PhysicalAbuseContent.strong}")`,
-        1
-      ),
-      Helpers.checkGroup(
-        page,
-        4,
-        PhysicalAbuseContent,
-        'body',
-        `${Selectors.GovukBody}`
-      ),
-      Helpers.checkGroup(
-        page,
-        3,
-        PhysicalAbuseContent,
-        'legend',
-        `${Selectors.GovukFieldsetLegend}`
-      ),
-      Helpers.checkGroup(
-        page,
-        3,
-        PhysicalAbuseContent,
-        'formHint',
-        `${Selectors.GovukFormHint}`
-      ),
-      Helpers.checkGroup(
-        page,
-        2,
-        PhysicalAbuseContent,
-        'formLabel',
-        `${Selectors.GovukLabel}`
-      ),
-    ])
+    await ReportAbuseHelpers.checkStaticText(page);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page)
     }
-  }
-
-  private static async checkErrorMessaging(
-    page: Page
-  ): Promise<void> {
-    await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.continue}")`
-    );
-    await Promise.all([
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukErrorSummaryTitle}:text-is("${CommonStaticText.errorSummaryTitle}")`,
-        1
-      ),
-    ])
   }
 
   private static async fillInFields({
@@ -157,94 +83,26 @@ export class PhysicalAbusePage {
       'behaviourDetails', 'behaviourStartDate'
     ];
     for (let key of textToFill) {
-      let inputKey = key as keyof typeof textFieldIDs;
+      let inputKey = key as keyof typeof inputIDs;
       let contentKey = key as keyof typeof PhysicalAbuseContent;
       await page.fill(
-        textFieldIDs[inputKey],
+        inputIDs[inputKey],
         PhysicalAbuseContent[contentKey]
       )
     }
-    await this.ongoingBehaviourFields({
-      page,
-      c100PhysicalAbuseYesNoToAll
+    await ReportAbuseHelpers.ongoingBehaviourFields({
+      page: page,
+      c100PhysicalAbuseYesNoToAll: c100PhysicalAbuseYesNoToAll,
+      inputIDs: inputIDs,
     });
-    await this.seekHelpFields({
-      page,
-      c100PhysicalAbuseYesNoToAll
-    })
+    await ReportAbuseHelpers.seekHelpFields({
+      page: page,
+      c100PhysicalAbuseYesNoToAll: c100PhysicalAbuseYesNoToAll,
+      inputIDs: inputIDs,
+      abuseContent: PhysicalAbuseContent
+    });
     await page.click(
       `${Selectors.button}:text-is("${CommonStaticText.continue}")`
     )
-  }
-
-  private static async ongoingBehaviourFields({
-    page,
-    c100PhysicalAbuseYesNoToAll
-  }: OngoingBehaviourOptions): Promise<void> {
-    if (c100PhysicalAbuseYesNoToAll) {
-      await page.click(
-        radioInputIDs.ongoingBehaviorYes
-      );
-      await Promise.all([
-        Helpers.checkGroup(
-          page,
-          2,
-          PhysicalAbuseContent,
-          'ongoingBehaviourLink',
-          `${Selectors.GovukLink}`
-        ),
-        Helpers.checkGroup(
-          page,
-          2,
-          PhysicalAbuseContent,
-          'ongoingBehaviourBody',
-          `${Selectors.GovukBody}`
-        ),
-      ]);
-    } else {
-      await page.click(
-        radioInputIDs.ongoingBehaviorNo
-      );
-    }
-  }
-
-  private static async seekHelpFields({
-    page,
-    c100PhysicalAbuseYesNoToAll
-  }: SeekHelpOptions): Promise<void> {
-    if (c100PhysicalAbuseYesNoToAll) {
-      await page.click(
-        radioInputIDs.seekHelpYes
-      );
-      await Helpers.checkGroup(
-        page,
-        2,
-        PhysicalAbuseContent,
-        'seekHelpBody',
-        `${Selectors.GovukBody}`
-      );
-      await page.fill(
-        textFieldIDs.seekHelpDetails,
-        PhysicalAbuseContent.seekHelpDetails
-      );
-    } else {
-      await page.click(
-        radioInputIDs.seekHelpYes
-      );
-      await Promise.all([
-        Helpers.checkGroup(
-          page,
-          2,
-          PhysicalAbuseContent,
-          'nspccGuidanceBody',
-          `${Selectors.GovukBody}`
-        ),
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukLink}:text-is("${PhysicalAbuseContent.nspccGuidanceLink}")`,
-          1
-        )
-      ])
-    }
   }
 }
