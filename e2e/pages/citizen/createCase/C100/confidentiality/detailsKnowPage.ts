@@ -60,7 +60,7 @@ export class DetailsKnowPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukCaptionXL}:has-text("${DetailsKnowContent.caption}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
