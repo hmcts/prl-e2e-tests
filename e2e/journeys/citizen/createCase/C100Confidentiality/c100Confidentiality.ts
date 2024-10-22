@@ -2,10 +2,6 @@ import { Page } from "@playwright/test";
 import { yesNoDontKnow } from "../../../../common/types";
 import { DetailsKnowPage } from "../../../../pages/citizen/createCase/C100/confidentiality/detailsKnowPage";
 import { StartPage } from "../../../../pages/citizen/createCase/C100/confidentiality/startPage";
-import {
-  StartAlternativeContent
-} from "../../../../fixtures/citizen/createCase/C100/confidentiality/startAlternativeContent";
-import { StartAlternativePage } from "../../../../pages/citizen/createCase/C100/confidentiality/startAlternativePage";
 import { FeedbackPage } from "../../../../pages/citizen/createCase/C100/confidentiality/feedbackPage";
 import { FeedbackNoPage } from "../../../../pages/citizen/createCase/C100/confidentiality/feedbackNoPage";
 
@@ -36,14 +32,18 @@ export class C100Confidentiality {
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
       c100PrivateDetails: c100PrivateDetails,
+      c100OthersKnowApplicantsContact: c100OthersKnowApplicantsContact
     });
-    await FeedbackNoPage.feedbackNoPage({
-      page: page,
-      accessibilityTest: accessibilityTest,
-    });
-    await FeedbackPage.feedbackPage({
-      page: page,
-      accessibilityTest: accessibilityTest,
-    });
+    if (c100PrivateDetails) {
+      await FeedbackPage.feedbackPage({
+        page: page,
+        accessibilityTest: accessibilityTest,
+      });
+    } else {
+      await FeedbackNoPage.feedbackNoPage({
+        page: page,
+        accessibilityTest: accessibilityTest,
+      });
+    }
   }
 }
