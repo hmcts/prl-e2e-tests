@@ -24,16 +24,17 @@ interface fillInFieldsOptions {
 }
 
 enum inputIds {
-  postcodeLookup = '#addressPostcode',
-  manualAddress = '#enterAddressManually',
+  postcodeLookup = "#addressPostcode",
+  manualAddress = "#enterAddressManually",
 }
 
 export class ApplicantAddressLookupPage {
   public static async applicantAddressLookupPage({
-                                                         page,
-                                                         accessibilityTest,
-                                                         errorMessaging, addressLookup,
-                                                       }: applicantAddressLookupOptions): Promise<void> {
+    page,
+    accessibilityTest,
+    errorMessaging,
+    addressLookup,
+  }: applicantAddressLookupOptions): Promise<void> {
     await this.checkPageLoads({ page, accessibilityTest });
     if (errorMessaging) {
       await this.triggerErrorMessages(page);
@@ -46,23 +47,23 @@ export class ApplicantAddressLookupPage {
   }
 
   private static async checkPageLoads({
-                                        page,
-                                        accessibilityTest,
-                                      }: checkPageLoadsOptions): Promise<void> {
+    page,
+    accessibilityTest,
+  }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukHeadingL}:text-has("${ApplicantAddressLookupContent.pageTitle}")`
+      `${Selectors.GovukHeadingL}:has-text("${ApplicantAddressLookupContent.pageTitle}")`,
     );
 
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukLabel}:text-is("${ApplicantAddressLookupContent.label}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukBody}:text-is("${ApplicantAddressLookupContent.body}")`,
-        1
+        1,
       ),
     ]);
 
@@ -72,37 +73,40 @@ export class ApplicantAddressLookupPage {
   }
 
   private static async triggerErrorMessages(page: Page): Promise<void> {
-  await page.click(
-    `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`
-  );
+    await page.click(
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
+    );
 
-  await Promise.all([
-    Helpers.checkVisibleAndPresent(
-      page,
-      `${Selectors.GovukErrorSummaryTitle}:text-is("${CommonStaticText.errorSummaryTitle}")`,
-      1
-    ),
-    Helpers.checkVisibleAndPresent(
-      page,
-      `${Selectors.GovukErrorSummary}:text-is("${ApplicantAddressLookupContent.errorMessage}")`,
-      1
-    ),
-    Helpers.checkVisibleAndPresent(
-      page,
-      `${Selectors.GovukErrorMessage}:text-is("${ApplicantAddressLookupContent.errorMessage}")`,
-      1
-    ),
-  ]);
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorSummaryTitle}:text-is("${CommonStaticText.errorSummaryTitle}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorSummary}:text-is("${ApplicantAddressLookupContent.errorMessage}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorMessage}:text-is("${ApplicantAddressLookupContent.errorMessage}")`,
+        1,
+      ),
+    ]);
   }
 
   private static async fillInFields({
-                                      page,
-                                      addressLookup
-                                    }: fillInFieldsOptions): Promise<void> {
+    page,
+    addressLookup,
+  }: fillInFieldsOptions): Promise<void> {
     if (addressLookup) {
-      await page.fill(inputIds.postcodeLookup, ApplicantAddressLookupContent.postcodeText);
+      await page.fill(
+        inputIds.postcodeLookup,
+        ApplicantAddressLookupContent.postcodeText,
+      );
       await page.click(
-        `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`
+        `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
       );
     } else {
       await page.click(inputIds.manualAddress);

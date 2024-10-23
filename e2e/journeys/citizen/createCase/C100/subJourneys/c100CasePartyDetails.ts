@@ -2,13 +2,8 @@ import { Page } from "@playwright/test";
 import { ApplicantPersonalDetailsPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicantPersonalDetailsPage";
 import { ApplicantRelationshipToChildPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicantRelationshipToChildPage";
 import { ApplicantGender, Relationship } from "../../../../../common/types";
-import {
-  ApplicantAddressLookupPage
-} from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicantAddressLookupPage";
-import {
-  ApplicantAddressSelectPage
-} from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicantAddressSelectPage";
-
+import { ApplicantAddressLookupPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicantAddressLookupPage";
+import { ApplicantAddressSelectPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicantAddressSelectPage";
 
 interface c100CasePartyDetailsOptions {
   page: Page;
@@ -33,7 +28,8 @@ export class C100CasePartyDetails {
     under18,
     placeOfBirth,
     relationship,
-    addressLookup, addressLookupSuccessful,
+    addressLookup,
+    addressLookupSuccessful,
   }: c100CasePartyDetailsOptions): Promise<void> {
     await ApplicantPersonalDetailsPage.applicantPersonalDetailsPage({
       page,
@@ -64,6 +60,6 @@ export class C100CasePartyDetails {
       accessibilityTest,
       errorMessaging,
       addressLookupSuccessful,
-    })
+    });
   }
 }
