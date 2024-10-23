@@ -9,20 +9,6 @@ import { EmotionalAbusePage } from "../../../../../pages/citizen/createCase/C100
 import { SexualAbusePage } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/sexualAbusePage";
 import { FinancialAbusePage } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/financialAbusePage";
 
-export enum reportAbuseCheckboxIDs {
-  child1 = "#childrenConcernedAbout",
-}
-
-export enum reportAbuseInputIDs {
-  ongoingBehaviorYes = "#isOngoingBehaviour",
-  ongoingBehaviorNo = "#isOngoingBehaviour-2",
-  seekHelpYes = "#seekHelpFromPersonOrAgency",
-  seekHelpNo = "#seekHelpFromPersonOrAgency-2",
-  behaviourDetails = "#behaviourDetails",
-  behaviourStartDate = "#behaviourStartDate",
-  seekHelpDetails = "#seekHelpDetails",
-}
-
 interface C100SafetyConcernsOptions {
   page: Page;
   accessibilityTest: boolean;
@@ -76,7 +62,6 @@ export class C100SafetyConcerns {
         accessibilityTest: accessibilityTest,
         c100PsychologicalAbuseYesNoToAll: c100ReportAbuseYesNoToAll,
       });
-      // PRL-6401
       await EmotionalAbusePage.emotionalAbusePage({
         page: page,
         accessibilityTest: accessibilityTest,

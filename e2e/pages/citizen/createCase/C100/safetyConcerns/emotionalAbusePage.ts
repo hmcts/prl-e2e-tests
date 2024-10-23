@@ -5,8 +5,8 @@ import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { SafetyConcernHelpers } from "./safetyConcernHelpers";
 import {
   reportAbuseCheckboxIDs,
-  reportAbuseInputIDs,
-} from "../../../../../journeys/citizen/createCase/C100/subJourneys/c100SafetyConcerns";
+  reportAbuseInputIDs
+} from "../../../../../common/commonUniqueSelectors";
 import { EmotionalAbuseContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/emotionalAbuseContent";
 
 interface EmotionalAbusePageOptions {
