@@ -13,6 +13,11 @@ export enum CitizensOtherProceedingsUniqueSelectors {
   orderCopyNo = "#orderCopy-1-2",
 }
 
+export enum CitizenOtherProceedingsDocumentUploadSelectors {
+  documentUpload = "#document",
+  uploadConfirmationSelector = ".govuk-summary-list__value",
+}
+
 export enum reportAbuseCheckboxIDs {
   child1 = "#childrenConcernedAbout",
 }
