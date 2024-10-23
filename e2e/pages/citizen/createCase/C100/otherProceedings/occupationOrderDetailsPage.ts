@@ -1,16 +1,16 @@
-import { Selectors } from "../../../../../../common/selectors";
-import { CommonStaticText } from "../../../../../../common/commonStaticText";
-import { Helpers } from "../../../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper";
+import { OccupationOrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/occupationOrder/occupationOrderDetailsContent";
+import { Selectors } from "../../../../../common/selectors";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { Helpers } from "../../../../../common/helpers";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
-import { CitizensOtherProceedingsUniqueSelectors } from "../../../../../../common/commonUniqueSelectors";
-import { ForcedMarriageProtectionOrderDetailsContent } from "../../../../../../fixtures/citizen/createCase/C100/otherProceedings/forcedMarriageProtection/forcedMarriageProtectionOrderDetailsContent";
+import { CitizensOtherProceedingsUniqueSelectors } from "../../../../../common/commonUniqueSelectors";
 
-interface ForcedMarriageProtectionOrderDetailsPageOptions {
+interface OccupationOrderDetailsPageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
-  yesNoForcedMarriageProtectionOrderDetails: boolean;
+  yesNoOccupationOrderDetails: boolean;
 }
 
 interface checkPageLoadsOptions {
@@ -20,17 +20,16 @@ interface checkPageLoadsOptions {
 
 interface fillInFieldsOptions {
   page: Page;
-  yesNoForcedMarriageProtectionOrderDetails: boolean;
+  yesNoOccupationOrderDetails: boolean;
 }
 
-export class ForcedMarriageProtectionOrderDetailsPage {
-  public static async forcedMarriageProtectionOrderDetailsPage({
+export class OccupationOrderDetailsPage {
+  public static async occupationOrderDetailsPage({
     page: page,
     accessibilityTest: accessibilityTest,
     errorMessaging: errorMessaging,
-    yesNoForcedMarriageProtectionOrderDetails:
-      yesNoForcedMarriageProtectionOrderDetails,
-  }: ForcedMarriageProtectionOrderDetailsPageOptions): Promise<void> {
+    yesNoOccupationOrderDetails: yesNoOccupationOrderDetails,
+  }: OccupationOrderDetailsPageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
       accessibilityTest: accessibilityTest,
@@ -40,8 +39,7 @@ export class ForcedMarriageProtectionOrderDetailsPage {
     }
     await this.fillInFields({
       page: page,
-      yesNoForcedMarriageProtectionOrderDetails:
-        yesNoForcedMarriageProtectionOrderDetails,
+      yesNoOccupationOrderDetails: yesNoOccupationOrderDetails,
     });
   }
 
@@ -50,36 +48,36 @@ export class ForcedMarriageProtectionOrderDetailsPage {
     accessibilityTest: accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.p}:text-is("${ForcedMarriageProtectionOrderDetailsContent.p}")`,
+      `${Selectors.p}:text-is("${OccupationOrderDetailsContent.p}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHeadingXL}:text-is("${ForcedMarriageProtectionOrderDetailsContent.pageTitle}")`,
+        `${Selectors.GovukHeadingXL}:text-is("${OccupationOrderDetailsContent.pageTitle}")`,
         1,
       ),
       Helpers.checkGroup(
         page,
         5,
-        ForcedMarriageProtectionOrderDetailsContent,
+        OccupationOrderDetailsContent,
         "h1",
         `${Selectors.h1}`,
       ),
       Helpers.checkGroup(
         page,
         2,
-        ForcedMarriageProtectionOrderDetailsContent,
+        OccupationOrderDetailsContent,
         "formLabel",
         `${Selectors.h1}`,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${ForcedMarriageProtectionOrderDetailsContent.formHint1}")`,
+        `${Selectors.GovukHint}:text-is("${OccupationOrderDetailsContent.formHint1}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${ForcedMarriageProtectionOrderDetailsContent.formHint2}")`,
+        `${Selectors.GovukHint}:text-is("${OccupationOrderDetailsContent.formHint2}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
@@ -116,27 +114,27 @@ export class ForcedMarriageProtectionOrderDetailsPage {
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.orderDate1day}`,
-      ForcedMarriageProtectionOrderDetailsContent.dayNumber,
+      OccupationOrderDetailsContent.dayNumber,
     );
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.orderDate1month}`,
-      ForcedMarriageProtectionOrderDetailsContent.errorMonthNumber,
+      OccupationOrderDetailsContent.errorMonthNumber,
     );
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.orderDate1year}`,
-      ForcedMarriageProtectionOrderDetailsContent.yearNumber1,
+      OccupationOrderDetailsContent.yearNumber1,
     );
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.orderEndDate1day}`,
-      ForcedMarriageProtectionOrderDetailsContent.dayNumber,
+      OccupationOrderDetailsContent.dayNumber,
     );
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.orderEndDate1month}`,
-      ForcedMarriageProtectionOrderDetailsContent.errorMonthNumber,
+      OccupationOrderDetailsContent.errorMonthNumber,
     );
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.orderEndDate1year}`,
-      ForcedMarriageProtectionOrderDetailsContent.yearNumber2,
+      OccupationOrderDetailsContent.yearNumber2,
     );
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
@@ -149,22 +147,22 @@ export class ForcedMarriageProtectionOrderDetailsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${ForcedMarriageProtectionOrderDetailsContent.errorMessageOrderDate}")`,
+        `${Selectors.a}:text-is("${OccupationOrderDetailsContent.errorMessageOrderDate}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${ForcedMarriageProtectionOrderDetailsContent.errorMessageOrderDate}")`,
+        `${Selectors.ErrorMessage}:text-is("${OccupationOrderDetailsContent.errorMessageOrderDate}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${ForcedMarriageProtectionOrderDetailsContent.errorMessageOrderEndDate}")`,
+        `${Selectors.a}:text-is("${OccupationOrderDetailsContent.errorMessageOrderEndDate}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${ForcedMarriageProtectionOrderDetailsContent.errorMessageOrderEndDate}")`,
+        `${Selectors.ErrorMessage}:text-is("${OccupationOrderDetailsContent.errorMessageOrderEndDate}")`,
         1,
       ),
     ]);
@@ -172,43 +170,42 @@ export class ForcedMarriageProtectionOrderDetailsPage {
 
   private static async fillInFields({
     page: page,
-    yesNoForcedMarriageProtectionOrderDetails:
-      yesNoForcedMarriageProtectionOrderDetails,
+    yesNoOccupationOrderDetails: yesNoOccupationOrderDetails,
   }: fillInFieldsOptions): Promise<void> {
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.orderDetail1}`,
-      ForcedMarriageProtectionOrderDetailsContent.courtIssued,
+      OccupationOrderDetailsContent.courtIssued,
     );
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.caseNo1}`,
-      ForcedMarriageProtectionOrderDetailsContent.caseNumber,
+      OccupationOrderDetailsContent.caseNumber,
     );
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.orderDate1day}`,
-      ForcedMarriageProtectionOrderDetailsContent.dayNumber,
+      OccupationOrderDetailsContent.dayNumber,
     );
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.orderDate1month}`,
-      ForcedMarriageProtectionOrderDetailsContent.monthNumber,
+      OccupationOrderDetailsContent.monthNumber,
     );
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.orderDate1year}`,
-      ForcedMarriageProtectionOrderDetailsContent.yearNumber1,
+      OccupationOrderDetailsContent.yearNumber1,
     );
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.orderEndDate1day}`,
-      ForcedMarriageProtectionOrderDetailsContent.dayNumber,
+      OccupationOrderDetailsContent.dayNumber,
     );
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.orderEndDate1month}`,
-      ForcedMarriageProtectionOrderDetailsContent.monthNumber,
+      OccupationOrderDetailsContent.monthNumber,
     );
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.orderEndDate1year}`,
-      ForcedMarriageProtectionOrderDetailsContent.yearNumber2,
+      OccupationOrderDetailsContent.yearNumber2,
     );
     // Selecting 'true' will move onto next page
-    if (yesNoForcedMarriageProtectionOrderDetails) {
+    if (yesNoOccupationOrderDetails) {
       await page.click(
         `${CitizensOtherProceedingsUniqueSelectors.currentOrderYes}`,
       );

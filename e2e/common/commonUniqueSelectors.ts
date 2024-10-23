@@ -12,3 +12,8 @@ export enum CitizensOtherProceedingsUniqueSelectors {
   orderCopyYes = "#orderCopy-1",
   orderCopyNo = "#orderCopy-1-2",
 }
+
+export enum CitizenOtherProceedingsDocumentUploadSelectors {
+  documentUpload = "#document",
+  uploadConfirmationSelector = ".govuk-summary-list__value",
+}
