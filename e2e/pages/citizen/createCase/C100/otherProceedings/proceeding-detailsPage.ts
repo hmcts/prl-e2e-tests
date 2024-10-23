@@ -87,7 +87,7 @@ export class ProceedingDetailsPage {
 
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -111,13 +111,11 @@ export class ProceedingDetailsPage {
   private static async fillInFields({
     page: page,
   }: fillInFieldsOptions): Promise<void> {
-    for (const selectorKey in UniqueSelectors) {
-      const selector =
-        UniqueSelectors[selectorKey as keyof typeof UniqueSelectors];
+    for (const selector of Object.values(UniqueSelectors)) {
       await page.click(selector);
     }
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
   }
 }
