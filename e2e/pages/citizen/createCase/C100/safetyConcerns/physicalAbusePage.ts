@@ -1,23 +1,20 @@
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
+import { PhysicalAbuseContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/physicalAbuseContent";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-import { SafetyConcernHelpers } from "./safetyConcernHelpers";
-import {
-  reportAbuseCheckboxIDs,
-  reportAbuseInputIDs,
-} from "../../../../../journeys/citizen/createCase/C100/subJourneys/c100SafetyConcerns";
-import { SexualAbuseContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/sexualAbuseContent";
+import { ReportAbuseHelpers } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/reportAbuseHelpers";
+import { reportAbuseCheckboxIDs, reportAbuseInputIDs } from "../../../../../common/commonUniqueSelectors";
 
-interface SexualAbusePageOptions {
+interface PhysicalAbusePageOptions {
   page: Page;
   accessibilityTest: boolean;
-  c100SexualAbuseYesNoToAll: boolean;
+  c100PhysicalAbuseYesNoToAll: boolean;
 }
 
 interface FillInFieldsOptions {
   page: Page;
-  c100SexualAbuseYesNoToAll: boolean;
+  c100PhysicalAbuseYesNoToAll: boolean;
 }
 
 interface CheckPageLoadsOptions {
@@ -25,19 +22,19 @@ interface CheckPageLoadsOptions {
   accessibilityTest: boolean;
 }
 
-export class SexualAbusePage {
-  public static async sexualAbusePage({
+export class PhysicalAbusePage {
+  public static async physicalAbusePage({
     page,
     accessibilityTest,
-    c100SexualAbuseYesNoToAll,
-  }: SexualAbusePageOptions): Promise<void> {
+    c100PhysicalAbuseYesNoToAll,
+  }: PhysicalAbusePageOptions): Promise<void> {
     await this.checkPageLoads({
       page,
       accessibilityTest,
     });
     await this.fillInFields({
       page,
-      c100SexualAbuseYesNoToAll,
+      c100PhysicalAbuseYesNoToAll,
     });
   }
 
@@ -46,11 +43,9 @@ export class SexualAbusePage {
     accessibilityTest,
   }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukHeadingXL}:text-is("${SexualAbuseContent.pageTitle}")`,
+      `${Selectors.GovukHeadingXL}:text-is("${PhysicalAbuseContent.pageTitle}")`,
     );
-    await SafetyConcernHelpers.checkStaticText(page);
-    await SafetyConcernHelpers.checkSidebar(page);
-    await SafetyConcernHelpers.checkContactDetailsText(page);
+    await ReportAbuseHelpers.checkStaticText(page);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }
@@ -58,7 +53,7 @@ export class SexualAbusePage {
 
   private static async fillInFields({
     page,
-    c100SexualAbuseYesNoToAll,
+    c100PhysicalAbuseYesNoToAll,
   }: FillInFieldsOptions): Promise<void> {
     for (let checkbox of Object.values(reportAbuseCheckboxIDs)) {
       await page.check(checkbox);
@@ -69,22 +64,19 @@ export class SexualAbusePage {
     ];
     for (let key of textToFill) {
       let inputKey = key as keyof typeof reportAbuseInputIDs;
-      let contentKey = key as keyof typeof SexualAbuseContent;
-      await page.fill(
-        reportAbuseInputIDs[inputKey],
-        SexualAbuseContent[contentKey],
-      );
+      let contentKey = key as keyof typeof PhysicalAbuseContent;
+      await page.fill(reportAbuseInputIDs[inputKey], PhysicalAbuseContent[contentKey]);
     }
-    await SafetyConcernHelpers.ongoingBehaviourFields({
+    await ReportAbuseHelpers.ongoingBehaviourFields({
       page: page,
-      c100ReportAbuseYesNoToAll: c100SexualAbuseYesNoToAll,
+      c100ReportAbuseYesNoToAll: c100PhysicalAbuseYesNoToAll,
       inputIDs: reportAbuseInputIDs,
     });
-    await SafetyConcernHelpers.seekHelpFields({
+    await ReportAbuseHelpers.seekHelpFields({
       page: page,
-      c100ReportAbuseYesNoToAll: c100SexualAbuseYesNoToAll,
+      c100ReportAbuseYesNoToAll: c100PhysicalAbuseYesNoToAll,
       inputIDs: reportAbuseInputIDs,
-      abuseContent: SexualAbuseContent,
+      abuseContent: PhysicalAbuseContent,
     });
     await page.click(
       `${Selectors.button}:text-is("${CommonStaticText.continue}")`,

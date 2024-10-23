@@ -69,12 +69,12 @@ export class CurrentPreviousProceedingsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${CommonStaticText.strippedYes}")`,
+        `${Selectors.GovukLabel}:text-is("${CommonStaticText.yes}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${CommonStaticText.strippedNo}")`,
+        `${Selectors.GovukLabel}:text-is("${CommonStaticText.no}")`,
         2,
       ),
     ]);
@@ -85,7 +85,7 @@ export class CurrentPreviousProceedingsPage {
 
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -128,7 +128,7 @@ export class CurrentPreviousProceedingsPage {
       await page.click(`${UniqueSelectors.op_courtOrderProtectionNo}`);
     }
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
   }
 }
