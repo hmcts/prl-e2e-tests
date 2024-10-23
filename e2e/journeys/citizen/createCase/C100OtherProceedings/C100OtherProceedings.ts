@@ -20,6 +20,12 @@ import { ChildMaintenanceOrderDocumentUploadPage } from "../../../../pages/citiz
 import { FinancialOrderDetailsPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/financialOrderDetailsPage";
 import { FinancialOrderDocumentUploadPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/financialOrderDocumentUploadPage";
 import { NonMolestationOrderDetailsPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/nonMolestationOrderOrderDetailsPage";
+import { OccupationOrderDetailsPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/occupationOrderDetailsPage";
+import { OccupationOrderDocumentUploadPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/occupationOrderDocumentUploadPage";
+import { ForcedMarriageProtectionDocumentUploadPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/forcedMarriageProtectionOrderDocumentUploadPage";
+import { ForcedMarriageProtectionOrderDetailsPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/forcedMarriageProtectionOrderDetailsPage";
+import { RestrainingOrderDetailsPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/restrainingOrderDetailsPage";
+import { RestrainingOrderDocumentUploadPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/restrainingOrderDocumentUploadPage";
 
 interface C100OtherProceedings1Options {
   page: Page;
@@ -36,6 +42,9 @@ interface C100OtherProceedings1Options {
   yesNoChildMaintenanceOrderDetails: boolean;
   yesNoFinancialOrderDetails: boolean;
   yesNoNonMolestationOrderDetails: boolean;
+  yesNoOccupationOrderDetails: boolean;
+  yesNoForcedMarriageProtectionOrderDetails: boolean;
+  yesNoRestrainingOrderDetails: boolean;
 }
 
 export class C100OtherProceedings {
@@ -54,6 +63,9 @@ export class C100OtherProceedings {
     yesNoChildMaintenanceOrderDetails,
     yesNoFinancialOrderDetails,
     yesNoNonMolestationOrderDetails,
+    yesNoOccupationOrderDetails,
+    yesNoForcedMarriageProtectionOrderDetails,
+    yesNoRestrainingOrderDetails,
   }: C100OtherProceedings1Options): Promise<void> {
     await CurrentPreviousProceedingsPage.currentPreviousProceedingsPage({
       //yesNo needs to be true to move to next page
@@ -195,6 +207,47 @@ export class C100OtherProceedings {
           errorMessaging,
           yesNoNonMolestationOrderDetails,
         });
+        await OccupationOrderDetailsPage.occupationOrderDetailsPage({
+          page,
+          accessibilityTest,
+          errorMessaging,
+          yesNoOccupationOrderDetails,
+        });
+        await OccupationOrderDocumentUploadPage.occupationOrderDocumentUploadPage(
+          {
+            page,
+            accessibilityTest,
+            errorMessaging,
+          },
+        );
+        await ForcedMarriageProtectionOrderDetailsPage.forcedMarriageProtectionOrderDetailsPage(
+          {
+            page,
+            accessibilityTest,
+            errorMessaging,
+            yesNoForcedMarriageProtectionOrderDetails,
+          },
+        );
+        await ForcedMarriageProtectionDocumentUploadPage.forcedMarriageProtectionDocumentUploadPage(
+          {
+            page,
+            accessibilityTest,
+            errorMessaging,
+          },
+        );
+        await RestrainingOrderDetailsPage.restrainingOrderDetailsPage({
+          page,
+          accessibilityTest,
+          errorMessaging,
+          yesNoRestrainingOrderDetails,
+        });
+        await RestrainingOrderDocumentUploadPage.restrainingOrderDocumentUploadPage(
+          {
+            page,
+            accessibilityTest,
+            errorMessaging,
+          },
+        );
       }
     }
   }

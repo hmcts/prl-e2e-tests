@@ -1,16 +1,16 @@
 import { Selectors } from "../../../../../common/selectors";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
-import { Helpers } from "../../../../../common/helpers";
-import { CareOrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/careOrderDetailsContent";
-import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { CitizensOtherProceedingsUniqueSelectors } from "../../../../../common/commonUniqueSelectors";
+import { RestrainingOrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/restrainingOrderDetailsContent";
 
-interface CareOrderDetailsPageOptions {
+interface RestrainingOrderDetailsPageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
-  yesNoCareOrderOrderDetails: boolean;
+  yesNoRestrainingOrderDetails: boolean;
 }
 
 interface checkPageLoadsOptions {
@@ -20,16 +20,16 @@ interface checkPageLoadsOptions {
 
 interface fillInFieldsOptions {
   page: Page;
-  yesNoCareOrderOrderDetails: boolean;
+  yesNoRestrainingOrderDetails: boolean;
 }
 
-export class CareOrderDetailsPage {
-  public static async careOrderDetailsPage({
+export class RestrainingOrderDetailsPage {
+  public static async restrainingOrderDetailsPage({
     page: page,
     accessibilityTest: accessibilityTest,
     errorMessaging: errorMessaging,
-    yesNoCareOrderOrderDetails: yesNoCareOrderOrderDetails,
-  }: CareOrderDetailsPageOptions): Promise<void> {
+    yesNoRestrainingOrderDetails: yesNoRestrainingOrderDetails,
+  }: RestrainingOrderDetailsPageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
       accessibilityTest: accessibilityTest,
@@ -39,7 +39,7 @@ export class CareOrderDetailsPage {
     }
     await this.fillInFields({
       page: page,
-      yesNoCareOrderOrderDetails: yesNoCareOrderOrderDetails,
+      yesNoRestrainingOrderDetails: yesNoRestrainingOrderDetails,
     });
   }
 
@@ -48,36 +48,36 @@ export class CareOrderDetailsPage {
     accessibilityTest: accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.p}:text-is("${CareOrderDetailsContent.p}")`,
+      `${Selectors.p}:text-is("${RestrainingOrderDetailsContent.p}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHeadingXL}:text-is("${CareOrderDetailsContent.pageTitle}")`,
+        `${Selectors.GovukHeadingXL}:text-is("${RestrainingOrderDetailsContent.pageTitle}")`,
         1,
       ),
       Helpers.checkGroup(
         page,
         5,
-        CareOrderDetailsContent,
+        RestrainingOrderDetailsContent,
         "h1",
         `${Selectors.h1}`,
       ),
       Helpers.checkGroup(
         page,
         2,
-        CareOrderDetailsContent,
+        RestrainingOrderDetailsContent,
         "formLabel",
         `${Selectors.h1}`,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${CareOrderDetailsContent.formHint1}")`,
+        `${Selectors.GovukHint}:text-is("${RestrainingOrderDetailsContent.formHint1}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${CareOrderDetailsContent.formHint2}")`,
+        `${Selectors.GovukHint}:text-is("${RestrainingOrderDetailsContent.formHint2}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
@@ -114,27 +114,27 @@ export class CareOrderDetailsPage {
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.orderDate1day}`,
-      CareOrderDetailsContent.dayNumber,
+      RestrainingOrderDetailsContent.dayNumber,
     );
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.orderDate1month}`,
-      CareOrderDetailsContent.errorMonthNumber,
+      RestrainingOrderDetailsContent.errorMonthNumber,
     );
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.orderDate1year}`,
-      CareOrderDetailsContent.yearNumber1,
+      RestrainingOrderDetailsContent.yearNumber1,
     );
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.orderEndDate1day}`,
-      CareOrderDetailsContent.dayNumber,
+      RestrainingOrderDetailsContent.dayNumber,
     );
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.orderEndDate1month}`,
-      CareOrderDetailsContent.errorMonthNumber,
+      RestrainingOrderDetailsContent.errorMonthNumber,
     );
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.orderEndDate1year}`,
-      CareOrderDetailsContent.yearNumber2,
+      RestrainingOrderDetailsContent.yearNumber2,
     );
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
@@ -147,22 +147,22 @@ export class CareOrderDetailsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${CareOrderDetailsContent.errorMessageOrderDate}")`,
+        `${Selectors.a}:text-is("${RestrainingOrderDetailsContent.errorMessageOrderDate}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${CareOrderDetailsContent.errorMessageOrderDate}")`,
+        `${Selectors.ErrorMessage}:text-is("${RestrainingOrderDetailsContent.errorMessageOrderDate}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${CareOrderDetailsContent.errorMessageOrderEndDate}")`,
+        `${Selectors.a}:text-is("${RestrainingOrderDetailsContent.errorMessageOrderEndDate}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${CareOrderDetailsContent.errorMessageOrderEndDate}")`,
+        `${Selectors.ErrorMessage}:text-is("${RestrainingOrderDetailsContent.errorMessageOrderEndDate}")`,
         1,
       ),
     ]);
@@ -170,42 +170,42 @@ export class CareOrderDetailsPage {
 
   private static async fillInFields({
     page: page,
-    yesNoCareOrderOrderDetails: yesNoCareOrderOrderDetails,
+    yesNoRestrainingOrderDetails: yesNoRestrainingOrderDetails,
   }: fillInFieldsOptions): Promise<void> {
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.orderDetail1}`,
-      CareOrderDetailsContent.courtIssued,
+      RestrainingOrderDetailsContent.courtIssued,
     );
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.caseNo1}`,
-      CareOrderDetailsContent.caseNumber,
+      RestrainingOrderDetailsContent.caseNumber,
     );
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.orderDate1day}`,
-      CareOrderDetailsContent.dayNumber,
+      RestrainingOrderDetailsContent.dayNumber,
     );
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.orderDate1month}`,
-      CareOrderDetailsContent.monthNumber,
+      RestrainingOrderDetailsContent.monthNumber,
     );
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.orderDate1year}`,
-      CareOrderDetailsContent.yearNumber1,
+      RestrainingOrderDetailsContent.yearNumber1,
     );
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.orderEndDate1day}`,
-      CareOrderDetailsContent.dayNumber,
+      RestrainingOrderDetailsContent.dayNumber,
     );
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.orderEndDate1month}`,
-      CareOrderDetailsContent.monthNumber,
+      RestrainingOrderDetailsContent.monthNumber,
     );
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.orderEndDate1year}`,
-      CareOrderDetailsContent.yearNumber2,
+      RestrainingOrderDetailsContent.yearNumber2,
     );
     // Selecting 'true' will move onto next page
-    if (yesNoCareOrderOrderDetails) {
+    if (yesNoRestrainingOrderDetails) {
       await page.click(
         `${CitizensOtherProceedingsUniqueSelectors.currentOrderYes}`,
       );
