@@ -21,7 +21,6 @@ interface Fl401StatementOfTruthOptions {
   errorMessaging: boolean;
   fl401YesNoToEverything: boolean;
   subJourney: boolean;
-  isDummyCase: boolean;
 }
 
 export class Fl401StatementOfTruth {
@@ -31,8 +30,7 @@ export class Fl401StatementOfTruth {
     errorMessaging,
     fl401YesNoToEverything,
     subJourney,
-    isDummyCase,
-  }: Fl401StatementOfTruthOptions): Promise<void> {
+  }: Fl401StatementOfTruthOptions, isDummyCase: boolean = false): Promise<void> {
     const otherProceedingsRadioSelection = fl401YesNoToEverything
       ? "Yes"
       : "No";

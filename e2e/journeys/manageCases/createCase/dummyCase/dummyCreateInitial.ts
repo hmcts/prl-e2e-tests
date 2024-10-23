@@ -22,7 +22,7 @@ export class DummyCreateInitial {
     let caseName: string;
     await CaseList.caseList(page, "solicitor", false);
     await CaseListPage.startCreateCaseEvent(page);
-    await SolicitorCreatePage.solicitorCreatePage(page, true, false);
+    await SolicitorCreatePage.solicitorCreatePage(page, false, true);
     await SolicitorCreate2Page.solicitorCreate2Page(
       page,
       false,
@@ -34,11 +34,11 @@ export class DummyCreateInitial {
       case "C100":
         caseName = await SolicitorCreate4Page.solicitorCreate4Page(
           page,
+          false,
+          false,
           true,
-          false,
-          false,
         );
-        await SubmitPage.submitPage(page, true, false, caseName);
+        await SubmitPage.submitPage(page, false, caseName, true);
         if (
           await page
             .locator(
@@ -52,11 +52,11 @@ export class DummyCreateInitial {
       case "FL401":
         caseName = await SolicitorCreate5Page.solicitorCreate5Page(
           page,
+          false,
+          false,
           true,
-          false,
-          false,
         );
-        await SubmitPage.submitPage(page, true, false, caseName);
+        await SubmitPage.submitPage(page, false, caseName, true);
         if (
           await page
             .locator(
@@ -70,7 +70,7 @@ export class DummyCreateInitial {
       default:
         caseName = "null";
         console.error("An invalid case type was selected");
-        await SubmitPage.submitPage(page, true, false, caseName);
+        await SubmitPage.submitPage(page, false, caseName, true);
     }
   }
 }

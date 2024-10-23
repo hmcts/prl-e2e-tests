@@ -3,15 +3,15 @@ import { Page } from "@playwright/test";
 import { DummyPaymentAwpSubmitPage } from "../../../pages/manageCases/caseWorker/dummyPaymentAwpSubmitPage";
 import { Helpers } from "../../../common/helpers";
 import { DummyC100 } from "../createCase/dummyCase/dummyC100";
-import { DummyPaymentConfirmation } from "./dummyPaymentConfirmation";
 import { DummyFL401 } from "../createCase/dummyCase/dummyFL401";
+import { solicitorCaseCreateType } from "../../../common/types";
 
 interface DummyPaymentAwpParams {
   page: Page;
   errorMessaging: boolean;
   accessibilityTest: boolean;
-  isC100: boolean;
   paymentStatusPaid: boolean;
+  caseType: solicitorCaseCreateType;
 }
 
 export class DummyPaymentAwp {
@@ -19,25 +19,10 @@ export class DummyPaymentAwp {
     page,
     errorMessaging,
     accessibilityTest,
-    isC100,
     paymentStatusPaid,
+    caseType,
   }: DummyPaymentAwpParams): Promise<void> {
-    // submit a case before dummy payment Awp journey
-    if (isC100) {
-      const yesNoWelshLanguage: boolean = false;
-      const yesNoHelpWithFees: boolean = false;
-      await DummyC100.dummyC100({
-        page,
-        yesNoWelshLanguage,
-        yesNoHelpWithFees,
-      });
-      await DummyPaymentConfirmation.dummyPaymentConfirmation({
-        page,
-        accessibilityTest,
-      });
-    } else {
-      await DummyFL401.dummyFL401({ page });
-    }
+    await this.submitCase(page, caseType);
     await Helpers.chooseEventFromDropdown(page, "Dummy Payment for AwP");
     await DummyPaymentAwp1Page.dummyPaymentAwp1Page(
       page,
@@ -50,5 +35,19 @@ export class DummyPaymentAwp {
       accessibilityTest,
       paymentStatusPaid,
     );
+  }
+
+  private static async submitCase(
+    page: Page,
+    caseType: solicitorCaseCreateType,
+  ): Promise<void> {
+    if (caseType === "C100") {
+      await DummyC100.dummyC100({
+        page,
+        caseType,
+      });
+    } else {
+      await DummyFL401.dummyFL401({ page, caseType });
+    }
   }
 }

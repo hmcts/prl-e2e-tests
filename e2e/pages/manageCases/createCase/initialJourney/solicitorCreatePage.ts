@@ -20,8 +20,8 @@ enum options {
 export class SolicitorCreatePage {
   public static async solicitorCreatePage(
     page: Page,
-    isDummyCase: boolean,
     accessibilityTest: boolean,
+    isDummyCase: boolean = false,
   ): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest);
     await this.fillInFields(page, isDummyCase);

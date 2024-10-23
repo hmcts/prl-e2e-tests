@@ -7,12 +7,12 @@ import { Helpers } from "../../../../common/helpers";
 export class SubmitPage {
   public static async submitPage(
     page: Page,
-    isDummyCase: boolean,
     accessibilityTest: boolean,
     caseName: string,
+    isDummyCase: boolean = false,
   ): Promise<void> {
     await this.checkContent(page, accessibilityTest, caseName);
-    await this.fillInFields(page, isDummyCase);
+    await this.submit(page, isDummyCase);
   }
 
   private static async checkContent(
@@ -55,10 +55,7 @@ export class SubmitPage {
     );
   }
 
-  private static async fillInFields(
-    page: Page,
-    isDummyCase: boolean,
-  ): Promise<void> {
+  private static async submit(page: Page, isDummyCase: boolean): Promise<void> {
     if (isDummyCase) {
       await page.click(
         `${Selectors.button}:text-is("${SubmitContent.createMyDummyCase}")`,

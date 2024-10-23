@@ -11,9 +11,9 @@ enum caseName {
 export class SolicitorCreate4Page {
   public static async solicitorCreate4Page(
     page: Page,
-    isDummyCase: boolean,
     errorMessaging: boolean,
     accessibilityTest: boolean,
+    isDummyCase: boolean = false,
   ): Promise<string> {
     await this.checkPageLoads(page, isDummyCase, accessibilityTest);
     if (errorMessaging) {
@@ -21,6 +21,7 @@ export class SolicitorCreate4Page {
     }
     return await this.fillInFields(page);
   }
+
   private static async checkPageLoads(
     page: Page,
     isDummyCase: boolean,

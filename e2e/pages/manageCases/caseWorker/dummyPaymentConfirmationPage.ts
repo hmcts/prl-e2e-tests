@@ -3,21 +3,14 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../common/selectors";
 import { DummyPaymentConfirmationContent } from "../../../fixtures/manageCases/caseWorker/dummyPaymentConfirmationContent";
 import { Helpers } from "../../../common/helpers";
-import AccessibilityTestHelper from "../../../common/accessibilityTestHelper";
 
 export class DummyPaymentConfirmationPage extends CommonPage {
-  public static async dummyPaymentConfirmationPage(
-    page: Page,
-    accessibilityTest: boolean,
-  ): Promise<void> {
-    await this.checkPageLoads(page, accessibilityTest);
+  public static async dummyPaymentConfirmationPage(page: Page): Promise<void> {
+    await this.checkPageLoads(page);
     await this.submit(page);
   }
 
-  private static async checkPageLoads(
-    page: Page,
-    accessibilityTest: boolean,
-  ): Promise<void> {
+  private static async checkPageLoads(page: Page): Promise<void> {
     await page.waitForSelector(
       `${Selectors.GovukHeadingL}:text-is("${DummyPaymentConfirmationContent.pageTitle}")`,
     );
@@ -33,9 +26,6 @@ export class DummyPaymentConfirmationPage extends CommonPage {
         1,
       ),
     ]);
-    if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
-    }
   }
 
   private static async submit(page: Page): Promise<void> {

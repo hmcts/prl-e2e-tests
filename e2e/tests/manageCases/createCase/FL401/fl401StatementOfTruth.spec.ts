@@ -16,7 +16,6 @@ test.describe("FL401 Statement of truth tests @manageCases", (): void => {
       errorMessaging: false,
       fl401YesNoToEverything: true,
       subJourney: true,
-      isDummyCase: false,
     });
   });
 
@@ -31,7 +30,6 @@ test.describe("FL401 Statement of truth tests @manageCases", (): void => {
       errorMessaging: false,
       fl401YesNoToEverything: false,
       subJourney: true,
-      isDummyCase: false,
     });
   });
 
@@ -46,7 +44,6 @@ test.describe("FL401 Statement of truth tests @manageCases", (): void => {
       errorMessaging: true,
       fl401YesNoToEverything: false,
       subJourney: true,
-      isDummyCase: false,
     });
   });
 });
@@ -62,6 +59,5 @@ test(`Test the FL401 statement of truth journey with following options:
     errorMessaging: false,
     fl401YesNoToEverything: true,
     subJourney: true,
-    isDummyCase: false,
   });
 });

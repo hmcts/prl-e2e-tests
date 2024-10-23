@@ -15,8 +15,8 @@ test.describe("FL401 Dummy payment for AWP tests @manageCases", (): void => {
       page,
       errorMessaging: false,
       accessibilityTest: false,
-      isC100: false,
       paymentStatusPaid: true,
+      caseType: "FL401",
     });
   });
 
@@ -30,8 +30,8 @@ test.describe("FL401 Dummy payment for AWP tests @manageCases", (): void => {
       page,
       errorMessaging: false,
       accessibilityTest: false,
-      isC100: false,
       paymentStatusPaid: false,
+      caseType: "FL401",
     });
   });
 
@@ -45,8 +45,8 @@ test.describe("FL401 Dummy payment for AWP tests @manageCases", (): void => {
       page,
       errorMessaging: true,
       accessibilityTest: false,
-      isC100: false,
       paymentStatusPaid: true,
+      caseType: "FL401",
     });
   });
 
@@ -60,8 +60,8 @@ test.describe("FL401 Dummy payment for AWP tests @manageCases", (): void => {
       page,
       errorMessaging: false,
       accessibilityTest: true,
-      isC100: false,
       paymentStatusPaid: true,
+      caseType: "FL401",
     });
   });
 });

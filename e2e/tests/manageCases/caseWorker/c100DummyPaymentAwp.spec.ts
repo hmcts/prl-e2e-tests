@@ -12,11 +12,11 @@ test.describe("C100 Dummy payment for AWP tests @manageCases", (): void => {
     page,
   }): Promise<void> => {
     await DummyPaymentAwp.dummyPaymentAwp({
-      page,
+      page: page,
       errorMessaging: false,
       accessibilityTest: false,
-      isC100: true,
       paymentStatusPaid: true,
+      caseType: "C100",
     });
   });
 
@@ -30,8 +30,8 @@ test.describe("C100 Dummy payment for AWP tests @manageCases", (): void => {
       page,
       errorMessaging: false,
       accessibilityTest: false,
-      isC100: true,
       paymentStatusPaid: false,
+      caseType: "C100",
     });
   });
 
@@ -45,8 +45,8 @@ test.describe("C100 Dummy payment for AWP tests @manageCases", (): void => {
       page,
       errorMessaging: true,
       accessibilityTest: false,
-      isC100: true,
       paymentStatusPaid: true,
+      caseType: "C100",
     });
   });
 
@@ -60,8 +60,8 @@ test.describe("C100 Dummy payment for AWP tests @manageCases", (): void => {
       page,
       errorMessaging: false,
       accessibilityTest: true,
-      isC100: true,
       paymentStatusPaid: true,
+      caseType: "C100",
     });
   });
 });

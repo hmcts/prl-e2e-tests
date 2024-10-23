@@ -32,7 +32,6 @@ export class SolicitorCreateInitial {
     await CaseListPage.startCreateCaseEvent(page);
     await SolicitorCreatePage.solicitorCreatePage(
       page,
-      false,
       accessibilityTest,
     );
     await SolicitorCreate2Page.solicitorCreate2Page(
@@ -40,7 +39,6 @@ export class SolicitorCreateInitial {
       errorMessaging,
       accessibilityTest,
       solicitorCaseType,
-      false,
     );
     switch (solicitorCaseType) {
       case "C100":
@@ -51,11 +49,10 @@ export class SolicitorCreateInitial {
         );
         caseName = await SolicitorCreate4Page.solicitorCreate4Page(
           page,
-          false,
           errorMessaging,
           accessibilityTest,
         );
-        await SubmitPage.submitPage(page, false, accessibilityTest, caseName);
+        await SubmitPage.submitPage(page, accessibilityTest, caseName);
         if (
           await page
             .locator(
@@ -74,11 +71,10 @@ export class SolicitorCreateInitial {
         );
         caseName = await SolicitorCreate5Page.solicitorCreate5Page(
           page,
-          false,
           errorMessaging,
           accessibilityTest,
         );
-        await SubmitPage.submitPage(page, false, accessibilityTest, caseName);
+        await SubmitPage.submitPage(page, accessibilityTest, caseName);
         if (
           await page
             .locator(
@@ -92,7 +88,7 @@ export class SolicitorCreateInitial {
       default:
         caseName = "null";
         console.error("An invalid case type was selected");
-        await SubmitPage.submitPage(page, false, accessibilityTest, caseName);
+        await SubmitPage.submitPage(page, accessibilityTest, caseName);
     }
   }
 }

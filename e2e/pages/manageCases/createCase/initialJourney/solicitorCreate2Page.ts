@@ -17,7 +17,7 @@ export class SolicitorCreate2Page {
     errorMessaging: boolean,
     accessibilityTest: boolean,
     solicitorCaseType: solicitorCaseCreateType,
-    isDummyCase: boolean,
+    isDummyCase: boolean = false,
   ): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest, isDummyCase);
     if (errorMessaging) {

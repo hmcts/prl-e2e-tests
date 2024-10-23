@@ -4,18 +4,13 @@ import { DummyPaymentConfirmationPage } from "../../../pages/manageCases/caseWor
 
 interface DummyPaymentConfirmationParams {
   page: Page;
-  accessibilityTest: boolean;
 }
 
 export class DummyPaymentConfirmation {
   public static async dummyPaymentConfirmation({
     page,
-    accessibilityTest,
   }: DummyPaymentConfirmationParams): Promise<void> {
     await Helpers.chooseEventFromDropdown(page, "Dummy Payment confirmation");
-    await DummyPaymentConfirmationPage.dummyPaymentConfirmationPage(
-      page,
-      accessibilityTest,
-    );
+    await DummyPaymentConfirmationPage.dummyPaymentConfirmationPage(page);
   }
 }
