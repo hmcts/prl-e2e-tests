@@ -69,10 +69,9 @@ export class SafetyConcernHelpers {
         `${Selectors.GovukLabel}`,
       ),
     ]);
-    await this.checkSidebar(page);
   }
 
-  private static async checkSidebar(page: Page): Promise<void> {
+  public static async checkSidebar(page: Page): Promise<void> {
     await Promise.all([
       Helpers.checkGroup(
         page,

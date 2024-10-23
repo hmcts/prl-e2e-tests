@@ -49,6 +49,8 @@ export class SexualAbusePage {
       `${Selectors.GovukHeadingXL}:text-is("${SexualAbuseContent.pageTitle}")`,
     );
     await SafetyConcernHelpers.checkStaticText(page);
+    await SafetyConcernHelpers.checkSidebar(page);
+    await SafetyConcernHelpers.checkContactDetailsText(page);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }

@@ -64,6 +64,8 @@ export class ConcernAboutPage {
         `${Selectors.GovukLabel}`,
       ),
     ]);
+    await SafetyConcernHelpers.checkSidebar(page);
+    await SafetyConcernHelpers.checkContactDetailsText(page);
     await SafetyConcernHelpers.checkContactDetailsText(page);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
