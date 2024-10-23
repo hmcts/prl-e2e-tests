@@ -9,17 +9,23 @@ interface dummyFL401Options {
 }
 
 export class DummyFL401 {
-  public static async dummyFL401({ page, caseType }: dummyFL401Options): Promise<void> {
+  public static async dummyFL401({
+    page,
+    caseType,
+  }: dummyFL401Options): Promise<void> {
     await DummyCreateInitial.createDummyCase({
       page: page,
       solicitorCaseType: caseType,
     });
-    await Fl401StatementOfTruth.fl401StatementOfTruth({
-      page: page,
-      accessibilityTest: false,
-      errorMessaging: false,
-      fl401YesNoToEverything: false,
-      subJourney: false,
-    }, true);
+    await Fl401StatementOfTruth.fl401StatementOfTruth(
+      {
+        page: page,
+        accessibilityTest: false,
+        errorMessaging: false,
+        fl401YesNoToEverything: false,
+        subJourney: false,
+      },
+      true,
+    );
   }
 }

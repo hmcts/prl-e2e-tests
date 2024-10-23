@@ -30,10 +30,7 @@ export class SolicitorCreateInitial {
     let caseName: string;
     await CaseList.caseList(page, user, false);
     await CaseListPage.startCreateCaseEvent(page);
-    await SolicitorCreatePage.solicitorCreatePage(
-      page,
-      accessibilityTest,
-    );
+    await SolicitorCreatePage.solicitorCreatePage(page, accessibilityTest);
     await SolicitorCreate2Page.solicitorCreate2Page(
       page,
       errorMessaging,
