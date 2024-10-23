@@ -5,6 +5,7 @@ import { Helpers } from "../../../../../common/helpers";
 import config from "../../../../../config";
 import { EmergencyProtectionDocumentUploadContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/EmergencyProtectionDocumentUploadContent";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { CitizenOtherProceedingsDocumentUploadSelectors } from "../../../../../common/commonUniqueSelectors";
 
 interface EmergencyProtectionDocumentUploadPageOptions {
   page: Page;
@@ -19,11 +20,6 @@ interface checkPageLoadsOptions {
 
 interface fillInFieldsOptions {
   page: Page;
-}
-
-enum UniqueSelectors {
-  documentUpload = "#document",
-  uploadConfirmationSelector = ".govuk-summary-list__value",
 }
 
 export class EmergencyProtectionDocumentUploadPage {
@@ -66,7 +62,7 @@ export class EmergencyProtectionDocumentUploadPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${EmergencyProtectionDocumentUploadContent.formLabel}")`,
+        `${Selectors.GovukLabel}:text-is("${CommonStaticText.formLabel}")`,
         1,
       ),
     ]);
@@ -87,7 +83,7 @@ export class EmergencyProtectionDocumentUploadPage {
 
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -106,10 +102,12 @@ export class EmergencyProtectionDocumentUploadPage {
         1,
       ),
     ]);
-    let fileInput = page.locator(`${UniqueSelectors.documentUpload}`);
+    let fileInput = page.locator(
+      `${CitizenOtherProceedingsDocumentUploadSelectors.documentUpload}`,
+    );
     await fileInput.setInputFiles(config.testOdtFile);
     await page.click(
-      `${Selectors.GovukButton}:text-is("${EmergencyProtectionDocumentUploadContent.uploadFile}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.uploadFile}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -128,26 +126,28 @@ export class EmergencyProtectionDocumentUploadPage {
   private static async fillInFields({
     page: page,
   }: fillInFieldsOptions): Promise<void> {
-    const fileInput = page.locator(`${UniqueSelectors.documentUpload}`);
+    const fileInput = page.locator(
+      `${CitizenOtherProceedingsDocumentUploadSelectors.documentUpload}`,
+    );
     await fileInput.setInputFiles(config.testPdfFile);
     await page.click(
-      `${Selectors.GovukButton}:text-is("${EmergencyProtectionDocumentUploadContent.uploadFile}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.uploadFile}")`,
     );
     await page.waitForSelector(
-      `${UniqueSelectors.uploadConfirmationSelector}`,
+      `${CitizenOtherProceedingsDocumentUploadSelectors.uploadConfirmationSelector}`,
       { timeout: 5000 },
     );
     const isUploaded = await page.isVisible(
-      `${UniqueSelectors.uploadConfirmationSelector}`,
+      `${CitizenOtherProceedingsDocumentUploadSelectors.uploadConfirmationSelector}`,
     );
     expect(isUploaded).toBeTruthy();
     await Helpers.checkVisibleAndPresent(
       page,
-      `${Selectors.a}:text-is("${EmergencyProtectionDocumentUploadContent.remove}")`,
+      `${Selectors.a}:text-is("${CommonStaticText.remove}")`,
       1,
     );
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
   }
 }

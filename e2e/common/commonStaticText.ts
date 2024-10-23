@@ -1,9 +1,13 @@
 export enum CommonStaticText {
-  strippedYes = "Yes",
-  paddedYes = " Yes ",
-  strippedNo = "No",
-  paddedNo = " No ",
-  paddedContinue = " Continue ",
+  yes = "Yes",
+  no = "No",
+  continue = "Continue",
   submit = "Submit",
   errorSummaryTitle = " There is a problem on this page ",
+  day = "Day",
+  month = "Month",
+  year = "Year",
+  formLabel = "Upload a file",
+  uploadFile = "Upload file",
+  remove = "Remove",
 }
