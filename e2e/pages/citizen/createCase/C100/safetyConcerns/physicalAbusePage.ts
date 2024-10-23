@@ -4,7 +4,10 @@ import { Selectors } from "../../../../../common/selectors";
 import { PhysicalAbuseContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/physicalAbuseContent";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { ReportAbuseHelpers } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/reportAbuseHelpers";
-import { reportAbuseCheckboxIDs, reportAbuseInputIDs } from "../../../../../common/commonUniqueSelectors";
+import {
+  reportAbuseCheckboxIDs,
+  reportAbuseInputIDs,
+} from "../../../../../common/commonUniqueSelectors";
 
 interface PhysicalAbusePageOptions {
   page: Page;
@@ -65,7 +68,10 @@ export class PhysicalAbusePage {
     for (let key of textToFill) {
       let inputKey = key as keyof typeof reportAbuseInputIDs;
       let contentKey = key as keyof typeof PhysicalAbuseContent;
-      await page.fill(reportAbuseInputIDs[inputKey], PhysicalAbuseContent[contentKey]);
+      await page.fill(
+        reportAbuseInputIDs[inputKey],
+        PhysicalAbuseContent[contentKey],
+      );
     }
     await ReportAbuseHelpers.ongoingBehaviourFields({
       page: page,

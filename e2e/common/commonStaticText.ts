@@ -7,7 +7,7 @@ export enum CommonStaticText {
   day = "Day",
   month = "Month",
   year = "Year",
-  formLabel = "Upload a file",
+  uploadAFile = "Upload a file",
   uploadFile = "Upload file",
   remove = "Remove",
 }
