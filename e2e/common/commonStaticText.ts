@@ -13,4 +13,5 @@ export enum CommonStaticText {
   mother = 'Mother',
   father = 'Father',
   other = 'Other',
+  selectAllThatApply = 'Select all that apply'
 }
