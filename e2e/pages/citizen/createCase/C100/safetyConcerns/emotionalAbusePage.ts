@@ -2,7 +2,7 @@ import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelp
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-import { ReportAbuseHelpers } from "./reportAbuseHelpers";
+import { SafetyConcernHelpers } from "./safetyConcernHelpers";
 import {
   reportAbuseCheckboxIDs,
   reportAbuseInputIDs,
@@ -48,7 +48,7 @@ export class EmotionalAbusePage {
     await page.waitForSelector(
       `${Selectors.GovukHeadingXL}:text-is("${EmotionalAbuseContent.pageTitle}")`,
     );
-    await ReportAbuseHelpers.checkStaticText(page);
+    await SafetyConcernHelpers.checkStaticText(page);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }
@@ -73,12 +73,12 @@ export class EmotionalAbusePage {
         EmotionalAbuseContent[contentKey],
       );
     }
-    await ReportAbuseHelpers.ongoingBehaviourFields({
+    await SafetyConcernHelpers.ongoingBehaviourFields({
       page: page,
       c100ReportAbuseYesNoToAll: c100EmotionalAbuseYesNoToAll,
       inputIDs: reportAbuseInputIDs,
     });
-    await ReportAbuseHelpers.seekHelpFields({
+    await SafetyConcernHelpers.seekHelpFields({
       page: page,
       c100ReportAbuseYesNoToAll: c100EmotionalAbuseYesNoToAll,
       inputIDs: reportAbuseInputIDs,

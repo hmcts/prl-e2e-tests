@@ -1,4 +1,4 @@
-export enum ReportAbuseCommonContent {
+export enum SafetyConcernsCommonContent {
   caption = "Safety concerns",
   body1 = "Complete this section as best you can. If you don't feel able to discuss the abuse at this stage, you can do so when you speak to Cafcass.",
   body2 = "The information that you give will be used in the application. It is not a request for a domestic abuse injunction.",

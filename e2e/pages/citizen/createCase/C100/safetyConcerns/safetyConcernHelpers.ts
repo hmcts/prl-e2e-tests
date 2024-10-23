@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
-import { ReportAbuseCommonContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/reportAbuseCommonContent";
+import { SafetyConcernsCommonContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/safetyConcernsCommonContent";
 
 interface SeekHelpOptions {
   page: Page;
@@ -16,55 +16,55 @@ interface OngoingBehaviourOptions {
   inputIDs: Record<string, string>;
 }
 
-export class ReportAbuseHelpers {
+export class SafetyConcernHelpers {
   public static async checkStaticText(page: Page): Promise<void> {
     // There should also be a checkVisibleAndPresent for the child's name, but this is dynamic and not added yet
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukCaptionXL}:text-is("${ReportAbuseCommonContent.caption}")`,
+        `${Selectors.GovukCaptionXL}:text-is("${SafetyConcernsCommonContent.caption}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLink}:text-is("${ReportAbuseCommonContent.injunctionLink}")`,
+        `${Selectors.GovukLink}:text-is("${SafetyConcernsCommonContent.injunctionLink}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${ReportAbuseCommonContent.span}")`,
+        `${Selectors.Span}:text-is("${SafetyConcernsCommonContent.span}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.strong}:text-is("${ReportAbuseCommonContent.strong}")`,
+        `${Selectors.strong}:text-is("${SafetyConcernsCommonContent.strong}")`,
         1,
       ),
       Helpers.checkGroup(
         page,
         4,
-        ReportAbuseCommonContent,
+        SafetyConcernsCommonContent,
         "body",
         `${Selectors.GovukBody}`,
       ),
       Helpers.checkGroup(
         page,
         3,
-        ReportAbuseCommonContent,
+        SafetyConcernsCommonContent,
         "legend",
         `${Selectors.GovukFieldsetLegend}`,
       ),
       Helpers.checkGroup(
         page,
         3,
-        ReportAbuseCommonContent,
+        SafetyConcernsCommonContent,
         "formHint",
         `${Selectors.GovukFormHint}`,
       ),
       Helpers.checkGroup(
         page,
         2,
-        ReportAbuseCommonContent,
+        SafetyConcernsCommonContent,
         "formLabel",
         `${Selectors.GovukLabel}`,
       ),
@@ -77,38 +77,43 @@ export class ReportAbuseHelpers {
       Helpers.checkGroup(
         page,
         6,
-        ReportAbuseCommonContent,
+        SafetyConcernsCommonContent,
         "sidebarLink",
         `${Selectors.GovukLink}`,
       ),
       Helpers.checkGroup(
         page,
         2,
-        ReportAbuseCommonContent,
+        SafetyConcernsCommonContent,
         "sidebarHeadingM",
         `${Selectors.GovukHeadingM}`,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukBodyM}:text-is("${ReportAbuseCommonContent.sidebarBodyM}")`,
+        `${Selectors.GovukBodyM}:text-is("${SafetyConcernsCommonContent.sidebarBodyM}")`,
         1,
       ),
     ]);
+  }
+
+  public static async checkContactDetailsText(
+    page: Page
+  ): Promise<void> {
     await page.click(
-      `${Selectors.GovukSummaryText}:text-is("${ReportAbuseCommonContent.detailsSummary}")`,
+      `${Selectors.GovukSummaryText}:text-is("${SafetyConcernsCommonContent.detailsSummary}")`,
     );
     await Promise.all([
       Helpers.checkGroup(
         page,
         2,
-        ReportAbuseCommonContent,
+        SafetyConcernsCommonContent,
         "detailsLink",
         `${Selectors.GovukLink}`,
       ),
       Helpers.checkGroup(
         page,
         5,
-        ReportAbuseCommonContent,
+        SafetyConcernsCommonContent,
         "detailsBody",
         `${Selectors.GovukBody}`,
       ),
@@ -126,14 +131,14 @@ export class ReportAbuseHelpers {
         Helpers.checkGroup(
           page,
           2,
-          ReportAbuseCommonContent,
+          SafetyConcernsCommonContent,
           "ongoingBehaviourLink",
           `${Selectors.GovukLink}`,
         ),
         Helpers.checkGroup(
           page,
           2,
-          ReportAbuseCommonContent,
+          SafetyConcernsCommonContent,
           "ongoingBehaviourBody",
           `${Selectors.GovukBody}`,
         ),
@@ -154,7 +159,7 @@ export class ReportAbuseHelpers {
       await Helpers.checkGroup(
         page,
         2,
-        ReportAbuseCommonContent,
+        SafetyConcernsCommonContent,
         "seekHelpBody",
         `${Selectors.GovukBody}`,
       );
@@ -165,13 +170,13 @@ export class ReportAbuseHelpers {
         Helpers.checkGroup(
           page,
           2,
-          ReportAbuseCommonContent,
+          SafetyConcernsCommonContent,
           "nspccGuidanceBody",
           `${Selectors.GovukBody}`,
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukLink}:text-is("${ReportAbuseCommonContent.nspccGuidanceLink}")`,
+          `${Selectors.GovukLink}:text-is("${SafetyConcernsCommonContent.nspccGuidanceLink}")`,
           1,
         ),
       ]);
