@@ -36,6 +36,7 @@ import {
   MiamNoAccessToMediatorPage,
   MiamReasonForNoAccessToMediator,
 } from "../../../../pages/citizen/createCase/C100/MIAM/miamNoAccessToMediatorPage";
+import { MiamMiamExemptionsSummaryPage } from "../../../../pages/citizen/createCase/C100/MIAM/miamMiamExemptionsSummaryPage";
 
 interface MIAMOptions {
   page: Page;
@@ -45,15 +46,15 @@ interface MIAMOptions {
   miamAlreadyAttended: boolean;
   documentSignedByMediator: boolean;
   MIAMValidReasonNoAttendance: boolean;
-  MiamGeneralExemptions: boolean;
-  MiamDomesticAbuse: boolean;
+  MiamGeneralExemptions: boolean; // Sets the different MIAM exemptions.
+  MiamDomesticAbuse: boolean; // Decides whether there are all domestic abuse reasons listed.
   miamDomesticAbuseProvidingEvidence: boolean;
-  miamChildProtectionConcernsType: MiamChildProtectionConcernsType;
-  miamUrgencyType: MiamUrgencyType;
-  miamAttendanceType: MiamAttendanceType;
+  miamChildProtectionConcernsType: MiamChildProtectionConcernsType; // Decides which child protection concern is listed.
+  miamUrgencyType: MiamUrgencyType; // Decides which reason there is for urgency.
+  miamAttendanceType: MiamAttendanceType; // Decides which reason there is for previous MIAM attendance.
   miamPreviousAttendanceMediatorSignedDocument: boolean;
-  miamOtherReasonForNotAttending: MiamOtherReasonForNotAttending;
-  miamReasonForNoAccessToMediator: MiamReasonForNoAccessToMediator;
+  miamOtherReasonForNotAttending: MiamOtherReasonForNotAttending; // Decides which Other reason there is for not attending
+  miamReasonForNoAccessToMediator: MiamReasonForNoAccessToMediator; // If other reason === "No access to mediator", this decides which reason for no access is used.
 }
 
 export class MIAM {
@@ -241,6 +242,30 @@ export class MIAM {
               reasonForNoAccessToMediator: miamReasonForNoAccessToMediator,
             });
           }
+          if (
+            !miamDomesticAbuseProvidingEvidence &&
+            miamChildProtectionConcernsType === "None of the above" &&
+            miamUrgencyType === "None of these" &&
+            miamAttendanceType === "None of these" &&
+            miamOtherReasonForNotAttending == "Cannot access mediator" &&
+            miamReasonForNoAccessToMediator == "None of these"
+          ) {
+            await MiamGetMediatorPage.miamGetMediatorPage({
+              page: page,
+              accessibilityTest: accessibilityTest,
+            });
+            return;
+          }
+          await MiamMiamExemptionsSummaryPage.miamMiamExemptionsSummaryPage({
+            page: page,
+            accessibilityTest: accessibilityTest,
+            MiamDomesticAbuse: MiamDomesticAbuse,
+            miamChildProtectionConcernsType: miamChildProtectionConcernsType,
+            miamUrgencyType: miamUrgencyType,
+            miamAttendanceType: miamAttendanceType,
+            miamOtherReasonForNotAttending: miamOtherReasonForNotAttending,
+            miamReasonForNoAccessToMediator: miamReasonForNoAccessToMediator,
+          });
         }
       }
     }

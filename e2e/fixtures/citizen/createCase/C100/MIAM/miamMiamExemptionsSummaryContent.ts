@@ -52,4 +52,16 @@ export enum MiamMiamExemptionsSummaryContent {
   liPreviousAttendance1 = "In the 4 months before making the application, you attended a MIAM or participated in another form of NCDR relating to the same (or substantially the same) dispute",
   liPreviousAttendance2 = "The application would be made in existing proceedings which are continuing and a MIAM exemption applied to the application for those proceedings",
   // Other reason
+  govukHeadingM6 = "Other reason",
+  liOtherReasons1 = "You’re applying for a ‘without notice’ hearing",
+  liOtherReasons2 = "You or one of the respondents is under 18 years old",
+  liOtherReasons3 = "You cannot access a mediator",
+  // No mediator
+  lieNoMediatorCommon = "You cannot access a mediator",
+  liNoMediator1 = "You are unable to attend a MIAM online or by video link because the mediators contacted are unable to conduct a MIAM within 15 business days of the date of contact.",
+  liNoMediator2 = "You have a disability or other inability that prevents you from attending a MIAM in person, online or by video link, and the contacted mediators are unable to provide appropriate facilities for you to attend.",
+  liNoMediator3 = "There is no mediator within 15 miles of your home and you cannot attend the MIAM online or by video link.",
+  liNoMediator4 = "You are in prison or any other institution and there are no facilities for you to attend a MIAM online or by video link.",
+  liNoMediator5 = "You are subject to conditions of bail that prevent contact with the other person.",
+  liNoMediator6 = "You have been released from prison on licence, and you have a non-contact licence condition which includes someone who is a party to the application.",
 }
