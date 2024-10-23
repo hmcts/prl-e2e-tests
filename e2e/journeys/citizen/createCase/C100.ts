@@ -15,9 +15,9 @@ interface C100Options {
   c100LegalRepresentation: boolean;
   c100CourtPermissionNeeded: boolean;
   urgencyAndWithoutNoticeAllOptionsYes: boolean;
-  c100OthersKnowApplicantsContact: yesNoDontKnow;
-  c100PrivateDetails: boolean;
-  c100ChildrenSafetyConcerns: boolean;
+  // c100OthersKnowApplicantsContact: yesNoDontKnow;
+  // c100PrivateDetails: boolean;
+  // c100ChildrenSafetyConcerns: boolean;
 }
 
 export class C100 {
@@ -29,8 +29,8 @@ export class C100 {
     c100LegalRepresentation,
     c100CourtPermissionNeeded,
     urgencyAndWithoutNoticeAllOptionsYes,
-    c100OthersKnowApplicantsContact,
-    c100PrivateDetails,
+    // c100OthersKnowApplicantsContact,
+    // c100PrivateDetails,
   }: C100Options): Promise<void> {
     await CitizenCreateInitial.citizenCreateInitial({
       page: page,
@@ -64,13 +64,13 @@ export class C100 {
           urgencyAndWithoutNoticeAllOptionsYes,
       });
       // People
-      await C100Confidentiality.c100Confidentiality({
-        page: page,
-        accessibilityTest: accessibilityTest,
-        errorMessaging: errorMessaging,
-        c100OthersKnowApplicantsContact: c100OthersKnowApplicantsContact,
-        c100PrivateDetails: c100PrivateDetails,
-      });
+      // await C100Confidentiality.c100Confidentiality({
+      //   page: page,
+      //   accessibilityTest: accessibilityTest,
+      //   errorMessaging: errorMessaging,
+      //   c100OthersKnowApplicantsContact: c100OthersKnowApplicantsContact,
+      //   c100PrivateDetails: c100PrivateDetails,
+      // });
     } else {
       // MIAM Journey
     }
