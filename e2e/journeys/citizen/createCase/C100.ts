@@ -96,13 +96,13 @@ export class C100 {
           urgencyAndWithoutNoticeAllOptionsYes,
       });
       // People
-      await C100Confidentiality.c100Confidentiality({
-        page: page,
-        accessibilityTest: accessibilityTest,
-        errorMessaging: errorMessaging,
-        c100OthersKnowApplicantsContact: c100OthersKnowApplicantsContact,
-        c100PrivateDetails: c100PrivateDetails,
-      });
+      // await C100Confidentiality.c100Confidentiality({
+      //   page: page,
+      //   accessibilityTest: accessibilityTest,
+      //   errorMessaging: errorMessaging,
+      //   c100OthersKnowApplicantsContact: c100OthersKnowApplicantsContact,
+      //   c100PrivateDetails: c100PrivateDetails,
+      // });
     } else {
       await MIAM.MIAM({
         page: page,
