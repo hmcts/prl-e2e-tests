@@ -127,7 +127,7 @@ export class PersonalDetailsPage {
         page,
         4,
         PersonalDetailsContent,
-        "errorSummaryList",
+        "errorMessage",
         Selectors.ErrorSummaryList
       ),
       Helpers.checkGroup(
@@ -148,11 +148,10 @@ export class PersonalDetailsPage {
                                     }: fillInFieldsOptions): Promise<void> {
     const [day, month, year] = Helpers.generateDOB(under18);
 
+    await page.click(changeName ? inputIds.changeNameYes : inputIds.changeNameNo);
+
     if (changeName) {
-      await page.click(inputIds.changeNameYes);
       await page.fill(inputIds.prevName, PersonalDetailsContent.prevNameText);
-    } else {
-      await page.click(inputIds.changeNameNo);
     }
 
     switch (gender) {

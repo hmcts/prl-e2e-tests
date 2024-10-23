@@ -23,11 +23,6 @@ export enum PersonalDetailsContent {
   hiddenLabel1 = "Applicant's gender (Optional)",
   hiddenLabel2 = "Enter your previous name",
 
-  errorSummaryList1 = "Select if you’ve changed your name",
-  errorSummaryList2 = "Select the gender",
-  errorSummaryList3 = "Enter the date of birth",
-  errorSummaryList4 = "Enter your place of birth",
-
   errorMessage1 = "Select if you’ve changed your name",
   errorMessage2 = "Select the gender",
   errorMessage3 = "Enter the date of birth",
