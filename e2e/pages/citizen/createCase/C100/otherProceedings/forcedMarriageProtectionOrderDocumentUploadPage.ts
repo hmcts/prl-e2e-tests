@@ -4,7 +4,7 @@ import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import config from "../../../../../config";
-import { ForcedMarriageProtectionDocumentUploadContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/forcedMarriageProtection/forcedMarriageProtectionDocumentUploadContent";
+import { ForcedMarriageProtectionDocumentUploadContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/forcedMarriageProtectionDocumentUploadContent";
 import { CitizenOtherProceedingsDocumentUploadSelectors } from "../../../../../common/commonUniqueSelectors";
 
 interface ForcedMarriageProtectionDocumentUploadPageOptions {

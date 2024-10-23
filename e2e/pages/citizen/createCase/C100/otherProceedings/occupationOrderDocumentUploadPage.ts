@@ -1,4 +1,4 @@
-import { OccupationOrderDocumentUploadContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/occupationOrder/occupationOrderDocumentUploadContent";
+import { OccupationOrderDocumentUploadContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/occupationOrderDocumentUploadContent";
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { Helpers } from "../../../../../common/helpers";

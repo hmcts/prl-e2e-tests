@@ -4,7 +4,7 @@ import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import config from "../../../../../config";
-import { RestrainingOrderDocumentUploadContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/restrainingOrder/restrainingOrderDocumentUploadContent";
+import { RestrainingOrderDocumentUploadContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/restrainingOrderDocumentUploadContent";
 import { CitizenOtherProceedingsDocumentUploadSelectors } from "../../../../../common/commonUniqueSelectors";
 
 interface RestrainingOrderDocumentUploadPageOptions {
