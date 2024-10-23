@@ -3,5 +3,5 @@ export enum ApplicantAddressLookupContent {
   label = "Current Postcode",
   body = "I live outside the UK",
   postcodeText = "SA1 1AD",
-  errorMessage = "Enter the postcode", //gov-error-message + error_summary_list
+  errorMessage = "Enter the postcode", 
 }
