@@ -10,6 +10,8 @@ import { MiamUrgencyType } from "../../../pages/citizen/createCase/C100/MIAM/mia
 import { MiamAttendanceType } from "../../../pages/citizen/createCase/C100/MIAM/miamPreviousAttendancePage";
 import { MiamOtherReasonForNotAttending } from "../../../pages/citizen/createCase/C100/MIAM/miamMiamOtherPage";
 import { MiamReasonForNoAccessToMediator } from "../../../pages/citizen/createCase/C100/MIAM/miamNoAccessToMediatorPage";
+import { C100Confidentiality } from "./C100Confidentiality/c100Confidentiality";
+import { yesNoDontKnow } from "../../../common/types";
 
 interface C100Options {
   page: Page;
@@ -19,6 +21,9 @@ interface C100Options {
   c100LegalRepresentation: boolean;
   c100CourtPermissionNeeded: boolean;
   urgencyAndWithoutNoticeAllOptionsYes: boolean;
+  c100OthersKnowApplicantsContact: yesNoDontKnow;
+  c100PrivateDetails: boolean;
+  c100ChildrenSafetyConcerns: boolean;
   MIAMChildrenInvolvedOtherProceedings: boolean;
   miamAlreadyAttended: boolean;
   documentSignedByMediator: boolean;
@@ -43,6 +48,8 @@ export class C100 {
     c100LegalRepresentation,
     c100CourtPermissionNeeded,
     urgencyAndWithoutNoticeAllOptionsYes,
+    c100OthersKnowApplicantsContact,
+    c100PrivateDetails,
     MIAMChildrenInvolvedOtherProceedings,
     miamAlreadyAttended,
     documentSignedByMediator,
@@ -87,6 +94,14 @@ export class C100 {
         errorMessaging: errorMessaging,
         urgencyAndWithoutNoticeAllOptionsYes:
           urgencyAndWithoutNoticeAllOptionsYes,
+      });
+      // People
+      await C100Confidentiality.c100Confidentiality({
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
+        c100OthersKnowApplicantsContact: c100OthersKnowApplicantsContact,
+        c100PrivateDetails: c100PrivateDetails,
       });
     } else {
       await MIAM.MIAM({
