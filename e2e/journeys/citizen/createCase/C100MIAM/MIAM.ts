@@ -42,17 +42,17 @@ interface MIAMOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
-  MIAMChildrenInvolvedOtherProceedings: boolean;
-  miamAlreadyAttended: boolean;
-  documentSignedByMediator: boolean;
-  MIAMValidReasonNoAttendance: boolean;
+  MIAMChildrenInvolvedOtherProceedings: boolean; // if true then diverts to the second row on the miro.
+  miamAlreadyAttended: boolean; // Possible diversion to the type of work page.
+  documentSignedByMediator: boolean; // Above conditional on this being true, if false, go to get signed doc page.
+  MIAMValidReasonNoAttendance: boolean; // If false, go to the get mediator page.
   MiamGeneralExemptions: boolean; // Sets the different MIAM exemptions.
   MiamDomesticAbuse: boolean; // Decides whether there are all domestic abuse reasons listed.
   miamDomesticAbuseProvidingEvidence: boolean;
   miamChildProtectionConcernsType: MiamChildProtectionConcernsType; // Decides which child protection concern is listed.
   miamUrgencyType: MiamUrgencyType; // Decides which reason there is for urgency.
   miamAttendanceType: MiamAttendanceType; // Decides which reason there is for previous MIAM attendance.
-  miamPreviousAttendanceMediatorSignedDocument: boolean;
+  miamPreviousAttendanceMediatorSignedDocument: boolean; // Doesn't affect journey
   miamOtherReasonForNotAttending: MiamOtherReasonForNotAttending; // Decides which Other reason there is for not attending
   miamReasonForNoAccessToMediator: MiamReasonForNoAccessToMediator; // If other reason === "No access to mediator", this decides which reason for no access is used.
 }
