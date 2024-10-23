@@ -1,4 +1,4 @@
-export enum ApplicantAddressSelectContent {
+export enum ApplicantAddressSelectContent{
   pageTitle = "Select Address of", //dynamic name of applicant
   label1 = "Current postcode",
   label2 = "Select an address",
