@@ -15,7 +15,6 @@ export enum Selectors {
   // Forms
   GovukFormGroup = ".govuk-form-group",
   GovukLabel = ".govuk-label",
-  GovukFieldsetLegend = ".govuk-fieldset__legend",
   GovukInput = ".govuk-input",
   GovukTextarea = ".govuk-textarea",
   GovukSelect = ".govuk-select",
