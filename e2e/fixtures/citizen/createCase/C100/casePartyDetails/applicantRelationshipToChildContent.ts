@@ -1,4 +1,4 @@
-export enum ApplicantContent {
+export enum ApplicantRelationshipToChildContent {
   pageTitle1 = "What is",
   pageTitle2 = "relationship to", //govuk-heading-xl
 

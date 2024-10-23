@@ -1,7 +1,7 @@
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
-import { PersonalDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/casePartyDetails/personalDetailsContent";
+import { ApplicantPersonalDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/casePartyDetails/applicantPersonalDetailsContent";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { ApplicantGender } from "../../../../../common/types";
@@ -47,8 +47,8 @@ enum inputIds {
   placeOfBirth = '#applicantPlaceOfBirth',
 }
 
-export class PersonalDetailsPage {
-  public static async personalDetailsPage({
+export class ApplicantPersonalDetailsPage {
+  public static async applicantPersonalDetailsPage({
                                             page,
                                             accessibilityTest,
                                             errorMessaging,
@@ -75,34 +75,34 @@ export class PersonalDetailsPage {
                                         accessibilityTest,
                                       }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukHeadingXL}:text-has("${PersonalDetailsContent.pageTitle}")`
+      `${Selectors.GovukHeadingXL}:text-has("${ApplicantPersonalDetailsContent.pageTitle}")`
     );
 
     await Promise.all([
       Helpers.checkGroup(
         page,
         3,
-        PersonalDetailsContent,
+        ApplicantPersonalDetailsContent,
         "legend",
         uniqueSelectors.legendSelector1
       ),
       Helpers.checkGroup(
         page,
         3,
-        PersonalDetailsContent,
+        ApplicantPersonalDetailsContent,
         "hint",
         Selectors.GovukHint
       ),
       Helpers.checkGroup(
         page,
         8,
-        PersonalDetailsContent,
+        ApplicantPersonalDetailsContent,
         "label",
         Selectors.GovukHint
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${uniqueSelectors.legendSelector2}:text-is("${PersonalDetailsContent.legend4}")`,
+        `${uniqueSelectors.legendSelector2}:text-is("${ApplicantPersonalDetailsContent.legend4}")`,
         1
       ),
     ]);
@@ -126,14 +126,14 @@ export class PersonalDetailsPage {
       Helpers.checkGroup(
         page,
         4,
-        PersonalDetailsContent,
+        ApplicantPersonalDetailsContent,
         "errorMessage",
         Selectors.ErrorSummaryList
       ),
       Helpers.checkGroup(
         page,
         4,
-        PersonalDetailsContent,
+        ApplicantPersonalDetailsContent,
         "errorMessage",
         Selectors.GovukErrorMessage
       ),
@@ -151,7 +151,7 @@ export class PersonalDetailsPage {
     await page.click(changeName ? inputIds.changeNameYes : inputIds.changeNameNo);
 
     if (changeName) {
-      await page.fill(inputIds.prevName, PersonalDetailsContent.prevNameText);
+      await page.fill(inputIds.prevName, ApplicantPersonalDetailsContent.prevNameText);
     }
 
     switch (gender) {
@@ -173,7 +173,7 @@ export class PersonalDetailsPage {
       page.fill(inputIds.year, year),
     ]);
 
-    await page.fill(inputIds.placeOfBirth, PersonalDetailsContent.placeOfBirthText);
+    await page.fill(inputIds.placeOfBirth, ApplicantPersonalDetailsContent.placeOfBirthText);
 
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,

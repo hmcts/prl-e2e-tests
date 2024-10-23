@@ -1,4 +1,4 @@
-export enum PersonalDetailsContent {
+export enum ApplicantPersonalDetailsContent {
   pageTitle = "Provide details for",
   legend1 = "Have you changed your name?",
   legend2 = "Gender",

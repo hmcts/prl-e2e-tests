@@ -1,13 +1,13 @@
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
-import { ApplicantContent } from "../../../../../fixtures/citizen/createCase/C100/casePartyDetails/applicantContent";
+import { ApplicantRelationshipToChildContent } from "../../../../../fixtures/citizen/createCase/C100/casePartyDetails/applicantRelationshipToChildContent";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { Relationship } from "../../../../../common/types";
 import {
-  PersonalDetailsContent
-} from "../../../../../fixtures/citizen/createCase/C100/casePartyDetails/personalDetailsContent";
+  ApplicantPersonalDetailsContent
+} from "../../../../../fixtures/citizen/createCase/C100/casePartyDetails/applicantPersonalDetailsContent";
 
 interface applicantPageOptions {
   page: Page;
@@ -35,8 +35,8 @@ enum inputIds {
   other = '#relationshipType-6',
 }
 
-export class ApplicantPage {
-  public static async ApplicantPage({
+export class ApplicantRelationshipToChildPage {
+  public static async applicantRelationshipToChildPage({
                                       page,
                                       accessibilityTest,
                                       errorMessaging,
@@ -57,22 +57,22 @@ export class ApplicantPage {
                                         accessibilityTest,
                                       }: checkPageLoadsOptions): Promise<void> {
     await Promise.all([ //wait for two parts of the title to load, split by dynamic content
-      page.waitForSelector(`${Selectors.GovukHeadingXL}:has-text("${ApplicantContent.pageTitle1}")`),
-      page.waitForSelector(`${Selectors.GovukHeadingXL}:has-text("${ApplicantContent.pageTitle2}")`)
+      page.waitForSelector(`${Selectors.GovukHeadingXL}:has-text("${ApplicantRelationshipToChildContent.pageTitle1}")`),
+      page.waitForSelector(`${Selectors.GovukHeadingXL}:has-text("${ApplicantRelationshipToChildContent.pageTitle2}")`)
     ]);
 
     await Promise.all([
       Helpers.checkGroup(
         page,
         6,
-        PersonalDetailsContent,
+        ApplicantPersonalDetailsContent,
         "label",
         Selectors.GovukLabel
       ),
       Helpers.checkGroup(
         page,
         2,
-        PersonalDetailsContent,
+        ApplicantPersonalDetailsContent,
         "hint",
         Selectors.GovukHint
       ),
@@ -96,12 +96,12 @@ export class ApplicantPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorList}:text-is("${ApplicantContent.errorMessage}")`,
+        `${Selectors.GovukErrorList}:text-is("${ApplicantRelationshipToChildContent.errorMessage}")`,
         1
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${ApplicantContent.errorMessage}")`,
+        `${Selectors.GovukErrorMessage}:text-is("${ApplicantRelationshipToChildContent.errorMessage}")`,
         1
       ),
     ]);
