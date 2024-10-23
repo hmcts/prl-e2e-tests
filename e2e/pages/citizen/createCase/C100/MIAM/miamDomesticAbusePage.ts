@@ -3,7 +3,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { MiamDomesticAbuseContent } from "../../../../../fixtures/citizen/createCase/C100/MIAM/miamDomesticAbuseContent";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-import AxeTest from "../../../../../common/accessibilityTestHelper";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 
 interface MiamDomesticAbusePageOptions {
   page: Page;
@@ -130,7 +130,7 @@ export class MiamDomesticAbusePage {
       ),
     ]);
     if (accessibilityTest) {
-      await AxeTest.run(page);
+      await AccessibilityTestHelper.run(page);
     }
   }
 
@@ -141,7 +141,7 @@ export class MiamDomesticAbusePage {
       throw new Error();
     }
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -180,7 +180,7 @@ export class MiamDomesticAbusePage {
       await page.click(uniqueOuterSelectors.noneOfAbove);
     }
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
   }
 }

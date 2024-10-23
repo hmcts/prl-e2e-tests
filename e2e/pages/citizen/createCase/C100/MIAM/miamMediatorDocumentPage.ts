@@ -2,8 +2,8 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { MiamMediatorDocumentContent } from "../../../../../fixtures/citizen/createCase/C100/MIAM/miamMediatorDocumentContent";
 import { Helpers } from "../../../../../common/helpers";
-import AxeTest from "../../../../../common/accessibilityTestHelper";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 
 interface MediatorDocumentPageOptions {
   page: Page;
@@ -62,7 +62,7 @@ export class MiamMediatorDocumentPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AxeTest.run(page);
+      await AccessibilityTestHelper.run(page);
     }
   }
 
@@ -73,7 +73,7 @@ export class MiamMediatorDocumentPage {
       throw new Error("No page opbject.");
     }
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -107,7 +107,7 @@ export class MiamMediatorDocumentPage {
       await page.click(uniqueSelectors.documentSignedNo);
     }
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
   }
 }

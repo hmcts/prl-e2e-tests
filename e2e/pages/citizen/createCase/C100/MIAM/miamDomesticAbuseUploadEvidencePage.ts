@@ -3,8 +3,8 @@ import { Selectors } from "../../../../../common/selectors";
 import { MiamDomesticAbuseUploadEvidenceContent } from "../../../../../fixtures/citizen/createCase/C100/MIAM/miamDomesticAbuseUploadEvidenceContent";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-import AxeTest from "../../../../../common/accessibilityTestHelper";
 import config from "../../../../../config";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 
 export interface MiamDomesticAbuseUploadEvidencePageOptions {
   page: Page;
@@ -55,7 +55,7 @@ export class MiamDomesticAbuseUploadEvidencePage {
       ),
     ]);
     if (accessibilityTest) {
-      await AxeTest.run(page);
+      await AccessibilityTestHelper.run(page);
     }
   }
 
@@ -75,7 +75,7 @@ export class MiamDomesticAbuseUploadEvidencePage {
       1,
     );
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
   }
 }

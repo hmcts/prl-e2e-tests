@@ -7,7 +7,6 @@ import { MiamReasonForNoAccessToMediator } from "./miamNoAccessToMediatorPage";
 import { Selectors } from "../../../../../common/selectors";
 import { MiamMiamExemptionsSummaryContent } from "../../../../../fixtures/citizen/createCase/C100/MIAM/miamMiamExemptionsSummaryContent";
 import { Helpers } from "../../../../../common/helpers";
-import AxeTest from "../../../../../common/accessibilityTestHelper";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 
 interface MiamMiamExemptionsSummaryPageOptions {
@@ -90,7 +89,7 @@ export class MiamMiamExemptionsSummaryPage {
       miamReasonForNoAccessToMediator: miamReasonForNoAccessToMediator,
     });
     if (accessibilityTest) {
-      // await AxeTest.run(page); #TODO: Re-enable when PRL-6520 is completed
+      // await AccessibilityTestHelper.run(page); #TODO: Re-enable when PRL-6520 is completed
     }
   }
 
@@ -371,7 +370,7 @@ export class MiamMiamExemptionsSummaryPage {
       throw new Error();
     }
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
   }
 }

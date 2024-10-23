@@ -2,8 +2,8 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { MiamOtherProceedingsContent } from "../../../../../fixtures/citizen/createCase/C100/MIAM/miamOtherProceedingsContent";
 import { Helpers } from "../../../../../common/helpers";
-import AxeTest from "../../../../../common/accessibilityTestHelper";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 
 interface OtherProceedingsPageOptions {
   page: Page;
@@ -63,7 +63,7 @@ export class MiamOtherProceedingsPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AxeTest.run(page);
+      await AccessibilityTestHelper.run(page);
     }
   }
 
@@ -74,7 +74,7 @@ export class MiamOtherProceedingsPage {
       throw new Error("Page is undefined.");
     }
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -108,7 +108,7 @@ export class MiamOtherProceedingsPage {
       await page.click(`${uniqueSelectors.otherProceedingsNo}`);
     }
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
   }
 }

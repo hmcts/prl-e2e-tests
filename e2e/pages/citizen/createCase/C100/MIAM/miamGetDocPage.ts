@@ -2,8 +2,8 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { MiamGetDocContent } from "../../../../../fixtures/citizen/createCase/C100/MIAM/miamGetDocContent";
 import { Helpers } from "../../../../../common/helpers";
-import AxeTest from "../../../../../common/accessibilityTestHelper";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 
 interface MiamGetDocPageOptions {
   page: Page;
@@ -39,7 +39,7 @@ export class MiamGetDocPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AxeTest.run(page);
+      await AccessibilityTestHelper.run(page);
     }
   }
 
@@ -50,7 +50,7 @@ export class MiamGetDocPage {
       throw new Error("Page object not present.");
     }
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedSaveAndComeBackLater}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.saveAndComeBackLater}")`,
     );
   }
 }

@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { Helpers } from "../../../../../common/helpers";
-import AxeTest from "../../../../../common/accessibilityTestHelper";
 import { MiamOtherAttendanceOrNCDRContent } from "../../../../../fixtures/citizen/createCase/C100/MIAM/miamOtherAttendanceOrNCDRContent";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 
 interface MiamOtherAttendanceOrNCDRPageOptions {
   page: Page;
@@ -70,7 +70,7 @@ export class MiamOtherAttendanceOrNCDRPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AxeTest.run(page);
+      await AccessibilityTestHelper.run(page);
     }
   }
 
@@ -81,7 +81,7 @@ export class MiamOtherAttendanceOrNCDRPage {
       throw new Error();
     }
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -132,7 +132,7 @@ export class MiamOtherAttendanceOrNCDRPage {
       );
     }
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
   }
 }

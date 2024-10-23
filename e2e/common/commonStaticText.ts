@@ -1,10 +1,5 @@
 export enum CommonStaticText {
-  strippedYes = "Yes",
-  paddedYes = " Yes ",
-  strippedNo = "No",
-  paddedNo = " No ",
-  paddedContinue = " Continue ",
-  paddedSaveAndComeBackLater = " Save and come back later ",
+  saveAndComeBackLater = "Save and come back later",
   yes = "Yes",
   no = "No",
   continue = "Continue",

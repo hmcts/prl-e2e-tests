@@ -2,7 +2,6 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { MiamNoAccessToMediatorContent } from "../../../../../fixtures/citizen/createCase/C100/MIAM/miamNoAccessToMediatorContent";
 import { Helpers } from "../../../../../common/helpers";
-import AxeTest from "../../../../../common/accessibilityTestHelper";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 
 interface MiamNoAccessToMediatorPageOptions {
@@ -84,7 +83,7 @@ export class MiamNoAccessToMediatorPage {
       ),
     ]);
     if (accessibilityTest) {
-      // await AxeTest.run(page); #TODO: Re-enable when PRL-6521 is completed.
+      // await AccessibilityTestHelper.run(page); #TODO: Re-enable when PRL-6521 is completed.
     }
   }
 
@@ -95,7 +94,7 @@ export class MiamNoAccessToMediatorPage {
       throw new Error("Page is undefined.");
     }
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -159,7 +158,7 @@ export class MiamNoAccessToMediatorPage {
         break;
     }
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
   }
 }

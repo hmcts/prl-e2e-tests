@@ -3,7 +3,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { MiamNoNeedContent } from "../../../../../fixtures/citizen/createCase/C100/MIAM/miamNoNeedContent";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-import AxeTest from "../../../../../common/accessibilityTestHelper";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 
 interface NoNeedPageOptions {
   page: Page;
@@ -33,7 +33,7 @@ export class MiamNoNeedPage {
       Helpers.checkGroup(page, 2, MiamNoNeedContent, `p`, Selectors.p),
     ]);
     if (accessibilityTest) {
-      await AxeTest.run(page);
+      await AccessibilityTestHelper.run(page);
     }
   }
 
@@ -44,7 +44,7 @@ export class MiamNoNeedPage {
       throw new Error("Page cannot be null");
     }
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
   }
 }
