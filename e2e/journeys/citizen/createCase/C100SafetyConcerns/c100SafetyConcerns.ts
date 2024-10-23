@@ -27,7 +27,7 @@ interface C100SafetyConcernsOptions {
   c100ChildrenSafetyConcerns: boolean;
   c100EmotionalAbuseYesNoToAll: boolean;
   c100SexualAbuseYesNoToAll: boolean;
-  c100FinancialAbuseYesNoToAll: boolean
+  c100FinancialAbuseYesNoToAll: boolean;
 }
 
 export class C100SafetyConcerns {
@@ -38,7 +38,7 @@ export class C100SafetyConcerns {
     c100ChildrenSafetyConcerns,
     c100EmotionalAbuseYesNoToAll,
     c100SexualAbuseYesNoToAll,
-    c100FinancialAbuseYesNoToAll
+    c100FinancialAbuseYesNoToAll,
   }: C100SafetyConcernsOptions): Promise<void> {
     await ConcernGuidancePage.concernGuidancePage({
       page: page,
@@ -60,17 +60,17 @@ export class C100SafetyConcerns {
       await EmotionalAbusePage.emotionalAbusePage({
         page: page,
         accessibilityTest: accessibilityTest,
-        c100EmotionalAbuseYesNoToAll: c100EmotionalAbuseYesNoToAll
+        c100EmotionalAbuseYesNoToAll: c100EmotionalAbuseYesNoToAll,
       });
       await SexualAbusePage.sexualAbusePage({
         page: page,
         accessibilityTest: accessibilityTest,
-        c100SexualAbuseYesNoToAll: c100SexualAbuseYesNoToAll
+        c100SexualAbuseYesNoToAll: c100SexualAbuseYesNoToAll,
       });
       await FinancialAbusePage.financialAbusePage({
         page: page,
         accessibilityTest: accessibilityTest,
-        c100FinancialAbuseYesNoToAll: c100FinancialAbuseYesNoToAll
+        c100FinancialAbuseYesNoToAll: c100FinancialAbuseYesNoToAll,
       });
     }
   }

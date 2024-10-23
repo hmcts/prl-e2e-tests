@@ -72,48 +72,46 @@ export class ReportAbuseHelpers {
     await this.checkSidebar(page);
   }
 
-  private static async checkSidebar(
-    page: Page
-  ): Promise<void> {
+  private static async checkSidebar(page: Page): Promise<void> {
     await Promise.all([
       Helpers.checkGroup(
         page,
         6,
         ReportAbuseCommonContent,
-        'sidebarLink',
-        `${Selectors.GovukLink}`
+        "sidebarLink",
+        `${Selectors.GovukLink}`,
       ),
       Helpers.checkGroup(
         page,
         2,
         ReportAbuseCommonContent,
-        'sidebarHeadingM',
-        `${Selectors.GovukHeadingM}`
+        "sidebarHeadingM",
+        `${Selectors.GovukHeadingM}`,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukBodyM}:text-is("${ReportAbuseCommonContent.sidebarBodyM}")`,
-        1
-      )
+        1,
+      ),
     ]);
     await page.click(
-      `${Selectors.GovukSummaryText}:text-is("${ReportAbuseCommonContent.detailsSummary}")`
+      `${Selectors.GovukSummaryText}:text-is("${ReportAbuseCommonContent.detailsSummary}")`,
     );
     await Promise.all([
       Helpers.checkGroup(
         page,
         2,
         ReportAbuseCommonContent,
-        'detailsLink',
-        `${Selectors.GovukLink}`
+        "detailsLink",
+        `${Selectors.GovukLink}`,
       ),
       Helpers.checkGroup(
         page,
         5,
         ReportAbuseCommonContent,
-        'detailsBody',
-        `${Selectors.GovukBody}`
-      )
+        "detailsBody",
+        `${Selectors.GovukBody}`,
+      ),
     ]);
   }
 

@@ -4,11 +4,10 @@ import { Selectors } from "../../../../../common/selectors";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { ReportAbuseHelpers } from "./reportAbuseHelpers";
 import {
-  reportAbuseCheckboxIDs, reportAbuseInputIDs
+  reportAbuseCheckboxIDs,
+  reportAbuseInputIDs,
 } from "../../../../../journeys/citizen/createCase/C100SafetyConcerns/c100SafetyConcerns";
-import {
-  SexualAbuseContent
-} from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/sexualAbuseContent";
+import { SexualAbuseContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/sexualAbuseContent";
 
 interface SexualAbusePageOptions {
   page: Page;
@@ -43,8 +42,8 @@ export class SexualAbusePage {
   }
 
   private static async checkPageLoads({
-   page,
-   accessibilityTest,
+    page,
+    accessibilityTest,
   }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.GovukHeadingXL}:text-is("${SexualAbuseContent.pageTitle}")`,
@@ -69,7 +68,10 @@ export class SexualAbusePage {
     for (let key of textToFill) {
       let inputKey = key as keyof typeof reportAbuseInputIDs;
       let contentKey = key as keyof typeof SexualAbuseContent;
-      await page.fill(reportAbuseInputIDs[inputKey], SexualAbuseContent[contentKey]);
+      await page.fill(
+        reportAbuseInputIDs[inputKey],
+        SexualAbuseContent[contentKey],
+      );
     }
     await ReportAbuseHelpers.ongoingBehaviourFields({
       page: page,

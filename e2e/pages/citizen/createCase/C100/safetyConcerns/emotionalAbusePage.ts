@@ -4,11 +4,10 @@ import { Selectors } from "../../../../../common/selectors";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { ReportAbuseHelpers } from "./reportAbuseHelpers";
 import {
-  reportAbuseCheckboxIDs, reportAbuseInputIDs
+  reportAbuseCheckboxIDs,
+  reportAbuseInputIDs,
 } from "../../../../../journeys/citizen/createCase/C100SafetyConcerns/c100SafetyConcerns";
-import {
-  EmotionalAbuseContent
-} from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/emotionalAbuseContent";
+import { EmotionalAbuseContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/emotionalAbuseContent";
 
 interface EmotionalAbusePageOptions {
   page: Page;
@@ -43,9 +42,9 @@ export class EmotionalAbusePage {
   }
 
   private static async checkPageLoads({
-  page,
-  accessibilityTest,
-}: CheckPageLoadsOptions): Promise<void> {
+    page,
+    accessibilityTest,
+  }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.GovukHeadingXL}:text-is("${EmotionalAbuseContent.pageTitle}")`,
     );
@@ -69,7 +68,10 @@ export class EmotionalAbusePage {
     for (let key of textToFill) {
       let inputKey = key as keyof typeof reportAbuseInputIDs;
       let contentKey = key as keyof typeof EmotionalAbuseContent;
-      await page.fill(reportAbuseInputIDs[inputKey], EmotionalAbuseContent[contentKey]);
+      await page.fill(
+        reportAbuseInputIDs[inputKey],
+        EmotionalAbuseContent[contentKey],
+      );
     }
     await ReportAbuseHelpers.ongoingBehaviourFields({
       page: page,
