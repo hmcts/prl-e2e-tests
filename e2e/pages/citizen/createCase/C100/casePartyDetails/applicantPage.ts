@@ -9,7 +9,6 @@ import {
   PersonalDetailsContent
 } from "../../../../../fixtures/citizen/createCase/C100/casePartyDetails/personalDetailsContent";
 
-
 interface applicantPageOptions {
   page: Page;
   accessibilityTest: boolean;
