@@ -4,7 +4,10 @@ import { Selectors } from "../../../../../common/selectors";
 import { PsychologicalAbuseContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/PsychologicalAbuseContent";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { SafetyConcernHelpers } from "./safetyConcernHelpers";
-import { reportAbuseCheckboxIDs, reportAbuseInputIDs } from "../../../../../common/commonUniqueSelectors";
+import {
+  reportAbuseCheckboxIDs,
+  reportAbuseInputIDs,
+} from "../../../../../common/commonUniqueSelectors";
 
 interface PsychologicalAbusePageOptions {
   page: Page;
