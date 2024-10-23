@@ -89,7 +89,7 @@ export class ConsentOrderUploadPage {
 
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -116,13 +116,13 @@ export class ConsentOrderUploadPage {
     const fileInput = page.locator(`${ids.document}`);
     await fileInput.setInputFiles(config.testPdfFile);
     await page.click(
-      `${Selectors.button}:text-is("${ConsentOrderUploadContent.uploadFile}")`,
+      `${Selectors.GovukButton}:text-is("${ConsentOrderUploadContent.uploadFile}")`,
     );
     await page.waitForSelector(
       `${Selectors.a}:text-is("${ConsentOrderUploadContent.remove}")`,
     );
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
     );
   }
 }

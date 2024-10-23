@@ -37,12 +37,12 @@
     "test:manageCasesSafari": "yarn playwright install webkit && yarn playwright test --project webkit --grep @crossbrowserManageCases",
     "test:manageCasesAccessibility": "yarn playwright install && yarn playwright test --project chromium --grep @accessibilityManageCases",
     "test:citizenFrontendChrome": "yarn playwright install && yarn playwright test --project chromium --grep @citizenFrontend",
-    "test:citizenFrontendFirefox": "yarn playwright install firefox && yarn playwright test --project firefox --grep @crossbrowsercitizenFrontend",
-    "test:citizenFrontendSafari": "yarn playwright install webkit && yarn playwright test --project webkit --grep @crossbrowsercitizenFrontend",
-    "test:citizenFrontendAccessibility": "yarn playwright install && yarn playwright test --project chromium --grep @accessibilitycitizenFrontend"
+    "test:citizenFrontendFirefox": "yarn playwright install firefox && yarn playwright test --project firefox --grep @crossbrowserCitizenFrontend",
+    "test:citizenFrontendSafari": "yarn playwright install webkit && yarn playwright test --project webkit --grep @crossbrowserCitizenFrontend",
+    "test:citizenFrontendAccessibility": "yarn playwright install && yarn playwright test --project chromium --grep @accessibilityCitizenFrontend"
   },
   "pre-commit": [
     "lint"
   ],
-  "packageManager": "yarn@4.5.0"
+  "packageManager": "yarn@4.5.1"
 }

@@ -1,5 +1,4 @@
 import { Page } from "@playwright/test";
-import { UserRole } from "../../../../common/types";
 import { SelectCourtOrderPage } from "../../../../pages/citizen/createCase/C100/typeOfOrder/selectCourtOrderPage";
 import { CaOrderPage } from "../../../../pages/citizen/createCase/C100/typeOfOrder/caOrderPage";
 import { ShortStatementPage } from "../../../../pages/citizen/createCase/C100/typeOfOrder/shortStatementPage";
@@ -28,6 +27,7 @@ export class C100TypeOfOrder {
     await ShortStatementPage.shortStatementPage({
       page: page,
       accessibilityTest: accessibilityTest,
+      errorMessage: errorMessaging,
     });
   }
 }
