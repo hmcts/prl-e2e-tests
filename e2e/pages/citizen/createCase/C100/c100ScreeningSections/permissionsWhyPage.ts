@@ -63,7 +63,7 @@ export class PermissionsWhyPage {
         page,
         2,
         PermissionsWhyContent,
-        "gobHint",
+        "govHint",
         `${Selectors.GovukHint}`,
       ),
       Helpers.checkGroup(
@@ -89,7 +89,7 @@ export class PermissionsWhyPage {
       await page.check(checkbox);
     }
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -109,9 +109,12 @@ export class PermissionsWhyPage {
         3,
         PermissionsWhyContent,
         "errorSummaryList",
-        `${Selectors.GovukErrorList} ${Selectors.li}`,
+        `${Selectors.a}`,
       ),
     ]);
+    for (let checkbox of Object.values(checkboxIDs)) {
+      await page.check(checkbox);
+    }
   }
 
   private static async fillInFields(page: Page): Promise<void> {
@@ -130,7 +133,7 @@ export class PermissionsWhyPage {
       await page.fill(textField, PermissionsWhyContent[contentKey]);
     }
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
   }
 }

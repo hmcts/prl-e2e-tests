@@ -103,7 +103,7 @@ export class ProvideDetailsPage {
     gender: ApplicantGender,
   ): Promise<void> {
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
     await page.waitForSelector(
       `${Selectors.GovukErrorSummaryTitle}:text-is("${CommonStaticText.errorSummaryTitle}")`,
@@ -145,7 +145,7 @@ export class ProvideDetailsPage {
         throw new Error(`Unexpected value for gender: ${gender}`);
     }
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
   }
 }

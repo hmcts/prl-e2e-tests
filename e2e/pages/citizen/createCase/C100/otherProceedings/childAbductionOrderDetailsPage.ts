@@ -82,7 +82,7 @@ export class ChildAbductionOrderDetailsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${CommonStaticText.no}")`,
+        `${Selectors.GovukHint}:text-is("${CommonStaticText.yes}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
