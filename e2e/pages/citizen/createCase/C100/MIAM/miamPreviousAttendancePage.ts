@@ -18,9 +18,9 @@ export type MiamAttendanceType =
   | "None of these";
 
 enum uniqueSelectors {
-  last4Months = "#",
-  existingProceedings = "#",
-  noneOfThese = "#",
+  last4Months = "#miam_previousAttendance",
+  existingProceedings = "#miam_previousAttendance-2",
+  noneOfThese = "#miam_previousAttendance-4",
 }
 
 export class MiamPreviousAttendancePage {

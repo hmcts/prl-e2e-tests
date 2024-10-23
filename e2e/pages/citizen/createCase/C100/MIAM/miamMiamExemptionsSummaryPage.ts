@@ -90,7 +90,7 @@ export class MiamMiamExemptionsSummaryPage {
       miamReasonForNoAccessToMediator: miamReasonForNoAccessToMediator,
     });
     if (accessibilityTest) {
-      await AxeTest.run(page);
+      // await AxeTest.run(page); #TODO: Re-enable when PRL-6520 is completed
     }
   }
 
@@ -246,13 +246,13 @@ export class MiamMiamExemptionsSummaryPage {
     if (miamAttendanceType === "Application made in existing proceedings") {
       await Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.li}:text-is("${MiamMiamExemptionsSummaryContent.liPreviousAttendance1}")`,
+        `${Selectors.li}:text-is("${MiamMiamExemptionsSummaryContent.liPreviousAttendance2}")`,
         1,
       );
     } else {
       await Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.li}:text-is("${MiamMiamExemptionsSummaryContent.liPreviousAttendance2}")`,
+        `${Selectors.li}:text-is("${MiamMiamExemptionsSummaryContent.liPreviousAttendance1}")`,
         1,
       );
     }

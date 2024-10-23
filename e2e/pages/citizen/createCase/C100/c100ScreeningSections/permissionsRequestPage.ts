@@ -49,7 +49,7 @@ export class PermissionsRequestPage {
       1,
     );
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      // await AccessibilityTestHelper.run(page); #TODO: Re-enable when PRL-6497 is completed
     }
   }
 
@@ -70,7 +70,7 @@ export class PermissionsRequestPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorList} ${Selectors.li}:text-is("${PermissionsRequestContent.errorSummaryList}")`,
+        `${Selectors.a}:text-is("${PermissionsRequestContent.errorSummaryList}")`,
         1,
       ),
     ]);

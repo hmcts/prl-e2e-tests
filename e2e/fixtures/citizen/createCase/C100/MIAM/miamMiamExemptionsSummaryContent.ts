@@ -63,5 +63,5 @@ export enum MiamMiamExemptionsSummaryContent {
   liNoMediator3 = "There is no mediator within 15 miles of your home and you cannot attend the MIAM online or by video link.",
   liNoMediator4 = "You are in prison or any other institution and there are no facilities for you to attend a MIAM online or by video link.",
   liNoMediator5 = "You are subject to conditions of bail that prevent contact with the other person.",
-  liNoMediator6 = "You have been released from prison on licence, and you have a non-contact licence condition which includes someone who is a party to the application.",
+  liNoMediator6 = "You have been released from prison on licence, and you have a non-contact licence condition which includes someone who is a party to the application",
 }

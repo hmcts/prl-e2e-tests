@@ -101,7 +101,7 @@ export class PermissionPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorList} ${Selectors.li}:text-is("${PermissionContent.errorSummaryList}")`,
+        `${Selectors.a}:text-is("${PermissionContent.errorSummaryList}")`,
         1,
       ),
     ]);

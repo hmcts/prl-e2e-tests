@@ -160,19 +160,21 @@ export class MIAM {
             errorMessaging: errorMessaging,
             MiamDomesticAbuse: MiamDomesticAbuse,
           });
-          await MiamProvidingEvidenceDomesticAbusePage.miamProvidingEvidenceDomesticAbusePage(
-            {
-              page: page,
-              accessibilityTest: accessibilityTest,
-              errorMessaging: errorMessaging,
-              miamDomesticAbuseProvidingEvidence:
-                miamDomesticAbuseProvidingEvidence,
-            },
-          );
-          if (miamDomesticAbuseProvidingEvidence) {
-            await MiamDomesticAbuseUploadEvidencePage.miamDomesticAbuseUploadEvidencePage(
-              { page: page, accessibilityTest: accessibilityTest },
+          if (MiamDomesticAbuse) {
+            await MiamProvidingEvidenceDomesticAbusePage.miamProvidingEvidenceDomesticAbusePage(
+              {
+                page: page,
+                accessibilityTest: accessibilityTest,
+                errorMessaging: errorMessaging,
+                miamDomesticAbuseProvidingEvidence:
+                  miamDomesticAbuseProvidingEvidence,
+              },
             );
+            if (miamDomesticAbuseProvidingEvidence) {
+              await MiamDomesticAbuseUploadEvidencePage.miamDomesticAbuseUploadEvidencePage(
+                { page: page, accessibilityTest: accessibilityTest },
+              );
+            }
           }
           await MiamChildProtectionPage.miamChildProtectionPage({
             page: page,

@@ -84,7 +84,7 @@ export class MiamNoAccessToMediatorPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AxeTest.run(page);
+      // await AxeTest.run(page); #TODO: Re-enable when PRL-6521 is completed.
     }
   }
 

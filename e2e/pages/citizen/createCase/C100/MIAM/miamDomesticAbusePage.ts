@@ -2,7 +2,6 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { MiamDomesticAbuseContent } from "../../../../../fixtures/citizen/createCase/C100/MIAM/miamDomesticAbuseContent";
 import { Helpers } from "../../../../../common/helpers";
-import { MiamGeneralReasonsContent } from "../../../../../fixtures/citizen/createCase/C100/MIAM/miamGeneralReasonsContent";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import AxeTest from "../../../../../common/accessibilityTestHelper";
 
@@ -153,14 +152,14 @@ export class MiamDomesticAbusePage {
       Helpers.checkGroup(
         page,
         5,
-        MiamGeneralReasonsContent,
+        MiamDomesticAbuseContent,
         `errorMessage`,
         Selectors.a,
       ),
       Helpers.checkGroup(
         page,
         5,
-        MiamGeneralReasonsContent,
+        MiamDomesticAbuseContent,
         `errorMessage`,
         Selectors.ErrorMessage,
       ),

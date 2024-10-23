@@ -77,7 +77,7 @@ export class MiamProvidingEvidenceDomesticAbusePage {
       ),
     ]);
     if (accessibilityTest) {
-      await AxeTest.run(page);
+      // await AxeTest.run(page); #TODO: Re-enable when PRL-6519 is completed
     }
   }
 

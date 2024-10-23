@@ -53,22 +53,22 @@ export class MiamMiamOtherPage {
       throw new Error();
     }
     await page.waitForSelector(
-      `${Selectors.GovukHeadingXL}:text-is("${MiamMiamOtherContent.pageTitle}")`,
+      `${Selectors.GovukHeadingL}:text-is("${MiamMiamOtherContent.pageTitle}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukBody}:text-is("${MiamMiamOtherContent.govukBody})`,
+        `${Selectors.GovukBody}:text-is("${MiamMiamOtherContent.govukBody}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHeadingM}:text-is("${MiamMiamOtherContent.govukHeadingM})`,
+        `${Selectors.GovukHeadingM}:text-is("${MiamMiamOtherContent.govukHeadingM}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${MiamMiamOtherContent.govukHint})`,
+        `${Selectors.GovukHint}:text-is("${MiamMiamOtherContent.govukHint}")`,
         1,
       ),
       Helpers.checkGroup(
