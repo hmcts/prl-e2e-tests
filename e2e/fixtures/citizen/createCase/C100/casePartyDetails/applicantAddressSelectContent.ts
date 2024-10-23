@@ -2,8 +2,6 @@ export enum ApplicantAddressSelectContent{
   pageTitle = "Select Address of", //dynamic name of applicant
   label1 = "Current postcode",
   label2 = "Select an address",
-
-  //p = '',//import from addresslookup
   link1 = "Change Postcode",
   link2 = "I cannot find the address in the list",
   errorMessage = "Select an address from the list",
