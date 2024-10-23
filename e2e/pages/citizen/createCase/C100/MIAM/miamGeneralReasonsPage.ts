@@ -9,7 +9,7 @@ interface MiamGeneralReasonsPageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
-  MiamGeneralExemptions: boolean;
+  miamGeneralExemptions: boolean;
 }
 
 enum uniqueSelectors {
@@ -26,7 +26,7 @@ export class MiamGeneralReasonsPage {
     page: page,
     accessibilityTest: accessibilityTest,
     errorMessaging: errorMessaging,
-    MiamGeneralExemptions: MiamGeneralExemptions,
+    miamGeneralExemptions: miamGeneralExemptions,
   }: MiamGeneralReasonsPageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
@@ -37,7 +37,7 @@ export class MiamGeneralReasonsPage {
     }
     await this.fillInFields({
       page: page,
-      MiamGeneralExemptions: MiamGeneralExemptions,
+      miamGeneralExemptions: miamGeneralExemptions,
     });
   }
 
@@ -115,7 +115,7 @@ export class MiamGeneralReasonsPage {
 
   private static async fillInFields({
     page: page,
-    MiamGeneralExemptions: MiamGeneralExemptions,
+    miamGeneralExemptions: miamGeneralExemptions,
   }: Partial<MiamGeneralReasonsPageOptions>): Promise<void> {
     if (!page) {
       throw new Error();
@@ -126,7 +126,7 @@ export class MiamGeneralReasonsPage {
     for (const selector of selectorsArray) {
       await page.click(selector);
     }
-    if (!MiamGeneralExemptions) {
+    if (!miamGeneralExemptions) {
       await page.click(uniqueSelectors.noneOfTheseReason);
     }
     await page.click(

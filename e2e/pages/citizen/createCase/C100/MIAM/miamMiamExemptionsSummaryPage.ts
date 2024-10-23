@@ -13,7 +13,7 @@ import { CommonStaticText } from "../../../../../common/commonStaticText";
 interface MiamMiamExemptionsSummaryPageOptions {
   page: Page;
   accessibilityTest: boolean;
-  MiamDomesticAbuse: boolean; // Decides whether there are all domestic abuse reasons listed.
+  miamDomesticAbuse: boolean; // Decides whether there are all domestic abuse reasons listed.
   miamChildProtectionConcernsType: MiamChildProtectionConcernsType; // Decides which child protection concern is listed.
   miamUrgencyType: MiamUrgencyType; // Decides which reason there is for urgency.
   miamAttendanceType: MiamAttendanceType; // Decides which reason there is for previous MIAM attendance.
@@ -25,7 +25,7 @@ export class MiamMiamExemptionsSummaryPage {
   public static async miamMiamExemptionsSummaryPage({
     page: page,
     accessibilityTest: accessibilityTest,
-    MiamDomesticAbuse: MiamDomesticAbuse,
+    miamDomesticAbuse: miamDomesticAbuse,
     miamChildProtectionConcernsType: miamChildProtectionConcernsType,
     miamUrgencyType: miamUrgencyType,
     miamAttendanceType: miamAttendanceType,
@@ -35,7 +35,7 @@ export class MiamMiamExemptionsSummaryPage {
     await this.checkPageLoads({
       page: page,
       accessibilityTest: accessibilityTest,
-      MiamDomesticAbuse: MiamDomesticAbuse,
+      miamDomesticAbuse: miamDomesticAbuse,
       miamChildProtectionConcernsType: miamChildProtectionConcernsType,
       miamUrgencyType: miamUrgencyType,
       miamAttendanceType: miamAttendanceType,
@@ -48,7 +48,7 @@ export class MiamMiamExemptionsSummaryPage {
   private static async checkPageLoads({
     page: page,
     accessibilityTest: accessibilityTest,
-    MiamDomesticAbuse: MiamDomesticAbuse,
+    miamDomesticAbuse: miamDomesticAbuse,
     miamChildProtectionConcernsType: miamChildProtectionConcernsType,
     miamUrgencyType: miamUrgencyType,
     miamAttendanceType: miamAttendanceType,
@@ -72,7 +72,7 @@ export class MiamMiamExemptionsSummaryPage {
         1,
       ),
     ]);
-    if (MiamDomesticAbuse) {
+    if (miamDomesticAbuse) {
       await this.handleDomesticAbuse({ page: page });
     }
     await this.handleChildDomesticAbuse({

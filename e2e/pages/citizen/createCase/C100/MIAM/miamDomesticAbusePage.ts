@@ -9,7 +9,7 @@ interface MiamDomesticAbusePageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
-  MiamDomesticAbuse: boolean;
+  miamDomesticAbuse: boolean;
 }
 
 enum uniqueOuterSelectors {
@@ -51,7 +51,7 @@ export class MiamDomesticAbusePage {
     page: page,
     accessibilityTest: accessibilityTest,
     errorMessaging: errorMessaging,
-    MiamDomesticAbuse: MiamDomesticAbuse,
+    miamDomesticAbuse: miamDomesticAbuse,
   }: Partial<MiamDomesticAbusePageOptions>): Promise<void> {
     await this.checkPageLoads({ page, accessibilityTest });
     if (errorMessaging) {
@@ -59,7 +59,7 @@ export class MiamDomesticAbusePage {
     }
     await this.fillInFields({
       page: page,
-      MiamDomesticAbuse: MiamDomesticAbuse,
+      miamDomesticAbuse: miamDomesticAbuse,
     });
   }
 
@@ -168,7 +168,7 @@ export class MiamDomesticAbusePage {
 
   private static async fillInFields({
     page: page,
-    MiamDomesticAbuse: MiamDomesticAbuse,
+    miamDomesticAbuse: miamDomesticAbuse,
   }: Partial<MiamDomesticAbusePageOptions>): Promise<void> {
     if (!page) {
       throw new Error();
@@ -176,7 +176,7 @@ export class MiamDomesticAbusePage {
     for (const selector of Object.values(uniqueInnerSelectors)) {
       await page.click(selector);
     }
-    if (!MiamDomesticAbuse) {
+    if (!miamDomesticAbuse) {
       await page.click(uniqueOuterSelectors.noneOfAbove);
     }
     await page.click(

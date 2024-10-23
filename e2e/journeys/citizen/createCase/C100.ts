@@ -24,12 +24,12 @@ interface C100Options {
   c100OthersKnowApplicantsContact: yesNoDontKnow;
   c100PrivateDetails: boolean;
   c100ChildrenSafetyConcerns: boolean;
-  MIAMChildrenInvolvedOtherProceedings: boolean;
+  miamChildrenInvolvedOtherProceedings: boolean;
   miamAlreadyAttended: boolean;
   documentSignedByMediator: boolean;
-  MIAMValidReasonNoAttendance: boolean;
-  MiamGeneralExemptions: boolean;
-  MiamDomesticAbuse: boolean;
+  miamValidReasonNoAttendance: boolean;
+  miamGeneralExemptions: boolean;
+  miamDomesticAbuse: boolean;
   miamDomesticAbuseProvidingEvidence: boolean;
   miamChildProtectionConcernsType: MiamChildProtectionConcernsType;
   miamUrgencyType: MiamUrgencyType;
@@ -50,12 +50,12 @@ export class C100 {
     urgencyAndWithoutNoticeAllOptionsYes,
     c100OthersKnowApplicantsContact,
     c100PrivateDetails,
-    MIAMChildrenInvolvedOtherProceedings,
+    miamChildrenInvolvedOtherProceedings,
     miamAlreadyAttended,
     documentSignedByMediator,
-    MIAMValidReasonNoAttendance,
-    MiamGeneralExemptions,
-    MiamDomesticAbuse,
+    miamValidReasonNoAttendance,
+    miamGeneralExemptions,
+    miamDomesticAbuse,
     miamDomesticAbuseProvidingEvidence,
     miamChildProtectionConcernsType,
     miamUrgencyType,
@@ -108,13 +108,13 @@ export class C100 {
         page: page,
         accessibilityTest: accessibilityTest,
         errorMessaging: errorMessaging,
-        MIAMChildrenInvolvedOtherProceedings:
-          MIAMChildrenInvolvedOtherProceedings,
+        miamChildrenInvolvedOtherProceedings:
+          miamChildrenInvolvedOtherProceedings,
         miamAlreadyAttended: miamAlreadyAttended,
         documentSignedByMediator: documentSignedByMediator,
-        MIAMValidReasonNoAttendance: MIAMValidReasonNoAttendance,
-        MiamGeneralExemptions: MiamGeneralExemptions,
-        MiamDomesticAbuse: MiamDomesticAbuse,
+        miamValidReasonNoAttendance: miamValidReasonNoAttendance,
+        miamGeneralExemptions: miamGeneralExemptions,
+        miamDomesticAbuse: miamDomesticAbuse,
         miamDomesticAbuseProvidingEvidence: miamDomesticAbuseProvidingEvidence,
         miamChildProtectionConcernsType: miamChildProtectionConcernsType,
         miamUrgencyType: miamUrgencyType,

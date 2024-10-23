@@ -42,12 +42,12 @@ interface MIAMOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
-  MIAMChildrenInvolvedOtherProceedings: boolean; // if true then diverts to the second row on the miro.
+  miamChildrenInvolvedOtherProceedings: boolean; // if true then diverts to the second row on the miro.
   miamAlreadyAttended: boolean; // Possible diversion to the type of work page.
   documentSignedByMediator: boolean; // Above conditional on this being true, if false, go to get signed doc page.
-  MIAMValidReasonNoAttendance: boolean; // If false, go to the get mediator page.
-  MiamGeneralExemptions: boolean; // Sets the different MIAM exemptions.
-  MiamDomesticAbuse: boolean; // Decides whether there are all domestic abuse reasons listed.
+  miamValidReasonNoAttendance: boolean; // If false, go to the get mediator page.
+  miamGeneralExemptions: boolean; // Sets the different MIAM exemptions.
+  miamDomesticAbuse: boolean; // Decides whether there are all domestic abuse reasons listed.
   miamDomesticAbuseProvidingEvidence: boolean;
   miamChildProtectionConcernsType: MiamChildProtectionConcernsType; // Decides which child protection concern is listed.
   miamUrgencyType: MiamUrgencyType; // Decides which reason there is for urgency.
@@ -62,12 +62,12 @@ export class MIAM {
     page: page,
     accessibilityTest: accessibilityTest,
     errorMessaging: errorMessaging,
-    MIAMChildrenInvolvedOtherProceedings: MIAMChildrenInvolvedOtherProceedings,
+    miamChildrenInvolvedOtherProceedings: miamChildrenInvolvedOtherProceedings,
     miamAlreadyAttended: miamAlreadyAttended,
     documentSignedByMediator: documentSignedByMediator,
-    MIAMValidReasonNoAttendance: MIAMValidReasonNoAttendance,
-    MiamGeneralExemptions: MiamGeneralExemptions,
-    MiamDomesticAbuse: MiamDomesticAbuse,
+    miamValidReasonNoAttendance: miamValidReasonNoAttendance,
+    miamGeneralExemptions: miamGeneralExemptions,
+    miamDomesticAbuse: miamDomesticAbuse,
     miamDomesticAbuseProvidingEvidence: miamDomesticAbuseProvidingEvidence,
     miamChildProtectionConcernsType: miamChildProtectionConcernsType,
     miamUrgencyType: miamUrgencyType,
@@ -81,10 +81,10 @@ export class MIAM {
       page: page,
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
-      MIAMChildrenInvolvedOtherProceedings:
-        MIAMChildrenInvolvedOtherProceedings,
+      miamChildrenInvolvedOtherProceedings:
+        miamChildrenInvolvedOtherProceedings,
     });
-    if (MIAMChildrenInvolvedOtherProceedings) {
+    if (miamChildrenInvolvedOtherProceedings) {
       await MiamNoNeedPage.noNeedPage({
         page: page,
         accessibilityTest: accessibilityTest,
@@ -133,9 +133,9 @@ export class MIAM {
           page: page,
           accessibilityTest: accessibilityTest,
           errorMessaging: errorMessaging,
-          MIAMValidReasonNoAttendance: MIAMValidReasonNoAttendance,
+          miamValidReasonNoAttendance: miamValidReasonNoAttendance,
         });
-        if (!MIAMValidReasonNoAttendance) {
+        if (!miamValidReasonNoAttendance) {
           await MiamGetMediatorPage.miamGetMediatorPage({
             page: page,
             accessibilityTest: accessibilityTest,
@@ -145,9 +145,9 @@ export class MIAM {
             page: page,
             accessibilityTest: accessibilityTest,
             errorMessaging: errorMessaging,
-            MiamGeneralExemptions: MiamGeneralExemptions,
+            miamGeneralExemptions: miamGeneralExemptions,
           });
-          if (!MiamGeneralExemptions) {
+          if (!miamGeneralExemptions) {
             await MiamGetMediatorPage.miamGetMediatorPage({
               page: page,
               accessibilityTest: accessibilityTest,
@@ -158,9 +158,9 @@ export class MIAM {
             page: page,
             accessibilityTest: accessibilityTest,
             errorMessaging: errorMessaging,
-            MiamDomesticAbuse: MiamDomesticAbuse,
+            miamDomesticAbuse: miamDomesticAbuse,
           });
-          if (MiamDomesticAbuse) {
+          if (miamDomesticAbuse) {
             await MiamProvidingEvidenceDomesticAbusePage.miamProvidingEvidenceDomesticAbusePage(
               {
                 page: page,
@@ -261,7 +261,7 @@ export class MIAM {
           await MiamMiamExemptionsSummaryPage.miamMiamExemptionsSummaryPage({
             page: page,
             accessibilityTest: accessibilityTest,
-            MiamDomesticAbuse: MiamDomesticAbuse,
+            miamDomesticAbuse: miamDomesticAbuse,
             miamChildProtectionConcernsType: miamChildProtectionConcernsType,
             miamUrgencyType: miamUrgencyType,
             miamAttendanceType: miamAttendanceType,

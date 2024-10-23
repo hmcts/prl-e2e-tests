@@ -9,7 +9,7 @@ interface OtherProceedingsPageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
-  MIAMChildrenInvolvedOtherProceedings: boolean;
+  miamChildrenInvolvedOtherProceedings: boolean;
 }
 
 enum uniqueSelectors {
@@ -22,7 +22,7 @@ export class MiamOtherProceedingsPage {
     page: page,
     accessibilityTest: accessibilityTest,
     errorMessaging: errorMessaging,
-    MIAMChildrenInvolvedOtherProceedings: MIAMChildrenInvolvedOtherProceedings,
+    miamChildrenInvolvedOtherProceedings: miamChildrenInvolvedOtherProceedings,
   }: OtherProceedingsPageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
@@ -33,8 +33,8 @@ export class MiamOtherProceedingsPage {
     }
     await this.fillInFields({
       page: page,
-      MIAMChildrenInvolvedOtherProceedings:
-        MIAMChildrenInvolvedOtherProceedings,
+      miamChildrenInvolvedOtherProceedings:
+        miamChildrenInvolvedOtherProceedings,
     });
   }
 
@@ -97,12 +97,12 @@ export class MiamOtherProceedingsPage {
 
   private static async fillInFields({
     page: page,
-    MIAMChildrenInvolvedOtherProceedings: MIAMChildrenInvolvedOtherProceedings,
+    miamChildrenInvolvedOtherProceedings: miamChildrenInvolvedOtherProceedings,
   }: Partial<OtherProceedingsPageOptions>): Promise<void> {
     if (!page) {
       throw new Error("Page is undefined.");
     }
-    if (MIAMChildrenInvolvedOtherProceedings) {
+    if (miamChildrenInvolvedOtherProceedings) {
       await page.click(`${uniqueSelectors.otherProceedingsYes}`);
     } else {
       await page.click(`${uniqueSelectors.otherProceedingsNo}`);

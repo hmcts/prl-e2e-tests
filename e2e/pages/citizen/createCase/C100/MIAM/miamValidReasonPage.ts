@@ -9,7 +9,7 @@ interface MiamValidReasonPageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
-  MIAMValidReasonNoAttendance: boolean;
+  miamValidReasonNoAttendance: boolean;
 }
 
 enum uniqueSelectors {
@@ -22,7 +22,7 @@ export class MiamValidReasonPage {
     page: page,
     accessibilityTest: accessibilityTest,
     errorMessaging: errorMessaging,
-    MIAMValidReasonNoAttendance: MIAMValidReasonNoAttendance,
+    miamValidReasonNoAttendance: miamValidReasonNoAttendance,
   }: MiamValidReasonPageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
@@ -33,7 +33,7 @@ export class MiamValidReasonPage {
     }
     await this.fillInFields({
       page: page,
-      MIAMValidReasonNoAttendance: MIAMValidReasonNoAttendance,
+      miamValidReasonNoAttendance: miamValidReasonNoAttendance,
     });
   }
 
@@ -96,12 +96,12 @@ export class MiamValidReasonPage {
 
   private static async fillInFields({
     page: page,
-    MIAMValidReasonNoAttendance: MIAMValidReasonNoAttendance,
+    miamValidReasonNoAttendance: miamValidReasonNoAttendance,
   }: Partial<MiamValidReasonPageOptions>): Promise<void> {
     if (!page) {
       throw new Error();
     }
-    if (MIAMValidReasonNoAttendance) {
+    if (miamValidReasonNoAttendance) {
       await page.click(uniqueSelectors.validReasonYes);
     } else {
       await page.click(uniqueSelectors.validReasonNo);
