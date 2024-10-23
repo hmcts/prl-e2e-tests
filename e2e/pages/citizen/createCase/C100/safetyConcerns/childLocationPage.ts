@@ -36,6 +36,7 @@ export class ChildLocationPage {
     if (errorMessaging) {
       await this.checkErrorMessaging(page)
     }
+    await this.fillInFields(page)
   }
 
   private static async checkPageLoads({
@@ -84,6 +85,7 @@ export class ChildLocationPage {
         `${Selectors.li}`
       )
     ]);
+    // Helper for sidebar
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page)
     }
