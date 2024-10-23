@@ -10,4 +10,7 @@ export enum CommonStaticText {
   formLabel = "Upload a file",
   uploadFile = "Upload file",
   remove = "Remove",
+  mother = 'Mother',
+  father = 'Father',
+  other = 'Other',
 }
