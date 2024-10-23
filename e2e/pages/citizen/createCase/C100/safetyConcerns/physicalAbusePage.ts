@@ -4,9 +4,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { PhysicalAbuseContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/physicalAbuseContent";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { ReportAbuseHelpers } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/reportAbuseHelpers";
-import {
-  reportAbuseCheckboxIDs, reportAbuseInputIDs
-} from "../../../../../journeys/citizen/createCase/C100SafetyConcerns/c100SafetyConcerns";
+import { reportAbuseCheckboxIDs, reportAbuseInputIDs } from "../../../../../common/commonUniqueSelectors";
 
 interface PhysicalAbusePageOptions {
   page: Page;

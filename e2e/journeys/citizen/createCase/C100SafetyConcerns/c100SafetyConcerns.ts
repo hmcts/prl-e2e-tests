@@ -6,20 +6,6 @@ import { ChildConcernsAboutPage } from "../../../../pages/citizen/createCase/C10
 import { PhysicalAbusePage } from "../../../../pages/citizen/createCase/C100/safetyConcerns/physicalAbusePage";
 import { PsychologicalAbusePage } from "../../../../pages/citizen/createCase/C100/safetyConcerns/psychologicalAbusePage";
 
-export enum reportAbuseCheckboxIDs {
-  child1 = "#childrenConcernedAbout",
-}
-
-export enum reportAbuseInputIDs {
-  ongoingBehaviorYes = "#isOngoingBehaviour",
-  ongoingBehaviorNo = "#isOngoingBehaviour-2",
-  seekHelpYes = "#seekHelpFromPersonOrAgency",
-  seekHelpNo = "#seekHelpFromPersonOrAgency-2",
-  behaviourDetails = "#behaviourDetails",
-  behaviourStartDate = "#behaviourStartDate",
-  seekHelpDetails = "#seekHelpDetails",
-}
-
 interface C100SafetyConcernsOptions {
   page: Page;
   accessibilityTest: boolean;

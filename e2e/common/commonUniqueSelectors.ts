@@ -12,3 +12,17 @@ export enum CitizensOtherProceedingsUniqueSelectors {
   orderCopyYes = "#orderCopy-1",
   orderCopyNo = "#orderCopy-1-2",
 }
+
+export enum reportAbuseCheckboxIDs {
+  child1 = "#childrenConcernedAbout",
+}
+
+export enum reportAbuseInputIDs {
+  ongoingBehaviorYes = "#isOngoingBehaviour",
+  ongoingBehaviorNo = "#isOngoingBehaviour-2",
+  seekHelpYes = "#seekHelpFromPersonOrAgency",
+  seekHelpNo = "#seekHelpFromPersonOrAgency-2",
+  behaviourDetails = "#behaviourDetails",
+  behaviourStartDate = "#behaviourStartDate",
+  seekHelpDetails = "#seekHelpDetails",
+}

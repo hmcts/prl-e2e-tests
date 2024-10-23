@@ -4,10 +4,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { PsychologicalAbuseContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/PsychologicalAbuseContent";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { ReportAbuseHelpers } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/reportAbuseHelpers";
-import {
-  reportAbuseCheckboxIDs,
-  reportAbuseInputIDs,
-} from "../../../../../journeys/citizen/createCase/C100SafetyConcerns/c100SafetyConcerns";
+import { reportAbuseCheckboxIDs, reportAbuseInputIDs } from "../../../../../common/commonUniqueSelectors";
 
 interface PsychologicalAbusePageOptions {
   page: Page;
