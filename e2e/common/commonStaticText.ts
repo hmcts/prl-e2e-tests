@@ -1,4 +1,5 @@
 export enum CommonStaticText {
+  saveAndComeBackLater = "Save and come back later",
   yes = "Yes",
   no = "No",
   continue = "Continue",
