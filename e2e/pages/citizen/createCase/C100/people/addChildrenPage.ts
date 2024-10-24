@@ -106,7 +106,7 @@ export class AddChildrenPage {
       await page.fill(`${selector}`, AddChildrenContent.exampleText);
     }
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
   }
 }
