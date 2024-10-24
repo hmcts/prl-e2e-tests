@@ -65,12 +65,12 @@ export class PermissionPage {
       Helpers.checkGroup(page, 3, PermissionContent, "list", `${Selectors.li}`),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${CommonStaticText.strippedYes}")`,
+        `${Selectors.GovukLabel}:text-is("${CommonStaticText.yes}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${CommonStaticText.strippedNo}")`,
+        `${Selectors.GovukLabel}:text-is("${CommonStaticText.no}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -86,7 +86,7 @@ export class PermissionPage {
 
   private static async checkErrorMessaging(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -101,7 +101,7 @@ export class PermissionPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorList} ${Selectors.li}:text-is("${PermissionContent.errorSummaryList}")`,
+        `${Selectors.a}:text-is("${PermissionContent.errorSummaryList}")`,
         1,
       ),
     ]);
@@ -117,7 +117,7 @@ export class PermissionPage {
       await page.click(inputIDs.radioNo);
     }
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
   }
 }
