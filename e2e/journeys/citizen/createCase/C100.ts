@@ -21,18 +21,6 @@ interface C100ThirdMiroJourneyMIAMOptions {
   c100LegalRepresentation: boolean;
   c100CourtPermissionNeeded: boolean;
   urgencyAndWithoutNoticeAllOptionsYes: boolean;
-  miamAlreadyAttended: boolean;
-  documentSignedByMediator: boolean;
-  miamValidReasonNoAttendance: boolean;
-  miamGeneralExemptions: boolean;
-  miamDomesticAbuse: boolean;
-  miamDomesticAbuseProvidingEvidence: boolean;
-  miamChildProtectionConcernsType: MiamChildProtectionConcernsType;
-  miamUrgencyType: MiamUrgencyType;
-  miamAttendanceType: MiamAttendanceType;
-  miamPreviousAttendanceMediatorSignedDocument: boolean;
-  miamOtherReasonForNotAttending: MiamOtherReasonForNotAttending;
-  miamReasonForNoAccessToMediator: MiamReasonForNoAccessToMediator;
 }
 
 interface C100Options {
@@ -165,7 +153,7 @@ export class C100 {
     // Other Proceedings
   }
   
-  public static async c100ThirdMiroJourneyMIAM({
+  public static async c100ThirdMiroJourney({
     page,
     accessibilityTest,
     errorMessaging,
