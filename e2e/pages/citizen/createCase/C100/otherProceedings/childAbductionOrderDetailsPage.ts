@@ -10,7 +10,7 @@ interface ChildAbductionOrderDetailsPageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
-  yesNoChildAbductionOrderDetails: boolean;
+  yesNoOtherProceedings: boolean;
 }
 
 interface checkPageLoadsOptions {
@@ -20,7 +20,7 @@ interface checkPageLoadsOptions {
 
 interface fillInFieldsOptions {
   page: Page;
-  yesNoChildAbductionOrderDetails: boolean;
+  yesNoOtherProceedings: boolean;
 }
 
 export class ChildAbductionOrderDetailsPage {
@@ -28,7 +28,7 @@ export class ChildAbductionOrderDetailsPage {
     page: page,
     accessibilityTest: accessibilityTest,
     errorMessaging: errorMessaging,
-    yesNoChildAbductionOrderDetails: yesNoChildAbductionOrderDetails,
+    yesNoOtherProceedings: yesNoOtherProceedings,
   }: ChildAbductionOrderDetailsPageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
@@ -39,7 +39,7 @@ export class ChildAbductionOrderDetailsPage {
     }
     await this.fillInFields({
       page: page,
-      yesNoChildAbductionOrderDetails: yesNoChildAbductionOrderDetails,
+      yesNoOtherProceedings: yesNoOtherProceedings,
     });
   }
 
@@ -170,7 +170,7 @@ export class ChildAbductionOrderDetailsPage {
 
   private static async fillInFields({
     page: page,
-    yesNoChildAbductionOrderDetails: yesNoChildAbductionOrderDetails,
+    yesNoOtherProceedings: yesNoOtherProceedings,
   }: fillInFieldsOptions): Promise<void> {
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.orderDetail1}`,
@@ -205,7 +205,7 @@ export class ChildAbductionOrderDetailsPage {
       ChildAbductionOrderDetailsContent.yearNumber2,
     );
     // Selecting 'true' will move onto next page
-    if (yesNoChildAbductionOrderDetails) {
+    if (yesNoOtherProceedings) {
       await page.click(
         `${CitizensOtherProceedingsUniqueSelectors.currentOrderYes}`,
       );
