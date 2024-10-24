@@ -4,6 +4,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { ConcernsForSafetyContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/concernsForSafetyContent";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { SafetyConcernHelpers } from "./safetyConcernHelpers";
 
 enum inputIDs {
   yes = "#c1A_haveSafetyConcerns",
@@ -92,7 +93,15 @@ export class ConcernsForSafetyPage {
         "p",
         `${Selectors.p}`,
       ),
+      Helpers.checkGroup(
+        page,
+        2,
+        ConcernsForSafetyContent,
+        "sidebarLink",
+        `${Selectors.GovukLink}`,
+      ),
     ]);
+    await SafetyConcernHelpers.checkContactDetailsText(page);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }

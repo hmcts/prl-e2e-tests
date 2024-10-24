@@ -4,6 +4,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { ConcernAboutContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/concernAboutContent";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { SafetyConcernHelpers } from "./safetyConcernHelpers";
 
 enum inputIDs {
   child = "#c1A_safetyConernAbout",
@@ -63,6 +64,9 @@ export class ConcernAboutPage {
         `${Selectors.GovukLabel}`,
       ),
     ]);
+    await SafetyConcernHelpers.checkSidebar(page);
+    await SafetyConcernHelpers.checkContactDetailsText(page);
+    await SafetyConcernHelpers.checkContactDetailsText(page);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }
