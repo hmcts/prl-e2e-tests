@@ -2,6 +2,9 @@ import { Page } from "@playwright/test";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { SafetyConcernsCommonContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/safetyConcernsCommonContent";
+import {
+  PassportSidebarContent
+} from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/passportSidebarContent";
 
 interface SeekHelpOptions {
   page: Page;
@@ -180,5 +183,17 @@ export class SafetyConcernHelpers {
         ),
       ]);
     }
+  }
+
+  public static async checkPassportSidebar(
+    page: Page
+  ): Promise<void> {
+    await Helpers.checkGroup(
+      page,
+      3,
+      PassportSidebarContent,
+      'sidebarLink',
+      `${Selectors.GovukLink}`
+    )
   }
 }

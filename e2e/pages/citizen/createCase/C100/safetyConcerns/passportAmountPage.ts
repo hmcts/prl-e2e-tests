@@ -6,6 +6,7 @@ import {
 } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/passportAmountContent";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { SafetyConcernHelpers } from "./safetyConcernHelpers";
 
 enum inputIDs {
   radioYes = '#c1A_childrenMoreThanOnePassport',
@@ -37,7 +38,7 @@ interface CheckPageLoadsOptions {
 }
 
 export class PassportAmountPage {
-  public static async PassportAmountPage({
+  public static async passportAmountPage({
    page,
    accessibilityTest,
    errorMessaging,
@@ -110,7 +111,8 @@ export class PassportAmountPage {
         1
       ),
     ])
-    // Helper for sidebar
+    await SafetyConcernHelpers.checkPassportSidebar(page);
+    await SafetyConcernHelpers.checkContactDetailsText(page);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page)
     }

@@ -6,6 +6,7 @@ import {
 } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/passportOfficeContent";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { SafetyConcernHelpers } from "./safetyConcernHelpers";
 
 enum radioIDs {
   radioYes = '#c1A_passportOffice',
@@ -73,7 +74,8 @@ export class PassportOfficePage {
         1
       )
     ])
-    // Helper for sidebar
+    await SafetyConcernHelpers.checkPassportSidebar(page);
+    await SafetyConcernHelpers.checkContactDetailsText(page);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page)
     }

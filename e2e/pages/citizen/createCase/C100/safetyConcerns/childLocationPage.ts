@@ -6,6 +6,7 @@ import {
 } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/childLocationContent";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { SafetyConcernHelpers } from "./safetyConcernHelpers";
 
 enum inputIDs {
   abductionReason = '#c1A_abductionReasonOutsideUk',
@@ -85,7 +86,8 @@ export class ChildLocationPage {
         `${Selectors.li}`
       )
     ]);
-    // Helper for sidebar
+    await SafetyConcernHelpers.checkPassportSidebar(page);
+    await SafetyConcernHelpers.checkContactDetailsText(page);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page)
     }
