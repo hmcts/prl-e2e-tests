@@ -32,6 +32,7 @@ import { UndertakingOrderDetailsPage } from "../../../../pages/citizen/createCas
 import { UndertakingOrderDocumentUploadPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/undertakingOrderDocumentUploadPage";
 import { OtherOrderDetailsPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/otherOrderDetailsPage";
 import { OtherOrderDocumentUploadPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/otherOrderDocumentUploadPage";
+import { DocumentSummaryPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/DocumentSummaryPage";
 
 interface C100OtherProceedings1Options {
   page: Page;
@@ -266,6 +267,10 @@ export class C100OtherProceedings {
           page,
           accessibilityTest,
           errorMessaging,
+        });
+        await DocumentSummaryPage.DocumentSummaryPage({
+          page,
+          accessibilityTest,
         });
       }
     }
