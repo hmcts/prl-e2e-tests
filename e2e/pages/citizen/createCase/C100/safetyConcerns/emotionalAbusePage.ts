@@ -5,7 +5,7 @@ import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { SafetyConcernHelpers } from "./safetyConcernHelpers";
 import {
   reportAbuseCheckboxIDs,
-  reportAbuseInputIDs
+  reportAbuseInputIDs,
 } from "../../../../../common/commonUniqueSelectors";
 import { EmotionalAbuseContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/emotionalAbuseContent";
 
