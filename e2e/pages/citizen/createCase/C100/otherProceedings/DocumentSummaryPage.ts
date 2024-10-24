@@ -50,6 +50,11 @@ export class DocumentSummaryPage {
         "pdf",
         `${Selectors.GovukTableCell}`,
       ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukTableCell}:has-text("${Helpers.getCurrentDateFormatted()}")`,
+        16,
+      ),
     ]);
     await SafetyConcernHelpers.checkSidebar(page);
     if (accessibilityTest) {
