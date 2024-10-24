@@ -3,8 +3,12 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { PhysicalAbuseContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/physicalAbuseContent";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-import { ReportAbuseHelpers } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/reportAbuseHelpers";
+import { SafetyConcernHelpers } from "./safetyConcernHelpers";
 import { reportAbuseCheckboxIDs, reportAbuseInputIDs } from "../../../../../common/commonUniqueSelectors";
+import {
+  reportAbuseCheckboxIDs,
+  reportAbuseInputIDs,
+} from "../../../../../common/commonUniqueSelectors";
 
 interface PhysicalAbusePageOptions {
   page: Page;
@@ -45,7 +49,9 @@ export class PhysicalAbusePage {
     await page.waitForSelector(
       `${Selectors.GovukHeadingXL}:text-is("${PhysicalAbuseContent.pageTitle}")`,
     );
-    await ReportAbuseHelpers.checkStaticText(page);
+    await SafetyConcernHelpers.checkStaticText(page);
+    await SafetyConcernHelpers.checkSidebar(page);
+    await SafetyConcernHelpers.checkContactDetailsText(page);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }
@@ -65,14 +71,17 @@ export class PhysicalAbusePage {
     for (let key of textToFill) {
       let inputKey = key as keyof typeof reportAbuseInputIDs;
       let contentKey = key as keyof typeof PhysicalAbuseContent;
-      await page.fill(reportAbuseInputIDs[inputKey], PhysicalAbuseContent[contentKey]);
+      await page.fill(
+        reportAbuseInputIDs[inputKey],
+        PhysicalAbuseContent[contentKey],
+      );
     }
-    await ReportAbuseHelpers.ongoingBehaviourFields({
+    await SafetyConcernHelpers.ongoingBehaviourFields({
       page: page,
       c100ReportAbuseYesNoToAll: c100PhysicalAbuseYesNoToAll,
       inputIDs: reportAbuseInputIDs,
     });
-    await ReportAbuseHelpers.seekHelpFields({
+    await SafetyConcernHelpers.seekHelpFields({
       page: page,
       c100ReportAbuseYesNoToAll: c100PhysicalAbuseYesNoToAll,
       inputIDs: reportAbuseInputIDs,
