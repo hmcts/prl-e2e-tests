@@ -22,6 +22,12 @@ export enum ApplicantPersonalDetailsContent {
   errorMessage2 = "Select the gender",
   errorMessage3 = "Enter the date of birth",
   errorMessage4 = "Enter your place of birth",
+  dobErrorMessage1 = "Date of birth is not valid",
+  dobErrorMessage2 = "Date of birth must be in the past",
+  dobErrorMessage3 = "Date of birth must include a day",
+  dobErrorMessage4 = "Date of birth must include a month",
+  dobErrorMessage5 = "Date of birth must include a year",
   placeOfBirthText = "Swansea",
   prevNameText = "John Smith",
+  invalidDob = "a",
 }

@@ -114,9 +114,13 @@ export class ApplicantPersonalDetailsPage {
 
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
+    await this.checkErrorSummary(page);
+    await this.fillInvalidDateOfBirth(page);
+  }
 
+  private static async checkErrorSummary(page: Page): Promise<void> {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
@@ -139,6 +143,35 @@ export class ApplicantPersonalDetailsPage {
       ),
     ]);
   }
+
+  private static async fillInvalidDateOfBirth(page: Page): Promise<void> {
+    await Promise.all([
+      page.fill(inputIds.day, ApplicantPersonalDetailsContent.invalidDob),
+      page.fill(inputIds.month, ApplicantPersonalDetailsContent.invalidDob),
+      page.fill(inputIds.year, ApplicantPersonalDetailsContent.invalidDob),
+    ]);
+    await page.click(
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
+    );
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorSummaryTitle}:text-is("${CommonStaticText.errorSummaryTitle}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorMessage}:text-is("${ApplicantPersonalDetailsContent.dobErrorMessage1}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukSummaryList}:text-is("${ApplicantPersonalDetailsContent.dobErrorMessage1}")`,
+        1,
+      ),
+    ]);
+  }
+
 
   private static async fillInFields({
     page,
@@ -184,7 +217,7 @@ export class ApplicantPersonalDetailsPage {
     );
 
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
   }
 }
