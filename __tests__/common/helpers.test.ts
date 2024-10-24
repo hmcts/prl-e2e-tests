@@ -149,4 +149,40 @@ describe("Helpers", () => {
       expect(result).toBe("Hello world");
     });
   });
+
+  describe("generateDOB", () => {
+    afterEach(() => {
+      jest.restoreAllMocks();
+    });
+
+    const testCases = [
+      {
+        currentDate: new Date(2024, 9, 22),
+        under18: true,
+        expected: ["22", "10", "2007"],
+      }, // October 22, 2024
+      {
+        currentDate: new Date(2023, 0, 1),
+        under18: false,
+        expected: ["1", "1", "2001"],
+      }, // January 1, 2023
+      {
+        currentDate: new Date(2022, 5, 15),
+        under18: true,
+        expected: ["15", "6", "2005"],
+      }, // June 15, 2022
+    ];
+
+    testCases.forEach(({ currentDate, under18, expected }) => {
+      it(`should generate dob correctly for ${under18 ? "under 18" : "over 21"} on ${currentDate.toLocaleDateString()}`, () => {
+        jest.spyOn(global, "Date").mockImplementation(() => currentDate);
+
+        const [day, month, year] = Helpers.generateDOB(under18);
+
+        expect(day).toBe(expected[0]);
+        expect(month).toBe(expected[1]);
+        expect(year).toBe(expected[2]);
+      });
+    });
+  });
 });
