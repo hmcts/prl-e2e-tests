@@ -74,7 +74,7 @@ export class ApplicantAddressLookupPage {
 
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
 
     await Promise.all([
@@ -106,7 +106,7 @@ export class ApplicantAddressLookupPage {
         ApplicantAddressLookupContent.postcodeText,
       );
       await page.click(
-        `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
+        `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
       );
     } else {
       await page.click(inputIds.manualAddress);
