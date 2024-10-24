@@ -8,6 +8,9 @@ import { PsychologicalAbusePage } from "../../../../../pages/citizen/createCase/
 import { EmotionalAbusePage } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/emotionalAbusePage";
 import { SexualAbusePage } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/sexualAbusePage";
 import { FinancialAbusePage } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/financialAbusePage";
+import { ChildLocationPage } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/childLocationPage";
+import { PassportOfficePage } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/passportOfficePage";
+import { PassportAmountPage } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/passportAmountPage";
 
 interface C100SafetyConcernsOptions {
   page: Page;
@@ -18,6 +21,8 @@ interface C100SafetyConcernsOptions {
   c100EmotionalAbuseYesNoToAll: boolean;
   c100SexualAbuseYesNoToAll: boolean;
   c100FinancialAbuseYesNoToAll: boolean;
+  c100ChildrenHavePassport: boolean;
+  c100MoreThanOnePassport: boolean;
 }
 
 export class C100SafetyConcerns {
@@ -30,6 +35,8 @@ export class C100SafetyConcerns {
     c100EmotionalAbuseYesNoToAll,
     c100SexualAbuseYesNoToAll,
     c100FinancialAbuseYesNoToAll,
+    c100ChildrenHavePassport,
+    c100MoreThanOnePassport,
   }: C100SafetyConcernsOptions): Promise<void> {
     await ConcernGuidancePage.concernGuidancePage({
       page: page,
@@ -77,6 +84,25 @@ export class C100SafetyConcerns {
         accessibilityTest: accessibilityTest,
         c100FinancialAbuseYesNoToAll: c100FinancialAbuseYesNoToAll,
       });
+      await ChildLocationPage.childLocationPage({
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
+      });
+      await PassportOfficePage.passportOfficePage({
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
+        c100ChildrenHavePassport: c100ChildrenHavePassport,
+      });
+      if (c100ChildrenHavePassport) {
+        await PassportAmountPage.passportAmountPage({
+          page: page,
+          accessibilityTest: accessibilityTest,
+          errorMessaging: errorMessaging,
+          c100MoreThanOnePassport: c100MoreThanOnePassport,
+        });
+      }
     }
   }
 }
