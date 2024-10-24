@@ -78,3 +78,11 @@ export type yesNoDontKnow = "yes" | "no" | "dontKnow";
 export type otherProceedingsRadios = "Yes" | "No" | "Don't know";
 
 export type ViewPdfTestCases = "1" | "2" | "3";
+
+export type Relationship =
+  | "mother"
+  | "father"
+  | "guardian"
+  | "specialGuardian"
+  | "grandparent"
+  | "other";
