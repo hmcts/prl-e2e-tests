@@ -7,9 +7,7 @@ interface dummyFL401Options {
 }
 
 export class DummyFL401 {
-  public static async dummyFL401({
-    page
-  }: dummyFL401Options): Promise<void> {
+  public static async dummyFL401({ page }: dummyFL401Options): Promise<void> {
     await DummyCreateInitial.createDummyCase({
       page: page,
       solicitorCaseType: "FL401",
@@ -22,7 +20,7 @@ export class DummyFL401 {
         fl401YesNoToEverything: false,
         subJourney: false,
       },
-      true
+      true,
     );
   }
 }

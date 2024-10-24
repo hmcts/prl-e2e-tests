@@ -9,22 +9,20 @@ interface dummyC100Options {
 }
 
 export class DummyC100 {
-  public static async dummyC100({
-    page,
-  }: dummyC100Options): Promise<void> {
+  public static async dummyC100({ page }: dummyC100Options): Promise<void> {
     await DummyCreateInitial.createDummyCase({
       page: page,
-      solicitorCaseType: "C100"
+      solicitorCaseType: "C100",
     });
     // currently need to complete child details event as it is the only event not pre-completed for a dummy case
     await DummyC100ChildDetails.dummyC100ChildDetails(page);
     await C100SubmitAndPay.c100SubmitAndPay({
       page: page,
       yesNoWelshLanguage: false,
-      yesNoHelpWithFees: false
+      yesNoHelpWithFees: false,
     });
     await DummyPaymentConfirmation.dummyPaymentConfirmation({
-      page
+      page,
     });
   }
 }
