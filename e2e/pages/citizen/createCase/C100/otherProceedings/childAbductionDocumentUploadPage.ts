@@ -62,7 +62,7 @@ export class ChildAbductionDocumentUploadPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${CommonStaticText.formLabel}")`,
+        `${Selectors.GovukLabel}:text-is("${CommonStaticText.uploadAFile}")`,
         1,
       ),
     ]);
