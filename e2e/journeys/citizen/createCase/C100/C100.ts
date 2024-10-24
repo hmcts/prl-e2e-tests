@@ -1,18 +1,18 @@
 import { Page } from "@playwright/test";
-import { C100ScreeningSections } from "./C100ScreeningSections/c100ScreeningSections";
-import { CitizenCreateInitial } from "../citizenCreateInitial";
-import { C100TypeOfOrder } from "./C100TypeOfOrder/C100TypeOfOrder";
-import { C100ConsentOrderUpload } from "./C100ConsentOrderUpload/C100ConsentOrderUpload";
-import { C100UrgencyAndWithoutNotice } from "./C100UrgencyAndWithoutNotice/C100UrgencyAndWithoutNotice";
-import { MIAM } from "./C100MIAM/MIAM";
-import { MiamChildProtectionConcernsType } from "../../../pages/citizen/createCase/C100/MIAM/miamChildProtectionPage";
-import { MiamUrgencyType } from "../../../pages/citizen/createCase/C100/MIAM/miamUrgencyPage";
-import { MiamAttendanceType } from "../../../pages/citizen/createCase/C100/MIAM/miamPreviousAttendancePage";
-import { MiamOtherReasonForNotAttending } from "../../../pages/citizen/createCase/C100/MIAM/miamMiamOtherPage";
-import { MiamReasonForNoAccessToMediator } from "../../../pages/citizen/createCase/C100/MIAM/miamNoAccessToMediatorPage";
-import { C100Confidentiality } from "./C100Confidentiality/c100Confidentiality";
-import { yesNoDontKnow } from "../../../common/types";
-import { C100OtherProceedings } from "./C100OtherProceedings/C100OtherProceedings";
+import { C100ScreeningSections } from "./subJourneys/c100ScreeningSections";
+import { CitizenCreateInitial } from "../../citizenCreateInitial";
+import { C100TypeOfOrder } from "./subJourneys/C100TypeOfOrder";
+import { C100ConsentOrderUpload } from "./subJourneys/C100ConsentOrderUpload";
+import { C100UrgencyAndWithoutNotice } from "./subJourneys/C100UrgencyAndWithoutNotice";
+import { MIAM } from "./subJourneys/MIAM";
+import { MiamChildProtectionConcernsType } from "../../../../pages/citizen/createCase/C100/MIAM/miamChildProtectionPage";
+import { MiamUrgencyType } from "../../../../pages/citizen/createCase/C100/MIAM/miamUrgencyPage";
+import { MiamAttendanceType } from "../../../../pages/citizen/createCase/C100/MIAM/miamPreviousAttendancePage";
+import { MiamOtherReasonForNotAttending } from "../../../../pages/citizen/createCase/C100/MIAM/miamMiamOtherPage";
+import { MiamReasonForNoAccessToMediator } from "../../../../pages/citizen/createCase/C100/MIAM/miamNoAccessToMediatorPage";
+import { C100Confidentiality } from "./subJourneys/c100Confidentiality";
+import { yesNoDontKnow } from "../../../../common/types";
+import { C100OtherProceedings } from "./subJourneys/C100OtherProceedings";
 
 interface C100ThirdMiroJourneyMIAMOptions {
   page: Page;

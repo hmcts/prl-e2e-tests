@@ -49,4 +49,13 @@ Coverage:
      - If yes: go into safety concerns and see more yes/no booleans
    - Will be selecting yes to all for this journey
 8. International Element
-   -
+   - 4x yes/no radios
+   - Will select yes to all here
+   - `yesNoInternationalElements: true`
+9. Reasonable Adjustments
+   - Loads of checkboxes
+   - No variables
+10. Help with fees
+    - boolean yes/no
+    - If No: skip section,
+    - If yes: next page, another yes/no radio
