@@ -1,7 +1,7 @@
 export enum ApplicantRelationshipToChildContent {
   pageTitle1 = "What is",
-  pageTitle2 = "relationship to", 
-  errorMessage = "Enter the relationship", 
+  pageTitle2 = "relationship to",
+  errorMessage = "Enter the relationship",
   label1 = "Mother",
   label2 = "Father",
   label3 = "Guardian",
