@@ -4,6 +4,8 @@ import { CitizenCreateInitial } from "../citizenCreateInitial";
 import { C100TypeOfOrder } from "./C100TypeOfOrder/C100TypeOfOrder";
 import { C100ConsentOrderUpload } from "./C100ConsentOrderUpload/C100ConsentOrderUpload";
 import { C100UrgencyAndWithoutNotice } from "./C100UrgencyAndWithoutNotice/C100UrgencyAndWithoutNotice";
+import { C100People1 } from "./C100People/C100People1";
+import { ApplicantGender, yesNoDontKnow } from "../../../common/types";
 import { MIAM } from "./C100MIAM/MIAM";
 import { MiamChildProtectionConcernsType } from "../../../pages/citizen/createCase/C100/MIAM/miamChildProtectionPage";
 import { MiamUrgencyType } from "../../../pages/citizen/createCase/C100/MIAM/miamUrgencyPage";
@@ -11,7 +13,6 @@ import { MiamAttendanceType } from "../../../pages/citizen/createCase/C100/MIAM/
 import { MiamOtherReasonForNotAttending } from "../../../pages/citizen/createCase/C100/MIAM/miamMiamOtherPage";
 import { MiamReasonForNoAccessToMediator } from "../../../pages/citizen/createCase/C100/MIAM/miamNoAccessToMediatorPage";
 import { C100Confidentiality } from "./C100Confidentiality/c100Confidentiality";
-import { yesNoDontKnow } from "../../../common/types";
 
 interface C100Options {
   page: Page;
@@ -21,6 +22,8 @@ interface C100Options {
   c100LegalRepresentation: boolean;
   c100CourtPermissionNeeded: boolean;
   urgencyAndWithoutNoticeAllOptionsYes: boolean;
+  c100PeopleGender: ApplicantGender;
+  c100PeopleYesNoDontKnow: yesNoDontKnow;
   // c100OthersKnowApplicantsContact: yesNoDontKnow;
   // c100PrivateDetails: boolean;
   // c100ChildrenSafetyConcerns: boolean;
@@ -51,6 +54,8 @@ export class C100 {
     c100LegalRepresentation,
     c100CourtPermissionNeeded,
     urgencyAndWithoutNoticeAllOptionsYes,
+    c100PeopleGender,
+    c100PeopleYesNoDontKnow,
     // c100OthersKnowApplicantsContact,
     // c100PrivateDetails,
     // c100ChildrenSafetyConcerns,
@@ -100,6 +105,14 @@ export class C100 {
         errorMessaging: errorMessaging,
         urgencyAndWithoutNoticeAllOptionsYes:
           urgencyAndWithoutNoticeAllOptionsYes,
+      });
+      await C100People1.c100People1({
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
+        gender: c100PeopleGender,
+        c100PeopleYesNoDontKnow: c100PeopleYesNoDontKnow,
+        subJourney: true,
       });
       // People
       // await C100Confidentiality.c100Confidentiality({

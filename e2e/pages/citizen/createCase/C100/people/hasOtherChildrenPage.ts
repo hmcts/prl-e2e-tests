@@ -1,14 +1,16 @@
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
-import { AddChildrenContent } from "../../../../../fixtures/citizen/createCase/C100/people/addChildrenContent";
+import { HasOtherChildrenContent } from "../../../../../fixtures/citizen/createCase/C100/people/hasOtherChildrenContent";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { yesNoDontKnow } from "../../../../../common/types";
 
-interface AddChildrenPageOptions {
+interface HasOtherChildrenPageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
+  c100PeopleYesNoDontKnow: yesNoDontKnow;
 }
 
 interface checkPageLoadsOptions {
@@ -18,19 +20,21 @@ interface checkPageLoadsOptions {
 
 interface fillInFieldsOptions {
   page: Page;
+  c100PeopleYesNoDontKnow: yesNoDontKnow;
 }
 
-enum inputIds {
-  firstName = "#c100TempFirstName",
-  lastName = "#c100TempLastName",
+enum radioIds {
+  hasOtherChildren = "#ocd_hasOtherChildren",
+  hasOtherChildren_2 = "#ocd_hasOtherChildren-2",
 }
 
-export class AddChildrenPage {
-  public static async addChildrenPage({
+export class HasOtherChildrenPage {
+  public static async hasOtherChildrenPage({
     page: page,
     accessibilityTest: accessibilityTest,
     errorMessaging: errorMessaging,
-  }: AddChildrenPageOptions): Promise<void> {
+    c100PeopleYesNoDontKnow: c100PeopleYesNoDontKnow,
+  }: HasOtherChildrenPageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
       accessibilityTest: accessibilityTest,
@@ -40,6 +44,7 @@ export class AddChildrenPage {
     }
     await this.fillInFields({
       page: page,
+      c100PeopleYesNoDontKnow: c100PeopleYesNoDontKnow,
     });
   }
 
@@ -48,22 +53,17 @@ export class AddChildrenPage {
     accessibilityTest: accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukHeadingXL}:text-is("${AddChildrenContent.pageTitle}")`,
+      `${Selectors.GovukHeadingXL}:text-is("${HasOtherChildrenContent.pageTitle}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukInsetText}:text-is("${AddChildrenContent.insetText}")`,
+        `${Selectors.GovukLabel}:text-is("${CommonStaticText.yes}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h1}:text-is("${AddChildrenContent.heading}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukHint}:text-is("${AddChildrenContent.hint}")`,
+        `${Selectors.GovukLabel}:text-is("${CommonStaticText.no}")`,
         1,
       ),
     ]);
@@ -74,36 +74,33 @@ export class AddChildrenPage {
 
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
+    );
+    await page.waitForSelector(
+      `${Selectors.GovukErrorSummaryTitle}:text-is("${CommonStaticText.errorSummaryTitle}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorSummaryTitle}:text-is("${CommonStaticText.errorSummaryTitle}")`,
+        `${Selectors.a}:text-is("${HasOtherChildrenContent.errorLink}")`,
         1,
       ),
-      Helpers.checkGroup(
+      Helpers.checkVisibleAndPresent(
         page,
-        2,
-        AddChildrenContent,
-        "errorLink",
-        `${Selectors.a}`,
-      ),
-      Helpers.checkGroup(
-        page,
-        2,
-        AddChildrenContent,
-        "errorLink",
-        `${Selectors.ErrorMessage}`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${HasOtherChildrenContent.errorLink}")`,
+        1,
       ),
     ]);
   }
 
   private static async fillInFields({
     page: page,
+    c100PeopleYesNoDontKnow: c100PeopleYesNoDontKnow,
   }: fillInFieldsOptions): Promise<void> {
-    for (const selector of Object.values(inputIds)) {
-      await page.fill(`${selector}`, AddChildrenContent.exampleText);
+    if (c100PeopleYesNoDontKnow === "yes") {
+      await page.click(radioIds.hasOtherChildren);
+    } else {
+      await page.click(radioIds.hasOtherChildren_2);
     }
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
