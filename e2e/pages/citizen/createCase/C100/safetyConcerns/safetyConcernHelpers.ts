@@ -95,9 +95,7 @@ export class SafetyConcernHelpers {
     ]);
   }
 
-  public static async checkContactDetailsText(
-    page: Page
-  ): Promise<void> {
+  public static async checkContactDetailsText(page: Page): Promise<void> {
     await page.click(
       `${Selectors.GovukSummaryText}:text-is("${SafetyConcernsCommonContent.detailsSummary}")`,
     );

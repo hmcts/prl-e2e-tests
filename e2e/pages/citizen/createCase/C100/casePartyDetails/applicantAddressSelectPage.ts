@@ -81,7 +81,7 @@ export class ApplicantAddressSelectPage {
 
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -111,7 +111,7 @@ export class ApplicantAddressSelectPage {
         label: `${ApplicantAddressSelectContent.address}`,
       });
       await page.click(
-        `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
+        `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
       );
     } else {
       await page.click(`${inputIds.cannotFindAddress}`);

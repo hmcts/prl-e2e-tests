@@ -36,11 +36,11 @@ enum inputIds {
 
 export class ApplicantAddressManualPage {
   public static async applicantAddressManualPage({
-                                                   page,
-                                                   accessibilityTest,
-                                                   errorMessaging,
-                                                   prevAddress5Years,
-                                                 }: applicantAddressManualOptions): Promise<void> {
+    page,
+    accessibilityTest,
+    errorMessaging,
+    prevAddress5Years,
+  }: applicantAddressManualOptions): Promise<void> {
     await this.checkPageLoads({ page, accessibilityTest });
     if (errorMessaging) {
       await this.triggerErrorMessages(page);
@@ -52,9 +52,9 @@ export class ApplicantAddressManualPage {
     });
   }
   private static async checkPageLoads({
-                                        page,
-                                        accessibilityTest,
-                                      }: checkPageLoadsOptions): Promise<void> {
+    page,
+    accessibilityTest,
+  }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.GovukHeadingL}:has-text("${ApplicantAddressManualContent.pageTitle}")`,
     );
@@ -85,12 +85,11 @@ export class ApplicantAddressManualPage {
         `${Selectors.GovukHint}:text-is("${ApplicantAddressManualContent.hiddenHint}")`,
         1,
       ),
-    ])
+    ]);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }
   }
-
 
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(
@@ -126,34 +125,25 @@ export class ApplicantAddressManualPage {
       `${Selectors.GovukErrorMessage}:has-text("${ApplicantAddressManualContent.hiddenErrorMessage1}")`,
     );
   }
-  private static async fillInFields({ page, prevAddress5Years,
-
-                                    }: fillInFieldsOptions): Promise<void> {
+  private static async fillInFields({
+    page,
+    prevAddress5Years,
+  }: fillInFieldsOptions): Promise<void> {
     await page.fill(
       inputIds.street,
       ApplicantAddressManualContent.inputStreetAddress,
     );
-    await page.fill(
-      inputIds.town,
-      ApplicantAddressManualContent.inputCity,
-    );
-    await page.fill(
-      inputIds.county,
-      ApplicantAddressManualContent.inputCounty,
-    );
-    await page.fill(
-      inputIds.postcode,
-      ApplicantAddressManualContent.inputZip,
-    );
+    await page.fill(inputIds.town, ApplicantAddressManualContent.inputCity);
+    await page.fill(inputIds.county, ApplicantAddressManualContent.inputCounty);
+    await page.fill(inputIds.postcode, ApplicantAddressManualContent.inputZip);
 
-    if(prevAddress5Years){
+    if (prevAddress5Years) {
       await page.click(inputIds.addressHistoryYes);
       await page.fill(
         inputIds.hiddenPrevAddress,
         ApplicantAddressManualContent.inputPrevAddress,
       );
-    }
-    else{
+    } else {
       await page.click(inputIds.addressHistoryNo);
     }
     await page.click(
@@ -161,4 +151,3 @@ export class ApplicantAddressManualPage {
     );
   }
 }
-

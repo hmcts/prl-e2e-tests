@@ -18,5 +18,5 @@ export enum ApplicantAddressManualContent {
   inputCounty = "Rheinland-Pfalz",
   inputCity = "Wirsberg",
   inputZip = "95340",
-  inputPrevAddress = "Guentzelstrasse 12, Birgel, Rheinland-Pfalz, 54587, Germany"
+  inputPrevAddress = "Guentzelstrasse 12, Birgel, Rheinland-Pfalz, 54587, Germany",
 }
