@@ -185,4 +185,39 @@ describe("Helpers", () => {
       });
     });
   });
+
+  describe("getCurrentDateFormatted", () => {
+    afterEach(() => {
+      jest.restoreAllMocks();
+    });
+
+    const testCases = [
+      {
+        currentDate: new Date(2024, 9, 22),
+        expected: "22102024",
+      },
+      {
+        currentDate: new Date(2023, 0, 1),
+        expected: "01012023",
+      },
+      {
+        currentDate: new Date(2022, 5, 5),
+        expected: "05062022",
+      },
+      {
+        currentDate: new Date(2022, 11, 31),
+        expected: "31122022",
+      },
+    ];
+
+    testCases.forEach(({ currentDate, expected }) => {
+      it(`should format the date correctly as ${expected} when the current date is ${currentDate.toLocaleDateString()}`, () => {
+        jest.spyOn(global, "Date").mockImplementation(() => currentDate);
+
+        const result = Helpers.getCurrentDateFormatted();
+
+        expect(result).toBe(expected);
+      });
+    });
+  });
 });
