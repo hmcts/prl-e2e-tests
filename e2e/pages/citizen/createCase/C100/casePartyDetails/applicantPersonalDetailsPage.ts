@@ -172,7 +172,6 @@ export class ApplicantPersonalDetailsPage {
     ]);
   }
 
-
   private static async fillInFields({
     page,
     changeName,
