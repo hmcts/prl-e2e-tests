@@ -1032,7 +1032,6 @@ test.describe("C100 Citizen Application tests on the MIAM set. @citizenFrontend 
     });
   });
 
-
   test(`MIAM testing  with no previously attended MIAM,
   With a valid reason for attending
   With all general exemptions
@@ -1098,8 +1097,6 @@ test.describe("C100 Citizen Application accessibility tests on the MIAM set. @ac
       miamReasonForNoAccessToMediator: "None of these",
     });
   });
-
-
 
   test(`MIAM testing  with a previously attended MIAM,
   With a signed document
