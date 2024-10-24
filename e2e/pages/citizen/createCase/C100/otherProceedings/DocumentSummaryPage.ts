@@ -28,7 +28,7 @@ export class DocumentSummaryPage {
   private static async checkPageLoads({
     page: page,
     accessibilityTest: accessibilityTest,
-  }:DocumentSummaryPageOptions): Promise<void> {
+  }: DocumentSummaryPageOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.h2}:text-is("${DocumentSummaryContent.h2}")`,
     );
@@ -36,19 +36,19 @@ export class DocumentSummaryPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.h3}:text-is("${DocumentSummaryContent.h3}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukTableCaption}:text-is("${DocumentSummaryContent.pageTitle}")`,
-        1
+        1,
       ),
       Helpers.checkGroupHasText(
         page,
         16,
         DocumentSummaryContent,
         "pdf",
-        `${Selectors.GovukTableCell}`
+        `${Selectors.GovukTableCell}`,
       ),
     ]);
     await SafetyConcernHelpers.checkSidebar(page);
