@@ -1,28 +1,26 @@
 import { Page } from "@playwright/test";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Selectors } from "../../../../../common/selectors";
-import {
-  PassportOfficeContent
-} from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/passportOfficeContent";
+import { PassportOfficeContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/passportOfficeContent";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { SafetyConcernHelpers } from "./safetyConcernHelpers";
 
 enum radioIDs {
-  radioYes = '#c1A_passportOffice',
-  radioNo = '#c1A_passportOffice-2'
+  radioYes = "#c1A_passportOffice",
+  radioNo = "#c1A_passportOffice-2",
 }
 
 interface PassportOfficePageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
-  c100ChildrenHavePassport: boolean
+  c100ChildrenHavePassport: boolean;
 }
 
 interface FillInFieldsOptions {
   page: Page;
-  c100ChildrenHavePassport: boolean
+  c100ChildrenHavePassport: boolean;
 }
 
 interface CheckPageLoadsOptions {
@@ -35,92 +33,86 @@ export class PassportOfficePage {
     page,
     accessibilityTest,
     errorMessaging,
-    c100ChildrenHavePassport
+    c100ChildrenHavePassport,
   }: PassportOfficePageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
-      accessibilityTest: accessibilityTest
-    })
+      accessibilityTest: accessibilityTest,
+    });
     if (errorMessaging) {
-      await this.checkErrorMessaging(page)
+      await this.checkErrorMessaging(page);
     }
     await this.fillInFields({
       page: page,
-      c100ChildrenHavePassport: c100ChildrenHavePassport
-    })
+      c100ChildrenHavePassport: c100ChildrenHavePassport,
+    });
   }
 
   private static async checkPageLoads({
     page,
-    accessibilityTest
+    accessibilityTest,
   }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukHeadingXL}:text-is("${PassportOfficeContent.pageTitle}")`
+      `${Selectors.GovukHeadingXL}:text-is("${PassportOfficeContent.pageTitle}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukCaptionXL}:text-is("${PassportOfficeContent.caption}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukLabel}:text-is("${CommonStaticText.yes}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukLabel}:text-is("${CommonStaticText.no}")`,
-        1
-      )
-    ])
+        1,
+      ),
+    ]);
     await SafetyConcernHelpers.checkPassportSidebar(page);
     await SafetyConcernHelpers.checkContactDetailsText(page);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page)
+      await AccessibilityTestHelper.run(page);
     }
   }
 
-  private static async checkErrorMessaging(
-    page: Page
-  ): Promise<void> {
+  private static async checkErrorMessaging(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.continue}")`
+      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukErrorSummaryTitle}:text-is("${CommonStaticText.errorSummaryTitle}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukErrorList} ${Selectors.a}:text-is("${PassportOfficeContent.errorSummaryList}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.ErrorMessage}:text-is("${PassportOfficeContent.errorMessage}")`,
-        1
+        1,
       ),
     ]);
   }
 
   private static async fillInFields({
     page,
-    c100ChildrenHavePassport
+    c100ChildrenHavePassport,
   }: FillInFieldsOptions): Promise<void> {
     if (c100ChildrenHavePassport) {
-      await page.click(
-        radioIDs.radioYes
-      );
+      await page.click(radioIDs.radioYes);
     } else {
-      await page.click(
-        radioIDs.radioNo
-      );
+      await page.click(radioIDs.radioNo);
     }
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.continue}")`
+      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
     );
   }
 }

@@ -2,9 +2,7 @@ import { Page } from "@playwright/test";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { SafetyConcernsCommonContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/safetyConcernsCommonContent";
-import {
-  PassportSidebarContent
-} from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/passportSidebarContent";
+import { PassportSidebarContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/passportSidebarContent";
 
 interface SeekHelpOptions {
   page: Page;
@@ -98,9 +96,7 @@ export class SafetyConcernHelpers {
     ]);
   }
 
-  public static async checkContactDetailsText(
-    page: Page
-  ): Promise<void> {
+  public static async checkContactDetailsText(page: Page): Promise<void> {
     await page.click(
       `${Selectors.GovukSummaryText}:text-is("${SafetyConcernsCommonContent.detailsSummary}")`,
     );
@@ -185,15 +181,13 @@ export class SafetyConcernHelpers {
     }
   }
 
-  public static async checkPassportSidebar(
-    page: Page
-  ): Promise<void> {
+  public static async checkPassportSidebar(page: Page): Promise<void> {
     await Helpers.checkGroup(
       page,
       3,
       PassportSidebarContent,
-      'sidebarLink',
-      `${Selectors.GovukLink}`
-    )
+      "sidebarLink",
+      `${Selectors.GovukLink}`,
+    );
   }
 }

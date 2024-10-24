@@ -11,6 +11,6 @@ export enum ConcernsForSafetyContent {
   yesLabel1 = "The information you give will be considered as part of your application. If you need to make",
   yesLabel2 = ". you can do this separately.",
   yesLink = "an application for a domestic abuse injunction",
-  sidebarLink1 = 'Identify signs of child abuse',
-  sidebarLink2 = 'Identify signs of domestic abuse'
+  sidebarLink1 = "Identify signs of child abuse",
+  sidebarLink2 = "Identify signs of domestic abuse",
 }

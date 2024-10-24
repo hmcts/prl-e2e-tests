@@ -35,8 +35,8 @@ export class C100SafetyConcerns {
     c100EmotionalAbuseYesNoToAll,
     c100SexualAbuseYesNoToAll,
     c100FinancialAbuseYesNoToAll,
-    c100ChildrenHavePassport ,
-    c100MoreThanOnePassport
+    c100ChildrenHavePassport,
+    c100MoreThanOnePassport,
   }: C100SafetyConcernsOptions): Promise<void> {
     await ConcernGuidancePage.concernGuidancePage({
       page: page,
@@ -87,20 +87,20 @@ export class C100SafetyConcerns {
       await ChildLocationPage.childLocationPage({
         page: page,
         accessibilityTest: accessibilityTest,
-        errorMessaging: errorMessaging
+        errorMessaging: errorMessaging,
       });
       await PassportOfficePage.passportOfficePage({
         page: page,
         accessibilityTest: accessibilityTest,
         errorMessaging: errorMessaging,
-        c100ChildrenHavePassport: c100ChildrenHavePassport
+        c100ChildrenHavePassport: c100ChildrenHavePassport,
       });
       if (c100ChildrenHavePassport) {
         await PassportAmountPage.passportAmountPage({
           page: page,
           accessibilityTest: accessibilityTest,
           errorMessaging: errorMessaging,
-          c100MoreThanOnePassport: c100MoreThanOnePassport
+          c100MoreThanOnePassport: c100MoreThanOnePassport,
         });
       }
     }
