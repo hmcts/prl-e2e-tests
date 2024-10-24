@@ -1,11 +1,11 @@
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
-import { WhichDecisionsContent } from "../../../../../fixtures/citizen/createCase/C100/people/whichDecisionsContent";
+import { ParentalResponsibilityContent } from "../../../../../fixtures/citizen/createCase/C100/people/parentalResponsibilityContent";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 
-interface WhichDecisionsPageOptions {
+interface ParentalResponsibilityPageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
@@ -20,30 +20,16 @@ interface fillInFieldsOptions {
   page: Page;
 }
 
-enum checkBoxIds {
-  needsResolution1 = "#needsResolution",
-  needsResolution2 = "#needsResolution-2",
-  needsResolution3 = "#needsResolution-3",
-  needsResolution4 = "#needsResolution-4",
-  needsResolution5 = "#needsResolution-5",
-  needsResolution6 = "#needsResolution-6",
-  needsResolution7 = "#needsResolution-7",
-  needsResolution8 = "#needsResolution-8",
-  needsResolution9 = "#needsResolution-9",
-  needsResolution10 = "#needsResolution-10",
-  needsResolution11 = "#needsResolution-11",
-  needsResolution12 = "#needsResolution-12",
-  needsResolution13 = "#needsResolution-13",
-  needsResolution14 = "#needsResolution-14",
-  needsResolution15 = "#needsResolution-15",
+enum inputIds {
+  statement = "#statement",
 }
 
-export class WhichDecisionsPage {
-  public static async whichDecisionsPage({
+export class ParentalResponsibilityPage {
+  public static async parentalResponsibilityPage({
     page: page,
     accessibilityTest: accessibilityTest,
     errorMessaging: errorMessaging,
-  }: WhichDecisionsPageOptions): Promise<void> {
+  }: ParentalResponsibilityPageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
       accessibilityTest: accessibilityTest,
@@ -61,35 +47,23 @@ export class WhichDecisionsPage {
     accessibilityTest: accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukHeadingXL}:text-is("${WhichDecisionsContent.pageTitle}")`,
+      `${Selectors.GovukHeadingXL}:text-is("${ParentalResponsibilityContent.pageTitle}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${WhichDecisionsContent.hint}")`,
+        `${Selectors.GovukLabel}:text-is("${ParentalResponsibilityContent.label1}")`,
         1,
       ),
-      Helpers.checkGroup(
+      Helpers.checkVisibleAndPresent(
         page,
-        9,
-        WhichDecisionsContent,
-        "label",
-        `${Selectors.GovukLabel}`,
+        `${Selectors.p}:text-is("${ParentalResponsibilityContent.p1}")`,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${WhichDecisionsContent.repeatedLabel1}")`,
-        2,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukLabel}:text-is("${WhichDecisionsContent.repeatedLabel2}")`,
-        2,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukLabel}:text-is("${WhichDecisionsContent.repeatedLabel3}")`,
-        2,
+        `${Selectors.a}:text-is("${ParentalResponsibilityContent.link}")`,
+        1,
       ),
     ]);
     if (accessibilityTest) {
@@ -99,7 +73,7 @@ export class WhichDecisionsPage {
 
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
     await page.waitForSelector(
       `${Selectors.GovukErrorSummaryTitle}:text-is("${CommonStaticText.errorSummaryTitle}")`,
@@ -107,12 +81,12 @@ export class WhichDecisionsPage {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${WhichDecisionsContent.errorLink}")`,
+        `${Selectors.a}:text-is("${ParentalResponsibilityContent.errorLink}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${WhichDecisionsContent.errorLink}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${ParentalResponsibilityContent.errorLink}")`,
         1,
       ),
     ]);
@@ -121,9 +95,10 @@ export class WhichDecisionsPage {
   private static async fillInFields({
     page: page,
   }: fillInFieldsOptions): Promise<void> {
-    for (const selector of Object.values(checkBoxIds)) {
-      await page.click(selector);
-    }
+    await page.fill(
+      `${inputIds.statement}`,
+      ParentalResponsibilityContent.exampleText,
+    );
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
