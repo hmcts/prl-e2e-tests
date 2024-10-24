@@ -143,6 +143,25 @@ export class Helpers {
     ]);
   }
 
+  public static async checkGroupHasText<E extends Record<string, string>>(
+    page: Page,
+    count: number,
+    file: E, // Generic type E allows any enum type
+    name: string,
+    selector: string,
+  ): Promise<void[]> {
+    return Promise.all([
+      ...Array.from({ length: count }, (_, index) => {
+        const text: E[keyof E] = file[`${name}${index + 1}` as keyof E]; // Safely access the enum
+        return Helpers.checkVisibleAndPresent(
+          page,
+          `${selector}:has-text("${text}")`,
+          1,
+        );
+      }),
+    ]);
+  }
+
   public static generateCaseName(): string {
     const randomNumber: number = Math.floor(Math.random() * 100) + 1;
     return `Automated tester${randomNumber.toString()}`;
