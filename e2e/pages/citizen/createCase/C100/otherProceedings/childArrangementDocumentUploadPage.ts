@@ -1,11 +1,12 @@
-import { ChildArrangementOrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/ChildArrangementOrderDetailsContent";
+import { ChildArrangementOrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/childArrangementOrderDetailsContent";
 import { Selectors } from "../../../../../common/selectors";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
 import { Helpers } from "../../../../../common/helpers";
-import { ChildArrangementDocumentUploadContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/ChildArrangementDocumentUploadContent";
+import { ChildArrangementDocumentUploadContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/childArrangementDocumentUploadContent";
 import config from "../../../../../config";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { CitizenOtherProceedingsDocumentUploadSelectors } from "../../../../../common/commonUniqueSelectors";
 
 interface ChildArrangementDocumentUploadPageOptions {
   page: Page;
@@ -20,11 +21,6 @@ interface checkPageLoadsOptions {
 
 interface fillInFieldsOptions {
   page: Page;
-}
-
-enum UniqueSelectors {
-  documentUpload = "#document",
-  uploadConfirmationSelector = ".govuk-summary-list__value",
 }
 
 export class ChildArrangementDocumentUploadPage {
@@ -93,7 +89,7 @@ export class ChildArrangementDocumentUploadPage {
 
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -112,7 +108,9 @@ export class ChildArrangementDocumentUploadPage {
         1,
       ),
     ]);
-    let fileInput = page.locator(`${UniqueSelectors.documentUpload}`);
+    let fileInput = page.locator(
+      `${CitizenOtherProceedingsDocumentUploadSelectors.documentUpload}`,
+    );
     await fileInput.setInputFiles(config.testOdtFile);
     await page.click(
       `${Selectors.GovukButton}:text-is("${ChildArrangementDocumentUploadContent.uploadFile}")`,
@@ -134,26 +132,28 @@ export class ChildArrangementDocumentUploadPage {
   private static async fillInFields({
     page: page,
   }: fillInFieldsOptions): Promise<void> {
-    const fileInput = page.locator(`${UniqueSelectors.documentUpload}`);
+    const fileInput = page.locator(
+      `${CitizenOtherProceedingsDocumentUploadSelectors.documentUpload}`,
+    );
     await fileInput.setInputFiles(config.testPdfFile);
     await page.click(
       `${Selectors.GovukButton}:text-is("${ChildArrangementDocumentUploadContent.uploadFile}")`,
     );
     await page.waitForSelector(
-      `${UniqueSelectors.uploadConfirmationSelector}`,
+      `${CitizenOtherProceedingsDocumentUploadSelectors.uploadConfirmationSelector}`,
       { timeout: 5000 },
     );
     const isUploaded = await page.isVisible(
-      `${UniqueSelectors.uploadConfirmationSelector}`,
+      `${CitizenOtherProceedingsDocumentUploadSelectors.uploadConfirmationSelector}`,
     );
     expect(isUploaded).toBeTruthy();
     await Helpers.checkVisibleAndPresent(
       page,
-      `${Selectors.a}:text-is("${ChildArrangementDocumentUploadContent.remove}")`,
+      `${Selectors.a}:text-is("${CommonStaticText.remove}")`,
       1,
     );
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
   }
 }

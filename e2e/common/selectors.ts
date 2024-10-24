@@ -20,6 +20,7 @@ export enum Selectors {
   GovukSelect = ".govuk-select",
   GovukRadios = ".govuk-radios",
   GovukCheckboxes = ".govuk-checkboxes",
+  GovukCheckboxesDivider = ".govuk-checkboxes__divider",
   GovukTextFieldLabel = ".case-field__label",
   GovukText16 = ".text-16",
   GovukFormLabel = ".form-label",
@@ -63,8 +64,12 @@ export enum Selectors {
   ErrorMessage = ".govuk-error-message",
   GovukCaptionL = ".govuk-caption-l",
   GovukCaptionXL = ".govuk-caption-xl",
+  GovukTableCaption = ".govuk-table__caption",
   GovukInsetText = ".govuk-inset-text",
   GovukTabs = ".govuk-tabs__tab",
+  GovukFieldsetLegend = ".govuk-fieldset__legend",
+  GovukLegendM = ".govuk-fieldset__legend--m",
+  GovukLegendS = ".govuk-fieldset__legend--s",
   p = "p",
   li = "li",
   strong = "strong",
@@ -86,6 +91,7 @@ export enum Selectors {
   GovukTable = ".govuk-table",
   GovukTableHeader = ".govuk-table__header",
   GovukTableRow = ".govuk-table__row",
+  GovukTableCell = ".govuk-table__cell",
 
   // Breadcrumbs
   GovukBreadcrumbs = ".govuk-breadcrumbs",

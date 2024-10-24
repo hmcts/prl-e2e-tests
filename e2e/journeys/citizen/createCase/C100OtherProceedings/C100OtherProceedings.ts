@@ -8,26 +8,38 @@ import { EmergencyProtectionDocumentUploadPage } from "../../../../pages/citizen
 import { SupervisionOrderDetailsPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/supervisionOrderDetails";
 import { SupervisionDocumentUploadPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/supervisionDocumentUpload";
 import { CareOrderDetailsPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/careOrderOrderDetailsPage";
-import { CareOrderDocumentUploadPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/CareOrderDocumentUploadPage";
+import { CareOrderDocumentUploadPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/careOrderDocumentUploadPage";
 import { ChildAbductionOrderDetailsPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/childAbductionOrderDetailsPage";
 import { ChildAbductionDocumentUploadPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/childAbductionDocumentUploadPage";
 import { ContactOrderForDivorceOrderDetailsPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/contactOrderForDivorceOrderDetailsPage";
 import { ContactOrderForDivorceDocumentUploadPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/contactOrderForDivorceDocumentUploadPage";
 import { ContactOrderForAdoptionOrderDetailsPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/contactOrderForChildAbductionOrderDetailsPage";
 import { ContactOrderForAdoptionDocumentUploadPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/contactOrderForChildAbductionDocumentUploadPage";
+import { ChildMaintenanceOrderDetailsPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/childMaintenanceOrderDetailsPage";
+import { ChildMaintenanceOrderDocumentUploadPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/childMaintenanceOrderDocumentUploadPage";
+import { FinancialOrderDetailsPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/financialOrderDetailsPage";
+import { FinancialOrderDocumentUploadPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/financialOrderDocumentUploadPage";
+import { NonMolestationOrderDetailsPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/nonMolestationOrderOrderDetailsPage";
+import { OccupationOrderDetailsPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/occupationOrderDetailsPage";
+import { OccupationOrderDocumentUploadPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/occupationOrderDocumentUploadPage";
+import { ForcedMarriageProtectionDocumentUploadPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/forcedMarriageProtectionOrderDocumentUploadPage";
+import { ForcedMarriageProtectionOrderDetailsPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/forcedMarriageProtectionOrderDetailsPage";
+import { RestrainingOrderDetailsPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/restrainingOrderDetailsPage";
+import { RestrainingOrderDocumentUploadPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/restrainingOrderDocumentUploadPage";
+import { OtherInjunctionOrderDetailsPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/otherInjunctionOrderDetailsPage";
+import { OtherInjunctionOrderDocumentUploadPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/otherInjunctionOrderDocumentUploadPage";
+import { UndertakingOrderDetailsPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/underTakingOrderDetailPage";
+import { UndertakingOrderDocumentUploadPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/undertakingOrderDocumentUploadPage";
+import { OtherOrderDetailsPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/otherOrderDetailsPage";
+import { OtherOrderDocumentUploadPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/otherOrderDocumentUploadPage";
+import { DocumentSummaryPage } from "../../../../pages/citizen/createCase/C100/otherProceedings/DocumentSummaryPage";
 
 interface C100OtherProceedings1Options {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
-  yesNoCurrentProceedings1: boolean;
-  yesNoOrderDetails: boolean;
-  yesNoEmergencyProtectionOrderDetails: boolean;
-  yesNoSupervisionOrderDetails: boolean;
-  yesNoCareOrderOrderDetails: boolean;
-  yesNoChildAbductionOrderDetails: boolean;
-  yesNoContactOrderForAdoptionOrderDetails: boolean;
-  yesNoContactOrderForDivorceOrderDetails: boolean;
+  yesNoChildArrangementOrderDetails: boolean;
+  yesNoOtherProceedings: boolean;
 }
 
 export class C100OtherProceedings {
@@ -35,23 +47,17 @@ export class C100OtherProceedings {
     page,
     accessibilityTest,
     errorMessaging,
-    yesNoCurrentProceedings1,
-    yesNoOrderDetails,
-    yesNoEmergencyProtectionOrderDetails,
-    yesNoSupervisionOrderDetails,
-    yesNoCareOrderOrderDetails,
-    yesNoChildAbductionOrderDetails,
-    yesNoContactOrderForAdoptionOrderDetails,
-    yesNoContactOrderForDivorceOrderDetails,
+    yesNoChildArrangementOrderDetails,
+    yesNoOtherProceedings,
   }: C100OtherProceedings1Options): Promise<void> {
     await CurrentPreviousProceedingsPage.currentPreviousProceedingsPage({
       //yesNo needs to be true to move to next page
       page,
       accessibilityTest,
       errorMessaging,
-      yesNoCurrentProceedings1,
+      yesNoOtherProceedings,
     });
-    if (yesNoCurrentProceedings1) {
+    if (yesNoOtherProceedings) {
       await ProceedingDetailsPage.proceedingDetailsPage({
         page,
         accessibilityTest,
@@ -62,9 +68,9 @@ export class C100OtherProceedings {
         page,
         accessibilityTest,
         errorMessaging,
-        yesNoOrderDetails,
+        yesNoOtherProceedings,
       });
-      if (yesNoOrderDetails) {
+      if (yesNoChildArrangementOrderDetails) {
         await ChildArrangementDocumentUploadPage.documentUploadPage({
           page,
           accessibilityTest,
@@ -75,7 +81,7 @@ export class C100OtherProceedings {
             page,
             accessibilityTest,
             errorMessaging,
-            yesNoEmergencyProtectionOrderDetails,
+            yesNoOtherProceedings,
           },
         );
         await EmergencyProtectionDocumentUploadPage.emergencyProtectionDocumentUploadPage(
@@ -89,7 +95,7 @@ export class C100OtherProceedings {
           page,
           accessibilityTest,
           errorMessaging,
-          yesNoSupervisionOrderDetails,
+          yesNoOtherProceedings,
         });
         await SupervisionDocumentUploadPage.supervisionDocumentUploadPage({
           page,
@@ -100,7 +106,7 @@ export class C100OtherProceedings {
           page,
           accessibilityTest,
           errorMessaging,
-          yesNoCareOrderOrderDetails,
+          yesNoOtherProceedings,
         });
         await CareOrderDocumentUploadPage.careOrderDocumentUploadPage({
           page,
@@ -111,7 +117,7 @@ export class C100OtherProceedings {
           page,
           accessibilityTest,
           errorMessaging,
-          yesNoChildAbductionOrderDetails,
+          yesNoOtherProceedings,
         });
         await ChildAbductionDocumentUploadPage.childAbductionDocumentUploadPageOptions(
           {
@@ -125,7 +131,7 @@ export class C100OtherProceedings {
             page,
             accessibilityTest,
             errorMessaging,
-            yesNoContactOrderForDivorceOrderDetails,
+            yesNoOtherProceedings,
           },
         );
         await ContactOrderForDivorceDocumentUploadPage.contactOrderForDivorceDocumentUploadPage(
@@ -140,7 +146,7 @@ export class C100OtherProceedings {
             page,
             accessibilityTest,
             errorMessaging,
-            yesNoContactOrderForAdoptionOrderDetails,
+            yesNoOtherProceedings,
           },
         );
         await ContactOrderForAdoptionDocumentUploadPage.contactOrderForAdoptionDocumentUploadPage(
@@ -150,6 +156,122 @@ export class C100OtherProceedings {
             errorMessaging,
           },
         );
+        await ChildMaintenanceOrderDetailsPage.childMaintenanceOrderDetailsPage(
+          {
+            page,
+            accessibilityTest,
+            errorMessaging,
+            yesNoOtherProceedings,
+          },
+        );
+        await ChildMaintenanceOrderDocumentUploadPage.childMaintenanceOrderDocumentUploadPage(
+          {
+            page,
+            accessibilityTest,
+            errorMessaging,
+          },
+        );
+        await FinancialOrderDetailsPage.financialOrderDetailsPage({
+          page,
+          accessibilityTest,
+          errorMessaging,
+          yesNoOtherProceedings,
+        });
+        await FinancialOrderDocumentUploadPage.financialOrderDocumentUploadPage(
+          {
+            page,
+            accessibilityTest,
+            errorMessaging,
+          },
+        );
+        await NonMolestationOrderDetailsPage.nonMolestationOrderDetailsPage({
+          page,
+          accessibilityTest,
+          errorMessaging,
+          yesNoOtherProceedings,
+        });
+        await OccupationOrderDetailsPage.occupationOrderDetailsPage({
+          page,
+          accessibilityTest,
+          errorMessaging,
+          yesNoOtherProceedings,
+        });
+        await OccupationOrderDocumentUploadPage.occupationOrderDocumentUploadPage(
+          {
+            page,
+            accessibilityTest,
+            errorMessaging,
+          },
+        );
+        await ForcedMarriageProtectionOrderDetailsPage.forcedMarriageProtectionOrderDetailsPage(
+          {
+            page,
+            accessibilityTest,
+            errorMessaging,
+            yesNoOtherProceedings,
+          },
+        );
+        await ForcedMarriageProtectionDocumentUploadPage.forcedMarriageProtectionDocumentUploadPage(
+          {
+            page,
+            accessibilityTest,
+            errorMessaging,
+          },
+        );
+        await RestrainingOrderDetailsPage.restrainingOrderDetailsPage({
+          page,
+          accessibilityTest,
+          errorMessaging,
+          yesNoOtherProceedings,
+        });
+        await RestrainingOrderDocumentUploadPage.restrainingOrderDocumentUploadPage(
+          {
+            page,
+            accessibilityTest,
+            errorMessaging,
+          },
+        );
+        await OtherInjunctionOrderDetailsPage.otherInjunctionOrderDetailsPage({
+          page,
+          accessibilityTest,
+          errorMessaging,
+          yesNoOtherProceedings,
+        });
+        await OtherInjunctionOrderDocumentUploadPage.OtherInjunctionOrderDocumentUploadPage(
+          {
+            page,
+            accessibilityTest,
+            errorMessaging,
+          },
+        );
+        await UndertakingOrderDetailsPage.undertakingOrderDetailsPage({
+          page,
+          accessibilityTest,
+          errorMessaging,
+          yesNoOtherProceedings,
+        });
+        await UndertakingOrderDocumentUploadPage.undertakingOrderDocumentUploadPage(
+          {
+            page,
+            accessibilityTest,
+            errorMessaging,
+          },
+        );
+        await OtherOrderDetailsPage.OtherOrderDetailsPage({
+          page,
+          accessibilityTest,
+          errorMessaging,
+          yesNoOtherProceedings,
+        });
+        await OtherOrderDocumentUploadPage.otherOrderDocumentUploadPage({
+          page,
+          accessibilityTest,
+          errorMessaging,
+        });
+        await DocumentSummaryPage.DocumentSummaryPage({
+          page,
+          accessibilityTest,
+        });
       }
     }
   }

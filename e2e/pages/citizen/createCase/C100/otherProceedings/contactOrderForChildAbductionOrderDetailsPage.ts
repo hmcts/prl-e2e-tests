@@ -4,12 +4,13 @@ import { Page } from "@playwright/test";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { ContactOrderForAdoptionOrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/contactOrderForAdoptionOrderDetailsContent";
+import { CitizensOtherProceedingsUniqueSelectors } from "../../../../../common/commonUniqueSelectors";
 
 interface ContactOrderForAdoptionOrderDetailsPageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
-  yesNoContactOrderForAdoptionOrderDetails: boolean;
+  yesNoOtherProceedings: boolean;
 }
 
 interface checkPageLoadsOptions {
@@ -19,22 +20,7 @@ interface checkPageLoadsOptions {
 
 interface fillInFieldsOptions {
   page: Page;
-  yesNoContactOrderForAdoptionOrderDetails: boolean;
-}
-
-enum UniqueSelectors {
-  orderDetail1 = "#orderDetail-1",
-  caseNo1 = "#caseNo-1",
-  orderDate1day = "#orderDate-1-day",
-  orderDate1month = "#orderDate-1-month",
-  orderDate1year = "#orderDate-1-year",
-  currentOrderYes = "#currentOrder-1",
-  currentOrderNo = "#currentOrder-1-2",
-  orderEndDate1day = "#orderEndDate-1-day",
-  orderEndDate1month = "#orderEndDate-1-month",
-  orderEndDate1year = "#orderEndDate-1-year",
-  orderCopyYes = "#orderCopy-1",
-  orderCopyNo = "#orderCopy-1-2",
+  yesNoOtherProceedings: boolean;
 }
 
 export class ContactOrderForAdoptionOrderDetailsPage {
@@ -42,8 +28,7 @@ export class ContactOrderForAdoptionOrderDetailsPage {
     page: page,
     accessibilityTest: accessibilityTest,
     errorMessaging: errorMessaging,
-    yesNoContactOrderForAdoptionOrderDetails:
-      yesNoContactOrderForAdoptionOrderDetails,
+    yesNoOtherProceedings: yesNoOtherProceedings,
   }: ContactOrderForAdoptionOrderDetailsPageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
@@ -54,8 +39,7 @@ export class ContactOrderForAdoptionOrderDetailsPage {
     }
     await this.fillInFields({
       page: page,
-      yesNoContactOrderForAdoptionOrderDetails:
-        yesNoContactOrderForAdoptionOrderDetails,
+      yesNoOtherProceedings: yesNoOtherProceedings,
     });
   }
 
@@ -98,27 +82,27 @@ export class ContactOrderForAdoptionOrderDetailsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${CommonStaticText.strippedYes}")`,
+        `${Selectors.GovukHint}:text-is("${CommonStaticText.yes}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${CommonStaticText.strippedNo}")`,
+        `${Selectors.GovukHint}:text-is("${CommonStaticText.no}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${ContactOrderForAdoptionOrderDetailsContent.day}")`,
+        `${Selectors.GovukLabel}:text-is("${CommonStaticText.day}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${ContactOrderForAdoptionOrderDetailsContent.month}")`,
+        `${Selectors.GovukLabel}:text-is("${CommonStaticText.month}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${ContactOrderForAdoptionOrderDetailsContent.year}")`,
+        `${Selectors.GovukLabel}:text-is("${CommonStaticText.year}")`,
         2,
       ),
     ]);
@@ -129,31 +113,31 @@ export class ContactOrderForAdoptionOrderDetailsPage {
 
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.fill(
-      `${UniqueSelectors.orderDate1day}`,
+      `${CitizensOtherProceedingsUniqueSelectors.orderDate1day}`,
       ContactOrderForAdoptionOrderDetailsContent.dayNumber,
     );
     await page.fill(
-      `${UniqueSelectors.orderDate1month}`,
+      `${CitizensOtherProceedingsUniqueSelectors.orderDate1month}`,
       ContactOrderForAdoptionOrderDetailsContent.errorMonthNumber,
     );
     await page.fill(
-      `${UniqueSelectors.orderDate1year}`,
+      `${CitizensOtherProceedingsUniqueSelectors.orderDate1year}`,
       ContactOrderForAdoptionOrderDetailsContent.yearNumber1,
     );
     await page.fill(
-      `${UniqueSelectors.orderEndDate1day}`,
+      `${CitizensOtherProceedingsUniqueSelectors.orderEndDate1day}`,
       ContactOrderForAdoptionOrderDetailsContent.dayNumber,
     );
     await page.fill(
-      `${UniqueSelectors.orderEndDate1month}`,
+      `${CitizensOtherProceedingsUniqueSelectors.orderEndDate1month}`,
       ContactOrderForAdoptionOrderDetailsContent.errorMonthNumber,
     );
     await page.fill(
-      `${UniqueSelectors.orderEndDate1year}`,
+      `${CitizensOtherProceedingsUniqueSelectors.orderEndDate1year}`,
       ContactOrderForAdoptionOrderDetailsContent.yearNumber2,
     );
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -186,51 +170,58 @@ export class ContactOrderForAdoptionOrderDetailsPage {
 
   private static async fillInFields({
     page: page,
-    yesNoContactOrderForAdoptionOrderDetails:
-      yesNoContactOrderForAdoptionOrderDetails,
+    yesNoOtherProceedings: yesNoOtherProceedings,
   }: fillInFieldsOptions): Promise<void> {
     await page.fill(
-      `${UniqueSelectors.orderDetail1}`,
+      `${CitizensOtherProceedingsUniqueSelectors.orderDetail1}`,
       ContactOrderForAdoptionOrderDetailsContent.courtIssued,
     );
     await page.fill(
-      `${UniqueSelectors.caseNo1}`,
+      `${CitizensOtherProceedingsUniqueSelectors.caseNo1}`,
       ContactOrderForAdoptionOrderDetailsContent.caseNumber,
     );
     await page.fill(
-      `${UniqueSelectors.orderDate1day}`,
+      `${CitizensOtherProceedingsUniqueSelectors.orderDate1day}`,
       ContactOrderForAdoptionOrderDetailsContent.dayNumber,
     );
     await page.fill(
-      `${UniqueSelectors.orderDate1month}`,
+      `${CitizensOtherProceedingsUniqueSelectors.orderDate1month}`,
       ContactOrderForAdoptionOrderDetailsContent.monthNumber,
     );
     await page.fill(
-      `${UniqueSelectors.orderDate1year}`,
+      `${CitizensOtherProceedingsUniqueSelectors.orderDate1year}`,
       ContactOrderForAdoptionOrderDetailsContent.yearNumber1,
     );
     await page.fill(
-      `${UniqueSelectors.orderEndDate1day}`,
+      `${CitizensOtherProceedingsUniqueSelectors.orderEndDate1day}`,
       ContactOrderForAdoptionOrderDetailsContent.dayNumber,
     );
     await page.fill(
-      `${UniqueSelectors.orderEndDate1month}`,
+      `${CitizensOtherProceedingsUniqueSelectors.orderEndDate1month}`,
       ContactOrderForAdoptionOrderDetailsContent.monthNumber,
     );
     await page.fill(
-      `${UniqueSelectors.orderEndDate1year}`,
+      `${CitizensOtherProceedingsUniqueSelectors.orderEndDate1year}`,
       ContactOrderForAdoptionOrderDetailsContent.yearNumber2,
     );
     // Selecting 'true' will move onto next page
-    if (yesNoContactOrderForAdoptionOrderDetails) {
-      await page.click(`${UniqueSelectors.currentOrderYes}`);
-      await page.click(`${UniqueSelectors.orderCopyYes}`);
+    if (yesNoOtherProceedings) {
+      await page.click(
+        `${CitizensOtherProceedingsUniqueSelectors.currentOrderYes}`,
+      );
+      await page.click(
+        `${CitizensOtherProceedingsUniqueSelectors.orderCopyYes}`,
+      );
     } else {
-      await page.click(`${UniqueSelectors.currentOrderNo}`);
-      await page.click(`${UniqueSelectors.orderCopyNo}`);
+      await page.click(
+        `${CitizensOtherProceedingsUniqueSelectors.currentOrderNo}`,
+      );
+      await page.click(
+        `${CitizensOtherProceedingsUniqueSelectors.orderCopyNo}`,
+      );
     }
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
   }
 }

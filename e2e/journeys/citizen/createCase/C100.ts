@@ -6,6 +6,13 @@ import { C100ConsentOrderUpload } from "./C100ConsentOrderUpload/C100ConsentOrde
 import { C100UrgencyAndWithoutNotice } from "./C100UrgencyAndWithoutNotice/C100UrgencyAndWithoutNotice";
 import { C100People1 } from "./C100People/C100People1";
 import { ApplicantGender, yesNoDontKnow } from "../../../common/types";
+import { MIAM } from "./C100MIAM/MIAM";
+import { MiamChildProtectionConcernsType } from "../../../pages/citizen/createCase/C100/MIAM/miamChildProtectionPage";
+import { MiamUrgencyType } from "../../../pages/citizen/createCase/C100/MIAM/miamUrgencyPage";
+import { MiamAttendanceType } from "../../../pages/citizen/createCase/C100/MIAM/miamPreviousAttendancePage";
+import { MiamOtherReasonForNotAttending } from "../../../pages/citizen/createCase/C100/MIAM/miamMiamOtherPage";
+import { MiamReasonForNoAccessToMediator } from "../../../pages/citizen/createCase/C100/MIAM/miamNoAccessToMediatorPage";
+import { C100Confidentiality } from "./C100Confidentiality/c100Confidentiality";
 
 interface C100Options {
   page: Page;
@@ -17,6 +24,25 @@ interface C100Options {
   urgencyAndWithoutNoticeAllOptionsYes: boolean;
   c100PeopleGender: ApplicantGender;
   c100PeopleYesNoDontKnow: yesNoDontKnow;
+  // c100OthersKnowApplicantsContact: yesNoDontKnow;
+  // c100PrivateDetails: boolean;
+  // c100ChildrenSafetyConcerns: boolean;
+  c100OthersKnowApplicantsContact: yesNoDontKnow;
+  c100PrivateDetails: boolean;
+  c100ChildrenSafetyConcerns: boolean;
+  miamChildrenInvolvedOtherProceedings: boolean;
+  miamAlreadyAttended: boolean;
+  documentSignedByMediator: boolean;
+  miamValidReasonNoAttendance: boolean;
+  miamGeneralExemptions: boolean;
+  miamDomesticAbuse: boolean;
+  miamDomesticAbuseProvidingEvidence: boolean;
+  miamChildProtectionConcernsType: MiamChildProtectionConcernsType;
+  miamUrgencyType: MiamUrgencyType;
+  miamAttendanceType: MiamAttendanceType;
+  miamPreviousAttendanceMediatorSignedDocument: boolean;
+  miamOtherReasonForNotAttending: MiamOtherReasonForNotAttending;
+  miamReasonForNoAccessToMediator: MiamReasonForNoAccessToMediator;
 }
 
 export class C100 {
@@ -30,6 +56,24 @@ export class C100 {
     urgencyAndWithoutNoticeAllOptionsYes,
     c100PeopleGender,
     c100PeopleYesNoDontKnow,
+    // c100OthersKnowApplicantsContact,
+    // c100PrivateDetails,
+    // c100ChildrenSafetyConcerns,
+    c100OthersKnowApplicantsContact,
+    c100PrivateDetails,
+    miamChildrenInvolvedOtherProceedings,
+    miamAlreadyAttended,
+    documentSignedByMediator,
+    miamValidReasonNoAttendance,
+    miamGeneralExemptions,
+    miamDomesticAbuse,
+    miamDomesticAbuseProvidingEvidence,
+    miamChildProtectionConcernsType,
+    miamUrgencyType,
+    miamAttendanceType,
+    miamPreviousAttendanceMediatorSignedDocument,
+    miamOtherReasonForNotAttending,
+    miamReasonForNoAccessToMediator,
   }: C100Options): Promise<void> {
     await CitizenCreateInitial.citizenCreateInitial({
       page: page,
@@ -70,8 +114,35 @@ export class C100 {
         c100PeopleYesNoDontKnow: c100PeopleYesNoDontKnow,
         subJourney: true,
       });
+      // People
+      // await C100Confidentiality.c100Confidentiality({
+      //   page: page,
+      //   accessibilityTest: accessibilityTest,
+      //   errorMessaging: errorMessaging,
+      //   c100OthersKnowApplicantsContact: c100OthersKnowApplicantsContact,
+      //   c100PrivateDetails: c100PrivateDetails,
+      // });
     } else {
-      // MIAM Journey
+      await MIAM.MIAM({
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
+        miamChildrenInvolvedOtherProceedings:
+          miamChildrenInvolvedOtherProceedings,
+        miamAlreadyAttended: miamAlreadyAttended,
+        documentSignedByMediator: documentSignedByMediator,
+        miamValidReasonNoAttendance: miamValidReasonNoAttendance,
+        miamGeneralExemptions: miamGeneralExemptions,
+        miamDomesticAbuse: miamDomesticAbuse,
+        miamDomesticAbuseProvidingEvidence: miamDomesticAbuseProvidingEvidence,
+        miamChildProtectionConcernsType: miamChildProtectionConcernsType,
+        miamUrgencyType: miamUrgencyType,
+        miamAttendanceType: miamAttendanceType,
+        miamPreviousAttendanceMediatorSignedDocument:
+          miamPreviousAttendanceMediatorSignedDocument,
+        miamOtherReasonForNotAttending: miamOtherReasonForNotAttending,
+        miamReasonForNoAccessToMediator: miamReasonForNoAccessToMediator,
+      });
     }
   }
 }

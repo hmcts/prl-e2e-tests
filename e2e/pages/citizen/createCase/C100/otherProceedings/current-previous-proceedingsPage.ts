@@ -1,15 +1,15 @@
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
-import { CurrentPreviousProceedingsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/current-previous-proceedingsContent";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { CurrentPreviousProceedingsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/current-previous-proceedingsContent";
 
 interface CurrentPreviousProceedingsPageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
-  yesNoCurrentProceedings1: boolean;
+  yesNoOtherProceedings: boolean;
 }
 
 interface checkPageLoadsOptions {
@@ -17,9 +17,9 @@ interface checkPageLoadsOptions {
   accessibilityTest: boolean;
 }
 
-interface fillinFieldsOptions {
+interface fillInFieldsOptions {
   page: Page;
-  yesNoCurrentProceedings1: boolean;
+  yesNoOtherProceedings: boolean;
 }
 
 enum UniqueSelectors {
@@ -34,7 +34,7 @@ export class CurrentPreviousProceedingsPage {
     page: page,
     accessibilityTest: accessibilityTest,
     errorMessaging: errorMessaging,
-    yesNoCurrentProceedings1: yesNoCurrentProceedings1,
+    yesNoOtherProceedings: yesNoOtherProceedings,
   }: CurrentPreviousProceedingsPageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
@@ -45,7 +45,7 @@ export class CurrentPreviousProceedingsPage {
     }
     await this.fillInFields({
       page: page,
-      yesNoCurrentProceedings1: yesNoCurrentProceedings1,
+      yesNoOtherProceedings: yesNoOtherProceedings,
     });
   }
 
@@ -69,12 +69,12 @@ export class CurrentPreviousProceedingsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${CurrentPreviousProceedingsContent.formLabelYes}")`,
+        `${Selectors.GovukLabel}:text-is("${CommonStaticText.yes}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${CurrentPreviousProceedingsContent.formLabelNo}")`,
+        `${Selectors.GovukLabel}:text-is("${CommonStaticText.no}")`,
         2,
       ),
     ]);
@@ -85,7 +85,7 @@ export class CurrentPreviousProceedingsPage {
 
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -118,9 +118,9 @@ export class CurrentPreviousProceedingsPage {
 
   private static async fillInFields({
     page: page,
-    yesNoCurrentProceedings1: yesNoCurrentProceedings1,
-  }: fillinFieldsOptions): Promise<void> {
-    if (yesNoCurrentProceedings1) {
+    yesNoOtherProceedings: yesNoOtherProceedings,
+  }: fillInFieldsOptions): Promise<void> {
+    if (yesNoOtherProceedings) {
       await page.click(`${UniqueSelectors.op_childrenInvolvedCourtCaseYes}`);
       await page.click(`${UniqueSelectors.op_courtOrderProtectionYes}`);
     } else {
@@ -128,7 +128,7 @@ export class CurrentPreviousProceedingsPage {
       await page.click(`${UniqueSelectors.op_courtOrderProtectionNo}`);
     }
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
   }
 }

@@ -63,7 +63,6 @@ export class WhichDecisionsPage {
     await page.waitForSelector(
       `${Selectors.GovukHeadingXL}:text-is("${WhichDecisionsContent.pageTitle}")`,
     );
-    // noinspection TypeScriptValidateTypes
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
@@ -100,7 +99,7 @@ export class WhichDecisionsPage {
 
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
     );
     await page.waitForSelector(
       `${Selectors.GovukErrorSummaryTitle}:text-is("${CommonStaticText.errorSummaryTitle}")`,
@@ -126,7 +125,7 @@ export class WhichDecisionsPage {
       await page.click(selector);
     }
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
     );
   }
 }

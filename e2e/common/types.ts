@@ -42,7 +42,8 @@ export type c100SolicitorEvents =
   | "Other proceedings"
   | "Welsh language requirements"
   | "View PDF application"
-  | "Submit and pay";
+  | "Submit and pay"
+  | "Dummy Payment confirmation";
 
 export type fl401SolicitorEvents =
   | "Case name"
@@ -77,3 +78,11 @@ export type yesNoDontKnow = "yes" | "no" | "dontKnow";
 export type otherProceedingsRadios = "Yes" | "No" | "Don't know";
 
 export type ViewPdfTestCases = "1" | "2" | "3";
+
+export type Relationship =
+  | "mother"
+  | "father"
+  | "guardian"
+  | "specialGuardian"
+  | "grandparent"
+  | "other";
