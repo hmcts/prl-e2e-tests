@@ -1,11 +1,11 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../../common/selectors";
-import { Helpers } from "../../../../../../common/helpers";
-import { CommonStaticText } from "../../../../../../common/commonStaticText";
-import { CitizenOtherProceedingsDocumentUploadSelectors } from "../../../../../../common/commonUniqueSelectors";
-import config from "../../../../../../config";
-import { OtherOrderDocumentUploadContent } from "../../../../../../fixtures/citizen/createCase/C100/otherProceedings/otherOrder/otherOrderDocumentUploadContent";
-import AxeTest from "../../../../../../common/accessibilityTestHelper";
+import { Selectors } from "../../../../../common/selectors";
+import { Helpers } from "../../../../../common/helpers";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { CitizenOtherProceedingsDocumentUploadSelectors } from "../../../../../common/commonUniqueSelectors";
+import config from "../../../../../config";
+import { OtherOrderDocumentUploadContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/otherOrderDocumentUploadContent";
+import AxeTest from "../../../../../common/accessibilityTestHelper";
 
 interface OtherOrderDocumentUploadPageOptions {
   page: Page;
