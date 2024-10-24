@@ -144,9 +144,11 @@ Coverage:
     - `c100LegalRepresentation: true`
     - `c100CourtPermissionNeeded: false`
 2. MIAM
-    - First boolean yes/no, are children involved in any proceedings
-        - Select no first (hard-coded)
-        - Next two booleans must be true for this journey (hard-coded)
+    - First boolean yes/no, are children involved in any proceedings (must be no)
+    - Possible Paths:
+      - miamAlreadyAttended: yes -> documentSignedByMediator: yes
+      - miamAlreadyAttended: no -> miamValidReasonNoAttendance: yes -> documentSignedByMediator: yes
+    - Note that if documentSignedByMediator = no, journey ends
 3. Type Of Order
     - Does not have any arguments
     - Select all checkboxes and move on

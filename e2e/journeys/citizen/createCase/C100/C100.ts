@@ -21,9 +21,11 @@ interface C100ThirdMiroJourneyMIAMOptions {
   c100LegalRepresentation: boolean;
   c100CourtPermissionNeeded: boolean;
   urgencyAndWithoutNoticeAllOptionsYes: boolean;
+  miamAlreadyAttended: boolean;
+  miamValidReasonNoAttendance: boolean;
 }
 
-interface C100Options {
+interface C100FourthRowMiroJourneyOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
@@ -31,13 +33,6 @@ interface C100Options {
   c100LegalRepresentation: boolean;
   c100CourtPermissionNeeded: boolean;
   urgencyAndWithoutNoticeAllOptionsYes: boolean;
-  // c100OthersKnowApplicantsContact: yesNoDontKnow;
-  // c100PrivateDetails: boolean;
-  // c100ChildrenSafetyConcerns: boolean;
-  c100OthersKnowApplicantsContact: yesNoDontKnow;
-  c100PrivateDetails: boolean;
-  c100ChildrenSafetyConcerns: boolean;
-  miamChildrenInvolvedOtherProceedings: boolean;
   miamAlreadyAttended: boolean;
   documentSignedByMediator: boolean;
   miamValidReasonNoAttendance: boolean;
@@ -159,7 +154,9 @@ export class C100 {
     errorMessaging,
     c100LegalRepresentation,
     c100CourtPermissionNeeded,
-    urgencyAndWithoutNoticeAllOptionsYes
+    urgencyAndWithoutNoticeAllOptionsYes,
+    miamAlreadyAttended,
+    miamValidReasonNoAttendance
   }: C100ThirdMiroJourneyMIAMOptions): Promise<void> {
     await CitizenCreateInitial.citizenCreateInitial({
       page: page,
@@ -179,10 +176,10 @@ export class C100 {
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
       miamChildrenInvolvedOtherProceedings: false,
-      miamAlreadyAttended: true, // Has to be true to reach type of order
-      documentSignedByMediator: true, // Has to be true to reach type of order
-      miamValidReasonNoAttendance: false, // All the below are redundant
-      miamGeneralExemptions: false,
+      miamAlreadyAttended: miamAlreadyAttended, // Has to be true to reach type of order
+      documentSignedByMediator: true, // Has to be true to reach type of order (also, whole journey ends if false)
+      miamValidReasonNoAttendance: miamValidReasonNoAttendance,
+      miamGeneralExemptions: false, // All the below are redundant
       miamDomesticAbuse: false,
       miamDomesticAbuseProvidingEvidence: false,
       miamChildProtectionConcernsType: 'Child protection plan',
@@ -203,6 +200,70 @@ export class C100 {
       errorMessaging: errorMessaging,
       urgencyAndWithoutNoticeAllOptionsYes:
         urgencyAndWithoutNoticeAllOptionsYes,
+    });
+    // People
+  }
+
+  public static async c100FourthRowMiroJourney({
+   page,
+   accessibilityTest,
+   errorMessaging,
+   c100ScreeningWrittenAgreementReview,
+   c100LegalRepresentation,
+   c100CourtPermissionNeeded,
+   urgencyAndWithoutNoticeAllOptionsYes,
+   miamGeneralExemptions,
+   miamDomesticAbuse,
+   miamDomesticAbuseProvidingEvidence,
+   miamChildProtectionConcernsType,
+   miamUrgencyType,
+   miamAttendanceType,
+   miamPreviousAttendanceMediatorSignedDocument,
+   miamOtherReasonForNotAttending,
+   miamReasonForNoAccessToMediator,
+  }: C100FourthRowMiroJourneyOptions): Promise<void> {
+    await CitizenCreateInitial.citizenCreateInitial({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      childArrangementsJourney: "C100",
+    });
+    await C100ScreeningSections.c100ScreeningSections({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      c100ScreeningWrittenAgreementReview: false, // must be false to reach MIAM
+      c100LegalRepresentation: c100LegalRepresentation,
+      c100CourtPermissionNeeded: c100CourtPermissionNeeded,
+    });
+    await MIAM.MIAM({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      miamChildrenInvolvedOtherProceedings: false, // Must be false to reach remaining MIAM journey
+      miamAlreadyAttended: false, // must be false to get to fourth row
+      documentSignedByMediator: true, // Has to be true or whole journey ends
+      miamValidReasonNoAttendance: false, // Must be false to reach fourth row
+      miamGeneralExemptions: miamGeneralExemptions,
+      miamDomesticAbuse: miamDomesticAbuse,
+      miamDomesticAbuseProvidingEvidence: miamDomesticAbuseProvidingEvidence,
+      miamChildProtectionConcernsType: miamChildProtectionConcernsType,
+      miamUrgencyType: miamUrgencyType,
+      miamAttendanceType: miamAttendanceType,
+      miamPreviousAttendanceMediatorSignedDocument:
+      miamPreviousAttendanceMediatorSignedDocument,
+      miamOtherReasonForNotAttending: miamOtherReasonForNotAttending,
+      miamReasonForNoAccessToMediator: miamReasonForNoAccessToMediator,
+    });
+    await C100UrgencyAndWithoutNotice.c100UrgencyAndWithoutNotice({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      urgencyAndWithoutNoticeAllOptionsYes: urgencyAndWithoutNoticeAllOptionsYes
+    });
+    await C100TypeOfOrder.c100TypeOfOrder({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
     });
     // People
   }
