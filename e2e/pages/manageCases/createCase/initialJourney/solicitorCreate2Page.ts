@@ -17,27 +17,42 @@ export class SolicitorCreate2Page {
     errorMessaging: boolean,
     accessibilityTest: boolean,
     solicitorCaseType: solicitorCaseCreateType,
+    isDummyCase: boolean = false,
   ): Promise<void> {
-    await this.checkPageLoads(page, accessibilityTest);
+    await this.checkPageLoads(page, accessibilityTest, isDummyCase);
     if (errorMessaging) {
       await this.checkErrorMessaging(page);
     }
-    await this.fillInFields(page, solicitorCaseType, errorMessaging);
+    await this.fillInFields(
+      page,
+      solicitorCaseType,
+      errorMessaging,
+      isDummyCase,
+    );
   }
 
   private static async checkPageLoads(
     page: Page,
     accessibilityTest: boolean,
+    isDummyCase: boolean,
   ): Promise<void> {
     await page.waitForSelector(
       `${Selectors.h2}:text-is("${SolicitorCreate2Content.subTitle}")`,
     );
-    await Promise.all([
+    if (isDummyCase) {
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukHeadingL}:text-is("${SolicitorCreate2Content.dummyPageTitle}")`,
+        1,
+      );
+    } else {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukHeadingL}:text-is("${SolicitorCreate2Content.title}")`,
         1,
-      ),
+      );
+    }
+    await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.p}:text-is("${SolicitorCreate2Content.textOnPage}")`,
@@ -127,10 +142,11 @@ export class SolicitorCreate2Page {
     page: Page,
     solicitorCaseType: solicitorCaseCreateType,
     errorMessaging: boolean,
+    isDummyCase: boolean,
   ): Promise<void> {
     const selector: string = caseTypeSelectionIds[solicitorCaseType];
     await page.click(selector);
-    if (solicitorCaseType === "FL401") {
+    if (!isDummyCase && solicitorCaseType === "FL401") {
       await this.checkFL401(page, errorMessaging);
       await page.click(`${caseTypeSelectionIds.yes}`);
     }

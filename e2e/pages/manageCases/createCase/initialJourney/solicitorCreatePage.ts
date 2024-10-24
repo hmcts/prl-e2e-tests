@@ -14,15 +14,17 @@ enum options {
   familyPrivateLaw = "Family Private Law",
   caseType = "C100 & FL401 Applications",
   solicitorApplication = "Solicitor application",
+  tsSolicitorApplication = "TS-Solicitor application",
 }
 
 export class SolicitorCreatePage {
   public static async solicitorCreatePage(
     page: Page,
     accessibilityTest: boolean,
+    isDummyCase: boolean = false,
   ): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest);
-    await this.fillInFields(page);
+    await this.fillInFields(page, isDummyCase);
   }
 
   private static async checkPageLoads(
@@ -44,10 +46,17 @@ export class SolicitorCreatePage {
     }
   }
 
-  private static async fillInFields(page: Page): Promise<void> {
+  private static async fillInFields(
+    page: Page,
+    isDummyCase: boolean,
+  ): Promise<void> {
     await page.selectOption(fieldIds.jurisdiction, options.familyPrivateLaw);
     await page.selectOption(fieldIds.caseType, options.caseType);
-    await page.selectOption(fieldIds.event, options.solicitorApplication);
+    if (isDummyCase) {
+      await page.selectOption(fieldIds.event, options.tsSolicitorApplication);
+    } else {
+      await page.selectOption(fieldIds.event, options.solicitorApplication);
+    }
     await page.click(
       `${Selectors.button}:text-is("${SolicitorCreateContent.button}")`,
     );
