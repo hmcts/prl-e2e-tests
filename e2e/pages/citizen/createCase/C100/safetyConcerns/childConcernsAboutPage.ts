@@ -82,7 +82,7 @@ export class ChildConcernsAboutPage {
         `${Selectors.GovukHint}`,
       ),
     ]);
-    await SafetyConcernHelpers.checkSidebar(page)
+    await SafetyConcernHelpers.checkSidebar(page);
     await SafetyConcernHelpers.checkContactDetailsText(page);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
