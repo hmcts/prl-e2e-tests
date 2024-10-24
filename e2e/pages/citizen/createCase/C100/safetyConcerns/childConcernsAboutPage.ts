@@ -4,6 +4,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { ChildConcernsAboutContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/ChildConcernsAboutContent";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { SafetyConcernHelpers } from "./safetyConcernHelpers";
 
 enum CheckboxInputIds {
   physicalAbuse = "#c1A_concernAboutChild",
@@ -81,6 +82,8 @@ export class ChildConcernsAboutPage {
         `${Selectors.GovukHint}`,
       ),
     ]);
+    await SafetyConcernHelpers.checkSidebar(page)
+    await SafetyConcernHelpers.checkContactDetailsText(page);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }

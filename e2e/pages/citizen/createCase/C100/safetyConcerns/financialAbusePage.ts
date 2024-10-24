@@ -1,23 +1,23 @@
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
-import { PsychologicalAbuseContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/PsychologicalAbuseContent";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { SafetyConcernHelpers } from "./safetyConcernHelpers";
 import {
   reportAbuseCheckboxIDs,
-  reportAbuseInputIDs,
+  reportAbuseInputIDs
 } from "../../../../../common/commonUniqueSelectors";
+import { FinancialAbuseContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/financialAbuseContent";
 
-interface PsychologicalAbusePageOptions {
+interface FinancialAbusePageOptions {
   page: Page;
   accessibilityTest: boolean;
-  c100PsychologicalAbuseYesNoToAll: boolean;
+  c100FinancialAbuseYesNoToAll: boolean;
 }
 
 interface FillInFieldsOptions {
   page: Page;
-  c100PsychologicalAbuseYesNoToAll: boolean;
+  c100FinancialAbuseYesNoToAll: boolean;
 }
 
 interface CheckPageLoadsOptions {
@@ -25,19 +25,19 @@ interface CheckPageLoadsOptions {
   accessibilityTest: boolean;
 }
 
-export class PsychologicalAbusePage {
-  public static async psychologicalAbusePage({
+export class FinancialAbusePage {
+  public static async financialAbusePage({
     page,
     accessibilityTest,
-    c100PsychologicalAbuseYesNoToAll,
-  }: PsychologicalAbusePageOptions): Promise<void> {
+    c100FinancialAbuseYesNoToAll,
+  }: FinancialAbusePageOptions): Promise<void> {
     await this.checkPageLoads({
       page,
       accessibilityTest,
     });
     await this.fillInFields({
       page,
-      c100PsychologicalAbuseYesNoToAll,
+      c100FinancialAbuseYesNoToAll,
     });
   }
 
@@ -46,7 +46,7 @@ export class PsychologicalAbusePage {
     accessibilityTest,
   }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukHeadingXL}:text-is("${PsychologicalAbuseContent.pageTitle}")`,
+      `${Selectors.GovukHeadingXL}:text-is("${FinancialAbuseContent.pageTitle}")`,
     );
     await SafetyConcernHelpers.checkStaticText(page);
     await SafetyConcernHelpers.checkSidebar(page);
@@ -58,7 +58,7 @@ export class PsychologicalAbusePage {
 
   private static async fillInFields({
     page,
-    c100PsychologicalAbuseYesNoToAll,
+    c100FinancialAbuseYesNoToAll,
   }: FillInFieldsOptions): Promise<void> {
     for (let checkbox of Object.values(reportAbuseCheckboxIDs)) {
       await page.check(checkbox);
@@ -69,22 +69,22 @@ export class PsychologicalAbusePage {
     ];
     for (let key of textToFill) {
       let inputKey = key as keyof typeof reportAbuseInputIDs;
-      let contentKey = key as keyof typeof PsychologicalAbuseContent;
+      let contentKey = key as keyof typeof FinancialAbuseContent;
       await page.fill(
         reportAbuseInputIDs[inputKey],
-        PsychologicalAbuseContent[contentKey],
+        FinancialAbuseContent[contentKey],
       );
     }
     await SafetyConcernHelpers.ongoingBehaviourFields({
       page: page,
-      c100ReportAbuseYesNoToAll: c100PsychologicalAbuseYesNoToAll,
+      c100ReportAbuseYesNoToAll: c100FinancialAbuseYesNoToAll,
       inputIDs: reportAbuseInputIDs,
     });
     await SafetyConcernHelpers.seekHelpFields({
       page: page,
-      c100ReportAbuseYesNoToAll: c100PsychologicalAbuseYesNoToAll,
+      c100ReportAbuseYesNoToAll: c100FinancialAbuseYesNoToAll,
       inputIDs: reportAbuseInputIDs,
-      abuseContent: PsychologicalAbuseContent,
+      abuseContent: FinancialAbuseContent,
     });
     await page.click(
       `${Selectors.button}:text-is("${CommonStaticText.continue}")`,

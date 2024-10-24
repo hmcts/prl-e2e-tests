@@ -21,6 +21,9 @@ interface C100Options {
   c100LegalRepresentation: boolean;
   c100CourtPermissionNeeded: boolean;
   urgencyAndWithoutNoticeAllOptionsYes: boolean;
+  // c100OthersKnowApplicantsContact: yesNoDontKnow;
+  // c100PrivateDetails: boolean;
+  // c100ChildrenSafetyConcerns: boolean;
   c100OthersKnowApplicantsContact: yesNoDontKnow;
   c100PrivateDetails: boolean;
   c100ChildrenSafetyConcerns: boolean;
@@ -48,6 +51,9 @@ export class C100 {
     c100LegalRepresentation,
     c100CourtPermissionNeeded,
     urgencyAndWithoutNoticeAllOptionsYes,
+    // c100OthersKnowApplicantsContact,
+    // c100PrivateDetails,
+    // c100ChildrenSafetyConcerns,
     c100OthersKnowApplicantsContact,
     c100PrivateDetails,
     miamChildrenInvolvedOtherProceedings,

@@ -3,7 +3,8 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { PhysicalAbuseContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/physicalAbuseContent";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-import { ReportAbuseHelpers } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/reportAbuseHelpers";
+import { SafetyConcernHelpers } from "./safetyConcernHelpers";
+import { reportAbuseCheckboxIDs, reportAbuseInputIDs } from "../../../../../common/commonUniqueSelectors";
 import {
   reportAbuseCheckboxIDs,
   reportAbuseInputIDs,
@@ -48,7 +49,9 @@ export class PhysicalAbusePage {
     await page.waitForSelector(
       `${Selectors.GovukHeadingXL}:text-is("${PhysicalAbuseContent.pageTitle}")`,
     );
-    await ReportAbuseHelpers.checkStaticText(page);
+    await SafetyConcernHelpers.checkStaticText(page);
+    await SafetyConcernHelpers.checkSidebar(page);
+    await SafetyConcernHelpers.checkContactDetailsText(page);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }
@@ -73,12 +76,12 @@ export class PhysicalAbusePage {
         PhysicalAbuseContent[contentKey],
       );
     }
-    await ReportAbuseHelpers.ongoingBehaviourFields({
+    await SafetyConcernHelpers.ongoingBehaviourFields({
       page: page,
       c100ReportAbuseYesNoToAll: c100PhysicalAbuseYesNoToAll,
       inputIDs: reportAbuseInputIDs,
     });
-    await ReportAbuseHelpers.seekHelpFields({
+    await SafetyConcernHelpers.seekHelpFields({
       page: page,
       c100ReportAbuseYesNoToAll: c100PhysicalAbuseYesNoToAll,
       inputIDs: reportAbuseInputIDs,

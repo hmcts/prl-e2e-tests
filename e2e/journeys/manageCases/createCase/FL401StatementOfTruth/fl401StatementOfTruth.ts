@@ -24,13 +24,16 @@ interface Fl401StatementOfTruthOptions {
 }
 
 export class Fl401StatementOfTruth {
-  public static async fl401StatementOfTruth({
-    page,
-    accessibilityTest,
-    errorMessaging,
-    fl401YesNoToEverything,
-    subJourney,
-  }: Fl401StatementOfTruthOptions): Promise<void> {
+  public static async fl401StatementOfTruth(
+    {
+      page,
+      accessibilityTest,
+      errorMessaging,
+      fl401YesNoToEverything,
+      subJourney,
+    }: Fl401StatementOfTruthOptions,
+    isDummyCase: boolean = false,
+  ): Promise<void> {
     const otherProceedingsRadioSelection = fl401YesNoToEverything
       ? "Yes"
       : "No";
@@ -125,10 +128,12 @@ export class Fl401StatementOfTruth {
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
     });
-    await StatementOfTruthSummaryPage.statementOfTruthSummaryPage({
-      page,
-      accessibilityTest,
-      fl401YesNoToEverything,
-    });
+    if (!isDummyCase) {
+      await StatementOfTruthSummaryPage.statementOfTruthSummaryPage({
+        page,
+        accessibilityTest,
+        fl401YesNoToEverything,
+      });
+    }
   }
 }
