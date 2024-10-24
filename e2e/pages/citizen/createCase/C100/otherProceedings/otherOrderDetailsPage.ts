@@ -10,7 +10,7 @@ interface OtherOrderDetailsPageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
-  yesNoOtherOrderDetailsDetails: boolean;
+  yesNoOtherProceedings: boolean;
 }
 
 interface checkPageLoadsOptions {
@@ -20,7 +20,7 @@ interface checkPageLoadsOptions {
 
 interface fillInFieldsOptions {
   page: Page;
-  yesNoOtherOrderDetailsDetails: boolean;
+  yesNoOtherProceedings: boolean;
 }
 
 export class OtherOrderDetailsPage {
@@ -28,7 +28,7 @@ export class OtherOrderDetailsPage {
     page: page,
     accessibilityTest: accessibilityTest,
     errorMessaging: errorMessaging,
-    yesNoOtherOrderDetailsDetails: yesNoOtherOrderDetailsDetails,
+    yesNoOtherProceedings: yesNoOtherProceedings,
   }: OtherOrderDetailsPageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
@@ -39,7 +39,7 @@ export class OtherOrderDetailsPage {
     }
     await this.fillInFields({
       page: page,
-      yesNoOtherOrderDetailsDetails: yesNoOtherOrderDetailsDetails,
+      yesNoOtherProceedings: yesNoOtherProceedings,
     });
   }
 
@@ -170,7 +170,7 @@ export class OtherOrderDetailsPage {
 
   private static async fillInFields({
     page: page,
-    yesNoOtherOrderDetailsDetails: yesNoOtherOrderDetailsDetails,
+    yesNoOtherProceedings: yesNoOtherProceedings,
   }: fillInFieldsOptions): Promise<void> {
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.orderDetail1}`,
@@ -205,7 +205,7 @@ export class OtherOrderDetailsPage {
       OtherOrderDetailsContent.yearNumber2,
     );
     // Selecting 'true' will move onto next page
-    if (yesNoOtherOrderDetailsDetails) {
+    if (yesNoOtherProceedings) {
       await page.click(
         `${CitizensOtherProceedingsUniqueSelectors.currentOrderYes}`,
       );
