@@ -12,6 +12,7 @@ import { MiamOtherReasonForNotAttending } from "../../../pages/citizen/createCas
 import { MiamReasonForNoAccessToMediator } from "../../../pages/citizen/createCase/C100/MIAM/miamNoAccessToMediatorPage";
 import { C100Confidentiality } from "./C100Confidentiality/c100Confidentiality";
 import { yesNoDontKnow } from "../../../common/types";
+import { C100OtherProceedings } from "./C100OtherProceedings/C100OtherProceedings";
 
 interface C100Options {
   page: Page;
@@ -42,7 +43,124 @@ interface C100Options {
   miamReasonForNoAccessToMediator: MiamReasonForNoAccessToMediator;
 }
 
+interface C100TopMiroJourneyOptions {
+  page: Page;
+  accessibilityTest: boolean;
+  errorMessaging: boolean;
+  c100LegalRepresentation: boolean;
+  c100CourtPermissionNeeded: boolean;
+  urgencyAndWithoutNoticeAllOptionsYes: boolean;
+  // c100OthersKnowApplicantsContact: yesNoDontKnow;
+  // c100PrivateDetails: boolean;
+  // c100ChildrenSafetyConcerns: boolean;
+}
+
+interface C100SecondMiroJourneyOptions {
+  page: Page,
+  accessibilityTest: boolean;
+  errorMessaging: boolean;
+  c100LegalRepresentation: boolean;
+  c100CourtPermissionNeeded: boolean;
+  yesNoCurrentProceedings1: boolean;
+  yesNoChildArrangementOrderDetails: boolean;
+  yesNoEmergencyProtectionOrderDetails: boolean;
+  yesNoSupervisionOrderDetails: boolean;
+  yesNoCareOrderOrderDetails: boolean;
+  yesNoChildAbductionOrderDetails: boolean;
+  yesNoContactOrderForAdoptionOrderDetails: boolean;
+  yesNoContactOrderForDivorceOrderDetails: boolean;
+  yesNoChildMaintenanceOrderDetails: boolean;
+  yesNoFinancialOrderDetails: boolean;
+  yesNoNonMolestationOrderDetails: boolean;
+  yesNoOccupationOrderDetails: boolean;
+  yesNoForcedMarriageProtectionOrderDetails: boolean;
+  yesNoRestrainingOrderDetails: boolean;
+}
+
 export class C100 {
+  public static async c100TopMiroJourney({
+    page,
+    accessibilityTest,
+    errorMessaging,
+    c100LegalRepresentation,
+    c100CourtPermissionNeeded,
+    urgencyAndWithoutNoticeAllOptionsYes,
+  }: C100TopMiroJourneyOptions): Promise<void> {
+    await C100ScreeningSections.c100ScreeningSections({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      c100ScreeningWrittenAgreementReview: true, // This has to be true for the top row journey
+      c100LegalRepresentation: c100LegalRepresentation,
+      c100CourtPermissionNeeded: c100CourtPermissionNeeded,
+    });
+    await C100TypeOfOrder.c100TypeOfOrder({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging
+    });
+    await C100ConsentOrderUpload.c100ConsentOrderUpload({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+    });
+    await C100UrgencyAndWithoutNotice.c100UrgencyAndWithoutNotice({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      urgencyAndWithoutNoticeAllOptionsYes:
+        urgencyAndWithoutNoticeAllOptionsYes,
+    });
+    // People
+    // Applicant Details
+    // Confidentiality
+  }
+
+  public static async c100SecondMiroJourney({
+    page,
+    accessibilityTest,
+    errorMessaging,
+    c100LegalRepresentation,
+    c100CourtPermissionNeeded
+  }: C100SecondMiroJourneyOptions): Promise<void> {
+    await CitizenCreateInitial.citizenCreateInitial({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      childArrangementsJourney: "C100",
+    });
+    await C100ScreeningSections.c100ScreeningSections({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      c100ScreeningWrittenAgreementReview: false, // Has to be false for this journey
+      c100LegalRepresentation: c100LegalRepresentation,
+      c100CourtPermissionNeeded: c100CourtPermissionNeeded,
+    });
+    await MIAM.MIAM({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      miamChildrenInvolvedOtherProceedings: false, // This has to be false for this journey
+      miamAlreadyAttended: false, // Any of the below args are redundant
+      documentSignedByMediator: false,
+      miamValidReasonNoAttendance: false,
+      miamGeneralExemptions: false,
+      miamDomesticAbuse: false,
+      miamDomesticAbuseProvidingEvidence: false,
+      miamChildProtectionConcernsType: 'Child protection plan',
+      miamUrgencyType: 'None of these',
+      miamAttendanceType: 'None of these',
+      miamPreviousAttendanceMediatorSignedDocument: false,
+      miamOtherReasonForNotAttending: 'None of the above',
+      miamReasonForNoAccessToMediator: 'None of these',
+    });
+    await C100OtherProceedings.c100OtherProceedings1({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging
+    })
+  }
+
   public static async c100({
     page,
     accessibilityTest,

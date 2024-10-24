@@ -11,30 +11,13 @@ test.describe("C100 Citizen Application tests on the top MIRO set. @citizenFront
   Not Error Messaging,
   Yes Screening and Written Review
   With urgency and without notice options`, async ({ page }): Promise<void> => {
-    await C100.c100({
+    await C100.c100TopMiroJourney({
       page: page,
       accessibilityTest: false,
       errorMessaging: false,
-      c100ScreeningWrittenAgreementReview: true,
       c100LegalRepresentation: false,
       c100CourtPermissionNeeded: false,
-      c100OthersKnowApplicantsContact: "yes",
-      c100PrivateDetails: false,
-      c100ChildrenSafetyConcerns: false,
-      miamChildrenInvolvedOtherProceedings: true,
       urgencyAndWithoutNoticeAllOptionsYes: true,
-      miamAlreadyAttended: false,
-      documentSignedByMediator: false,
-      miamValidReasonNoAttendance: false,
-      miamGeneralExemptions: false,
-      miamDomesticAbuse: false,
-      miamDomesticAbuseProvidingEvidence: false,
-      miamChildProtectionConcernsType: "None of the above",
-      miamUrgencyType: "None of these",
-      miamAttendanceType: "None of these",
-      miamPreviousAttendanceMediatorSignedDocument: false,
-      miamOtherReasonForNotAttending: "None of the above",
-      miamReasonForNoAccessToMediator: "None of these",
     });
   });
 
