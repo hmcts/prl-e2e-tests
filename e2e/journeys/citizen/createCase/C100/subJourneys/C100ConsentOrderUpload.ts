@@ -1,6 +1,6 @@
 import { Page } from "@playwright/test";
-import { ConsentOrderUploadPage } from "../../../../pages/citizen/createCase/C100/consentOrderUpload/consentOrderUploadPage";
-import { SuccessPage } from "../../../../pages/citizen/createCase/C100/consentOrderUpload/successPage";
+import { ConsentOrderUploadPage } from "../../../../../pages/citizen/createCase/C100/consentOrderUpload/consentOrderUploadPage";
+import { SuccessPage } from "../../../../../pages/citizen/createCase/C100/consentOrderUpload/successPage";
 
 interface C100ConsentOrderUploadOptions {
   page: Page;

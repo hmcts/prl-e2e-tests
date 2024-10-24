@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { UserRole } from "../../../../common/types";
-import { AddChildrenPage } from "../../../../pages/citizen/createCase/C100/people/addChildrenPage";
-import { ProvideDetailsPage } from "../../../../pages/citizen/createCase/C100/people/provideDetailsPage";
-import { WhichDecisionsPage } from "../../../../pages/citizen/createCase/C100/people/whichDecisionsPage";
-import { ApplicantGender } from "../../../../common/types";
+import { UserRole } from "../../../../../common/types";
+import { AddChildrenPage } from "../../../../../pages/citizen/createCase/C100/people/addChildrenPage";
+import { ProvideDetailsPage } from "../../../../../pages/citizen/createCase/C100/people/provideDetailsPage";
+import { WhichDecisionsPage } from "../../../../../pages/citizen/createCase/C100/people/whichDecisionsPage";
+import { ApplicantGender } from "../../../../../common/types";
 
 interface C100People1Options {
   page: Page;

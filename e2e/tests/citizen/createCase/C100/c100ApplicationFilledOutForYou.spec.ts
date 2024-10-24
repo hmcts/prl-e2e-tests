@@ -1,6 +1,6 @@
 import { test } from "@playwright/test";
 import Config from "../../../../config";
-import { C100ApplicationCompletedForYou } from "../../../../journeys/citizen/createCase/C100ApplicationCompletedForYou";
+import { C100ApplicationCompletedForYou } from "../../../../journeys/citizen/createCase/C100/C100ApplicationCompletedForYou";
 
 test.use({ storageState: Config.sessionStoragePath + "citizen.json" });
 

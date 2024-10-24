@@ -1,7 +1,7 @@
 import { test } from "@playwright/test";
 
 import Config from "../../../../config";
-import { C100 } from "../../../../journeys/citizen/createCase/C100";
+import { C100 } from "../../../../journeys/citizen/createCase/C100/C100";
 
 test.use({ storageState: Config.sessionStoragePath + "citizen.json" });
 

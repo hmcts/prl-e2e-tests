@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
-import { UrgentFirstHearingPage } from "../../../../pages/citizen/createCase/C100/urgencyAndWithoutNotice/urgentFirstHearingPage";
-import { TellUsAboutYourSituationPage } from "../../../../pages/citizen/createCase/C100/urgencyAndWithoutNotice/tellUsAboutYourSituationPage";
-import { WithoutNoticeHearingPage } from "../../../../pages/citizen/createCase/C100/urgencyAndWithoutNotice/withoutNoticeHearingPage";
-import { WithoutNoticeHearingDetailsPage } from "../../../../pages/citizen/createCase/C100/urgencyAndWithoutNotice/withoutNoticeHearingDetailsPage";
+import { UrgentFirstHearingPage } from "../../../../../pages/citizen/createCase/C100/urgencyAndWithoutNotice/urgentFirstHearingPage";
+import { TellUsAboutYourSituationPage } from "../../../../../pages/citizen/createCase/C100/urgencyAndWithoutNotice/tellUsAboutYourSituationPage";
+import { WithoutNoticeHearingPage } from "../../../../../pages/citizen/createCase/C100/urgencyAndWithoutNotice/withoutNoticeHearingPage";
+import { WithoutNoticeHearingDetailsPage } from "../../../../../pages/citizen/createCase/C100/urgencyAndWithoutNotice/withoutNoticeHearingDetailsPage";
 
 interface C100UrgencyAndWithoutNoticeOptions {
   page: Page;
