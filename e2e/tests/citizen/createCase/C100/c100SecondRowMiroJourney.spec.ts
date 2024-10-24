@@ -9,14 +9,14 @@ test.describe("C100 Citizen Application tests on the second MIRO set. @citizenFr
     Not Accessibility Testing,
     Not Error Messaging,
     No Screening and Written Review
-    Legal Representation: yes
-    Court Permission Needed: yes`, async ({ page }): Promise<void> => {
+    Legal Representation: no
+    Court Permission Needed: no`, async ({ page }): Promise<void> => {
     await C100.c100SecondMiroJourney({
       page: page,
       accessibilityTest: false,
       errorMessaging: false,
-      c100LegalRepresentation: true,
-      c100CourtPermissionNeeded: true
+      c100LegalRepresentation: false,
+      c100CourtPermissionNeeded: false
     });
   });
 
@@ -24,14 +24,14 @@ test.describe("C100 Citizen Application tests on the second MIRO set. @citizenFr
     Not Accessibility Testing,
     Yes Error Messaging,
     No Screening and Written Review
-    Legal Representation: yes
-    Court Permission Needed: yes`, async ({ page }): Promise<void> => {
+    Legal Representation: no
+    Court Permission Needed: no`, async ({ page }): Promise<void> => {
     await C100.c100SecondMiroJourney({
       page: page,
       accessibilityTest: false,
       errorMessaging: true,
-      c100LegalRepresentation: true,
-      c100CourtPermissionNeeded: true
+      c100LegalRepresentation: false,
+      c100CourtPermissionNeeded: false
     });
   });
 });
@@ -40,14 +40,14 @@ test(`Test the second row of the second row c100 citizen journey with the follow
     Not Accessibility Testing,
     Not Error Messaging,
     No Screening and Written Review
-    Legal Representation: yes
-    Court Permission Needed: yes,
+    Legal Representation: no
+    Court Permission Needed: no,
     @accessibilityCitizenFrontend`, async ({ page }): Promise<void> => {
   await C100.c100SecondMiroJourney({
     page: page,
     accessibilityTest: true,
     errorMessaging: false,
-    c100LegalRepresentation: true,
-    c100CourtPermissionNeeded: true
+    c100LegalRepresentation: false,
+    c100CourtPermissionNeeded: false
   });
 });

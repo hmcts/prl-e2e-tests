@@ -9,16 +9,16 @@ test.describe("C100 Citizen Application tests on the third MIRO set. @citizenFro
     Not Accessibility Testing,
     Not Error Messaging,
     No Screening and Written Review
-    Legal Representation: no
+    Legal Representation: yes
     Court Permission Needed: no,
-    urgency and without notice: no`, async ({ page }): Promise<void> => {
+    urgency and without notice: yes`, async ({ page }): Promise<void> => {
     await C100.c100ThirdMiroJourney({
       page: page,
       accessibilityTest: false,
       errorMessaging: false,
-      c100LegalRepresentation: false,
+      c100LegalRepresentation: true,
       c100CourtPermissionNeeded: false,
-      urgencyAndWithoutNoticeAllOptionsYes: false
+      urgencyAndWithoutNoticeAllOptionsYes: true
     });
   });
 
@@ -26,14 +26,16 @@ test.describe("C100 Citizen Application tests on the third MIRO set. @citizenFro
     Not Accessibility Testing,
     Not Error Messaging,
     No Screening and Written Review
-    Legal Representation: no
-    Court Permission Needed: no`, async ({ page }): Promise<void> => {
-    await C100.c100thirdMiroJourney({
+    Legal Representation: yes
+    Court Permission Needed: no
+    urgency and without notice: yes`, async ({ page }): Promise<void> => {
+    await C100.c100ThirdMiroJourney({
       page: page,
       accessibilityTest: false,
       errorMessaging: false,
-      c100LegalRepresentation: false,
-      c100CourtPermissionNeeded: false
+      c100LegalRepresentation: true,
+      c100CourtPermissionNeeded: false,
+      urgencyAndWithoutNoticeAllOptionsYes: true
     });
   });
 
@@ -42,13 +44,15 @@ test.describe("C100 Citizen Application tests on the third MIRO set. @citizenFro
     Yes Error Messaging,
     No Screening and Written Review
     Legal Representation: yes
-    Court Permission Needed: yes`, async ({ page }): Promise<void> => {
-    await C100.c100thirdMiroJourney({
+    Court Permission Needed: no
+    urgency and without notice: yes`, async ({ page }): Promise<void> => {
+    await C100.c100ThirdMiroJourney({
       page: page,
       accessibilityTest: false,
       errorMessaging: true,
       c100LegalRepresentation: true,
-      c100CourtPermissionNeeded: true
+      c100CourtPermissionNeeded: false,
+      urgencyAndWithoutNoticeAllOptionsYes: true
     });
   });
 });
@@ -58,13 +62,15 @@ test(`Test the third row of the third row c100 citizen journey with the followin
     Not Error Messaging,
     No Screening and Written Review
     Legal Representation: yes
-    Court Permission Needed: yes,
+    Court Permission Needed: no
+    urgency and without notice: yes,
     @accessibilityCitizenFrontend`, async ({ page }): Promise<void> => {
-  await C100.c100thirdMiroJourney({
+  await C100.c100ThirdMiroJourney({
     page: page,
     accessibilityTest: true,
     errorMessaging: false,
     c100LegalRepresentation: true,
-    c100CourtPermissionNeeded: true
+    c100CourtPermissionNeeded: false,
+    urgencyAndWithoutNoticeAllOptionsYes: true
   });
 });

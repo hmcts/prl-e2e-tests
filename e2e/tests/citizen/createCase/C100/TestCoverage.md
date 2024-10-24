@@ -75,8 +75,8 @@ Coverage:
 1. Screening sections
     - yes/no for court permission and legal respresentatove
       - both set to true for this journey
-    - `c100LegalRepresentation: true`
-    - `c100CourtPermissionNeeded: true`
+    - `c100LegalRepresentation: false`
+    - `c100CourtPermissionNeeded: false`
 2. MIAM
     - First boolean yes/no, are children involved in any proceedings
       - if yes: skip section
@@ -90,7 +90,7 @@ Coverage:
     - Select all checkboxes and move on
 5. Urgency & Without Notice Order
     - Require boolean variable for yes to all or no to all
-    - In the Top Row journey we will be selecting no to all
+    - In the Second Row journey we will be selecting no to all
     - `urgencyAndWithoutNoticeAllOptionsYes: false`
 6. People
     - Child Details
@@ -139,20 +139,20 @@ This requires you to select 'false' for the c100ScreeningWrittenAgreementReview 
 We wil primarily select `dontKnow` in this journey
 Coverage:
 1. Screening sections
-    - yes/no for court permission and legal respresentatove
+    - yes/no for court permission and legal representative
         - both set to true for this journey
     - `c100LegalRepresentation: true`
     - `c100CourtPermissionNeeded: false`
 2. MIAM
     - First boolean yes/no, are children involved in any proceedings
-        - Select no first
-        - Next two booleans must be true for this journey
+        - Select no first (hard-coded)
+        - Next two booleans must be true for this journey (hard-coded)
 3. Type Of Order
     - Does not have any arguments
     - Select all checkboxes and move on
 4. Urgency & Without Notice Order
     - Require boolean variable for yes to all or no to all
-    - In the Top Row journey we will be selecting no to all
+    - In the Third Row journey we will be selecting no to all
     - `urgencyAndWithoutNoticeAllOptionsYes: true`
 5. People
     - Child Details
