@@ -42,12 +42,9 @@ export class DummyPaymentAwp {
     caseType: solicitorCaseCreateType,
   ): Promise<void> {
     if (caseType === "C100") {
-      await DummyC100.dummyC100({
-        page,
-        caseType,
-      });
+      await DummyC100.dummyC100({ page });
     } else {
-      await DummyFL401.dummyFL401({ page, caseType });
+      await DummyFL401.dummyFL401({ page });
     }
   }
 }
