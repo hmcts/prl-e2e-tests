@@ -1,16 +1,16 @@
 import { Page } from "@playwright/test";
-import { UndertakingOrderDetailsContent } from "../../../../../../fixtures/citizen/createCase/C100/otherProceedings/undertakingOrder/undertakingOrderDetailsContent";
-import { CitizensOtherProceedingsUniqueSelectors } from "../../../../../../common/commonUniqueSelectors";
 import { Selectors } from "../../../../../../common/selectors";
-import { CommonStaticText } from "../../../../../../common/commonStaticText";
 import { Helpers } from "../../../../../../common/helpers";
+import { CommonStaticText } from "../../../../../../common/commonStaticText";
+import { CitizensOtherProceedingsUniqueSelectors } from "../../../../../../common/commonUniqueSelectors";
 import AxeTest from "../../../../../../common/accessibilityTestHelper";
+import { OtherOrderDetailsContent } from "../../../../../../fixtures/citizen/createCase/C100/otherProceedings/otherOrder/otherOrderDetailsContent";
 
-interface UndertakingOrderDetailsPageOptions {
+interface OtherOrderDetailsPageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
-  yesNoUndertakingOrderDetailsOrderDetails: boolean;
+  yesNoOtherOrderDetailsDetails: boolean;
 }
 
 interface checkPageLoadsOptions {
@@ -20,17 +20,16 @@ interface checkPageLoadsOptions {
 
 interface fillInFieldsOptions {
   page: Page;
-  yesNoUndertakingOrderDetailsOrderDetails: boolean;
+  yesNoOtherOrderDetailsDetails: boolean;
 }
 
-export class UndertakingOrderDetailsPage {
-  public static async undertakingOrderDetailsPage({
+export class OtherOrderDetailsPage {
+  public static async OtherOrderDetailsPage({
     page: page,
     accessibilityTest: accessibilityTest,
     errorMessaging: errorMessaging,
-    yesNoUndertakingOrderDetailsOrderDetails:
-      yesNoUndertakingOrderDetailsOrderDetails,
-  }: UndertakingOrderDetailsPageOptions): Promise<void> {
+    yesNoOtherOrderDetailsDetails: yesNoOtherOrderDetailsDetails,
+  }: OtherOrderDetailsPageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
       accessibilityTest: accessibilityTest,
@@ -40,8 +39,7 @@ export class UndertakingOrderDetailsPage {
     }
     await this.fillInFields({
       page: page,
-      yesNoUndertakingOrderDetailsOrderDetails:
-        yesNoUndertakingOrderDetailsOrderDetails,
+      yesNoOtherOrderDetailsDetails: yesNoOtherOrderDetailsDetails,
     });
   }
 
@@ -50,36 +48,36 @@ export class UndertakingOrderDetailsPage {
     accessibilityTest: accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.p}:text-is("${UndertakingOrderDetailsContent.p}")`,
+      `${Selectors.p}:text-is("${OtherOrderDetailsContent.p}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHeadingXL}:text-is("${UndertakingOrderDetailsContent.pageTitle}")`,
+        `${Selectors.GovukHeadingXL}:text-is("${OtherOrderDetailsContent.pageTitle}")`,
         1,
       ),
       Helpers.checkGroup(
         page,
         5,
-        UndertakingOrderDetailsContent,
+        OtherOrderDetailsContent,
         "h1",
         `${Selectors.h1}`,
       ),
       Helpers.checkGroup(
         page,
         2,
-        UndertakingOrderDetailsContent,
+        OtherOrderDetailsContent,
         "formLabel",
         `${Selectors.h1}`,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${UndertakingOrderDetailsContent.formHint1}")`,
+        `${Selectors.GovukHint}:text-is("${OtherOrderDetailsContent.formHint1}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${UndertakingOrderDetailsContent.formHint2}")`,
+        `${Selectors.GovukHint}:text-is("${OtherOrderDetailsContent.formHint2}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
@@ -116,27 +114,27 @@ export class UndertakingOrderDetailsPage {
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.orderDate1day}`,
-      UndertakingOrderDetailsContent.dayNumber,
+      OtherOrderDetailsContent.dayNumber,
     );
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.orderDate1month}`,
-      UndertakingOrderDetailsContent.errorMonthNumber,
+      OtherOrderDetailsContent.errorMonthNumber,
     );
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.orderDate1year}`,
-      UndertakingOrderDetailsContent.yearNumber1,
+      OtherOrderDetailsContent.yearNumber1,
     );
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.orderEndDate1day}`,
-      UndertakingOrderDetailsContent.dayNumber,
+      OtherOrderDetailsContent.dayNumber,
     );
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.orderEndDate1month}`,
-      UndertakingOrderDetailsContent.errorMonthNumber,
+      OtherOrderDetailsContent.errorMonthNumber,
     );
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.orderEndDate1year}`,
-      UndertakingOrderDetailsContent.yearNumber2,
+      OtherOrderDetailsContent.yearNumber2,
     );
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
@@ -149,22 +147,22 @@ export class UndertakingOrderDetailsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${UndertakingOrderDetailsContent.errorMessageOrderDate}")`,
+        `${Selectors.a}:text-is("${OtherOrderDetailsContent.errorMessageOrderDate}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${UndertakingOrderDetailsContent.errorMessageOrderDate}")`,
+        `${Selectors.ErrorMessage}:text-is("${OtherOrderDetailsContent.errorMessageOrderDate}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${UndertakingOrderDetailsContent.errorMessageOrderEndDate}")`,
+        `${Selectors.a}:text-is("${OtherOrderDetailsContent.errorMessageOrderEndDate}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${UndertakingOrderDetailsContent.errorMessageOrderEndDate}")`,
+        `${Selectors.ErrorMessage}:text-is("${OtherOrderDetailsContent.errorMessageOrderEndDate}")`,
         1,
       ),
     ]);
@@ -172,43 +170,42 @@ export class UndertakingOrderDetailsPage {
 
   private static async fillInFields({
     page: page,
-    yesNoUndertakingOrderDetailsOrderDetails:
-      yesNoUndertakingOrderDetailsOrderDetails,
+    yesNoOtherOrderDetailsDetails: yesNoOtherOrderDetailsDetails,
   }: fillInFieldsOptions): Promise<void> {
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.orderDetail1}`,
-      UndertakingOrderDetailsContent.courtIssued,
+      OtherOrderDetailsContent.courtIssued,
     );
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.caseNo1}`,
-      UndertakingOrderDetailsContent.caseNumber,
+      OtherOrderDetailsContent.caseNumber,
     );
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.orderDate1day}`,
-      UndertakingOrderDetailsContent.dayNumber,
+      OtherOrderDetailsContent.dayNumber,
     );
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.orderDate1month}`,
-      UndertakingOrderDetailsContent.monthNumber,
+      OtherOrderDetailsContent.monthNumber,
     );
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.orderDate1year}`,
-      UndertakingOrderDetailsContent.yearNumber1,
+      OtherOrderDetailsContent.yearNumber1,
     );
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.orderEndDate1day}`,
-      UndertakingOrderDetailsContent.dayNumber,
+      OtherOrderDetailsContent.dayNumber,
     );
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.orderEndDate1month}`,
-      UndertakingOrderDetailsContent.monthNumber,
+      OtherOrderDetailsContent.monthNumber,
     );
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.orderEndDate1year}`,
-      UndertakingOrderDetailsContent.yearNumber2,
+      OtherOrderDetailsContent.yearNumber2,
     );
     // Selecting 'true' will move onto next page
-    if (yesNoUndertakingOrderDetailsOrderDetails) {
+    if (yesNoOtherOrderDetailsDetails) {
       await page.click(
         `${CitizensOtherProceedingsUniqueSelectors.currentOrderYes}`,
       );

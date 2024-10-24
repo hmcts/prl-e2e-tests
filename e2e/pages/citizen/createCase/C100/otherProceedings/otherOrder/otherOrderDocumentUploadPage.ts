@@ -2,12 +2,12 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../../common/selectors";
 import { Helpers } from "../../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../../common/commonStaticText";
-import AxeTest from "../../../../../../common/accessibilityTestHelper";
-import config from "../../../../../../config";
 import { CitizenOtherProceedingsDocumentUploadSelectors } from "../../../../../../common/commonUniqueSelectors";
-import { UndertakingOrderDocumentUploadContent } from "../../../../../../fixtures/citizen/createCase/C100/otherProceedings/undertakingOrder/undertakingOrderDocumentUploadContent";
+import config from "../../../../../../config";
+import { OtherOrderDocumentUploadContent } from "../../../../../../fixtures/citizen/createCase/C100/otherProceedings/otherOrder/otherOrderDocumentUploadContent";
+import AxeTest from "../../../../../../common/accessibilityTestHelper";
 
-interface UndertakingOrderDocumentUploadPageOptions {
+interface OtherOrderDocumentUploadPageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
@@ -22,12 +22,12 @@ interface fillInFieldsOptions {
   page: Page;
 }
 
-export class UndertakingOrderDocumentUploadPage {
-  public static async undertakingOrderDocumentUploadPage({
+export class OtherOrderDocumentUploadPage {
+  public static async otherOrderDocumentUploadPage({
     page: page,
     accessibilityTest: accessibilityTest,
     errorMessaging: errorMessaging,
-  }: UndertakingOrderDocumentUploadPageOptions): Promise<void> {
+  }: OtherOrderDocumentUploadPageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
       accessibilityTest: accessibilityTest,
@@ -45,19 +45,19 @@ export class UndertakingOrderDocumentUploadPage {
     accessibilityTest: accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukHeadingXL}:text-is("${UndertakingOrderDocumentUploadContent.pageTitle}")`,
+      `${Selectors.GovukHeadingXL}:text-is("${OtherOrderDocumentUploadContent.pageTitle}")`,
     );
     await Promise.all([
       Helpers.checkGroup(
         page,
         2,
-        UndertakingOrderDocumentUploadContent,
+        OtherOrderDocumentUploadContent,
         "p",
         `${Selectors.p}`,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${UndertakingOrderDocumentUploadContent.spanA}")`,
+        `${Selectors.Span}:text-is("${OtherOrderDocumentUploadContent.spanA}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -67,12 +67,12 @@ export class UndertakingOrderDocumentUploadPage {
       ),
     ]);
     await page.click(
-      `${Selectors.Span}:text-is("${UndertakingOrderDocumentUploadContent.spanA}")`,
+      `${Selectors.Span}:text-is("${OtherOrderDocumentUploadContent.spanA}")`,
     );
     await Helpers.checkGroup(
       page,
       5,
-      UndertakingOrderDocumentUploadContent,
+      OtherOrderDocumentUploadContent,
       "li",
       `${Selectors.li}`,
     );
@@ -93,12 +93,12 @@ export class UndertakingOrderDocumentUploadPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${UndertakingOrderDocumentUploadContent.errorMessageChooseFile}")`,
+        `${Selectors.a}:text-is("${OtherOrderDocumentUploadContent.errorMessageChooseFile}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${UndertakingOrderDocumentUploadContent.errorMessageChooseFile}")`,
+        `${Selectors.ErrorMessage}:text-is("${OtherOrderDocumentUploadContent.errorMessageChooseFile}")`,
         1,
       ),
     ]);
@@ -112,12 +112,12 @@ export class UndertakingOrderDocumentUploadPage {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${UndertakingOrderDocumentUploadContent.errorMessageUploadCorrectFile}")`,
+        `${Selectors.a}:text-is("${OtherOrderDocumentUploadContent.errorMessageUploadCorrectFile}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${UndertakingOrderDocumentUploadContent.errorMessageUploadCorrectFile}")`,
+        `${Selectors.ErrorMessage}:text-is("${OtherOrderDocumentUploadContent.errorMessageUploadCorrectFile}")`,
         1,
       ),
     ]);
