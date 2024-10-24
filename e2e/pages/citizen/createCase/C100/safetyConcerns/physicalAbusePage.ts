@@ -8,10 +8,6 @@ import {
   reportAbuseCheckboxIDs,
   reportAbuseInputIDs,
 } from "../../../../../common/commonUniqueSelectors";
-import {
-  reportAbuseCheckboxIDs,
-  reportAbuseInputIDs,
-} from "../../../../../common/commonUniqueSelectors";
 
 interface PhysicalAbusePageOptions {
   page: Page;
