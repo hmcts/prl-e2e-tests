@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { ApplicantPersonalDetailsPage } from "../../../../pages/citizen/createCase/C100/casePartyDetails/applicantPersonalDetailsPage";
-import { ApplicantRelationshipToChildPage } from "../../../../pages/citizen/createCase/C100/casePartyDetails/applicantRelationshipToChildPage";
-import { ApplicantGender, Relationship } from "../../../../common/types";
-import { ApplicantAddressLookupPage } from "../../../../pages/citizen/createCase/C100/casePartyDetails/applicantAddressLookupPage";
-import { ApplicantAddressSelectPage } from "../../../../pages/citizen/createCase/C100/casePartyDetails/applicantAddressSelectPage";
+import { ApplicantPersonalDetailsPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicantPersonalDetailsPage";
+import { ApplicantRelationshipToChildPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicantRelationshipToChildPage";
+import { ApplicantGender, Relationship } from "../../../../../common/types";
+import { ApplicantAddressLookupPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicantAddressLookupPage";
+import { ApplicantAddressSelectPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicantAddressSelectPage";
 
 interface c100CasePartyDetailsOptions {
   page: Page;
