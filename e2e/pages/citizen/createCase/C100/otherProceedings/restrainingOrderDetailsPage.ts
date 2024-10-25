@@ -10,7 +10,7 @@ interface RestrainingOrderDetailsPageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
-  yesNoRestrainingOrderDetails: boolean;
+  yesNoOtherProceedings: boolean;
 }
 
 interface checkPageLoadsOptions {
@@ -20,7 +20,7 @@ interface checkPageLoadsOptions {
 
 interface fillInFieldsOptions {
   page: Page;
-  yesNoRestrainingOrderDetails: boolean;
+  yesNoOtherProceedings: boolean;
 }
 
 export class RestrainingOrderDetailsPage {
@@ -28,7 +28,7 @@ export class RestrainingOrderDetailsPage {
     page: page,
     accessibilityTest: accessibilityTest,
     errorMessaging: errorMessaging,
-    yesNoRestrainingOrderDetails: yesNoRestrainingOrderDetails,
+    yesNoOtherProceedings: yesNoOtherProceedings,
   }: RestrainingOrderDetailsPageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
@@ -39,7 +39,7 @@ export class RestrainingOrderDetailsPage {
     }
     await this.fillInFields({
       page: page,
-      yesNoRestrainingOrderDetails: yesNoRestrainingOrderDetails,
+      yesNoOtherProceedings: yesNoOtherProceedings,
     });
   }
 
@@ -170,7 +170,7 @@ export class RestrainingOrderDetailsPage {
 
   private static async fillInFields({
     page: page,
-    yesNoRestrainingOrderDetails: yesNoRestrainingOrderDetails,
+    yesNoOtherProceedings: yesNoOtherProceedings,
   }: fillInFieldsOptions): Promise<void> {
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.orderDetail1}`,
@@ -205,7 +205,7 @@ export class RestrainingOrderDetailsPage {
       RestrainingOrderDetailsContent.yearNumber2,
     );
     // Selecting 'true' will move onto next page
-    if (yesNoRestrainingOrderDetails) {
+    if (yesNoOtherProceedings) {
       await page.click(
         `${CitizensOtherProceedingsUniqueSelectors.currentOrderYes}`,
       );

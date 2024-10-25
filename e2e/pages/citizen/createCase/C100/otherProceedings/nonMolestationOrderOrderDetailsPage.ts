@@ -10,7 +10,7 @@ interface NonMolestationOrderDetailsPageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
-  yesNoNonMolestationOrderDetails: boolean;
+  yesNoOtherProceedings: boolean;
 }
 
 interface checkPageLoadsOptions {
@@ -20,7 +20,7 @@ interface checkPageLoadsOptions {
 
 interface fillInFieldsOptions {
   page: Page;
-  yesNoNonMolestationOrderDetails: boolean;
+  yesNoOtherProceedings: boolean;
 }
 
 export class NonMolestationOrderDetailsPage {
@@ -28,7 +28,7 @@ export class NonMolestationOrderDetailsPage {
     page: page,
     accessibilityTest: accessibilityTest,
     errorMessaging: errorMessaging,
-    yesNoNonMolestationOrderDetails: yesNoNonMolestationOrderDetails,
+    yesNoOtherProceedings: yesNoOtherProceedings,
   }: NonMolestationOrderDetailsPageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
@@ -39,7 +39,7 @@ export class NonMolestationOrderDetailsPage {
     }
     await this.fillInFields({
       page: page,
-      yesNoNonMolestationOrderDetails: yesNoNonMolestationOrderDetails,
+      yesNoOtherProceedings: yesNoOtherProceedings,
     });
   }
 
@@ -170,7 +170,7 @@ export class NonMolestationOrderDetailsPage {
 
   private static async fillInFields({
     page: page,
-    yesNoNonMolestationOrderDetails: yesNoNonMolestationOrderDetails,
+    yesNoOtherProceedings: yesNoOtherProceedings,
   }: fillInFieldsOptions): Promise<void> {
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.orderDetail1}`,
@@ -205,7 +205,7 @@ export class NonMolestationOrderDetailsPage {
       NonMolestationOrderDetailsContent.yearNumber2,
     );
     // Selecting 'true' will move onto next page
-    if (yesNoNonMolestationOrderDetails) {
+    if (yesNoOtherProceedings) {
       await page.click(
         `${CitizensOtherProceedingsUniqueSelectors.currentOrderYes}`,
       );

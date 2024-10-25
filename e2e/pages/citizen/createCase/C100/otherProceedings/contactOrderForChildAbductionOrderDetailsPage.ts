@@ -10,7 +10,7 @@ interface ContactOrderForAdoptionOrderDetailsPageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
-  yesNoContactOrderForAdoptionOrderDetails: boolean;
+  yesNoOtherProceedings: boolean;
 }
 
 interface checkPageLoadsOptions {
@@ -20,7 +20,7 @@ interface checkPageLoadsOptions {
 
 interface fillInFieldsOptions {
   page: Page;
-  yesNoContactOrderForAdoptionOrderDetails: boolean;
+  yesNoOtherProceedings: boolean;
 }
 
 export class ContactOrderForAdoptionOrderDetailsPage {
@@ -28,8 +28,7 @@ export class ContactOrderForAdoptionOrderDetailsPage {
     page: page,
     accessibilityTest: accessibilityTest,
     errorMessaging: errorMessaging,
-    yesNoContactOrderForAdoptionOrderDetails:
-      yesNoContactOrderForAdoptionOrderDetails,
+    yesNoOtherProceedings: yesNoOtherProceedings,
   }: ContactOrderForAdoptionOrderDetailsPageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
@@ -40,8 +39,7 @@ export class ContactOrderForAdoptionOrderDetailsPage {
     }
     await this.fillInFields({
       page: page,
-      yesNoContactOrderForAdoptionOrderDetails:
-        yesNoContactOrderForAdoptionOrderDetails,
+      yesNoOtherProceedings: yesNoOtherProceedings,
     });
   }
 
@@ -172,8 +170,7 @@ export class ContactOrderForAdoptionOrderDetailsPage {
 
   private static async fillInFields({
     page: page,
-    yesNoContactOrderForAdoptionOrderDetails:
-      yesNoContactOrderForAdoptionOrderDetails,
+    yesNoOtherProceedings: yesNoOtherProceedings,
   }: fillInFieldsOptions): Promise<void> {
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.orderDetail1}`,
@@ -208,7 +205,7 @@ export class ContactOrderForAdoptionOrderDetailsPage {
       ContactOrderForAdoptionOrderDetailsContent.yearNumber2,
     );
     // Selecting 'true' will move onto next page
-    if (yesNoContactOrderForAdoptionOrderDetails) {
+    if (yesNoOtherProceedings) {
       await page.click(
         `${CitizensOtherProceedingsUniqueSelectors.currentOrderYes}`,
       );

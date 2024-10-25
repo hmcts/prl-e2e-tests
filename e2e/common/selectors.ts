@@ -64,6 +64,7 @@ export enum Selectors {
   ErrorMessage = ".govuk-error-message",
   GovukCaptionL = ".govuk-caption-l",
   GovukCaptionXL = ".govuk-caption-xl",
+  GovukTableCaption = ".govuk-table__caption",
   GovukInsetText = ".govuk-inset-text",
   GovukTabs = ".govuk-tabs__tab",
   GovukFieldsetLegend = ".govuk-fieldset__legend",
@@ -90,6 +91,7 @@ export enum Selectors {
   GovukTable = ".govuk-table",
   GovukTableHeader = ".govuk-table__header",
   GovukTableRow = ".govuk-table__row",
+  GovukTableCell = ".govuk-table__cell",
 
   // Breadcrumbs
   GovukBreadcrumbs = ".govuk-breadcrumbs",
