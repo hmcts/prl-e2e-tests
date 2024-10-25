@@ -61,7 +61,6 @@ interface C100FourthRowMiroJourneyOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
-  c100ScreeningWrittenAgreementReview: boolean; // If true -> Type Of Order Journey
   c100LegalRepresentation: boolean;
   c100CourtPermissionNeeded: boolean;
   urgencyAndWithoutNoticeAllOptionsYes: boolean;
@@ -95,6 +94,9 @@ interface C100SecondMiroJourneyOptions {
   errorMessaging: boolean;
   c100LegalRepresentation: boolean;
   c100CourtPermissionNeeded: boolean;
+  yesNoOtherProceedings: boolean;
+  yesNoChildArrangementOrderDetails: boolean;
+  urgencyAndWithoutNoticeAllOptionsYes: boolean;
 }
 
 interface C100ApplicationCompletedForYouOptions {
@@ -275,7 +277,10 @@ export class C100 {
     accessibilityTest,
     errorMessaging,
     c100LegalRepresentation,
-    c100CourtPermissionNeeded
+    c100CourtPermissionNeeded,
+    yesNoChildArrangementOrderDetails,
+    yesNoOtherProceedings,
+    urgencyAndWithoutNoticeAllOptionsYes
   }: C100SecondMiroJourneyOptions): Promise<void> {
     await CitizenCreateInitial.citizenCreateInitial({
       page: page,
@@ -308,7 +313,24 @@ export class C100 {
       miamOtherReasonForNotAttending: 'None of the above',
       miamReasonForNoAccessToMediator: 'None of these',
     });
-    // Other Proceedings
+    await C100OtherProceedings.c100OtherProceedings1({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      yesNoOtherProceedings: yesNoOtherProceedings,
+      yesNoChildArrangementOrderDetails: yesNoChildArrangementOrderDetails
+    });
+    await C100TypeOfOrder.c100TypeOfOrder({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging
+    });
+    await C100UrgencyAndWithoutNotice.c100UrgencyAndWithoutNotice({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      urgencyAndWithoutNoticeAllOptionsYes: urgencyAndWithoutNoticeAllOptionsYes
+    })
   }
   
   public static async c100ThirdMiroJourney({

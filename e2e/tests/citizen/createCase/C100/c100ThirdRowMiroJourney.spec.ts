@@ -8,6 +8,8 @@ test.describe("C100 Citizen Application tests on the third MIRO set. @citizenFro
   test(`C100 Citizen Application with the following options:
   Not Accessibility Testing
   Not Error Messaging
+  Legal Representation
+  No Permission Needed
   MIAM testing with previously attended MIAM
   With a signed MIAM document
   urgency and without notice all options: no`, async({ page }): Promise<void> => {
@@ -36,6 +38,8 @@ test.describe("C100 Citizen Application tests on the third MIRO set. @citizenFro
   test(`C100 Citizen Application with the following options:
   Not Accessibility Testing
   Not Error Messaging
+  Legal Representation
+  No Permission Needed
   MIAM testing with a valid reason for not attending
   With all general MIAM exemptions
   And subject to domestic abuse
@@ -68,6 +72,8 @@ test.describe("C100 Citizen Application tests on the third MIRO set. @citizenFro
   test(`C100 Citizen Application with the following options:
   Not Accessibility Testing
   Not Error Messaging
+  Legal Representation
+  No Permission Needed
   MIAM testing with a valid reason for not attending
   With all general MIAM exemptions
   And subject to domestic abuse
@@ -100,6 +106,8 @@ test.describe("C100 Citizen Application tests on the third MIRO set. @citizenFro
   test(`C100 Citizen Application with the following options:
   Not Accessibility Testing
   Not Error Messaging
+  Legal Representation
+  No Permission Needed
   MIAM testing with a valid reason for not attending
   With all general MIAM exemptions
   And subject to domestic abuse
@@ -131,6 +139,8 @@ test.describe("C100 Citizen Application tests on the third MIRO set. @citizenFro
   test(`C100 Citizen Application with the following options:
   Not Accessibility Testing
   Not Error Messaging
+  Legal Representation
+  No Permission Needed
   MIAM testing with a valid reason for not attending
   With all general MIAM exemptions
   And subject to domestic abuse
@@ -162,6 +172,8 @@ test.describe("C100 Citizen Application tests on the third MIRO set. @citizenFro
   test(`C100 Citizen Application with the following options:
   Not Accessibility Testing
   Not Error Messaging
+  Legal Representation
+  No Permission Needed
   MIAM testing with a valid reason for not attending
   With all general MIAM exemptions
   And subject to domestic abuse
@@ -194,6 +206,8 @@ test.describe("C100 Citizen Application tests on the third MIRO set. @citizenFro
   test(`C100 Citizen Application with the following options:
   Not Accessibility Testing
   Not Error Messaging
+  Legal Representation
+  No Permission Needed
   MIAM testing with a valid reason for not attending
   With all general MIAM exemptions
   And subject to domestic abuse
@@ -226,6 +240,8 @@ test.describe("C100 Citizen Application tests on the third MIRO set. @citizenFro
   test(`C100 Citizen Application with the following options:
   Not Accessibility Testing
   Not Error Messaging
+  Legal Representation
+  No Permission Needed
   MIAM testing with a valid reason for not attending
   With all general MIAM exemptions
   And subject to domestic abuse
@@ -258,6 +274,8 @@ test.describe("C100 Citizen Application tests on the third MIRO set. @citizenFro
   test(`C100 Citizen Application with the following options:
   Not Accessibility Testing
   Not Error Messaging
+  Legal Representation
+  No Permission Needed
   MIAM testing with a valid reason for not attending
   With all general MIAM exemptions
   And subject to domestic abuse
@@ -290,6 +308,8 @@ test.describe("C100 Citizen Application tests on the third MIRO set. @citizenFro
   test(`C100 Citizen Application with the following options:
   Not Accessibility Testing
   Not Error Messaging
+  Legal Representation
+  No Permission Needed
   MIAM testing with a valid reason for not attending
   With all general MIAM exemptions
   And subject to domestic abuse
@@ -322,6 +342,8 @@ test.describe("C100 Citizen Application tests on the third MIRO set. @citizenFro
   test(`C100 Citizen Application with the following options:
   Not Accessibility Testing
   Not Error Messaging
+  Legal Representation
+  No Permission Needed
   MIAM testing with a valid reason for not attending
   With all general MIAM exemptions
   And subject to domestic abuse
@@ -416,6 +438,8 @@ test.describe("C100 Citizen Application accessibility tests on the third row jou
   test(`C100 Citizen Application with the following options:
   Accessibility Testing
   Not Error Messaging
+  Legal Representation
+  No Permission Needed
   MIAM testing with a valid reason for not attending
   With a signed document
   urgency and without notice all options: no`, async({ page }): Promise<void> => {
@@ -444,6 +468,8 @@ test.describe("C100 Citizen Application accessibility tests on the third row jou
   test(`C100 Citizen Application with the following options:
   Accessibility Testing
   Not Error Messaging
+  Legal Representation
+  No Permission Needed
   MIAM testing with a valid reason for not attending
   With all general MIAM exemptions
   And subject to domestic abuse

@@ -195,3 +195,17 @@ Coverage:
     - boolean yes/no
     - If No: skip section,
     - If yes: next page, another yes/no radio
+
+### Fourth Row
+We should have covered most radios in the other journeys. so we aim to just pick up the missing ones here
+Coverage:
+1. Screening sections
+    - yes/no for court permission and legal representative
+    - `c100LegalRepresentation: false`
+    - `c100CourtPermissionNeeded: true`
+2. MIAM
+    - First boolean yes/no, are children involved in any proceedings (must be no)
+    - Possible Paths:
+        - miamAlreadyAttended: yes -> documentSignedByMediator: yes
+        - miamAlreadyAttended: no -> miamValidReasonNoAttendance: yes -> documentSignedByMediator: yes
+    - Note that if documentSignedByMediator = no, journey ends
