@@ -9,7 +9,7 @@ interface CurrentPreviousProceedingsPageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
-  yesNoCurrentProceedings1: boolean;
+  yesNoOtherProceedings: boolean;
 }
 
 interface checkPageLoadsOptions {
@@ -19,7 +19,7 @@ interface checkPageLoadsOptions {
 
 interface fillInFieldsOptions {
   page: Page;
-  yesNoCurrentProceedings1: boolean;
+  yesNoOtherProceedings: boolean;
 }
 
 enum UniqueSelectors {
@@ -34,7 +34,7 @@ export class CurrentPreviousProceedingsPage {
     page: page,
     accessibilityTest: accessibilityTest,
     errorMessaging: errorMessaging,
-    yesNoCurrentProceedings1: yesNoCurrentProceedings1,
+    yesNoOtherProceedings: yesNoOtherProceedings,
   }: CurrentPreviousProceedingsPageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
@@ -45,7 +45,7 @@ export class CurrentPreviousProceedingsPage {
     }
     await this.fillInFields({
       page: page,
-      yesNoCurrentProceedings1: yesNoCurrentProceedings1,
+      yesNoOtherProceedings: yesNoOtherProceedings,
     });
   }
 
@@ -118,9 +118,9 @@ export class CurrentPreviousProceedingsPage {
 
   private static async fillInFields({
     page: page,
-    yesNoCurrentProceedings1: yesNoCurrentProceedings1,
+    yesNoOtherProceedings: yesNoOtherProceedings,
   }: fillInFieldsOptions): Promise<void> {
-    if (yesNoCurrentProceedings1) {
+    if (yesNoOtherProceedings) {
       await page.click(`${UniqueSelectors.op_childrenInvolvedCourtCaseYes}`);
       await page.click(`${UniqueSelectors.op_courtOrderProtectionYes}`);
     } else {

@@ -10,7 +10,7 @@ interface contactOrderForDivorceOrderDetailsPageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
-  yesNoContactOrderForDivorceOrderDetails: boolean;
+  yesNoOtherProceedings: boolean;
 }
 
 interface checkPageLoadsOptions {
@@ -20,7 +20,7 @@ interface checkPageLoadsOptions {
 
 interface fillInFieldsOptions {
   page: Page;
-  yesNoContactOrderForDivorceOrderDetails: boolean;
+  yesNoOtherProceedings: boolean;
 }
 
 export class ContactOrderForDivorceOrderDetailsPage {
@@ -28,8 +28,7 @@ export class ContactOrderForDivorceOrderDetailsPage {
     page: page,
     accessibilityTest: accessibilityTest,
     errorMessaging: errorMessaging,
-    yesNoContactOrderForDivorceOrderDetails:
-      yesNoContactOrderForDivorceOrderDetails,
+    yesNoOtherProceedings: yesNoOtherProceedings,
   }: contactOrderForDivorceOrderDetailsPageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
@@ -40,8 +39,7 @@ export class ContactOrderForDivorceOrderDetailsPage {
     }
     await this.fillInFields({
       page: page,
-      yesNoContactOrderForDivorceOrderDetails:
-        yesNoContactOrderForDivorceOrderDetails,
+      yesNoOtherProceedings: yesNoOtherProceedings,
     });
   }
 
@@ -172,8 +170,7 @@ export class ContactOrderForDivorceOrderDetailsPage {
 
   private static async fillInFields({
     page: page,
-    yesNoContactOrderForDivorceOrderDetails:
-      yesNoContactOrderForDivorceOrderDetails,
+    yesNoOtherProceedings: yesNoOtherProceedings,
   }: fillInFieldsOptions): Promise<void> {
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.orderDetail1}`,
@@ -208,7 +205,7 @@ export class ContactOrderForDivorceOrderDetailsPage {
       ContactOrderForDivorceOrderDetailsContent.yearNumber2,
     );
     // Selecting 'true' will move onto next page
-    if (yesNoContactOrderForDivorceOrderDetails) {
+    if (yesNoOtherProceedings) {
       await page.click(
         `${CitizensOtherProceedingsUniqueSelectors.currentOrderYes}`,
       );
