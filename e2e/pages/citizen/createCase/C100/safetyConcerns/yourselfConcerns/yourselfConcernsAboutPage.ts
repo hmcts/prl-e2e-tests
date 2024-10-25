@@ -30,10 +30,10 @@ interface CheckPageLoadsOptions {
 
 export class YourselfConcernsAboutPage {
   public static async yourselfConcernsAboutPage({
-                                               page,
-                                               accessibilityTest,
-                                               errorMessaging,
-                                             }: YourselfConcernsAboutPageOptions): Promise<void> {
+    page,
+    accessibilityTest,
+    errorMessaging,
+  }: YourselfConcernsAboutPageOptions): Promise<void> {
     await this.checkPageLoads({
       page,
       accessibilityTest,
@@ -45,9 +45,9 @@ export class YourselfConcernsAboutPage {
   }
 
   private static async checkPageLoads({
-                                        page,
-                                        accessibilityTest,
-                                      }: CheckPageLoadsOptions): Promise<void> {
+    page,
+    accessibilityTest,
+  }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.GovukHeadingXL}:text-is("${YourselfConcernsAboutContent.pageTitle}")`,
     );

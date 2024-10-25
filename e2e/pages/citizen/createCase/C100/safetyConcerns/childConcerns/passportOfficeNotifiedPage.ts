@@ -30,11 +30,11 @@ interface CheckPageLoadsOptions {
 
 export class PassportOfficeNotifiedPage {
   public static async passportOfficeNotifiedPage({
-                                           page,
-                                           accessibilityTest,
-                                           errorMessaging,
-                                           c100PassportOfficeNotified,
-                                         }: PassportOfficeNotifiedPageOptions): Promise<void> {
+    page,
+    accessibilityTest,
+    errorMessaging,
+    c100PassportOfficeNotified,
+  }: PassportOfficeNotifiedPageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
       accessibilityTest: accessibilityTest,
@@ -49,9 +49,9 @@ export class PassportOfficeNotifiedPage {
   }
 
   private static async checkPageLoads({
-                                        page,
-                                        accessibilityTest,
-                                      }: CheckPageLoadsOptions): Promise<void> {
+    page,
+    accessibilityTest,
+  }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.GovukHeadingXL}:text-is("${PassportOfficeNotifiedContent.pageTitle}")`,
     );
@@ -103,9 +103,9 @@ export class PassportOfficeNotifiedPage {
   }
 
   private static async fillInFields({
-                                      page,
-                                      c100PassportOfficeNotified,
-                                    }: FillInFieldsOptions): Promise<void> {
+    page,
+    c100PassportOfficeNotified,
+  }: FillInFieldsOptions): Promise<void> {
     if (c100PassportOfficeNotified) {
       await page.click(radioIDs.radioYes);
     } else {

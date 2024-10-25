@@ -3,9 +3,7 @@ import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { ChildSafetyConcernsCommonContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/childConcerns/childSafetyConcernsCommonContent";
 import { PassportSidebarContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/childConcerns/passportSidebarContent";
-import {
-  YourselfSafetyConcernsCommonContent
-} from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/childConcerns/yourselfSafetyConcernsCommonContent";
+import { YourselfSafetyConcernsCommonContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/childConcerns/yourselfSafetyConcernsCommonContent";
 
 interface SeekHelpOptions {
   page: Page;
@@ -128,9 +126,7 @@ export class SafetyConcernHelpers {
     ]);
   }
 
-  public static async checkSidebarYourself(
-    page: Page
-  ): Promise<void> {
+  public static async checkSidebarYourself(page: Page): Promise<void> {
     await Promise.all([
       Helpers.checkGroup(
         page,
@@ -201,17 +197,13 @@ export class SafetyConcernHelpers {
   }
 
   public static async ongoingBehaviourFieldsYourself({
-                                                    page,
-                                                    c100ReportAbuseYesNoToAll,
-                                                    inputIDs,
-                                                  }: OngoingBehaviourOptions): Promise<void> {
+    page,
+    c100ReportAbuseYesNoToAll,
+    inputIDs,
+  }: OngoingBehaviourOptions): Promise<void> {
     if (c100ReportAbuseYesNoToAll) {
-      if (
-        !('ongoingBehaviorYes' in Object.keys(inputIDs))
-      ) {
-        throw new Error(
-          `Could not find ongoingBehaviorYes in inputIDs`
-        )
+      if (!("ongoingBehaviorYes" in Object.keys(inputIDs))) {
+        throw new Error(`Could not find ongoingBehaviorYes in inputIDs`);
       }
       await page.click(inputIDs.ongoingBehaviorYes);
       await Promise.all([
@@ -231,12 +223,8 @@ export class SafetyConcernHelpers {
         ),
       ]);
     } else {
-      if (
-        !('ongoingBehaviorNo' in Object.keys(inputIDs))
-      ) {
-        throw new Error(
-          `Could not find ongoingBehaviorNo in inputIDs`
-        )
+      if (!("ongoingBehaviorNo" in Object.keys(inputIDs))) {
+        throw new Error(`Could not find ongoingBehaviorNo in inputIDs`);
       }
       await page.click(inputIDs.ongoingBehaviorNo);
     }
@@ -248,12 +236,8 @@ export class SafetyConcernHelpers {
     inputIDs,
   }: OngoingBehaviourOptions): Promise<void> {
     if (c100ReportAbuseYesNoToAll) {
-      if (
-        !('ongoingBehaviorYes' in Object.keys(inputIDs))
-      ) {
-        throw new Error(
-          `Could not find ongoingBehaviorYes in inputIDs`
-        )
+      if (!("ongoingBehaviorYes" in Object.keys(inputIDs))) {
+        throw new Error(`Could not find ongoingBehaviorYes in inputIDs`);
       }
       await page.click(inputIDs.ongoingBehaviorYes);
       await Promise.all([
@@ -273,31 +257,27 @@ export class SafetyConcernHelpers {
         ),
       ]);
     } else {
-      if (
-        !('ongoingBehaviorNo' in Object.keys(inputIDs))
-      ) {
-        throw new Error(
-          `Could not find ongoingBehaviorNo in inputIDs`
-        )
+      if (!("ongoingBehaviorNo" in Object.keys(inputIDs))) {
+        throw new Error(`Could not find ongoingBehaviorNo in inputIDs`);
       }
       await page.click(inputIDs.ongoingBehaviorNo);
     }
   }
 
   public static async seekHelpFieldsYourself({
-                                            page,
-                                            c100ReportAbuseYesNoToAll,
-                                            inputIDs,
-                                            abuseContent,
-                                          }: SeekHelpOptions): Promise<void> {
+    page,
+    c100ReportAbuseYesNoToAll,
+    inputIDs,
+    abuseContent,
+  }: SeekHelpOptions): Promise<void> {
     if (c100ReportAbuseYesNoToAll) {
       if (
-        !('seekHelpYes' in Object.keys(inputIDs)) ||
-        !('seekHelpDetails' in Object.keys(inputIDs))
+        !("seekHelpYes" in Object.keys(inputIDs)) ||
+        !("seekHelpDetails" in Object.keys(inputIDs))
       ) {
         throw new Error(
-          `Could not find seekHelpYes or seekHelpDetails in inputIDs`
-        )
+          `Could not find seekHelpYes or seekHelpDetails in inputIDs`,
+        );
       }
       await page.click(inputIDs.seekHelpYes);
       await Helpers.checkGroup(
@@ -309,10 +289,8 @@ export class SafetyConcernHelpers {
       );
       await page.fill(inputIDs.seekHelpDetails, abuseContent.seekHelpDetails);
     } else {
-      if (!('seekHelpNo' in Object.keys(inputIDs))) {
-        throw new Error(
-          `Could not find seekHelpNo inputIDs`
-        )
+      if (!("seekHelpNo" in Object.keys(inputIDs))) {
+        throw new Error(`Could not find seekHelpNo inputIDs`);
       }
       await page.click(inputIDs.seekHelpNo);
       await Promise.all([
@@ -340,12 +318,12 @@ export class SafetyConcernHelpers {
   }: SeekHelpOptions): Promise<void> {
     if (c100ReportAbuseYesNoToAll) {
       if (
-        !('seekHelpYes' in Object.keys(inputIDs)) ||
-        !('seekHelpDetails' in Object.keys(inputIDs))
+        !("seekHelpYes" in Object.keys(inputIDs)) ||
+        !("seekHelpDetails" in Object.keys(inputIDs))
       ) {
         throw new Error(
-          `Could not find seekHelpYes or seekHelpDetails in inputIDs`
-        )
+          `Could not find seekHelpYes or seekHelpDetails in inputIDs`,
+        );
       }
       await page.click(inputIDs.seekHelpYes);
       await Helpers.checkGroup(
@@ -357,10 +335,8 @@ export class SafetyConcernHelpers {
       );
       await page.fill(inputIDs.seekHelpDetails, abuseContent.seekHelpDetails);
     } else {
-      if (!('seekHelpNo' in Object.keys(inputIDs))) {
-        throw new Error(
-          `Could not find seekHelpNo inputIDs`
-        )
+      if (!("seekHelpNo" in Object.keys(inputIDs))) {
+        throw new Error(`Could not find seekHelpNo inputIDs`);
       }
       await page.click(inputIDs.seekHelpNo);
       await Promise.all([

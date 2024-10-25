@@ -30,11 +30,11 @@ interface CheckPageLoadsOptions {
 
 export class AbductionThreatsPage {
   public static async abductionThreatsPage({
-                                           page,
-                                           accessibilityTest,
-                                           errorMessaging,
-                                           c100ChildrenAbductedBefore,
-                                         }: AbductionThreatsPageOptions): Promise<void> {
+    page,
+    accessibilityTest,
+    errorMessaging,
+    c100ChildrenAbductedBefore,
+  }: AbductionThreatsPageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
       accessibilityTest: accessibilityTest,
@@ -49,9 +49,9 @@ export class AbductionThreatsPage {
   }
 
   private static async checkPageLoads({
-                                        page,
-                                        accessibilityTest,
-                                      }: CheckPageLoadsOptions): Promise<void> {
+    page,
+    accessibilityTest,
+  }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.GovukHeadingXL}:text-is("${AbductionThreatsContent.pageTitle}")`,
     );
@@ -103,9 +103,9 @@ export class AbductionThreatsPage {
   }
 
   private static async fillInFields({
-                                      page,
-                                      c100ChildrenAbductedBefore,
-                                    }: FillInFieldsOptions): Promise<void> {
+    page,
+    c100ChildrenAbductedBefore,
+  }: FillInFieldsOptions): Promise<void> {
     if (c100ChildrenAbductedBefore) {
       await page.click(radioIDs.radioYes);
     } else {

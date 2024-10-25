@@ -16,7 +16,7 @@ export enum YourselfSafetyConcernsCommonContent {
   formHint3 = "For example, speaking to your local GP.",
   ongoingBehaviourBody1 = "Contact 999 if there is an emergency. If it's not an emergency, ",
   ongoingBehaviourBody2 = " to get help or report the behaviour with ",
-  ongoingBehaviourBody3 = '.',
+  ongoingBehaviourBody3 = ".",
   ongoingBehaviourLink1 = "contact one of the suggested agencies",
   ongoingBehaviourLink2 = "your local policing team",
   seekHelpBody1 = "Indicate who you sought help from, and what they did to help (optional).",
