@@ -21,8 +21,8 @@ test.describe("C100 Citizen Application tests on the fourth MIRO set. @citizenFr
   With a mediator signed document
   And Applying for a without notice other reason
   urgency and without notice all options: no`, async ({
-                                                                page,
-                                                              }): Promise<void> => {
+    page,
+  }): Promise<void> => {
     await C100.c100FourthRowMiroJourney({
       page: page,
       accessibilityTest: false,
@@ -57,8 +57,8 @@ test.describe("C100 Citizen Application tests on the fourth MIRO set. @citizenFr
   Providing evidence of domestic abuse
   With a risk to life urgency
   urgency and without notice all options: no`, async ({
-                                                                page,
-                                                              }): Promise<void> => {
+    page,
+  }): Promise<void> => {
     await C100.c100FourthRowMiroJourney({
       page: page,
       accessibilityTest: false,
@@ -93,8 +93,8 @@ test.describe("C100 Citizen Application tests on the fourth MIRO set. @citizenFr
   Providing evidence of domestic abuse
   With a Risk to family life urgency
   urgency and without notice all options: no`, async ({
-                                                                page,
-                                                              }): Promise<void> => {
+    page,
+  }): Promise<void> => {
     await C100.c100FourthRowMiroJourney({
       page: page,
       accessibilityTest: false,
@@ -129,8 +129,8 @@ test.describe("C100 Citizen Application tests on the fourth MIRO set. @citizenFr
   Providing evidence of domestic abuse
   With a Risk to safety of home urgency
   urgency and without notice all options: no`, async ({
-                                                                page,
-                                                              }): Promise<void> => {
+    page,
+  }): Promise<void> => {
     await C100.c100FourthRowMiroJourney({
       page: page,
       accessibilityTest: false,
@@ -166,8 +166,8 @@ test.describe("C100 Citizen Application tests on the fourth MIRO set. @citizenFr
   With a Delay causing risk of harm urgency
   With a Risk to safety of home urgency
   urgency and without notice all options: no`, async ({
-                                                                page,
-                                                              }): Promise<void> => {
+    page,
+  }): Promise<void> => {
     await C100.c100FourthRowMiroJourney({
       page: page,
       accessibilityTest: false,
@@ -202,8 +202,8 @@ test.describe("C100 Citizen Application tests on the fourth MIRO set. @citizenFr
   Providing evidence of domestic abuse
   With a Delay causing risk of removal urgency
   urgency and without notice all options: no`, async ({
-                                                                page,
-                                                              }): Promise<void> => {
+    page,
+  }): Promise<void> => {
     await C100.c100FourthRowMiroJourney({
       page: page,
       accessibilityTest: false,
@@ -238,8 +238,8 @@ test.describe("C100 Citizen Application tests on the fourth MIRO set. @citizenFr
   Providing evidence of domestic abuse
   With a Delay causing risk of unfair court decision urgency
   urgency and without notice all options: no`, async ({
-                                                                page,
-                                                              }): Promise<void> => {
+    page,
+  }): Promise<void> => {
     await C100.c100FourthRowMiroJourney({
       page: page,
       accessibilityTest: false,
@@ -274,8 +274,8 @@ test.describe("C100 Citizen Application tests on the fourth MIRO set. @citizenFr
   Providing evidence of domestic abuse
   With a Delay causing risk of financial hardship urgency
   urgency and without notice all options: no`, async ({
-                                                                page,
-                                                              }): Promise<void> => {
+    page,
+  }): Promise<void> => {
     await C100.c100FourthRowMiroJourney({
       page: page,
       accessibilityTest: false,
@@ -310,8 +310,8 @@ test.describe("C100 Citizen Application tests on the fourth MIRO set. @citizenFr
   Providing evidence of domestic abuse
   With a Delay causing risk of irretrievable problems
   urgency and without notice all options: no`, async ({
-                                                                page,
-                                                              }): Promise<void> => {
+    page,
+  }): Promise<void> => {
     await C100.c100FourthRowMiroJourney({
       page: page,
       accessibilityTest: false,
@@ -346,8 +346,8 @@ test.describe("C100 Citizen Application tests on the fourth MIRO set. @citizenFr
   Providing evidence of domestic abuse
   With a Delay dispute starting in another country problems
   urgency and without notice all options: no`, async ({
-                                                                page,
-                                                              }): Promise<void> => {
+    page,
+  }): Promise<void> => {
     await C100.c100FourthRowMiroJourney({
       page: page,
       accessibilityTest: false,
@@ -382,8 +382,8 @@ test.describe("C100 Citizen Application tests on the fourth MIRO set. @citizenFr
   Providing evidence of domestic abuse
   With a Delay dispute starting in another country problems
   urgency and without notice all options: no`, async ({
-                                                                page,
-                                                              }): Promise<void> => {
+    page,
+  }): Promise<void> => {
     await C100.c100FourthRowMiroJourney({
       page: page,
       accessibilityTest: false,
@@ -419,8 +419,8 @@ test(`C100 Citizen Application with the following options:
   Providing evidence of domestic abuse
   With a Delay dispute starting in another country problems
   urgency and without notice all options: no`, async ({
-                                                              page,
-                                                            }): Promise<void> => {
+  page,
+}): Promise<void> => {
   await C100.c100FourthRowMiroJourney({
     page: page,
     accessibilityTest: true,
