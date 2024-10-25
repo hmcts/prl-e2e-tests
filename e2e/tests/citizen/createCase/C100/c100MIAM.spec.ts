@@ -6,6 +6,9 @@ import { C100 } from "../../../../journeys/citizen/createCase/C100/C100";
 test.use({ storageState: Config.sessionStoragePath + "citizen.json" });
 
 test.describe("C100 Citizen Application tests on the MIAM set. @citizenFrontend @crossbrowserCitizenFrontend", (): void => {
+  // Row 2
+  // No Need Page
+  // https://privatelaw.aat.platform.hmcts.net/c100-rebuild/other-proceedings/current-previous-proceedings
   test(`MIAM testing  with an emergency protection provision / supervision proceeding in place,
   Not error message testing,
   Not accessibility Testing`, async ({ page }): Promise<void> => {
@@ -36,6 +39,8 @@ test.describe("C100 Citizen Application tests on the MIAM set. @citizenFrontend 
     });
   });
 
+  // Dashboard
+  // https://privatelaw.aat.platform.hmcts.net/dashboard
   test(`MIAM testing  with a previously attended MIAM,
   Without a signed document
   Not error message testing,
@@ -67,6 +72,8 @@ test.describe("C100 Citizen Application tests on the MIAM set. @citizenFrontend 
     });
   });
 
+  // Uploaded Document
+  // https://privatelaw.aat.platform.hmcts.net/c100-rebuild/typeoforder/select-courtorder?_csrf=B2rEegk9-KQICLhX8ZX_5eU5akr3Mq5HL0Kc
   test(`MIAM testing  with a previously attended MIAM,
   With a signed document
   Not error message testing,
@@ -98,6 +105,8 @@ test.describe("C100 Citizen Application tests on the MIAM set. @citizenFrontend 
     });
   });
 
+  // Get Mediator
+  // https://privatelaw.aat.platform.hmcts.net/c100-rebuild/miam/get-mediator
   test(`MIAM testing  with no previously attended MIAM,
   With no valid reason for attending
   Not error message testing,
@@ -129,6 +138,8 @@ test.describe("C100 Citizen Application tests on the MIAM set. @citizenFrontend 
     });
   });
 
+  // Get Mediator
+  // https://privatelaw.aat.platform.hmcts.net/c100-rebuild/miam/get-mediator
   test(`MIAM testing  with no previously attended MIAM,
   With a valid reason for attending
   With no general exemptions
@@ -161,6 +172,9 @@ test.describe("C100 Citizen Application tests on the MIAM set. @citizenFrontend 
     });
   });
 
+  // Row 4
+  // Exemption Summary
+  // https://privatelaw.aat.platform.hmcts.net/c100-rebuild/hearing-urgency/urgent
   test(`MIAM testing  with no previously attended MIAM,
   With a valid reason for attending
   With all general exemptions
@@ -200,6 +214,9 @@ test.describe("C100 Citizen Application tests on the MIAM set. @citizenFrontend 
     });
   });
 
+  // Row 4
+  // Exemption Summary
+  // https://privatelaw.aat.platform.hmcts.net/c100-rebuild/hearing-urgency/urgent
   test(`MIAM testing  with no previously attended MIAM,
   With a valid reason for attending
   With all general exemptions
@@ -235,6 +252,9 @@ test.describe("C100 Citizen Application tests on the MIAM set. @citizenFrontend 
     });
   });
 
+  // Row 4
+  // Exemption Summary
+  // https://privatelaw.aat.platform.hmcts.net/c100-rebuild/hearing-urgency/urgent
   test(`MIAM testing  with no previously attended MIAM,
   With a valid reason for attending
   With all general exemptions
@@ -270,6 +290,9 @@ test.describe("C100 Citizen Application tests on the MIAM set. @citizenFrontend 
     });
   });
 
+  // Row 4
+  // Exemption Summary
+  // https://privatelaw.aat.platform.hmcts.net/c100-rebuild/hearing-urgency/urgent
   test(`MIAM testing  with no previously attended MIAM,
   With a valid reason for attending
   With all general exemptions
@@ -304,7 +327,9 @@ test.describe("C100 Citizen Application tests on the MIAM set. @citizenFrontend 
       miamReasonForNoAccessToMediator: "None of these",
     });
   });
-
+// Row 4
+  // Exemption Summary
+  // https://privatelaw.aat.platform.hmcts.net/c100-rebuild/hearing-urgency/urgent
   test(`MIAM testing  with no previously attended MIAM,
   With a valid reason for attending
   With all general exemptions
@@ -339,7 +364,9 @@ test.describe("C100 Citizen Application tests on the MIAM set. @citizenFrontend 
       miamReasonForNoAccessToMediator: "None of these",
     });
   });
-
+// Row 4
+  // Exemption Summary
+  // https://privatelaw.aat.platform.hmcts.net/c100-rebuild/hearing-urgency/urgent
   test(`MIAM testing  with no previously attended MIAM,
   With a valid reason for attending
   With all general exemptions
@@ -374,7 +401,9 @@ test.describe("C100 Citizen Application tests on the MIAM set. @citizenFrontend 
       miamReasonForNoAccessToMediator: "None of these",
     });
   });
-
+// Row 4
+  // Exemption Summary
+  // https://privatelaw.aat.platform.hmcts.net/c100-rebuild/hearing-urgency/urgent
   test(`MIAM testing  with no previously attended MIAM,
   With a valid reason for attending
   With all general exemptions
@@ -409,7 +438,9 @@ test.describe("C100 Citizen Application tests on the MIAM set. @citizenFrontend 
       miamReasonForNoAccessToMediator: "None of these",
     });
   });
-
+// Row 4
+  // Exemption Summary
+  // https://privatelaw.aat.platform.hmcts.net/c100-rebuild/hearing-urgency/urgent
   test(`MIAM testing  with no previously attended MIAM,
   With a valid reason for attending
   With all general exemptions
@@ -444,7 +475,9 @@ test.describe("C100 Citizen Application tests on the MIAM set. @citizenFrontend 
       miamReasonForNoAccessToMediator: "None of these",
     });
   });
-
+// Row 4
+  // Exemption Summary
+  // https://privatelaw.aat.platform.hmcts.net/c100-rebuild/hearing-urgency/urgent
   test(`MIAM testing  with no previously attended MIAM,
   With a valid reason for attending
   With all general exemptions
@@ -479,7 +512,9 @@ test.describe("C100 Citizen Application tests on the MIAM set. @citizenFrontend 
       miamReasonForNoAccessToMediator: "None of these",
     });
   });
-
+// Row 4
+  // Exemption Summary
+  // https://privatelaw.aat.platform.hmcts.net/c100-rebuild/hearing-urgency/urgent
   test(`MIAM testing  with no previously attended MIAM,
   With a valid reason for attending
   With all general exemptions
@@ -515,6 +550,9 @@ test.describe("C100 Citizen Application tests on the MIAM set. @citizenFrontend 
     });
   });
 
+  // Row 3
+  // Exemption Summary
+  // https://privatelaw.aat.platform.hmcts.net/c100-rebuild/typeoforder/select-courtorder
   test(`MIAM testing  with no previously attended MIAM,
   With a valid reason for attending
   With all general exemptions
@@ -550,7 +588,9 @@ test.describe("C100 Citizen Application tests on the MIAM set. @citizenFrontend 
       miamReasonForNoAccessToMediator: "None of these",
     });
   });
-
+// Row 3
+  // Exemption Summary
+  // https://privatelaw.aat.platform.hmcts.net/c100-rebuild/typeoforder/select-courtorder
   test(`MIAM testing  with no previously attended MIAM,
   With a valid reason for attending
   With all general exemptions
@@ -586,7 +626,9 @@ test.describe("C100 Citizen Application tests on the MIAM set. @citizenFrontend 
       miamReasonForNoAccessToMediator: "None of these",
     });
   });
-
+// Row 3
+  // Exemption Summary
+  // https://privatelaw.aat.platform.hmcts.net/c100-rebuild/typeoforder/select-courtorder
   test(`MIAM testing  with no previously attended MIAM,
   With a valid reason for attending
   With all general exemptions
@@ -622,6 +664,9 @@ test.describe("C100 Citizen Application tests on the MIAM set. @citizenFrontend 
     });
   });
 
+  // Row 3
+  // Exemption Summary
+  // https://privatelaw.aat.platform.hmcts.net/c100-rebuild/typeoforder/select-courtorder
   test(`MIAM testing  with no previously attended MIAM,
   With a valid reason for attending
   With all general exemptions
@@ -657,6 +702,9 @@ test.describe("C100 Citizen Application tests on the MIAM set. @citizenFrontend 
     });
   });
 
+  // Row 3
+  // Exemption Summary
+  // https://privatelaw.aat.platform.hmcts.net/c100-rebuild/typeoforder/select-courtorder
   test(`MIAM testing  with no previously attended MIAM,
   With a valid reason for attending
   With all general exemptions
@@ -693,6 +741,9 @@ test.describe("C100 Citizen Application tests on the MIAM set. @citizenFrontend 
     });
   });
 
+  // Row 3
+  // Exemption Summary
+  // https://privatelaw.aat.platform.hmcts.net/c100-rebuild/typeoforder/select-courtorder
   test(`MIAM testing  with no previously attended MIAM,
   With a valid reason for attending
   With all general exemptions
@@ -728,7 +779,9 @@ test.describe("C100 Citizen Application tests on the MIAM set. @citizenFrontend 
       miamReasonForNoAccessToMediator: "Disability",
     });
   });
-
+// Row 3
+  // Exemption Summary
+  // https://privatelaw.aat.platform.hmcts.net/c100-rebuild/typeoforder/select-courtorder
   test(`MIAM testing  with no previously attended MIAM,
   With a valid reason for attending
   With all general exemptions
@@ -764,7 +817,9 @@ test.describe("C100 Citizen Application tests on the MIAM set. @citizenFrontend 
       miamReasonForNoAccessToMediator: "No mediator within 15 miles",
     });
   });
-
+// Row 3
+  // Exemption Summary
+  // https://privatelaw.aat.platform.hmcts.net/c100-rebuild/typeoforder/select-courtorder
   test(`MIAM testing  with no previously attended MIAM,
   With a valid reason for attending
   With all general exemptions
@@ -800,7 +855,9 @@ test.describe("C100 Citizen Application tests on the MIAM set. @citizenFrontend 
       miamReasonForNoAccessToMediator: "Prison or institution",
     });
   });
-
+// Row 3
+  // Exemption Summary
+  // https://privatelaw.aat.platform.hmcts.net/c100-rebuild/typeoforder/select-courtorder
   test(`MIAM testing  with no previously attended MIAM,
   With a valid reason for attending
   With all general exemptions
@@ -836,7 +893,9 @@ test.describe("C100 Citizen Application tests on the MIAM set. @citizenFrontend 
       miamReasonForNoAccessToMediator: "Subject to bail",
     });
   });
-
+// Row 3
+  // Exemption Summary
+  // https://privatelaw.aat.platform.hmcts.net/c100-rebuild/typeoforder/select-courtorder
   test(`MIAM testing  with no previously attended MIAM,
   With a valid reason for attending
   With all general exemptions
@@ -873,6 +932,8 @@ test.describe("C100 Citizen Application tests on the MIAM set. @citizenFrontend 
     });
   });
 
+  // Get Mediator
+  // https://privatelaw.aat.platform.hmcts.net/c100-rebuild/miam/get-mediator
   test(`MIAM testing  with no previously attended MIAM,
   With a valid reason for attending
   With all general exemptions
@@ -906,6 +967,8 @@ test.describe("C100 Citizen Application tests on the MIAM set. @citizenFrontend 
     });
   });
 
+  // Get Mediator
+  // https://privatelaw.aat.platform.hmcts.net/c100-rebuild/miam/get-mediator
   test(`MIAM testing  with no previously attended MIAM,
   With a valid reason for attending
   With all general exemptions
@@ -940,6 +1003,9 @@ test.describe("C100 Citizen Application tests on the MIAM set. @citizenFrontend 
     });
   });
 
+  // Row 2
+  // No Need Page
+  // https://privatelaw.aat.platform.hmcts.net/c100-rebuild/other-proceedings/current-previous-proceedings
   test(`MIAM testing  with an emergency protection provision / supervision proceeding in place,
   Error message testing,
   Not accessibility Testing`, async ({ page }): Promise<void> => {
@@ -970,6 +1036,8 @@ test.describe("C100 Citizen Application tests on the MIAM set. @citizenFrontend 
     });
   });
 
+  // Dashboard
+  // https://privatelaw.aat.platform.hmcts.net/dashboard
   test(`MIAM testing  with a previously attended MIAM,
   Without a signed document
   Error message testing,
@@ -1001,6 +1069,9 @@ test.describe("C100 Citizen Application tests on the MIAM set. @citizenFrontend 
     });
   });
 
+  // Row 3
+  // Uploaded Document
+  // https://privatelaw.aat.platform.hmcts.net/c100-rebuild/typeoforder/select-courtorder?_csrf=mT86DUnn-kKT2VhQd3ghAV1qWFVFc5PNVPDg
   test(`MIAM testing  with a previously attended MIAM,
   With a signed document
   Error message testing,
@@ -1032,6 +1103,8 @@ test.describe("C100 Citizen Application tests on the MIAM set. @citizenFrontend 
     });
   });
 
+  // Get Mediator
+  // https://privatelaw.aat.platform.hmcts.net/c100-rebuild/miam/get-mediator
   test(`MIAM testing  with no previously attended MIAM,
   With a valid reason for attending
   With all general exemptions
@@ -1068,6 +1141,8 @@ test.describe("C100 Citizen Application tests on the MIAM set. @citizenFrontend 
 });
 
 test.describe("C100 Citizen Application accessibility tests on the MIAM set. @accessibilityCitizenFrontend", (): void => {
+  // No Need Page
+  // https://privatelaw.aat.platform.hmcts.net/c100-rebuild/other-proceedings/current-previous-proceedings
   test(`MIAM testing  with an emergency protection provision / supervision proceeding in place,
   Not error message testing,
   Accessibility Testing`, async ({ page }): Promise<void> => {
@@ -1098,6 +1173,8 @@ test.describe("C100 Citizen Application accessibility tests on the MIAM set. @ac
     });
   });
 
+  // Uploaded Document
+  // https://privatelaw.aat.platform.hmcts.net/c100-rebuild/typeoforder/select-courtorder?_csrf=8WDWuE7o-ZakCH8Dzyz1g9zXfGFgE8oxhL3g
   test(`MIAM testing  with a previously attended MIAM,
   With a signed document
   Not error message testing,
@@ -1129,6 +1206,9 @@ test.describe("C100 Citizen Application accessibility tests on the MIAM set. @ac
     });
   });
 
+  // row 4
+  // Exemption Summary
+  // https://privatelaw.aat.platform.hmcts.net/c100-rebuild/hearing-urgency/urgent
   test(`MIAM testing  with no previously attended MIAM,
   With a valid reason for attending
   With all general exemptions
@@ -1168,6 +1248,8 @@ test.describe("C100 Citizen Application accessibility tests on the MIAM set. @ac
     });
   });
 
+  // Get Mediator
+  // https://privatelaw.aat.platform.hmcts.net/c100-rebuild/miam/get-mediator
   test(`MIAM testing  with no previously attended MIAM,
   With a valid reason for attending
   With all general exemptions
