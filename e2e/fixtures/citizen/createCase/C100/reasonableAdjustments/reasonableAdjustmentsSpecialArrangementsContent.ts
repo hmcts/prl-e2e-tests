@@ -14,7 +14,7 @@ export enum ReasonableAdjustmentsSpecialArrangementsContent {
   govukLabel8 = "No, I do not have any safety requirements at this time",
   hiddengovukLabel = "Provide details of what you or the children need",
   loremIpsum = "Lorem Ipsum other safety concern",
-  or =  "or",
+  or = "or",
   errorMessageChildNeedSpecialArrangement = "Select whether you or the children need special arrangements at court",
   errorMessageGiveDetails = "Give details of the special arrangements you or the children need",
 }

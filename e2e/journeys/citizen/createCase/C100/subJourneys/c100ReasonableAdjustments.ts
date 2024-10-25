@@ -1,11 +1,7 @@
 import { Page } from "@playwright/test";
 import { ReasonableAdjustmentsAttendingCourtPage } from "../../../../../pages/citizen/createCase/C100/reasonableAdjustments/reasonableAdjustmentsAttendingCourtPage";
-import {
-  ReasonableAdjustmentsLanguageRequirementsPage
-} from "../../../../../pages/citizen/createCase/C100/reasonableAdjustments/reasonableAdjustmentsLanguageRequirementsPage";
-import {
-  ReasonableAdjustmentsSpecialArrangementsPage
-} from "../../../../../pages/citizen/createCase/C100/reasonableAdjustments/reasonableAdjustmentsSpecialArrangementsPage";
+import { ReasonableAdjustmentsLanguageRequirementsPage } from "../../../../../pages/citizen/createCase/C100/reasonableAdjustments/reasonableAdjustmentsLanguageRequirementsPage";
+import { ReasonableAdjustmentsSpecialArrangementsPage } from "../../../../../pages/citizen/createCase/C100/reasonableAdjustments/reasonableAdjustmentsSpecialArrangementsPage";
 
 interface C100ReasonableAdjustmentsOptions {
   page: Page;
@@ -29,17 +25,21 @@ export class C100ReasonableAdjustments {
         yesNoReasonableAdjustments: yesNoReasonableAdjustments,
       },
     );
-    await ReasonableAdjustmentsLanguageRequirementsPage.reasonableAdjustmentsAttendingCourtPage({
-      page: page,
-      accessibilityTest: accessibilityTest,
-      errorMessaging: errorMessaging,
-      yesNoReasonableAdjustments: yesNoReasonableAdjustments,
-    });
-    await ReasonableAdjustmentsSpecialArrangementsPage.reasonableAdjustmentsSpecialArrangementsPage({
-      page: page,
-      accessibilityTest: accessibilityTest,
-      errorMessaging: errorMessaging,
-      yesNoReasonableAdjustments: yesNoReasonableAdjustments,
-    });
+    await ReasonableAdjustmentsLanguageRequirementsPage.reasonableAdjustmentsAttendingCourtPage(
+      {
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
+        yesNoReasonableAdjustments: yesNoReasonableAdjustments,
+      },
+    );
+    await ReasonableAdjustmentsSpecialArrangementsPage.reasonableAdjustmentsSpecialArrangementsPage(
+      {
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
+        yesNoReasonableAdjustments: yesNoReasonableAdjustments,
+      },
+    );
   }
 }

@@ -53,36 +53,38 @@ export class ReasonableAdjustmentsSpecialArrangementsPage {
     if (!page) {
       throw new Error();
     }
-    await page.waitForSelector(`${Selectors.GovukHeadingXL}:text-is("${ReasonableAdjustmentsSpecialArrangementsContent.pageTitle}")`);
+    await page.waitForSelector(
+      `${Selectors.GovukHeadingXL}:text-is("${ReasonableAdjustmentsSpecialArrangementsContent.pageTitle}")`,
+    );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukCaptionXL}:text-is("${ReasonableAdjustmentsSpecialArrangementsContent.GovukCaptionXL}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukInsetText}:text-is("${ReasonableAdjustmentsSpecialArrangementsContent.govukInsetText}")`,
-        1
+        1,
       ),
       Helpers.checkGroup(
         page,
         2,
         ReasonableAdjustmentsSpecialArrangementsContent,
         "govukHint",
-        Selectors.GovukHint
+        Selectors.GovukHint,
       ),
       Helpers.checkGroup(
         page,
         8,
         ReasonableAdjustmentsSpecialArrangementsContent,
         "govukLabel",
-        Selectors.GovukLabel
+        Selectors.GovukLabel,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukCheckboxesDivider}:text-is("${ReasonableAdjustmentsSpecialArrangementsContent.or}")`,
-        1
+        1,
       ),
     ]);
     if (accessibilityTest) {
@@ -108,12 +110,12 @@ export class ReasonableAdjustmentsSpecialArrangementsPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.a}:text-is("${ReasonableAdjustmentsSpecialArrangementsContent.errorMessageChildNeedSpecialArrangement}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.ErrorMessage}:text-is("${ReasonableAdjustmentsSpecialArrangementsContent.errorMessageChildNeedSpecialArrangement}")`,
-        1
+        1,
       ),
     ]);
     await page.click(safetyRequirementsUniqueSelectors.other);
@@ -129,16 +131,14 @@ export class ReasonableAdjustmentsSpecialArrangementsPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.a}:text-is("${ReasonableAdjustmentsSpecialArrangementsContent.errorMessageGiveDetails}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.ErrorMessage}:text-is("${ReasonableAdjustmentsSpecialArrangementsContent.errorMessageGiveDetails}")`,
-        1
+        1,
       ),
     ]);
-
-
   }
 
   private static async fillInFields({
@@ -155,7 +155,7 @@ export class ReasonableAdjustmentsSpecialArrangementsPage {
       await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukLabel}:text-is("${ReasonableAdjustmentsSpecialArrangementsContent.hiddengovukLabel}")`,
-        1
+        1,
       );
       await page.fill(
         otherInput,
