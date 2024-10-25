@@ -1,1 +1,20 @@
-export enum ReasonableAdjustmentsSpecialArrangementsContent {}
+export enum ReasonableAdjustmentsSpecialArrangementsContent {
+  pageTitle = "Do you or the children need special arrangements at court?",
+  GovukCaptionXL = "Special arrangements",
+  govukInsetText = "You or the children may need certain arrangements when you attend the court. Some of these arrangements will need to be agreed by the judge or HMCTS. If your needs change, you can discuss this with the court.",
+  govukHint1 = "Select all that apply to you",
+  govukHint2 = "This needs to be approved by a judge",
+  govukLabel1 = "Separate waiting room",
+  govukLabel2 = "Separate exits and entrances",
+  govukLabel3 = "Screens so you and the other people in the case cannot see each other",
+  govukLabel4 = "Separate toilets",
+  govukLabel5 = "Visit to court before the hearing",
+  govukLabel6 = "Video links",
+  govukLabel7 = "Other",
+  govukLabel8 = "No, I do not have any safety requirements at this time",
+  hiddengovukLabel = "Provide details of what you or the children need",
+  loremIpsum = "Lorem Ipsum other safety concern",
+  or =  "or",
+  errorMessageChildNeedSpecialArrangement = "Select whether you or the children need special arrangements at court",
+  errorMessageGiveDetails = "Give details of the special arrangements you or the children need",
+}
