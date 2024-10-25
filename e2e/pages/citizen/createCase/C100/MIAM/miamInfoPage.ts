@@ -97,7 +97,7 @@ export class MiamInfoPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${MiamInfoContent.errorMessage}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${MiamInfoContent.errorMessage}")`,
         1,
       ),
     ]);

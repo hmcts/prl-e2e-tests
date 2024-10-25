@@ -106,7 +106,7 @@ export class YourselfConcernsAboutPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${YourselfConcernsAboutContent.errorMessage}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${YourselfConcernsAboutContent.errorMessage}")`,
         1,
       ),
     ]);

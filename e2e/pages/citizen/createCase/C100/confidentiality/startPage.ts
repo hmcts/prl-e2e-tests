@@ -111,7 +111,7 @@ export class StartPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${StartContent.errorMessage}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${StartContent.errorMessage}")`,
         1,
       ),
     ]);
@@ -136,7 +136,7 @@ export class StartPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${StartContent.checkboxErrorMessage}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${StartContent.checkboxErrorMessage}")`,
         1,
       ),
     ]);

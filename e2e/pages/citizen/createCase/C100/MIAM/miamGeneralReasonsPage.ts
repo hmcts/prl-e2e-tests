@@ -107,7 +107,7 @@ export class MiamGeneralReasonsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${MiamGeneralReasonsContent.errorMessage}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${MiamGeneralReasonsContent.errorMessage}")`,
         1,
       ),
     ]);
