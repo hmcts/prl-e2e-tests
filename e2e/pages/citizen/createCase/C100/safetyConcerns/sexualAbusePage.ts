@@ -48,8 +48,8 @@ export class SexualAbusePage {
     await page.waitForSelector(
       `${Selectors.GovukHeadingXL}:text-is("${SexualAbuseContent.pageTitle}")`,
     );
-    await SafetyConcernHelpers.checkStaticText(page);
-    await SafetyConcernHelpers.checkSidebar(page);
+    await SafetyConcernHelpers.checkStaticTextChild(page);
+    await SafetyConcernHelpers.checkSidebarChild(page);
     await SafetyConcernHelpers.checkContactDetailsText(page);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
@@ -75,12 +75,12 @@ export class SexualAbusePage {
         SexualAbuseContent[contentKey],
       );
     }
-    await SafetyConcernHelpers.ongoingBehaviourFields({
+    await SafetyConcernHelpers.ongoingBehaviourFieldsChild({
       page: page,
       c100ReportAbuseYesNoToAll: c100SexualAbuseYesNoToAll,
       inputIDs: reportAbuseInputIDs,
     });
-    await SafetyConcernHelpers.seekHelpFields({
+    await SafetyConcernHelpers.seekHelpFieldsChild({
       page: page,
       c100ReportAbuseYesNoToAll: c100SexualAbuseYesNoToAll,
       inputIDs: reportAbuseInputIDs,

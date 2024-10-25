@@ -1,4 +1,4 @@
-export enum SafetyConcernsCommonContent {
+export enum ChildSafetyConcernsCommonContent {
   caption = "Safety concerns",
   body1 = "Complete this section as best you can. If you don't feel able to discuss the abuse at this stage, you can do so when you speak to Cafcass.",
   body2 = "The information that you give will be used in the application. It is not a request for a domestic abuse injunction.",
@@ -19,7 +19,7 @@ export enum SafetyConcernsCommonContent {
   ongoingBehaviourBody2 = " or ",
   ongoingBehaviourLink1 = "NSPCC",
   ongoingBehaviourLink2 = "the social care team at you local council ",
-  seekHelpBody1 = "Indicate who you sought help from, and what they did to help (optional). ",
+  seekHelpBody1 = "Indicate who you sought help from, and what they did to help (optional).",
   seekHelpBody2 = "Do not include personal details such as names and addresses.",
   seekHelpDetails = "Automated Professional Help",
   nspccGuidanceBody1 = "See the ",
@@ -33,7 +33,7 @@ export enum SafetyConcernsCommonContent {
   sidebarLink6 = "SupportNav",
   sidebarHeadingM1 = "Report an incident",
   sidebarHeadingM2 = "Get support",
-  sidebarBodyM = " Always call 999 if there’s an emergency or if you think a child’s in danger. ",
+  sidebarBodyM = " Always call 999 if there’s an emergency or if you think a child’s in danger.",
   detailsSummary = "Contact us for help",
   detailsBody1 = "You can ",
   detailsBody2 = " if you need to discuss your case.",
