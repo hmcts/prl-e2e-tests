@@ -86,3 +86,28 @@ export type Relationship =
   | "specialGuardian"
   | "grandparent"
   | "other";
+
+export type OrderType =
+  | "standardDirectionsOrder"
+  | "directionOnIssue"
+  | "blankOrderOrDirections"
+  | "childArrangementsSpecificProhibitedOrder"
+  | "parentalResponsibility"
+  | "specialGuardianShip"
+  | "noticeOfProceedingsParties"
+  | "noticeOfProceedingsNonParties"
+  | "appointmentOfGuardian"
+  | "nonMolestation"
+  | "occupation"
+  | "powerOfArrest"
+  | "amendDischargedVaried"
+  | "blank"
+  | "generalForm"
+  | "noticeOfProceedings";
+
+export type C21OrderType =
+  // missing type for C21: no order made
+  | "c21ApplicationRefused"
+  | "c21WithdrawApplication"
+  | "c21NoOrderMade"
+  | "c21other";
