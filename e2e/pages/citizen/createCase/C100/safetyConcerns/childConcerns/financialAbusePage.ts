@@ -1,23 +1,23 @@
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { PhysicalAbuseContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/physicalAbuseContent";
-import { CommonStaticText } from "../../../../../common/commonStaticText";
-import { SafetyConcernHelpers } from "./safetyConcernHelpers";
+import { Selectors } from "../../../../../../common/selectors";
+import { CommonStaticText } from "../../../../../../common/commonStaticText";
+import { SafetyConcernHelpers } from "../safetyConcernHelpers";
 import {
   reportAbuseCheckboxIDs,
   reportAbuseInputIDs,
-} from "../../../../../common/commonUniqueSelectors";
+} from "../../../../../../common/commonUniqueSelectors";
+import { FinancialAbuseContent } from "../../../../../../fixtures/citizen/createCase/C100/safetyConcerns/childConcerns/financialAbuseContent";
 
-interface PhysicalAbusePageOptions {
+interface FinancialAbusePageOptions {
   page: Page;
   accessibilityTest: boolean;
-  c100PhysicalAbuseYesNoToAll: boolean;
+  c100FinancialAbuseYesNoToAll: boolean;
 }
 
 interface FillInFieldsOptions {
   page: Page;
-  c100PhysicalAbuseYesNoToAll: boolean;
+  c100FinancialAbuseYesNoToAll: boolean;
 }
 
 interface CheckPageLoadsOptions {
@@ -25,19 +25,19 @@ interface CheckPageLoadsOptions {
   accessibilityTest: boolean;
 }
 
-export class PhysicalAbusePage {
-  public static async physicalAbusePage({
+export class FinancialAbusePage {
+  public static async financialAbusePage({
     page,
     accessibilityTest,
-    c100PhysicalAbuseYesNoToAll,
-  }: PhysicalAbusePageOptions): Promise<void> {
+    c100FinancialAbuseYesNoToAll,
+  }: FinancialAbusePageOptions): Promise<void> {
     await this.checkPageLoads({
       page,
       accessibilityTest,
     });
     await this.fillInFields({
       page,
-      c100PhysicalAbuseYesNoToAll,
+      c100FinancialAbuseYesNoToAll,
     });
   }
 
@@ -46,7 +46,7 @@ export class PhysicalAbusePage {
     accessibilityTest,
   }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukHeadingXL}:text-is("${PhysicalAbuseContent.pageTitle}")`,
+      `${Selectors.GovukHeadingXL}:text-is("${FinancialAbuseContent.pageTitle}")`,
     );
     await SafetyConcernHelpers.checkStaticTextChild(page);
     await SafetyConcernHelpers.checkSidebarChild(page);
@@ -58,7 +58,7 @@ export class PhysicalAbusePage {
 
   private static async fillInFields({
     page,
-    c100PhysicalAbuseYesNoToAll,
+    c100FinancialAbuseYesNoToAll,
   }: FillInFieldsOptions): Promise<void> {
     for (let checkbox of Object.values(reportAbuseCheckboxIDs)) {
       await page.check(checkbox);
@@ -69,22 +69,22 @@ export class PhysicalAbusePage {
     ];
     for (let key of textToFill) {
       let inputKey = key as keyof typeof reportAbuseInputIDs;
-      let contentKey = key as keyof typeof PhysicalAbuseContent;
+      let contentKey = key as keyof typeof FinancialAbuseContent;
       await page.fill(
         reportAbuseInputIDs[inputKey],
-        PhysicalAbuseContent[contentKey],
+        FinancialAbuseContent[contentKey],
       );
     }
     await SafetyConcernHelpers.ongoingBehaviourFieldsChild({
       page: page,
-      c100ReportAbuseYesNoToAll: c100PhysicalAbuseYesNoToAll,
+      c100ReportAbuseYesNoToAll: c100FinancialAbuseYesNoToAll,
       inputIDs: reportAbuseInputIDs,
     });
     await SafetyConcernHelpers.seekHelpFieldsChild({
       page: page,
-      c100ReportAbuseYesNoToAll: c100PhysicalAbuseYesNoToAll,
+      c100ReportAbuseYesNoToAll: c100FinancialAbuseYesNoToAll,
       inputIDs: reportAbuseInputIDs,
-      abuseContent: PhysicalAbuseContent,
+      abuseContent: FinancialAbuseContent,
     });
     await page.click(
       `${Selectors.button}:text-is("${CommonStaticText.continue}")`,

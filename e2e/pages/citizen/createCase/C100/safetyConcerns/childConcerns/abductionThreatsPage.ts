@@ -1,26 +1,26 @@
 import { Page } from "@playwright/test";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { Selectors } from "../../../../../common/selectors";
-import { PassportOfficeNotifiedContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/passportOfficeNotifiedContent";
-import { Helpers } from "../../../../../common/helpers";
-import { CommonStaticText } from "../../../../../common/commonStaticText";
-import { SafetyConcernHelpers } from "./safetyConcernHelpers";
+import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper";
+import { Selectors } from "../../../../../../common/selectors";
+import { AbductionThreatsContent } from "../../../../../../fixtures/citizen/createCase/C100/safetyConcerns/childConcerns/abductionThreatsContent";
+import { Helpers } from "../../../../../../common/helpers";
+import { CommonStaticText } from "../../../../../../common/commonStaticText";
+import { SafetyConcernHelpers } from "../safetyConcernHelpers";
 
 enum radioIDs {
-  radioYes = "#c1A_abductionPassportOfficeNotifiedNotified",
-  radioNo = "#c1A_abductionPassportOfficeNotifiedNotified-2",
+  radioYes = "#c1A_childAbductedBefore",
+  radioNo = "#c1A_childAbductedBefore-2",
 }
 
-interface PassportOfficeNotifiedPageOptions {
+interface AbductionThreatsPageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
-  c100PassportOfficeNotified: boolean;
+  c100ChildrenAbductedBefore: boolean;
 }
 
 interface FillInFieldsOptions {
   page: Page;
-  c100PassportOfficeNotified: boolean;
+  c100ChildrenAbductedBefore: boolean;
 }
 
 interface CheckPageLoadsOptions {
@@ -28,13 +28,13 @@ interface CheckPageLoadsOptions {
   accessibilityTest: boolean;
 }
 
-export class PassportOfficeNotifiedPage {
-  public static async passportOfficeNotifiedPage({
+export class AbductionThreatsPage {
+  public static async abductionThreatsPage({
                                            page,
                                            accessibilityTest,
                                            errorMessaging,
-                                           c100PassportOfficeNotified,
-                                         }: PassportOfficeNotifiedPageOptions): Promise<void> {
+                                           c100ChildrenAbductedBefore,
+                                         }: AbductionThreatsPageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
       accessibilityTest: accessibilityTest,
@@ -44,7 +44,7 @@ export class PassportOfficeNotifiedPage {
     }
     await this.fillInFields({
       page: page,
-      c100PassportOfficeNotified: c100PassportOfficeNotified,
+      c100ChildrenAbductedBefore: c100ChildrenAbductedBefore,
     });
   }
 
@@ -53,12 +53,12 @@ export class PassportOfficeNotifiedPage {
                                         accessibilityTest,
                                       }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukHeadingXL}:text-is("${PassportOfficeNotifiedContent.pageTitle}")`,
+      `${Selectors.GovukHeadingXL}:text-is("${AbductionThreatsContent.pageTitle}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukCaptionXL}:text-is("${PassportOfficeNotifiedContent.caption}")`,
+        `${Selectors.GovukCaptionXL}:text-is("${AbductionThreatsContent.caption}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -91,12 +91,12 @@ export class PassportOfficeNotifiedPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorList} ${Selectors.a}:text-is("${PassportOfficeNotifiedContent.errorSummaryList}")`,
+        `${Selectors.GovukErrorList} ${Selectors.a}:text-is("${AbductionThreatsContent.errorSummaryList}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${PassportOfficeNotifiedContent.errorMessage}")`,
+        `${Selectors.ErrorMessage}:text-is("${AbductionThreatsContent.errorMessage}")`,
         1,
       ),
     ]);
@@ -104,9 +104,9 @@ export class PassportOfficeNotifiedPage {
 
   private static async fillInFields({
                                       page,
-                                      c100PassportOfficeNotified,
+                                      c100ChildrenAbductedBefore,
                                     }: FillInFieldsOptions): Promise<void> {
-    if (c100PassportOfficeNotified) {
+    if (c100ChildrenAbductedBefore) {
       await page.click(radioIDs.radioYes);
     } else {
       await page.click(radioIDs.radioNo);

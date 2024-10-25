@@ -1,23 +1,23 @@
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { CommonStaticText } from "../../../../../common/commonStaticText";
-import { SafetyConcernHelpers } from "./safetyConcernHelpers";
+import { Selectors } from "../../../../../../common/selectors";
+import { PsychologicalAbuseContent } from "../../../../../../fixtures/citizen/createCase/C100/safetyConcerns/childConcerns/psychologicalAbuseContent";
+import { CommonStaticText } from "../../../../../../common/commonStaticText";
+import { SafetyConcernHelpers } from "../safetyConcernHelpers";
 import {
   reportAbuseCheckboxIDs,
   reportAbuseInputIDs,
-} from "../../../../../common/commonUniqueSelectors";
-import { EmotionalAbuseContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/emotionalAbuseContent";
+} from "../../../../../../common/commonUniqueSelectors";
 
-interface EmotionalAbusePageOptions {
+interface PsychologicalAbusePageOptions {
   page: Page;
   accessibilityTest: boolean;
-  c100EmotionalAbuseYesNoToAll: boolean;
+  c100PsychologicalAbuseYesNoToAll: boolean;
 }
 
 interface FillInFieldsOptions {
   page: Page;
-  c100EmotionalAbuseYesNoToAll: boolean;
+  c100PsychologicalAbuseYesNoToAll: boolean;
 }
 
 interface CheckPageLoadsOptions {
@@ -25,19 +25,19 @@ interface CheckPageLoadsOptions {
   accessibilityTest: boolean;
 }
 
-export class EmotionalAbusePage {
-  public static async emotionalAbusePage({
+export class PsychologicalAbusePage {
+  public static async psychologicalAbusePage({
     page,
     accessibilityTest,
-    c100EmotionalAbuseYesNoToAll,
-  }: EmotionalAbusePageOptions): Promise<void> {
+    c100PsychologicalAbuseYesNoToAll,
+  }: PsychologicalAbusePageOptions): Promise<void> {
     await this.checkPageLoads({
       page,
       accessibilityTest,
     });
     await this.fillInFields({
       page,
-      c100EmotionalAbuseYesNoToAll,
+      c100PsychologicalAbuseYesNoToAll,
     });
   }
 
@@ -46,7 +46,7 @@ export class EmotionalAbusePage {
     accessibilityTest,
   }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukHeadingXL}:text-is("${EmotionalAbuseContent.pageTitle}")`,
+      `${Selectors.GovukHeadingXL}:text-is("${PsychologicalAbuseContent.pageTitle}")`,
     );
     await SafetyConcernHelpers.checkStaticTextChild(page);
     await SafetyConcernHelpers.checkSidebarChild(page);
@@ -58,7 +58,7 @@ export class EmotionalAbusePage {
 
   private static async fillInFields({
     page,
-    c100EmotionalAbuseYesNoToAll,
+    c100PsychologicalAbuseYesNoToAll,
   }: FillInFieldsOptions): Promise<void> {
     for (let checkbox of Object.values(reportAbuseCheckboxIDs)) {
       await page.check(checkbox);
@@ -69,22 +69,22 @@ export class EmotionalAbusePage {
     ];
     for (let key of textToFill) {
       let inputKey = key as keyof typeof reportAbuseInputIDs;
-      let contentKey = key as keyof typeof EmotionalAbuseContent;
+      let contentKey = key as keyof typeof PsychologicalAbuseContent;
       await page.fill(
         reportAbuseInputIDs[inputKey],
-        EmotionalAbuseContent[contentKey],
+        PsychologicalAbuseContent[contentKey],
       );
     }
     await SafetyConcernHelpers.ongoingBehaviourFieldsChild({
       page: page,
-      c100ReportAbuseYesNoToAll: c100EmotionalAbuseYesNoToAll,
+      c100ReportAbuseYesNoToAll: c100PsychologicalAbuseYesNoToAll,
       inputIDs: reportAbuseInputIDs,
     });
     await SafetyConcernHelpers.seekHelpFieldsChild({
       page: page,
-      c100ReportAbuseYesNoToAll: c100EmotionalAbuseYesNoToAll,
+      c100ReportAbuseYesNoToAll: c100PsychologicalAbuseYesNoToAll,
       inputIDs: reportAbuseInputIDs,
-      abuseContent: EmotionalAbuseContent,
+      abuseContent: PsychologicalAbuseContent,
     });
     await page.click(
       `${Selectors.button}:text-is("${CommonStaticText.continue}")`,

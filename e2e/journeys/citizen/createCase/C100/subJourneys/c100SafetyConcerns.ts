@@ -2,15 +2,15 @@ import { Page } from "@playwright/test";
 import { ConcernGuidancePage } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/concernGuidancePage";
 import { ConcernsForSafetyPage } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/concernsForSafetyPage";
 import { ConcernAboutPage } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/concernAboutPage";
-import { ChildConcernsAboutPage } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/childConcernsAboutPage";
-import { PhysicalAbusePage } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/physicalAbusePage";
-import { PsychologicalAbusePage } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/psychologicalAbusePage";
-import { EmotionalAbusePage } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/emotionalAbusePage";
-import { SexualAbusePage } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/sexualAbusePage";
-import { FinancialAbusePage } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/financialAbusePage";
-import { ChildLocationPage } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/childLocationPage";
-import { PassportOfficePage } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/passportOfficePage";
-import { PassportAmountPage } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/passportAmountPage";
+import { ChildConcernsAboutPage } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/childConcerns/childConcernsAboutPage";
+import { PhysicalAbusePage } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/childConcerns/physicalAbusePage";
+import { PsychologicalAbusePage } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/childConcerns/psychologicalAbusePage";
+import { EmotionalAbusePage } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/childConcerns/emotionalAbusePage";
+import { SexualAbusePage } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/childConcerns/sexualAbusePage";
+import { FinancialAbusePage } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/childConcerns/financialAbusePage";
+import { ChildLocationPage } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/childConcerns/childLocationPage";
+import { PassportOfficePage } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/childConcerns/passportOfficePage";
+import { PassportAmountPage } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/childConcerns/passportAmountPage";
 
 interface C100SafetyConcernsOptions {
   page: Page;

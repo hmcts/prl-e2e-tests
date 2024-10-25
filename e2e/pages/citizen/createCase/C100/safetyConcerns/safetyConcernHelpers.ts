@@ -1,11 +1,11 @@
 import { Page } from "@playwright/test";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
-import { ChildSafetyConcernsCommonContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/childSafetyConcernsCommonContent";
-import { PassportSidebarContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/passportSidebarContent";
+import { ChildSafetyConcernsCommonContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/childConcerns/childSafetyConcernsCommonContent";
+import { PassportSidebarContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/childConcerns/passportSidebarContent";
 import {
   YourselfSafetyConcernsCommonContent
-} from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/yourselfSafetyConcernsCommonContent";
+} from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/childConcerns/yourselfSafetyConcernsCommonContent";
 
 interface SeekHelpOptions {
   page: Page;

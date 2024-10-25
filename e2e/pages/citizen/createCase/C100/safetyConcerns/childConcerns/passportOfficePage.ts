@@ -1,10 +1,10 @@
 import { Page } from "@playwright/test";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { Selectors } from "../../../../../common/selectors";
-import { PassportOfficeContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/passportOfficeContent";
-import { Helpers } from "../../../../../common/helpers";
-import { CommonStaticText } from "../../../../../common/commonStaticText";
-import { SafetyConcernHelpers } from "./safetyConcernHelpers";
+import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper";
+import { Selectors } from "../../../../../../common/selectors";
+import { PassportOfficeContent } from "../../../../../../fixtures/citizen/createCase/C100/safetyConcerns/childConcerns/passportOfficeContent";
+import { Helpers } from "../../../../../../common/helpers";
+import { CommonStaticText } from "../../../../../../common/commonStaticText";
+import { SafetyConcernHelpers } from "../safetyConcernHelpers";
 
 enum radioIDs {
   radioYes = "#c1A_passportOffice",
