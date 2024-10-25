@@ -26,8 +26,8 @@ test.describe("C100 Citizen Application tests on the top MIRO set. @citizenFront
   Not Error Messaging,
   Yes Screening and Written Review
   Without urgency and without notice options`, async ({
-                                                                page,
-                                                              }): Promise<void> => {
+    page,
+  }): Promise<void> => {
     await C100.c100({
       page: page,
       accessibilityTest: false,
@@ -88,8 +88,8 @@ test.describe("C100 Citizen Application tests on the top MIRO set. @citizenFront
 });
 
 test(`C100 Citizen Application tests on the top MIRO set. @accessibilityCitizenFrontend`, async ({
-                                                                                                   page,
-                                                                                                 }): Promise<void> => {
+  page,
+}): Promise<void> => {
   await C100.c100({
     page: page,
     accessibilityTest: true,

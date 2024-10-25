@@ -7,8 +7,8 @@ test.use({ storageState: Config.sessionStoragePath + "citizen.json" });
 test.describe("Create Citizen Application but choose to have legal representative fill it out for you. @citizenFrontend @crossbrowserCitizenFrontend", (): void => {
   test(
     "Application completed for you with the following options:" +
-    "No error messaging." +
-    "No accessibility Testing",
+      "No error messaging." +
+      "No accessibility Testing",
     async ({ page }): Promise<void> => {
       await C100.c100ApplicationCompletedForYou({
         page: page,
@@ -20,8 +20,8 @@ test.describe("Create Citizen Application but choose to have legal representativ
 
   test(
     "Application completed for you with the following options:" +
-    "Yes error messaging." +
-    "No accessibility Testing",
+      "Yes error messaging." +
+      "No accessibility Testing",
     async ({ page }): Promise<void> => {
       await C100.c100ApplicationCompletedForYou({
         page: page,
@@ -34,9 +34,9 @@ test.describe("Create Citizen Application but choose to have legal representativ
 
 test(
   "Application completed for you with the following options:" +
-  "No error messaging." +
-  "Yes accessibility Testing" +
-  "@accessibilityCitizenFrontend",
+    "No error messaging." +
+    "Yes accessibility Testing" +
+    "@accessibilityCitizenFrontend",
   async ({ page }): Promise<void> => {
     await C100.c100ApplicationCompletedForYou({
       page: page,

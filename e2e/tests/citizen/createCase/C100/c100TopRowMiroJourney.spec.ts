@@ -9,7 +9,9 @@ test.describe("C100 Citizen Application tests on the top MIRO set. @citizenFront
     Not Accessibility Testing,
     Not Error Messaging,
     Yes Screening and Written Review
-    With urgency and without notice all options yes`, async ({ page }): Promise<void> => {
+    With urgency and without notice all options yes`, async ({
+    page,
+  }): Promise<void> => {
     await C100.c100TopMiroJourney({
       page: page,
       accessibilityTest: false,
@@ -22,7 +24,9 @@ test.describe("C100 Citizen Application tests on the top MIRO set. @citizenFront
     Not Accessibility Testing,
     Error Messaging,
     Yes Screening and Written Review
-    With urgency and without notice all options yes`, async ({ page }): Promise<void> => {
+    With urgency and without notice all options yes`, async ({
+    page,
+  }): Promise<void> => {
     await C100.c100TopMiroJourney({
       page: page,
       accessibilityTest: false,

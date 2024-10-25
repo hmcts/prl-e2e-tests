@@ -7,8 +7,8 @@ test.use({ storageState: Config.sessionStoragePath + "citizen.json" });
 test.describe("Create Citizen Application but you don't have a MIAM document. @citizenFrontend @crossbrowserCitizenFrontend", (): void => {
   test(
     "You need to have a signed document journey signed for you, with thae following options:" +
-    "No error messaging." +
-    "No accessibility Testing",
+      "No error messaging." +
+      "No accessibility Testing",
     async ({ page }): Promise<void> => {
       await C100.youNeedASignedDocument({
         page: page,
@@ -20,8 +20,8 @@ test.describe("Create Citizen Application but you don't have a MIAM document. @c
 
   test(
     "You need to have a signed document journey signed for you, with the following options:" +
-    "Yes error messaging." +
-    "No accessibility Testing",
+      "Yes error messaging." +
+      "No accessibility Testing",
     async ({ page }): Promise<void> => {
       await C100.youNeedASignedDocument({
         page: page,
@@ -34,9 +34,9 @@ test.describe("Create Citizen Application but you don't have a MIAM document. @c
 
 test(
   "You need to have a signed document journey signed for you, with the following options:" +
-  "No error messaging." +
-  "Yes accessibility Testing" +
-  "@accessibilityCitizenFrontend",
+    "No error messaging." +
+    "Yes accessibility Testing" +
+    "@accessibilityCitizenFrontend",
   async ({ page }): Promise<void> => {
     await C100.youNeedASignedDocument({
       page: page,

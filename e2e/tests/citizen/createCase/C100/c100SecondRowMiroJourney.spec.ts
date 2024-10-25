@@ -22,7 +22,7 @@ test.describe("C100 Citizen Application tests on the second MIRO set. @citizenFr
       c100CourtPermissionNeeded: false,
       yesNoChildArrangementOrderDetails: false,
       yesNoOtherProceedings: false,
-      urgencyAndWithoutNoticeAllOptionsYes: false
+      urgencyAndWithoutNoticeAllOptionsYes: false,
     });
   });
 
@@ -43,7 +43,7 @@ test.describe("C100 Citizen Application tests on the second MIRO set. @citizenFr
       c100CourtPermissionNeeded: false,
       yesNoChildArrangementOrderDetails: false,
       yesNoOtherProceedings: false,
-      urgencyAndWithoutNoticeAllOptionsYes: false
+      urgencyAndWithoutNoticeAllOptionsYes: false,
     });
   });
 });
@@ -66,6 +66,6 @@ test(`Test the second row of the second row c100 citizen journey with the follow
     c100CourtPermissionNeeded: false,
     yesNoChildArrangementOrderDetails: false,
     yesNoOtherProceedings: false,
-    urgencyAndWithoutNoticeAllOptionsYes: false
+    urgencyAndWithoutNoticeAllOptionsYes: false,
   });
 });

@@ -16,24 +16,12 @@ import { C100OtherProceedings } from "./subJourneys/C100OtherProceedings";
 import { C100ApplicationCompletedForYou } from "./C100ApplicationCompletedForYou";
 import { StartPage } from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/startPage";
 import { ChildAddressPage } from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/childAddressPage";
-import {
-  ConsentAgreementPage
-} from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/consentAgreementPage";
-import {
-  AlternativeResolutionPage
-} from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/alternativeResolutionPage";
-import {
-  AlternativeRoutesPage
-} from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/alternativeRoutesPage";
-import {
-  LegalRepresentationPage
-} from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/legalRepresentationPage";
-import {
-  LegalRepresentationApplicationPage
-} from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/legalRepresentationApplicationPage";
-import {
-  ContactRepresentativePage
-} from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/contactRepresentativePage";
+import { ConsentAgreementPage } from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/consentAgreementPage";
+import { AlternativeResolutionPage } from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/alternativeResolutionPage";
+import { AlternativeRoutesPage } from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/alternativeRoutesPage";
+import { LegalRepresentationPage } from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/legalRepresentationPage";
+import { LegalRepresentationApplicationPage } from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/legalRepresentationApplicationPage";
+import { ContactRepresentativePage } from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/contactRepresentativePage";
 import { CaseDashboardPage } from "../../../../pages/citizen/createCase/initialJourney/caseDashboardPage";
 
 interface C100ThirdMiroJourneyMIAMOptions {
@@ -89,7 +77,7 @@ interface C100TopMiroJourneyOptions {
 }
 
 interface C100SecondMiroJourneyOptions {
-  page: Page,
+  page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
   c100LegalRepresentation: boolean;
@@ -131,33 +119,33 @@ interface GetMediatorJourneyOptions {
 
 export class C100 {
   public static async c100ApplicationCompletedForYou({
-   page,
-   accessibilityTest,
-   errorMessaging,
+    page,
+    accessibilityTest,
+    errorMessaging,
   }: C100ApplicationCompletedForYouOptions): Promise<void> {
     await C100ApplicationCompletedForYou.c100ApplicationCompletedForYou({
       page: page,
       accessibilityTest: accessibilityTest,
-      errorMessaging: errorMessaging
-    })
+      errorMessaging: errorMessaging,
+    });
   }
 
   public static async getMediatorJourney({
-   page,
-   accessibilityTest,
-   errorMessaging,
+    page,
+    accessibilityTest,
+    errorMessaging,
     miamAlreadyAttended,
     documentSignedByMediator,
-   miamValidReasonNoAttendance,
-   miamGeneralExemptions,
-   miamDomesticAbuse,
-   miamDomesticAbuseProvidingEvidence,
-   miamChildProtectionConcernsType,
-   miamUrgencyType,
-   miamAttendanceType,
-   miamPreviousAttendanceMediatorSignedDocument,
-   miamOtherReasonForNotAttending,
-   miamReasonForNoAccessToMediator,
+    miamValidReasonNoAttendance,
+    miamGeneralExemptions,
+    miamDomesticAbuse,
+    miamDomesticAbuseProvidingEvidence,
+    miamChildProtectionConcernsType,
+    miamUrgencyType,
+    miamAttendanceType,
+    miamPreviousAttendanceMediatorSignedDocument,
+    miamOtherReasonForNotAttending,
+    miamReasonForNoAccessToMediator,
   }: GetMediatorJourneyOptions): Promise<void> {
     await CitizenCreateInitial.citizenCreateInitial({
       page: page,
@@ -196,7 +184,7 @@ export class C100 {
   public static async youNeedASignedDocument({
     page,
     accessibilityTest,
-    errorMessaging
+    errorMessaging,
   }: YouNeedDocumentSignedByMediatorOptions): Promise<void> {
     await CitizenCreateInitial.citizenCreateInitial({
       page: page,
@@ -253,7 +241,7 @@ export class C100 {
     await C100TypeOfOrder.c100TypeOfOrder({
       page: page,
       accessibilityTest: accessibilityTest,
-      errorMessaging: errorMessaging
+      errorMessaging: errorMessaging,
     });
     await C100ConsentOrderUpload.c100ConsentOrderUpload({
       page: page,
@@ -280,7 +268,7 @@ export class C100 {
     c100CourtPermissionNeeded,
     yesNoChildArrangementOrderDetails,
     yesNoOtherProceedings,
-    urgencyAndWithoutNoticeAllOptionsYes
+    urgencyAndWithoutNoticeAllOptionsYes,
   }: C100SecondMiroJourneyOptions): Promise<void> {
     await CitizenCreateInitial.citizenCreateInitial({
       page: page,
@@ -306,33 +294,34 @@ export class C100 {
       miamGeneralExemptions: false,
       miamDomesticAbuse: false,
       miamDomesticAbuseProvidingEvidence: false,
-      miamChildProtectionConcernsType: 'None of the above',
-      miamUrgencyType: 'None of these',
-      miamAttendanceType: 'None of these',
+      miamChildProtectionConcernsType: "None of the above",
+      miamUrgencyType: "None of these",
+      miamAttendanceType: "None of these",
       miamPreviousAttendanceMediatorSignedDocument: false,
-      miamOtherReasonForNotAttending: 'None of the above',
-      miamReasonForNoAccessToMediator: 'None of these',
+      miamOtherReasonForNotAttending: "None of the above",
+      miamReasonForNoAccessToMediator: "None of these",
     });
     await C100OtherProceedings.c100OtherProceedings1({
       page: page,
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
       yesNoOtherProceedings: yesNoOtherProceedings,
-      yesNoChildArrangementOrderDetails: yesNoChildArrangementOrderDetails
+      yesNoChildArrangementOrderDetails: yesNoChildArrangementOrderDetails,
     });
     await C100TypeOfOrder.c100TypeOfOrder({
       page: page,
       accessibilityTest: accessibilityTest,
-      errorMessaging: errorMessaging
+      errorMessaging: errorMessaging,
     });
     await C100UrgencyAndWithoutNotice.c100UrgencyAndWithoutNotice({
       page: page,
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
-      urgencyAndWithoutNoticeAllOptionsYes: urgencyAndWithoutNoticeAllOptionsYes
-    })
+      urgencyAndWithoutNoticeAllOptionsYes:
+        urgencyAndWithoutNoticeAllOptionsYes,
+    });
   }
-  
+
   public static async c100ThirdMiroJourney({
     page,
     accessibilityTest,
@@ -341,7 +330,7 @@ export class C100 {
     c100CourtPermissionNeeded,
     urgencyAndWithoutNoticeAllOptionsYes,
     miamAlreadyAttended,
-                                             miamValidReasonNoAttendance,
+    miamValidReasonNoAttendance,
     documentSignedByMediator,
     miamGeneralExemptions,
     miamDomesticAbuse,
@@ -381,14 +370,14 @@ export class C100 {
       miamUrgencyType: miamUrgencyType,
       miamAttendanceType: miamAttendanceType,
       miamPreviousAttendanceMediatorSignedDocument:
-      miamPreviousAttendanceMediatorSignedDocument,
+        miamPreviousAttendanceMediatorSignedDocument,
       miamOtherReasonForNotAttending: miamOtherReasonForNotAttending,
       miamReasonForNoAccessToMediator: miamReasonForNoAccessToMediator,
     });
     await C100TypeOfOrder.c100TypeOfOrder({
       page: page,
       accessibilityTest: accessibilityTest,
-      errorMessaging: errorMessaging
+      errorMessaging: errorMessaging,
     });
     await C100UrgencyAndWithoutNotice.c100UrgencyAndWithoutNotice({
       page: page,
@@ -401,25 +390,25 @@ export class C100 {
   }
 
   public static async c100FourthRowMiroJourney({
-   page,
-   accessibilityTest,
-   errorMessaging,
-   c100LegalRepresentation,
-   c100CourtPermissionNeeded,
+    page,
+    accessibilityTest,
+    errorMessaging,
+    c100LegalRepresentation,
+    c100CourtPermissionNeeded,
     miamAlreadyAttended,
     documentSignedByMediator,
     miamValidReasonNoAttendance,
-   miamGeneralExemptions,
-   miamDomesticAbuse,
-   miamDomesticAbuseProvidingEvidence,
-   miamChildProtectionConcernsType,
-   miamUrgencyType,
-   miamAttendanceType,
-   miamPreviousAttendanceMediatorSignedDocument,
-   miamOtherReasonForNotAttending,
-   miamReasonForNoAccessToMediator,
-                                                 urgencyAndWithoutNoticeAllOptionsYes,
-                                               }: C100FourthRowMiroJourneyOptions): Promise<void> {
+    miamGeneralExemptions,
+    miamDomesticAbuse,
+    miamDomesticAbuseProvidingEvidence,
+    miamChildProtectionConcernsType,
+    miamUrgencyType,
+    miamAttendanceType,
+    miamPreviousAttendanceMediatorSignedDocument,
+    miamOtherReasonForNotAttending,
+    miamReasonForNoAccessToMediator,
+    urgencyAndWithoutNoticeAllOptionsYes,
+  }: C100FourthRowMiroJourneyOptions): Promise<void> {
     await CitizenCreateInitial.citizenCreateInitial({
       page: page,
       accessibilityTest: accessibilityTest,
@@ -448,7 +437,7 @@ export class C100 {
       miamUrgencyType: miamUrgencyType,
       miamAttendanceType: miamAttendanceType,
       miamPreviousAttendanceMediatorSignedDocument:
-      miamPreviousAttendanceMediatorSignedDocument,
+        miamPreviousAttendanceMediatorSignedDocument,
       miamOtherReasonForNotAttending: miamOtherReasonForNotAttending,
       miamReasonForNoAccessToMediator: miamReasonForNoAccessToMediator,
     });
@@ -456,7 +445,8 @@ export class C100 {
       page: page,
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
-      urgencyAndWithoutNoticeAllOptionsYes: urgencyAndWithoutNoticeAllOptionsYes
+      urgencyAndWithoutNoticeAllOptionsYes:
+        urgencyAndWithoutNoticeAllOptionsYes,
     });
     await C100TypeOfOrder.c100TypeOfOrder({
       page: page,
@@ -510,7 +500,7 @@ export class C100 {
       await C100TypeOfOrder.c100TypeOfOrder({
         page: page,
         accessibilityTest: accessibilityTest,
-        errorMessaging: errorMessaging
+        errorMessaging: errorMessaging,
       });
       await C100ConsentOrderUpload.c100ConsentOrderUpload({
         page: page,
@@ -562,19 +552,19 @@ export class C100 {
       });
       // MIAM journey
       // if children involved in emergency protection
-        // Other Proceedings
-        // Type Of Order
-        // Urgency & Without Notice
-        // People
-        // Confidentiality C7
-        // Case Parties
-        // C1A - Safety Concerns
-        // International Element
-        // Reasonable Adjustments
-        // Help with Fees
+      // Other Proceedings
+      // Type Of Order
+      // Urgency & Without Notice
+      // People
+      // Confidentiality C7
+      // Case Parties
+      // C1A - Safety Concerns
+      // International Element
+      // Reasonable Adjustments
+      // Help with Fees
       // else
-        // ?
+      // ?
     }
-    console.log(page.url())
+    console.log(page.url());
   }
 }
