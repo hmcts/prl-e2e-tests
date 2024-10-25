@@ -72,17 +72,17 @@ export class ApplicantContactDetailPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.NotificationBannerTitle}:text-is("${ApplicantContactDetailContent.notifyBannerTitle}")`, // checking that the postcode put in on the previous page is displaying on this page correctly
+        `${Selectors.NotificationBannerTitle}:text-is("${ApplicantContactDetailContent.notifyBannerTitle}")`, 
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.NotificationBannerHeading}:text-is("${ApplicantContactDetailContent.notifyBannerHeading}")`, // checking that the postcode put in on the previous page is displaying on this page correctly
+        `${Selectors.NotificationBannerHeading}:text-is("${ApplicantContactDetailContent.notifyBannerHeading}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${uniqueSelectors.notificationBody}:text-is("${ApplicantContactDetailContent.notifyBody}")`, // checking that the postcode put in on the previous page is displaying on this page correctly
+        `${uniqueSelectors.notificationBody}:text-is("${ApplicantContactDetailContent.notifyBody}")`, 
         1,
       ),
     ]);
