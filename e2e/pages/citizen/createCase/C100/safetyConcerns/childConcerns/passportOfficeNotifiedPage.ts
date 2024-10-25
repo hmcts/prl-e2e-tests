@@ -1,26 +1,26 @@
 import { Page } from "@playwright/test";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { Selectors } from "../../../../../common/selectors";
-import { PassportOfficeContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/passportOfficeContent";
-import { Helpers } from "../../../../../common/helpers";
-import { CommonStaticText } from "../../../../../common/commonStaticText";
-import { SafetyConcernHelpers } from "./safetyConcernHelpers";
+import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper";
+import { Selectors } from "../../../../../../common/selectors";
+import { PassportOfficeNotifiedContent } from "../../../../../../fixtures/citizen/createCase/C100/safetyConcerns/childConcerns/passportOfficeNotifiedContent";
+import { Helpers } from "../../../../../../common/helpers";
+import { CommonStaticText } from "../../../../../../common/commonStaticText";
+import { SafetyConcernHelpers } from "../safetyConcernHelpers";
 
 enum radioIDs {
-  radioYes = "#c1A_passportOffice",
-  radioNo = "#c1A_passportOffice-2",
+  radioYes = "#c1A_abductionPassportOfficeNotifiedNotified",
+  radioNo = "#c1A_abductionPassportOfficeNotifiedNotified-2",
 }
 
-interface PassportOfficePageOptions {
+interface PassportOfficeNotifiedPageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
-  c100ChildrenHavePassport: boolean;
+  c100PassportOfficeNotified: boolean;
 }
 
 interface FillInFieldsOptions {
   page: Page;
-  c100ChildrenHavePassport: boolean;
+  c100PassportOfficeNotified: boolean;
 }
 
 interface CheckPageLoadsOptions {
@@ -28,13 +28,13 @@ interface CheckPageLoadsOptions {
   accessibilityTest: boolean;
 }
 
-export class PassportOfficePage {
-  public static async passportOfficePage({
+export class PassportOfficeNotifiedPage {
+  public static async passportOfficeNotifiedPage({
     page,
     accessibilityTest,
     errorMessaging,
-    c100ChildrenHavePassport,
-  }: PassportOfficePageOptions): Promise<void> {
+    c100PassportOfficeNotified,
+  }: PassportOfficeNotifiedPageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
       accessibilityTest: accessibilityTest,
@@ -44,7 +44,7 @@ export class PassportOfficePage {
     }
     await this.fillInFields({
       page: page,
-      c100ChildrenHavePassport: c100ChildrenHavePassport,
+      c100PassportOfficeNotified: c100PassportOfficeNotified,
     });
   }
 
@@ -53,12 +53,12 @@ export class PassportOfficePage {
     accessibilityTest,
   }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukHeadingXL}:text-is("${PassportOfficeContent.pageTitle}")`,
+      `${Selectors.GovukHeadingXL}:text-is("${PassportOfficeNotifiedContent.pageTitle}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukCaptionXL}:text-is("${PassportOfficeContent.caption}")`,
+        `${Selectors.GovukCaptionXL}:text-is("${PassportOfficeNotifiedContent.caption}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -91,12 +91,12 @@ export class PassportOfficePage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorList} ${Selectors.a}:text-is("${PassportOfficeContent.errorSummaryList}")`,
+        `${Selectors.GovukErrorList} ${Selectors.a}:text-is("${PassportOfficeNotifiedContent.errorSummaryList}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${PassportOfficeContent.errorMessage}")`,
+        `${Selectors.ErrorMessage}:text-is("${PassportOfficeNotifiedContent.errorMessage}")`,
         1,
       ),
     ]);
@@ -104,9 +104,9 @@ export class PassportOfficePage {
 
   private static async fillInFields({
     page,
-    c100ChildrenHavePassport,
+    c100PassportOfficeNotified,
   }: FillInFieldsOptions): Promise<void> {
-    if (c100ChildrenHavePassport) {
+    if (c100PassportOfficeNotified) {
       await page.click(radioIDs.radioYes);
     } else {
       await page.click(radioIDs.radioNo);

@@ -1,6 +1,6 @@
 export enum ChildConcernsAboutContent {
   pageTitle = "What type of behaviour have the children experienced or are at risk of experiencing?",
-  caption = "Safety concerns\n",
+  caption = "Safety concerns",
   bodyM = "See the National Society for Prevention of Cruelty to Children (NSPCC) guidance on ",
   link = " spotting the signs of child abuse.",
   formHint1 = "Behaviour such as punching, choking, kicking or hitting with an object",

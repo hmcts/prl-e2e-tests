@@ -1,10 +1,10 @@
 import { Page } from "@playwright/test";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { Selectors } from "../../../../../common/selectors";
-import { ChildLocationContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/childLocationContent";
-import { Helpers } from "../../../../../common/helpers";
-import { CommonStaticText } from "../../../../../common/commonStaticText";
-import { SafetyConcernHelpers } from "./safetyConcernHelpers";
+import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper";
+import { Selectors } from "../../../../../../common/selectors";
+import { ChildLocationContent } from "../../../../../../fixtures/citizen/createCase/C100/safetyConcerns/childConcerns/childLocationContent";
+import { Helpers } from "../../../../../../common/helpers";
+import { CommonStaticText } from "../../../../../../common/commonStaticText";
+import { SafetyConcernHelpers } from "../safetyConcernHelpers";
 
 enum inputIDs {
   abductionReason = "#c1A_abductionReasonOutsideUk",
