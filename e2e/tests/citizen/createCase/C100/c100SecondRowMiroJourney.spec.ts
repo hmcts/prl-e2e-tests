@@ -10,13 +10,19 @@ test.describe("C100 Citizen Application tests on the second MIRO set. @citizenFr
     Not Error Messaging,
     No Screening and Written Review
     Legal Representation: no
-    Court Permission Needed: no`, async ({ page }): Promise<void> => {
+    Court Permission Needed: no
+    Other proceedings: no to all
+    child arrangement order details: no
+    urgency and without notice: no`, async ({ page }): Promise<void> => {
     await C100.c100SecondMiroJourney({
       page: page,
       accessibilityTest: false,
       errorMessaging: false,
       c100LegalRepresentation: false,
-      c100CourtPermissionNeeded: false
+      c100CourtPermissionNeeded: false,
+      yesNoChildArrangementOrderDetails: false,
+      yesNoOtherProceedings: false,
+      urgencyAndWithoutNoticeAllOptionsYes: false
     });
   });
 
@@ -25,13 +31,19 @@ test.describe("C100 Citizen Application tests on the second MIRO set. @citizenFr
     Yes Error Messaging,
     No Screening and Written Review
     Legal Representation: no
-    Court Permission Needed: no`, async ({ page }): Promise<void> => {
+    Court Permission Needed: no
+    Other proceedings: no to all
+    child arrangement order details: no
+    urgency and without notice: no`, async ({ page }): Promise<void> => {
     await C100.c100SecondMiroJourney({
       page: page,
       accessibilityTest: false,
       errorMessaging: true,
       c100LegalRepresentation: false,
-      c100CourtPermissionNeeded: false
+      c100CourtPermissionNeeded: false,
+      yesNoChildArrangementOrderDetails: false,
+      yesNoOtherProceedings: false,
+      urgencyAndWithoutNoticeAllOptionsYes: false
     });
   });
 });
@@ -41,13 +53,19 @@ test(`Test the second row of the second row c100 citizen journey with the follow
     Not Error Messaging,
     No Screening and Written Review
     Legal Representation: no
-    Court Permission Needed: no,
+    Court Permission Needed: no
+    Other proceedings: no to all
+    child arrangement order details: no
+    urgency and without notice: no,
     @accessibilityCitizenFrontend`, async ({ page }): Promise<void> => {
   await C100.c100SecondMiroJourney({
     page: page,
     accessibilityTest: true,
     errorMessaging: false,
     c100LegalRepresentation: false,
-    c100CourtPermissionNeeded: false
+    c100CourtPermissionNeeded: false,
+    yesNoChildArrangementOrderDetails: false,
+    yesNoOtherProceedings: false,
+    urgencyAndWithoutNoticeAllOptionsYes: false
   });
 });
