@@ -1,13 +1,13 @@
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { PhysicalAbuseContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/physicalAbuseContent";
-import { CommonStaticText } from "../../../../../common/commonStaticText";
-import { SafetyConcernHelpers } from "./safetyConcernHelpers";
+import { Selectors } from "../../../../../../common/selectors";
+import { PhysicalAbuseContent } from "../../../../../../fixtures/citizen/createCase/C100/safetyConcerns/childConcerns/physicalAbuseContent";
+import { CommonStaticText } from "../../../../../../common/commonStaticText";
+import { SafetyConcernHelpers } from "../safetyConcernHelpers";
 import {
   reportAbuseCheckboxIDs,
   reportAbuseInputIDs,
-} from "../../../../../common/commonUniqueSelectors";
+} from "../../../../../../common/commonUniqueSelectors";
 
 interface PhysicalAbusePageOptions {
   page: Page;
@@ -48,8 +48,8 @@ export class PhysicalAbusePage {
     await page.waitForSelector(
       `${Selectors.GovukHeadingXL}:text-is("${PhysicalAbuseContent.pageTitle}")`,
     );
-    await SafetyConcernHelpers.checkStaticText(page);
-    await SafetyConcernHelpers.checkSidebar(page);
+    await SafetyConcernHelpers.checkStaticTextChild(page);
+    await SafetyConcernHelpers.checkSidebarChild(page);
     await SafetyConcernHelpers.checkContactDetailsText(page);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
@@ -75,12 +75,12 @@ export class PhysicalAbusePage {
         PhysicalAbuseContent[contentKey],
       );
     }
-    await SafetyConcernHelpers.ongoingBehaviourFields({
+    await SafetyConcernHelpers.ongoingBehaviourFieldsChild({
       page: page,
       c100ReportAbuseYesNoToAll: c100PhysicalAbuseYesNoToAll,
       inputIDs: reportAbuseInputIDs,
     });
-    await SafetyConcernHelpers.seekHelpFields({
+    await SafetyConcernHelpers.seekHelpFieldsChild({
       page: page,
       c100ReportAbuseYesNoToAll: c100PhysicalAbuseYesNoToAll,
       inputIDs: reportAbuseInputIDs,
