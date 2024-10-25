@@ -10,48 +10,25 @@ import { MiamUrgencyType } from "../../../../pages/citizen/createCase/C100/MIAM/
 import { MiamAttendanceType } from "../../../../pages/citizen/createCase/C100/MIAM/miamPreviousAttendancePage";
 import { MiamOtherReasonForNotAttending } from "../../../../pages/citizen/createCase/C100/MIAM/miamMiamOtherPage";
 import { MiamReasonForNoAccessToMediator } from "../../../../pages/citizen/createCase/C100/MIAM/miamNoAccessToMediatorPage";
-import { C100Confidentiality } from "./subJourneys/c100Confidentiality";
-import { yesNoDontKnow } from "../../../../common/types";
 import { C100OtherProceedings } from "./subJourneys/C100OtherProceedings";
 import { C100ApplicationCompletedForYou } from "./C100ApplicationCompletedForYou";
-import { StartPage } from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/startPage";
-import { ChildAddressPage } from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/childAddressPage";
-import { ConsentAgreementPage } from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/consentAgreementPage";
-import { AlternativeResolutionPage } from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/alternativeResolutionPage";
-import { AlternativeRoutesPage } from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/alternativeRoutesPage";
-import { LegalRepresentationPage } from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/legalRepresentationPage";
-import { LegalRepresentationApplicationPage } from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/legalRepresentationApplicationPage";
-import { ContactRepresentativePage } from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/contactRepresentativePage";
-import { CaseDashboardPage } from "../../../../pages/citizen/createCase/initialJourney/caseDashboardPage";
 
-interface C100ThirdMiroJourneyMIAMOptions {
+interface C100ApplicationCompletedForYouOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
-  c100LegalRepresentation: boolean;
-  c100CourtPermissionNeeded: boolean;
-  urgencyAndWithoutNoticeAllOptionsYes: boolean;
-  miamAlreadyAttended: boolean;
-  documentSignedByMediator: boolean;
-  miamValidReasonNoAttendance: boolean;
-  miamGeneralExemptions: boolean;
-  miamDomesticAbuse: boolean;
-  miamDomesticAbuseProvidingEvidence: boolean;
-  miamChildProtectionConcernsType: MiamChildProtectionConcernsType;
-  miamUrgencyType: MiamUrgencyType;
-  miamAttendanceType: MiamAttendanceType;
-  miamPreviousAttendanceMediatorSignedDocument: boolean;
-  miamOtherReasonForNotAttending: MiamOtherReasonForNotAttending;
-  miamReasonForNoAccessToMediator: MiamReasonForNoAccessToMediator;
 }
 
-interface C100FourthRowMiroJourneyOptions {
+interface YouNeedDocumentSignedByMediatorOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
-  c100LegalRepresentation: boolean;
-  c100CourtPermissionNeeded: boolean;
-  urgencyAndWithoutNoticeAllOptionsYes: boolean;
+}
+
+interface GetMediatorJourneyOptions {
+  page: Page;
+  accessibilityTest: boolean;
+  errorMessaging: boolean;
   miamAlreadyAttended: boolean;
   documentSignedByMediator: boolean;
   miamValidReasonNoAttendance: boolean;
@@ -87,22 +64,34 @@ interface C100SecondMiroJourneyOptions {
   urgencyAndWithoutNoticeAllOptionsYes: boolean;
 }
 
-interface C100ApplicationCompletedForYouOptions {
+interface C100ThirdMiroJourneyMIAMOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
+  c100LegalRepresentation: boolean;
+  c100CourtPermissionNeeded: boolean;
+  urgencyAndWithoutNoticeAllOptionsYes: boolean;
+  miamAlreadyAttended: boolean;
+  documentSignedByMediator: boolean;
+  miamValidReasonNoAttendance: boolean;
+  miamGeneralExemptions: boolean;
+  miamDomesticAbuse: boolean;
+  miamDomesticAbuseProvidingEvidence: boolean;
+  miamChildProtectionConcernsType: MiamChildProtectionConcernsType;
+  miamUrgencyType: MiamUrgencyType;
+  miamAttendanceType: MiamAttendanceType;
+  miamPreviousAttendanceMediatorSignedDocument: boolean;
+  miamOtherReasonForNotAttending: MiamOtherReasonForNotAttending;
+  miamReasonForNoAccessToMediator: MiamReasonForNoAccessToMediator;
 }
 
-interface YouNeedDocumentSignedByMediatorOptions {
+interface C100FourthRowMiroJourneyOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
-}
-
-interface GetMediatorJourneyOptions {
-  page: Page;
-  accessibilityTest: boolean;
-  errorMessaging: boolean;
+  c100LegalRepresentation: boolean;
+  c100CourtPermissionNeeded: boolean;
+  urgencyAndWithoutNoticeAllOptionsYes: boolean;
   miamAlreadyAttended: boolean;
   documentSignedByMediator: boolean;
   miamValidReasonNoAttendance: boolean;
@@ -454,117 +443,5 @@ export class C100 {
       errorMessaging: errorMessaging,
     });
     // People
-  }
-
-  public static async c100({
-    page,
-    accessibilityTest,
-    errorMessaging,
-    c100ScreeningWrittenAgreementReview,
-    c100LegalRepresentation,
-    c100CourtPermissionNeeded,
-    urgencyAndWithoutNoticeAllOptionsYes,
-    // c100OthersKnowApplicantsContact,
-    // c100PrivateDetails,
-    // c100ChildrenSafetyConcerns,
-    c100OthersKnowApplicantsContact,
-    c100PrivateDetails,
-    miamChildrenInvolvedOtherProceedings,
-    miamAlreadyAttended,
-    documentSignedByMediator,
-    miamValidReasonNoAttendance,
-    miamGeneralExemptions,
-    miamDomesticAbuse,
-    miamDomesticAbuseProvidingEvidence,
-    miamChildProtectionConcernsType,
-    miamUrgencyType,
-    miamAttendanceType,
-    miamPreviousAttendanceMediatorSignedDocument,
-    miamOtherReasonForNotAttending,
-    miamReasonForNoAccessToMediator,
-  }: C100Options): Promise<void> {
-    await CitizenCreateInitial.citizenCreateInitial({
-      page: page,
-      accessibilityTest: accessibilityTest,
-      childArrangementsJourney: "C100",
-    });
-    await C100ScreeningSections.c100ScreeningSections({
-      page: page,
-      accessibilityTest: accessibilityTest,
-      errorMessaging: errorMessaging,
-      c100ScreeningWrittenAgreementReview: c100ScreeningWrittenAgreementReview,
-      c100LegalRepresentation: c100LegalRepresentation,
-      c100CourtPermissionNeeded: c100CourtPermissionNeeded,
-    });
-    if (c100ScreeningWrittenAgreementReview) {
-      await C100TypeOfOrder.c100TypeOfOrder({
-        page: page,
-        accessibilityTest: accessibilityTest,
-        errorMessaging: errorMessaging,
-      });
-      await C100ConsentOrderUpload.c100ConsentOrderUpload({
-        page: page,
-        accessibilityTest: accessibilityTest,
-        errorMessaging: errorMessaging,
-      });
-      await C100UrgencyAndWithoutNotice.c100UrgencyAndWithoutNotice({
-        page: page,
-        accessibilityTest: accessibilityTest,
-        errorMessaging: errorMessaging,
-        urgencyAndWithoutNoticeAllOptionsYes:
-          urgencyAndWithoutNoticeAllOptionsYes,
-      });
-      // People
-      // Applicant Details
-      // await C100Confidentiality.c100Confidentiality({
-      //   page: page,
-      //   accessibilityTest: accessibilityTest,
-      //   errorMessaging: errorMessaging,
-      //   c100OthersKnowApplicantsContact: c100OthersKnowApplicantsContact,
-      //   c100PrivateDetails: c100PrivateDetails,
-      // });
-      // Case Parties
-      // Other Proceedings
-      // C1A - Safety Concerns
-      // International Element
-      // Reasonable Adjustments
-      // Help with Fees
-    } else {
-      await MIAM.MIAM({
-        page: page,
-        accessibilityTest: accessibilityTest,
-        errorMessaging: errorMessaging,
-        miamChildrenInvolvedOtherProceedings:
-          miamChildrenInvolvedOtherProceedings,
-        miamAlreadyAttended: miamAlreadyAttended,
-        documentSignedByMediator: documentSignedByMediator,
-        miamValidReasonNoAttendance: miamValidReasonNoAttendance,
-        miamGeneralExemptions: miamGeneralExemptions,
-        miamDomesticAbuse: miamDomesticAbuse,
-        miamDomesticAbuseProvidingEvidence: miamDomesticAbuseProvidingEvidence,
-        miamChildProtectionConcernsType: miamChildProtectionConcernsType,
-        miamUrgencyType: miamUrgencyType,
-        miamAttendanceType: miamAttendanceType,
-        miamPreviousAttendanceMediatorSignedDocument:
-          miamPreviousAttendanceMediatorSignedDocument,
-        miamOtherReasonForNotAttending: miamOtherReasonForNotAttending,
-        miamReasonForNoAccessToMediator: miamReasonForNoAccessToMediator,
-      });
-      // MIAM journey
-      // if children involved in emergency protection
-      // Other Proceedings
-      // Type Of Order
-      // Urgency & Without Notice
-      // People
-      // Confidentiality C7
-      // Case Parties
-      // C1A - Safety Concerns
-      // International Element
-      // Reasonable Adjustments
-      // Help with Fees
-      // else
-      // ?
-    }
-    console.log(page.url());
   }
 }

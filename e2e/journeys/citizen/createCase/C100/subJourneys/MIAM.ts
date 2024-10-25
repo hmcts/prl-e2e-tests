@@ -89,7 +89,6 @@ export class MIAM {
         page: page,
         accessibilityTest: accessibilityTest,
       });
-      console.log("No Need Page");
     } else {
       await MiamInfoPage.miamInfoPage({
         page: page,
@@ -118,7 +117,6 @@ export class MIAM {
             page: page,
             accessibilityTest: false,
           });
-          console.log("Dashboard");
         } else {
           await MiamUploadPage.miamUploadPage({
             page: page,
@@ -129,7 +127,6 @@ export class MIAM {
             page: page,
             accessibilityTest: accessibilityTest,
           });
-          console.log("Uploaded Document");
         }
       } else {
         await MiamValidReasonPage.miamValidReasonPage({
@@ -143,7 +140,6 @@ export class MIAM {
             page: page,
             accessibilityTest: accessibilityTest,
           });
-          console.log("Get Mediator");
         } else {
           await MiamGeneralReasonsPage.miamGeneralReasonsPage({
             page: page,
@@ -156,7 +152,6 @@ export class MIAM {
               page: page,
               accessibilityTest: accessibilityTest,
             });
-            console.log("Get Mediator");
             return;
           }
           await MiamDomesticAbusePage.miamDomesticAbusePage({
@@ -261,7 +256,6 @@ export class MIAM {
               page: page,
               accessibilityTest: accessibilityTest,
             });
-            console.log("Get Mediator");
             return;
           }
           await MiamMiamExemptionsSummaryPage.miamMiamExemptionsSummaryPage({
@@ -274,7 +268,6 @@ export class MIAM {
             miamOtherReasonForNotAttending: miamOtherReasonForNotAttending,
             miamReasonForNoAccessToMediator: miamReasonForNoAccessToMediator,
           });
-          console.log("Exemption Summary");
         }
       }
     }
