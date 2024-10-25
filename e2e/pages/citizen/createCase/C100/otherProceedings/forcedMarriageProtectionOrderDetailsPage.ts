@@ -10,7 +10,7 @@ interface ForcedMarriageProtectionOrderDetailsPageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
-  yesNoForcedMarriageProtectionOrderDetails: boolean;
+  yesNoOtherProceedings: boolean;
 }
 
 interface checkPageLoadsOptions {
@@ -20,7 +20,7 @@ interface checkPageLoadsOptions {
 
 interface fillInFieldsOptions {
   page: Page;
-  yesNoForcedMarriageProtectionOrderDetails: boolean;
+  yesNoOtherProceedings: boolean;
 }
 
 export class ForcedMarriageProtectionOrderDetailsPage {
@@ -28,8 +28,7 @@ export class ForcedMarriageProtectionOrderDetailsPage {
     page: page,
     accessibilityTest: accessibilityTest,
     errorMessaging: errorMessaging,
-    yesNoForcedMarriageProtectionOrderDetails:
-      yesNoForcedMarriageProtectionOrderDetails,
+    yesNoOtherProceedings: yesNoOtherProceedings,
   }: ForcedMarriageProtectionOrderDetailsPageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
@@ -40,8 +39,7 @@ export class ForcedMarriageProtectionOrderDetailsPage {
     }
     await this.fillInFields({
       page: page,
-      yesNoForcedMarriageProtectionOrderDetails:
-        yesNoForcedMarriageProtectionOrderDetails,
+      yesNoOtherProceedings: yesNoOtherProceedings,
     });
   }
 
@@ -172,8 +170,7 @@ export class ForcedMarriageProtectionOrderDetailsPage {
 
   private static async fillInFields({
     page: page,
-    yesNoForcedMarriageProtectionOrderDetails:
-      yesNoForcedMarriageProtectionOrderDetails,
+    yesNoOtherProceedings: yesNoOtherProceedings,
   }: fillInFieldsOptions): Promise<void> {
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.orderDetail1}`,
@@ -208,7 +205,7 @@ export class ForcedMarriageProtectionOrderDetailsPage {
       ForcedMarriageProtectionOrderDetailsContent.yearNumber2,
     );
     // Selecting 'true' will move onto next page
-    if (yesNoForcedMarriageProtectionOrderDetails) {
+    if (yesNoOtherProceedings) {
       await page.click(
         `${CitizensOtherProceedingsUniqueSelectors.currentOrderYes}`,
       );

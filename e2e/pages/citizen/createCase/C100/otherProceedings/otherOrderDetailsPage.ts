@@ -1,12 +1,12 @@
-import { Selectors } from "../../../../../common/selectors";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
+import { Selectors } from "../../../../../common/selectors";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-import { ChildAbductionOrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/childAbductionOrderDetailsContent";
 import { CitizensOtherProceedingsUniqueSelectors } from "../../../../../common/commonUniqueSelectors";
+import AxeTest from "../../../../../common/accessibilityTestHelper";
+import { OtherOrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/otherOrderDetailsContent";
 
-interface ChildAbductionOrderDetailsPageOptions {
+interface OtherOrderDetailsPageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
@@ -23,13 +23,13 @@ interface fillInFieldsOptions {
   yesNoOtherProceedings: boolean;
 }
 
-export class ChildAbductionOrderDetailsPage {
-  public static async childAbductionOrderDetailsPage({
+export class OtherOrderDetailsPage {
+  public static async OtherOrderDetailsPage({
     page: page,
     accessibilityTest: accessibilityTest,
     errorMessaging: errorMessaging,
     yesNoOtherProceedings: yesNoOtherProceedings,
-  }: ChildAbductionOrderDetailsPageOptions): Promise<void> {
+  }: OtherOrderDetailsPageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
       accessibilityTest: accessibilityTest,
@@ -48,36 +48,36 @@ export class ChildAbductionOrderDetailsPage {
     accessibilityTest: accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.p}:text-is("${ChildAbductionOrderDetailsContent.p}")`,
+      `${Selectors.p}:text-is("${OtherOrderDetailsContent.p}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHeadingXL}:text-is("${ChildAbductionOrderDetailsContent.pageTitle}")`,
+        `${Selectors.GovukHeadingXL}:text-is("${OtherOrderDetailsContent.pageTitle}")`,
         1,
       ),
       Helpers.checkGroup(
         page,
         5,
-        ChildAbductionOrderDetailsContent,
+        OtherOrderDetailsContent,
         "h1",
         `${Selectors.h1}`,
       ),
       Helpers.checkGroup(
         page,
         2,
-        ChildAbductionOrderDetailsContent,
+        OtherOrderDetailsContent,
         "formLabel",
         `${Selectors.h1}`,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${ChildAbductionOrderDetailsContent.formHint1}")`,
+        `${Selectors.GovukHint}:text-is("${OtherOrderDetailsContent.formHint1}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${ChildAbductionOrderDetailsContent.formHint2}")`,
+        `${Selectors.GovukHint}:text-is("${OtherOrderDetailsContent.formHint2}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
@@ -107,34 +107,34 @@ export class ChildAbductionOrderDetailsPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await AxeTest.run(page);
     }
   }
 
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.orderDate1day}`,
-      ChildAbductionOrderDetailsContent.dayNumber,
+      OtherOrderDetailsContent.dayNumber,
     );
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.orderDate1month}`,
-      ChildAbductionOrderDetailsContent.errorMonthNumber,
+      OtherOrderDetailsContent.errorMonthNumber,
     );
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.orderDate1year}`,
-      ChildAbductionOrderDetailsContent.yearNumber1,
+      OtherOrderDetailsContent.yearNumber1,
     );
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.orderEndDate1day}`,
-      ChildAbductionOrderDetailsContent.dayNumber,
+      OtherOrderDetailsContent.dayNumber,
     );
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.orderEndDate1month}`,
-      ChildAbductionOrderDetailsContent.errorMonthNumber,
+      OtherOrderDetailsContent.errorMonthNumber,
     );
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.orderEndDate1year}`,
-      ChildAbductionOrderDetailsContent.yearNumber2,
+      OtherOrderDetailsContent.yearNumber2,
     );
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
@@ -147,22 +147,22 @@ export class ChildAbductionOrderDetailsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${ChildAbductionOrderDetailsContent.errorMessageOrderDate}")`,
+        `${Selectors.a}:text-is("${OtherOrderDetailsContent.errorMessageOrderDate}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${ChildAbductionOrderDetailsContent.errorMessageOrderDate}")`,
+        `${Selectors.ErrorMessage}:text-is("${OtherOrderDetailsContent.errorMessageOrderDate}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${ChildAbductionOrderDetailsContent.errorMessageOrderEndDate}")`,
+        `${Selectors.a}:text-is("${OtherOrderDetailsContent.errorMessageOrderEndDate}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${ChildAbductionOrderDetailsContent.errorMessageOrderEndDate}")`,
+        `${Selectors.ErrorMessage}:text-is("${OtherOrderDetailsContent.errorMessageOrderEndDate}")`,
         1,
       ),
     ]);
@@ -174,35 +174,35 @@ export class ChildAbductionOrderDetailsPage {
   }: fillInFieldsOptions): Promise<void> {
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.orderDetail1}`,
-      ChildAbductionOrderDetailsContent.courtIssued,
+      OtherOrderDetailsContent.courtIssued,
     );
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.caseNo1}`,
-      ChildAbductionOrderDetailsContent.caseNumber,
+      OtherOrderDetailsContent.caseNumber,
     );
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.orderDate1day}`,
-      ChildAbductionOrderDetailsContent.dayNumber,
+      OtherOrderDetailsContent.dayNumber,
     );
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.orderDate1month}`,
-      ChildAbductionOrderDetailsContent.monthNumber,
+      OtherOrderDetailsContent.monthNumber,
     );
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.orderDate1year}`,
-      ChildAbductionOrderDetailsContent.yearNumber1,
+      OtherOrderDetailsContent.yearNumber1,
     );
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.orderEndDate1day}`,
-      ChildAbductionOrderDetailsContent.dayNumber,
+      OtherOrderDetailsContent.dayNumber,
     );
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.orderEndDate1month}`,
-      ChildAbductionOrderDetailsContent.monthNumber,
+      OtherOrderDetailsContent.monthNumber,
     );
     await page.fill(
       `${CitizensOtherProceedingsUniqueSelectors.orderEndDate1year}`,
-      ChildAbductionOrderDetailsContent.yearNumber2,
+      OtherOrderDetailsContent.yearNumber2,
     );
     // Selecting 'true' will move onto next page
     if (yesNoOtherProceedings) {
