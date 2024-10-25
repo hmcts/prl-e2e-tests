@@ -114,7 +114,7 @@ export class ApplicantAddressManualPage {
         7,
         ApplicantAddressManualContent,
         "errorMessage",
-        Selectors.GovukErrorMessage,
+        Selectors.GovukErrorMessageCitizen,
       ),
     ]);
     await page.click(inputIds.addressHistoryYes); //check hidden error message

@@ -5,6 +5,22 @@ import { ApplicantContactDetailContent } from "../../../../../fixtures/citizen/c
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 
+enum inputIds {
+  provideEmailYes = "#canProvideEmail",
+  provideEmailNo = "#canProvideEmail-2",
+  enterEmail = "#emailAddress",
+  provideTelYes = "#canProvideTelephoneNumber",
+  provideTelNo = "#canProvideTelephoneNumber-2",
+  enterTel = "#telephoneNumber",
+  reasonNoTel = "#canNotProvideTelephoneNumberReason",
+  leaveVoicemailYes = "#canLeaveVoiceMail",
+  leaveVoicemailNo = "#canLeaveVoiceMail-2",
+}
+
+enum uniqueSelectors {
+  notificationBody = `p[class="govuk-body govuk-!-margin-bottom-2"]`,
+}
+
 interface applicantContactDetailOptions {
   page: Page;
   accessibilityTest: boolean;
@@ -20,22 +36,6 @@ interface checkPageLoadsOptions {
 interface fillInFieldsOptions {
   page: Page;
   provideEmailTelephoneVoicemail: boolean;
-}
-
-enum inputIds {
-  provideEmailYes = "#canProvideEmail",
-  provideEmailNo = "#canProvideEmail-2",
-  enterEmail = "#emailAddress",
-  provideTelYes = "#canProvideTelephoneNumber",
-  provideTelNo = "#canProvideTelephoneNumber-2",
-  enterTel = "#telephoneNumber",
-  reasonNoTel = "#canNotProvideTelephoneNumberReason",
-  leaveVoicemailYes = "#canLeaveVoiceMail",
-  leaveVoicemailNo = "#canLeaveVoiceMail-2",
-}
-
-enum uniqueSelectors {
-  notificationBody = `p[class="govuk-body govuk-!-margin-bottom-2"]`,
 }
 
 export class ApplicantContactDetailPage {
@@ -115,7 +115,7 @@ export class ApplicantContactDetailPage {
         3,
         ApplicantContactDetailContent,
         "errorMessage",
-        Selectors.GovukErrorMessage,
+        Selectors.GovukErrorMessageCitizen,
       ),
     ]);
 
@@ -139,7 +139,7 @@ export class ApplicantContactDetailPage {
         2,
         ApplicantContactDetailContent,
         "hiddenErrorMessage",
-        Selectors.GovukErrorMessage,
+        Selectors.GovukErrorMessageCitizen,
       ),
     ]);
 
@@ -165,7 +165,7 @@ export class ApplicantContactDetailPage {
         2,
         ApplicantContactDetailContent,
         "invalidErrorMessage",
-        Selectors.GovukErrorMessage,
+        Selectors.GovukErrorMessageCitizen,
       ),
     ]);
 
@@ -182,7 +182,7 @@ export class ApplicantContactDetailPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${ApplicantContactDetailContent.hiddenErrorMessage3}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${ApplicantContactDetailContent.hiddenErrorMessage3}")`,
         1,
       ),
     ]);

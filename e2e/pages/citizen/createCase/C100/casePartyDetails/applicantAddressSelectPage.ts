@@ -96,7 +96,7 @@ export class ApplicantAddressSelectPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${ApplicantAddressSelectContent.errorMessage}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${ApplicantAddressSelectContent.errorMessage}")`,
         1,
       ),
     ]);

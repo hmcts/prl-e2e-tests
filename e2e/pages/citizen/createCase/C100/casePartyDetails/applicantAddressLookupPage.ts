@@ -90,7 +90,7 @@ export class ApplicantAddressLookupPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${ApplicantAddressLookupContent.errorMessage}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${ApplicantAddressLookupContent.errorMessage}")`,
         1,
       ),
     ]);
