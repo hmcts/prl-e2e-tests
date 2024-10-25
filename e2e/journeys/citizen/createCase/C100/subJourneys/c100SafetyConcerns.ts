@@ -11,6 +11,15 @@ import { FinancialAbusePage } from "../../../../../pages/citizen/createCase/C100
 import { ChildLocationPage } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/childConcerns/childLocationPage";
 import { PassportOfficePage } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/childConcerns/passportOfficePage";
 import { PassportAmountPage } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/childConcerns/passportAmountPage";
+import {
+  PassportOfficeNotifiedPage
+} from "../../../../../pages/citizen/createCase/C100/safetyConcerns/childConcerns/passportOfficeNotifiedPage";
+import {
+  AbductionThreatsPage
+} from "../../../../../pages/citizen/createCase/C100/safetyConcerns/childConcerns/abductionThreatsPage";
+import {
+  YourselfConcernsAboutPage
+} from "../../../../../pages/citizen/createCase/C100/safetyConcerns/yourselfConcerns/yourselfConcernsAboutPage";
 
 interface C100SafetyConcernsOptions {
   page: Page;
@@ -23,6 +32,8 @@ interface C100SafetyConcernsOptions {
   c100FinancialAbuseYesNoToAll: boolean;
   c100ChildrenHavePassport: boolean;
   c100MoreThanOnePassport: boolean;
+  c100PassportOfficeNotified: boolean;
+  c100ChildrenAbductedBefore: boolean;
 }
 
 export class C100SafetyConcerns {
@@ -37,6 +48,8 @@ export class C100SafetyConcerns {
     c100FinancialAbuseYesNoToAll,
     c100ChildrenHavePassport,
     c100MoreThanOnePassport,
+    c100PassportOfficeNotified,
+    c100ChildrenAbductedBefore
   }: C100SafetyConcernsOptions): Promise<void> {
     await ConcernGuidancePage.concernGuidancePage({
       page: page,
@@ -102,6 +115,23 @@ export class C100SafetyConcerns {
           errorMessaging: errorMessaging,
           c100MoreThanOnePassport: c100MoreThanOnePassport,
         });
+        await PassportOfficeNotifiedPage.passportOfficeNotifiedPage({
+          page: page,
+          accessibilityTest: accessibilityTest,
+          errorMessaging: errorMessaging,
+          c100PassportOfficeNotified: c100PassportOfficeNotified
+        });
+        await AbductionThreatsPage.abductionThreatsPage({
+          page: page,
+          accessibilityTest: accessibilityTest,
+          errorMessaging: errorMessaging,
+          c100ChildrenAbductedBefore: c100ChildrenAbductedBefore
+        });
+        await YourselfConcernsAboutPage.yourselfConcernsAboutPage({
+          page: page,
+          accessibilityTest: accessibilityTest,
+          errorMessaging: errorMessaging
+        })
       }
     }
   }
