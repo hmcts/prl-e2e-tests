@@ -1,5 +1,6 @@
 export enum ReasonableAdjustmentsLanguageRequirementsContent {
   pageTitle = "Do you have any language requirements?",
+  GovukCaptionXL = "Language requirements",
   govukInsetText = "Think about all communication with the court, as well as what you might need at a hearing. Consider remote and in-person hearings, in case your preferred hearing type is not possible.",
   govukHint = "Select all that apply to you",
   govukLabel1 = "I need to speak in Welsh",

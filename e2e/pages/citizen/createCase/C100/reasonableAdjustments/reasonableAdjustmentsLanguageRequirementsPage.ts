@@ -2,6 +2,8 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { ReasonableAdjustmentsLanguageRequirementsContent } from "../../../../../fixtures/citizen/createCase/C100/reasonableAdjustments/reasonableAdjustmentsLanguageRequirementsContent";
 import { Helpers } from "../../../../../common/helpers";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
+import AxeTest from "../../../../../common/accessibilityTestHelper";
 
 export interface ReasonableAdjustmentsLanguageRequirementsPageOptions {
   page: Page;
@@ -10,7 +12,34 @@ export interface ReasonableAdjustmentsLanguageRequirementsPageOptions {
   yesNoReasonableAdjustments: boolean;
 }
 
+enum UniqueSelectors {
+  needToSpeakWelsh = "#ra_languageNeeds",
+  needReadAndWriteWelsh = "#ra_languageNeeds-2",
+  needInterpreter = "#ra_languageNeeds-3",
+  needInterpreterInCertainLanguageInputField = "#ra_needInterpreterInCertainLanguage_subfield",
+  noToAll = "#ra_languageNeeds-5",
+}
+
 export class ReasonableAdjustmentsLanguageRequirementsPage {
+  public static async reasonableAdjustmentsAttendingCourtPage({
+    page: page,
+    accessibilityTest: accessibilityTest,
+    errorMessaging: errorMessaging,
+    yesNoReasonableAdjustments: yesNoReasonableAdjustments,
+  }: ReasonableAdjustmentsLanguageRequirementsPageOptions): Promise<void> {
+    await this.checkPageLoads({
+      page: page,
+      accessibilityTest: accessibilityTest,
+    });
+    if (errorMessaging) {
+      await this.triggerErrorMessages({ page: page });
+    }
+    await this.fillInFields({
+      page: page,
+      yesNoReasonableAdjustments: yesNoReasonableAdjustments,
+    });
+  }
+
   private static async checkPageLoads({
     page: page,
     accessibilityTest: accessibilityTest,
@@ -24,9 +53,110 @@ export class ReasonableAdjustmentsLanguageRequirementsPage {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
+        `${Selectors.GovukCaptionXL}:text-is("${ReasonableAdjustmentsLanguageRequirementsContent.GovukCaptionXL}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
         `${Selectors.GovukInsetText}:text-is("${ReasonableAdjustmentsLanguageRequirementsContent.govukInsetText}")`,
         1,
       ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukHint}:text-is("${ReasonableAdjustmentsLanguageRequirementsContent.govukHint}")`,
+        1,
+      ),
+      Helpers.checkGroup(
+        page,
+        4,
+        ReasonableAdjustmentsLanguageRequirementsContent,
+        "govukLabel",
+        Selectors.GovukLabel,
+      ),
     ]);
+    if (accessibilityTest) {
+      await AxeTest.run(page);
+    }
+  }
+
+  private static async triggerErrorMessages({
+    page: page,
+  }: Partial<ReasonableAdjustmentsLanguageRequirementsPageOptions>): Promise<void> {
+    if (!page) {
+      throw new Error();
+    }
+    await page.click(
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
+    );
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorSummaryTitle}:text-is("${CommonStaticText.errorSummaryTitle}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.a}:text-is("${ReasonableAdjustmentsLanguageRequirementsContent.errorMessageBlank}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.ErrorMessage}:text-is("${ReasonableAdjustmentsLanguageRequirementsContent.errorMessageBlank}")`,
+        1,
+      ),
+    ]);
+    await page.click(UniqueSelectors.needInterpreter);
+    await page.click(
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
+    );
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorSummaryTitle}:text-is("${CommonStaticText.errorSummaryTitle}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.a}:text-is("${ReasonableAdjustmentsLanguageRequirementsContent.errorMessageYesBlank}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.ErrorMessage}:text-is("${ReasonableAdjustmentsLanguageRequirementsContent.errorMessageYesBlank}")`,
+        1,
+      ),
+    ]);
+  }
+
+  private static async fillInFields({
+    page: page,
+    yesNoReasonableAdjustments: yesNoReasonableAdjustments,
+  }: Partial<ReasonableAdjustmentsLanguageRequirementsPageOptions>): Promise<void> {
+    if (!page) {
+      throw new Error();
+    }
+    if (yesNoReasonableAdjustments) {
+      const yesFields: UniqueSelectors[] = Object.values(UniqueSelectors).slice(
+        0,
+        3,
+      );
+      for (const selector of yesFields) {
+        await page.click(selector);
+      }
+      await page.fill(
+        UniqueSelectors.needInterpreterInCertainLanguageInputField,
+        ReasonableAdjustmentsLanguageRequirementsContent.interpreterLanguageDetails,
+      );
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukLabel}:text-is("${ReasonableAdjustmentsLanguageRequirementsContent.govukLabelYes}")`,
+        1,
+      );
+    } else {
+      await page.click(UniqueSelectors.noToAll);
+    }
+    await page.click(
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
+    );
   }
 }
