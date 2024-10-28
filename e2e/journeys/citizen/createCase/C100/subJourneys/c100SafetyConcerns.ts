@@ -17,6 +17,15 @@ import { YourselfConcernsAboutPage } from "../../../../../pages/citizen/createCa
 import { PhysicalAbuseYourselfPage } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/yourselfConcerns/physicalAbuseYourselfPage";
 import { PsychologicalAbuseYourselfPage } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/yourselfConcerns/psychologicalAbuseYourselfPage";
 import { EmotionalAbuseYourselfPage } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/yourselfConcerns/emotionalAbuseYourselfPage";
+import {
+  SexualAbuseYourselfPage
+} from "../../../../../pages/citizen/createCase/C100/safetyConcerns/yourselfConcerns/sexualAbuseYourselfPage";
+import {
+  FinancialAbuseYourselfPage
+} from "../../../../../pages/citizen/createCase/C100/safetyConcerns/yourselfConcerns/financialAbuseYourselfPage";
+import {
+  OtherAbusePage
+} from "../../../../../pages/citizen/createCase/C100/safetyConcerns/yourselfConcerns/otherAbusePage";
 
 interface C100SafetyConcernsOptions {
   page: Page;
@@ -24,9 +33,6 @@ interface C100SafetyConcernsOptions {
   errorMessaging: boolean;
   c100ChildrenSafetyConcerns: boolean;
   c100ReportAbuseYesNoToAll: boolean;
-  c100EmotionalAbuseYesNoToAll: boolean;
-  c100SexualAbuseYesNoToAll: boolean;
-  c100FinancialAbuseYesNoToAll: boolean;
   c100ChildrenHavePassport: boolean;
   c100MoreThanOnePassport: boolean;
   c100PassportOfficeNotified: boolean;
@@ -40,9 +46,6 @@ export class C100SafetyConcerns {
     errorMessaging,
     c100ChildrenSafetyConcerns,
     c100ReportAbuseYesNoToAll,
-    c100EmotionalAbuseYesNoToAll,
-    c100SexualAbuseYesNoToAll,
-    c100FinancialAbuseYesNoToAll,
     c100ChildrenHavePassport,
     c100MoreThanOnePassport,
     c100PassportOfficeNotified,
@@ -82,17 +85,17 @@ export class C100SafetyConcerns {
       await EmotionalAbusePage.emotionalAbusePage({
         page: page,
         accessibilityTest: accessibilityTest,
-        c100EmotionalAbuseYesNoToAll: c100EmotionalAbuseYesNoToAll,
+        c100EmotionalAbuseYesNoToAll: c100ReportAbuseYesNoToAll,
       });
       await SexualAbusePage.sexualAbusePage({
         page: page,
         accessibilityTest: accessibilityTest,
-        c100SexualAbuseYesNoToAll: c100SexualAbuseYesNoToAll,
+        c100SexualAbuseYesNoToAll: c100ReportAbuseYesNoToAll,
       });
       await FinancialAbusePage.financialAbusePage({
         page: page,
         accessibilityTest: accessibilityTest,
-        c100FinancialAbuseYesNoToAll: c100FinancialAbuseYesNoToAll,
+        c100FinancialAbuseYesNoToAll: c100ReportAbuseYesNoToAll,
       });
       await ChildLocationPage.childLocationPage({
         page: page,
@@ -118,33 +121,51 @@ export class C100SafetyConcerns {
           errorMessaging: errorMessaging,
           c100PassportOfficeNotified: c100PassportOfficeNotified,
         });
-        await AbductionThreatsPage.abductionThreatsPage({
-          page: page,
-          accessibilityTest: accessibilityTest,
-          errorMessaging: errorMessaging,
-          c100ChildrenAbductedBefore: c100ChildrenAbductedBefore,
-        });
-        await YourselfConcernsAboutPage.yourselfConcernsAboutPage({
-          page: page,
-          accessibilityTest: accessibilityTest,
-          errorMessaging: errorMessaging,
-        });
-        await PhysicalAbuseYourselfPage.physicalAbusePage({
-          page: page,
-          accessibilityTest: accessibilityTest,
-          c100PhysicalAbuseYesNoToAll: c100ReportAbuseYesNoToAll,
-        });
-        await PsychologicalAbuseYourselfPage.psychologicalAbusePage({
-          page: page,
-          accessibilityTest: accessibilityTest,
-          c100PsychologicalAbuseYesNoToAll: c100ReportAbuseYesNoToAll,
-        });
-        await EmotionalAbuseYourselfPage.emotionalAbusePage({
-          page: page,
-          accessibilityTest: accessibilityTest,
-          c100EmotionalAbuseYesNoToAll: c100ReportAbuseYesNoToAll,
-        });
       }
+      await AbductionThreatsPage.abductionThreatsPage({
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
+        c100ChildrenAbductedBefore: c100ChildrenAbductedBefore,
+      });
+      if (c100ChildrenAbductedBefore) {
+        // Previous Abductions (PRL-6409)
+      }
+      await YourselfConcernsAboutPage.yourselfConcernsAboutPage({
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
+      });
+      await PhysicalAbuseYourselfPage.physicalAbusePage({
+        page: page,
+        accessibilityTest: accessibilityTest,
+        c100PhysicalAbuseYesNoToAll: c100ReportAbuseYesNoToAll,
+      });
+      await PsychologicalAbuseYourselfPage.psychologicalAbusePage({
+        page: page,
+        accessibilityTest: accessibilityTest,
+        c100PsychologicalAbuseYesNoToAll: c100ReportAbuseYesNoToAll,
+      });
+      await EmotionalAbuseYourselfPage.emotionalAbusePage({
+        page: page,
+        accessibilityTest: accessibilityTest,
+        c100EmotionalAbuseYesNoToAll: c100ReportAbuseYesNoToAll,
+      });
+      await SexualAbuseYourselfPage.sexualAbusePage({
+        page: page,
+        accessibilityTest: accessibilityTest,
+        c100SexualAbuseYesNoToAll: c100ReportAbuseYesNoToAll
+      });
+      await FinancialAbuseYourselfPage.financialAbusePage({
+        page: page,
+        accessibilityTest: accessibilityTest,
+        c100FinancialAbuseYesNoToAll: c100ReportAbuseYesNoToAll
+      });
+      await OtherAbusePage.otherAbusePage({
+        page: page,
+        accessibilityTest: accessibilityTest,
+        c100OtherAbuseYesNoToAll: c100ReportAbuseYesNoToAll
+      })
     }
   }
 }
