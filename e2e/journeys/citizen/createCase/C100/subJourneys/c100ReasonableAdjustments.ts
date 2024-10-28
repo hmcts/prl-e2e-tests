@@ -5,12 +5,8 @@ import { ReasonableAdjustmentsSpecialArrangementsPage } from "../../../../../pag
 import { ReasonableAdjustmentsSupportDuringYourCasePage } from "../../../../../pages/citizen/createCase/C100/reasonableAdjustments/reasonableAdjustmentsSupportDuringYourCasePage";
 import { ReasonableAdjustmentsDocumentSupportPage } from "../../../../../pages/citizen/createCase/C100/reasonableAdjustments/reasonableAdjustmentsDocumentsSupportPage";
 import { ReasonableAdjustmentsCommunicationHelpPage } from "../../../../../pages/citizen/createCase/C100/reasonableAdjustments/reasonableAdjustmentsCommunicationHelpPage";
-import {
-  ReasonableAdjustmentsSupportForCourtHearingPage
-} from "../../../../../pages/citizen/createCase/C100/reasonableAdjustments/ReasonableAdjustmentsSupportForCourtHearingPage";
-import {
-  ReasonableAdjustmentsNeedsDuringCourtHearingPage
-} from "../../../../../pages/citizen/createCase/C100/reasonableAdjustments/ReasonableAdjustmentsNeedsDuringCourtHearingPage";
+import { ReasonableAdjustmentsSupportForCourtHearingPage } from "../../../../../pages/citizen/createCase/C100/reasonableAdjustments/ReasonableAdjustmentsSupportForCourtHearingPage";
+import { ReasonableAdjustmentsNeedsDuringCourtHearingPage } from "../../../../../pages/citizen/createCase/C100/reasonableAdjustments/ReasonableAdjustmentsNeedsDuringCourtHearingPage";
 
 interface C100ReasonableAdjustmentsOptions {
   page: Page;
@@ -74,17 +70,21 @@ export class C100ReasonableAdjustments {
         yesNoReasonableAdjustments: yesNoReasonableAdjustments,
       },
     );
-    await ReasonableAdjustmentsSupportForCourtHearingPage.reasonableAdjustmentsSupportForCourtHearingPage({
-      page: page,
-      accessibilityTest: accessibilityTest,
-      errorMessaging: errorMessaging,
-      yesNoReasonableAdjustments: yesNoReasonableAdjustments,
-    });
-    await ReasonableAdjustmentsNeedsDuringCourtHearingPage.reasonableAdjustmentsNeedsDuringCourtHearingPage({
-      page: page,
-      accessibilityTest: accessibilityTest,
-      errorMessaging: errorMessaging,
-      yesNoReasonableAdjustments: yesNoReasonableAdjustments,
-    });
+    await ReasonableAdjustmentsSupportForCourtHearingPage.reasonableAdjustmentsSupportForCourtHearingPage(
+      {
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
+        yesNoReasonableAdjustments: yesNoReasonableAdjustments,
+      },
+    );
+    await ReasonableAdjustmentsNeedsDuringCourtHearingPage.reasonableAdjustmentsNeedsDuringCourtHearingPage(
+      {
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
+        yesNoReasonableAdjustments: yesNoReasonableAdjustments,
+      },
+    );
   }
 }
