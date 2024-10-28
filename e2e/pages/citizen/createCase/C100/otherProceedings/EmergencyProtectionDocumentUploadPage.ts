@@ -98,7 +98,7 @@ export class EmergencyProtectionDocumentUploadPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${EmergencyProtectionDocumentUploadContent.errorMessageChooseFile}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${EmergencyProtectionDocumentUploadContent.errorMessageChooseFile}")`,
         1,
       ),
     ]);
@@ -117,7 +117,7 @@ export class EmergencyProtectionDocumentUploadPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${EmergencyProtectionDocumentUploadContent.errorMessageUploadCorrectFile}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${EmergencyProtectionDocumentUploadContent.errorMessageUploadCorrectFile}")`,
         1,
       ),
     ]);

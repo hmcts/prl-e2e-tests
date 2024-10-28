@@ -98,7 +98,7 @@ export class ChildAbductionDocumentUploadPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${ChildAbductionDocumentUploadContent.errorMessageChooseFile}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${ChildAbductionDocumentUploadContent.errorMessageChooseFile}")`,
         1,
       ),
     ]);
@@ -117,7 +117,7 @@ export class ChildAbductionDocumentUploadPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${ChildAbductionDocumentUploadContent.errorMessageUploadCorrectFile}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${ChildAbductionDocumentUploadContent.errorMessageUploadCorrectFile}")`,
         1,
       ),
     ]);

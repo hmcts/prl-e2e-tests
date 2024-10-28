@@ -124,7 +124,7 @@ export class ConcernsForSafetyPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${ConcernsForSafetyContent.errorMessage}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${ConcernsForSafetyContent.errorMessage}")`,
         1,
       ),
     ]);

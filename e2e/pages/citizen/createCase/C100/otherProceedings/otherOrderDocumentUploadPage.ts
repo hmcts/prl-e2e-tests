@@ -98,7 +98,7 @@ export class OtherOrderDocumentUploadPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${OtherOrderDocumentUploadContent.errorMessageChooseFile}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${OtherOrderDocumentUploadContent.errorMessageChooseFile}")`,
         1,
       ),
     ]);
@@ -117,7 +117,7 @@ export class OtherOrderDocumentUploadPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${OtherOrderDocumentUploadContent.errorMessageUploadCorrectFile}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${OtherOrderDocumentUploadContent.errorMessageUploadCorrectFile}")`,
         1,
       ),
     ]);

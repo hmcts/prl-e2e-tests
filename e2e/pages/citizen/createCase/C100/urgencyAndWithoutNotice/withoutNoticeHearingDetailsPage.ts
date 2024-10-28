@@ -109,7 +109,7 @@ export class WithoutNoticeHearingDetailsPage {
         3,
         WithoutNoticeHearingDetailsContent,
         "errorLink",
-        `${Selectors.ErrorMessage}`,
+        `${Selectors.GovukErrorMessageCitizen}`,
       ),
     ]);
   }

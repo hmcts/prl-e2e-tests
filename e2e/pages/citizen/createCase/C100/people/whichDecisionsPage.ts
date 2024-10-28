@@ -99,7 +99,7 @@ export class WhichDecisionsPage {
 
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
     await page.waitForSelector(
       `${Selectors.GovukErrorSummaryTitle}:text-is("${CommonStaticText.errorSummaryTitle}")`,
@@ -112,7 +112,7 @@ export class WhichDecisionsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${WhichDecisionsContent.errorLink}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${WhichDecisionsContent.errorLink}")`,
         1,
       ),
     ]);

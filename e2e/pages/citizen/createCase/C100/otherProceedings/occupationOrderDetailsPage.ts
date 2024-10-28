@@ -152,7 +152,7 @@ export class OccupationOrderDetailsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${OccupationOrderDetailsContent.errorMessageOrderDate}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${OccupationOrderDetailsContent.errorMessageOrderDate}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -162,7 +162,7 @@ export class OccupationOrderDetailsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${OccupationOrderDetailsContent.errorMessageOrderEndDate}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${OccupationOrderDetailsContent.errorMessageOrderEndDate}")`,
         1,
       ),
     ]);

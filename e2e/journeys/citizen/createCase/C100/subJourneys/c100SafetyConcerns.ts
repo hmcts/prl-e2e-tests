@@ -14,6 +14,9 @@ import { PassportAmountPage } from "../../../../../pages/citizen/createCase/C100
 import { PassportOfficeNotifiedPage } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/childConcerns/passportOfficeNotifiedPage";
 import { AbductionThreatsPage } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/childConcerns/abductionThreatsPage";
 import { YourselfConcernsAboutPage } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/yourselfConcerns/yourselfConcernsAboutPage";
+import { PhysicalAbuseYourselfPage } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/yourselfConcerns/physicalAbuseYourselfPage";
+import { PsychologicalAbuseYourselfPage } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/yourselfConcerns/psychologicalAbuseYourselfPage";
+import { EmotionalAbuseYourselfPage } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/yourselfConcerns/emotionalAbuseYourselfPage";
 
 interface C100SafetyConcernsOptions {
   page: Page;
@@ -125,6 +128,21 @@ export class C100SafetyConcerns {
           page: page,
           accessibilityTest: accessibilityTest,
           errorMessaging: errorMessaging,
+        });
+        await PhysicalAbuseYourselfPage.physicalAbusePage({
+          page: page,
+          accessibilityTest: accessibilityTest,
+          c100PhysicalAbuseYesNoToAll: c100ReportAbuseYesNoToAll,
+        });
+        await PsychologicalAbuseYourselfPage.psychologicalAbusePage({
+          page: page,
+          accessibilityTest: accessibilityTest,
+          c100PsychologicalAbuseYesNoToAll: c100ReportAbuseYesNoToAll,
+        });
+        await EmotionalAbuseYourselfPage.emotionalAbusePage({
+          page: page,
+          accessibilityTest: accessibilityTest,
+          c100EmotionalAbuseYesNoToAll: c100ReportAbuseYesNoToAll,
         });
       }
     }

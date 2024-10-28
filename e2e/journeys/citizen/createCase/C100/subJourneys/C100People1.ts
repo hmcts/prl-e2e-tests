@@ -1,12 +1,12 @@
 import { Page } from "@playwright/test";
-import { AddChildrenPage } from "../../../../pages/citizen/createCase/C100/people/addChildrenPage";
-import { ProvideDetailsPage } from "../../../../pages/citizen/createCase/C100/people/provideDetailsPage";
-import { WhichDecisionsPage } from "../../../../pages/citizen/createCase/C100/people/whichDecisionsPage";
-import { ParentalResponsibilityPage } from "../../../../pages/citizen/createCase/C100/people/parentalResponsibilityPage";
-import { FurtherInformationPage } from "../../../../pages/citizen/createCase/C100/people/furtherInformationPage";
-import { HasOtherChildrenPage } from "../../../../pages/citizen/createCase/C100/people/hasOtherChildrenPage";
-import { ApplicantGender } from "../../../../common/types";
-import { yesNoDontKnow } from "../../../../common/types";
+import { AddChildrenPage } from "../../../../../pages/citizen/createCase/C100/people/addChildrenPage";
+import { ProvideDetailsPage } from "../../../../../pages/citizen/createCase/C100/people/provideDetailsPage";
+import { WhichDecisionsPage } from "../../../../../pages/citizen/createCase/C100/people/whichDecisionsPage";
+import { ParentalResponsibilityPage } from "../../../../../pages/citizen/createCase/C100/people/parentalResponsibilityPage";
+import { FurtherInformationPage } from "../../../../../pages/citizen/createCase/C100/people/furtherInformationPage";
+import { HasOtherChildrenPage } from "../../../../../pages/citizen/createCase/C100/people/hasOtherChildrenPage";
+import { ApplicantGender } from "../../../../../common/types";
+import { yesNoDontKnow } from "../../../../../common/types";
 
 interface C100People1Options {
   page: Page;

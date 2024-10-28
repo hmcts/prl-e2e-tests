@@ -139,7 +139,7 @@ export class ApplicantPersonalDetailsPage {
         4,
         ApplicantPersonalDetailsContent,
         "errorMessage",
-        Selectors.GovukErrorMessage,
+        Selectors.GovukErrorMessageCitizen,
       ),
     ]);
   }
@@ -161,7 +161,7 @@ export class ApplicantPersonalDetailsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${ApplicantPersonalDetailsContent.dobErrorMessage1}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${ApplicantPersonalDetailsContent.dobErrorMessage1}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(

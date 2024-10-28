@@ -89,7 +89,7 @@ export class ConcernAboutPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${ConcernAboutContent.errorMessage}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${ConcernAboutContent.errorMessage}")`,
         1,
       ),
     ]);

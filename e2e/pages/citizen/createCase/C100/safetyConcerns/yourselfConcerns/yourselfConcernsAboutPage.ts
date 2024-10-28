@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
 import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper";
 import { Selectors } from "../../../../../../common/selectors";
-import { YourselfConcernsAboutContent } from "../../../../../../fixtures/citizen/createCase/C100/safetyConcerns/childConcerns/yourselfConcernsAboutContent";
+import { YourselfConcernsAboutContent } from "../../../../../../fixtures/citizen/createCase/C100/safetyConcerns/yourselfConcerns/yourselfConcernsAboutContent";
 import { Helpers } from "../../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../../common/commonStaticText";
 import { SafetyConcernHelpers } from "../safetyConcernHelpers";
@@ -106,7 +106,7 @@ export class YourselfConcernsAboutPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${YourselfConcernsAboutContent.errorMessage}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${YourselfConcernsAboutContent.errorMessage}")`,
         1,
       ),
     ]);

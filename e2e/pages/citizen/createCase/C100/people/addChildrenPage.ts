@@ -74,7 +74,7 @@ export class AddChildrenPage {
 
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -94,7 +94,7 @@ export class AddChildrenPage {
         2,
         AddChildrenContent,
         "errorLink",
-        `${Selectors.ErrorMessage}`,
+        `${Selectors.GovukErrorMessageCitizen}`,
       ),
     ]);
   }
