@@ -60,36 +60,38 @@ export class ReasonableAdjustmentsCommunicationHelpPage {
     if (!page) {
       throw new Error();
     }
-    await page.waitForSelector(`${Selectors.GovukHeadingXL}:text-is("${ReasonableAdjustmentsCommunicationHelpContent.pageTitle}")`);
+    await page.waitForSelector(
+      `${Selectors.GovukHeadingXL}:text-is("${ReasonableAdjustmentsCommunicationHelpContent.pageTitle}")`,
+    );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukCaptionXL}:text-is("${ReasonableAdjustmentsCommunicationHelpContent.GovukCaptionXL}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukInsetText}:text-is("${ReasonableAdjustmentsCommunicationHelpContent.govukInsetText}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukInsetText}:text-is("${ReasonableAdjustmentsCommunicationHelpContent.govukInsetText}")`,
-        1
+        1,
       ),
       Helpers.checkGroup(
         page,
         2,
         ReasonableAdjustmentsCommunicationHelpContent,
         "govukHint",
-        Selectors.GovukHint
+        Selectors.GovukHint,
       ),
       Helpers.checkGroup(
         page,
         12,
         ReasonableAdjustmentsCommunicationHelpContent,
         "govukLabel",
-        Selectors.GovukLabel
+        Selectors.GovukLabel,
       ),
     ]);
     if (accessibilityTest) {
@@ -110,17 +112,17 @@ export class ReasonableAdjustmentsCommunicationHelpPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukErrorSummaryTitle}:text-is("${CommonStaticText.errorSummaryTitle}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.a}:text-is("${ReasonableAdjustmentsCommunicationHelpContent.errorMessageBlank}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukErrorMessageCitizen}:text-is("${ReasonableAdjustmentsCommunicationHelpContent.errorMessageBlank}")`,
-        1
+        1,
       ),
     ]);
     await page.click(CheckListUniqueSelectors.signLanguageInterpreter);
@@ -129,27 +131,27 @@ export class ReasonableAdjustmentsCommunicationHelpPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukErrorSummaryTitle}:text-is("${CommonStaticText.errorSummaryTitle}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.a}:text-is("${ReasonableAdjustmentsCommunicationHelpContent.errorMessageSignLanguage}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukErrorMessageCitizen}:text-is("${ReasonableAdjustmentsCommunicationHelpContent.errorMessageSignLanguage}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.a}:text-is("${ReasonableAdjustmentsCommunicationHelpContent.errorMessageOther}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukErrorMessageCitizen}:text-is("${ReasonableAdjustmentsCommunicationHelpContent.errorMessageOther}")`,
-        1
+        1,
       ),
     ]);
   }
