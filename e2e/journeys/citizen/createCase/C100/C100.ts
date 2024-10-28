@@ -13,7 +13,7 @@ import { MiamOtherReasonForNotAttending } from "../../../../pages/citizen/create
 import { MiamReasonForNoAccessToMediator } from "../../../../pages/citizen/createCase/C100/MIAM/miamNoAccessToMediatorPage";
 import { C100OtherProceedings } from "./subJourneys/C100OtherProceedings";
 import { C100ApplicationCompletedForYou } from "./C100ApplicationCompletedForYou";
-import {ApplicantGender, yesNoDontKnow} from "../../../../common/types";
+import { ApplicantGender, yesNoDontKnow } from "../../../../common/types";
 
 interface C100ApplicationCompletedForYouOptions {
   page: Page;
