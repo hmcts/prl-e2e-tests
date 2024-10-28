@@ -7,5 +7,5 @@ export enum OtherIssuesContent {
   errorMessage = "Select yes if you have other concerns about the children’s safety and wellbeing",
   descriptionErrorSummaryList = "Describe what concerns you have about the children’s safety and wellbeing",
   descriptionErrorMessage = "Describe what concerns you have about the children’s safety and wellbeing",
-  otherDetails = "Automated Other Concerns Details"
+  otherDetails = "Automated Other Concerns Details",
 }

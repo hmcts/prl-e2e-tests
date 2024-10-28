@@ -7,7 +7,7 @@ import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 
 enum inputIDs {
-  courtActionStatement = "#c1A_keepingSafeStatement"
+  courtActionStatement = "#c1A_keepingSafeStatement",
 }
 
 interface CourtActionPageOptions {
@@ -25,102 +25,90 @@ export class CourtActionPage {
   public static async courtActionPage({
     page,
     accessibilityTest,
-    errorMessaging
+    errorMessaging,
   }: CourtActionPageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
-      accessibilityTest: accessibilityTest
-    })
+      accessibilityTest: accessibilityTest,
+    });
     if (errorMessaging) {
-      await this.checkErrorMessaging(page)
+      await this.checkErrorMessaging(page);
     }
-    await this.fillInFields(page)
+    await this.fillInFields(page);
   }
 
   private static async checkPageLoads({
     page,
-    accessibilityTest
+    accessibilityTest,
   }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukHeadingXL}:text-is("${CourtActionContent.pageTitle}")`
+      `${Selectors.GovukHeadingXL}:text-is("${CourtActionContent.pageTitle}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukCaptionXL}:text-is("${CourtActionContent.caption}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukBodyL}:text-is("${CourtActionContent.bodyL}")`,
-        1
+        1,
       ),
     ]);
-    await this.checkDetailsText(page)
-    await SafetyConcernHelpers.checkContactDetailsText(page)
+    await this.checkDetailsText(page);
+    await SafetyConcernHelpers.checkContactDetailsText(page);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page)
+      await AccessibilityTestHelper.run(page);
     }
   }
 
-  private static async checkDetailsText(
-    page: Page
-  ): Promise<void> {
+  private static async checkDetailsText(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.GovukSummaryText}:text-is("${CourtActionContent.detailsSummaryText}")`
+      `${Selectors.GovukSummaryText}:text-is("${CourtActionContent.detailsSummaryText}")`,
     );
     await Promise.all([
       Helpers.checkGroup(
         page,
         3,
         CourtActionContent,
-        'detailsStrong',
-        Selectors.strong
+        "detailsStrong",
+        Selectors.strong,
       ),
-      Helpers.checkGroup(
-        page,
-        3,
-        CourtActionContent,
-        'detailsP',
-        Selectors.p
-      ),
-    ])
+      Helpers.checkGroup(page, 3, CourtActionContent, "detailsP", Selectors.p),
+    ]);
   }
 
-  private static async checkErrorMessaging(
-    page: Page
-  ): Promise<void> {
+  private static async checkErrorMessaging(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.continue}")`
+      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukErrorSummaryTitle}:text-is("${CommonStaticText.errorSummaryTitle}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukErrorList} ${Selectors.a}:text-is("${CourtActionContent.errorSummaryList}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukErrorMessageCitizen}:text-is("${CourtActionContent.errorMessage}")`,
-        1
+        1,
       ),
-    ])
+    ]);
   }
 
-  private static async fillInFields(
-    page: Page
-  ): Promise<void> {
+  private static async fillInFields(page: Page): Promise<void> {
     await page.fill(
       inputIDs.courtActionStatement,
-      CourtActionContent.courtActionStatement
+      CourtActionContent.courtActionStatement,
     );
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.continue}")`
+      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
     );
   }
 }

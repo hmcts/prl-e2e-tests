@@ -11,5 +11,5 @@ export enum CourtActionContent {
   detailsP3 = " this order sets out a decision on specific issues, which could include medical treatment, education or a foreign holiday.",
   errorSummaryList = "Describe what do you want the court to do to keep you and the children safe",
   errorMessage = "Describe what do you want the court to do to keep you and the children safe",
-  courtActionStatement = "Automated Safety Statement"
+  courtActionStatement = "Automated Safety Statement",
 }

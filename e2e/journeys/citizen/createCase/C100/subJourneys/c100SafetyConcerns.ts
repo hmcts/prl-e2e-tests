@@ -24,11 +24,9 @@ import { DrugConcernsPage } from "../../../../../pages/citizen/createCase/C100/s
 import { OtherIssuesPage } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/otherIssuesPage";
 import {
   c100ChildrenSupervisionRadios,
-  UnsupervisedPage
+  UnsupervisedPage,
 } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/unsupervisedPage";
-import {
-  PreviousAbductionsPage
-} from "../../../../../pages/citizen/createCase/C100/safetyConcerns/childConcerns/previousAbductionsPage";
+import { PreviousAbductionsPage } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/childConcerns/previousAbductionsPage";
 
 interface C100SafetyConcernsOptions {
   page: Page;
@@ -54,7 +52,7 @@ export class C100SafetyConcerns {
     c100MoreThanOnePassport,
     c100PassportOfficeNotified,
     c100ChildrenAbductedBefore,
-    c100ChildrenSupervision
+    c100ChildrenSupervision,
   }: C100SafetyConcernsOptions): Promise<void> {
     await ConcernGuidancePage.concernGuidancePage({
       page: page,
@@ -138,8 +136,8 @@ export class C100SafetyConcerns {
           page: page,
           accessibilityTest: accessibilityTest,
           errorMessaging: errorMessaging,
-          c100YesNoPreviousAbductions: c100SafetyConcernsYesNoToAll
-        })
+          c100YesNoPreviousAbductions: c100SafetyConcernsYesNoToAll,
+        });
       }
       await YourselfConcernsAboutPage.yourselfConcernsAboutPage({
         page: page,
@@ -180,21 +178,21 @@ export class C100SafetyConcerns {
         page: page,
         accessibilityTest: accessibilityTest,
         errorMessaging: errorMessaging,
-        c100YesNoDrugConcerns: c100SafetyConcernsYesNoToAll
+        c100YesNoDrugConcerns: c100SafetyConcernsYesNoToAll,
       });
       await OtherIssuesPage.otherIssuesPage({
         page: page,
         accessibilityTest: accessibilityTest,
         errorMessaging: errorMessaging,
-        c100YesNoOtherIssues: c100SafetyConcernsYesNoToAll
+        c100YesNoOtherIssues: c100SafetyConcernsYesNoToAll,
       });
       await UnsupervisedPage.unsupervisedPage({
         page: page,
         accessibilityTest: accessibilityTest,
         errorMessaging: errorMessaging,
         c100ChildrenSupervision: c100ChildrenSupervision,
-        c100ChildrenInTouch: c100SafetyConcernsYesNoToAll
-      })
+        c100ChildrenInTouch: c100SafetyConcernsYesNoToAll,
+      });
     }
   }
 }

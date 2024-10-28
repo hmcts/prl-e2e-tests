@@ -9,7 +9,7 @@ enum inputIDs {
   abductionDescription = "#c1A_previousAbductionsShortDesc",
   radioYes = "#c1A_policeOrInvestigatorInvolved",
   radioNo = "#c1A_policeOrInvestigatorInvolved-2",
-  otherDetails = "#c1A_policeOrInvestigatorOtherDetails"
+  otherDetails = "#c1A_policeOrInvestigatorOtherDetails",
 }
 
 interface PreviousAbductionsPageOptions {
@@ -34,60 +34,60 @@ export class PreviousAbductionsPage {
     page,
     accessibilityTest,
     errorMessaging,
-    c100YesNoPreviousAbductions
+    c100YesNoPreviousAbductions,
   }: PreviousAbductionsPageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
-      accessibilityTest: accessibilityTest
+      accessibilityTest: accessibilityTest,
     });
     if (errorMessaging) {
-      await this.checkErrorMessaging(page)
+      await this.checkErrorMessaging(page);
     }
     await this.fillInFields({
       page: page,
-      c100YesNoPreviousAbductions: c100YesNoPreviousAbductions
-    })
+      c100YesNoPreviousAbductions: c100YesNoPreviousAbductions,
+    });
   }
 
   private static async checkPageLoads({
     page,
-    accessibilityTest
+    accessibilityTest,
   }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukHeadingXL}:text-is("${PreviousAbductionsContent.pageTitle}")`
+      `${Selectors.GovukHeadingXL}:text-is("${PreviousAbductionsContent.pageTitle}")`,
     );
     await Promise.all([
       Helpers.checkGroup(
         page,
         2,
         PreviousAbductionsContent,
-        'hint',
-        Selectors.GovukHint
+        "hint",
+        Selectors.GovukHint,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukCaptionXL}:text-is("${PreviousAbductionsContent.caption}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukBodyM}:text-is("${PreviousAbductionsContent.bodyM}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukLabel}:text-is("${CommonStaticText.yes}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukLabel}:text-is("${CommonStaticText.no}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukLegendM}:text-is("${PreviousAbductionsContent.legendM}")`,
-        1
+        1,
       ),
     ]);
     if (accessibilityTest) {
@@ -95,94 +95,84 @@ export class PreviousAbductionsPage {
     }
   }
 
-  private static async checkErrorMessaging(
-    page: Page
-  ): Promise<void> {
+  private static async checkErrorMessaging(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.continue}")`
+      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukErrorSummaryTitle}:text-is("${CommonStaticText.errorSummaryTitle}")`,
-        1
+        1,
       ),
       Helpers.checkGroup(
         page,
         2,
         PreviousAbductionsContent,
-        'errorList',
-        `${Selectors.GovukErrorList} ${Selectors.a}`
+        "errorList",
+        `${Selectors.GovukErrorList} ${Selectors.a}`,
       ),
       Helpers.checkGroup(
         page,
         2,
         PreviousAbductionsContent,
-        'errorMessage',
-        `${Selectors.GovukErrorMessageCitizen}`
+        "errorMessage",
+        `${Selectors.GovukErrorMessageCitizen}`,
       ),
     ]);
-    await this.checkNestedErrorsMessages(page)
+    await this.checkNestedErrorsMessages(page);
   }
 
-  private static async checkNestedErrorsMessages(
-    page: Page
-  ): Promise<void> {
+  private static async checkNestedErrorsMessages(page: Page): Promise<void> {
+    await page.click(inputIDs.radioYes);
     await page.click(
-      inputIDs.radioYes
-    );
-    await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.continue}")`
+      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukErrorSummaryTitle}:text-is("${CommonStaticText.errorSummaryTitle}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukErrorList} ${Selectors.a}:text-is("${PreviousAbductionsContent.detailsErrorList}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukErrorMessageCitizen}:text-is("${PreviousAbductionsContent.detailsErrorMessage}")`,
-        1
+        1,
       ),
     ]);
   }
 
   private static async fillInFields({
     page,
-    c100YesNoPreviousAbductions
+    c100YesNoPreviousAbductions,
   }: FillInFieldsOptions): Promise<void> {
-    let textToFill: string[] = ['abductionDescription']
+    let textToFill: string[] = ["abductionDescription"];
     if (c100YesNoPreviousAbductions) {
-      await page.click(
-        inputIDs.radioYes
-      );
+      await page.click(inputIDs.radioYes);
       await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukLabel}:text-is("${PreviousAbductionsContent.detailsLabel}")`,
-        1
+        1,
       );
-      textToFill.push('otherDetails')
+      textToFill.push("otherDetails");
     } else {
-      await page.click(
-        inputIDs.radioNo
-      )
+      await page.click(inputIDs.radioNo);
     }
     for (let key of textToFill) {
       let contentKey = key as keyof typeof PreviousAbductionsContent;
       let inputKey = key as keyof typeof inputIDs;
       await page.fill(
         inputIDs[inputKey],
-        PreviousAbductionsContent[contentKey]
+        PreviousAbductionsContent[contentKey],
       );
     }
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.continue}")`
+      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
     );
   }
 }
