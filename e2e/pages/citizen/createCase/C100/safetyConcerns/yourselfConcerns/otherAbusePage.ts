@@ -27,10 +27,10 @@ interface CheckPageLoadsOptions {
 
 export class OtherAbusePage {
   public static async otherAbusePage({
-                                        page,
-                                        accessibilityTest,
-                                        c100OtherAbuseYesNoToAll,
-                                      }: OtherAbusePageOptions): Promise<void> {
+    page,
+    accessibilityTest,
+    c100OtherAbuseYesNoToAll,
+  }: OtherAbusePageOptions): Promise<void> {
     await this.checkPageLoads({
       page,
       accessibilityTest,
@@ -42,9 +42,9 @@ export class OtherAbusePage {
   }
 
   private static async checkPageLoads({
-                                        page,
-                                        accessibilityTest,
-                                      }: CheckPageLoadsOptions): Promise<void> {
+    page,
+    accessibilityTest,
+  }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.GovukHeadingXL}:text-is("${OtherAbuseContent.pageTitle}")`,
     );
@@ -57,9 +57,9 @@ export class OtherAbusePage {
   }
 
   private static async fillInFields({
-                                      page,
-                                      c100OtherAbuseYesNoToAll,
-                                    }: FillInFieldsOptions): Promise<void> {
+    page,
+    c100OtherAbuseYesNoToAll,
+  }: FillInFieldsOptions): Promise<void> {
     for (let checkbox of Object.values(reportAbuseCheckboxIDs)) {
       await page.check(checkbox);
     }

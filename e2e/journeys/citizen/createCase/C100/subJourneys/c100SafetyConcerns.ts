@@ -17,15 +17,9 @@ import { YourselfConcernsAboutPage } from "../../../../../pages/citizen/createCa
 import { PhysicalAbuseYourselfPage } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/yourselfConcerns/physicalAbuseYourselfPage";
 import { PsychologicalAbuseYourselfPage } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/yourselfConcerns/psychologicalAbuseYourselfPage";
 import { EmotionalAbuseYourselfPage } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/yourselfConcerns/emotionalAbuseYourselfPage";
-import {
-  SexualAbuseYourselfPage
-} from "../../../../../pages/citizen/createCase/C100/safetyConcerns/yourselfConcerns/sexualAbuseYourselfPage";
-import {
-  FinancialAbuseYourselfPage
-} from "../../../../../pages/citizen/createCase/C100/safetyConcerns/yourselfConcerns/financialAbuseYourselfPage";
-import {
-  OtherAbusePage
-} from "../../../../../pages/citizen/createCase/C100/safetyConcerns/yourselfConcerns/otherAbusePage";
+import { SexualAbuseYourselfPage } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/yourselfConcerns/sexualAbuseYourselfPage";
+import { FinancialAbuseYourselfPage } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/yourselfConcerns/financialAbuseYourselfPage";
+import { OtherAbusePage } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/yourselfConcerns/otherAbusePage";
 
 interface C100SafetyConcernsOptions {
   page: Page;
@@ -154,18 +148,18 @@ export class C100SafetyConcerns {
       await SexualAbuseYourselfPage.sexualAbusePage({
         page: page,
         accessibilityTest: accessibilityTest,
-        c100SexualAbuseYesNoToAll: c100ReportAbuseYesNoToAll
+        c100SexualAbuseYesNoToAll: c100ReportAbuseYesNoToAll,
       });
       await FinancialAbuseYourselfPage.financialAbusePage({
         page: page,
         accessibilityTest: accessibilityTest,
-        c100FinancialAbuseYesNoToAll: c100ReportAbuseYesNoToAll
+        c100FinancialAbuseYesNoToAll: c100ReportAbuseYesNoToAll,
       });
       await OtherAbusePage.otherAbusePage({
         page: page,
         accessibilityTest: accessibilityTest,
-        c100OtherAbuseYesNoToAll: c100ReportAbuseYesNoToAll
-      })
+        c100OtherAbuseYesNoToAll: c100ReportAbuseYesNoToAll,
+      });
     }
   }
 }
