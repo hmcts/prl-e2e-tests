@@ -106,7 +106,7 @@ export class MiamMiamOtherPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${MiamMiamOtherContent.errorMessage}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${MiamMiamOtherContent.errorMessage}")`,
         1,
       ),
     ]);

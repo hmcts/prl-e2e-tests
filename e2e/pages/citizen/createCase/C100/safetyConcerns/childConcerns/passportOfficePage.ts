@@ -96,7 +96,7 @@ export class PassportOfficePage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${PassportOfficeContent.errorMessage}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${PassportOfficeContent.errorMessage}")`,
         1,
       ),
     ]);

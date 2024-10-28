@@ -88,7 +88,7 @@ export class MiamMediatorDocumentPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${MiamMediatorDocumentContent.errorMessage}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${MiamMediatorDocumentContent.errorMessage}")`,
         1,
       ),
     ]);

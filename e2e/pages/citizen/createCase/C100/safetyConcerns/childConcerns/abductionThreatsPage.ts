@@ -96,7 +96,7 @@ export class AbductionThreatsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${AbductionThreatsContent.errorMessage}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${AbductionThreatsContent.errorMessage}")`,
         1,
       ),
     ]);

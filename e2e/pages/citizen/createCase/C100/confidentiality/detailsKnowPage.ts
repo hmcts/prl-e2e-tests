@@ -100,7 +100,7 @@ export class DetailsKnowPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${DetailsKnowContent.errorMessage}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${DetailsKnowContent.errorMessage}")`,
         1,
       ),
     ]);
