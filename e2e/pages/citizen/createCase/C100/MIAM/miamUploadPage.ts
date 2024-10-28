@@ -85,7 +85,7 @@ export class MiamUploadPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${MiamUploadContent.errorMessageNoUpload}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${MiamUploadContent.errorMessageNoUpload}")`,
         1,
       ),
     ]);

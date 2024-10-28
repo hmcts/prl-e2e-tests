@@ -88,7 +88,7 @@ export class WithoutNoticeHearingPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${WithoutNoticeHearingContent.errorLink}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${WithoutNoticeHearingContent.errorLink}")`,
         1,
       ),
     ]);

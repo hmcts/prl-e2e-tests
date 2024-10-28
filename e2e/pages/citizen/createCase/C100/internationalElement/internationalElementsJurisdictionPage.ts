@@ -89,7 +89,7 @@ export class InternationalElementsJurisdictionPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${internationalElementsJurisdictionContent.errorMessage}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${internationalElementsJurisdictionContent.errorMessage}")`,
         1,
       ),
     ]);
