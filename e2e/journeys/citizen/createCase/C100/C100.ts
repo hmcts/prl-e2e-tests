@@ -256,7 +256,6 @@ export class C100 {
       errorMessaging: errorMessaging,
       gender: c100PeopleGender,
       c100PeopleYesNoDontKnow: c100PeopleYesNoDontKnow,
-      subJourney: true,
     });
     // Applicant Details
     // Confidentiality

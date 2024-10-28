@@ -67,7 +67,6 @@ export class FurtherInformationPage {
     await page.waitForSelector(
       `${Selectors.GovukHeadingXL}:text-is("${FurtherInformationContent.pageTitle}")`,
     );
-    // noinspection TypeScriptValidateTypes
     await Promise.all([
       Helpers.checkGroup(
         page,

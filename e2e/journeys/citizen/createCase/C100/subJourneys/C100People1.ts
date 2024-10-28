@@ -14,7 +14,6 @@ interface C100People1Options {
   errorMessaging: boolean;
   gender: ApplicantGender;
   c100PeopleYesNoDontKnow: yesNoDontKnow;
-  subJourney: boolean;
 }
 
 export class C100People1 {
@@ -24,10 +23,7 @@ export class C100People1 {
     errorMessaging,
     gender,
     c100PeopleYesNoDontKnow,
-    subJourney,
   }: C100People1Options): Promise<void> {
-    if (subJourney) {
-    }
     await AddChildrenPage.addChildrenPage({
       page,
       accessibilityTest,

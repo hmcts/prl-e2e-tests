@@ -71,7 +71,6 @@ export class ProvideDetailsPage {
       `${Selectors.GovukHeadingXL}:text-is("${ProvideDetailsContent.pageTitle}")`,
     );
     await page.click(checkBoxIds.isDateOfBirthUnknown);
-    // noinspection TypeScriptValidateTypes
     await Promise.all([
       Helpers.checkGroup(
         page,
