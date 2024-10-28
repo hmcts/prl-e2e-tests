@@ -3,7 +3,7 @@ import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { ChildSafetyConcernsCommonContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/childConcerns/childSafetyConcernsCommonContent";
 import { PassportSidebarContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/childConcerns/passportSidebarContent";
-import { YourselfSafetyConcernsCommonContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/childConcerns/yourselfSafetyConcernsCommonContent";
+import { YourselfSafetyConcernsCommonContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/yourselfConcerns/yourselfSafetyConcernsCommonContent";
 
 interface SeekHelpOptions {
   page: Page;
