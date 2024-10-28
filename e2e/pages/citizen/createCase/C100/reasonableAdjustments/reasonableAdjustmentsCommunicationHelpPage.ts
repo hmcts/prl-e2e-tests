@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../../common/selectors";
-import { CommonStaticText } from "../../../../../../common/commonStaticText";
-import AxeTest from "../../../../../../common/accessibilityTestHelper";
-import { ReasonableAdjustmentsCommunicationHelpContent } from "../../../../../../fixtures/citizen/createCase/C100/reasonableAdjustments/currentBranch/reasonableAdjustmentsCommunicationHelpContent";
-import { Helpers } from "../../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
+import AxeTest from "../../../../../common/accessibilityTestHelper";
+import { ReasonableAdjustmentsCommunicationHelpContent } from "../../../../../fixtures/citizen/createCase/C100/reasonableAdjustments/reasonableAdjustmentsCommunicationHelpContent";
+import { Helpers } from "../../../../../common/helpers";
 
 interface ReasonableAdjustmentsCommunicationHelpPageOptions {
   page: Page;
@@ -127,6 +127,9 @@ export class ReasonableAdjustmentsCommunicationHelpPage {
     ]);
     await page.click(CheckListUniqueSelectors.signLanguageInterpreter);
     await page.click(CheckListUniqueSelectors.other);
+    await page.click(
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
+    );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
@@ -154,6 +157,8 @@ export class ReasonableAdjustmentsCommunicationHelpPage {
         1,
       ),
     ]);
+    await page.click(CheckListUniqueSelectors.signLanguageInterpreter);
+    await page.click(CheckListUniqueSelectors.other);
   }
 
   private static async fillInFields({

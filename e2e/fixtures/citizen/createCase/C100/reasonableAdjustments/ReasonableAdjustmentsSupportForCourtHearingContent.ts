@@ -12,14 +12,12 @@ export enum ReasonableAdjustmentsSupportForCourtHearingContent {
   hiddenGovukLabel1 = "Tell us who you will bring",
   hiddenGovukLabel2 = "Describe what you need",
   loremIpsumSupportWorker = "Lorem Ipsum Support Worker",
-  loremIpsumFriendOrFamily ="Lorem Ipsum Friend Or family",
-  loremIpsumTherapyAnimal ="Lorem Ipsum Therapy Animal",
-  loremIpsumOther ="Lorem Ipsum Other",
+  loremIpsumFriendOrFamily = "Lorem Ipsum Friend Or family",
+  loremIpsumTherapyAnimal = "Lorem Ipsum Therapy Animal",
+  loremIpsumOther = "Lorem Ipsum Other",
   errorMessageBlank = "Select which support you need to bring with you to a hearing",
   errorMessageEnterName1 = "Enter the name of the support worker or carer you will bring",
   errorMessageEnterName2 = "Enter the name of a friend or family member you will bring",
   errorMessageTherapyAnimal = "Describe which therapy animal you will bring",
   errorMessageSupport = "Describe which support you need to bring with you to a hearing",
 }
-
-

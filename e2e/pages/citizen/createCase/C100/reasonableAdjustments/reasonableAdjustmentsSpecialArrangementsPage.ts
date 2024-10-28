@@ -139,6 +139,7 @@ export class ReasonableAdjustmentsSpecialArrangementsPage {
         1,
       ),
     ]);
+    await page.click(safetyRequirementsUniqueSelectors.other);
   }
 
   private static async fillInFields({

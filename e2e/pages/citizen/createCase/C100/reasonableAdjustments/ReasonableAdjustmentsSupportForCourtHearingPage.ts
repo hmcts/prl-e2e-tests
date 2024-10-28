@@ -1,11 +1,9 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../../common/selectors";
-import { CommonStaticText } from "../../../../../../common/commonStaticText";
-import AxeTest from "../../../../../../common/accessibilityTestHelper";
-import {
-  ReasonableAdjustmentsSupportForCourtHearingContent
-} from "../../../../../../fixtures/citizen/createCase/C100/reasonableAdjustments/currentBranch/ReasonableAdjustmentsSupportForCourtHearingContent";
-import { Helpers } from "../../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
+import AxeTest from "../../../../../common/accessibilityTestHelper";
+import { ReasonableAdjustmentsSupportForCourtHearingContent } from "../../../../../fixtures/citizen/createCase/C100/reasonableAdjustments/ReasonableAdjustmentsSupportForCourtHearingContent";
+import { Helpers } from "../../../../../common/helpers";
 
 export interface ReasonableAdjustmentsSupportForCourtHearingPageOptions {
   page: Page;
@@ -26,7 +24,7 @@ enum TextBoxUniqueSelectors {
   supportWorkerInput = "#ra_supportWorkerCarer_subfield",
   friendFamilyMemberInput = "#ra_friendFamilyMember_subfield",
   therapyAnimalInput = "#ra_therapyAnimal_subfield",
-  otherInput = "#ra_supportCourtOther_subfield"
+  otherInput = "#ra_supportCourtOther_subfield",
 }
 
 const noToAll: string = "#ra_supportCourt-7";
@@ -58,30 +56,32 @@ export class ReasonableAdjustmentsSupportForCourtHearingPage {
     if (!page) {
       throw new Error();
     }
-    await page.waitForSelector(`${Selectors.GovukHeadingXL}:text-is("${ReasonableAdjustmentsSupportForCourtHearingContent.pageTitle}")`);
+    await page.waitForSelector(
+      `${Selectors.GovukHeadingXL}:text-is("${ReasonableAdjustmentsSupportForCourtHearingContent.pageTitle}")`,
+    );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukCaptionXL}:text-is("${ReasonableAdjustmentsSupportForCourtHearingContent.GovukCaptionXL}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukInsetText}:text-is("${ReasonableAdjustmentsSupportForCourtHearingContent.govukInsetText}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukHint}:text-is("${ReasonableAdjustmentsSupportForCourtHearingContent.govukHint}")`,
-        1
+        1,
       ),
       Helpers.checkGroup(
         page,
         6,
         ReasonableAdjustmentsSupportForCourtHearingContent,
         "govukLabel",
-        Selectors.GovukLabel
-      )
+        Selectors.GovukLabel,
+      ),
     ]);
     if (accessibilityTest) {
       await AxeTest.run(page);
@@ -101,68 +101,71 @@ export class ReasonableAdjustmentsSupportForCourtHearingPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukErrorSummaryTitle}:text-is("${CommonStaticText.errorSummaryTitle}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.a}:text-is("${ReasonableAdjustmentsSupportForCourtHearingContent.errorMessageBlank}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukErrorMessageCitizen}:text-is("${ReasonableAdjustmentsSupportForCourtHearingContent.errorMessageBlank}")`,
-        1
+        1,
       ),
     ]);
     await page.click(ChecklistUniqueSelectors.supportWorkerCarer);
     await page.click(ChecklistUniqueSelectors.friendOrFamily);
     await page.click(ChecklistUniqueSelectors.therapyAnimal);
     await page.click(ChecklistUniqueSelectors.other);
+    await page.click(
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
+    );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukErrorSummaryTitle}:text-is("${CommonStaticText.errorSummaryTitle}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.a}:text-is("${ReasonableAdjustmentsSupportForCourtHearingContent.errorMessageEnterName1}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukErrorMessageCitizen}:text-is("${ReasonableAdjustmentsSupportForCourtHearingContent.errorMessageEnterName1}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.a}:text-is("${ReasonableAdjustmentsSupportForCourtHearingContent.errorMessageEnterName2}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukErrorMessageCitizen}:text-is("${ReasonableAdjustmentsSupportForCourtHearingContent.errorMessageEnterName2}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.a}:text-is("${ReasonableAdjustmentsSupportForCourtHearingContent.errorMessageTherapyAnimal}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukErrorMessageCitizen}:text-is("${ReasonableAdjustmentsSupportForCourtHearingContent.errorMessageTherapyAnimal}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.a}:text-is("${ReasonableAdjustmentsSupportForCourtHearingContent.errorMessageSupport}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukErrorMessageCitizen}:text-is("${ReasonableAdjustmentsSupportForCourtHearingContent.errorMessageSupport}")`,
-        1
+        1,
       ),
     ]);
   }
@@ -182,11 +185,12 @@ export class ReasonableAdjustmentsSupportForCourtHearingPage {
         "loremIpsumSupportWorker",
         "loremIpsumFriendOrFamily",
         "loremIpsumTherapyAnimal",
-        "loremIpsumOther"
+        "loremIpsumOther",
       ];
       for (let key of textToFill) {
         let inputKey = key as keyof typeof TextBoxUniqueSelectors;
-        let contentKey = key as keyof typeof ReasonableAdjustmentsSupportForCourtHearingContent;
+        let contentKey =
+          key as keyof typeof ReasonableAdjustmentsSupportForCourtHearingContent;
         await page.fill(
           TextBoxUniqueSelectors[inputKey],
           ReasonableAdjustmentsSupportForCourtHearingContent[contentKey],
@@ -196,16 +200,16 @@ export class ReasonableAdjustmentsSupportForCourtHearingPage {
         Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukLabel}:text-is("${ReasonableAdjustmentsSupportForCourtHearingContent.hiddenGovukLabel1}")`,
-          2
+          2,
         ),
         Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukLabel}:text-is("${ReasonableAdjustmentsSupportForCourtHearingContent.hiddenGovukLabel2}")`,
-          2
+          2,
         ),
       ]);
     } else {
-      await page.click(noToAll)
+      await page.click(noToAll);
     }
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,

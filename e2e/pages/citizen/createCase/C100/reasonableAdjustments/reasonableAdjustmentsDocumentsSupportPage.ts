@@ -121,6 +121,9 @@ export class ReasonableAdjustmentsDocumentSupportPage {
     await page.click(CheckListUniqueSelectors.specifiedColour);
     await page.click(CheckListUniqueSelectors.largePrints);
     await page.click(CheckListUniqueSelectors.other);
+    await page.click(
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
+    );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
@@ -158,6 +161,9 @@ export class ReasonableAdjustmentsDocumentSupportPage {
         1,
       ),
     ]);
+    await page.click(CheckListUniqueSelectors.specifiedColour);
+    await page.click(CheckListUniqueSelectors.largePrints);
+    await page.click(CheckListUniqueSelectors.other);
   }
 
   private static async fillInFields({
