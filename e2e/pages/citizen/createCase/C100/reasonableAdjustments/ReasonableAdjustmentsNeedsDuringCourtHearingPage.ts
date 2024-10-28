@@ -2,9 +2,7 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import AxeTest from "../../../../../common/accessibilityTestHelper";
-import {
-  ReasonableAdjustmentsNeedsDuringCourtHearingContent
-} from "../../../../../fixtures/citizen/createCase/C100/reasonableAdjustments/ReasonableAdjustmentsNeedsDuringCourtHearingContent";
+import { ReasonableAdjustmentsNeedsDuringCourtHearingContent } from "../../../../../fixtures/citizen/createCase/C100/reasonableAdjustments/ReasonableAdjustmentsNeedsDuringCourtHearingContent";
 import { Helpers } from "../../../../../common/helpers";
 
 export interface ReasonableAdjustmentsNeedsDuringCourtHearingPageOptions {
@@ -18,12 +16,12 @@ enum ChecklistUniqueSelectors {
   appropriateLighting = "#ra_feelComportable",
   regularBreaks = "#ra_feelComportable-2",
   SpaceToGetUpAndMove = "#ra_feelComportable-3",
-  Other = "#ra_feelComportable-4"
+  Other = "#ra_feelComportable-4",
 }
 
 enum TextBoxUniqueSelectors {
   appropriateLightingInput = "#ra_appropriateLighting_subfield",
-  otherInput = "#ra_feelComportableOther_subfield"
+  otherInput = "#ra_feelComportableOther_subfield",
 }
 
 const noToAll: string = "#ra_feelComportable-6";
@@ -55,30 +53,32 @@ export class ReasonableAdjustmentsNeedsDuringCourtHearingPage {
     if (!page) {
       throw new Error();
     }
-    await page.waitForSelector(`${Selectors.GovukHeadingXL}:text-is("${ReasonableAdjustmentsNeedsDuringCourtHearingContent.pageTitle}")`);
+    await page.waitForSelector(
+      `${Selectors.GovukHeadingXL}:text-is("${ReasonableAdjustmentsNeedsDuringCourtHearingContent.pageTitle}")`,
+    );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukCaptionXL}:text-is("${ReasonableAdjustmentsNeedsDuringCourtHearingContent.GovukCaptionXL}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukInsetText}:text-is("${ReasonableAdjustmentsNeedsDuringCourtHearingContent.govukInsetText}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukHint}:text-is("${ReasonableAdjustmentsNeedsDuringCourtHearingContent.govukHint}")`,
-        1
+        1,
       ),
       Helpers.checkGroup(
         page,
         5,
         ReasonableAdjustmentsNeedsDuringCourtHearingContent,
         "govukLabel",
-        Selectors.GovukLabel
-      )
+        Selectors.GovukLabel,
+      ),
     ]);
     if (accessibilityTest) {
       await AxeTest.run(page);
@@ -98,17 +98,17 @@ export class ReasonableAdjustmentsNeedsDuringCourtHearingPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukErrorSummaryTitle}:text-is("${CommonStaticText.errorSummaryTitle}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.a}:text-is("${ReasonableAdjustmentsNeedsDuringCourtHearingContent.errorMessageBlank}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukErrorMessageCitizen}:text-is("${ReasonableAdjustmentsNeedsDuringCourtHearingContent.errorMessageBlank}")`,
-        1
+        1,
       ),
     ]);
     await page.click(ChecklistUniqueSelectors.appropriateLighting);
@@ -120,27 +120,27 @@ export class ReasonableAdjustmentsNeedsDuringCourtHearingPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukErrorSummaryTitle}:text-is("${CommonStaticText.errorSummaryTitle}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.a}:text-is("${ReasonableAdjustmentsNeedsDuringCourtHearingContent.errorMessageAppropriateLighting}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukErrorMessageCitizen}:text-is("${ReasonableAdjustmentsNeedsDuringCourtHearingContent.errorMessageAppropriateLighting}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.a}:text-is("${ReasonableAdjustmentsNeedsDuringCourtHearingContent.errorMessageOther}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukErrorMessageCitizen}:text-is("${ReasonableAdjustmentsNeedsDuringCourtHearingContent.errorMessageOther}")`,
-        1
+        1,
       ),
     ]);
     await page.click(ChecklistUniqueSelectors.appropriateLighting);
