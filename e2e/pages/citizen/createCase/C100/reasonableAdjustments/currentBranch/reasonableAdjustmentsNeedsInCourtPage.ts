@@ -1,9 +1,7 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../../common/selectors";
 import { CommonStaticText } from "../../../../../../common/commonStaticText";
-import {
-  ReasonableAdjustmentsNeedsInCourtContent
-} from "../../../../../../fixtures/citizen/createCase/C100/reasonableAdjustments/currentBranch/reasonableAdjustmentsNeedsInCourtContent";
+import { ReasonableAdjustmentsNeedsInCourtContent } from "../../../../../../fixtures/citizen/createCase/C100/reasonableAdjustments/currentBranch/reasonableAdjustmentsNeedsInCourtContent";
 import { Helpers } from "../../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper";
 
@@ -28,7 +26,7 @@ enum CheckListUniqueSelectors {
 enum TextboxInputUniqueSelectors {
   parkingSpotInput = "#ra_parkingSpace_subfield",
   typeOfChairInput = "#ra_differentTypeChair_subfield",
-  otherInput = "#ra_travellingCourtOther_subfield"
+  otherInput = "#ra_travellingCourtOther_subfield",
 }
 
 const noToAll: string = "#ra_travellingCourt-10";
@@ -60,24 +58,26 @@ export class ReasonableAdjustmentsNeedsInCourtPage {
     if (!page) {
       throw new Error();
     }
-    await page.click(`${Selectors.GovukHeadingXL}:text-is("${ReasonableAdjustmentsNeedsInCourtContent.pageTitle}")`);
+    await page.click(
+      `${Selectors.GovukHeadingXL}:text-is("${ReasonableAdjustmentsNeedsInCourtContent.pageTitle}")`,
+    );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukCaptionXL}:text-is("${ReasonableAdjustmentsNeedsInCourtContent.GovukCaptionXL}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukHint}:text-is("${ReasonableAdjustmentsNeedsInCourtContent.govukHint}")`,
-        1
+        1,
       ),
       Helpers.checkGroup(
         page,
         9,
         ReasonableAdjustmentsNeedsInCourtContent,
         "govukLabel",
-        Selectors.GovukLabel
+        Selectors.GovukLabel,
       ),
     ]);
     if (accessibilityTest) {
@@ -172,12 +172,12 @@ export class ReasonableAdjustmentsNeedsInCourtPage {
         3,
         ReasonableAdjustmentsNeedsInCourtContent,
         "hiddenGovUkLabel",
-        Selectors.GovukLabel
+        Selectors.GovukLabel,
       );
       const textToFill: [string, string, string] = [
         "loremIpsumParkingSpot",
         "loremIpsumTypeOfChair",
-        "loremIpsumOther"
+        "loremIpsumOther",
       ];
       for (let key of textToFill) {
         let inputKey = key as keyof typeof TextboxInputUniqueSelectors;
