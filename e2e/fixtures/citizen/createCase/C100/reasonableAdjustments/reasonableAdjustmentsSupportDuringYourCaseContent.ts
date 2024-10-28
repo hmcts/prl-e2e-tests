@@ -1,0 +1,17 @@
+export enum ReasonableAdjustmentsSupportDuringYourCaseContent {
+  pageTitle = "Do you have a physical, mental or learning disability or health condition that means you need support during your case?",
+  GovukCaptionXL = "Reasonable adjustments",
+  govukInsetText = "We know some people need support to access information and use our services. We often call this a reasonable adjustment. Some reasonable adjustments need to be agreed by the judge or HMCTS. You can discuss with the court if your needs change.",
+  govukHint1 = "Select all that apply to you - specific requirements can be given next",
+  govukHint2 = "for example, braille or different colours and text sizes",
+  govukHint3 = "for example, hearing, speaking or interpretation",
+  govukHint4 = "for example, someone you know or an assistance dog",
+  govukHint5 = "for example, extra breaks or extra space",
+  govukHint6 = "for example, access and mobility support if a hearing takes place in person",
+  govukLabel1 = "I need documents in an alternative format",
+  govukLabel2 = "I need help communicating and understanding",
+  govukLabel3 = "I need to bring support with me to a hearing",
+  govukLabel4 = "I need something to feel comfortable during a hearing",
+  govukLabel5 = "I need help travelling to, or moving around court buildings",
+  errorMessageBlank = "Select whether or not you have a physical, mental or learning disability or health condition that means you need support during your case",
+}

@@ -67,10 +67,15 @@ export class ProceedingDetailsPage {
     await Promise.all([
       Helpers.checkGroup(
         page,
-        3,
+        2,
         ProceedingDetailsContent,
         "formHint",
         `${Selectors.GovukHint}`,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukHint}:text-is("${ProceedingDetailsContent.repeatedFormHint}")`,
+        3,
       ),
       Helpers.checkGroup(
         page,
