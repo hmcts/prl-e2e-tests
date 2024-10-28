@@ -1,0 +1,15 @@
+export enum ReasonableAdjustmentsSupportDuringYourCaseContent {
+  pageTitle = "",
+  GovukCaptionXL = "",
+  govukInsetText = "",
+  govukHint = "",
+  govukLabel1 = "",
+  govukLabel2 = "",
+  govukLabel3 = "",
+  govukLabel4 = "",
+  govukLabel5 = "",
+  govukLabelYes = "",
+  interpreterLanguageDetails = "Lorem ipsum language I require",
+  errorMessageBlank = "",
+  errorMessageYesBlank = "",
+}
