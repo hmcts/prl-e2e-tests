@@ -2,6 +2,7 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../../common/selectors";
 import { CommonStaticText } from "../../../../../../common/commonStaticText";
 import AxeTest from "../../../../../../common/accessibilityTestHelper";
+import { ReasonableAdjustmentsCommunicationHelpContent } from "../../../../../../fixtures/citizen/createCase/C100/reasonableAdjustments/currentBranch/reasonableAdjustmentsCommunicationHelpContent";
 
 interface ReasonableAdjustmentsCommunicationHelpPageOptions {
   page: Page;
@@ -10,11 +11,26 @@ interface ReasonableAdjustmentsCommunicationHelpPageOptions {
   yesNoReasonableAdjustments: boolean;
 }
 
-enum UniqueSelectors {}
+enum CheckListUniqueSelectors {
+  hearingLoop = "#ra_communicationHelp",
+  infraredReceiver = "#ra_communicationHelp-2",
+  closeToSpeaking = "#ra_communicationHelp-3",
+  lipSpeaker = "#ra_communicationHelp-4",
+  signLanguageInterpreter = "#ra_communicationHelp-5",
+  speechToText = "#ra_communicationHelp-6",
+  extraTimeToThink = "#ra_communicationHelp-7",
+  visitCourtBeforeHearing = "#ra_communicationHelp-8",
+  explanationOfCourt = "#ra_communicationHelp-9",
+  intermediary = "#ra_communicationHelp-10",
+  other = "#ra_communicationHelp-11",
+}
 
-const fillInput: string = "#";
+enum TextboxInputUniqueSelectors {
+  describeLanguageInterpreter = "#ra_signLanguageInterpreter_subfield",
+  describeOther = "#ra_communicationHelpOther_subfield",
+}
 
-const noToAll: string = "#";
+const noToAll: string = "#ra_communicationHelp-13";
 
 export class ReasonableAdjustmentsCommunicationHelpPage {
   public static async reasonableAdjustmentsCommunicationHelpPage({
@@ -67,7 +83,17 @@ export class ReasonableAdjustmentsCommunicationHelpPage {
       throw new Error();
     }
     if (yesNoReasonableAdjustments) {
-      // click all
+      for (const selector of Object.values(CheckListUniqueSelectors)) {
+        await page.click(selector);
+      }
+      await page.fill(
+        TextboxInputUniqueSelectors.describeLanguageInterpreter,
+        ReasonableAdjustmentsCommunicationHelpContent.loremIpsumLanguageInterpreter,
+      );
+      await page.fill(
+        TextboxInputUniqueSelectors.describeOther,
+        ReasonableAdjustmentsCommunicationHelpContent.loremIpsumOther,
+      );
     } else {
       await page.click(noToAll);
     }

@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../../common/selectors";
-import { CommonStaticText } from "../../../../../../common/commonStaticText";
-import AxeTest from "../../../../../../common/accessibilityTestHelper";
-import { ReasonableAdjustmentsSupportDuringYourCaseContent } from "../../../../../../fixtures/citizen/createCase/C100/reasonableAdjustments/currentBranch/reasonableAdjustmentsSupportDuringYourCaseContent";
-import { Helpers } from "../../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
+import AxeTest from "../../../../../common/accessibilityTestHelper";
+import { ReasonableAdjustmentsSupportDuringYourCaseContent } from "../../../../../fixtures/citizen/createCase/C100/reasonableAdjustments/reasonableAdjustmentsSupportDuringYourCaseContent";
+import { Helpers } from "../../../../../common/helpers";
 
 interface ReasonableAdjustmentsSupportDuringYourCasePageOptions {
   page: Page;
@@ -12,11 +12,15 @@ interface ReasonableAdjustmentsSupportDuringYourCasePageOptions {
   yesNoReasonableAdjustments: boolean;
 }
 
-enum UniqueSelectors {}
+enum UniqueSelectors {
+  altFormat = "#ra_disabilityRequirements",
+  helpCommunicationAndUnderstanding = "#ra_disabilityRequirements-2",
+  bringSupport = "#ra_disabilityRequirements-3",
+  needSomethingToFeelComfortable = "#ra_disabilityRequirements-4",
+  helpTravelling = "#ra_disabilityRequirements-5",
+}
 
-// const fillInput: string = "#";
-
-const noToAll: string = "#";
+const noToAll: string = "#ra_disabilityRequirements-7";
 
 export class ReasonableAdjustmentsSupportDuringYourCasePage {
   public static async reasonableAdjustmentsSupportDuringYourCasePage({

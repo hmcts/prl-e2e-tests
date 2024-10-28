@@ -101,7 +101,7 @@ export class ReasonableAdjustmentsLanguageRequirementsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${ReasonableAdjustmentsLanguageRequirementsContent.errorMessageBlank}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${ReasonableAdjustmentsLanguageRequirementsContent.errorMessageBlank}")`,
         1,
       ),
     ]);
@@ -122,7 +122,7 @@ export class ReasonableAdjustmentsLanguageRequirementsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${ReasonableAdjustmentsLanguageRequirementsContent.errorMessageYesBlank}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${ReasonableAdjustmentsLanguageRequirementsContent.errorMessageYesBlank}")`,
         1,
       ),
     ]);

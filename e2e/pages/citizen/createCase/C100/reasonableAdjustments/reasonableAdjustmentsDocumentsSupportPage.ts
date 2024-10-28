@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../../common/selectors";
-import { CommonStaticText } from "../../../../../../common/commonStaticText";
-import AxeTest from "../../../../../../common/accessibilityTestHelper";
-import { Helpers } from "../../../../../../common/helpers";
-import { ReasonableAdjustmentsDocumentsSupportContent } from "../../../../../../fixtures/citizen/createCase/C100/reasonableAdjustments/currentBranch/reasonableAdjustmentsDocumentsSupportContent";
+import { Selectors } from "../../../../../common/selectors";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
+import AxeTest from "../../../../../common/accessibilityTestHelper";
+import { Helpers } from "../../../../../common/helpers";
+import { ReasonableAdjustmentsDocumentsSupportContent } from "../../../../../fixtures/citizen/createCase/C100/reasonableAdjustments/reasonableAdjustmentsDocumentsSupportContent";
 
 interface ReasonableAdjustmentsDocumentSupportPageOptions {
   page: Page;
@@ -29,7 +29,7 @@ enum TextboxInputUniqueSelectors {
   describeOtherNeeds = "#ra_documentHelpOther_subfield",
 }
 
-const noToAll: string = "#";
+const noToAll: string = "#ra_documentInformation-10";
 
 export class ReasonableAdjustmentsDocumentSupportPage {
   public static async reasonableAdjustmentsDocumentSupportPageOptions({
