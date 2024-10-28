@@ -34,9 +34,7 @@ export class FeeGuidancePage {
     if (errorMessaging) {
       await this.checkErrorMessaging(page);
     }
-    await this.fillInFields({
-      page: page,
-    });
+    await this.fillInFields(page);
   }
 
   private static async checkPageLoads({
