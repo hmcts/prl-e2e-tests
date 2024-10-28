@@ -11,5 +11,7 @@ export enum PreviousAbductionsContent {
   errorMessage1 = "Briefly describe the previous incidents of abduction",
   errorMessage2 = "Select yes if the police, private investigators or any other organisation was involved",
   detailsErrorList = "Provide details of the police, private investigators or any other organisation involvement",
-  detailsErrorMessage = "Provide details of the police, private investigators or any other organisation involvement"
+  detailsErrorMessage = "Provide details of the police, private investigators or any other organisation involvement",
+  abductionDescription = "Automated Abduction Description",
+  otherDetails = "Automated Other Abduction Details"
 }
