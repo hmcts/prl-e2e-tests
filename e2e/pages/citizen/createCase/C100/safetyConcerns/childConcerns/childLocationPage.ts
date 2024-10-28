@@ -113,7 +113,7 @@ export class ChildLocationPage {
         2,
         ChildLocationContent,
         "errorMessage",
-        `${Selectors.ErrorMessage}`,
+        `${Selectors.GovukErrorMessageCitizen}`,
       ),
     ]);
   }

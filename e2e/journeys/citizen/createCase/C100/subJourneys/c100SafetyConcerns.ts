@@ -17,6 +17,9 @@ import { YourselfConcernsAboutPage } from "../../../../../pages/citizen/createCa
 import { PhysicalAbuseYourselfPage } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/yourselfConcerns/physicalAbuseYourselfPage";
 import { PsychologicalAbuseYourselfPage } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/yourselfConcerns/psychologicalAbuseYourselfPage";
 import { EmotionalAbuseYourselfPage } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/yourselfConcerns/emotionalAbuseYourselfPage";
+import { SexualAbuseYourselfPage } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/yourselfConcerns/sexualAbuseYourselfPage";
+import { FinancialAbuseYourselfPage } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/yourselfConcerns/financialAbuseYourselfPage";
+import { OtherAbusePage } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/yourselfConcerns/otherAbusePage";
 import { DrugConcernsPage } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/drugConcernsPage";
 import { OtherIssuesPage } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/otherIssuesPage";
 import {
@@ -158,7 +161,21 @@ export class C100SafetyConcerns {
         accessibilityTest: accessibilityTest,
         c100EmotionalAbuseYesNoToAll: c100SafetyConcernsYesNoToAll,
       });
-
+      await SexualAbuseYourselfPage.sexualAbusePage({
+        page: page,
+        accessibilityTest: accessibilityTest,
+        c100SexualAbuseYesNoToAll: c100SafetyConcernsYesNoToAll,
+      });
+      await FinancialAbuseYourselfPage.financialAbusePage({
+        page: page,
+        accessibilityTest: accessibilityTest,
+        c100FinancialAbuseYesNoToAll: c100SafetyConcernsYesNoToAll,
+      });
+      await OtherAbusePage.otherAbusePage({
+        page: page,
+        accessibilityTest: accessibilityTest,
+        c100OtherAbuseYesNoToAll: c100SafetyConcernsYesNoToAll,
+      });
       await DrugConcernsPage.drugConcernsPage({
         page: page,
         accessibilityTest: accessibilityTest,

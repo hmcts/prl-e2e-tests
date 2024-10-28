@@ -97,7 +97,7 @@ export class WhichDecisionsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${WhichDecisionsContent.errorLink}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${WhichDecisionsContent.errorLink}")`,
         1,
       ),
     ]);

@@ -101,7 +101,7 @@ export class UrgentFirstHearingPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${UrgentFirstHearingContent.errorLink}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${UrgentFirstHearingContent.errorLink}")`,
         1,
       ),
     ]);

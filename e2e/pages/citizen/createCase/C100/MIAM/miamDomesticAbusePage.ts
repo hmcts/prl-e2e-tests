@@ -161,7 +161,7 @@ export class MiamDomesticAbusePage {
         5,
         MiamDomesticAbuseContent,
         `errorMessage`,
-        Selectors.ErrorMessage,
+        Selectors.GovukErrorMessageCitizen,
       ),
     ]);
   }
