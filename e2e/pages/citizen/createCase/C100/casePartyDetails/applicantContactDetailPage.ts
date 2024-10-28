@@ -72,7 +72,7 @@ export class ApplicantContactDetailPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.NotificationBannerTitle}:text-is("${ApplicantContactDetailContent.notifyBannerTitle}")`, 
+        `${Selectors.NotificationBannerTitle}:text-is("${ApplicantContactDetailContent.notifyBannerTitle}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -82,7 +82,7 @@ export class ApplicantContactDetailPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${uniqueSelectors.notificationBody}:text-is("${ApplicantContactDetailContent.notifyBody}")`, 
+        `${uniqueSelectors.notificationBody}:text-is("${ApplicantContactDetailContent.notifyBody}")`,
         1,
       ),
     ]);
@@ -95,7 +95,6 @@ export class ApplicantContactDetailPage {
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
-
     // Validate that the error messages are correctly displayed
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -118,7 +117,6 @@ export class ApplicantContactDetailPage {
         Selectors.GovukErrorMessageCitizen,
       ),
     ]);
-
     // Validate that hidden error messages are correctly displayed
     // Fails to enter anything into field boxes ("Your email address", "your telephone number")
     await page.click(inputIds.provideEmailYes);
@@ -142,7 +140,6 @@ export class ApplicantContactDetailPage {
         Selectors.GovukErrorMessageCitizen,
       ),
     ]);
-
     // Enters invalid entries into field boxes ("Your email address", "your telephone number")
     await page.fill(
       inputIds.enterEmail,
@@ -168,7 +165,6 @@ export class ApplicantContactDetailPage {
         Selectors.GovukErrorMessageCitizen,
       ),
     ]);
-
     // Fails to enter anything into why you can't provide a telephone number
     await page.click(inputIds.provideTelNo);
     await page.click(

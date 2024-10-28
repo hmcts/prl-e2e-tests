@@ -58,7 +58,6 @@ export class ApplicantContactPreferencePage {
     await page.waitForSelector(
       `${Selectors.GovukHeadingXL}:has-text("${ApplicantContactPreferenceContent.pageTitle}")`,
     );
-
     await Promise.all([
       Helpers.checkGroup(
         page,
@@ -102,7 +101,6 @@ export class ApplicantContactPreferencePage {
         1,
       ),
     ]);
-
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }

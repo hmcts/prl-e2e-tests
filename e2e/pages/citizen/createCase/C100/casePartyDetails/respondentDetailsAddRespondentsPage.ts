@@ -51,7 +51,6 @@ export class RespondentDetailsAddRespondentsPage {
     await page.waitForSelector(
       `${Selectors.GovukHeadingXL}:text-is("${RespondentDetailsAddRespondentsContent.pageTitle}")`,
     );
-
     await Promise.all([
       Helpers.checkGroup(
         page,
@@ -76,7 +75,6 @@ export class RespondentDetailsAddRespondentsPage {
         1,
       ),
     ]);
-
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }
@@ -86,7 +84,6 @@ export class RespondentDetailsAddRespondentsPage {
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
-
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
