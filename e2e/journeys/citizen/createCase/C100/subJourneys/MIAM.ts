@@ -1,42 +1,42 @@
 import { Page } from "@playwright/test";
-import { MiamOtherProceedingsPage } from "../../../../pages/citizen/createCase/C100/MIAM/miamOtherProceedingsPage";
-import { MiamNoNeedPage } from "../../../../pages/citizen/createCase/C100/MIAM/miamNoNeedPage";
-import { MiamInfoPage } from "../../../../pages/citizen/createCase/C100/MIAM/miamInfoPage";
-import { MiamAttendancePage } from "../../../../pages/citizen/createCase/C100/MIAM/miamAttendancePage";
-import { MiamMediatorDocumentPage } from "../../../../pages/citizen/createCase/C100/MIAM/miamMediatorDocumentPage";
-import { MiamGetDocPage } from "../../../../pages/citizen/createCase/C100/MIAM/miamGetDocPage";
-import { CaseDashboardPage } from "../../../../pages/citizen/createCase/initialJourney/caseDashboardPage";
-import { MiamUploadPage } from "../../../../pages/citizen/createCase/C100/MIAM/miamUploadPage";
-import { MiamUploadConfirmationPage } from "../../../../pages/citizen/createCase/C100/MIAM/miamUploadConfirmationPage";
-import { MiamValidReasonPage } from "../../../../pages/citizen/createCase/C100/MIAM/miamValidReasonPage";
-import { MiamGetMediatorPage } from "../../../../pages/citizen/createCase/C100/MIAM/miamGetMediatorPage";
-import { MiamGeneralReasonsPage } from "../../../../pages/citizen/createCase/C100/MIAM/miamGeneralReasonsPage";
-import { MiamDomesticAbusePage } from "../../../../pages/citizen/createCase/C100/MIAM/miamDomesticAbusePage";
-import { MiamProvidingEvidenceDomesticAbusePage } from "../../../../pages/citizen/createCase/C100/MIAM/miamProvidingEvidenceDomesticAbusePage";
-import { MiamDomesticAbuseUploadEvidencePage } from "../../../../pages/citizen/createCase/C100/MIAM/miamDomesticAbuseUploadEvidencePage";
+import { MiamOtherProceedingsPage } from "../../../../../pages/citizen/createCase/C100/MIAM/miamOtherProceedingsPage";
+import { MiamNoNeedPage } from "../../../../../pages/citizen/createCase/C100/MIAM/miamNoNeedPage";
+import { MiamInfoPage } from "../../../../../pages/citizen/createCase/C100/MIAM/miamInfoPage";
+import { MiamAttendancePage } from "../../../../../pages/citizen/createCase/C100/MIAM/miamAttendancePage";
+import { MiamMediatorDocumentPage } from "../../../../../pages/citizen/createCase/C100/MIAM/miamMediatorDocumentPage";
+import { MiamGetDocPage } from "../../../../../pages/citizen/createCase/C100/MIAM/miamGetDocPage";
+import { CaseDashboardPage } from "../../../../../pages/citizen/createCase/initialJourney/caseDashboardPage";
+import { MiamUploadPage } from "../../../../../pages/citizen/createCase/C100/MIAM/miamUploadPage";
+import { MiamUploadConfirmationPage } from "../../../../../pages/citizen/createCase/C100/MIAM/miamUploadConfirmationPage";
+import { MiamValidReasonPage } from "../../../../../pages/citizen/createCase/C100/MIAM/miamValidReasonPage";
+import { MiamGetMediatorPage } from "../../../../../pages/citizen/createCase/C100/MIAM/miamGetMediatorPage";
+import { MiamGeneralReasonsPage } from "../../../../../pages/citizen/createCase/C100/MIAM/miamGeneralReasonsPage";
+import { MiamDomesticAbusePage } from "../../../../../pages/citizen/createCase/C100/MIAM/miamDomesticAbusePage";
+import { MiamProvidingEvidenceDomesticAbusePage } from "../../../../../pages/citizen/createCase/C100/MIAM/miamProvidingEvidenceDomesticAbusePage";
+import { MiamDomesticAbuseUploadEvidencePage } from "../../../../../pages/citizen/createCase/C100/MIAM/miamDomesticAbuseUploadEvidencePage";
 import {
   MiamChildProtectionConcernsType,
   MiamChildProtectionPage,
-} from "../../../../pages/citizen/createCase/C100/MIAM/miamChildProtectionPage";
+} from "../../../../../pages/citizen/createCase/C100/MIAM/miamChildProtectionPage";
 import {
   MiamUrgencyPage,
   MiamUrgencyType,
-} from "../../../../pages/citizen/createCase/C100/MIAM/miamUrgencyPage";
+} from "../../../../../pages/citizen/createCase/C100/MIAM/miamUrgencyPage";
 import {
   MiamAttendanceType,
   MiamPreviousAttendancePage,
-} from "../../../../pages/citizen/createCase/C100/MIAM/miamPreviousAttendancePage";
-import { MiamOtherAttendanceOrNCDRPage } from "../../../../pages/citizen/createCase/C100/MIAM/miamOtherAttendanceOrNCDRPage";
-import { MiamUploadEvidenceOfAttendingMiamOrNCDRPage } from "../../../../pages/citizen/createCase/C100/MIAM/miamUploadEvidenceOfAttendingMiamOrNCDRPage";
+} from "../../../../../pages/citizen/createCase/C100/MIAM/miamPreviousAttendancePage";
+import { MiamOtherAttendanceOrNCDRPage } from "../../../../../pages/citizen/createCase/C100/MIAM/miamOtherAttendanceOrNCDRPage";
+import { MiamUploadEvidenceOfAttendingMiamOrNCDRPage } from "../../../../../pages/citizen/createCase/C100/MIAM/miamUploadEvidenceOfAttendingMiamOrNCDRPage";
 import {
   MiamMiamOtherPage,
   MiamOtherReasonForNotAttending,
-} from "../../../../pages/citizen/createCase/C100/MIAM/miamMiamOtherPage";
+} from "../../../../../pages/citizen/createCase/C100/MIAM/miamMiamOtherPage";
 import {
   MiamNoAccessToMediatorPage,
   MiamReasonForNoAccessToMediator,
-} from "../../../../pages/citizen/createCase/C100/MIAM/miamNoAccessToMediatorPage";
-import { MiamMiamExemptionsSummaryPage } from "../../../../pages/citizen/createCase/C100/MIAM/miamMiamExemptionsSummaryPage";
+} from "../../../../../pages/citizen/createCase/C100/MIAM/miamNoAccessToMediatorPage";
+import { MiamMiamExemptionsSummaryPage } from "../../../../../pages/citizen/createCase/C100/MIAM/miamMiamExemptionsSummaryPage";
 
 interface MIAMOptions {
   page: Page;
