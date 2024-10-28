@@ -7,12 +7,35 @@ import { OrderType, solicitorCaseCreateType } from "../../../common/types";
 
 enum UniqueSelectors {
   errorsHeaderSelector = "ccd-callback-errors > h3",
-  errorMessageSelector = "ccd-callback-errors > div > ul > li"
+  errorMessageSelector = "ccd-callback-errors > div > ul > li",
 }
 
-const invalidC100OrderTypes: OrderType[] = ["standardDirectionsOrder", "directionOnIssue","noticeOfProceedingsParties", "noticeOfProceedingsNonParties", "nonMolestation", "occupation", "powerOfArrest", "amendDischargedVaried", "blank", "generalForm", "noticeOfProceedings"];
-const invalidFL401OrderTypes: OrderType[] = ["standardDirectionsOrder", "directionOnIssue", "blankOrderOrDirections", "childArrangementsSpecificProhibitedOrder", "parentalResponsibility", "specialGuardianShip", "noticeOfProceedingsParties", "noticeOfProceedingsNonParties", "appointmentOfGuardian", "noticeOfProceedings"];
-const nonDraftableOrders: OrderType[] = ["standardDirectionsOrder", "directionOnIssue", "noticeOfProceedingsParties", "noticeOfProceedingsNonParties", "noticeOfProceedings"];
+const nonDraftableOrders: OrderType[] = [
+  "standardDirectionsOrder",
+  "directionOnIssue",
+  "noticeOfProceedingsParties",
+  "noticeOfProceedingsNonParties",
+  "noticeOfProceedings",
+];
+
+const invalidC100OrderTypes: OrderType[] = [
+  "nonMolestation",
+  "occupation",
+  "powerOfArrest",
+  "amendDischargedVaried",
+  "blank",
+  "generalForm",
+  ...nonDraftableOrders,
+];
+
+const invalidFL401OrderTypes: OrderType[] = [
+  "blankOrderOrDirections",
+  "childArrangementsSpecificProhibitedOrder",
+  "parentalResponsibility",
+  "specialGuardianShip",
+  "appointmentOfGuardian",
+  ...nonDraftableOrders,
+];
 
 export class DraftAnOrder2Page {
   public static async draftAnOrder2Page(
@@ -24,7 +47,7 @@ export class DraftAnOrder2Page {
   ): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest);
     if (errorMessaging) {
-      await this.checkErrorMessaging(page, caseType, orderType);
+      await this.checkErrorMessaging(page, caseType);
     }
     await this.fillInFields(page, orderType);
     await this.continue(page);
@@ -66,7 +89,10 @@ export class DraftAnOrder2Page {
     }
   }
 
-  private static async checkErrorMessaging(page: Page, caseType: solicitorCaseCreateType, orderType: OrderType): Promise<void> {
+  private static async checkErrorMessaging(
+    page: Page,
+    caseType: solicitorCaseCreateType,
+  ): Promise<void> {
     await this.continue(page);
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -85,8 +111,8 @@ export class DraftAnOrder2Page {
         1,
       ),
     ]);
-    if("C100" === caseType) {
-      await this.checkC100ErrorMessaging(page)
+    if ("C100" === caseType) {
+      await this.checkC100ErrorMessaging(page);
     } else {
       await this.checkFL401ErrorMessaging(page);
     }
@@ -100,19 +126,19 @@ export class DraftAnOrder2Page {
         page,
         `${UniqueSelectors.errorsHeaderSelector}:text-is("${DraftAnOrder2Content.errorsHeader}")`,
         1,
-      )
-      if(nonDraftableOrders.includes(orderType)) {
+      );
+      if (nonDraftableOrders.includes(orderType)) {
         await Helpers.checkVisibleAndPresent(
           page,
           `${UniqueSelectors.errorMessageSelector}:text-is("${DraftAnOrder2Content.errorMessageOrderNotAvailableToBeDrafted}")`,
           1,
-        )
+        );
       } else {
         await Helpers.checkVisibleAndPresent(
           page,
           `${UniqueSelectors.errorMessageSelector}:text-is("${DraftAnOrder2Content.errorMessageOrderNotAvailableForC100}")`,
           1,
-        )
+        );
       }
     }
   }
@@ -125,24 +151,27 @@ export class DraftAnOrder2Page {
         page,
         `${UniqueSelectors.errorsHeaderSelector}:text-is("${DraftAnOrder2Content.errorsHeader}")`,
         1,
-      )
-      if(nonDraftableOrders.includes(orderType)) {
+      );
+      if (nonDraftableOrders.includes(orderType)) {
         await Helpers.checkVisibleAndPresent(
           page,
           `${UniqueSelectors.errorMessageSelector}:text-is("${DraftAnOrder2Content.errorMessageOrderNotAvailableToBeDrafted}")`,
           1,
-        )
+        );
       } else {
         await Helpers.checkVisibleAndPresent(
           page,
           `${UniqueSelectors.errorMessageSelector}:text-is("${DraftAnOrder2Content.errorMessageOrderNotAvailableForFL401}")`,
           1,
-        )
+        );
       }
     }
   }
 
-  private static async fillInFields(page: Page, orderType: OrderType): Promise<void> {
+  private static async fillInFields(
+    page: Page,
+    orderType: OrderType,
+  ): Promise<void> {
     await page.check(`#createSelectOrderOptions-${orderType}`);
   }
 

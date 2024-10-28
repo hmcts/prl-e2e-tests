@@ -1,4 +1,3 @@
-// TODO: add headings for specific orders types
 import { OrderType } from "../../../common/types";
 
 export enum DraftAnOrder4Content {
@@ -25,13 +24,15 @@ export enum DraftAnOrder4Content {
   formLabel20 = "Day",
   formLabel21 = "Month",
   formLabel22 = "Year",
-  formLabel23 = "Is the order about all the children?",
-  formLabel24 = "Add recitals or preamble (Optional)",
-  formLabel25 = "Add directions (Optional)",
+  formLabel23 = "Add recitals or preamble (Optional)",
+  formLabel24 = "Add directions (Optional)",
+  formLabelOrderAboutAllChildren = "Is the order about all the children?",
+  formLabelOrderAboutChildren = "Is the order about the children?",
   p1 = "Order made by",
   judgeOrMagistratesTitleStrong = "Judge or Magistrate's title",
   formLabelYes = "yes",
   formLabelNo = "No",
+  formLabelMagistratesFullName = "Magistrate's full name",
   previous = "Previous",
   continue = "Continue",
   errorMessage1 = "Is the order by consent? is required",
@@ -40,10 +41,32 @@ export enum DraftAnOrder4Content {
   errorMessage4 = "At which hearing was the order approved? is required",
   errorMessage5 = "Magistrate's full name is required",
   errorMessage6 = "Which children are included in the order? is required",
-  errorMessage7 = "Date order made is not valid"
+  errorMessage7 = "Date order made is not valid",
+  errorMessage8 = "Date or Time entered is not valid",
 }
 
-// TODO: populate the rest of the map
 export const orderTypesMap: Map<OrderType, string> = new Map([
-  ["childArrangementsSpecificProhibitedOrder", "Child arrangements, specific issue or prohibited steps order (C43)"]
+  [
+    "c21ApplicationRefused",
+    "Blank order or directions (C21): application refused",
+  ],
+  [
+    "c21WithdrawApplication",
+    "Blank order or directions (C21): to withdraw application",
+  ],
+  ["c21NoOrderMade", "Blank order or directions (C21): no order made"],
+  ["c21other", "Blank order or directions (C21): Other"],
+  [
+    "childArrangementsSpecificProhibitedOrder",
+    "Child arrangements, specific issue or prohibited steps order (C43)",
+  ],
+  ["parentalResponsibility", "Parental responsibility order (C45A)"],
+  ["specialGuardianShip", "Special guardianship order (C43A)"],
+  ["appointmentOfGuardian", "Appointment of a guardian (C47A)"],
+  ["nonMolestation", "Non-molestation order (FL404A)"],
+  ["occupation", "Occupation order (FL404)"],
+  ["powerOfArrest", "Power of arrest (FL406)"],
+  ["amendDischargedVaried", "Amended, discharged or varied order (FL404B)"],
+  ["blank", "Blank order (FL404B)"],
+  ["generalForm", "General form of undertaking (N117)"],
 ]);

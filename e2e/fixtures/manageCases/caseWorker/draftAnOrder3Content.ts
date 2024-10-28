@@ -7,5 +7,5 @@ export enum DraftAnOrder3Content {
   previous = "Previous",
   continue = "Continue",
   errorBanner = "There is a problem",
-  errorMessageWTypeOfOrderIsRequired = "Select the type of order is required"
+  errorMessageWTypeOfOrderIsRequired = "Select the type of order is required",
 }

@@ -3,13 +3,13 @@ import { Selectors } from "../../../common/selectors";
 import { Helpers } from "../../../common/helpers";
 import { DraftAnOrder3Content } from "../../../fixtures/manageCases/caseWorker/draftAnOrder3Content";
 import AccessibilityTestHelper from "../../../common/accessibilityTestHelper";
-import { C21OrderType } from "../../../common/types";
+import { OrderType } from "../../../common/types";
 
-// this page is specific for C100 "Blank Order or directions" type
+// this page is specific for C100 "Blank Order or directions (C21)" type
 export class DraftAnOrder3Page {
   public static async draftAnOrder3Page(
     page: Page,
-    subOrderType: C21OrderType,
+    orderType: OrderType,
     errorMessaging: boolean,
     accessibilityTest: boolean,
   ): Promise<void> {
@@ -17,7 +17,7 @@ export class DraftAnOrder3Page {
     if (errorMessaging) {
       await this.checkErrorMessaging(page);
     }
-    await this.fillInFields(page, subOrderType);
+    await this.fillInFields(page, orderType);
   }
 
   private static async checkPageLoads(
@@ -79,9 +79,9 @@ export class DraftAnOrder3Page {
 
   private static async fillInFields(
     page: Page,
-    subOrderType: C21OrderType,
+    orderType: OrderType,
   ): Promise<void> {
-    await page.check(`#c21OrderOptions-${subOrderType}`);
+    await page.check(`#c21OrderOptions-${orderType}`);
   }
 
   private static async continue(page: Page): Promise<void> {

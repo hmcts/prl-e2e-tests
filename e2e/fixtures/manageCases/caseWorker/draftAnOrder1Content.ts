@@ -4,5 +4,5 @@ export enum DraftAnOrder1Content {
   previous = "Previous",
   continue = "Continue",
   errorBanner = "There is a problem",
-  errorMessageWhatDoYouWantToDo = "What do you want to do? is required"
+  errorMessageWhatDoYouWantToDo = "What do you want to do? is required",
 }

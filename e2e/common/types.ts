@@ -103,11 +103,23 @@ export type OrderType =
   | "amendDischargedVaried"
   | "blank"
   | "generalForm"
-  | "noticeOfProceedings";
-
-export type C21OrderType =
-  // missing type for C21: no order made
+  | "noticeOfProceedings"
   | "c21ApplicationRefused"
   | "c21WithdrawApplication"
   | "c21NoOrderMade"
   | "c21other";
+
+export type JudgeOrMagistratesTitle =
+  | "herHonourJudge"
+  | "hisHonourJudge"
+  | "circuitJudge"
+  | "deputyCircuitJudge"
+  | "recorder"
+  | "districtJudge"
+  | "deputyDistrictJudge"
+  | "districtJudgeMagistratesCourt"
+  | "magistrate"
+  | "justicesLegalAdviser"
+  | "justicesClerk"
+  | "theHonourableMrsJustice"
+  | "theHonourableMrJustice";
