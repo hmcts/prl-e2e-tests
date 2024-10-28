@@ -2,6 +2,8 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../../common/selectors";
 import { CommonStaticText } from "../../../../../../common/commonStaticText";
 import AxeTest from "../../../../../../common/accessibilityTestHelper";
+import { Helpers } from "../../../../../../common/helpers";
+import { ReasonableAdjustmentsDocumentsSupportContent } from "../../../../../../fixtures/citizen/createCase/C100/reasonableAdjustments/currentBranch/reasonableAdjustmentsDocumentsSupportContent";
 
 interface ReasonableAdjustmentsDocumentSupportPageOptions {
   page: Page;
@@ -10,9 +12,22 @@ interface ReasonableAdjustmentsDocumentSupportPageOptions {
   yesNoReasonableAdjustments: boolean;
 }
 
-enum UniqueSelectors {}
+enum CheckListUniqueSelectors {
+  specifiedColour = "#ra_documentInformation",
+  easyReadFormat = "#ra_documentInformation-2",
+  brailleDocuments = "#ra_documentInformation-3",
+  largePrints = "#ra_documentInformation-4",
+  audioTranslation = "#ra_documentInformation-5",
+  readOutToMe = "#ra_documentInformation-6",
+  emailInformationToMe = "#ra_documentInformation-7",
+  other = "#ra_documentInformation-8",
+}
 
-const fillInput: string = "#";
+enum TextboxInputUniqueSelectors {
+  describeSpecifiedColour = "#ra_specifiedColorDocuments_subfield",
+  describeLargePrint = "#ra_largePrintDocuments_subfield",
+  describeOtherNeeds = "#ra_documentHelpOther_subfield",
+}
 
 const noToAll: string = "#";
 
@@ -43,6 +58,35 @@ export class ReasonableAdjustmentsDocumentSupportPage {
     if (!page) {
       throw new Error();
     }
+    await page.waitForSelector(
+      `${Selectors.GovukHeadingXL}:text-is("${ReasonableAdjustmentsDocumentsSupportContent.pageTitle}")`,
+    );
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukCaptionXL}:text-is("${ReasonableAdjustmentsDocumentsSupportContent.GovukCaptionXL}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukInsetText}:text-is("${ReasonableAdjustmentsDocumentsSupportContent.govukInsetText}")`,
+        1,
+      ),
+      Helpers.checkGroup(
+        page,
+        2,
+        ReasonableAdjustmentsDocumentsSupportContent,
+        "govukLabel",
+        Selectors.GovukLabel,
+      ),
+      Helpers.checkGroup(
+        page,
+        9,
+        ReasonableAdjustmentsDocumentsSupportContent,
+        "govukLabel",
+        Selectors.GovukLabel,
+      ),
+    ]);
     if (accessibilityTest) {
       await AxeTest.run(page);
     }
@@ -57,6 +101,63 @@ export class ReasonableAdjustmentsDocumentSupportPage {
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorSummaryTitle}:text-is("${CommonStaticText.errorSummaryTitle}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.a}:text-is("${ReasonableAdjustmentsDocumentsSupportContent.errorMessageBlank}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${ReasonableAdjustmentsDocumentsSupportContent.errorMessageBlank}")`,
+        1,
+      ),
+    ]);
+    await page.click(CheckListUniqueSelectors.specifiedColour);
+    await page.click(CheckListUniqueSelectors.largePrints);
+    await page.click(CheckListUniqueSelectors.other);
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorSummaryTitle}:text-is("${CommonStaticText.errorSummaryTitle}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.a}:text-is("${ReasonableAdjustmentsDocumentsSupportContent.errorMessageDocumentsInSpecifiedColour}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${ReasonableAdjustmentsDocumentsSupportContent.errorMessageDocumentsInSpecifiedColour}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.a}:text-is("${ReasonableAdjustmentsDocumentsSupportContent.errorMessageDocumentsInLargePrints}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${ReasonableAdjustmentsDocumentsSupportContent.errorMessageDocumentsInLargePrints}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.a}:text-is("${ReasonableAdjustmentsDocumentsSupportContent.errorMessageOther}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${ReasonableAdjustmentsDocumentsSupportContent.errorMessageOther}")`,
+        1,
+      ),
+    ]);
   }
 
   private static async fillInFields({
@@ -67,7 +168,21 @@ export class ReasonableAdjustmentsDocumentSupportPage {
       throw new Error();
     }
     if (yesNoReasonableAdjustments) {
-      // click all
+      for (const selector of Object.values(CheckListUniqueSelectors)) {
+        await page.click(selector);
+      }
+      await page.fill(
+        TextboxInputUniqueSelectors.describeSpecifiedColour,
+        ReasonableAdjustmentsDocumentsSupportContent.textForSpecifiedColour,
+      );
+      await page.fill(
+        TextboxInputUniqueSelectors.describeLargePrint,
+        ReasonableAdjustmentsDocumentsSupportContent.textForLargePrints,
+      );
+      await page.fill(
+        TextboxInputUniqueSelectors.describeOtherNeeds,
+        ReasonableAdjustmentsDocumentsSupportContent.textForOther,
+      );
     } else {
       await page.click(noToAll);
     }
