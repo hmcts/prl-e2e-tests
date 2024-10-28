@@ -61,13 +61,6 @@ export class AddChildrenPage {
         `${Selectors.h1}:text-is("${AddChildrenContent.heading}")`,
         1,
       ),
-      Helpers.checkGroup(
-        page,
-        2,
-        AddChildrenContent,
-        "label",
-        `${Selectors.GovukLabel}`,
-      ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukHint}:text-is("${AddChildrenContent.hint}")`,
@@ -81,7 +74,7 @@ export class AddChildrenPage {
 
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -113,7 +106,7 @@ export class AddChildrenPage {
       await page.fill(`${selector}`, AddChildrenContent.exampleText);
     }
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
   }
 }

@@ -1,14 +1,16 @@
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
-import { WhichDecisionsContent } from "../../../../../fixtures/citizen/createCase/C100/people/whichDecisionsContent";
+import { HasOtherChildrenContent } from "../../../../../fixtures/citizen/createCase/C100/people/hasOtherChildrenContent";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { yesNoDontKnow } from "../../../../../common/types";
 
-interface WhichDecisionsPageOptions {
+interface HasOtherChildrenPageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
+  c100PeopleYesNoDontKnow: yesNoDontKnow;
 }
 
 interface checkPageLoadsOptions {
@@ -18,32 +20,21 @@ interface checkPageLoadsOptions {
 
 interface fillInFieldsOptions {
   page: Page;
+  c100PeopleYesNoDontKnow: yesNoDontKnow;
 }
 
-enum checkBoxIds {
-  needsResolution1 = "#needsResolution",
-  needsResolution2 = "#needsResolution-2",
-  needsResolution3 = "#needsResolution-3",
-  needsResolution4 = "#needsResolution-4",
-  needsResolution5 = "#needsResolution-5",
-  needsResolution6 = "#needsResolution-6",
-  needsResolution7 = "#needsResolution-7",
-  needsResolution8 = "#needsResolution-8",
-  needsResolution9 = "#needsResolution-9",
-  needsResolution10 = "#needsResolution-10",
-  needsResolution11 = "#needsResolution-11",
-  needsResolution12 = "#needsResolution-12",
-  needsResolution13 = "#needsResolution-13",
-  needsResolution14 = "#needsResolution-14",
-  needsResolution15 = "#needsResolution-15",
+enum radioIds {
+  hasOtherChildren = "#ocd_hasOtherChildren",
+  hasOtherChildren_2 = "#ocd_hasOtherChildren-2",
 }
 
-export class WhichDecisionsPage {
-  public static async whichDecisionsPage({
+export class HasOtherChildrenPage {
+  public static async hasOtherChildrenPage({
     page: page,
     accessibilityTest: accessibilityTest,
     errorMessaging: errorMessaging,
-  }: WhichDecisionsPageOptions): Promise<void> {
+    c100PeopleYesNoDontKnow: c100PeopleYesNoDontKnow,
+  }: HasOtherChildrenPageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
       accessibilityTest: accessibilityTest,
@@ -53,6 +44,7 @@ export class WhichDecisionsPage {
     }
     await this.fillInFields({
       page: page,
+      c100PeopleYesNoDontKnow: c100PeopleYesNoDontKnow,
     });
   }
 
@@ -61,35 +53,18 @@ export class WhichDecisionsPage {
     accessibilityTest: accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukHeadingXL}:text-is("${WhichDecisionsContent.pageTitle}")`,
+      `${Selectors.GovukHeadingXL}:text-is("${HasOtherChildrenContent.pageTitle}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${WhichDecisionsContent.hint}")`,
+        `${Selectors.GovukLabel}:text-is("${CommonStaticText.yes}")`,
         1,
       ),
-      Helpers.checkGroup(
-        page,
-        9,
-        WhichDecisionsContent,
-        "label",
-        `${Selectors.GovukLabel}`,
-      ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${WhichDecisionsContent.repeatedLabel1}")`,
-        2,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukLabel}:text-is("${WhichDecisionsContent.repeatedLabel2}")`,
-        2,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukLabel}:text-is("${WhichDecisionsContent.repeatedLabel3}")`,
-        2,
+        `${Selectors.GovukLabel}:text-is("${CommonStaticText.no}")`,
+        1,
       ),
     ]);
     if (accessibilityTest) {
@@ -107,12 +82,12 @@ export class WhichDecisionsPage {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${WhichDecisionsContent.errorLink}")`,
+        `${Selectors.a}:text-is("${HasOtherChildrenContent.errorLink}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessageCitizen}:text-is("${WhichDecisionsContent.errorLink}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${HasOtherChildrenContent.errorLink}")`,
         1,
       ),
     ]);
@@ -120,9 +95,12 @@ export class WhichDecisionsPage {
 
   private static async fillInFields({
     page: page,
+    c100PeopleYesNoDontKnow: c100PeopleYesNoDontKnow,
   }: fillInFieldsOptions): Promise<void> {
-    for (const selector of Object.values(checkBoxIds)) {
-      await page.click(selector);
+    if (c100PeopleYesNoDontKnow === "yes") {
+      await page.click(radioIds.hasOtherChildren);
+    } else {
+      await page.click(radioIds.hasOtherChildren_2);
     }
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,

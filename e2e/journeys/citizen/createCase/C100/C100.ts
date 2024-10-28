@@ -4,6 +4,7 @@ import { CitizenCreateInitial } from "../../citizenCreateInitial";
 import { C100TypeOfOrder } from "./subJourneys/C100TypeOfOrder";
 import { C100ConsentOrderUpload } from "./subJourneys/C100ConsentOrderUpload";
 import { C100UrgencyAndWithoutNotice } from "./subJourneys/C100UrgencyAndWithoutNotice";
+import { C100People1 } from "./subJourneys/C100People1";
 import { MIAM } from "./subJourneys/MIAM";
 import { MiamChildProtectionConcernsType } from "../../../../pages/citizen/createCase/C100/MIAM/miamChildProtectionPage";
 import { MiamUrgencyType } from "../../../../pages/citizen/createCase/C100/MIAM/miamUrgencyPage";
@@ -12,6 +13,7 @@ import { MiamOtherReasonForNotAttending } from "../../../../pages/citizen/create
 import { MiamReasonForNoAccessToMediator } from "../../../../pages/citizen/createCase/C100/MIAM/miamNoAccessToMediatorPage";
 import { C100OtherProceedings } from "./subJourneys/C100OtherProceedings";
 import { C100ApplicationCompletedForYou } from "./C100ApplicationCompletedForYou";
+import { ApplicantGender, yesNoDontKnow } from "../../../../common/types";
 
 interface C100ApplicationCompletedForYouOptions {
   page: Page;
@@ -48,6 +50,8 @@ interface C100TopMiroJourneyOptions {
   accessibilityTest: boolean;
   errorMessaging: boolean;
   urgencyAndWithoutNoticeAllOptionsYes: boolean;
+  c100PeopleGender: ApplicantGender;
+  c100PeopleYesNoDontKnow: yesNoDontKnow;
   // c100OthersKnowApplicantsContact: yesNoDontKnow;
   // c100PrivateDetails: boolean;
   // c100ChildrenSafetyConcerns: boolean;
@@ -213,6 +217,8 @@ export class C100 {
     accessibilityTest,
     errorMessaging,
     urgencyAndWithoutNoticeAllOptionsYes,
+    c100PeopleGender,
+    c100PeopleYesNoDontKnow,
   }: C100TopMiroJourneyOptions): Promise<void> {
     await CitizenCreateInitial.citizenCreateInitial({
       page: page,
@@ -244,7 +250,13 @@ export class C100 {
       urgencyAndWithoutNoticeAllOptionsYes:
         urgencyAndWithoutNoticeAllOptionsYes,
     });
-    // People
+    await C100People1.c100People1({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      gender: c100PeopleGender,
+      c100PeopleYesNoDontKnow: c100PeopleYesNoDontKnow,
+    });
     // Applicant Details
     // Confidentiality
   }
