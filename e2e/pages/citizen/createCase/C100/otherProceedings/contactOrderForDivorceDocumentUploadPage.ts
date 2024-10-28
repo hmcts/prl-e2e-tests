@@ -98,7 +98,7 @@ export class ContactOrderForDivorceDocumentUploadPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${ContactOrderForDivorceDocumentUploadContent.errorMessageChooseFile}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${ContactOrderForDivorceDocumentUploadContent.errorMessageChooseFile}")`,
         1,
       ),
     ]);
@@ -117,7 +117,7 @@ export class ContactOrderForDivorceDocumentUploadPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${ContactOrderForDivorceDocumentUploadContent.errorMessageUploadCorrectFile}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${ContactOrderForDivorceDocumentUploadContent.errorMessageUploadCorrectFile}")`,
         1,
       ),
     ]);

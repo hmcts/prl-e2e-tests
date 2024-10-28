@@ -95,7 +95,7 @@ export class LegalRepresentationPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${LegalRepresentationContent.errorMessage}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${LegalRepresentationContent.errorMessage}")`,
         1,
       ),
     ]);

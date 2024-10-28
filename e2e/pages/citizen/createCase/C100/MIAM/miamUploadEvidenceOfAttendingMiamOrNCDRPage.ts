@@ -89,7 +89,7 @@ export class MiamUploadEvidenceOfAttendingMiamOrNCDRPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${MiamUploadEvidenceOfAttendingMiamOrNCDRContent.errorMessage}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${MiamUploadEvidenceOfAttendingMiamOrNCDRContent.errorMessage}")`,
         1,
       ),
     ]);

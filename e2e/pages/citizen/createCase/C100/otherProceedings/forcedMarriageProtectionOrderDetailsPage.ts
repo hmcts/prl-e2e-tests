@@ -152,7 +152,7 @@ export class ForcedMarriageProtectionOrderDetailsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${ForcedMarriageProtectionOrderDetailsContent.errorMessageOrderDate}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${ForcedMarriageProtectionOrderDetailsContent.errorMessageOrderDate}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -162,7 +162,7 @@ export class ForcedMarriageProtectionOrderDetailsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${ForcedMarriageProtectionOrderDetailsContent.errorMessageOrderEndDate}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${ForcedMarriageProtectionOrderDetailsContent.errorMessageOrderEndDate}")`,
         1,
       ),
     ]);

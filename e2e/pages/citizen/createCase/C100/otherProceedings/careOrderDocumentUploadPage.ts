@@ -98,7 +98,7 @@ export class CareOrderDocumentUploadPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${CareOrderDocumentUploadContent.errorMessageChooseFile}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${CareOrderDocumentUploadContent.errorMessageChooseFile}")`,
         1,
       ),
     ]);
@@ -117,7 +117,7 @@ export class CareOrderDocumentUploadPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${CareOrderDocumentUploadContent.errorMessageUploadCorrectFile}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${CareOrderDocumentUploadContent.errorMessageUploadCorrectFile}")`,
         1,
       ),
     ]);

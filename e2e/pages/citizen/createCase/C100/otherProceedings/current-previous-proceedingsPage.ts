@@ -100,7 +100,7 @@ export class CurrentPreviousProceedingsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${CurrentPreviousProceedingsContent.errorMessageChildrenInvolved}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${CurrentPreviousProceedingsContent.errorMessageChildrenInvolved}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -110,7 +110,7 @@ export class CurrentPreviousProceedingsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${CurrentPreviousProceedingsContent.errorMessageCourtOrder}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${CurrentPreviousProceedingsContent.errorMessageCourtOrder}")`,
         1,
       ),
     ]);

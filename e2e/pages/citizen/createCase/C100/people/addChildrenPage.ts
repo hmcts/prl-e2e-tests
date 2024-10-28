@@ -101,7 +101,7 @@ export class AddChildrenPage {
         2,
         AddChildrenContent,
         "errorLink",
-        `${Selectors.ErrorMessage}`,
+        `${Selectors.GovukErrorMessageCitizen}`,
       ),
     ]);
   }

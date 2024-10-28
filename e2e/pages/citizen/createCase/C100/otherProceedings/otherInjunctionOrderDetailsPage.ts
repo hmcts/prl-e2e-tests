@@ -152,7 +152,7 @@ export class OtherInjunctionOrderDetailsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${OtherInjunctionOrderDetailsContent.errorMessageOrderDate}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${OtherInjunctionOrderDetailsContent.errorMessageOrderDate}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -162,7 +162,7 @@ export class OtherInjunctionOrderDetailsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${OtherInjunctionOrderDetailsContent.errorMessageOrderEndDate}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${OtherInjunctionOrderDetailsContent.errorMessageOrderEndDate}")`,
         1,
       ),
     ]);
