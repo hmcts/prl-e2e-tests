@@ -107,7 +107,7 @@ export class ProceedingDetailsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${ProceedingDetailsContent.errorMessageSpecifyWhichCourt}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${ProceedingDetailsContent.errorMessageSpecifyWhichCourt}")`,
         1,
       ),
     ]);

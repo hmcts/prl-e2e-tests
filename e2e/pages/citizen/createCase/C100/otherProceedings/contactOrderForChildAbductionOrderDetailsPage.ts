@@ -152,7 +152,7 @@ export class ContactOrderForAdoptionOrderDetailsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${ContactOrderForAdoptionOrderDetailsContent.errorMessageOrderDate}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${ContactOrderForAdoptionOrderDetailsContent.errorMessageOrderDate}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -162,7 +162,7 @@ export class ContactOrderForAdoptionOrderDetailsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${ContactOrderForAdoptionOrderDetailsContent.errorMessageOrderEndDate}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${ContactOrderForAdoptionOrderDetailsContent.errorMessageOrderEndDate}")`,
         1,
       ),
     ]);

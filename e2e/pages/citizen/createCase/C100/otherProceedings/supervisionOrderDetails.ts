@@ -152,7 +152,7 @@ export class SupervisionOrderDetailsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${SupervisionOrderDetailsContent.errorMessageOrderDate}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${SupervisionOrderDetailsContent.errorMessageOrderDate}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -162,7 +162,7 @@ export class SupervisionOrderDetailsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${SupervisionOrderDetailsContent.errorMessageOrderEndDate}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${SupervisionOrderDetailsContent.errorMessageOrderEndDate}")`,
         1,
       ),
     ]);

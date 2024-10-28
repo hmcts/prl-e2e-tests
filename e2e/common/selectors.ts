@@ -61,7 +61,6 @@ export enum Selectors {
   GovukErrorValidation = ".validation-error",
   GovukErrorMessage = ".error-message",
   GovukErrorList = ".govuk-error-summary__list",
-  ErrorMessage = ".govuk-error-message",
   GovukCaptionL = ".govuk-caption-l",
   GovukCaptionXL = ".govuk-caption-xl",
   GovukTableCaption = ".govuk-table__caption",

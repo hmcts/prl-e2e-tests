@@ -90,7 +90,7 @@ export class InternationalElementsParentsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${internationalElementsParentsContent.errorMessage}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${internationalElementsParentsContent.errorMessage}")`,
         1,
       ),
     ]);

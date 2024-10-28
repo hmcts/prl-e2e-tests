@@ -104,7 +104,7 @@ export class ConsentOrderUploadPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${ConsentOrderUploadContent.errorLink}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${ConsentOrderUploadContent.errorLink}")`,
         1,
       ),
     ]);

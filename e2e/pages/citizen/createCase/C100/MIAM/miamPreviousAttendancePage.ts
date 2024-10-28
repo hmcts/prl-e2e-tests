@@ -106,7 +106,7 @@ export class MiamPreviousAttendancePage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${MiamPreviousAttendanceContent.errorMessage}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${MiamPreviousAttendanceContent.errorMessage}")`,
         1,
       ),
     ]);
