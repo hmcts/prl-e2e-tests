@@ -89,7 +89,7 @@ export class MiamOtherProceedingsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${MiamOtherProceedingsContent.errorMessage}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${MiamOtherProceedingsContent.errorMessage}")`,
         1,
       ),
     ]);

@@ -104,7 +104,7 @@ export class MiamChildProtectionPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${MiamChildProtectionContent.errorMessage}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${MiamChildProtectionContent.errorMessage}")`,
         1,
       ),
     ]);

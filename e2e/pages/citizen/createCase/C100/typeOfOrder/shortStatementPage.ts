@@ -92,7 +92,7 @@ export class ShortStatementPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${ShortStatementContent.errorMessage}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${ShortStatementContent.errorMessage}")`,
         1,
       ),
     ]);

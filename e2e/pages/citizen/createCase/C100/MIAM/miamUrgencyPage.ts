@@ -112,7 +112,7 @@ export class MiamUrgencyPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${MiamUrgencyContent.errorMessage}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${MiamUrgencyContent.errorMessage}")`,
         1,
       ),
     ]);

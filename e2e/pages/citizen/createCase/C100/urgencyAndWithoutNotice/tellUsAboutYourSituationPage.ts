@@ -131,7 +131,7 @@ export class TellUsAboutYourSituationPage {
         4,
         TellUsAboutYourSituationContent,
         "errorLink",
-        `${Selectors.ErrorMessage}`,
+        `${Selectors.GovukErrorMessageCitizen}`,
       ),
     ]);
   }

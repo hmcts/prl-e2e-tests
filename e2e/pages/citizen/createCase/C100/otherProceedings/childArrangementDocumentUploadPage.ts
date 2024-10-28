@@ -104,7 +104,7 @@ export class ChildArrangementDocumentUploadPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${ChildArrangementDocumentUploadContent.errorMessageChooseFile}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${ChildArrangementDocumentUploadContent.errorMessageChooseFile}")`,
         1,
       ),
     ]);
@@ -123,7 +123,7 @@ export class ChildArrangementDocumentUploadPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${ChildArrangementDocumentUploadContent.errorMessageUploadCorrectFile}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${ChildArrangementDocumentUploadContent.errorMessageUploadCorrectFile}")`,
         1,
       ),
     ]);

@@ -138,7 +138,7 @@ export class PassportAmountPage {
         2,
         PassportAmountContent,
         "errorMessage",
-        `${Selectors.ErrorMessage}`,
+        `${Selectors.GovukErrorMessageCitizen}`,
       ),
     ]);
     await this.checkOtherDetailsErrors(page);
@@ -162,7 +162,7 @@ export class PassportAmountPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${PassportAmountContent.otherErrorMessage}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${PassportAmountContent.otherErrorMessage}")`,
         1,
       ),
     ]);

@@ -102,7 +102,7 @@ export class MiamProvidingEvidenceDomesticAbusePage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${MiamProvidingEvidenceDomesticAbuseContent.errorMessage}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${MiamProvidingEvidenceDomesticAbuseContent.errorMessage}")`,
         1,
       ),
     ]);

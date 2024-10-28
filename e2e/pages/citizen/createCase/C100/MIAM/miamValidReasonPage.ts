@@ -88,7 +88,7 @@ export class MiamValidReasonPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${MiamValidReasonContent.errorMessage}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${MiamValidReasonContent.errorMessage}")`,
         1,
       ),
     ]);

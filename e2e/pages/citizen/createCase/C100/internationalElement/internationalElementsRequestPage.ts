@@ -89,7 +89,7 @@ export class InternationalElementsRequestPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${internationalElementsRequestContent.errorMessage}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${internationalElementsRequestContent.errorMessage}")`,
         1,
       ),
     ]);
