@@ -5,6 +5,9 @@ import { ReasonableAdjustmentsSpecialArrangementsPage } from "../../../../../pag
 import { ReasonableAdjustmentsSupportDuringYourCasePage } from "../../../../../pages/citizen/createCase/C100/reasonableAdjustments/reasonableAdjustmentsSupportDuringYourCasePage";
 import { ReasonableAdjustmentsDocumentSupportPage } from "../../../../../pages/citizen/createCase/C100/reasonableAdjustments/reasonableAdjustmentsDocumentsSupportPage";
 import { ReasonableAdjustmentsCommunicationHelpPage } from "../../../../../pages/citizen/createCase/C100/reasonableAdjustments/reasonableAdjustmentsCommunicationHelpPage";
+import {
+  ReasonableAdjustmentsNeedsInCourtPage
+} from "../../../../../pages/citizen/createCase/C100/reasonableAdjustments/reasonableAdjustmentsNeedsInCourtPage";
 
 interface C100ReasonableAdjustmentsOptions {
   page: Page;
@@ -68,5 +71,11 @@ export class C100ReasonableAdjustments {
         yesNoReasonableAdjustments: yesNoReasonableAdjustments,
       },
     );
+    await ReasonableAdjustmentsNeedsInCourtPage.reasonableAdjustmentsNeedsInCourtPage({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      yesNoReasonableAdjustments: yesNoReasonableAdjustments,
+    });
   }
 }
