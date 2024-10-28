@@ -9,5 +9,5 @@ export enum FeeGuidanceContent {
   formHint = "For example, HWF-A1B-23C",
   errorSummaryList = "Enter the help with fees reference number you received when you applied for help with fees",
   errorMessage = "Enter the help with fees reference number you received when you applied for help with fees",
-  referenceNumber = "ABC-D0E-00F"
+  referenceNumber = "ABC-D0E-00F",
 }

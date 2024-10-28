@@ -6,5 +6,5 @@ export enum FeesAppliedContent {
   errorMessage = "Select yes if you already applied for help with your application fee",
   referenceErrorList = "Enter the help with fees reference number you received when you applied for help with fees",
   referenceErrorMessage = "Enter the help with fees reference number you received when you applied for help with fees",
-  referenceNumber = "ABC-D0E-00F"
+  referenceNumber = "ABC-D0E-00F",
 }
