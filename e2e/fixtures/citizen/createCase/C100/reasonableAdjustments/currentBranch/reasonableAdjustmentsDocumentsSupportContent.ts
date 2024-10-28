@@ -1,3 +1,1 @@
-export enum ReasonableAdjustmentsDocumentsSupportContent {
-
-}
+export enum ReasonableAdjustmentsDocumentsSupportContent {}

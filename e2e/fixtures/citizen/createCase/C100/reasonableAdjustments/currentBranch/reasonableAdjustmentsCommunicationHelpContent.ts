@@ -1,3 +1,1 @@
-export enum ReasonableAdjustmentsCommunicationHelpContent {
-
-}
+export enum ReasonableAdjustmentsCommunicationHelpContent {}
