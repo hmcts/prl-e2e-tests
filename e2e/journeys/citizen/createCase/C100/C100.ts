@@ -52,7 +52,6 @@ interface C100TopMiroJourneyOptions {
   urgencyAndWithoutNoticeAllOptionsYes: boolean;
   c100PeopleGender: ApplicantGender;
   c100PeopleYesNoDontKnow: yesNoDontKnow;
-  c100PeopleOtherChildrenYes: boolean;
   // c100OthersKnowApplicantsContact: yesNoDontKnow;
   // c100PrivateDetails: boolean;
   // c100ChildrenSafetyConcerns: boolean;
@@ -220,7 +219,6 @@ export class C100 {
     urgencyAndWithoutNoticeAllOptionsYes,
     c100PeopleGender,
     c100PeopleYesNoDontKnow,
-    c100PeopleOtherChildrenYes,
   }: C100TopMiroJourneyOptions): Promise<void> {
     await CitizenCreateInitial.citizenCreateInitial({
       page: page,
@@ -258,7 +256,6 @@ export class C100 {
       errorMessaging: errorMessaging,
       gender: c100PeopleGender,
       c100PeopleYesNoDontKnow: c100PeopleYesNoDontKnow,
-      c100PeopleOtherChildrenYes: c100PeopleOtherChildrenYes,
     });
     // Applicant Details
     // Confidentiality

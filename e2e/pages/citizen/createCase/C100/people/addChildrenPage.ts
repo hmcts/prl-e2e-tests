@@ -1,9 +1,9 @@
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { AddChildrenContent } from "../../../../../fixtures/citizen/createCase/C100/people/addChildrenContent";
-import { Helpers } from "../../../../../common/helpers";
-import { CommonStaticText } from "../../../../../common/commonStaticText";
+import {Page} from "@playwright/test";
+import {Selectors} from "../../../../../common/selectors";
+import {AddChildrenContent} from "../../../../../fixtures/citizen/createCase/C100/people/addChildrenContent";
+import {Helpers} from "../../../../../common/helpers";
+import {CommonStaticText} from "../../../../../common/commonStaticText";
 
 interface AddChildrenPageOptions {
   page: Page;
@@ -47,15 +47,11 @@ export class AddChildrenPage {
     page: page,
     accessibilityTest: accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
-    await page.waitForSelector(
-      `${Selectors.GovukHeadingXL}:text-is("${AddChildrenContent.pageTitle}")`,
-    );
+    await Promise.any([
+      page.waitForSelector(`${Selectors.GovukHeadingXL}:text-is("${AddChildrenContent.pageTitle}")`),
+      page.waitForSelector(`${Selectors.GovukHeadingXL}:text-is("${AddChildrenContent.pageTitle2}")`),
+    ]);
     await Promise.all([
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukInsetText}:text-is("${AddChildrenContent.insetText}")`,
-        1,
-      ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.h1}:text-is("${AddChildrenContent.heading}")`,

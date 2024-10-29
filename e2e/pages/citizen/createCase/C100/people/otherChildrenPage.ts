@@ -23,6 +23,11 @@ interface fillInFieldsOptions {
   c100PeopleOtherChildrenYes: boolean;
 }
 
+enum radioIds {
+  yes = "#ocd_hasOtherChildren",
+  no = "#ocd_hasOtherChildren-2",
+}
+
 export class OtherChildrenPage {
   public static async otherChildrenPage({
     page: page,
@@ -49,14 +54,58 @@ export class OtherChildrenPage {
     accessibilityTest: accessibilityTest,
     c100PeopleYesNoDontKnow: c100PeopleYesNoDontKnow,
   }: checkPageLoadsOptions): Promise<void> {
+    await page.waitForSelector(
+      `${Selectors.GovukHeadingXL}:text-is("${OtherChildrenContent.pageTitle}")`,
+    );
+    console.log("Past other children")
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukLabel}:text-is("${CommonStaticText.yes}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukLabel}:text-is("${CommonStaticText.no}")`,
+        1,
+      ),
+    ]);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }
   }
 
-  private static async triggerErrorMessages(page: Page): Promise<void> {}
+  private static async triggerErrorMessages(page: Page): Promise<void> {
+    await page.click(
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
+    );
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorSummaryTitle}:text-is("${CommonStaticText.errorSummaryTitle}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.a}:text-is("${OtherChildrenContent.errorLink}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${OtherChildrenContent.errorLink}")`,
+        1,
+      ),
+    ]);
+  }
 
   private static async fillInFields({
     page: page,
-  }: fillInFieldsOptions): Promise<void> {}
+    c100PeopleOtherChildrenYes: c100PeopleOtherChildrenYes,
+  }: fillInFieldsOptions): Promise<void> {
+    await page.click(c100PeopleOtherChildrenYes ? radioIds.yes : radioIds.no);
+    await page.click(
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
+    );
+    console.log("Past other children continue button");
+  }
 }
