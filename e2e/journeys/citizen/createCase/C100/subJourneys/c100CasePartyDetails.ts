@@ -32,7 +32,7 @@ interface c100CasePartyDetailsOptions {
   provideEmailTelephoneVoicemail: boolean;
   digitalPreference: boolean;
   otherProceedingsRadios: otherProceedingsRadios;
-  dontKNowEmailAndTelephone: boolean;
+  dontKnowEmailAndTelephone: boolean;
   yesNoOtherPersonDetails: boolean;
 }
 
@@ -52,7 +52,7 @@ export class C100CasePartyDetails {
     provideEmailTelephoneVoicemail,
     digitalPreference,
     otherProceedingsRadios,
-    dontKNowEmailAndTelephone,
+    dontKnowEmailAndTelephone,
     yesNoOtherPersonDetails,
   }: c100CasePartyDetailsOptions): Promise<void> {
     await ApplicantPersonalDetailsPage.applicantPersonalDetailsPage({
@@ -127,7 +127,7 @@ export class C100CasePartyDetails {
         page,
         accessibilityTest,
         errorMessaging,
-        dontKNowEmailAndTelephone,
+        dontKnowEmailAndTelephone: dontKnowEmailAndTelephone,
       },
     );
     await OtherPersonDetailsCheckPage.otherPersonDetailsCheckPage({

@@ -9,7 +9,7 @@ interface RespondentDetailsContactDetailsPageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
-  dontKNowEmailAndTelephone: boolean;
+  dontKnowEmailAndTelephone: boolean;
 }
 
 enum UniqueSelectors {
@@ -24,7 +24,7 @@ export class RespondentDetailsContactDetailsPage {
     page: page,
     accessibilityTest: accessibilityTest,
     errorMessaging: errorMessaging,
-    dontKNowEmailAndTelephone: dontKNowEmailAndTelephone,
+    dontKnowEmailAndTelephone: dontKNowEmailAndTelephone,
   }: RespondentDetailsContactDetailsPageOptions): Promise<void> {
     await this.checkPageLoads({ page, accessibilityTest });
     if (errorMessaging) {
@@ -32,7 +32,7 @@ export class RespondentDetailsContactDetailsPage {
     }
     await this.fillInFields({
       page,
-      dontKNowEmailAndTelephone,
+      dontKnowEmailAndTelephone: dontKNowEmailAndTelephone,
     });
   }
 
@@ -147,7 +147,7 @@ export class RespondentDetailsContactDetailsPage {
 
   private static async fillInFields({
     page: page,
-    dontKNowEmailAndTelephone: knowsTheEmailAndTelephone,
+    dontKnowEmailAndTelephone: knowsTheEmailAndTelephone,
   }: Partial<RespondentDetailsContactDetailsPageOptions>): Promise<void> {
     if (!page) {
       throw new Error(
