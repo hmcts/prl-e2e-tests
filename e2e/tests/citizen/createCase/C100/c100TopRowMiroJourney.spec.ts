@@ -20,6 +20,7 @@ test.describe("C100 Citizen Application tests on the top MIRO set. @citizenFront
       urgencyAndWithoutNoticeAllOptionsYes: true,
       c100PeopleGender: "male",
       c100PeopleYesNoDontKnow: "yes",
+      c100PeopleOtherChildrenYes: true,
     });
   });
 
@@ -38,6 +39,7 @@ test.describe("C100 Citizen Application tests on the top MIRO set. @citizenFront
       urgencyAndWithoutNoticeAllOptionsYes: true,
       c100PeopleGender: "female",
       c100PeopleYesNoDontKnow: "yes",
+      c100PeopleOtherChildrenYes: true,
     });
   });
 });
@@ -56,5 +58,6 @@ test(`Test the C100 of the citizen journey with the following options:
     urgencyAndWithoutNoticeAllOptionsYes: true,
     c100PeopleGender: "other",
     c100PeopleYesNoDontKnow: "yes",
+    c100PeopleOtherChildrenYes: true,
   });
 });
