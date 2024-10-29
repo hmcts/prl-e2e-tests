@@ -68,7 +68,7 @@ export class SupervisionOrderDetailsPage {
         2,
         SupervisionOrderDetailsContent,
         "formLabel",
-        `${Selectors.h1}`,
+        `${Selectors.GovukLabel}`,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -82,12 +82,12 @@ export class SupervisionOrderDetailsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${CommonStaticText.yes}")`,
+        `${Selectors.GovukLabel}:text-is("${CommonStaticText.yes}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${CommonStaticText.no}")`,
+        `${Selectors.GovukLabel}:text-is("${CommonStaticText.no}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(

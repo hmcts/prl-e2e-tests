@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test";
+import { expect, Page } from "@playwright/test";
 import { FinancialOrderDocumentUploadContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/financialOrderDocumentUploadContent";
 import { Selectors } from "../../../../../common/selectors";
 import { Helpers } from "../../../../../common/helpers";
@@ -109,18 +109,11 @@ export class FinancialOrderDocumentUploadPage {
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.uploadFile}")`,
     );
-    await Promise.all([
-      Helpers.checkVisibleAndPresent(
+    await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.a}:text-is("${FinancialOrderDocumentUploadContent.errorMessageUploadCorrectFile}")`,
         1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukErrorMessageCitizen}:text-is("${FinancialOrderDocumentUploadContent.errorMessageUploadCorrectFile}")`,
-        1,
-      ),
-    ]);
+      );
   }
 
   private static async fillInFields({

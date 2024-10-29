@@ -7,7 +7,7 @@ export enum UndertakingOrderDetailsContent {
   h14 = "What date did it end? (optional)",
   h15 = "Do you have a copy of the order? (optional)",
   formLabel1 = "Which court issued the order? (optional)",
-  formLabel2 = "Case number (optional",
+  formLabel2 = "Case number (optional)",
   formHint1 = "For example, BS19F99999",
   formHint2 = "For example, 31 3 2015",
   courtIssued = "Automated under taking Order Court",

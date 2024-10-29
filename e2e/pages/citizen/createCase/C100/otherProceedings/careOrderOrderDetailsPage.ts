@@ -68,7 +68,7 @@ export class CareOrderDetailsPage {
         2,
         CareOrderDetailsContent,
         "formLabel",
-        `${Selectors.h1}`,
+        `${Selectors.GovukLabel}`,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -82,12 +82,12 @@ export class CareOrderDetailsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${CommonStaticText.yes}")`,
+        `${Selectors.GovukLabel}:text-is("${CommonStaticText.yes}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${CommonStaticText.no}")`,
+        `${Selectors.GovukLabel}:text-is("${CommonStaticText.no}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(

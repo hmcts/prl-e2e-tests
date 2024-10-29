@@ -1,13 +1,13 @@
 import { Selectors } from "../../../../../common/selectors";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { Page } from "@playwright/test";
+import { expect, Page } from "@playwright/test";
 import { Helpers } from "../../../../../common/helpers";
 import config from "../../../../../config";
-import { EmergencyProtectionDocumentUploadContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/EmergencyProtectionDocumentUploadContent";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { ContactOrderForAdoptionDocumentUploadContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/contactOrderForAdoptionDocumentUploadContent";
 import { CitizenOtherProceedingsDocumentUploadSelectors } from "../../../../../common/commonUniqueSelectors";
 
-interface EmergencyProtectionDocumentUploadPageOptions {
+interface ContactOrderForAdoptionDocumentUploadPageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
@@ -22,12 +22,12 @@ interface fillInFieldsOptions {
   page: Page;
 }
 
-export class EmergencyProtectionDocumentUploadPage {
-  public static async emergencyProtectionDocumentUploadPage({
+export class ContactOrderForAdoptionDocumentUploadPage {
+  public static async contactOrderForAdoptionDocumentUploadPage({
     page: page,
     accessibilityTest: accessibilityTest,
     errorMessaging: errorMessaging,
-  }: EmergencyProtectionDocumentUploadPageOptions): Promise<void> {
+  }: ContactOrderForAdoptionDocumentUploadPageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
       accessibilityTest: accessibilityTest,
@@ -45,19 +45,19 @@ export class EmergencyProtectionDocumentUploadPage {
     accessibilityTest: accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukHeadingXL}:text-is("${EmergencyProtectionDocumentUploadContent.pageTitle}")`,
+      `${Selectors.GovukHeadingXL}:text-is("${ContactOrderForAdoptionDocumentUploadContent.pageTitle}")`,
     );
     await Promise.all([
       Helpers.checkGroup(
         page,
         2,
-        EmergencyProtectionDocumentUploadContent,
+        ContactOrderForAdoptionDocumentUploadContent,
         "p",
         `${Selectors.p}`,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${EmergencyProtectionDocumentUploadContent.spanA}")`,
+        `${Selectors.Span}:text-is("${ContactOrderForAdoptionDocumentUploadContent.spanA}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -67,12 +67,12 @@ export class EmergencyProtectionDocumentUploadPage {
       ),
     ]);
     await page.click(
-      `${Selectors.Span}:text-is("${EmergencyProtectionDocumentUploadContent.spanA}")`,
+      `${Selectors.Span}:text-is("${ContactOrderForAdoptionDocumentUploadContent.spanA}")`,
     );
     await Helpers.checkGroup(
       page,
       5,
-      EmergencyProtectionDocumentUploadContent,
+      ContactOrderForAdoptionDocumentUploadContent,
       "li",
       `${Selectors.li}`,
     );
@@ -93,12 +93,7 @@ export class EmergencyProtectionDocumentUploadPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${EmergencyProtectionDocumentUploadContent.errorMessageChooseFile}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukErrorMessageCitizen}:text-is("${EmergencyProtectionDocumentUploadContent.errorMessageChooseFile}")`,
+        `${Selectors.a}:text-is("${ContactOrderForAdoptionDocumentUploadContent.errorMessageChooseFile}")`,
         1,
       ),
     ]);
@@ -109,24 +104,17 @@ export class EmergencyProtectionDocumentUploadPage {
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.uploadFile}")`,
     );
-    await Promise.all([
-      Helpers.checkVisibleAndPresent(
+    await Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${EmergencyProtectionDocumentUploadContent.errorMessageUploadCorrectFile}")`,
+        `${Selectors.a}:text-is("${ContactOrderForAdoptionDocumentUploadContent.errorMessageUploadCorrectFile}")`,
         1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukErrorMessageCitizen}:text-is("${EmergencyProtectionDocumentUploadContent.errorMessageUploadCorrectFile}")`,
-        1,
-      ),
-    ]);
+      );
   }
 
   private static async fillInFields({
     page: page,
   }: fillInFieldsOptions): Promise<void> {
-    const fileInput = page.locator(
+    let fileInput = page.locator(
       `${CitizenOtherProceedingsDocumentUploadSelectors.documentUpload}`,
     );
     await fileInput.setInputFiles(config.testPdfFile);

@@ -24,7 +24,7 @@ interface fillInFieldsOptions {
 }
 
 export class ContactOrderForAdoptionOrderDetailsPage {
-  public static async contactOrderForAdoptionOrderDetailsPageOptions({
+  public static async contactOrderForAdoptionOrderDetailsPage({
     page: page,
     accessibilityTest: accessibilityTest,
     errorMessaging: errorMessaging,
@@ -68,7 +68,7 @@ export class ContactOrderForAdoptionOrderDetailsPage {
         2,
         ContactOrderForAdoptionOrderDetailsContent,
         "formLabel",
-        `${Selectors.h1}`,
+        `${Selectors.GovukLabel}`,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -82,12 +82,12 @@ export class ContactOrderForAdoptionOrderDetailsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${CommonStaticText.yes}")`,
+        `${Selectors.GovukLabel}:text-is("${CommonStaticText.yes}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${CommonStaticText.no}")`,
+        `${Selectors.GovukLabel}:text-is("${CommonStaticText.no}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(

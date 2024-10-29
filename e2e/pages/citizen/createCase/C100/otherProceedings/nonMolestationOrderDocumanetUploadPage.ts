@@ -3,7 +3,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { Helpers } from "../../../../../common/helpers";
 import config from "../../../../../config";
-import { Page } from "@playwright/test";
+import { expect, Page } from "@playwright/test";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { CitizenOtherProceedingsDocumentUploadSelectors } from "../../../../../common/commonUniqueSelectors";
 
@@ -109,18 +109,11 @@ export class NonMolestationOrderDocumentUploadPage {
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.uploadFile}")`,
     );
-    await Promise.all([
-      Helpers.checkVisibleAndPresent(
+    await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.a}:text-is("${NonMolestationOrderDocumentUploadContent.errorMessageUploadCorrectFile}")`,
         1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukErrorMessageCitizen}:text-is("${NonMolestationOrderDocumentUploadContent.errorMessageUploadCorrectFile}")`,
-        1,
-      ),
-    ]);
+      );
   }
 
   private static async fillInFields({

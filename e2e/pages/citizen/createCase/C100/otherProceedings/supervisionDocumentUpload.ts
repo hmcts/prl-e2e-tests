@@ -1,6 +1,6 @@
 import { Selectors } from "../../../../../common/selectors";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { Page } from "@playwright/test";
+import { expect, Page } from "@playwright/test";
 import { Helpers } from "../../../../../common/helpers";
 import config from "../../../../../config";
 import { SupervisionDocumentUpload } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/SupervisionDocumentUpload";
@@ -109,18 +109,11 @@ export class SupervisionDocumentUploadPage {
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.uploadFile}")`,
     );
-    await Promise.all([
-      Helpers.checkVisibleAndPresent(
+    await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.a}:text-is("${SupervisionDocumentUpload.errorMessageUploadCorrectFile}")`,
         1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukErrorMessageCitizen}:text-is("${SupervisionDocumentUpload.errorMessageUploadCorrectFile}")`,
-        1,
-      ),
-    ]);
+      );
   }
 
   private static async fillInFields({

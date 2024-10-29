@@ -4,7 +4,7 @@ import { ProceedingDetailsPage } from "../../../../../pages/citizen/createCase/C
 import { ChildArrangementOrderDetailsPage } from "../../../../../pages/citizen/createCase/C100/otherProceedings/childArrangementOrderDetailsPage";
 import { ChildArrangementDocumentUploadPage } from "../../../../../pages/citizen/createCase/C100/otherProceedings/childArrangementDocumentUploadPage";
 import { EmergencyProtectionOrderDetailsPage } from "../../../../../pages/citizen/createCase/C100/otherProceedings/emergencyProtectionOrderdetailsPage";
-import { EmergencyProtectionDocumentUploadPage } from "../../../../../pages/citizen/createCase/C100/otherProceedings/EmergencyProtectionDocumentUploadPage";
+import { EmergencyProtectionDocumentUploadPage } from "../../../../../pages/citizen/createCase/C100/otherProceedings/emergencyProtectionDocumentUploadPage";
 import { SupervisionOrderDetailsPage } from "../../../../../pages/citizen/createCase/C100/otherProceedings/supervisionOrderDetails";
 import { SupervisionDocumentUploadPage } from "../../../../../pages/citizen/createCase/C100/otherProceedings/supervisionDocumentUpload";
 import { CareOrderDetailsPage } from "../../../../../pages/citizen/createCase/C100/otherProceedings/careOrderOrderDetailsPage";
@@ -13,8 +13,8 @@ import { ChildAbductionOrderDetailsPage } from "../../../../../pages/citizen/cre
 import { ChildAbductionDocumentUploadPage } from "../../../../../pages/citizen/createCase/C100/otherProceedings/childAbductionDocumentUploadPage";
 import { ContactOrderForDivorceOrderDetailsPage } from "../../../../../pages/citizen/createCase/C100/otherProceedings/contactOrderForDivorceOrderDetailsPage";
 import { ContactOrderForDivorceDocumentUploadPage } from "../../../../../pages/citizen/createCase/C100/otherProceedings/contactOrderForDivorceDocumentUploadPage";
-import { ContactOrderForAdoptionOrderDetailsPage } from "../../../../../pages/citizen/createCase/C100/otherProceedings/contactOrderForChildAbductionOrderDetailsPage";
-import { ContactOrderForAdoptionDocumentUploadPage } from "../../../../../pages/citizen/createCase/C100/otherProceedings/contactOrderForChildAbductionDocumentUploadPage";
+import { ContactOrderForAdoptionOrderDetailsPage } from "../../../../../pages/citizen/createCase/C100/otherProceedings/contactOrderForAdoptionOrderDetailsPage";
+import { ContactOrderForAdoptionDocumentUploadPage } from "../../../../../pages/citizen/createCase/C100/otherProceedings/contactOrderForAdoptionDocumentUploadPage";
 import { ChildMaintenanceOrderDetailsPage } from "../../../../../pages/citizen/createCase/C100/otherProceedings/childMaintenanceOrderDetailsPage";
 import { ChildMaintenanceOrderDocumentUploadPage } from "../../../../../pages/citizen/createCase/C100/otherProceedings/childMaintenanceOrderDocumentUploadPage";
 import { FinancialOrderDetailsPage } from "../../../../../pages/citizen/createCase/C100/otherProceedings/financialOrderDetailsPage";
@@ -33,6 +33,9 @@ import { UndertakingOrderDocumentUploadPage } from "../../../../../pages/citizen
 import { OtherOrderDetailsPage } from "../../../../../pages/citizen/createCase/C100/otherProceedings/otherOrderDetailsPage";
 import { OtherOrderDocumentUploadPage } from "../../../../../pages/citizen/createCase/C100/otherProceedings/otherOrderDocumentUploadPage";
 import { DocumentSummaryPage } from "../../../../../pages/citizen/createCase/C100/otherProceedings/DocumentSummaryPage";
+import {
+  NonMolestationOrderDocumentUploadPage
+} from "../../../../../pages/citizen/createCase/C100/otherProceedings/nonMolestationOrderDocumanetUploadPage";
 
 interface C100OtherProceedings1Options {
   page: Page;
@@ -141,7 +144,7 @@ export class C100OtherProceedings {
             errorMessaging,
           },
         );
-        await ContactOrderForAdoptionOrderDetailsPage.contactOrderForAdoptionOrderDetailsPageOptions(
+        await ContactOrderForAdoptionOrderDetailsPage.contactOrderForAdoptionOrderDetailsPage(
           {
             page,
             accessibilityTest,
@@ -190,6 +193,11 @@ export class C100OtherProceedings {
           errorMessaging,
           yesNoOtherProceedings,
         });
+        await NonMolestationOrderDocumentUploadPage.nonMolestationOrderDocumentUploadPage({
+          page,
+          accessibilityTest,
+          errorMessaging,
+        })
         await OccupationOrderDetailsPage.occupationOrderDetailsPage({
           page,
           accessibilityTest,

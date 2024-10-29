@@ -16,12 +16,12 @@ test.describe("C100 Citizen Application tests on the second MIRO set. @citizenFr
     urgency and without notice: no`, async ({ page }): Promise<void> => {
     await C100.c100SecondMiroJourney({
       page: page,
-      accessibilityTest: false,
+      accessibilityTest: true,
       errorMessaging: false,
       c100LegalRepresentation: false,
       c100CourtPermissionNeeded: false,
-      yesNoChildArrangementOrderDetails: false,
-      yesNoOtherProceedings: false,
+      yesNoChildArrangementOrderDetails: true, //needs to be true to allow all pages
+      yesNoOtherProceedings: true,
       urgencyAndWithoutNoticeAllOptionsYes: false,
     });
   });
