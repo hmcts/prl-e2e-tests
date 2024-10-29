@@ -6,6 +6,8 @@ import { ReasonableAdjustmentsSupportDuringYourCasePage } from "../../../../../p
 import { ReasonableAdjustmentsDocumentSupportPage } from "../../../../../pages/citizen/createCase/C100/reasonableAdjustments/reasonableAdjustmentsDocumentsSupportPage";
 import { ReasonableAdjustmentsCommunicationHelpPage } from "../../../../../pages/citizen/createCase/C100/reasonableAdjustments/reasonableAdjustmentsCommunicationHelpPage";
 import { ReasonableAdjustmentsNeedsInCourtPage } from "../../../../../pages/citizen/createCase/C100/reasonableAdjustments/reasonableAdjustmentsNeedsInCourtPage";
+import { ReasonableAdjustmentsCommunicationHelpPage } from "../../../../../pages/citizen/createCase/C100/reasonableAdjustments/reasonableAdjustmentsCommunicationHelpPage";
+import { ReasonableAdjustmentsSupportForCourtHearingPage } from "../../../../../pages/citizen/createCase/C100/reasonableAdjustments/ReasonableAdjustmentsSupportForCourtHearingPage";
 
 interface C100ReasonableAdjustmentsOptions {
   page: Page;
@@ -62,6 +64,22 @@ export class C100ReasonableAdjustments {
       },
     );
     await ReasonableAdjustmentsCommunicationHelpPage.reasonableAdjustmentsCommunicationHelpPage(
+      {
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
+        yesNoReasonableAdjustments: yesNoReasonableAdjustments,
+      },
+    );
+    await ReasonableAdjustmentsSupportForCourtHearingPage.reasonableAdjustmentsSupportForCourtHearingPage(
+      {
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
+        yesNoReasonableAdjustments: yesNoReasonableAdjustments,
+      },
+    );
+    await ReasonableAdjustmentsNeedsDuringCourtHearingPage.reasonableAdjustmentsNeedsDuringCourtHearingPage(
       {
         page: page,
         accessibilityTest: accessibilityTest,

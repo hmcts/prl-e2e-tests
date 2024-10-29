@@ -127,6 +127,9 @@ export class ReasonableAdjustmentsCommunicationHelpPage {
     ]);
     await page.click(CheckListUniqueSelectors.signLanguageInterpreter);
     await page.click(CheckListUniqueSelectors.other);
+    await page.click(
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
+    );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
@@ -154,6 +157,8 @@ export class ReasonableAdjustmentsCommunicationHelpPage {
         1,
       ),
     ]);
+    await page.click(CheckListUniqueSelectors.signLanguageInterpreter);
+    await page.click(CheckListUniqueSelectors.other);
   }
 
   private static async fillInFields({
