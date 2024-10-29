@@ -45,7 +45,6 @@ export class ApplicantAddressSelectPage {
       addressLookupSuccessful,
     });
   }
-
   private static async checkPageLoads({
     page,
     accessibilityTest,
@@ -78,7 +77,6 @@ export class ApplicantAddressSelectPage {
       await AccessibilityTestHelper.run(page);
     }
   }
-
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
@@ -101,7 +99,6 @@ export class ApplicantAddressSelectPage {
       ),
     ]);
   }
-
   private static async fillInFields({
     page,
     addressLookupSuccessful,

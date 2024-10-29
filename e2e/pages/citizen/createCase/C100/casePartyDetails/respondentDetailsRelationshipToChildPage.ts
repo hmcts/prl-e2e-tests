@@ -1,13 +1,12 @@
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
-import { ApplicantRelationshipToChildContent } from "../../../../../fixtures/citizen/createCase/C100/casePartyDetails/applicantRelationshipToChildContent";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { Relationship } from "../../../../../common/types";
 import { RespondentDetailsRelationshipToChildContent } from "../../../../../fixtures/citizen/createCase/C100/casePartyDetails/respondentDetailsRelationshipToChildContent";
 
-interface applicantRelationshipToChildPageOptions {
+interface respondentDetailsRelationshipToChildPageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
@@ -40,7 +39,7 @@ export class ApplicantRelationshipToChildPage {
     accessibilityTest,
     errorMessaging,
     relationship,
-  }: applicantRelationshipToChildPageOptions): Promise<void> {
+  }: respondentDetailsRelationshipToChildPageOptions): Promise<void> {
     await this.checkPageLoads({ page, accessibilityTest });
     if (errorMessaging) {
       await this.triggerErrorMessages(page);
@@ -57,24 +56,24 @@ export class ApplicantRelationshipToChildPage {
     await Promise.all([
       //wait for two parts of the title to load, split by dynamic content
       page.waitForSelector(
-        `${Selectors.GovukHeadingXL}:has-text("${ApplicantRelationshipToChildContent.pageTitle1}")`,
+        `${Selectors.GovukHeadingXL}:has-text("${RespondentDetailsRelationshipToChildContent.pageTitle1}")`,
       ),
       page.waitForSelector(
-        `${Selectors.GovukHeadingXL}:has-text("${ApplicantRelationshipToChildContent.pageTitle2}")`,
+        `${Selectors.GovukHeadingXL}:has-text("${RespondentDetailsRelationshipToChildContent.pageTitle2}")`,
       ),
     ]);
     await Promise.all([
       Helpers.checkGroup(
         page,
         6,
-        ApplicantRelationshipToChildContent,
+        RespondentDetailsRelationshipToChildContent,
         "label",
         Selectors.GovukLabel,
       ),
       Helpers.checkGroup(
         page,
         2,
-        ApplicantRelationshipToChildContent,
+        RespondentDetailsRelationshipToChildContent,
         "hint",
         Selectors.GovukHint,
       ),
@@ -87,7 +86,6 @@ export class ApplicantRelationshipToChildPage {
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
-
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
@@ -96,12 +94,12 @@ export class ApplicantRelationshipToChildPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorList}:text-is("${ApplicantRelationshipToChildContent.errorMessage}")`,
+        `${Selectors.GovukErrorList}:text-is("${RespondentDetailsRelationshipToChildContent.errorMessage}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${ApplicantRelationshipToChildContent.errorMessage}")`,
+        `${Selectors.GovukErrorMessage}:text-is("${RespondentDetailsRelationshipToChildContent.errorMessage}")`,
         1,
       ),
     ]);
@@ -126,9 +124,6 @@ export class ApplicantRelationshipToChildPage {
         RespondentDetailsRelationshipToChildContent.inputRelation,
       );
     }
-    await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
-    );
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
