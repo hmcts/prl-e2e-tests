@@ -36,10 +36,10 @@
     "test:manageCasesFirefox": "yarn playwright install firefox && yarn playwright test --project firefox --grep @crossbrowserManageCases",
     "test:manageCasesSafari": "yarn playwright install webkit && yarn playwright test --project webkit --grep @crossbrowserManageCases",
     "test:manageCasesAccessibility": "yarn playwright install && yarn playwright test --project chromium --grep @accessibilityManageCases",
-    "test:citizenFrontendChrome": "yarn playwright install && yarn playwright test --project chromium --grep @citizenFrontend",
-    "test:citizenFrontendFirefox": "yarn playwright install firefox && yarn playwright test --project firefox --grep @crossbrowserCitizenFrontend",
-    "test:citizenFrontendSafari": "yarn playwright install webkit && yarn playwright test --project webkit --grep @crossbrowserCitizenFrontend",
-    "test:citizenFrontendAccessibility": "yarn playwright install && yarn playwright test --project chromium --grep @accessibilityCitizenFrontend"
+    "test:citizenFrontendChrome": "FUNCTIONAL_TESTS_WORKERS=1 yarn playwright install && yarn playwright test --project chromium --grep @citizenFrontend",
+    "test:citizenFrontendFirefox": "FUNCTIONAL_TESTS_WORKERS=1 yarn playwright install firefox && yarn playwright test --project firefox --grep @crossbrowserCitizenFrontend",
+    "test:citizenFrontendSafari": "FUNCTIONAL_TESTS_WORKERS=1 yarn playwright install webkit && yarn playwright test --project webkit --grep @crossbrowserCitizenFrontend",
+    "test:citizenFrontendAccessibility": "FUNCTIONAL_TESTS_WORKERS=1 yarn playwright install && yarn playwright test --project chromium --grep @accessibilityCitizenFrontend"
   },
   "pre-commit": [
     "lint"
