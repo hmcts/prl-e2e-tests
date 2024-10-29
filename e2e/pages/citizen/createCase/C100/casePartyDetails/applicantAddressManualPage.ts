@@ -58,7 +58,6 @@ export class ApplicantAddressManualPage {
     await page.waitForSelector(
       `${Selectors.GovukHeadingL}:has-text("${ApplicantAddressManualContent.pageTitle}")`,
     );
-
     await Promise.all([
       Helpers.checkGroup(
         page,
@@ -90,12 +89,10 @@ export class ApplicantAddressManualPage {
       await AccessibilityTestHelper.run(page);
     }
   }
-
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
-
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,

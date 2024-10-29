@@ -1,17 +1,15 @@
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
-import { ApplicantAddressLookupContent } from "../../../../../fixtures/citizen/createCase/C100/casePartyDetails/applicantAddressLookupContent";
-import { ApplicantAddressSelectContent } from "../../../../../fixtures/citizen/createCase/C100/casePartyDetails/applicantAddressSelectContent";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-import { ApplicantPersonalDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/casePartyDetails/applicantPersonalDetailsContent";
+import { RespondentDetailsAddressLookupContent } from "../../../../../fixtures/citizen/createCase/C100/casePartyDetails/respondentDetailsAddressLookupContent";
 
-interface applicantAddressSelectOptions {
+interface respondentDetailsAddressLookupOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
-  addressLookupSuccessful: boolean;
+  addressLookup: boolean;
 }
 
 interface checkPageLoadsOptions {
@@ -21,28 +19,30 @@ interface checkPageLoadsOptions {
 
 interface fillInFieldsOptions {
   page: Page;
-  addressLookupSuccessful: boolean;
+  errorMessaging: boolean;
+  addressLookup: boolean;
 }
 
 enum inputIds {
-  selectAddress = "#selectAddress",
-  cannotFindAddress = "#cannotFindAddress",
+  postcodeLookup = "#PostCode",
+  manualAddress = "#enterAddressManually",
 }
 
-export class ApplicantAddressSelectPage {
-  public static async applicantAddressSelectPage({
+export class RespondentDetailsAddressLookupPage {
+  public static async respondentDetailsAddressLookupPage({
     page,
     accessibilityTest,
     errorMessaging,
-    addressLookupSuccessful,
-  }: applicantAddressSelectOptions): Promise<void> {
+    addressLookup,
+  }: respondentDetailsAddressLookupOptions): Promise<void> {
     await this.checkPageLoads({ page, accessibilityTest });
     if (errorMessaging) {
       await this.triggerErrorMessages(page);
     }
     await this.fillInFields({
       page,
-      addressLookupSuccessful,
+      errorMessaging,
+      addressLookup,
     });
   }
   private static async checkPageLoads({
@@ -50,26 +50,17 @@ export class ApplicantAddressSelectPage {
     accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukHeadingL}:has-text("${ApplicantAddressSelectContent.pageTitle}")`,
+      `${Selectors.GovukHeadingL}:has-text("${RespondentDetailsAddressLookupContent.pageTitle}")`,
     );
     await Promise.all([
-      Helpers.checkGroup(
+      Helpers.checkVisibleAndPresent(
         page,
-        2,
-        ApplicantPersonalDetailsContent,
-        "label",
-        Selectors.GovukLabel,
-      ),
-      Helpers.checkGroup(
-        page,
-        2,
-        ApplicantPersonalDetailsContent,
-        "link",
-        Selectors.GovukLink,
+        `${Selectors.GovukLabel}:text-is("${RespondentDetailsAddressLookupContent.label}")`,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukBody}:text-is("${ApplicantAddressLookupContent.postcodeText}")`, // checking that the postcode put in on the previous page is displaying on this page correctly
+        `${Selectors.GovukLink}:text-is("${RespondentDetailsAddressLookupContent.link}")`,
         1,
       ),
     ]);
@@ -89,29 +80,30 @@ export class ApplicantAddressSelectPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorSummary}:text-is("${ApplicantAddressSelectContent.errorMessage}")`,
+        `${Selectors.GovukErrorSummary}:text-is("${RespondentDetailsAddressLookupContent.errorMessage}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessageCitizen}:text-is("${ApplicantAddressSelectContent.errorMessage}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${RespondentDetailsAddressLookupContent.errorMessage}")`,
         1,
       ),
     ]);
   }
   private static async fillInFields({
     page,
-    addressLookupSuccessful,
+    addressLookup,
   }: fillInFieldsOptions): Promise<void> {
-    if (addressLookupSuccessful) {
-      await page.selectOption(`${inputIds.selectAddress}`, {
-        label: `${ApplicantAddressSelectContent.address}`,
-      });
+    if (addressLookup) {
+      await page.fill(
+        inputIds.postcodeLookup,
+        RespondentDetailsAddressLookupContent.postcodeText,
+      );
       await page.click(
         `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
       );
     } else {
-      await page.click(`${inputIds.cannotFindAddress}`);
+      await page.click(inputIds.manualAddress);
     }
   }
 }
