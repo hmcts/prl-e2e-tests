@@ -5,7 +5,6 @@ import { WhichDecisionsPage } from "../../../../../pages/citizen/createCase/C100
 import { ParentalResponsibilityPage } from "../../../../../pages/citizen/createCase/C100/people/parentalResponsibilityPage";
 import { FurtherInformationPage } from "../../../../../pages/citizen/createCase/C100/people/furtherInformationPage";
 import { HasOtherChildrenPage } from "../../../../../pages/citizen/createCase/C100/people/hasOtherChildrenPage";
-import { PersonalDetailsPage } from "../../../../../pages/citizen/createCase/C100/people/personalDetailsPage";
 import { AddApplicantPage } from "../../../../../pages/citizen/createCase/C100/people/addApplicantPage";
 import { ApplicantGender } from "../../../../../common/types";
 import { yesNoDontKnow } from "../../../../../common/types";
