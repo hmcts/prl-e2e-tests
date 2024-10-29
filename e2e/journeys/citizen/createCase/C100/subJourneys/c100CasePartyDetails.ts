@@ -99,31 +99,39 @@ export class C100CasePartyDetails {
       errorMessaging,
       digitalPreference,
     });
-    await RespondentDetailsAddRespondentsPage.respondentDetailsAddRespondentsPage({
-      page,
-      accessibilityTest,
-      errorMessaging,
-    });
-    await RespondentDetailsPersonalDetailsPage.respondentDetailsPersonalDetailsPage({
-      page,
-      accessibilityTest,
-      errorMessaging,
-      changeNameYesNoDontKnow,
-      gender,
-      knownDob,
-      knownPlaceOfBirth,
-    });
-    await RespondentDetailsAddressLookupPage.respondentDetailsAddressLookupPage({
-      page,
-      accessibilityTest,
-      errorMessaging,
-      addressLookup,
-    });
-    await RespondentDetailsAddressSelectPage.respondentDetailsAddressSelectPage({
-      page,
-      accessibilityTest,
-      errorMessaging,
-      addressLookupSuccessful,
-    });
+    await RespondentDetailsAddRespondentsPage.respondentDetailsAddRespondentsPage(
+      {
+        page,
+        accessibilityTest,
+        errorMessaging,
+      },
+    );
+    await RespondentDetailsPersonalDetailsPage.respondentDetailsPersonalDetailsPage(
+      {
+        page,
+        accessibilityTest,
+        errorMessaging,
+        changeNameYesNoDontKnow,
+        gender,
+        knownDob,
+        knownPlaceOfBirth,
+      },
+    );
+    await RespondentDetailsAddressLookupPage.respondentDetailsAddressLookupPage(
+      {
+        page,
+        accessibilityTest,
+        errorMessaging,
+        addressLookup,
+      },
+    );
+    await RespondentDetailsAddressSelectPage.respondentDetailsAddressSelectPage(
+      {
+        page,
+        accessibilityTest,
+        errorMessaging,
+        addressLookupSuccessful,
+      },
+    );
   }
 }
