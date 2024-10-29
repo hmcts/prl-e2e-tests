@@ -50,7 +50,6 @@ export class ApplicantContactPreferencePage {
       digitalPreference,
     });
   }
-
   private static async checkPageLoads({
     page,
     accessibilityTest,
@@ -105,12 +104,10 @@ export class ApplicantContactPreferencePage {
       await AccessibilityTestHelper.run(page);
     }
   }
-
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
-
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
@@ -129,7 +126,6 @@ export class ApplicantContactPreferencePage {
       ),
     ]);
   }
-
   private static async fillInFields({
     page,
     digitalPreference,
