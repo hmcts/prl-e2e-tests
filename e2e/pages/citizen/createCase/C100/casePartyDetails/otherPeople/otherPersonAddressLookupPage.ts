@@ -57,7 +57,8 @@ export class OtherPersonAddressLookupPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukInsetText}:text-is("${OtherPersonAddressLookupContent.insetText}")`
+        `${Selectors.GovukInsetText}:text-is("${OtherPersonAddressLookupContent.insetText}")`,
+        1
       )
     ]);
     if (accessibilityTest) {
