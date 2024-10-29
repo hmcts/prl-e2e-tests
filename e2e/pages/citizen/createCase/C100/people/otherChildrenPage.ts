@@ -57,7 +57,7 @@ export class OtherChildrenPage {
     await page.waitForSelector(
       `${Selectors.GovukHeadingXL}:text-is("${OtherChildrenContent.pageTitle}")`,
     );
-    console.log("Past other children")
+    console.log("Past other children");
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
