@@ -182,10 +182,10 @@ export class ReasonableAdjustmentsSupportForCourtHearingPage {
         await page.click(selector);
       }
       const textToFill: [string, string, string, string] = [
-        "loremIpsumSupportWorker",
-        "loremIpsumFriendOrFamily",
-        "loremIpsumTherapyAnimal",
-        "loremIpsumOther",
+        "supportWorkerInput",
+        "friendFamilyMemberInput",
+        "therapyAnimalInput",
+        "otherInput",
       ];
       for (let key of textToFill) {
         let inputKey = key as keyof typeof TextBoxUniqueSelectors;
