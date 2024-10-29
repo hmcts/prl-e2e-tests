@@ -1,7 +1,5 @@
 import { Page } from "@playwright/test";
-import {
-  OtherPersonDetailsCheckContent
-} from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/currentBranch/otherPersonDetailsCheckContent";
+import { OtherPersonDetailsCheckContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/currentBranch/otherPersonDetailsCheckContent";
 import { Selectors } from "../../../../../../common/selectors";
 import { Helpers } from "../../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../../common/commonStaticText";
@@ -16,7 +14,7 @@ interface OtherPersonDetailsCheckPageOptions {
 
 enum UniqueSelectors {
   yes = "#oprs_otherPersonCheck",
-  no = "#oprs_otherPersonCheck-2"
+  no = "#oprs_otherPersonCheck-2",
 }
 
 export class OtherPersonDetailsCheckPage {
@@ -45,29 +43,31 @@ export class OtherPersonDetailsCheckPage {
         "Page object is undefined. Ensure that a valid Playwright Page instance is passed to the function.",
       );
     }
-    await page.waitForSelector(`${Selectors.GovukHeadingXL}:text-is("${OtherPersonDetailsCheckContent.pageTitle}")`);
+    await page.waitForSelector(
+      `${Selectors.GovukHeadingXL}:text-is("${OtherPersonDetailsCheckContent.pageTitle}")`,
+    );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.p}:text-is("${OtherPersonDetailsCheckContent.p}")`,
-        1
+        1,
       ),
       Helpers.checkGroup(
         page,
         3,
         OtherPersonDetailsCheckContent,
         "li",
-        Selectors.li
+        Selectors.li,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukLabel}:text-is("${CommonStaticText.yes}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukLabel}:text-is("${CommonStaticText.no}")`,
-        1
+        1,
       ),
     ]);
     if (accessibilityTest) {
