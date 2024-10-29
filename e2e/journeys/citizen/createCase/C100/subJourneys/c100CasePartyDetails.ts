@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
 import {
-  ApplicantGender, otherProceedingsRadios,
+  ApplicantGender,
   Relationship,
-  yesNoDontKnow
+  yesNoDontKnow,
 } from "../../../../../common/types";
 import { ApplicantAddressLookupPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicantAddressLookupPage";
 import { ApplicantAddressSelectPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicantAddressSelectPage";
