@@ -33,9 +33,7 @@ import { UndertakingOrderDocumentUploadPage } from "../../../../../pages/citizen
 import { OtherOrderDetailsPage } from "../../../../../pages/citizen/createCase/C100/otherProceedings/otherOrderDetailsPage";
 import { OtherOrderDocumentUploadPage } from "../../../../../pages/citizen/createCase/C100/otherProceedings/otherOrderDocumentUploadPage";
 import { DocumentSummaryPage } from "../../../../../pages/citizen/createCase/C100/otherProceedings/DocumentSummaryPage";
-import {
-  NonMolestationOrderDocumentUploadPage
-} from "../../../../../pages/citizen/createCase/C100/otherProceedings/nonMolestationOrderDocumanetUploadPage";
+import { NonMolestationOrderDocumentUploadPage } from "../../../../../pages/citizen/createCase/C100/otherProceedings/nonMolestationOrderDocumanetUploadPage";
 
 interface C100OtherProceedings1Options {
   page: Page;
@@ -193,11 +191,13 @@ export class C100OtherProceedings {
           errorMessaging,
           yesNoOtherProceedings,
         });
-        await NonMolestationOrderDocumentUploadPage.nonMolestationOrderDocumentUploadPage({
-          page,
-          accessibilityTest,
-          errorMessaging,
-        })
+        await NonMolestationOrderDocumentUploadPage.nonMolestationOrderDocumentUploadPage(
+          {
+            page,
+            accessibilityTest,
+            errorMessaging,
+          },
+        );
         await OccupationOrderDetailsPage.occupationOrderDetailsPage({
           page,
           accessibilityTest,

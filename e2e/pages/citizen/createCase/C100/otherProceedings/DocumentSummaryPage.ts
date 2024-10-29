@@ -56,7 +56,9 @@ export class DocumentSummaryPage {
         16,
       ),
     ]);
-    await page.click(`${Selectors.Span}:text-is("${DocumentSummaryContent.sidebar}")`)
+    await page.click(
+      `${Selectors.Span}:text-is("${DocumentSummaryContent.sidebar}")`,
+    );
     await SafetyConcernHelpers.checkContactDetailsText(page);
     if (accessibilityTest) {
       await AxeTest.run(page);

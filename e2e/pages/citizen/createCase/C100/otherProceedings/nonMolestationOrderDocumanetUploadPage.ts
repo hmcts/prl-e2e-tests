@@ -110,10 +110,10 @@ export class NonMolestationOrderDocumentUploadPage {
       `${Selectors.GovukButton}:text-is("${CommonStaticText.uploadFile}")`,
     );
     await Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.a}:text-is("${NonMolestationOrderDocumentUploadContent.errorMessageUploadCorrectFile}")`,
-        1,
-      );
+      page,
+      `${Selectors.a}:text-is("${NonMolestationOrderDocumentUploadContent.errorMessageUploadCorrectFile}")`,
+      1,
+    );
   }
 
   private static async fillInFields({

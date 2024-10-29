@@ -110,10 +110,10 @@ export class ChildArrangementDocumentUploadPage {
       `${Selectors.GovukButton}:text-is("${ChildArrangementDocumentUploadContent.uploadFile}")`,
     );
     await Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.a}:text-is("${ChildArrangementDocumentUploadContent.errorMessageUploadCorrectFile}")`,
-        1,
-      );
+      page,
+      `${Selectors.a}:text-is("${ChildArrangementDocumentUploadContent.errorMessageUploadCorrectFile}")`,
+      1,
+    );
   }
 
   private static async fillInFields({
