@@ -43,7 +43,6 @@ export class RespondentDetailsAddRespondentsPage {
     }
     await this.fillInFields({ page });
   }
-
   private static async checkPageLoads({
     page,
     accessibilityTest,
@@ -79,7 +78,6 @@ export class RespondentDetailsAddRespondentsPage {
       await AccessibilityTestHelper.run(page);
     }
   }
-
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
@@ -109,7 +107,6 @@ export class RespondentDetailsAddRespondentsPage {
       ),
     ]);
   }
-
   private static async fillInFields({
     page,
   }: FillInFieldsOptions): Promise<void> {
