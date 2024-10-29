@@ -5,7 +5,7 @@ import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import AxeTest from "../../../../../common/accessibilityTestHelper";
 
-export interface ReasonableAdjustmentsLanguageRequirementsPageOptions {
+interface ReasonableAdjustmentsLanguageRequirementsPageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
@@ -101,7 +101,7 @@ export class ReasonableAdjustmentsLanguageRequirementsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${ReasonableAdjustmentsLanguageRequirementsContent.errorMessageBlank}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${ReasonableAdjustmentsLanguageRequirementsContent.errorMessageBlank}")`,
         1,
       ),
     ]);
@@ -122,10 +122,11 @@ export class ReasonableAdjustmentsLanguageRequirementsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${ReasonableAdjustmentsLanguageRequirementsContent.errorMessageYesBlank}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${ReasonableAdjustmentsLanguageRequirementsContent.errorMessageYesBlank}")`,
         1,
       ),
     ]);
+    await page.click(UniqueSelectors.needInterpreter);
   }
 
   private static async fillInFields({
