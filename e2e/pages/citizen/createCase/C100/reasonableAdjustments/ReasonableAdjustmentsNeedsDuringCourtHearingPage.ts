@@ -159,8 +159,8 @@ export class ReasonableAdjustmentsNeedsDuringCourtHearingPage {
         await page.click(selector);
       }
       const textToFill: [string, string] = [
-        "loremIpsumAppropriateLighting",
-        "loremIpsumOther",
+        "appropriateLightingInput",
+        "otherInput",
       ];
       for (let key of textToFill) {
         let inputKey = key as keyof typeof TextBoxUniqueSelectors;
