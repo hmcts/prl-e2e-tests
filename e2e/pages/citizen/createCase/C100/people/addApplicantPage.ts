@@ -48,32 +48,32 @@ export class AddApplicantPage {
     accessibilityTest: accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-        `${Selectors.GovukHeadingXL}:text-is("${AddApplicantContent.pageTitle}")`
+      `${Selectors.GovukHeadingXL}:text-is("${AddApplicantContent.pageTitle}")`,
     );
     await Promise.all([
-        Helpers.checkVisibleAndPresent(
-            page,
-            `${Selectors.GovukHeadingM}:text-is("${AddApplicantContent.heading}")`,
-            1,
-        ),
       Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukHint}:text-is("${AddApplicantContent.hint}")`,
-          1,
+        page,
+        `${Selectors.GovukHeadingM}:text-is("${AddApplicantContent.heading}")`,
+        1,
       ),
-        Helpers.checkGroup(
-            page,
-            2,
-            AddApplicantContent,
-            "insetText",
-            `${Selectors.GovukInsetText}`,
-        ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukHint}:text-is("${AddApplicantContent.hint}")`,
+        1,
+      ),
       Helpers.checkGroup(
-          page,
-          2,
-          AddApplicantContent,
-          "label",
-          `${Selectors.GovukLabel}`,
+        page,
+        2,
+        AddApplicantContent,
+        "insetText",
+        `${Selectors.GovukInsetText}`,
+      ),
+      Helpers.checkGroup(
+        page,
+        2,
+        AddApplicantContent,
+        "label",
+        `${Selectors.GovukLabel}`,
       ),
     ]);
     if (accessibilityTest) {
@@ -83,27 +83,27 @@ export class AddApplicantPage {
 
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(
-        `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukErrorSummaryTitle}:text-is("${CommonStaticText.errorSummaryTitle}")`,
-          1,
+        page,
+        `${Selectors.GovukErrorSummaryTitle}:text-is("${CommonStaticText.errorSummaryTitle}")`,
+        1,
       ),
       Helpers.checkGroup(
-          page,
-          2,
-          AddApplicantContent,
-          "errorLink",
-          `${Selectors.a}`,
+        page,
+        2,
+        AddApplicantContent,
+        "errorLink",
+        `${Selectors.a}`,
       ),
       Helpers.checkGroup(
-          page,
-          2,
-          AddApplicantContent,
-          "errorLink",
-          `${Selectors.GovukErrorMessageCitizen}`,
+        page,
+        2,
+        AddApplicantContent,
+        "errorLink",
+        `${Selectors.GovukErrorMessageCitizen}`,
       ),
     ]);
   }
@@ -115,7 +115,7 @@ export class AddApplicantPage {
       await page.fill(`${selector}`, AddApplicantContent.exampleText);
     }
     await page.click(
-        `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
   }
 }
