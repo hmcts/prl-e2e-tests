@@ -126,6 +126,7 @@ export class ReasonableAdjustmentsLanguageRequirementsPage {
         1,
       ),
     ]);
+    await page.click(UniqueSelectors.needInterpreter);
   }
 
   private static async fillInFields({
