@@ -1,8 +1,6 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../../common/selectors";
-import {
-  OtherPersonDetailsAddOtherPersonsContent
-} from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/currentBranch/otherPersonDetailsAddOtherPersonsContent";
+import { OtherPersonDetailsAddOtherPersonsContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/currentBranch/otherPersonDetailsAddOtherPersonsContent";
 import { Helpers } from "../../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../../common/commonStaticText";
 import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper";
@@ -42,24 +40,26 @@ export class OtherPersonDetailsAddOtherPersonsPage {
         "Page object is undefined. Ensure that a valid Playwright Page instance is passed to the function.",
       );
     }
-    await page.waitForSelector(`${Selectors.GovukHeadingXL}:text-is("${OtherPersonDetailsAddOtherPersonsContent.pageTitle}")`);
+    await page.waitForSelector(
+      `${Selectors.GovukHeadingXL}:text-is("${OtherPersonDetailsAddOtherPersonsContent.pageTitle}")`,
+    );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukFieldsetHeading}:text-is("${OtherPersonDetailsAddOtherPersonsContent.pageTitle}")`,
-        1
+        1,
       ),
       Helpers.checkGroup(
         page,
         2,
         OtherPersonDetailsAddOtherPersonsContent,
         "govukLabel",
-        Selectors.GovukLabel
+        Selectors.GovukLabel,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukHint}:text-is("${OtherPersonDetailsAddOtherPersonsContent.govukHint}")`,
-        1
+        1,
       ),
     ]);
     if (accessibilityTest) {
@@ -105,8 +105,14 @@ export class OtherPersonDetailsAddOtherPersonsPage {
         1,
       ),
     ]);
-    await page.fill(UniqueSelectors.firstName, OtherPersonDetailsAddOtherPersonsContent.invalidFirstName);
-    await page.fill(UniqueSelectors.lastName, OtherPersonDetailsAddOtherPersonsContent.invalidLastName);
+    await page.fill(
+      UniqueSelectors.firstName,
+      OtherPersonDetailsAddOtherPersonsContent.invalidFirstName,
+    );
+    await page.fill(
+      UniqueSelectors.lastName,
+      OtherPersonDetailsAddOtherPersonsContent.invalidLastName,
+    );
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
@@ -137,8 +143,14 @@ export class OtherPersonDetailsAddOtherPersonsPage {
         "Page object is undefined. Ensure that a valid Playwright Page instance is passed to the function.",
       );
     }
-    await page.fill(UniqueSelectors.firstName, OtherPersonDetailsAddOtherPersonsContent.firstName);
-    await page.fill(UniqueSelectors.lastName, OtherPersonDetailsAddOtherPersonsContent.lastName);
+    await page.fill(
+      UniqueSelectors.firstName,
+      OtherPersonDetailsAddOtherPersonsContent.firstName,
+    );
+    await page.fill(
+      UniqueSelectors.lastName,
+      OtherPersonDetailsAddOtherPersonsContent.lastName,
+    );
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
