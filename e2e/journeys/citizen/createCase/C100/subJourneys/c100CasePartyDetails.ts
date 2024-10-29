@@ -130,13 +130,13 @@ export class C100CasePartyDetails {
         dontKnowEmailAndTelephone: dontKnowEmailAndTelephone,
       },
     );
+    await OtherPersonDetailsCheckPage.otherPersonDetailsCheckPage({
+      page,
+      accessibilityTest,
+      errorMessaging,
+      yesNoOtherPersonDetails,
+    });
     if (yesNoOtherPersonDetails) {
-      await OtherPersonDetailsCheckPage.otherPersonDetailsCheckPage({
-        page,
-        accessibilityTest,
-        errorMessaging,
-        yesNoOtherPersonDetails,
-      });
       await OtherPersonDetailsAddOtherPersonsPage.otherPersonDetailsAddOtherPersonsPage(
         {
           page,
