@@ -11,5 +11,5 @@ export enum RespondentDetailsContactDetailsContent {
   email = "respondentDetails@AutomationTest.com",
   telephone = "07981 131487",
   invalidEmail = "invalidEmail",
-  invalidTelephone = "00"
+  invalidTelephone = "00",
 }

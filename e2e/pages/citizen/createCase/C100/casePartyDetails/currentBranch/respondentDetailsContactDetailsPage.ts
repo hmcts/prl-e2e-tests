@@ -1,9 +1,7 @@
 import { Page } from "@playwright/test";
 import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper";
 import { Selectors } from "../../../../../../common/selectors";
-import {
-  RespondentDetailsContactDetailsContent
-} from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/currentBranch/respondentDetailsContactDetailsContent";
+import { RespondentDetailsContactDetailsContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/currentBranch/respondentDetailsContactDetailsContent";
 import { Helpers } from "../../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../../common/commonStaticText";
 
@@ -54,15 +52,15 @@ export class RespondentDetailsAddressManualPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukInsetText}:text-is("${RespondentDetailsContactDetailsContent.govukInsetText}")`,
-        1
+        1,
       ),
       Helpers.checkGroup(
         page,
         4,
         RespondentDetailsContactDetailsContent,
         "govukLabel",
-        Selectors.GovukLabel
-      )
+        Selectors.GovukLabel,
+      ),
     ]);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
@@ -89,26 +87,32 @@ export class RespondentDetailsAddressManualPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.a}:text-is("${RespondentDetailsContactDetailsContent.errorMessageEmailAddress}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukErrorMessageCitizen}:text-is("${RespondentDetailsContactDetailsContent.errorMessageEmailAddress}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.a}:text-is("${RespondentDetailsContactDetailsContent.errorMessageTelephoneNumber}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukErrorMessageCitizen}:text-is("${RespondentDetailsContactDetailsContent.errorMessageTelephoneNumber}")`,
-        1
+        1,
       ),
     ]);
-    await page.fill(UniqueSelectors.emailInput, RespondentDetailsContactDetailsContent.invalidEmail);
-    await page.fill(UniqueSelectors.telephoneInput, RespondentDetailsContactDetailsContent.invalidTelephone);
+    await page.fill(
+      UniqueSelectors.emailInput,
+      RespondentDetailsContactDetailsContent.invalidEmail,
+    );
+    await page.fill(
+      UniqueSelectors.telephoneInput,
+      RespondentDetailsContactDetailsContent.invalidTelephone,
+    );
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
@@ -121,22 +125,22 @@ export class RespondentDetailsAddressManualPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.a}:text-is("${RespondentDetailsContactDetailsContent.errorMessageEmailAddress}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukErrorMessageCitizen}:text-is("${RespondentDetailsContactDetailsContent.errorMessageEmailAddress}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.a}:text-is("${RespondentDetailsContactDetailsContent.errorInvalidTelephoneNumber}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukErrorMessageCitizen}:text-is("${RespondentDetailsContactDetailsContent.errorInvalidTelephoneNumber}")`,
-        1
+        1,
       ),
     ]);
   }
@@ -151,8 +155,14 @@ export class RespondentDetailsAddressManualPage {
       );
     }
     if (knowsTheEmailAndTelephone) {
-      await page.fill(UniqueSelectors.emailInput, RespondentDetailsContactDetailsContent.email);
-      await page.fill(UniqueSelectors.telephoneInput, RespondentDetailsContactDetailsContent.telephone);
+      await page.fill(
+        UniqueSelectors.emailInput,
+        RespondentDetailsContactDetailsContent.email,
+      );
+      await page.fill(
+        UniqueSelectors.telephoneInput,
+        RespondentDetailsContactDetailsContent.telephone,
+      );
     } else {
       await page.click(UniqueSelectors.iDontKnowEmail);
       await page.click(UniqueSelectors.iDontKnowTelephone);
