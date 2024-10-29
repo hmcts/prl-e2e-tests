@@ -38,7 +38,7 @@ enum addressText {
 }
 
 export class RespondentDetailsAddressManualPage {
-  public static async respondentDetailsAddressManualPageOptions({
+  public static async respondentDetailsAddressManualPage({
     page: page,
     accessibilityTest: accessibilityTest,
     errorMessaging: errorMessaging,

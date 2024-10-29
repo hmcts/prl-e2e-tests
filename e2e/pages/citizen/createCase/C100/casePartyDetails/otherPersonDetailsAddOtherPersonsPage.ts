@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../../common/selectors";
-import { OtherPersonDetailsAddOtherPersonsContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/currentBranch/otherPersonDetailsAddOtherPersonsContent";
-import { Helpers } from "../../../../../../common/helpers";
-import { CommonStaticText } from "../../../../../../common/commonStaticText";
-import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper";
+import { Selectors } from "../../../../../common/selectors";
+import { OtherPersonDetailsAddOtherPersonsContent } from "../../../../../fixtures/citizen/createCase/C100/casePartyDetails/otherPersonDetailsAddOtherPersonsContent";
+import { Helpers } from "../../../../../common/helpers";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 
 interface OtherPersonDetailsAddOtherPersonsPageOptions {
   page: Page;

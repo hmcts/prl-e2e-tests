@@ -1,5 +1,9 @@
 import { Page } from "@playwright/test";
-import { ApplicantGender, Relationship } from "../../../../../common/types";
+import {
+  ApplicantGender,
+  otherProceedingsRadios,
+  Relationship,
+} from "../../../../../common/types";
 import { ApplicantAddressLookupPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicantAddressLookupPage";
 import { ApplicantAddressSelectPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicantAddressSelectPage";
 import { ApplicantPersonalDetailsPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicantPersonalDetailsPage";
@@ -8,6 +12,10 @@ import { ApplicantAddressManualPage } from "../../../../../pages/citizen/createC
 import { ApplicantContactDetailPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicantContactDetailPage";
 import { ApplicantContactPreferencePage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicantContactPreferencePage";
 import { RespondentDetailsAddRespondentsPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/respondentDetailsAddRespondentsPage";
+import { RespondentDetailsAddressManualPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/respondentDetailsAddressManualPage";
+import { RespondentDetailsContactDetailsPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/respondentDetailsContactDetailsPage";
+import { OtherPersonDetailsAddOtherPersonsPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/otherPersonDetailsAddOtherPersonsPage";
+import { OtherPersonDetailsCheckPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/otherPersonDetailsCheckPage";
 
 interface c100CasePartyDetailsOptions {
   page: Page;
@@ -23,6 +31,9 @@ interface c100CasePartyDetailsOptions {
   prevAddress5Years: boolean;
   provideEmailTelephoneVoicemail: boolean;
   digitalPreference: boolean;
+  otherProceedingsRadios: otherProceedingsRadios;
+  dontKNowEmailAndTelephone: boolean;
+  yesNoOtherPersonDetails: boolean;
 }
 
 export class C100CasePartyDetails {
@@ -40,6 +51,9 @@ export class C100CasePartyDetails {
     prevAddress5Years,
     provideEmailTelephoneVoicemail,
     digitalPreference,
+    otherProceedingsRadios,
+    dontKNowEmailAndTelephone,
+    yesNoOtherPersonDetails,
   }: c100CasePartyDetailsOptions): Promise<void> {
     await ApplicantPersonalDetailsPage.applicantPersonalDetailsPage({
       page,
@@ -94,6 +108,35 @@ export class C100CasePartyDetails {
     });
 
     await RespondentDetailsAddRespondentsPage.respondentDetailsAddRespondentsPage(
+      {
+        page,
+        accessibilityTest,
+        errorMessaging,
+      },
+    );
+    await RespondentDetailsAddressManualPage.respondentDetailsAddressManualPage(
+      {
+        page,
+        accessibilityTest,
+        errorMessaging,
+        otherProceedingsRadios,
+      },
+    );
+    await RespondentDetailsContactDetailsPage.respondentDetailsContactDetailsPage(
+      {
+        page,
+        accessibilityTest,
+        errorMessaging,
+        dontKNowEmailAndTelephone,
+      },
+    );
+    await OtherPersonDetailsCheckPage.otherPersonDetailsCheckPage({
+      page,
+      accessibilityTest,
+      errorMessaging,
+      yesNoOtherPersonDetails,
+    });
+    await OtherPersonDetailsAddOtherPersonsPage.otherPersonDetailsAddOtherPersonsPage(
       {
         page,
         accessibilityTest,

@@ -19,8 +19,8 @@ enum UniqueSelectors {
   iDontKnowTelephone = "#donKnowTelephoneNumber",
 }
 
-export class RespondentDetailsAddressManualPage {
-  public static async respondentDetailsAddressManualPageOptions({
+export class RespondentDetailsContactDetailsPage {
+  public static async respondentDetailsContactDetailsPage({
     page: page,
     accessibilityTest: accessibilityTest,
     errorMessaging: errorMessaging,
