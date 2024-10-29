@@ -5,7 +5,6 @@ import { ApplicantRelationshipToChildContent } from "../../../../../fixtures/cit
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { Relationship } from "../../../../../common/types";
-import { RespondentDetailsRelationshipToChildContent } from "../../../../../fixtures/citizen/createCase/C100/casePartyDetails/respondentDetailsRelationshipToChildContent";
 
 interface applicantRelationshipToChildPageOptions {
   page: Page;
@@ -87,7 +86,6 @@ export class ApplicantRelationshipToChildPage {
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
-
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
@@ -119,11 +117,11 @@ export class ApplicantRelationshipToChildPage {
     await page.click(inputIds[inputKey]);
     if (inputKey == "other") {
       await page.waitForSelector(
-        `${Selectors.GovukLabel}:text-is("${RespondentDetailsRelationshipToChildContent.hiddenLabel1}")`,
+        `${Selectors.GovukLabel}:text-is("${ApplicantRelationshipToChildContent.hiddenLabel1}")`,
       );
       await page.fill(
         inputIds.otherDetails,
-        RespondentDetailsRelationshipToChildContent.inputRelation,
+        ApplicantRelationshipToChildContent.inputRelation,
       );
     }
     await page.click(

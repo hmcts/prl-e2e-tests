@@ -10,7 +10,7 @@ interface applicantPersonalDetailsPageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
-  changeName: boolean;
+  changeNameYesNo: boolean;
   gender: ApplicantGender;
   under18: boolean;
   placeOfBirth: string;
@@ -23,7 +23,7 @@ interface checkPageLoadsOptions {
 
 interface fillInFieldsOptions {
   page: Page;
-  changeName: boolean;
+  changeNameYesNo: boolean;
   gender: ApplicantGender;
   under18: boolean;
   placeOfBirth: string;
@@ -52,7 +52,7 @@ export class ApplicantPersonalDetailsPage {
     page,
     accessibilityTest,
     errorMessaging,
-    changeName,
+    changeNameYesNo,
     gender,
     under18,
     placeOfBirth,
@@ -63,7 +63,7 @@ export class ApplicantPersonalDetailsPage {
     }
     await this.fillInFields({
       page,
-      changeName,
+      changeNameYesNo,
       gender,
       under18,
       placeOfBirth,
@@ -167,15 +167,15 @@ export class ApplicantPersonalDetailsPage {
   }
   private static async fillInFields({
     page,
-    changeName,
+    changeNameYesNo,
     gender,
     under18,
   }: fillInFieldsOptions): Promise<void> {
     const [day, month, year] = Helpers.generateDOB(under18);
     await page.click(
-      changeName ? inputIds.changeNameYes : inputIds.changeNameNo,
+      changeNameYesNo ? inputIds.changeNameYes : inputIds.changeNameNo,
     );
-    if (changeName) {
+    if (changeNameYesNo) {
       await page.fill(
         inputIds.prevName,
         ApplicantPersonalDetailsContent.prevNameText,

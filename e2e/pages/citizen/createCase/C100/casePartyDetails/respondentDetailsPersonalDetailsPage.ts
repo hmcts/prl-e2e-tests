@@ -44,7 +44,7 @@ interface respondentDetailsPersonalDetailsPageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
-  changeName: yesNoDontKnow;
+  changeNameYesNoDontKnow: yesNoDontKnow;
   gender: ApplicantGender;
   knownDob: boolean;
   knownPlaceOfBirth: boolean;
@@ -57,7 +57,7 @@ interface checkPageLoadsOptions {
 
 interface fillInFieldsOptions {
   page: Page;
-  changeName: yesNoDontKnow;
+  changeNameYesNoDontKnow: yesNoDontKnow;
   gender: ApplicantGender;
   knownDob: boolean;
   knownPlaceOfBirth: boolean;
@@ -68,7 +68,7 @@ export class RespondentDetailsPersonalDetailsPage {
     page,
     accessibilityTest,
     errorMessaging,
-    changeName,
+    changeNameYesNoDontKnow,
     gender,
     knownDob,
     knownPlaceOfBirth,
@@ -79,7 +79,7 @@ export class RespondentDetailsPersonalDetailsPage {
     }
     await this.fillInFields({
       page,
-      changeName,
+      changeNameYesNoDontKnow,
       gender,
       knownDob,
       knownPlaceOfBirth,
@@ -170,13 +170,13 @@ export class RespondentDetailsPersonalDetailsPage {
 
   private static async fillInFields({
     page,
-    changeName,
+    changeNameYesNoDontKnow,
     gender,
     knownDob,
     knownPlaceOfBirth,
   }: fillInFieldsOptions): Promise<void> {
     const [day, month, year] = Helpers.generateDOB(false);
-    switch (changeName) {
+    switch (changeNameYesNoDontKnow) {
       case "yes":
         await page.click(InputIds.changeNameYes);
         //check hidden content appears and fill in previous name
@@ -204,7 +204,9 @@ export class RespondentDetailsPersonalDetailsPage {
         await page.click(InputIds.changeNameDontKnow);
         break;
       default:
-        throw new Error(`Unexpected value for changeName: ${changeName}`);
+        throw new Error(
+          `Unexpected value for changeName: ${changeNameYesNoDontKnow}`,
+        );
     }
     switch (gender) {
       case "female":
