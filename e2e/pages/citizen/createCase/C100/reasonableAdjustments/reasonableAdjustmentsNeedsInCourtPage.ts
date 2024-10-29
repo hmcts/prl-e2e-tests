@@ -175,9 +175,9 @@ export class ReasonableAdjustmentsNeedsInCourtPage {
         Selectors.GovukLabel,
       );
       const textToFill: [string, string, string] = [
-        "loremIpsumParkingSpot",
-        "loremIpsumTypeOfChair",
-        "loremIpsumOther",
+        "parkingSpotInput",
+        "typeOfChairInput",
+        "otherInput",
       ];
       for (let key of textToFill) {
         let inputKey = key as keyof typeof TextboxInputUniqueSelectors;

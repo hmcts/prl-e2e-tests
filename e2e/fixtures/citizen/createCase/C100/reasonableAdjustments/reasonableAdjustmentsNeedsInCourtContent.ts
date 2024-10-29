@@ -15,9 +15,9 @@ export enum ReasonableAdjustmentsNeedsInCourtContent {
   hiddenGovUkLabel1 = "Describe why you need this",
   hiddenGovUkLabel2 = "Describe why you need", // Bug
   hiddenGovUkLabel3 = "Describe what you need",
-  loremIpsumParkingSpot = "lorem Ipsum Parking Spot",
-  loremIpsumTypeOfChair = "lorem Ipsum Type Of Chair",
-  loremIpsumOther = "lorem Ipsum Other",
+  parkingSpotInput = "lorem Ipsum Parking Spot",
+  typeOfChairInput = "lorem Ipsum Type Of Chair",
+  otherInput = "lorem Ipsum Other",
   errorMessageBlank = "Select what help you need if travelling to, or moving around court buildings",
   errorMessageParkingSpace = "Describe why you need a parking space close to the venue",
   errorMessageTypOfChair = "Describe what type of chair you need",
