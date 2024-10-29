@@ -1,13 +1,8 @@
 import { Page } from "@playwright/test";
 import {
-  ApplicantGender,
+  ApplicantGender, otherProceedingsRadios,
   Relationship,
-  yesNoDontKnow,
-} from "../../../../../common/types";
-import {
-  ApplicantGender,
-  otherProceedingsRadios,
-  Relationship,
+  yesNoDontKnow
 } from "../../../../../common/types";
 import { ApplicantAddressLookupPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicantAddressLookupPage";
 import { ApplicantAddressSelectPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicantAddressSelectPage";
@@ -114,32 +109,40 @@ export class C100CasePartyDetails {
       errorMessaging,
       digitalPreference,
     });
-    await RespondentDetailsAddRespondentsPage.respondentDetailsAddRespondentsPage({
-      page,
-      accessibilityTest,
-      errorMessaging,
-    });
-    await RespondentDetailsPersonalDetailsPage.respondentDetailsPersonalDetailsPage({
-      page,
-      accessibilityTest,
-      errorMessaging,
-      changeNameYesNoDontKnow,
-      gender,
-      knownDob,
-      knownPlaceOfBirth,
-    });
-    await RespondentDetailsAddressLookupPage.respondentDetailsAddressLookupPage({
-      page,
-      accessibilityTest,
-      errorMessaging,
-      addressLookup,
-    });
-    await RespondentDetailsAddressSelectPage.respondentDetailsAddressSelectPage({
-      page,
-      accessibilityTest,
-      errorMessaging,
-      addressLookupSuccessful,
-    });
+    await RespondentDetailsAddRespondentsPage.respondentDetailsAddRespondentsPage(
+      {
+        page,
+        accessibilityTest,
+        errorMessaging,
+      },
+    );
+    await RespondentDetailsPersonalDetailsPage.respondentDetailsPersonalDetailsPage(
+      {
+        page,
+        accessibilityTest,
+        errorMessaging,
+        changeNameYesNoDontKnow,
+        gender,
+        knownDob,
+        knownPlaceOfBirth,
+      },
+    );
+    await RespondentDetailsAddressLookupPage.respondentDetailsAddressLookupPage(
+      {
+        page,
+        accessibilityTest,
+        errorMessaging,
+        addressLookup,
+      },
+    );
+    await RespondentDetailsAddressSelectPage.respondentDetailsAddressSelectPage(
+      {
+        page,
+        accessibilityTest,
+        errorMessaging,
+        addressLookupSuccessful,
+      },
+    );
 
     await RespondentDetailsAddRespondentsPage.respondentDetailsAddRespondentsPage(
       {
