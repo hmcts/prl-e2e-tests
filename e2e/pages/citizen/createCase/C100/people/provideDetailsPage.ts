@@ -37,6 +37,10 @@ enum inputIds {
   year = "#dateOfBirth-year",
 }
 
+enum checkBoxIds {
+  isDateOfBirthUnknown = "#isDateOfBirthUnknown",
+}
+
 export class ProvideDetailsPage {
   public static async provideDetailsPage({
     page: page,
@@ -66,6 +70,7 @@ export class ProvideDetailsPage {
     await page.waitForSelector(
       `${Selectors.GovukHeadingXL}:text-is("${ProvideDetailsContent.pageTitle}")`,
     );
+    await page.click(checkBoxIds.isDateOfBirthUnknown);
     await Promise.all([
       Helpers.checkGroup(
         page,
@@ -81,16 +86,32 @@ export class ProvideDetailsPage {
       ),
       Helpers.checkGroup(
         page,
-        7,
+        4,
         ProvideDetailsContent,
         "label",
         `${Selectors.GovukLabel}`,
       ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukLabel}:text-is("${ProvideDetailsContent.repeatedLabel1}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukLabel}:text-is("${ProvideDetailsContent.repeatedLabel2}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukLabel}:text-is("${ProvideDetailsContent.repeatedLabel3}")`,
+        2,
+      ),
     ]);
+    await page.click(checkBoxIds.isDateOfBirthUnknown);
     if (gender === "other") {
       await page.click(radioIds.other);
       await page.waitForSelector(
-        `${Selectors.GovukHint}:text-is("${ProvideDetailsContent.label8}")`,
+        `${Selectors.GovukLabel}:text-is("${ProvideDetailsContent.label5}")`,
       );
     }
     if (accessibilityTest) {
@@ -126,11 +147,9 @@ export class ProvideDetailsPage {
     page: page,
     gender: gender,
   }: fillInFieldsOptions): Promise<void> {
-    await Promise.all([
-      page.fill(`${inputIds.day}`, ProvideDetailsContent.exampleDay),
-      page.fill(`${inputIds.month}`, ProvideDetailsContent.exampleMonth),
-      page.fill(`${inputIds.year}`, ProvideDetailsContent.exampleYear),
-    ]);
+    await page.fill(`${inputIds.day}`, ProvideDetailsContent.exampleDay);
+    await page.fill(`${inputIds.month}`, ProvideDetailsContent.exampleMonth);
+    await page.fill(`${inputIds.year}`, ProvideDetailsContent.exampleYear);
     switch (gender) {
       case "male":
         await page.click(radioIds.male);

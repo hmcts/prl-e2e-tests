@@ -114,7 +114,7 @@ export class ReasonableAdjustmentsSpecialArrangementsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${ReasonableAdjustmentsSpecialArrangementsContent.errorMessageChildNeedSpecialArrangement}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${ReasonableAdjustmentsSpecialArrangementsContent.errorMessageChildNeedSpecialArrangement}")`,
         1,
       ),
     ]);
@@ -135,10 +135,11 @@ export class ReasonableAdjustmentsSpecialArrangementsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${ReasonableAdjustmentsSpecialArrangementsContent.errorMessageGiveDetails}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${ReasonableAdjustmentsSpecialArrangementsContent.errorMessageGiveDetails}")`,
         1,
       ),
     ]);
+    await page.click(safetyRequirementsUniqueSelectors.other);
   }
 
   private static async fillInFields({

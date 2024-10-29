@@ -106,7 +106,7 @@ export class ReasonableAdjustmentsAttendingCourtPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${ReasonableAdjustmentsAttendingCourtContent.errorMessageBlank}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${ReasonableAdjustmentsAttendingCourtContent.errorMessageBlank}")`,
         1,
       ),
     ]);
@@ -127,7 +127,7 @@ export class ReasonableAdjustmentsAttendingCourtPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${ReasonableAdjustmentsAttendingCourtContent.errorMessageNo}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${ReasonableAdjustmentsAttendingCourtContent.errorMessageNo}")`,
         1,
       ),
     ]);
