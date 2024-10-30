@@ -15,6 +15,10 @@ import { RespondentDetailsAddRespondentsPage } from "../../../../../pages/citize
 import { RespondentDetailsPersonalDetailsPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/respondentDetailsPersonalDetailsPage";
 import { RespondentDetailsAddressLookupPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/respondentDetailsAddressLookupPage";
 import { RespondentDetailsAddressSelectPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/respondentDetailsAddressSelectPage";
+import { RespondentDetailsAddressManualPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/respondentDetailsAddressManualPage";
+import { RespondentDetailsContactDetailsPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/respondentDetailsContactDetailsPage";
+import { OtherPersonDetailsAddOtherPersonsPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/otherPersonDetailsAddOtherPersonsPage";
+import { OtherPersonDetailsCheckPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/otherPersonDetailsCheckPage";
 
 interface c100CasePartyDetailsOptions {
   page: Page;
@@ -33,6 +37,9 @@ interface c100CasePartyDetailsOptions {
   knownDob: boolean;
   knownPlaceOfBirth: boolean;
   changeNameYesNoDontKnow: yesNoDontKnow;
+  otherProceedingsRadios: otherProceedingsRadios;
+  dontKnowEmailAndTelephone: boolean;
+  yesNoOtherPersonDetails: boolean;
 }
 
 export class C100CasePartyDetails {
@@ -53,6 +60,9 @@ export class C100CasePartyDetails {
     knownDob,
     knownPlaceOfBirth,
     changeNameYesNoDontKnow,
+    otherProceedingsRadios,
+    dontKnowEmailAndTelephone,
+    yesNoOtherPersonDetails,
   }: c100CasePartyDetailsOptions): Promise<void> {
     await ApplicantPersonalDetailsPage.applicantPersonalDetailsPage({
       page,
@@ -133,5 +143,44 @@ export class C100CasePartyDetails {
         addressLookupSuccessful,
       },
     );
+
+    await RespondentDetailsAddRespondentsPage.respondentDetailsAddRespondentsPage(
+      {
+        page,
+        accessibilityTest,
+        errorMessaging,
+      },
+    );
+    await RespondentDetailsAddressManualPage.respondentDetailsAddressManualPage(
+      {
+        page,
+        accessibilityTest,
+        errorMessaging,
+        otherProceedingsRadios,
+      },
+    );
+    await RespondentDetailsContactDetailsPage.respondentDetailsContactDetailsPage(
+      {
+        page,
+        accessibilityTest,
+        errorMessaging,
+        dontKnowEmailAndTelephone: dontKnowEmailAndTelephone,
+      },
+    );
+    await OtherPersonDetailsCheckPage.otherPersonDetailsCheckPage({
+      page,
+      accessibilityTest,
+      errorMessaging,
+      yesNoOtherPersonDetails,
+    });
+    if (yesNoOtherPersonDetails) {
+      await OtherPersonDetailsAddOtherPersonsPage.otherPersonDetailsAddOtherPersonsPage(
+        {
+          page,
+          accessibilityTest,
+          errorMessaging,
+        },
+      );
+    }
   }
 }
