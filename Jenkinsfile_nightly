@@ -16,7 +16,6 @@ properties([
     ),
     string(
       name: 'FUNCTIONAL_TESTS_WORKERS',
-      defaultValue: '5',
       description: 'Number of workers running functional tests'
     ),
     booleanParam(
@@ -74,6 +73,7 @@ withNightlyPipeline(type, product, component, 600) {
       }
     }
     if (!params.skipCitizenTests) {
+      env.FUNCTIONAL_TESTS_WORKERS = '1'
       stage('Citizen E2E tests - Chrome') {
         try {
           yarnBuilder.yarn('test:citizenFrontendChrome')
@@ -144,6 +144,7 @@ withNightlyPipeline(type, product, component, 600) {
       }
     }
     if (!params.skipManageCasesTests) {
+      env.FUNCTIONAL_TESTS_WORKERS = '3'
       stage('Manage Cases E2E tests - Chrome') {
         try {
           yarnBuilder.yarn('test:manageCasesChrome')
