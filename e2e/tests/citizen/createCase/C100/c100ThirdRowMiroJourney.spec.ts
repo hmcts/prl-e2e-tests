@@ -1,10 +1,16 @@
 import { test } from "@playwright/test";
 import { C100 } from "../../../../journeys/citizen/createCase/C100/C100";
 import Config from "../../../../config";
-
-test.use({ storageState: Config.sessionStoragePath + "citizen.json" });
+import IdamLoginHelper from "../../../../common/idamLoginHelper";
 
 test.describe("C100 Citizen Application tests on the third MIRO set. @citizenFrontend @crossbrowserCitizenFrontend", (): void => {
+  test.beforeEach(async ({ page }) => {
+    // Sign in as a citizen user before each test
+    await IdamLoginHelper.signInCitizenUser(
+      page,
+      Config.citizenFrontendBaseURL,
+    );
+  });
   test(`C100 Citizen Application with the following options:
   Not Accessibility Testing
   Not Error Messaging
@@ -461,6 +467,13 @@ test.describe("C100 Citizen Application tests on the third MIRO set. @citizenFro
 });
 
 test.describe("C100 Citizen Application accessibility tests on the third row journey set. @accessibilityCitizenFrontend", (): void => {
+  test.beforeEach(async ({ page }) => {
+    // Sign in as a citizen user before each test
+    await IdamLoginHelper.signInCitizenUser(
+        page,
+        Config.citizenFrontendBaseURL,
+    );
+  });
   test(`C100 Citizen Application with the following options:
   Accessibility Testing
   Not Error Messaging

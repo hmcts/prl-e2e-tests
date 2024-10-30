@@ -53,6 +53,10 @@ def secrets = [
     secret('solicitor-password', 'SOLICITOR_PASSWORD'),
     secret('citizen-user', 'CITIZEN_USERNAME'),
     secret('citizen-password', 'CITIZEN_PASSWORD'),
+    secret('prl-cos-idam-client-secret', 'IDAM_SECRET'),
+    secret('idam-token-url', 'IDAM_TOKEN_URL'),
+    secret('idam-citizen-password', 'IDAM_CITIZEN_USER_PASSWORD'),
+    secret('idam-testing-support-users-url', 'IDAM_TESTING_SUPPORT_USERS_URL'),
   ]
 ]
 
