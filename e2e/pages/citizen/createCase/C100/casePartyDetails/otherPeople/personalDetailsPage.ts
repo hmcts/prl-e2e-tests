@@ -73,17 +73,17 @@ export class PersonalDetailsPage {
   }: PersonalDetailsPageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
-      accessibilityTest: accessibilityTest
-    })
+      accessibilityTest: accessibilityTest,
+    });
     if (errorMessaging) {
-      await this.checkErrorMessaging(page)
+      await this.checkErrorMessaging(page);
     }
     await this.fillInFields({
       page: page,
       c100OtherPeopleChangedName: c100OtherPeopleChangedName,
       c100OtherPeopleGender: c100OtherPeopleGender,
-      c100OtherPeopleDoBKnown: c100OtherPeopleDoBKnown
-    })
+      c100OtherPeopleDoBKnown: c100OtherPeopleDoBKnown,
+    });
   }
 
   private static async checkPageLoads({
