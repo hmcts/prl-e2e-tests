@@ -3,7 +3,7 @@ import {
   ApplicantGender,
   otherProceedingsRadios,
   Relationship,
-  yesNoDontKnow,
+  yesNoDontKnow
 } from "../../../../../common/types";
 import { ApplicantAddressLookupPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicantAddressLookupPage";
 import { ApplicantAddressSelectPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicantAddressSelectPage";
@@ -20,6 +20,15 @@ import { RespondentDetailsAddressManualPage } from "../../../../../pages/citizen
 import { RespondentDetailsContactDetailsPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/respondentDetailsContactDetailsPage";
 import { OtherPersonDetailsAddOtherPersonsPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/otherPersonDetailsAddOtherPersonsPage";
 import { OtherPersonDetailsCheckPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/otherPersonDetailsCheckPage";
+import {
+  PersonalDetailsPage
+} from "../../../../../pages/citizen/createCase/C100/casePartyDetails/otherPeople/personalDetailsPage";
+import {
+  OtherPersonRelationshipPage
+} from "../../../../../pages/citizen/createCase/C100/casePartyDetails/otherPeople/otherPersonRelationshipPage";
+import {
+  OtherPersonAddressLookupPage
+} from "../../../../../pages/citizen/createCase/C100/casePartyDetails/otherPeople/otherPersonAddressLookupPage";
 
 interface c100CasePartyDetailsOptions {
   page: Page;
@@ -41,6 +50,10 @@ interface c100CasePartyDetailsOptions {
   otherProceedingsRadios: otherProceedingsRadios;
   dontKnowEmailAndTelephone: boolean;
   yesNoOtherPersonDetails: boolean;
+  c100OtherPeopleGender: ApplicantGender;
+  c100OtherPeopleChangedName: yesNoDontKnow;
+  c100OtherPeopleDoBKnown: boolean;
+  c100OtherPersonRelationship: Relationship;
 }
 
 export class C100CasePartyDetails {
@@ -64,6 +77,10 @@ export class C100CasePartyDetails {
     otherProceedingsRadios,
     dontKnowEmailAndTelephone,
     yesNoOtherPersonDetails,
+    c100OtherPeopleGender,
+    c100OtherPeopleChangedName,
+    c100OtherPeopleDoBKnown,
+    c100OtherPersonRelationship
   }: c100CasePartyDetailsOptions): Promise<void> {
     await ApplicantPersonalDetailsPage.applicantPersonalDetailsPage({
       page,
@@ -182,6 +199,25 @@ export class C100CasePartyDetails {
           errorMessaging,
         },
       );
+      await PersonalDetailsPage.personalDetailsPage({
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
+        c100OtherPeopleGender: c100OtherPeopleGender,
+        c100OtherPeopleChangedName: c100OtherPeopleChangedName,
+        c100OtherPeopleDoBKnown: c100OtherPeopleDoBKnown
+      });
+      await OtherPersonRelationshipPage.otherPersonRelationshipPage({
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
+        c100OtherPersonRelationship: c100OtherPersonRelationship
+      })
+      await OtherPersonAddressLookupPage.otherPersonAddressLookupPage({
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging
+      })
     }
   }
 }
