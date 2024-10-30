@@ -1,17 +1,26 @@
 import { expect, Locator, Page } from "@playwright/test";
-import { c100SolicitorEvents, fl401SolicitorEvents, UserRole } from "./types";
+import {
+  c100SolicitorEvents,
+  fl401SolicitorEvents,
+  fl401SubmittedSolicitorEvents,
+  UserRole,
+} from "./types";
 import idamLoginHelper from "./idamLoginHelper";
 import { Selectors } from "./selectors.ts";
 
 export class Helpers {
   public static async chooseEventFromDropdown(
     page: Page,
-    chosenEvent: c100SolicitorEvents | fl401SolicitorEvents,
+    chosenEvent:
+      | c100SolicitorEvents
+      | fl401SolicitorEvents
+      | fl401SubmittedSolicitorEvents,
   ): Promise<void> {
     try {
       await page.waitForLoadState("domcontentloaded");
       await page.waitForSelector("#next-step", { state: "visible" });
       await page.selectOption("#next-step", chosenEvent);
+      await page.waitForTimeout(5000);
       const goButton: Locator = page.getByRole("button", { name: "Go" });
       await expect(goButton).toBeEnabled();
       await goButton.click();
@@ -103,6 +112,14 @@ export class Helpers {
     return `${day} ${Helpers.shortMonth(parseInt(month, 10))} ${year}`;
   }
 
+  public static getCurrentDateFormatted(): string {
+    const today = new Date();
+    const day = String(today.getDate()).padStart(2, "0");
+    const month = String(today.getMonth() + 1).padStart(2, "0");
+    const year = today.getFullYear();
+    return `${day}${month}${year}`;
+  }
+
   public static dayAbbreviatedMonthYear(
     day: string,
     month: string,
@@ -128,6 +145,25 @@ export class Helpers {
         return Helpers.checkVisibleAndPresent(
           page,
           `${selector}:text-is("${text}")`,
+          1,
+        );
+      }),
+    ]);
+  }
+
+  public static async checkGroupHasText<E extends Record<string, string>>(
+    page: Page,
+    count: number,
+    file: E, // Generic type E allows any enum type
+    name: string,
+    selector: string,
+  ): Promise<void[]> {
+    return Promise.all([
+      ...Array.from({ length: count }, (_, index) => {
+        const text: E[keyof E] = file[`${name}${index + 1}` as keyof E]; // Safely access the enum
+        return Helpers.checkVisibleAndPresent(
+          page,
+          `${selector}:has-text("${text}")`,
           1,
         );
       }),
@@ -196,5 +232,15 @@ export class Helpers {
       );
       throw error;
     }
+  }
+
+  public static generateDOB(under18: boolean = true): [string, string, string] {
+    const today = new Date();
+    const year = under18
+      ? (today.getFullYear() - 17).toString() // Less than 18 years
+      : (today.getFullYear() - 22).toString(); // More than 21 years
+    const month = (today.getMonth() + 1).toString(); // getMonth() is 0-based
+    const day = today.getDate().toString();
+    return [day, month, year];
   }
 }

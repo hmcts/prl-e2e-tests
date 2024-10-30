@@ -1,0 +1,17 @@
+export enum WhichDecisionsContent {
+  pageTitle = "Which of the decisions you’re asking the court to resolve relate to exampleText exampleText",
+  hint = "Select all that apply",
+  label1 = "Decide who the children live with and when",
+  label2 = "Decide how much time the children spend with each person",
+  label3 = "Allowing medical treatment to be carried out on the children",
+  label4 = "Taking the children on holiday",
+  label5 = "A specific holiday or arrangement",
+  label6 = "What school the children will go to",
+  label7 = "A religious issue",
+  label8 = "Medical treatment",
+  label9 = "Returning the children to your care",
+  repeatedLabel1 = "Changing the children's names or surname",
+  repeatedLabel2 = "Relocating the children to a different area in England and Wales",
+  repeatedLabel3 = "Relocating the children outside of England and Wales (including Scotland and Northern Ireland)",
+  errorLink = "Select at least a decision",
+}

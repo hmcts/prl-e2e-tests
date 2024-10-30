@@ -1,5 +1,6 @@
 export enum SolicitorCreate2Content {
   title = "Solicitor application",
+  dummyPageTitle = "TS-Solicitor application",
   subTitle = "Type of application",
   textOnPage = "Which application are you applying for ?",
   formLabel1 = "C100 Child Arrangements Application",

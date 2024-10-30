@@ -16,12 +16,11 @@ properties([
     ),
     string(
       name: 'FUNCTIONAL_TESTS_WORKERS',
-      defaultValue: '5',
       description: 'Number of workers running functional tests'
     ),
     booleanParam(
       name: 'skipCitizenTests',
-      defaultValue: true,
+      defaultValue: false,
       description: 'Tick the checkbox for skipping Citizen application tests.'
     ),
     booleanParam(
@@ -52,6 +51,8 @@ def secrets = [
   'prl-${env}': [
     secret('solicitor-user', 'SOLICITOR_USERNAME'),
     secret('solicitor-password', 'SOLICITOR_PASSWORD'),
+    secret('citizen-user', 'CITIZEN_USERNAME'),
+    secret('citizen-password', 'CITIZEN_PASSWORD'),
   ]
 ]
 
@@ -72,6 +73,7 @@ withNightlyPipeline(type, product, component, 600) {
       }
     }
     if (!params.skipCitizenTests) {
+      env.FUNCTIONAL_TESTS_WORKERS = '1'
       stage('Citizen E2E tests - Chrome') {
         try {
           yarnBuilder.yarn('test:citizenFrontendChrome')
@@ -142,6 +144,7 @@ withNightlyPipeline(type, product, component, 600) {
       }
     }
     if (!params.skipManageCasesTests) {
+      env.FUNCTIONAL_TESTS_WORKERS = '3'
       stage('Manage Cases E2E tests - Chrome') {
         try {
           yarnBuilder.yarn('test:manageCasesChrome')

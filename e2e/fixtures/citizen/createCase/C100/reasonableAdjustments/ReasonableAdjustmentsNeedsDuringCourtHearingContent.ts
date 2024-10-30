@@ -1,0 +1,17 @@
+export enum ReasonableAdjustmentsNeedsDuringCourtHearingContent {
+  pageTitle = "I need something to feel comfortable during a court hearing",
+  GovukCaptionXL = "Reasonable adjustments",
+  govukInsetText = "Consider in-person, phone or video, in case your preferred hearing type is not possible",
+  govukHint = "Select all that apply to you",
+  govukLabel1 = "Appropriate lighting",
+  govukLabel2 = "Regular breaks",
+  govukLabel3 = "Space to be able to get up and move around",
+  govukLabel4 = "Other",
+  govukLabel5 = "No, I do not need any support at this time",
+  hiddenGovukLabel = "errorMessageBlank",
+  appropriateLightingInput = "lorem Ipsum Appropriate Lighting",
+  otherInput = "lorem Ipsum Other",
+  errorMessageBlank = "Select what you need to feel comfortable during a court hearing",
+  errorMessageAppropriateLighting = "Describe the appropriate lighting you need",
+  errorMessageOther = "Describe what you need to feel comfortable during a court hearing",
+}
