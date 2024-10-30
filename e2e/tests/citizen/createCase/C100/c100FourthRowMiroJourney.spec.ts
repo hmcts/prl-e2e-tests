@@ -410,40 +410,40 @@ test.describe("C100 Citizen Application tests on the fourth MIRO set. @citizenFr
       urgencyAndWithoutNoticeAllOptionsYes: false,
     });
   });
-});
 
-test(`C100 Citizen Application with the following options:
-  Accessibility Testing
-  Not Error Messaging
-  Legal Representation
-  No Permission Needed
- MIAM testing  with no previously attended MIAM,
-  With a valid reason for attending
-  With all general exemptions
-  And subject to domestic abuse
-  Providing evidence of domestic abuse
-  With a Delay dispute starting in another country problems
-  urgency and without notice all options: no`, async ({
-  page,
-}): Promise<void> => {
-  await C100.c100FourthRowMiroJourney({
-    page: page,
-    accessibilityTest: true,
-    errorMessaging: false,
-    c100LegalRepresentation: false,
-    c100CourtPermissionNeeded: true,
-    miamAlreadyAttended: false,
-    documentSignedByMediator: false,
-    miamValidReasonNoAttendance: true,
-    miamGeneralExemptions: true,
-    miamDomesticAbuse: true,
-    miamDomesticAbuseProvidingEvidence: true,
-    miamChildProtectionConcernsType: "None of the above",
-    miamUrgencyType: "Delay dispute starting in another country",
-    miamAttendanceType: "None of these",
-    miamPreviousAttendanceMediatorSignedDocument: true,
-    miamOtherReasonForNotAttending: "None of the above",
-    miamReasonForNoAccessToMediator: "None of these",
-    urgencyAndWithoutNoticeAllOptionsYes: false,
+  test(`C100 Citizen Application with the following options:
+    Accessibility Testing
+    Not Error Messaging
+    Legal Representation
+    No Permission Needed
+   MIAM testing  with no previously attended MIAM,
+    With a valid reason for attending
+    With all general exemptions
+    And subject to domestic abuse
+    Providing evidence of domestic abuse
+    With a Delay dispute starting in another country problems
+    urgency and without notice all options: no`, async ({
+    page,
+  }): Promise<void> => {
+    await C100.c100FourthRowMiroJourney({
+      page: page,
+      accessibilityTest: true,
+      errorMessaging: false,
+      c100LegalRepresentation: false,
+      c100CourtPermissionNeeded: true,
+      miamAlreadyAttended: false,
+      documentSignedByMediator: false,
+      miamValidReasonNoAttendance: true,
+      miamGeneralExemptions: true,
+      miamDomesticAbuse: true,
+      miamDomesticAbuseProvidingEvidence: true,
+      miamChildProtectionConcernsType: "None of the above",
+      miamUrgencyType: "Delay dispute starting in another country",
+      miamAttendanceType: "None of these",
+      miamPreviousAttendanceMediatorSignedDocument: true,
+      miamOtherReasonForNotAttending: "None of the above",
+      miamReasonForNoAccessToMediator: "None of these",
+      urgencyAndWithoutNoticeAllOptionsYes: false,
+    });
   });
 });

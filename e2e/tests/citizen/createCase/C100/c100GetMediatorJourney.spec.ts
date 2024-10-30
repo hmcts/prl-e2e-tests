@@ -157,31 +157,30 @@ test.describe("Create Citizen Application but you must get a mediator. @citizenF
       miamReasonForNoAccessToMediator: "None of these",
     });
   });
-});
-
-test(`MIAM testing  with no previously attended MIAM, Redirects to Get Mediator
-  With a valid reason for attending
-  With all general exemptions
-  But no valid reasons
-  But accessing a mediator with no valid reason
-  not error message testing,
-  accessibility Testing
-  @accessibilityCitizenFrontend`, async ({ page }): Promise<void> => {
-  await C100.getMediatorJourney({
-    page: page,
-    accessibilityTest: true,
-    errorMessaging: false,
-    miamAlreadyAttended: false,
-    documentSignedByMediator: false,
-    miamValidReasonNoAttendance: true,
-    miamGeneralExemptions: true,
-    miamDomesticAbuse: false,
-    miamDomesticAbuseProvidingEvidence: false,
-    miamChildProtectionConcernsType: "None of the above",
-    miamUrgencyType: "None of these",
-    miamAttendanceType: "None of these",
-    miamPreviousAttendanceMediatorSignedDocument: false,
-    miamOtherReasonForNotAttending: "Cannot access mediator",
-    miamReasonForNoAccessToMediator: "None of these",
+  test(`MIAM testing  with no previously attended MIAM, Redirects to Get Mediator
+    With a valid reason for attending
+    With all general exemptions
+    But no valid reasons
+    But accessing a mediator with no valid reason
+    not error message testing,
+    accessibility Testing
+    @accessibilityCitizenFrontend`, async ({ page }): Promise<void> => {
+    await C100.getMediatorJourney({
+      page: page,
+      accessibilityTest: true,
+      errorMessaging: false,
+      miamAlreadyAttended: false,
+      documentSignedByMediator: false,
+      miamValidReasonNoAttendance: true,
+      miamGeneralExemptions: true,
+      miamDomesticAbuse: false,
+      miamDomesticAbuseProvidingEvidence: false,
+      miamChildProtectionConcernsType: "None of the above",
+      miamUrgencyType: "None of these",
+      miamAttendanceType: "None of these",
+      miamPreviousAttendanceMediatorSignedDocument: false,
+      miamOtherReasonForNotAttending: "Cannot access mediator",
+      miamReasonForNoAccessToMediator: "None of these",
+    });
   });
 });

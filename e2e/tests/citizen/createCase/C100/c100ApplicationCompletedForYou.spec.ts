@@ -23,7 +23,6 @@ test.describe("Create Citizen Application but choose to have legal representativ
       });
     },
   );
-
   test(
     "Application completed for you with the following options:" +
       "Yes error messaging." +
@@ -36,18 +35,17 @@ test.describe("Create Citizen Application but choose to have legal representativ
       });
     },
   );
+  test(
+    "Application completed for you with the following options:" +
+      "No error messaging." +
+      "Yes accessibility Testing" +
+      "@accessibilityCitizenFrontend",
+    async ({ page }): Promise<void> => {
+      await C100.c100ApplicationCompletedForYou({
+        page: page,
+        accessibilityTest: true,
+        errorMessaging: false,
+      });
+    },
+  );
 });
-
-test(
-  "Application completed for you with the following options:" +
-    "No error messaging." +
-    "Yes accessibility Testing" +
-    "@accessibilityCitizenFrontend",
-  async ({ page }): Promise<void> => {
-    await C100.c100ApplicationCompletedForYou({
-      page: page,
-      accessibilityTest: true,
-      errorMessaging: false,
-    });
-  },
-);
