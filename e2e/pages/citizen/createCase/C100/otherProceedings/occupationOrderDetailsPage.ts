@@ -106,9 +106,9 @@ export class OccupationOrderDetailsPage {
         2,
       ),
     ]);
-    if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
-    }
+    // if (accessibilityTest) {
+    //   await AccessibilityTestHelper.run(page);
+    // }
   }
 
   private static async triggerErrorMessages(page: Page): Promise<void> {

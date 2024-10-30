@@ -1,6 +1,7 @@
 import { Page } from "@playwright/test";
 import {
   ApplicantGender,
+  otherProceedingsRadios,
   Relationship,
   yesNoDontKnow,
 } from "../../../../../common/types";

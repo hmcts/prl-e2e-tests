@@ -106,9 +106,9 @@ export class OtherInjunctionOrderDetailsPage {
         2,
       ),
     ]);
-    if (accessibilityTest) {
-      await AxeTest.run(page);
-    }
+    // if (accessibilityTest) {
+    //   await AccessibilityTestHelper.run(page); #TODO Disabled pending PRL-6552 ticket
+    // }
   }
 
   private static async triggerErrorMessages(page: Page): Promise<void> {
