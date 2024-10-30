@@ -17,6 +17,13 @@ import { ApplicantGender, otherProceedingsRadios, Relationship, yesNoDontKnow } 
 import { C100ApplicantDetails } from "../../../manageCases/createCase/C100ApplicantDetails/c100ApplicantDetails";
 import { C100Confidentiality } from "./subJourneys/c100Confidentiality";
 import { C100CasePartyDetails } from "./subJourneys/c100CasePartyDetails";
+import { C100SafetyConcerns } from "./subJourneys/c100SafetyConcerns";
+import {
+  c100ChildrenSupervisionRadios
+} from "../../../../pages/citizen/createCase/C100/safetyConcerns/unsupervisedPage";
+import { C100InternationalElements } from "./subJourneys/c100InternationalElements";
+import { C100ReasonableAdjustments } from "./subJourneys/c100ReasonableAdjustments";
+import { C100HelpWithFees } from "./subJourneys/c100HelpWithFees";
 
 interface C100ApplicationCompletedForYouOptions {
   page: Page;
@@ -57,21 +64,40 @@ interface C100TopMiroJourneyOptions {
   c100PeopleYesNoDontKnow: yesNoDontKnow;
   c100OthersKnowApplicantsContact: yesNoDontKnow;
   c100PrivateDetails: boolean;
-  applicantChangeNameYesNo: boolean;
+  applicantChangedName: boolean;
   applicantGender: ApplicantGender;
-  under18: boolean;
   applicantRelationship: Relationship;
   applicantAddressLookup: boolean;
-  applicantAddressLookupSuccessful: boolean;
+  appAddressLookupSuccessful: boolean;
   applicantPrevAddress5Years: boolean;
-  provideEmailTelephoneVoicemail: boolean;
-  digitalPreference: boolean;
-  respondentKnownDob: boolean;
-  respKnownPlaceOfBirth: boolean;
-  respChangeNameYesNoDontKnow: yesNoDontKnow;
-  otherProceedingsRadios: otherProceedingsRadios;
-  dontKnowEmailAndTelephone: boolean;
+  applicantEmailTelephoneVoicemail: boolean;
+  applicantDigitalPreference: boolean;
+  respondentKnownDoB: boolean;
+  respondentKnownPlaceOfBirth: boolean;
+  respondentGender: ApplicantGender;
+  respondentChangedName: yesNoDontKnow;
+  respAddress5Years: yesNoDontKnow;
+  respAddressLookup: boolean;
+  respAddressLookupSuccessful: boolean;
+  respKnownEmailAndPhone: boolean;
   yesNoOtherPersonDetails: boolean;
+  c100OtherPeopleGender: ApplicantGender;
+  c100OtherPeopleChangedName: yesNoDontKnow;
+  c100OtherPeopleDoBKnown: boolean;
+  c100OtherPersonRelationship: Relationship;
+  yesNoChildArrangementOrderDetails: boolean;
+  yesNoOtherProceedings: boolean;
+  c100ChildrenSafetyConcerns: boolean;
+  c100SafetyConcernsYesNoToAll: boolean; // Applies to all booleans that don't affect the journey
+  c100ChildrenHavePassport: boolean; // If yes -> passport amount
+  c100MoreThanOnePassport: boolean;
+  c100PassportOfficeNotified: boolean;
+  c100ChildrenAbductedBefore: boolean; // if yes -> previous abductions page
+  c100ChildrenSupervision: c100ChildrenSupervisionRadios;
+  yesNoInternationalElements: boolean;
+  yesNoReasonableAdjustments: boolean;
+  c100YesNoNeedHelpWithFees: boolean;
+  c100YesNoFeesApplied: boolean;
 }
 
 interface C100SecondMiroJourneyOptions {
@@ -237,7 +263,41 @@ export class C100 {
     c100PeopleGender,
     c100PeopleYesNoDontKnow,
     c100PrivateDetails,
-    c100OthersKnowApplicantsContact
+    c100OthersKnowApplicantsContact,
+                                           applicantChangedName,
+                                           applicantGender,
+                                           applicantRelationship,
+                                           applicantAddressLookup,
+                                           appAddressLookupSuccessful,
+                                           applicantPrevAddress5Years,
+                                           applicantEmailTelephoneVoicemail,
+                                           applicantDigitalPreference,
+                                           respondentKnownDoB,
+                                           respondentKnownPlaceOfBirth,
+                                           respondentChangedName,
+                                           respondentGender,
+                                           respAddress5Years,
+                                           respAddressLookup,
+                                           respAddressLookupSuccessful,
+                                           respKnownEmailAndPhone,
+                                           yesNoOtherPersonDetails,
+                                           c100OtherPeopleGender,
+                                           c100OtherPeopleChangedName,
+                                           c100OtherPeopleDoBKnown,
+                                           c100OtherPersonRelationship,
+    yesNoChildArrangementOrderDetails,
+    yesNoOtherProceedings,
+    c100ChildrenSafetyConcerns,
+    c100ChildrenAbductedBefore,
+    c100ChildrenSupervision,
+    c100ChildrenHavePassport,
+    c100MoreThanOnePassport,
+    c100PassportOfficeNotified,
+    c100SafetyConcernsYesNoToAll,
+    yesNoInternationalElements,
+                                           yesNoReasonableAdjustments,
+    c100YesNoNeedHelpWithFees,
+    c100YesNoFeesApplied
   }: C100TopMiroJourneyOptions): Promise<void> {
     await CitizenCreateInitial.citizenCreateInitial({
       page: page,
@@ -287,10 +347,67 @@ export class C100 {
       page: page,
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
-
+      applicantChangedName: applicantChangedName,
+      applicantGender: applicantGender,
+      applicantRelationship: applicantRelationship,
+      applicantAddressLookup: applicantAddressLookup,
+      appAddressLookupSuccessful: appAddressLookupSuccessful,
+      applicantPrevAddress5Years: applicantPrevAddress5Years,
+      applicantEmailTelephoneVoicemail: applicantEmailTelephoneVoicemail,
+      applicantDigitalPreference: applicantDigitalPreference,
+      respondentKnownDoB: respondentKnownDoB,
+      respondentKnownPlaceOfBirth: respondentKnownPlaceOfBirth,
+      respondentGender: respondentGender,
+      respondentChangedName: respondentChangedName,
+      respAddress5Years: respAddress5Years,
+      respAddressLookup: respAddressLookup,
+      respAddressLookupSuccessful: respAddressLookupSuccessful,
+      respKnownEmailAndPhone: respKnownEmailAndPhone,
+      yesNoOtherPersonDetails: yesNoOtherPersonDetails,
+      c100OtherPeopleGender: c100OtherPeopleGender,
+      c100OtherPeopleChangedName: c100OtherPeopleChangedName,
+      c100OtherPeopleDoBKnown: c100OtherPeopleDoBKnown,
+      c100OtherPersonRelationship: c100OtherPersonRelationship,
+    });
+    await C100OtherProceedings.c100OtherProceedings1({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      yesNoChildArrangementOrderDetails: yesNoChildArrangementOrderDetails,
+      yesNoOtherProceedings: yesNoOtherProceedings
+    });
+    await C100SafetyConcerns.c100SafetyConcerns({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      c100ChildrenSafetyConcerns: c100ChildrenSafetyConcerns,
+      c100SafetyConcernsYesNoToAll: c100SafetyConcernsYesNoToAll,
+      c100ChildrenAbductedBefore: c100ChildrenAbductedBefore,
+      c100ChildrenSupervision: c100ChildrenSupervision,
+      c100ChildrenHavePassport: c100ChildrenHavePassport,
+      c100PassportOfficeNotified: c100PassportOfficeNotified,
+      c100MoreThanOnePassport: c100MoreThanOnePassport
+    });
+    await C100InternationalElements.c100InternationalElements({
+      page: page,
+      accessibilityTest:accessibilityTest,
+      errorMessaging: errorMessaging,
+      yesNoInternationalElements: yesNoInternationalElements
+    });
+    await C100ReasonableAdjustments.c100ReasonableAdjustments({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      yesNoReasonableAdjustments: yesNoReasonableAdjustments
+    });
+    await C100HelpWithFees.c100HelpWithFees({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      c100YesNoFeesApplied: c100YesNoFeesApplied,
+      c100YesNoNeedHelpWithFees: c100YesNoNeedHelpWithFees
     })
   }
-
 
   public static async c100SecondMiroJourney({
     page,
