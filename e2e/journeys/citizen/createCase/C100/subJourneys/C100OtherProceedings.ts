@@ -39,7 +39,6 @@ interface C100OtherProceedings1Options {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
-  yesNoChildArrangementOrderDetails: boolean;
   yesNoOtherProceedings: boolean;
 }
 
@@ -48,7 +47,6 @@ export class C100OtherProceedings {
     page,
     accessibilityTest,
     errorMessaging,
-    yesNoChildArrangementOrderDetails,
     yesNoOtherProceedings,
   }: C100OtherProceedings1Options): Promise<void> {
     await CurrentPreviousProceedingsPage.currentPreviousProceedingsPage({
@@ -71,7 +69,6 @@ export class C100OtherProceedings {
         errorMessaging,
         yesNoOtherProceedings,
       });
-      if (yesNoChildArrangementOrderDetails) {
         await ChildArrangementDocumentUploadPage.documentUploadPage({
           page,
           accessibilityTest,
@@ -281,6 +278,5 @@ export class C100OtherProceedings {
           accessibilityTest,
         });
       }
-    }
   }
 }

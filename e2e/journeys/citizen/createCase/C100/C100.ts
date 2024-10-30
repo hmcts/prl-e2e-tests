@@ -64,7 +64,6 @@ interface C100SecondMiroJourneyOptions {
   c100LegalRepresentation: boolean;
   c100CourtPermissionNeeded: boolean;
   yesNoOtherProceedings: boolean;
-  yesNoChildArrangementOrderDetails: boolean;
   urgencyAndWithoutNoticeAllOptionsYes: boolean;
 }
 
@@ -267,7 +266,6 @@ export class C100 {
     errorMessaging,
     c100LegalRepresentation,
     c100CourtPermissionNeeded,
-    yesNoChildArrangementOrderDetails,
     yesNoOtherProceedings,
     urgencyAndWithoutNoticeAllOptionsYes,
   }: C100SecondMiroJourneyOptions): Promise<void> {
@@ -307,7 +305,6 @@ export class C100 {
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
       yesNoOtherProceedings: yesNoOtherProceedings,
-      yesNoChildArrangementOrderDetails: yesNoChildArrangementOrderDetails,
     });
     await C100TypeOfOrder.c100TypeOfOrder({
       page: page,
