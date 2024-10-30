@@ -16,13 +16,9 @@ interface checkPageLoadsOptions {
   accessibilityTest: boolean;
 }
 
-enum inputIds {
-  postcodeLookup = "#PostCode",
-}
+const postcodeLookup: string = "#PostCode";
 
-enum invalidPostcode {
-  numericalPostcode = "0",
-}
+const numericalPostcode: string = "0";
 
 export class OtherPersonAddressLookupPage {
   public static async otherPersonAddressLookupPage({
@@ -87,7 +83,7 @@ export class OtherPersonAddressLookupPage {
         1,
       ),
     ]);
-    await page.fill(inputIds.postcodeLookup, invalidPostcode.numericalPostcode);
+    await page.fill(postcodeLookup, numericalPostcode);
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
@@ -109,7 +105,7 @@ export class OtherPersonAddressLookupPage {
 
   private static async fillInFields(page: Page): Promise<void> {
     await page.fill(
-      inputIds.postcodeLookup,
+      postcodeLookup,
       OtherPersonAddressLookupContent.postcodeText,
     );
     await page.click(
