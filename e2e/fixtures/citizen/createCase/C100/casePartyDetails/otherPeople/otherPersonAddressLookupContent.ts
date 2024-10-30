@@ -5,5 +5,5 @@ export enum OtherPersonAddressLookupContent {
   postcodeText = "CF10 1NS",
   errorMessage = "Enter the postcode",
   invalidPostcodeError = "Enter a valid postcode",
-  insetText = "Documents relating to this application may be sent here"
+  insetText = "Documents relating to this application may be sent here",
 }

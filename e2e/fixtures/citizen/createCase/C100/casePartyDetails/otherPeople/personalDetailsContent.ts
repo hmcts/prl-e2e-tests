@@ -47,5 +47,5 @@ export enum PersonalDetailsContent {
   dobYear = "1990",
   approxDoBDay = "17",
   approxDoBMonth = "12",
-  approxDoBYear = "1990"
+  approxDoBYear = "1990",
 }

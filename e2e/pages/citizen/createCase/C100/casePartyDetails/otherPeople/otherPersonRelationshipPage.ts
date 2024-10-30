@@ -4,15 +4,13 @@ import { Selectors } from "../../../../../../common/selectors";
 import { Helpers } from "../../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../../common/commonStaticText";
 import { Relationship } from "../../../../../../common/types";
-import {
-  OtherPersonRelationshipContent
-} from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/otherPeople/otherPersonRelationshipContent";
+import { OtherPersonRelationshipContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/otherPeople/otherPersonRelationshipContent";
 
 interface applicantPageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
-  relationship: Relationship;
+  c100OtherPersonRelationship: Relationship;
 }
 
 interface checkPageLoadsOptions {
@@ -22,7 +20,7 @@ interface checkPageLoadsOptions {
 
 interface fillInFieldsOptions {
   page: Page;
-  relationship: Relationship;
+  c100OtherPersonRelationship: Relationship;
 }
 
 enum inputIds {
@@ -36,25 +34,25 @@ enum inputIds {
 
 export class OtherPersonRelationshipPage {
   public static async otherPersonRelationshipPage({
-                                                         page,
-                                                         accessibilityTest,
-                                                         errorMessaging,
-                                                         relationship,
-                                                       }: applicantPageOptions): Promise<void> {
+    page,
+    accessibilityTest,
+    errorMessaging,
+    c100OtherPersonRelationship,
+  }: applicantPageOptions): Promise<void> {
     await this.checkPageLoads({ page, accessibilityTest });
     if (errorMessaging) {
       await this.triggerErrorMessages(page);
     }
     await this.fillInFields({
       page,
-      relationship,
+      c100OtherPersonRelationship: c100OtherPersonRelationship,
     });
   }
 
   private static async checkPageLoads({
-                                        page,
-                                        accessibilityTest,
-                                      }: checkPageLoadsOptions): Promise<void> {
+    page,
+    accessibilityTest,
+  }: checkPageLoadsOptions): Promise<void> {
     await Promise.all([
       //wait for two parts of the title to load, split by dynamic content
       page.waitForSelector(
@@ -107,9 +105,7 @@ export class OtherPersonRelationshipPage {
         1,
       ),
     ]);
-    await page.click(
-      inputIds.other
-    );
+    await page.click(inputIds.other);
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
@@ -133,15 +129,15 @@ export class OtherPersonRelationshipPage {
   }
 
   private static async fillInFields({
-                                      page,
-                                      relationship,
-                                    }: fillInFieldsOptions): Promise<void> {
-    if (!(relationship in Object.keys(inputIds))) {
+    page,
+    c100OtherPersonRelationship,
+  }: fillInFieldsOptions): Promise<void> {
+    if (!(c100OtherPersonRelationship in Object.keys(inputIds))) {
       throw new Error(
-        `The value 'relationship' must be one of 'mother', 'father', 'guardian', 'specialGuardian', 'grandparent', 'other'. You used ${relationship}.`,
+        `The value 'relationship' must be one of 'mother', 'father', 'guardian', 'specialGuardian', 'grandparent', 'other'. You used ${c100OtherPersonRelationship}.`,
       );
     }
-    let inputKey = relationship as keyof typeof inputIds;
+    let inputKey = c100OtherPersonRelationship as keyof typeof inputIds;
     await page.click(inputIds[inputKey]);
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,

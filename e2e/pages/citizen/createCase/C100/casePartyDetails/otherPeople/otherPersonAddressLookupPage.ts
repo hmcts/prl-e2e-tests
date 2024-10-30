@@ -21,15 +21,15 @@ enum inputIds {
 }
 
 enum invalidPostcode {
-  numericalPostcode = "0"
+  numericalPostcode = "0",
 }
 
 export class OtherPersonAddressLookupPage {
   public static async otherPersonAddressLookupPage({
-                                                   page,
-                                                   accessibilityTest,
-                                                   errorMessaging,
-                                                 }: applicantAddressLookupOptions): Promise<void> {
+    page,
+    accessibilityTest,
+    errorMessaging,
+  }: applicantAddressLookupOptions): Promise<void> {
     await this.checkPageLoads({ page, accessibilityTest });
     if (errorMessaging) {
       await this.triggerErrorMessages(page);
@@ -38,9 +38,9 @@ export class OtherPersonAddressLookupPage {
   }
 
   private static async checkPageLoads({
-                                        page,
-                                        accessibilityTest,
-                                      }: checkPageLoadsOptions): Promise<void> {
+    page,
+    accessibilityTest,
+  }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.GovukHeadingL}:has-text("${OtherPersonAddressLookupContent.pageTitle}")`,
     );
@@ -58,8 +58,8 @@ export class OtherPersonAddressLookupPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukInsetText}:text-is("${OtherPersonAddressLookupContent.insetText}")`,
-        1
-      )
+        1,
+      ),
     ]);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
@@ -87,10 +87,7 @@ export class OtherPersonAddressLookupPage {
         1,
       ),
     ]);
-    await page.fill(
-      inputIds.postcodeLookup,
-      invalidPostcode.numericalPostcode
-    );
+    await page.fill(inputIds.postcodeLookup, invalidPostcode.numericalPostcode);
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
@@ -111,12 +108,12 @@ export class OtherPersonAddressLookupPage {
   }
 
   private static async fillInFields(page: Page): Promise<void> {
-      await page.fill(
-        inputIds.postcodeLookup,
-        OtherPersonAddressLookupContent.postcodeText,
-      );
-      await page.click(
-        `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
-      );
+    await page.fill(
+      inputIds.postcodeLookup,
+      OtherPersonAddressLookupContent.postcodeText,
+    );
+    await page.click(
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
+    );
   }
 }

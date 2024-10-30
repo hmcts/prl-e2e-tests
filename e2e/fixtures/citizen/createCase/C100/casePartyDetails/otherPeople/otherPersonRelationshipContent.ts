@@ -11,5 +11,5 @@ export enum OtherPersonRelationshipContent {
   formHint2 = "Someone who represents the rights of a child, may be appointed by a parent, special guardian or the court",
   otherFormLabel = "Please specify",
   errorSummaryList = "Enter the relationship",
-  errorMessage = "Enter the relationship"
+  errorMessage = "Enter the relationship",
 }
