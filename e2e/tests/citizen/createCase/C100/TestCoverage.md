@@ -16,6 +16,7 @@ This requires you to select 'true' for the c100ScreeningWrittenAgreementReview a
 `c100ScreeningWrittenAgreementReview: true`
 
 We will primarily select `true` or `yes` in this journey.
+We will also use `male` as the chosen gender.
 
 Coverage:
 
@@ -30,19 +31,21 @@ Coverage:
    - `urgencyAndWithoutNoticeAllOptionsYes: true`
 4. People
    - Child Details
-     - Has gender radios
-     - Has yes/no/dontKnow radios
-     - Has yes/no radios
-     - Has sex radios
+     - Has gender radios. `male`
+     - Has yes/no/dontKnow radios. `yes`
+     - Has yes/no radios. `true`
+     - Has sex radios. `true`
    - Applicant Details
 5. Confidentiality Agreement
    - `c100OthersKnowApplicantsContact: yesNoDontKnow`
-     - Set to yes for this journey
+     - Set to `yes` for this journey
    - `c100PrivateDetails: boolean`
-     - Set to true + false for this journey
+     - Set to `true` for this journey
 6. Case Parties
    - 3 types of details
      - Applicant Details
+       - changedName
+       - gender: `male`
      - Respondent Details
      - Other details
    - Yes/No radios

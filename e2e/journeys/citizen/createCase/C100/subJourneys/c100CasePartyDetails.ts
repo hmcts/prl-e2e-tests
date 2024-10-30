@@ -24,21 +24,22 @@ interface c100CasePartyDetailsOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
-  changeNameYesNo: boolean;
-  gender: ApplicantGender;
-  under18: boolean;
-  placeOfBirth: string;
-  relationship: Relationship;
-  addressLookup: boolean;
-  addressLookupSuccessful: boolean;
-  prevAddress5Years: boolean;
-  provideEmailTelephoneVoicemail: boolean;
-  digitalPreference: boolean;
-  knownDob: boolean;
-  knownPlaceOfBirth: boolean;
-  changeNameYesNoDontKnow: yesNoDontKnow;
-  otherProceedingsRadios: otherProceedingsRadios;
-  dontKnowEmailAndTelephone: boolean;
+  applicantChangedName: boolean;
+  applicantGender: ApplicantGender;
+  applicantRelationship: Relationship;
+  applicantAddressLookup: boolean;
+  appAddressLookupSuccessful: boolean;
+  applicantPrevAddress5Years: boolean;
+  applicantEmailTelephoneVoicemail: boolean;
+  applicantDigitalPreference: boolean;
+  respondentKnownDoB: boolean;
+  respondentKnownPlaceOfBirth: boolean;
+  respondentGender: ApplicantGender;
+  respondentChangedName: yesNoDontKnow;
+  respAddress5Years: yesNoDontKnow;
+  respAddressLookup: boolean;
+  respAddressLookupSuccessful: boolean;
+  respKnownEmailAndPhone: boolean;
   yesNoOtherPersonDetails: boolean;
 }
 
@@ -47,138 +48,138 @@ export class C100CasePartyDetails {
     page,
     accessibilityTest,
     errorMessaging,
-    changeNameYesNo,
-    gender,
-    under18,
-    placeOfBirth,
-    relationship,
-    addressLookup,
-    addressLookupSuccessful,
-    prevAddress5Years,
-    provideEmailTelephoneVoicemail,
-    digitalPreference,
-    knownDob,
-    knownPlaceOfBirth,
-    changeNameYesNoDontKnow,
-    otherProceedingsRadios,
-    dontKnowEmailAndTelephone,
+    applicantChangedName,
+    applicantGender,
+    applicantRelationship,
+    applicantAddressLookup,
+    appAddressLookupSuccessful,
+    applicantPrevAddress5Years,
+    applicantEmailTelephoneVoicemail,
+    applicantDigitalPreference,
+    respondentKnownDoB,
+    respondentKnownPlaceOfBirth,
+    respondentChangedName,
+    respondentGender,
+    respAddress5Years,
+    respAddressLookup,
+    respAddressLookupSuccessful,
+    respKnownEmailAndPhone,
     yesNoOtherPersonDetails,
   }: c100CasePartyDetailsOptions): Promise<void> {
     await ApplicantPersonalDetailsPage.applicantPersonalDetailsPage({
-      page,
-      accessibilityTest,
-      errorMessaging,
-      changeNameYesNo,
-      gender,
-      under18,
-      placeOfBirth,
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      changeNameYesNo: applicantChangedName,
+      gender: applicantGender,
+      under18: false,
     });
     await ApplicantRelationshipToChildPage.applicantRelationshipToChildPage({
-      page,
-      accessibilityTest,
-      errorMessaging,
-      relationship,
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      relationship: applicantRelationship,
     });
     await ApplicantAddressLookupPage.applicantAddressLookupPage({
-      page,
-      accessibilityTest,
-      errorMessaging,
-      addressLookup,
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      addressLookup: applicantAddressLookup,
     });
     await ApplicantAddressSelectPage.applicantAddressSelectPage({
-      page,
-      accessibilityTest,
-      errorMessaging,
-      addressLookupSuccessful,
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      addressLookupSuccessful: appAddressLookupSuccessful,
     });
     await ApplicantAddressManualPage.applicantAddressManualPage({
-      page,
-      accessibilityTest,
-      errorMessaging,
-      prevAddress5Years,
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      prevAddress5Years: applicantPrevAddress5Years,
     });
     await ApplicantContactDetailPage.applicantContactDetailPage({
-      page,
-      accessibilityTest,
-      errorMessaging,
-      provideEmailTelephoneVoicemail,
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      provideEmailTelephoneVoicemail: applicantEmailTelephoneVoicemail,
     });
     await ApplicantContactPreferencePage.applicantContactPreferencePage({
-      page,
-      accessibilityTest,
-      errorMessaging,
-      digitalPreference,
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      digitalPreference: applicantDigitalPreference,
     });
     await RespondentDetailsAddRespondentsPage.respondentDetailsAddRespondentsPage(
       {
-        page,
-        accessibilityTest,
-        errorMessaging,
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
       },
     );
     await RespondentDetailsPersonalDetailsPage.respondentDetailsPersonalDetailsPage(
       {
-        page,
-        accessibilityTest,
-        errorMessaging,
-        changeNameYesNoDontKnow,
-        gender,
-        knownDob,
-        knownPlaceOfBirth,
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
+        changeNameYesNoDontKnow: respondentChangedName,
+        respondentGender: respondentGender,
+        knownDob: respondentKnownDoB,
+        knownPlaceOfBirth: respondentKnownPlaceOfBirth,
       },
     );
     await RespondentDetailsAddressLookupPage.respondentDetailsAddressLookupPage(
       {
-        page,
-        accessibilityTest,
-        errorMessaging,
-        addressLookup,
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
+        addressLookup: respAddressLookup,
       },
     );
     await RespondentDetailsAddressSelectPage.respondentDetailsAddressSelectPage(
       {
-        page,
-        accessibilityTest,
-        errorMessaging,
-        addressLookupSuccessful,
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
+        addressLookupSuccessful: respAddressLookupSuccessful,
       },
     );
 
     await RespondentDetailsAddRespondentsPage.respondentDetailsAddRespondentsPage(
       {
-        page,
-        accessibilityTest,
-        errorMessaging,
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
       },
     );
     await RespondentDetailsAddressManualPage.respondentDetailsAddressManualPage(
       {
-        page,
-        accessibilityTest,
-        errorMessaging,
-        otherProceedingsRadios,
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
+        respAddress5Years: respAddress5Years,
       },
     );
     await RespondentDetailsContactDetailsPage.respondentDetailsContactDetailsPage(
       {
-        page,
-        accessibilityTest,
-        errorMessaging,
-        dontKnowEmailAndTelephone: dontKnowEmailAndTelephone,
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
+        dontKnowEmailAndTelephone: respKnownEmailAndPhone,
       },
     );
     await OtherPersonDetailsCheckPage.otherPersonDetailsCheckPage({
-      page,
-      accessibilityTest,
-      errorMessaging,
-      yesNoOtherPersonDetails,
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      yesNoOtherPersonDetails: yesNoOtherPersonDetails,
     });
     if (yesNoOtherPersonDetails) {
       await OtherPersonDetailsAddOtherPersonsPage.otherPersonDetailsAddOtherPersonsPage(
         {
-          page,
-          accessibilityTest,
-          errorMessaging,
+          page: page,
+          accessibilityTest: accessibilityTest,
+          errorMessaging: errorMessaging,
         },
       );
     }

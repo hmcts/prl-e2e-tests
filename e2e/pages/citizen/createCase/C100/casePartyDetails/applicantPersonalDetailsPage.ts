@@ -13,7 +13,6 @@ interface applicantPersonalDetailsPageOptions {
   changeNameYesNo: boolean;
   gender: ApplicantGender;
   under18: boolean;
-  placeOfBirth: string;
 }
 
 interface checkPageLoadsOptions {
@@ -26,7 +25,6 @@ interface fillInFieldsOptions {
   changeNameYesNo: boolean;
   gender: ApplicantGender;
   under18: boolean;
-  placeOfBirth: string;
 }
 
 enum uniqueSelectors {
@@ -55,7 +53,6 @@ export class ApplicantPersonalDetailsPage {
     changeNameYesNo,
     gender,
     under18,
-    placeOfBirth,
   }: applicantPersonalDetailsPageOptions): Promise<void> {
     await this.checkPageLoads({ page, accessibilityTest });
     if (errorMessaging) {
@@ -66,7 +63,6 @@ export class ApplicantPersonalDetailsPage {
       changeNameYesNo,
       gender,
       under18,
-      placeOfBirth,
     });
   }
   private static async checkPageLoads({

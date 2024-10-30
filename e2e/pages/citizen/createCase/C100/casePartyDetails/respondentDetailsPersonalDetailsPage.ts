@@ -45,7 +45,7 @@ interface respondentDetailsPersonalDetailsPageOptions {
   accessibilityTest: boolean;
   errorMessaging: boolean;
   changeNameYesNoDontKnow: yesNoDontKnow;
-  gender: ApplicantGender;
+  respondentGender: ApplicantGender;
   knownDob: boolean;
   knownPlaceOfBirth: boolean;
 }
@@ -58,7 +58,7 @@ interface checkPageLoadsOptions {
 interface fillInFieldsOptions {
   page: Page;
   changeNameYesNoDontKnow: yesNoDontKnow;
-  gender: ApplicantGender;
+  respondentGender: ApplicantGender;
   knownDob: boolean;
   knownPlaceOfBirth: boolean;
 }
@@ -69,7 +69,7 @@ export class RespondentDetailsPersonalDetailsPage {
     accessibilityTest,
     errorMessaging,
     changeNameYesNoDontKnow,
-    gender,
+    respondentGender,
     knownDob,
     knownPlaceOfBirth,
   }: respondentDetailsPersonalDetailsPageOptions): Promise<void> {
@@ -80,7 +80,7 @@ export class RespondentDetailsPersonalDetailsPage {
     await this.fillInFields({
       page,
       changeNameYesNoDontKnow,
-      gender,
+      respondentGender: respondentGender,
       knownDob,
       knownPlaceOfBirth,
     });
@@ -171,7 +171,7 @@ export class RespondentDetailsPersonalDetailsPage {
   private static async fillInFields({
     page,
     changeNameYesNoDontKnow,
-    gender,
+    respondentGender,
     knownDob,
     knownPlaceOfBirth,
   }: fillInFieldsOptions): Promise<void> {
@@ -208,7 +208,7 @@ export class RespondentDetailsPersonalDetailsPage {
           `Unexpected value for changeName: ${changeNameYesNoDontKnow}`,
         );
     }
-    switch (gender) {
+    switch (respondentGender) {
       case "female":
         await page.click(InputIds.female);
         break;
@@ -227,7 +227,7 @@ export class RespondentDetailsPersonalDetailsPage {
         );
         break;
       default:
-        throw new Error(`Unexpected value for gender: ${gender}`);
+        throw new Error(`Unexpected value for gender: ${respondentGender}`);
     }
     if (knownDob) {
       await page.fill(InputIds.dobDay, day);

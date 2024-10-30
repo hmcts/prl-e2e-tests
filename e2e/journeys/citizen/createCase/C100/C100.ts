@@ -13,7 +13,10 @@ import { MiamOtherReasonForNotAttending } from "../../../../pages/citizen/create
 import { MiamReasonForNoAccessToMediator } from "../../../../pages/citizen/createCase/C100/MIAM/miamNoAccessToMediatorPage";
 import { C100OtherProceedings } from "./subJourneys/C100OtherProceedings";
 import { C100ApplicationCompletedForYou } from "./C100ApplicationCompletedForYou";
-import { ApplicantGender, yesNoDontKnow } from "../../../../common/types";
+import { ApplicantGender, otherProceedingsRadios, Relationship, yesNoDontKnow } from "../../../../common/types";
+import { C100ApplicantDetails } from "../../../manageCases/createCase/C100ApplicantDetails/c100ApplicantDetails";
+import { C100Confidentiality } from "./subJourneys/c100Confidentiality";
+import { C100CasePartyDetails } from "./subJourneys/c100CasePartyDetails";
 
 interface C100ApplicationCompletedForYouOptions {
   page: Page;
@@ -52,9 +55,23 @@ interface C100TopMiroJourneyOptions {
   urgencyAndWithoutNoticeAllOptionsYes: boolean;
   c100PeopleGender: ApplicantGender;
   c100PeopleYesNoDontKnow: yesNoDontKnow;
-  // c100OthersKnowApplicantsContact: yesNoDontKnow;
-  // c100PrivateDetails: boolean;
-  // c100ChildrenSafetyConcerns: boolean;
+  c100OthersKnowApplicantsContact: yesNoDontKnow;
+  c100PrivateDetails: boolean;
+  applicantChangeNameYesNo: boolean;
+  applicantGender: ApplicantGender;
+  under18: boolean;
+  applicantRelationship: Relationship;
+  applicantAddressLookup: boolean;
+  applicantAddressLookupSuccessful: boolean;
+  applicantPrevAddress5Years: boolean;
+  provideEmailTelephoneVoicemail: boolean;
+  digitalPreference: boolean;
+  respondentKnownDob: boolean;
+  respKnownPlaceOfBirth: boolean;
+  respChangeNameYesNoDontKnow: yesNoDontKnow;
+  otherProceedingsRadios: otherProceedingsRadios;
+  dontKnowEmailAndTelephone: boolean;
+  yesNoOtherPersonDetails: boolean;
 }
 
 interface C100SecondMiroJourneyOptions {
@@ -219,6 +236,8 @@ export class C100 {
     urgencyAndWithoutNoticeAllOptionsYes,
     c100PeopleGender,
     c100PeopleYesNoDontKnow,
+    c100PrivateDetails,
+    c100OthersKnowApplicantsContact
   }: C100TopMiroJourneyOptions): Promise<void> {
     await CitizenCreateInitial.citizenCreateInitial({
       page: page,
@@ -257,9 +276,21 @@ export class C100 {
       gender: c100PeopleGender,
       c100PeopleYesNoDontKnow: c100PeopleYesNoDontKnow,
     });
-    // Applicant Details
-    // Confidentiality
+    await C100Confidentiality.c100Confidentiality({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      c100PrivateDetails: c100PrivateDetails,
+      c100OthersKnowApplicantsContact: c100OthersKnowApplicantsContact
+    });
+    await C100CasePartyDetails.C100CasePartyDetails({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+
+    })
   }
+
 
   public static async c100SecondMiroJourney({
     page,
