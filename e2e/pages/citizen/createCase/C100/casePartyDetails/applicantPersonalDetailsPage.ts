@@ -6,11 +6,11 @@ import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { ApplicantGender } from "../../../../../common/types";
 
-interface personalDetailsPageOptions {
+interface applicantPersonalDetailsPageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
-  changeName: boolean;
+  changeNameYesNo: boolean;
   gender: ApplicantGender;
   under18: boolean;
   placeOfBirth: string;
@@ -23,7 +23,7 @@ interface checkPageLoadsOptions {
 
 interface fillInFieldsOptions {
   page: Page;
-  changeName: boolean;
+  changeNameYesNo: boolean;
   gender: ApplicantGender;
   under18: boolean;
   placeOfBirth: string;
@@ -52,24 +52,23 @@ export class ApplicantPersonalDetailsPage {
     page,
     accessibilityTest,
     errorMessaging,
-    changeName,
+    changeNameYesNo,
     gender,
     under18,
     placeOfBirth,
-  }: personalDetailsPageOptions): Promise<void> {
+  }: applicantPersonalDetailsPageOptions): Promise<void> {
     await this.checkPageLoads({ page, accessibilityTest });
     if (errorMessaging) {
       await this.triggerErrorMessages(page);
     }
     await this.fillInFields({
       page,
-      changeName,
+      changeNameYesNo,
       gender,
       under18,
       placeOfBirth,
     });
   }
-
   private static async checkPageLoads({
     page,
     accessibilityTest,
@@ -77,7 +76,6 @@ export class ApplicantPersonalDetailsPage {
     await page.waitForSelector(
       `${Selectors.GovukHeadingXL}:has-text("${ApplicantPersonalDetailsContent.pageTitle}")`,
     );
-
     await Promise.all([
       Helpers.checkGroup(
         page,
@@ -106,12 +104,10 @@ export class ApplicantPersonalDetailsPage {
         1,
       ),
     ]);
-
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }
   }
-
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
@@ -119,7 +115,6 @@ export class ApplicantPersonalDetailsPage {
     await this.checkErrorSummary(page);
     await this.fillInvalidDateOfBirth(page);
   }
-
   private static async checkErrorSummary(page: Page): Promise<void> {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -143,7 +138,6 @@ export class ApplicantPersonalDetailsPage {
       ),
     ]);
   }
-
   private static async fillInvalidDateOfBirth(page: Page): Promise<void> {
     await Promise.all([
       page.fill(inputIds.day, ApplicantPersonalDetailsContent.invalidDob),
@@ -171,26 +165,22 @@ export class ApplicantPersonalDetailsPage {
       ),
     ]);
   }
-
   private static async fillInFields({
     page,
-    changeName,
+    changeNameYesNo,
     gender,
     under18,
   }: fillInFieldsOptions): Promise<void> {
     const [day, month, year] = Helpers.generateDOB(under18);
-
     await page.click(
-      changeName ? inputIds.changeNameYes : inputIds.changeNameNo,
+      changeNameYesNo ? inputIds.changeNameYes : inputIds.changeNameNo,
     );
-
-    if (changeName) {
+    if (changeNameYesNo) {
       await page.fill(
         inputIds.prevName,
         ApplicantPersonalDetailsContent.prevNameText,
       );
     }
-
     switch (gender) {
       case "male":
         await page.click(inputIds.male);
@@ -209,12 +199,10 @@ export class ApplicantPersonalDetailsPage {
       page.fill(inputIds.month, month),
       page.fill(inputIds.year, year),
     ]);
-
     await page.fill(
       inputIds.placeOfBirth,
       ApplicantPersonalDetailsContent.placeOfBirthText,
     );
-
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
