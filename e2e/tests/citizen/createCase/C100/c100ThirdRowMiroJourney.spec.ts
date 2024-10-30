@@ -470,8 +470,8 @@ test.describe("C100 Citizen Application accessibility tests on the third row jou
   test.beforeEach(async ({ page }) => {
     // Sign in as a citizen user before each test
     await IdamLoginHelper.signInCitizenUser(
-        page,
-        Config.citizenFrontendBaseURL,
+      page,
+      Config.citizenFrontendBaseURL,
     );
   });
   test(`C100 Citizen Application with the following options:
