@@ -20,14 +20,13 @@ test.describe("Manage citizen cases case dashboard tests. @citizenFrontend @cros
       childArrangementsJourney: "C100",
     });
   });
-});
-
-test("Check the case dashboard is accessible @accessibilityCitizenFrontend", async ({
-  page,
-}): Promise<void> => {
-  await CitizenCreateInitial.citizenCreateInitial({
-    page: page,
-    accessibilityTest: true,
-    childArrangementsJourney: "C100",
+  test("Check the case dashboard is accessible @accessibilityCitizenFrontend", async ({
+    page,
+  }): Promise<void> => {
+    await CitizenCreateInitial.citizenCreateInitial({
+      page: page,
+      accessibilityTest: true,
+      childArrangementsJourney: "C100",
+    });
   });
 });
