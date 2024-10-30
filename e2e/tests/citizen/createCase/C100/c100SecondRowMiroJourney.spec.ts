@@ -50,9 +50,7 @@ test.describe("C100 Citizen Application tests on the second MIRO set. @citizenFr
       urgencyAndWithoutNoticeAllOptionsYes: false,
     });
   });
-});
-
-test(`Test the second row of the second row c100 citizen journey with the following options:
+  test(`Test the second row of the second row c100 citizen journey with the following options:
     Not Accessibility Testing,
     Not Error Messaging,
     No Screening and Written Review
@@ -62,13 +60,15 @@ test(`Test the second row of the second row c100 citizen journey with the follow
     child arrangement order details: no
     urgency and without notice: no,
     @accessibilityCitizenFrontend`, async ({ page }): Promise<void> => {
-  await C100.c100SecondMiroJourney({
-    page: page,
-    accessibilityTest: true,
-    errorMessaging: false,
-    c100LegalRepresentation: false,
-    c100CourtPermissionNeeded: false,
-    yesNoOtherProceedings: false,
-    urgencyAndWithoutNoticeAllOptionsYes: false,
+    await C100.c100SecondMiroJourney({
+      page: page,
+      accessibilityTest: true,
+      errorMessaging: false,
+      c100LegalRepresentation: false,
+      c100CourtPermissionNeeded: false,
+      yesNoOtherProceedings: false,
+      urgencyAndWithoutNoticeAllOptionsYes: false,
+    });
   });
 });
+
