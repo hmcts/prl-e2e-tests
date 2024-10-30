@@ -57,7 +57,7 @@ Coverage:
 7. Other Proceedings
    -Checkboxes and repeated pages
    - 2x boolean yes/no on each page
-   - both set to true for this journey
+   - both set to `true` for this journey
 8. Safety Concerns
    - yes/no boolean
      - If no: skip out whole section
@@ -69,11 +69,15 @@ Coverage:
    - `yesNoInternationalElements: true`
 10. Reasonable Adjustments
     - Loads of checkboxes
-    - No variables
+    - yesNoReasonableAdjustments: `true`
 11. Help with fees
     - boolean yes/no
     - If No: skip section,
     - If yes: next page, another yes/no radio
+      - Set to `true`
+    - If Fees applies: fill in ref number
+      - if mot, get a ref number
+    - Fees Applied set to `true`
 
 ### Second Row
 
