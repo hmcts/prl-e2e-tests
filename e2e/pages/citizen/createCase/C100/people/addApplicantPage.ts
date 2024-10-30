@@ -1,11 +1,11 @@
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
-import { AddChildrenContent } from "../../../../../fixtures/citizen/createCase/C100/people/addChildrenContent";
+import { AddApplicantContent } from "../../../../../fixtures/citizen/createCase/C100/people/addApplicantContent";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 
-interface AddChildrenPageOptions {
+interface AddApplicantPageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
@@ -21,16 +21,16 @@ interface fillInFieldsOptions {
 }
 
 enum inputIds {
-  firstName = "#c100TempFirstName",
-  lastName = "#c100TempLastName",
+  firstName = "#applicantFirstName",
+  lastName = "#applicantLastName",
 }
 
-export class AddChildrenPage {
-  public static async addChildrenPage({
+export class AddApplicantPage {
+  public static async addApplicantPage({
     page: page,
     accessibilityTest: accessibilityTest,
     errorMessaging: errorMessaging,
-  }: AddChildrenPageOptions): Promise<void> {
+  }: AddApplicantPageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
       accessibilityTest: accessibilityTest,
@@ -47,24 +47,33 @@ export class AddChildrenPage {
     page: page,
     accessibilityTest: accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
-    await Promise.any([
-      page.waitForSelector(
-        `${Selectors.GovukHeadingXL}:text-is("${AddChildrenContent.pageTitle}")`,
-      ),
-      page.waitForSelector(
-        `${Selectors.GovukHeadingXL}:text-is("${AddChildrenContent.pageTitle2}")`,
-      ),
-    ]);
+    await page.waitForSelector(
+      `${Selectors.GovukHeadingXL}:text-is("${AddApplicantContent.pageTitle}")`,
+    );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h1}:text-is("${AddChildrenContent.heading}")`,
+        `${Selectors.GovukHeadingM}:text-is("${AddApplicantContent.heading}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${AddChildrenContent.hint}")`,
+        `${Selectors.GovukHint}:text-is("${AddApplicantContent.hint}")`,
         1,
+      ),
+      Helpers.checkGroup(
+        page,
+        2,
+        AddApplicantContent,
+        "insetText",
+        `${Selectors.GovukInsetText}`,
+      ),
+      Helpers.checkGroup(
+        page,
+        2,
+        AddApplicantContent,
+        "label",
+        `${Selectors.GovukLabel}`,
       ),
     ]);
     if (accessibilityTest) {
@@ -85,14 +94,14 @@ export class AddChildrenPage {
       Helpers.checkGroup(
         page,
         2,
-        AddChildrenContent,
+        AddApplicantContent,
         "errorLink",
         `${Selectors.a}`,
       ),
       Helpers.checkGroup(
         page,
         2,
-        AddChildrenContent,
+        AddApplicantContent,
         "errorLink",
         `${Selectors.GovukErrorMessageCitizen}`,
       ),
@@ -103,7 +112,7 @@ export class AddChildrenPage {
     page: page,
   }: fillInFieldsOptions): Promise<void> {
     for (const selector of Object.values(inputIds)) {
-      await page.fill(`${selector}`, AddChildrenContent.exampleText);
+      await page.fill(`${selector}`, AddApplicantContent.exampleText);
     }
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,

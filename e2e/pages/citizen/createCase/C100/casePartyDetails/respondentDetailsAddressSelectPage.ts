@@ -1,13 +1,12 @@
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
-import { ApplicantAddressLookupContent } from "../../../../../fixtures/citizen/createCase/C100/casePartyDetails/applicantAddressLookupContent";
-import { ApplicantAddressSelectContent } from "../../../../../fixtures/citizen/createCase/C100/casePartyDetails/applicantAddressSelectContent";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-import { ApplicantPersonalDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/casePartyDetails/applicantPersonalDetailsContent";
+import { RespondentDetailsAddressSelectContent } from "../../../../../fixtures/citizen/createCase/C100/casePartyDetails/respondentDetailsAddressSelectContent";
+import { RespondentDetailsAddressLookupContent } from "../../../../../fixtures/citizen/createCase/C100/casePartyDetails/respondentDetailsAddressLookupContent";
 
-interface applicantAddressSelectOptions {
+interface respondentDetailsAddressSelectOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
@@ -29,13 +28,13 @@ enum inputIds {
   cannotFindAddress = "#cannotFindAddress",
 }
 
-export class ApplicantAddressSelectPage {
-  public static async applicantAddressSelectPage({
+export class RespondentDetailsAddressSelectPage {
+  public static async respondentDetailsAddressSelectPage({
     page,
     accessibilityTest,
     errorMessaging,
     addressLookupSuccessful,
-  }: applicantAddressSelectOptions): Promise<void> {
+  }: respondentDetailsAddressSelectOptions): Promise<void> {
     await this.checkPageLoads({ page, accessibilityTest });
     if (errorMessaging) {
       await this.triggerErrorMessages(page);
@@ -50,26 +49,26 @@ export class ApplicantAddressSelectPage {
     accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukHeadingL}:has-text("${ApplicantAddressSelectContent.pageTitle}")`,
+      `${Selectors.GovukHeadingL}:has-text("${RespondentDetailsAddressSelectContent.pageTitle}")`,
     );
     await Promise.all([
       Helpers.checkGroup(
         page,
         2,
-        ApplicantPersonalDetailsContent,
+        RespondentDetailsAddressSelectContent,
         "label",
         Selectors.GovukLabel,
       ),
       Helpers.checkGroup(
         page,
         2,
-        ApplicantPersonalDetailsContent,
+        RespondentDetailsAddressSelectContent,
         "link",
         Selectors.GovukLink,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukBody}:text-is("${ApplicantAddressLookupContent.postcodeText}")`, // checking that the postcode put in on the previous page is displaying on this page correctly
+        `${Selectors.GovukBody}:text-is("${RespondentDetailsAddressLookupContent.postcodeText}")`, // checking that the postcode put in on the previous page is displaying on this page correctly
         1,
       ),
     ]);
@@ -89,12 +88,12 @@ export class ApplicantAddressSelectPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorSummary}:text-is("${ApplicantAddressSelectContent.errorMessage}")`,
+        `${Selectors.GovukErrorSummary}:text-is("${RespondentDetailsAddressSelectContent.errorMessage}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessageCitizen}:text-is("${ApplicantAddressSelectContent.errorMessage}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${RespondentDetailsAddressSelectContent.errorMessage}")`,
         1,
       ),
     ]);
@@ -105,7 +104,7 @@ export class ApplicantAddressSelectPage {
   }: fillInFieldsOptions): Promise<void> {
     if (addressLookupSuccessful) {
       await page.selectOption(`${inputIds.selectAddress}`, {
-        label: `${ApplicantAddressSelectContent.address}`,
+        label: `${RespondentDetailsAddressSelectContent.address}`,
       });
       await page.click(
         `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
