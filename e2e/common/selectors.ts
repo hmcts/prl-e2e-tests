@@ -67,6 +67,7 @@ export enum Selectors {
   GovukInsetText = ".govuk-inset-text",
   GovukTabs = ".govuk-tabs__tab",
   GovukFieldsetLegend = ".govuk-fieldset__legend",
+  GovukFieldsetHeading = ".govuk-fieldset__heading",
   GovukLegendM = ".govuk-fieldset__legend--m",
   GovukLegendS = ".govuk-fieldset__legend--s",
   GovukLegendL = ".govuk-fieldset__legend--l",
