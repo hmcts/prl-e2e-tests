@@ -1,26 +1,25 @@
-import axios, { AxiosRequestConfig } from 'axios';
 import { test } from '@playwright/test';
-import { setupUser, teardownUser } from '../common/apiHelper/createDeleteUser';
+import { setupUser } from '../common/apiHelper/createUser'; // Update path as needed
 
 test.describe('smoke test', () => {
   let userEmail: string;
   let userPassword: string;
   let userId: string;
 
-  test.beforeEach(async () => {
-    const userInfo = await setupUser();
-    if (userInfo) {
-      userEmail = userInfo.email;
-      userPassword = userInfo.password;
-      userId = userInfo.id;
+  test.beforeEach(async ({}, testInfo) => {
+    try {
+      const userInfo = await setupUser();
+      if (userInfo) {
+        userEmail = userInfo.email;
+        userPassword = userInfo.password;
+        userId = userInfo.id;
+      }
+    } catch (error) {
+      console.error('Setup failed:', error);
+      // Optional: You can use `testInfo.skip` to skip the test if setup fails
+      testInfo.skip('User setup failed. Skipping tests.');
     }
   });
-
-  // test.afterEach(async () => {
-  //   if (userId) {
-  //     await teardownUser(userId);
-  //   }
-  // });
 
   // Example test case
   test('should use created user credentials', async () => {

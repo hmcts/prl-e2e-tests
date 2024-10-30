@@ -1,15 +1,24 @@
-import axios, { AxiosRequestConfig } from 'axios';
+import { APIRequestContext, request } from '@playwright/test';
 import * as dotenv from 'dotenv';
 import qs from 'qs';
 import { v4 as uuidv4 } from 'uuid';
 
 dotenv.config();
+
+/**
+ * Initializes the Playwright API request context.
+ * @returns {Promise<APIRequestContext>}
+ */
+export async function initializeAPIContext(): Promise<APIRequestContext> {
+  return await request.newContext();
+}
+
 /**
  * Function to get an access token from the IDAM service
+ * @param {APIRequestContext} apiContext The API request context
  * @returns {Promise<string | null>} The access token if successful, otherwise null
  */
-
-export async function getAccessToken(): Promise<string | null> {
+export async function getAccessToken(apiContext: APIRequestContext): Promise<string | null> {
   try {
     const data = {
       grant_type: 'client_credentials',
@@ -18,16 +27,18 @@ export async function getAccessToken(): Promise<string | null> {
       scope: 'profile roles',
     };
 
-    const options: AxiosRequestConfig = {
-      method: 'POST',
+    const response = await apiContext.post(process.env.IDAM_TOKEN_URL as string, {
       headers: { 'content-type': 'application/x-www-form-urlencoded' },
       data: qs.stringify(data),
+    });
 
-      url: process.env.IDAM_TOKEN_URL as string,
-    };
-
-    const response = await axios.post(options.url!, options.data, options);
-    return response.data.access_token;
+    if (response.ok()) {
+      const responseData = await response.json();
+      return responseData.access_token;
+    } else {
+      console.error('Error fetching access token:', response.status(), await response.text());
+      return null;
+    }
   } catch (error) {
     console.error('Error fetching access token:', error);
     return null;
@@ -36,25 +47,26 @@ export async function getAccessToken(): Promise<string | null> {
 
 /**
  * Function to create a citizen user
+ * @param {APIRequestContext} apiContext The API request context
  * @param {string} token The access token
+ * @returns {Promise<{ email: string; password: string; id: string }>} The created user's details
  */
-export async function createCitizenUser(token: string): Promise<{ email: string; password: string; id: string }> {
+export async function createCitizenUser(apiContext: APIRequestContext, token: string): Promise<{ email: string; password: string; id: string }> {
   if (!process.env.IDAM_CITIZEN_USER_PASSWORD) {
     throw new Error('PASSWORD environment variable is not defined');
   }
+
   const uniqueId = uuidv4();
   const id = uniqueId;
   const password = process.env.IDAM_CITIZEN_USER_PASSWORD as string;
   const email = `TEST_PRL_USER_citizen-user.${uniqueId}@test.local`;
 
-  console.log('Token:', token);
-  const userCreationOptions: AxiosRequestConfig = {
-    method: 'POST',
+  const response = await apiContext.post(process.env.IDAM_TESTING_SUPPORT_USERS_URL as string, {
     headers: {
       Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',
     },
-    data: JSON.stringify({
+    data: {
       password,
       user: {
         id,
@@ -63,41 +75,15 @@ export async function createCitizenUser(token: string): Promise<{ email: string;
         surname: 'sn_' + uniqueId.split('-')[1],
         roleNames: ['citizen'],
       },
-    }),
-    url: process.env.IDAM_TESTING_SUPPORT_USERS_URL,
-  };
+    },
+  });
 
-  try {
-    const response = await axios.post(userCreationOptions.url!, userCreationOptions.data, userCreationOptions);
-    console.log('User created:', response.data);
-    return { email, password, id: response.data.id };
-  } catch (error) {
-    console.error('Error creating user:', error);
+  if (response.ok()) {
+    const responseData = await response.json();
+    console.log('User created:', responseData);
+    return { email, password, id: responseData.id };
+  } else {
+    console.error('Error creating user:', response.status(), await response.text());
     throw new Error('Failed to create user, could be that you are not connected to the VPN');
   }
 }
-
-/**
- * Function to delete a citizen user
- * @param {string} token The access token
- * @param {string} id The id of the user to be deleted
- * @returns {Promise<void>}
- */
-// export async function deleteCitizenUser(token: string, id: string): Promise<void> {
-//   const userDeletionOptions: AxiosRequestConfig = {
-//     method: 'DELETE',
-//     headers: {
-//       Authorization: `Bearer ${token}`,
-//       'Content-Type': 'application/json',
-//     },
-//     url: `${process.env.IDAM_TESTING_SUPPORT_USERS_URL}/${id}` as string,
-//   };
-//
-//   try {
-//     await axios(userDeletionOptions);
-//     console.info('Deleted user', id);
-//   } catch (error) {
-//     console.error('Error deleting user', id, error.response ? error.response.data : error.message);
-//     throw new Error(`Failed to delete user with ID ${id}`);
-//   }
-// }
