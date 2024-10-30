@@ -1,6 +1,7 @@
 import Config from "../config.ts";
 import { Page } from "@playwright/test";
 import { UserCredentials, UserLoginInfo } from "./types.ts";
+import { setupUser } from "./createCitizenUser/createCitizenUser.ts";
 
 export class IdamLoginHelper {
   private static fields: UserLoginInfo = {
@@ -9,7 +10,7 @@ export class IdamLoginHelper {
   };
   private static submitButton: string = 'input[value="Sign in"]';
 
-  public static async signInUser(
+  public static async signInSolicitorUser(
     page: Page,
     user: keyof typeof Config.userCredentials,
     application: string,
@@ -39,6 +40,24 @@ export class IdamLoginHelper {
     } else {
       console.error("Invalid credential type");
     }
+  }
+  public static async signInCitizenUser(
+    page: Page,
+    application: string,
+  ): Promise<void> {
+    const userInfo = await setupUser(); // Create a new citizen user
+    if (!userInfo) {
+      console.error("Failed to set up citizen user");
+      return;
+    }
+
+    if (!page.url().includes("idam-web-public.")) {
+      await page.goto(application);
+    }
+
+    await page.fill(this.fields.username, userInfo.email);
+    await page.fill(this.fields.password, userInfo.password);
+    await page.click(this.submitButton);
   }
 }
 

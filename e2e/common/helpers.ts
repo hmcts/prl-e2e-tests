@@ -89,7 +89,7 @@ export class Helpers {
     try {
       await page.locator(`a:text-is(" Sign out ")`).click();
       await page.waitForLoadState("domcontentloaded");
-      await idamLoginHelper.signInUser(page, user, baseURL);
+      await idamLoginHelper.signInSolicitorUser(page, user, baseURL);
       await Helpers.goToCase(page, baseURL, caseNumber);
     } catch (error) {
       console.error(

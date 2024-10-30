@@ -1,10 +1,16 @@
 import { test } from "@playwright/test";
 import Config from "../../../../config";
 import { C100 } from "../../../../journeys/citizen/createCase/C100/C100";
-
-test.use({ storageState: Config.sessionStoragePath + "citizen.json" });
+import IdamLoginHelper from "../../../../common/idamLoginHelper";
 
 test.describe("Create Citizen Application but choose to have legal representative fill it out for you. @citizenFrontend @crossbrowserCitizenFrontend", (): void => {
+  test.beforeEach(async ({ page }) => {
+    // Sign in as a citizen user before each test
+    await IdamLoginHelper.signInCitizenUser(
+      page,
+      Config.citizenFrontendBaseURL,
+    );
+  });
   test(
     "Application completed for you with the following options:" +
       "No error messaging." +
