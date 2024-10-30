@@ -2,6 +2,7 @@ import { APIRequestContext, request } from "@playwright/test";
 import * as dotenv from "dotenv";
 import qs from "qs";
 import { v4 as uuidv4 } from "uuid";
+import { existsSync } from 'fs';
 
 dotenv.config();
 
@@ -91,7 +92,9 @@ export async function createCitizenUser(
   );
   if (response.ok()) {
     const responseData = await response.json();
-    console.log("User created:", responseData);
+    if (existsSync('.env')) { // Verify if the .env file is present (indicating local test execution) and log the details of the created citizen user.
+      console.log("User created:", responseData);
+    }
     return { email, password, id: responseData.id };
   } else {
     console.error(

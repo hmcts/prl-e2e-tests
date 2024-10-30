@@ -41,6 +41,7 @@ export class IdamLoginHelper {
       console.error("Invalid credential type");
     }
   }
+
   public static async signInCitizenUser(
     page: Page,
     application: string,
@@ -50,11 +51,9 @@ export class IdamLoginHelper {
       console.error("Failed to set up citizen user");
       return;
     }
-
     if (!page.url().includes("idam-web-public.")) {
       await page.goto(application);
     }
-
     await page.fill(this.fields.username, userInfo.email);
     await page.fill(this.fields.password, userInfo.password);
     await page.click(this.submitButton);
