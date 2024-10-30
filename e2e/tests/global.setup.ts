@@ -9,11 +9,3 @@ setup("Setup solicitor user", async ({ page }) => {
     config.manageCasesBaseURL,
   );
 });
-
-// setup("Setup citizen user", async ({ page }) => {
-//   await IdamLoginHelper.signInUser(
-//     page,
-//     "citizen",
-//     config.citizenFrontendBaseURL,
-//   );
-// });

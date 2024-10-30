@@ -1,14 +1,24 @@
-import { test } from "@playwright/test";
+import { APIRequestContext, test } from "@playwright/test";
 import Config from "../../../../config";
 import { C100 } from "../../../../journeys/citizen/createCase/C100/C100";
 import IdamLoginHelper from "../../../../common/idamLoginHelper";
+import {
+  getAccessToken,
+  initializeAPIContext,
+} from "../../../../common/idamCreateCitizenUserApiHelper";
 
 test.describe("Create Citizen Application but you must get a mediator. @citizenFrontend @crossbrowserCitizenFrontend", (): void => {
+  let apiContext: APIRequestContext;
+  let token: string;
+  test.beforeAll(async () => {
+    apiContext = await initializeAPIContext();
+    token = await getAccessToken(apiContext);
+  });
   test.beforeEach(async ({ page }) => {
-    // Sign in as a citizen user before each test
     await IdamLoginHelper.signInCitizenUser(
       page,
       Config.citizenFrontendBaseURL,
+      token,
     );
   });
   test(`MIAM testing  with no previously attended MIAM. Redirect to Get Mediator

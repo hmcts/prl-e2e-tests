@@ -1,8 +1,7 @@
 import { APIRequestContext, request } from "@playwright/test";
 import * as dotenv from "dotenv";
-import qs from "qs";
 import { v4 as uuidv4 } from "uuid";
-import { existsSync } from 'fs';
+import { existsSync } from "fs";
 
 dotenv.config();
 
@@ -13,50 +12,53 @@ dotenv.config();
 export async function initializeAPIContext(): Promise<APIRequestContext> {
   return await request.newContext();
 }
-
 /**
  * Function to get an access token from the IDAM service
  * @param {APIRequestContext} apiContext The API request context
- * @returns {Promise<string | null>} The access token if successful, otherwise null
+ * @returns {Promise<string>} The access token if successful, otherwise throws an error
  */
 export async function getAccessToken(
   apiContext: APIRequestContext,
-): Promise<string | null> {
+): Promise<string> {
   try {
+    const clientSecret = process.env.IDAM_SECRET;
+    if (!clientSecret) {
+      throw new Error("IDAM_SECRET environment variable is not defined");
+    }
     const data = {
       grant_type: "client_credentials",
       client_id: "prl-cos-api",
-      client_secret: process.env.IDAM_SECRET,
+      client_secret: clientSecret,
       scope: "profile roles",
     };
     const response = await apiContext.post(
       process.env.IDAM_TOKEN_URL as string,
       {
         headers: { "content-type": "application/x-www-form-urlencoded" },
-        data: qs.stringify(data),
+        form: data,
       },
     );
-    if (response.ok()) {
-      const responseData = await response.json();
-      return responseData.access_token;
-    } else {
+    if (!response.ok()) {
+      const errorText = await response.text();
       console.error(
         "Error fetching access token:",
         response.status(),
-        await response.text(),
+        errorText,
       );
-      return null;
+      throw new Error(`Failed to fetch access token: ${response.status()}`);
     }
+    const responseData = await response.json();
+    return responseData.access_token;
   } catch (error) {
     console.error("Error fetching access token:", error);
-    return null;
+    throw new Error("An error occurred while fetching the access token");
   }
 }
 
 /**
  * Function to create a citizen user
  * @param {APIRequestContext} apiContext The API request context
- * @param {string} token The access token
+ * @param token
  * @returns {Promise<{ email: string; password: string; id: string }>} The created user's details
  */
 export async function createCitizenUser(
@@ -70,7 +72,6 @@ export async function createCitizenUser(
   const id = uniqueId;
   const password = process.env.IDAM_CITIZEN_USER_PASSWORD as string;
   const email = `TEST_PRL_USER_citizen-user.${uniqueId}@test.local`;
-
   const response = await apiContext.post(
     process.env.IDAM_TESTING_SUPPORT_USERS_URL as string,
     {
@@ -90,20 +91,30 @@ export async function createCitizenUser(
       },
     },
   );
-  if (response.ok()) {
-    const responseData = await response.json();
-    if (existsSync('.env')) { // Verify if the .env file is present (indicating local test execution) and log the details of the created citizen user.
-      console.log("User created:", responseData);
-    }
-    return { email, password, id: responseData.id };
-  } else {
-    console.error(
-      "Error creating user:",
-      response.status(),
-      await response.text(),
-    );
+  if (!response.ok()) {
+    const errorText = await response.text();
+    console.error("Error creating user:", response.status(), errorText);
     throw new Error(
       "Failed to create user, could be that you are not connected to the VPN",
     );
   }
+  const responseData = await response.json();
+  if (existsSync(".env")) {
+    console.log("User created:", responseData);
+  }
+  return { email, password, id: responseData.id };
+}
+
+/**
+ * Sets up a user by initializing API context, getting an access token, and creating a citizen user.
+ * @returns {Promise<{ email: string; password: string; id: string }>} User information if successful
+ * @throws Will throw an error if any step fails
+ */
+export async function setupUser(token: string): Promise<{
+  email: string;
+  password: string;
+  id: string;
+}> {
+  const apiContext = await initializeAPIContext();
+  return await createCitizenUser(apiContext, token);
 }

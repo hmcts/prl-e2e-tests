@@ -1,7 +1,7 @@
 import Config from "../config.ts";
 import { Page } from "@playwright/test";
 import { UserCredentials, UserLoginInfo } from "./types.ts";
-import { setupUser } from "./createCitizenUser/createCitizenUser.ts";
+import { setupUser } from "./idamCreateCitizenUserApiHelper.ts";
 
 export class IdamLoginHelper {
   private static fields: UserLoginInfo = {
@@ -26,14 +26,11 @@ export class IdamLoginHelper {
         `#skiplinktarget:text("Sign in or create an account")`,
       );
     }
-
     const userCredentials: UserCredentials = Config.getUserCredentials(user);
-
     if (userCredentials) {
       await page.fill(this.fields.username, userCredentials.email);
       await page.fill(this.fields.password, userCredentials.password);
       await page.click(this.submitButton);
-
       await page
         .context()
         .storageState({ path: Config.sessionStoragePath + `${user}.json` });
@@ -45,8 +42,9 @@ export class IdamLoginHelper {
   public static async signInCitizenUser(
     page: Page,
     application: string,
+    token: string,
   ): Promise<void> {
-    const userInfo = await setupUser(); // Create a new citizen user
+    const userInfo = await setupUser(token); // Pass token to setupUser
     if (!userInfo) {
       console.error("Failed to set up citizen user");
       return;

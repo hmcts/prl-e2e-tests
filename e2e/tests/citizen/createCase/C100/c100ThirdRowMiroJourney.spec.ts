@@ -1,14 +1,24 @@
-import { test } from "@playwright/test";
+import { APIRequestContext, test } from "@playwright/test";
 import { C100 } from "../../../../journeys/citizen/createCase/C100/C100";
 import Config from "../../../../config";
 import IdamLoginHelper from "../../../../common/idamLoginHelper";
+import {
+  getAccessToken,
+  initializeAPIContext,
+} from "../../../../common/idamCreateCitizenUserApiHelper";
 
 test.describe("C100 Citizen Application tests on the third MIRO set. @citizenFrontend @crossbrowserCitizenFrontend", (): void => {
+  let apiContext: APIRequestContext;
+  let token: string;
+  test.beforeAll(async () => {
+    apiContext = await initializeAPIContext();
+    token = await getAccessToken(apiContext);
+  });
   test.beforeEach(async ({ page }) => {
-    // Sign in as a citizen user before each test
     await IdamLoginHelper.signInCitizenUser(
       page,
       Config.citizenFrontendBaseURL,
+      token,
     );
   });
   test(`C100 Citizen Application with the following options:
@@ -467,11 +477,17 @@ test.describe("C100 Citizen Application tests on the third MIRO set. @citizenFro
 });
 
 test.describe("C100 Citizen Application accessibility tests on the third row journey set. @accessibilityCitizenFrontend", (): void => {
+  let apiContext: APIRequestContext;
+  let token: string;
+  test.beforeAll(async () => {
+    apiContext = await initializeAPIContext();
+    token = await getAccessToken(apiContext);
+  });
   test.beforeEach(async ({ page }) => {
-    // Sign in as a citizen user before each test
     await IdamLoginHelper.signInCitizenUser(
-        page,
-        Config.citizenFrontendBaseURL,
+      page,
+      Config.citizenFrontendBaseURL,
+      token,
     );
   });
   test(`C100 Citizen Application with the following options:
