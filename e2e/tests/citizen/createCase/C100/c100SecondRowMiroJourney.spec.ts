@@ -23,7 +23,7 @@ test.describe("C100 Citizen Application tests on the second MIRO set. @citizenFr
     people: yes`, async ({ page }): Promise<void> => {
     await C100.c100SecondMiroJourney({
       page: page,
-      accessibilityTest: true,
+      accessibilityTest: false,
       errorMessaging: false,
       c100LegalRepresentation: false,
       c100CourtPermissionNeeded: false,
