@@ -108,18 +108,3 @@ export type OrderType =
   | "c21WithdrawApplication"
   | "c21NoOrderMade"
   | "c21other";
-
-export type JudgeOrMagistratesTitle =
-  | "herHonourJudge"
-  | "hisHonourJudge"
-  | "circuitJudge"
-  | "deputyCircuitJudge"
-  | "recorder"
-  | "districtJudge"
-  | "deputyDistrictJudge"
-  | "districtJudgeMagistratesCourt"
-  | "magistrate"
-  | "justicesLegalAdviser"
-  | "justicesClerk"
-  | "theHonourableMrsJustice"
-  | "theHonourableMrJustice";
