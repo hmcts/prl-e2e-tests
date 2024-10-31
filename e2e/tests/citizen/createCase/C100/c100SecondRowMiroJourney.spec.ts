@@ -10,6 +10,7 @@ test.describe("C100 Citizen Application tests on the second MIRO set. @citizenFr
       Config.citizenFrontendBaseURL,
     );
   });
+
   test(`Test the second row of the second row c100 citizen journey with the following options:
     Not Accessibility Testing,
     Not Error Messaging,
