@@ -212,6 +212,10 @@ export class C100CasePartyDetails {
         accessibilityTest: accessibilityTest,
         errorMessaging: errorMessaging,
       });
+      // Other Person select address
+      // Other Person manual address
+      // Other Person mainly live with
+      // Other Person living arrangements
     }
   }
 }
