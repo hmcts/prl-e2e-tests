@@ -5,7 +5,6 @@ import IdamLoginHelper from "../../../../common/idamLoginHelper";
 
 test.describe("C100 Citizen Application tests on the second MIRO set. @citizenFrontend @crossbrowserCitizenFrontend", (): void => {
   test.beforeEach(async ({ page }) => {
-    // Sign in as a citizen user before each test
     await IdamLoginHelper.signInCitizenUser(
       page,
       Config.citizenFrontendBaseURL,
