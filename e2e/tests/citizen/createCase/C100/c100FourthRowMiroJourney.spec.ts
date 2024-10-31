@@ -1,11 +1,10 @@
-import { test } from "@playwright/test";
 import Config from "../../../../config";
 import { C100 } from "../../../../journeys/citizen/createCase/C100/C100";
 import IdamLoginHelper from "../../../../common/idamLoginHelper";
+import { test } from "@playwright/test";
 
 test.describe("C100 Citizen Application tests on the fourth MIRO set. @citizenFrontend @crossbrowserCitizenFrontend", (): void => {
   test.beforeEach(async ({ page }) => {
-    // Sign in as a citizen user before each test
     await IdamLoginHelper.signInCitizenUser(
       page,
       Config.citizenFrontendBaseURL,
