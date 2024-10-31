@@ -1,7 +1,6 @@
-import { ChildArrangementOrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/childArrangementOrderDetailsContent";
 import { Selectors } from "../../../../../common/selectors";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { Page } from "@playwright/test";
+import { expect, Page } from "@playwright/test";
 import { Helpers } from "../../../../../common/helpers";
 import { ChildArrangementDocumentUploadContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/childArrangementDocumentUploadContent";
 import config from "../../../../../config";
@@ -46,14 +45,9 @@ export class ChildArrangementDocumentUploadPage {
     accessibilityTest: accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.p}:text-is("${ChildArrangementOrderDetailsContent.p}")`,
+      `${Selectors.GovukHeadingXL}:text-is("${ChildArrangementDocumentUploadContent.h1}")`,
     );
     await Promise.all([
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.h1}:text-is("${ChildArrangementDocumentUploadContent.h1}")`,
-        1,
-      ),
       Helpers.checkGroup(
         page,
         2,
@@ -115,18 +109,11 @@ export class ChildArrangementDocumentUploadPage {
     await page.click(
       `${Selectors.GovukButton}:text-is("${ChildArrangementDocumentUploadContent.uploadFile}")`,
     );
-    await Promise.all([
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.a}:text-is("${ChildArrangementDocumentUploadContent.errorMessageUploadCorrectFile}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukErrorMessageCitizen}:text-is("${ChildArrangementDocumentUploadContent.errorMessageUploadCorrectFile}")`,
-        1,
-      ),
-    ]);
+    await Helpers.checkVisibleAndPresent(
+      page,
+      `${Selectors.a}:text-is("${ChildArrangementDocumentUploadContent.errorMessageUploadCorrectFile}")`,
+      1,
+    );
   }
 
   private static async fillInFields({

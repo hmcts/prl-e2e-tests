@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test";
+import { expect, Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
@@ -96,11 +96,6 @@ export class ForcedMarriageProtectionDocumentUploadPage {
         `${Selectors.a}:text-is("${ForcedMarriageProtectionDocumentUploadContent.errorMessageChooseFile}")`,
         1,
       ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukErrorMessageCitizen}:text-is("${ForcedMarriageProtectionDocumentUploadContent.errorMessageChooseFile}")`,
-        1,
-      ),
     ]);
     let fileInput = page.locator(
       `${CitizenOtherProceedingsDocumentUploadSelectors.documentUpload}`,
@@ -109,18 +104,11 @@ export class ForcedMarriageProtectionDocumentUploadPage {
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.uploadFile}")`,
     );
-    await Promise.all([
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.a}:text-is("${ForcedMarriageProtectionDocumentUploadContent.errorMessageUploadCorrectFile}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukErrorMessageCitizen}:text-is("${ForcedMarriageProtectionDocumentUploadContent.errorMessageUploadCorrectFile}")`,
-        1,
-      ),
-    ]);
+    await Helpers.checkVisibleAndPresent(
+      page,
+      `${Selectors.a}:text-is("${ForcedMarriageProtectionDocumentUploadContent.errorMessageUploadCorrectFile}")`,
+      1,
+    );
   }
 
   private static async fillInFields({

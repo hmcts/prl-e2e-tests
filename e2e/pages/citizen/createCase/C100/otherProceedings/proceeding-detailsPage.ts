@@ -62,7 +62,7 @@ export class ProceedingDetailsPage {
     accessibilityTest: accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.h1}:text-is("${ProceedingDetailsContent.h1}")`,
+      `${Selectors.GovukHeadingXL}:text-is("${ProceedingDetailsContent.h1}")`,
     );
     await Promise.all([
       Helpers.checkGroup(
