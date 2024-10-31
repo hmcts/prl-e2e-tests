@@ -4,7 +4,10 @@ import { OrderType } from "../../../common/types";
 import { Selectors } from "../../../common/selectors";
 import { DraftAnOrder5Content } from "../../../fixtures/manageCases/caseWorker/draftAnOrder5Content";
 import { Helpers } from "../../../common/helpers";
-import { HowLongWillTheOrderBeInForce, orderTypesMap } from "../../../journeys/manageCases/caseWorker/draftAnOrder";
+import {
+  HowLongWillTheOrderBeInForce,
+  orderTypesMap,
+} from "../../../journeys/manageCases/caseWorker/draftAnOrder";
 
 enum UniqueSelectors {
   orderMentionsProperty = "#fl404CustomFields_fl404bMentionedProperty_Yes",

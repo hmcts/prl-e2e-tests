@@ -1,9 +1,7 @@
 import { Page } from "@playwright/test";
 import { OrderType, solicitorCaseCreateType } from "../../../common/types";
 import { Selectors } from "../../../common/selectors";
-import {
-  DraftAnOrder4Content,
-  } from "../../../fixtures/manageCases/caseWorker/draftAnOrder4Content";
+import { DraftAnOrder4Content } from "../../../fixtures/manageCases/caseWorker/draftAnOrder4Content";
 import { Helpers } from "../../../common/helpers";
 import AccessibilityTestHelper from "../../../common/accessibilityTestHelper";
 import { orderTypesMap } from "../../../journeys/manageCases/caseWorker/draftAnOrder";

@@ -67,7 +67,6 @@ export enum DraftAnOrder20Content {
   welshWithNoticeSpan = "Gyda rhybudd",
   welshWithoutNoticeSpan = "heb rybudd",
 
-
   welshCourtOrderSpan1 = "Dyma’r eiddo yn y gorchymyn hwn",
   welshCourtOrderSpan2 = "test address",
   welshCourtOrderSpan3 = "Trwy gydsyniad",
@@ -117,7 +116,6 @@ export enum DraftAnOrder20Content {
   welshCourtOrderSpan47 = "11.",
   welshCourtOrderSpan48 = "Test directions",
 
-
   welshHearingSpan1 = "Rhaid i chi fod yn bresennol yn y gwrandawiadau canlynol",
   welshHearingSpan2 = "Gwrandawiad",
   welshHearingSpan3 = "1: Allocation",
@@ -164,7 +162,7 @@ export enum DraftAnOrder20Content {
   span2 = "Aberystwyth Justice Centre",
   span3 = "Case number:",
   span4 = "FamilyMan number:",
-  span5 = "Non-molestation order",    // THIS WILL CHANGE DEPENDING ON CASE TYPE
+  span5 = "Non-molestation order", // THIS WILL CHANGE DEPENDING ON CASE TYPE
   span6 = "Section 42 Family Law Act 1996",
   span7 = "Her Honour Judge Test judge name sitting with Justices'",
   span8 = "Legal Adviser Test legal adviser name.",
@@ -210,11 +208,10 @@ export enum DraftAnOrder20Content {
   withNoticeSpan = "The order is made with notice to the respondent.",
   withoutNoticeSpan = "The order is made without notice to the respondent.",
 
-
   // court orders - CHECK FOR DUPLICATES
   courtOrderSpan1 = "By consent",
   courtOrderSpan2 = "The court orders:",
-  courtOrderSpan3 = "1.",   // THIS IS REPEATED??
+  courtOrderSpan3 = "1.", // THIS IS REPEATED??
   courtOrderSpan4 = "The respondent Elise Lynn must not use or threaten violence against the",
   courtOrderSpan5 = "applicant John Smith, and must not instruct, encourage or in any way suggest",
   courtOrderSpan6 = "that any other person should do so.",

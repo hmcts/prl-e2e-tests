@@ -21,7 +21,12 @@ export class DraftAnOrder20Page {
     accessibilityTest: boolean,
   ): Promise<void> {
     await this.checkPageLoads(page, orderType, accessibilityTest);
-    await this.checkPDFContent(page, yesToAll, howLongWillOrderBeInForce, willAllPartiesBeAttendingHearing);
+    await this.checkPDFContent(
+      page,
+      yesToAll,
+      howLongWillOrderBeInForce,
+      willAllPartiesBeAttendingHearing,
+    );
     await this.continue(page);
   }
 
@@ -85,7 +90,7 @@ export class DraftAnOrder20Page {
       page,
       yesToAll,
       howLongWillOrderBeInForce,
-      willAllPartiesBeAttendingHearing
+      willAllPartiesBeAttendingHearing,
     );
     await this.checkEnglishPdfContent(
       page,
@@ -95,8 +100,12 @@ export class DraftAnOrder20Page {
     );
   }
 
-  private static async checkWelshPdfContent(page: Page, yesNoToAll: boolean, howLongWillOrderBeInForce: string,
-                                            willAllPartiesBeAttendingHearing: boolean): Promise<void> {
+  private static async checkWelshPdfContent(
+    page: Page,
+    yesNoToAll: boolean,
+    howLongWillOrderBeInForce: string,
+    willAllPartiesBeAttendingHearing: boolean,
+  ): Promise<void> {
     const pdfPage: Page = await this.openMediaViewer(page, "Welsh");
     await Helpers.checkGroup(
       pdfPage,
@@ -285,8 +294,8 @@ export class DraftAnOrder20Page {
 
   private static formatDate(): string {
     const todayDate: string = Helpers.getCurrentDateFormatted();
-    const day: string = todayDate.substring(0,2);
-    const month: string = todayDate.substring(2,4);
+    const day: string = todayDate.substring(0, 2);
+    const month: string = todayDate.substring(2, 4);
     const year: string = todayDate.substring(4);
     return Helpers.dayLongMonthYear(day, month, year);
   }

@@ -135,7 +135,7 @@ export class Helpers {
   public static dayLongMonthYear(
     day: string,
     month: string,
-    year: string
+    year: string,
   ): string {
     const monthIndex: number = parseInt(month, 10);
     if (isNaN(monthIndex) || monthIndex < 1 || monthIndex > 12) {

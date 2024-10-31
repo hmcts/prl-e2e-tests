@@ -36,5 +36,5 @@ export enum DraftAnOrder5Content {
   childTelephoneFurtherDetails = "test child telephone further details",
   schoolName = "test school name",
   schoolFurtherDetails = "test school further details",
-  costsOfApplication = "Test costs of application"
+  costsOfApplication = "Test costs of application",
 }
