@@ -57,6 +57,10 @@ def secrets = [
     secret('idam-token-url', 'IDAM_TOKEN_URL'),
     secret('idam-citizen-password', 'IDAM_CITIZEN_USER_PASSWORD'),
     secret('idam-testing-support-users-url', 'IDAM_TESTING_SUPPORT_USERS_URL'),
+    secret('judge-testuser-one', 'JUDGE_USERNAME'),
+    secret('judge-testpassword', 'JUDGE_PASSWORD'),
+    secret('case-manager-swansea-username', 'CASEMANAGER_USERNAME'),
+    secret('case-manager-swansea-password', 'CASEMANAGER_PASSWORD'),
   ]
 ]
 
