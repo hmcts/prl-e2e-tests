@@ -1,24 +1,14 @@
-import { APIRequestContext, test } from "@playwright/test";
+import { test } from "@playwright/test";
 import { C100 } from "../../../../journeys/citizen/createCase/C100/C100";
 import Config from "../../../../config";
 import IdamLoginHelper from "../../../../common/idamLoginHelper";
-import {
-  getAccessToken,
-  initializeAPIContext,
-} from "../../../../common/idamCreateCitizenUserApiHelper";
+
 
 test.describe("C100 Citizen Application tests on the second MIRO set. @citizenFrontend @crossbrowserCitizenFrontend", (): void => {
-  let apiContext: APIRequestContext;
-  let token: string;
-  test.beforeAll(async () => {
-    apiContext = await initializeAPIContext();
-    token = await getAccessToken(apiContext);
-  });
   test.beforeEach(async ({ page }) => {
     await IdamLoginHelper.signInCitizenUser(
       page,
       Config.citizenFrontendBaseURL,
-      token,
     );
   });
   test(`Test the second row of the second row c100 citizen journey with the following options:

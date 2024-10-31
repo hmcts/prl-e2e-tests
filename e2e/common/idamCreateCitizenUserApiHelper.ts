@@ -12,6 +12,7 @@ dotenv.config();
 export async function initializeAPIContext(): Promise<APIRequestContext> {
   return await request.newContext();
 }
+
 /**
  * Function to get an access token from the IDAM service
  * @param {APIRequestContext} apiContext The API request context
@@ -45,12 +46,15 @@ export async function getAccessToken(
         response.status(),
         errorText,
       );
+      console.log("Check your VPN connection or IDAM_TOKEN_URL.");
       throw new Error(`Failed to fetch access token: ${response.status()}`);
     }
     const responseData = await response.json();
     return responseData.access_token;
   } catch (error) {
     console.error("Error fetching access token:", error);
+    // Log additional message to check VPN connection
+    console.log("Check your VPN connection or IDAM_SECRET.");
     throw new Error("An error occurred while fetching the access token");
   }
 }
@@ -58,7 +62,7 @@ export async function getAccessToken(
 /**
  * Function to create a citizen user
  * @param {APIRequestContext} apiContext The API request context
- * @param token
+ * @param {string} token Bearer token passed from global setup
  * @returns {Promise<{ email: string; password: string; id: string }>} The created user's details
  */
 export async function createCitizenUser(
@@ -72,6 +76,7 @@ export async function createCitizenUser(
   const id = uniqueId;
   const password = process.env.IDAM_CITIZEN_USER_PASSWORD as string;
   const email = `TEST_PRL_USER_citizen-user.${uniqueId}@test.local`;
+
   const response = await apiContext.post(
     process.env.IDAM_TESTING_SUPPORT_USERS_URL as string,
     {
@@ -95,7 +100,7 @@ export async function createCitizenUser(
     const errorText = await response.text();
     console.error("Error creating user:", response.status(), errorText);
     throw new Error(
-      "Failed to create user, could be that you are not connected to the VPN",
+      "Failed to create user. Check the user creation request and response.",
     );
   }
   const responseData = await response.json();
@@ -106,9 +111,9 @@ export async function createCitizenUser(
 }
 
 /**
- * Sets up a user by initializing API context, getting an access token, and creating a citizen user.
+ * Sets up a citizen user with an existing token and initialized API context.
+ * @param {string} token Bearer token from global setup
  * @returns {Promise<{ email: string; password: string; id: string }>} User information if successful
- * @throws Will throw an error if any step fails
  */
 export async function setupUser(token: string): Promise<{
   email: string;

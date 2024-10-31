@@ -1,24 +1,13 @@
-import { APIRequestContext, test } from "@playwright/test";
 import Config from "../../../../config";
 import { C100 } from "../../../../journeys/citizen/createCase/C100/C100";
 import IdamLoginHelper from "../../../../common/idamLoginHelper";
-import {
-  initializeAPIContext,
-  getAccessToken,
-} from "../../../../common/idamCreateCitizenUserApiHelper"; // Adjust import path as necessary
+import { test } from "@playwright/test";
 
 test.describe("Create Citizen Application but choose to have legal representative fill it out for you. @citizenFrontend @crossbrowserCitizenFrontend", (): void => {
-  let apiContext: APIRequestContext;
-  let token: string;
-  test.beforeAll(async () => {
-    apiContext = await initializeAPIContext();
-    token = await getAccessToken(apiContext);
-  });
   test.beforeEach(async ({ page }) => {
     await IdamLoginHelper.signInCitizenUser(
       page,
       Config.citizenFrontendBaseURL,
-      token,
     );
   });
   test(
