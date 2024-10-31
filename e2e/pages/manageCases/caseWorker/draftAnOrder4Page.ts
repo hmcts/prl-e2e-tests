@@ -151,10 +151,23 @@ export class DraftAnOrder4Page {
   ): Promise<void> {
     await page.fill(UniqueSelectors.day, "");
     await this.continue(page);
-    await this.validateErrorMessages(page, DraftAnOrder4Content.errorMessage1);
-    await this.validateErrorMessages(page, DraftAnOrder4Content.errorMessage2);
-    await this.validateErrorMessages(page, DraftAnOrder4Content.errorMessage3);
-    await this.validateErrorMessages(page, DraftAnOrder4Content.errorMessage4);
+    await this.validateErrorMessages(page, DraftAnOrder4Content.errorMessageOrderByConsent);
+    await this.validateErrorMessages(page, DraftAnOrder4Content.errorMessageOrderApprovedAtHearing);
+    await Helpers.checkVisibleAndPresent(
+      page,
+      `${Selectors.GovukErrorValidation}:text-is("${DraftAnOrder4Content.errorMessageOrderDateNotValidValidationError}")`,
+      1,
+    );
+    await Helpers.checkVisibleAndPresent(
+      page,
+      `${Selectors.GovukErrorMessage}:text-is("${DraftAnOrder4Content.errorMessageOrderDateNotValidErrorMessage}")`,
+      1,
+    );
+    if ("C100" === caseType) {
+      await this.validateErrorMessages(page, DraftAnOrder4Content.errorMessageOrderAboutAllChildren);
+    } else {
+      await this.validateErrorMessages(page, DraftAnOrder4Content.errorMessageOrderAboutTheChildren);
+    }
     await page.check(`${UniqueSelectors.orderApprovedAtHearingYes}`);
     await page.check(`${UniqueSelectors.magistrateTitleRadio}`);
     if ("C100" === caseType) {
@@ -162,10 +175,13 @@ export class DraftAnOrder4Page {
     } else {
       await page.check(`${UniqueSelectors.orderAboutChildrenYes}`);
     }
+    await page.waitForSelector(
+      `${Selectors.GovukFormLabel}:text-is("Which children are included in the order?")`,
+    );
     await this.continue(page);
-    await this.validateErrorMessages(page, DraftAnOrder4Content.errorMessage5);
-    await this.validateErrorMessages(page, DraftAnOrder4Content.errorMessage6);
-    await this.validateErrorMessages(page, DraftAnOrder4Content.errorMessage7);
+    await this.validateErrorMessages(page, DraftAnOrder4Content.errorMessageWhichHearingWasOrderApproved);
+    await this.validateErrorMessages(page, DraftAnOrder4Content.errorMessageMagistratesFullNameRequired);
+    await this.validateErrorMessages(page, DraftAnOrder4Content.errorMessageWhichChildrenAreIncluded);
   }
 
   private static async validateErrorMessages(
@@ -178,7 +194,7 @@ export class DraftAnOrder4Page {
       1,
     );
     // if statement needed because error message does not show correctly above this field - RAISE THIS
-    if (errorMessage !== DraftAnOrder4Content.errorMessage7) {
+    if (errorMessage !== DraftAnOrder4Content.errorMessageWhichChildrenAreIncluded) {
       await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukErrorMessage}:text-is("${errorMessage}")`,

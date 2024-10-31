@@ -36,6 +36,10 @@ export enum DraftAnOrder16Content {
   formLabel19 = "Hearing listed with a linked case (Optional)",
   formLabel20 = "Insert joining instructions for remote hearing (Optional)",
   formLabel21 = "Additional hearing details (Optional)",
-  addNew = " Add new",
-  swanseaCourtLocation = " Swansea Civil Justice Centre - Quay West, Quay Parade - SA1 1SP",
+  addNew = "Add new",
+  swanseaCourtLocation = "Swansea Civil Justice Centre - Quay West, Quay Parade - SA1 1SP",
+  hearingType = "Allocation",
+  judge = "Ms Yolanda Cooper (HHJ.Yolanda.Cooper@ejudiciary.net)",
+  joiningInstructions = "test joining instructions",
+  additionalHearingDetails = "test additional hearing details"
 }

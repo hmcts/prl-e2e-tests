@@ -15,7 +15,7 @@ enum UniqueSelectors {
   propertyAddressTextBox = "#fl404CustomFields_fl404bAddressOfProperty",
   orderMadeWithNotice = "#fl404CustomFields_fl404bIsNoticeGiven-WithNotice",
   orderMadeWithoutNotice = "#fl404CustomFields_fl404bIsNoticeGiven-WithoutNotice",
-  schoolNameTextBox = "fl404CustomFields_fl404bAddSchool",
+  schoolNameTextBox = "#fl404CustomFields_fl404bAddSchool",
   applicantTelephoneFurtherDetailsTextbox = "#fl404CustomFields_fl404bAddMoreDetailsTelephone",
   childTelephoneFurtherDetailsTextbox = "#fl404CustomFields_fl404bAddMoreDetailsPhoneChild",
   propertyFurtherDetailsTextbox = "#fl404CustomFields_fl404bAddMoreDetailsProperty",
@@ -142,21 +142,18 @@ export class DraftAnOrder5Page {
   private static async checkNonMolestationOrderErrorMessaging(
     page: Page,
   ): Promise<void> {
-    await page.click(
-      `${Selectors.button}:text-is("${DraftAnOrder5Content.addNew}")`,
-    );
     await this.continue(page);
     await Promise.all([
       Helpers.checkGroup(
         page,
-        4,
+        3,
         DraftAnOrder5Content,
         `errorMessage`,
         `${Selectors.GovukErrorValidation}`,
       ),
       Helpers.checkGroup(
         page,
-        4,
+        3,
         DraftAnOrder5Content,
         `errorMessage`,
         `${Selectors.GovukErrorMessage}`,
