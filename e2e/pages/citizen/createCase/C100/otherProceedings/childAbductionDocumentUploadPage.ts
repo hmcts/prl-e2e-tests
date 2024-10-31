@@ -1,6 +1,6 @@
 import { Selectors } from "../../../../../common/selectors";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { Page } from "@playwright/test";
+import { expect, Page } from "@playwright/test";
 import { Helpers } from "../../../../../common/helpers";
 import config from "../../../../../config";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
@@ -109,18 +109,11 @@ export class ChildAbductionDocumentUploadPage {
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.uploadFile}")`,
     );
-    await Promise.all([
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.a}:text-is("${ChildAbductionDocumentUploadContent.errorMessageUploadCorrectFile}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukErrorMessageCitizen}:text-is("${ChildAbductionDocumentUploadContent.errorMessageUploadCorrectFile}")`,
-        1,
-      ),
-    ]);
+    await Helpers.checkVisibleAndPresent(
+      page,
+      `${Selectors.a}:text-is("${ChildAbductionDocumentUploadContent.errorMessageUploadCorrectFile}")`,
+      1,
+    );
   }
 
   private static async fillInFields({

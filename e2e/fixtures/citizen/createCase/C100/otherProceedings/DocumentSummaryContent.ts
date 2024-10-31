@@ -18,4 +18,5 @@ export enum DocumentSummaryContent {
   pdf14 = "applicant__other_injuction_order__",
   pdf15 = "applicant__undertaking_order__",
   pdf16 = "applicant__other_order__",
+  sidebar = "Contact us for help",
 }

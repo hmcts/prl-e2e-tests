@@ -9,7 +9,7 @@ import { AddApplicantPage } from "../../../../../pages/citizen/createCase/C100/p
 import { ApplicantGender } from "../../../../../common/types";
 import { yesNoDontKnow } from "../../../../../common/types";
 
-interface C100People1Options {
+interface C100PeopleOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
@@ -17,14 +17,14 @@ interface C100People1Options {
   c100PeopleYesNoDontKnow: yesNoDontKnow;
 }
 
-export class C100People1 {
-  public static async c100People1({
+export class C100People {
+  public static async c100People({
     page,
     accessibilityTest,
     errorMessaging,
     gender,
     c100PeopleYesNoDontKnow,
-  }: C100People1Options): Promise<void> {
+  }: C100PeopleOptions): Promise<void> {
     await AddChildrenPage.addChildrenPage({
       page,
       accessibilityTest,
