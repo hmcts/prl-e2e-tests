@@ -1,9 +1,7 @@
 import { APIRequestContext, request, test as setup } from "@playwright/test";
 import IdamLoginHelper from "../common/idamLoginHelper";
 import config from "../config";
-import {
-  getAccessToken,
-} from "../common/idamCreateCitizenUserApiHelper";
+import { getAccessToken } from "../common/idamCreateCitizenUserApiHelper";
 
 setup("Setup solicitor user", async ({ page }) => {
   await IdamLoginHelper.signInSolicitorUser(
@@ -21,4 +19,3 @@ setup("Retrieve bearer token for citizen user creation", async () => {
   }
   process.env.BEARER_TOKEN = token;
 });
-

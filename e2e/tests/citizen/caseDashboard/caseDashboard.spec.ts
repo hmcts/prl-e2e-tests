@@ -3,7 +3,6 @@ import Config from "../../../config";
 import { CitizenCreateInitial } from "../../../journeys/citizen/citizenCreateInitial";
 import IdamLoginHelper from "../../../common/idamLoginHelper";
 
-
 test.describe("Manage citizen cases case dashboard tests. @citizenFrontend @crossbrowserCitizenFrontend", (): void => {
   test.beforeEach(async ({ page }) => {
     await IdamLoginHelper.signInCitizenUser(

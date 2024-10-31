@@ -6,14 +6,6 @@ import { existsSync } from "fs";
 dotenv.config();
 
 /**
- * Initializes the Playwright API request context.
- * @returns {Promise<APIRequestContext>}
- */
-export async function initializeAPIContext(): Promise<APIRequestContext> {
-  return await request.newContext();
-}
-
-/**
  * Function to get an access token from the IDAM service
  * @param {APIRequestContext} apiContext The API request context
  * @returns {Promise<string>} The access token if successful, otherwise throws an error
@@ -101,9 +93,13 @@ export async function createCitizenUser(
     return { email, password, id: responseData.id };
   } catch (error) {
     if (existsSync(".env")) {
-      console.error("Error: Unable to create the citizen user. Please check your VPN connection and confirm that the IDAM service is available.");
+      console.error(
+        "Error: Unable to create the citizen user. Please check your VPN connection and confirm that the IDAM service is available.",
+      );
     }
-    throw new Error("Failed to create citizen user. Check the URL or your network connection.");
+    throw new Error(
+      "Failed to create citizen user. Check the URL or your network connection.",
+    );
   }
 }
 
@@ -117,6 +113,6 @@ export async function setupUser(token: string): Promise<{
   password: string;
   id: string;
 }> {
-  const apiContext = await initializeAPIContext();
+  const apiContext = await request.newContext();
   return await createCitizenUser(apiContext, token);
 }
