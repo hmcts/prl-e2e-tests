@@ -18,7 +18,9 @@ test.describe("C100 Citizen Application tests on the second MIRO set. @citizenFr
     Court Permission Needed: no
     Other proceedings: no to all
     child arrangement order details: no
-    urgency and without notice: no`, async ({ page }): Promise<void> => {
+    urgency and without notice: no
+    gender: male
+    people: yes`, async ({ page }): Promise<void> => {
     await C100.c100SecondMiroJourney({
       page: page,
       accessibilityTest: true,
@@ -27,6 +29,8 @@ test.describe("C100 Citizen Application tests on the second MIRO set. @citizenFr
       c100CourtPermissionNeeded: false,
       yesNoOtherProceedings: false,
       urgencyAndWithoutNoticeAllOptionsYes: false,
+      gender: "male",
+      c100PeopleYesNoDontKnow: "yes",
     });
   });
 
@@ -38,7 +42,9 @@ test.describe("C100 Citizen Application tests on the second MIRO set. @citizenFr
     Court Permission Needed: no
     Other proceedings: yes to all
     child arrangement order details: no
-    urgency and without notice: no`, async ({ page }): Promise<void> => {
+    urgency and without notice: no
+    gender: female
+    people: no`, async ({ page }): Promise<void> => {
     await C100.c100SecondMiroJourney({
       page: page,
       accessibilityTest: false,
@@ -47,6 +53,8 @@ test.describe("C100 Citizen Application tests on the second MIRO set. @citizenFr
       c100CourtPermissionNeeded: false,
       yesNoOtherProceedings: true,
       urgencyAndWithoutNoticeAllOptionsYes: false,
+      gender: "female",
+      c100PeopleYesNoDontKnow: "no",
     });
   });
   test(`Test the second row of the second row c100 citizen journey with the following options:
@@ -58,7 +66,9 @@ test.describe("C100 Citizen Application tests on the second MIRO set. @citizenFr
     Other proceedings: no to all
     child arrangement order details: no
     urgency and without notice: no,
-    @accessibilityCitizenFrontend`, async ({ page }): Promise<void> => {
+    @accessibilityCitizenFrontend
+    gender: other
+    people: dontKnow`, async ({ page }): Promise<void> => {
     await C100.c100SecondMiroJourney({
       page: page,
       accessibilityTest: true,
@@ -67,6 +77,8 @@ test.describe("C100 Citizen Application tests on the second MIRO set. @citizenFr
       c100CourtPermissionNeeded: false,
       yesNoOtherProceedings: false,
       urgencyAndWithoutNoticeAllOptionsYes: false,
+      gender: "other",
+      c100PeopleYesNoDontKnow: "dontKnow",
     });
   });
 });

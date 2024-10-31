@@ -4,7 +4,7 @@ import { CitizenCreateInitial } from "../../citizenCreateInitial";
 import { C100TypeOfOrder } from "./subJourneys/C100TypeOfOrder";
 import { C100ConsentOrderUpload } from "./subJourneys/C100ConsentOrderUpload";
 import { C100UrgencyAndWithoutNotice } from "./subJourneys/C100UrgencyAndWithoutNotice";
-import { C100People1 } from "./subJourneys/C100People1";
+import { C100People } from "./subJourneys/C100People1";
 import { MIAM } from "./subJourneys/MIAM";
 import { MiamChildProtectionConcernsType } from "../../../../pages/citizen/createCase/C100/MIAM/miamChildProtectionPage";
 import { MiamUrgencyType } from "../../../../pages/citizen/createCase/C100/MIAM/miamUrgencyPage";
@@ -65,6 +65,8 @@ interface C100SecondMiroJourneyOptions {
   c100CourtPermissionNeeded: boolean;
   yesNoOtherProceedings: boolean;
   urgencyAndWithoutNoticeAllOptionsYes: boolean;
+  gender: ApplicantGender;
+  c100PeopleYesNoDontKnow: yesNoDontKnow;
 }
 
 interface C100ThirdMiroJourneyMIAMOptions {
@@ -249,7 +251,7 @@ export class C100 {
       urgencyAndWithoutNoticeAllOptionsYes:
         urgencyAndWithoutNoticeAllOptionsYes,
     });
-    await C100People1.c100People1({
+    await C100People.c100People({
       page: page,
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
@@ -268,6 +270,8 @@ export class C100 {
     c100CourtPermissionNeeded,
     yesNoOtherProceedings,
     urgencyAndWithoutNoticeAllOptionsYes,
+    gender,
+    c100PeopleYesNoDontKnow,
   }: C100SecondMiroJourneyOptions): Promise<void> {
     await CitizenCreateInitial.citizenCreateInitial({
       page: page,
@@ -317,6 +321,13 @@ export class C100 {
       errorMessaging: errorMessaging,
       urgencyAndWithoutNoticeAllOptionsYes:
         urgencyAndWithoutNoticeAllOptionsYes,
+    });
+    await C100People.c100People({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      gender: gender,
+      c100PeopleYesNoDontKnow: c100PeopleYesNoDontKnow,
     });
   }
 
