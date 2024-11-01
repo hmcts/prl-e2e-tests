@@ -154,7 +154,7 @@ export class PersonalDetailsPage {
 
   private static async checkNoInputErrors(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -182,7 +182,7 @@ export class PersonalDetailsPage {
   private static async checkPreviousNameErrors(page: Page): Promise<void> {
     await page.click(inputIDs.yesNameChanged);
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -203,7 +203,7 @@ export class PersonalDetailsPage {
     ]);
     await page.fill(inputIDs.previousNameInput, invalidTextInputs.invalidName);
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -232,7 +232,7 @@ export class PersonalDetailsPage {
       await page.fill(inputIDs.dobMonth, month);
       await page.fill(inputIDs.dobYear, year);
       await page.click(
-        `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+        `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
       );
       const errorListKey =
         `${dateKey}ErrorList` as keyof typeof PersonalDetailsContent;
@@ -261,7 +261,7 @@ export class PersonalDetailsPage {
   private static async checkApproxDateErrors(page: Page): Promise<void> {
     await page.check(inputIDs.unknownDoB);
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -287,7 +287,7 @@ export class PersonalDetailsPage {
       await page.fill(inputIDs.approxDoBMonth, month);
       await page.fill(inputIDs.approxDoBYear, year);
       await page.click(
-        `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+        `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
       );
       const errorListKey =
         `${dateKey}ApproxErrorList` as keyof typeof PersonalDetailsContent;
