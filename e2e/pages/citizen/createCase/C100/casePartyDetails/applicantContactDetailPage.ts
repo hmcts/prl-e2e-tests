@@ -150,8 +150,8 @@ export class ApplicantContactDetailPage {
       ApplicantContactDetailContent.inputInvalidTel,
     );
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`
-    )
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
+    );
     await Promise.all([
       Helpers.checkGroup(
         page,

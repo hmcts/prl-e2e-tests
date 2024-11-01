@@ -131,8 +131,8 @@ export class ApplicantPersonalDetailsPage {
   }
   private static async fillInvalidDateOfBirth(page: Page): Promise<void> {
     await page.fill(inputIds.day, ApplicantPersonalDetailsContent.invalidDob);
-    await page.fill(inputIds.month, ApplicantPersonalDetailsContent.invalidDob)
-    await page.fill(inputIds.year, ApplicantPersonalDetailsContent.invalidDob)
+    await page.fill(inputIds.month, ApplicantPersonalDetailsContent.invalidDob);
+    await page.fill(inputIds.year, ApplicantPersonalDetailsContent.invalidDob);
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );

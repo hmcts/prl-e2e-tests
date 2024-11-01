@@ -28,7 +28,7 @@ enum inputIds {
   street = " #address2",
   town = " #addressTown",
   county = "#addressCounty",
-  country = '#country',
+  country = "#country",
   postcode = "#addressPostcode",
   addressHistoryYes = "#addressHistory",
   addressHistoryNo = "#addressHistory-2",
@@ -78,7 +78,7 @@ export class ApplicantAddressManualPage {
     }
   }
   private static async triggerErrorMessages(page: Page): Promise<void> {
-    await this.clearFormFields(page)
+    await this.clearFormFields(page);
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
@@ -112,25 +112,14 @@ export class ApplicantAddressManualPage {
     );
   }
 
-  private static async clearFormFields(
-    page: Page
-  ): Promise<void> {
-    await page.fill(
-      inputIds.building,
-      '',
-    );
-    await page.fill(
-      inputIds.street,
-      '',
-    );
-    await page.fill(inputIds.town, '');
-    await page.fill(inputIds.county, '');
-    await page.fill(inputIds.postcode, '');
-    await page.fill(
-      inputIds.country, ''
-    )
+  private static async clearFormFields(page: Page): Promise<void> {
+    await page.fill(inputIds.building, "");
+    await page.fill(inputIds.street, "");
+    await page.fill(inputIds.town, "");
+    await page.fill(inputIds.county, "");
+    await page.fill(inputIds.postcode, "");
+    await page.fill(inputIds.country, "");
   }
-
 
   private static async fillInFields({
     page,
@@ -145,8 +134,8 @@ export class ApplicantAddressManualPage {
     await page.fill(inputIds.postcode, ApplicantAddressManualContent.inputZip);
     await page.fill(
       inputIds.country,
-      ApplicantAddressManualContent.inputCountry
-    )
+      ApplicantAddressManualContent.inputCountry,
+    );
     if (prevAddress5Years) {
       await page.click(inputIds.addressHistoryYes);
       await Promise.all([
