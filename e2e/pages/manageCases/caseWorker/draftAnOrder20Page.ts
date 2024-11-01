@@ -23,6 +23,7 @@ export class DraftAnOrder20Page {
     await this.checkPageLoads(page, orderType, accessibilityTest);
     await this.checkPDFContent(
       page,
+      orderType,
       yesToAll,
       howLongWillOrderBeInForce,
       willAllPartiesBeAttendingHearing,
@@ -46,7 +47,7 @@ export class DraftAnOrder20Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.headingH3}:text-is("${orderTypesMap.get(orderType)}")`,
+        `${Selectors.headingH3}:text-is("${orderTypesMap.get(orderType)?.journeyName}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -82,18 +83,21 @@ export class DraftAnOrder20Page {
 
   private static async checkPDFContent(
     page: Page,
+    orderType: OrderType,
     yesToAll: boolean,
     howLongWillOrderBeInForce: string,
     willAllPartiesBeAttendingHearing: boolean,
   ): Promise<void> {
     await this.checkWelshPdfContent(
       page,
+      orderType,
       yesToAll,
       howLongWillOrderBeInForce,
       willAllPartiesBeAttendingHearing,
     );
     await this.checkEnglishPdfContent(
       page,
+      orderType,
       yesToAll,
       howLongWillOrderBeInForce,
       willAllPartiesBeAttendingHearing,
@@ -102,22 +106,23 @@ export class DraftAnOrder20Page {
 
   private static async checkWelshPdfContent(
     page: Page,
+    orderType: OrderType,
     yesNoToAll: boolean,
     howLongWillOrderBeInForce: string,
     willAllPartiesBeAttendingHearing: boolean,
   ): Promise<void> {
     const pdfPage: Page = await this.openMediaViewer(page, "Welsh");
+    await Helpers.checkVisibleAndPresent(
+      pdfPage,
+      `${Selectors.Span}:text-is("${orderTypesMap.get(orderType)?.welshPdfName}")`,
+      1,
+    );
     await Helpers.checkGroup(
       pdfPage,
-      54,
+      53,
       DraftAnOrder20Content,
       "welshSpan",
       `${Selectors.Span}`,
-    );
-    await Helpers.checkVisibleAndPresent(
-      pdfPage,
-      `${Selectors.Span}:text-is("${this.formatDate()}")`,
-      1,
     );
     if (yesNoToAll) {
       await Helpers.checkVisibleAndPresent(
@@ -127,11 +132,12 @@ export class DraftAnOrder20Page {
       );
       await Helpers.checkGroup(
         pdfPage,
-        48,
+        40,
         DraftAnOrder20Content,
         "welshCourtOrderSpan",
         `${Selectors.Span}`,
       );
+      await this.checkWelshRepeatedCourtOrderSpans(pdfPage);
       await Helpers.checkVisibleAndPresent(
         pdfPage,
         `${Selectors.Span}:text-is("${DraftAnOrder20Content.welshWithNoticeSpan}")`,
@@ -139,15 +145,16 @@ export class DraftAnOrder20Page {
       );
       await Helpers.checkGroup(
         pdfPage,
-        24,
+        22,
         DraftAnOrder20Content,
         "welshHearingSpan",
         `${Selectors.Span}`,
       );
+      await this.checkWelshRepeatedHearingSpans(pdfPage);
       await Helpers.checkVisibleAndPresent(
         pdfPage,
         `${Selectors.Span}:text-is("${this.formatDate()}")`,
-        1,
+        2,
       );
       if (willAllPartiesBeAttendingHearing) {
         await Helpers.checkGroup(
@@ -167,6 +174,11 @@ export class DraftAnOrder20Page {
         );
       }
     } else {
+      await Helpers.checkVisibleAndPresent(
+        pdfPage,
+        `${Selectors.Span}:text-is("${this.formatDate()}")`,
+        1,
+      );
       await Helpers.checkVisibleAndPresent(
         pdfPage,
         `${Selectors.Span}:text-is("${DraftAnOrder20Content.welshWithoutNoticeSpan}")`,
@@ -196,16 +208,55 @@ export class DraftAnOrder20Page {
     }
   }
 
+  private static async checkWelshRepeatedCourtOrderSpans(page: Page): Promise<void> {
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${DraftAnOrder20Content.welshRepeatedCourtOrderSpan1}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${DraftAnOrder20Content.welshRepeatedCourtOrderSpan2}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${DraftAnOrder20Content.welshRepeatedCourtOrderSpan3}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${DraftAnOrder20Content.welshRepeatedCourtOrderSpan4}")`,
+        2,
+      ),
+    ]);
+  }
+
+  private static async checkWelshRepeatedHearingSpans(page: Page): Promise<void> {
+    await Helpers.checkVisibleAndPresent(
+      page,
+      `${Selectors.Span}:text-is("${DraftAnOrder20Content.welshHearingRepeatedColon}")`,
+      3,
+    )
+  }
+
   private static async checkEnglishPdfContent(
     page: Page,
+    orderType: OrderType,
     yesNoToAll: boolean,
     howLongWillOrderBeInForce: string,
     willAllPartiesBeAttendingHearing: boolean,
   ): Promise<void> {
     const pdfPage: Page = await this.openMediaViewer(page, "English");
+    await Helpers.checkVisibleAndPresent(
+      pdfPage,
+      `${Selectors.Span}:text-is("${orderTypesMap.get(orderType)?.englishPdfName}")`,
+      1,
+    );
     await Helpers.checkGroup(
       pdfPage,
-      45,
+      44,
       DraftAnOrder20Content,
       "span",
       `${Selectors.Span}`,
@@ -223,11 +274,12 @@ export class DraftAnOrder20Page {
       );
       await Helpers.checkGroup(
         pdfPage,
-        47,
+        33,
         DraftAnOrder20Content,
         "courtOrderSpan",
         `${Selectors.Span}`,
       );
+      await this.checkEnglishRepeatCourtOrderSpans(pdfPage);
       await Helpers.checkVisibleAndPresent(
         pdfPage,
         `${Selectors.Span}:text-is("${DraftAnOrder20Content.withNoticeSpan}")`,
@@ -290,6 +342,46 @@ export class DraftAnOrder20Page {
         );
         break;
     }
+  }
+
+  private static async checkEnglishRepeatCourtOrderSpans(page: Page): Promise<void> {
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${DraftAnOrder20Content.repeatCourtOrderSpan1}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${DraftAnOrder20Content.repeatCourtOrderSpan2}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${DraftAnOrder20Content.repeatCourtOrderSpan3}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${DraftAnOrder20Content.repeatCourtOrderSpan4}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${DraftAnOrder20Content.repeatCourtOrderSpan5}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${DraftAnOrder20Content.repeatCourtOrderSpan6}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${DraftAnOrder20Content.repeatCourtOrderSpan7}")`,
+        2,
+      ),
+    ]);
   }
 
   private static formatDate(): string {

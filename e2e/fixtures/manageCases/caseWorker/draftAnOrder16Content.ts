@@ -41,5 +41,5 @@ export enum DraftAnOrder16Content {
   hearingType = "Allocation",
   judge = "Ms Yolanda Cooper (HHJ.Yolanda.Cooper@ejudiciary.net)",
   joiningInstructions = "test joining instructions",
-  additionalHearingDetails = "test additional hearing details"
+  additionalHearingDetails = "test additional hearing details",
 }

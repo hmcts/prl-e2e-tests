@@ -21,10 +21,10 @@ enum UniqueSelectors {
   hearingJudgeTextbox = "#ordersHearingDetails_0_hearingJudgeNameAndEmail",
   joiningInstructionsTextbox = "#ordersHearingDetails_0_instructionsForRemoteHearing",
   additionalHearingDetailsTextbox = "#ordersHearingDetails_0_additionalHearingDetails",
-  applicantAttendanceDropdown = "ordersHearingDetails_0_applicantHearingChannel",
-  solicitorAttendanceDropdown = "ordersHearingDetails_0_applicantSolicitorHearingChannel",
-  respondentAttendanceDropdown = "ordersHearingDetails_0_respondentHearingChannel",
-  localAuthorityAttendanceDropdown = "ordersHearingDetails_0_localAuthorityHearingChannel",
+  applicantAttendanceDropdown = "#ordersHearingDetails_0_applicantHearingChannel",
+  solicitorAttendanceDropdown = "#ordersHearingDetails_0_applicantSolicitorHearingChannel",
+  respondentAttendanceDropdown = "#ordersHearingDetails_0_respondentHearingChannel",
+  localAuthorityAttendanceDropdown = "#ordersHearingDetails_0_localAuthorityHearingChannel",
   hasJudgeProvidedHearingDetailsLabels = "#hasJudgeProvidedHearingDetails .form-label",
 }
 
@@ -80,7 +80,7 @@ export class DraftAnOrder16Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.headingH3}:text-is("${orderTypesMap.get("nonMolestation")}")`,
+        `${Selectors.headingH3}:text-is("${orderTypesMap.get("nonMolestation")?.journeyName}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -269,12 +269,6 @@ export class DraftAnOrder16Page {
         `formLabel`,
         `${Selectors.GovukFormLabel}`,
       ),
-      // TODO: use specific selectors to get correct buttons there is a hidden one
-      // Helpers.checkVisibleAndPresent(
-      //   page,
-      //   `${Selectors.button}:text-is("${DraftAnOrder16Content.addNew}")`,
-      //   5,
-      // ),
     ]);
   }
 

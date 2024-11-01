@@ -22,8 +22,7 @@ export enum DraftAnOrder2Content {
   continue = "Continue",
   errorBanner = "There is a problem",
   errorMessageSelectTheTypeOfOrderIsRequired = "Select the type of order is required",
-  errorsHeader = "Errors",
   errorMessageOrderNotAvailableToBeDrafted = "This order is not available to be drafted",
   errorMessageOrderNotAvailableForC100 = "You need to go back to the previous screen and upload an order, as this case has multiple applicants or respondents.",
-  errorMessageOrderNotAvailableForFL401 = "This order is not available to be created for FL401 cases",
+  errorMessageOrderNotAvailableForFL401 = " This order is not available to be created for FL401 cases ",
 }

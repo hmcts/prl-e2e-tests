@@ -92,7 +92,7 @@ export class DraftAnOrder5Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.headingH3}:text-is("${orderTypesMap.get("nonMolestation")}")`,
+        `${Selectors.headingH3}:text-is("${orderTypesMap.get("nonMolestation")?.journeyName}")`,
         1,
       ),
       Helpers.checkGroup(

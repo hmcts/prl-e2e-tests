@@ -26,30 +26,126 @@ export type HowLongWillTheOrderBeInForce =
   | "untilNextHearing"
   | "specifiedDateAndTime";
 
-export const orderTypesMap: Map<OrderType, string> = new Map([
+interface OrderTypeStrings {
+  journeyName: string;
+  englishPdfName: string;
+  welshPdfName: string;
+}
+
+export const orderTypesMap: Map<OrderType, OrderTypeStrings> = new Map([
   [
     "c21ApplicationRefused",
-    "Blank order or directions (C21): application refused",
+    {
+      journeyName: "Blank order or directions (C21): application refused",
+      englishPdfName: "",
+      welshPdfName: "",
+    },
   ],
   [
     "c21WithdrawApplication",
-    "Blank order or directions (C21): to withdraw application",
+    {
+      journeyName: "Blank order or directions (C21): to withdraw application",
+      englishPdfName: "",
+      welshPdfName: "",
+    },
   ],
-  ["c21NoOrderMade", "Blank order or directions (C21): no order made"],
-  ["c21other", "Blank order or directions (C21): Other"],
+  [
+    "c21NoOrderMade",
+    {
+      journeyName: "Blank order or directions (C21): no order made",
+      englishPdfName: "",
+      welshPdfName: "",
+    },
+  ],
+  [
+    "c21other",
+    {
+      journeyName: "Blank order or directions (C21): Other",
+      englishPdfName: "",
+      welshPdfName: "",
+    },
+  ],
   [
     "childArrangementsSpecificProhibitedOrder",
-    "Child arrangements, specific issue or prohibited steps order (C43)",
+    {
+      journeyName:
+        "Child arrangements, specific issue or prohibited steps order (C43)",
+      englishPdfName: "",
+      welshPdfName: "",
+    },
   ],
-  ["parentalResponsibility", "Parental responsibility order (C45A)"],
-  ["specialGuardianShip", "Special guardianship order (C43A)"],
-  ["appointmentOfGuardian", "Appointment of a guardian (C47A)"],
-  ["nonMolestation", "Non-molestation order (FL404A)"],
-  ["occupation", "Occupation order (FL404)"],
-  ["powerOfArrest", "Power of arrest (FL406)"],
-  ["amendDischargedVaried", "Amended, discharged or varied order (FL404B)"],
-  ["blank", "Blank order (FL404B)"],
-  ["generalForm", "General form of undertaking (N117)"],
+  [
+    "parentalResponsibility",
+    {
+      journeyName: "Parental responsibility order (C45A)",
+      englishPdfName: "",
+      welshPdfName: "",
+    },
+  ],
+  [
+    "specialGuardianShip",
+    {
+      journeyName: "Special guardianship order (C43A)",
+      englishPdfName: "",
+      welshPdfName: "",
+    },
+  ],
+  [
+    "appointmentOfGuardian",
+    {
+      journeyName: "Appointment of a guardian (C47A)",
+      englishPdfName: "",
+      welshPdfName: "",
+    },
+  ],
+  [
+    "nonMolestation",
+    {
+      journeyName: "Non-molestation order (FL404A)",
+      englishPdfName: "Non-molestation order",
+      welshPdfName: "Gorchymyn rhag molestu",
+    },
+  ],
+  [
+    "occupation",
+    {
+      journeyName: "Occupation order (FL404)",
+      englishPdfName: "",
+      welshPdfName: "",
+    },
+  ],
+  [
+    "powerOfArrest",
+    {
+      journeyName: "Power of arrest (FL406)",
+      englishPdfName: "",
+      welshPdfName: "",
+    },
+  ],
+  [
+    "amendDischargedVaried",
+    {
+      journeyName: "Amended, discharged or varied order (FL404B)",
+      englishPdfName: "",
+      welshPdfName: "",
+    },
+  ],
+  [
+    "blank",
+    {
+      journeyName: "Blank order (FL404B)",
+      englishPdfName: "",
+      welshPdfName: "",
+    },
+  ],
+  [
+    "generalForm",
+    {
+      journeyName: "General form of undertaking (N117)",
+      englishPdfName: "",
+      welshPdfName: "",
+    },
+  ],
 ]);
 
 export class DraftAnOrder {

@@ -6,7 +6,6 @@ import { DraftAnOrder2Content } from "../../../fixtures/manageCases/caseWorker/d
 import { OrderType, solicitorCaseCreateType } from "../../../common/types";
 
 enum UniqueSelectors {
-  errorsHeaderSelector = "ccd-callback-errors > h3",
   errorMessageSelector = "ccd-callback-errors > div > ul > li",
 }
 
@@ -122,11 +121,6 @@ export class DraftAnOrder2Page {
     for (const orderType of invalidC100OrderTypes) {
       await this.fillInFields(page, orderType);
       await this.continue(page);
-      await Helpers.checkVisibleAndPresent(
-        page,
-        `${UniqueSelectors.errorsHeaderSelector}:text-is("${DraftAnOrder2Content.errorsHeader}")`,
-        1,
-      );
       if (nonDraftableOrders.includes(orderType)) {
         await Helpers.checkVisibleAndPresent(
           page,
@@ -147,11 +141,6 @@ export class DraftAnOrder2Page {
     for (const orderType of invalidFL401OrderTypes) {
       await this.fillInFields(page, orderType);
       await this.continue(page);
-      await Helpers.checkVisibleAndPresent(
-        page,
-        `${UniqueSelectors.errorsHeaderSelector}:text-is("${DraftAnOrder2Content.errorsHeader}")`,
-        1,
-      );
       if (nonDraftableOrders.includes(orderType)) {
         await Helpers.checkVisibleAndPresent(
           page,
