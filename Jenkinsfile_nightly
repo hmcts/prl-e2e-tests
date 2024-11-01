@@ -81,7 +81,7 @@ withNightlyPipeline(type, product, component, 600) {
       }
     }
     if (!params.skipCitizenTests) {
-      env.FUNCTIONAL_TESTS_WORKERS = '1'
+      env.FUNCTIONAL_TESTS_WORKERS = '3'
       stage('Citizen E2E tests - Chrome') {
         try {
           yarnBuilder.yarn('test:citizenFrontendChrome')
