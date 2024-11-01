@@ -1,5 +1,6 @@
 export enum OtherPersonManualContent {
   pageTitle = "Address details of",
+  firstNameLastName = "Other Person First Name Other Person Last Name",
   govukLabel1 = "Building and street",
   govukLabel2 = "Town or city",
   govukLabel3 = "County",

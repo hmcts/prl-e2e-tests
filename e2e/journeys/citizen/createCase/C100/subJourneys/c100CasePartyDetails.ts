@@ -23,6 +23,10 @@ import { OtherPersonDetailsCheckPage } from "../../../../../pages/citizen/create
 import { PersonalDetailsPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/otherPeople/personalDetailsPage";
 import { OtherPersonRelationshipPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/otherPeople/otherPersonRelationshipPage";
 import { OtherPersonAddressLookupPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/otherPeople/otherPersonAddressLookupPage";
+import { OtherPersonSelectPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/otherPeople/otherPersonSelectPage";
+import { OtherPersonManualPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/otherPeople/otherPersonManualPage";
+import { MainlyLiveWithPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/otherPeople/mainlyLiveWithPage";
+import { LivingArrangementsPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/otherPeople/livingArrangementsPage";
 
 interface c100CasePartyDetailsOptions {
   page: Page;
@@ -212,10 +216,26 @@ export class C100CasePartyDetails {
         accessibilityTest: accessibilityTest,
         errorMessaging: errorMessaging,
       });
-      // Other Person select address
-      // Other Person manual address
-      // Other Person mainly live with
-      // Other Person living arrangements
+      await OtherPersonSelectPage.otherPersonSelectPage({
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
+      });
+      await OtherPersonManualPage.otherPersonManualPage({
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
+      });
+      await MainlyLiveWithPage.mainlyLiveWithPage({
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
+      });
+      await LivingArrangementsPage.livingArrangementsPage({
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
+      });
     }
   }
 }
