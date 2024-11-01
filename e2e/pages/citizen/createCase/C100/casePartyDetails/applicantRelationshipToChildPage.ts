@@ -94,12 +94,12 @@ export class ApplicantRelationshipToChildPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorList}:text-is("${ApplicantRelationshipToChildContent.errorMessage}")`,
+        `${Selectors.GovukErrorList} ${Selectors.a}:text-is("${ApplicantRelationshipToChildContent.errorMessage}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${ApplicantRelationshipToChildContent.errorMessage}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${ApplicantRelationshipToChildContent.errorMessage}")`,
         1,
       ),
     ]);

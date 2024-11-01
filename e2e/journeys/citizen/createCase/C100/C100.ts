@@ -339,7 +339,7 @@ export class C100 {
       gender: c100PeopleGender,
       c100PeopleYesNoDontKnow: c100PeopleYesNoDontKnow,
     });
-    await C100Confidentiality.c100Confidentiality({
+     await C100Confidentiality.c100Confidentiality({
       page: page,
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,

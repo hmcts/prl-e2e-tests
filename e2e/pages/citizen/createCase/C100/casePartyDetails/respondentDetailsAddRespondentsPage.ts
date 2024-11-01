@@ -93,7 +93,7 @@ export class RespondentDetailsAddRespondentsPage {
         2,
         RespondentDetailsAddRespondentsContent,
         "errorMessage",
-        Selectors.GovukErrorMessage,
+        Selectors.GovukErrorMessageCitizen,
       ),
       Helpers.checkVisibleAndPresent(
         page,

@@ -88,7 +88,7 @@ export class RespondentDetailsAddressSelectPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorSummary}:text-is("${RespondentDetailsAddressSelectContent.errorMessage}")`,
+        `${Selectors.GovukErrorList} ${Selectors.a}:text-is("${RespondentDetailsAddressSelectContent.errorMessage}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(

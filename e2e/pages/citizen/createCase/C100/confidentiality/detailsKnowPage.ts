@@ -95,7 +95,7 @@ export class DetailsKnowPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorSummaryList} ${Selectors.a}:text-is("${DetailsKnowContent.errorSummaryList}")`,
+        `${Selectors.GovukErrorList} ${Selectors.a}:text-is("${DetailsKnowContent.errorSummaryList}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(

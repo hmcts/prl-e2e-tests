@@ -106,7 +106,7 @@ export class StartPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorSummaryList} ${Selectors.a}:text-is("${StartContent.errorSummaryList}")`,
+        `${Selectors.GovukErrorList} ${Selectors.a}:text-is("${StartContent.errorSummaryList}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(

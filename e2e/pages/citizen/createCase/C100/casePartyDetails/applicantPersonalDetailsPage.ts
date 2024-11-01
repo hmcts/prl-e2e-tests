@@ -118,7 +118,7 @@ export class ApplicantPersonalDetailsPage {
         4,
         ApplicantPersonalDetailsContent,
         "errorMessage",
-        Selectors.ErrorSummaryList,
+        `${Selectors.GovukErrorList} ${Selectors.a}`,
       ),
       Helpers.checkGroup(
         page,
@@ -130,11 +130,9 @@ export class ApplicantPersonalDetailsPage {
     ]);
   }
   private static async fillInvalidDateOfBirth(page: Page): Promise<void> {
-    await Promise.all([
-      page.fill(inputIds.day, ApplicantPersonalDetailsContent.invalidDob),
-      page.fill(inputIds.month, ApplicantPersonalDetailsContent.invalidDob),
-      page.fill(inputIds.year, ApplicantPersonalDetailsContent.invalidDob),
-    ]);
+    await page.fill(inputIds.day, ApplicantPersonalDetailsContent.invalidDob);
+    await page.fill(inputIds.month, ApplicantPersonalDetailsContent.invalidDob)
+    await page.fill(inputIds.year, ApplicantPersonalDetailsContent.invalidDob)
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
@@ -151,7 +149,7 @@ export class ApplicantPersonalDetailsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukSummaryList}:text-is("${ApplicantPersonalDetailsContent.dobErrorMessage1}")`,
+        `${Selectors.GovukErrorList} ${Selectors.a}:text-is("${ApplicantPersonalDetailsContent.dobErrorMessage1}")`,
         1,
       ),
     ]);

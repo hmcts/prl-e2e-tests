@@ -84,6 +84,9 @@ export class OtherPersonAddressLookupPage {
       ),
     ]);
     await page.fill(postcodeLookup, numericalPostcode);
+    await page.click(
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`
+    )
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,

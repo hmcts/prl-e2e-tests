@@ -101,7 +101,7 @@ export class OtherPersonRelationshipPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${OtherPersonRelationshipContent.errorMessage}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${OtherPersonRelationshipContent.errorMessage}")`,
         1,
       ),
     ]);
@@ -122,7 +122,7 @@ export class OtherPersonRelationshipPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${OtherPersonRelationshipContent.errorMessage}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${OtherPersonRelationshipContent.errorMessage}")`,
         1,
       ),
     ]);

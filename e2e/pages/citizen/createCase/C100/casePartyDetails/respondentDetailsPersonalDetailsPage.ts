@@ -161,14 +161,14 @@ export class RespondentDetailsPersonalDetailsPage {
         4,
         RespondentDetailsPersonalDetailsContent,
         "errorMessage",
-        Selectors.GovukErrorMessage,
+        Selectors.GovukErrorMessageCitizen,
       ),
       Helpers.checkGroup(
         page,
         4,
         RespondentDetailsPersonalDetailsContent,
         "errorMessage",
-        Selectors.GovukErrorList,
+        `${Selectors.GovukErrorList} ${Selectors.a}`,
       ),
     ]);
     //Trigger hidden error message
@@ -179,10 +179,11 @@ export class RespondentDetailsPersonalDetailsPage {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${RespondentDetailsPersonalDetailsContent.hiddenErrorMessage1}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${RespondentDetailsPersonalDetailsContent.hiddenErrorMessage1}")`,
         1,
       ),
     ]);
+    await page.uncheck(InputIds.dobUnknownCheck);
   }
 
   private static async fillInFields({

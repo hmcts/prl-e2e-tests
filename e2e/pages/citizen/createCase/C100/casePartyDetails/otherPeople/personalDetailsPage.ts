@@ -150,6 +150,9 @@ export class PersonalDetailsPage {
     await this.checkPreviousNameErrors(page);
     await this.checkDateErrors(page);
     await this.checkApproxDateErrors(page);
+    await page.uncheck(
+      inputIDs.unknownDoB
+    )
   }
 
   private static async checkNoInputErrors(page: Page): Promise<void> {
@@ -256,6 +259,9 @@ export class PersonalDetailsPage {
         ),
       ]);
     }
+    await page.fill(inputIDs.dobDay, '');
+    await page.fill(inputIDs.dobMonth, '');
+    await page.fill(inputIDs.dobYear, '');
   }
 
   private static async checkApproxDateErrors(page: Page): Promise<void> {
@@ -283,7 +289,7 @@ export class PersonalDetailsPage {
     for (let [dateKey, [day, month, year]] of Object.entries(
       invalidDateInputs,
     )) {
-      await page.fill(inputIDs.approxDoBYear, day);
+      await page.fill(inputIDs.approxDoBDay, day);
       await page.fill(inputIDs.approxDoBMonth, month);
       await page.fill(inputIDs.approxDoBYear, year);
       await page.click(
@@ -311,6 +317,9 @@ export class PersonalDetailsPage {
         ),
       ]);
     }
+    await page.fill(inputIDs.approxDoBDay, '');
+    await page.fill(inputIDs.approxDoBMonth, '');
+    await page.fill(inputIDs.approxDoBYear, '');
   }
 
   private static async fillInFields({
