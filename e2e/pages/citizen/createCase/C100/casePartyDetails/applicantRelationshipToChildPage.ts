@@ -108,7 +108,7 @@ export class ApplicantRelationshipToChildPage {
     page,
     relationship,
   }: fillInFieldsOptions): Promise<void> {
-    if (!(relationship in Object.keys(inputIds))) {
+    if (!(relationship in inputIds)) {
       throw new Error(
         `The value 'relationship' must be one of 'mother', 'father', 'guardian', 'specialGuardian', 'grandparent', 'other'. You used ${relationship}.`,
       );

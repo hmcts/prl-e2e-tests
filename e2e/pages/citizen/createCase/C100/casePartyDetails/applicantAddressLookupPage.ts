@@ -60,7 +60,7 @@ export class ApplicantAddressLookupPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukBody}:text-is("${ApplicantAddressLookupContent.body}")`,
+        `${Selectors.a}:text-is("${ApplicantAddressLookupContent.body}")`,
         1,
       ),
     ]);

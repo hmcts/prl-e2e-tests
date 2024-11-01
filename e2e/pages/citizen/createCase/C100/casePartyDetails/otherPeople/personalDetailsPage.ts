@@ -91,7 +91,7 @@ export class PersonalDetailsPage {
     accessibilityTest,
   }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukHeadingXL}:text-is("${PersonalDetailsContent.pageTitle}")`,
+      `${Selectors.GovukHeadingXL}:has-text("${PersonalDetailsContent.pageTitle}")`,
     );
     await Promise.all([
       Helpers.checkGroup(
@@ -326,12 +326,12 @@ export class PersonalDetailsPage {
       await Promise.all([
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukLabel}:text-is("${PersonalDetailsContent.previousNameLabel}}")`,
+          `${Selectors.GovukLabel}:text-is("${PersonalDetailsContent.previousNameLabel}")`,
           1,
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukHint}:text-is("${PersonalDetailsContent.previousNameHint}}")`,
+          `${Selectors.GovukHint}:text-is("${PersonalDetailsContent.previousNameHint}")`,
           1,
         ),
       ]);
@@ -370,9 +370,9 @@ export class PersonalDetailsPage {
         const inputKey = key as keyof typeof inputIDs;
         await page.fill(inputIDs[inputKey], PersonalDetailsContent[contentKey]);
       }
-      await page.click(
-        `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
-      );
     }
+    await page.click(
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
+    );
   }
 }

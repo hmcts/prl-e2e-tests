@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test";
+import { Page, expect } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { RespondentDetailsAddressManualContent } from "../../../../../fixtures/citizen/createCase/C100/casePartyDetails/respondentDetailsAddressManualContent";
 import { Helpers } from "../../../../../common/helpers";
@@ -64,7 +64,7 @@ export class RespondentDetailsAddressManualPage {
       );
     }
     await page.waitForSelector(
-      `${Selectors.GovukCaptionXL}:has-text("${RespondentDetailsAddressManualContent.pageTitle}")`,
+      `${Selectors.GovukHeadingXL}:has-text("${RespondentDetailsAddressManualContent.pageTitle}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(

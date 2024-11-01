@@ -35,17 +35,27 @@ test.describe("Create Citizen Application but choose to have legal representativ
       });
     },
   );
+});
+
+test.describe("Testing the accessibility of the C100 Case Created for you application, @accessibilityCitizenFrontend", (): void => {
+  test.beforeEach(async ({ page }) => {
+    // Sign in as a citizen user before each test
+    await IdamLoginHelper.signInCitizenUser(
+      page,
+      Config.citizenFrontendBaseURL,
+    );
+  });
   test(
     "Application completed for you with the following options:" +
-      "No error messaging." +
-      "Yes accessibility Testing" +
-      "@accessibilityCitizenFrontend",
+    "No error messaging." +
+    "Yes accessibility Testing",
     async ({ page }): Promise<void> => {
       await C100.c100ApplicationCompletedForYou({
         page: page,
         accessibilityTest: true,
         errorMessaging: false,
       });
-    },
+    }
   );
 });
+

@@ -38,7 +38,7 @@ export class OtherPersonAddressLookupPage {
     accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukHeadingL}:has-text("${OtherPersonAddressLookupContent.pageTitle}")`,
+      `${Selectors.GovukHeadingXL}:has-text("${OtherPersonAddressLookupContent.pageTitle}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(

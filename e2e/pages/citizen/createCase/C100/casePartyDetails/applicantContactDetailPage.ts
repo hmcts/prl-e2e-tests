@@ -60,7 +60,7 @@ export class ApplicantContactDetailPage {
     accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukHeadingL}:has-text("${ApplicantContactDetailContent.pageTitle}")`,
+      `${Selectors.GovukHeadingXL}:has-text("${ApplicantContactDetailContent.pageTitle}")`,
     );
     await Promise.all([
       Helpers.checkGroup(

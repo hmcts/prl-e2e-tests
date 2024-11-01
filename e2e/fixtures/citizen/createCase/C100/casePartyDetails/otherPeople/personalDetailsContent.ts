@@ -1,5 +1,5 @@
 export enum PersonalDetailsContent {
-  pageTitle = "Provide details for other names",
+  pageTitle = "Provide details for",
   legend1 = "Have they changed their name?",
   legend2 = "Gender",
   legend3 = "Date of birth",

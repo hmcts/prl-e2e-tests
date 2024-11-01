@@ -9,6 +9,8 @@ Since the C100 citizen journey is very complicated, it has been split up into 4 
 ## Journeys
 
 All journeys start with first creating the case and then navigating through the screening sections.
+The plan to test the permutations pf relationships is to restrict the applicant relationship and then try all other relationships for respondent or other person.
+- E.G For top journey, we only ever select applicant relationship as Mother or Father, and then for respondent and other we'd do one journey with each option
 
 ### Top Row
 
@@ -46,7 +48,11 @@ Coverage:
      - Applicant Details
        - changedName
        - gender: `male`
+       - relationship to child: `mother` or `father`
+       - lived at address more than 5 years: `true`
      - Respondent Details
+       - gender `male`
+       - 
      - Other details
    - Yes/No radios
    - Sex radios

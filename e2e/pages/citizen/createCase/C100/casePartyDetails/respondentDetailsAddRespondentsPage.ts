@@ -60,7 +60,7 @@ export class RespondentDetailsAddRespondentsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukBody}:text-is("${RespondentDetailsAddRespondentsContent.body}")`,
+        `${Selectors.GovukInsetText}:text-is("${RespondentDetailsAddRespondentsContent.body}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(

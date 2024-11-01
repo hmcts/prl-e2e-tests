@@ -29,6 +29,9 @@ import {
 import {
   OtherPersonAddressLookupPage
 } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/otherPeople/otherPersonAddressLookupPage";
+import {
+  RespondentRelationshipToChildPage
+} from "../../../../../pages/citizen/createCase/C100/casePartyDetails/respondentDetailsRelationshipToChildPage";
 
 interface c100CasePartyDetailsOptions {
   page: Page;
@@ -47,6 +50,7 @@ interface c100CasePartyDetailsOptions {
   respondentGender: ApplicantGender;
   respondentChangedName: yesNoDontKnow;
   respAddress5Years: yesNoDontKnow;
+  respondentRelationship: Relationship;
   respAddressLookup: boolean;
   respAddressLookupSuccessful: boolean;
   respKnownEmailAndPhone: boolean;
@@ -75,6 +79,7 @@ export class C100CasePartyDetails {
     respondentChangedName,
     respondentGender,
     respAddress5Years,
+    respondentRelationship,
     respAddressLookup,
     respAddressLookupSuccessful,
     respKnownEmailAndPhone,
@@ -146,6 +151,12 @@ export class C100CasePartyDetails {
         knownPlaceOfBirth: respondentKnownPlaceOfBirth,
       },
     );
+    await RespondentRelationshipToChildPage.respondentRelationshipToChildPage({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      respondentRelationship: respondentRelationship
+    })
     await RespondentDetailsAddressLookupPage.respondentDetailsAddressLookupPage(
       {
         page: page,
@@ -160,14 +171,6 @@ export class C100CasePartyDetails {
         accessibilityTest: accessibilityTest,
         errorMessaging: errorMessaging,
         addressLookupSuccessful: respAddressLookupSuccessful,
-      },
-    );
-
-    await RespondentDetailsAddRespondentsPage.respondentDetailsAddRespondentsPage(
-      {
-        page: page,
-        accessibilityTest: accessibilityTest,
-        errorMessaging: errorMessaging,
       },
     );
     await RespondentDetailsAddressManualPage.respondentDetailsAddressManualPage(

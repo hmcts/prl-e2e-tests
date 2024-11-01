@@ -132,7 +132,7 @@ export class OtherPersonRelationshipPage {
     page,
     c100OtherPersonRelationship,
   }: fillInFieldsOptions): Promise<void> {
-    if (!(c100OtherPersonRelationship in Object.keys(inputIds))) {
+    if (!(c100OtherPersonRelationship in inputIds)) {
       throw new Error(
         `The value 'relationship' must be one of 'mother', 'father', 'guardian', 'specialGuardian', 'grandparent', 'other'. You used ${c100OtherPersonRelationship}.`,
       );

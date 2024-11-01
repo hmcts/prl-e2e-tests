@@ -5,7 +5,6 @@ import { ApplicantAddressLookupContent } from "../../../../../fixtures/citizen/c
 import { ApplicantAddressSelectContent } from "../../../../../fixtures/citizen/createCase/C100/casePartyDetails/applicantAddressSelectContent";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-import { ApplicantPersonalDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/casePartyDetails/applicantPersonalDetailsContent";
 
 interface applicantAddressSelectOptions {
   page: Page;
@@ -56,14 +55,14 @@ export class ApplicantAddressSelectPage {
       Helpers.checkGroup(
         page,
         2,
-        ApplicantPersonalDetailsContent,
+        ApplicantAddressSelectContent,
         "label",
         Selectors.GovukLabel,
       ),
       Helpers.checkGroup(
         page,
         2,
-        ApplicantPersonalDetailsContent,
+        ApplicantAddressSelectContent,
         "link",
         Selectors.GovukLink,
       ),
