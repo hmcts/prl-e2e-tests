@@ -1,6 +1,6 @@
 export enum FinancialOrderDocumentUploadContent {
   pageTitle = "Upload Financial Order",
-  p1 = "If you are uploading documents from a computer, name the files clearly. For example, emergency-protection-order.doc",
+  p1 = "If you are uploading documents from a computer, name the files clearly. For example, emergency-protection-order.doc.",
   p2 = "Files must end with JPG, BMP, PNG,TIF, PDF, DOC or DOCX.",
   spanA = "How to take a picture of a document on your phone and upload it",
   li1 = "Place your document on a flat service in a well-lit room. Use a flash if you need to.",
