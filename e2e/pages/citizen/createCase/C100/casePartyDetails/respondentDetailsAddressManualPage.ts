@@ -186,8 +186,8 @@ export class RespondentDetailsAddressManualPage {
         break;
       default:
         throw new Error(
-          `Unrecognised value for yesNoDontKnow: ${yesNoDontKnow}`
-        )
+          `Unrecognised value for yesNoDontKnow: ${yesNoDontKnow}`,
+        );
     }
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,

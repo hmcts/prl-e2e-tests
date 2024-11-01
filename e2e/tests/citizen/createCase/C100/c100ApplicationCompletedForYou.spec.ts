@@ -47,15 +47,14 @@ test.describe("Testing the accessibility of the C100 Case Created for you applic
   });
   test(
     "Application completed for you with the following options:" +
-    "No error messaging." +
-    "Yes accessibility Testing",
+      "No error messaging." +
+      "Yes accessibility Testing",
     async ({ page }): Promise<void> => {
       await C100.c100ApplicationCompletedForYou({
         page: page,
         accessibilityTest: true,
         errorMessaging: false,
       });
-    }
+    },
   );
 });
-

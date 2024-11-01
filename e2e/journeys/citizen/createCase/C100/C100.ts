@@ -13,13 +13,15 @@ import { MiamOtherReasonForNotAttending } from "../../../../pages/citizen/create
 import { MiamReasonForNoAccessToMediator } from "../../../../pages/citizen/createCase/C100/MIAM/miamNoAccessToMediatorPage";
 import { C100OtherProceedings } from "./subJourneys/C100OtherProceedings";
 import { C100ApplicationCompletedForYou } from "./C100ApplicationCompletedForYou";
-import { ApplicantGender, Relationship, yesNoDontKnow } from "../../../../common/types";
+import {
+  ApplicantGender,
+  Relationship,
+  yesNoDontKnow,
+} from "../../../../common/types";
 import { C100Confidentiality } from "./subJourneys/c100Confidentiality";
 import { C100CasePartyDetails } from "./subJourneys/c100CasePartyDetails";
 import { C100SafetyConcerns } from "./subJourneys/c100SafetyConcerns";
-import {
-  c100ChildrenSupervisionRadios
-} from "../../../../pages/citizen/createCase/C100/safetyConcerns/unsupervisedPage";
+import { c100ChildrenSupervisionRadios } from "../../../../pages/citizen/createCase/C100/safetyConcerns/unsupervisedPage";
 import { C100InternationalElements } from "./subJourneys/c100InternationalElements";
 import { C100ReasonableAdjustments } from "./subJourneys/c100ReasonableAdjustments";
 import { C100HelpWithFees } from "./subJourneys/c100HelpWithFees";
@@ -296,9 +298,9 @@ export class C100 {
     c100PassportOfficeNotified,
     c100SafetyConcernsYesNoToAll,
     yesNoInternationalElements,
-                                           yesNoReasonableAdjustments,
+    yesNoReasonableAdjustments,
     c100YesNoNeedHelpWithFees,
-    c100YesNoFeesApplied
+    c100YesNoFeesApplied,
   }: C100TopMiroJourneyOptions): Promise<void> {
     await CitizenCreateInitial.citizenCreateInitial({
       page: page,
@@ -342,7 +344,7 @@ export class C100 {
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
       c100PrivateDetails: c100PrivateDetails,
-      c100OthersKnowApplicantsContact: c100OthersKnowApplicantsContact
+      c100OthersKnowApplicantsContact: c100OthersKnowApplicantsContact,
     });
     await C100CasePartyDetails.C100CasePartyDetails({
       page: page,

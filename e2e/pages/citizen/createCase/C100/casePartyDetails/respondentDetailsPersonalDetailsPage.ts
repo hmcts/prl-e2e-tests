@@ -33,8 +33,8 @@ enum uniqueSelectors {
   dobDaySelector = "#dateOfBirth > div:nth-child(1) > div > label",
   dobMonthSelector = "#dateOfBirth > div:nth-child(2) > div > label",
   dobYearSelector = "#dateOfBirth > div:nth-child(3) > div > label",
-  dobUniqueSelector = '#dateOfBirth > div > div > ',
-  approxDoBUniqueSelector = '#approxDateOfBirth > div > div > ',
+  dobUniqueSelector = "#dateOfBirth > div > div > ",
+  approxDoBUniqueSelector = "#approxDateOfBirth > div > div > ",
   approxDobDaySelector = "#approxDateOfBirth > div:nth-child(1) > div > label",
   approxDobMonthSelector = "#approxdateOfBirth > div:nth-child(2) > div > label",
   approxDobYearSelector = "#approxdateOfBirth > div:nth-child(3) > div > label",
@@ -288,7 +288,7 @@ export class RespondentDetailsPersonalDetailsPage {
       await page.check(InputIds.unknownPlaceOfBirthCheck);
     }
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`
-    )
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
+    );
   }
 }

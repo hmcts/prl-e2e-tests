@@ -54,9 +54,7 @@ test.describe("C100 Citizen Application tests on the top MIRO set. @citizenFront
     international elements yes to all: ture,
     yes to all reasonable adjustments: ture,
     need help with fees: yes,
-    fees applied: yes`, async ({
-    page,
-  }): Promise<void> => {
+    fees applied: yes`, async ({ page }): Promise<void> => {
     await C100.c100TopMiroJourney({
       page: page,
       accessibilityTest: false,
@@ -64,11 +62,11 @@ test.describe("C100 Citizen Application tests on the top MIRO set. @citizenFront
       urgencyAndWithoutNoticeAllOptionsYes: true,
       c100PeopleGender: "male",
       c100PeopleYesNoDontKnow: "yes",
-      c100OthersKnowApplicantsContact: 'yes',
+      c100OthersKnowApplicantsContact: "yes",
       c100PrivateDetails: true,
       applicantChangedName: true,
-      applicantGender: 'male',
-      applicantRelationship: 'mother',
+      applicantGender: "male",
+      applicantRelationship: "mother",
       applicantAddressLookup: true,
       appAddressLookupSuccessful: true,
       applicantPrevAddress5Years: true,
@@ -76,18 +74,18 @@ test.describe("C100 Citizen Application tests on the top MIRO set. @citizenFront
       applicantDigitalPreference: true,
       respondentKnownDoB: true,
       respondentKnownPlaceOfBirth: true,
-      respondentGender: 'male',
-      respondentChangedName: 'yes',
-      respAddress5Years: 'yes',
-      respondentRelationship: 'mother',
+      respondentGender: "male",
+      respondentChangedName: "yes",
+      respAddress5Years: "yes",
+      respondentRelationship: "mother",
       respAddressLookup: true,
       respAddressLookupSuccessful: true,
       respKnownEmailAndPhone: true,
       yesNoOtherPersonDetails: true,
-      c100OtherPeopleGender: 'male',
+      c100OtherPeopleGender: "male",
       c100OtherPeopleChangedName: "yes",
       c100OtherPeopleDoBKnown: true,
-      c100OtherPersonRelationship: 'mother',
+      c100OtherPersonRelationship: "mother",
       yesNoChildArrangementOrderDetails: true,
       yesNoOtherProceedings: true,
       c100ChildrenSafetyConcerns: true,
@@ -96,11 +94,11 @@ test.describe("C100 Citizen Application tests on the top MIRO set. @citizenFront
       c100MoreThanOnePassport: true,
       c100PassportOfficeNotified: true,
       c100ChildrenAbductedBefore: true,
-      c100ChildrenSupervision: 'yesSpendTime',
+      c100ChildrenSupervision: "yesSpendTime",
       yesNoInternationalElements: true,
       yesNoReasonableAdjustments: true,
       c100YesNoNeedHelpWithFees: true,
-      c100YesNoFeesApplied: true
+      c100YesNoFeesApplied: true,
     });
   });
 
@@ -147,9 +145,7 @@ test.describe("C100 Citizen Application tests on the top MIRO set. @citizenFront
     international elements yes to all: ture,
     yes to all reasonable adjustments: ture,
     need help with fees: yes,
-    fees applied: yes`, async ({
-                                         page,
-                                       }): Promise<void> => {
+    fees applied: yes`, async ({ page }): Promise<void> => {
     await C100.c100TopMiroJourney({
       page: page,
       accessibilityTest: false,
@@ -157,11 +153,11 @@ test.describe("C100 Citizen Application tests on the top MIRO set. @citizenFront
       urgencyAndWithoutNoticeAllOptionsYes: true,
       c100PeopleGender: "male",
       c100PeopleYesNoDontKnow: "yes",
-      c100OthersKnowApplicantsContact: 'yes',
+      c100OthersKnowApplicantsContact: "yes",
       c100PrivateDetails: true,
       applicantChangedName: true,
-      applicantGender: 'male',
-      applicantRelationship: 'father',
+      applicantGender: "male",
+      applicantRelationship: "father",
       applicantAddressLookup: true,
       appAddressLookupSuccessful: true,
       applicantPrevAddress5Years: true,
@@ -169,18 +165,18 @@ test.describe("C100 Citizen Application tests on the top MIRO set. @citizenFront
       applicantDigitalPreference: true,
       respondentKnownDoB: true,
       respondentKnownPlaceOfBirth: true,
-      respondentGender: 'male',
-      respondentChangedName: 'yes',
-      respAddress5Years: 'yes',
+      respondentGender: "male",
+      respondentChangedName: "yes",
+      respAddress5Years: "yes",
       respondentRelationship: "father",
       respAddressLookup: true,
       respAddressLookupSuccessful: true,
       respKnownEmailAndPhone: true,
       yesNoOtherPersonDetails: true,
-      c100OtherPeopleGender: 'male',
+      c100OtherPeopleGender: "male",
       c100OtherPeopleChangedName: "yes",
       c100OtherPeopleDoBKnown: true,
-      c100OtherPersonRelationship: 'father',
+      c100OtherPersonRelationship: "father",
       yesNoChildArrangementOrderDetails: true,
       yesNoOtherProceedings: true,
       c100ChildrenSafetyConcerns: true,
@@ -189,11 +185,11 @@ test.describe("C100 Citizen Application tests on the top MIRO set. @citizenFront
       c100MoreThanOnePassport: true,
       c100PassportOfficeNotified: true,
       c100ChildrenAbductedBefore: true,
-      c100ChildrenSupervision: 'yesSpendTime',
+      c100ChildrenSupervision: "yesSpendTime",
       yesNoInternationalElements: true,
       yesNoReasonableAdjustments: true,
       c100YesNoNeedHelpWithFees: true,
-      c100YesNoFeesApplied: true
+      c100YesNoFeesApplied: true,
     });
   });
 
@@ -240,9 +236,7 @@ test.describe("C100 Citizen Application tests on the top MIRO set. @citizenFront
     international elements yes to all: ture,
     yes to all reasonable adjustments: ture,
     need help with fees: yes,
-    fees applied: yes`, async ({
-                                         page,
-                                       }): Promise<void> => {
+    fees applied: yes`, async ({ page }): Promise<void> => {
     await C100.c100TopMiroJourney({
       page: page,
       accessibilityTest: false,
@@ -250,11 +244,11 @@ test.describe("C100 Citizen Application tests on the top MIRO set. @citizenFront
       urgencyAndWithoutNoticeAllOptionsYes: true,
       c100PeopleGender: "male",
       c100PeopleYesNoDontKnow: "yes",
-      c100OthersKnowApplicantsContact: 'yes',
+      c100OthersKnowApplicantsContact: "yes",
       c100PrivateDetails: true,
       applicantChangedName: true,
-      applicantGender: 'male',
-      applicantRelationship: 'father',
+      applicantGender: "male",
+      applicantRelationship: "father",
       applicantAddressLookup: true,
       appAddressLookupSuccessful: true,
       applicantPrevAddress5Years: true,
@@ -262,18 +256,18 @@ test.describe("C100 Citizen Application tests on the top MIRO set. @citizenFront
       applicantDigitalPreference: true,
       respondentKnownDoB: true,
       respondentKnownPlaceOfBirth: true,
-      respondentGender: 'male',
-      respondentChangedName: 'yes',
-      respAddress5Years: 'yes',
+      respondentGender: "male",
+      respondentChangedName: "yes",
+      respAddress5Years: "yes",
       respondentRelationship: "father",
       respAddressLookup: true,
       respAddressLookupSuccessful: true,
       respKnownEmailAndPhone: true,
       yesNoOtherPersonDetails: true,
-      c100OtherPeopleGender: 'male',
+      c100OtherPeopleGender: "male",
       c100OtherPeopleChangedName: "yes",
       c100OtherPeopleDoBKnown: true,
-      c100OtherPersonRelationship: 'father',
+      c100OtherPersonRelationship: "father",
       yesNoChildArrangementOrderDetails: true,
       yesNoOtherProceedings: true,
       c100ChildrenSafetyConcerns: true,
@@ -282,16 +276,16 @@ test.describe("C100 Citizen Application tests on the top MIRO set. @citizenFront
       c100MoreThanOnePassport: true,
       c100PassportOfficeNotified: true,
       c100ChildrenAbductedBefore: true,
-      c100ChildrenSupervision: 'yesSpendTime',
+      c100ChildrenSupervision: "yesSpendTime",
       yesNoInternationalElements: true,
       yesNoReasonableAdjustments: true,
       c100YesNoNeedHelpWithFees: true,
-      c100YesNoFeesApplied: true
+      c100YesNoFeesApplied: true,
     });
   });
 });
 
-test.describe('Test the accessibility of the CA C100 Citizen Journey.  @accessibilityCitizenFrontend', (): void => {
+test.describe("Test the accessibility of the CA C100 Citizen Journey.  @accessibilityCitizenFrontend", (): void => {
   test(`Test the C100 of the citizen journey with the following options:
     Accessibility Testing,
     Not Error Messaging,
@@ -335,9 +329,7 @@ test.describe('Test the accessibility of the CA C100 Citizen Journey.  @accessib
     international elements yes to all: ture,
     yes to all reasonable adjustments: ture,
     need help with fees: yes,
-    fees applied: yes`, async ({
-                                         page,
-                                       }): Promise<void> => {
+    fees applied: yes`, async ({ page }): Promise<void> => {
     await C100.c100TopMiroJourney({
       page: page,
       accessibilityTest: true,
@@ -345,11 +337,11 @@ test.describe('Test the accessibility of the CA C100 Citizen Journey.  @accessib
       urgencyAndWithoutNoticeAllOptionsYes: true,
       c100PeopleGender: "male",
       c100PeopleYesNoDontKnow: "yes",
-      c100OthersKnowApplicantsContact: 'yes',
+      c100OthersKnowApplicantsContact: "yes",
       c100PrivateDetails: true,
       applicantChangedName: true,
-      applicantGender: 'male',
-      applicantRelationship: 'father',
+      applicantGender: "male",
+      applicantRelationship: "father",
       applicantAddressLookup: true,
       appAddressLookupSuccessful: true,
       applicantPrevAddress5Years: true,
@@ -357,18 +349,18 @@ test.describe('Test the accessibility of the CA C100 Citizen Journey.  @accessib
       applicantDigitalPreference: true,
       respondentKnownDoB: true,
       respondentKnownPlaceOfBirth: true,
-      respondentGender: 'male',
-      respondentChangedName: 'yes',
-      respAddress5Years: 'yes',
+      respondentGender: "male",
+      respondentChangedName: "yes",
+      respAddress5Years: "yes",
       respondentRelationship: "father",
       respAddressLookup: true,
       respAddressLookupSuccessful: true,
       respKnownEmailAndPhone: true,
       yesNoOtherPersonDetails: true,
-      c100OtherPeopleGender: 'male',
+      c100OtherPeopleGender: "male",
       c100OtherPeopleChangedName: "yes",
       c100OtherPeopleDoBKnown: true,
-      c100OtherPersonRelationship: 'father',
+      c100OtherPersonRelationship: "father",
       yesNoChildArrangementOrderDetails: true,
       yesNoOtherProceedings: true,
       c100ChildrenSafetyConcerns: true,
@@ -377,11 +369,11 @@ test.describe('Test the accessibility of the CA C100 Citizen Journey.  @accessib
       c100MoreThanOnePassport: true,
       c100PassportOfficeNotified: true,
       c100ChildrenAbductedBefore: true,
-      c100ChildrenSupervision: 'yesSpendTime',
+      c100ChildrenSupervision: "yesSpendTime",
       yesNoInternationalElements: true,
       yesNoReasonableAdjustments: true,
       c100YesNoNeedHelpWithFees: true,
-      c100YesNoFeesApplied: true
+      c100YesNoFeesApplied: true,
     });
   });
-})
+});

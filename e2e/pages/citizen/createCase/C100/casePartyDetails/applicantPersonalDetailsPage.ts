@@ -186,8 +186,8 @@ export class ApplicantPersonalDetailsPage {
         throw new Error(`Unexpected value for gender: ${gender}`);
     }
     await page.fill(inputIds.day, day);
-    await page.fill(inputIds.month, month)
-    await page.fill(inputIds.year, year)
+    await page.fill(inputIds.month, month);
+    await page.fill(inputIds.year, year);
 
     await page.fill(
       inputIds.placeOfBirth,
