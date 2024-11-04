@@ -3,9 +3,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { DraftAnOrder16Content } from "../../../../../fixtures/manageCases/caseWorker/draftAnOrder/draftAnOrder16Content";
 import { orderTypesMap } from "../../../../../journeys/manageCases/caseWorker/draftAnOrder/draftAnOrder";
 import { Page } from "@playwright/test";
-import {
-  NonMolestationOrder16Content
-} from "../../../../../fixtures/manageCases/caseWorker/draftAnOrder/nonMolestationOrder/nonMolestationOrder16Content";
+import { NonMolestationOrder16Content } from "../../../../../fixtures/manageCases/caseWorker/draftAnOrder/nonMolestationOrder/nonMolestationOrder16Content";
 
 enum UniqueSelectors {
   judgeHasProvidedHearingDetails = "#hasJudgeProvidedHearingDetails_Yes",
@@ -174,7 +172,13 @@ export class NonMolestationOrder16Page {
         `${Selectors.h3}:text-is("${NonMolestationOrder16Content.h3}")`,
         1,
       ),
-      Helpers.checkGroup(page, 2, NonMolestationOrder16Content, `p`, `${Selectors.p}`),
+      Helpers.checkGroup(
+        page,
+        2,
+        NonMolestationOrder16Content,
+        `p`,
+        `${Selectors.p}`,
+      ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.headingH3}:text-is("${NonMolestationOrder16Content.h3Heading}")`,

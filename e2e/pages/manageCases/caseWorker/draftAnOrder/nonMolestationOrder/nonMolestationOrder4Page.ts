@@ -4,9 +4,7 @@ import { Helpers } from "../../../../../common/helpers";
 import { DraftAnOrder4Content } from "../../../../../fixtures/manageCases/caseWorker/draftAnOrder/draftAnOrder4Content";
 import { Page } from "@playwright/test";
 import { solicitorCaseCreateType } from "../../../../../common/types";
-import {
-  NonMolestationOrder4Content
-} from "../../../../../fixtures/manageCases/caseWorker/draftAnOrder/nonMolestationOrder/nonMolestationOrder4Content";
+import { NonMolestationOrder4Content } from "../../../../../fixtures/manageCases/caseWorker/draftAnOrder/nonMolestationOrder/nonMolestationOrder4Content";
 
 enum UniqueSelectors {
   herHonourTitleRadio = "#judgeOrMagistrateTitle-herHonourJudge",
@@ -197,7 +195,8 @@ export class NonMolestationOrder4Page {
     );
     // if statement needed because error message does not show correctly above this field - RAISE THIS
     if (
-      errorMessage !== NonMolestationOrder4Content.errorMessageWhichChildrenAreIncluded
+      errorMessage !==
+      NonMolestationOrder4Content.errorMessageWhichChildrenAreIncluded
     ) {
       await Helpers.checkVisibleAndPresent(
         page,
@@ -223,8 +222,12 @@ export class NonMolestationOrder4Page {
         await page.check(`${UniqueSelectors.orderAboutAllChildrenYes}`);
       } else {
         await page.check(`${UniqueSelectors.orderAboutChildrenYes}`);
-        await page.getByLabel(`${NonMolestationOrder4Content.childName1}`).check();
-        await page.getByLabel(`${NonMolestationOrder4Content.childName2}`).check();
+        await page
+          .getByLabel(`${NonMolestationOrder4Content.childName1}`)
+          .check();
+        await page
+          .getByLabel(`${NonMolestationOrder4Content.childName2}`)
+          .check();
       }
     } else {
       await page.check(`${UniqueSelectors.orderByConsentNo}`);

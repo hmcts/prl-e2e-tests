@@ -6,9 +6,7 @@ import {
   HowLongWillTheOrderBeInForce,
   orderTypesMap,
 } from "../../../../../journeys/manageCases/caseWorker/draftAnOrder/draftAnOrder";
-import {
-  DraftAnOrderSubmitContent
-} from "../../../../../fixtures/manageCases/caseWorker/draftAnOrder/draftAnOrderSubmitContent";
+import { DraftAnOrderSubmitContent } from "../../../../../fixtures/manageCases/caseWorker/draftAnOrder/draftAnOrderSubmitContent";
 
 enum UniqueSelectors {
   yesNoSelector1 = "body > exui-root > exui-case-home > div > exui-case-details-home > ccd-case-event-trigger > div > ccd-case-edit > ccd-case-edit-submit > div > form > div.ng-star-inserted > table.form-table.ng-star-inserted > tbody > tr:nth-child(4) > td.form-cell.case-field-content > ccd-field-read > div > ccd-field-read-label > div > ccd-read-yes-no-field > span",

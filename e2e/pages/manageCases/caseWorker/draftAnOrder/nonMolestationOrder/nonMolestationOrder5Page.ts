@@ -6,9 +6,7 @@ import {
   orderTypesMap,
 } from "../../../../../journeys/manageCases/caseWorker/draftAnOrder/draftAnOrder";
 import { Page } from "@playwright/test";
-import {
-  NonMolestationOrder5Content
-} from "../../../../../fixtures/manageCases/caseWorker/draftAnOrder/nonMolestationOrder/nonMolestationOrder5Content";
+import { NonMolestationOrder5Content } from "../../../../../fixtures/manageCases/caseWorker/draftAnOrder/nonMolestationOrder/nonMolestationOrder5Content";
 
 enum UniqueSelectors {
   orderMentionsProperty = "#fl404CustomFields_fl404bMentionedProperty_Yes",

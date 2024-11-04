@@ -52,8 +52,6 @@ export class DraftAnOrderSubmitPage {
   }
 
   private static async submit(page: Page) {
-    await page.click(
-      `${Selectors.button}:text-is("Submit")`,
-    );
+    await page.click(`${Selectors.button}:text-is("Submit")`);
   }
 }

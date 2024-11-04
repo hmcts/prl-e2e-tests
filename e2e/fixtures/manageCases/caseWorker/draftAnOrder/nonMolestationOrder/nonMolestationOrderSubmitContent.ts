@@ -24,7 +24,6 @@ export enum NonMolestationOrderSubmitContent {
   span2 = "Test directions",
   span3 = "Test costs of application",
 
-
   yesToAllAdditionalText161 = "At which hearing was the order approved?",
   yesToAllAdditionalText162 = "No hearings available",
   yesToAllAdditionalText163 = "Which children are included in the order?",

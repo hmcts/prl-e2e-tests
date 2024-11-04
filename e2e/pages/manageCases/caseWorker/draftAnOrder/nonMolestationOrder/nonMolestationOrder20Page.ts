@@ -7,9 +7,7 @@ import {
   orderTypesMap,
 } from "../../../../../journeys/manageCases/caseWorker/draftAnOrder/draftAnOrder";
 import { OrderType } from "../../../../../common/types";
-import {
-  NonMolestationOrder20Content
-} from "../../../../../fixtures/manageCases/caseWorker/draftAnOrder/nonMolestationOrder/nonMolestationOrder20Content";
+import { NonMolestationOrder20Content } from "../../../../../fixtures/manageCases/caseWorker/draftAnOrder/nonMolestationOrder/nonMolestationOrder20Content";
 
 enum ids {
   mvDownBtn = "#mvDownBtn",
