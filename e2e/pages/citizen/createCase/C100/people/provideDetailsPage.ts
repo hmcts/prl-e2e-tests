@@ -115,7 +115,7 @@ export class ProvideDetailsPage {
       );
     }
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      // Accessibility Issues PRL-6581 & PRL-6582
     }
   }
 

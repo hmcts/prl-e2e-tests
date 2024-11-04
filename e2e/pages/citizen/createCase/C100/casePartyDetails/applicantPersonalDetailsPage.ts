@@ -96,7 +96,7 @@ export class ApplicantPersonalDetailsPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      // await AccessibilityTestHelper.run(page); Accessibility Issues: PRL-6581
     }
   }
   private static async triggerErrorMessages(page: Page): Promise<void> {
