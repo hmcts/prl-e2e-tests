@@ -118,7 +118,7 @@ export class PassportAmountPage {
 
   private static async checkErrorMessaging(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -147,7 +147,7 @@ export class PassportAmountPage {
   private static async checkOtherDetailsErrors(page: Page): Promise<void> {
     await page.check(checkboxIDs.other);
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -182,7 +182,7 @@ export class PassportAmountPage {
     }
     await page.fill(inputIDs.otherDetails, PassportAmountContent.otherDetails);
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
   }
 }

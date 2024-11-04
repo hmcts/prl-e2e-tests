@@ -1,16 +1,16 @@
-import { Page } from "@playwright/test";
+import { Page, expect } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { RespondentDetailsAddressManualContent } from "../../../../../fixtures/citizen/createCase/C100/casePartyDetails/respondentDetailsAddressManualContent";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-import { otherProceedingsRadios } from "../../../../../common/types";
+import { yesNoDontKnow } from "../../../../../common/types";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 
 interface RespondentDetailsAddressManualPageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
-  otherProceedingsRadios: otherProceedingsRadios;
+  respAddress5Years: yesNoDontKnow;
 }
 
 enum addressUniqueSelectors {
@@ -42,7 +42,7 @@ export class RespondentDetailsAddressManualPage {
     page: page,
     accessibilityTest: accessibilityTest,
     errorMessaging: errorMessaging,
-    otherProceedingsRadios: otherProceedingsRadios,
+    respAddress5Years: yesNoDontKnow,
   }: RespondentDetailsAddressManualPageOptions): Promise<void> {
     await this.checkPageLoads({ page, accessibilityTest });
     if (errorMessaging) {
@@ -50,7 +50,7 @@ export class RespondentDetailsAddressManualPage {
     }
     await this.fillInFields({
       page,
-      otherProceedingsRadios,
+      respAddress5Years: yesNoDontKnow,
     });
   }
 
@@ -64,7 +64,7 @@ export class RespondentDetailsAddressManualPage {
       );
     }
     await page.waitForSelector(
-      `${Selectors.GovukCaptionXL}:has-text("${RespondentDetailsAddressManualContent.pageTitle}")`,
+      `${Selectors.GovukHeadingXL}:has-text("${RespondentDetailsAddressManualContent.pageTitle}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -163,27 +163,31 @@ export class RespondentDetailsAddressManualPage {
 
   private static async fillInFields({
     page: page,
-    otherProceedingsRadios: otherProceedingsRadios,
+    respAddress5Years: yesNoDontKnow,
   }: Partial<RespondentDetailsAddressManualPageOptions>): Promise<void> {
     if (!page) {
       throw new Error(
         "Page object is undefined. Ensure that a valid Playwright Page instance is passed to the function.",
       );
     }
-    switch (otherProceedingsRadios) {
-      case "Yes":
+    switch (yesNoDontKnow) {
+      case "yes":
         await page.click(UniqueSelectors.lessThan5YearsYes);
         await page.fill(
           UniqueSelectors.yesInput,
           RespondentDetailsAddressManualContent.loremIpsumYes,
         );
         break;
-      case "No":
+      case "no":
         await page.click(UniqueSelectors.lessThan5YearsNo);
         break;
-      case "Don't know":
+      case "dontKnow":
         await page.click(UniqueSelectors.lessThan5YearsDontKnow);
         break;
+      default:
+        throw new Error(
+          `Unrecognised value for yesNoDontKnow: ${yesNoDontKnow}`,
+        );
     }
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,

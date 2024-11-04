@@ -116,7 +116,7 @@ export class ApplicantContactPreferencePage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${uniqueSelectors.errorSelector}:text-is("${ApplicantContactPreferenceContent.errorMessage}")`,
+        `${Selectors.GovukErrorList} ${Selectors.a}:text-is("${ApplicantContactPreferenceContent.errorMessage}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(

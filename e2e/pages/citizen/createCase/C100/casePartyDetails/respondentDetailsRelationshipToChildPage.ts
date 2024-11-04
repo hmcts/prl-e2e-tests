@@ -10,7 +10,7 @@ interface respondentDetailsRelationshipToChildPageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
-  relationship: Relationship;
+  respondentRelationship: Relationship;
 }
 
 interface checkPageLoadsOptions {
@@ -33,12 +33,12 @@ enum inputIds {
   otherDetails = "#otherRelationshipTypeDetails",
 }
 
-export class ApplicantRelationshipToChildPage {
-  public static async applicantRelationshipToChildPage({
+export class RespondentRelationshipToChildPage {
+  public static async respondentRelationshipToChildPage({
     page,
     accessibilityTest,
     errorMessaging,
-    relationship,
+    respondentRelationship,
   }: respondentDetailsRelationshipToChildPageOptions): Promise<void> {
     await this.checkPageLoads({ page, accessibilityTest });
     if (errorMessaging) {
@@ -46,7 +46,7 @@ export class ApplicantRelationshipToChildPage {
     }
     await this.fillInFields({
       page,
-      relationship,
+      relationship: respondentRelationship,
     });
   }
   private static async checkPageLoads({
@@ -94,12 +94,12 @@ export class ApplicantRelationshipToChildPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorList}:text-is("${RespondentDetailsRelationshipToChildContent.errorMessage}")`,
+        `${Selectors.GovukErrorList} ${Selectors.a}:text-is("${RespondentDetailsRelationshipToChildContent.errorMessage}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${RespondentDetailsRelationshipToChildContent.errorMessage}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${RespondentDetailsRelationshipToChildContent.errorMessage}")`,
         1,
       ),
     ]);
@@ -108,7 +108,7 @@ export class ApplicantRelationshipToChildPage {
     page,
     relationship,
   }: fillInFieldsOptions): Promise<void> {
-    if (!(relationship in Object.keys(inputIds))) {
+    if (!(relationship in inputIds)) {
       throw new Error(
         `The value 'relationship' must be one of 'mother', 'father', 'guardian', 'specialGuardian', 'grandparent', 'other'. You used ${relationship}.`,
       );

@@ -81,7 +81,7 @@ export class CourtActionPage {
 
   private static async checkErrorMessaging(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -108,7 +108,7 @@ export class CourtActionPage {
       CourtActionContent.courtActionStatement,
     );
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
   }
 }

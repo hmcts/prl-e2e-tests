@@ -108,3 +108,6 @@ export type OrderType =
   | "c21WithdrawApplication"
   | "c21NoOrderMade"
   | "c21other";
+
+export type typeOfPerson = "applicant" | "respondent" | "otherPerson";
+

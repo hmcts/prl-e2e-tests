@@ -60,7 +60,7 @@ export class ApplicantContactDetailPage {
     accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukHeadingL}:has-text("${ApplicantContactDetailContent.pageTitle}")`,
+      `${Selectors.GovukHeadingXL}:has-text("${ApplicantContactDetailContent.pageTitle}")`,
     );
     await Promise.all([
       Helpers.checkGroup(
@@ -107,7 +107,7 @@ export class ApplicantContactDetailPage {
         3,
         ApplicantContactDetailContent,
         "errorMessage",
-        Selectors.GovukErrorSummary,
+        `${Selectors.GovukErrorList} ${Selectors.a}`,
       ),
       Helpers.checkGroup(
         page,
@@ -130,7 +130,7 @@ export class ApplicantContactDetailPage {
         2,
         ApplicantContactDetailContent,
         "hiddenErrorMessage",
-        Selectors.GovukErrorSummary,
+        `${Selectors.GovukErrorList} ${Selectors.a}`,
       ),
       Helpers.checkGroup(
         page,
@@ -149,13 +149,16 @@ export class ApplicantContactDetailPage {
       inputIds.enterTel,
       ApplicantContactDetailContent.inputInvalidTel,
     );
+    await page.click(
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
+    );
     await Promise.all([
       Helpers.checkGroup(
         page,
         2,
         ApplicantContactDetailContent,
         "invalidErrorMessage",
-        Selectors.GovukErrorSummary,
+        `${Selectors.GovukErrorList} ${Selectors.a}`,
       ),
       Helpers.checkGroup(
         page,
@@ -173,7 +176,7 @@ export class ApplicantContactDetailPage {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorSummary}:text-is("${ApplicantContactDetailContent.hiddenErrorMessage3}")`,
+        `${Selectors.GovukErrorList} ${Selectors.a}:text-is("${ApplicantContactDetailContent.hiddenErrorMessage3}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(

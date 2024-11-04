@@ -85,7 +85,7 @@ export class DetailsKnowPage {
 
   private static async checkErrorMessaging(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -95,7 +95,7 @@ export class DetailsKnowPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorSummaryList} ${Selectors.a}:text-is("${DetailsKnowContent.errorSummaryList}")`,
+        `${Selectors.GovukErrorList} ${Selectors.a}:text-is("${DetailsKnowContent.errorSummaryList}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -110,7 +110,7 @@ export class DetailsKnowPage {
     page,
     c100OthersKnowApplicantsContact,
   }: FillInFieldsOptions): Promise<void> {
-    if (!(c100OthersKnowApplicantsContact in Object.keys(inputIDs))) {
+    if (!(c100OthersKnowApplicantsContact in inputIDs)) {
       throw new Error(
         `The value c100OthersKnowApplicantsContact must be one of 'yes', 'no', 'dontKnow'. You used ${c100OthersKnowApplicantsContact}`,
       );
@@ -118,7 +118,7 @@ export class DetailsKnowPage {
     let inputKey = c100OthersKnowApplicantsContact as keyof typeof inputIDs;
     await page.click(inputIDs[inputKey]);
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
   }
 }

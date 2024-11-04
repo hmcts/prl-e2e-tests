@@ -46,7 +46,7 @@ export class RespondentDetailsContactDetailsPage {
       );
     }
     await page.waitForSelector(
-      `${Selectors.GovukCaptionXL}:has-text("${RespondentDetailsContactDetailsContent.pageTitle}")`,
+      `${Selectors.GovukHeadingXL}:has-text("${RespondentDetailsContactDetailsContent.pageTitle}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(

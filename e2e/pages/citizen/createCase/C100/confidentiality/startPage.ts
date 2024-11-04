@@ -96,7 +96,7 @@ export class StartPage {
 
   private static async checkErrorMessaging(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -106,7 +106,7 @@ export class StartPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorSummaryList} ${Selectors.a}:text-is("${StartContent.errorSummaryList}")`,
+        `${Selectors.GovukErrorList} ${Selectors.a}:text-is("${StartContent.errorSummaryList}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -121,7 +121,7 @@ export class StartPage {
   private static async checkboxErrorMessages(page: Page): Promise<void> {
     await page.click(inputIDs.yes);
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -165,7 +165,7 @@ export class StartPage {
       await Promise.all([
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukFormHint}:text-is("${StartContent[formHintContentKey]}")`,
+          `${Selectors.GovukHint}:text-is("${StartContent[formHintContentKey]}")`,
           1,
         ),
         Helpers.checkGroup(
@@ -173,7 +173,7 @@ export class StartPage {
           3,
           StartContent,
           "formLabel",
-          `${Selectors.GovukFormLabel}`,
+          `${Selectors.GovukLabel}`,
         ),
       ]);
       for (let checkboxID of Object.values(checkboxIDs)) {
@@ -183,7 +183,7 @@ export class StartPage {
       await page.click(inputIDs.no);
     }
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
   }
 }

@@ -28,6 +28,7 @@ enum inputIds {
   street = " #address2",
   town = " #addressTown",
   county = "#addressCounty",
+  country = "#country",
   postcode = "#addressPostcode",
   addressHistoryYes = "#addressHistory",
   addressHistoryNo = "#addressHistory-2",
@@ -72,24 +73,12 @@ export class ApplicantAddressManualPage {
         1,
       ),
     ]);
-    await page.click(inputIds.addressHistoryYes); //check the hidden content
-    await Promise.all([
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukLabel}:text-is("${ApplicantAddressManualContent.hiddenLabel}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukHint}:text-is("${ApplicantAddressManualContent.hiddenHint}")`,
-        1,
-      ),
-    ]);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }
   }
   private static async triggerErrorMessages(page: Page): Promise<void> {
+    await this.clearFormFields(page);
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
@@ -101,14 +90,14 @@ export class ApplicantAddressManualPage {
       ),
       Helpers.checkGroup(
         page,
-        7,
+        3,
         ApplicantAddressManualContent,
         "errorMessage",
-        Selectors.GovukErrorSummary,
+        `${Selectors.GovukErrorList} ${Selectors.a}`,
       ),
       Helpers.checkGroup(
         page,
-        7,
+        3,
         ApplicantAddressManualContent,
         "errorMessage",
         Selectors.GovukErrorMessageCitizen,
@@ -119,23 +108,48 @@ export class ApplicantAddressManualPage {
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
     await page.waitForSelector(
-      `${Selectors.GovukErrorMessage}:has-text("${ApplicantAddressManualContent.hiddenErrorMessage1}")`,
+      `${Selectors.GovukErrorMessageCitizen}:has-text("${ApplicantAddressManualContent.hiddenErrorMessage1}")`,
     );
   }
+
+  private static async clearFormFields(page: Page): Promise<void> {
+    await page.fill(inputIds.building, "");
+    await page.fill(inputIds.street, "");
+    await page.fill(inputIds.town, "");
+    await page.fill(inputIds.county, "");
+    await page.fill(inputIds.postcode, "");
+    await page.fill(inputIds.country, "");
+  }
+
   private static async fillInFields({
     page,
     prevAddress5Years,
   }: fillInFieldsOptions): Promise<void> {
     await page.fill(
-      inputIds.street,
+      inputIds.building,
       ApplicantAddressManualContent.inputStreetAddress,
     );
     await page.fill(inputIds.town, ApplicantAddressManualContent.inputCity);
     await page.fill(inputIds.county, ApplicantAddressManualContent.inputCounty);
     await page.fill(inputIds.postcode, ApplicantAddressManualContent.inputZip);
-
+    await page.fill(
+      inputIds.country,
+      ApplicantAddressManualContent.inputCountry,
+    );
     if (prevAddress5Years) {
       await page.click(inputIds.addressHistoryYes);
+      await Promise.all([
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukLabel}:text-is("${ApplicantAddressManualContent.hiddenLabel}")`,
+          1,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukHint}:text-is("${ApplicantAddressManualContent.hiddenHint}")`,
+          1,
+        ),
+      ]);
       await page.fill(
         inputIds.hiddenPrevAddress,
         ApplicantAddressManualContent.inputPrevAddress,

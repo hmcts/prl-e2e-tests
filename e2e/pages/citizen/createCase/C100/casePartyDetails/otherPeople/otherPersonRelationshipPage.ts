@@ -101,7 +101,7 @@ export class OtherPersonRelationshipPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${OtherPersonRelationshipContent.errorMessage}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${OtherPersonRelationshipContent.errorMessage}")`,
         1,
       ),
     ]);
@@ -122,7 +122,7 @@ export class OtherPersonRelationshipPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${OtherPersonRelationshipContent.errorMessage}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${OtherPersonRelationshipContent.errorMessage}")`,
         1,
       ),
     ]);
@@ -132,7 +132,7 @@ export class OtherPersonRelationshipPage {
     page,
     c100OtherPersonRelationship,
   }: fillInFieldsOptions): Promise<void> {
-    if (!(c100OtherPersonRelationship in Object.keys(inputIds))) {
+    if (!(c100OtherPersonRelationship in inputIds)) {
       throw new Error(
         `The value 'relationship' must be one of 'mother', 'father', 'guardian', 'specialGuardian', 'grandparent', 'other'. You used ${c100OtherPersonRelationship}.`,
       );

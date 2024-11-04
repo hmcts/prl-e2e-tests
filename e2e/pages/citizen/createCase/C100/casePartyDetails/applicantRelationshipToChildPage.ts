@@ -94,12 +94,12 @@ export class ApplicantRelationshipToChildPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorList}:text-is("${ApplicantRelationshipToChildContent.errorMessage}")`,
+        `${Selectors.GovukErrorList} ${Selectors.a}:text-is("${ApplicantRelationshipToChildContent.errorMessage}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${ApplicantRelationshipToChildContent.errorMessage}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${ApplicantRelationshipToChildContent.errorMessage}")`,
         1,
       ),
     ]);
@@ -108,7 +108,7 @@ export class ApplicantRelationshipToChildPage {
     page,
     relationship,
   }: fillInFieldsOptions): Promise<void> {
-    if (!(relationship in Object.keys(inputIds))) {
+    if (!(relationship in inputIds)) {
       throw new Error(
         `The value 'relationship' must be one of 'mother', 'father', 'guardian', 'specialGuardian', 'grandparent', 'other'. You used ${relationship}.`,
       );
