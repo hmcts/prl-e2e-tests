@@ -38,7 +38,7 @@ export class OtherPersonAddressLookupPage {
     accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukHeadingL}:has-text("${OtherPersonAddressLookupContent.pageTitle}")`,
+      `${Selectors.GovukHeadingXL}:has-text("${OtherPersonAddressLookupContent.pageTitle}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -84,6 +84,9 @@ export class OtherPersonAddressLookupPage {
       ),
     ]);
     await page.fill(postcodeLookup, numericalPostcode);
+    await page.click(
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
+    );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,

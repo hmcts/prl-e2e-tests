@@ -21,7 +21,11 @@ interface fillInFieldsOptions {
   errorMessaging: boolean;
 }
 
-const radioId = "#liveWith";
+enum checkboxIDs {
+  applicant = "#liveWith",
+  respondent = "#liveWith-2",
+  otherPerson = "#liveWith-3",
+}
 
 export class LivingArrangementsPage {
   public static async livingArrangementsPage({
@@ -43,7 +47,7 @@ export class LivingArrangementsPage {
     accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukHeadingXL}:text-is("${LivingArrangementsContent.firstNameLastName}${LivingArrangementsContent.pageTitle}")`,
+      `${Selectors.GovukHeadingXL}:has-text("${LivingArrangementsContent.pageTitle}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -63,6 +67,9 @@ export class LivingArrangementsPage {
   }
 
   private static async triggerErrorMessages(page: Page): Promise<void> {
+    for (let checkboxID of Object.values(checkboxIDs)) {
+      await page.uncheck(checkboxID);
+    }
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
@@ -88,7 +95,9 @@ export class LivingArrangementsPage {
   private static async fillInFields({
     page,
   }: fillInFieldsOptions): Promise<void> {
-    await page.click(radioId);
+    for (let checkboxID of Object.values(checkboxIDs)) {
+      await page.check(checkboxID);
+    }
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );

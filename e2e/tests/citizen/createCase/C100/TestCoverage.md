@@ -9,6 +9,9 @@ Since the C100 citizen journey is very complicated, it has been split up into 4 
 ## Journeys
 
 All journeys start with first creating the case and then navigating through the screening sections.
+The plan to test the permutations pf relationships is to restrict the applicant relationship and then try all other relationships for respondent or other person.
+
+- E.G For top journey, we only ever select applicant relationship as Mother or Father, and then for respondent and other we'd do one journey with each option
 
 ### Top Row
 
@@ -16,6 +19,7 @@ This requires you to select 'true' for the c100ScreeningWrittenAgreementReview a
 `c100ScreeningWrittenAgreementReview: true`
 
 We will primarily select `true` or `yes` in this journey.
+We will also use `male` as the chosen gender.
 
 Coverage:
 
@@ -30,20 +34,26 @@ Coverage:
    - `urgencyAndWithoutNoticeAllOptionsYes: true`
 4. People
    - Child Details
-     - Has gender radios
-     - Has yes/no/dontKnow radios
-     - Has yes/no radios
-     - Has sex radios
+     - Has gender radios. `male`
+     - Has yes/no/dontKnow radios. `yes`
+     - Has yes/no radios. `true`
+     - Has sex radios. `true`
    - Applicant Details
 5. Confidentiality Agreement
    - `c100OthersKnowApplicantsContact: yesNoDontKnow`
-     - Set to yes for this journey
+     - Set to `yes` for this journey
    - `c100PrivateDetails: boolean`
-     - Set to true + false for this journey
+     - Set to `true` for this journey
 6. Case Parties
    - 3 types of details
      - Applicant Details
+       - changedName
+       - gender: `male`
+       - relationship to child: `mother` or `father`
+       - lived at address more than 5 years: `true`
      - Respondent Details
+       - gender `male`
+       -
      - Other details
    - Yes/No radios
    - Sex radios
@@ -54,7 +64,7 @@ Coverage:
 7. Other Proceedings
    -Checkboxes and repeated pages
    - 2x boolean yes/no on each page
-   - both set to true for this journey
+   - both set to `true` for this journey
 8. Safety Concerns
    - yes/no boolean
      - If no: skip out whole section
@@ -66,11 +76,15 @@ Coverage:
    - `yesNoInternationalElements: true`
 10. Reasonable Adjustments
     - Loads of checkboxes
-    - No variables
+    - yesNoReasonableAdjustments: `true`
 11. Help with fees
     - boolean yes/no
     - If No: skip section,
     - If yes: next page, another yes/no radio
+      - Set to `true`
+    - If Fees applies: fill in ref number
+      - if mot, get a ref number
+    - Fees Applied set to `true`
 
 ### Second Row
 

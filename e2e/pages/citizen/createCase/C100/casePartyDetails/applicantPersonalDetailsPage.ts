@@ -13,7 +13,6 @@ interface applicantPersonalDetailsPageOptions {
   changeNameYesNo: boolean;
   gender: ApplicantGender;
   under18: boolean;
-  placeOfBirth: string;
 }
 
 interface checkPageLoadsOptions {
@@ -26,12 +25,6 @@ interface fillInFieldsOptions {
   changeNameYesNo: boolean;
   gender: ApplicantGender;
   under18: boolean;
-  placeOfBirth: string;
-}
-
-enum uniqueSelectors {
-  legendSelector1 = "#govuk-fieldset__legend govuk-fieldset__legend--m",
-  legendSelector2 = "#govuk-label govuk-label--m",
 }
 
 enum inputIds {
@@ -55,7 +48,6 @@ export class ApplicantPersonalDetailsPage {
     changeNameYesNo,
     gender,
     under18,
-    placeOfBirth,
   }: applicantPersonalDetailsPageOptions): Promise<void> {
     await this.checkPageLoads({ page, accessibilityTest });
     if (errorMessaging) {
@@ -66,7 +58,6 @@ export class ApplicantPersonalDetailsPage {
       changeNameYesNo,
       gender,
       under18,
-      placeOfBirth,
     });
   }
   private static async checkPageLoads({
@@ -82,7 +73,7 @@ export class ApplicantPersonalDetailsPage {
         3,
         ApplicantPersonalDetailsContent,
         "legend",
-        uniqueSelectors.legendSelector1,
+        Selectors.GovukLegendM,
       ),
       Helpers.checkGroup(
         page,
@@ -96,11 +87,11 @@ export class ApplicantPersonalDetailsPage {
         8,
         ApplicantPersonalDetailsContent,
         "label",
-        Selectors.GovukHint,
+        Selectors.GovukLabel,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${uniqueSelectors.legendSelector2}:text-is("${ApplicantPersonalDetailsContent.legend4}")`,
+        `${Selectors.GovukLabelM}:text-is("${ApplicantPersonalDetailsContent.legend4}")`,
         1,
       ),
     ]);
@@ -127,7 +118,7 @@ export class ApplicantPersonalDetailsPage {
         4,
         ApplicantPersonalDetailsContent,
         "errorMessage",
-        Selectors.ErrorSummaryList,
+        `${Selectors.GovukErrorList} ${Selectors.a}`,
       ),
       Helpers.checkGroup(
         page,
@@ -139,11 +130,9 @@ export class ApplicantPersonalDetailsPage {
     ]);
   }
   private static async fillInvalidDateOfBirth(page: Page): Promise<void> {
-    await Promise.all([
-      page.fill(inputIds.day, ApplicantPersonalDetailsContent.invalidDob),
-      page.fill(inputIds.month, ApplicantPersonalDetailsContent.invalidDob),
-      page.fill(inputIds.year, ApplicantPersonalDetailsContent.invalidDob),
-    ]);
+    await page.fill(inputIds.day, ApplicantPersonalDetailsContent.invalidDob);
+    await page.fill(inputIds.month, ApplicantPersonalDetailsContent.invalidDob);
+    await page.fill(inputIds.year, ApplicantPersonalDetailsContent.invalidDob);
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
@@ -160,7 +149,7 @@ export class ApplicantPersonalDetailsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukSummaryList}:text-is("${ApplicantPersonalDetailsContent.dobErrorMessage1}")`,
+        `${Selectors.GovukErrorList} ${Selectors.a}:text-is("${ApplicantPersonalDetailsContent.dobErrorMessage1}")`,
         1,
       ),
     ]);
@@ -194,11 +183,10 @@ export class ApplicantPersonalDetailsPage {
       default:
         throw new Error(`Unexpected value for gender: ${gender}`);
     }
-    await Promise.all([
-      page.fill(inputIds.day, day),
-      page.fill(inputIds.month, month),
-      page.fill(inputIds.year, year),
-    ]);
+    await page.fill(inputIds.day, day);
+    await page.fill(inputIds.month, month);
+    await page.fill(inputIds.year, year);
+
     await page.fill(
       inputIds.placeOfBirth,
       ApplicantPersonalDetailsContent.placeOfBirthText,

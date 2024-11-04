@@ -91,7 +91,7 @@ export class PersonalDetailsPage {
     accessibilityTest,
   }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukHeadingXL}:text-is("${PersonalDetailsContent.pageTitle}")`,
+      `${Selectors.GovukHeadingXL}:has-text("${PersonalDetailsContent.pageTitle}")`,
     );
     await Promise.all([
       Helpers.checkGroup(
@@ -150,11 +150,12 @@ export class PersonalDetailsPage {
     await this.checkPreviousNameErrors(page);
     await this.checkDateErrors(page);
     await this.checkApproxDateErrors(page);
+    await page.uncheck(inputIDs.unknownDoB);
   }
 
   private static async checkNoInputErrors(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -182,7 +183,7 @@ export class PersonalDetailsPage {
   private static async checkPreviousNameErrors(page: Page): Promise<void> {
     await page.click(inputIDs.yesNameChanged);
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -203,7 +204,7 @@ export class PersonalDetailsPage {
     ]);
     await page.fill(inputIDs.previousNameInput, invalidTextInputs.invalidName);
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -232,7 +233,7 @@ export class PersonalDetailsPage {
       await page.fill(inputIDs.dobMonth, month);
       await page.fill(inputIDs.dobYear, year);
       await page.click(
-        `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+        `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
       );
       const errorListKey =
         `${dateKey}ErrorList` as keyof typeof PersonalDetailsContent;
@@ -256,12 +257,15 @@ export class PersonalDetailsPage {
         ),
       ]);
     }
+    await page.fill(inputIDs.dobDay, "");
+    await page.fill(inputIDs.dobMonth, "");
+    await page.fill(inputIDs.dobYear, "");
   }
 
   private static async checkApproxDateErrors(page: Page): Promise<void> {
     await page.check(inputIDs.unknownDoB);
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -283,11 +287,11 @@ export class PersonalDetailsPage {
     for (let [dateKey, [day, month, year]] of Object.entries(
       invalidDateInputs,
     )) {
-      await page.fill(inputIDs.approxDoBYear, day);
+      await page.fill(inputIDs.approxDoBDay, day);
       await page.fill(inputIDs.approxDoBMonth, month);
       await page.fill(inputIDs.approxDoBYear, year);
       await page.click(
-        `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+        `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
       );
       const errorListKey =
         `${dateKey}ApproxErrorList` as keyof typeof PersonalDetailsContent;
@@ -311,6 +315,9 @@ export class PersonalDetailsPage {
         ),
       ]);
     }
+    await page.fill(inputIDs.approxDoBDay, "");
+    await page.fill(inputIDs.approxDoBMonth, "");
+    await page.fill(inputIDs.approxDoBYear, "");
   }
 
   private static async fillInFields({
@@ -326,12 +333,12 @@ export class PersonalDetailsPage {
       await Promise.all([
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukLabel}:text-is("${PersonalDetailsContent.previousNameLabel}}")`,
+          `${Selectors.GovukLabel}:text-is("${PersonalDetailsContent.previousNameLabel}")`,
           1,
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukHint}:text-is("${PersonalDetailsContent.previousNameHint}}")`,
+          `${Selectors.GovukHint}:text-is("${PersonalDetailsContent.previousNameHint}")`,
           1,
         ),
       ]);
@@ -370,9 +377,9 @@ export class PersonalDetailsPage {
         const inputKey = key as keyof typeof inputIDs;
         await page.fill(inputIDs[inputKey], PersonalDetailsContent[contentKey]);
       }
-      await page.click(
-        `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
-      );
     }
+    await page.click(
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
+    );
   }
 }

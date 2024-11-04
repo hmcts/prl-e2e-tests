@@ -87,7 +87,7 @@ export class FinancialAbusePage {
       abuseContent: FinancialAbuseContent,
     });
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
   }
 }

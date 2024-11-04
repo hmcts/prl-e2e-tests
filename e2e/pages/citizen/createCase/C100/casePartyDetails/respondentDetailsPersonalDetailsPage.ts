@@ -11,9 +11,9 @@ enum InputIds {
   changeNameNo = "#hasNameChanged-2",
   changeNameDontKnow = "#hasNameChanged-3",
   prevName = "#previousFullName",
-  female = "gender",
-  male = "gender-2",
-  identifyOther = "gender-3",
+  female = "#gender",
+  male = "#gender-2",
+  identifyOther = "#gender-3",
   otherGenderDetails = "#otherGenderDetails",
   dobDay = "#dateOfBirth-day",
   dobMonth = "#dateOfBirth-month",
@@ -33,6 +33,8 @@ enum uniqueSelectors {
   dobDaySelector = "#dateOfBirth > div:nth-child(1) > div > label",
   dobMonthSelector = "#dateOfBirth > div:nth-child(2) > div > label",
   dobYearSelector = "#dateOfBirth > div:nth-child(3) > div > label",
+  dobUniqueSelector = "#dateOfBirth > div > div > ",
+  approxDoBUniqueSelector = "#approxDateOfBirth > div > div > ",
   approxDobDaySelector = "#approxDateOfBirth > div:nth-child(1) > div > label",
   approxDobMonthSelector = "#approxdateOfBirth > div:nth-child(2) > div > label",
   approxDobYearSelector = "#approxdateOfBirth > div:nth-child(3) > div > label",
@@ -45,7 +47,7 @@ interface respondentDetailsPersonalDetailsPageOptions {
   accessibilityTest: boolean;
   errorMessaging: boolean;
   changeNameYesNoDontKnow: yesNoDontKnow;
-  gender: ApplicantGender;
+  respondentGender: ApplicantGender;
   knownDob: boolean;
   knownPlaceOfBirth: boolean;
 }
@@ -58,7 +60,7 @@ interface checkPageLoadsOptions {
 interface fillInFieldsOptions {
   page: Page;
   changeNameYesNoDontKnow: yesNoDontKnow;
-  gender: ApplicantGender;
+  respondentGender: ApplicantGender;
   knownDob: boolean;
   knownPlaceOfBirth: boolean;
 }
@@ -69,7 +71,7 @@ export class RespondentDetailsPersonalDetailsPage {
     accessibilityTest,
     errorMessaging,
     changeNameYesNoDontKnow,
-    gender,
+    respondentGender,
     knownDob,
     knownPlaceOfBirth,
   }: respondentDetailsPersonalDetailsPageOptions): Promise<void> {
@@ -80,7 +82,7 @@ export class RespondentDetailsPersonalDetailsPage {
     await this.fillInFields({
       page,
       changeNameYesNoDontKnow,
-      gender,
+      respondentGender: respondentGender,
       knownDob,
       knownPlaceOfBirth,
     });
@@ -91,12 +93,12 @@ export class RespondentDetailsPersonalDetailsPage {
     accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukHeadingXL}:text-is("${RespondentDetailsPersonalDetailsContent.pageTitle}")`,
+      `${Selectors.GovukHeadingXL}:has-text("${RespondentDetailsPersonalDetailsContent.pageTitle}")`,
     );
     await Promise.all([
       Helpers.checkGroup(
         page,
-        12,
+        9,
         RespondentDetailsPersonalDetailsContent,
         "label",
         Selectors.GovukLabel,
@@ -106,7 +108,7 @@ export class RespondentDetailsPersonalDetailsPage {
         2,
         RespondentDetailsPersonalDetailsContent,
         "hint",
-        Selectors.GovukLabel,
+        Selectors.GovukHint,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -121,6 +123,21 @@ export class RespondentDetailsPersonalDetailsPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${uniqueSelectors.h23Selector}:text-is("${RespondentDetailsPersonalDetailsContent.h23}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${uniqueSelectors.dobUniqueSelector}${Selectors.GovukLabel}:text-is("${CommonStaticText.day}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${uniqueSelectors.dobUniqueSelector}${Selectors.GovukLabel}:text-is("${CommonStaticText.month}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${uniqueSelectors.dobUniqueSelector}${Selectors.GovukLabel}:text-is("${CommonStaticText.year}")`,
         1,
       ),
     ]);
@@ -144,14 +161,14 @@ export class RespondentDetailsPersonalDetailsPage {
         4,
         RespondentDetailsPersonalDetailsContent,
         "errorMessage",
-        Selectors.GovukErrorMessage,
+        Selectors.GovukErrorMessageCitizen,
       ),
       Helpers.checkGroup(
         page,
         4,
         RespondentDetailsPersonalDetailsContent,
         "errorMessage",
-        Selectors.GovukErrorList,
+        `${Selectors.GovukErrorList} ${Selectors.a}`,
       ),
     ]);
     //Trigger hidden error message
@@ -162,16 +179,17 @@ export class RespondentDetailsPersonalDetailsPage {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${RespondentDetailsPersonalDetailsContent.hiddenErrorMessage1}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${RespondentDetailsPersonalDetailsContent.hiddenErrorMessage1}")`,
         1,
       ),
     ]);
+    await page.uncheck(InputIds.dobUnknownCheck);
   }
 
   private static async fillInFields({
     page,
     changeNameYesNoDontKnow,
-    gender,
+    respondentGender,
     knownDob,
     knownPlaceOfBirth,
   }: fillInFieldsOptions): Promise<void> {
@@ -208,7 +226,7 @@ export class RespondentDetailsPersonalDetailsPage {
           `Unexpected value for changeName: ${changeNameYesNoDontKnow}`,
         );
     }
-    switch (gender) {
+    switch (respondentGender) {
       case "female":
         await page.click(InputIds.female);
         break;
@@ -227,7 +245,7 @@ export class RespondentDetailsPersonalDetailsPage {
         );
         break;
       default:
-        throw new Error(`Unexpected value for gender: ${gender}`);
+        throw new Error(`Unexpected value for gender: ${respondentGender}`);
     }
     if (knownDob) {
       await page.fill(InputIds.dobDay, day);
@@ -236,7 +254,7 @@ export class RespondentDetailsPersonalDetailsPage {
     } else {
       await page.check(InputIds.dobUnknownCheck);
       //check for hidden content to appear and fill approximate date of birth (dob)
-      Promise.all([
+      await Promise.all([
         Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukLabel}:text-is("${RespondentDetailsPersonalDetailsContent.hiddenlabel3}")`,
@@ -244,17 +262,17 @@ export class RespondentDetailsPersonalDetailsPage {
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${uniqueSelectors.approxDobDaySelector}:text-is("${RespondentDetailsPersonalDetailsContent.label7}")`,
+          `${uniqueSelectors.approxDoBUniqueSelector}${Selectors.GovukLabel}:text-is("${CommonStaticText.day}")`,
           1,
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${uniqueSelectors.approxDobMonthSelector}:text-is("${RespondentDetailsPersonalDetailsContent.label8}")`,
+          `${uniqueSelectors.approxDoBUniqueSelector}${Selectors.GovukLabel}:text-is("${CommonStaticText.month}")`,
           1,
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${uniqueSelectors.approxDobYearSelector}:text-is("${RespondentDetailsPersonalDetailsContent.label9}")`,
+          `${uniqueSelectors.approxDoBUniqueSelector}${Selectors.GovukLabel}:text-is("${CommonStaticText.year}")`,
           1,
         ),
       ]);
@@ -270,5 +288,8 @@ export class RespondentDetailsPersonalDetailsPage {
     } else {
       await page.check(InputIds.unknownPlaceOfBirthCheck);
     }
+    await page.click(
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
+    );
   }
 }

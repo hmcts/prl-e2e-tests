@@ -60,7 +60,7 @@ export class ApplicantAddressLookupPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukBody}:text-is("${ApplicantAddressLookupContent.body}")`,
+        `${Selectors.a}:text-is("${ApplicantAddressLookupContent.body}")`,
         1,
       ),
     ]);
@@ -80,7 +80,7 @@ export class ApplicantAddressLookupPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorSummary}:text-is("${ApplicantAddressLookupContent.errorMessage}")`,
+        `${Selectors.GovukErrorList} ${Selectors.a}:text-is("${ApplicantAddressLookupContent.errorMessage}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(

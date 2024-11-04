@@ -4,11 +4,13 @@ import { Selectors } from "../../../../../../common/selectors";
 import { MainlyLiveWithContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/otherPeople/mainlyLiveWithContent";
 import { Helpers } from "../../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../../common/commonStaticText";
+import { typeOfPerson } from "../../../../../../common/types";
 
 interface mainlyLiveWithOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
+  c100ChildMainlyLivesWith: typeOfPerson;
 }
 
 interface checkPageLoadsOptions {
@@ -18,16 +20,21 @@ interface checkPageLoadsOptions {
 
 interface fillInFieldsOptions {
   page: Page;
-  errorMessaging: boolean;
+  c100ChildMainlyLivesWith: typeOfPerson;
 }
 
-const radioId = "#mainlyLiveWith";
+enum radioIDs {
+  applicant = "#mainlyLiveWith",
+  respondent = "#mainlyLiveWith-2",
+  otherPerson = "#mainlyLiveWith-3",
+}
 
 export class MainlyLiveWithPage {
   public static async mainlyLiveWithPage({
     page,
     accessibilityTest,
     errorMessaging,
+    c100ChildMainlyLivesWith,
   }: mainlyLiveWithOptions): Promise<void> {
     await this.checkPageLoads({ page, accessibilityTest });
     if (errorMessaging) {
@@ -35,16 +42,21 @@ export class MainlyLiveWithPage {
     }
     await this.fillInFields({
       page,
-      errorMessaging,
+      c100ChildMainlyLivesWith,
     });
   }
   private static async checkPageLoads({
     page,
     accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
-    await page.waitForSelector(
-      `${Selectors.GovukHeadingXL}:text-is("${MainlyLiveWithContent.pageTitlePart1} ${MainlyLiveWithContent.firstNameLastName} ${MainlyLiveWithContent.pageTitlePart2}")`,
-    );
+    await Promise.all([
+      page.waitForSelector(
+        `${Selectors.GovukHeadingXL}:has-text("${MainlyLiveWithContent.pageTitlePart1}")`,
+      ),
+      page.waitForSelector(
+        `${Selectors.GovukHeadingXL}:has-text("${MainlyLiveWithContent.pageTitlePart2}")`,
+      ),
+    ]);
     await Promise.all([
       Helpers.checkGroup(
         page,
@@ -94,8 +106,14 @@ export class MainlyLiveWithPage {
 
   private static async fillInFields({
     page,
+    c100ChildMainlyLivesWith,
   }: fillInFieldsOptions): Promise<void> {
-    await page.click(radioId);
+    if (!(c100ChildMainlyLivesWith in radioIDs)) {
+      throw new Error(
+        `Unrecognised person: ${c100ChildMainlyLivesWith}. Should be applicant, respondent or other.`,
+      );
+    }
+    await page.click(radioIDs[c100ChildMainlyLivesWith]);
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );

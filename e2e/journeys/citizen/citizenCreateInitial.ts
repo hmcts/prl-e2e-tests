@@ -18,7 +18,6 @@ export class CitizenCreateInitial {
     accessibilityTest,
     childArrangementsJourney,
   }: CitizenCreateInitialOptions): Promise<void> {
-    await page.goto(config.citizenFrontendBaseURL);
     await CaseDashboardPage.caseDashboardPage({
       page: page,
       accessibilityTest: accessibilityTest,
