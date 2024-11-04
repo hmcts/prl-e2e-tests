@@ -155,7 +155,11 @@ export class UnsupervisedPage {
     c100ChildrenSupervision,
     c100ChildrenInTouch,
   }: FillInFieldsOptions): Promise<void> {
-    if (!["yesSpendTime", "yesButSupervised", "noSpendTime"].includes(c100ChildrenSupervision)) {
+    if (
+      !["yesSpendTime", "yesButSupervised", "noSpendTime"].includes(
+        c100ChildrenSupervision,
+      )
+    ) {
       throw new Error(
         `Invalid option for c100ChildrenSupervision: ${c100ChildrenSupervision}`,
       );

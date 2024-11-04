@@ -4,9 +4,7 @@ import { Selectors } from "../../../../../../common/selectors";
 import { EmotionalAbuseContent } from "../../../../../../fixtures/citizen/createCase/C100/safetyConcerns/yourselfConcerns/emotionalAbuseContent";
 import { CommonStaticText } from "../../../../../../common/commonStaticText";
 import { SafetyConcernHelpers } from "../safetyConcernHelpers";
-import {
-  reportAbuseInputIDs,
-} from "../../../../../../common/commonUniqueSelectors";
+import { reportAbuseInputIDs } from "../../../../../../common/commonUniqueSelectors";
 
 interface EmotionalAbusePageOptions {
   page: Page;

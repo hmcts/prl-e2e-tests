@@ -271,10 +271,7 @@ export class SafetyConcernHelpers {
     abuseContent,
   }: SeekHelpOptions): Promise<void> {
     if (c100ReportAbuseYesNoToAll) {
-      if (
-        !("seekHelpYes" in inputIDs) ||
-        !("seekHelpDetails" in inputIDs)
-      ) {
+      if (!("seekHelpYes" in inputIDs) || !("seekHelpDetails" in inputIDs)) {
         throw new Error(
           `Could not find seekHelpYes or seekHelpDetails in inputIDs`,
         );
@@ -317,10 +314,7 @@ export class SafetyConcernHelpers {
     abuseContent,
   }: SeekHelpOptions): Promise<void> {
     if (c100ReportAbuseYesNoToAll) {
-      if (
-        !("seekHelpYes" in inputIDs) ||
-        !("seekHelpDetails" in inputIDs)
-      ) {
+      if (!("seekHelpYes" in inputIDs) || !("seekHelpDetails" in inputIDs)) {
         throw new Error(
           `Could not find seekHelpYes or seekHelpDetails in inputIDs`,
         );
