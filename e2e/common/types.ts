@@ -86,3 +86,7 @@ export type Relationship =
   | "specialGuardian"
   | "grandparent"
   | "other";
+
+export type typeOfPerson = "applicant"
+  | "respondent"
+  | "otherPerson";

@@ -15,8 +15,8 @@ import { C100OtherProceedings } from "./subJourneys/C100OtherProceedings";
 import { C100ApplicationCompletedForYou } from "./C100ApplicationCompletedForYou";
 import {
   ApplicantGender,
-  Relationship,
-  yesNoDontKnow,
+  Relationship, typeOfPerson,
+  yesNoDontKnow
 } from "../../../../common/types";
 import { C100Confidentiality } from "./subJourneys/c100Confidentiality";
 import { C100CasePartyDetails } from "./subJourneys/c100CasePartyDetails";
@@ -87,6 +87,7 @@ interface C100TopMiroJourneyOptions {
   c100OtherPeopleChangedName: yesNoDontKnow;
   c100OtherPeopleDoBKnown: boolean;
   c100OtherPersonRelationship: Relationship;
+  c100ChildMainlyLivesWith: typeOfPerson
   yesNoChildArrangementOrderDetails: boolean;
   yesNoOtherProceedings: boolean;
   c100ChildrenSafetyConcerns: boolean;
@@ -289,6 +290,7 @@ export class C100 {
     c100OtherPeopleChangedName,
     c100OtherPeopleDoBKnown,
     c100OtherPersonRelationship,
+    c100ChildMainlyLivesWith,
     yesNoChildArrangementOrderDetails,
     yesNoOtherProceedings,
     c100ChildrenSafetyConcerns,
@@ -373,6 +375,7 @@ export class C100 {
       c100OtherPeopleChangedName: c100OtherPeopleChangedName,
       c100OtherPeopleDoBKnown: c100OtherPeopleDoBKnown,
       c100OtherPersonRelationship: c100OtherPersonRelationship,
+      c100ChildMainlyLivesWith: c100ChildMainlyLivesWith
     });
     // await C100OtherProceedings.c100OtherProceedings1({
     //   page: page,
