@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../common/selectors";
-import { Helpers } from "../../../common/helpers";
-import AccessibilityTestHelper from "../../../common/accessibilityTestHelper";
-import { DraftAnOrder2Content } from "../../../fixtures/manageCases/caseWorker/draftAnOrder2Content";
-import { OrderType, solicitorCaseCreateType } from "../../../common/types";
+import { Selectors } from "../../../../common/selectors";
+import { Helpers } from "../../../../common/helpers";
+import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+import { DraftAnOrder2Content } from "../../../../fixtures/manageCases/caseWorker/draftAnOrder/draftAnOrder2Content";
+import { OrderType, solicitorCaseCreateType } from "../../../../common/types";
 
 enum UniqueSelectors {
   errorMessageSelector = "ccd-callback-errors > div > ul > li",

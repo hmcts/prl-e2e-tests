@@ -1,10 +1,12 @@
+import { Selectors } from "../../../../../common/selectors";
+import { orderTypesMap } from "../../../../../journeys/manageCases/caseWorker/draftAnOrder/draftAnOrder";
+import { Helpers } from "../../../../../common/helpers";
+import { DraftAnOrder4Content } from "../../../../../fixtures/manageCases/caseWorker/draftAnOrder/draftAnOrder4Content";
 import { Page } from "@playwright/test";
-import { OrderType, solicitorCaseCreateType } from "../../../common/types";
-import { Selectors } from "../../../common/selectors";
-import { DraftAnOrder4Content } from "../../../fixtures/manageCases/caseWorker/draftAnOrder4Content";
-import { Helpers } from "../../../common/helpers";
-import AccessibilityTestHelper from "../../../common/accessibilityTestHelper";
-import { orderTypesMap } from "../../../journeys/manageCases/caseWorker/draftAnOrder";
+import { solicitorCaseCreateType } from "../../../../../common/types";
+import {
+  NonMolestationOrder4Content
+} from "../../../../../fixtures/manageCases/caseWorker/draftAnOrder/nonMolestationOrder/nonMolestationOrder4Content";
 
 enum UniqueSelectors {
   herHonourTitleRadio = "#judgeOrMagistrateTitle-herHonourJudge",
@@ -32,31 +34,13 @@ enum UniqueSelectors {
   orderAboutChildrenLabels = "#isTheOrderAboutChildren .form-label",
 }
 
-export class DraftAnOrder4Page {
-  public static async draftAnOrder4Page(
+export class NonMolestationOrder4Page {
+  public static async checkPageLoads(
     page: Page,
     caseType: solicitorCaseCreateType,
-    orderType: OrderType,
-    yesNoToAll: boolean,
-    errorMessaging: boolean,
-    accessibilityTest: boolean,
-  ): Promise<void> {
-    await this.checkPageLoads(page, caseType, orderType, accessibilityTest);
-    if (errorMessaging) {
-      await this.checkErrorMessaging(page, caseType);
-    }
-    await this.fillInFields(page, caseType, yesNoToAll);
-    await this.continue(page);
-  }
-
-  private static async checkPageLoads(
-    page: Page,
-    caseType: solicitorCaseCreateType,
-    orderType: OrderType,
-    accessibilityTest: boolean,
   ): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.headingH3}:text-is("${orderTypesMap.get(orderType)?.journeyName}")`,
+      `${Selectors.headingH3}:text-is("${orderTypesMap.get("nonMolestation")?.journeyName}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -67,7 +51,7 @@ export class DraftAnOrder4Page {
       Helpers.checkGroup(
         page,
         21,
-        DraftAnOrder4Content,
+        NonMolestationOrder4Content,
         `formLabel`,
         `${Selectors.GovukFormLabel}`,
       ),
@@ -103,17 +87,17 @@ export class DraftAnOrder4Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${UniqueSelectors.dateOrderMadeDateLabels}:text-is("${DraftAnOrder4Content.formLabelDay}")`,
+        `${UniqueSelectors.dateOrderMadeDateLabels}:text-is("${NonMolestationOrder4Content.formLabelDay}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${UniqueSelectors.dateOrderMadeDateLabels}:text-is("${DraftAnOrder4Content.formLabelMonth}")`,
+        `${UniqueSelectors.dateOrderMadeDateLabels}:text-is("${NonMolestationOrder4Content.formLabelMonth}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${UniqueSelectors.dateOrderMadeDateLabels}:text-is("${DraftAnOrder4Content.formLabelYear}")`,
+        `${UniqueSelectors.dateOrderMadeDateLabels}:text-is("${NonMolestationOrder4Content.formLabelYear}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -130,22 +114,19 @@ export class DraftAnOrder4Page {
     if ("C100" === caseType) {
       await Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukFormLabel}:text-is("${DraftAnOrder4Content.formLabelOrderAboutAllChildren}")`,
+        `${Selectors.GovukFormLabel}:text-is("${NonMolestationOrder4Content.formLabelOrderAboutAllChildren}")`,
         1,
       );
     } else {
       await Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukFormLabel}:text-is("${DraftAnOrder4Content.formLabelOrderAboutChildren}")`,
+        `${Selectors.GovukFormLabel}:text-is("${NonMolestationOrder4Content.formLabelOrderAboutChildren}")`,
         1,
       );
     }
-    if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
-    }
   }
 
-  private static async checkErrorMessaging(
+  public static async checkErrorMessaging(
     page: Page,
     caseType: solicitorCaseCreateType,
   ): Promise<void> {
@@ -153,31 +134,31 @@ export class DraftAnOrder4Page {
     await this.continue(page);
     await this.validateErrorMessages(
       page,
-      DraftAnOrder4Content.errorMessageOrderByConsent,
+      NonMolestationOrder4Content.errorMessageOrderByConsent,
     );
     await this.validateErrorMessages(
       page,
-      DraftAnOrder4Content.errorMessageOrderApprovedAtHearing,
+      NonMolestationOrder4Content.errorMessageOrderApprovedAtHearing,
     );
     await Helpers.checkVisibleAndPresent(
       page,
-      `${Selectors.GovukErrorValidation}:text-is("${DraftAnOrder4Content.errorMessageOrderDateNotValidValidationError}")`,
+      `${Selectors.GovukErrorValidation}:text-is("${NonMolestationOrder4Content.errorMessageOrderDateNotValidValidationError}")`,
       1,
     );
     await Helpers.checkVisibleAndPresent(
       page,
-      `${Selectors.GovukErrorMessage}:text-is("${DraftAnOrder4Content.errorMessageOrderDateNotValidErrorMessage}")`,
+      `${Selectors.GovukErrorMessage}:text-is("${NonMolestationOrder4Content.errorMessageOrderDateNotValidErrorMessage}")`,
       1,
     );
     if ("C100" === caseType) {
       await this.validateErrorMessages(
         page,
-        DraftAnOrder4Content.errorMessageOrderAboutAllChildren,
+        NonMolestationOrder4Content.errorMessageOrderAboutAllChildren,
       );
     } else {
       await this.validateErrorMessages(
         page,
-        DraftAnOrder4Content.errorMessageOrderAboutTheChildren,
+        NonMolestationOrder4Content.errorMessageOrderAboutTheChildren,
       );
     }
     await page.check(`${UniqueSelectors.orderApprovedAtHearingYes}`);
@@ -193,15 +174,15 @@ export class DraftAnOrder4Page {
     await this.continue(page);
     await this.validateErrorMessages(
       page,
-      DraftAnOrder4Content.errorMessageWhichHearingWasOrderApproved,
+      NonMolestationOrder4Content.errorMessageWhichHearingWasOrderApproved,
     );
     await this.validateErrorMessages(
       page,
-      DraftAnOrder4Content.errorMessageMagistratesFullNameRequired,
+      NonMolestationOrder4Content.errorMessageMagistratesFullNameRequired,
     );
     await this.validateErrorMessages(
       page,
-      DraftAnOrder4Content.errorMessageWhichChildrenAreIncluded,
+      NonMolestationOrder4Content.errorMessageWhichChildrenAreIncluded,
     );
   }
 
@@ -216,7 +197,7 @@ export class DraftAnOrder4Page {
     );
     // if statement needed because error message does not show correctly above this field - RAISE THIS
     if (
-      errorMessage !== DraftAnOrder4Content.errorMessageWhichChildrenAreIncluded
+      errorMessage !== NonMolestationOrder4Content.errorMessageWhichChildrenAreIncluded
     ) {
       await Helpers.checkVisibleAndPresent(
         page,
@@ -226,7 +207,7 @@ export class DraftAnOrder4Page {
     }
   }
 
-  private static async fillInFields(
+  public static async fillInFields(
     page: Page,
     caseType: solicitorCaseCreateType,
     yesNoToAll: boolean,
@@ -236,14 +217,14 @@ export class DraftAnOrder4Page {
       await page.check(`${UniqueSelectors.orderApprovedAtHearingYes}`);
       await page.selectOption(
         `${UniqueSelectors.hearingsTypeDropdown}`,
-        `${DraftAnOrder4Content.noHearingsAvailable}`,
+        `${NonMolestationOrder4Content.noHearingsAvailable}`,
       );
       if ("C100" === caseType) {
         await page.check(`${UniqueSelectors.orderAboutAllChildrenYes}`);
       } else {
         await page.check(`${UniqueSelectors.orderAboutChildrenYes}`);
-        await page.getByLabel(`${DraftAnOrder4Content.childName1}`).check();
-        await page.getByLabel(`${DraftAnOrder4Content.childName2}`).check();
+        await page.getByLabel(`${NonMolestationOrder4Content.childName1}`).check();
+        await page.getByLabel(`${NonMolestationOrder4Content.childName2}`).check();
       }
     } else {
       await page.check(`${UniqueSelectors.orderByConsentNo}`);
@@ -258,20 +239,20 @@ export class DraftAnOrder4Page {
     await page.check(`${UniqueSelectors.herHonourTitleRadio}`);
     await page.fill(
       `${UniqueSelectors.judgeNameTextbox}`,
-      `${DraftAnOrder4Content.judgeName}`,
+      `${NonMolestationOrder4Content.judgeName}`,
     );
     await page.fill(
       `${UniqueSelectors.legalAdviserNameTextbox}`,
-      `${DraftAnOrder4Content.legalAdviserName}`,
+      `${NonMolestationOrder4Content.legalAdviserName}`,
     );
     await this.inputDateOrderMade(page);
     await page.fill(
       `${UniqueSelectors.preambleTextbox}`,
-      `${DraftAnOrder4Content.preamble}`,
+      `${NonMolestationOrder4Content.preamble}`,
     );
     await page.fill(
       `${UniqueSelectors.directionsTextbox}`,
-      `${DraftAnOrder4Content.directions}`,
+      `${NonMolestationOrder4Content.directions}`,
     );
   }
 

@@ -1,13 +1,14 @@
-import { Page } from "@playwright/test";
-import AccessibilityTestHelper from "../../../common/accessibilityTestHelper";
-import { OrderType } from "../../../common/types";
-import { Selectors } from "../../../common/selectors";
-import { DraftAnOrder5Content } from "../../../fixtures/manageCases/caseWorker/draftAnOrder5Content";
-import { Helpers } from "../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors";
+import { DraftAnOrder5Content } from "../../../../../fixtures/manageCases/caseWorker/draftAnOrder/draftAnOrder5Content";
+import { Helpers } from "../../../../../common/helpers";
 import {
   HowLongWillTheOrderBeInForce,
   orderTypesMap,
-} from "../../../journeys/manageCases/caseWorker/draftAnOrder";
+} from "../../../../../journeys/manageCases/caseWorker/draftAnOrder/draftAnOrder";
+import { Page } from "@playwright/test";
+import {
+  NonMolestationOrder5Content
+} from "../../../../../fixtures/manageCases/caseWorker/draftAnOrder/nonMolestationOrder/nonMolestationOrder5Content";
 
 enum UniqueSelectors {
   orderMentionsProperty = "#fl404CustomFields_fl404bMentionedProperty_Yes",
@@ -40,49 +41,10 @@ enum CheckboxIds {
   checkbox10 = "#fl404CustomFields_fl404bRespondentNotToEnterSchool-respondentMustNotEnterSchool",
 }
 
-export class DraftAnOrder5Page {
-  public static async draftAnOrder5Page(
-    page: Page,
-    orderType: OrderType,
-    yesNoToAll: boolean,
-    howLongWillTheOrderBeInForce: HowLongWillTheOrderBeInForce,
-    errorMessaging: boolean,
-    accessibilityTest: boolean,
-  ): Promise<void> {
-    await this.checkPageLoads(page, orderType, accessibilityTest);
-    if (errorMessaging) {
-      await this.checkErrorMessaging(page, orderType);
-    }
-    await this.fillInFields(
-      page,
-      orderType,
-      yesNoToAll,
-      howLongWillTheOrderBeInForce,
-    );
-    await this.continue(page);
-  }
-
-  private static async checkPageLoads(
-    page: Page,
-    orderType: OrderType,
-    accessibilityTest: boolean,
-  ): Promise<void> {
-    switch (orderType) {
-      case "nonMolestation":
-        await this.checkNonMolestationOrderPage(page);
-        break;
-      default:
-        console.error("Unknown order type");
-        break;
-    }
-    if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
-    }
-  }
-
-  private static async checkNonMolestationOrderPage(page: Page): Promise<void> {
+export class NonMolestationOrder5Page {
+  public static async checkPageLoads(page: Page): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.h1}:text-is("${DraftAnOrder5Content.h1}")`,
+      `${Selectors.h1}:text-is("${NonMolestationOrder5Content.h1}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -98,7 +60,7 @@ export class DraftAnOrder5Page {
       Helpers.checkGroup(
         page,
         20,
-        DraftAnOrder5Content,
+        NonMolestationOrder5Content,
         `formLabel`,
         `${Selectors.GovukFormLabel}`,
       ),
@@ -125,63 +87,27 @@ export class DraftAnOrder5Page {
     ]);
   }
 
-  private static async checkErrorMessaging(
-    page: Page,
-    orderType: OrderType,
-  ): Promise<void> {
-    switch (orderType) {
-      case "nonMolestation":
-        await this.checkNonMolestationOrderErrorMessaging(page);
-        break;
-      default:
-        console.error("Unknown order type");
-        break;
-    }
-  }
-
-  private static async checkNonMolestationOrderErrorMessaging(
-    page: Page,
-  ): Promise<void> {
+  public static async checkErrorMessaging(page: Page): Promise<void> {
     await this.continue(page);
     await Promise.all([
       Helpers.checkGroup(
         page,
         3,
-        DraftAnOrder5Content,
+        NonMolestationOrder5Content,
         `errorMessage`,
         `${Selectors.GovukErrorValidation}`,
       ),
       Helpers.checkGroup(
         page,
         3,
-        DraftAnOrder5Content,
+        NonMolestationOrder5Content,
         `errorMessage`,
         `${Selectors.GovukErrorMessage}`,
       ),
     ]);
   }
 
-  private static async fillInFields(
-    page: Page,
-    orderType: OrderType,
-    yesNoToAll: boolean,
-    howLongWillTheOrderBeInForce: HowLongWillTheOrderBeInForce,
-  ): Promise<void> {
-    switch (orderType) {
-      case "nonMolestation":
-        await this.fillInNonMolestationOrder(
-          page,
-          yesNoToAll,
-          howLongWillTheOrderBeInForce,
-        );
-        break;
-      default:
-        console.error("Unknown order type");
-        break;
-    }
-  }
-
-  private static async fillInNonMolestationOrder(
+  public static async fillInFields(
     page: Page,
     yesNoToAll: boolean,
     howLongWillTheOrderBeInForce: HowLongWillTheOrderBeInForce,
@@ -190,31 +116,30 @@ export class DraftAnOrder5Page {
       await page.check(`${UniqueSelectors.orderMentionsProperty}`);
       await page.fill(
         `${UniqueSelectors.propertyAddressTextBox}`,
-        `${DraftAnOrder5Content.propertyAddress}`,
+        `${NonMolestationOrder5Content.propertyAddress}`,
       );
-      // tick all respondent check boxes
       for (let checkbox of Object.values(CheckboxIds)) {
         await page.check(checkbox);
       }
       await page.fill(
         `${UniqueSelectors.applicantTelephoneFurtherDetailsTextbox}`,
-        `${DraftAnOrder5Content.applicantTelephoneFurtherDetails}`,
+        `${NonMolestationOrder5Content.applicantTelephoneFurtherDetails}`,
       );
       await page.fill(
         `${UniqueSelectors.propertyFurtherDetailsTextbox}`,
-        `${DraftAnOrder5Content.propertyFurtherDetails}`,
+        `${NonMolestationOrder5Content.propertyFurtherDetails}`,
       );
       await page.fill(
         `${UniqueSelectors.childTelephoneFurtherDetailsTextbox}`,
-        `${DraftAnOrder5Content.childTelephoneFurtherDetails}`,
+        `${NonMolestationOrder5Content.childTelephoneFurtherDetails}`,
       );
       await page.fill(
         `${UniqueSelectors.schoolNameTextBox}`,
-        `${DraftAnOrder5Content.schoolName}`,
+        `${NonMolestationOrder5Content.schoolName}`,
       );
       await page.fill(
         `${UniqueSelectors.schoolFurtherDetailsTextbox}`,
-        `${DraftAnOrder5Content.schoolFurtherDetails}`,
+        `${NonMolestationOrder5Content.schoolFurtherDetails}`,
       );
       await page.check(`${UniqueSelectors.orderMadeWithNotice}`);
     } else {
@@ -234,7 +159,7 @@ export class DraftAnOrder5Page {
     }
     await page.fill(
       `${UniqueSelectors.costsOfApplicationTextbox}`,
-      `${DraftAnOrder5Content.costsOfApplication}`,
+      `${NonMolestationOrder5Content.costsOfApplication}`,
     );
   }
 

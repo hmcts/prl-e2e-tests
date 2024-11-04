@@ -1,5 +1,4 @@
-export enum DraftAnOrder5Content {
-  pageTitle = "Draft an order",
+export enum NonMolestationOrder5Content {
   h1 = " The respondent must not do the following:",
   formLabel1 = "Does the order mention a property?",
   formLabel2 = "Select any that apply (Optional)",
@@ -21,10 +20,6 @@ export enum DraftAnOrder5Content {
   formLabel18 = "Is this order made with or without notice?",
   formLabel19 = "With notice",
   formLabel20 = "Without notice",
-  formLabelYes = "Yes",
-  formLabelNo = "No",
-  previous = "Previous",
-  continue = "Continue",
   addNew = "Add new",
   errorMessage1 = "Does the order mention a property? is required",
   errorMessage2 = "How long will the order be in force? is required",

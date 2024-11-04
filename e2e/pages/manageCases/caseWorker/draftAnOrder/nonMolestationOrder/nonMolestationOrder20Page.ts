@@ -1,41 +1,23 @@
 import { expect, Page } from "@playwright/test";
-import { Selectors } from "../../../common/selectors";
-import { DraftAnOrder20Content } from "../../../fixtures/manageCases/caseWorker/draftAnOrder20Content";
-import { Helpers } from "../../../common/helpers";
-import AccessibilityTestHelper from "../../../common/accessibilityTestHelper";
-import { OrderType } from "../../../common/types";
-import { orderTypesMap } from "../../../journeys/manageCases/caseWorker/draftAnOrder";
+import { Selectors } from "../../../../../common/selectors";
+import { DraftAnOrder20Content } from "../../../../../fixtures/manageCases/caseWorker/draftAnOrder/draftAnOrder20Content";
+import { Helpers } from "../../../../../common/helpers";
+import {
+  HowLongWillTheOrderBeInForce,
+  orderTypesMap,
+} from "../../../../../journeys/manageCases/caseWorker/draftAnOrder/draftAnOrder";
+import { OrderType } from "../../../../../common/types";
+import {
+  NonMolestationOrder20Content
+} from "../../../../../fixtures/manageCases/caseWorker/draftAnOrder/nonMolestationOrder/nonMolestationOrder20Content";
 
 enum ids {
   mvDownBtn = "#mvDownBtn",
   numPages = "#numPages",
 }
 
-export class DraftAnOrder20Page {
-  public static async draftAnOrder20Page(
-    page: Page,
-    orderType: OrderType,
-    yesToAll: boolean,
-    howLongWillOrderBeInForce: string,
-    willAllPartiesBeAttendingHearing: boolean,
-    accessibilityTest: boolean,
-  ): Promise<void> {
-    await this.checkPageLoads(page, orderType, accessibilityTest);
-    await this.checkPDFContent(
-      page,
-      orderType,
-      yesToAll,
-      howLongWillOrderBeInForce,
-      willAllPartiesBeAttendingHearing,
-    );
-    await this.continue(page);
-  }
-
-  private static async checkPageLoads(
-    page: Page,
-    orderType: OrderType,
-    accessibilityTest: boolean,
-  ): Promise<void> {
+export class NonMolestationOrder20Page {
+  public static async checkPageLoads(page: Page): Promise<void> {
     await page.waitForSelector(
       `${Selectors.h2}:text-is("${DraftAnOrder20Content.h2}")`,
     );
@@ -47,22 +29,22 @@ export class DraftAnOrder20Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.headingH3}:text-is("${orderTypesMap.get(orderType)?.journeyName}")`,
+        `${Selectors.headingH3}:text-is("${orderTypesMap.get("nonMolestation")?.journeyName}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${DraftAnOrder20Content.welshPdfLink}")`,
+        `${Selectors.a}:text-is("${NonMolestationOrder20Content.welshPdfLink}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${DraftAnOrder20Content.pdfLink}")`,
+        `${Selectors.a}:text-is("${NonMolestationOrder20Content.pdfLink}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${DraftAnOrder20Content.p}")`,
+        `${Selectors.p}:text-is("${NonMolestationOrder20Content.p}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -76,16 +58,13 @@ export class DraftAnOrder20Page {
         1,
       ),
     ]);
-    if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
-    }
   }
 
-  private static async checkPDFContent(
+  public static async checkPdfContent(
     page: Page,
     orderType: OrderType,
     yesToAll: boolean,
-    howLongWillOrderBeInForce: string,
+    howLongWillOrderBeInForce: HowLongWillTheOrderBeInForce,
     willAllPartiesBeAttendingHearing: boolean,
   ): Promise<void> {
     await this.checkWelshPdfContent(
@@ -120,33 +99,33 @@ export class DraftAnOrder20Page {
     await Helpers.checkGroup(
       pdfPage,
       53,
-      DraftAnOrder20Content,
+      NonMolestationOrder20Content,
       "welshSpan",
       `${Selectors.Span}`,
     );
     if (yesNoToAll) {
       await Helpers.checkVisibleAndPresent(
         pdfPage,
-        `${Selectors.Span}:text-is("${DraftAnOrder20Content.welshChildrenSpan}")`,
+        `${Selectors.Span}:text-is("${NonMolestationOrder20Content.welshChildrenSpan}")`,
         1,
       );
       await Helpers.checkGroup(
         pdfPage,
         40,
-        DraftAnOrder20Content,
+        NonMolestationOrder20Content,
         "welshCourtOrderSpan",
         `${Selectors.Span}`,
       );
       await this.checkWelshRepeatedCourtOrderSpans(pdfPage);
       await Helpers.checkVisibleAndPresent(
         pdfPage,
-        `${Selectors.Span}:text-is("${DraftAnOrder20Content.welshWithNoticeSpan}")`,
+        `${Selectors.Span}:text-is("${NonMolestationOrder20Content.welshWithNoticeSpan}")`,
         1,
       );
       await Helpers.checkGroup(
         pdfPage,
         22,
-        DraftAnOrder20Content,
+        NonMolestationOrder20Content,
         "welshHearingSpan",
         `${Selectors.Span}`,
       );
@@ -160,7 +139,7 @@ export class DraftAnOrder20Page {
         await Helpers.checkGroup(
           pdfPage,
           3,
-          DraftAnOrder20Content,
+          NonMolestationOrder20Content,
           "welshAllPartiesAttendingInSameWaySpan",
           `${Selectors.Span}`,
         );
@@ -168,7 +147,7 @@ export class DraftAnOrder20Page {
         await Helpers.checkGroup(
           pdfPage,
           11,
-          DraftAnOrder20Content,
+          NonMolestationOrder20Content,
           "welshHearingArrangementsSpan",
           `${Selectors.Span}`,
         );
@@ -181,7 +160,7 @@ export class DraftAnOrder20Page {
       );
       await Helpers.checkVisibleAndPresent(
         pdfPage,
-        `${Selectors.Span}:text-is("${DraftAnOrder20Content.welshWithoutNoticeSpan}")`,
+        `${Selectors.Span}:text-is("${NonMolestationOrder20Content.welshWithoutNoticeSpan}")`,
         1,
       );
     }
@@ -189,7 +168,7 @@ export class DraftAnOrder20Page {
       case "noEndDate":
         await Helpers.checkVisibleAndPresent(
           pdfPage,
-          `${Selectors.Span}:text-is("${DraftAnOrder20Content.welshOrderAppliesNoFixedEndDateSpan}")`,
+          `${Selectors.Span}:text-is("${NonMolestationOrder20Content.welshOrderAppliesNoFixedEndDateSpan}")`,
           1,
         );
         break;
@@ -208,37 +187,41 @@ export class DraftAnOrder20Page {
     }
   }
 
-  private static async checkWelshRepeatedCourtOrderSpans(page: Page): Promise<void> {
+  private static async checkWelshRepeatedCourtOrderSpans(
+    page: Page,
+  ): Promise<void> {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${DraftAnOrder20Content.welshRepeatedCourtOrderSpan1}")`,
+        `${Selectors.Span}:text-is("${NonMolestationOrder20Content.welshRepeatedCourtOrderSpan1}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${DraftAnOrder20Content.welshRepeatedCourtOrderSpan2}")`,
+        `${Selectors.Span}:text-is("${NonMolestationOrder20Content.welshRepeatedCourtOrderSpan2}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${DraftAnOrder20Content.welshRepeatedCourtOrderSpan3}")`,
+        `${Selectors.Span}:text-is("${NonMolestationOrder20Content.welshRepeatedCourtOrderSpan3}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${DraftAnOrder20Content.welshRepeatedCourtOrderSpan4}")`,
+        `${Selectors.Span}:text-is("${NonMolestationOrder20Content.welshRepeatedCourtOrderSpan4}")`,
         2,
       ),
     ]);
   }
 
-  private static async checkWelshRepeatedHearingSpans(page: Page): Promise<void> {
+  private static async checkWelshRepeatedHearingSpans(
+    page: Page,
+  ): Promise<void> {
     await Helpers.checkVisibleAndPresent(
       page,
-      `${Selectors.Span}:text-is("${DraftAnOrder20Content.welshHearingRepeatedColon}")`,
+      `${Selectors.Span}:text-is("${NonMolestationOrder20Content.welshHearingRepeatedColon}")`,
       3,
-    )
+    );
   }
 
   private static async checkEnglishPdfContent(
@@ -257,7 +240,7 @@ export class DraftAnOrder20Page {
     await Helpers.checkGroup(
       pdfPage,
       44,
-      DraftAnOrder20Content,
+      NonMolestationOrder20Content,
       "span",
       `${Selectors.Span}`,
     );
@@ -269,26 +252,26 @@ export class DraftAnOrder20Page {
     if (yesNoToAll) {
       await Helpers.checkVisibleAndPresent(
         pdfPage,
-        `${Selectors.Span}:text-is("${DraftAnOrder20Content.childrenSpan}")`,
+        `${Selectors.Span}:text-is("${NonMolestationOrder20Content.childrenSpan}")`,
         1,
       );
       await Helpers.checkGroup(
         pdfPage,
         33,
-        DraftAnOrder20Content,
+        NonMolestationOrder20Content,
         "courtOrderSpan",
         `${Selectors.Span}`,
       );
       await this.checkEnglishRepeatCourtOrderSpans(pdfPage);
       await Helpers.checkVisibleAndPresent(
         pdfPage,
-        `${Selectors.Span}:text-is("${DraftAnOrder20Content.withNoticeSpan}")`,
+        `${Selectors.Span}:text-is("${NonMolestationOrder20Content.withNoticeSpan}")`,
         1,
       );
       await Helpers.checkGroup(
         pdfPage,
         23,
-        DraftAnOrder20Content,
+        NonMolestationOrder20Content,
         "hearingSpan",
         `${Selectors.Span}`,
       );
@@ -301,7 +284,7 @@ export class DraftAnOrder20Page {
         await Helpers.checkGroup(
           pdfPage,
           2,
-          DraftAnOrder20Content,
+          NonMolestationOrder20Content,
           "allPartiesAttendingInSameWaySpan",
           `${Selectors.Span}`,
         );
@@ -309,7 +292,7 @@ export class DraftAnOrder20Page {
         await Helpers.checkGroup(
           pdfPage,
           11,
-          DraftAnOrder20Content,
+          NonMolestationOrder20Content,
           "hearingArrangementsSpan",
           `${Selectors.Span}`,
         );
@@ -317,7 +300,7 @@ export class DraftAnOrder20Page {
     } else {
       await Helpers.checkVisibleAndPresent(
         pdfPage,
-        `${Selectors.Span}:text-is("${DraftAnOrder20Content.withoutNoticeSpan}")`,
+        `${Selectors.Span}:text-is("${NonMolestationOrder20Content.withoutNoticeSpan}")`,
         1,
       );
     }
@@ -325,7 +308,7 @@ export class DraftAnOrder20Page {
       case "noEndDate":
         await Helpers.checkVisibleAndPresent(
           pdfPage,
-          `${Selectors.Span}:text-is("${DraftAnOrder20Content.spanOrderAppliesNoFixedEndDate}")`,
+          `${Selectors.Span}:text-is("${NonMolestationOrder20Content.spanOrderAppliesNoFixedEndDate}")`,
           1,
         );
         break;
@@ -344,41 +327,43 @@ export class DraftAnOrder20Page {
     }
   }
 
-  private static async checkEnglishRepeatCourtOrderSpans(page: Page): Promise<void> {
+  private static async checkEnglishRepeatCourtOrderSpans(
+    page: Page,
+  ): Promise<void> {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${DraftAnOrder20Content.repeatCourtOrderSpan1}")`,
+        `${Selectors.Span}:text-is("${NonMolestationOrder20Content.repeatCourtOrderSpan1}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${DraftAnOrder20Content.repeatCourtOrderSpan2}")`,
+        `${Selectors.Span}:text-is("${NonMolestationOrder20Content.repeatCourtOrderSpan2}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${DraftAnOrder20Content.repeatCourtOrderSpan3}")`,
+        `${Selectors.Span}:text-is("${NonMolestationOrder20Content.repeatCourtOrderSpan3}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${DraftAnOrder20Content.repeatCourtOrderSpan4}")`,
+        `${Selectors.Span}:text-is("${NonMolestationOrder20Content.repeatCourtOrderSpan4}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${DraftAnOrder20Content.repeatCourtOrderSpan5}")`,
+        `${Selectors.Span}:text-is("${NonMolestationOrder20Content.repeatCourtOrderSpan5}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${DraftAnOrder20Content.repeatCourtOrderSpan6}")`,
+        `${Selectors.Span}:text-is("${NonMolestationOrder20Content.repeatCourtOrderSpan6}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${DraftAnOrder20Content.repeatCourtOrderSpan7}")`,
+        `${Selectors.Span}:text-is("${NonMolestationOrder20Content.repeatCourtOrderSpan7}")`,
         2,
       ),
     ]);
@@ -396,7 +381,7 @@ export class DraftAnOrder20Page {
     const [pdfPage] = await Promise.all([
       page.waitForEvent("popup"),
       page.click(
-        `${Selectors.a}:text-is("${language === "English" ? DraftAnOrder20Content.pdfLink : DraftAnOrder20Content.welshPdfLink}")`,
+        `${Selectors.a}:text-is("${language === "English" ? NonMolestationOrder20Content.pdfLink : NonMolestationOrder20Content.welshPdfLink}")`,
       ),
     ]);
     await pdfPage.waitForLoadState();
@@ -417,11 +402,5 @@ export class DraftAnOrder20Page {
         await page.click(ids.mvDownBtn);
       }
     }
-  }
-
-  private static async continue(page: Page): Promise<void> {
-    await page.click(
-      `${Selectors.button}:text-is("${DraftAnOrder20Content.continue}")`,
-    );
   }
 }

@@ -1,13 +1,8 @@
-import { DummyPaymentAwp } from "./dummyPaymentAwp";
+import { DummyPaymentAwp } from "../dummyPaymentAwp";
 import { Page } from "@playwright/test";
-import { OrderType, solicitorCaseCreateType } from "../../../common/types";
-import { Helpers } from "../../../common/helpers";
-import { DraftAnOrder1Page } from "../../../pages/manageCases/caseWorker/draftAnOrder1Page";
-import { DraftAnOrder2Page } from "../../../pages/manageCases/caseWorker/draftAnOrder2Page";
-import { DraftAnOrder4Page } from "../../../pages/manageCases/caseWorker/draftAnOrder4Page";
-import { DraftAnOrder5Page } from "../../../pages/manageCases/caseWorker/draftAnOrder5Page";
-import { DraftAnOrder16Page } from "../../../pages/manageCases/caseWorker/draftAnOrder16Page";
-import { DraftAnOrder20Page } from "../../../pages/manageCases/caseWorker/draftAnOrder20Page";
+import { OrderType, solicitorCaseCreateType } from "../../../../common/types";
+import { Helpers } from "../../../../common/helpers";
+import { NonMolestationOrder } from "./nonMolestationOrder/nonMolestationOrder";
 
 interface DraftAnOrderParams {
   page: Page;
@@ -168,49 +163,22 @@ export class DraftAnOrder {
       caseType,
     });
     await Helpers.chooseEventFromDropdown(page, "Draft an order");
-    await DraftAnOrder1Page.draftAnOrder1Page(
-      page,
-      errorMessaging,
-      accessibilityTest,
-    );
-    await DraftAnOrder2Page.draftAnOrder2Page(
-      page,
-      caseType,
-      orderType,
-      errorMessaging,
-      accessibilityTest,
-    );
-    await DraftAnOrder4Page.draftAnOrder4Page(
-      page,
-      caseType,
-      orderType,
-      yesNoToAll,
-      errorMessaging,
-      accessibilityTest,
-    );
-    await DraftAnOrder5Page.draftAnOrder5Page(
-      page,
-      orderType,
-      yesNoToAll,
-      howLongWillOrderBeInForce,
-      errorMessaging,
-      accessibilityTest,
-    );
-    await DraftAnOrder16Page.draftAnOrder16Page(
-      page,
-      orderType,
-      yesNoToAll,
-      willAllPartiesAttendHearing,
-      errorMessaging,
-      accessibilityTest,
-    );
-    await DraftAnOrder20Page.draftAnOrder20Page(
-      page,
-      orderType,
-      yesNoToAll,
-      howLongWillOrderBeInForce,
-      willAllPartiesAttendHearing,
-      accessibilityTest,
-    );
+    switch (orderType) {
+      case "nonMolestation":
+        await NonMolestationOrder.nonMolestationOrder({
+          page,
+          errorMessaging,
+          accessibilityTest,
+          caseType,
+          orderType,
+          yesNoToAll,
+          howLongWillOrderBeInForce,
+          willAllPartiesAttendHearing,
+        });
+        break;
+      default:
+        console.error("An invalid order type was given");
+        break;
+    }
   }
 }

@@ -1,10 +1,5 @@
-export enum DraftAnOrder16Content {
-  pageTitle = "Draft an order",
+export enum NonMolestationOrder16Content {
   formLabelHasJudeProvidedYouWithHearingDetails = "Has the judge provided you with the hearing details?",
-  formLabelYes = "Yes",
-  formLabelNo = "No",
-  previous = "Previous",
-  continue = "Continue",
   errorMessageHasJudgeProvidedHearingDetailsRequired = "Has the judge provided you with the hearing details? is required",
   errorMessage1 = "Enter date and time is required",
   errorMessage2 = "How does the hearing need to take place? is required",

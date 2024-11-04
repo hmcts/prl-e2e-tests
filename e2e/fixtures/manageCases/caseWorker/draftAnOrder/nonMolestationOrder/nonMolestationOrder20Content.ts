@@ -1,11 +1,7 @@
-export enum DraftAnOrder20Content {
-  pageTitle = "Draft an order",
-  h2 = "Preview the order",
+export enum NonMolestationOrder20Content {
   welshPdfLink = "welsh_non_molestation_order_fl404a_draft.pdf",
   pdfLink = "non_molestation_order_fl404a_draft.pdf",
   p = "If you want to make further changes, go back to the previous screen.",
-  previous = "Previous",
-  continue = "Continue",
 
   // WELSH
   welshSpan1 = "Yn",

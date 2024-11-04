@@ -1,5 +1,4 @@
-export enum DraftAnOrder4Content {
-  pageTitle = "Draft an order",
+export enum NonMolestationOrder4Content {
   formLabel1 = "Is the order by consent?",
   formLabel2 = "Was the order approved at a hearing?",
   formLabel3 = "Select or amend the title of the Judge or magistrate (Optional)",
@@ -27,10 +26,6 @@ export enum DraftAnOrder4Content {
   formLabelMonth = "Month",
   formLabelYear = "Year",
   p1 = "Order made by",
-  formLabelYes = "Yes",
-  formLabelNo = "No",
-  previous = "Previous",
-  continue = "Continue",
   errorMessageOrderByConsent = "Is the order by consent? is required",
   errorMessageOrderApprovedAtHearing = "Was the order approved at a hearing? is required",
   errorMessageOrderDateNotValidValidationError = "Date order made is not valid",

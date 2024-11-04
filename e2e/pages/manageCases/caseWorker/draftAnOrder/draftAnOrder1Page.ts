@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../common/selectors";
-import { Helpers } from "../../../common/helpers";
-import AccessibilityTestHelper from "../../../common/accessibilityTestHelper";
-import { DraftAnOrder1Content } from "../../../fixtures/manageCases/caseWorker/draftAnOrder1Content";
+import { Selectors } from "../../../../common/selectors";
+import { Helpers } from "../../../../common/helpers";
+import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+import { DraftAnOrder1Content } from "../../../../fixtures/manageCases/caseWorker/draftAnOrder/draftAnOrder1Content";
 
 enum UniqueSelectors {
   orderTypeRadio = "#draftOrderOptions-draftAnOrder",
