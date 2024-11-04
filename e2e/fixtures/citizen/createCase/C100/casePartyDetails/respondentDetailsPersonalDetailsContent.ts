@@ -19,7 +19,7 @@ export enum RespondentDetailsPersonalDetailsContent {
   hiddenlabel3 = "Approximate date of birth", //#conditional-isDateOfBirthUnknown > div > fieldset > legend
   hiddenhint1 = "This should be the full legal name (including any middle names)",
   inputPrevName = "John Doe",
-  inputIdentifyOther = "Non-binary",
+  inputIdentifyOther = "Non binary",
   inputPlaceOfBirth = "Swansea",
   errorMessage1 = "Select if they’ve changed their name",
   errorMessage2 = "Select the gender",

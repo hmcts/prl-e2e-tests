@@ -48,7 +48,7 @@ export class ChildLocationPage {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukCaptionXL}:text-is("${ChildLocationContent.caption}")`,
+        `${Selectors.GovukCaptionL}:text-is("${ChildLocationContent.caption}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(

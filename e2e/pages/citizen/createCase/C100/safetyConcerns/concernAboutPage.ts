@@ -8,7 +8,7 @@ import { SafetyConcernHelpers } from "./safetyConcernHelpers";
 
 enum inputIDs {
   child = "#c1A_safetyConernAbout",
-  yourself = "#c1A_safetyConernAbout-2-2",
+  yourself = "#c1A_safetyConernAbout-2",
 }
 
 interface ConcernAboutPageOptions {

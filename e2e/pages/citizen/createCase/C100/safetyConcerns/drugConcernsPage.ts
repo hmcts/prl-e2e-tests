@@ -66,7 +66,7 @@ export class DrugConcernsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukCaptionXL}:text-is("${DrugConcernsContent.caption}")`,
+        `${Selectors.GovukCaptionL}:text-is("${DrugConcernsContent.caption}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(

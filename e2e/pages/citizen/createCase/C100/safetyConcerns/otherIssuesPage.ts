@@ -64,7 +64,7 @@ export class OtherIssuesPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukCaptionXL}:text-is("${OtherIssuesContent.caption}")`,
+        `${Selectors.GovukCaptionL}:text-is("${OtherIssuesContent.caption}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(

@@ -5,7 +5,6 @@ import { PsychologicalAbuseContent } from "../../../../../../fixtures/citizen/cr
 import { CommonStaticText } from "../../../../../../common/commonStaticText";
 import { SafetyConcernHelpers } from "../safetyConcernHelpers";
 import {
-  reportAbuseCheckboxIDs,
   reportAbuseInputIDs,
 } from "../../../../../../common/commonUniqueSelectors";
 
@@ -60,9 +59,6 @@ export class PsychologicalAbuseYourselfPage {
     page,
     c100PsychologicalAbuseYesNoToAll,
   }: FillInFieldsOptions): Promise<void> {
-    for (let checkbox of Object.values(reportAbuseCheckboxIDs)) {
-      await page.check(checkbox);
-    }
     const textToFill: [string, string] = [
       "behaviourDetails",
       "behaviourStartDate",

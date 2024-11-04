@@ -27,6 +27,7 @@ import {
   UnsupervisedPage,
 } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/unsupervisedPage";
 import { PreviousAbductionsPage } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/childConcerns/previousAbductionsPage";
+import { CourtActionPage } from "../../../../../pages/citizen/createCase/C100/safetyConcerns/courtActionPage";
 
 interface C100SafetyConcernsOptions {
   page: Page;
@@ -185,6 +186,11 @@ export class C100SafetyConcerns {
         accessibilityTest: accessibilityTest,
         errorMessaging: errorMessaging,
         c100YesNoOtherIssues: c100SafetyConcernsYesNoToAll,
+      });
+      await CourtActionPage.courtActionPage({
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
       });
       await UnsupervisedPage.unsupervisedPage({
         page: page,
