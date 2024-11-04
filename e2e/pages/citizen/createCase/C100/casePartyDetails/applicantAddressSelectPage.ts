@@ -45,7 +45,6 @@ export class ApplicantAddressSelectPage {
       addressLookupSuccessful,
     });
   }
-
   private static async checkPageLoads({
     page,
     accessibilityTest,
@@ -78,10 +77,9 @@ export class ApplicantAddressSelectPage {
       await AccessibilityTestHelper.run(page);
     }
   }
-
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -96,12 +94,11 @@ export class ApplicantAddressSelectPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${ApplicantAddressSelectContent.errorMessage}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${ApplicantAddressSelectContent.errorMessage}")`,
         1,
       ),
     ]);
   }
-
   private static async fillInFields({
     page,
     addressLookupSuccessful,
@@ -111,7 +108,7 @@ export class ApplicantAddressSelectPage {
         label: `${ApplicantAddressSelectContent.address}`,
       });
       await page.click(
-        `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
+        `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
       );
     } else {
       await page.click(`${inputIds.cannotFindAddress}`);

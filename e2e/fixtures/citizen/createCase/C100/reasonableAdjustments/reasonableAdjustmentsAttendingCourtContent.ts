@@ -1,0 +1,17 @@
+export enum ReasonableAdjustmentsAttendingCourtContent {
+  pageTitle = "Would you be able to take part in hearings by video and phone?",
+  govukBodyM1 = "If your case goes to a hearing, it can take place either:",
+  govukBodyM2 = "Some hearings use a combination of these methods. The approach taken will be decided by a judge.",
+  li1 = "in person, in a room at a venue ('face-to-face')",
+  li2 = "by video (where you can join from a place suitable to you)",
+  li3 = "by phone",
+  govukHint1 = "Select all that apply",
+  govukLabel1 = "Yes, I can take part in video hearings",
+  govukLabel2 = "Yes, I can take part in phone hearings",
+  govukLabel3 = "No, I cannot take part in either video or phone hearings",
+  govukHint2 = "If you choose this option please tell us why in case we can assist you",
+  govukLabelNo = "Explain why you are unable to take part in video or phone hearings",
+  noFieldValue = "Lorem ipsum explanation why I cannot take part",
+  errorMessageBlank = "Select whether you can take part in a video or phone hearing",
+  errorMessageNo = "Explain why you are unable to take part in neither video or phone hearings",
+}

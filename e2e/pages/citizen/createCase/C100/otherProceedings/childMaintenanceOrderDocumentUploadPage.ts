@@ -1,5 +1,5 @@
 import { ChildMaintenanceOrderDocumentUploadContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/childMaintenanceOrderDocumentUploadContent";
-import { Page } from "@playwright/test";
+import { expect, Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
@@ -98,7 +98,7 @@ export class ChildMaintenanceOrderDocumentUploadPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${ChildMaintenanceOrderDocumentUploadContent.errorMessageChooseFile}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${ChildMaintenanceOrderDocumentUploadContent.errorMessageChooseFile}")`,
         1,
       ),
     ]);
@@ -109,18 +109,11 @@ export class ChildMaintenanceOrderDocumentUploadPage {
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.uploadFile}")`,
     );
-    await Promise.all([
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.a}:text-is("${ChildMaintenanceOrderDocumentUploadContent.errorMessageUploadCorrectFile}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.ErrorMessage}:text-is("${ChildMaintenanceOrderDocumentUploadContent.errorMessageUploadCorrectFile}")`,
-        1,
-      ),
-    ]);
+    await Helpers.checkVisibleAndPresent(
+      page,
+      `${Selectors.a}:text-is("${ChildMaintenanceOrderDocumentUploadContent.errorMessageUploadCorrectFile}")`,
+      1,
+    );
   }
 
   private static async fillInFields({

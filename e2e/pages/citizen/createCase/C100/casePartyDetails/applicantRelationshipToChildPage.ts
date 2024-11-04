@@ -5,9 +5,8 @@ import { ApplicantRelationshipToChildContent } from "../../../../../fixtures/cit
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { Relationship } from "../../../../../common/types";
-import { ApplicantPersonalDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/casePartyDetails/applicantPersonalDetailsContent";
 
-interface applicantPageOptions {
+interface applicantRelationshipToChildPageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
@@ -31,6 +30,7 @@ enum inputIds {
   specialGuardian = "#relationshipType-4",
   grandparent = "#relationshipType-5",
   other = "#relationshipType-6",
+  otherDetails = "#otherRelationshipTypeDetails",
 }
 
 export class ApplicantRelationshipToChildPage {
@@ -39,7 +39,7 @@ export class ApplicantRelationshipToChildPage {
     accessibilityTest,
     errorMessaging,
     relationship,
-  }: applicantPageOptions): Promise<void> {
+  }: applicantRelationshipToChildPageOptions): Promise<void> {
     await this.checkPageLoads({ page, accessibilityTest });
     if (errorMessaging) {
       await this.triggerErrorMessages(page);
@@ -49,7 +49,6 @@ export class ApplicantRelationshipToChildPage {
       relationship,
     });
   }
-
   private static async checkPageLoads({
     page,
     accessibilityTest,
@@ -63,34 +62,30 @@ export class ApplicantRelationshipToChildPage {
         `${Selectors.GovukHeadingXL}:has-text("${ApplicantRelationshipToChildContent.pageTitle2}")`,
       ),
     ]);
-
     await Promise.all([
       Helpers.checkGroup(
         page,
         6,
-        ApplicantPersonalDetailsContent,
+        ApplicantRelationshipToChildContent,
         "label",
         Selectors.GovukLabel,
       ),
       Helpers.checkGroup(
         page,
         2,
-        ApplicantPersonalDetailsContent,
+        ApplicantRelationshipToChildContent,
         "hint",
         Selectors.GovukHint,
       ),
     ]);
-
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }
   }
-
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
-
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
@@ -109,7 +104,6 @@ export class ApplicantRelationshipToChildPage {
       ),
     ]);
   }
-
   private static async fillInFields({
     page,
     relationship,
@@ -121,8 +115,20 @@ export class ApplicantRelationshipToChildPage {
     }
     let inputKey = relationship as keyof typeof inputIds;
     await page.click(inputIds[inputKey]);
+    if (inputKey == "other") {
+      await page.waitForSelector(
+        `${Selectors.GovukLabel}:text-is("${ApplicantRelationshipToChildContent.hiddenLabel1}")`,
+      );
+      await page.fill(
+        inputIds.otherDetails,
+        ApplicantRelationshipToChildContent.inputRelation,
+      );
+    }
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
+    );
+    await page.click(
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
   }
 }

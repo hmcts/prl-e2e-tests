@@ -109,7 +109,7 @@ export class MiamNoAccessToMediatorPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${MiamNoAccessToMediatorContent.errorMessage}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${MiamNoAccessToMediatorContent.errorMessage}")`,
         1,
       ),
     ]);

@@ -56,7 +56,7 @@ export class DocumentSummaryPage {
         16,
       ),
     ]);
-    await SafetyConcernHelpers.checkSidebarChild(page);
+    await SafetyConcernHelpers.checkContactDetailsText(page);
     if (accessibilityTest) {
       await AxeTest.run(page);
     }

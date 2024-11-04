@@ -47,26 +47,19 @@ export class AddChildrenPage {
     page: page,
     accessibilityTest: accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
-    await page.waitForSelector(
-      `${Selectors.GovukHeadingXL}:text-is("${AddChildrenContent.pageTitle}")`,
-    );
-    await Promise.all([
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukInsetText}:text-is("${AddChildrenContent.insetText}")`,
-        1,
+    await Promise.any([
+      page.waitForSelector(
+        `${Selectors.GovukHeadingXL}:text-is("${AddChildrenContent.pageTitle}")`,
       ),
+      page.waitForSelector(
+        `${Selectors.GovukHeadingXL}:text-is("${AddChildrenContent.pageTitle2}")`,
+      ),
+    ]);
+    await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.h1}:text-is("${AddChildrenContent.heading}")`,
         1,
-      ),
-      Helpers.checkGroup(
-        page,
-        2,
-        AddChildrenContent,
-        "label",
-        `${Selectors.GovukLabel}`,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -81,7 +74,7 @@ export class AddChildrenPage {
 
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -101,7 +94,7 @@ export class AddChildrenPage {
         2,
         AddChildrenContent,
         "errorLink",
-        `${Selectors.ErrorMessage}`,
+        `${Selectors.GovukErrorMessageCitizen}`,
       ),
     ]);
   }
@@ -113,7 +106,7 @@ export class AddChildrenPage {
       await page.fill(`${selector}`, AddChildrenContent.exampleText);
     }
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
   }
 }

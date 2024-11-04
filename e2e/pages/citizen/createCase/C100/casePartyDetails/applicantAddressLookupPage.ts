@@ -45,7 +45,6 @@ export class ApplicantAddressLookupPage {
       addressLookup,
     });
   }
-
   private static async checkPageLoads({
     page,
     accessibilityTest,
@@ -53,7 +52,6 @@ export class ApplicantAddressLookupPage {
     await page.waitForSelector(
       `${Selectors.GovukHeadingL}:has-text("${ApplicantAddressLookupContent.pageTitle}")`,
     );
-
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
@@ -66,17 +64,14 @@ export class ApplicantAddressLookupPage {
         1,
       ),
     ]);
-
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }
   }
-
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
-
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
@@ -90,12 +85,11 @@ export class ApplicantAddressLookupPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessage}:text-is("${ApplicantAddressLookupContent.errorMessage}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${ApplicantAddressLookupContent.errorMessage}")`,
         1,
       ),
     ]);
   }
-
   private static async fillInFields({
     page,
     addressLookup,
@@ -106,7 +100,7 @@ export class ApplicantAddressLookupPage {
         ApplicantAddressLookupContent.postcodeText,
       );
       await page.click(
-        `${Selectors.GovukButton}:text-is("${CommonStaticText.paddedContinue}")`,
+        `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
       );
     } else {
       await page.click(inputIds.manualAddress);

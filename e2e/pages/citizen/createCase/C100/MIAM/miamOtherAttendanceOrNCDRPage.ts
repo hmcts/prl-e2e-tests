@@ -96,7 +96,7 @@ export class MiamOtherAttendanceOrNCDRPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${MiamOtherAttendanceOrNCDRContent.errorMessage}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${MiamOtherAttendanceOrNCDRContent.errorMessage}")`,
         1,
       ),
     ]);

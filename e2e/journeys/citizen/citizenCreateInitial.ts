@@ -39,7 +39,6 @@ export class CitizenCreateInitial {
         throw new Error(
           `Unrecognised childArrangementsJourney: ${childArrangementsJourney}`,
         );
-        break;
     }
   }
 }

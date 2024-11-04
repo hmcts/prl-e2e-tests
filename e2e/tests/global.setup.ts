@@ -1,19 +1,21 @@
-import { test as setup } from "@playwright/test";
+import { APIRequestContext, request, test as setup } from "@playwright/test";
 import IdamLoginHelper from "../common/idamLoginHelper";
 import config from "../config";
+import { getAccessToken } from "../common/idamCreateCitizenUserApiHelper";
 
 setup("Setup solicitor user", async ({ page }) => {
-  await IdamLoginHelper.signInUser(
+  await IdamLoginHelper.signInSolicitorUser(
     page,
     "solicitor",
     config.manageCasesBaseURL,
   );
 });
 
-setup("Setup citizen user", async ({ page }) => {
-  await IdamLoginHelper.signInUser(
-    page,
-    "citizen",
-    config.citizenFrontendBaseURL,
-  );
+setup("Retrieve bearer token for citizen user creation", async () => {
+  const apiContext: APIRequestContext = await request.newContext();
+  const token = await getAccessToken(apiContext);
+  if (!token) {
+    throw new Error("Setup failed: Unable to get bearer token.");
+  }
+  process.env.BEARER_TOKEN = token;
 });

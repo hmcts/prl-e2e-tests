@@ -23,7 +23,6 @@ properties([
     ),
     string(
       name: 'FUNCTIONAL_TESTS_WORKERS',
-      defaultValue: '5',
       description: 'Number of workers running functional tests'
     ),
     booleanParam(
@@ -61,6 +60,14 @@ def secrets = [
     secret('solicitor-password', 'SOLICITOR_PASSWORD'),
     secret('citizen-user', 'CITIZEN_USERNAME'),
     secret('citizen-password', 'CITIZEN_PASSWORD'),
+    secret('prl-cos-idam-client-secret', 'IDAM_SECRET'),
+    secret('idam-token-url', 'IDAM_TOKEN_URL'),
+    secret('idam-citizen-password', 'IDAM_CITIZEN_USER_PASSWORD'),
+    secret('idam-testing-support-users-url', 'IDAM_TESTING_SUPPORT_USERS_URL'),
+    secret('judge-testuser-one', 'JUDGE_USERNAME'),
+    secret('judge-testpassword', 'JUDGE_PASSWORD'),
+    secret('case-manager-swansea-username', 'CASEMANAGER_USERNAME'),
+    secret('case-manager-swansea-password', 'CASEMANAGER_PASSWORD'),
   ]
 ]
 
@@ -111,6 +118,7 @@ withNightlyPipeline(type, product, component, 600) {
         }
       }
       if (!params.skipCitizenTests) {
+        env.FUNCTIONAL_TESTS_WORKERS = '3'
         stage('Citizen E2E tests - Chrome') {
           try {
             yarnBuilder.yarn('test:citizenFrontendChrome')
@@ -147,6 +155,7 @@ withNightlyPipeline(type, product, component, 600) {
         }
       }
       if (!params.skipManageCasesTests) {
+        env.FUNCTIONAL_TESTS_WORKERS = '3'
         stage('Manage Cases E2E tests - Chrome') {
           try {
             yarnBuilder.yarn('test:manageCasesChrome')

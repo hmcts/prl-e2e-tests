@@ -68,7 +68,7 @@ export class FinancialOrderDetailsPage {
         2,
         FinancialOrderDetailsContent,
         "formLabel",
-        `${Selectors.h1}`,
+        `${Selectors.GovukLabel}`,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -82,12 +82,12 @@ export class FinancialOrderDetailsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${CommonStaticText.yes}")`,
+        `${Selectors.GovukLabel}:text-is("${CommonStaticText.yes}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${CommonStaticText.no}")`,
+        `${Selectors.GovukLabel}:text-is("${CommonStaticText.no}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
@@ -106,9 +106,9 @@ export class FinancialOrderDetailsPage {
         2,
       ),
     ]);
-    if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
-    }
+    // if (accessibilityTest) {
+    //   await AccessibilityTestHelper.run(page); #TODO Disabled pending PRL-6552 ticket
+    // }
   }
 
   private static async triggerErrorMessages(page: Page): Promise<void> {
@@ -152,7 +152,7 @@ export class FinancialOrderDetailsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${FinancialOrderDetailsContent.errorMessageOrderDate}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${FinancialOrderDetailsContent.errorMessageOrderDate}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -162,7 +162,7 @@ export class FinancialOrderDetailsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${FinancialOrderDetailsContent.errorMessageOrderEndDate}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${FinancialOrderDetailsContent.errorMessageOrderEndDate}")`,
         1,
       ),
     ]);

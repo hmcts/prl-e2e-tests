@@ -109,7 +109,7 @@ export class SelectCourtOrderPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${SelectCourtOrderContent.errorMessageAskingCourtToDo}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${SelectCourtOrderContent.errorMessageAskingCourtToDo}")`,
         1,
       ),
     ]);
@@ -126,7 +126,7 @@ export class SelectCourtOrderPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${SelectCourtOrderContent.errorMessageSpecifyForStopOtherPeople}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${SelectCourtOrderContent.errorMessageSpecifyForStopOtherPeople}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -136,7 +136,7 @@ export class SelectCourtOrderPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${SelectCourtOrderContent.errorMessageSpecifyIssue}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${SelectCourtOrderContent.errorMessageSpecifyIssue}")`,
         1,
       ),
     ]);

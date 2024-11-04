@@ -62,15 +62,20 @@ export class ProceedingDetailsPage {
     accessibilityTest: accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.h1}:text-is("${ProceedingDetailsContent.h1}")`,
+      `${Selectors.GovukHeadingXL}:text-is("${ProceedingDetailsContent.h1}")`,
     );
     await Promise.all([
       Helpers.checkGroup(
         page,
-        3,
+        2,
         ProceedingDetailsContent,
         "formHint",
         `${Selectors.GovukHint}`,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukHint}:text-is("${ProceedingDetailsContent.repeatedFormHint}")`,
+        3,
       ),
       Helpers.checkGroup(
         page,
@@ -102,7 +107,7 @@ export class ProceedingDetailsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.ErrorMessage}:text-is("${ProceedingDetailsContent.errorMessageSpecifyWhichCourt}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${ProceedingDetailsContent.errorMessageSpecifyWhichCourt}")`,
         1,
       ),
     ]);
