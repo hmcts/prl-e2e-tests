@@ -4,4 +4,8 @@ export enum DraftAnOrderSubmitContent {
   submit = "Submit",
   no = "No",
   yes = "Yes",
+  summaryH1 = "Summary",
+  historyH2 = "History",
+  event = "Draft an order",
+  author = "Aat SOLICITOR",
 }
