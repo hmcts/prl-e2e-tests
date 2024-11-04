@@ -22,9 +22,9 @@ interface fillInFieldsOptions {
 }
 
 enum checkboxIDs {
-  applicant =  "#liveWith",
-  respondent =  "#liveWith-2",
-  otherPerson =  "#liveWith-3"
+  applicant = "#liveWith",
+  respondent = "#liveWith-2",
+  otherPerson = "#liveWith-3",
 }
 
 export class LivingArrangementsPage {
@@ -68,7 +68,7 @@ export class LivingArrangementsPage {
 
   private static async triggerErrorMessages(page: Page): Promise<void> {
     for (let checkboxID of Object.values(checkboxIDs)) {
-      await page.uncheck(checkboxID)
+      await page.uncheck(checkboxID);
     }
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
@@ -96,7 +96,7 @@ export class LivingArrangementsPage {
     page,
   }: fillInFieldsOptions): Promise<void> {
     for (let checkboxID of Object.values(checkboxIDs)) {
-      await page.check(checkboxID)
+      await page.check(checkboxID);
     }
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,

@@ -87,6 +87,4 @@ export type Relationship =
   | "grandparent"
   | "other";
 
-export type typeOfPerson = "applicant"
-  | "respondent"
-  | "otherPerson";
+export type typeOfPerson = "applicant" | "respondent" | "otherPerson";

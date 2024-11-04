@@ -10,7 +10,7 @@ interface mainlyLiveWithOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
-  c100ChildMainlyLivesWith: typeOfPerson
+  c100ChildMainlyLivesWith: typeOfPerson;
 }
 
 interface checkPageLoadsOptions {
@@ -20,13 +20,13 @@ interface checkPageLoadsOptions {
 
 interface fillInFieldsOptions {
   page: Page;
-  c100ChildMainlyLivesWith: typeOfPerson
+  c100ChildMainlyLivesWith: typeOfPerson;
 }
 
 enum radioIDs {
   applicant = "#mainlyLiveWith",
   respondent = "#mainlyLiveWith-2",
-  otherPerson = "#mainlyLiveWith-3"
+  otherPerson = "#mainlyLiveWith-3",
 }
 
 export class MainlyLiveWithPage {
@@ -34,7 +34,7 @@ export class MainlyLiveWithPage {
     page,
     accessibilityTest,
     errorMessaging,
-    c100ChildMainlyLivesWith
+    c100ChildMainlyLivesWith,
   }: mainlyLiveWithOptions): Promise<void> {
     await this.checkPageLoads({ page, accessibilityTest });
     if (errorMessaging) {
@@ -54,9 +54,9 @@ export class MainlyLiveWithPage {
         `${Selectors.GovukHeadingXL}:has-text("${MainlyLiveWithContent.pageTitlePart1}")`,
       ),
       page.waitForSelector(
-        `${Selectors.GovukHeadingXL}:has-text("${MainlyLiveWithContent.pageTitlePart2}")`
-      )
-    ])
+        `${Selectors.GovukHeadingXL}:has-text("${MainlyLiveWithContent.pageTitlePart2}")`,
+      ),
+    ]);
     await Promise.all([
       Helpers.checkGroup(
         page,
@@ -106,14 +106,13 @@ export class MainlyLiveWithPage {
 
   private static async fillInFields({
     page,
-    c100ChildMainlyLivesWith
+    c100ChildMainlyLivesWith,
   }: fillInFieldsOptions): Promise<void> {
     if (!(c100ChildMainlyLivesWith in radioIDs)) {
       throw new Error(
-        `Unrecognised person: ${c100ChildMainlyLivesWith}. Should be applicant, respondent or other.`
-      )
+        `Unrecognised person: ${c100ChildMainlyLivesWith}. Should be applicant, respondent or other.`,
+      );
     }
-    let inputKey = c100ChildMainlyLivesWith as keyof typeof radioIDs
     await page.click(radioIDs[c100ChildMainlyLivesWith]);
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,

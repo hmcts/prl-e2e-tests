@@ -1,8 +1,9 @@
 import { Page } from "@playwright/test";
 import {
   ApplicantGender,
-  Relationship, typeOfPerson,
-  yesNoDontKnow
+  Relationship,
+  typeOfPerson,
+  yesNoDontKnow,
 } from "../../../../../common/types";
 import { ApplicantAddressLookupPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicantAddressLookupPage";
 import { ApplicantAddressSelectPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicantAddressSelectPage";
@@ -54,7 +55,7 @@ interface c100CasePartyDetailsOptions {
   c100OtherPeopleChangedName: yesNoDontKnow;
   c100OtherPeopleDoBKnown: boolean;
   c100OtherPersonRelationship: Relationship;
-  c100ChildMainlyLivesWith: typeOfPerson
+  c100ChildMainlyLivesWith: typeOfPerson;
 }
 
 export class C100CasePartyDetails {
@@ -84,7 +85,7 @@ export class C100CasePartyDetails {
     c100OtherPeopleChangedName,
     c100OtherPeopleDoBKnown,
     c100OtherPersonRelationship,
-    c100ChildMainlyLivesWith
+    c100ChildMainlyLivesWith,
   }: c100CasePartyDetailsOptions): Promise<void> {
     await ApplicantPersonalDetailsPage.applicantPersonalDetailsPage({
       page: page,
@@ -230,17 +231,17 @@ export class C100CasePartyDetails {
         errorMessaging: errorMessaging,
       });
     } else {
-      if (c100ChildMainlyLivesWith === 'otherPerson') {
+      if (c100ChildMainlyLivesWith === "otherPerson") {
         throw new Error(
-          `c100ChildMainlyLivesWith cannot be 'otherPerson' if yesNoOtherPersonDetails is set to false`
-        )
+          `c100ChildMainlyLivesWith cannot be 'otherPerson' if yesNoOtherPersonDetails is set to false`,
+        );
       }
     }
     await MainlyLiveWithPage.mainlyLiveWithPage({
       page: page,
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
-      c100ChildMainlyLivesWith: c100ChildMainlyLivesWith
+      c100ChildMainlyLivesWith: c100ChildMainlyLivesWith,
     });
     await LivingArrangementsPage.livingArrangementsPage({
       page: page,
