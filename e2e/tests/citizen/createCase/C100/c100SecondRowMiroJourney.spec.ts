@@ -65,6 +65,7 @@ test.describe("C100 Citizen Application tests on the second MIRO set. @citizenFr
       c100ChildrenAbductedBefore: true,
       c100ChildrenSupervision: "yesSpendTime",
       yesNoInternationalElements: true,
+      yesNoReasonableAdjustments:true
     });
   });
 
@@ -122,6 +123,7 @@ test.describe("C100 Citizen Application tests on the second MIRO set. @citizenFr
       c100ChildrenAbductedBefore: false,
       c100ChildrenSupervision: "yesButSupervised",
       yesNoInternationalElements: false,
+      yesNoReasonableAdjustments: false,
     });
   });
   test(`Test the second row of the second row c100 citizen journey with the following options:
@@ -179,7 +181,8 @@ test.describe("C100 Citizen Application tests on the second MIRO set. @citizenFr
       c100PassportOfficeNotified: true,
       c100ChildrenAbductedBefore: true,
       c100ChildrenSupervision: "noSpendTime",
-      yesNoInternationalElements: false,
+      yesNoInternationalElements: true,
+      yesNoReasonableAdjustments: true
     });
   });
 });

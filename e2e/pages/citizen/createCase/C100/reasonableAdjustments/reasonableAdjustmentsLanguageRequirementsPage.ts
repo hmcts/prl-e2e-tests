@@ -48,7 +48,7 @@ export class ReasonableAdjustmentsLanguageRequirementsPage {
       throw new Error();
     }
     await page.waitForSelector(
-      `${Selectors.GovukHeadingXL}:text-is("${ReasonableAdjustmentsLanguageRequirementsContent.pageTitle})`,
+      `${Selectors.GovukHeadingXL}:text-is("${ReasonableAdjustmentsLanguageRequirementsContent.pageTitle}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
