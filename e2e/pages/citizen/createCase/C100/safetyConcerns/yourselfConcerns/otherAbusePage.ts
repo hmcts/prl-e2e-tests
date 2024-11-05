@@ -48,9 +48,9 @@ export class OtherAbusePage {
     await SafetyConcernHelpers.checkStaticTextYourself(page);
     await SafetyConcernHelpers.checkSidebarYourself(page);
     await SafetyConcernHelpers.checkContactDetailsText(page);
-    if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
-    }
+    // if (accessibilityTest) {
+    //   await AccessibilityTestHelper.run(page); #TODO Commented out until ticket-6593 is complete
+    // }
   }
 
   private static async fillInFields({

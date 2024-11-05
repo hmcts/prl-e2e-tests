@@ -123,7 +123,7 @@ test.describe("C100 Citizen Application tests on the second MIRO set. @citizenFr
     });
   });
   test(`Test the second row of the second row c100 citizen journey with the following options:
-    Not Accessibility Testing,
+    Accessibility Testing,
     Not Error Messaging,
     No Screening and Written Review
     Legal Representation: no
@@ -137,7 +137,7 @@ test.describe("C100 Citizen Application tests on the second MIRO set. @citizenFr
     `, async ({ page }): Promise<void> => {
     await C100.c100SecondMiroJourney({
       page: page,
-      accessibilityTest: false,
+      accessibilityTest: true,
       errorMessaging: false,
       c100LegalRepresentation: false,
       c100CourtPermissionNeeded: false,

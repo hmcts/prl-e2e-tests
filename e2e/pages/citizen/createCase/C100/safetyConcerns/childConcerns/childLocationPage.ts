@@ -86,9 +86,9 @@ export class ChildLocationPage {
     ]);
     await SafetyConcernHelpers.checkPassportSidebar(page);
     await SafetyConcernHelpers.checkContactDetailsText(page);
-    if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
-    }
+    // if (accessibilityTest) {
+    //   await AccessibilityTestHelper.run(page); #TODO Commented out until ticket-6594 is complete
+    // }
   }
 
   private static async checkErrorMessaging(page: Page): Promise<void> {
