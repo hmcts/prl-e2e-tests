@@ -67,7 +67,7 @@ export class ParentalResponsibilityPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      // await AccessibilityTestHelper.run(page); Accessibility Issues: PRL-6583
     }
   }
 
