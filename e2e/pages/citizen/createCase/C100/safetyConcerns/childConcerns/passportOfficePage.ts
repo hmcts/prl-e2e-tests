@@ -58,7 +58,7 @@ export class PassportOfficePage {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukCaptionXL}:text-is("${PassportOfficeContent.caption}")`,
+        `${Selectors.GovukCaptionL}:text-is("${PassportOfficeContent.caption}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(

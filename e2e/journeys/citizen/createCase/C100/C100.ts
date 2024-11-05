@@ -114,6 +114,38 @@ interface C100SecondMiroJourneyOptions {
   urgencyAndWithoutNoticeAllOptionsYes: boolean;
   gender: ApplicantGender;
   c100PeopleYesNoDontKnow: yesNoDontKnow;
+  c100OthersKnowApplicantsContact: yesNoDontKnow;
+  c100PrivateDetails: boolean;
+  applicantChangedName: boolean;
+  applicantGender: ApplicantGender;
+  applicantRelationship: Relationship;
+  applicantAddressLookup: boolean;
+  appAddressLookupSuccessful: boolean;
+  applicantPrevAddress5Years: boolean;
+  applicantEmailTelephoneVoicemail: boolean;
+  applicantDigitalPreference: boolean;
+  respondentKnownDoB: boolean;
+  respondentKnownPlaceOfBirth: boolean;
+  respondentGender: ApplicantGender;
+  respondentChangedName: yesNoDontKnow;
+  respAddress5Years: yesNoDontKnow;
+  respondentRelationship: Relationship;
+  respAddressLookup: boolean;
+  respAddressLookupSuccessful: boolean;
+  respKnownEmailAndPhone: boolean;
+  yesNoOtherPersonDetails: boolean;
+  c100OtherPeopleGender: ApplicantGender;
+  c100OtherPeopleChangedName: yesNoDontKnow;
+  c100OtherPeopleDoBKnown: boolean;
+  c100OtherPersonRelationship: Relationship;
+  c100ChildMainlyLivesWith: typeOfPerson;
+  c100ChildrenSafetyConcerns: boolean;
+  c100SafetyConcernsYesNoToAll: boolean; // Applies to all booleans that don't affect the journey
+  c100ChildrenHavePassport: boolean; // If yes -> passport amount
+  c100MoreThanOnePassport: boolean;
+  c100PassportOfficeNotified: boolean;
+  c100ChildrenAbductedBefore: boolean; // if yes -> previous abductions page
+  c100ChildrenSupervision: c100ChildrenSupervisionRadios;
 }
 
 interface C100ThirdMiroJourneyMIAMOptions {
@@ -428,6 +460,38 @@ export class C100 {
     urgencyAndWithoutNoticeAllOptionsYes,
     gender,
     c100PeopleYesNoDontKnow,
+    c100PrivateDetails,
+    c100OthersKnowApplicantsContact,
+    applicantChangedName,
+    applicantGender,
+    applicantRelationship,
+    applicantAddressLookup,
+    appAddressLookupSuccessful,
+    applicantPrevAddress5Years,
+    applicantEmailTelephoneVoicemail,
+    applicantDigitalPreference,
+    respondentKnownDoB,
+    respondentKnownPlaceOfBirth,
+    respondentChangedName,
+    respondentGender,
+    respAddress5Years,
+    respondentRelationship,
+    respAddressLookup,
+    respAddressLookupSuccessful,
+    respKnownEmailAndPhone,
+    yesNoOtherPersonDetails,
+    c100OtherPeopleGender,
+    c100OtherPeopleChangedName,
+    c100OtherPeopleDoBKnown,
+    c100OtherPersonRelationship,
+    c100ChildMainlyLivesWith,
+    c100ChildrenSafetyConcerns,
+    c100SafetyConcernsYesNoToAll,
+    c100ChildrenHavePassport,
+    c100MoreThanOnePassport,
+    c100PassportOfficeNotified,
+    c100ChildrenAbductedBefore,
+    c100ChildrenSupervision,
   }: C100SecondMiroJourneyOptions): Promise<void> {
     await CitizenCreateInitial.citizenCreateInitial({
       page: page,
@@ -484,6 +548,53 @@ export class C100 {
       errorMessaging: errorMessaging,
       gender: gender,
       c100PeopleYesNoDontKnow: c100PeopleYesNoDontKnow,
+    });
+    await C100Confidentiality.c100Confidentiality({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      c100PrivateDetails: c100PrivateDetails,
+      c100OthersKnowApplicantsContact: c100OthersKnowApplicantsContact,
+    });
+    await C100CasePartyDetails.C100CasePartyDetails({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      applicantChangedName: applicantChangedName,
+      applicantGender: applicantGender,
+      applicantRelationship: applicantRelationship,
+      applicantAddressLookup: applicantAddressLookup,
+      appAddressLookupSuccessful: appAddressLookupSuccessful,
+      applicantPrevAddress5Years: applicantPrevAddress5Years,
+      applicantEmailTelephoneVoicemail: applicantEmailTelephoneVoicemail,
+      applicantDigitalPreference: applicantDigitalPreference,
+      respondentKnownDoB: respondentKnownDoB,
+      respondentKnownPlaceOfBirth: respondentKnownPlaceOfBirth,
+      respondentGender: respondentGender,
+      respondentChangedName: respondentChangedName,
+      respAddress5Years: respAddress5Years,
+      respondentRelationship: respondentRelationship,
+      respAddressLookup: respAddressLookup,
+      respAddressLookupSuccessful: respAddressLookupSuccessful,
+      respKnownEmailAndPhone: respKnownEmailAndPhone,
+      yesNoOtherPersonDetails: yesNoOtherPersonDetails,
+      c100OtherPeopleGender: c100OtherPeopleGender,
+      c100OtherPeopleChangedName: c100OtherPeopleChangedName,
+      c100OtherPeopleDoBKnown: c100OtherPeopleDoBKnown,
+      c100OtherPersonRelationship: c100OtherPersonRelationship,
+      c100ChildMainlyLivesWith: c100ChildMainlyLivesWith,
+    });
+    await C100SafetyConcerns.c100SafetyConcerns({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      c100ChildrenSafetyConcerns: c100ChildrenSafetyConcerns,
+      c100SafetyConcernsYesNoToAll: c100SafetyConcernsYesNoToAll,
+      c100ChildrenHavePassport: c100ChildrenHavePassport,
+      c100MoreThanOnePassport: c100MoreThanOnePassport,
+      c100PassportOfficeNotified: c100PassportOfficeNotified,
+      c100ChildrenAbductedBefore: c100ChildrenAbductedBefore,
+      c100ChildrenSupervision: c100ChildrenSupervision,
     });
   }
 

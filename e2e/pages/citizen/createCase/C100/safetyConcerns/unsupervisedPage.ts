@@ -156,9 +156,8 @@ export class UnsupervisedPage {
     c100ChildrenInTouch,
   }: FillInFieldsOptions): Promise<void> {
     if (
-      !(
-        c100ChildrenSupervision in
-        ["yesButSupervised", "yesSpendTime", "noSpendTime"]
+      !["yesSpendTime", "yesButSupervised", "noSpendTime"].includes(
+        c100ChildrenSupervision,
       )
     ) {
       throw new Error(
