@@ -1,7 +1,7 @@
 import { test } from "@playwright/test";
+import IdamLoginHelper from "../../../common/idamLoginHelper";
 import Config from "../../../config";
 import { CitizenCreateInitial } from "../../../journeys/citizen/citizenCreateInitial";
-import IdamLoginHelper from "../../../common/idamLoginHelper";
 
 test.describe("Manage citizen cases case dashboard tests. @citizenFrontend @crossbrowserCitizenFrontend", (): void => {
   test.beforeEach(async ({ page }) => {
@@ -10,7 +10,7 @@ test.describe("Manage citizen cases case dashboard tests. @citizenFrontend @cros
       Config.citizenFrontendBaseURL,
     );
   });
-  test("Check the case dashboard is visible to the user.", async ({
+  test("Check the case dashboard is visible to the user. @citizenSmoke", async ({
     page,
   }): Promise<void> => {
     await CitizenCreateInitial.citizenCreateInitial({

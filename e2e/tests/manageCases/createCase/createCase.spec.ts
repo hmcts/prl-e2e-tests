@@ -1,7 +1,7 @@
 import { test } from "@playwright/test";
+import Config from "../../../config";
 import { C100 } from "../../../journeys/manageCases/createCase/C100";
 import { FL401 } from "../../../journeys/manageCases/createCase/FL401";
-import Config from "../../../config";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
@@ -11,9 +11,9 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Not Error message testing,
   Saying yes to all hearing urgency questions,
   Saying yes to all applicant details questions with a male applicant
-  Saying yes to all respondent details questions with a female respondent 
+  Saying yes to all respondent details questions with a female respondent
   Saying yes to all other people in the case questions with a male applicant
-  Saying yes to all child details question with a male child 
+  Saying yes to all child details question with a male child
   Saying yes to all children and respondents questions
   Saying yes to all attending the hearing options
   Saying Yes to all International element options
@@ -22,11 +22,11 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   With no other child present
   Where the child lives with their applicant father,
   With no other child present
-  Setting the allegations of harm to Physical 
+  Setting the allegations of harm to Physical
   Saying no to all Miam
-  C100MiamPolicyUpgrade1PageType is "yesExemption" 
+  C100MiamPolicyUpgrade1PageType is "yesExemption"
   Setting WelshPageRequirementType to "english"
-  Saying yes to all WelshRequirement options @crossbrowserManageCases`, async ({
+  Saying yes to all WelshRequirement options @crossbrowserManageCases @manageCasesSmoke`, async ({
     page,
   }): Promise<void> => {
     await C100.c100({
@@ -76,13 +76,13 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Not Error message testing,
   Saying no to all hearing urgency questions,
   Saying no to all applicant details questions with a female applicant
-  Saying yes to all respondent details questions with a female respondent 
+  Saying yes to all respondent details questions with a female respondent
   With another female child present, with a known DOB
   Where the child does not live with their applicant mother
   Saying no to all respondent details questions with a female respondent
   Saying no to all other people in the case questions with a male applicant
-  Saying no to all child details question with a female child 
-  Saying no to all children and respondents questions 
+  Saying no to all child details question with a female child
+  Saying no to all children and respondents questions
   Setting the allegations of harm to none.
   Saying no to all attending the hearing questions
   Saying no to all Miam
@@ -234,7 +234,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Other Relationship Is: 'Cousin',
   upload document files,
   Saying no to applicant details questions
-  Saying 'No' to ever lived at the home address, 
+  Saying 'No' to ever lived at the home address,
   Saying 'No' to ever intend to live at home address
   Other Relationship Is: 'Cousin'
   saying no to all attending the hearing questions
