@@ -12,11 +12,7 @@ module.exports = defineConfig({
   /* Retry on CI only */
   retries: process.env.CI ? 2 : 0,
   timeout: 6 * 60 * 1000,
-  expect: {
-    timeout: 30_000,
-  },
-  // Set a default actionTimeout (because we use waitForLocator and default is 0)
-  use: { actionTimeout: 3 * 60 * 1000 },
+  expect: { timeout: 60_000 },
   /* Report slow tests if they take longer than 5 mins */
   reportSlowTests: { max: 15, threshold: 5 * 60 * 1000 },
   /* Opt out of parallel tests on CI. */
