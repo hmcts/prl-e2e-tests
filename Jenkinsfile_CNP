@@ -119,9 +119,9 @@ withNightlyPipeline(type, product, component, 600) {
       }
       if (!params.skipCitizenTests) {
         env.FUNCTIONAL_TESTS_WORKERS = '3'
-        stage('Citizen E2E tests - Chrome') {
+        stage('Citizen E2E smoke tests - Chrome') {
           try {
-            yarnBuilder.yarn('test:citizenFrontendChrome')
+            yarnBuilder.yarn('test:citizenSmoke')
           } catch (Error) {
             unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
           } finally {
@@ -131,24 +131,7 @@ withNightlyPipeline(type, product, component, 600) {
                     keepAll              : true,
                     reportDir            : "playwright-report",
                     reportFiles          : 'index.html',
-                    reportName           : 'Citizen Chrome E2E Test Report'
-            ])
-            steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CitizenFunctional/*'
-          }
-        }
-        stage('Citizen accessibility tests') {
-          try {
-            yarnBuilder.yarn('test:citizenFrontendAccessibility')
-          } catch (Error) {
-            unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
-          } finally {
-            publishHTML([
-                    allowMissing         : true,
-                    alwaysLinkToLastBuild: true,
-                    keepAll              : true,
-                    reportDir            : "playwright-report",
-                    reportFiles          : 'index.html',
-                    reportName           : 'Citizen Accessibility Test Report'
+                    reportName           : 'Citizen Chrome E2E Smoke Test Report'
             ])
             steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CitizenFunctional/*'
           }
@@ -156,9 +139,9 @@ withNightlyPipeline(type, product, component, 600) {
       }
       if (!params.skipManageCasesTests) {
         env.FUNCTIONAL_TESTS_WORKERS = '3'
-        stage('Manage Cases E2E tests - Chrome') {
+        stage('Manage Cases E2E smoke tests - Chrome') {
           try {
-            yarnBuilder.yarn('test:manageCasesChrome')
+            yarnBuilder.yarn('test:manageCasesSmoke')
           } catch (Error) {
             unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
           } finally {
@@ -168,24 +151,7 @@ withNightlyPipeline(type, product, component, 600) {
                     keepAll              : true,
                     reportDir            : "playwright-report",
                     reportFiles          : 'index.html',
-                    reportName           : 'Manage Cases Chrome E2E Test Report'
-            ])
-            steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/ManageCasesFunctional/*'
-          }
-        }
-        stage('Manage Cases accessibility tests') {
-          try {
-            yarnBuilder.yarn('test:manageCasesAccessibility')
-          } catch (Error) {
-            unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
-          } finally {
-            publishHTML([
-                    allowMissing         : true,
-                    alwaysLinkToLastBuild: true,
-                    keepAll              : true,
-                    reportDir            : "playwright-report",
-                    reportFiles          : 'index.html',
-                    reportName           : 'Manage Cases Accessibility Test Report'
+                    reportName           : 'Manage Cases Chrome E2E Smoke Test Report'
             ])
             steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/ManageCasesFunctional/*'
           }

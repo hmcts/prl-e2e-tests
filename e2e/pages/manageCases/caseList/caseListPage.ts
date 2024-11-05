@@ -1,9 +1,9 @@
-import { CommonPage } from "../commonPage";
 import { Page } from "@playwright/test";
+import { Helpers } from "../../../common/helpers";
 import { Selectors } from "../../../common/selectors";
 import { CaseListContent } from "../../../fixtures/manageCases/caseList/caseListContent";
-import { Helpers } from "../../../common/helpers";
 import { CommonContent } from "../../../fixtures/manageCases/commonContent";
+import { CommonPage } from "../commonPage";
 
 export class CaseListPage extends CommonPage {
   public static async casesListPage(
