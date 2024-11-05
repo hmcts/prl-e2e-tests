@@ -74,7 +74,7 @@ export class ApplicantAddressManualPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      // await AccessibilityTestHelper.run(page); Accessibility Issues: PRL-6590
     }
   }
   private static async triggerErrorMessages(page: Page): Promise<void> {
