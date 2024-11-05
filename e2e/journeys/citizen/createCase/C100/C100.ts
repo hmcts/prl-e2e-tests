@@ -147,7 +147,6 @@ interface C100SecondMiroJourneyOptions {
   c100ChildrenAbductedBefore: boolean; // if yes -> previous abductions page
   c100ChildrenSupervision: c100ChildrenSupervisionRadios;
   yesNoInternationalElements: boolean;
-
 }
 
 interface C100ThirdMiroJourneyMIAMOptions {
@@ -494,7 +493,7 @@ export class C100 {
     c100PassportOfficeNotified,
     c100ChildrenAbductedBefore,
     c100ChildrenSupervision,
-                                              yesNoInternationalElements
+    yesNoInternationalElements,
   }: C100SecondMiroJourneyOptions): Promise<void> {
     await CitizenCreateInitial.citizenCreateInitial({
       page: page,
@@ -604,7 +603,7 @@ export class C100 {
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
       yesNoInternationalElements: yesNoInternationalElements,
-    })
+    });
   }
 
   public static async c100ThirdMiroJourney({
