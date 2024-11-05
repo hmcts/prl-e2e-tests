@@ -65,7 +65,7 @@ test.describe("C100 Citizen Application tests on the second MIRO set. @citizenFr
       c100ChildrenAbductedBefore: true,
       c100ChildrenSupervision: "yesSpendTime",
       yesNoInternationalElements: true,
-      yesNoReasonableAdjustments:true
+      yesNoReasonableAdjustments: true,
     });
   });
 
@@ -182,7 +182,7 @@ test.describe("C100 Citizen Application tests on the second MIRO set. @citizenFr
       c100ChildrenAbductedBefore: true,
       c100ChildrenSupervision: "noSpendTime",
       yesNoInternationalElements: true,
-      yesNoReasonableAdjustments: true
+      yesNoReasonableAdjustments: true,
     });
   });
 });
