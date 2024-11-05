@@ -103,7 +103,7 @@ export class ConcernsForSafetyPage {
     ]);
     await SafetyConcernHelpers.checkContactDetailsText(page);
     // if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page); #TODO Commented out until ticket-6592 is complete
+    // await AccessibilityTestHelper.run(page); #TODO Commented out until ticket-6592 is complete
     // }
   }
 
