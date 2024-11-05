@@ -7,7 +7,7 @@ import { CommonStaticText } from "../../../../../../common/commonStaticText";
 import { SafetyConcernHelpers } from "../safetyConcernHelpers";
 
 enum radioIDs {
-  radioYes = "#c1A_abductionPassportOfficeNotifiedNotified",
+  radioYes = "#c1A_abductionPassportOfficeNotified",
   radioNo = "#c1A_abductionPassportOfficeNotifiedNotified-2",
 }
 

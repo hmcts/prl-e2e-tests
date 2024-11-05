@@ -374,7 +374,7 @@ test.describe("Test the accessibility of the CA C100 Citizen Journey.  @accessib
       c100OtherPeopleChangedName: "yes",
       c100OtherPeopleDoBKnown: true,
       c100OtherPersonRelationship: "father",
-      c100ChildMainlyLivesWith: 'applicant',
+      c100ChildMainlyLivesWith: "applicant",
       yesNoChildArrangementOrderDetails: true,
       yesNoOtherProceedings: true,
       c100ChildrenSafetyConcerns: true,

@@ -7,14 +7,12 @@ import { CommonStaticText } from "../../../../../../common/commonStaticText";
 import { SafetyConcernHelpers } from "../safetyConcernHelpers";
 
 enum CheckboxInputIds {
-  physicalAbuse = "#c1A_concernAboutYourself",
-  psychologicalAbuse = "#c1A_concernAboutYourself-2",
-  emotionalAbuse = "#c1A_concernAboutYourself-3",
-  sexualAbuse = "#c1A_concernAboutYourself-4",
-  financialAbuse = "#c1A_concernAboutYourself-5",
-  abduction = "#c1A_concernAboutYourself-6",
-  witnessingDomesticAbuse = "#c1A_concernAboutYourself-7",
-  somethingElse = "#c1A_concernAboutYourself-8",
+  physicalAbuse = "#c1A_concernAboutApplicant",
+  psychologicalAbuse = "#c1A_concernAboutApplicant-2",
+  emotionalAbuse = "#c1A_concernAboutApplicant-3",
+  sexualAbuse = "#c1A_concernAboutApplicant-4",
+  financialAbuse = "#c1A_concernAboutApplicant-5",
+  somethingElse = "#c1A_concernAboutApplicant-6",
 }
 
 interface YourselfConcernsAboutPageOptions {
