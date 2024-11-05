@@ -110,4 +110,3 @@ export type OrderType =
   | "c21other";
 
 export type typeOfPerson = "applicant" | "respondent" | "otherPerson";
-

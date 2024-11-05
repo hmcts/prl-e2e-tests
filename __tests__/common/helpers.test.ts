@@ -220,4 +220,50 @@ describe("Helpers", () => {
       });
     });
   });
+
+  describe("dayLongMonthYear()", () => {
+    it("should return the formatted date string for valid inputs", () => {
+      const result = Helpers.dayLongMonthYear("21", "8", "2024");
+      expect(result).toBe("21 August 2024");
+    });
+
+    it("should throw an error for invalid month (0)", () => {
+      expect(() => {
+        Helpers.dayLongMonthYear("21", "0", "2024");
+      }).toThrow("Invalid month value");
+    });
+
+    it("should throw an error for invalid month (13)", () => {
+      expect(() => {
+        Helpers.dayLongMonthYear("21", "13", "2024");
+      }).toThrow("Invalid month value");
+    });
+
+    it("should throw an error for non-numeric month", () => {
+      expect(() => {
+        Helpers.dayLongMonthYear("21", "abc", "2024");
+      }).toThrow("Invalid month value");
+    });
+
+    it("should throw an error for empty month", () => {
+      expect(() => {
+        Helpers.dayLongMonthYear("21", "", "2024");
+      }).toThrow("Invalid month value");
+    });
+
+    it("should handle single-digit days and months", () => {
+      const result = Helpers.dayLongMonthYear("1", "1", "2024");
+      expect(result).toBe("1 January 2024");
+    });
+
+    it("should handle single-digit days with double-digit months", () => {
+      const result = Helpers.dayLongMonthYear("5", "10", "2024");
+      expect(result).toBe("5 October 2024");
+    });
+
+    it("should handle large year values", () => {
+      const result = Helpers.dayLongMonthYear("15", "12", "9999");
+      expect(result).toBe("15 December 9999");
+    });
+  });
 });
