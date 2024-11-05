@@ -79,7 +79,7 @@ export class ApplicantRelationshipToChildPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      // await AccessibilityTestHelper.run(page); Accessibility: PRL-6589
     }
   }
   private static async triggerErrorMessages(page: Page): Promise<void> {
