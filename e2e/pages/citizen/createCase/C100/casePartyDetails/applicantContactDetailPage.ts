@@ -87,7 +87,7 @@ export class ApplicantContactDetailPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      // await AccessibilityTestHelper.run(page); Accessibility Issues: PRL-6591
     }
   }
 

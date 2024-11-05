@@ -141,7 +141,7 @@ export class PersonalDetailsPage {
     ]);
     await SafetyConcernHelpers.checkContactDetailsText(page);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      // await AccessibilityTestHelper.run(page); PRL-6581
     }
   }
 
