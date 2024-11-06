@@ -105,7 +105,10 @@ export class StartPage {
     }
   }
 
-  private static async checkErrorMessaging(page: Page,c100OthersKnowApplicantsContact: yesNoDontKnow ): Promise<void> {
+  private static async checkErrorMessaging(
+    page: Page,
+    c100OthersKnowApplicantsContact: yesNoDontKnow,
+  ): Promise<void> {
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
@@ -129,14 +132,17 @@ export class StartPage {
     await this.checkboxErrorMessages(page, c100OthersKnowApplicantsContact);
   }
 
-  private static async checkboxErrorMessages(page: Page, c100OthersKnowApplicantsContact: yesNoDontKnow): Promise<void> {
+  private static async checkboxErrorMessages(
+    page: Page,
+    c100OthersKnowApplicantsContact: yesNoDontKnow,
+  ): Promise<void> {
     if (c100OthersKnowApplicantsContact === "yes") {
-      await page.click(inputIDs.yes)
+      await page.click(inputIDs.yes);
     } else if (
       c100OthersKnowApplicantsContact === "no" ||
       c100OthersKnowApplicantsContact === "dontKnow"
     ) {
-      await page.click(alternativeInputIDs.yes)
+      await page.click(alternativeInputIDs.yes);
     } else {
       throw new Error(
         `Unrecognised argument for c100OthersKnowApplicantsContact: ${c100OthersKnowApplicantsContact}`,
