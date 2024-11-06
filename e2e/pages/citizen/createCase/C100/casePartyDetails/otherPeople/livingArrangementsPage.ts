@@ -4,11 +4,14 @@ import { Selectors } from "../../../../../../common/selectors";
 import { LivingArrangementsContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/otherPeople/livingArrangementsContent";
 import { Helpers } from "../../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../../common/commonStaticText";
+import { typeOfPerson, yesNoDontKnow } from "../../../../../../common/types";
 
 interface livingArrangementsOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
+  yesNoOtherPersonDetails: boolean;
+  c100ChildMainlyLivesWith: typeOfPerson;
 }
 
 interface checkPageLoadsOptions {
@@ -19,6 +22,7 @@ interface checkPageLoadsOptions {
 interface fillInFieldsOptions {
   page: Page;
   errorMessaging: boolean;
+  yesNoOtherPersonDetails: boolean;
 }
 
 enum checkboxIDs {
@@ -32,16 +36,20 @@ export class LivingArrangementsPage {
     page,
     accessibilityTest,
     errorMessaging,
+    yesNoOtherPersonDetails,
+    c100ChildMainlyLivesWith
   }: livingArrangementsOptions): Promise<void> {
     await this.checkPageLoads({ page, accessibilityTest });
     if (errorMessaging) {
-      await this.triggerErrorMessages(page);
+      await this.triggerErrorMessages(page, c100ChildMainlyLivesWith);
     }
     await this.fillInFields({
       page,
       errorMessaging,
+      yesNoOtherPersonDetails,
     });
   }
+
   private static async checkPageLoads({
     page,
     accessibilityTest,
@@ -66,9 +74,16 @@ export class LivingArrangementsPage {
     }
   }
 
-  private static async triggerErrorMessages(page: Page): Promise<void> {
-    for (let checkboxID of Object.values(checkboxIDs)) {
-      await page.uncheck(checkboxID);
+  private static async triggerErrorMessages(
+    page: Page,
+    c100ChildMainlyLivesWith: typeOfPerson
+): Promise<void> {
+    if (c100ChildMainlyLivesWith in checkboxIDs) {
+      await page.uncheck(checkboxIDs[c100ChildMainlyLivesWith])
+    } else {
+      throw new Error(
+        `Unrecognised type of person: ${c100ChildMainlyLivesWith}`
+      )
     }
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
@@ -94,8 +109,10 @@ export class LivingArrangementsPage {
 
   private static async fillInFields({
     page,
+    yesNoOtherPersonDetails,
   }: fillInFieldsOptions): Promise<void> {
-    for (let checkboxID of Object.values(checkboxIDs)) {
+    const checkboxSlice: number = yesNoOtherPersonDetails ? 2 : 1;
+    for (let checkboxID of Object.values(checkboxIDs).slice(0, checkboxSlice)) {
       await page.check(checkboxID);
     }
     await page.click(

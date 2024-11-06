@@ -58,12 +58,10 @@ export class MainlyLiveWithPage {
       ),
     ]);
     await Promise.all([
-      Helpers.checkGroup(
+      Helpers.checkVisibleAndPresent(
         page,
-        2,
-        MainlyLiveWithContent,
-        "hint",
-        `${Selectors.GovukHint}`,
+        `${Selectors.GovukHint}:text-is("${MainlyLiveWithContent.hint1}")`,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
