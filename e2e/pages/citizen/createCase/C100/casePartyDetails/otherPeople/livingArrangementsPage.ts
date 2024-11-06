@@ -9,6 +9,7 @@ interface livingArrangementsOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
+  yesNoOtherPersonDetails: boolean;
 }
 
 interface checkPageLoadsOptions {
@@ -19,6 +20,7 @@ interface checkPageLoadsOptions {
 interface fillInFieldsOptions {
   page: Page;
   errorMessaging: boolean;
+  yesNoOtherPersonDetails: boolean;
 }
 
 enum checkboxIDs {
@@ -32,6 +34,7 @@ export class LivingArrangementsPage {
     page,
     accessibilityTest,
     errorMessaging,
+    yesNoOtherPersonDetails
   }: livingArrangementsOptions): Promise<void> {
     await this.checkPageLoads({ page, accessibilityTest });
     if (errorMessaging) {
@@ -40,6 +43,7 @@ export class LivingArrangementsPage {
     await this.fillInFields({
       page,
       errorMessaging,
+      yesNoOtherPersonDetails
     });
   }
   private static async checkPageLoads({
@@ -94,8 +98,10 @@ export class LivingArrangementsPage {
 
   private static async fillInFields({
     page,
+    yesNoOtherPersonDetails
   }: fillInFieldsOptions): Promise<void> {
-    for (let checkboxID of Object.values(checkboxIDs)) {
+    const checkboxSlice: number = (yesNoOtherPersonDetails) ? 2 : 1;
+    for (let checkboxID of Object.values(checkboxIDs).slice(0, checkboxSlice)) {
       await page.check(checkboxID);
     }
     await page.click(

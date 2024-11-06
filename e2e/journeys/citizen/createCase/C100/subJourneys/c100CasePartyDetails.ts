@@ -107,12 +107,14 @@ export class C100CasePartyDetails {
       errorMessaging: errorMessaging,
       addressLookup: applicantAddressLookup,
     });
-    await ApplicantAddressSelectPage.applicantAddressSelectPage({
-      page: page,
-      accessibilityTest: accessibilityTest,
-      errorMessaging: errorMessaging,
-      addressLookupSuccessful: appAddressLookupSuccessful,
-    });
+    if (applicantAddressLookup) {
+      await ApplicantAddressSelectPage.applicantAddressSelectPage({
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
+        addressLookupSuccessful: appAddressLookupSuccessful,
+      });
+    }
     await ApplicantAddressManualPage.applicantAddressManualPage({
       page: page,
       accessibilityTest: accessibilityTest,
@@ -163,20 +165,23 @@ export class C100CasePartyDetails {
         addressLookup: respAddressLookup,
       },
     );
-    await RespondentDetailsAddressSelectPage.respondentDetailsAddressSelectPage(
-      {
-        page: page,
-        accessibilityTest: accessibilityTest,
-        errorMessaging: errorMessaging,
-        addressLookupSuccessful: respAddressLookupSuccessful,
-      },
-    );
+    if (respAddressLookup) {
+      await RespondentDetailsAddressSelectPage.respondentDetailsAddressSelectPage(
+        {
+          page: page,
+          accessibilityTest: accessibilityTest,
+          errorMessaging: errorMessaging,
+          addressLookupSuccessful: respAddressLookupSuccessful,
+        },
+      );
+    }
     await RespondentDetailsAddressManualPage.respondentDetailsAddressManualPage(
       {
         page: page,
         accessibilityTest: accessibilityTest,
         errorMessaging: errorMessaging,
         respAddress5Years: respAddress5Years,
+        respAddressLookup: respAddressLookup
       },
     );
     await RespondentDetailsContactDetailsPage.respondentDetailsContactDetailsPage(

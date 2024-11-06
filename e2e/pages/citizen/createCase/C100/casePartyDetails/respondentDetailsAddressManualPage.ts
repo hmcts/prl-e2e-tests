@@ -11,6 +11,7 @@ interface RespondentDetailsAddressManualPageOptions {
   accessibilityTest: boolean;
   errorMessaging: boolean;
   respAddress5Years: yesNoDontKnow;
+  respAddressLookup: boolean;
 }
 
 enum addressUniqueSelectors {
@@ -37,21 +38,58 @@ enum addressText {
   country = "United Kingdom",
 }
 
+const addressFields = [
+  {
+    selector: addressUniqueSelectors.buildingAndStreet,
+    expectedText: addressText.buildingAndStreet,
+  },
+  {
+    selector: addressUniqueSelectors.townAndCity,
+    expectedText: addressText.townAndCity,
+  },
+  {
+    selector: addressUniqueSelectors.county,
+    expectedText: addressText.county,
+  },
+  {
+    selector: addressUniqueSelectors.postcode,
+    expectedText: addressText.postcode,
+  },
+  {
+    selector: addressUniqueSelectors.country,
+    expectedText: addressText.country,
+  },
+];
+
 export class RespondentDetailsAddressManualPage {
   public static async respondentDetailsAddressManualPage({
-    page: page,
-    accessibilityTest: accessibilityTest,
-    errorMessaging: errorMessaging,
-    respAddress5Years: yesNoDontKnow,
+    page,
+    accessibilityTest,
+    errorMessaging,
+    respAddress5Years,
+    respAddressLookup
   }: RespondentDetailsAddressManualPageOptions): Promise<void> {
     await this.checkPageLoads({ page, accessibilityTest });
+    if (respAddressLookup) {
+      await this.checkFilledData(page)
+    }
     if (errorMessaging) {
       await this.triggerErrorMessages({ page });
     }
     await this.fillInFields({
       page,
-      respAddress5Years: yesNoDontKnow,
+      respAddress5Years,
+      respAddressLookup
     });
+  }
+
+  private static async checkFilledData(
+    page: Page
+  ): Promise<void> {
+    for (const { selector, expectedText } of addressFields) {
+      const actualValue = await page.locator(selector).inputValue();
+      expect(actualValue).toBe(expectedText);
+    }
   }
 
   private static async checkPageLoads({
@@ -100,32 +138,6 @@ export class RespondentDetailsAddressManualPage {
         1,
       ),
     ]);
-    const addressFields = [
-      {
-        selector: addressUniqueSelectors.buildingAndStreet,
-        expectedText: addressText.buildingAndStreet,
-      },
-      {
-        selector: addressUniqueSelectors.townAndCity,
-        expectedText: addressText.townAndCity,
-      },
-      {
-        selector: addressUniqueSelectors.county,
-        expectedText: addressText.county,
-      },
-      {
-        selector: addressUniqueSelectors.postcode,
-        expectedText: addressText.postcode,
-      },
-      {
-        selector: addressUniqueSelectors.country,
-        expectedText: addressText.country,
-      },
-    ];
-    for (const { selector, expectedText } of addressFields) {
-      const actualValue = await page.locator(selector).inputValue();
-      expect(actualValue).toBe(expectedText);
-    }
     if (accessibilityTest) {
       // await AccessibilityTestHelper.run(page); Accessibility Issues: PRL-6590
     }
@@ -163,14 +175,20 @@ export class RespondentDetailsAddressManualPage {
 
   private static async fillInFields({
     page: page,
-    respAddress5Years: yesNoDontKnow,
+    respAddress5Years,
+    respAddressLookup
   }: Partial<RespondentDetailsAddressManualPageOptions>): Promise<void> {
     if (!page) {
       throw new Error(
         "Page object is undefined. Ensure that a valid Playwright Page instance is passed to the function.",
       );
     }
-    switch (yesNoDontKnow) {
+    if (!respAddressLookup) {
+      for (const { selector, expectedText } of addressFields) {
+        await page.fill(selector, expectedText);
+      }
+    }
+    switch (respAddress5Years) {
       case "yes":
         await page.click(UniqueSelectors.lessThan5YearsYes);
         await page.fill(
@@ -186,7 +204,7 @@ export class RespondentDetailsAddressManualPage {
         break;
       default:
         throw new Error(
-          `Unrecognised value for yesNoDontKnow: ${yesNoDontKnow}`,
+          `Unrecognised value for yesNoDontKnow: ${respAddress5Years}`,
         );
     }
     await page.click(
