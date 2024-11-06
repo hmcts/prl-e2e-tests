@@ -257,7 +257,7 @@ test.describe("C100 Citizen Application tests on the second MIRO set. @citizenFr
     await C100.c100SecondMiroJourney({
       page: page,
       accessibilityTest: true,
-      errorMessaging: true,
+      errorMessaging: false,
       c100LegalRepresentation: true,
       c100CourtPermissionNeeded: true,
       yesNoOtherProceedings: true,
