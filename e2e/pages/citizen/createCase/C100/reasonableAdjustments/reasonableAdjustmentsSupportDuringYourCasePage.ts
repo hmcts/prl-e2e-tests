@@ -4,6 +4,7 @@ import { CommonStaticText } from "../../../../../common/commonStaticText";
 import AxeTest from "../../../../../common/accessibilityTestHelper";
 import { ReasonableAdjustmentsSupportDuringYourCaseContent } from "../../../../../fixtures/citizen/createCase/C100/reasonableAdjustments/reasonableAdjustmentsSupportDuringYourCaseContent";
 import { Helpers } from "../../../../../common/helpers";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 
 interface ReasonableAdjustmentsSupportDuringYourCasePageOptions {
   page: Page;
@@ -79,7 +80,7 @@ export class ReasonableAdjustmentsSupportDuringYourCasePage {
       ),
     ]);
     if (accessibilityTest) {
-      await AxeTest.run(page);
+      await AccessibilityTestHelper.run(page);
     }
   }
 

@@ -4,6 +4,7 @@ import { ReasonableAdjustmentsSpecialArrangementsContent } from "../../../../../
 import { Selectors } from "../../../../../common/selectors";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 
 interface ReasonableAdjustmentsSpecialArrangementsPageOptions {
   page: Page;
@@ -91,7 +92,7 @@ export class ReasonableAdjustmentsSpecialArrangementsPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AxeTest.run(page);
+      await AccessibilityTestHelper.run(page);
     }
   }
 

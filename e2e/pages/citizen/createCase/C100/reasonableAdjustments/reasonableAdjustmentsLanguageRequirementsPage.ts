@@ -4,6 +4,7 @@ import { ReasonableAdjustmentsLanguageRequirementsContent } from "../../../../..
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import AxeTest from "../../../../../common/accessibilityTestHelper";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 
 interface ReasonableAdjustmentsLanguageRequirementsPageOptions {
   page: Page;
@@ -75,7 +76,7 @@ export class ReasonableAdjustmentsLanguageRequirementsPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AxeTest.run(page);
+      await AccessibilityTestHelper.run(page);
     }
   }
 
