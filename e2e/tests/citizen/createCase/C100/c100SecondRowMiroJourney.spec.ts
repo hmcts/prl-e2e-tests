@@ -161,7 +161,7 @@ test.describe("C100 Citizen Application tests on the second MIRO set. @citizenFr
       errorMessaging: true,
       c100LegalRepresentation: false,
       c100CourtPermissionNeeded: false,
-      yesNoOtherProceedings: true,
+      yesNoOtherProceedings: false,
       urgencyAndWithoutNoticeAllOptionsYes: false,
       gender: "female",
       c100PeopleYesNoDontKnow: "no",

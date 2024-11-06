@@ -60,7 +60,7 @@ export class StartPage {
       accessibilityTest,
     });
     if (errorMessaging) {
-      await this.checkErrorMessaging(page);
+      await this.checkErrorMessaging(page, c100OthersKnowApplicantsContact);
     }
     await this.fillInFields({
       page: page,
@@ -105,7 +105,7 @@ export class StartPage {
     }
   }
 
-  private static async checkErrorMessaging(page: Page): Promise<void> {
+  private static async checkErrorMessaging(page: Page,c100OthersKnowApplicantsContact: yesNoDontKnow ): Promise<void> {
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
@@ -126,11 +126,22 @@ export class StartPage {
         1,
       ),
     ]);
-    await this.checkboxErrorMessages(page);
+    await this.checkboxErrorMessages(page, c100OthersKnowApplicantsContact);
   }
 
-  private static async checkboxErrorMessages(page: Page): Promise<void> {
-    await page.click(inputIDs.yes);
+  private static async checkboxErrorMessages(page: Page, c100OthersKnowApplicantsContact: yesNoDontKnow): Promise<void> {
+    if (c100OthersKnowApplicantsContact === "yes") {
+      await page.click(inputIDs.yes)
+    } else if (
+      c100OthersKnowApplicantsContact === "no" ||
+      c100OthersKnowApplicantsContact === "dontKnow"
+    ) {
+      await page.click(alternativeInputIDs.yes)
+    } else {
+      throw new Error(
+        `Unrecognised argument for c100OthersKnowApplicantsContact: ${c100OthersKnowApplicantsContact}`,
+      );
+    }
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
