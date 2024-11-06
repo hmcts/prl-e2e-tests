@@ -11,10 +11,21 @@ enum inputIDs {
   no = "#start-2",
 }
 
+enum alternativeInputIDs {
+  yes = "#startAlternative",
+  no = "#startAlternative-2",
+}
+
 enum checkboxIDs {
   address = "#contactDetailsPrivate",
   telephone = "#contactDetailsPrivate-2",
   email = "#contactDetailsPrivate-3",
+}
+
+enum alternativeCheckboxIDs {
+  address = "#contactDetailsPrivateAlternative",
+  telephone = "#contactDetailsPrivateAlternative-2",
+  email = "#contactDetailsPrivateAlternative-3",
 }
 
 interface StartPageOptions {
@@ -38,12 +49,12 @@ interface FillInFieldsOptions {
 
 export class StartPage {
   public static async startPage({
-    page,
-    accessibilityTest,
-    errorMessaging,
-    c100PrivateDetails,
-    c100OthersKnowApplicantsContact,
-  }: StartPageOptions): Promise<void> {
+                                  page,
+                                  accessibilityTest,
+                                  errorMessaging,
+                                  c100PrivateDetails,
+                                  c100OthersKnowApplicantsContact,
+                                }: StartPageOptions): Promise<void> {
     await this.checkPageLoads({
       page,
       accessibilityTest,
@@ -59,9 +70,9 @@ export class StartPage {
   }
 
   private static async checkPageLoads({
-    page,
-    accessibilityTest,
-  }: CheckPageLoadsOptions): Promise<void> {
+                                        page,
+                                        accessibilityTest,
+                                      }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.GovukHeadingXL}:text-is("${StartContent.pageTitle}")`,
     );
@@ -143,25 +154,31 @@ export class StartPage {
   }
 
   private static async fillInFields({
-    page,
-    c100PrivateDetails,
-    c100OthersKnowApplicantsContact,
-  }: FillInFieldsOptions): Promise<void> {
+                                      page,
+                                      c100PrivateDetails,
+                                      c100OthersKnowApplicantsContact,
+                                    }: FillInFieldsOptions): Promise<void> {
+    let radioInputs: Record<string, string>;
+    let checkboxes: Record<string, string>;
+    let formHintContentKey: keyof typeof StartContent;
+    if (c100OthersKnowApplicantsContact === "yes") {
+      formHintContentKey = "formHint";
+      radioInputs = inputIDs;
+      checkboxes = checkboxIDs;
+    } else if (
+      c100OthersKnowApplicantsContact === "no" ||
+      c100OthersKnowApplicantsContact === "dontKnow"
+    ) {
+      radioInputs = alternativeInputIDs;
+      formHintContentKey = "alternativeFormHint";
+      checkboxes = alternativeCheckboxIDs;
+    } else {
+      throw new Error(
+        `Unrecognised argument for c100OthersKnowApplicantsContact: ${c100OthersKnowApplicantsContact}`,
+      );
+    }
     if (c100PrivateDetails) {
-      let formHintContentKey: keyof typeof StartContent;
-      if (c100OthersKnowApplicantsContact === "yes") {
-        formHintContentKey = "formHint";
-      } else if (
-        c100OthersKnowApplicantsContact === "no" ||
-        c100OthersKnowApplicantsContact === "dontKnow"
-      ) {
-        formHintContentKey = "alternativeFormHint";
-      } else {
-        throw new Error(
-          `Unrecognised argument for c100OthersKnowApplicantsContact: ${c100OthersKnowApplicantsContact}`,
-        );
-      }
-      await page.click(inputIDs.yes);
+      await page.click(radioInputs.yes);
       await Promise.all([
         Helpers.checkVisibleAndPresent(
           page,
@@ -176,11 +193,11 @@ export class StartPage {
           `${Selectors.GovukLabel}`,
         ),
       ]);
-      for (let checkboxID of Object.values(checkboxIDs)) {
+      for (let checkboxID of Object.values(checkboxes)) {
         await page.check(checkboxID);
       }
     } else {
-      await page.click(inputIDs.no);
+      await page.click(radioInputs.no);
     }
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
