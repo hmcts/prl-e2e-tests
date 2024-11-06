@@ -257,7 +257,7 @@ export class RespondentDetailsPersonalDetailsPage {
       await Promise.all([
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukLabel}:text-is("${RespondentDetailsPersonalDetailsContent.hiddenlabel3}")`,
+          `${Selectors.GovukLegendS}:text-is("${RespondentDetailsPersonalDetailsContent.hiddenlabel3}")`,
           1,
         ),
         Helpers.checkVisibleAndPresent(

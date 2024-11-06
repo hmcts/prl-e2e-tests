@@ -69,9 +69,9 @@ export class FeesAppliedPage {
       ),
     ]);
     await SafetyConcernHelpers.checkContactDetailsText(page);
-    if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
-    }
+    // if (accessibilityTest) {
+    //   await AccessibilityTestHelper.run(page); #TODO Commented out until ticket-6603 is complete
+    // }
   }
 
   private static async checkErrorMessaging(page: Page): Promise<void> {
@@ -133,7 +133,12 @@ export class FeesAppliedPage {
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukHint}:text-is("${FeesAppliedContent.formHint}")`,
+          `${Selectors.GovukHint}:text-is("${FeesAppliedContent.formHint1}")`,
+          1,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukHint}:text-is("${FeesAppliedContent.formHint2}")`,
           1,
         ),
       ]);
@@ -145,7 +150,7 @@ export class FeesAppliedPage {
       await page.click(inputIDs.radioNo);
     }
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
   }
 }

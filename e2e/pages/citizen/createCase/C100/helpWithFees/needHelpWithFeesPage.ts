@@ -114,7 +114,7 @@ export class NeedHelpWithFeesPage {
       await page.click(inputIDs.radioNo);
     }
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
   }
 }

@@ -11,10 +11,21 @@ enum inputIDs {
   no = "#start-2",
 }
 
+enum alternativeInputIDs {
+  yes = "#startAlternative",
+  no = "#startAlternative-2",
+}
+
 enum checkboxIDs {
   address = "#contactDetailsPrivate",
   telephone = "#contactDetailsPrivate-2",
   email = "#contactDetailsPrivate-3",
+}
+
+enum alternativeCheckboxIDs {
+  address = "#contactDetailsPrivateAlternative",
+  telephone = "#contactDetailsPrivateAlternative-2",
+  email = "#contactDetailsPrivateAlternative-3",
 }
 
 interface StartPageOptions {
@@ -49,7 +60,7 @@ export class StartPage {
       accessibilityTest,
     });
     if (errorMessaging) {
-      await this.checkErrorMessaging(page);
+      await this.checkErrorMessaging(page, c100OthersKnowApplicantsContact);
     }
     await this.fillInFields({
       page: page,
@@ -94,7 +105,10 @@ export class StartPage {
     }
   }
 
-  private static async checkErrorMessaging(page: Page): Promise<void> {
+  private static async checkErrorMessaging(
+    page: Page,
+    c100OthersKnowApplicantsContact: yesNoDontKnow,
+  ): Promise<void> {
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
@@ -115,11 +129,25 @@ export class StartPage {
         1,
       ),
     ]);
-    await this.checkboxErrorMessages(page);
+    await this.checkboxErrorMessages(page, c100OthersKnowApplicantsContact);
   }
 
-  private static async checkboxErrorMessages(page: Page): Promise<void> {
-    await page.click(inputIDs.yes);
+  private static async checkboxErrorMessages(
+    page: Page,
+    c100OthersKnowApplicantsContact: yesNoDontKnow,
+  ): Promise<void> {
+    if (c100OthersKnowApplicantsContact === "yes") {
+      await page.click(inputIDs.yes);
+    } else if (
+      c100OthersKnowApplicantsContact === "no" ||
+      c100OthersKnowApplicantsContact === "dontKnow"
+    ) {
+      await page.click(alternativeInputIDs.yes);
+    } else {
+      throw new Error(
+        `Unrecognised argument for c100OthersKnowApplicantsContact: ${c100OthersKnowApplicantsContact}`,
+      );
+    }
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
@@ -147,21 +175,27 @@ export class StartPage {
     c100PrivateDetails,
     c100OthersKnowApplicantsContact,
   }: FillInFieldsOptions): Promise<void> {
+    let radioInputs: Record<string, string>;
+    let checkboxes: Record<string, string>;
+    let formHintContentKey: keyof typeof StartContent;
+    if (c100OthersKnowApplicantsContact === "yes") {
+      formHintContentKey = "formHint";
+      radioInputs = inputIDs;
+      checkboxes = checkboxIDs;
+    } else if (
+      c100OthersKnowApplicantsContact === "no" ||
+      c100OthersKnowApplicantsContact === "dontKnow"
+    ) {
+      radioInputs = alternativeInputIDs;
+      formHintContentKey = "alternativeFormHint";
+      checkboxes = alternativeCheckboxIDs;
+    } else {
+      throw new Error(
+        `Unrecognised argument for c100OthersKnowApplicantsContact: ${c100OthersKnowApplicantsContact}`,
+      );
+    }
     if (c100PrivateDetails) {
-      let formHintContentKey: keyof typeof StartContent;
-      if (c100OthersKnowApplicantsContact === "yes") {
-        formHintContentKey = "formHint";
-      } else if (
-        c100OthersKnowApplicantsContact === "no" ||
-        c100OthersKnowApplicantsContact === "dontKnow"
-      ) {
-        formHintContentKey = "alternativeFormHint";
-      } else {
-        throw new Error(
-          `Unrecognised argument for c100OthersKnowApplicantsContact: ${c100OthersKnowApplicantsContact}`,
-        );
-      }
-      await page.click(inputIDs.yes);
+      await page.click(radioInputs.yes);
       await Promise.all([
         Helpers.checkVisibleAndPresent(
           page,
@@ -176,11 +210,11 @@ export class StartPage {
           `${Selectors.GovukLabel}`,
         ),
       ]);
-      for (let checkboxID of Object.values(checkboxIDs)) {
+      for (let checkboxID of Object.values(checkboxes)) {
         await page.check(checkboxID);
       }
     } else {
-      await page.click(inputIDs.no);
+      await page.click(radioInputs.no);
     }
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,

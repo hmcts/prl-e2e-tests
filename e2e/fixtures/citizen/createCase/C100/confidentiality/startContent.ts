@@ -10,6 +10,6 @@ export enum StartContent {
   formLabel1 = "Address",
   formLabel2 = "Telephone number",
   formLabel3 = "Email",
-  checkboxErrorSummaryList = "Select which contact details you want to keep private",
-  checkboxErrorMessage = "Select which contact details you want to keep private",
+  checkboxErrorSummaryList = "Select which contact details you want to keep private.",
+  checkboxErrorMessage = "Select which contact details you want to keep private.",
 }

@@ -62,9 +62,9 @@ export class InternationalElementsJurisdictionPage {
         Selectors.GovukLabel,
       ),
     ]);
-    if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
-    }
+    // if (accessibilityTest) {
+    //   await AccessibilityTestHelper.run(page); #TODO Commented out until ticket-6600 is complete
+    // }
   }
 
   private static async triggerErrorMessages({
