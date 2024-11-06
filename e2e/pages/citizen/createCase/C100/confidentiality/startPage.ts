@@ -13,7 +13,7 @@ enum inputIDs {
 
 enum alternativeInputIDs {
   yes = "#startAlternative",
-  no = "#startAlternative-2"
+  no = "#startAlternative-2",
 }
 
 enum checkboxIDs {
@@ -159,19 +159,19 @@ export class StartPage {
     c100OthersKnowApplicantsContact,
   }: FillInFieldsOptions): Promise<void> {
     let radioInputs: Record<string, string>;
-    let checkboxes: Record<string, string>
+    let checkboxes: Record<string, string>;
     let formHintContentKey: keyof typeof StartContent;
     if (c100OthersKnowApplicantsContact === "yes") {
       formHintContentKey = "formHint";
-      radioInputs = inputIDs
-      checkboxes = checkboxIDs
+      radioInputs = inputIDs;
+      checkboxes = checkboxIDs;
     } else if (
       c100OthersKnowApplicantsContact === "no" ||
       c100OthersKnowApplicantsContact === "dontKnow"
     ) {
-      radioInputs = alternativeInputIDs
+      radioInputs = alternativeInputIDs;
       formHintContentKey = "alternativeFormHint";
-      checkboxes = alternativeCheckboxIDs
+      checkboxes = alternativeCheckboxIDs;
     } else {
       throw new Error(
         `Unrecognised argument for c100OthersKnowApplicantsContact: ${c100OthersKnowApplicantsContact}`,

@@ -61,7 +61,7 @@ export class MainlyLiveWithPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukHint}:text-is("${MainlyLiveWithContent.hint1}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,

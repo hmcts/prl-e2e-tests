@@ -410,7 +410,7 @@ export class ViewPDFApplication1Page {
         await this.checkEnglishNoPage12RepeatedText(page);
         break;
       default:
-        if (existsSync('.env')) {
+        if (existsSync(".env")) {
           console.log(`No check function defined for page ${i}`);
         }
     }
@@ -455,7 +455,7 @@ export class ViewPDFApplication1Page {
         await this.checkEnglishYesPage12RepeatedText(page);
         break;
       default:
-        if (existsSync('.env')) {
+        if (existsSync(".env")) {
           console.log(`Page ${i} is not handled.`);
         }
     }
@@ -992,7 +992,7 @@ export class ViewPDFApplication1Page {
         await this.checkWelshPage11RepeatedText(page);
         break;
       default:
-        if (existsSync('.env')) {
+        if (existsSync(".env")) {
           console.log(`Page number ${i} is not supported.`);
         }
     }

@@ -67,11 +67,11 @@ export class RespondentDetailsAddressManualPage {
     accessibilityTest,
     errorMessaging,
     respAddress5Years,
-    respAddressLookup
+    respAddressLookup,
   }: RespondentDetailsAddressManualPageOptions): Promise<void> {
     await this.checkPageLoads({ page, accessibilityTest });
     if (respAddressLookup) {
-      await this.checkFilledData(page)
+      await this.checkFilledData(page);
     }
     if (errorMessaging) {
       await this.triggerErrorMessages({ page });
@@ -79,13 +79,11 @@ export class RespondentDetailsAddressManualPage {
     await this.fillInFields({
       page,
       respAddress5Years,
-      respAddressLookup
+      respAddressLookup,
     });
   }
 
-  private static async checkFilledData(
-    page: Page
-  ): Promise<void> {
+  private static async checkFilledData(page: Page): Promise<void> {
     for (const { selector, expectedText } of addressFields) {
       const actualValue = await page.locator(selector).inputValue();
       expect(actualValue).toBe(expectedText);
@@ -176,7 +174,7 @@ export class RespondentDetailsAddressManualPage {
   private static async fillInFields({
     page: page,
     respAddress5Years,
-    respAddressLookup
+    respAddressLookup,
   }: Partial<RespondentDetailsAddressManualPageOptions>): Promise<void> {
     if (!page) {
       throw new Error(

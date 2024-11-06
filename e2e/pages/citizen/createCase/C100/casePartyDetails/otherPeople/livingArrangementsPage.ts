@@ -34,7 +34,7 @@ export class LivingArrangementsPage {
     page,
     accessibilityTest,
     errorMessaging,
-    yesNoOtherPersonDetails
+    yesNoOtherPersonDetails,
   }: livingArrangementsOptions): Promise<void> {
     await this.checkPageLoads({ page, accessibilityTest });
     if (errorMessaging) {
@@ -43,7 +43,7 @@ export class LivingArrangementsPage {
     await this.fillInFields({
       page,
       errorMessaging,
-      yesNoOtherPersonDetails
+      yesNoOtherPersonDetails,
     });
   }
   private static async checkPageLoads({
@@ -98,9 +98,9 @@ export class LivingArrangementsPage {
 
   private static async fillInFields({
     page,
-    yesNoOtherPersonDetails
+    yesNoOtherPersonDetails,
   }: fillInFieldsOptions): Promise<void> {
-    const checkboxSlice: number = (yesNoOtherPersonDetails) ? 2 : 1;
+    const checkboxSlice: number = yesNoOtherPersonDetails ? 2 : 1;
     for (let checkboxID of Object.values(checkboxIDs).slice(0, checkboxSlice)) {
       await page.check(checkboxID);
     }

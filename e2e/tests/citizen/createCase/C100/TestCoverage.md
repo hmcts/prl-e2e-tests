@@ -241,5 +241,4 @@ Coverage:
 5. People
    - Don't Know or no to all
    - Other gender
-6. Confidentiality
-   -
+6. ## Confidentiality

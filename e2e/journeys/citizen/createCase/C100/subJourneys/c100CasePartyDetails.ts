@@ -181,7 +181,7 @@ export class C100CasePartyDetails {
         accessibilityTest: accessibilityTest,
         errorMessaging: errorMessaging,
         respAddress5Years: respAddress5Years,
-        respAddressLookup: respAddressLookup
+        respAddressLookup: respAddressLookup,
       },
     );
     await RespondentDetailsContactDetailsPage.respondentDetailsContactDetailsPage(
