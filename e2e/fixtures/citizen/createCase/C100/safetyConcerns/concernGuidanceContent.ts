@@ -30,7 +30,6 @@ export enum ConcernGuidanceContent {
   link1 = "types of abusive behaviour",
   link2 = "child abuse.",
   link3 = "Cafcass",
-  link4 = "Cafcass Cymru",
   summaryText = "How Cafcass can support you in your case",
   detailsBody1 = "The ",
   detailsBody2 = ", in England, and ",

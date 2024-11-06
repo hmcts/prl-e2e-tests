@@ -4,6 +4,7 @@ import { CommonStaticText } from "../../../../../common/commonStaticText";
 import AxeTest from "../../../../../common/accessibilityTestHelper";
 import { ReasonableAdjustmentsNeedsDuringCourtHearingContent } from "../../../../../fixtures/citizen/createCase/C100/reasonableAdjustments/ReasonableAdjustmentsNeedsDuringCourtHearingContent";
 import { Helpers } from "../../../../../common/helpers";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 
 export interface ReasonableAdjustmentsNeedsDuringCourtHearingPageOptions {
   page: Page;
@@ -81,7 +82,7 @@ export class ReasonableAdjustmentsNeedsDuringCourtHearingPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AxeTest.run(page);
+      await AccessibilityTestHelper.run(page);
     }
   }
 

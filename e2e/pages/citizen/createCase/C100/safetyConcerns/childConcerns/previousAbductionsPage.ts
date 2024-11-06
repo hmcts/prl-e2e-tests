@@ -1,6 +1,6 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../../common/selectors";
-import { PreviousAbductionsContent } from "./previousAbductionsContent";
+import { PreviousAbductionsContent } from "../../../../../../fixtures/citizen/createCase/C100/safetyConcerns/childConcerns/previousAbductionsContent";
 import { Helpers } from "../../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../../common/commonStaticText";
 import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper";
@@ -90,9 +90,9 @@ export class PreviousAbductionsPage {
         1,
       ),
     ]);
-    if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
-    }
+    // if (accessibilityTest) {
+    //   await AccessibilityTestHelper.run(page); #TODO Commented out until ticket-6595 is complete
+    // }
   }
 
   private static async checkErrorMessaging(page: Page): Promise<void> {

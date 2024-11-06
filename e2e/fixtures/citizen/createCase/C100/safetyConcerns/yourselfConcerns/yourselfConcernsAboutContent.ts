@@ -7,7 +7,7 @@ export enum YourselfConcernsAboutContent {
   formHint2 = "Being subjected to a situation that leads to anxiety, depression, or post-traumatic stress disorder",
   formHint3 = "Emotional abuse could be spoken (verbal) or not involving words or speech (non-verbal). Examples may include name calling, constant criticism, controlling behaviour, not letting you have an opinion",
   formHint4 = "Include being forced or pressured to have sex without consent, being threatened into an unwanted sexual activity, or unwanted touching or groping",
-  formHint5 = "Examples of financial abuse can be not allowing a person to work, stopping someone saving their own money, or withholding money or credit cards\n",
+  formHint5 = "Examples of financial abuse can be not allowing a person to work, stopping someone saving their own money, or withholding money or credit cards",
   formHint6 = "Any concerns you have that do not fit into the above categories",
   formHint7 = "Select any options that are relevant to your situation.",
   formLabel1 = "Physical abuse",

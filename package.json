@@ -33,6 +33,8 @@
     "test:changes": "yarn playwright install && ts-node ./e2e/common/changedTestsRunner.ts",
     "test:fullfunctional": "echo 'This is a placeholder'",
     "test:crossbrowser": "echo 'This is a placeholder'",
+    "test:citizenSmoke": "yarn playwright install && yarn playwright test --project chromium --grep @citizenSmoke",
+    "test:manageCasesSmoke": "yarn playwright install && yarn playwright test --project chromium --grep @manageCasesSmoke",
     "test:manageCasesChrome": "yarn playwright install && yarn playwright test --project chromium --grep @manageCases",
     "test:manageCasesFirefox": "yarn playwright install firefox && yarn playwright test --project firefox --grep @crossbrowserManageCases",
     "test:manageCasesSafari": "yarn playwright install webkit && yarn playwright test --project webkit --grep @crossbrowserManageCases",

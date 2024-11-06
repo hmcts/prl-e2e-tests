@@ -54,7 +54,7 @@ test.describe("C100 Citizen Application tests on the top MIRO set. @citizenFront
     international elements yes to all: ture,
     yes to all reasonable adjustments: ture,
     need help with fees: yes,
-    fees applied: yes`, async ({ page }): Promise<void> => {
+    fees applied: yes @citizenSmoke`, async ({ page }): Promise<void> => {
     await C100.c100TopMiroJourney({
       page: page,
       accessibilityTest: false,
@@ -374,7 +374,7 @@ test.describe("Test the accessibility of the CA C100 Citizen Journey.  @accessib
       c100OtherPeopleChangedName: "yes",
       c100OtherPeopleDoBKnown: true,
       c100OtherPersonRelationship: "father",
-      c100ChildMainlyLivesWith: 'applicant',
+      c100ChildMainlyLivesWith: "applicant",
       yesNoChildArrangementOrderDetails: true,
       yesNoOtherProceedings: true,
       c100ChildrenSafetyConcerns: true,

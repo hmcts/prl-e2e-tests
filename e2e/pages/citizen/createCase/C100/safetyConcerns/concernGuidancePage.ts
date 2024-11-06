@@ -74,7 +74,7 @@ export class ConcernGuidancePage {
       ),
       Helpers.checkGroup(
         page,
-        4,
+        3,
         ConcernGuidanceContent,
         "link",
         `${Selectors.GovukLink}`,
@@ -84,12 +84,15 @@ export class ConcernGuidancePage {
       `${Selectors.GovukSummaryText}:text-is("${ConcernGuidanceContent.summaryText}")`,
     );
     await Promise.all([
-      Helpers.checkGroup(
+      Helpers.checkVisibleAndPresent(
         page,
+        `${Selectors.GovukLink}:text-is("${ConcernGuidanceContent.detailsLink1}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukLink}:text-is("${ConcernGuidanceContent.detailsLink2}")`,
         2,
-        ConcernGuidanceContent,
-        "detailsLink",
-        `${Selectors.GovukLink}`,
       ),
       Helpers.checkGroup(
         page,

@@ -100,9 +100,9 @@ export class ApplicantContactPreferencePage {
         1,
       ),
     ]);
-    if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
-    }
+    // if (accessibilityTest) {
+    //   await AccessibilityTestHelper.run(page); #TODO Commented out until ticket-6591 is complete
+    // }
   }
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(

@@ -1,11 +1,11 @@
 import { test } from "@playwright/test";
-import { CaseList } from "../../../journeys/manageCases/caseList/caseList";
 import Config from "../../../config";
+import { CaseList } from "../../../journeys/manageCases/caseList/caseList";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
 test.describe("Manage cases case list tests. @manageCases", (): void => {
-  test("Check the case list is visible to the user. @crossbrowserManageCases", async ({
+  test("Check the case list is visible to the user. @crossbrowserManageCases @manageCasesSmoke", async ({
     page,
   }): Promise<void> => {
     await CaseList.caseList(page, "solicitor", false);

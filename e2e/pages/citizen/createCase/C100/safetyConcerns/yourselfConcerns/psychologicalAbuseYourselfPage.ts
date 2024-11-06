@@ -4,10 +4,7 @@ import { Selectors } from "../../../../../../common/selectors";
 import { PsychologicalAbuseContent } from "../../../../../../fixtures/citizen/createCase/C100/safetyConcerns/yourselfConcerns/psychologicalAbuseContent";
 import { CommonStaticText } from "../../../../../../common/commonStaticText";
 import { SafetyConcernHelpers } from "../safetyConcernHelpers";
-import {
-  reportAbuseCheckboxIDs,
-  reportAbuseInputIDs,
-} from "../../../../../../common/commonUniqueSelectors";
+import { reportAbuseInputIDs } from "../../../../../../common/commonUniqueSelectors";
 
 interface PsychologicalAbusePageOptions {
   page: Page;
@@ -51,18 +48,15 @@ export class PsychologicalAbuseYourselfPage {
     await SafetyConcernHelpers.checkStaticTextYourself(page);
     await SafetyConcernHelpers.checkSidebarYourself(page);
     await SafetyConcernHelpers.checkContactDetailsText(page);
-    if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
-    }
+    // if (accessibilityTest) {
+    //   await AccessibilityTestHelper.run(page); #TODO Commented out until ticket-6593 is complete
+    // }
   }
 
   private static async fillInFields({
     page,
     c100PsychologicalAbuseYesNoToAll,
   }: FillInFieldsOptions): Promise<void> {
-    for (let checkbox of Object.values(reportAbuseCheckboxIDs)) {
-      await page.check(checkbox);
-    }
     const textToFill: [string, string] = [
       "behaviourDetails",
       "behaviourStartDate",

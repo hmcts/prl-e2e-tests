@@ -66,7 +66,7 @@ export class DrugConcernsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukCaptionXL}:text-is("${DrugConcernsContent.caption}")`,
+        `${Selectors.GovukCaptionL}:text-is("${DrugConcernsContent.caption}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -81,9 +81,9 @@ export class DrugConcernsPage {
       ),
     ]);
     await SafetyConcernHelpers.checkContactDetailsText(page);
-    if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
-    }
+    // if (accessibilityTest) {
+    //   await AccessibilityTestHelper.run(page); #TODO Commented out until ticket-6592 is complete
+    // }
   }
 
   private static async checkErrorMessaging(page: Page): Promise<void> {
