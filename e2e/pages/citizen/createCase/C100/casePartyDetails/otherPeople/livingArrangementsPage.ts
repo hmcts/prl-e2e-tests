@@ -37,7 +37,7 @@ export class LivingArrangementsPage {
     accessibilityTest,
     errorMessaging,
     yesNoOtherPersonDetails,
-    c100ChildMainlyLivesWith
+    c100ChildMainlyLivesWith,
   }: livingArrangementsOptions): Promise<void> {
     await this.checkPageLoads({ page, accessibilityTest });
     if (errorMessaging) {
@@ -76,14 +76,14 @@ export class LivingArrangementsPage {
 
   private static async triggerErrorMessages(
     page: Page,
-    c100ChildMainlyLivesWith: typeOfPerson
-): Promise<void> {
+    c100ChildMainlyLivesWith: typeOfPerson,
+  ): Promise<void> {
     if (c100ChildMainlyLivesWith in checkboxIDs) {
-      await page.uncheck(checkboxIDs[c100ChildMainlyLivesWith])
+      await page.uncheck(checkboxIDs[c100ChildMainlyLivesWith]);
     } else {
       throw new Error(
-        `Unrecognised type of person: ${c100ChildMainlyLivesWith}`
-      )
+        `Unrecognised type of person: ${c100ChildMainlyLivesWith}`,
+      );
     }
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
