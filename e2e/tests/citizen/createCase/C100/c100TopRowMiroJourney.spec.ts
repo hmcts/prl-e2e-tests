@@ -1,7 +1,7 @@
 import { test } from "@playwright/test";
-import { C100 } from "../../../../journeys/citizen/createCase/C100/C100";
-import Config from "../../../../config";
 import IdamLoginHelper from "../../../../common/idamLoginHelper";
+import Config from "../../../../config";
+import { C100 } from "../../../../journeys/citizen/createCase/C100/C100";
 
 test.describe("C100 Citizen Application tests on the top MIRO set. @citizenFrontend @crossbrowserCitizenFrontend", (): void => {
   test.beforeEach(async ({ page }) => {
@@ -54,7 +54,7 @@ test.describe("C100 Citizen Application tests on the top MIRO set. @citizenFront
     international elements yes to all: ture,
     yes to all reasonable adjustments: ture,
     need help with fees: yes,
-    fees applied: yes`, async ({ page }): Promise<void> => {
+    fees applied: yes @citizenSmoke`, async ({ page }): Promise<void> => {
     await C100.c100TopMiroJourney({
       page: page,
       accessibilityTest: false,
