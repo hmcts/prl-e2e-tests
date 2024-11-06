@@ -14,11 +14,11 @@ test.describe("C100 Citizen Application tests on the second MIRO set. @citizenFr
     Not Accessibility Testing,
     Not Error Messaging,
     No Screening and Written Review
-    Legal Representation: no
-    Court Permission Needed: no
-    Other proceedings: no to all
-    child arrangement order details: no
-    urgency and without notice: no
+    Legal Representation: Yes
+    Court Permission Needed: Yes
+    Other proceedings: Yes to all
+    child arrangement order details: Yes
+    urgency and without notice: Yes
     gender: male
     people: yes
     Children Supervision: yesSpendTime
@@ -304,7 +304,7 @@ test.describe("C100 Citizen Application tests on the second MIRO set. @citizenFr
   });
   test(`Test the second row of the second row c100 citizen journey with the following options:
     Accessibility Testing,
-    Yes Error Messaging,
+    No Error Messaging,
     No Screening and Written Review
     Legal Representation: no
     Court Permission Needed: no
