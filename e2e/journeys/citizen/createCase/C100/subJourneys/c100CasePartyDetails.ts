@@ -252,6 +252,7 @@ export class C100CasePartyDetails {
       page: page,
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
+      yesNoOtherPersonDetails: yesNoOtherPersonDetails
     });
   }
 }
