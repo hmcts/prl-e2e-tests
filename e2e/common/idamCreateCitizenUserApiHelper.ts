@@ -1,7 +1,7 @@
 import { APIRequestContext, request } from "@playwright/test";
 import * as dotenv from "dotenv";
-import { v4 as uuidv4 } from "uuid";
 import { existsSync } from "fs";
+import { v4 as uuidv4 } from "uuid";
 
 dotenv.config();
 
@@ -86,6 +86,11 @@ export async function createCitizenUser(
         },
       },
     );
+    if (response.status() != 201) {
+      throw new Error(
+        `Response from IDAM was not successful: ${await response.json()}\n Status Code: ${response.status()}`,
+      );
+    }
     const responseData = await response.json();
     if (existsSync(".env")) {
       console.log("User created:", responseData);
