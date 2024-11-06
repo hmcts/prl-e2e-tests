@@ -223,9 +223,9 @@ interface C100FourthRowMiroJourneyOptions {
   c100ChildrenAbductedBefore: boolean; // if yes -> previous abductions page
   c100ChildrenSupervision: c100ChildrenSupervisionRadios;
   yesNoInternationalElements: boolean;
-  yesNoReasonableAdjustments: boolean;
-  c100YesNoNeedHelpWithFees: boolean;
-  c100YesNoFeesApplied: boolean;
+  // yesNoReasonableAdjustments: boolean;
+  // c100YesNoNeedHelpWithFees: boolean;
+  // c100YesNoFeesApplied: boolean;
 }
 
 export class C100 {
