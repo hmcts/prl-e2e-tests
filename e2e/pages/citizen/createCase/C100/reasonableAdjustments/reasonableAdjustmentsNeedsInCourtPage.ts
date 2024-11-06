@@ -58,7 +58,7 @@ export class ReasonableAdjustmentsNeedsInCourtPage {
     if (!page) {
       throw new Error();
     }
-    await page.click(
+    await page.waitForSelector(
       `${Selectors.GovukHeadingXL}:text-is("${ReasonableAdjustmentsNeedsInCourtContent.pageTitle}")`,
     );
     await Promise.all([

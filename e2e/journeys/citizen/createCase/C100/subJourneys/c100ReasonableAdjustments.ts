@@ -23,77 +23,112 @@ export class C100ReasonableAdjustments {
     errorMessaging: errorMessaging,
     yesNoReasonableAdjustments: yesNoReasonableAdjustments,
   }: C100ReasonableAdjustmentsOptions): Promise<void> {
-    await ReasonableAdjustmentsAttendingCourtPage.reasonableAdjustmentsAttendingCourtPage(
-      {
-        page: page,
-        accessibilityTest: accessibilityTest,
-        errorMessaging: errorMessaging,
-        yesNoReasonableAdjustments: yesNoReasonableAdjustments,
-      },
-    );
-    await ReasonableAdjustmentsLanguageRequirementsPage.reasonableAdjustmentsAttendingCourtPage(
-      {
-        page: page,
-        accessibilityTest: accessibilityTest,
-        errorMessaging: errorMessaging,
-        yesNoReasonableAdjustments: yesNoReasonableAdjustments,
-      },
-    );
-    await ReasonableAdjustmentsSpecialArrangementsPage.reasonableAdjustmentsSpecialArrangementsPage(
-      {
-        page: page,
-        accessibilityTest: accessibilityTest,
-        errorMessaging: errorMessaging,
-        yesNoReasonableAdjustments: yesNoReasonableAdjustments,
-      },
-    );
-    await ReasonableAdjustmentsSupportDuringYourCasePage.reasonableAdjustmentsSupportDuringYourCasePage(
-      {
-        page: page,
-        accessibilityTest: accessibilityTest,
-        errorMessaging: errorMessaging,
-        yesNoReasonableAdjustments: yesNoReasonableAdjustments,
-      },
-    );
-    await ReasonableAdjustmentsDocumentSupportPage.reasonableAdjustmentsDocumentSupportPageOptions(
-      {
-        page: page,
-        accessibilityTest: accessibilityTest,
-        errorMessaging: errorMessaging,
-        yesNoReasonableAdjustments: yesNoReasonableAdjustments,
-      },
-    );
-    await ReasonableAdjustmentsCommunicationHelpPage.reasonableAdjustmentsCommunicationHelpPage(
-      {
-        page: page,
-        accessibilityTest: accessibilityTest,
-        errorMessaging: errorMessaging,
-        yesNoReasonableAdjustments: yesNoReasonableAdjustments,
-      },
-    );
-    await ReasonableAdjustmentsSupportForCourtHearingPage.reasonableAdjustmentsSupportForCourtHearingPage(
-      {
-        page: page,
-        accessibilityTest: accessibilityTest,
-        errorMessaging: errorMessaging,
-        yesNoReasonableAdjustments: yesNoReasonableAdjustments,
-      },
-    );
-    await ReasonableAdjustmentsNeedsDuringCourtHearingPage.reasonableAdjustmentsNeedsDuringCourtHearingPage(
-      {
-        page: page,
-        accessibilityTest: accessibilityTest,
-        errorMessaging: errorMessaging,
-        yesNoReasonableAdjustments: yesNoReasonableAdjustments,
-      },
-    );
-    await ReasonableAdjustmentsNeedsInCourtPage.reasonableAdjustmentsNeedsInCourtPage(
-      {
-        page: page,
-        accessibilityTest: accessibilityTest,
-        errorMessaging: errorMessaging,
-        yesNoReasonableAdjustments: yesNoReasonableAdjustments,
-      },
-    );
+    if (yesNoReasonableAdjustments) {
+      await ReasonableAdjustmentsAttendingCourtPage.reasonableAdjustmentsAttendingCourtPage(
+        {
+          page: page,
+          accessibilityTest: accessibilityTest,
+          errorMessaging: errorMessaging,
+          yesNoReasonableAdjustments: yesNoReasonableAdjustments,
+        },
+      );
+      await ReasonableAdjustmentsLanguageRequirementsPage.reasonableAdjustmentsAttendingCourtPage(
+        {
+          page: page,
+          accessibilityTest: accessibilityTest,
+          errorMessaging: errorMessaging,
+          yesNoReasonableAdjustments: yesNoReasonableAdjustments,
+        },
+      );
+      await ReasonableAdjustmentsSpecialArrangementsPage.reasonableAdjustmentsSpecialArrangementsPage(
+        {
+          page: page,
+          accessibilityTest: accessibilityTest,
+          errorMessaging: errorMessaging,
+          yesNoReasonableAdjustments: yesNoReasonableAdjustments,
+        },
+      );
+      await ReasonableAdjustmentsSupportDuringYourCasePage.reasonableAdjustmentsSupportDuringYourCasePage(
+        {
+          page: page,
+          accessibilityTest: accessibilityTest,
+          errorMessaging: errorMessaging,
+          yesNoReasonableAdjustments: yesNoReasonableAdjustments,
+        },
+      );
+      await ReasonableAdjustmentsDocumentSupportPage.reasonableAdjustmentsDocumentSupportPageOptions(
+        {
+          page: page,
+          accessibilityTest: accessibilityTest,
+          errorMessaging: errorMessaging,
+          yesNoReasonableAdjustments: yesNoReasonableAdjustments,
+        },
+      );
+      await ReasonableAdjustmentsCommunicationHelpPage.reasonableAdjustmentsCommunicationHelpPage(
+        {
+          page: page,
+          accessibilityTest: accessibilityTest,
+          errorMessaging: errorMessaging,
+          yesNoReasonableAdjustments: yesNoReasonableAdjustments,
+        },
+      );
+      await ReasonableAdjustmentsSupportForCourtHearingPage.reasonableAdjustmentsSupportForCourtHearingPage(
+        {
+          page: page,
+          accessibilityTest: accessibilityTest,
+          errorMessaging: errorMessaging,
+          yesNoReasonableAdjustments: yesNoReasonableAdjustments,
+        },
+      );
+      await ReasonableAdjustmentsNeedsDuringCourtHearingPage.reasonableAdjustmentsNeedsDuringCourtHearingPage(
+        {
+          page: page,
+          accessibilityTest: accessibilityTest,
+          errorMessaging: errorMessaging,
+          yesNoReasonableAdjustments: yesNoReasonableAdjustments,
+        },
+      );
+      await ReasonableAdjustmentsNeedsInCourtPage.reasonableAdjustmentsNeedsInCourtPage(
+        {
+          page: page,
+          accessibilityTest: accessibilityTest,
+          errorMessaging: errorMessaging,
+          yesNoReasonableAdjustments: yesNoReasonableAdjustments,
+        },
+      );
+    } else {
+      await ReasonableAdjustmentsAttendingCourtPage.reasonableAdjustmentsAttendingCourtPage(
+        {
+          page: page,
+          accessibilityTest: accessibilityTest,
+          errorMessaging: errorMessaging,
+          yesNoReasonableAdjustments: yesNoReasonableAdjustments,
+        },
+      );
+      await ReasonableAdjustmentsLanguageRequirementsPage.reasonableAdjustmentsAttendingCourtPage(
+        {
+          page: page,
+          accessibilityTest: accessibilityTest,
+          errorMessaging: errorMessaging,
+          yesNoReasonableAdjustments: yesNoReasonableAdjustments,
+        },
+      );
+      await ReasonableAdjustmentsSpecialArrangementsPage.reasonableAdjustmentsSpecialArrangementsPage(
+        {
+          page: page,
+          accessibilityTest: accessibilityTest,
+          errorMessaging: errorMessaging,
+          yesNoReasonableAdjustments: yesNoReasonableAdjustments,
+        },
+      );
+      await ReasonableAdjustmentsSupportDuringYourCasePage.reasonableAdjustmentsSupportDuringYourCasePage(
+        {
+          page: page,
+          accessibilityTest: accessibilityTest,
+          errorMessaging: errorMessaging,
+          yesNoReasonableAdjustments: yesNoReasonableAdjustments,
+        },
+      );
+    }
   }
 }

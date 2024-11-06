@@ -67,12 +67,15 @@ export class ReasonableAdjustmentsSpecialArrangementsPage {
         `${Selectors.GovukInsetText}:text-is("${ReasonableAdjustmentsSpecialArrangementsContent.govukInsetText}")`,
         1,
       ),
-      Helpers.checkGroup(
+      Helpers.checkVisibleAndPresent(
         page,
+        `${Selectors.GovukHint}:text-is("${ReasonableAdjustmentsSpecialArrangementsContent.govukHint1}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukHint}:text-is("${ReasonableAdjustmentsSpecialArrangementsContent.govukHint2}")`,
         2,
-        ReasonableAdjustmentsSpecialArrangementsContent,
-        "govukHint",
-        Selectors.GovukHint,
       ),
       Helpers.checkGroup(
         page,

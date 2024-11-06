@@ -66,6 +66,8 @@ test.describe("C100 Citizen Application tests on the second MIRO set. @citizenFr
       c100ChildrenSupervision: "yesSpendTime",
       yesNoInternationalElements: true,
       yesNoReasonableAdjustments: true,
+      c100YesNoNeedHelpWithFees: true,
+      c100YesNoFeesApplied: true
     });
   });
 
@@ -124,6 +126,8 @@ test.describe("C100 Citizen Application tests on the second MIRO set. @citizenFr
       c100ChildrenSupervision: "yesButSupervised",
       yesNoInternationalElements: false,
       yesNoReasonableAdjustments: false,
+      c100YesNoNeedHelpWithFees: false,
+      c100YesNoFeesApplied: false
     });
   });
   test(`Test the second row of the second row c100 citizen journey with the following options:
@@ -183,6 +187,67 @@ test.describe("C100 Citizen Application tests on the second MIRO set. @citizenFr
       c100ChildrenSupervision: "noSpendTime",
       yesNoInternationalElements: true,
       yesNoReasonableAdjustments: true,
+      c100YesNoNeedHelpWithFees: true,
+      c100YesNoFeesApplied: true
+    });
+  });
+  test(`Test the second row of the second row c100 citizen journey with the following options:
+    Accessibility Testing,
+    Yes Error Messaging,
+    No Screening and Written Review
+    Legal Representation: no
+    Court Permission Needed: no
+    Other proceedings: yes to all
+    child arrangement order details: no
+    urgency and without notice: no
+    gender: female
+    people: no`, async ({ page }): Promise<void> => {
+    await C100.c100SecondMiroJourney({
+      page: page,
+      accessibilityTest: true,
+      errorMessaging: true,
+      c100LegalRepresentation: false,
+      c100CourtPermissionNeeded: false,
+      yesNoOtherProceedings: true,
+      urgencyAndWithoutNoticeAllOptionsYes: false,
+      gender: "female",
+      c100PeopleYesNoDontKnow: "no",
+      c100OthersKnowApplicantsContact: "yes",
+      c100PrivateDetails: true,
+      applicantChangedName: true,
+      applicantGender: "female",
+      applicantRelationship: "guardian",
+      applicantAddressLookup: true,
+      appAddressLookupSuccessful: true,
+      applicantPrevAddress5Years: true,
+      applicantEmailTelephoneVoicemail: true,
+      applicantDigitalPreference: true,
+      respondentKnownDoB: true,
+      respondentKnownPlaceOfBirth: true,
+      respondentGender: "female",
+      respondentChangedName: "no",
+      respAddress5Years: "no",
+      respondentRelationship: "guardian",
+      respAddressLookup: true,
+      respAddressLookupSuccessful: true,
+      respKnownEmailAndPhone: true,
+      yesNoOtherPersonDetails: true,
+      c100OtherPeopleGender: "female",
+      c100OtherPeopleChangedName: "no",
+      c100OtherPeopleDoBKnown: true,
+      c100OtherPersonRelationship: "guardian",
+      c100ChildMainlyLivesWith: "respondent",
+      c100ChildrenSafetyConcerns: false,
+      c100SafetyConcernsYesNoToAll: false,
+      c100ChildrenHavePassport: false,
+      c100MoreThanOnePassport: false,
+      c100PassportOfficeNotified: false,
+      c100ChildrenAbductedBefore: false,
+      c100ChildrenSupervision: "yesButSupervised",
+      yesNoInternationalElements: false,
+      yesNoReasonableAdjustments: false,
+      c100YesNoNeedHelpWithFees: false,
+      c100YesNoFeesApplied: false
     });
   });
 });

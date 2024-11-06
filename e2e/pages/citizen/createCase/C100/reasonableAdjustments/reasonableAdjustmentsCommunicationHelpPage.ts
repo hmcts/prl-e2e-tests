@@ -74,14 +74,9 @@ export class ReasonableAdjustmentsCommunicationHelpPage {
         `${Selectors.GovukInsetText}:text-is("${ReasonableAdjustmentsCommunicationHelpContent.govukInsetText}")`,
         1,
       ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukInsetText}:text-is("${ReasonableAdjustmentsCommunicationHelpContent.govukInsetText}")`,
-        1,
-      ),
       Helpers.checkGroup(
         page,
-        2,
+        3,
         ReasonableAdjustmentsCommunicationHelpContent,
         "govukHint",
         Selectors.GovukHint,

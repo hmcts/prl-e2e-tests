@@ -108,7 +108,7 @@ export class FeeGuidancePage {
       FeeGuidanceContent.referenceNumber,
     );
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
   }
 }

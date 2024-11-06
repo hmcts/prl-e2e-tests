@@ -72,7 +72,7 @@ export class ReasonableAdjustmentsSupportDuringYourCasePage {
       ),
       Helpers.checkGroup(
         page,
-        6,
+        5,
         ReasonableAdjustmentsSupportDuringYourCaseContent,
         "govukLabel",
         Selectors.GovukLabel,
