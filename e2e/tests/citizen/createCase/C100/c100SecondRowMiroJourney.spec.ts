@@ -67,7 +67,7 @@ test.describe("C100 Citizen Application tests on the second MIRO set. @citizenFr
       yesNoInternationalElements: true,
       yesNoReasonableAdjustments: true,
       c100YesNoNeedHelpWithFees: true,
-      c100YesNoFeesApplied: true
+      c100YesNoFeesApplied: true,
     });
   });
 
@@ -127,7 +127,7 @@ test.describe("C100 Citizen Application tests on the second MIRO set. @citizenFr
       yesNoInternationalElements: false,
       yesNoReasonableAdjustments: false,
       c100YesNoNeedHelpWithFees: false,
-      c100YesNoFeesApplied: false
+      c100YesNoFeesApplied: false,
     });
   });
   test(`Test the second row of the second row c100 citizen journey with the following options:
@@ -188,7 +188,7 @@ test.describe("C100 Citizen Application tests on the second MIRO set. @citizenFr
       yesNoInternationalElements: true,
       yesNoReasonableAdjustments: true,
       c100YesNoNeedHelpWithFees: true,
-      c100YesNoFeesApplied: true
+      c100YesNoFeesApplied: true,
     });
   });
   test(`Test the second row of the second row c100 citizen journey with the following options:
@@ -247,7 +247,7 @@ test.describe("C100 Citizen Application tests on the second MIRO set. @citizenFr
       yesNoInternationalElements: false,
       yesNoReasonableAdjustments: false,
       c100YesNoNeedHelpWithFees: false,
-      c100YesNoFeesApplied: false
+      c100YesNoFeesApplied: false,
     });
   });
 });

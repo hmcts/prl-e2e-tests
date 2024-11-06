@@ -498,8 +498,8 @@ export class C100 {
     c100ChildrenSupervision,
     yesNoInternationalElements,
     yesNoReasonableAdjustments,
-                                              c100YesNoNeedHelpWithFees,
-                                              c100YesNoFeesApplied,
+    c100YesNoNeedHelpWithFees,
+    c100YesNoFeesApplied,
   }: C100SecondMiroJourneyOptions): Promise<void> {
     await CitizenCreateInitial.citizenCreateInitial({
       page: page,
@@ -621,8 +621,8 @@ export class C100 {
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
       c100YesNoNeedHelpWithFees: c100YesNoNeedHelpWithFees,
-      c100YesNoFeesApplied: c100YesNoFeesApplied
-    })
+      c100YesNoFeesApplied: c100YesNoFeesApplied,
+    });
   }
 
   public static async c100ThirdMiroJourney({
