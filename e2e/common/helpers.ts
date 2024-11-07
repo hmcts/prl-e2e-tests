@@ -1,9 +1,9 @@
 import { expect, Locator, Page } from "@playwright/test";
 import {
-  c100SolicitorEvents,
+  c100SolicitorEvents, fl401JudiciaryEvents,
   fl401SolicitorEvents,
   fl401SubmittedSolicitorEvents,
-  UserRole,
+  UserRole
 } from "./types";
 import idamLoginHelper from "./idamLoginHelper";
 import { Selectors } from "./selectors.ts";
@@ -14,7 +14,8 @@ export class Helpers {
     chosenEvent:
       | c100SolicitorEvents
       | fl401SolicitorEvents
-      | fl401SubmittedSolicitorEvents,
+      | fl401SubmittedSolicitorEvents
+      | fl401JudiciaryEvents,
   ): Promise<void> {
     try {
       await page.waitForLoadState("domcontentloaded");

@@ -71,6 +71,9 @@ export type fl401SubmittedSolicitorEvents =
   | "Upload additional applications"
   | "Withdraw application";
 
+export type fl401JudiciaryEvents =
+  | "Edit and approve a draft order";
+
 export type ApplicantGender = "female" | "male" | "other";
 
 export type yesNoDontKnow = "yes" | "no" | "dontKnow";
@@ -110,3 +113,9 @@ export type OrderType =
   | "c21other";
 
 export type typeOfPerson = "applicant" | "respondent" | "otherPerson";
+
+export type JudgeOrderAction =
+  | "Send to admin to serve"
+  | "Give admin further directions then serve"
+  | "Edit the order myself and send to admin to serve"
+  | "Ask the legal representative to make changes";
