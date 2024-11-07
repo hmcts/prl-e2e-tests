@@ -1,14 +1,17 @@
 import Config from "../config.ts";
 import { Page } from "@playwright/test";
 import { UserCredentials, UserLoginInfo } from "./types.ts";
-import { setupUser } from "./idamCreateCitizenUserApiHelper.ts";
+import { createCitizenUser, getAccessToken, setupUser } from "./idamCreateCitizenUserApiHelper.ts";
 
 export class IdamLoginHelper {
   private static fields: UserLoginInfo = {
     username: "#username",
     password: "#password",
   };
+
   private static submitButton: string = 'input[value="Sign in"]';
+
+  // private static userInfo: { email: string; password: string } | null = null;
 
   public static async signInSolicitorUser(
     page: Page,

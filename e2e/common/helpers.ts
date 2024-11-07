@@ -231,8 +231,8 @@ export class Helpers {
     return Helpers.months[index - 1];
   }
 
-  private static async checkCaseNumberRegex(page: Page): Promise<void> {
-    const caseNumberRegex: RegExp = /^Casenumber: \d{4}-\d{4}-\d{4}-\d{4}$/;
+  public static async checkCaseNumberRegex(page: Page): Promise<void> {
+    const caseNumberRegex: RegExp = /^\d{16}$/;
     try {
       const visibilityPromises: Promise<void>[] = Array.from(
         { length: 1 },
@@ -240,7 +240,7 @@ export class Helpers {
           expect
             .soft(
               page
-                .locator(`${Selectors.h2}`, { hasText: caseNumberRegex })
+                .locator(`${Selectors.strong}`, { hasText: caseNumberRegex })
                 .nth(i),
             )
             .toBeVisible(),

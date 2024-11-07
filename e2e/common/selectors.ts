@@ -41,6 +41,7 @@ export enum Selectors {
 
   // Notifications
   GovukNotificationBanner = ".govuk-notification-banner",
+  GovukNotificationBannerLink = "govuk-notification-banner__link",
   GovukErrorSummary = ".govuk-error-summary",
 
   // Content

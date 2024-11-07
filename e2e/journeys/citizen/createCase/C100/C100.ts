@@ -26,6 +26,8 @@ import { c100ChildrenSupervisionRadios } from "../../../../pages/citizen/createC
 import { C100InternationalElements } from "./subJourneys/c100InternationalElements";
 import { C100ReasonableAdjustments } from "./subJourneys/c100ReasonableAdjustments";
 import { C100HelpWithFees } from "./subJourneys/c100HelpWithFees";
+import { EqualityAndDiversityPage } from "../../../../pages/citizen/createCase/C100/confirmation/equalityAndDiversityQuestionsPage";
+import { ConfirmationPage } from "../../../../pages/citizen/createCase/C100/confirmation/confirmationPage";
 
 interface C100ApplicationCompletedForYouOptions {
   page: Page;
@@ -623,6 +625,13 @@ export class C100 {
       c100YesNoNeedHelpWithFees: c100YesNoNeedHelpWithFees,
       c100YesNoFeesApplied: c100YesNoFeesApplied,
     });
+    // await EqualityAndDiversityPage.equalityAndDiversityPage({
+    //   page
+    // });
+    // await ConfirmationPage.confirmationPage({
+    //   page: page,
+    //   accessibilityTest: accessibilityTest,
+    // });
   }
 
   public static async c100ThirdMiroJourney({
