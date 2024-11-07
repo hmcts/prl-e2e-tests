@@ -14,7 +14,6 @@ async function createDaCitizenCourtNavCase(withDoc: boolean): Promise<void> {
     "daCourtNavCreateCase",
     apiContextDaCreateCase,
   );
-
   if (!tokenDaCreateCase) {
     throw new Error("Setup failed: Unable to get bearer token.");
   }

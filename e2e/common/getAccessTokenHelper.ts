@@ -6,17 +6,17 @@ dotenv.config();
 const citizenCreateUserData = {
   grant_type: "client_credentials",
   client_id: "prl-cos-api",
-  client_secret: process.env.IDAM_SECRET,
+  client_secret: process.env.IDAM_SECRET as string,
   scope: "profile roles",
 };
 
 const daCourtNavCreateCaseData = {
   grant_type: "password",
   client_id: "courtnav-service",
-  client_secret: process.env.COURTNAV_SECRET,
+  client_secret: process.env.COURTNAV_SECRET as string,
   scope: "openid profile roles",
-  username: process.env.COURTNAV_USERNAME,
-  password: process.env.COURTNAV_PASSWORD,
+  username: process.env.COURTNAV_USERNAME as string,
+  password: process.env.COURTNAV_PASSWORD as string,
 };
 
 /**
@@ -51,12 +51,14 @@ export async function getAccessToken(
     if (!response.ok()) {
       const errorText = await response.text();
       throw new Error(
-        `Failed to fetch access token: ${response.status()} - ${errorText}. Ensure your VPN is connected or check your URL/SECRET.`
+        `Failed to fetch access token: ${response.status()} - ${errorText}. Ensure your VPN is connected or check your URL/SECRET.`,
       );
     }
     const responseData = await response.json();
     return responseData.access_token;
   } catch (error) {
-    throw new Error(`An error occurred while fetching the access token: ${error instanceof Error ? error.message : error}`);
+    throw new Error(
+      `An error occurred while fetching the access token: ${error instanceof Error ? error.message : error}`,
+    );
   }
 }
