@@ -28,7 +28,7 @@ import { C100ReasonableAdjustments } from "./subJourneys/c100ReasonableAdjustmen
 import { C100HelpWithFees } from "./subJourneys/c100HelpWithFees";
 import {
   ReviewPage,
-  reviewPageTopJourneyMotherFather
+  reviewPageTopJourneyMotherFather,
 } from "../../../../pages/citizen/createCase/C100/reviewPages/reviewPage";
 
 interface C100ApplicationCompletedForYouOptions {
@@ -345,7 +345,7 @@ export class C100 {
     yesNoReasonableAdjustments,
     c100YesNoNeedHelpWithFees,
     c100YesNoFeesApplied,
-                                           reviewPageTopJourneyMotherFather
+    reviewPageTopJourneyMotherFather,
   }: C100TopMiroJourneyOptions): Promise<void> {
     await CitizenCreateInitial.citizenCreateInitial({
       page: page,
@@ -459,7 +459,7 @@ export class C100 {
     await ReviewPage.submitTopMiro({
       page: page,
       accessibilityTest: accessibilityTest,
-      reviewPageTopJourneyMotherFather: reviewPageTopJourneyMotherFather
+      reviewPageTopJourneyMotherFather: reviewPageTopJourneyMotherFather,
     });
   }
 

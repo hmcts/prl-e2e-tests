@@ -76,12 +76,12 @@ export class ReviewPage {
   public static async submitTopMiro({
     page,
     accessibilityTest,
-                                      reviewPageTopJourneyMotherFather
+    reviewPageTopJourneyMotherFather,
   }: checkTextOptions): Promise<void> {
     await this.checkCommonText({
       page: page,
       accessibilityTest: accessibilityTest,
-      reviewPageTopJourneyMotherFather: reviewPageTopJourneyMotherFather
+      reviewPageTopJourneyMotherFather: reviewPageTopJourneyMotherFather,
     });
     await Promise.all([
       Helpers.checkGroup(

@@ -100,7 +100,7 @@ test.describe("C100 Citizen Application tests on the top MIRO set. @citizenFront
       yesNoReasonableAdjustments: true,
       c100YesNoNeedHelpWithFees: true,
       c100YesNoFeesApplied: true,
-      reviewPageTopJourneyMotherFather: "mother"
+      reviewPageTopJourneyMotherFather: "mother",
     });
   });
 
@@ -194,7 +194,7 @@ test.describe("C100 Citizen Application tests on the top MIRO set. @citizenFront
       yesNoReasonableAdjustments: true,
       c100YesNoNeedHelpWithFees: true,
       c100YesNoFeesApplied: true,
-      reviewPageTopJourneyMotherFather: "father"
+      reviewPageTopJourneyMotherFather: "father",
     });
   });
 
@@ -288,7 +288,7 @@ test.describe("C100 Citizen Application tests on the top MIRO set. @citizenFront
       yesNoReasonableAdjustments: true,
       c100YesNoNeedHelpWithFees: true,
       c100YesNoFeesApplied: true,
-      reviewPageTopJourneyMotherFather: "father"
+      reviewPageTopJourneyMotherFather: "father",
     });
   });
 });
@@ -391,8 +391,7 @@ test.describe("Test the accessibility of the CA C100 Citizen Journey.  @accessib
       yesNoReasonableAdjustments: true,
       c100YesNoNeedHelpWithFees: true,
       c100YesNoFeesApplied: true,
-      reviewPageTopJourneyMotherFather: "father"
-
+      reviewPageTopJourneyMotherFather: "father",
     });
   });
 });
