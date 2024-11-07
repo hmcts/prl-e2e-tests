@@ -11,7 +11,8 @@
     "skipLibCheck": true,
     "noEmit": true,
     "outDir": "dist",
-    "allowJs": false
+    "allowJs": false,
+    "resolveJsonModule": true
   },
   "include": ["src/**/*", "__tests__/**/*"],
   "exclude": ["node_modules"]

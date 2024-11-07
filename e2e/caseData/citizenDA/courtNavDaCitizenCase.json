@@ -1,0 +1,215 @@
+{
+  "metaData": {
+    "caseOrigin": "CourtNav",
+    "courtNavApproved": true,
+    "hasDraftOrder": true,
+    "numberOfAttachments": 5,
+    "courtSpecialRequirements": "To be heard at Swansea civil justice center"
+  },
+  "fl401": {
+    "beforeStart": {
+      "applicantHowOld": "eighteenOrOlder"
+    },
+    "situation": {
+      "ordersAppliedFor": [
+        "nonMolestationOrder",
+        "occupationOrder"
+      ],
+      "ordersAppliedWithoutNotice": true,
+      "ordersAppliedWithoutNoticeReason": [
+        "riskOfSignificantHarm",
+        "deterredFromPursuingApplication",
+        "respondentDeliberatelyEvadingService"
+      ],
+      "ordersAppliedWithoutNoticeReasonDetails": "Very sensitive case. Needs to be heard urgently without notice",
+      "bailConditionsOnRespondent": false,
+      "additionalDetailsForCourt": "Rejections are nothing but the fall of the truth. There is no one where they can be. It is up to the architect to push it back. Who are they to take up?"
+    },
+    "applicantDetails": {
+      "applicantFirstName": "Applicant",
+      "applicantLastName": "ApplLast",
+      "applicantGender": "other",
+      "applicantGenderOther": "Prefer not to say",
+      "applicantDateOfBirth": {
+        "day": 13,
+        "month": 10,
+        "year": 1985
+      },
+      "shareContactDetailsWithRespondent": true,
+      "applicantAddress": {
+        "addressLine1": "Heaven",
+        "addressLine2": "7 Castle Square",
+        "addressLine3": "",
+        "postTown": "Swansea",
+        "postCode": "SA1 1DW"
+      },
+      "applicantEmailAddress": "test-appl@hmcts.net",
+      "applicantPhoneNumber": "(044) 9772047123",
+      "applicantPreferredContact": [
+        "phone"
+      ],
+      "applicantContactInstructions": "Available of phone during business hours",
+      "applicantHasLegalRepresentative": true
+    },
+    "legalRepresentativeFirm": "test",
+    "legalRepresentativeAddress": {
+      "addressLine1": "test",
+      "addressLine2": "test",
+      "addressLine3": "test",
+      "postTown": "test",
+      "postCode": "test",
+      "county": "test",
+      "country": "test"
+    },
+    "legalRepresentativeDx": "test",
+    "legalRepresentativeReference": "test",
+    "legalRepresentativeFirstName": "test",
+    "legalRepresentativeLastName": "test",
+    "applicantHasLegalRepresentative": true,
+    "legalRepresentativeEmail": "test",
+    "legalRepresentativePhone": "test",
+    "respondentDetails": {
+      "respondentFirstName": "Dolores",
+      "respondentLastName": "Smith",
+      "respondentOtherNames": "",
+      "respondentDateOfBirth": {
+        "day": 10,
+        "month": 12,
+        "year": 1986
+      },
+      "respondentLivesWithApplicant": true,
+      "respondentAddress": {
+        "addressLine1": "Heaven",
+        "addressLine2": "7 Castle Square",
+        "addressLine3": "cum voluptatum velit",
+        "postTown": "Swansea",
+        "postCode": "SA1 1DW"
+      },
+      "respondentPhoneNumber": "+44 68995 95438",
+      "respondentEmailAddress": "test-resp@hmcts.net"
+    },
+    "relationshipWithRespondent": {
+      "relationshipDescription": "liveTogetherCouple",
+      "relationshipStartDate": {
+        "day": 1,
+        "month": 1,
+        "year": 2008
+      },
+      "anyChildren": true
+    },
+    "family": {
+      "whoApplicationIsFor": "applicantOnly",
+      "anyOngoingCourtProceedings": true,
+      "ongoingCourtProceedings": [
+        {
+          "nameOfCourt": "London central county court",
+          "caseNumber": "1234-5678-9101-1121",
+          "caseType": "Divorce",
+          "caseDetails": ""
+        }
+      ]
+    },
+    "respondentBehaviour": {
+      "applyingForMonMolestationOrder": true,
+      "stopBehaviourTowardsApplicant": [
+        "harrasingOrIntimidating",
+        "publishingAboutApplicant",
+        "contactingApplicant",
+        "damagingPossessions",
+        "damagingHome",
+        "comingNearWork",
+        "comingNearHome"
+      ],
+      "stopBehaviourTowardsChildren": [
+        "beingViolentOrThreatening",
+        "contactingDirectly",
+        "goingNearSchoolNursery"
+      ],
+      "stopBehaviourAnythingElse": "\r\n Please see draft order"
+    },
+    "theHome": {
+      "applyingForOccupationOrder": true,
+      "occupationOrderAddress": {
+        "addressLine1": "Heaven",
+        "addressLine2": "7 Castle Square",
+        "addressLine3": "eligendi quibusdam omnis",
+        "postTown": "Swansea",
+        "postCode": "SA1 1DW"
+      },
+      "currentlyLivesAtAddress": [
+        "applicant",
+        "respondent",
+        "children",
+        "other"
+      ],
+      "currentlyLivesAtAddressOther": "In Swansea justice center",
+      "childrenSharedResponsibility": [
+        {
+          "fullName": "Daniel Morgan",
+          "age": 10
+        },
+        {
+          "fullName": "Sarah Morgan",
+          "age": 5
+        }
+      ],
+      "childrenApplicantResponsibility": [
+        {
+          "fullName": "Serena Morgan",
+          "age": 2
+        }
+      ],
+      "propertySpeciallyAdapted": true,
+      "propertySpeciallyAdaptedDetails": "Yes, its a shared property",
+      "propertyHasMortgage": true,
+      "namedOnMortgage": [
+        "applicant",
+        "respondent"
+      ],
+      "mortgageNumber": "12345-678910",
+      "mortgageLenderName": "Mortgage Lender",
+      "mortgageLenderAddress": {
+        "addressLine1": "Heaven",
+        "addressLine2": "7 Castle Square",
+        "addressLine3": "deserunt velit quod",
+        "postTown": "Swansea",
+        "postCode": "SA1 1DW"
+      },
+      "propertyIsRented": false,
+      "haveHomeRights": true,
+      "wantToHappenWithLivingSituation": [
+        "returnToHome",
+        "respondentNotEnterHome",
+        "respondentLimitInHome"
+      ],
+      "wantToHappenWithFamilyHome": [
+        "respondentToPayRepairsMaintenance",
+        "useOfFurnitureOrContents"
+      ]
+    },
+    "goingToCourt": {
+      "isInterpreterRequired": true,
+      "interpreterLanguage": "English",
+      "interpreterDialect": "silesian",
+      "anyDisabilityNeeds": true,
+      "disabilityNeedsDetails": "wheelchair user",
+      "anySpecialMeasures": [
+        "separateWaitingRoom"
+      ]
+    },
+    "statementOfTruth": {
+      "declaration": [
+        "applicantConfirm"
+      ],
+      "signature": "John Morgan",
+      "signatureFullName": "John Morgan",
+      "signatureDate": {
+        "day": 13,
+        "month": 10,
+        "year": 2022
+      },
+      "representativeFirmName": "courtnav_application",
+      "representativePositionHeld": "courtnav_application"
+    }
+  }
+}
