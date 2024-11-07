@@ -21,6 +21,7 @@ const daCourtNavCreateCaseData = {
 
 /**
  * Function to get an access token from the IDAM service
+ * @param {string} option The option to determine which data set to use for the request
  * @param {APIRequestContext} apiContext The API request context
  * @returns {Promise<string>} The access token if successful, otherwise throws an error
  */
@@ -28,14 +29,17 @@ export async function getAccessToken(
   option: string,
   apiContext: APIRequestContext,
 ): Promise<string> {
+  let data;
   try {
-    let data;
-    if (option === "citizenCreateUser") {
-      data = citizenCreateUserData;
-    } else if (option === "daCourtNavCreateCase") {
-      data = daCourtNavCreateCaseData;
-    } else {
-      throw new Error(`Invalid option: ${option}`);
+    switch (option) {
+      case "citizenCreateUser":
+        data = citizenCreateUserData;
+        break;
+      case "daCourtNavCreateCase":
+        data = daCourtNavCreateCaseData;
+        break;
+      default:
+        throw new Error(`Invalid option: ${option}`);
     }
     const response = await apiContext.post(
       process.env.IDAM_TOKEN_URL as string,
@@ -46,18 +50,13 @@ export async function getAccessToken(
     );
     if (!response.ok()) {
       const errorText = await response.text();
-      console.error(
-        "Error fetching access token:",
-        response.status(),
-        errorText,
+      throw new Error(
+        `Failed to fetch access token: ${response.status()} - ${errorText}. Ensure your VPN is connected or check your URL/SECRET.`
       );
-      console.log("Check your VPN connection or URL.");
-      throw new Error(`Failed to fetch access token: ${response.status()}`);
     }
     const responseData = await response.json();
     return responseData.access_token;
   } catch (error) {
-    console.log("Check your VPN connection or SECRET.");
-    throw new Error("An error occurred while fetching the access token");
+    throw new Error(`An error occurred while fetching the access token: ${error instanceof Error ? error.message : error}`);
   }
 }
