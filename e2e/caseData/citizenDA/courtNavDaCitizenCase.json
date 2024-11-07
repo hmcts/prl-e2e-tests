@@ -11,10 +11,7 @@
       "applicantHowOld": "eighteenOrOlder"
     },
     "situation": {
-      "ordersAppliedFor": [
-        "nonMolestationOrder",
-        "occupationOrder"
-      ],
+      "ordersAppliedFor": ["nonMolestationOrder", "occupationOrder"],
       "ordersAppliedWithoutNotice": true,
       "ordersAppliedWithoutNoticeReason": [
         "riskOfSignificantHarm",
@@ -45,9 +42,7 @@
       },
       "applicantEmailAddress": "test-appl@hmcts.net",
       "applicantPhoneNumber": "(044) 9772047123",
-      "applicantPreferredContact": [
-        "phone"
-      ],
+      "applicantPreferredContact": ["phone"],
       "applicantContactInstructions": "Available of phone during business hours",
       "applicantHasLegalRepresentative": true
     },
@@ -162,10 +157,7 @@
       "propertySpeciallyAdapted": true,
       "propertySpeciallyAdaptedDetails": "Yes, its a shared property",
       "propertyHasMortgage": true,
-      "namedOnMortgage": [
-        "applicant",
-        "respondent"
-      ],
+      "namedOnMortgage": ["applicant", "respondent"],
       "mortgageNumber": "12345-678910",
       "mortgageLenderName": "Mortgage Lender",
       "mortgageLenderAddress": {
@@ -193,14 +185,10 @@
       "interpreterDialect": "silesian",
       "anyDisabilityNeeds": true,
       "disabilityNeedsDetails": "wheelchair user",
-      "anySpecialMeasures": [
-        "separateWaitingRoom"
-      ]
+      "anySpecialMeasures": ["separateWaitingRoom"]
     },
     "statementOfTruth": {
-      "declaration": [
-        "applicantConfirm"
-      ],
+      "declaration": ["applicantConfirm"],
       "signature": "John Morgan",
       "signatureFullName": "John Morgan",
       "signatureDate": {

@@ -13,7 +13,7 @@ setup("Setup solicitor user", async ({ page }) => {
 
 setup("Retrieve bearer token for citizen user creation", async () => {
   const apiContext: APIRequestContext = await request.newContext();
-  const token = await getAccessToken("citizenCreateUser",apiContext);
+  const token = await getAccessToken("citizenCreateUser", apiContext);
   if (!token) {
     throw new Error("Setup failed: Unable to get bearer token.");
   }

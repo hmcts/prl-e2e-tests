@@ -6,7 +6,10 @@ import jsonData from "../caseData/citizenDA/courtNavDaCitizenCase.json";
 
 async function createDaCitizenCourtNavCase(withDoc: boolean): Promise<void> {
   const apiContextDaCreateCase: APIRequestContext = await request.newContext();
-  const tokenDaCreateCase = await getAccessToken("daCourtNavCreateCase", apiContextDaCreateCase);
+  const tokenDaCreateCase = await getAccessToken(
+    "daCourtNavCreateCase",
+    apiContextDaCreateCase,
+  );
 
   if (!tokenDaCreateCase) {
     throw new Error("Setup failed: Unable to get bearer token.");
@@ -19,10 +22,11 @@ async function createDaCitizenCourtNavCase(withDoc: boolean): Promise<void> {
       {
         headers: {
           Authorization: `Bearer ${tokenDaCreateCase}`,
-          "Ocp-Apim-Subscription-Key": process.env.COURTNAV_SUBSCRIPTION_KEY_CREATE_CASE as string,
+          "Ocp-Apim-Subscription-Key": process.env
+            .COURTNAV_SUBSCRIPTION_KEY_CREATE_CASE as string,
         },
         data: jsonData,
-      }
+      },
     );
     const responseBody = await response.json();
     const ccd_reference = responseBody.ccd_reference as string;
@@ -37,7 +41,8 @@ async function createDaCitizenCourtNavCase(withDoc: boolean): Promise<void> {
       const docResponse = await apiContextDaAddDoc.post(courtNavAddDocURL, {
         headers: {
           Authorization: `Bearer ${tokenDaCreateCase}`,
-          "Ocp-Apim-Subscription-Key": process.env.COURTNAV_SUBSCRIPTION_KEY_ADD_DOC as string,
+          "Ocp-Apim-Subscription-Key": process.env
+            .COURTNAV_SUBSCRIPTION_KEY_ADD_DOC as string,
           Accept: "*/*",
         },
         multipart: {
@@ -50,7 +55,7 @@ async function createDaCitizenCourtNavCase(withDoc: boolean): Promise<void> {
         },
       });
       await docResponse.json();
-      expect(docResponse.status()).toBe(200);  // Replace with the expected status code
+      expect(docResponse.status()).toBe(200); // Replace with the expected status code
     } else {
       console.error("ccd_reference is undefined, cannot add a document");
     }
