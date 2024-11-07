@@ -132,6 +132,18 @@ export class Helpers {
     return `${day} ${Helpers.shortMonth(monthIndex)} ${year}`;
   }
 
+  public static dayLongMonthYear(
+    day: string,
+    month: string,
+    year: string,
+  ): string {
+    const monthIndex: number = parseInt(month, 10);
+    if (isNaN(monthIndex) || monthIndex < 1 || monthIndex > 12) {
+      throw new Error("Invalid month value");
+    }
+    return `${day} ${Helpers.longMonth(monthIndex)} ${year}`;
+  }
+
   public static async checkGroup<E extends Record<string, string>>(
     page: Page,
     count: number,
@@ -210,6 +222,13 @@ export class Helpers {
       throw new Error("Month index out of range");
     }
     return Helpers.months[index - 1].substring(0, 3);
+  }
+
+  private static longMonth(index: number): string {
+    if (index < 1 || index > 12) {
+      throw new Error("Month index out of range");
+    }
+    return Helpers.months[index - 1];
   }
 
   private static async checkCaseNumberRegex(page: Page): Promise<void> {

@@ -4,6 +4,7 @@ import { CommonStaticText } from "../../../../../common/commonStaticText";
 import AxeTest from "../../../../../common/accessibilityTestHelper";
 import { ReasonableAdjustmentsCommunicationHelpContent } from "../../../../../fixtures/citizen/createCase/C100/reasonableAdjustments/reasonableAdjustmentsCommunicationHelpContent";
 import { Helpers } from "../../../../../common/helpers";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 
 interface ReasonableAdjustmentsCommunicationHelpPageOptions {
   page: Page;
@@ -74,14 +75,9 @@ export class ReasonableAdjustmentsCommunicationHelpPage {
         `${Selectors.GovukInsetText}:text-is("${ReasonableAdjustmentsCommunicationHelpContent.govukInsetText}")`,
         1,
       ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukInsetText}:text-is("${ReasonableAdjustmentsCommunicationHelpContent.govukInsetText}")`,
-        1,
-      ),
       Helpers.checkGroup(
         page,
-        2,
+        3,
         ReasonableAdjustmentsCommunicationHelpContent,
         "govukHint",
         Selectors.GovukHint,
@@ -95,7 +91,7 @@ export class ReasonableAdjustmentsCommunicationHelpPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AxeTest.run(page);
+      await AccessibilityTestHelper.run(page);
     }
   }
 

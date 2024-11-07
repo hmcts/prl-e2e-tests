@@ -87,4 +87,26 @@ export type Relationship =
   | "grandparent"
   | "other";
 
+export type OrderType =
+  | "standardDirectionsOrder"
+  | "directionOnIssue"
+  | "blankOrderOrDirections"
+  | "childArrangementsSpecificProhibitedOrder"
+  | "parentalResponsibility"
+  | "specialGuardianShip"
+  | "noticeOfProceedingsParties"
+  | "noticeOfProceedingsNonParties"
+  | "appointmentOfGuardian"
+  | "nonMolestation"
+  | "occupation"
+  | "powerOfArrest"
+  | "amendDischargedVaried"
+  | "blank"
+  | "generalForm"
+  | "noticeOfProceedings"
+  | "c21ApplicationRefused"
+  | "c21WithdrawApplication"
+  | "c21NoOrderMade"
+  | "c21other";
+
 export type typeOfPerson = "applicant" | "respondent" | "otherPerson";

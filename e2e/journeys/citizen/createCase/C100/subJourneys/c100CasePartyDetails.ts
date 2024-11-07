@@ -252,7 +252,8 @@ export class C100CasePartyDetails {
       page: page,
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
-      yesNoOtherPersonDetails: yesNoOtherPersonDetails
+      yesNoOtherPersonDetails: yesNoOtherPersonDetails,
+      c100ChildMainlyLivesWith: c100ChildMainlyLivesWith,
     });
   }
 }

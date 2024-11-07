@@ -49,12 +49,12 @@ interface FillInFieldsOptions {
 
 export class StartPage {
   public static async startPage({
-                                  page,
-                                  accessibilityTest,
-                                  errorMessaging,
-                                  c100PrivateDetails,
-                                  c100OthersKnowApplicantsContact,
-                                }: StartPageOptions): Promise<void> {
+    page,
+    accessibilityTest,
+    errorMessaging,
+    c100PrivateDetails,
+    c100OthersKnowApplicantsContact,
+  }: StartPageOptions): Promise<void> {
     await this.checkPageLoads({
       page,
       accessibilityTest,
@@ -70,9 +70,9 @@ export class StartPage {
   }
 
   private static async checkPageLoads({
-                                        page,
-                                        accessibilityTest,
-                                      }: CheckPageLoadsOptions): Promise<void> {
+    page,
+    accessibilityTest,
+  }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.GovukHeadingXL}:text-is("${StartContent.pageTitle}")`,
     );
@@ -105,7 +105,10 @@ export class StartPage {
     }
   }
 
-  private static async checkErrorMessaging(page: Page,c100OthersKnowApplicantsContact: yesNoDontKnow ): Promise<void> {
+  private static async checkErrorMessaging(
+    page: Page,
+    c100OthersKnowApplicantsContact: yesNoDontKnow,
+  ): Promise<void> {
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
@@ -129,14 +132,17 @@ export class StartPage {
     await this.checkboxErrorMessages(page, c100OthersKnowApplicantsContact);
   }
 
-  private static async checkboxErrorMessages(page: Page, c100OthersKnowApplicantsContact: yesNoDontKnow): Promise<void> {
+  private static async checkboxErrorMessages(
+    page: Page,
+    c100OthersKnowApplicantsContact: yesNoDontKnow,
+  ): Promise<void> {
     if (c100OthersKnowApplicantsContact === "yes") {
-      await page.click(inputIDs.yes)
+      await page.click(inputIDs.yes);
     } else if (
       c100OthersKnowApplicantsContact === "no" ||
       c100OthersKnowApplicantsContact === "dontKnow"
     ) {
-      await page.click(alternativeInputIDs.yes)
+      await page.click(alternativeInputIDs.yes);
     } else {
       throw new Error(
         `Unrecognised argument for c100OthersKnowApplicantsContact: ${c100OthersKnowApplicantsContact}`,
@@ -165,10 +171,10 @@ export class StartPage {
   }
 
   private static async fillInFields({
-                                      page,
-                                      c100PrivateDetails,
-                                      c100OthersKnowApplicantsContact,
-                                    }: FillInFieldsOptions): Promise<void> {
+    page,
+    c100PrivateDetails,
+    c100OthersKnowApplicantsContact,
+  }: FillInFieldsOptions): Promise<void> {
     let radioInputs: Record<string, string>;
     let checkboxes: Record<string, string>;
     let formHintContentKey: keyof typeof StartContent;
