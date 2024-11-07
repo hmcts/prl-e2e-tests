@@ -1,7 +1,7 @@
 import Config from "../config.ts";
 import { Page } from "@playwright/test";
 import { UserCredentials, UserLoginInfo } from "./types.ts";
-import { createCitizenUser, getAccessToken, setupUser } from "./idamCreateCitizenUserApiHelper.ts";
+import { setupUser } from "./idamCreateCitizenUserApiHelper.ts";
 
 export class IdamLoginHelper {
   private static fields: UserLoginInfo = {
