@@ -24,5 +24,5 @@ export enum ConfirmationContent {
   govukBody = "Complete this short, 5-minute survey to help improve our services for you and others.",
   notificationBanner = "Please leave your feedback here(opens in a new tab).",
   returnToDashboard = "Return to your dashboard",
-  buttonDownloadApplication = "Download your application"
+  buttonDownloadApplication = "Download your application",
 }
