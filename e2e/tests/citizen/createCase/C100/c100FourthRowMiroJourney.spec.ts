@@ -112,9 +112,9 @@ test.describe("C100 Citizen Application tests on the fourth MIRO set. @citizenFr
       c100PassportOfficeNotified: false,
       c100SafetyConcernsYesNoToAll: false,
       yesNoInternationalElements: false,
-      // yesNoReasonableAdjustments,
-      // c100YesNoNeedHelpWithFees,
-      // c100YesNoFeesApplied,
+      yesNoReasonableAdjustments: false,
+      c100YesNoNeedHelpWithFees: true,
+      c100YesNoFeesApplied: true,
     });
   });
 
@@ -217,9 +217,9 @@ test.describe("C100 Citizen Application tests on the fourth MIRO set. @citizenFr
       c100PassportOfficeNotified: false,
       c100SafetyConcernsYesNoToAll: false,
       yesNoInternationalElements: false,
-      // yesNoReasonableAdjustments,
-      // c100YesNoNeedHelpWithFees,
-      // c100YesNoFeesApplied,
+      yesNoReasonableAdjustments: false,
+      c100YesNoNeedHelpWithFees: true,
+      c100YesNoFeesApplied: true,
     });
   });
 
@@ -322,9 +322,9 @@ test.describe("C100 Citizen Application tests on the fourth MIRO set. @citizenFr
       c100PassportOfficeNotified: false,
       c100SafetyConcernsYesNoToAll: false,
       yesNoInternationalElements: false,
-      // yesNoReasonableAdjustments,
-      // c100YesNoNeedHelpWithFees,
-      // c100YesNoFeesApplied,
+      yesNoReasonableAdjustments: false,
+      c100YesNoNeedHelpWithFees: true,
+      c100YesNoFeesApplied: true,
     });
   });
 
@@ -427,9 +427,9 @@ test.describe("C100 Citizen Application tests on the fourth MIRO set. @citizenFr
       c100PassportOfficeNotified: false,
       c100SafetyConcernsYesNoToAll: false,
       yesNoInternationalElements: false,
-      // yesNoReasonableAdjustments,
-      // c100YesNoNeedHelpWithFees,
-      // c100YesNoFeesApplied,
+      yesNoReasonableAdjustments: false,
+      c100YesNoNeedHelpWithFees: true,
+      c100YesNoFeesApplied: true,
     });
   });
 
@@ -533,9 +533,9 @@ test.describe("C100 Citizen Application tests on the fourth MIRO set. @citizenFr
       c100PassportOfficeNotified: false,
       c100SafetyConcernsYesNoToAll: false,
       yesNoInternationalElements: false,
-      // yesNoReasonableAdjustments,
-      // c100YesNoNeedHelpWithFees,
-      // c100YesNoFeesApplied,
+      yesNoReasonableAdjustments: false,
+      c100YesNoNeedHelpWithFees: true,
+      c100YesNoFeesApplied: true,
     });
   });
 
@@ -638,9 +638,9 @@ test.describe("C100 Citizen Application tests on the fourth MIRO set. @citizenFr
       c100PassportOfficeNotified: false,
       c100SafetyConcernsYesNoToAll: false,
       yesNoInternationalElements: false,
-      // yesNoReasonableAdjustments,
-      // c100YesNoNeedHelpWithFees,
-      // c100YesNoFeesApplied,
+      yesNoReasonableAdjustments: false,
+      c100YesNoNeedHelpWithFees: true,
+      c100YesNoFeesApplied: true,
     });
   });
 
@@ -743,9 +743,9 @@ test.describe("C100 Citizen Application tests on the fourth MIRO set. @citizenFr
       c100PassportOfficeNotified: false,
       c100SafetyConcernsYesNoToAll: false,
       yesNoInternationalElements: false,
-      // yesNoReasonableAdjustments,
-      // c100YesNoNeedHelpWithFees,
-      // c100YesNoFeesApplied,
+      yesNoReasonableAdjustments: false,
+      c100YesNoNeedHelpWithFees: true,
+      c100YesNoFeesApplied: true,
     });
   });
 
@@ -848,9 +848,9 @@ test.describe("C100 Citizen Application tests on the fourth MIRO set. @citizenFr
       c100PassportOfficeNotified: false,
       c100SafetyConcernsYesNoToAll: false,
       yesNoInternationalElements: false,
-      // yesNoReasonableAdjustments,
-      // c100YesNoNeedHelpWithFees,
-      // c100YesNoFeesApplied,
+      yesNoReasonableAdjustments: false,
+      c100YesNoNeedHelpWithFees: true,
+      c100YesNoFeesApplied: true,
     });
   });
 
@@ -953,9 +953,9 @@ test.describe("C100 Citizen Application tests on the fourth MIRO set. @citizenFr
       c100PassportOfficeNotified: false,
       c100SafetyConcernsYesNoToAll: false,
       yesNoInternationalElements: false,
-      // yesNoReasonableAdjustments,
-      // c100YesNoNeedHelpWithFees,
-      // c100YesNoFeesApplied,
+      yesNoReasonableAdjustments: false,
+      c100YesNoNeedHelpWithFees: true,
+      c100YesNoFeesApplied: true,
     });
   });
 
@@ -1058,9 +1058,9 @@ test.describe("C100 Citizen Application tests on the fourth MIRO set. @citizenFr
       c100PassportOfficeNotified: false,
       c100SafetyConcernsYesNoToAll: false,
       yesNoInternationalElements: false,
-      // yesNoReasonableAdjustments,
-      // c100YesNoNeedHelpWithFees,
-      // c100YesNoFeesApplied,
+      yesNoReasonableAdjustments: false,
+      c100YesNoNeedHelpWithFees: true,
+      c100YesNoFeesApplied: true,
     });
   });
 
@@ -1163,9 +1163,9 @@ test.describe("C100 Citizen Application tests on the fourth MIRO set. @citizenFr
       c100PassportOfficeNotified: false,
       c100SafetyConcernsYesNoToAll: false,
       yesNoInternationalElements: false,
-      // yesNoReasonableAdjustments,
-      // c100YesNoNeedHelpWithFees,
-      // c100YesNoFeesApplied,
+      yesNoReasonableAdjustments: false,
+      c100YesNoNeedHelpWithFees: true,
+      c100YesNoFeesApplied: true,
     });
   });
 
@@ -1262,9 +1262,9 @@ test.describe("C100 Citizen Application tests on the fourth MIRO set. @citizenFr
       c100PassportOfficeNotified: false,
       c100SafetyConcernsYesNoToAll: false,
       yesNoInternationalElements: false,
-      // yesNoReasonableAdjustments,
-      // c100YesNoNeedHelpWithFees,
-      // c100YesNoFeesApplied,
+      yesNoReasonableAdjustments: false,
+      c100YesNoNeedHelpWithFees: true,
+      c100YesNoFeesApplied: true,
     });
   });
 });

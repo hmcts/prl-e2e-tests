@@ -227,9 +227,9 @@ interface C100FourthRowMiroJourneyOptions {
   c100ChildrenAbductedBefore: boolean; // if yes -> previous abductions page
   c100ChildrenSupervision: c100ChildrenSupervisionRadios;
   yesNoInternationalElements: boolean;
-  // yesNoReasonableAdjustments: boolean;
-  // c100YesNoNeedHelpWithFees: boolean;
-  // c100YesNoFeesApplied: boolean;
+  yesNoReasonableAdjustments: boolean;
+  c100YesNoNeedHelpWithFees: boolean;
+  c100YesNoFeesApplied: boolean;
 }
 
 export class C100 {
@@ -775,7 +775,6 @@ export class C100 {
     c100OtherPeopleDoBKnown,
     c100OtherPersonRelationship,
     c100ChildMainlyLivesWith,
-    yesNoChildArrangementOrderDetails,
     yesNoOtherProceedings,
     c100ChildrenSafetyConcerns,
     c100ChildrenAbductedBefore,
@@ -785,9 +784,9 @@ export class C100 {
     c100PassportOfficeNotified,
     c100SafetyConcernsYesNoToAll,
     yesNoInternationalElements,
-    // yesNoReasonableAdjustments,
-    // c100YesNoNeedHelpWithFees,
-    // c100YesNoFeesApplied,
+    yesNoReasonableAdjustments,
+    c100YesNoNeedHelpWithFees,
+    c100YesNoFeesApplied,
   }: C100FourthRowMiroJourneyOptions): Promise<void> {
     await CitizenCreateInitial.citizenCreateInitial({
       page: page,
@@ -899,5 +898,25 @@ export class C100 {
       errorMessaging: errorMessaging,
       yesNoInternationalElements: yesNoInternationalElements,
     });
+    await C100ReasonableAdjustments.c100ReasonableAdjustments({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      yesNoReasonableAdjustments: yesNoReasonableAdjustments,
+    });
+    await C100HelpWithFees.c100HelpWithFees({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      c100YesNoNeedHelpWithFees: c100YesNoNeedHelpWithFees,
+      c100YesNoFeesApplied: c100YesNoFeesApplied,
+    });
+    // await EqualityAndDiversityPage.equalityAndDiversityPage({
+    //   page
+    // });
+    // await ConfirmationPage.confirmationPage({
+    //   page: page,
+    //   accessibilityTest: accessibilityTest,
+    // });
   }
 }
