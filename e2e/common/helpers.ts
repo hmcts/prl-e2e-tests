@@ -1,9 +1,10 @@
 import { expect, Locator, Page } from "@playwright/test";
 import {
-  c100SolicitorEvents, fl401JudiciaryEvents,
+  c100SolicitorEvents,
+  fl401JudiciaryEvents,
   fl401SolicitorEvents,
   fl401SubmittedSolicitorEvents,
-  UserRole
+  UserRole,
 } from "./types";
 import idamLoginHelper from "./idamLoginHelper";
 import { Selectors } from "./selectors.ts";

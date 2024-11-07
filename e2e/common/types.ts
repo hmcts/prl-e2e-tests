@@ -71,8 +71,7 @@ export type fl401SubmittedSolicitorEvents =
   | "Upload additional applications"
   | "Withdraw application";
 
-export type fl401JudiciaryEvents =
-  | "Edit and approve a draft order";
+export type fl401JudiciaryEvents = "Edit and approve a draft order";
 
 export type ApplicantGender = "female" | "male" | "other";
 

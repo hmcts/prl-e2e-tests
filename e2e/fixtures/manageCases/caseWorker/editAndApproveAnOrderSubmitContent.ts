@@ -4,5 +4,5 @@ export enum EditAndApproveAnOrderSubmitContent {
   h3 = "Open the order and review the content",
   text161 = "Check the information below carefully.",
   text162 = "What do you want to do with this order?",
-  text16DirectionsToAdmin = "Directions to admin:"
+  text16DirectionsToAdmin = "Directions to admin:",
 }

@@ -11,5 +11,5 @@ export enum EditAndApproveAnOrder2Content {
   continue = "Continue",
   errorMessage = "What do you want to do with this order? is required",
   formLabelGiveInstructionsToTheLegalRepresentative = "Give instructions to the legal representative",
-  instructionsText = "Test instructions"
+  instructionsText = "Test instructions",
 }
