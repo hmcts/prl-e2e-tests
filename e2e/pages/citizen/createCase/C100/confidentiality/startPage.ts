@@ -171,10 +171,10 @@ export class StartPage {
   }
 
   private static async fillInFields({
-    page,
-    c100PrivateDetails,
-    c100OthersKnowApplicantsContact,
-  }: FillInFieldsOptions): Promise<void> {
+                                      page,
+                                      c100PrivateDetails,
+                                      c100OthersKnowApplicantsContact,
+                                    }: FillInFieldsOptions): Promise<void> {
     let radioInputs: Record<string, string>;
     let checkboxes: Record<string, string>;
     let formHintContentKey: keyof typeof StartContent;
