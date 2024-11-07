@@ -1,7 +1,7 @@
 import { test } from "@playwright/test";
-import IdamLoginHelper from "../../../../common/idamLoginHelper";
-import Config from "../../../../config";
 import { C100 } from "../../../../journeys/citizen/createCase/C100/C100";
+import Config from "../../../../config";
+import IdamLoginHelper from "../../../../common/idamLoginHelper";
 
 test.describe("C100 Citizen Application tests on the top MIRO set. @citizenFrontend @crossbrowserCitizenFrontend", (): void => {
   test.beforeEach(async ({ page }) => {

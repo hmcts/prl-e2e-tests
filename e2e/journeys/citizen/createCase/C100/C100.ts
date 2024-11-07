@@ -28,6 +28,7 @@ import { C100ReasonableAdjustments } from "./subJourneys/c100ReasonableAdjustmen
 import { C100HelpWithFees } from "./subJourneys/c100HelpWithFees";
 import { EqualityAndDiversityPage } from "../../../../pages/citizen/createCase/C100/confirmation/equalityAndDiversityQuestionsPage";
 import { ConfirmationPage } from "../../../../pages/citizen/createCase/C100/confirmation/confirmationPage";
+import { ReviewPage } from "../../../../pages/citizen/createCase/C100/reviewPages/reviewPage";
 
 interface C100ApplicationCompletedForYouOptions {
   page: Page;
@@ -416,44 +417,48 @@ export class C100 {
       c100OtherPersonRelationship: c100OtherPersonRelationship,
       c100ChildMainlyLivesWith: c100ChildMainlyLivesWith,
     });
-    // await C100OtherProceedings.c100OtherProceedings1({
-    //   page: page,
-    //   accessibilityTest: accessibilityTest,
-    //   errorMessaging: errorMessaging,
-    //   yesNoChildArrangementOrderDetails: yesNoChildArrangementOrderDetails,
-    //   yesNoOtherProceedings: yesNoOtherProceedings
-    // });
-    // await C100SafetyConcerns.c100SafetyConcerns({
-    //   page: page,
-    //   accessibilityTest: accessibilityTest,
-    //   errorMessaging: errorMessaging,
-    //   c100ChildrenSafetyConcerns: c100ChildrenSafetyConcerns,
-    //   c100SafetyConcernsYesNoToAll: c100SafetyConcernsYesNoToAll,
-    //   c100ChildrenAbductedBefore: c100ChildrenAbductedBefore,
-    //   c100ChildrenSupervision: c100ChildrenSupervision,
-    //   c100ChildrenHavePassport: c100ChildrenHavePassport,
-    //   c100PassportOfficeNotified: c100PassportOfficeNotified,
-    //   c100MoreThanOnePassport: c100MoreThanOnePassport
-    // });
-    // await C100InternationalElements.c100InternationalElements({
-    //   page: page,
-    //   accessibilityTest:accessibilityTest,
-    //   errorMessaging: errorMessaging,
-    //   yesNoInternationalElements: yesNoInternationalElements
-    // });
-    // await C100ReasonableAdjustments.c100ReasonableAdjustments({
-    //   page: page,
-    //   accessibilityTest: accessibilityTest,
-    //   errorMessaging: errorMessaging,
-    //   yesNoReasonableAdjustments: yesNoReasonableAdjustments
-    // });
-    // await C100HelpWithFees.c100HelpWithFees({
-    //   page: page,
-    //   accessibilityTest: accessibilityTest,
-    //   errorMessaging: errorMessaging,
-    //   c100YesNoFeesApplied: c100YesNoFeesApplied,
-    //   c100YesNoNeedHelpWithFees: c100YesNoNeedHelpWithFees
-    // })
+    await C100OtherProceedings.c100OtherProceedings1({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      // yesNoChildArrangementOrderDetails: yesNoChildArrangementOrderDetails,
+      yesNoOtherProceedings: yesNoOtherProceedings
+    });
+    await C100SafetyConcerns.c100SafetyConcerns({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      c100ChildrenSafetyConcerns: c100ChildrenSafetyConcerns,
+      c100SafetyConcernsYesNoToAll: c100SafetyConcernsYesNoToAll,
+      c100ChildrenAbductedBefore: c100ChildrenAbductedBefore,
+      c100ChildrenSupervision: c100ChildrenSupervision,
+      c100ChildrenHavePassport: c100ChildrenHavePassport,
+      c100PassportOfficeNotified: c100PassportOfficeNotified,
+      c100MoreThanOnePassport: c100MoreThanOnePassport
+    });
+    await C100InternationalElements.c100InternationalElements({
+      page: page,
+      accessibilityTest:accessibilityTest,
+      errorMessaging: errorMessaging,
+      yesNoInternationalElements: yesNoInternationalElements
+    });
+    await C100ReasonableAdjustments.c100ReasonableAdjustments({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      yesNoReasonableAdjustments: yesNoReasonableAdjustments
+    });
+    await C100HelpWithFees.c100HelpWithFees({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      c100YesNoFeesApplied: c100YesNoFeesApplied,
+      c100YesNoNeedHelpWithFees: c100YesNoNeedHelpWithFees
+    });
+    await ReviewPage.submitTopMiro({
+      page: page,
+      accessibilityTest: accessibilityTest
+    })
   }
 
   public static async c100SecondMiroJourney({
