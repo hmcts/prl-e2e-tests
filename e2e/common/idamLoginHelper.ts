@@ -8,10 +8,7 @@ export class IdamLoginHelper {
     username: "#username",
     password: "#password",
   };
-
   private static submitButton: string = 'input[value="Sign in"]';
-
-  // private static userInfo: { email: string; password: string } | null = null;
 
   public static async signInSolicitorUser(
     page: Page,
