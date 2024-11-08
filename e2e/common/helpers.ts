@@ -100,7 +100,7 @@ export class Helpers {
     }
   }
 
-  public static todayDate(): string {
+  public static todayDate(longFormat: boolean = false): string {
     const now: Date = new Date();
     const options: Intl.DateTimeFormatOptions = {
       year: "numeric",
@@ -109,7 +109,11 @@ export class Helpers {
     };
     const dateString: string = now.toLocaleDateString("en-US", options);
     const [month, day, year] = dateString.split("/");
-    return `${day} ${Helpers.shortMonth(parseInt(month, 10))} ${year}`;
+    if (longFormat) {
+      return Helpers.dayLongMonthYear(day, month, year);
+    } else {
+      return Helpers.dayAbbreviatedMonthYear(day, month, year);
+    }
   }
 
   public static getCurrentDateFormatted(): string {
@@ -231,8 +235,8 @@ export class Helpers {
     return Helpers.months[index - 1];
   }
 
-  private static async checkCaseNumberRegex(page: Page): Promise<void> {
-    const caseNumberRegex: RegExp = /^Casenumber: \d{4}-\d{4}-\d{4}-\d{4}$/;
+  public static async checkCaseNumberRegex(page: Page): Promise<void> {
+    const caseNumberRegex: RegExp = /^\d{16}$/;
     try {
       const visibilityPromises: Promise<void>[] = Array.from(
         { length: 1 },
@@ -240,13 +244,13 @@ export class Helpers {
           expect
             .soft(
               page
-                .locator(`${Selectors.h2}`, { hasText: caseNumberRegex })
+                .locator(`${Selectors.strong}`, { hasText: caseNumberRegex })
                 .nth(i),
             )
             .toBeVisible(),
       );
       const countPromise: Promise<void> = expect
-        .soft(page.locator(`${Selectors.h2}`, { hasText: caseNumberRegex }))
+        .soft(page.locator(`${Selectors.strong}`, { hasText: caseNumberRegex }))
         .toHaveCount(1);
       await Promise.all([...visibilityPromises, countPromise]);
     } catch (error) {

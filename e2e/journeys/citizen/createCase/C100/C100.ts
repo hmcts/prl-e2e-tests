@@ -15,6 +15,7 @@ import { C100OtherProceedings } from "./subJourneys/C100OtherProceedings";
 import { C100ApplicationCompletedForYou } from "./C100ApplicationCompletedForYou";
 import {
   ApplicantGender,
+  CapitalizedRelationship,
   Relationship,
   typeOfPerson,
   yesNoDontKnow,
@@ -26,6 +27,8 @@ import { c100ChildrenSupervisionRadios } from "../../../../pages/citizen/createC
 import { C100InternationalElements } from "./subJourneys/c100InternationalElements";
 import { C100ReasonableAdjustments } from "./subJourneys/c100ReasonableAdjustments";
 import { C100HelpWithFees } from "./subJourneys/c100HelpWithFees";
+import { EqualityAndDiversityPage } from "../../../../pages/citizen/createCase/C100/confirmation/equalityAndDiversityQuestionsPage";
+import { ConfirmationPage } from "../../../../pages/citizen/createCase/C100/confirmation/confirmationPage";
 import {
   ReviewPage,
   reviewPageTopJourneyMotherFather,
@@ -107,6 +110,7 @@ interface C100TopMiroJourneyOptions {
   c100YesNoNeedHelpWithFees: boolean;
   c100YesNoFeesApplied: boolean;
   reviewPageTopJourneyMotherFather: reviewPageTopJourneyMotherFather;
+  relationshipType: CapitalizedRelationship;
 }
 
 interface C100SecondMiroJourneyOptions {
@@ -155,6 +159,7 @@ interface C100SecondMiroJourneyOptions {
   yesNoReasonableAdjustments: boolean;
   c100YesNoNeedHelpWithFees: boolean;
   c100YesNoFeesApplied: boolean;
+  relationshipType: CapitalizedRelationship;
 }
 
 interface C100ThirdMiroJourneyMIAMOptions {
@@ -346,6 +351,7 @@ export class C100 {
     c100YesNoNeedHelpWithFees,
     c100YesNoFeesApplied,
     reviewPageTopJourneyMotherFather,
+    relationshipType,
   }: C100TopMiroJourneyOptions): Promise<void> {
     await CitizenCreateInitial.citizenCreateInitial({
       page: page,
@@ -460,6 +466,7 @@ export class C100 {
       page: page,
       accessibilityTest: accessibilityTest,
       reviewPageTopJourneyMotherFather: reviewPageTopJourneyMotherFather,
+      relationshipType: relationshipType,
     });
   }
 
@@ -509,6 +516,7 @@ export class C100 {
     yesNoReasonableAdjustments,
     c100YesNoNeedHelpWithFees,
     c100YesNoFeesApplied,
+    relationshipType,
   }: C100SecondMiroJourneyOptions): Promise<void> {
     await CitizenCreateInitial.citizenCreateInitial({
       page: page,
@@ -631,6 +639,18 @@ export class C100 {
       errorMessaging: errorMessaging,
       c100YesNoNeedHelpWithFees: c100YesNoNeedHelpWithFees,
       c100YesNoFeesApplied: c100YesNoFeesApplied,
+    });
+    await ReviewPage.submitSecondMiro({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      relationshipType: relationshipType,
+    });
+    await EqualityAndDiversityPage.equalityAndDiversityPage({
+      page,
+    });
+    await ConfirmationPage.confirmationPage({
+      page: page,
+      accessibilityTest: accessibilityTest,
     });
   }
 

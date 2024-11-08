@@ -87,6 +87,14 @@ export type Relationship =
   | "grandparent"
   | "other";
 
+export type CapitalizedRelationship =
+  | "Mother"
+  | "Father"
+  | "Guardian"
+  | "SpecialGuardian"
+  | "Grandparent"
+  | "Other";
+
 export type OrderType =
   | "standardDirectionsOrder"
   | "directionOnIssue"

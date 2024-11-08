@@ -243,8 +243,7 @@ export enum TopMiroReviewContent {
   li_exampletextExampletext = "exampleText exampleText", // 15 occurrences
   li_janeDoe = "Jane Doe", // 2 occurrences
   li_mother = "Mother", // 4 occurrences
-  li_father = "Father", // 4 occurrences
-  li_7 = "Father",
+  li_father = "Father",
   li_8 = "Automated Other Passport Possession",
   li_9 = "Yes, I can take part in video hearings",
   li_10 = "Yes, I can take part in phone hearings",
