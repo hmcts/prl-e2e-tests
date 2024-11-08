@@ -68,6 +68,13 @@ def secrets = [
     secret('judge-testpassword', 'JUDGE_PASSWORD'),
     secret('case-manager-swansea-username', 'CASEMANAGER_USERNAME'),
     secret('case-manager-swansea-password', 'CASEMANAGER_PASSWORD'),
+    secret('da-citizen-case-create-courtnav-client-secret', 'COURTNAV_SECRET'),
+    secret('da-citizen-case-create-courtnav-username', 'COURTNAV_USERNAME'),
+    secret('da-citizen-case-create-courtnav-password', 'COURTNAV_PASSWORD'),
+    secret('da-citizen-case-create-courtnav-subscription-key', 'COURTNAV_SUBSCRIPTION_KEY_CREATE_CASE'),
+    secret('da-citizen-case-create-courtnav-url', 'COURTNAV_CASE_URL'),
+    secret('da-citizen-courtnav-add-doc-url', 'COURTNAV_DOC_URL'),
+    secret('da-citizen-courtnav-subscription-key-add-doc', 'COURTNAV_SUBSCRIPTION_KEY_ADD_DOC'),
   ]
 ]
 

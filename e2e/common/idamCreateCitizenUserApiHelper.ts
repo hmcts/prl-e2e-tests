@@ -6,50 +6,6 @@ import { v4 as uuidv4 } from "uuid";
 dotenv.config();
 
 /**
- * Function to get an access token from the IDAM service
- * @param {APIRequestContext} apiContext The API request context
- * @returns {Promise<string>} The access token if successful, otherwise throws an error
- */
-export async function getAccessToken(
-  apiContext: APIRequestContext,
-): Promise<string> {
-  try {
-    const clientSecret = process.env.IDAM_SECRET;
-    if (!clientSecret) {
-      throw new Error("IDAM_SECRET environment variable is not defined");
-    }
-    const data = {
-      grant_type: "client_credentials",
-      client_id: "prl-cos-api",
-      client_secret: clientSecret,
-      scope: "profile roles",
-    };
-    const response = await apiContext.post(
-      process.env.IDAM_TOKEN_URL as string,
-      {
-        headers: { "content-type": "application/x-www-form-urlencoded" },
-        form: data,
-      },
-    );
-    if (!response.ok()) {
-      const errorText = await response.text();
-      console.error(
-        "Error fetching access token:",
-        response.status(),
-        errorText,
-      );
-      console.log("Check your VPN connection or IDAM_TOKEN_URL.");
-      throw new Error(`Failed to fetch access token: ${response.status()}`);
-    }
-    const responseData = await response.json();
-    return responseData.access_token;
-  } catch (error) {
-    console.log("Check your VPN connection or IDAM_SECRET.");
-    throw new Error("An error occurred while fetching the access token");
-  }
-}
-
-/**
  * Function to create a citizen user
  * @param {APIRequestContext} apiContext The API request context
  * @param {string} token Bearer token passed from global setup
