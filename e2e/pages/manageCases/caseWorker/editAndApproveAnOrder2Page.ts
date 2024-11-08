@@ -35,7 +35,6 @@ export class EditAndApproveAnOrder2Page {
     orderType: OrderType,
     accessibilityTest: boolean,
   ): Promise<void> {
-    // TODO: do we need to check the PDFs are still correct?
     await page
       .locator(`${Selectors.GovukHeadingL}`, {
         hasText: `${EditAndApproveAnOrder2Content.govUkHeadingL}`,
@@ -131,7 +130,6 @@ export class EditAndApproveAnOrder2Page {
     page: Page,
     judgeOrderAction: JudgeOrderAction,
   ): Promise<void> {
-    // TODO: what paths need to be followed at this stage? can we just send to admin and serve every time?
     switch (judgeOrderAction) {
       case "Send to admin to serve":
         await page.check(`${UniqueSelectors.sendToAdminToServeRadio}`);

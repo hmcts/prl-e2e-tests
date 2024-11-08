@@ -73,9 +73,10 @@ export class Helpers {
     page: Page,
     baseURL: string,
     caseNumber: string,
+    caseTab: string,
   ): Promise<void> {
     try {
-      await page.goto(Helpers.generateUrl(baseURL, caseNumber));
+      await page.goto(Helpers.generateUrl(baseURL, caseNumber, caseTab));
     } catch (error) {
       console.error("An error occurred while navigating to the case: ", error);
       throw error;
@@ -87,12 +88,20 @@ export class Helpers {
     user: UserRole,
     baseURL: string,
     caseNumber: string,
+    caseTab: string,
   ): Promise<void> {
     try {
       await page.locator(`a:text-is(" Sign out ")`).click();
       await page.waitForLoadState("domcontentloaded");
-      await idamLoginHelper.signInSolicitorUser(page, user, baseURL);
-      await Helpers.goToCase(page, baseURL, caseNumber);
+      switch (user) {
+        case "solicitor":
+          await idamLoginHelper.signInSolicitorUser(page, "solicitor", baseURL);
+          break;
+        case "judge":
+          await idamLoginHelper.signInJudgeUser(page, baseURL);
+          break;
+      }
+      await Helpers.goToCase(page, baseURL, caseNumber, caseTab);
     } catch (error) {
       console.error(
         "An error occurred while signing out and navigating to the case:",
@@ -214,9 +223,9 @@ export class Helpers {
     "December",
   ];
 
-  private static generateUrl(baseURL: string, caseNumber: string): string {
+  private static generateUrl(baseURL: string, caseNumber: string, caseTab: string): string {
     const caseNumberDigits: string = caseNumber.replace(/\D/g, "");
-    return `${baseURL}/case-details/${caseNumberDigits}#History`;
+    return `${baseURL}/case-details/${caseNumberDigits}/${caseTab}`;
   }
 
   private static shortMonth(index: number): string {
