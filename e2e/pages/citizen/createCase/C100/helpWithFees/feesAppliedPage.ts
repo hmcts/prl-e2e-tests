@@ -100,6 +100,9 @@ export class FeesAppliedPage {
 
   private static async checkNestedErrors(page: Page): Promise<void> {
     await page.click(inputIDs.radioYes);
+    await page.click(
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
+    );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
