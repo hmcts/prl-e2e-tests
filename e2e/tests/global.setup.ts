@@ -17,5 +17,5 @@ setup("Retrieve bearer token for citizen user creation", async () => {
   if (!token) {
     throw new Error("Setup failed: Unable to get bearer token.");
   }
-  process.env.BEARER_TOKEN = token;
+  process.env.CITIZEN_CREATE_USER_BEARER_TOKEN = token;
 });
