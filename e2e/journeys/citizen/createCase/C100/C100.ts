@@ -14,10 +14,10 @@ import { MiamReasonForNoAccessToMediator } from "../../../../pages/citizen/creat
 import { C100OtherProceedings } from "./subJourneys/C100OtherProceedings";
 import { C100ApplicationCompletedForYou } from "./C100ApplicationCompletedForYou";
 import {
-  ApplicantGender,
+  ApplicantGender, CapitalizedRelationship,
   Relationship,
   typeOfPerson,
-  yesNoDontKnow,
+  yesNoDontKnow
 } from "../../../../common/types";
 import { C100Confidentiality } from "./subJourneys/c100Confidentiality";
 import { C100CasePartyDetails } from "./subJourneys/c100CasePartyDetails";
@@ -109,6 +109,7 @@ interface C100TopMiroJourneyOptions {
   c100YesNoNeedHelpWithFees: boolean;
   c100YesNoFeesApplied: boolean;
   reviewPageTopJourneyMotherFather: reviewPageTopJourneyMotherFather;
+  relationshipType: CapitalizedRelationship;
 }
 
 interface C100SecondMiroJourneyOptions {
@@ -157,7 +158,7 @@ interface C100SecondMiroJourneyOptions {
   yesNoReasonableAdjustments: boolean;
   c100YesNoNeedHelpWithFees: boolean;
   c100YesNoFeesApplied: boolean;
-  relationshipType: Relationship;
+  relationshipType: CapitalizedRelationship;
 }
 
 interface C100ThirdMiroJourneyMIAMOptions {
@@ -336,8 +337,7 @@ export class C100 {
     c100OtherPeopleDoBKnown,
     c100OtherPersonRelationship,
     c100ChildMainlyLivesWith,
-    yesNoChildArrangementOrderDetails,
-    yesNoOtherProceedings,
+                                           yesNoOtherProceedings,
     c100ChildrenSafetyConcerns,
     c100ChildrenAbductedBefore,
     c100ChildrenSupervision,
@@ -350,6 +350,7 @@ export class C100 {
     c100YesNoNeedHelpWithFees,
     c100YesNoFeesApplied,
     reviewPageTopJourneyMotherFather,
+                                           relationshipType
   }: C100TopMiroJourneyOptions): Promise<void> {
     await CitizenCreateInitial.citizenCreateInitial({
       page: page,
@@ -464,6 +465,7 @@ export class C100 {
       page: page,
       accessibilityTest: accessibilityTest,
       reviewPageTopJourneyMotherFather: reviewPageTopJourneyMotherFather,
+      relationshipType: relationshipType
     });
   }
 
