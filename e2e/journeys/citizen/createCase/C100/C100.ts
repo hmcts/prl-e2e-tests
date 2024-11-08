@@ -14,10 +14,11 @@ import { MiamReasonForNoAccessToMediator } from "../../../../pages/citizen/creat
 import { C100OtherProceedings } from "./subJourneys/C100OtherProceedings";
 import { C100ApplicationCompletedForYou } from "./C100ApplicationCompletedForYou";
 import {
-  ApplicantGender, CapitalizedRelationship,
+  ApplicantGender,
+  CapitalizedRelationship,
   Relationship,
   typeOfPerson,
-  yesNoDontKnow
+  yesNoDontKnow,
 } from "../../../../common/types";
 import { C100Confidentiality } from "./subJourneys/c100Confidentiality";
 import { C100CasePartyDetails } from "./subJourneys/c100CasePartyDetails";
@@ -337,7 +338,7 @@ export class C100 {
     c100OtherPeopleDoBKnown,
     c100OtherPersonRelationship,
     c100ChildMainlyLivesWith,
-                                           yesNoOtherProceedings,
+    yesNoOtherProceedings,
     c100ChildrenSafetyConcerns,
     c100ChildrenAbductedBefore,
     c100ChildrenSupervision,
@@ -350,7 +351,7 @@ export class C100 {
     c100YesNoNeedHelpWithFees,
     c100YesNoFeesApplied,
     reviewPageTopJourneyMotherFather,
-                                           relationshipType
+    relationshipType,
   }: C100TopMiroJourneyOptions): Promise<void> {
     await CitizenCreateInitial.citizenCreateInitial({
       page: page,
@@ -465,7 +466,7 @@ export class C100 {
       page: page,
       accessibilityTest: accessibilityTest,
       reviewPageTopJourneyMotherFather: reviewPageTopJourneyMotherFather,
-      relationshipType: relationshipType
+      relationshipType: relationshipType,
     });
   }
 
