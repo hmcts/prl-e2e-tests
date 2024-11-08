@@ -630,6 +630,11 @@ export class C100 {
       c100YesNoNeedHelpWithFees: c100YesNoNeedHelpWithFees,
       c100YesNoFeesApplied: c100YesNoFeesApplied,
     });
+    await ReviewPage.submitSecondMiro({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      relationshipType: applicantRelationship
+    })
     // await EqualityAndDiversityPage.equalityAndDiversityPage({
     //   page
     // });

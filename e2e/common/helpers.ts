@@ -100,7 +100,7 @@ export class Helpers {
     }
   }
 
-  public static todayDate(): string {
+  public static todayDate(longFormat: boolean = false): string {
     const now: Date = new Date();
     const options: Intl.DateTimeFormatOptions = {
       year: "numeric",
@@ -109,7 +109,19 @@ export class Helpers {
     };
     const dateString: string = now.toLocaleDateString("en-US", options);
     const [month, day, year] = dateString.split("/");
-    return `${day} ${Helpers.shortMonth(parseInt(month, 10))} ${year}`;
+    if (longFormat) {
+      return Helpers.dayLongMonthYear(
+        day,
+        month,
+        year
+      )
+    } else {
+      return Helpers.dayAbbreviatedMonthYear(
+        day,
+        month,
+        year
+      )
+    }
   }
 
   public static getCurrentDateFormatted(): string {

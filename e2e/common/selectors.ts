@@ -80,6 +80,8 @@ export enum Selectors {
   p = "p",
   li = "li",
   ul = 'li',
+  dt = 'dt',
+  dd = 'dd',
   strong = "strong",
   div = "div",
   markdown = "markdown",
