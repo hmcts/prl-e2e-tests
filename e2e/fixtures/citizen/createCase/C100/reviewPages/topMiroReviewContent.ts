@@ -116,9 +116,10 @@ export enum TopMiroReviewContent {
   dd_govuksummarylistvalue_12October2008 = "12 October 2008", // 2 occurrences
   dd_govuksummarylistvalue_male = "Male", // 5 occurrences
   dd_govuksummarylistvalue_exampletext = "exampleText", // 7 occurrences
-  dd_govuksummarylistvalue_6November2002 = "6 November 2002", // 2 occurrences
+  dd_govuksummarylistvalue_November2002 = "November 2002", // 2 occurrences
   dd_govuksummarylistvalue_swansea = "Swansea", // 2 occurrences
   dd_govuksummarylistvalue_mother = "Mother", // 4 occurrences
+  dd_govuksummarylistvalue_father = "Father", // 4 occurrences
   dd_govuksummarylistvalue_3 = "Yes, the court can leave me a voicemail",
   dd_govuksummarylistvalue_4 = "Digital",
   dd_govuksummarylistvalue_janeDoe = "Jane Doe", // 2 occurrences

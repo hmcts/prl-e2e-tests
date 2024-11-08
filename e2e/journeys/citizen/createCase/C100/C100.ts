@@ -28,7 +28,10 @@ import { C100ReasonableAdjustments } from "./subJourneys/c100ReasonableAdjustmen
 import { C100HelpWithFees } from "./subJourneys/c100HelpWithFees";
 import { EqualityAndDiversityPage } from "../../../../pages/citizen/createCase/C100/confirmation/equalityAndDiversityQuestionsPage";
 import { ConfirmationPage } from "../../../../pages/citizen/createCase/C100/confirmation/confirmationPage";
-import { ReviewPage } from "../../../../pages/citizen/createCase/C100/reviewPages/reviewPage";
+import {
+  ReviewPage,
+  reviewPageTopJourneyMotherFather,
+} from "../../../../pages/citizen/createCase/C100/reviewPages/reviewPage";
 
 interface C100ApplicationCompletedForYouOptions {
   page: Page;
@@ -105,6 +108,7 @@ interface C100TopMiroJourneyOptions {
   yesNoReasonableAdjustments: boolean;
   c100YesNoNeedHelpWithFees: boolean;
   c100YesNoFeesApplied: boolean;
+  reviewPageTopJourneyMotherFather: reviewPageTopJourneyMotherFather;
 }
 
 interface C100SecondMiroJourneyOptions {
@@ -345,6 +349,7 @@ export class C100 {
     yesNoReasonableAdjustments,
     c100YesNoNeedHelpWithFees,
     c100YesNoFeesApplied,
+    reviewPageTopJourneyMotherFather,
   }: C100TopMiroJourneyOptions): Promise<void> {
     await CitizenCreateInitial.citizenCreateInitial({
       page: page,
@@ -422,7 +427,6 @@ export class C100 {
       page: page,
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
-      // yesNoChildArrangementOrderDetails: yesNoChildArrangementOrderDetails,
       yesNoOtherProceedings: yesNoOtherProceedings,
     });
     await C100SafetyConcerns.c100SafetyConcerns({
@@ -456,10 +460,11 @@ export class C100 {
       c100YesNoFeesApplied: c100YesNoFeesApplied,
       c100YesNoNeedHelpWithFees: c100YesNoNeedHelpWithFees,
     });
-    // await ReviewPage.submitTopMiro({
-    //   page: page,
-    //   accessibilityTest: accessibilityTest
-    // })
+    await ReviewPage.submitTopMiro({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      reviewPageTopJourneyMotherFather: reviewPageTopJourneyMotherFather,
+    });
   }
 
   public static async c100SecondMiroJourney({

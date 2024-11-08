@@ -4,12 +4,11 @@ import { CommonReviewContent } from "../../../../../fixtures/citizen/createCase/
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { TopMiroReviewContent } from "../../../../../fixtures/citizen/createCase/C100/reviewPages/topMiroReviewContent";
-import { SecondMiroReviewContent } from "../../../../../fixtures/citizen/createCase/C100/reviewPages/secondMiroReviewContent";
-import { CapitalizedRelationship } from "../../../../../common/types";
 
 interface checkTextOptions {
   page: Page;
   accessibilityTest: boolean;
+  reviewPageTopJourneyMotherFather: reviewPageTopJourneyMotherFather;
   relationshipType: CapitalizedRelationship;
 }
 
@@ -18,13 +17,15 @@ interface checkCommonTextOptions {
   accessibilityTest: boolean;
 }
 
+export type reviewPageTopJourneyMotherFather = "mother" | "father";
+
 const statementOfTruthCheckbox: string = "#statementOfTruth";
 
 export class ReviewPage {
   private static async checkCommonText({
     page,
     accessibilityTest,
-  }: checkCommonTextOptions): Promise<void> {
+  }: checkTextOptions): Promise<void> {
     await page
       .locator(
         `${Selectors.GovukHeadingXL}:text-is("${CommonReviewContent.pageTitle}")`,
@@ -81,10 +82,12 @@ export class ReviewPage {
   public static async submitTopMiro({
     page,
     accessibilityTest,
+    reviewPageTopJourneyMotherFather,
   }: checkTextOptions): Promise<void> {
     await this.checkCommonText({
       page: page,
       accessibilityTest: accessibilityTest,
+      reviewPageTopJourneyMotherFather: reviewPageTopJourneyMotherFather,
     });
     await Promise.all([
       Helpers.checkGroup(
@@ -153,77 +156,77 @@ export class ReviewPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_whereDoTheChildrenLive}")`,
-        2,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_doYouHaveAWrittenAgreementWithTheOtherPeopleInTheCaseThatYouWantTheCourtToReview}")`,
-        2,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_whatAreYouAskingTheCourtToDo}")`,
-        2,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_describeWhatYouWantTheCourtToDoRegardingTheChildrenInThisApplication}")`,
-        2,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_doesYourSituationQualifyForAnUrgentFirstHearing}")`,
-        2,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_areYouAskingForAWithoutNoticeHearing}")`,
-        2,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_fullName}")`,
-        10,
+        5,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_dateOfBirth}")`,
-        10,
+        5,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_gender}")`,
-        10,
+        5,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_ordersAppliedFor}")`,
-        2,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_stateEveryoneWhoHasParentalResponsibilityForExampletextExampletextAndHowTheyHaveParentalResponsibility}")`,
-        2,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_areAnyOfTheChildrenKnownToSocialServices}")`,
-        2,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_areAnyOfTheChildrenTheSubjectOfAChildProtectionPlan}")`,
-        2,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_doYouOrAnyRespondentsHaveOtherChildrenWhoAreNotPartOfThisApplication}")`,
-        2,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_doTheOtherPeopleNamedInThisApplicationtheRespondentsKnowAnyOfYourContactDetails}")`,
-        2,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -233,372 +236,371 @@ export class ReviewPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_haveYouChangedYourName}")`,
-        2,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_placeOfBirth}")`,
-        4,
+        2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_relationshipToExampletextExampletext}")`,
-        6,
+        3,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_addressDetails}")`,
-        6,
+        3,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_contactDetailsOfExampletextExampletext}")`,
-        2,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_canTheCourtLeaveYouAVoicemail}")`,
-        2,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_contactPreferences}")`,
-        2,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_haveTheyChangedTheirName}")`,
-        4,
+        2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_email}")`,
-        3,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_telephoneNumber}")`,
-        2,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_isThereAnyoneElseWhoShouldKnowAboutYourApplication}")`,
-        2,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_whoDoesExampletextExampletextMainlyLiveWith}")`,
-        2,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_exampletextExampletextsLivingArrangements}")`,
-        2,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_haveTheChildrenBeenInvolvedInACourtCase}")`,
-        2,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_haveYouHadACourtOrderMadeForYourProtection}")`,
-        2,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_provideDetailsOfCourtCasesYouOrTheChildrenHaveBeenInvolvedIn}")`,
-        2,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_childArrangementsOrder}")`,
-        3,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_emergencyProtectionOrder}")`,
-        3,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_supervisionOrder}")`,
-        3,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_careOrder}")`,
-        3,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_childAbductionOrder}")`,
-        3,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_aContactOrResidenceOrdersection8ChildrenAct1989MadeWithinProceedingsForADivorceOrDissolutionOfACivilPartnership}")`,
-        3,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_aContactOrResidenceOrdersection8ChildrenAct1989MadeInConnectionWithAnAdoptionOrder}")`,
-        3,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_childMaintenanceOrder}")`,
-        3,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_financialOrder}")`,
-        3,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_nonmolestationOrder}")`,
-        3,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_occupationOrder}")`,
-        3,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_forcedMarriageProtectionOrder}")`,
-        3,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_restrainingOrder}")`,
-        3,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_otherInjunctionOrder}")`,
-        3,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_undertakingOrder}")`,
-        3,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_otherOrder}")`,
-        3,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_doYouHaveAnyConcernsForYourSafetyOrTheSafetyOfTheChildren}")`,
-        2,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_whoAreYouConcernedAbout}")`,
-        2,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_whatTypeOfBehaviourHaveTheChildrenExperiencedOrAreAtRiskOfExperiencing}")`,
-        4,
+        2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_brieflyDescribeThePhysicalAbuseAgainstTheChildIfYouFeelAbleTo}")`,
-        2,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_brieflyDescribeThePsychologicalAbuseAgainstTheChildIfYouFeelAbleTo}")`,
-        2,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_brieflyDescribeTheEmotionalAbuseAgainstTheChildIfYouFeelAbleTo}")`,
-        2,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_brieflyDescribeTheSexualAbuseAgainstTheChildIfYouFeelAbleTo}")`,
-        2,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_brieflyDescribeTheFinancialAbuseAgainstTheChildIfYouFeelAbleTo}")`,
-        2,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_whyDoYouThinkTheChildrenMayBeAbductedOrKeptOutsideTheUkWithoutYourConsent}")`,
-        2,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_whereAreTheChildrenNow}")`,
-        2,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_doAnyOfTheChildrenHaveAPassport}")`,
-        2,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_hasThePassportOfficeBeenNotified}")`,
-        2,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_haveTheChildrenBeenAbductedOrKeptOutsideTheUkWithoutYourConsentBefore}")`,
-        2,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_provideDetailsOfThePreviousAbductions}")`,
-        2,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_wereThePolicePrivateInvestigatorsOrAnyOtherOrganisationInvolved}")`,
-        2,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_brieflyDescribeThePhysicalAbuseIfYouFeelAbleTo}")`,
-        2,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_brieflyDescribeThePsychologicalAbuseIfYouFeelAbleTo}")`,
-        2,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_brieflyDescribeTheEmotionalAbuseIfYouFeelAbleTo}")`,
-        2,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_brieflyDescribeTheSexualAbuseIfYouFeelAbleTo}")`,
-        2,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_brieflyDescribeTheConcernsIfYouFeelAbleTo}")`,
-        2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_haveTheChildrenBeenImpactedByDrugAlcoholOrSubstanceAbuse}")`,
-        2,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_doYouHaveAnyOtherConcernsAboutTheChildrensSafetyAndWellbeing}")`,
-        2,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_whatDoYouWantTheCourtToDoToKeepYouAndTheChildrenSafe}")`,
-        2,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_doYouAgreeToTheChildrenSpendingTimeWithTheOtherPeopleInThisApplication}")`,
-        2,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_doYouAgreeToTheOtherPeopleInThisApplicationBeingInTouchWithTheChildrenInOtherWays}")`,
-        2,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_areTheChildrensLivesMainlyBasedOutsideOfEnglandAndWales}")`,
-        2,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_areTheChildrensParentsorAnyoneSignificantToTheChildrenMainlyBasedOutsideOfEnglandAndWales}")`,
-        2,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_couldAnotherPersonInTheApplicationApplyForASimilarOrderInACountryOutsideEnglandOrWales}")`,
-        2,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_hasAnotherCountryAskedorBeenAskedForInformationOrHelpForTheChildren}")`,
-        2,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_wouldYouBeAbleToTakePartInHearingsByVideoAndPhone}")`,
-        2,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_doYouHaveAnyLanguageRequirements}")`,
-        2,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_doYouOrTheChildrenNeedSpecialArrangementsAtCourt}")`,
-        2,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_doYouHaveAPhysicalMentalOrLearningDisabilityOrHealthConditionThatMeansYouNeedSupportDuringYourCase}")`,
-        2,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_iNeedDocumentsInAnAlternativeFormat}")`,
-        3,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_iNeedHelpCommunicatingAndUnderstanding}")`,
-        3,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_iNeedToBringSupportWithMeToACourtHearing}")`,
-        2,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_iNeedSomethingToFeelComfortableDuringACourtHearing}")`,
-        2,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_iNeedHelpTravellingToOrMovingAroundCourtBuildings}")`,
-        3,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_doYouNeedHelpWithPayingTheFeeForThisApplication}")`,
-        2,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_enterYourHelpWithFeesReferenceNumber}")`,
-        2,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListValue}:text-is("${TopMiroReviewContent.dd_govuksummarylistvalue_yes}")`,
-        64,
+        36,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListValue}:text-is("${TopMiroReviewContent.dd_govuksummarylistvalue_exampletextExampletext}")`,
-        15,
+        4,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -613,27 +615,22 @@ export class ReviewPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListValue}:text-is("${TopMiroReviewContent.dd_govuksummarylistvalue_exampletext}")`,
-        7,
+        2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukSummaryListValue}:text-is("${TopMiroReviewContent.dd_govuksummarylistvalue_6November2002}")`,
+        `${Selectors.GovukSummaryListValue}:has-text("${TopMiroReviewContent.dd_govuksummarylistvalue_November2002}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListValue}:text-is("${TopMiroReviewContent.dd_govuksummarylistvalue_swansea}")`,
-        2,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListValue}:text-is("${TopMiroReviewContent.dd_govuksummarylistvalue_mother}")`,
-        4,
+        3,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListValue}:text-is("${TopMiroReviewContent.dd_govuksummarylistvalue_janeDoe}")`,
-        2,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -668,7 +665,7 @@ export class ReviewPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.li}:text-is("${TopMiroReviewContent.li_relocatingTheChildrenOutsideOfEnglandAndWalesincludingScotlandAndNorthernIreland}")`,
-        2,
+        4,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -698,22 +695,17 @@ export class ReviewPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.li}:text-is("${TopMiroReviewContent.li_email}")`,
-        3,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.li}:text-is("${TopMiroReviewContent.li_exampletextExampletext}")`,
-        15,
+        6,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.li}:text-is("${TopMiroReviewContent.li_janeDoe}")`,
-        2,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${TopMiroReviewContent.li_mother}")`,
-        4,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -723,17 +715,17 @@ export class ReviewPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.li}:text-is("${TopMiroReviewContent.li_iNeedDocumentsInAnAlternativeFormat}")`,
-        3,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.li}:text-is("${TopMiroReviewContent.li_iNeedHelpCommunicatingAndUnderstanding}")`,
-        3,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.li}:text-is("${TopMiroReviewContent.li_iNeedHelpTravellingToOrMovingAroundCourtBuildings}")`,
-        3,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -763,7 +755,7 @@ export class ReviewPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.li}:text-is("${TopMiroReviewContent.li_govukpaddingtop_relocatingTheChildrenOutsideOfEnglandAndWalesincludingScotlandAndNorthernIreland}")`,
-        2,
+        4,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -888,7 +880,7 @@ export class ReviewPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.p}:text-is("${TopMiroReviewContent.p_yes}")`,
-        64,
+        39,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -958,92 +950,91 @@ export class ReviewPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.div}:text-is("${TopMiroReviewContent.div_govukpaddingbottom_yes}")`,
-        64,
+        12,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.li}:text-is("${TopMiroReviewContent.li_govukpaddingbottom_childArrangementsOrder}")`,
-        3,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.li}:text-is("${TopMiroReviewContent.li_govukpaddingbottom_emergencyProtectionOrder}")`,
-        3,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.li}:text-is("${TopMiroReviewContent.li_govukpaddingbottom_supervisionOrder}")`,
-        3,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.li}:text-is("${TopMiroReviewContent.li_govukpaddingbottom_careOrder}")`,
-        3,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.li}:text-is("${TopMiroReviewContent.li_govukpaddingbottom_childAbductionOrder}")`,
-        3,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.li}:text-is("${TopMiroReviewContent.li_govukpaddingbottom_aContactOrResidenceOrdersection8ChildrenAct1989MadeWithinProceedingsForADivorceOrDissolutionOfACivilPartnership}")`,
-        3,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.li}:text-is("${TopMiroReviewContent.li_govukpaddingbottom_aContactOrResidenceOrdersection8ChildrenAct1989MadeInConnectionWithAnAdoptionOrder}")`,
-        3,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.li}:text-is("${TopMiroReviewContent.li_govukpaddingbottom_childMaintenanceOrder}")`,
-        3,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.li}:text-is("${TopMiroReviewContent.li_govukpaddingbottom_financialOrder}")`,
-        3,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.li}:text-is("${TopMiroReviewContent.li_govukpaddingbottom_nonmolestationOrder}")`,
-        3,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.li}:text-is("${TopMiroReviewContent.li_govukpaddingbottom_occupationOrder}")`,
-        3,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.li}:text-is("${TopMiroReviewContent.li_govukpaddingbottom_forcedMarriageProtectionOrder}")`,
-        3,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.li}:text-is("${TopMiroReviewContent.li_govukpaddingbottom_restrainingOrder}")`,
-        3,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.li}:text-is("${TopMiroReviewContent.li_govukpaddingbottom_otherInjunctionOrder}")`,
-        3,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.li}:text-is("${TopMiroReviewContent.li_govukpaddingbottom_undertakingOrder}")`,
-        3,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.li}:text-is("${TopMiroReviewContent.li_govukpaddingbottom_otherOrder}")`,
-        3,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.ul}:text-is("${TopMiroReviewContent.li_govukpaddingbottom_otherOrder}")`,
-        15,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -1056,6 +1047,33 @@ export class ReviewPage {
         2,
       ),
     ]);
+    if (reviewPageTopJourneyMotherFather === "mother") {
+      await Promise.all([
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukSummaryListValue}:text-is("${TopMiroReviewContent.dd_govuksummarylistvalue_mother}")`,
+          3,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.li}:text-is("${TopMiroReviewContent.li_mother}")`,
+          1,
+        ),
+      ]);
+    } else if (reviewPageTopJourneyMotherFather === "father") {
+      await Promise.all([
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukSummaryListValue}:text-is("${TopMiroReviewContent.dd_govuksummarylistvalue_father}")`,
+          3,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.li}:text-is("${TopMiroReviewContent.li_father}")`,
+          1,
+        ),
+      ]);
+    }
     await this.fillInFields(page);
   }
 
