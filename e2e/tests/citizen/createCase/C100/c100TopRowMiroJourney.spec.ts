@@ -1,7 +1,7 @@
 import { test } from "@playwright/test";
-import IdamLoginHelper from "../../../../common/idamLoginHelper";
-import Config from "../../../../config";
 import { C100 } from "../../../../journeys/citizen/createCase/C100/C100";
+import Config from "../../../../config";
+import IdamLoginHelper from "../../../../common/idamLoginHelper";
 
 test.describe("C100 Citizen Application tests on the top MIRO set. @citizenFrontend @crossbrowserCitizenFrontend", (): void => {
   test.beforeEach(async ({ page }) => {
@@ -99,6 +99,7 @@ test.describe("C100 Citizen Application tests on the top MIRO set. @citizenFront
       yesNoReasonableAdjustments: true,
       c100YesNoNeedHelpWithFees: true,
       c100YesNoFeesApplied: true,
+      reviewPageTopJourneyMotherFather: "mother",
     });
   });
 
@@ -191,6 +192,7 @@ test.describe("C100 Citizen Application tests on the top MIRO set. @citizenFront
       yesNoReasonableAdjustments: true,
       c100YesNoNeedHelpWithFees: true,
       c100YesNoFeesApplied: true,
+      reviewPageTopJourneyMotherFather: "father",
     });
   });
 
@@ -283,6 +285,7 @@ test.describe("C100 Citizen Application tests on the top MIRO set. @citizenFront
       yesNoReasonableAdjustments: true,
       c100YesNoNeedHelpWithFees: true,
       c100YesNoFeesApplied: true,
+      reviewPageTopJourneyMotherFather: "father",
     });
   });
 });
@@ -384,6 +387,7 @@ test.describe("Test the accessibility of the CA C100 Citizen Journey.  @accessib
       yesNoReasonableAdjustments: true,
       c100YesNoNeedHelpWithFees: true,
       c100YesNoFeesApplied: true,
+      reviewPageTopJourneyMotherFather: "father",
     });
   });
 });
