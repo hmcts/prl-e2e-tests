@@ -1,6 +1,6 @@
 import { Page } from "@playwright/test";
-import config from "../../../config";
 import { UserRole } from "../../../common/types";
+import config from "../../../config";
 import { CaseListPage } from "../../../pages/manageCases/caseList/caseListPage";
 
 export class CaseList {

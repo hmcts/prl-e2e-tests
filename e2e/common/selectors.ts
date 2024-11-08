@@ -123,4 +123,8 @@ export enum Selectors {
 
   // Logos
   GovukLogo = ".govuk-header__logotype-text",
+
+  // XUI
+  xuiSpinner = "xuilib-loading-spinner",
+  xuiFilters = "exui-ccd-connector",
 }
