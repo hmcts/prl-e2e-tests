@@ -17,7 +17,7 @@ export type Events = "undefined";
 const UserRoles = {
   solicitor: "solicitor",
   citizen: "citizen",
-  judge: "judge"
+  judge: "judge",
 } as const;
 
 export type UserRole = (typeof UserRoles)[keyof typeof UserRoles];

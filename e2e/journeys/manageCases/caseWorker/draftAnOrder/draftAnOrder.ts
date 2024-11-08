@@ -183,7 +183,9 @@ export class DraftAnOrder {
         break;
     }
     // fetch and return the case ref ro be used when editing and approving an order
-    const unformattedCaseRef: string | null = await page.locator(caseNumberSelector).textContent();
+    const unformattedCaseRef: string | null = await page
+      .locator(caseNumberSelector)
+      .textContent();
     const formattedCaseRef: string | undefined = unformattedCaseRef?.slice(12);
     return formattedCaseRef ? formattedCaseRef : "";
   }

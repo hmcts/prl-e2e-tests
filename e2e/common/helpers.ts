@@ -223,7 +223,11 @@ export class Helpers {
     "December",
   ];
 
-  private static generateUrl(baseURL: string, caseNumber: string, caseTab: string): string {
+  private static generateUrl(
+    baseURL: string,
+    caseNumber: string,
+    caseTab: string,
+  ): string {
     const caseNumberDigits: string = caseNumber.replace(/\D/g, "");
     return `${baseURL}/case-details/${caseNumberDigits}/${caseTab}`;
   }

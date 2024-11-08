@@ -51,11 +51,15 @@ export class EditAndApproveOrder {
       "tasks",
     );
     // refresh page until the task shows up - there is some delay
-    let visible: boolean = await page.locator("strong", {hasText: "Non-molestation order (FL404A)"}).isVisible();
-    while(!visible) {
+    let visible: boolean = await page
+      .locator("strong", { hasText: "Non-molestation order (FL404A)" })
+      .isVisible();
+    while (!visible) {
       await page.reload();
       await page.waitForTimeout(10000);
-      visible = await page.locator("strong", {hasText: "Non-molestation order (FL404A)"}).isVisible();
+      visible = await page
+        .locator("strong", { hasText: "Non-molestation order (FL404A)" })
+        .isVisible();
     }
     await page.click(`${Selectors.a}:text-is("Assign to me")`);
     await page.locator(".alert-message").waitFor();
