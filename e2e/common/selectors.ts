@@ -7,6 +7,7 @@ export enum Selectors {
   headingH3 = ".heading-h3",
   h2 = "h2",
   h3 = "h3",
+  h4 = 'h4',
 
   // Navigation
   GovukNavLink = ".govuk-nav-link",
@@ -41,6 +42,7 @@ export enum Selectors {
 
   // Notifications
   GovukNotificationBanner = ".govuk-notification-banner",
+  GovukNotificationBannerLink = "govuk-notification-banner__link",
   GovukErrorSummary = ".govuk-error-summary",
 
   // Content
@@ -56,6 +58,8 @@ export enum Selectors {
   GovukHeadingS = ".govuk-heading-s",
   GovukSummaryList = ".govuk-summary-list",
   GovukSummaryText = ".govuk-details__summary-text",
+  GovukSummaryListValue = '.govuk-summary-list__value',
+  GovukSummaryListKey = '.govuk-summary-list__key',
   GovukDetailsText = ".govuk-details__text",
   GovukErrorSummaryTitle = ".govuk-error-summary__title",
   GovukErrorySummaryHeading = ".error-summary-heading",
@@ -75,10 +79,14 @@ export enum Selectors {
   GovukLegendL = ".govuk-fieldset__legend--l",
   p = "p",
   li = "li",
+  ul = 'li',
+  dt = 'dt',
+  dd = 'dd',
   strong = "strong",
   div = "div",
   markdown = "markdown",
   a = "a",
+  b = 'b',
 
   // Common Components
   ErrorSummaryList = ".ccd-error-summary-li",
