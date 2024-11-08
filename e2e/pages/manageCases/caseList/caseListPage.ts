@@ -1,6 +1,7 @@
 import { Page } from "@playwright/test";
 import { Helpers } from "../../../common/helpers";
 import { Selectors } from "../../../common/selectors";
+import Config from "../../../config";
 import { CaseListContent } from "../../../fixtures/manageCases/caseList/caseListContent";
 import { CommonContent } from "../../../fixtures/manageCases/commonContent";
 import { CommonPage } from "../commonPage";
@@ -11,6 +12,10 @@ export class CaseListPage extends CommonPage {
     accessibilityTest: boolean,
   ): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest);
+  }
+
+  public static async navigateToCreateCasePage(page: Page): Promise<void> {
+    await page.goto(Config.manageCasesBaseURL + "/case-filter");
   }
 
   public static async startCreateCaseEvent(page: Page): Promise<void> {

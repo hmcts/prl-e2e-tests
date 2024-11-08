@@ -32,8 +32,8 @@ async function createDaCitizenCourtNavCase(withDoc: boolean): Promise<void> {
     );
     const responseBody = await response.json();
     const ccd_reference = responseBody.ccd_reference as string;
-    if (!ccd_reference) {
-      throw new Error("Failed to create case: CCD reference is missing.");
+    if (!responseBody || !responseBody.ccd_reference) {
+      throw new Error("Failed to create case. No CCD reference or no response body");
     }
     if (existsSync(".env")) {
       console.log("CCD Reference:", ccd_reference);

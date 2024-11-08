@@ -1,17 +1,16 @@
 import { Page } from "@playwright/test";
-import { solicitorCaseCreateType, UserRole } from "../../../common/types";
-import { CaseList } from "../caseList/caseList";
-import { CaseListPage } from "../../../pages/manageCases/caseList/caseListPage";
-import { SolicitorCreatePage } from "../../../pages/manageCases/createCase/initialJourney/solicitorCreatePage";
-import { SolicitorCreate2Page } from "../../../pages/manageCases/createCase/initialJourney/solicitorCreate2Page";
-import { SolicitorCreate6Page } from "../../../pages/manageCases/createCase/initialJourney/solicitorCreate6Page";
-import { SolicitorCreate4Page } from "../../../pages/manageCases/createCase/initialJourney/solicitorCreate4Page";
-import { SolicitorCreate3Page } from "../../../pages/manageCases/createCase/initialJourney/solicitorCreate3Page";
-import { SolicitorCreate5Page } from "../../../pages/manageCases/createCase/initialJourney/solicitorCreate5Page";
-import { SubmitPage } from "../../../pages/manageCases/createCase/initialJourney/submitPage";
-import { Fl401TasksTabPage } from "../../../pages/manageCases/caseTabs/fl401TasksTabPage";
-import { C100TasksTabPage } from "../../../pages/manageCases/caseTabs/c100TasksTabPage";
 import { Selectors } from "../../../common/selectors";
+import { solicitorCaseCreateType, UserRole } from "../../../common/types";
+import { CaseListPage } from "../../../pages/manageCases/caseList/caseListPage";
+import { C100TasksTabPage } from "../../../pages/manageCases/caseTabs/c100TasksTabPage";
+import { Fl401TasksTabPage } from "../../../pages/manageCases/caseTabs/fl401TasksTabPage";
+import { SolicitorCreate2Page } from "../../../pages/manageCases/createCase/initialJourney/solicitorCreate2Page";
+import { SolicitorCreate3Page } from "../../../pages/manageCases/createCase/initialJourney/solicitorCreate3Page";
+import { SolicitorCreate4Page } from "../../../pages/manageCases/createCase/initialJourney/solicitorCreate4Page";
+import { SolicitorCreate5Page } from "../../../pages/manageCases/createCase/initialJourney/solicitorCreate5Page";
+import { SolicitorCreate6Page } from "../../../pages/manageCases/createCase/initialJourney/solicitorCreate6Page";
+import { SolicitorCreatePage } from "../../../pages/manageCases/createCase/initialJourney/solicitorCreatePage";
+import { SubmitPage } from "../../../pages/manageCases/createCase/initialJourney/submitPage";
 
 export class SolicitorCreateInitial {
   public static async createInitialCase({
@@ -28,8 +27,7 @@ export class SolicitorCreateInitial {
     errorMessaging: boolean;
   }): Promise<void> {
     let caseName: string;
-    await CaseList.caseList(page, user, false);
-    await CaseListPage.startCreateCaseEvent(page);
+    await CaseListPage.navigateToCreateCasePage(page);
     await SolicitorCreatePage.solicitorCreatePage(page, accessibilityTest);
     await SolicitorCreate2Page.solicitorCreate2Page(
       page,
