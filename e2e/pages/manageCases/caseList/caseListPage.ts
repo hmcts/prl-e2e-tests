@@ -1,6 +1,7 @@
 import { Page } from "@playwright/test";
 import { Helpers } from "../../../common/helpers";
 import { Selectors } from "../../../common/selectors";
+import Config from "../../../config";
 import { CaseListContent } from "../../../fixtures/manageCases/caseList/caseListContent";
 import { CommonContent } from "../../../fixtures/manageCases/commonContent";
 import { CommonPage } from "../commonPage";
@@ -13,16 +14,39 @@ export class CaseListPage extends CommonPage {
     await this.checkPageLoads(page, accessibilityTest);
   }
 
+  public static async navigateToCreateCasePage(page: Page): Promise<void> {
+    await page.goto(Config.manageCasesBaseURL + "/case-filter");
+  }
+
   public static async startCreateCaseEvent(page: Page): Promise<void> {
     await page.click(
       `${Selectors.GovukNavigationLink}:text-is("${CommonContent.createCase}")`,
     );
   }
 
+  private static async waitForCasesToLoad(page: Page): Promise<void> {
+    const MAX_RESET_ATTEMPTS = 3;
+    const spinner = page.locator(Selectors.xuiSpinner);
+    const resetFilters = page.getByTitle("Reset filter");
+    const caseHeading = page.locator(
+      `${Selectors.headingH2}:text-is("${CaseListContent.yourCasesSubtitle}")`,
+    );
+
+    // TODO: Need to replace the implicit waits with something more stable
+    // TODO: Need to investigate where cases do not load on first attempt
+    for (let i = 0; i < MAX_RESET_ATTEMPTS; i++) {
+      if (await spinner.isVisible()) await page.waitForTimeout(10000);
+      if (await caseHeading.isVisible()) return;
+      await resetFilters.click();
+      await page.waitForTimeout(10000);
+    }
+  }
+
   private static async checkPageLoads(
     page: Page,
     accessibilityTest: boolean,
   ): Promise<void> {
+    await this.waitForCasesToLoad(page);
     await page.waitForSelector(
       `${Selectors.headingH2}:text-is("${CaseListContent.yourCasesSubtitle}")`,
     );

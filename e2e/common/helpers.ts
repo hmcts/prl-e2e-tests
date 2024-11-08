@@ -1,12 +1,12 @@
 import { expect, Locator, Page } from "@playwright/test";
+import idamLoginHelper from "./idamLoginHelper";
+import { Selectors } from "./selectors.ts";
 import {
   c100SolicitorEvents,
   fl401SolicitorEvents,
   fl401SubmittedSolicitorEvents,
   UserRole,
 } from "./types";
-import idamLoginHelper from "./idamLoginHelper";
-import { Selectors } from "./selectors.ts";
 
 export class Helpers {
   public static async chooseEventFromDropdown(
