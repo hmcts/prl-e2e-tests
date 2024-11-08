@@ -19,10 +19,29 @@ export class CaseListPage extends CommonPage {
     );
   }
 
+  private static async waitForCasesToLoad(page: Page): Promise<void> {
+    const MAX_RESET_ATTEMPTS = 3;
+    const spinner = page.locator(Selectors.xuiSpinner);
+    const resetFilters = page.getByTitle("Reset filter");
+    const caseHeading = page.locator(
+      `${Selectors.headingH2}:text-is("${CaseListContent.yourCasesSubtitle}")`,
+    );
+
+    // TODO: Need to replace the implicit waits with something more stable
+    // TODO: Need to investigate where cases do not load on first attempt
+    for (let i = 0; i < MAX_RESET_ATTEMPTS; i++) {
+      if (await spinner.isVisible()) await page.waitForTimeout(10000);
+      if (await caseHeading.isVisible()) return;
+      await resetFilters.click();
+      await page.waitForTimeout(10000);
+    }
+  }
+
   private static async checkPageLoads(
     page: Page,
     accessibilityTest: boolean,
   ): Promise<void> {
+    await this.waitForCasesToLoad(page);
     await page.waitForSelector(
       `${Selectors.headingH2}:text-is("${CaseListContent.yourCasesSubtitle}")`,
     );
