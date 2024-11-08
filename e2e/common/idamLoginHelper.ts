@@ -43,7 +43,7 @@ export class IdamLoginHelper {
     page: Page,
     application: string,
   ): Promise<void> {
-    const token = process.env.BEARER_TOKEN;
+    const token = process.env.CITIZEN_CREATE_USER_BEARER_TOKEN;
     if (!token) {
       console.error("Bearer token is not defined in the environment variables");
       return;
