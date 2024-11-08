@@ -153,6 +153,7 @@ interface C100SecondMiroJourneyOptions {
   yesNoReasonableAdjustments: boolean;
   c100YesNoNeedHelpWithFees: boolean;
   c100YesNoFeesApplied: boolean;
+  relationshipType: Relationship;
 }
 
 interface C100ThirdMiroJourneyMIAMOptions {
@@ -422,7 +423,7 @@ export class C100 {
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
       // yesNoChildArrangementOrderDetails: yesNoChildArrangementOrderDetails,
-      yesNoOtherProceedings: yesNoOtherProceedings
+      yesNoOtherProceedings: yesNoOtherProceedings,
     });
     await C100SafetyConcerns.c100SafetyConcerns({
       page: page,
@@ -434,31 +435,31 @@ export class C100 {
       c100ChildrenSupervision: c100ChildrenSupervision,
       c100ChildrenHavePassport: c100ChildrenHavePassport,
       c100PassportOfficeNotified: c100PassportOfficeNotified,
-      c100MoreThanOnePassport: c100MoreThanOnePassport
+      c100MoreThanOnePassport: c100MoreThanOnePassport,
     });
     await C100InternationalElements.c100InternationalElements({
       page: page,
-      accessibilityTest:accessibilityTest,
+      accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
-      yesNoInternationalElements: yesNoInternationalElements
+      yesNoInternationalElements: yesNoInternationalElements,
     });
     await C100ReasonableAdjustments.c100ReasonableAdjustments({
       page: page,
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
-      yesNoReasonableAdjustments: yesNoReasonableAdjustments
+      yesNoReasonableAdjustments: yesNoReasonableAdjustments,
     });
     await C100HelpWithFees.c100HelpWithFees({
       page: page,
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
       c100YesNoFeesApplied: c100YesNoFeesApplied,
-      c100YesNoNeedHelpWithFees: c100YesNoNeedHelpWithFees
+      c100YesNoNeedHelpWithFees: c100YesNoNeedHelpWithFees,
     });
-    await ReviewPage.submitTopMiro({
-      page: page,
-      accessibilityTest: accessibilityTest
-    })
+    // await ReviewPage.submitTopMiro({
+    //   page: page,
+    //   accessibilityTest: accessibilityTest
+    // })
   }
 
   public static async c100SecondMiroJourney({
@@ -507,6 +508,7 @@ export class C100 {
     yesNoReasonableAdjustments,
     c100YesNoNeedHelpWithFees,
     c100YesNoFeesApplied,
+    relationshipType,
   }: C100SecondMiroJourneyOptions): Promise<void> {
     await CitizenCreateInitial.citizenCreateInitial({
       page: page,
@@ -633,15 +635,15 @@ export class C100 {
     await ReviewPage.submitSecondMiro({
       page: page,
       accessibilityTest: accessibilityTest,
-      relationshipType: applicantRelationship
-    })
-    // await EqualityAndDiversityPage.equalityAndDiversityPage({
-    //   page
-    // });
-    // await ConfirmationPage.confirmationPage({
-    //   page: page,
-    //   accessibilityTest: accessibilityTest,
-    // });
+      relationshipType: relationshipType,
+    });
+    await EqualityAndDiversityPage.equalityAndDiversityPage({
+      page,
+    });
+    await ConfirmationPage.confirmationPage({
+      page: page,
+      accessibilityTest: accessibilityTest,
+    });
   }
 
   public static async c100ThirdMiroJourney({

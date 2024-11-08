@@ -36,7 +36,7 @@ export class ConfirmationPage {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukPanelBody}:has-text("${ConfirmationContent.govukBodyL}")`,
+        `${Selectors.GovukBodyL}:has-text("${ConfirmationContent.govukBodyL}")`,
         1,
       ),
       Helpers.checkGroup(page, 2, ConfirmationContent, "h2", Selectors.h2),
@@ -66,8 +66,8 @@ export class ConfirmationPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukNotificationBannerLink}:has-text("${ConfirmationContent.notificationBanner}")`,
-        1,
+        `${Selectors.a}:has-text("${ConfirmationContent.notificationBanner}")`,
+        1, // bug   - waiting for locator('a:has-text("Please leave your feedback here(opens in a new tab).")').first()
       ),
     ]);
     if (accessibilityTest) {

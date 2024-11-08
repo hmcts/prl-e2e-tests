@@ -110,17 +110,9 @@ export class Helpers {
     const dateString: string = now.toLocaleDateString("en-US", options);
     const [month, day, year] = dateString.split("/");
     if (longFormat) {
-      return Helpers.dayLongMonthYear(
-        day,
-        month,
-        year
-      )
+      return Helpers.dayLongMonthYear(day, month, year);
     } else {
-      return Helpers.dayAbbreviatedMonthYear(
-        day,
-        month,
-        year
-      )
+      return Helpers.dayAbbreviatedMonthYear(day, month, year);
     }
   }
 
@@ -258,7 +250,7 @@ export class Helpers {
             .toBeVisible(),
       );
       const countPromise: Promise<void> = expect
-        .soft(page.locator(`${Selectors.h2}`, { hasText: caseNumberRegex }))
+        .soft(page.locator(`${Selectors.strong}`, { hasText: caseNumberRegex }))
         .toHaveCount(1);
       await Promise.all([...visibilityPromises, countPromise]);
     } catch (error) {

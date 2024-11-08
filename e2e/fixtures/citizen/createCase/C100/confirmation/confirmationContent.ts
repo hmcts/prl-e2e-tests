@@ -22,7 +22,7 @@ export enum ConfirmationContent {
   goukLink6 = "Find an organisation that will help you with your case",
   h3 = "We'd like to hear your thoughts",
   govukBody = "Complete this short, 5-minute survey to help improve our services for you and others.",
-  notificationBanner = "Please leave your feedback here(opens in a new tab).",
+  notificationBanner = "Please leave your feedback here(opens in a new tab)",
   returnToDashboard = "Return to your dashboard",
   buttonDownloadApplication = "Download your application",
 }
