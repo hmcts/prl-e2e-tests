@@ -943,8 +943,8 @@ export class C100 {
       miamChildProtectionConcernsType: miamChildProtectionConcernsType,
       miamUrgencyType: miamUrgencyType,
       miamAttendanceType: miamAttendanceType,
-      c100ChildrenSupervision: c100ChildrenSupervision
-    })
+      c100ChildrenSupervision: c100ChildrenSupervision,
+    });
     // await EqualityAndDiversityPage.equalityAndDiversityPage({
     //   page
     // });
