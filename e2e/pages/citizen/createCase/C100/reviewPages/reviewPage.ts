@@ -1410,7 +1410,7 @@ export class ReviewPage {
     await this.fillInFields(page);
   }
 
-  private static async C100ExistingMIAMJourney({
+  public static async C100ExistingMIAMJourney({
     page,
     accessibilityTest
   }: C100ExistingMIAMJourneyOptions): Promise<void> {
