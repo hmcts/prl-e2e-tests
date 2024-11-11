@@ -158,7 +158,7 @@ interface C100EmergencyProtectionJourneyOptions {
   relationshipType: CapitalizedRelationship;
 }
 
-interface C100ThirdMiroJourneyMIAMOptions {
+interface C100ExistingMIAMDocumentOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
@@ -726,7 +726,7 @@ export class C100 {
     });
   }
 
-  public static async c100ThirdMiroJourney({
+  public static async c100CAExistingMIAMDocumentJourney({
     page,
     accessibilityTest,
     errorMessaging,
@@ -785,7 +785,7 @@ export class C100 {
     yesNoReasonableAdjustments,
     c100YesNoNeedHelpWithFees,
     c100YesNoFeesApplied,
-  }: C100ThirdMiroJourneyMIAMOptions): Promise<void> {
+  }: C100ExistingMIAMDocumentOptions): Promise<void> {
     await CitizenCreateInitial.citizenCreateInitial({
       page: page,
       accessibilityTest: accessibilityTest,
@@ -909,6 +909,7 @@ export class C100 {
       c100YesNoFeesApplied: c100YesNoFeesApplied,
       c100YesNoNeedHelpWithFees: c100YesNoNeedHelpWithFees
     });
+    console.log('Review')
   }
 
   public static async c100CAJourneyMIAMHearingUrgency({
