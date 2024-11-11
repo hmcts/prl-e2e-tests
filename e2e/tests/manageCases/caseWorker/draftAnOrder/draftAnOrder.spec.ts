@@ -1,6 +1,6 @@
 import { test } from "@playwright/test";
-import Config from "../../../config";
-import { DraftAnOrder } from "../../../journeys/manageCases/caseWorker/draftAnOrder/draftAnOrder";
+import Config from "../../../../config";
+import { DraftAnOrder } from "../../../../journeys/manageCases/caseWorker/draftAnOrder/draftAnOrder";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 

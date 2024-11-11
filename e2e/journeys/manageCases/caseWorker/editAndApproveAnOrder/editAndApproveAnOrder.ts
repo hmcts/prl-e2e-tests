@@ -1,17 +1,17 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../common/selectors";
-import { Helpers } from "../../../common/helpers";
-import { EditAndApproveAnOrder2Page } from "../../../pages/manageCases/caseWorker/editAndApproveAnOrder2Page";
+import { Selectors } from "../../../../common/selectors";
+import { Helpers } from "../../../../common/helpers";
+import { EditAndApproveAnOrder2Page } from "../../../../pages/manageCases/caseWorker/editAndApproveAnOrder/editAndApproveAnOrder2Page";
 import {
   JudgeOrderAction,
   OrderType,
   solicitorCaseCreateType,
-} from "../../../common/types";
-import { EditAndApproveAnOrder21Page } from "../../../pages/manageCases/caseWorker/editAndApproveAnOrder21Page";
-import { EditAndApproveAnOrderSubmitPage } from "../../../pages/manageCases/caseWorker/editAndApproveAnOrderSubmitPage";
-import { EditAndApproveAnOrderConfirmPage } from "../../../pages/manageCases/caseWorker/editAndApproveAnOrderConfirmPage";
-import { DraftAnOrder, orderTypesMap } from "./draftAnOrder/draftAnOrder";
-import config from "../../../config";
+} from "../../../../common/types";
+import { EditAndApproveAnOrder21Page } from "../../../../pages/manageCases/caseWorker/editAndApproveAnOrder/editAndApproveAnOrder21Page";
+import { EditAndApproveAnOrderSubmitPage } from "../../../../pages/manageCases/caseWorker/editAndApproveAnOrder/editAndApproveAnOrderSubmitPage";
+import { EditAndApproveAnOrderConfirmPage } from "../../../../pages/manageCases/caseWorker/editAndApproveAnOrder/editAndApproveAnOrderConfirmPage";
+import { DraftAnOrder, orderTypesMap } from "../draftAnOrder/draftAnOrder";
+import config from "../../../../config";
 
 interface EditAndApproveOrderParams {
   page: Page;
@@ -22,8 +22,8 @@ interface EditAndApproveOrderParams {
   accessibilityTest: boolean;
 }
 
-export class EditAndApproveOrder {
-  public static async editAndApproveOrder({
+export class EditAndApproveAnOrder {
+  public static async editAndApproveAnOrder({
     page,
     caseType,
     orderType,

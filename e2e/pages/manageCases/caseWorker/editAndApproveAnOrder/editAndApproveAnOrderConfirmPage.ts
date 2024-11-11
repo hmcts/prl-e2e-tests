@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { JudgeOrderAction } from "../../../common/types";
-import { Selectors } from "../../../common/selectors";
-import { EditAndApproveAnOrderConfirmContent } from "../../../fixtures/manageCases/caseWorker/editAndApproveAnOrderConfirmContent";
-import { Helpers } from "../../../common/helpers";
-import AccessibilityTestHelper from "../../../common/accessibilityTestHelper";
+import { JudgeOrderAction } from "../../../../common/types";
+import { Selectors } from "../../../../common/selectors";
+import { EditAndApproveAnOrderConfirmContent } from "../../../../fixtures/manageCases/caseWorker/eidtAndApproveAnOrder/editAndApproveAnOrderConfirmContent";
+import { Helpers } from "../../../../common/helpers";
+import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
 
 export class EditAndApproveAnOrderConfirmPage {
   public static async editAndApproveOrderConfirmPage(

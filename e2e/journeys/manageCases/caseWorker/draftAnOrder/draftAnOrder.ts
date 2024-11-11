@@ -1,4 +1,4 @@
-import { DummyPaymentAwp } from "../dummyPaymentAwp";
+import { DummyPaymentAwp } from "../dummyPayment/dummyPaymentAwp";
 import { Page } from "@playwright/test";
 import { OrderType, solicitorCaseCreateType } from "../../../../common/types";
 import { Helpers } from "../../../../common/helpers";

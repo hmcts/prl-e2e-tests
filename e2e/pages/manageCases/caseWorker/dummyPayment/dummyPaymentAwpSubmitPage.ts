@@ -1,9 +1,9 @@
-import { CommonPage } from "../commonPage";
+import { CommonPage } from "../../commonPage";
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../common/selectors";
-import { DummyPaymentAwpSubmitContent } from "../../../fixtures/manageCases/caseWorker/dummyPaymentAwpSubmitContent";
-import { Helpers } from "../../../common/helpers";
-import AccessibilityTestHelper from "../../../common/accessibilityTestHelper";
+import { Selectors } from "../../../../common/selectors";
+import { DummyPaymentAwpSubmitContent } from "../../../../fixtures/manageCases/caseWorker/dummyPayment/dummyPaymentAwpSubmitContent";
+import { Helpers } from "../../../../common/helpers";
+import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
 
 export class DummyPaymentAwpSubmitPage extends CommonPage {
   public static async dummyPaymentAwpSubmitPage(

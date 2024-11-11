@@ -1,11 +1,11 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../common/selectors";
-import { EditAndApproveAnOrder21Content } from "../../../fixtures/manageCases/caseWorker/editAndApproveAnOrder21Content";
-import { CommonStaticText } from "../../../common/commonStaticText";
-import AccessibilityTestHelper from "../../../common/accessibilityTestHelper";
-import { Helpers } from "../../../common/helpers";
-import { orderTypesMap } from "../../../journeys/manageCases/caseWorker/draftAnOrder/draftAnOrder";
-import { OrderType } from "../../../common/types";
+import { Selectors } from "../../../../common/selectors";
+import { EditAndApproveAnOrder21Content } from "../../../../fixtures/manageCases/caseWorker/eidtAndApproveAnOrder/editAndApproveAnOrder21Content";
+import { CommonStaticText } from "../../../../common/commonStaticText";
+import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+import { Helpers } from "../../../../common/helpers";
+import { orderTypesMap } from "../../../../journeys/manageCases/caseWorker/draftAnOrder/draftAnOrder";
+import { OrderType } from "../../../../common/types";
 
 enum UniqueSelectors {
   judgeDirectionsToAdminTextbox = "#judgeDirectionsToAdmin",

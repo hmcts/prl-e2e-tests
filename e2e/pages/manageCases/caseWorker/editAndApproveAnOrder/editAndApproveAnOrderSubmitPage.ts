@@ -1,13 +1,13 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../common/selectors";
-import { CommonStaticText } from "../../../common/commonStaticText";
-import { JudgeOrderAction, OrderType } from "../../../common/types";
-import { EditAndApproveAnOrderSubmitContent } from "../../../fixtures/manageCases/caseWorker/editAndApproveAnOrderSubmitContent";
-import AccessibilityTestHelper from "../../../common/accessibilityTestHelper";
-import { Helpers } from "../../../common/helpers";
+import { Selectors } from "../../../../common/selectors";
+import { CommonStaticText } from "../../../../common/commonStaticText";
+import { JudgeOrderAction, OrderType } from "../../../../common/types";
+import { EditAndApproveAnOrderSubmitContent } from "../../../../fixtures/manageCases/caseWorker/eidtAndApproveAnOrder/editAndApproveAnOrderSubmitContent";
+import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+import { Helpers } from "../../../../common/helpers";
 import { EditAndApproveAnOrder2Page } from "./editAndApproveAnOrder2Page";
-import { orderTypesMap } from "../../../journeys/manageCases/caseWorker/draftAnOrder/draftAnOrder";
-import { EditAndApproveAnOrder21Content } from "../../../fixtures/manageCases/caseWorker/editAndApproveAnOrder21Content";
+import { orderTypesMap } from "../../../../journeys/manageCases/caseWorker/draftAnOrder/draftAnOrder";
+import { EditAndApproveAnOrder21Content } from "../../../../fixtures/manageCases/caseWorker/eidtAndApproveAnOrder/editAndApproveAnOrder21Content";
 
 enum UniqueSelectors {
   welshPdfAnchor = "body > exui-root > exui-case-home > div > exui-case-details-home > ccd-case-event-trigger > div > ccd-case-edit > ccd-case-edit-submit > div > form > div.ng-star-inserted > table.form-table.ng-star-inserted > tbody > tr:nth-child(3) > td.form-cell.case-field-content > ccd-field-read > div > ccd-field-read-label > div > ccd-read-document-field > a",
