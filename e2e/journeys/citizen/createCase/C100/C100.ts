@@ -15,6 +15,7 @@ import { C100OtherProceedings } from "./subJourneys/C100OtherProceedings";
 import { C100ApplicationCompletedForYou } from "./C100ApplicationCompletedForYou";
 import {
   ApplicantGender,
+  CapitalizedRelationship,
   Relationship,
   typeOfPerson,
   yesNoDontKnow,
@@ -26,6 +27,8 @@ import { c100ChildrenSupervisionRadios } from "../../../../pages/citizen/createC
 import { C100InternationalElements } from "./subJourneys/c100InternationalElements";
 import { C100ReasonableAdjustments } from "./subJourneys/c100ReasonableAdjustments";
 import { C100HelpWithFees } from "./subJourneys/c100HelpWithFees";
+import { EqualityAndDiversityPage } from "../../../../pages/citizen/createCase/C100/confirmation/equalityAndDiversityQuestionsPage";
+import { ConfirmationPage } from "../../../../pages/citizen/createCase/C100/confirmation/confirmationPage";
 import {
   ReviewPage,
   reviewPageTopJourneyMotherFather,
@@ -72,7 +75,6 @@ interface C100TopMiroJourneyOptions {
   c100PrivateDetails: boolean;
   applicantChangedName: boolean;
   applicantGender: ApplicantGender;
-  applicantRelationship: Relationship;
   applicantAddressLookup: boolean;
   appAddressLookupSuccessful: boolean;
   applicantPrevAddress5Years: boolean;
@@ -83,7 +85,6 @@ interface C100TopMiroJourneyOptions {
   respondentGender: ApplicantGender;
   respondentChangedName: yesNoDontKnow;
   respAddress5Years: yesNoDontKnow;
-  respondentRelationship: Relationship;
   respAddressLookup: boolean;
   respAddressLookupSuccessful: boolean;
   respKnownEmailAndPhone: boolean;
@@ -91,7 +92,6 @@ interface C100TopMiroJourneyOptions {
   c100OtherPeopleGender: ApplicantGender;
   c100OtherPeopleChangedName: yesNoDontKnow;
   c100OtherPeopleDoBKnown: boolean;
-  c100OtherPersonRelationship: Relationship;
   c100ChildMainlyLivesWith: typeOfPerson;
   yesNoOtherProceedings: boolean;
   c100ChildrenSafetyConcerns: boolean;
@@ -106,6 +106,7 @@ interface C100TopMiroJourneyOptions {
   c100YesNoNeedHelpWithFees: boolean;
   c100YesNoFeesApplied: boolean;
   reviewPageTopJourneyMotherFather: reviewPageTopJourneyMotherFather;
+  relationshipType: Relationship;
 }
 
 interface C100SecondMiroJourneyOptions {
@@ -154,6 +155,7 @@ interface C100SecondMiroJourneyOptions {
   yesNoReasonableAdjustments: boolean;
   c100YesNoNeedHelpWithFees: boolean;
   c100YesNoFeesApplied: boolean;
+  relationshipType: CapitalizedRelationship;
 }
 
 interface C100ThirdMiroJourneyMIAMOptions {
@@ -350,7 +352,6 @@ export class C100 {
     c100OthersKnowApplicantsContact,
     applicantChangedName,
     applicantGender,
-    applicantRelationship,
     applicantAddressLookup,
     appAddressLookupSuccessful,
     applicantPrevAddress5Years,
@@ -361,7 +362,6 @@ export class C100 {
     respondentChangedName,
     respondentGender,
     respAddress5Years,
-    respondentRelationship,
     respAddressLookup,
     respAddressLookupSuccessful,
     respKnownEmailAndPhone,
@@ -369,7 +369,6 @@ export class C100 {
     c100OtherPeopleGender,
     c100OtherPeopleChangedName,
     c100OtherPeopleDoBKnown,
-    c100OtherPersonRelationship,
     c100ChildMainlyLivesWith,
     yesNoOtherProceedings,
     c100ChildrenSafetyConcerns,
@@ -384,6 +383,7 @@ export class C100 {
     c100YesNoNeedHelpWithFees,
     c100YesNoFeesApplied,
     reviewPageTopJourneyMotherFather,
+    relationshipType,
   }: C100TopMiroJourneyOptions): Promise<void> {
     await CitizenCreateInitial.citizenCreateInitial({
       page: page,
@@ -435,7 +435,7 @@ export class C100 {
       errorMessaging: errorMessaging,
       applicantChangedName: applicantChangedName,
       applicantGender: applicantGender,
-      applicantRelationship: applicantRelationship,
+      applicantRelationship: relationshipType,
       applicantAddressLookup: applicantAddressLookup,
       appAddressLookupSuccessful: appAddressLookupSuccessful,
       applicantPrevAddress5Years: applicantPrevAddress5Years,
@@ -446,7 +446,7 @@ export class C100 {
       respondentGender: respondentGender,
       respondentChangedName: respondentChangedName,
       respAddress5Years: respAddress5Years,
-      respondentRelationship: respondentRelationship,
+      respondentRelationship: relationshipType,
       respAddressLookup: respAddressLookup,
       respAddressLookupSuccessful: respAddressLookupSuccessful,
       respKnownEmailAndPhone: respKnownEmailAndPhone,
@@ -454,7 +454,7 @@ export class C100 {
       c100OtherPeopleGender: c100OtherPeopleGender,
       c100OtherPeopleChangedName: c100OtherPeopleChangedName,
       c100OtherPeopleDoBKnown: c100OtherPeopleDoBKnown,
-      c100OtherPersonRelationship: c100OtherPersonRelationship,
+      c100OtherPersonRelationship: relationshipType,
       c100ChildMainlyLivesWith: c100ChildMainlyLivesWith,
     });
     await C100OtherProceedings.c100OtherProceedings1({
@@ -498,6 +498,7 @@ export class C100 {
       page: page,
       accessibilityTest: accessibilityTest,
       reviewPageTopJourneyMotherFather: reviewPageTopJourneyMotherFather,
+      relationshipType: relationshipType,
     });
   }
 
@@ -547,6 +548,7 @@ export class C100 {
     yesNoReasonableAdjustments,
     c100YesNoNeedHelpWithFees,
     c100YesNoFeesApplied,
+    relationshipType,
   }: C100SecondMiroJourneyOptions): Promise<void> {
     await CitizenCreateInitial.citizenCreateInitial({
       page: page,
@@ -669,6 +671,18 @@ export class C100 {
       errorMessaging: errorMessaging,
       c100YesNoNeedHelpWithFees: c100YesNoNeedHelpWithFees,
       c100YesNoFeesApplied: c100YesNoFeesApplied,
+    });
+    await ReviewPage.submitSecondMiro({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      relationshipType: relationshipType,
+    });
+    await EqualityAndDiversityPage.equalityAndDiversityPage({
+      page,
+    });
+    await ConfirmationPage.confirmationPage({
+      page: page,
+      accessibilityTest: accessibilityTest,
     });
   }
 

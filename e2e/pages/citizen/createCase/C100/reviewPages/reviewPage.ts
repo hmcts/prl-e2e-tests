@@ -1,51 +1,31 @@
-import { Page } from "@playwright/test";
+import { errors, Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { CommonReviewContent } from "../../../../../fixtures/citizen/createCase/C100/reviewPages/commonReviewContent";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { Relationship } from "../../../../../common/types";
-import { FourthMiroContent } from "../../../../../fixtures/citizen/createCase/C100/reviewPages/fourthMiroContent";
-import { MiamChildProtectionConcernsType } from "../MIAM/miamChildProtectionPage";
-import { MiamUrgencyType } from "../MIAM/miamUrgencyPage";
-import { MiamAttendanceType } from "../MIAM/miamPreviousAttendancePage";
-import { MiamOtherReasonForNotAttending } from "../MIAM/miamMiamOtherPage";
-import { MiamReasonForNoAccessToMediator } from "../MIAM/miamNoAccessToMediatorPage";
-import { existsSync } from "fs";
-import { c100ChildrenSupervisionRadios } from "../safetyConcerns/unsupervisedPage";
 import { TopMiroReviewContent } from "../../../../../fixtures/citizen/createCase/C100/reviewPages/topMiroReviewContent";
+import { SecondMiroReviewContent } from "../../../../../fixtures/citizen/createCase/C100/reviewPages/secondMiroReviewContent";
+import { Relationship } from "../../../../../common/types";
 
 interface checkTextOptions {
   page: Page;
   accessibilityTest: boolean;
-  relationshipType: Relationship;
   reviewPageTopJourneyMotherFather: reviewPageTopJourneyMotherFather;
-}
-
-interface fourthMiroOptions {
-  page: Page;
-  accessibilityTest: boolean;
   relationshipType: Relationship;
-  miamAttendanceType: MiamAttendanceType; // Decides which reason there is for previous MIAM attendance.
-  miamUrgencyType: MiamUrgencyType; // Decides which reason there is for urgency.
-  miamOtherReasonForNotAttending: MiamOtherReasonForNotAttending; // Decides which Other reason there is for not attending
-  miamChildProtectionConcernsType: MiamChildProtectionConcernsType; // Decides which child protection concern is listed.
-  c100ChildrenSupervision: c100ChildrenSupervisionRadios
 }
-
-interface checkCommonTextOptions {
-  page: Page;
-  accessibilityTest: boolean;
-}
-
-const statementOfTruthCheckbox: string = '#statementOfTruth'
 
 export type reviewPageTopJourneyMotherFather = "mother" | "father";
 
+const statementOfTruthCheckbox: string = "#statementOfTruth";
+
 export class ReviewPage {
   private static async checkCommonText({
-                                         page,
-                                         accessibilityTest,
-                                       }: checkCommonTextOptions): Promise<void> {
+    page,
+    accessibilityTest,
+  }: Partial<checkTextOptions>): Promise<void> {
+    if (!page) {
+      throw new Error();
+    }
     await page
       .locator(
         `${Selectors.GovukHeadingXL}:text-is("${CommonReviewContent.pageTitle}")`,
@@ -55,12 +35,12 @@ export class ReviewPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukBodyL}:text-is("${CommonReviewContent.bodyL}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.h1}:text-is("${CommonReviewContent.statementTitle}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -70,7 +50,7 @@ export class ReviewPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.p}:text-is("${CommonReviewContent.insetText}")`,
-        1
+        1,
       ),
       Helpers.checkGroup(
         page,
@@ -92,453 +72,24 @@ export class ReviewPage {
     // }
   }
 
-  private static async fillInFields(
-    page: Page
-  ): Promise<void> {
+  private static async fillInFields(page: Page): Promise<void> {
     await page.check(statementOfTruthCheckbox);
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonReviewContent.submitButton}")`
+      `${Selectors.GovukButton}:text-is("${CommonReviewContent.submitButton}")`,
     );
   }
 
-  public static async submitFourthMiro({
-                                         page,
-                                         accessibilityTest,
-                                         relationshipType,
-                                         miamAttendanceType,
-                                         miamUrgencyType,
-                                         miamChildProtectionConcernsType,
-                                         miamOtherReasonForNotAttending,
-                                         c100ChildrenSupervision
-                                       }: fourthMiroOptions): Promise<void> {
-    await this.checkCommonText({
-      page: page,
-      accessibilityTest: accessibilityTest
-    });
-    let yesCount = 9;
-    if (c100ChildrenSupervision === 'yesSpendTime') {
-      yesCount += 1
-    }
-    await Promise.all([
-      Helpers.checkGroup(
-        page,
-        26,
-        FourthMiroContent,
-        'h2_',
-        Selectors.h2
-      ),
-      Helpers.checkGroup(
-        page,
-        75,
-        FourthMiroContent,
-        'dt_',
-        Selectors.dt
-      ),
-      Helpers.checkGroup(
-        page,
-        15,
-        FourthMiroContent,
-        'dd_',
-        Selectors.dd
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.dd}:text-is("${FourthMiroContent.dd_Swansea}")`,
-        2
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.dd}:text-is("${FourthMiroContent.dd_DontKnow}")`,
-        2
-      ),
-      Helpers.checkGroup(
-        page,
-        75,
-        FourthMiroContent,
-        'span_',
-        Selectors.Span
-      ),
-      // Using Selectors.dt for dt_ prefixed items
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.dt}:text-is("${FourthMiroContent.dt_whatTypeOfBehaviourHaveTheChildrenExperiencedOrAreAtRiskOfExperiencing}")`,
-        2
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.dt}:text-is("${FourthMiroContent.dt_relationshipToExampletextExampletext}")`,
-        2
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.dt}:text-is("${FourthMiroContent.dt_addressDetails}")`,
-        2
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.dt}:text-is("${FourthMiroContent.dt_fullName}")`,
-        3
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.dt}:text-is("${FourthMiroContent.dt_dateOfBirth}")`,
-        2
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.dt}:text-is("${FourthMiroContent.dt_gender}")`,
-        3
-      ),
-
-// Using Selectors.dd for dd_ prefixed items
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.dd}:text-is("${FourthMiroContent.dd_yes}")`,
-        yesCount
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.dd}:text-is("${FourthMiroContent.dd_janeDoe}")`,
-        2
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.dd}:text-is("${FourthMiroContent.dd_8November2002}")`,
-        2
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.dd}:text-is("${FourthMiroContent.dd_other}")`,
-        3
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.dd}:text-is("${FourthMiroContent.dd_exampletextExampletext}")`,
-        2
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.dd}:text-is("${FourthMiroContent.dd_no}")`,
-        29
-      ),
-      Helpers.checkGroup(
-        page,
-        40,
-        FourthMiroContent,
-        'li_',
-        Selectors.li
-      ),
-      // Using Selectors.Span for span_ prefixed items
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.Span}:text-is("${FourthMiroContent.span_whatTypeOfBehaviourHaveTheChildrenExperiencedOrAreAtRiskOfExperiencing}")`,
-        2
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.Span}:text-is("${FourthMiroContent.span_fullName}")`,
-        3
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.Span}:text-is("${FourthMiroContent.span_dateOfBirth}")`,
-        2
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.Span}:text-is("${FourthMiroContent.span_gender}")`,
-        3
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.Span}:text-is("${FourthMiroContent.span_relationshipToExampletextExampletext}")`,
-        2
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.Span}:text-is("${FourthMiroContent.span_addressDetails}")`,
-        2
-      ),
-      Helpers.checkGroup(
-        page,
-        2,
-        FourthMiroContent,
-        'b_',
-        Selectors.b
-      ),
-      Helpers.checkGroup(
-        page,
-        5,
-        FourthMiroContent,
-        'ul_',
-        Selectors.ul
-      ),
-      Helpers.checkGroup(
-        page,
-        9,
-        FourthMiroContent,
-        'h4_',
-        Selectors.h4
-      ),
-      // Using Selectors.h4 for h4_ prefixed items
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.h4}:text-is("${FourthMiroContent.h4_whichChildrenAreYouConcernedAboutoptional}")`,
-        5
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.h4}:text-is("${FourthMiroContent.h4_describeTheBehavioursYouWouldLikeTheCourtToBeAwareOfoptional}")`,
-        11
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.h4}:text-is("${FourthMiroContent.h4_whenDidThisBehaviourStartAndHowLongDidItContinueoptional}")`,
-        11
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.h4}:text-is("${FourthMiroContent.h4_isTheBehaviourOngoingoptional}")`,
-        11
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.h4}:text-is("${FourthMiroContent.h4_haveYouEverAskedForHelpFromAProfessionalPersonOrAgencyoptional}")`,
-        11
-      ),
-      // Using Selectors.li for li_ prefixed items
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${FourthMiroContent.li_somethingElse}")`,
-        2
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${FourthMiroContent.li_physicalAbuse}")`,
-        2
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${FourthMiroContent.li_psychologicalAbuse}")`,
-        2
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${FourthMiroContent.li_emotionalAbuse}")`,
-        2
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${FourthMiroContent.li_sexualAbuse}")`,
-        2
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${FourthMiroContent.li_financialAbuse}")`,
-        2
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${FourthMiroContent.li_aSpecificHolidayOrArrangement}")`,
-        2
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${FourthMiroContent.li_whatSchoolTheChildrenWillGoTo}")`,
-        2
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${FourthMiroContent.li_aReligiousIssue}")`,
-        2
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${FourthMiroContent.li_medicalTreatment}")`,
-        2
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${FourthMiroContent.li_changingTheChildrensNamesOrSurname}")`,
-        4
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${FourthMiroContent.li_allowingMedicalTreatmentToBeCarriedOutOnTheChildren}")`,
-        2
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${FourthMiroContent.li_decideWhoTheChildrenLiveWithAndWhen}")`,
-        2
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${FourthMiroContent.li_decideHowMuchTimeTheChildrenSpendWithEachPerson}")`,
-        2
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${FourthMiroContent.li_takingTheChildrenOnHoliday}")`,
-        2
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${FourthMiroContent.li_relocatingTheChildrenToADifferentAreaInEnglandAndWales}")`,
-        4
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${FourthMiroContent.li_relocatingTheChildrenOutsideOfEnglandAndWalesincludingScotlandAndNorthernIreland}")`,
-        4
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${FourthMiroContent.li_returningTheChildrenToYourCare}")`,
-        2
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${FourthMiroContent.li_exampletextExampletext}")`,
-        6
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.div}:text-is("${FourthMiroContent.div_no}")`,
-        11
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.div}:text-is("${FourthMiroContent.div_1}")`,
-        1
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.p}:text-is("${FourthMiroContent.p_no}")`,
-        4
-      )
-    ]);
-    if (c100ChildrenSupervision === 'yesButSupervised') {
-      await Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.dd}:text-is("${FourthMiroContent.dd_YesSupervised}")`,
-        1
-      )
-    }
-    if (miamAttendanceType === 'Previous 4 months') {
-      await Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.dd}:text-is("${FourthMiroContent.dd_FourMonths}")`,
-        1
-      );
-      await Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.b}:text-is("${FourthMiroContent.b_evidence}")`,
-        1
-      )
-    } else {
-      await Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.dd}:text-is("${FourthMiroContent.dd_none}")`,
-        3
-      )
-    }
-    switch (miamUrgencyType) {
-      case "Risk to life":
-        await Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.dd}:text-is("${FourthMiroContent.dd_riskToLife}")`,
-          1,
-        );
-        break;
-      case "Risk to family life":
-        await Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.dd}:text-is("${FourthMiroContent.dd_RiskToFamily}")`,
-          1,
-        );
-        break;
-      case "Risk to safety of home":
-        await Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.dd}:text-is("${FourthMiroContent.dd_RiskToHome}")`,
-          1,
-        );
-        break;
-      case "Delay causing risk of harm":
-        await Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.dd}:text-is("${FourthMiroContent.dd_CauseHarm}")`,
-          1,
-        );
-        break;
-      case "Delay causing risk of financial hardship":
-        await Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.dd}:text-is("${FourthMiroContent.dd_FinancialHardship}")`,
-          1
-        )
-        break
-      case "Delay causing risk of irretrievable problems":
-        await Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.dd}:text-is("${FourthMiroContent.dd_Irretrievable}")`,
-          1
-        )
-        break
-      case 'Delay dispute starting in another country':
-        await Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.dd}:text-is("${FourthMiroContent.dd_AbroadCourt}")`,
-          1
-        )
-        break
-      case 'Delay causing risk of unfair court decision':
-        await Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.dd}:text-is("${FourthMiroContent.dd_UnfairCourt}")`,
-          1
-        )
-        break
-      case 'Delay causing risk of removal':
-        await Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.dd}:text-is("${FourthMiroContent.dd_ChildrenRemoved}")`,
-          1
-        )
-        break
-      default:
-        if (existsSync('.env')) {
-          console.log(
-            `Unrecognised urgency type: ${miamUrgencyType}`
-          )
-        }
-    }
-    if (miamChildProtectionConcernsType === 'Child protection plan') {
-      await Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.dd}:text-is("${FourthMiroContent.dd_ChildProtection}")`,
-        1
-      )
-    }
-    if (miamOtherReasonForNotAttending === 'Applying for without notice') {
-      await Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.dd}:text-is("${FourthMiroContent.dd_WithoutNotice}")`,
-        1
-      )
-    }
-    await this.fillInFields(page)
-  }
-
   public static async submitTopMiro({
-                                      page,
-                                      accessibilityTest,
-                                      reviewPageTopJourneyMotherFather,
-                                    }: checkTextOptions): Promise<void> {
+    page,
+    accessibilityTest,
+    reviewPageTopJourneyMotherFather,
+    relationshipType,
+  }: checkTextOptions): Promise<void> {
     await this.checkCommonText({
-      page: page,
-      accessibilityTest: accessibilityTest,
+      page,
+      accessibilityTest,
+      reviewPageTopJourneyMotherFather,
+      relationshipType,
     });
     await Promise.all([
       Helpers.checkGroup(
@@ -1522,6 +1073,444 @@ export class ReviewPage {
         ),
       ]);
     }
+    await this.fillInFields(page);
+  }
+
+  public static async submitSecondMiro({
+    page,
+    accessibilityTest,
+    relationshipType,
+  }: Partial<checkTextOptions>): Promise<void> {
+    if (!page) {
+      throw new Error();
+    }
+    await this.checkCommonText({
+      page,
+      accessibilityTest,
+      relationshipType,
+    });
+    await Promise.all([
+      Helpers.checkGroup(
+        page,
+        25,
+        SecondMiroReviewContent,
+        "h2_",
+        Selectors.h2,
+      ),
+      Helpers.checkGroup(
+        page,
+        87,
+        SecondMiroReviewContent,
+        "dt_",
+        Selectors.dt,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dt}:text-is("${SecondMiroReviewContent.dt_whatTypeOfBehaviourHaveTheChildrenExperiencedOrAreAtRiskOfExperiencing}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dt}:text-is("${SecondMiroReviewContent.dt_haveTheyChangedTheirName}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dt}:text-is("${SecondMiroReviewContent.dt_placeOfBirth}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dt}:text-is("${SecondMiroReviewContent.dt_relationshipToExampletextExampletext}")`,
+        3,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dt}:text-is("${SecondMiroReviewContent.dt_addressDetails}")`,
+        3,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dt}:text-is("${SecondMiroReviewContent.dt_fullName}")`,
+        5,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dt}:text-is("${SecondMiroReviewContent.dt_dateOfBirth}")`,
+        5,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dt}:text-is("${SecondMiroReviewContent.dt_gender}")`,
+        5,
+      ),
+      Helpers.checkGroup(
+        page,
+        14,
+        SecondMiroReviewContent,
+        "dd_",
+        Selectors.dd,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dd}:text-is("${SecondMiroReviewContent.dd_example}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dd}:text-is("${SecondMiroReviewContent.dd_Other}")`,
+        3,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dd}:text-is("${SecondMiroReviewContent.dd_janeDoe}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dd}:text-is("${SecondMiroReviewContent.dd_swansea}")`,
+        3,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dd}:has-text("${relationshipType}")`,
+        3,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dd}:text-is("${SecondMiroReviewContent.dd_exampletextExampletext}")`,
+        3,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dd}:text-is("${SecondMiroReviewContent.dd_12October2008}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dd}:text-is("${SecondMiroReviewContent.dd_male}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dd}:text-is("${SecondMiroReviewContent.dd_no}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dd}:text-is("${SecondMiroReviewContent.dd_yes}")`,
+        38,
+      ),
+      Helpers.checkGroup(
+        page,
+        87,
+        SecondMiroReviewContent,
+        "span_",
+        Selectors.Span,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${SecondMiroReviewContent.span_whatTypeOfBehaviourHaveTheChildrenExperiencedOrAreAtRiskOfExperiencing}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${SecondMiroReviewContent.span_haveTheyChangedTheirName}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${SecondMiroReviewContent.span_placeOfBirth}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${SecondMiroReviewContent.span_relationshipToExampletextExampletext}")`,
+        3,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${SecondMiroReviewContent.span_addressDetails}")`,
+        3,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${SecondMiroReviewContent.span_fullName}")`,
+        5,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${SecondMiroReviewContent.span_dateOfBirth}")`,
+        5,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${SecondMiroReviewContent.span_gender}")`,
+        5,
+      ),
+      Helpers.checkGroup(
+        page,
+        83,
+        SecondMiroReviewContent,
+        "li_",
+        Selectors.li,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${SecondMiroReviewContent.li_otherLoremIpsumOther}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${SecondMiroReviewContent.li_visitToCourtBeforeTheHearing}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${SecondMiroReviewContent.li_somethingElse}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${SecondMiroReviewContent.li_physicalAbuse}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${SecondMiroReviewContent.li_psychologicalAbuse}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${SecondMiroReviewContent.li_emotionalAbuse}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${SecondMiroReviewContent.li_sexualAbuse}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${SecondMiroReviewContent.li_financialAbuse}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${SecondMiroReviewContent.li_exampletextExampletext}")`,
+        6,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${SecondMiroReviewContent.li_aSpecificHolidayOrArrangement}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${SecondMiroReviewContent.li_whatSchoolTheChildrenWillGoTo}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${SecondMiroReviewContent.li_aReligiousIssue}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${SecondMiroReviewContent.li_medicalTreatment}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${SecondMiroReviewContent.li_changingTheChildrensNamesOrSurname}")`,
+        4,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${SecondMiroReviewContent.li_allowingMedicalTreatmentToBeCarriedOutOnTheChildren}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${SecondMiroReviewContent.li_takingTheChildrenOnHoliday}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${SecondMiroReviewContent.li_relocatingTheChildrenToADifferentAreaInEnglandAndWales}")`,
+        4,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${SecondMiroReviewContent.li_relocatingTheChildrenOutsideOfEnglandAndWalesincludingScotlandAndNorthernIreland}")`,
+        4,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${SecondMiroReviewContent.li_decideWhoTheChildrenLiveWithAndWhen}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${SecondMiroReviewContent.li_decideHowMuchTimeTheChildrenSpendWithEachPerson}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${SecondMiroReviewContent.li_returningTheChildrenToYourCare}")`,
+        2,
+      ),
+      Helpers.checkGroup(
+        page,
+        17,
+        SecondMiroReviewContent,
+        "h4_",
+        Selectors.h4,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.h4}:text-is("${SecondMiroReviewContent.h4_child1}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.h4}:text-is("${SecondMiroReviewContent.h4_details}")`,
+        26,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.h4}:text-is("${SecondMiroReviewContent.h4_whichCourtIssuedTheOrderoptional}")`,
+        16,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.h4}:text-is("${SecondMiroReviewContent.h4_caseNumberoptional}")`,
+        16,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.h4}:text-is("${SecondMiroReviewContent.h4_whatDateWasItMadeoptional}")`,
+        16,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.h4}:text-is("${SecondMiroReviewContent.h4_isThisACurrentOrderoptional}")`,
+        16,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.h4}:text-is("${SecondMiroReviewContent.h4_whatDateDidItEndoptional}")`,
+        16,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.h4}:text-is("${SecondMiroReviewContent.h4_doYouHaveACopyOfTheOrderoptional}")`,
+        16,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.h4}:text-is("${SecondMiroReviewContent.h4_whichChildrenAreYouConcernedAboutoptional}")`,
+        5,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.h4}:text-is("${SecondMiroReviewContent.h4_describeTheBehavioursYouWouldLikeTheCourtToBeAwareOfoptional}")`,
+        11,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.h4}:text-is("${SecondMiroReviewContent.h4_whenDidThisBehaviourStartAndHowLongDidItContinueoptional}")`,
+        11,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.h4}:text-is("${SecondMiroReviewContent.h4_isTheBehaviourOngoingoptional}")`,
+        11,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.h4}:text-is("${SecondMiroReviewContent.h4_haveYouEverAskedForHelpFromAProfessionalPersonOrAgencyoptional}")`,
+        11,
+      ),
+      Helpers.checkGroup(page, 21, SecondMiroReviewContent, "p_", Selectors.p),
+      Helpers.checkGroup(
+        page,
+        13,
+        SecondMiroReviewContent,
+        "div_",
+        Selectors.div,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${SecondMiroReviewContent.p_exampletext}")`,
+        6,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${SecondMiroReviewContent.p_loremIpsumStartDetails}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${SecondMiroReviewContent.p_10July2014}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${SecondMiroReviewContent.p_automatedOccupationOrderCourt}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${SecondMiroReviewContent.p_10July2018}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${SecondMiroReviewContent.p_18August2015}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${SecondMiroReviewContent.p_automatedChildAbductionOrderCourt}")`,
+        3,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${SecondMiroReviewContent.p_10June2015}")`,
+        3,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${SecondMiroReviewContent.p_10June2017}")`,
+        3,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${SecondMiroReviewContent.p_bs19f99999}")`,
+        16,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${SecondMiroReviewContent.p_10July2016}")`,
+        5,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${SecondMiroReviewContent.p_yes}")`,
+        39,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${SecondMiroReviewContent.p_10July2017}")`,
+        6,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${SecondMiroReviewContent.p_18August2018}")`,
+        2,
+      ),
+    ]);
     await this.fillInFields(page);
   }
 }
