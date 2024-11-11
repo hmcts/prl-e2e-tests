@@ -10,8 +10,8 @@ import { orderTypesMap } from "../../../../journeys/manageCases/caseWorker/draft
 import { EditAndApproveAnOrder21Content } from "../../../../fixtures/manageCases/caseWorker/eidtAndApproveAnOrder/editAndApproveAnOrder21Content";
 
 enum UniqueSelectors {
-  welshPdfAnchor = "body > exui-root > exui-case-home > div > exui-case-details-home > ccd-case-event-trigger > div > ccd-case-edit > ccd-case-edit-submit > div > form > div.ng-star-inserted > table.form-table.ng-star-inserted > tbody > tr:nth-child(3) > td.form-cell.case-field-content > ccd-field-read > div > ccd-field-read-label > div > ccd-read-document-field > a",
-  englishPdfAnchor = "body > exui-root > exui-case-home > div > exui-case-details-home > ccd-case-event-trigger > div > ccd-case-edit > ccd-case-edit-submit > div > form > div.ng-star-inserted > table.form-table.ng-star-inserted > tbody > tr:nth-child(4) > td.form-cell.case-field-content > ccd-field-read > div > ccd-field-read-label > div > ccd-read-document-field > a",
+  welshPdfAnchor = "body > exui-root > exui-case-home > div > exui-case-details-home > ccd-case-event-trigger > div > ccd-case-edit > ccd-case-edit-submit > div > form > div:nth-child(1) > table.form-table > tbody > tr:nth-child(3) > td.form-cell.case-field-content > ccd-field-read > div > ccd-field-read-label > div > ccd-read-document-field > a",
+  englishPdfAnchor = "body > exui-root > exui-case-home > div > exui-case-details-home > ccd-case-event-trigger > div > ccd-case-edit > ccd-case-edit-submit > div > form > div:nth-child(1) > table.form-table > tbody > tr:nth-child(4) > td.form-cell.case-field-content > ccd-field-read > div > ccd-field-read-label > div > ccd-read-document-field > a",
 }
 
 export class EditAndApproveAnOrderSubmitPage {

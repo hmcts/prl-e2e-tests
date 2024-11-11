@@ -6,8 +6,8 @@ test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
 test.describe("Draft an order tests @manageCases", (): void => {
   test(`Complete Drafting an order as a solicitor with the following options:
-  case: FL401,
-  case type: Non-molestation order (FL404A),
+  Case: FL401,
+  Order type: Non-molestation order (FL404A),
   No to all options,
   No respondent checkbox actions ticked,
   Order in force until no fixed end date,
@@ -29,8 +29,8 @@ test.describe("Draft an order tests @manageCases", (): void => {
   });
 
   test(`Complete Drafting an order as a solicitor with the following options:
-  case: FL401,
-  case type: Non-molestation order (FL404A),
+  Case: FL401,
+  Order type: Non-molestation order (FL404A),
   No to all options,
   No respondent checkbox actions ticked,
   Order in force until specific date and time,
@@ -52,8 +52,8 @@ test.describe("Draft an order tests @manageCases", (): void => {
   });
 
   test(`Complete Drafting an order as a solicitor with the following options:
-  case: FL401,
-  case type: Non-molestation order (FL404A),
+  Case: FL401,
+  Order type: Non-molestation order (FL404A),
   Yes to all options,
   All respondent checkbox actions ticked,
   Order in force until no fixed end date,
@@ -75,8 +75,8 @@ test.describe("Draft an order tests @manageCases", (): void => {
   });
 
   test(`Complete Drafting an order as a solicitor with the following options:
-  case: FL401,
-  case type: Non-molestation order (FL404A),
+  Case: FL401,
+  Order type: Non-molestation order (FL404A),
   Yes to all options,
   All respondent checkbox actions ticked,
   Order in force until specific date and time,
@@ -98,8 +98,8 @@ test.describe("Draft an order tests @manageCases", (): void => {
   });
 
   test(`Complete Drafting an order as a solicitor with the following options:
-  case: FL401,
-  case type: Non-molestation order (FL404A),
+  Case: FL401,
+  Order type: Non-molestation order (FL404A),
   No to all options,
   No respondent checkbox actions ticked,
   Order in force until no fixed end date,
