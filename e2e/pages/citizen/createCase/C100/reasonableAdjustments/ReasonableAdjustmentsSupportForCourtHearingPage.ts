@@ -169,6 +169,10 @@ export class ReasonableAdjustmentsSupportForCourtHearingPage {
         1,
       ),
     ]);
+    await page.click(ChecklistUniqueSelectors.supportWorkerCarer);
+    await page.click(ChecklistUniqueSelectors.friendOrFamily);
+    await page.click(ChecklistUniqueSelectors.therapyAnimal);
+    await page.click(ChecklistUniqueSelectors.other);
   }
 
   private static async fillInFields({

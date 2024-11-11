@@ -15,6 +15,7 @@ import { C100OtherProceedings } from "./subJourneys/C100OtherProceedings";
 import { C100ApplicationCompletedForYou } from "./C100ApplicationCompletedForYou";
 import {
   ApplicantGender,
+  CapitalizedRelationship,
   Relationship,
   typeOfPerson,
   yesNoDontKnow,
@@ -26,6 +27,12 @@ import { c100ChildrenSupervisionRadios } from "../../../../pages/citizen/createC
 import { C100InternationalElements } from "./subJourneys/c100InternationalElements";
 import { C100ReasonableAdjustments } from "./subJourneys/c100ReasonableAdjustments";
 import { C100HelpWithFees } from "./subJourneys/c100HelpWithFees";
+import { EqualityAndDiversityPage } from "../../../../pages/citizen/createCase/C100/confirmation/equalityAndDiversityQuestionsPage";
+import { ConfirmationPage } from "../../../../pages/citizen/createCase/C100/confirmation/confirmationPage";
+import {
+  ReviewPage,
+  reviewPageTopJourneyMotherFather,
+} from "../../../../pages/citizen/createCase/C100/reviewPages/reviewPage";
 
 interface C100ApplicationCompletedForYouOptions {
   page: Page;
@@ -102,6 +109,8 @@ interface C100TopMiroJourneyOptions {
   yesNoReasonableAdjustments: boolean;
   c100YesNoNeedHelpWithFees: boolean;
   c100YesNoFeesApplied: boolean;
+  reviewPageTopJourneyMotherFather: reviewPageTopJourneyMotherFather;
+  relationshipType: CapitalizedRelationship;
 }
 
 interface C100SecondMiroJourneyOptions {
@@ -150,6 +159,7 @@ interface C100SecondMiroJourneyOptions {
   yesNoReasonableAdjustments: boolean;
   c100YesNoNeedHelpWithFees: boolean;
   c100YesNoFeesApplied: boolean;
+  relationshipType: CapitalizedRelationship;
 }
 
 interface C100ThirdMiroJourneyMIAMOptions {
@@ -328,7 +338,6 @@ export class C100 {
     c100OtherPeopleDoBKnown,
     c100OtherPersonRelationship,
     c100ChildMainlyLivesWith,
-    yesNoChildArrangementOrderDetails,
     yesNoOtherProceedings,
     c100ChildrenSafetyConcerns,
     c100ChildrenAbductedBefore,
@@ -341,6 +350,8 @@ export class C100 {
     yesNoReasonableAdjustments,
     c100YesNoNeedHelpWithFees,
     c100YesNoFeesApplied,
+    reviewPageTopJourneyMotherFather,
+    relationshipType,
   }: C100TopMiroJourneyOptions): Promise<void> {
     await CitizenCreateInitial.citizenCreateInitial({
       page: page,
@@ -414,44 +425,49 @@ export class C100 {
       c100OtherPersonRelationship: c100OtherPersonRelationship,
       c100ChildMainlyLivesWith: c100ChildMainlyLivesWith,
     });
-    // await C100OtherProceedings.c100OtherProceedings1({
-    //   page: page,
-    //   accessibilityTest: accessibilityTest,
-    //   errorMessaging: errorMessaging,
-    //   yesNoChildArrangementOrderDetails: yesNoChildArrangementOrderDetails,
-    //   yesNoOtherProceedings: yesNoOtherProceedings
-    // });
-    // await C100SafetyConcerns.c100SafetyConcerns({
-    //   page: page,
-    //   accessibilityTest: accessibilityTest,
-    //   errorMessaging: errorMessaging,
-    //   c100ChildrenSafetyConcerns: c100ChildrenSafetyConcerns,
-    //   c100SafetyConcernsYesNoToAll: c100SafetyConcernsYesNoToAll,
-    //   c100ChildrenAbductedBefore: c100ChildrenAbductedBefore,
-    //   c100ChildrenSupervision: c100ChildrenSupervision,
-    //   c100ChildrenHavePassport: c100ChildrenHavePassport,
-    //   c100PassportOfficeNotified: c100PassportOfficeNotified,
-    //   c100MoreThanOnePassport: c100MoreThanOnePassport
-    // });
-    // await C100InternationalElements.c100InternationalElements({
-    //   page: page,
-    //   accessibilityTest:accessibilityTest,
-    //   errorMessaging: errorMessaging,
-    //   yesNoInternationalElements: yesNoInternationalElements
-    // });
-    // await C100ReasonableAdjustments.c100ReasonableAdjustments({
-    //   page: page,
-    //   accessibilityTest: accessibilityTest,
-    //   errorMessaging: errorMessaging,
-    //   yesNoReasonableAdjustments: yesNoReasonableAdjustments
-    // });
-    // await C100HelpWithFees.c100HelpWithFees({
-    //   page: page,
-    //   accessibilityTest: accessibilityTest,
-    //   errorMessaging: errorMessaging,
-    //   c100YesNoFeesApplied: c100YesNoFeesApplied,
-    //   c100YesNoNeedHelpWithFees: c100YesNoNeedHelpWithFees
-    // })
+    await C100OtherProceedings.c100OtherProceedings1({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      yesNoOtherProceedings: yesNoOtherProceedings,
+    });
+    await C100SafetyConcerns.c100SafetyConcerns({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      c100ChildrenSafetyConcerns: c100ChildrenSafetyConcerns,
+      c100SafetyConcernsYesNoToAll: c100SafetyConcernsYesNoToAll,
+      c100ChildrenAbductedBefore: c100ChildrenAbductedBefore,
+      c100ChildrenSupervision: c100ChildrenSupervision,
+      c100ChildrenHavePassport: c100ChildrenHavePassport,
+      c100PassportOfficeNotified: c100PassportOfficeNotified,
+      c100MoreThanOnePassport: c100MoreThanOnePassport,
+    });
+    await C100InternationalElements.c100InternationalElements({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      yesNoInternationalElements: yesNoInternationalElements,
+    });
+    await C100ReasonableAdjustments.c100ReasonableAdjustments({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      yesNoReasonableAdjustments: yesNoReasonableAdjustments,
+    });
+    await C100HelpWithFees.c100HelpWithFees({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      c100YesNoFeesApplied: c100YesNoFeesApplied,
+      c100YesNoNeedHelpWithFees: c100YesNoNeedHelpWithFees,
+    });
+    await ReviewPage.submitTopMiro({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      reviewPageTopJourneyMotherFather: reviewPageTopJourneyMotherFather,
+      relationshipType: relationshipType,
+    });
   }
 
   public static async c100SecondMiroJourney({
@@ -500,6 +516,7 @@ export class C100 {
     yesNoReasonableAdjustments,
     c100YesNoNeedHelpWithFees,
     c100YesNoFeesApplied,
+    relationshipType,
   }: C100SecondMiroJourneyOptions): Promise<void> {
     await CitizenCreateInitial.citizenCreateInitial({
       page: page,
@@ -622,6 +639,18 @@ export class C100 {
       errorMessaging: errorMessaging,
       c100YesNoNeedHelpWithFees: c100YesNoNeedHelpWithFees,
       c100YesNoFeesApplied: c100YesNoFeesApplied,
+    });
+    await ReviewPage.submitSecondMiro({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      relationshipType: relationshipType,
+    });
+    await EqualityAndDiversityPage.equalityAndDiversityPage({
+      page,
+    });
+    await ConfirmationPage.confirmationPage({
+      page: page,
+      accessibilityTest: accessibilityTest,
     });
   }
 

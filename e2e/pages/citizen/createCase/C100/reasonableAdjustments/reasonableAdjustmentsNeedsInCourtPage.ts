@@ -114,6 +114,9 @@ export class ReasonableAdjustmentsNeedsInCourtPage {
     await page.click(CheckListUniqueSelectors.parkingSpace);
     await page.click(CheckListUniqueSelectors.differentTypeOfChair);
     await page.click(CheckListUniqueSelectors.other);
+    await page.click(
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
+    );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,

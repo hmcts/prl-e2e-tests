@@ -7,6 +7,7 @@ export enum Selectors {
   headingH3 = ".heading-h3",
   h2 = "h2",
   h3 = "h3",
+  h4 = "h4",
 
   // Navigation
   GovukNavLink = ".govuk-nav-link",
@@ -58,6 +59,8 @@ export enum Selectors {
   GovukSummaryText = ".govuk-details__summary-text",
   GovukDetailsText = ".govuk-details__text",
   GovukErrorSummaryTitle = ".govuk-error-summary__title",
+  GovukSummaryListValue = ".govuk-summary-list__value",
+  GovukSummaryListKey = ".govuk-summary-list__key",
   GovukErrorySummaryHeading = ".error-summary-heading",
   GovukErrorMessageCitizen = ".govuk-error-message",
   GovukErrorValidation = ".validation-error",
@@ -75,6 +78,9 @@ export enum Selectors {
   GovukLegendL = ".govuk-fieldset__legend--l",
   p = "p",
   li = "li",
+  ul = "li",
+  dt = "dt",
+  dd = "dd",
   strong = "strong",
   div = "div",
   markdown = "markdown",
@@ -119,4 +125,8 @@ export enum Selectors {
 
   // Logos
   GovukLogo = ".govuk-header__logotype-text",
+
+  // XUI
+  xuiSpinner = "xuilib-loading-spinner",
+  xuiFilters = "exui-ccd-connector",
 }

@@ -1,7 +1,7 @@
-import Config from "../config.ts";
 import { Page } from "@playwright/test";
-import { UserCredentials, UserLoginInfo } from "./types.ts";
+import Config from "../config.ts";
 import { setupUser } from "./idamCreateCitizenUserApiHelper.ts";
+import { UserCredentials, UserLoginInfo } from "./types.ts";
 
 export class IdamLoginHelper {
   private static fields: UserLoginInfo = {
@@ -43,7 +43,7 @@ export class IdamLoginHelper {
     page: Page,
     application: string,
   ): Promise<void> {
-    const token = process.env.BEARER_TOKEN;
+    const token = process.env.CITIZEN_CREATE_USER_BEARER_TOKEN as string;
     if (!token) {
       console.error("Bearer token is not defined in the environment variables");
       return;
