@@ -9,6 +9,11 @@ import { EditAndApproveAnOrder2Page } from "./editAndApproveAnOrder2Page";
 import { orderTypesMap } from "../../../journeys/manageCases/caseWorker/draftAnOrder/draftAnOrder";
 import { EditAndApproveAnOrder21Content } from "../../../fixtures/manageCases/caseWorker/editAndApproveAnOrder21Content";
 
+enum UniqueSelectors {
+  welshPdfAnchor = "body > exui-root > exui-case-home > div > exui-case-details-home > ccd-case-event-trigger > div > ccd-case-edit > ccd-case-edit-submit > div > form > div.ng-star-inserted > table.form-table.ng-star-inserted > tbody > tr:nth-child(3) > td.form-cell.case-field-content > ccd-field-read > div > ccd-field-read-label > div > ccd-read-document-field > a",
+  englishPdfAnchor = "body > exui-root > exui-case-home > div > exui-case-details-home > ccd-case-event-trigger > div > ccd-case-edit > ccd-case-edit-submit > div > form > div.ng-star-inserted > table.form-table.ng-star-inserted > tbody > tr:nth-child(4) > td.form-cell.case-field-content > ccd-field-read > div > ccd-field-read-label > div > ccd-read-document-field > a",
+}
+
 export class EditAndApproveAnOrderSubmitPage {
   public static async editAndApproveAnOrderSubmitPage(
     page: Page,
@@ -51,12 +56,12 @@ export class EditAndApproveAnOrderSubmitPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${anchorStrings?.welshPdfAnchor}")`,
+        `${UniqueSelectors.welshPdfAnchor}:text-is("${anchorStrings?.welshPdfAnchor}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${anchorStrings?.englishPdfAnchor}")`,
+        `${UniqueSelectors.englishPdfAnchor}:text-is("${anchorStrings?.englishPdfAnchor}")`,
         1,
       ),
       Helpers.checkGroup(
@@ -73,7 +78,7 @@ export class EditAndApproveAnOrderSubmitPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+        `${Selectors.button}:text-is("${CommonStaticText.submit}")`,
         1,
       ),
     ]);

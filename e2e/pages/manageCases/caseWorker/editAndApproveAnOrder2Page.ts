@@ -4,7 +4,6 @@ import AccessibilityTestHelper from "../../../common/accessibilityTestHelper";
 import { Selectors } from "../../../common/selectors";
 import { EditAndApproveAnOrder2Content } from "../../../fixtures/manageCases/caseWorker/editAndApproveAnOrder2Content";
 import { Helpers } from "../../../common/helpers";
-import { orderTypesMap } from "../../../journeys/manageCases/caseWorker/draftAnOrder/draftAnOrder";
 import { CommonStaticText } from "../../../common/commonStaticText";
 
 enum UniqueSelectors {
@@ -12,6 +11,13 @@ enum UniqueSelectors {
   giveAdminFurtherDirectionsThenServeRadio = "#whatToDoWithOrderSolicitor-giveAdminFurtherDirectionsAndServe",
   askTheLegalRepresentativeToMakeChangesRadio = "#whatToDoWithOrderSolicitor-askLegalRepToMakeChanges",
   giveInstructionsToTheLegalRepresentativeTextbox = "#instructionsToLegalRepresentative",
+  welshPdfAnchor = "#caseEditForm > div:nth-child(12) > ccd-field-read > div > ccd-field-read-label > div > dl > dd > ccd-read-document-field > a",
+  englishPdfAnchor = "#caseEditForm > div:nth-child(13) > ccd-field-read > div > ccd-field-read-label > div > dl > dd > ccd-read-document-field > a",
+  whatToDoWithSolicitorOrder = "#whatToDoWithOrderSolicitor > fieldset > legend > label > span",
+  sendOrderToAdminToServe = "#whatToDoWithOrderSolicitor > fieldset > div:nth-child(2) > label",
+  giveAdminFurtherDirections = "#whatToDoWithOrderSolicitor > fieldset > div:nth-child(3) > label",
+  editTheOrderMyselfAndSendToAdmin = "#whatToDoWithOrderSolicitor > fieldset > div:nth-child(4) > label",
+  askLegalRepresentativeToMakeChanges = "#whatToDoWithOrderSolicitor > fieldset > div:nth-child(5) > label",
 }
 
 export class EditAndApproveAnOrder2Page {
@@ -49,11 +55,6 @@ export class EditAndApproveAnOrder2Page {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.headingH3}:text-is("${orderTypesMap.get(orderType)?.journeyName}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
         `${Selectors.h2}:text-is("${EditAndApproveAnOrder2Content.h2}")`,
         1,
       ),
@@ -64,20 +65,38 @@ export class EditAndApproveAnOrder2Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${anchorStrings?.welshPdfAnchor}")`,
+        `${UniqueSelectors.welshPdfAnchor}:text-is("${anchorStrings?.welshPdfAnchor}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${anchorStrings?.englishPdfAnchor}")`,
+        `${UniqueSelectors.englishPdfAnchor}:text-is("${anchorStrings?.englishPdfAnchor}")`,
         1,
       ),
-      Helpers.checkGroup(
+      Helpers.checkVisibleAndPresent(
         page,
-        5,
-        EditAndApproveAnOrder2Content,
-        `formLabel`,
-        `${Selectors.GovukFormLabel}`,
+        `${UniqueSelectors.whatToDoWithSolicitorOrder}:text-is("${EditAndApproveAnOrder2Content.formLabel1}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${UniqueSelectors.sendOrderToAdminToServe}:text-is("${EditAndApproveAnOrder2Content.formLabel2}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${UniqueSelectors.giveAdminFurtherDirections}:text-is("${EditAndApproveAnOrder2Content.formLabel3}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${UniqueSelectors.editTheOrderMyselfAndSendToAdmin}:text-is("${EditAndApproveAnOrder2Content.formLabel4}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${UniqueSelectors.askLegalRepresentativeToMakeChanges}:text-is("${EditAndApproveAnOrder2Content.formLabel5}")`,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -157,7 +176,6 @@ export class EditAndApproveAnOrder2Page {
         console.error("An invalid judge order action was given");
         break;
     }
-    await this.continue(page);
   }
 
   private static async continue(page: Page): Promise<void> {

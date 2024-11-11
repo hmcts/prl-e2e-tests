@@ -10,7 +10,7 @@ import {
 import { EditAndApproveAnOrder21Page } from "../../../pages/manageCases/caseWorker/editAndApproveAnOrder21Page";
 import { EditAndApproveAnOrderSubmitPage } from "../../../pages/manageCases/caseWorker/editAndApproveAnOrderSubmitPage";
 import { EditAndApproveAnOrderConfirmPage } from "../../../pages/manageCases/caseWorker/editAndApproveAnOrderConfirmPage";
-import { DraftAnOrder } from "./draftAnOrder/draftAnOrder";
+import { DraftAnOrder, orderTypesMap } from "./draftAnOrder/draftAnOrder";
 import config from "../../../config";
 
 interface EditAndApproveOrderParams {
@@ -50,22 +50,25 @@ export class EditAndApproveOrder {
       caseRef,
       "tasks",
     );
-    // refresh page until the task shows up - there is some delay
+    // refresh page until the task shows up - there can be some delay
     let visible: boolean = await page
-      .locator("strong", { hasText: "Non-molestation order (FL404A)" })
+      .locator("strong", {
+        hasText: `${orderTypesMap.get(orderType)?.journeyName}`,
+      })
       .isVisible();
     while (!visible) {
       await page.reload();
       await page.waitForTimeout(10000);
       visible = await page
-        .locator("strong", { hasText: "Non-molestation order (FL404A)" })
+        .locator("strong", {
+          hasText: `${orderTypesMap.get(orderType)?.journeyName}`,
+        })
         .isVisible();
     }
     await page.click(`${Selectors.a}:text-is("Assign to me")`);
     await page.locator(".alert-message").waitFor();
-    await Helpers.chooseEventFromDropdown(
-      page,
-      "Edit and approve a draft order",
+    await page.click(
+      `${Selectors.a}:text-is("Review and Approve Legal rep Order")`,
     );
     await EditAndApproveAnOrder2Page.editAndApproveAnOrder2Page(
       page,
