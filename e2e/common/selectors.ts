@@ -42,6 +42,7 @@ export enum Selectors {
 
   // Notifications
   GovukNotificationBanner = ".govuk-notification-banner",
+  GovukNotificationBannerLink = "govuk-notification-banner__link",
   GovukErrorSummary = ".govuk-error-summary",
 
   // Content
@@ -78,13 +79,14 @@ export enum Selectors {
   GovukLegendL = ".govuk-fieldset__legend--l",
   p = "p",
   li = "li",
-  ul = "li",
+  ul = "ul",
   dt = "dt",
   dd = "dd",
   strong = "strong",
   div = "div",
   markdown = "markdown",
   a = "a",
+  b = "b",
 
   // Common Components
   ErrorSummaryList = ".ccd-error-summary-li",
