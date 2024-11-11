@@ -1,20 +1,52 @@
-import { errors, Page } from "@playwright/test";
+import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { CommonReviewContent } from "../../../../../fixtures/citizen/createCase/C100/reviewPages/commonReviewContent";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { TopMiroReviewContent } from "../../../../../fixtures/citizen/createCase/C100/reviewPages/topMiroReviewContent";
-import { SecondMiroReviewContent } from "../../../../../fixtures/citizen/createCase/C100/reviewPages/secondMiroReviewContent";
-import { CapitalizedRelationship } from "../../../../../common/types";
+import { CaJourneyWrittenConsentReviewContent } from "../../../../../fixtures/citizen/createCase/C100/reviewPages/caJourneyWrittenConsentReviewContent";
+import { CaJourneyEmergencyProtectionReviewContent } from "../../../../../fixtures/citizen/createCase/C100/reviewPages/caJourneyEmergencyProtectionReviewContent";
+import {
+  CapitalizedRelationship,
+  Relationship,
+} from "../../../../../common/types";
+import { CaJourneyMIAMHearingUrgencyReviewContent } from "../../../../../fixtures/citizen/createCase/C100/reviewPages/caJourneyMIAMHearingUrgencyReviewContent";
+import { existsSync } from "fs";
+import { MiamAttendanceType } from "../MIAM/miamPreviousAttendancePage";
+import { MiamUrgencyType } from "../MIAM/miamUrgencyPage";
+import { MiamOtherReasonForNotAttending } from "../MIAM/miamMiamOtherPage";
+import { MiamChildProtectionConcernsType } from "../MIAM/miamChildProtectionPage";
+import { c100ChildrenSupervisionRadios } from "../safetyConcerns/unsupervisedPage";
 import {
   CaJourneyExistingMIAMReviewContent
 } from "../../../../../fixtures/citizen/createCase/C100/reviewPages/caJourneyExistingMIAMReviewContent";
 
-interface checkTextOptions {
+interface caJourneyEmergencyProtectionOptions {
+  page: Page;
+  accessibilityTest: boolean;
+  relationshipType: CapitalizedRelationship;
+}
+
+interface checkCommonTextOptions {
+  page: Page;
+  accessibilityTest: boolean;
+}
+
+interface caJourneyMIAMUrgencyOptions {
+  page: Page;
+  accessibilityTest: boolean;
+  relationshipType: Relationship;
+  miamAttendanceType: MiamAttendanceType; // Decides which reason there is for previous MIAM attendance.
+  miamUrgencyType: MiamUrgencyType; // Decides which reason there is for urgency.
+  miamOtherReasonForNotAttending: MiamOtherReasonForNotAttending; // Decides which Other reason there is for not attending
+  miamChildProtectionConcernsType: MiamChildProtectionConcernsType; // Decides which child protection concern is listed.
+  c100ChildrenSupervision: c100ChildrenSupervisionRadios;
+}
+
+interface caWrittenConsentJourneyOptions {
   page: Page;
   accessibilityTest: boolean;
   reviewPageTopJourneyMotherFather: reviewPageTopJourneyMotherFather;
-  relationshipType: CapitalizedRelationship;
+  relationshipType: Relationship;
 }
 
 interface C100ExistingMIAMJourneyOptions {
@@ -30,7 +62,7 @@ export class ReviewPage {
   private static async checkCommonText({
     page,
     accessibilityTest,
-  }: Partial<checkTextOptions>): Promise<void> {
+  }: checkCommonTextOptions): Promise<void> {
     if (!page) {
       throw new Error();
     }
@@ -87,1096 +119,529 @@ export class ReviewPage {
     );
   }
 
-  public static async submitTopMiro({
+  public static async c100CAWithWrittenConsentFromOtherPeople({
     page,
     accessibilityTest,
     reviewPageTopJourneyMotherFather,
     relationshipType,
-  }: checkTextOptions): Promise<void> {
+  }: caWrittenConsentJourneyOptions): Promise<void> {
     await this.checkCommonText({
       page,
       accessibilityTest,
-      reviewPageTopJourneyMotherFather,
-      relationshipType,
     });
+    const relationshipKey =
+      `dd_${relationshipType}` as keyof typeof CaJourneyWrittenConsentReviewContent;
     await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dd}:text-is("${CaJourneyWrittenConsentReviewContent[relationshipKey]}")`,
+        3,
+      ),
       Helpers.checkGroup(
         page,
         21,
-        TopMiroReviewContent,
-        "h2_govukheadingm_",
-        `${Selectors.GovukHeadingM}`,
+        CaJourneyWrittenConsentReviewContent,
+        "h2_",
+        `${Selectors.h2}`,
       ),
       Helpers.checkGroup(
         page,
-        13,
-        TopMiroReviewContent,
-        "dd_govuksummarylistvalue_",
-        `${Selectors.GovukSummaryListValue}`,
+        81,
+        CaJourneyWrittenConsentReviewContent,
+        "dt_",
+        `${Selectors.dt}`,
       ),
-      Helpers.checkGroup(
+      Helpers.checkVisibleAndPresent(
         page,
-        52,
-        TopMiroReviewContent,
-        "li_",
-        `${Selectors.li}`,
+        `${Selectors.dt}:text-is("${CaJourneyWrittenConsentReviewContent.dt_whatTypeOfBehaviourHaveTheChildrenExperiencedOrAreAtRiskOfExperiencing}")`,
+        2,
       ),
-      Helpers.checkGroup(
+      Helpers.checkVisibleAndPresent(
         page,
-        6,
-        TopMiroReviewContent,
-        "li_govukpaddingtop_",
-        `${Selectors.li}`,
+        `${Selectors.dt}:text-is("${CaJourneyWrittenConsentReviewContent.dt_haveTheyChangedTheirName}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dt}:text-is("${CaJourneyWrittenConsentReviewContent.dt_placeOfBirth}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dt}:text-is("${CaJourneyWrittenConsentReviewContent.dt_relationshipToExampletextExampletext}")`,
+        3,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dt}:text-is("${CaJourneyWrittenConsentReviewContent.dt_fullName}")`,
+        5,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dt}:text-is("${CaJourneyWrittenConsentReviewContent.dt_dateOfBirth}")`,
+        5,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dt}:text-is("${CaJourneyWrittenConsentReviewContent.dt_gender}")`,
+        5,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dt}:text-is("${CaJourneyWrittenConsentReviewContent.dt_addressDetails}")`,
+        3,
       ),
       Helpers.checkGroup(
         page,
         14,
-        TopMiroReviewContent,
-        "h4_",
-        `${Selectors.h4}`,
+        CaJourneyWrittenConsentReviewContent,
+        "dd_",
+        `${Selectors.dd}`,
       ),
-      Helpers.checkGroup(
-        page,
-        21,
-        TopMiroReviewContent,
-        "p_",
-        `${Selectors.p}`,
-      ),
-      Helpers.checkGroup(
-        page,
-        3,
-        TopMiroReviewContent,
-        "h4_apptasklistsection_",
-        `${Selectors.h4}`,
-      ),
-      Helpers.checkGroup(
-        page,
-        6,
-        TopMiroReviewContent,
-        "div_govukpaddingbottom_",
-        `${Selectors.div}`,
-      ),
-      Helpers.checkGroup(
-        page,
-        7,
-        TopMiroReviewContent,
-        "div_govukpaddingtop_",
-        `${Selectors.div}`,
-      ),
+      // Using Selectors.dd for dd_ prefixed items in CaJourneyWrittenConsentReviewContent
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_whereDoTheChildrenLive}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_doYouHaveAWrittenAgreementWithTheOtherPeopleInTheCaseThatYouWantTheCourtToReview}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_whatAreYouAskingTheCourtToDo}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_describeWhatYouWantTheCourtToDoRegardingTheChildrenInThisApplication}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_doesYourSituationQualifyForAnUrgentFirstHearing}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_areYouAskingForAWithoutNoticeHearing}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_fullName}")`,
-        5,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_dateOfBirth}")`,
-        5,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_gender}")`,
-        5,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_ordersAppliedFor}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_stateEveryoneWhoHasParentalResponsibilityForExampletextExampletextAndHowTheyHaveParentalResponsibility}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_areAnyOfTheChildrenKnownToSocialServices}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_areAnyOfTheChildrenTheSubjectOfAChildProtectionPlan}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_doYouOrAnyRespondentsHaveOtherChildrenWhoAreNotPartOfThisApplication}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_doTheOtherPeopleNamedInThisApplicationtheRespondentsKnowAnyOfYourContactDetails}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_1}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_haveYouChangedYourName}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_placeOfBirth}")`,
-        2,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_relationshipToExampletextExampletext}")`,
+        `${Selectors.dd}:text-is("${CaJourneyWrittenConsentReviewContent.dd_swansea}")`,
         3,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_addressDetails}")`,
-        3,
+        `${Selectors.dd}:text-is("${CaJourneyWrittenConsentReviewContent.dd_exampletextExampletext}")`,
+        4,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_contactDetailsOfExampletextExampletext}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_canTheCourtLeaveYouAVoicemail}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_contactPreferences}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_haveTheyChangedTheirName}")`,
+        `${Selectors.dd}:text-is("${CaJourneyWrittenConsentReviewContent.dd_12October2008}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_email}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_telephoneNumber}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_isThereAnyoneElseWhoShouldKnowAboutYourApplication}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_whoDoesExampletextExampletextMainlyLiveWith}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_exampletextExampletextsLivingArrangements}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_haveTheChildrenBeenInvolvedInACourtCase}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_haveYouHadACourtOrderMadeForYourProtection}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_provideDetailsOfCourtCasesYouOrTheChildrenHaveBeenInvolvedIn}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_childArrangementsOrder}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_emergencyProtectionOrder}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_supervisionOrder}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_careOrder}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_childAbductionOrder}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_aContactOrResidenceOrdersection8ChildrenAct1989MadeWithinProceedingsForADivorceOrDissolutionOfACivilPartnership}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_aContactOrResidenceOrdersection8ChildrenAct1989MadeInConnectionWithAnAdoptionOrder}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_childMaintenanceOrder}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_financialOrder}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_nonmolestationOrder}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_occupationOrder}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_forcedMarriageProtectionOrder}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_restrainingOrder}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_otherInjunctionOrder}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_undertakingOrder}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_otherOrder}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_doYouHaveAnyConcernsForYourSafetyOrTheSafetyOfTheChildren}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_whoAreYouConcernedAbout}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_whatTypeOfBehaviourHaveTheChildrenExperiencedOrAreAtRiskOfExperiencing}")`,
-        2,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_brieflyDescribeThePhysicalAbuseAgainstTheChildIfYouFeelAbleTo}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_brieflyDescribeThePsychologicalAbuseAgainstTheChildIfYouFeelAbleTo}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_brieflyDescribeTheEmotionalAbuseAgainstTheChildIfYouFeelAbleTo}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_brieflyDescribeTheSexualAbuseAgainstTheChildIfYouFeelAbleTo}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_brieflyDescribeTheFinancialAbuseAgainstTheChildIfYouFeelAbleTo}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_whyDoYouThinkTheChildrenMayBeAbductedOrKeptOutsideTheUkWithoutYourConsent}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_whereAreTheChildrenNow}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_doAnyOfTheChildrenHaveAPassport}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_hasThePassportOfficeBeenNotified}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_haveTheChildrenBeenAbductedOrKeptOutsideTheUkWithoutYourConsentBefore}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_provideDetailsOfThePreviousAbductions}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_wereThePolicePrivateInvestigatorsOrAnyOtherOrganisationInvolved}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_brieflyDescribeThePhysicalAbuseIfYouFeelAbleTo}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_brieflyDescribeThePsychologicalAbuseIfYouFeelAbleTo}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_brieflyDescribeTheEmotionalAbuseIfYouFeelAbleTo}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_brieflyDescribeTheSexualAbuseIfYouFeelAbleTo}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_brieflyDescribeTheConcernsIfYouFeelAbleTo}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_haveTheChildrenBeenImpactedByDrugAlcoholOrSubstanceAbuse}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_doYouHaveAnyOtherConcernsAboutTheChildrensSafetyAndWellbeing}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_whatDoYouWantTheCourtToDoToKeepYouAndTheChildrenSafe}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_doYouAgreeToTheChildrenSpendingTimeWithTheOtherPeopleInThisApplication}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_doYouAgreeToTheOtherPeopleInThisApplicationBeingInTouchWithTheChildrenInOtherWays}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_areTheChildrensLivesMainlyBasedOutsideOfEnglandAndWales}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_areTheChildrensParentsorAnyoneSignificantToTheChildrenMainlyBasedOutsideOfEnglandAndWales}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_couldAnotherPersonInTheApplicationApplyForASimilarOrderInACountryOutsideEnglandOrWales}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_hasAnotherCountryAskedorBeenAskedForInformationOrHelpForTheChildren}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_wouldYouBeAbleToTakePartInHearingsByVideoAndPhone}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_doYouHaveAnyLanguageRequirements}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_doYouOrTheChildrenNeedSpecialArrangementsAtCourt}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_doYouHaveAPhysicalMentalOrLearningDisabilityOrHealthConditionThatMeansYouNeedSupportDuringYourCase}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_iNeedDocumentsInAnAlternativeFormat}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_iNeedHelpCommunicatingAndUnderstanding}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_iNeedToBringSupportWithMeToACourtHearing}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_iNeedSomethingToFeelComfortableDuringACourtHearing}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_iNeedHelpTravellingToOrMovingAroundCourtBuildings}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_doYouNeedHelpWithPayingTheFeeForThisApplication}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListKey}:text-is("${TopMiroReviewContent.dt_govuksummarylistkey_enterYourHelpWithFeesReferenceNumber}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListValue}:text-is("${TopMiroReviewContent.dd_govuksummarylistvalue_yes}")`,
+        `${Selectors.dd}:text-is("${CaJourneyWrittenConsentReviewContent.dd_yes}")`,
         36,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukSummaryListValue}:text-is("${TopMiroReviewContent.dd_govuksummarylistvalue_exampletextExampletext}")`,
-        4,
+        `${Selectors.dd}:text-is("${CaJourneyWrittenConsentReviewContent.dd_male}")`,
+        5,
       ),
+      Helpers.checkGroup(
+        page,
+        81,
+        CaJourneyWrittenConsentReviewContent,
+        "span_",
+        Selectors.Span,
+      ),
+      // Using Selectors.Span for span_ prefixed items in CaJourneyWrittenConsentReviewContent
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukSummaryListValue}:text-is("${TopMiroReviewContent.dd_govuksummarylistvalue_12October2008}")`,
+        `${Selectors.Span}:text-is("${CaJourneyWrittenConsentReviewContent.span_whatTypeOfBehaviourHaveTheChildrenExperiencedOrAreAtRiskOfExperiencing}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukSummaryListValue}:text-is("${TopMiroReviewContent.dd_govuksummarylistvalue_male}")`,
+        `${Selectors.Span}:text-is("${CaJourneyWrittenConsentReviewContent.span_haveTheyChangedTheirName}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${CaJourneyWrittenConsentReviewContent.span_placeOfBirth}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${CaJourneyWrittenConsentReviewContent.span_fullName}")`,
         5,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukSummaryListValue}:text-is("${TopMiroReviewContent.dd_govuksummarylistvalue_exampletext}")`,
-        2,
+        `${Selectors.Span}:text-is("${CaJourneyWrittenConsentReviewContent.span_dateOfBirth}")`,
+        5,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukSummaryListValue}:has-text("${TopMiroReviewContent.dd_govuksummarylistvalue_November2002}")`,
-        2,
+        `${Selectors.Span}:text-is("${CaJourneyWrittenConsentReviewContent.span_gender}")`,
+        5,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukSummaryListValue}:text-is("${TopMiroReviewContent.dd_govuksummarylistvalue_swansea}")`,
+        `${Selectors.Span}:text-is("${CaJourneyWrittenConsentReviewContent.span_relationshipToExampletextExampletext}")`,
         3,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukSummaryListValue}:text-is("${TopMiroReviewContent.dd_govuksummarylistvalue_janeDoe}")`,
-        1,
+        `${Selectors.Span}:text-is("${CaJourneyWrittenConsentReviewContent.span_addressDetails}")`,
+        3,
       ),
+      Helpers.checkGroup(
+        page,
+        80,
+        CaJourneyWrittenConsentReviewContent,
+        "li_",
+        Selectors.li,
+      ),
+      // Using Selectors.li for li_ prefixed items in CaJourneyWrittenConsentReviewContent
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.li}:text-is("${TopMiroReviewContent.li_decideWhoTheChildrenLiveWithAndWhen}")`,
+        `${Selectors.li}:text-is("${CaJourneyWrittenConsentReviewContent.li_otherLoremIpsumOther}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.li}:text-is("${TopMiroReviewContent.li_decideHowMuchTimeTheChildrenSpendWithEachPerson}")`,
+        `${Selectors.li}:text-is("${CaJourneyWrittenConsentReviewContent.li_visitToCourtBeforeTheHearing}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.li}:text-is("${TopMiroReviewContent.li_changingTheChildrensNamesOrSurname}")`,
+        `${Selectors.li}:text-is("${CaJourneyWrittenConsentReviewContent.li_somethingElse}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${CaJourneyWrittenConsentReviewContent.li_physicalAbuse}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${CaJourneyWrittenConsentReviewContent.li_psychologicalAbuse}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${CaJourneyWrittenConsentReviewContent.li_emotionalAbuse}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${CaJourneyWrittenConsentReviewContent.li_sexualAbuse}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${CaJourneyWrittenConsentReviewContent.li_financialAbuse}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${CaJourneyWrittenConsentReviewContent.li_aSpecificHolidayOrArrangement}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${CaJourneyWrittenConsentReviewContent.li_whatSchoolTheChildrenWillGoTo}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${CaJourneyWrittenConsentReviewContent.li_aReligiousIssue}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${CaJourneyWrittenConsentReviewContent.li_medicalTreatment}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${CaJourneyWrittenConsentReviewContent.li_returningTheChildrenToYourCare}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${CaJourneyWrittenConsentReviewContent.li_changingTheChildrensNamesOrSurname}")`,
         4,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.li}:text-is("${TopMiroReviewContent.li_allowingMedicalTreatmentToBeCarriedOutOnTheChildren}")`,
+        `${Selectors.li}:text-is("${CaJourneyWrittenConsentReviewContent.li_allowingMedicalTreatmentToBeCarriedOutOnTheChildren}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.li}:text-is("${TopMiroReviewContent.li_takingTheChildrenOnHoliday}")`,
+        `${Selectors.li}:text-is("${CaJourneyWrittenConsentReviewContent.li_takingTheChildrenOnHoliday}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.li}:text-is("${TopMiroReviewContent.li_relocatingTheChildrenToADifferentAreaInEnglandAndWales}")`,
+        `${Selectors.li}:text-is("${CaJourneyWrittenConsentReviewContent.li_decideWhoTheChildrenLiveWithAndWhen}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${CaJourneyWrittenConsentReviewContent.li_decideHowMuchTimeTheChildrenSpendWithEachPerson}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${CaJourneyWrittenConsentReviewContent.li_relocatingTheChildrenToADifferentAreaInEnglandAndWales}")`,
         4,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.li}:text-is("${TopMiroReviewContent.li_relocatingTheChildrenOutsideOfEnglandAndWalesincludingScotlandAndNorthernIreland}")`,
+        `${Selectors.li}:text-is("${CaJourneyWrittenConsentReviewContent.li_relocatingTheChildrenOutsideOfEnglandAndWalesincludingScotlandAndNorthernIreland}")`,
         4,
       ),
+      Helpers.checkGroup(
+        page,
+        17,
+        CaJourneyWrittenConsentReviewContent,
+        "h4_",
+        Selectors.h4,
+      ),
+      // Using Selectors.h4 for h4_ prefixed items in CaJourneyWrittenConsentReviewContent
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.li}:text-is("${TopMiroReviewContent.li_aSpecificHolidayOrArrangement}")`,
+        `${Selectors.h4}:text-is("${CaJourneyWrittenConsentReviewContent.h4_whichCourtIssuedTheOrderoptional}")`,
+        16,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.h4}:text-is("${CaJourneyWrittenConsentReviewContent.h4_caseNumberoptional}")`,
+        16,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.h4}:text-is("${CaJourneyWrittenConsentReviewContent.h4_whatDateWasItMadeoptional}")`,
+        16,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.h4}:text-is("${CaJourneyWrittenConsentReviewContent.h4_child1}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.li}:text-is("${TopMiroReviewContent.li_whatSchoolTheChildrenWillGoTo}")`,
-        2,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${TopMiroReviewContent.li_aReligiousIssue}")`,
-        2,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${TopMiroReviewContent.li_medicalTreatment}")`,
-        2,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${TopMiroReviewContent.li_returningTheChildrenToYourCare}")`,
-        2,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${TopMiroReviewContent.li_email}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${TopMiroReviewContent.li_exampletextExampletext}")`,
-        6,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${TopMiroReviewContent.li_janeDoe}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${TopMiroReviewContent.li_visitToCourtBeforeTheHearing}")`,
-        2,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${TopMiroReviewContent.li_iNeedDocumentsInAnAlternativeFormat}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${TopMiroReviewContent.li_iNeedHelpCommunicatingAndUnderstanding}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${TopMiroReviewContent.li_iNeedHelpTravellingToOrMovingAroundCourtBuildings}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${TopMiroReviewContent.li_otherLoremIpsumOther}")`,
-        2,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${TopMiroReviewContent.li_govukpaddingtop_changingTheChildrensNamesOrSurname}")`,
-        4,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${TopMiroReviewContent.li_govukpaddingtop_allowingMedicalTreatmentToBeCarriedOutOnTheChildren}")`,
-        2,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${TopMiroReviewContent.li_govukpaddingtop_takingTheChildrenOnHoliday}")`,
-        2,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${TopMiroReviewContent.li_govukpaddingtop_relocatingTheChildrenToADifferentAreaInEnglandAndWales}")`,
-        4,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${TopMiroReviewContent.li_govukpaddingtop_relocatingTheChildrenOutsideOfEnglandAndWalesincludingScotlandAndNorthernIreland}")`,
-        4,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${TopMiroReviewContent.li_govukpaddingtop_aSpecificHolidayOrArrangement}")`,
-        2,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${TopMiroReviewContent.li_govukpaddingtop_whatSchoolTheChildrenWillGoTo}")`,
-        2,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${TopMiroReviewContent.li_govukpaddingtop_aReligiousIssue}")`,
-        2,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${TopMiroReviewContent.li_govukpaddingtop_medicalTreatment}")`,
-        2,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${TopMiroReviewContent.li_govukpaddingtop_returningTheChildrenToYourCare}")`,
-        2,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${TopMiroReviewContent.li_govukpaddingtop_physicalAbuse}")`,
-        2,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${TopMiroReviewContent.li_govukpaddingtop_psychologicalAbuse}")`,
-        2,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${TopMiroReviewContent.li_govukpaddingtop_emotionalAbuse}")`,
-        2,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${TopMiroReviewContent.li_govukpaddingtop_sexualAbuse}")`,
-        2,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${TopMiroReviewContent.li_govukpaddingtop_financialAbuse}")`,
-        2,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${TopMiroReviewContent.li_govukpaddingtop_somethingElse}")`,
-        2,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.h4}:text-is("${TopMiroReviewContent.h4_details}")`,
+        `${Selectors.h4}:text-is("${CaJourneyWrittenConsentReviewContent.h4_details}")`,
         24,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h4}:text-is("${TopMiroReviewContent.h4_whichCourtIssuedTheOrderoptional}")`,
+        `${Selectors.h4}:text-is("${CaJourneyWrittenConsentReviewContent.h4_isThisACurrentOrderoptional}")`,
         16,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h4}:text-is("${TopMiroReviewContent.h4_caseNumberoptional}")`,
+        `${Selectors.h4}:text-is("${CaJourneyWrittenConsentReviewContent.h4_whatDateDidItEndoptional}")`,
         16,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h4}:text-is("${TopMiroReviewContent.h4_whatDateWasItMadeoptional}")`,
+        `${Selectors.h4}:text-is("${CaJourneyWrittenConsentReviewContent.h4_doYouHaveACopyOfTheOrderoptional}")`,
         16,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h4}:text-is("${TopMiroReviewContent.h4_isThisACurrentOrderoptional}")`,
-        16,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.h4}:text-is("${TopMiroReviewContent.h4_whatDateDidItEndoptional}")`,
-        16,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.h4}:text-is("${TopMiroReviewContent.h4_doYouHaveACopyOfTheOrderoptional}")`,
-        16,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.h4}:text-is("${TopMiroReviewContent.h4_whichChildrenAreYouConcernedAboutoptional}")`,
+        `${Selectors.h4}:text-is("${CaJourneyWrittenConsentReviewContent.h4_whichChildrenAreYouConcernedAboutoptional}")`,
         5,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h4}:text-is("${TopMiroReviewContent.h4_describeTheBehavioursYouWouldLikeTheCourtToBeAwareOfoptional}")`,
+        `${Selectors.h4}:text-is("${CaJourneyWrittenConsentReviewContent.h4_describeTheBehavioursYouWouldLikeTheCourtToBeAwareOfoptional}")`,
         11,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h4}:text-is("${TopMiroReviewContent.h4_whenDidThisBehaviourStartAndHowLongDidItContinueoptional}")`,
+        `${Selectors.h4}:text-is("${CaJourneyWrittenConsentReviewContent.h4_whenDidThisBehaviourStartAndHowLongDidItContinueoptional}")`,
         11,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h4}:text-is("${TopMiroReviewContent.h4_isTheBehaviourOngoingoptional}")`,
+        `${Selectors.h4}:text-is("${CaJourneyWrittenConsentReviewContent.h4_isTheBehaviourOngoingoptional}")`,
         11,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h4}:text-is("${TopMiroReviewContent.h4_haveYouEverAskedForHelpFromAProfessionalPersonOrAgencyoptional}")`,
+        `${Selectors.h4}:text-is("${CaJourneyWrittenConsentReviewContent.h4_haveYouEverAskedForHelpFromAProfessionalPersonOrAgencyoptional}")`,
         11,
       ),
+      Helpers.checkGroup(
+        page,
+        21,
+        CaJourneyWrittenConsentReviewContent,
+        "p_",
+        Selectors.p,
+      ),
+      // Using Selectors.p for p_ prefixed items in CaJourneyWrittenConsentReviewContent
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${TopMiroReviewContent.p_yes}")`,
-        39,
+        `${Selectors.p}:text-is("${CaJourneyWrittenConsentReviewContent.p_loremIpsumStartDetails}")`,
+        2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${TopMiroReviewContent.p_bs19f99999}")`,
+        `${Selectors.p}:text-is("${CaJourneyWrittenConsentReviewContent.p_10July2014}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${CaJourneyWrittenConsentReviewContent.p_10July2018}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${CaJourneyWrittenConsentReviewContent.p_automatedOccupationOrderCourt}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${CaJourneyWrittenConsentReviewContent.p_18August2015}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${CaJourneyWrittenConsentReviewContent.p_18August2018}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${CaJourneyWrittenConsentReviewContent.p_automatedChildAbductionOrderCourt}")`,
+        3,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${CaJourneyWrittenConsentReviewContent.p_10June2015}")`,
+        3,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${CaJourneyWrittenConsentReviewContent.p_bs19f99999}")`,
         16,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${TopMiroReviewContent.p_10July2016}")`,
+        `${Selectors.p}:text-is("${CaJourneyWrittenConsentReviewContent.p_10July2016}")`,
         5,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${TopMiroReviewContent.p_10July2017}")`,
+        `${Selectors.p}:text-is("${CaJourneyWrittenConsentReviewContent.p_10July2017}")`,
         6,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${TopMiroReviewContent.p_automatedChildAbductionOrderCourt}")`,
+        `${Selectors.p}:text-is("${CaJourneyWrittenConsentReviewContent.p_yes}")`,
+        39,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${CaJourneyWrittenConsentReviewContent.p_10June2017}")`,
         3,
       ),
-      Helpers.checkVisibleAndPresent(
+      Helpers.checkGroup(
         page,
-        `${Selectors.p}:text-is("${TopMiroReviewContent.p_10June2015}")`,
-        3,
+        13,
+        CaJourneyWrittenConsentReviewContent,
+        "div_",
+        Selectors.div,
       ),
+      // Using Selectors.div for div_ prefixed items in CaJourneyWrittenConsentReviewContent
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${TopMiroReviewContent.p_10June2017}")`,
-        3,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.p}:text-is("${TopMiroReviewContent.p_18August2015}")`,
+        `${Selectors.div}:text-is("${CaJourneyWrittenConsentReviewContent.div_automatedEmotionalSeekHelpDetails}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${TopMiroReviewContent.p_18August2018}")`,
+        `${Selectors.div}:text-is("${CaJourneyWrittenConsentReviewContent.div_automatedPhysicalSeekHelpDetails}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${TopMiroReviewContent.p_automatedOccupationOrderCourt}")`,
-        2,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.p}:text-is("${TopMiroReviewContent.p_10July2018}")`,
-        2,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.p}:text-is("${TopMiroReviewContent.p_10July2014}")`,
-        2,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.p}:text-is("${TopMiroReviewContent.p_loremIpsumStartDetails}")`,
-        2,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.h4}:text-is("${TopMiroReviewContent.h4_apptasklistsection_child1}")`,
-        2,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.div}:text-is("${TopMiroReviewContent.div_govukpaddingbottom_yes}")`,
+        `${Selectors.div}:text-is("${CaJourneyWrittenConsentReviewContent.div_yes}")`,
         12,
       ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${TopMiroReviewContent.li_govukpaddingbottom_childArrangementsOrder}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${TopMiroReviewContent.li_govukpaddingbottom_emergencyProtectionOrder}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${TopMiroReviewContent.li_govukpaddingbottom_supervisionOrder}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${TopMiroReviewContent.li_govukpaddingbottom_careOrder}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${TopMiroReviewContent.li_govukpaddingbottom_childAbductionOrder}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${TopMiroReviewContent.li_govukpaddingbottom_aContactOrResidenceOrdersection8ChildrenAct1989MadeWithinProceedingsForADivorceOrDissolutionOfACivilPartnership}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${TopMiroReviewContent.li_govukpaddingbottom_aContactOrResidenceOrdersection8ChildrenAct1989MadeInConnectionWithAnAdoptionOrder}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${TopMiroReviewContent.li_govukpaddingbottom_childMaintenanceOrder}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${TopMiroReviewContent.li_govukpaddingbottom_financialOrder}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${TopMiroReviewContent.li_govukpaddingbottom_nonmolestationOrder}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${TopMiroReviewContent.li_govukpaddingbottom_occupationOrder}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${TopMiroReviewContent.li_govukpaddingbottom_forcedMarriageProtectionOrder}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${TopMiroReviewContent.li_govukpaddingbottom_restrainingOrder}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${TopMiroReviewContent.li_govukpaddingbottom_otherInjunctionOrder}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${TopMiroReviewContent.li_govukpaddingbottom_undertakingOrder}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.li}:text-is("${TopMiroReviewContent.li_govukpaddingbottom_otherOrder}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.ul}:text-is("${TopMiroReviewContent.li_govukpaddingbottom_otherOrder}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.div}:text-is("${TopMiroReviewContent.div_govukpaddingtop_automatedPhysicalSeekHelpDetails}")`,
-        2,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.div}:text-is("${TopMiroReviewContent.div_govukpaddingtop_automatedEmotionalSeekHelpDetails}")`,
-        2,
-      ),
     ]);
-    if (reviewPageTopJourneyMotherFather === "mother") {
-      await Promise.all([
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukSummaryListValue}:text-is("${TopMiroReviewContent.dd_govuksummarylistvalue_mother}")`,
-          3,
-        ),
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.li}:text-is("${TopMiroReviewContent.li_mother}")`,
-          1,
-        ),
-      ]);
-    } else if (reviewPageTopJourneyMotherFather === "father") {
-      await Promise.all([
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukSummaryListValue}:text-is("${TopMiroReviewContent.dd_govuksummarylistvalue_father}")`,
-          3,
-        ),
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.li}:text-is("${TopMiroReviewContent.li_father}")`,
-          1,
-        ),
-      ]);
-    }
     await this.fillInFields(page);
   }
 
-  public static async submitSecondMiro({
+  public static async c100CAEmergencyProtection({
     page,
     accessibilityTest,
     relationshipType,
-  }: Partial<checkTextOptions>): Promise<void> {
-    if (!page) {
-      throw new Error();
-    }
+  }: caJourneyEmergencyProtectionOptions): Promise<void> {
     await this.checkCommonText({
       page,
       accessibilityTest,
-      relationshipType,
     });
     await Promise.all([
       Helpers.checkGroup(
         page,
         25,
-        SecondMiroReviewContent,
+        CaJourneyEmergencyProtectionReviewContent,
         "h2_",
         Selectors.h2,
       ),
       Helpers.checkGroup(
         page,
         87,
-        SecondMiroReviewContent,
+        CaJourneyEmergencyProtectionReviewContent,
         "dt_",
         Selectors.dt,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.dt}:text-is("${SecondMiroReviewContent.dt_whatTypeOfBehaviourHaveTheChildrenExperiencedOrAreAtRiskOfExperiencing}")`,
+        `${Selectors.dt}:text-is("${CaJourneyEmergencyProtectionReviewContent.dt_whatTypeOfBehaviourHaveTheChildrenExperiencedOrAreAtRiskOfExperiencing}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.dt}:text-is("${SecondMiroReviewContent.dt_haveTheyChangedTheirName}")`,
+        `${Selectors.dt}:text-is("${CaJourneyEmergencyProtectionReviewContent.dt_haveTheyChangedTheirName}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.dt}:text-is("${SecondMiroReviewContent.dt_placeOfBirth}")`,
+        `${Selectors.dt}:text-is("${CaJourneyEmergencyProtectionReviewContent.dt_placeOfBirth}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.dt}:text-is("${SecondMiroReviewContent.dt_relationshipToExampletextExampletext}")`,
+        `${Selectors.dt}:text-is("${CaJourneyEmergencyProtectionReviewContent.dt_relationshipToExampletextExampletext}")`,
         3,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.dt}:text-is("${SecondMiroReviewContent.dt_addressDetails}")`,
+        `${Selectors.dt}:text-is("${CaJourneyEmergencyProtectionReviewContent.dt_addressDetails}")`,
         3,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.dt}:text-is("${SecondMiroReviewContent.dt_fullName}")`,
+        `${Selectors.dt}:text-is("${CaJourneyEmergencyProtectionReviewContent.dt_fullName}")`,
         5,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.dt}:text-is("${SecondMiroReviewContent.dt_dateOfBirth}")`,
+        `${Selectors.dt}:text-is("${CaJourneyEmergencyProtectionReviewContent.dt_dateOfBirth}")`,
         5,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.dt}:text-is("${SecondMiroReviewContent.dt_gender}")`,
+        `${Selectors.dt}:text-is("${CaJourneyEmergencyProtectionReviewContent.dt_gender}")`,
         5,
       ),
       Helpers.checkGroup(
         page,
         14,
-        SecondMiroReviewContent,
+        CaJourneyEmergencyProtectionReviewContent,
         "dd_",
         Selectors.dd,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.dd}:text-is("${SecondMiroReviewContent.dd_example}")`,
+        `${Selectors.dd}:text-is("${CaJourneyEmergencyProtectionReviewContent.dd_example}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.dd}:text-is("${SecondMiroReviewContent.dd_Other}")`,
+        `${Selectors.dd}:text-is("${CaJourneyEmergencyProtectionReviewContent.dd_Other}")`,
         3,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.dd}:text-is("${SecondMiroReviewContent.dd_janeDoe}")`,
+        `${Selectors.dd}:text-is("${CaJourneyEmergencyProtectionReviewContent.dd_janeDoe}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.dd}:text-is("${SecondMiroReviewContent.dd_swansea}")`,
+        `${Selectors.dd}:text-is("${CaJourneyEmergencyProtectionReviewContent.dd_swansea}")`,
         3,
       ),
       Helpers.checkVisibleAndPresent(
@@ -1186,339 +651,762 @@ export class ReviewPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.dd}:text-is("${SecondMiroReviewContent.dd_exampletextExampletext}")`,
+        `${Selectors.dd}:text-is("${CaJourneyEmergencyProtectionReviewContent.dd_exampletextExampletext}")`,
         3,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.dd}:text-is("${SecondMiroReviewContent.dd_12October2008}")`,
+        `${Selectors.dd}:text-is("${CaJourneyEmergencyProtectionReviewContent.dd_12October2008}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.dd}:text-is("${SecondMiroReviewContent.dd_male}")`,
+        `${Selectors.dd}:text-is("${CaJourneyEmergencyProtectionReviewContent.dd_male}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.dd}:text-is("${SecondMiroReviewContent.dd_no}")`,
+        `${Selectors.dd}:text-is("${CaJourneyEmergencyProtectionReviewContent.dd_no}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.dd}:text-is("${SecondMiroReviewContent.dd_yes}")`,
+        `${Selectors.dd}:text-is("${CaJourneyEmergencyProtectionReviewContent.dd_yes}")`,
         38,
       ),
       Helpers.checkGroup(
         page,
         87,
-        SecondMiroReviewContent,
+        CaJourneyEmergencyProtectionReviewContent,
         "span_",
         Selectors.Span,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${SecondMiroReviewContent.span_whatTypeOfBehaviourHaveTheChildrenExperiencedOrAreAtRiskOfExperiencing}")`,
+        `${Selectors.Span}:text-is("${CaJourneyEmergencyProtectionReviewContent.span_whatTypeOfBehaviourHaveTheChildrenExperiencedOrAreAtRiskOfExperiencing}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${SecondMiroReviewContent.span_haveTheyChangedTheirName}")`,
+        `${Selectors.Span}:text-is("${CaJourneyEmergencyProtectionReviewContent.span_haveTheyChangedTheirName}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${SecondMiroReviewContent.span_placeOfBirth}")`,
+        `${Selectors.Span}:text-is("${CaJourneyEmergencyProtectionReviewContent.span_placeOfBirth}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${SecondMiroReviewContent.span_relationshipToExampletextExampletext}")`,
+        `${Selectors.Span}:text-is("${CaJourneyEmergencyProtectionReviewContent.span_relationshipToExampletextExampletext}")`,
         3,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${SecondMiroReviewContent.span_addressDetails}")`,
+        `${Selectors.Span}:text-is("${CaJourneyEmergencyProtectionReviewContent.span_addressDetails}")`,
         3,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${SecondMiroReviewContent.span_fullName}")`,
+        `${Selectors.Span}:text-is("${CaJourneyEmergencyProtectionReviewContent.span_fullName}")`,
         5,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${SecondMiroReviewContent.span_dateOfBirth}")`,
+        `${Selectors.Span}:text-is("${CaJourneyEmergencyProtectionReviewContent.span_dateOfBirth}")`,
         5,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${SecondMiroReviewContent.span_gender}")`,
+        `${Selectors.Span}:text-is("${CaJourneyEmergencyProtectionReviewContent.span_gender}")`,
         5,
       ),
       Helpers.checkGroup(
         page,
         83,
-        SecondMiroReviewContent,
+        CaJourneyEmergencyProtectionReviewContent,
         "li_",
         Selectors.li,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.li}:text-is("${SecondMiroReviewContent.li_otherLoremIpsumOther}")`,
+        `${Selectors.li}:text-is("${CaJourneyEmergencyProtectionReviewContent.li_otherLoremIpsumOther}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.li}:text-is("${SecondMiroReviewContent.li_visitToCourtBeforeTheHearing}")`,
+        `${Selectors.li}:text-is("${CaJourneyEmergencyProtectionReviewContent.li_visitToCourtBeforeTheHearing}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.li}:text-is("${SecondMiroReviewContent.li_somethingElse}")`,
+        `${Selectors.li}:text-is("${CaJourneyEmergencyProtectionReviewContent.li_somethingElse}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.li}:text-is("${SecondMiroReviewContent.li_physicalAbuse}")`,
+        `${Selectors.li}:text-is("${CaJourneyEmergencyProtectionReviewContent.li_physicalAbuse}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.li}:text-is("${SecondMiroReviewContent.li_psychologicalAbuse}")`,
+        `${Selectors.li}:text-is("${CaJourneyEmergencyProtectionReviewContent.li_psychologicalAbuse}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.li}:text-is("${SecondMiroReviewContent.li_emotionalAbuse}")`,
+        `${Selectors.li}:text-is("${CaJourneyEmergencyProtectionReviewContent.li_emotionalAbuse}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.li}:text-is("${SecondMiroReviewContent.li_sexualAbuse}")`,
+        `${Selectors.li}:text-is("${CaJourneyEmergencyProtectionReviewContent.li_sexualAbuse}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.li}:text-is("${SecondMiroReviewContent.li_financialAbuse}")`,
+        `${Selectors.li}:text-is("${CaJourneyEmergencyProtectionReviewContent.li_financialAbuse}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.li}:text-is("${SecondMiroReviewContent.li_exampletextExampletext}")`,
+        `${Selectors.li}:text-is("${CaJourneyEmergencyProtectionReviewContent.li_exampletextExampletext}")`,
         6,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.li}:text-is("${SecondMiroReviewContent.li_aSpecificHolidayOrArrangement}")`,
+        `${Selectors.li}:text-is("${CaJourneyEmergencyProtectionReviewContent.li_aSpecificHolidayOrArrangement}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.li}:text-is("${SecondMiroReviewContent.li_whatSchoolTheChildrenWillGoTo}")`,
+        `${Selectors.li}:text-is("${CaJourneyEmergencyProtectionReviewContent.li_whatSchoolTheChildrenWillGoTo}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.li}:text-is("${SecondMiroReviewContent.li_aReligiousIssue}")`,
+        `${Selectors.li}:text-is("${CaJourneyEmergencyProtectionReviewContent.li_aReligiousIssue}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.li}:text-is("${SecondMiroReviewContent.li_medicalTreatment}")`,
+        `${Selectors.li}:text-is("${CaJourneyEmergencyProtectionReviewContent.li_medicalTreatment}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.li}:text-is("${SecondMiroReviewContent.li_changingTheChildrensNamesOrSurname}")`,
+        `${Selectors.li}:text-is("${CaJourneyEmergencyProtectionReviewContent.li_changingTheChildrensNamesOrSurname}")`,
         4,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.li}:text-is("${SecondMiroReviewContent.li_allowingMedicalTreatmentToBeCarriedOutOnTheChildren}")`,
+        `${Selectors.li}:text-is("${CaJourneyEmergencyProtectionReviewContent.li_allowingMedicalTreatmentToBeCarriedOutOnTheChildren}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.li}:text-is("${SecondMiroReviewContent.li_takingTheChildrenOnHoliday}")`,
+        `${Selectors.li}:text-is("${CaJourneyEmergencyProtectionReviewContent.li_takingTheChildrenOnHoliday}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.li}:text-is("${SecondMiroReviewContent.li_relocatingTheChildrenToADifferentAreaInEnglandAndWales}")`,
+        `${Selectors.li}:text-is("${CaJourneyEmergencyProtectionReviewContent.li_relocatingTheChildrenToADifferentAreaInEnglandAndWales}")`,
         4,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.li}:text-is("${SecondMiroReviewContent.li_relocatingTheChildrenOutsideOfEnglandAndWalesincludingScotlandAndNorthernIreland}")`,
+        `${Selectors.li}:text-is("${CaJourneyEmergencyProtectionReviewContent.li_relocatingTheChildrenOutsideOfEnglandAndWalesincludingScotlandAndNorthernIreland}")`,
         4,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.li}:text-is("${SecondMiroReviewContent.li_decideWhoTheChildrenLiveWithAndWhen}")`,
+        `${Selectors.li}:text-is("${CaJourneyEmergencyProtectionReviewContent.li_decideWhoTheChildrenLiveWithAndWhen}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.li}:text-is("${SecondMiroReviewContent.li_decideHowMuchTimeTheChildrenSpendWithEachPerson}")`,
+        `${Selectors.li}:text-is("${CaJourneyEmergencyProtectionReviewContent.li_decideHowMuchTimeTheChildrenSpendWithEachPerson}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.li}:text-is("${SecondMiroReviewContent.li_returningTheChildrenToYourCare}")`,
+        `${Selectors.li}:text-is("${CaJourneyEmergencyProtectionReviewContent.li_returningTheChildrenToYourCare}")`,
         2,
       ),
       Helpers.checkGroup(
         page,
         17,
-        SecondMiroReviewContent,
+        CaJourneyEmergencyProtectionReviewContent,
         "h4_",
         Selectors.h4,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h4}:text-is("${SecondMiroReviewContent.h4_child1}")`,
+        `${Selectors.h4}:text-is("${CaJourneyEmergencyProtectionReviewContent.h4_child1}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h4}:text-is("${SecondMiroReviewContent.h4_details}")`,
+        `${Selectors.h4}:text-is("${CaJourneyEmergencyProtectionReviewContent.h4_details}")`,
         26,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h4}:text-is("${SecondMiroReviewContent.h4_whichCourtIssuedTheOrderoptional}")`,
+        `${Selectors.h4}:text-is("${CaJourneyEmergencyProtectionReviewContent.h4_whichCourtIssuedTheOrderoptional}")`,
         16,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h4}:text-is("${SecondMiroReviewContent.h4_caseNumberoptional}")`,
+        `${Selectors.h4}:text-is("${CaJourneyEmergencyProtectionReviewContent.h4_caseNumberoptional}")`,
         16,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h4}:text-is("${SecondMiroReviewContent.h4_whatDateWasItMadeoptional}")`,
+        `${Selectors.h4}:text-is("${CaJourneyEmergencyProtectionReviewContent.h4_whatDateWasItMadeoptional}")`,
         16,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h4}:text-is("${SecondMiroReviewContent.h4_isThisACurrentOrderoptional}")`,
+        `${Selectors.h4}:text-is("${CaJourneyEmergencyProtectionReviewContent.h4_isThisACurrentOrderoptional}")`,
         16,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h4}:text-is("${SecondMiroReviewContent.h4_whatDateDidItEndoptional}")`,
+        `${Selectors.h4}:text-is("${CaJourneyEmergencyProtectionReviewContent.h4_whatDateDidItEndoptional}")`,
         16,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h4}:text-is("${SecondMiroReviewContent.h4_doYouHaveACopyOfTheOrderoptional}")`,
+        `${Selectors.h4}:text-is("${CaJourneyEmergencyProtectionReviewContent.h4_doYouHaveACopyOfTheOrderoptional}")`,
         16,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h4}:text-is("${SecondMiroReviewContent.h4_whichChildrenAreYouConcernedAboutoptional}")`,
+        `${Selectors.h4}:text-is("${CaJourneyEmergencyProtectionReviewContent.h4_whichChildrenAreYouConcernedAboutoptional}")`,
         5,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h4}:text-is("${SecondMiroReviewContent.h4_describeTheBehavioursYouWouldLikeTheCourtToBeAwareOfoptional}")`,
+        `${Selectors.h4}:text-is("${CaJourneyEmergencyProtectionReviewContent.h4_describeTheBehavioursYouWouldLikeTheCourtToBeAwareOfoptional}")`,
         11,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h4}:text-is("${SecondMiroReviewContent.h4_whenDidThisBehaviourStartAndHowLongDidItContinueoptional}")`,
+        `${Selectors.h4}:text-is("${CaJourneyEmergencyProtectionReviewContent.h4_whenDidThisBehaviourStartAndHowLongDidItContinueoptional}")`,
         11,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h4}:text-is("${SecondMiroReviewContent.h4_isTheBehaviourOngoingoptional}")`,
+        `${Selectors.h4}:text-is("${CaJourneyEmergencyProtectionReviewContent.h4_isTheBehaviourOngoingoptional}")`,
         11,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h4}:text-is("${SecondMiroReviewContent.h4_haveYouEverAskedForHelpFromAProfessionalPersonOrAgencyoptional}")`,
+        `${Selectors.h4}:text-is("${CaJourneyEmergencyProtectionReviewContent.h4_haveYouEverAskedForHelpFromAProfessionalPersonOrAgencyoptional}")`,
         11,
       ),
-      Helpers.checkGroup(page, 21, SecondMiroReviewContent, "p_", Selectors.p),
+      Helpers.checkGroup(
+        page,
+        21,
+        CaJourneyEmergencyProtectionReviewContent,
+        "p_",
+        Selectors.p,
+      ),
       Helpers.checkGroup(
         page,
         13,
-        SecondMiroReviewContent,
+        CaJourneyEmergencyProtectionReviewContent,
         "div_",
         Selectors.div,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${SecondMiroReviewContent.p_exampletext}")`,
+        `${Selectors.p}:text-is("${CaJourneyEmergencyProtectionReviewContent.p_exampletext}")`,
         6,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${SecondMiroReviewContent.p_loremIpsumStartDetails}")`,
+        `${Selectors.p}:text-is("${CaJourneyEmergencyProtectionReviewContent.p_loremIpsumStartDetails}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${SecondMiroReviewContent.p_10July2014}")`,
+        `${Selectors.p}:text-is("${CaJourneyEmergencyProtectionReviewContent.p_10July2014}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${SecondMiroReviewContent.p_automatedOccupationOrderCourt}")`,
+        `${Selectors.p}:text-is("${CaJourneyEmergencyProtectionReviewContent.p_automatedOccupationOrderCourt}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${SecondMiroReviewContent.p_10July2018}")`,
+        `${Selectors.p}:text-is("${CaJourneyEmergencyProtectionReviewContent.p_10July2018}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${SecondMiroReviewContent.p_18August2015}")`,
+        `${Selectors.p}:text-is("${CaJourneyEmergencyProtectionReviewContent.p_18August2015}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${SecondMiroReviewContent.p_automatedChildAbductionOrderCourt}")`,
+        `${Selectors.p}:text-is("${CaJourneyEmergencyProtectionReviewContent.p_automatedChildAbductionOrderCourt}")`,
         3,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${SecondMiroReviewContent.p_10June2015}")`,
+        `${Selectors.p}:text-is("${CaJourneyEmergencyProtectionReviewContent.p_10June2015}")`,
         3,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${SecondMiroReviewContent.p_10June2017}")`,
+        `${Selectors.p}:text-is("${CaJourneyEmergencyProtectionReviewContent.p_10June2017}")`,
         3,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${SecondMiroReviewContent.p_bs19f99999}")`,
+        `${Selectors.p}:text-is("${CaJourneyEmergencyProtectionReviewContent.p_bs19f99999}")`,
         16,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${SecondMiroReviewContent.p_10July2016}")`,
+        `${Selectors.p}:text-is("${CaJourneyEmergencyProtectionReviewContent.p_10July2016}")`,
         5,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${SecondMiroReviewContent.p_yes}")`,
+        `${Selectors.p}:text-is("${CaJourneyEmergencyProtectionReviewContent.p_yes}")`,
         39,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${SecondMiroReviewContent.p_10July2017}")`,
+        `${Selectors.p}:text-is("${CaJourneyEmergencyProtectionReviewContent.p_10July2017}")`,
         6,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${SecondMiroReviewContent.p_18August2018}")`,
+        `${Selectors.p}:text-is("${CaJourneyEmergencyProtectionReviewContent.p_18August2018}")`,
         2,
       ),
     ]);
+    await this.fillInFields(page);
+  }
+
+  public static async c100CAMIAMHearingUrgency({
+    page,
+    accessibilityTest,
+    miamAttendanceType,
+    miamUrgencyType,
+    miamChildProtectionConcernsType,
+    miamOtherReasonForNotAttending,
+    c100ChildrenSupervision,
+  }: caJourneyMIAMUrgencyOptions): Promise<void> {
+    await this.checkCommonText({
+      page: page,
+      accessibilityTest: accessibilityTest,
+    });
+    let yesCount = 9;
+    if (c100ChildrenSupervision === "yesSpendTime") {
+      yesCount += 1;
+    }
+    await Promise.all([
+      Helpers.checkGroup(
+        page,
+        26,
+        CaJourneyMIAMHearingUrgencyReviewContent,
+        "h2_",
+        Selectors.h2,
+      ),
+      Helpers.checkGroup(
+        page,
+        75,
+        CaJourneyMIAMHearingUrgencyReviewContent,
+        "dt_",
+        Selectors.dt,
+      ),
+      Helpers.checkGroup(
+        page,
+        15,
+        CaJourneyMIAMHearingUrgencyReviewContent,
+        "dd_",
+        Selectors.dd,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dd}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.dd_Swansea}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dd}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.dd_DontKnow}")`,
+        2,
+      ),
+      Helpers.checkGroup(
+        page,
+        75,
+        CaJourneyMIAMHearingUrgencyReviewContent,
+        "span_",
+        Selectors.Span,
+      ),
+      // Using Selectors.dt for dt_ prefixed items
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dt}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.dt_whatTypeOfBehaviourHaveTheChildrenExperiencedOrAreAtRiskOfExperiencing}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dt}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.dt_relationshipToExampletextExampletext}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dt}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.dt_addressDetails}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dt}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.dt_fullName}")`,
+        3,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dt}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.dt_dateOfBirth}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dt}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.dt_gender}")`,
+        3,
+      ),
+
+      // Using Selectors.dd for dd_ prefixed items
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dd}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.dd_yes}")`,
+        yesCount,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dd}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.dd_janeDoe}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dd}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.dd_other}")`,
+        3,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dd}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.dd_no}")`,
+        29,
+      ),
+      Helpers.checkGroup(
+        page,
+        40,
+        CaJourneyMIAMHearingUrgencyReviewContent,
+        "li_",
+        Selectors.li,
+      ),
+      // Using Selectors.Span for span_ prefixed items
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.span_whatTypeOfBehaviourHaveTheChildrenExperiencedOrAreAtRiskOfExperiencing}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.span_fullName}")`,
+        3,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.span_dateOfBirth}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.span_gender}")`,
+        3,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.span_relationshipToExampletextExampletext}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.span_addressDetails}")`,
+        2,
+      ),
+      Helpers.checkGroup(
+        page,
+        2,
+        CaJourneyMIAMHearingUrgencyReviewContent,
+        "b_",
+        Selectors.b,
+      ),
+      Helpers.checkGroup(
+        page,
+        5,
+        CaJourneyMIAMHearingUrgencyReviewContent,
+        "ul_",
+        Selectors.li,
+      ),
+      Helpers.checkGroup(
+        page,
+        9,
+        CaJourneyMIAMHearingUrgencyReviewContent,
+        "h4_",
+        Selectors.h4,
+      ),
+      // Using Selectors.h4 for h4_ prefixed items
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.h4}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.h4_whichChildrenAreYouConcernedAboutoptional}")`,
+        5,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.h4}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.h4_describeTheBehavioursYouWouldLikeTheCourtToBeAwareOfoptional}")`,
+        11,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.h4}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.h4_whenDidThisBehaviourStartAndHowLongDidItContinueoptional}")`,
+        11,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.h4}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.h4_isTheBehaviourOngoingoptional}")`,
+        11,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.h4}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.h4_haveYouEverAskedForHelpFromAProfessionalPersonOrAgencyoptional}")`,
+        11,
+      ),
+      // Using Selectors.li for li_ prefixed items
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.li_somethingElse}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.li_physicalAbuse}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.li_psychologicalAbuse}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.li_emotionalAbuse}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.li_sexualAbuse}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.li_financialAbuse}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.li_aSpecificHolidayOrArrangement}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.li_whatSchoolTheChildrenWillGoTo}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.li_aReligiousIssue}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.li_medicalTreatment}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.li_changingTheChildrensNamesOrSurname}")`,
+        4,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.li_allowingMedicalTreatmentToBeCarriedOutOnTheChildren}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.li_decideWhoTheChildrenLiveWithAndWhen}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.li_decideHowMuchTimeTheChildrenSpendWithEachPerson}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.li_takingTheChildrenOnHoliday}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.li_relocatingTheChildrenToADifferentAreaInEnglandAndWales}")`,
+        4,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.li_relocatingTheChildrenOutsideOfEnglandAndWalesincludingScotlandAndNorthernIreland}")`,
+        4,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.li_returningTheChildrenToYourCare}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.li_exampletextExampletext}")`,
+        6,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.div}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.div_no}")`,
+        11,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.div}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.div_1}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.p_no}")`,
+        4,
+      ),
+    ]);
+    if (c100ChildrenSupervision === "yesButSupervised") {
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dd}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.dd_YesSupervised}")`,
+        1,
+      );
+    }
+    if (miamAttendanceType === "Previous 4 months") {
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dd}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.dd_FourMonths}")`,
+        1,
+      );
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.b}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.b_evidence}")`,
+        1,
+      );
+    } else {
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dd}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.dd_none}")`,
+        3,
+      );
+    }
+    switch (miamUrgencyType) {
+      case "Risk to life":
+        await Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.dd}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.dd_riskToLife}")`,
+          1,
+        );
+        break;
+      case "Risk to family life":
+        await Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.dd}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.dd_RiskToFamily}")`,
+          1,
+        );
+        break;
+      case "Risk to safety of home":
+        await Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.dd}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.dd_RiskToHome}")`,
+          1,
+        );
+        break;
+      case "Delay causing risk of harm":
+        await Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.dd}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.dd_CauseHarm}")`,
+          1,
+        );
+        break;
+      case "Delay causing risk of financial hardship":
+        await Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.dd}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.dd_FinancialHardship}")`,
+          1,
+        );
+        break;
+      case "Delay causing risk of irretrievable problems":
+        await Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.dd}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.dd_Irretrievable}")`,
+          1,
+        );
+        break;
+      case "Delay dispute starting in another country":
+        await Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.dd}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.dd_AbroadCourt}")`,
+          1,
+        );
+        break;
+      case "Delay causing risk of unfair court decision":
+        await Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.dd}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.dd_UnfairCourt}")`,
+          1,
+        );
+        break;
+      case "Delay causing risk of removal":
+        await Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.dd}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.dd_ChildrenRemoved}")`,
+          1,
+        );
+        break;
+      default:
+        if (existsSync(".env")) {
+          console.log(`Unrecognised urgency type: ${miamUrgencyType}`);
+        }
+    }
+    if (miamChildProtectionConcernsType === "Child protection plan") {
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dd}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.dd_ChildProtection}")`,
+        1,
+      );
+    }
+    if (miamOtherReasonForNotAttending === "Applying for without notice") {
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dd}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.dd_WithoutNotice}")`,
+        1,
+      );
+    }
     await this.fillInFields(page);
   }
 

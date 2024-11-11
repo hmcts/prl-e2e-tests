@@ -98,7 +98,7 @@ export enum ApplicantDetails1Content {
   solicitorReference = "Some kind of reference",
   organisationSearch = "My New Org",
   dxNumber = "0000000000000000",
-  applicantGenderOtherInput = "Non-Binary",
+  applicantGenderOtherInput = "NonBinary",
   applicantEmailAddress = "name@email.com",
   select = "Select",
 }
