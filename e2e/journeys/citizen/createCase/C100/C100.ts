@@ -909,7 +909,10 @@ export class C100 {
       c100YesNoFeesApplied: c100YesNoFeesApplied,
       c100YesNoNeedHelpWithFees: c100YesNoNeedHelpWithFees
     });
-    console.log('Review')
+    await ReviewPage.C100ExistingMIAMJourney({
+      page: page,
+      accessibilityTest: accessibilityTest,
+    });
   }
 
   public static async c100CAJourneyMIAMHearingUrgency({
