@@ -3,7 +3,7 @@ import { C100 } from "../../../../journeys/citizen/createCase/C100/C100";
 import Config from "../../../../config";
 import IdamLoginHelper from "../../../../common/idamLoginHelper";
 
-test.describe("C100 Citizen Application tests on the top MIRO set. @citizenFrontend @crossbrowserCitizenFrontend", (): void => {
+test.describe("C100 Citizen Application with Written Consent from other people in the case. @citizenFrontend @crossbrowserCitizenFrontend", (): void => {
   test.beforeEach(async ({ page }) => {
     await IdamLoginHelper.signInCitizenUser(
       page,
@@ -53,7 +53,7 @@ test.describe("C100 Citizen Application tests on the top MIRO set. @citizenFront
     yes to all reasonable adjustments: ture,
     need help with fees: yes,
     fees applied: yes @citizenSmoke`, async ({ page }): Promise<void> => {
-    await C100.c100TopMiroJourney({
+    await C100.c100caWrittenConsentJourney({
       page: page,
       accessibilityTest: false,
       errorMessaging: false,
@@ -142,7 +142,7 @@ test.describe("C100 Citizen Application tests on the top MIRO set. @citizenFront
     yes to all reasonable adjustments: ture,
     need help with fees: yes,
     fees applied: yes`, async ({ page }): Promise<void> => {
-    await C100.c100TopMiroJourney({
+    await C100.c100caWrittenConsentJourney({
       page: page,
       accessibilityTest: false,
       errorMessaging: false,
@@ -231,7 +231,7 @@ test.describe("C100 Citizen Application tests on the top MIRO set. @citizenFront
     yes to all reasonable adjustments: ture,
     need help with fees: yes,
     fees applied: yes`, async ({ page }): Promise<void> => {
-    await C100.c100TopMiroJourney({
+    await C100.c100caWrittenConsentJourney({
       page: page,
       accessibilityTest: false,
       errorMessaging: true,
@@ -329,7 +329,7 @@ test.describe("Test the accessibility of the CA C100 Citizen Journey.  @accessib
     yes to all reasonable adjustments: ture,
     need help with fees: yes,
     fees applied: yes`, async ({ page }): Promise<void> => {
-    await C100.c100TopMiroJourney({
+    await C100.c100caWrittenConsentJourney({
       page: page,
       accessibilityTest: true,
       errorMessaging: false,

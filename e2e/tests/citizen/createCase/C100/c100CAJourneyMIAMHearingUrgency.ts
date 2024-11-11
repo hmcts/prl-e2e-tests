@@ -3,7 +3,7 @@ import { C100 } from "../../../../journeys/citizen/createCase/C100/C100";
 import IdamLoginHelper from "../../../../common/idamLoginHelper";
 import { test } from "@playwright/test";
 
-test.describe("C100 Citizen Application tests on the fourth MIRO set. @citizenFrontend @crossbrowserCitizenFrontend", (): void => {
+test.describe("C100 Citizen Application for the MIAM Hearing Urgency journey. @citizenFrontend @crossbrowserCitizenFrontend", (): void => {
   test.beforeEach(async ({ page }) => {
     await IdamLoginHelper.signInCitizenUser(
       page,
@@ -57,7 +57,7 @@ test.describe("C100 Citizen Application tests on the fourth MIRO set. @citizenFr
   safety concerns yes/no to everything else: no`, async ({
     page,
   }): Promise<void> => {
-    await C100.c100FourthRowMiroJourney({
+    await C100.c100CAJourneyMIAMHearingUrgency({
       page: page,
       accessibilityTest: false,
       errorMessaging: false,
@@ -162,7 +162,7 @@ test.describe("C100 Citizen Application tests on the fourth MIRO set. @citizenFr
   safety concerns yes/no to everything else: no`, async ({
     page,
   }): Promise<void> => {
-    await C100.c100FourthRowMiroJourney({
+    await C100.c100CAJourneyMIAMHearingUrgency({
       page: page,
       accessibilityTest: false,
       errorMessaging: false,
@@ -267,7 +267,7 @@ test.describe("C100 Citizen Application tests on the fourth MIRO set. @citizenFr
   safety concerns yes/no to everything else: no`, async ({
     page,
   }): Promise<void> => {
-    await C100.c100FourthRowMiroJourney({
+    await C100.c100CAJourneyMIAMHearingUrgency({
       page: page,
       accessibilityTest: false,
       errorMessaging: false,
@@ -372,7 +372,7 @@ test.describe("C100 Citizen Application tests on the fourth MIRO set. @citizenFr
   safety concerns yes/no to everything else: no`, async ({
     page,
   }): Promise<void> => {
-    await C100.c100FourthRowMiroJourney({
+    await C100.c100CAJourneyMIAMHearingUrgency({
       page: page,
       accessibilityTest: false,
       errorMessaging: false,
@@ -478,7 +478,7 @@ test.describe("C100 Citizen Application tests on the fourth MIRO set. @citizenFr
   safety concerns yes/no to everything else: no`, async ({
     page,
   }): Promise<void> => {
-    await C100.c100FourthRowMiroJourney({
+    await C100.c100CAJourneyMIAMHearingUrgency({
       page: page,
       accessibilityTest: false,
       errorMessaging: false,
@@ -583,7 +583,7 @@ test.describe("C100 Citizen Application tests on the fourth MIRO set. @citizenFr
   safety concerns yes/no to everything else: no`, async ({
     page,
   }): Promise<void> => {
-    await C100.c100FourthRowMiroJourney({
+    await C100.c100CAJourneyMIAMHearingUrgency({
       page: page,
       accessibilityTest: false,
       errorMessaging: false,
@@ -688,7 +688,7 @@ test.describe("C100 Citizen Application tests on the fourth MIRO set. @citizenFr
   safety concerns yes/no to everything else: no`, async ({
     page,
   }): Promise<void> => {
-    await C100.c100FourthRowMiroJourney({
+    await C100.c100CAJourneyMIAMHearingUrgency({
       page: page,
       accessibilityTest: false,
       errorMessaging: false,
@@ -793,7 +793,7 @@ test.describe("C100 Citizen Application tests on the fourth MIRO set. @citizenFr
   safety concerns yes/no to everything else: no`, async ({
     page,
   }): Promise<void> => {
-    await C100.c100FourthRowMiroJourney({
+    await C100.c100CAJourneyMIAMHearingUrgency({
       page: page,
       accessibilityTest: false,
       errorMessaging: false,
@@ -898,7 +898,7 @@ test.describe("C100 Citizen Application tests on the fourth MIRO set. @citizenFr
   safety concerns yes/no to everything else: no`, async ({
     page,
   }): Promise<void> => {
-    await C100.c100FourthRowMiroJourney({
+    await C100.c100CAJourneyMIAMHearingUrgency({
       page: page,
       accessibilityTest: false,
       errorMessaging: false,
@@ -1003,7 +1003,7 @@ test.describe("C100 Citizen Application tests on the fourth MIRO set. @citizenFr
   safety concerns yes/no to everything else: no`, async ({
     page,
   }): Promise<void> => {
-    await C100.c100FourthRowMiroJourney({
+    await C100.c100CAJourneyMIAMHearingUrgency({
       page: page,
       accessibilityTest: false,
       errorMessaging: false,
@@ -1108,7 +1108,7 @@ test.describe("C100 Citizen Application tests on the fourth MIRO set. @citizenFr
   safety concerns yes/no to everything else: no`, async ({
     page,
   }): Promise<void> => {
-    await C100.c100FourthRowMiroJourney({
+    await C100.c100CAJourneyMIAMHearingUrgency({
       page: page,
       accessibilityTest: false,
       errorMessaging: true,
@@ -1207,7 +1207,7 @@ test.describe("C100 Citizen Application tests on the fourth MIRO set. @citizenFr
   other proceedings: false, @accessibilityCitizenFrontend`, async ({
     page,
   }): Promise<void> => {
-    await C100.c100FourthRowMiroJourney({
+    await C100.c100CAJourneyMIAMHearingUrgency({
       page: page,
       accessibilityTest: true,
       errorMessaging: false,

@@ -341,7 +341,7 @@ export class C100 {
     });
   }
 
-  public static async c100TopMiroJourney({
+  public static async c100caWrittenConsentJourney({
     page,
     accessibilityTest,
     errorMessaging,
@@ -494,7 +494,7 @@ export class C100 {
       c100YesNoFeesApplied: c100YesNoFeesApplied,
       c100YesNoNeedHelpWithFees: c100YesNoNeedHelpWithFees,
     });
-    await ReviewPage.submitTopMiro({
+    await ReviewPage.c100CAWithWrittenConsentFromOtherPeople({
       page: page,
       accessibilityTest: accessibilityTest,
       reviewPageTopJourneyMotherFather: reviewPageTopJourneyMotherFather,
@@ -753,7 +753,7 @@ export class C100 {
     // People
   }
 
-  public static async c100FourthRowMiroJourney({
+  public static async c100CAJourneyMIAMHearingUrgency({
     page,
     accessibilityTest,
     errorMessaging,
@@ -935,7 +935,7 @@ export class C100 {
       c100YesNoNeedHelpWithFees: c100YesNoNeedHelpWithFees,
       c100YesNoFeesApplied: c100YesNoFeesApplied,
     });
-    await ReviewPage.submitFourthMiro({
+    await ReviewPage.c100CAMIAMHearingUrgency({
       page: page,
       accessibilityTest: accessibilityTest,
       relationshipType: applicantRelationship,
