@@ -15,6 +15,10 @@ export class Config {
       email: process.env.CITIZEN_USERNAME as string,
       password: process.env.CITIZEN_PASSWORD as string,
     },
+    judge: {
+      email: process.env.JUDGE_USERNAME as string,
+      password: process.env.JUDGE_PASSWORD as string,
+    },
   };
 
   public static readonly sessionStoragePath: string = path.join(
