@@ -33,6 +33,8 @@ import {
   ReviewPage,
   reviewPageTopJourneyMotherFather,
 } from "../../../../pages/citizen/createCase/C100/reviewPages/reviewPage";
+import { C100Pay } from "./subJourneys/C100Pay";
+import { PayPage } from "../../../../pages/citizen/createCase/C100/pay/payPage";
 
 interface C100ApplicationCompletedForYouOptions {
   page: Page;
@@ -468,6 +470,13 @@ export class C100 {
       reviewPageTopJourneyMotherFather: reviewPageTopJourneyMotherFather,
       relationshipType: relationshipType,
     });
+    if (!c100YesNoNeedHelpWithFees) {
+      await C100Pay.c100Pay({
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
+      });
+    }
   }
 
   public static async c100SecondMiroJourney({
@@ -648,6 +657,13 @@ export class C100 {
     await EqualityAndDiversityPage.equalityAndDiversityPage({
       page,
     });
+    if (!c100YesNoNeedHelpWithFees) {
+      await C100Pay.c100Pay({
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
+      });
+    }
     await ConfirmationPage.confirmationPage({
       page: page,
       accessibilityTest: accessibilityTest,
