@@ -1,4 +1,4 @@
-export enum SecondMiroReviewContent {
+export enum CaJourneyEmergencyProtectionReviewContent {
   h2_1 = "1. Location details",
   h2_2 = "2. Type of application",
   h2_3 = "3. Legal representative details",

@@ -109,7 +109,7 @@ interface C100TopMiroJourneyOptions {
   relationshipType: Relationship;
 }
 
-interface C100SecondMiroJourneyOptions {
+interface C100EmergencyProtectionJourneyOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
@@ -502,7 +502,7 @@ export class C100 {
     });
   }
 
-  public static async c100SecondMiroJourney({
+  public static async c100CAEmergencyProtectionJourney({
     page,
     accessibilityTest,
     errorMessaging,
@@ -549,7 +549,7 @@ export class C100 {
     c100YesNoNeedHelpWithFees,
     c100YesNoFeesApplied,
     relationshipType,
-  }: C100SecondMiroJourneyOptions): Promise<void> {
+  }: C100EmergencyProtectionJourneyOptions): Promise<void> {
     await CitizenCreateInitial.citizenCreateInitial({
       page: page,
       accessibilityTest: accessibilityTest,
@@ -672,7 +672,7 @@ export class C100 {
       c100YesNoNeedHelpWithFees: c100YesNoNeedHelpWithFees,
       c100YesNoFeesApplied: c100YesNoFeesApplied,
     });
-    await ReviewPage.submitSecondMiro({
+    await ReviewPage.c100CAEmergencyProtection({
       page: page,
       accessibilityTest: accessibilityTest,
       relationshipType: relationshipType,
