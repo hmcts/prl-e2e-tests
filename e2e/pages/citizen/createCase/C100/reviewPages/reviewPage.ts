@@ -1,8 +1,7 @@
-import { errors, Page } from "@playwright/test";
+import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { CommonReviewContent } from "../../../../../fixtures/citizen/createCase/C100/reviewPages/commonReviewContent";
 import { Helpers } from "../../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { TopMiroReviewContent } from "../../../../../fixtures/citizen/createCase/C100/reviewPages/topMiroReviewContent";
 import { SecondMiroReviewContent } from "../../../../../fixtures/citizen/createCase/C100/reviewPages/secondMiroReviewContent";
 import { CapitalizedRelationship } from "../../../../../common/types";
@@ -12,6 +11,7 @@ interface checkTextOptions {
   accessibilityTest: boolean;
   reviewPageTopJourneyMotherFather: reviewPageTopJourneyMotherFather;
   relationshipType: CapitalizedRelationship;
+  c100YesNoNeedHelpWithFees: boolean;
 }
 
 export type reviewPageTopJourneyMotherFather = "mother" | "father";
@@ -47,11 +47,6 @@ export class ReviewPage {
         `${Selectors.GovukHeadingM}:text-is("${CommonReviewContent.confirmationHeading}")`,
         1,
       ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.p}:text-is("${CommonReviewContent.insetText}")`,
-        1,
-      ),
       Helpers.checkGroup(
         page,
         2,
@@ -72,10 +67,13 @@ export class ReviewPage {
     // }
   }
 
-  private static async fillInFields(page: Page): Promise<void> {
+  private static async fillInFields(
+    page: Page,
+    c100YesNoNeedHelpWithFees: boolean,
+  ): Promise<void> {
     await page.check(statementOfTruthCheckbox);
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonReviewContent.submitButton}")`,
+      `${Selectors.GovukButton}:text-is("${c100YesNoNeedHelpWithFees ? CommonReviewContent.submitButton : CommonReviewContent.submitButtonPay}")`,
     );
   }
 
@@ -84,6 +82,7 @@ export class ReviewPage {
     accessibilityTest,
     reviewPageTopJourneyMotherFather,
     relationshipType,
+    c100YesNoNeedHelpWithFees,
   }: checkTextOptions): Promise<void> {
     await this.checkCommonText({
       page,
@@ -1073,13 +1072,14 @@ export class ReviewPage {
         ),
       ]);
     }
-    await this.fillInFields(page);
+    await this.fillInFields(page, c100YesNoNeedHelpWithFees);
   }
 
   public static async submitSecondMiro({
     page,
     accessibilityTest,
     relationshipType,
+    c100YesNoNeedHelpWithFees,
   }: Partial<checkTextOptions>): Promise<void> {
     if (!page) {
       throw new Error();
@@ -1099,7 +1099,7 @@ export class ReviewPage {
       ),
       Helpers.checkGroup(
         page,
-        87,
+        86,
         SecondMiroReviewContent,
         "dt_",
         Selectors.dt,
@@ -1146,7 +1146,7 @@ export class ReviewPage {
       ),
       Helpers.checkGroup(
         page,
-        14,
+        13,
         SecondMiroReviewContent,
         "dd_",
         Selectors.dd,
@@ -1194,16 +1194,16 @@ export class ReviewPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.dd}:text-is("${SecondMiroReviewContent.dd_no}")`,
-        2,
+        c100YesNoNeedHelpWithFees ? 2 : 3,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.dd}:text-is("${SecondMiroReviewContent.dd_yes}")`,
-        38,
+        c100YesNoNeedHelpWithFees ? 38 : 37,
       ),
       Helpers.checkGroup(
         page,
-        87,
+        c100YesNoNeedHelpWithFees ? 87 : 86,
         SecondMiroReviewContent,
         "span_",
         Selectors.Span,
@@ -1432,7 +1432,12 @@ export class ReviewPage {
         `${Selectors.h4}:text-is("${SecondMiroReviewContent.h4_haveYouEverAskedForHelpFromAProfessionalPersonOrAgencyoptional}")`,
         11,
       ),
-      Helpers.checkGroup(page, 21, SecondMiroReviewContent, "p_", Selectors.p),
+      Helpers.checkGroup(page, 20, SecondMiroReviewContent, "p_", Selectors.p),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${SecondMiroReviewContent.p_21} '${c100YesNoNeedHelpWithFees ? CommonReviewContent.submitButton : CommonReviewContent.submitButtonPay}' ${SecondMiroReviewContent.p_21_2}")`,
+        1,
+      ),
       Helpers.checkGroup(
         page,
         13,
@@ -1511,6 +1516,21 @@ export class ReviewPage {
         2,
       ),
     ]);
-    await this.fillInFields(page);
+    if (c100YesNoNeedHelpWithFees) {
+      console.log("IF STATEMENT RUN");
+      await Promise.all([
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.dt}:text-is("${SecondMiroReviewContent.dt_87}")`,
+          1,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.dd}:text-is("${SecondMiroReviewContent.dd_14}")`,
+          1,
+        ),
+      ]);
+    }
+    await this.fillInFields(page, c100YesNoNeedHelpWithFees);
   }
 }

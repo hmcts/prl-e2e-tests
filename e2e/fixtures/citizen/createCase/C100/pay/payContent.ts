@@ -1,1 +1,45 @@
-export enum PayContent {}
+export enum PayContent {
+  pageTitle = "Enter card details", // GovukHeadingL
+  heading1 = "Payment summary", // GovukHeadingM
+  heading2 = "Billing address",
+  heading3 = "Contact details",
+  body1 = "card payment", // GovukBody
+  body2 = "Total amount:",
+  body3 = "Accepted credit and debit card types",
+  body4 = "This is the address associated with the card",
+  hint1 = "For example, 10/26", // GovukHint
+  hint2 = "We’ll send your payment confirmation here",
+  label1 = "Month", // GovukLabel
+  label2 = "Year",
+  span1 = "£255.00", // Span
+  span2 = "Card number",
+  span3 = "Expiry date",
+  span4 = "Name on card",
+  span5 = "Card security code",
+  span6 = "The last 3 digits on the back of the card",
+  span7 = "Address line 1",
+  span8 = "Address line 2 (optional)",
+  span9 = "Town or city",
+  span10 = "Country or territory",
+  span11 = "Postcode",
+  span12 = "Email",
+  errorSummary = "The following fields are missing or contain errors", // GovukErrorSummaryTitle
+  errorMessage1 = "Enter a valid card number", // a, GovukErrorMessageCitizen
+  errorMessage2 = "Enter a valid expiry date",
+  errorMessage3 = "Enter a valid name",
+  errorMessage4 = "Enter a valid card security code",
+  errorMessage5 = "Enter a valid email",
+  errorMessage6 = "Enter a valid address line 1",
+  errorMessage7 = "Enter a valid town/city",
+  errorMessage8 = "Enter a valid postcode",
+  mockCardNumber = "4444333322221111",
+  mockExpMonth = "10",
+  mockExpYear = "26",
+  mockCardName = "MR EXAMPLE EXAMPLE",
+  mockCVC = "000",
+  exampleAddressLine1 = "APARTMENT 10",
+  exampleAddressLine2 = "BLOCK A TY NANT, 185, HIGH STREET",
+  exampleTownOrCity = "SWANSEA",
+  examplePostCode = "SA1 1AD",
+  exampleEmail = "example@example.com",
+}

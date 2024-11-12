@@ -34,7 +34,6 @@ import {
   reviewPageTopJourneyMotherFather,
 } from "../../../../pages/citizen/createCase/C100/reviewPages/reviewPage";
 import { C100Pay } from "./subJourneys/C100Pay";
-import { PayPage } from "../../../../pages/citizen/createCase/C100/pay/payPage";
 
 interface C100ApplicationCompletedForYouOptions {
   page: Page;
@@ -469,6 +468,7 @@ export class C100 {
       accessibilityTest: accessibilityTest,
       reviewPageTopJourneyMotherFather: reviewPageTopJourneyMotherFather,
       relationshipType: relationshipType,
+      c100YesNoNeedHelpWithFees: c100YesNoNeedHelpWithFees,
     });
     if (!c100YesNoNeedHelpWithFees) {
       await C100Pay.c100Pay({
@@ -653,6 +653,7 @@ export class C100 {
       page: page,
       accessibilityTest: accessibilityTest,
       relationshipType: relationshipType,
+      c100YesNoNeedHelpWithFees: c100YesNoNeedHelpWithFees,
     });
     await EqualityAndDiversityPage.equalityAndDiversityPage({
       page,

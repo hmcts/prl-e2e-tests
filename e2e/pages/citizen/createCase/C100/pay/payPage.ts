@@ -16,6 +16,19 @@ interface CheckPageLoadsOptions {
   accessibilityTest: boolean;
 }
 
+enum inputIds {
+  card_no = "#card-no",
+  expiry_month = "#expiry-month",
+  expiry_year = "#expiry-year",
+  cardholder_name = "#cardholder-name",
+  cvc = "#cvc",
+  address_line_1 = "#address-line-1",
+  address_line_2 = "#address-line-2",
+  address_city = "#address-city",
+  address_postcode = "#address-postcode",
+  email = "#email",
+}
+
 export class PayPage {
   public static async payPage({
     page,
@@ -36,6 +49,28 @@ export class PayPage {
     page,
     accessibilityTest,
   }: CheckPageLoadsOptions): Promise<void> {
+    await page.waitForSelector(
+      `${Selectors.GovukHeadingL}:text-is("${PayContent.pageTitle}")`,
+    );
+    await Promise.all([
+      Helpers.checkGroup(
+        page,
+        3,
+        PayContent,
+        "heading",
+        `${Selectors.GovukHeadingM}`,
+      ),
+      Helpers.checkGroup(page, 4, PayContent, "body", `${Selectors.GovukBody}`),
+      Helpers.checkGroup(page, 2, PayContent, "hint", `${Selectors.GovukHint}`),
+      Helpers.checkGroup(
+        page,
+        2,
+        PayContent,
+        "label",
+        `${Selectors.GovukLabel}`,
+      ),
+      Helpers.checkGroup(page, 12, PayContent, "span", `${Selectors.Span}`),
+    ]);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }
@@ -48,11 +83,39 @@ export class PayPage {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorSummaryTitle}:text-is("${CommonStaticText.errorSummaryTitle}")`,
+        `${Selectors.GovukErrorSummaryTitle}:text-is("${PayContent.errorSummary}")`,
         1,
+      ),
+      Helpers.checkGroup(page, 8, PayContent, "errorMessage", `${Selectors.a}`),
+      Helpers.checkGroup(
+        page,
+        8,
+        PayContent,
+        "errorMessage",
+        `${Selectors.GovukErrorMessageCitizen}`,
       ),
     ]);
   }
 
-  private static async fillInFields(page: Page): Promise<void> {}
+  private static async fillInFields(page: Page): Promise<void> {
+    await page.fill(`${inputIds.card_no}`, PayContent.mockCardNumber);
+    await page.fill(`${inputIds.expiry_month}`, PayContent.mockExpMonth);
+    await page.fill(`${inputIds.expiry_year}`, PayContent.mockExpYear);
+    await page.fill(`${inputIds.cardholder_name}`, PayContent.mockCardName);
+    await page.fill(`${inputIds.cvc}`, PayContent.mockCVC);
+    await page.fill(
+      `${inputIds.address_line_1}`,
+      PayContent.exampleAddressLine1,
+    );
+    await page.fill(
+      `${inputIds.address_line_2}`,
+      PayContent.exampleAddressLine2,
+    );
+    await page.fill(`${inputIds.address_city}`, PayContent.exampleTownOrCity);
+    await page.fill(`${inputIds.address_postcode}`, PayContent.examplePostCode);
+    await page.fill(`${inputIds.email}`, PayContent.exampleEmail);
+    await page.click(
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
+    );
+  }
 }
