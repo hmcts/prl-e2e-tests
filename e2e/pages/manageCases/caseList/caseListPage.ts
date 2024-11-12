@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test";
+import { Page, expect } from "@playwright/test";
 import { Helpers } from "../../../common/helpers";
 import { Selectors } from "../../../common/selectors";
 import Config from "../../../config";
@@ -26,20 +26,37 @@ export class CaseListPage extends CommonPage {
 
   private static async waitForCasesToLoad(page: Page): Promise<void> {
     const MAX_RESET_ATTEMPTS = 3;
-    const spinner = page.locator(Selectors.xuiSpinner);
     const resetFilters = page.getByTitle("Reset filter");
     const caseHeading = page.locator(
       `${Selectors.headingH2}:text-is("${CaseListContent.yourCasesSubtitle}")`,
     );
+    const casesSubtitle = page.locator(
+      `${Selectors.GovukHeadingXL}:text-is("${CaseListContent.pageTitle}")`,
+    );
 
-    // TODO: Need to replace the implicit waits with something more stable
+    await expect(casesSubtitle).toBeVisible();
     // TODO: Need to investigate where cases do not load on first attempt
     for (let i = 0; i < MAX_RESET_ATTEMPTS; i++) {
-      if (await spinner.isVisible()) await page.waitForTimeout(10000);
+      await this.waitForSpinner(page);
       if (await caseHeading.isVisible()) return;
       await resetFilters.click();
-      await page.waitForTimeout(10000);
+      await this.waitForSpinner(page);
     }
+  }
+
+  private static async waitForSpinner(page: Page) {
+    const spinner = page.locator(Selectors.xuiSpinner);
+    await expect
+      .poll(
+        async () => {
+          const spinnerCount = await spinner.count();
+          return spinnerCount;
+        },
+        {
+          timeout: 30_000,
+        },
+      )
+      .toBe(0);
   }
 
   private static async checkPageLoads(
