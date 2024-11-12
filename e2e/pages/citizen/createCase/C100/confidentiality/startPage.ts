@@ -120,12 +120,12 @@ export class StartPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorList} ${Selectors.a}:text-is("${StartContent.errorSummaryList}")`,
+        `${Selectors.GovukErrorList} ${Selectors.a}:has-text("${StartContent.errorSummaryList}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessageCitizen}:text-is("${StartContent.errorMessage}")`,
+        `${Selectors.GovukErrorMessageCitizen}:has-text("${StartContent.errorMessage}")`,
         1,
       ),
     ]);
@@ -159,12 +159,12 @@ export class StartPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorList} ${Selectors.a}:text-is("${StartContent.checkboxErrorSummaryList}")`,
+        `${Selectors.GovukErrorList} ${Selectors.a}:has-text("${StartContent.checkboxErrorSummaryList}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessageCitizen}:text-is("${StartContent.checkboxErrorMessage}")`,
+        `${Selectors.GovukErrorMessageCitizen}:has-text("${StartContent.checkboxErrorMessage}")`,
         1,
       ),
     ]);

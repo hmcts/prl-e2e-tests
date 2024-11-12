@@ -171,7 +171,7 @@ export class Helpers {
         const text: E[keyof E] = file[`${name}${index + 1}` as keyof E]; // Safely access the enum
         if (text == undefined) {
           throw new Error(
-            `Check Group will fail as the text is undefined. You likely passed a number that was the greater than the count of items in the available group. Task failed on ${page.url()}`,
+            `Check Group will fail on ${name} as the text is undefined. You likely passed a number that was the greater than the count of items in the available group. Task failed on ${page.url()}`,
           );
         }
         return Helpers.checkVisibleAndPresent(

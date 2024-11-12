@@ -6,6 +6,7 @@ import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelp
 import { EnglishMediaContentYesToAll } from "../../../../../fixtures/manageCases/createCase/C100/viewPDFApplication/englishMediaContentYesToAll";
 import { WelshMediaContent } from "../../../../../fixtures/manageCases/createCase/C100/viewPDFApplication/welshMediaContent";
 import { EnglishMediaContentNoToAll } from "../../../../../fixtures/manageCases/createCase/C100/viewPDFApplication/englishMediaContentNoToAll";
+import { existsSync } from "fs";
 
 enum englishNoSpanCounts {
   page1 = 18,
@@ -409,7 +410,9 @@ export class ViewPDFApplication1Page {
         await this.checkEnglishNoPage12RepeatedText(page);
         break;
       default:
-        console.log(`No check function defined for page ${i}`);
+        if (existsSync(".env")) {
+          console.log(`No check function defined for page ${i}`);
+        }
     }
   }
 
@@ -452,7 +455,9 @@ export class ViewPDFApplication1Page {
         await this.checkEnglishYesPage12RepeatedText(page);
         break;
       default:
-        console.log(`Page ${i} is not handled.`);
+        if (existsSync(".env")) {
+          console.log(`Page ${i} is not handled.`);
+        }
     }
   }
 
@@ -987,7 +992,9 @@ export class ViewPDFApplication1Page {
         await this.checkWelshPage11RepeatedText(page);
         break;
       default:
-        console.log(`Page number ${i} is not supported.`);
+        if (existsSync(".env")) {
+          console.log(`Page number ${i} is not supported.`);
+        }
     }
   }
 
