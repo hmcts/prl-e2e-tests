@@ -51,7 +51,9 @@ interface caWrittenConsentJourneyOptions {
 
 interface C100ExistingMIAMJourneyOptions {
   page: Page,
-  accessibilityTest: boolean
+  accessibilityTest: boolean;
+  miamAlreadyAttended: boolean;
+  miamAttendanceType: MiamAttendanceType
 }
 
 export type reviewPageTopJourneyMotherFather = "mother" | "father";
@@ -1412,33 +1414,46 @@ export class ReviewPage {
 
   public static async C100ExistingMIAMJourney({
     page,
-    accessibilityTest
+    accessibilityTest,
+    miamAlreadyAttended,
+    miamAttendanceType
   }: C100ExistingMIAMJourneyOptions): Promise<void> {
     await this.checkCommonText({
       page: page,
       accessibilityTest: accessibilityTest
     });
+    const ddNoCount: number = (miamAlreadyAttended) ? 7 : 8
     await Promise.all([
       Helpers.checkGroup(
         page,
-        25,
+        26,
         CaJourneyExistingMIAMReviewContent,
         'h2_',
         Selectors.h2
       ),
       Helpers.checkGroup(
         page,
-        88,
+        94,
         CaJourneyExistingMIAMReviewContent,
         'dt_',
         Selectors.dt
       ),
       Helpers.checkGroup(
         page,
-        20,
+        18,
         CaJourneyExistingMIAMReviewContent,
         'dd_',
         Selectors.dd
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dd}:text-is("${CaJourneyExistingMIAMReviewContent.dd_dontKnow_other}")`,
+        2
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dd}:text-is("${CaJourneyExistingMIAMReviewContent.dd_other}")`,
+        3
       ),
       // Using Selectors.dt for dt_ prefixed items in CaJourneyExistingMIAMReviewContent
       Helpers.checkVisibleAndPresent(
@@ -1484,36 +1499,6 @@ export class ReviewPage {
       // Using Selectors.dd for dd_ prefixed items in CaJourneyExistingMIAMReviewContent
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.dd}:text-is("${CaJourneyExistingMIAMReviewContent.dd_otherPersonFirstNameOtherPersonLastName}")`,
-        2
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.dd}:text-is("${CaJourneyExistingMIAMReviewContent.dd_dontKnow}")`,
-        2
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.dd}:text-is("${CaJourneyExistingMIAMReviewContent.dd_swansea}")`,
-        2
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.dd}:text-is("${CaJourneyExistingMIAMReviewContent.dd_exampletextExampletext}")`,
-        2
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.dd}:text-is("${CaJourneyExistingMIAMReviewContent.dd_no}")`,
-        7
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.dd}:text-is("${CaJourneyExistingMIAMReviewContent.dd_yes}")`,
-        11
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
         `${Selectors.dd}:text-is("${CaJourneyExistingMIAMReviewContent.dd_specialGuardian}")`,
         3
       ),
@@ -1530,7 +1515,7 @@ export class ReviewPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.dd}:text-is("${CaJourneyExistingMIAMReviewContent.dd_swansea}")`,
-        2
+        3
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -1540,21 +1525,16 @@ export class ReviewPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.dd}:text-is("${CaJourneyExistingMIAMReviewContent.dd_no}")`,
-        7
+        ddNoCount
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.dd}:text-is("${CaJourneyExistingMIAMReviewContent.dd_yes}")`,
-        11
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.dd}:text-is("${CaJourneyExistingMIAMReviewContent.dd_specialGuardian}")`,
-        3
+        30
       ),
       Helpers.checkGroup(
         page,
-        88,
+        94,
         CaJourneyExistingMIAMReviewContent,
         'span_',
         Selectors.Span
@@ -1602,7 +1582,7 @@ export class ReviewPage {
       ),
       Helpers.checkGroup(
         page,
-        80,
+        106,
         CaJourneyExistingMIAMReviewContent,
         'li_',
         Selectors.li
@@ -1696,7 +1676,7 @@ export class ReviewPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.li}:text-is("${CaJourneyExistingMIAMReviewContent.li_relocatingTheChildrenOutsideOfEnglandAndWalesincludingScotlandAndNorthernIreland}")`,
-        2
+        4
       ),
       Helpers.checkGroup(
         page,
@@ -1771,64 +1751,46 @@ export class ReviewPage {
         `${Selectors.p}:text-is("${CaJourneyExistingMIAMReviewContent.p_10July2017}")`,
         6
       ),
-      Helpers.checkVisibleAndPresent(
+      Helpers.checkGroup(
         page,
-        `${Selectors.p}:text-is("${CaJourneyExistingMIAMReviewContent.h4_whichChildrenAreYouConcernedAboutoptional}")`,
-        5
+        10,
+        CaJourneyExistingMIAMReviewContent,
+        'h4_',
+        Selectors.h4
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${CaJourneyExistingMIAMReviewContent.h4_describeTheBehavioursYouWouldLikeTheCourtToBeAwareOfoptional}")`,
-        11
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.p}:text-is("${CaJourneyExistingMIAMReviewContent.h4_whenDidThisBehaviourStartAndHowLongDidItContinueoptional}")`,
-        11
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.p}:text-is("${CaJourneyExistingMIAMReviewContent.h4_isTheBehaviourOngoingoptional}")`,
-        11
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.p}:text-is("${CaJourneyExistingMIAMReviewContent.h4_haveYouEverAskedForHelpFromAProfessionalPersonOrAgencyoptional}")`,
-        11
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.p}:text-is("${CaJourneyExistingMIAMReviewContent.h4_details}")`,
+        `${Selectors.h4}:text-is("${CaJourneyExistingMIAMReviewContent.h4_details}")`,
         21
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${CaJourneyExistingMIAMReviewContent.h4_whichCourtIssuedTheOrderoptional}")`,
+        `${Selectors.h4}:text-is("${CaJourneyExistingMIAMReviewContent.h4_whichCourtIssuedTheOrderoptional}")`,
         16
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${CaJourneyExistingMIAMReviewContent.h4_caseNumberoptional}")`,
+        `${Selectors.h4}:text-is("${CaJourneyExistingMIAMReviewContent.h4_caseNumberoptional}")`,
         16
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${CaJourneyExistingMIAMReviewContent.h4_whatDateWasItMadeoptional}")`,
+        `${Selectors.h4}:text-is("${CaJourneyExistingMIAMReviewContent.h4_whatDateWasItMadeoptional}")`,
         16
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${CaJourneyExistingMIAMReviewContent.h4_isThisACurrentOrderoptional}")`,
+        `${Selectors.h4}:text-is("${CaJourneyExistingMIAMReviewContent.h4_isThisACurrentOrderoptional}")`,
         16
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${CaJourneyExistingMIAMReviewContent.h4_whatDateDidItEndoptional}")`,
+        `${Selectors.h4}:text-is("${CaJourneyExistingMIAMReviewContent.h4_whatDateDidItEndoptional}")`,
         16
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${CaJourneyExistingMIAMReviewContent.h4_doYouHaveACopyOfTheOrderoptional}")`,
+        `${Selectors.h4}:text-is("${CaJourneyExistingMIAMReviewContent.h4_doYouHaveACopyOfTheOrderoptional}")`,
         16
       ),
       Helpers.checkGroup(
@@ -1855,6 +1817,37 @@ export class ReviewPage {
         2
       ),
     ]);
+    switch (miamAttendanceType) {
+      case 'Previous 4 months':
+        await Helpers.checkGroup(
+          page,
+          3,
+          CaJourneyExistingMIAMReviewContent,
+          'b_',
+          Selectors.b
+        )
+        break
+      case 'Application made in existing proceedings':
+        await Promise.all([
+          Helpers.checkVisibleAndPresent(
+            page,
+            `${Selectors.dd}:text-is("${CaJourneyExistingMIAMReviewContent.dd_ExistingProceedings}")`,
+            1
+          ),
+          Helpers.checkVisibleAndPresent(
+            page,
+            `${Selectors.dd}:text-is("${CaJourneyExistingMIAMReviewContent.dd_attendanceDetails}")`,
+            1
+          ),
+          Helpers.checkGroup(
+            page,
+            2,
+            CaJourneyExistingMIAMReviewContent,
+            'b_existingProceedings_',
+            Selectors.b
+          )
+        ])
+    }
     await this.fillInFields(page)
   }
 }
