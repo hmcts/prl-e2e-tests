@@ -912,6 +912,8 @@ export class C100 {
     await ReviewPage.C100ExistingMIAMJourney({
       page: page,
       accessibilityTest: accessibilityTest,
+      miamAttendanceType: miamAttendanceType,
+      miamAlreadyAttended: miamAlreadyAttended
     });
   }
 
