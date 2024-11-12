@@ -1421,21 +1421,21 @@ export class ReviewPage {
     await Promise.all([
       Helpers.checkGroup(
         page,
-        24,
+        25,
         CaJourneyExistingMIAMReviewContent,
         'h2_',
         Selectors.h2
       ),
       Helpers.checkGroup(
         page,
-        82,
+        88,
         CaJourneyExistingMIAMReviewContent,
         'dt_',
         Selectors.dt
       ),
       Helpers.checkGroup(
         page,
-        19,
+        20,
         CaJourneyExistingMIAMReviewContent,
         'dd_',
         Selectors.dd
@@ -1554,7 +1554,7 @@ export class ReviewPage {
       ),
       Helpers.checkGroup(
         page,
-        82,
+        88,
         CaJourneyExistingMIAMReviewContent,
         'span_',
         Selectors.Span
@@ -1602,7 +1602,7 @@ export class ReviewPage {
       ),
       Helpers.checkGroup(
         page,
-        37,
+        80,
         CaJourneyExistingMIAMReviewContent,
         'li_',
         Selectors.li
@@ -1853,13 +1853,6 @@ export class ReviewPage {
         page,
         `${Selectors.div}:text-is("${CaJourneyExistingMIAMReviewContent.div_automatedPhysicalSeekHelpDetails}")`,
         2
-      ),
-      Helpers.checkGroup(
-        page,
-        4,
-        CaJourneyExistingMIAMReviewContent,
-        'ul_',
-        Selectors.li
       ),
     ]);
     await this.fillInFields(page)
