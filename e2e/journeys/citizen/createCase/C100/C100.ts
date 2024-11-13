@@ -915,6 +915,13 @@ export class C100 {
       miamAttendanceType: miamAttendanceType,
       miamAlreadyAttended: miamAlreadyAttended,
     });
+    await EqualityAndDiversityPage.equalityAndDiversityPage({
+      page,
+    });
+    await ConfirmationPage.confirmationPage({
+      page: page,
+      accessibilityTest: accessibilityTest,
+    });
   }
 
   public static async c100CAJourneyMIAMHearingUrgency({
