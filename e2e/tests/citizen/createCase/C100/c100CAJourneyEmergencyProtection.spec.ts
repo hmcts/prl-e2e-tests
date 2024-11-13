@@ -302,7 +302,7 @@ test.describe("C100 Citizen Application tests on the second MIRO set. @citizenFr
       c100ChildrenSupervision: "yesSpendTime",
       yesNoInternationalElements: true,
       yesNoReasonableAdjustments: true,
-      c100YesNoNeedHelpWithFees: false,
+      c100YesNoNeedHelpWithFees: true,
       c100YesNoFeesApplied: true,
       relationshipType: "Guardian",
     });
