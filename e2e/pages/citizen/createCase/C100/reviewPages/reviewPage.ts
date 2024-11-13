@@ -1481,12 +1481,12 @@ export class ReviewPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h2}:text-is("${CaJourneyExistingMIAMReviewContent.h2_safetyConcern}")`,
-        1,
+        `${Selectors.h2}:has-text("${CaJourneyExistingMIAMReviewContent.h2_safetyConcern}")`,
+        2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h2}:text-is("${CaJourneyExistingMIAMReviewContent.h2_SafetyConcernsChildren}")`,
+        `${Selectors.h2}:has-text("${CaJourneyExistingMIAMReviewContent.h2_SafetyConcernsChildren}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
