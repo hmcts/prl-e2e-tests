@@ -235,3 +235,10 @@ Coverage:
      - miamAlreadyAttended: yes -> documentSignedByMediator: yes
      - miamAlreadyAttended: no -> miamValidReasonNoAttendance: yes -> documentSignedByMediator: yes
    - Note that if documentSignedByMediator = no, journey ends
+3. Urgency and Without Notice
+   - False
+4. Type Of Order
+5. People
+   - Don't Know or no to all
+   - Other gender
+6. ## Confidentiality

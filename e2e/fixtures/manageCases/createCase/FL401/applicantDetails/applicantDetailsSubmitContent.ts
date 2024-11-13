@@ -35,7 +35,7 @@ export enum ApplicantDetailsSubmitContent {
   applicantGenderMale = "Male",
   applicantGenderFemale = "Female",
   applicantGenderOtherLabel = "*Applicant gender",
-  applicantGenderOtherInput = "Non-Binary",
+  applicantGenderOtherInput = "NonBinary",
   applicantPhoneNumber = "+44123456789",
   solicitorFirstName = "Automatic",
   solicitorLastName = "Testing",

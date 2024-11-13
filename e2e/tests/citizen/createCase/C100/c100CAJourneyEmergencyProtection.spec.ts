@@ -59,7 +59,7 @@ test.describe("C100 Citizen Application tests on the second MIRO set. @citizenFr
     yes No Reasonable Adjustments: yes,
     Yes No Need Help With Fees: yes,
     Yes No Fees Applied: yes,`, async ({ page }): Promise<void> => {
-    await C100.c100SecondMiroJourney({
+    await C100.c100CAEmergencyProtectionJourney({
       page: page,
       accessibilityTest: false,
       errorMessaging: false,
@@ -158,7 +158,7 @@ test.describe("C100 Citizen Application tests on the second MIRO set. @citizenFr
     yes No Reasonable Adjustments: yes,
     Yes No Need Help With Fees: yes,
     Yes No Fees Applied: yes,`, async ({ page }): Promise<void> => {
-    await C100.c100SecondMiroJourney({
+    await C100.c100CAEmergencyProtectionJourney({
       page: page,
       accessibilityTest: false,
       errorMessaging: true,
@@ -258,7 +258,7 @@ test.describe("C100 Citizen Application tests on the second MIRO set. @citizenFr
     Yes No Need Help With Fees: yes,
     Yes No Fees Applied: yes,
     @accessibilityCitizenFrontend`, async ({ page }): Promise<void> => {
-    await C100.c100SecondMiroJourney({
+    await C100.c100CAEmergencyProtectionJourney({
       page: page,
       accessibilityTest: true,
       errorMessaging: false,
