@@ -1481,7 +1481,7 @@ export class ReviewPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h2}:has-text("${CaJourneyExistingMIAMReviewContent.h2_safetyConcern}")`,
+        `${Selectors.h2}:text-is("${CaJourneyExistingMIAMReviewContent.h2_safetyConcern}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
