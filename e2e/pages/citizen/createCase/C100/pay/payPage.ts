@@ -53,14 +53,41 @@ export class PayPage {
       `${Selectors.GovukHeadingL}:text-is("${PayContent.pageTitle}")`,
     );
     await Promise.all([
-      Helpers.checkGroup(
+      Helpers.checkVisibleAndPresent(
         page,
-        3,
-        PayContent,
-        "heading",
-        `${Selectors.GovukHeadingM}`,
+        `#card-details-wrap div div div h2:text-is("${PayContent.heading1}")`,
+        1,
       ),
-      Helpers.checkGroup(page, 4, PayContent, "body", `${Selectors.GovukBody}`),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `#card-details > div:nth-child(7) > fieldset > legend > h2:text-is("${PayContent.heading2}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `#card-details > div > fieldset > legend > h2:text-is("${PayContent.heading3}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `#payment-description:text-is("${PayContent.body1}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `#card-details-wrap > div > div > div > p.govuk-body:text-is("${PayContent.body2}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukBody}:text-is("${PayContent.body3}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukBody}:text-is("${PayContent.body4}")`,
+        1,
+      ),
       Helpers.checkGroup(page, 2, PayContent, "hint", `${Selectors.GovukHint}`),
       Helpers.checkGroup(
         page,
@@ -69,7 +96,12 @@ export class PayPage {
         "label",
         `${Selectors.GovukLabel}`,
       ),
-      Helpers.checkGroup(page, 12, PayContent, "span", `${Selectors.Span}`),
+      Helpers.checkGroup(page, 11, PayContent, "span", `${Selectors.Span}`),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `#amount:text-is("${PayContent.price}")`,
+        1,
+      ),
     ]);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
