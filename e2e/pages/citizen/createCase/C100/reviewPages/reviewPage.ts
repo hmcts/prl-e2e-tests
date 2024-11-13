@@ -1425,7 +1425,7 @@ export class ReviewPage {
     await Promise.all([
       Helpers.checkGroupHasText(
         page,
-        26,
+        24,
         CaJourneyExistingMIAMReviewContent,
         "h2_",
         Selectors.h2,
@@ -1443,6 +1443,16 @@ export class ReviewPage {
         CaJourneyExistingMIAMReviewContent,
         "dd_",
         Selectors.dd,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.h2}:text-is("${CaJourneyExistingMIAMReviewContent.h2_safetyConcern}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.h2}:text-is("${CaJourneyExistingMIAMReviewContent.h2_SafetyConcernsChildren}")`,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
