@@ -113,7 +113,7 @@ test.describe("C100 Citizen Application with an existing MIAM document. @citizen
       c100ChildrenSupervision: "yesSpendTime",
       yesNoInternationalElements: true,
       yesNoReasonableAdjustments: true,
-      c100YesNoNeedHelpWithFees: true,
+      c100YesNoNeedHelpWithFees: false,
       c100YesNoFeesApplied: false,
     });
   });
@@ -225,7 +225,7 @@ test.describe("C100 Citizen Application with an existing MIAM document. @citizen
       c100ChildrenSupervision: "yesSpendTime",
       yesNoInternationalElements: true,
       yesNoReasonableAdjustments: true,
-      c100YesNoNeedHelpWithFees: true,
+      c100YesNoNeedHelpWithFees: false,
       c100YesNoFeesApplied: false,
     });
   });
@@ -337,7 +337,7 @@ test.describe("C100 Citizen Application with an existing MIAM document. @citizen
       c100ChildrenSupervision: "yesSpendTime",
       yesNoInternationalElements: true,
       yesNoReasonableAdjustments: true,
-      c100YesNoNeedHelpWithFees: true,
+      c100YesNoNeedHelpWithFees: false,
       c100YesNoFeesApplied: false,
     });
   });
@@ -448,7 +448,7 @@ test.describe("C100 Citizen Application with an existing MIAM document. @citizen
       c100ChildrenSupervision: "yesSpendTime",
       yesNoInternationalElements: true,
       yesNoReasonableAdjustments: true,
-      c100YesNoNeedHelpWithFees: true,
+      c100YesNoNeedHelpWithFees: false,
       c100YesNoFeesApplied: false,
     });
   });
@@ -559,7 +559,7 @@ test.describe("C100 Citizen Application with an existing MIAM document. @citizen
       c100ChildrenSupervision: "yesSpendTime",
       yesNoInternationalElements: true,
       yesNoReasonableAdjustments: true,
-      c100YesNoNeedHelpWithFees: true,
+      c100YesNoNeedHelpWithFees: false,
       c100YesNoFeesApplied: false,
     });
   });
@@ -671,7 +671,7 @@ test.describe("C100 Citizen Application with an existing MIAM document. @citizen
       c100ChildrenSupervision: "yesSpendTime",
       yesNoInternationalElements: true,
       yesNoReasonableAdjustments: true,
-      c100YesNoNeedHelpWithFees: true,
+      c100YesNoNeedHelpWithFees: false,
       c100YesNoFeesApplied: false,
     });
   });
@@ -783,7 +783,7 @@ test.describe("C100 Citizen Application with an existing MIAM document. @citizen
       c100ChildrenSupervision: "yesSpendTime",
       yesNoInternationalElements: true,
       yesNoReasonableAdjustments: true,
-      c100YesNoNeedHelpWithFees: true,
+      c100YesNoNeedHelpWithFees: false,
       c100YesNoFeesApplied: false,
     });
   });
@@ -895,7 +895,7 @@ test.describe("C100 Citizen Application with an existing MIAM document. @citizen
       c100ChildrenSupervision: "yesSpendTime",
       yesNoInternationalElements: true,
       yesNoReasonableAdjustments: true,
-      c100YesNoNeedHelpWithFees: true,
+      c100YesNoNeedHelpWithFees: false,
       c100YesNoFeesApplied: false,
     });
   });
@@ -1007,7 +1007,7 @@ test.describe("C100 Citizen Application with an existing MIAM document. @citizen
       c100ChildrenSupervision: "yesSpendTime",
       yesNoInternationalElements: true,
       yesNoReasonableAdjustments: true,
-      c100YesNoNeedHelpWithFees: true,
+      c100YesNoNeedHelpWithFees: false,
       c100YesNoFeesApplied: false,
     });
   });
@@ -1119,7 +1119,7 @@ test.describe("C100 Citizen Application with an existing MIAM document. @citizen
       c100ChildrenSupervision: "yesSpendTime",
       yesNoInternationalElements: true,
       yesNoReasonableAdjustments: true,
-      c100YesNoNeedHelpWithFees: true,
+      c100YesNoNeedHelpWithFees: false,
       c100YesNoFeesApplied: false,
     });
   });
@@ -1232,7 +1232,7 @@ test.describe("C100 Citizen Application with an existing MIAM document. @citizen
       c100ChildrenSupervision: "yesSpendTime",
       yesNoInternationalElements: true,
       yesNoReasonableAdjustments: true,
-      c100YesNoNeedHelpWithFees: true,
+      c100YesNoNeedHelpWithFees: false,
       c100YesNoFeesApplied: false,
     });
   });
@@ -1338,7 +1338,7 @@ test.describe("C100 Citizen Application with an existing MIAM document. @citizen
       c100ChildrenSupervision: "yesSpendTime",
       yesNoInternationalElements: true,
       yesNoReasonableAdjustments: true,
-      c100YesNoNeedHelpWithFees: true,
+      c100YesNoNeedHelpWithFees: false,
       c100YesNoFeesApplied: false,
     });
   });
@@ -1448,7 +1448,7 @@ test.describe("C100 Citizen Application with an existing MIAM document. @citizen
       c100ChildrenSupervision: "yesSpendTime",
       yesNoInternationalElements: true,
       yesNoReasonableAdjustments: true,
-      c100YesNoNeedHelpWithFees: true,
+      c100YesNoNeedHelpWithFees: false,
       c100YesNoFeesApplied: false,
     });
   });
@@ -1564,7 +1564,7 @@ test.describe("C100 Citizen Application accessibility tests on the third row jou
       c100ChildrenSupervision: "yesSpendTime",
       yesNoInternationalElements: true,
       yesNoReasonableAdjustments: true,
-      c100YesNoNeedHelpWithFees: true,
+      c100YesNoNeedHelpWithFees: false,
       c100YesNoFeesApplied: false,
     });
   });
@@ -1676,7 +1676,7 @@ test.describe("C100 Citizen Application accessibility tests on the third row jou
       c100ChildrenSupervision: "yesSpendTime",
       yesNoInternationalElements: true,
       yesNoReasonableAdjustments: true,
-      c100YesNoNeedHelpWithFees: true,
+      c100YesNoNeedHelpWithFees: false,
       c100YesNoFeesApplied: false,
     });
   });

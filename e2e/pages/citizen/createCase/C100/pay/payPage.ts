@@ -42,7 +42,7 @@ export class PayPage {
     if (errorMessaging) {
       await this.checkErrorMessaging(page);
     }
-    await this.fillInFields(page);
+    await this.fillInFields(page, errorMessaging);
   }
 
   private static async checkPageLoads({
@@ -127,9 +127,13 @@ export class PayPage {
         `${Selectors.GovukErrorMessageCitizen}`,
       ),
     ]);
+    await page.reload();
   }
 
-  private static async fillInFields(page: Page): Promise<void> {
+  private static async fillInFields(
+    page: Page,
+    errorMessaging: boolean,
+  ): Promise<void> {
     await page.fill(`${inputIds.card_no}`, PayContent.mockCardNumber);
     await page.fill(`${inputIds.expiry_month}`, PayContent.mockExpMonth);
     await page.fill(`${inputIds.expiry_year}`, PayContent.mockExpYear);

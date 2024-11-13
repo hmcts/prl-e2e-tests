@@ -931,10 +931,18 @@ export class C100 {
       accessibilityTest: accessibilityTest,
       miamAttendanceType: miamAttendanceType,
       miamAlreadyAttended: miamAlreadyAttended,
+      c100YesNoNeedHelpWithFees: c100YesNoNeedHelpWithFees,
     });
     await EqualityAndDiversityPage.equalityAndDiversityPage({
       page,
     });
+    if (!c100YesNoNeedHelpWithFees) {
+      await C100Pay.c100Pay({
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
+      });
+    }
     await ConfirmationPage.confirmationPage({
       page: page,
       accessibilityTest: accessibilityTest,
