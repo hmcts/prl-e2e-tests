@@ -1422,7 +1422,7 @@ export class ReviewPage {
       page: page,
       accessibilityTest: accessibilityTest
     });
-    const ddNoCount: number = (miamAlreadyAttended) ? 7 : 8
+    const ddNoCount: number = (miamAttendanceType === 'Application made in existing proceedings') ? 8 : 7
     await Promise.all([
       Helpers.checkGroup(
         page,
