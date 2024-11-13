@@ -60,9 +60,9 @@ const statementOfTruthCheckbox: string = "#statementOfTruth";
 
 export class ReviewPage {
   private static async checkCommonText({
-    page,
-    accessibilityTest,
-  }: checkCommonTextOptions): Promise<void> {
+                                         page,
+                                         accessibilityTest,
+                                       }: checkCommonTextOptions): Promise<void> {
     if (!page) {
       throw new Error();
     }
@@ -120,11 +120,11 @@ export class ReviewPage {
   }
 
   public static async c100CAWithWrittenConsentFromOtherPeople({
-    page,
-    accessibilityTest,
-    reviewPageTopJourneyMotherFather,
-    relationshipType,
-  }: caWrittenConsentJourneyOptions): Promise<void> {
+                                                                page,
+                                                                accessibilityTest,
+                                                                reviewPageTopJourneyMotherFather,
+                                                                relationshipType,
+                                                              }: caWrittenConsentJourneyOptions): Promise<void> {
     await this.checkCommonText({
       page,
       accessibilityTest,
@@ -554,10 +554,10 @@ export class ReviewPage {
   }
 
   public static async c100CAEmergencyProtection({
-    page,
-    accessibilityTest,
-    relationshipType,
-  }: caJourneyEmergencyProtectionOptions): Promise<void> {
+                                                  page,
+                                                  accessibilityTest,
+                                                  relationshipType,
+                                                }: caJourneyEmergencyProtectionOptions): Promise<void> {
     await this.checkCommonText({
       page,
       accessibilityTest,
@@ -994,14 +994,14 @@ export class ReviewPage {
   }
 
   public static async c100CAMIAMHearingUrgency({
-    page,
-    accessibilityTest,
-    miamAttendanceType,
-    miamUrgencyType,
-    miamChildProtectionConcernsType,
-    miamOtherReasonForNotAttending,
-    c100ChildrenSupervision,
-  }: caJourneyMIAMUrgencyOptions): Promise<void> {
+                                                 page,
+                                                 accessibilityTest,
+                                                 miamAttendanceType,
+                                                 miamUrgencyType,
+                                                 miamChildProtectionConcernsType,
+                                                 miamOtherReasonForNotAttending,
+                                                 c100ChildrenSupervision,
+                                               }: caJourneyMIAMUrgencyOptions): Promise<void> {
     await this.checkCommonText({
       page: page,
       accessibilityTest: accessibilityTest,
@@ -1411,28 +1411,51 @@ export class ReviewPage {
   }
 
   public static async C100ExistingMIAMJourney({
-    page,
-    accessibilityTest,
-    miamAlreadyAttended,
-    miamAttendanceType,
-  }: C100ExistingMIAMJourneyOptions): Promise<void> {
+                                                page,
+                                                accessibilityTest,
+                                                miamAlreadyAttended,
+                                                miamAttendanceType,
+                                              }: C100ExistingMIAMJourneyOptions): Promise<void> {
     await this.checkCommonText({
       page: page,
       accessibilityTest: accessibilityTest,
     });
-    const ddNoCount: number =
-      miamAttendanceType === "Application made in existing proceedings" ? 8 : 7;
+    let ddNoCount: number;
+    if (miamAlreadyAttended) {
+      ddNoCount = 6;
+    } else {
+      ddNoCount =
+        miamAttendanceType === "Application made in existing proceedings"
+          ? 8
+          : 7;
+      await Promise.all([
+        Helpers.checkGroup(
+          page,
+          7,
+          CaJourneyExistingMIAMReviewContent,
+          "dt_miam_",
+          Selectors.dt,
+        ),
+        Helpers.checkGroup(
+          page,
+          26,
+          CaJourneyExistingMIAMReviewContent,
+          "li_miam_",
+          Selectors.li,
+        ),
+      ]);
+    }
     await Promise.all([
       Helpers.checkGroupHasText(
         page,
-        24,
+        21,
         CaJourneyExistingMIAMReviewContent,
         "h2_",
         Selectors.h2,
       ),
       Helpers.checkGroup(
         page,
-        94,
+        87,
         CaJourneyExistingMIAMReviewContent,
         "dt_",
         Selectors.dt,
@@ -1591,7 +1614,7 @@ export class ReviewPage {
       ),
       Helpers.checkGroup(
         page,
-        106,
+        80,
         CaJourneyExistingMIAMReviewContent,
         "li_",
         Selectors.li,
