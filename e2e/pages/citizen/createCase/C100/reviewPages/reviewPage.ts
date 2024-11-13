@@ -1424,7 +1424,7 @@ export class ReviewPage {
     });
     const ddNoCount: number = (miamAttendanceType === 'Application made in existing proceedings') ? 8 : 7
     await Promise.all([
-      Helpers.checkGroup(
+      Helpers.checkGroupHasText(
         page,
         26,
         CaJourneyExistingMIAMReviewContent,
