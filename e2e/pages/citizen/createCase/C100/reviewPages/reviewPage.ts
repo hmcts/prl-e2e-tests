@@ -1433,6 +1433,13 @@ export class ReviewPage {
           page,
           7,
           CaJourneyExistingMIAMReviewContent,
+          "span_miam_",
+          Selectors.Span,
+        ),
+        Helpers.checkGroup(
+          page,
+          7,
+          CaJourneyExistingMIAMReviewContent,
           "dt_miam_",
           Selectors.dt,
         ),
@@ -1442,6 +1449,11 @@ export class ReviewPage {
           CaJourneyExistingMIAMReviewContent,
           "li_miam_",
           Selectors.li,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.h2}:has-text("${CaJourneyExistingMIAMReviewContent.h2_miamExemption}")`,
+          1,
         ),
       ]);
     }
@@ -1566,7 +1578,7 @@ export class ReviewPage {
       ),
       Helpers.checkGroup(
         page,
-        94,
+        87,
         CaJourneyExistingMIAMReviewContent,
         "span_",
         Selectors.Span,
