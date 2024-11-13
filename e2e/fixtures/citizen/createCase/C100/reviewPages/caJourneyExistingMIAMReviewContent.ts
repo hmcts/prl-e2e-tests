@@ -174,7 +174,7 @@ export enum CaJourneyExistingMIAMReviewContent {
   h2_20 = "Help with Fees",
   h2_21 = "Confirm before you submit the application",
   h2_miamExemption = "MIAM exemption",
-  h2_safetyConcern = "10. Safety concerns",
+  h2_safetyConcern = "Safety concerns",
   h2_SafetyConcernsChildren = "the children in the application",
   h4_1 = "Child 1",
   h4_2 = "Applicant 1 - Your details",
