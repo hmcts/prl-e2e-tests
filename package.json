@@ -36,12 +36,12 @@
     "test:citizenSmoke": "yarn playwright install && yarn playwright test --project chromium --grep @citizenSmoke",
     "test:manageCasesSmoke": "yarn playwright install && yarn playwright test --project chromium --grep @manageCasesSmoke",
     "test:manageCasesChrome": "yarn playwright install && yarn playwright test --project chromium --grep @manageCases",
-    "test:manageCasesFirefox": "yarn playwright install firefox && yarn playwright test --project firefox --grep @crossbrowserManageCases",
-    "test:manageCasesSafari": "yarn playwright install webkit && yarn playwright test --project webkit --grep @crossbrowserManageCases",
+    "test:manageCasesFirefox": "yarn playwright install firefox && yarn playwright test --project firefox --grep @manageCasesSmoke",
+    "test:manageCasesSafari": "yarn playwright install webkit && yarn playwright test --project webkit --grep @manageCasesSmoke",
     "test:manageCasesAccessibility": "yarn playwright install && yarn playwright test --project chromium --grep @accessibilityManageCases",
     "test:citizenFrontendChrome": "yarn playwright install && yarn playwright test --project chromium --grep @citizenFrontend",
-    "test:citizenFrontendFirefox": "yarn playwright install firefox && yarn playwright test --project firefox --grep @crossbrowserCitizenFrontend",
-    "test:citizenFrontendSafari": "yarn playwright install webkit && yarn playwright test --project webkit --grep @crossbrowserCitizenFrontend",
+    "test:citizenFrontendFirefox": "yarn playwright install firefox && yarn playwright test --project firefox --grep @citizenSmoke",
+    "test:citizenFrontendSafari": "yarn playwright install webkit && yarn playwright test --project webkit --grep @citizenSmoke",
     "test:citizenFrontendAccessibility": "yarn playwright install && yarn playwright test --project chromium --grep @accessibilityCitizenFrontend"
   },
   "pre-commit": [
