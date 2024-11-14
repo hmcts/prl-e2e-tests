@@ -98,6 +98,7 @@ withNightlyPipeline(type, product, component, 600) {
       }
     }
     if(params.tag) {
+      env.FUNCTIONAL_TESTS_WORKERS = '3'
       stage("${params.tag} tests - ${params.browser}") {
         try {
           yarnBuilder.yarn('playwright install')
