@@ -5,7 +5,7 @@ import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper"
 import { OrderType } from "../../../../common/types";
 import {
   HowLongWillTheOrderBeInForce,
-  orderTypesMap
+  orderTypesMap,
 } from "../../../../journeys/manageCases/caseWorker/draftAnOrder/draftAnOrder";
 import { NonMolestationOrder20Page } from "./nonMolestationOrder/nonMolestationOrder20Page";
 import { Helpers } from "../../../../common/helpers";
@@ -90,10 +90,7 @@ export class DraftAnOrder20Page {
         );
         break;
       case "parentalResponsibility":
-        await ParentalResponsibilityOrder20Page.checkPdfContent(
-          page,
-          yesToAll
-        );
+        await ParentalResponsibilityOrder20Page.checkPdfContent(page, yesToAll);
         break;
       default:
         console.error("Unknown order type");
@@ -110,10 +107,10 @@ export class DraftAnOrder20Page {
   private static async checkPdfLinks(page: Page, orderType: OrderType) {
     switch (orderType) {
       case "nonMolestation":
-        await NonMolestationOrder20Page.checkPdfLinks(page)
+        await NonMolestationOrder20Page.checkPdfLinks(page);
         break;
       case "parentalResponsibility":
-        await ParentalResponsibilityOrder20Page.checkPdfLinks(page)
+        await ParentalResponsibilityOrder20Page.checkPdfLinks(page);
         break;
       default:
         console.error("Unknown order type");

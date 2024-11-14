@@ -61,7 +61,6 @@ export enum ParentalResponsibilityOrder20Content {
   welshYesToAllSpan18 = "Benyw",
   welshYesToAllSpan19 = "13 Feb 2018",
 
-
   // ENGLISH
   span1 = "In the Family Court sitting at:",
   span2 = "Swansea Civil And Family Justice Centre",

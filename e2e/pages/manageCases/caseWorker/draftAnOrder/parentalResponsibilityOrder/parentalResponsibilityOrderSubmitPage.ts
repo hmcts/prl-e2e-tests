@@ -1,15 +1,16 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
-import {
-  ParentalResponsibilityOrderSubmitContent
-} from "../../../../../fixtures/manageCases/caseWorker/draftAnOrder/parentalResponsibilityOrder/parentalResponsibilityOrderSubmitContent";
+import { ParentalResponsibilityOrderSubmitContent } from "../../../../../fixtures/manageCases/caseWorker/draftAnOrder/parentalResponsibilityOrder/parentalResponsibilityOrderSubmitContent";
 import { Helpers } from "../../../../../common/helpers";
 
 export class ParentalResponsibilityOrderSubmitPage {
-  public static async checkPageContent(page: Page, yesNoToAll: boolean): Promise<void> {
+  public static async checkPageContent(
+    page: Page,
+    yesNoToAll: boolean,
+  ): Promise<void> {
     await Promise.all([
       this.checkPageLoads(page),
-      this.checkFilledData(page, yesNoToAll)
+      this.checkFilledData(page, yesNoToAll),
     ]);
   }
 
@@ -66,8 +67,11 @@ export class ParentalResponsibilityOrderSubmitPage {
     ]);
   }
 
-  private static async checkFilledData(page: Page, yesNoToAll: boolean): Promise<void> {
-    if(yesNoToAll) {
+  private static async checkFilledData(
+    page: Page,
+    yesNoToAll: boolean,
+  ): Promise<void> {
+    if (yesNoToAll) {
       await Promise.all([
         Helpers.checkVisibleAndPresent(
           page,

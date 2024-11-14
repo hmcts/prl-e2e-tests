@@ -55,7 +55,10 @@ export class NonMolestationOrder20Page {
     howLongWillOrderBeInForce: string,
     willAllPartiesBeAttendingHearing: boolean,
   ): Promise<void> {
-    const pdfPage: Page = await DraftAnOrderPdfHelper.openMediaViewer(page, "Welsh");
+    const pdfPage: Page = await DraftAnOrderPdfHelper.openMediaViewer(
+      page,
+      "Welsh",
+    );
     await Helpers.checkVisibleAndPresent(
       pdfPage,
       `${Selectors.Span}:text-is("${orderTypesMap.get(orderType)?.welshPdfName}")`,
@@ -196,7 +199,10 @@ export class NonMolestationOrder20Page {
     howLongWillOrderBeInForce: string,
     willAllPartiesBeAttendingHearing: boolean,
   ): Promise<void> {
-    const pdfPage: Page = await DraftAnOrderPdfHelper.openMediaViewer(page, "English");
+    const pdfPage: Page = await DraftAnOrderPdfHelper.openMediaViewer(
+      page,
+      "English",
+    );
     await Helpers.checkVisibleAndPresent(
       pdfPage,
       `${Selectors.Span}:text-is("${orderTypesMap.get(orderType)?.englishPdfName}")`,

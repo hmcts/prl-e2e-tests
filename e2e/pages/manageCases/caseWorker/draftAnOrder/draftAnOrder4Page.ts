@@ -217,8 +217,7 @@ export class DraftAnOrder4Page {
     );
     // if statement needed because error message does not show correctly above this field - RAISE THIS
     if (
-      errorMessage !==
-      DraftAnOrder4Content.errorMessageWhichChildrenAreIncluded
+      errorMessage !== DraftAnOrder4Content.errorMessageWhichChildrenAreIncluded
     ) {
       await Helpers.checkVisibleAndPresent(
         page,
@@ -244,12 +243,8 @@ export class DraftAnOrder4Page {
         await page.check(`${UniqueSelectors.orderAboutAllChildrenYes}`);
       } else {
         await page.check(`${UniqueSelectors.orderAboutChildrenYes}`);
-        await page
-          .getByLabel(`${DraftAnOrder4Content.childName1}`)
-          .check();
-        await page
-          .getByLabel(`${DraftAnOrder4Content.childName2}`)
-          .check();
+        await page.getByLabel(`${DraftAnOrder4Content.childName1}`).check();
+        await page.getByLabel(`${DraftAnOrder4Content.childName2}`).check();
       }
     } else {
       await page.check(`${UniqueSelectors.orderByConsentNo}`);

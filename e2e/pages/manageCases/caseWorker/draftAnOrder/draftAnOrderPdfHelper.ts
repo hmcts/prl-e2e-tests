@@ -1,8 +1,6 @@
 import { expect, Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors";
-import {
-  NonMolestationOrder20Content
-} from "../../../../fixtures/manageCases/caseWorker/draftAnOrder/nonMolestationOrder/nonMolestationOrder20Content";
+import { NonMolestationOrder20Content } from "../../../../fixtures/manageCases/caseWorker/draftAnOrder/nonMolestationOrder/nonMolestationOrder20Content";
 
 enum ids {
   mvDownBtn = "#mvDownBtn",
