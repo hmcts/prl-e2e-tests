@@ -21,9 +21,5 @@ setup("Retrieve bearer token for citizen user creation", async () => {
 });
 
 setup("Setup judge user", async ({ page }) => {
-  await IdamLoginHelper.signInUser(
-    page,
-    "judge",
-    config.manageCasesBaseURL,
-  );
+  await IdamLoginHelper.signInUser(page, "judge", config.manageCasesBaseURL);
 });
