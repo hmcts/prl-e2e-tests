@@ -98,7 +98,7 @@ withNightlyPipeline(type, product, component, 600) {
       }
     }
     if(params.tag) {
-      stage("${params.tags} tests - ${params.browser}") {
+      stage("${params.tag} tests - ${params.browser}") {
         try {
           yarnBuilder.yarn('playwright install')
           yarnBuilder.yarn("playwright test --grep ${params.tag} --project ${params.browser}")
@@ -111,7 +111,7 @@ withNightlyPipeline(type, product, component, 600) {
             keepAll: true,
             reportDir: "playwright-report",
             reportFiles: 'index.html',
-            reportName: "${params.tags} tests - ${params.browser}"
+            reportName: "${params.tag} tests - ${params.browser}"
           ])
           steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CitizenFunctional/*'
         }
