@@ -5,9 +5,6 @@ import { EditAndApproveAnOrder } from "../../../../journeys/manageCases/caseWork
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
 test.describe("Edit and approve a DA order tests @manageCases", (): void => {
-  // Triple timeout for these slow tests
-  test.slow();
-  
   test(`Complete Editing and approving an order with the following options:
   Case: FL401,
   Order type: Non-molestation order (FL404A),

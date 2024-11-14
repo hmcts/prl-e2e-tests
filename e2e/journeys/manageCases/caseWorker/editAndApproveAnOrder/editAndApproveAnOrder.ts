@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test";
+import { Page, expect } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors";
 import { Helpers } from "../../../../common/helpers";
 import { EditAndApproveAnOrder2Page } from "../../../../pages/manageCases/caseWorker/editAndApproveAnOrder/editAndApproveAnOrder2Page";
@@ -51,20 +51,27 @@ export class EditAndApproveAnOrder {
       "tasks",
     );
     // refresh page until the task shows up - there can be some delay
-    let visible: boolean = await page
-      .locator("strong", {
-        hasText: `${orderTypesMap.get(orderType)?.journeyName}`,
-      })
-      .isVisible();
-    while (!visible) {
-      await page.reload();
-      await page.waitForTimeout(10000);
-      visible = await page
-        .locator("strong", {
-          hasText: `${orderTypesMap.get(orderType)?.journeyName}`,
-        })
-        .isVisible();
-    }
+    await expect
+      .poll(
+        async () => {
+          const visible = await page
+            .locator("strong", {
+              hasText: `${orderTypesMap.get(orderType)?.journeyName}`,
+            })
+            .isVisible();
+          if (!visible) {
+            await page.reload();
+          }
+          return visible;
+        },
+        {
+          // Allow 5s delay before retrying
+          intervals: [5_000],
+          // Allow up to a minute for it to become visible
+          timeout: 60_000,
+        },
+      )
+      .toBeTruthy();
     await page.click(`${Selectors.a}:text-is("Assign to me")`);
     await page.locator(".alert-message").waitFor();
     await page.click(
