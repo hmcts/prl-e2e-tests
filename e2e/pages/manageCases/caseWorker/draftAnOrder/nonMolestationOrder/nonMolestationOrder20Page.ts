@@ -1,6 +1,5 @@
-import { expect, Page } from "@playwright/test";
+import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
-import { DraftAnOrder20Content } from "../../../../../fixtures/manageCases/caseWorker/draftAnOrder/draftAnOrder20Content";
 import { Helpers } from "../../../../../common/helpers";
 import {
   HowLongWillTheOrderBeInForce,
@@ -8,28 +7,11 @@ import {
 } from "../../../../../journeys/manageCases/caseWorker/draftAnOrder/draftAnOrder";
 import { OrderType } from "../../../../../common/types";
 import { NonMolestationOrder20Content } from "../../../../../fixtures/manageCases/caseWorker/draftAnOrder/nonMolestationOrder/nonMolestationOrder20Content";
-
-enum ids {
-  mvDownBtn = "#mvDownBtn",
-  numPages = "#numPages",
-}
+import { DraftAnOrderPdfHelper } from "../draftAnOrderPdfHelper";
 
 export class NonMolestationOrder20Page {
-  public static async checkPageLoads(page: Page): Promise<void> {
-    await page.waitForSelector(
-      `${Selectors.h2}:text-is("${DraftAnOrder20Content.h2}")`,
-    );
+  public static async checkPdfLinks(page: Page): Promise<void> {
     await Promise.all([
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukHeadingL}:text-is("${DraftAnOrder20Content.pageTitle}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.headingH3}:text-is("${orderTypesMap.get("nonMolestation")?.journeyName}")`,
-        1,
-      ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.a}:text-is("${NonMolestationOrder20Content.welshPdfLink}")`,
@@ -38,21 +20,6 @@ export class NonMolestationOrder20Page {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.a}:text-is("${NonMolestationOrder20Content.pdfLink}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.p}:text-is("${NonMolestationOrder20Content.p}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.button}:text-is("${DraftAnOrder20Content.previous}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.button}:text-is("${DraftAnOrder20Content.continue}")`,
         1,
       ),
     ]);
@@ -88,7 +55,7 @@ export class NonMolestationOrder20Page {
     howLongWillOrderBeInForce: string,
     willAllPartiesBeAttendingHearing: boolean,
   ): Promise<void> {
-    const pdfPage: Page = await this.openMediaViewer(page, "Welsh");
+    const pdfPage: Page = await DraftAnOrderPdfHelper.openMediaViewer(page, "Welsh");
     await Helpers.checkVisibleAndPresent(
       pdfPage,
       `${Selectors.Span}:text-is("${orderTypesMap.get(orderType)?.welshPdfName}")`,
@@ -229,7 +196,7 @@ export class NonMolestationOrder20Page {
     howLongWillOrderBeInForce: string,
     willAllPartiesBeAttendingHearing: boolean,
   ): Promise<void> {
-    const pdfPage: Page = await this.openMediaViewer(page, "English");
+    const pdfPage: Page = await DraftAnOrderPdfHelper.openMediaViewer(page, "English");
     await Helpers.checkVisibleAndPresent(
       pdfPage,
       `${Selectors.Span}:text-is("${orderTypesMap.get(orderType)?.englishPdfName}")`,
@@ -373,32 +340,5 @@ export class NonMolestationOrder20Page {
     const month: string = todayDate.substring(2, 4);
     const year: string = todayDate.substring(4);
     return Helpers.dayLongMonthYear(day, month, year);
-  }
-
-  private static async openMediaViewer(page: Page, language: string) {
-    const [pdfPage] = await Promise.all([
-      page.waitForEvent("popup"),
-      page.click(
-        `${Selectors.a}:text-is("${language === "English" ? NonMolestationOrder20Content.pdfLink : NonMolestationOrder20Content.welshPdfLink}")`,
-      ),
-    ]);
-    await pdfPage.waitForLoadState();
-    await this.scrollToBottom(pdfPage);
-    return pdfPage;
-  }
-
-  private static async scrollToBottom(page: Page) {
-    const numOfPagesLocator = page.locator(ids.numPages);
-    await expect(numOfPagesLocator).not.toHaveText(/0/); // <- Wait for number of pages not to be 0 (i.e., page has loaded)
-
-    const numOfPageText = await numOfPagesLocator.textContent();
-    if (numOfPageText) {
-      const numOfPages = parseInt(numOfPageText?.replace("/", "").trim(), 10); // <- numOfPageText is in format "/ 7", strip
-      //                                                                             the '/' out and convert to int so can
-      //                                                                             be used in loop
-      for (let i = 0; i < numOfPages - 1; i++) {
-        await page.click(ids.mvDownBtn);
-      }
-    }
   }
 }
