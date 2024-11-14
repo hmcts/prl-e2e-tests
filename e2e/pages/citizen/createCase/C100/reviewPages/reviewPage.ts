@@ -2,7 +2,6 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { CommonReviewContent } from "../../../../../fixtures/citizen/createCase/C100/reviewPages/commonReviewContent";
 import { Helpers } from "../../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { CaJourneyWrittenConsentReviewContent } from "../../../../../fixtures/citizen/createCase/C100/reviewPages/caJourneyWrittenConsentReviewContent";
 import { CaJourneyEmergencyProtectionReviewContent } from "../../../../../fixtures/citizen/createCase/C100/reviewPages/caJourneyEmergencyProtectionReviewContent";
 import {
@@ -22,6 +21,7 @@ interface caJourneyEmergencyProtectionOptions {
   page: Page;
   accessibilityTest: boolean;
   relationshipType: CapitalizedRelationship;
+  c100YesNoNeedHelpWithFees: boolean;
 }
 
 interface checkCommonTextOptions {
@@ -38,6 +38,7 @@ interface caJourneyMIAMUrgencyOptions {
   miamOtherReasonForNotAttending: MiamOtherReasonForNotAttending; // Decides which Other reason there is for not attending
   miamChildProtectionConcernsType: MiamChildProtectionConcernsType; // Decides which child protection concern is listed.
   c100ChildrenSupervision: c100ChildrenSupervisionRadios;
+  c100YesNoNeedHelpWithFees: boolean;
 }
 
 interface caWrittenConsentJourneyOptions {
@@ -45,6 +46,7 @@ interface caWrittenConsentJourneyOptions {
   accessibilityTest: boolean;
   reviewPageTopJourneyMotherFather: reviewPageTopJourneyMotherFather;
   relationshipType: Relationship;
+  c100YesNoNeedHelpWithFees: boolean;
 }
 
 interface C100ExistingMIAMJourneyOptions {
@@ -52,6 +54,7 @@ interface C100ExistingMIAMJourneyOptions {
   accessibilityTest: boolean;
   miamAlreadyAttended: boolean;
   miamAttendanceType: MiamAttendanceType;
+  c100YesNoNeedHelpWithFees: boolean;
 }
 
 export type reviewPageTopJourneyMotherFather = "mother" | "father";
@@ -87,11 +90,6 @@ export class ReviewPage {
         `${Selectors.GovukHeadingM}:text-is("${CommonReviewContent.confirmationHeading}")`,
         1,
       ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.p}:text-is("${CommonReviewContent.insetText}")`,
-        1,
-      ),
       Helpers.checkGroup(
         page,
         2,
@@ -112,10 +110,13 @@ export class ReviewPage {
     // }
   }
 
-  private static async fillInFields(page: Page): Promise<void> {
+  private static async fillInFields(
+    page: Page,
+    c100YesNoNeedHelpWithFees: boolean,
+  ): Promise<void> {
     await page.check(statementOfTruthCheckbox);
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonReviewContent.submitButton}")`,
+      `${Selectors.GovukButton}:text-is("${c100YesNoNeedHelpWithFees ? CommonReviewContent.submitButton : CommonReviewContent.submitButtonPay}")`,
     );
   }
 
@@ -124,6 +125,7 @@ export class ReviewPage {
     accessibilityTest,
     reviewPageTopJourneyMotherFather,
     relationshipType,
+    c100YesNoNeedHelpWithFees,
   }: caWrittenConsentJourneyOptions): Promise<void> {
     await this.checkCommonText({
       page,
@@ -193,7 +195,7 @@ export class ReviewPage {
       ),
       Helpers.checkGroup(
         page,
-        14,
+        c100YesNoNeedHelpWithFees ? 14 : 13,
         CaJourneyWrittenConsentReviewContent,
         "dd_",
         `${Selectors.dd}`,
@@ -226,7 +228,7 @@ export class ReviewPage {
       ),
       Helpers.checkGroup(
         page,
-        81,
+        c100YesNoNeedHelpWithFees ? 81 : 80,
         CaJourneyWrittenConsentReviewContent,
         "span_",
         Selectors.Span,
@@ -550,13 +552,14 @@ export class ReviewPage {
         12,
       ),
     ]);
-    await this.fillInFields(page);
+    await this.fillInFields(page, c100YesNoNeedHelpWithFees);
   }
 
   public static async c100CAEmergencyProtection({
     page,
     accessibilityTest,
     relationshipType,
+    c100YesNoNeedHelpWithFees,
   }: caJourneyEmergencyProtectionOptions): Promise<void> {
     await this.checkCommonText({
       page,
@@ -572,7 +575,7 @@ export class ReviewPage {
       ),
       Helpers.checkGroup(
         page,
-        87,
+        86,
         CaJourneyEmergencyProtectionReviewContent,
         "dt_",
         Selectors.dt,
@@ -619,7 +622,7 @@ export class ReviewPage {
       ),
       Helpers.checkGroup(
         page,
-        14,
+        13,
         CaJourneyEmergencyProtectionReviewContent,
         "dd_",
         Selectors.dd,
@@ -667,16 +670,16 @@ export class ReviewPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.dd}:text-is("${CaJourneyEmergencyProtectionReviewContent.dd_no}")`,
-        2,
+        c100YesNoNeedHelpWithFees ? 2 : 3,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.dd}:text-is("${CaJourneyEmergencyProtectionReviewContent.dd_yes}")`,
-        38,
+        c100YesNoNeedHelpWithFees ? 38 : 37,
       ),
       Helpers.checkGroup(
         page,
-        87,
+        c100YesNoNeedHelpWithFees ? 87 : 86,
         CaJourneyEmergencyProtectionReviewContent,
         "span_",
         Selectors.Span,
@@ -907,10 +910,15 @@ export class ReviewPage {
       ),
       Helpers.checkGroup(
         page,
-        21,
+        20,
         CaJourneyEmergencyProtectionReviewContent,
         "p_",
         Selectors.p,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${CaJourneyEmergencyProtectionReviewContent.p_21} '${c100YesNoNeedHelpWithFees ? CommonReviewContent.submitButton : CommonReviewContent.submitButtonPay}' ${CaJourneyEmergencyProtectionReviewContent.p_21_2}")`,
+        1,
       ),
       Helpers.checkGroup(
         page,
@@ -990,7 +998,22 @@ export class ReviewPage {
         2,
       ),
     ]);
-    await this.fillInFields(page);
+    if (c100YesNoNeedHelpWithFees) {
+      console.log("IF STATEMENT RUN");
+      await Promise.all([
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.dt}:text-is("${CaJourneyEmergencyProtectionReviewContent.dt_87}")`,
+          1,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.dd}:text-is("${CaJourneyEmergencyProtectionReviewContent.dd_14}")`,
+          1,
+        ),
+      ]);
+    }
+    await this.fillInFields(page, c100YesNoNeedHelpWithFees);
   }
 
   public static async c100CAMIAMHearingUrgency({
@@ -1001,6 +1024,7 @@ export class ReviewPage {
     miamChildProtectionConcernsType,
     miamOtherReasonForNotAttending,
     c100ChildrenSupervision,
+    c100YesNoNeedHelpWithFees,
   }: caJourneyMIAMUrgencyOptions): Promise<void> {
     await this.checkCommonText({
       page: page,
@@ -1407,7 +1431,7 @@ export class ReviewPage {
         1,
       );
     }
-    await this.fillInFields(page);
+    await this.fillInFields(page, c100YesNoNeedHelpWithFees);
   }
 
   public static async C100ExistingMIAMJourney({
@@ -1415,6 +1439,7 @@ export class ReviewPage {
     accessibilityTest,
     miamAlreadyAttended,
     miamAttendanceType,
+    c100YesNoNeedHelpWithFees,
   }: C100ExistingMIAMJourneyOptions): Promise<void> {
     await this.checkCommonText({
       page: page,
@@ -1422,12 +1447,16 @@ export class ReviewPage {
     });
     let ddNoCount: number;
     if (miamAlreadyAttended) {
-      ddNoCount = 6;
+      ddNoCount = c100YesNoNeedHelpWithFees ? 6 : 7;
     } else {
       ddNoCount =
         miamAttendanceType === "Application made in existing proceedings"
-          ? 8
-          : 7;
+          ? c100YesNoNeedHelpWithFees
+            ? 8
+            : 9
+          : c100YesNoNeedHelpWithFees
+            ? 7
+            : 8;
       await Promise.all([
         Helpers.checkGroup(
           page,
@@ -1467,14 +1496,14 @@ export class ReviewPage {
       ),
       Helpers.checkGroup(
         page,
-        87,
+        c100YesNoNeedHelpWithFees ? 87 : 86,
         CaJourneyExistingMIAMReviewContent,
         "dt_",
         Selectors.dt,
       ),
       Helpers.checkGroup(
         page,
-        18,
+        c100YesNoNeedHelpWithFees ? 18 : 17,
         CaJourneyExistingMIAMReviewContent,
         "dd_",
         Selectors.dd,
@@ -1574,11 +1603,11 @@ export class ReviewPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.dd}:text-is("${CaJourneyExistingMIAMReviewContent.dd_yes}")`,
-        30,
+        c100YesNoNeedHelpWithFees ? 30 : 29,
       ),
       Helpers.checkGroup(
         page,
-        87,
+        c100YesNoNeedHelpWithFees ? 87 : 86,
         CaJourneyExistingMIAMReviewContent,
         "span_",
         Selectors.Span,
@@ -1724,10 +1753,15 @@ export class ReviewPage {
       ),
       Helpers.checkGroup(
         page,
-        21,
+        20,
         CaJourneyExistingMIAMReviewContent,
         "p_",
         Selectors.p,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${CaJourneyExistingMIAMReviewContent.p_21} '${c100YesNoNeedHelpWithFees ? CommonReviewContent.submitButton : CommonReviewContent.submitButtonPay}' ${CaJourneyExistingMIAMReviewContent.p_21_2}")`,
+        1,
       ),
       // Using Selectors.p for p_ prefixed items
       Helpers.checkVisibleAndPresent(
@@ -1892,6 +1926,6 @@ export class ReviewPage {
           ),
         ]);
     }
-    await this.fillInFields(page);
+    await this.fillInFields(page, c100YesNoNeedHelpWithFees);
   }
 }

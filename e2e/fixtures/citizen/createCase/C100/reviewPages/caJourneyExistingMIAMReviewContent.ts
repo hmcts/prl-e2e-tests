@@ -345,7 +345,8 @@ export enum CaJourneyExistingMIAMReviewContent {
   p_18 = "Automated under taking Order Court",
   p_19 = "Lorem ipsum jurisdiction details",
   p_20 = "Lorem ipsum request details",
-  p_21 = "Once you submit your application, you cannot make further changes. Select Save and come back later to save your application, or select 'Submit your application' to complete your online application.",
+  p_21 = "Once you submit your application, you cannot make further changes. Select Save and come back later to save your application, or select",
+  p_21_2 = "to complete your online application.",
   p_bs19f99999 = "BS19F99999", // 16 occurrences
   p_10July2016 = "10 July 2016", // 5 occurrences
   p_yes = "Yes", // 36 occurrences
