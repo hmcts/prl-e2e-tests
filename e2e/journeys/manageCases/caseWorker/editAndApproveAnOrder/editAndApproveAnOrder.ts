@@ -67,8 +67,8 @@ export class EditAndApproveAnOrder {
           return visible;
         },
         {
-          // Allow 5s delay before retrying
-          intervals: [5_000],
+          // Allow 10s delay before retrying
+          intervals: [10_000],
           // Allow up to a minute for it to become visible
           timeout: 60_000,
         },
