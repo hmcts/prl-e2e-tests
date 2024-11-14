@@ -98,24 +98,22 @@ withNightlyPipeline(type, product, component, 600) {
       }
     }
     if(params.tag) {
-      browsers.each { browser ->
-        stage("${params.tags} tests - ${params.browser}") {
-          try {
-            yarnBuilder.yarn('playwright install')
-            yarnBuilder.yarn("playwright test --grep ${params.tag} --project ${params.browser}")
-          } catch (Error) {
-            unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
-          } finally {
-            publishHTML([
-              allowMissing: true,
-              alwaysLinkToLastBuild: true,
-              keepAll: true,
-              reportDir: "playwright-report",
-              reportFiles: 'index.html',
-              reportName: "${params.tags} tests - ${params.browser}"
-            ])
-            steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CitizenFunctional/*'
-          }
+      stage("${params.tags} tests - ${params.browser}") {
+        try {
+          yarnBuilder.yarn('playwright install')
+          yarnBuilder.yarn("playwright test --grep ${params.tag} --project ${params.browser}")
+        } catch (Error) {
+          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+        } finally {
+          publishHTML([
+            allowMissing: true,
+            alwaysLinkToLastBuild: true,
+            keepAll: true,
+            reportDir: "playwright-report",
+            reportFiles: 'index.html',
+            reportName: "${params.tags} tests - ${params.browser}"
+          ])
+          steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CitizenFunctional/*'
         }
       }
     } else {
