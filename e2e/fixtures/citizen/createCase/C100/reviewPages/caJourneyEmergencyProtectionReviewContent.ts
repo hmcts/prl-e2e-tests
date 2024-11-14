@@ -393,7 +393,8 @@ export enum CaJourneyEmergencyProtectionReviewContent {
   p_18 = "Automated under taking Order Court",
   p_19 = "Lorem ipsum jurisdiction details",
   p_20 = "Lorem ipsum request details",
-  p_21 = "Once you submit your application, you cannot make further changes. Select Save and come back later to save your application, or select 'Submit your application' to complete your online application.",
+  p_21 = "Once you submit your application, you cannot make further changes. Select Save and come back later to save your application, or select",
+  p_21_2 = "to complete your online application.",
   p_exampletext = "exampleText", // 6 occurrences
   p_loremIpsumStartDetails = "Lorem ipsum start details", // 2 occurrences
   p_10July2014 = "10 July 2014", // 2 occurrences

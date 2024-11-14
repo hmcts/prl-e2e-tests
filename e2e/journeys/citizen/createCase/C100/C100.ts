@@ -33,6 +33,7 @@ import {
   ReviewPage,
   reviewPageTopJourneyMotherFather,
 } from "../../../../pages/citizen/createCase/C100/reviewPages/reviewPage";
+import { C100Pay } from "./subJourneys/C100Pay";
 
 interface C100ApplicationCompletedForYouOptions {
   page: Page;
@@ -539,7 +540,15 @@ export class C100 {
       accessibilityTest: accessibilityTest,
       reviewPageTopJourneyMotherFather: reviewPageTopJourneyMotherFather,
       relationshipType: relationshipType,
+      c100YesNoNeedHelpWithFees: c100YesNoNeedHelpWithFees,
     });
+    if (!c100YesNoNeedHelpWithFees) {
+      await C100Pay.c100Pay({
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
+      });
+    }
   }
 
   public static async c100CAEmergencyProtectionJourney({
@@ -716,10 +725,18 @@ export class C100 {
       page: page,
       accessibilityTest: accessibilityTest,
       relationshipType: relationshipType,
+      c100YesNoNeedHelpWithFees: c100YesNoNeedHelpWithFees,
     });
     await EqualityAndDiversityPage.equalityAndDiversityPage({
       page,
     });
+    if (!c100YesNoNeedHelpWithFees) {
+      await C100Pay.c100Pay({
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
+      });
+    }
     await ConfirmationPage.confirmationPage({
       page: page,
       accessibilityTest: accessibilityTest,
@@ -914,10 +931,18 @@ export class C100 {
       accessibilityTest: accessibilityTest,
       miamAttendanceType: miamAttendanceType,
       miamAlreadyAttended: miamAlreadyAttended,
+      c100YesNoNeedHelpWithFees: c100YesNoNeedHelpWithFees,
     });
     await EqualityAndDiversityPage.equalityAndDiversityPage({
       page,
     });
+    if (!c100YesNoNeedHelpWithFees) {
+      await C100Pay.c100Pay({
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
+      });
+    }
     await ConfirmationPage.confirmationPage({
       page: page,
       accessibilityTest: accessibilityTest,
@@ -1115,6 +1140,7 @@ export class C100 {
       miamUrgencyType: miamUrgencyType,
       miamAttendanceType: miamAttendanceType,
       c100ChildrenSupervision: c100ChildrenSupervision,
+      c100YesNoNeedHelpWithFees: c100YesNoNeedHelpWithFees,
     });
     // await EqualityAndDiversityPage.equalityAndDiversityPage({
     //   page

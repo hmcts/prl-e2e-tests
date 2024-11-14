@@ -82,6 +82,8 @@ export enum Selectors {
   ul = "ul",
   dt = "dt",
   dd = "dd",
+  th = "th",
+  td = "td",
   strong = "strong",
   div = "div",
   markdown = "markdown",
