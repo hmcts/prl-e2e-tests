@@ -11,7 +11,7 @@ test.describe("Edit and approve a DA order tests @manageCases", (): void => {
   Judge order action: Send to admin to serve,
   Error message testing,
   Not accessibility testing. @crossbrowserManageCases`, async ({
-    page,
+    page, browser
   }): Promise<void> => {
     await EditAndApproveAnOrder.editAndApproveAnOrder({
       page: page,
@@ -20,6 +20,7 @@ test.describe("Edit and approve a DA order tests @manageCases", (): void => {
       judeOrderAction: "Send to admin to serve",
       errorMessaging: true,
       accessibilityTest: false,
+      browser: browser
     });
   });
 
@@ -29,7 +30,7 @@ test.describe("Edit and approve a DA order tests @manageCases", (): void => {
   Judge order action: Ask the legal representative to make changes,
   Not error message testing,
   Not accessibility testing. @crossbrowserManageCases`, async ({
-    page,
+    page, browser
   }): Promise<void> => {
     await EditAndApproveAnOrder.editAndApproveAnOrder({
       page: page,
@@ -38,6 +39,7 @@ test.describe("Edit and approve a DA order tests @manageCases", (): void => {
       judeOrderAction: "Ask the legal representative to make changes",
       errorMessaging: false,
       accessibilityTest: false,
+      browser: browser
     });
   });
 
@@ -47,7 +49,7 @@ test.describe("Edit and approve a DA order tests @manageCases", (): void => {
   Judge order action: Give admin further directions then serve,
   Not error message testing,
   Accessibility testing. @crossbrowserManageCases`, async ({
-    page,
+    page, browser
   }): Promise<void> => {
     await EditAndApproveAnOrder.editAndApproveAnOrder({
       page: page,
@@ -56,6 +58,7 @@ test.describe("Edit and approve a DA order tests @manageCases", (): void => {
       judeOrderAction: "Give admin further directions then serve",
       errorMessaging: false,
       accessibilityTest: true,
+      browser: browser
     });
   });
 });

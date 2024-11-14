@@ -6,7 +6,6 @@ import {
   fl401JudiciaryEvents,
   fl401SolicitorEvents,
   fl401SubmittedSolicitorEvents,
-  UserRole,
 } from "./types";
 
 export class Helpers {
@@ -85,7 +84,6 @@ export class Helpers {
 
   public static async signOutAndGoToCase(
     page: Page,
-    user: UserRole,
     baseURL: string,
     caseNumber: string,
     caseTab: string,
@@ -93,14 +91,7 @@ export class Helpers {
     try {
       await page.locator(`a:text-is(" Sign out ")`).click();
       await page.waitForLoadState("domcontentloaded");
-      switch (user) {
-        case "solicitor":
-          await idamLoginHelper.signInSolicitorUser(page, "solicitor", baseURL);
-          break;
-        case "judge":
-          await idamLoginHelper.signInJudgeUser(page, baseURL);
-          break;
-      }
+      await idamLoginHelper.signInUser(page, "solicitor", baseURL);
       await Helpers.goToCase(page, baseURL, caseNumber, caseTab);
     } catch (error) {
       console.error(
