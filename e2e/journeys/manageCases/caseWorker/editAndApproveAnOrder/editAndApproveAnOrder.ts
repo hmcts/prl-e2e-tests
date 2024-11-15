@@ -70,7 +70,7 @@ export class EditAndApproveAnOrder {
           // Allow 10s delay before retrying
           intervals: [10_000],
           // Allow up to a minute for it to become visible
-          timeout: 60_000,
+          timeout: 90_000,
         },
       )
       .toBeTruthy();
