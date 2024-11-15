@@ -45,7 +45,8 @@ export class SolicitorCreateInitial {
         );
         await SolicitorCreate7Page.solicitorCreate7Page(
           page,
-          accessibilityTest
+          accessibilityTest,
+          solicitorCaseType,
         );
         caseName = await SolicitorCreate4Page.solicitorCreate4Page(
           page,
@@ -68,6 +69,11 @@ export class SolicitorCreateInitial {
           page,
           errorMessaging,
           accessibilityTest,
+        );
+        await SolicitorCreate7Page.solicitorCreate7Page(
+          page,
+          accessibilityTest,
+          solicitorCaseType,
         );
         caseName = await SolicitorCreate5Page.solicitorCreate5Page(
           page,
