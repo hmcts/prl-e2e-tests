@@ -190,7 +190,7 @@ withNightlyPipeline(type, product, component, 600) {
         }
       }
       if (!params.skipManageCasesTests) {
-        env.FUNCTIONAL_TESTS_WORKERS = '3'
+        env.FUNCTIONAL_TESTS_WORKERS = '1'
         stage('Manage Cases E2E tests - Chrome') {
           try {
             yarnBuilder.yarn('test:manageCasesChrome')
