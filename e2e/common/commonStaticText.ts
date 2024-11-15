@@ -5,6 +5,7 @@ export enum CommonStaticText {
   dontKnow = "Don't know",
   continue = "Continue",
   submit = "Submit",
+  previous = "Previous",
   errorSummaryTitle = " There is a problem on this page ",
   day = "Day",
   month = "Month",

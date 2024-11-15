@@ -1,9 +1,9 @@
-import { CommonPage } from "../commonPage";
+import { CommonPage } from "../../commonPage";
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../common/selectors";
-import { Helpers } from "../../../common/helpers";
-import { DummyPaymentAwp1Content } from "../../../fixtures/manageCases/caseWorker/dummyPaymentAwp1Content";
-import AccessibilityTestHelper from "../../../common/accessibilityTestHelper";
+import { Selectors } from "../../../../common/selectors";
+import { Helpers } from "../../../../common/helpers";
+import { DummyPaymentAwp1Content } from "../../../../fixtures/manageCases/caseWorker/dummyPayment/dummyPaymentAwp1Content";
+import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
 
 enum UniqueSelectors {
   paymentServiceRefInput = "#tsPaymentServiceRequestReferenceNumber",

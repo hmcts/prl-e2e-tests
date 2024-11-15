@@ -1,10 +1,10 @@
-import { DummyPaymentAwp1Page } from "../../../pages/manageCases/caseWorker/dummyPaymentAwp1Page";
+import { DummyPaymentAwp1Page } from "../../../../pages/manageCases/caseWorker/dummyPayment/dummyPaymentAwp1Page";
 import { Page } from "@playwright/test";
-import { DummyPaymentAwpSubmitPage } from "../../../pages/manageCases/caseWorker/dummyPaymentAwpSubmitPage";
-import { Helpers } from "../../../common/helpers";
-import { DummyC100 } from "../createCase/dummyCase/dummyC100";
-import { DummyFL401 } from "../createCase/dummyCase/dummyFL401";
-import { solicitorCaseCreateType } from "../../../common/types";
+import { DummyPaymentAwpSubmitPage } from "../../../../pages/manageCases/caseWorker/dummyPayment/dummyPaymentAwpSubmitPage";
+import { Helpers } from "../../../../common/helpers";
+import { DummyC100 } from "../../createCase/dummyCase/dummyC100";
+import { DummyFL401 } from "../../createCase/dummyCase/dummyFL401";
+import { solicitorCaseCreateType } from "../../../../common/types";
 
 interface DummyPaymentAwpParams {
   page: Page;

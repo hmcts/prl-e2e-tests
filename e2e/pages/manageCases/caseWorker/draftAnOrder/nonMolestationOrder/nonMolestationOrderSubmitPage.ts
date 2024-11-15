@@ -265,6 +265,9 @@ export class NonMolestationOrderSubmitPage {
       month,
       year,
     );
-    return abbreviatedDate.slice(1);
+    if (abbreviatedDate.startsWith("0")) {
+      return abbreviatedDate.slice(1);
+    }
+    return abbreviatedDate;
   }
 }
