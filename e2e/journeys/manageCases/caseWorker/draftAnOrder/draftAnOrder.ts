@@ -1,4 +1,4 @@
-import { DummyPaymentAwp } from "../dummyPaymentAwp";
+import { DummyPaymentAwp } from "../dummyPayment/dummyPaymentAwp";
 import { Page } from "@playwright/test";
 import { OrderType, solicitorCaseCreateType } from "../../../../common/types";
 import { Helpers } from "../../../../common/helpers";
@@ -143,6 +143,8 @@ export const orderTypesMap: Map<OrderType, OrderTypeStrings> = new Map([
   ],
 ]);
 
+const caseNumberSelector: string = ".case-title h2:nth-child(3)";
+
 export class DraftAnOrder {
   public static async draftAnOrder({
     page,
@@ -154,7 +156,7 @@ export class DraftAnOrder {
     yesNoToAll,
     howLongWillOrderBeInForce,
     willAllPartiesAttendHearing,
-  }: DraftAnOrderParams): Promise<void> {
+  }: DraftAnOrderParams): Promise<string> {
     await DummyPaymentAwp.dummyPaymentAwp({
       page,
       errorMessaging,
@@ -180,5 +182,11 @@ export class DraftAnOrder {
         console.error("An invalid order type was given");
         break;
     }
+    // fetch and return the case ref ro be used when editing and approving an order
+    const unformattedCaseRef: string | null = await page
+      .locator(caseNumberSelector)
+      .textContent();
+    const formattedCaseRef: string | undefined = unformattedCaseRef?.slice(12);
+    return formattedCaseRef ? formattedCaseRef : "";
   }
 }

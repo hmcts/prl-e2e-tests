@@ -1,6 +1,5 @@
 import { Page } from "@playwright/test";
 import { solicitorCaseCreateType } from "../../../../common/types";
-import { CaseList } from "../../caseList/caseList";
 import { CaseListPage } from "../../../../pages/manageCases/caseList/caseListPage";
 import { SolicitorCreatePage } from "../../../../pages/manageCases/createCase/initialJourney/solicitorCreatePage";
 import { SolicitorCreate2Page } from "../../../../pages/manageCases/createCase/initialJourney/solicitorCreate2Page";
@@ -20,8 +19,7 @@ export class DummyCreateInitial {
     solicitorCaseType: solicitorCaseCreateType;
   }): Promise<void> {
     let caseName: string;
-    await CaseList.caseList(page, "solicitor", false);
-    await CaseListPage.startCreateCaseEvent(page);
+    await CaseListPage.navigateToCreateCasePage(page);
     await SolicitorCreatePage.solicitorCreatePage(page, false, true);
     await SolicitorCreate2Page.solicitorCreate2Page(
       page,

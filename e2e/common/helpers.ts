@@ -3,9 +3,9 @@ import idamLoginHelper from "./idamLoginHelper";
 import { Selectors } from "./selectors.ts";
 import {
   c100SolicitorEvents,
+  fl401JudiciaryEvents,
   fl401SolicitorEvents,
   fl401SubmittedSolicitorEvents,
-  UserRole,
 } from "./types";
 
 export class Helpers {
@@ -14,7 +14,8 @@ export class Helpers {
     chosenEvent:
       | c100SolicitorEvents
       | fl401SolicitorEvents
-      | fl401SubmittedSolicitorEvents,
+      | fl401SubmittedSolicitorEvents
+      | fl401JudiciaryEvents,
   ): Promise<void> {
     try {
       await page.waitForLoadState("domcontentloaded");
@@ -71,9 +72,10 @@ export class Helpers {
     page: Page,
     baseURL: string,
     caseNumber: string,
+    caseTab: string,
   ): Promise<void> {
     try {
-      await page.goto(Helpers.generateUrl(baseURL, caseNumber));
+      await page.goto(Helpers.generateUrl(baseURL, caseNumber, caseTab));
     } catch (error) {
       console.error("An error occurred while navigating to the case: ", error);
       throw error;
@@ -82,15 +84,15 @@ export class Helpers {
 
   public static async signOutAndGoToCase(
     page: Page,
-    user: UserRole,
     baseURL: string,
     caseNumber: string,
+    caseTab: string,
   ): Promise<void> {
     try {
       await page.locator(`a:text-is(" Sign out ")`).click();
       await page.waitForLoadState("domcontentloaded");
-      await idamLoginHelper.signInSolicitorUser(page, user, baseURL);
-      await Helpers.goToCase(page, baseURL, caseNumber);
+      await idamLoginHelper.signInUser(page, "solicitor", baseURL);
+      await Helpers.goToCase(page, baseURL, caseNumber, caseTab);
     } catch (error) {
       console.error(
         "An error occurred while signing out and navigating to the case:",
@@ -216,9 +218,13 @@ export class Helpers {
     "December",
   ];
 
-  private static generateUrl(baseURL: string, caseNumber: string): string {
+  private static generateUrl(
+    baseURL: string,
+    caseNumber: string,
+    caseTab: string,
+  ): string {
     const caseNumberDigits: string = caseNumber.replace(/\D/g, "");
-    return `${baseURL}/case-details/${caseNumberDigits}#History`;
+    return `${baseURL}/case-details/${caseNumberDigits}/${caseTab}`;
   }
 
   private static shortMonth(index: number): string {

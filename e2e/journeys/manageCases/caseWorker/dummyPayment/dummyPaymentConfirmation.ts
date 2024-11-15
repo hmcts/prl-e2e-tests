@@ -1,6 +1,6 @@
 import { Page } from "@playwright/test";
-import { Helpers } from "../../../common/helpers";
-import { DummyPaymentConfirmationPage } from "../../../pages/manageCases/caseWorker/dummyPaymentConfirmationPage";
+import { Helpers } from "../../../../common/helpers";
+import { DummyPaymentConfirmationPage } from "../../../../pages/manageCases/caseWorker/dummyPayment/dummyPaymentConfirmationPage";
 
 interface DummyPaymentConfirmationParams {
   page: Page;
