@@ -54,7 +54,7 @@ module.exports = defineConfig({
       use: {
         ...devices["Desktop Safari"],
         screenshot: "off",
-        trace: "retain-on-failure",
+        trace: "on-first-retry",
         javaScriptEnabled: true,
         viewport: DEFAULT_VIEWPORT,
       },

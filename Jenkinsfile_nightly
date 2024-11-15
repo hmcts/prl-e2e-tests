@@ -137,7 +137,7 @@ withNightlyPipeline(type, product, component, 600) {
             steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CitizenFunctional/*'
           }
         }
-        stage('Citizen E2E tests - Firefox') {
+        stage('Citizen E2E tests Smoke - Firefox') {
           try {
             yarnBuilder.yarn('test:citizenFrontendFirefox')
           } catch (Error) {
@@ -154,7 +154,7 @@ withNightlyPipeline(type, product, component, 600) {
             steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CitizenFunctional/*'
           }
         }
-        stage('Citizen E2E tests - Webkit') {
+        stage('Citizen E2E tests Smoke - Webkit') {
           try {
             yarnBuilder.yarn('test:citizenFrontendSafari')
           } catch (Error) {
@@ -208,7 +208,7 @@ withNightlyPipeline(type, product, component, 600) {
             steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/ManageCasesFunctional/*'
           }
         }
-        stage('Manage Cases E2E tests - Firefox') {
+        stage('Manage Cases E2E tests Smoke - Firefox') {
           try {
             yarnBuilder.yarn('test:manageCasesFirefox')
           } catch (Error) {
