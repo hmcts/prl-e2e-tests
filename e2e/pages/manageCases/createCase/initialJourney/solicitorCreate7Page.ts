@@ -4,6 +4,7 @@ import { SolicitorCreate7Content } from "../../../../fixtures/manageCases/create
 import { Helpers } from "../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
 import { CommonStaticText } from "../../../../common/commonStaticText";
+import { solicitorCaseCreateType } from "../../../../common/types";
 
 const submitCountyCourtSelection = "#submitCountyCourtSelection";
 
@@ -11,26 +12,30 @@ export class SolicitorCreate7Page {
   public static async solicitorCreate7Page(
     page: Page,
     accessibilityTest: boolean,
+    solicitorCaseType: solicitorCaseCreateType,
   ): Promise<void> {
-    await this.checkPageLoads(page, accessibilityTest);
+    await this.checkPageLoads(page, accessibilityTest, solicitorCaseType);
     await this.fillInFields(page);
   }
 
   private static async checkPageLoads(
     page: Page,
     accessibilityTest: boolean,
+    solicitorCaseType: solicitorCaseCreateType,
   ): Promise<void> {
-    await page.waitForSelector(`${Selectors.GovukHeadingL}:text-is("${SolicitorCreate7Content.pageTitle}")`);
+    await page.waitForSelector(
+      `${Selectors.GovukHeadingL}:text-is("${SolicitorCreate7Content.pageTitle}")`,
+    );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h2}:text-is("${SolicitorCreate7Content.h2}")`,
-        1
+        `${solicitorCaseType === "C100" ? Selectors.h2 : Selectors.h1}:text-is("${SolicitorCreate7Content.h2}")`,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukFormLabel}:text-is("${SolicitorCreate7Content.label}")`,
-        1
+        1,
       ),
     ]);
     if (accessibilityTest) {
@@ -39,7 +44,10 @@ export class SolicitorCreate7Page {
   }
 
   private static async fillInFields(page: Page): Promise<void> {
-    await page.selectOption(submitCountyCourtSelection, SolicitorCreate7Content.familyCourt);
+    await page.selectOption(
+      submitCountyCourtSelection,
+      SolicitorCreate7Content.familyCourt,
+    );
     await page.click(
       `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
     );
