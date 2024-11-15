@@ -1,4 +1,4 @@
-import { Page, expect, Browser } from "@playwright/test";
+import { Page, expect, Browser, BrowserContext } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors";
 import { Helpers } from "../../../../common/helpers";
 import { EditAndApproveAnOrder2Page } from "../../../../pages/manageCases/caseWorker/editAndApproveAnOrder/editAndApproveAnOrder2Page";
@@ -48,9 +48,10 @@ export class EditAndApproveAnOrder {
     });
     // open new browser and sign in as judge user
     const newBrowser = await browser.browserType().launch();
-    page = await newBrowser.newPage({
+    const newContext: BrowserContext = await newBrowser.newContext({
       storageState: Config.sessionStoragePath + "judge.json",
     });
+    page = await newContext.newPage();
     await Helpers.goToCase(page, config.manageCasesBaseURL, caseRef, "tasks");
     // refresh page until the task shows up - there can be some delay
     await expect
