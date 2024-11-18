@@ -21,7 +21,7 @@ export class TestingSupportDummyAdminCreateNoc3Page {
     page,
     accessibilityTest,
     solicitorCaseCreateType,
-  }: testingSupportDummyAdminCreateNocPage3Options): Promise<void> {
+  }: testingSupportDummyAdminCreateNocPage3Options): Promise<string> {
     if (!page) {
       throw new Error("Page is not defined");
     }
@@ -30,7 +30,7 @@ export class TestingSupportDummyAdminCreateNoc3Page {
       accessibilityTest,
       solicitorCaseCreateType,
     });
-    await this.fillInFields({ page });
+    return await this.fillInFields({ page });
   }
 
   private static async checkPageLoads({
@@ -70,7 +70,7 @@ export class TestingSupportDummyAdminCreateNoc3Page {
 
   private static async fillInFields({
     page,
-  }: Partial<testingSupportDummyAdminCreateNocPage3Options>): Promise<void> {
+  }: Partial<testingSupportDummyAdminCreateNocPage3Options>): Promise<string> {
     if (!page) {
       throw new Error("Page is not defined");
     }
@@ -79,8 +79,6 @@ export class TestingSupportDummyAdminCreateNoc3Page {
     await page.click(
       `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
     );
-    await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
-    );
+    return generatedName;
   }
 }
