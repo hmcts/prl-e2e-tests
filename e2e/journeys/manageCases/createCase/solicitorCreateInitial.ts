@@ -9,6 +9,7 @@ import { SolicitorCreate3Page } from "../../../pages/manageCases/createCase/init
 import { SolicitorCreate4Page } from "../../../pages/manageCases/createCase/initialJourney/solicitorCreate4Page";
 import { SolicitorCreate5Page } from "../../../pages/manageCases/createCase/initialJourney/solicitorCreate5Page";
 import { SolicitorCreate6Page } from "../../../pages/manageCases/createCase/initialJourney/solicitorCreate6Page";
+import { SolicitorCreate7Page } from "../../../pages/manageCases/createCase/initialJourney/solicitorCreate7Page";
 import { SolicitorCreatePage } from "../../../pages/manageCases/createCase/initialJourney/solicitorCreatePage";
 import { SubmitPage } from "../../../pages/manageCases/createCase/initialJourney/submitPage";
 
@@ -42,6 +43,11 @@ export class SolicitorCreateInitial {
           accessibilityTest,
           errorMessaging,
         );
+        await SolicitorCreate7Page.solicitorCreate7Page(
+          page,
+          accessibilityTest,
+          solicitorCaseType,
+        );
         caseName = await SolicitorCreate4Page.solicitorCreate4Page(
           page,
           errorMessaging,
@@ -63,6 +69,11 @@ export class SolicitorCreateInitial {
           page,
           errorMessaging,
           accessibilityTest,
+        );
+        await SolicitorCreate7Page.solicitorCreate7Page(
+          page,
+          accessibilityTest,
+          solicitorCaseType,
         );
         caseName = await SolicitorCreate5Page.solicitorCreate5Page(
           page,
