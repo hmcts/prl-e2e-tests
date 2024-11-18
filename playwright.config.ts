@@ -15,10 +15,9 @@ module.exports = defineConfig({
   expect: { timeout: 60_000 },
   /* Report slow tests if they take longer than 5 mins */
   reportSlowTests: { max: 15, threshold: 5 * 60 * 1000 },
-  /* Opt out of parallel tests on CI. */
   workers: process.env.FUNCTIONAL_TESTS_WORKERS
     ? parseInt(process.env.FUNCTIONAL_TESTS_WORKERS)
-    : 1,
+    : 4,
   reporter: process.env.CI ? [["html"], ["list"]] : [["list"]],
   projects: [
     {

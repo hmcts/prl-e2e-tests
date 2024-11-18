@@ -98,7 +98,6 @@ withNightlyPipeline(type, product, component, 600) {
       }
     }
     if(params.tag) {
-      env.FUNCTIONAL_TESTS_WORKERS = '3'
       stage("${params.tag} tests - ${params.browser}") {
         try {
           yarnBuilder.yarn('playwright install')
@@ -119,7 +118,6 @@ withNightlyPipeline(type, product, component, 600) {
       }
     } else {
       if (!params.skipCitizenTests) {
-        env.FUNCTIONAL_TESTS_WORKERS = '3'
         stage('Citizen E2E tests - Chrome') {
           try {
             yarnBuilder.yarn('test:citizenFrontendChrome')
@@ -190,7 +188,6 @@ withNightlyPipeline(type, product, component, 600) {
         }
       }
       if (!params.skipManageCasesTests) {
-        env.FUNCTIONAL_TESTS_WORKERS = '1'
         stage('Manage Cases E2E tests - Chrome') {
           try {
             yarnBuilder.yarn('test:manageCasesChrome')
