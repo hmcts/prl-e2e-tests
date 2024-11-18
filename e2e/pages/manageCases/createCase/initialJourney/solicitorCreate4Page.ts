@@ -2,9 +2,7 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors";
 import { Helpers } from "../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
-import {
-  SolicitorCreate4Content
-} from "../../../../fixtures/manageCases/createCase/initialJourney/solicitorCreate4Content";
+import { SolicitorCreate4Content } from "../../../../fixtures/manageCases/createCase/initialJourney/solicitorCreate4Content";
 
 enum caseName {
   fieldID = "#applicantCaseName",
