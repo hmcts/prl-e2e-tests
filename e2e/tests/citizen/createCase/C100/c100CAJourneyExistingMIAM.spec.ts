@@ -1,7 +1,7 @@
 import { test } from "@playwright/test";
-import { C100 } from "../../../../journeys/citizen/createCase/C100/C100";
-import Config from "../../../../config";
 import IdamLoginHelper from "../../../../common/idamLoginHelper";
+import Config from "../../../../config";
+import { C100 } from "../../../../journeys/citizen/createCase/C100/C100";
 
 test.describe("C100 Citizen Application with an existing MIAM document. @citizenFrontend @crossbrowserCitizenFrontend", (): void => {
   test.beforeEach(async ({ page }) => {
@@ -55,7 +55,7 @@ test.describe("C100 Citizen Application with an existing MIAM document. @citizen
   international elements : false,
   reasonable adjustments: false,
   need help with fees: no,
-  fees applied: no @citizenSmoke`, async ({ page }): Promise<void> => {
+  fees applied: no`, async ({ page }): Promise<void> => {
     await C100.c100CAExistingMIAMDocumentJourney({
       page: page,
       accessibilityTest: false,
@@ -167,7 +167,7 @@ test.describe("C100 Citizen Application with an existing MIAM document. @citizen
   international elements : false,
   reasonable adjustments: false,
   need help with fees: no,
-  fees applied: no @citizenSmoke`, async ({ page }): Promise<void> => {
+  fees applied: no`, async ({ page }): Promise<void> => {
     await C100.c100CAExistingMIAMDocumentJourney({
       page: page,
       accessibilityTest: false,
@@ -279,7 +279,7 @@ test.describe("C100 Citizen Application with an existing MIAM document. @citizen
   international elements : false,
   reasonable adjustments: false,
   need help with fees: no,
-  fees applied: no @citizenSmoke`, async ({ page }): Promise<void> => {
+  fees applied: no`, async ({ page }): Promise<void> => {
     await C100.c100CAExistingMIAMDocumentJourney({
       page: page,
       accessibilityTest: false,
@@ -390,7 +390,7 @@ test.describe("C100 Citizen Application with an existing MIAM document. @citizen
   international elements : false,
   reasonable adjustments: false,
   need help with fees: no,
-  fees applied: no @citizenSmoke`, async ({ page }): Promise<void> => {
+  fees applied: no`, async ({ page }): Promise<void> => {
     await C100.c100CAExistingMIAMDocumentJourney({
       page: page,
       accessibilityTest: false,
@@ -501,7 +501,7 @@ test.describe("C100 Citizen Application with an existing MIAM document. @citizen
   international elements : false,
   reasonable adjustments: false,
   need help with fees: no,
-  fees applied: no @citizenSmoke`, async ({ page }): Promise<void> => {
+  fees applied: no`, async ({ page }): Promise<void> => {
     await C100.c100CAExistingMIAMDocumentJourney({
       page: page,
       accessibilityTest: false,
@@ -613,7 +613,7 @@ test.describe("C100 Citizen Application with an existing MIAM document. @citizen
   international elements : false,
   reasonable adjustments: false,
   need help with fees: no,
-  fees applied: no @citizenSmoke`, async ({ page }): Promise<void> => {
+  fees applied: no`, async ({ page }): Promise<void> => {
     await C100.c100CAExistingMIAMDocumentJourney({
       page: page,
       accessibilityTest: false,
@@ -725,7 +725,7 @@ test.describe("C100 Citizen Application with an existing MIAM document. @citizen
   international elements : false,
   reasonable adjustments: false,
   need help with fees: no,
-  fees applied: no @citizenSmoke`, async ({ page }): Promise<void> => {
+  fees applied: no`, async ({ page }): Promise<void> => {
     await C100.c100CAExistingMIAMDocumentJourney({
       page: page,
       accessibilityTest: false,
@@ -837,7 +837,7 @@ test.describe("C100 Citizen Application with an existing MIAM document. @citizen
   international elements : false,
   reasonable adjustments: false,
   need help with fees: no,
-  fees applied: no @citizenSmoke`, async ({ page }): Promise<void> => {
+  fees applied: no`, async ({ page }): Promise<void> => {
     await C100.c100CAExistingMIAMDocumentJourney({
       page: page,
       accessibilityTest: false,
@@ -949,7 +949,7 @@ test.describe("C100 Citizen Application with an existing MIAM document. @citizen
   international elements : false,
   reasonable adjustments: false,
   need help with fees: no,
-  fees applied: no @citizenSmoke`, async ({ page }): Promise<void> => {
+  fees applied: no`, async ({ page }): Promise<void> => {
     await C100.c100CAExistingMIAMDocumentJourney({
       page: page,
       accessibilityTest: false,
@@ -1061,7 +1061,7 @@ test.describe("C100 Citizen Application with an existing MIAM document. @citizen
   international elements : false,
   reasonable adjustments: false,
   need help with fees: no,
-  fees applied: no @citizenSmoke`, async ({ page }): Promise<void> => {
+  fees applied: no`, async ({ page }): Promise<void> => {
     await C100.c100CAExistingMIAMDocumentJourney({
       page: page,
       accessibilityTest: false,
@@ -1174,7 +1174,7 @@ test.describe("C100 Citizen Application with an existing MIAM document. @citizen
   international elements : false,
   reasonable adjustments: false,
   need help with fees: no,
-  fees applied: no @citizenSmoke`, async ({ page }): Promise<void> => {
+  fees applied: no`, async ({ page }): Promise<void> => {
     await C100.c100CAExistingMIAMDocumentJourney({
       page: page,
       accessibilityTest: false,
@@ -1280,7 +1280,7 @@ test.describe("C100 Citizen Application with an existing MIAM document. @citizen
   international elements : false,
   reasonable adjustments: false,
   need help with fees: no,
-  fees applied: no @citizenSmoke`, async ({ page }): Promise<void> => {
+  fees applied: no`, async ({ page }): Promise<void> => {
     await C100.c100CAExistingMIAMDocumentJourney({
       page: page,
       accessibilityTest: false,
@@ -1390,7 +1390,7 @@ test.describe("C100 Citizen Application with an existing MIAM document. @citizen
   international elements : false,
   reasonable adjustments: false,
   need help with fees: no,
-  fees applied: no @citizenSmoke`, async ({ page }): Promise<void> => {
+  fees applied: no`, async ({ page }): Promise<void> => {
     await C100.c100CAExistingMIAMDocumentJourney({
       page: page,
       accessibilityTest: false,
@@ -1506,7 +1506,7 @@ test.describe("C100 Citizen Application accessibility tests on the third row jou
   international elements : false,
   reasonable adjustments: false,
   need help with fees: no,
-  fees applied: no @citizenSmoke`, async ({ page }): Promise<void> => {
+  fees applied: no`, async ({ page }): Promise<void> => {
     await C100.c100CAExistingMIAMDocumentJourney({
       page: page,
       accessibilityTest: true,
@@ -1618,7 +1618,7 @@ test.describe("C100 Citizen Application accessibility tests on the third row jou
   international elements : false,
   reasonable adjustments: false,
   need help with fees: no,
-  fees applied: no @citizenSmoke`, async ({ page }): Promise<void> => {
+  fees applied: no`, async ({ page }): Promise<void> => {
     await C100.c100CAExistingMIAMDocumentJourney({
       page: page,
       accessibilityTest: true,
