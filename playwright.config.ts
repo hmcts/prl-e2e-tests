@@ -31,7 +31,8 @@ module.exports = defineConfig({
         ...devices["Desktop Chrome"],
         channel: "chrome",
         screenshot: "off",
-        trace: "retain-on-failure",
+        video: "off",
+        trace: "on-first-retry",
         javaScriptEnabled: true,
         viewport: DEFAULT_VIEWPORT,
       },
@@ -42,6 +43,7 @@ module.exports = defineConfig({
       use: {
         ...devices["Desktop Firefox"],
         screenshot: "off",
+        video: "off",
         trace: "on-first-retry",
         javaScriptEnabled: true,
         viewport: DEFAULT_VIEWPORT,
@@ -53,6 +55,7 @@ module.exports = defineConfig({
       use: {
         ...devices["Desktop Safari"],
         screenshot: "off",
+        video: "off",
         trace: "on-first-retry",
         javaScriptEnabled: true,
         viewport: DEFAULT_VIEWPORT,
@@ -63,8 +66,7 @@ module.exports = defineConfig({
       dependencies: ["setup"],
       use: {
         ...devices["Pixel 5"],
-        screenshot: "only-on-failure",
-        trace: "off",
+        trace: "on-first-retry",
       },
     },
     {
@@ -72,8 +74,7 @@ module.exports = defineConfig({
       dependencies: ["setup"],
       use: {
         ...devices["iPhone 12"],
-        screenshot: "only-on-failure",
-        trace: "off",
+        trace: "on-first-retry",
       },
     },
     {
@@ -82,8 +83,7 @@ module.exports = defineConfig({
       use: {
         ...devices["Desktop Edge"],
         channel: "msedge",
-        screenshot: "only-on-failure",
-        trace: "off",
+        trace: "on-first-retry",
       },
     },
   ],
