@@ -165,7 +165,7 @@ export class DraftAnOrder {
       paymentStatusPaid,
       caseType,
     });
-    if(caseType === "C100") {
+    if (caseType === "C100") {
       // TODO: if is it a CA case then need to do the court allocation stuff before drafting the order - stoke user
     }
     await Helpers.chooseEventFromDropdown(page, "Draft an order");

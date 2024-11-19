@@ -2,9 +2,7 @@ import { expect, Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors";
 import { NonMolestationOrder20Content } from "../../../../fixtures/manageCases/caseWorker/draftAnOrder/nonMolestationOrder/nonMolestationOrder20Content";
 import { OrderType } from "../../../../common/types";
-import {
-  ParentalResponsibilityOrder20Content
-} from "../../../../fixtures/manageCases/caseWorker/draftAnOrder/parentalResponsibilityOrder/parentalResponsibilityOrder20Content";
+import { ParentalResponsibilityOrder20Content } from "../../../../fixtures/manageCases/caseWorker/draftAnOrder/parentalResponsibilityOrder/parentalResponsibilityOrder20Content";
 
 enum ids {
   mvDownBtn = "#mvDownBtn",
@@ -12,17 +10,21 @@ enum ids {
 }
 
 export class DraftAnOrderPdfHelper {
-  public static async openMediaViewer(page: Page, orderType: OrderType, language: string) {
-    let englishPdfLink: string = '';
-    let welshPdfLink: string = '';
+  public static async openMediaViewer(
+    page: Page,
+    orderType: OrderType,
+    language: string,
+  ) {
+    let englishPdfLink: string = "";
+    let welshPdfLink: string = "";
     switch (orderType) {
       case "nonMolestation":
-        englishPdfLink = NonMolestationOrder20Content.pdfLink
-        welshPdfLink = NonMolestationOrder20Content.welshPdfLink
+        englishPdfLink = NonMolestationOrder20Content.pdfLink;
+        welshPdfLink = NonMolestationOrder20Content.welshPdfLink;
         break;
       case "parentalResponsibility":
-        englishPdfLink = ParentalResponsibilityOrder20Content.pdfLink
-        welshPdfLink = ParentalResponsibilityOrder20Content.welshPdfLink
+        englishPdfLink = ParentalResponsibilityOrder20Content.pdfLink;
+        welshPdfLink = ParentalResponsibilityOrder20Content.welshPdfLink;
         break;
       default:
         console.error("An invalid order type was given");
