@@ -13,8 +13,9 @@ enum UniqueSelectors {
 export class ParentalResponsibilityOrder8Page {
   public static async checkPageLoads(page: Page): Promise<void> {
     await page
-      .locator(`${Selectors.GovukFormLabel}`, {
-        hasText: `${ParentalResponsibilityOrder8Content.formLabel}`,
+      .locator(`${Selectors.GovukFormLabel}`)
+      .getByText(`${ParentalResponsibilityOrder8Content.formLabel}`, {
+        exact: true,
       })
       .waitFor();
     await Promise.all([

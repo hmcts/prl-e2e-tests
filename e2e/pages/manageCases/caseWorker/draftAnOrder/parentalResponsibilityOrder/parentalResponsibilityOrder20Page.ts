@@ -34,6 +34,7 @@ export class ParentalResponsibilityOrder20Page {
   ): Promise<void> {
     const pdfPage: Page = await DraftAnOrderPdfHelper.openMediaViewer(
       page,
+      "parentalResponsibility",
       "Welsh",
     );
     await Promise.all([
@@ -75,6 +76,7 @@ export class ParentalResponsibilityOrder20Page {
   ): Promise<void> {
     const pdfPage: Page = await DraftAnOrderPdfHelper.openMediaViewer(
       page,
+      "parentalResponsibility",
       "English",
     );
     await Promise.all([

@@ -3,6 +3,7 @@ import { Page } from "@playwright/test";
 import { OrderType, solicitorCaseCreateType } from "../../../../common/types";
 import { Helpers } from "../../../../common/helpers";
 import { NonMolestationOrder } from "./nonMolestationOrder/nonMolestationOrder";
+import { ParentalResponsibilityOrder } from "./ParentalResponsibilityOrder/parentalResponsibilityOrder";
 
 interface DraftAnOrderParams {
   page: Page;
@@ -164,6 +165,9 @@ export class DraftAnOrder {
       paymentStatusPaid,
       caseType,
     });
+    if(caseType === "C100") {
+      // TODO: if is it a CA case then need to do the court allocation stuff before drafting the order - stoke user
+    }
     await Helpers.chooseEventFromDropdown(page, "Draft an order");
     switch (orderType) {
       case "nonMolestation":
@@ -176,6 +180,16 @@ export class DraftAnOrder {
           yesNoToAll,
           howLongWillOrderBeInForce,
           willAllPartiesAttendHearing,
+        });
+        break;
+      case "parentalResponsibility":
+        await ParentalResponsibilityOrder.parentalResponsibilityOrder({
+          page,
+          caseType,
+          orderType,
+          yesNoToAll,
+          errorMessaging,
+          accessibilityTest,
         });
         break;
       default:

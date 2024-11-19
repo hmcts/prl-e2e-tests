@@ -1,6 +1,10 @@
 import { expect, Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors";
 import { NonMolestationOrder20Content } from "../../../../fixtures/manageCases/caseWorker/draftAnOrder/nonMolestationOrder/nonMolestationOrder20Content";
+import { OrderType } from "../../../../common/types";
+import {
+  ParentalResponsibilityOrder20Content
+} from "../../../../fixtures/manageCases/caseWorker/draftAnOrder/parentalResponsibilityOrder/parentalResponsibilityOrder20Content";
 
 enum ids {
   mvDownBtn = "#mvDownBtn",
@@ -8,11 +12,26 @@ enum ids {
 }
 
 export class DraftAnOrderPdfHelper {
-  public static async openMediaViewer(page: Page, language: string) {
+  public static async openMediaViewer(page: Page, orderType: OrderType, language: string) {
+    let englishPdfLink: string = '';
+    let welshPdfLink: string = '';
+    switch (orderType) {
+      case "nonMolestation":
+        englishPdfLink = NonMolestationOrder20Content.pdfLink
+        welshPdfLink = NonMolestationOrder20Content.welshPdfLink
+        break;
+      case "parentalResponsibility":
+        englishPdfLink = ParentalResponsibilityOrder20Content.pdfLink
+        welshPdfLink = ParentalResponsibilityOrder20Content.welshPdfLink
+        break;
+      default:
+        console.error("An invalid order type was given");
+        break;
+    }
     const [pdfPage] = await Promise.all([
       page.waitForEvent("popup"),
       page.click(
-        `${Selectors.a}:text-is("${language === "English" ? NonMolestationOrder20Content.pdfLink : NonMolestationOrder20Content.welshPdfLink}")`,
+        `${Selectors.a}:text-is("${language === "English" ? englishPdfLink : welshPdfLink}")`,
       ),
     ]);
     await pdfPage.waitForLoadState();

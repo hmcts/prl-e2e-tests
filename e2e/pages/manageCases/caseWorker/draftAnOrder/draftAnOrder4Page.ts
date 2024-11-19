@@ -10,7 +10,8 @@ enum UniqueSelectors {
   dateOrderMadeDateLabels = "[field_id='dateOrderMade'] .form-label",
   orderByConsentLabels = "#isTheOrderByConsent .form-label",
   orderApprovedAtHearingLabels = "#wasTheOrderApprovedAtHearing .form-label",
-  orderAboutChildrenLabels = "#isTheOrderAboutChildren .form-label",
+  orderAboutTheChildrenLabels = "#isTheOrderAboutChildren .form-label",
+  orderAboutAllTheChildrenLabels = "#isTheOrderAboutAllChildren .form-label",
   herHonourTitleRadio = "#judgeOrMagistrateTitle-herHonourJudge",
   magistrateTitleRadio = "#judgeOrMagistrateTitle-magistrate",
   orderByConsentYes = "#isTheOrderByConsent_Yes",
@@ -92,16 +93,7 @@ export class DraftAnOrder4Page {
         `${UniqueSelectors.orderApprovedAtHearingLabels}:text-is("${DraftAnOrder4Content.formLabelNo}")`,
         1,
       ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${UniqueSelectors.orderAboutChildrenLabels}:text-is("${DraftAnOrder4Content.formLabelYes}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${UniqueSelectors.orderAboutChildrenLabels}:text-is("${DraftAnOrder4Content.formLabelNo}")`,
-        1,
-      ),
+
       Helpers.checkVisibleAndPresent(
         page,
         `${UniqueSelectors.dateOrderMadeDateLabels}:text-is("${DraftAnOrder4Content.formLabelDay}")`,
@@ -129,17 +121,41 @@ export class DraftAnOrder4Page {
       ),
     ]);
     if ("C100" === caseType) {
-      await Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukFormLabel}:text-is("${DraftAnOrder4Content.formLabelOrderAboutAllChildren}")`,
-        1,
-      );
+      await Promise.all([
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukFormLabel}:text-is("${DraftAnOrder4Content.formLabelOrderAboutAllChildren}")`,
+          1,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${UniqueSelectors.orderAboutAllTheChildrenLabels}:text-is("${DraftAnOrder4Content.formLabelYes}")`,
+          1,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${UniqueSelectors.orderAboutAllTheChildrenLabels}:text-is("${DraftAnOrder4Content.formLabelNo}")`,
+          1,
+        ),
+      ]);
     } else {
-      await Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukFormLabel}:text-is("${DraftAnOrder4Content.formLabelOrderAboutChildren}")`,
-        1,
-      );
+      await Promise.all([
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukFormLabel}:text-is("${DraftAnOrder4Content.formLabelOrderAboutChildren}")`,
+          1,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${UniqueSelectors.orderAboutTheChildrenLabels}:text-is("${DraftAnOrder4Content.formLabelYes}")`,
+          1,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${UniqueSelectors.orderAboutTheChildrenLabels}:text-is("${DraftAnOrder4Content.formLabelNo}")`,
+          1,
+        ),
+      ]);
     }
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
