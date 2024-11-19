@@ -64,6 +64,8 @@ export type fl401SolicitorEvents =
   | "View PDF application"
   | "Statement of truth and submit";
 
+export type c100CaseWorkerActions = "Manage orders";
+
 export type fl401SubmittedSolicitorEvents =
   | "Draft an order"
   | "Dummy Payment for AwP"
