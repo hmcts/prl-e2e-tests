@@ -31,3 +31,11 @@ setup("Setup caseWorker user", async ({ page }) => {
     config.manageCasesBaseURL,
   );
 });
+
+setup("Setup Stoke court admin user", async ({ page }) => {
+  await IdamLoginHelper.signInUser(
+    page,
+    "courtAdminStoke",
+    config.manageCasesBaseURL,
+  );
+});
