@@ -7,32 +7,29 @@ import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelp
 interface SubmitPageContent {
   page: Page;
   accessibilityTest: boolean;
-  generatedName: string;
 }
 
-export class TestingSupportDummyAdminCreateNoc2Page {
-  public static async testingSupportDummyAdminCreateNoc2Page({
+export class CreateAnOrderSubmitPage {
+  public static async createAnOrderSubmitPage({
     page,
     accessibilityTest,
-    generatedName,
   }: SubmitPageContent): Promise<void> {
     if (!page) {
       throw new Error("Page is not defined");
     }
-    await this.checkPageLoads({ page, accessibilityTest, generatedName });
+    await this.checkPageLoads({ page, accessibilityTest });
     await this.fillInFields({ page });
   }
 
   private static async checkPageLoads({
     page,
     accessibilityTest,
-    generatedName,
   }: Partial<SubmitPageContent>): Promise<void> {
     if (!page) {
       throw new Error("Page is not defined");
     }
     const pageTitle = page.locator(
-      `${Selectors.GovukHeadingL}:text-is(${SubmitContent.pageTitle})`,
+      `${Selectors.GovukHeadingL}:text-is("${SubmitContent.pageTitle}")`,
     );
     await pageTitle.waitFor();
     await Helpers.checkGroup(
@@ -41,11 +38,6 @@ export class TestingSupportDummyAdminCreateNoc2Page {
       SubmitContent,
       "text16",
       Selectors.GovukText16,
-    );
-    await Helpers.checkVisibleAndPresent(
-      page,
-      `${Selectors.GovukText16}:text-is("${generatedName}")`,
-      1,
     );
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
@@ -59,7 +51,7 @@ export class TestingSupportDummyAdminCreateNoc2Page {
       throw new Error("Page is not defined");
     }
     await page.click(
-      `${Selectors.button}:text-is(${SubmitContent.createMyDummyCase})`,
+      `${Selectors.button}:text-is("${SubmitContent.createMyDummyCase}")`,
     );
   }
 }

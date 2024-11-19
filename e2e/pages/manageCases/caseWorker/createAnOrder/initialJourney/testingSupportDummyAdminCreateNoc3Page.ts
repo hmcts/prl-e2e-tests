@@ -13,7 +13,12 @@ interface testingSupportDummyAdminCreateNocPage3Options {
 }
 
 enum caseName {
-  fieldID = "#applicantCaseName",
+  fieldIDFL401 = "#applicantOrRespondentCaseName",
+  fieldIDC100 = "#applicantCaseName",
+}
+
+enum CaseNameFormLabel {
+  formLabelSelector = "span.form-label",
 }
 
 export class TestingSupportDummyAdminCreateNoc3Page {
@@ -30,7 +35,7 @@ export class TestingSupportDummyAdminCreateNoc3Page {
       accessibilityTest,
       solicitorCaseCreateType,
     });
-    return await this.fillInFields({ page });
+    return await this.fillInFields({ page,  solicitorCaseCreateType});
   }
 
   private static async checkPageLoads({
@@ -45,18 +50,25 @@ export class TestingSupportDummyAdminCreateNoc3Page {
       `${Selectors.GovukHeadingL}:text-is("${TestingSupportDummyAdminCreateNoc3Content.pageTitle}")`,
     );
     await pageTitle.waitFor();
-    await Helpers.checkVisibleAndPresent(
-      page,
-      `${Selectors.GovukFormLabel}:text-is("${TestingSupportDummyAdminCreateNoc3Content.formLabel1}")`,
-      1,
-    );
     if (solicitorCaseCreateType === "C100") {
+      const firstNthFormLabel = page
+        .locator(
+          `${CaseNameFormLabel.formLabelSelector}:text-is("${TestingSupportDummyAdminCreateNoc3Content.formLabel1}")`,
+        )
+        .nth(0);
+      await firstNthFormLabel.waitFor();
       await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukFormHint}:text-is("${TestingSupportDummyAdminCreateNoc3Content.formHintC100}")`,
         1,
       );
     } else if (solicitorCaseCreateType === "FL401") {
+      const firstNthFormLabel = page
+        .locator(
+          `${CaseNameFormLabel.formLabelSelector}:text-is("${TestingSupportDummyAdminCreateNoc3Content.formLabel1}")`,
+        )
+        .nth(1);
+      await firstNthFormLabel.waitFor();
       await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukFormHint}:text-is("${TestingSupportDummyAdminCreateNoc3Content.formHintFL401}")`,
@@ -70,12 +82,20 @@ export class TestingSupportDummyAdminCreateNoc3Page {
 
   private static async fillInFields({
     page,
+    solicitorCaseCreateType,
   }: Partial<testingSupportDummyAdminCreateNocPage3Options>): Promise<string> {
     if (!page) {
       throw new Error("Page is not defined");
     }
     const generatedName: string = Helpers.generateCaseName();
-    await page.fill(`${caseName.fieldID}`, generatedName);
+
+    if (solicitorCaseCreateType == "FL401") {
+      await page.fill(`${caseName.fieldIDFL401}`, generatedName);
+    } else if (solicitorCaseCreateType == "C100") {
+      await page.fill(`${caseName.fieldIDC100}`, generatedName);
+    } else {
+      throw new Error("Need to select a solicitorCaseCreateType");
+    }
     await page.click(
       `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
     );

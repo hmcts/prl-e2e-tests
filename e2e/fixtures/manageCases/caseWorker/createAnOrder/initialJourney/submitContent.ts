@@ -3,5 +3,5 @@ export enum SubmitContent {
   text161 = "Check the information below carefully.",
   text162 = "Case Name",
   text163 = "Change",
-  createMyDummyCase = "Create my dummy case",
+  createMyDummyCase = " Create my dummy case ",
 }
