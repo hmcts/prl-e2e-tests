@@ -5,7 +5,8 @@ import {
   c100SolicitorEvents,
   fl401JudiciaryEvents,
   fl401SolicitorEvents,
-  fl401SubmittedSolicitorEvents, UserRole
+  fl401SubmittedSolicitorEvents,
+  UserRole,
 } from "./types";
 
 export class Helpers {

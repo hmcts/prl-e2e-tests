@@ -13,7 +13,8 @@ test.describe("Draft an order tests @manageCases", (): void => {
   Order in force until no fixed end date,
   Not accessibility testing,
   Error message testing. @crossbrowserManageCases`, async ({
-    page, browser
+    page,
+    browser,
   }): Promise<void> => {
     await DraftAnOrder.draftAnOrder({
       page: page,
@@ -25,7 +26,7 @@ test.describe("Draft an order tests @manageCases", (): void => {
       yesNoToAll: false,
       howLongWillOrderBeInForce: "noEndDate",
       willAllPartiesAttendHearing: false,
-      browser: browser
+      browser: browser,
     });
   });
 
@@ -37,7 +38,8 @@ test.describe("Draft an order tests @manageCases", (): void => {
   Order in force until specific date and time,
   Not accessibility testing,
   Not error message testing. @crossbrowserManageCases`, async ({
-    page, browser
+    page,
+    browser,
   }): Promise<void> => {
     await DraftAnOrder.draftAnOrder({
       page: page,
@@ -49,7 +51,7 @@ test.describe("Draft an order tests @manageCases", (): void => {
       yesNoToAll: false,
       howLongWillOrderBeInForce: "specifiedDateAndTime",
       willAllPartiesAttendHearing: false,
-      browser: browser
+      browser: browser,
     });
   });
 
@@ -61,7 +63,8 @@ test.describe("Draft an order tests @manageCases", (): void => {
   Order in force until no fixed end date,
   Not Accessibility testing,
   Not error message testing. @crossbrowserManageCases`, async ({
-    page, browser
+    page,
+    browser,
   }): Promise<void> => {
     await DraftAnOrder.draftAnOrder({
       page: page,
@@ -73,7 +76,7 @@ test.describe("Draft an order tests @manageCases", (): void => {
       yesNoToAll: true,
       howLongWillOrderBeInForce: "noEndDate",
       willAllPartiesAttendHearing: false,
-      browser: browser
+      browser: browser,
     });
   });
 
@@ -85,7 +88,8 @@ test.describe("Draft an order tests @manageCases", (): void => {
   Order in force until specific date and time,
   Not Accessibility testing,
   Not error message testing. @crossbrowserManageCases`, async ({
-    page, browser
+    page,
+    browser,
   }): Promise<void> => {
     await DraftAnOrder.draftAnOrder({
       page: page,
@@ -97,7 +101,7 @@ test.describe("Draft an order tests @manageCases", (): void => {
       yesNoToAll: true,
       howLongWillOrderBeInForce: "specifiedDateAndTime",
       willAllPartiesAttendHearing: true,
-      browser: browser
+      browser: browser,
     });
   });
 
@@ -109,7 +113,8 @@ test.describe("Draft an order tests @manageCases", (): void => {
   Order in force until no fixed end date,
   Accessibility testing,
   Not error message testing. @accessibilityManageCases`, async ({
-    page, browser
+    page,
+    browser,
   }): Promise<void> => {
     await DraftAnOrder.draftAnOrder({
       page: page,
@@ -121,7 +126,7 @@ test.describe("Draft an order tests @manageCases", (): void => {
       yesNoToAll: false,
       howLongWillOrderBeInForce: "noEndDate",
       willAllPartiesAttendHearing: false,
-      browser: browser
+      browser: browser,
     });
   });
 });

@@ -45,7 +45,7 @@ export class EditAndApproveAnOrder {
       yesNoToAll: false,
       howLongWillOrderBeInForce: "noEndDate",
       willAllPartiesAttendHearing: true,
-      browser: browser
+      browser: browser,
     });
     // open new browser and sign in as judge user
     const newBrowser = await browser.browserType().launch();

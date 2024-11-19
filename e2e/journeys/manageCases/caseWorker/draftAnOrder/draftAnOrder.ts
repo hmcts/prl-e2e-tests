@@ -7,12 +7,8 @@ import { ParentalResponsibilityOrder } from "./ParentalResponsibilityOrder/paren
 import Config from "../../../../config";
 import config from "../../../../config";
 import { Selectors } from "../../../../common/selectors";
-import {
-  IssueAndSendToLocalCourtCallback1Page
-} from "../../../../pages/manageCases/caseWorker/issueAndSendToLocalCourtCallback1Page";
-import {
-  IssueAndSendToLocalCourtCallbackSubmitPage
-} from "../../../../pages/manageCases/caseWorker/issueAndSendToLocalCourtCallbackSubmitPage";
+import { IssueAndSendToLocalCourtCallback1Page } from "../../../../pages/manageCases/caseWorker/issueAndSendToLocalCourtCallback1Page";
+import { IssueAndSendToLocalCourtCallbackSubmitPage } from "../../../../pages/manageCases/caseWorker/issueAndSendToLocalCourtCallbackSubmitPage";
 
 interface DraftAnOrderParams {
   page: Page;
@@ -167,7 +163,7 @@ export class DraftAnOrder {
     yesNoToAll,
     howLongWillOrderBeInForce,
     willAllPartiesAttendHearing,
-    browser
+    browser,
   }: DraftAnOrderParams): Promise<string> {
     await DummyPaymentAwp.dummyPaymentAwp({
       page,
@@ -184,7 +180,11 @@ export class DraftAnOrder {
     if (caseType === "C100") {
       // C100 orders are assigned to Central Family Court by default
       // need to assign the case to Swansea court to enable a Swansea judge to edit & approve the order
-      await this.assignCaseToSwanseaCourt(browser, formattedCaseRef!!, accessibilityTest);
+      await this.assignCaseToSwanseaCourt(
+        browser,
+        formattedCaseRef!!,
+        accessibilityTest,
+      );
     }
     await Helpers.chooseEventFromDropdown(page, "Draft an order");
     switch (orderType) {
@@ -217,7 +217,11 @@ export class DraftAnOrder {
     return formattedCaseRef ? formattedCaseRef : "";
   }
 
-  private static async assignCaseToSwanseaCourt(browser: Browser, caseRef: string, accessibilityTest: boolean): Promise<void> {
+  private static async assignCaseToSwanseaCourt(
+    browser: Browser,
+    caseRef: string,
+    accessibilityTest: boolean,
+  ): Promise<void> {
     // open new browser and sign in as judge user
     const newBrowser = await browser.browserType().launch();
     const newContext: BrowserContext = await newBrowser.newContext({
@@ -249,10 +253,14 @@ export class DraftAnOrder {
       .toBeTruthy();
     await page.click(`${Selectors.a}:text-is("Assign to me")`);
     await page.locator(".alert-message").waitFor();
-    await page.click(
-      `${Selectors.a}:text-is("Issue and send to local court")`,
+    await page.click(`${Selectors.a}:text-is("Issue and send to local court")`);
+    await IssueAndSendToLocalCourtCallback1Page.issueAndSendToLocalCourtCallback1Page(
+      page,
+      accessibilityTest,
     );
-    await IssueAndSendToLocalCourtCallback1Page.issueAndSendToLocalCourtCallback1Page(page, accessibilityTest);
-    await IssueAndSendToLocalCourtCallbackSubmitPage.issueAndSendToLocalCourtCallbackSubmitPage(page, accessibilityTest);
+    await IssueAndSendToLocalCourtCallbackSubmitPage.issueAndSendToLocalCourtCallbackSubmitPage(
+      page,
+      accessibilityTest,
+    );
   }
 }
