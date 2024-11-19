@@ -15,10 +15,9 @@ module.exports = defineConfig({
   expect: { timeout: 60_000 },
   /* Report slow tests if they take longer than 5 mins */
   reportSlowTests: { max: 15, threshold: 5 * 60 * 1000 },
-  /* Opt out of parallel tests on CI. */
   workers: process.env.FUNCTIONAL_TESTS_WORKERS
     ? parseInt(process.env.FUNCTIONAL_TESTS_WORKERS)
-    : 1,
+    : 4,
   reporter: process.env.CI ? [["html"], ["list"]] : [["list"]],
   projects: [
     {
@@ -32,7 +31,8 @@ module.exports = defineConfig({
         ...devices["Desktop Chrome"],
         channel: "chrome",
         screenshot: "off",
-        trace: "retain-on-failure",
+        video: "off",
+        trace: "on-first-retry",
         javaScriptEnabled: true,
         viewport: DEFAULT_VIEWPORT,
       },
@@ -43,7 +43,8 @@ module.exports = defineConfig({
       use: {
         ...devices["Desktop Firefox"],
         screenshot: "off",
-        trace: "retain-on-failure",
+        video: "off",
+        trace: "on-first-retry",
         javaScriptEnabled: true,
         viewport: DEFAULT_VIEWPORT,
       },
@@ -54,7 +55,8 @@ module.exports = defineConfig({
       use: {
         ...devices["Desktop Safari"],
         screenshot: "off",
-        trace: "retain-on-failure",
+        video: "off",
+        trace: "on-first-retry",
         javaScriptEnabled: true,
         viewport: DEFAULT_VIEWPORT,
       },
@@ -64,8 +66,7 @@ module.exports = defineConfig({
       dependencies: ["setup"],
       use: {
         ...devices["Pixel 5"],
-        screenshot: "only-on-failure",
-        trace: "off",
+        trace: "on-first-retry",
       },
     },
     {
@@ -73,8 +74,7 @@ module.exports = defineConfig({
       dependencies: ["setup"],
       use: {
         ...devices["iPhone 12"],
-        screenshot: "only-on-failure",
-        trace: "off",
+        trace: "on-first-retry",
       },
     },
     {
@@ -83,8 +83,7 @@ module.exports = defineConfig({
       use: {
         ...devices["Desktop Edge"],
         channel: "msedge",
-        screenshot: "only-on-failure",
-        trace: "off",
+        trace: "on-first-retry",
       },
     },
   ],

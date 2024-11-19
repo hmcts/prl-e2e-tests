@@ -75,6 +75,8 @@ def secrets = [
     secret('da-citizen-case-create-courtnav-url', 'COURTNAV_CASE_URL'),
     secret('da-citizen-courtnav-add-doc-url', 'COURTNAV_DOC_URL'),
     secret('da-citizen-courtnav-subscription-key-add-doc', 'COURTNAV_SUBSCRIPTION_KEY_ADD_DOC'),
+    secret('courtadmin-username', 'CASEWORKER_USERNAME'),
+    secret('courtadmin-password', 'CASEWORKER_PASSWORD'),
   ]
 ]
 
@@ -87,7 +89,6 @@ withNightlyPipeline(type, product, component, 600) {
   env.FUNCTIONAL_TESTS_WORKERS = params.FUNCTIONAL_TESTS_WORKERS
   enableSlackNotifications(channel)
   onPR() {
-    env.FUNCTIONAL_TESTS_WORKERS = '3'
     afterAlways('DependencyCheckNightly') {
       stage('Unit tests') {
         try {
@@ -125,7 +126,6 @@ withNightlyPipeline(type, product, component, 600) {
         }
       }
       if (!params.skipCitizenTests) {
-        env.FUNCTIONAL_TESTS_WORKERS = '3'
         stage('Citizen E2E smoke tests - Chrome') {
           try {
             yarnBuilder.yarn('test:citizenSmoke')
@@ -145,7 +145,6 @@ withNightlyPipeline(type, product, component, 600) {
         }
       }
       if (!params.skipManageCasesTests) {
-        env.FUNCTIONAL_TESTS_WORKERS = '3'
         stage('Manage Cases E2E smoke tests - Chrome') {
           try {
             yarnBuilder.yarn('test:manageCasesSmoke')

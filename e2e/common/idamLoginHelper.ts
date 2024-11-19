@@ -10,7 +10,7 @@ export class IdamLoginHelper {
   };
   private static submitButton: string = 'input[value="Sign in"]';
 
-  public static async signInSolicitorUser(
+  public static async signInUser(
     page: Page,
     user: keyof typeof Config.userCredentials,
     application: string,

@@ -9,4 +9,5 @@ export enum CommonReviewContent {
   label1 = "I believe that the facts stated in this application are true",
   label2 = "This confirms that the information you are submitting is true and accurate, to the best of your knowledge. It’s known as your ‘statement of truth’.",
   submitButton = "Submit your application",
+  submitButtonPay = "Pay and submit your application",
 }

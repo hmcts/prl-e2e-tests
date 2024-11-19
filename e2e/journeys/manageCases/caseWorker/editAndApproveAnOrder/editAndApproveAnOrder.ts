@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test";
+import { Page, expect, Browser, BrowserContext } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors";
 import { Helpers } from "../../../../common/helpers";
 import { EditAndApproveAnOrder2Page } from "../../../../pages/manageCases/caseWorker/editAndApproveAnOrder/editAndApproveAnOrder2Page";
@@ -12,6 +12,7 @@ import { EditAndApproveAnOrderSubmitPage } from "../../../../pages/manageCases/c
 import { EditAndApproveAnOrderConfirmPage } from "../../../../pages/manageCases/caseWorker/editAndApproveAnOrder/editAndApproveAnOrderConfirmPage";
 import { DraftAnOrder, orderTypesMap } from "../draftAnOrder/draftAnOrder";
 import config from "../../../../config";
+import Config from "../../../../config";
 
 interface EditAndApproveOrderParams {
   page: Page;
@@ -20,6 +21,7 @@ interface EditAndApproveOrderParams {
   judeOrderAction: JudgeOrderAction;
   errorMessaging: boolean;
   accessibilityTest: boolean;
+  browser: Browser;
 }
 
 export class EditAndApproveAnOrder {
@@ -30,6 +32,7 @@ export class EditAndApproveAnOrder {
     judeOrderAction,
     errorMessaging,
     accessibilityTest,
+    browser,
   }: EditAndApproveOrderParams): Promise<void> {
     // Draft the order and get case ref to be used to find case
     const caseRef: string = await DraftAnOrder.draftAnOrder({
@@ -43,28 +46,35 @@ export class EditAndApproveAnOrder {
       howLongWillOrderBeInForce: "noEndDate",
       willAllPartiesAttendHearing: true,
     });
-    await Helpers.signOutAndGoToCase(
-      page,
-      "judge",
-      config.manageCasesBaseURL,
-      caseRef,
-      "tasks",
-    );
+    // open new browser and sign in as judge user
+    const newBrowser = await browser.browserType().launch();
+    const newContext: BrowserContext = await newBrowser.newContext({
+      storageState: Config.sessionStoragePath + "judge.json",
+    });
+    page = await newContext.newPage();
+    await Helpers.goToCase(page, config.manageCasesBaseURL, caseRef, "tasks");
     // refresh page until the task shows up - there can be some delay
-    let visible: boolean = await page
-      .locator("strong", {
-        hasText: `${orderTypesMap.get(orderType)?.journeyName}`,
-      })
-      .isVisible();
-    while (!visible) {
-      await page.reload();
-      await page.waitForTimeout(10000);
-      visible = await page
-        .locator("strong", {
-          hasText: `${orderTypesMap.get(orderType)?.journeyName}`,
-        })
-        .isVisible();
-    }
+    await expect
+      .poll(
+        async () => {
+          const visible = await page
+            .locator("strong", {
+              hasText: `${orderTypesMap.get(orderType)?.journeyName}`,
+            })
+            .isVisible();
+          if (!visible) {
+            await page.reload();
+          }
+          return visible;
+        },
+        {
+          // Allow 10s delay before retrying
+          intervals: [10_000],
+          // Allow up to a minute for it to become visible
+          timeout: 90_000,
+        },
+      )
+      .toBeTruthy();
     await page.click(`${Selectors.a}:text-is("Assign to me")`);
     await page.locator(".alert-message").waitFor();
     await page.click(

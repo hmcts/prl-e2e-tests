@@ -4,7 +4,7 @@ import config from "../config";
 import { getAccessToken } from "../common/getAccessTokenHelper";
 
 setup("Setup solicitor user", async ({ page }) => {
-  await IdamLoginHelper.signInSolicitorUser(
+  await IdamLoginHelper.signInUser(
     page,
     "solicitor",
     config.manageCasesBaseURL,
@@ -18,4 +18,16 @@ setup("Retrieve bearer token for citizen user creation", async () => {
     throw new Error("Setup failed: Unable to get bearer token.");
   }
   process.env.CITIZEN_CREATE_USER_BEARER_TOKEN = token;
+});
+
+setup("Setup judge user", async ({ page }) => {
+  await IdamLoginHelper.signInUser(page, "judge", config.manageCasesBaseURL);
+});
+
+setup("Setup caseWorker user", async ({ page }) => {
+  await IdamLoginHelper.signInUser(
+    page,
+    "caseWorker",
+    config.manageCasesBaseURL,
+  );
 });

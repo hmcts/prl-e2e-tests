@@ -6,7 +6,6 @@ import {
   fl401JudiciaryEvents,
   fl401SolicitorEvents,
   fl401SubmittedSolicitorEvents,
-  UserRole,
 } from "./types";
 
 export class Helpers {
@@ -85,7 +84,6 @@ export class Helpers {
 
   public static async signOutAndGoToCase(
     page: Page,
-    user: UserRole,
     baseURL: string,
     caseNumber: string,
     caseTab: string,

@@ -2,7 +2,6 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { CommonReviewContent } from "../../../../../fixtures/citizen/createCase/C100/reviewPages/commonReviewContent";
 import { Helpers } from "../../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { CaJourneyWrittenConsentReviewContent } from "../../../../../fixtures/citizen/createCase/C100/reviewPages/caJourneyWrittenConsentReviewContent";
 import { CaJourneyEmergencyProtectionReviewContent } from "../../../../../fixtures/citizen/createCase/C100/reviewPages/caJourneyEmergencyProtectionReviewContent";
 import {
@@ -16,11 +15,13 @@ import { MiamUrgencyType } from "../MIAM/miamUrgencyPage";
 import { MiamOtherReasonForNotAttending } from "../MIAM/miamMiamOtherPage";
 import { MiamChildProtectionConcernsType } from "../MIAM/miamChildProtectionPage";
 import { c100ChildrenSupervisionRadios } from "../safetyConcerns/unsupervisedPage";
+import { CaJourneyExistingMIAMReviewContent } from "../../../../../fixtures/citizen/createCase/C100/reviewPages/caJourneyExistingMIAMReviewContent";
 
 interface caJourneyEmergencyProtectionOptions {
   page: Page;
   accessibilityTest: boolean;
   relationshipType: CapitalizedRelationship;
+  c100YesNoNeedHelpWithFees: boolean;
 }
 
 interface checkCommonTextOptions {
@@ -37,6 +38,7 @@ interface caJourneyMIAMUrgencyOptions {
   miamOtherReasonForNotAttending: MiamOtherReasonForNotAttending; // Decides which Other reason there is for not attending
   miamChildProtectionConcernsType: MiamChildProtectionConcernsType; // Decides which child protection concern is listed.
   c100ChildrenSupervision: c100ChildrenSupervisionRadios;
+  c100YesNoNeedHelpWithFees: boolean;
 }
 
 interface caWrittenConsentJourneyOptions {
@@ -44,6 +46,15 @@ interface caWrittenConsentJourneyOptions {
   accessibilityTest: boolean;
   reviewPageTopJourneyMotherFather: reviewPageTopJourneyMotherFather;
   relationshipType: Relationship;
+  c100YesNoNeedHelpWithFees: boolean;
+}
+
+interface C100ExistingMIAMJourneyOptions {
+  page: Page;
+  accessibilityTest: boolean;
+  miamAlreadyAttended: boolean;
+  miamAttendanceType: MiamAttendanceType;
+  c100YesNoNeedHelpWithFees: boolean;
 }
 
 export type reviewPageTopJourneyMotherFather = "mother" | "father";
@@ -79,11 +90,6 @@ export class ReviewPage {
         `${Selectors.GovukHeadingM}:text-is("${CommonReviewContent.confirmationHeading}")`,
         1,
       ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.p}:text-is("${CommonReviewContent.insetText}")`,
-        1,
-      ),
       Helpers.checkGroup(
         page,
         2,
@@ -104,10 +110,13 @@ export class ReviewPage {
     // }
   }
 
-  private static async fillInFields(page: Page): Promise<void> {
+  private static async fillInFields(
+    page: Page,
+    c100YesNoNeedHelpWithFees: boolean,
+  ): Promise<void> {
     await page.check(statementOfTruthCheckbox);
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonReviewContent.submitButton}")`,
+      `${Selectors.GovukButton}:text-is("${c100YesNoNeedHelpWithFees ? CommonReviewContent.submitButton : CommonReviewContent.submitButtonPay}")`,
     );
   }
 
@@ -116,6 +125,7 @@ export class ReviewPage {
     accessibilityTest,
     reviewPageTopJourneyMotherFather,
     relationshipType,
+    c100YesNoNeedHelpWithFees,
   }: caWrittenConsentJourneyOptions): Promise<void> {
     await this.checkCommonText({
       page,
@@ -185,7 +195,7 @@ export class ReviewPage {
       ),
       Helpers.checkGroup(
         page,
-        14,
+        c100YesNoNeedHelpWithFees ? 14 : 13,
         CaJourneyWrittenConsentReviewContent,
         "dd_",
         `${Selectors.dd}`,
@@ -218,7 +228,7 @@ export class ReviewPage {
       ),
       Helpers.checkGroup(
         page,
-        81,
+        c100YesNoNeedHelpWithFees ? 81 : 80,
         CaJourneyWrittenConsentReviewContent,
         "span_",
         Selectors.Span,
@@ -542,13 +552,14 @@ export class ReviewPage {
         12,
       ),
     ]);
-    await this.fillInFields(page);
+    await this.fillInFields(page, c100YesNoNeedHelpWithFees);
   }
 
   public static async c100CAEmergencyProtection({
     page,
     accessibilityTest,
     relationshipType,
+    c100YesNoNeedHelpWithFees,
   }: caJourneyEmergencyProtectionOptions): Promise<void> {
     await this.checkCommonText({
       page,
@@ -564,7 +575,7 @@ export class ReviewPage {
       ),
       Helpers.checkGroup(
         page,
-        87,
+        86,
         CaJourneyEmergencyProtectionReviewContent,
         "dt_",
         Selectors.dt,
@@ -611,7 +622,7 @@ export class ReviewPage {
       ),
       Helpers.checkGroup(
         page,
-        14,
+        13,
         CaJourneyEmergencyProtectionReviewContent,
         "dd_",
         Selectors.dd,
@@ -659,16 +670,16 @@ export class ReviewPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.dd}:text-is("${CaJourneyEmergencyProtectionReviewContent.dd_no}")`,
-        2,
+        c100YesNoNeedHelpWithFees ? 2 : 3,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.dd}:text-is("${CaJourneyEmergencyProtectionReviewContent.dd_yes}")`,
-        38,
+        c100YesNoNeedHelpWithFees ? 38 : 37,
       ),
       Helpers.checkGroup(
         page,
-        87,
+        c100YesNoNeedHelpWithFees ? 87 : 86,
         CaJourneyEmergencyProtectionReviewContent,
         "span_",
         Selectors.Span,
@@ -899,10 +910,15 @@ export class ReviewPage {
       ),
       Helpers.checkGroup(
         page,
-        21,
+        20,
         CaJourneyEmergencyProtectionReviewContent,
         "p_",
         Selectors.p,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${CaJourneyEmergencyProtectionReviewContent.p_21} '${c100YesNoNeedHelpWithFees ? CommonReviewContent.submitButton : CommonReviewContent.submitButtonPay}' ${CaJourneyEmergencyProtectionReviewContent.p_21_2}")`,
+        1,
       ),
       Helpers.checkGroup(
         page,
@@ -982,7 +998,22 @@ export class ReviewPage {
         2,
       ),
     ]);
-    await this.fillInFields(page);
+    if (c100YesNoNeedHelpWithFees) {
+      console.log("IF STATEMENT RUN");
+      await Promise.all([
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.dt}:text-is("${CaJourneyEmergencyProtectionReviewContent.dt_87}")`,
+          1,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.dd}:text-is("${CaJourneyEmergencyProtectionReviewContent.dd_14}")`,
+          1,
+        ),
+      ]);
+    }
+    await this.fillInFields(page, c100YesNoNeedHelpWithFees);
   }
 
   public static async c100CAMIAMHearingUrgency({
@@ -993,6 +1024,7 @@ export class ReviewPage {
     miamChildProtectionConcernsType,
     miamOtherReasonForNotAttending,
     c100ChildrenSupervision,
+    c100YesNoNeedHelpWithFees,
   }: caJourneyMIAMUrgencyOptions): Promise<void> {
     await this.checkCommonText({
       page: page,
@@ -1399,6 +1431,501 @@ export class ReviewPage {
         1,
       );
     }
-    await this.fillInFields(page);
+    await this.fillInFields(page, c100YesNoNeedHelpWithFees);
+  }
+
+  public static async C100ExistingMIAMJourney({
+    page,
+    accessibilityTest,
+    miamAlreadyAttended,
+    miamAttendanceType,
+    c100YesNoNeedHelpWithFees,
+  }: C100ExistingMIAMJourneyOptions): Promise<void> {
+    await this.checkCommonText({
+      page: page,
+      accessibilityTest: accessibilityTest,
+    });
+    let ddNoCount: number;
+    if (miamAlreadyAttended) {
+      ddNoCount = c100YesNoNeedHelpWithFees ? 6 : 7;
+    } else {
+      ddNoCount =
+        miamAttendanceType === "Application made in existing proceedings"
+          ? c100YesNoNeedHelpWithFees
+            ? 8
+            : 9
+          : c100YesNoNeedHelpWithFees
+            ? 7
+            : 8;
+      await Promise.all([
+        Helpers.checkGroup(
+          page,
+          7,
+          CaJourneyExistingMIAMReviewContent,
+          "span_miam_",
+          Selectors.Span,
+        ),
+        Helpers.checkGroup(
+          page,
+          7,
+          CaJourneyExistingMIAMReviewContent,
+          "dt_miam_",
+          Selectors.dt,
+        ),
+        Helpers.checkGroup(
+          page,
+          26,
+          CaJourneyExistingMIAMReviewContent,
+          "li_miam_",
+          Selectors.li,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.h2}:has-text("${CaJourneyExistingMIAMReviewContent.h2_miamExemption}")`,
+          1,
+        ),
+      ]);
+    }
+    await Promise.all([
+      Helpers.checkGroupHasText(
+        page,
+        21,
+        CaJourneyExistingMIAMReviewContent,
+        "h2_",
+        Selectors.h2,
+      ),
+      Helpers.checkGroup(
+        page,
+        c100YesNoNeedHelpWithFees ? 87 : 86,
+        CaJourneyExistingMIAMReviewContent,
+        "dt_",
+        Selectors.dt,
+      ),
+      Helpers.checkGroup(
+        page,
+        c100YesNoNeedHelpWithFees ? 18 : 17,
+        CaJourneyExistingMIAMReviewContent,
+        "dd_",
+        Selectors.dd,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.h2}:has-text("${CaJourneyExistingMIAMReviewContent.h2_safetyConcern}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.h2}:has-text("${CaJourneyExistingMIAMReviewContent.h2_SafetyConcernsChildren}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dd}:text-is("${CaJourneyExistingMIAMReviewContent.dd_dontKnow_other}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dd}:text-is("${CaJourneyExistingMIAMReviewContent.dd_other}")`,
+        3,
+      ),
+      // Using Selectors.dt for dt_ prefixed items in CaJourneyExistingMIAMReviewContent
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dt}:text-is("${CaJourneyExistingMIAMReviewContent.dt_whatTypeOfBehaviourHaveTheChildrenExperiencedOrAreAtRiskOfExperiencing}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dt}:text-is("${CaJourneyExistingMIAMReviewContent.dt_haveTheyChangedTheirName}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dt}:text-is("${CaJourneyExistingMIAMReviewContent.dt_placeOfBirth}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dt}:text-is("${CaJourneyExistingMIAMReviewContent.dt_relationshipToExampletextExampletext}")`,
+        3,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dt}:text-is("${CaJourneyExistingMIAMReviewContent.dt_fullName}")`,
+        4,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dt}:text-is("${CaJourneyExistingMIAMReviewContent.dt_dateOfBirth}")`,
+        4,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dt}:text-is("${CaJourneyExistingMIAMReviewContent.dt_gender}")`,
+        4,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dt}:text-is("${CaJourneyExistingMIAMReviewContent.dt_addressDetails}")`,
+        3,
+      ),
+      // Using Selectors.dd for dd_ prefixed items in CaJourneyExistingMIAMReviewContent
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dd}:text-is("${CaJourneyExistingMIAMReviewContent.dd_specialGuardian}")`,
+        3,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dd}:text-is("${CaJourneyExistingMIAMReviewContent.dd_otherPersonFirstNameOtherPersonLastName}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dd}:text-is("${CaJourneyExistingMIAMReviewContent.dd_dontKnow}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dd}:text-is("${CaJourneyExistingMIAMReviewContent.dd_swansea}")`,
+        3,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dd}:text-is("${CaJourneyExistingMIAMReviewContent.dd_exampletextExampletext}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dd}:text-is("${CaJourneyExistingMIAMReviewContent.dd_no}")`,
+        ddNoCount,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.dd}:text-is("${CaJourneyExistingMIAMReviewContent.dd_yes}")`,
+        c100YesNoNeedHelpWithFees ? 30 : 29,
+      ),
+      Helpers.checkGroup(
+        page,
+        c100YesNoNeedHelpWithFees ? 87 : 86,
+        CaJourneyExistingMIAMReviewContent,
+        "span_",
+        Selectors.Span,
+      ),
+      // Using Selectors.Span for span_ prefixed items in CaJourneyExistingMIAMReviewContent
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${CaJourneyExistingMIAMReviewContent.span_whatTypeOfBehaviourHaveTheChildrenExperiencedOrAreAtRiskOfExperiencing}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${CaJourneyExistingMIAMReviewContent.span_haveTheyChangedTheirName}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${CaJourneyExistingMIAMReviewContent.span_fullName}")`,
+        4,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${CaJourneyExistingMIAMReviewContent.span_dateOfBirth}")`,
+        4,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${CaJourneyExistingMIAMReviewContent.span_gender}")`,
+        4,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${CaJourneyExistingMIAMReviewContent.span_placeOfBirth}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${CaJourneyExistingMIAMReviewContent.span_relationshipToExampletextExampletext}")`,
+        3,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${CaJourneyExistingMIAMReviewContent.span_addressDetails}")`,
+        3,
+      ),
+      Helpers.checkGroup(
+        page,
+        80,
+        CaJourneyExistingMIAMReviewContent,
+        "li_",
+        Selectors.li,
+      ),
+      // Using Selectors.li for li_ prefixed items
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${CaJourneyExistingMIAMReviewContent.li_somethingElse}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${CaJourneyExistingMIAMReviewContent.li_physicalAbuse}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${CaJourneyExistingMIAMReviewContent.li_psychologicalAbuse}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${CaJourneyExistingMIAMReviewContent.li_emotionalAbuse}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${CaJourneyExistingMIAMReviewContent.li_sexualAbuse}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${CaJourneyExistingMIAMReviewContent.li_financialAbuse}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${CaJourneyExistingMIAMReviewContent.li_returningTheChildrenToYourCare}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${CaJourneyExistingMIAMReviewContent.li_aSpecificHolidayOrArrangement}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${CaJourneyExistingMIAMReviewContent.li_whatSchoolTheChildrenWillGoTo}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${CaJourneyExistingMIAMReviewContent.li_aReligiousIssue}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${CaJourneyExistingMIAMReviewContent.li_medicalTreatment}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${CaJourneyExistingMIAMReviewContent.li_changingTheChildrensNamesOrSurname}")`,
+        4,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${CaJourneyExistingMIAMReviewContent.li_allowingMedicalTreatmentToBeCarriedOutOnTheChildren}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${CaJourneyExistingMIAMReviewContent.li_decideWhoTheChildrenLiveWithAndWhen}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${CaJourneyExistingMIAMReviewContent.li_decideHowMuchTimeTheChildrenSpendWithEachPerson}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${CaJourneyExistingMIAMReviewContent.li_takingTheChildrenOnHoliday}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${CaJourneyExistingMIAMReviewContent.li_relocatingTheChildrenToADifferentAreaInEnglandAndWales}")`,
+        4,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${CaJourneyExistingMIAMReviewContent.li_relocatingTheChildrenOutsideOfEnglandAndWalesincludingScotlandAndNorthernIreland}")`,
+        4,
+      ),
+      Helpers.checkGroup(
+        page,
+        20,
+        CaJourneyExistingMIAMReviewContent,
+        "p_",
+        Selectors.p,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${CaJourneyExistingMIAMReviewContent.p_21} '${c100YesNoNeedHelpWithFees ? CommonReviewContent.submitButton : CommonReviewContent.submitButtonPay}' ${CaJourneyExistingMIAMReviewContent.p_21_2}")`,
+        1,
+      ),
+      // Using Selectors.p for p_ prefixed items
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${CaJourneyExistingMIAMReviewContent.p_loremIpsumStartDetails}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${CaJourneyExistingMIAMReviewContent.p_10July2014}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${CaJourneyExistingMIAMReviewContent.p_automatedOccupationOrderCourt}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${CaJourneyExistingMIAMReviewContent.p_10July2018}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${CaJourneyExistingMIAMReviewContent.p_18August2015}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${CaJourneyExistingMIAMReviewContent.p_18August2018}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${CaJourneyExistingMIAMReviewContent.p_automatedChildAbductionOrderCourt}")`,
+        3,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${CaJourneyExistingMIAMReviewContent.p_10June2015}")`,
+        3,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${CaJourneyExistingMIAMReviewContent.p_10June2017}")`,
+        3,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${CaJourneyExistingMIAMReviewContent.p_bs19f99999}")`,
+        16,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${CaJourneyExistingMIAMReviewContent.p_10July2016}")`,
+        5,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${CaJourneyExistingMIAMReviewContent.p_yes}")`,
+        36,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${CaJourneyExistingMIAMReviewContent.p_10July2017}")`,
+        6,
+      ),
+      Helpers.checkGroup(
+        page,
+        10,
+        CaJourneyExistingMIAMReviewContent,
+        "h4_",
+        Selectors.h4,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.h4}:text-is("${CaJourneyExistingMIAMReviewContent.h4_details}")`,
+        21,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.h4}:text-is("${CaJourneyExistingMIAMReviewContent.h4_whichCourtIssuedTheOrderoptional}")`,
+        16,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.h4}:text-is("${CaJourneyExistingMIAMReviewContent.h4_caseNumberoptional}")`,
+        16,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.h4}:text-is("${CaJourneyExistingMIAMReviewContent.h4_whatDateWasItMadeoptional}")`,
+        16,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.h4}:text-is("${CaJourneyExistingMIAMReviewContent.h4_isThisACurrentOrderoptional}")`,
+        16,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.h4}:text-is("${CaJourneyExistingMIAMReviewContent.h4_whatDateDidItEndoptional}")`,
+        16,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.h4}:text-is("${CaJourneyExistingMIAMReviewContent.h4_doYouHaveACopyOfTheOrderoptional}")`,
+        16,
+      ),
+      Helpers.checkGroup(
+        page,
+        11,
+        CaJourneyExistingMIAMReviewContent,
+        "div_",
+        Selectors.div,
+      ),
+      // Using Selectors.div for div_ prefixed items
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.div}:text-is("${CaJourneyExistingMIAMReviewContent.div_automatedEmotionalSeekHelpDetails}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.div}:text-is("${CaJourneyExistingMIAMReviewContent.div_yes}")`,
+        11,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.div}:text-is("${CaJourneyExistingMIAMReviewContent.div_automatedPhysicalSeekHelpDetails}")`,
+        2,
+      ),
+    ]);
+    switch (miamAttendanceType) {
+      case "Previous 4 months":
+        await Helpers.checkGroup(
+          page,
+          3,
+          CaJourneyExistingMIAMReviewContent,
+          "b_",
+          Selectors.b,
+        );
+        break;
+      case "Application made in existing proceedings":
+        await Promise.all([
+          Helpers.checkVisibleAndPresent(
+            page,
+            `${Selectors.dd}:text-is("${CaJourneyExistingMIAMReviewContent.dd_ExistingProceedings}")`,
+            1,
+          ),
+          Helpers.checkVisibleAndPresent(
+            page,
+            `${Selectors.dd}:text-is("${CaJourneyExistingMIAMReviewContent.dd_attendanceDetails}")`,
+            1,
+          ),
+          Helpers.checkGroup(
+            page,
+            2,
+            CaJourneyExistingMIAMReviewContent,
+            "b_existingProceedings_",
+            Selectors.b,
+          ),
+        ]);
+    }
+    await this.fillInFields(page, c100YesNoNeedHelpWithFees);
   }
 }
