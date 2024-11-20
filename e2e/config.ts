@@ -23,6 +23,10 @@ export class Config {
       email: process.env.CASEWORKER_USERNAME as string,
       password: process.env.CASEWORKER_PASSWORD as string,
     },
+    courtAdminStoke: {
+      email: process.env.COURT_ADMIN_STOKE_USERNAME as string,
+      password: process.env.COURT_ADMIN_STOKE_PASSWORD as string,
+    },
   };
 
   public static readonly sessionStoragePath: string = path.join(
