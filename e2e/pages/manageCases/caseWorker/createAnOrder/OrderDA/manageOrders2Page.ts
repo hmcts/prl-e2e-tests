@@ -4,9 +4,7 @@ import { ManageOrders1Content } from "../../../../../fixtures/manageCases/caseWo
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-import {
-  ManageOrders2Content
-} from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders2Content";
+import { ManageOrders2Content } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders2Content";
 
 interface ManageOrders2PageOptions {
   page: Page;
@@ -41,20 +39,20 @@ export class ManageOrders2Page {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.h2}:text-is("${ManageOrders2Content.h2}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukInsetText}:text-is("${ManageOrders2Content.govUkInsetText}")`,
-        1
+        1,
       ),
       Helpers.checkGroup(
         page,
         17,
         ManageOrders2Content,
         "formLabel",
-        Selectors.GovukFormLabel
-      )
+        Selectors.GovukFormLabel,
+      ),
     ]);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
