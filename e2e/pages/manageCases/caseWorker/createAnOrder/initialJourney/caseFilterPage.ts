@@ -4,6 +4,10 @@ import { CaseFilterContent } from "../../../../../fixtures/manageCases/caseWorke
 import { Selectors } from "../../../../../common/selectors";
 import { Helpers } from "../../../../../common/helpers";
 
+interface CaseFilterPageOptions {
+  page: Page;
+  accessibilityTest: boolean;
+}
 enum UniqueSelectors {
   jurisdiction = "#cc-jurisdiction",
   caseType = "#cc-case-type",
@@ -11,21 +15,23 @@ enum UniqueSelectors {
 }
 
 export class CaseFilterPage {
-  public static async caseFilterPage(
-    page: Page,
-    errorMessaging: boolean,
-    accessibilityTest: boolean,
-  ): Promise<void> {
-    await this.checkPageLoads(page, accessibilityTest);
+  public static async caseFilterPage({
+    page,
+    accessibilityTest,
+  }: CaseFilterPageOptions): Promise<void> {
+    await this.checkPageLoads({ page, accessibilityTest });
     await this.fillInFields(page);
   }
 
-  private static async checkPageLoads(
-    page: Page,
-    accessibilityTest: boolean,
-  ): Promise<void> {
+  private static async checkPageLoads({
+    page,
+    accessibilityTest,
+  }: Partial<CaseFilterPageOptions>): Promise<void> {
+    if (!page) {
+      throw new Error("Page is not defined");
+    }
     const pageTitle = page.locator(
-      `${Selectors.GovukHeadingXL}:text-is(${CaseFilterContent.pageTitle})`,
+      `${Selectors.h1}:text-is("${CaseFilterContent.pageTitle}")`,
     );
     await pageTitle.waitFor();
     await Helpers.checkGroup(
@@ -51,7 +57,7 @@ export class CaseFilterPage {
     );
     await page.selectOption(UniqueSelectors.event, CaseFilterContent.event);
     await page.click(
-      `${Selectors.button}:text-is(${CaseFilterContent.startButton})`,
+      `${Selectors.button}:text-is("${CaseFilterContent.startButton}")`,
     );
   }
 }
