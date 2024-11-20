@@ -1,3 +1,1 @@
-export enum ManageOrders19Content {
-
-}
+export enum ManageOrders19Content {}
