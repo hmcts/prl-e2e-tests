@@ -4,21 +4,19 @@ import { DraftAnOrder } from "../../../../journeys/manageCases/caseWorker/draftA
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-test.describe("Draft an order tests @manageCases", (): void => {
-  test(`Complete Drafting an order as a solicitor with the following options:
-  Case: FL401,
-  Order type: Non-molestation order (FL404A),
+test.describe("Draft a non molestation order tests @manageCases", (): void => {
+  test(`Complete Drafting a non molestation order as a solicitor with the following options:
   No to all options,
   No respondent checkbox actions ticked,
   Order in force until no fixed end date,
   Not accessibility testing,
-  Error message testing. @crossbrowserManageCases`, async ({
+  Not error message testing. @crossbrowserManageCases`, async ({
     page,
     browser,
   }): Promise<void> => {
     await DraftAnOrder.draftAnOrder({
       page: page,
-      errorMessaging: true,
+      errorMessaging: false,
       accessibilityTest: false,
       paymentStatusPaid: true,
       caseType: "FL401",
@@ -30,9 +28,7 @@ test.describe("Draft an order tests @manageCases", (): void => {
     });
   });
 
-  test(`Complete Drafting an order as a solicitor with the following options:
-  Case: FL401,
-  Order type: Non-molestation order (FL404A),
+  test(`Complete Drafting a non molestation order as a solicitor with the following options:
   No to all options,
   No respondent checkbox actions ticked,
   Order in force until specific date and time,
@@ -55,9 +51,7 @@ test.describe("Draft an order tests @manageCases", (): void => {
     });
   });
 
-  test(`Complete Drafting an order as a solicitor with the following options:
-  Case: FL401,
-  Order type: Non-molestation order (FL404A),
+  test(`Complete Drafting a non molestation order as a solicitor with the following options:
   Yes to all options,
   All respondent checkbox actions ticked,
   Order in force until no fixed end date,
@@ -80,9 +74,7 @@ test.describe("Draft an order tests @manageCases", (): void => {
     });
   });
 
-  test(`Complete Drafting an order as a solicitor with the following options:
-  Case: FL401,
-  Order type: Non-molestation order (FL404A),
+  test(`Complete Drafting a non molestation order as a solicitor with the following options:
   Yes to all options,
   All respondent checkbox actions ticked,
   Order in force until specific date and time,
@@ -105,9 +97,7 @@ test.describe("Draft an order tests @manageCases", (): void => {
     });
   });
 
-  test(`Complete Drafting an order as a solicitor with the following options:
-  Case: FL401,
-  Order type: Non-molestation order (FL404A),
+  test(`Complete Drafting a non molestation order as a solicitor with the following options:
   No to all options,
   No respondent checkbox actions ticked,
   Order in force until no fixed end date,

@@ -7,8 +7,8 @@ import { ParentalResponsibilityOrder } from "./ParentalResponsibilityOrder/paren
 import Config from "../../../../config";
 import config from "../../../../config";
 import { Selectors } from "../../../../common/selectors";
-import { IssueAndSendToLocalCourtCallback1Page } from "../../../../pages/manageCases/caseWorker/issueAndSendToLocalCourtCallback1Page";
-import { IssueAndSendToLocalCourtCallbackSubmitPage } from "../../../../pages/manageCases/caseWorker/issueAndSendToLocalCourtCallbackSubmitPage";
+import { IssueAndSendToLocalCourtCallback1Page } from "../../../../pages/manageCases/caseWorker/draftAnOrder/issueAndSendToLocalCourt/issueAndSendToLocalCourtCallback1Page";
+import { IssueAndSendToLocalCourtCallbackSubmitPage } from "../../../../pages/manageCases/caseWorker/draftAnOrder/issueAndSendToLocalCourt/issueAndSendToLocalCourtCallbackSubmitPage";
 
 interface DraftAnOrderParams {
   page: Page;
@@ -179,7 +179,7 @@ export class DraftAnOrder {
     const formattedCaseRef: string | undefined = unformattedCaseRef?.slice(12);
     if (caseType === "C100") {
       // C100 orders are assigned to Central Family Court by default
-      // need to assign the case to Swansea court to enable a Swansea judge to edit & approve the order
+      // need to assign the case to Swansea court if we want to allow a Swansea judge to edit & approve the order
       await this.assignCaseToSwanseaCourt(
         browser,
         formattedCaseRef!!,
@@ -253,7 +253,7 @@ export class DraftAnOrder {
       .toBeTruthy();
     await page.click(`${Selectors.a}:text-is("Assign to me")`);
     await page.locator(".alert-message").waitFor();
-    await page.click(`${Selectors.a}:text-is("Issue and send to local court")`);
+    await page.click(`${Selectors.a}:text-is("Issue and send to local Court")`);
     await IssueAndSendToLocalCourtCallback1Page.issueAndSendToLocalCourtCallback1Page(
       page,
       accessibilityTest,

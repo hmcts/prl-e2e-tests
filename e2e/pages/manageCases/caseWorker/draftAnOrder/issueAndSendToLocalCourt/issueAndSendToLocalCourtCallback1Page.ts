@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import AccessibilityTestHelper from "../../../common/accessibilityTestHelper";
-import { Selectors } from "../../../common/selectors";
-import { CommonStaticText } from "../../../common/commonStaticText";
-import { Helpers } from "../../../common/helpers";
-import { IssueAndSendToLocalCourtCallback1Content } from "../../../fixtures/manageCases/caseWorker/issueAndSendToLocalCourtCallback1Content";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { Selectors } from "../../../../../common/selectors";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { Helpers } from "../../../../../common/helpers";
+import { IssueAndSendToLocalCourtCallback1Content } from "../../../../../fixtures/manageCases/caseWorker/draftAnOrder/issueAndSendToLocalCourt/issueAndSendToLocalCourtCallback1Content";
 
 export class IssueAndSendToLocalCourtCallback1Page {
   public static async issueAndSendToLocalCourtCallback1Page(

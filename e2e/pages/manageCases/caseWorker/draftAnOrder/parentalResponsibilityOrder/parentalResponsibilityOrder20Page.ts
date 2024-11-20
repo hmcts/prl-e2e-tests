@@ -40,21 +40,21 @@ export class ParentalResponsibilityOrder20Page {
     await Promise.all([
       await Helpers.checkGroup(
         pdfPage,
-        24,
+        22,
         ParentalResponsibilityOrder20Content,
         "welshSpan",
         `${Selectors.Span}`,
       ),
       await Helpers.checkVisibleAndPresent(
         pdfPage,
-        `${Selectors.Span}:text-is("${this.formatDate()}'")`,
+        `${Selectors.Span}:text-is("${this.formatDate()}")`,
         1,
       ),
     ]);
     if (yesNoToAll) {
       await Helpers.checkGroup(
         pdfPage,
-        19,
+        20,
         ParentalResponsibilityOrder20Content,
         "welshYesToAllSpan",
         `${Selectors.Span}`,
@@ -96,7 +96,7 @@ export class ParentalResponsibilityOrder20Page {
     if (yesNoToAll) {
       await Helpers.checkGroup(
         pdfPage,
-        19,
+        20,
         ParentalResponsibilityOrder20Content,
         "yesToAllSpan",
         `${Selectors.Span}`,

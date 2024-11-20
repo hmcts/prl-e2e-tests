@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../common/selectors";
-import { CommonStaticText } from "../../../common/commonStaticText";
-import { Helpers } from "../../../common/helpers";
-import AccessibilityTestHelper from "../../../common/accessibilityTestHelper";
-import { IssueAndSendToLocalCourtCallbackSubmitContent } from "../../../fixtures/manageCases/caseWorker/issueAndSendToLocalCourtCallbackSubmitContent";
+import { Selectors } from "../../../../../common/selectors";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { Helpers } from "../../../../../common/helpers";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { IssueAndSendToLocalCourtCallbackSubmitContent } from "../../../../../fixtures/manageCases/caseWorker/draftAnOrder/issueAndSendToLocalCourt/issueAndSendToLocalCourtCallbackSubmitContent";
 
 export class IssueAndSendToLocalCourtCallbackSubmitPage {
   public static async issueAndSendToLocalCourtCallbackSubmitPage(
@@ -49,7 +49,7 @@ export class IssueAndSendToLocalCourtCallbackSubmitPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+        `${Selectors.button}:text-is("${CommonStaticText.submit}")`,
         1,
       ),
     ]);

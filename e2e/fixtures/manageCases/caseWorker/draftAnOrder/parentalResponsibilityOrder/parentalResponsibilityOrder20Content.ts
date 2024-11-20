@@ -15,18 +15,16 @@ export enum ParentalResponsibilityOrder20Content {
   welshSpan10 = "gyda Chynghorydd Cyfreithiol yr Ynadon Test legal adviser name.",
   welshSpan11 = "Plant yn yr achos",
   welshSpan12 = "Test preamble",
-  welshSpan13 = "Trwy gydsyniad",
-  welshSpan14 = "Trwy gydsyniad",
-  welshSpan15 = "Test parent name yn cael cyfrifoldeb rhiant am y plant.",
-  welshSpan16 = "Test directions",
-  welshSpan17 = "Hysbysiad",
-  welshSpan18 = "Dim ond yn yr amgylchiadau canlynol y gellir terfynu gorchymyn cyfrifoldeb rhiant:",
-  welshSpan19 = "a)",
-  welshSpan20 = "Pan fydd y plentyn yn cyrraedd 18 oed",
-  welshSpan21 = "b)",
-  welshSpan22 = "Trwy orchymyn a wnaed gan y Llys:",
-  welshSpan23 = "yn dilyn cais gan unrhyw un sydd â chyfrifoldeb rhiant",
-  welshSpan24 = "gyda chaniatâd y Llys ar gais y plentyn",
+  welshSpan13 = "Test parent name yn cael cyfrifoldeb rhiant am y plant.",
+  welshSpan14 = "Test directions",
+  welshSpan15 = "Hysbysiad",
+  welshSpan16 = "Dim ond yn yr amgylchiadau canlynol y gellir terfynu gorchymyn cyfrifoldeb rhiant:",
+  welshSpan17 = "a)",
+  welshSpan18 = "Pan fydd y plentyn yn cyrraedd 18 oed",
+  welshSpan19 = "b)",
+  welshSpan20 = "Trwy orchymyn a wnaed gan y Llys:",
+  welshSpan21 = "yn dilyn cais gan unrhyw un sydd â chyfrifoldeb rhiant",
+  welshSpan22 = "gyda chaniatâd y Llys ar gais y plentyn",
 
   // no to all
   welshNoToAllSpan1 = "Enw’r",
@@ -60,6 +58,7 @@ export enum ParentalResponsibilityOrder20Content {
   welshYesToAllSpan17 = "Selena Lees",
   welshYesToAllSpan18 = "Benyw",
   welshYesToAllSpan19 = "13 Feb 2018",
+  welshYesToAllSpan20 = "Trwy gydsyniad",
 
   // ENGLISH
   span1 = "In the Family Court sitting at:",
@@ -114,4 +113,5 @@ export enum ParentalResponsibilityOrder20Content {
   yesToAllSpan17 = "Selena Lees",
   yesToAllSpan18 = "Female",
   yesToAllSpan19 = "13 Feb 2018",
+  yesToAllSpan20 = "By consent",
 }

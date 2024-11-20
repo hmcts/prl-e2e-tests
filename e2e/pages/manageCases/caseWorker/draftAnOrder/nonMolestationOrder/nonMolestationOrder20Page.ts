@@ -57,6 +57,7 @@ export class NonMolestationOrder20Page {
   ): Promise<void> {
     const pdfPage: Page = await DraftAnOrderPdfHelper.openMediaViewer(
       page,
+      "nonMolestation",
       "Welsh",
     );
     await Helpers.checkVisibleAndPresent(
@@ -201,6 +202,7 @@ export class NonMolestationOrder20Page {
   ): Promise<void> {
     const pdfPage: Page = await DraftAnOrderPdfHelper.openMediaViewer(
       page,
+      "nonMolestation",
       "English",
     );
     await Helpers.checkVisibleAndPresent(
