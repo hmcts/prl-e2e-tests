@@ -38,18 +38,18 @@ export class TestingSupportDummyAdminCreateNoc2Page {
       throw new Error("Page is not defined");
     }
     const pageTitle = page.locator(
-      `${Selectors.GovukHeadingXL}:text-is(${TestingSupportDummyAdminCreateNoc2Content.pageTitle})`,
+      `${Selectors.GovukHeadingL}:text-is("${TestingSupportDummyAdminCreateNoc2Content.pageTitle}")`,
     );
     await pageTitle.waitFor();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h2}:text-is(${TestingSupportDummyAdminCreateNoc2Content.h2})`,
+        `${Selectors.h2}:text-is("${TestingSupportDummyAdminCreateNoc2Content.h2}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is(${TestingSupportDummyAdminCreateNoc2Content.p})`,
+        `${Selectors.p}:text-is("${TestingSupportDummyAdminCreateNoc2Content.p}")`,
         1,
       ),
       Helpers.checkGroup(
@@ -74,16 +74,16 @@ export class TestingSupportDummyAdminCreateNoc2Page {
     }
     switch (solicitorCaseCreateType) {
       case "C100":
-        await page.check(UniqueSelectors.c100);
+        await page.click(UniqueSelectors.c100);
         break;
       case "FL401":
-        await page.check(UniqueSelectors.fl401);
+        await page.click(UniqueSelectors.fl401);
         break;
       default:
         throw new Error("Invalid solicitorCaseCreateType");
     }
     await page.click(
-      `${Selectors.button}:text-is(${CommonStaticText.continue})`,
+      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
     );
   }
 }

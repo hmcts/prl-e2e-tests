@@ -1,5 +1,5 @@
 export enum CaseFilterContent {
-  pageTitle = "Create Case",
+  pageTitle = " Create Case ",
   formLabel1 = "Jurisdiction",
   formLabel2 = "Case type",
   formLabel3 = "Event",
