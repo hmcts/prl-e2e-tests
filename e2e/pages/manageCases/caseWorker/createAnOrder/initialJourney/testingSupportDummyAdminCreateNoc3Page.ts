@@ -35,7 +35,7 @@ export class TestingSupportDummyAdminCreateNoc3Page {
       accessibilityTest,
       solicitorCaseCreateType,
     });
-    return await this.fillInFields({ page,  solicitorCaseCreateType});
+    return await this.fillInFields({ page, solicitorCaseCreateType });
   }
 
   private static async checkPageLoads({

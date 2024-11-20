@@ -1,6 +1,6 @@
 import { test } from "@playwright/test";
 import Config from "../../../../config";
-import { C100CreateAnOrder } from "../../../../journeys/manageCases/caseWorker/createAnOrder/C100";
+import { FL401CreateAnOrder } from "../../../../journeys/manageCases/caseWorker/createAnOrder/FL401";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
@@ -10,10 +10,10 @@ test.describe("Create an order tests @manageCases", (): void => {
   Not accessibility testing. @crossbrowserManageCases`, async ({
     page,
   }): Promise<void> => {
-    await C100CreateAnOrder.c100CreateAnOrder({
+    await FL401CreateAnOrder.fL401CreateAnOrder({
       page: page,
       accessibilityTest: false,
-      solicitorCaseCreateType: "C100",
+      solicitorCaseCreateType: "FL401",
     });
   });
 });
