@@ -8,11 +8,18 @@ import { CaseListPage } from "../../../../pages/manageCases/caseList/caseListPag
 import { CaseDetailsSummaryPage } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/caseDetailsSummaryPage";
 import { ManageOrders1Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders1Page";
 import { ManageOrders2Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders2Page";
+import { ManageOrders5Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders5Page";
+import {
+  howLongWillOrderBeInForce,
+  ManageOrders12Page,
+} from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders12Page";
 
 interface C100Params {
   page: Page;
   accessibilityTest: boolean;
   solicitorCaseCreateType: solicitorCaseCreateType;
+  yesNoManageOrders: boolean;
+  howLongWillOrderBeInForce: howLongWillOrderBeInForce;
 }
 
 export class FL401CreateAnOrder {
@@ -20,6 +27,8 @@ export class FL401CreateAnOrder {
     page,
     accessibilityTest,
     solicitorCaseCreateType,
+    howLongWillOrderBeInForce,
+    yesNoManageOrders,
   }: C100Params): Promise<void> {
     await CaseListPage.navigateToCreateCasePage(page);
     await CaseFilterPage.caseFilterPage({ page, accessibilityTest });
@@ -44,6 +53,17 @@ export class FL401CreateAnOrder {
     await ManageOrders2Page.manageOrders2Page({
       page,
       accessibilityTest,
+    });
+    await ManageOrders5Page.manageOrders5Page({
+      page,
+      accessibilityTest,
+      yesNoManageOrders,
+    });
+    await ManageOrders12Page.manageOrders12Page({
+      page,
+      accessibilityTest,
+      yesNoManageOrders,
+      howLongWillOrderBeInForce,
     });
   }
 }
