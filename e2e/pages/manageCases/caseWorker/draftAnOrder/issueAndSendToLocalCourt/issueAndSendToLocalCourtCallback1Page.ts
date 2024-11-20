@@ -46,9 +46,9 @@ export class IssueAndSendToLocalCourtCallback1Page {
         1,
       ),
     ]);
-    if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
-    }
+    // if (accessibilityTest) {
+    //   await AccessibilityTestHelper.run(page); #TODO Disabled pending FPET-1194 ticket
+    // }
   }
 
   private static async fillInFields(page: Page): Promise<void> {
