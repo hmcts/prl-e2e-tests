@@ -21,8 +21,8 @@ export enum CaseDetailsSummaryContent {
   text1611 = "Other proceedings",
   text1612 = "There are no other proceedings",
   text16DateSubmitted = "Date submitted to HMCTS",
-  text16TypeOfApplication = "Type of application", // 2 instances
-  text16CaseStatus = "Case status", // 2 instances
+  text16TypeOfApplication = "Type of application",
+  text16CaseStatus = "Case status",
   manageOrders = "Manage orders",
   go = "Go",
 }

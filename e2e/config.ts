@@ -36,9 +36,6 @@ export class Config {
   public static readonly manageCasesBaseURL: string =
     process.env.MANAGE_CASES_BASE_URL ||
     "https://manage-case.aat.platform.hmcts.net/cases";
-  public static readonly caseWorkerManageCasesBaseURL: string =
-    process.env.MANAGE_CASES_BASE_URL ||
-    "https://manage-case.aat.platform.hmcts.net/work";
 
   public static readonly testFile: string = path.resolve(
     __dirname,
