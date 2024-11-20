@@ -47,7 +47,7 @@ test.describe("Draft a parental responsibility order tests @manageCases", (): vo
 
   test(`Complete Drafting a parental responsibility as a solicitor with the following options:
   No to all options,
-  Not accessibility testing. @crossbrowserManageCases`, async ({
+  Accessibility testing. @crossbrowserManageCases`, async ({
     page,
     browser,
   }): Promise<void> => {
