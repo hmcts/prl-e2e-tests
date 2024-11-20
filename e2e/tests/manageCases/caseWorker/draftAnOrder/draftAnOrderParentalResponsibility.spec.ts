@@ -5,6 +5,9 @@ import { DraftAnOrder } from "../../../../journeys/manageCases/caseWorker/draftA
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
 test.describe("Draft a parental responsibility order tests @manageCases", (): void => {
+  // Triple timeout for these slow tests
+  test.slow();
+
   test(`Complete Drafting a parental responsibility as a solicitor with the following options:
   No to all options,
   Not accessibility testing. @crossbrowserManageCases`, async ({
