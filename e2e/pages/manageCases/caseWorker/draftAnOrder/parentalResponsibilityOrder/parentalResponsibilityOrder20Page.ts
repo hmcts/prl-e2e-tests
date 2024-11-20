@@ -38,14 +38,14 @@ export class ParentalResponsibilityOrder20Page {
       "Welsh",
     );
     await Promise.all([
-      await Helpers.checkGroup(
+      Helpers.checkGroup(
         pdfPage,
         22,
         ParentalResponsibilityOrder20Content,
         "welshSpan",
         `${Selectors.Span}`,
       ),
-      await Helpers.checkVisibleAndPresent(
+      Helpers.checkVisibleAndPresent(
         pdfPage,
         `${Selectors.Span}:text-is("${this.formatDate()}")`,
         1,
@@ -54,10 +54,15 @@ export class ParentalResponsibilityOrder20Page {
     if (yesNoToAll) {
       await Helpers.checkGroup(
         pdfPage,
-        20,
+        16,
         ParentalResponsibilityOrder20Content,
         "welshYesToAllSpan",
         `${Selectors.Span}`,
+      );
+      await Helpers.checkVisibleAndPresent(
+        pdfPage,
+        `${Selectors.Span}:text-is("${ParentalResponsibilityOrder20Content.welshYesToAllRepeatedSpan}")`,
+        4,
       );
     } else {
       await Helpers.checkGroup(
@@ -96,10 +101,15 @@ export class ParentalResponsibilityOrder20Page {
     if (yesNoToAll) {
       await Helpers.checkGroup(
         pdfPage,
-        20,
+        16,
         ParentalResponsibilityOrder20Content,
         "yesToAllSpan",
         `${Selectors.Span}`,
+      );
+      await Helpers.checkVisibleAndPresent(
+        pdfPage,
+        `${Selectors.Span}:text-is("${ParentalResponsibilityOrder20Content.yesToAllRepeatedSpan}")`,
+        4,
       );
     } else {
       await Helpers.checkGroup(
