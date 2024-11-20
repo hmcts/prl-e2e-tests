@@ -2,19 +2,19 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { SubmitContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/manageOrders/SubmitContent";
+import { ManageOrders10Content } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderCA/manageOrders10Content";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 
-interface submitPageOptions {
+interface manageOrders10PageOptions {
   page: Page;
   accessibilityTest: boolean;
 }
 
-export class SubmitPage {
-  public static async submitPage({
+export class ManageOrders10Page {
+  public static async manageOrders10Page({
     page,
     accessibilityTest,
-  }: submitPageOptions): Promise<void> {
+  }: manageOrders10PageOptions): Promise<void> {
     if (!page) {
       throw new Error("Page is not defined");
     }
@@ -25,12 +25,12 @@ export class SubmitPage {
   private static async checkPageLoads({
     page,
     accessibilityTest,
-  }: Partial<submitPageOptions>): Promise<void> {
+  }: Partial<manageOrders10PageOptions>): Promise<void> {
     if (!page) {
       throw new Error("Page is not defined");
     }
     // const pageTitle = page.locator(
-    //   `${Selectors.GovukHeadingXL}:text-is(${SubmitContent.pageTitle})`,
+    //   `${Selectors.GovukHeadingXL}:text-is(${ManageOrders10Content.pageTitle})`,
     // );
     // await pageTitle.waitFor();
 
@@ -41,7 +41,7 @@ export class SubmitPage {
 
   private static async fillInFields({
     page,
-  }: Partial<submitPageOptions>): Promise<void> {
+  }: Partial<manageOrders10PageOptions>): Promise<void> {
     if (!page) {
       throw new Error("Page is not defined");
     }

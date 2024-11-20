@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { ManageOrders5Content } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/manageOrders/manageOrders5Content";
+import { ManageOrders5Content } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderCA/manageOrders5Content";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 
 interface manageOrders5PageOptions {

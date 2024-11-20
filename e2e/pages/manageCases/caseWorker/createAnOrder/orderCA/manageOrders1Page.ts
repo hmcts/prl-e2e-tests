@@ -2,19 +2,21 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { ManageOrders10Content } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/manageOrders/manageOrders10Content";
+import { ManageOrders1Content } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderCA/manageOrders1Content";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 
-interface manageOrders10PageOptions {
+interface manageOrders1PageOptions {
   page: Page;
   accessibilityTest: boolean;
 }
 
-export class ManageOrders10Page {
-  public static async manageOrders10Page({
+const radioId = "#manageOrdersOptions-createAnOrder";
+
+export class ManageOrders1Page {
+  public static async manageOrders1Page({
     page,
     accessibilityTest,
-  }: manageOrders10PageOptions): Promise<void> {
+  }: manageOrders1PageOptions): Promise<void> {
     if (!page) {
       throw new Error("Page is not defined");
     }
@@ -25,15 +27,21 @@ export class ManageOrders10Page {
   private static async checkPageLoads({
     page,
     accessibilityTest,
-  }: Partial<manageOrders10PageOptions>): Promise<void> {
+  }: Partial<manageOrders1PageOptions>): Promise<void> {
     if (!page) {
       throw new Error("Page is not defined");
     }
-    // const pageTitle = page.locator(
-    //   `${Selectors.GovukHeadingXL}:text-is(${ManageOrders10Content.pageTitle})`,
-    // );
-    // await pageTitle.waitFor();
-
+    const pageTitle = page.locator(
+      `${Selectors.GovukHeadingL}:text-is(${ManageOrders1Content.pageTitle})`,
+    );
+    await pageTitle.waitFor();
+    await Helpers.checkGroup(
+      page,
+      5,
+      ManageOrders1Content,
+      "label",
+      `${Selectors.GovukFormLabel}`
+    );
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }
@@ -41,11 +49,11 @@ export class ManageOrders10Page {
 
   private static async fillInFields({
     page,
-  }: Partial<manageOrders10PageOptions>): Promise<void> {
+  }: Partial<manageOrders1PageOptions>): Promise<void> {
     if (!page) {
       throw new Error("Page is not defined");
     }
-
+    await page.click(radioId);
     await page.click(
       `${Selectors.button}:text-is(${CommonStaticText.continue})`,
     );
