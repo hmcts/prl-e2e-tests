@@ -65,6 +65,8 @@ export type fl401SolicitorEvents =
   | "View PDF application"
   | "Statement of truth and submit";
 
+export type c100CaseWorkerActions = "Manage orders";
+
 export type fl401SubmittedSolicitorEvents =
   | "Draft an order"
   | "Dummy Payment for AwP"
@@ -129,3 +131,5 @@ export type JudgeOrderAction =
   | "Give admin further directions then serve"
   | "Edit the order myself and send to admin to serve"
   | "Ask the legal representative to make changes";
+
+export type Language = "English" | "Welsh";
