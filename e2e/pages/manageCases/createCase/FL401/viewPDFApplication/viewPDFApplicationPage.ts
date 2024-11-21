@@ -3,9 +3,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { ViewPDFApplicationContent } from "../../../../../fixtures/manageCases/createCase/FL401/viewPDFApplication/viewPDFApplicationContent";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { ViewPdfTestCases } from "../../../../../common/types";
-
-type Language = "English" | "Welsh";
+import { ViewPdfTestCases, Language } from "../../../../../common/types";
 
 enum ids {
   mvDownBtn = "#mvDownBtn",
