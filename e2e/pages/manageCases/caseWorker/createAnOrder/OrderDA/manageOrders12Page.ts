@@ -78,6 +78,13 @@ export class ManageOrders12Page {
     );
     await pageTitle.waitFor();
     await Promise.all([
+      Helpers.checkGroup(
+        page,
+        20,
+        ManageOrders12Content,
+        "formLabel",
+        Selectors.GovukFormLabel,
+      ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukFormLabel}:text-is("${CommonStaticText.yes}"):visible`,

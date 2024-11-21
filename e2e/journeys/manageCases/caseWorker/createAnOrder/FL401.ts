@@ -13,6 +13,10 @@ import {
   howLongWillOrderBeInForce,
   ManageOrders12Page,
 } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders12Page";
+import { ManageOrders19Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders19Page";
+import { ManageOrders20Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders20Page";
+import { ManageOrders24Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders24Page";
+import { ManageOrdersSubmitPage } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrdersSubmitPage";
 
 interface C100Params {
   page: Page;
@@ -64,6 +68,23 @@ export class FL401CreateAnOrder {
       accessibilityTest,
       yesNoManageOrders,
       howLongWillOrderBeInForce,
+    });
+    await ManageOrders19Page.manageOrders19Page({
+      page,
+      accessibilityTest,
+    });
+    await ManageOrders20Page.manageOrders20Page({
+      page,
+      accessibilityTest,
+    });
+    await ManageOrders24Page.manageOrders24Page({
+      page,
+      accessibilityTest,
+    });
+    await ManageOrdersSubmitPage.manageOrdersSubmitPage({
+      page,
+      accessibilityTest,
+      yesNoManageOrders,
     });
   }
 }

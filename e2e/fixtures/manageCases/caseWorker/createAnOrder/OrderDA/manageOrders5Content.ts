@@ -30,7 +30,7 @@ export enum ManageOrders5Content {
   formLabelHiddenSimon = "Simon Anderson",
   judgeName = "Automated JudgeName",
   testLegalAdvisor = "Automated Legal Advisor",
-  loremIpsum = "Lorem ipsum dolor sit a metre",
+  loremIpsum = "loremIpsum",
   day = "5",
   month = "6",
   year = "2021",

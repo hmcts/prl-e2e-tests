@@ -7,13 +7,15 @@ test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 test.describe("Create an order tests @manageCases", (): void => {
   test(`Complete Creating an order as a Caseworker with the following options:
   Case: C100,
+  Not accessibility testing
   yesNoManageOrders: true,
-  Not accessibility testing. @crossbrowserManageCases`, async ({
+  howLongWillOrderBeInForce: "untilNextHearing"
+  "This order will be served with the 'date to be fixed'" selected on ManageOrders19. @crossbrowserManageCases`, async ({
     page,
   }): Promise<void> => {
     await FL401CreateAnOrder.fL401CreateAnOrder({
       page: page,
-      accessibilityTest: false,
+      accessibilityTest: false, // failing
       solicitorCaseCreateType: "FL401",
       yesNoManageOrders: true,
       howLongWillOrderBeInForce: "untilNextHearing",
@@ -22,8 +24,10 @@ test.describe("Create an order tests @manageCases", (): void => {
 
   test(`Complete Creating an order as a Caseworker with the following options:
   Case: C100,
-  yesNoManageOrders: false,
-  Not accessibility testing. @crossbrowserManageCases`, async ({
+  Accessibility testing
+  yesNoManageOrders: true,
+  howLongWillOrderBeInForce: "noEndDate"
+  "This order will be served with the 'date to be fixed'" selected on ManageOrders19. @crossbrowserManageCases`, async ({
     page,
   }): Promise<void> => {
     await FL401CreateAnOrder.fL401CreateAnOrder({
