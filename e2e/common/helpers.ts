@@ -7,6 +7,7 @@ import {
   fl401SolicitorEvents,
   fl401SubmittedSolicitorEvents,
   c100CaseWorkerActions,
+  UserRole,
 } from "./types";
 
 export class Helpers {
@@ -89,11 +90,12 @@ export class Helpers {
     baseURL: string,
     caseNumber: string,
     caseTab: string,
+    user: UserRole,
   ): Promise<void> {
     try {
       await page.locator(`a:text-is(" Sign out ")`).click();
       await page.waitForLoadState("domcontentloaded");
-      await idamLoginHelper.signInUser(page, "solicitor", baseURL);
+      await idamLoginHelper.signInUser(page, user, baseURL);
       await Helpers.goToCase(page, baseURL, caseNumber, caseTab);
     } catch (error) {
       console.error(
