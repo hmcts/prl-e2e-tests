@@ -19,8 +19,4 @@ export enum ManageOrders2Content {
   label15 = "Blank order (FL404B)",
   label16 = "General form of undertaking (N117)",
   label17 = "Notice of proceedings (FL402)",
-
-
-
-
 }

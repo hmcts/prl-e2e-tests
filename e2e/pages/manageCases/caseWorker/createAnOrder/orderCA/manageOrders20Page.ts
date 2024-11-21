@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test";
+import { expect, Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
@@ -8,6 +8,13 @@ import { CommonStaticText } from "../../../../../common/commonStaticText";
 interface manageOrders20PageOptions {
   page: Page;
   accessibilityTest: boolean;
+}
+
+type Language = "English" | "Welsh";
+
+enum ids {
+  mvDownBtn = "#mvDownBtn",
+  numPages = "#numPages",
 }
 
 export class ManageOrders20Page {
@@ -29,13 +36,90 @@ export class ManageOrders20Page {
     if (!page) {
       throw new Error("Page is not defined");
     }
-    // const pageTitle = page.locator(
-    //   `${Selectors.GovukHeadingXL}:text-is(${ManageOrders20Content.pageTitle})`,
-    // );
-    // await pageTitle.waitFor();
+    const pageTitle = page.locator(
+      `${Selectors.GovukHeadingL}:text-is("${ManageOrders20Content.pageTitle}")`,
+    );
+    await pageTitle.waitFor();
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.headingH3}:text-is("${ManageOrders20Content.headingh3}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.h2}:text-is("${ManageOrders20Content.h2}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${ManageOrders20Content.p}")`,
+        1,
+      ),
+    ]);
+    await this.checkEnglishPdf(page);
+    await this.checkWelshPdf(page);
 
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
+    }
+  }
+
+  private static async openMediaViewer(page: Page, language: Language) {
+    const [pdfPage] = await Promise.all([
+      page.waitForEvent("popup"),
+      page.click(
+        `${Selectors.a}:text-is("${language === "English" ? ManageOrders20Content.englishLink : ManageOrders20Content.welshLink}")`,
+      ),
+    ]);
+    await pdfPage.waitForLoadState();
+    await this.scrollToBottom(pdfPage);
+
+    return pdfPage;
+  }
+
+  private static async checkEnglishPdf(page: Page) {
+    const pdfPage = await this.openMediaViewer(page, "English");
+    await Helpers.checkGroup(
+      pdfPage,
+      44,
+      ManageOrders20Content,
+      "span",
+      `${Selectors.Span}`,
+    );
+    await pdfPage.close();
+  }
+
+  private static async checkWelshPdf(page: Page) {
+    const pdfPage = await this.openMediaViewer(page, "Welsh");
+    await Promise.all([
+      Helpers.checkGroup(
+        pdfPage,
+        50,
+        ManageOrders20Content,
+        "welshSpan",
+        `${Selectors.Span}`,
+      ),
+      Helpers.checkVisibleAndPresent(
+        pdfPage,
+        `${Selectors.Span}:text-is("${ManageOrders20Content.welshSpanRepeated}")`,
+        3,
+      ),
+    ]);
+    await pdfPage.close();
+  }
+
+  private static async scrollToBottom(page: Page) {
+    const numOfPagesLocator = page.locator(ids.numPages);
+    await expect(numOfPagesLocator).not.toHaveText(/0/); // <- Wait for number of pages not to be 0 (i.e., page has loaded)
+
+    const numOfPageText = await numOfPagesLocator.textContent();
+    // @ts-ignore
+    const numOfPages = parseInt(numOfPageText?.replace("/", "").trim(), 10); // <- numOfPageText is in format "/ 7", strip
+    //                                                                             the '/' out and convert to int so can
+    //                                                                             be used in loop
+    for (let i = 0; i < numOfPages - 1; i++) {
+      await page.click(ids.mvDownBtn);
     }
   }
 
@@ -47,7 +131,7 @@ export class ManageOrders20Page {
     }
 
     await page.click(
-      `${Selectors.button}:text-is(${CommonStaticText.continue})`,
+      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
     );
   }
 }

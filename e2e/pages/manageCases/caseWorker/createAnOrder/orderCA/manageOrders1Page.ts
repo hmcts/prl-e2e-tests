@@ -32,7 +32,7 @@ export class ManageOrders1Page {
       throw new Error("Page is not defined");
     }
     const pageTitle = page.locator(
-      `${Selectors.GovukHeadingL}:text-is(${ManageOrders1Content.pageTitle})`,
+      `${Selectors.GovukHeadingL}:text-is("${ManageOrders1Content.pageTitle}")`,
     );
     await pageTitle.waitFor();
     await Helpers.checkGroup(
@@ -40,7 +40,7 @@ export class ManageOrders1Page {
       5,
       ManageOrders1Content,
       "label",
-      `${Selectors.GovukFormLabel}`
+      `${Selectors.GovukFormLabel}`,
     );
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
@@ -55,7 +55,7 @@ export class ManageOrders1Page {
     }
     await page.click(radioId);
     await page.click(
-      `${Selectors.button}:text-is(${CommonStaticText.continue})`,
+      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
     );
   }
 }

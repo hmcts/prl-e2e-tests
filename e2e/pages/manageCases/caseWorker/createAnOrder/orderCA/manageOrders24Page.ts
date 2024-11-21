@@ -10,6 +10,8 @@ interface manageOrders24PageOptions {
   accessibilityTest: boolean;
 }
 
+const radioId = "#amendOrderSelectCheckOptions-managerCheck";
+
 export class ManageOrders24Page {
   public static async manageOrders24Page({
     page,
@@ -29,11 +31,17 @@ export class ManageOrders24Page {
     if (!page) {
       throw new Error("Page is not defined");
     }
-    // const pageTitle = page.locator(
-    //   `${Selectors.GovukHeadingXL}:text-is(${ManageOrders24Content.pageTitle})`,
-    // );
-    // await pageTitle.waitFor();
-
+    const pageTitle = page.locator(
+      `${Selectors.GovukHeadingL}:text-is("${ManageOrders24Content.pageTitle}")`,
+    );
+    await pageTitle.waitFor();
+    await Helpers.checkGroup(
+      page,
+      4,
+      ManageOrders24Content,
+      "label",
+      `${Selectors.GovukFormLabel}`,
+    );
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }
@@ -45,9 +53,9 @@ export class ManageOrders24Page {
     if (!page) {
       throw new Error("Page is not defined");
     }
-
+    await page.click(radioId);
     await page.click(
-      `${Selectors.button}:text-is(${CommonStaticText.continue})`,
+      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
     );
   }
 }

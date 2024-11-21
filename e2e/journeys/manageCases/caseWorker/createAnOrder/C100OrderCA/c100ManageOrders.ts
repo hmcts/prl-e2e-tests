@@ -28,29 +28,29 @@ export class C100ManageOrders {
       page,
       accessibilityTest,
     });
-    // await ManageOrders5Page.manageOrders5Page({
-    //   page,
-    //   accessibilityTest,
-    // });
-    // await ManageOrders10Page.manageOrders10Page({
-    //   page,
-    //   accessibilityTest,
-    // });
-    // await ManageOrders19Page.manageOrders19Page({
-    //   page,
-    //   accessibilityTest,
-    // });
-    // await ManageOrders20Page.manageOrders20Page({
-    //   page,
-    //   accessibilityTest,
-    // });
-    // await ManageOrders24Page.manageOrders24Page({
-    //   page,
-    //   accessibilityTest,
-    // });
-    // await SubmitPage.submitPage({
-    //   page,
-    //   accessibilityTest,
-    // });
+    await ManageOrders5Page.manageOrders5Page({
+      page,
+      accessibilityTest,
+    });
+    await ManageOrders10Page.manageOrders10Page({
+      page,
+      accessibilityTest,
+    });
+    await ManageOrders19Page.manageOrders19Page({
+      page,
+      accessibilityTest,
+    });
+    await ManageOrders20Page.manageOrders20Page({
+      page,
+      accessibilityTest,
+    });
+    await ManageOrders24Page.manageOrders24Page({
+      page,
+      accessibilityTest,
+    });
+    await SubmitPage.submitPage({
+      page,
+      accessibilityTest,
+    });
   }
 }
