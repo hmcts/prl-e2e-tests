@@ -75,6 +75,8 @@ export class FL401CreateAnOrder {
     });
     await ManageOrders20Page.manageOrders20Page({
       page,
+      yesNoManageOrders,
+      howLongWillOrderBeInForce,
       accessibilityTest,
     });
     await ManageOrders24Page.manageOrders24Page({
@@ -85,6 +87,7 @@ export class FL401CreateAnOrder {
       page,
       accessibilityTest,
       yesNoManageOrders,
+      howLongWillOrderBeInForce
     });
   }
 }
