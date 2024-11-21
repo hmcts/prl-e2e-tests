@@ -28,7 +28,7 @@ enum UniqueSelectors {
   withNotice = "#fl404CustomFields_fl404bIsNoticeGiven-WithNotice",
   withoutNotice = "#fl404CustomFields_fl404bIsNoticeGiven-WithoutNotice",
   costOfApplicationInput = "#fl404CustomFields_fl404bCostOfApplication",
-  inputSpecificDate = "input"
+  inputSpecificDate = "input",
 }
 
 enum UniqueSelectorsHiddenTextBoxes {

@@ -25,5 +25,5 @@ export enum ManageOrders12Content {
   hiddenFormLabel2 = "Add school name",
   hiddenFormLabelAddDetails = "Add further details (Optional)",
   loremIpsum = "loremIpsum",
-  specificDate = "10-06-2025 05:00 pm"
+  specificDate = "10-06-2025 05:00 pm",
 }
