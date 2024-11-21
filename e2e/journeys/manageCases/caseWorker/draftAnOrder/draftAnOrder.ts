@@ -1,8 +1,14 @@
 import { DummyPaymentAwp } from "../dummyPayment/dummyPaymentAwp";
-import { Page } from "@playwright/test";
+import { Browser, BrowserContext, expect, Page } from "@playwright/test";
 import { OrderType, solicitorCaseCreateType } from "../../../../common/types";
 import { Helpers } from "../../../../common/helpers";
 import { NonMolestationOrder } from "./nonMolestationOrder/nonMolestationOrder";
+import { ParentalResponsibilityOrder } from "./ParentalResponsibilityOrder/parentalResponsibilityOrder";
+import Config from "../../../../config";
+import config from "../../../../config";
+import { Selectors } from "../../../../common/selectors";
+import { IssueAndSendToLocalCourtCallback1Page } from "../../../../pages/manageCases/caseWorker/draftAnOrder/issueAndSendToLocalCourt/issueAndSendToLocalCourtCallback1Page";
+import { IssueAndSendToLocalCourtCallbackSubmitPage } from "../../../../pages/manageCases/caseWorker/draftAnOrder/issueAndSendToLocalCourt/issueAndSendToLocalCourtCallbackSubmitPage";
 
 interface DraftAnOrderParams {
   page: Page;
@@ -14,6 +20,7 @@ interface DraftAnOrderParams {
   yesNoToAll: boolean;
   howLongWillOrderBeInForce: HowLongWillTheOrderBeInForce;
   willAllPartiesAttendHearing: boolean;
+  browser: Browser;
 }
 
 export type HowLongWillTheOrderBeInForce =
@@ -156,6 +163,7 @@ export class DraftAnOrder {
     yesNoToAll,
     howLongWillOrderBeInForce,
     willAllPartiesAttendHearing,
+    browser,
   }: DraftAnOrderParams): Promise<string> {
     await DummyPaymentAwp.dummyPaymentAwp({
       page,
@@ -164,6 +172,20 @@ export class DraftAnOrder {
       paymentStatusPaid,
       caseType,
     });
+    // fetch the case ref to be used when editing and approving an order
+    const unformattedCaseRef: string | null = await page
+      .locator(caseNumberSelector)
+      .textContent();
+    const formattedCaseRef: string | undefined = unformattedCaseRef?.slice(12);
+    if (caseType === "C100") {
+      // C100 orders are assigned to Central Family Court by default
+      // need to assign the case to Swansea court if we want to allow a Swansea judge to edit & approve the order
+      await this.assignCaseToSwanseaCourt(
+        browser,
+        formattedCaseRef!!,
+        accessibilityTest,
+      );
+    }
     await Helpers.chooseEventFromDropdown(page, "Draft an order");
     switch (orderType) {
       case "nonMolestation":
@@ -178,15 +200,67 @@ export class DraftAnOrder {
           willAllPartiesAttendHearing,
         });
         break;
+      case "parentalResponsibility":
+        await ParentalResponsibilityOrder.parentalResponsibilityOrder({
+          page,
+          caseType,
+          orderType,
+          yesNoToAll,
+          errorMessaging,
+          accessibilityTest,
+        });
+        break;
       default:
         console.error("An invalid order type was given");
         break;
     }
-    // fetch and return the case ref ro be used when editing and approving an order
-    const unformattedCaseRef: string | null = await page
-      .locator(caseNumberSelector)
-      .textContent();
-    const formattedCaseRef: string | undefined = unformattedCaseRef?.slice(12);
     return formattedCaseRef ? formattedCaseRef : "";
+  }
+
+  private static async assignCaseToSwanseaCourt(
+    browser: Browser,
+    caseRef: string,
+    accessibilityTest: boolean,
+  ): Promise<void> {
+    // open new browser and sign in as judge user
+    const newBrowser = await browser.browserType().launch();
+    const newContext: BrowserContext = await newBrowser.newContext({
+      storageState: Config.sessionStoragePath + "courtAdminStoke.json",
+    });
+    const page = await newContext.newPage();
+    await Helpers.goToCase(page, config.manageCasesBaseURL, caseRef, "tasks");
+    // refresh page until the task shows up - there can be some delay
+    await expect
+      .poll(
+        async () => {
+          const visible = await page
+            .locator("strong", {
+              hasText: "Check Application",
+            })
+            .isVisible();
+          if (!visible) {
+            await page.reload();
+          }
+          return visible;
+        },
+        {
+          // Allow 10s delay before retrying
+          intervals: [10_000],
+          // Allow up to a minute for it to become visible
+          timeout: 100_000,
+        },
+      )
+      .toBeTruthy();
+    await page.click(`${Selectors.a}:text-is("Assign to me")`);
+    await page.locator(".alert-message").waitFor();
+    await page.click(`${Selectors.a}:text-is("Issue and send to local Court")`);
+    await IssueAndSendToLocalCourtCallback1Page.issueAndSendToLocalCourtCallback1Page(
+      page,
+      accessibilityTest,
+    );
+    await IssueAndSendToLocalCourtCallbackSubmitPage.issueAndSendToLocalCourtCallbackSubmitPage(
+      page,
+      accessibilityTest,
+    );
   }
 }

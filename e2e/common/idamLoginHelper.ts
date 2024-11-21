@@ -60,6 +60,24 @@ export class IdamLoginHelper {
     await page.fill(this.fields.password, userInfo.password);
     await page.click(this.submitButton);
   }
+
+  public static async signInJudgeUser(
+    page: Page,
+    application: string,
+  ): Promise<void> {
+    if (!page.url().includes("idam-web-public.")) {
+      await page.goto(application);
+    }
+
+    const userCredentials: UserCredentials = Config.getUserCredentials("judge");
+    if (userCredentials) {
+      await page.fill(this.fields.username, userCredentials.email);
+      await page.fill(this.fields.password, userCredentials.password);
+      await page.click(this.submitButton);
+    } else {
+      console.error("Invalid credential type");
+    }
+  }
 }
 
 export default IdamLoginHelper;
