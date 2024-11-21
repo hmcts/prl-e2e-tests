@@ -28,7 +28,7 @@ enum UniqueSelectors {
   withNotice = "#fl404CustomFields_fl404bIsNoticeGiven-WithNotice",
   withoutNotice = "#fl404CustomFields_fl404bIsNoticeGiven-WithoutNotice",
   costOfApplicationInput = "#fl404CustomFields_fl404bCostOfApplication",
-  inputSpecificDate = "input",
+  inputSpecificDate = "#orderSpecifiedDateTime .mat-datepicker-input",
 }
 
 enum UniqueSelectorsHiddenTextBoxes {
@@ -162,7 +162,7 @@ export class ManageOrders12Page {
         break;
       case "specificDate":
         await page.click(UniqueSelectors.specificDate); // #TODO: Add date
-
+        await page.fill(UniqueSelectors.inputSpecificDate, ManageOrders12Content.specificDate)
         break;
       default:
         throw new Error(

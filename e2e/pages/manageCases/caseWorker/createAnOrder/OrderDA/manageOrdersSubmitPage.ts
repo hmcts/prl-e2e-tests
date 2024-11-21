@@ -6,6 +6,9 @@ import { CommonStaticText } from "../../../../../common/commonStaticText";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { ManageOrdersSubmitContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrdersSubmitContent";
 import { howLongWillOrderBeInForce } from "./manageOrders12Page";
+import {
+  ManageOrders12Content
+} from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders12Content";
 
 interface ManageOrders20PageOptions {
   page: Page;
@@ -201,6 +204,26 @@ export class ManageOrdersSubmitPage {
         Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukText16}:text-is("${ManageOrdersSubmitContent.text16AddAddressOfProperty}"):visible`,
+          1,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukText16}:text-is("${ManageOrdersSubmitContent.text16AddAddressOfProperty}"):visible`,
+          1,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukText16}:text-is("${ManageOrdersSubmitContent.text16AddAddressOfProperty}"):visible`,
+          1,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukText16}:text-is("${ManageOrders12Content.formLabel16}"):visible`,
+          1,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukText16}:text-is("${ManageOrders12Content.specificDate}"):visible`,
           1,
         ),
       ]);
