@@ -80,6 +80,8 @@ def secrets = [
     secret('da-citizen-courtnav-subscription-key-add-doc', 'COURTNAV_SUBSCRIPTION_KEY_ADD_DOC'),
     secret('courtadmin-username', 'CASEWORKER_USERNAME'),
     secret('courtadmin-password', 'CASEWORKER_PASSWORD'),
+    secret('court-admin-stoke-username', 'COURT_ADMIN_STOKE_USERNAME'),
+    secret('court-admin-stoke-password', 'COURT_ADMIN_STOKE_PASSWORD'),
   ]
 ]
 
