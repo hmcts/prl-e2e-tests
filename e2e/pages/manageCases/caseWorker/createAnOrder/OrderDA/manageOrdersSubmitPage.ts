@@ -186,11 +186,6 @@ export class ManageOrdersSubmitPage {
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukText16}:text-is("${ManageOrdersSubmitContent.text16UntilNextHearing}")`,
-          1,
-        ),
-        Helpers.checkVisibleAndPresent(
-          page,
           `${Selectors.Span}:text-is("${ManageOrdersSubmitContent.text16LoremIpsum}")`,
           9,
         ),
@@ -221,7 +216,7 @@ export class ManageOrdersSubmitPage {
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukText16}:text-is("${ManageOrders12Content.specificDate}"):visible`,
+          `${Selectors.GovukText16}:text-is("${ManageOrdersSubmitContent.specificDate}"):visible`,
           1,
         ),
       ]);
