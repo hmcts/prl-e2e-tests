@@ -87,7 +87,7 @@ export class FL401CreateAnOrder {
       page,
       accessibilityTest,
       yesNoManageOrders,
-      howLongWillOrderBeInForce
+      howLongWillOrderBeInForce,
     });
   }
 }
