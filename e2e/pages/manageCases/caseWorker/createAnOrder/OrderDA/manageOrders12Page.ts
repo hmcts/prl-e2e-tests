@@ -24,10 +24,11 @@ enum UniqueSelectors {
   fl404CustomFields_fl404bAddressOfProperty = "#fl404CustomFields_fl404bAddressOfProperty",
   noEndDate = "#fl404CustomFields_orderEndDateAndTimeOptions-noEndDate",
   untilNextHearing = "#fl404CustomFields_orderEndDateAndTimeOptions-untilNextHearing",
-  specificDate = "#fl404CustomFields_orderEndDateAndTimeOptions-specificDate",
+  specificDate = "#fl404CustomFields_orderEndDateAndTimeOptions-specifiedDateAndTime",
   withNotice = "#fl404CustomFields_fl404bIsNoticeGiven-WithNotice",
   withoutNotice = "#fl404CustomFields_fl404bIsNoticeGiven-WithoutNotice",
   costOfApplicationInput = "#fl404CustomFields_fl404bCostOfApplication",
+  inputSpecificDate = "input"
 }
 
 enum UniqueSelectorsHiddenTextBoxes {
@@ -160,7 +161,8 @@ export class ManageOrders12Page {
         await page.click(UniqueSelectors.untilNextHearing);
         break;
       case "specificDate":
-        await page.click(UniqueSelectors.specificDate); // #TODO - Add date picker
+        await page.click(UniqueSelectors.specificDate); // #TODO: Add date
+
         break;
       default:
         throw new Error(

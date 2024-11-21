@@ -5,11 +5,13 @@ import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { ManageOrdersSubmitContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrdersSubmitContent";
+import { howLongWillOrderBeInForce } from "./manageOrders12Page";
 
 interface ManageOrders20PageOptions {
   page: Page;
   accessibilityTest: boolean;
   yesNoManageOrders: boolean;
+  howLongWillOrderBeInForce: howLongWillOrderBeInForce;
 }
 
 export class ManageOrdersSubmitPage {
@@ -17,8 +19,14 @@ export class ManageOrdersSubmitPage {
     page,
     accessibilityTest,
     yesNoManageOrders,
+    howLongWillOrderBeInForce,
   }: ManageOrders20PageOptions): Promise<void> {
-    await this.checkPageLoads({ page, accessibilityTest, yesNoManageOrders });
+    await this.checkPageLoads({
+      page,
+      accessibilityTest,
+      yesNoManageOrders,
+      howLongWillOrderBeInForce,
+    });
     await this.fillInFields({
       page,
     });
@@ -28,6 +36,7 @@ export class ManageOrdersSubmitPage {
     page,
     accessibilityTest,
     yesNoManageOrders,
+    howLongWillOrderBeInForce,
   }: Partial<ManageOrders20PageOptions>): Promise<void> {
     if (!page) {
       throw new Error("Page is not defined");
@@ -76,7 +85,7 @@ export class ManageOrdersSubmitPage {
         1,
       ),
     ]);
-    if (yesNoManageOrders) {
+    if (yesNoManageOrders && howLongWillOrderBeInForce === "untilNextHearing") {
       await Promise.all([
         Helpers.checkGroup(
           page,
@@ -121,7 +130,10 @@ export class ManageOrdersSubmitPage {
           1,
         ),
       ]);
-    } else {
+    } else if (
+      !yesNoManageOrders &&
+      howLongWillOrderBeInForce === "noEndDate"
+    ) {
       await Promise.all([
         Helpers.checkVisibleAndPresent(
           page,
@@ -142,6 +154,54 @@ export class ManageOrdersSubmitPage {
           page,
           `${Selectors.GovukText16}:text-is("${CommonStaticText.no}"):visible`,
           4,
+        ),
+      ]);
+    } else if (
+      yesNoManageOrders &&
+      howLongWillOrderBeInForce === "specificDate"
+    ) {
+      await Promise.all([
+        Helpers.checkGroup(
+          page,
+          3,
+          ManageOrdersSubmitContent,
+          "yesNoTrueText16",
+          Selectors.GovukText16,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.p}:text-is("${ManageOrdersSubmitContent.text16JoeDoe}")`,
+          1,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.p}:text-is("${ManageOrdersSubmitContent.text16SimonAnderson}")`,
+          1,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukText16}:text-is("${ManageOrdersSubmitContent.text16WithNotice}")`,
+          1,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukText16}:text-is("${ManageOrdersSubmitContent.text16UntilNextHearing}")`,
+          1,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.Span}:text-is("${ManageOrdersSubmitContent.text16LoremIpsum}")`,
+          9,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukText16}:text-is("${CommonStaticText.yes}"):visible`,
+          4,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukText16}:text-is("${ManageOrdersSubmitContent.text16AddAddressOfProperty}"):visible`,
+          1,
         ),
       ]);
     }
