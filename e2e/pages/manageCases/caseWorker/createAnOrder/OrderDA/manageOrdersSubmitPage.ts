@@ -6,9 +6,7 @@ import { CommonStaticText } from "../../../../../common/commonStaticText";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { ManageOrdersSubmitContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrdersSubmitContent";
 import { howLongWillOrderBeInForce } from "./manageOrders12Page";
-import {
-  ManageOrders12Content
-} from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders12Content";
+import { ManageOrders12Content } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders12Content";
 
 interface ManageOrders20PageOptions {
   page: Page;
