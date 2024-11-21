@@ -131,3 +131,5 @@ export type JudgeOrderAction =
   | "Give admin further directions then serve"
   | "Edit the order myself and send to admin to serve"
   | "Ask the legal representative to make changes";
+
+export type Language = "English" | "Welsh";

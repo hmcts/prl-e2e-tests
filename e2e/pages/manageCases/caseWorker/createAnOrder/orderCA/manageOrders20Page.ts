@@ -4,13 +4,12 @@ import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { ManageOrders20Content } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderCA/manageOrders20content";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { Language } from "../../../../../common/types";
 
 interface manageOrders20PageOptions {
   page: Page;
   accessibilityTest: boolean;
 }
-
-type Language = "English" | "Welsh";
 
 enum ids {
   mvDownBtn = "#mvDownBtn",
@@ -114,7 +113,6 @@ export class ManageOrders20Page {
     await expect(numOfPagesLocator).not.toHaveText(/0/); // <- Wait for number of pages not to be 0 (i.e., page has loaded)
 
     const numOfPageText = await numOfPagesLocator.textContent();
-    // @ts-ignore
     const numOfPages = parseInt(numOfPageText?.replace("/", "").trim(), 10); // <- numOfPageText is in format "/ 7", strip
     //                                                                             the '/' out and convert to int so can
     //                                                                             be used in loop
