@@ -1,0 +1,17 @@
+export enum ManageOrders19Content {
+  span = "Non-molestation order (FL404A)",
+  h2 = "Hearing",
+  h31 = "Creating a hearing is optional",
+  h32 = "Hearing",
+  p = "You can create multiple hearings",
+  strong = "This order will be served with the 'date to be fixed' (Optional)",
+  formLabel1 = "Has the hearing date been confirmed? (Optional)",
+  formLabel2 = "The date is reserved with List Assist",
+  formLabel3 = "The date is confirmed in the Hearings tab",
+  formLabel4 = "The date needs to be confirmed by the listing team before service",
+  formLabel5 = "This order will be served with the 'date to be fixed'",
+  formLabel6 = "Hearing Type (Optional)",
+  HiddenFormHint = "Give details of any additional requirements.",
+  judgement = "Judgment",
+  lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi ista probare, quae sunt a te dicta? Refert tamen, quo modo.",
+}
