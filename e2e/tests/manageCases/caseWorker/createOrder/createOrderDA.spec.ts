@@ -27,6 +27,7 @@ test.describe("Create an order tests @manageCases", (): void => {
   Accessibility testing
   yesNoManageOrders: true,
   howLongWillOrderBeInForce: "noEndDate"
+  test
   "This order will be served with the 'date to be fixed'" selected on ManageOrders19. @crossbrowserManageCases`, async ({
     page,
   }): Promise<void> => {
