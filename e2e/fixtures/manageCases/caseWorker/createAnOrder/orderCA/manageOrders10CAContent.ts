@@ -1,4 +1,4 @@
-export enum ManageOrders10Content {
+export enum ManageOrders10CAContent {
   pageTitle = "Manage orders",
   headingh3 = "Child arrangements, specific issue or prohibited steps order (C43)",
   h2 = "Add order details",

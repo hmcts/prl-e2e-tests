@@ -123,6 +123,11 @@ export class EditAndApproveAnOrder2Page {
           welshPdfAnchor: "welsh_non_molestation_order_fl404a_draft.pdf",
           englishPdfAnchor: "non_molestation_order_fl404a_draft.pdf",
         };
+      case "parentalResponsibility":
+        return {
+          welshPdfAnchor: "Welsh_Parental_Responsibility_Order_C45A_draft.pdf",
+          englishPdfAnchor: "Parental_Responsibility_Order_C45A_draft.pdf",
+        };
       default:
         console.error("An invalid order type was given");
         return undefined;

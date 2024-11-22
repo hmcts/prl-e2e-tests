@@ -1,4 +1,4 @@
-export enum CaseDetailsSummaryContent {
+export enum CaseDetailsSummaryDAContent {
   pageTitle = "Summary",
   h21 = "Allocated judge",
   h22 = "Case Status",

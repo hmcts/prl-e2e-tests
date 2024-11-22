@@ -1,4 +1,4 @@
-export enum ManageOrders24Content {
+export enum ManageOrders24DAContent {
   span = "Does someone need to check the order?",
   formLabel1 = "A judge or legal adviser needs to check the order",
   formLabel2 = "A manager needs to check the order",

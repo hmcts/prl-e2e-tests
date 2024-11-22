@@ -1,10 +1,10 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
-import { ManageOrders1Content } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders1Content";
+import { ManageOrders1DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders1DAContent";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-import { ManageOrders2Content } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders2Content";
+import { ManageOrders2DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders2DAContent";
 
 interface ManageOrders2PageOptions {
   page: Page;
@@ -32,24 +32,24 @@ export class ManageOrders2Page {
       throw new Error("Page is not defined");
     }
     const pageTitle = page.locator(
-      `${Selectors.h1}:text-is("${ManageOrders1Content.pageTitle}")`,
+      `${Selectors.h1}:text-is("${ManageOrders1DAContent.pageTitle}")`,
     );
     await pageTitle.waitFor();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h2}:text-is("${ManageOrders2Content.h2}")`,
+        `${Selectors.h2}:text-is("${ManageOrders2DAContent.h2}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukInsetText}:text-is("${ManageOrders2Content.govUkInsetText}")`,
+        `${Selectors.GovukInsetText}:text-is("${ManageOrders2DAContent.govUkInsetText}")`,
         1,
       ),
       Helpers.checkGroup(
         page,
         17,
-        ManageOrders2Content,
+        ManageOrders2DAContent,
         "formLabel",
         Selectors.GovukFormLabel,
       ),
