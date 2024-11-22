@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { ManageOrders2Content } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderCA/manageOrders2Content";
+import { ManageOrders2CAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderCA/manageOrders2CAContent";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 
 interface manageOrders2PageOptions {
@@ -33,24 +33,24 @@ export class ManageOrders2Page {
       throw new Error("Page is not defined");
     }
     const pageTitle = page.locator(
-      `${Selectors.GovukHeadingL}:text-is("${ManageOrders2Content.pageTitle}")`,
+      `${Selectors.GovukHeadingL}:text-is("${ManageOrders2CAContent.pageTitle}")`,
     );
     await pageTitle.waitFor();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h2}:text-is("${ManageOrders2Content.h2}")`,
+        `${Selectors.h2}:text-is("${ManageOrders2CAContent.h2}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukInsetText}:text-is("${ManageOrders2Content.insetText}")`,
+        `${Selectors.GovukInsetText}:text-is("${ManageOrders2CAContent.insetText}")`,
         1,
       ),
       Helpers.checkGroup(
         page,
         17,
-        ManageOrders2Content,
+        ManageOrders2CAContent,
         "label",
         `${Selectors.GovukFormLabel}`,
       ),

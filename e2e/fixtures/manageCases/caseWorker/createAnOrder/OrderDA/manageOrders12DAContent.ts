@@ -1,4 +1,4 @@
-export enum ManageOrders12Content {
+export enum ManageOrders12DAContent {
   span = "Non-molestation order (FL404A)",
   h1 = "The respondent must not do the following:",
   formLabel1 = "Does the order mention a property?",

@@ -1,4 +1,4 @@
-export enum ManageOrders2Content {
+export enum ManageOrders2DAContent {
   h2 = "Create an order",
   govUkInsetText = "If the order you need is not on the list, go back to the previous page to upload it.",
   formLabel1 = "Select the type of order",

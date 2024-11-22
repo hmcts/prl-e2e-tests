@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Selectors } from "../../../../../common/selectors";
 import { Helpers } from "../../../../../common/helpers";
-import { CaseDetailsSummaryContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/caseDetailsSummaryContent";
+import { CaseDetailsSummaryDAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/caseDetailsSummaryDAContent";
 
 interface CaseDetailsSummaryPageOptions {
   page: Page;
@@ -33,30 +33,30 @@ export class CaseDetailsSummaryPage {
       Helpers.checkGroup(
         page,
         8,
-        CaseDetailsSummaryContent,
+        CaseDetailsSummaryDAContent,
         "h2",
         Selectors.h2,
       ),
       Helpers.checkGroup(
         page,
         12,
-        CaseDetailsSummaryContent,
+        CaseDetailsSummaryDAContent,
         "text16",
         Selectors.GovukText16,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukText16}:text-is("${CaseDetailsSummaryContent.text16DateSubmitted}")`,
+        `${Selectors.GovukText16}:text-is("${CaseDetailsSummaryDAContent.text16DateSubmitted}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukText16}:text-is("${CaseDetailsSummaryContent.text16TypeOfApplication}")`,
+        `${Selectors.GovukText16}:text-is("${CaseDetailsSummaryDAContent.text16TypeOfApplication}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukText16}:text-is("${CaseDetailsSummaryContent.text16CaseStatus}")`,
+        `${Selectors.GovukText16}:text-is("${CaseDetailsSummaryDAContent.text16CaseStatus}")`,
         1,
       ),
     ]);
@@ -68,10 +68,10 @@ export class CaseDetailsSummaryPage {
   private static async fillInFields(page: Page): Promise<void> {
     await page.selectOption(
       UniqueSelectors.nextStepDropDown,
-      CaseDetailsSummaryContent.manageOrders,
+      CaseDetailsSummaryDAContent.manageOrders,
     );
     await page.click(
-      `${Selectors.button}:text-is("${CaseDetailsSummaryContent.go}")`,
+      `${Selectors.button}:text-is("${CaseDetailsSummaryDAContent.go}")`,
     );
   }
 }

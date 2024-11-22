@@ -15,7 +15,7 @@ export class IdamLoginHelper {
     username: string,
     password: string,
     application: string,
-    userType: string
+    userType: string,
   ): Promise<void> {
     if (!page.url().includes("idam-web-public.")) {
       await page.goto(application);
@@ -23,24 +23,34 @@ export class IdamLoginHelper {
     if (page.url().includes("demo")) {
       await page.waitForSelector(`#skiplinktarget:text("Sign in")`);
     } else {
-      await page.waitForSelector(`#skiplinktarget:text("Sign in or create an account")`);
+      await page.waitForSelector(
+        `#skiplinktarget:text("Sign in or create an account")`,
+      );
     }
     await page.fill(this.fields.username, username);
     await page.fill(this.fields.password, password);
     await page.click(this.submitButton);
     if (userType !== "citizen") {
-      await page.context().storageState({ path: Config.sessionStoragePath + `${userType}.json` });
+      await page
+        .context()
+        .storageState({ path: Config.sessionStoragePath + `${userType}.json` });
     }
   }
 
   public static async signInUser(
     page: Page,
     user: keyof typeof Config.userCredentials,
-    application: string
+    application: string,
   ): Promise<void> {
     const userCredentials: UserCredentials = Config.getUserCredentials(user);
     if (userCredentials) {
-      await this.signIn(page, userCredentials.email, userCredentials.password, application, user);
+      await this.signIn(
+        page,
+        userCredentials.email,
+        userCredentials.password,
+        application,
+        user,
+      );
     } else {
       console.error("Invalid credential type");
     }
@@ -48,7 +58,7 @@ export class IdamLoginHelper {
 
   public static async signInCitizenUser(
     page: Page,
-    application: string
+    application: string,
   ): Promise<void> {
     const token = process.env.CITIZEN_CREATE_USER_BEARER_TOKEN as string;
     if (!token) {
@@ -60,7 +70,13 @@ export class IdamLoginHelper {
       console.error("Failed to set up citizen user");
       return;
     }
-    await this.signIn(page, userInfo.email, userInfo.password, application, "citizen");
+    await this.signIn(
+      page,
+      userInfo.email,
+      userInfo.password,
+      application,
+      "citizen",
+    );
   }
 }
 
