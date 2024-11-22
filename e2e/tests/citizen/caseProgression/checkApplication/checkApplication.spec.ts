@@ -21,8 +21,15 @@ test.describe("Complete Check Application task for DA Citizen case. @citizenFron
       accessibilityTest: false,
     });
   });
+});
 
-  test("Complete Check Application with accessibility test. @accessibilityCitizenFrontend", async ({
+test.describe("Testing the accessibility when completing Check Application task for DA Citizen case. @accessibilityCitizenFrontend", () => {
+  test.beforeEach(async ({ page }) => {
+    const ccdRef: string = await createDaCitizenCourtNavCase(false);
+    await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
+  });
+
+  test("Complete Check Application with accessibility test.", async ({
     page,
   }): Promise<void> => {
     await CheckApplication.checkApplication({
