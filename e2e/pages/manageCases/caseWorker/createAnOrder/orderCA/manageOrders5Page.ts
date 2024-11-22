@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { ManageOrders5Content } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderCA/manageOrders5Content";
+import { ManageOrders5CAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderCA/manageOrders5CAContent";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 
 interface manageOrders5PageOptions {
@@ -42,38 +42,38 @@ export class ManageOrders5Page {
       throw new Error("Page is not defined");
     }
     const pageTitle = page.locator(
-      `${Selectors.GovukHeadingL}:text-is("${ManageOrders5Content.pageTitle}")`,
+      `${Selectors.GovukHeadingL}:text-is("${ManageOrders5CAContent.pageTitle}")`,
     );
     await pageTitle.waitFor();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.headingH3}:text-is("${ManageOrders5Content.headingh3}")`,
+        `${Selectors.headingH3}:text-is("${ManageOrders5CAContent.headingh3}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${ManageOrders5Content.p}")`,
+        `${Selectors.p}:text-is("${ManageOrders5CAContent.p}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.strong}:text-is("${ManageOrders5Content.strong}")`,
+        `${Selectors.strong}:text-is("${ManageOrders5CAContent.strong}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukFormLabel}:text-is("${ManageOrders5Content.hiddenLabel2}"):visible`,
+        `${Selectors.GovukFormLabel}:text-is("${ManageOrders5CAContent.hiddenLabel2}"):visible`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukFormLabel}:text-is("${ManageOrders5Content.hiddenLabel3}"):visible`,
+        `${Selectors.GovukFormLabel}:text-is("${ManageOrders5CAContent.hiddenLabel3}"):visible`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukFormLabel}:text-is("${ManageOrders5Content.hiddenLabel4}"):visible`,
+        `${Selectors.GovukFormLabel}:text-is("${ManageOrders5CAContent.hiddenLabel4}"):visible`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -89,7 +89,7 @@ export class ManageOrders5Page {
       Helpers.checkGroup(
         page,
         22,
-        ManageOrders5Content,
+        ManageOrders5CAContent,
         "label",
         `${Selectors.GovukFormLabel}`,
       ),
@@ -110,16 +110,16 @@ export class ManageOrders5Page {
     }
     await Helpers.checkVisibleAndPresent(
       page,
-      `${Selectors.GovukFormLabel}:text-is("${ManageOrders5Content.hiddenLabel1}")`,
+      `${Selectors.GovukFormLabel}:text-is("${ManageOrders5CAContent.hiddenLabel1}")`,
       1,
     );
     await page.selectOption(
       inputIds.hearingsType,
-      ManageOrders5Content.hearing,
+      ManageOrders5CAContent.hearing,
     );
     await page.fill(
       inputIds.judgeOrMagistratesLastName,
-      ManageOrders5Content.judgeFullName,
+      ManageOrders5CAContent.judgeFullName,
     );
     await page.click(
       `${Selectors.button}:text-is("${CommonStaticText.continue}")`,

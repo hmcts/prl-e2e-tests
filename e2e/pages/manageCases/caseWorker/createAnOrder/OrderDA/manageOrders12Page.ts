@@ -1,10 +1,10 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
-import { ManageOrders1Content } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders1Content";
+import { ManageOrders1DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders1DAContent";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { ManageOrders12Content } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders12Content";
+import { ManageOrders12DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders12DAContent";
 
 interface ManageOrders5PageOptions {
   page: Page;
@@ -75,14 +75,14 @@ export class ManageOrders12Page {
       throw new Error("Page is not defined");
     }
     const pageTitle = page.locator(
-      `${Selectors.h1}:text-is("${ManageOrders1Content.pageTitle}")`,
+      `${Selectors.h1}:text-is("${ManageOrders1DAContent.pageTitle}")`,
     );
     await pageTitle.waitFor();
     await Promise.all([
       Helpers.checkGroup(
         page,
         20,
-        ManageOrders12Content,
+        ManageOrders12DAContent,
         "formLabel",
         Selectors.GovukFormLabel,
       ),
@@ -115,27 +115,27 @@ export class ManageOrders12Page {
     }
     await page.fill(
       UniqueSelectorsHiddenTextBoxes.fl404CustomFields_fl404bAddMoreDetailsTelephone,
-      ManageOrders12Content.loremIpsum,
+      ManageOrders12DAContent.loremIpsum,
     );
     await page.fill(
       UniqueSelectorsHiddenTextBoxes.fl404CustomFields_fl404bAddMoreDetailsProperty,
-      ManageOrders12Content.loremIpsum,
+      ManageOrders12DAContent.loremIpsum,
     );
     await page.fill(
       UniqueSelectorsHiddenTextBoxes.fl404CustomFields_fl404bAddMoreDetailsPhoneChild,
-      ManageOrders12Content.loremIpsum,
+      ManageOrders12DAContent.loremIpsum,
     );
     await page.fill(
       UniqueSelectorsHiddenTextBoxes.fl404CustomFields_fl404bAddSchool,
-      ManageOrders12Content.loremIpsum,
+      ManageOrders12DAContent.loremIpsum,
     );
     await page.fill(
       UniqueSelectorsHiddenTextBoxes.fl404CustomFields_fl404bAddMoreDetailsSchool,
-      ManageOrders12Content.loremIpsum,
+      ManageOrders12DAContent.loremIpsum,
     );
     await page.fill(
       UniqueSelectors.costOfApplicationInput,
-      ManageOrders12Content.loremIpsum,
+      ManageOrders12DAContent.loremIpsum,
     );
     if (yesNoManageOrders) {
       await page.click(
@@ -143,7 +143,7 @@ export class ManageOrders12Page {
       );
       await page.fill(
         UniqueSelectors.fl404CustomFields_fl404bAddressOfProperty,
-        ManageOrders12Content.loremIpsum,
+        ManageOrders12DAContent.loremIpsum,
       );
       await page.click(UniqueSelectors.withNotice);
       await this.hiddenFormLabels(page);
@@ -164,7 +164,7 @@ export class ManageOrders12Page {
         await page.click(UniqueSelectors.specificDate); // #TODO: Add date
         await page.fill(
           UniqueSelectors.inputSpecificDate,
-          ManageOrders12Content.specificDate,
+          ManageOrders12DAContent.specificDate,
         );
         break;
       default:
@@ -182,13 +182,13 @@ export class ManageOrders12Page {
       Helpers.checkGroup(
         page,
         2,
-        ManageOrders12Content,
+        ManageOrders12DAContent,
         "hiddenFormLabel",
         Selectors.GovukFormLabel,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukFormLabel}:text-is("${ManageOrders12Content.hiddenFormLabelAddDetails}"):visible`,
+        `${Selectors.GovukFormLabel}:text-is("${ManageOrders12DAContent.hiddenFormLabelAddDetails}"):visible`,
         4,
       ),
     ]);

@@ -1,4 +1,4 @@
-export enum SubmitContent {
+export enum SubmitCAContent {
   pageTitle = "Manage orders",
   headingh2 = "Check your answers",
   headingh3 = "Child arrangements, specific issue or prohibited steps order (C43)", // 3

@@ -1,4 +1,4 @@
-export enum ManageOrders2Content {
+export enum ManageOrders2CAContent {
   pageTitle = "Manage orders",
   h2 = "Create an order",
   insetText = " If the order you need is not on the list, go back to the previous page to upload it.",

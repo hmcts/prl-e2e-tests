@@ -1,10 +1,10 @@
 import { expect, Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
-import { ManageOrders1Content } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders1Content";
+import { ManageOrders1DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders1DAContent";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { ManageOrders20Content } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders20Content";
+import { ManageOrders20DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders20DAContent";
 import { howLongWillOrderBeInForce } from "./manageOrders12Page";
 
 interface ManageOrders20PageOptions {
@@ -45,21 +45,21 @@ export class ManageOrders20Page {
       throw new Error("Page is not defined");
     }
     const pageTitle = page.locator(
-      `${Selectors.h1}:text-is("${ManageOrders1Content.pageTitle}")`,
+      `${Selectors.h1}:text-is("${ManageOrders1DAContent.pageTitle}")`,
     );
     await pageTitle.waitFor();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h2}:text-is("${ManageOrders20Content.h2}")`,
+        `${Selectors.h2}:text-is("${ManageOrders20DAContent.h2}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${ManageOrders20Content.span}")`,
+        `${Selectors.Span}:text-is("${ManageOrders20DAContent.span}")`,
         1,
       ),
-      Helpers.checkGroup(page, 2, ManageOrders20Content, "a", Selectors.a),
+      Helpers.checkGroup(page, 2, ManageOrders20DAContent, "a", Selectors.a),
     ]);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
@@ -93,23 +93,23 @@ export class ManageOrders20Page {
       Helpers.checkGroup(
         pdfPage,
         87,
-        ManageOrders20Content,
+        ManageOrders20DAContent,
         "welshSpan",
         `${Selectors.Span}`,
       ),
       Helpers.checkVisibleAndPresent(
         pdfPage,
-        `${Selectors.Span}:text-is("${ManageOrders20Content.repeatedWelshSpan1}")`,
+        `${Selectors.Span}:text-is("${ManageOrders20DAContent.repeatedWelshSpan1}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         pdfPage,
-        `${Selectors.Span}:text-is("${ManageOrders20Content.repeatedWelshSpan2}")`,
+        `${Selectors.Span}:text-is("${ManageOrders20DAContent.repeatedWelshSpan2}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         pdfPage,
-        `${Selectors.Span}:text-is("${ManageOrders20Content.repeatedWelshSpan3}")`,
+        `${Selectors.Span}:text-is("${ManageOrders20DAContent.repeatedWelshSpan3}")`,
         2,
       ),
     ]);
@@ -118,18 +118,18 @@ export class ManageOrders20Page {
         Helpers.checkGroup(
           pdfPage,
           10,
-          ManageOrders20Content,
+          ManageOrders20DAContent,
           "welshYesToAllSpan",
           `${Selectors.Span}`,
         ),
         Helpers.checkVisibleAndPresent(
           pdfPage,
-          `${Selectors.Span}:text-is("${ManageOrders20Content.welshRepeatedYesToAllSpan1}")`,
+          `${Selectors.Span}:text-is("${ManageOrders20DAContent.welshRepeatedYesToAllSpan1}")`,
           2,
         ),
         Helpers.checkVisibleAndPresent(
           pdfPage,
-          `${Selectors.Span}:text-is("${ManageOrders20Content.loremIpsumSpan}")`,
+          `${Selectors.Span}:text-is("${ManageOrders20DAContent.loremIpsumSpan}")`,
           4,
         ),
       ]);
@@ -138,13 +138,13 @@ export class ManageOrders20Page {
         Helpers.checkGroup(
           pdfPage,
           11,
-          ManageOrders20Content,
+          ManageOrders20DAContent,
           "welshNoToAllSpan",
           `${Selectors.Span}`,
         ),
         Helpers.checkVisibleAndPresent(
           pdfPage,
-          `${Selectors.Span}:text-is("${ManageOrders20Content.loremIpsumSpan}")`,
+          `${Selectors.Span}:text-is("${ManageOrders20DAContent.loremIpsumSpan}")`,
           3,
         ),
       ]);
@@ -154,7 +154,7 @@ export class ManageOrders20Page {
         await Helpers.checkGroup(
           pdfPage,
           2,
-          ManageOrders20Content,
+          ManageOrders20DAContent,
           "welshNoFixedEndDate",
           `${Selectors.Span}`,
         );
@@ -163,7 +163,7 @@ export class ManageOrders20Page {
         await Helpers.checkGroup(
           pdfPage,
           2,
-          ManageOrders20Content,
+          ManageOrders20DAContent,
           "welshSpecificDate",
           `${Selectors.Span}`,
         );
@@ -172,7 +172,7 @@ export class ManageOrders20Page {
         await Helpers.checkGroup(
           pdfPage,
           2,
-          ManageOrders20Content,
+          ManageOrders20DAContent,
           "welshUntilNextHearing",
           `${Selectors.Span}`,
         );
@@ -193,38 +193,38 @@ export class ManageOrders20Page {
       Helpers.checkGroup(
         pdfPage,
         75,
-        ManageOrders20Content,
+        ManageOrders20DAContent,
         "englishSpan",
         `${Selectors.Span}`,
       ),
       Helpers.checkVisibleAndPresent(
         pdfPage,
-        `${Selectors.Span}:text-is("${ManageOrders20Content.repeatedEnglishSpan1}")`,
+        `${Selectors.Span}:text-is("${ManageOrders20DAContent.repeatedEnglishSpan1}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         pdfPage,
-        `${Selectors.Span}:text-is("${ManageOrders20Content.repeatedEnglishSpan2}")`,
+        `${Selectors.Span}:text-is("${ManageOrders20DAContent.repeatedEnglishSpan2}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         pdfPage,
-        `${Selectors.Span}:text-is("${ManageOrders20Content.repeatedEnglishSpan3}")`,
+        `${Selectors.Span}:text-is("${ManageOrders20DAContent.repeatedEnglishSpan3}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         pdfPage,
-        `${Selectors.Span}:text-is("${ManageOrders20Content.repeatedEnglishSpan4}")`,
+        `${Selectors.Span}:text-is("${ManageOrders20DAContent.repeatedEnglishSpan4}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         pdfPage,
-        `${Selectors.Span}:text-is("${ManageOrders20Content.repeatedEnglishSpan5}")`,
+        `${Selectors.Span}:text-is("${ManageOrders20DAContent.repeatedEnglishSpan5}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         pdfPage,
-        `${Selectors.Span}:text-is("${ManageOrders20Content.repeatedEnglishSpan6}")`,
+        `${Selectors.Span}:text-is("${ManageOrders20DAContent.repeatedEnglishSpan6}")`,
         2,
       ),
     ]);
@@ -233,18 +233,18 @@ export class ManageOrders20Page {
         Helpers.checkGroup(
           pdfPage,
           7,
-          ManageOrders20Content,
+          ManageOrders20DAContent,
           "englishYesToAllSpan",
           `${Selectors.Span}`,
         ),
         Helpers.checkVisibleAndPresent(
           pdfPage,
-          `${Selectors.Span}:text-is("${ManageOrders20Content.englishRepeatedYesToAllSpan1}")`,
+          `${Selectors.Span}:text-is("${ManageOrders20DAContent.englishRepeatedYesToAllSpan1}")`,
           2,
         ),
         Helpers.checkVisibleAndPresent(
           pdfPage,
-          `${Selectors.Span}:text-is("${ManageOrders20Content.loremIpsumSpan}")`,
+          `${Selectors.Span}:text-is("${ManageOrders20DAContent.loremIpsumSpan}")`,
           4,
         ),
       ]);
@@ -253,13 +253,13 @@ export class ManageOrders20Page {
         Helpers.checkGroup(
           pdfPage,
           10,
-          ManageOrders20Content,
+          ManageOrders20DAContent,
           "englishNoToAllSpan",
           `${Selectors.Span}`,
         ),
         Helpers.checkVisibleAndPresent(
           pdfPage,
-          `${Selectors.Span}:text-is("${ManageOrders20Content.loremIpsumSpan}")`,
+          `${Selectors.Span}:text-is("${ManageOrders20DAContent.loremIpsumSpan}")`,
           3,
         ),
       ]);
@@ -268,21 +268,21 @@ export class ManageOrders20Page {
       case "noEndDate":
         await Helpers.checkVisibleAndPresent(
           pdfPage,
-          `${Selectors.Span}:text-is("${ManageOrders20Content.englishNoFixedEndDate}")`,
+          `${Selectors.Span}:text-is("${ManageOrders20DAContent.englishNoFixedEndDate}")`,
           1,
         );
         break;
       case "specificDate":
         await Helpers.checkVisibleAndPresent(
           pdfPage,
-          `${Selectors.Span}:text-is("${ManageOrders20Content.englishSpecificDate}")`,
+          `${Selectors.Span}:text-is("${ManageOrders20DAContent.englishSpecificDate}")`,
           1,
         );
         break;
       case "untilNextHearing":
         await Helpers.checkVisibleAndPresent(
           pdfPage,
-          `${Selectors.Span}:text-is("${ManageOrders20Content.englishUntilNextHearing}")`,
+          `${Selectors.Span}:text-is("${ManageOrders20DAContent.englishUntilNextHearing}")`,
           1,
         );
         break;
@@ -296,7 +296,7 @@ export class ManageOrders20Page {
     const [pdfPage] = await Promise.all([
       page.waitForEvent("popup"),
       page.click(
-        `${Selectors.a}:text-is("${language === "English" ? ManageOrders20Content.englishPdfLink : ManageOrders20Content.welshPdfLink}")`,
+        `${Selectors.a}:text-is("${language === "English" ? ManageOrders20DAContent.englishPdfLink : ManageOrders20DAContent.welshPdfLink}")`,
       ),
     ]);
     await pdfPage.waitForLoadState();
