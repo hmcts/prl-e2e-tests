@@ -121,7 +121,7 @@ export enum Selectors {
 
   // Alerts
   GovukMarginBottom0 = ".govuk-!-margin-bottom-0",
-  alertMessage = "alert-message",
+  alertMessage = ".alert-message",
 
   // Panels
   GovukPanel = ".govuk-panel",
