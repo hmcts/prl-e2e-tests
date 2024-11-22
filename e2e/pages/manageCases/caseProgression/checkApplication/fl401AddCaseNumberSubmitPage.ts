@@ -3,7 +3,7 @@ import { Selectors } from "../../../../common/selectors";
 import { Helpers } from "../../../../common/helpers";
 import { CommonStaticText } from "../../../../common/commonStaticText";
 import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
-import { Fl401AddCaseNumberSubmitContent } from "../../../../fixtures/citizen/caseProgression/checkApplication/fl401AddCaseNumberSubmitContent";
+import { Fl401AddCaseNumberSubmitContent } from "../../../../fixtures/manageCases/caseProgression/checkApplication/fl401AddCaseNumberSubmitContent";
 
 export class Fl401AddCaseNumberSubmitPage {
   public static async fl401AddCaseNumberSubmitPage(

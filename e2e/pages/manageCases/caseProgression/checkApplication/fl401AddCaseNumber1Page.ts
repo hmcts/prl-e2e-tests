@@ -1,6 +1,6 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors";
-import { Fl401AddCaseNumber1Content } from "../../../../fixtures/citizen/caseProgression/checkApplication/fl401AddCaseNumber1Content";
+import { Fl401AddCaseNumber1Content } from "../../../../fixtures/manageCases/caseProgression/checkApplication/fl401AddCaseNumber1Content";
 import { Helpers } from "../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
 import { CommonStaticText } from "../../../../common/commonStaticText";
