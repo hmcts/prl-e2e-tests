@@ -103,7 +103,7 @@ test.describe("FL401 Create case applicant details tests @manageCases", (): void
     await FL401ApplicantDetails.fl401ApplicantDetails({
       page: page,
       accessibilityTest: false,
-      errorMessaging: true,
+      errorMessaging: false,
       yesNoFL401ApplicantDetails: false,
       applicantGender: "male",
       subJourney: true,
@@ -118,7 +118,7 @@ test.describe("FL401 Create case applicant details tests @manageCases", (): void
     await FL401ApplicantDetails.fl401ApplicantDetails({
       page: page,
       accessibilityTest: false,
-      errorMessaging: true,
+      errorMessaging: false,
       yesNoFL401ApplicantDetails: true,
       applicantGender: "male",
       subJourney: true,

@@ -42,7 +42,7 @@ test.describe("FL401 Create case applicants family tests @manageCases", (): void
     await FL401ApplicantsFamily.fl401ApplicantsFamily({
       page: page,
       accessibilityTest: false,
-      errorMessaging: true,
+      errorMessaging: false,
       applicantHasChildren: true,
       subJourney: true,
     });

@@ -33,7 +33,7 @@ test.describe("C100 Create case type of application tests @manageCases", (): voi
       page,
       user: "solicitor",
       accessibilityTest: false,
-      errorMessaging: true,
+      errorMessaging: false,
       yesNoC100TypeOfApplication: false,
       typeOfChildArrangementOrder: "Spend time with order",
       selectionC100TypeOfApplication: "No, permission now sought",

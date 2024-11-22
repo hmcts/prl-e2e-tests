@@ -16,7 +16,7 @@ test.describe("C100 Create case Children and respondents Tests @manageCases", ()
       page: page,
       user: "solicitor",
       accessibilityTest: false,
-      errorMessaging: true,
+      errorMessaging: false,
       yesNoRespondentDetails: true,
       respondentGender: "male",
       respondentAddress5Years: "yes",

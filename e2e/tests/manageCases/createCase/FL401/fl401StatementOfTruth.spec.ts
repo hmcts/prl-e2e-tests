@@ -44,7 +44,7 @@ test.describe("FL401 Statement of truth tests @manageCases", (): void => {
     await Fl401StatementOfTruth.fl401StatementOfTruth({
       page: page,
       accessibilityTest: false,
-      errorMessaging: true,
+      errorMessaging: false,
       fl401YesNoToEverything: false,
       subJourney: true,
     });

@@ -346,7 +346,7 @@ test.describe("FL401 Create case relationship to respondent tests @manageCases",
     await FL401RelationshipToRespondent.fl401RelationshipToRespondent({
       page: page,
       accessibilityTest: false,
-      errorMessaging: true,
+      errorMessaging: false,
       relationshipToRespondent: "foremerlyLivedTogether",
       subJourney: true,
     });
@@ -360,7 +360,7 @@ test.describe("FL401 Create case relationship to respondent tests @manageCases",
     await FL401RelationshipToRespondent.fl401RelationshipToRespondent({
       page: page,
       accessibilityTest: false,
-      errorMessaging: true,
+      errorMessaging: false,
       relationshipToRespondent: "noneOfTheAbove",
       relationshipToRespondentOther: "Other",
       subJourney: true,

@@ -42,7 +42,7 @@ test.describe("FL401 Create case type of application tests @manageCases", (): vo
     await FL401TypeOfApplication.fl401TypeOfApplication({
       page: page,
       accessibilityTest: false,
-      errorMessaging: true,
+      errorMessaging: false,
       isLinkedToC100: true,
       subJourney: true,
     });

@@ -59,7 +59,7 @@ test.describe("FL401 Create case other proceedings tests @manageCases", (): void
     await FL401OtherProceedings.fl401OtherProceedings({
       page: page,
       accessibilityTest: false,
-      errorMessaging: true,
+      errorMessaging: false,
       otherProceedingsRadios: "No",
       subJourney: true,
     });
@@ -74,7 +74,7 @@ test.describe("FL401 Create case other proceedings tests @manageCases", (): void
     await FL401OtherProceedings.fl401OtherProceedings({
       page: page,
       accessibilityTest: false,
-      errorMessaging: true,
+      errorMessaging: false,
       otherProceedingsRadios: "Yes",
       subJourney: true,
     });

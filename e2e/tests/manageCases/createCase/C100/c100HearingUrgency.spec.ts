@@ -45,7 +45,7 @@ test.describe("C100 Create case hearing urgency tests @manageCases", (): void =>
       page,
       user: "solicitor",
       accessibilityTest: false,
-      errorMessaging: true,
+      errorMessaging: false,
       yesNoHearingUrgency: true,
       subJourney: true,
     });

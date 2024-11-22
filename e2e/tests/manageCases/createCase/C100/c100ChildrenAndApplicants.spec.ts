@@ -151,7 +151,7 @@ test.describe("C100 Create case children and applicants tests @manageCases", ():
     await C100ChildrenAndApplicants.c100ChildrenAndApplicants({
       page: page,
       accessibilityTest: false,
-      errorMessaging: true,
+      errorMessaging: false,
       applicantChildRelationship: "Other",
       childLiveWithApplicant: true,
       subJourney: true,

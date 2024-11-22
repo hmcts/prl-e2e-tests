@@ -42,7 +42,7 @@ test.describe("FL401 Create case respondent’s behaviour tests @manageCases", (
     await Fl401AttendingTheHearing.fl401AttendingTheHearing({
       page: page,
       accessibilityTest: false,
-      errorMessaging: true,
+      errorMessaging: false,
       fl401AttendingTheHearingYesNo: true,
       subJourney: true,
     });

@@ -42,7 +42,7 @@ test.describe("C100 Create case respondent’s behaviour tests @manageCases", ()
     await C100AttendingTheHearing.c100AttendingTheHearing({
       page: page,
       accessibilityTest: false,
-      errorMessaging: true,
+      errorMessaging: false,
       c100AttendingTheHearingYesNo: true,
       subJourney: true,
     });

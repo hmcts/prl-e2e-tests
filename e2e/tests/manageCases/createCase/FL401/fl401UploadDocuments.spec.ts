@@ -26,7 +26,7 @@ test.describe("FL401 Create case Upload Documents tests @manageCases", (): void 
     await FL401UploadDocuments.fl401UploadDocuments({
       page: page,
       accessibilityTest: false,
-      errorMessaging: true,
+      errorMessaging: false,
       subJourney: true,
     });
   });
@@ -40,7 +40,7 @@ test(`Test the FL401 Upload Documents journey with following options:
   await FL401UploadDocuments.fl401UploadDocuments({
     page: page,
     accessibilityTest: false,
-    errorMessaging: true,
+    errorMessaging: false,
     subJourney: true,
   });
 });

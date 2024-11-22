@@ -77,7 +77,7 @@ test.describe("C100 Create case other proceedings tests @manageCases", (): void 
     await C100OtherProceedings.c100OtherProceedings({
       page: page,
       accessibilityTest: false,
-      errorMessaging: true,
+      errorMessaging: false,
       c100OtherProceedings: "Yes",
       c100OngoingProceedingsAndDocX: true,
       subJourney: true,

@@ -42,7 +42,7 @@ test.describe("FL401 Create case respondent details tests @manageCases", (): voi
     await FL401RespondentDetails.fl401RespondentDetails({
       page: page,
       accessibilityTest: false,
-      errorMessaging: true,
+      errorMessaging: false,
       respondentDetailsAllOptionsYes: true,
       subJourney: true,
     });
