@@ -54,8 +54,20 @@ export class ManageOrdersSubmitPage {
         "h2",
         Selectors.h2,
       ),
-      Helpers.checkGroup(page, 2, ManageOrdersSubmitDAContent, "p", Selectors.p),
-      Helpers.checkGroup(page, 2, ManageOrdersSubmitDAContent, "a", Selectors.a),
+      Helpers.checkGroup(
+        page,
+        2,
+        ManageOrdersSubmitDAContent,
+        "p",
+        Selectors.p,
+      ),
+      Helpers.checkGroup(
+        page,
+        2,
+        ManageOrdersSubmitDAContent,
+        "a",
+        Selectors.a,
+      ),
       Helpers.checkGroup(
         page,
         2,
