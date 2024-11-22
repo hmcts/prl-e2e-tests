@@ -787,7 +787,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@playwright/test@npm:^1.46.1":
+"@playwright/test@npm:^1.48.2":
   version: 1.49.0
   resolution: "@playwright/test@npm:1.49.0"
   dependencies:
@@ -3267,7 +3267,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"playwright-core@npm:1.49.0, playwright-core@npm:^1.46.1":
+"playwright-core@npm:1.49.0, playwright-core@npm:^1.48.2":
   version: 1.49.0
   resolution: "playwright-core@npm:1.49.0"
   bin:
@@ -3329,13 +3329,13 @@ __metadata:
     "@axe-core/playwright": "npm:^4.10.0"
     "@jest/globals": "npm:^29.7.0"
     "@jest/types": "npm:^29.6.3"
-    "@playwright/test": "npm:^1.46.1"
+    "@playwright/test": "npm:^1.48.2"
     "@types/jest": "npm:^29.5.12"
     "@types/node": "npm:^22.4.1"
     axios: "npm:^1.7.4"
     dotenv: "npm:^16.4.5"
     jest: "npm:^29.7.0"
-    playwright-core: "npm:^1.46.1"
+    playwright-core: "npm:^1.48.2"
     pre-commit: "npm:^1.2.2"
     prettier: "npm:^3.3.3"
     simple-git: "npm:^3.27.0"
