@@ -36,8 +36,6 @@ export class C100CreateAnOrder {
         page,
         accessibilityTest,
       });
-    } else {
-      // FL401 Manage Orders journey
     }
   }
 }

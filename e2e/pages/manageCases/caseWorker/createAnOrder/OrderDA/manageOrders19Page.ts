@@ -6,7 +6,7 @@ import { CommonStaticText } from "../../../../../common/commonStaticText";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { ManageOrders19Content } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders19Content";
 
-interface ManageOrders5PageOptions {
+interface ManageOrders19PageOptions {
   page: Page;
   accessibilityTest: boolean;
 }
@@ -21,7 +21,7 @@ export class ManageOrders19Page {
   public static async manageOrders19Page({
     page,
     accessibilityTest,
-  }: ManageOrders5PageOptions): Promise<void> {
+  }: ManageOrders19PageOptions): Promise<void> {
     await this.checkPageLoads({ page, accessibilityTest });
     await this.fillInFields({
       page,
@@ -31,7 +31,7 @@ export class ManageOrders19Page {
   private static async checkPageLoads({
     page,
     accessibilityTest,
-  }: Partial<ManageOrders5PageOptions>): Promise<void> {
+  }: Partial<ManageOrders19PageOptions>): Promise<void> {
     if (!page) {
       throw new Error("Page is not defined");
     }
@@ -71,7 +71,7 @@ export class ManageOrders19Page {
 
   private static async fillInFields({
     page,
-  }: Partial<ManageOrders5PageOptions>): Promise<void> {
+  }: Partial<ManageOrders19PageOptions>): Promise<void> {
     if (!page) {
       throw new Error("Page is not defined");
     }
