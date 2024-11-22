@@ -8,7 +8,6 @@ test.describe("Create an order tests @manageCases", (): void => {
   test(`Complete Creating an order as a Caseworker with the following options:
   Case: C100,
   Not accessibility testing. 
-  test
   @crossbrowserManageCases`, async ({ page }): Promise<void> => {
     await C100CreateAnOrder.c100CreateAnOrder({
       page: page,
