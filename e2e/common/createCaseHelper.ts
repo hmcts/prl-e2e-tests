@@ -31,12 +31,12 @@ async function createDaCitizenCourtNavCase(withDoc: boolean): Promise<string> {
       },
     );
     const responseBody = await response.json();
-    const ccd_reference = responseBody.ccd_reference as string;
     if (!responseBody || !responseBody.ccd_reference) {
       throw new Error(
         "Failed to create case. No CCD reference or no response body",
       );
     }
+    const ccd_reference = responseBody.ccd_reference as string;
     if (existsSync(".env")) {
       console.log("CCD Reference:", ccd_reference);
     }
