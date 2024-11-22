@@ -1,12 +1,12 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
-import { ManageOrders1Content } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders1Content";
+import { ManageOrders1DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders1DAContent";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { ManageOrdersSubmitContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrdersSubmitContent";
+import { ManageOrdersSubmitDAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrdersSubmitDAContent";
 import { howLongWillOrderBeInForce } from "./manageOrders12Page";
-import { ManageOrders12Content } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders12Content";
+import { ManageOrders12DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders12DAContent";
 
 interface ManageOrders20PageOptions {
   page: Page;
@@ -43,46 +43,46 @@ export class ManageOrdersSubmitPage {
       throw new Error("Page is not defined");
     }
     const pageTitle = page.locator(
-      `${Selectors.h1}:text-is("${ManageOrders1Content.pageTitle}")`,
+      `${Selectors.h1}:text-is("${ManageOrders1DAContent.pageTitle}")`,
     );
     await pageTitle.waitFor();
     await Promise.all([
       Helpers.checkGroup(
         page,
         3,
-        ManageOrdersSubmitContent,
+        ManageOrdersSubmitDAContent,
         "h2",
         Selectors.h2,
       ),
-      Helpers.checkGroup(page, 2, ManageOrdersSubmitContent, "p", Selectors.p),
-      Helpers.checkGroup(page, 2, ManageOrdersSubmitContent, "a", Selectors.a),
+      Helpers.checkGroup(page, 2, ManageOrdersSubmitDAContent, "p", Selectors.p),
+      Helpers.checkGroup(page, 2, ManageOrdersSubmitDAContent, "a", Selectors.a),
       Helpers.checkGroup(
         page,
         2,
-        ManageOrdersSubmitContent,
+        ManageOrdersSubmitDAContent,
         "strong",
         Selectors.strong,
       ),
       Helpers.checkGroup(
         page,
         34,
-        ManageOrdersSubmitContent,
+        ManageOrdersSubmitDAContent,
         "sharedText16",
         Selectors.GovukText16,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${ManageOrdersSubmitContent.spanNonMolestation}")`,
+        `${Selectors.Span}:text-is("${ManageOrdersSubmitDAContent.spanNonMolestation}")`,
         4,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukText16}:text-is("${ManageOrdersSubmitContent.addFurtherDetails}")`,
+        `${Selectors.GovukText16}:text-is("${ManageOrdersSubmitDAContent.addFurtherDetails}")`,
         4,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${ManageOrdersSubmitContent.text16LoremIpsumExtended}")`,
+        `${Selectors.Span}:text-is("${ManageOrdersSubmitDAContent.text16LoremIpsumExtended}")`,
         1,
       ),
     ]);
@@ -91,33 +91,33 @@ export class ManageOrdersSubmitPage {
         Helpers.checkGroup(
           page,
           3,
-          ManageOrdersSubmitContent,
+          ManageOrdersSubmitDAContent,
           "yesNoTrueText16",
           Selectors.GovukText16,
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.p}:text-is("${ManageOrdersSubmitContent.text16JoeDoe}")`,
+          `${Selectors.p}:text-is("${ManageOrdersSubmitDAContent.text16JoeDoe}")`,
           1,
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.p}:text-is("${ManageOrdersSubmitContent.text16SimonAnderson}")`,
+          `${Selectors.p}:text-is("${ManageOrdersSubmitDAContent.text16SimonAnderson}")`,
           1,
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukText16}:text-is("${ManageOrdersSubmitContent.text16WithNotice}")`,
+          `${Selectors.GovukText16}:text-is("${ManageOrdersSubmitDAContent.text16WithNotice}")`,
           1,
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukText16}:text-is("${ManageOrdersSubmitContent.text16UntilNextHearing}")`,
+          `${Selectors.GovukText16}:text-is("${ManageOrdersSubmitDAContent.text16UntilNextHearing}")`,
           1,
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.Span}:text-is("${ManageOrdersSubmitContent.text16LoremIpsum}")`,
+          `${Selectors.Span}:text-is("${ManageOrdersSubmitDAContent.text16LoremIpsum}")`,
           9,
         ),
         Helpers.checkVisibleAndPresent(
@@ -127,7 +127,7 @@ export class ManageOrdersSubmitPage {
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukText16}:text-is("${ManageOrdersSubmitContent.text16AddAddressOfProperty}"):visible`,
+          `${Selectors.GovukText16}:text-is("${ManageOrdersSubmitDAContent.text16AddAddressOfProperty}"):visible`,
           1,
         ),
       ]);
@@ -138,17 +138,17 @@ export class ManageOrdersSubmitPage {
       await Promise.all([
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukText16}:text-is("${ManageOrdersSubmitContent.text16WithoutNotice}")`,
+          `${Selectors.GovukText16}:text-is("${ManageOrdersSubmitDAContent.text16WithoutNotice}")`,
           1,
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukText16}:text-is("${ManageOrdersSubmitContent.text16NoFixedDate}")`,
+          `${Selectors.GovukText16}:text-is("${ManageOrdersSubmitDAContent.text16NoFixedDate}")`,
           1,
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.Span}:text-is("${ManageOrdersSubmitContent.text16LoremIpsum}")`,
+          `${Selectors.Span}:text-is("${ManageOrdersSubmitDAContent.text16LoremIpsum}")`,
           8,
         ),
         Helpers.checkVisibleAndPresent(
@@ -165,28 +165,28 @@ export class ManageOrdersSubmitPage {
         Helpers.checkGroup(
           page,
           3,
-          ManageOrdersSubmitContent,
+          ManageOrdersSubmitDAContent,
           "yesNoTrueText16",
           Selectors.GovukText16,
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.p}:text-is("${ManageOrdersSubmitContent.text16JoeDoe}")`,
+          `${Selectors.p}:text-is("${ManageOrdersSubmitDAContent.text16JoeDoe}")`,
           1,
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.p}:text-is("${ManageOrdersSubmitContent.text16SimonAnderson}")`,
+          `${Selectors.p}:text-is("${ManageOrdersSubmitDAContent.text16SimonAnderson}")`,
           1,
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukText16}:text-is("${ManageOrdersSubmitContent.text16WithNotice}")`,
+          `${Selectors.GovukText16}:text-is("${ManageOrdersSubmitDAContent.text16WithNotice}")`,
           1,
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.Span}:text-is("${ManageOrdersSubmitContent.text16LoremIpsum}")`,
+          `${Selectors.Span}:text-is("${ManageOrdersSubmitDAContent.text16LoremIpsum}")`,
           9,
         ),
         Helpers.checkVisibleAndPresent(
@@ -196,27 +196,27 @@ export class ManageOrdersSubmitPage {
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukText16}:text-is("${ManageOrdersSubmitContent.text16AddAddressOfProperty}"):visible`,
+          `${Selectors.GovukText16}:text-is("${ManageOrdersSubmitDAContent.text16AddAddressOfProperty}"):visible`,
           1,
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukText16}:text-is("${ManageOrdersSubmitContent.text16AddAddressOfProperty}"):visible`,
+          `${Selectors.GovukText16}:text-is("${ManageOrdersSubmitDAContent.text16AddAddressOfProperty}"):visible`,
           1,
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukText16}:text-is("${ManageOrdersSubmitContent.text16AddAddressOfProperty}"):visible`,
+          `${Selectors.GovukText16}:text-is("${ManageOrdersSubmitDAContent.text16AddAddressOfProperty}"):visible`,
           1,
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukText16}:text-is("${ManageOrders12Content.formLabel16}"):visible`,
+          `${Selectors.GovukText16}:text-is("${ManageOrders12DAContent.formLabel16}"):visible`,
           1,
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukText16}:text-is("${ManageOrdersSubmitContent.specificDate}"):visible`,
+          `${Selectors.GovukText16}:text-is("${ManageOrdersSubmitDAContent.specificDate}"):visible`,
           1,
         ),
       ]);

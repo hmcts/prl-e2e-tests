@@ -1,10 +1,10 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
-import { ManageOrders1Content } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders1Content";
+import { ManageOrders1DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders1DAContent";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { ManageOrders19Content } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders19Content";
+import { ManageOrders19DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders19DAContent";
 
 interface ManageOrders19PageOptions {
   page: Page;
@@ -36,30 +36,30 @@ export class ManageOrders19Page {
       throw new Error("Page is not defined");
     }
     const pageTitle = page.locator(
-      `${Selectors.h1}:text-is("${ManageOrders1Content.pageTitle}")`,
+      `${Selectors.h1}:text-is("${ManageOrders1DAContent.pageTitle}")`,
     );
     await pageTitle.waitFor();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${ManageOrders19Content.span}"):visible`,
+        `${Selectors.Span}:text-is("${ManageOrders19DAContent.span}"):visible`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h2}:text-is("${ManageOrders19Content.h2}"):visible`,
+        `${Selectors.h2}:text-is("${ManageOrders19DAContent.h2}"):visible`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${ManageOrders19Content.p}"):visible`,
+        `${Selectors.p}:text-is("${ManageOrders19DAContent.p}"):visible`,
         1,
       ),
-      Helpers.checkGroup(page, 2, ManageOrders19Content, "h3", Selectors.h3),
+      Helpers.checkGroup(page, 2, ManageOrders19DAContent, "h3", Selectors.h3),
       Helpers.checkGroup(
         page,
         2,
-        ManageOrders19Content,
+        ManageOrders19DAContent,
         "formLabel",
         Selectors.GovukFormLabel,
       ),
@@ -77,13 +77,13 @@ export class ManageOrders19Page {
     }
     await page.selectOption(
       UniqueSelectors.Dropdown,
-      ManageOrders19Content.judgement,
+      ManageOrders19DAContent.judgement,
     );
     await page.click(UniqueSelectors.dateToBeFixed);
     await this.hiddenFormLabels(page);
     await page.fill(
       UniqueSelectors.ordersHearingDetails_0_additionalDetailsForHearingDateOptions,
-      ManageOrders19Content.lorem,
+      ManageOrders19DAContent.lorem,
     );
     await page.click(
       `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
@@ -94,12 +94,12 @@ export class ManageOrders19Page {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.strong}:text-is("${ManageOrders19Content.strong}"):visible`,
+        `${Selectors.strong}:text-is("${ManageOrders19DAContent.strong}"):visible`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukFormHint}:text-is("${ManageOrders19Content.HiddenFormHint}"):visible`,
+        `${Selectors.GovukFormHint}:text-is("${ManageOrders19DAContent.HiddenFormHint}"):visible`,
         1,
       ),
     ]);

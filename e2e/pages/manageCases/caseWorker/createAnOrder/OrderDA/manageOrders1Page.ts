@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { ManageOrders1Content } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders1Content";
+import { ManageOrders1DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders1DAContent";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 
 interface ManageOrders1PageOptions {
@@ -31,13 +31,13 @@ export class ManageOrders1Page {
       throw new Error("Page is not defined");
     }
     const pageTitle = page.locator(
-      `${Selectors.h1}:text-is("${ManageOrders1Content.pageTitle}")`,
+      `${Selectors.h1}:text-is("${ManageOrders1DAContent.pageTitle}")`,
     );
     await pageTitle.waitFor();
     await Helpers.checkGroup(
       page,
       5,
-      ManageOrders1Content,
+      ManageOrders1DAContent,
       "formLabel",
       Selectors.GovukFormLabel,
     );

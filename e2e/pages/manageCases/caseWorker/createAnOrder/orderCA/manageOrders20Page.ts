@@ -2,7 +2,7 @@ import { expect, Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { ManageOrders20Content } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderCA/manageOrders20content";
+import { ManageOrders20CAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderCA/manageOrders20CAContent";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { Language } from "../../../../../common/types";
 
@@ -36,23 +36,23 @@ export class ManageOrders20Page {
       throw new Error("Page is not defined");
     }
     const pageTitle = page.locator(
-      `${Selectors.GovukHeadingL}:text-is("${ManageOrders20Content.pageTitle}")`,
+      `${Selectors.GovukHeadingL}:text-is("${ManageOrders20CAContent.pageTitle}")`,
     );
     await pageTitle.waitFor();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.headingH3}:text-is("${ManageOrders20Content.headingh3}")`,
+        `${Selectors.headingH3}:text-is("${ManageOrders20CAContent.headingh3}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h2}:text-is("${ManageOrders20Content.h2}")`,
+        `${Selectors.h2}:text-is("${ManageOrders20CAContent.h2}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${ManageOrders20Content.p}")`,
+        `${Selectors.p}:text-is("${ManageOrders20CAContent.p}")`,
         1,
       ),
     ]);
@@ -68,7 +68,7 @@ export class ManageOrders20Page {
     const [pdfPage] = await Promise.all([
       page.waitForEvent("popup"),
       page.click(
-        `${Selectors.a}:text-is("${language === "English" ? ManageOrders20Content.englishLink : ManageOrders20Content.welshLink}")`,
+        `${Selectors.a}:text-is("${language === "English" ? ManageOrders20CAContent.englishLink : ManageOrders20CAContent.welshLink}")`,
       ),
     ]);
     await pdfPage.waitForLoadState();
@@ -82,7 +82,7 @@ export class ManageOrders20Page {
     await Helpers.checkGroup(
       pdfPage,
       44,
-      ManageOrders20Content,
+      ManageOrders20CAContent,
       "span",
       `${Selectors.Span}`,
     );
@@ -95,13 +95,13 @@ export class ManageOrders20Page {
       Helpers.checkGroup(
         pdfPage,
         49,
-        ManageOrders20Content,
+        ManageOrders20CAContent,
         "welshSpan",
         `${Selectors.Span}`,
       ),
       Helpers.checkVisibleAndPresent(
         pdfPage,
-        `${Selectors.Span}:text-is("${ManageOrders20Content.welshSpanRepeated}")`,
+        `${Selectors.Span}:text-is("${ManageOrders20CAContent.welshSpanRepeated}")`,
         3,
       ),
     ]);

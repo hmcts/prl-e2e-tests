@@ -9,9 +9,7 @@ test.describe("Create an order tests @manageCases", (): void => {
   Case: C100,
   Not accessibility testing. 
   test
-  @crossbrowserManageCases`, async ({
-    page,
-  }): Promise<void> => {
+  @crossbrowserManageCases`, async ({ page }): Promise<void> => {
     await C100CreateAnOrder.c100CreateAnOrder({
       page: page,
       accessibilityTest: false,

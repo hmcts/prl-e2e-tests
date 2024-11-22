@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { ManageOrders10Content } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderCA/manageOrders10Content";
+import { ManageOrders10CAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderCA/manageOrders10CAContent";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 
 interface manageOrders10PageOptions {
@@ -38,24 +38,24 @@ export class ManageOrders10Page {
       throw new Error("Page is not defined");
     }
     const pageTitle = page.locator(
-      `${Selectors.GovukHeadingL}:text-is("${ManageOrders10Content.pageTitle}")`,
+      `${Selectors.GovukHeadingL}:text-is("${ManageOrders10CAContent.pageTitle}")`,
     );
     await pageTitle.waitFor();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.headingH3}:text-is("${ManageOrders10Content.headingh3}")`,
+        `${Selectors.headingH3}:text-is("${ManageOrders10CAContent.headingh3}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h2}:text-is("${ManageOrders10Content.h2}")`,
+        `${Selectors.h2}:text-is("${ManageOrders10CAContent.h2}")`,
         1,
       ),
       Helpers.checkGroup(
         page,
         4,
-        ManageOrders10Content,
+        ManageOrders10CAContent,
         "label",
         `${Selectors.GovukFormLabel}`,
       ),
@@ -77,7 +77,7 @@ export class ManageOrders10Page {
     await Helpers.checkGroup(
       page,
       4,
-      ManageOrders10Content,
+      ManageOrders10CAContent,
       "hiddenLabel",
       `${Selectors.GovukFormLabel}`,
     );
