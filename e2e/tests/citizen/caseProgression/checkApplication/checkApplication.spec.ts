@@ -7,13 +7,27 @@ import config from "../../../../config";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
-test.describe("test", () => {
-  test.beforeEach(async ({page}) => {
+test.describe("Complete Check Application task for DA Citizen case. @citizenFrontend @crossbrowserCitizenFrontend", () => {
+  test.beforeEach(async ({ page }) => {
     const ccdRef: string = await createDaCitizenCourtNavCase(false);
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
   });
 
-  test("test court nav case", async ({ page }): Promise<void> => {
-    await CheckApplication.checkApplication(page);
+  test("Complete Check Application without accessibility test.", async ({
+    page,
+  }): Promise<void> => {
+    await CheckApplication.checkApplication({
+      page: page,
+      accessibilityTest: false,
+    });
+  });
+
+  test("Complete Check Application with accessibility test. @accessibilityCitizenFrontend", async ({
+    page,
+  }): Promise<void> => {
+    await CheckApplication.checkApplication({
+      page: page,
+      accessibilityTest: true,
+    });
   });
 });
