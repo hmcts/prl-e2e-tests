@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { ManageOrders19Content } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderCA/manageOrders19content";
+import { ManageOrders19CAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderCA/manageOrders19CAContent";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 
 interface manageOrders19PageOptions {
@@ -34,39 +34,39 @@ export class ManageOrders19Page {
       throw new Error("Page is not defined");
     }
     const pageTitle = page.locator(
-      `${Selectors.GovukHeadingL}:text-is("${ManageOrders19Content.pageTitle}")`,
+      `${Selectors.GovukHeadingL}:text-is("${ManageOrders19CAContent.pageTitle}")`,
     );
     await pageTitle.waitFor();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.headingH3}:text-is("${ManageOrders19Content.headingh3}")`,
+        `${Selectors.headingH3}:text-is("${ManageOrders19CAContent.headingh3}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h3}:text-is("${ManageOrders19Content.h3}")`,
+        `${Selectors.h3}:text-is("${ManageOrders19CAContent.h3}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${ManageOrders19Content.p}")`,
+        `${Selectors.p}:text-is("${ManageOrders19CAContent.p}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.headingH2}:text-is("${ManageOrders19Content.headingh2}")`,
+        `${Selectors.headingH2}:text-is("${ManageOrders19CAContent.headingh2}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.headingH3}:text-is("${ManageOrders19Content.headingh2}")`,
+        `${Selectors.headingH3}:text-is("${ManageOrders19CAContent.headingh2}")`,
         1,
       ),
       Helpers.checkGroup(
         page,
         6,
-        ManageOrders19Content,
+        ManageOrders19CAContent,
         "label",
         `${Selectors.GovukFormLabel}`,
       ),
@@ -82,14 +82,14 @@ export class ManageOrders19Page {
     if (!page) {
       throw new Error("Page is not defined");
     }
-    await page.selectOption(inputId, ManageOrders19Content.hearingType);
+    await page.selectOption(inputId, ManageOrders19CAContent.hearingType);
     await page.click(radioId);
     await page.waitForSelector(
-      `${Selectors.strong}:text-is("${ManageOrders19Content.strong}")`,
+      `${Selectors.strong}:text-is("${ManageOrders19CAContent.strong}")`,
     );
     await Helpers.checkVisibleAndPresent(
       page,
-      `${Selectors.GovukFormHint}:text-is("${ManageOrders19Content.hint}")`,
+      `${Selectors.GovukFormHint}:text-is("${ManageOrders19CAContent.hint}")`,
       1,
     );
     await page.click(

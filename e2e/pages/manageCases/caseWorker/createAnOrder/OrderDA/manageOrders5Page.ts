@@ -1,10 +1,10 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
-import { ManageOrders1Content } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders1Content";
+import { ManageOrders1DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders1DAContent";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-import { ManageOrders5Content } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders5Content";
+import { ManageOrders5DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders5DAContent";
 
 interface ManageOrders5PageOptions {
   page: Page;
@@ -68,29 +68,29 @@ export class ManageOrders5Page {
       throw new Error("Page is not defined");
     }
     const pageTitle = page.locator(
-      `${Selectors.h1}:text-is("${ManageOrders1Content.pageTitle}")`,
+      `${Selectors.h1}:text-is("${ManageOrders1DAContent.pageTitle}")`,
     );
     await pageTitle.waitFor();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${ManageOrders5Content.span}")`,
+        `${Selectors.Span}:text-is("${ManageOrders5DAContent.span}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${ManageOrders5Content.p}")`,
+        `${Selectors.p}:text-is("${ManageOrders5DAContent.p}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.strong}:text-is("${ManageOrders5Content.strong}")`,
+        `${Selectors.strong}:text-is("${ManageOrders5DAContent.strong}")`,
         1,
       ),
       Helpers.checkGroup(
         page,
         22,
-        ManageOrders5Content,
+        ManageOrders5DAContent,
         "formLabel",
         Selectors.GovukFormLabel,
       ),
@@ -134,24 +134,24 @@ export class ManageOrders5Page {
     }
     await page.fill(
       UniqueSelectors.judgeFullNameInput,
-      ManageOrders5Content.judgeName,
+      ManageOrders5DAContent.judgeName,
     );
     await page.fill(
       UniqueSelectors.fullNameJusticeLegalAdvisorInput,
-      ManageOrders5Content.testLegalAdvisor,
+      ManageOrders5DAContent.testLegalAdvisor,
     );
     await page.click(UniqueSelectorsOrderMadeBy.herHonourJudge);
     // await page.click(${SelectType}); #TODO once type is created we can use it as an argument
-    await page.fill(UniqueSelectors.day, ManageOrders5Content.day);
-    await page.fill(UniqueSelectors.month, ManageOrders5Content.month);
-    await page.fill(UniqueSelectors.year, ManageOrders5Content.year);
+    await page.fill(UniqueSelectors.day, ManageOrders5DAContent.day);
+    await page.fill(UniqueSelectors.month, ManageOrders5DAContent.month);
+    await page.fill(UniqueSelectors.year, ManageOrders5DAContent.year);
     await page.fill(
       UniqueSelectors.addRecitalsOrPreamble,
-      ManageOrders5Content.loremIpsum,
+      ManageOrders5DAContent.loremIpsum,
     );
     await page.fill(
       UniqueSelectors.addDirections,
-      ManageOrders5Content.loremIpsum,
+      ManageOrders5DAContent.loremIpsum,
     );
     if (yesNoManageOrders) {
       await page.click(UniqueSelectors.isTheOrderByConsent_Yes);
@@ -159,7 +159,7 @@ export class ManageOrders5Page {
       await page.click(UniqueSelectors.isTheOrderAboutChildren_Yes);
       await page.selectOption(
         UniqueSelectors.selectOption,
-        ManageOrders5Content.noHearings,
+        ManageOrders5DAContent.noHearings,
       );
       for (const selector of Object.values(childrenIncludedInOrder)) {
         await page.click(selector);
@@ -180,18 +180,18 @@ export class ManageOrders5Page {
       Helpers.checkGroup(
         page,
         2,
-        ManageOrders5Content,
+        ManageOrders5DAContent,
         "formLabelHidden",
         Selectors.GovukFormLabel,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${ManageOrders5Content.formLabelHiddenJohnDoe}")`,
+        `${Selectors.p}:text-is("${ManageOrders5DAContent.formLabelHiddenJohnDoe}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${ManageOrders5Content.formLabelHiddenSimon}")`,
+        `${Selectors.p}:text-is("${ManageOrders5DAContent.formLabelHiddenSimon}")`,
         1,
       ),
     ]);

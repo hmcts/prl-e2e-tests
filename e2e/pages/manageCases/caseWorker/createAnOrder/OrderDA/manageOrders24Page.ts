@@ -1,10 +1,10 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
-import { ManageOrders1Content } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders1Content";
+import { ManageOrders1DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders1DAContent";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-import { ManageOrders24Content } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders24Content";
+import { ManageOrders24DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders24DAContent";
 
 interface ManageOrders24PageOptions {
   page: Page;
@@ -42,19 +42,19 @@ export class ManageOrders24Page {
       throw new Error("Page is not defined");
     }
     const pageTitle = page.locator(
-      `${Selectors.h1}:text-is("${ManageOrders1Content.pageTitle}")`,
+      `${Selectors.h1}:text-is("${ManageOrders1DAContent.pageTitle}")`,
     );
     await pageTitle.waitFor();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${ManageOrders24Content.span}")`,
+        `${Selectors.Span}:text-is("${ManageOrders24DAContent.span}")`,
         1,
       ),
       Helpers.checkGroup(
         page,
         3,
-        ManageOrders24Content,
+        ManageOrders24DAContent,
         "formLabel",
         Selectors.GovukFormLabel,
       ),
@@ -76,10 +76,10 @@ export class ManageOrders24Page {
     await this.SecondaryHiddenFormLabels(page);
     await page.fill(
       `${hiddenSelectors.judgeNameInput}`,
-      ManageOrders24Content.judgeName,
+      ManageOrders24DAContent.judgeName,
     );
     await page.click(
-      `${hiddenSelectors.judgeName}:text-is("${ManageOrders24Content.JudgeNameToSelect}")`,
+      `${hiddenSelectors.judgeName}:text-is("${ManageOrders24DAContent.JudgeNameToSelect}")`,
     );
     await page.click(
       `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
@@ -90,13 +90,13 @@ export class ManageOrders24Page {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${ManageOrders24Content.hiddenSpan}")`,
+        `${Selectors.Span}:text-is("${ManageOrders24DAContent.hiddenSpan}")`,
         1,
       ),
       Helpers.checkGroup(
         page,
         2,
-        ManageOrders24Content,
+        ManageOrders24DAContent,
         "hiddenFormLabel",
         Selectors.GovukFormLabel,
       ),
@@ -106,7 +106,7 @@ export class ManageOrders24Page {
   private static async SecondaryHiddenFormLabels(page: Page): Promise<void> {
     await Helpers.checkVisibleAndPresent(
       page,
-      `${Selectors.Span}:text-is("${ManageOrders24Content.secondaryHiddenSpan}"):visible`,
+      `${Selectors.Span}:text-is("${ManageOrders24DAContent.secondaryHiddenSpan}"):visible`,
       1,
     );
   }

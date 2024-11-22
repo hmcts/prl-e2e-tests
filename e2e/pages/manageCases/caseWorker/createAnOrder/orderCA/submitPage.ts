@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { SubmitContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderCA/SubmitContent";
+import { SubmitCAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderCA/submitCAContent";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 
 interface submitPageOptions {
@@ -30,23 +30,23 @@ export class SubmitPage {
       throw new Error("Page is not defined");
     }
     const pageTitle = page.locator(
-      `${Selectors.GovukHeadingL}:text-is("${SubmitContent.pageTitle}")`,
+      `${Selectors.GovukHeadingL}:text-is("${SubmitCAContent.pageTitle}")`,
     );
     await pageTitle.waitFor();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.headingH2}:text-is("${SubmitContent.headingh2}")`,
+        `${Selectors.headingH2}:text-is("${SubmitCAContent.headingh2}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.headingH3}:text-is("${SubmitContent.headingh3}")`,
+        `${Selectors.headingH3}:text-is("${SubmitCAContent.headingh3}")`,
         3,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukText16}:text-is("${SubmitContent.change}")`,
+        `${Selectors.GovukText16}:text-is("${SubmitCAContent.change}")`,
         13,
       ),
       Helpers.checkVisibleAndPresent(
@@ -54,20 +54,20 @@ export class SubmitPage {
         `${Selectors.GovukText16}:text-is("${Helpers.todayDate()}")`,
         1,
       ),
-      Helpers.checkGroup(page, 3, SubmitContent, "h2_", `${Selectors.h2}`),
-      Helpers.checkGroup(page, 2, SubmitContent, "p", `${Selectors.p}`),
+      Helpers.checkGroup(page, 3, SubmitCAContent, "h2_", `${Selectors.h2}`),
+      Helpers.checkGroup(page, 2, SubmitCAContent, "p", `${Selectors.p}`),
       Helpers.checkGroup(
         page,
         2,
-        SubmitContent,
+        SubmitCAContent,
         "strong",
         `${Selectors.strong}`,
       ),
-      Helpers.checkGroup(page, 2, SubmitContent, "a", `${Selectors.a}`),
+      Helpers.checkGroup(page, 2, SubmitCAContent, "a", `${Selectors.a}`),
       Helpers.checkGroup(
         page,
         29,
-        SubmitContent,
+        SubmitCAContent,
         "text16_",
         `${Selectors.GovukText16}`,
       ),
