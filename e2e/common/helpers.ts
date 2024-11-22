@@ -281,4 +281,21 @@ export class Helpers {
     const day = today.getDate().toString();
     return [day, month, year];
   }
+
+  public static async assignTaskToMeAndTriggerNextSteps(
+    page: Page,
+    taskName: string,
+    nextStepsActionName: string,
+  ) {
+    const test = page.locator("exui-case-task", {
+      hasText: taskName,
+    });
+    await test.locator("a", { hasText: "Assign to me" }).click();
+    await page
+      .locator(`.alert-message`, {
+        hasText: "You've assigned yourself a task. It's available in My tasks.",
+      })
+      .waitFor();
+    await test.locator("a", { hasText: nextStepsActionName }).click();
+  }
 }
