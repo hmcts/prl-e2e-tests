@@ -7,13 +7,52 @@ test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 test.describe("Create an order tests @manageCases", (): void => {
   test(`Complete Creating an order as a Caseworker with the following options:
   Case: C100,
-  Not accessibility testing. @crossbrowserManageCases`, async ({
+  Not accessibility testing
+  yesNoManageOrders: true,
+  howLongWillOrderBeInForce: "untilNextHearing"
+  "This order will be served with the 'date to be fixed'" selected on ManageOrders19. @crossbrowserManageCases`, async ({
+    page,
+  }): Promise<void> => {
+    await FL401CreateAnOrder.fL401CreateAnOrder({
+      page: page,
+      accessibilityTest: false, // failing
+      solicitorCaseCreateType: "FL401",
+      yesNoManageOrders: true,
+      howLongWillOrderBeInForce: "untilNextHearing",
+    });
+  });
+
+  test(`Complete Creating an order as a Caseworker with the following options:
+  Case: C100,
+  Accessibility testing
+  yesNoManageOrders: true,
+  howLongWillOrderBeInForce: "noEndDate"
+  "This order will be served with the 'date to be fixed'" selected on ManageOrders19. @crossbrowserManageCases`, async ({
     page,
   }): Promise<void> => {
     await FL401CreateAnOrder.fL401CreateAnOrder({
       page: page,
       accessibilityTest: false,
       solicitorCaseCreateType: "FL401",
+      yesNoManageOrders: false,
+      howLongWillOrderBeInForce: "noEndDate",
+    });
+  });
+
+  test(`Complete Creating an order as a Caseworker with the following options:
+  Case: C100,
+  Accessibility testing
+  yesNoManageOrders: true,
+  howLongWillOrderBeInForce: "specificDate"
+  "This order will be served with the 'date to be fixed'" selected on ManageOrders19. @crossbrowserManageCases`, async ({
+    page,
+  }): Promise<void> => {
+    await FL401CreateAnOrder.fL401CreateAnOrder({
+      page: page,
+      accessibilityTest: false,
+      solicitorCaseCreateType: "FL401",
+      yesNoManageOrders: true,
+      howLongWillOrderBeInForce: "specificDate",
     });
   });
 });
