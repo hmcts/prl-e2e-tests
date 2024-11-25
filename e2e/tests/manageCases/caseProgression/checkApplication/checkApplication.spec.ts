@@ -8,7 +8,6 @@ import config from "../../../../config";
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("Check Application task for DA Citizen case tests. @manageCases", () => {
-
   let ccdRef: string = "";
 
   test.beforeEach(async ({ page }) => {

@@ -13,14 +13,12 @@ interface CheckApplicationParams {
   ccdRef: string;
 }
 
-
-
 export class CheckApplication {
   public static async checkApplication({
     page,
     accessibilityTest,
     yesNoSendToGateKeeper,
-    ccdRef
+    ccdRef,
   }: CheckApplicationParams): Promise<void> {
     await Helpers.assignTaskToMeAndTriggerNextSteps(
       page,
