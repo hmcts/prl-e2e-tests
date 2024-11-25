@@ -35,11 +35,11 @@
     "test:crossbrowser": "echo 'This is a placeholder'",
     "test:citizenSmoke": "yarn playwright install && yarn playwright test --project chromium --grep @citizenSmoke",
     "test:manageCasesSmoke": "yarn playwright install && yarn playwright test --project chromium --grep @manageCasesSmoke",
-    "test:manageCasesChrome": "yarn playwright install && yarn playwright test --project chromium --grep @manageCases",
+    "test:manageCasesChrome": "yarn playwright install && yarn playwright test --project chromium --grep @manageCases --grep-invert @accessibilityManageCases",
     "test:manageCasesFirefox": "yarn playwright install firefox && yarn playwright test --project firefox --grep @manageCasesSmoke",
     "test:manageCasesSafari": "yarn playwright install webkit && yarn playwright test --project webkit --grep @manageCasesSmoke",
     "test:manageCasesAccessibility": "yarn playwright install && yarn playwright test --project chromium --grep @accessibilityManageCases",
-    "test:citizenFrontendChrome": "yarn playwright install && yarn playwright test --project chromium --grep @citizenFrontend",
+    "test:citizenFrontendChrome": "yarn playwright install && yarn playwright test --project chromium --grep @citizenFrontend  --grep-invert @accessibilityCitizenFrontend",
     "test:citizenFrontendFirefox": "yarn playwright install firefox && yarn playwright test --project firefox --grep @citizenSmoke",
     "test:citizenFrontendSafari": "yarn playwright install webkit && yarn playwright test --project webkit --grep @citizenSmoke",
     "test:citizenFrontendAccessibility": "yarn playwright install && yarn playwright test --project chromium --grep @accessibilityCitizenFrontend"
