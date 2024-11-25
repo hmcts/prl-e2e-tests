@@ -8,7 +8,7 @@ import jsonData from "../caseData/citizenDA/courtNavDaCitizenCase.json";
  * Function to create a DA Citizen CourtNav case and optionally add a document.
  * @param {boolean} withDoc Whether to add a document after case creation
  */
-async function createDaCitizenCourtNavCase(withDoc: boolean): Promise<void> {
+async function createDaCitizenCourtNavCase(withDoc: boolean): Promise<string> {
   const apiContextDaCreateCase: APIRequestContext = await request.newContext();
   const tokenDaCreateCase = await getAccessToken(
     "daCourtNavCreateCase",
@@ -31,18 +31,19 @@ async function createDaCitizenCourtNavCase(withDoc: boolean): Promise<void> {
       },
     );
     const responseBody = await response.json();
-    const ccd_reference = responseBody.ccd_reference as string;
     if (!responseBody || !responseBody.ccd_reference) {
       throw new Error(
         "Failed to create case. No CCD reference or no response body",
       );
     }
+    const ccd_reference = responseBody.ccd_reference as string;
     if (existsSync(".env")) {
       console.log("CCD Reference:", ccd_reference);
     }
     if (withDoc) {
       await addDocumentToCase(tokenDaCreateCase, ccd_reference);
     }
+    return ccd_reference;
   } catch (error) {
     throw new Error(
       `Error creating DA Citizen CourtNav case: ${error instanceof Error ? error.message : error}`,
