@@ -8,8 +8,10 @@ import config from "../../../../config";
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("Check Application task for DA Citizen case tests. @manageCases", () => {
+  let ccdRef: string = "";
+
   test.beforeEach(async ({ page }) => {
-    const ccdRef: string = await createDaCitizenCourtNavCase(false);
+    ccdRef = await createDaCitizenCourtNavCase(false);
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
   });
 
@@ -19,6 +21,8 @@ test.describe("Check Application task for DA Citizen case tests. @manageCases", 
     await CheckApplication.checkApplication({
       page: page,
       accessibilityTest: false,
+      yesNoSendToGateKeeper: true,
+      ccdRef: ccdRef,
     });
   });
 
@@ -28,6 +32,8 @@ test.describe("Check Application task for DA Citizen case tests. @manageCases", 
     await CheckApplication.checkApplication({
       page: page,
       accessibilityTest: true,
+      yesNoSendToGateKeeper: false,
+      ccdRef: ccdRef,
     });
   });
 });
