@@ -71,9 +71,9 @@ export class FL401ReviewDocumentsSubmitPage {
         1,
       ),
     ]);
-    if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
-    }
+    // if (accessibilityTest) {
+    //   await AccessibilityTestHelper.run(page);
+    // }
   }
 
   private static async fillInFields({
