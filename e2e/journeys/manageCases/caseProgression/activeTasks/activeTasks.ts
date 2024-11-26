@@ -10,7 +10,7 @@ import { FL401ReviewDocumentsSubmitPage } from "../../../../pages/manageCases/ca
 import config from "../../../../config";
 import { yesNoDontKnow } from "../../../../common/types";
 
-interface CheckApplicationParams {
+interface ActiveTasksParams {
   page: Page;
   accessibilityTest: boolean;
   yesNoSendToGateKeeper: boolean;
@@ -18,14 +18,14 @@ interface CheckApplicationParams {
   ccdRef: string;
 }
 
-export class CheckApplication {
-  public static async checkApplication({
+export class ActiveTasks {
+  public static async activeTasks({
     page,
     accessibilityTest,
     yesNoSendToGateKeeper,
     yesNoNotSureReviewDocs,
     ccdRef,
-  }: CheckApplicationParams): Promise<void> {
+  }: ActiveTasksParams): Promise<void> {
     await Helpers.assignTaskToMeAndTriggerNextSteps(
       page,
       "Check Application",
@@ -75,5 +75,6 @@ export class CheckApplication {
       accessibilityTest,
       yesNoNotSureReviewDocs,
     });
+    await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
   }
 }
