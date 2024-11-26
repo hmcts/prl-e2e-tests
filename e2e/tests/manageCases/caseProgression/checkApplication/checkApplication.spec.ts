@@ -11,7 +11,7 @@ test.describe("Check Application task for DA Citizen case tests. @manageCases", 
   let ccdRef: string = "";
 
   test.beforeEach(async ({ page }) => {
-    ccdRef = await createDaCitizenCourtNavCase(false);
+    ccdRef = await createDaCitizenCourtNavCase(true);
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
   });
 
@@ -22,6 +22,7 @@ test.describe("Check Application task for DA Citizen case tests. @manageCases", 
       page: page,
       accessibilityTest: false,
       yesNoSendToGateKeeper: true,
+      yesNoNotSureReviewDocs: "yes",
       ccdRef: ccdRef,
     });
   });
@@ -33,6 +34,7 @@ test.describe("Check Application task for DA Citizen case tests. @manageCases", 
       page: page,
       accessibilityTest: true,
       yesNoSendToGateKeeper: false,
+      yesNoNotSureReviewDocs: "no",
       ccdRef: ccdRef,
     });
   });
