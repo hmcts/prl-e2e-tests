@@ -108,7 +108,7 @@ test.describe("C100 Create case Allegations of harm tests @manageCases", (): voi
     await C100AllegationsOfHarm.c100AllegationsOfHarm({
       page: page,
       accessibilityTest: false,
-      errorMessaging: true,
+      errorMessaging: false,
       c100YesNoAllegationsOfHarm: true,
       c100DomesticAbuseTypePage3: "Physical abuse",
       subJourney: true,

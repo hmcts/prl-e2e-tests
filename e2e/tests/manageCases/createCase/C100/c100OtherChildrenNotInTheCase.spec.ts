@@ -84,7 +84,7 @@ test.describe("C100 Create case Other children not in the case tests @manageCase
     await C100OtherChildrenNotInTheCase.c100OtherChildrenNotInTheCase({
       page: page,
       accessibilityTest: false,
-      errorMessaging: true,
+      errorMessaging: false,
       otherChildPresent: true,
       otherChildGender: "Female",
       otherChildDOBKnown: false,

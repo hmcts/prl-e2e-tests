@@ -50,7 +50,7 @@ test.describe("C100 Create case Applicant Details tests @manageCases", (): void 
       page,
       user: "solicitor",
       accessibilityTest: false,
-      errorMessaging: true,
+      errorMessaging: false,
       yesNoApplicantDetails: false,
       applicantGender: "male",
       subJourney: true,

@@ -35,7 +35,7 @@ test.describe("C100 Create case MIAM Tests @manageCases", (): void => {
       page: page,
       user: "solicitor",
       accessibilityTest: false,
-      errorMessaging: true,
+      errorMessaging: false,
       C100MiamPolicyUpgrade1PageType: "yesAttendedMiam",
       yesNoMiamPolicyUpgrade: true,
       miamSelection: "attended4MonthsPrior",

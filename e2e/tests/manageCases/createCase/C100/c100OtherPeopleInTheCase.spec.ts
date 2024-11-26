@@ -16,7 +16,7 @@ test.describe("C100 Create case Other people in the case Tests @manageCases", ()
       page: page,
       user: "solicitor",
       accessibilityTest: false,
-      errorMessaging: true,
+      errorMessaging: false,
       yesNoOtherPeopleInTheCase: true,
       applicantGender: "male",
       subJourney: true,

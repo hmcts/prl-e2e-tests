@@ -58,7 +58,7 @@ test.describe("FL401 Create case without notice order tests @manageCases", (): v
     await FL401WithoutNoticeOrder.fl401WithoutNoticeOrder({
       page: page,
       accessibilityTest: false,
-      errorMessaging: true,
+      errorMessaging: false,
       isWithoutNoticeDetailsYes: true,
       isWithoutNoticeDetailsBailConditions: "Yes",
       subJourney: true,
