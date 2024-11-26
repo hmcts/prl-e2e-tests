@@ -67,6 +67,8 @@ export type fl401SolicitorEvents =
 
 export type c100CaseWorkerActions = "Manage orders";
 
+export type fl401CaseWorkerActions = "Welsh language requirements";
+
 export type fl401SubmittedSolicitorEvents =
   | "Draft an order"
   | "Dummy Payment for AwP"
