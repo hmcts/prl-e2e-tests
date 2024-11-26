@@ -1,4 +1,4 @@
-import { Page, expect, Browser, BrowserContext } from "@playwright/test";
+import { Page, Browser, BrowserContext } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors";
 import { Helpers } from "../../../../common/helpers";
 import { EditAndApproveAnOrder2Page } from "../../../../pages/manageCases/caseWorker/editAndApproveAnOrder/editAndApproveAnOrder2Page";
@@ -45,6 +45,7 @@ export class EditAndApproveAnOrder {
       yesNoToAll: false,
       howLongWillOrderBeInForce: "noEndDate",
       willAllPartiesAttendHearing: true,
+      browser: browser,
     });
     // open new browser and sign in as judge user
     const newBrowser = await browser.browserType().launch();
@@ -53,28 +54,10 @@ export class EditAndApproveAnOrder {
     });
     page = await newContext.newPage();
     await Helpers.goToCase(page, config.manageCasesBaseURL, caseRef, "tasks");
-    // refresh page until the task shows up - there can be some delay
-    await expect
-      .poll(
-        async () => {
-          const visible = await page
-            .locator("strong", {
-              hasText: `${orderTypesMap.get(orderType)?.journeyName}`,
-            })
-            .isVisible();
-          if (!visible) {
-            await page.reload();
-          }
-          return visible;
-        },
-        {
-          // Allow 10s delay before retrying
-          intervals: [10_000],
-          // Allow up to a minute for it to become visible
-          timeout: 90_000,
-        },
-      )
-      .toBeTruthy();
+    await Helpers.waitForTask(
+      page,
+      `${orderTypesMap.get(orderType)?.journeyName}`,
+    );
     await page.click(`${Selectors.a}:text-is("Assign to me")`);
     await page.locator(".alert-message").waitFor();
     await page.click(

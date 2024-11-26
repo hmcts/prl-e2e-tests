@@ -13,6 +13,7 @@ export enum Selectors {
   GovukNavLink = ".govuk-nav-link",
   GovukPhaseBanner = ".govuk-phase-banner",
   formControl = ".form-control",
+  daTasklist = ".mat-tab-label-content",
 
   // Forms
   GovukFormGroup = ".govuk-form-group",
@@ -121,6 +122,7 @@ export enum Selectors {
 
   // Alerts
   GovukMarginBottom0 = ".govuk-!-margin-bottom-0",
+  alertMessage = ".alert-message",
 
   // Panels
   GovukPanel = ".govuk-panel",

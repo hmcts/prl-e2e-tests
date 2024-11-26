@@ -10,15 +10,16 @@ export class IdamLoginHelper {
   };
   private static submitButton: string = 'input[value="Sign in"]';
 
-  public static async signInUser(
+  private static async signIn(
     page: Page,
-    user: keyof typeof Config.userCredentials,
+    username: string,
+    password: string,
     application: string,
+    userType: string,
   ): Promise<void> {
     if (!page.url().includes("idam-web-public.")) {
       await page.goto(application);
     }
-
     if (page.url().includes("demo")) {
       await page.waitForSelector(`#skiplinktarget:text("Sign in")`);
     } else {
@@ -26,14 +27,30 @@ export class IdamLoginHelper {
         `#skiplinktarget:text("Sign in or create an account")`,
       );
     }
-    const userCredentials: UserCredentials = Config.getUserCredentials(user);
-    if (userCredentials) {
-      await page.fill(this.fields.username, userCredentials.email);
-      await page.fill(this.fields.password, userCredentials.password);
-      await page.click(this.submitButton);
+    await page.fill(this.fields.username, username);
+    await page.fill(this.fields.password, password);
+    await page.click(this.submitButton);
+    if (userType !== "citizen") {
       await page
         .context()
-        .storageState({ path: Config.sessionStoragePath + `${user}.json` });
+        .storageState({ path: Config.sessionStoragePath + `${userType}.json` });
+    }
+  }
+
+  public static async signInUser(
+    page: Page,
+    user: keyof typeof Config.userCredentials,
+    application: string,
+  ): Promise<void> {
+    const userCredentials: UserCredentials = Config.getUserCredentials(user);
+    if (userCredentials) {
+      await this.signIn(
+        page,
+        userCredentials.email,
+        userCredentials.password,
+        application,
+        user,
+      );
     } else {
       console.error("Invalid credential type");
     }
@@ -53,12 +70,13 @@ export class IdamLoginHelper {
       console.error("Failed to set up citizen user");
       return;
     }
-    if (!page.url().includes("idam-web-public.")) {
-      await page.goto(application);
-    }
-    await page.fill(this.fields.username, userInfo.email);
-    await page.fill(this.fields.password, userInfo.password);
-    await page.click(this.submitButton);
+    await this.signIn(
+      page,
+      userInfo.email,
+      userInfo.password,
+      application,
+      "citizen",
+    );
   }
 }
 

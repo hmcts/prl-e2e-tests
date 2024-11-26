@@ -15,7 +15,7 @@ test.describe("C100 Citizen Application tests on the second MIRO set. @citizenFr
     Not Error Messaging,
     No Screening and Written Review
     Legal Representation: Yes
-    Court Permission Needed: Yes
+    Court Permission Needed: Yes 
     Other proceedings: Yes to all
     child arrangement order details: Yes
     urgency and without notice: Yes

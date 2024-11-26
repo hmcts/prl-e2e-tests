@@ -6,6 +6,8 @@ import {
   fl401JudiciaryEvents,
   fl401SolicitorEvents,
   fl401SubmittedSolicitorEvents,
+  c100CaseWorkerActions,
+  UserRole,
 } from "./types";
 
 export class Helpers {
@@ -15,7 +17,8 @@ export class Helpers {
       | c100SolicitorEvents
       | fl401SolicitorEvents
       | fl401SubmittedSolicitorEvents
-      | fl401JudiciaryEvents,
+      | fl401JudiciaryEvents
+      | c100CaseWorkerActions,
   ): Promise<void> {
     try {
       await page.waitForLoadState("domcontentloaded");
@@ -87,11 +90,12 @@ export class Helpers {
     baseURL: string,
     caseNumber: string,
     caseTab: string,
+    user: UserRole,
   ): Promise<void> {
     try {
       await page.locator(`a:text-is(" Sign out ")`).click();
       await page.waitForLoadState("domcontentloaded");
-      await idamLoginHelper.signInUser(page, "solicitor", baseURL);
+      await idamLoginHelper.signInUser(page, user, baseURL);
       await Helpers.goToCase(page, baseURL, caseNumber, caseTab);
     } catch (error) {
       console.error(
@@ -276,5 +280,50 @@ export class Helpers {
     const month = (today.getMonth() + 1).toString(); // getMonth() is 0-based
     const day = today.getDate().toString();
     return [day, month, year];
+  }
+
+  public static async assignTaskToMeAndTriggerNextSteps(
+    page: Page,
+    taskName: string,
+    nextStepsActionName: string,
+  ) {
+    await this.waitForTask(page, taskName);
+    const taskLocator = page.locator("exui-case-task", {
+      hasText: taskName,
+    });
+    await taskLocator.locator(Selectors.a, { hasText: "Assign to me" }).click();
+    await page
+      .locator(Selectors.alertMessage, {
+        hasText: "You've assigned yourself a task. It's available in My tasks.",
+      })
+      .waitFor();
+    await taskLocator
+      .locator(Selectors.a, { hasText: nextStepsActionName })
+      .click();
+  }
+
+  public static async waitForTask(page: Page, taskName: string) {
+    // refresh page until the task shows up - there can be some delay
+    await expect
+      .poll(
+        async () => {
+          const visible = await page
+            .locator(Selectors.strong, {
+              hasText: taskName,
+            })
+            .isVisible();
+          if (!visible) {
+            await page.reload();
+          }
+          return visible;
+        },
+        {
+          // Allow 10s delay before retrying
+          intervals: [10_000],
+          // Allow up to a minute for it to become visible
+          timeout: 100_000,
+        },
+      )
+      .toBeTruthy();
   }
 }

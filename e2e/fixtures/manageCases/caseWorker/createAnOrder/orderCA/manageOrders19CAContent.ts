@@ -1,0 +1,16 @@
+export enum ManageOrders19CAContent {
+  pageTitle = "Manage orders",
+  headingh3 = "Child arrangements, specific issue or prohibited steps order (C43)",
+  h3 = "Creating a hearing is optional",
+  p = "You can create multiple hearings",
+  headingh2 = "Hearing",
+  strong = "The date needs to be confirmed by the listing team before service (Optional)",
+  hint = "Give details of any additional requirements.",
+  label1 = "Hearing Type (Optional)",
+  label2 = "Has the hearing date been confirmed? (Optional)",
+  label3 = "The date is reserved with List Assist",
+  label4 = "The date is confirmed in the Hearings tab",
+  label5 = "The date needs to be confirmed by the listing team before service",
+  label6 = "This order will be served with the 'date to be fixed'",
+  hearingType = "2nd Gatekeeping Appointment",
+}
