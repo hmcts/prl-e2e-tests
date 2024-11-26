@@ -56,8 +56,8 @@ export class AdminEditAndApproveAnOrder21Page {
     }
   }
 
-  private static async fillInFields(page: Page,): Promise<void> {
-    await page.selectOption("#selectTypeOfOrder", "Final")
+  private static async fillInFields(page: Page): Promise<void> {
+    await page.selectOption("#selectTypeOfOrder", "Final");
   }
 
   private static async continue(page: Page): Promise<void> {

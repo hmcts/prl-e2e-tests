@@ -46,8 +46,8 @@ export class AdminEditAndApproveAnOrder1Page {
     }
   }
 
-  private static async fillInFields(page: Page,): Promise<void> {
-    await page.selectOption("#draftOrdersDynamicList", "Non-molestation")
+  private static async fillInFields(page: Page): Promise<void> {
+    await page.selectOption("#draftOrdersDynamicList", "Non-molestation");
   }
 
   private static async continue(page: Page): Promise<void> {

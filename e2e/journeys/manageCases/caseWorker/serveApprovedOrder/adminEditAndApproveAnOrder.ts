@@ -24,11 +24,11 @@ interface AdminEditAndApproveOrderParams {
 
 export class AdminEditAndApproveAnOrder {
   public static async editAndApproveAnOrder({
-                                              page,
-                                              caseType,
-                                              accessibilityTest,
-                                              browser,
-                                            }: AdminEditAndApproveOrderParams): Promise<void> {
+    page,
+    caseType,
+    accessibilityTest,
+    browser,
+  }: AdminEditAndApproveOrderParams): Promise<void> {
     // Draft the order and get case ref to be used to find case
     const caseRef: string = await DraftAnOrder.draftAnOrder({
       page: page,

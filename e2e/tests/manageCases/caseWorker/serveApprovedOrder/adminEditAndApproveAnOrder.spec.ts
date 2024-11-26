@@ -11,9 +11,9 @@ test.describe("Serve approved DA order tests @manageCases", (): void => {
   Judge order action: Send to admin to serve,
   Error message testing,
   Not accessibility testing. @crossbrowserManageCases`, async ({
-                                                                         page,
-                                                                         browser,
-                                                                       }): Promise<void> => {
+    page,
+    browser,
+  }): Promise<void> => {
     await AdminEditAndApproveAnOrder.adminEditAndApproveAnOrder({
       page: page,
       caseType: "FL401",
