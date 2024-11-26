@@ -19,4 +19,3 @@ export enum AlternativeResolutionContent {
   list1 = "you have evidence that you or the children have been victims of abuse",
   list2 = "you're at risk of losing your home",
 }
-
