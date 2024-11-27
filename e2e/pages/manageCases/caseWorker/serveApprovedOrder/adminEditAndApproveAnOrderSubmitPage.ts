@@ -41,10 +41,30 @@ export class AdminEditAndApproveAnOrderSubmitPage {
       ),
       Helpers.checkGroup(
         page,
-        2,
+        11,
         AdminEditAndApproveAnOrderSubmitContent,
         `text16`,
         Selectors.GovukText16,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${AdminEditAndApproveAnOrderSubmitContent.Yes}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.a}:text-is("${AdminEditAndApproveAnOrderSubmitContent.pdflink1}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.a}:text-is("${AdminEditAndApproveAnOrderSubmitContent.pdflink2}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${AdminEditAndApproveAnOrderSubmitContent.p}")`,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,

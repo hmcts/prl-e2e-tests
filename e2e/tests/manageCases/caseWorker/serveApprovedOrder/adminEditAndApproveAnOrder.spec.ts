@@ -16,10 +16,6 @@ test.describe("Serve approved DA order tests @manageCases", (): void => {
   }): Promise<void> => {
     await AdminEditAndApproveAnOrder.adminEditAndApproveAnOrder({
       page: page,
-      caseType: "FL401",
-      orderType: "nonMolestation",
-      judeOrderAction: "Send to admin to serve",
-      errorMessaging: true,
       accessibilityTest: false,
       browser: browser,
     });

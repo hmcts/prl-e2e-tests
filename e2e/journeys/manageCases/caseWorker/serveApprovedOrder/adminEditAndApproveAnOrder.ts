@@ -1,100 +1,87 @@
-import { Page, expect, Browser, BrowserContext } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors";
+import { Browser, BrowserContext, Page } from "@playwright/test";
 import { Helpers } from "../../../../common/helpers";
 import { AdminEditAndApproveAnOrder1Page } from "../../../../pages/manageCases/caseWorker/serveApprovedOrder/adminEditAndApproveAnOrder1Page";
-import {
-  JudgeOrderAction,
-  OrderType,
-  solicitorCaseCreateType,
-} from "../../../../common/types";
 import { AdminEditAndApproveAnOrder4Page } from "../../../../pages/manageCases/caseWorker/serveApprovedOrder/adminEditAndApproveAnOrder4Page";
 import { AdminEditAndApproveAnOrder21Page } from "../../../../pages/manageCases/caseWorker/serveApprovedOrder/adminEditAndApproveAnOrder21Page";
 import { AdminEditAndApproveAnOrder22Page } from "../../../../pages/manageCases/caseWorker/serveApprovedOrder/adminEditAndApproveAnOrder22Page";
 import { AdminEditAndApproveAnOrder23Page } from "../../../../pages/manageCases/caseWorker/serveApprovedOrder/adminEditAndApproveAnOrder23Page";
 import { AdminEditAndApproveAnOrderSubmitPage } from "../../../../pages/manageCases/caseWorker/serveApprovedOrder/adminEditAndApproveAnOrderSubmitPage";
-import { DraftAnOrder, orderTypesMap } from "../draftAnOrder/draftAnOrder";
 import config from "../../../../config";
+import Config from "../../../../config";
+import { EditAndApproveAnOrder } from "../editAndApproveAnOrder/editAndApproveAnOrder";
+import { Fl401AddCaseNumber1Page } from "../../../../pages/manageCases/caseProgression/checkApplication/fl401AddCaseNumber1Page";
+import { Fl401AddCaseNumberSubmitPage } from "../../../../pages/manageCases/caseProgression/checkApplication/fl401AddCaseNumberSubmitPage";
 
 interface AdminEditAndApproveOrderParams {
   page: Page;
-  caseType: solicitorCaseCreateType;
   accessibilityTest: boolean;
   browser: Browser;
 }
 
 export class AdminEditAndApproveAnOrder {
-  public static async editAndApproveAnOrder({
+  public static async adminEditAndApproveAnOrder({
     page,
-    caseType,
     accessibilityTest,
     browser,
   }: AdminEditAndApproveOrderParams): Promise<void> {
-    // Draft the order and get case ref to be used to find case
-    const caseRef: string = await DraftAnOrder.draftAnOrder({
+    const caseRef: string = await EditAndApproveAnOrder.editAndApproveAnOrder({
       page: page,
-      errorMessaging: errorMessaging,
+      caseType: "FL401",
+      orderType: "nonMolestation",
+      judeOrderAction: "Send to admin to serve",
+      errorMessaging: false,
       accessibilityTest: accessibilityTest,
-      paymentStatusPaid: true,
-      caseType: caseType,
-      orderType: orderType,
-      yesNoToAll: false,
-      howLongWillOrderBeInForce: "noEndDate",
-      willAllPartiesAttendHearing: true,
+      browser: browser,
     });
-    // open new browser and sign in as judge user
+    // open new browser and sign in as court admin user
     const newBrowser = await browser.browserType().launch();
     const newContext: BrowserContext = await newBrowser.newContext({
-      storageState: Config.sessionStoragePath + "judge.json",
+      storageState: Config.sessionStoragePath + "caseWorker.json",
     });
     page = await newContext.newPage();
     await Helpers.goToCase(page, config.manageCasesBaseURL, caseRef, "tasks");
-    // refresh page until the task shows up - there can be some delay
-    await expect
-      .poll(
-        async () => {
-          const visible = await page
-            .locator("strong", {
-              hasText: `${orderTypesMap.get(orderType)?.journeyName}`,
-            })
-            .isVisible();
-          if (!visible) {
-            await page.reload();
-          }
-          return visible;
-        },
-        {
-          // Allow 10s delay before retrying
-          intervals: [10_000],
-          // Allow up to a minute for it to become visible
-          timeout: 90_000,
-        },
-      )
-      .toBeTruthy();
-    await page.click(`${Selectors.a}:text-is("Assign to me")`);
-    await page.locator(".alert-message").waitFor();
-    await page.click(
-      `${Selectors.a}:text-is("Review and Approve Legal rep Order")`,
+    // check application task needs to be completed for the Edit and serve an order event
+    await Helpers.assignTaskToMeAndTriggerNextSteps(
+      page,
+      "Check Application",
+      "Add Case Number",
     );
+    await Fl401AddCaseNumber1Page.fl401AddCaseNumber1Page(
+      page,
+      accessibilityTest,
+    );
+    await Fl401AddCaseNumberSubmitPage.fl401AddCaseNumberSubmitPage(
+      page,
+      accessibilityTest,
+    );
+
+    await Helpers.chooseEventFromDropdown(page, "Edit and serve an order");
+
     await AdminEditAndApproveAnOrder1Page.adminEditAndApproveAnOrder1Page(
       page,
       accessibilityTest,
     );
+
     await AdminEditAndApproveAnOrder4Page.adminEditAndApproveAnOrder4Page(
       page,
       accessibilityTest,
     );
+
     await AdminEditAndApproveAnOrder21Page.adminEditAndApproveAnOrder21Page(
       page,
       accessibilityTest,
     );
+
     await AdminEditAndApproveAnOrder22Page.adminEditAndApproveAnOrder22Page(
       page,
       accessibilityTest,
     );
+
     await AdminEditAndApproveAnOrder23Page.adminEditAndApproveAnOrder23Page(
       page,
       accessibilityTest,
     );
+
     await AdminEditAndApproveAnOrderSubmitPage.adminEditAndApproveAnOrderSubmitPage(
       page,
       accessibilityTest,

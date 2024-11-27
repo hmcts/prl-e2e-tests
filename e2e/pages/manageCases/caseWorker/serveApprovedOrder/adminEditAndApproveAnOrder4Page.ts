@@ -4,13 +4,24 @@ import { Selectors } from "../../../../common/selectors";
 import { AdminEditAndApproveAnOrder4Content } from "../../../../fixtures/manageCases/caseWorker/serveApprovedOrder/adminEditAndApproveAnOrder4Content";
 import { Helpers } from "../../../../common/helpers";
 import { CommonStaticText } from "../../../../common/commonStaticText";
+import { OrderType, solicitorCaseCreateType } from "../../../../common/types";
+import { DraftAnOrder4Content } from "../../../../fixtures/manageCases/caseWorker/draftAnOrder/draftAnOrder4Content";
+import { HowLongWillTheOrderBeInForce } from "../../../../journeys/manageCases/caseWorker/draftAnOrder/draftAnOrder";
+import { NonMolestationOrder20Page } from "../draftAnOrder/nonMolestationOrder/nonMolestationOrder20Page";
+import {
+  ParentalResponsibilityOrder20Page
+} from "../draftAnOrder/parentalResponsibilityOrder/parentalResponsibilityOrder20Page";
 
+enum UniqueSelectors {
+  editOrderNo = "#doYouWantToEditTheOrder_No",
+}
 export class AdminEditAndApproveAnOrder4Page {
   public static async adminEditAndApproveAnOrder4Page(
     page: Page,
     accessibilityTest: boolean,
   ): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest);
+    await this.fillInFields(page);
     await this.continue(page);
   }
 
@@ -36,6 +47,16 @@ export class AdminEditAndApproveAnOrder4Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
+        `${Selectors.a}:text-is("${AdminEditAndApproveAnOrder4Content.pdflink1}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.a}:text-is("${AdminEditAndApproveAnOrder4Content.pdflink2}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
         `${Selectors.button}:text-is("${CommonStaticText.previous}")`,
         1,
       ),
@@ -49,6 +70,14 @@ export class AdminEditAndApproveAnOrder4Page {
       await AccessibilityTestHelper.run(page);
     }
   }
+
+  private static async fillInFields(
+    page: Page,
+  ): Promise<void> {
+    await page.check(
+      `${UniqueSelectors.editOrderNo}`)
+  }
+
   private static async continue(page: Page): Promise<void> {
     await page.click(
       `${Selectors.button}:text-is("${CommonStaticText.continue}")`,

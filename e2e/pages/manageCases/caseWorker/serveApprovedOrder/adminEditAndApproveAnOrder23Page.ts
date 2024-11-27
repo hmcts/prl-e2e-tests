@@ -5,12 +5,17 @@ import { AdminEditAndApproveAnOrder23Content } from "../../../../fixtures/manage
 import { Helpers } from "../../../../common/helpers";
 import { CommonStaticText } from "../../../../common/commonStaticText";
 
+enum UniqueSelectors{
+  respondentOptionYes = "#serveToRespondentOptions_Yes",
+  respondentsOptionsCourtBailiff = "#personallyServeRespondentsOptions-courtBailiff",
+}
 export class AdminEditAndApproveAnOrder23Page {
   public static async adminEditAndApproveAnOrder23Page(
     page: Page,
     accessibilityTest: boolean,
   ): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest);
+    await this.fillInFields(page);
     await this.continue(page);
   }
 
@@ -64,6 +69,12 @@ export class AdminEditAndApproveAnOrder23Page {
       await AccessibilityTestHelper.run(page);
     }
   }
+
+  private static async fillInFields(page: Page): Promise<void> {
+    await page.check(`${UniqueSelectors.respondentOptionYes}`);
+    await page.check(`${UniqueSelectors.respondentsOptionsCourtBailiff}`);
+  }
+
   private static async continue(page: Page): Promise<void> {
     await page.click(
       `${Selectors.button}:text-is("${CommonStaticText.continue}")`,

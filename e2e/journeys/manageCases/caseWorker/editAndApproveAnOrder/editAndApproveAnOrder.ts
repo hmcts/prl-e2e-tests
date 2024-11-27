@@ -33,7 +33,7 @@ export class EditAndApproveAnOrder {
     errorMessaging,
     accessibilityTest,
     browser,
-  }: EditAndApproveOrderParams): Promise<void> {
+  }: EditAndApproveOrderParams): Promise<string> {
     // Draft the order and get case ref to be used to find case
     const caseRef: string = await DraftAnOrder.draftAnOrder({
       page: page,
@@ -88,5 +88,6 @@ export class EditAndApproveAnOrder {
       judeOrderAction,
       accessibilityTest,
     );
+  return caseRef
   }
 }

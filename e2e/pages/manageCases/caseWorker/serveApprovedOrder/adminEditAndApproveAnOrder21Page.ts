@@ -5,6 +5,10 @@ import { AdminEditAndApproveAnOrder21Content } from "../../../../fixtures/manage
 import { Helpers } from "../../../../common/helpers";
 import { CommonStaticText } from "../../../../common/commonStaticText";
 
+enum UniqueSelectors{
+  serveOrderNowYes= "#doYouWantToServeOrder_Yes",
+}
+
 export class AdminEditAndApproveAnOrder21Page {
   public static async adminEditAndApproveAnOrder21Page(
     page: Page,
@@ -58,6 +62,7 @@ export class AdminEditAndApproveAnOrder21Page {
 
   private static async fillInFields(page: Page): Promise<void> {
     await page.selectOption("#selectTypeOfOrder", "Final");
+    await page.check(`${UniqueSelectors.serveOrderNowYes}`)
   }
 
   private static async continue(page: Page): Promise<void> {

@@ -7,7 +7,7 @@ import {
   fl401SolicitorEvents,
   fl401SubmittedSolicitorEvents,
   c100CaseWorkerActions,
-  UserRole,
+  UserRole, fl401CaseWorkerEvents
 } from "./types";
 
 export class Helpers {
@@ -18,7 +18,9 @@ export class Helpers {
       | fl401SolicitorEvents
       | fl401SubmittedSolicitorEvents
       | fl401JudiciaryEvents
-      | c100CaseWorkerActions,
+      | c100CaseWorkerActions
+      | fl401CaseWorkerEvents,
+
   ): Promise<void> {
     try {
       await page.waitForLoadState("domcontentloaded");
