@@ -1,11 +1,10 @@
 import { DummyPaymentAwp } from "../dummyPayment/dummyPaymentAwp";
-import { Browser, expect, Page } from "@playwright/test";
+import { Browser, Page } from "@playwright/test";
 import { OrderType, solicitorCaseCreateType } from "../../../../common/types";
 import { Helpers } from "../../../../common/helpers";
 import { NonMolestationOrder } from "./nonMolestationOrder/nonMolestationOrder";
 import { ParentalResponsibilityOrder } from "./ParentalResponsibilityOrder/parentalResponsibilityOrder";
 import config from "../../../../config";
-import { Selectors } from "../../../../common/selectors";
 import { IssueAndSendToLocalCourtCallback1Page } from "../../../../pages/manageCases/caseWorker/draftAnOrder/issueAndSendToLocalCourt/issueAndSendToLocalCourtCallback1Page";
 import { IssueAndSendToLocalCourtCallbackSubmitPage } from "../../../../pages/manageCases/caseWorker/draftAnOrder/issueAndSendToLocalCourt/issueAndSendToLocalCourtCallbackSubmitPage";
 

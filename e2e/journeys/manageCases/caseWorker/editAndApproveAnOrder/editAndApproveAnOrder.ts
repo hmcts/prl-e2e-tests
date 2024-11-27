@@ -1,5 +1,4 @@
 import { Page, Browser } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors";
 import { Helpers } from "../../../../common/helpers";
 import { EditAndApproveAnOrder2Page } from "../../../../pages/manageCases/caseWorker/editAndApproveAnOrder/editAndApproveAnOrder2Page";
 import {
