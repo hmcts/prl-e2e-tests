@@ -108,7 +108,9 @@ export class FL401ReviewDocuments2Page {
         await page.click(radioIds.notSure);
         break;
       default:
-        throw new Error(`Unknown value for yesNoNotSureReviewDocs: ${yesNoNotSureReviewDocs}`);
+        throw new Error(
+          `Unknown value for yesNoNotSureReviewDocs: ${yesNoNotSureReviewDocs}`,
+        );
     }
     await page.click(
       `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
