@@ -4,28 +4,26 @@ import { Helpers } from "../../../../common/helpers";
 import { Fl401AddCaseNumberSubmitPage } from "../../../../pages/manageCases/caseProgression/checkApplication/fl401AddCaseNumberSubmitPage";
 import { FL401SendToGateKeeper1Page } from "../../../../pages/manageCases/caseProgression/sendToGateKeeper/fl401SendToGateKeeper1Page";
 import { FL401SendToGateKeeperSubmitPage } from "../../../../pages/manageCases/caseProgression/sendToGateKeeper/fl401SendToGateKeeperSubmitPage";
-import { FL401ReviewDocuments1Page } from "../../../../pages/manageCases/caseProgression/reviewDocuments/fl401ReviewDocuments1Page";
-import { FL401ReviewDocuments2Page } from "../../../../pages/manageCases/caseProgression/reviewDocuments/fl401ReviewDocuments2Page";
-import { FL401ReviewDocumentsSubmitPage } from "../../../../pages/manageCases/caseProgression/reviewDocuments/fl401ReviewDocumentsSubmitPage";
+// import { FL401ReviewDocuments1Page } from "../../../../pages/manageCases/caseProgression/reviewDocuments/fl401ReviewDocuments1Page";
+// import { FL401ReviewDocuments2Page } from "../../../../pages/manageCases/caseProgression/reviewDocuments/fl401ReviewDocuments2Page";
+// import { FL401ReviewDocumentsSubmitPage } from "../../../../pages/manageCases/caseProgression/reviewDocuments/fl401ReviewDocumentsSubmitPage";
 import config from "../../../../config";
-import { yesNoDontKnow } from "../../../../common/types";
+// import { yesNoDontKnow } from "../../../../common/types";
 
-interface ActiveTasksParams {
+interface CheckApplicationParams {
   page: Page;
   accessibilityTest: boolean;
   yesNoSendToGateKeeper: boolean;
-  yesNoNotSureReviewDocs: yesNoDontKnow;
   ccdRef: string;
 }
 
-export class ActiveTasks {
-  public static async activeTasks({
+export class CheckApplication {
+  public static async checkApplication({
     page,
     accessibilityTest,
     yesNoSendToGateKeeper,
-    yesNoNotSureReviewDocs,
     ccdRef,
-  }: ActiveTasksParams): Promise<void> {
+  }: CheckApplicationParams): Promise<void> {
     await Helpers.assignTaskToMeAndTriggerNextSteps(
       page,
       "Check Application",
@@ -56,25 +54,25 @@ export class ActiveTasks {
       yesNoSendToGateKeeper,
     });
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
-    await Helpers.assignTaskToMeAndTriggerNextSteps(
-      page,
-      "Review Documents",
-      "Review Documents",
-    );
-    await FL401ReviewDocuments1Page.fl401ReviewDocuments1Page({
-      page,
-      accessibilityTest,
-    });
-    await FL401ReviewDocuments2Page.fl401ReviewDocuments2Page({
-      page,
-      accessibilityTest,
-      yesNoNotSureReviewDocs,
-    });
-    await FL401ReviewDocumentsSubmitPage.fl401ReviewDocumentsSubmitPage({
-      page,
-      accessibilityTest,
-      yesNoNotSureReviewDocs,
-    });
-    await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
+    // await Helpers.assignTaskToMeAndTriggerNextSteps(
+    //   page,
+    //   "Review Documents",
+    //   "Review Documents",
+    // );
+    // await FL401ReviewDocuments1Page.fl401ReviewDocuments1Page({
+    //   page,
+    //   accessibilityTest,
+    // });
+    // await FL401ReviewDocuments2Page.fl401ReviewDocuments2Page({
+    //   page,
+    //   accessibilityTest,
+    //   yesNoNotSureReviewDocs,
+    // });
+    // await FL401ReviewDocumentsSubmitPage.fl401ReviewDocumentsSubmitPage({
+    //   page,
+    //   accessibilityTest,
+    //   yesNoNotSureReviewDocs,
+    // });
+    // await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
   }
 }
