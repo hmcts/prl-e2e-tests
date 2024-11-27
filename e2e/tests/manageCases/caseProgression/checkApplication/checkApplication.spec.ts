@@ -11,7 +11,7 @@ test.describe("Check Application task for DA Citizen case tests. @manageCases", 
   let ccdRef: string = "";
 
   test.beforeEach(async ({ page }) => {
-    ccdRef = await createDaCitizenCourtNavCase(false, false);
+    ccdRef = await createDaCitizenCourtNavCase(false, true);
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
   });
 
