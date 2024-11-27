@@ -2,13 +2,17 @@ import { APIRequestContext, expect, request } from "@playwright/test";
 import fs, { existsSync } from "fs";
 import path from "path";
 import { getAccessToken } from "./getAccessTokenHelper";
-import jsonData from "../caseData/citizenDA/courtNavDaCitizenCase.json";
-
+import withNoticejsonData from "../caseData/citizenDA/courtNavDaCitizenCase_WithNotice.json";
+import withoutNoticejsonData from "../caseData/citizenDA/courtNavDaCitizenCase_WithoutNotice.json";
 /**
  * Function to create a DA Citizen CourtNav case and optionally add a document.
  * @param {boolean} withDoc Whether to add a document after case creation
+ * @param {boolean} withNotice Determines urgency of the case (with (true) or without Notice (false)
  */
-async function createDaCitizenCourtNavCase(withDoc: boolean): Promise<string> {
+async function createDaCitizenCourtNavCase(
+  withDoc: boolean,
+  withNotice: boolean,
+): Promise<string> {
   const apiContextDaCreateCase: APIRequestContext = await request.newContext();
   const tokenDaCreateCase = await getAccessToken(
     "daCourtNavCreateCase",
@@ -18,6 +22,12 @@ async function createDaCitizenCourtNavCase(withDoc: boolean): Promise<string> {
     throw new Error("Setup failed: Unable to get bearer token.");
   }
   process.env.COURTNAV_CREATE_CASE_BEARER_TOKEN = tokenDaCreateCase;
+  let jsonData;
+  if (withNotice) {
+    jsonData = withNoticejsonData;
+  } else {
+    jsonData = withoutNoticejsonData;
+  }
   try {
     const response = await apiContextDaCreateCase.post(
       process.env.COURTNAV_CASE_URL as string,
