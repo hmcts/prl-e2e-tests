@@ -1,4 +1,4 @@
-import { Page, Browser, BrowserContext } from "@playwright/test";
+import { Page, Browser } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors";
 import { Helpers } from "../../../../common/helpers";
 import { EditAndApproveAnOrder2Page } from "../../../../pages/manageCases/caseWorker/editAndApproveAnOrder/editAndApproveAnOrder2Page";
@@ -12,7 +12,6 @@ import { EditAndApproveAnOrderSubmitPage } from "../../../../pages/manageCases/c
 import { EditAndApproveAnOrderConfirmPage } from "../../../../pages/manageCases/caseWorker/editAndApproveAnOrder/editAndApproveAnOrderConfirmPage";
 import { DraftAnOrder, orderTypesMap } from "../draftAnOrder/draftAnOrder";
 import config from "../../../../config";
-import Config from "../../../../config";
 
 interface EditAndApproveOrderParams {
   page: Page;
@@ -47,12 +46,7 @@ export class EditAndApproveAnOrder {
       willAllPartiesAttendHearing: true,
       browser: browser,
     });
-    // open new browser and sign in as judge user
-    const newBrowser = await browser.browserType().launch();
-    const newContext: BrowserContext = await newBrowser.newContext({
-      storageState: Config.sessionStoragePath + "judge.json",
-    });
-    page = await newContext.newPage();
+    page = await Helpers.openNewBrowserWindow(browser, "judge");
     await Helpers.goToCase(page, config.manageCasesBaseURL, caseRef, "tasks");
     await Helpers.waitForTask(
       page,

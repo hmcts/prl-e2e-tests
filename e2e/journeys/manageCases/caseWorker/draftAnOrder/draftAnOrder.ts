@@ -1,10 +1,9 @@
 import { DummyPaymentAwp } from "../dummyPayment/dummyPaymentAwp";
-import { Browser, BrowserContext, expect, Page } from "@playwright/test";
+import { Browser, expect, Page } from "@playwright/test";
 import { OrderType, solicitorCaseCreateType } from "../../../../common/types";
 import { Helpers } from "../../../../common/helpers";
 import { NonMolestationOrder } from "./nonMolestationOrder/nonMolestationOrder";
 import { ParentalResponsibilityOrder } from "./ParentalResponsibilityOrder/parentalResponsibilityOrder";
-import Config from "../../../../config";
 import config from "../../../../config";
 import { Selectors } from "../../../../common/selectors";
 import { IssueAndSendToLocalCourtCallback1Page } from "../../../../pages/manageCases/caseWorker/draftAnOrder/issueAndSendToLocalCourt/issueAndSendToLocalCourtCallback1Page";
@@ -222,12 +221,7 @@ export class DraftAnOrder {
     caseRef: string,
     accessibilityTest: boolean,
   ): Promise<void> {
-    // open new browser and sign in as judge user
-    const newBrowser = await browser.browserType().launch();
-    const newContext: BrowserContext = await newBrowser.newContext({
-      storageState: Config.sessionStoragePath + "courtAdminStoke.json",
-    });
-    const page = await newContext.newPage();
+    const page: Page = await Helpers.openNewBrowserWindow(browser, "courtAdminStoke");
     await Helpers.goToCase(page, config.manageCasesBaseURL, caseRef, "tasks");
     // refresh page until the task shows up - there can be some delay
     await expect
