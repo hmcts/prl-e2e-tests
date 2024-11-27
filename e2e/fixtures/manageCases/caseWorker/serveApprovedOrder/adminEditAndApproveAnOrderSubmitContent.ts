@@ -1,0 +1,15 @@
+export enum AdminEditAndApproveAnOrderSubmitContent {
+  govUkHeadingL = "Edit and serve an order",
+  h1 = "Check your answers",
+  h2 = "Serve saved orders",
+  h3 = "Serve the order",
+  text161 = "Check the information below carefully.",
+  text162 = "Do you want to edit the order?",
+  text163 = "What type of order is this?",
+  text164 = "Does this order close the case?",
+  text165 = "Do you want to serve the order now?",
+  text166 = "Select the orders you plan to serve :",
+  text167 = "Does this order need to be personally served on the respondent?",
+  previous = "Previous",
+  submit = "Submit",
+}
