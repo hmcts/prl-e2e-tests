@@ -10,8 +10,8 @@ import withoutNoticejsonData from "../caseData/citizenDA/courtNavDaCitizenCase_W
  * @param {boolean} withNotice Determines urgency of the case (with (true) or without Notice (false)
  */
 async function createDaCitizenCourtNavCase(
-  withDoc: boolean,
   withNotice: boolean,
+  withDoc: boolean,
 ): Promise<string> {
   const apiContextDaCreateCase: APIRequestContext = await request.newContext();
   const tokenDaCreateCase = await getAccessToken(
