@@ -4,12 +4,12 @@ import Config from "../../../../config";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-test.describe("C100 Create case children and applicants tests @manageCases", (): void => {
+test.describe("C100 Create case children and applicants tests", (): void => {
   test(`Complete the C100 children and applicants event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
   Setting the relationship to Father,
-  Setting the child to live with the applicant. @crossbrowserManageCases @manageCasesNightlyPipeline`, async ({
+  Setting the child to live with the applicant. @regression @nightly`, async ({
     page,
   }): Promise<void> => {
     await C100ChildrenAndApplicants.c100ChildrenAndApplicants({
@@ -26,7 +26,7 @@ test.describe("C100 Create case children and applicants tests @manageCases", ():
   Not Accessibility testing,
   Not Error message testing,
   Setting the relationship to Mother,
-  Setting the child to live with the applicant. `, async ({
+  Setting the child to live with the applicant. @regression`, async ({
     page,
   }): Promise<void> => {
     await C100ChildrenAndApplicants.c100ChildrenAndApplicants({
@@ -43,7 +43,7 @@ test.describe("C100 Create case children and applicants tests @manageCases", ():
   Not Accessibility testing,
   Not Error message testing,
   Setting the relationship to Step-father,
-  Setting the child to live with the applicant.`, async ({
+  Setting the child to live with the applicant. @regression`, async ({
     page,
   }): Promise<void> => {
     await C100ChildrenAndApplicants.c100ChildrenAndApplicants({
@@ -60,7 +60,7 @@ test.describe("C100 Create case children and applicants tests @manageCases", ():
   Not Accessibility testing,
   Not Error message testing,
   Setting the relationship to Step-mother,
-  Setting the child to live with the applicant.`, async ({
+  Setting the child to live with the applicant. @regression`, async ({
     page,
   }): Promise<void> => {
     await C100ChildrenAndApplicants.c100ChildrenAndApplicants({
@@ -77,7 +77,7 @@ test.describe("C100 Create case children and applicants tests @manageCases", ():
   Not Accessibility testing,
   Not Error message testing,
   Setting the relationship to Grandparent,
-  Setting the child to live with the applicant.`, async ({
+  Setting the child to live with the applicant. @regression`, async ({
     page,
   }): Promise<void> => {
     await C100ChildrenAndApplicants.c100ChildrenAndApplicants({
@@ -94,7 +94,7 @@ test.describe("C100 Create case children and applicants tests @manageCases", ():
   Not Accessibility testing,
   Not Error message testing,
   Setting the relationship to Guardian,
-  Setting the child to live with the applicant.`, async ({
+  Setting the child to live with the applicant. @regression`, async ({
     page,
   }): Promise<void> => {
     await C100ChildrenAndApplicants.c100ChildrenAndApplicants({
@@ -111,7 +111,7 @@ test.describe("C100 Create case children and applicants tests @manageCases", ():
   Not Accessibility testing,
   Not Error message testing,
   Setting the relationship to Special Guardian,
-  Setting the child to live with the applicant.`, async ({
+  Setting the child to live with the applicant. @regression`, async ({
     page,
   }): Promise<void> => {
     await C100ChildrenAndApplicants.c100ChildrenAndApplicants({
@@ -128,7 +128,7 @@ test.describe("C100 Create case children and applicants tests @manageCases", ():
   Not Accessibility testing,
   Not Error message testing,
   Setting the relationship to Other,
-  Setting the child to live with the applicant.`, async ({
+  Setting the child to live with the applicant. @regression`, async ({
     page,
   }): Promise<void> => {
     await C100ChildrenAndApplicants.c100ChildrenAndApplicants({
@@ -145,7 +145,7 @@ test.describe("C100 Create case children and applicants tests @manageCases", ():
   Not Accessibility testing,
   Error message testing,
   Setting the relationship to Other,
-  Setting the child to live with the applicant. @errorMessageManageCases`, async ({
+  Setting the child to live with the applicant. @regression @errorMessage`, async ({
     page,
   }): Promise<void> => {
     await C100ChildrenAndApplicants.c100ChildrenAndApplicants({
@@ -163,7 +163,7 @@ test(`Accessibility test the C100 children and applicants event as a solicitor w
   Accessibility testing,
   Not Error message testing,
   Setting the relationship to Other,
-  Setting the child to live with the applicant. @accessibilityManageCases`, async ({
+  Setting the child to live with the applicant. @accessibility`, async ({
   page,
 }): Promise<void> => {
   await C100ChildrenAndApplicants.c100ChildrenAndApplicants({

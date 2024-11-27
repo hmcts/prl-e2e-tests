@@ -4,7 +4,7 @@ import Config from "../../../../config";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-test.describe("FL401 Create case other proceedings tests @manageCases", (): void => {
+test.describe("FL401 Create case other proceedings tests", (): void => {
   test(`Complete the FL401 other proceedings event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
@@ -23,7 +23,7 @@ test.describe("FL401 Create case other proceedings tests @manageCases", (): void
   test(`Complete the FL401 other proceedings event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
-  Saying no to previous or ongoing family court proceedings involving the applicant and respondent @manageCasesNightlyPipeline`, async ({
+  Saying no to previous or ongoing family court proceedings involving the applicant and respondent @regression @nightly`, async ({
     page,
   }): Promise<void> => {
     await FL401OtherProceedings.fl401OtherProceedings({
@@ -38,7 +38,7 @@ test.describe("FL401 Create case other proceedings tests @manageCases", (): void
   test(`Complete the FL401 other proceedings event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
-  Saying don't know to previous or ongoing family court proceedings involving the applicant and respondent`, async ({
+  Saying don't know to previous or ongoing family court proceedings involving the applicant and respondent @regression`, async ({
     page,
   }): Promise<void> => {
     await FL401OtherProceedings.fl401OtherProceedings({

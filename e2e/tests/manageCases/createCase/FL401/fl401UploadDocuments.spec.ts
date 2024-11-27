@@ -4,10 +4,10 @@ import Config from "../../../../config";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-test.describe("FL401 Create case Upload Documents tests @manageCases", (): void => {
+test.describe("FL401 Create case Upload Documents tests", (): void => {
   test(`Test the FL401 Upload Documents journey with following options:
   Not accessibility testing,
-  Not error messaging, @crossbrowserManageCases @manageCasesNightlyPipeline`, async ({
+  Not error messaging @nightly`, async ({
     page,
   }): Promise<void> => {
     await FL401UploadDocuments.fl401UploadDocuments({
@@ -20,7 +20,7 @@ test.describe("FL401 Create case Upload Documents tests @manageCases", (): void 
 
   test(`Test the FL401 Upload Documents journey with following options:
   Not accessibility testing,
-  Yes error messaging, @crossbrowserManageCases @errorMessageManageCases`, async ({
+  Yes error messaging, @errorMessage`, async ({
     page,
   }): Promise<void> => {
     await FL401UploadDocuments.fl401UploadDocuments({
@@ -34,7 +34,7 @@ test.describe("FL401 Create case Upload Documents tests @manageCases", (): void 
 
 test(`Test the FL401 Upload Documents journey with following options:
   Yes accessibility testing,
-  Not error messaging, @accessibilityManageCases`, async ({
+  Not error messaging, @accessibility`, async ({
   page,
 }): Promise<void> => {
   await FL401UploadDocuments.fl401UploadDocuments({

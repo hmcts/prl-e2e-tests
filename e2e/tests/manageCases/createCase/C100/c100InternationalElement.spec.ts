@@ -4,12 +4,12 @@ import { C100InternationalElement } from "../../../../journeys/manageCases/creat
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-test.describe("C100 Create case International Element Tests @manageCases", (): void => {
+test.describe("C100 Create case International Element Tests", (): void => {
   test(`Complete the C100 International Element as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
   Saying yes to all options,
-  Setting the applicant Gender to male. @crossbrowserManageCases`, async ({
+  Setting the applicant Gender to male. @regression`, async ({
     page,
   }): Promise<void> => {
     await C100InternationalElement.c100InternationalElement({
@@ -25,7 +25,7 @@ test.describe("C100 Create case International Element Tests @manageCases", (): v
   Not Accessibility testing,
   Not Error message testing,
   Saying no to all options,
-  Setting the applicant Gender to male. @manageCasesNightlyPipeline`, async ({ page }): Promise<void> => {
+  Setting the applicant Gender to male. @nightly @regression`, async ({ page }): Promise<void> => {
     await C100InternationalElement.c100InternationalElement({
       page: page,
       user: "solicitor",
@@ -40,7 +40,7 @@ test(`Complete the C100 Create case International Element as a solicitor with th
   Accessibility testing,
   Not Error message testing,
   Saying yes to all options,
-  Setting the applicant Gender to male. @accessibilityManageCases`, async ({
+  Setting the applicant Gender to male. @accessibility`, async ({
   page,
 }): Promise<void> => {
   await C100InternationalElement.c100InternationalElement({

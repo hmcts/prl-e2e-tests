@@ -5,7 +5,7 @@ import { FL401 } from "../../../journeys/manageCases/createCase/FL401";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-test.describe("Manage cases case solicitor create case tests. @manageCases", (): void => {
+test.describe("Manage cases case solicitor create case tests.", (): void => {
   // Triple timeout for these slow tests
   test.slow();
 
@@ -29,7 +29,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Saying no to all Miam
   C100MiamPolicyUpgrade1PageType is "yesExemption"
   Setting WelshPageRequirementType to "english"
-  Saying yes to all WelshRequirement options @crossbrowserManageCases @manageCasesSmoke`, async ({
+  Saying yes to all WelshRequirement options @regression @nightly @smoke`, async ({
     page,
   }): Promise<void> => {
     await C100.c100({
@@ -96,7 +96,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Saying no to all WelshRequirement options
   C100MiamPolicyUpgrade1PageType is "yesExemption"
   Saying Don't know to other proceedings
-  @crossbrowserManageCases`, async ({ page }): Promise<void> => {
+  @crossbrowserManageCases @regression @nightly`, async ({ page }): Promise<void> => {
     await C100.c100({
       page: page,
       user: "solicitor",
@@ -154,7 +154,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
      Saying Yes to all attending the hearing question,
      Upload document files,
     Submit Statement of Truth
-    @crossbrowserManageCases`, async ({ page }): Promise<void> => {
+    @regression @nightly`, async ({ page }): Promise<void> => {
     await FL401.fl401({
       page: page,
       user: "solicitor",
@@ -199,7 +199,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
      Relationship is 'Married or in a civil partnership',
      Saying yes to all attending the hearing questions,
      upload document files
-  @crossbrowserManageCases`, async ({ page }): Promise<void> => {
+  @regression @nightly`, async ({ page }): Promise<void> => {
     await FL401.fl401({
       page: page,
       user: "solicitor",
@@ -241,7 +241,7 @@ test.describe("Manage cases case solicitor create case tests. @manageCases", ():
   Saying 'No' to ever intend to live at home address
   Other Relationship Is: 'Cousin'
   saying no to all attending the hearing questions
-  Submit statement of truth`, async ({ page }): Promise<void> => {
+  Submit statement of truth @regression @nightly`, async ({ page }): Promise<void> => {
     await FL401.fl401({
       page: page,
       user: "solicitor",

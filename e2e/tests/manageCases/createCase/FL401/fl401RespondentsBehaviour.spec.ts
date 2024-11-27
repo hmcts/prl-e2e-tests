@@ -4,10 +4,10 @@ import Config from "../../../../config";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-test.describe("FL401 Create case respondent’s behaviour tests @manageCases", (): void => {
+test.describe("FL401 Create case respondent’s behaviour tests", (): void => {
   test(`Complete the FL401 respondent’s behaviour event as a solicitor with the following options:
   Not Accessibility testing,
-  Not Error message testing @crossbrowserManageCases @manageCasesNightlyPipeline`, async ({
+  Not Error message testing @regression @nightly`, async ({
     page,
   }): Promise<void> => {
     await FL401RespondentsBehaviour.fl401RespondentsBehaviour({
@@ -20,7 +20,7 @@ test.describe("FL401 Create case respondent’s behaviour tests @manageCases", (
 
 test(`Accessibility test the FL401 respondent’s behaviour event as a solicitor with the following options:
   Accessibility testing,
-  Not Error message testing, @accessibilityManageCases`, async ({
+  Not Error message testing, @accessibility`, async ({
   page,
 }): Promise<void> => {
   await FL401RespondentsBehaviour.fl401RespondentsBehaviour({

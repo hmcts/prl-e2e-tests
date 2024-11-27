@@ -4,11 +4,11 @@ import Config from "../../../../config";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-test.describe("FL401 Create case applicants family tests @manageCases", (): void => {
+test.describe("FL401 Create case applicants family tests", (): void => {
   test(`Complete the FL401 applicants family event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
-  Saying yes to all options, @crossbrowserManageCases`, async ({
+  Saying yes to all options, @regression`, async ({
     page,
   }): Promise<void> => {
     await FL401ApplicantsFamily.fl401ApplicantsFamily({
@@ -23,7 +23,7 @@ test.describe("FL401 Create case applicants family tests @manageCases", (): void
   test(`Complete the FL401 applicants family event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
-  Saying no to all options @manageCasesNightlyPipeline,`, async ({ page }): Promise<void> => {
+  Saying no to all options @regression @nightly,`, async ({ page }): Promise<void> => {
     await FL401ApplicantsFamily.fl401ApplicantsFamily({
       page: page,
       accessibilityTest: false,
@@ -36,7 +36,7 @@ test.describe("FL401 Create case applicants family tests @manageCases", (): void
   test(`Complete the FL401 applicants family event as a solicitor with the following options:
   Not Accessibility testing,
   Error message testing,
-  Saying yes to all options, @crossbrowserManageCases @errorMessageManageCases`, async ({
+  Saying yes to all options, @regression @errorMessage`, async ({
     page,
   }): Promise<void> => {
     await FL401ApplicantsFamily.fl401ApplicantsFamily({
@@ -52,7 +52,7 @@ test.describe("FL401 Create case applicants family tests @manageCases", (): void
 test(`Accessibility test the FL401 applicants family event as a solicitor with the following options:
   Accessibility testing,
   Not Error message testing,
-  Saying yes to all options, @accessibilityManageCases`, async ({
+  Saying yes to all options, @accessibility`, async ({
   page,
 }): Promise<void> => {
   await FL401ApplicantsFamily.fl401ApplicantsFamily({
