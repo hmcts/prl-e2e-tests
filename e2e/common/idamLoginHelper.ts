@@ -23,7 +23,7 @@ export class IdamLoginHelper {
     if (
       userType !== "citizen" &&
       existsSync(sessionPath) &&
-      (await this.isSessionValid(sessionPath))
+      this.isSessionValid(sessionPath)
     ) {
       return;
     } else {
@@ -90,7 +90,7 @@ export class IdamLoginHelper {
       "citizen",
     );
   }
-  private static async isSessionValid(path: string): Promise<boolean> {
+  private static isSessionValid(path: string): boolean {
     try {
       const data = JSON.parse(readFileSync(path, "utf-8"));
       const cookie = data.cookies.find(
