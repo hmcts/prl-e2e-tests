@@ -180,7 +180,7 @@ test.describe("FL401 Create cases The Home tests @manageCases", (): void => {
         Not Error Messaging (There isn't any), 
         Applicant doesn't have children
         No to all booleans, 
-        'Yes the applicant' to has the applicant or respondent ever lived at the address`, async ({
+        'Yes the applicant' to has the applicant or respondent ever lived at the address @manageCasesNightlyPipeline`, async ({
     page,
   }): Promise<void> => {
     await FL401TheHome.fl401TheHome({

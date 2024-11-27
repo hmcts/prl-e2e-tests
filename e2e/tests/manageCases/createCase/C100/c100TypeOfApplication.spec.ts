@@ -7,15 +7,15 @@ test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 test.describe("C100 Create case type of application tests @manageCases", (): void => {
   test(`Complete the C100 type of application event as a solicitor with the following options:
   Not Accessibility testing,
-  Not Error message testing,
-  saying yes to all options, @crossbrowserManageCases`, async ({
+  Error message testing,
+  saying yes to all options, @crossbrowserManageCases @errorMessageManageCases`, async ({
     page,
   }): Promise<void> => {
     await C100TypeOfApplication.c100TypeOfApplication({
       page,
       user: "solicitor",
       accessibilityTest: false,
-      errorMessaging: false,
+      errorMessaging: true,
       yesNoC100TypeOfApplication: true,
       typeOfChildArrangementOrder: "Spend time with order",
       selectionC100TypeOfApplication: "Yes",
@@ -25,8 +25,8 @@ test.describe("C100 Create case type of application tests @manageCases", (): voi
 
   test(`Complete the C100 type of application event as a solicitor with the following options:
   Not Accessibility testing,
-  Error message testing,
-  Saying No to all options, @crossbrowserManageCases`, async ({
+  No Error message testing,
+  Saying No to all options, @crossbrowserManageCases @manageCasesNightlyPipeline`, async ({
     page,
   }): Promise<void> => {
     await C100TypeOfApplication.c100TypeOfApplication({

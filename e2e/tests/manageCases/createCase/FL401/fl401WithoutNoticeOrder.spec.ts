@@ -8,7 +8,7 @@ test.describe("FL401 Create case without notice order tests @manageCases", (): v
   test(`Complete the FL401 without notice order event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
-  Saying yes to all options, @crossbrowserManageCases`, async ({
+  Saying yes to all options, @crossbrowserManageCases @manageCasesNightlyPipeline`, async ({
     page,
   }): Promise<void> => {
     await FL401WithoutNoticeOrder.fl401WithoutNoticeOrder({
@@ -52,7 +52,7 @@ test.describe("FL401 Create case without notice order tests @manageCases", (): v
   test(`Complete the FL401 without notice order event as a solicitor with the following options:
   Not Accessibility testing,
   Error message testing,
-  Saying yes to all options, @crossbrowserManageCases`, async ({
+  Saying yes to all options, @crossbrowserManageCases @errorMessageManageCases`, async ({
     page,
   }): Promise<void> => {
     await FL401WithoutNoticeOrder.fl401WithoutNoticeOrder({
@@ -69,7 +69,7 @@ test.describe("FL401 Create case without notice order tests @manageCases", (): v
 test(`Accessibility test the FL401 without notice order event as a solicitor with the following options:
   Accessibility testing,
   Not Error message testing,
-  Saying yes to all options, @accessibilityManageCases`, async ({
+  Saying yes to all options,`, async ({
   page,
 }): Promise<void> => {
   await FL401WithoutNoticeOrder.fl401WithoutNoticeOrder({

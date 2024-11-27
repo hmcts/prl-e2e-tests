@@ -10,7 +10,7 @@ test.describe("C100 Create case Other children not in the case tests @manageCase
   Not Error message testing,
   Answering yes to the other child being present,
   With a known DOB,
-  Setting the child Gender to Female. @crossbrowserManageCases`, async ({
+  Setting the child Gender to Female. @crossbrowserManageCases @manageCasesNightlyPipeline`, async ({
     page,
   }): Promise<void> => {
     await C100OtherChildrenNotInTheCase.c100OtherChildrenNotInTheCase({
@@ -61,7 +61,7 @@ test.describe("C100 Create case Other children not in the case tests @manageCase
   test(`Complete the C100 Other children not in the case event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
-  Answering no to the other child being present`, async ({
+  Answering no to the other child being present @manageCasesNightlyPipeline`, async ({
     page,
   }): Promise<void> => {
     await C100OtherChildrenNotInTheCase.c100OtherChildrenNotInTheCase({
@@ -80,7 +80,7 @@ test.describe("C100 Create case Other children not in the case tests @manageCase
   Error message testing,
   Answering yes to the other child being present,
   With a unknown DOB,
-  Setting the child Gender to female.`, async ({ page }): Promise<void> => {
+  Setting the child Gender to female. @errorMessageManageCases`, async ({ page }): Promise<void> => {
     await C100OtherChildrenNotInTheCase.c100OtherChildrenNotInTheCase({
       page: page,
       accessibilityTest: false,
@@ -98,7 +98,7 @@ test(`Accessibility test the C100 Other children not in the case event as a soli
   Not Error message testing,
   Answering yes to the other child being present,
   With a unknown DOB,
-  Setting the child Gender to female.`, async ({ page }): Promise<void> => {
+  Setting the child Gender to female. @accessibilityManageCases`, async ({ page }): Promise<void> => {
   await C100OtherChildrenNotInTheCase.c100OtherChildrenNotInTheCase({
     page: page,
     accessibilityTest: true,

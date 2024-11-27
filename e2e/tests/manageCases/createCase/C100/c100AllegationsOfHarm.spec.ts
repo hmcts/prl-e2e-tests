@@ -87,7 +87,7 @@ test.describe("C100 Create case Allegations of harm tests @manageCases", (): voi
   test(`Complete the C100 allegations of harm event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
-  Saying no to all options.`, async ({ page }): Promise<void> => {
+  Saying no to all options. @manageCasesNightlyPipeline`, async ({ page }): Promise<void> => {
     await C100AllegationsOfHarm.c100AllegationsOfHarm({
       page: page,
       accessibilityTest: false,
@@ -102,7 +102,7 @@ test.describe("C100 Create case Allegations of harm tests @manageCases", (): voi
   Not Accessibility testing,
   Error message testing,
   Saying yes to all options,
-  Setting the abuse type to Physical. @crossbrowserManageCases`, async ({
+  Setting the abuse type to Physical. @crossbrowserManageCases @errorMessageManageCases`, async ({
     page,
   }): Promise<void> => {
     await C100AllegationsOfHarm.c100AllegationsOfHarm({

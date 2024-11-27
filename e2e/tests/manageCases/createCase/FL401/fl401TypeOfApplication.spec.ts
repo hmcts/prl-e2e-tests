@@ -23,7 +23,7 @@ test.describe("FL401 Create case type of application tests @manageCases", (): vo
   test(`Complete the FL401 type of application event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
-  Saying no to linked to C100,`, async ({ page }): Promise<void> => {
+  Saying no to linked to C100, @manageCasesNightlyPipeline`, async ({ page }): Promise<void> => {
     await FL401TypeOfApplication.fl401TypeOfApplication({
       page: page,
       accessibilityTest: false,
@@ -36,7 +36,7 @@ test.describe("FL401 Create case type of application tests @manageCases", (): vo
   test(`Complete the FL401 type of application event as a solicitor with the following options:
   Not Accessibility testing,
   Error message testing,
-  Saying yes to linked to C100, @crossbrowserManageCases`, async ({
+  Saying yes to linked to C100, @crossbrowserManageCases @errorMessageManageCases`, async ({
     page,
   }): Promise<void> => {
     await FL401TypeOfApplication.fl401TypeOfApplication({

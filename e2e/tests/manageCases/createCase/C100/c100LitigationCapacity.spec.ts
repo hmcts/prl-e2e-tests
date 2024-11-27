@@ -23,7 +23,7 @@ test.describe("C100 Create case Litigation Capacity Tests @manageCases", (): voi
   test(`Complete the C100 Create case Litigation Capacity as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
-  Saying no to all options.`, async ({ page }): Promise<void> => {
+  Saying no to all options. @manageCasesNightlyPipeline`, async ({ page }): Promise<void> => {
     await C100LitigationCapacity.c100LitigationCapacity({
       page: page,
       user: "solicitor",

@@ -9,7 +9,7 @@ test.describe("C100 Create case Applicant Details tests @manageCases", (): void 
   Not Accessibility testing,
   Not Error message testing,
   Saying yes to all options,
-  Setting the applicant Gender to male. @crossbrowserManageCases`, async ({
+  Setting the applicant Gender to male. @crossbrowserManageCases @manageCasesNightlyPipeline`, async ({
     page,
   }): Promise<void> => {
     await C100ApplicantDetails.C100ApplicantDetails({
@@ -27,7 +27,7 @@ test.describe("C100 Create case Applicant Details tests @manageCases", (): void 
   Not Accessibility testing,
   Not Error message testing,
   Saying no to all options,
-  Setting the applicant Gender to female.`, async ({ page }): Promise<void> => {
+  Setting the applicant Gender to female. @manageCasesNightlyPipeline`, async ({ page }): Promise<void> => {
     await C100ApplicantDetails.C100ApplicantDetails({
       page,
       user: "solicitor",
@@ -43,7 +43,7 @@ test.describe("C100 Create case Applicant Details tests @manageCases", (): void 
   Not Accessibility testing,
   Error message testing,
   Saying yes to all options,
-  Setting the applicant Gender to male. @crossbrowserManageCases`, async ({
+  Setting the applicant Gender to male. @crossbrowserManageCases @errorMessageManageCases`, async ({
     page,
   }): Promise<void> => {
     await C100ApplicantDetails.C100ApplicantDetails({

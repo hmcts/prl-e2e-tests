@@ -7,7 +7,7 @@ test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 test.describe("FL401 Create case Upload Documents tests @manageCases", (): void => {
   test(`Test the FL401 Upload Documents journey with following options:
   Not accessibility testing,
-  Not error messaging, @crossbrowserManageCases`, async ({
+  Not error messaging, @crossbrowserManageCases @manageCasesNightlyPipeline`, async ({
     page,
   }): Promise<void> => {
     await FL401UploadDocuments.fl401UploadDocuments({
@@ -20,7 +20,7 @@ test.describe("FL401 Create case Upload Documents tests @manageCases", (): void 
 
   test(`Test the FL401 Upload Documents journey with following options:
   Not accessibility testing,
-  Yes error messaging, @crossbrowserManageCases`, async ({
+  Yes error messaging, @crossbrowserManageCases @errorMessageManageCases`, async ({
     page,
   }): Promise<void> => {
     await FL401UploadDocuments.fl401UploadDocuments({
@@ -39,8 +39,8 @@ test(`Test the FL401 Upload Documents journey with following options:
 }): Promise<void> => {
   await FL401UploadDocuments.fl401UploadDocuments({
     page: page,
-    accessibilityTest: false,
-    errorMessaging: true,
+    accessibilityTest: true,
+    errorMessaging: false,
     subJourney: true,
   });
 });

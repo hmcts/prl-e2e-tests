@@ -9,7 +9,7 @@ test.describe("C100 Create case MIAM Tests @manageCases", (): void => {
   Not Accessibility testing,
   Not Error message testing,
   Saying yes to all options,
-  MiamSelection is attended4MonthsPrior. @crossbrowserManageCases`, async ({
+  MiamSelection is attended4MonthsPrior. @crossbrowserManageCases @manageCasesNightlyPipeline`, async ({
     page,
   }): Promise<void> => {
     await C100MiamPolicyUpgrade.c100MiamPolicyUpgrade({
@@ -28,7 +28,7 @@ test.describe("C100 Create case MIAM Tests @manageCases", (): void => {
   Not Accessibility testing,
   Error message testing,
   Saying yes to attended MIAM,
-  MiamSelection is attended4MonthsPrior. @crossbrowserManageCases`, async ({
+  MiamSelection is attended4MonthsPrior. @crossbrowserManageCases @errorMessageManageCases`, async ({
     page,
   }): Promise<void> => {
     await C100MiamPolicyUpgrade.c100MiamPolicyUpgrade({
@@ -66,7 +66,7 @@ test.describe("C100 Create case MIAM Tests @manageCases", (): void => {
   Not Error message testing,
   Saying yes to yesExemption
   miamSelection "initiatedMIAMBeforeProceedings_MIAMCertificate"
-  Saying no to all options.`, async ({ page }): Promise<void> => {
+  Saying no to all options. @manageCasesNightlyPipeline`, async ({ page }): Promise<void> => {
     await C100MiamPolicyUpgrade.c100MiamPolicyUpgrade({
       page: page,
       user: "solicitor",
@@ -84,7 +84,7 @@ test.describe("C100 Create case MIAM Tests @manageCases", (): void => {
   Error message testing,
   Saying yes to yesExemption
   miamSelection "initiatedMIAMBeforeProceedings_MIAMDetails"
-  Saying no to all options. @crossbrowserManageCases`, async ({
+  Saying no to all options. @crossbrowserManageCases @errorMessageManageCases`, async ({
     page,
   }): Promise<void> => {
     await C100MiamPolicyUpgrade.c100MiamPolicyUpgrade({
@@ -105,7 +105,7 @@ test.describe("C100 Create case MIAM Tests @accessibilityManageCases", (): void 
   Accessibility testing,
   Not Error message testing,
   C100MiamPolicyUpgrade1PageType is "yes"
-  miamSelection is "initiatedMIAMBeforeProceedings_MIAMDetails".@accessibilityManageCases`, async ({
+  miamSelection is "initiatedMIAMBeforeProceedings_MIAMDetails". @accessibilityManageCases`, async ({
     page,
   }): Promise<void> => {
     await C100MiamPolicyUpgrade.c100MiamPolicyUpgrade({
@@ -125,7 +125,7 @@ test.describe("C100 Create case MIAM Tests @accessibilityManageCases", (): void 
   Error message testing,
   Saying yes to attended MIAM
   C100MiamPolicyUpgrade1PageType is "yesAttendedMiam"
-  miamSelection is "attended4MonthsPrior". @crossbrowserManageCases`, async ({
+  miamSelection is "attended4MonthsPrior". @accessibilityManageCases`, async ({
     page,
   }): Promise<void> => {
     await C100MiamPolicyUpgrade.c100MiamPolicyUpgrade({

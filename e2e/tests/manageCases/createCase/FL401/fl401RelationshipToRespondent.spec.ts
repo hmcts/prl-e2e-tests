@@ -8,7 +8,7 @@ test.describe("FL401 Create case relationship to respondent tests @manageCases",
   test(`Complete the FL401 relationship to respondent event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
-  Relationship is 'Married or in a civil partnership', @crossbrowserManageCases`, async ({
+  Relationship is 'Married or in a civil partnership', @crossbrowserManageCases @manageCasesNightlyPipeline`, async ({
     page,
   }): Promise<void> => {
     await FL401RelationshipToRespondent.fl401RelationshipToRespondent({
@@ -340,7 +340,7 @@ test.describe("FL401 Create case relationship to respondent tests @manageCases",
   test(`Check the errors of the FL401 relationship to respondent event as a solicitor with the following options:
   Not Accessibility testing,
   Error message testing,
-  Relationship is 'Formerly lived together as a couple', @crossbrowserManageCases`, async ({
+  Relationship is 'Formerly lived together as a couple', @crossbrowserManageCases @errorMessageManageCases`, async ({
     page,
   }): Promise<void> => {
     await FL401RelationshipToRespondent.fl401RelationshipToRespondent({
@@ -356,7 +356,7 @@ test.describe("FL401 Create case relationship to respondent tests @manageCases",
   Not Accessibility testing,
   Error message testing,
   Relationship is 'None of the above',
-  Other Relationship Is: 'Other'`, async ({ page }): Promise<void> => {
+  Other Relationship Is: 'Other' @errorMessageManageCases`, async ({ page }): Promise<void> => {
     await FL401RelationshipToRespondent.fl401RelationshipToRespondent({
       page: page,
       accessibilityTest: false,

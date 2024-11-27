@@ -25,7 +25,7 @@ test.describe("C100 Create case International Element Tests @manageCases", (): v
   Not Accessibility testing,
   Not Error message testing,
   Saying no to all options,
-  Setting the applicant Gender to male.`, async ({ page }): Promise<void> => {
+  Setting the applicant Gender to male. @manageCasesNightlyPipeline`, async ({ page }): Promise<void> => {
     await C100InternationalElement.c100InternationalElement({
       page: page,
       user: "solicitor",

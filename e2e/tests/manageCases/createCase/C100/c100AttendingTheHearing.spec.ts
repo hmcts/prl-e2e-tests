@@ -8,7 +8,7 @@ test.describe("C100 Create case respondent’s behaviour tests @manageCases", ()
   test(`Test the C100 Attending The Hearing Journey with the following options:
   Not Accessibility testing,
   Not error Messaging,
-  No to All Options, @crossbrowserManageCases`, async ({
+  No to All Options, @crossbrowserManageCases @manageCasesNightlyPipeline`, async ({
     page,
   }): Promise<void> => {
     await C100AttendingTheHearing.c100AttendingTheHearing({
@@ -36,7 +36,7 @@ test.describe("C100 Create case respondent’s behaviour tests @manageCases", ()
   test(`Test the C100 Attending The Hearing Journey with the following options:
   Not Accessibility testing,
   Yes error Messaging,
-  Yes to All Options, @crossbrowserManageCases`, async ({
+  Yes to All Options, @crossbrowserManageCases @errorMessageManageCases`, async ({
     page,
   }): Promise<void> => {
     await C100AttendingTheHearing.c100AttendingTheHearing({

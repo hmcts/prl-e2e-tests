@@ -42,7 +42,7 @@ test.describe("FL401 Create case welsh language requirements tests @manageCases"
   test(`Complete the FL401 welsh language requirements event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
-  Saying no to all options,`, async ({ page }): Promise<void> => {
+  Saying no to all options, @manageCasesNightlyPipeline`, async ({ page }): Promise<void> => {
     await FL401WelshLanguageRequirements.fl401WelshLanguageRequirements({
       page: page,
       accessibilityTest: false,

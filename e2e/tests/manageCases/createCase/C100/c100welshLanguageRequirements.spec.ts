@@ -9,7 +9,7 @@ test.describe("C100 Create case Welsh Language Requirements Tests @manageCases",
   Not Accessibility testing,
   Not Error message testing,
   Saying yes to all options,
-  WelshPageRequirementType is no. @crossbrowserManageCases`, async ({
+  WelshPageRequirementType is no. @crossbrowserManageCases @manageCasesNightlyPipeline`, async ({
     page,
   }): Promise<void> => {
     await C100WelshLanguageRequirements.c100WelshLanguageRequirements({
@@ -106,7 +106,7 @@ test(`Complete the C100 Create case Welsh Language Requirements as a solicitor w
   Accessibility testing,
   Not Error message testing,
   Saying no to all options,
-  WelshPageRequirementType is welsh.`, async ({ page }): Promise<void> => {
+  WelshPageRequirementType is welsh. @accessibilityManageCases`, async ({ page }): Promise<void> => {
   await C100WelshLanguageRequirements.c100WelshLanguageRequirements({
     page: page,
     user: "solicitor",

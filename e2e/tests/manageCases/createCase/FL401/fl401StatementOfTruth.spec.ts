@@ -26,7 +26,7 @@ test.describe("FL401 Statement of truth tests @manageCases", (): void => {
   Not accessibility testing,
   Not error messaging, 
   No to everything before,
-  @crossbrowserManageCases`, async ({ page }): Promise<void> => {
+  @crossbrowserManageCases @manageCasesNightlyPipeline`, async ({ page }): Promise<void> => {
     await Fl401StatementOfTruth.fl401StatementOfTruth({
       page: page,
       accessibilityTest: false,
@@ -40,7 +40,7 @@ test.describe("FL401 Statement of truth tests @manageCases", (): void => {
   Not accessibility testing,
   Yes error messaging, 
   No to everything before,
-  @crossbrowserManageCases`, async ({ page }): Promise<void> => {
+  @crossbrowserManageCases @errorMessageManageCases`, async ({ page }): Promise<void> => {
     await Fl401StatementOfTruth.fl401StatementOfTruth({
       page: page,
       accessibilityTest: false,
