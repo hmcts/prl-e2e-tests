@@ -48,14 +48,10 @@ export class EditAndApproveAnOrder {
     });
     page = await Helpers.openNewBrowserWindow(browser, "judge");
     await Helpers.goToCase(page, config.manageCasesBaseURL, caseRef, "tasks");
-    await Helpers.waitForTask(
+    await Helpers.assignTaskToMeAndTriggerNextSteps(
       page,
       `${orderTypesMap.get(orderType)?.journeyName}`,
-    );
-    await page.click(`${Selectors.a}:text-is("Assign to me")`);
-    await page.locator(".alert-message").waitFor();
-    await page.click(
-      `${Selectors.a}:text-is("Review and Approve Legal rep Order")`,
+      "Review and Approve Legal rep Order",
     );
     await EditAndApproveAnOrder2Page.editAndApproveAnOrder2Page(
       page,

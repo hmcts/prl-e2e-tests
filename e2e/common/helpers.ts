@@ -1,4 +1,10 @@
-import { Browser, BrowserContext, expect, Locator, Page } from "@playwright/test";
+import {
+  Browser,
+  BrowserContext,
+  expect,
+  Locator,
+  Page,
+} from "@playwright/test";
 import idamLoginHelper from "./idamLoginHelper";
 import { Selectors } from "./selectors.ts";
 import {
@@ -328,7 +334,10 @@ export class Helpers {
       .toBeTruthy();
   }
 
-  public static async openNewBrowserWindow(browser: Browser, user: UserRole): Promise<Page> {
+  public static async openNewBrowserWindow(
+    browser: Browser,
+    user: UserRole,
+  ): Promise<Page> {
     const newBrowser = await browser.browserType().launch();
     const newContext: BrowserContext = await newBrowser.newContext({
       storageState: Config.sessionStoragePath + `${user}.json`,
