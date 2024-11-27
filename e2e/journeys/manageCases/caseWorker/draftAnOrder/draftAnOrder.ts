@@ -1,12 +1,10 @@
 import { DummyPaymentAwp } from "../dummyPayment/dummyPaymentAwp";
-import { Browser, BrowserContext, expect, Page } from "@playwright/test";
+import { Browser, Page } from "@playwright/test";
 import { OrderType, solicitorCaseCreateType } from "../../../../common/types";
 import { Helpers } from "../../../../common/helpers";
 import { NonMolestationOrder } from "./nonMolestationOrder/nonMolestationOrder";
 import { ParentalResponsibilityOrder } from "./ParentalResponsibilityOrder/parentalResponsibilityOrder";
-import Config from "../../../../config";
 import config from "../../../../config";
-import { Selectors } from "../../../../common/selectors";
 import { IssueAndSendToLocalCourtCallback1Page } from "../../../../pages/manageCases/caseWorker/draftAnOrder/issueAndSendToLocalCourt/issueAndSendToLocalCourtCallback1Page";
 import { IssueAndSendToLocalCourtCallbackSubmitPage } from "../../../../pages/manageCases/caseWorker/draftAnOrder/issueAndSendToLocalCourt/issueAndSendToLocalCourtCallbackSubmitPage";
 
@@ -222,38 +220,16 @@ export class DraftAnOrder {
     caseRef: string,
     accessibilityTest: boolean,
   ): Promise<void> {
-    // open new browser and sign in as judge user
-    const newBrowser = await browser.browserType().launch();
-    const newContext: BrowserContext = await newBrowser.newContext({
-      storageState: Config.sessionStoragePath + "courtAdminStoke.json",
-    });
-    const page = await newContext.newPage();
+    const page: Page = await Helpers.openNewBrowserWindow(
+      browser,
+      "courtAdminStoke",
+    );
     await Helpers.goToCase(page, config.manageCasesBaseURL, caseRef, "tasks");
-    // refresh page until the task shows up - there can be some delay
-    await expect
-      .poll(
-        async () => {
-          const visible = await page
-            .locator("strong", {
-              hasText: "Check Application",
-            })
-            .isVisible();
-          if (!visible) {
-            await page.reload();
-          }
-          return visible;
-        },
-        {
-          // Allow 10s delay before retrying
-          intervals: [10_000],
-          // Allow up to a minute for it to become visible
-          timeout: 100_000,
-        },
-      )
-      .toBeTruthy();
-    await page.click(`${Selectors.a}:text-is("Assign to me")`);
-    await page.locator(".alert-message").waitFor();
-    await page.click(`${Selectors.a}:text-is("Issue and send to local Court")`);
+    await Helpers.assignTaskToMeAndTriggerNextSteps(
+      page,
+      "Check Application",
+      "Issue and send to local Court",
+    );
     await IssueAndSendToLocalCourtCallback1Page.issueAndSendToLocalCourtCallback1Page(
       page,
       accessibilityTest,
