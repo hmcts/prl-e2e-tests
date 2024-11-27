@@ -1,4 +1,5 @@
 import { Page } from "@playwright/test";
+import { existsSync, readFileSync } from "fs";
 import Config from "../config.ts";
 import { setupUser } from "./idamCreateCitizenUserApiHelper.ts";
 import { UserCredentials, UserLoginInfo } from "./types.ts";
@@ -17,23 +18,34 @@ export class IdamLoginHelper {
     application: string,
     userType: string,
   ): Promise<void> {
-    if (!page.url().includes("idam-web-public.")) {
-      await page.goto(application);
-    }
-    if (page.url().includes("demo")) {
-      await page.waitForSelector(`#skiplinktarget:text("Sign in")`);
+    const sessionPath = Config.sessionStoragePath + `${userType}.json`;
+
+    if (
+      userType !== "citizen" &&
+      existsSync(sessionPath) &&
+      (await this.isSessionValid(sessionPath))
+    ) {
+      return;
     } else {
-      await page.waitForSelector(
-        `#skiplinktarget:text("Sign in or create an account")`,
-      );
-    }
-    await page.fill(this.fields.username, username);
-    await page.fill(this.fields.password, password);
-    await page.click(this.submitButton);
-    if (userType !== "citizen") {
-      await page
-        .context()
-        .storageState({ path: Config.sessionStoragePath + `${userType}.json` });
+      if (!page.url().includes("idam-web-public.")) {
+        await page.goto(application);
+      }
+
+      if (page.url().includes("demo")) {
+        await page.waitForSelector(`#skiplinktarget:text("Sign in")`);
+      } else {
+        await page.waitForSelector(
+          `#skiplinktarget:text("Sign in or create an account")`,
+        );
+      }
+
+      await page.fill(this.fields.username, username);
+      await page.fill(this.fields.password, password);
+      await page.click(this.submitButton);
+
+      if (userType !== "citizen") {
+        await page.context().storageState({ path: sessionPath });
+      }
     }
   }
 
@@ -77,6 +89,19 @@ export class IdamLoginHelper {
       application,
       "citizen",
     );
+  }
+  private static async isSessionValid(path: string): Promise<boolean> {
+    try {
+      const data = JSON.parse(readFileSync(path, "utf-8"));
+      const cookie = data.cookies.find(
+        (cookie: any) => cookie.name === "xui-webapp",
+      );
+      const expiry = new Date(cookie.expires * 1000);
+      // Check there is at least 4 hours left before the session expires
+      return expiry.getTime() - Date.now() > 4 * 60 * 60 * 1000;
+    } catch (error) {
+      throw new Error(`Could not read session data: ${error} for ${path}`);
+    }
   }
 }
 

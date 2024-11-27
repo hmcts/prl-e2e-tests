@@ -1,7 +1,7 @@
 import { test } from "@playwright/test";
-import { C100 } from "../../../../journeys/citizen/createCase/C100/C100";
-import Config from "../../../../config";
 import IdamLoginHelper from "../../../../common/idamLoginHelper";
+import Config from "../../../../config";
+import { C100 } from "../../../../journeys/citizen/createCase/C100/C100";
 
 test.describe("C100 Citizen Application with Written Consent from other people in the case. @citizenFrontend @crossbrowserCitizenFrontend", (): void => {
   test.beforeEach(async ({ page }) => {
@@ -49,8 +49,8 @@ test.describe("C100 Citizen Application with Written Consent from other people i
     passport office notified: yes,
     children abducted before: yes,
     child supervision: yes spend time,
-    international elements yes to all: ture,
-    yes to all reasonable adjustments: ture,
+    international elements yes to all: true,
+    yes to all reasonable adjustments: true,
     need help with fees: yes,
     fees applied: yes @citizenSmoke`, async ({ page }): Promise<void> => {
     await C100.c100caWrittenConsentJourney({
@@ -132,14 +132,14 @@ test.describe("C100 Citizen Application with Written Consent from other people i
     child arrangement order details: true,
     yes to all other proceedings radios: true,
     safety concerns yes: true,
-    safety concerns yes to all: ture,
+    safety concerns yes to all: true,
     children have passport: true,
     more than one passport: true,
     passport office notified: yes,
     children abducted before: yes,
     child supervision: yes spend time,
-    international elements yes to all: ture,
-    yes to all reasonable adjustments: ture,
+    international elements yes to all: true,
+    yes to all reasonable adjustments: true,
     need help with fees: yes,
     fees applied: yes`, async ({ page }): Promise<void> => {
     await C100.c100caWrittenConsentJourney({
@@ -221,14 +221,14 @@ test.describe("C100 Citizen Application with Written Consent from other people i
     child arrangement order details: true,
     yes to all other proceedings radios: true,
     safety concerns yes: true,
-    safety concerns yes to all: ture,
+    safety concerns yes to all: true,
     children have passport: true,
     more than one passport: true,
     passport office notified: yes,
     children abducted before: yes,
     child supervision: yes spend time,
-    international elements yes to all: ture,
-    yes to all reasonable adjustments: ture,
+    international elements yes to all: true,
+    yes to all reasonable adjustments: true,
     need help with fees: yes,
     fees applied: yes`, async ({ page }): Promise<void> => {
     await C100.c100caWrittenConsentJourney({
@@ -319,14 +319,14 @@ test.describe("Test the accessibility of the CA C100 Citizen Journey.  @accessib
     child mainly lives with: 'applicant'
     yes to all other proceedings radios: true,
     safety concerns yes: true,
-    safety concerns yes to all: ture,
+    safety concerns yes to all: true,
     children have passport: true,
     more than one passport: true,
     passport office notified: yes,
     children abducted before: yes,
     child supervision: yes spend time,
-    international elements yes to all: ture,
-    yes to all reasonable adjustments: ture,
+    international elements yes to all: true,
+    yes to all reasonable adjustments: true,
     need help with fees: yes,
     fees applied: yes`, async ({ page }): Promise<void> => {
     await C100.c100caWrittenConsentJourney({
