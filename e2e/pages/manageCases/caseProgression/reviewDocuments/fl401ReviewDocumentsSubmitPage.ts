@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test";
+import { Page, expect } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors";
 import { Fl401ReviewDocumentsSubmitContent } from "../../../../fixtures/manageCases/caseProgression/reviewDocuments/fl401ReviewDocumentsSubmitContent";
 import { Helpers } from "../../../../common/helpers";
@@ -66,8 +66,8 @@ export class FL401ReviewDocumentsSubmitPage {
         1,
       ),
       Helpers.checkVisibleAndPresent(page, yesNoNotSureSelector, 1),
-      page.locator('ccd-read-dynamic-list-field span', {hasText: 'testPdf.pdf'}),
     ]);
+    await expect(page.locator('ccd-read-dynamic-list-field span', {hasText: 'testPdf.pdf'})).toBeVisible();
     // if (accessibilityTest) {
     //   await AccessibilityTestHelper.run(page); #TODO Disabled pending ticket FPET-1209
     // }
