@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
 import {
-  createOrderFL401Options,
-  solicitorCaseCreateType,
+  createOrderFL401Options, judgeTitles,
+  solicitorCaseCreateType
 } from "../../../../../common/types";
 import {
   howLongWillOrderBeInForce,
@@ -23,6 +23,7 @@ interface FL401Params {
   yesNoManageOrders: boolean;
   howLongWillOrderBeInForce: howLongWillOrderBeInForce;
   createOrderFL401Options: createOrderFL401Options;
+  judgeTitles: judgeTitles;
 }
 
 export class Fl401ManageOrderDA {
@@ -32,6 +33,7 @@ export class Fl401ManageOrderDA {
     yesNoManageOrders,
     howLongWillOrderBeInForce,
     createOrderFL401Options,
+                                           judgeTitles
   }: FL401Params): Promise<void> {
     await CaseDetailsSummaryPage.caseDetailsSummaryPage({
       page,
@@ -50,6 +52,8 @@ export class Fl401ManageOrderDA {
       page,
       accessibilityTest,
       yesNoManageOrders,
+      createOrderFL401Options,
+      judgeTitles
     });
     await ManageOrders12Page.manageOrders12Page({
       page,
