@@ -1,0 +1,17 @@
+{
+  "data": {
+    "caseTypeOfApplication": "FL401",
+    "confidentialityStatementDisclaimer": [
+      "confidentialityStatementUnderstood"
+    ],
+    "applicantOrRespondentCaseName": "FL401 Case"
+  },
+  "event": {
+    "id": "solicitorCreate",
+    "summary": "",
+    "description": ""
+  },
+  "event_token": "#{eventToken}",
+  "ignore_warning": false,
+  "draft_id": null
+}

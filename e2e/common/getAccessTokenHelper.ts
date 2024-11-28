@@ -19,6 +19,16 @@ const daCourtNavCreateCaseData = {
   password: process.env.COURTNAV_PASSWORD as string,
 };
 
+const systemCreateCaseBearerToken = {
+  grant_type: "password",
+  username: process.env.SYSTEM_UPDATE_USERNAME as string,
+  password: process.env.SYSTEM_UPDATE_PASSWORD as string,
+  client_id: "prl-cos-api",
+  client_secret: process.env.IDAM_SECRET as string,
+  scope: "openid profile roles",
+  redirect_uri: process.env.REDIRECT_URI as string,
+}
+
 /**
  * Function to get an access token from the IDAM service
  * @param {string} option The option to determine which data set to use for the request
@@ -29,20 +39,26 @@ export async function getAccessToken(
   option: string,
   apiContext: APIRequestContext,
 ): Promise<string> {
-  let data;
+  let data, url;
   try {
     switch (option) {
       case "citizenCreateUser":
         data = citizenCreateUserData;
+        url = process.env.IDAM_TOKEN_URL as string;
         break;
       case "daCourtNavCreateCase":
         data = daCourtNavCreateCaseData;
+        url = process.env.IDAM_TOKEN_URL as string;
+        break;
+      case "systemCreateCaseBearerToken":
+        data = systemCreateCaseBearerToken;
+        url = process.env.IDAM_API_URL as string;
         break;
       default:
         throw new Error(`Invalid option: ${option}`);
     }
     const response = await apiContext.post(
-      process.env.IDAM_TOKEN_URL as string,
+      url,
       {
         headers: { "content-type": "application/x-www-form-urlencoded" },
         form: data,
@@ -62,3 +78,31 @@ export async function getAccessToken(
     );
   }
 }
+
+export async function getS2SToken(
+  apiContext: APIRequestContext,
+  ): Promise<string> {
+  try {
+    const response = await apiContext.post(
+      process.env.S2S_TOKEN_URL as string,
+      {
+        headers: { "content-type": "application/json" },
+        data: {
+          "microservice": "ccd_data",
+        },
+      }
+    );
+    if (!response.ok()) {
+      const errorText = await response.text();
+      throw new Error(
+        `Failed to fetch access token: ${response.status()} - ${errorText}. Ensure your VPN is connected or check your URL/SECRET.`,
+      );
+    }
+    return response.text();
+  } catch (error) {
+    throw new Error(
+      `An error occurred while fetching the access token: ${error instanceof Error ? error.message : error}`,
+    );
+  }
+}
+
