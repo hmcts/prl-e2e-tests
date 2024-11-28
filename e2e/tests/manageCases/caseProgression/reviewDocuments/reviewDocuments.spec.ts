@@ -7,7 +7,7 @@ import config from "../../../../config";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
-test.describe("Review Documents task for DA Citizen case tests. @manageCases", () => {
+test.describe("Review Documents task for DA Citizen case tests.", () => {
   let ccdRef: string = "";
 
   test.beforeEach(async ({ page }) => {
@@ -15,7 +15,7 @@ test.describe("Review Documents task for DA Citizen case tests. @manageCases", (
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
   });
 
-  test("Complete Review Documents without accessibility test. Saying yes to Restrict Access @crossbrowserManageCases", async ({
+  test("Complete Review Documents without accessibility test. Saying yes to Restrict Access @regression @nightly", async ({
     page,
   }): Promise<void> => {
     await ReviewDocuments.reviewDocuments({
@@ -25,7 +25,7 @@ test.describe("Review Documents task for DA Citizen case tests. @manageCases", (
     });
   });
 
-  test("Complete Review Documents without accessibility test. Saying no to Restrict Access @crossbrowserManageCases", async ({
+  test("Complete Review Documents without accessibility test. Saying no to Restrict Access @regression", async ({
     page,
   }): Promise<void> => {
     await ReviewDocuments.reviewDocuments({
@@ -35,7 +35,7 @@ test.describe("Review Documents task for DA Citizen case tests. @manageCases", (
     });
   });
 
-  test("Complete Review Documents with accessibility test. Saying not sure to Restrict Access @accessibilityManageCases", async ({
+  test("Complete Review Documents with accessibility test. Saying not sure to Restrict Access @accessibility", async ({
     page,
   }): Promise<void> => {
     await ReviewDocuments.reviewDocuments({
