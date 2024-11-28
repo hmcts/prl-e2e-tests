@@ -20,7 +20,7 @@ test.describe("Create an order tests", (): void => {
       yesNoManageOrders: true,
       howLongWillOrderBeInForce: "untilNextHearing",
       createOrderFL401Options: "non-molestation",
-      judgeTitles: "Justices' Clerk"
+      judgeTitles: "Justices' Clerk",
     });
   });
 
@@ -58,7 +58,7 @@ test.describe("Create an order tests", (): void => {
       yesNoManageOrders: true,
       howLongWillOrderBeInForce: "specificDate",
       createOrderFL401Options: "non-molestation",
-      judgeTitles: "The Honourable Mrs Justice"
+      judgeTitles: "The Honourable Mrs Justice",
     });
   });
 });

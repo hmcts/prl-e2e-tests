@@ -2,8 +2,9 @@ import { Page } from "@playwright/test";
 import { CaseFilterPage } from "../../../../pages/manageCases/caseWorker/createAnOrder/initialJourney/caseFilterPage";
 import { TestingSupportDummyAdminCreateNoc2Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/initialJourney/testingSupportDummyAdminCreateNoc2Page";
 import {
-  createOrderFL401Options, judgeTitles,
-  solicitorCaseCreateType
+  createOrderFL401Options,
+  judgeTitles,
+  solicitorCaseCreateType,
 } from "../../../../common/types";
 import { TestingSupportDummyAdminCreateNoc3Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/initialJourney/testingSupportDummyAdminCreateNoc3Page";
 import { CreateAnOrderSubmitPage } from "../../../../pages/manageCases/caseWorker/createAnOrder/initialJourney/SubmitPage";
@@ -28,7 +29,7 @@ export class FL401CreateAnOrder {
     solicitorCaseCreateType,
     howLongWillOrderBeInForce,
     yesNoManageOrders,
-                                           judgeTitles,
+    judgeTitles,
     createOrderFL401Options,
   }: FL401Params): Promise<void> {
     await CaseListPage.navigateToCreateCasePage(page);
@@ -50,7 +51,7 @@ export class FL401CreateAnOrder {
       yesNoManageOrders,
       howLongWillOrderBeInForce,
       createOrderFL401Options,
-      judgeTitles
+      judgeTitles,
     });
   }
 }
