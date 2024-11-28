@@ -7,7 +7,7 @@ import config from "../../../../config";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
-test.describe("Check Application task for DA Citizen case tests. @manageCases", () => {
+test.describe("Check Application task for DA Citizen case tests.", () => {
   let ccdRef: string = "";
 
   test.beforeEach(async ({ page }) => {
@@ -15,7 +15,7 @@ test.describe("Check Application task for DA Citizen case tests. @manageCases", 
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
   });
 
-  test("Complete Check Application without accessibility test. @crossbrowserManageCases", async ({
+  test("Complete Check Application without accessibility test. @regression @nightly", async ({
     page,
   }): Promise<void> => {
     await CheckApplication.checkApplication({
@@ -26,7 +26,7 @@ test.describe("Check Application task for DA Citizen case tests. @manageCases", 
     });
   });
 
-  test("Complete Check Application with accessibility test. @accessibilityManageCases", async ({
+  test("Complete Check Application with accessibility test. @accessibility", async ({
     page,
   }): Promise<void> => {
     await CheckApplication.checkApplication({
