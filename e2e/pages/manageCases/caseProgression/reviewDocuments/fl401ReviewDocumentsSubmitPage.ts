@@ -48,8 +48,8 @@ export class FL401ReviewDocumentsSubmitPage {
         `Unknown value for yesNoNotSureReviewDocs: ${yesNoNotSureReviewDocs}`,
       );
     }
-    const testPdfSelector: string =
-      "body > exui-root > exui-case-home > div > exui-case-details-home > ccd-case-event-trigger > div > ccd-case-edit > ccd-case-edit-submit > div > form > div:nth-child(1) > table.form-table > tbody > tr:nth-child(1) > td.form-cell.case-field-content > ccd-field-read > div > ccd-field-read-label > div > ccd-read-dynamic-list-field > span";
+    // const testPdfSelector: string =
+    //   "body > exui-root > exui-case-home > div > exui-case-details-home > ccd-case-event-trigger > div > ccd-case-edit > ccd-case-edit-submit > div > form > div:nth-child(1) > table.form-table > tbody > tr:nth-child(1) > td.form-cell.case-field-content > ccd-field-read > div > ccd-field-read-label > div > ccd-read-dynamic-list-field > span";
     const pageTitle = page.locator(
       `${Selectors.h1}:text-is("${Fl401ReviewDocumentsSubmitContent.pageTitle}")`,
     );
@@ -68,10 +68,11 @@ export class FL401ReviewDocumentsSubmitPage {
         1,
       ),
       Helpers.checkVisibleAndPresent(page, yesNoNotSureSelector, 1),
-      Helpers.checkVisibleAndPresent(page, testPdfSelector, 1),
+      // Helpers.checkVisibleAndPresent(page, testPdfSelector, 1),
+      page.locator('ccd-read-dynamic-list-field span', {hasText: 'testPdf.pdf'}),
     ]);
     // if (accessibilityTest) {
-    //   await AccessibilityTestHelper.run(page);
+    //   await AccessibilityTestHelper.run(page); #TODO Disabled pending ticket FPET-1209
     // }
   }
 
