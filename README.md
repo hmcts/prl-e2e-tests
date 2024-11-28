@@ -74,6 +74,7 @@ We use the following test tags to categorize and manage our test suite:
 - `@accessibility`: For tests utilizing axe-core to check accessibility.
 - `@errorMessage`: For tests that trigger and verify error messages.
 
+
 #### Tagging Rules
 
 1. **General Tagging:**
