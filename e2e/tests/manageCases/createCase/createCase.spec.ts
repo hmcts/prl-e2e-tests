@@ -96,7 +96,7 @@ test.describe("Manage cases case solicitor create case tests.", (): void => {
   Saying no to all WelshRequirement options
   C100MiamPolicyUpgrade1PageType is "yesExemption"
   Saying Don't know to other proceedings
-  @crossbrowserManageCases @regression @nightly`, async ({ page }): Promise<void> => {
+  @regression @nightly`, async ({ page }): Promise<void> => {
     await C100.c100({
       page: page,
       user: "solicitor",

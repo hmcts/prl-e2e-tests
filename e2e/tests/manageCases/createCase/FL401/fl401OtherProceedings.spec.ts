@@ -8,7 +8,7 @@ test.describe("FL401 Create case other proceedings tests", (): void => {
   test(`Complete the FL401 other proceedings event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
-  Saying yes to previous or ongoing family court proceedings involving the applicant and respondent, @crossbrowserManageCases`, async ({
+  Saying yes to previous or ongoing family court proceedings involving the applicant and respondent, @regression`, async ({
     page,
   }): Promise<void> => {
     await FL401OtherProceedings.fl401OtherProceedings({
@@ -53,7 +53,7 @@ test.describe("FL401 Create case other proceedings tests", (): void => {
   test(`Complete the FL401 other proceedings event as a solicitor with the following options:
   Not Accessibility testing,
   Error message testing,
-  Saying no to previous or ongoing family court proceedings involving the applicant and respondent, @crossbrowserManageCases @errorMessageManageCases`, async ({
+  Saying no to previous or ongoing family court proceedings involving the applicant and respondent, @regression @errorMessage`, async ({
     page,
   }): Promise<void> => {
     await FL401OtherProceedings.fl401OtherProceedings({
@@ -68,7 +68,7 @@ test.describe("FL401 Create case other proceedings tests", (): void => {
   test(`Complete the FL401 other proceedings event as a solicitor with the following options:
   Not Accessibility testing,
   Error message testing,
-  Saying Yes to previous or ongoing family court proceedings involving the applicant and respondent, @crossbrowserManageCases @errorMessageManageCases`, async ({
+  Saying Yes to previous or ongoing family court proceedings involving the applicant and respondent, @regression @errorMessage`, async ({
     page,
   }): Promise<void> => {
     await FL401OtherProceedings.fl401OtherProceedings({
@@ -84,7 +84,7 @@ test.describe("FL401 Create case other proceedings tests", (): void => {
 test(`Accessibility test the FL401 other proceedings event as a solicitor with the following options:
   Accessibility testing,
   Not Error message testing,
-  Saying yes to previous or ongoing family court proceedings involving the applicant and respondent, @accessibilityManageCases`, async ({
+  Saying yes to previous or ongoing family court proceedings involving the applicant and respondent, @accessibility`, async ({
   page,
 }): Promise<void> => {
   await FL401OtherProceedings.fl401OtherProceedings({
