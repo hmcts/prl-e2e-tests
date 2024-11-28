@@ -1,14 +1,14 @@
 import { test } from "@playwright/test";
-import { DummyPaymentAwp } from "../../../../journeys/manageCases/caseWorker/dummyPayment/dummyPaymentAwp";
 import Config from "../../../../config";
+import { DummyPaymentAwp } from "../../../../journeys/manageCases/caseWorker/dummyPayment/dummyPaymentAwp";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-test.describe("C100 Dummy payment for AWP tests @manageCases", (): void => {
+test.describe("C100 Dummy payment for AWP tests", (): void => {
   test(`Complete the Dummy payment for AWP action as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
-  Payment status paid. @crossbrowserManageCases`, async ({
+  Payment status paid. @regression @nightly`, async ({
     page,
   }): Promise<void> => {
     await DummyPaymentAwp.dummyPaymentAwp({
@@ -23,7 +23,7 @@ test.describe("C100 Dummy payment for AWP tests @manageCases", (): void => {
   test(`Complete the Dummy payment for AWP action  as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
-  Not Payment status paid. @crossbrowserManageCases`, async ({
+  Not Payment status paid. @regression`, async ({
     page,
   }): Promise<void> => {
     await DummyPaymentAwp.dummyPaymentAwp({
@@ -38,7 +38,7 @@ test.describe("C100 Dummy payment for AWP tests @manageCases", (): void => {
   test(`Complete the Dummy payment for AWP action  as a solicitor with the following options:
   Not Accessibility testing,
   Error message testing,
-  Payment status is paid. @crossbrowserManageCases`, async ({
+  Payment status is paid. @regression @errorMessage`, async ({
     page,
   }): Promise<void> => {
     await DummyPaymentAwp.dummyPaymentAwp({
@@ -49,19 +49,19 @@ test.describe("C100 Dummy payment for AWP tests @manageCases", (): void => {
       caseType: "C100",
     });
   });
+});
 
-  test(`Complete the Dummy payment for AWP action  as a solicitor with the following options:
+test(`Complete the Dummy payment for AWP action  as a solicitor with the following options:
   Accessibility testing,
   Not Error message testing,
-  Payment status is paid. @accessibilityManageCases`, async ({
+  Payment status is paid. @accessibility`, async ({
+  page,
+}): Promise<void> => {
+  await DummyPaymentAwp.dummyPaymentAwp({
     page,
-  }): Promise<void> => {
-    await DummyPaymentAwp.dummyPaymentAwp({
-      page,
-      errorMessaging: false,
-      accessibilityTest: true,
-      paymentStatusPaid: true,
-      caseType: "C100",
-    });
+    errorMessaging: false,
+    accessibilityTest: true,
+    paymentStatusPaid: true,
+    caseType: "C100",
   });
 });

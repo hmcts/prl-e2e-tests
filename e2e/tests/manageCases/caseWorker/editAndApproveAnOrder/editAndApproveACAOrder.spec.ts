@@ -4,7 +4,7 @@ import { EditAndApproveAnOrder } from "../../../../journeys/manageCases/caseWork
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-test.describe("Edit and approve a CA order tests @manageCases", (): void => {
+test.describe("Edit and approve a CA order tests", (): void => {
   // Triple timeout for these slow tests
   test.slow();
 
@@ -12,7 +12,7 @@ test.describe("Edit and approve a CA order tests @manageCases", (): void => {
   Case: C100,
   Order type: Parental responsibility order (C45A),
   Judge order action: Send to admin to serve,
-  Not accessibility testing. @crossbrowserManageCases`, async ({
+  Not accessibility testing. @regression @nightly`, async ({
     page,
     browser,
   }): Promise<void> => {
@@ -31,7 +31,7 @@ test.describe("Edit and approve a CA order tests @manageCases", (): void => {
   Case: C100,
   Order type: Parental responsibility order (C45A),
   Judge order action: Ask the legal representative to make changes,
-  Not accessibility testing. @crossbrowserManageCases`, async ({
+  Not accessibility testing. @regression @nightly`, async ({
     page,
     browser,
   }): Promise<void> => {
@@ -50,7 +50,7 @@ test.describe("Edit and approve a CA order tests @manageCases", (): void => {
   Case: C100,
   Order type: Parental responsibility order (C45A),
   Judge order action: Give admin further directions then serve,
-  Accessibility testing. @crossbrowserManageCases`, async ({
+  Accessibility testing. @accessibility @regression`, async ({
     page,
     browser,
   }): Promise<void> => {

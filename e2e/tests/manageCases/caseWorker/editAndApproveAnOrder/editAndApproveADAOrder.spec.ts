@@ -4,13 +4,13 @@ import { EditAndApproveAnOrder } from "../../../../journeys/manageCases/caseWork
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-test.describe("Edit and approve a DA order tests @manageCases", (): void => {
+test.describe("Edit and approve a DA order tests", (): void => {
   test(`Complete Editing and approving an order with the following options:
   Case: FL401,
   Order type: Non-molestation order (FL404A),
   Judge order action: Send to admin to serve,
   Error message testing,
-  Not accessibility testing. @crossbrowserManageCases`, async ({
+  Not accessibility testing. @regression @nightly`, async ({
     page,
     browser,
   }): Promise<void> => {
@@ -30,7 +30,7 @@ test.describe("Edit and approve a DA order tests @manageCases", (): void => {
   Order type: Non-molestation order (FL404A),
   Judge order action: Ask the legal representative to make changes,
   Not error message testing,
-  Not accessibility testing. @crossbrowserManageCases`, async ({
+  Not accessibility testing. @regression @nightly` , async ({
     page,
     browser,
   }): Promise<void> => {
@@ -50,7 +50,7 @@ test.describe("Edit and approve a DA order tests @manageCases", (): void => {
   Order type: Non-molestation order (FL404A),
   Judge order action: Give admin further directions then serve,
   Not error message testing,
-  Accessibility testing. @crossbrowserManageCases`, async ({
+  Accessibility testing. @regression @accessibility`, async ({
     page,
     browser,
   }): Promise<void> => {

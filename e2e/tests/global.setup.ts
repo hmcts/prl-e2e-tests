@@ -1,7 +1,7 @@
 import { APIRequestContext, request, test as setup } from "@playwright/test";
+import { getAccessToken } from "../common/getAccessTokenHelper";
 import IdamLoginHelper from "../common/idamLoginHelper";
 import config from "../config";
-import { getAccessToken } from "../common/getAccessTokenHelper";
 
 setup("Setup solicitor user", async ({ page }) => {
   await IdamLoginHelper.signInUser(
