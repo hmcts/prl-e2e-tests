@@ -4,14 +4,14 @@ import Config from "../../../../config";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-test.describe("FL401 Create cases The Home tests @manageCases", (): void => {
+test.describe("FL401 Create cases The Home tests", (): void => {
   test(`Complete the FL401 The Home Journey with the following options:
         Not accessibility testing, 
         Not Error Messaging (There isn't any), 
         applicant has child
         yes to all other booleans, 
         'No' to has the applicant or respondent ever lived at the address, 
-        'No' do they ever intend to live at the address, @crossbrowserManagecases`, async ({
+        'No' do they ever intend to live at the address, @regression`, async ({
     page,
   }): Promise<void> => {
     await FL401TheHome.fl401TheHome({
@@ -31,7 +31,7 @@ test.describe("FL401 Create cases The Home tests @manageCases", (): void => {
         applicant has child
         yes to all other booleans, 
         'No' to has the applicant or respondent ever lived at the address, 
-        'Yes, the Applicant' do they ever intend to live at the address`, async ({
+        'Yes, the Applicant' do they ever intend to live at the address @regression`, async ({
     page,
   }): Promise<void> => {
     await FL401TheHome.fl401TheHome({
@@ -51,7 +51,7 @@ test.describe("FL401 Create cases The Home tests @manageCases", (): void => {
         applicant has child
         yes to all other booleans, 
         'No' to has the applicant or respondent ever lived at the address, 
-        'Yes, the Respondent' do they ever intend to live at the address`, async ({
+        'Yes, the Respondent' do they ever intend to live at the address @regression`, async ({
     page,
   }): Promise<void> => {
     await FL401TheHome.fl401TheHome({
@@ -71,7 +71,7 @@ test.describe("FL401 Create cases The Home tests @manageCases", (): void => {
         applicant has child
         yes to all other booleans, 
         'No' to has the applicant or respondent ever lived at the address, 
-        'Yes, Both of them' do they ever intend to live at the address`, async ({
+        'Yes, Both of them' do they ever intend to live at the address @regression`, async ({
     page,
   }): Promise<void> => {
     await FL401TheHome.fl401TheHome({
@@ -90,7 +90,7 @@ test.describe("FL401 Create cases The Home tests @manageCases", (): void => {
         Not Error Messaging (There isn't any), 
         applicant has child
         yes to all other booleans, 
-        'Yes, the applicant' to has the applicant or respondent ever lived at the address`, async ({
+        'Yes, the applicant' to has the applicant or respondent ever lived at the address @regression`, async ({
     page,
   }): Promise<void> => {
     await FL401TheHome.fl401TheHome({
@@ -108,7 +108,7 @@ test.describe("FL401 Create cases The Home tests @manageCases", (): void => {
         Not Error Messaging (There isn't any), 
         applicant has child
         yes to all other booleans, 
-        'Yes, the respondent' to has the applicant or respondent ever lived at the address`, async ({
+        'Yes, the respondent' to has the applicant or respondent ever lived at the address @regression`, async ({
     page,
   }): Promise<void> => {
     await FL401TheHome.fl401TheHome({
@@ -126,7 +126,7 @@ test.describe("FL401 Create cases The Home tests @manageCases", (): void => {
         Not Error Messaging (There isn't any), 
         applicant has child
         yes to all other booleans, 
-        'Yes, both of them' to has the applicant or respondent ever lived at the address`, async ({
+        'Yes, both of them' to has the applicant or respondent ever lived at the address @regression`, async ({
     page,
   }): Promise<void> => {
     await FL401TheHome.fl401TheHome({
@@ -143,7 +143,7 @@ test.describe("FL401 Create cases The Home tests @manageCases", (): void => {
         Not accessibility testing, 
         Not Error Messaging (There isn't any), 
         Applicant doesn't have children
-        No to all options, @crossbrowserManagecases`, async ({
+        No to all options, @regression`, async ({
     page,
   }): Promise<void> => {
     await FL401TheHome.fl401TheHome({
@@ -162,7 +162,7 @@ test.describe("FL401 Create cases The Home tests @manageCases", (): void => {
         Not Error Messaging (There isn't any), 
         applicant doesn't have children
         no to all other booleans, 
-        'Yes, both of them' to has the applicant or respondent ever lived at the address`, async ({
+        'Yes, both of them' to has the applicant or respondent ever lived at the address @regression`, async ({
     page,
   }): Promise<void> => {
     await FL401TheHome.fl401TheHome({
@@ -180,7 +180,7 @@ test.describe("FL401 Create cases The Home tests @manageCases", (): void => {
         Not Error Messaging (There isn't any), 
         Applicant doesn't have children
         No to all booleans, 
-        'Yes the applicant' to has the applicant or respondent ever lived at the address`, async ({
+        'Yes the applicant' to has the applicant or respondent ever lived at the address @nightly @regression`, async ({
     page,
   }): Promise<void> => {
     await FL401TheHome.fl401TheHome({
@@ -194,7 +194,7 @@ test.describe("FL401 Create cases The Home tests @manageCases", (): void => {
   });
 });
 
-test(`Test the accessibility of the fl401 The Home Journey saying yes to all, @accessibilityManageCases`, async ({
+test(`Test the accessibility of the fl401 The Home Journey saying yes to all, @accessibility`, async ({
   page,
 }): Promise<void> => {
   await FL401TheHome.fl401TheHome({

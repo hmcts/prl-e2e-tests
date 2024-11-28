@@ -4,13 +4,13 @@ import Config from "../../../../config";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-test.describe("C100 Create case Other children not in the case tests @manageCases", (): void => {
+test.describe("C100 Create case Other children not in the case tests", (): void => {
   test(`Complete the C100 Other children not in the case event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
   Answering yes to the other child being present,
   With a known DOB,
-  Setting the child Gender to Female. @crossbrowserManageCases`, async ({
+  Setting the child Gender to Female. @regression @nightly`, async ({
     page,
   }): Promise<void> => {
     await C100OtherChildrenNotInTheCase.c100OtherChildrenNotInTheCase({
@@ -29,7 +29,7 @@ test.describe("C100 Create case Other children not in the case tests @manageCase
   Not Error message testing,
   Answering yes to the other child being present,
   With a unknown DOB,
-  Setting the child Gender to Male.`, async ({ page }): Promise<void> => {
+  Setting the child Gender to Male. @regression`, async ({ page }): Promise<void> => {
     await C100OtherChildrenNotInTheCase.c100OtherChildrenNotInTheCase({
       page: page,
       accessibilityTest: false,
@@ -46,7 +46,7 @@ test.describe("C100 Create case Other children not in the case tests @manageCase
   Not Error message testing,
   Answering yes to the other child being present,
   With a known DOB,
-  Setting the child Gender to other.`, async ({ page }): Promise<void> => {
+  Setting the child Gender to other. @regression`, async ({ page }): Promise<void> => {
     await C100OtherChildrenNotInTheCase.c100OtherChildrenNotInTheCase({
       page: page,
       accessibilityTest: false,
@@ -61,7 +61,7 @@ test.describe("C100 Create case Other children not in the case tests @manageCase
   test(`Complete the C100 Other children not in the case event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
-  Answering no to the other child being present`, async ({
+  Answering no to the other child being present @nightly @regression`, async ({
     page,
   }): Promise<void> => {
     await C100OtherChildrenNotInTheCase.c100OtherChildrenNotInTheCase({
@@ -80,7 +80,7 @@ test.describe("C100 Create case Other children not in the case tests @manageCase
   Error message testing,
   Answering yes to the other child being present,
   With a unknown DOB,
-  Setting the child Gender to female.`, async ({ page }): Promise<void> => {
+  Setting the child Gender to female. @errorMessage`, async ({ page }): Promise<void> => {
     await C100OtherChildrenNotInTheCase.c100OtherChildrenNotInTheCase({
       page: page,
       accessibilityTest: false,
@@ -98,7 +98,7 @@ test(`Accessibility test the C100 Other children not in the case event as a soli
   Not Error message testing,
   Answering yes to the other child being present,
   With a unknown DOB,
-  Setting the child Gender to female.`, async ({ page }): Promise<void> => {
+  Setting the child Gender to female. @accessibility`, async ({ page }): Promise<void> => {
   await C100OtherChildrenNotInTheCase.c100OtherChildrenNotInTheCase({
     page: page,
     accessibilityTest: true,
