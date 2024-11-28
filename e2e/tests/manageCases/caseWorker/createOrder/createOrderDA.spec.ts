@@ -4,13 +4,13 @@ import { FL401CreateAnOrder } from "../../../../journeys/manageCases/caseWorker/
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
-test.describe("Create an order tests @manageCases", (): void => {
+test.describe("Create an order tests", (): void => {
   test(`Complete Creating an order as a Caseworker with the following options:
   Case: C100,
   Not accessibility testing
   yesNoManageOrders: true,
   howLongWillOrderBeInForce: "untilNextHearing"
-  "This order will be served with the 'date to be fixed'" selected on ManageOrders19. @crossbrowserManageCases`, async ({
+  "This order will be served with the 'date to be fixed'" selected on ManageOrders19. @regression @nightly`, async ({
     page,
   }): Promise<void> => {
     await FL401CreateAnOrder.fL401CreateAnOrder({
@@ -27,7 +27,7 @@ test.describe("Create an order tests @manageCases", (): void => {
   Accessibility testing
   yesNoManageOrders: true,
   howLongWillOrderBeInForce: "noEndDate"
-  "This order will be served with the 'date to be fixed'" selected on ManageOrders19. @crossbrowserManageCases`, async ({
+  "This order will be served with the 'date to be fixed'" selected on ManageOrders19. @regression`, async ({
     page,
   }): Promise<void> => {
     await FL401CreateAnOrder.fL401CreateAnOrder({
@@ -44,7 +44,7 @@ test.describe("Create an order tests @manageCases", (): void => {
   Accessibility testing
   yesNoManageOrders: true,
   howLongWillOrderBeInForce: "specificDate"
-  "This order will be served with the 'date to be fixed'" selected on ManageOrders19. @crossbrowserManageCases`, async ({
+  "This order will be served with the 'date to be fixed'" selected on ManageOrders19. @regression`, async ({
     page,
   }): Promise<void> => {
     await FL401CreateAnOrder.fL401CreateAnOrder({

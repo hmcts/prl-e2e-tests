@@ -4,12 +4,12 @@ import Config from "../../../../config";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-test.describe("C100 Create case other proceedings tests @manageCases", (): void => {
+test.describe("C100 Create case other proceedings tests", (): void => {
   test(`Complete the C100 other proceedings event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
   Saying yes to previous or ongoing proceedings for the child(ren)?,
-  Ongoing Proceedings, @crossbrowserManageCases`, async ({
+  Ongoing Proceedings, @regression @nightly`, async ({
     page,
   }): Promise<void> => {
     await C100OtherProceedings.c100OtherProceedings({
@@ -26,7 +26,7 @@ test.describe("C100 Create case other proceedings tests @manageCases", (): void 
   Not Accessibility testing,
   Not Error message testing,
   Saying yes to previous or ongoing proceedings for the child(ren)?,
-  Previous Proceedings, @crossbrowserManageCases`, async ({
+  Previous Proceedings, @regression`, async ({
     page,
   }): Promise<void> => {
     await C100OtherProceedings.c100OtherProceedings({
@@ -43,7 +43,7 @@ test.describe("C100 Create case other proceedings tests @manageCases", (): void 
   Not Accessibility testing,
   Not Error message testing,
   Saying No to previous or ongoing proceedings for the child(ren)?,
-   @crossbrowserManageCases`, async ({ page }): Promise<void> => {
+   @regression`, async ({ page }): Promise<void> => {
     await C100OtherProceedings.c100OtherProceedings({
       page: page,
       accessibilityTest: false,
@@ -57,7 +57,7 @@ test.describe("C100 Create case other proceedings tests @manageCases", (): void 
   Not Accessibility testing,
   Not Error message testing,
   Saying Don't know to previous or ongoing proceedings for the child(ren)?,
-   @crossbrowserManageCases`, async ({ page }): Promise<void> => {
+   @regression`, async ({ page }): Promise<void> => {
     await C100OtherProceedings.c100OtherProceedings({
       page: page,
       accessibilityTest: false,
@@ -71,7 +71,7 @@ test.describe("C100 Create case other proceedings tests @manageCases", (): void 
   Not Accessibility testing,
   Yes Error message testing,
   Saying yes to previous or ongoing proceedings for the child(ren)?,
-  Ongoing Proceedings, @crossbrowserManageCases`, async ({
+  Ongoing Proceedings, @regression @errorMessage`, async ({
     page,
   }): Promise<void> => {
     await C100OtherProceedings.c100OtherProceedings({
@@ -88,7 +88,7 @@ test.describe("C100 Create case other proceedings tests @manageCases", (): void 
 test(`Accessibility test the C100 other proceedings event as a solicitor with the following options:
   Accessibility testing,
   Not Error message testing,
-  Saying no to previous or ongoing proceedings for the child(ren)?, @accessibilityManageCases`, async ({
+  Saying no to previous or ongoing proceedings for the child(ren)?, @accessibility`, async ({
   page,
 }): Promise<void> => {
   await C100OtherProceedings.c100OtherProceedings({

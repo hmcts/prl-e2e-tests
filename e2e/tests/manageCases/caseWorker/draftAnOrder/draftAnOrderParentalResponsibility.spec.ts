@@ -4,13 +4,13 @@ import { DraftAnOrder } from "../../../../journeys/manageCases/caseWorker/draftA
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-test.describe("Draft a parental responsibility order tests @manageCases", (): void => {
+test.describe("Draft a parental responsibility order tests", (): void => {
   // Triple timeout for these slow tests
   test.slow();
 
   test(`Complete Drafting a parental responsibility as a solicitor with the following options:
   No to all options,
-  Not accessibility testing. @crossbrowserManageCases`, async ({
+  Not accessibility testing. @regression`, async ({
     page,
     browser,
   }): Promise<void> => {
@@ -30,7 +30,7 @@ test.describe("Draft a parental responsibility order tests @manageCases", (): vo
 
   test(`Complete Drafting a parental responsibility as a solicitor with the following options:
   Yes to all options,
-  Not accessibility testing. @crossbrowserManageCases`, async ({
+  Not accessibility testing. @regression @nightly`, async ({
     page,
     browser,
   }): Promise<void> => {
@@ -50,7 +50,7 @@ test.describe("Draft a parental responsibility order tests @manageCases", (): vo
 
   test(`Complete Drafting a parental responsibility as a solicitor with the following options:
   No to all options,
-  Accessibility testing. @crossbrowserManageCases`, async ({
+  Accessibility testing. @accessibility`, async ({
     page,
     browser,
   }): Promise<void> => {

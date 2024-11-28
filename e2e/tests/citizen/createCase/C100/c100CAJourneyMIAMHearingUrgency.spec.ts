@@ -3,7 +3,7 @@ import { C100 } from "../../../../journeys/citizen/createCase/C100/C100";
 import IdamLoginHelper from "../../../../common/idamLoginHelper";
 import { test } from "@playwright/test";
 
-test.describe("C100 Citizen Application for the MIAM Hearing Urgency journey. @citizenFrontend @crossbrowserCitizenFrontend", (): void => {
+test.describe("C100 Citizen Application for the MIAM Hearing Urgency journey.", (): void => {
   test.beforeEach(async ({ page }) => {
     await IdamLoginHelper.signInCitizenUser(
       page,
@@ -54,7 +54,7 @@ test.describe("C100 Citizen Application for the MIAM Hearing Urgency journey. @c
   passport: false,
   more than one passport: false,
   passport office notified: false,
-  safety concerns yes/no to everything else: no`, async ({
+  safety concerns yes/no to everything else: no @regression @nightly`, async ({
     page,
   }): Promise<void> => {
     await C100.c100CAJourneyMIAMHearingUrgency({
@@ -159,7 +159,7 @@ test.describe("C100 Citizen Application for the MIAM Hearing Urgency journey. @c
   passport: false,
   more than one passport: false,
   passport office notified: false,
-  safety concerns yes/no to everything else: no`, async ({
+  safety concerns yes/no to everything else: no @regression @nightly`, async ({
     page,
   }): Promise<void> => {
     await C100.c100CAJourneyMIAMHearingUrgency({
@@ -264,7 +264,7 @@ test.describe("C100 Citizen Application for the MIAM Hearing Urgency journey. @c
   passport: false,
   more than one passport: false,
   passport office notified: false,
-  safety concerns yes/no to everything else: no`, async ({
+  safety concerns yes/no to everything else: no @regression @nightly`, async ({
     page,
   }): Promise<void> => {
     await C100.c100CAJourneyMIAMHearingUrgency({
@@ -369,7 +369,7 @@ test.describe("C100 Citizen Application for the MIAM Hearing Urgency journey. @c
   passport: false,
   more than one passport: false,
   passport office notified: false,
-  safety concerns yes/no to everything else: no`, async ({
+  safety concerns yes/no to everything else: no @regression @nightly`, async ({
     page,
   }): Promise<void> => {
     await C100.c100CAJourneyMIAMHearingUrgency({
@@ -475,7 +475,7 @@ test.describe("C100 Citizen Application for the MIAM Hearing Urgency journey. @c
   passport: false,
   more than one passport: false,
   passport office notified: false,
-  safety concerns yes/no to everything else: no`, async ({
+  safety concerns yes/no to everything else: no @regression @nightly`, async ({
     page,
   }): Promise<void> => {
     await C100.c100CAJourneyMIAMHearingUrgency({
@@ -580,7 +580,7 @@ test.describe("C100 Citizen Application for the MIAM Hearing Urgency journey. @c
   passport: false,
   more than one passport: false,
   passport office notified: false,
-  safety concerns yes/no to everything else: no`, async ({
+  safety concerns yes/no to everything else: no @regression @nightly`, async ({
     page,
   }): Promise<void> => {
     await C100.c100CAJourneyMIAMHearingUrgency({
@@ -685,7 +685,7 @@ test.describe("C100 Citizen Application for the MIAM Hearing Urgency journey. @c
   passport: false,
   more than one passport: false,
   passport office notified: false,
-  safety concerns yes/no to everything else: no`, async ({
+  safety concerns yes/no to everything else: no @regression @nightly`, async ({
     page,
   }): Promise<void> => {
     await C100.c100CAJourneyMIAMHearingUrgency({
@@ -790,7 +790,7 @@ test.describe("C100 Citizen Application for the MIAM Hearing Urgency journey. @c
   passport: false,
   more than one passport: false,
   passport office notified: false,
-  safety concerns yes/no to everything else: no`, async ({
+  safety concerns yes/no to everything else: no @regression @nightly`, async ({
     page,
   }): Promise<void> => {
     await C100.c100CAJourneyMIAMHearingUrgency({
@@ -895,7 +895,7 @@ test.describe("C100 Citizen Application for the MIAM Hearing Urgency journey. @c
   passport: false,
   more than one passport: false,
   passport office notified: false,
-  safety concerns yes/no to everything else: no`, async ({
+  safety concerns yes/no to everything else: no @regression @nightly`, async ({
     page,
   }): Promise<void> => {
     await C100.c100CAJourneyMIAMHearingUrgency({
@@ -1000,7 +1000,7 @@ test.describe("C100 Citizen Application for the MIAM Hearing Urgency journey. @c
   passport: false,
   more than one passport: false,
   passport office notified: false,
-  safety concerns yes/no to everything else: no`, async ({
+  safety concerns yes/no to everything else: no @regression @nightly`, async ({
     page,
   }): Promise<void> => {
     await C100.c100CAJourneyMIAMHearingUrgency({
@@ -1105,7 +1105,7 @@ test.describe("C100 Citizen Application for the MIAM Hearing Urgency journey. @c
   passport: false,
   more than one passport: false,
   passport office notified: false,
-  safety concerns yes/no to everything else: no`, async ({
+  safety concerns yes/no to everything else: no @regression @errorMessage`, async ({
     page,
   }): Promise<void> => {
     await C100.c100CAJourneyMIAMHearingUrgency({
@@ -1204,7 +1204,7 @@ test.describe("C100 Citizen Application for the MIAM Hearing Urgency journey. @c
   other person: false
   child mainly lives with: respondent,
   child arrangement order: false,
-  other proceedings: false, @accessibilityCitizenFrontend`, async ({
+  other proceedings: false, @accessibility`, async ({
     page,
   }): Promise<void> => {
     await C100.c100CAJourneyMIAMHearingUrgency({
