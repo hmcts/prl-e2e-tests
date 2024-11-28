@@ -66,9 +66,7 @@
             "isCurrentAddressKnown": null,
             "canYouProvidePhoneNumber": null,
             "isPlaceOfBirthKnown": null,
-            "solicitorOrg": {
-
-            },
+            "solicitorOrg": {},
             "solicitorAddress": {
               "AddressLine1": null,
               "AddressLine2": null,
@@ -125,9 +123,7 @@
             "isCurrentAddressKnown": "Yes",
             "canYouProvidePhoneNumber": "No",
             "isPlaceOfBirthKnown": "No",
-            "solicitorOrg": {
-
-            },
+            "solicitorOrg": {},
             "solicitorAddress": {
               "AddressLine1": null,
               "AddressLine2": null,
@@ -243,9 +239,7 @@
               "cafcassOrCymruNeedToProvideReport": "No",
               "orderEndsInvolvementOfCafcassOrCymru": "No"
             },
-            "bulkPrintOrderDetails": [
-
-            ],
+            "bulkPrintOrderDetails": [],
             "isTheOrderAboutAllChildren": "No",
             "isWithdrawnRequestApproved": "",
             "typeOfChildArrangementsOrder": ""
@@ -344,9 +338,7 @@
               "cafcassOrCymruNeedToProvideReport": "No",
               "orderEndsInvolvementOfCafcassOrCymru": "No"
             },
-            "bulkPrintOrderDetails": [
-
-            ],
+            "bulkPrintOrderDetails": [],
             "isTheOrderAboutAllChildren": "No",
             "isWithdrawnRequestApproved": "",
             "typeOfChildArrangementsOrder": ""
@@ -375,9 +367,7 @@
           }
         ]
       },
-      "serveOrderAdditionalDocuments": [
-
-      ],
+      "serveOrderAdditionalDocuments": [],
       "serveToRespondentOptions": "Yes",
       "recipientsOptions": {
         "value": [
@@ -418,9 +408,7 @@
         ]
       },
       "otherParties": {
-        "value": [
-
-        ],
+        "value": [],
         "list_items": [
           {
             "code": "6bb5e9ac-df97-4593-8b22-3969dc0bb4e1",
@@ -430,9 +418,7 @@
       },
       "cafcassCymruServedOptions": "Yes",
       "cafcassCymruEmail": "test@hmcts.net",
-      "serveOtherPartiesCA": [
-
-      ]
+      "serveOtherPartiesCA": []
     },
     "event": {
       "id": "manageOrders",

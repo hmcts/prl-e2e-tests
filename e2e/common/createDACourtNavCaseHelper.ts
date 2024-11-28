@@ -1,10 +1,9 @@
 import { APIRequestContext, expect, request } from "@playwright/test";
 import fs, { existsSync } from "fs";
 import path from "path";
-import { getAccessToken, getS2SToken } from "./getAccessTokenHelper";
+import { getAccessToken} from "./getAccessTokenHelper";
 import withNoticejsonData from "../caseData/citizenDA/courtNavDaCitizenCase_WithNotice.json";
 import withoutNoticejsonData from "../caseData/citizenDA/courtNavDaCitizenCase_WithoutNotice.json";
-
 
 /**
  * Function to create a DA Citizen CourtNav case and optionally add a document.
@@ -102,4 +101,3 @@ async function addDocumentToCase(
   expect(docResponse.status()).toBe(200);
 }
 export default createDaCitizenCourtNavCase;
-

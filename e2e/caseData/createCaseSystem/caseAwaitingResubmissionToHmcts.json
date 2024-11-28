@@ -27,10 +27,7 @@
           "ordersApplyingFor": "Child Arrangements Order, Prohibited Steps Order",
           "typeOfChildArrangementsOrder": "Spend time with order"
         },
-        "ordersApplyingFor": [
-          "childArrangementsOrder",
-          "prohibitedStepsOrder"
-        ],
+        "ordersApplyingFor": ["childArrangementsOrder", "prohibitedStepsOrder"],
         "setOutReasonsBelow": null,
         "applicants": [
           {
@@ -151,9 +148,7 @@
           "confidentialityStatementUnderstood"
         ],
         "caseworkerEmailAddress": "aloknath.datta@hmcts.net",
-        "miamExemptionsChecklist": [
-          "domesticViolence"
-        ],
+        "miamExemptionsChecklist": ["domesticViolence"],
         "children": [
           {
             "id": "c0651c7d-0db9-47aa-9baa-933013f482ea",
@@ -163,12 +158,8 @@
               "firstName": "jkhkjshjk,hk",
               "dateOfBirth": "1967-01-01",
               "otherGender": null,
-              "childLiveWith": [
-                "applicant"
-              ],
-              "orderAppliedFor": [
-                "childArrangementsOrder"
-              ],
+              "childLiveWith": ["applicant"],
+              "orderAppliedFor": ["childArrangementsOrder"],
               "isDateOfBirthUnknown": null,
               "personWhoLivesWithChild": [],
               "relationshipToApplicant": null,
@@ -205,9 +196,7 @@
         },
         "familyMediatorMiam": "No",
         "areRespondentsAwareOfProceedings": "No",
-        "payAgreeStatement": [
-          "agree"
-        ],
+        "payAgreeStatement": ["agree"],
         "childrenKnownToLocalAuthorityTextArea": null,
         "applicantName": "test test updated",
         "applicantAttendedMiam": "No",
@@ -496,9 +485,7 @@
           "isSpecialArrangementsRequired": null
         },
         "confidentialityDisclaimer": {
-          "confidentialityChecksChecked": [
-            "confidentialityChecksChecked"
-          ]
+          "confidentialityChecksChecked": ["confidentialityChecksChecked"]
         },
         "allegationsOfHarmOrdersTable": {
           "occupationOrder": {},

@@ -23,7 +23,9 @@ test.describe("FL401 Create case type of application tests", (): void => {
   test(`Complete the FL401 type of application event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
-  Saying no to linked to C100, @regression @nightly`, async ({ page }): Promise<void> => {
+  Saying no to linked to C100, @regression @nightly`, async ({
+    page,
+  }): Promise<void> => {
     await FL401TypeOfApplication.fl401TypeOfApplication({
       page: page,
       accessibilityTest: false,

@@ -47,7 +47,9 @@ test.describe("C100 Create case respondent details tests", (): void => {
   Not Accessibility testing,
   Not Error message testing,
   Saying no to all options apart from don't know fields,
-  Setting the respondent Gender to other. @regression`, async ({ page }): Promise<void> => {
+  Setting the respondent Gender to other. @regression`, async ({
+    page,
+  }): Promise<void> => {
     await C100RespondentDetails.c100RespondentDetails({
       page: page,
       user: "solicitor",

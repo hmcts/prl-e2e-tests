@@ -1,4 +1,3 @@
-
 {
   "case_details": {
     "id": "1703068453862935",
@@ -242,9 +241,7 @@
               "cafcassOrCymruNeedToProvideReport": "No",
               "orderEndsInvolvementOfCafcassOrCymru": "No"
             },
-            "bulkPrintOrderDetails": [
-
-            ],
+            "bulkPrintOrderDetails": [],
             "isTheOrderAboutAllChildren": "No",
             "isWithdrawnRequestApproved": "",
             "typeOfChildArrangementsOrder": ""
@@ -343,9 +340,7 @@
               "cafcassOrCymruNeedToProvideReport": "No",
               "orderEndsInvolvementOfCafcassOrCymru": "No"
             },
-            "bulkPrintOrderDetails": [
-
-            ],
+            "bulkPrintOrderDetails": [],
             "isTheOrderAboutAllChildren": "No",
             "isWithdrawnRequestApproved": "",
             "typeOfChildArrangementsOrder": ""
@@ -374,8 +369,7 @@
           }
         ]
       },
-      "serveOrderAdditionalDocuments": [
-      ],
+      "serveOrderAdditionalDocuments": [],
       "serveToRespondentOptions": "Yes",
       "recipientsOptions": {
         "value": [
@@ -416,8 +410,7 @@
         ]
       },
       "otherParties": {
-        "value": [
-        ],
+        "value": [],
         "list_items": [
           {
             "code": "6bb5e9ac-df97-4593-8b22-3969dc0bb4e1",
@@ -427,8 +420,7 @@
       },
       "cafcassCymruServedOptions": "Yes",
       "cafcassCymruEmail": "test@hmcts.net",
-      "serveOtherPartiesCA": [
-      ]
+      "serveOtherPartiesCA": []
     },
     "event": {
       "id": "manageOrders",

@@ -1,20 +1,19 @@
-import { APIRequestContext, expect, request } from "@playwright/test";
+import { APIRequestContext, request } from "@playwright/test";
 import { existsSync } from "fs";
 import { getAccessToken, getS2SToken } from "./getAccessTokenHelper";
-import createCaseSystemJudicialReviewPayload from "../caseData/createCaseSystem/createCaseSystemJudicialReview.json"
-
+import createCaseSystemJudicialReviewPayload from "../caseData/createCaseSystem/createCaseSystemJudicialReview.json";
 
 async function createCaseSystemUser(): Promise<string> {
   const apiContextSystemUser: APIRequestContext = await request.newContext();
   const apiContextS2SToken: APIRequestContext = await request.newContext();
   const tokenSystemUserCreateCase = await getAccessToken(
     "systemCreateCaseBearerToken",
-    apiContextSystemUser
+    apiContextSystemUser,
   );
   const s2sToken = await getS2SToken(apiContextS2SToken);
   const payload = {
     ...createCaseSystemJudicialReviewPayload,
-    event_token: process.env.EVENT_TOKEN as string // Add dynamic event token
+    event_token: process.env.EVENT_TOKEN as string, // Add dynamic event token
   };
 
   const response = await apiContextSystemUser.post(
@@ -24,8 +23,8 @@ async function createCaseSystemUser(): Promise<string> {
         Authorization: `Bearer ${tokenSystemUserCreateCase}`,
         ServiceAuthorization: `Bearer ${s2sToken}`,
       },
-      data: payload
-    }
+      data: payload,
+    },
   );
   if (response.ok()) {
     const responseBody = await response.json();
@@ -35,11 +34,11 @@ async function createCaseSystemUser(): Promise<string> {
       }
       return responseBody.id;
     } else {
-      throw new Error('Response did not contain a case ID');
+      throw new Error("Response did not contain a case ID");
     }
   } else {
     throw new Error(
-      `Failed to create case: ${response.status()} - ${response.statusText()}`
+      `Failed to create case: ${response.status()} - ${response.statusText()}`,
     );
   }
 }

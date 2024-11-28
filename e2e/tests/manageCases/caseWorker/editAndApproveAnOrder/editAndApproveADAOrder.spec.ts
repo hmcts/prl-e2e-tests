@@ -30,7 +30,7 @@ test.describe("Edit and approve a DA order tests", (): void => {
   Order type: Non-molestation order (FL404A),
   Judge order action: Ask the legal representative to make changes,
   Not error message testing,
-  Not accessibility testing. @regression @nightly` , async ({
+  Not accessibility testing. @regression @nightly`, async ({
     page,
     browser,
   }): Promise<void> => {

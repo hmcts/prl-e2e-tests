@@ -27,7 +27,7 @@ const systemCreateCaseBearerToken = {
   client_secret: process.env.IDAM_SECRET as string,
   scope: "openid profile roles",
   redirect_uri: process.env.REDIRECT_URI as string,
-}
+};
 
 /**
  * Function to get an access token from the IDAM service
@@ -57,13 +57,10 @@ export async function getAccessToken(
       default:
         throw new Error(`Invalid option: ${option}`);
     }
-    const response = await apiContext.post(
-      url,
-      {
-        headers: { "content-type": "application/x-www-form-urlencoded" },
-        form: data,
-      },
-    );
+    const response = await apiContext.post(url, {
+      headers: { "content-type": "application/x-www-form-urlencoded" },
+      form: data,
+    });
     if (!response.ok()) {
       const errorText = await response.text();
       throw new Error(
@@ -81,16 +78,16 @@ export async function getAccessToken(
 
 export async function getS2SToken(
   apiContext: APIRequestContext,
-  ): Promise<string> {
+): Promise<string> {
   try {
     const response = await apiContext.post(
       process.env.S2S_TOKEN_URL as string,
       {
         headers: { "content-type": "application/json" },
         data: {
-          "microservice": "ccd_data",
+          microservice: "ccd_data",
         },
-      }
+      },
     );
     if (!response.ok()) {
       const errorText = await response.text();
@@ -105,4 +102,3 @@ export async function getS2SToken(
     );
   }
 }
-
