@@ -241,7 +241,9 @@ test.describe("Manage cases case solicitor create case tests.", (): void => {
   Saying 'No' to ever intend to live at home address
   Other Relationship Is: 'Cousin'
   saying no to all attending the hearing questions
-  Submit statement of truth @regression @nightly`, async ({ page }): Promise<void> => {
+  Submit statement of truth @regression @nightly`, async ({
+    page,
+  }): Promise<void> => {
     await FL401.fl401({
       page: page,
       user: "solicitor",

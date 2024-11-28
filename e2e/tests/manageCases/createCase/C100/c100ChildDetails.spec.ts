@@ -26,7 +26,9 @@ test.describe("C100 Create case child details tests", (): void => {
   Not Accessibility testing,
   Not Error message testing,
   Answering no to all additional questions,
-  Setting the child Gender to female. @regression`, async ({ page }): Promise<void> => {
+  Setting the child Gender to female. @regression`, async ({
+    page,
+  }): Promise<void> => {
     await C100ChildDetails.c100ChildDetails({
       page: page,
       user: "solicitor",
@@ -41,7 +43,9 @@ test.describe("C100 Create case child details tests", (): void => {
   Not Accessibility testing,
   Not Error message testing,
   Answering don't know to all additional questions,
-  Setting the child Gender to other. @regression`, async ({ page }): Promise<void> => {
+  Setting the child Gender to other. @regression`, async ({
+    page,
+  }): Promise<void> => {
     await C100ChildDetails.c100ChildDetails({
       page: page,
       user: "solicitor",

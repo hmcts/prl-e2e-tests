@@ -19,6 +19,7 @@ test.describe("Create an order tests", (): void => {
       solicitorCaseCreateType: "FL401",
       yesNoManageOrders: true,
       howLongWillOrderBeInForce: "untilNextHearing",
+      createOrderFL401Options: "non-molestation",
     });
   });
 
@@ -36,6 +37,7 @@ test.describe("Create an order tests", (): void => {
       solicitorCaseCreateType: "FL401",
       yesNoManageOrders: false,
       howLongWillOrderBeInForce: "noEndDate",
+      createOrderFL401Options: "non-molestation",
     });
   });
 
@@ -53,6 +55,7 @@ test.describe("Create an order tests", (): void => {
       solicitorCaseCreateType: "FL401",
       yesNoManageOrders: true,
       howLongWillOrderBeInForce: "specificDate",
+      createOrderFL401Options: "non-molestation",
     });
   });
 });

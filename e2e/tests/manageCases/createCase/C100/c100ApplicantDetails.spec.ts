@@ -27,7 +27,9 @@ test.describe("C100 Create case Applicant Details tests", (): void => {
   Not Accessibility testing,
   Not Error message testing,
   Saying no to all options,
-  Setting the applicant Gender to female. @nightly @regression`, async ({ page }): Promise<void> => {
+  Setting the applicant Gender to female. @nightly @regression`, async ({
+    page,
+  }): Promise<void> => {
     await C100ApplicantDetails.C100ApplicantDetails({
       page,
       user: "solicitor",

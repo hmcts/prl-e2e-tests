@@ -25,6 +25,9 @@ test.describe("Check Application task for DA Citizen case tests.", () => {
       yesNoSendToGateKeeper: true,
       ccdRef: ccdRef,
       c100CaseWorkerActions: "Manage orders",
+      createOrderFL401Options: "occupation order",
+      yesNoManageOrders: true,
+      judgeTitles: "Her Honour Judge",
       browser: browser,
     });
   });
@@ -39,6 +42,9 @@ test.describe("Check Application task for DA Citizen case tests.", () => {
       yesNoSendToGateKeeper: false,
       ccdRef: ccdRef,
       c100CaseWorkerActions: "Manage orders",
+      createOrderFL401Options: "power of arrest",
+      yesNoManageOrders: false,
+      judgeTitles: "Deputy Circuit Judge",
       browser: browser,
     });
   });

@@ -1,7 +1,10 @@
 import { Page } from "@playwright/test";
 import { CaseFilterPage } from "../../../../pages/manageCases/caseWorker/createAnOrder/initialJourney/caseFilterPage";
 import { TestingSupportDummyAdminCreateNoc2Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/initialJourney/testingSupportDummyAdminCreateNoc2Page";
-import { solicitorCaseCreateType } from "../../../../common/types";
+import {
+  createOrderFL401Options,
+  solicitorCaseCreateType,
+} from "../../../../common/types";
 import { TestingSupportDummyAdminCreateNoc3Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/initialJourney/testingSupportDummyAdminCreateNoc3Page";
 import { CreateAnOrderSubmitPage } from "../../../../pages/manageCases/caseWorker/createAnOrder/initialJourney/SubmitPage";
 import { CaseListPage } from "../../../../pages/manageCases/caseList/caseListPage";
@@ -14,6 +17,7 @@ interface FL401Params {
   solicitorCaseCreateType: solicitorCaseCreateType;
   yesNoManageOrders: boolean;
   howLongWillOrderBeInForce: howLongWillOrderBeInForce;
+  createOrderFL401Options: createOrderFL401Options;
 }
 
 export class FL401CreateAnOrder {
@@ -23,6 +27,7 @@ export class FL401CreateAnOrder {
     solicitorCaseCreateType,
     howLongWillOrderBeInForce,
     yesNoManageOrders,
+    createOrderFL401Options,
   }: FL401Params): Promise<void> {
     await CaseListPage.navigateToCreateCasePage(page);
     await CaseFilterPage.caseFilterPage({ page, accessibilityTest });
@@ -42,6 +47,7 @@ export class FL401CreateAnOrder {
       solicitorCaseCreateType,
       yesNoManageOrders,
       howLongWillOrderBeInForce,
+      createOrderFL401Options,
     });
   }
 }

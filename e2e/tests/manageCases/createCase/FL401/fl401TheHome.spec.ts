@@ -143,9 +143,7 @@ test.describe("FL401 Create cases The Home tests", (): void => {
         Not accessibility testing, 
         Not Error Messaging (There isn't any), 
         Applicant doesn't have children
-        No to all options, @regression`, async ({
-    page,
-  }): Promise<void> => {
+        No to all options, @regression`, async ({ page }): Promise<void> => {
     await FL401TheHome.fl401TheHome({
       page: page,
       accessibilityTest: false,

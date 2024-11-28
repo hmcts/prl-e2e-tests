@@ -5,7 +5,14 @@ import { Fl401AddCaseNumberSubmitPage } from "../../../../pages/manageCases/case
 import { FL401SendToGateKeeper1Page } from "../../../../pages/manageCases/caseProgression/sendToGateKeeper/fl401SendToGateKeeper1Page";
 import { FL401SendToGateKeeperSubmitPage } from "../../../../pages/manageCases/caseProgression/sendToGateKeeper/fl401SendToGateKeeperSubmitPage";
 import config from "../../../../config";
-import { c100CaseWorkerActions } from "../../../../common/types";
+import {
+  c100CaseWorkerActions,
+  createOrderFL401Options,
+  judgeTitles,
+} from "../../../../common/types";
+import { ManageOrders1Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders1Page";
+import { ManageOrders2Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders2Page";
+import { ManageOrders5Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders5Page";
 
 interface CheckApplicationParams {
   page: Page;
@@ -13,6 +20,9 @@ interface CheckApplicationParams {
   yesNoSendToGateKeeper: boolean;
   ccdRef: string;
   c100CaseWorkerActions: c100CaseWorkerActions;
+  createOrderFL401Options: createOrderFL401Options;
+  yesNoManageOrders: boolean;
+  judgeTitles: judgeTitles;
   browser: Browser;
 }
 
@@ -21,6 +31,9 @@ interface JudgeDACaseProgressionJourneyParams {
   ccdRef: string;
   accessibilityTest: boolean;
   c100CaseWorkerActions: c100CaseWorkerActions;
+  createOrderFL401Options: createOrderFL401Options;
+  judgeTitles: judgeTitles;
+  yesNoManageOrders: boolean;
 }
 
 export class ApplicationJourneysCheckGatekeeperJudgeMOOrder {
@@ -30,6 +43,9 @@ export class ApplicationJourneysCheckGatekeeperJudgeMOOrder {
     yesNoSendToGateKeeper,
     ccdRef,
     c100CaseWorkerActions,
+    createOrderFL401Options,
+    yesNoManageOrders,
+    judgeTitles,
     browser,
   }: CheckApplicationParams): Promise<void> {
     await Helpers.assignTaskToMeAndTriggerNextSteps(
@@ -66,6 +82,9 @@ export class ApplicationJourneysCheckGatekeeperJudgeMOOrder {
       ccdRef,
       accessibilityTest,
       c100CaseWorkerActions,
+      createOrderFL401Options,
+      yesNoManageOrders,
+      judgeTitles,
     });
     await page.waitForTimeout(5000);
   }
@@ -75,12 +94,30 @@ export class ApplicationJourneysCheckGatekeeperJudgeMOOrder {
     ccdRef,
     accessibilityTest,
     c100CaseWorkerActions,
+    createOrderFL401Options,
+    yesNoManageOrders,
+    judgeTitles,
   }: JudgeDACaseProgressionJourneyParams): Promise<void> {
     const page: Page = await Helpers.openNewBrowserWindow(browser, "judge");
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
     await this.waitForManageOrderSelectOptionToBeVisible(page);
     await Helpers.chooseEventFromDropdown(page, c100CaseWorkerActions);
-    // Pages
+    await ManageOrders1Page.manageOrders1Page({
+      page,
+      accessibilityTest,
+    });
+    await ManageOrders2Page.manageOrders2Page({
+      page,
+      accessibilityTest,
+      createOrderFL401Options,
+    });
+    await ManageOrders5Page.manageOrders5Page({
+      page,
+      accessibilityTest,
+      yesNoManageOrders,
+      createOrderFL401Options,
+      judgeTitles: judgeTitles,
+    });
   }
 
   private static async waitForManageOrderSelectOptionToBeVisible(
