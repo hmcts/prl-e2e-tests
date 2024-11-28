@@ -66,12 +66,12 @@ Should you wish to run the pipeline, you can do so by accessing it in Jenkins, a
 
 ### Test Tagging Guidelines
 
-We use the following test tags to categorize and manage our test suite:
+We use the following test tags to categorise and manage our test suite:
 
 - `@nightly`: For tests to be included in the nightly pipeline.
 - `@smoke`: For tests to be included in the master pipeline.
 - `@regression`: For tests that should only be run as part of major regression testing (e.g., releases or significant changes).
-- `@accessibility`: For tests utilizing axe-core to check accessibility.
+- `@accessibility`: For tests utilising axe-core to check accessibility.
 - `@errorMessage`: For tests that trigger and verify error messages.
 
 
@@ -94,5 +94,5 @@ We use the following test tags to categorize and manage our test suite:
 
 ### Notes
 - Each test can have multiple tags if it fits into more than one category.
-- Regularly review test tagging to maintain a well-organized and efficient test suite.
+- Regularly review test tagging to maintain a well-organised and efficient test suite.
 
