@@ -62,3 +62,36 @@ This runs a test in Chrome, whilst headed.
 ### Our Jenkins configuration
 
 Should you wish to run the pipeline, you can do so by accessing it in Jenkins, and if you wish to run it against a specific URL, for example a PR branch, the "Build with parameters" is configured to allow you to do so, as well as skip certain applications being tested.
+
+
+### Test Tagging Guidelines
+
+We use the following test tags to categorize and manage our test suite:
+
+- `@nightly`: For tests to be included in the nightly pipeline.
+- `@smoke`: For tests to be included in the master pipeline.
+- `@regression`: For tests that should only be run as part of major regression testing (e.g., releases or significant changes).
+- `@accessibility`: For tests utilizing axe-core to check accessibility.
+- `@errorMessage`: For tests that trigger and verify error messages.
+
+#### Tagging Rules
+
+1. **General Tagging:**
+    - Tag all tests with `@regression`, unless the test is specifically for accessibility.
+   
+2. **Nightly Pipeline Tests:**
+    - Identify tests for `@nightly` that do not repeat the same journey as an accessibility test to avoid redundancy.
+
+3. **Accessibility Tests:**
+    - Accessibility tests often replicate another journey but with accessibility checks enabled. Ensure they are appropriately tagged with `@accessibility` and excluded from `@nightly` to prevent duplication.
+
+4. **Smoke Tests:**
+    - For critical path tests that ensure key functionality is operational, tag them with `@smoke` for inclusion in the master pipeline.
+
+5. **Error Message Validation:**
+    - Tests designed to validate error messages should be tagged with `@errorMessage`. These typically would not be run as part of the nightly pipeline
+
+### Notes
+- Each test can have multiple tags if it fits into more than one category.
+- Regularly review test tagging to maintain a well-organized and efficient test suite.
+
