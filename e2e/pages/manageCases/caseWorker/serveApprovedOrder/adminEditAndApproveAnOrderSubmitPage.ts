@@ -46,7 +46,12 @@ export class AdminEditAndApproveAnOrderSubmitPage {
         `text16`,
         Selectors.GovukText16,
       ),
-      page  .locator(Selectors.GovukText16, { hasText: AdminEditAndApproveAnOrderSubmitContent.nonMolestationOrderFL404A })  .isVisible(),
+      page
+        .locator(Selectors.GovukText16, {
+          hasText:
+            AdminEditAndApproveAnOrderSubmitContent.nonMolestationOrderFL404A,
+        })
+        .isVisible(),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.a}:text-is("${AdminEditAndApproveAnOrderSubmitContent.pdflink1}")`,
@@ -62,7 +67,12 @@ export class AdminEditAndApproveAnOrderSubmitPage {
         `${Selectors.GovukText16}:text-is("${AdminEditAndApproveAnOrderSubmitContent.Yes}"):visible`,
         3,
       ),
-      page  .locator(Selectors.p, { hasText: AdminEditAndApproveAnOrderSubmitContent.nonMolestationOrderFL404A })  .isVisible(),
+      page
+        .locator(Selectors.p, {
+          hasText:
+            AdminEditAndApproveAnOrderSubmitContent.nonMolestationOrderFL404A,
+        })
+        .isVisible(),
 
       Helpers.checkVisibleAndPresent(
         page,

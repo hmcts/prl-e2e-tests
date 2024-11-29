@@ -6,7 +6,7 @@ import { Helpers } from "../../../../common/helpers";
 import { CommonStaticText } from "../../../../common/commonStaticText";
 
 enum UniqueSelectors {
-  orderCloseCaseYes= "#doesOrderClosesCase_Yes",
+  orderCloseCaseYes = "#doesOrderClosesCase_Yes",
   serveOrderNowYes = "#doYouWantToServeOrder_Yes",
 }
 
@@ -57,7 +57,7 @@ export class AdminEditAndApproveAnOrder21Page {
   }
 
   private static async fillInFields(page: Page): Promise<void> {
-    await page.selectOption("#selectTypeOfOrder", {index: 3});
+    await page.selectOption("#selectTypeOfOrder", { index: 3 });
     await Helpers.checkVisibleAndPresent(
       page,
       `${Selectors.GovukFormLabel}:text-is("${AdminEditAndApproveAnOrder21Content.formLabel3}")`,
