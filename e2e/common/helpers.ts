@@ -13,7 +13,8 @@ import {
   fl401SolicitorEvents,
   fl401SubmittedSolicitorEvents,
   c100CaseWorkerActions,
-  UserRole, fl401CaseWorkerActions
+  UserRole,
+  fl401CaseWorkerActions,
 } from "./types";
 import Config from "../config.ts";
 
