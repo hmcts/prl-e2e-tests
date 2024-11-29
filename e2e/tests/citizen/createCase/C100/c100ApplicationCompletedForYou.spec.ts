@@ -3,7 +3,7 @@ import IdamLoginHelper from "../../../../common/idamLoginHelper";
 import Config from "../../../../config";
 import { C100 } from "../../../../journeys/citizen/createCase/C100/C100";
 
-test.describe("Create Citizen Application but choose to have legal representative fill it out for you. @citizenFrontend @crossbrowserCitizenFrontend", (): void => {
+test.describe("Create Citizen Application but choose to have legal representative fill it out for you.", (): void => {
   test.beforeEach(async ({ page }) => {
     await IdamLoginHelper.signInCitizenUser(
       page,
@@ -13,7 +13,7 @@ test.describe("Create Citizen Application but choose to have legal representativ
   test(
     "Application completed for you with the following options:" +
       "No error messaging." +
-      "No accessibility Testing",
+      "No accessibility Testing @regression @nightly",
     async ({ page }): Promise<void> => {
       await C100.c100ApplicationCompletedForYou({
         page: page,
@@ -25,7 +25,7 @@ test.describe("Create Citizen Application but choose to have legal representativ
   test(
     "Application completed for you with the following options:" +
       "Yes error messaging." +
-      "No accessibility Testing",
+      "No accessibility Testing @regression @errorMessage",
     async ({ page }): Promise<void> => {
       await C100.c100ApplicationCompletedForYou({
         page: page,
@@ -36,7 +36,7 @@ test.describe("Create Citizen Application but choose to have legal representativ
   );
 });
 
-test.describe("Testing the accessibility of the C100 Case Created for you application, @accessibilityCitizenFrontend", (): void => {
+test.describe("Testing the accessibility of the C100 Case Created for you application", (): void => {
   test.beforeEach(async ({ page }) => {
     // Sign in as a citizen user before each test
     await IdamLoginHelper.signInCitizenUser(
@@ -47,7 +47,7 @@ test.describe("Testing the accessibility of the C100 Case Created for you applic
   test(
     "Application completed for you with the following options:" +
       "No error messaging." +
-      "Yes accessibility Testing",
+      "Yes accessibility Testing @accessibility",
     async ({ page }): Promise<void> => {
       await C100.c100ApplicationCompletedForYou({
         page: page,

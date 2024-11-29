@@ -4,13 +4,13 @@ import { DraftAnOrder } from "../../../../journeys/manageCases/caseWorker/draftA
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-test.describe("Draft a non molestation order tests @manageCases", (): void => {
+test.describe("Draft a non molestation order tests", (): void => {
   test(`Complete Drafting a non molestation order as a solicitor with the following options:
   No to all options,
   No respondent checkbox actions ticked,
   Order in force until no fixed end date,
   Not accessibility testing,
-  Not error message testing. @crossbrowserManageCases`, async ({
+  Not error message testing. @regression`, async ({
     page,
     browser,
   }): Promise<void> => {
@@ -33,7 +33,7 @@ test.describe("Draft a non molestation order tests @manageCases", (): void => {
   No respondent checkbox actions ticked,
   Order in force until specific date and time,
   Not accessibility testing,
-  Not error message testing. @crossbrowserManageCases`, async ({
+  Not error message testing. @regression`, async ({
     page,
     browser,
   }): Promise<void> => {
@@ -56,7 +56,7 @@ test.describe("Draft a non molestation order tests @manageCases", (): void => {
   All respondent checkbox actions ticked,
   Order in force until no fixed end date,
   Not Accessibility testing,
-  Not error message testing. @crossbrowserManageCases`, async ({
+  Not error message testing. @regression `, async ({
     page,
     browser,
   }): Promise<void> => {
@@ -79,7 +79,7 @@ test.describe("Draft a non molestation order tests @manageCases", (): void => {
   All respondent checkbox actions ticked,
   Order in force until specific date and time,
   Not Accessibility testing,
-  Not error message testing. @crossbrowserManageCases`, async ({
+  Not error message testing. @regression @nightly`, async ({
     page,
     browser,
   }): Promise<void> => {
@@ -102,7 +102,7 @@ test.describe("Draft a non molestation order tests @manageCases", (): void => {
   No respondent checkbox actions ticked,
   Order in force until no fixed end date,
   Accessibility testing,
-  Not error message testing. @accessibilityManageCases`, async ({
+  Not error message testing. @accessibility`, async ({
     page,
     browser,
   }): Promise<void> => {
