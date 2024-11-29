@@ -122,7 +122,7 @@ withNightlyPipeline(type, product, component, 600) {
       }
     } else {
       if (!params.skipCitizenTests) {
-        stage('Citizen E2E tests - Chrome') {
+        stage('Citizen E2E tests - Chrome with accessibility') {
           try {
             yarnBuilder.yarn('test:citizenFrontendChrome')
           } catch (Error) {
@@ -175,7 +175,7 @@ withNightlyPipeline(type, product, component, 600) {
         }
       }
       if (!params.skipManageCasesTests) {
-        stage('Manage Cases E2E tests - Chrome') {
+        stage('Manage Cases E2E tests - Chrome with accessibility') {
           try {
             yarnBuilder.yarn('test:manageCasesChrome')
           } catch (Error) {

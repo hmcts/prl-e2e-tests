@@ -82,17 +82,6 @@ test.describe("Welsh Language Requirements task for DA Citizen case tests as Jud
   });
   test(`Complete Welsh Language Requirements with following options: 
   Does any person in this case need orders or documents in Welsh: No
-  Accessibility testing: No. @regression`, async ({ page }): Promise<void> => {
-    await WelshLanguageRequirements.welshLanguageRequirements({
-      page: page,
-      needDocumentsInWelsh: false,
-      languageToCompleteApplication: "English",
-      doesApplicationNeedTranslating: false,
-      accessibilityTest: false,
-    });
-  });
-  test(`Complete Welsh Language Requirements with following options: 
-  Does any person in this case need orders or documents in Welsh: No
   Accessibility testing: Yes. @accessibility @nightly`, async ({
     page,
   }): Promise<void> => {

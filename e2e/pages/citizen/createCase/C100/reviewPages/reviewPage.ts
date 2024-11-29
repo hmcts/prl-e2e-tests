@@ -999,7 +999,6 @@ export class ReviewPage {
       ),
     ]);
     if (c100YesNoNeedHelpWithFees) {
-      console.log("IF STATEMENT RUN");
       await Promise.all([
         Helpers.checkVisibleAndPresent(
           page,
