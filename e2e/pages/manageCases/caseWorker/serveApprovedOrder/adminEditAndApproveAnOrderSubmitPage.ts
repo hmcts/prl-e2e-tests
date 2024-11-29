@@ -20,7 +20,7 @@ export class AdminEditAndApproveAnOrderSubmitPage {
   ): Promise<void> {
     await page
       .locator(`${Selectors.headingH2}`, {
-        hasText: `${AdminEditAndApproveAnOrderSubmitContent.h1}`,
+        hasText: `${AdminEditAndApproveAnOrderSubmitContent.headingH2}`,
       })
       .waitFor();
     await Promise.all([
@@ -31,26 +31,22 @@ export class AdminEditAndApproveAnOrderSubmitPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.markdown}:text-is("${AdminEditAndApproveAnOrderSubmitContent.h2}")`,
+        `${Selectors.h2}:text-is("${AdminEditAndApproveAnOrderSubmitContent.h21}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.markdown}:text-is("${AdminEditAndApproveAnOrderSubmitContent.h3}")`,
+        `${Selectors.h2}:text-is("${AdminEditAndApproveAnOrderSubmitContent.h22}")`,
         1,
       ),
       Helpers.checkGroup(
         page,
-        11,
+        12,
         AdminEditAndApproveAnOrderSubmitContent,
         `text16`,
         Selectors.GovukText16,
       ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukText16}:text-is("${AdminEditAndApproveAnOrderSubmitContent.Yes}")`,
-        2,
-      ),
+      page  .locator(Selectors.GovukText16, { hasText: AdminEditAndApproveAnOrderSubmitContent.nonMolestationOrderFL404A })  .isVisible(),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.a}:text-is("${AdminEditAndApproveAnOrderSubmitContent.pdflink1}")`,
@@ -63,9 +59,11 @@ export class AdminEditAndApproveAnOrderSubmitPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${AdminEditAndApproveAnOrderSubmitContent.p}")`,
-        1,
+        `${Selectors.GovukText16}:text-is("${AdminEditAndApproveAnOrderSubmitContent.Yes}"):visible`,
+        3,
       ),
+      page  .locator(Selectors.p, { hasText: AdminEditAndApproveAnOrderSubmitContent.nonMolestationOrderFL404A })  .isVisible(),
+
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.button}:text-is("${CommonStaticText.previous}")`,

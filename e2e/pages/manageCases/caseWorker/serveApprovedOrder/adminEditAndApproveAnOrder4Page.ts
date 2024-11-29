@@ -8,9 +8,7 @@ import { OrderType, solicitorCaseCreateType } from "../../../../common/types";
 import { DraftAnOrder4Content } from "../../../../fixtures/manageCases/caseWorker/draftAnOrder/draftAnOrder4Content";
 import { HowLongWillTheOrderBeInForce } from "../../../../journeys/manageCases/caseWorker/draftAnOrder/draftAnOrder";
 import { NonMolestationOrder20Page } from "../draftAnOrder/nonMolestationOrder/nonMolestationOrder20Page";
-import {
-  ParentalResponsibilityOrder20Page
-} from "../draftAnOrder/parentalResponsibilityOrder/parentalResponsibilityOrder20Page";
+import { ParentalResponsibilityOrder20Page } from "../draftAnOrder/parentalResponsibilityOrder/parentalResponsibilityOrder20Page";
 
 enum UniqueSelectors {
   editOrderNo = "#doYouWantToEditTheOrder_No",
@@ -71,11 +69,8 @@ export class AdminEditAndApproveAnOrder4Page {
     }
   }
 
-  private static async fillInFields(
-    page: Page,
-  ): Promise<void> {
-    await page.check(
-      `${UniqueSelectors.editOrderNo}`)
+  private static async fillInFields(page: Page): Promise<void> {
+    await page.check(`${UniqueSelectors.editOrderNo}`);
   }
 
   private static async continue(page: Page): Promise<void> {

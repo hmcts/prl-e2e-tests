@@ -136,5 +136,4 @@ export type JudgeOrderAction =
 
 export type Language = "English" | "Welsh";
 
-export type fl401CaseWorkerEvents =
-  | "Edit and serve an order";
+export type fl401CaseWorkerEvents = "Edit and serve an order";

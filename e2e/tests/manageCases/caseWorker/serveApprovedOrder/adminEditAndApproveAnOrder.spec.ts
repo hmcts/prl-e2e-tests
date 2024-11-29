@@ -5,6 +5,7 @@ import { AdminEditAndApproveAnOrder } from "../../../../journeys/manageCases/cas
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
 test.describe("Serve approved DA order tests @manageCases", (): void => {
+  //test.slow();
   test(`Complete serve an order with the following options:
   Case: FL401,
   Order type: Non-molestation order (FL404A),

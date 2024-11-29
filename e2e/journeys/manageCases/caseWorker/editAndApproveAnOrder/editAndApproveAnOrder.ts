@@ -88,6 +88,6 @@ export class EditAndApproveAnOrder {
       judeOrderAction,
       accessibilityTest,
     );
-  return caseRef
+    return caseRef;
   }
 }

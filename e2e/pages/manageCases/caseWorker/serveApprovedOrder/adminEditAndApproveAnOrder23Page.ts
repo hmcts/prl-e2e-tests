@@ -5,7 +5,7 @@ import { AdminEditAndApproveAnOrder23Content } from "../../../../fixtures/manage
 import { Helpers } from "../../../../common/helpers";
 import { CommonStaticText } from "../../../../common/commonStaticText";
 
-enum UniqueSelectors{
+enum UniqueSelectors {
   respondentOptionYes = "#serveToRespondentOptions_Yes",
   respondentsOptionsCourtBailiff = "#personallyServeRespondentsOptions-courtBailiff",
 }
@@ -41,17 +41,12 @@ export class AdminEditAndApproveAnOrder23Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukFormLabel}:text-is("${AdminEditAndApproveAnOrder23Content.formLabel3}")`,
+        `${Selectors.GovukFormHint}:text-is("${AdminEditAndApproveAnOrder23Content.formHint}"):visible`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukFormHint}:text-is("${AdminEditAndApproveAnOrder23Content.formHint}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.markdown}:text-is("${AdminEditAndApproveAnOrder23Content.h1}")`,
+        `${Selectors.h2}:text-is("${AdminEditAndApproveAnOrder23Content.h2}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(

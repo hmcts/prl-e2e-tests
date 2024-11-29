@@ -5,8 +5,9 @@ import { AdminEditAndApproveAnOrder21Content } from "../../../../fixtures/manage
 import { Helpers } from "../../../../common/helpers";
 import { CommonStaticText } from "../../../../common/commonStaticText";
 
-enum UniqueSelectors{
-  serveOrderNowYes= "#doYouWantToServeOrder_Yes",
+enum UniqueSelectors {
+  orderCloseCaseYes= "#doesOrderClosesCase_Yes",
+  serveOrderNowYes = "#doYouWantToServeOrder_Yes",
 }
 
 export class AdminEditAndApproveAnOrder21Page {
@@ -41,11 +42,6 @@ export class AdminEditAndApproveAnOrder21Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukFormLabel}:text-is("${AdminEditAndApproveAnOrder21Content.formLabel3}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
         `${Selectors.button}:text-is("${CommonStaticText.previous}")`,
         1,
       ),
@@ -61,8 +57,14 @@ export class AdminEditAndApproveAnOrder21Page {
   }
 
   private static async fillInFields(page: Page): Promise<void> {
-    await page.selectOption("#selectTypeOfOrder", "Final");
-    await page.check(`${UniqueSelectors.serveOrderNowYes}`)
+    await page.selectOption("#selectTypeOfOrder", {index: 3});
+    await Helpers.checkVisibleAndPresent(
+      page,
+      `${Selectors.GovukFormLabel}:text-is("${AdminEditAndApproveAnOrder21Content.formLabel3}")`,
+      1,
+    );
+    await page.check(`${UniqueSelectors.orderCloseCaseYes}`);
+    await page.check(`${UniqueSelectors.serveOrderNowYes}`);
   }
 
   private static async continue(page: Page): Promise<void> {

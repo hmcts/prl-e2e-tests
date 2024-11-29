@@ -31,12 +31,12 @@ export class AdminEditAndApproveAnOrder22Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.markdown}:text-is("${AdminEditAndApproveAnOrder22Content.h1}")`,
+        `${Selectors.h2}:text-is("${AdminEditAndApproveAnOrder22Content.h21}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.headingH2}:text-is("${AdminEditAndApproveAnOrder22Content.h2}")`,
+        `${Selectors.h2}:text-is("${AdminEditAndApproveAnOrder22Content.h22}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
