@@ -16,10 +16,7 @@ test.describe("Send and reply to messages between court admin and judge tests ",
 
   // TODO: add accessibility testing to this test once the pipeline config is reconfigured as it covers an extra page
   test(`Complete send and reply messages event between court admin and judge with required response. 
-  @nightly @regression`, async ({
-    page,
-    browser,
-  }): Promise<void> => {
+  @nightly @regression`, async ({ page, browser }): Promise<void> => {
     await SendAndReplyToMessages.sendAndReplyToMessages({
       page: page,
       browser: browser,
