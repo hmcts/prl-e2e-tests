@@ -9,7 +9,7 @@ test.describe("C100 Create case other proceedings tests", (): void => {
   Not Accessibility testing,
   Not Error message testing,
   Saying yes to previous or ongoing proceedings for the child(ren)?,
-  Ongoing Proceedings, @regression @nightly`, async ({
+  Ongoing Proceedings, @regression`, async ({
     page,
   }): Promise<void> => {
     await C100OtherProceedings.c100OtherProceedings({
@@ -26,9 +26,7 @@ test.describe("C100 Create case other proceedings tests", (): void => {
   Not Accessibility testing,
   Not Error message testing,
   Saying yes to previous or ongoing proceedings for the child(ren)?,
-  Previous Proceedings, @regression`, async ({
-    page,
-  }): Promise<void> => {
+  Previous Proceedings, @regression`, async ({ page }): Promise<void> => {
     await C100OtherProceedings.c100OtherProceedings({
       page: page,
       accessibilityTest: false,
@@ -85,10 +83,10 @@ test.describe("C100 Create case other proceedings tests", (): void => {
   });
 });
 
-test(`Accessibility test the C100 other proceedings event as a solicitor with the following options:
+test(`Test the C100 other proceedings event as a solicitor with the following options:
   Accessibility testing,
   Not Error message testing,
-  Saying no to previous or ongoing proceedings for the child(ren)?, @accessibility`, async ({
+  Saying no to previous or ongoing proceedings for the child(ren)?, @accessibility @nightly`, async ({
   page,
 }): Promise<void> => {
   await C100OtherProceedings.c100OtherProceedings({

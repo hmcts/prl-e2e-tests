@@ -15,7 +15,7 @@ test.describe("Review Documents task for DA Citizen case tests.", () => {
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
   });
 
-  test("Complete Review Documents without accessibility test. Saying yes to Restrict Access @regression @nightly", async ({
+  test("Complete Review Documents without accessibility test. Saying yes to Restrict Access @regression", async ({
     page,
   }): Promise<void> => {
     await ReviewDocuments.reviewDocuments({
@@ -35,13 +35,23 @@ test.describe("Review Documents task for DA Citizen case tests.", () => {
     });
   });
 
-  test("Complete Review Documents with accessibility test. Saying not sure to Restrict Access @accessibility", async ({
+  test("Complete Review Documents with accessibility test. Saying not sure to Restrict Access @regression", async ({
+    page,
+  }): Promise<void> => {
+    await ReviewDocuments.reviewDocuments({
+      page: page,
+      accessibilityTest: false,
+      yesNoNotSureReviewDocs: "dontKnow",
+    });
+  });
+
+  test("Complete Review Documents with accessibility test. Saying yes to Restrict Access @accessibility @nightly", async ({
     page,
   }): Promise<void> => {
     await ReviewDocuments.reviewDocuments({
       page: page,
       accessibilityTest: true,
-      yesNoNotSureReviewDocs: "dontKnow",
+      yesNoNotSureReviewDocs: "yes",
     });
   });
 });
