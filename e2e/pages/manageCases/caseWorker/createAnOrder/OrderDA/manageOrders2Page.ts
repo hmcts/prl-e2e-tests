@@ -68,8 +68,6 @@ export class ManageOrders2Page {
     }
   }
 
-  //create type, then switch board for all fl404 option
-
   private static async fillInFields({
     page,
     createOrderFL401Options,

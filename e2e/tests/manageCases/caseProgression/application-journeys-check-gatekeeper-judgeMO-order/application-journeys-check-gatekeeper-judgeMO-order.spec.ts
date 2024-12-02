@@ -25,25 +25,17 @@ test.describe("Check Application task for DA Citizen case tests.", () => {
       yesNoSendToGateKeeper: true,
       ccdRef: ccdRef,
       c100CaseWorkerActions: "Manage orders",
-      createOrderFL401Options: "occupation order",
+      createOrderFL401Options: "power of arrest",
       yesNoManageOrders: true,
       judgeTitles: "Her Honour Judge",
+      withOrWithoutNotice: true,
+      createOrderManageOrders19Options: "dateToBeFixed", // "dateConfirmed" will not pass because page 19 does not give a hearing you are allowed to select
+      howLongWillOrderBeInForce: "untilNextHearing", // Should not matter unless non-molestation order is selected
       browser: browser,
     });
   });
 
-  test("Complete Check Application with accessibility test. @regression", async ({
-    page,
-  }): Promise<void> => {
-    await CheckApplication.checkApplication({
-      page: page,
-      accessibilityTest: false,
-      yesNoSendToGateKeeper: false,
-      ccdRef: ccdRef,
-    });
-  });
-
-  test("Complete Check Application without accessibility test. @regression @accessibility @nightly", async ({
+  test("Complete Check Application with accessibility test. @regression @accessibility @nightly", async ({
     page,
     browser,
   }): Promise<void> => {
@@ -53,9 +45,12 @@ test.describe("Check Application task for DA Citizen case tests.", () => {
       yesNoSendToGateKeeper: true,
       ccdRef: ccdRef,
       c100CaseWorkerActions: "Manage orders",
-      createOrderFL401Options: "power of arrest",
+      createOrderFL401Options: "occupation order",
       yesNoManageOrders: false,
       judgeTitles: "Deputy Circuit Judge",
+      withOrWithoutNotice: false,
+      createOrderManageOrders19Options: "dateToBeFixed", // "dateConfirmed" will not pass because page 19 does not give a hearing you are allowed to select
+      howLongWillOrderBeInForce: "untilNextHearing", // Should not matter unless non-molestation order is selected
       browser: browser,
     });
   });

@@ -21,6 +21,7 @@ test.describe("Create an order tests", (): void => {
       howLongWillOrderBeInForce: "untilNextHearing",
       createOrderFL401Options: "non-molestation",
       judgeTitles: "Justices' Clerk",
+      createOrderManageOrders19Options: "dateToBeFixed",
     });
   });
 
@@ -40,6 +41,7 @@ test.describe("Create an order tests", (): void => {
       howLongWillOrderBeInForce: "noEndDate",
       createOrderFL401Options: "non-molestation",
       judgeTitles: "Recorder",
+      createOrderManageOrders19Options: "dateToBeFixed",
     });
   });
 
@@ -59,6 +61,7 @@ test.describe("Create an order tests", (): void => {
       howLongWillOrderBeInForce: "specificDate",
       createOrderFL401Options: "non-molestation",
       judgeTitles: "The Honourable Mrs Justice",
+      createOrderManageOrders19Options: "dateToBeFixed",
     });
   });
   test(`Complete Creating an order as a Caseworker with the following options:
@@ -66,13 +69,18 @@ test.describe("Create an order tests", (): void => {
   Accessibility testing: yes
   yesNoManageOrders: true,
   howLongWillOrderBeInForce: "untilNextHearing"
-  "This order will be served with the 'date to be fixed'" selected on ManageOrders19. @nightly @accessibility`, async ({ page,}): Promise<void> => {
+  "This order will be served with the 'date to be fixed'" selected on ManageOrders19. @nightly @accessibility`, async ({
+    page,
+  }): Promise<void> => {
     await FL401CreateAnOrder.fL401CreateAnOrder({
       page: page,
       accessibilityTest: true,
       solicitorCaseCreateType: "FL401",
       yesNoManageOrders: true,
       howLongWillOrderBeInForce: "untilNextHearing",
+      createOrderFL401Options: "non-molestation",
+      judgeTitles: "The Honourable Mrs Justice",
+      createOrderManageOrders19Options: "dateToBeFixed",
     });
   });
 });

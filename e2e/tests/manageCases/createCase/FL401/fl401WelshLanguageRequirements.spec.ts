@@ -38,9 +38,7 @@ test.describe("FL401 Create case welsh language requirements tests", (): void =>
   test(`Complete the FL401 welsh language requirements event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
-  Saying no to all options, @regression`, async ({
-    page,
-  }): Promise<void> => {
+  Saying no to all options, @regression`, async ({ page }): Promise<void> => {
     await FL401WelshLanguageRequirements.fl401WelshLanguageRequirements({
       page: page,
       accessibilityTest: false,
@@ -55,7 +53,9 @@ test(`Accessibility test the FL401 welsh language requirements event as a solici
   Accessibility testing,
   Not Error message testing,
   Saying yes to all options, 
-  Selecting English, @accessibility @nightly`, async ({ page }): Promise<void> => {
+  Selecting English, @accessibility @nightly`, async ({
+  page,
+}): Promise<void> => {
   await FL401WelshLanguageRequirements.fl401WelshLanguageRequirements({
     page: page,
     accessibilityTest: false,

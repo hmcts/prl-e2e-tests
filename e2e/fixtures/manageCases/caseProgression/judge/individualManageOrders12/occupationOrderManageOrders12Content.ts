@@ -1,0 +1,40 @@
+export enum OccupationOrderManageOrders12Content {
+  span = "Occupation order (FL404)",
+  h2 = "Address the order applies to",
+  strong1 = "The court declares that the applicant",
+  strong2 = "The respondent",
+  formLabelOther = "other", //2 instances
+  formLabel = "Select all that apply (Optional)", //2 instances
+  formLabel1 = "is entitled to occupy the address as their home",
+  formLabel2 = "has home rights in the address",
+  formLabel3 = "has the right to enter into and occupy the address",
+  formLabel4 = "shall allow the applicant to occupy the address",
+  formLabel5 = "must not occupy the address",
+  formLabel6 = "shall leave the address",
+  formLabel7 = "having left, must not return to, enter or attempt to enter the address",
+  formLabel8 = "must not obstruct, harass, or interfere with the applicant's peaceful occupation of the address",
+  formLabel9 = "Date order ends",
+  formLabel10 = "Costs of this application (Optional)",
+  formLabel11 = "Is this order made with or without notice?",
+  formLabel12 = "With notice",
+  formLabel13 = "Without notice",
+  formLabelEnterUKPostcode = "Enter a UK postcode",
+  hiddenFormLabel1 = "Add details about home rights (Optional)",
+  hiddenFormLabel2 = "between (Optional)",
+  hiddenFormLabel3 = "and (Optional)",
+  hiddenFormLabel4 = "Add when they shall leave (Optional)",
+  hiddenFormLabel5 = "Add more details (Optional)",
+  hiddenFormLabel6 = "Add another instruction relating to the respondent",
+  hiddenFormLabelPower = "Is a power of arrest attached to this paragraph?", // 6 instances
+  // hiddenFormLabelAddAnother = "Add another instruction relating to the applicant", // 2 instances
+  loremIpsum = "loremIpsum",
+  date1 = "10-06-2025 12:00 am",
+  date2 = "10-07-2025 12:00 pm",
+  postcode = "SW1A 1AA",
+  findAddressButton = "Find address",
+  address = "Buckingham Palace, London",
+  buildingAndStreet = "Buckingham Palace",
+  townOrCity = "London",
+  country = "United Kingdom",
+  //hidden yes no - 3 instance
+}

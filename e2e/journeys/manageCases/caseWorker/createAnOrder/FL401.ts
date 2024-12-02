@@ -11,6 +11,7 @@ import { CreateAnOrderSubmitPage } from "../../../../pages/manageCases/caseWorke
 import { CaseListPage } from "../../../../pages/manageCases/caseList/caseListPage";
 import { howLongWillOrderBeInForce } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders12Page";
 import { Fl401ManageOrderDA } from "./FL401OrderDA/fl401ManageOrderDA";
+import { createOrderManageOrders19Options } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders19Page";
 
 interface FL401Params {
   page: Page;
@@ -20,6 +21,7 @@ interface FL401Params {
   howLongWillOrderBeInForce: howLongWillOrderBeInForce;
   createOrderFL401Options: createOrderFL401Options;
   judgeTitles: judgeTitles;
+  createOrderManageOrders19Options: createOrderManageOrders19Options;
 }
 
 export class FL401CreateAnOrder {
@@ -31,6 +33,7 @@ export class FL401CreateAnOrder {
     yesNoManageOrders,
     judgeTitles,
     createOrderFL401Options,
+    createOrderManageOrders19Options,
   }: FL401Params): Promise<void> {
     await CaseListPage.navigateToCreateCasePage(page);
     await CaseFilterPage.caseFilterPage({ page, accessibilityTest });
@@ -52,6 +55,7 @@ export class FL401CreateAnOrder {
       howLongWillOrderBeInForce,
       createOrderFL401Options,
       judgeTitles,
+      createOrderManageOrders19Options,
     });
   }
 }
