@@ -1,6 +1,6 @@
 import { test } from "@playwright/test";
-import { FL401WelshLanguageRequirements } from "../../../../journeys/manageCases/createCase/FL401WelshLanguageRequirements/FL401WelshLanguageRequirements";
 import Config from "../../../../config";
+import { FL401WelshLanguageRequirements } from "../../../../journeys/manageCases/createCase/FL401WelshLanguageRequirements/FL401WelshLanguageRequirements";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
