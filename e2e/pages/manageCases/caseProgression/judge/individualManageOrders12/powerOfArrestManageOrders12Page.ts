@@ -95,11 +95,11 @@ export class PowerOfArrestManageOrders12Page {
         UniqueSelectors.fl404CustomFields_fl404bRiskOfSignificantHarm_No,
       );
     }
-    await page.waitForTimeout(1000);
     await page.fill(
       UniqueSelectors.inputSpecificDate,
       PowerOfArrestManageOrders12Content.date,
     );
+    await page.waitForTimeout(1000);
     await page.click(
       `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
     );

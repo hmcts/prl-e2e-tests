@@ -20,7 +20,7 @@ test.describe("Create an order tests", (): void => {
       yesNoManageOrders: true,
       howLongWillOrderBeInForce: "untilNextHearing",
       createOrderFL401Options: "non-molestation",
-      judgeTitles: "Justices' Clerk",
+      judgeTitles: "Her Honour Judge",
       createOrderManageOrders19Options: "dateToBeFixed",
     });
   });
@@ -40,7 +40,7 @@ test.describe("Create an order tests", (): void => {
       yesNoManageOrders: false,
       howLongWillOrderBeInForce: "noEndDate",
       createOrderFL401Options: "non-molestation",
-      judgeTitles: "Recorder",
+      judgeTitles: "Her Honour Judge",
       createOrderManageOrders19Options: "dateToBeFixed",
     });
   });
@@ -60,7 +60,7 @@ test.describe("Create an order tests", (): void => {
       yesNoManageOrders: true,
       howLongWillOrderBeInForce: "specificDate",
       createOrderFL401Options: "non-molestation",
-      judgeTitles: "The Honourable Mrs Justice",
+      judgeTitles: "Her Honour Judge",
       createOrderManageOrders19Options: "dateToBeFixed",
     });
   });
@@ -79,7 +79,7 @@ test.describe("Create an order tests", (): void => {
       yesNoManageOrders: true,
       howLongWillOrderBeInForce: "untilNextHearing",
       createOrderFL401Options: "non-molestation",
-      judgeTitles: "The Honourable Mrs Justice",
+      judgeTitles: "Her Honour Judge",
       createOrderManageOrders19Options: "dateToBeFixed",
     });
   });

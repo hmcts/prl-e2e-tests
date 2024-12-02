@@ -146,7 +146,7 @@ export class ManageOrders20Page {
     await Promise.all([
       Helpers.checkGroup(
         pdfPage,
-        87,
+        86,
         ManageOrders20DAContent,
         "welshSpan",
         `${Selectors.Span}`,
