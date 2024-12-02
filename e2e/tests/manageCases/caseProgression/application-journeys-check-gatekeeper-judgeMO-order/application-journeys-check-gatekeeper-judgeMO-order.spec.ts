@@ -30,7 +30,7 @@ test.describe("Check Application task for DA Citizen case tests.", () => {
       judgeTitles: "Her Honour Judge",
       withOrWithoutNotice: true,
       createOrderManageOrders19Options: "dateToBeFixed", // "dateConfirmed" will not pass because page 19 does not give a hearing you are allowed to select
-      howLongWillOrderBeInForce: "untilNextHearing", // Should not matter unless non-molestation order is selected
+      howLongWillOrderBeInForce: "untilNextHearing", // Should not matter unless non-molestation order is selected.
       browser: browser,
     });
   });
