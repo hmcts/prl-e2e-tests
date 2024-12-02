@@ -10,7 +10,7 @@ test.describe("Edit and approve a DA order tests", (): void => {
   Order type: Non-molestation order (FL404A),
   Judge order action: Send to admin to serve,
   Error message testing,
-  Not accessibility testing. @regression @nightly`, async ({
+  Not accessibility testing. @regression`, async ({
     page,
     browser,
   }): Promise<void> => {
@@ -30,7 +30,7 @@ test.describe("Edit and approve a DA order tests", (): void => {
   Order type: Non-molestation order (FL404A),
   Judge order action: Ask the legal representative to make changes,
   Not error message testing,
-  Not accessibility testing. @regression @nightly` , async ({
+  Not accessibility testing. @regression`, async ({
     page,
     browser,
   }): Promise<void> => {
@@ -50,7 +50,7 @@ test.describe("Edit and approve a DA order tests", (): void => {
   Order type: Non-molestation order (FL404A),
   Judge order action: Give admin further directions then serve,
   Not error message testing,
-  Accessibility testing. @regression @accessibility`, async ({
+  Accessibility testing. @nightly @accessibility`, async ({
     page,
     browser,
   }): Promise<void> => {
