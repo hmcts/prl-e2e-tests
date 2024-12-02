@@ -29,7 +29,7 @@ test.describe("Manage cases case solicitor create case tests.", (): void => {
   Saying no to all Miam
   C100MiamPolicyUpgrade1PageType is "yesExemption"
   Setting WelshPageRequirementType to "english"
-  Saying yes to all WelshRequirement options @regression @nightly @smoke`, async ({
+  Saying yes to all WelshRequirement options @regression @smoke`, async ({
     page,
   }): Promise<void> => {
     await C100.c100({
@@ -154,7 +154,7 @@ test.describe("Manage cases case solicitor create case tests.", (): void => {
      Saying Yes to all attending the hearing question,
      Upload document files,
     Submit Statement of Truth
-    @regression @nightly`, async ({ page }): Promise<void> => {
+    @regression`, async ({ page }): Promise<void> => {
     await FL401.fl401({
       page: page,
       user: "solicitor",
@@ -199,7 +199,7 @@ test.describe("Manage cases case solicitor create case tests.", (): void => {
      Relationship is 'Married or in a civil partnership',
      Saying yes to all attending the hearing questions,
      upload document files
-  @regression @nightly`, async ({ page }): Promise<void> => {
+  @regression `, async ({ page }): Promise<void> => {
     await FL401.fl401({
       page: page,
       user: "solicitor",
@@ -241,7 +241,9 @@ test.describe("Manage cases case solicitor create case tests.", (): void => {
   Saying 'No' to ever intend to live at home address
   Other Relationship Is: 'Cousin'
   saying no to all attending the hearing questions
-  Submit statement of truth @regression @nightly`, async ({ page }): Promise<void> => {
+  Submit statement of truth @regression`, async ({
+    page,
+  }): Promise<void> => {
     await FL401.fl401({
       page: page,
       user: "solicitor",

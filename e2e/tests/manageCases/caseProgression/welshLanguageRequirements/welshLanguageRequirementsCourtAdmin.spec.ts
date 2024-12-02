@@ -15,9 +15,7 @@ test.describe("Welsh Language Requirements task for DA Citizen case tests as Cou
 
   test(`Complete Welsh Language Requirements with following options: 
   Does any person in this case need orders or documents in Welsh: No
-  Accessibility testing: No. @regression`, async ({
-    page,
-  }): Promise<void> => {
+  Accessibility testing: No. @regression`, async ({ page }): Promise<void> => {
     await WelshLanguageRequirements.welshLanguageRequirements({
       page: page,
       needDocumentsInWelsh: false,
@@ -31,9 +29,7 @@ test.describe("Welsh Language Requirements task for DA Citizen case tests as Cou
   Does any person in this case need orders or documents in Welsh: Yes
   Which language are you using to complete this application: English
   Does this application need to be translated: Yes
-  Accessibility testing: No. @regression @nightly`, async ({
-    page,
-  }): Promise<void> => {
+  Accessibility testing: No. @regression`, async ({ page }): Promise<void> => {
     await WelshLanguageRequirements.welshLanguageRequirements({
       page: page,
       needDocumentsInWelsh: true,
@@ -47,9 +43,7 @@ test.describe("Welsh Language Requirements task for DA Citizen case tests as Cou
   Does any person in this case need orders or documents in Welsh: Yes
   Which language are you using to complete this application: English
   Does this application need to be translated: No
-  Accessibility testing: No. @regression`, async ({
-    page,
-  }): Promise<void> => {
+  Accessibility testing: No. @regression`, async ({ page }): Promise<void> => {
     await WelshLanguageRequirements.welshLanguageRequirements({
       page: page,
       needDocumentsInWelsh: true,
@@ -63,9 +57,7 @@ test.describe("Welsh Language Requirements task for DA Citizen case tests as Cou
   Does any person in this case need orders or documents in Welsh: Yes
   Which language are you using to complete this application: Welsh
   Does this application need to be translated: Yes
-  Accessibility testing: No. @regression @nightly`, async ({
-    page,
-  }): Promise<void> => {
+  Accessibility testing: No. @regression`, async ({ page }): Promise<void> => {
     await WelshLanguageRequirements.welshLanguageRequirements({
       page: page,
       needDocumentsInWelsh: true,
@@ -79,9 +71,7 @@ test.describe("Welsh Language Requirements task for DA Citizen case tests as Cou
   Does any person in this case need orders or documents in Welsh: Yes
   Which language are you using to complete this application: Welsh
   Does this application need to be translated: No
-  Accessibility testing: No. @regression`, async ({
-    page,
-  }): Promise<void> => {
+  Accessibility testing: No. @regression`, async ({ page }): Promise<void> => {
     await WelshLanguageRequirements.welshLanguageRequirements({
       page: page,
       needDocumentsInWelsh: true,
@@ -90,17 +80,18 @@ test.describe("Welsh Language Requirements task for DA Citizen case tests as Cou
       accessibilityTest: false,
     });
   });
-
   test(`Complete Welsh Language Requirements with following options: 
-  Does any person in this case need orders or documents in Welsh: No
-  Accessibility testing: Yes. @accessibility`, async ({
+  Does any person in this case need orders or documents in Welsh: Yes
+  Which language are you using to complete this application: English
+  Does this application need to be translated: Yes
+  Accessibility testing: Yes. @accessibility @nightly`, async ({
     page,
   }): Promise<void> => {
     await WelshLanguageRequirements.welshLanguageRequirements({
       page: page,
-      needDocumentsInWelsh: false,
+      needDocumentsInWelsh: true,
       languageToCompleteApplication: "English",
-      doesApplicationNeedTranslating: false,
+      doesApplicationNeedTranslating: true,
       accessibilityTest: true,
     });
   });

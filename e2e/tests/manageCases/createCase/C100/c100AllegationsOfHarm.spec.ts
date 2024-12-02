@@ -43,7 +43,9 @@ test.describe("C100 Create case Allegations of harm tests ", (): void => {
   Not Accessibility testing,
   Not Error message testing,
   Saying yes to all options,
-  Setting the abuse type to Emotional. @regression`, async ({ page }): Promise<void> => {
+  Setting the abuse type to Emotional. @regression`, async ({
+    page,
+  }): Promise<void> => {
     await C100AllegationsOfHarm.c100AllegationsOfHarm({
       page: page,
       accessibilityTest: false,
@@ -58,7 +60,9 @@ test.describe("C100 Create case Allegations of harm tests ", (): void => {
   Not Accessibility testing,
   Not Error message testing,
   Saying yes to all options,
-  Setting the abuse type to Financial. @regression`, async ({ page }): Promise<void> => {
+  Setting the abuse type to Financial. @regression`, async ({
+    page,
+  }): Promise<void> => {
     await C100AllegationsOfHarm.c100AllegationsOfHarm({
       page: page,
       accessibilityTest: false,
@@ -73,7 +77,9 @@ test.describe("C100 Create case Allegations of harm tests ", (): void => {
   Not Accessibility testing,
   Not Error message testing,
   Saying yes to all options,
-  Setting the abuse type to Sexual. @regression`, async ({ page }): Promise<void> => {
+  Setting the abuse type to Sexual. @regression`, async ({
+    page,
+  }): Promise<void> => {
     await C100AllegationsOfHarm.c100AllegationsOfHarm({
       page: page,
       accessibilityTest: false,
@@ -87,7 +93,9 @@ test.describe("C100 Create case Allegations of harm tests ", (): void => {
   test(`Complete the C100 allegations of harm event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
-  Saying no to all options. @regression @nightly`, async ({ page }): Promise<void> => {
+  Saying no to all options. @regression`, async ({
+    page,
+  }): Promise<void> => {
     await C100AllegationsOfHarm.c100AllegationsOfHarm({
       page: page,
       accessibilityTest: false,
@@ -116,11 +124,11 @@ test.describe("C100 Create case Allegations of harm tests ", (): void => {
   });
 });
 
-test(`Accessibility test the C100 allegations of harm event as a solicitor with the following options:
+test(`Test the C100 allegations of harm event as a solicitor with the following options:
   Accessibility testing,
   Not Error message testing,
   Saying yes to all options,
-  Setting the abuse type to Physical. @accessibility`, async ({
+  Setting the abuse type to Physical. @accessibility @nightly`, async ({
   page,
 }): Promise<void> => {
   await C100AllegationsOfHarm.c100AllegationsOfHarm({

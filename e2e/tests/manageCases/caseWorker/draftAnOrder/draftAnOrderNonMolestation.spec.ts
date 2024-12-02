@@ -79,7 +79,7 @@ test.describe("Draft a non molestation order tests", (): void => {
   All respondent checkbox actions ticked,
   Order in force until specific date and time,
   Not Accessibility testing,
-  Not error message testing. @regression @nightly`, async ({
+  Not error message testing. @regression`, async ({
     page,
     browser,
   }): Promise<void> => {
@@ -102,7 +102,7 @@ test.describe("Draft a non molestation order tests", (): void => {
   No respondent checkbox actions ticked,
   Order in force until no fixed end date,
   Accessibility testing,
-  Not error message testing. @accessibility`, async ({
+  Not error message testing. @accessibility @nightly`, async ({
     page,
     browser,
   }): Promise<void> => {
