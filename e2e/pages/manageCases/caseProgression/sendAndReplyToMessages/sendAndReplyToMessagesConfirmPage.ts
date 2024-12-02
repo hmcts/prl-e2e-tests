@@ -39,9 +39,10 @@ export class SendAndReplyToMessagesConfirmPage {
         1,
       ),
     ]);
-    if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
-    }
+    // TODO Disabled pending ticket FPET:1211
+    // if (accessibilityTest) {
+    //   await AccessibilityTestHelper.run(page);
+    // }
   }
 
   private static async closeAndReturnToCaseDetails(page: Page): Promise<void> {

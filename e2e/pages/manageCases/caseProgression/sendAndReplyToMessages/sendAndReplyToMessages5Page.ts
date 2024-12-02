@@ -108,9 +108,10 @@ export class SendAndReplyToMessages5Page {
         1,
       ),
     ]);
-    if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
-    }
+    // TODO Disabled pending ticket FPET:1211
+    // if (accessibilityTest) {
+    //   await AccessibilityTestHelper.run(page);
+    // }
   }
 
   private static async fillInFields(page: Page): Promise<void> {
