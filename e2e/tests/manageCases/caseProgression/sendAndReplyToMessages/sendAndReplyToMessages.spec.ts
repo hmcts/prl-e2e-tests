@@ -14,9 +14,8 @@ test.describe("Send and reply to messages between court admin and judge tests ",
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
   });
 
-  // TODO: add accessibility testing to this test once the pipeline config is reconfigured as it covers an extra page
   test(`Complete send and reply messages event between court admin and judge with required response. 
-  @nightly @regression`, async ({ page, browser }): Promise<void> => {
+  @regression @accessibility @nightly`, async ({ page, browser }): Promise<void> => {
     await SendAndReplyToMessages.sendAndReplyToMessages({
       page: page,
       browser: browser,
@@ -27,7 +26,7 @@ test.describe("Send and reply to messages between court admin and judge tests ",
   });
 
   test(`Complete send and reply messages event between court admin and judge without required response. 
-  @regression @accessibility`, async ({ page, browser }): Promise<void> => {
+  @regression`, async ({ page, browser }): Promise<void> => {
     await SendAndReplyToMessages.sendAndReplyToMessages({
       page: page,
       browser: browser,
