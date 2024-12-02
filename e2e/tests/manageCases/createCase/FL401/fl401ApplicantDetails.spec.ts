@@ -114,7 +114,9 @@ test.describe("FL401 Create case applicant details tests", (): void => {
   Not Accessibility testing,
   Error message testing,
   Saying yes to all options,
-  Male applicant. @regression @errorMessage`, async ({ page }): Promise<void> => {
+  Male applicant. @regression @errorMessage`, async ({
+    page,
+  }): Promise<void> => {
     await FL401ApplicantDetails.fl401ApplicantDetails({
       page: page,
       accessibilityTest: false,

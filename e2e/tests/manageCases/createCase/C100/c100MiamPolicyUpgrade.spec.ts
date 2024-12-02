@@ -66,9 +66,7 @@ test.describe("C100 Create case MIAM Tests", (): void => {
   Not Error message testing,
   Saying yes to yesExemption
   miamSelection "initiatedMIAMBeforeProceedings_MIAMCertificate"
-  Saying no to all options. @regression`, async ({
-    page,
-  }): Promise<void> => {
+  Saying no to all options. @regression`, async ({ page }): Promise<void> => {
     await C100MiamPolicyUpgrade.c100MiamPolicyUpgrade({
       page: page,
       user: "solicitor",
