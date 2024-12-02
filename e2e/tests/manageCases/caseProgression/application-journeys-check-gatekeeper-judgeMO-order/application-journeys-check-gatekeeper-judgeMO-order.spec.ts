@@ -15,43 +15,63 @@ test.describe("Check Application task for DA Citizen case tests.", () => {
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
   });
 
-  test("Complete Check Application without accessibility test. @regression", async ({
+  test(`Complete Check Application without accessibility test,
+        send to gatekeeper journey,
+        judge create an order journey with params:
+        yesNoSendToGateKeeper=true,
+        createOrderFL401Options=power of arrest,
+        judgeTitles=Her Honour Judge,
+        withOrWithoutNotice=true,
+        createOrderManageOrders19Options=dateToBeFixed,
+        howLongWillOrderBeInForce=untilNextHearing. @regression`, async ({
     page,
     browser,
   }): Promise<void> => {
-    await ApplicationJourneysCheckGatekeeperJudgeMOOrder.checkApplication({
-      page: page,
-      accessibilityTest: false,
-      yesNoSendToGateKeeper: true,
-      ccdRef: ccdRef,
-      c100CaseWorkerActions: "Manage orders",
-      createOrderFL401Options: "power of arrest",
-      yesNoManageOrders: false,
-      judgeTitles: "Her Honour Judge",
-      withOrWithoutNotice: true,
-      createOrderManageOrders19Options: "dateToBeFixed", // "dateConfirmed" will not pass because page 19 does not give a hearing you are allowed to select
-      howLongWillOrderBeInForce: "untilNextHearing", // Should not matter unless non-molestation order is selected.
-      browser: browser,
-    });
+    await ApplicationJourneysCheckGatekeeperJudgeMOOrder.applicationJourneysCheckGatekeeperJudgeMOOrder(
+      {
+        page: page,
+        accessibilityTest: false,
+        yesNoSendToGateKeeper: true,
+        ccdRef: ccdRef,
+        c100CaseWorkerActions: "Manage orders",
+        createOrderFL401Options: "power of arrest",
+        yesNoManageOrders: false,
+        judgeTitles: "Her Honour Judge",
+        withOrWithoutNotice: true,
+        createOrderManageOrders19Options: "dateToBeFixed", // "dateConfirmed" will not pass because page 19 does not give a hearing you are allowed to select
+        howLongWillOrderBeInForce: "untilNextHearing", // Should not matter unless non-molestation order is selected.
+        browser: browser,
+      },
+    );
   });
 
-  test("Complete Check Application with accessibility test. @regression @accessibility @nightly", async ({
+  test(`Complete Check Application with accessibility test,
+        send to gatekeeper journey,
+        judge create an order journey with params:
+        yesNoSendToGateKeeper=true,
+        createOrderFL401Options=amend discharge varied order,
+        judgeTitles=Deputy Circuit Judge,
+        withOrWithoutNotice=false,
+        createOrderManageOrders19Options=dateToBeFixed,
+        howLongWillOrderBeInForce=untilNextHearing. @regression @accessibility @nightly`, async ({
     page,
     browser,
   }): Promise<void> => {
-    await ApplicationJourneysCheckGatekeeperJudgeMOOrder.checkApplication({
-      page: page,
-      accessibilityTest: true,
-      yesNoSendToGateKeeper: true,
-      ccdRef: ccdRef,
-      c100CaseWorkerActions: "Manage orders",
-      createOrderFL401Options: "occupation order",
-      yesNoManageOrders: false,
-      judgeTitles: "Deputy Circuit Judge",
-      withOrWithoutNotice: false,
-      createOrderManageOrders19Options: "dateToBeFixed", // "dateConfirmed" will not pass because page 19 does not give a hearing you are allowed to select
-      howLongWillOrderBeInForce: "untilNextHearing", // Should not matter unless non-molestation order is selected
-      browser: browser,
-    });
+    await ApplicationJourneysCheckGatekeeperJudgeMOOrder.applicationJourneysCheckGatekeeperJudgeMOOrder(
+      {
+        page: page,
+        accessibilityTest: true,
+        yesNoSendToGateKeeper: true,
+        ccdRef: ccdRef,
+        c100CaseWorkerActions: "Manage orders",
+        createOrderFL401Options: "amend discharge varied order",
+        yesNoManageOrders: false,
+        judgeTitles: "Deputy Circuit Judge",
+        withOrWithoutNotice: false,
+        createOrderManageOrders19Options: "dateToBeFixed", // "dateConfirmed" will not pass because page 19 does not give a hearing selectOption you are allowed to select
+        howLongWillOrderBeInForce: "untilNextHearing", // Should not matter unless non-molestation order is selected
+        browser: browser,
+      },
+    );
   });
 });

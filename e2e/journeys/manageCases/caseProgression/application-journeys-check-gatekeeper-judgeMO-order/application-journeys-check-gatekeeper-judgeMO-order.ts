@@ -24,6 +24,7 @@ import {
 import { ManageOrders20Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders20Page";
 import { howLongWillOrderBeInForce } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders12Page";
 import { ManageOrders30Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders30Page";
+import { JudgeDAManageOrderSubmitPage } from "../../../../pages/manageCases/caseProgression/judge/judgeCreateOrder/DACreateOrder/judgeDASubmitPage";
 
 interface CheckApplicationParams {
   page: Page;
@@ -54,7 +55,7 @@ interface JudgeDACaseProgressionJourneyParams {
 }
 
 export class ApplicationJourneysCheckGatekeeperJudgeMOOrder {
-  public static async checkApplication({
+  public static async applicationJourneysCheckGatekeeperJudgeMOOrder({
     page,
     accessibilityTest,
     yesNoSendToGateKeeper,
@@ -163,6 +164,11 @@ export class ApplicationJourneysCheckGatekeeperJudgeMOOrder {
           accessibilityTest,
           yesNoManageOrders,
         });
+        await JudgeDAManageOrderSubmitPage.judgeDAManageOrderSubmitPage({
+          page,
+          accessibilityTest,
+          createOrderFL401Options,
+        });
         break;
       case "occupation order":
         await OccupationOrderManageOrders12Page.occupationOrderManageOrders12Page(
@@ -192,6 +198,11 @@ export class ApplicationJourneysCheckGatekeeperJudgeMOOrder {
           accessibilityTest,
           yesNoManageOrders,
         });
+        await JudgeDAManageOrderSubmitPage.judgeDAManageOrderSubmitPage({
+          page,
+          accessibilityTest,
+          createOrderFL401Options,
+        });
         break;
       case "amend discharge varied order":
         await AmendDischargeVariedManageOrders12Page.amendDischargeVariedManageOrders12Page(
@@ -219,6 +230,11 @@ export class ApplicationJourneysCheckGatekeeperJudgeMOOrder {
           accessibilityTest,
           yesNoManageOrders,
         });
+        await JudgeDAManageOrderSubmitPage.judgeDAManageOrderSubmitPage({
+          page,
+          accessibilityTest,
+          createOrderFL401Options,
+        });
         break;
       case "blank order":
         await BlankOrderManageOrders12Page.BlankOrderManageOrders12Page({
@@ -244,6 +260,11 @@ export class ApplicationJourneysCheckGatekeeperJudgeMOOrder {
           accessibilityTest,
           yesNoManageOrders,
         });
+        await JudgeDAManageOrderSubmitPage.judgeDAManageOrderSubmitPage({
+          page,
+          accessibilityTest,
+          createOrderFL401Options,
+        });
         break;
       case "general form of undertaking":
         // manageOrders6Page
@@ -258,6 +279,11 @@ export class ApplicationJourneysCheckGatekeeperJudgeMOOrder {
           page,
           accessibilityTest,
           yesNoManageOrders,
+        });
+        await JudgeDAManageOrderSubmitPage.judgeDAManageOrderSubmitPage({
+          page,
+          accessibilityTest,
+          createOrderFL401Options,
         });
         break;
       case "notice of proceedings":
@@ -279,6 +305,11 @@ export class ApplicationJourneysCheckGatekeeperJudgeMOOrder {
           page,
           accessibilityTest,
           yesNoManageOrders,
+        });
+        await JudgeDAManageOrderSubmitPage.judgeDAManageOrderSubmitPage({
+          page,
+          accessibilityTest,
+          createOrderFL401Options,
         });
         break;
     }
