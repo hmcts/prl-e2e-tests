@@ -57,7 +57,7 @@ export class Fl401ListOnNoticeConfirmPage {
       `${Selectors.button}:text-is("${Fl401ListOnNoticeConfirmContent.closeAndReturnToCaseDetails}")`,
     );
   }
-  private  static async checkCaseUpdated(page: Page): Promise<void> {
+  private static async checkCaseUpdated(page: Page): Promise<void> {
     await page
       .locator(Selectors.alertMessage, {
         hasText: Fl401ListOnNoticeConfirmContent.alertMessage,
