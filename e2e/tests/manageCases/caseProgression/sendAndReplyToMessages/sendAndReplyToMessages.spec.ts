@@ -15,7 +15,10 @@ test.describe("Send and reply to messages between court admin and judge tests ",
   });
 
   test(`Complete send and reply messages event between court admin and judge with required response. 
-  @regression @accessibility @nightly`, async ({ page, browser }): Promise<void> => {
+  @regression @accessibility @nightly`, async ({
+    page,
+    browser,
+  }): Promise<void> => {
     await SendAndReplyToMessages.sendAndReplyToMessages({
       page: page,
       browser: browser,
