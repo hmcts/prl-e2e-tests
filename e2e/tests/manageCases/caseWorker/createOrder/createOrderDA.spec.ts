@@ -60,7 +60,9 @@ test.describe("Create an order tests", (): void => {
   Accessibility testing: yes
   yesNoManageOrders: true,
   howLongWillOrderBeInForce: "untilNextHearing"
-  "This order will be served with the 'date to be fixed'" selected on ManageOrders19. @nightly @accessibility`, async ({ page,}): Promise<void> => {
+  "This order will be served with the 'date to be fixed'" selected on ManageOrders19. @nightly @accessibility`, async ({
+    page,
+  }): Promise<void> => {
     await FL401CreateAnOrder.fL401CreateAnOrder({
       page: page,
       accessibilityTest: true,
