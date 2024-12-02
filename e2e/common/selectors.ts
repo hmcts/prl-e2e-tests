@@ -5,6 +5,7 @@ export enum Selectors {
   h1 = "h1",
   headingH2 = ".heading-h2",
   headingH3 = ".heading-h3",
+  headingH4 = ".heading-h4",
   h2 = "h2",
   h3 = "h3",
   h4 = "h4",
