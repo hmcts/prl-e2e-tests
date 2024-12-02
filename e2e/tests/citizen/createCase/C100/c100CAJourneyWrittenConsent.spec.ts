@@ -52,7 +52,7 @@ test.describe("C100 Citizen Application with Written Consent from other people i
     international elements yes to all: true,
     yes to all reasonable adjustments: true,
     need help with fees: yes,
-    fees applied: yes @smoke @regression @nightly`, async ({
+    fees applied: yes @smoke @regression`, async ({
     page,
   }): Promise<void> => {
     await C100.c100caWrittenConsentJourney({
@@ -143,9 +143,7 @@ test.describe("C100 Citizen Application with Written Consent from other people i
     international elements yes to all: true,
     yes to all reasonable adjustments: true,
     need help with fees: yes,
-    fees applied: yes @regression @nightly`, async ({
-    page,
-  }): Promise<void> => {
+    fees applied: yes @regression`, async ({ page }): Promise<void> => {
     await C100.c100caWrittenConsentJourney({
       page: page,
       accessibilityTest: false,
@@ -234,7 +232,7 @@ test.describe("C100 Citizen Application with Written Consent from other people i
     international elements yes to all: true,
     yes to all reasonable adjustments: true,
     need help with fees: yes,
-    fees applied: yes @regression @nightly`, async ({
+    fees applied: yes @regression`, async ({
     page,
   }): Promise<void> => {
     await C100.c100caWrittenConsentJourney({
@@ -334,7 +332,9 @@ test.describe("Test the accessibility of the CA C100 Citizen Journey", (): void 
     international elements yes to all: true,
     yes to all reasonable adjustments: true,
     need help with fees: yes,
-    fees applied: yes @accessibility`, async ({ page }): Promise<void> => {
+    fees applied: yes @accessibility @nightly`, async ({
+    page,
+  }): Promise<void> => {
     await C100.c100caWrittenConsentJourney({
       page: page,
       accessibilityTest: true,

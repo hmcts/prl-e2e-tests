@@ -9,7 +9,7 @@ test.describe("C100 Create case Welsh Language Requirements Tests", (): void => 
   Not Accessibility testing,
   Not Error message testing,
   Saying yes to all options,
-  WelshPageRequirementType is no. @regression @nightly`, async ({
+  WelshPageRequirementType is no. @regression`, async ({
     page,
   }): Promise<void> => {
     await C100WelshLanguageRequirements.c100WelshLanguageRequirements({
@@ -112,7 +112,7 @@ test(`Complete the C100 Create case Welsh Language Requirements as a solicitor w
   Accessibility testing,
   Not Error message testing,
   Saying no to all options,
-  WelshPageRequirementType is welsh. @accessibility`, async ({
+  WelshPageRequirementType is welsh. @accessibility @nightly`, async ({
   page,
 }): Promise<void> => {
   await C100WelshLanguageRequirements.c100WelshLanguageRequirements({

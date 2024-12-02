@@ -79,11 +79,11 @@ We use the following test tags to categorise and manage our test suite:
    - Tag all tests with `@regression`, unless the test is specifically for accessibility.
 2. **Nightly Pipeline Tests:**
 
-   - Identify tests for `@nightly` that do not repeat the same journey as an accessibility test to avoid redundancy.
+   - Identify tests for `@nightly`.
 
 3. **Accessibility Tests:**
 
-   - Accessibility tests often replicate another journey but with accessibility checks enabled. Ensure they are appropriately tagged with `@accessibility` and excluded from `@nightly` to prevent duplication.
+   - Add accessibility tag `@accessibility` for tests that are run in nightly.
 
 4. **Smoke Tests:**
 

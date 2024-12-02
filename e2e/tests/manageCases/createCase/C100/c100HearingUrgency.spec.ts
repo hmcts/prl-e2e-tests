@@ -22,7 +22,7 @@ test.describe("C100 Create case hearing urgency tests", (): void => {
   test(`Complete the C100 hearing urgency event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
-  Saying no to all options, @nightly @regression`, async ({
+  Saying no to all options, @regression`, async ({
     page,
   }): Promise<void> => {
     await C100HearingUrgency.c100HearingUrgency({
@@ -38,7 +38,7 @@ test.describe("C100 Create case hearing urgency tests", (): void => {
   test(`Complete the C100 hearing urgency event as a solicitor with the following options:
   Not Accessibility testing,
   Error message testing,
-  Saying yes to all options, @errorMessage`, async ({
+  Saying yes to all options, @regression @errorMessage`, async ({
     page,
   }): Promise<void> => {
     await C100HearingUrgency.c100HearingUrgency({
@@ -52,10 +52,10 @@ test.describe("C100 Create case hearing urgency tests", (): void => {
   });
 });
 
-test(`Accessibility test the C100 hearing urgency event as a solicitor with the following options:
+test(`Test the C100 hearing urgency event as a solicitor with the following options:
   Accessibility testing,
   Not Error message testing,
-  Saying yes to all options, @accessibility`, async ({
+  Saying yes to all options, @accessibility @nightly`, async ({
   page,
 }): Promise<void> => {
   await C100HearingUrgency.c100HearingUrgency({

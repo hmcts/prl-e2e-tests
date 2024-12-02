@@ -21,7 +21,7 @@ test.describe("C100 Create case Litigation Capacity Tests", (): void => {
   test(`Complete the C100 Create case Litigation Capacity as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
-  Saying no to all options. @regression @nightly`, async ({
+  Saying no to all options. @regression`, async ({
     page,
   }): Promise<void> => {
     await C100LitigationCapacity.c100LitigationCapacity({
@@ -37,7 +37,7 @@ test.describe("C100 Create case Litigation Capacity Tests", (): void => {
 test(`Complete the C100 Create case Litigation Capacity as a solicitor with the following options:
   Accessibility testing,
   Not Error message testing,
-  Saying yes to all options. @accessibility`, async ({
+  Saying yes to all options. @accessibility @nightly`, async ({
   page,
 }): Promise<void> => {
   await C100LitigationCapacity.c100LitigationCapacity({

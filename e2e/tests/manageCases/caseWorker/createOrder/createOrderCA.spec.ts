@@ -8,10 +8,20 @@ test.describe("Create an order tests", (): void => {
   test(`Complete Creating an order as a Caseworker with the following options:
   Case: C100,
   Not accessibility testing. 
-  @nightly @regression`, async ({ page }): Promise<void> => {
+  @regression`, async ({ page }): Promise<void> => {
     await C100CreateAnOrder.c100CreateAnOrder({
       page: page,
       accessibilityTest: false,
+      solicitorCaseCreateType: "C100",
+    });
+  });
+  test(`Complete Creating an order as a Caseworker with the following options:
+  Case: C100,
+  Accessibility testing: yes. 
+  @nightly @accessibility`, async ({ page }): Promise<void> => {
+    await C100CreateAnOrder.c100CreateAnOrder({
+      page: page,
+      accessibilityTest: true,
       solicitorCaseCreateType: "C100",
     });
   });
