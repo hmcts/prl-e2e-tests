@@ -75,7 +75,10 @@ export class ManageOrders30Page {
     if (!page) {
       throw new Error("Page is not defined");
     }
-    await page.fill(UniqueSelectors.directionsToAdmin, ManageOrders30Content.loremIpsum);
+    await page.fill(
+      UniqueSelectors.directionsToAdmin,
+      ManageOrders30Content.loremIpsum,
+    );
     if (yesNoManageOrders) {
       await page.click(UniqueSelectors.yes);
     } else {

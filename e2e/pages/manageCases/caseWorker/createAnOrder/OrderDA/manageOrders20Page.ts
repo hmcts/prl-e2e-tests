@@ -111,10 +111,10 @@ export class ManageOrders20Page {
         break;
     }
     await Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.h2}:text-is("${ManageOrders20DAContent.h2}")`,
-        1,
-      );
+      page,
+      `${Selectors.h2}:text-is("${ManageOrders20DAContent.h2}")`,
+      1,
+    );
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }

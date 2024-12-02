@@ -161,7 +161,7 @@ export class ApplicationJourneysCheckGatekeeperJudgeMOOrder {
         await ManageOrders30Page.manageOrders30Page({
           page,
           accessibilityTest,
-          yesNoManageOrders
+          yesNoManageOrders,
         });
         break;
       case "occupation order":
@@ -190,7 +190,7 @@ export class ApplicationJourneysCheckGatekeeperJudgeMOOrder {
         await ManageOrders30Page.manageOrders30Page({
           page,
           accessibilityTest,
-          yesNoManageOrders
+          yesNoManageOrders,
         });
         break;
       case "amend discharge varied order":
@@ -217,7 +217,7 @@ export class ApplicationJourneysCheckGatekeeperJudgeMOOrder {
         await ManageOrders30Page.manageOrders30Page({
           page,
           accessibilityTest,
-          yesNoManageOrders
+          yesNoManageOrders,
         });
         break;
       case "blank order":
@@ -242,7 +242,7 @@ export class ApplicationJourneysCheckGatekeeperJudgeMOOrder {
         await ManageOrders30Page.manageOrders30Page({
           page,
           accessibilityTest,
-          yesNoManageOrders
+          yesNoManageOrders,
         });
         break;
       case "general form of undertaking":
@@ -257,30 +257,30 @@ export class ApplicationJourneysCheckGatekeeperJudgeMOOrder {
         await ManageOrders30Page.manageOrders30Page({
           page,
           accessibilityTest,
-          yesNoManageOrders
+          yesNoManageOrders,
         });
         break;
-        case "notice of proceedings":
-          await ManageOrders19Page.manageOrders19Page({
-            page,
-            accessibilityTest,
-            yesNoManageOrders,
-            createOrderManageOrders19Options,
-            createOrderFL401Options,
-          });
-          await ManageOrders20Page.manageOrders20Page({
-            page,
-            accessibilityTest,
-            yesNoManageOrders,
-            createOrderFL401Options,
-            howLongWillOrderBeInForce,
-          });
-          await ManageOrders30Page.manageOrders30Page({
-            page,
-            accessibilityTest,
-            yesNoManageOrders
-          });
-          break;
+      case "notice of proceedings":
+        await ManageOrders19Page.manageOrders19Page({
+          page,
+          accessibilityTest,
+          yesNoManageOrders,
+          createOrderManageOrders19Options,
+          createOrderFL401Options,
+        });
+        await ManageOrders20Page.manageOrders20Page({
+          page,
+          accessibilityTest,
+          yesNoManageOrders,
+          createOrderFL401Options,
+          howLongWillOrderBeInForce,
+        });
+        await ManageOrders30Page.manageOrders30Page({
+          page,
+          accessibilityTest,
+          yesNoManageOrders,
+        });
+        break;
     }
   }
 
