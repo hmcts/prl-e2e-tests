@@ -1,9 +1,5 @@
 import { Browser, expect, Page } from "@playwright/test";
-import { Fl401AddCaseNumber1Page } from "../../../../pages/manageCases/caseProgression/checkApplication/fl401AddCaseNumber1Page";
 import { Helpers } from "../../../../common/helpers";
-import { Fl401AddCaseNumberSubmitPage } from "../../../../pages/manageCases/caseProgression/checkApplication/fl401AddCaseNumberSubmitPage";
-import { FL401SendToGateKeeper1Page } from "../../../../pages/manageCases/caseProgression/sendToGateKeeper/fl401SendToGateKeeper1Page";
-import { FL401SendToGateKeeperSubmitPage } from "../../../../pages/manageCases/caseProgression/sendToGateKeeper/fl401SendToGateKeeperSubmitPage";
 import config from "../../../../config";
 import {
   c100CaseWorkerActions,
@@ -25,6 +21,7 @@ import { ManageOrders20Page } from "../../../../pages/manageCases/caseWorker/cre
 import { howLongWillOrderBeInForce } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders12Page";
 import { ManageOrders30Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders30Page";
 import { JudgeDAManageOrderSubmitPage } from "../../../../pages/manageCases/caseProgression/judge/judgeCreateOrder/DACreateOrder/judgeDASubmitPage";
+import { CheckApplication } from "../checkApplication/checkApplication";
 
 interface CheckApplicationParams {
   page: Page;
@@ -69,34 +66,11 @@ export class ApplicationJourneysCheckGatekeeperJudgeMOOrder {
     howLongWillOrderBeInForce,
     browser,
   }: CheckApplicationParams): Promise<void> {
-    await Helpers.assignTaskToMeAndTriggerNextSteps(
-      page,
-      "Check Application",
-      "Add Case Number",
-    );
-    await Fl401AddCaseNumber1Page.fl401AddCaseNumber1Page(
-      page,
-      accessibilityTest,
-    );
-    await Fl401AddCaseNumberSubmitPage.fl401AddCaseNumberSubmitPage(
-      page,
-      accessibilityTest,
-    );
-    await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
-    await Helpers.assignTaskToMeAndTriggerNextSteps(
-      page,
-      "Send to Gatekeeper",
-      "Send to Gatekeeper",
-    );
-    await FL401SendToGateKeeper1Page.fl401SendToGateKeeper1Page({
+    await CheckApplication.checkApplication({
       page,
       accessibilityTest,
       yesNoSendToGateKeeper,
-    });
-    await FL401SendToGateKeeperSubmitPage.fl401SendToGateKeeperSubmitPage({
-      page,
-      accessibilityTest,
-      yesNoSendToGateKeeper,
+      ccdRef,
     });
     await this.JudgeDACaseProgressionJourney({
       browser,
