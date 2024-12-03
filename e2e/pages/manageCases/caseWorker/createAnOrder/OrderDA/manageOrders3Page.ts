@@ -131,7 +131,7 @@ export class ManageOrders3Page {
       await page.click(UniqueSelectors.consent_No);
     }
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
+      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
     );
   }
 }
