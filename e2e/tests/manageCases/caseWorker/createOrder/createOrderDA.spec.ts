@@ -19,6 +19,9 @@ test.describe("Create an order tests", (): void => {
       solicitorCaseCreateType: "FL401",
       yesNoManageOrders: true,
       howLongWillOrderBeInForce: "untilNextHearing",
+      createOrderFL401Options: "non-molestation",
+      judgeTitles: "Her Honour Judge",
+      createOrderManageOrders19Options: "dateToBeFixed",
     });
   });
 
@@ -36,6 +39,9 @@ test.describe("Create an order tests", (): void => {
       solicitorCaseCreateType: "FL401",
       yesNoManageOrders: false,
       howLongWillOrderBeInForce: "noEndDate",
+      createOrderFL401Options: "non-molestation",
+      judgeTitles: "Her Honour Judge",
+      createOrderManageOrders19Options: "dateToBeFixed",
     });
   });
 
@@ -53,6 +59,9 @@ test.describe("Create an order tests", (): void => {
       solicitorCaseCreateType: "FL401",
       yesNoManageOrders: true,
       howLongWillOrderBeInForce: "specificDate",
+      createOrderFL401Options: "non-molestation",
+      judgeTitles: "Her Honour Judge",
+      createOrderManageOrders19Options: "dateToBeFixed",
     });
   });
   test(`Complete Creating an order as a Caseworker with the following options:
@@ -69,6 +78,9 @@ test.describe("Create an order tests", (): void => {
       solicitorCaseCreateType: "FL401",
       yesNoManageOrders: true,
       howLongWillOrderBeInForce: "untilNextHearing",
+      createOrderFL401Options: "non-molestation",
+      judgeTitles: "Her Honour Judge",
+      createOrderManageOrders19Options: "dateToBeFixed",
     });
   });
 });
