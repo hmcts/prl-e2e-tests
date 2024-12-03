@@ -117,7 +117,7 @@ export class C100CasePartyDetails {
       errorMessaging: errorMessaging,
       applicantLivesInRefuge: applicantLivesInRefuge,
     });
-    if (applicantLivesInRefuge) { 
+    if (applicantLivesInRefuge) {
       await ApplicantKeepingDetailsSafePage.applicantKeepingDetailsSafePage({
         page: page,
         accessibilityTest: accessibilityTest,
@@ -253,11 +253,13 @@ export class C100CasePartyDetails {
         errorMessaging: errorMessaging,
         otherPersonLivesInRefuge: c100OtherPersonLivesInRefuge,
       });
-      if (c100OtherPersonLivesInRefuge) { 
-        await OtherPersonKeepingDetailsSafePage.otherPersonKeepingDetailsSafePage({
-          page: page,
-          accessibilityTest: accessibilityTest,
-        });
+      if (c100OtherPersonLivesInRefuge) {
+        await OtherPersonKeepingDetailsSafePage.otherPersonKeepingDetailsSafePage(
+          {
+            page: page,
+            accessibilityTest: accessibilityTest,
+          },
+        );
         await OtherPersonUploadC8FormPage.otherPersonUploadC8FormPage({
           page: page,
           accessibilityTest: accessibilityTest,

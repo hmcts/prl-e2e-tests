@@ -11,7 +11,6 @@ interface applicantKeepingDetailsSafeOptions {
 }
 
 export class ApplicantKeepingDetailsSafePage {
-
   public static async applicantKeepingDetailsSafePage({
     page: page,
     accessibilityTest: accessibilityTest,

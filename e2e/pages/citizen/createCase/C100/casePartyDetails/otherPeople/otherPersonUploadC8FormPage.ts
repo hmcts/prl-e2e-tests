@@ -61,7 +61,13 @@ export class OtherPersonUploadC8FormPage {
         `${Selectors.GovukHeadingS}:text-is("${OtherPersonUploadC8FormContent.h2}")`,
         1,
       ),
-      Helpers.checkGroup(page, 5, OtherPersonUploadC8FormContent, `li`, Selectors.li),
+      Helpers.checkGroup(
+        page,
+        5,
+        OtherPersonUploadC8FormContent,
+        `li`,
+        Selectors.li,
+      ),
     ]);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);

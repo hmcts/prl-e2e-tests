@@ -11,7 +11,6 @@ interface otherPersonKeepingDetailsSafeOptions {
 }
 
 export class OtherPersonKeepingDetailsSafePage {
-
   public static async otherPersonKeepingDetailsSafePage({
     page: page,
     accessibilityTest: accessibilityTest,

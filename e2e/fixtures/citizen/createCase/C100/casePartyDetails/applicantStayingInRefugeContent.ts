@@ -6,5 +6,5 @@ export enum ApplicantStayingInRefugeContent {
   govukFieldsetLegend = "currently live in a refuge?",
   govukLabel1 = "Yes",
   govukLabel2 = "No",
-  errorMessage = "Select yes if you currently live in a refuge"
+  errorMessage = "Select yes if you currently live in a refuge",
 }

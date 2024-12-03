@@ -61,7 +61,13 @@ export class ApplicantUploadC8FormPage {
         `${Selectors.GovukHeadingS}:text-is("${ApplicantUploadC8FormContent.h2}")`,
         1,
       ),
-      Helpers.checkGroup(page, 5, ApplicantUploadC8FormContent, `li`, Selectors.li),
+      Helpers.checkGroup(
+        page,
+        5,
+        ApplicantUploadC8FormContent,
+        `li`,
+        Selectors.li,
+      ),
     ]);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);

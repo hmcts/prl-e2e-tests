@@ -12,5 +12,5 @@ export enum OtherPersonUploadC8FormContent {
   li5 = "Upload it here.",
   uploadButton = "Upload file",
   removeButton = "Remove",
-  errorMessageNoUpload = "You must upload a C8 document"
+  errorMessageNoUpload = "You must upload a C8 document",
 }
