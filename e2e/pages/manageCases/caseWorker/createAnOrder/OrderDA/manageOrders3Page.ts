@@ -5,9 +5,7 @@ import { ManageOrders24CAContent } from "../../../../../fixtures/manageCases/cas
 import { uploadOrderFL401Options } from "../../../../../common/types";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { Helpers } from "../../../../../common/helpers";
-import {
-  ManageOrders3DAContent
-} from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders3DAContent";
+import { ManageOrders3DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders3DAContent";
 
 interface manageOrders3PageOptions {
   page: Page;
