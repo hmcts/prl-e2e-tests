@@ -1,9 +1,5 @@
 import { APIRequestContext, request } from "@playwright/test";
-import * as dotenv from "dotenv";
-import { existsSync } from "fs";
 import { v4 as uuidv4 } from "uuid";
-
-dotenv.config();
 
 /**
  * Function to create a citizen user
@@ -48,12 +44,12 @@ export async function createCitizenUser(
       );
     }
     const responseData = await response.json();
-    if (existsSync(".env")) {
+    if (process.env.PWDEBUG) {
       console.log("User created:", responseData);
     }
     return { email, password, id: responseData.id };
   } catch (error) {
-    if (existsSync(".env")) {
+    if (process.env.PWDEBUG) {
       console.error(
         "Error: Unable to create the citizen user. Please check your VPN connection and confirm that the IDAM service is available.",
       );
