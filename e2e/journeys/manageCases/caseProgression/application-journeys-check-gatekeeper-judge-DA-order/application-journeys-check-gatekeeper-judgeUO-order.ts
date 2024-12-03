@@ -9,9 +9,7 @@ import {
 import { ManageOrders1Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders1Page";
 import { ApplicationJourneysCheckGatekeeper } from "./application-journeys-check-gatekeeper";
 import { ManageOrders3Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders3Page";
-import {
-  UploadOrderManageOrders5Page
-} from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/uploadOrderManageOrders5Page";
+import { UploadOrderManageOrders5Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/uploadOrderManageOrders5Page";
 import { ManageOrders30Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders30Page";
 
 interface CheckApplicationParams {
@@ -101,7 +99,7 @@ export class ApplicationJourneysCheckGatekeeperJudgeUOOrder {
       page,
       accessibilityTest,
       yesNoManageOrders,
-    })
+    });
   }
 
   private static async waitForManageOrderSelectOptionToBeVisible(

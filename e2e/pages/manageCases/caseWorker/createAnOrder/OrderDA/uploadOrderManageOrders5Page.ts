@@ -4,9 +4,7 @@ import { Selectors } from "../../../../../common/selectors";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { ManageOrders1DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders1DAContent";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-import {
-  UploadOrderManageOrders5Content
-} from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/uploadOrderManageOrders5Content";
+import { UploadOrderManageOrders5Content } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/uploadOrderManageOrders5Content";
 import config from "../../../../../config";
 
 interface UploadOrderManageOrders5PageOptions {
@@ -31,18 +29,18 @@ enum UniqueSelectors {
 
 export class UploadOrderManageOrders5Page {
   public static async uploadOrderManageOrders5Page({
-                                          page,
-                                          accessibilityTest,
-                                                     yesNoManageOrders,
-                                        }: UploadOrderManageOrders5PageOptions): Promise<void> {
+    page,
+    accessibilityTest,
+    yesNoManageOrders,
+  }: UploadOrderManageOrders5PageOptions): Promise<void> {
     await this.checkPageLoads({ page, accessibilityTest });
     await this.fillInFields({ page, yesNoManageOrders });
   }
 
   private static async checkPageLoads({
-                                        page,
-                                        accessibilityTest,
-                                      }: Partial<UploadOrderManageOrders5PageOptions>): Promise<void> {
+    page,
+    accessibilityTest,
+  }: Partial<UploadOrderManageOrders5PageOptions>): Promise<void> {
     if (!page) {
       throw new Error("Page is not defined");
     }
@@ -51,7 +49,13 @@ export class UploadOrderManageOrders5Page {
     );
     await pageTitle.waitFor();
     await Promise.all([
-      Helpers.checkGroup(page, 5, UploadOrderManageOrders5Content, "formLabel", Selectors.GovukFormLabel),
+      Helpers.checkGroup(
+        page,
+        5,
+        UploadOrderManageOrders5Content,
+        "formLabel",
+        Selectors.GovukFormLabel,
+      ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukFormLabel}:text-is("${CommonStaticText.day}"):visible`,
@@ -84,15 +88,24 @@ export class UploadOrderManageOrders5Page {
   }
 
   private static async fillInFields({
-                                      page,
-                                      yesNoManageOrders,
-                                    }: Partial<UploadOrderManageOrders5PageOptions>): Promise<void> {
+    page,
+    yesNoManageOrders,
+  }: Partial<UploadOrderManageOrders5PageOptions>): Promise<void> {
     if (!page) {
       throw new Error("Page is not defined");
     }
-    await page.fill(UniqueSelectors.approvalDate_day, UploadOrderManageOrders5Content.day);
-    await page.fill(UniqueSelectors.approvalDate_month, UploadOrderManageOrders5Content.month);
-    await page.fill(UniqueSelectors.approvalDate_year, UploadOrderManageOrders5Content.year);
+    await page.fill(
+      UniqueSelectors.approvalDate_day,
+      UploadOrderManageOrders5Content.day,
+    );
+    await page.fill(
+      UniqueSelectors.approvalDate_month,
+      UploadOrderManageOrders5Content.month,
+    );
+    await page.fill(
+      UniqueSelectors.approvalDate_year,
+      UploadOrderManageOrders5Content.year,
+    );
     if (yesNoManageOrders) {
       await page.click(UniqueSelectors.orderApprovedYes);
       await page.click(UniqueSelectors.orderChildrenYes);
