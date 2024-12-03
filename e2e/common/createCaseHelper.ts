@@ -13,11 +13,11 @@ async function createCaseSystemUser(): Promise<string> {
   const s2sToken = await getS2SToken(apiContextS2SToken);
   const payload = {
     ...createCaseSystemJudicialReviewPayload,
-    event_token: process.env.EVENT_TOKEN as string, // Add dynamic event token
+    event_token: process.env.EVENT_TOKEN as string,
   };
 
   const response = await apiContextSystemUser.post(
-    process.env.CREATE_CASE_URL as string, // Replace with the actual endpoint
+    process.env.CREATE_CASE_URL as string,
     {
       headers: {
         Authorization: `Bearer ${tokenSystemUserCreateCase}`,
