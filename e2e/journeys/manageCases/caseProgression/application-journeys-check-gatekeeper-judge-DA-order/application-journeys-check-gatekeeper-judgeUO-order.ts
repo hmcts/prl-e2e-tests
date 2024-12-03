@@ -9,6 +9,10 @@ import {
 import { ManageOrders1Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders1Page";
 import { ApplicationJourneysCheckGatekeeper } from "./application-journeys-check-gatekeeper";
 import { ManageOrders3Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders3Page";
+import {
+  UploadOrderManageOrders5Page
+} from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/uploadOrderManageOrders5Page";
+import { ManageOrders30Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders30Page";
 
 interface CheckApplicationParams {
   page: Page;
@@ -88,6 +92,16 @@ export class ApplicationJourneysCheckGatekeeperJudgeUOOrder {
       yesNoManageOrders,
       uploadOrderFL401Options,
     });
+    await UploadOrderManageOrders5Page.uploadOrderManageOrders5Page({
+      page,
+      accessibilityTest,
+      yesNoManageOrders,
+    });
+    await ManageOrders30Page.manageOrders30Page({
+      page,
+      accessibilityTest,
+      yesNoManageOrders,
+    })
   }
 
   private static async waitForManageOrderSelectOptionToBeVisible(

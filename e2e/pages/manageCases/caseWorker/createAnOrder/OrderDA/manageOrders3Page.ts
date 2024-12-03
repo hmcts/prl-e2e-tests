@@ -179,6 +179,16 @@ export class ManageOrders3Page {
         `${Selectors.GovukFormLabel}:text-is("${ManageOrders3DAContent.noticeToLandlordOrMortgageCompany}")`,
         1,
       ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${CommonStaticText.yes}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${CommonStaticText.no}")`,
+        1,
+      ),
     ]);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
