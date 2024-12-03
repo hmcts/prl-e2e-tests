@@ -1,7 +1,7 @@
 import { test } from "@playwright/test";
 import Config from "../../../../config";
 import createDaCitizenCourtNavCase from "../../../../common/createCaseHelper";
-import { ApplicationJourneysCheckGatekeeperJudgeMOOrder } from "../../../../journeys/manageCases/caseProgression/application-journeys-check-gatekeeper-judgeMO-order/application-journeys-check-gatekeeper-judgeMO-order";
+import { ApplicationJourneysCheckGatekeeperJudgeCOOrder } from "../../../../journeys/manageCases/caseProgression/application-journeys-check-gatekeeper-judge-DA-order/application-journeys-check-gatekeeper-judgeCO-order";
 import { Helpers } from "../../../../common/helpers";
 import config from "../../../../config";
 
@@ -27,7 +27,7 @@ test.describe("Check Application task for DA Citizen case tests.", () => {
     page,
     browser,
   }): Promise<void> => {
-    await ApplicationJourneysCheckGatekeeperJudgeMOOrder.applicationJourneysCheckGatekeeperJudgeMOOrder(
+    await ApplicationJourneysCheckGatekeeperJudgeCOOrder.applicationJourneysCheckGatekeeperJudgeCOOrder(
       {
         page: page,
         accessibilityTest: false,
@@ -57,7 +57,7 @@ test.describe("Check Application task for DA Citizen case tests.", () => {
     page,
     browser,
   }): Promise<void> => {
-    await ApplicationJourneysCheckGatekeeperJudgeMOOrder.applicationJourneysCheckGatekeeperJudgeMOOrder(
+    await ApplicationJourneysCheckGatekeeperJudgeCOOrder.applicationJourneysCheckGatekeeperJudgeCOOrder(
       {
         page: page,
         accessibilityTest: true,

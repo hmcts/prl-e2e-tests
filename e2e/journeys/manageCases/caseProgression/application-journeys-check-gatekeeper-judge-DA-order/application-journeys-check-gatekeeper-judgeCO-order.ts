@@ -1,9 +1,5 @@
 import { Browser, expect, Page } from "@playwright/test";
-import { Fl401AddCaseNumber1Page } from "../../../../pages/manageCases/caseProgression/checkApplication/fl401AddCaseNumber1Page";
 import { Helpers } from "../../../../common/helpers";
-import { Fl401AddCaseNumberSubmitPage } from "../../../../pages/manageCases/caseProgression/checkApplication/fl401AddCaseNumberSubmitPage";
-import { FL401SendToGateKeeper1Page } from "../../../../pages/manageCases/caseProgression/sendToGateKeeper/fl401SendToGateKeeper1Page";
-import { FL401SendToGateKeeperSubmitPage } from "../../../../pages/manageCases/caseProgression/sendToGateKeeper/fl401SendToGateKeeperSubmitPage";
 import config from "../../../../config";
 import {
   c100CaseWorkerActions,
@@ -12,7 +8,7 @@ import {
 } from "../../../../common/types";
 import { ManageOrders1Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders1Page";
 import { ManageOrders2Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders2Page";
-import { ManageOrders5Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders5Page";
+import { CreateOrderManageOrders5Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/createOrderManageOrders5Page";
 import { PowerOfArrestManageOrders12Page } from "../../../../pages/manageCases/caseProgression/judge/individualManageOrders12/powerOfArrestManageOrders12Page";
 import { OccupationOrderManageOrders12Page } from "../../../../pages/manageCases/caseProgression/judge/individualManageOrders12/occupationOrderManageOrders12Page";
 import { AmendDischargeVariedManageOrders12Page } from "../../../../pages/manageCases/caseProgression/judge/individualManageOrders12/amendDischargeVariedManageOrders12Page";
@@ -24,7 +20,8 @@ import {
 import { ManageOrders20Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders20Page";
 import { howLongWillOrderBeInForce } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders12Page";
 import { ManageOrders30Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders30Page";
-import { JudgeDAManageOrderSubmitPage } from "../../../../pages/manageCases/caseProgression/judge/judgeCreateOrder/DACreateOrder/judgeDASubmitPage";
+import { judgeCreateODAManageOrderSubmitPage } from "../../../../pages/manageCases/caseProgression/judge/judgeCreateOrder/judgeCreateODASubmitPage";
+import { ApplicationJourneysCheckGatekeeper } from "./application-journeys-check-gatekeeper";
 
 interface CheckApplicationParams {
   page: Page;
@@ -54,8 +51,8 @@ interface JudgeDACaseProgressionJourneyParams {
   howLongWillOrderBeInForce: howLongWillOrderBeInForce;
 }
 
-export class ApplicationJourneysCheckGatekeeperJudgeMOOrder {
-  public static async applicationJourneysCheckGatekeeperJudgeMOOrder({
+export class ApplicationJourneysCheckGatekeeperJudgeCOOrder {
+  public static async applicationJourneysCheckGatekeeperJudgeCOOrder({
     page,
     accessibilityTest,
     yesNoSendToGateKeeper,
@@ -69,36 +66,15 @@ export class ApplicationJourneysCheckGatekeeperJudgeMOOrder {
     howLongWillOrderBeInForce,
     browser,
   }: CheckApplicationParams): Promise<void> {
-    await Helpers.assignTaskToMeAndTriggerNextSteps(
-      page,
-      "Check Application",
-      "Add Case Number",
+    await ApplicationJourneysCheckGatekeeper.applicationJourneysCheckGatekeeper(
+      {
+        page,
+        accessibilityTest,
+        yesNoSendToGateKeeper,
+        ccdRef,
+      },
     );
-    await Fl401AddCaseNumber1Page.fl401AddCaseNumber1Page(
-      page,
-      accessibilityTest,
-    );
-    await Fl401AddCaseNumberSubmitPage.fl401AddCaseNumberSubmitPage(
-      page,
-      accessibilityTest,
-    );
-    await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
-    await Helpers.assignTaskToMeAndTriggerNextSteps(
-      page,
-      "Send to Gatekeeper",
-      "Send to Gatekeeper",
-    );
-    await FL401SendToGateKeeper1Page.fl401SendToGateKeeper1Page({
-      page,
-      accessibilityTest,
-      yesNoSendToGateKeeper,
-    });
-    await FL401SendToGateKeeperSubmitPage.fl401SendToGateKeeperSubmitPage({
-      page,
-      accessibilityTest,
-      yesNoSendToGateKeeper,
-    });
-    await this.JudgeDACaseProgressionJourney({
+    await this.JudgeMOCaseProgressionJourney({
       browser,
       ccdRef,
       accessibilityTest,
@@ -113,7 +89,7 @@ export class ApplicationJourneysCheckGatekeeperJudgeMOOrder {
     await page.waitForTimeout(5000);
   }
 
-  private static async JudgeDACaseProgressionJourney({
+  private static async JudgeMOCaseProgressionJourney({
     browser,
     ccdRef,
     accessibilityTest,
@@ -138,7 +114,7 @@ export class ApplicationJourneysCheckGatekeeperJudgeMOOrder {
       accessibilityTest,
       createOrderFL401Options,
     });
-    await ManageOrders5Page.manageOrders5Page({
+    await CreateOrderManageOrders5Page.manageOrders5Page({
       page,
       accessibilityTest,
       yesNoManageOrders,
@@ -164,7 +140,7 @@ export class ApplicationJourneysCheckGatekeeperJudgeMOOrder {
           accessibilityTest,
           yesNoManageOrders,
         });
-        await JudgeDAManageOrderSubmitPage.judgeDAManageOrderSubmitPage({
+        await judgeCreateODAManageOrderSubmitPage.judgeDAManageOrderSubmitPage({
           page,
           accessibilityTest,
           createOrderFL401Options,
@@ -198,7 +174,7 @@ export class ApplicationJourneysCheckGatekeeperJudgeMOOrder {
           accessibilityTest,
           yesNoManageOrders,
         });
-        await JudgeDAManageOrderSubmitPage.judgeDAManageOrderSubmitPage({
+        await judgeCreateODAManageOrderSubmitPage.judgeDAManageOrderSubmitPage({
           page,
           accessibilityTest,
           createOrderFL401Options,
@@ -230,7 +206,7 @@ export class ApplicationJourneysCheckGatekeeperJudgeMOOrder {
           accessibilityTest,
           yesNoManageOrders,
         });
-        await JudgeDAManageOrderSubmitPage.judgeDAManageOrderSubmitPage({
+        await judgeCreateODAManageOrderSubmitPage.judgeDAManageOrderSubmitPage({
           page,
           accessibilityTest,
           createOrderFL401Options,
@@ -260,7 +236,7 @@ export class ApplicationJourneysCheckGatekeeperJudgeMOOrder {
           accessibilityTest,
           yesNoManageOrders,
         });
-        await JudgeDAManageOrderSubmitPage.judgeDAManageOrderSubmitPage({
+        await judgeCreateODAManageOrderSubmitPage.judgeDAManageOrderSubmitPage({
           page,
           accessibilityTest,
           createOrderFL401Options,
@@ -280,7 +256,7 @@ export class ApplicationJourneysCheckGatekeeperJudgeMOOrder {
           accessibilityTest,
           yesNoManageOrders,
         });
-        await JudgeDAManageOrderSubmitPage.judgeDAManageOrderSubmitPage({
+        await judgeCreateODAManageOrderSubmitPage.judgeDAManageOrderSubmitPage({
           page,
           accessibilityTest,
           createOrderFL401Options,
@@ -306,7 +282,7 @@ export class ApplicationJourneysCheckGatekeeperJudgeMOOrder {
           accessibilityTest,
           yesNoManageOrders,
         });
-        await JudgeDAManageOrderSubmitPage.judgeDAManageOrderSubmitPage({
+        await judgeCreateODAManageOrderSubmitPage.judgeDAManageOrderSubmitPage({
           page,
           accessibilityTest,
           createOrderFL401Options,

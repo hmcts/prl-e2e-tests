@@ -1,11 +1,11 @@
 import { Page } from "@playwright/test";
-import { createOrderFL401Options } from "../../../../../../common/types";
-import { ManageOrders1DAContent } from "../../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders1DAContent";
-import { Selectors } from "../../../../../../common/selectors";
-import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper";
-import { JudgeDASubmitContent } from "../../../../../../fixtures/manageCases/caseProgression/judge/judgeCreateOrder/DACreateOrder/judgeDASubmitContent";
-import { Helpers } from "../../../../../../common/helpers";
-import { CommonStaticText } from "../../../../../../common/commonStaticText";
+import { createOrderFL401Options } from "../../../../../common/types";
+import { ManageOrders1DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders1DAContent";
+import { Selectors } from "../../../../../common/selectors";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { JudgeDASubmitContent } from "../../../../../fixtures/manageCases/caseProgression/judge/judgeCreateOrder/DACreateOrder/judgeDASubmitContent";
+import { Helpers } from "../../../../../common/helpers";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
 
 interface JudgeDACaseProgressionJourneyParams {
   page: Page;
@@ -13,7 +13,7 @@ interface JudgeDACaseProgressionJourneyParams {
   createOrderFL401Options: createOrderFL401Options;
 }
 
-export class JudgeDAManageOrderSubmitPage {
+export class judgeCreateODAManageOrderSubmitPage {
   public static async judgeDAManageOrderSubmitPage({
     page,
     accessibilityTest,

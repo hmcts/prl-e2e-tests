@@ -6,8 +6,8 @@ import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelp
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import {
   CreateOrderFL401Options,
-  ManageOrders5DAContent,
-} from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders5DAContent";
+  CreateOrderManageOrders5Content,
+} from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/createOrderManageOrders5Content";
 import {
   createOrderFL401Options,
   judgeTitles,
@@ -59,7 +59,7 @@ enum childrenIncludedInOrder {
   simonAnderson = "#childOption_5f9a3c81-f6ec-48c6-bd3a-ace5751a6229",
 }
 
-export class ManageOrders5Page {
+export class CreateOrderManageOrders5Page {
   public static async manageOrders5Page({
     page,
     accessibilityTest,
@@ -145,18 +145,18 @@ export class ManageOrders5Page {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${ManageOrders5DAContent.p}")`,
+        `${Selectors.p}:text-is("${CreateOrderManageOrders5Content.p}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.strong}:text-is("${ManageOrders5DAContent.strong}")`,
+        `${Selectors.strong}:text-is("${CreateOrderManageOrders5Content.strong}")`,
         1,
       ),
       Helpers.checkGroup(
         page,
         22,
-        ManageOrders5DAContent,
+        CreateOrderManageOrders5Content,
         "formLabel",
         Selectors.GovukFormLabel,
       ),
@@ -201,11 +201,11 @@ export class ManageOrders5Page {
     }
     await page.fill(
       UniqueSelectors.judgeFullNameInput,
-      ManageOrders5DAContent.judgeName,
+      CreateOrderManageOrders5Content.judgeName,
     );
     await page.fill(
       UniqueSelectors.fullNameJusticeLegalAdvisorInput,
-      ManageOrders5DAContent.testLegalAdvisor,
+      CreateOrderManageOrders5Content.testLegalAdvisor,
     );
     switch (judgeTitles) {
       case "Her Honour Judge":
@@ -252,16 +252,16 @@ export class ManageOrders5Page {
       default:
         throw new Error("Invalid judge title");
     }
-    await page.fill(UniqueSelectors.day, ManageOrders5DAContent.day);
-    await page.fill(UniqueSelectors.month, ManageOrders5DAContent.month);
-    await page.fill(UniqueSelectors.year, ManageOrders5DAContent.year);
+    await page.fill(UniqueSelectors.day, CreateOrderManageOrders5Content.day);
+    await page.fill(UniqueSelectors.month, CreateOrderManageOrders5Content.month);
+    await page.fill(UniqueSelectors.year, CreateOrderManageOrders5Content.year);
     await page.fill(
       UniqueSelectors.addRecitalsOrPreamble,
-      ManageOrders5DAContent.loremIpsum,
+      CreateOrderManageOrders5Content.loremIpsum,
     );
     await page.fill(
       UniqueSelectors.addDirections,
-      ManageOrders5DAContent.loremIpsum,
+      CreateOrderManageOrders5Content.loremIpsum,
     );
     if (yesNoManageOrders) {
       await page.click(UniqueSelectors.isTheOrderByConsent_Yes);
@@ -269,7 +269,7 @@ export class ManageOrders5Page {
       await page.click(UniqueSelectors.isTheOrderAboutChildren_Yes);
       await page.selectOption(
         UniqueSelectors.selectOption,
-        ManageOrders5DAContent.noHearings,
+        CreateOrderManageOrders5Content.noHearings,
       );
       for (const selector of Object.values(childrenIncludedInOrder)) {
         await page.click(selector);
@@ -290,18 +290,18 @@ export class ManageOrders5Page {
       Helpers.checkGroup(
         page,
         2,
-        ManageOrders5DAContent,
+        CreateOrderManageOrders5Content,
         "formLabelHidden",
         Selectors.GovukFormLabel,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${ManageOrders5DAContent.formLabelHiddenJohnDoe}")`,
+        `${Selectors.p}:text-is("${CreateOrderManageOrders5Content.formLabelHiddenJohnDoe}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${ManageOrders5DAContent.formLabelHiddenSimon}")`,
+        `${Selectors.p}:text-is("${CreateOrderManageOrders5Content.formLabelHiddenSimon}")`,
         1,
       ),
     ]);

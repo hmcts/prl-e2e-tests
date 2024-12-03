@@ -11,7 +11,7 @@ import {
 import { CaseDetailsSummaryPage } from "../../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/caseDetailsSummaryPage";
 import { ManageOrders1Page } from "../../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders1Page";
 import { ManageOrders2Page } from "../../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders2Page";
-import { ManageOrders5Page } from "../../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders5Page";
+import { CreateOrderManageOrders5Page } from "../../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/createOrderManageOrders5Page";
 import {
   createOrderManageOrders19Options,
   ManageOrders19Page,
@@ -54,7 +54,7 @@ export class Fl401ManageOrderDA {
       accessibilityTest,
       createOrderFL401Options,
     });
-    await ManageOrders5Page.manageOrders5Page({
+    await CreateOrderManageOrders5Page.manageOrders5Page({
       page,
       accessibilityTest,
       yesNoManageOrders,
