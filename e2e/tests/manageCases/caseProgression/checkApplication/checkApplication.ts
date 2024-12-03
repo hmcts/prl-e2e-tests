@@ -16,8 +16,8 @@ test.describe("Check Application task for DA Citizen case tests.", () => {
   });
 
   test("Complete Check Application without accessibility test. @regression", async ({
-                                                                                      page,
-                                                                                    }): Promise<void> => {
+    page,
+  }): Promise<void> => {
     await CheckApplication.checkApplication({
       page: page,
       accessibilityTest: false,
@@ -27,8 +27,8 @@ test.describe("Check Application task for DA Citizen case tests.", () => {
   });
 
   test("Complete Check Application with accessibility test. @regression", async ({
-                                                                                   page,
-                                                                                 }): Promise<void> => {
+    page,
+  }): Promise<void> => {
     await CheckApplication.checkApplication({
       page: page,
       accessibilityTest: false,
@@ -38,8 +38,8 @@ test.describe("Check Application task for DA Citizen case tests.", () => {
   });
 
   test("Complete Check Application without accessibility test. @regression @accessibility @nightly", async ({
-                                                                                                              page,
-                                                                                                            }): Promise<void> => {
+    page,
+  }): Promise<void> => {
     await CheckApplication.checkApplication({
       page: page,
       accessibilityTest: true,
