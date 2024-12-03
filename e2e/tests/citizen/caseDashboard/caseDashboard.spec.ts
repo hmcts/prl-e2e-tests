@@ -10,7 +10,7 @@ test.describe("Manage citizen cases case dashboard tests.", (): void => {
       Config.citizenFrontendBaseURL,
     );
   });
-  test("Check the case dashboard is visible to the user. @smoke", async ({
+  test("Check the case dashboard is visible to the user. @regression @nightly @smoke", async ({
     page,
   }): Promise<void> => {
     await CitizenCreateInitial.citizenCreateInitial({
