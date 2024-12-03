@@ -140,3 +140,27 @@ export type JudgeOrderAction =
   | "Ask the legal representative to make changes";
 
 export type Language = "English" | "Welsh";
+
+export type createOrderFL401Options =
+  | "power of arrest"
+  | "non-molestation"
+  | "occupation order"
+  | "amend discharge varied order"
+  | "blank order"
+  | "general form of undertaking"
+  | "notice of proceedings";
+
+export type judgeTitles =
+  | "Her Honour Judge"
+  | "His Honour Judge"
+  | "Circuit Judge"
+  | "Deputy Circuit Judge"
+  | "Recorder"
+  | "District Judge"
+  | "Deputy District Judge"
+  | "District Judge Magistrates Court"
+  | "Magistrates"
+  | "Justices' Legal Adviser"
+  | "Justices' Clerk"
+  | "The Honourable Mrs Justice"
+  | "The Honourable Mr Justice";
