@@ -253,7 +253,10 @@ export class CreateOrderManageOrders5Page {
         throw new Error("Invalid judge title");
     }
     await page.fill(UniqueSelectors.day, CreateOrderManageOrders5Content.day);
-    await page.fill(UniqueSelectors.month, CreateOrderManageOrders5Content.month);
+    await page.fill(
+      UniqueSelectors.month,
+      CreateOrderManageOrders5Content.month,
+    );
     await page.fill(UniqueSelectors.year, CreateOrderManageOrders5Content.year);
     await page.fill(
       UniqueSelectors.addRecitalsOrPreamble,

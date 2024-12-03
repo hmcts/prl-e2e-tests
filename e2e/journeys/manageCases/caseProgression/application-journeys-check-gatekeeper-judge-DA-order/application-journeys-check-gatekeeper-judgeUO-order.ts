@@ -1,9 +1,7 @@
 import { Browser, expect, Page } from "@playwright/test";
 import { Helpers } from "../../../../common/helpers";
 import config from "../../../../config";
-import {
-  c100CaseWorkerActions
-} from "../../../../common/types";
+import { c100CaseWorkerActions } from "../../../../common/types";
 import { ManageOrders1Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders1Page";
 import { ApplicationJourneysCheckGatekeeper } from "./application-journeys-check-gatekeeper";
 
