@@ -4,6 +4,10 @@ import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelp
 import { ManageOrders24CAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderCA/manageOrders24CAContent";
 import { uploadOrderFL401Options } from "../../../../../common/types";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { Helpers } from "../../../../../common/helpers";
+import {
+  ManageOrders3DAContent
+} from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders3DAContent";
 
 interface manageOrders3PageOptions {
   page: Page;
@@ -59,7 +63,125 @@ export class ManageOrders3Page {
       `${Selectors.GovukHeadingL}:text-is("${ManageOrders24CAContent.pageTitle}")`,
     );
     await pageTitle.waitFor();
-    await Promise.all([]);
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.h3}:text-is("${ManageOrders3DAContent.h3}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${ManageOrders3DAContent.p}")`,
+        1,
+      ),
+      Helpers.checkGroup(
+        page,
+        23,
+        ManageOrders3DAContent,
+        "formLabel",
+        `${Selectors.GovukFormLabel}`,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${ManageOrders3DAContent.summonsToAppearAtCourt}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${ManageOrders3DAContent.warrantToSecureAttendanceAtCourt}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${ManageOrders3DAContent.orderOnDeterminationOfProceedingsForContemptOfCourt}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${ManageOrders3DAContent.warrantOfCommittal}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${ManageOrders3DAContent.powerOfArrest}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${ManageOrders3DAContent.nonMolestation}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${ManageOrders3DAContent.occupationOrder}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${ManageOrders3DAContent.amendDischargeVariedOrder}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${ManageOrders3DAContent.blankOrderFL404B}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${ManageOrders3DAContent.generalFormOfUndertaking}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${ManageOrders3DAContent.warrantOfArrest}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${ManageOrders3DAContent.remandOrder}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${ManageOrders3DAContent.formForTakingRecognizance}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${ManageOrders3DAContent.formForTakingSurety}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${ManageOrders3DAContent.bailNotice}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${ManageOrders3DAContent.hospitalOrder}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${ManageOrders3DAContent.guardianshipOrder}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${ManageOrders3DAContent.statementOfService}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${ManageOrders3DAContent.blankOrderFL514}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${ManageOrders3DAContent.noticeToLandlordOrMortgageCompany}")`,
+        1,
+      ),
+    ]);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }
