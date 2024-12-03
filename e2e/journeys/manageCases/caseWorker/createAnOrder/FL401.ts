@@ -3,8 +3,8 @@ import { CaseFilterPage } from "../../../../pages/manageCases/caseWorker/createA
 import { TestingSupportDummyAdminCreateNoc2Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/initialJourney/testingSupportDummyAdminCreateNoc2Page";
 import {
   createOrderFL401Options,
-  judgeTitles,
-  solicitorCaseCreateType,
+  judgeTitles, manageOrdersOptions,
+  solicitorCaseCreateType
 } from "../../../../common/types";
 import { TestingSupportDummyAdminCreateNoc3Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/initialJourney/testingSupportDummyAdminCreateNoc3Page";
 import { CreateAnOrderSubmitPage } from "../../../../pages/manageCases/caseWorker/createAnOrder/initialJourney/SubmitPage";
@@ -22,6 +22,7 @@ interface FL401Params {
   createOrderFL401Options: createOrderFL401Options;
   judgeTitles: judgeTitles;
   createOrderManageOrders19Options: createOrderManageOrders19Options;
+  manageOrdersOptions: manageOrdersOptions;
 }
 
 export class FL401CreateAnOrder {
@@ -34,6 +35,7 @@ export class FL401CreateAnOrder {
     judgeTitles,
     createOrderFL401Options,
     createOrderManageOrders19Options,
+                                           manageOrdersOptions
   }: FL401Params): Promise<void> {
     await CaseListPage.navigateToCreateCasePage(page);
     await CaseFilterPage.caseFilterPage({ page, accessibilityTest });
@@ -56,6 +58,7 @@ export class FL401CreateAnOrder {
       createOrderFL401Options,
       judgeTitles,
       createOrderManageOrders19Options,
+      manageOrdersOptions
     });
   }
 }

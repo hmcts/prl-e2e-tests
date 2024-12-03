@@ -1,9 +1,14 @@
 import { Browser, expect, Page } from "@playwright/test";
 import { Helpers } from "../../../../common/helpers";
 import config from "../../../../config";
-import { c100CaseWorkerActions } from "../../../../common/types";
+import {
+  c100CaseWorkerActions,
+  manageOrdersOptions,
+  uploadOrderFL401Options,
+} from "../../../../common/types";
 import { ManageOrders1Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders1Page";
 import { ApplicationJourneysCheckGatekeeper } from "./application-journeys-check-gatekeeper";
+import { ManageOrders3Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders3Page";
 
 interface CheckApplicationParams {
   page: Page;
@@ -11,6 +16,9 @@ interface CheckApplicationParams {
   yesNoSendToGateKeeper: boolean;
   ccdRef: string;
   c100CaseWorkerActions: c100CaseWorkerActions;
+  yesNoManageOrders: boolean;
+  uploadOrderFL401Options: uploadOrderFL401Options;
+  manageOrdersOptions: manageOrdersOptions;
   browser: Browser;
 }
 
@@ -19,6 +27,9 @@ interface JudgeUOCaseProgressionJourneyParams {
   ccdRef: string;
   accessibilityTest: boolean;
   c100CaseWorkerActions: c100CaseWorkerActions;
+  yesNoManageOrders: boolean;
+  uploadOrderFL401Options: uploadOrderFL401Options;
+  manageOrdersOptions: manageOrdersOptions;
 }
 
 export class ApplicationJourneysCheckGatekeeperJudgeUOOrder {
@@ -28,6 +39,9 @@ export class ApplicationJourneysCheckGatekeeperJudgeUOOrder {
     yesNoSendToGateKeeper,
     ccdRef,
     c100CaseWorkerActions,
+    yesNoManageOrders,
+    uploadOrderFL401Options,
+    manageOrdersOptions,
     browser,
   }: CheckApplicationParams): Promise<void> {
     await ApplicationJourneysCheckGatekeeper.applicationJourneysCheckGatekeeper(
@@ -43,6 +57,9 @@ export class ApplicationJourneysCheckGatekeeperJudgeUOOrder {
       ccdRef,
       accessibilityTest,
       c100CaseWorkerActions,
+      yesNoManageOrders,
+      uploadOrderFL401Options,
+      manageOrdersOptions,
     });
     await page.waitForTimeout(5000);
   }
@@ -52,6 +69,9 @@ export class ApplicationJourneysCheckGatekeeperJudgeUOOrder {
     ccdRef,
     accessibilityTest,
     c100CaseWorkerActions,
+    yesNoManageOrders,
+    uploadOrderFL401Options,
+    manageOrdersOptions,
   }: JudgeUOCaseProgressionJourneyParams): Promise<void> {
     const page: Page = await Helpers.openNewBrowserWindow(browser, "judge");
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
@@ -60,6 +80,13 @@ export class ApplicationJourneysCheckGatekeeperJudgeUOOrder {
     await ManageOrders1Page.manageOrders1Page({
       page,
       accessibilityTest,
+      manageOrdersOptions,
+    });
+    await ManageOrders3Page.manageOrders3Page({
+      page,
+      accessibilityTest,
+      yesNoManageOrders,
+      uploadOrderFL401Options,
     });
   }
 

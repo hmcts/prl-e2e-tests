@@ -5,6 +5,7 @@ import {
   c100CaseWorkerActions,
   createOrderFL401Options,
   judgeTitles,
+  manageOrdersOptions,
 } from "../../../../common/types";
 import { ManageOrders1Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders1Page";
 import { ManageOrders2Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders2Page";
@@ -35,6 +36,7 @@ interface CheckApplicationParams {
   withOrWithoutNotice: boolean;
   createOrderManageOrders19Options: createOrderManageOrders19Options;
   howLongWillOrderBeInForce: howLongWillOrderBeInForce;
+  manageOrdersOptions: manageOrdersOptions;
   browser: Browser;
 }
 
@@ -49,6 +51,7 @@ interface JudgeDACaseProgressionJourneyParams {
   withOrWithoutNotice: boolean;
   createOrderManageOrders19Options: createOrderManageOrders19Options;
   howLongWillOrderBeInForce: howLongWillOrderBeInForce;
+  manageOrdersOptions: manageOrdersOptions;
 }
 
 export class ApplicationJourneysCheckGatekeeperJudgeCOOrder {
@@ -64,6 +67,7 @@ export class ApplicationJourneysCheckGatekeeperJudgeCOOrder {
     withOrWithoutNotice,
     createOrderManageOrders19Options,
     howLongWillOrderBeInForce,
+    manageOrdersOptions,
     browser,
   }: CheckApplicationParams): Promise<void> {
     await ApplicationJourneysCheckGatekeeper.applicationJourneysCheckGatekeeper(
@@ -85,6 +89,7 @@ export class ApplicationJourneysCheckGatekeeperJudgeCOOrder {
       withOrWithoutNotice,
       createOrderManageOrders19Options,
       howLongWillOrderBeInForce,
+      manageOrdersOptions,
     });
     await page.waitForTimeout(5000);
   }
@@ -100,6 +105,7 @@ export class ApplicationJourneysCheckGatekeeperJudgeCOOrder {
     withOrWithoutNotice,
     createOrderManageOrders19Options,
     howLongWillOrderBeInForce,
+    manageOrdersOptions,
   }: JudgeDACaseProgressionJourneyParams): Promise<void> {
     const page: Page = await Helpers.openNewBrowserWindow(browser, "judge");
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
@@ -108,6 +114,7 @@ export class ApplicationJourneysCheckGatekeeperJudgeCOOrder {
     await ManageOrders1Page.manageOrders1Page({
       page,
       accessibilityTest,
+      manageOrdersOptions,
     });
     await ManageOrders2Page.manageOrders2Page({
       page,

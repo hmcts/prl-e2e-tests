@@ -26,6 +26,9 @@ test.describe("Check Application task for DA Citizen case tests.", () => {
         yesNoSendToGateKeeper: true,
         ccdRef: ccdRef,
         c100CaseWorkerActions: "Manage orders",
+        manageOrdersOptions: "upload order",
+        yesNoManageOrders: false,
+        uploadOrderFL401Options: "power of arrest",
         browser: browser,
       },
     );
@@ -45,6 +48,9 @@ test.describe("Check Application task for DA Citizen case tests.", () => {
         yesNoSendToGateKeeper: true,
         ccdRef: ccdRef,
         c100CaseWorkerActions: "Manage orders",
+        manageOrdersOptions: "upload order",
+        yesNoManageOrders: false,
+        uploadOrderFL401Options: "form for taking surety",
         browser: browser,
       },
     );
