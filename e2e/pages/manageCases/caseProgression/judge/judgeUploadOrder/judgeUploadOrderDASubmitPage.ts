@@ -56,6 +56,11 @@ export class judgeCreateUOManageOrderSubmitPage {
         `${Selectors.p}:text-is("${JudgeUploadOrderDASubmitContent.p}")`,
         1,
       ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.a}:text-is("${JudgeUploadOrderDASubmitContent.a}")`,
+        1,
+      ),
       Helpers.checkGroup(
         page,
         11,
