@@ -148,6 +148,7 @@ export enum CaJourneyExistingMIAMReviewContent {
   dt_gender = "Gender", // 4 occurrences
   dt_placeOfBirth = "Place of birth", // 2 occurrences
   dt_relationshipToExampletextExampletext = "Relationship to exampleText exampleText", // 3 occurrences
+  dt_livingInRefuge = "Living in refuge",
   dt_addressDetails = "Address details", // 3 occurrences
   dt_haveTheyChangedTheirName = "Have they changed their name?", // 2 occurrences
   dt_whatTypeOfBehaviourHaveTheChildrenExperiencedOrAreAtRiskOfExperiencing = "What type of behaviour have the children experienced or are at risk of experiencing?", // 2 occurrences

@@ -102,6 +102,7 @@ export enum CaJourneyMIAMHearingUrgencyReviewContent {
   dt_75 = "Enter your help with fees reference number",
   dt_whatTypeOfBehaviourHaveTheChildrenExperiencedOrAreAtRiskOfExperiencing = "What type of behaviour have the children experienced or are at risk of experiencing?", // 2 occurrences
   dt_relationshipToExampletextExampletext = "Relationship to exampleText exampleText", // 2 occurrences
+  dt_livingInRefuge = "Living in refuge",
   dt_addressDetails = "Address details", // 2 occurrences
   dt_fullName = "Full name", // 3 occurrences
   dt_dateOfBirth = "Date of birth", // 2 occurrences
