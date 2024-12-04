@@ -9,19 +9,19 @@ import { yesNoDontKnow } from "../../../../common/types";
 interface FL401ReviewDocumentsSubmitPageOptions {
   page: Page;
   accessibilityTest: boolean;
-  yesNoNotSureReviewDocs: yesNoDontKnow;
+  yesNoNotSureRestrictDocs: yesNoDontKnow;
 }
 
 export class FL401ReviewDocumentsSubmitPage {
   public static async fl401ReviewDocumentsSubmitPage({
     page,
     accessibilityTest,
-    yesNoNotSureReviewDocs,
+    yesNoNotSureRestrictDocs,
   }: FL401ReviewDocumentsSubmitPageOptions): Promise<void> {
     await this.checkPageLoads({
       page,
       accessibilityTest,
-      yesNoNotSureReviewDocs,
+      yesNoNotSureRestrictDocs: yesNoNotSureRestrictDocs,
     });
     await this.fillInFields({ page });
   }
@@ -29,7 +29,7 @@ export class FL401ReviewDocumentsSubmitPage {
   private static async checkPageLoads({
     page,
     accessibilityTest,
-    yesNoNotSureReviewDocs,
+    yesNoNotSureRestrictDocs,
   }: Partial<FL401ReviewDocumentsSubmitPageOptions>) {
     if (!page) {
       throw new Error("No page found");
@@ -41,11 +41,11 @@ export class FL401ReviewDocumentsSubmitPage {
     };
 
     let yesNoNotSureSelector: string;
-    if (yesNoNotSureReviewDocs) {
-      yesNoNotSureSelector = optionsMap[yesNoNotSureReviewDocs];
+    if (yesNoNotSureRestrictDocs) {
+      yesNoNotSureSelector = optionsMap[yesNoNotSureRestrictDocs];
     } else {
       throw new Error(
-        `Unknown value for yesNoNotSureReviewDocs: ${yesNoNotSureReviewDocs}`,
+        `Unknown value for yesNoNotSureRestrictDocs: ${yesNoNotSureRestrictDocs}`,
       );
     }
     const pageTitle = page.locator(

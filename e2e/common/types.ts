@@ -70,7 +70,7 @@ export type c100CaseWorkerActions = "Manage orders";
 export type fl401CaseWorkerActions =
   | "Welsh language requirements"
   | "Send and reply to messages"
-  | "Service of Documents";
+  | "Service of documents";
 
 export type fl401SubmittedSolicitorEvents =
   | "Draft an order"

@@ -5,9 +5,7 @@ import { CommonStaticText } from "../../../../common/commonStaticText";
 import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
 import { ServiceOfDocuments2Content } from "../../../../fixtures/manageCases/caseProgression/serviceOfDocuments/serviceOfDocuments2Content";
 import { yesNoNA } from "../../../../common/types";
-import {
-  ServiceOfDocuments1Content
-} from "../../../../fixtures/manageCases/caseProgression/serviceOfDocuments/serviceOfDocuments1Content";
+import { ServiceOfDocuments1Content } from "../../../../fixtures/manageCases/caseProgression/serviceOfDocuments/serviceOfDocuments1Content";
 
 interface serviceOfDocuments2Options {
   page: Page;
@@ -19,10 +17,10 @@ enum UniqueSelectors {
   personallyServedSelectorYes = "#sodServeToRespondentOptions-Yes",
   personallyServedSelectorNo = "#sodServeToRespondentOptions-No",
   personallyServedSelectorNA = "#sodServeToRespondentOptions-NotApplicable",
-  responibleForServingSelector = "#sodCitizenServingRespondentsOptions-unrepresentedApplicant",
+  responsibleForServingSelector = "#sodCitizenServingRespondentsOptions-unrepresentedApplicant",
   additionalRecipientsSelector = "#sodAdditionalRecipients-additionalRecipients",
-  additionalRecipentPostSelector = "#sodAdditionalRecipientsList_0_serveByPostOrEmail-post",
-  additionalRecipentEmailSelector = "#sodAdditionalRecipientsList_0_serveByPostOrEmail-post",
+  additionalRecipientPostSelector = "#sodAdditionalRecipientsList_0_serveByPostOrEmail-post",
+  additionalRecipientEmailSelector = "#sodAdditionalRecipientsList_0_serveByPostOrEmail-post",
   additionalRecipientPost_InputNameSelector = "#sodAdditionalRecipientsList_0_postalInformation_postalName",
   additionalRecipientPost_InputPostcodeSelector = "#sodAdditionalRecipientsList_0_postalInformation_postalAddress_postalAddress_postcodeInput",
   additionalRecipientEmail_InputNameSelector = "#sodAdditionalRecipientsList_0_emailInformation_emailName",
@@ -38,7 +36,7 @@ export class ServiceOfDocuments2Page {
     servedByPost,
   }: serviceOfDocuments2Options): Promise<void> {
     await this.checkPageLoads({ page, accessibilityTest });
-    await this.fillInFields({ page, personallyServed });
+    await this.fillInFields({ page, personallyServed, servedByPost });
     await this.continue(page);
   }
 
@@ -56,7 +54,7 @@ export class ServiceOfDocuments2Page {
     await Promise.all([
       Helpers.checkGroup(
         page,
-        3,
+        6,
         ServiceOfDocuments2Content,
         `formLabel`,
         `${Selectors.GovukFormLabel}`,
@@ -83,6 +81,7 @@ export class ServiceOfDocuments2Page {
     switch (personallyServed) {
       case "Yes":
         await page.click(UniqueSelectors.personallyServedSelectorYes);
+        await page.click(UniqueSelectors.responsibleForServingSelector);
         break;
       case "No":
         Helpers.checkVisibleAndPresent(
@@ -92,8 +91,8 @@ export class ServiceOfDocuments2Page {
         );
         await page.click(UniqueSelectors.personallyServedSelectorNo);
         // Match labels containing "(Applicant)" and "(Respondent)"
-        await page.locator('label:has-text("(Applicant)")').check();
-        await page.locator('label:has-text("(Respondent)")').check();
+        await page.locator('label', { hasText: "(Applicant)" }).check();
+        await page.locator('label', { hasText: "(Respondent)" }).check();
         break;
       case "Not applicable":
         await page.click(UniqueSelectors.personallyServedSelectorNA);
@@ -101,12 +100,13 @@ export class ServiceOfDocuments2Page {
     }
     //add additional recipients and check hidden fields
     await page.click(UniqueSelectors.additionalRecipientsSelector);
-    await Promise.all([
-      Helpers.checkVisibleAndPresent(
+    await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.headingH2}:text-is("${ServiceOfDocuments2Content.hiddenH2}")`,
         1,
-      ),
+      );
+    await page.getByRole('button', { name: 'Add new' }).click();
+    await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.headingH3}:text-is("${ServiceOfDocuments2Content.hiddenH2}")`,
@@ -114,14 +114,14 @@ export class ServiceOfDocuments2Page {
       ),
       Helpers.checkGroup(
         page,
-        3,
+        2,
         ServiceOfDocuments2Content,
         `hiddenFormLabel2`,
         `${Selectors.GovukFormLabel}`,
       ),
-    ])
-    if (servedByPost){
-      await page.click(UniqueSelectors.additionalRecipentPostSelector);
+    ]);
+    if (servedByPost) {
+      await page.click(UniqueSelectors.additionalRecipientPostSelector);
       await Promise.all([
         Helpers.checkGroup(
           page,
@@ -135,14 +135,21 @@ export class ServiceOfDocuments2Page {
           `${Selectors.a}:text-is("${ServiceOfDocuments2Content.a}")`,
           1,
         ),
-      ])
-      await page.fill(UniqueSelectors.additionalRecipientPost_InputNameSelector, ServiceOfDocuments2Content.inputAdditionalRecipientName);
-      await page.fill(UniqueSelectors.additionalRecipientPost_InputPostcodeSelector, ServiceOfDocuments2Content.inputPostcode);
-      await page.getByRole('button', { name: 'Find address' }).click();
-      await page.locator(UniqueSelectors.additionalRecipientPost_SelectAddress).selectOption('46: Object');
-    }
-    else{
-      await page.click(UniqueSelectors.additionalRecipentEmailSelector);
+      ]);
+      await page.fill(
+        UniqueSelectors.additionalRecipientPost_InputNameSelector,
+        ServiceOfDocuments2Content.inputAdditionalRecipientName,
+      );
+      await page.fill(
+        UniqueSelectors.additionalRecipientPost_InputPostcodeSelector,
+        ServiceOfDocuments2Content.inputPostcode,
+      );
+      await page.getByRole("button", { name: "Find address" }).click();
+      await page
+        .locator(UniqueSelectors.additionalRecipientPost_SelectAddress)
+        .selectOption("46: Object");
+    } else {
+      await page.click(UniqueSelectors.additionalRecipientEmailSelector);
       await Promise.all([
         Helpers.checkVisibleAndPresent(
           page,
@@ -154,9 +161,15 @@ export class ServiceOfDocuments2Page {
           `${Selectors.GovukFormLabel}:text-is("${ServiceOfDocuments2Content.hiddenFormLabel41}")`,
           1,
         ),
-      ])
-      await page.fill(UniqueSelectors.additionalRecipientEmail_InputNameSelector, ServiceOfDocuments2Content.inputAdditionalRecipientName);
-      await page.fill(UniqueSelectors.additionalRecipientEmail_InputEmailSelector, ServiceOfDocuments2Content.inputEmail);
+      ]);
+      await page.fill(
+        UniqueSelectors.additionalRecipientEmail_InputNameSelector,
+        ServiceOfDocuments2Content.inputAdditionalRecipientName,
+      );
+      await page.fill(
+        UniqueSelectors.additionalRecipientEmail_InputEmailSelector,
+        ServiceOfDocuments2Content.inputEmail,
+      );
     }
   }
   private static async continue(page: Page): Promise<void> {

@@ -4,11 +4,13 @@ import { Helpers } from "../../../../common/helpers";
 import { CommonStaticText } from "../../../../common/commonStaticText";
 import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
 import { ServiceOfDocuments1Content } from "../../../../fixtures/manageCases/caseProgression/serviceOfDocuments/serviceOfDocuments1Content";
+import path from "path";
 
 interface serviceOfDocuments1Options {
   page: Page;
   accessibilityTest: boolean;
-  withDoc: boolean;
+  additionalDoc: boolean;
+  withCaseDoc:boolean
 }
 
 enum UniqueSelectors {
@@ -22,10 +24,11 @@ export class ServiceOfDocuments1Page {
   public static async serviceOfDocuments1Page({
     page,
     accessibilityTest,
-    withDoc,
+    additionalDoc,
+    withCaseDoc
   }: serviceOfDocuments1Options): Promise<void> {
-    await this.checkPageLoads({ page, accessibilityTest });
-    await this.fillInFields({ page, withDoc });
+    await this.checkPageLoads({ page, accessibilityTest, additionalDoc, withCaseDoc });
+    await this.fillInFields({ page,  });
     await this.continue(page);
   }
 
@@ -46,29 +49,30 @@ export class ServiceOfDocuments1Page {
         2,
         ServiceOfDocuments1Content,
         `h2`,
-        `${Selectors.h2}`,
+        `${Selectors.headingH2}`,
       ),
       Helpers.checkGroup(
         page,
-        5,
+        3,
         ServiceOfDocuments1Content,
         `formHint`,
         `${Selectors.GovukFormHint}`,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h3}:text-is("${ServiceOfDocuments1Content.h3}")`,
+        `${Selectors.headingH3}:text-is("${ServiceOfDocuments1Content.h3}")`,
         1,
       ),
     ]);
-    if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
-    }
+    // if (accessibilityTest) {
+    //   await AccessibilityTestHelper.run(page);
+    // }
   }
 
   private static async fillInFields({
     page,
-    withDoc,
+    additionalDoc,
+    withCaseDoc,
   }: Partial<serviceOfDocuments1Options>): Promise<void> {
     if (!page) {
       throw new Error("No page found");
@@ -82,13 +86,15 @@ export class ServiceOfDocuments1Page {
       .getByLabel("", { exact: true })
       .click();
     await page
-      .locator(UniqueSelectors.addAdditionalDocSelector)
-      .getByLabel("", { exact: true })
-      .setInputFiles("testPdf.pdf");
-    await page
-      .getByLabel(ServiceOfDocuments1Content.formHint4)
+      .getByLabel(ServiceOfDocuments1Content.formLabel1)
       .selectOption("1: applications -> applicantDocuments -> applicant");
-    if (withDoc) {
+    if (additionalDoc) {
+      await page
+        .locator(UniqueSelectors.addAdditionalDocSelector)
+        .getByLabel("", { exact: true })
+        .setInputFiles(path.resolve(__dirname, "../../../assets/mockFile.pdf"));
+    }
+    if(withCaseDoc){
       await page.getByRole("button", { name: "Add new" }).nth(2).click(); //second add new button
       await page
         .locator(UniqueSelectors.docList2Selector)

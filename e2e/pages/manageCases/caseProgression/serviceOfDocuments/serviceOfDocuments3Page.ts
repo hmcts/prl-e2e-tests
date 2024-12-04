@@ -12,7 +12,7 @@ interface serviceOfDocuments3Options {
 }
 enum UniqueSelectors {
   managerCheckDocSelector = "#sodDocumentsCheckOptions-managerCheck",
-  noCheckDocSelector = "#sodDocumentsCheckOptions-managerCheck"
+  noCheckDocSelector = "#sodDocumentsCheckOptions-managerCheck",
 }
 
 export class ServiceOfDocuments3Page {
@@ -41,7 +41,7 @@ export class ServiceOfDocuments3Page {
       Helpers.checkGroup(
         page,
         3,
-        ServiceOfDocuments3Content.,
+        ServiceOfDocuments3Content,
         `formLabel`,
         `${Selectors.GovukFormLabel}`,
       ),
@@ -58,10 +58,9 @@ export class ServiceOfDocuments3Page {
     if (!page) {
       throw new Error("No page found");
     }
-    if (checkDocuments){
+    if (checkDocuments) {
       await page.click(UniqueSelectors.managerCheckDocSelector);
-    }
-    else{
+    } else {
       await page.click(UniqueSelectors.noCheckDocSelector);
     }
   }
