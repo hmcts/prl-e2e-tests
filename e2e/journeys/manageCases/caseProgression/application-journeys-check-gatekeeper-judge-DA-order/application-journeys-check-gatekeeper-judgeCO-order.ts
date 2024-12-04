@@ -307,7 +307,9 @@ export class ApplicationJourneysCheckGatekeeperJudgeCOOrder {
       .poll(
         async () => {
           const visible = await page.locator(selectOptionLocator).isVisible();
-          const isTextPresent = await page.locator(selectOptionLocator).innerText();
+          const isTextPresent = await page
+            .locator(selectOptionLocator)
+            .innerText();
           const isDesiredTextPresent = isTextPresent.includes(desiredText);
           console.log(isDesiredTextPresent);
           if (!visible || !isDesiredTextPresent) {
