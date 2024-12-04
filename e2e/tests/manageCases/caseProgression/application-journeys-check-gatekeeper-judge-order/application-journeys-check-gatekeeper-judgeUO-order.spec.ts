@@ -50,7 +50,7 @@ test.describe("Check Application task for DA Citizen case tests.", () => {
         c100CaseWorkerActions: "Manage orders",
         manageOrdersOptions: "upload order",
         yesNoManageOrders: false,
-        uploadOrderFL401Options: "form for taking surety",
+        uploadOrderFL401Options: "bail notice",
         browser: browser,
       },
     );
