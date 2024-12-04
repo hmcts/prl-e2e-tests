@@ -112,6 +112,7 @@ export class ApplicationJourneysCheckGatekeeperJudgeUOOrder {
         async () => {
           const visible = await page.locator(selectOptionLocator).isVisible();
           const isTextPresent = selectOptionLocator.includes(desiredText);
+          console.log(isTextPresent);
           if (!visible && !isTextPresent) {
             await page.reload();
           }
