@@ -307,11 +307,13 @@ export class ApplicationJourneysCheckGatekeeperJudgeCOOrder {
       .poll(
         async () => {
           const visible = await page.locator(selectOptionLocator).isVisible();
-          const isTextPresent = selectOptionLocator.includes(desiredText);
-          if (!visible && !isTextPresent) {
+          const isTextPresent = await page.locator(selectOptionLocator).innerText();
+          const isDesiredTextPresent = isTextPresent.includes(desiredText);
+          console.log(isDesiredTextPresent);
+          if (!visible || !isDesiredTextPresent) {
             await page.reload();
           }
-          return visible;
+          return visible && isDesiredTextPresent;
         },
         {
           // Allow 10s delay before retrying
