@@ -6,6 +6,9 @@ import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelp
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { ManageOrders3DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders3DAContent";
+import {
+  JudgeUploadOrderDASubmitContent
+} from "../../../../../fixtures/manageCases/caseProgression/judge/judgeUploadOrder/judgeUploadOrderDASubmitContent";
 
 interface JudgeDACaseProgressionJourneyParams {
   page: Page;
@@ -39,6 +42,30 @@ export class judgeCreateUOManageOrderSubmitPage {
       `${Selectors.h1}:text-is("${ManageOrders1DAContent.pageTitle}")`,
     );
     await pageTitle.waitFor();
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.h2}:text-is("${JudgeUploadOrderDASubmitContent.h2}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.h3}:text-is("${JudgeUploadOrderDASubmitContent.h3}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${JudgeUploadOrderDASubmitContent.p}")`,
+        1,
+      ),
+      Helpers.checkGroup(
+        page,
+        11,
+        JudgeUploadOrderDASubmitContent,
+        "text16",
+        Selectors.GovukText16,
+      ),
+    ]);
     switch (uploadOrderFL401Options) {
       case "non-molestation":
         await Helpers.checkVisibleAndPresent(

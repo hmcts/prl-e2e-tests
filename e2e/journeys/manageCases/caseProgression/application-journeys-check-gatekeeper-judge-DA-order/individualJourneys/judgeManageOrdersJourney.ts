@@ -19,13 +19,13 @@ import { CreateOrderManageOrders5Page } from "../../../../../pages/manageCases/c
 import { PowerOfArrestManageOrders12Page } from "../../../../../pages/manageCases/caseProgression/judge/individualManageOrders12/powerOfArrestManageOrders12Page";
 import { ManageOrders20Page } from "../../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders20Page";
 import { ManageOrders30Page } from "../../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders30Page";
-import { judgeCreateODAManageOrderSubmitPage } from "../../../../../pages/manageCases/caseProgression/judge/judgeCreateOrder/judgeUploadCreateOrderDASubmitPage";
+import { judgeCreateODAManageOrderSubmitPage } from "../../../../../pages/manageCases/caseProgression/judge/judgeCreateOrder/judgeCreateOrderDASubmitPage";
 import { OccupationOrderManageOrders12Page } from "../../../../../pages/manageCases/caseProgression/judge/individualManageOrders12/occupationOrderManageOrders12Page";
 import { AmendDischargeVariedManageOrders12Page } from "../../../../../pages/manageCases/caseProgression/judge/individualManageOrders12/amendDischargeVariedManageOrders12Page";
 import { BlankOrderManageOrders12Page } from "../../../../../pages/manageCases/caseProgression/judge/individualManageOrders12/blankOrderManageOrders12Page";
 import { ManageOrders3Page } from "../../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders3Page";
 import { UploadOrderManageOrders5Page } from "../../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/uploadOrderManageOrders5Page";
-import { judgeCreateUOManageOrderSubmitPage } from "../../../../../pages/manageCases/caseProgression/judge/judgeUploadOrder/judgeUploadUploadOrderDASubmitPage";
+import { judgeCreateUOManageOrderSubmitPage } from "../../../../../pages/manageCases/caseProgression/judge/judgeUploadOrder/judgeUploadOrderDASubmitPage";
 
 interface JudgeDACaseProgressionJourneyParams {
   browser: Browser;

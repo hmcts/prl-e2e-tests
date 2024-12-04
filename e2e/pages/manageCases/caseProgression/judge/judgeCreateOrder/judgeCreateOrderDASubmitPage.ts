@@ -3,7 +3,7 @@ import { createOrderFL401Options } from "../../../../../common/types";
 import { ManageOrders1DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders1DAContent";
 import { Selectors } from "../../../../../common/selectors";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { JudgeDASubmitContent } from "../../../../../fixtures/manageCases/caseProgression/judge/judgeCreateOrder/DACreateOrder/judgeDASubmitContent";
+import { JudgeCreateOrderDASubmitContent } from "../../../../../fixtures/manageCases/caseProgression/judge/judgeCreateOrder/judgeCreateOrderDASubmitContent";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 
@@ -40,18 +40,18 @@ export class judgeCreateODAManageOrderSubmitPage {
     );
     await pageTitle.waitFor();
     await Promise.all([
-      Helpers.checkGroup(page, 3, JudgeDASubmitContent, "h2", Selectors.h2),
-      Helpers.checkGroup(page, 2, JudgeDASubmitContent, "p", Selectors.p),
+      Helpers.checkGroup(page, 3, JudgeCreateOrderDASubmitContent, "h2", Selectors.h2),
+      Helpers.checkGroup(page, 2, JudgeCreateOrderDASubmitContent, "p", Selectors.p),
       Helpers.checkGroup(
         page,
         15,
-        JudgeDASubmitContent,
+        JudgeCreateOrderDASubmitContent,
         "text16",
         Selectors.GovukText16,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.strong}:text-is("${JudgeDASubmitContent.strong}")`,
+        `${Selectors.strong}:text-is("${JudgeCreateOrderDASubmitContent.strong}")`,
         1,
       ),
     ]);
@@ -61,18 +61,18 @@ export class judgeCreateODAManageOrderSubmitPage {
           Helpers.checkGroup(
             page,
             5,
-            JudgeDASubmitContent,
+            JudgeCreateOrderDASubmitContent,
             "text16A",
             Selectors.GovukText16,
           ),
           Helpers.checkVisibleAndPresent(
             page,
-            `${Selectors.Span}:text-is("${JudgeDASubmitContent.spanPowerOfArrest}")`,
+            `${Selectors.Span}:text-is("${JudgeCreateOrderDASubmitContent.spanPowerOfArrest}")`,
             4,
           ),
           Helpers.checkVisibleAndPresent(
             page,
-            `${Selectors.a}:text-is("${JudgeDASubmitContent.powerOfArrestA}")`,
+            `${Selectors.a}:text-is("${JudgeCreateOrderDASubmitContent.powerOfArrestA}")`,
             1,
           ),
           Helpers.checkVisibleAndPresent(
@@ -82,7 +82,7 @@ export class judgeCreateODAManageOrderSubmitPage {
           ),
           Helpers.checkVisibleAndPresent(
             page,
-            `${Selectors.Span}:text-is("${JudgeDASubmitContent.text16LoremIpsum}")`,
+            `${Selectors.Span}:text-is("${JudgeCreateOrderDASubmitContent.text16LoremIpsum}")`,
             3,
           ),
         ]);
@@ -92,18 +92,18 @@ export class judgeCreateODAManageOrderSubmitPage {
           Helpers.checkGroup(
             page,
             11,
-            JudgeDASubmitContent,
+            JudgeCreateOrderDASubmitContent,
             "text16B",
             Selectors.GovukText16,
           ),
           Helpers.checkVisibleAndPresent(
             page,
-            `${Selectors.Span}:text-is("${JudgeDASubmitContent.spanOccupationOrder}")`,
+            `${Selectors.Span}:text-is("${JudgeCreateOrderDASubmitContent.spanOccupationOrder}")`,
             1,
           ),
           Helpers.checkVisibleAndPresent(
             page,
-            `${Selectors.a}:text-is("${JudgeDASubmitContent.occupationOrderA}")`,
+            `${Selectors.a}:text-is("${JudgeCreateOrderDASubmitContent.occupationOrderA}")`,
             1,
           ),
           Helpers.checkVisibleAndPresent(
@@ -113,7 +113,7 @@ export class judgeCreateODAManageOrderSubmitPage {
           ),
           Helpers.checkVisibleAndPresent(
             page,
-            `${Selectors.Span}:text-is("${JudgeDASubmitContent.text16LoremIpsum}")`,
+            `${Selectors.Span}:text-is("${JudgeCreateOrderDASubmitContent.text16LoremIpsum}")`,
             2,
           ),
         ]);
