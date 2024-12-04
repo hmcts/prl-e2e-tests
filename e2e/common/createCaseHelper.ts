@@ -1,9 +1,9 @@
 import { APIRequestContext, expect, request } from "@playwright/test";
-import fs, { existsSync } from "fs";
+import fs from "fs";
 import path from "path";
-import { getAccessToken } from "./getAccessTokenHelper";
 import withNoticejsonData from "../caseData/citizenDA/courtNavDaCitizenCase_WithNotice.json";
 import withoutNoticejsonData from "../caseData/citizenDA/courtNavDaCitizenCase_WithoutNotice.json";
+import { getAccessToken } from "./getAccessTokenHelper";
 /**
  * Function to create a DA Citizen CourtNav case and optionally add a document.
  * @param {boolean} withDoc Whether to add a document after case creation
@@ -47,7 +47,7 @@ async function createDaCitizenCourtNavCase(
       );
     }
     const ccd_reference = responseBody.ccd_reference as string;
-    if (existsSync(".env")) {
+    if (process.env.PWDEBUG) {
       console.log("CCD Reference:", ccd_reference);
     }
     if (withDoc) {
