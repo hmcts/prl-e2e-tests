@@ -115,7 +115,6 @@ export class ApplicationJourneysCheckGatekeeperJudgeUOOrder {
             .locator(selectOptionLocator)
             .innerText();
           const isDesiredTextPresent = isTextPresent.includes(desiredText);
-          console.log(isDesiredTextPresent);
           if (!visible || !isDesiredTextPresent) {
             await page.reload();
           }
