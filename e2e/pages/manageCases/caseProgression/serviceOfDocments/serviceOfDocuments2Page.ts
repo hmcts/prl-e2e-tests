@@ -91,7 +91,7 @@ export class ServiceOfDocuments2Page {
           1,
         );
         await page.click(UniqueSelectors.personallyServedSelectorNo);
-        // Match elements containing "(Applicant)" and "(Respondent)"
+        // Match labels containing "(Applicant)" and "(Respondent)"
         await page.locator('label:has-text("(Applicant)")').check();
         await page.locator('label:has-text("(Respondent)")').check();
         break;
