@@ -77,7 +77,7 @@ export class ApplicationJourneysCheckGatekeeperJudgeUOOrder {
   }: JudgeUOCaseProgressionJourneyParams): Promise<void> {
     const page: Page = await Helpers.openNewBrowserWindow(browser, "judge");
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
-    await Helpers.waitForTask(page, "Directions on Issue")
+    await Helpers.waitForTask(page, "Directions on Issue");
     await Helpers.chooseEventFromDropdown(page, c100CaseWorkerActions);
     await ManageOrders1Page.manageOrders1Page({
       page,
