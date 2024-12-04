@@ -19,12 +19,15 @@ import { CreateOrderManageOrders5Page } from "../../../../../pages/manageCases/c
 import { PowerOfArrestManageOrders12Page } from "../../../../../pages/manageCases/caseProgression/judge/individualManageOrders12/powerOfArrestManageOrders12Page";
 import { ManageOrders20Page } from "../../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders20Page";
 import { ManageOrders30Page } from "../../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders30Page";
-import { judgeCreateODAManageOrderSubmitPage } from "../../../../../pages/manageCases/caseProgression/judge/judgeCreateOrder/judgeCreateODASubmitPage";
+import { judgeCreateODAManageOrderSubmitPage } from "../../../../../pages/manageCases/caseProgression/judge/judgeCreateOrder/judgeUploadCreateOrderDASubmitPage";
 import { OccupationOrderManageOrders12Page } from "../../../../../pages/manageCases/caseProgression/judge/individualManageOrders12/occupationOrderManageOrders12Page";
 import { AmendDischargeVariedManageOrders12Page } from "../../../../../pages/manageCases/caseProgression/judge/individualManageOrders12/amendDischargeVariedManageOrders12Page";
 import { BlankOrderManageOrders12Page } from "../../../../../pages/manageCases/caseProgression/judge/individualManageOrders12/blankOrderManageOrders12Page";
 import { ManageOrders3Page } from "../../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders3Page";
 import { UploadOrderManageOrders5Page } from "../../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/uploadOrderManageOrders5Page";
+import {
+  judgeCreateUOManageOrderSubmitPage
+} from "../../../../../pages/manageCases/caseProgression/judge/judgeUploadOrder/judgeUploadUploadOrderDASubmitPage";
 
 interface JudgeDACaseProgressionJourneyParams {
   browser: Browser;
@@ -48,10 +51,11 @@ interface JudgeUOCaseProgressionJourneyParams {
   yesNoManageOrders: boolean;
   uploadOrderFL401Options: uploadOrderFL401Options;
   manageOrdersOptions: manageOrdersOptions;
+
 }
 
-export class JudgeManageOrder {
-  public static async JudgeMOCaseProgressionJourney({
+export class JudgeManageOrderJourney {
+  public static async JudgeCreateOrderCaseProgressionJourney({
     browser,
     ccdRef,
     accessibilityTest,
@@ -255,7 +259,7 @@ export class JudgeManageOrder {
     }
   }
 
-  public static async JudgeUOCaseProgressionJourney({
+  public static async JudgeUploadOrderCaseProgressionJourney({
     browser,
     ccdRef,
     accessibilityTest,
@@ -288,6 +292,11 @@ export class JudgeManageOrder {
       page,
       accessibilityTest,
       yesNoManageOrders,
+    });
+    await judgeCreateUOManageOrderSubmitPage.judgeUOManageOrderSubmitPage({
+      page,
+      accessibilityTest,
+      uploadOrderFL401Options,
     });
   }
 }

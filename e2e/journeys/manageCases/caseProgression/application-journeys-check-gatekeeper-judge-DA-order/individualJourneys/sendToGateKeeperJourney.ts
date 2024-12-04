@@ -11,7 +11,7 @@ interface CheckApplicationParams {
   ccdRef: string;
 }
 
-export class SendToGateKeeper {
+export class SendToGateKeeperJourney {
   public static async sendToGateKeeper({
     page,
     accessibilityTest,

@@ -10,7 +10,7 @@ interface CheckApplicationParams {
   ccdRef: string;
 }
 
-export class CheckApplication {
+export class CheckApplicationJourney {
   public static async checkApplication({
     page,
     accessibilityTest,

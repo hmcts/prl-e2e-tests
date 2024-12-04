@@ -1,6 +1,6 @@
 import { Page } from "@playwright/test";
-import { CheckApplication } from "../checkApplication/checkApplication";
-import { SendToGateKeeper } from "./individualJourneys/sendToGateKeeper";
+import { SendToGateKeeperJourney } from "./individualJourneys/sendToGateKeeperJourney";
+import { CheckApplicationJourney } from "./individualJourneys/checkApplicationJourney";
 
 interface CheckApplicationParams {
   page: Page;
@@ -16,13 +16,13 @@ export class ApplicationJourneysCheckGatekeeper {
     yesNoSendToGateKeeper,
     ccdRef,
   }: CheckApplicationParams): Promise<void> {
-    await CheckApplication.checkApplication({
+    await CheckApplicationJourney.checkApplication({
       page,
       accessibilityTest,
       yesNoSendToGateKeeper,
       ccdRef,
     });
-    await SendToGateKeeper.sendToGateKeeper({
+    await SendToGateKeeperJourney.sendToGateKeeper({
       page,
       accessibilityTest,
       yesNoSendToGateKeeper,

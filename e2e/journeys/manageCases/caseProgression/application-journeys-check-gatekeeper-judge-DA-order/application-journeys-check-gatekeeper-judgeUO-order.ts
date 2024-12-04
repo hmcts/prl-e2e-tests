@@ -5,7 +5,7 @@ import {
   uploadOrderFL401Options,
 } from "../../../../common/types";
 import { ApplicationJourneysCheckGatekeeper } from "./application-journeys-check-gatekeeper";
-import { JudgeManageOrder } from "./individualJourneys/judgeManageOrders";
+import { JudgeManageOrderJourney } from "./individualJourneys/judgeManageOrdersJourney";
 
 interface CheckApplicationParams {
   page: Page;
@@ -39,7 +39,7 @@ export class ApplicationJourneysCheckGatekeeperJudgeUOOrder {
         ccdRef,
       },
     );
-    await JudgeManageOrder.JudgeUOCaseProgressionJourney({
+    await JudgeManageOrderJourney.JudgeUploadOrderCaseProgressionJourney({
       browser,
       ccdRef,
       accessibilityTest,

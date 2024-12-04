@@ -8,7 +8,7 @@ import {
 import { createOrderManageOrders19Options } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders19Page";
 import { howLongWillOrderBeInForce } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders12Page";
 import { ApplicationJourneysCheckGatekeeper } from "./application-journeys-check-gatekeeper";
-import { JudgeManageOrder } from "./individualJourneys/judgeManageOrders";
+import { JudgeManageOrderJourney } from "./individualJourneys/judgeManageOrdersJourney";
 
 interface CheckApplicationParams {
   page: Page;
@@ -50,7 +50,7 @@ export class ApplicationJourneysCheckGatekeeperJudgeCOOrder {
         ccdRef,
       },
     );
-    await JudgeManageOrder.JudgeMOCaseProgressionJourney({
+    await JudgeManageOrderJourney.JudgeCreateOrderCaseProgressionJourney({
       browser,
       ccdRef,
       accessibilityTest,
