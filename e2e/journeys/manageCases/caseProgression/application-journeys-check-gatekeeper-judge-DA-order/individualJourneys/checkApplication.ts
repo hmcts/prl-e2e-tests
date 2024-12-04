@@ -1,11 +1,7 @@
 import { Page } from "@playwright/test";
 import { Helpers } from "../../../../../common/helpers";
-import {
-  Fl401AddCaseNumber1Page
-} from "../../../../../pages/manageCases/caseProgression/checkApplication/fl401AddCaseNumber1Page";
-import {
-  Fl401AddCaseNumberSubmitPage
-} from "../../../../../pages/manageCases/caseProgression/checkApplication/fl401AddCaseNumberSubmitPage";
+import { Fl401AddCaseNumber1Page } from "../../../../../pages/manageCases/caseProgression/checkApplication/fl401AddCaseNumber1Page";
+import { Fl401AddCaseNumberSubmitPage } from "../../../../../pages/manageCases/caseProgression/checkApplication/fl401AddCaseNumberSubmitPage";
 
 interface CheckApplicationParams {
   page: Page;
@@ -16,9 +12,9 @@ interface CheckApplicationParams {
 
 export class CheckApplication {
   public static async checkApplication({
-                                         page,
-                                         accessibilityTest,
-                                       }: CheckApplicationParams): Promise<void> {
+    page,
+    accessibilityTest,
+  }: CheckApplicationParams): Promise<void> {
     await Helpers.assignTaskToMeAndTriggerNextSteps(
       page,
       "Check Application",

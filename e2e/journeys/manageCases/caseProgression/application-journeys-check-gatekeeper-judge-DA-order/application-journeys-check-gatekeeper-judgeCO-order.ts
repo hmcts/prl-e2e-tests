@@ -5,9 +5,7 @@ import {
   judgeTitles,
   manageOrdersOptions,
 } from "../../../../common/types";
-import {
-  createOrderManageOrders19Options,
-} from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders19Page";
+import { createOrderManageOrders19Options } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders19Page";
 import { howLongWillOrderBeInForce } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders12Page";
 import { ApplicationJourneysCheckGatekeeper } from "./application-journeys-check-gatekeeper";
 import { JudgeManageOrder } from "./individualJourneys/judgeManageOrders";
@@ -67,6 +65,4 @@ export class ApplicationJourneysCheckGatekeeperJudgeCOOrder {
     });
     await page.waitForTimeout(5000);
   }
-
-
 }

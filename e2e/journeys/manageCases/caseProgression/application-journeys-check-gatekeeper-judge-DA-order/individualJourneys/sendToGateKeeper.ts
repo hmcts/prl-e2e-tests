@@ -1,12 +1,8 @@
 import { Page } from "@playwright/test";
 import { Helpers } from "../../../../../common/helpers";
 import config from "../../../../../config";
-import {
-  FL401SendToGateKeeper1Page
-} from "../../../../../pages/manageCases/caseProgression/sendToGateKeeper/fl401SendToGateKeeper1Page";
-import {
-  FL401SendToGateKeeperSubmitPage
-} from "../../../../../pages/manageCases/caseProgression/sendToGateKeeper/fl401SendToGateKeeperSubmitPage";
+import { FL401SendToGateKeeper1Page } from "../../../../../pages/manageCases/caseProgression/sendToGateKeeper/fl401SendToGateKeeper1Page";
+import { FL401SendToGateKeeperSubmitPage } from "../../../../../pages/manageCases/caseProgression/sendToGateKeeper/fl401SendToGateKeeperSubmitPage";
 
 interface CheckApplicationParams {
   page: Page;
@@ -17,11 +13,11 @@ interface CheckApplicationParams {
 
 export class SendToGateKeeper {
   public static async sendToGateKeeper({
-                                                           page,
-                                                           accessibilityTest,
-                                                           yesNoSendToGateKeeper,
-                                                           ccdRef,
-                                                         }: CheckApplicationParams): Promise<void> {
+    page,
+    accessibilityTest,
+    yesNoSendToGateKeeper,
+    ccdRef,
+  }: CheckApplicationParams): Promise<void> {
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
     await Helpers.assignTaskToMeAndTriggerNextSteps(
       page,

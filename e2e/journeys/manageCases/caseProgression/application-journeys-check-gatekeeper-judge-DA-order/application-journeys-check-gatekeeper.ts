@@ -26,7 +26,7 @@ export class ApplicationJourneysCheckGatekeeper {
       page,
       accessibilityTest,
       yesNoSendToGateKeeper,
-      ccdRef
+      ccdRef,
     });
   }
 }

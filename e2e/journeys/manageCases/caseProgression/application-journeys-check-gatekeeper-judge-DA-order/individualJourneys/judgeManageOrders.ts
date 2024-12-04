@@ -3,46 +3,28 @@ import {
   c100CaseWorkerActions,
   createOrderFL401Options,
   judgeTitles,
-  manageOrdersOptions, uploadOrderFL401Options
+  manageOrdersOptions,
+  uploadOrderFL401Options,
 } from "../../../../../common/types";
 import {
-  createOrderManageOrders19Options, ManageOrders19Page
+  createOrderManageOrders19Options,
+  ManageOrders19Page,
 } from "../../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders19Page";
-import {
-  howLongWillOrderBeInForce
-} from "../../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders12Page";
+import { howLongWillOrderBeInForce } from "../../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders12Page";
 import { Helpers } from "../../../../../common/helpers";
 import config from "../../../../../config";
 import { ManageOrders1Page } from "../../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders1Page";
 import { ManageOrders2Page } from "../../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders2Page";
-import {
-  CreateOrderManageOrders5Page
-} from "../../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/createOrderManageOrders5Page";
-import {
-  PowerOfArrestManageOrders12Page
-} from "../../../../../pages/manageCases/caseProgression/judge/individualManageOrders12/powerOfArrestManageOrders12Page";
-import {
-  ManageOrders20Page
-} from "../../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders20Page";
-import {
-  ManageOrders30Page
-} from "../../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders30Page";
-import {
-  judgeCreateODAManageOrderSubmitPage
-} from "../../../../../pages/manageCases/caseProgression/judge/judgeCreateOrder/judgeCreateODASubmitPage";
-import {
-  OccupationOrderManageOrders12Page
-} from "../../../../../pages/manageCases/caseProgression/judge/individualManageOrders12/occupationOrderManageOrders12Page";
-import {
-  AmendDischargeVariedManageOrders12Page
-} from "../../../../../pages/manageCases/caseProgression/judge/individualManageOrders12/amendDischargeVariedManageOrders12Page";
-import {
-  BlankOrderManageOrders12Page
-} from "../../../../../pages/manageCases/caseProgression/judge/individualManageOrders12/blankOrderManageOrders12Page";
+import { CreateOrderManageOrders5Page } from "../../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/createOrderManageOrders5Page";
+import { PowerOfArrestManageOrders12Page } from "../../../../../pages/manageCases/caseProgression/judge/individualManageOrders12/powerOfArrestManageOrders12Page";
+import { ManageOrders20Page } from "../../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders20Page";
+import { ManageOrders30Page } from "../../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders30Page";
+import { judgeCreateODAManageOrderSubmitPage } from "../../../../../pages/manageCases/caseProgression/judge/judgeCreateOrder/judgeCreateODASubmitPage";
+import { OccupationOrderManageOrders12Page } from "../../../../../pages/manageCases/caseProgression/judge/individualManageOrders12/occupationOrderManageOrders12Page";
+import { AmendDischargeVariedManageOrders12Page } from "../../../../../pages/manageCases/caseProgression/judge/individualManageOrders12/amendDischargeVariedManageOrders12Page";
+import { BlankOrderManageOrders12Page } from "../../../../../pages/manageCases/caseProgression/judge/individualManageOrders12/blankOrderManageOrders12Page";
 import { ManageOrders3Page } from "../../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders3Page";
-import {
-  UploadOrderManageOrders5Page
-} from "../../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/uploadOrderManageOrders5Page";
+import { UploadOrderManageOrders5Page } from "../../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/uploadOrderManageOrders5Page";
 
 interface JudgeDACaseProgressionJourneyParams {
   browser: Browser;
@@ -70,18 +52,18 @@ interface JudgeUOCaseProgressionJourneyParams {
 
 export class JudgeManageOrder {
   public static async JudgeMOCaseProgressionJourney({
-                                                       browser,
-                                                       ccdRef,
-                                                       accessibilityTest,
-                                                       c100CaseWorkerActions,
-                                                       createOrderFL401Options,
-                                                       yesNoManageOrders,
-                                                       judgeTitles,
-                                                       withOrWithoutNotice,
-                                                       createOrderManageOrders19Options,
-                                                       howLongWillOrderBeInForce,
-                                                       manageOrdersOptions,
-                                                     }: JudgeDACaseProgressionJourneyParams): Promise<void> {
+    browser,
+    ccdRef,
+    accessibilityTest,
+    c100CaseWorkerActions,
+    createOrderFL401Options,
+    yesNoManageOrders,
+    judgeTitles,
+    withOrWithoutNotice,
+    createOrderManageOrders19Options,
+    howLongWillOrderBeInForce,
+    manageOrdersOptions,
+  }: JudgeDACaseProgressionJourneyParams): Promise<void> {
     const page: Page = await Helpers.openNewBrowserWindow(browser, "judge");
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
     await Helpers.waitForTask(page, "Directions on Issue");
@@ -274,14 +256,14 @@ export class JudgeManageOrder {
   }
 
   public static async JudgeUOCaseProgressionJourney({
-                                                       browser,
-                                                       ccdRef,
-                                                       accessibilityTest,
-                                                       c100CaseWorkerActions,
-                                                       yesNoManageOrders,
-                                                       uploadOrderFL401Options,
-                                                       manageOrdersOptions,
-                                                     }: JudgeUOCaseProgressionJourneyParams): Promise<void> {
+    browser,
+    ccdRef,
+    accessibilityTest,
+    c100CaseWorkerActions,
+    yesNoManageOrders,
+    uploadOrderFL401Options,
+    manageOrdersOptions,
+  }: JudgeUOCaseProgressionJourneyParams): Promise<void> {
     const page: Page = await Helpers.openNewBrowserWindow(browser, "judge");
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
     await Helpers.waitForTask(page, "Directions on Issue");
