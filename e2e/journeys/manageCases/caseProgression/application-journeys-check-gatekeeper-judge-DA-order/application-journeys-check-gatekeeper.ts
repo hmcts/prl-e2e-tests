@@ -1,10 +1,6 @@
 import { Page } from "@playwright/test";
-import { Helpers } from "../../../../common/helpers";
-import { Fl401AddCaseNumber1Page } from "../../../../pages/manageCases/caseProgression/checkApplication/fl401AddCaseNumber1Page";
-import { Fl401AddCaseNumberSubmitPage } from "../../../../pages/manageCases/caseProgression/checkApplication/fl401AddCaseNumberSubmitPage";
-import config from "../../../../config";
-import { FL401SendToGateKeeper1Page } from "../../../../pages/manageCases/caseProgression/sendToGateKeeper/fl401SendToGateKeeper1Page";
-import { FL401SendToGateKeeperSubmitPage } from "../../../../pages/manageCases/caseProgression/sendToGateKeeper/fl401SendToGateKeeperSubmitPage";
+import { CheckApplication } from "../checkApplication/checkApplication";
+import { SendToGateKeeper } from "./individualJourneys/sendToGateKeeper";
 
 interface CheckApplicationParams {
   page: Page;
@@ -20,34 +16,17 @@ export class ApplicationJourneysCheckGatekeeper {
     yesNoSendToGateKeeper,
     ccdRef,
   }: CheckApplicationParams): Promise<void> {
-    await Helpers.assignTaskToMeAndTriggerNextSteps(
-      page,
-      "Check Application",
-      "Add Case Number",
-    );
-    await Fl401AddCaseNumber1Page.fl401AddCaseNumber1Page(
-      page,
-      accessibilityTest,
-    );
-    await Fl401AddCaseNumberSubmitPage.fl401AddCaseNumberSubmitPage(
-      page,
-      accessibilityTest,
-    );
-    await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
-    await Helpers.assignTaskToMeAndTriggerNextSteps(
-      page,
-      "Send to Gatekeeper",
-      "Send to Gatekeeper",
-    );
-    await FL401SendToGateKeeper1Page.fl401SendToGateKeeper1Page({
+    await CheckApplication.checkApplication({
       page,
       accessibilityTest,
       yesNoSendToGateKeeper,
+      ccdRef,
     });
-    await FL401SendToGateKeeperSubmitPage.fl401SendToGateKeeperSubmitPage({
+    await SendToGateKeeper.sendToGateKeeper({
       page,
       accessibilityTest,
       yesNoSendToGateKeeper,
+      ccdRef
     });
   }
 }

@@ -1,16 +1,11 @@
 import { Browser, Page } from "@playwright/test";
-import { Helpers } from "../../../../common/helpers";
-import config from "../../../../config";
 import {
   c100CaseWorkerActions,
   manageOrdersOptions,
   uploadOrderFL401Options,
 } from "../../../../common/types";
-import { ManageOrders1Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders1Page";
 import { ApplicationJourneysCheckGatekeeper } from "./application-journeys-check-gatekeeper";
-import { ManageOrders3Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders3Page";
-import { UploadOrderManageOrders5Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/uploadOrderManageOrders5Page";
-import { ManageOrders30Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders30Page";
+import { JudgeManageOrder } from "./individualJourneys/judgeManageOrders";
 
 interface CheckApplicationParams {
   page: Page;
@@ -22,16 +17,6 @@ interface CheckApplicationParams {
   uploadOrderFL401Options: uploadOrderFL401Options;
   manageOrdersOptions: manageOrdersOptions;
   browser: Browser;
-}
-
-interface JudgeUOCaseProgressionJourneyParams {
-  browser: Browser;
-  ccdRef: string;
-  accessibilityTest: boolean;
-  c100CaseWorkerActions: c100CaseWorkerActions;
-  yesNoManageOrders: boolean;
-  uploadOrderFL401Options: uploadOrderFL401Options;
-  manageOrdersOptions: manageOrdersOptions;
 }
 
 export class ApplicationJourneysCheckGatekeeperJudgeUOOrder {
@@ -54,7 +39,7 @@ export class ApplicationJourneysCheckGatekeeperJudgeUOOrder {
         ccdRef,
       },
     );
-    await this.JudgeUOCaseProgressionJourney({
+    await JudgeManageOrder.JudgeUOCaseProgressionJourney({
       browser,
       ccdRef,
       accessibilityTest,
@@ -64,41 +49,5 @@ export class ApplicationJourneysCheckGatekeeperJudgeUOOrder {
       manageOrdersOptions,
     });
     await page.waitForTimeout(5000);
-  }
-
-  private static async JudgeUOCaseProgressionJourney({
-    browser,
-    ccdRef,
-    accessibilityTest,
-    c100CaseWorkerActions,
-    yesNoManageOrders,
-    uploadOrderFL401Options,
-    manageOrdersOptions,
-  }: JudgeUOCaseProgressionJourneyParams): Promise<void> {
-    const page: Page = await Helpers.openNewBrowserWindow(browser, "judge");
-    await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
-    await Helpers.waitForTask(page, "Directions on Issue");
-    await Helpers.chooseEventFromDropdown(page, c100CaseWorkerActions);
-    await ManageOrders1Page.manageOrders1Page({
-      page,
-      accessibilityTest,
-      manageOrdersOptions,
-    });
-    await ManageOrders3Page.manageOrders3Page({
-      page,
-      accessibilityTest,
-      yesNoManageOrders,
-      uploadOrderFL401Options,
-    });
-    await UploadOrderManageOrders5Page.uploadOrderManageOrders5Page({
-      page,
-      accessibilityTest,
-      yesNoManageOrders,
-    });
-    await ManageOrders30Page.manageOrders30Page({
-      page,
-      accessibilityTest,
-      yesNoManageOrders,
-    });
   }
 }
