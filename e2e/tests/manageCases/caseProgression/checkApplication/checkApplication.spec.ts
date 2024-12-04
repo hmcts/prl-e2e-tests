@@ -1,7 +1,7 @@
 import { test } from "@playwright/test";
 import Config from "../../../../config";
 import createDaCitizenCourtNavCase from "../../../../common/createCaseHelper";
-import { CheckApplication } from "../../../../journeys/manageCases/caseProgression/checkApplication/checkApplication";
+import { CheckApplication } from "../../../../journeys/manageCases/caseProgression/checkApplicationSendToGateKeeper/checkApplication/checkApplication";
 import { Helpers } from "../../../../common/helpers";
 import config from "../../../../config";
 

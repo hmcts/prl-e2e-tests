@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
-import { Helpers } from "../../../../../common/helpers";
-import { Fl401AddCaseNumber1Page } from "../../../../../pages/manageCases/caseProgression/checkApplication/fl401AddCaseNumber1Page";
-import { Fl401AddCaseNumberSubmitPage } from "../../../../../pages/manageCases/caseProgression/checkApplication/fl401AddCaseNumberSubmitPage";
+import { Helpers } from "../../../../common/helpers";
+import { Fl401AddCaseNumber1Page } from "../../../../pages/manageCases/caseProgression/checkApplication/fl401AddCaseNumber1Page";
+import { Fl401AddCaseNumberSubmitPage } from "../../../../pages/manageCases/caseProgression/checkApplication/fl401AddCaseNumberSubmitPage";
 
 interface CheckApplicationParams {
   page: Page;

@@ -7,8 +7,8 @@ import {
 } from "../../../../common/types";
 import { createOrderManageOrders19Options } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders19Page";
 import { howLongWillOrderBeInForce } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders12Page";
-import { ApplicationJourneysCheckGatekeeper } from "./application-journeys-check-gatekeeper";
-import { JudgeManageOrderJourney } from "./individualJourneys/judgeManageOrdersJourney";
+import { ApplicationJourneysCheckGatekeeper } from "../checkApplicationSendToGateKeeper/application-journeys-check-gatekeeper";
+import { JudgeManageOrderJourney } from "./judgeManageOrdersJourney";
 
 interface CheckApplicationParams {
   page: Page;

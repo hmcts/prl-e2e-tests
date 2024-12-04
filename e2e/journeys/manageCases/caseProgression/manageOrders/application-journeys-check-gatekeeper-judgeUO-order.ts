@@ -4,8 +4,8 @@ import {
   manageOrdersOptions,
   uploadOrderFL401Options,
 } from "../../../../common/types";
-import { ApplicationJourneysCheckGatekeeper } from "./application-journeys-check-gatekeeper";
-import { JudgeManageOrderJourney } from "./individualJourneys/judgeManageOrdersJourney";
+import { ApplicationJourneysCheckGatekeeper } from "../checkApplicationSendToGateKeeper/application-journeys-check-gatekeeper";
+import { JudgeManageOrderJourney } from "./judgeManageOrdersJourney";
 
 interface CheckApplicationParams {
   page: Page;

@@ -1,6 +1,6 @@
 import { Page } from "@playwright/test";
-import { SendToGateKeeperJourney } from "./individualJourneys/sendToGateKeeperJourney";
-import { CheckApplicationJourney } from "./individualJourneys/checkApplicationJourney";
+import { SendToGateKeeperJourney } from "./sendToGateKeeper/sendToGateKeeperJourney";
+import { CheckApplicationJourney } from "../checkDocuments/checkApplicationJourney";
 
 interface CheckApplicationParams {
   page: Page;

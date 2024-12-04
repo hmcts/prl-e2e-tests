@@ -1,5 +1,5 @@
 import { Browser, Page } from "@playwright/test";
-import { CheckApplication } from "../checkApplication/checkApplication";
+import { CheckApplication } from "../checkApplicationSendToGateKeeper/checkApplication/checkApplication";
 import { Helpers } from "../../../../common/helpers";
 import config from "../../../../config";
 import { Fl401ListOnNotice2Page } from "../../../../pages/manageCases/caseProgression/List/fl401ListOnNotice2Page";
