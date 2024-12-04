@@ -40,8 +40,20 @@ export class judgeCreateODAManageOrderSubmitPage {
     );
     await pageTitle.waitFor();
     await Promise.all([
-      Helpers.checkGroup(page, 3, JudgeCreateOrderDASubmitContent, "h2", Selectors.h2),
-      Helpers.checkGroup(page, 2, JudgeCreateOrderDASubmitContent, "p", Selectors.p),
+      Helpers.checkGroup(
+        page,
+        3,
+        JudgeCreateOrderDASubmitContent,
+        "h2",
+        Selectors.h2,
+      ),
+      Helpers.checkGroup(
+        page,
+        2,
+        JudgeCreateOrderDASubmitContent,
+        "p",
+        Selectors.p,
+      ),
       Helpers.checkGroup(
         page,
         15,

@@ -14,5 +14,4 @@ export enum JudgeUploadOrderDASubmitContent {
   text169 = "Upload Order",
   text1610 = "Upload an order",
   text1611 = "5 Jun 2021",
-
 }

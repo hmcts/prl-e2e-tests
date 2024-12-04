@@ -6,9 +6,7 @@ import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelp
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { ManageOrders3DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders3DAContent";
-import {
-  JudgeUploadOrderDASubmitContent
-} from "../../../../../fixtures/manageCases/caseProgression/judge/judgeUploadOrder/judgeUploadOrderDASubmitContent";
+import { JudgeUploadOrderDASubmitContent } from "../../../../../fixtures/manageCases/caseProgression/judge/judgeUploadOrder/judgeUploadOrderDASubmitContent";
 
 interface JudgeDACaseProgressionJourneyParams {
   page: Page;
