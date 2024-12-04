@@ -3,7 +3,6 @@ import { Fl401AddCaseNumber1Page } from "../../../../pages/manageCases/caseProgr
 import { Helpers } from "../../../../common/helpers";
 import { Fl401AddCaseNumberSubmitPage } from "../../../../pages/manageCases/caseProgression/checkApplication/fl401AddCaseNumberSubmitPage";
 
-
 interface CheckApplicationParams {
   page: Page;
   accessibilityTest: boolean;

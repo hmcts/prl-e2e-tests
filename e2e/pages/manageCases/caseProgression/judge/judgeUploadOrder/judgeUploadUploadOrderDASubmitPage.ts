@@ -5,9 +5,7 @@ import { Selectors } from "../../../../../common/selectors";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-import {
-  ManageOrders3DAContent
-} from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders3DAContent";
+import { ManageOrders3DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders3DAContent";
 
 interface JudgeDACaseProgressionJourneyParams {
   page: Page;
@@ -17,10 +15,10 @@ interface JudgeDACaseProgressionJourneyParams {
 
 export class judgeCreateUOManageOrderSubmitPage {
   public static async judgeUOManageOrderSubmitPage({
-                                                     page,
-                                                     accessibilityTest,
-                                                     uploadOrderFL401Options,
-                                                   }: JudgeDACaseProgressionJourneyParams): Promise<void> {
+    page,
+    accessibilityTest,
+    uploadOrderFL401Options,
+  }: JudgeDACaseProgressionJourneyParams): Promise<void> {
     await this.checkPageLoads({
       page,
       accessibilityTest,
@@ -30,10 +28,10 @@ export class judgeCreateUOManageOrderSubmitPage {
   }
 
   private static async checkPageLoads({
-                                        page,
-                                        accessibilityTest,
-                                        uploadOrderFL401Options,
-                                      }: JudgeDACaseProgressionJourneyParams): Promise<void> {
+    page,
+    accessibilityTest,
+    uploadOrderFL401Options,
+  }: JudgeDACaseProgressionJourneyParams): Promise<void> {
     if (!page) {
       throw new Error("Page is not defined");
     }
@@ -46,112 +44,112 @@ export class judgeCreateUOManageOrderSubmitPage {
         await Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukText16}:text-is("${ManageOrders3DAContent.nonMolestation}")`,
-          1
+          1,
         );
         break;
       case "occupation order":
         await Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukText16}:text-is("${ManageOrders3DAContent.occupationOrder}")`,
-          1
+          1,
         );
         break;
       case "power of arrest":
         await Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukText16}:text-is("${ManageOrders3DAContent.powerOfArrest}")`,
-          1
+          1,
         );
         break;
       case "amend discharge varied order":
         await Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukText16}:text-is("${ManageOrders3DAContent.amendDischargeVariedOrder}")`,
-          1
+          1,
         );
         break;
       case "blank order (FL404B)":
         await Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukText16}:text-is("${ManageOrders3DAContent.blankOrderFL404B}")`,
-          1
+          1,
         );
         break;
       case "general form of undertaking":
         await Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukText16}:text-is("${ManageOrders3DAContent.generalFormOfUndertaking}")`,
-          1
+          1,
         );
         break;
       case "warrant of arrest":
         await Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukText16}:text-is("${ManageOrders3DAContent.warrantOfArrest}")`,
-          1
+          1,
         );
         break;
       case "remand order":
         await Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukText16}:text-is("${ManageOrders3DAContent.remandOrder}")`,
-          1
+          1,
         );
         break;
       case "form for taking recognizance":
         await Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukText16}:text-is("${ManageOrders3DAContent.formForTakingRecognizance}")`,
-          1
+          1,
         );
         break;
       case "form for taking surety":
         await Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukText16}:text-is("${ManageOrders3DAContent.formForTakingSurety}")`,
-          1
+          1,
         );
         break;
       case "bail notice":
         await Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukText16}:text-is("${ManageOrders3DAContent.bailNotice}")`,
-          1
+          1,
         );
         break;
       case "hospital order":
         await Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukText16}:text-is("${ManageOrders3DAContent.hospitalOrder}")`,
-          1
+          1,
         );
         break;
       case "guardianship order":
         await Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukText16}:text-is("${ManageOrders3DAContent.guardianshipOrder}")`,
-          1
+          1,
         );
         break;
       case "statement of service":
         await Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukText16}:text-is("${ManageOrders3DAContent.statementOfService}")`,
-          1
+          1,
         );
         break;
       case "blank order (FL514)":
         await Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukText16}:text-is("${ManageOrders3DAContent.blankOrderFL514}")`,
-          1
+          1,
         );
         break;
       case "Notice landlord mortgage":
         await Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukText16}:text-is("${ManageOrders3DAContent.noticeToLandlordOrMortgageCompany}")`,
-          1
+          1,
         );
         break;
       default:
@@ -163,8 +161,8 @@ export class judgeCreateUOManageOrderSubmitPage {
   }
 
   private static async fillInFields({
-                                      page,
-                                    }: Partial<JudgeDACaseProgressionJourneyParams>): Promise<void> {
+    page,
+  }: Partial<JudgeDACaseProgressionJourneyParams>): Promise<void> {
     if (!page) {
       throw new Error("Page is not defined");
     }

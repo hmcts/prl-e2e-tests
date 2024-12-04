@@ -25,9 +25,7 @@ import { AmendDischargeVariedManageOrders12Page } from "../../../../../pages/man
 import { BlankOrderManageOrders12Page } from "../../../../../pages/manageCases/caseProgression/judge/individualManageOrders12/blankOrderManageOrders12Page";
 import { ManageOrders3Page } from "../../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders3Page";
 import { UploadOrderManageOrders5Page } from "../../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/uploadOrderManageOrders5Page";
-import {
-  judgeCreateUOManageOrderSubmitPage
-} from "../../../../../pages/manageCases/caseProgression/judge/judgeUploadOrder/judgeUploadUploadOrderDASubmitPage";
+import { judgeCreateUOManageOrderSubmitPage } from "../../../../../pages/manageCases/caseProgression/judge/judgeUploadOrder/judgeUploadUploadOrderDASubmitPage";
 
 interface JudgeDACaseProgressionJourneyParams {
   browser: Browser;
@@ -51,7 +49,6 @@ interface JudgeUOCaseProgressionJourneyParams {
   yesNoManageOrders: boolean;
   uploadOrderFL401Options: uploadOrderFL401Options;
   manageOrdersOptions: manageOrdersOptions;
-
 }
 
 export class JudgeManageOrderJourney {
