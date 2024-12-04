@@ -1,4 +1,4 @@
-import { Browser, expect, Page } from "@playwright/test";
+import { Browser, Page } from "@playwright/test";
 import { Helpers } from "../../../../common/helpers";
 import config from "../../../../config";
 import {
@@ -77,7 +77,7 @@ export class ApplicationJourneysCheckGatekeeperJudgeUOOrder {
   }: JudgeUOCaseProgressionJourneyParams): Promise<void> {
     const page: Page = await Helpers.openNewBrowserWindow(browser, "judge");
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
-    await this.waitForManageOrderSelectOptionToBeVisible(page);
+    await Helpers.waitForTask(page, "Directions on Issue")
     await Helpers.chooseEventFromDropdown(page, c100CaseWorkerActions);
     await ManageOrders1Page.manageOrders1Page({
       page,
@@ -100,33 +100,5 @@ export class ApplicationJourneysCheckGatekeeperJudgeUOOrder {
       accessibilityTest,
       yesNoManageOrders,
     });
-  }
-
-  private static async waitForManageOrderSelectOptionToBeVisible(
-    page: Page,
-  ): Promise<void> {
-    const selectOptionLocator: string = "#next-step";
-    const desiredText: string = "Manage orders";
-    await expect
-      .poll(
-        async () => {
-          const visible = await page.locator(selectOptionLocator).isVisible();
-          const isTextPresent = await page
-            .locator(selectOptionLocator)
-            .innerText();
-          const isDesiredTextPresent = isTextPresent.includes(desiredText);
-          if (!visible || !isDesiredTextPresent) {
-            await page.reload();
-          }
-          return visible && isDesiredTextPresent;
-        },
-        {
-          // Allow 10s delay before retrying
-          intervals: [10_000],
-          // Allow up to a minute for it to become visible
-          timeout: 100_000,
-        },
-      )
-      .toBeTruthy();
   }
 }

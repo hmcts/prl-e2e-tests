@@ -113,6 +113,7 @@ export class UploadOrderManageOrders5Page {
       await page.click(UniqueSelectors.orderApprovedNo);
       await page.click(UniqueSelectors.orderChildrenNo);
     }
+    await page.waitForTimeout(5000);
     const fileInput = page.locator(`${UniqueSelectors.fileUpload}`);
     await fileInput.setInputFiles(config.testPdfFile);
     await page.waitForTimeout(5000);
