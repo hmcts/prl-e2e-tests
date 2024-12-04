@@ -1,6 +1,6 @@
 import { Page } from "@playwright/test";
-import { Fl401AddCaseNumber1Page } from "../../../../../pages/manageCases/caseProgression/checkApplication/fl401AddCaseNumber1Page";
 import { Helpers } from "../../../../../common/helpers";
+import { Fl401AddCaseNumber1Page } from "../../../../../pages/manageCases/caseProgression/checkApplication/fl401AddCaseNumber1Page";
 import { Fl401AddCaseNumberSubmitPage } from "../../../../../pages/manageCases/caseProgression/checkApplication/fl401AddCaseNumberSubmitPage";
 
 interface CheckApplicationParams {
@@ -10,7 +10,7 @@ interface CheckApplicationParams {
   ccdRef: string;
 }
 
-export class CheckApplication {
+export class CheckApplicationJourney {
   public static async checkApplication({
     page,
     accessibilityTest,
