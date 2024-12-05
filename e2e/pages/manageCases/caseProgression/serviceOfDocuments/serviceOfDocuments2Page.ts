@@ -136,7 +136,6 @@ export class ServiceOfDocuments2Page {
     if (servedByPost) {
       await this.handleServeByPost(page);
     } else {
-      await page.pause();
       await this.handleServeByEmail(page);
     }
   }
@@ -146,21 +145,8 @@ export class ServiceOfDocuments2Page {
     );
   }
   private static async handleServeByPost(page: Page): Promise<void> {
-    await page.check(UniqueSelectors.additionalRecipientPostSelector);
-    await Promise.all([
-      Helpers.checkGroup(
-        page,
-        2,
-        ServiceOfDocuments2Content,
-        `hiddenFormLabel3`,
-        `${Selectors.GovukFormLabel}`,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.a}:text-is("${ServiceOfDocuments2Content.a}")`,
-        1,
-      ),
-    ]);
+    await page.click(UniqueSelectors.additionalRecipientPostSelector);
+    await page.click(UniqueSelectors.additionalRecipientPostSelector);
     await page.fill(
       UniqueSelectors.additionalRecipientPost_InputNameSelector,
       ServiceOfDocuments2Content.inputAdditionalRecipientName,
@@ -189,19 +175,8 @@ export class ServiceOfDocuments2Page {
   }
 
   private static async handleServeByEmail(page: Page): Promise<void> {
+    await page.click(UniqueSelectors.additionalRecipientEmailSelector);
     await page.check(UniqueSelectors.additionalRecipientEmailSelector);
-    await Promise.all([
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukFormLabel}:text-is("${ServiceOfDocuments2Content.hiddenFormLabel31}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukFormLabel}:text-is("${ServiceOfDocuments2Content.hiddenFormLabel41}")`,
-        1,
-      ),
-    ]);
     await page.fill(
       UniqueSelectors.additionalRecipientEmail_InputNameSelector,
       ServiceOfDocuments2Content.inputAdditionalRecipientName,

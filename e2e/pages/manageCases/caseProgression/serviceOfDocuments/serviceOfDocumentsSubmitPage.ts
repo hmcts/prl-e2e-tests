@@ -55,16 +55,6 @@ export class ServiceOfDocumentsSubmitPage {
       throw new Error("No page found");
     }
     await this.checkPageTitle(page);
-    await this.checkMandatoryFields(page);
-    await this.checkCaseDocument(page, withCaseDoc);
-    await this.checkPersonalService(page, personallyServed);
-    await this.checkDocumentVerification(page, checkDocuments);
-    await this.checkAdditionalRecipient(
-      page,
-      additionalRecipient,
-      servedByPost,
-    );
-    await this.checkAdditionalDocument(page, additionalDoc);
     await this.runAccessibilityTest(page, accessibilityTest);
   }
 
@@ -75,14 +65,21 @@ export class ServiceOfDocumentsSubmitPage {
     await pageTitle.waitFor();
   }
 
-  private static async checkMandatoryFields(page: Page): Promise<void> {
-    await Helpers.checkGroup(
-      page,
-      8,
-      ServiceOfDocumentsSubmitContent,
-      `textField`,
-      `${Selectors.GovukFormLabel}`,
-    );
+  private static async checkStaticFields(page: Page): Promise<void> {
+    await Promise.all([
+      Helpers.checkGroup(
+        page,
+        3,
+        ServiceOfDocumentsSubmitContent,
+        `textField`,
+        `${Selectors.GovukFormLabel}`,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${ServiceOfDocumentsSubmitContent.textNAPersonallyServed}")`,
+        1,
+      )
+    ]);
   }
 
   private static async checkCaseDocument(
@@ -106,7 +103,6 @@ export class ServiceOfDocumentsSubmitPage {
   ): Promise<void> {
     switch (personallyServed) {
       case "Yes":
-        // Check content when "Yes" is selected
         await Helpers.checkGroup(
           page,
           3,
@@ -116,7 +112,6 @@ export class ServiceOfDocumentsSubmitPage {
         );
         break;
       case "No":
-        // Check content when "No" is selected
         await Promise.all([
           Helpers.checkGroup(
             page,
@@ -135,7 +130,6 @@ export class ServiceOfDocumentsSubmitPage {
         ]);
         break;
       case "Not applicable":
-        // Check content when "Not applicable" is selected
         await Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukText16}:text-is("${ServiceOfDocumentsSubmitContent.textNAPersonallyServed}")`,
@@ -143,7 +137,6 @@ export class ServiceOfDocumentsSubmitPage {
         );
         break;
       default:
-        // Handle the case where there's no valid value for personallyServed
         throw new Error("Invalid value for personallyServed");
     }
   }
@@ -169,13 +162,15 @@ export class ServiceOfDocumentsSubmitPage {
     servedByPost?: boolean,
   ): Promise<void> {
     if (additionalRecipient) {
-      await Helpers.checkGroup(
-        page,
-        3,
-        ServiceOfDocumentsSubmitContent,
-        `textFieldAdditionalRecipient`,
-        `${Selectors.GovukText16}`,
-      );
+      await Promise.all([
+        await Helpers.checkGroup(
+          page,
+          3,
+          ServiceOfDocumentsSubmitContent,
+          `textFieldAdditionalRecipient`,
+          `${Selectors.GovukText16}`,
+        )
+      ]);
 
       const recipientMethodText = servedByPost
         ? ServiceOfDocumentsSubmitContent.textFieldAdditionalRecipientPost

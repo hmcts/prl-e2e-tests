@@ -1,14 +1,14 @@
 export enum ServiceOfDocumentsSubmitContent {
   pageTitle = "Service of documents", //GovukHeadingL
   headingH2 = "Check your answers",
-  textField1 = "Documents",
-  textField2 = "Does this document need to be personally served on the respondent?",
-  textField3 = "Does someone need to check the documents?",
-  textField4 = "Check the information below carefully.", // h2
-  textField5 = "Select additional recipients who needs to be served",
-  textField6 = "Documents 1",
-  textField7 = "Select the document",
-  textField8 = "Applications -> Applicant documents -> Applicant application -> FL401FinalDocument.pdf",
+
+  textField1 = "Does this document need to be personally served on the respondent?",
+  textField2 = "Does someone need to check the documents?",
+  textField3 = "Check the information below carefully.", // h2
+  textField4 = "Documents",
+  textField5 = "Documents 1",
+  textField6 = "Select the document",
+  textField7 = "Applications -> Applicant documents -> Applicant application -> FL401FinalDocument.pdf",
   //personally served
   textPersonallyServed1 = "Yes",
   textPersonallyServed2 = "Unrepresented applicant who is arranging service",
@@ -32,4 +32,5 @@ export enum ServiceOfDocumentsSubmitContent {
   textFieldAdditionalRecipient3 = "Served by",
   textFieldAdditionalRecipientPost = "Post",
   textFieldAdditionalRecipientEmail = "Email",
+  textservedField5 = "Select additional recipients who needs to be served",
 }
