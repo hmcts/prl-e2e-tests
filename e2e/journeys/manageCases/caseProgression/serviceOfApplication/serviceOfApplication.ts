@@ -5,6 +5,9 @@ import { c100CaseWorkerActions } from "../../../../common/types";
 import { ServiceOfApplication2Page } from "../../../../pages/manageCases/caseProgression/serviceOfApplication/serviceOfApplication2Page";
 import { ServiceOfApplication4Page } from "../../../../pages/manageCases/caseProgression/serviceOfApplication/ServiceOfApplication4Page";
 import { ServiceOfApplicationSubmitPage } from "../../../../pages/manageCases/caseProgression/serviceOfApplication/serviceOfApplicationSubmitPage";
+import {
+  ServiceOfApplicationConfirmPage
+} from "../../../../pages/manageCases/caseProgression/serviceOfApplication/serviceOfApplicationConfirmPage";
 
 interface ServiceOfApplicationJourneyParams {
   browser: Browser;
@@ -36,6 +39,10 @@ export class ServiceOfApplicationJourney {
     await ServiceOfApplicationSubmitPage.serviceOfApplicationSubmitPage({
       page,
       accessibilityTest,
+    });
+    await ServiceOfApplicationConfirmPage.serviceOfApplicationConfirmPage({
+      page,
+      accessibilityTest
     });
   }
 }

@@ -6,7 +6,7 @@ import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper"
 import { CommonStaticText } from "../../../../common/commonStaticText";
 import { ServiceOfApplicationSubmitContent } from "../../../../fixtures/manageCases/caseProgression/serviceOfApplication/serviceOfApplicationSubmitContent";
 
-interface ServiceOfApplication4Options {
+interface ServiceOfApplicationSubmitOptions {
   page: Page;
   accessibilityTest: boolean;
 }
@@ -15,7 +15,7 @@ export class ServiceOfApplicationSubmitPage {
   public static async serviceOfApplicationSubmitPage({
     page,
     accessibilityTest,
-  }: ServiceOfApplication4Options): Promise<void> {
+  }: ServiceOfApplicationSubmitOptions): Promise<void> {
     await this.checkPageLoads({
       page,
       accessibilityTest,
@@ -26,7 +26,7 @@ export class ServiceOfApplicationSubmitPage {
   private static async checkPageLoads({
     page,
     accessibilityTest,
-  }: Partial<ServiceOfApplication4Options>): Promise<void> {
+  }: Partial<ServiceOfApplicationSubmitOptions>): Promise<void> {
     if (!page) {
       throw new Error("No page found");
     }
@@ -92,7 +92,7 @@ export class ServiceOfApplicationSubmitPage {
 
   private static async fillInFields({
     page,
-  }: Partial<ServiceOfApplication4Options>): Promise<void> {
+  }: Partial<ServiceOfApplicationSubmitOptions>): Promise<void> {
     if (!page) {
       throw new Error("No page found");
     }
