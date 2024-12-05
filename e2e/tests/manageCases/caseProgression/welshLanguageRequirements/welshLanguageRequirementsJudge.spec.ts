@@ -1,6 +1,6 @@
 import { test } from "@playwright/test";
 import Config from "../../../../config";
-import createDaCitizenCourtNavCase from "../../../../common/createCaseHelper";
+import createDaCitizenCourtNavCase from "../../../../common/createDACourtNavCaseHelper";
 import { Helpers } from "../../../../common/helpers";
 import config from "../../../../config";
 import { WelshLanguageRequirements } from "../../../../journeys/manageCases/caseProgression/welshLanguageRequirements/welshLanguageRequirements";

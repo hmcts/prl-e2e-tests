@@ -93,7 +93,9 @@ test.describe("C100 Create case Allegations of harm tests ", (): void => {
   test(`Complete the C100 allegations of harm event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
-  Saying no to all options. @regression`, async ({ page }): Promise<void> => {
+  Saying no to all options. @regression @nightly`, async ({
+    page,
+  }): Promise<void> => {
     await C100AllegationsOfHarm.c100AllegationsOfHarm({
       page: page,
       accessibilityTest: false,
@@ -122,11 +124,11 @@ test.describe("C100 Create case Allegations of harm tests ", (): void => {
   });
 });
 
-test(`Test the C100 allegations of harm event as a solicitor with the following options:
+test(`Accessibility test the C100 allegations of harm event as a solicitor with the following options:
   Accessibility testing,
   Not Error message testing,
   Saying yes to all options,
-  Setting the abuse type to Physical. @accessibility @nightly`, async ({
+  Setting the abuse type to Physical. @accessibility`, async ({
   page,
 }): Promise<void> => {
   await C100AllegationsOfHarm.c100AllegationsOfHarm({
