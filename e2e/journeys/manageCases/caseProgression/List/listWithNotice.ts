@@ -7,6 +7,7 @@ import { Fl401ListOnNoticeConfirmPage } from "../../../../pages/manageCases/case
 import { Selectors } from "../../../../common/selectors";
 import { Fl401ListOnNoticeConfirmContent } from "../../../../fixtures/manageCases/caseProgression/List/fl401ListOnNoticeConfirmContent";
 import { CheckApplicationJourney } from "../checkApplicationSendToGateKeeper/checkApplication/checkApplicationJourney";
+import { SendToGateKeeperJourney } from "../checkApplicationSendToGateKeeper/sendToGateKeeper/sendToGateKeeperJourney";
 
 interface ListWithNoticeParams {
   page: Page;
@@ -23,6 +24,12 @@ export class ListWithNotice {
     accessibilityTest,
   }: ListWithNoticeParams): Promise<void> {
     await CheckApplicationJourney.checkApplication({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      yesNoSendToGateKeeper: true,
+      ccdRef: ccdRef,
+    });
+    await SendToGateKeeperJourney.sendToGateKeeper({
       page: page,
       accessibilityTest: accessibilityTest,
       yesNoSendToGateKeeper: true,
