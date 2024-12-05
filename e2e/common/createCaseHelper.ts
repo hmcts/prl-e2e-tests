@@ -7,10 +7,10 @@ async function createCaseSystemUser(): Promise<string> {
   const apiContextSystemUser: APIRequestContext = await request.newContext();
   const apiContextS2SToken: APIRequestContext = await request.newContext();
   const tokenSystemUserCreateCase = await getAccessToken(
-    "systemCreateCaseBearerToken",
+    "systemCreateCase",
     apiContextSystemUser,
   );
-  const s2sToken = await getS2SToken(apiContextS2SToken);
+  const s2sToken = await getS2SToken(apiContextS2SToken, "ccd_data");
   const payload = {
     ...createCaseSystemJudicialReviewPayload,
     event_token: process.env.EVENT_TOKEN as string,

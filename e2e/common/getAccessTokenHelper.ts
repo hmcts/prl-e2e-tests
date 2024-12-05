@@ -16,14 +16,14 @@ const daCourtNavCreateCaseData = {
   password: process.env.COURTNAV_PASSWORD as string,
 };
 
-const systemCreateCaseBearerToken = {
+const ccdCaseData = {
   grant_type: "password",
-  username: process.env.SYSTEM_UPDATE_USERNAME as string,
-  password: process.env.SYSTEM_UPDATE_PASSWORD as string,
-  client_id: "prl-cos-api",
-  client_secret: process.env.IDAM_SECRET as string,
+  username: process.env.CCD_DATA_STORE_CLIENT_USERNAME as string,
+  password: process.env.CCD_DATA_STORE_CLIENT_PASSWORD as string,
+  client_id: process.env.CCD_DATA_STORE_CLIENT_ID as string,
+  client_secret: process.env.CCD_DATA_STORE_SECRET as string,
   scope: "openid profile roles",
-  redirect_uri: process.env.REDIRECT_URI as string,
+  redirect_uri: process.env.MANAGE_CASE_REDIRECT_URI as string,
 };
 
 /**
@@ -47,9 +47,13 @@ export async function getAccessToken(
         data = daCourtNavCreateCaseData;
         url = process.env.IDAM_TOKEN_URL as string;
         break;
-      case "systemCreateCaseBearerToken":
-        data = systemCreateCaseBearerToken;
+      case "systemCreateCase":
+        data = ccdCaseData;
         url = process.env.IDAM_API_URL as string;
+        break;
+      case "accessCode":
+        data = ccdCaseData;
+        url = process.env.IDAM_TOKEN_URL as string;
         break;
       default:
         throw new Error(`Invalid option: ${option}`);
@@ -75,14 +79,15 @@ export async function getAccessToken(
 
 export async function getS2SToken(
   apiContext: APIRequestContext,
+  microservice: string,
 ): Promise<string> {
   try {
     const response = await apiContext.post(
       process.env.S2S_TOKEN_URL as string,
       {
-        headers: { "content-type": "application/json" },
+        headers: { "content-type": "application/json", "Accept": "*/*"},
         data: {
-          microservice: "ccd_data",
+          microservice: microservice,
         },
       },
     );
