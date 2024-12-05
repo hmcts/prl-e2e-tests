@@ -16,6 +16,7 @@ for secret in $secrets; do
     if echo $tags | jq -e 'has("e2e")' > /dev/null; then
         env_var=$(echo $tags | jq -r '.e2e')
         secret_value=$(az keyvault secret show --vault-name $KEY_VAULT_NAME --name $secret_name --query "value" -o tsv)
+        echo "Reading $secret_name from $KEY_VAULT_NAME vault"
         echo "$env_var=$secret_value" >> $temp_env_file
     fi
 done
@@ -26,6 +27,7 @@ if [ -f $env_example_file ]; then
         key=$(echo $line | cut -d '=' -f 1)
         value=$(grep "^$key=" $temp_env_file | cut -d '=' -f 2-)
         if [ -n "$value" ]; then
+            echo "Setting $key"
             sed -i '' "s|^$key=.*|$key=$value|" $env_file
         fi
     done < $env_example_file
