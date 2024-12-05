@@ -9,7 +9,7 @@ test.describe("C100 Create case MIAM Tests", (): void => {
   Not Accessibility testing,
   Not Error message testing,
   Saying yes to all options,
-  MiamSelection is attended4MonthsPrior. @nightly @regression`, async ({
+  MiamSelection is attended4MonthsPrior. @regression`, async ({
     page,
   }): Promise<void> => {
     await C100MiamPolicyUpgrade.c100MiamPolicyUpgrade({
@@ -66,9 +66,7 @@ test.describe("C100 Create case MIAM Tests", (): void => {
   Not Error message testing,
   Saying yes to yesExemption
   miamSelection "initiatedMIAMBeforeProceedings_MIAMCertificate"
-  Saying no to all options. @regression @nightly`, async ({
-    page,
-  }): Promise<void> => {
+  Saying no to all options. @regression`, async ({ page }): Promise<void> => {
     await C100MiamPolicyUpgrade.c100MiamPolicyUpgrade({
       page: page,
       user: "solicitor",
@@ -100,14 +98,11 @@ test.describe("C100 Create case MIAM Tests", (): void => {
       subJourney: true,
     });
   });
-});
-
-test.describe("C100 Create case MIAM Tests", (): void => {
   test(`Accessibility test the C100 Miam event as a solicitor with the following options:
   Accessibility testing,
   Not Error message testing,
   C100MiamPolicyUpgrade1PageType is "yes"
-  miamSelection is "initiatedMIAMBeforeProceedings_MIAMDetails". @accessibility`, async ({
+  miamSelection is "initiatedMIAMBeforeProceedings_MIAMDetails". @accessibility @nightly`, async ({
     page,
   }): Promise<void> => {
     await C100MiamPolicyUpgrade.c100MiamPolicyUpgrade({
@@ -127,7 +122,7 @@ test.describe("C100 Create case MIAM Tests", (): void => {
   Error message testing,
   Saying yes to attended MIAM
   C100MiamPolicyUpgrade1PageType is "yesAttendedMiam"
-  miamSelection is "attended4MonthsPrior". @accessibility`, async ({
+  miamSelection is "attended4MonthsPrior". @accessibility @nightly`, async ({
     page,
   }): Promise<void> => {
     await C100MiamPolicyUpgrade.c100MiamPolicyUpgrade({
@@ -147,7 +142,7 @@ test.describe("C100 Create case MIAM Tests", (): void => {
   Not Error message testing,
   Saying yes to yesExemption
   miamSelection "attended4MonthsPrior"
-  Saying Yes to all options. @accessibility `, async ({
+  Saying Yes to all options. @accessibility @nightly`, async ({
     page,
   }): Promise<void> => {
     await C100MiamPolicyUpgrade.c100MiamPolicyUpgrade({

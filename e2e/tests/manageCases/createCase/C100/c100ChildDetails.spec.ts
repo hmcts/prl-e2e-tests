@@ -9,7 +9,7 @@ test.describe("C100 Create case child details tests", (): void => {
   Not Accessibility testing,
   Not Error message testing,
   Answering yes to all additional questions,
-  Setting the child Gender to male. @nightly`, async ({
+  Setting the child Gender to male. @regression`, async ({
     page,
   }): Promise<void> => {
     await C100ChildDetails.c100ChildDetails({
@@ -57,11 +57,11 @@ test.describe("C100 Create case child details tests", (): void => {
   });
 });
 
-test(`Accessibility test the C100 child details event as a solicitor with the following options:
+test(`Test the C100 child details event as a solicitor with the following options:
   Accessibility testing,
   Not Error message testing,
   Answering no to all additional questions,
-  Setting the child Gender to female. @accessibility`, async ({
+  Setting the child Gender to female. @accessibility @nightly`, async ({
   page,
 }): Promise<void> => {
   await C100ChildDetails.c100ChildDetails({

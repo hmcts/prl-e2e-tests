@@ -25,7 +25,7 @@ test.describe("C100 Create case International Element Tests", (): void => {
   Not Accessibility testing,
   Not Error message testing,
   Saying no to all options,
-  Setting the applicant Gender to male. @nightly @regression`, async ({
+  Setting the applicant Gender to male. @regression`, async ({
     page,
   }): Promise<void> => {
     await C100InternationalElement.c100InternationalElement({
@@ -42,7 +42,7 @@ test(`Complete the C100 Create case International Element as a solicitor with th
   Accessibility testing,
   Not Error message testing,
   Saying yes to all options,
-  Setting the applicant Gender to male. @accessibility`, async ({
+  Setting the applicant Gender to male. @accessibility @nightly`, async ({
   page,
 }): Promise<void> => {
   await C100InternationalElement.c100InternationalElement({

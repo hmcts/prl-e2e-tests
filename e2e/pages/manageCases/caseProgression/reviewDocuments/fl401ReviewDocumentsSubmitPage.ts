@@ -67,7 +67,11 @@ export class FL401ReviewDocumentsSubmitPage {
       ),
       Helpers.checkVisibleAndPresent(page, yesNoNotSureSelector, 1),
     ]);
-    await expect(page.locator('ccd-read-dynamic-list-field span', {hasText: 'testPdf.pdf'})).toBeVisible();
+    await expect(
+      page.locator("ccd-read-dynamic-list-field span", {
+        hasText: "testPdf.pdf",
+      }),
+    ).toBeVisible();
     // if (accessibilityTest) {
     //   await AccessibilityTestHelper.run(page); #TODO Disabled pending ticket FPET-1209
     // }

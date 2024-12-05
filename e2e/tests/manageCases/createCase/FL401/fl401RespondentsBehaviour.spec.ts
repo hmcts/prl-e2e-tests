@@ -7,9 +7,7 @@ test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 test.describe("FL401 Create case respondent’s behaviour tests", (): void => {
   test(`Complete the FL401 respondent’s behaviour event as a solicitor with the following options:
   Not Accessibility testing,
-  Not Error message testing @regression @nightly`, async ({
-    page,
-  }): Promise<void> => {
+  Not Error message testing @regression`, async ({ page }): Promise<void> => {
     await FL401RespondentsBehaviour.fl401RespondentsBehaviour({
       page: page,
       accessibilityTest: false,
@@ -18,9 +16,9 @@ test.describe("FL401 Create case respondent’s behaviour tests", (): void => {
   });
 });
 
-test(`Accessibility test the FL401 respondent’s behaviour event as a solicitor with the following options:
+test(`Test the FL401 respondent’s behaviour event as a solicitor with the following options:
   Accessibility testing,
-  Not Error message testing, @accessibility`, async ({
+  Not Error message testing, @accessibility @nightly`, async ({
   page,
 }): Promise<void> => {
   await FL401RespondentsBehaviour.fl401RespondentsBehaviour({

@@ -1,7 +1,10 @@
 import { APIRequestContext, request, test as setup } from "@playwright/test";
+import dotenv from "dotenv";
 import { getAccessToken } from "../common/getAccessTokenHelper";
 import IdamLoginHelper from "../common/idamLoginHelper";
 import config from "../config";
+
+dotenv.config();
 
 setup("Setup solicitor user", async ({ page }) => {
   await IdamLoginHelper.signInUser(

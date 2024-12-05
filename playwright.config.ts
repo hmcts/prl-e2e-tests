@@ -29,7 +29,7 @@ module.exports = defineConfig({
       dependencies: ["setup"],
       use: {
         ...devices["Desktop Chrome"],
-        channel: "chrome",
+        channel: "chromium",
         screenshot: "off",
         video: "off",
         trace: "on-first-retry",

@@ -12,7 +12,7 @@ test.describe("Edit and approve a CA order tests", (): void => {
   Case: C100,
   Order type: Parental responsibility order (C45A),
   Judge order action: Send to admin to serve,
-  Not accessibility testing. @regression @nightly`, async ({
+  Not accessibility testing. @regression`, async ({
     page,
     browser,
   }): Promise<void> => {
@@ -31,7 +31,7 @@ test.describe("Edit and approve a CA order tests", (): void => {
   Case: C100,
   Order type: Parental responsibility order (C45A),
   Judge order action: Ask the legal representative to make changes,
-  Not accessibility testing. @regression @nightly`, async ({
+  Not accessibility testing. @regression`, async ({
     page,
     browser,
   }): Promise<void> => {
@@ -50,7 +50,7 @@ test.describe("Edit and approve a CA order tests", (): void => {
   Case: C100,
   Order type: Parental responsibility order (C45A),
   Judge order action: Give admin further directions then serve,
-  Accessibility testing. @accessibility @regression`, async ({
+  Accessibility testing. @accessibility @nightly`, async ({
     page,
     browser,
   }): Promise<void> => {

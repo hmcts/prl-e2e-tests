@@ -178,7 +178,7 @@ test.describe("FL401 Create cases The Home tests", (): void => {
         Not Error Messaging (There isn't any), 
         Applicant doesn't have children
         No to all booleans, 
-        'Yes the applicant' to has the applicant or respondent ever lived at the address @nightly @regression`, async ({
+        'Yes the applicant' to has the applicant or respondent ever lived at the address @regression`, async ({
     page,
   }): Promise<void> => {
     await FL401TheHome.fl401TheHome({
@@ -192,7 +192,11 @@ test.describe("FL401 Create cases The Home tests", (): void => {
   });
 });
 
-test(`Test the accessibility of the fl401 The Home Journey saying yes to all, @accessibility`, async ({
+test(`Complete the FL401 The Home Journey with the following options:
+        Accessibility testing, 
+        Applicant has children
+        Yes to all booleans, 
+        'Yes the applicant' to has the applicant or respondent ever lived at the address @accessibility @nightly`, async ({
   page,
 }): Promise<void> => {
   await FL401TheHome.fl401TheHome({

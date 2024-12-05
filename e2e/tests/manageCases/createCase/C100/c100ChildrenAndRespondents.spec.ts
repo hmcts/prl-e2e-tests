@@ -32,7 +32,7 @@ test.describe("C100 Create case Children and respondents Tests", (): void => {
   Not Accessibility testing,
   Not Error message testing,
   Saying no to all options,
-  Setting the applicant Gender to female. @regression @nightly`, async ({
+  Setting the applicant Gender to female. @regression`, async ({
     page,
   }): Promise<void> => {
     await C100ChildAndRespondents.c100ChildrenAndRespondents({
@@ -56,7 +56,7 @@ test(`Complete the C100 Create case Children and respondents as a solicitor with
   Accessibility testing,
   Not Error message testing,
   Saying Yes to all options,
-  Setting the applicant Gender to female. @accessibility`, async ({
+  Setting the applicant Gender to female. @accessibility @nightly`, async ({
   page,
 }): Promise<void> => {
   await C100ChildAndRespondents.c100ChildrenAndRespondents({

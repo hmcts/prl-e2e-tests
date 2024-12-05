@@ -6,11 +6,14 @@ import { CommonStaticText } from "../../../../../common/commonStaticText";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { ManageOrders20DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders20DAContent";
 import { howLongWillOrderBeInForce } from "./manageOrders12Page";
+import { CreateOrderFL401Options } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders5DAContent";
+import { createOrderFL401Options } from "../../../../../common/types";
 
 interface ManageOrders20PageOptions {
   page: Page;
   yesNoManageOrders: boolean;
   howLongWillOrderBeInForce: howLongWillOrderBeInForce;
+  createOrderFL401Options: createOrderFL401Options;
   accessibilityTest: boolean;
 }
 
@@ -22,16 +25,23 @@ enum ids {
 export class ManageOrders20Page {
   public static async manageOrders20Page({
     page,
+    createOrderFL401Options,
     yesNoManageOrders,
     howLongWillOrderBeInForce,
     accessibilityTest,
   }: ManageOrders20PageOptions): Promise<void> {
-    await this.checkPageLoads({ page, accessibilityTest });
-    await this.checkPdfContent(
+    await this.checkPageLoads({
       page,
-      yesNoManageOrders,
-      howLongWillOrderBeInForce,
-    );
+      accessibilityTest,
+      createOrderFL401Options,
+    });
+    if (createOrderFL401Options === "non-molestation") {
+      await this.checkPdfContent(
+        page,
+        yesNoManageOrders,
+        howLongWillOrderBeInForce,
+      );
+    }
     await this.fillInFields({
       page,
     });
@@ -40,6 +50,7 @@ export class ManageOrders20Page {
   private static async checkPageLoads({
     page,
     accessibilityTest,
+    createOrderFL401Options,
   }: Partial<ManageOrders20PageOptions>): Promise<void> {
     if (!page) {
       throw new Error("Page is not defined");
@@ -48,19 +59,62 @@ export class ManageOrders20Page {
       `${Selectors.h1}:text-is("${ManageOrders1DAContent.pageTitle}")`,
     );
     await pageTitle.waitFor();
-    await Promise.all([
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.h2}:text-is("${ManageOrders20DAContent.h2}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.Span}:text-is("${ManageOrders20DAContent.span}")`,
-        1,
-      ),
-      Helpers.checkGroup(page, 2, ManageOrders20DAContent, "a", Selectors.a),
-    ]);
+    switch (createOrderFL401Options) {
+      case "power of arrest":
+        await Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.Span}:text-is("${CreateOrderFL401Options.spanPowerOfArrest}")`,
+          1,
+        );
+        break;
+      case "occupation order":
+        await Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.Span}:text-is("${CreateOrderFL401Options.spanOccupationOrder}")`,
+          1,
+        );
+        break;
+      case "non-molestation":
+        await Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.Span}:text-is("${CreateOrderFL401Options.spanNonMolestation}")`,
+          1,
+        );
+        break;
+      case "amend discharge varied order":
+        await Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.Span}:text-is("${CreateOrderFL401Options.spanAmendDischargeVariedOrder}")`,
+          1,
+        );
+        break;
+      case "blank order":
+        await Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.Span}:text-is("${CreateOrderFL401Options.spanBlankOrder}")`,
+          1,
+        );
+        break;
+      case "general form of undertaking":
+        await Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.Span}:text-is("${CreateOrderFL401Options.spanGeneralFormOfUndertaking}")`,
+          1,
+        );
+        break;
+      case "notice of proceedings":
+        await Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.Span}:text-is("${CreateOrderFL401Options.spanNoticeOfProceedings}")`,
+          1,
+        );
+        break;
+    }
+    await Helpers.checkVisibleAndPresent(
+      page,
+      `${Selectors.h2}:text-is("${ManageOrders20DAContent.h2}")`,
+      1,
+    );
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }
@@ -92,7 +146,7 @@ export class ManageOrders20Page {
     await Promise.all([
       Helpers.checkGroup(
         pdfPage,
-        87,
+        86,
         ManageOrders20DAContent,
         "welshSpan",
         `${Selectors.Span}`,
@@ -291,7 +345,7 @@ export class ManageOrders20Page {
         break;
     }
   }
-
+  // this is being tested in Create and order for caseWorker
   private static async openMediaViewer(page: Page, language: string) {
     const [pdfPage] = await Promise.all([
       page.waitForEvent("popup"),

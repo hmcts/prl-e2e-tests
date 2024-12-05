@@ -1,12 +1,11 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { ViewPDFApplication1Content } from "../../../../../fixtures/manageCases/createCase/C100/viewPDFApplication/viewPDFApplication1Content";
-import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { EnglishMediaContentYesToAll } from "../../../../../fixtures/manageCases/createCase/C100/viewPDFApplication/englishMediaContentYesToAll";
-import { WelshMediaContent } from "../../../../../fixtures/manageCases/createCase/C100/viewPDFApplication/welshMediaContent";
+import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors";
 import { EnglishMediaContentNoToAll } from "../../../../../fixtures/manageCases/createCase/C100/viewPDFApplication/englishMediaContentNoToAll";
-import { existsSync } from "fs";
+import { EnglishMediaContentYesToAll } from "../../../../../fixtures/manageCases/createCase/C100/viewPDFApplication/englishMediaContentYesToAll";
+import { ViewPDFApplication1Content } from "../../../../../fixtures/manageCases/createCase/C100/viewPDFApplication/viewPDFApplication1Content";
+import { WelshMediaContent } from "../../../../../fixtures/manageCases/createCase/C100/viewPDFApplication/welshMediaContent";
 
 enum englishNoSpanCounts {
   page1 = 18,
@@ -410,7 +409,7 @@ export class ViewPDFApplication1Page {
         await this.checkEnglishNoPage12RepeatedText(page);
         break;
       default:
-        if (existsSync(".env")) {
+        if (process.env.PWDEBUG) {
           console.log(`No check function defined for page ${i}`);
         }
     }
@@ -455,7 +454,7 @@ export class ViewPDFApplication1Page {
         await this.checkEnglishYesPage12RepeatedText(page);
         break;
       default:
-        if (existsSync(".env")) {
+        if (process.env.PWDEBUG) {
           console.log(`Page ${i} is not handled.`);
         }
     }
@@ -992,7 +991,7 @@ export class ViewPDFApplication1Page {
         await this.checkWelshPage11RepeatedText(page);
         break;
       default:
-        if (existsSync(".env")) {
+        if (process.env.PWDEBUG) {
           console.log(`Page number ${i} is not supported.`);
         }
     }

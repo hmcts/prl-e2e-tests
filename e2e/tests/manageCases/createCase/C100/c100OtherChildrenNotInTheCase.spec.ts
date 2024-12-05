@@ -10,7 +10,7 @@ test.describe("C100 Create case Other children not in the case tests", (): void 
   Not Error message testing,
   Answering yes to the other child being present,
   With a known DOB,
-  Setting the child Gender to Female. @regression @nightly`, async ({
+  Setting the child Gender to Female. @regression`, async ({
     page,
   }): Promise<void> => {
     await C100OtherChildrenNotInTheCase.c100OtherChildrenNotInTheCase({
@@ -84,7 +84,7 @@ test.describe("C100 Create case Other children not in the case tests", (): void 
   Error message testing,
   Answering yes to the other child being present,
   With a unknown DOB,
-  Setting the child Gender to female. @errorMessage`, async ({
+  Setting the child Gender to female. @regression @errorMessage`, async ({
     page,
   }): Promise<void> => {
     await C100OtherChildrenNotInTheCase.c100OtherChildrenNotInTheCase({
@@ -99,12 +99,12 @@ test.describe("C100 Create case Other children not in the case tests", (): void 
   });
 });
 
-test(`Accessibility test the C100 Other children not in the case event as a solicitor with the following options:
+test(`Test the C100 Other children not in the case event as a solicitor with the following options:
   Accessibility testing,
   Not Error message testing,
   Answering yes to the other child being present,
   With a unknown DOB,
-  Setting the child Gender to female. @accessibility`, async ({
+  Setting the child Gender to female. @accessibility @nightly`, async ({
   page,
 }): Promise<void> => {
   await C100OtherChildrenNotInTheCase.c100OtherChildrenNotInTheCase({
