@@ -4,7 +4,7 @@ import { ServiceOfApplication2Content } from "../../../../fixtures/manageCases/c
 import { Helpers } from "../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
 import { CommonStaticText } from "../../../../common/commonStaticText";
-import { ServiceOfApplication4Content } from "../../../../journeys/manageCases/caseProgression/serviceOfApplication/serviceOfApplication4Content";
+import { ServiceOfApplication4Content } from "../../../../fixtures/manageCases/caseProgression/serviceOfApplication/serviceOfApplication4Content";
 
 interface ServiceOfApplication4Options {
   page: Page;
