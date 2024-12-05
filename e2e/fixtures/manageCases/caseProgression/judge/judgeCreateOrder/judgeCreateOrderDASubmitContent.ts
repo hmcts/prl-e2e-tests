@@ -1,4 +1,4 @@
-export enum JudgeDASubmitContent {
+export enum JudgeCreateOrderDASubmitContent {
   h21 = "Check your answers",
   h22 = "Create an order",
   h23 = "Preview the order",

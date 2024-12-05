@@ -142,6 +142,8 @@ export type JudgeOrderAction =
 
 export type Language = "English" | "Welsh";
 
+export type manageOrdersOptions = "create order" | "upload order";
+
 export type createOrderFL401Options =
   | "power of arrest"
   | "non-molestation"
@@ -150,6 +152,24 @@ export type createOrderFL401Options =
   | "blank order"
   | "general form of undertaking"
   | "notice of proceedings";
+
+export type uploadOrderFL401Options =
+  | "power of arrest"
+  | "non-molestation"
+  | "occupation order"
+  | "amend discharge varied order"
+  | "blank order (FL404B)"
+  | "general form of undertaking"
+  | "warrant of arrest"
+  | "remand order"
+  | "form for taking recognizance"
+  | "form for taking surety"
+  | "bail notice"
+  | "hospital order"
+  | "guardianship order"
+  | "statement of service"
+  | "blank order (FL514)"
+  | "Notice landlord mortgage";
 
 export type judgeTitles =
   | "Her Honour Judge"
