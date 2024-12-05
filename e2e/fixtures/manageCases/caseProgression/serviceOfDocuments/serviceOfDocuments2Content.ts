@@ -20,4 +20,12 @@ export enum ServiceOfDocuments2Content {
   inputAdditionalRecipientName = "John Doe",
   inputPostcode = "SA1 1AD",
   inputEmail = "test@test.com",
+  hiddenAddressFormLabel1 = "Select an address",
+  hiddenAddressFormLabel2 = "Building and Street",
+  hiddenAddressFormLabel3 = "Address Line 2 (Optional)",
+  hiddenAddressFormLabel4 = "Address Line 3 (Optional)",
+  hiddenAddressFormLabel5 = "Town or City (Optional)",
+  hiddenAddressFormLabel6 = "County (Optional)",
+  hiddenAddressFormLabel7 = "Postcode/Zipcode",
+  hiddenAddressFormLabel8 = "Country (Optional)",
 }

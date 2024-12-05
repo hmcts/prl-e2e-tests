@@ -16,7 +16,7 @@ interface ServiceOfDocumentsParams {
   page: Page;
   accessibilityTest: boolean;
   withCaseDoc: boolean;
-  additionalDoc:boolean;
+  additionalDoc: boolean;
   personallyServed: yesNoNA;
   servedByPost: boolean;
   checkDocuments: boolean;

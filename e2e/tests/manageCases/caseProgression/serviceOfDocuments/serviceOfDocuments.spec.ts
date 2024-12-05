@@ -29,15 +29,30 @@ test.describe("Service of Document event for DA Citizen case tests as court admi
   Documents should be personally served: No, 
   Additional recipients served by post or email: email, 
   Documents should be check by manager: no, 
-  Accessibility testing: No. @regression`, async ({
-    page,
-  }): Promise<void> => {
+  Accessibility testing: No. @regression`, async ({ page }): Promise<void> => {
     await ServiceOfDocuments.serviceOfDocuments({
       page,
       accessibilityTest: false,
       withCaseDoc: true,
       additionalDoc: true,
       personallyServed: "No",
+      servedByPost: false,
+      checkDocuments: false,
+    });
+  });
+  test(`Complete 'Service of Documents' with following options: 
+  Additional documents added: yes
+  Witness statement (case doc) added to event: no
+  Documents should be personally served: Not applicable, 
+  Additional recipients served by post or email: email, 
+  Documents should be check by manager: no, 
+  Accessibility testing: No. @regression`, async ({ page }): Promise<void> => {
+    await ServiceOfDocuments.serviceOfDocuments({
+      page,
+      accessibilityTest: false,
+      withCaseDoc: false,
+      additionalDoc: false,
+      personallyServed: "Not applicable",
       servedByPost: false,
       checkDocuments: false,
     });

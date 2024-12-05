@@ -10,7 +10,7 @@ interface serviceOfDocuments1Options {
   page: Page;
   accessibilityTest: boolean;
   additionalDoc: boolean;
-  withCaseDoc:boolean
+  withCaseDoc: boolean;
 }
 
 enum UniqueSelectors {
@@ -25,10 +25,15 @@ export class ServiceOfDocuments1Page {
     page,
     accessibilityTest,
     additionalDoc,
-    withCaseDoc
+    withCaseDoc,
   }: serviceOfDocuments1Options): Promise<void> {
-    await this.checkPageLoads({ page, accessibilityTest, additionalDoc, withCaseDoc });
-    await this.fillInFields({ page,  });
+    await this.checkPageLoads({
+      page,
+      accessibilityTest,
+      additionalDoc,
+      withCaseDoc,
+    });
+    await this.fillInFields({ page });
     await this.continue(page);
   }
 
@@ -94,7 +99,7 @@ export class ServiceOfDocuments1Page {
         .getByLabel("", { exact: true })
         .setInputFiles(path.resolve(__dirname, "../../../assets/mockFile.pdf"));
     }
-    if(withCaseDoc){
+    if (withCaseDoc) {
       await page.getByRole("button", { name: "Add new" }).nth(2).click(); //second add new button
       await page
         .locator(UniqueSelectors.docList2Selector)

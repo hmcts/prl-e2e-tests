@@ -3,7 +3,6 @@ import fs from "fs";
 import path from "path";
 import withNoticejsonData from "../caseData/citizenDA/courtNavDaCitizenCase_WithNotice.json";
 import withoutNoticejsonData from "../caseData/citizenDA/courtNavDaCitizenCase_WithoutNotice.json";
-import { getAccessToken } from "./getAccessTokenHelper";
 /**
  * Function to create a DA Citizen CourtNav case and optionally add a document.
  * @param {boolean} withDoc Whether to add a document after case creation
@@ -13,15 +12,9 @@ async function createDaCitizenCourtNavCase(
   withNotice: boolean,
   withDoc: boolean,
 ): Promise<string> {
-  const apiContextDaCreateCase: APIRequestContext = await request.newContext();
-  const tokenDaCreateCase = await getAccessToken(
-    "daCourtNavCreateCase",
-    apiContextDaCreateCase,
-  );
-  if (!tokenDaCreateCase) {
-    throw new Error("Setup failed: Unable to get bearer token.");
-  }
-  process.env.COURTNAV_CREATE_CASE_BEARER_TOKEN = tokenDaCreateCase;
+  const apiContextDaCreateCase2: APIRequestContext = await request.newContext();
+  let tokenDaCreateCase = process.env
+    .COURTNAV_CREATE_CASE_BEARER_TOKEN as string;
   let jsonData;
   if (withNotice) {
     jsonData = withNoticejsonData;
@@ -29,7 +22,7 @@ async function createDaCitizenCourtNavCase(
     jsonData = withoutNoticejsonData;
   }
   try {
-    const response = await apiContextDaCreateCase.post(
+    const response = await apiContextDaCreateCase2.post(
       process.env.COURTNAV_CASE_URL as string,
       {
         headers: {
