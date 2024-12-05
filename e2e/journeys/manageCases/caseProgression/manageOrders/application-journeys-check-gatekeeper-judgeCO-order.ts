@@ -9,6 +9,7 @@ import { createOrderManageOrders19Options } from "../../../../pages/manageCases/
 import { howLongWillOrderBeInForce } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders12Page";
 import { ApplicationJourneysCheckGatekeeper } from "../checkApplicationSendToGateKeeper/application-journeys-check-gatekeeper";
 import { JudgeManageOrderJourney } from "./judgeManageOrdersJourney";
+import { ServiceOfApplicationJourney } from "../serviceOfApplication/serviceOfApplication";
 
 interface CheckApplicationParams {
   page: Page;
@@ -63,6 +64,12 @@ export class ApplicationJourneysCheckGatekeeperJudgeCOOrder {
       howLongWillOrderBeInForce,
       manageOrdersOptions,
     });
-    await page.waitForTimeout(5000);
+    await ServiceOfApplicationJourney.serviceOfApplicationJourney({
+      browser,
+      ccdRef,
+      accessibilityTest,
+      c100CaseWorkerActions,
+    });
+    await page.waitForTimeout(1000);
   }
 }
