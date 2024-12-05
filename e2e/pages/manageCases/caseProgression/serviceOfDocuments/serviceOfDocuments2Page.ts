@@ -20,7 +20,7 @@ enum UniqueSelectors {
   responsibleForServingSelector = "#sodCitizenServingRespondentsOptions-unrepresentedApplicant",
   additionalRecipientsSelector = "#sodAdditionalRecipients-additionalRecipients",
   additionalRecipientPostSelector = "#sodAdditionalRecipientsList_0_serveByPostOrEmail-post",
-  additionalRecipientEmailSelector = "#sodAdditionalRecipientsList_0_serveByPostOrEmail-post",
+  additionalRecipientEmailSelector = "#sodAdditionalRecipientsList_0_serveByPostOrEmail-email",
   additionalRecipientPost_InputNameSelector = "#sodAdditionalRecipientsList_0_postalInformation_postalName",
   additionalRecipientPost_InputPostcodeSelector = "#sodAdditionalRecipientsList_0_postalInformation_postalAddress_postalAddress_postcodeInput",
   additionalRecipientEmail_InputNameSelector = "#sodAdditionalRecipientsList_0_emailInformation_emailName",
@@ -136,6 +136,7 @@ export class ServiceOfDocuments2Page {
     if (servedByPost) {
       await this.handleServeByPost(page);
     } else {
+      await page.pause();
       await this.handleServeByEmail(page);
     }
   }
@@ -145,7 +146,7 @@ export class ServiceOfDocuments2Page {
     );
   }
   private static async handleServeByPost(page: Page): Promise<void> {
-    await page.click(UniqueSelectors.additionalRecipientPostSelector);
+    await page.check(UniqueSelectors.additionalRecipientPostSelector);
     await Promise.all([
       Helpers.checkGroup(
         page,
@@ -188,7 +189,7 @@ export class ServiceOfDocuments2Page {
   }
 
   private static async handleServeByEmail(page: Page): Promise<void> {
-    await page.click(UniqueSelectors.additionalRecipientEmailSelector);
+    await page.check(UniqueSelectors.additionalRecipientEmailSelector);
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,

@@ -33,7 +33,7 @@ export class ServiceOfDocuments1Page {
       additionalDoc,
       withCaseDoc,
     });
-    await this.fillInFields({ page });
+    await this.fillInFields({ page, withCaseDoc, additionalDoc });
     await this.continue(page);
   }
 
@@ -82,7 +82,7 @@ export class ServiceOfDocuments1Page {
     if (!page) {
       throw new Error("No page found");
     }
-    if (additionalDoc){
+    if (additionalDoc) {
       await this.handleAdditionalDoc(page);
     }
     await page
@@ -111,6 +111,8 @@ export class ServiceOfDocuments1Page {
     await page
       .locator(UniqueSelectors.addAdditionalDocSelector)
       .getByLabel("", { exact: true })
-      .setInputFiles(path.resolve(__dirname, "../../../assets/mockFile.pdf"));
+      .setInputFiles(
+        path.resolve(__dirname, "../../../../assets/mockFile.pdf"),
+      );
   }
 }
