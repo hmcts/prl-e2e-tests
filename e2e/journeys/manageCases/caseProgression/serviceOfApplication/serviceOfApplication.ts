@@ -3,9 +3,7 @@ import { Helpers } from "../../../../common/helpers";
 import config from "../../../../config";
 import { c100CaseWorkerActions } from "../../../../common/types";
 import { ServiceOfApplication2Page } from "../../../../pages/manageCases/caseProgression/serviceOfApplication/serviceOfApplication2Page";
-import {
-  ServiceOfApplication4Page
-} from "../../../../pages/manageCases/caseProgression/serviceOfApplication/ServiceOfApplication4Page";
+import { ServiceOfApplication4Page } from "../../../../pages/manageCases/caseProgression/serviceOfApplication/ServiceOfApplication4Page";
 
 interface ServiceOfApplicationJourneyParams {
   browser: Browser;
@@ -33,6 +31,6 @@ export class ServiceOfApplicationJourney {
     await ServiceOfApplication4Page.serviceOfApplication4Page({
       page,
       accessibilityTest,
-    })
+    });
   }
 }

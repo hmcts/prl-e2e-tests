@@ -4,9 +4,7 @@ import { ServiceOfApplication2Content } from "../../../../fixtures/manageCases/c
 import { Helpers } from "../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
 import { CommonStaticText } from "../../../../common/commonStaticText";
-import {
-  ServiceOfApplication4Content
-} from "../../../../journeys/manageCases/caseProgression/serviceOfApplication/serviceOfApplication4Content";
+import { ServiceOfApplication4Content } from "../../../../journeys/manageCases/caseProgression/serviceOfApplication/serviceOfApplication4Content";
 
 interface ServiceOfApplication4Options {
   page: Page;
@@ -21,8 +19,7 @@ enum UniqueSelectors {
   unrepresentedApplication = "#soaCitizenServingRespondentsOptions-unrepresentedApplicant",
   courtAdmin = "#soaCitizenServingRespondentsOptions-courtAdmin",
   noApplicant = "#soaRecipientsOptions_d0cfb768-9707-4091-b0d4-b2d09eb82318",
-  noRespondent = "#soaRecipientsOptions_ea441ab6-d136-422f-bf91-0c9407a0185d"
-
+  noRespondent = "#soaRecipientsOptions_ea441ab6-d136-422f-bf91-0c9407a0185d",
 }
 
 export class ServiceOfApplication4Page {
@@ -81,7 +78,9 @@ export class ServiceOfApplication4Page {
     await page.click(UniqueSelectors.yes);
     await this.yesHiddenFormLabel1(page);
     await page.click(UniqueSelectors.courtBailiff);
-    await page.click(`${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`);
+    await page.click(
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
+    );
   }
 
   private static async yesHiddenFormLabel1(page: Page): Promise<void> {
@@ -95,7 +94,7 @@ export class ServiceOfApplication4Page {
         ServiceOfApplication4Content,
         "yesHiddenFormLabel",
         Selectors.GovukFormLabel,
-      )
+      ),
     ]);
   }
 
@@ -107,8 +106,8 @@ export class ServiceOfApplication4Page {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukFormLabel}:text-is("${ServiceOfApplication4Content.noHiddenFormLabel1}")`,
-        1
-      )
+        1,
+      ),
     ]);
   }
 }
