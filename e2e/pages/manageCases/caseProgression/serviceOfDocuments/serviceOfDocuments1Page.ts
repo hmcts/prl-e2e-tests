@@ -82,23 +82,13 @@ export class ServiceOfDocuments1Page {
     if (!page) {
       throw new Error("No page found");
     }
-    await page
-      .locator(UniqueSelectors.addNewButton1)
-      .getByRole("button", { name: "Add new" })
-      .click();
-    await page
-      .locator(UniqueSelectors.addAdditionalDocSelector)
-      .getByLabel("", { exact: true })
-      .click();
+    if (additionalDoc){
+      await this.handleAdditionalDoc(page);
+    }
     await page
       .getByLabel(ServiceOfDocuments1Content.formLabel1)
       .selectOption("1: applications -> applicantDocuments -> applicant");
-    if (additionalDoc) {
-      await page
-        .locator(UniqueSelectors.addAdditionalDocSelector)
-        .getByLabel("", { exact: true })
-        .setInputFiles(path.resolve(__dirname, "../../../assets/mockFile.pdf"));
-    }
+
     if (withCaseDoc) {
       await page.getByRole("button", { name: "Add new" }).nth(2).click(); //second add new button
       await page
@@ -106,9 +96,21 @@ export class ServiceOfDocuments1Page {
         .selectOption("2: witnessStatementAndEvidence -> applicantStateme");
     }
   }
+
   private static async continue(page: Page): Promise<void> {
     await page.click(
       `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
     );
+  }
+
+  private static async handleAdditionalDoc(page: Page): Promise<void> {
+    await page
+      .locator(UniqueSelectors.addNewButton1)
+      .getByRole("button", { name: "Add new" })
+      .click();
+    await page
+      .locator(UniqueSelectors.addAdditionalDocSelector)
+      .getByLabel("", { exact: true })
+      .setInputFiles(path.resolve(__dirname, "../../../assets/mockFile.pdf"));
   }
 }

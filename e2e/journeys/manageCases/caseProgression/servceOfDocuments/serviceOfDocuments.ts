@@ -73,6 +73,7 @@ export class ServiceOfDocuments {
     }
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
     await Helpers.chooseEventFromDropdown(page, "Service of documents");
+    await page.pause();
     await ServiceOfDocuments1Page.serviceOfDocuments1Page({
       page,
       accessibilityTest,
