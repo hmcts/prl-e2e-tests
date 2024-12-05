@@ -15,9 +15,9 @@ test.describe("List without notice tests", () => {
   });
 
   test(`Complete list without notice event. @regression @accessibility @nightly`, async ({
-                                                                                        page,
-                                                                                        browser,
-                                                                                      }): Promise<void> => {
+    page,
+    browser,
+  }): Promise<void> => {
     await ListWithoutNotice.listWithoutNotice({
       page: page,
       browser: browser,

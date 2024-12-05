@@ -3,10 +3,7 @@ import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper"
 import { Selectors } from "../../../../common/selectors";
 import { CommonStaticText } from "../../../../common/commonStaticText";
 import { Helpers } from "../../../../common/helpers";
-import { Fl401ListOnNoticeSubmitContent } from "../../../../fixtures/manageCases/caseProgression/List/fl401ListOnNoticeSubmitContent";
-import {
-  Fl401ListWithoutNoticeSubmitContent
-} from "../../../../fixtures/manageCases/caseProgression/List/fl401ListWithoutNoticeSubmitContent";
+import { Fl401ListWithoutNoticeSubmitContent } from "../../../../fixtures/manageCases/caseProgression/List/fl401ListWithoutNoticeSubmitContent";
 
 export class Fl401ListWithoutNoticeSubmitPage {
   public static async fl401ListWithoutNoticeSubmitPage(

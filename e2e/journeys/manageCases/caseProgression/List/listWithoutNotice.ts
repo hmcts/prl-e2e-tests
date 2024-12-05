@@ -17,11 +17,11 @@ interface ListWithoutNoticeParams {
 
 export class ListWithoutNotice {
   public static async listWithoutNotice({
-                                       page,
-                                       browser,
-                                       ccdRef,
-                                       accessibilityTest,
-                                     }: ListWithoutNoticeParams): Promise<void> {
+    page,
+    browser,
+    ccdRef,
+    accessibilityTest,
+  }: ListWithoutNoticeParams): Promise<void> {
     await CheckApplication.checkApplication({
       page: page,
       accessibilityTest: accessibilityTest,

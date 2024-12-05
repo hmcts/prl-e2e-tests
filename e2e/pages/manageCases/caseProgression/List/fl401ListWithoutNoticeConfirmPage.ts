@@ -1,11 +1,8 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors";
-import { Fl401ListOnNoticeConfirmContent } from "../../../../fixtures/manageCases/caseProgression/List/fl401ListOnNoticeConfirmContent";
 import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
 import { Helpers } from "../../../../common/helpers";
-import {
-  Fl401ListWithoutNoticeConfirmContent
-} from "../../../../fixtures/manageCases/caseProgression/List/fl401ListWithoutNoticeConfirmContent";
+import { Fl401ListWithoutNoticeConfirmContent } from "../../../../fixtures/manageCases/caseProgression/List/fl401ListWithoutNoticeConfirmContent";
 
 export class Fl401ListWithoutNoticeConfirmPage {
   public static async fl401ListWithoutNoticeConfirmPage(
