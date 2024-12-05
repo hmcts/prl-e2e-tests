@@ -1,7 +1,7 @@
 import { test } from "@playwright/test";
 import Config from "../../../../config";
 import createDaCitizenCourtNavCase from "../../../../common/createCaseHelper";
-import { ApplicationJourneysCheckGatekeeperJudgeMOOrder } from "../../../../journeys/manageCases/caseProgression/application-journeys-check-gatekeeper-judgeMO-order/application-journeys-check-gatekeeper-judgeMO-order";
+import { ApplicationJourneysCheckGatekeeperJudgeCOOrder } from "../../../../journeys/manageCases/caseProgression/manageOrders/application-journeys-check-gatekeeper-judgeCO-order";
 import { Helpers } from "../../../../common/helpers";
 import config from "../../../../config";
 
@@ -27,13 +27,14 @@ test.describe("Check Application task for DA Citizen case tests.", () => {
     page,
     browser,
   }): Promise<void> => {
-    await ApplicationJourneysCheckGatekeeperJudgeMOOrder.applicationJourneysCheckGatekeeperJudgeMOOrder(
+    await ApplicationJourneysCheckGatekeeperJudgeCOOrder.applicationJourneysCheckGatekeeperJudgeCOOrder(
       {
         page: page,
         accessibilityTest: false,
         yesNoSendToGateKeeper: true,
         ccdRef: ccdRef,
         c100CaseWorkerActions: "Manage orders",
+        manageOrdersOptions: "create order",
         createOrderFL401Options: "power of arrest",
         yesNoManageOrders: false,
         judgeTitles: "Her Honour Judge",
@@ -57,13 +58,14 @@ test.describe("Check Application task for DA Citizen case tests.", () => {
     page,
     browser,
   }): Promise<void> => {
-    await ApplicationJourneysCheckGatekeeperJudgeMOOrder.applicationJourneysCheckGatekeeperJudgeMOOrder(
+    await ApplicationJourneysCheckGatekeeperJudgeCOOrder.applicationJourneysCheckGatekeeperJudgeCOOrder(
       {
         page: page,
         accessibilityTest: true,
         yesNoSendToGateKeeper: true,
         ccdRef: ccdRef,
         c100CaseWorkerActions: "Manage orders",
+        manageOrdersOptions: "create order",
         createOrderFL401Options: "amend discharge varied order",
         yesNoManageOrders: false,
         judgeTitles: "Deputy Circuit Judge",

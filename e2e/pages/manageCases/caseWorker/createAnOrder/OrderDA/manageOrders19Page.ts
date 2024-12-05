@@ -4,7 +4,7 @@ import { ManageOrders1DAContent } from "../../../../../fixtures/manageCases/case
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { ManageOrders19DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders19DAContent";
-import { CreateOrderFL401Options } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders5DAContent";
+import { CreateOrderFL401Options } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/createOrderManageOrders5Content";
 import { createOrderFL401Options } from "../../../../../common/types";
 
 interface ManageOrders19PageOptions {
