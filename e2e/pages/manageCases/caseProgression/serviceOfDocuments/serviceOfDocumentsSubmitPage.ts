@@ -78,7 +78,7 @@ export class ServiceOfDocumentsSubmitPage {
         page,
         `${Selectors.GovukText16}:text-is("${ServiceOfDocumentsSubmitContent.textNAPersonallyServed}")`,
         1,
-      )
+      ),
     ]);
   }
 
@@ -169,7 +169,7 @@ export class ServiceOfDocumentsSubmitPage {
           ServiceOfDocumentsSubmitContent,
           `textFieldAdditionalRecipient`,
           `${Selectors.GovukText16}`,
-        )
+        ),
       ]);
 
       const recipientMethodText = servedByPost
