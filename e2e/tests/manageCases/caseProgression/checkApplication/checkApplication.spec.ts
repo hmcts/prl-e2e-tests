@@ -3,9 +3,7 @@ import Config from "../../../../config";
 import createDaCitizenCourtNavCase from "../../../../common/createCaseHelper";
 import { Helpers } from "../../../../common/helpers";
 import config from "../../../../config";
-import {
-  CheckApplicationJourney
-} from "../../../../journeys/manageCases/caseProgression/checkApplicationSendToGateKeeper/checkApplication/checkApplicationJourney";
+import { CheckApplicationJourney } from "../../../../journeys/manageCases/caseProgression/checkApplicationSendToGateKeeper/checkApplication/checkApplicationJourney";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
@@ -25,7 +23,7 @@ test.describe("Check Application task for DA Citizen case tests.", () => {
       accessibilityTest: false,
       yesNoSendToGateKeeper: false,
       ccdRef: ccdRef,
-    })
+    });
   });
 
   test("Complete Check Application with accessibility test. @regression", async ({
