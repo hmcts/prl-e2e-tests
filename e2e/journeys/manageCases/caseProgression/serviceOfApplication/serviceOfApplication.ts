@@ -3,22 +3,27 @@ import { Helpers } from "../../../../common/helpers";
 import config from "../../../../config";
 import { c100CaseWorkerActions } from "../../../../common/types";
 import { ServiceOfApplication2Page } from "../../../../pages/manageCases/caseProgression/serviceOfApplication/serviceOfApplication2Page";
-import { ServiceOfApplication4Page } from "../../../../pages/manageCases/caseProgression/serviceOfApplication/ServiceOfApplication4Page";
-import { ServiceOfApplicationSubmitPage } from "../../../../pages/manageCases/caseProgression/serviceOfApplication/serviceOfApplicationSubmitPage";
 import {
-  ServiceOfApplicationConfirmPage
-} from "../../../../pages/manageCases/caseProgression/serviceOfApplication/serviceOfApplicationConfirmPage";
+  responsibleForServing,
+  ServiceOfApplication4Page,
+} from "../../../../pages/manageCases/caseProgression/serviceOfApplication/ServiceOfApplication4Page";
+import { ServiceOfApplicationSubmitPage } from "../../../../pages/manageCases/caseProgression/serviceOfApplication/serviceOfApplicationSubmitPage";
+import { ServiceOfApplicationConfirmPage } from "../../../../pages/manageCases/caseProgression/serviceOfApplication/serviceOfApplicationConfirmPage";
 
 interface ServiceOfApplicationJourneyParams {
   browser: Browser;
   ccdRef: string;
   accessibilityTest: boolean;
   c100CaseWorkerActions: c100CaseWorkerActions;
+  yesNoServiceOfApplication4: boolean;
+  responsibleForServing: responsibleForServing;
 }
 
 export class ServiceOfApplicationJourney {
   public static async serviceOfApplicationJourney({
     accessibilityTest,
+    yesNoServiceOfApplication4,
+    responsibleForServing,
     browser,
     ccdRef,
   }: ServiceOfApplicationJourneyParams): Promise<void> {
@@ -35,6 +40,8 @@ export class ServiceOfApplicationJourney {
     await ServiceOfApplication4Page.serviceOfApplication4Page({
       page,
       accessibilityTest,
+      yesNoServiceOfApplication4,
+      responsibleForServing,
     });
     await ServiceOfApplicationSubmitPage.serviceOfApplicationSubmitPage({
       page,
@@ -42,7 +49,7 @@ export class ServiceOfApplicationJourney {
     });
     await ServiceOfApplicationConfirmPage.serviceOfApplicationConfirmPage({
       page,
-      accessibilityTest
+      accessibilityTest,
     });
   }
 }

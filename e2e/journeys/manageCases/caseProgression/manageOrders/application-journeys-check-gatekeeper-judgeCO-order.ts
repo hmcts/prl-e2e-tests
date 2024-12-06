@@ -64,12 +64,12 @@ export class ApplicationJourneysCheckGatekeeperJudgeCOOrder {
       howLongWillOrderBeInForce,
       manageOrdersOptions,
     });
+    await page.waitForTimeout(1000);
     await ServiceOfApplicationJourney.serviceOfApplicationJourney({
       browser,
       ccdRef,
       accessibilityTest,
       c100CaseWorkerActions,
     });
-    await page.waitForTimeout(1000);
   }
 }

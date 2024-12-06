@@ -9,7 +9,14 @@ import { ServiceOfApplication4Content } from "../../../../fixtures/manageCases/c
 interface ServiceOfApplication4Options {
   page: Page;
   accessibilityTest: boolean;
+  yesNoServiceOfApplication4: boolean;
+  responsibleForServing: responsibleForServing;
 }
+
+export type responsibleForServing =
+  | "courtBailiff"
+  | "unrepresentedApplication"
+  | "courtAdmin";
 
 enum UniqueSelectors {
   yes = "#soaServeToRespondentOptions-Yes",
@@ -26,12 +33,18 @@ export class ServiceOfApplication4Page {
   public static async serviceOfApplication4Page({
     page,
     accessibilityTest,
+    yesNoServiceOfApplication4,
+    responsibleForServing,
   }: ServiceOfApplication4Options): Promise<void> {
     await this.checkPageLoads({
       page,
       accessibilityTest,
     });
-    await this.fillInFields({ page });
+    await this.fillInFields({
+      page,
+      yesNoServiceOfApplication4,
+      responsibleForServing,
+    });
   }
 
   private static async checkPageLoads({
@@ -71,13 +84,32 @@ export class ServiceOfApplication4Page {
 
   private static async fillInFields({
     page,
+    yesNoServiceOfApplication4,
+    responsibleForServing,
   }: Partial<ServiceOfApplication4Options>): Promise<void> {
     if (!page) {
       throw new Error("No page found");
     }
-    await page.click(UniqueSelectors.yes);
-    await this.yesHiddenFormLabel1(page);
-    await page.click(UniqueSelectors.courtBailiff);
+    if (yesNoServiceOfApplication4) {
+      await page.click(UniqueSelectors.yes);
+      await this.yesHiddenFormLabel1(page);
+      switch (responsibleForServing) {
+        case "courtBailiff":
+          await page.click(UniqueSelectors.courtBailiff);
+          break;
+        case "unrepresentedApplication":
+          await page.click(UniqueSelectors.unrepresentedApplication);
+          break;
+        case "courtAdmin":
+          await page.click(UniqueSelectors.courtAdmin);
+          break;
+      }
+    } else {
+      await page.click(UniqueSelectors.no);
+      await this.noHiddenFormLabel1(page);
+      await page.click(UniqueSelectors.noApplicant);
+      await page.click(UniqueSelectors.noRespondent);
+    }
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
