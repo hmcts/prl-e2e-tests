@@ -9,7 +9,7 @@ import { yesNoDontKnow } from "../../../../common/types";
 interface FL401ReviewDocuments2PageOptions {
   page: Page;
   accessibilityTest: boolean;
-  yesNoNotSureReviewDocs: yesNoDontKnow;
+  yesNoNotSureRestrictDocs: yesNoDontKnow;
 }
 
 enum radioIds {
@@ -22,10 +22,13 @@ export class FL401ReviewDocuments2Page {
   public static async fl401ReviewDocuments2Page({
     page,
     accessibilityTest,
-    yesNoNotSureReviewDocs,
+    yesNoNotSureRestrictDocs,
   }: FL401ReviewDocuments2PageOptions): Promise<void> {
     await this.checkPageLoads({ page, accessibilityTest });
-    await this.fillInFields({ page, yesNoNotSureReviewDocs });
+    await this.fillInFields({
+      page,
+      yesNoNotSureRestrictDocs: yesNoNotSureRestrictDocs,
+    });
   }
 
   private static async checkPageLoads({
@@ -92,12 +95,12 @@ export class FL401ReviewDocuments2Page {
 
   private static async fillInFields({
     page,
-    yesNoNotSureReviewDocs,
+    yesNoNotSureRestrictDocs,
   }: Partial<FL401ReviewDocuments2PageOptions>): Promise<void> {
     if (!page) {
       throw new Error("No page found");
     }
-    switch (yesNoNotSureReviewDocs) {
+    switch (yesNoNotSureRestrictDocs) {
       case "yes":
         await page.click(radioIds.yes);
         break;
@@ -109,7 +112,7 @@ export class FL401ReviewDocuments2Page {
         break;
       default:
         throw new Error(
-          `Unknown value for yesNoNotSureReviewDocs: ${yesNoNotSureReviewDocs}`,
+          `Unknown value for yesNoNotSureRestrictDocs: ${yesNoNotSureRestrictDocs}`,
         );
     }
     await page.click(

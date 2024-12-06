@@ -8,14 +8,14 @@ import { yesNoDontKnow } from "../../../../common/types";
 interface ReviewDocumentsParams {
   page: Page;
   accessibilityTest: boolean;
-  yesNoNotSureReviewDocs: yesNoDontKnow;
+  yesNoNotSureRestrictDocs: yesNoDontKnow;
 }
 
 export class ReviewDocuments {
   public static async reviewDocuments({
     page,
     accessibilityTest,
-    yesNoNotSureReviewDocs,
+    yesNoNotSureRestrictDocs,
   }: ReviewDocumentsParams): Promise<void> {
     await Helpers.assignTaskToMeAndTriggerNextSteps(
       page,
@@ -29,12 +29,12 @@ export class ReviewDocuments {
     await FL401ReviewDocuments2Page.fl401ReviewDocuments2Page({
       page,
       accessibilityTest,
-      yesNoNotSureReviewDocs,
+      yesNoNotSureRestrictDocs: yesNoNotSureRestrictDocs,
     });
     await FL401ReviewDocumentsSubmitPage.fl401ReviewDocumentsSubmitPage({
       page,
       accessibilityTest,
-      yesNoNotSureReviewDocs,
+      yesNoNotSureRestrictDocs: yesNoNotSureRestrictDocs,
     });
   }
 }
