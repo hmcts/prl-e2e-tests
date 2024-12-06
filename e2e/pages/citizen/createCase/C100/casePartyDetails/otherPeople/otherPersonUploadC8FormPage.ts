@@ -1,12 +1,12 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { Helpers } from "../../../../../common/helpers";
-import { CommonStaticText } from "../../../../../common/commonStaticText";
-import config from "../../../../../config";
-import { MiamUploadEvidenceOfAttendingMiamOrNCDRContent } from "../../../../../fixtures/citizen/createCase/C100/MIAM/miamUploadEvidenceOfAttendingMiamOrNCDRContent";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { Selectors } from "../../../../../../common/selectors";
+import { OtherPersonUploadC8FormContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/otherPeople/otherPersonUploadC8FormContent";
+import { Helpers } from "../../../../../../common/helpers";
+import { CommonStaticText } from "../../../../../../common/commonStaticText";
+import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper";
+import config from "../../../../../../config";
 
-interface miamUploadEvidenceOfAttendingMiamOrNCDRPageOptions {
+interface otherPersonUploadC8FormOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
@@ -14,12 +14,12 @@ interface miamUploadEvidenceOfAttendingMiamOrNCDRPageOptions {
 
 const documentUpload: string = "#fileupload";
 
-export class MiamUploadEvidenceOfAttendingMiamOrNCDRPage {
-  public static async miamUploadEvidenceOfAttendingMiamOrNCDRPage({
+export class OtherPersonUploadC8FormPage {
+  public static async otherPersonUploadC8FormPage({
     page: page,
     accessibilityTest: accessibilityTest,
     errorMessaging: errorMessaging,
-  }: miamUploadEvidenceOfAttendingMiamOrNCDRPageOptions): Promise<void> {
+  }: otherPersonUploadC8FormOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
       accessibilityTest: accessibilityTest,
@@ -27,37 +27,44 @@ export class MiamUploadEvidenceOfAttendingMiamOrNCDRPage {
     if (errorMessaging) {
       await this.triggerErrorMessages({ page: page });
     }
-    await this.fillInFields({ page: page });
+    await this.fillInFields({
+      page: page,
+    });
   }
 
   private static async checkPageLoads({
     page: page,
     accessibilityTest: accessibilityTest,
-  }: Partial<miamUploadEvidenceOfAttendingMiamOrNCDRPageOptions>): Promise<void> {
+  }: Partial<otherPersonUploadC8FormOptions>): Promise<void> {
     if (!page) {
       throw new Error();
     }
     await page.waitForSelector(
-      `${Selectors.GovukHeadingL}:text-is("${MiamUploadEvidenceOfAttendingMiamOrNCDRContent.pageTitle}")`,
+      `${Selectors.GovukHeadingL}:text-is("${OtherPersonUploadC8FormContent.pageTitle}")`,
     );
     await page.click(
-      `${Selectors.GovukSummaryText}:text-is("${MiamUploadEvidenceOfAttendingMiamOrNCDRContent.govukDetailsSummaryText}")`,
+      `${Selectors.GovukSummaryText}:text-is("${OtherPersonUploadC8FormContent.govukDetailsSummaryText}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukBody}:text-is("${MiamUploadEvidenceOfAttendingMiamOrNCDRContent.govukBody}")`,
+        `${Selectors.GovukBody}:has-text("${OtherPersonUploadC8FormContent.govukBody}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h2}:text-is("${MiamUploadEvidenceOfAttendingMiamOrNCDRContent.govukBold}")`,
+        `${Selectors.GovukHint}:text-is("${OtherPersonUploadC8FormContent.hint}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukHeadingS}:text-is("${OtherPersonUploadC8FormContent.h2}")`,
         1,
       ),
       Helpers.checkGroup(
         page,
         5,
-        MiamUploadEvidenceOfAttendingMiamOrNCDRContent,
+        OtherPersonUploadC8FormContent,
         `li`,
         Selectors.li,
       ),
@@ -69,7 +76,7 @@ export class MiamUploadEvidenceOfAttendingMiamOrNCDRPage {
 
   private static async triggerErrorMessages({
     page: page,
-  }: Partial<miamUploadEvidenceOfAttendingMiamOrNCDRPageOptions>): Promise<void> {
+  }: Partial<otherPersonUploadC8FormOptions>): Promise<void> {
     if (!page) {
       throw new Error("Missing the page object.");
     }
@@ -84,12 +91,12 @@ export class MiamUploadEvidenceOfAttendingMiamOrNCDRPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${MiamUploadEvidenceOfAttendingMiamOrNCDRContent.errorMessage}")`,
+        `${Selectors.a}:text-is("${OtherPersonUploadC8FormContent.errorMessageNoUpload}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessageCitizen}:text-is("${MiamUploadEvidenceOfAttendingMiamOrNCDRContent.errorMessage}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${OtherPersonUploadC8FormContent.errorMessageNoUpload}")`,
         1,
       ),
     ]);
@@ -97,17 +104,17 @@ export class MiamUploadEvidenceOfAttendingMiamOrNCDRPage {
 
   private static async fillInFields({
     page: page,
-  }: Partial<miamUploadEvidenceOfAttendingMiamOrNCDRPageOptions>): Promise<void> {
+  }: Partial<otherPersonUploadC8FormOptions>): Promise<void> {
     if (!page) {
       throw new Error();
     }
     await page.setInputFiles(`${documentUpload}`, config.testPdfFile);
     await page.click(
-      `${Selectors.GovukButton}:text-is("${MiamUploadEvidenceOfAttendingMiamOrNCDRContent.uploadButton}")`,
+      `${Selectors.GovukButton}:text-is("${OtherPersonUploadC8FormContent.uploadButton}")`,
     );
     await Helpers.checkVisibleAndPresent(
       page,
-      `${Selectors.a}:text-is("${MiamUploadEvidenceOfAttendingMiamOrNCDRContent.removeButton}")`,
+      `${Selectors.a}:text-is("${OtherPersonUploadC8FormContent.removeButton}")`,
       1,
     );
     await page.click(

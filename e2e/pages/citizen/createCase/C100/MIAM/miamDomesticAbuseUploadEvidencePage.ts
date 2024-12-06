@@ -38,7 +38,7 @@ export class MiamDomesticAbuseUploadEvidencePage {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.div}:text-is("${MiamDomesticAbuseUploadEvidenceContent.fontBold}")`,
+        `${Selectors.h2}:text-is("${MiamDomesticAbuseUploadEvidenceContent.fontBold}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
