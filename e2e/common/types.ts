@@ -65,7 +65,7 @@ export type fl401SolicitorEvents =
   | "View PDF application"
   | "Statement of truth and submit";
 
-export type c100CaseWorkerActions = "Manage orders";
+export type c100CaseWorkerActions = "Manage orders" | "Service of application";
 
 export type fl401CaseWorkerActions =
   | "Welsh language requirements"
