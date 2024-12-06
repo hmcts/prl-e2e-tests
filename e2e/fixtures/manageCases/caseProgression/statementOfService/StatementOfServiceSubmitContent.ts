@@ -1,5 +1,5 @@
 export enum StatementOfServiceSubmitContent {
-  h2  = "Check your answers",
+  h2 = "Check your answers",
   text161 = "Check the information below carefully.",
   text162 = "What was served?",
   text163 = "Recipient",
@@ -13,5 +13,5 @@ export enum StatementOfServiceSubmitContent {
   text16Answers2 = "Dolores Smith (Respondent)",
   text16Answers3 = "19 Dec 2025, 12:00:00 AM",
   text16Change = "Change",
-  a = "mockFile.pdf"
+  a = "mockFile.pdf",
 }

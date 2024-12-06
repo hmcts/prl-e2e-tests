@@ -4,9 +4,7 @@ import { StatementOfService1Content } from "../../../../fixtures/manageCases/cas
 import { Helpers } from "../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
 import { CommonStaticText } from "../../../../common/commonStaticText";
-import {
-  StatementOfServiceSubmitContent
-} from "../../../../fixtures/manageCases/caseProgression/statementOfService/StatementOfServiceSubmitContent";
+import { StatementOfServiceSubmitContent } from "../../../../fixtures/manageCases/caseProgression/statementOfService/StatementOfServiceSubmitContent";
 
 interface StatementOfServiceSubmitPageOptions {
   page: Page;
@@ -44,14 +42,14 @@ export class StatementOfServiceSubmitPage {
         8,
         StatementOfServiceSubmitContent,
         "text16",
-        Selectors.GovukText16
+        Selectors.GovukText16,
       ),
       Helpers.checkGroup(
         page,
         3,
         StatementOfServiceSubmitContent,
         "text16Answers",
-        Selectors.GovukText16
+        Selectors.GovukText16,
       ),
       Helpers.checkVisibleAndPresent(
         page,

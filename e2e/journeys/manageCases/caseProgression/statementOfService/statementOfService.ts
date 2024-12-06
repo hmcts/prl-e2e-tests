@@ -1,9 +1,7 @@
 import { Page } from "@playwright/test";
 import { Helpers } from "../../../../common/helpers";
 import { StatementOfService1Page } from "../../../../pages/manageCases/caseProgression/statementOfService/statementOfService1Page";
-import {
-  StatementOfServiceSubmitPage
-} from "../../../../pages/manageCases/caseProgression/statementOfService/StatementOfServiceSubmitPage";
+import { StatementOfServiceSubmitPage } from "../../../../pages/manageCases/caseProgression/statementOfService/StatementOfServiceSubmitPage";
 
 interface statementOfServiceParams {
   page: Page;
@@ -23,7 +21,7 @@ export class StatementOfService {
     });
     await StatementOfServiceSubmitPage.statementOfServiceSubmitPage({
       page,
-      accessibilityTest
+      accessibilityTest,
     });
   }
 }
