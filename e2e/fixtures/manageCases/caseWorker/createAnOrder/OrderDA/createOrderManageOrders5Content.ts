@@ -1,4 +1,4 @@
-export enum ManageOrders5DAContent {
+export enum CreateOrderManageOrders5Content {
   p = "Order made by",
   strong = "Judge or Magistrate's title",
   formLabel1 = "Is the order by consent?",
