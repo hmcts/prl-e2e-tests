@@ -69,4 +69,3 @@ export class AdminEditAndApproveAnOrder4Page {
     );
   }
 }
-

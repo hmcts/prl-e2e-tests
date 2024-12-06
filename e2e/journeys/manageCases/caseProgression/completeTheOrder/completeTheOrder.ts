@@ -8,21 +8,15 @@ import { AdminEditAndApproveAnOrder23Page } from "../../../../pages/manageCases/
 import { AdminEditAndApproveAnOrderSubmitPage } from "../../../../pages/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrderSubmitPage";
 import Config from "../../../../config";
 import config from "../../../../config";
-import {
-  ApplicationJourneysCheckGatekeeperJudgeCOOrder
-} from "../manageOrders/application-journeys-check-gatekeeper-judgeCO-order";
+import { ApplicationJourneysCheckGatekeeperJudgeCOOrder } from "../manageOrders/application-journeys-check-gatekeeper-judgeCO-order";
 import {
   c100CaseWorkerActions,
   createOrderFL401Options,
   judgeTitles,
-  manageOrdersOptions
+  manageOrdersOptions,
 } from "../../../../common/types";
-import {
-  createOrderManageOrders19Options
-} from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders19Page";
-import {
-  howLongWillOrderBeInForce
-} from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders12Page";
+import { createOrderManageOrders19Options } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders19Page";
+import { howLongWillOrderBeInForce } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders12Page";
 
 interface CompleteTheOrderParams {
   page: Page;
@@ -55,22 +49,24 @@ export class CompleteTheOrder {
     createOrderManageOrders19Options,
     howLongWillOrderBeInForce,
     browser,
-   }: CompleteTheOrderParams): Promise<void> {
-    await ApplicationJourneysCheckGatekeeperJudgeCOOrder.applicationJourneysCheckGatekeeperJudgeCOOrder({
-      page,
-      accessibilityTest,
-      yesNoSendToGateKeeper,
-      ccdRef,
-      c100CaseWorkerActions,
-      manageOrdersOptions,
-      createOrderFL401Options,
-      yesNoManageOrders,
-      judgeTitles,
-      withOrWithoutNotice,
-      createOrderManageOrders19Options,
-      howLongWillOrderBeInForce,
-      browser,
-    });
+  }: CompleteTheOrderParams): Promise<void> {
+    await ApplicationJourneysCheckGatekeeperJudgeCOOrder.applicationJourneysCheckGatekeeperJudgeCOOrder(
+      {
+        page,
+        accessibilityTest,
+        yesNoSendToGateKeeper,
+        ccdRef,
+        c100CaseWorkerActions,
+        manageOrdersOptions,
+        createOrderFL401Options,
+        yesNoManageOrders,
+        judgeTitles,
+        withOrWithoutNotice,
+        createOrderManageOrders19Options,
+        howLongWillOrderBeInForce,
+        browser,
+      },
+    );
     // open new browser and sign in as court admin user
     const newBrowser = await browser.browserType().launch();
     const newContext: BrowserContext = await newBrowser.newContext({

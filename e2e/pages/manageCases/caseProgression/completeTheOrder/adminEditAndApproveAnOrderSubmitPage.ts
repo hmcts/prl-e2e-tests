@@ -80,8 +80,7 @@ export class AdminEditAndApproveAnOrderSubmitPage {
     ]);
     await expect(
       page.locator("ccd-read-dynamic-list-field span", {
-        hasText:
-        AdminEditAndApproveAnOrderSubmitContent.powerOfArrestFL406,
+        hasText: AdminEditAndApproveAnOrderSubmitContent.powerOfArrestFL406,
       }),
     ).toBeVisible();
 
