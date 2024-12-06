@@ -11,4 +11,5 @@ export enum StatementOfService1Content {
   formLabel6 = "Upload document(PDF, .doc)",
   fromHint1 = "For example: 16 4 2021, 10:09",
   fromHint2 = "Do this if there are multiple recipients",
+  date = "19-12-2025 12:00 am",
 }

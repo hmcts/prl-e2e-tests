@@ -3,6 +3,8 @@ import { Selectors } from "../../../../common/selectors";
 import { CommonStaticText } from "../../../../common/commonStaticText";
 import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
 import { StatementOfService1Content } from "../../../../fixtures/manageCases/caseProgression/statementOfService/statementOfService1Content";
+import config from "../../../../config";
+import { Helpers } from "../../../../common/helpers";
 
 interface StatementOfService1PageOptions {
   page: Page;
@@ -38,7 +40,42 @@ export class StatementOfService1Page {
       `${Selectors.h1}:text-is("${StatementOfService1Content.pageTitle}")`,
     );
     await pageTitle.waitFor();
-    await Promise.all([]);
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.h2}:text-is("${StatementOfService1Content.recipientH2H3}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.h3}:text-is("${StatementOfService1Content.recipientH2H3}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${StatementOfService1Content.p}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.strong}:text-is("${StatementOfService1Content.strong}")`,
+        1,
+      ),
+      Helpers.checkGroup(
+        page,
+        6,
+        StatementOfService1Content,
+        "formLabel",
+        Selectors.GovukFormLabel,
+      ),
+      Helpers.checkGroup(
+        page,
+        2,
+        StatementOfService1Content,
+        "formHint",
+        Selectors.GovukFormHint,
+      ),
+    ]);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }
@@ -50,6 +87,15 @@ export class StatementOfService1Page {
     if (!page) {
       throw new Error("No page found");
     }
+    await page.click(UniqueSelectors.applicationPack);
+    await page.selectOption(UniqueSelectors.whoWasServedDropDown, { index: 1 });
+    await page.fill(
+      UniqueSelectors.inputSpecificDate,
+      StatementOfService1Content.date,
+    );
+    const fileUpload = page.locator(UniqueSelectors.fileUpload);
+    await fileUpload.setInputFiles(config.testPdfFile);
+    await page.waitForTimeout(5000);
   }
 
   private static async continue(page: Page) {
