@@ -362,7 +362,9 @@ export class ApplicantDetails1Page {
         `${UniqueSelectors.uploadC8FormHint}:text-is("${ApplicantDetails1Content.c8FormUploadHint}")`,
         1,
       );
-      const fileInput = page.locator(`${UniqueSelectors.c8RefugeFormUploadFileInput}`);
+      const fileInput = page.locator(
+        `${UniqueSelectors.c8RefugeFormUploadFileInput}`,
+      );
       await fileInput.setInputFiles(config.testPdfFile);
       await page.waitForSelector(
         `${Selectors.GovukErrorMessage}:text-is("${ApplicantDetails1Content.uploadingFile}")`,
@@ -530,7 +532,7 @@ export class ApplicantDetails1Page {
       page,
       `${Selectors.GovukErrorValidation}:text-is("${ApplicantDetails1Content.errorMessageC8FormUploadRequired}")`,
       1,
-    ),
+    );
     await page.click(`${PageLoadFields.address5YearsYes}`);
     await this.checkApplicantAddress5Years(page);
     await page.click(

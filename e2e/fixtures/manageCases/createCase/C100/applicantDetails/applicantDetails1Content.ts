@@ -92,5 +92,5 @@ export enum ApplicantDetails1Content {
   select = "Select",
   dxNumber = "1234",
   uploadingFile = "Uploading...",
-  uploadedFile = "mockFile.pdf"
+  uploadedFile = "mockFile.pdf",
 }
