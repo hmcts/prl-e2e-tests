@@ -364,8 +364,9 @@ __metadata:
   linkType: hard
 
 "@babel/traverse@npm:^7.25.9":
-  version: 7.26.3
-  resolution: "@babel/traverse@npm:7.26.3"
+  version: 7.26.4
+  resolution: "@babel/traverse@npm:7.26.4"
+
   dependencies:
     "@babel/code-frame": "npm:^7.26.2"
     "@babel/generator": "npm:^7.26.3"
@@ -374,7 +375,7 @@ __metadata:
     "@babel/types": "npm:^7.26.3"
     debug: "npm:^4.3.1"
     globals: "npm:^11.1.0"
-  checksum: 10c0/f56765b18425e41970c03ae56a05ddc45807d0861408ecaaa1684368a57fb20b27c79c7d95d7086b9ab7b8c7ddd75527f373b10b0fe08e29218e67f8e677abd3
+  checksum: 10c0/cf25d0eda9505daa0f0832ad786b9e28c9d967e823aaf7fbe425250ab198c656085495aa6bed678b27929e095c84eea9fd778b851a31803da94c9bc4bf4eaef7
   languageName: node
   linkType: hard
 
@@ -1288,9 +1289,9 @@ __metadata:
   linkType: hard
 
 "caniuse-lite@npm:^1.0.30001669":
-  version: 1.0.30001686
-  resolution: "caniuse-lite@npm:1.0.30001686"
-  checksum: 10c0/41748e81c17c1a6a0fd6e515c93c8620004171fe6706027e45f837fde71e97173e85141b0dc11e07d53b4782f3741a6651cb0f7d395cc1c1860892355eabdfa2
+  version: 1.0.30001687
+  resolution: "caniuse-lite@npm:1.0.30001687"
+  checksum: 10c0/9ca0f6d33dccaf4692339d0fda50e03e4dd7eb7f25faabd1cb33e2099d9a76b0bc30c37be3315e91c1d990da1b5cc864eee2077494f4d0ba94d68b48fe2ea7f1
   languageName: node
   linkType: hard
 
@@ -1546,9 +1547,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.5.41":
-  version: 1.5.70
-  resolution: "electron-to-chromium@npm:1.5.70"
-  checksum: 10c0/135dfe5b764eb54afcd70ec6084430ea562706570a7104eda8b69e694c3ec900f8d0a2f2e90f0fc86f7dbc6435dad427ec1732bb88f4e62cc5c86c55265ebcf4
+  version: 1.5.71
+  resolution: "electron-to-chromium@npm:1.5.71"
+  checksum: 10c0/f6fdeec0e1d68634cf92c267bdce3e50af947ce2c8fb1034df3e738c536b3033e311ad0fb9a6c4c35f678f10a299e4f78fdfcedbaa78d8992fedc443a7363d6d
   languageName: node
   linkType: hard
 
