@@ -54,15 +54,11 @@ export class ServiceOfDocumentsSubmitPage {
     if (!page) {
       throw new Error("No page found");
     }
-    await this.checkPageTitle(page);
-    await this.runAccessibilityTest(page, accessibilityTest);
-  }
-
-  private static async checkPageTitle(page: Page): Promise<void> {
     const pageTitle = page.locator(
       `${Selectors.GovukHeadingL}:text-is("${ServiceOfDocumentsSubmitContent.pageTitle}")`,
     );
     await pageTitle.waitFor();
+    await this.runAccessibilityTest(page, accessibilityTest);
   }
 
   private static async checkStaticFields(page: Page): Promise<void> {
