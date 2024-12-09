@@ -1,22 +1,17 @@
 import { Page } from "@playwright/test";
+import { Helpers } from "../../../../common/helpers";
 import { Selectors } from "../../../../common/selectors";
 import { SendAndReplyToMessagesConfirmContent } from "../../../../fixtures/manageCases/caseProgression/sendAndReplyToMessages/sendAndReplyToMessagesConfirmContent";
-import { Helpers } from "../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
 
 export class SendAndReplyToMessagesConfirmPage {
   public static async sendAndReplyToMessagesConfirmPage(
     page: Page,
-    accessibilityTest: boolean,
   ): Promise<void> {
-    await this.checkPageLoads(page, accessibilityTest);
+    await this.checkPageLoads(page);
     await this.closeAndReturnToCaseDetails(page);
   }
 
-  private static async checkPageLoads(
-    page: Page,
-    accessibilityTest: boolean,
-  ): Promise<void> {
+  private static async checkPageLoads(page: Page): Promise<void> {
     await page
       .locator(Selectors.h3, {
         hasText: SendAndReplyToMessagesConfirmContent.h3,

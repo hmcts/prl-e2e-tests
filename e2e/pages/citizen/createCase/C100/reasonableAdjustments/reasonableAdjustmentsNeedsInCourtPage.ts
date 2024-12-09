@@ -182,9 +182,9 @@ export class ReasonableAdjustmentsNeedsInCourtPage {
         "typeOfChairInput",
         "otherInput",
       ];
-      for (let key of textToFill) {
-        let inputKey = key as keyof typeof TextboxInputUniqueSelectors;
-        let contentKey =
+      for (const key of textToFill) {
+        const inputKey = key as keyof typeof TextboxInputUniqueSelectors;
+        const contentKey =
           key as keyof typeof ReasonableAdjustmentsNeedsInCourtContent;
         await page.fill(
           TextboxInputUniqueSelectors[inputKey],

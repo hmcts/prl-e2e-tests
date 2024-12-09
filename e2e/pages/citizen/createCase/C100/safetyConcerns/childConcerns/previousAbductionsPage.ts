@@ -1,9 +1,8 @@
 import { Page } from "@playwright/test";
+import { CommonStaticText } from "../../../../../../common/commonStaticText";
+import { Helpers } from "../../../../../../common/helpers";
 import { Selectors } from "../../../../../../common/selectors";
 import { PreviousAbductionsContent } from "../../../../../../fixtures/citizen/createCase/C100/safetyConcerns/childConcerns/previousAbductionsContent";
-import { Helpers } from "../../../../../../common/helpers";
-import { CommonStaticText } from "../../../../../../common/commonStaticText";
-import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper";
 
 enum inputIDs {
   abductionDescription = "#c1A_previousAbductionsShortDesc",
@@ -51,7 +50,6 @@ export class PreviousAbductionsPage {
 
   private static async checkPageLoads({
     page,
-    accessibilityTest,
   }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.GovukHeadingXL}:text-is("${PreviousAbductionsContent.pageTitle}")`,
@@ -151,7 +149,7 @@ export class PreviousAbductionsPage {
     page,
     c100YesNoPreviousAbductions,
   }: FillInFieldsOptions): Promise<void> {
-    let textToFill: string[] = ["abductionDescription"];
+    const textToFill: string[] = ["abductionDescription"];
     if (c100YesNoPreviousAbductions) {
       await page.click(inputIDs.radioYes);
       await Helpers.checkVisibleAndPresent(
@@ -163,9 +161,9 @@ export class PreviousAbductionsPage {
     } else {
       await page.click(inputIDs.radioNo);
     }
-    for (let key of textToFill) {
-      let contentKey = key as keyof typeof PreviousAbductionsContent;
-      let inputKey = key as keyof typeof inputIDs;
+    for (const key of textToFill) {
+      const contentKey = key as keyof typeof PreviousAbductionsContent;
+      const inputKey = key as keyof typeof inputIDs;
       await page.fill(
         inputIDs[inputKey],
         PreviousAbductionsContent[contentKey],

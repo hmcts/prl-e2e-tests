@@ -26,7 +26,7 @@ export class C100HearingUrgencySubmitPage {
     await page.waitForSelector(
       `${Selectors.h2}:text-is("${HearingUrgencySubmitContent.pageSubTitle}")`,
     );
-    let changeAbleFields: number = yesNoHearingUrgency ? 8 : 4;
+    const changeAbleFields: number = yesNoHearingUrgency ? 8 : 4;
     await Promise.all([
       Helpers.checkGroup(
         page,
@@ -55,7 +55,7 @@ export class C100HearingUrgencySubmitPage {
     page: Page,
     yesNoHearingUrgency: boolean,
   ): Promise<void> {
-    let yesOrNo: string = yesNoHearingUrgency ? "Yes" : "No";
+    const yesOrNo: string = yesNoHearingUrgency ? "Yes" : "No";
     await Helpers.checkVisibleAndPresent(
       page,
       `${Selectors.GovukText16}:text-is("${yesOrNo}")`,

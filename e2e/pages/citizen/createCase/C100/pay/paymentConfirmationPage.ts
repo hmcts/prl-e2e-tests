@@ -1,9 +1,8 @@
 import { Page } from "@playwright/test";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { PaymentConfirmationContent } from "../../../../../fixtures/citizen/createCase/C100/pay/paymentConfirmationContent";
-import { Helpers } from "../../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { CommonStaticText } from "../../../../../common/commonStaticText";
 
 interface PaymentConfirmationOptions {
   page: Page;

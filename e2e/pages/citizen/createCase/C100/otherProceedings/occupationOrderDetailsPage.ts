@@ -1,10 +1,9 @@
-import { OccupationOrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/occupationOrderDetailsContent";
-import { Selectors } from "../../../../../common/selectors";
-import { CommonStaticText } from "../../../../../common/commonStaticText";
-import { Helpers } from "../../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { CitizensOtherProceedingsUniqueSelectors } from "../../../../../common/commonUniqueSelectors";
+import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors";
+import { OccupationOrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/occupationOrderDetailsContent";
 
 interface OccupationOrderDetailsPageOptions {
   page: Page;
@@ -45,7 +44,6 @@ export class OccupationOrderDetailsPage {
 
   private static async checkPageLoads({
     page: page,
-    accessibilityTest: accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.p}:text-is("${OccupationOrderDetailsContent.p}")`,

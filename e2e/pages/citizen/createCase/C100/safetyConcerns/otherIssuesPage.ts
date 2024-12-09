@@ -1,9 +1,8 @@
 import { Page } from "@playwright/test";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { OtherIssuesContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/otherIssuesContent";
-import { Helpers } from "../../../../../common/helpers";
-import { CommonStaticText } from "../../../../../common/commonStaticText";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { SafetyConcernHelpers } from "./safetyConcernHelpers";
 
 enum inputIDs {
@@ -51,7 +50,6 @@ export class OtherIssuesPage {
 
   private static async checkPageLoads({
     page,
-    accessibilityTest,
   }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.GovukHeadingXL}:text-is("${OtherIssuesContent.pageTitle}")`,

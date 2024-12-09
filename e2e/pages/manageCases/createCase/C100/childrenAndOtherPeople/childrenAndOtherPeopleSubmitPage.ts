@@ -1,10 +1,9 @@
 import { Page } from "@playwright/test";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
-import { ChildrenAndRespondentsSubmitContent } from "../../../../../fixtures/manageCases/createCase/C100/childrenAndRespondents/childrenAndRespondentsSubmitContent";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { ChildrenAndOtherPeople1Content } from "../../../../../fixtures/manageCases/createCase/C100/childrenAndOtherPeople/childrenAndOtherPeople1Content";
 import { ChildrenAndOtherPeopleSubmitContent } from "../../../../../fixtures/manageCases/createCase/C100/childrenAndOtherPeople/childrenAndOtherPeopleSubmitContent";
+import { ChildrenAndRespondentsSubmitContent } from "../../../../../fixtures/manageCases/createCase/C100/childrenAndRespondents/childrenAndRespondentsSubmitContent";
 
 export class ChildrenAndOtherPeopleSubmitPage {
   public static async childrenAndOtherPeopleSubmitPage(

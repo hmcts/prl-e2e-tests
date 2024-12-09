@@ -135,8 +135,8 @@ export class selectApplicationType1Page {
     page: Page,
     typeOfChildArrangementOrder: typeOfChildArrangementOrderID,
   ): Promise<void> {
-    for (let selectButton of Object.values(SelectButtonIDs)) {
-      let buttonSelector = `${selectButton}`;
+    for (const selectButton of Object.values(SelectButtonIDs)) {
+      const buttonSelector = `${selectButton}`;
 
       await page.click(buttonSelector);
     }

@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
+import accessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { WithoutNoticeOrderDetails2Content } from "../../../../../fixtures/manageCases/createCase/FL401/withoutNoticeOrder/withoutNoticeOrderDetails2Content";
-import { Helpers } from "../../../../../common/helpers";
-import accessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 
 enum withoutNoticeOrder4IDs {
   harmToChild = "#reasonForOrderWithoutGivingNotice_reasonForOrderWithoutGivingNotice-harmToApplicantOrChild",
@@ -79,7 +79,7 @@ export class WithoutOrderNotice2Page {
   }
 
   private static async fillInFields(page: Page): Promise<void> {
-    for (let [key, selector] of Object.entries(withoutNoticeOrder4IDs)) {
+    for (const [key, selector] of Object.entries(withoutNoticeOrder4IDs)) {
       if (key === "anyOtherReasoning") {
         await page.fill(
           withoutNoticeOrder4IDs.anyOtherReasoning,

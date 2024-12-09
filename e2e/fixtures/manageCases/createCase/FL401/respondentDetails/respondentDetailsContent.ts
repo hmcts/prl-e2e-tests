@@ -20,7 +20,6 @@ export enum RespondentDetailsContent {
   errorValidationFailed = "Case data validation failed",
   errorInvalidEmailAddress = "invalidEmailAddress is not a valid Email address",
   errorInvalidContactNumber = "The data entered is not valid for this type of field, please delete and re-enter using only valid data",
-  expectedAddresses = ["1 address found", "Buckingham Palace, London"],
   buckinghamPalace = "Buckingham Palace, London",
   exampleFirstName = "firstName",
   exampleLastName = "lastName",
@@ -33,3 +32,8 @@ export enum RespondentDetailsContent {
   invalidEmailAddress = "invalidEmailAddress",
   invalidContactNumber = "invalidContactNumber",
 }
+
+export const expectedAddresses = [
+  "1 address found",
+  "Buckingham Palace, London",
+];

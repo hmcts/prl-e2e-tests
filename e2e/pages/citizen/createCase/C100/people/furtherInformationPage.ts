@@ -1,10 +1,9 @@
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { FurtherInformationContent } from "../../../../../fixtures/citizen/createCase/C100/people/furtherInformationContent";
-import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors";
 import { yesNoDontKnow } from "../../../../../common/types";
+import { FurtherInformationContent } from "../../../../../fixtures/citizen/createCase/C100/people/furtherInformationContent";
 import { uniqueSelectors } from "../urgencyAndWithoutNotice/urgentFirstHearingPage";
 
 interface FurtherInformationPageOptions {

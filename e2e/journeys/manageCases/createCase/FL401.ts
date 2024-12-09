@@ -1,29 +1,28 @@
+import { Page } from "@playwright/test";
 import {
   ApplicantGender,
   otherProceedingsRadios,
-  ViewPdfTestCases,
   UserRole,
+  ViewPdfTestCases,
 } from "../../../common/types";
-import { Page } from "@playwright/test";
-import { FL401TypeOfApplication } from "./FL401TypeOfApplication/FL401TypeOfApplication";
-import { SolicitorCreateInitial } from "./solicitorCreateInitial";
-import { FL401RespondentDetails } from "./FL401RespondentDetails/FL401RespondentDetails";
-import { FL401WithoutNoticeOrder } from "./FL401WithoutNoticeOrder/FL401WIthoutNoticeOrder";
-import { FL401ApplicantDetails } from "./FL401ApplicantDetails/FL401ApplicantDetails";
-import { FL401ApplicantsFamily } from "./FL401ApplicantsFamily/FL401ApplicantsFamily";
-import { FL401OtherProceedings } from "./FL401OtherProceedings/FL401OtherProceedings";
-import { FL401RespondentsBehaviour } from "./FL401RespondentsBehaviour/FL401RespondentsBehaviour";
-import { FL401RelationshipToRespondent } from "./FL401RelationshipToRespondent/FL401RelationshipToRespondent";
 import { fl401RelationshipToRespondent } from "../../../pages/manageCases/createCase/FL401/relationshipToRespondent/relationshipToRespondent1Page";
 import { fl401RespondentRelationshipOther } from "../../../pages/manageCases/createCase/FL401/relationshipToRespondent/relationshipToRespondent2Page";
-import { FL401WelshLanguageRequirements } from "./FL401WelshLanguageRequirements/FL401WelshLanguageRequirements";
-import { FL401ViewPDFApplication } from "./FL401ViewPDFApplication/FL401ViewPDFApplication";
-import { bailConditionRadios } from "../../../pages/manageCases/createCase/FL401/withoutNoticeOrder/withoutNoticeOrder3Page";
-import { Fl401AttendingTheHearing } from "./FL401AttendingTheHearing/fl401AttendingTheHearing";
-import { FL401UploadDocuments } from "./FL401UploadDocuments/FL401UploadDocuments";
-import { FL401TheHome } from "./FL401TheHome/fl401TheHome";
 import { addressRadios } from "../../../pages/manageCases/createCase/FL401/theHome/fl401TheHome1Page";
-import { Fl401StatementOfTruth } from "./FL401StatementOfTruth/fl401StatementOfTruth";
+import { bailConditionRadios } from "../../../pages/manageCases/createCase/FL401/withoutNoticeOrder/withoutNoticeOrder3Page";
+import { FL401ApplicantDetails } from "./FL401ApplicantDetails/FL401ApplicantDetails";
+import { FL401ApplicantsFamily } from "./FL401ApplicantsFamily/FL401ApplicantsFamily";
+import { Fl401AttendingTheHearing } from "./FL401AttendingTheHearing/fl401AttendingTheHearing";
+import { FL401OtherProceedings } from "./FL401OtherProceedings/FL401OtherProceedings";
+import { FL401RelationshipToRespondent } from "./FL401RelationshipToRespondent/FL401RelationshipToRespondent";
+import { FL401RespondentDetails } from "./FL401RespondentDetails/FL401RespondentDetails";
+import { FL401RespondentsBehaviour } from "./FL401RespondentsBehaviour/FL401RespondentsBehaviour";
+import { FL401TheHome } from "./FL401TheHome/fl401TheHome";
+import { FL401TypeOfApplication } from "./FL401TypeOfApplication/FL401TypeOfApplication";
+import { FL401UploadDocuments } from "./FL401UploadDocuments/FL401UploadDocuments";
+import { FL401ViewPDFApplication } from "./FL401ViewPDFApplication/FL401ViewPDFApplication";
+import { FL401WelshLanguageRequirements } from "./FL401WelshLanguageRequirements/FL401WelshLanguageRequirements";
+import { FL401WithoutNoticeOrder } from "./FL401WithoutNoticeOrder/FL401WIthoutNoticeOrder";
+import { SolicitorCreateInitial } from "./solicitorCreateInitial";
 
 interface fl401Options {
   page: Page;
@@ -73,7 +72,6 @@ export class FL401 {
     welshLanguageRequirementsAllOptionsYes,
     welshLanguageRequirementsSelectWelsh,
     viewPdfTestCases,
-    fl401YesNoToEverything,
   }: fl401Options): Promise<void> {
     await SolicitorCreateInitial.createInitialCase({
       page: page,

@@ -1,9 +1,8 @@
-import { Page, expect } from "@playwright/test";
+import { Page } from "@playwright/test";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { StatementOfTruthSummaryContent } from "../../../../../fixtures/manageCases/createCase/FL401/statementOfTruth/statementOfTruthSummaryContent";
-import { Helpers } from "../../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { StatementOfTruth1Content } from "../../../../../fixtures/manageCases/createCase/FL401/statementOfTruth/statementOfTruth1Content";
 
 interface StatementOfTruthSummaryPageOptions {
   page: Page;

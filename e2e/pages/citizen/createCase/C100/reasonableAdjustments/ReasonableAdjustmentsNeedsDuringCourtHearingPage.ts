@@ -1,10 +1,9 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { CommonStaticText } from "../../../../../common/commonStaticText";
-import AxeTest from "../../../../../common/accessibilityTestHelper";
-import { ReasonableAdjustmentsNeedsDuringCourtHearingContent } from "../../../../../fixtures/citizen/createCase/C100/reasonableAdjustments/ReasonableAdjustmentsNeedsDuringCourtHearingContent";
-import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors";
+import { ReasonableAdjustmentsNeedsDuringCourtHearingContent } from "../../../../../fixtures/citizen/createCase/C100/reasonableAdjustments/ReasonableAdjustmentsNeedsDuringCourtHearingContent";
 
 export interface ReasonableAdjustmentsNeedsDuringCourtHearingPageOptions {
   page: Page;
@@ -163,9 +162,9 @@ export class ReasonableAdjustmentsNeedsDuringCourtHearingPage {
         "appropriateLightingInput",
         "otherInput",
       ];
-      for (let key of textToFill) {
-        let inputKey = key as keyof typeof TextBoxUniqueSelectors;
-        let contentKey =
+      for (const key of textToFill) {
+        const inputKey = key as keyof typeof TextBoxUniqueSelectors;
+        const contentKey =
           key as keyof typeof ReasonableAdjustmentsNeedsDuringCourtHearingContent;
         await page.fill(
           TextBoxUniqueSelectors[inputKey],

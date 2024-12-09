@@ -1,12 +1,12 @@
-import { DummyPaymentAwp } from "../dummyPayment/dummyPaymentAwp";
 import { Browser, Page } from "@playwright/test";
-import { OrderType, solicitorCaseCreateType } from "../../../../common/types";
 import { Helpers } from "../../../../common/helpers";
-import { NonMolestationOrder } from "./nonMolestationOrder/nonMolestationOrder";
-import { ParentalResponsibilityOrder } from "./ParentalResponsibilityOrder/parentalResponsibilityOrder";
+import { OrderType, solicitorCaseCreateType } from "../../../../common/types";
 import config from "../../../../config";
 import { IssueAndSendToLocalCourtCallback1Page } from "../../../../pages/manageCases/caseWorker/draftAnOrder/issueAndSendToLocalCourt/issueAndSendToLocalCourtCallback1Page";
 import { IssueAndSendToLocalCourtCallbackSubmitPage } from "../../../../pages/manageCases/caseWorker/draftAnOrder/issueAndSendToLocalCourt/issueAndSendToLocalCourtCallbackSubmitPage";
+import { DummyPaymentAwp } from "../dummyPayment/dummyPaymentAwp";
+import { NonMolestationOrder } from "./nonMolestationOrder/nonMolestationOrder";
+import { ParentalResponsibilityOrder } from "./ParentalResponsibilityOrder/parentalResponsibilityOrder";
 
 interface DraftAnOrderParams {
   page: Page;
@@ -180,7 +180,7 @@ export class DraftAnOrder {
       // need to assign the case to Swansea court if we want to allow a Swansea judge to edit & approve the order
       await this.assignCaseToSwanseaCourt(
         browser,
-        formattedCaseRef!!,
+        formattedCaseRef!,
         accessibilityTest,
       );
     }
@@ -232,7 +232,6 @@ export class DraftAnOrder {
     );
     await IssueAndSendToLocalCourtCallback1Page.issueAndSendToLocalCourtCallback1Page(
       page,
-      accessibilityTest,
     );
     await IssueAndSendToLocalCourtCallbackSubmitPage.issueAndSendToLocalCourtCallbackSubmitPage(
       page,

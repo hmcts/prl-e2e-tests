@@ -1,10 +1,9 @@
 import { Page } from "@playwright/test";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { FeesAppliedContent } from "../../../../../fixtures/citizen/createCase/C100/helpWithFees/feesAppliedContent";
-import { Helpers } from "../../../../../common/helpers";
 import { SafetyConcernHelpers } from "../safetyConcerns/safetyConcernHelpers";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { CommonStaticText } from "../../../../../common/commonStaticText";
 
 enum inputIDs {
   radioYes = "#hwf_feesAppliedDetails",
@@ -51,7 +50,6 @@ export class FeesAppliedPage {
 
   private static async checkPageLoads({
     page,
-    accessibilityTest,
   }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.GovukHeadingXL}:text-is("${FeesAppliedContent.pageTitle}")`,

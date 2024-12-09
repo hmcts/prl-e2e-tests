@@ -1,8 +1,7 @@
 import { Page } from "@playwright/test";
+import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { ChildrenAndRespondents1Content } from "../../../../../fixtures/manageCases/createCase/C100/childrenAndRespondents/childrenAndRespondents1Content";
-import { Helpers } from "../../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 
 enum UniqueSelectors {
   respondentsRelationshipDropdown = "#buffChildAndRespondentRelations_0_childAndRespondentRelation",

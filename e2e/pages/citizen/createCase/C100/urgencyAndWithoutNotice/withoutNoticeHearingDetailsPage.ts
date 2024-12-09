@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { WithoutNoticeHearingDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/urgencyAndWithoutNotice/withoutNoticeHearingDetailsContent";
-import { Helpers } from "../../../../../common/helpers";
 import { uniqueSelectors } from "./urgentFirstHearingPage";
-import { CommonStaticText } from "../../../../../common/commonStaticText";
 
 interface WithoutNoticeHearingDetailsPageOptions {
   page: Page;
@@ -42,7 +42,6 @@ export class WithoutNoticeHearingDetailsPage {
     page: page,
     accessibilityTest: accessibilityTest,
     errorMessaging: errorMessaging,
-    urgencyAndWithoutNoticeAllOptionsYes: urgencyAndWithoutNoticeAllOptionsYes,
   }: WithoutNoticeHearingDetailsPageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,

@@ -1,10 +1,9 @@
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { ApplicantPersonalDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/casePartyDetails/applicantPersonalDetailsContent";
-import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors";
 import { ApplicantGender } from "../../../../../common/types";
+import { ApplicantPersonalDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/casePartyDetails/applicantPersonalDetailsContent";
 
 interface applicantPersonalDetailsPageOptions {
   page: Page;

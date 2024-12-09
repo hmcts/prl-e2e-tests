@@ -1,9 +1,7 @@
 import { Page } from "@playwright/test";
+import accessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Selectors } from "../../../../../common/selectors";
 import { SubmitContent } from "../../../../../fixtures/manageCases/createCase/FL401/viewPDFApplication/submitContent";
-import { Helpers } from "../../../../../common/helpers";
-import accessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { ViewPDFApplicationContent } from "../../../../../fixtures/manageCases/createCase/FL401/viewPDFApplication/viewPDFApplicationContent";
 
 export class ViewPDFApplicationSubmitPage {
   public static async viewPDFApplicationSubmitPage(

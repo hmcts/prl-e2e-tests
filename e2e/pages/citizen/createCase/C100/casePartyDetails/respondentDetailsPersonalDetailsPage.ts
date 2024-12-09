@@ -1,8 +1,7 @@
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors";
 import { ApplicantGender, yesNoDontKnow } from "../../../../../common/types";
 import { RespondentDetailsPersonalDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/casePartyDetails/respondentDetailsPersonalDetailsContent";
 

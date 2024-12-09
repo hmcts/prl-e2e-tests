@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { Helpers } from "../../../../../common/helpers";
 import accessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { addressRadios } from "./fl401TheHome1Page";
+import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors";
 import { Fl401TheHomeSubmitContent } from "../../../../../fixtures/manageCases/createCase/FL401/theHome/fl401TheHomeSubmitContent";
+import { addressRadios } from "./fl401TheHome1Page";
 
 interface FL401HomeSubmitPageOptions {
   page: Page;
@@ -163,15 +163,19 @@ export class Fl401TheHomeSubmitPage {
   }: CheckFilledInDataOptions): Promise<void> {
     let yesCount: number = 0;
     let noCount: number = 0;
-    let bpCount = fl401TheHomeYesNo ? 3 : 1;
-    let applicantRespondentCount = fl401TheHomeYesNo ? 3 : 1;
-    let filledTextCount = fl401TheHomeYesNo ? 12 : 9;
-    let spanCount = fl401TheHomeYesNo ? 3 : 2;
+    const bpCount = fl401TheHomeYesNo ? 3 : 1;
+    const applicantRespondentCount = fl401TheHomeYesNo ? 3 : 1;
+    const filledTextCount = fl401TheHomeYesNo ? 12 : 9;
+    const spanCount = fl401TheHomeYesNo ? 3 : 2;
     yesCount += fl401TheHomeYesNo ? 4 : 0;
     noCount += fl401TheHomeYesNo ? 0 : 4;
     if (applicantHasChildren) {
       yesCount += 1;
-      fl401TheHomeYesNo ? (yesCount += 2) : (noCount += 2);
+      if (fl401TheHomeYesNo) {
+        yesCount += 2;
+      } else {
+        noCount += 2;
+      }
     } else {
       noCount += 1;
     }

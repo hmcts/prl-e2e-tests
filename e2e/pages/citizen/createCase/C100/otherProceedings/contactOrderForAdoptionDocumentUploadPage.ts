@@ -97,7 +97,7 @@ export class ContactOrderForAdoptionDocumentUploadPage {
         1,
       ),
     ]);
-    let fileInput = page.locator(
+    const fileInput = page.locator(
       `${CitizenOtherProceedingsDocumentUploadSelectors.documentUpload}`,
     );
     await fileInput.setInputFiles(config.testOdtFile);
@@ -114,7 +114,7 @@ export class ContactOrderForAdoptionDocumentUploadPage {
   private static async fillInFields({
     page: page,
   }: fillInFieldsOptions): Promise<void> {
-    let fileInput = page.locator(
+    const fileInput = page.locator(
       `${CitizenOtherProceedingsDocumentUploadSelectors.documentUpload}`,
     );
     await fileInput.setInputFiles(config.testPdfFile);

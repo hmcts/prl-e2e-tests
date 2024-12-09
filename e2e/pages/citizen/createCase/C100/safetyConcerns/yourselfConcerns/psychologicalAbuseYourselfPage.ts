@@ -1,10 +1,9 @@
-import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
+import { CommonStaticText } from "../../../../../../common/commonStaticText";
+import { reportAbuseInputIDs } from "../../../../../../common/commonUniqueSelectors";
 import { Selectors } from "../../../../../../common/selectors";
 import { PsychologicalAbuseContent } from "../../../../../../fixtures/citizen/createCase/C100/safetyConcerns/yourselfConcerns/psychologicalAbuseContent";
-import { CommonStaticText } from "../../../../../../common/commonStaticText";
 import { SafetyConcernHelpers } from "../safetyConcernHelpers";
-import { reportAbuseInputIDs } from "../../../../../../common/commonUniqueSelectors";
 
 interface PsychologicalAbusePageOptions {
   page: Page;
@@ -40,7 +39,6 @@ export class PsychologicalAbuseYourselfPage {
 
   private static async checkPageLoads({
     page,
-    accessibilityTest,
   }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.GovukHeadingXL}:text-is("${PsychologicalAbuseContent.pageTitle}")`,
@@ -61,9 +59,9 @@ export class PsychologicalAbuseYourselfPage {
       "behaviourDetails",
       "behaviourStartDate",
     ];
-    for (let key of textToFill) {
-      let inputKey = key as keyof typeof reportAbuseInputIDs;
-      let contentKey = key as keyof typeof PsychologicalAbuseContent;
+    for (const key of textToFill) {
+      const inputKey = key as keyof typeof reportAbuseInputIDs;
+      const contentKey = key as keyof typeof PsychologicalAbuseContent;
       await page.fill(
         reportAbuseInputIDs[inputKey],
         PsychologicalAbuseContent[contentKey],

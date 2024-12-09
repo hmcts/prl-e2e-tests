@@ -1,9 +1,8 @@
-import { expect, Page } from "@playwright/test";
+import { Page } from "@playwright/test";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { RespondentsBehaviourContent } from "../../../../../fixtures/manageCases/createCase/FL401/respondentsBehaviour/respondentsBehaviourContent";
-import { Helpers } from "../../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { solicitorCaseCreateType } from "../../../../../common/types";
 
 enum checkBoxIds {
   applicantStopFromRespondentEnum_Value_1 = "#respondentBehaviourData_applicantWantToStopFromRespondentDoing-applicantStopFromRespondentEnum_Value_1",
@@ -64,7 +63,7 @@ export class RespondentsBehaviourPage {
   }
 
   private static async fillInFields(page: Page): Promise<void> {
-    for (let selector of Object.values(checkBoxIds)) {
+    for (const selector of Object.values(checkBoxIds)) {
       await page.click(selector);
     }
     await page.fill(

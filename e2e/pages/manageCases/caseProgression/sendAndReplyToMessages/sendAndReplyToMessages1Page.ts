@@ -1,9 +1,8 @@
 import { Page } from "@playwright/test";
+import { CommonStaticText } from "../../../../common/commonStaticText";
+import { Helpers } from "../../../../common/helpers";
 import { Selectors } from "../../../../common/selectors";
 import { SendAndReplyToMessages1Content } from "../../../../fixtures/manageCases/caseProgression/sendAndReplyToMessages/sendAndReplyToMessages1Content";
-import { Helpers } from "../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
-import { CommonStaticText } from "../../../../common/commonStaticText";
 
 enum UniqueSelectors {
   sendAMessageRadio = "#chooseSendOrReply-SEND",
@@ -15,17 +14,13 @@ export class SendAndReplyToMessages1Page {
   public static async sendAndReplyToMessages1Page(
     page: Page,
     isSend: boolean,
-    accessibilityTest: boolean,
   ): Promise<void> {
-    await this.checkPageLoads(page, accessibilityTest);
+    await this.checkPageLoads(page);
     await this.fillInFields(page, isSend);
     await this.continue(page);
   }
 
-  private static async checkPageLoads(
-    page: Page,
-    accessibilityTest: boolean,
-  ): Promise<void> {
+  private static async checkPageLoads(page: Page): Promise<void> {
     await page
       .locator(Selectors.GovukHeadingL, {
         hasText: SendAndReplyToMessages1Content.govUkHeadingL,

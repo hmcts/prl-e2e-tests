@@ -16,7 +16,6 @@ import { SubmitPage } from "../../../pages/manageCases/createCase/initialJourney
 export class SolicitorCreateInitial {
   public static async createInitialCase({
     page,
-    user,
     accessibilityTest,
     solicitorCaseType,
     errorMessaging,

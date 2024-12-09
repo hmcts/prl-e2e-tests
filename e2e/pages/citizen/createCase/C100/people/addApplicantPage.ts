@@ -1,9 +1,9 @@
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { AddApplicantContent } from "../../../../../fixtures/citizen/createCase/C100/people/addApplicantContent";
-import { Helpers } from "../../../../../common/helpers";
-import { CommonStaticText } from "../../../../../common/commonStaticText";
 
 interface AddApplicantPageOptions {
   page: Page;

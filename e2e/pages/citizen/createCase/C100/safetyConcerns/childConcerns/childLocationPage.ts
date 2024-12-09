@@ -1,9 +1,8 @@
 import { Page } from "@playwright/test";
-import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper";
+import { CommonStaticText } from "../../../../../../common/commonStaticText";
+import { Helpers } from "../../../../../../common/helpers";
 import { Selectors } from "../../../../../../common/selectors";
 import { ChildLocationContent } from "../../../../../../fixtures/citizen/createCase/C100/safetyConcerns/childConcerns/childLocationContent";
-import { Helpers } from "../../../../../../common/helpers";
-import { CommonStaticText } from "../../../../../../common/commonStaticText";
 import { SafetyConcernHelpers } from "../safetyConcernHelpers";
 
 enum inputIDs {
@@ -40,7 +39,6 @@ export class ChildLocationPage {
 
   private static async checkPageLoads({
     page,
-    accessibilityTest,
   }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.GovukHeadingXL}:text-is("${ChildLocationContent.pageTitle}")`,
@@ -120,9 +118,9 @@ export class ChildLocationPage {
 
   private static async fillInFields(page: Page): Promise<void> {
     const inputKeys: [string, string] = ["abductionReason", "childLocation"];
-    for (let key of inputKeys) {
-      let inputKey = key as keyof typeof inputIDs;
-      let contentKey = key as keyof typeof ChildLocationContent;
+    for (const key of inputKeys) {
+      const inputKey = key as keyof typeof inputIDs;
+      const contentKey = key as keyof typeof ChildLocationContent;
       await page.fill(inputIDs[inputKey], ChildLocationContent[contentKey]);
     }
     await page.click(

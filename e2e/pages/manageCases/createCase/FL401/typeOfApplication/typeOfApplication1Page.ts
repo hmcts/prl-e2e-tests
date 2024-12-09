@@ -72,7 +72,7 @@ export class TypeOfApplication1Page {
   }
 
   private static async fillInFields(page: Page): Promise<void> {
-    for (let selector of Object.values(applicationOrderSelectionIds)) {
+    for (const selector of Object.values(applicationOrderSelectionIds)) {
       const checkbox = page.locator(selector);
       await checkbox.check();
     }

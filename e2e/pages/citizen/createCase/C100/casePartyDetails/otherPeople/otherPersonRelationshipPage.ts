@@ -1,8 +1,7 @@
-import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../../common/selectors";
-import { Helpers } from "../../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../../common/commonStaticText";
+import { Helpers } from "../../../../../../common/helpers";
+import { Selectors } from "../../../../../../common/selectors";
 import { Relationship } from "../../../../../../common/types";
 import { OtherPersonRelationshipContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/otherPeople/otherPersonRelationshipContent";
 
@@ -137,7 +136,7 @@ export class OtherPersonRelationshipPage {
         `The value 'relationship' must be one of 'mother', 'father', 'guardian', 'specialGuardian', 'grandparent', 'other'. You used ${c100OtherPersonRelationship}.`,
       );
     }
-    let inputKey = c100OtherPersonRelationship as keyof typeof inputIds;
+    const inputKey = c100OtherPersonRelationship as keyof typeof inputIds;
     await page.click(inputIds[inputKey]);
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,

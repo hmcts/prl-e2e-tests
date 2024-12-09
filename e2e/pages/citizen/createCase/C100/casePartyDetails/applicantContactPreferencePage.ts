@@ -1,8 +1,7 @@
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors";
 import { ApplicantContactPreferenceContent } from "../../../../../fixtures/citizen/createCase/C100/casePartyDetails/applicantContactPreferenceContent";
 enum inputIds {
   digitalPreference = "#applicantContactPreferences",
@@ -52,7 +51,6 @@ export class ApplicantContactPreferencePage {
   }
   private static async checkPageLoads({
     page,
-    accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.GovukHeadingXL}:has-text("${ApplicantContactPreferenceContent.pageTitle}")`,

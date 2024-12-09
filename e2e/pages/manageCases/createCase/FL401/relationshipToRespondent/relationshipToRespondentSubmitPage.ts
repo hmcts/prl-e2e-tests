@@ -104,7 +104,7 @@ export class RelationshipToRespondentSubmitPage {
       ),
     ]);
     if (relationshipToRespondent === "noneOfTheAbove") {
-      let staticTextCount = respondentRelationshipOther === "Other" ? 2 : 1;
+      const staticTextCount = respondentRelationshipOther === "Other" ? 2 : 1;
       await Helpers.checkGroup(
         page,
         staticTextCount,
@@ -128,7 +128,7 @@ export class RelationshipToRespondentSubmitPage {
     relationshipToRespondent,
     respondentRelationshipOther,
   }: checkFilledDataOptions): Promise<void> {
-    let relationshipToRespondentKey =
+    const relationshipToRespondentKey =
       relationshipToRespondent as keyof typeof FL401RelationshipToRespondentValues;
     await Helpers.checkVisibleAndPresent(
       page,

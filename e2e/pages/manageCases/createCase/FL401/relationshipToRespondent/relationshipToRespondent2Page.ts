@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { RelationshipToRespondent2Content } from "../../../../../fixtures/manageCases/createCase/FL401/relationshipToRespondent/relationshipToRespondent2Content";
-import { Helpers } from "../../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 
 enum otherRelationshipIDs {
   radioFather = "#respondentRelationOptions_applicantRelationshipOptions-father",
@@ -221,7 +221,7 @@ export class RelationshipToRespondent2Page {
     page,
     respondentRelationshipOther,
   }: OtherRelationshipFillInFieldsOptions): Promise<void> {
-    let radioKey =
+    const radioKey =
       `radio${respondentRelationshipOther}` as keyof typeof otherRelationshipIDs;
     await page.click(otherRelationshipIDs[radioKey]);
     if (respondentRelationshipOther === "Other") {
@@ -302,8 +302,8 @@ export class RelationshipToRespondent2Page {
   private static async relationshipPeriodCheckErrors(
     page: Page,
   ): Promise<void> {
-    for (let [key, inputValue] of Object.entries(invalidRelationshipDates)) {
-      let typedKey = key as keyof typeof relationshipPeriodIDs;
+    for (const [key, inputValue] of Object.entries(invalidRelationshipDates)) {
+      const typedKey = key as keyof typeof relationshipPeriodIDs;
       await page.fill(relationshipPeriodIDs[typedKey], inputValue);
     }
     await page.click(
@@ -335,7 +335,7 @@ export class RelationshipToRespondent2Page {
   private static async relationshipPeriodFillInFields(
     page: Page,
   ): Promise<void> {
-    let dateKeys: string[] = [
+    const dateKeys: string[] = [
       "startDateDay",
       "startDateMonth",
       "startDateYear",
@@ -346,9 +346,9 @@ export class RelationshipToRespondent2Page {
       "relationshipDateMonth",
       "relationshipDateYear",
     ];
-    for (let key of dateKeys) {
-      let fieldKey = key as keyof typeof relationshipPeriodIDs;
-      let contentKey = key as keyof typeof RelationshipToRespondent2Content;
+    for (const key of dateKeys) {
+      const fieldKey = key as keyof typeof relationshipPeriodIDs;
+      const contentKey = key as keyof typeof RelationshipToRespondent2Content;
       await page.fill(
         relationshipPeriodIDs[fieldKey],
         RelationshipToRespondent2Content[contentKey],

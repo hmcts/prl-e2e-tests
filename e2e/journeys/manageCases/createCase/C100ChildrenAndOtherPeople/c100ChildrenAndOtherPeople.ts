@@ -1,14 +1,13 @@
 import { Page } from "@playwright/test";
-import { ApplicantGender, UserRole } from "../../../../common/types";
-import { SolicitorCreateInitial } from "../solicitorCreateInitial";
 import { Helpers } from "../../../../common/helpers";
-import { ChildrenAndOtherPeople1Page } from "../../../../pages/manageCases/createCase/C100/childrenAndOtherPeople/childrenAndOtherPeople1Page";
-import { ChildrenAndOtherPeopleSubmitPage } from "../../../../pages/manageCases/createCase/C100/childrenAndOtherPeople/childrenAndOtherPeopleSubmitPage";
+import { ApplicantGender, UserRole } from "../../../../common/types";
 import { C100TasksTabPage } from "../../../../pages/manageCases/caseTabs/c100TasksTabPage";
-import { C100ChildDetails } from "../C100ChildDetails/c100ChildDetails";
-import { C100OtherPeopleInTheCase } from "../C100OtherPeopleInTheCase/C100OtherPeopleInTheCase";
 import { C100ChildGender } from "../../../../pages/manageCases/createCase/C100/childDetails/childDetailsRevised1Page";
 import { yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions } from "../../../../pages/manageCases/createCase/C100/childDetails/childDetailsRevised2Page";
+import { ChildrenAndOtherPeople1Page } from "../../../../pages/manageCases/createCase/C100/childrenAndOtherPeople/childrenAndOtherPeople1Page";
+import { ChildrenAndOtherPeopleSubmitPage } from "../../../../pages/manageCases/createCase/C100/childrenAndOtherPeople/childrenAndOtherPeopleSubmitPage";
+import { C100ChildDetails } from "../C100ChildDetails/c100ChildDetails";
+import { C100OtherPeopleInTheCase } from "../C100OtherPeopleInTheCase/C100OtherPeopleInTheCase";
 
 interface c100ChildrenAndOtherPeopleOptions {
   page: Page;

@@ -1,9 +1,8 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors";
 import { CommonStaticText } from "../../../../common/commonStaticText";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
-import { SendAndReplyToMessages4Content } from "../../../../fixtures/manageCases/caseProgression/sendAndReplyToMessages/sendAndReplyToMessages4Content";
 import { Helpers } from "../../../../common/helpers";
+import { Selectors } from "../../../../common/selectors";
+import { SendAndReplyToMessages4Content } from "../../../../fixtures/manageCases/caseProgression/sendAndReplyToMessages/sendAndReplyToMessages4Content";
 
 enum UniqueSelectors {
   respondToMessageYesRadio = "#respondToMessage_Yes",
@@ -14,17 +13,13 @@ export class SendAndReplyToMessages4Page {
   public static async sendAndReplyToMessages4Page(
     page: Page,
     responseRequired: boolean,
-    accessibilityTest: boolean,
   ) {
-    await this.checkPageLoads(page, accessibilityTest);
+    await this.checkPageLoads(page);
     await this.fillInFields(page, responseRequired);
     await this.continue(page);
   }
 
-  private static async checkPageLoads(
-    page: Page,
-    accessibilityTest: boolean,
-  ): Promise<void> {
+  private static async checkPageLoads(page: Page): Promise<void> {
     await page
       .locator(Selectors.GovukFormLabel, {
         hasText: SendAndReplyToMessages4Content.formLabel1,

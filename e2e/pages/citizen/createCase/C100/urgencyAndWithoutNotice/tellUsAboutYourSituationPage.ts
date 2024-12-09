@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { TellUsAboutYourSituationContent } from "../../../../../fixtures/citizen/createCase/C100/urgencyAndWithoutNotice/tellUsAboutYourSituationContent";
-import { Helpers } from "../../../../../common/helpers";
 import { uniqueSelectors } from "./urgentFirstHearingPage";
-import { CommonStaticText } from "../../../../../common/commonStaticText";
 
 interface TellUsAboutYourSituationPageOptions {
   page: Page;
@@ -52,7 +52,6 @@ export class TellUsAboutYourSituationPage {
     page: page,
     accessibilityTest: accessibilityTest,
     errorMessaging: errorMessaging,
-    urgencyAndWithoutNoticeAllOptionsYes: urgencyAndWithoutNoticeAllOptionsYes,
   }: TellUsAboutYourSituationPageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,

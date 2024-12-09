@@ -188,7 +188,7 @@ export class OtherProceedings1Page {
       "proceedingsFormLabel",
       `${Selectors.GovukFormLabel}`,
     );
-    for (let checkbox of Object.values(checkboxIDs)) {
+    for (const checkbox of Object.values(checkboxIDs)) {
       await page.click(checkbox);
     }
     let filePath: string;
@@ -214,9 +214,9 @@ export class OtherProceedings1Page {
       "cymruOfficer",
       "typeOfOrder",
     ];
-    for (let textKey of textKeys) {
-      let contentKey = textKey as keyof typeof OtherProceedingsContent;
-      let inputKey = textKey as keyof typeof inputIDs;
+    for (const textKey of textKeys) {
+      const contentKey = textKey as keyof typeof OtherProceedingsContent;
+      const inputKey = textKey as keyof typeof inputIDs;
       await page.fill(inputIDs[inputKey], OtherProceedingsContent[contentKey]);
     }
     await page.waitForTimeout(6000);
@@ -245,9 +245,9 @@ export class OtherProceedings1Page {
       "endDateMonth",
       "endDateYear",
     ];
-    for (let textKey of textKeys) {
-      let invalidInputKey = textKey as keyof typeof invalidDateFields;
-      let inputKey = textKey as keyof typeof inputIDs;
+    for (const textKey of textKeys) {
+      const invalidInputKey = textKey as keyof typeof invalidDateFields;
+      const inputKey = textKey as keyof typeof inputIDs;
       await page.fill(inputIDs[inputKey], invalidDateFields[invalidInputKey]);
     }
     await page.click(

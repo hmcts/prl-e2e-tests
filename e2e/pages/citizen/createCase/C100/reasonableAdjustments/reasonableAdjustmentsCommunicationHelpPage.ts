@@ -1,10 +1,9 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { CommonStaticText } from "../../../../../common/commonStaticText";
-import AxeTest from "../../../../../common/accessibilityTestHelper";
-import { ReasonableAdjustmentsCommunicationHelpContent } from "../../../../../fixtures/citizen/createCase/C100/reasonableAdjustments/reasonableAdjustmentsCommunicationHelpContent";
-import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors";
+import { ReasonableAdjustmentsCommunicationHelpContent } from "../../../../../fixtures/citizen/createCase/C100/reasonableAdjustments/reasonableAdjustmentsCommunicationHelpContent";
 
 interface ReasonableAdjustmentsCommunicationHelpPageOptions {
   page: Page;

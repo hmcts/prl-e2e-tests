@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test";
+import { Cookie, Page } from "@playwright/test";
 import { existsSync, readFileSync } from "fs";
 import Config from "../config.ts";
 import { setupUser } from "./idamCreateCitizenUserApiHelper.ts";
@@ -94,7 +94,7 @@ export class IdamLoginHelper {
     try {
       const data = JSON.parse(readFileSync(path, "utf-8"));
       const cookie = data.cookies.find(
-        (cookie: any) => cookie.name === "xui-webapp",
+        (cookie: Cookie) => cookie.name === "xui-webapp",
       );
       const expiry = new Date(cookie.expires * 1000);
       // Check there is at least 4 hours left before the session expires

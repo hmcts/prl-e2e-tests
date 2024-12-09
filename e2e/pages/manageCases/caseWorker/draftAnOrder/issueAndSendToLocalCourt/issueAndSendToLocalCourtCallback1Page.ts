@@ -1,24 +1,19 @@
 import { Page } from "@playwright/test";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { Selectors } from "../../../../../common/selectors";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors";
 import { IssueAndSendToLocalCourtCallback1Content } from "../../../../../fixtures/manageCases/caseWorker/draftAnOrder/issueAndSendToLocalCourt/issueAndSendToLocalCourtCallback1Content";
 
 export class IssueAndSendToLocalCourtCallback1Page {
   public static async issueAndSendToLocalCourtCallback1Page(
     page: Page,
-    accessibilityTest: boolean,
   ): Promise<void> {
-    await this.checkPageLoads(page, accessibilityTest);
+    await this.checkPageLoads(page);
     await this.fillInFields(page);
     await this.continue(page);
   }
 
-  private static async checkPageLoads(
-    page: Page,
-    accessibilityTest: boolean,
-  ): Promise<void> {
+  private static async checkPageLoads(page: Page): Promise<void> {
     await page
       .locator(`${Selectors.GovukHeadingL}`, {
         hasText: `${IssueAndSendToLocalCourtCallback1Content.heading}`,

@@ -1,10 +1,9 @@
-import { NonMolestationOrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/nonMolestationOrderDetailsContent";
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { CitizensOtherProceedingsUniqueSelectors } from "../../../../../common/commonUniqueSelectors";
+import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors";
+import { NonMolestationOrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/nonMolestationOrderDetailsContent";
 
 interface NonMolestationOrderDetailsPageOptions {
   page: Page;
@@ -45,7 +44,6 @@ export class NonMolestationOrderDetailsPage {
 
   private static async checkPageLoads({
     page: page,
-    accessibilityTest: accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.p}:text-is("${NonMolestationOrderDetailsContent.p}")`,

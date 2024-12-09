@@ -51,11 +51,11 @@ export async function createCitizenUser(
   } catch (error) {
     if (process.env.PWDEBUG) {
       console.error(
-        "Error: Unable to create the citizen user. Please check your VPN connection and confirm that the IDAM service is available.",
+        `Error: Unable to create the citizen user. Please check your VPN connection and confirm that the IDAM service is available.\n${error}`,
       );
     }
     throw new Error(
-      "Failed to create citizen user. Check the URL or your network connection.",
+      `Failed to create citizen user. Check the URL or your network connection.\n${error}`,
     );
   }
 }

@@ -1,11 +1,11 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { ManageOrders1DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders1DAContent";
-import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-import { ManageOrders19DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders19DAContent";
-import { CreateOrderFL401Options } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/createOrderManageOrders5Content";
+import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors";
 import { createOrderFL401Options } from "../../../../../common/types";
+import { CreateOrderFL401Options } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/createOrderManageOrders5Content";
+import { ManageOrders19DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders19DAContent";
+import { ManageOrders1DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders1DAContent";
 
 interface ManageOrders19PageOptions {
   page: Page;
@@ -87,7 +87,6 @@ export class ManageOrders19Page {
 
   private static async checkPageLoads({
     page,
-    accessibilityTest,
     createOrderFL401Options,
   }: Partial<ManageOrders19PageOptions>): Promise<void> {
     if (!page) {
