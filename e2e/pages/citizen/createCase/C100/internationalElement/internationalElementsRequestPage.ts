@@ -1,8 +1,7 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { Helpers } from "../../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors";
 import { internationalElementsRequestContent } from "../../../../../fixtures/citizen/createCase/C100/internationalElement/internationalElementsRequestContent";
 
 interface InternationalElementsRequestPageOptions {
@@ -40,7 +39,6 @@ export class InternationalElementsRequestPage {
 
   private static async checkPageLoads({
     page: page,
-    accessibilityTest: accessibilityTest,
   }: Partial<InternationalElementsRequestPageOptions>): Promise<void> {
     if (!page) {
       throw new Error();

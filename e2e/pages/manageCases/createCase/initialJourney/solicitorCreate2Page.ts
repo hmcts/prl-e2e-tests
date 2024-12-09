@@ -40,13 +40,13 @@ export class SolicitorCreate2Page {
       `${Selectors.h2}:text-is("${SolicitorCreate2Content.subTitle}")`,
     );
     if (isDummyCase) {
-      Helpers.checkVisibleAndPresent(
+      await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukHeadingL}:text-is("${SolicitorCreate2Content.dummyPageTitle}")`,
         1,
       );
     } else {
-      Helpers.checkVisibleAndPresent(
+      await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukHeadingL}:text-is("${SolicitorCreate2Content.title}")`,
         1,

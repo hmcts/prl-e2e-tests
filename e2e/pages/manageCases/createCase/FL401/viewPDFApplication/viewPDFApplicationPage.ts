@@ -18,7 +18,7 @@ export class ViewPDFApplicationPage {
     viewPdfTestCases: ViewPdfTestCases,
   ): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest, viewPdfTestCases);
-    await this.fillInFields(page, accessibilityTest);
+    await this.fillInFields(page);
   }
 
   private static async checkPageLoads(
@@ -482,10 +482,7 @@ export class ViewPDFApplicationPage {
     ]);
   }
 
-  private static async fillInFields(
-    page: Page,
-    accessibilityTest: boolean,
-  ): Promise<void> {
+  private static async fillInFields(page: Page): Promise<void> {
     await page.click(
       `${Selectors.button}:text-is("${ViewPDFApplicationContent.continue}")`,
     );

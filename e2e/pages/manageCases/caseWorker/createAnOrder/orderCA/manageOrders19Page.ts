@@ -1,9 +1,8 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { Helpers } from "../../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { ManageOrders19CAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderCA/manageOrders19CAContent";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors";
+import { ManageOrders19CAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderCA/manageOrders19CAContent";
 
 interface manageOrders19PageOptions {
   page: Page;
@@ -28,7 +27,6 @@ export class ManageOrders19Page {
 
   private static async checkPageLoads({
     page,
-    accessibilityTest,
   }: Partial<manageOrders19PageOptions>): Promise<void> {
     if (!page) {
       throw new Error("Page is not defined");

@@ -177,7 +177,7 @@ export class PassportAmountPage {
     } else {
       await page.click(inputIDs.radioNo);
     }
-    for (let checkboxID of Object.values(checkboxIDs)) {
+    for (const checkboxID of Object.values(checkboxIDs)) {
       await page.check(checkboxID);
     }
     await page.fill(inputIDs.otherDetails, PassportAmountContent.otherDetails);

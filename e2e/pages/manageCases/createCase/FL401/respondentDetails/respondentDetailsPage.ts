@@ -151,7 +151,7 @@ export class RespondentDetailsPage {
     );
 
     if (respondentDetailsAllOptionsYes) {
-      for (let selector of Object.values(radioIdsYes)) {
+      for (const selector of Object.values(radioIdsYes)) {
         await page.click(selector);
       }
 
@@ -184,7 +184,7 @@ export class RespondentDetailsPage {
 
       await this.checkFindAddressWorks(page, accessibilityTest);
     } else {
-      for (let selector of Object.values(radioIdsNo)) {
+      for (const selector of Object.values(radioIdsNo)) {
         await page.click(selector);
       }
     }

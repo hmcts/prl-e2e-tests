@@ -1,10 +1,9 @@
 import { Page } from "@playwright/test";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { Selectors } from "../../../../../common/selectors";
-import { StartContent } from "../../../../../fixtures/citizen/createCase/C100/confidentiality/startContent";
-import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors";
 import { yesNoDontKnow } from "../../../../../common/types";
+import { StartContent } from "../../../../../fixtures/citizen/createCase/C100/confidentiality/startContent";
 
 enum inputIDs {
   yes = "#start",
@@ -210,7 +209,7 @@ export class StartPage {
           `${Selectors.GovukLabel}`,
         ),
       ]);
-      for (let checkboxID of Object.values(checkboxes)) {
+      for (const checkboxID of Object.values(checkboxes)) {
         await page.check(checkboxID);
       }
     } else {
