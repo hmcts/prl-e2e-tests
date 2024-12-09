@@ -1,6 +1,5 @@
-import { Browser, Page } from "@playwright/test";
+import { Page } from "@playwright/test";
 import { Helpers } from "../../../../common/helpers";
-import config from "../../../../config";
 import { c100CaseWorkerActions } from "../../../../common/types";
 import { ServiceOfApplication2Page } from "../../../../pages/manageCases/caseProgression/serviceOfApplication/serviceOfApplication2Page";
 import {
@@ -11,7 +10,7 @@ import { ServiceOfApplicationSubmitPage } from "../../../../pages/manageCases/ca
 import { ServiceOfApplicationConfirmPage } from "../../../../pages/manageCases/caseProgression/serviceOfApplication/serviceOfApplicationConfirmPage";
 
 interface ServiceOfApplicationJourneyParams {
-  browser: Browser;
+  page: Page;
   ccdRef: string;
   accessibilityTest: boolean;
   c100CaseWorkerActions: c100CaseWorkerActions;
@@ -21,17 +20,11 @@ interface ServiceOfApplicationJourneyParams {
 
 export class ServiceOfApplicationJourney {
   public static async serviceOfApplicationJourney({
+    page,
     accessibilityTest,
     yesNoServiceOfApplication4,
     responsibleForServing,
-    browser,
-    ccdRef,
   }: ServiceOfApplicationJourneyParams): Promise<void> {
-    const page: Page = await Helpers.openNewBrowserWindow(
-      browser,
-      "courtAdminStoke",
-    );
-    await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
     await Helpers.chooseEventFromDropdown(page, "Service of application");
     await ServiceOfApplication2Page.serviceOfApplication2Page({
       page,

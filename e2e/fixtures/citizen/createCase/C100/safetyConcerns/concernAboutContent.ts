@@ -7,4 +7,3 @@ export enum ConcernAboutContent {
   errorSummaryList = "Specify who you are concerned about",
   errorMessage = "Specify who you are concerned about",
 }
-
