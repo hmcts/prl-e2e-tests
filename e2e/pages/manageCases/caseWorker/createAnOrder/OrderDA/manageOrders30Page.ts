@@ -84,7 +84,6 @@ export class ManageOrders30Page {
     } else {
       await page.click(UniqueSelectors.no);
     }
-    await page.waitForTimeout(1000);
     await page.click(
       `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
     );

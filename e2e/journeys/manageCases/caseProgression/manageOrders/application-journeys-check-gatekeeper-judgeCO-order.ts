@@ -9,6 +9,8 @@ import { createOrderManageOrders19Options } from "../../../../pages/manageCases/
 import { howLongWillOrderBeInForce } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders12Page";
 import { ApplicationJourneysCheckGatekeeper } from "../checkApplicationSendToGateKeeper/application-journeys-check-gatekeeper";
 import { JudgeManageOrderJourney } from "./judgeManageOrdersJourney";
+import { ServiceOfApplicationJourney } from "../serviceOfApplication/serviceOfApplication";
+import { responsibleForServing } from "../../../../pages/manageCases/caseProgression/serviceOfApplication/ServiceOfApplication4Page";
 
 interface CheckApplicationParams {
   page: Page;
@@ -23,6 +25,8 @@ interface CheckApplicationParams {
   createOrderManageOrders19Options: createOrderManageOrders19Options;
   howLongWillOrderBeInForce: howLongWillOrderBeInForce;
   manageOrdersOptions: manageOrdersOptions;
+  yesNoServiceOfApplication4: boolean;
+  responsibleForServing: responsibleForServing;
   browser: Browser;
 }
 
@@ -40,6 +44,8 @@ export class ApplicationJourneysCheckGatekeeperJudgeCOOrder {
     createOrderManageOrders19Options,
     howLongWillOrderBeInForce,
     manageOrdersOptions,
+    yesNoServiceOfApplication4,
+    responsibleForServing,
     browser,
   }: CheckApplicationParams): Promise<void> {
     await ApplicationJourneysCheckGatekeeper.applicationJourneysCheckGatekeeper(
@@ -63,6 +69,14 @@ export class ApplicationJourneysCheckGatekeeperJudgeCOOrder {
       howLongWillOrderBeInForce,
       manageOrdersOptions,
     });
-    await page.waitForTimeout(5000);
+    await page.waitForTimeout(1000);
+    await ServiceOfApplicationJourney.serviceOfApplicationJourney({
+      accessibilityTest,
+      yesNoServiceOfApplication4,
+      responsibleForServing,
+      c100CaseWorkerActions,
+      browser,
+      ccdRef,
+    });
   }
 }
