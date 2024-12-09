@@ -94,6 +94,7 @@ export class ServiceOfDocuments {
       accessibilityTest,
       checkDocuments,
     });
+    await page.pause();
     await ServiceOfDocumentsSubmitPage.serviceOfDocumentsSubmitPage({
       page,
       accessibilityTest,

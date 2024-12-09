@@ -1,14 +1,15 @@
 export enum ServiceOfDocumentsSubmitContent {
   pageTitle = "Service of documents", //GovukHeadingL
   headingH2 = "Check your answers",
+  textField1 = "Check the information below carefully.",
+  textField2 = "Documents",
+  textField3 = "Does this document need to be personally served on the respondent?",
+  textField4 = "Documents 1",
+  textField5 = "Select the document",
+  textField6 = "Applications -> Applicant documents -> Applicant application -> FL401FinalDocument.pdf",
+  textField7 = "Does someone need to check the documents?",
 
-  textField1 = "Does this document need to be personally served on the respondent?",
-  textField2 = "Does someone need to check the documents?",
-  textField3 = "Check the information below carefully.", // h2
-  textField4 = "Documents",
-  textField5 = "Documents 1",
-  textField6 = "Select the document",
-  textField7 = "Applications -> Applicant documents -> Applicant application -> FL401FinalDocument.pdf",
+
   //personally served
   textPersonallyServed1 = "Yes",
   textPersonallyServed2 = "Unrepresented applicant who is arranging service",

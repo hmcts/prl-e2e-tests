@@ -58,6 +58,7 @@ export class ServiceOfDocuments3Page {
     if (!page) {
       throw new Error("No page found");
     }
+    await page.pause();
     if (checkDocuments) {
       await page.click(UniqueSelectors.managerCheckDocSelector);
     } else {

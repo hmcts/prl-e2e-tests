@@ -58,6 +58,7 @@ export class ServiceOfDocumentsSubmitPage {
       `${Selectors.GovukHeadingL}:text-is("${ServiceOfDocumentsSubmitContent.pageTitle}")`,
     );
     await pageTitle.waitFor();
+    await this.checkStaticFields(page);
     await this.runAccessibilityTest(page, accessibilityTest);
   }
 
@@ -65,15 +66,10 @@ export class ServiceOfDocumentsSubmitPage {
     await Promise.all([
       Helpers.checkGroup(
         page,
-        3,
+        7,
         ServiceOfDocumentsSubmitContent,
         `textField`,
         `${Selectors.GovukFormLabel}`,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukText16}:text-is("${ServiceOfDocumentsSubmitContent.textNAPersonallyServed}")`,
-        1,
       ),
     ]);
   }
