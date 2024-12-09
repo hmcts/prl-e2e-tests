@@ -77,7 +77,7 @@ export class CompleteTheOrder {
     // complete the task Complete the Order
     await Helpers.assignTaskToMeAndTriggerNextSteps(
       page,
-      "Complete the Order - Power of arrest (FL406)",
+      "Complete the Order",
       "Complete the Order",
     );
     await AdminEditAndApproveAnOrder1Page.adminEditAndApproveAnOrder1Page(
