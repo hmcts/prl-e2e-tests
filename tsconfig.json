@@ -14,6 +14,6 @@
     "allowJs": false,
     "resolveJsonModule": true
   },
-  "include": ["src/**/*", "__tests__/**/*"],
+  "include": ["e2e/**/*", "__tests__/**/*", "jest.config.ts", "playwright.config.ts"],
   "exclude": ["node_modules"]
 }
