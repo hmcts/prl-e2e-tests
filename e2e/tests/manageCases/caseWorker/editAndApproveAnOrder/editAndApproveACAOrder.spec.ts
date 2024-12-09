@@ -7,8 +7,9 @@ test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 test.describe("Edit and approve a CA order tests", (): void => {
   // Triple timeout for these slow tests
   test.slow();
-
-  test(`Complete Editing and approving an order with the following options:
+  // tests failing due to EXUI-2621
+  // TODO: turn tests back on once issue around "Client context information not matching" has been resolved
+  test.fixme(`Complete Editing and approving an order with the following options:
   Case: C100,
   Order type: Parental responsibility order (C45A),
   Judge order action: Send to admin to serve,
@@ -27,7 +28,7 @@ test.describe("Edit and approve a CA order tests", (): void => {
     });
   });
 
-  test(`Complete Editing and approving an order with the following options:
+  test.fixme(`Complete Editing and approving an order with the following options:
   Case: C100,
   Order type: Parental responsibility order (C45A),
   Judge order action: Ask the legal representative to make changes,
@@ -46,7 +47,7 @@ test.describe("Edit and approve a CA order tests", (): void => {
     });
   });
 
-  test(`Complete Editing and approving an order with the following options:
+  test.fixme(`Complete Editing and approving an order with the following options:
   Case: C100,
   Order type: Parental responsibility order (C45A),
   Judge order action: Give admin further directions then serve,
