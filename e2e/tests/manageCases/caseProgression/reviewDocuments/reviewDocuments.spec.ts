@@ -21,7 +21,7 @@ test.describe("Review Documents task for DA Citizen case tests.", () => {
     await ReviewDocuments.reviewDocuments({
       page: page,
       accessibilityTest: false,
-      yesNoNotSureReviewDocs: "yes",
+      yesNoNotSureRestrictDocs: "yes",
     });
   });
 
@@ -31,7 +31,7 @@ test.describe("Review Documents task for DA Citizen case tests.", () => {
     await ReviewDocuments.reviewDocuments({
       page: page,
       accessibilityTest: false,
-      yesNoNotSureReviewDocs: "no",
+      yesNoNotSureRestrictDocs: "no",
     });
   });
 
@@ -41,7 +41,7 @@ test.describe("Review Documents task for DA Citizen case tests.", () => {
     await ReviewDocuments.reviewDocuments({
       page: page,
       accessibilityTest: false,
-      yesNoNotSureReviewDocs: "dontKnow",
+      yesNoNotSureRestrictDocs: "dontKnow",
     });
   });
 
@@ -51,7 +51,7 @@ test.describe("Review Documents task for DA Citizen case tests.", () => {
     await ReviewDocuments.reviewDocuments({
       page: page,
       accessibilityTest: true,
-      yesNoNotSureReviewDocs: "yes",
+      yesNoNotSureRestrictDocs: "yes",
     });
   });
 });
