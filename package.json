@@ -30,7 +30,7 @@
   },
   "scripts": {
     "configure": "yarn playwright install && yarn playwright install webkit && yarn playwright install firefox",
-    "lint": "yarn tsc -p tsconfig.json && yarn prettier . --write && yarn eslint .",
+    "lint": "yarn prettier . --write yarn && tsc -p tsconfig.json && yarn eslint .",
     "test:unit": "jest",
     "test:changes": "yarn playwright install && ts-node ./e2e/common/changedTestsRunner.ts",
     "test:fullfunctional": "echo 'This is a placeholder'",
