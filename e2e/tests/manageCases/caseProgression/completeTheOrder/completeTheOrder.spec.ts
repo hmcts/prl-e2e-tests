@@ -47,9 +47,9 @@ test.describe("Complete the Order task for DA Citizen case tests.", () => {
       ccdRef: ccdRef,
       c100CaseWorkerActions: "Manage orders",
       manageOrdersOptions: "create order",
-      createOrderFL401Options: "power of arrest",
+      createOrderFL401Options: "amend discharge varied order",
       yesNoManageOrders: false,
-      judgeTitles: "Her Honour Judge",
+      judgeTitles: "Deputy Circuit Judge",
       withOrWithoutNotice: false,
       createOrderManageOrders19Options: "dateToBeFixed", // "dateConfirmed" will not pass because page 19 does not give a hearing you are allowed to select
       howLongWillOrderBeInForce: "untilNextHearing", // Should not matter unless non-molestation order is selected.
