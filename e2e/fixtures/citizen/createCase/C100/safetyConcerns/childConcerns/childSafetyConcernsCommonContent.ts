@@ -6,7 +6,7 @@ export enum ChildSafetyConcernsCommonContent {
   injunctionLink = "apply for a domestic abuse injunction",
   span = "!",
   strong = "We will share the information that you give in this section with the other person in the case so that they can respond to what you have said.",
-  legend1 = "Which children are you concerned about? (optional)",
+  legend1 = "Which children are you concerned about?",
   legend2 = "Is the behaviour ongoing? (optional)",
   legend3 = "Have you ever asked for help from a professional person or agency? (optional)",
   formLabel1 = "Describe the behaviours you would like the court to be aware of. (optional)",
