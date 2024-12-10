@@ -16,6 +16,7 @@ test.describe("Manage cases case solicitor create case tests.", (): void => {
   Saying yes to all applicant details questions with a male applicant
   Saying yes to all respondent details questions with a female respondent
   Saying yes to all other people in the case questions with a male applicant
+  Saying yes to other person lives in refuge
   Saying yes to all child details question with a male child
   Saying yes to all children and respondents questions
   Saying yes to all attending the hearing options
@@ -47,6 +48,7 @@ test.describe("Manage cases case solicitor create case tests.", (): void => {
       respondentGender: "male",
       respondentAddress5Years: "yes",
       yesNoOtherPeopleInTheCase: true,
+      otherPersonLivesInRefuge: true,
       respondentLegalRepresentation: "yes",
       c100ChildGender: "male",
       yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions: "yes",
@@ -113,6 +115,7 @@ test.describe("Manage cases case solicitor create case tests.", (): void => {
       respondentAddress5Years: "no",
       respondentLegalRepresentation: "no",
       yesNoOtherPeopleInTheCase: false,
+      otherPersonLivesInRefuge: false,
       c100ChildGender: "female",
       yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions: "no",
       otherChildPresent: true,

@@ -4,6 +4,7 @@ import { OtherPeopleInTheCase1Content } from "../../../../../fixtures/manageCase
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { ApplicantGender } from "../../../../../common/types";
+import config from "../../../../../config";
 
 enum UniqueSelectors {
   applicantFirstNameInput = "#otherPartyInTheCaseRevised_0_firstName",
@@ -18,6 +19,11 @@ enum UniqueSelectors {
   applicantPlaceOfBirthKnownNo = "#otherPartyInTheCaseRevised_0_isPlaceOfBirthKnown_No",
   applicantCurrentAddressYes = "#otherPartyInTheCaseRevised_0_isCurrentAddressKnown_Yes",
   applicantCurrentAddressNo = "#otherPartyInTheCaseRevised_0_isCurrentAddressKnown_No",
+  otherPersonLivesInRefugeYes = "#otherPartyInTheCaseRevised_0_liveInRefuge_Yes",
+  otherPersonLivesInRefugeNo = "#otherPartyInTheCaseRevised_0_liveInRefuge_No",
+  uploadC8FormLabel = "label[for='otherPartyInTheCaseRevised_0_refugeConfidentialityC8Form'] .form-label",
+  uploadC8FormHint = "label[for='otherPartyInTheCaseRevised_0_refugeConfidentialityC8Form'] + .form-hint",
+  c8RefugeFormUploadFileInput = "#otherPartyInTheCaseRevised_0_refugeConfidentialityC8Form",
   applicantAddressDropdown = "#otherPartyInTheCaseRevised_0_address_address_addressList",
   applicantLivedAtAddressLessThan5YearsYes = "#otherPartyInTheCaseRevised_0_isAtAddressLessThan5Years_Yes",
   addressFields = "div > ccd-field-write > div > ccd-write-complex-type-field > div > fieldset > ccd-field-write > div > ccd-write-address-field > div > ccd-write-complex-type-field > div > fieldset > ccd-field-write > div > ccd-write-text-field > div > label > span.form-label",
@@ -65,6 +71,7 @@ export class OtherPeopleInTheCase1Page {
     accessibilityTest: boolean,
     errorMessaging: boolean,
     yesNoOtherPeopleInTheCase: boolean,
+    otherPersonLivesInRefuge: boolean,
     applicantGender: ApplicantGender,
   ): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest);
@@ -75,6 +82,7 @@ export class OtherPeopleInTheCase1Page {
       page,
       errorMessaging,
       yesNoOtherPeopleInTheCase,
+      otherPersonLivesInRefuge,
       applicantGender,
     );
   }
@@ -201,6 +209,7 @@ export class OtherPeopleInTheCase1Page {
     page: Page,
     errorMessaging: boolean,
     yesNoOtherPeopleInTheCase: boolean,
+    otherPersonLivesInRefuge: boolean,
     applicantGender: ApplicantGender,
   ): Promise<void> {
     if (!errorMessaging) {
@@ -263,6 +272,20 @@ export class OtherPeopleInTheCase1Page {
       await this.placeOfBirthValidation(page);
 
       await page.click(`${UniqueSelectors.applicantCurrentAddressYes}`);
+      if (otherPersonLivesInRefuge) {
+        await page.click(`${UniqueSelectors.otherPersonLivesInRefugeYes}`);
+        await this.checkFormLabelsWhenOtherPersonLivesInRefugeYesIsClicked(page);
+        const fileInput = page.locator(
+          `${UniqueSelectors.c8RefugeFormUploadFileInput}`,
+        );
+        await fileInput.setInputFiles(config.testPdfFile);
+        await page.waitForSelector(
+          `${Selectors.GovukErrorMessage}:text-is("${OtherPeopleInTheCase1Content.uploadingFile}")`,
+          { state: "hidden" },
+        );
+      } else {
+        await page.click(`${UniqueSelectors.otherPersonLivesInRefugeNo}`);
+      }
       await page.fill(
         `${UniqueSelectors.applicantCurrentAddressInput}`,
         OtherPeopleInTheCase1Content.postcode,
@@ -486,6 +509,23 @@ export class OtherPeopleInTheCase1Page {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukFormLabel}:text-is("${OtherPeopleInTheCase1Content.formLabelContactNumberConfidential}")`,
+        1,
+      ),
+    ]);
+  }
+
+  private static async checkFormLabelsWhenOtherPersonLivesInRefugeYesIsClicked(
+    page: Page,
+  ): Promise<void> {
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${UniqueSelectors.uploadC8FormLabel}:text-is("${OtherPeopleInTheCase1Content.formLabelC8FormUpload}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${UniqueSelectors.uploadC8FormHint}:text-is("${OtherPeopleInTheCase1Content.c8FormUploadHint}")`,
         1,
       ),
     ]);
