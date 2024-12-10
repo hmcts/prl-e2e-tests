@@ -30,7 +30,7 @@ jest.mock("../../e2e/common/helpers", () => {
 describe("Helpers", () => {
   beforeEach(() => {
     const fixedDate = new Date(2024, 7, 21);
-    jest.spyOn(globalThis, "Date").mockImplementation(() => fixedDate as any);
+    jest.spyOn(globalThis, "Date").mockImplementation(() => fixedDate as Date);
   });
 
   afterEach(() => {

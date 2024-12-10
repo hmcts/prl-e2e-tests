@@ -63,7 +63,6 @@ const statementOfTruthCheckbox: string = "#statementOfTruth";
 export class ReviewPage {
   private static async checkCommonText({
     page,
-    accessibilityTest,
   }: checkCommonTextOptions): Promise<void> {
     if (!page) {
       throw new Error();
@@ -122,7 +121,6 @@ export class ReviewPage {
   public static async c100CAWithWrittenConsentFromOtherPeople({
     page,
     accessibilityTest,
-    reviewPageTopJourneyMotherFather,
     relationshipType,
     c100YesNoNeedHelpWithFees,
   }: caWrittenConsentJourneyOptions): Promise<void> {

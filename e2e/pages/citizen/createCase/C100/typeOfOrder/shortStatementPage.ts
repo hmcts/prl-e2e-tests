@@ -1,8 +1,7 @@
 import { Page } from "@playwright/test";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { ShortStatementContent } from "../../../../../fixtures/citizen/createCase/C100/typeOfOrder/shortStatementContent";
-import { Selectors } from "../../../../../common/selectors";
 import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors";
+import { ShortStatementContent } from "../../../../../fixtures/citizen/createCase/C100/typeOfOrder/shortStatementContent";
 
 interface ShortStatementPageOptions {
   page: Page;

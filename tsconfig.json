@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es2016",
+    "target": "es2021",
     "module": "commonjs",
     "moduleResolution": "node",
     "types": ["node", "jest"],
@@ -14,6 +14,11 @@
     "allowJs": false,
     "resolveJsonModule": true
   },
-  "include": ["src/**/*", "__tests__/**/*"],
+  "include": [
+    "e2e/**/*",
+    "__tests__/**/*",
+    "jest.config.ts",
+    "playwright.config.ts"
+  ],
   "exclude": ["node_modules"]
 }

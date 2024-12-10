@@ -371,7 +371,7 @@ export enum CaJourneyEmergencyProtectionReviewContent {
   h4_isThisACurrentOrderoptional = "Is this a current order? (optional)", // 16 occurrences
   h4_whatDateDidItEndoptional = "What date did it end? (optional)", // 16 occurrences
   h4_doYouHaveACopyOfTheOrderoptional = "Do you have a copy of the order? (optional)", // 16 occurrences
-  h4_whichChildrenAreYouConcernedAboutoptional = "Which children are you concerned about? (optional)", // 5 occurrences
+  h4_whichChildrenAreYouConcernedAboutoptional = "Which children are you concerned about?", // 5 occurrences
   h4_describeTheBehavioursYouWouldLikeTheCourtToBeAwareOfoptional = "Describe the behaviours you would like the court to be aware of. (optional)", // 11 occurrences
   h4_whenDidThisBehaviourStartAndHowLongDidItContinueoptional = "When did this behaviour start and how long did it continue? (optional)", // 11 occurrences
   h4_isTheBehaviourOngoingoptional = "Is the behaviour ongoing? (optional)", // 11 occurrences

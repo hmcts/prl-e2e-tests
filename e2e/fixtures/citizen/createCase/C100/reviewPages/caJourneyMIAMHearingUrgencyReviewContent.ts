@@ -301,7 +301,7 @@ export enum CaJourneyMIAMHearingUrgencyReviewContent {
   h4_7 = "Respondent 1",
   h4_8 = "Details",
   h4_9 = "Have they lived at this address for less than 5 years?",
-  h4_whichChildrenAreYouConcernedAboutoptional = "Which children are you concerned about? (optional)", // 5 occurrences
+  h4_whichChildrenAreYouConcernedAboutoptional = "Which children are you concerned about?", // 5 occurrences
   h4_describeTheBehavioursYouWouldLikeTheCourtToBeAwareOfoptional = "Describe the behaviours you would like the court to be aware of. (optional)", // 11 occurrences
   h4_whenDidThisBehaviourStartAndHowLongDidItContinueoptional = "When did this behaviour start and how long did it continue? (optional)", // 11 occurrences
   h4_isTheBehaviourOngoingoptional = "Is the behaviour ongoing? (optional)", // 11 occurrences

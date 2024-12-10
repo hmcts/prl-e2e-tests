@@ -1,18 +1,4 @@
 import { Page } from "@playwright/test";
-import { C100ScreeningSections } from "./subJourneys/c100ScreeningSections";
-import { CitizenCreateInitial } from "../../citizenCreateInitial";
-import { C100TypeOfOrder } from "./subJourneys/C100TypeOfOrder";
-import { C100ConsentOrderUpload } from "./subJourneys/C100ConsentOrderUpload";
-import { C100UrgencyAndWithoutNotice } from "./subJourneys/C100UrgencyAndWithoutNotice";
-import { C100People } from "./subJourneys/C100People1";
-import { MIAM } from "./subJourneys/MIAM";
-import { MiamChildProtectionConcernsType } from "../../../../pages/citizen/createCase/C100/MIAM/miamChildProtectionPage";
-import { MiamUrgencyType } from "../../../../pages/citizen/createCase/C100/MIAM/miamUrgencyPage";
-import { MiamAttendanceType } from "../../../../pages/citizen/createCase/C100/MIAM/miamPreviousAttendancePage";
-import { MiamOtherReasonForNotAttending } from "../../../../pages/citizen/createCase/C100/MIAM/miamMiamOtherPage";
-import { MiamReasonForNoAccessToMediator } from "../../../../pages/citizen/createCase/C100/MIAM/miamNoAccessToMediatorPage";
-import { C100OtherProceedings } from "./subJourneys/C100OtherProceedings";
-import { C100ApplicationCompletedForYou } from "./C100ApplicationCompletedForYou";
 import {
   ApplicantGender,
   CapitalizedRelationship,
@@ -20,20 +6,34 @@ import {
   typeOfPerson,
   yesNoDontKnow,
 } from "../../../../common/types";
-import { C100Confidentiality } from "./subJourneys/c100Confidentiality";
-import { C100CasePartyDetails } from "./subJourneys/c100CasePartyDetails";
-import { C100SafetyConcerns } from "./subJourneys/c100SafetyConcerns";
-import { c100ChildrenSupervisionRadios } from "../../../../pages/citizen/createCase/C100/safetyConcerns/unsupervisedPage";
-import { C100InternationalElements } from "./subJourneys/c100InternationalElements";
-import { C100ReasonableAdjustments } from "./subJourneys/c100ReasonableAdjustments";
-import { C100HelpWithFees } from "./subJourneys/c100HelpWithFees";
-import { EqualityAndDiversityPage } from "../../../../pages/citizen/createCase/C100/confirmation/equalityAndDiversityQuestionsPage";
 import { ConfirmationPage } from "../../../../pages/citizen/createCase/C100/confirmation/confirmationPage";
+import { EqualityAndDiversityPage } from "../../../../pages/citizen/createCase/C100/confirmation/equalityAndDiversityQuestionsPage";
+import { MiamChildProtectionConcernsType } from "../../../../pages/citizen/createCase/C100/MIAM/miamChildProtectionPage";
+import { MiamOtherReasonForNotAttending } from "../../../../pages/citizen/createCase/C100/MIAM/miamMiamOtherPage";
+import { MiamReasonForNoAccessToMediator } from "../../../../pages/citizen/createCase/C100/MIAM/miamNoAccessToMediatorPage";
+import { MiamAttendanceType } from "../../../../pages/citizen/createCase/C100/MIAM/miamPreviousAttendancePage";
+import { MiamUrgencyType } from "../../../../pages/citizen/createCase/C100/MIAM/miamUrgencyPage";
 import {
   ReviewPage,
   reviewPageTopJourneyMotherFather,
 } from "../../../../pages/citizen/createCase/C100/reviewPages/reviewPage";
+import { c100ChildrenSupervisionRadios } from "../../../../pages/citizen/createCase/C100/safetyConcerns/unsupervisedPage";
+import { CitizenCreateInitial } from "../../citizenCreateInitial";
+import { C100ApplicationCompletedForYou } from "./C100ApplicationCompletedForYou";
+import { C100CasePartyDetails } from "./subJourneys/c100CasePartyDetails";
+import { C100Confidentiality } from "./subJourneys/c100Confidentiality";
+import { C100ConsentOrderUpload } from "./subJourneys/C100ConsentOrderUpload";
+import { C100HelpWithFees } from "./subJourneys/c100HelpWithFees";
+import { C100InternationalElements } from "./subJourneys/c100InternationalElements";
+import { C100OtherProceedings } from "./subJourneys/C100OtherProceedings";
 import { C100Pay } from "./subJourneys/C100Pay";
+import { C100People } from "./subJourneys/C100People1";
+import { C100ReasonableAdjustments } from "./subJourneys/c100ReasonableAdjustments";
+import { C100SafetyConcerns } from "./subJourneys/c100SafetyConcerns";
+import { C100ScreeningSections } from "./subJourneys/c100ScreeningSections";
+import { C100TypeOfOrder } from "./subJourneys/C100TypeOfOrder";
+import { C100UrgencyAndWithoutNotice } from "./subJourneys/C100UrgencyAndWithoutNotice";
+import { MIAM } from "./subJourneys/MIAM";
 
 interface C100ApplicationCompletedForYouOptions {
   page: Page;
@@ -807,7 +807,6 @@ export class C100 {
     c100OtherPersonRelationship,
     c100OtherPersonLivesInRefuge,
     c100ChildMainlyLivesWith,
-    yesNoChildArrangementOrderDetails,
     yesNoOtherProceedings,
     c100ChildrenSafetyConcerns,
     c100ChildrenAbductedBefore,

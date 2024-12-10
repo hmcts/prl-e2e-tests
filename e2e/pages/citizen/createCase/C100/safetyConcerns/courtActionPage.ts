@@ -1,10 +1,9 @@
 import { Page } from "@playwright/test";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { SafetyConcernHelpers } from "./safetyConcernHelpers";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { CourtActionContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/courtActionContent";
-import { Helpers } from "../../../../../common/helpers";
-import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { SafetyConcernHelpers } from "./safetyConcernHelpers";
 
 enum inputIDs {
   courtActionStatement = "#c1A_keepingSafeStatement",
@@ -39,7 +38,6 @@ export class CourtActionPage {
 
   private static async checkPageLoads({
     page,
-    accessibilityTest,
   }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.GovukHeadingXL}:text-is("${CourtActionContent.pageTitle}")`,

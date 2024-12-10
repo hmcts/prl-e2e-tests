@@ -1,9 +1,8 @@
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { ApplicantContactDetailContent } from "../../../../../fixtures/citizen/createCase/C100/casePartyDetails/applicantContactDetailContent";
-import { Helpers } from "../../../../../common/helpers";
-import { CommonStaticText } from "../../../../../common/commonStaticText";
 
 enum inputIds {
   provideEmailYes = "#canProvideEmail",
