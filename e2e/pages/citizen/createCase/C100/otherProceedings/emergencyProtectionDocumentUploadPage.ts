@@ -102,7 +102,7 @@ export class EmergencyProtectionDocumentUploadPage {
         1,
       ),
     ]);
-    let fileInput = page.locator(
+    const fileInput = page.locator(
       `${CitizenOtherProceedingsDocumentUploadSelectors.documentUpload}`,
     );
     await fileInput.setInputFiles(config.testOdtFile);

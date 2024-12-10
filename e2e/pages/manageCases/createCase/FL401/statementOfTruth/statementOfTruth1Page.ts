@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { StatementOfTruth1Content } from "../../../../../fixtures/manageCases/createCase/FL401/statementOfTruth/statementOfTruth1Content";
-import { Helpers } from "../../../../../common/helpers";
 
 enum inputIDs {
   applicantConsent = "#fl401StmtOfTruth_applicantConsent-fl401Consent",
@@ -98,8 +98,8 @@ export class StatementOfTruth1Page {
         `${Selectors.GovukErrorMessage}`,
       ),
     ]);
-    for (let [key, value] of Object.entries(invalidDate)) {
-      let inputKey = key as keyof typeof inputIDs;
+    for (const [key, value] of Object.entries(invalidDate)) {
+      const inputKey = key as keyof typeof inputIDs;
       await page.fill(inputIDs[inputKey], value);
     }
     await page.click(
@@ -129,9 +129,9 @@ export class StatementOfTruth1Page {
       "nameOfFirm",
       "positionHeld",
     ];
-    for (let key of fieldsToFill) {
-      let inputKey = key as keyof typeof inputIDs;
-      let contentKey = key as keyof typeof StatementOfTruth1Content;
+    for (const key of fieldsToFill) {
+      const inputKey = key as keyof typeof inputIDs;
+      const contentKey = key as keyof typeof StatementOfTruth1Content;
       await page.fill(inputIDs[inputKey], StatementOfTruth1Content[contentKey]);
     }
     await page.click(

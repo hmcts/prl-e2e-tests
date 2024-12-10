@@ -1,9 +1,8 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors";
 import { CommonStaticText } from "../../../../common/commonStaticText";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
-import { SendAndReplyToMessages5Content } from "../../../../fixtures/manageCases/caseProgression/sendAndReplyToMessages/sendAndReplyToMessages5Content";
 import { Helpers } from "../../../../common/helpers";
+import { Selectors } from "../../../../common/selectors";
+import { SendAndReplyToMessages5Content } from "../../../../fixtures/manageCases/caseProgression/sendAndReplyToMessages/sendAndReplyToMessages5Content";
 
 enum UniqueSelectors {
   courtAdminRecipientRadio = "#replyMessageObject_internalMessageReplyTo-COURT_ADMIN",
@@ -12,19 +11,13 @@ enum UniqueSelectors {
 }
 
 export class SendAndReplyToMessages5Page {
-  public static async sendAndReplyToAMessage5Page(
-    page: Page,
-    accessibilityTest: boolean,
-  ): Promise<void> {
-    await this.checkPageLoads(page, accessibilityTest);
+  public static async sendAndReplyToAMessage5Page(page: Page): Promise<void> {
+    await this.checkPageLoads(page);
     await this.fillInFields(page);
     await this.continue(page);
   }
 
-  private static async checkPageLoads(
-    page: Page,
-    accessibilityTest: boolean,
-  ): Promise<void> {
+  private static async checkPageLoads(page: Page): Promise<void> {
     await page
       .locator(Selectors.GovukFormLabel, {
         hasText: SendAndReplyToMessages5Content.formLabel1,

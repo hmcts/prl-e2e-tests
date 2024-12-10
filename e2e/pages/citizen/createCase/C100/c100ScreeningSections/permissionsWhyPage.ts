@@ -85,7 +85,7 @@ export class PermissionsWhyPage {
   }
 
   private static async checkErrorMessaging(page: Page): Promise<void> {
-    for (let checkbox of Object.values(checkboxIDs)) {
+    for (const checkbox of Object.values(checkboxIDs)) {
       await page.check(checkbox);
     }
     await page.click(
@@ -112,13 +112,13 @@ export class PermissionsWhyPage {
         `${Selectors.a}`,
       ),
     ]);
-    for (let checkbox of Object.values(checkboxIDs)) {
+    for (const checkbox of Object.values(checkboxIDs)) {
       await page.check(checkbox);
     }
   }
 
   private static async fillInFields(page: Page): Promise<void> {
-    for (let checkbox of Object.values(checkboxIDs)) {
+    for (const checkbox of Object.values(checkboxIDs)) {
       await page.check(checkbox);
     }
     await Helpers.checkGroup(
@@ -128,8 +128,8 @@ export class PermissionsWhyPage {
       "details",
       `${Selectors.GovukHint}`,
     );
-    for (let [key, textField] of Object.entries(inputIDs)) {
-      let contentKey = key as keyof typeof PermissionsWhyContent;
+    for (const [key, textField] of Object.entries(inputIDs)) {
+      const contentKey = key as keyof typeof PermissionsWhyContent;
       await page.fill(textField, PermissionsWhyContent[contentKey]);
     }
     await page.click(

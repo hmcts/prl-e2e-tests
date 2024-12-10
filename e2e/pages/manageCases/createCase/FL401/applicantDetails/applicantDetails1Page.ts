@@ -1,9 +1,9 @@
 import { Page, expect } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { ApplicantDetails1Content } from "../../../../../fixtures/manageCases/createCase/FL401/applicantDetails/applicantDetails1Content";
-import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors";
 import { ApplicantGender } from "../../../../../common/types";
+import { ApplicantDetails1Content } from "../../../../../fixtures/manageCases/createCase/FL401/applicantDetails/applicantDetails1Content";
 
 enum uniqueSelectorPaths {
   dobFormLabel = "div > ccd-field-write > div > ccd-write-complex-type-field > div > fieldset > ccd-field-write > div > ccd-write-date-container-field > ccd-write-date-field > div > fieldset > cut-date-input > div > div",
@@ -239,7 +239,7 @@ export class ApplicantDetails1Page {
         applicantInputIDs.canProvideEmailAddressYes,
         applicantInputIDs.confidentialPhoneNumberYes,
       ];
-      for (let radioID of radiosToClick) {
+      for (const radioID of radiosToClick) {
         await page.click(radioID);
       }
     } else {
@@ -248,7 +248,7 @@ export class ApplicantDetails1Page {
         applicantInputIDs.canProvideEmailAddressNo,
         applicantInputIDs.confidentialPhoneNumberNo,
       ];
-      for (let radioID of radiosToClick) {
+      for (const radioID of radiosToClick) {
         await page.click(radioID);
       }
     }
@@ -303,8 +303,8 @@ export class ApplicantDetails1Page {
   }
 
   private static async fillAndCheckAddressFields(page: Page): Promise<void> {
-    for (let person of ["applicant", "solicitor"]) {
-      let findAddressUniqueKey =
+    for (const person of ["applicant", "solicitor"]) {
+      const findAddressUniqueKey =
         `${person}FindAddress` as keyof typeof uniqueSelectorPaths;
       await page.click(
         `${uniqueSelectorPaths[findAddressUniqueKey]} > button:text-is("${ApplicantDetails1Content.postcodeButton_2}")`,
@@ -312,7 +312,7 @@ export class ApplicantDetails1Page {
       await page.waitForSelector(
         `${Selectors.GovukFormLabel}:text-is("${ApplicantDetails1Content.selectAddress}")`,
       );
-      let selectAddressID =
+      const selectAddressID =
         `${person}SelectAddress` as keyof typeof applicantInputIDs;
       await page
         .locator(applicantInputIDs[selectAddressID])
@@ -507,8 +507,8 @@ export class ApplicantDetails1Page {
   }
 
   private static async checkInvalidDoB(page: Page): Promise<void> {
-    for (let [key, inputData] of Object.entries(invalidDoB)) {
-      let inputKeyID = key as keyof typeof applicantInputIDs;
+    for (const [key, inputData] of Object.entries(invalidDoB)) {
+      const inputKeyID = key as keyof typeof applicantInputIDs;
       await page.fill(applicantInputIDs[inputKeyID], "");
       await page.fill(applicantInputIDs[inputKeyID], inputData);
     }
