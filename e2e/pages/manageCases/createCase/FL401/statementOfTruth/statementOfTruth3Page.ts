@@ -1,8 +1,7 @@
 import { Page } from "@playwright/test";
+import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { StatementOfTruth3Content } from "../../../../../fixtures/manageCases/createCase/FL401/statementOfTruth/statementOfTruth3Content";
-import { Helpers } from "../../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 
 enum inputIDs {
   courtSelection = "#submitCountyCourtSelection",

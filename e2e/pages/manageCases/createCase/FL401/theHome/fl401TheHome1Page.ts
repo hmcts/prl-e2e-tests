@@ -1,8 +1,8 @@
 import { Page, expect } from "@playwright/test";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { Fl401Home1Content } from "../../../../../fixtures/manageCases/createCase/FL401/theHome/fl401Home1Content";
-import { Helpers } from "../../../../../common/helpers";
 
 enum uniqueSelectors {
   intendedHomeDiv = "div#home_intendToLiveAtTheAddress > fieldset > div > ",
@@ -354,7 +354,7 @@ export class Fl401TheHome1Page {
         1,
       ),
     ]);
-    for (let checkboxID of Object.values(secondLevelCheckboxIDs)) {
+    for (const checkboxID of Object.values(secondLevelCheckboxIDs)) {
       await page.check(checkboxID);
     }
     const secondLevelInputs: string[] = [
@@ -364,8 +364,8 @@ export class Fl401TheHome1Page {
       "adaptedProperty",
     ];
     for (const key of secondLevelInputs) {
-      let inputKey = key as keyof typeof inputIDs;
-      let contentKey = key as keyof typeof Fl401Home1Content;
+      const inputKey = key as keyof typeof inputIDs;
+      const contentKey = key as keyof typeof Fl401Home1Content;
       await page.fill(inputIDs[inputKey], Fl401Home1Content[contentKey]);
     }
   }
@@ -384,14 +384,14 @@ export class Fl401TheHome1Page {
     const addressTypeLoop = fl401TheHomeYesNo
       ? ["homeAddress", "homeMortgage", "homeLandlord"]
       : ["homeAddress"];
-    for (let addressType of addressTypeLoop) {
-      let postcodeInput =
+    for (const addressType of addressTypeLoop) {
+      const postcodeInput =
         `${addressType}PostcodeInput` as keyof typeof inputIDs;
       await page.fill(
         `${inputIDs[postcodeInput]}`,
         `${Fl401Home1Content.bpPostalCode}`,
       );
-      let uniqueSelectorKey =
+      const uniqueSelectorKey =
         `${addressType}LookupDiv` as keyof typeof uniqueSelectors;
       await page.click(
         `${uniqueSelectors[uniqueSelectorKey]}${Selectors.button}:text-is("${Fl401Home1Content.findAddress}")`,
@@ -399,7 +399,7 @@ export class Fl401TheHome1Page {
       await page.waitForSelector(
         `${uniqueSelectors[uniqueSelectorKey]}${Selectors.GovukFormLabel}:text-is("${Fl401Home1Content.selectAddress}")`,
       );
-      let selectAddressInput =
+      const selectAddressInput =
         `${addressType}SelectAddress` as keyof typeof inputIDs;
       await page
         .locator(inputIDs[selectAddressInput])
@@ -527,7 +527,7 @@ export class Fl401TheHome1Page {
     applicantHasChildren,
     fl401TheHomeYesNo,
   }: FillInBooleansOptions): Promise<void> {
-    for (let checkboxID of Object.values(checkboxIDs)) {
+    for (const checkboxID of Object.values(checkboxIDs)) {
       await page.check(checkboxID);
     }
     const yesNoString = fl401TheHomeYesNo ? "Yes" : "No";

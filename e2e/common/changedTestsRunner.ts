@@ -1,3 +1,4 @@
+import { exec, ExecException } from "child_process";
 import { SimpleGit, simpleGit } from "simple-git";
 
 export class ChangedTestsRunner {
@@ -60,15 +61,15 @@ export class ChangedTestsRunner {
 
   private static execCommand(command: string): Promise<void> {
     return new Promise((resolve, reject) => {
-      const child = require("child_process").exec(command, (error: Error) => {
+      const child = exec(command, (error: ExecException | null) => {
         if (error) {
           reject(error);
         } else {
           resolve();
         }
       });
-      child.stdout.pipe(process.stdout);
-      child.stderr.pipe(process.stderr);
+      if (child.stdout) child.stdout.pipe(process.stdout);
+      if (child.stderr) child.stderr.pipe(process.stderr);
     });
   }
 }
