@@ -65,19 +65,19 @@ test.describe("C100 Create case Other people in the case Tests", (): void => {
     Saying yes to all options,
     Saying no for other person lives in refuge,
     Setting the applicant Gender to other. @regression`, async ({
-      page,
-    }): Promise<void> => {
-      await C100OtherPeopleInTheCase.c100OtherPeopleInTheCase({
-        page: page,
-        user: "solicitor",
-        accessibilityTest: false,
-        errorMessaging: false,
-        yesNoOtherPeopleInTheCase: true,
-        otherPersonLivesInRefuge: false,
-        applicantGender: "other",
-        subJourney: true,
-      });
+    page,
+  }): Promise<void> => {
+    await C100OtherPeopleInTheCase.c100OtherPeopleInTheCase({
+      page: page,
+      user: "solicitor",
+      accessibilityTest: false,
+      errorMessaging: false,
+      yesNoOtherPeopleInTheCase: true,
+      otherPersonLivesInRefuge: false,
+      applicantGender: "other",
+      subJourney: true,
     });
+  });
 });
 
 test(`Complete the C100 Create case Other people in the case as a solicitor with the following options:

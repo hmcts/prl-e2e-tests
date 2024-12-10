@@ -274,7 +274,9 @@ export class OtherPeopleInTheCase1Page {
       await page.click(`${UniqueSelectors.applicantCurrentAddressYes}`);
       if (otherPersonLivesInRefuge) {
         await page.click(`${UniqueSelectors.otherPersonLivesInRefugeYes}`);
-        await this.checkFormLabelsWhenOtherPersonLivesInRefugeYesIsClicked(page);
+        await this.checkFormLabelsWhenOtherPersonLivesInRefugeYesIsClicked(
+          page,
+        );
         const fileInput = page.locator(
           `${UniqueSelectors.c8RefugeFormUploadFileInput}`,
         );

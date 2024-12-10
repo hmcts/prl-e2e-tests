@@ -194,13 +194,13 @@ export class OtherPeopleInTheCaseSubmitPage {
           page,
           `${Selectors.a}:text-is("${OtherPeopleInTheCase1Content.uploadedFile}")`,
           1,
-        )
+        );
       }
       await Promise.all([
         Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukText16}:text-is("${OtherPeopleInTheCase1Content.formLabelYes}")`,
-          otherPersonLivesInRefuge? 10 : 9,
+          otherPersonLivesInRefuge ? 10 : 9,
         ),
         Helpers.checkVisibleAndPresent(
           page,
@@ -247,7 +247,7 @@ export class OtherPeopleInTheCaseSubmitPage {
       await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukText16}:text-is("${OtherPeopleInTheCase1Content.formLabelNo}")`,
-        otherPersonLivesInRefuge? 7 : 6,
+        otherPersonLivesInRefuge ? 7 : 6,
       );
     }
   }
