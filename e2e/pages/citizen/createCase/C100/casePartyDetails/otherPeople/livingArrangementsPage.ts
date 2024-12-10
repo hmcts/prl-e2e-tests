@@ -1,10 +1,10 @@
-import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../../common/selectors";
-import { LivingArrangementsContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/otherPeople/livingArrangementsContent";
-import { Helpers } from "../../../../../../common/helpers";
+import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper";
 import { CommonStaticText } from "../../../../../../common/commonStaticText";
-import { typeOfPerson, yesNoDontKnow } from "../../../../../../common/types";
+import { Helpers } from "../../../../../../common/helpers";
+import { Selectors } from "../../../../../../common/selectors";
+import { typeOfPerson } from "../../../../../../common/types";
+import { LivingArrangementsContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/otherPeople/livingArrangementsContent";
 
 interface livingArrangementsOptions {
   page: Page;
@@ -112,7 +112,10 @@ export class LivingArrangementsPage {
     yesNoOtherPersonDetails,
   }: fillInFieldsOptions): Promise<void> {
     const checkboxSlice: number = yesNoOtherPersonDetails ? 2 : 1;
-    for (let checkboxID of Object.values(checkboxIDs).slice(0, checkboxSlice)) {
+    for (const checkboxID of Object.values(checkboxIDs).slice(
+      0,
+      checkboxSlice,
+    )) {
       await page.check(checkboxID);
     }
     await page.click(

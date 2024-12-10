@@ -1,9 +1,9 @@
 import { expect, Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { ViewPDFApplicationContent } from "../../../../../fixtures/manageCases/createCase/FL401/viewPDFApplication/viewPDFApplicationContent";
-import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { ViewPdfTestCases, Language } from "../../../../../common/types";
+import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors";
+import { Language, ViewPdfTestCases } from "../../../../../common/types";
+import { ViewPDFApplicationContent } from "../../../../../fixtures/manageCases/createCase/FL401/viewPDFApplication/viewPDFApplicationContent";
 
 enum ids {
   mvDownBtn = "#mvDownBtn",
@@ -18,7 +18,7 @@ export class ViewPDFApplicationPage {
     viewPdfTestCases: ViewPdfTestCases,
   ): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest, viewPdfTestCases);
-    await this.fillInFields(page, accessibilityTest);
+    await this.fillInFields(page);
   }
 
   private static async checkPageLoads(
@@ -99,7 +99,10 @@ export class ViewPDFApplicationPage {
     await expect(numOfPagesLocator).not.toHaveText(/0/); // <- Wait for number of pages not to be 0 (i.e., page has loaded)
 
     const numOfPageText = await numOfPagesLocator.textContent();
-    const numOfPages = parseInt(numOfPageText?.replace("/", "").trim(), 10); // <- numOfPageText is in format "/ 7", strip
+    const numOfPages = parseInt(
+      (numOfPageText ?? "").replace("/", "").trim(),
+      10,
+    ); // <- numOfPageText is in format "/ 7", strip
     //                                                                             the '/' out and convert to int so can
     //                                                                             be used in loop
     for (let i = 0; i < numOfPages - 1; i++) {
@@ -479,10 +482,7 @@ export class ViewPDFApplicationPage {
     ]);
   }
 
-  private static async fillInFields(
-    page: Page,
-    accessibilityTest: boolean,
-  ): Promise<void> {
+  private static async fillInFields(page: Page): Promise<void> {
     await page.click(
       `${Selectors.button}:text-is("${ViewPDFApplicationContent.continue}")`,
     );

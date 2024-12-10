@@ -115,7 +115,7 @@ export class DetailsKnowPage {
         `The value c100OthersKnowApplicantsContact must be one of 'yes', 'no', 'dontKnow'. You used ${c100OthersKnowApplicantsContact}`,
       );
     }
-    let inputKey = c100OthersKnowApplicantsContact as keyof typeof inputIDs;
+    const inputKey = c100OthersKnowApplicantsContact as keyof typeof inputIDs;
     await page.click(inputIDs[inputKey]);
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,

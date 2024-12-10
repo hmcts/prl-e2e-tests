@@ -1,10 +1,9 @@
-import { ChildMaintenanceOrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/childMaintenanceOrderDetailsContent";
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { CitizensOtherProceedingsUniqueSelectors } from "../../../../../common/commonUniqueSelectors";
+import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors";
+import { ChildMaintenanceOrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/childMaintenanceOrderDetailsContent";
 
 interface ChildMaintenanceOrderDetailsPageOptions {
   page: Page;
@@ -45,7 +44,6 @@ export class ChildMaintenanceOrderDetailsPage {
 
   private static async checkPageLoads({
     page: page,
-    accessibilityTest: accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.p}:text-is("${ChildMaintenanceOrderDetailsContent.p}")`,

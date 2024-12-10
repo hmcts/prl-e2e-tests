@@ -116,7 +116,7 @@ export class NonMolestationOrder5Page {
         `${UniqueSelectors.propertyAddressTextBox}`,
         `${NonMolestationOrder5Content.propertyAddress}`,
       );
-      for (let checkbox of Object.values(CheckboxIds)) {
+      for (const checkbox of Object.values(CheckboxIds)) {
         await page.check(checkbox);
       }
       await page.fill(
