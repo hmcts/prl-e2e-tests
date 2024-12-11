@@ -95,56 +95,58 @@ export class AdminEditAndApproveAnOrderSubmitPage {
           ),
           await expect(
             page.locator("ccd-read-dynamic-list-field span", {
-              hasText: AdminEditAndApproveAnOrderSubmitContent.powerOfArrestFL406,
+              hasText:
+                AdminEditAndApproveAnOrderSubmitContent.powerOfArrestFL406,
             }),
           ).toBeVisible(),
         ]);
         break;
       case "amend discharge varied order":
-          await Promise.all([
-            Helpers.checkVisibleAndPresent(
-              page,
-              `${Selectors.headingH3}:text-is("${AdminEditAndApproveAnOrderSubmitContent.amendedDischargedFL404B}")`,
-              1,
-            ),
-            Helpers.checkVisibleAndPresent(
-              page,
-              `${Selectors.a}:text-is("${AdminEditAndApproveAnOrderSubmitContent.amendedDischarged}")`,
-              1,
-            ),
-            Helpers.checkGroup(
-              page,
-              10,
-              AdminEditAndApproveAnOrderSubmitContent,
-              `amendText16`,
-              Selectors.GovukText16,
-            ),
-            Helpers.checkVisibleAndPresent(
-              page,
-              `${Selectors.GovukText16}:text-is("${AdminEditAndApproveAnOrderSubmitContent.No}"):visible`,
-              2,
-            ),
-            Helpers.checkVisibleAndPresent(
-              page,
-              `${Selectors.GovukText16}:text-is("${AdminEditAndApproveAnOrderSubmitContent.Yes}"):visible`,
-              1,
-            ),
-            Helpers.checkVisibleAndPresent(
-              page,
-              `${Selectors.p}:text-is("${AdminEditAndApproveAnOrderSubmitContent.pApplicant}"):visible`,
-              1,
-            ),
-            Helpers.checkVisibleAndPresent(
-              page,
-              `${Selectors.p}:text-is("${AdminEditAndApproveAnOrderSubmitContent.pRespondent}"):visible`,
-              1,
-            ),
-            await expect(
-              page.locator("ccd-read-dynamic-list-field span", {
-                hasText: AdminEditAndApproveAnOrderSubmitContent.amendedDischargedFL404B,
-              }),
-            ).toBeVisible()
-          ]);
+        await Promise.all([
+          Helpers.checkVisibleAndPresent(
+            page,
+            `${Selectors.headingH3}:text-is("${AdminEditAndApproveAnOrderSubmitContent.amendedDischargedFL404B}")`,
+            1,
+          ),
+          Helpers.checkVisibleAndPresent(
+            page,
+            `${Selectors.a}:text-is("${AdminEditAndApproveAnOrderSubmitContent.amendedDischarged}")`,
+            1,
+          ),
+          Helpers.checkGroup(
+            page,
+            10,
+            AdminEditAndApproveAnOrderSubmitContent,
+            `amendText16`,
+            Selectors.GovukText16,
+          ),
+          Helpers.checkVisibleAndPresent(
+            page,
+            `${Selectors.GovukText16}:text-is("${AdminEditAndApproveAnOrderSubmitContent.No}"):visible`,
+            2,
+          ),
+          Helpers.checkVisibleAndPresent(
+            page,
+            `${Selectors.GovukText16}:text-is("${AdminEditAndApproveAnOrderSubmitContent.Yes}"):visible`,
+            1,
+          ),
+          Helpers.checkVisibleAndPresent(
+            page,
+            `${Selectors.p}:text-is("${AdminEditAndApproveAnOrderSubmitContent.pApplicant}"):visible`,
+            1,
+          ),
+          Helpers.checkVisibleAndPresent(
+            page,
+            `${Selectors.p}:text-is("${AdminEditAndApproveAnOrderSubmitContent.pRespondent}"):visible`,
+            1,
+          ),
+          await expect(
+            page.locator("ccd-read-dynamic-list-field span", {
+              hasText:
+                AdminEditAndApproveAnOrderSubmitContent.amendedDischargedFL404B,
+            }),
+          ).toBeVisible(),
+        ]);
         break;
     }
 

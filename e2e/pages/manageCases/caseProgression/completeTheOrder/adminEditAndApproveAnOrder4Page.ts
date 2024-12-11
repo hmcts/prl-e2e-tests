@@ -32,11 +32,11 @@ export class AdminEditAndApproveAnOrder4Page {
       .waitFor();
     switch (createOrderFL404Options) {
       case "power of arrest":
-        await Promise.all ([
+        await Promise.all([
           Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.headingH3}:text-is("${AdminEditAndApproveAnOrder4Content.headingH31}")`,
-          1,
+            page,
+            `${Selectors.headingH3}:text-is("${AdminEditAndApproveAnOrder4Content.headingH31}")`,
+            1,
           ),
           Helpers.checkVisibleAndPresent(
             page,
@@ -46,7 +46,7 @@ export class AdminEditAndApproveAnOrder4Page {
         ]);
         break;
       case "amend discharge varied order":
-        await Promise.all ([
+        await Promise.all([
           Helpers.checkVisibleAndPresent(
             page,
             `${Selectors.headingH3}:text-is("${AdminEditAndApproveAnOrder4Content.headingH32}")`,

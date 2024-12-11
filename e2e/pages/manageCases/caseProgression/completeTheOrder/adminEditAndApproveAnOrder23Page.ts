@@ -70,7 +70,7 @@ export class AdminEditAndApproveAnOrder23Page {
   private static async fillInFields(
     page: Page,
     personallyServed: boolean,
-    ): Promise<void> {
+  ): Promise<void> {
     if (personallyServed) {
       await page.check(`${UniqueSelectors.respondentOptionYes}`);
       await Helpers.checkVisibleAndPresent(
@@ -81,8 +81,12 @@ export class AdminEditAndApproveAnOrder23Page {
       await page.check(`${UniqueSelectors.respondentsOptionsCourtBailiff}`);
     } else {
       await page.check(`${UniqueSelectors.respondentOptionNo}`);
-      await page.locator(`${Selectors.GovukFormLabel}:has-text("(Applicant)")`).click();
-      await page.locator(`${Selectors.GovukFormLabel}:has-text("(Respondent)")`).click();
+      await page
+        .locator(`${Selectors.GovukFormLabel}:has-text("(Applicant)")`)
+        .click();
+      await page
+        .locator(`${Selectors.GovukFormLabel}:has-text("(Respondent)")`)
+        .click();
       await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukFormLabel}:text-is("${AdminEditAndApproveAnOrder23Content.formLabel4}"):visible`,

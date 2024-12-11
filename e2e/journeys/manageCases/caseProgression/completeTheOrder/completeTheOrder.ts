@@ -83,14 +83,14 @@ export class CompleteTheOrder {
           page,
           "Complete the Order - Power of arrest (FL406)",
           "Complete the Order",
-          );
+        );
         break;
       case "amend discharge varied order":
         await Helpers.assignTaskToMeAndTriggerNextSteps(
           page,
           "Complete the Order - Amended, discharged or varied order (FL404B)",
           "Complete the Order",
-          );
+        );
         break;
     }
     await AdminEditAndApproveAnOrder1Page.adminEditAndApproveAnOrder1Page(
