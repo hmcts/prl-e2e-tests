@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
-import { LitigationCapacity1Content } from "../../../../../fixtures/manageCases/createCase/C100/litigationCapacity/litigationCapacity1Content";
-import { Selectors } from "../../../../../common/selectors";
 import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors";
+import { LitigationCapacity1Content } from "../../../../../fixtures/manageCases/createCase/C100/litigationCapacity/litigationCapacity1Content";
 
 interface LitigationCapacity1PageOptions {
   page: Page;
@@ -45,7 +45,6 @@ export class LitigationCapacity1Page {
 
   private static async checkPageLoads({
     page: page,
-    accessibilityTest: accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.p}:text-is("${LitigationCapacity1Content.p}")`,

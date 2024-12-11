@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
+import accessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { WithoutNoticeOrderSubmitContent } from "../../../../../fixtures/manageCases/createCase/FL401/withoutNoticeOrder/withoutNoticeOrderSubmitContent";
-import accessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 
 import { bailConditionRadios } from "./withoutNoticeOrder3Page";
 
@@ -56,7 +56,7 @@ export class WithoutNoticeOrderSubmitPage {
     page: Page,
     bailConditions: bailConditionRadios,
   ): Promise<void> {
-    let yesCount: number = bailConditions === "Yes" ? 2 : 1;
+    const yesCount: number = bailConditions === "Yes" ? 2 : 1;
     await Promise.all([
       Helpers.checkGroup(
         page,

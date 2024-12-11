@@ -1,6 +1,6 @@
 import { test } from "@playwright/test";
-import { C100HearingUrgency } from "../../../../journeys/manageCases/createCase/C100HearingUrgency/C100HearingUrgency";
 import Config from "../../../../config";
+import { C100HearingUrgency } from "../../../../journeys/manageCases/createCase/C100HearingUrgency/C100HearingUrgency";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
@@ -50,7 +50,7 @@ test.describe("C100 Create case hearing urgency tests", (): void => {
   });
 });
 
-test(`Test the C100 hearing urgency event as a solicitor with the following options:
+test(`C100 hearing urgency event as a solicitor with the following options:
   Accessibility testing,
   Not Error message testing,
   Saying yes to all options, @accessibility @nightly`, async ({

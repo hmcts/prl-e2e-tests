@@ -1,9 +1,9 @@
 import { Page, expect } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { OtherPeopleInTheCase1Content } from "../../../../../fixtures/manageCases/createCase/C100/otherPeopleInTheCaseRevised/otherPeopleInTheCaseRevised1Content.";
-import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors";
 import { ApplicantGender } from "../../../../../common/types";
+import { OtherPeopleInTheCase1Content } from "../../../../../fixtures/manageCases/createCase/C100/otherPeopleInTheCaseRevised/otherPeopleInTheCaseRevised1Content.";
 
 enum UniqueSelectors {
   applicantFirstNameInput = "#otherPartyInTheCaseRevised_0_firstName",
@@ -435,19 +435,19 @@ export class OtherPeopleInTheCase1Page {
         `${Selectors.GovukFormLabel}:text-is("${OtherPeopleInTheCase1Content.formLabelAddressConfidential}")`,
         1,
       ),
-      expect(await page.inputValue(ApplicantAddressFields.line1)).toEqual(
+      await expect(page.locator(ApplicantAddressFields.line1)).toHaveValue(
         OtherPeopleInTheCase1Content.buildingAndStreet,
       ),
-      expect(await page.inputValue(ApplicantAddressFields.line2)).toEqual(""),
-      expect(await page.inputValue(ApplicantAddressFields.line3)).toEqual(""),
-      expect(await page.inputValue(ApplicantAddressFields.town)).toEqual(
+      await expect(page.locator(ApplicantAddressFields.line2)).toHaveValue(""),
+      await expect(page.locator(ApplicantAddressFields.line3)).toHaveValue(""),
+      await expect(page.locator(ApplicantAddressFields.town)).toHaveValue(
         OtherPeopleInTheCase1Content.townOrCity,
       ),
-      expect(await page.inputValue(ApplicantAddressFields.county)).toEqual(""),
-      expect(await page.inputValue(ApplicantAddressFields.postcode)).toEqual(
+      await expect(page.locator(ApplicantAddressFields.county)).toHaveValue(""),
+      await expect(page.locator(ApplicantAddressFields.postcode)).toHaveValue(
         OtherPeopleInTheCase1Content.postcode,
       ),
-      expect(await page.inputValue(ApplicantAddressFields.country)).toEqual(
+      await expect(page.locator(ApplicantAddressFields.country)).toHaveValue(
         OtherPeopleInTheCase1Content.country,
       ),
     ]);

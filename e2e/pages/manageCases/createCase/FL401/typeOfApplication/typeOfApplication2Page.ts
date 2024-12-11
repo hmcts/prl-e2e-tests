@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors";
 import { TypeOfApplication2Content } from "../../../../../fixtures/manageCases/createCase/FL401/typeOfApplication/typeOfApplication2Content";
 
 enum isLinkedSelectionIds {
@@ -80,7 +80,7 @@ export class TypeOfApplication2Page {
 
   private static async checkErrorMessaging(page: Page): Promise<void> {
     await page.click(isLinkedSelectionIds.yes);
-    for (let caseNumberInput of Object.values(incorrectCaseNumbers)) {
+    for (const caseNumberInput of Object.values(incorrectCaseNumbers)) {
       await page.fill(isLinkedSelectionIds.applicationNumber, "");
       await page.fill(isLinkedSelectionIds.applicationNumber, caseNumberInput);
       await page.click(

@@ -1,10 +1,9 @@
 import { Page } from "@playwright/test";
-import { UndertakingOrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/undertakingOrderDetailsContent";
-import { CitizensOtherProceedingsUniqueSelectors } from "../../../../../common/commonUniqueSelectors";
-import { Selectors } from "../../../../../common/selectors";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { CitizensOtherProceedingsUniqueSelectors } from "../../../../../common/commonUniqueSelectors";
 import { Helpers } from "../../../../../common/helpers";
-import AxeTest from "../../../../../common/accessibilityTestHelper";
+import { Selectors } from "../../../../../common/selectors";
+import { UndertakingOrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/undertakingOrderDetailsContent";
 
 interface UndertakingOrderDetailsPageOptions {
   page: Page;
@@ -45,7 +44,6 @@ export class UndertakingOrderDetailsPage {
 
   private static async checkPageLoads({
     page: page,
-    accessibilityTest: accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.p}:text-is("${UndertakingOrderDetailsContent.p}")`,

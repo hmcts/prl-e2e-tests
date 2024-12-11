@@ -1,10 +1,9 @@
 import { Page, expect } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors";
-import { Fl401ReviewDocumentsSubmitContent } from "../../../../fixtures/manageCases/caseProgression/reviewDocuments/fl401ReviewDocumentsSubmitContent";
-import { Helpers } from "../../../../common/helpers";
 import { CommonStaticText } from "../../../../common/commonStaticText";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+import { Helpers } from "../../../../common/helpers";
+import { Selectors } from "../../../../common/selectors";
 import { yesNoDontKnow } from "../../../../common/types";
+import { Fl401ReviewDocumentsSubmitContent } from "../../../../fixtures/manageCases/caseProgression/reviewDocuments/fl401ReviewDocumentsSubmitContent";
 
 interface FL401ReviewDocumentsSubmitPageOptions {
   page: Page;
@@ -28,7 +27,6 @@ export class FL401ReviewDocumentsSubmitPage {
 
   private static async checkPageLoads({
     page,
-    accessibilityTest,
     yesNoNotSureReviewDocs,
   }: Partial<FL401ReviewDocumentsSubmitPageOptions>) {
     if (!page) {
