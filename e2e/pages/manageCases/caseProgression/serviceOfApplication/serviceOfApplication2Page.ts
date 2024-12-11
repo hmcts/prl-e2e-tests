@@ -99,7 +99,7 @@ export class ServiceOfApplication2Page {
       throw new Error("No page found");
     }
     await page.click(UniqueSelectors.selectOrder);
-    let fileInput = page.locator(UniqueSelectors.fileUpload);
+    const fileInput = page.locator(UniqueSelectors.fileUpload);
     await fileInput.setInputFiles(config.testPdfFile);
     await page.waitForSelector(
       `${Selectors.GovukErrorMessage}:text-is("${MiamPolicyUpgrade6Content.uploadingFile}")`,

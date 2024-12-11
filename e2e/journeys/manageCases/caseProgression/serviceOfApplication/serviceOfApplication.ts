@@ -1,6 +1,5 @@
 import { Page } from "@playwright/test";
 import { Helpers } from "../../../../common/helpers";
-import { c100CaseWorkerActions } from "../../../../common/types";
 import { ServiceOfApplication2Page } from "../../../../pages/manageCases/caseProgression/serviceOfApplication/serviceOfApplication2Page";
 import {
   responsibleForServing,
@@ -11,9 +10,7 @@ import { ServiceOfApplicationConfirmPage } from "../../../../pages/manageCases/c
 
 interface ServiceOfApplicationJourneyParams {
   page: Page;
-  ccdRef: string;
   accessibilityTest: boolean;
-  c100CaseWorkerActions: c100CaseWorkerActions;
   yesNoServiceOfApplication4: boolean;
   responsibleForServing: responsibleForServing;
 }

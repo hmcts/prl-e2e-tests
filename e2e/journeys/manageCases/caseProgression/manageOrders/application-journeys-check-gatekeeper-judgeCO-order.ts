@@ -71,12 +71,10 @@ export class ApplicationJourneysCheckGatekeeperJudgeCOOrder {
     });
     await page.waitForTimeout(1000);
     await ServiceOfApplicationJourney.serviceOfApplicationJourney({
+      page,
       accessibilityTest,
       yesNoServiceOfApplication4,
       responsibleForServing,
-      c100CaseWorkerActions,
-      browser,
-      ccdRef,
     });
   }
 }
