@@ -16,7 +16,7 @@ export enum OtherPeopleInTheCase1Content {
   formLabel10 = "Female",
   formLabel11 = "They identify in another way",
   formLabel12 = "*Gender (Optional)",
-  formLabel13 = "*Has rhis person lived at this address for less than 5 years?",
+  formLabel13 = "*Has this person lived at this address for less than 5 years?",
   formLabelDay = "Day",
   formLabelMonth = "Month",
   formLabelYear = "Year",
