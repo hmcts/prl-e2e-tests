@@ -1,5 +1,4 @@
 import { Browser, Page } from "@playwright/test";
-import { CheckApplication } from "../checkApplication/checkApplication";
 import { Helpers } from "../../../../common/helpers";
 import config from "../../../../config";
 import { Selectors } from "../../../../common/selectors";
@@ -7,6 +6,7 @@ import { Fl401ListWithoutNotice1Page } from "../../../../pages/manageCases/caseP
 import { Fl401ListWithoutNoticeSubmitPage } from "../../../../pages/manageCases/caseProgression/List/fl401ListWithoutNoticeSubmitPage";
 import { Fl401ListWithoutNoticeConfirmPage } from "../../../../pages/manageCases/caseProgression/List/fl401ListWithoutNoticeConfirmPage";
 import { Fl401ListWithoutNoticeConfirmContent } from "../../../../fixtures/manageCases/caseProgression/List/fl401ListWithoutNoticeConfirmContent";
+import { ApplicationJourneysCheckGatekeeper } from "../checkApplicationSendToGateKeeper/application-journeys-check-gatekeeper.ts";
 
 interface ListWithoutNoticeParams {
   page: Page;
@@ -22,7 +22,7 @@ export class ListWithoutNotice {
     ccdRef,
     accessibilityTest,
   }: ListWithoutNoticeParams): Promise<void> {
-    await CheckApplication.checkApplication({
+    await ApplicationJourneysCheckGatekeeper.applicationJourneysCheckGatekeeper({
       page: page,
       accessibilityTest: accessibilityTest,
       yesNoSendToGateKeeper: true,
