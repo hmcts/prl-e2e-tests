@@ -1,6 +1,6 @@
 import { test } from "@playwright/test";
-import { C100OtherChildrenNotInTheCase } from "../../../../journeys/manageCases/createCase/C100OtherChildrenNotInTheCase/C100OtherChildrenNotInTheCase";
 import Config from "../../../../config";
+import { C100OtherChildrenNotInTheCase } from "../../../../journeys/manageCases/createCase/C100OtherChildrenNotInTheCase/C100OtherChildrenNotInTheCase";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
@@ -99,7 +99,7 @@ test.describe("C100 Create case Other children not in the case tests", (): void 
   });
 });
 
-test(`Test the C100 Other children not in the case event as a solicitor with the following options:
+test(`C100 Other children not in the case event as a solicitor with the following options:
   Accessibility testing,
   Not Error message testing,
   Answering yes to the other child being present,

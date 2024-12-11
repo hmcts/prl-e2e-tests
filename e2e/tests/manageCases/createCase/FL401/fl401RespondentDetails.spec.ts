@@ -1,6 +1,6 @@
 import { test } from "@playwright/test";
-import { FL401RespondentDetails } from "../../../../journeys/manageCases/createCase/FL401RespondentDetails/FL401RespondentDetails";
 import Config from "../../../../config";
+import { FL401RespondentDetails } from "../../../../journeys/manageCases/createCase/FL401RespondentDetails/FL401RespondentDetails";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
@@ -47,7 +47,7 @@ test.describe("FL401 Create case respondent details tests", (): void => {
   });
 });
 
-test(`Test the FL401 respondent details event as a solicitor with the following options:
+test(`FL401 respondent details event as a solicitor with the following options:
   Accessibility testing,
   Not Error message testing,
 Saying yes to all options, @accessibility @nightly`, async ({
