@@ -1,11 +1,11 @@
-import { NonMolestationOrderDocumentUploadContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/nonMolestationOrderDocumentUploadContent";
-import { Selectors } from "../../../../../common/selectors";
-import { CommonStaticText } from "../../../../../common/commonStaticText";
-import { Helpers } from "../../../../../common/helpers";
-import config from "../../../../../config";
 import { expect, Page } from "@playwright/test";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { CitizenOtherProceedingsDocumentUploadSelectors } from "../../../../../common/commonUniqueSelectors";
+import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors";
+import config from "../../../../../config";
+import { NonMolestationOrderDocumentUploadContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/nonMolestationOrderDocumentUploadContent";
 
 interface NonMolestationOrderDocumentUploadPageOptions {
   page: Page;
@@ -130,10 +130,10 @@ export class NonMolestationOrderDocumentUploadPage {
       `${CitizenOtherProceedingsDocumentUploadSelectors.uploadConfirmationSelector}`,
       { timeout: 5000 },
     );
-    const isUploaded = await page.isVisible(
+    const isUploaded = page.locator(
       `${CitizenOtherProceedingsDocumentUploadSelectors.uploadConfirmationSelector}`,
     );
-    expect(isUploaded).toBeTruthy();
+    await expect(isUploaded).toBeVisible();
     await Helpers.checkVisibleAndPresent(
       page,
       `${Selectors.a}:text-is("${CommonStaticText.remove}")`,
