@@ -1,5 +1,5 @@
 import { Page } from "@playwright/test";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+// import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
 import { Selectors } from "../../../../common/selectors";
 import { AdminEditAndApproveAnOrder1Content } from "../../../../fixtures/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrder1Content";
 import { Helpers } from "../../../../common/helpers";
@@ -41,9 +41,10 @@ export class AdminEditAndApproveAnOrder1Page {
         1,
       ),
     ]);
-    // if (accessibilityTest) {
-    //   await AccessibilityTestHelper.run(page);
-    // } #TODO commented out until ticket resolved FPET-1224
+    if (accessibilityTest) {
+      // await AccessibilityTestHelper.run(page);
+    }
+    // #TODO commented out until ticket resolved FPET-1224
   }
 
   private static async fillInFields(page: Page): Promise<void> {
