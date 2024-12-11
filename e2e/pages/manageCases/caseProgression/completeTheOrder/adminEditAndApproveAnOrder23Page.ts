@@ -81,12 +81,8 @@ export class AdminEditAndApproveAnOrder23Page {
       await page.check(`${UniqueSelectors.respondentsOptionsCourtBailiff}`);
     } else {
       await page.check(`${UniqueSelectors.respondentOptionNo}`);
-      await page
-        .locator(`${Selectors.GovukFormLabel}:has-text("(Applicant)")`)
-        .click();
-      await page
-        .locator(`${Selectors.GovukFormLabel}:has-text("(Respondent)")`)
-        .click();
+      await page.check((`${Selectors.GovukFormLabel}:has-text("(Applicant)")`));
+      await page.check((`${Selectors.GovukFormLabel}:has-text("(Respondent)")`));
       await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukFormLabel}:text-is("${AdminEditAndApproveAnOrder23Content.formLabel4}"):visible`,
