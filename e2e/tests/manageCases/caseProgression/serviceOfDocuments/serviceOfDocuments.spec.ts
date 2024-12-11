@@ -32,7 +32,7 @@ test.describe("Service of Document event for DA Citizen case tests as court admi
   Serve to an additional recipient: yes, 
   Additional recipients served by post or email: email, 
   Documents should be check by manager: no, 
-  Accessibility testing: No. @regression `, async ({
+  Accessibility testing: No. @regression`, async ({
     page,
   }): Promise<void> => {
     await ServiceOfDocuments.serviceOfDocumentsE2E({
@@ -52,7 +52,7 @@ test.describe("Service of Document event for DA Citizen case tests as court admi
   Documents should be personally served: Not applicable, 
   Serve to an additional recipient: no, 
   Documents should be check by manager: no, 
-  Accessibility testing: No. @regression @debug`, async ({ page }): Promise<void> => {
+  Accessibility testing: No. @regression`, async ({ page }): Promise<void> => {
     await ServiceOfDocuments.serviceOfDocumentsE2E({
       page,
       accessibilityTest: false,

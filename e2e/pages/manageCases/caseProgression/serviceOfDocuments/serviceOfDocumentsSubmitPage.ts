@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test";
+import { expect, Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors";
 import { Helpers } from "../../../../common/helpers";
 import { CommonStaticText } from "../../../../common/commonStaticText";
@@ -59,19 +59,26 @@ export class ServiceOfDocumentsSubmitPage {
     );
     await pageTitle.waitFor();
     await this.checkStaticFields(page);
-    await this.runAccessibilityTest(page, accessibilityTest);
+    await this.checkCaseDocument(page, withCaseDoc);
+    await this.checkAdditionalDocument(page, additionalDoc);
+    await this.checkAdditionalRecipient(page, additionalRecipient, servedByPost);
+    await this.checkPersonalService(page, personallyServed);
+    await this.checkDocumentVerification(page, checkDocuments);
+    if (accessibilityTest) {
+      await AccessibilityTestHelper.run(page);
+    }
   }
 
   private static async checkStaticFields(page: Page): Promise<void> {
-    await Promise.all([
-      Helpers.checkGroup(
-        page,
-        7,
-        ServiceOfDocumentsSubmitContent,
-        `textField`,
-        `${Selectors.GovukFormLabel}`,
-      ),
-    ]);
+    await expect(page.getByText(ServiceOfDocumentsSubmitContent.textFielda)).toBeVisible();
+    //checking group is causing failures, so using singular checks
+    await Helpers.checkGroup(
+      page,
+      5,
+      ServiceOfDocumentsSubmitContent,
+      `textField`,
+      `${Selectors.GovukText16}`,
+    );
   }
 
   private static async checkCaseDocument(
@@ -81,7 +88,7 @@ export class ServiceOfDocumentsSubmitPage {
     if (withCaseDoc) {
       await Helpers.checkGroup(
         page,
-        3,
+        2,
         ServiceOfDocumentsSubmitContent,
         `textFieldCaseDoc`,
         `${Selectors.GovukText16}`,
@@ -107,14 +114,14 @@ export class ServiceOfDocumentsSubmitPage {
         await Promise.all([
           Helpers.checkGroup(
             page,
-            3,
+            2,
             ServiceOfDocumentsSubmitContent,
-            `textNotPersonallyServed1`,
+            `textNotPersonallyServed`,
             `${Selectors.GovukText16}`,
           ),
           Helpers.checkGroup(
             page,
-            3,
+            2,
             ServiceOfDocumentsSubmitContent,
             `pNotPersonallyServed`,
             `${Selectors.p}`,
@@ -186,15 +193,6 @@ export class ServiceOfDocumentsSubmitPage {
         `${Selectors.GovukText16}:text-is("${ServiceOfDocumentsSubmitContent.textFieldAdditionDoc1}")`,
         1,
       );
-    }
-  }
-
-  private static async runAccessibilityTest(
-    page: Page,
-    accessibilityTest?: boolean,
-  ): Promise<void> {
-    if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
     }
   }
 

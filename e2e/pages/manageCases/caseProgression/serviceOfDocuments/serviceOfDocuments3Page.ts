@@ -12,7 +12,7 @@ interface serviceOfDocuments3Options {
 }
 enum UniqueSelectors {
   managerCheckDocSelector = "#sodDocumentsCheckOptions-managerCheck",
-  noCheckDocSelector = "#sodDocumentsCheckOptions-managerCheck",
+  noCheckDocSelector = "#sodDocumentsCheckOptions-noCheck",
 }
 
 export class ServiceOfDocuments3Page {
@@ -58,7 +58,6 @@ export class ServiceOfDocuments3Page {
     if (!page) {
       throw new Error("No page found");
     }
-    await page.pause();
     if (checkDocuments) {
       await page.click(UniqueSelectors.managerCheckDocSelector);
     } else {

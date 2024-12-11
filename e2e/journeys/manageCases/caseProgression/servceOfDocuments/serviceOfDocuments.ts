@@ -34,15 +34,6 @@ export class ServiceOfDocuments {
   }: ServiceOfDocumentsParams): Promise<void> {
     const ccdRef: string = await createDaCitizenCourtNavCase(true, withCaseDoc);
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
-    await ApplicationJourneysCheckGatekeeper.applicationJourneysCheckGatekeeper(
-      {
-        page,
-        accessibilityTest: false,
-
-        yesNoSendToGateKeeper: false,
-        ccdRef,
-      },
-    );
     // Handle review documents if case documents are included in case creation
     if (withCaseDoc) {
       await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
@@ -51,8 +42,17 @@ export class ServiceOfDocuments {
         accessibilityTest: false,
         yesNoNotSureRestrictDocs: "no",
       });
+      await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
+      await Helpers.waitForTaskToDisappear(page, "Send to Gatekeeper");
     }
-    await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
+    await ApplicationJourneysCheckGatekeeper.applicationJourneysCheckGatekeeper(
+      {
+        page,
+        accessibilityTest: false,
+        yesNoSendToGateKeeper: false,
+        ccdRef,
+      },
+    );
     await this.serviceOfDocuments({
       page,
       withCaseDoc,
@@ -64,7 +64,6 @@ export class ServiceOfDocuments {
       checkDocuments,
     });
   }
-
   public static async serviceOfDocuments({
     page,
     withCaseDoc,
@@ -75,6 +74,7 @@ export class ServiceOfDocuments {
     accessibilityTest,
     checkDocuments,
   }: ServiceOfDocumentsParams): Promise<void> {
+    await page.waitForTimeout(500);
     await Helpers.chooseEventFromDropdown(page, "Service of documents");
     await ServiceOfDocuments1Page.serviceOfDocuments1Page({
       page,
@@ -94,7 +94,6 @@ export class ServiceOfDocuments {
       accessibilityTest,
       checkDocuments,
     });
-    await page.pause();
     await ServiceOfDocumentsSubmitPage.serviceOfDocumentsSubmitPage({
       page,
       accessibilityTest,

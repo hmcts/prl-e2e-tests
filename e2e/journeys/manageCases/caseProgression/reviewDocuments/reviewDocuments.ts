@@ -4,6 +4,7 @@ import { FL401ReviewDocuments1Page } from "../../../../pages/manageCases/casePro
 import { FL401ReviewDocuments2Page } from "../../../../pages/manageCases/caseProgression/reviewDocuments/fl401ReviewDocuments2Page";
 import { FL401ReviewDocumentsSubmitPage } from "../../../../pages/manageCases/caseProgression/reviewDocuments/fl401ReviewDocumentsSubmitPage";
 import { yesNoDontKnow } from "../../../../common/types";
+import config from "../../../../config";
 
 interface ReviewDocumentsParams {
   page: Page;
