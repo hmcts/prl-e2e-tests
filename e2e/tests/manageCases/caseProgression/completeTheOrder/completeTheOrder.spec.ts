@@ -15,7 +15,7 @@ test.describe("Complete the Order task for DA Citizen case tests.", () => {
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
   });
 
-  test("Complete Complete The Order without accessibility test. @regression", async ({
+  test("Complete Task - Complete the Order - Power of arrest (FL406) without accessibility test. @regression", async ({
     page,
     browser,
   }): Promise<void> => {
@@ -33,10 +33,11 @@ test.describe("Complete the Order task for DA Citizen case tests.", () => {
       createOrderManageOrders19Options: "dateToBeFixed", // "dateConfirmed" will not pass because page 19 does not give a hearing you are allowed to select
       howLongWillOrderBeInForce: "untilNextHearing", // Should not matter unless non-molestation order is selected.
       browser: browser,
+      personallyServed: true,
     });
   });
 
-  test("Complete Complete The Order with accessibility test. @regression @accessibility", async ({
+  test("Complete Task - Complete the Order - Amended, discharged or varied order (FL404B)  with accessibility test. @regression @accessibility", async ({
     page,
     browser,
   }): Promise<void> => {
@@ -54,6 +55,7 @@ test.describe("Complete the Order task for DA Citizen case tests.", () => {
       createOrderManageOrders19Options: "dateToBeFixed", // "dateConfirmed" will not pass because page 19 does not give a hearing you are allowed to select
       howLongWillOrderBeInForce: "untilNextHearing", // Should not matter unless non-molestation order is selected.
       browser: browser,
+      personallyServed: false,
     });
   });
 });

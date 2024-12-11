@@ -32,6 +32,7 @@ interface CompleteTheOrderParams {
   createOrderManageOrders19Options: createOrderManageOrders19Options;
   howLongWillOrderBeInForce: howLongWillOrderBeInForce;
   browser: Browser;
+  personallyServed: boolean;
 }
 
 export class CompleteTheOrder {
@@ -49,6 +50,7 @@ export class CompleteTheOrder {
     createOrderManageOrders19Options,
     howLongWillOrderBeInForce,
     browser,
+    personallyServed,
   }: CompleteTheOrderParams): Promise<void> {
     await ApplicationJourneysCheckGatekeeperJudgeCOOrder.applicationJourneysCheckGatekeeperJudgeCOOrder(
       {
@@ -75,11 +77,22 @@ export class CompleteTheOrder {
     page = await newContext.newPage();
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
     // complete the task Complete the Order
-    await Helpers.assignTaskToMeAndTriggerNextSteps(
-      page,
-      "Complete the Order - Power of arrest (FL406)",
-      "Complete the Order",
-    );
+    switch (createOrderFL401Options) {
+      case "power of arrest":
+        await Helpers.assignTaskToMeAndTriggerNextSteps(
+          page,
+          "Complete the Order - Power of arrest (FL406)",
+          "Complete the Order",
+          );
+        break;
+      case "amend discharge varied order":
+        await Helpers.assignTaskToMeAndTriggerNextSteps(
+          page,
+          "Complete the Order - Amended, discharged or varied order (FL404B)",
+          "Complete the Order",
+          );
+        break;
+    }
     await AdminEditAndApproveAnOrder1Page.adminEditAndApproveAnOrder1Page(
       page,
       accessibilityTest,
@@ -87,6 +100,7 @@ export class CompleteTheOrder {
     await AdminEditAndApproveAnOrder4Page.adminEditAndApproveAnOrder4Page(
       page,
       accessibilityTest,
+      createOrderFL401Options,
     );
     await AdminEditAndApproveAnOrder21Page.adminEditAndApproveAnOrder21Page(
       page,
@@ -99,10 +113,12 @@ export class CompleteTheOrder {
     await AdminEditAndApproveAnOrder23Page.adminEditAndApproveAnOrder23Page(
       page,
       accessibilityTest,
+      personallyServed,
     );
     await AdminEditAndApproveAnOrderSubmitPage.adminEditAndApproveAnOrderSubmitPage(
       page,
       accessibilityTest,
+      createOrderFL401Options,
     );
   }
 }

@@ -4,6 +4,7 @@ import { Selectors } from "../../../../common/selectors";
 import { AdminEditAndApproveAnOrder4Content } from "../../../../fixtures/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrder4Content";
 import { Helpers } from "../../../../common/helpers";
 import { CommonStaticText } from "../../../../common/commonStaticText";
+import { createOrderFL401Options } from "../../../../common/types";
 
 enum UniqueSelectors {
   editOrderNo = "#doYouWantToEditTheOrder_No",
@@ -12,8 +13,9 @@ export class AdminEditAndApproveAnOrder4Page {
   public static async adminEditAndApproveAnOrder4Page(
     page: Page,
     accessibilityTest: boolean,
+    createOrderFL404Options: createOrderFL401Options,
   ): Promise<void> {
-    await this.checkPageLoads(page, accessibilityTest);
+    await this.checkPageLoads(page, accessibilityTest, createOrderFL404Options);
     await this.fillInFields(page);
     await this.continue(page);
   }
@@ -21,26 +23,47 @@ export class AdminEditAndApproveAnOrder4Page {
   private static async checkPageLoads(
     page: Page,
     accessibilityTest: boolean,
+    createOrderFL404Options: createOrderFL401Options,
   ): Promise<void> {
     await page
       .locator(`${Selectors.GovukHeadingL}`, {
         hasText: `${AdminEditAndApproveAnOrder4Content.govUkHeadingL}`,
       })
       .waitFor();
+    switch (createOrderFL404Options) {
+      case "power of arrest":
+        await Promise.all ([
+          Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.headingH3}:text-is("${AdminEditAndApproveAnOrder4Content.headingH31}")`,
+          1,
+          ),
+          Helpers.checkVisibleAndPresent(
+            page,
+            `${Selectors.a}:text-is("${AdminEditAndApproveAnOrder4Content.powerOfArrest}")`,
+            1,
+          ),
+        ]);
+        break;
+      case "amend discharge varied order":
+        await Promise.all ([
+          Helpers.checkVisibleAndPresent(
+            page,
+            `${Selectors.headingH3}:text-is("${AdminEditAndApproveAnOrder4Content.headingH32}")`,
+            1,
+          ),
+          Helpers.checkVisibleAndPresent(
+            page,
+            `${Selectors.a}:text-is("${AdminEditAndApproveAnOrder4Content.amendedDischarged}")`,
+            1,
+          ),
+        ]);
+        break;
+    }
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukFormLabel}:text-is("${AdminEditAndApproveAnOrder4Content.formLabel1}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.headingH3}:text-is("${AdminEditAndApproveAnOrder4Content.headingH3}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.a}:text-is("${AdminEditAndApproveAnOrder4Content.powerOfArrest}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -54,6 +77,7 @@ export class AdminEditAndApproveAnOrder4Page {
         1,
       ),
     ]);
+
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }
