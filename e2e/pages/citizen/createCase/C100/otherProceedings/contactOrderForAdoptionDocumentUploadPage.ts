@@ -1,11 +1,11 @@
-import { Selectors } from "../../../../../common/selectors";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { expect, Page } from "@playwright/test";
-import { Helpers } from "../../../../../common/helpers";
-import config from "../../../../../config";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-import { ContactOrderForAdoptionDocumentUploadContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/contactOrderForAdoptionDocumentUploadContent";
 import { CitizenOtherProceedingsDocumentUploadSelectors } from "../../../../../common/commonUniqueSelectors";
+import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors";
+import config from "../../../../../config";
+import { ContactOrderForAdoptionDocumentUploadContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/contactOrderForAdoptionDocumentUploadContent";
 
 interface ContactOrderForAdoptionDocumentUploadPageOptions {
   page: Page;
@@ -125,10 +125,10 @@ export class ContactOrderForAdoptionDocumentUploadPage {
       `${CitizenOtherProceedingsDocumentUploadSelectors.uploadConfirmationSelector}`,
       { timeout: 5000 },
     );
-    const isUploaded = await page.isVisible(
+    const isUploaded = page.locator(
       `${CitizenOtherProceedingsDocumentUploadSelectors.uploadConfirmationSelector}`,
     );
-    expect(isUploaded).toBeTruthy();
+    await expect(isUploaded).toBeVisible();
     await Helpers.checkVisibleAndPresent(
       page,
       `${Selectors.a}:text-is("${CommonStaticText.remove}")`,

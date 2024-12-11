@@ -1,11 +1,11 @@
 import { test } from "@playwright/test";
-import { Fl401AttendingTheHearing } from "../../../../journeys/manageCases/createCase/FL401AttendingTheHearing/fl401AttendingTheHearing";
 import Config from "../../../../config";
+import { Fl401AttendingTheHearing } from "../../../../journeys/manageCases/createCase/FL401AttendingTheHearing/fl401AttendingTheHearing";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
 test.describe("FL401 Create case respondent’s behaviour tests", (): void => {
-  test(`Test the FL401 Attending The Hearing Journey with the following options:
+  test(`FL401 Attending The Hearing Journey with the following options:
   Not Accessibility testing,
   Not error Messaging,
   No to All Options, @regression`, async ({ page }): Promise<void> => {
@@ -18,7 +18,7 @@ test.describe("FL401 Create case respondent’s behaviour tests", (): void => {
     });
   });
 
-  test(`Test the FL401 Attending The Hearing Journey with the following options:
+  test(`FL401 Attending The Hearing Journey with the following options:
   Not Accessibility testing,
   Not error Messaging,
   Yes to All Options @regression`, async ({ page }): Promise<void> => {
@@ -31,7 +31,7 @@ test.describe("FL401 Create case respondent’s behaviour tests", (): void => {
     });
   });
 
-  test(`Test the FL401 Attending The Hearing Journey with the following options:
+  test(`FL401 Attending The Hearing Journey with the following options:
   Not Accessibility testing,
   Yes error Messaging,
   Yes to All Options, @regression @errorMessage`, async ({
@@ -47,7 +47,7 @@ test.describe("FL401 Create case respondent’s behaviour tests", (): void => {
   });
 });
 
-test(`Test the FL401 Attending The Hearing Journey with the following options:
+test(`FL401 Attending The Hearing Journey with the following options:
   Accessibility testing,
   No error Messaging,
   Yes to All Options, @accessibility @nightly`, async ({
