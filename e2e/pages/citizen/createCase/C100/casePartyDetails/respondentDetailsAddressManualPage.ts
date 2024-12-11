@@ -84,8 +84,8 @@ export class RespondentDetailsAddressManualPage {
 
   private static async checkFilledData(page: Page): Promise<void> {
     for (const { selector, expectedText } of addressFields) {
-      const actualValue = await page.locator(selector).inputValue();
-      expect(actualValue).toBe(expectedText);
+      const actualValue = page.locator(selector);
+      await expect(actualValue).toHaveValue(expectedText);
     }
   }
 
