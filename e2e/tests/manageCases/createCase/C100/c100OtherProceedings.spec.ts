@@ -1,6 +1,6 @@
 import { test } from "@playwright/test";
-import { C100OtherProceedings } from "../../../../journeys/manageCases/createCase/C100OtherProceedings/C100OtherProceedings";
 import Config from "../../../../config";
+import { C100OtherProceedings } from "../../../../journeys/manageCases/createCase/C100OtherProceedings/C100OtherProceedings";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
@@ -81,7 +81,7 @@ test.describe("C100 Create case other proceedings tests", (): void => {
   });
 });
 
-test(`Test the C100 other proceedings event as a solicitor with the following options:
+test(`C100 other proceedings event as a solicitor with the following options:
   Accessibility testing,
   Not Error message testing,
   Saying no to previous or ongoing proceedings for the child(ren)?, @accessibility @nightly`, async ({

@@ -237,7 +237,7 @@ export class RespondentDetailsPage {
       label: `${RespondentDetailsContent.buckinghamPalace}`,
     });
 
-    const dropdown = await page.$(`${inputFieldIds.addressList}`);
+    const dropdown = page.locator(inputFieldIds.addressList);
 
     const receivedAddresses = await dropdown?.evaluate((select) => {
       if (select instanceof HTMLSelectElement) {

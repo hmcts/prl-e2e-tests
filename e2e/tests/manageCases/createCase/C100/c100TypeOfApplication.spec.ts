@@ -1,6 +1,6 @@
 import { test } from "@playwright/test";
-import { C100TypeOfApplication } from "../../../../journeys/manageCases/createCase/C100TypeOfApplication/C100TypeOfAplication";
 import Config from "../../../../config";
+import { C100TypeOfApplication } from "../../../../journeys/manageCases/createCase/C100TypeOfApplication/C100TypeOfAplication";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
@@ -40,7 +40,7 @@ test.describe("C100 Create case type of application tests", (): void => {
   });
 });
 
-test(`Test the C100 type of application event as a solicitor with the following options:
+test(`C100 type of application event as a solicitor with the following options:
   Accessibility testing,
   Not Error message testing,
   Saying yes to all options, @accessibility @nightly`, async ({
