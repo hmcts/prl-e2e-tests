@@ -1,9 +1,9 @@
 import { test } from "@playwright/test";
 import Config from "../../../../config";
+import createDaCitizenCourtNavCase from "../../../../common/createCaseHelper";
 import { ApplicationJourneysCheckGatekeeperJudgeMOOrder } from "../../../../journeys/manageCases/caseProgression/application-journeys-check-gatekeeper-judgeMO-order/application-journeys-check-gatekeeper-judgeMO-order";
 import { Helpers } from "../../../../common/helpers";
 import config from "../../../../config";
-import createDaCitizenCourtNavCase from "../../../../common/createDACourtNavCaseHelper";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
