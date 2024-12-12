@@ -1,12 +1,11 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { ViewPDFApplication1Content } from "../../../../../fixtures/manageCases/createCase/C100/viewPDFApplication/viewPDFApplication1Content";
-import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { EnglishMediaContentYesToAll } from "../../../../../fixtures/manageCases/createCase/C100/viewPDFApplication/englishMediaContentYesToAll";
-import { WelshMediaContent } from "../../../../../fixtures/manageCases/createCase/C100/viewPDFApplication/welshMediaContent";
+import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors";
 import { EnglishMediaContentNoToAll } from "../../../../../fixtures/manageCases/createCase/C100/viewPDFApplication/englishMediaContentNoToAll";
-import { existsSync } from "fs";
+import { EnglishMediaContentYesToAll } from "../../../../../fixtures/manageCases/createCase/C100/viewPDFApplication/englishMediaContentYesToAll";
+import { ViewPDFApplication1Content } from "../../../../../fixtures/manageCases/createCase/C100/viewPDFApplication/viewPDFApplication1Content";
+import { WelshMediaContent } from "../../../../../fixtures/manageCases/createCase/C100/viewPDFApplication/welshMediaContent";
 
 enum englishNoSpanCounts {
   page1 = 18,
@@ -270,16 +269,16 @@ export class ViewPDFApplication1Page {
     ]);
     await pdfPage.waitForSelector(`${Selectors.Span}:text-is("C100")`);
     for (let i = 1; i <= 14 - 1; i++) {
-      let uniquePageSelector = pdfPage.locator(
+      const uniquePageSelector = pdfPage.locator(
         `div[data-page-number="${i}"] > .textLayer > `,
       );
-      let spanCount =
+      const spanCount =
         englishYesSpanCounts[`page${i}}` as keyof typeof englishYesSpanCounts];
-      let filledSpanCount =
+      const filledSpanCount =
         englishYesFilledSpanCounts[
           `page${i}}` as keyof typeof englishYesFilledSpanCounts
         ];
-      let otherSpanCount =
+      const otherSpanCount =
         englishYesOtherSpanCounts[
           `page${i}}` as keyof typeof englishYesOtherSpanCounts
         ];
@@ -330,16 +329,16 @@ export class ViewPDFApplication1Page {
     await pdfPage.waitForLoadState("domcontentloaded");
     await pdfPage.waitForSelector(`${Selectors.Span}:text-is("C100")`);
     for (let i = 1; i <= 14 - 1; i++) {
-      let uniquePageSelector = pdfPage.locator(
+      const uniquePageSelector = pdfPage.locator(
         `div[data-page-number="${i}"] > .textLayer > `,
       );
-      let spanCount =
+      const spanCount =
         englishNoSpanCounts[`page${i}}` as keyof typeof englishNoSpanCounts];
-      let filledSpanCount =
+      const filledSpanCount =
         englishNoFilledSpanCounts[
           `page${i}}` as keyof typeof englishNoFilledSpanCounts
         ];
-      let otherSpanCount =
+      const otherSpanCount =
         englishNoOtherSpanCounts[
           `page${i}}` as keyof typeof englishNoOtherSpanCounts
         ];
@@ -410,7 +409,7 @@ export class ViewPDFApplication1Page {
         await this.checkEnglishNoPage12RepeatedText(page);
         break;
       default:
-        if (existsSync(".env")) {
+        if (process.env.PWDEBUG) {
           console.log(`No check function defined for page ${i}`);
         }
     }
@@ -455,7 +454,7 @@ export class ViewPDFApplication1Page {
         await this.checkEnglishYesPage12RepeatedText(page);
         break;
       default:
-        if (existsSync(".env")) {
+        if (process.env.PWDEBUG) {
           console.log(`Page ${i} is not handled.`);
         }
     }
@@ -916,14 +915,14 @@ export class ViewPDFApplication1Page {
     await pdfPage.waitForLoadState("domcontentloaded");
     await pdfPage.waitForSelector(`${Selectors.Span}:text-is("C100")`);
     for (let i = 1; i <= 14 - 1; i++) {
-      let uniquePageSelector = pdfPage.locator(
+      const uniquePageSelector = pdfPage.locator(
         `div[data-page-number="${i}"] > .textLayer > `,
       );
-      let spanCount =
+      const spanCount =
         welshSpanCounts[`page${i}}` as keyof typeof welshSpanCounts];
-      let filledSpanCount =
+      const filledSpanCount =
         welshFilledCounts[`page${i}}` as keyof typeof welshFilledCounts];
-      let otherSpanCount =
+      const otherSpanCount =
         welshOtherSpanCounts[`page${i}}` as keyof typeof welshOtherSpanCounts];
       await Promise.all([
         Helpers.checkGroup(
@@ -992,7 +991,7 @@ export class ViewPDFApplication1Page {
         await this.checkWelshPage11RepeatedText(page);
         break;
       default:
-        if (existsSync(".env")) {
+        if (process.env.PWDEBUG) {
           console.log(`Page number ${i} is not supported.`);
         }
     }

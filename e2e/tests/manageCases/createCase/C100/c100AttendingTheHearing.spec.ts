@@ -1,16 +1,14 @@
 import { test } from "@playwright/test";
-import { C100AttendingTheHearing } from "../../../../journeys/manageCases/createCase/C100AttendingTheHearing/c100AttendingTheHearing";
 import Config from "../../../../config";
+import { C100AttendingTheHearing } from "../../../../journeys/manageCases/createCase/C100AttendingTheHearing/c100AttendingTheHearing";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-test.describe("C100 Create case respondent’s behaviour tests @manageCases", (): void => {
-  test(`Test the C100 Attending The Hearing Journey with the following options:
+test.describe("C100 Create case respondent’s behaviour tests", (): void => {
+  test(`C100 Attending The Hearing Journey with the following options:
   Not Accessibility testing,
   Not error Messaging,
-  No to All Options, @crossbrowserManageCases`, async ({
-    page,
-  }): Promise<void> => {
+  No to All Options, @regression`, async ({ page }): Promise<void> => {
     await C100AttendingTheHearing.c100AttendingTheHearing({
       page: page,
       accessibilityTest: false,
@@ -20,10 +18,10 @@ test.describe("C100 Create case respondent’s behaviour tests @manageCases", ()
     });
   });
 
-  test(`Test the C100 Attending The Hearing Journey with the following options:
+  test(`C100 Attending The Hearing Journey with the following options:
   Not Accessibility testing,
   Not error Messaging,
-  Yes to All Options`, async ({ page }): Promise<void> => {
+  Yes to All Options @regression`, async ({ page }): Promise<void> => {
     await C100AttendingTheHearing.c100AttendingTheHearing({
       page: page,
       accessibilityTest: false,
@@ -33,10 +31,10 @@ test.describe("C100 Create case respondent’s behaviour tests @manageCases", ()
     });
   });
 
-  test(`Test the C100 Attending The Hearing Journey with the following options:
+  test(`C100 Attending The Hearing Journey with the following options:
   Not Accessibility testing,
   Yes error Messaging,
-  Yes to All Options, @crossbrowserManageCases`, async ({
+  Yes to All Options, @regression @errorMessage`, async ({
     page,
   }): Promise<void> => {
     await C100AttendingTheHearing.c100AttendingTheHearing({
@@ -49,7 +47,10 @@ test.describe("C100 Create case respondent’s behaviour tests @manageCases", ()
   });
 });
 
-test(`Test the accessibility of the C100 Attending The Hearing Journey, @accessibilityManageCases`, async ({
+test(`C100 Attending The Hearing Journey with the following options:
+  Accessibility testing,
+  No error Messaging,
+  Yes to All Options, @accessibility @nightly`, async ({
   page,
 }): Promise<void> => {
   await C100AttendingTheHearing.c100AttendingTheHearing({

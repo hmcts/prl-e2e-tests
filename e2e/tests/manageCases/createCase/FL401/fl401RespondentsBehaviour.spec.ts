@@ -1,15 +1,13 @@
 import { test } from "@playwright/test";
-import { FL401RespondentsBehaviour } from "../../../../journeys/manageCases/createCase/FL401RespondentsBehaviour/FL401RespondentsBehaviour";
 import Config from "../../../../config";
+import { FL401RespondentsBehaviour } from "../../../../journeys/manageCases/createCase/FL401RespondentsBehaviour/FL401RespondentsBehaviour";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-test.describe("FL401 Create case respondent’s behaviour tests @manageCases", (): void => {
+test.describe("FL401 Create case respondent’s behaviour tests", (): void => {
   test(`Complete the FL401 respondent’s behaviour event as a solicitor with the following options:
   Not Accessibility testing,
-  Not Error message testing @crossbrowserManageCases`, async ({
-    page,
-  }): Promise<void> => {
+  Not Error message testing @regression`, async ({ page }): Promise<void> => {
     await FL401RespondentsBehaviour.fl401RespondentsBehaviour({
       page: page,
       accessibilityTest: false,
@@ -18,9 +16,9 @@ test.describe("FL401 Create case respondent’s behaviour tests @manageCases", (
   });
 });
 
-test(`Accessibility test the FL401 respondent’s behaviour event as a solicitor with the following options:
+test(`FL401 respondent’s behaviour event as a solicitor with the following options:
   Accessibility testing,
-  Not Error message testing, @accessibilityManageCases`, async ({
+  Not Error message testing, @accessibility @nightly`, async ({
   page,
 }): Promise<void> => {
   await FL401RespondentsBehaviour.fl401RespondentsBehaviour({

@@ -34,7 +34,7 @@ export class selectApplicationTypeSubmitPage {
     await page.waitForSelector(
       `${Selectors.h2}:text-is("${SelectApplicationTypeSubmitContent.h2}")`,
     );
-    let changeAbleFields: number = yesNo ? 8 : 6;
+    const changeAbleFields: number = yesNo ? 8 : 6;
     await Promise.all([
       Helpers.checkGroup(
         page,

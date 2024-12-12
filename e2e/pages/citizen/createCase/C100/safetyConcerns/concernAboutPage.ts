@@ -94,7 +94,7 @@ export class ConcernAboutPage {
   }
 
   private static async fillInFields(page: Page): Promise<void> {
-    for (let checkbox of Object.values(inputIDs)) {
+    for (const checkbox of Object.values(inputIDs)) {
       await page.check(checkbox);
     }
     await page.click(

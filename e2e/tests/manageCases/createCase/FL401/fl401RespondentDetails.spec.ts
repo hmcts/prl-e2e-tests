@@ -1,16 +1,14 @@
 import { test } from "@playwright/test";
-import { FL401RespondentDetails } from "../../../../journeys/manageCases/createCase/FL401RespondentDetails/FL401RespondentDetails";
 import Config from "../../../../config";
+import { FL401RespondentDetails } from "../../../../journeys/manageCases/createCase/FL401RespondentDetails/FL401RespondentDetails";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-test.describe("FL401 Create case respondent details tests @manageCases", (): void => {
+test.describe("FL401 Create case respondent details tests", (): void => {
   test(`Complete the FL401 respondent details event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
-  Saying yes to all options, @crossbrowserManageCases`, async ({
-    page,
-  }): Promise<void> => {
+  Saying yes to all options, @regression`, async ({ page }): Promise<void> => {
     await FL401RespondentDetails.fl401RespondentDetails({
       page: page,
       accessibilityTest: false,
@@ -23,7 +21,7 @@ test.describe("FL401 Create case respondent details tests @manageCases", (): voi
   test(`Complete the FL401 respondent details event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
-  Saying no to all options,`, async ({ page }): Promise<void> => {
+  Saying no to all options, @regression`, async ({ page }): Promise<void> => {
     await FL401RespondentDetails.fl401RespondentDetails({
       page: page,
       accessibilityTest: false,
@@ -36,7 +34,7 @@ test.describe("FL401 Create case respondent details tests @manageCases", (): voi
   test(`Complete the FL401 respondent details event as a solicitor with the following options:
   Not Accessibility testing,
   Error message testing,
-  Saying yes to all options, @crossbrowserManageCases`, async ({
+  Saying yes to all options, @regression @errorMessage`, async ({
     page,
   }): Promise<void> => {
     await FL401RespondentDetails.fl401RespondentDetails({
@@ -49,10 +47,10 @@ test.describe("FL401 Create case respondent details tests @manageCases", (): voi
   });
 });
 
-test(`Accessibility test the FL401 respondent details event as a solicitor with the following options:
+test(`FL401 respondent details event as a solicitor with the following options:
   Accessibility testing,
   Not Error message testing,
-Saying yes to all options, @accessibilityManageCases`, async ({
+Saying yes to all options, @accessibility @nightly`, async ({
   page,
 }): Promise<void> => {
   await FL401RespondentDetails.fl401RespondentDetails({

@@ -1,16 +1,16 @@
 import { test } from "@playwright/test";
-import { C100 } from "../../../../journeys/citizen/createCase/C100/C100";
-import Config from "../../../../config";
 import IdamLoginHelper from "../../../../common/idamLoginHelper";
+import Config from "../../../../config";
+import { C100 } from "../../../../journeys/citizen/createCase/C100/C100";
 
-test.describe("C100 Citizen Application tests on the second MIRO set. @citizenFrontend @crossbrowserCitizenFrontend", (): void => {
+test.describe("C100 Citizen Application tests on the second MIRO set.", (): void => {
   test.beforeEach(async ({ page }) => {
     await IdamLoginHelper.signInCitizenUser(
       page,
       Config.citizenFrontendBaseURL,
     );
   });
-  test(`Test the second row of the second row c100 citizen journey with the following options:
+  test(`Second row of the second row c100 citizen journey with the following options:
     Not Accessibility Testing,
     Not Error Messaging,
     No Screening and Written Review
@@ -58,7 +58,7 @@ test.describe("C100 Citizen Application tests on the second MIRO set. @citizenFr
     yes No International Elements: yes,
     yes No Reasonable Adjustments: yes,
     Yes No Need Help With Fees: yes,
-    Yes No Fees Applied: yes,`, async ({ page }): Promise<void> => {
+    Yes No Fees Applied: yes, @regression`, async ({ page }): Promise<void> => {
     await C100.c100CAEmergencyProtectionJourney({
       page: page,
       accessibilityTest: false,
@@ -109,7 +109,7 @@ test.describe("C100 Citizen Application tests on the second MIRO set. @citizenFr
     });
   });
 
-  test(`Test the second row of the second row c100 citizen journey with the following options:
+  test(`Second row of the second row c100 citizen journey with the following options:
     Not Accessibility Testing,
     Error Messaging,
     No Screening and Written Review
@@ -157,7 +157,9 @@ test.describe("C100 Citizen Application tests on the second MIRO set. @citizenFr
     yes No International Elements: yes,
     yes No Reasonable Adjustments: yes,
     Yes No Need Help With Fees: yes,
-    Yes No Fees Applied: yes,`, async ({ page }): Promise<void> => {
+    Yes No Fees Applied: yes, @regression @errorMessage`, async ({
+    page,
+  }): Promise<void> => {
     await C100.c100CAEmergencyProtectionJourney({
       page: page,
       accessibilityTest: false,
@@ -208,7 +210,7 @@ test.describe("C100 Citizen Application tests on the second MIRO set. @citizenFr
     });
   });
 
-  test(`Test the second row of the second row c100 citizen journey with the following options:
+  test(`Second row of the second row c100 citizen journey with the following options:
     Accessibility Testing,
     Not Error Messaging,
     No Screening and Written Review
@@ -257,7 +259,7 @@ test.describe("C100 Citizen Application tests on the second MIRO set. @citizenFr
     yes No Reasonable Adjustments: yes,
     Yes No Need Help With Fees: yes,
     Yes No Fees Applied: yes,
-    @accessibilityCitizenFrontend`, async ({ page }): Promise<void> => {
+    @accessibility @nightly`, async ({ page }): Promise<void> => {
     await C100.c100CAEmergencyProtectionJourney({
       page: page,
       accessibilityTest: true,

@@ -1,4 +1,10 @@
-import { expect, Locator, Page } from "@playwright/test";
+import {
+  Browser,
+  BrowserContext,
+  expect,
+  Locator,
+  Page,
+} from "@playwright/test";
 import idamLoginHelper from "./idamLoginHelper";
 import { Selectors } from "./selectors.ts";
 import {
@@ -8,8 +14,9 @@ import {
   fl401SubmittedSolicitorEvents,
   c100CaseWorkerActions,
   UserRole,
-  fl401CaseWorkerEvents,
+  fl401CaseWorkerActions,
 } from "./types";
+import Config from "../config.ts";
 
 export class Helpers {
   public static async chooseEventFromDropdown(
@@ -20,7 +27,7 @@ export class Helpers {
       | fl401SubmittedSolicitorEvents
       | fl401JudiciaryEvents
       | c100CaseWorkerActions
-      | fl401CaseWorkerEvents,
+      | fl401CaseWorkerActions,
   ): Promise<void> {
     try {
       await page.waitForLoadState("domcontentloaded");
@@ -327,5 +334,16 @@ export class Helpers {
         },
       )
       .toBeTruthy();
+  }
+
+  public static async openNewBrowserWindow(
+    browser: Browser,
+    user: UserRole,
+  ): Promise<Page> {
+    const newBrowser = await browser.browserType().launch();
+    const newContext: BrowserContext = await newBrowser.newContext({
+      storageState: Config.sessionStoragePath + `${user}.json`,
+    });
+    return await newContext.newPage();
   }
 }

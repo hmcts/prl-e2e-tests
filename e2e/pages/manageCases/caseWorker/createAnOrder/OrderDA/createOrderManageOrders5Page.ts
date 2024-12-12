@@ -4,12 +4,21 @@ import { ManageOrders1DAContent } from "../../../../../fixtures/manageCases/case
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-import { ManageOrders5DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders5DAContent";
+import {
+  CreateOrderFL401Options,
+  CreateOrderManageOrders5Content,
+} from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/createOrderManageOrders5Content";
+import {
+  createOrderFL401Options,
+  judgeTitles,
+} from "../../../../../common/types";
 
 interface ManageOrders5PageOptions {
   page: Page;
   accessibilityTest: boolean;
   yesNoManageOrders: boolean;
+  createOrderFL401Options: createOrderFL401Options;
+  judgeTitles: judgeTitles;
 }
 
 enum UniqueSelectors {
@@ -50,19 +59,30 @@ enum childrenIncludedInOrder {
   simonAnderson = "#childOption_5f9a3c81-f6ec-48c6-bd3a-ace5751a6229",
 }
 
-export class ManageOrders5Page {
+export class CreateOrderManageOrders5Page {
   public static async manageOrders5Page({
     page,
     accessibilityTest,
     yesNoManageOrders,
+    createOrderFL401Options,
+    judgeTitles,
   }: ManageOrders5PageOptions): Promise<void> {
-    await this.checkPageLoads({ page, accessibilityTest });
-    await this.fillInFields({ page, yesNoManageOrders });
+    await this.checkPageLoads({
+      page,
+      accessibilityTest,
+      createOrderFL401Options,
+    });
+    await this.fillInFields({
+      page,
+      yesNoManageOrders,
+      judgeTitles: judgeTitles,
+    });
   }
 
   private static async checkPageLoads({
     page,
     accessibilityTest,
+    createOrderFL401Options,
   }: Partial<ManageOrders5PageOptions>): Promise<void> {
     if (!page) {
       throw new Error("Page is not defined");
@@ -71,26 +91,72 @@ export class ManageOrders5Page {
       `${Selectors.h1}:text-is("${ManageOrders1DAContent.pageTitle}")`,
     );
     await pageTitle.waitFor();
+    switch (createOrderFL401Options) {
+      case "power of arrest":
+        await Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.Span}:text-is("${CreateOrderFL401Options.spanPowerOfArrest}")`,
+          1,
+        );
+        break;
+      case "occupation order":
+        await Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.Span}:text-is("${CreateOrderFL401Options.spanOccupationOrder}")`,
+          1,
+        );
+        break;
+      case "non-molestation":
+        await Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.Span}:text-is("${CreateOrderFL401Options.spanNonMolestation}")`,
+          1,
+        );
+        break;
+      case "amend discharge varied order":
+        await Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.Span}:text-is("${CreateOrderFL401Options.spanAmendDischargeVariedOrder}")`,
+          1,
+        );
+        break;
+      case "blank order":
+        await Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.Span}:text-is("${CreateOrderFL401Options.spanBlankOrder}")`,
+          1,
+        );
+        break;
+      case "general form of undertaking":
+        await Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.Span}:text-is("${CreateOrderFL401Options.spanGeneralFormOfUndertaking}")`,
+          1,
+        );
+        break;
+      case "notice of proceedings":
+        await Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.Span}:text-is("${CreateOrderFL401Options.spanNoticeOfProceedings}")`,
+          1,
+        );
+        break;
+    }
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${ManageOrders5DAContent.span}")`,
+        `${Selectors.p}:text-is("${CreateOrderManageOrders5Content.p}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${ManageOrders5DAContent.p}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.strong}:text-is("${ManageOrders5DAContent.strong}")`,
+        `${Selectors.strong}:text-is("${CreateOrderManageOrders5Content.strong}")`,
         1,
       ),
       Helpers.checkGroup(
         page,
         22,
-        ManageOrders5DAContent,
+        CreateOrderManageOrders5Content,
         "formLabel",
         Selectors.GovukFormLabel,
       ),
@@ -128,30 +194,77 @@ export class ManageOrders5Page {
   private static async fillInFields({
     page,
     yesNoManageOrders,
+    judgeTitles,
   }: Partial<ManageOrders5PageOptions>): Promise<void> {
     if (!page) {
       throw new Error("Page is not defined");
     }
     await page.fill(
       UniqueSelectors.judgeFullNameInput,
-      ManageOrders5DAContent.judgeName,
+      CreateOrderManageOrders5Content.judgeName,
     );
     await page.fill(
       UniqueSelectors.fullNameJusticeLegalAdvisorInput,
-      ManageOrders5DAContent.testLegalAdvisor,
+      CreateOrderManageOrders5Content.testLegalAdvisor,
     );
-    await page.click(UniqueSelectorsOrderMadeBy.herHonourJudge);
-    // await page.click(${SelectType}); #TODO once type is created we can use it as an argument
-    await page.fill(UniqueSelectors.day, ManageOrders5DAContent.day);
-    await page.fill(UniqueSelectors.month, ManageOrders5DAContent.month);
-    await page.fill(UniqueSelectors.year, ManageOrders5DAContent.year);
+    switch (judgeTitles) {
+      case "Her Honour Judge":
+        await page.click(UniqueSelectorsOrderMadeBy.herHonourJudge);
+        break;
+      case "His Honour Judge":
+        await page.click(UniqueSelectorsOrderMadeBy.hisHonourJudge);
+        break;
+      case "Circuit Judge":
+        await page.click(UniqueSelectorsOrderMadeBy.circuitJudge);
+        break;
+      case "Deputy Circuit Judge":
+        await page.click(UniqueSelectorsOrderMadeBy.deputyCircuitJudge);
+        break;
+      case "Recorder":
+        await page.click(UniqueSelectorsOrderMadeBy.recorder);
+        break;
+      case "District Judge":
+        await page.click(UniqueSelectorsOrderMadeBy.districtJudge);
+        break;
+      case "Deputy District Judge":
+        await page.click(UniqueSelectorsOrderMadeBy.deputyDistrictJudge);
+        break;
+      case "District Judge Magistrates Court":
+        await page.click(
+          UniqueSelectorsOrderMadeBy.districtJudgeMagistratesCourt,
+        );
+        break;
+      case "Magistrates":
+        await page.click(UniqueSelectorsOrderMadeBy.magistrates);
+        break;
+      case "Justices' Legal Adviser":
+        await page.click(UniqueSelectorsOrderMadeBy.justicesLegalAdviser);
+        break;
+      case "Justices' Clerk":
+        await page.click(UniqueSelectorsOrderMadeBy.justicesClerk);
+        break;
+      case "The Honourable Mrs Justice":
+        await page.click(UniqueSelectorsOrderMadeBy.theHonourableMrsJustice);
+        break;
+      case "The Honourable Mr Justice":
+        await page.click(UniqueSelectorsOrderMadeBy.theHonourableMrJustice);
+        break;
+      default:
+        throw new Error("Invalid judge title");
+    }
+    await page.fill(UniqueSelectors.day, CreateOrderManageOrders5Content.day);
+    await page.fill(
+      UniqueSelectors.month,
+      CreateOrderManageOrders5Content.month,
+    );
+    await page.fill(UniqueSelectors.year, CreateOrderManageOrders5Content.year);
     await page.fill(
       UniqueSelectors.addRecitalsOrPreamble,
-      ManageOrders5DAContent.loremIpsum,
+      CreateOrderManageOrders5Content.loremIpsum,
     );
     await page.fill(
       UniqueSelectors.addDirections,
-      ManageOrders5DAContent.loremIpsum,
+      CreateOrderManageOrders5Content.loremIpsum,
     );
     if (yesNoManageOrders) {
       await page.click(UniqueSelectors.isTheOrderByConsent_Yes);
@@ -159,7 +272,7 @@ export class ManageOrders5Page {
       await page.click(UniqueSelectors.isTheOrderAboutChildren_Yes);
       await page.selectOption(
         UniqueSelectors.selectOption,
-        ManageOrders5DAContent.noHearings,
+        CreateOrderManageOrders5Content.noHearings,
       );
       for (const selector of Object.values(childrenIncludedInOrder)) {
         await page.click(selector);
@@ -180,18 +293,18 @@ export class ManageOrders5Page {
       Helpers.checkGroup(
         page,
         2,
-        ManageOrders5DAContent,
+        CreateOrderManageOrders5Content,
         "formLabelHidden",
         Selectors.GovukFormLabel,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${ManageOrders5DAContent.formLabelHiddenJohnDoe}")`,
+        `${Selectors.p}:text-is("${CreateOrderManageOrders5Content.formLabelHiddenJohnDoe}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${ManageOrders5DAContent.formLabelHiddenSimon}")`,
+        `${Selectors.p}:text-is("${CreateOrderManageOrders5Content.formLabelHiddenSimon}")`,
         1,
       ),
     ]);

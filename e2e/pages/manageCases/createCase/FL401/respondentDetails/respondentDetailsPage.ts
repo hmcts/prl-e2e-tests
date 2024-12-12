@@ -1,9 +1,11 @@
 import { expect, Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { RespondentDetailsContent } from "../../../../../fixtures/manageCases/createCase/FL401/respondentDetails/respondentDetailsContent";
-import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { solicitorCaseCreateType } from "../../../../../common/types";
+import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors";
+import {
+  expectedAddresses,
+  RespondentDetailsContent,
+} from "../../../../../fixtures/manageCases/createCase/FL401/respondentDetails/respondentDetailsContent";
 
 enum nameFieldIds {
   firstName = "#respondentsFL401_firstName",
@@ -149,7 +151,7 @@ export class RespondentDetailsPage {
     );
 
     if (respondentDetailsAllOptionsYes) {
-      for (let selector of Object.values(radioIdsYes)) {
+      for (const selector of Object.values(radioIdsYes)) {
         await page.click(selector);
       }
 
@@ -182,7 +184,7 @@ export class RespondentDetailsPage {
 
       await this.checkFindAddressWorks(page, accessibilityTest);
     } else {
-      for (let selector of Object.values(radioIdsNo)) {
+      for (const selector of Object.values(radioIdsNo)) {
         await page.click(selector);
       }
     }
@@ -235,15 +237,16 @@ export class RespondentDetailsPage {
       label: `${RespondentDetailsContent.buckinghamPalace}`,
     });
 
-    const dropdown = await page.$(`${inputFieldIds.addressList}`);
+    const dropdown = page.locator(inputFieldIds.addressList);
 
-    const receivedAddresses = await dropdown?.evaluate((select) =>
-      Array.from(select.options).map((option) => option.text.trim()),
-    );
+    const receivedAddresses = await dropdown?.evaluate((select) => {
+      if (select instanceof HTMLSelectElement) {
+        return Array.from(select.options).map((option) => option.text.trim());
+      }
+      return [];
+    });
 
-    expect(receivedAddresses).toEqual(
-      RespondentDetailsContent.expectedAddresses,
-    );
+    expect(receivedAddresses).toEqual(expectedAddresses);
 
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);

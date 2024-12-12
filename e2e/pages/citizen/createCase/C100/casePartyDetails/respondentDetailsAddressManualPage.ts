@@ -1,10 +1,9 @@
 import { Page, expect } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { RespondentDetailsAddressManualContent } from "../../../../../fixtures/citizen/createCase/C100/casePartyDetails/respondentDetailsAddressManualContent";
-import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors";
 import { yesNoDontKnow } from "../../../../../common/types";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { RespondentDetailsAddressManualContent } from "../../../../../fixtures/citizen/createCase/C100/casePartyDetails/respondentDetailsAddressManualContent";
 
 interface RespondentDetailsAddressManualPageOptions {
   page: Page;
@@ -85,8 +84,8 @@ export class RespondentDetailsAddressManualPage {
 
   private static async checkFilledData(page: Page): Promise<void> {
     for (const { selector, expectedText } of addressFields) {
-      const actualValue = await page.locator(selector).inputValue();
-      expect(actualValue).toBe(expectedText);
+      const actualValue = page.locator(selector);
+      await expect(actualValue).toHaveValue(expectedText);
     }
   }
 

@@ -122,7 +122,7 @@ withNightlyPipeline(type, product, component, 600) {
       }
     } else {
       if (!params.skipCitizenTests) {
-        stage('Citizen E2E tests - Chrome') {
+        stage('Citizen E2E tests - Chrome with accessibility') {
           try {
             yarnBuilder.yarn('test:citizenFrontendChrome')
           } catch (Error) {
@@ -173,26 +173,9 @@ withNightlyPipeline(type, product, component, 600) {
             steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CitizenFunctional/*'
           }
         }
-        stage('Citizen accessibility tests') {
-          try {
-            yarnBuilder.yarn('test:citizenFrontendAccessibility')
-          } catch (Error) {
-            unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
-          } finally {
-            publishHTML([
-              allowMissing: true,
-              alwaysLinkToLastBuild: true,
-              keepAll: true,
-              reportDir: "playwright-report",
-              reportFiles: 'index.html',
-              reportName: 'Citizen Accessibility Test Report'
-            ])
-            steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CitizenFunctional/*'
-          }
-        }
       }
       if (!params.skipManageCasesTests) {
-        stage('Manage Cases E2E tests - Chrome') {
+        stage('Manage Cases E2E tests - Chrome with accessibility') {
           try {
             yarnBuilder.yarn('test:manageCasesChrome')
           } catch (Error) {
@@ -226,19 +209,19 @@ withNightlyPipeline(type, product, component, 600) {
             steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/ManageCasesFunctional/*'
           }
         }
-        stage('Manage Cases accessibility tests') {
+        stage('Manage Cases E2E tests Smoke - Webkit') {
           try {
-            yarnBuilder.yarn('test:manageCasesAccessibility')
+            yarnBuilder.yarn('test:manageCasesSafari')
           } catch (Error) {
             unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
           } finally {
             publishHTML([
-              allowMissing: true,
-              alwaysLinkToLastBuild: true,
-              keepAll: true,
-              reportDir: "playwright-report",
-              reportFiles: 'index.html',
-              reportName: 'Manage Cases Accessibility Test Report'
+                    allowMissing: true,
+                    alwaysLinkToLastBuild: true,
+                    keepAll: true,
+                    reportDir: "playwright-report",
+                    reportFiles: 'index.html',
+                    reportName: 'Manage Cases Webkit E2E Test Report'
             ])
             steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/ManageCasesFunctional/*'
           }

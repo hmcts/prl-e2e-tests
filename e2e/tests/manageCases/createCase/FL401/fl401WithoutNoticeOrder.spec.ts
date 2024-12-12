@@ -1,16 +1,14 @@
 import { test } from "@playwright/test";
-import { FL401WithoutNoticeOrder } from "../../../../journeys/manageCases/createCase/FL401WithoutNoticeOrder/FL401WIthoutNoticeOrder";
 import Config from "../../../../config";
+import { FL401WithoutNoticeOrder } from "../../../../journeys/manageCases/createCase/FL401WithoutNoticeOrder/FL401WIthoutNoticeOrder";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-test.describe("FL401 Create case without notice order tests @manageCases", (): void => {
+test.describe("FL401 Create case without notice order tests", (): void => {
   test(`Complete the FL401 without notice order event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
-  Saying yes to all options, @crossbrowserManageCases`, async ({
-    page,
-  }): Promise<void> => {
+  Saying yes to all options, @regression`, async ({ page }): Promise<void> => {
     await FL401WithoutNoticeOrder.fl401WithoutNoticeOrder({
       page: page,
       accessibilityTest: false,
@@ -24,7 +22,7 @@ test.describe("FL401 Create case without notice order tests @manageCases", (): v
   test(`Complete the FL401 without notice order event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
-  Saying no to all options`, async ({ page }): Promise<void> => {
+  Saying no to all options @regression`, async ({ page }): Promise<void> => {
     await FL401WithoutNoticeOrder.fl401WithoutNoticeOrder({
       page: page,
       accessibilityTest: false,
@@ -39,7 +37,9 @@ test.describe("FL401 Create case without notice order tests @manageCases", (): v
   Not Accessibility testing,
   Not Error message testing,
   Saying 'Dont know' to bail conditions,
-  Saying yes to all other options`, async ({ page }): Promise<void> => {
+  Saying yes to all other options @regression`, async ({
+    page,
+  }): Promise<void> => {
     await FL401WithoutNoticeOrder.fl401WithoutNoticeOrder({
       page: page,
       accessibilityTest: false,
@@ -52,7 +52,7 @@ test.describe("FL401 Create case without notice order tests @manageCases", (): v
   test(`Complete the FL401 without notice order event as a solicitor with the following options:
   Not Accessibility testing,
   Error message testing,
-  Saying yes to all options, @crossbrowserManageCases`, async ({
+  Saying yes to all options, @regression @errorMessage`, async ({
     page,
   }): Promise<void> => {
     await FL401WithoutNoticeOrder.fl401WithoutNoticeOrder({
@@ -67,14 +67,12 @@ test.describe("FL401 Create case without notice order tests @manageCases", (): v
 });
 
 test(`Accessibility test the FL401 without notice order event as a solicitor with the following options:
-  Accessibility testing,
+  Not Accessibility testing,
   Not Error message testing,
-  Saying yes to all options, @accessibilityManageCases`, async ({
-  page,
-}): Promise<void> => {
+  Saying yes to all options @regression,`, async ({ page }): Promise<void> => {
   await FL401WithoutNoticeOrder.fl401WithoutNoticeOrder({
     page: page,
-    accessibilityTest: true,
+    accessibilityTest: false,
     errorMessaging: false,
     isWithoutNoticeDetailsYes: true,
     isWithoutNoticeDetailsBailConditions: "Yes",
@@ -82,10 +80,10 @@ test(`Accessibility test the FL401 without notice order event as a solicitor wit
   });
 });
 
-test(`Accessibility test the FL401 without notice order event as a solicitor with the following options:
+test(`FL401 without notice order event as a solicitor with the following options:
   Accessibility testing,
   Not Error message testing,
-  Saying no to all options, @accessibilityManageCases`, async ({
+  Saying no to all options @accessibility @nightly`, async ({
   page,
 }): Promise<void> => {
   await FL401WithoutNoticeOrder.fl401WithoutNoticeOrder({

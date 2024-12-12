@@ -1,21 +1,20 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { CommonReviewContent } from "../../../../../fixtures/citizen/createCase/C100/reviewPages/commonReviewContent";
 import { Helpers } from "../../../../../common/helpers";
-import { CaJourneyWrittenConsentReviewContent } from "../../../../../fixtures/citizen/createCase/C100/reviewPages/caJourneyWrittenConsentReviewContent";
-import { CaJourneyEmergencyProtectionReviewContent } from "../../../../../fixtures/citizen/createCase/C100/reviewPages/caJourneyEmergencyProtectionReviewContent";
+import { Selectors } from "../../../../../common/selectors";
 import {
   CapitalizedRelationship,
   Relationship,
 } from "../../../../../common/types";
+import { CaJourneyEmergencyProtectionReviewContent } from "../../../../../fixtures/citizen/createCase/C100/reviewPages/caJourneyEmergencyProtectionReviewContent";
+import { CaJourneyExistingMIAMReviewContent } from "../../../../../fixtures/citizen/createCase/C100/reviewPages/caJourneyExistingMIAMReviewContent";
 import { CaJourneyMIAMHearingUrgencyReviewContent } from "../../../../../fixtures/citizen/createCase/C100/reviewPages/caJourneyMIAMHearingUrgencyReviewContent";
-import { existsSync } from "fs";
+import { CaJourneyWrittenConsentReviewContent } from "../../../../../fixtures/citizen/createCase/C100/reviewPages/caJourneyWrittenConsentReviewContent";
+import { CommonReviewContent } from "../../../../../fixtures/citizen/createCase/C100/reviewPages/commonReviewContent";
+import { MiamChildProtectionConcernsType } from "../MIAM/miamChildProtectionPage";
+import { MiamOtherReasonForNotAttending } from "../MIAM/miamMiamOtherPage";
 import { MiamAttendanceType } from "../MIAM/miamPreviousAttendancePage";
 import { MiamUrgencyType } from "../MIAM/miamUrgencyPage";
-import { MiamOtherReasonForNotAttending } from "../MIAM/miamMiamOtherPage";
-import { MiamChildProtectionConcernsType } from "../MIAM/miamChildProtectionPage";
 import { c100ChildrenSupervisionRadios } from "../safetyConcerns/unsupervisedPage";
-import { CaJourneyExistingMIAMReviewContent } from "../../../../../fixtures/citizen/createCase/C100/reviewPages/caJourneyExistingMIAMReviewContent";
 
 interface caJourneyEmergencyProtectionOptions {
   page: Page;
@@ -64,7 +63,6 @@ const statementOfTruthCheckbox: string = "#statementOfTruth";
 export class ReviewPage {
   private static async checkCommonText({
     page,
-    accessibilityTest,
   }: checkCommonTextOptions): Promise<void> {
     if (!page) {
       throw new Error();
@@ -123,7 +121,6 @@ export class ReviewPage {
   public static async c100CAWithWrittenConsentFromOtherPeople({
     page,
     accessibilityTest,
-    reviewPageTopJourneyMotherFather,
     relationshipType,
     c100YesNoNeedHelpWithFees,
   }: caWrittenConsentJourneyOptions): Promise<void> {
@@ -999,7 +996,6 @@ export class ReviewPage {
       ),
     ]);
     if (c100YesNoNeedHelpWithFees) {
-      console.log("IF STATEMENT RUN");
       await Promise.all([
         Helpers.checkVisibleAndPresent(
           page,
@@ -1413,7 +1409,7 @@ export class ReviewPage {
         );
         break;
       default:
-        if (existsSync(".env")) {
+        if (process.env.PWDEBUG) {
           console.log(`Unrecognised urgency type: ${miamUrgencyType}`);
         }
     }

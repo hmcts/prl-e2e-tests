@@ -4,12 +4,12 @@ import { C100WelshLanguageRequirements } from "../../../../journeys/manageCases/
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-test.describe("C100 Create case Welsh Language Requirements Tests @manageCases", (): void => {
+test.describe("C100 Create case Welsh Language Requirements Tests", (): void => {
   test(`Complete the C100 Create case Welsh Language Requirements as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
   Saying yes to all options,
-  WelshPageRequirementType is no. @crossbrowserManageCases`, async ({
+  WelshPageRequirementType is no. @regression`, async ({
     page,
   }): Promise<void> => {
     await C100WelshLanguageRequirements.c100WelshLanguageRequirements({
@@ -26,7 +26,7 @@ test.describe("C100 Create case Welsh Language Requirements Tests @manageCases",
   Not Accessibility testing,
   Not Error message testing,
   Saying yes to all options,
-  WelshPageRequirementType is English. @crossbrowserManageCases`, async ({
+  WelshPageRequirementType is English. @regression`, async ({
     page,
   }): Promise<void> => {
     await C100WelshLanguageRequirements.c100WelshLanguageRequirements({
@@ -43,7 +43,7 @@ test.describe("C100 Create case Welsh Language Requirements Tests @manageCases",
   Not Accessibility testing,
   Not Error message testing,
   Saying yes to all options,
-  WelshPageRequirementType is welsh. @crossbrowserManageCases`, async ({
+  WelshPageRequirementType is welsh. @regression`, async ({
     page,
   }): Promise<void> => {
     await C100WelshLanguageRequirements.c100WelshLanguageRequirements({
@@ -60,7 +60,9 @@ test.describe("C100 Create case Welsh Language Requirements Tests @manageCases",
   Not Accessibility testing,
   Not Error message testing,
   Saying no to all options,
-  WelshPageRequirementType is no.`, async ({ page }): Promise<void> => {
+  WelshPageRequirementType is no. @regression`, async ({
+    page,
+  }): Promise<void> => {
     await C100WelshLanguageRequirements.c100WelshLanguageRequirements({
       page: page,
       user: "solicitor",
@@ -75,7 +77,9 @@ test.describe("C100 Create case Welsh Language Requirements Tests @manageCases",
   Not Accessibility testing,
   Not Error message testing,
   Saying no to all options,
-  WelshPageRequirementType is English.`, async ({ page }): Promise<void> => {
+  WelshPageRequirementType is English. @regression`, async ({
+    page,
+  }): Promise<void> => {
     await C100WelshLanguageRequirements.c100WelshLanguageRequirements({
       page: page,
       user: "solicitor",
@@ -90,7 +94,9 @@ test.describe("C100 Create case Welsh Language Requirements Tests @manageCases",
   Not Accessibility testing,
   Not Error message testing,
   Saying no to all options,
-  WelshPageRequirementType is welsh.`, async ({ page }): Promise<void> => {
+  WelshPageRequirementType is welsh. @regression`, async ({
+    page,
+  }): Promise<void> => {
     await C100WelshLanguageRequirements.c100WelshLanguageRequirements({
       page: page,
       user: "solicitor",
@@ -106,7 +112,9 @@ test(`Complete the C100 Create case Welsh Language Requirements as a solicitor w
   Accessibility testing,
   Not Error message testing,
   Saying no to all options,
-  WelshPageRequirementType is welsh.`, async ({ page }): Promise<void> => {
+  WelshPageRequirementType is welsh. @accessibility @nightly`, async ({
+  page,
+}): Promise<void> => {
   await C100WelshLanguageRequirements.c100WelshLanguageRequirements({
     page: page,
     user: "solicitor",

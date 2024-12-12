@@ -4,12 +4,12 @@ import Config from "../../../../config";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-test.describe("C100 Create case Children and respondents Tests @manageCases", (): void => {
+test.describe("C100 Create case Children and respondents Tests", (): void => {
   test(`Complete the C100 Create case Children and respondents as a solicitor with the following options:
   Not Accessibility testing,
   Error message testing,
   Saying yes to all options,
-  Setting the applicant Gender to male. @crossbrowserManageCases`, async ({
+  Setting the applicant Gender to male. @regression @errorMessage`, async ({
     page,
   }): Promise<void> => {
     await C100ChildAndRespondents.c100ChildrenAndRespondents({
@@ -32,7 +32,9 @@ test.describe("C100 Create case Children and respondents Tests @manageCases", ()
   Not Accessibility testing,
   Not Error message testing,
   Saying no to all options,
-  Setting the applicant Gender to female.`, async ({ page }): Promise<void> => {
+  Setting the applicant Gender to female. @regression`, async ({
+    page,
+  }): Promise<void> => {
     await C100ChildAndRespondents.c100ChildrenAndRespondents({
       page: page,
       user: "solicitor",
@@ -54,7 +56,7 @@ test(`Complete the C100 Create case Children and respondents as a solicitor with
   Accessibility testing,
   Not Error message testing,
   Saying Yes to all options,
-  Setting the applicant Gender to female. @accessibilityManageCases`, async ({
+  Setting the applicant Gender to female. @accessibility @nightly`, async ({
   page,
 }): Promise<void> => {
   await C100ChildAndRespondents.c100ChildrenAndRespondents({

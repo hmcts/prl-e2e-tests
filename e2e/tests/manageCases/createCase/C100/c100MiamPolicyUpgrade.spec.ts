@@ -4,12 +4,12 @@ import { C100MiamPolicyUpgrade } from "../../../../journeys/manageCases/createCa
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-test.describe("C100 Create case MIAM Tests @manageCases", (): void => {
+test.describe("C100 Create case MIAM Tests", (): void => {
   test(`Complete the C100 Create case MIAM as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
   Saying yes to all options,
-  MiamSelection is attended4MonthsPrior. @crossbrowserManageCases`, async ({
+  MiamSelection is attended4MonthsPrior. @regression`, async ({
     page,
   }): Promise<void> => {
     await C100MiamPolicyUpgrade.c100MiamPolicyUpgrade({
@@ -28,7 +28,7 @@ test.describe("C100 Create case MIAM Tests @manageCases", (): void => {
   Not Accessibility testing,
   Error message testing,
   Saying yes to attended MIAM,
-  MiamSelection is attended4MonthsPrior. @crossbrowserManageCases`, async ({
+  MiamSelection is attended4MonthsPrior. @regression @errorMessage`, async ({
     page,
   }): Promise<void> => {
     await C100MiamPolicyUpgrade.c100MiamPolicyUpgrade({
@@ -48,7 +48,7 @@ test.describe("C100 Create case MIAM Tests @manageCases", (): void => {
   Not Error message testing,
   Saying yes to yesExemption
   miamSelection "attended4MonthsPrior"
-  Saying Yes to all options.`, async ({ page }): Promise<void> => {
+  Saying Yes to all options. @regression`, async ({ page }): Promise<void> => {
     await C100MiamPolicyUpgrade.c100MiamPolicyUpgrade({
       page: page,
       user: "solicitor",
@@ -66,7 +66,7 @@ test.describe("C100 Create case MIAM Tests @manageCases", (): void => {
   Not Error message testing,
   Saying yes to yesExemption
   miamSelection "initiatedMIAMBeforeProceedings_MIAMCertificate"
-  Saying no to all options.`, async ({ page }): Promise<void> => {
+  Saying no to all options. @regression`, async ({ page }): Promise<void> => {
     await C100MiamPolicyUpgrade.c100MiamPolicyUpgrade({
       page: page,
       user: "solicitor",
@@ -84,7 +84,7 @@ test.describe("C100 Create case MIAM Tests @manageCases", (): void => {
   Error message testing,
   Saying yes to yesExemption
   miamSelection "initiatedMIAMBeforeProceedings_MIAMDetails"
-  Saying no to all options. @crossbrowserManageCases`, async ({
+  Saying no to all options. @regression @errorMessage`, async ({
     page,
   }): Promise<void> => {
     await C100MiamPolicyUpgrade.c100MiamPolicyUpgrade({
@@ -98,14 +98,11 @@ test.describe("C100 Create case MIAM Tests @manageCases", (): void => {
       subJourney: true,
     });
   });
-});
-
-test.describe("C100 Create case MIAM Tests @accessibilityManageCases", (): void => {
   test(`Accessibility test the C100 Miam event as a solicitor with the following options:
   Accessibility testing,
   Not Error message testing,
   C100MiamPolicyUpgrade1PageType is "yes"
-  miamSelection is "initiatedMIAMBeforeProceedings_MIAMDetails".@accessibilityManageCases`, async ({
+  miamSelection is "initiatedMIAMBeforeProceedings_MIAMDetails". @accessibility @nightly`, async ({
     page,
   }): Promise<void> => {
     await C100MiamPolicyUpgrade.c100MiamPolicyUpgrade({
@@ -125,7 +122,7 @@ test.describe("C100 Create case MIAM Tests @accessibilityManageCases", (): void 
   Error message testing,
   Saying yes to attended MIAM
   C100MiamPolicyUpgrade1PageType is "yesAttendedMiam"
-  miamSelection is "attended4MonthsPrior". @crossbrowserManageCases`, async ({
+  miamSelection is "attended4MonthsPrior". @accessibility @nightly`, async ({
     page,
   }): Promise<void> => {
     await C100MiamPolicyUpgrade.c100MiamPolicyUpgrade({
@@ -145,7 +142,7 @@ test.describe("C100 Create case MIAM Tests @accessibilityManageCases", (): void 
   Not Error message testing,
   Saying yes to yesExemption
   miamSelection "attended4MonthsPrior"
-  Saying Yes to all options. @accessibilityManageCases `, async ({
+  Saying Yes to all options. @accessibility @nightly`, async ({
     page,
   }): Promise<void> => {
     await C100MiamPolicyUpgrade.c100MiamPolicyUpgrade({

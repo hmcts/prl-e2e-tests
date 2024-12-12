@@ -67,7 +67,9 @@ export type fl401SolicitorEvents =
 
 export type c100CaseWorkerActions = "Manage orders";
 
-export type fl401CaseWorkerActions = "Welsh language requirements";
+export type fl401CaseWorkerActions =
+  | "Welsh language requirements"
+  | "Send and reply to messages";
 
 export type fl401SubmittedSolicitorEvents =
   | "Draft an order"
@@ -78,7 +80,10 @@ export type fl401SubmittedSolicitorEvents =
   | "Upload additional applications"
   | "Withdraw application";
 
-export type fl401JudiciaryEvents = "Edit and approve a draft order";
+export type fl401JudiciaryEvents =
+  | "Edit and approve a draft order"
+  | "List on notice"
+  | "List without notice";
 
 export type ApplicantGender = "female" | "male" | "other";
 
@@ -136,4 +141,46 @@ export type JudgeOrderAction =
 
 export type Language = "English" | "Welsh";
 
-export type fl401CaseWorkerEvents = "Edit and serve an order";
+export type manageOrdersOptions = "create order" | "upload order";
+
+export type createOrderFL401Options =
+  | "power of arrest"
+  | "non-molestation"
+  | "occupation order"
+  | "amend discharge varied order"
+  | "blank order"
+  | "general form of undertaking"
+  | "notice of proceedings";
+
+export type uploadOrderFL401Options =
+  | "power of arrest"
+  | "non-molestation"
+  | "occupation order"
+  | "amend discharge varied order"
+  | "blank order (FL404B)"
+  | "general form of undertaking"
+  | "warrant of arrest"
+  | "remand order"
+  | "form for taking recognizance"
+  | "form for taking surety"
+  | "bail notice"
+  | "hospital order"
+  | "guardianship order"
+  | "statement of service"
+  | "blank order (FL514)"
+  | "Notice landlord mortgage";
+
+export type judgeTitles =
+  | "Her Honour Judge"
+  | "His Honour Judge"
+  | "Circuit Judge"
+  | "Deputy Circuit Judge"
+  | "Recorder"
+  | "District Judge"
+  | "Deputy District Judge"
+  | "District Judge Magistrates Court"
+  | "Magistrates"
+  | "Justices' Legal Adviser"
+  | "Justices' Clerk"
+  | "The Honourable Mrs Justice"
+  | "The Honourable Mr Justice";

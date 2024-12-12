@@ -1,5 +1,4 @@
-export enum ManageOrders5DAContent {
-  span = "Non-molestation order (FL404A)",
+export enum CreateOrderManageOrders5Content {
   p = "Order made by",
   strong = "Judge or Magistrate's title",
   formLabel1 = "Is the order by consent?",
@@ -35,4 +34,14 @@ export enum ManageOrders5DAContent {
   month = "6",
   year = "2021",
   noHearings = "No hearings available",
+}
+
+export enum CreateOrderFL401Options {
+  spanPowerOfArrest = "Power of arrest (FL406)",
+  spanNonMolestation = "Non-molestation order (FL404A)",
+  spanOccupationOrder = "Occupation order (FL404)",
+  spanAmendDischargeVariedOrder = "Amended, discharged or varied order (FL404B)",
+  spanBlankOrder = "Blank order (FL404B)",
+  spanGeneralFormOfUndertaking = "General form of undertaking (N117)",
+  spanNoticeOfProceedings = "Notice of proceedings (FL402)",
 }

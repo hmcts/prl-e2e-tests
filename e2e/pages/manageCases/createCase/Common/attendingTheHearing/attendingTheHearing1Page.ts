@@ -185,8 +185,8 @@ export class AttendingTheHearing1Page {
       "specialArrangements",
       "intermediaryNeeded",
     ];
-    for (let section of radioSections) {
-      let sectionKey = `${section}Yes` as keyof typeof inputIDs;
+    for (const section of radioSections) {
+      const sectionKey = `${section}Yes` as keyof typeof inputIDs;
       await page.click(inputIDs[sectionKey]);
     }
     let welshNeedsSelector: keyof typeof uniqueSelectors;
@@ -259,8 +259,8 @@ export class AttendingTheHearing1Page {
       "specialArrangements",
       "intermediaryNeeded",
     ];
-    for (let section of radioSections) {
-      let sectionKey = `${section}${keySuffix}` as keyof typeof inputIDs;
+    for (const section of radioSections) {
+      const sectionKey = `${section}${keySuffix}` as keyof typeof inputIDs;
       await page.click(inputIDs[sectionKey]);
     }
     let welshNeedsSelector: keyof typeof uniqueSelectors;
@@ -306,9 +306,9 @@ export class AttendingTheHearing1Page {
         "intermediaryReasons",
         "adjustmentsRequired",
       ];
-      for (let text of textAreas) {
-        let inputKey = text as keyof typeof inputIDs;
-        let contentKey = text as keyof typeof AttendingTheHearing1Content;
+      for (const text of textAreas) {
+        const inputKey = text as keyof typeof inputIDs;
+        const contentKey = text as keyof typeof AttendingTheHearing1Content;
         await page.fill(
           inputIDs[inputKey],
           AttendingTheHearing1Content[contentKey],
@@ -410,14 +410,14 @@ export class AttendingTheHearing1Page {
       ),
     ]);
     const partyOptions: string[] = ["applicant", "respondent", "other"];
-    for (let party of partyOptions) {
-      let checkboxKey = `${party}NeedsInterpreter` as keyof typeof inputIDs;
+    for (const party of partyOptions) {
+      const checkboxKey = `${party}NeedsInterpreter` as keyof typeof inputIDs;
       await page.check(inputIDs[checkboxKey]);
     }
     const interpreterSuffix: string[] = ["Name", "Language", "Assistance"];
-    for (let suffix of interpreterSuffix) {
-      let inputKey = `interpreterNeeds${suffix}` as keyof typeof inputIDs;
-      let contentKey =
+    for (const suffix of interpreterSuffix) {
+      const inputKey = `interpreterNeeds${suffix}` as keyof typeof inputIDs;
+      const contentKey =
         `interpreterNeeds${suffix}` as keyof typeof AttendingTheHearing1Content;
       await page.fill(
         inputIDs[inputKey],
