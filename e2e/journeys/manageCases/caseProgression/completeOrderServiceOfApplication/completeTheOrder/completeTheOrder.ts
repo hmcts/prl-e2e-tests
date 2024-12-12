@@ -9,7 +9,7 @@ import { AdminEditAndApproveAnOrderSubmitPage } from "../../../../../pages/manag
 import Config from "../../../../../config.ts";
 import config from "../../../../../config.ts";
 import {
-  c100CaseWorkerActions,
+  WACaseWorkerActions,
   createOrderFL401Options,
   judgeTitles,
   manageOrdersOptions,
@@ -24,7 +24,7 @@ interface CompleteTheOrderParams {
   accessibilityTest: boolean;
   yesNoSendToGateKeeper: boolean;
   ccdRef: string;
-  c100CaseWorkerActions: c100CaseWorkerActions;
+  c100CaseWorkerActions: WACaseWorkerActions;
   manageOrdersOptions: manageOrdersOptions;
   createOrderFL401Options: createOrderFL401Options;
   yesNoManageOrders: boolean;

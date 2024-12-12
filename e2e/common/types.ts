@@ -65,7 +65,7 @@ export type fl401SolicitorEvents =
   | "View PDF application"
   | "Statement of truth and submit";
 
-export type c100CaseWorkerActions =
+export type WACaseWorkerActions =
   | "Manage orders"
   | "Service of application"
   | "Create A Bundle";

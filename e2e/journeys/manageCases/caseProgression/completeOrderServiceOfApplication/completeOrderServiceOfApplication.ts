@@ -1,6 +1,6 @@
 import { Browser, Page } from "@playwright/test";
 import {
-  c100CaseWorkerActions,
+  WACaseWorkerActions,
   createOrderFL401Options,
   judgeTitles,
   manageOrdersOptions,
@@ -16,7 +16,7 @@ interface CompleteTheOrderParams {
   accessibilityTest: boolean;
   yesNoSendToGateKeeper: boolean;
   ccdRef: string;
-  c100CaseWorkerActions: c100CaseWorkerActions;
+  c100CaseWorkerActions: WACaseWorkerActions;
   manageOrdersOptions: manageOrdersOptions;
   createOrderFL401Options: createOrderFL401Options;
   yesNoManageOrders: boolean;
