@@ -69,7 +69,8 @@ export type c100CaseWorkerActions = "Manage orders";
 
 export type fl401CaseWorkerActions =
   | "Welsh language requirements"
-  | "Send and reply to messages";
+  | "Send and reply to messages"
+  | "Service of documents";
 
 export type fl401SubmittedSolicitorEvents =
   | "Draft an order"
@@ -184,3 +185,5 @@ export type judgeTitles =
   | "Justices' Clerk"
   | "The Honourable Mrs Justice"
   | "The Honourable Mr Justice";
+
+export type yesNoNA = "Yes" | "No" | "Not applicable";

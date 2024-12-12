@@ -28,6 +28,7 @@ export enum Selectors {
   GovukCheckboxes = ".govuk-checkboxes",
   GovukCheckboxesDivider = ".govuk-checkboxes__divider",
   GovukTextFieldLabel = ".case-field__label",
+  GovukTextFieldLabel2 = "case-field-label",
   GovukText16 = ".text-16",
   GovukFormLabel = ".form-label",
   GovukFormHint = ".form-hint",
