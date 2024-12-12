@@ -17,6 +17,7 @@ interface c100ChildrenAndOtherPeopleOptions {
   c100ChildGender: C100ChildGender;
   yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions: yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions;
   yesNoChildrenAndOtherPeople: boolean;
+  otherPersonLivesInRefuge: boolean;
   applicantGender: ApplicantGender;
   yesNoOtherPeopleInTheCase: boolean;
   subJourney: boolean;
@@ -31,6 +32,7 @@ export class C100ChildrenAndOtherPeople {
     c100ChildGender,
     yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,
     yesNoOtherPeopleInTheCase,
+    otherPersonLivesInRefuge,
     applicantGender,
     yesNoChildrenAndOtherPeople,
     subJourney,
@@ -51,6 +53,7 @@ export class C100ChildrenAndOtherPeople {
         accessibilityTest: accessibilityTest,
         errorMessaging: errorMessaging,
         yesNoOtherPeopleInTheCase: yesNoOtherPeopleInTheCase,
+        otherPersonLivesInRefuge: otherPersonLivesInRefuge,
         applicantGender: applicantGender,
         subJourney: false,
       });
