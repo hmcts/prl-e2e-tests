@@ -1,13 +1,12 @@
-import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../../common/selectors";
 import { CommonStaticText } from "../../../../../../common/commonStaticText";
-import { SafetyConcernHelpers } from "../safetyConcernHelpers";
 import {
   reportAbuseCheckboxIDs,
   reportAbuseInputIDs,
 } from "../../../../../../common/commonUniqueSelectors";
+import { Selectors } from "../../../../../../common/selectors";
 import { SexualAbuseContent } from "../../../../../../fixtures/citizen/createCase/C100/safetyConcerns/childConcerns/sexualAbuseContent";
+import { SafetyConcernHelpers } from "../safetyConcernHelpers";
 
 interface SexualAbusePageOptions {
   page: Page;
@@ -43,7 +42,6 @@ export class SexualAbusePage {
 
   private static async checkPageLoads({
     page,
-    accessibilityTest,
   }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.GovukHeadingXL}:text-is("${SexualAbuseContent.pageTitle}")`,
@@ -60,16 +58,16 @@ export class SexualAbusePage {
     page,
     c100SexualAbuseYesNoToAll,
   }: FillInFieldsOptions): Promise<void> {
-    for (let checkbox of Object.values(reportAbuseCheckboxIDs)) {
+    for (const checkbox of Object.values(reportAbuseCheckboxIDs)) {
       await page.check(checkbox);
     }
     const textToFill: [string, string] = [
       "behaviourDetails",
       "behaviourStartDate",
     ];
-    for (let key of textToFill) {
-      let inputKey = key as keyof typeof reportAbuseInputIDs;
-      let contentKey = key as keyof typeof SexualAbuseContent;
+    for (const key of textToFill) {
+      const inputKey = key as keyof typeof reportAbuseInputIDs;
+      const contentKey = key as keyof typeof SexualAbuseContent;
       await page.fill(
         reportAbuseInputIDs[inputKey],
         SexualAbuseContent[contentKey],

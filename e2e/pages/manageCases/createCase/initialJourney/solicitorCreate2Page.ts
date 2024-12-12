@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors";
-import { SolicitorCreate2Content } from "../../../../fixtures/manageCases/createCase/initialJourney/solicitorCreate2Content";
-import { Helpers } from "../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+import { Helpers } from "../../../../common/helpers";
+import { Selectors } from "../../../../common/selectors";
 import { solicitorCaseCreateType } from "../../../../common/types";
+import { SolicitorCreate2Content } from "../../../../fixtures/manageCases/createCase/initialJourney/solicitorCreate2Content";
 
 enum caseTypeSelectionIds {
   C100 = "#caseTypeOfApplication-C100",
@@ -40,13 +40,13 @@ export class SolicitorCreate2Page {
       `${Selectors.h2}:text-is("${SolicitorCreate2Content.subTitle}")`,
     );
     if (isDummyCase) {
-      Helpers.checkVisibleAndPresent(
+      await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukHeadingL}:text-is("${SolicitorCreate2Content.dummyPageTitle}")`,
         1,
       );
     } else {
-      Helpers.checkVisibleAndPresent(
+      await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukHeadingL}:text-is("${SolicitorCreate2Content.title}")`,
         1,

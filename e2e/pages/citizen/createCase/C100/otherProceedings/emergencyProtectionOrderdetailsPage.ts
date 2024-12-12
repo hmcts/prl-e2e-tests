@@ -1,10 +1,9 @@
-import { Selectors } from "../../../../../common/selectors";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
-import { Helpers } from "../../../../../common/helpers";
-import { EmergencyProtectionOrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/EmergencyProtectionOrderDetailsContent";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { CitizensOtherProceedingsUniqueSelectors } from "../../../../../common/commonUniqueSelectors";
+import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors";
+import { EmergencyProtectionOrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/EmergencyProtectionOrderDetailsContent";
 
 interface EmergencyProtectionOrderDetailsPageOptions {
   page: Page;
@@ -45,7 +44,6 @@ export class EmergencyProtectionOrderDetailsPage {
 
   private static async checkPageLoads({
     page: page,
-    accessibilityTest: accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.p}:text-is("${EmergencyProtectionOrderDetailsContent.p}")`,

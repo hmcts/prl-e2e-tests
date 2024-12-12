@@ -1,9 +1,9 @@
 import { test } from "@playwright/test";
+import IdamLoginHelper from "../../../../common/idamLoginHelper";
 import Config from "../../../../config";
 import { C100 } from "../../../../journeys/citizen/createCase/C100/C100";
-import IdamLoginHelper from "../../../../common/idamLoginHelper";
 
-test.describe("Create Citizen Application but you must get a mediator. ", (): void => {
+test.describe("Create Citizen Application but you must get a mediator", (): void => {
   test.beforeEach(async ({ page }) => {
     await IdamLoginHelper.signInCitizenUser(
       page,
