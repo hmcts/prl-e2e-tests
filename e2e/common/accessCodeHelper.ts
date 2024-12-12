@@ -38,7 +38,8 @@ export class AccessCodeHelper {
       "accessCode",
       apiContextSystemUser,
     );
-    const s2sToken = await getS2SToken(apiContextS2SToken, "prl_cos_api");
+    const microservice: string = "prl_cos_api";
+    const s2sToken = await getS2SToken(apiContextS2SToken, microservice);
     const url = `${process.env.CCD_DATA_STORE_URL as string}${ccdRef}`;
     const response = await apiContextSystemUser.get(url, {
       headers: {
