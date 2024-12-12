@@ -16,6 +16,7 @@ interface AdminEditAndApproveOrderParams {
   page: Page;
   accessibilityTest: boolean;
   browser: Browser;
+  personallyServed: boolean;
 }
 
 export class AdminEditAndApproveAnOrder {
@@ -23,6 +24,7 @@ export class AdminEditAndApproveAnOrder {
     page,
     accessibilityTest,
     browser,
+    personallyServed,
   }: AdminEditAndApproveOrderParams): Promise<void> {
     const caseRef: string = await EditAndApproveAnOrder.editAndApproveAnOrder({
       page: page,
@@ -54,37 +56,32 @@ export class AdminEditAndApproveAnOrder {
       page,
       accessibilityTest,
     );
-
     await Helpers.chooseEventFromDropdown(page, "Edit and serve an order");
-
     await AdminEditAndApproveAnOrder1Page.adminEditAndApproveAnOrder1Page(
       page,
       accessibilityTest,
     );
-
     await AdminEditAndApproveAnOrder4Page.adminEditAndApproveAnOrder4Page(
       page,
       accessibilityTest,
     );
-
     await AdminEditAndApproveAnOrder21Page.adminEditAndApproveAnOrder21Page(
       page,
       accessibilityTest,
     );
-
     await AdminEditAndApproveAnOrder22Page.adminEditAndApproveAnOrder22Page(
       page,
       accessibilityTest,
     );
-
     await AdminEditAndApproveAnOrder23Page.adminEditAndApproveAnOrder23Page(
       page,
       accessibilityTest,
+      personallyServed,
     );
-
     await AdminEditAndApproveAnOrderSubmitPage.adminEditAndApproveAnOrderSubmitPage(
       page,
       accessibilityTest,
+      personallyServed,
     );
   }
 }

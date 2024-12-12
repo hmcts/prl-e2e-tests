@@ -9,14 +9,16 @@ export class AdminEditAndApproveAnOrderSubmitPage {
   public static async adminEditAndApproveAnOrderSubmitPage(
     page: Page,
     accessibilityTest: boolean,
+    personallyServed: boolean,
   ): Promise<void> {
-    await this.checkPageLoads(page, accessibilityTest);
+    await this.checkPageLoads(page, accessibilityTest, personallyServed);
     await this.submit(page);
   }
 
   private static async checkPageLoads(
     page: Page,
     accessibilityTest: boolean,
+    personallyServed: boolean,
   ): Promise<void> {
     await page
       .locator(`${Selectors.headingH2}`, {
@@ -36,44 +38,29 @@ export class AdminEditAndApproveAnOrderSubmitPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h2}:text-is("${AdminEditAndApproveAnOrderSubmitContent.h22}")`,
-        1,
-      ),
-      Helpers.checkGroup(
-        page,
-        12,
-        AdminEditAndApproveAnOrderSubmitContent,
-        `text16`,
-        Selectors.GovukText16,
-      ),
-      page
-        .locator(Selectors.GovukText16, {
-          hasText:
-            AdminEditAndApproveAnOrderSubmitContent.nonMolestationOrderFL404A,
-        })
-        .isVisible(),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.a}:text-is("${AdminEditAndApproveAnOrderSubmitContent.pdflink1}")`,
+        `${Selectors.h2}:text-is("${AdminEditAndApproveAnOrderSubmitContent.h22}"):visible`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${AdminEditAndApproveAnOrderSubmitContent.pdflink2}")`,
+        `${Selectors.p}:text-is("${AdminEditAndApproveAnOrderSubmitContent.p}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukText16}:text-is("${AdminEditAndApproveAnOrderSubmitContent.Yes}"):visible`,
-        3,
+        `${Selectors.headingH3}:text-is("${AdminEditAndApproveAnOrderSubmitContent.nonMolestationOrderFL404A}")`,
+        1,
       ),
-      page
-        .locator(Selectors.p, {
-          hasText:
-            AdminEditAndApproveAnOrderSubmitContent.nonMolestationOrderFL404A,
-        })
-        .isVisible(),
-
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.a}:text-is("${AdminEditAndApproveAnOrderSubmitContent.nonMolestation}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.a}:text-is("${AdminEditAndApproveAnOrderSubmitContent.welshNonMolestation}")`,
+        1,
+      ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.button}:text-is("${CommonStaticText.previous}")`,
@@ -85,8 +72,55 @@ export class AdminEditAndApproveAnOrderSubmitPage {
         1,
       ),
     ]);
-    if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+    if (personallyServed) {
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${AdminEditAndApproveAnOrderSubmitContent.Yes}"):visible`,
+        2,
+      );
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${AdminEditAndApproveAnOrderSubmitContent.No}"):visible`,
+        1,
+      );
+      await Helpers.checkGroup(
+        page,
+        10,
+        AdminEditAndApproveAnOrderSubmitContent,
+        `nonMolestationText16`,
+        Selectors.GovukText16,
+      );
+    } else {
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${AdminEditAndApproveAnOrderSubmitContent.Yes}"):visible`,
+        1,
+      );
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${AdminEditAndApproveAnOrderSubmitContent.No}"):visible`,
+        2,
+      );
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${AdminEditAndApproveAnOrderSubmitContent.pApplicant}"):visible`,
+        1,
+      );
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${AdminEditAndApproveAnOrderSubmitContent.pRespondent}"):visible`,
+        1,
+      );
+      await Helpers.checkGroup(
+        page,
+        9,
+        AdminEditAndApproveAnOrderSubmitContent,
+        `nonMolestationNoText16`,
+        Selectors.GovukText16,
+      );
+      if (accessibilityTest) {
+        await AccessibilityTestHelper.run(page);
+      }
     }
   }
 

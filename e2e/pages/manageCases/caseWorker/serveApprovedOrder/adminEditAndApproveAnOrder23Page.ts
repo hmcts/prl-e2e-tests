@@ -7,15 +7,17 @@ import { CommonStaticText } from "../../../../common/commonStaticText";
 
 enum UniqueSelectors {
   respondentOptionYes = "#serveToRespondentOptions_Yes",
+  respondentOptionNo = "#serveToRespondentOptions_No",
   respondentsOptionsCourtBailiff = "#personallyServeRespondentsOptions-courtBailiff",
 }
 export class AdminEditAndApproveAnOrder23Page {
   public static async adminEditAndApproveAnOrder23Page(
     page: Page,
     accessibilityTest: boolean,
+    personallyServed: boolean,
   ): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest);
-    await this.fillInFields(page);
+    await this.fillInFields(page, personallyServed);
     await this.continue(page);
   }
 
@@ -46,7 +48,7 @@ export class AdminEditAndApproveAnOrder23Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h2}:text-is("${AdminEditAndApproveAnOrder23Content.h2}")`,
+        `${Selectors.h2}:text-is("${AdminEditAndApproveAnOrder23Content.h2}"):visible`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -65,9 +67,28 @@ export class AdminEditAndApproveAnOrder23Page {
     }
   }
 
-  private static async fillInFields(page: Page): Promise<void> {
-    await page.check(`${UniqueSelectors.respondentOptionYes}`);
-    await page.check(`${UniqueSelectors.respondentsOptionsCourtBailiff}`);
+  private static async fillInFields(
+    page: Page,
+    personallyServed: boolean,
+  ): Promise<void> {
+    if (personallyServed) {
+      await page.check(`${UniqueSelectors.respondentOptionYes}`);
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${AdminEditAndApproveAnOrder23Content.fromLabel3}"):visible`,
+        1,
+      );
+      await page.check(`${UniqueSelectors.respondentsOptionsCourtBailiff}`);
+    } else {
+      await page.check(`${UniqueSelectors.respondentOptionNo}`);
+      await page.check(`${Selectors.GovukFormLabel}:has-text("(Applicant)")`);
+      await page.check(`${Selectors.GovukFormLabel}:has-text("(Respondent)")`);
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${AdminEditAndApproveAnOrder23Content.formLabel4}"):visible`,
+        1,
+      );
+    }
   }
 
   private static async continue(page: Page): Promise<void> {

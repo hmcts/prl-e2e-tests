@@ -15,6 +15,7 @@ import {
   c100CaseWorkerActions,
   UserRole,
   fl401CaseWorkerActions,
+  courtAdminEvents,
 } from "./types";
 import Config from "../config.ts";
 
@@ -27,7 +28,8 @@ export class Helpers {
       | fl401SubmittedSolicitorEvents
       | fl401JudiciaryEvents
       | c100CaseWorkerActions
-      | fl401CaseWorkerActions,
+      | fl401CaseWorkerActions
+      | courtAdminEvents,
   ): Promise<void> {
     try {
       await page.waitForLoadState("domcontentloaded");

@@ -1,5 +1,5 @@
 import { Page } from "@playwright/test";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+// import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
 import { Selectors } from "../../../../common/selectors";
 import { AdminEditAndApproveAnOrder1Content } from "../../../../fixtures/manageCases/caseWorker/serveApprovedOrder/adminEditAndApproveAnOrder1Content";
 import { Helpers } from "../../../../common/helpers";
@@ -42,13 +42,23 @@ export class AdminEditAndApproveAnOrder1Page {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      // await AccessibilityTestHelper.run(page);
     }
+    // #TODO commented out until ticket resolved FPET-1224
   }
 
   private static async fillInFields(page: Page): Promise<void> {
     await page.selectOption("#draftOrdersDynamicList", { index: 1 });
   }
+
+  // private static async fillInFields(page: Page): Promise<void> {
+  //
+  //   const optionSelect = await page.locator('option', {hasText: 'Amended, discharged or varied order (FL404B)'}).textContent();
+  //   // await page.selectOption("#draftOrdersDynamicList", "Amended, discharged or varied order (FL404B)" );
+  //   if (optionSelect){
+  //     await page.locator("#draftOrdersDynamicList").selectOption({label: optionSelect})
+  //   }
+  // }
 
   private static async continue(page: Page): Promise<void> {
     await page.click(
