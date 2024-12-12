@@ -2,7 +2,6 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors";
 import { Helpers } from "../../../../common/helpers";
 import { CommonStaticText } from "../../../../common/commonStaticText";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
 import { ServiceOfDocuments1Content } from "../../../../fixtures/manageCases/caseProgression/serviceOfDocuments/serviceOfDocuments1Content";
 import path from "path";
 
@@ -39,7 +38,6 @@ export class ServiceOfDocuments1Page {
 
   private static async checkPageLoads({
     page,
-    accessibilityTest,
   }: Partial<serviceOfDocuments1Options>) {
     if (!page) {
       throw new Error("No page found");

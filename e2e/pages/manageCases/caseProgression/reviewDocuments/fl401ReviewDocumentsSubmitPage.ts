@@ -27,7 +27,6 @@ export class FL401ReviewDocumentsSubmitPage {
 
   private static async checkPageLoads({
     page,
-    accessibilityTest,
     yesNoNotSureRestrictDocs,
   }: Partial<FL401ReviewDocumentsSubmitPageOptions>) {
     if (!page) {
