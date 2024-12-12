@@ -14,7 +14,7 @@ setup("Setup solicitor user", async ({ page }) => {
   );
 });
 
-setup("Retrieve bearer token for citizen user creation", async () => {
+setup("Retrieve bearer token for courtNav DA case creation", async () => {
   const apiContextDaCreateCase: APIRequestContext = await request.newContext();
   const tokenDaCreateCase = await getAccessToken(
     "daCourtNavCreateCase",
@@ -26,7 +26,7 @@ setup("Retrieve bearer token for citizen user creation", async () => {
   process.env.COURTNAV_CREATE_CASE_BEARER_TOKEN = tokenDaCreateCase;
 });
 
-setup("Retrieve bearer token for courtNav DA case creation", async () => {
+setup("Retrieve bearer token for citizen user creation", async () => {
   const apiContext: APIRequestContext = await request.newContext();
   const token = await getAccessToken("citizenCreateUser", apiContext);
   if (!token) {
