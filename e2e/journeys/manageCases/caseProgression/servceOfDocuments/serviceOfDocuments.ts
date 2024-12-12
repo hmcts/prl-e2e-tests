@@ -43,7 +43,6 @@ export class ServiceOfDocuments {
         yesNoNotSureRestrictDocs: "no",
       });
       await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
-      await Helpers.waitForTaskToDisappear(page, "Send to Gatekeeper");
     }
     await ApplicationJourneysCheckGatekeeper.applicationJourneysCheckGatekeeper(
       {

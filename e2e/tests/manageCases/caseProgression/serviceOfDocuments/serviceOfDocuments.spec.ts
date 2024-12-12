@@ -45,7 +45,7 @@ test.describe("Service of Document event for DA Citizen case tests as court admi
     });
   });
   test(`Complete 'Service of Documents' with following options: 
-  Additional documents added: yes
+  Additional documents added: no
   Witness statement (case doc) added to event: no
   Documents should be personally served: Not applicable, 
   Serve to an additional recipient: no, 
