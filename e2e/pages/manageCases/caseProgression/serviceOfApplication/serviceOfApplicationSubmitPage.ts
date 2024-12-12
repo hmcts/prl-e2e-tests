@@ -62,7 +62,7 @@ export class ServiceOfApplicationSubmitPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukText16}:text-is("${ServiceOfApplicationSubmitContent.text16Change}")`,
+        `${Selectors.GovukText16}:text-is("${ServiceOfApplicationSubmitContent.text16Change}"):visible`,
         3,
       ),
     ]);
@@ -72,7 +72,7 @@ export class ServiceOfApplicationSubmitPage {
     await Promise.all([
       Helpers.checkGroup(
         page,
-        2,
+        3,
         ServiceOfApplication2Content,
         "hiddenP",
         Selectors.p,
@@ -96,9 +96,8 @@ export class ServiceOfApplicationSubmitPage {
     if (!page) {
       throw new Error("No page found");
     }
-
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.saveAndContinue}")`,
+      `${Selectors.button}:text-is("${CommonStaticText.saveAndContinue}")`,
     );
   }
 }

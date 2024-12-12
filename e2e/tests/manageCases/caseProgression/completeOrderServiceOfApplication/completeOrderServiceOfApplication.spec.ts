@@ -3,7 +3,9 @@ import Config from "../../../../config";
 import createDaCitizenCourtNavCase from "../../../../common/createCaseHelper";
 import { Helpers } from "../../../../common/helpers";
 import config from "../../../../config";
-import { CompleteTheOrder } from "../../../../journeys/manageCases/caseProgression/completeTheOrder/completeTheOrder";
+import {
+  CompleteOrderServiceOfApplication
+} from "../../../../journeys/manageCases/caseProgression/completeOrderServiceOfApplication/completeOrderServiceOfApplication.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
@@ -19,7 +21,7 @@ test.describe("Complete the Order task for DA Citizen case tests.", () => {
     page,
     browser,
   }): Promise<void> => {
-    await CompleteTheOrder.completeTheOrder({
+    await CompleteOrderServiceOfApplication.completeOrderServiceOfApplication({
       page: page,
       accessibilityTest: false,
       yesNoSendToGateKeeper: true,
@@ -34,6 +36,8 @@ test.describe("Complete the Order task for DA Citizen case tests.", () => {
       howLongWillOrderBeInForce: "untilNextHearing", // Should not matter unless non-molestation order is selected.
       browser: browser,
       personallyServed: true,
+      yesNoServiceOfApplication4: true,
+      responsibleForServing: "courtBailiff",
     });
   });
 
@@ -41,7 +45,7 @@ test.describe("Complete the Order task for DA Citizen case tests.", () => {
     page,
     browser,
   }): Promise<void> => {
-    await CompleteTheOrder.completeTheOrder({
+    await CompleteOrderServiceOfApplication.completeOrderServiceOfApplication({
       page: page,
       accessibilityTest: false,
       yesNoSendToGateKeeper: true,
@@ -56,6 +60,8 @@ test.describe("Complete the Order task for DA Citizen case tests.", () => {
       howLongWillOrderBeInForce: "untilNextHearing", // Should not matter unless non-molestation order is selected.
       browser: browser,
       personallyServed: false,
+      yesNoServiceOfApplication4: true,
+      responsibleForServing: "courtBailiff",
     });
   });
 });

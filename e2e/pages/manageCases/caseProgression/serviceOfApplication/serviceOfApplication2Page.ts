@@ -6,14 +6,19 @@ import { Helpers } from "../../../../common/helpers";
 import config from "../../../../config";
 import { MiamPolicyUpgrade6Content } from "../../../../fixtures/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade6Content";
 import { CommonStaticText } from "../../../../common/commonStaticText";
+import { createOrderFL401Options } from "../../../../common/types.ts";
+import {
+  ManageOrders3DAContent
+} from "../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders3DAContent.ts";
 
 interface ServiceOfApplication2Options {
   page: Page;
   accessibilityTest: boolean;
+  createOrderFL401Options: createOrderFL401Options;
 }
 
 enum UniqueSelectors {
-  selectOrder = "#serviceOfApplicationScreen1_0f76a624-e5ec-42aa-bffe-e595e7380a28",
+  selectOrder = "#serviceOfApplicationScreen1",
   fileUpload = "#noticeOfSafetySupportLetter",
 }
 
@@ -21,12 +26,13 @@ export class ServiceOfApplication2Page {
   public static async serviceOfApplication2Page({
     page,
     accessibilityTest,
+                                                  createOrderFL401Options
   }: ServiceOfApplication2Options): Promise<void> {
     await this.checkPageLoads({
       page,
       accessibilityTest,
     });
-    await this.fillInFields({ page });
+    await this.fillInFields({ page, createOrderFL401Options });
   }
 
   private static async checkPageLoads({
@@ -94,11 +100,19 @@ export class ServiceOfApplication2Page {
 
   private static async fillInFields({
     page,
+                                      createOrderFL401Options
   }: Partial<ServiceOfApplication2Options>): Promise<void> {
     if (!page) {
       throw new Error("No page found");
     }
-    await page.click(UniqueSelectors.selectOrder);
+    switch (createOrderFL401Options) {
+      case "power of arrest":
+        await page.click(`${Selectors.p}:has-text("${ServiceOfApplication2Content.powerOfArrest}")`);
+        break;
+      case "amend discharge varied order":
+        await page.click(`${Selectors.p}:has-text("${ManageOrders3DAContent.amendDischargeVariedOrder}")`);
+        break;
+    }
     const fileInput = page.locator(UniqueSelectors.fileUpload);
     await fileInput.setInputFiles(config.testPdfFile);
     await page.waitForSelector(

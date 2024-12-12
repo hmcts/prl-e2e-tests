@@ -68,12 +68,12 @@ export class ServiceOfApplication4Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukFormHint}:text-is("${CommonStaticText.yes}"):visible`,
+        `${Selectors.GovukFormLabel}:text-is("${CommonStaticText.yes}"):visible`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukFormHint}:text-is("${CommonStaticText.no}"):visible`,
+        `${Selectors.GovukFormLabel}:text-is("${CommonStaticText.no}"):visible`,
         1,
       ),
     ]);
@@ -111,7 +111,7 @@ export class ServiceOfApplication4Page {
       await page.click(UniqueSelectors.noRespondent);
     }
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
+      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
     );
   }
 
@@ -120,12 +120,25 @@ export class ServiceOfApplication4Page {
       throw new Error("No page found");
     }
     await Promise.all([
-      Helpers.checkGroup(
+      Helpers.checkVisibleAndPresent(
         page,
+        `${Selectors.GovukFormLabel}:text-is("${ServiceOfApplication4Content.yesHiddenFormLabelResponsible}"):visible`,
         1,
-        ServiceOfApplication4Content,
-        "yesHiddenFormLabel",
-        Selectors.GovukFormLabel,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${ServiceOfApplication4Content.yesHiddenFormLabel1}"):visible`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${ServiceOfApplication4Content.yesHiddenFormLabel2}"):visible`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${ServiceOfApplication4Content.yesHiddenFormLabel3}"):visible`,
+        1,
       ),
     ]);
   }

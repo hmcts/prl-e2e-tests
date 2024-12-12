@@ -41,8 +41,6 @@ test.describe("Check Application task for DA Citizen case tests.", () => {
         withOrWithoutNotice: true,
         createOrderManageOrders19Options: "dateToBeFixed", // "dateConfirmed" will not pass because page 19 does not give a hearing you are allowed to select
         howLongWillOrderBeInForce: "untilNextHearing", // Should not matter unless non-molestation order is selected.
-        yesNoServiceOfApplication4: true,
-        responsibleForServing: "courtBailiff",
         browser: browser,
       },
     );
@@ -74,8 +72,6 @@ test.describe("Check Application task for DA Citizen case tests.", () => {
         withOrWithoutNotice: false,
         createOrderManageOrders19Options: "dateToBeFixed", // "dateConfirmed" will not pass because page 19 does not give a hearing selectOption you are allowed to select
         howLongWillOrderBeInForce: "untilNextHearing", // Should not matter unless non-molestation order is selected
-        yesNoServiceOfApplication4: true,
-        responsibleForServing: "courtBailiff",
         browser: browser,
       },
     );

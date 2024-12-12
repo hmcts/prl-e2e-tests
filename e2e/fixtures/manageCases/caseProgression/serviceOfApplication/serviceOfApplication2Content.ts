@@ -15,4 +15,5 @@ export enum ServiceOfApplication2Content {
   hiddenLi2 = "witness statement",
   hiddenLi3 = "privacy notice",
   hiddenLi4 = "cover letter (if not represented)",
+  powerOfArrest = "Power of arrest",
 }
