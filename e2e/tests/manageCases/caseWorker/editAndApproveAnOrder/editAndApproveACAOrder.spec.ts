@@ -9,7 +9,7 @@ test.describe("Edit and approve a CA order tests", (): void => {
   test.slow();
   // tests failing due to EXUI-2621
   // TODO: turn tests back on once issue around "Client context information not matching" has been resolved
-  test.fixme(
+  test(
     `Complete Editing and approving an order with the following options:
   Case: C100,
   Order type: Parental responsibility order (C45A),
@@ -28,7 +28,7 @@ test.describe("Edit and approve a CA order tests", (): void => {
     },
   );
 
-  test.fixme(
+  test(
     `Complete Editing and approving an order with the following options:
   Case: C100,
   Order type: Parental responsibility order (C45A),
@@ -47,7 +47,7 @@ test.describe("Edit and approve a CA order tests", (): void => {
     },
   );
 
-  test.fixme(
+  test(
     `Complete Editing and approving an order with the following options:
   Case: C100,
   Order type: Parental responsibility order (C45A),
