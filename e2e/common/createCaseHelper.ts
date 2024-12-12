@@ -13,7 +13,7 @@ async function createDaCitizenCourtNavCase(
   withDoc: boolean,
 ): Promise<string> {
   const apiContextDaCreateCase2: APIRequestContext = await request.newContext();
-  let tokenDaCreateCase = process.env
+  const tokenDaCreateCase = process.env
     .COURTNAV_CREATE_CASE_BEARER_TOKEN as string;
   let jsonData;
   if (withNotice) {

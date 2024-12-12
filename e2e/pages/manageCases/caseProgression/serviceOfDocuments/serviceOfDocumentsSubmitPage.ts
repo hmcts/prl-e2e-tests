@@ -61,7 +61,11 @@ export class ServiceOfDocumentsSubmitPage {
     await this.checkStaticFields(page);
     await this.checkCaseDocument(page, withCaseDoc);
     await this.checkAdditionalDocument(page, additionalDoc);
-    await this.checkAdditionalRecipient(page, additionalRecipient, servedByPost);
+    await this.checkAdditionalRecipient(
+      page,
+      additionalRecipient,
+      servedByPost,
+    );
     await this.checkPersonalService(page, personallyServed);
     await this.checkDocumentVerification(page, checkDocuments);
     if (accessibilityTest) {
@@ -70,7 +74,9 @@ export class ServiceOfDocumentsSubmitPage {
   }
 
   private static async checkStaticFields(page: Page): Promise<void> {
-    await expect(page.getByText(ServiceOfDocumentsSubmitContent.textFielda)).toBeVisible();
+    await expect(
+      page.getByText(ServiceOfDocumentsSubmitContent.textFielda),
+    ).toBeVisible();
     //checking group is causing failures, so using singular checks
     await Helpers.checkGroup(
       page,
