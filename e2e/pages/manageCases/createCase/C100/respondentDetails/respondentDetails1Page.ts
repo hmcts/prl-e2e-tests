@@ -1,8 +1,8 @@
 import { Page, expect } from "@playwright/test";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { C100RespondentDetails1Content } from "../../../../../fixtures/manageCases/createCase/C100/respondentDetails/c100RespondentDetails1Content";
-import { Helpers } from "../../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 
 export type C100RespondentGender = "female" | "male" | "other";
 export type C100RespondentAddress5Years = "yes" | "no" | "dontKnow";
@@ -416,42 +416,44 @@ export class RespondentDetails1Page {
         `${Selectors.GovukFormLabel}:text-is("${C100RespondentDetails1Content.formLabelCountry}")`,
         2,
       ),
-      expect(await page.inputValue(RespondentAddressFields.line1)).toEqual(
+      await expect(page.locator(RespondentAddressFields.line1)).toHaveValue(
         C100RespondentDetails1Content.buildingAndStreet,
       ),
-      expect(await page.inputValue(RespondentAddressFields.line2)).toEqual(""),
-      expect(await page.inputValue(RespondentAddressFields.line3)).toEqual(""),
-      expect(await page.inputValue(RespondentAddressFields.town)).toEqual(
+      await expect(page.locator(RespondentAddressFields.line2)).toHaveValue(""),
+      await expect(page.locator(RespondentAddressFields.line3)).toHaveValue(""),
+      await expect(page.locator(RespondentAddressFields.town)).toHaveValue(
         C100RespondentDetails1Content.townOrCity,
       ),
-      expect(await page.inputValue(RespondentAddressFields.county)).toEqual(""),
-      expect(await page.inputValue(RespondentAddressFields.postcode)).toEqual(
+      await expect(page.locator(RespondentAddressFields.county)).toHaveValue(
+        "",
+      ),
+      await expect(page.locator(RespondentAddressFields.postcode)).toHaveValue(
         C100RespondentDetails1Content.postcode,
       ),
-      expect(await page.inputValue(RespondentAddressFields.country)).toEqual(
+      await expect(page.locator(RespondentAddressFields.country)).toHaveValue(
         C100RespondentDetails1Content.country,
       ),
-      expect(await page.inputValue(RepresentativeAddressFields.line1)).toEqual(
+      await expect(page.locator(RepresentativeAddressFields.line1)).toHaveValue(
         C100RespondentDetails1Content.buildingAndStreet,
       ),
-      expect(await page.inputValue(RepresentativeAddressFields.line2)).toEqual(
+      await expect(page.locator(RepresentativeAddressFields.line2)).toHaveValue(
         "",
       ),
-      expect(await page.inputValue(RepresentativeAddressFields.line3)).toEqual(
+      await expect(page.locator(RepresentativeAddressFields.line3)).toHaveValue(
         "",
       ),
-      expect(await page.inputValue(RepresentativeAddressFields.town)).toEqual(
+      await expect(page.locator(RepresentativeAddressFields.town)).toHaveValue(
         C100RespondentDetails1Content.townOrCity,
       ),
-      expect(await page.inputValue(RepresentativeAddressFields.county)).toEqual(
-        "",
-      ),
-      expect(
-        await page.inputValue(RepresentativeAddressFields.postcode),
-      ).toEqual(C100RespondentDetails1Content.postcode),
-      expect(
-        await page.inputValue(RepresentativeAddressFields.country),
-      ).toEqual(C100RespondentDetails1Content.country),
+      await expect(
+        page.locator(RepresentativeAddressFields.county),
+      ).toHaveValue(""),
+      await expect(
+        page.locator(RepresentativeAddressFields.postcode),
+      ).toHaveValue(C100RespondentDetails1Content.postcode),
+      await expect(
+        page.locator(RepresentativeAddressFields.country),
+      ).toHaveValue(C100RespondentDetails1Content.country),
     ]);
   }
 }

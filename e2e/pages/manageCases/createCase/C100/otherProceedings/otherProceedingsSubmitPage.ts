@@ -160,10 +160,10 @@ export class OtherProceedingsSubmitPage {
     page,
     c100OngoingProceedingsAndDocX,
   }: CheckOtherProceedingsOptions): Promise<void> {
-    let ongoingProceedingsText: string = c100OngoingProceedingsAndDocX
+    const ongoingProceedingsText: string = c100OngoingProceedingsAndDocX
       ? OtherProceedingsSubmitContent.ongoing
       : OtherProceedingsSubmitContent.previous;
-    let filePath: string = c100OngoingProceedingsAndDocX
+    const filePath: string = c100OngoingProceedingsAndDocX
       ? path.basename(Config.testWordFile)
       : path.basename(Config.testPdfFile);
     await Promise.all([

@@ -1,10 +1,9 @@
 import { Page } from "@playwright/test";
-import { ApplicantGender, yesNoDontKnow } from "../../../../../../common/types";
-import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper";
-import { Selectors } from "../../../../../../common/selectors";
-import { PersonalDetailsContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/otherPeople/personalDetailsContent";
-import { Helpers } from "../../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../../common/commonStaticText";
+import { Helpers } from "../../../../../../common/helpers";
+import { Selectors } from "../../../../../../common/selectors";
+import { ApplicantGender, yesNoDontKnow } from "../../../../../../common/types";
+import { PersonalDetailsContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/otherPeople/personalDetailsContent";
 import { SafetyConcernHelpers } from "../../safetyConcerns/safetyConcernHelpers";
 
 enum inputIDs {
@@ -226,7 +225,7 @@ export class PersonalDetailsPage {
   }
 
   private static async checkDateErrors(page: Page): Promise<void> {
-    for (let [dateKey, [day, month, year]] of Object.entries(
+    for (const [dateKey, [day, month, year]] of Object.entries(
       invalidDateInputs,
     )) {
       await page.fill(inputIDs.dobDay, day);
@@ -284,7 +283,7 @@ export class PersonalDetailsPage {
         1,
       ),
     ]);
-    for (let [dateKey, [day, month, year]] of Object.entries(
+    for (const [dateKey, [day, month, year]] of Object.entries(
       invalidDateInputs,
     )) {
       await page.fill(inputIDs.approxDoBDay, day);
@@ -361,7 +360,7 @@ export class PersonalDetailsPage {
       );
     }
     if (c100OtherPeopleDoBKnown) {
-      for (let key of ["dobDay", "dobMonth", "dobYear"]) {
+      for (const key of ["dobDay", "dobMonth", "dobYear"]) {
         const contentKey = key as keyof typeof PersonalDetailsContent;
         const inputKey = key as keyof typeof inputIDs;
         await page.fill(inputIDs[inputKey], PersonalDetailsContent[contentKey]);
@@ -372,7 +371,7 @@ export class PersonalDetailsPage {
         `${Selectors.GovukLegendS}:text-is("${PersonalDetailsContent.legendS}")`,
         1,
       );
-      for (let key of ["approxDoBDay", "approxDoBMonth", "approxDoBYear"]) {
+      for (const key of ["approxDoBDay", "approxDoBMonth", "approxDoBYear"]) {
         const contentKey = key as keyof typeof PersonalDetailsContent;
         const inputKey = key as keyof typeof inputIDs;
         await page.fill(inputIDs[inputKey], PersonalDetailsContent[contentKey]);

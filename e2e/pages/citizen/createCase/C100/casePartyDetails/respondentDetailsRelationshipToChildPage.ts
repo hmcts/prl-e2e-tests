@@ -1,8 +1,7 @@
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors";
 import { Relationship } from "../../../../../common/types";
 import { RespondentDetailsRelationshipToChildContent } from "../../../../../fixtures/citizen/createCase/C100/casePartyDetails/respondentDetailsRelationshipToChildContent";
 
@@ -113,7 +112,7 @@ export class RespondentRelationshipToChildPage {
         `The value 'relationship' must be one of 'mother', 'father', 'guardian', 'specialGuardian', 'grandparent', 'other'. You used ${relationship}.`,
       );
     }
-    let inputKey = relationship as keyof typeof inputIds;
+    const inputKey = relationship as keyof typeof inputIds;
     await page.click(inputIds[inputKey]);
     if (inputKey == "other") {
       await page.waitForSelector(

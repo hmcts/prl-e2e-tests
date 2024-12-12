@@ -1,6 +1,6 @@
 import { test } from "@playwright/test";
-import { FL401RelationshipToRespondent } from "../../../../journeys/manageCases/createCase/FL401RelationshipToRespondent/FL401RelationshipToRespondent";
 import Config from "../../../../config";
+import { FL401RelationshipToRespondent } from "../../../../journeys/manageCases/createCase/FL401RelationshipToRespondent/FL401RelationshipToRespondent";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
@@ -396,7 +396,7 @@ test.describe("FL401 Create case relationship to respondent tests", (): void => 
   });
 });
 
-test(`Test the FL401 relationship to respondent event as a solicitor with the following options:
+test(`FL401 relationship to respondent event as a solicitor with the following options:
   Accessibility testing,
   Not Error message testing,
   Relationship is 'Formerly boyfriend, girlfriend or partner who has not lived with them', @accessibility @nightly`, async ({
@@ -411,7 +411,7 @@ test(`Test the FL401 relationship to respondent event as a solicitor with the fo
   });
 });
 
-test(`Test the FL401 relationship to respondent event as a solicitor with the following options:
+test(`FL401 relationship to respondent event as a solicitor with the following options:
   Accessibility testing,
   Not Error message testing,
   Relationship is 'None of the above',

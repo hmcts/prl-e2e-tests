@@ -1,10 +1,9 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors";
-import { Fl401ReviewDocuments2Content } from "../../../../fixtures/manageCases/caseProgression/reviewDocuments/fl401ReviewDocuments2Content";
-import { Helpers } from "../../../../common/helpers";
 import { CommonStaticText } from "../../../../common/commonStaticText";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+import { Helpers } from "../../../../common/helpers";
+import { Selectors } from "../../../../common/selectors";
 import { yesNoDontKnow } from "../../../../common/types";
+import { Fl401ReviewDocuments2Content } from "../../../../fixtures/manageCases/caseProgression/reviewDocuments/fl401ReviewDocuments2Content";
 
 interface FL401ReviewDocuments2PageOptions {
   page: Page;
@@ -33,7 +32,6 @@ export class FL401ReviewDocuments2Page {
 
   private static async checkPageLoads({
     page,
-    accessibilityTest,
   }: Partial<FL401ReviewDocuments2PageOptions>) {
     if (!page) {
       throw new Error("No page found");

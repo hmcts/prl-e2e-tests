@@ -269,16 +269,16 @@ export class ViewPDFApplication1Page {
     ]);
     await pdfPage.waitForSelector(`${Selectors.Span}:text-is("C100")`);
     for (let i = 1; i <= 14 - 1; i++) {
-      let uniquePageSelector = pdfPage.locator(
+      const uniquePageSelector = pdfPage.locator(
         `div[data-page-number="${i}"] > .textLayer > `,
       );
-      let spanCount =
+      const spanCount =
         englishYesSpanCounts[`page${i}}` as keyof typeof englishYesSpanCounts];
-      let filledSpanCount =
+      const filledSpanCount =
         englishYesFilledSpanCounts[
           `page${i}}` as keyof typeof englishYesFilledSpanCounts
         ];
-      let otherSpanCount =
+      const otherSpanCount =
         englishYesOtherSpanCounts[
           `page${i}}` as keyof typeof englishYesOtherSpanCounts
         ];
@@ -329,16 +329,16 @@ export class ViewPDFApplication1Page {
     await pdfPage.waitForLoadState("domcontentloaded");
     await pdfPage.waitForSelector(`${Selectors.Span}:text-is("C100")`);
     for (let i = 1; i <= 14 - 1; i++) {
-      let uniquePageSelector = pdfPage.locator(
+      const uniquePageSelector = pdfPage.locator(
         `div[data-page-number="${i}"] > .textLayer > `,
       );
-      let spanCount =
+      const spanCount =
         englishNoSpanCounts[`page${i}}` as keyof typeof englishNoSpanCounts];
-      let filledSpanCount =
+      const filledSpanCount =
         englishNoFilledSpanCounts[
           `page${i}}` as keyof typeof englishNoFilledSpanCounts
         ];
-      let otherSpanCount =
+      const otherSpanCount =
         englishNoOtherSpanCounts[
           `page${i}}` as keyof typeof englishNoOtherSpanCounts
         ];
@@ -915,14 +915,14 @@ export class ViewPDFApplication1Page {
     await pdfPage.waitForLoadState("domcontentloaded");
     await pdfPage.waitForSelector(`${Selectors.Span}:text-is("C100")`);
     for (let i = 1; i <= 14 - 1; i++) {
-      let uniquePageSelector = pdfPage.locator(
+      const uniquePageSelector = pdfPage.locator(
         `div[data-page-number="${i}"] > .textLayer > `,
       );
-      let spanCount =
+      const spanCount =
         welshSpanCounts[`page${i}}` as keyof typeof welshSpanCounts];
-      let filledSpanCount =
+      const filledSpanCount =
         welshFilledCounts[`page${i}}` as keyof typeof welshFilledCounts];
-      let otherSpanCount =
+      const otherSpanCount =
         welshOtherSpanCounts[`page${i}}` as keyof typeof welshOtherSpanCounts];
       await Promise.all([
         Helpers.checkGroup(

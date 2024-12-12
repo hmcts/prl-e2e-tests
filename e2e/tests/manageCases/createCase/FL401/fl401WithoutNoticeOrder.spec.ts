@@ -1,6 +1,6 @@
 import { test } from "@playwright/test";
-import { FL401WithoutNoticeOrder } from "../../../../journeys/manageCases/createCase/FL401WithoutNoticeOrder/FL401WIthoutNoticeOrder";
 import Config from "../../../../config";
+import { FL401WithoutNoticeOrder } from "../../../../journeys/manageCases/createCase/FL401WithoutNoticeOrder/FL401WIthoutNoticeOrder";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
@@ -80,10 +80,10 @@ test(`Accessibility test the FL401 without notice order event as a solicitor wit
   });
 });
 
-test(`Test the FL401 without notice order event as a solicitor with the following options:
+test(`FL401 without notice order event as a solicitor with the following options:
   Accessibility testing,
   Not Error message testing,
-  Saying no to all options, @accessibility @nightly`, async ({
+  Saying no to all options @accessibility @nightly`, async ({
   page,
 }): Promise<void> => {
   await FL401WithoutNoticeOrder.fl401WithoutNoticeOrder({

@@ -1,6 +1,6 @@
 import { test } from "@playwright/test";
-import { C100RespondentDetails } from "../../../../journeys/manageCases/createCase/C100RespondentDetails/C100RespondentDetails";
 import Config from "../../../../config";
+import { C100RespondentDetails } from "../../../../journeys/manageCases/createCase/C100RespondentDetails/C100RespondentDetails";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
@@ -63,7 +63,7 @@ test.describe("C100 Create case respondent details tests", (): void => {
   });
 });
 
-test(`Test the C100 respondent details event as a solicitor with the following options:
+test(`C100 respondent details event as a solicitor with the following options:
   Accessibility testing,
   Not Error message testing,
   Saying yes to all options,
