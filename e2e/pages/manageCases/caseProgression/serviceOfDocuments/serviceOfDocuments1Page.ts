@@ -68,7 +68,7 @@ export class ServiceOfDocuments1Page {
       ),
     ]);
     // if (accessibilityTest) {
-    //   await AccessibilityTestHelper.run(page);
+    //   await AccessibilityTestHelper.run(page); #TODO Enable after resolving FPET-1225
     // }
   }
 
