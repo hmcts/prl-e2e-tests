@@ -34,7 +34,7 @@ export class ServiceOfApplicationSubmitPage {
       `${Selectors.h1}:text-is("${ServiceOfApplication2Content.pageTitle}")`,
     );
     await pageTitle.waitFor();
-    // need to hadd looking for order (switch case) - same for page 2
+    // need to had looking for order (switch case) - same for page 2
     await Promise.all([
       Helpers.checkGroup(
         page,
@@ -64,25 +64,6 @@ export class ServiceOfApplicationSubmitPage {
         page,
         `${Selectors.GovukText16}:text-is("${ServiceOfApplicationSubmitContent.text16Change}"):visible`,
         3,
-      ),
-    ]);
-    await page.click(
-      `${Selectors.p}:text-is("${ServiceOfApplicationSubmitContent.p}")`,
-    );
-    await Promise.all([
-      Helpers.checkGroup(
-        page,
-        3,
-        ServiceOfApplication2Content,
-        "hiddenP",
-        Selectors.p,
-      ),
-      Helpers.checkGroup(
-        page,
-        2,
-        ServiceOfApplication2Content,
-        "hiddenLi",
-        Selectors.li,
       ),
     ]);
     if (accessibilityTest) {

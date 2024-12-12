@@ -41,12 +41,12 @@ export class ServiceOfApplicationConfirmPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h2}:text-is("${ServiceOfApplicationConfirmContent.h3}")`,
+        `${Selectors.h3}:text-is("${ServiceOfApplicationConfirmContent.h3}")`,
         1,
       ),
       Helpers.checkGroup(
         page,
-        5,
+        4,
         ServiceOfApplicationConfirmContent,
         "p",
         `${Selectors.p}`,
@@ -70,7 +70,7 @@ export class ServiceOfApplicationConfirmPage {
     }
 
     await page.click(
-      `${Selectors.GovukButton}:text-is("${ServiceOfApplicationConfirmContent.closeAndReturnToCaseDetails}")`,
+      `${Selectors.button}:text-is("${ServiceOfApplicationConfirmContent.closeAndReturnToCaseDetails}")`,
     );
   }
 }

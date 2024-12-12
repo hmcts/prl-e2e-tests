@@ -78,7 +78,7 @@ export class ServiceOfApplication2Page {
     await Promise.all([
       Helpers.checkGroup(
         page,
-        2,
+        3,
         ServiceOfApplication2Content,
         "hiddenP",
         Selectors.p,
