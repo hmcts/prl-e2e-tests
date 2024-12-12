@@ -9,7 +9,6 @@ import { ServiceOfApplicationSubmitPage } from "../../../../../pages/manageCases
 import { ServiceOfApplicationConfirmPage } from "../../../../../pages/manageCases/caseProgression/serviceOfApplication/serviceOfApplicationConfirmPage.ts";
 import { createOrderFL401Options } from "../../../../../common/types.ts";
 
-
 interface ServiceOfApplicationJourneyParams {
   page: Page;
   accessibilityTest: boolean;
@@ -22,7 +21,7 @@ export class ServiceOfApplicationJourney {
   public static async serviceOfApplicationJourney({
     page,
     accessibilityTest,
-                                                    createOrderFL401Options,
+    createOrderFL401Options,
     yesNoServiceOfApplication4,
     responsibleForServing,
   }: ServiceOfApplicationJourneyParams): Promise<void> {
@@ -30,7 +29,7 @@ export class ServiceOfApplicationJourney {
     await ServiceOfApplication2Page.serviceOfApplication2Page({
       page,
       accessibilityTest,
-      createOrderFL401Options
+      createOrderFL401Options,
     });
     await ServiceOfApplication4Page.serviceOfApplication4Page({
       page,

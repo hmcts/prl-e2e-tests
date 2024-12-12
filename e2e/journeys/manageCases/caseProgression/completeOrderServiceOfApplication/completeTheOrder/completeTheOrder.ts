@@ -17,9 +17,7 @@ import {
 import { createOrderManageOrders19Options } from "../../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders19Page.ts";
 import { howLongWillOrderBeInForce } from "../../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders12Page.ts";
 import { ServiceOfApplicationJourney } from "../serviceOfApplication/serviceOfApplication.ts";
-import {
-  responsibleForServing
-} from "../../../../../pages/manageCases/caseProgression/serviceOfApplication/ServiceOfApplication4Page.ts";
+import { responsibleForServing } from "../../../../../pages/manageCases/caseProgression/serviceOfApplication/ServiceOfApplication4Page.ts";
 
 interface CompleteTheOrderParams {
   page: Page;
@@ -38,7 +36,6 @@ interface CompleteTheOrderParams {
   personallyServed: boolean;
   yesNoServiceOfApplication4: boolean;
   responsibleForServing: responsibleForServing;
-
 }
 
 // ServiceOfApplicationJourney seems to only work when it is put into this file, and not if it
@@ -52,8 +49,8 @@ export class CompleteTheOrder {
     createOrderFL401Options,
     browser,
     personallyServed,
-                                         yesNoServiceOfApplication4,
-                                         responsibleForServing,
+    yesNoServiceOfApplication4,
+    responsibleForServing,
   }: CompleteTheOrderParams): Promise<void> {
     // open new browser and sign in as court admin user
     const newBrowser = await browser.browserType().launch();

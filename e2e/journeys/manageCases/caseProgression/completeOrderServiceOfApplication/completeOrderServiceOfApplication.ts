@@ -3,20 +3,12 @@ import {
   c100CaseWorkerActions,
   createOrderFL401Options,
   judgeTitles,
-  manageOrdersOptions
+  manageOrdersOptions,
 } from "../../../../common/types.ts";
-import {
-  createOrderManageOrders19Options
-} from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders19Page.ts";
-import {
-  howLongWillOrderBeInForce
-} from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders12Page.ts";
-import {
-  responsibleForServing
-} from "../../../../pages/manageCases/caseProgression/serviceOfApplication/ServiceOfApplication4Page.ts";
-import {
-  ApplicationJourneysCheckGatekeeperJudgeCOOrder
-} from "../manageOrders/application-journeys-check-gatekeeper-judgeCO-order.ts";
+import { createOrderManageOrders19Options } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders19Page.ts";
+import { howLongWillOrderBeInForce } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders12Page.ts";
+import { responsibleForServing } from "../../../../pages/manageCases/caseProgression/serviceOfApplication/ServiceOfApplication4Page.ts";
+import { ApplicationJourneysCheckGatekeeperJudgeCOOrder } from "../manageOrders/application-journeys-check-gatekeeper-judgeCO-order.ts";
 import { CompleteTheOrder } from "./completeTheOrder/completeTheOrder.ts";
 
 interface CompleteTheOrderParams {
@@ -40,23 +32,23 @@ interface CompleteTheOrderParams {
 
 export class CompleteOrderServiceOfApplication {
   public static async completeOrderServiceOfApplication({
-                                         page,
-                                         accessibilityTest,
-                                         yesNoSendToGateKeeper,
-                                         ccdRef,
-                                         c100CaseWorkerActions,
-                                         manageOrdersOptions,
-                                         createOrderFL401Options,
-                                         yesNoManageOrders,
-                                         judgeTitles,
-                                         withOrWithoutNotice,
-                                         createOrderManageOrders19Options,
-                                         howLongWillOrderBeInForce,
-                                         browser,
-                                         personallyServed,
-                                         yesNoServiceOfApplication4,
-                                         responsibleForServing,
-                                       }: CompleteTheOrderParams): Promise<void> {
+    page,
+    accessibilityTest,
+    yesNoSendToGateKeeper,
+    ccdRef,
+    c100CaseWorkerActions,
+    manageOrdersOptions,
+    createOrderFL401Options,
+    yesNoManageOrders,
+    judgeTitles,
+    withOrWithoutNotice,
+    createOrderManageOrders19Options,
+    howLongWillOrderBeInForce,
+    browser,
+    personallyServed,
+    yesNoServiceOfApplication4,
+    responsibleForServing,
+  }: CompleteTheOrderParams): Promise<void> {
     await ApplicationJourneysCheckGatekeeperJudgeCOOrder.applicationJourneysCheckGatekeeperJudgeCOOrder(
       {
         page,

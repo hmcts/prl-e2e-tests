@@ -3,9 +3,7 @@ import Config from "../../../../config";
 import createDaCitizenCourtNavCase from "../../../../common/createCaseHelper";
 import { Helpers } from "../../../../common/helpers";
 import config from "../../../../config";
-import {
-  CompleteOrderServiceOfApplication
-} from "../../../../journeys/manageCases/caseProgression/completeOrderServiceOfApplication/completeOrderServiceOfApplication.ts";
+import { CompleteOrderServiceOfApplication } from "../../../../journeys/manageCases/caseProgression/completeOrderServiceOfApplication/completeOrderServiceOfApplication.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 

@@ -7,9 +7,7 @@ import config from "../../../../config";
 import { MiamPolicyUpgrade6Content } from "../../../../fixtures/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade6Content";
 import { CommonStaticText } from "../../../../common/commonStaticText";
 import { createOrderFL401Options } from "../../../../common/types.ts";
-import {
-  ManageOrders3DAContent
-} from "../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders3DAContent.ts";
+import { ManageOrders3DAContent } from "../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders3DAContent.ts";
 
 interface ServiceOfApplication2Options {
   page: Page;
@@ -26,7 +24,7 @@ export class ServiceOfApplication2Page {
   public static async serviceOfApplication2Page({
     page,
     accessibilityTest,
-                                                  createOrderFL401Options
+    createOrderFL401Options,
   }: ServiceOfApplication2Options): Promise<void> {
     await this.checkPageLoads({
       page,
@@ -100,17 +98,21 @@ export class ServiceOfApplication2Page {
 
   private static async fillInFields({
     page,
-                                      createOrderFL401Options
+    createOrderFL401Options,
   }: Partial<ServiceOfApplication2Options>): Promise<void> {
     if (!page) {
       throw new Error("No page found");
     }
     switch (createOrderFL401Options) {
       case "power of arrest":
-        await page.click(`${Selectors.p}:has-text("${ServiceOfApplication2Content.powerOfArrest}")`);
+        await page.click(
+          `${Selectors.p}:has-text("${ServiceOfApplication2Content.powerOfArrest}")`,
+        );
         break;
       case "amend discharge varied order":
-        await page.click(`${Selectors.p}:has-text("${ManageOrders3DAContent.amendDischargeVariedOrder}")`);
+        await page.click(
+          `${Selectors.p}:has-text("${ManageOrders3DAContent.amendDischargeVariedOrder}")`,
+        );
         break;
     }
     const fileInput = page.locator(UniqueSelectors.fileUpload);
