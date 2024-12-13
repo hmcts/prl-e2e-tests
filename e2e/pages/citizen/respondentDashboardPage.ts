@@ -1,11 +1,11 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../common/selectors.ts";
-import AccessibilityTestHelper from "../../common/accessibilityTestHelper.ts";
 import { Helpers } from "../../common/helpers.ts";
-import { ApplicantDashboardContent } from "../../fixtures/citizen/applicantDashboardContent.ts";
+import AccessibilityTestHelper from "../../common/accessibilityTestHelper.ts";
+import { RespondentDashboardContent } from "../../fixtures/citizen/respondentDashboardContent.ts";
 
-export class ApplicantDashboardPage {
-  public static async applicantDashboardPage(
+export class RespondentDashboardPage {
+  public static async respondentDashboardPage(
     page: Page,
     caseRef: string,
     accessibilityTest: boolean,
@@ -20,7 +20,7 @@ export class ApplicantDashboardPage {
   ): Promise<void> {
     await page
       .locator(Selectors.NotificationBannerTitle, {
-        hasText: ApplicantDashboardContent.notificationBannerTitle,
+        hasText: RespondentDashboardContent.notificationBannerTitle,
       })
       .waitFor();
     await Promise.all([
@@ -31,34 +31,24 @@ export class ApplicantDashboardPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHeadingXL}:text-is("${ApplicantDashboardContent.govukHeadingXL}")`,
+        `${Selectors.GovukHeadingXL}:text-is("${RespondentDashboardContent.govukHeadingXL}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.NotificationBannerHeading}:text-is("${ApplicantDashboardContent.notificationBannerHeading}")`,
+        `${Selectors.NotificationBannerHeading}:text-is("${RespondentDashboardContent.notificationBannerHeading}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.NotoficationBannerLink}:text-is("${ApplicantDashboardContent.notoficationBannerLink}")`,
+        `${Selectors.NotoficationBannerLink}:text-is("${RespondentDashboardContent.notoficationBannerLink}")`,
         1,
       ),
-      Helpers.checkGroup(page, 3, ApplicantDashboardContent, "p", Selectors.p),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.p}:text-is("${ApplicantDashboardContent.p4}"):visible`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.strong}:text-is("${ApplicantDashboardContent.strong}")`,
-        1,
-      ),
+      Helpers.checkGroup(page, 2, RespondentDashboardContent, "p", Selectors.p),
       Helpers.checkGroup(
         page,
         5,
-        ApplicantDashboardContent,
+        RespondentDashboardContent,
         "h2",
         Selectors.h2,
       ),
