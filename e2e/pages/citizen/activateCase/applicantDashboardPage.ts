@@ -19,8 +19,8 @@ export class ApplicantDashboardPage {
     accessibilityTest: boolean,
   ): Promise<void> {
     await page
-      .locator(Selectors.NotificationBannerTitle, {
-        hasText: ApplicantDashboardContent.notificationBannerTitle,
+      .locator(Selectors.GovukHeadingXL, {
+        hasText: ApplicantDashboardContent.govukHeadingXL,
       })
       .waitFor();
     await Promise.all([
@@ -31,29 +31,33 @@ export class ApplicantDashboardPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHeadingXL}:text-is("${ApplicantDashboardContent.govukHeadingXL}")`,
-        1,
+        `${Selectors.NotificationBannerTitle}:text-is("${ApplicantDashboardContent.notificationBannerTitle}")`,
+        ,
       ),
+      Helpers.checkGroup(
+        page,
+        2,
+        ApplicantDashboardContent,
+        "notificationBannerHeading",
+        Selectors.NotificationBannerHeading
+      ),
+      Helpers.checkGroup(
+        page,
+        2,
+        ApplicantDashboardContent,
+        "notificationBannerLink",
+        Selectors.NotoficationBannerLink
+      ),
+      Helpers.checkGroup(page, 5, ApplicantDashboardContent, "p", Selectors.p),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.NotificationBannerHeading}:text-is("${ApplicantDashboardContent.notificationBannerHeading}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.NotoficationBannerLink}:text-is("${ApplicantDashboardContent.notoficationBannerLink}")`,
-        1,
-      ),
-      Helpers.checkGroup(page, 3, ApplicantDashboardContent, "p", Selectors.p),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.p}:text-is("${ApplicantDashboardContent.p4}"):visible`,
-        1,
+        `${Selectors.p}:text-is("${ApplicantDashboardContent.p6}"):visible`,
+        2
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.strong}:text-is("${ApplicantDashboardContent.strong}")`,
-        1,
+        2
       ),
       Helpers.checkGroup(
         page,

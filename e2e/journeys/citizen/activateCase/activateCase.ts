@@ -7,6 +7,9 @@ import { CaseActivatedPage } from "../../../pages/citizen/activateCase/caseActiv
 import { ApplicantDashboardPage } from "../../../pages/citizen/activateCase/applicantDashboardPage.ts";
 import { Helpers } from "../../../common/helpers.ts";
 import { RespondentDashboardPage } from "../../../pages/citizen/activateCase/respondentDashboardPage.ts";
+import {
+  CompleteOrderServiceOfApplication
+} from "../../manageCases/caseProgression/completeOrderServiceOfApplication/completeOrderServiceOfApplication.ts";
 
 interface ActiveCaseParams {
   page: Page;
@@ -22,7 +25,24 @@ export class ActivateCase {
     caseRef,
     accessibilityTest,
   }: ActiveCaseParams): Promise<void> {
-    // TODO: get a case past service of application stage -> NOT served personally
+    await CompleteOrderServiceOfApplication.completeOrderServiceOfApplication({
+      page: page,
+      accessibilityTest: false,
+      yesNoSendToGateKeeper: true,
+      ccdRef: caseRef,
+      c100CaseWorkerActions: "Manage orders",
+      manageOrdersOptions: "create order",
+      createOrderFL401Options: "power of arrest",
+      yesNoManageOrders: false,
+      judgeTitles: "Her Honour Judge",
+      withOrWithoutNotice: true,
+      createOrderManageOrders19Options: "dateToBeFixed", // "dateConfirmed" will not pass because page 19 does not give a hearing you are allowed to select
+      howLongWillOrderBeInForce: "untilNextHearing", // Should not matter unless non-molestation order is selected.
+      browser: browser,
+      personallyServed: true,
+      yesNoServiceOfApplication4: false,
+      responsibleForServing: "courtBailiff", / this isn't used when yesNoServiceOfApplication4 is false
+    });
     await this.checkApplicantDashboard(browser, caseRef, accessibilityTest);
     await this.checkRespondentDashboard(browser, caseRef, accessibilityTest);
   }
