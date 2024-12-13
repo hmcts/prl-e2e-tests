@@ -1,6 +1,6 @@
 import { Browser, Page } from "@playwright/test";
 import {
-  c100CaseWorkerActions,
+  WACaseWorkerActions,
   createOrderFL401Options,
   judgeTitles,
   manageOrdersOptions,
@@ -31,7 +31,7 @@ interface JudgeDACaseProgressionJourneyParams {
   browser: Browser;
   ccdRef: string;
   accessibilityTest: boolean;
-  c100CaseWorkerActions: c100CaseWorkerActions;
+  c100CaseWorkerActions: WACaseWorkerActions;
   createOrderFL401Options: createOrderFL401Options;
   judgeTitles: judgeTitles;
   yesNoManageOrders: boolean;
@@ -45,7 +45,7 @@ interface JudgeUOCaseProgressionJourneyParams {
   browser: Browser;
   ccdRef: string;
   accessibilityTest: boolean;
-  c100CaseWorkerActions: c100CaseWorkerActions;
+  c100CaseWorkerActions: WACaseWorkerActions;
   yesNoManageOrders: boolean;
   uploadOrderFL401Options: uploadOrderFL401Options;
   manageOrdersOptions: manageOrdersOptions;
