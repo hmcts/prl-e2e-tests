@@ -12,7 +12,7 @@ import {
   fl401JudiciaryEvents,
   fl401SolicitorEvents,
   fl401SubmittedSolicitorEvents,
-  c100CaseWorkerActions,
+  WACaseWorkerActions,
   UserRole,
   fl401CaseWorkerActions,
 } from "./types";
@@ -26,7 +26,7 @@ export class Helpers {
       | fl401SolicitorEvents
       | fl401SubmittedSolicitorEvents
       | fl401JudiciaryEvents
-      | c100CaseWorkerActions
+      | WACaseWorkerActions
       | fl401CaseWorkerActions,
   ): Promise<void> {
     try {
