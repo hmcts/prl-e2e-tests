@@ -12,7 +12,7 @@ import {
   fl401JudiciaryEvents,
   fl401SolicitorEvents,
   fl401SubmittedSolicitorEvents,
-  c100CaseWorkerActions,
+  WACaseWorkerActions,
   UserRole,
   fl401CaseWorkerActions,
 } from "./types";
@@ -26,7 +26,7 @@ export class Helpers {
       | fl401SolicitorEvents
       | fl401SubmittedSolicitorEvents
       | fl401JudiciaryEvents
-      | c100CaseWorkerActions
+      | WACaseWorkerActions
       | fl401CaseWorkerActions,
   ): Promise<void> {
     try {
@@ -345,5 +345,30 @@ export class Helpers {
       storageState: Config.sessionStoragePath + `${user}.json`,
     });
     return await newContext.newPage();
+  }
+
+  public static async waitForTaskToDisappear(page: Page, taskName: string) {
+    // Refresh page until the task disappears - there can be some delay
+    await expect
+      .poll(
+        async () => {
+          const visible = await page
+            .locator(Selectors.strong, {
+              hasText: taskName,
+            })
+            .isVisible();
+          if (visible) {
+            await page.reload();
+          }
+          return !visible;
+        },
+        {
+          // Allow 10s delay before retrying
+          intervals: [10_000],
+          // Allow up to a minute for it to disappear
+          timeout: 100_000,
+        },
+      )
+      .toBeTruthy();
   }
 }

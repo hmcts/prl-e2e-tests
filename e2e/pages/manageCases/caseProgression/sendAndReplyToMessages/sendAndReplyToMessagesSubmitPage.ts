@@ -1,23 +1,16 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors";
 import { CommonStaticText } from "../../../../common/commonStaticText";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
-import { SendAndReplyToMessagesSubmitContent } from "../../../../fixtures/manageCases/caseProgression/sendAndReplyToMessages/sendAndReplyToMessagesSubmitContent";
 import { Helpers } from "../../../../common/helpers";
+import { Selectors } from "../../../../common/selectors";
+import { SendAndReplyToMessagesSubmitContent } from "../../../../fixtures/manageCases/caseProgression/sendAndReplyToMessages/sendAndReplyToMessagesSubmitContent";
 
 export class SendAndReplyToMessagesSubmitPage {
   public static async sendAndReplyToMessagesSubmitPage(
     page: Page,
     isSend: boolean,
     responseRequired: boolean,
-    accessibilityTest: boolean,
   ) {
-    await this.checkPageLoads(
-      page,
-      isSend,
-      responseRequired,
-      accessibilityTest,
-    );
+    await this.checkPageLoads(page, isSend, responseRequired);
     await this.saveAndContinue(page);
   }
 
@@ -25,7 +18,6 @@ export class SendAndReplyToMessagesSubmitPage {
     page: Page,
     isSend: boolean,
     responseRequired: boolean,
-    accessibilityTest: boolean,
   ): Promise<void> {
     await page
       .locator(Selectors.headingH2, {

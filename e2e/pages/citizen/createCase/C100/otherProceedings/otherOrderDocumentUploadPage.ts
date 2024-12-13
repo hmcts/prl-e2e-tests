@@ -1,11 +1,11 @@
 import { expect, Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { Helpers } from "../../../../../common/helpers";
+import AxeTest from "../../../../../common/accessibilityTestHelper";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { CitizenOtherProceedingsDocumentUploadSelectors } from "../../../../../common/commonUniqueSelectors";
+import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors";
 import config from "../../../../../config";
 import { OtherOrderDocumentUploadContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/otherOrderDocumentUploadContent";
-import AxeTest from "../../../../../common/accessibilityTestHelper";
 
 interface OtherOrderDocumentUploadPageOptions {
   page: Page;
@@ -102,7 +102,7 @@ export class OtherOrderDocumentUploadPage {
         1,
       ),
     ]);
-    let fileInput = page.locator(
+    const fileInput = page.locator(
       `${CitizenOtherProceedingsDocumentUploadSelectors.documentUpload}`,
     );
     await fileInput.setInputFiles(config.testOdtFile);
@@ -119,7 +119,7 @@ export class OtherOrderDocumentUploadPage {
   private static async fillInFields({
     page: page,
   }: fillInFieldsOptions): Promise<void> {
-    let fileInput = page.locator(
+    const fileInput = page.locator(
       `${CitizenOtherProceedingsDocumentUploadSelectors.documentUpload}`,
     );
     await fileInput.setInputFiles(config.testPdfFile);
@@ -130,10 +130,10 @@ export class OtherOrderDocumentUploadPage {
       `${CitizenOtherProceedingsDocumentUploadSelectors.uploadConfirmationSelector}`,
       { timeout: 5000 },
     );
-    const isUploaded = await page.isVisible(
+    const isUploaded = page.locator(
       `${CitizenOtherProceedingsDocumentUploadSelectors.uploadConfirmationSelector}`,
     );
-    expect(isUploaded).toBeTruthy();
+    await expect(isUploaded).toBeVisible();
     await Helpers.checkVisibleAndPresent(
       page,
       `${Selectors.a}:text-is("${CommonStaticText.remove}")`,

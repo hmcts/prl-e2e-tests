@@ -10,7 +10,7 @@ test.describe("C100 Citizen Application with Written Consent from other people i
       Config.citizenFrontendBaseURL,
     );
   });
-  test(`Test the C100 of the citizen journey with the following options:
+  test(`C100 of the citizen journey with the following options:
     Not Accessibility Testing,
     Not Error Messaging,
     Yes Screening and Written Review
@@ -99,7 +99,7 @@ test.describe("C100 Citizen Application with Written Consent from other people i
     });
   });
 
-  test(`Test the C100 of the citizen journey with the following options:
+  test(`C100 of the citizen journey with the following options:
     Not Accessibility Testing,
     Not Error Messaging,
     Yes Screening and Written Review
@@ -188,7 +188,7 @@ test.describe("C100 Citizen Application with Written Consent from other people i
     });
   });
 
-  test(`Test the C100 of the citizen journey with the following options:
+  test(`C100 of the citizen journey with the following options:
     Not Accessibility Testing,
     Error Messaging,
     Yes Screening and Written Review
@@ -286,7 +286,7 @@ test.describe("Test the accessibility of the CA C100 Citizen Journey", (): void 
       Config.citizenFrontendBaseURL,
     );
   });
-  test(`Test the C100 of the citizen journey with the following options:
+  test(`C100 of the citizen journey with the following options:
     Accessibility Testing,
     Not Error Messaging,
     Yes Screening and Written Review

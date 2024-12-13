@@ -5,30 +5,31 @@
   "engines": {
     "node": ">=20.11.1"
   },
-  "dependencies": {
-    "@axe-core/playwright": "^4.10.0",
-    "dotenv": "^16.4.5",
-    "playwright-core": "^1.49.0",
-    "typescript": "^5.5.4",
-    "uuid": "^11.0.2"
-  },
   "devDependencies": {
+    "@axe-core/playwright": "^4.10.0",
+    "@eslint/js": "^9.11.1",
     "@jest/globals": "^29.7.0",
     "@jest/types": "^29.6.3",
     "@playwright/test": "^1.49.0",
     "@types/jest": "^29.5.12",
     "@types/node": "^22.4.1",
     "axios": "^1.7.4",
+    "dotenv": "^16.4.5",
+    "eslint": "^9.11.1",
+    "eslint-plugin-playwright": "^2.1.0",
     "jest": "^29.7.0",
-    "pre-commit": "^1.2.2",
+    "playwright-core": "^1.49.0",
     "prettier": "^3.3.3",
     "simple-git": "^3.27.0",
     "ts-jest": "^29.2.5",
-    "ts-node": "^10.9.2"
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4",
+    "typescript-eslint": "^8.8.0",
+    "uuid": "^11.0.2"
   },
   "scripts": {
     "configure": "yarn playwright install && yarn playwright install webkit && yarn playwright install firefox",
-    "lint": "yarn prettier . --write",
+    "lint": "yarn prettier . --write && yarn tsc -p tsconfig.json && yarn eslint .",
     "test:unit": "jest",
     "test:changes": "yarn playwright install && ts-node ./e2e/common/changedTestsRunner.ts",
     "test:fullfunctional": "echo 'This is a placeholder'",
@@ -44,8 +45,5 @@
     "test:citizenFrontendSafari": "yarn playwright install webkit && yarn playwright test e2e/tests/citizen --project webkit --grep @smoke",
     "test:citizenFrontendAccessibility": "yarn playwright install && yarn playwright test e2e/tests/citizen --project chromium --grep @accessibility"
   },
-  "pre-commit": [
-    "lint"
-  ],
   "packageManager": "yarn@4.5.3"
 }

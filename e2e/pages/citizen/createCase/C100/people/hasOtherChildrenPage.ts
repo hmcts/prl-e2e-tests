@@ -1,10 +1,10 @@
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { HasOtherChildrenContent } from "../../../../../fixtures/citizen/createCase/C100/people/hasOtherChildrenContent";
-import { Helpers } from "../../../../../common/helpers";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors";
 import { yesNoDontKnow } from "../../../../../common/types";
+import { HasOtherChildrenContent } from "../../../../../fixtures/citizen/createCase/C100/people/hasOtherChildrenContent";
 
 interface HasOtherChildrenPageOptions {
   page: Page;

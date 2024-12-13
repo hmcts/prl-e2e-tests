@@ -1,10 +1,9 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { InternationalElementsStartContent } from "../../../../../fixtures/citizen/createCase/C100/internationalElement/internationalElementsStartContent";
-import { Helpers } from "../../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors";
 import { internationalElementsParentsContent } from "../../../../../fixtures/citizen/createCase/C100/internationalElement/internationalElementsParentsContent";
+import { InternationalElementsStartContent } from "../../../../../fixtures/citizen/createCase/C100/internationalElement/internationalElementsStartContent";
 
 interface InternationalElementsParentsPageOptions {
   page: Page;
@@ -41,7 +40,6 @@ export class InternationalElementsParentsPage {
 
   private static async checkPageLoads({
     page: page,
-    accessibilityTest: accessibilityTest,
   }: Partial<InternationalElementsParentsPageOptions>): Promise<void> {
     if (!page) {
       throw new Error();

@@ -1,10 +1,9 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { CommonStaticText } from "../../../../../common/commonStaticText";
-import AxeTest from "../../../../../common/accessibilityTestHelper";
-import { ReasonableAdjustmentsSupportForCourtHearingContent } from "../../../../../fixtures/citizen/createCase/C100/reasonableAdjustments/ReasonableAdjustmentsSupportForCourtHearingContent";
-import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors";
+import { ReasonableAdjustmentsSupportForCourtHearingContent } from "../../../../../fixtures/citizen/createCase/C100/reasonableAdjustments/ReasonableAdjustmentsSupportForCourtHearingContent";
 
 export interface ReasonableAdjustmentsSupportForCourtHearingPageOptions {
   page: Page;
@@ -192,9 +191,9 @@ export class ReasonableAdjustmentsSupportForCourtHearingPage {
         "therapyAnimalInput",
         "otherInput",
       ];
-      for (let key of textToFill) {
-        let inputKey = key as keyof typeof TextBoxUniqueSelectors;
-        let contentKey =
+      for (const key of textToFill) {
+        const inputKey = key as keyof typeof TextBoxUniqueSelectors;
+        const contentKey =
           key as keyof typeof ReasonableAdjustmentsSupportForCourtHearingContent;
         await page.fill(
           TextBoxUniqueSelectors[inputKey],

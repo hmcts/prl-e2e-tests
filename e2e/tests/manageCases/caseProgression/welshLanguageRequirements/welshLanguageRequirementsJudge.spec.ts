@@ -1,8 +1,7 @@
 import { test } from "@playwright/test";
-import Config from "../../../../config";
 import createDaCitizenCourtNavCase from "../../../../common/createCaseHelper";
 import { Helpers } from "../../../../common/helpers";
-import config from "../../../../config";
+import { default as Config, default as config } from "../../../../config";
 import { WelshLanguageRequirements } from "../../../../journeys/manageCases/caseProgression/welshLanguageRequirements/welshLanguageRequirements";
 
 test.use({ storageState: Config.sessionStoragePath + "judge.json" });
@@ -43,7 +42,7 @@ test.describe("Welsh Language Requirements task for DA Citizen case tests as Jud
   Does any person in this case need orders or documents in Welsh: Yes
   Which language are you using to complete this application: English
   Does this application need to be translated: No
-  Accessibility testing: No. @regression `, async ({ page }): Promise<void> => {
+  Accessibility testing: No. @regression`, async ({ page }): Promise<void> => {
     await WelshLanguageRequirements.welshLanguageRequirements({
       page: page,
       needDocumentsInWelsh: true,
