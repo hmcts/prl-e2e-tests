@@ -69,6 +69,7 @@ export type WACaseWorkerActions =
   | "Manage orders"
   | "Service of application"
   | "Create A Bundle"
+  | "Statement of service";
 
 export type fl401CaseWorkerActions =
   | "Welsh language requirements"
