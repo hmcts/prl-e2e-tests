@@ -32,27 +32,27 @@ export class ApplicantDashboardPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.NotificationBannerTitle}:text-is("${ApplicantDashboardContent.notificationBannerTitle}")`,
-        ,
+        2,
       ),
       Helpers.checkGroup(
         page,
         2,
         ApplicantDashboardContent,
         "notificationBannerHeading",
-        Selectors.NotificationBannerHeading
+        Selectors.NotificationBannerHeadin,
       ),
       Helpers.checkGroup(
         page,
         2,
         ApplicantDashboardContent,
         "notificationBannerLink",
-        Selectors.NotoficationBannerLink
+        Selectors.NotoficationBannerLink,
       ),
       Helpers.checkGroup(page, 5, ApplicantDashboardContent, "p", Selectors.p),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.p}:text-is("${ApplicantDashboardContent.p6}"):visible`,
-        2
+        ,
       ),
       Helpers.checkVisibleAndPresent(
         page,
