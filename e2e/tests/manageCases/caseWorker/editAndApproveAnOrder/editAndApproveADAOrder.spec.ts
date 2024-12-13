@@ -1,7 +1,9 @@
 import { test } from "@playwright/test";
 import Config from "../../../../config";
 import { EditAndApproveAnOrder } from "../../../../journeys/manageCases/caseWorker/editAndApproveAnOrder/editAndApproveAnOrder";
+
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
+
 test.describe("Edit and approve a DA order tests", (): void => {
   // tests failing due to EXUI-2621
   // TODO: turn tests back on once issue around "Client context information not matching" has been resolved
