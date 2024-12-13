@@ -11,8 +11,14 @@ export class AdminEditAndApproveAnOrderSubmitPage {
     page: Page,
     accessibilityTest: boolean,
     createOrderFL401Options: createOrderFL401Options,
+    personallyServed: boolean,
   ): Promise<void> {
-    await this.checkPageLoads(page, accessibilityTest, createOrderFL401Options);
+    await this.checkPageLoads(
+      page,
+      accessibilityTest,
+      createOrderFL401Options,
+      personallyServed,
+    );
     await this.submit(page);
   }
 
@@ -20,6 +26,7 @@ export class AdminEditAndApproveAnOrderSubmitPage {
     page: Page,
     accessibilityTest: boolean,
     createOrderFL401Options: createOrderFL401Options,
+    personallyServed: boolean,
   ): Promise<void> {
     await page
       .locator(`${Selectors.headingH2}`, {
@@ -76,23 +83,6 @@ export class AdminEditAndApproveAnOrderSubmitPage {
             `${Selectors.a}:text-is("${AdminEditAndApproveAnOrderSubmitContent.powerOfArrest}")`,
             1,
           ),
-          Helpers.checkGroup(
-            page,
-            11,
-            AdminEditAndApproveAnOrderSubmitContent,
-            `powerText16`,
-            Selectors.GovukText16,
-          ),
-          Helpers.checkVisibleAndPresent(
-            page,
-            `${Selectors.GovukText16}:text-is("${AdminEditAndApproveAnOrderSubmitContent.No}"):visible`,
-            1,
-          ),
-          Helpers.checkVisibleAndPresent(
-            page,
-            `${Selectors.GovukText16}:text-is("${AdminEditAndApproveAnOrderSubmitContent.Yes}"):visible`,
-            2,
-          ),
           await expect(
             page.locator("ccd-read-dynamic-list-field span", {
               hasText:
@@ -113,33 +103,6 @@ export class AdminEditAndApproveAnOrderSubmitPage {
             `${Selectors.a}:text-is("${AdminEditAndApproveAnOrderSubmitContent.amendedDischarged}")`,
             1,
           ),
-          Helpers.checkGroup(
-            page,
-            10,
-            AdminEditAndApproveAnOrderSubmitContent,
-            `amendText16`,
-            Selectors.GovukText16,
-          ),
-          Helpers.checkVisibleAndPresent(
-            page,
-            `${Selectors.GovukText16}:text-is("${AdminEditAndApproveAnOrderSubmitContent.No}"):visible`,
-            2,
-          ),
-          Helpers.checkVisibleAndPresent(
-            page,
-            `${Selectors.GovukText16}:text-is("${AdminEditAndApproveAnOrderSubmitContent.Yes}"):visible`,
-            1,
-          ),
-          Helpers.checkVisibleAndPresent(
-            page,
-            `${Selectors.p}:text-is("${AdminEditAndApproveAnOrderSubmitContent.pApplicant}"):visible`,
-            1,
-          ),
-          Helpers.checkVisibleAndPresent(
-            page,
-            `${Selectors.p}:text-is("${AdminEditAndApproveAnOrderSubmitContent.pRespondent}"):visible`,
-            1,
-          ),
           await expect(
             page.locator("ccd-read-dynamic-list-field span", {
               hasText:
@@ -148,6 +111,63 @@ export class AdminEditAndApproveAnOrderSubmitPage {
           ).toBeVisible(),
         ]);
         break;
+    }
+    if (personallyServed) {
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${AdminEditAndApproveAnOrderSubmitContent.Yes}"):visible`,
+        2,
+      );
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${AdminEditAndApproveAnOrderSubmitContent.No}"):visible`,
+        1,
+      );
+      await Helpers.checkGroup(
+        page,
+        11,
+        AdminEditAndApproveAnOrderSubmitContent,
+        `powerText16`,
+        Selectors.GovukText16,
+      );
+    } else {
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${AdminEditAndApproveAnOrderSubmitContent.Yes}"):visible`,
+        1,
+      );
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${AdminEditAndApproveAnOrderSubmitContent.No}"):visible`,
+        2,
+      );
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${AdminEditAndApproveAnOrderSubmitContent.pApplicant}"):visible`,
+        1,
+      );
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${AdminEditAndApproveAnOrderSubmitContent.pRespondent}"):visible`,
+        1,
+      );
+      await Helpers.checkGroup(
+        page,
+        10,
+        AdminEditAndApproveAnOrderSubmitContent,
+        `amendText16`,
+        Selectors.GovukText16,
+      );
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${AdminEditAndApproveAnOrderSubmitContent.pApplicant}"):visible`,
+        1,
+      );
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${AdminEditAndApproveAnOrderSubmitContent.pRespondent}"):visible`,
+        1,
+      );
     }
 
     if (accessibilityTest) {

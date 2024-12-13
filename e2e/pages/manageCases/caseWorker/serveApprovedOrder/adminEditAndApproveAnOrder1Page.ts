@@ -48,17 +48,15 @@ export class AdminEditAndApproveAnOrder1Page {
   }
 
   private static async fillInFields(page: Page): Promise<void> {
-    await page.selectOption("#draftOrdersDynamicList", { index: 1 });
+    const optionSelect = await page
+      .locator("option", { hasText: "Non-molestation order (FL404A)" })
+      .textContent();
+    if (optionSelect) {
+      await page
+        .locator("#draftOrdersDynamicList")
+        .selectOption({ label: optionSelect });
+    }
   }
-
-  // private static async fillInFields(page: Page): Promise<void> {
-  //
-  //   const optionSelect = await page.locator('option', {hasText: 'Amended, discharged or varied order (FL404B)'}).textContent();
-  //   // await page.selectOption("#draftOrdersDynamicList", "Amended, discharged or varied order (FL404B)" );
-  //   if (optionSelect){
-  //     await page.locator("#draftOrdersDynamicList").selectOption({label: optionSelect})
-  //   }
-  // }
 
   private static async continue(page: Page): Promise<void> {
     await page.click(

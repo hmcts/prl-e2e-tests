@@ -57,13 +57,7 @@ export class AdminEditAndApproveAnOrder21Page {
   }
 
   private static async fillInFields(page: Page): Promise<void> {
-    await page.selectOption("#selectTypeOfOrder", { index: 2 });
-    // await Helpers.checkVisibleAndPresent(
-    //   page,
-    //   `${Selectors.GovukFormLabel}:text-is("${AdminEditAndApproveAnOrder21Content.formLabel3}")`,
-    //   1,
-    // );
-    // await page.check(`${UniqueSelectors.orderCloseCaseYes}`);
+    await page.locator("#selectTypeOfOrder").selectOption({ label: "General" });
     await page.check(`${UniqueSelectors.serveOrderNowYes}`);
   }
 
