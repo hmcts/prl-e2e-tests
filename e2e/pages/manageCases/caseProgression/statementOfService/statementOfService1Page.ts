@@ -61,9 +61,19 @@ export class StatementOfService1Page {
         `${Selectors.strong}:text-is("${StatementOfService1Content.strong}")`,
         1,
       ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${StatementOfService1Content.formLabelWhoWasServed}"):visible`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${StatementOfService1Content.formLabelWhenWereTheyServed}"):visible`,
+        1,
+      ),
       Helpers.checkGroup(
         page,
-        6,
+        4,
         StatementOfService1Content,
         "formLabel",
         Selectors.GovukFormLabel,

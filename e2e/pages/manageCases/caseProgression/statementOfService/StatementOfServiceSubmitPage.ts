@@ -39,7 +39,7 @@ export class StatementOfServiceSubmitPage {
       ),
       Helpers.checkGroup(
         page,
-        8,
+        7,
         StatementOfServiceSubmitContent,
         "text16",
         Selectors.GovukText16,
@@ -50,6 +50,11 @@ export class StatementOfServiceSubmitPage {
         StatementOfServiceSubmitContent,
         "text16Answers",
         Selectors.GovukText16,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.strong}:text-is("${StatementOfServiceSubmitContent.strong}")`,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,

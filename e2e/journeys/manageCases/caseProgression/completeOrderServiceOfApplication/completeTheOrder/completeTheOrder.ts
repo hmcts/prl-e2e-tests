@@ -45,10 +45,7 @@ export class CompleteTheOrder {
     accessibilityTest,
     ccdRef,
     createOrderFL401Options,
-    browser,
     personallyServed,
-    yesNoServiceOfApplication4,
-    responsibleForServing,
   }: CompleteTheOrderParams): Promise<void> {
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
     // complete the task Complete the Order

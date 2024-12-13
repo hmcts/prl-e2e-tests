@@ -12,6 +12,7 @@ import { ApplicationJourneysCheckGatekeeperJudgeCOOrder } from "../manageOrders/
 import { CompleteTheOrder } from "./completeTheOrder/completeTheOrder.ts";
 import { ServiceOfApplicationJourney } from "./serviceOfApplication/serviceOfApplication.ts";
 import Config from "../../../../config.ts";
+import { StatementOfService } from "../statementOfService/statementOfService.ts";
 
 interface CompleteTheOrderParams {
   page: Page;
@@ -73,9 +74,9 @@ export class CompleteOrderServiceOfApplication {
     const newContext: BrowserContext = await newBrowser.newContext({
       storageState: Config.sessionStoragePath + "caseWorker.json",
     });
-    const newpage: Page = await newContext.newPage();
+    const newPage: Page = await newContext.newPage();
     await CompleteTheOrder.completeTheOrder({
-      page: newpage,
+      page: newPage,
       accessibilityTest,
       yesNoSendToGateKeeper,
       ccdRef,
@@ -93,11 +94,15 @@ export class CompleteOrderServiceOfApplication {
       responsibleForServing,
     });
     await ServiceOfApplicationJourney.serviceOfApplicationJourney({
-      page: newpage,
+      page: newPage,
       accessibilityTest,
       createOrderFL401Options,
       yesNoServiceOfApplication4,
       responsibleForServing,
+    });
+    await StatementOfService.statementOfService({
+      page: newPage,
+      accessibilityTest,
     });
   }
 }

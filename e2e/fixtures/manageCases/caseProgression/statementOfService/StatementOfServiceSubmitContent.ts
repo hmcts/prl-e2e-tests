@@ -6,9 +6,9 @@ export enum StatementOfServiceSubmitContent {
   text164 = "Recipient 1",
   text165 = "Who was served?",
   text166 = "When were they served?",
-  text167 = "Statement of service document",
-  text168 = "Upload document(PDF, .doc)",
-  text169 = "",
+  text167 = "Upload document(PDF, .doc)",
+  strong = "Statement of service document",
+
   text16Answers1 = "Application pack",
   text16Answers2 = "Dolores Smith (Respondent)",
   text16Answers3 = "19 Dec 2025, 12:00:00 AM",
