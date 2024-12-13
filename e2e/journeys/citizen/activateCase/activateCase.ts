@@ -1,12 +1,12 @@
 import { Browser, Page } from "@playwright/test";
-import IdamLoginHelper from "../../common/idamLoginHelper.ts";
-import Config from "../../config.ts";
-import { AccessCodeHelper } from "../../common/accessCodeHelper.ts";
-import { EnterPinPage } from "../../pages/citizen/enterPinPage.ts";
-import { CaseActivatedPage } from "../../pages/citizen/caseActivatedPage.ts";
-import { ApplicantDashboardPage } from "../../pages/citizen/applicantDashboardPage.ts";
-import { Helpers } from "../../common/helpers.ts";
-import { RespondentDashboardPage } from "../../pages/citizen/respondentDashboardPage.ts";
+import IdamLoginHelper from "../../../common/idamLoginHelper.ts";
+import Config from "../../../config.ts";
+import { AccessCodeHelper } from "../../../common/accessCodeHelper.ts";
+import { EnterPinPage } from "../../../pages/citizen/activateCase/enterPinPage.ts";
+import { CaseActivatedPage } from "../../../pages/citizen/activateCase/caseActivatedPage.ts";
+import { ApplicantDashboardPage } from "../../../pages/citizen/activateCase/applicantDashboardPage.ts";
+import { Helpers } from "../../../common/helpers.ts";
+import { RespondentDashboardPage } from "../../../pages/citizen/activateCase/respondentDashboardPage.ts";
 
 interface ActiveCaseParams {
   page: Page;

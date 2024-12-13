@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../common/selectors.ts";
-import { CommonStaticText } from "../../common/commonStaticText.ts";
-import AccessibilityTestHelper from "../../common/accessibilityTestHelper.ts";
-import { Helpers } from "../../common/helpers.ts";
-import { CaseActivatedContent } from "../../fixtures/citizen/caseActivatedContent.ts";
+import { Selectors } from "../../../common/selectors.ts";
+import { CommonStaticText } from "../../../common/commonStaticText.ts";
+import AccessibilityTestHelper from "../../../common/accessibilityTestHelper.ts";
+import { Helpers } from "../../../common/helpers.ts";
+import { CaseActivatedContent } from "../../../fixtures/citizen/activateCase/caseActivatedContent.ts";
 
 export class CaseActivatedPage {
   public static async caseActivatedPage(

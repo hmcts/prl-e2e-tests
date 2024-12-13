@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../common/selectors.ts";
-import AccessibilityTestHelper from "../../common/accessibilityTestHelper.ts";
-import { Helpers } from "../../common/helpers.ts";
-import { ApplicantDashboardContent } from "../../fixtures/citizen/applicantDashboardContent.ts";
+import { Selectors } from "../../../common/selectors.ts";
+import AccessibilityTestHelper from "../../../common/accessibilityTestHelper.ts";
+import { Helpers } from "../../../common/helpers.ts";
+import { ApplicantDashboardContent } from "../../../fixtures/citizen/activateCase/applicantDashboardContent.ts";
 
 export class ApplicantDashboardPage {
   public static async applicantDashboardPage(

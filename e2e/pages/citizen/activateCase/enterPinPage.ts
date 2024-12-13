@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import AccessibilityTestHelper from "../../common/accessibilityTestHelper.ts";
-import { Selectors } from "../../common/selectors.ts";
-import { CommonStaticText } from "../../common/commonStaticText.ts";
-import { EnterPinPageContent } from "../../fixtures/citizen/enterPinPageContent.ts";
-import { Helpers } from "../../common/helpers.ts";
+import AccessibilityTestHelper from "../../../common/accessibilityTestHelper.ts";
+import { Selectors } from "../../../common/selectors.ts";
+import { CommonStaticText } from "../../../common/commonStaticText.ts";
+import { EnterPinPageContent } from "../../../fixtures/citizen/activateCase/enterPinPageContent.ts";
+import { Helpers } from "../../../common/helpers.ts";
 
 enum UniqueSelectors {
   caseCodeInput = "#caseCode",
