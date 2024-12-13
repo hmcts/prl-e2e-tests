@@ -1,15 +1,17 @@
-import { Browser, Page } from "@playwright/test";
+import { Browser, BrowserContext, Page } from "@playwright/test";
 import {
-  WACaseWorkerActions,
   createOrderFL401Options,
   judgeTitles,
   manageOrdersOptions,
+  WACaseWorkerActions,
 } from "../../../../common/types.ts";
 import { createOrderManageOrders19Options } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders19Page.ts";
 import { howLongWillOrderBeInForce } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders12Page.ts";
 import { responsibleForServing } from "../../../../pages/manageCases/caseProgression/serviceOfApplication/ServiceOfApplication4Page.ts";
 import { ApplicationJourneysCheckGatekeeperJudgeCOOrder } from "../manageOrders/application-journeys-check-gatekeeper-judgeCO-order.ts";
 import { CompleteTheOrder } from "./completeTheOrder/completeTheOrder.ts";
+import { ServiceOfApplicationJourney } from "./serviceOfApplication/serviceOfApplication.ts";
+import Config from "../../../../config.ts";
 
 interface CompleteTheOrderParams {
   page: Page;
@@ -66,8 +68,14 @@ export class CompleteOrderServiceOfApplication {
         browser,
       },
     );
+    // open new browser and sign in as court admin user
+    const newBrowser = await browser.browserType().launch();
+    const newContext: BrowserContext = await newBrowser.newContext({
+      storageState: Config.sessionStoragePath + "caseWorker.json",
+    });
+    const newpage: Page = await newContext.newPage();
     await CompleteTheOrder.completeTheOrder({
-      page,
+      page: newpage,
       accessibilityTest,
       yesNoSendToGateKeeper,
       ccdRef,
@@ -81,6 +89,13 @@ export class CompleteOrderServiceOfApplication {
       howLongWillOrderBeInForce,
       browser,
       personallyServed,
+      yesNoServiceOfApplication4,
+      responsibleForServing,
+    });
+    await ServiceOfApplicationJourney.serviceOfApplicationJourney({
+      page: newpage,
+      accessibilityTest,
+      createOrderFL401Options,
       yesNoServiceOfApplication4,
       responsibleForServing,
     });
