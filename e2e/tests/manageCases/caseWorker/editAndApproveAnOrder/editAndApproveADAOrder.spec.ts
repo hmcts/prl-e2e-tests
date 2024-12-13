@@ -7,7 +7,7 @@ test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 test.describe("Edit and approve a DA order tests", (): void => {
   // tests failing due to EXUI-2621
   // TODO: turn tests back on once issue around "Client context information not matching" has been resolved
-  test.fixme(
+  test(
     `Complete Editing and approving an order with the following options:
   Case: FL401,
   Order type: Non-molestation order (FL404A),
@@ -27,7 +27,7 @@ test.describe("Edit and approve a DA order tests", (): void => {
     },
   );
 
-  test.fixme(
+  test(
     `Complete Editing and approving an order with the following options:
   Case: FL401,
   Order type: Non-molestation order (FL404A),
@@ -47,7 +47,7 @@ test.describe("Edit and approve a DA order tests", (): void => {
     },
   );
 
-  test.fixme(
+  test(
     `Complete Editing and approving an order with the following options:
   Case: FL401,
   Order type: Non-molestation order (FL404A),

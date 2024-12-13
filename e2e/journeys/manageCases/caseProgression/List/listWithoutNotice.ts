@@ -22,12 +22,14 @@ export class ListWithoutNotice {
     ccdRef,
     accessibilityTest,
   }: ListWithoutNoticeParams): Promise<void> {
-    await ApplicationJourneysCheckGatekeeper.applicationJourneysCheckGatekeeper({
-      page: page,
-      accessibilityTest: accessibilityTest,
-      yesNoSendToGateKeeper: true,
-      ccdRef: ccdRef,
-    });
+    await ApplicationJourneysCheckGatekeeper.applicationJourneysCheckGatekeeper(
+      {
+        page: page,
+        accessibilityTest: accessibilityTest,
+        yesNoSendToGateKeeper: true,
+        ccdRef: ccdRef,
+      },
+    );
     const judgePage: Page = await Helpers.openNewBrowserWindow(
       browser,
       "judge",

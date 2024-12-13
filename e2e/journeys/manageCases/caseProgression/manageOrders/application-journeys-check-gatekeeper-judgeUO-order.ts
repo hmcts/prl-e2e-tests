@@ -1,6 +1,6 @@
 import { Browser, Page } from "@playwright/test";
 import {
-  c100CaseWorkerActions,
+  WACaseWorkerActions,
   manageOrdersOptions,
   uploadOrderFL401Options,
 } from "../../../../common/types";
@@ -12,7 +12,7 @@ interface CheckApplicationParams {
   accessibilityTest: boolean;
   yesNoSendToGateKeeper: boolean;
   ccdRef: string;
-  c100CaseWorkerActions: c100CaseWorkerActions;
+  c100CaseWorkerActions: WACaseWorkerActions;
   yesNoManageOrders: boolean;
   uploadOrderFL401Options: uploadOrderFL401Options;
   manageOrdersOptions: manageOrdersOptions;
