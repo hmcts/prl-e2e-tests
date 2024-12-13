@@ -19,8 +19,8 @@ export class RespondentDashboardPage {
     accessibilityTest: boolean,
   ): Promise<void> {
     await page
-      .locator(Selectors.NotificationBannerTitle, {
-        hasText: RespondentDashboardContent.notificationBannerTitle,
+      .locator(Selectors.GovukHeadingXL, {
+        hasText: RespondentDashboardContent.govukHeadingXL,
       })
       .waitFor();
     await Promise.all([
@@ -31,7 +31,7 @@ export class RespondentDashboardPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHeadingXL}:text-is("${RespondentDashboardContent.govukHeadingXL}")`,
+        `${Selectors.NotificationBannerTitle}:text-is("${RespondentDashboardContent.notificationBannerTitle}"):visible`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -41,7 +41,7 @@ export class RespondentDashboardPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.NotoficationBannerLink}:text-is("${RespondentDashboardContent.notoficationBannerLink}")`,
+        `${Selectors.NotoficationBannerLink}:text-is("${RespondentDashboardContent.notificationBannerLink}")`,
         1,
       ),
       Helpers.checkGroup(page, 2, RespondentDashboardContent, "p", Selectors.p),
