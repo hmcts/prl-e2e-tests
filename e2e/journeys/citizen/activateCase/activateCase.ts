@@ -7,9 +7,7 @@ import { CaseActivatedPage } from "../../../pages/citizen/activateCase/caseActiv
 import { ApplicantDashboardPage } from "../../../pages/citizen/activateCase/applicantDashboardPage.ts";
 import { Helpers } from "../../../common/helpers.ts";
 import { RespondentDashboardPage } from "../../../pages/citizen/activateCase/respondentDashboardPage.ts";
-import {
-  CompleteOrderServiceOfApplication
-} from "../../manageCases/caseProgression/completeOrderServiceOfApplication/completeOrderServiceOfApplication.ts";
+import { CompleteOrderServiceOfApplication } from "../../manageCases/caseProgression/completeOrderServiceOfApplication/completeOrderServiceOfApplication.ts";
 
 interface ActiveCaseParams {
   page: Page;
@@ -41,7 +39,7 @@ export class ActivateCase {
       browser: browser,
       personallyServed: true,
       yesNoServiceOfApplication4: false,
-      responsibleForServing: "courtBailiff", / this isn't used when yesNoServiceOfApplication4 is false
+      responsibleForServing: "courtBailiff", // this isn't used when yesNoServiceOfApplication4 is false
     });
     await this.checkApplicantDashboard(browser, caseRef, accessibilityTest);
     await this.checkRespondentDashboard(browser, caseRef, accessibilityTest);

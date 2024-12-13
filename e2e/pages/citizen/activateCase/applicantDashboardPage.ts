@@ -39,7 +39,7 @@ export class ApplicantDashboardPage {
         2,
         ApplicantDashboardContent,
         "notificationBannerHeading",
-        Selectors.NotificationBannerHeadin,
+        Selectors.NotificationBannerHeading,
       ),
       Helpers.checkGroup(
         page,
@@ -52,12 +52,12 @@ export class ApplicantDashboardPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.p}:text-is("${ApplicantDashboardContent.p6}"):visible`,
-        ,
+        2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.strong}:text-is("${ApplicantDashboardContent.strong}")`,
-        2
+        2,
       ),
       Helpers.checkGroup(
         page,
