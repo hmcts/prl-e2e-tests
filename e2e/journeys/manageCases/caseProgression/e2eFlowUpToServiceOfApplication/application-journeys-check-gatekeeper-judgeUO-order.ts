@@ -53,6 +53,5 @@ export class ApplicationJourneysCheckGatekeeperJudgeUOOrder {
       uploadOrderFL401Options,
       manageOrdersOptions,
     });
-    await page.waitForTimeout(5000);
   }
 }
