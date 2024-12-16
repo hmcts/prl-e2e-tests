@@ -12,7 +12,7 @@ import { ApplicationJourneysCheckGatekeeperJudgeCOOrder } from "../manageOrders/
 import { CompleteTheOrder } from "./completeTheOrder/completeTheOrder.ts";
 import { ServiceOfApplicationJourney } from "./serviceOfApplication/serviceOfApplication.ts";
 import Config from "../../../../config.ts";
-import { StatementOfService } from "../statementOfService/statementOfService.ts";
+import { StatementOfService } from "./statementOfService/statementOfService.ts";
 
 interface CompleteTheOrderParams {
   page: Page;
@@ -33,7 +33,7 @@ interface CompleteTheOrderParams {
   responsibleForServing: responsibleForServing;
 }
 
-export class CompleteOrderServiceOfApplication {
+export class CompleteOrderServiceOfApplicationStatementOfService {
   public static async completeOrderServiceOfApplication({
     page,
     accessibilityTest,
