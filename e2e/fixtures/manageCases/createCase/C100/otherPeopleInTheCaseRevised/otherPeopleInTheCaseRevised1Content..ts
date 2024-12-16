@@ -26,12 +26,9 @@ export enum OtherPeopleInTheCase1Content {
   formLabelDateOfBirth = "*Date of birth (Optional)",
   FormLabelPlaceOfBirth = "*Place of birth (town, county, country) (Optional)",
   FormLabelPostcode = "Enter a UK postcode",
-  formLabelAddressConfidential = "*Do you need to keep the address confidential?",
   formLabelApplicantAddressLessThan5Years = "*Provide details of all previous addresses for the last 5 years below(if known, including the dates and starting with most recent)",
   formLabelApplicantEmailAddress = "*Email address (Optional)",
-  formLabelEmailAddressConfidential = "*Do you need to keep the email address confidential?",
   formLabelApplicantContactNumber = "*Contact Number (Optional)",
-  formLabelContactNumberConfidential = "*Do you need to keep the contact number confidential?",
 
   formLabelBuildingAndStreet = "Building and Street (Optional)",
   formLabelAddressLine2 = "Address Line 2 (Optional)",

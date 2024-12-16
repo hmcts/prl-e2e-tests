@@ -73,7 +73,7 @@ export class OtherPeopleInTheCaseSubmitPage {
         ),
         Helpers.checkGroup(
           page,
-          12,
+          9,
           OtherPeopleInTheCaseSubmitContent,
           "text16A",
           `${Selectors.GovukText16}`,
