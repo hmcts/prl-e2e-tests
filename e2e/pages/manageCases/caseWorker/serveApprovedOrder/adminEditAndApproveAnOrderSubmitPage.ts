@@ -1,31 +1,23 @@
-import { expect, Page } from "@playwright/test";
+import { Page } from "@playwright/test";
 import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
 import { Selectors } from "../../../../common/selectors";
-import { AdminEditAndApproveAnOrderSubmitContent } from "../../../../fixtures/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrderSubmitContent";
+import { AdminEditAndApproveAnOrderSubmitContent } from "../../../../fixtures/manageCases/caseWorker/serveApprovedOrder/adminEditAndApproveAnOrderSubmitContent";
 import { Helpers } from "../../../../common/helpers";
 import { CommonStaticText } from "../../../../common/commonStaticText";
-import { createOrderFL401Options } from "../../../../common/types";
 
 export class AdminEditAndApproveAnOrderSubmitPage {
   public static async adminEditAndApproveAnOrderSubmitPage(
     page: Page,
     accessibilityTest: boolean,
-    createOrderFL401Options: createOrderFL401Options,
     personallyServed: boolean,
   ): Promise<void> {
-    await this.checkPageLoads(
-      page,
-      accessibilityTest,
-      createOrderFL401Options,
-      personallyServed,
-    );
+    await this.checkPageLoads(page, accessibilityTest, personallyServed);
     await this.submit(page);
   }
 
   private static async checkPageLoads(
     page: Page,
     accessibilityTest: boolean,
-    createOrderFL401Options: createOrderFL401Options,
     personallyServed: boolean,
   ): Promise<void> {
     await page
@@ -51,12 +43,22 @@ export class AdminEditAndApproveAnOrderSubmitPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${AdminEditAndApproveAnOrderSubmitContent.p}"):visible`,
+        `${Selectors.p}:text-is("${AdminEditAndApproveAnOrderSubmitContent.p}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${AdminEditAndApproveAnOrderSubmitContent.Span}"):visible`,
+        `${Selectors.headingH3}:text-is("${AdminEditAndApproveAnOrderSubmitContent.nonMolestationOrderFL404A}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.a}:text-is("${AdminEditAndApproveAnOrderSubmitContent.nonMolestation}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.a}:text-is("${AdminEditAndApproveAnOrderSubmitContent.welshNonMolestation}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -70,48 +72,6 @@ export class AdminEditAndApproveAnOrderSubmitPage {
         1,
       ),
     ]);
-    switch (createOrderFL401Options) {
-      case "power of arrest":
-        await Promise.all([
-          Helpers.checkVisibleAndPresent(
-            page,
-            `${Selectors.headingH3}:text-is("${AdminEditAndApproveAnOrderSubmitContent.powerOfArrestFL406}")`,
-            1,
-          ),
-          Helpers.checkVisibleAndPresent(
-            page,
-            `${Selectors.a}:text-is("${AdminEditAndApproveAnOrderSubmitContent.powerOfArrest}")`,
-            1,
-          ),
-          await expect(
-            page.locator("ccd-read-dynamic-list-field span", {
-              hasText:
-                AdminEditAndApproveAnOrderSubmitContent.powerOfArrestFL406,
-            }),
-          ).toBeVisible(),
-        ]);
-        break;
-      case "amend discharge varied order":
-        await Promise.all([
-          Helpers.checkVisibleAndPresent(
-            page,
-            `${Selectors.headingH3}:text-is("${AdminEditAndApproveAnOrderSubmitContent.amendedDischargedFL404B}")`,
-            1,
-          ),
-          Helpers.checkVisibleAndPresent(
-            page,
-            `${Selectors.a}:text-is("${AdminEditAndApproveAnOrderSubmitContent.amendedDischarged}")`,
-            1,
-          ),
-          await expect(
-            page.locator("ccd-read-dynamic-list-field span", {
-              hasText:
-                AdminEditAndApproveAnOrderSubmitContent.amendedDischargedFL404B,
-            }),
-          ).toBeVisible(),
-        ]);
-        break;
-    }
     if (personallyServed) {
       await Helpers.checkVisibleAndPresent(
         page,
@@ -125,9 +85,9 @@ export class AdminEditAndApproveAnOrderSubmitPage {
       );
       await Helpers.checkGroup(
         page,
-        11,
+        10,
         AdminEditAndApproveAnOrderSubmitContent,
-        `powerText16`,
+        `nonMolestationText16`,
         Selectors.GovukText16,
       );
     } else {
@@ -153,25 +113,14 @@ export class AdminEditAndApproveAnOrderSubmitPage {
       );
       await Helpers.checkGroup(
         page,
-        10,
+        9,
         AdminEditAndApproveAnOrderSubmitContent,
-        `amendText16`,
+        `nonMolestationNoText16`,
         Selectors.GovukText16,
       );
-      await Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.p}:text-is("${AdminEditAndApproveAnOrderSubmitContent.pApplicant}"):visible`,
-        1,
-      );
-      await Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.p}:text-is("${AdminEditAndApproveAnOrderSubmitContent.pRespondent}"):visible`,
-        1,
-      );
-    }
-
-    if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      if (accessibilityTest) {
+        await AccessibilityTestHelper.run(page);
+      }
     }
   }
 

@@ -1,11 +1,12 @@
 import { Page } from "@playwright/test";
 import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
 import { Selectors } from "../../../../common/selectors";
-import { AdminEditAndApproveAnOrder21Content } from "../../../../fixtures/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrder21Content";
+import { AdminEditAndApproveAnOrder21Content } from "../../../../fixtures/manageCases/caseWorker/serveApprovedOrder/adminEditAndApproveAnOrder21Content";
 import { Helpers } from "../../../../common/helpers";
 import { CommonStaticText } from "../../../../common/commonStaticText";
 
 enum UniqueSelectors {
+  orderCloseCaseYes = "#doesOrderClosesCase_Yes",
   serveOrderNowYes = "#doYouWantToServeOrder_Yes",
 }
 
