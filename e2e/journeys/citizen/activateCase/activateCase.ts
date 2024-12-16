@@ -56,7 +56,7 @@ export class ActivateCase {
       Config.citizenFrontendBaseURL,
     );
     await page.click(`a:text-is("Activate access code")`);
-    let accessCode: string =
+    const accessCode: string =
       await AccessCodeHelper.getApplicantAccessCode(caseRef);
     await this.checkDashboard(
       page,
@@ -78,7 +78,7 @@ export class ActivateCase {
       Config.citizenFrontendBaseURL,
     );
     await page.click(`a:text-is("Activate access code")`);
-    let accessCode: string =
+    const accessCode: string =
       await AccessCodeHelper.getRespondentAccessCode(caseRef);
     await this.checkDashboard(
       page,
