@@ -16,5 +16,5 @@ export enum ServiceOfApplicationSubmitContent {
   // served to both parties but not personally
   recipientsText16 = "Confirm Recipients",
   recipientsP1 = "Applicant ApplLast(Applicant)",
-  recipientsP2 = "Delores Smith (Respondent)",
+  recipientsP2 = "Dolores Smith (Respondent)",
 }
