@@ -33,7 +33,7 @@ interface CompleteTheOrderParams {
 }
 
 export class E2eFlowUpToServiceOfApplication {
-  public static async e2eFlowUpToServiceOfApplication({
+  public static async completeOrderServiceOfApplication({
     page,
     accessibilityTest,
     yesNoSendToGateKeeper,

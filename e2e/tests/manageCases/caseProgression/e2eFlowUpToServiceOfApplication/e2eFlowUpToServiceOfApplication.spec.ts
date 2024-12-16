@@ -19,7 +19,7 @@ test.describe("Complete the Order task for DA Citizen case tests.", () => {
     page,
     browser,
   }): Promise<void> => {
-    await E2eFlowUpToServiceOfApplication.e2eFlowUpToServiceOfApplication({
+    await E2eFlowUpToServiceOfApplication.completeOrderServiceOfApplication({
       page: page,
       accessibilityTest: false,
       yesNoSendToGateKeeper: true,
@@ -43,7 +43,7 @@ test.describe("Complete the Order task for DA Citizen case tests.", () => {
     page,
     browser,
   }): Promise<void> => {
-    await E2eFlowUpToServiceOfApplication.e2eFlowUpToServiceOfApplication({
+    await E2eFlowUpToServiceOfApplication.completeOrderServiceOfApplication({
       page: page,
       accessibilityTest: false,
       yesNoSendToGateKeeper: true,
