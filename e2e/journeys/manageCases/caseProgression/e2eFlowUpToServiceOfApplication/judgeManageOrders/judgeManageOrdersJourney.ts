@@ -5,27 +5,27 @@ import {
   judgeTitles,
   manageOrdersOptions,
   uploadOrderFL401Options,
-} from "../../../../common/types";
+} from "../../../../../common/types.ts";
 import {
   createOrderManageOrders19Options,
   ManageOrders19Page,
-} from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders19Page";
-import { howLongWillOrderBeInForce } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders12Page";
-import { Helpers } from "../../../../common/helpers";
-import config from "../../../../config";
-import { ManageOrders1Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders1Page";
-import { ManageOrders2Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders2Page";
-import { CreateOrderManageOrders5Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/createOrderManageOrders5Page";
-import { PowerOfArrestManageOrders12Page } from "../../../../pages/manageCases/caseProgression/judge/individualManageOrders12/powerOfArrestManageOrders12Page";
-import { ManageOrders20Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders20Page";
-import { ManageOrders30Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders30Page";
-import { judgeCreateODAManageOrderSubmitPage } from "../../../../pages/manageCases/caseProgression/judge/judgeCreateOrder/judgeCreateOrderDASubmitPage";
-import { OccupationOrderManageOrders12Page } from "../../../../pages/manageCases/caseProgression/judge/individualManageOrders12/occupationOrderManageOrders12Page";
-import { AmendDischargeVariedManageOrders12Page } from "../../../../pages/manageCases/caseProgression/judge/individualManageOrders12/amendDischargeVariedManageOrders12Page";
-import { BlankOrderManageOrders12Page } from "../../../../pages/manageCases/caseProgression/judge/individualManageOrders12/blankOrderManageOrders12Page";
-import { ManageOrders3Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders3Page";
-import { UploadOrderManageOrders5Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/uploadOrderManageOrders5Page";
-import { judgeCreateUOManageOrderSubmitPage } from "../../../../pages/manageCases/caseProgression/judge/judgeUploadOrder/judgeUploadOrderDASubmitPage";
+} from "../../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders19Page.ts";
+import { howLongWillOrderBeInForce } from "../../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders12Page.ts";
+import { Helpers } from "../../../../../common/helpers.ts";
+import config from "../../../../../config.ts";
+import { ManageOrders1Page } from "../../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders1Page.ts";
+import { ManageOrders2Page } from "../../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders2Page.ts";
+import { CreateOrderManageOrders5Page } from "../../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/createOrderManageOrders5Page.ts";
+import { PowerOfArrestManageOrders12Page } from "../../../../../pages/manageCases/caseProgression/judge/individualManageOrders12/powerOfArrestManageOrders12Page.ts";
+import { ManageOrders20Page } from "../../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders20Page.ts";
+import { ManageOrders30Page } from "../../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders30Page.ts";
+import { judgeCreateODAManageOrderSubmitPage } from "../../../../../pages/manageCases/caseProgression/judge/judgeCreateOrder/judgeCreateOrderDASubmitPage.ts";
+import { OccupationOrderManageOrders12Page } from "../../../../../pages/manageCases/caseProgression/judge/individualManageOrders12/occupationOrderManageOrders12Page.ts";
+import { AmendDischargeVariedManageOrders12Page } from "../../../../../pages/manageCases/caseProgression/judge/individualManageOrders12/amendDischargeVariedManageOrders12Page.ts";
+import { BlankOrderManageOrders12Page } from "../../../../../pages/manageCases/caseProgression/judge/individualManageOrders12/blankOrderManageOrders12Page.ts";
+import { ManageOrders3Page } from "../../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders3Page.ts";
+import { UploadOrderManageOrders5Page } from "../../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/uploadOrderManageOrders5Page.ts";
+import { judgeCreateUOManageOrderSubmitPage } from "../../../../../pages/manageCases/caseProgression/judge/judgeUploadOrder/judgeUploadOrderDASubmitPage.ts";
 
 interface JudgeDACaseProgressionJourneyParams {
   browser: Browser;

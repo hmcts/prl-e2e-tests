@@ -37,7 +37,7 @@ interface CompleteTheOrderParams {
 }
 
 // ServiceOfApplicationJourney seems to only work when it is put into this file, and not if it
-// is put into CompleteOrderServiceOfApplicationStatementOfService as its own class
+// is put into E2eFlowUpToServiceOfApplication as its own class
 
 export class CompleteTheOrder {
   public static async completeTheOrder({

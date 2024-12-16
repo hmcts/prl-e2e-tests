@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
-import { Helpers } from "../../../../../common/helpers";
-import config from "../../../../../config";
-import { FL401SendToGateKeeper1Page } from "../../../../../pages/manageCases/caseProgression/sendToGateKeeper/fl401SendToGateKeeper1Page";
-import { FL401SendToGateKeeperSubmitPage } from "../../../../../pages/manageCases/caseProgression/sendToGateKeeper/fl401SendToGateKeeperSubmitPage";
+import { Helpers } from "../../../../../common/helpers.ts";
+import config from "../../../../../config.ts";
+import { FL401SendToGateKeeper1Page } from "../../../../../pages/manageCases/caseProgression/sendToGateKeeper/fl401SendToGateKeeper1Page.ts";
+import { FL401SendToGateKeeperSubmitPage } from "../../../../../pages/manageCases/caseProgression/sendToGateKeeper/fl401SendToGateKeeperSubmitPage.ts";
 
 interface CheckApplicationParams {
   page: Page;

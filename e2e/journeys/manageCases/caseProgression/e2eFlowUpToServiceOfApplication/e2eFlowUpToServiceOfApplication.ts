@@ -8,11 +8,10 @@ import {
 import { createOrderManageOrders19Options } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders19Page.ts";
 import { howLongWillOrderBeInForce } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders12Page.ts";
 import { responsibleForServing } from "../../../../pages/manageCases/caseProgression/serviceOfApplication/ServiceOfApplication4Page.ts";
-import { ApplicationJourneysCheckGatekeeperJudgeCOOrder } from "../manageOrders/application-journeys-check-gatekeeper-judgeCO-order.ts";
+import { ApplicationJourneysCheckGatekeeperJudgeCOOrder } from "./application-journeys-check-gatekeeper-judgeCO-order.ts";
 import { CompleteTheOrder } from "./completeTheOrder/completeTheOrder.ts";
 import { ServiceOfApplicationJourney } from "./serviceOfApplication/serviceOfApplication.ts";
 import Config from "../../../../config.ts";
-import { StatementOfService } from "./statementOfService/statementOfService.ts";
 
 interface CompleteTheOrderParams {
   page: Page;
@@ -33,8 +32,8 @@ interface CompleteTheOrderParams {
   responsibleForServing: responsibleForServing;
 }
 
-export class CompleteOrderServiceOfApplicationStatementOfService {
-  public static async completeOrderServiceOfApplication({
+export class E2eFlowUpToServiceOfApplication {
+  public static async e2eFlowUpToServiceOfApplication({
     page,
     accessibilityTest,
     yesNoSendToGateKeeper,
@@ -99,10 +98,6 @@ export class CompleteOrderServiceOfApplicationStatementOfService {
       createOrderFL401Options,
       yesNoServiceOfApplication4,
       responsibleForServing,
-    });
-    await StatementOfService.statementOfService({
-      page: newPage,
-      accessibilityTest,
     });
   }
 }

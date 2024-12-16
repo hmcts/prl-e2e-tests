@@ -4,11 +4,12 @@ import {
   createOrderFL401Options,
   judgeTitles,
   manageOrdersOptions,
-} from "../../../../common/types";
-import { createOrderManageOrders19Options } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders19Page";
-import { howLongWillOrderBeInForce } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders12Page";
-import { ApplicationJourneysCheckGatekeeper } from "../checkApplicationSendToGateKeeper/application-journeys-check-gatekeeper";
-import { JudgeManageOrderJourney } from "./judgeManageOrdersJourney";
+} from "../../../../common/types.ts";
+import { createOrderManageOrders19Options } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders19Page.ts";
+import { howLongWillOrderBeInForce } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders12Page.ts";
+import { JudgeManageOrderJourney } from "./judgeManageOrders/judgeManageOrdersJourney.ts";
+import { CheckApplicationJourney } from "./checkApplication/checkApplicationJourney.ts";
+import { SendToGateKeeperJourney } from "./sendToGateKeeper/sendToGateKeeperJourney.ts";
 
 interface CheckApplicationParams {
   page: Page;
@@ -42,14 +43,18 @@ export class ApplicationJourneysCheckGatekeeperJudgeCOOrder {
     manageOrdersOptions,
     browser,
   }: CheckApplicationParams): Promise<void> {
-    await ApplicationJourneysCheckGatekeeper.applicationJourneysCheckGatekeeper(
-      {
-        page,
-        accessibilityTest,
-        yesNoSendToGateKeeper,
-        ccdRef,
-      },
-    );
+    await CheckApplicationJourney.checkApplication({
+      page,
+      accessibilityTest,
+      yesNoSendToGateKeeper,
+      ccdRef,
+    });
+    await SendToGateKeeperJourney.sendToGateKeeper({
+      page,
+      accessibilityTest,
+      yesNoSendToGateKeeper,
+      ccdRef,
+    });
     await JudgeManageOrderJourney.JudgeCreateOrderCaseProgressionJourney({
       browser,
       ccdRef,
