@@ -1,11 +1,10 @@
-import { Browser, Page } from "@playwright/test";
+import { Browser, BrowserContext, Page } from "@playwright/test";
 import IdamLoginHelper from "../../../common/idamLoginHelper.ts";
 import Config from "../../../config.ts";
 import { AccessCodeHelper } from "../../../common/accessCodeHelper.ts";
 import { EnterPinPage } from "../../../pages/citizen/activateCase/enterPinPage.ts";
 import { CaseActivatedPage } from "../../../pages/citizen/activateCase/caseActivatedPage.ts";
 import { ApplicantDashboardPage } from "../../../pages/citizen/activateCase/applicantDashboardPage.ts";
-import { Helpers } from "../../../common/helpers.ts";
 import { RespondentDashboardPage } from "../../../pages/citizen/activateCase/respondentDashboardPage.ts";
 import { CompleteOrderServiceOfApplication } from "../../manageCases/caseProgression/completeOrderServiceOfApplication/completeOrderServiceOfApplication.ts";
 
@@ -50,11 +49,14 @@ export class ActivateCase {
     caseRef: string,
     accessibilityTest: boolean,
   ): Promise<void> {
-    const page: Page = await Helpers.openNewBrowserWindow(browser, "citizen");
+    const newBrowser = await browser.browserType().launch();
+    const newContext: BrowserContext = await newBrowser.newContext();
+    const page = await newContext.newPage();
     await IdamLoginHelper.signInCitizenUser(
       page,
       Config.citizenFrontendBaseURL,
     );
+    // const page: Page = await Helpers.openNewBrowserWindow(browser, "citizen");
     await page.click(`a:text-is("Activate access code")`);
     const accessCode: string =
       await AccessCodeHelper.getApplicantAccessCode(caseRef);
@@ -72,7 +74,9 @@ export class ActivateCase {
     caseRef: string,
     accessibilityTest: boolean,
   ): Promise<void> {
-    const page: Page = await Helpers.openNewBrowserWindow(browser, "citizen");
+    const newBrowser = await browser.browserType().launch();
+    const newContext: BrowserContext = await newBrowser.newContext();
+    const page = await newContext.newPage();
     await IdamLoginHelper.signInCitizenUser(
       page,
       Config.citizenFrontendBaseURL,
