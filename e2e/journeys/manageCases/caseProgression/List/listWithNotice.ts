@@ -6,8 +6,8 @@ import { Fl401ListOnNoticeSubmitPage } from "../../../../pages/manageCases/caseP
 import { Fl401ListOnNoticeConfirmPage } from "../../../../pages/manageCases/caseProgression/List/fl401ListOnNoticeConfirmPage";
 import { Selectors } from "../../../../common/selectors";
 import { Fl401ListOnNoticeConfirmContent } from "../../../../fixtures/manageCases/caseProgression/List/fl401ListOnNoticeConfirmContent";
-import { CheckApplicationJourney } from "../checkApplicationSendToGateKeeper/checkApplication/checkApplicationJourney";
-import { SendToGateKeeperJourney } from "../checkApplicationSendToGateKeeper/sendToGateKeeper/sendToGateKeeperJourney";
+import { CheckApplicationJourney } from "../e2eFlowUpToServiceOfApplication/checkApplication/checkApplicationJourney";
+import { SendToGateKeeperJourney } from "../e2eFlowUpToServiceOfApplication/sendToGateKeeper/sendToGateKeeperJourney";
 
 interface ListWithNoticeParams {
   page: Page;

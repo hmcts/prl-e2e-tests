@@ -1,4 +1,4 @@
-import { Browser, BrowserContext, Page } from "@playwright/test";
+import { Browser, Page } from "@playwright/test";
 import { Helpers } from "../../../../../common/helpers.ts";
 import { AdminEditAndApproveAnOrder1Page } from "../../../../../pages/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrder1Page.ts";
 import { AdminEditAndApproveAnOrder4Page } from "../../../../../pages/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrder4Page.ts";
@@ -6,17 +6,15 @@ import { AdminEditAndApproveAnOrder21Page } from "../../../../../pages/manageCas
 import { AdminEditAndApproveAnOrder22Page } from "../../../../../pages/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrder22Page.ts";
 import { AdminEditAndApproveAnOrder23Page } from "../../../../../pages/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrder23Page.ts";
 import { AdminEditAndApproveAnOrderSubmitPage } from "../../../../../pages/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrderSubmitPage.ts";
-import Config from "../../../../../config.ts";
 import config from "../../../../../config.ts";
 import {
-  WACaseWorkerActions,
   createOrderFL401Options,
   judgeTitles,
   manageOrdersOptions,
+  WACaseWorkerActions,
 } from "../../../../../common/types.ts";
 import { createOrderManageOrders19Options } from "../../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders19Page.ts";
 import { howLongWillOrderBeInForce } from "../../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders12Page.ts";
-import { ServiceOfApplicationJourney } from "../serviceOfApplication/serviceOfApplication.ts";
 import { responsibleForServing } from "../../../../../pages/manageCases/caseProgression/serviceOfApplication/ServiceOfApplication4Page.ts";
 
 interface CompleteTheOrderParams {
@@ -39,7 +37,7 @@ interface CompleteTheOrderParams {
 }
 
 // ServiceOfApplicationJourney seems to only work when it is put into this file, and not if it
-// is put into CompleteOrderServiceOfApplication as its own class
+// is put into E2eFlowUpToServiceOfApplication as its own class
 
 export class CompleteTheOrder {
   public static async completeTheOrder({
@@ -47,17 +45,8 @@ export class CompleteTheOrder {
     accessibilityTest,
     ccdRef,
     createOrderFL401Options,
-    browser,
     personallyServed,
-    yesNoServiceOfApplication4,
-    responsibleForServing,
   }: CompleteTheOrderParams): Promise<void> {
-    // open new browser and sign in as court admin user
-    const newBrowser = await browser.browserType().launch();
-    const newContext: BrowserContext = await newBrowser.newContext({
-      storageState: Config.sessionStoragePath + "caseWorker.json",
-    });
-    page = await newContext.newPage();
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
     // complete the task Complete the Order
     switch (createOrderFL401Options) {
@@ -105,12 +94,5 @@ export class CompleteTheOrder {
       createOrderFL401Options,
       personallyServed,
     );
-    await ServiceOfApplicationJourney.serviceOfApplicationJourney({
-      page,
-      accessibilityTest,
-      createOrderFL401Options,
-      yesNoServiceOfApplication4,
-      responsibleForServing,
-    });
   }
 }

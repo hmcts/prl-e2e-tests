@@ -6,7 +6,8 @@ import { Fl401ListWithoutNotice1Page } from "../../../../pages/manageCases/caseP
 import { Fl401ListWithoutNoticeSubmitPage } from "../../../../pages/manageCases/caseProgression/List/fl401ListWithoutNoticeSubmitPage";
 import { Fl401ListWithoutNoticeConfirmPage } from "../../../../pages/manageCases/caseProgression/List/fl401ListWithoutNoticeConfirmPage";
 import { Fl401ListWithoutNoticeConfirmContent } from "../../../../fixtures/manageCases/caseProgression/List/fl401ListWithoutNoticeConfirmContent";
-import { ApplicationJourneysCheckGatekeeper } from "../checkApplicationSendToGateKeeper/application-journeys-check-gatekeeper.ts";
+import { CheckApplicationJourney } from "../e2eFlowUpToServiceOfApplication/checkApplication/checkApplicationJourney.ts";
+import { SendToGateKeeperJourney } from "../e2eFlowUpToServiceOfApplication/sendToGateKeeper/sendToGateKeeperJourney.ts";
 
 interface ListWithoutNoticeParams {
   page: Page;
@@ -22,14 +23,18 @@ export class ListWithoutNotice {
     ccdRef,
     accessibilityTest,
   }: ListWithoutNoticeParams): Promise<void> {
-    await ApplicationJourneysCheckGatekeeper.applicationJourneysCheckGatekeeper(
-      {
-        page: page,
-        accessibilityTest: accessibilityTest,
-        yesNoSendToGateKeeper: true,
-        ccdRef: ccdRef,
-      },
-    );
+    await CheckApplicationJourney.checkApplication({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      yesNoSendToGateKeeper: true,
+      ccdRef: ccdRef,
+    });
+    await SendToGateKeeperJourney.sendToGateKeeper({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      yesNoSendToGateKeeper: true,
+      ccdRef: ccdRef,
+    });
     const judgePage: Page = await Helpers.openNewBrowserWindow(
       browser,
       "judge",

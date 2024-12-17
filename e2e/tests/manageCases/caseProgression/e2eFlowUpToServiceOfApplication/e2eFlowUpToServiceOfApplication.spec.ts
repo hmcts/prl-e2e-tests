@@ -3,7 +3,7 @@ import Config from "../../../../config";
 import createDaCitizenCourtNavCase from "../../../../common/createCaseHelper";
 import { Helpers } from "../../../../common/helpers";
 import config from "../../../../config";
-import { CompleteOrderServiceOfApplication } from "../../../../journeys/manageCases/caseProgression/completeOrderServiceOfApplication/completeOrderServiceOfApplication.ts";
+import { E2eFlowUpToServiceOfApplication } from "../../../../journeys/manageCases/caseProgression/e2eFlowUpToServiceOfApplication/e2eFlowUpToServiceOfApplication.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
@@ -15,11 +15,11 @@ test.describe("Complete the Order task for DA Citizen case tests.", () => {
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
   });
 
-  test("Complete Task - Complete the Order - Power of arrest (FL406) without accessibility test. @regression", async ({
+  test("Complete Task - Complete the Order & statement of service - Power of arrest (FL406) without accessibility test. @regression", async ({
     page,
     browser,
   }): Promise<void> => {
-    await CompleteOrderServiceOfApplication.completeOrderServiceOfApplication({
+    await E2eFlowUpToServiceOfApplication.e2eFlowUpToServiceOfApplication({
       page: page,
       accessibilityTest: false,
       yesNoSendToGateKeeper: true,
@@ -39,11 +39,11 @@ test.describe("Complete the Order task for DA Citizen case tests.", () => {
     });
   });
 
-  test("Complete Task - Complete the Order - Amended, discharged or varied order (FL404B)  with accessibility test. @regression @accessibility", async ({
+  test("Complete Task - Complete the Order & statement of service - Amended, discharged or varied order (FL404B)  with accessibility test. @regression @accessibility", async ({
     page,
     browser,
   }): Promise<void> => {
-    await CompleteOrderServiceOfApplication.completeOrderServiceOfApplication({
+    await E2eFlowUpToServiceOfApplication.e2eFlowUpToServiceOfApplication({
       page: page,
       accessibilityTest: false,
       yesNoSendToGateKeeper: true,
