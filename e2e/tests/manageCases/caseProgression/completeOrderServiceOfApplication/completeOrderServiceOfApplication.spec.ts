@@ -1,13 +1,12 @@
 import { test } from "@playwright/test";
 import Config from "../../../../config";
+import config from "../../../../config";
 import createDaCitizenCourtNavCase from "../../../../common/createCaseHelper";
 import { Helpers } from "../../../../common/helpers";
-import config from "../../../../config";
 import { CompleteOrderServiceOfApplication } from "../../../../journeys/manageCases/caseProgression/completeOrderServiceOfApplication/completeOrderServiceOfApplication.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
-// REMOVE - this is a comment so these tests will run in the pipeline
 test.describe("Complete the Order task for DA Citizen case tests.", () => {
   let ccdRef: string = "";
 
