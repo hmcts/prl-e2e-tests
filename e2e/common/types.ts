@@ -68,7 +68,7 @@ export type fl401SolicitorEvents =
 export type WACaseWorkerActions =
   | "Manage orders"
   | "Service of application"
-  | "Create A Bundle"
+  | "Create a bundle"
   | "Statement of service";
 
 export type fl401CaseWorkerActions =
