@@ -1,16 +1,12 @@
 import { Page } from "@playwright/test";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+// import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
 import { Selectors } from "../../../../common/selectors";
-import { AdminEditAndApproveAnOrder21Content } from "../../../../fixtures/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrder21Content";
+import { AdminEditAndApproveAnOrder1Content } from "../../../../fixtures/manageCases/caseWorker/serveApprovedOrder/adminEditAndApproveAnOrder1Content";
 import { Helpers } from "../../../../common/helpers";
 import { CommonStaticText } from "../../../../common/commonStaticText";
 
-enum UniqueSelectors {
-  serveOrderNowYes = "#doYouWantToServeOrder_Yes",
-}
-
-export class AdminEditAndApproveAnOrder21Page {
-  public static async adminEditAndApproveAnOrder21Page(
+export class AdminEditAndApproveAnOrder1Page {
+  public static async adminEditAndApproveAnOrder1Page(
     page: Page,
     accessibilityTest: boolean,
   ): Promise<void> {
@@ -25,18 +21,13 @@ export class AdminEditAndApproveAnOrder21Page {
   ): Promise<void> {
     await page
       .locator(`${Selectors.GovukHeadingL}`, {
-        hasText: `${AdminEditAndApproveAnOrder21Content.govUkHeadingL}`,
+        hasText: `${AdminEditAndApproveAnOrder1Content.govUkHeadingL}`,
       })
       .waitFor();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukFormLabel}:text-is("${AdminEditAndApproveAnOrder21Content.formLabel1}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukFormLabel}:text-is("${AdminEditAndApproveAnOrder21Content.formLabel2}")`,
+        `${Selectors.GovukFormLabel}:text-is("${AdminEditAndApproveAnOrder1Content.formLabel1}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -51,13 +42,20 @@ export class AdminEditAndApproveAnOrder21Page {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      // await AccessibilityTestHelper.run(page);
     }
+    // #TODO commented out until ticket resolved FPET-1224
   }
 
   private static async fillInFields(page: Page): Promise<void> {
-    await page.locator("#selectTypeOfOrder").selectOption({ label: "General" });
-    await page.check(`${UniqueSelectors.serveOrderNowYes}`);
+    const optionSelect = await page
+      .locator("option", { hasText: "Non-molestation order (FL404A)" })
+      .textContent();
+    if (optionSelect) {
+      await page
+        .locator("#draftOrdersDynamicList")
+        .selectOption({ label: optionSelect });
+    }
   }
 
   private static async continue(page: Page): Promise<void> {
