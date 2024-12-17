@@ -3,7 +3,7 @@ import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelp
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { ApplicantGender } from "../../../../../common/types";
-import { OtherPeopleInTheCase1Content } from "../../../../../fixtures/manageCases/createCase/C100/otherPeopleInTheCaseRevised/otherPeopleInTheCaseRevised1Content.";
+import { OtherPeopleInTheCase1Content } from "../../../../../fixtures/manageCases/createCase/C100/otherPeopleInTheCaseRevised/otherPeopleInTheCaseRevised1Content.ts";
 
 enum UniqueSelectors {
   applicantFirstNameInput = "#otherPartyInTheCaseRevised_0_firstName",
@@ -32,15 +32,9 @@ enum UniqueSelectors {
   preferredGenderInput = "#otherPartyInTheCaseRevised_0_otherGender",
   placeOfBirthInput = "#otherPartyInTheCaseRevised_0_placeOfBirth",
   applicantCurrentAddressInput = "#otherPartyInTheCaseRevised_0_address_address_postcodeInput",
-  addressConfidentialYes = "#otherPartyInTheCaseRevised_0_isAddressConfidential_Yes",
-  addressConfidentialNo = "#otherPartyInTheCaseRevised_0_isAddressConfidential_No",
   address5YearsDetailsRequiredInput = "#otherPartyInTheCaseRevised_0_addressLivedLessThan5YearsDetails",
   emailAddressInput = "#otherPartyInTheCaseRevised_0_email",
-  emailAddressConfidentialYes = "#otherPartyInTheCaseRevised_0_isEmailAddressConfidential_Yes",
-  emailAddressConfidentialNo = "#otherPartyInTheCaseRevised_0_isEmailAddressConfidential_No",
   contactNumberInput = "#otherPartyInTheCaseRevised_0_phoneNumber",
-  contactNumberConfidentialityYes = "#otherPartyInTheCaseRevised_0_isPhoneNumberConfidential_Yes",
-  contactNumberConfidentialityNo = "#otherPartyInTheCaseRevised_0_isPhoneNumberConfidential_No",
 }
 
 enum HiddenFields {
@@ -269,7 +263,6 @@ export class OtherPeopleInTheCase1Page {
         `${UniqueSelectors.contactNumberInput}`,
         OtherPeopleInTheCase1Content.phoneNumber,
       );
-      await page.click(`${UniqueSelectors.contactNumberConfidentialityYes}`);
       await this.checkContactNumber(page);
     } else {
       await page.click(`${UniqueSelectors.applicantBirthDateNo}`);
