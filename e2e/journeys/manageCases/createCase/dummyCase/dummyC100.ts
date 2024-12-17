@@ -26,7 +26,7 @@ export class DummyC100 {
       page,
       applicantLivesInRefuge,
     );
-    if(otherPersonLivesInRefuge) {
+    if (otherPersonLivesInRefuge) {
       await DummyC100OtherPersonDetails.dummyC100OtherPersonDetails(
         page,
         otherPersonLivesInRefuge,

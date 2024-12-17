@@ -49,7 +49,7 @@ export class C100ConfidentialDetailsTabPage {
       await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.div}${Selectors.GovukText16}:text-is("${C100ConfidentialDetailsTabContent.refugeSection}")`,
-        1
+        1,
       );
       await Helpers.checkVisibleAndPresent(
         page,
