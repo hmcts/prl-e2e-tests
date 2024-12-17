@@ -25,7 +25,7 @@ export enum OtherPeopleInTheCase1Content {
   formHint1 = "For example, 12 11 2007",
   formLabelDateOfBirth = "*Date of birth (Optional)",
   FormLabelPlaceOfBirth = "*Place of birth (town, county, country) (Optional)",
-  formLabelApplicantLivesInRefuge = "*Does the applicant currently live in a refuge?",
+  formLabelOtherPersonLivesInRefuge = "*Does this person currently live in a refuge?",
   formLabelC8FormUpload = "*Upload a C8 form with the refuge address (Optional)",
   FormLabelPostcode = "Enter a UK postcode",
   formLabelAddressConfidential = "*Do you need to keep the address confidential?",
