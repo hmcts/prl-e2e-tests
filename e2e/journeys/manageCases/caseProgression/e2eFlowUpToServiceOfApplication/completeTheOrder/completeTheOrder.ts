@@ -68,6 +68,7 @@ export class CompleteTheOrder {
     await AdminEditAndApproveAnOrder1Page.adminEditAndApproveAnOrder1Page(
       page,
       accessibilityTest,
+      createOrderFL401Options,
     );
     await AdminEditAndApproveAnOrder4Page.adminEditAndApproveAnOrder4Page(
       page,
@@ -91,6 +92,7 @@ export class CompleteTheOrder {
       page,
       accessibilityTest,
       createOrderFL401Options,
+      personallyServed,
     );
   }
 }

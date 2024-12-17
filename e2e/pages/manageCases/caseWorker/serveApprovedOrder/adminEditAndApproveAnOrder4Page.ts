@@ -1,16 +1,15 @@
 import { Page } from "@playwright/test";
 import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
 import { Selectors } from "../../../../common/selectors";
-import { AdminEditAndApproveAnOrder21Content } from "../../../../fixtures/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrder21Content";
+import { AdminEditAndApproveAnOrder4Content } from "../../../../fixtures/manageCases/caseWorker/serveApprovedOrder/adminEditAndApproveAnOrder4Content";
 import { Helpers } from "../../../../common/helpers";
 import { CommonStaticText } from "../../../../common/commonStaticText";
 
 enum UniqueSelectors {
-  serveOrderNowYes = "#doYouWantToServeOrder_Yes",
+  editOrderNo = "#doYouWantToEditTheOrder_No",
 }
-
-export class AdminEditAndApproveAnOrder21Page {
-  public static async adminEditAndApproveAnOrder21Page(
+export class AdminEditAndApproveAnOrder4Page {
+  public static async adminEditAndApproveAnOrder4Page(
     page: Page,
     accessibilityTest: boolean,
   ): Promise<void> {
@@ -25,18 +24,28 @@ export class AdminEditAndApproveAnOrder21Page {
   ): Promise<void> {
     await page
       .locator(`${Selectors.GovukHeadingL}`, {
-        hasText: `${AdminEditAndApproveAnOrder21Content.govUkHeadingL}`,
+        hasText: `${AdminEditAndApproveAnOrder4Content.govUkHeadingL}`,
       })
       .waitFor();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukFormLabel}:text-is("${AdminEditAndApproveAnOrder21Content.formLabel1}")`,
+        `${Selectors.GovukFormLabel}:text-is("${AdminEditAndApproveAnOrder4Content.formLabel1}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukFormLabel}:text-is("${AdminEditAndApproveAnOrder21Content.formLabel2}")`,
+        `${Selectors.headingH3}:text-is("${AdminEditAndApproveAnOrder4Content.headingH3}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.a}:text-is("${AdminEditAndApproveAnOrder4Content.welshNonMolestation}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.a}:text-is("${AdminEditAndApproveAnOrder4Content.nonMolestation}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -56,8 +65,7 @@ export class AdminEditAndApproveAnOrder21Page {
   }
 
   private static async fillInFields(page: Page): Promise<void> {
-    await page.locator("#selectTypeOfOrder").selectOption({ label: "General" });
-    await page.check(`${UniqueSelectors.serveOrderNowYes}`);
+    await page.check(`${UniqueSelectors.editOrderNo}`);
   }
 
   private static async continue(page: Page): Promise<void> {

@@ -191,3 +191,5 @@ export type judgeTitles =
   | "The Honourable Mr Justice";
 
 export type yesNoNA = "Yes" | "No" | "Not applicable";
+
+export type courtAdminEvents = "Edit and serve an order";
