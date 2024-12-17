@@ -199,7 +199,7 @@ test.describe("Manage cases case solicitor create case tests.", (): void => {
      Relationship is 'Married or in a civil partnership',
      Saying yes to all attending the hearing questions,
      upload document files
-  @regression `, async ({ page }): Promise<void> => {
+  @regression`, async ({ page }): Promise<void> => {
     await FL401.fl401({
       page: page,
       user: "solicitor",

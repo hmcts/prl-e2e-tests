@@ -1,9 +1,9 @@
 import { expect, Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { ApplicantDetails1Content } from "../../../../../fixtures/manageCases/createCase/C100/applicantDetails/applicantDetails1Content";
-import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors";
 import { ApplicantGender } from "../../../../../common/types";
+import { ApplicantDetails1Content } from "../../../../../fixtures/manageCases/createCase/C100/applicantDetails/applicantDetails1Content";
 
 enum UniqueSelectors {
   dayMonthYear = "div > ccd-field-write > div > ccd-write-complex-type-field > div > fieldset > ccd-field-write > div > ccd-write-date-container-field > ccd-write-date-field > div > fieldset > cut-date-input > div > div > .form-label",
@@ -430,43 +430,43 @@ export class ApplicantDetails1Page {
         `${UniqueSelectors.addressFields}:text-is("${ApplicantDetails1Content.formLabelCountry}")`,
         2,
       ),
-      expect(await page.inputValue(ApplicantAddressFields.line1)).toEqual(
-        ApplicantDetails1Content.buildingAndStreet,
-      ),
-      expect(await page.inputValue(ApplicantAddressFields.line2)).toEqual(""),
-      expect(await page.inputValue(ApplicantAddressFields.line3)).toEqual(""),
-      expect(await page.inputValue(ApplicantAddressFields.town)).toEqual(
-        ApplicantDetails1Content.townOrCity,
-      ),
-      expect(await page.inputValue(ApplicantAddressFields.county)).toEqual(""),
-      expect(await page.inputValue(ApplicantAddressFields.postcode)).toEqual(
-        ApplicantDetails1Content.postcode,
-      ),
-      expect(await page.inputValue(ApplicantAddressFields.country)).toEqual(
-        ApplicantDetails1Content.country,
-      ),
-      expect(await page.inputValue(RepresentativeAddressFields.line1)).toEqual(
-        ApplicantDetails1Content.buildingAndStreet,
-      ),
-      expect(await page.inputValue(RepresentativeAddressFields.line2)).toEqual(
-        "",
-      ),
-      expect(await page.inputValue(RepresentativeAddressFields.line3)).toEqual(
-        "",
-      ),
-      expect(await page.inputValue(RepresentativeAddressFields.town)).toEqual(
-        ApplicantDetails1Content.townOrCity,
-      ),
-      expect(await page.inputValue(RepresentativeAddressFields.county)).toEqual(
-        "",
-      ),
-      expect(
-        await page.inputValue(RepresentativeAddressFields.postcode),
-      ).toEqual(ApplicantDetails1Content.postcode),
-      expect(
-        await page.inputValue(RepresentativeAddressFields.country),
-      ).toEqual(ApplicantDetails1Content.country),
     ]);
+    await expect(page.locator(ApplicantAddressFields.line1)).toHaveValue(
+      ApplicantDetails1Content.buildingAndStreet,
+    );
+    await expect(page.locator(ApplicantAddressFields.line2)).toHaveValue("");
+    await expect(page.locator(ApplicantAddressFields.line3)).toHaveValue("");
+    await expect(page.locator(ApplicantAddressFields.town)).toHaveValue(
+      ApplicantDetails1Content.townOrCity,
+    );
+    await expect(page.locator(ApplicantAddressFields.county)).toHaveValue("");
+    await expect(page.locator(ApplicantAddressFields.postcode)).toHaveValue(
+      ApplicantDetails1Content.postcode,
+    );
+    await expect(page.locator(ApplicantAddressFields.country)).toHaveValue(
+      ApplicantDetails1Content.country,
+    );
+    await expect(page.locator(RepresentativeAddressFields.line1)).toHaveValue(
+      ApplicantDetails1Content.buildingAndStreet,
+    );
+    await expect(page.locator(RepresentativeAddressFields.line2)).toHaveValue(
+      "",
+    );
+    await expect(page.locator(RepresentativeAddressFields.line3)).toHaveValue(
+      "",
+    );
+    await expect(page.locator(RepresentativeAddressFields.town)).toHaveValue(
+      ApplicantDetails1Content.townOrCity,
+    );
+    await expect(page.locator(RepresentativeAddressFields.county)).toHaveValue(
+      "",
+    );
+    await expect(
+      page.locator(RepresentativeAddressFields.postcode),
+    ).toHaveValue(ApplicantDetails1Content.postcode);
+    await expect(page.locator(RepresentativeAddressFields.country)).toHaveValue(
+      ApplicantDetails1Content.country,
+    );
   }
 
   private static async checkApplicantAddress5Years(page: Page): Promise<void> {

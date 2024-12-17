@@ -1,9 +1,8 @@
 import { Page } from "@playwright/test";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { PayContent } from "../../../../../fixtures/citizen/createCase/C100/pay/payContent";
-import { Helpers } from "../../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { CommonStaticText } from "../../../../../common/commonStaticText";
 
 interface PayPageOptions {
   page: Page;
@@ -42,12 +41,11 @@ export class PayPage {
     if (errorMessaging) {
       await this.checkErrorMessaging(page);
     }
-    await this.fillInFields(page, errorMessaging);
+    await this.fillInFields(page);
   }
 
   private static async checkPageLoads({
     page,
-    accessibilityTest,
   }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.GovukHeadingL}:text-is("${PayContent.pageTitle}")`,
@@ -130,10 +128,7 @@ export class PayPage {
     await page.reload();
   }
 
-  private static async fillInFields(
-    page: Page,
-    errorMessaging: boolean,
-  ): Promise<void> {
+  private static async fillInFields(page: Page): Promise<void> {
     await page.fill(`${inputIds.card_no}`, PayContent.mockCardNumber);
     await page.fill(`${inputIds.expiry_month}`, PayContent.mockExpMonth);
     await page.fill(`${inputIds.expiry_year}`, PayContent.mockExpYear);

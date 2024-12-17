@@ -1,7 +1,7 @@
 import { test } from "@playwright/test";
-import { C100 } from "../../../../journeys/citizen/createCase/C100/C100";
-import Config from "../../../../config";
 import IdamLoginHelper from "../../../../common/idamLoginHelper";
+import Config from "../../../../config";
+import { C100 } from "../../../../journeys/citizen/createCase/C100/C100";
 
 test.describe("C100 Citizen Application tests on the second MIRO set.", (): void => {
   test.beforeEach(async ({ page }) => {
@@ -10,7 +10,7 @@ test.describe("C100 Citizen Application tests on the second MIRO set.", (): void
       Config.citizenFrontendBaseURL,
     );
   });
-  test(`Test the second row of the second row c100 citizen journey with the following options:
+  test(`Second row of the second row c100 citizen journey with the following options:
     Not Accessibility Testing,
     Not Error Messaging,
     No Screening and Written Review
@@ -109,7 +109,7 @@ test.describe("C100 Citizen Application tests on the second MIRO set.", (): void
     });
   });
 
-  test(`Test the second row of the second row c100 citizen journey with the following options:
+  test(`Second row of the second row c100 citizen journey with the following options:
     Not Accessibility Testing,
     Error Messaging,
     No Screening and Written Review
@@ -210,7 +210,7 @@ test.describe("C100 Citizen Application tests on the second MIRO set.", (): void
     });
   });
 
-  test(`Test the second row of the second row c100 citizen journey with the following options:
+  test(`Second row of the second row c100 citizen journey with the following options:
     Accessibility Testing,
     Not Error Messaging,
     No Screening and Written Review

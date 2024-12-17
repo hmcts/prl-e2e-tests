@@ -1,11 +1,10 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { ChildrenAndRespondentsSubmitContent } from "../../../../../fixtures/manageCases/createCase/C100/childrenAndRespondents/childrenAndRespondentsSubmitContent";
 import { Helpers } from "../../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { C100RespondentDetails1Content } from "../../../../../fixtures/manageCases/createCase/C100/respondentDetails/c100RespondentDetails1Content";
+import { Selectors } from "../../../../../common/selectors";
 import { ChildDetailsRevised1Content } from "../../../../../fixtures/manageCases/createCase/C100/childDetails/childDetailsRevised1Content";
 import { ChildrenAndRespondents1Content } from "../../../../../fixtures/manageCases/createCase/C100/childrenAndRespondents/childrenAndRespondents1Content";
+import { ChildrenAndRespondentsSubmitContent } from "../../../../../fixtures/manageCases/createCase/C100/childrenAndRespondents/childrenAndRespondentsSubmitContent";
+import { C100RespondentDetails1Content } from "../../../../../fixtures/manageCases/createCase/C100/respondentDetails/c100RespondentDetails1Content";
 
 export class ChildrenAndRespondentsSubmitPage {
   public static async childrenAndRespondentsSubmitPage(
@@ -37,7 +36,7 @@ export class ChildrenAndRespondentsSubmitPage {
     accessibilityTest: boolean,
     yesNoChildrenAndRespondents: boolean,
   ): Promise<void> {
-    let changeAbleFields: number = yesNoChildrenAndRespondents ? 7 : 8;
+    const changeAbleFields: number = yesNoChildrenAndRespondents ? 7 : 8;
     await Promise.all([
       Helpers.checkGroup(
         page,

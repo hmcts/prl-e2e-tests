@@ -1,6 +1,6 @@
 import { test } from "@playwright/test";
-import { C100ChildDetails } from "../../../../journeys/manageCases/createCase/C100ChildDetails/c100ChildDetails";
 import Config from "../../../../config";
+import { C100ChildDetails } from "../../../../journeys/manageCases/createCase/C100ChildDetails/c100ChildDetails";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
@@ -57,7 +57,7 @@ test.describe("C100 Create case child details tests", (): void => {
   });
 });
 
-test(`Test the C100 child details event as a solicitor with the following options:
+test(`C100 child details event as a solicitor with the following options:
   Accessibility testing,
   Not Error message testing,
   Answering no to all additional questions,

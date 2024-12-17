@@ -1,6 +1,6 @@
 import { test } from "@playwright/test";
-import { FL401ApplicantsFamily } from "../../../../journeys/manageCases/createCase/FL401ApplicantsFamily/FL401ApplicantsFamily";
 import Config from "../../../../config";
+import { FL401ApplicantsFamily } from "../../../../journeys/manageCases/createCase/FL401ApplicantsFamily/FL401ApplicantsFamily";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
@@ -47,7 +47,7 @@ test.describe("FL401 Create case applicants family tests", (): void => {
   });
 });
 
-test(`Test the FL401 applicants family event as a solicitor with the following options:
+test(`FL401 applicants family event as a solicitor with the following options:
   Accessibility testing,
   Not Error message testing,
   Saying yes to all options, @accessibility @nightly`, async ({

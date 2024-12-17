@@ -1,6 +1,6 @@
 import { test } from "@playwright/test";
-import { FL401OtherProceedings } from "../../../../journeys/manageCases/createCase/FL401OtherProceedings/FL401OtherProceedings";
 import Config from "../../../../config";
+import { FL401OtherProceedings } from "../../../../journeys/manageCases/createCase/FL401OtherProceedings/FL401OtherProceedings";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
@@ -81,7 +81,7 @@ test.describe("FL401 Create case other proceedings tests", (): void => {
   });
 });
 
-test(`Test the FL401 other proceedings event as a solicitor with the following options:
+test(`FL401 other proceedings event as a solicitor with the following options:
   Accessibility testing,
   Not Error message testing,
   Saying yes to previous or ongoing family court proceedings involving the applicant and respondent, @accessibility @nightly`, async ({

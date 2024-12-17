@@ -1,10 +1,9 @@
 import { Page } from "@playwright/test";
-import { FinancialOrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/financialOrderDetailsContent";
-import { Selectors } from "../../../../../common/selectors";
-import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { CitizensOtherProceedingsUniqueSelectors } from "../../../../../common/commonUniqueSelectors";
+import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors";
+import { FinancialOrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/financialOrderDetailsContent";
 
 interface FinancialOrderDetailsPageOptions {
   page: Page;
@@ -45,7 +44,6 @@ export class FinancialOrderDetailsPage {
 
   private static async checkPageLoads({
     page: page,
-    accessibilityTest: accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.p}:text-is("${FinancialOrderDetailsContent.p}")`,

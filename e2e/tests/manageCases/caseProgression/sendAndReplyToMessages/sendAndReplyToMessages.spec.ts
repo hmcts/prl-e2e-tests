@@ -1,13 +1,12 @@
 import { test } from "@playwright/test";
-import Config from "../../../../config";
 import createDaCitizenCourtNavCase from "../../../../common/createCaseHelper";
 import { Helpers } from "../../../../common/helpers";
-import config from "../../../../config";
+import { default as Config, default as config } from "../../../../config";
 import { SendAndReplyToMessages } from "../../../../journeys/manageCases/caseProgression/sendAndReplyToMessages/sendAndReplyToMessages";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
-test.describe("Send and reply to messages between court admin and judge tests ", () => {
+test.describe("Send and reply to messages between court admin and judge tests", () => {
   let ccdRef: string;
   test.beforeEach(async ({ page }) => {
     ccdRef = await createDaCitizenCourtNavCase(true, false);

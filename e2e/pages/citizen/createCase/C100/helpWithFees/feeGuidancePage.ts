@@ -1,10 +1,10 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { FeeGuidanceContent } from "../../../../../fixtures/citizen/createCase/C100/helpWithFees/feeGuidanceContent";
-import { Helpers } from "../../../../../common/helpers";
-import { SafetyConcernHelpers } from "../safetyConcerns/safetyConcernHelpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors";
+import { FeeGuidanceContent } from "../../../../../fixtures/citizen/createCase/C100/helpWithFees/feeGuidanceContent";
+import { SafetyConcernHelpers } from "../safetyConcerns/safetyConcernHelpers";
 
 enum inputIDs {
   referenceNumber = "#helpWithFeesReferenceNumber",

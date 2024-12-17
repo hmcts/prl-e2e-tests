@@ -1,10 +1,9 @@
 import { Page } from "@playwright/test";
-import { OtherInjunctionOrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/otherInjunctionOrderDetailsContent";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-import { Selectors } from "../../../../../common/selectors";
-import { Helpers } from "../../../../../common/helpers";
-import AxeTest from "../../../../../common/accessibilityTestHelper";
 import { CitizensOtherProceedingsUniqueSelectors } from "../../../../../common/commonUniqueSelectors";
+import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors";
+import { OtherInjunctionOrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/otherInjunctionOrderDetailsContent";
 
 interface OtherInjunctionOrderDetailsPageOptions {
   page: Page;
@@ -45,7 +44,6 @@ export class OtherInjunctionOrderDetailsPage {
 
   private static async checkPageLoads({
     page: page,
-    accessibilityTest: accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.p}:text-is("${OtherInjunctionOrderDetailsContent.p}")`,
