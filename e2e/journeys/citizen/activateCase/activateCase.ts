@@ -12,16 +12,21 @@ interface ActiveCaseParams {
   page: Page;
   browser: Browser;
   caseRef: string;
+  caseUser: CaseUser;
   accessibilityTest: boolean;
 }
+
+export type CaseUser = "applicant" | "respondent" | "both";
 
 export class ActivateCase {
   public static async activateCase({
     page,
     browser,
     caseRef,
+    caseUser,
     accessibilityTest,
-  }: ActiveCaseParams): Promise<void> {
+  }: ActiveCaseParams): Promise<Page> {
+    let currentPage: Page = page;
     await E2eFlowUpToServiceOfApplication.e2eFlowUpToServiceOfApplication({
       page: page,
       accessibilityTest: false,
@@ -40,18 +45,45 @@ export class ActivateCase {
       yesNoServiceOfApplication4: false,
       responsibleForServing: "courtBailiff", // this isn't used when yesNoServiceOfApplication4 is false
     });
-    await this.checkApplicantDashboard(browser, caseRef, accessibilityTest);
-    await this.checkRespondentDashboard(browser, caseRef, accessibilityTest);
+    switch (caseUser) {
+      case "applicant":
+        currentPage = await this.checkApplicantDashboard(
+          browser,
+          caseRef,
+          accessibilityTest,
+        );
+        break;
+      case "respondent":
+        currentPage = await this.checkRespondentDashboard(
+          browser,
+          caseRef,
+          accessibilityTest,
+        );
+        break;
+      case "both":
+        await this.checkApplicantDashboard(browser, caseRef, accessibilityTest);
+        await this.checkRespondentDashboard(
+          browser,
+          caseRef,
+          accessibilityTest,
+        );
+        break;
+      default:
+        console.error(
+          `Couldn't check dashboard as supplied argument of ${caseUser} does not match any cases`,
+        );
+    }
+    return currentPage;
   }
 
   private static async checkApplicantDashboard(
     browser: Browser,
     caseRef: string,
     accessibilityTest: boolean,
-  ): Promise<void> {
+  ): Promise<Page> {
     const newBrowser = await browser.browserType().launch();
     const newContext: BrowserContext = await newBrowser.newContext();
-    const page = await newContext.newPage();
+    const page: Page = await newContext.newPage();
     await IdamLoginHelper.signInCitizenUser(
       page,
       Config.citizenFrontendBaseURL,
@@ -67,13 +99,14 @@ export class ActivateCase {
       true,
       accessibilityTest,
     );
+    return page;
   }
 
   private static async checkRespondentDashboard(
     browser: Browser,
     caseRef: string,
     accessibilityTest: boolean,
-  ): Promise<void> {
+  ): Promise<Page> {
     const newBrowser = await browser.browserType().launch();
     const newContext: BrowserContext = await newBrowser.newContext();
     const page = await newContext.newPage();
@@ -91,6 +124,7 @@ export class ActivateCase {
       false,
       accessibilityTest,
     );
+    return page;
   }
 
   private static async checkDashboard(
