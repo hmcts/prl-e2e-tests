@@ -14,7 +14,7 @@ import { HearingAdditionalInstructionsPage } from "../../../../pages/manageCases
 import { HearingCreateEditSummaryPage } from "../../../../pages/manageCases/caseProgression/createHearingRequest/hearingCreateEditSummaryPage";
 import Config from "../../../../config";
 import config from "../../../../config";
-import { ApplicationJourneysCheckGatekeeperJudgeCOOrder } from "../manageOrders/application-journeys-check-gatekeeper-judgeCO-order";
+import { ApplicationJourneysCheckGatekeeperJudgeCOOrder } from "../e2eFlowUpToServiceOfApplication/application-journeys-check-gatekeeper-judgeCO-order";
 import {
   WACaseWorkerActions,
   createOrderFL401Options,
@@ -125,9 +125,6 @@ export class CreateHearingRequest {
         break;
     }
     await page.click(`${Selectors.a}:text-is("${CommonStaticText.hearingRequest}")`);
-    // await page.click(`${Selectors.a}:has-text("Request a hearing")`);
-    await page.click(`a:has-text("Request a hearing")`);
-
     await HearingRequirementsPage.hearingRequirementsPage(
       page,
       accessibilityTest
