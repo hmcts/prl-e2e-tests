@@ -6,7 +6,7 @@ import { EnterPinPage } from "../../../pages/citizen/activateCase/enterPinPage.t
 import { CaseActivatedPage } from "../../../pages/citizen/activateCase/caseActivatedPage.ts";
 import { ApplicantDashboardPage } from "../../../pages/citizen/activateCase/applicantDashboardPage.ts";
 import { RespondentDashboardPage } from "../../../pages/citizen/activateCase/respondentDashboardPage.ts";
-import { CompleteOrderServiceOfApplication } from "../../manageCases/caseProgression/completeOrderServiceOfApplication/completeOrderServiceOfApplication.ts";
+import { E2eFlowUpToServiceOfApplication } from "../../manageCases/caseProgression/e2eFlowUpToServiceOfApplication/e2eFlowUpToServiceOfApplication.ts";
 
 interface ActiveCaseParams {
   page: Page;
@@ -22,7 +22,7 @@ export class ActivateCase {
     caseRef,
     accessibilityTest,
   }: ActiveCaseParams): Promise<void> {
-    await CompleteOrderServiceOfApplication.completeOrderServiceOfApplication({
+    await E2eFlowUpToServiceOfApplication.e2eFlowUpToServiceOfApplication({
       page: page,
       accessibilityTest: false,
       yesNoSendToGateKeeper: true,
