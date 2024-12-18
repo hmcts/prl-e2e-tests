@@ -12,9 +12,10 @@ import {
   fl401JudiciaryEvents,
   fl401SolicitorEvents,
   fl401SubmittedSolicitorEvents,
-  c100CaseWorkerActions,
+  WACaseWorkerActions,
   UserRole,
   fl401CaseWorkerActions,
+  courtAdminEvents,
 } from "./types";
 import Config from "../config.ts";
 
@@ -26,8 +27,9 @@ export class Helpers {
       | fl401SolicitorEvents
       | fl401SubmittedSolicitorEvents
       | fl401JudiciaryEvents
-      | c100CaseWorkerActions
-      | fl401CaseWorkerActions,
+      | WACaseWorkerActions
+      | fl401CaseWorkerActions
+      | courtAdminEvents,
   ): Promise<void> {
     try {
       await page.waitForLoadState("domcontentloaded");
@@ -363,5 +365,30 @@ export class Helpers {
       throw new Error("Unable to extract case number from URL");
     }
     return caseNumberMatch[1];
+  }
+
+  public static async waitForTaskToDisappear(page: Page, taskName: string) {
+    // Refresh page until the task disappears - there can be some delay
+    await expect
+      .poll(
+        async () => {
+          const visible = await page
+            .locator(Selectors.strong, {
+              hasText: taskName,
+            })
+            .isVisible();
+          if (visible) {
+            await page.reload();
+          }
+          return !visible;
+        },
+        {
+          // Allow 10s delay before retrying
+          intervals: [10_000],
+          // Allow up to a minute for it to disappear
+          timeout: 100_000,
+        },
+      )
+      .toBeTruthy();
   }
 }

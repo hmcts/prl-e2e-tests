@@ -65,11 +65,16 @@ export type fl401SolicitorEvents =
   | "View PDF application"
   | "Statement of truth and submit";
 
-export type c100CaseWorkerActions = "Manage orders";
+export type WACaseWorkerActions =
+  | "Manage orders"
+  | "Service of application"
+  | "Create a bundle"
+  | "Statement of service";
 
 export type fl401CaseWorkerActions =
   | "Welsh language requirements"
-  | "Send and reply to messages";
+  | "Send and reply to messages"
+  | "Service of documents";
 
 export type fl401SubmittedSolicitorEvents =
   | "Draft an order"
@@ -184,3 +189,7 @@ export type judgeTitles =
   | "Justices' Clerk"
   | "The Honourable Mrs Justice"
   | "The Honourable Mr Justice";
+
+export type yesNoNA = "Yes" | "No" | "Not applicable";
+
+export type courtAdminEvents = "Edit and serve an order";
