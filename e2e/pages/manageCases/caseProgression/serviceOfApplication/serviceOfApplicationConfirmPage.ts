@@ -7,16 +7,19 @@ import { ServiceOfApplicationConfirmContent } from "../../../../fixtures/manageC
 
 interface ServiceOfApplicationConfirmOptions {
   page: Page;
+  yesNoServiceOfApplication4: boolean;
   accessibilityTest: boolean;
 }
 
 export class ServiceOfApplicationConfirmPage {
   public static async serviceOfApplicationConfirmPage({
     page,
+    yesNoServiceOfApplication4,
     accessibilityTest,
   }: ServiceOfApplicationConfirmOptions): Promise<void> {
     await this.checkPageLoads({
       page,
+      yesNoServiceOfApplication4,
       accessibilityTest,
     });
     await this.fillInFields({ page });
@@ -24,6 +27,7 @@ export class ServiceOfApplicationConfirmPage {
 
   private static async checkPageLoads({
     page,
+    yesNoServiceOfApplication4,
     accessibilityTest,
   }: Partial<ServiceOfApplicationConfirmOptions>): Promise<void> {
     if (!page) {
@@ -36,17 +40,12 @@ export class ServiceOfApplicationConfirmPage {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h1}:text-is("${ServiceOfApplicationConfirmContent.h1}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
         `${Selectors.h3}:text-is("${ServiceOfApplicationConfirmContent.h3}")`,
         1,
       ),
       Helpers.checkGroup(
         page,
-        4,
+        2,
         ServiceOfApplicationConfirmContent,
         "p",
         `${Selectors.p}`,
@@ -57,6 +56,35 @@ export class ServiceOfApplicationConfirmPage {
         1,
       ),
     ]);
+    if(yesNoServiceOfApplication4) {
+      await Promise.all([
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.h1}:text-is("${ServiceOfApplicationConfirmContent.servedByCourtBaliffH1}")`,
+          1,
+        ),
+        Helpers.checkGroup(
+          page,
+          2,
+          ServiceOfApplicationConfirmContent,
+          "servedByCourtBaliffP",
+          `${Selectors.p}`,
+        ),
+      ]);
+    } else {
+      await Promise.all([
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.h1}:text-is("${ServiceOfApplicationConfirmContent.bothPartiesServedH1}")`,
+          1,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.p}:text-is("${ServiceOfApplicationConfirmContent.bothPartiesServedP1}")`,
+          1,
+        ),
+      ]);
+    }
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }
