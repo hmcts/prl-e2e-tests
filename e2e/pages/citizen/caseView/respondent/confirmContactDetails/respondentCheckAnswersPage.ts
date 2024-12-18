@@ -27,7 +27,7 @@ export class RespondentCheckAnswersPage {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukCaptionM}:text-is("${RespondentCheckAnswersContent.govukCaptionM}")`,
+        `${Selectors.GovukHint}:text-is("${RespondentCheckAnswersContent.govukHint1}")`,
         1,
       ),
       Helpers.checkGroup(
@@ -46,12 +46,12 @@ export class RespondentCheckAnswersPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${RespondentCheckAnswersContent.govukHint1}")`,
+        `${Selectors.GovukHint}:text-is("${RespondentCheckAnswersContent.govukHint2}")`,
         3,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${RespondentCheckAnswersContent.govukHint2}")`,
+        `${Selectors.GovukHint}:text-is("${RespondentCheckAnswersContent.govukHint3}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
