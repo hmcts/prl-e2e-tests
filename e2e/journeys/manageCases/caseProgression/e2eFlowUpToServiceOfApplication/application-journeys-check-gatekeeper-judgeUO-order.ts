@@ -3,9 +3,10 @@ import {
   WACaseWorkerActions,
   manageOrdersOptions,
   uploadOrderFL401Options,
-} from "../../../../common/types";
-import { ApplicationJourneysCheckGatekeeper } from "../checkApplicationSendToGateKeeper/application-journeys-check-gatekeeper";
-import { JudgeManageOrderJourney } from "./judgeManageOrdersJourney";
+} from "../../../../common/types.ts";
+import { JudgeManageOrderJourney } from "./judgeManageOrders/judgeManageOrdersJourney.ts";
+import { CheckApplicationJourney } from "./checkApplication/checkApplicationJourney.ts";
+import { SendToGateKeeperJourney } from "./sendToGateKeeper/sendToGateKeeperJourney.ts";
 
 interface CheckApplicationParams {
   page: Page;
@@ -31,14 +32,18 @@ export class ApplicationJourneysCheckGatekeeperJudgeUOOrder {
     manageOrdersOptions,
     browser,
   }: CheckApplicationParams): Promise<void> {
-    await ApplicationJourneysCheckGatekeeper.applicationJourneysCheckGatekeeper(
-      {
-        page,
-        accessibilityTest,
-        yesNoSendToGateKeeper,
-        ccdRef,
-      },
-    );
+    await CheckApplicationJourney.checkApplication({
+      page,
+      accessibilityTest,
+      yesNoSendToGateKeeper,
+      ccdRef,
+    });
+    await SendToGateKeeperJourney.sendToGateKeeper({
+      page,
+      accessibilityTest,
+      yesNoSendToGateKeeper,
+      ccdRef,
+    });
     await JudgeManageOrderJourney.JudgeUploadOrderCaseProgressionJourney({
       browser,
       ccdRef,
@@ -48,6 +53,5 @@ export class ApplicationJourneysCheckGatekeeperJudgeUOOrder {
       uploadOrderFL401Options,
       manageOrdersOptions,
     });
-    await page.waitForTimeout(5000);
   }
 }
