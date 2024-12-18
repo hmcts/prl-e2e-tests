@@ -39,10 +39,12 @@ export class ServiceOfApplicationJourney {
     });
     await ServiceOfApplicationSubmitPage.serviceOfApplicationSubmitPage({
       page,
+      yesNoServiceOfApplication4,
       accessibilityTest,
     });
     await ServiceOfApplicationConfirmPage.serviceOfApplicationConfirmPage({
       page,
+      yesNoServiceOfApplication4,
       accessibilityTest,
     });
   }
