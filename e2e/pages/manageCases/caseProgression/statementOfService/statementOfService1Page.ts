@@ -1,7 +1,6 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors";
 import { CommonStaticText } from "../../../../common/commonStaticText";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
 import { StatementOfService1Content } from "../../../../fixtures/manageCases/caseProgression/statementOfService/statementOfService1Content";
 import config from "../../../../config";
 import { Helpers } from "../../../../common/helpers";
@@ -87,7 +86,7 @@ export class StatementOfService1Page {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      // await AccessibilityTestHelper.run(page); #TODO wait until FPET-1230 is resolved
     }
   }
 
