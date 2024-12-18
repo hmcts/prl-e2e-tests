@@ -169,6 +169,8 @@ export class DraftAnOrder {
       accessibilityTest,
       paymentStatusPaid,
       caseType,
+      applicantLivesInRefuge: false,
+      otherPersonLivesInRefuge: false,
     });
     // fetch the case ref to be used when editing and approving an order
     const unformattedCaseRef: string | null = await page

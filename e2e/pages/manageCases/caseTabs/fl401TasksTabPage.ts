@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../common/selectors";
 import { Helpers } from "../../../common/helpers";
 import AccessibilityTestHelper from "../../../common/accessibilityTestHelper";
-import { Fl401TasksTabContent } from "../../../fixtures/manageCases/caseTabs/fl401TasksTabContent";
+import { Fl401TasksTabContent } from "../../../fixtures/manageCases/caseTabs/FL401/fl401TasksTabContent";
 
 enum IndividualSelectors {
   links = "markdown > div > p > a",
