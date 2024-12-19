@@ -1,6 +1,6 @@
 import { Browser, Page } from "@playwright/test";
 import { ActivateCase } from "../../../activateCase/activateCase.ts";
-import { ApplicantCheckAnswersPage } from "../../../../../pages/citizen/caseView/applicant/confirmContactDetails/applicantCheckAnswersPage.ts";
+import { CheckAnswersPage } from "../../../../../pages/citizen/caseView/applicant/confirmContactDetails/checkAnswersPage.ts";
 
 interface ApplicantConfirmContactDetailsParams {
   page: Page;
@@ -13,7 +13,7 @@ enum UniqueSelectors {
   confirmOrEditYourContactDetailsSelector = "#editYouContactDetails",
 }
 
-export class ApplicantConfirmContactDetails {
+export class ConfirmContactDetails {
   public static async confirmContactDetails({
     page,
     browser,
@@ -28,6 +28,6 @@ export class ApplicantConfirmContactDetails {
       accessibilityTest: accessibilityTest,
     });
     await page.click(UniqueSelectors.confirmOrEditYourContactDetailsSelector);
-    await ApplicantCheckAnswersPage.checkAnswersPage(page, accessibilityTest);
+    await CheckAnswersPage.checkAnswersPage(page, accessibilityTest);
   }
 }

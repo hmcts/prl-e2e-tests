@@ -3,7 +3,7 @@ import Config from "../../../../../config.ts";
 import config from "../../../../../config.ts";
 import createDaCitizenCourtNavCase from "../../../../../common/createCaseHelper.ts";
 import { Helpers } from "../../../../../common/helpers.ts";
-import { ApplicantConfirmContactDetails } from "../../../../../journeys/citizen/caseView/applicant/confirmContactDetails/applicantConfirmContactDetails.ts";
+import { ConfirmContactDetails } from "../../../../../journeys/citizen/caseView/applicant/confirmContactDetails/confirmContactDetails.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
@@ -20,7 +20,7 @@ test.describe("Applicant confirm contact details tests", (): void => {
     page,
     browser,
   }): Promise<void> => {
-    await ApplicantConfirmContactDetails.confirmContactDetails({
+    await ConfirmContactDetails.confirmContactDetails({
       page: page,
       browser: browser,
       caseRef: ccdRef,

@@ -1,4 +1,4 @@
-export enum ApplicantCheckAnswersContent {
+export enum CheckAnswersContent {
   govukHeadingL = "Check your details",
   govukCaptionM = "Read the information to make sure it is correct, and add any missing details",
   govukSummaryListKey1 = "Name",

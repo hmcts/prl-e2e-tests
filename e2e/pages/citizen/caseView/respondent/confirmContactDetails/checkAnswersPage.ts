@@ -3,9 +3,9 @@ import { Selectors } from "../../../../../common/selectors.ts";
 import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 import { Helpers } from "../../../../../common/helpers.ts";
-import { RespondentCheckAnswersContent } from "../../../../../fixtures/citizen/caseView/respondent/confirmContactDetails/respondentCheckAnswersContent.ts";
+import { CheckAnswersContent } from "../../../../../fixtures/citizen/caseView/respondent/confirmContactDetails/checkAnswersContent.ts";
 
-export class RespondentCheckAnswersPage {
+export class CheckAnswersPage {
   public static async checkAnswersPage(
     page: Page,
     accessibilityTest: boolean,
@@ -21,42 +21,42 @@ export class RespondentCheckAnswersPage {
   ): Promise<void> {
     await page
       .locator(Selectors.GovukHeadingXL, {
-        hasText: RespondentCheckAnswersContent.govukHeadingXl,
+        hasText: CheckAnswersContent.govukHeadingXl,
       })
       .waitFor();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${RespondentCheckAnswersContent.govukHint1}")`,
+        `${Selectors.GovukHint}:text-is("${CheckAnswersContent.govukHint1}")`,
         1,
       ),
       Helpers.checkGroup(
         page,
         5,
-        RespondentCheckAnswersContent,
+        CheckAnswersContent,
         `govukSummaryListKey`,
         `${Selectors.GovukSummaryListKey}`,
       ),
       Helpers.checkGroup(
         page,
         5,
-        RespondentCheckAnswersContent,
+        CheckAnswersContent,
         `govukSummaryListValue`,
         `${Selectors.GovukSummaryListValue}`,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${RespondentCheckAnswersContent.govukHint2}")`,
+        `${Selectors.GovukHint}:text-is("${CheckAnswersContent.govukHint2}")`,
         3,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${RespondentCheckAnswersContent.govukHint3}")`,
+        `${Selectors.GovukHint}:text-is("${CheckAnswersContent.govukHint3}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${RespondentCheckAnswersContent.a}")`,
+        `${Selectors.a}:text-is("${CheckAnswersContent.a}")`,
         1,
       ),
     ]);
