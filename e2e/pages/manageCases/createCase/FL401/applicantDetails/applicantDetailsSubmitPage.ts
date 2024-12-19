@@ -44,7 +44,7 @@ export class ApplicantDetailsSubmitPage {
     await page.waitForSelector(
       `${Selectors.GovukHeadingL}:text-is("${ApplicantDetailsSubmitContent.pageTitle}")`,
     );
-    const text16Count: number = yesNoFL401ApplicantDetails ? 19 : 18;
+    const text16Count: number = yesNoFL401ApplicantDetails ? 20 : 18;
     const emailCount: number = yesNoFL401ApplicantDetails ? 2 : 1;
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -113,15 +113,25 @@ export class ApplicantDetailsSubmitPage {
     let yesNoCount: number;
     let yesNoKey: keyof typeof ApplicantDetailsSubmitContent;
     if (yesNoFl401ApplicantDetails) {
-      yesNoCount = 4;
+      yesNoCount = 5;
       yesNoKey = "radioYes";
       await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.a}:text-is("${ApplicantDetailsSubmitContent.applicantEmailAddress}")`,
         1,
       );
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${ApplicantDetailsSubmitContent.uploadC8Form}")`,
+        1,
+      );
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.a}:text-is("${ApplicantDetailsSubmitContent.uploadedFile}")`,
+        1,
+      );
     } else {
-      yesNoCount = 3;
+      yesNoCount = 4;
       yesNoKey = "radioNo";
     }
     switch (applicantGender) {
