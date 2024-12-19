@@ -10,7 +10,7 @@ export class RespondentCheckAnswersPage {
     page: Page,
     accessibilityTest: boolean,
   ): Promise<void> {
-    // // this part of the case is complete when the case is created through courtnav so only need to check the page
+    // this part of the case is complete when the case is created through courtnav so only need to check the page
     await this.checkPageLoads(page, accessibilityTest);
     await this.saveAndContinue(page);
   }
