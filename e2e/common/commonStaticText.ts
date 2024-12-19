@@ -19,4 +19,6 @@ export enum CommonStaticText {
   selectAllThatApply = "Select all that apply",
   provideMoreDetails = "Provide more details",
   saveAndContinue = "Save and continue",
+  submitRequest = "Submit request",
+  hearingRequest = "Request a hearing",
 }
