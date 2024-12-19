@@ -24,6 +24,7 @@ test.describe("Activating case tests", (): void => {
       page: page,
       browser: browser,
       caseRef: ccdRef,
+      caseUser: "both",
       accessibilityTest: true,
     });
   });
