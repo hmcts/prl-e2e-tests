@@ -30,11 +30,6 @@ export class HearingJudgePage {
       })
       .waitFor();
     await Promise.all([
-      // Helpers.checkVisibleAndPresent(
-      //   page,
-      //   `${Selectors.GovukFieldsetHeading}:text-is("${HearingJudgeContent.GovukFieldsetHeading}")`,
-      //   1,
-      // ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
