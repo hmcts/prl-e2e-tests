@@ -68,7 +68,8 @@ export type fl401SolicitorEvents =
 export type WACaseWorkerActions =
   | "Manage orders"
   | "Service of application"
-  | "Create A Bundle";
+  | "Create a bundle"
+  | "Statement of service";
 
 export type fl401CaseWorkerActions =
   | "Welsh language requirements"
@@ -190,3 +191,5 @@ export type judgeTitles =
   | "The Honourable Mr Justice";
 
 export type yesNoNA = "Yes" | "No" | "Not applicable";
+
+export type courtAdminEvents = "Edit and serve an order";

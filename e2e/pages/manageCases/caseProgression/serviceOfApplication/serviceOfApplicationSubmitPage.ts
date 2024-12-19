@@ -8,16 +8,19 @@ import { ServiceOfApplicationSubmitContent } from "../../../../fixtures/manageCa
 
 interface ServiceOfApplicationSubmitOptions {
   page: Page;
+  yesNoServiceOfApplication4: boolean;
   accessibilityTest: boolean;
 }
 
 export class ServiceOfApplicationSubmitPage {
   public static async serviceOfApplicationSubmitPage({
     page,
+    yesNoServiceOfApplication4,
     accessibilityTest,
   }: ServiceOfApplicationSubmitOptions): Promise<void> {
     await this.checkPageLoads({
       page,
+      yesNoServiceOfApplication4,
       accessibilityTest,
     });
     await this.fillInFields({ page });
@@ -25,6 +28,7 @@ export class ServiceOfApplicationSubmitPage {
 
   private static async checkPageLoads({
     page,
+    yesNoServiceOfApplication4,
     accessibilityTest,
   }: Partial<ServiceOfApplicationSubmitOptions>): Promise<void> {
     if (!page) {
@@ -55,7 +59,7 @@ export class ServiceOfApplicationSubmitPage {
       ),
       Helpers.checkGroup(
         page,
-        5,
+        3,
         ServiceOfApplicationSubmitContent,
         "text16",
         Selectors.GovukText16,
@@ -66,6 +70,28 @@ export class ServiceOfApplicationSubmitPage {
         3,
       ),
     ]);
+    if (yesNoServiceOfApplication4) {
+      await Helpers.checkGroup(
+        page,
+        2,
+        ServiceOfApplicationSubmitContent,
+        "servedByBaliffText16",
+        Selectors.GovukText16,
+      );
+    } else {
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${ServiceOfApplicationSubmitContent.recipientsText16}")`,
+        1,
+      );
+      await Helpers.checkGroup(
+        page,
+        2,
+        ServiceOfApplicationSubmitContent,
+        "recipientsP",
+        Selectors.p
+      );
+    }
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }

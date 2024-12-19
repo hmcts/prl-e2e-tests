@@ -4,14 +4,16 @@ import { Selectors } from "../../../../common/selectors";
 import { AdminEditAndApproveAnOrder1Content } from "../../../../fixtures/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrder1Content";
 import { Helpers } from "../../../../common/helpers";
 import { CommonStaticText } from "../../../../common/commonStaticText";
+import { createOrderFL401Options } from "../../../../common/types.ts";
 
 export class AdminEditAndApproveAnOrder1Page {
   public static async adminEditAndApproveAnOrder1Page(
     page: Page,
     accessibilityTest: boolean,
+    createOrderFL401Options: createOrderFL401Options,
   ): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest);
-    await this.fillInFields(page);
+    await this.fillInFields(page, createOrderFL401Options);
     await this.continue(page);
   }
 
@@ -47,8 +49,34 @@ export class AdminEditAndApproveAnOrder1Page {
     // #TODO commented out until ticket resolved FPET-1224
   }
 
-  private static async fillInFields(page: Page): Promise<void> {
-    await page.selectOption("#draftOrdersDynamicList", { index: 1 });
+  private static async fillInFields(
+    page: Page,
+    createOrderFL401Options: createOrderFL401Options,
+  ): Promise<void> {
+    switch (createOrderFL401Options) {
+      case "power of arrest":
+        const optionSelectPower = await page
+          .locator("option", { hasText: "Power of arrest (FL406)" })
+          .textContent();
+        if (optionSelectPower) {
+          await page
+            .locator("#draftOrdersDynamicList")
+            .selectOption({ label: optionSelectPower });
+        }
+        break;
+      case "amend discharge varied order":
+        const optionSelectAmend = await page
+          .locator("option", {
+            hasText: "Amended, discharged or varied order (FL404B)",
+          })
+          .textContent();
+        if (optionSelectAmend) {
+          await page
+            .locator("#draftOrdersDynamicList")
+            .selectOption({ label: optionSelectAmend });
+        }
+        break;
+    }
   }
 
   private static async continue(page: Page): Promise<void> {

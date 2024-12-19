@@ -25,8 +25,6 @@ enum UniqueSelectors {
   courtBailiff = "#soaCitizenServingRespondentsOptions-courtBailiff",
   unrepresentedApplication = "#soaCitizenServingRespondentsOptions-unrepresentedApplicant",
   courtAdmin = "#soaCitizenServingRespondentsOptions-courtAdmin",
-  noApplicant = "#soaRecipientsOptions_d0cfb768-9707-4091-b0d4-b2d09eb82318",
-  noRespondent = "#soaRecipientsOptions_ea441ab6-d136-422f-bf91-0c9407a0185d",
 }
 
 export class ServiceOfApplication4Page {
@@ -107,8 +105,10 @@ export class ServiceOfApplication4Page {
     } else {
       await page.click(UniqueSelectors.no);
       await this.noHiddenFormLabel1(page);
-      await page.click(UniqueSelectors.noApplicant);
-      await page.click(UniqueSelectors.noRespondent);
+      const recipientsCheckboxes = page.locator("#soaRecipientsOptions .form-control");
+      for (let i = 0; i < await recipientsCheckboxes.count(); i++) {
+        await recipientsCheckboxes.nth(i).click();
+      }
     }
     await page.click(
       `${Selectors.button}:text-is("${CommonStaticText.continue}")`,

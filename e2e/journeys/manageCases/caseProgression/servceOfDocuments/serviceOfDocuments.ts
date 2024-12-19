@@ -7,8 +7,9 @@ import { Helpers } from "../../../../common/helpers";
 import config from "../../../../config";
 import { ReviewDocuments } from "../reviewDocuments/reviewDocuments";
 import createDaCitizenCourtNavCase from "../../../../common/createCaseHelper";
-import { ApplicationJourneysCheckGatekeeper } from "../checkApplicationSendToGateKeeper/application-journeys-check-gatekeeper";
 import { ServiceOfDocumentsSubmitPage } from "../../../../pages/manageCases/caseProgression/serviceOfDocuments/serviceOfDocumentsSubmitPage";
+import { CheckApplicationJourney } from "../e2eFlowUpToServiceOfApplication/checkApplication/checkApplicationJourney.ts";
+import { SendToGateKeeperJourney } from "../e2eFlowUpToServiceOfApplication/sendToGateKeeper/sendToGateKeeperJourney.ts";
 
 interface ServiceOfDocumentsParams {
   page: Page;
@@ -44,14 +45,18 @@ export class ServiceOfDocuments {
       });
       await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
     }
-    await ApplicationJourneysCheckGatekeeper.applicationJourneysCheckGatekeeper(
-      {
-        page,
-        accessibilityTest: false,
-        yesNoSendToGateKeeper: false,
-        ccdRef,
-      },
-    );
+    await CheckApplicationJourney.checkApplication({
+      page: page,
+      accessibilityTest: false,
+      yesNoSendToGateKeeper: true,
+      ccdRef: ccdRef,
+    });
+    await SendToGateKeeperJourney.sendToGateKeeper({
+      page: page,
+      accessibilityTest: false,
+      yesNoSendToGateKeeper: true,
+      ccdRef: ccdRef,
+    });
     await this.serviceOfDocuments({
       page,
       withCaseDoc,

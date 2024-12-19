@@ -56,7 +56,7 @@ export class AdminEditAndApproveAnOrder21Page {
   }
 
   private static async fillInFields(page: Page): Promise<void> {
-    await page.selectOption("#selectTypeOfOrder", { index: 2 });
+    await page.locator("#selectTypeOfOrder").selectOption({ label: "General" });
     await page.check(`${UniqueSelectors.serveOrderNowYes}`);
   }
 
