@@ -12,5 +12,5 @@ export enum ServiceOfApplicationConfirmContent {
 
   // served to both parties but not personally
   bothPartiesServedH1 = "The application has been served",
-  bothPartiesServedP1 = "The service pack has been served on the parties selected."
+  bothPartiesServedP1 = "The service pack has been served on the parties selected.",
 }

@@ -89,7 +89,7 @@ export class ServiceOfApplicationSubmitPage {
         2,
         ServiceOfApplicationSubmitContent,
         "recipientsP",
-        Selectors.p
+        Selectors.p,
       );
     }
     if (accessibilityTest) {
