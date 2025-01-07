@@ -50,7 +50,10 @@ export class PayPage {
     await page.waitForSelector(
       `${Selectors.GovukHeadingL}:text-is("${PayContent.pageTitle}")`,
     );
-   const formattedExpiryDate = Helpers.getFormattedCardExpiryDate(10, new Date().getFullYear() + 2);
+    const formattedExpiryDate = Helpers.getFormattedCardExpiryDate(
+      10,
+      new Date().getFullYear() + 2,
+    );
 
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -166,4 +169,3 @@ export class PayPage {
     );
   }
 }
-
