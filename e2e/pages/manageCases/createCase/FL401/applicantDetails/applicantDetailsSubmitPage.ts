@@ -120,12 +120,12 @@ export class ApplicantDetailsSubmitPage {
         `${Selectors.a}:text-is("${ApplicantDetailsSubmitContent.applicantEmailAddress}")`,
         1,
       );
-      Helpers.checkVisibleAndPresent(
+      await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukText16}:text-is("${ApplicantDetailsSubmitContent.uploadC8Form}")`,
         1,
       );
-      Helpers.checkVisibleAndPresent(
+      await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.a}:text-is("${ApplicantDetailsSubmitContent.uploadedFile}")`,
         1,
