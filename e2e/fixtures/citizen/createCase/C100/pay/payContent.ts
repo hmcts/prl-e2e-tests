@@ -7,7 +7,7 @@ export enum PayContent {
   body2 = "Total amount:",
   body3 = "Accepted credit and debit card types",
   body4 = "This is the address associated with the card",
-  hint1 = "For example, 10/26", // GovukHint
+  hint1 = "For example, 10/27", // GovukHint
   hint2 = "We’ll send your payment confirmation here",
   label1 = "Month", // GovukLabel
   label2 = "Year",
