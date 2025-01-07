@@ -13,5 +13,4 @@ export enum CheckAnswersContent {
   govukSummaryListValue5 = "test-appl@hmcts.net",
   govukHint1 = "If this information was provided by the applicant it should not be requested to be kept confidential.", // x3
   govukHint2 = "if you do not want to share your contact details with the other person in the case,update the section keep your details private",
-  a = "keeping your contact details private ",
 }
