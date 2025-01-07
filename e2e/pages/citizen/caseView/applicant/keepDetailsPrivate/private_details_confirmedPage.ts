@@ -29,9 +29,9 @@ export class Private_details_confirmedPage {
     if (!page) {
       throw new Error("Page is not defined)");
     }
-    if (startAlternativeYesNo) {
+    if (startAlternativeYesNo == true) {
       await page
-        .locator(Selectors.h1, {
+        .locator(Selectors.GovukFieldsetHeading, {
           hasText: Private_details_confirmedContent.yesPageTitle,
         })
         .waitFor();
@@ -61,7 +61,7 @@ export class Private_details_confirmedPage {
           Selectors.li,
         ),
       ]);
-    } else {
+    } else if (startAlternativeYesNo == false) {
       await page
         .locator(Selectors.h1, {
           hasText: Private_details_confirmedContent.noPageTitle,
@@ -79,6 +79,8 @@ export class Private_details_confirmedPage {
           1,
         ),
       ]);
+    } else {
+      throw new Error("startAlternativeYesNo is not defined)");
     }
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);

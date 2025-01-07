@@ -1,9 +1,9 @@
 import { test } from "@playwright/test";
-import Config from "../../../../../config.ts";
-import config from "../../../../../config.ts";
-import createDaCitizenCourtNavCase from "../../../../../common/createCaseHelper.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
-import { daCitizenApplicationEvents } from "../../../../../journeys/citizen/caseView/applicant/daCitizenApplicantEvents/daCitizenApplicationEvents.ts";
+import Config from "../../../../../../config.ts";
+import config from "../../../../../../config.ts";
+import createDaCitizenCourtNavCase from "../../../../../../common/createCaseHelper.ts";
+import { Helpers } from "../../../../../../common/helpers.ts";
+import { daCitizenApplicationEvents } from "../../../../../../journeys/citizen/caseView/applicant/daCitizenApplicantEvents/daCitizenApplicationEvents.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
@@ -25,6 +25,9 @@ test.describe("Applicant confirm contact details tests", (): void => {
       browser: browser,
       caseRef: ccdRef,
       accessibilityTest: true,
+      event: "confirmContactDetails",
+      startAlternativeYesNo: true,
+      yesNoDontKnow: "yes",
     });
   });
 });
