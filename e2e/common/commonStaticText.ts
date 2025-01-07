@@ -3,6 +3,7 @@ export enum CommonStaticText {
   yes = "Yes",
   no = "No",
   dontKnow = "Don't know",
+  iDontKnow = "I don't know",
   continue = "Continue",
   submit = "Submit",
   previous = "Previous",

@@ -54,11 +54,6 @@ export class CheckAnswersPage {
         `${Selectors.GovukHint}:text-is("${CheckAnswersContent.govukHint2}")`,
         1,
       ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.a}:text-is("${CheckAnswersContent.a}")`,
-        1,
-      ),
     ]);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
