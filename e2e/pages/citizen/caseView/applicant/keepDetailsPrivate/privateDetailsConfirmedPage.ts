@@ -69,7 +69,7 @@ export class PrivateDetailsConfirmedPage {
           Selectors.li,
         ),
       ]);
-    } else if (startAlternativeYesNo) {
+    } else {
       await page
         .locator(Selectors.h1, {
           hasText: Private_details_confirmedContent.noPageTitle,
@@ -87,8 +87,6 @@ export class PrivateDetailsConfirmedPage {
           1,
         ),
       ]);
-    } else {
-      throw new Error("startAlternativeYesNo is not defined)");
     }
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
