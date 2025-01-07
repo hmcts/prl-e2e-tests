@@ -3,7 +3,7 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors";
 import { ApplicantDetails1Content } from "../../../../fixtures/manageCases/createCase/C100/applicantDetails/applicantDetails1Content";
 import { ApplicantDetailsSubmitContent } from "../../../../fixtures/manageCases/createCase/C100/applicantDetails/applicantDetailsSubmitContent";
-import { DummyApplicantDetailsPage } from "../../../../pages/manageCases/createCase/C100/dummyCase/dummyApplicantDetailsPage";
+import { DummyC100ApplicantDetailsPage } from "../../../../pages/manageCases/createCase/C100/dummyCase/dummyC100ApplicantDetailsPage";
 
 export class DummyC100ApplicantDetails {
   public static async dummyC100ApplicantDetails(
@@ -11,7 +11,7 @@ export class DummyC100ApplicantDetails {
     applicantLivesInRefuge: boolean,
   ): Promise<void> {
     await Helpers.selectSolicitorEvent(page, "Applicant details");
-    await DummyApplicantDetailsPage.dummyApplicantDetailsPage(
+    await DummyC100ApplicantDetailsPage.dummyApplicantDetailsPage(
       page,
       applicantLivesInRefuge,
     );

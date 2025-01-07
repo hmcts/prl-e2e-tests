@@ -21,7 +21,7 @@ enum PageLoadFields {
   otherPersonCurrentAddressNo = "#otherPartyInTheCaseRevised_0_isCurrentAddressKnown_No",
 }
 
-export class DummyOtherPersonDetailsPage {
+export class DummyC100OtherPersonDetailsPage {
   public static async dummyOtherPersonDetailsPage(
     page: Page,
     otherPersonLivesInRefuge: boolean,

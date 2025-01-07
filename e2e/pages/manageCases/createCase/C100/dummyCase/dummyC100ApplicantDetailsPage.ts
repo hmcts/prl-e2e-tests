@@ -18,7 +18,7 @@ enum PageLoadFields {
   addressConfidentialNo = "#applicants_0_isAddressConfidential_No",
 }
 
-export class DummyApplicantDetailsPage {
+export class DummyC100ApplicantDetailsPage {
   public static async dummyApplicantDetailsPage(
     page: Page,
     applicantLivesInRefuge: boolean,
