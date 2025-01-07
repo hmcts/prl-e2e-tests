@@ -16,20 +16,28 @@ export class Private_details_confirmedPage {
     page,
     accessibilityTest,
     startAlternativeYesNo,
-  }: Start_alternativeContent): Promise<void> {
-    await this.checkPageLoads({ page, accessibilityTest });
-    await this.fillInFields({ page, startAlternativeYesNo });
+  }: {
+    page: Page;
+    accessibilityTest: boolean;
+    startAlternativeYesNo: boolean;
+  }): Promise<void> {
+    await this.checkPageLoads({
+      page,
+      accessibilityTest,
+      startAlternativeYesNo,
+    });
+    await this.fillInFields({ page });
   }
 
   private static async checkPageLoads({
     page,
     accessibilityTest,
     startAlternativeYesNo,
-  }: Partial<Start_alternativeContent>): Promise<void> {
+  }: Start_alternativeContent): Promise<void> {
     if (!page) {
-      throw new Error("Page is not defined)");
+      throw new Error("No page found");
     }
-    if (startAlternativeYesNo == true) {
+    if (startAlternativeYesNo) {
       await page
         .locator(Selectors.GovukFieldsetHeading, {
           hasText: Private_details_confirmedContent.yesPageTitle,
@@ -61,7 +69,7 @@ export class Private_details_confirmedPage {
           Selectors.li,
         ),
       ]);
-    } else if (startAlternativeYesNo == false) {
+    } else if (startAlternativeYesNo) {
       await page
         .locator(Selectors.h1, {
           hasText: Private_details_confirmedContent.noPageTitle,

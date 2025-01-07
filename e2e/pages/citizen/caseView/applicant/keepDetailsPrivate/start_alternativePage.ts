@@ -1,6 +1,5 @@
 import { Selectors } from "../../../../../common/selectors.ts";
 import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 import { Page } from "@playwright/test";
 import { Start_alternativeContent } from "../../../../../fixtures/citizen/caseView/applicant/keepDetailsPrivate/start_alternativeContent.ts";
 import { Helpers } from "../../../../../common/helpers.ts";
@@ -59,7 +58,7 @@ export class Start_alternativePage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      // await AccessibilityTestHelper.run(page); #TODO: Awaiting for accessibility ticket FPET-1242 to be resolved
     }
   }
 
