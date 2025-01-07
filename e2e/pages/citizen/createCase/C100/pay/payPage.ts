@@ -50,6 +50,10 @@ export class PayPage {
     await page.waitForSelector(
       `${Selectors.GovukHeadingL}:text-is("${PayContent.pageTitle}")`,
     );
+    const cardExpiryMonth = 10;
+    const cardExpiryYear = new Date().getFullYear()+2;
+    const formattedExpiryDate = `${String(cardExpiryMonth).padStart(2, "0")}/${String(cardExpiryYear).slice(-2)}`;
+
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
@@ -86,7 +90,21 @@ export class PayPage {
         `${Selectors.GovukBody}:text-is("${PayContent.body4}")`,
         1,
       ),
-      Helpers.checkGroup(page, 2, PayContent, "hint", `${Selectors.GovukHint}`),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukHint}:text-is("${PayContent.hint1}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukHint}:has-text("${PayContent.hintDynamicDate}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukHint}:has-text("${formattedExpiryDate}")`,
+        1,
+      ),
       Helpers.checkGroup(
         page,
         2,
