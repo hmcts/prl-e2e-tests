@@ -11,13 +11,16 @@ interface daCitizenApplicantDashboardTasksParams {
   browser: Browser;
   caseRef: string;
   accessibilityTest: boolean;
-  event: Event;
+  event: Event; // the event parameter is meant to represent a different task the applicant can perform on the dashboard
   startAlternativeYesNo: boolean;
   yesNoDontKnow: yesNoDontKnow;
 }
 
+// add your applicant task to this type to add your task to the switch statement
 export type Event = "confirmContactDetails" | "keepDetailsPrivate";
 
+
+// This enum is used to store the locators for each event <a> tag on the applicant dashboard
 enum UniqueSelectors {
   confirmOrEditYourContactDetailsSelector = "#editYouContactDetails",
   keepDetailsPrivateSelector = "#keepYourDetailsPrivate",
