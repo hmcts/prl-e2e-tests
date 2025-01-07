@@ -11,7 +11,7 @@ interface Start_alternativeContent {
   startAlternativeYesNo: boolean;
 }
 
-export class Private_details_confirmedPage {
+export class PrivateDetailsConfirmedPage {
   public static async private_details_confirmedPage({
     page,
     accessibilityTest,

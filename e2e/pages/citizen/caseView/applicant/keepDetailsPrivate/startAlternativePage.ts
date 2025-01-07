@@ -18,7 +18,7 @@ enum UniqueSelectors {
   no = "#startAlternative-2",
 }
 
-export class Start_alternativePage {
+export class StartAlternativePage {
   public static async start_alternativePage({
     page,
     accessibilityTest,

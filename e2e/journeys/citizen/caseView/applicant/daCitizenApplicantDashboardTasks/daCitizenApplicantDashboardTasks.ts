@@ -1,12 +1,12 @@
 import { Browser, Page } from "@playwright/test";
 import { ActivateCase } from "../../../activateCase/activateCase.ts";
 import { CheckAnswersPage } from "../../../../../pages/citizen/caseView/applicant/confirmContactDetails/checkAnswersPage.ts";
-import { Details_knownPage } from "../../../../../pages/citizen/caseView/applicant/keepDetailsPrivate/details_knownPage.ts";
-import { Start_alternativePage } from "../../../../../pages/citizen/caseView/applicant/keepDetailsPrivate/start_alternativePage.ts";
+import { DetailsKnownPage } from "../../../../../pages/citizen/caseView/applicant/keepDetailsPrivate/detailsKnownPage.ts";
+import { StartAlternativePage } from "../../../../../pages/citizen/caseView/applicant/keepDetailsPrivate/startAlternativePage.ts";
 import { yesNoDontKnow } from "../../../../../common/types.ts";
-import { Private_details_confirmedPage } from "../../../../../pages/citizen/caseView/applicant/keepDetailsPrivate/private_details_confirmedPage.ts";
+import { PrivateDetailsConfirmedPage } from "../../../../../pages/citizen/caseView/applicant/keepDetailsPrivate/privateDetailsConfirmedPage.ts";
 
-interface ApplicantConfirmContactDetailsParams {
+interface daCitizenApplicantDashboardTasksParams {
   page: Page;
   browser: Browser;
   caseRef: string;
@@ -23,8 +23,8 @@ enum UniqueSelectors {
   keepDetailsPrivateSelector = "#keepYourDetailsPrivate",
 }
 
-export class daCitizenApplicationEvents {
-  public static async confirmContactDetails({
+export class DaCitizenApplicantDashboardTasks {
+  public static async daCitizenApplicantDashboardTasks({
     page,
     browser,
     caseRef,
@@ -32,7 +32,7 @@ export class daCitizenApplicationEvents {
     event,
     startAlternativeYesNo,
     yesNoDontKnow,
-  }: ApplicantConfirmContactDetailsParams): Promise<void> {
+  }: daCitizenApplicantDashboardTasksParams): Promise<void> {
     page = await ActivateCase.activateCase({
       page: page,
       browser: browser,
@@ -49,17 +49,17 @@ export class daCitizenApplicationEvents {
         break;
       case "keepDetailsPrivate":
         await page.click(UniqueSelectors.keepDetailsPrivateSelector);
-        await Details_knownPage.details_knownPage(
+        await DetailsKnownPage.details_knownPage(
           page,
           accessibilityTest,
           yesNoDontKnow,
         );
-        await Start_alternativePage.start_alternativePage({
+        await StartAlternativePage.start_alternativePage({
           page,
           accessibilityTest,
           startAlternativeYesNo,
         });
-        await Private_details_confirmedPage.private_details_confirmedPage({
+        await PrivateDetailsConfirmedPage.private_details_confirmedPage({
           page,
           accessibilityTest,
           startAlternativeYesNo,

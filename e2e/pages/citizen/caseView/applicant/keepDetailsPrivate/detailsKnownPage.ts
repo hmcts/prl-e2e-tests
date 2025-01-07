@@ -12,7 +12,7 @@ enum UniqueSelectors {
   iDontKnow = "#detailsKnown-3",
 }
 
-export class Details_knownPage {
+export class DetailsKnownPage {
   public static async details_knownPage(
     page: Page,
     accessibilityTest: boolean,
