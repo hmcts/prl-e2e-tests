@@ -61,7 +61,10 @@ export class DummyPaymentAwp {
         otherPersonLivesInRefuge: otherPersonLivesInRefuge,
       });
     } else {
-      await DummyFL401.dummyFL401({ page });
+      await DummyFL401.dummyFL401({ 
+        page: page,
+        applicantLivesInRefuge: applicantLivesInRefuge,
+       });
     }
   }
 }
