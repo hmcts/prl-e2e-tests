@@ -1,29 +1,20 @@
 import { Browser, Page } from "@playwright/test";
 import { ActivateCase } from "../../../activateCase/activateCase.ts";
-import {
-  CheckAnswersPage
-} from "../../../../../pages/citizen/caseView/confirmContactDetails/applicant/checkAnswersPage.ts";
-import {
-  DetailsKnownPage
-} from "../../../../../pages/citizen/caseView/keepDetailsPrivate/applicant/detailsKnownPage.ts";
-import {
-  StartAlternativePage
-} from "../../../../../pages/citizen/caseView/keepDetailsPrivate/applicant/startAlternativePage.ts";
+import { CheckAnswersPage } from "../../../../../pages/citizen/caseView/confirmContactDetails/applicant/checkAnswersPage.ts";
+import { DetailsKnownPage } from "../../../../../pages/citizen/caseView/keepDetailsPrivate/applicant/detailsKnownPage.ts";
+import { StartAlternativePage } from "../../../../../pages/citizen/caseView/keepDetailsPrivate/applicant/startAlternativePage.ts";
 import { yesNoDontKnow } from "../../../../../common/types.ts";
-import {
-  PrivateDetailsConfirmedPage
-} from "../../../../../pages/citizen/caseView/keepDetailsPrivate/applicant/privateDetailsConfirmedPage.ts";
+import { PrivateDetailsConfirmedPage } from "../../../../../pages/citizen/caseView/keepDetailsPrivate/applicant/privateDetailsConfirmedPage.ts";
 import { IntroPage } from "../../../../../pages/citizen/caseView/reasonableAdjustments/introPage.ts";
-import {
-  LanguageRequirementsAndSpecialArrangementsPage
-} from "../../../../../pages/citizen/caseView/reasonableAdjustments/languageRequirementsAndSpecialArrangementsPage.ts";
-import {
-  HelpCommunicatingAndUnderstandingPage
-} from "../../../../../pages/citizen/caseView/reasonableAdjustments/helpCommunicatingAndUnderstandingPage.ts";
+import { LanguageRequirementsAndSpecialArrangementsPage } from "../../../../../pages/citizen/caseView/reasonableAdjustments/languageRequirementsAndSpecialArrangementsPage.ts";
+import { HelpCommunicatingAndUnderstandingPage } from "../../../../../pages/citizen/caseView/reasonableAdjustments/helpCommunicatingAndUnderstandingPage.ts";
 import { ConfirmationPage } from "../../../../../pages/citizen/caseView/reasonableAdjustments/confirmationPage.ts";
 import { Helpers } from "../../../../../common/helpers.ts";
 import config from "../../../../../config.ts";
 import { Selectors } from "../../../../../common/selectors.ts";
+import { ReasonableAdjustmentsReviewPage } from "../../../../../pages/citizen/caseView/reasonableAdjustments/reasonableAdjustmentsReviewPage.ts";
+import { ReasonableAdjustmentsSelectionPage } from "../../../../../pages/citizen/caseView/reasonableAdjustments/reasonableAdjustmentsSelectionPage.ts";
+import { LanguageRequirementsAndSpecialArrangementsReviewPage } from "../../../../../pages/citizen/caseView/reasonableAdjustments/languageRequirementsAndSpecialArrangementsReviewPage.ts";
 
 interface daCitizenApplicantDashboardTasksParams {
   page: Page;
@@ -99,23 +90,23 @@ export class DaCitizenApplicantDashboardTasks {
           page,
           accessibilityTest,
         );
-        await LanguageRequirementsAndSpcialArrangementsReviewPage.languageRequirementsAndSpecialArrangementsReviewPage(
+        await LanguageRequirementsAndSpecialArrangementsReviewPage.languageRequirementsAndSpecialArrangementsReviewPage(
           page,
           accessibilityTest,
         );
-        await ReasonableAdjustmentsSeletionPage.reasonableAdjustmentsSelectionPage(
+        await ReasonableAdjustmentsSelectionPage.reasonableAdjustmentsSelectionPage(
           page,
           needsReasonableAdjustment,
         );
-        if (needsReasonableAdjustment)
+        if (needsReasonableAdjustment) {
           await HelpCommunicatingAndUnderstandingPage.helpCommunicatingAndUnderstandingPage(
             page,
           );
         }
-        await ReasonableAdjstmentsReviewPage.reasonableAdjustmentsReviewPage(
+        await ReasonableAdjustmentsReviewPage.reasonableAdjustmentsReviewPage(
           page,
         );
-        await ConfirmationPage.confirmaionPage(page, accessibilityTest);
+        await ConfirmationPage.confirmationPage(page, accessibilityTest);
         if (needsReasonableAdjustment) {
           // login as court admin and check Case Flags are updated with correct reasonable adjustment
           page = await Helpers.openNewBrowserWindow(browser, "caseWorker");
@@ -126,7 +117,7 @@ export class DaCitizenApplicantDashboardTasks {
             "tasks",
           );
           await page
-            .loctor(Selectors.daTasklist, {
+            .locator(Selectors.daTasklist, {
               hasText: "Case Flags",
             })
             .click();
@@ -135,11 +126,12 @@ export class DaCitizenApplicantDashboardTasks {
             hasText: "Applicant ApplLast",
           });
           await caseFlagsLocator
-           .locator(Selectors.div, {
+            .locator(Selectors.div, {
               hasText: "Lip speaker",
             })
             .isVisible();
-        }        break;
+        }
+        break;
     }
   }
 }
