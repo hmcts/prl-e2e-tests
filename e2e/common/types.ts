@@ -193,3 +193,5 @@ export type judgeTitles =
 export type yesNoNA = "Yes" | "No" | "Not applicable";
 
 export type courtAdminEvents = "Edit and serve an order";
+
+export type contactOption = "Digital" | "Post";
