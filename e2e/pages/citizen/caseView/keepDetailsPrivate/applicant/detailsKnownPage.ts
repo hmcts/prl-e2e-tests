@@ -1,4 +1,4 @@
-import { Details_knownContent } from "../../../../../fixtures/citizen/caseView/applicant/keepDetailsPrivate/details_knownContent.ts";
+import { Details_knownContent } from "../../../../../fixtures/citizen/caseView/keepDetailsPrivate/applicant/details_knownContent.ts";
 import { Selectors } from "../../../../../common/selectors.ts";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 import { Page } from "@playwright/test";

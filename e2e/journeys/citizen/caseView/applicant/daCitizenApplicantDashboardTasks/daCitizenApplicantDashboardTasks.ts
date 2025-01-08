@@ -1,10 +1,10 @@
 import { Browser, Page } from "@playwright/test";
 import { ActivateCase } from "../../../activateCase/activateCase.ts";
-import { CheckAnswersPage } from "../../../../../pages/citizen/caseView/applicant/confirmContactDetails/checkAnswersPage.ts";
-import { DetailsKnownPage } from "../../../../../pages/citizen/caseView/applicant/keepDetailsPrivate/detailsKnownPage.ts";
-import { StartAlternativePage } from "../../../../../pages/citizen/caseView/applicant/keepDetailsPrivate/startAlternativePage.ts";
+import { CheckAnswersPage } from "../../../../../pages/citizen/caseView/confirmContactDetails/applicant/checkAnswersPage.ts";
+import { DetailsKnownPage } from "../../../../../pages/citizen/caseView/keepDetailsPrivate/applicant/detailsKnownPage.ts";
+import { StartAlternativePage } from "../../../../../pages/citizen/caseView/keepDetailsPrivate/applicant/startAlternativePage.ts";
 import { yesNoDontKnow } from "../../../../../common/types.ts";
-import { PrivateDetailsConfirmedPage } from "../../../../../pages/citizen/caseView/applicant/keepDetailsPrivate/privateDetailsConfirmedPage.ts";
+import { PrivateDetailsConfirmedPage } from "../../../../../pages/citizen/caseView/keepDetailsPrivate/applicant/privateDetailsConfirmedPage.ts";
 
 interface daCitizenApplicantDashboardTasksParams {
   page: Page;
@@ -18,7 +18,6 @@ interface daCitizenApplicantDashboardTasksParams {
 
 // add your applicant task to this type to add your task to the switch statement
 export type Event = "confirmContactDetails" | "keepDetailsPrivate";
-
 
 // This enum is used to store the locators for each event <a> tag on the applicant dashboard
 enum UniqueSelectors {

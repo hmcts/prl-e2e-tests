@@ -3,7 +3,7 @@ import { Selectors } from "../../../../../common/selectors.ts";
 import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 import { Helpers } from "../../../../../common/helpers.ts";
-import { CheckAnswersContent } from "../../../../../fixtures/citizen/caseView/respondent/confirmContactDetails/checkAnswersContent.ts";
+import { CheckAnswersContent } from "../../../../../fixtures/citizen/caseView/confirmContactDetails/respondent/checkAnswersContent.ts";
 
 export class CheckAnswersPage {
   public static async checkAnswersPage(

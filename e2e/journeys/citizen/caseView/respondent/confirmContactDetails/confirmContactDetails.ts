@@ -1,6 +1,6 @@
 import { Browser, Page } from "@playwright/test";
 import { ActivateCase } from "../../../activateCase/activateCase.ts";
-import { CheckAnswersPage } from "../../../../../pages/citizen/caseView/respondent/confirmContactDetails/checkAnswersPage.ts";
+import { CheckAnswersPage } from "../../../../../pages/citizen/caseView/confirmContactDetails/respondent/checkAnswersPage.ts";
 
 interface RespondentConfirmContactDetailsParams {
   page: Page;

@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors.ts";
 import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
-import { CheckAnswersContent } from "../../../../../fixtures/citizen/caseView/applicant/confirmContactDetails/checkAnswersContent.ts";
+import { CheckAnswersContent } from "../../../../../fixtures/citizen/caseView/confirmContactDetails/applicant/checkAnswersContent.ts";
 import { Helpers } from "../../../../../common/helpers.ts";
 
 export class CheckAnswersPage {

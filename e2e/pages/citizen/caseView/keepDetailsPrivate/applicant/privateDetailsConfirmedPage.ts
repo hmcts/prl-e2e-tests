@@ -2,7 +2,7 @@ import { Selectors } from "../../../../../common/selectors.ts";
 import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 import { Page } from "@playwright/test";
-import { Private_details_confirmedContent } from "../../../../../fixtures/citizen/caseView/applicant/keepDetailsPrivate/private_details_confirmedContent.ts";
+import { Private_details_confirmedContent } from "../../../../../fixtures/citizen/caseView/keepDetailsPrivate/applicant/private_details_confirmedContent.ts";
 import { Helpers } from "../../../../../common/helpers.ts";
 
 interface Start_alternativeContent {

@@ -1,7 +1,7 @@
 import { Selectors } from "../../../../../common/selectors.ts";
 import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 import { Page } from "@playwright/test";
-import { Start_alternativeContent } from "../../../../../fixtures/citizen/caseView/applicant/keepDetailsPrivate/start_alternativeContent.ts";
+import { Start_alternativeContent } from "../../../../../fixtures/citizen/caseView/keepDetailsPrivate/applicant/start_alternativeContent.ts";
 import { Helpers } from "../../../../../common/helpers.ts";
 
 interface Start_alternativeParams {
