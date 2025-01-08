@@ -101,4 +101,3 @@ We use the following test tags to categorise and manage our test suite:
 
 - [How to use our helper functions](https://cjscommonplatform.sharepoint.com/sites/PrivateLawQA/SitePages/Helper-Functions.aspx)
 - [Testing endpoints used in our repo](https://cjscommonplatform.sharepoint.com/sites/PrivateLawQA/SitePages/Testing-endpoints.aspx)
-

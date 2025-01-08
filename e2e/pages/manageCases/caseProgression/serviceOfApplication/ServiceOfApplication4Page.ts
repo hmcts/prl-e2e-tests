@@ -105,8 +105,10 @@ export class ServiceOfApplication4Page {
     } else {
       await page.click(UniqueSelectors.no);
       await this.noHiddenFormLabel1(page);
-      const recipientsCheckboxes = page.locator("#soaRecipientsOptions .form-control");
-      for (let i = 0; i < await recipientsCheckboxes.count(); i++) {
+      const recipientsCheckboxes = page.locator(
+        "#soaRecipientsOptions .form-control",
+      );
+      for (let i = 0; i < (await recipientsCheckboxes.count()); i++) {
         await recipientsCheckboxes.nth(i).click();
       }
     }
