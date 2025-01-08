@@ -7,7 +7,7 @@ import { DaCitizenApplicantDashboardTasks } from "../../../../../../journeys/cit
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
-test.describe("Applicant keep details private tests", (): void => {
+test.describe("Applicant view all documents tests", (): void => {
   test.slow();
   let ccdRef: string;
 
@@ -16,7 +16,7 @@ test.describe("Applicant keep details private tests", (): void => {
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
   });
 
-  test("Applicant keep details private with yes response. @regression @nightly", async ({
+  test("Applicant view all documents. @regression @nightly", async ({
     page,
     browser,
   }): Promise<void> => {
@@ -25,28 +25,13 @@ test.describe("Applicant keep details private tests", (): void => {
       browser: browser,
       caseRef: ccdRef,
       accessibilityTest: false,
-      event: "keepDetailsPrivate",
+      event: "viewAllDocuments",
       startAlternativeYesNo: true,
       yesNoDontKnow: "yes",
     });
   });
 
-  test("Applicant keep details private with no response. @nightly", async ({
-    page,
-    browser,
-  }): Promise<void> => {
-    await DaCitizenApplicantDashboardTasks.daCitizenApplicantDashboardTasks({
-      page: page,
-      browser: browser,
-      caseRef: ccdRef,
-      accessibilityTest: false,
-      event: "keepDetailsPrivate",
-      startAlternativeYesNo: false,
-      yesNoDontKnow: "no",
-    });
-  });
-
-  test("Applicant keep details private with dontKnow response. @regression @accessibility @nightly", async ({
+  test("Applicant view all documents. @regression @accessibility @nightly", async ({
     page,
     browser,
   }): Promise<void> => {
@@ -55,7 +40,7 @@ test.describe("Applicant keep details private tests", (): void => {
       browser: browser,
       caseRef: ccdRef,
       accessibilityTest: true,
-      event: "keepDetailsPrivate",
+      event: "viewAllDocuments",
       startAlternativeYesNo: true,
       yesNoDontKnow: "dontKnow",
     });

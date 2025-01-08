@@ -5,6 +5,8 @@ import { DetailsKnownPage } from "../../../../../pages/citizen/caseView/applican
 import { StartAlternativePage } from "../../../../../pages/citizen/caseView/applicant/keepDetailsPrivate/startAlternativePage.ts";
 import { yesNoDontKnow } from "../../../../../common/types.ts";
 import { PrivateDetailsConfirmedPage } from "../../../../../pages/citizen/caseView/applicant/keepDetailsPrivate/privateDetailsConfirmedPage.ts";
+import { AllCategoriesPage } from "../../../../../pages/citizen/caseView/applicant/viewAllDocuments/allCatergoriesPage.ts";
+import { ApplicationPackDocumentsPage } from "../../../../../pages/citizen/caseView/applicant/viewAllDocuments/applicationPackDocumentsPage.ts";
 
 interface daCitizenApplicantDashboardTasksParams {
   page: Page;
@@ -17,13 +19,16 @@ interface daCitizenApplicantDashboardTasksParams {
 }
 
 // add your applicant task to this type to add your task to the switch statement
-export type Event = "confirmContactDetails" | "keepDetailsPrivate";
-
+export type Event =
+  | "confirmContactDetails"
+  | "keepDetailsPrivate"
+  | "viewAllDocuments";
 
 // This enum is used to store the locators for each event <a> tag on the applicant dashboard
 enum UniqueSelectors {
   confirmOrEditYourContactDetailsSelector = "#editYouContactDetails",
   keepDetailsPrivateSelector = "#keepYourDetailsPrivate",
+  viewAllDocumentsSelector = "#viewAllDocuments",
 }
 
 export class DaCitizenApplicantDashboardTasks {
@@ -66,6 +71,17 @@ export class DaCitizenApplicantDashboardTasks {
           page,
           accessibilityTest,
           startAlternativeYesNo,
+        });
+        break;
+      case "viewAllDocuments":
+        await page.click(UniqueSelectors.viewAllDocumentsSelector);
+        await AllCategoriesPage.allCategoriesPage({
+          page,
+          accessibilityTest,
+        });
+        await ApplicationPackDocumentsPage.applicationPackDocumentsPage({
+          page,
+          accessibilityTest,
         });
         break;
     }
