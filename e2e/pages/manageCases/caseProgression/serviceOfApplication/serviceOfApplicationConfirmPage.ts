@@ -56,7 +56,7 @@ export class ServiceOfApplicationConfirmPage {
         1,
       ),
     ]);
-    if(yesNoServiceOfApplication4) {
+    if (yesNoServiceOfApplication4) {
       await Promise.all([
         Helpers.checkVisibleAndPresent(
           page,
