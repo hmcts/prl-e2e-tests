@@ -7,6 +7,7 @@ import {
   yesNoDontKnow,
 } from "../../../../common/types";
 import { ConfirmationPage } from "../../../../pages/citizen/createCase/C100/confirmation/confirmationPage";
+import { EqualityAndDiversityPage } from "../../../../pages/citizen/createCase/C100/confirmation/equalityAndDiversityQuestionsPage";
 import { MiamChildProtectionConcernsType } from "../../../../pages/citizen/createCase/C100/MIAM/miamChildProtectionPage";
 import { MiamOtherReasonForNotAttending } from "../../../../pages/citizen/createCase/C100/MIAM/miamMiamOtherPage";
 import { MiamReasonForNoAccessToMediator } from "../../../../pages/citizen/createCase/C100/MIAM/miamNoAccessToMediatorPage";
@@ -726,6 +727,9 @@ export class C100 {
       relationshipType: relationshipType,
       c100YesNoNeedHelpWithFees: c100YesNoNeedHelpWithFees,
     });
+    await EqualityAndDiversityPage.equalityAndDiversityPage({
+      page,
+    });
     if (!c100YesNoNeedHelpWithFees) {
       await C100Pay.c100Pay({
         page: page,
@@ -1134,5 +1138,12 @@ export class C100 {
       c100ChildrenSupervision: c100ChildrenSupervision,
       c100YesNoNeedHelpWithFees: c100YesNoNeedHelpWithFees,
     });
+    // await EqualityAndDiversityPage.equalityAndDiversityPage({
+    //   page
+    // });
+    // await ConfirmationPage.confirmationPage({
+    //   page: page,
+    //   accessibilityTest: accessibilityTest,
+    // });
   }
 }
