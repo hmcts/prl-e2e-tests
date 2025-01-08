@@ -39,7 +39,7 @@ export class DaCitizenRespondentDashboardTasks {
    caseRef,
    accessibilityTest,
    event,
-   startAlternativeYesNo,
+   // startAlternativeYesNo,
    // yesNoDontKnow,
    contactOption,
  }: daCitizenRespondentDashboardTasksParams): Promise<void> {
