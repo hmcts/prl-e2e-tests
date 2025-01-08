@@ -44,7 +44,7 @@ test.describe("Applicant confirm contact details tests", (): void => {
       event: "keepDetailsPrivate",
       startAlternativeYesNo: false,
       yesNoDontKnow: "no",
-      needsReasonableAdjustment: fals,
+      needsReasonableAdjustment: false,
     });
   });
 
