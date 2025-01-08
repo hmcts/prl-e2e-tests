@@ -7,48 +7,17 @@ import { DaCitizenApplicantDashboardTasks } from "../../../../../journeys/citize
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
-test.describe("Applicant confirm contact details tests", (): void => {
+test.describe("Applicant reasonable adjustments tests", (): void => {
   test.slow();
   let ccdRef: string;
 
   test.beforeEach(async ({ page }) => {
     ccdRef = await createDaCitizenCourtNavCase(true, false);
+    console.log(ccdRef);
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
   });
 
-  test("Applicant keep details private with yes response. @regression @nightly", async ({
-    page,
-    browser,
-  }): Promise<void> => {
-    await DaCitizenApplicantDashboardTasks.daCitizenApplicantDashboardTasks({
-      page: page,
-      browser: browser,
-      caseRef: ccdRef,
-      accessibilityTest: false,
-      event: "keepDetailsPrivate",
-      startAlternativeYesNo: true,
-      yesNoDontKnow: "yes",
-      needsReasonableAdjustment: false,
-    });
-  });
-
-  test("Applicant keep details private with no response. @nightly", async ({
-    page,
-    browser,
-  }): Promise<void> => {
-    await DaCitizenApplicantDashboardTasks.daCitizenApplicantDashboardTasks({
-      page: page,
-      browser: browser,
-      caseRef: ccdRef,
-      accessibilityTest: false,
-      event: "keepDetailsPrivate",
-      startAlternativeYesNo: false,
-      yesNoDontKnow: "no",
-      needsReasonableAdjustment: fals,
-    });
-  });
-
-  test("Applicant keep details private with dontKnow response. @regression @accessibility @nightly", async ({
+  test("Applicant reasonable adjustments - no reasonable adjustments. @regression @accessibility @nightly", async ({
     page,
     browser,
   }): Promise<void> => {
@@ -57,10 +26,26 @@ test.describe("Applicant confirm contact details tests", (): void => {
       browser: browser,
       caseRef: ccdRef,
       accessibilityTest: true,
-      event: "keepDetailsPrivate",
-      startAlternativeYesNo: true,
+      event: "reasonableAdjustments",
+      startAlternativeYesNo: false,
       yesNoDontKnow: "dontKnow",
       needsReasonableAdjustment: false,
+    });
+  });
+
+  test("Applicant reasonable adjustments - add reasonable adjustment. @regression", async ({
+    page,
+    browser,
+  }): Promise<void> => {
+    await DaCitizenApplicantDashboardTasks.daCitizenApplicantDashboardTasks({
+      page: page,
+      browser: browser,
+      caseRef: ccdRef,
+      accessibilityTest: false,
+      event: "reasonableAdjustments",
+      startAlternativeYesNo: false,
+      yesNoDontKnow: "dontKnow",
+      needsReasonableAdjustment: true,
     });
   });
 });
