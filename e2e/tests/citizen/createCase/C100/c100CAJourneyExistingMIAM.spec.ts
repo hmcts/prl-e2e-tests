@@ -10,7 +10,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
       Config.citizenFrontendBaseURL,
     );
   });
-  test(`C100 Citizen Application with the following options:
+  test(`C100 Citizen Application with the following options: 
   Not Accessibility Testing
   Not Error Messaging
   Legal Representation

@@ -11,7 +11,7 @@ test.describe("Create Citizen Application but you must get a mediator", (): void
     );
   });
   test(`MIAM testing  with no previously attended MIAM. Redirect to Get Mediator
-  With no valid reason for attending
+  With no valid reason for attending 
   Not error message testing,
   Not accessibility Testing @regression`, async ({ page }): Promise<void> => {
     await C100.getMediatorJourney({
