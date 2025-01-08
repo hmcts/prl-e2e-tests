@@ -932,6 +932,9 @@ export class C100 {
       miamAlreadyAttended: miamAlreadyAttended,
       c100YesNoNeedHelpWithFees: c100YesNoNeedHelpWithFees,
     });
+    await EqualityAndDiversityPage.equalityAndDiversityPage({
+      page,
+    });
     if (!c100YesNoNeedHelpWithFees) {
       await C100Pay.c100Pay({
         page: page,
