@@ -28,6 +28,7 @@ test.describe("Applicant confirm contact details tests", (): void => {
       event: "keepDetailsPrivate",
       startAlternativeYesNo: true,
       yesNoDontKnow: "yes",
+      contactOption: "Post"
     });
   });
 
@@ -43,6 +44,7 @@ test.describe("Applicant confirm contact details tests", (): void => {
       event: "keepDetailsPrivate",
       startAlternativeYesNo: false,
       yesNoDontKnow: "no",
+      contactOption: "Post"
     });
   });
 
@@ -58,6 +60,7 @@ test.describe("Applicant confirm contact details tests", (): void => {
       event: "keepDetailsPrivate",
       startAlternativeYesNo: true,
       yesNoDontKnow: "dontKnow",
+      contactOption: "Post"
     });
   });
 });

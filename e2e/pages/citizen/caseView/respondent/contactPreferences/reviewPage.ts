@@ -2,11 +2,11 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors.ts";
 import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
+import { ReviewContent } from "../../../../../fixtures/citizen/caseView/respondent/contactPreferences/reviewContent.ts";
 import { Helpers } from "../../../../../common/helpers.ts";
-import { CheckAnswersContent } from "../../../../../fixtures/citizen/caseView/respondent/confirmContactDetails/checkAnswersContent.ts";
 
-export class CheckAnswersPage {
-  public static async checkAnswersPage(
+export class ReviewPage {
+  public static async reviewPage(
     page: Page,
     accessibilityTest: boolean,
   ): Promise<void> {
@@ -21,38 +21,26 @@ export class CheckAnswersPage {
   ): Promise<void> {
     await page
       .locator(Selectors.GovukHeadingXL, {
-        hasText: CheckAnswersContent.govukHeadingXl,
+        hasText: ReviewContent.GovukHeadingXL,
       })
       .waitFor();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${CheckAnswersContent.govukHint1}")`,
+        `${Selectors.GovukHeadingL}:text-is("${ReviewContent.GovukHeadingL}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukSummaryListKey}:text-is("${ReviewContent.GovukSummaryListKey}")`,
         1,
       ),
       Helpers.checkGroup(
         page,
-        5,
-        CheckAnswersContent,
-        `govukSummaryListKey`,
-        `${Selectors.GovukSummaryListKey}`,
-      ),
-      Helpers.checkGroup(
-        page,
-        5,
-        CheckAnswersContent,
-        `govukSummaryListValue`,
-        `${Selectors.GovukSummaryListValue}`,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukHint}:text-is("${CheckAnswersContent.govukHint2}")`,
-        3,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukHint}:text-is("${CheckAnswersContent.govukHint3}")`,
-        1,
+        6,
+        ReviewContent,
+        `GovukBody`,
+        `${Selectors.GovukBody}`,
       ),
     ]);
     if (accessibilityTest) {
@@ -62,7 +50,7 @@ export class CheckAnswersPage {
 
   private static async saveAndContinue(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.saveAndContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
   }
 }
