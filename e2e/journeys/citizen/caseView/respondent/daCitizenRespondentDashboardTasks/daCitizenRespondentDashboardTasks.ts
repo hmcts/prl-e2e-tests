@@ -22,8 +22,10 @@ interface daCitizenRespondentDashboardTasksParams {
 }
 
 // add your respondent task to this type to add your task to the switch statement
-export type Event = "confirmContactDetails" | "keepDetailsPrivate" | "contactPreferences";
-
+export type Event =
+  | "confirmContactDetails"
+  | "keepDetailsPrivate"
+  | "contactPreferences";
 
 // This enum is used to store the locators for each event <a> tag on the respondent dashboard
 enum UniqueSelectors {
@@ -34,15 +36,15 @@ enum UniqueSelectors {
 
 export class DaCitizenRespondentDashboardTasks {
   public static async daCitizenRespondentDashboardTasks({
-   page,
-   browser,
-   caseRef,
-   accessibilityTest,
-   event,
-   // startAlternativeYesNo,
-   // yesNoDontKnow,
-   contactOption,
- }: daCitizenRespondentDashboardTasksParams): Promise<void> {
+    page,
+    browser,
+    caseRef,
+    accessibilityTest,
+    event,
+    // startAlternativeYesNo,
+    // yesNoDontKnow,
+    contactOption,
+  }: daCitizenRespondentDashboardTasksParams): Promise<void> {
     page = await ActivateCase.activateCase({
       page: page,
       browser: browser,
@@ -52,11 +54,10 @@ export class DaCitizenRespondentDashboardTasks {
     });
     switch (event) {
       case "confirmContactDetails":
-        await page.click(UniqueSelectors.confirmOrEditYourContactDetailsSelector);
-        await CheckAnswersPage.checkAnswersPage(
-          page,
-          accessibilityTest
+        await page.click(
+          UniqueSelectors.confirmOrEditYourContactDetailsSelector,
         );
+        await CheckAnswersPage.checkAnswersPage(page, accessibilityTest);
         break;
       // case "keepDetailsPrivate":
       //   await page.click(UniqueSelectors.keepDetailsPrivateSelector);
@@ -83,14 +84,8 @@ export class DaCitizenRespondentDashboardTasks {
           accessibilityTest,
           contactOption,
         );
-        await ReviewPage.reviewPage(
-          page,
-          accessibilityTest,
-        );
-        await ConfirmationPage.confirmationPage(
-          page,
-          accessibilityTest,
-        );
+        await ReviewPage.reviewPage(page, accessibilityTest);
+        await ConfirmationPage.confirmationPage(page, accessibilityTest);
         break;
     }
   }

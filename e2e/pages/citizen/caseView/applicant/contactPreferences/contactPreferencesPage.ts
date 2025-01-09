@@ -89,9 +89,9 @@ export class ContactPreferencesPage {
     if (contactOption === "Digital") {
       await page.click(UniqueSelectors.digital);
     } else if (contactOption === "Post") {
-      await page.click(UniqueSelectors.byPost)
+      await page.click(UniqueSelectors.byPost);
     } else {
-      throw new Error ("Invalid value for contactOption")
+      throw new Error("Invalid value for contactOption");
     }
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.saveAndContinue}")`,

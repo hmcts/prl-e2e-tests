@@ -28,7 +28,7 @@ test.describe("Applicant confirm contact details tests", (): void => {
       event: "confirmContactDetails",
       startAlternativeYesNo: true,
       yesNoDontKnow: "yes",
-      contactOption: "Post"
+      contactOption: "Post",
     });
   });
 });

@@ -22,8 +22,10 @@ interface daCitizenApplicantDashboardTasksParams {
 }
 
 // add your applicant task to this type to add your task to the switch statement
-export type Event = "confirmContactDetails" | "keepDetailsPrivate" | "contactPreferences";
-
+export type Event =
+  | "confirmContactDetails"
+  | "keepDetailsPrivate"
+  | "contactPreferences";
 
 // This enum is used to store the locators for each event <a> tag on the applicant dashboard
 enum UniqueSelectors {
@@ -52,11 +54,10 @@ export class DaCitizenApplicantDashboardTasks {
     });
     switch (event) {
       case "confirmContactDetails":
-        await page.click(UniqueSelectors.confirmOrEditYourContactDetailsSelector);
-        await CheckAnswersPage.checkAnswersPage(
-          page,
-          accessibilityTest
+        await page.click(
+          UniqueSelectors.confirmOrEditYourContactDetailsSelector,
         );
+        await CheckAnswersPage.checkAnswersPage(page, accessibilityTest);
         break;
       case "keepDetailsPrivate":
         await page.click(UniqueSelectors.keepDetailsPrivateSelector);
@@ -83,14 +84,8 @@ export class DaCitizenApplicantDashboardTasks {
           accessibilityTest,
           contactOption,
         );
-        await ReviewPage.reviewPage(
-          page,
-          accessibilityTest,
-        );
-        await ConfirmationPage.confirmationPage(
-          page,
-          accessibilityTest,
-        );
+        await ReviewPage.reviewPage(page, accessibilityTest);
+        await ConfirmationPage.confirmationPage(page, accessibilityTest);
         break;
     }
   }
