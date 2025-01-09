@@ -16,7 +16,7 @@ test.describe("Applicant confirm contact details tests", (): void => {
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
   });
 
-  test("Applicant confirm contact details. @regression @accessibility @nightly", async ({
+  test("Applicant contact preferences. @regression @accessibility @nightly", async ({
     page,
     browser,
   }): Promise<void> => {
@@ -25,7 +25,7 @@ test.describe("Applicant confirm contact details tests", (): void => {
       browser: browser,
       caseRef: ccdRef,
       accessibilityTest: true,
-      event: "confirmContactDetails",
+      event: "contactPreferences",
       startAlternativeYesNo: true,
       yesNoDontKnow: "yes",
       contactOption: "Post"

@@ -5,8 +5,10 @@ import { DetailsKnownPage } from "../../../../../pages/citizen/caseView/applican
 import { StartAlternativePage } from "../../../../../pages/citizen/caseView/applicant/keepDetailsPrivate/startAlternativePage.ts";
 import { yesNoDontKnow } from "../../../../../common/types.ts";
 import { PrivateDetailsConfirmedPage } from "../../../../../pages/citizen/caseView/applicant/keepDetailsPrivate/privateDetailsConfirmedPage.ts";
-import { AllCategoriesPage } from "../../../../../pages/citizen/caseView/applicant/viewAllDocuments/allCatergoriesPage.ts";
-import { ApplicationPackDocumentsPage } from "../../../../../pages/citizen/caseView/applicant/viewAllDocuments/applicationPackDocumentsPage.ts";
+import { ConfirmationPage } from "../../../../../pages/citizen/caseView/applicant/contactPreferences/confirmationPage.ts";
+import { ReviewPage } from "../../../../../pages/citizen/caseView/applicant/contactPreferences/reviewPage.ts";
+import { ContactPreferencesPage } from "../../../../../pages/citizen/caseView/applicant/contactPreferences/contactPreferencesPage.ts";
+import { contactOption } from "../../../../../common/types.ts";
 
 interface daCitizenApplicantDashboardTasksParams {
   page: Page;
@@ -16,19 +18,18 @@ interface daCitizenApplicantDashboardTasksParams {
   event: Event; // the event parameter is meant to represent a different task the applicant can perform on the dashboard
   startAlternativeYesNo: boolean;
   yesNoDontKnow: yesNoDontKnow;
+  contactOption: contactOption;
 }
 
 // add your applicant task to this type to add your task to the switch statement
-export type Event =
-  | "confirmContactDetails"
-  | "keepDetailsPrivate"
-  | "viewAllDocuments";
+export type Event = "confirmContactDetails" | "keepDetailsPrivate" | "contactPreferences";
+
 
 // This enum is used to store the locators for each event <a> tag on the applicant dashboard
 enum UniqueSelectors {
   confirmOrEditYourContactDetailsSelector = "#editYouContactDetails",
   keepDetailsPrivateSelector = "#keepYourDetailsPrivate",
-  viewAllDocumentsSelector = "#viewAllDocuments",
+  contactPreferencesPrivateSelector = "#contactPreferences",
 }
 
 export class DaCitizenApplicantDashboardTasks {
@@ -40,6 +41,7 @@ export class DaCitizenApplicantDashboardTasks {
     event,
     startAlternativeYesNo,
     yesNoDontKnow,
+    contactOption,
   }: daCitizenApplicantDashboardTasksParams): Promise<void> {
     page = await ActivateCase.activateCase({
       page: page,
@@ -50,10 +52,11 @@ export class DaCitizenApplicantDashboardTasks {
     });
     switch (event) {
       case "confirmContactDetails":
-        await page.click(
-          UniqueSelectors.confirmOrEditYourContactDetailsSelector,
+        await page.click(UniqueSelectors.confirmOrEditYourContactDetailsSelector);
+        await CheckAnswersPage.checkAnswersPage(
+          page,
+          accessibilityTest
         );
-        await CheckAnswersPage.checkAnswersPage(page, accessibilityTest);
         break;
       case "keepDetailsPrivate":
         await page.click(UniqueSelectors.keepDetailsPrivateSelector);
@@ -73,16 +76,21 @@ export class DaCitizenApplicantDashboardTasks {
           startAlternativeYesNo,
         });
         break;
-      case "viewAllDocuments":
-        await page.click(UniqueSelectors.viewAllDocumentsSelector);
-        await AllCategoriesPage.allCategoriesPage({
+      case "contactPreferences":
+        await page.click(UniqueSelectors.contactPreferencesPrivateSelector);
+        await ContactPreferencesPage.contactPreferencesPage(
           page,
           accessibilityTest,
-        });
-        await ApplicationPackDocumentsPage.applicationPackDocumentsPage({
+          contactOption,
+        );
+        await ReviewPage.reviewPage(
           page,
           accessibilityTest,
-        });
+        );
+        await ConfirmationPage.confirmationPage(
+          page,
+          accessibilityTest,
+        );
         break;
     }
   }
