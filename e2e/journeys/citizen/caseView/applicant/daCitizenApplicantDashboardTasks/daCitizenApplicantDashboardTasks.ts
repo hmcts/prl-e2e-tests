@@ -9,6 +9,12 @@ import { ConfirmationPage } from "../../../../../pages/citizen/caseView/applican
 import { ReviewPage } from "../../../../../pages/citizen/caseView/applicant/contactPreferences/reviewPage.ts";
 import { ContactPreferencesPage } from "../../../../../pages/citizen/caseView/applicant/contactPreferences/contactPreferencesPage.ts";
 import { contactOption } from "../../../../../common/types.ts";
+import {
+  AllCategoriesPage
+} from "../../../../../pages/citizen/caseView/applicant/viewAllDocuments/allCatergoriesPage.ts";
+import {
+  ApplicationPackDocumentsPage
+} from "../../../../../pages/citizen/caseView/applicant/viewAllDocuments/applicationPackDocumentsPage.ts";
 
 interface daCitizenApplicantDashboardTasksParams {
   page: Page;
@@ -22,7 +28,7 @@ interface daCitizenApplicantDashboardTasksParams {
 }
 
 // add your applicant task to this type to add your task to the switch statement
-export type Event = "confirmContactDetails" | "keepDetailsPrivate" | "contactPreferences";
+export type Event = "confirmContactDetails" | "keepDetailsPrivate" | "contactPreferences" | "viewAllDocuments";
 
 
 // This enum is used to store the locators for each event <a> tag on the applicant dashboard
@@ -30,6 +36,7 @@ enum UniqueSelectors {
   confirmOrEditYourContactDetailsSelector = "#editYouContactDetails",
   keepDetailsPrivateSelector = "#keepYourDetailsPrivate",
   contactPreferencesPrivateSelector = "#contactPreferences",
+  viewAllDocumentsSelector = "#viewAllDocuments",
 }
 
 export class DaCitizenApplicantDashboardTasks {
@@ -91,6 +98,17 @@ export class DaCitizenApplicantDashboardTasks {
           page,
           accessibilityTest,
         );
+        break;
+      case "viewAllDocuments":
+        await page.click(UniqueSelectors.viewAllDocumentsSelector);
+        await AllCategoriesPage.allCategoriesPage({
+          page,
+          accessibilityTest,
+        });
+        await ApplicationPackDocumentsPage.applicationPackDocumentsPage({
+          page,
+          accessibilityTest,
+        });
         break;
     }
   }

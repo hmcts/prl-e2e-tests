@@ -28,6 +28,7 @@ test.describe("Applicant view all documents tests", (): void => {
       event: "viewAllDocuments",
       startAlternativeYesNo: true,
       yesNoDontKnow: "yes",
+      contactOption: "Digital",
     });
   });
 
@@ -43,6 +44,7 @@ test.describe("Applicant view all documents tests", (): void => {
       event: "viewAllDocuments",
       startAlternativeYesNo: true,
       yesNoDontKnow: "dontKnow",
+      contactOption: "Digital",
     });
   });
 });
