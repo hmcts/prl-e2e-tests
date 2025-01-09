@@ -1,7 +1,7 @@
 import { Selectors } from "../../../../../common/selectors.ts";
 import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 import { Page } from "@playwright/test";
-import { Start_alternativeContent } from "../../../../../fixtures/citizen/caseView/applicant/keepDetailsPrivate/start_alternativeContent.ts";
+import { ApplicantStartAlternativeContent } from "../../../../../fixtures/citizen/caseView/applicant/keepDetailsPrivate/applicantStartAlternativeContent.ts";
 import { Helpers } from "../../../../../common/helpers.ts";
 
 interface Start_alternativeParams {
@@ -18,7 +18,7 @@ enum UniqueSelectors {
   no = "#startAlternative-2",
 }
 
-export class StartAlternativePage {
+export class ApplicantStartAlternativePage {
   public static async start_alternativePage({
     page,
     accessibilityTest,
@@ -37,13 +37,13 @@ export class StartAlternativePage {
     }
     await page
       .locator(Selectors.GovukHeadingL, {
-        hasText: Start_alternativeContent.pageTitle,
+        hasText: ApplicantStartAlternativeContent.pageTitle,
       })
       .waitFor();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${Start_alternativeContent.span}")`,
+        `${Selectors.Span}:text-is("${ApplicantStartAlternativeContent.span}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -88,18 +88,18 @@ export class StartAlternativePage {
       Helpers.checkGroup(
         page,
         3,
-        Start_alternativeContent,
+        ApplicantStartAlternativeContent,
         "hiddenFormLabel",
         Selectors.GovukLabel,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.div}:text-is("${Start_alternativeContent.hiddenDiv}")`,
+        `${Selectors.div}:text-is("${ApplicantStartAlternativeContent.hiddenDiv}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukFieldsetLegend}:text-is("${Start_alternativeContent.hiddenLegend}")`,
+        `${Selectors.GovukFieldsetLegend}:text-is("${ApplicantStartAlternativeContent.hiddenLegend}")`,
         1,
       ),
     ]);

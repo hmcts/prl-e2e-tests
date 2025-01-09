@@ -1,10 +1,10 @@
 import { Browser, Page } from "@playwright/test";
 import { ActivateCase } from "../../../activateCase/activateCase.ts";
 import { CheckAnswersPage } from "../../../../../pages/citizen/caseView/applicant/confirmContactDetails/checkAnswersPage.ts";
-import { DetailsKnownPage } from "../../../../../pages/citizen/caseView/applicant/keepDetailsPrivate/detailsKnownPage.ts";
-import { StartAlternativePage } from "../../../../../pages/citizen/caseView/applicant/keepDetailsPrivate/startAlternativePage.ts";
+import { ApplicantDetailsKnownPage } from "../../../../../pages/citizen/caseView/applicant/keepDetailsPrivate/applicantDetailsKnownPage.ts";
+import { ApplicantStartAlternativePage } from "../../../../../pages/citizen/caseView/applicant/keepDetailsPrivate/applicantStartAlternativePage.ts";
 import { yesNoDontKnow } from "../../../../../common/types.ts";
-import { PrivateDetailsConfirmedPage } from "../../../../../pages/citizen/caseView/applicant/keepDetailsPrivate/privateDetailsConfirmedPage.ts";
+import { ApplicantPrivateDetailsConfirmedPage } from "../../../../../pages/citizen/caseView/applicant/keepDetailsPrivate/applicantPrivateDetailsConfirmedPage.ts";
 
 interface daCitizenApplicantDashboardTasksParams {
   page: Page;
@@ -18,7 +18,6 @@ interface daCitizenApplicantDashboardTasksParams {
 
 // add your applicant task to this type to add your task to the switch statement
 export type Event = "confirmContactDetails" | "keepDetailsPrivate";
-
 
 // This enum is used to store the locators for each event <a> tag on the applicant dashboard
 enum UniqueSelectors {
@@ -52,21 +51,23 @@ export class DaCitizenApplicantDashboardTasks {
         break;
       case "keepDetailsPrivate":
         await page.click(UniqueSelectors.keepDetailsPrivateSelector);
-        await DetailsKnownPage.details_knownPage(
+        await ApplicantDetailsKnownPage.details_knownPage(
           page,
           accessibilityTest,
           yesNoDontKnow,
         );
-        await StartAlternativePage.start_alternativePage({
+        await ApplicantStartAlternativePage.start_alternativePage({
           page,
           accessibilityTest,
           startAlternativeYesNo,
         });
-        await PrivateDetailsConfirmedPage.private_details_confirmedPage({
-          page,
-          accessibilityTest,
-          startAlternativeYesNo,
-        });
+        await ApplicantPrivateDetailsConfirmedPage.private_details_confirmedPage(
+          {
+            page,
+            accessibilityTest,
+            startAlternativeYesNo,
+          },
+        );
         break;
     }
   }

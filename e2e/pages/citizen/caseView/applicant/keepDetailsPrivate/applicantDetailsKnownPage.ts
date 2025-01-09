@@ -1,4 +1,4 @@
-import { Details_knownContent } from "../../../../../fixtures/citizen/caseView/applicant/keepDetailsPrivate/details_knownContent.ts";
+import { ApplicantDetailsKnownContent } from "../../../../../fixtures/citizen/caseView/applicant/keepDetailsPrivate/applicantDetailsKnownContent.ts";
 import { Selectors } from "../../../../../common/selectors.ts";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 import { Page } from "@playwright/test";
@@ -12,7 +12,7 @@ enum UniqueSelectors {
   iDontKnow = "#detailsKnown-3",
 }
 
-export class DetailsKnownPage {
+export class ApplicantDetailsKnownPage {
   public static async details_knownPage(
     page: Page,
     accessibilityTest: boolean,
@@ -29,13 +29,13 @@ export class DetailsKnownPage {
   ): Promise<void> {
     await page
       .locator(Selectors.GovukHeadingL, {
-        hasText: Details_knownContent.pageTitle,
+        hasText: ApplicantDetailsKnownContent.pageTitle,
       })
       .waitFor();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${Details_knownContent.span}")`,
+        `${Selectors.Span}:text-is("${ApplicantDetailsKnownContent.span}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
