@@ -1,12 +1,10 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors.ts";
-import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
-import {
-  ContactPreferencesContent
-} from "../../../../../fixtures/citizen/caseView/applicant/contactPreferences/contactPreferencesContent.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
-import { contactOption } from "../../../../../common/types.ts";
+import { Selectors } from "../../../../common/selectors.ts";
+import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
+import { ContactPreferencesContent } from "../../../../fixtures/citizen/caseView/contactPreferences/contactPreferencesContent.ts";
+import { Helpers } from "../../../../common/helpers.ts";
+import { contactOption } from "../../../../common/types.ts";
 
 enum UniqueSelectors {
   digital = "#partyContactPreference",
@@ -17,7 +15,7 @@ export class ContactPreferencesPage {
   public static async contactPreferencesPage(
     page: Page,
     accessibilityTest: boolean,
-    contactOption: contactOption
+    contactOption: contactOption,
   ): Promise<void> {
     // this part of the case is complete when the case is created through courtnav so only need to check the page
     await this.checkPageLoads(page, accessibilityTest);
@@ -26,58 +24,58 @@ export class ContactPreferencesPage {
 
   private static async checkPageLoads(
     page: Page,
-    accessibilityTest: boolean
+    accessibilityTest: boolean,
   ): Promise<void> {
     await page
       .locator(Selectors.GovukHeadingXL, {
-        hasText: ContactPreferencesContent.GovukHeadingXL
+        hasText: ContactPreferencesContent.GovukHeadingXL,
       })
       .waitFor();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukFieldsetLegend}:text-is("${ContactPreferencesContent.GovukFieldsetLegend}")`,
-        1
+        1,
       ),
       Helpers.checkGroup(
         page,
         3,
         ContactPreferencesContent,
         `GovukBody`,
-        `${Selectors.GovukBody}`
+        `${Selectors.GovukBody}`,
       ),
       Helpers.checkGroup(
         page,
         3,
         ContactPreferencesContent,
         `li`,
-        `${Selectors.li}`
+        `${Selectors.li}`,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukHint}:text-is("${ContactPreferencesContent.govukHint1}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukHint}:text-is("${ContactPreferencesContent.govukHint2}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukHint}:text-is("${ContactPreferencesContent.govukHint3}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukLabel}:text-is("${ContactPreferencesContent.digital}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukLabel}:text-is("${ContactPreferencesContent.byPost}")`,
-        1
-      )
+        1,
+      ),
     ]);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
@@ -86,7 +84,7 @@ export class ContactPreferencesPage {
 
   private static async fillInFields(
     page: Page,
-    contactOption: contactOption
+    contactOption: contactOption,
   ): Promise<void> {
     if (contactOption === "Digital") {
       await page.click(UniqueSelectors.digital);
@@ -96,7 +94,7 @@ export class ContactPreferencesPage {
       throw new Error("Invalid value for contactOption");
     }
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.saveAndContinue}")`
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.saveAndContinue}")`,
     );
   }
 }

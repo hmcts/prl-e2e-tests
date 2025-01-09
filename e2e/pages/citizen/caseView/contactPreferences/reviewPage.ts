@@ -1,14 +1,14 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors.ts";
-import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
-import { ReviewContent } from "../../../../../fixtures/citizen/caseView/applicant/contactPreferences/reviewContent.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
+import { Selectors } from "../../../../common/selectors.ts";
+import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
+import { ReviewContent } from "../../../../fixtures/citizen/caseView/contactPreferences/reviewContent.ts";
+import { Helpers } from "../../../../common/helpers.ts";
 
 export class ReviewPage {
   public static async reviewPage(
     page: Page,
-    accessibilityTest: boolean
+    accessibilityTest: boolean,
   ): Promise<void> {
     // this part of the case is complete when the case is created through courtnav so only need to check the page
     await this.checkPageLoads(page, accessibilityTest);
@@ -17,31 +17,31 @@ export class ReviewPage {
 
   private static async checkPageLoads(
     page: Page,
-    accessibilityTest: boolean
+    accessibilityTest: boolean,
   ): Promise<void> {
     await page
       .locator(Selectors.GovukHeadingXL, {
-        hasText: ReviewContent.GovukHeadingXL
+        hasText: ReviewContent.GovukHeadingXL,
       })
       .waitFor();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukHeadingL}:text-is("${ReviewContent.GovukHeadingL}")`,
-        1
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${ReviewContent.GovukSummaryListKey}")`,
-        1
+        1,
       ),
       Helpers.checkGroup(
         page,
         6,
         ReviewContent,
         `GovukBody`,
-        `${Selectors.GovukBody}`
-      )
+        `${Selectors.GovukBody}`,
+      ),
     ]);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
@@ -50,7 +50,7 @@ export class ReviewPage {
 
   private static async saveAndContinue(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
   }
 }
