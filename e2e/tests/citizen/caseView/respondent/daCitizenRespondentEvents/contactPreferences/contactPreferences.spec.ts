@@ -4,8 +4,8 @@ import config from "../../../../../../config.ts";
 import createDaCitizenCourtNavCase from "../../../../../../common/createCaseHelper.ts";
 import { Helpers } from "../../../../../../common/helpers.ts";
 import {
-  ConfirmContactDetails
-} from "../../../../../../journeys/citizen/caseView/respondent/confirmContactDetails/confirmContactDetails.ts";
+  DaCitizenRespondentDashboardTasks
+} from "../../../../../../journeys/citizen/caseView/respondent/daCitizenRespondentDashboardTasks/daCitizenRespondentDashboardTasks.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
@@ -18,15 +18,19 @@ test.describe("Respondent confirm contact details tests", (): void => {
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
   });
 
-  test("Respondent confirm contact details. @regression @accessibility @nightly", async ({
-    page,
-    browser,
-  }): Promise<void> => {
-    await ConfirmContactDetails.confirmContactDetails({
+  test("Respondent contact preferences. @regression @accessibility @nightly", async ({
+                                                                                       page,
+                                                                                       browser
+                                                                                     }): Promise<void> => {
+    await DaCitizenRespondentDashboardTasks.daCitizenRespondentDashboardTasks({
       page: page,
       browser: browser,
       caseRef: ccdRef,
       accessibilityTest: true,
+      event: "contactPreferences",
+      startAlternativeYesNo: true,
+      // yesNoDontKnow: "yes",
+      contactOption: "Post"
     });
   });
 });

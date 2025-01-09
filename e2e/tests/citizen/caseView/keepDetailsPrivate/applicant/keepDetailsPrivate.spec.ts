@@ -3,7 +3,9 @@ import Config from "../../../../../config.ts";
 import config from "../../../../../config.ts";
 import createDaCitizenCourtNavCase from "../../../../../common/createCaseHelper.ts";
 import { Helpers } from "../../../../../common/helpers.ts";
-import { KeepDetailsPrivate } from "../../../../../journeys/citizen/caseView/keepDetailsPrivate/applicant/keepDetailsPrivate.ts";
+import {
+  KeepDetailsPrivate
+} from "../../../../../journeys/citizen/caseView/keepDetailsPrivate/applicant/keepDetailsPrivate.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
@@ -27,6 +29,7 @@ test.describe("Applicant confirm contact details tests", (): void => {
       accessibilityTest: false,
       startAlternativeYesNo: true,
       yesNoDontKnow: "yes",
+      contactOption: "Post"
     });
   });
 
@@ -41,6 +44,7 @@ test.describe("Applicant confirm contact details tests", (): void => {
       accessibilityTest: false,
       startAlternativeYesNo: false,
       yesNoDontKnow: "no",
+      contactOption: "Post"
     });
   });
 
@@ -55,6 +59,7 @@ test.describe("Applicant confirm contact details tests", (): void => {
       accessibilityTest: true,
       startAlternativeYesNo: true,
       yesNoDontKnow: "dontKnow",
+      contactOption: "Post"
     });
   });
 });

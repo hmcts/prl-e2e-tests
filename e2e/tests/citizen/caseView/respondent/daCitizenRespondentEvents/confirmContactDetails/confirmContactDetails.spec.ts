@@ -19,14 +19,14 @@ test.describe("Respondent confirm contact details tests", (): void => {
   });
 
   test("Respondent confirm contact details. @regression @accessibility @nightly", async ({
-    page,
-    browser,
-  }): Promise<void> => {
+                                                                                           page,
+                                                                                           browser
+                                                                                         }): Promise<void> => {
     await ConfirmContactDetails.confirmContactDetails({
       page: page,
       browser: browser,
       caseRef: ccdRef,
-      accessibilityTest: true,
+      accessibilityTest: true
     });
   });
 });
