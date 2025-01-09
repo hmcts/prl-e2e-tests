@@ -22,4 +22,7 @@ export enum CommonStaticText {
   saveAndContinue = "Save and continue",
   submitRequest = "Submit request",
   hearingRequest = "Request a hearing",
+  startNow = "Start now",
+  submitAndContinue = "Submit and continue",
+  closeAndReturnToCaseOverview = "Close and return to case overview",
 }
