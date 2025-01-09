@@ -1,14 +1,26 @@
 import { Browser, Page } from "@playwright/test";
+import { contactOption, yesNoDontKnow } from "../../../../../common/types.ts";
 import { ActivateCase } from "../../../activateCase/activateCase.ts";
-import { CheckAnswersPage } from "../../../../../pages/citizen/caseView/applicant/confirmContactDetails/checkAnswersPage.ts";
-import { DetailsKnownPage } from "../../../../../pages/citizen/caseView/applicant/keepDetailsPrivate/detailsKnownPage.ts";
-import { StartAlternativePage } from "../../../../../pages/citizen/caseView/applicant/keepDetailsPrivate/startAlternativePage.ts";
-import { yesNoDontKnow } from "../../../../../common/types.ts";
-import { PrivateDetailsConfirmedPage } from "../../../../../pages/citizen/caseView/applicant/keepDetailsPrivate/privateDetailsConfirmedPage.ts";
-import { ConfirmationPage } from "../../../../../pages/citizen/caseView/applicant/contactPreferences/confirmationPage.ts";
+import {
+  CheckAnswersPage
+} from "../../../../../pages/citizen/caseView/applicant/confirmContactDetails/checkAnswersPage.ts";
+import {
+  ApplicantDetailsKnownPage
+} from "../../../../../pages/citizen/caseView/applicant/keepDetailsPrivate/applicantDetailsKnownPage.ts";
+import {
+  ApplicantStartAlternativePage
+} from "../../../../../pages/citizen/caseView/applicant/keepDetailsPrivate/applicantStartAlternativePage.ts";
+import {
+  ApplicantPrivateDetailsConfirmedPage
+} from "../../../../../pages/citizen/caseView/applicant/keepDetailsPrivate/applicantPrivateDetailsConfirmedPage.ts";
+import {
+  ContactPreferencesPage
+} from "../../../../../pages/citizen/caseView/applicant/contactPreferences/contactPreferencesPage.ts";
 import { ReviewPage } from "../../../../../pages/citizen/caseView/applicant/contactPreferences/reviewPage.ts";
-import { ContactPreferencesPage } from "../../../../../pages/citizen/caseView/applicant/contactPreferences/contactPreferencesPage.ts";
-import { contactOption } from "../../../../../common/types.ts";
+import {
+  ConfirmationPage
+} from "../../../../../pages/citizen/caseView/applicant/contactPreferences/confirmationPage.ts";
+
 
 interface daCitizenApplicantDashboardTasksParams {
   page: Page;
@@ -60,17 +72,17 @@ export class DaCitizenApplicantDashboardTasks {
         break;
       case "keepDetailsPrivate":
         await page.click(UniqueSelectors.keepDetailsPrivateSelector);
-        await DetailsKnownPage.details_knownPage(
+        await ApplicantDetailsKnownPage.detailsKnownPage(
           page,
           accessibilityTest,
           yesNoDontKnow,
         );
-        await StartAlternativePage.start_alternativePage({
+        await ApplicantStartAlternativePage.startAlternativePage({
           page,
           accessibilityTest,
           startAlternativeYesNo,
         });
-        await PrivateDetailsConfirmedPage.private_details_confirmedPage({
+        await ApplicantPrivateDetailsConfirmedPage.privateDetailsConfirmedPage({
           page,
           accessibilityTest,
           startAlternativeYesNo,

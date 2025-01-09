@@ -19,7 +19,7 @@ enum UniqueSelectors {
 }
 
 export class ApplicantStartAlternativePage {
-  public static async start_alternativePage({
+  public static async startAlternativePage({
     page,
     accessibilityTest,
     startAlternativeYesNo,

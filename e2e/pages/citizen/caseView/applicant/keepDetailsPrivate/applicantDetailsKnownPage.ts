@@ -13,7 +13,7 @@ enum UniqueSelectors {
 }
 
 export class ApplicantDetailsKnownPage {
-  public static async details_knownPage(
+  public static async detailsKnownPage(
     page: Page,
     accessibilityTest: boolean,
     yesNoDontKnow: yesNoDontKnow,

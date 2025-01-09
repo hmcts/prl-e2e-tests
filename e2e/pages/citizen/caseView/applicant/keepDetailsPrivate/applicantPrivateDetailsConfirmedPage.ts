@@ -12,7 +12,7 @@ interface Start_alternativeContent {
 }
 
 export class ApplicantPrivateDetailsConfirmedPage {
-  public static async private_details_confirmedPage({
+  public static async privateDetailsConfirmedPage({
     page,
     accessibilityTest,
     startAlternativeYesNo,
