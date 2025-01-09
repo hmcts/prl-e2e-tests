@@ -88,7 +88,6 @@ export class ActivateCase {
       page,
       Config.citizenFrontendBaseURL,
     );
-    // const page: Page = await Helpers.openNewBrowserWindow(browser, "citizen");
     await page.click(`a:text-is("Activate access code")`);
     const accessCode: string =
       await AccessCodeHelper.getApplicantAccessCode(caseRef);
