@@ -3,7 +3,7 @@ import Config from "../../../../../config.ts";
 import config from "../../../../../config.ts";
 import createDaCitizenCourtNavCase from "../../../../../common/createCaseHelper.ts";
 import { Helpers } from "../../../../../common/helpers.ts";
-import { DaCitizenApplicantDashboardTasks } from "../../../../../journeys/citizen/caseView/applicant/daCitizenApplicantDashboardTasks/daCitizenApplicantDashboardTasks.ts";
+import { ReasonableAdjustments } from "../../../../../journeys/citizen/caseView/reasonableAdjustments/reasonableAdjustments.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
@@ -21,15 +21,13 @@ test.describe("Applicant reasonable adjustments tests", (): void => {
     page,
     browser,
   }): Promise<void> => {
-    await DaCitizenApplicantDashboardTasks.daCitizenApplicantDashboardTasks({
+    await ReasonableAdjustments.reasonableAdjustments({
       page: page,
       browser: browser,
       caseRef: ccdRef,
-      accessibilityTest: true,
-      event: "reasonableAdjustments",
-      startAlternativeYesNo: false,
-      yesNoDontKnow: "dontKnow",
       needsReasonableAdjustment: false,
+      isApplicant: true,
+      accessibilityTest: true,
     });
   });
 
@@ -37,15 +35,13 @@ test.describe("Applicant reasonable adjustments tests", (): void => {
     page,
     browser,
   }): Promise<void> => {
-    await DaCitizenApplicantDashboardTasks.daCitizenApplicantDashboardTasks({
+    await ReasonableAdjustments.reasonableAdjustments({
       page: page,
       browser: browser,
       caseRef: ccdRef,
-      accessibilityTest: false,
-      event: "reasonableAdjustments",
-      startAlternativeYesNo: false,
-      yesNoDontKnow: "dontKnow",
       needsReasonableAdjustment: true,
+      isApplicant: true,
+      accessibilityTest: false,
     });
   });
 });

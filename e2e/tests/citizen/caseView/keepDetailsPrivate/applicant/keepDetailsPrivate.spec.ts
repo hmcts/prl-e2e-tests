@@ -3,7 +3,7 @@ import Config from "../../../../../config.ts";
 import config from "../../../../../config.ts";
 import createDaCitizenCourtNavCase from "../../../../../common/createCaseHelper.ts";
 import { Helpers } from "../../../../../common/helpers.ts";
-import { DaCitizenApplicantDashboardTasks } from "../../../../../journeys/citizen/caseView/applicant/daCitizenApplicantDashboardTasks/daCitizenApplicantDashboardTasks.ts";
+import { KeepDetailsPrivate } from "../../../../../journeys/citizen/caseView/keepDetailsPrivate/applicant/keepDetailsPrivate.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
@@ -20,15 +20,13 @@ test.describe("Applicant confirm contact details tests", (): void => {
     page,
     browser,
   }): Promise<void> => {
-    await DaCitizenApplicantDashboardTasks.daCitizenApplicantDashboardTasks({
+    await KeepDetailsPrivate.keepDetailsPrivate({
       page: page,
       browser: browser,
       caseRef: ccdRef,
       accessibilityTest: false,
-      event: "keepDetailsPrivate",
       startAlternativeYesNo: true,
       yesNoDontKnow: "yes",
-      needsReasonableAdjustment: false,
     });
   });
 
@@ -36,15 +34,13 @@ test.describe("Applicant confirm contact details tests", (): void => {
     page,
     browser,
   }): Promise<void> => {
-    await DaCitizenApplicantDashboardTasks.daCitizenApplicantDashboardTasks({
+    await KeepDetailsPrivate.keepDetailsPrivate({
       page: page,
       browser: browser,
       caseRef: ccdRef,
       accessibilityTest: false,
-      event: "keepDetailsPrivate",
       startAlternativeYesNo: false,
       yesNoDontKnow: "no",
-      needsReasonableAdjustment: false,
     });
   });
 
@@ -52,15 +48,13 @@ test.describe("Applicant confirm contact details tests", (): void => {
     page,
     browser,
   }): Promise<void> => {
-    await DaCitizenApplicantDashboardTasks.daCitizenApplicantDashboardTasks({
+    await KeepDetailsPrivate.keepDetailsPrivate({
       page: page,
       browser: browser,
       caseRef: ccdRef,
       accessibilityTest: true,
-      event: "keepDetailsPrivate",
       startAlternativeYesNo: true,
       yesNoDontKnow: "dontKnow",
-      needsReasonableAdjustment: false,
     });
   });
 });
