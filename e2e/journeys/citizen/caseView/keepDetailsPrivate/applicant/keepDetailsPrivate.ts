@@ -14,7 +14,6 @@ interface keepDetailsPrivateParams {
   yesNoDontKnow: yesNoDontKnow;
 }
 
-// This enum is used to store the locators for each event <a> tag on the applicant dashboard
 enum UniqueSelectors {
   keepDetailsPrivateSelector = "#keepYourDetailsPrivate",
 }
