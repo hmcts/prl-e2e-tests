@@ -20,4 +20,7 @@ export enum CommonStaticText {
   selectAllThatApply = "Select all that apply",
   provideMoreDetails = "Provide more details",
   saveAndContinue = "Save and continue",
+  startNow = "Start now",
+  submitAndContinue = "Submit and continue",
+  closeAndReturnToCaseOverview = "Close and return to case overview",
 }
