@@ -1,8 +1,8 @@
-import { Selectors } from "../../../../common/selectors.ts";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
-import { AllCategoriesContent } from "../../../../fixtures/citizen/caseView/applicant/viewAllDocuments/allCatergoriesContent.ts";
+import { Selectors } from "../../../../../common/selectors.ts";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
+import { AllCategoriesContent } from "../../../../../fixtures/citizen/caseView/viewAllDocuments/applicant/allCatergoriesContent.ts";
 import { Page } from "@playwright/test";
-import { Helpers } from "../../../../common/helpers.ts";
+import { Helpers } from "../../../../../common/helpers.ts";
 
 interface AllCategoriesParams {
   page: Page;
@@ -37,7 +37,7 @@ export class AllCategoriesPage {
         1,
       ),
       Helpers.checkGroup(page, 2, AllCategoriesContent, "p", Selectors.p),
-      Helpers.checkGroup(page, 3, AllCategoriesContent, "a", Selectors.a),
+      Helpers.checkGroup(page, 2, AllCategoriesContent, "a", Selectors.a),
     ]);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);

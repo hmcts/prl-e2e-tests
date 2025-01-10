@@ -1,8 +1,8 @@
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
-import { ApplicationPackDocumentsContent } from "../../../../fixtures/citizen/caseView/applicant/viewAllDocuments/applicationPackDocumentsContent.ts";
-import { Selectors } from "../../../../common/selectors.ts";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
+import { ApplicationPackDocumentsContent } from "../../../../../fixtures/citizen/caseView/viewAllDocuments/applicant/applicationPackDocumentsContent.ts";
+import { Selectors } from "../../../../../common/selectors.ts";
 import { Page } from "@playwright/test";
-import { Helpers } from "../../../../common/helpers.ts";
+import { Helpers } from "../../../../../common/helpers.ts";
 
 interface ApplicationPackDocumentsParams {
   page: Page;
@@ -48,7 +48,7 @@ export class ApplicationPackDocumentsPage {
       ),
       Helpers.checkGroup(
         page,
-        6,
+        5,
         ApplicationPackDocumentsContent,
         "a",
         Selectors.a,

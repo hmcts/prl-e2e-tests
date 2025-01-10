@@ -1,9 +1,9 @@
 import { ActivateCase, CaseUser } from "../../activateCase/activateCase.ts";
 import { Browser, Page } from "@playwright/test";
-import { AllCategoriesPage } from "../../../../pages/citizen/caseView/viewAllDocuments/allCatergoriesPage.ts";
+import { AllCategoriesPage } from "../../../../pages/citizen/caseView/viewAllDocuments/applicant/allCatergoriesPage.ts";
 import {
   ApplicationPackDocumentsPage
-} from "../../../../pages/citizen/caseView/viewAllDocuments/applicationPackDocumentsPage.ts";
+} from "../../../../pages/citizen/caseView/viewAllDocuments/applicant/applicationPackDocumentsPage.ts";
 
 interface reasonableAdjustmentsParams {
   page: Page;
@@ -18,7 +18,7 @@ enum UniqueSelectors {
 }
 
 export class ViewAllDocuments {
-  public static async viewAllDocuments({
+  public static async applicantViewAllDocuments({
                                               page,
                                               browser,
                                               caseRef,
