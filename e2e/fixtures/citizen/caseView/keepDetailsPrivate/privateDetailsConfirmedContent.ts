@@ -1,4 +1,4 @@
-export enum ApplicantPrivateDetailsConfirmedContent {
+export enum PrivateDetailsConfirmedContent {
   yesPageTitle = "The court will keep your contact details private",
   yesSpan = "Keeping your contact details private",
   applicantLi1 = "Address",

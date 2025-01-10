@@ -1,9 +1,9 @@
-import { Helpers } from "../../../../../common/helpers.ts";
+import { Helpers } from "../../../../common/helpers.ts";
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors.ts";
-import { ApplicantPrivateDetailsConfirmedContent } from "../../../../../fixtures/citizen/caseView/keepDetailsPrivate/applicant/privateDetailsConfirmedContent.ts";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
-import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
+import { Selectors } from "../../../../common/selectors.ts";
+import { PrivateDetailsConfirmedContent } from "../../../../fixtures/citizen/caseView/keepDetailsPrivate/privateDetailsConfirmedContent.ts";
+import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
+import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 
 interface Start_alternativeContent {
   page: Page;
@@ -40,24 +40,24 @@ export class ApplicantPrivateDetailsConfirmedPage {
     if (startAlternativeYesNo) {
       await page
         .locator(Selectors.GovukFieldsetHeading, {
-          hasText: ApplicantPrivateDetailsConfirmedContent.yesPageTitle,
+          hasText: PrivateDetailsConfirmedContent.yesPageTitle,
         })
         .waitFor();
       await Promise.all([
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.Span}:text-is("${ApplicantPrivateDetailsConfirmedContent.yesSpan}")`,
+          `${Selectors.Span}:text-is("${PrivateDetailsConfirmedContent.yesSpan}")`,
           1,
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.h2}:text-is("${ApplicantPrivateDetailsConfirmedContent.h2}")`,
+          `${Selectors.h2}:text-is("${PrivateDetailsConfirmedContent.h2}")`,
           1,
         ),
         Helpers.checkGroup(
           page,
           2,
-          ApplicantPrivateDetailsConfirmedContent,
+          PrivateDetailsConfirmedContent,
           "p",
           Selectors.p,
         ),
@@ -66,7 +66,7 @@ export class ApplicantPrivateDetailsConfirmedPage {
         await Helpers.checkGroup(
           page,
           3,
-          ApplicantPrivateDetailsConfirmedContent,
+          PrivateDetailsConfirmedContent,
           "applicantLi",
           Selectors.li,
         );
@@ -74,7 +74,7 @@ export class ApplicantPrivateDetailsConfirmedPage {
         await Helpers.checkGroup(
           page,
           3,
-          ApplicantPrivateDetailsConfirmedContent,
+          PrivateDetailsConfirmedContent,
           "respondentLi",
           Selectors.li,
         );
@@ -82,18 +82,18 @@ export class ApplicantPrivateDetailsConfirmedPage {
     } else {
       await page
         .locator(Selectors.h1, {
-          hasText: ApplicantPrivateDetailsConfirmedContent.noPageTitle,
+          hasText: PrivateDetailsConfirmedContent.noPageTitle,
         })
         .waitFor();
       await Promise.all([
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.Span}:text-is("${ApplicantPrivateDetailsConfirmedContent.noSpan}")`,
+          `${Selectors.Span}:text-is("${PrivateDetailsConfirmedContent.noSpan}")`,
           1,
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.p}:text-is("${ApplicantPrivateDetailsConfirmedContent.noP}")`,
+          `${Selectors.p}:text-is("${PrivateDetailsConfirmedContent.noP}")`,
           1,
         ),
       ]);

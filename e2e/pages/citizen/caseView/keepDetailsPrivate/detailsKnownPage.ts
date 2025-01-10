@@ -1,10 +1,10 @@
-import { Selectors } from "../../../../../common/selectors.ts";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
+import { Selectors } from "../../../../common/selectors.ts";
+import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
 import { Page } from "@playwright/test";
-import { Helpers } from "../../../../../common/helpers.ts";
-import { yesNoDontKnow } from "../../../../../common/types.ts";
-import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
-import { ApplicantDetailsKnownContent } from "../../../../../fixtures/citizen/caseView/keepDetailsPrivate/applicant/detailsKnownContent.ts";
+import { Helpers } from "../../../../common/helpers.ts";
+import { yesNoDontKnow } from "../../../../common/types.ts";
+import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { DetailsKnownContent } from "../../../../fixtures/citizen/caseView/keepDetailsPrivate/detailsKnownContent.ts";
 
 enum UniqueSelectors {
   yes = "#detailsKnown",
@@ -39,13 +39,13 @@ export class DetailsKnownPage {
   ): Promise<void> {
     await page
       .locator(Selectors.GovukHeadingL, {
-        hasText: ApplicantDetailsKnownContent.applicantPageTitle,
+        hasText: DetailsKnownContent.applicantPageTitle,
       })
       .waitFor();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${ApplicantDetailsKnownContent.span}")`,
+        `${Selectors.Span}:text-is("${DetailsKnownContent.span}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -75,13 +75,13 @@ export class DetailsKnownPage {
   ): Promise<void> {
     await page
       .locator(Selectors.GovukHeadingL, {
-        hasText: ApplicantDetailsKnownContent.respondentPageTitle,
+        hasText: DetailsKnownContent.respondentPageTitle,
       })
       .waitFor();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${ApplicantDetailsKnownContent.span}")`,
+        `${Selectors.Span}:text-is("${DetailsKnownContent.span}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(

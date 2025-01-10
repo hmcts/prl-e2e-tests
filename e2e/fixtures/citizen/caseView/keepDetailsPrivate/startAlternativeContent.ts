@@ -1,4 +1,4 @@
-export enum ApplicantStartAlternativeContent {
+export enum StartAlternativeContent {
   applicantPageTitle = "Do you want to keep your contact details private from the other person named in the application (the respondent)?",
   respondentPageTitle = "Do you want to keep your contact details private from the other people named in the application (the applicants)?",
   span = "Keeping your contact details private",

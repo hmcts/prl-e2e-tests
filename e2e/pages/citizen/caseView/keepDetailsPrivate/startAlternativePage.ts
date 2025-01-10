@@ -1,8 +1,8 @@
-import { Selectors } from "../../../../../common/selectors.ts";
-import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
+import { Selectors } from "../../../../common/selectors.ts";
+import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 import { Page } from "@playwright/test";
-import { Helpers } from "../../../../../common/helpers.ts";
-import { ApplicantStartAlternativeContent } from "../../../../../fixtures/citizen/caseView/keepDetailsPrivate/applicant/startAlternativeContent.ts";
+import { Helpers } from "../../../../common/helpers.ts";
+import { StartAlternativeContent } from "../../../../fixtures/citizen/caseView/keepDetailsPrivate/startAlternativeContent.ts";
 
 interface Start_alternativeParams {
   page: Page;
@@ -47,13 +47,13 @@ export class ApplicantStartAlternativePage {
     }
     await page
       .locator(Selectors.GovukHeadingL, {
-        hasText: ApplicantStartAlternativeContent.applicantPageTitle,
+        hasText: StartAlternativeContent.applicantPageTitle,
       })
       .waitFor();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${ApplicantStartAlternativeContent.span}")`,
+        `${Selectors.Span}:text-is("${StartAlternativeContent.span}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -81,13 +81,13 @@ export class ApplicantStartAlternativePage {
     }
     await page
       .locator(Selectors.GovukHeadingL, {
-        hasText: ApplicantStartAlternativeContent.respondentPageTitle,
+        hasText: StartAlternativeContent.respondentPageTitle,
       })
       .waitFor();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${ApplicantStartAlternativeContent.span}")`,
+        `${Selectors.Span}:text-is("${StartAlternativeContent.span}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -137,18 +137,18 @@ export class ApplicantStartAlternativePage {
       Helpers.checkGroup(
         page,
         3,
-        ApplicantStartAlternativeContent,
+        StartAlternativeContent,
         "hiddenFormLabel",
         Selectors.GovukLabel,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.div}:text-is("${ApplicantStartAlternativeContent.hiddenDivApplicant}")`,
+        `${Selectors.div}:text-is("${StartAlternativeContent.hiddenDivApplicant}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukFieldsetLegend}:text-is("${ApplicantStartAlternativeContent.hiddenLegend}")`,
+        `${Selectors.GovukFieldsetLegend}:text-is("${StartAlternativeContent.hiddenLegend}")`,
         1,
       ),
     ]);
@@ -159,18 +159,18 @@ export class ApplicantStartAlternativePage {
       Helpers.checkGroup(
         page,
         3,
-        ApplicantStartAlternativeContent,
+        StartAlternativeContent,
         "hiddenFormLabel",
         Selectors.GovukLabel,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.div}:text-is("${ApplicantStartAlternativeContent.hiddenDivRespondent}")`,
+        `${Selectors.div}:text-is("${StartAlternativeContent.hiddenDivRespondent}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukFieldsetLegend}:text-is("${ApplicantStartAlternativeContent.hiddenLegend}")`,
+        `${Selectors.GovukFieldsetLegend}:text-is("${StartAlternativeContent.hiddenLegend}")`,
         1,
       ),
     ]);
