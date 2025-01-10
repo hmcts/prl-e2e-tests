@@ -35,10 +35,10 @@ export class UploadPage {
       ),
       Helpers.checkGroup(
         page,
-        5,
+        4,
         UploadContent,
-        `h3`,
-        `${Selectors.h3}`,
+        `GovukHeadingAppTask`,
+        `${Selectors.GovukHeadingAppTask}`,
       ),
       Helpers.checkGroup(
         page,

@@ -3,10 +3,10 @@ export enum UploadContent {
   GovukHeadingXL = "Select the type of document",
   GovukBody = "The court will tell you in a letter or email which documents or material you need to submit.",
 
-  h31 = "Witness statements and evidence",
-  h32 = "Applications",
-  h33 = "Expert reports",
-  h34 = "Other documents",
+  GovukHeadingAppTask1 = "Witness statements and evidence",
+  GovukHeadingAppTask2 = "Applications",
+  GovukHeadingAppTask3 = "Expert reports",
+  GovukHeadingAppTask4 = "Other documents",
 
   GovukLink1 = "Your position statement",
   GovukLink2 = "Your witness statements",
