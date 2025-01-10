@@ -4,7 +4,7 @@ import { Page } from "@playwright/test";
 import { Start_alternativeContent } from "../../../../../fixtures/citizen/caseView/keepDetailsPrivate/applicant/start_alternativeContent.ts";
 import { Helpers } from "../../../../../common/helpers.ts";
 
-interface Start_alternativeParams {
+interface StartAlternativeParams {
   page: Page;
   accessibilityTest: boolean;
   startAlternativeYesNo: boolean;
@@ -23,7 +23,7 @@ export class StartAlternativePage {
     page,
     accessibilityTest,
     startAlternativeYesNo,
-  }: Start_alternativeParams): Promise<void> {
+  }: StartAlternativeParams): Promise<void> {
     await this.checkPageLoads({ page, accessibilityTest });
     await this.fillInFields({ page, startAlternativeYesNo });
   }
@@ -31,7 +31,7 @@ export class StartAlternativePage {
   private static async checkPageLoads({
     page,
     accessibilityTest,
-  }: Partial<Start_alternativeParams>): Promise<void> {
+  }: Partial<StartAlternativeParams>): Promise<void> {
     if (!page) {
       throw new Error("Page is not defined)");
     }
@@ -65,7 +65,7 @@ export class StartAlternativePage {
   private static async fillInFields({
     page,
     startAlternativeYesNo,
-  }: Partial<Start_alternativeParams>): Promise<void> {
+  }: Partial<StartAlternativeParams>): Promise<void> {
     if (!page) {
       throw new Error("Page is not defined)");
     }
