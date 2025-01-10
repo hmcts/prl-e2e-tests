@@ -44,14 +44,6 @@ export class KeepDetailsPrivate {
         accessibilityTest,
         yesNoDontKnow,
       );
-    } else {
-      await DetailsKnownPage.RespondentDetailsKnownPage(
-        page,
-        accessibilityTest,
-        yesNoDontKnow,
-      );
-    }
-    if (isApplicant) {
       await ApplicantStartAlternativePage.applicantStartAlternativePage({
         page,
         accessibilityTest,
@@ -59,6 +51,11 @@ export class KeepDetailsPrivate {
         isApplicant,
       });
     } else {
+      await DetailsKnownPage.RespondentDetailsKnownPage(
+        page,
+        accessibilityTest,
+        yesNoDontKnow,
+      );
       await ApplicantStartAlternativePage.respondentStartAlternativePage({
         page,
         accessibilityTest,
