@@ -33,9 +33,10 @@ export class ApplicantStartAlternativePage {
     page,
     accessibilityTest,
     startAlternativeYesNo,
+    isApplicant,
   }: Start_alternativeParams): Promise<void> {
     await this.respondentCheckPageLoads({ page, accessibilityTest });
-    await this.fillInFields({ page, startAlternativeYesNo });
+    await this.fillInFields({ page, startAlternativeYesNo, isApplicant });
   }
 
   private static async applicantCheckPageLoads({
