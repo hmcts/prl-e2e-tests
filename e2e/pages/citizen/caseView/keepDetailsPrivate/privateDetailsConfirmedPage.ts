@@ -25,7 +25,7 @@ export class ApplicantPrivateDetailsConfirmedPage {
       startAlternativeYesNo,
       isApplicant,
     });
-    await this.fillInFields({ page });
+    await this.fillInFields({ page, isApplicant });
   }
 
   private static async checkPageLoads({
