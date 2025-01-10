@@ -1,42 +1,39 @@
-
-import { Helpers } from "../../../../common/helpers.ts";
+import { Helpers } from "../../../../../common/helpers.ts";
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors.ts";
-import {
-  ApplicantPrivateDetailsConfirmedContent
-} from "../../../../fixtures/citizen/caseView/keepDetailsPrivate/privateDetailsConfirmedContent.ts";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { Selectors } from "../../../../../common/selectors.ts";
+import { ApplicantPrivateDetailsConfirmedContent } from "../../../../../fixtures/citizen/caseView/keepDetailsPrivate/applicant/privateDetailsConfirmedContent.ts";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
+import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 
 interface Start_alternativeContent {
   page: Page;
   accessibilityTest: boolean;
   startAlternativeYesNo: boolean;
+  isApplicant: boolean;
 }
 
 export class ApplicantPrivateDetailsConfirmedPage {
   public static async privateDetailsConfirmedPage({
-    page,
-    accessibilityTest,
-    startAlternativeYesNo,
-  }: {
-    page: Page;
-    accessibilityTest: boolean;
-    startAlternativeYesNo: boolean;
-  }): Promise<void> {
+                                                    page,
+                                                    accessibilityTest,
+                                                    startAlternativeYesNo,
+                                                    isApplicant,
+                                                  }: Start_alternativeContent): Promise<void> {
     await this.checkPageLoads({
       page,
       accessibilityTest,
       startAlternativeYesNo,
+      isApplicant,
     });
     await this.fillInFields({ page });
   }
 
   private static async checkPageLoads({
-    page,
-    accessibilityTest,
-    startAlternativeYesNo,
-  }: Start_alternativeContent): Promise<void> {
+                                        page,
+                                        accessibilityTest,
+                                        startAlternativeYesNo,
+                                        isApplicant,
+                                      }: Start_alternativeContent): Promise<void> {
     if (!page) {
       throw new Error("No page found");
     }
@@ -64,14 +61,24 @@ export class ApplicantPrivateDetailsConfirmedPage {
           "p",
           Selectors.p,
         ),
-        Helpers.checkGroup(
+      ]);
+      if (isApplicant) {
+        await Helpers.checkGroup(
           page,
           3,
           ApplicantPrivateDetailsConfirmedContent,
-          "li",
+          "applicantLi",
           Selectors.li,
-        ),
-      ]);
+        );
+      } else {
+        await Helpers.checkGroup(
+          page,
+          3,
+          ApplicantPrivateDetailsConfirmedContent,
+          "respondentLi",
+          Selectors.li,
+        );
+      }
     } else {
       await page
         .locator(Selectors.h1, {
@@ -97,13 +104,20 @@ export class ApplicantPrivateDetailsConfirmedPage {
   }
 
   private static async fillInFields({
-    page,
-  }: Partial<Start_alternativeContent>): Promise<void> {
+                                      page,
+                                      isApplicant,
+                                    }: Partial<Start_alternativeContent>): Promise<void> {
     if (!page) {
-      throw new Error("Page is not defined)");
+      throw new Error("Page is not defined");
     }
-    await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.saveAndContinue}")`,
-    );
+    if (isApplicant) {
+      await page.click(
+        `${Selectors.GovukButton}:text-is("${CommonStaticText.saveAndContinue}")`,
+      );
+    } else {
+      await page.click(
+        `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
+      );
+    }
   }
 }

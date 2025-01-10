@@ -3,7 +3,7 @@ import Config from "../../../../../config.ts";
 import config from "../../../../../config.ts";
 import createDaCitizenCourtNavCase from "../../../../../common/createCaseHelper.ts";
 import { Helpers } from "../../../../../common/helpers.ts";
-import { KeepDetailsPrivate } from "../../../../../journeys/citizen/caseView/keepDetailsPrivate/applicant/keepDetailsPrivate.ts";
+import { KeepDetailsPrivate } from "../../../../../journeys/citizen/caseView/keepDetailsPrivate/keepDetailsPrivate.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
@@ -16,10 +16,10 @@ test.describe("Applicant confirm contact details tests", (): void => {
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
   });
 
-  test("Applicant keep details private with yes response. @regression @nightly", async ({
-                                                                                          page,
-                                                                                          browser,
-                                                                                        }): Promise<void> => {
+  test("Respondent keep details private with yes response. @regression @nightly", async ({
+    page,
+    browser,
+  }): Promise<void> => {
     await KeepDetailsPrivate.keepDetailsPrivate({
       page: page,
       browser: browser,
@@ -31,10 +31,10 @@ test.describe("Applicant confirm contact details tests", (): void => {
     });
   });
 
-  test("Applicant keep details private with no response. @nightly", async ({
-                                                                             page,
-                                                                             browser,
-                                                                           }): Promise<void> => {
+  test("Respondent keep details private with no response. @nightly", async ({
+    page,
+    browser,
+  }): Promise<void> => {
     await KeepDetailsPrivate.keepDetailsPrivate({
       page: page,
       browser: browser,
@@ -46,10 +46,10 @@ test.describe("Applicant confirm contact details tests", (): void => {
     });
   });
 
-  test("Applicant keep details private with dontKnow response. @regression @accessibility @nightly", async ({
-                                                                                                              page,
-                                                                                                              browser,
-                                                                                                            }): Promise<void> => {
+  test("Respondent keep details private with dontKnow response. @regression @accessibility @nightly", async ({
+    page,
+    browser,
+  }): Promise<void> => {
     await KeepDetailsPrivate.keepDetailsPrivate({
       page: page,
       browser: browser,

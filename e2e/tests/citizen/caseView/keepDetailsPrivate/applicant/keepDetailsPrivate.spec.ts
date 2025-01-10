@@ -3,7 +3,7 @@ import Config from "../../../../../config.ts";
 import config from "../../../../../config.ts";
 import createDaCitizenCourtNavCase from "../../../../../common/createCaseHelper.ts";
 import { Helpers } from "../../../../../common/helpers.ts";
-import { KeepDetailsPrivate } from "../../../../../journeys/citizen/caseView/keepDetailsPrivate/applicant/keepDetailsPrivate.ts";
+import { KeepDetailsPrivate } from "../../../../../journeys/citizen/caseView/keepDetailsPrivate/keepDetailsPrivate.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
