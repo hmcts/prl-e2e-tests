@@ -11,17 +11,17 @@ interface AllCategoriesParams {
 
 export class AllCategoriesPage {
   public static async allCategoriesPage({
-                                          page,
-                                          accessibilityTest,
-                                        }: AllCategoriesParams): Promise<void> {
+    page,
+    accessibilityTest,
+  }: AllCategoriesParams): Promise<void> {
     await this.checkPageLoads({ page, accessibilityTest });
     await this.fillInFields({ page });
   }
 
   private static async checkPageLoads({
-                                        page,
-                                        accessibilityTest,
-                                      }: Partial<AllCategoriesParams>): Promise<void> {
+    page,
+    accessibilityTest,
+  }: Partial<AllCategoriesParams>): Promise<void> {
     if (!page) {
       throw new Error("Page is not defined");
     }
