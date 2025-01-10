@@ -109,7 +109,7 @@ export class ApplicantStartAlternativePage {
   private static async fillInFields({
     page,
     startAlternativeYesNo,
-                                      isApplicant,
+    isApplicant,
   }: Partial<Start_alternativeParams>): Promise<void> {
     if (!page) {
       throw new Error("Page is not defined)");

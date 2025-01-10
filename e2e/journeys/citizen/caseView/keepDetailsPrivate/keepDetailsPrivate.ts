@@ -56,20 +56,21 @@ export class KeepDetailsPrivate {
         page,
         accessibilityTest,
         startAlternativeYesNo,
-        isApplicant
+        isApplicant,
       });
     } else {
       await ApplicantStartAlternativePage.respondentStartAlternativePage({
         page,
         accessibilityTest,
         startAlternativeYesNo,
-        isApplicant
+        isApplicant,
       });
     }
     await ApplicantPrivateDetailsConfirmedPage.privateDetailsConfirmedPage({
       page,
       accessibilityTest,
       startAlternativeYesNo,
+      isApplicant,
     });
   }
 }

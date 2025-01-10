@@ -14,11 +14,11 @@ interface Start_alternativeContent {
 
 export class ApplicantPrivateDetailsConfirmedPage {
   public static async privateDetailsConfirmedPage({
-                                                    page,
-                                                    accessibilityTest,
-                                                    startAlternativeYesNo,
-                                                    isApplicant,
-                                                  }: Start_alternativeContent): Promise<void> {
+    page,
+    accessibilityTest,
+    startAlternativeYesNo,
+    isApplicant,
+  }: Start_alternativeContent): Promise<void> {
     await this.checkPageLoads({
       page,
       accessibilityTest,
@@ -29,11 +29,11 @@ export class ApplicantPrivateDetailsConfirmedPage {
   }
 
   private static async checkPageLoads({
-                                        page,
-                                        accessibilityTest,
-                                        startAlternativeYesNo,
-                                        isApplicant,
-                                      }: Start_alternativeContent): Promise<void> {
+    page,
+    accessibilityTest,
+    startAlternativeYesNo,
+    isApplicant,
+  }: Start_alternativeContent): Promise<void> {
     if (!page) {
       throw new Error("No page found");
     }
@@ -104,9 +104,9 @@ export class ApplicantPrivateDetailsConfirmedPage {
   }
 
   private static async fillInFields({
-                                      page,
-                                      isApplicant,
-                                    }: Partial<Start_alternativeContent>): Promise<void> {
+    page,
+    isApplicant,
+  }: Partial<Start_alternativeContent>): Promise<void> {
     if (!page) {
       throw new Error("Page is not defined");
     }
