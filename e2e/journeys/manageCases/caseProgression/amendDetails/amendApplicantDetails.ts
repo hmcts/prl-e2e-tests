@@ -1,6 +1,5 @@
 import { Page } from "@playwright/test";
 import { Helpers } from "../../../../common/helpers";
-import config from "../../../../config";
 import {AmendApplicantDetails2Page } from "../../../../pages/manageCases/caseProgression/amendDetails/amendApplicantDetails/amendApplicantDetails2Page.ts";
 import { ApplicantGender } from "../../../../common/types.ts";
 
