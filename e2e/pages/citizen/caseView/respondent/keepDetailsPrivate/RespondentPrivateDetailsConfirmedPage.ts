@@ -2,8 +2,8 @@ import { Selectors } from "../../../../../common/selectors.ts";
 import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 import { Page } from "@playwright/test";
-import { Private_details_confirmedContent } from "../../../../../fixtures/citizen/caseView/keepDetailsPrivate/applicant/private_details_confirmedContent.ts";
 import { Helpers } from "../../../../../common/helpers.ts";
+import { RespondentPrivateDetailsConfirmedContent } from "../../../../../fixtures/citizen/caseView/respondent/keepDetailsPrivate/respondentPrivateDetailsConfirmedContent.ts";
 
 interface Start_alternativeContent {
   page: Page;
@@ -11,8 +11,8 @@ interface Start_alternativeContent {
   startAlternativeYesNo: boolean;
 }
 
-export class PrivateDetailsConfirmedPage {
-  public static async private_details_confirmedPage({
+export class RespondentPrivateDetailsConfirmedPage {
+  public static async respondentPrivateDetailsConfirmedPage({
     page,
     accessibilityTest,
     startAlternativeYesNo,
@@ -40,31 +40,31 @@ export class PrivateDetailsConfirmedPage {
     if (startAlternativeYesNo) {
       await page
         .locator(Selectors.GovukFieldsetHeading, {
-          hasText: Private_details_confirmedContent.yesPageTitle,
+          hasText: RespondentPrivateDetailsConfirmedContent.yesPageTitle,
         })
         .waitFor();
       await Promise.all([
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.Span}:text-is("${Private_details_confirmedContent.yesSpan}")`,
+          `${Selectors.Span}:text-is("${RespondentPrivateDetailsConfirmedContent.yesSpan}")`,
           1,
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.h2}:text-is("${Private_details_confirmedContent.h2}")`,
+          `${Selectors.h2}:text-is("${RespondentPrivateDetailsConfirmedContent.h2}")`,
           1,
         ),
         Helpers.checkGroup(
           page,
           2,
-          Private_details_confirmedContent,
+          RespondentPrivateDetailsConfirmedContent,
           "p",
           Selectors.p,
         ),
         Helpers.checkGroup(
           page,
           3,
-          Private_details_confirmedContent,
+          RespondentPrivateDetailsConfirmedContent,
           "li",
           Selectors.li,
         ),
@@ -72,18 +72,18 @@ export class PrivateDetailsConfirmedPage {
     } else {
       await page
         .locator(Selectors.h1, {
-          hasText: Private_details_confirmedContent.noPageTitle,
+          hasText: RespondentPrivateDetailsConfirmedContent.noPageTitle,
         })
         .waitFor();
       await Promise.all([
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.Span}:text-is("${Private_details_confirmedContent.noSpan}")`,
+          `${Selectors.Span}:text-is("${RespondentPrivateDetailsConfirmedContent.noSpan}")`,
           1,
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.p}:text-is("${Private_details_confirmedContent.noP}")`,
+          `${Selectors.p}:text-is("${RespondentPrivateDetailsConfirmedContent.noP}")`,
           1,
         ),
       ]);
@@ -100,7 +100,7 @@ export class PrivateDetailsConfirmedPage {
       throw new Error("Page is not defined)");
     }
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.saveAndContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
   }
 }
