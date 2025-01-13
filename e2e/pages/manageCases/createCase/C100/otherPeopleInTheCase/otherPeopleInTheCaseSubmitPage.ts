@@ -15,12 +15,14 @@ export class OtherPeopleInTheCaseSubmitPage {
     page: Page,
     accessibilityTest: boolean,
     yesNoOtherPeopleInTheCase: boolean,
+    otherPersonLivesInRefuge: boolean,
     applicantGender: ApplicantGender,
   ): Promise<void> {
     await this.checkPageContent(
       page,
       accessibilityTest,
       yesNoOtherPeopleInTheCase,
+      otherPersonLivesInRefuge,
       applicantGender,
     );
     await this.continue(page);
@@ -30,17 +32,20 @@ export class OtherPeopleInTheCaseSubmitPage {
     page: Page,
     accessibilityTest: boolean,
     yesNoOtherPeopleInTheCase: boolean,
+    otherPersonLivesInRefuge: boolean,
     applicantGender: ApplicantGender,
   ): Promise<void> {
     await this.checkPageLoads(
       page,
       accessibilityTest,
       yesNoOtherPeopleInTheCase,
+      otherPersonLivesInRefuge,
       applicantGender,
     );
     await this.checkFilledData(
       page,
       yesNoOtherPeopleInTheCase,
+      otherPersonLivesInRefuge,
       applicantGender,
     );
   }
@@ -49,6 +54,7 @@ export class OtherPeopleInTheCaseSubmitPage {
     page: Page,
     accessibilityTest: boolean,
     yesNoOtherPeopleInTheCase: boolean,
+    otherPersonLivesInRefuge: boolean,
     applicantGender: ApplicantGender,
   ): Promise<void> {
     await page.waitForSelector(
@@ -63,10 +69,17 @@ export class OtherPeopleInTheCaseSubmitPage {
       (yesNoOtherPeopleInTheCase && applicantGender === "male") ||
       (yesNoOtherPeopleInTheCase && applicantGender === "female")
     ) {
+      if (otherPersonLivesInRefuge) {
+        await Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukText16}:text-is("${OtherPeopleInTheCaseSubmitContent.uploadForm}")`,
+          1,
+        );
+      }
       await Promise.all([
         Helpers.checkGroup(
           page,
-          12,
+          13,
           OtherPeopleInTheCaseSubmitContent,
           "text16",
           `${Selectors.GovukText16}`,
@@ -85,10 +98,17 @@ export class OtherPeopleInTheCaseSubmitPage {
         ),
       ]);
     } else if (yesNoOtherPeopleInTheCase && applicantGender === "other") {
+      if (otherPersonLivesInRefuge) {
+        await Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukText16}:text-is("${OtherPeopleInTheCaseSubmitContent.uploadForm}")`,
+          1,
+        );
+      }
       await Promise.all([
         Helpers.checkGroup(
           page,
-          12,
+          13,
           OtherPeopleInTheCaseSubmitContent,
           "text16",
           `${Selectors.GovukText16}`,
@@ -129,6 +149,7 @@ export class OtherPeopleInTheCaseSubmitPage {
   private static async checkFilledData(
     page: Page,
     yesNoOtherPeopleInTheCase: boolean,
+    otherPersonLivesInRefuge: boolean,
     applicantGender: ApplicantGender,
   ): Promise<void> {
     await Promise.all([
@@ -175,11 +196,18 @@ export class OtherPeopleInTheCaseSubmitPage {
     }
 
     if (yesNoOtherPeopleInTheCase) {
+      if (otherPersonLivesInRefuge) {
+        await Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.a}:text-is("${OtherPeopleInTheCase1Content.uploadedFile}")`,
+          1,
+        );
+      }
       await Promise.all([
         Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukText16}:text-is("${OtherPeopleInTheCase1Content.formLabelYes}")`,
-          9,
+          otherPersonLivesInRefuge ? 10 : 9,
         ),
         Helpers.checkVisibleAndPresent(
           page,
@@ -226,7 +254,7 @@ export class OtherPeopleInTheCaseSubmitPage {
       await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukText16}:text-is("${OtherPeopleInTheCase1Content.formLabelNo}")`,
-        6,
+        otherPersonLivesInRefuge ? 7 : 6,
       );
     }
   }

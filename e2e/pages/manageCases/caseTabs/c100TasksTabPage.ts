@@ -1,6 +1,6 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../common/selectors";
-import { C100TasksTabContent } from "../../../fixtures/manageCases/caseTabs/c100TasksTabContent";
+import { C100TasksTabContent } from "../../../fixtures/manageCases/caseTabs/C100/c100TasksTabContent";
 import { Helpers } from "../../../common/helpers";
 import AccessibilityTestHelper from "../../../common/accessibilityTestHelper";
 
