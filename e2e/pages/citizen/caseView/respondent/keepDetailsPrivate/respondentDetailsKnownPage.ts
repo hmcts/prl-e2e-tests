@@ -1,10 +1,10 @@
-import { Details_knownContent } from "../../../../../fixtures/citizen/caseView/keepDetailsPrivate/applicant/details_knownContent.ts";
 import { Selectors } from "../../../../../common/selectors.ts";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 import { Page } from "@playwright/test";
 import { Helpers } from "../../../../../common/helpers.ts";
 import { yesNoDontKnow } from "../../../../../common/types.ts";
 import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
+import { RespondentDetailsKnownContent } from "../../../../../fixtures/citizen/caseView/respondent/keepDetailsPrivate/respondentDetailsKnownContent.ts";
 
 enum UniqueSelectors {
   yes = "#detailsKnown",
@@ -12,8 +12,8 @@ enum UniqueSelectors {
   iDontKnow = "#detailsKnown-3",
 }
 
-export class DetailsKnownPage {
-  public static async details_knownPage(
+export class RespondentDetailsKnownPage {
+  public static async respondentDetailsKnownPage(
     page: Page,
     accessibilityTest: boolean,
     yesNoDontKnow: yesNoDontKnow,
@@ -29,13 +29,13 @@ export class DetailsKnownPage {
   ): Promise<void> {
     await page
       .locator(Selectors.GovukHeadingL, {
-        hasText: Details_knownContent.pageTitle,
+        hasText: RespondentDetailsKnownContent.pageTitle,
       })
       .waitFor();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${Details_knownContent.span}")`,
+        `${Selectors.Span}:text-is("${RespondentDetailsKnownContent.span}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
