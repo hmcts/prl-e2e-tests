@@ -51,7 +51,7 @@ export class MiamUploadEvidenceOfAttendingMiamOrNCDRPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.div}:text-is("${MiamUploadEvidenceOfAttendingMiamOrNCDRContent.govukBold}")`,
+        `${Selectors.h2}:text-is("${MiamUploadEvidenceOfAttendingMiamOrNCDRContent.govukBold}")`,
         1,
       ),
       Helpers.checkGroup(

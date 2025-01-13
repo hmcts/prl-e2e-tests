@@ -9,6 +9,9 @@ import { ApplicantAddressLookupPage } from "../../../../../pages/citizen/createC
 import { ApplicantAddressSelectPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicantAddressSelectPage";
 import { ApplicantPersonalDetailsPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicantPersonalDetailsPage";
 import { ApplicantRelationshipToChildPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicantRelationshipToChildPage";
+import { ApplicantStayingInRefugePage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicantStayingInRefugePage";
+import { ApplicantKeepingDetailsSafePage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicantKeepingDetailsSafePage";
+import { ApplicantUploadC8FormPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicantUploadC8FormPage";
 import { ApplicantAddressManualPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicantAddressManualPage";
 import { ApplicantContactDetailPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicantContactDetailPage";
 import { ApplicantContactPreferencePage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicantContactPreferencePage";
@@ -22,6 +25,9 @@ import { OtherPersonDetailsAddOtherPersonsPage } from "../../../../../pages/citi
 import { OtherPersonDetailsCheckPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/otherPersonDetailsCheckPage";
 import { PersonalDetailsPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/otherPeople/personalDetailsPage";
 import { OtherPersonRelationshipPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/otherPeople/otherPersonRelationshipPage";
+import { OtherPersonStayingInRefugePage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/otherPeople/otherPersonStayingInRefugePage";
+import { OtherPersonKeepingDetailsSafePage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/otherPeople/otherPersonKeepingDetailsSafePage";
+import { OtherPersonUploadC8FormPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/otherPeople/otherPersonUploadC8FormPage";
 import { OtherPersonAddressLookupPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/otherPeople/otherPersonAddressLookupPage";
 import { OtherPersonSelectPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/otherPeople/otherPersonSelectPage";
 import { OtherPersonManualPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/otherPeople/otherPersonManualPage";
@@ -36,6 +42,7 @@ interface c100CasePartyDetailsOptions {
   applicantChangedName: boolean;
   applicantGender: ApplicantGender;
   applicantRelationship: Relationship;
+  applicantLivesInRefuge: boolean;
   applicantAddressLookup: boolean;
   appAddressLookupSuccessful: boolean;
   applicantPrevAddress5Years: boolean;
@@ -55,6 +62,7 @@ interface c100CasePartyDetailsOptions {
   c100OtherPeopleChangedName: yesNoDontKnow;
   c100OtherPeopleDoBKnown: boolean;
   c100OtherPersonRelationship: Relationship;
+  c100OtherPersonLivesInRefuge: boolean;
   c100ChildMainlyLivesWith: typeOfPerson;
 }
 
@@ -66,6 +74,7 @@ export class C100CasePartyDetails {
     applicantChangedName,
     applicantGender,
     applicantRelationship,
+    applicantLivesInRefuge,
     applicantAddressLookup,
     appAddressLookupSuccessful,
     applicantPrevAddress5Years,
@@ -85,6 +94,7 @@ export class C100CasePartyDetails {
     c100OtherPeopleChangedName,
     c100OtherPeopleDoBKnown,
     c100OtherPersonRelationship,
+    c100OtherPersonLivesInRefuge,
     c100ChildMainlyLivesWith,
   }: c100CasePartyDetailsOptions): Promise<void> {
     await ApplicantPersonalDetailsPage.applicantPersonalDetailsPage({
@@ -101,6 +111,23 @@ export class C100CasePartyDetails {
       errorMessaging: errorMessaging,
       relationship: applicantRelationship,
     });
+    await ApplicantStayingInRefugePage.applicantStayingInRefugePage({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      applicantLivesInRefuge: applicantLivesInRefuge,
+    });
+    if (applicantLivesInRefuge) {
+      await ApplicantKeepingDetailsSafePage.applicantKeepingDetailsSafePage({
+        page: page,
+        accessibilityTest: accessibilityTest,
+      });
+      await ApplicantUploadC8FormPage.applicantUploadC8FormPage({
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
+      });
+    }
     await ApplicantAddressLookupPage.applicantAddressLookupPage({
       page: page,
       accessibilityTest: accessibilityTest,
@@ -220,6 +247,25 @@ export class C100CasePartyDetails {
         errorMessaging: errorMessaging,
         c100OtherPersonRelationship: c100OtherPersonRelationship,
       });
+      await OtherPersonStayingInRefugePage.otherPersonStayingInRefugePage({
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
+        otherPersonLivesInRefuge: c100OtherPersonLivesInRefuge,
+      });
+      if (c100OtherPersonLivesInRefuge) {
+        await OtherPersonKeepingDetailsSafePage.otherPersonKeepingDetailsSafePage(
+          {
+            page: page,
+            accessibilityTest: accessibilityTest,
+          },
+        );
+        await OtherPersonUploadC8FormPage.otherPersonUploadC8FormPage({
+          page: page,
+          accessibilityTest: accessibilityTest,
+          errorMessaging: errorMessaging,
+        });
+      }
       await OtherPersonAddressLookupPage.otherPersonAddressLookupPage({
         page: page,
         accessibilityTest: accessibilityTest,

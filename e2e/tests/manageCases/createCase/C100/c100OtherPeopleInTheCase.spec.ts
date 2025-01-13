@@ -18,6 +18,7 @@ test.describe("C100 Create case Other people in the case Tests", (): void => {
       accessibilityTest: false,
       errorMessaging: true,
       yesNoOtherPeopleInTheCase: true,
+      otherPersonLivesInRefuge: true,
       applicantGender: "male",
       subJourney: true,
     });
@@ -35,6 +36,7 @@ test.describe("C100 Create case Other people in the case Tests", (): void => {
       accessibilityTest: false,
       errorMessaging: false,
       yesNoOtherPeopleInTheCase: false,
+      otherPersonLivesInRefuge: false,
       applicantGender: "female",
       subJourney: true,
     });
@@ -52,6 +54,26 @@ test.describe("C100 Create case Other people in the case Tests", (): void => {
       accessibilityTest: false,
       errorMessaging: false,
       yesNoOtherPeopleInTheCase: true,
+      otherPersonLivesInRefuge: true,
+      applicantGender: "other",
+      subJourney: true,
+    });
+  });
+  test(`Complete the C100 Create case Other people in the case as a solicitor with the following options:
+    Not Accessibility testing,
+    Not Error message testing,
+    Saying yes to all options,
+    Saying no for other person lives in refuge,
+    Setting the applicant Gender to other. @regression`, async ({
+    page,
+  }): Promise<void> => {
+    await C100OtherPeopleInTheCase.c100OtherPeopleInTheCase({
+      page: page,
+      user: "solicitor",
+      accessibilityTest: false,
+      errorMessaging: false,
+      yesNoOtherPeopleInTheCase: true,
+      otherPersonLivesInRefuge: false,
       applicantGender: "other",
       subJourney: true,
     });
@@ -71,6 +93,7 @@ test(`Complete the C100 Create case Other people in the case as a solicitor with
     accessibilityTest: false,
     errorMessaging: false,
     yesNoOtherPeopleInTheCase: true,
+    otherPersonLivesInRefuge: true,
     applicantGender: "male",
     subJourney: true,
   });
