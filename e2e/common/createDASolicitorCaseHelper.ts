@@ -159,7 +159,7 @@ async function getEventToken(
   bearerToken: string,
   s2sToken: string,
   userID: string,
-  caseEvent: string = "",
+  caseEvent: string,
   caseID: string = "",
 ): Promise<string> {
   let eventToken: string = "";
@@ -209,7 +209,7 @@ async function actionCaseEvent(
   caseEventToken: string,
 ): Promise<void> {
   try {
-    // @ts-expect-error
+    // @ts-expect-error - caseEvent will always map to its associated json object
     const jsonData = solicitorCaseData[caseEvent].data;
     await apiContext.post(`${getUrlPrefix(userID)}/cases/${caseID}/events`, {
       headers: {
