@@ -33,7 +33,8 @@ function getUrlPrefix(userID: string): string {
 /**
  * Function to create a DA Solicitor case and complete the relevant case events from the CaseEvents list.
  * @param {Browser} browser the browser to be used if service of application needs to be completed
- * @param {string} finalCaseEvent the name of the final case event to complete for this case (based on the CaseEvents list order)
+ * @param {string} finalCaseEvent the name of the final case event to complete for this case (based on the CaseEvents list order),
+ * if no event provided then complete up to and including service of application
  * @returns {Promise<string>} the case reference if successful, otherwise throws an error
  */
 export async function createCaseAndCompleteCaseEvents(
@@ -93,7 +94,8 @@ export async function createCaseAndCompleteCaseEvents(
  * @param {string} bearerToken token required for Authorization of the API requests
  * @param {string} s2sToken token required for Service Authorization of the API requests
  * @param {string} userEmail email address of the user that is creating the case
- * @returns {Promise<{ userID: string; caseID: string }} an object containing the userID for the user email provided and the caseID of the blank case that is created if successful.
+ * @returns {Promise<{ userID: string; caseID: string }} an object containing the userID for the user email provided and
+ * the caseID of the blank case that is created if successful.
  */
 async function createBlankCase(
   apiContext: APIRequestContext,
