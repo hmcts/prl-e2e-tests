@@ -1606,29 +1606,5 @@
     "data": {
       "isSpecificGateKeeperNeeded": "No"
     }
-  },
-  "serviceOfApplication": {
-    "data": {
-      "serviceOfApplicationHeader": null,
-      "isConfidential": "No",
-      "sentDocumentPlaceHolder": "<details class='govuk-details'>\n\n<summary class='govuk-details__summary'>\n\n<h3 class='govuk-details__summary-text'>\n\nDocuments served in the pack\n\n</h3>\n\n</summary>\n\n<div class='govuk-details__text'>\n\nCertain documents will be automatically included in the pack that is sent out on parties (the people in the case).\n\nThis includes:\n\n<ul><li>an application form (FL401)</li><li>witness statement</li><li>privacy notice</li><li>cover letter (if not represented)</li></ul>\n\nYou do not need to upload these documents yourself.\n\n</div>\n\n</details>",
-      "noticeOfSafetySupportLetter": {
-        "document_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/3143730d-b5b5-4e7a-bea8-fa0fc1c3b2b2",
-        "document_binary_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/3143730d-b5b5-4e7a-bea8-fa0fc1c3b2b2/binary",
-        "document_filename": "testPdf.pdf"
-      },
-      "additionalDocumentsList": [],
-      "caseTypeOfApplication": "FL401",
-      "soaIsOrderListEmpty": "Yes",
-      "missingAddressWarningText": "",
-      "displayLegalRepOption": "Yes",
-      "isC8CheckNeeded": null,
-      "responsibleForService": null,
-      "isOccupationOrderSelected": null,
-      "isApplicantRepresented": null,
-      "productHearingBundleOn": null,
-      "soaServeToRespondentOptions": "Yes",
-      "soaServingRespondentsOptions": "courtBailiff"
-    }
   }
 }

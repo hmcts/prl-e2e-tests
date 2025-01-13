@@ -1,5 +1,5 @@
 import { test } from "@playwright/test";
-import { createCaseAndCompleteCaseEvents } from "../common/createDASolicitorCaseHelper.ts";
+import { createCaseAndCompleteCaseEvents } from "../common/createSolicitorDACaseHelper.ts";
 
 test("Create solicitor case - statement of truth and submit", async ({
   browser,

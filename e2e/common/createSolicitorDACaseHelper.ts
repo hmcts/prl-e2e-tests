@@ -1,6 +1,6 @@
 import { getAccessToken, getS2SToken } from "./getAccessTokenHelper.ts";
 import { APIRequestContext, Browser, Page, request } from "@playwright/test";
-import solicitorCaseData from "../caseData/solicitorCaseData.json";
+import solicitorCaseData from "../caseData/solicitorDACaseData.json";
 import * as process from "node:process";
 import { Helpers } from "./helpers.ts";
 import config from "../config.ts";
@@ -58,6 +58,9 @@ export async function createCaseAndCompleteCaseEvents(
     tokenSolicitorCreateCase,
     s2sToken,
   );
+  if (process.env.PWDEBUG) {
+    console.log("Case ref:", caseID);
+  }
   for (const caseEvent of CaseEvents) {
     if (caseEvent === "serviceOfApplication") {
       await completeServiceOfApplication(browser, caseID);
