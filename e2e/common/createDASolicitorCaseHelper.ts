@@ -58,9 +58,7 @@ export async function createCaseAndCompleteCaseEvents(
     tokenSolicitorCreateCase,
     s2sToken,
   );
-  console.log(`case ref: ${caseID}`);
   for (const caseEvent of CaseEvents) {
-    console.log(`Starting case event: ${caseEvent}`);
     if (caseEvent === "serviceOfApplication") {
       await completeServiceOfApplication(browser, caseID);
     } else {
