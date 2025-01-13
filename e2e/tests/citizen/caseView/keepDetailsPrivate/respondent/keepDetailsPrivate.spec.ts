@@ -7,7 +7,7 @@ import { KeepDetailsPrivate } from "../../../../../journeys/citizen/caseView/kee
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
-test.describe("Applicant keep details private tests", (): void => {
+test.describe("Applicant confirm contact details tests", (): void => {
   test.slow();
   let ccdRef: string;
 
@@ -16,7 +16,7 @@ test.describe("Applicant keep details private tests", (): void => {
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
   });
 
-  test("Applicant keep details private with yes response. @regression @nightly", async ({
+  test("Respondent keep details private with yes response. @regression @nightly", async ({
     page,
     browser,
   }): Promise<void> => {
@@ -25,13 +25,13 @@ test.describe("Applicant keep details private tests", (): void => {
       browser: browser,
       caseRef: ccdRef,
       accessibilityTest: false,
-      isApplicant: true,
+      isApplicant: false,
       startAlternativeYesNo: true,
       yesNoDontKnow: "yes",
     });
   });
 
-  test("Applicant keep details private with no response. @nightly", async ({
+  test("Respondent keep details private with no response. @nightly", async ({
     page,
     browser,
   }): Promise<void> => {
@@ -40,13 +40,13 @@ test.describe("Applicant keep details private tests", (): void => {
       browser: browser,
       caseRef: ccdRef,
       accessibilityTest: false,
-      isApplicant: true,
+      isApplicant: false,
       startAlternativeYesNo: false,
       yesNoDontKnow: "no",
     });
   });
 
-  test("Applicant keep details private with dontKnow response. @regression @accessibility @nightly", async ({
+  test("Respondent keep details private with dontKnow response. @regression @accessibility @nightly", async ({
     page,
     browser,
   }): Promise<void> => {
@@ -55,7 +55,7 @@ test.describe("Applicant keep details private tests", (): void => {
       browser: browser,
       caseRef: ccdRef,
       accessibilityTest: true,
-      isApplicant: true,
+      isApplicant: false,
       startAlternativeYesNo: true,
       yesNoDontKnow: "dontKnow",
     });

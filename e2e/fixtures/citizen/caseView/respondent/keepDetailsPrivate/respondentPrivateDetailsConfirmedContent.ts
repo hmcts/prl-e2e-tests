@@ -1,8 +1,8 @@
-export enum Private_details_confirmedContent {
+export enum RespondentPrivateDetailsConfirmedContent {
   yesPageTitle = "The court will keep your contact details private",
   yesSpan = "Keeping your contact details private",
   li1 = "Address",
-  li2 = "Telephone number",
+  li2 = "Phone Number",
   li3 = "Email",
   h2 = "What the court will do",
   p1 = "You have told us you want to keep these contact details private:",
