@@ -1,6 +1,5 @@
 import { getAccessToken, getS2SToken } from "./getAccessTokenHelper.ts";
 import { APIRequestContext, Browser, request } from "@playwright/test";
-
 import * as process from "node:process";
 import {
   completeCaseEventWithContext,
