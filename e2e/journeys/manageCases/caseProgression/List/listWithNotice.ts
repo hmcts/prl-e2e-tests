@@ -5,7 +5,7 @@ import { Fl401ListOnNotice2Page } from "../../../../pages/manageCases/caseProgre
 import { Fl401ListOnNoticeSubmitPage } from "../../../../pages/manageCases/caseProgression/List/fl401ListOnNoticeSubmitPage";
 import { Fl401ListOnNoticeConfirmPage } from "../../../../pages/manageCases/caseProgression/List/fl401ListOnNoticeConfirmPage";
 import { Selectors } from "../../../../common/selectors";
-import { Fl401ListOnNoticeConfirmContent } from "../../../../fixtures/manageCases/caseProgression/List/fl401ListOnNoticeConfirmContent";
+import { Fl401ListOnNoticeConfirmContent } from "../../../../fixtures/manageCases/caseProgression/list/fl401ListOnNoticeConfirmContent";
 import { CheckApplicationJourney } from "../e2eFlowUpToServiceOfApplication/checkApplication/checkApplicationJourney";
 import { SendToGateKeeperJourney } from "../e2eFlowUpToServiceOfApplication/sendToGateKeeper/sendToGateKeeperJourney";
 

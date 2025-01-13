@@ -5,7 +5,7 @@ import { Selectors } from "../../../../common/selectors";
 import { Fl401ListWithoutNotice1Page } from "../../../../pages/manageCases/caseProgression/List/fl401ListWithoutNotice1Page";
 import { Fl401ListWithoutNoticeSubmitPage } from "../../../../pages/manageCases/caseProgression/List/fl401ListWithoutNoticeSubmitPage";
 import { Fl401ListWithoutNoticeConfirmPage } from "../../../../pages/manageCases/caseProgression/List/fl401ListWithoutNoticeConfirmPage";
-import { Fl401ListWithoutNoticeConfirmContent } from "../../../../fixtures/manageCases/caseProgression/List/fl401ListWithoutNoticeConfirmContent";
+import { Fl401ListWithoutNoticeConfirmContent } from "../../../../fixtures/manageCases/caseProgression/list/fl401ListWithoutNoticeConfirmContent";
 import { CheckApplicationJourney } from "../e2eFlowUpToServiceOfApplication/checkApplication/checkApplicationJourney.ts";
 import { SendToGateKeeperJourney } from "../e2eFlowUpToServiceOfApplication/sendToGateKeeper/sendToGateKeeperJourney.ts";
 
