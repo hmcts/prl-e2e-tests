@@ -1,9 +1,9 @@
 import { Browser, Page } from "@playwright/test";
 import { Helpers } from "../../../../common/helpers";
 import config from "../../../../config";
-import { Fl401ListOnNotice2Page } from "../../../../pages/manageCases/caseProgression/List/fl401ListOnNotice2Page";
-import { Fl401ListOnNoticeSubmitPage } from "../../../../pages/manageCases/caseProgression/List/fl401ListOnNoticeSubmitPage";
-import { Fl401ListOnNoticeConfirmPage } from "../../../../pages/manageCases/caseProgression/List/fl401ListOnNoticeConfirmPage";
+import { Fl401ListOnNotice2Page } from "../../../../pages/manageCases/caseProgression/list/fl401ListOnNotice2Page";
+import { Fl401ListOnNoticeSubmitPage } from "../../../../pages/manageCases/caseProgression/list/fl401ListOnNoticeSubmitPage";
+import { Fl401ListOnNoticeConfirmPage } from "../../../../pages/manageCases/caseProgression/list/fl401ListOnNoticeConfirmPage";
 import { Selectors } from "../../../../common/selectors";
 import { Fl401ListOnNoticeConfirmContent } from "../../../../fixtures/manageCases/caseProgression/list/fl401ListOnNoticeConfirmContent";
 import { CheckApplicationJourney } from "../e2eFlowUpToServiceOfApplication/checkApplication/checkApplicationJourney";
