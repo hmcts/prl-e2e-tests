@@ -195,7 +195,12 @@ export class ApplicantDetailsSubmitPage {
         Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukText16}:text-is("${ApplicantDetails1Content.formLabelYes}")`,
-          5,
+          6,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.a}:text-is("${ApplicantDetails1Content.uploadedFile}")`,
+          1,
         ),
         Helpers.checkVisibleAndPresent(
           page,
@@ -212,7 +217,7 @@ export class ApplicantDetailsSubmitPage {
       await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukText16}:text-is("${ApplicantDetails1Content.formLabelNo}")`,
-        4,
+        5,
       );
     }
   }

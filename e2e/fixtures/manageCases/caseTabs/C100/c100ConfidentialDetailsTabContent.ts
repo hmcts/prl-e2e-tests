@@ -1,0 +1,18 @@
+export enum C100ConfidentialDetailsTabContent {
+  tabName = "Confidential details",
+  applicantSection = "Applicant",
+  c8DraftDocumentSection = "C8 Draft Document",
+  c8DraftDocumentWelshSection = "C8 Draft Document (Welsh)",
+  refugeSection = "Refuge documents",
+  refugeSectionPartyType = "Party Type",
+  refugeSectionPartyName = "Party name",
+  refugeSectionDocumentName = "Document name",
+  refugeSectionUploadedDate = "Uploaded date",
+  refugeSectionDocument = "Document",
+  refugeSectionApplicantDetailsText161 = "Applicant 1",
+  refugeSectionApplicantDetailsText162 = "John Doe",
+  refugeSectionOtherPersonDetailsText161 = "Other party 1",
+  refugeSectionOtherPersonDetailsText162 = "Sam Nolan",
+  refugeSectionFile = "mockFile.pdf",
+  link = "mockFile.pdf",
+}
