@@ -1,12 +1,11 @@
 import { getAccessToken, getS2SToken } from "./getAccessTokenHelper.ts";
 import { APIRequestContext, Browser, Page, request } from "@playwright/test";
 import solicitorCaseData from "../caseData/solicitorCaseData.json";
+import * as process from "node:process";
 import { Helpers } from "./helpers.ts";
 import config from "../config.ts";
-import * as process from "node:process";
 import { ServiceOfApplicationLite } from "../journeys/manageCases/caseProgression/e2eFlowUpToServiceOfApplication/serviceOfApplication/serviceOfApplicationLite.ts";
 
-// TODO: may need to do something special for uploadingDocuments (fl401UploadDocuments)
 const CaseEvents: string[] = [
   "fl401TypeOfApplication",
   "withoutNoticeOrderDetails",
@@ -18,7 +17,7 @@ const CaseEvents: string[] = [
   "fl401OtherProceedings",
   "attendingTheHearing",
   "welshLanguageRequirements",
-  // "fl401UploadDocuments",
+  // "fl401UploadDocuments",  may need to do something special for uploadingDocuments (fl401UploadDocuments)
   "fl401StatementOfTruthAndSubmit",
   "fl401SendToGateKeeper",
   "serviceOfApplication",
@@ -35,7 +34,7 @@ function getUrlPrefix(userID: string): string {
  * Function to create a DA Solicitor case and complete the relevant case events from the CaseEvents list.
  * @param {Browser} browser the browser to be used if service of application needs to be completed
  * @param {string} finalCaseEvent the name of the final case event to complete for this case (based on the CaseEvents list order)
- * @returns {Promise<string>} The case reference if successful, otherwise throws an error
+ * @returns {Promise<string>} the case reference if successful, otherwise throws an error
  */
 export async function createCaseAndCompleteCaseEvents(
   browser: Browser,
@@ -68,9 +67,8 @@ export async function createCaseAndCompleteCaseEvents(
         tokenSolicitorCreateCase,
         s2sToken,
         userID,
-        false,
-        caseID,
         caseEvent,
+        caseID,
       );
       await actionCaseEvent(
         apiContextSolicitorCreateCase,
@@ -89,6 +87,14 @@ export async function createCaseAndCompleteCaseEvents(
   return caseID;
 }
 
+/**
+ * Function to create a blank DA Solicitor case.
+ * @param {APIRequestContext} apiContext api context required to make the API requests
+ * @param {string} bearerToken token required for Authorization of the API requests
+ * @param {string} s2sToken token required for Service Authorization of the API requests
+ * @param {string} userEmail email address of the user that is creating the case
+ * @returns {Promise<{ userID: string; caseID: string }} an object containing the userID for the user email provided and the caseID of the blank case that is created if successful.
+ */
 async function createBlankCase(
   apiContext: APIRequestContext,
   bearerToken: string,
@@ -102,7 +108,7 @@ async function createBlankCase(
     bearerToken,
     s2sToken,
     userID,
-    true,
+    "solicitorCreate",
   );
   const jsonData = solicitorCaseData.solicitorCreate.data;
   const response = await apiContext.post(`${getUrlPrefix(userID)}/cases/`, {
@@ -138,6 +144,105 @@ async function createBlankCase(
   return { userID: userID, caseID: caseID };
 }
 
+/**
+ * Function to retrieve the event for a given event ID.
+ * @param {APIRequestContext} apiContext api context required to make the API requests
+ * @param {string} bearerToken token required for Authorization of the API requests
+ * @param {string} s2sToken token required for Service Authorization of the API requests
+ * @param {string} userID user ID of the user that is requesting the event token
+ * @param {string} caseEvent the ID of the case event
+ * @param {string} caseID the ID of the case
+ * @returns {Promise<string>} the event token for the given event
+ */
+async function getEventToken(
+  apiContext: APIRequestContext,
+  bearerToken: string,
+  s2sToken: string,
+  userID: string,
+  caseEvent: string = "",
+  caseID: string = "",
+): Promise<string> {
+  let eventToken: string = "";
+  const url: string =
+    caseEvent === "solicitorCreate"
+      ? `${getUrlPrefix(userID)}/event-triggers/solicitorCreate/token`
+      : `${getUrlPrefix(userID)}/cases/${caseID}/event-triggers/${caseEvent}/token`;
+  const response = await apiContext.get(url, {
+    headers: {
+      Authorization: `Bearer ${bearerToken}`,
+      "Content-Type": "application/json",
+      ServiceAuthorization: `Bearer ${s2sToken}`,
+    },
+  });
+  if (response.ok()) {
+    const responseBody = await response.json();
+    if (responseBody) {
+      eventToken = responseBody.token;
+    } else {
+      throw new Error("Failed to get event token");
+    }
+  } else {
+    throw new Error(
+      `Failed to get event token for event: ${caseEvent}: Received the following response: ${response.status()} - ${response.statusText()}`,
+    );
+  }
+  return eventToken;
+}
+
+/**
+ * Function to retrieve the event for a given event ID.
+ * @param {APIRequestContext} apiContext api context required to make the API requests
+ * @param {string} bearerToken token required for Authorization of the API requests
+ * @param {string} s2sToken token required for Service Authorization of the API requests
+ * @param {string} userID user ID of the user that is requesting the event token
+ * @param {string} caseID the ID of the case
+ * @param {string} caseEvent the ID of the case event
+ * @param {string} caseEventToken the event token retrieved for the given case event
+ */
+async function actionCaseEvent(
+  apiContext: APIRequestContext,
+  bearerToken: string,
+  s2sToken: string,
+  userID: string,
+  caseID: string,
+  caseEvent: string,
+  caseEventToken: string,
+): Promise<void> {
+  try {
+    // @ts-expect-error
+    const jsonData = solicitorCaseData[caseEvent].data;
+    await apiContext.post(`${getUrlPrefix(userID)}/cases/${caseID}/events`, {
+      headers: {
+        Authorization: `Bearer ${bearerToken}`,
+        "Content-Type": "application/json; charset=UTF-8",
+        ServiceAuthorization: `Bearer ${s2sToken}`,
+        Experimental: "true",
+      },
+      data: {
+        data: jsonData,
+        event: {
+          id: `${caseEvent}`,
+          summary: "",
+          description: "",
+        },
+        event_token: `${caseEventToken}`,
+        ignore_warning: false,
+      },
+    });
+  } catch (error) {
+    throw new Error(
+      `Error executing the following event: ${caseEvent}. Received the following error: ${error instanceof Error ? error.message : error}`,
+    );
+  }
+}
+
+/**
+ * Function to retrieve the userID for a given user.
+ * @param {APIRequestContext} apiContext api context required to make the API requests
+ * @param {string} bearerToken token required for Authorization of the API requests
+ * @param {string} userEmail email address of the user that is creating the case
+ * @returns {Promise<string>} the userID of the provided user if successful
+ */
 async function getUserID(
   apiContext: APIRequestContext,
   bearerToken: string,
@@ -166,78 +271,6 @@ async function getUserID(
     );
   }
   return userID;
-}
-
-async function getEventToken(
-  apiContext: APIRequestContext,
-  bearerToken: string,
-  s2sToken: string,
-  userID: string,
-  isCreateCase: boolean,
-  caseID: string = "",
-  caseEvent: string = "",
-): Promise<string> {
-  let eventToken: string = "";
-  const url: string = isCreateCase
-    ? `${getUrlPrefix(userID)}/event-triggers/solicitorCreate/token`
-    : `${getUrlPrefix(userID)}/cases/${caseID}/event-triggers/${caseEvent}/token`;
-  const response = await apiContext.get(url, {
-    headers: {
-      Authorization: `Bearer ${bearerToken}`,
-      "Content-Type": "application/json",
-      ServiceAuthorization: `Bearer ${s2sToken}`,
-    },
-  });
-  if (response.ok()) {
-    const responseBody = await response.json();
-    if (responseBody) {
-      eventToken = responseBody.token;
-    } else {
-      throw new Error("Failed to find case data");
-    }
-  } else {
-    throw new Error(
-      `Failed to get event token for event: ${caseEvent}: Received the following response: ${response.status()} - ${response.statusText()}`,
-    );
-  }
-  return eventToken;
-}
-
-async function actionCaseEvent(
-  apiContext: APIRequestContext,
-  bearerToken: string,
-  s2sToken: string,
-  userID: string,
-  caseID: string,
-  eventID: string,
-  caseEventToken: string,
-): Promise<void> {
-  try {
-    // @ts-ignore
-    const jsonData = solicitorCaseData[eventID].data;
-    await apiContext.post(`${getUrlPrefix(userID)}/cases/${caseID}/events`, {
-      headers: {
-        Authorization: `Bearer ${bearerToken}`,
-        "Content-Type": "application/json; charset=UTF-8",
-        ServiceAuthorization: `Bearer ${s2sToken}`,
-        Experimental: "true",
-      },
-      data: {
-        data: jsonData,
-        event: {
-          id: `${eventID}`,
-          summary: "",
-          description: "",
-        },
-        event_token: `${caseEventToken}`,
-        ignore_warning: false,
-      },
-    });
-  } catch (error) {
-    throw new Error(
-      `Error executing the following event: ${eventID}. Received the following error: ${error instanceof Error ? error.message : error}`,
-    );
-  }
 }
 
 // unfortunately this has to be done through the UI for now

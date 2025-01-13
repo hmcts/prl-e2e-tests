@@ -6,7 +6,7 @@ import { MiamPolicyUpgrade6Content } from "../../../../../fixtures/manageCases/c
 import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 import { ServiceOfApplication4Content } from "../../../../../fixtures/manageCases/caseProgression/serviceOfApplication/serviceOfApplication4Content.ts";
 
-// complete service of application without all the checks of the actual journey - this should only be used in createSolicitorCaseHelper.ts
+// complete service of application without all the checks of the actual journey - this should only be used in createDASolicitorCaseHelper.ts
 export class ServiceOfApplicationLite {
   public static async serviceOfApplicationLite(page: Page): Promise<void> {
     await Helpers.chooseEventFromDropdown(page, "Service of application");
