@@ -1,112 +1,28 @@
-import { getAccessToken, getS2SToken } from "./getAccessTokenHelper.ts";
 import { APIRequestContext, Browser, Page, request } from "@playwright/test";
+import { getAccessToken, getS2SToken } from "./getAccessTokenHelper.ts";
+import process from "node:process";
 import solicitorCaseData from "../caseData/solicitorDACaseData.json";
-import * as process from "node:process";
 import { Helpers } from "./helpers.ts";
 import config from "../config.ts";
-import { ServiceOfApplicationLite } from "../journeys/manageCases/caseProgression/e2eFlowUpToServiceOfApplication/serviceOfApplication/serviceOfApplicationLite.ts";
-
-const CaseEvents: string[] = [
-  "fl401TypeOfApplication",
-  "withoutNoticeOrderDetails",
-  "applicantsDetails",
-  "respondentsDetails",
-  "fl401ApplicantFamilyDetails",
-  "respondentRelationship",
-  "respondentBehaviour",
-  "fl401OtherProceedings",
-  "attendingTheHearing",
-  "welshLanguageRequirements",
-  "fl401UploadDocuments",
-  "fl401StatementOfTruthAndSubmit",
-  "fl401SendToGateKeeper",
-  "serviceOfApplication",
-];
-
-function getUrlPrefix(userID: string): string {
-  const ccdUrl: string = process.env.CCD_DATA_STORE_URL as string;
-  const jurisdiction: string = process.env.JURISDICTION as string;
-  const caseType: string = process.env.CASE_TYPE as string;
-  return `${ccdUrl}/caseworkers/${userID}/jurisdictions/${jurisdiction}/case-types/${caseType}`;
-}
-
-/**
- * Function to create a DA Solicitor case and complete the relevant case events from the CaseEvents list.
- * @param {Browser} browser the browser to be used if service of application needs to be completed
- * @param {string} finalCaseEvent the name of the final case event to complete for this case (based on the CaseEvents list order),
- * if no event provided then complete up to and including service of application
- * @returns {Promise<string>} the case reference if successful, otherwise throws an error
- */
-export async function createCaseAndCompleteCaseEvents(
-  browser: Browser,
-  finalCaseEvent: string = "",
-): Promise<string> {
-  const apiContextSolicitorCreateCase: APIRequestContext =
-    await request.newContext();
-  const tokenSolicitorCreateCase = await getAccessToken(
-    "solicitorCreateCase",
-    apiContextSolicitorCreateCase,
-  );
-  if (!tokenSolicitorCreateCase) {
-    throw new Error("Setup failed: Unable to get bearer token.");
-  }
-  const apiContextS2SToken: APIRequestContext = await request.newContext();
-  const microservice: string = "prl_cos_api";
-  const s2sToken: string = await getS2SToken(apiContextS2SToken, microservice);
-  const { userID, caseID } = await createBlankCase(
-    apiContextSolicitorCreateCase,
-    tokenSolicitorCreateCase,
-    s2sToken,
-  );
-  if (process.env.PWDEBUG) {
-    console.log("Case ref:", caseID);
-  }
-  for (const caseEvent of CaseEvents) {
-    if (caseEvent === "serviceOfApplication") {
-      await completeServiceOfApplication(browser, caseID);
-    } else {
-      const caseEventToken: string = await getEventToken(
-        apiContextSolicitorCreateCase,
-        tokenSolicitorCreateCase,
-        s2sToken,
-        userID,
-        caseEvent,
-        caseID,
-      );
-      await actionCaseEvent(
-        apiContextSolicitorCreateCase,
-        tokenSolicitorCreateCase,
-        s2sToken,
-        userID,
-        caseID,
-        caseEvent,
-        caseEventToken,
-      );
-    }
-    if (caseEvent === finalCaseEvent) {
-      break;
-    }
-  }
-  return caseID;
-}
+import {
+  ServiceOfApplicationLite
+} from "../journeys/manageCases/caseProgression/e2eFlowUpToServiceOfApplication/serviceOfApplication/serviceOfApplicationLite.ts";
 
 /**
  * Function to create a blank DA Solicitor case.
  * @param {APIRequestContext} apiContext api context required to make the API requests
  * @param {string} bearerToken token required for Authorization of the API requests
  * @param {string} s2sToken token required for Service Authorization of the API requests
- * @param {string} userEmail email address of the user that is creating the case
- * @returns {Promise<{ userID: string; caseID: string }} an object containing the userID for the user email provided and
+ * @returns {Promise<{ userID: string; caseRef: string }} an object containing the userID for the user email provided and
  * the caseID of the blank case that is created if successful.
  */
-async function createBlankCase(
+export async function createBlankCase(
   apiContext: APIRequestContext,
   bearerToken: string,
   s2sToken: string,
-  userEmail: string = "prl-system-update@mailinator.com",
-): Promise<{ userID: string; caseID: string }> {
+): Promise<{ userID: string; caseRef: string }> {
   let caseID: string;
-  const userID: string = await getUserID(apiContext, bearerToken, userEmail);
+  const userID: string = await getUserID(apiContext, bearerToken);
   const eventToken: string = await getEventToken(
     apiContext,
     bearerToken,
@@ -145,7 +61,80 @@ async function createBlankCase(
       `Failed to create case: ${response.status()} - ${response.statusText()}`,
     );
   }
-  return { userID: userID, caseID: caseID };
+  return { userID: userID, caseRef: caseID };
+}
+
+/**
+ * Function to complete a case event with supplied API context
+ * @param {APIRequestContext} apiContext api context required to make the API requests
+ * @param {string} bearerToken token required for Authorization of the API requests
+ * @param {string} s2sToken token required for Service Authorization of the API requests
+ * @param {string} userID user ID of the user that is requesting the event token
+ * @param {string} caseEvent the ID of the case event
+ * @param {string} caseRef the ID of the case
+ */
+export async function completeCaseEventWithContext(
+  apiContext: APIRequestContext,
+  bearerToken: string,
+  s2sToken: string,
+  userID: string,
+  caseEvent: string,
+  caseRef: string,
+): Promise<void> {
+  const caseEventToken: string = await getEventToken(
+    apiContext,
+    bearerToken,
+    s2sToken,
+    userID,
+    caseEvent,
+    caseRef,
+  );
+  await actionCaseEvent(
+    apiContext,
+    bearerToken,
+    s2sToken,
+    userID,
+    caseRef,
+    caseEvent,
+    caseEventToken,
+  );
+}
+
+/**
+ * Function to complete a case event with supplied API context - for use when calling one-off events on a given case
+ * @param {string} caseRef the ID of the case
+ * @param {string} caseEvent the ID of the case event
+ */
+export async function completeCaseEventWithoutContext(
+  caseRef: string,
+  caseEvent: string,
+) {
+  const apiContext: APIRequestContext = await request.newContext();
+  const bearerToken = await getAccessToken("solicitorCreateCase", apiContext);
+  if (!bearerToken) {
+    throw new Error("Setup failed: Unable to get bearer token.");
+  }
+  const apiContextS2SToken: APIRequestContext = await request.newContext();
+  const microservice: string = "prl_cos_api";
+  const s2sToken: string = await getS2SToken(apiContextS2SToken, microservice);
+  const userID: string = await getUserID(apiContext, bearerToken);
+  const caseEventToken: string = await getEventToken(
+    apiContext,
+    bearerToken,
+    s2sToken,
+    userID,
+    caseEvent,
+    caseRef,
+  );
+  await actionCaseEvent(
+    apiContext,
+    bearerToken,
+    s2sToken,
+    userID,
+    caseRef,
+    caseEvent,
+    caseEventToken,
+  );
 }
 
 /**
@@ -158,7 +147,7 @@ async function createBlankCase(
  * @param {string} caseID the ID of the case
  * @returns {Promise<string>} the event token for the given event
  */
-async function getEventToken(
+export async function getEventToken(
   apiContext: APIRequestContext,
   bearerToken: string,
   s2sToken: string,
@@ -247,10 +236,10 @@ async function actionCaseEvent(
  * @param {string} userEmail email address of the user that is creating the case
  * @returns {Promise<string>} the userID of the provided user if successful
  */
-async function getUserID(
+export async function getUserID(
   apiContext: APIRequestContext,
   bearerToken: string,
-  userEmail: string,
+  userEmail: string = "prl-system-update@mailinator.com",
 ): Promise<string> {
   let userID: string = "";
   const response = await apiContext.get(
@@ -277,8 +266,15 @@ async function getUserID(
   return userID;
 }
 
+export function getUrlPrefix(userID: string): string {
+  const ccdUrl: string = process.env.CCD_DATA_STORE_URL as string;
+  const jurisdiction: string = process.env.JURISDICTION as string;
+  const caseType: string = process.env.CASE_TYPE as string;
+  return `${ccdUrl}/caseworkers/${userID}/jurisdictions/${jurisdiction}/case-types/${caseType}`;
+}
+
 // unfortunately this has to be done through the UI for now
-async function completeServiceOfApplication(
+export async function completeServiceOfApplication(
   browser: Browser,
   caseRef: string,
 ): Promise<void> {

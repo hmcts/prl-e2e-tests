@@ -1,10 +1,10 @@
 import { test } from "@playwright/test";
-import { createCaseAndCompleteCaseEvents } from "../common/createSolicitorDACaseHelper.ts";
+import { SolicitorDACaseCreator } from "../common/solicitorDACaseCreator.ts";
 
 test("Create solicitor case - statement of truth and submit", async ({
   browser,
 }): Promise<void> => {
-  await createCaseAndCompleteCaseEvents(
+  await SolicitorDACaseCreator.createCaseAndCompleteCaseEvents(
     browser,
     "fl401StatementOfTruthAndSubmit",
   );
@@ -13,11 +13,14 @@ test("Create solicitor case - statement of truth and submit", async ({
 test("Create solicitor case - gatekeeping", async ({
   browser,
 }): Promise<void> => {
-  await createCaseAndCompleteCaseEvents(browser, "fl401SendToGateKeeper");
+  await SolicitorDACaseCreator.createCaseAndCompleteCaseEvents(
+    browser,
+    "fl401SendToGateKeeper",
+  );
 });
 
 test("Create solicitor case - service of application", async ({
   browser,
 }): Promise<void> => {
-  await createCaseAndCompleteCaseEvents(browser);
+  await SolicitorDACaseCreator.createCaseAndCompleteCaseEvents(browser);
 });
