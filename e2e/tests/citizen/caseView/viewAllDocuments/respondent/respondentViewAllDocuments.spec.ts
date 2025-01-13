@@ -25,7 +25,7 @@ test.describe("Applicant view all documents tests", (): void => {
       browser: browser,
       accessibilityTest: false,
       caseRef: ccdRef,
-      isApplicant: true,
+      isApplicant: false,
     });
   });
 
@@ -38,7 +38,7 @@ test.describe("Applicant view all documents tests", (): void => {
       browser: browser,
       accessibilityTest: true,
       caseRef: ccdRef,
-      isApplicant: true,
+      isApplicant: false,
     });
   });
 });
