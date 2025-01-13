@@ -1,8 +1,8 @@
-import { Selectors } from "../../../../../common/selectors.ts";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
-import { AllCategoriesContent } from "../../../../../fixtures/citizen/caseView/viewAllDocuments/applicant/allCatergoriesContent.ts";
+import { Selectors } from "../../../../common/selectors.ts";
+import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
+import { AllCategoriesContent } from "../../../../fixtures/citizen/caseView/viewAllDocuments/allCatergoriesContent.ts";
 import { Page } from "@playwright/test";
-import { Helpers } from "../../../../../common/helpers.ts";
+import { Helpers } from "../../../../common/helpers.ts";
 
 interface AllCategoriesParams {
   page: Page;
