@@ -1494,6 +1494,17 @@
   },
   "fl401UploadDocuments": {
     "data": {
+      "fl401UploadWitnessDocuments": [
+        {
+          "id": null,
+          "value": {
+            "document_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/0f0eb9bf-f0df-4153-87ce-a8f921644bf0",
+            "document_binary_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/0f0eb9bf-f0df-4153-87ce-a8f921644bf0/binary",
+            "document_filename": "testPdf.pdf"
+          }
+        }
+      ],
+      "fl401UploadSupportDocuments": []
     }
   },
   "fl401StatementOfTruthAndSubmit": {

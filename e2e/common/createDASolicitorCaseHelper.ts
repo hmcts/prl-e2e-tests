@@ -17,7 +17,7 @@ const CaseEvents: string[] = [
   "fl401OtherProceedings",
   "attendingTheHearing",
   "welshLanguageRequirements",
-  // "fl401UploadDocuments",  may need to do something special for uploadingDocuments (fl401UploadDocuments)
+  "fl401UploadDocuments",
   "fl401StatementOfTruthAndSubmit",
   "fl401SendToGateKeeper",
   "serviceOfApplication",
@@ -58,6 +58,7 @@ export async function createCaseAndCompleteCaseEvents(
     tokenSolicitorCreateCase,
     s2sToken,
   );
+  console.log(`case ref: ${caseID}`);
   for (const caseEvent of CaseEvents) {
     console.log(`Starting case event: ${caseEvent}`);
     if (caseEvent === "serviceOfApplication") {
