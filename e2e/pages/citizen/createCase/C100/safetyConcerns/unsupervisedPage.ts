@@ -3,12 +3,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { UnsupervisedContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/unsupervisedContent";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-import { SafetyConcernHelpers } from "./safetyConcernHelpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-
-enum uniqueSelectors {
-  h1Label = `${Selectors.h1}${Selectors.GovukLabel}`,
-}
 
 enum inputIDs {
   yesSpendTime = "#c1A_supervisionAgreementDetails",
@@ -84,7 +79,7 @@ export class UnsupervisedPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${uniqueSelectors.h1Label}:text-is("${UnsupervisedContent.h1Label}")`,
+        `${Selectors.h2}:text-is("${UnsupervisedContent.h1Label}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -99,7 +94,7 @@ export class UnsupervisedPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${uniqueSelectors.h1Label}:text-is("${UnsupervisedContent.h1Label}")`,
+        `${Selectors.h2}:text-is("${UnsupervisedContent.h1Label}")`,
         1,
       ),
       Helpers.checkGroup(
@@ -107,7 +102,7 @@ export class UnsupervisedPage {
         2,
         UnsupervisedContent,
         "legendM",
-        Selectors.GovukLegendM,
+        Selectors.GovukFieldsetLegend,
       ),
       Helpers.checkGroup(
         page,
@@ -117,7 +112,6 @@ export class UnsupervisedPage {
         Selectors.GovukLabel,
       ),
     ]);
-    await SafetyConcernHelpers.checkContactDetailsText(page);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }

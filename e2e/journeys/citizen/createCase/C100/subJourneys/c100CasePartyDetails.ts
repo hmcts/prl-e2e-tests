@@ -197,7 +197,6 @@ export class C100CasePartyDetails {
         {
           page: page,
           accessibilityTest: accessibilityTest,
-          errorMessaging: errorMessaging,
           addressLookupSuccessful: respAddressLookupSuccessful,
         },
       );

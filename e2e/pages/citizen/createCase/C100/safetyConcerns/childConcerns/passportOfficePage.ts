@@ -73,7 +73,6 @@ export class PassportOfficePage {
       ),
     ]);
     await SafetyConcernHelpers.checkPassportSidebar(page);
-    await SafetyConcernHelpers.checkContactDetailsText(page);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }

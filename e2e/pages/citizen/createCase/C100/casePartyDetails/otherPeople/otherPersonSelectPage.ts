@@ -4,6 +4,7 @@ import { Selectors } from "../../../../../../common/selectors";
 import { OtherPersonSelectContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/otherPeople/otherPersonSelectContent";
 import { Helpers } from "../../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../../common/commonStaticText";
+import { ApplicantAddressSelectContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/applicantAddressSelectContent.ts";
 
 interface otherPersonSelectOptions {
   page: Page;
@@ -44,12 +45,15 @@ export class OtherPersonSelectPage {
       `${Selectors.GovukHeadingL}:text-is("${OtherPersonSelectContent.pageTitle} ${OtherPersonSelectContent.firstNameLastName}")`,
     );
     await Promise.all([
-      Helpers.checkGroup(
+      Helpers.checkVisibleAndPresent(
         page,
-        2,
-        OtherPersonSelectContent,
-        "label",
-        `${Selectors.GovukLabel}`,
+        `${Selectors.h2}:text-is("${ApplicantAddressSelectContent.h2}")`, // checking that the postcode put in on the previous page is displaying on this page correctly
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukLabel}:text-is("${ApplicantAddressSelectContent.label}")`, // checking that the postcode put in on the previous page is displaying on this page correctly
+        1,
       ),
       Helpers.checkGroup(
         page,
