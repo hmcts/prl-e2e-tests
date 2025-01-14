@@ -1,0 +1,16 @@
+export enum UploadYourDocumentsContent {
+  GovukCaptionL = "Witness statements and evidence",
+  GovukHeadingL = "Position statement",
+  GovukLabel1 = "You can write your statement in the text box or upload it.",
+  GovukLabel2 = "Write your statement (optional)",
+  GovukBody1 = "If you are uploading documents from a computer, name the files clearly. For example, letter-from-school.doc.",
+  GovukBody2 = "Files must end with JPG, BMP, PNG,TIF, PDF, DOC or DOCX and have a maximum size of 20mb.",
+  GovukSummaryText = "How to take a picture of a document on your phone and upload it",
+  GovukLabel3 = "Upload a file",
+  GovukHeadingM = "Statement of truth",
+  GovukWarningText = "Proceedings for contempt of court may be brought against anyone who makes, or causes to be made, a false statement verified by a statement of truth without an honest belief in its truth.",
+  GovukLabel4 = "I believe that the facts stated in these documents are true",
+  GovukLabel5 = "This confirms that the information you are submitting is true and accurate, to the best of your knowledge.",
+  GovukHeadingS = "Your documents",
+  GovukSummaryListValue = "mockFile.pdf",
+}
