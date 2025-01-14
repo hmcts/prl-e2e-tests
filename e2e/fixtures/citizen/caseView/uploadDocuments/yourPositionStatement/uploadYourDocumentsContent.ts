@@ -11,6 +11,5 @@ export enum UploadYourDocumentsContent {
   GovukWarningText = "Proceedings for contempt of court may be brought against anyone who makes, or causes to be made, a false statement verified by a statement of truth without an honest belief in its truth.",
   GovukLabel4 = "I believe that the facts stated in these documents are true",
   GovukLabel5 = "This confirms that the information you are submitting is true and accurate, to the best of your knowledge.",
-  GovukHeadingS = "Your documents",
   GovukSummaryListValue = "mockFile.pdf",
 }
