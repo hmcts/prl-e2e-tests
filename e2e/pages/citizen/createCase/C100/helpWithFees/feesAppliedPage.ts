@@ -124,11 +124,23 @@ export class FeesAppliedPage {
   }: FillInFieldsOptions): Promise<void> {
     if (c100YesNoFeesApplied) {
       await page.click(inputIDs.radioYes);
-      await Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.h3}:text-is("${FeesAppliedContent.formLabel}")`,
-        1,
-      );
+      await Promise.all([
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.h3}:text-is("${FeesAppliedContent.h3}")`,
+          1,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukLabel}:text-is("${FeesAppliedContent.formLabel}")`,
+          1,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukHint}:text-is("${FeesAppliedContent.formHint}")`,
+          1,
+        ),
+      ]);
       await page.fill(
         inputIDs.referenceNumber,
         FeesAppliedContent.referenceNumber,
