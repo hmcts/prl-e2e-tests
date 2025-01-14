@@ -1,8 +1,8 @@
-import { Selectors } from "../../../../../common/selectors.ts";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
-import { AllCategoriesContent } from "../../../../../fixtures/citizen/caseView/viewAllDocuments/applicant/allCatergoriesContent.ts";
+import { Selectors } from "../../../../common/selectors.ts";
+import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
+import { AllCategoriesContent } from "../../../../fixtures/citizen/caseView/viewAllDocuments/allCatergoriesContent.ts";
 import { Page } from "@playwright/test";
-import { Helpers } from "../../../../../common/helpers.ts";
+import { Helpers } from "../../../../common/helpers.ts";
 
 interface AllCategoriesParams {
   page: Page;
@@ -11,17 +11,17 @@ interface AllCategoriesParams {
 
 export class AllCategoriesPage {
   public static async allCategoriesPage({
-                                          page,
-                                          accessibilityTest,
-                                        }: AllCategoriesParams): Promise<void> {
+    page,
+    accessibilityTest,
+  }: AllCategoriesParams): Promise<void> {
     await this.checkPageLoads({ page, accessibilityTest });
     await this.fillInFields({ page });
   }
 
   private static async checkPageLoads({
-                                        page,
-                                        accessibilityTest,
-                                      }: Partial<AllCategoriesParams>): Promise<void> {
+    page,
+    accessibilityTest,
+  }: Partial<AllCategoriesParams>): Promise<void> {
     if (!page) {
       throw new Error("Page is not defined");
     }

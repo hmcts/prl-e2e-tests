@@ -12,6 +12,7 @@ interface c100OtherPeopleInTheCaseOptions {
   accessibilityTest: boolean;
   errorMessaging: boolean;
   yesNoOtherPeopleInTheCase: boolean;
+  otherPersonLivesInRefuge: boolean;
   applicantGender: ApplicantGender;
   subJourney: boolean;
 }
@@ -23,6 +24,7 @@ export class C100OtherPeopleInTheCase {
     accessibilityTest,
     errorMessaging,
     yesNoOtherPeopleInTheCase,
+    otherPersonLivesInRefuge,
     applicantGender,
     subJourney,
   }: c100OtherPeopleInTheCaseOptions): Promise<void> {
@@ -41,12 +43,14 @@ export class C100OtherPeopleInTheCase {
       accessibilityTest,
       errorMessaging,
       yesNoOtherPeopleInTheCase,
+      otherPersonLivesInRefuge,
       applicantGender,
     );
     await OtherPeopleInTheCaseSubmitPage.otherPeopleInTheCaseSubmitPage(
       page,
       accessibilityTest,
       yesNoOtherPeopleInTheCase,
+      otherPersonLivesInRefuge,
       applicantGender,
     );
     await C100TasksTabPage.c100TasksTabPage(page, accessibilityTest);
