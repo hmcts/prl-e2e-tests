@@ -4,7 +4,7 @@ export enum ConsentOrderUploadContent {
   p2 = "If you are uploading documents from a computer, name the files clearly. For example, consent-order-draft.doc.",
   p3 = "Files must end with JPG, BMP, PNG,TIF, PDF, DOC or DOCX.",
   link = "How to take a picture of a document on your phone and upload it",
-  label = "Select documents to upload",
+  h2 = "Select documents to upload",
   li1 = "Place your document on a flat service in a well-lit room. Use a flash if you need to.",
   li2 = "Take a picture of the whole document. You should be able to see its edges.",
   li3 = "Check you can read all the writing, including the handwriting.",
