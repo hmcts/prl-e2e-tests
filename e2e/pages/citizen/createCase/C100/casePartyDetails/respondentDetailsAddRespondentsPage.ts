@@ -65,7 +65,7 @@ export class RespondentDetailsAddRespondentsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${UniqueSelectors.h2Selector}:text-is("${RespondentDetailsAddRespondentsContent.h2}")`,
+        `${Selectors.GovukFieldsetLegend}:text-is("${RespondentDetailsAddRespondentsContent.legend}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(

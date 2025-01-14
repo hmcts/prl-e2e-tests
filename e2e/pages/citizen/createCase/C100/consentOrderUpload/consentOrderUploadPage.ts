@@ -68,7 +68,7 @@ export class ConsentOrderUploadPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${ConsentOrderUploadContent.label}")`,
+        `${Selectors.GovukHeadingS}:text-is("${ConsentOrderUploadContent.label}")`,
         1,
       ),
       page.click(

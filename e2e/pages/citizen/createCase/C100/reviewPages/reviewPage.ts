@@ -80,7 +80,7 @@ export class ReviewPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h1}:text-is("${CommonReviewContent.statementTitle}")`,
+        `${Selectors.h2}:text-is("${CommonReviewContent.statementTitle}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -482,12 +482,12 @@ export class ReviewPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${CaJourneyWrittenConsentReviewContent.p_10July2014}")`,
+        `${Selectors.dd}:text-is("${CaJourneyWrittenConsentReviewContent.dd_10July2014}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${CaJourneyWrittenConsentReviewContent.p_10July2018}")`,
+        `${Selectors.dd}:text-is("${CaJourneyWrittenConsentReviewContent.dd_10July2018}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
@@ -512,22 +512,22 @@ export class ReviewPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${CaJourneyWrittenConsentReviewContent.p_10June2015}")`,
+        `${Selectors.dd}:text-is("${CaJourneyWrittenConsentReviewContent.dd_10June2015}")`,
         3,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${CaJourneyWrittenConsentReviewContent.p_bs19f99999}")`,
+        `${Selectors.dd}:text-is("${CaJourneyWrittenConsentReviewContent.dd_bs19f99999}")`,
         16,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${CaJourneyWrittenConsentReviewContent.p_10July2016}")`,
+        `${Selectors.dd}:text-is("${CaJourneyWrittenConsentReviewContent.dd_10July2016}")`,
         5,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${CaJourneyWrittenConsentReviewContent.p_10July2017}")`,
+        `${Selectors.dd}:text-is("${CaJourneyWrittenConsentReviewContent.dd_10July2017}")`,
         6,
       ),
       Helpers.checkVisibleAndPresent(
@@ -537,7 +537,7 @@ export class ReviewPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${CaJourneyWrittenConsentReviewContent.p_10June2017}")`,
+        `${Selectors.dd}:text-is("${CaJourneyWrittenConsentReviewContent.dd_10June2017}")`,
         3,
       ),
       Helpers.checkGroup(
@@ -545,17 +545,17 @@ export class ReviewPage {
         13,
         CaJourneyWrittenConsentReviewContent,
         "div_",
-        Selectors.div,
+        Selectors.dd,
       ),
       // Using Selectors.div for div_ prefixed items in CaJourneyWrittenConsentReviewContent
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.div}:text-is("${CaJourneyWrittenConsentReviewContent.div_automatedEmotionalSeekHelpDetails}")`,
+        `${Selectors.dd}:text-is("${CaJourneyWrittenConsentReviewContent.dd_automatedEmotionalSeekHelpDetails}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.div}:text-is("${CaJourneyWrittenConsentReviewContent.div_automatedPhysicalSeekHelpDetails}")`,
+        `${Selectors.dd}:text-is("${CaJourneyWrittenConsentReviewContent.dd_automatedPhysicalSeekHelpDetails}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(

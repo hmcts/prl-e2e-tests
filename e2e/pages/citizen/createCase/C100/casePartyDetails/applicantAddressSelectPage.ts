@@ -52,12 +52,15 @@ export class ApplicantAddressSelectPage {
       `${Selectors.GovukHeadingL}:has-text("${ApplicantAddressSelectContent.pageTitle}")`,
     );
     await Promise.all([
-      Helpers.checkGroup(
+      Helpers.checkVisibleAndPresent(
         page,
-        2,
-        ApplicantAddressSelectContent,
-        "label",
-        Selectors.GovukLabel,
+        `${Selectors.GovukHeadingM}:text-is("${ApplicantAddressSelectContent.h2}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukLabel}:text-is("${ApplicantAddressSelectContent.label}")`,
+        1,
       ),
       Helpers.checkGroup(
         page,

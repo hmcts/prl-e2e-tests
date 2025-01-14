@@ -62,7 +62,7 @@ export class UndertakingOrderDocumentUploadPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${CommonStaticText.uploadAFile}")`,
+        `${Selectors.GovukHeadingS}:text-is("${CommonStaticText.uploadAFile}")`,
         1,
       ),
     ]);

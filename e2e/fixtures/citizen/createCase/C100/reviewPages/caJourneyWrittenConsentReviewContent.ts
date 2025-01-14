@@ -374,18 +374,18 @@ export enum CaJourneyWrittenConsentReviewContent {
   p_20 = "Lorem ipsum request details",
   p_21 = "Once you submit your application, you cannot make further changes. Select Save and come back later to save your application, or select 'Submit your application' to complete your online application.",
   p_loremIpsumStartDetails = "Lorem ipsum start details", // 2 occurrences
-  p_10July2014 = "10 July 2014", // 2 occurrences
-  p_10July2018 = "10 July 2018", // 2 occurrences
+  dd_10July2014 = "10 July 2014", // 2 occurrences
+  dd_10July2018 = "10 July 2018", // 2 occurrences
   p_automatedOccupationOrderCourt = "Automated Occupation Order Court", // 2 occurrences
   p_18August2015 = "18 August 2015", // 2 occurrences
   p_18August2018 = "18 August 2018", // 2 occurrences
   p_automatedChildAbductionOrderCourt = "Automated Child Abduction Order Court", // 3 occurrences
-  p_10June2015 = "10 June 2015", // 3 occurrences
-  p_bs19f99999 = "BS19F99999", // 16 occurrences
-  p_10July2016 = "10 July 2016", // 5 occurrences
-  p_10July2017 = "10 July 2017", // 6 occurrences
+  dd_10June2015 = "10 June 2015", // 3 occurrences
+  dd_bs19f99999 = "BS19F99999", // 16 occurrences
+  dd_10July2016 = "10 July 2016", // 5 occurrences
+  dd_10July2017 = "10 July 2017", // 6 occurrences
   p_yes = "Yes", // 39 occurrences
-  p_10June2017 = "10 June 2017", // 3 occurrences
+  dd_10June2017 = "10 June 2017", // 3 occurrences
   div_1 = "John Smith",
   div_2 = "07488855436",
   div_3 = "John Doe",
@@ -399,7 +399,7 @@ export enum CaJourneyWrittenConsentReviewContent {
   div_11 = "Automated other seek help details",
   div_12 = "Automated Drug Concern Details",
   div_13 = "Automated Other Concerns Details",
-  div_automatedEmotionalSeekHelpDetails = "Automated Emotional seek help details", // 2 occurrences
-  div_automatedPhysicalSeekHelpDetails = "Automated Physical seek help details", // 2 occurrences
+  dd_automatedEmotionalSeekHelpDetails = "Automated Emotional seek help details", // 2 occurrences
+  dd_automatedPhysicalSeekHelpDetails = "Automated Physical seek help details", // 2 occurrences
   div_yes = "Yes", // 12 occurrences
 }
