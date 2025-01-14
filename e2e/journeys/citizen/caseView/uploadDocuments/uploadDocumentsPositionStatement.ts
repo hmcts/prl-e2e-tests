@@ -8,6 +8,7 @@ import { OtherPartyNotSeeDocumentPage } from "../../../../pages/citizen/caseView
 import { UploadYourDocumentsPage } from "../../../../pages/citizen/caseView/uploadDocuments/yourPositionStatement/uploadYourDocumentsPage.ts";
 import { SubmitExtraEvidencePage } from "../../../../pages/citizen/caseView/uploadDocuments/yourPositionStatement/submitExtraEvidencePage.ts";
 import { yesNoNA } from "../../../../common/types.ts";
+import { UploadContent } from "../../../../fixtures/citizen/caseView/uploadDocuments/uploadContent.ts";
 
 interface uploadDocumentsPositionStatementParams {
   page: Page;
@@ -44,7 +45,7 @@ export class UploadDocumentsPositionStatement {
       page,
       accessibilityTest,
     );
-    await page.click('a:has-text("Your position statement")');
+    await page.click(UploadContent.positionStatementLink);
     if (yesNoNA == "Yes") {
       await CourtPermissionPage.courtPermissionPage(
         page,
