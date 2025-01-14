@@ -58,7 +58,7 @@ export class OtherInjunctionOrderDetailsPage {
         page,
         5,
         OtherInjunctionOrderDetailsContent,
-        "legend",
+        "GovukFieldsetLegend",
         `${Selectors.GovukFieldsetLegend}`,
       ),
       Helpers.checkGroup(

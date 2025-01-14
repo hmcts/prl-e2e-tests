@@ -58,7 +58,7 @@ export class SupervisionOrderDetailsPage {
         page,
         5,
         SupervisionOrderDetailsContent,
-        "legend",
+        "GovukFieldsetLegend",
         `${Selectors.GovukFieldsetLegend}`,
       ),
       Helpers.checkGroup(

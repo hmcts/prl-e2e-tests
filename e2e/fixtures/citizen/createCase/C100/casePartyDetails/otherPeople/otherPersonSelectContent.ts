@@ -6,6 +6,5 @@ export enum OtherPersonSelectContent {
   link1 = "Change postcode",
   link2 = "I cannot find the address in the list",
   postcodeText = "CF10 1NS",
-  errorMessage = "Select an address from the list",
   address = "PRINCIPALITY STADIUM, WESTGATE STREET, CARDIFF, CF10 1NS",
 }

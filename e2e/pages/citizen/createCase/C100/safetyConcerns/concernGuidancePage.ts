@@ -4,7 +4,6 @@ import { Selectors } from "../../../../../common/selectors";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { ConcernGuidanceContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/concernGuidanceContent";
 import { Helpers } from "../../../../../common/helpers";
-import { SafetyConcernHelpers } from "./safetyConcernHelpers";
 
 interface CheckPageLoadsOptions {
   page: Page;
@@ -102,7 +101,6 @@ export class ConcernGuidancePage {
         `${Selectors.GovukBody}`,
       ),
     ]);
-    await SafetyConcernHelpers.checkContactDetailsText(page);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }

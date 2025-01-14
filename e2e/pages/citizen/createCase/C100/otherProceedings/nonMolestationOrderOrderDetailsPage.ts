@@ -58,7 +58,7 @@ export class NonMolestationOrderDetailsPage {
         page,
         5,
         NonMolestationOrderDetailsContent,
-        "legend",
+        "GovukFieldsetLegend",
         `${Selectors.GovukFieldsetLegend}`,
       ),
       Helpers.checkGroup(

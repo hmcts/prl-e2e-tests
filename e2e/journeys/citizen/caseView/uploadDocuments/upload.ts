@@ -16,12 +16,12 @@ enum UniqueSelectors {
 
 export class Upload {
   public static async upload({
-   page,
-   browser,
-   caseRef,
-   accessibilityTest,
-   isApplicant,
- }: uploadParams): Promise<void> {
+    page,
+    browser,
+    caseRef,
+    accessibilityTest,
+    isApplicant,
+  }: uploadParams): Promise<void> {
     const caseUser: CaseUser = isApplicant ? "applicant" : "respondent";
     page = await ActivateCase.activateCase({
       page: page,
@@ -31,9 +31,6 @@ export class Upload {
       accessibilityTest: accessibilityTest,
     });
     await page.click(UniqueSelectors.uploadDocumentsPrivateSelector);
-    await UploadPage.uploadPage(
-      page,
-      accessibilityTest,
-    );
+    await UploadPage.uploadPage(page, accessibilityTest);
   }
 }

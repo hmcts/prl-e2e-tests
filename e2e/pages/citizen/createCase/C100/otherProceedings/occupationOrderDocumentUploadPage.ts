@@ -62,7 +62,7 @@ export class OccupationOrderDocumentUploadPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHeadingS}:text-is("${CommonStaticText.uploadAFile}")`,
+        `${Selectors.h2}:text-is("${CommonStaticText.uploadAFile}")`,
         1,
       ),
     ]);

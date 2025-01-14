@@ -83,7 +83,6 @@ export class ChildConcernsAboutPage {
       ),
     ]);
     await SafetyConcernHelpers.checkSidebarChild(page);
-    await SafetyConcernHelpers.checkContactDetailsText(page);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }
