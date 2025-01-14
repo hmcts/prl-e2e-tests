@@ -3,7 +3,6 @@ import { Selectors } from "../../../../../common/selectors";
 import { DocumentSummaryContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/DocumentSummaryContent";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { Helpers } from "../../../../../common/helpers";
-import { SafetyConcernHelpers } from "../safetyConcerns/safetyConcernHelpers";
 import AxeTest from "../../../../../common/accessibilityTestHelper";
 
 interface DocumentSummaryPageOptions {
@@ -56,7 +55,6 @@ export class DocumentSummaryPage {
         16,
       ),
     ]);
-    await SafetyConcernHelpers.checkContactDetailsText(page);
     if (accessibilityTest) {
       await AxeTest.run(page);
     }

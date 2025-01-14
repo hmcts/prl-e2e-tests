@@ -58,8 +58,8 @@ export class FinancialOrderDetailsPage {
         page,
         5,
         FinancialOrderDetailsContent,
-        "h1",
-        `${Selectors.h1}`,
+        "GovukFieldsetLegend",
+        `${Selectors.GovukFieldsetLegend}`,
       ),
       Helpers.checkGroup(
         page,

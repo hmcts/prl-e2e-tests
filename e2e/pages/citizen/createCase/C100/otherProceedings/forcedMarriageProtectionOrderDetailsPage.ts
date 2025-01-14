@@ -58,8 +58,8 @@ export class ForcedMarriageProtectionOrderDetailsPage {
         page,
         5,
         ForcedMarriageProtectionOrderDetailsContent,
-        "h1",
-        `${Selectors.h1}`,
+        "GovukFieldsetLegend",
+        `${Selectors.GovukFieldsetLegend}`,
       ),
       Helpers.checkGroup(
         page,

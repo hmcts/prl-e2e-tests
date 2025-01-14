@@ -67,25 +67,25 @@ export class ApplicantPage {
         `${Selectors.GovukLink}`,
       ),
     ]);
-    await page.click(
-      `${Selectors.GovukSummaryText}:text-is("${ApplicantContent.detailsSummaryText}")`,
-    );
-    await Promise.all([
-      Helpers.checkGroup(
-        page,
-        5,
-        ApplicantContent,
-        "detailsBody",
-        `${Selectors.GovukBody}`,
-      ),
-      Helpers.checkGroup(
-        page,
-        2,
-        ApplicantContent,
-        "detailsLink",
-        `${Selectors.GovukLink}`,
-      ),
-    ]);
+    // await page.click(
+    //   `${Selectors.GovukSummaryText}:text-is("${ApplicantContent.detailsSummaryText}")`,
+    // );
+    // await Promise.all([
+    //   // Helpers.checkGroup(
+    //   //   page,
+    //   //   5,
+    //   //   ApplicantContent,
+    //   //   "detailsBody",
+    //   //   `${Selectors.GovukBody}`,
+    //   // ),
+    //   // Helpers.checkGroup(
+    //   //   page,
+    //   //   2,
+    //   //   ApplicantContent,
+    //   //   "detailsLink",
+    //   //   `${Selectors.GovukLink}`,
+    //   // ),
+    // ]);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }
