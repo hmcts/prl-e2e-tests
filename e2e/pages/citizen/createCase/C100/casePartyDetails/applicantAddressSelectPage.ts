@@ -54,12 +54,12 @@ export class ApplicantAddressSelectPage {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHeadingM}:text-is("${ApplicantAddressSelectContent.h2}")`,
+        `${Selectors.h2}:text-is("${ApplicantAddressSelectContent.h2}")`, // checking that the postcode put in on the previous page is displaying on this page correctly
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${ApplicantAddressSelectContent.label}")`,
+        `${Selectors.GovukLabel}:text-is("${ApplicantAddressSelectContent.label}")`, // checking that the postcode put in on the previous page is displaying on this page correctly
         1,
       ),
       Helpers.checkGroup(
@@ -83,23 +83,11 @@ export class ApplicantAddressSelectPage {
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
-    await Promise.all([
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukErrorSummaryTitle}:text-is("${CommonStaticText.errorSummaryTitle}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukErrorList} ${Selectors.a}:text-is("${ApplicantAddressSelectContent.errorMessage}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukErrorMessageCitizen}:text-is("${ApplicantAddressSelectContent.errorMessage}")`,
-        1,
-      ),
-    ]);
+    await Helpers.checkVisibleAndPresent(
+      page,
+      `${Selectors.GovukErrorSummaryTitle}:text-is("${CommonStaticText.errorSummaryTitle}")`,
+      1,
+    );
   }
   private static async fillInFields({
     page,

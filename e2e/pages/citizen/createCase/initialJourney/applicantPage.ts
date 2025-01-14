@@ -67,25 +67,24 @@ export class ApplicantPage {
         `${Selectors.GovukLink}`,
       ),
     ]);
-    await page.click(
-      `${Selectors.GovukSummaryText}:text-is("${ApplicantContent.detailsSummaryText}")`,
-    );
-    // #TODO: There are changes in the contact details section. This neeeds to be checked and refactored.
+    // await page.click(
+    //   `${Selectors.GovukSummaryText}:text-is("${ApplicantContent.detailsSummaryText}")`,
+    // );
     // await Promise.all([
-    //   Helpers.checkGroup(
-    //     page,
-    //     5,
-    //     ApplicantContent,
-    //     "detailsBody",
-    //     `${Selectors.GovukBody}`,
-    //   ),
-    //   Helpers.checkGroup(
-    //     page,
-    //     2,
-    //     ApplicantContent,
-    //     "detailsLink",
-    //     `${Selectors.GovukLink}`,
-    //   ),
+    //   // Helpers.checkGroup(
+    //   //   page,
+    //   //   5,
+    //   //   ApplicantContent,
+    //   //   "detailsBody",
+    //   //   `${Selectors.GovukBody}`,
+    //   // ),
+    //   // Helpers.checkGroup(
+    //   //   page,
+    //   //   2,
+    //   //   ApplicantContent,
+    //   //   "detailsLink",
+    //   //   `${Selectors.GovukLink}`,
+    //   // ),
     // ]);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);

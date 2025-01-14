@@ -410,6 +410,6 @@ export class Helpers {
       )
       .toBeTruthy();
 
-    return page.url().includes('pcq');
+    return page.url().includes("pcq");
   }
 }

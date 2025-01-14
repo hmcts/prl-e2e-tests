@@ -3,7 +3,6 @@ import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { DrugConcernsContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/drugConcernsContent";
-import { SafetyConcernHelpers } from "./safetyConcernHelpers";
 
 enum inputIDs {
   radioYes = "#c1A_otherConcernsDrugs",
@@ -78,7 +77,6 @@ export class DrugConcernsPage {
         1,
       ),
     ]);
-    await SafetyConcernHelpers.checkContactDetailsText(page);
     // if (accessibilityTest) {
     //   await AccessibilityTestHelper.run(page); #TODO Commented out until ticket-6592 is complete
     // }

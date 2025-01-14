@@ -13,7 +13,6 @@ enum InputIds {
 enum UniqueSelectors {
   firstNameErrorSelector = "a[href='#c100TempFirstName']",
   lastNameErrorSelector = "a[href='#c100TempLastName']",
-  h2Selector = ".govuk-fieldset__heading",
 }
 
 interface RespondentDetailsAddRespondentsOptions {
