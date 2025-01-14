@@ -111,9 +111,7 @@
   "fl401TypeOfApplication": {
     "data": {
       "typeOfApplicationOrders": {
-        "orderType": [
-          "nonMolestationOrder"
-        ]
+        "orderType": ["nonMolestationOrder"]
       },
       "typeOfApplicationLinkToCA": {
         "linkToCaApplication": "No",
@@ -1515,14 +1513,10 @@
         "nameOfFirm": "Test org",
         "signOnBehalf": "director",
         "signature": null,
-        "applicantConsent": [
-          "fl401Consent"
-        ]
+        "applicantConsent": ["fl401Consent"]
       },
       "fl401ConfidentialityCheck": {
-        "confidentialityConsent": [
-          "fl401ConfidentialConsent"
-        ]
+        "confidentialityConsent": ["fl401ConfidentialConsent"]
       },
       "submitCountyCourtSelection": {
         "value": {

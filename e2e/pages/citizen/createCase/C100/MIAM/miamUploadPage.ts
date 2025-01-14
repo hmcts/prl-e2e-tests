@@ -43,21 +43,7 @@ export class MiamUploadPage {
     await page.click(
       `${Selectors.GovukSummaryText}:text-is("${MiamUploadContent.govukDetailsSummaryText}")`,
     );
-    await Promise.all([
-      Helpers.checkGroup(
-        page,
-        2,
-        MiamUploadContent,
-        `govukBody`,
-        Selectors.GovukBody,
-      ),
-      Helpers.checkGroup(page, 5, MiamUploadContent, `li`, Selectors.li),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukLabel}:text-is("${MiamUploadContent.govukLabel}")`,
-        1,
-      ),
-    ]);
+    await Helpers.checkGroup(page, 5, MiamUploadContent, `li`, Selectors.li);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }

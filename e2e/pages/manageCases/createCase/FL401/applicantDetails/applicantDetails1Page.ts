@@ -337,7 +337,7 @@ export class ApplicantDetails1Page {
     await this.solicitorAddressValidation(page);
   }
 
-  private static async uploadC8RefugeForm(page: Page): Promise<void> { 
+  private static async uploadC8RefugeForm(page: Page): Promise<void> {
     await Helpers.checkVisibleAndPresent(
       page,
       `${uniqueSelectorPaths.uploadC8FormLabel}:text-is("${ApplicantDetails1Content.formLabelC8FormUpload}")`,

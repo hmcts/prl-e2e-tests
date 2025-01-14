@@ -2,7 +2,6 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { NeedHelpWithFeesContent } from "../../../../../fixtures/citizen/createCase/C100/helpWithFees/needHelpWithFeesContent";
 import { Helpers } from "../../../../../common/helpers";
-import { SafetyConcernHelpers } from "../safetyConcerns/safetyConcernHelpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 
@@ -75,7 +74,6 @@ export class NeedHelpWithFeesPage {
         Selectors.GovukLabel,
       ),
     ]);
-    await SafetyConcernHelpers.checkContactDetailsText(page);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }

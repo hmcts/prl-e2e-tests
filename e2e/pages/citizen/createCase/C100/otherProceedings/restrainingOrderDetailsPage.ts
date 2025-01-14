@@ -58,7 +58,7 @@ export class RestrainingOrderDetailsPage {
         page,
         5,
         RestrainingOrderDetailsContent,
-        "legend",
+        "GovukFieldsetLegend",
         `${Selectors.GovukFieldsetLegend}`,
       ),
       Helpers.checkGroup(

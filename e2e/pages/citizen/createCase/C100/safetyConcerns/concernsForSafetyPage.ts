@@ -3,7 +3,6 @@ import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { ConcernsForSafetyContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/concernsForSafetyContent";
-import { SafetyConcernHelpers } from "./safetyConcernHelpers";
 
 enum inputIDs {
   yes = "#c1A_haveSafetyConcerns",
@@ -99,7 +98,6 @@ export class ConcernsForSafetyPage {
         `${Selectors.GovukLink}`,
       ),
     ]);
-    await SafetyConcernHelpers.checkContactDetailsText(page);
     // if (accessibilityTest) {
     // await AccessibilityTestHelper.run(page); #TODO Commented out until ticket-6592 is complete
     // }

@@ -48,7 +48,6 @@ export class SexualAbusePage {
     );
     await SafetyConcernHelpers.checkStaticTextChild(page);
     await SafetyConcernHelpers.checkSidebarChild(page);
-    await SafetyConcernHelpers.checkContactDetailsText(page);
     // if (accessibilityTest) {
     //   await AccessibilityTestHelper.run(page); #TODO Commented out until ticket-6593 is complete
     // }

@@ -58,7 +58,7 @@ export class ChildArrangementOrderDetailsPage {
         page,
         5,
         ChildArrangementOrderDetailsContent,
-        "legend",
+        "GovukFieldsetLegend",
         `${Selectors.GovukFieldsetLegend}`,
       ),
       Helpers.checkGroup(

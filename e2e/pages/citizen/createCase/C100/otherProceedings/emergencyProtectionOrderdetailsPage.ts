@@ -58,7 +58,7 @@ export class EmergencyProtectionOrderDetailsPage {
         page,
         5,
         EmergencyProtectionOrderDetailsContent,
-        "legend",
+        "GovukFieldsetLegend",
         `${Selectors.GovukFieldsetLegend}`,
       ),
       Helpers.checkGroup(

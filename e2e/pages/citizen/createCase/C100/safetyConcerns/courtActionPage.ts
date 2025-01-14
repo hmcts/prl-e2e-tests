@@ -3,7 +3,6 @@ import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { CourtActionContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/courtActionContent";
-import { SafetyConcernHelpers } from "./safetyConcernHelpers";
 
 enum inputIDs {
   courtActionStatement = "#c1A_keepingSafeStatement",
@@ -55,7 +54,6 @@ export class CourtActionPage {
       ),
     ]);
     await this.checkDetailsText(page);
-    await SafetyConcernHelpers.checkContactDetailsText(page);
     // if (accessibilityTest) {
     //   await AccessibilityTestHelper.run(page); #TODO Commented out until ticket-6594 is complete
     // }

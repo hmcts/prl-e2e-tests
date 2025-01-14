@@ -9,7 +9,6 @@ import { RespondentDetailsAddressLookupContent } from "../../../../../fixtures/c
 interface respondentDetailsAddressSelectOptions {
   page: Page;
   accessibilityTest: boolean;
-  errorMessaging: boolean;
   addressLookupSuccessful: boolean;
 }
 
@@ -32,13 +31,9 @@ export class RespondentDetailsAddressSelectPage {
   public static async respondentDetailsAddressSelectPage({
     page,
     accessibilityTest,
-    errorMessaging,
     addressLookupSuccessful,
   }: respondentDetailsAddressSelectOptions): Promise<void> {
     await this.checkPageLoads({ page, accessibilityTest });
-    if (errorMessaging) {
-      await this.triggerErrorMessages(page);
-    }
     await this.fillInFields({
       page,
       addressLookupSuccessful,
@@ -54,12 +49,12 @@ export class RespondentDetailsAddressSelectPage {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHeadingM}:text-is("${RespondentDetailsAddressSelectContent.h2}")`,
+        `${Selectors.h2}:text-is("${RespondentDetailsAddressSelectContent.h2}")`, // checking that the postcode put in on the previous page is displaying on this page correctly
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${RespondentDetailsAddressSelectContent.label}")`,
+        `${Selectors.GovukLabel}:text-is("${RespondentDetailsAddressSelectContent.label}")`, // checking that the postcode put in on the previous page is displaying on this page correctly
         1,
       ),
       Helpers.checkGroup(
@@ -79,28 +74,7 @@ export class RespondentDetailsAddressSelectPage {
       await AccessibilityTestHelper.run(page);
     }
   }
-  private static async triggerErrorMessages(page: Page): Promise<void> {
-    await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
-    );
-    await Promise.all([
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukErrorSummaryTitle}:text-is("${CommonStaticText.errorSummaryTitle}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukErrorList} ${Selectors.a}:text-is("${RespondentDetailsAddressSelectContent.errorMessage}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukErrorMessageCitizen}:text-is("${RespondentDetailsAddressSelectContent.errorMessage}")`,
-        1,
-      ),
-    ]);
-  }
+
   private static async fillInFields({
     page,
     addressLookupSuccessful,

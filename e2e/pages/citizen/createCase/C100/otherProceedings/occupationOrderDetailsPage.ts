@@ -58,7 +58,7 @@ export class OccupationOrderDetailsPage {
         page,
         5,
         OccupationOrderDetailsContent,
-        "legend",
+        "GovukFieldsetLegend",
         `${Selectors.GovukFieldsetLegend}`,
       ),
       Helpers.checkGroup(
