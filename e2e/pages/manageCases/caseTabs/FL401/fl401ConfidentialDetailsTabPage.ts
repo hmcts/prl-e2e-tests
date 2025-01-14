@@ -15,11 +15,7 @@ export class FL401ConfidentialDetailsTabPage {
     applicantLivesInRefuge: boolean,
   ): Promise<void> {
     await this.clickTab(page);
-    await this.checkPageLoads(
-      page,
-      accessibilityTest,
-      applicantLivesInRefuge,
-    );
+    await this.checkPageLoads(page, accessibilityTest, applicantLivesInRefuge);
   }
 
   private static async checkPageLoads(
