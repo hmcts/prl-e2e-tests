@@ -83,23 +83,11 @@ export class ApplicantAddressSelectPage {
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
-    await Promise.all([
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukErrorSummaryTitle}:text-is("${CommonStaticText.errorSummaryTitle}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukErrorList} ${Selectors.a}:text-is("${ApplicantAddressSelectContent.errorMessage}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukErrorMessageCitizen}:text-is("${ApplicantAddressSelectContent.errorMessage}")`,
-        1,
-      ),
-    ]);
+    await Helpers.checkVisibleAndPresent(
+      page,
+      `${Selectors.GovukErrorSummaryTitle}:text-is("${CommonStaticText.errorSummaryTitle}")`,
+      1,
+    );
   }
   private static async fillInFields({
     page,

@@ -79,7 +79,7 @@ export class UnsupervisedPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h2}:text-is("${UnsupervisedContent.h1Label}")`,
+        `${Selectors.h2}:text-is("${UnsupervisedContent.h2Label}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -90,11 +90,6 @@ export class UnsupervisedPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukLabel}:text-is("${CommonStaticText.no}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.h2}:text-is("${UnsupervisedContent.h1Label}")`,
         1,
       ),
       Helpers.checkGroup(

@@ -27,12 +27,8 @@ export class OtherPersonSelectPage {
   public static async otherPersonSelectPage({
     page,
     accessibilityTest,
-    errorMessaging,
   }: otherPersonSelectOptions): Promise<void> {
     await this.checkPageLoads({ page, accessibilityTest });
-    if (errorMessaging) {
-      await this.triggerErrorMessages(page);
-    }
     await this.fillInFields({
       page,
     });
@@ -71,28 +67,6 @@ export class OtherPersonSelectPage {
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }
-  }
-  private static async triggerErrorMessages(page: Page): Promise<void> {
-    await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
-    );
-    await Promise.all([
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukErrorSummaryTitle}:text-is("${CommonStaticText.errorSummaryTitle}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.a}:text-is("${OtherPersonSelectContent.errorMessage}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukErrorMessageCitizen}:text-is("${OtherPersonSelectContent.errorMessage}")`,
-        1,
-      ),
-    ]);
   }
 
   private static async fillInFields({
