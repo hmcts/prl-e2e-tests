@@ -2,7 +2,7 @@ import { APIRequestContext } from "@playwright/test";
 
 const citizenCreateUserData = {
   grant_type: "client_credentials",
-  client_id: "prl-cos-api",
+  client_id: process.env.CCD_DATA_STORE_CLIENT_ID as string,
   client_secret: process.env.IDAM_SECRET as string,
   scope: "profile roles",
 };
@@ -24,6 +24,15 @@ const ccdCaseData = {
   client_secret: process.env.CCD_DATA_STORE_SECRET as string,
   scope: "openid profile roles",
   redirect_uri: process.env.MANAGE_CASE_REDIRECT_URI as string,
+};
+
+const solicitorCaseData = {
+  client_id: process.env.CCD_DATA_STORE_CLIENT_ID as string,
+  client_secret: process.env.IDAM_SECRET as string,
+  grant_type: "password",
+  scope: "openid profile roles",
+  username: process.env.CCD_DATA_STORE_CLIENT_USERNAME as string,
+  password: process.env.CCD_DATA_STORE_CLIENT_PASSWORD as string,
 };
 
 /**
@@ -49,6 +58,10 @@ export async function getAccessToken(
         break;
       case "accessCode":
         data = ccdCaseData;
+        url = process.env.IDAM_TOKEN_URL as string;
+        break;
+      case "solicitorCreateCase":
+        data = solicitorCaseData;
         url = process.env.IDAM_TOKEN_URL as string;
         break;
       default:

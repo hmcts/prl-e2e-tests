@@ -58,8 +58,8 @@ export class UndertakingOrderDetailsPage {
         page,
         5,
         UndertakingOrderDetailsContent,
-        "h1",
-        `${Selectors.h1}`,
+        "legend",
+        `${Selectors.GovukFieldsetLegend}`,
       ),
       Helpers.checkGroup(
         page,

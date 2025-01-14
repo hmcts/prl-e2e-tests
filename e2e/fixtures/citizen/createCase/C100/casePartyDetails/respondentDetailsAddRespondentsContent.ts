@@ -1,7 +1,7 @@
 export enum RespondentDetailsAddRespondentsContent {
   pageTitle = "Enter the respondent's name", //xl
   body = "The other people who will receive this application are known as the respondents", //.govuk-inset-text
-  h2 = "Enter name",
+  legend = "Enter name",
   label1 = "First name(s)",
   label2 = "Last name(s)",
   hint = "Include all middle names here",

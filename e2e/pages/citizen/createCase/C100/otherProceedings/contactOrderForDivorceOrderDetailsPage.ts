@@ -58,8 +58,8 @@ export class ContactOrderForDivorceOrderDetailsPage {
         page,
         5,
         ContactOrderForDivorceOrderDetailsContent,
-        "h1",
-        `${Selectors.h1}`,
+        "legend",
+        `${Selectors.GovukFieldsetLegend}`,
       ),
       Helpers.checkGroup(
         page,

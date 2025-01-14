@@ -7,7 +7,7 @@ import { SafetyConcernHelpers } from "./safetyConcernHelpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 
 enum uniqueSelectors {
-  h1Label = `${Selectors.h1}${Selectors.GovukLabel}`,
+  h2Label = `${Selectors.h2}${Selectors.GovukLabel}`,
 }
 
 enum inputIDs {
@@ -84,7 +84,7 @@ export class UnsupervisedPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${uniqueSelectors.h1Label}:text-is("${UnsupervisedContent.h1Label}")`,
+        `${uniqueSelectors.h2Label}:text-is("${UnsupervisedContent.h2Label}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -95,11 +95,6 @@ export class UnsupervisedPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukLabel}:text-is("${CommonStaticText.no}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${uniqueSelectors.h1Label}:text-is("${UnsupervisedContent.h1Label}")`,
         1,
       ),
       Helpers.checkGroup(

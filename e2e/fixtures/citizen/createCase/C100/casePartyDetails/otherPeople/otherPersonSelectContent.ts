@@ -1,8 +1,8 @@
 export enum OtherPersonSelectContent {
   pageTitle = "Select Address of", // dynamic name of applicant
   firstNameLastName = "Other Person First Name Other Person Last Name",
-  label1 = "Current postcode",
-  label2 = "Select an address",
+  h2 = "Current postcode",
+  label = "Select an address",
   link1 = "Change postcode",
   link2 = "I cannot find the address in the list",
   postcodeText = "CF10 1NS",

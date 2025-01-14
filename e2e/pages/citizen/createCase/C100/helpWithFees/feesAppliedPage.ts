@@ -129,17 +129,17 @@ export class FeesAppliedPage {
       await Promise.all([
         Helpers.checkVisibleAndPresent(
           page,
+          `${Selectors.GovukHeadingM}:text-is("${FeesAppliedContent.h3}")`,
+          1,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
           `${Selectors.GovukLabel}:text-is("${FeesAppliedContent.formLabel}")`,
           1,
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukHint}:text-is("${FeesAppliedContent.formHint1}")`,
-          1,
-        ),
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukHint}:text-is("${FeesAppliedContent.formHint2}")`,
+          `${Selectors.GovukHint}:text-is("${FeesAppliedContent.formHint}")`,
           1,
         ),
       ]);
