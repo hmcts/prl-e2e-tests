@@ -62,7 +62,7 @@ export class OtherOrderDocumentUploadPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${CommonStaticText.uploadAFile}")`,
+        `${Selectors.GovukHeadingS}:text-is("${CommonStaticText.uploadAFile}")`,
         1,
       ),
     ]);

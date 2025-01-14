@@ -44,12 +44,15 @@ export class OtherPersonSelectPage {
       `${Selectors.GovukHeadingL}:text-is("${OtherPersonSelectContent.pageTitle} ${OtherPersonSelectContent.firstNameLastName}")`,
     );
     await Promise.all([
-      Helpers.checkGroup(
+      Helpers.checkVisibleAndPresent(
         page,
-        2,
-        OtherPersonSelectContent,
-        "label",
-        `${Selectors.GovukLabel}`,
+        `${Selectors.GovukHeadingM}:text-is("${OtherPersonSelectContent.h2}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukLabel}:text-is("${OtherPersonSelectContent.label}")`,
+        1,
       ),
       Helpers.checkGroup(
         page,

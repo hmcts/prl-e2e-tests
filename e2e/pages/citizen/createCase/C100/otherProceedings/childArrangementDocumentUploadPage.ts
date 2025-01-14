@@ -62,7 +62,7 @@ export class ChildArrangementDocumentUploadPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${ChildArrangementDocumentUploadContent.formLabel}")`,
+        `${Selectors.GovukHeadingS}:text-is("${ChildArrangementDocumentUploadContent.formLabel}")`,
         1,
       ),
     ]);

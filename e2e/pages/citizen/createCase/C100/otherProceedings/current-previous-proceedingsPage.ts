@@ -59,12 +59,12 @@ export class CurrentPreviousProceedingsPage {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h1}:text-is("${CurrentPreviousProceedingsContent.h12}")`,
+        `${Selectors.GovukFieldsetLegend}:text-is("${CurrentPreviousProceedingsContent.h12}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h1}:text-is("${CurrentPreviousProceedingsContent.h13}")`,
+        `${Selectors.GovukFieldsetLegend}:text-is("${CurrentPreviousProceedingsContent.h13}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(

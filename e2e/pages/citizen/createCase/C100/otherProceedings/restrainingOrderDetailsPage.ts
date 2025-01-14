@@ -58,8 +58,8 @@ export class RestrainingOrderDetailsPage {
         page,
         5,
         RestrainingOrderDetailsContent,
-        "h1",
-        `${Selectors.h1}`,
+        "legend",
+        `${Selectors.GovukFieldsetLegend}`,
       ),
       Helpers.checkGroup(
         page,

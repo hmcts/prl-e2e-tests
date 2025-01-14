@@ -58,8 +58,8 @@ export class ChildAbductionOrderDetailsPage {
         page,
         5,
         ChildAbductionOrderDetailsContent,
-        "h1",
-        `${Selectors.h1}`,
+        "legend",
+        `${Selectors.GovukFieldsetLegend}`,
       ),
       Helpers.checkGroup(
         page,

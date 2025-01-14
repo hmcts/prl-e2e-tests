@@ -391,4 +391,21 @@ export class Helpers {
       )
       .toBeTruthy();
   }
+
+  public static async IsEqualityAndDiversityPageDisplayed(page: Page) {
+    await expect
+      .poll(
+        async () => {
+          const url = page.url();
+          return !url.includes(Config.citizenFrontendBaseURL);
+        },
+        {
+          intervals: [1_000],
+          timeout: 100_000,
+        },
+      )
+      .toBeTruthy();
+
+    return page.url().includes('pcq');
+  }
 }

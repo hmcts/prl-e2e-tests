@@ -34,6 +34,7 @@ import { C100ScreeningSections } from "./subJourneys/c100ScreeningSections";
 import { C100TypeOfOrder } from "./subJourneys/C100TypeOfOrder";
 import { C100UrgencyAndWithoutNotice } from "./subJourneys/C100UrgencyAndWithoutNotice";
 import { MIAM } from "./subJourneys/MIAM";
+import { Helpers } from "../../../../common/helpers";
 
 interface C100ApplicationCompletedForYouOptions {
   page: Page;
@@ -554,6 +555,11 @@ export class C100 {
       relationshipType: relationshipType,
       c100YesNoNeedHelpWithFees: c100YesNoNeedHelpWithFees,
     });
+    if (await Helpers.IsEqualityAndDiversityPageDisplayed(page)) {
+      await EqualityAndDiversityPage.equalityAndDiversityPage({
+        page,
+      });
+    }
     if (!c100YesNoNeedHelpWithFees) {
       await C100Pay.c100Pay({
         page: page,
@@ -743,9 +749,11 @@ export class C100 {
       relationshipType: relationshipType,
       c100YesNoNeedHelpWithFees: c100YesNoNeedHelpWithFees,
     });
-    await EqualityAndDiversityPage.equalityAndDiversityPage({
-      page,
-    });
+    if (await Helpers.IsEqualityAndDiversityPageDisplayed(page)) {
+      await EqualityAndDiversityPage.equalityAndDiversityPage({
+        page,
+      });
+    }
     if (!c100YesNoNeedHelpWithFees) {
       await C100Pay.c100Pay({
         page: page,
@@ -952,9 +960,11 @@ export class C100 {
       miamAlreadyAttended: miamAlreadyAttended,
       c100YesNoNeedHelpWithFees: c100YesNoNeedHelpWithFees,
     });
-    await EqualityAndDiversityPage.equalityAndDiversityPage({
-      page,
-    });
+    if (await Helpers.IsEqualityAndDiversityPageDisplayed(page)) {
+      await EqualityAndDiversityPage.equalityAndDiversityPage({
+        page,
+      });
+    }
     if (!c100YesNoNeedHelpWithFees) {
       await C100Pay.c100Pay({
         page: page,
