@@ -240,7 +240,14 @@ export class Helpers {
     caseTab: string,
   ): string {
     const caseNumberDigits: string = caseNumber.replace(/\D/g, "");
-    return `${baseURL}/case-details/${caseNumberDigits}/${caseTab}`;
+    if (
+      caseTab.toLowerCase() === "tasks" ||
+      caseTab.toLowerCase() === "roles and access"
+    ) {
+      return `${baseURL}/case-details/${caseNumberDigits}/${caseTab}`;
+    } else {
+      return `${baseURL}/case-details/${caseNumberDigits}#${caseTab}`;
+    }
   }
 
   private static shortMonth(index: number): string {
@@ -348,6 +355,17 @@ export class Helpers {
       storageState: Config.sessionStoragePath + `${user}.json`,
     });
     return await newContext.newPage();
+  }
+
+  public static async getCaseNumberFromUrl(page: Page): Promise<string> {
+    const url: string = page.url();
+    const caseNumberMatch: RegExpMatchArray | null = url.match(
+      /case-details\/(\d{16})\/.*?/,
+    );
+    if (caseNumberMatch === null) {
+      throw new Error("Unable to extract case number from URL");
+    }
+    return caseNumberMatch[1];
   }
 
   public static async waitForTaskToDisappear(page: Page, taskName: string) {

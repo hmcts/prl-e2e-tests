@@ -15,6 +15,8 @@ test.describe("C100 Dummy payment for AWP tests", (): void => {
       accessibilityTest: false,
       paymentStatusPaid: true,
       caseType: "C100",
+      applicantLivesInRefuge: false,
+      otherPersonLivesInRefuge: false,
     });
   });
 
@@ -28,6 +30,8 @@ test.describe("C100 Dummy payment for AWP tests", (): void => {
       accessibilityTest: false,
       paymentStatusPaid: false,
       caseType: "C100",
+      applicantLivesInRefuge: false,
+      otherPersonLivesInRefuge: false,
     });
   });
 
@@ -43,6 +47,8 @@ test.describe("C100 Dummy payment for AWP tests", (): void => {
       accessibilityTest: false,
       paymentStatusPaid: true,
       caseType: "C100",
+      applicantLivesInRefuge: false,
+      otherPersonLivesInRefuge: false,
     });
   });
 });
@@ -59,5 +65,7 @@ test(`Complete the Dummy payment for AWP action  as a solicitor with the followi
     accessibilityTest: true,
     paymentStatusPaid: true,
     caseType: "C100",
+    applicantLivesInRefuge: false,
+    otherPersonLivesInRefuge: false,
   });
 });
