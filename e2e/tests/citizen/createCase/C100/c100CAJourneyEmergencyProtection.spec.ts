@@ -169,7 +169,7 @@ test.describe("C100 Citizen Application tests on the second MIRO set.", (): void
     await C100.c100CAEmergencyProtectionJourney({
       page: page,
       accessibilityTest: false,
-      errorMessaging: true,
+      errorMessaging: false,
       c100LegalRepresentation: true,
       c100CourtPermissionNeeded: true,
       yesNoOtherProceedings: true,
