@@ -11,7 +11,10 @@ import { MiamOtherReasonForNotAttending } from "../../../../pages/citizen/create
 import { MiamReasonForNoAccessToMediator } from "../../../../pages/citizen/createCase/C100/MIAM/miamNoAccessToMediatorPage";
 import { MiamAttendanceType } from "../../../../pages/citizen/createCase/C100/MIAM/miamPreviousAttendancePage";
 import { MiamUrgencyType } from "../../../../pages/citizen/createCase/C100/MIAM/miamUrgencyPage";
-import { reviewPageTopJourneyMotherFather } from "../../../../pages/citizen/createCase/C100/reviewPages/reviewPage";
+import {
+  ReviewPage,
+  reviewPageTopJourneyMotherFather,
+} from "../../../../pages/citizen/createCase/C100/reviewPages/reviewPage";
 import { c100ChildrenSupervisionRadios } from "../../../../pages/citizen/createCase/C100/safetyConcerns/unsupervisedPage";
 import { CitizenCreateInitial } from "../../citizenCreateInitial";
 import { C100ApplicationCompletedForYou } from "./C100ApplicationCompletedForYou";
@@ -28,6 +31,9 @@ import { C100ScreeningSections } from "./subJourneys/c100ScreeningSections";
 import { C100TypeOfOrder } from "./subJourneys/C100TypeOfOrder";
 import { C100UrgencyAndWithoutNotice } from "./subJourneys/C100UrgencyAndWithoutNotice";
 import { MIAM } from "./subJourneys/MIAM";
+import { EqualityAndDiversityPage } from "../../../../pages/citizen/createCase/C100/confirmation/equalityAndDiversityQuestionsPage.ts";
+import { C100Pay } from "./subJourneys/C100Pay.ts";
+import { ConfirmationPage } from "../../../../pages/citizen/createCase/C100/confirmation/confirmationPage.ts";
 
 interface C100ApplicationCompletedForYouOptions {
   page: Page;
@@ -605,7 +611,7 @@ export class C100 {
     yesNoReasonableAdjustments,
     c100YesNoNeedHelpWithFees,
     c100YesNoFeesApplied,
-    // relationshipType,
+    relationshipType,
   }: C100EmergencyProtectionJourneyOptions): Promise<void> {
     await CitizenCreateInitial.citizenCreateInitial({
       page: page,
@@ -731,26 +737,26 @@ export class C100 {
       c100YesNoNeedHelpWithFees: c100YesNoNeedHelpWithFees,
       c100YesNoFeesApplied: c100YesNoFeesApplied,
     });
-    // await ReviewPage.c100CAEmergencyProtection({
-    //   page: page,
-    //   accessibilityTest: accessibilityTest,
-    //   relationshipType: relationshipType,
-    //   c100YesNoNeedHelpWithFees: c100YesNoNeedHelpWithFees,
-    // });
-    // await EqualityAndDiversityPage.equalityAndDiversityPage({
-    //   page,
-    // });
-    // if (!c100YesNoNeedHelpWithFees) {
-    //   await C100Pay.c100Pay({
-    //     page: page,
-    //     accessibilityTest: accessibilityTest,
-    //     errorMessaging: errorMessaging,
-    //   });
-    // }
-    // await ConfirmationPage.confirmationPage({
-    //   page: page,
-    //   accessibilityTest: accessibilityTest,
-    // });
+    await ReviewPage.c100CAEmergencyProtection({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      relationshipType: relationshipType,
+      c100YesNoNeedHelpWithFees: c100YesNoNeedHelpWithFees,
+    });
+    await EqualityAndDiversityPage.equalityAndDiversityPage({
+      page,
+    });
+    if (!c100YesNoNeedHelpWithFees) {
+      await C100Pay.c100Pay({
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
+      });
+    }
+    await ConfirmationPage.confirmationPage({
+      page: page,
+      accessibilityTest: accessibilityTest,
+    });
   }
 
   public static async c100CAExistingMIAMDocumentJourney({
@@ -939,27 +945,27 @@ export class C100 {
       c100YesNoFeesApplied: c100YesNoFeesApplied,
       c100YesNoNeedHelpWithFees: c100YesNoNeedHelpWithFees,
     });
-    // await ReviewPage.C100ExistingMIAMJourney({
-    //   page: page,
-    //   accessibilityTest: accessibilityTest,
-    //   miamAttendanceType: miamAttendanceType,
-    //   miamAlreadyAttended: miamAlreadyAttended,
-    //   c100YesNoNeedHelpWithFees: c100YesNoNeedHelpWithFees,
-    // });
-    // await EqualityAndDiversityPage.equalityAndDiversityPage({
-    //   page,
-    // });
-    // if (!c100YesNoNeedHelpWithFees) {
-    //   await C100Pay.c100Pay({
-    //     page: page,
-    //     accessibilityTest: accessibilityTest,
-    //     errorMessaging: errorMessaging,
-    //   });
-    // }
-    // await ConfirmationPage.confirmationPage({
-    //   page: page,
-    //   accessibilityTest: accessibilityTest,
-    // });
+    await ReviewPage.C100ExistingMIAMJourney({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      miamAttendanceType: miamAttendanceType,
+      miamAlreadyAttended: miamAlreadyAttended,
+      c100YesNoNeedHelpWithFees: c100YesNoNeedHelpWithFees,
+    });
+    await EqualityAndDiversityPage.equalityAndDiversityPage({
+      page,
+    });
+    if (!c100YesNoNeedHelpWithFees) {
+      await C100Pay.c100Pay({
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
+      });
+    }
+    await ConfirmationPage.confirmationPage({
+      page: page,
+      accessibilityTest: accessibilityTest,
+    });
   }
 
   public static async c100CAJourneyMIAMHearingUrgency({
