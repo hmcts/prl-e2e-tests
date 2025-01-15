@@ -502,7 +502,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
   respondent address lookup successful: false,
   respondent known contacts: no,
   Other Person details: false,
-  Other person gender: female,
+  Other person gender: female, 
   Other person changed name: no,
   other person birthday known: false,
   other person relationship: special guardian,
