@@ -433,7 +433,7 @@ export class C100 {
     yesNoReasonableAdjustments,
     c100YesNoNeedHelpWithFees,
     c100YesNoFeesApplied,
-    // reviewPageTopJourneyMotherFather,
+    reviewPageTopJourneyMotherFather,
     relationshipType,
   }: C100TopMiroJourneyOptions): Promise<void> {
     await CitizenCreateInitial.citizenCreateInitial({
@@ -547,20 +547,20 @@ export class C100 {
       c100YesNoFeesApplied: c100YesNoFeesApplied,
       c100YesNoNeedHelpWithFees: c100YesNoNeedHelpWithFees,
     });
-    // await ReviewPage.c100CAWithWrittenConsentFromOtherPeople({
-    //   page: page,
-    //   accessibilityTest: accessibilityTest,
-    //   reviewPageTopJourneyMotherFather: reviewPageTopJourneyMotherFather,
-    //   relationshipType: relationshipType,
-    //   c100YesNoNeedHelpWithFees: c100YesNoNeedHelpWithFees,
-    // });
-    // if (!c100YesNoNeedHelpWithFees) {
-    //   await C100Pay.c100Pay({
-    //     page: page,
-    //     accessibilityTest: accessibilityTest,
-    //     errorMessaging: errorMessaging,
-    //   });
-    // }
+    await ReviewPage.c100CAWithWrittenConsentFromOtherPeople({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      reviewPageTopJourneyMotherFather: reviewPageTopJourneyMotherFather,
+      relationshipType: relationshipType,
+      c100YesNoNeedHelpWithFees: c100YesNoNeedHelpWithFees,
+    });
+    if (!c100YesNoNeedHelpWithFees) {
+      await C100Pay.c100Pay({
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
+      });
+    }
   }
 
   public static async c100CAEmergencyProtectionJourney({
