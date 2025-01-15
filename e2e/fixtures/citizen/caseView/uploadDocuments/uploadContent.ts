@@ -22,6 +22,4 @@ export enum UploadContent {
   GovukLink14 = "Statement of position on non-court dispute resolution (NCDR) (form FM5)",
   GovukLink15 = "Other documents",
   positionStatementLink = "Your position statement",
-  witnessStatementLink = "Your witness statements",
-  otherPeopleWitnessStatementLink = "Other people's witness statements",
 }
