@@ -1154,23 +1154,23 @@ export class C100 {
       c100YesNoNeedHelpWithFees: c100YesNoNeedHelpWithFees,
       c100YesNoFeesApplied: c100YesNoFeesApplied,
     });
-    // await ReviewPage.c100CAMIAMHearingUrgency({
-    //   page: page,
-    //   accessibilityTest: accessibilityTest,
-    //   relationshipType: applicantRelationship,
-    //   miamOtherReasonForNotAttending: miamOtherReasonForNotAttending,
-    //   miamChildProtectionConcernsType: miamChildProtectionConcernsType,
-    //   miamUrgencyType: miamUrgencyType,
-    //   miamAttendanceType: miamAttendanceType,
-    //   c100ChildrenSupervision: c100ChildrenSupervision,
-    //   c100YesNoNeedHelpWithFees: c100YesNoNeedHelpWithFees,
-    // });
-    // await EqualityAndDiversityPage.equalityAndDiversityPage({
-    //   page
-    // });
-    // await ConfirmationPage.confirmationPage({
-    //   page: page,
-    //   accessibilityTest: accessibilityTest,
-    // });
+    await ReviewPage.c100CAMIAMHearingUrgency({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      relationshipType: applicantRelationship,
+      miamOtherReasonForNotAttending: miamOtherReasonForNotAttending,
+      miamChildProtectionConcernsType: miamChildProtectionConcernsType,
+      miamUrgencyType: miamUrgencyType,
+      miamAttendanceType: miamAttendanceType,
+      c100ChildrenSupervision: c100ChildrenSupervision,
+      c100YesNoNeedHelpWithFees: c100YesNoNeedHelpWithFees,
+    });
+    await EqualityAndDiversityPage.equalityAndDiversityPage({
+      page
+    });
+    await ConfirmationPage.confirmationPage({
+      page: page,
+      accessibilityTest: accessibilityTest,
+    });
   }
 }
