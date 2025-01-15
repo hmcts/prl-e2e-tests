@@ -4,15 +4,17 @@ import {AmendApplicantDetails2Page } from "../../../../pages/manageCases/casePro
 import { ApplicantGender } from "../../../../common/types.ts";
 
 interface AmendApplicantDetailsParams {
-  page: Page;
-  accessibilityTest: boolean;
-  ccdRef: string;
-  nameChange: boolean;
-  dobChange: boolean;
-  genderChange: boolean;
-  gender: ApplicantGender;
-  liveInRefuge: boolean;
-  keepDetailsConfidential: boolean;
+  page: Page,
+  accessibilityTest: boolean,
+  ccdRef: string,
+  nameChange: boolean,
+  dobChange: boolean,
+  genderChange: boolean,
+  gender: ApplicantGender,
+  liveInRefuge: boolean,
+  changeApplicantAddress: boolean,
+  keepDetailsConfidential: boolean,
+  solicitorDetailsChange: boolean,
 }
 
 export class AmendApplicantDetails {
@@ -24,7 +26,9 @@ export class AmendApplicantDetails {
     genderChange,
     gender,
     liveInRefuge,
+    changeApplicantAddress,
     keepDetailsConfidential,
+    solicitorDetailsChange,
   }: AmendApplicantDetailsParams): Promise<void> {
     await Helpers.chooseEventFromDropdown(page, "Amend applicant details");
     await AmendApplicantDetails2Page.amendApplicantDetails2Page({
@@ -35,7 +39,9 @@ export class AmendApplicantDetails {
       genderChange,
       gender,
       liveInRefuge,
+      changeApplicantAddress,
       keepDetailsConfidential,
+      solicitorDetailsChange,
     })
   }
 }
