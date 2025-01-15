@@ -6,7 +6,7 @@ import config from "../../../config.ts";
 import Config from "../../../config.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
-
+//comment to check test passed on pipeline - REMOVE BEFORE MERGING
 test.describe("Activating case tests", (): void => {
   test.slow();
   let ccdRef: string;
