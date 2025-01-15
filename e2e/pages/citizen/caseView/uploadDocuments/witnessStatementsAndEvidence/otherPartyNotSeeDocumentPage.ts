@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors.ts";
 import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
-import { OtherPartyNotSeeDocumentContent } from "../../../../../fixtures/citizen/caseView/uploadDocuments/yourPositionStatement/otherPartyNotSeeDocumentContent.ts";
+import { OtherPartyNotSeeDocumentContent } from "../../../../../fixtures/citizen/caseView/uploadDocuments/witnessStatementsAndEvidence/otherPartyNotSeeDocumentContent.ts";
 import { Helpers } from "../../../../../common/helpers.ts";
 
 export enum UniqueSelectors {

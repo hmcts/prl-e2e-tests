@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors.ts";
 import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
-import { CourtPermissionContent } from "../../../../../fixtures/citizen/caseView/uploadDocuments/yourPositionStatement/courtPermissionContent.ts";
+import { CourtPermissionContent } from "../../../../../fixtures/citizen/caseView/uploadDocuments/witnessStatementsAndEvidence/courtPermissionContent.ts";
 import { Helpers } from "../../../../../common/helpers.ts";
 import { yesNoNA } from "../../../../../common/types.ts";
 
@@ -11,7 +11,7 @@ enum UniqueSelectors {
   courtHasNotAskedForDoc = "#hasCourtAskedForThisDoc-2",
 }
 
-export class CourtPermissionPage {
+export class PositionStatementPage {
   public static async courtPermissionPage(
     page: Page,
     accessibilityTest: boolean,
@@ -28,7 +28,7 @@ export class CourtPermissionPage {
   ): Promise<void> {
     await page
       .locator(Selectors.GovukHeadingXL, {
-        hasText: CourtPermissionContent.GovukHeadingXL,
+        hasText: CourtPermissionContent.GovukHeadingXLWitnessStatement,
       })
       .waitFor();
     await Promise.all([

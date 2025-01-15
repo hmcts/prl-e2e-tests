@@ -2,24 +2,17 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors.ts";
 import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
-import { SharingYourDocumentsContent } from "../../../../../fixtures/citizen/caseView/uploadDocuments/yourPositionStatement/sharingYourDocumentsContent.ts";
+import { SubmitExtraEvidenceContent } from "../../../../../fixtures/citizen/caseView/uploadDocuments/witnessStatementsAndEvidence/submitExtraEvidenceContent.ts";
 import { Helpers } from "../../../../../common/helpers.ts";
-import { yesNoNA } from "../../../../../common/types.ts";
 
-enum UniqueSelectors {
-  docNotShared = "#haveReasonForDocNotToBeShared",
-  docShared = "#haveReasonForDocNotToBeShared-2",
-}
-
-export class SharingYourDocumentsPage {
-  public static async sharingYourDocumentsPage(
+export class SubmitExtraEvidencePage {
+  public static async submitExtraEvidencePage(
     page: Page,
     accessibilityTest: boolean,
-    yesNoNA: yesNoNA,
   ): Promise<void> {
     // this part of the case is complete when the case is created through courtnav so only need to check the page
     await this.checkPageLoads(page, accessibilityTest);
-    await this.fillInFields(page, yesNoNA);
+    await this.continue(page);
   }
 
   private static async checkPageLoads(
@@ -27,24 +20,24 @@ export class SharingYourDocumentsPage {
     accessibilityTest: boolean,
   ): Promise<void> {
     await page
-      .locator(Selectors.GovukHeadingXL, {
-        hasText: SharingYourDocumentsContent.GovukHeadingXL,
+      .locator(Selectors.GovukHeadingL, {
+        hasText: SubmitExtraEvidenceContent.GovukHeadingL,
       })
       .waitFor();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukCaptionL}:text-is("${SharingYourDocumentsContent.GovukCaptionL}")`,
+        `${Selectors.GovukCaptionL}:text-is("${SubmitExtraEvidenceContent.GovukCaptionL}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukWarningText}:text-is("${SharingYourDocumentsContent.GovukWarningText}")`,
+        `${Selectors.GovukBody}:text-is("${SubmitExtraEvidenceContent.GovukBody1}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukFieldsetLegend}:text-is("${SharingYourDocumentsContent.GovukFieldsetLegend}")`,
+        `${Selectors.GovukBody}:text-is("${SubmitExtraEvidenceContent.GovukBody2}")`,
         1,
       ),
     ]);
@@ -53,17 +46,9 @@ export class SharingYourDocumentsPage {
     }
   }
 
-  private static async fillInFields(
+  private static async continue(
     page: Page,
-    yesNoNA: yesNoNA,
   ): Promise<void> {
-    if (yesNoNA === "Yes") {
-      await page.click(UniqueSelectors.docShared);
-    } else if (yesNoNA === "No") {
-      await page.click(UniqueSelectors.docNotShared);
-    } else {
-      throw new Error("Invalid value for yesNoNA");
-    }
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );

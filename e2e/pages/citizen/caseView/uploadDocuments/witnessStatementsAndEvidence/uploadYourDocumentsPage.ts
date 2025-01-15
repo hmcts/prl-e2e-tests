@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors.ts";
 import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
-import { UploadYourDocumentsContent } from "../../../../../fixtures/citizen/caseView/uploadDocuments/yourPositionStatement/uploadYourDocumentsContent.ts";
+import { UploadYourDocumentsContent } from "../../../../../fixtures/citizen/caseView/uploadDocuments/witnessStatementsAndEvidence/uploadYourDocumentsContent.ts";
 import { Helpers } from "../../../../../common/helpers.ts";
 import config from "../../../../../config.ts";
 
