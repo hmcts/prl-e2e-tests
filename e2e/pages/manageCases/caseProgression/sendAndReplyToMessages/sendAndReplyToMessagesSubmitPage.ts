@@ -78,7 +78,7 @@ export class SendAndReplyToMessagesSubmitPage {
           ),
           Helpers.checkVisibleAndPresent(
             page,
-            `${Selectors.GovukText16}:has-text("${SendAndReplyToMessagesSubmitContent.messageSubject}")`,
+            `${Selectors.Span}:has-text("${SendAndReplyToMessagesSubmitContent.messageSubject}")`,
             1,
           ),
         ]);
@@ -93,7 +93,7 @@ export class SendAndReplyToMessagesSubmitPage {
           ),
           Helpers.checkVisibleAndPresent(
             page,
-            `${Selectors.GovukText16}:has-text("${SendAndReplyToMessagesSubmitContent.messageSubject}")`,
+            `${Selectors.Span}:has-text("${SendAndReplyToMessagesSubmitContent.messageSubject}")`,
             1,
           ),
         ]);
