@@ -6,8 +6,8 @@ import { Helpers } from "../../../../common/helpers";
 import { CommonStaticText } from "../../../../common/commonStaticText";
 
 enum UniqueSelectors {
-  respondentOptionYes = "#serveToRespondentOptions_Yes",
-  respondentOptionNo = "#serveToRespondentOptions_No",
+  respondentOptionYes = "#serveToRespondentOptions-Yes",
+  respondentOptionNo = "#serveToRespondentOptions-No",
   respondentsOptionsCourtBailiff = "#personallyServeRespondentsOptions-courtBailiff",
 }
 export class AdminEditAndApproveAnOrder23Page {
