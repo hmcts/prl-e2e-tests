@@ -138,10 +138,17 @@ export class ReviewPage {
       ),
       Helpers.checkGroup(
         page,
-        21,
+        11,
         CaJourneyWrittenConsentReviewContent,
         "h2_",
         `${Selectors.h2}`,
+      ),
+      Helpers.checkGroup(
+        page,
+        10,
+        CaJourneyWrittenConsentReviewContent,
+        "h3_",
+        `${Selectors.h3}`,
       ),
       Helpers.checkGroup(
         page,
@@ -231,7 +238,7 @@ export class ReviewPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.dd}:text-is("${CaJourneyWrittenConsentReviewContent.dd_yes}")`,
-        37,
+        89,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -243,47 +250,47 @@ export class ReviewPage {
         c100YesNoNeedHelpWithFees ? 81 : 80,
         CaJourneyWrittenConsentReviewContent,
         "span_",
-        Selectors.Span,
+        Selectors.GovukSummaryListKey,
       ),
       // Using Selectors.Span for span_ prefixed items in CaJourneyWrittenConsentReviewContent
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${CaJourneyWrittenConsentReviewContent.span_whatTypeOfBehaviourHaveTheChildrenExperiencedOrAreAtRiskOfExperiencing}")`,
+        `${Selectors.GovukSummaryListKey}:text-is("${CaJourneyWrittenConsentReviewContent.span_whatTypeOfBehaviourHaveTheChildrenExperiencedOrAreAtRiskOfExperiencing}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${CaJourneyWrittenConsentReviewContent.span_haveTheyChangedTheirName}")`,
+        `${Selectors.GovukSummaryListKey}:text-is("${CaJourneyWrittenConsentReviewContent.span_haveTheyChangedTheirName}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${CaJourneyWrittenConsentReviewContent.span_placeOfBirth}")`,
+        `${Selectors.GovukSummaryListKey}:text-is("${CaJourneyWrittenConsentReviewContent.span_placeOfBirth}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${CaJourneyWrittenConsentReviewContent.span_fullName}")`,
+        `${Selectors.GovukSummaryListKey}:text-is("${CaJourneyWrittenConsentReviewContent.span_fullName}")`,
         5,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${CaJourneyWrittenConsentReviewContent.span_dateOfBirth}")`,
+        `${Selectors.GovukSummaryListKey}:text-is("${CaJourneyWrittenConsentReviewContent.span_dateOfBirth}")`,
         5,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${CaJourneyWrittenConsentReviewContent.span_gender}")`,
+        `${Selectors.GovukSummaryListKey}:text-is("${CaJourneyWrittenConsentReviewContent.span_gender}")`,
         5,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${CaJourneyWrittenConsentReviewContent.span_relationshipToExampletextExampletext}")`,
+        `${Selectors.GovukSummaryListKey}:text-is("${CaJourneyWrittenConsentReviewContent.span_relationshipToExampletextExampletext}")`,
         3,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${CaJourneyWrittenConsentReviewContent.span_addressDetails}")`,
+        `${Selectors.GovukSummaryListKey}:text-is("${CaJourneyWrittenConsentReviewContent.span_addressDetails}")`,
         3,
       ),
       Helpers.checkGroup(
@@ -396,25 +403,32 @@ export class ReviewPage {
       ),
       Helpers.checkGroup(
         page,
-        17,
+        3,
         CaJourneyWrittenConsentReviewContent,
         "h4_",
         Selectors.h4,
       ),
+      Helpers.checkGroup(
+        page,
+        14,
+        CaJourneyWrittenConsentReviewContent,
+        "listKey_",
+        Selectors.GovukSummaryListKey,
+      ),
       // Using Selectors.h4 for h4_ prefixed items in CaJourneyWrittenConsentReviewContent
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h4}:text-is("${CaJourneyWrittenConsentReviewContent.h4_whichCourtIssuedTheOrderoptional}")`,
+        `${Selectors.GovukSummaryListKey}:text-is("${CaJourneyWrittenConsentReviewContent.listKey_whichCourtIssuedTheOrderoptional}")`,
         16,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h4}:text-is("${CaJourneyWrittenConsentReviewContent.h4_caseNumberoptional}")`,
+        `${Selectors.GovukSummaryListKey}:text-is("${CaJourneyWrittenConsentReviewContent.listKey_caseNumberOptional}")`,
         16,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h4}:text-is("${CaJourneyWrittenConsentReviewContent.h4_whatDateWasItMadeoptional}")`,
+        `${Selectors.GovukSummaryListKey}:text-is("${CaJourneyWrittenConsentReviewContent.listKey_whatDateWasItMadeoptional}")`,
         16,
       ),
       Helpers.checkVisibleAndPresent(
@@ -424,61 +438,66 @@ export class ReviewPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h4}:text-is("${CaJourneyWrittenConsentReviewContent.h4_details}")`,
+        `${Selectors.GovukSummaryListKey}:text-is("${CaJourneyWrittenConsentReviewContent.listKey_details}")`,
         24,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h4}:text-is("${CaJourneyWrittenConsentReviewContent.h4_isThisACurrentOrderoptional}")`,
+        `${Selectors.GovukSummaryListKey}:text-is("${CaJourneyWrittenConsentReviewContent.listKey_isThisACurrentOrderoptional}")`,
         16,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h4}:text-is("${CaJourneyWrittenConsentReviewContent.h4_whatDateDidItEndoptional}")`,
+        `${Selectors.GovukSummaryListKey}:text-is("${CaJourneyWrittenConsentReviewContent.listKey_whatDateDidItEndoptional}")`,
         16,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h4}:text-is("${CaJourneyWrittenConsentReviewContent.h4_doYouHaveACopyOfTheOrderoptional}")`,
+        `${Selectors.GovukSummaryListKey}:text-is("${CaJourneyWrittenConsentReviewContent.listKey_doYouHaveACopyOfTheOrderoptional}")`,
         16,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h4}:text-is("${CaJourneyWrittenConsentReviewContent.h4_whichChildrenAreYouConcernedAboutoptional}")`,
+        `${Selectors.GovukSummaryListKey}:text-is("${CaJourneyWrittenConsentReviewContent.listKey_whichChildrenAreYouConcernedAboutoptional}")`,
         5,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h4}:text-is("${CaJourneyWrittenConsentReviewContent.h4_describeTheBehavioursYouWouldLikeTheCourtToBeAwareOfoptional}")`,
+        `${Selectors.GovukSummaryListKey}:text-is("${CaJourneyWrittenConsentReviewContent.listKey_describeTheBehavioursYouWouldLikeTheCourtToBeAwareOfoptional}")`,
         11,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h4}:text-is("${CaJourneyWrittenConsentReviewContent.h4_whenDidThisBehaviourStartAndHowLongDidItContinueoptional}")`,
+        `${Selectors.GovukSummaryListKey}:text-is("${CaJourneyWrittenConsentReviewContent.listKey_whenDidThisBehaviourStartAndHowLongDidItContinueoptional}")`,
         11,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h4}:text-is("${CaJourneyWrittenConsentReviewContent.h4_isTheBehaviourOngoingoptional}")`,
+        `${Selectors.GovukSummaryListKey}:text-is("${CaJourneyWrittenConsentReviewContent.listKey_isTheBehaviourOngoingoptional}")`,
         11,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h4}:text-is("${CaJourneyWrittenConsentReviewContent.h4_haveYouEverAskedForHelpFromAProfessionalPersonOrAgencyoptional}")`,
+        `${Selectors.GovukSummaryListKey}:text-is("${CaJourneyWrittenConsentReviewContent.listKey_haveYouEverAskedForHelpFromAProfessionalPersonOrAgencyoptional}")`,
         11,
       ),
       Helpers.checkGroup(
         page,
-        21,
+        20,
         CaJourneyWrittenConsentReviewContent,
         "p_",
-        Selectors.p,
+        Selectors.GovukSummaryListValue,
       ),
       // Using Selectors.p for p_ prefixed items in CaJourneyWrittenConsentReviewContent
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${CaJourneyWrittenConsentReviewContent.p_loremIpsumStartDetails}")`,
+        `${Selectors.GovukSummaryListValue}:text-is("${CaJourneyWrittenConsentReviewContent.p_loremIpsumStartDetails}")`,
         2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${CaJourneyWrittenConsentReviewContent.p_OnceSubmitted}")`,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -492,22 +511,22 @@ export class ReviewPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${CaJourneyWrittenConsentReviewContent.p_automatedOccupationOrderCourt}")`,
+        `${Selectors.GovukSummaryListValue}:text-is("${CaJourneyWrittenConsentReviewContent.p_automatedOccupationOrderCourt}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${CaJourneyWrittenConsentReviewContent.p_18August2015}")`,
+        `${Selectors.GovukSummaryListValue}:text-is("${CaJourneyWrittenConsentReviewContent.p_18August2015}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${CaJourneyWrittenConsentReviewContent.p_18August2018}")`,
+        `${Selectors.GovukSummaryListValue}:text-is("${CaJourneyWrittenConsentReviewContent.p_18August2018}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${CaJourneyWrittenConsentReviewContent.p_automatedChildAbductionOrderCourt}")`,
+        `${Selectors.GovukSummaryListValue}:text-is("${CaJourneyWrittenConsentReviewContent.p_automatedChildAbductionOrderCourt}")`,
         3,
       ),
       Helpers.checkVisibleAndPresent(
@@ -532,8 +551,8 @@ export class ReviewPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${CaJourneyWrittenConsentReviewContent.p_yes}")`,
-        39,
+        `${Selectors.GovukSummaryListValue}:text-is("${CaJourneyWrittenConsentReviewContent.p_yes}"):visible`,
+        89,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -557,11 +576,6 @@ export class ReviewPage {
         page,
         `${Selectors.dd}:text-is("${CaJourneyWrittenConsentReviewContent.dd_automatedPhysicalSeekHelpDetails}")`,
         2,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.div}:text-is("${CaJourneyWrittenConsentReviewContent.div_yes}")`,
-        12,
       ),
     ]);
     await this.fillInFields(page, c100YesNoNeedHelpWithFees);
