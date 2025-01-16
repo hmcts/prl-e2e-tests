@@ -2,17 +2,17 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors.ts";
 import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
-import { CheckAnswersContent } from "../../../../../fixtures/citizen/caseView/confirmContactDetails/applicant/checkAnswersContent.ts";
+import { SubmitExtraEvidenceContent } from "../../../../../fixtures/citizen/caseView/uploadDocuments/witnessStatementsAndEvidence/submitExtraEvidenceContent.ts";
 import { Helpers } from "../../../../../common/helpers.ts";
 
-export class CheckAnswersPage {
-  public static async checkAnswersPage(
+export class SubmitExtraEvidencePage {
+  public static async submitExtraEvidencePage(
     page: Page,
     accessibilityTest: boolean,
   ): Promise<void> {
     // this part of the case is complete when the case is created through courtnav so only need to check the page
     await this.checkPageLoads(page, accessibilityTest);
-    await this.saveAndContinue(page);
+    await this.continue(page);
   }
 
   private static async checkPageLoads(
@@ -21,37 +21,23 @@ export class CheckAnswersPage {
   ): Promise<void> {
     await page
       .locator(Selectors.GovukHeadingL, {
-        hasText: CheckAnswersContent.govukHeadingL,
+        hasText: SubmitExtraEvidenceContent.GovukHeadingL,
       })
       .waitFor();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${CheckAnswersContent.govukHint1}")`,
+        `${Selectors.GovukCaptionL}:text-is("${SubmitExtraEvidenceContent.GovukCaptionL}")`,
         1,
       ),
-      Helpers.checkGroup(
+      Helpers.checkVisibleAndPresent(
         page,
-        5,
-        CheckAnswersContent,
-        `govukSummaryListKey`,
-        `${Selectors.GovukSummaryListKey}`,
-      ),
-      Helpers.checkGroup(
-        page,
-        5,
-        CheckAnswersContent,
-        `govukSummaryListValue`,
-        `${Selectors.GovukSummaryListValue}`,
+        `${Selectors.GovukBody}:text-is("${SubmitExtraEvidenceContent.GovukBody1}")`,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${CheckAnswersContent.govukHint2}")`,
-        3,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukHint}:text-is("${CheckAnswersContent.govukHint3}")`,
+        `${Selectors.GovukBody}:text-is("${SubmitExtraEvidenceContent.GovukBody2}")`,
         1,
       ),
     ]);
@@ -60,9 +46,11 @@ export class CheckAnswersPage {
     }
   }
 
-  private static async saveAndContinue(page: Page): Promise<void> {
+  private static async continue(
+    page: Page,
+  ): Promise<void> {
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.saveAndContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
   }
 }
