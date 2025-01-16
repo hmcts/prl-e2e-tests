@@ -82,8 +82,6 @@ export class IdamLoginHelper {
       console.error("Failed to set up citizen user");
       return;
     }
-    console.log(userInfo.email);
-    console.log(userInfo.password);
     await this.signIn(
       page,
       userInfo.email,
