@@ -6,7 +6,7 @@ import { Helpers } from "../../../../../common/helpers.ts";
 import { ContactPreferences } from "../../../../../journeys/citizen/caseView/contactPreferences/contactPreferences.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
-//comment to check test passed on pipeline - REMOVE BEFORE MERGING
+
 test.describe("Applicant confirm contact details tests", (): void => {
   test.slow();
   let ccdRef: string;
