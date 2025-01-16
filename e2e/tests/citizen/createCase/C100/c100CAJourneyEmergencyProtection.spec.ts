@@ -54,7 +54,7 @@ test.describe("C100 Citizen Application tests on the second MIRO set.", (): void
     Safety Concerns Yes NoToAll: yes,
     Children Have Passport: yes,
     More Than One Passport: yes,
-    PassportOffice Notified: yes,
+    PassportOffice Notified: yes, 
     Children Abducted Before: yes,
     Children Supervision: "yesSpendTime",
     yes No International Elements: yes,
