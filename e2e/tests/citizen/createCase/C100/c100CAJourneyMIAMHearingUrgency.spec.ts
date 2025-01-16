@@ -14,7 +14,7 @@ test.describe("C100 Citizen Application for the MIAM Hearing Urgency journey.", 
   Not Accessibility Testing
   Not Error Messaging
   Legal Representation
-  No Permission Needed 
+  No Permission Needed  
   With a valid reason for attending
   With all general exemptions
   And subject to domestic abuse
