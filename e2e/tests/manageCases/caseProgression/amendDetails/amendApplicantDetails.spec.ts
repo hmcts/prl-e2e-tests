@@ -36,7 +36,7 @@ test.describe("Complete amend applicant details event as a court admin", () => {
     });
   });
 
-  test(`Amend the following applicant details: live in a refuge: yes, @debug`, async ({
+  test(`Amend the following applicant details: live in a refuge: yes`, async ({
     page,
   }): Promise<void> => {
     await AmendApplicantDetails.amendApplicantDetails({

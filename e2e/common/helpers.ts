@@ -37,7 +37,7 @@ export class Helpers {
       await page.waitForLoadState("domcontentloaded");
       await page.waitForSelector("#next-step", { state: "visible" });
       await page.selectOption("#next-step", chosenEvent);
-      await page.waitForTimeout(5000);
+      await page.waitForTimeout(3000);
       const goButton: Locator = page.getByRole("button", { name: "Go" });
       await expect(goButton).toBeEnabled();
       await goButton.click();
