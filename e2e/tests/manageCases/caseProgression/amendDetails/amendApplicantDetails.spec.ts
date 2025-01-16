@@ -19,8 +19,8 @@ test.describe("Complete amend applicant details event as a court admin", () => {
   live in a refuge: yes,
   whether to keep details confidential: yes to all.
   Accessibility testing: Yes. @nightly @accessibility @debug`, async ({
-                                                                                page,
-                                                                              }): Promise<void> => {
+    page,
+  }): Promise<void> => {
     await AmendApplicantDetails.amendApplicantDetails({
       page,
       accessibilityTest: true,
@@ -33,6 +33,24 @@ test.describe("Complete amend applicant details event as a court admin", () => {
       changeApplicantAddress: true,
       keepDetailsConfidential: true,
       solicitorDetailsChange: true,
+    });
+  });
+
+  test(`Amend the following applicant details: live in a refuge: yes, @debug`, async ({
+    page,
+  }): Promise<void> => {
+    await AmendApplicantDetails.amendApplicantDetails({
+      page,
+      accessibilityTest: false,
+      ccdRef: ccdRef,
+      nameChange: false,
+      dobChange: false,
+      genderChange: false,
+      gender: "male",
+      liveInRefuge: true,
+      changeApplicantAddress: false,
+      keepDetailsConfidential: false,
+      solicitorDetailsChange: false,
     });
   });
 });

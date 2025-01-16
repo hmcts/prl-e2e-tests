@@ -210,4 +210,3 @@ export type amendEvents =
   | "Amend court details"
   | "Amend Other proceedings"
   | "Amend Type of application";
-

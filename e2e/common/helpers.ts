@@ -15,9 +15,7 @@ import {
   fl401SolicitorEvents,
   fl401SubmittedSolicitorEvents,
   UserRole,
-  fl401CaseWorkerActions,
-  courtAdminEvents, 
-  amendEvents
+  amendEvents,
   WACaseWorkerActions,
 } from "./types";
 import Config from "../config.ts";

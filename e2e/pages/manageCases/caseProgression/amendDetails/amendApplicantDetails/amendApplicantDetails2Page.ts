@@ -2,7 +2,7 @@ import { Page, expect } from "@playwright/test";
 import { Helpers } from "../../../../../common/helpers.ts";
 import { Selectors } from "../../../../../common/selectors.ts";
 import { ApplicantGender } from "../../../../../common/types.ts";
-import { AmendApplicantDetails2Content } from "../../../../../fixtures/manageCases/caseProgression/amendDetails/amendApplicantDetails/AmendApplicantDetails2Content.ts";
+import { AmendApplicantDetails2Content } from "../../../../../fixtures/manageCases/caseProgression/amendDetails/amendApplicantDetails/amendApplicantDetails2Content.ts";
 import config from "../../../../../config.ts";
 import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
@@ -12,6 +12,9 @@ interface AmendApplicantDetails2Options {
   accessibilityTest: boolean;
   nameChange: boolean;
   dobChange: boolean;
+  dobChangeDay: string;
+  dobChangeMonth: string;
+  dobChangeYear: string;
   genderChange: boolean;
   gender: ApplicantGender;
   liveInRefuge: boolean;
@@ -63,7 +66,7 @@ enum uniqueSelectors {
 
 export class AmendApplicantDetails2Page {
   public static async amendApplicantDetails2Page(
-      options: AmendApplicantDetails2Options,
+    options: AmendApplicantDetails2Options,
   ): Promise<void> {
     const { page, accessibilityTest } = options;
     await this.checkPageLoads(page, accessibilityTest);
@@ -71,88 +74,88 @@ export class AmendApplicantDetails2Page {
   }
 
   private static async checkPageLoads(
-      page: Page,
-      accessibilityTest: boolean,
+    page: Page,
+    accessibilityTest: boolean,
   ): Promise<void> {
     await page.waitForSelector(
-        `${Selectors.GovukHeadingL}:text-is("${AmendApplicantDetails2Content.pageTitle}")`,
+      `${Selectors.GovukHeadingL}:text-is("${AmendApplicantDetails2Content.pageTitle}")`,
     );
     await Promise.all([
       Helpers.checkGroup(
-          page,
-          21,
-          AmendApplicantDetails2Content,
-          "formLabel",
-          `${Selectors.GovukFormLabel}`,
+        page,
+        21,
+        AmendApplicantDetails2Content,
+        "formLabel",
+        `${Selectors.GovukFormLabel}`,
       ),
       Helpers.checkGroup(
-          page,
-          2,
-          AmendApplicantDetails2Content,
-          "p",
-          `${Selectors.p}`,
+        page,
+        2,
+        AmendApplicantDetails2Content,
+        "p",
+        `${Selectors.p}`,
       ),
       Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukFormHint}:text-is("${AmendApplicantDetails2Content.formHint1}")`,
-          1,
+        page,
+        `${Selectors.GovukFormHint}:text-is("${AmendApplicantDetails2Content.formHint1}")`,
+        1,
       ),
       expect
-          .soft(
-              page
-                  .locator(uniqueSelectors.applicantLiveInRefugeRadio)
-                  .getByText(CommonStaticText.yes),
-          )
-          .toBeVisible(),
+        .soft(
+          page
+            .locator(uniqueSelectors.applicantLiveInRefugeRadio)
+            .getByText(CommonStaticText.yes),
+        )
+        .toBeVisible(),
       expect
-          .soft(
-              page
-                  .locator(uniqueSelectors.applicantLiveInRefugeRadio)
-                  .getByText(CommonStaticText.no),
-          )
-          .toBeVisible(),
+        .soft(
+          page
+            .locator(uniqueSelectors.applicantLiveInRefugeRadio)
+            .getByText(CommonStaticText.no),
+        )
+        .toBeVisible(),
       expect
-          .soft(
-              page
-                  .locator(uniqueSelectors.confidentialAddressRadio)
-                  .getByText(CommonStaticText.yes),
-          )
-          .toBeVisible(),
+        .soft(
+          page
+            .locator(uniqueSelectors.confidentialAddressRadio)
+            .getByText(CommonStaticText.yes),
+        )
+        .toBeVisible(),
       expect
-          .soft(
-              page
-                  .locator(uniqueSelectors.confidentialAddressRadio)
-                  .getByText(CommonStaticText.no),
-          )
-          .toBeVisible(),
+        .soft(
+          page
+            .locator(uniqueSelectors.confidentialAddressRadio)
+            .getByText(CommonStaticText.no),
+        )
+        .toBeVisible(),
       expect
-          .soft(
-              page
-                  .locator(uniqueSelectors.canProvideEmailAddressRadio)
-                  .getByText(CommonStaticText.yes),
-          )
-          .toBeVisible(),
+        .soft(
+          page
+            .locator(uniqueSelectors.canProvideEmailAddressRadio)
+            .getByText(CommonStaticText.yes),
+        )
+        .toBeVisible(),
       expect
-          .soft(
-              page
-                  .locator(uniqueSelectors.canProvideEmailAddressRadio)
-                  .getByText(CommonStaticText.no),
-          )
-          .toBeVisible(),
+        .soft(
+          page
+            .locator(uniqueSelectors.canProvideEmailAddressRadio)
+            .getByText(CommonStaticText.no),
+        )
+        .toBeVisible(),
       expect
-          .soft(
-              page
-                  .locator(uniqueSelectors.phoneNumberConfidentialRadio)
-                  .getByText(CommonStaticText.yes),
-          )
-          .toBeVisible(),
+        .soft(
+          page
+            .locator(uniqueSelectors.phoneNumberConfidentialRadio)
+            .getByText(CommonStaticText.yes),
+        )
+        .toBeVisible(),
       expect
-          .soft(
-              page
-                  .locator(uniqueSelectors.phoneNumberConfidentialRadio)
-                  .getByText(CommonStaticText.no),
-          )
-          .toBeVisible(),
+        .soft(
+          page
+            .locator(uniqueSelectors.phoneNumberConfidentialRadio)
+            .getByText(CommonStaticText.no),
+        )
+        .toBeVisible(),
     ]);
     const dateOfBirthLabels = page.getByRole("group", {
       name: AmendApplicantDetails2Content.formLabel4,
@@ -168,81 +171,81 @@ export class AmendApplicantDetails2Page {
       AmendApplicantDetails2Content.h23,
     ];
     await Promise.all(
-        headings.map((heading) =>
-            expect
-                .soft(page.getByRole("heading", { name: heading, exact: true }))
-                .toBeVisible(),
-        ),
+      headings.map((heading) =>
+        expect
+          .soft(page.getByRole("heading", { name: heading, exact: true }))
+          .toBeVisible(),
+      ),
     );
     await Promise.all([
       expect
-          .soft(
-              page
-                  .locator(uniqueSelectors.applicantAddressGroup)
-                  .getByText(AmendApplicantDetails2Content.formLabelAddress1),
-          )
-          .toBeVisible(),
+        .soft(
+          page
+            .locator(uniqueSelectors.applicantAddressGroup)
+            .getByText(AmendApplicantDetails2Content.formLabelAddress1),
+        )
+        .toBeVisible(),
       expect
-          .soft(
-              page
-                  .locator(uniqueSelectors.applicantAddressGroup)
-                  .getByText(AmendApplicantDetails2Content.formLabelAddress2),
-          )
-          .toBeVisible(),
+        .soft(
+          page
+            .locator(uniqueSelectors.applicantAddressGroup)
+            .getByText(AmendApplicantDetails2Content.formLabelAddress2),
+        )
+        .toBeVisible(),
       expect
-          .soft(
-              page
-                  .locator(uniqueSelectors.applicantAddressGroup)
-                  .getByText(AmendApplicantDetails2Content.formLabelAddress3),
-          )
-          .toBeVisible(),
+        .soft(
+          page
+            .locator(uniqueSelectors.applicantAddressGroup)
+            .getByText(AmendApplicantDetails2Content.formLabelAddress3),
+        )
+        .toBeVisible(),
       expect
-          .soft(
-              page
-                  .locator(uniqueSelectors.applicantAddressGroup)
-                  .getByText(AmendApplicantDetails2Content.formLabelAddress4),
-          )
-          .toBeVisible(),
+        .soft(
+          page
+            .locator(uniqueSelectors.applicantAddressGroup)
+            .getByText(AmendApplicantDetails2Content.formLabelAddress4),
+        )
+        .toBeVisible(),
       expect
-          .soft(
-              page
-                  .locator(uniqueSelectors.applicantAddressGroup)
-                  .getByText(AmendApplicantDetails2Content.formLabelAddress5),
-          )
-          .toBeVisible(),
+        .soft(
+          page
+            .locator(uniqueSelectors.applicantAddressGroup)
+            .getByText(AmendApplicantDetails2Content.formLabelAddress5),
+        )
+        .toBeVisible(),
       expect
-          .soft(
-              page
-                  .locator(uniqueSelectors.applicantAddressGroup)
-                  .getByText(AmendApplicantDetails2Content.formLabelAddress6),
-          )
-          .toBeVisible(),
+        .soft(
+          page
+            .locator(uniqueSelectors.applicantAddressGroup)
+            .getByText(AmendApplicantDetails2Content.formLabelAddress6),
+        )
+        .toBeVisible(),
       expect
-          .soft(page.getByText(AmendApplicantDetails2Content.pSolicitorDetails))
-          .toBeVisible(),
+        .soft(page.getByText(AmendApplicantDetails2Content.pSolicitorDetails))
+        .toBeVisible(),
       expect
-          .soft(
-              page
-                  .locator(uniqueSelectors.inputEmailSelector)
-                  .filter({ hasText: AmendApplicantDetails2Content.formLabelEmail })
-                  .filter({ hasNotText: "Optional" })
-                  .locator("span"),
-          )
-          .toBeVisible(),
+        .soft(
+          page
+            .locator(uniqueSelectors.inputEmailSelector)
+            .filter({ hasText: AmendApplicantDetails2Content.formLabelEmail })
+            .filter({ hasNotText: "Optional" })
+            .locator("span"),
+        )
+        .toBeVisible(),
       expect.soft(page.locator(uniqueSelectors.searchOrg)).toBeVisible(),
       expect.soft(page.locator(uniqueSelectors.cannotFindOrg)).toBeVisible(),
     ]);
     await page.locator(uniqueSelectors.cannotFindOrg).click();
     await expect
-        .soft(page.locator(uniqueSelectors.cannotFindOrgReason))
-        .toBeVisible();
+      .soft(page.locator(uniqueSelectors.cannotFindOrgReason))
+      .toBeVisible();
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }
   }
 
   private static async fillInFields(
-      options: AmendApplicantDetails2Options,
+    options: AmendApplicantDetails2Options,
   ): Promise<void> {
     const {
       page,
@@ -281,22 +284,22 @@ export class AmendApplicantDetails2Page {
 
   private static async continue(page: Page): Promise<void> {
     await page.click(
-        `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
     );
   }
 
   private static async nameChangeFillFields(page: Page): Promise<void> {
     await page.fill(
-        uniqueSelectors.applicantFirstName,
-        AmendApplicantDetails2Content.firstNameInput,
+      uniqueSelectors.applicantFirstName,
+      AmendApplicantDetails2Content.firstNameInput,
     );
     await page.fill(
-        uniqueSelectors.applicantLastName,
-        AmendApplicantDetails2Content.lastNameInput,
+      uniqueSelectors.applicantLastName,
+      AmendApplicantDetails2Content.lastNameInput,
     );
     await page.fill(
-        uniqueSelectors.applicantPreviousName,
-        AmendApplicantDetails2Content.previousNameInput,
+      uniqueSelectors.applicantPreviousName,
+      AmendApplicantDetails2Content.previousNameInput,
     );
   }
 
@@ -308,8 +311,8 @@ export class AmendApplicantDetails2Page {
   }
 
   private static async genderChangeFillFields(
-      page: Page,
-      gender: ApplicantGender,
+    page: Page,
+    gender: ApplicantGender,
   ): Promise<void> {
     switch (gender) {
       case "female":
@@ -321,8 +324,8 @@ export class AmendApplicantDetails2Page {
       case "other":
         await page.click(uniqueSelectors.applicantGenderOther);
         await page.fill(
-            uniqueSelectors.applicantGenderOtherInput,
-            AmendApplicantDetails2Content.applicantGenderOtherInput,
+          uniqueSelectors.applicantGenderOtherInput,
+          AmendApplicantDetails2Content.applicantGenderOtherInput,
         );
         break;
     }
@@ -332,136 +335,136 @@ export class AmendApplicantDetails2Page {
     await page.click(uniqueSelectors.applicantInRefugeYes);
     await Promise.all([
       expect
-          .soft(
-              page
-                  .getByText(AmendApplicantDetails2Content.formHintDownloadC8Form)
-                  .first(),
-          )
-          .toBeVisible(),
+        .soft(
+          page
+            .getByText(AmendApplicantDetails2Content.formHintDownloadC8Form)
+            .first(),
+        )
+        .toBeVisible(),
       expect
-          .soft(
-              page
-                  .getByLabel(AmendApplicantDetails2Content.formLabelUploadC8Refuge)
-                  .first(),
-          )
-          .toBeVisible(),
+        .soft(
+          page
+            .getByLabel(AmendApplicantDetails2Content.formLabelUploadC8Refuge)
+            .first(),
+        )
+        .toBeVisible(),
     ]);
     const fileInput = page.locator(uniqueSelectors.c8FormFileUpload);
     await fileInput.setInputFiles(config.testPdfFile);
   }
 
   private static async changeApplicantAddressFillFields(
-      page: Page,
+    page: Page,
   ): Promise<void> {
     await page
-        .locator(uniqueSelectors.applicantPostcodeInput)
-        .fill(AmendApplicantDetails2Content.postcodeInput);
+      .locator(uniqueSelectors.applicantPostcodeInput)
+      .fill(AmendApplicantDetails2Content.postcodeInput1);
     await page
-        .locator(uniqueSelectors.applicantPostcodeLookup)
-        .getByRole("button", {
-          name: AmendApplicantDetails2Content.findAddressButtonText,
-        })
-        .click();
+      .locator(uniqueSelectors.applicantPostcodeLookup)
+      .getByRole("button", {
+        name: AmendApplicantDetails2Content.findAddressButtonText,
+      })
+      .click();
     await page
-        .getByLabel(AmendApplicantDetails2Content.formLabelSelectAddress)
-        .selectOption("1: Object");
+      .getByLabel(AmendApplicantDetails2Content.formLabelSelectAddress)
+      .selectOption("1: Object");
   }
 
   private static async keepDetailsConfidentialFillFields(
-      page: Page,
+    page: Page,
   ): Promise<void> {
     await page.click(uniqueSelectors.confidentialAddressYes);
     await page.click(uniqueSelectors.canProvideEmailAddressYes);
     await page.fill(
-        uniqueSelectors.applicantEmailAddress,
-        AmendApplicantDetails2Content.applicantEmailAddressInput,
+      uniqueSelectors.applicantEmailAddress,
+      AmendApplicantDetails2Content.applicantEmailAddressInput,
     );
   }
 
   private static async solicitorDetailsFillFields(page: Page): Promise<void> {
     await Promise.all([
       page.fill(
-          uniqueSelectors.solicitorFirstName,
-          AmendApplicantDetails2Content.solicitorFirstNameInput,
+        uniqueSelectors.solicitorFirstName,
+        AmendApplicantDetails2Content.solicitorFirstNameInput,
       ),
       page.fill(
-          uniqueSelectors.solicitorLastName,
-          AmendApplicantDetails2Content.solicitorLastNameInput,
+        uniqueSelectors.solicitorLastName,
+        AmendApplicantDetails2Content.solicitorLastNameInput,
       ),
       page.fill(
-          uniqueSelectors.solicitorEmail,
-          AmendApplicantDetails2Content.solicitorEmailInput,
+        uniqueSelectors.solicitorEmail,
+        AmendApplicantDetails2Content.solicitorEmailInput,
       ),
       page.fill(
-          uniqueSelectors.solicitorPhoneNumber,
-          AmendApplicantDetails2Content.solicitorPhoneNumberInput,
+        uniqueSelectors.solicitorPhoneNumber,
+        AmendApplicantDetails2Content.solicitorPhoneNumberInput,
       ),
       page.fill(
-          uniqueSelectors.solicitorReference,
-          AmendApplicantDetails2Content.solicitorReferenceInput,
+        uniqueSelectors.solicitorReference,
+        AmendApplicantDetails2Content.solicitorReferenceInput,
       ),
     ]);
     await page.fill(
-        uniqueSelectors.searchOrg,
-        AmendApplicantDetails2Content.searchOrgInputTest,
+      uniqueSelectors.searchOrg,
+      AmendApplicantDetails2Content.searchOrgInputTest,
     );
     await page.locator(uniqueSelectors.selectOrg).first().click();
     await page.fill(
-        uniqueSelectors.solicitorPostcodeInput,
-        AmendApplicantDetails2Content.postcodeInput,
+      uniqueSelectors.solicitorPostcodeInput,
+      AmendApplicantDetails2Content.postcodeInput2,
     );
     await page
-        .locator(uniqueSelectors.solicitorPostcodeLookup)
-        .getByRole("button", {
-          name: AmendApplicantDetails2Content.findAddressButtonText,
-        })
-        .click();
+      .locator(uniqueSelectors.solicitorPostcodeLookup)
+      .getByRole("button", {
+        name: AmendApplicantDetails2Content.findAddressButtonText,
+      })
+      .click();
     await page
-        .locator(uniqueSelectors.solicitorSelectAddress)
-        .selectOption("1: Object");
+      .locator(uniqueSelectors.solicitorSelectAddress)
+      .selectOption("1: Object");
     await Promise.all([
       expect
-          .soft(
-              page
-                  .locator(uniqueSelectors.solicitorAddressGroup)
-                  .getByText(AmendApplicantDetails2Content.formLabelAddress1),
-          )
-          .toBeVisible(),
+        .soft(
+          page
+            .locator(uniqueSelectors.solicitorAddressGroup)
+            .getByText(AmendApplicantDetails2Content.formLabelAddress1),
+        )
+        .toBeVisible(),
       expect
-          .soft(
-              page
-                  .locator(uniqueSelectors.solicitorAddressGroup)
-                  .getByText(AmendApplicantDetails2Content.formLabelAddress2),
-          )
-          .toBeVisible(),
+        .soft(
+          page
+            .locator(uniqueSelectors.solicitorAddressGroup)
+            .getByText(AmendApplicantDetails2Content.formLabelAddress2),
+        )
+        .toBeVisible(),
       expect
-          .soft(
-              page
-                  .locator(uniqueSelectors.solicitorAddressGroup)
-                  .getByText(AmendApplicantDetails2Content.formLabelAddress3),
-          )
-          .toBeVisible(),
+        .soft(
+          page
+            .locator(uniqueSelectors.solicitorAddressGroup)
+            .getByText(AmendApplicantDetails2Content.formLabelAddress3),
+        )
+        .toBeVisible(),
       expect
-          .soft(
-              page
-                  .locator(uniqueSelectors.solicitorAddressGroup)
-                  .getByText(AmendApplicantDetails2Content.formLabelAddress4),
-          )
-          .toBeVisible(),
+        .soft(
+          page
+            .locator(uniqueSelectors.solicitorAddressGroup)
+            .getByText(AmendApplicantDetails2Content.formLabelAddress4),
+        )
+        .toBeVisible(),
       expect
-          .soft(
-              page
-                  .locator(uniqueSelectors.solicitorAddressGroup)
-                  .getByText(AmendApplicantDetails2Content.formLabelAddress5),
-          )
-          .toBeVisible(),
+        .soft(
+          page
+            .locator(uniqueSelectors.solicitorAddressGroup)
+            .getByText(AmendApplicantDetails2Content.formLabelAddress5),
+        )
+        .toBeVisible(),
       expect
-          .soft(
-              page
-                  .locator(uniqueSelectors.solicitorAddressGroup)
-                  .getByText(AmendApplicantDetails2Content.formLabelAddress6),
-          )
-          .toBeVisible(),
+        .soft(
+          page
+            .locator(uniqueSelectors.solicitorAddressGroup)
+            .getByText(AmendApplicantDetails2Content.formLabelAddress6),
+        )
+        .toBeVisible(),
     ]);
   }
 }
