@@ -3,7 +3,7 @@ import Config from "../../../../../config.ts";
 import config from "../../../../../config.ts";
 import createDaCitizenCourtNavCase from "../../../../../common/createCaseHelper.ts";
 import { Helpers } from "../../../../../common/helpers.ts";
-import { ConfirmContactDetails } from "../../../../../journeys/citizen/caseView/confirmContactDetails/applicant/confirmContactDetails.ts";
+import { ConfirmContactDetails } from "../../../../../journeys/citizen/caseView/confirmContactDetails/confirmContactDetails.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
@@ -13,6 +13,7 @@ test.describe("Applicant confirm contact details tests", (): void => {
 
   test.beforeEach(async ({ page }) => {
     ccdRef = await createDaCitizenCourtNavCase(true, false);
+    console.log(ccdRef);
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
   });
 
@@ -24,6 +25,7 @@ test.describe("Applicant confirm contact details tests", (): void => {
       page: page,
       browser: browser,
       caseRef: ccdRef,
+      isApplicant: true,
       accessibilityTest: true,
     });
   });
