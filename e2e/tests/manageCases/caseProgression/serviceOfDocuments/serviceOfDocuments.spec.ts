@@ -4,7 +4,6 @@ import { ServiceOfDocuments } from "../../../../journeys/manageCases/caseProgres
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 test.describe("Service of Document event for DA Citizen case tests as court admin.", () => {
-  // comment to test - remove before merging
   test(`Complete 'Service of Documents' with following options: 
   Additional documents added: no, 
   Witness statement (case doc) added to event: no, 

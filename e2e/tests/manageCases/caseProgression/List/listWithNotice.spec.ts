@@ -1,8 +1,8 @@
 import { test } from "@playwright/test";
 import Config from "../../../../config";
+import config from "../../../../config";
 import createDaCitizenCourtNavCase from "../../../../common/createCaseHelper";
 import { Helpers } from "../../../../common/helpers";
-import config from "../../../../config";
 import { ListWithNotice } from "../../../../journeys/manageCases/caseProgression/List/listWithNotice";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
@@ -14,7 +14,7 @@ test.describe("List with notice tests", () => {
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
   });
 
-  test(`Complete list with  notice event. @regression @accessibility @nightly`, async ({
+  test(`Complete list with notice event. @regression @accessibility @nightly`, async ({
     page,
     browser,
   }): Promise<void> => {
