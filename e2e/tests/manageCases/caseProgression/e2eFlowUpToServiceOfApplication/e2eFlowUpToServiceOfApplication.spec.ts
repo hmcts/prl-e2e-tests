@@ -7,7 +7,7 @@ import { E2eFlowUpToServiceOfApplication } from "../../../../journeys/manageCase
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
-test.describe("Complete the Order task for DA Citizen case tests. @debug1", () => {
+test.describe("Complete the Order task for DA Citizen case tests", () => {
   let ccdRef: string = "";
 
   test.beforeEach(async ({ page }) => {

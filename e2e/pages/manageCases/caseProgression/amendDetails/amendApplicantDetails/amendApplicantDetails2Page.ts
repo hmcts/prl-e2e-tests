@@ -2,10 +2,10 @@ import { Page, expect } from "@playwright/test";
 import { Helpers } from "../../../../../common/helpers.ts";
 import { Selectors } from "../../../../../common/selectors.ts";
 import { ApplicantGender } from "../../../../../common/types.ts";
-import { AmendApplicantDetails2Content } from "../../../../../fixtures/manageCases/caseProgression/amendDetails/amendApplicantDetails/amendApplicantDetails2Content.ts";
 import config from "../../../../../config.ts";
 import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
+import { AmendApplicantDetails2Content } from "../../../../../fixtures/manageCases/caseProgression/amendDetails/amendApplicantDetails/AmendApplicantDetails2Content.ts"
 
 interface AmendApplicantDetails2Options {
   page: Page;
@@ -43,7 +43,11 @@ enum uniqueSelectors {
   canProvideEmailAddressRadio = "#applicantsFL401_canYouProvideEmailAddress_radio",
   canProvideEmailAddressYes = "#applicantsFL401_canYouProvideEmailAddress_Yes",
   canProvideEmailAddressNo = "#applicantsFL401_canYouProvideEmailAddress_No",
+  confidentialEmailYes = "#applicantsFL401_isEmailAddressConfidential_Yes",
+  confidentialEmailNo = "#applicantsFL401_isEmailAddressConfidential_No",
   phoneNumberConfidentialRadio = "#applicantsFL401_isPhoneNumberConfidential_radio",
+  confidentialPhoneNumberYes = "#applicantsFL401_isPhoneNumberConfidential_Yes",
+  confidentialPhoneNumberNo = "#applicantsFL401_isPhoneNumberConfidential_No",
   applicantAddressGroup = "#applicantsFL401_address__detailaddress",
   solicitorAddressGroup = "#applicantsFL401_solicitorAddress__detailsolicitorAddress",
   applicantPostcodeLookup = "#applicantsFL401_address_address_postcodeLookup",
@@ -373,12 +377,15 @@ export class AmendApplicantDetails2Page {
   private static async keepDetailsConfidentialFillFields(
     page: Page,
   ): Promise<void> {
+    await page.pause();
     await page.click(uniqueSelectors.confidentialAddressYes);
     await page.click(uniqueSelectors.canProvideEmailAddressYes);
     await page.fill(
       uniqueSelectors.applicantEmailAddress,
       AmendApplicantDetails2Content.applicantEmailAddressInput,
     );
+    await page.click(uniqueSelectors.confidentialEmailYes);
+    await page.click(uniqueSelectors.confidentialPhoneNumberYes);
   }
 
   private static async solicitorDetailsFillFields(page: Page): Promise<void> {

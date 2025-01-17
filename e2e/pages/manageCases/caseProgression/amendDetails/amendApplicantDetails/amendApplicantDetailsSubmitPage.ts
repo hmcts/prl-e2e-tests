@@ -3,9 +3,8 @@ import { Selectors } from "../../../../../common/selectors";
 import { amendApplicantDetailsSubmitContent } from "../../../../../fixtures/manageCases/caseProgression/amendDetails/amendApplicantDetails/amendApplicantDetailsSubmitContent.ts";
 import { Helpers } from "../../../../../common/helpers";
 import { ApplicantGender } from "../../../../../common/types";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
-import { AmendApplicantDetails2Content } from "../../../../../fixtures/manageCases/caseProgression/amendDetails/amendApplicantDetails/amendApplicantDetails2Content.ts";
+import { AmendApplicantDetails2Content } from "../../../../../fixtures/manageCases/caseProgression/amendDetails/amendApplicantDetails/AmendApplicantDetails2Content.ts";
 
 interface AmendApplicantDetailsSubmitOptions {
   page: Page;
@@ -56,10 +55,10 @@ export class AmendApplicantDetailsSubmitPage {
       accessibilityTest,
     });
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      //await AccessibilityTestHelper.run(page); #TODO run accessibility test once EXUI-2726 ticket is fixed
     }
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+      `${Selectors.button}:text-is("${CommonStaticText.saveAndContinue}")`,
     );
   }
 
@@ -78,47 +77,35 @@ export class AmendApplicantDetailsSubmitPage {
     if (solicitorDetailsChange) {
       //if there is a change in solicitor details, the will be two instances of the address labels.
       await Promise.all([
-        Helpers.checkGroupHasText(
-          page,
-          2,
-          amendApplicantDetailsSubmitContent,
-          "text16_2",
-          `${Selectors.GovukText16}`,
+        Helpers.checkVisibleAndPresent(
+            page,
+            `${Selectors.GovukText16}:text-is("${amendApplicantDetailsSubmitContent.text16_2}")`,
+            2,
         ),
-        Helpers.checkGroupHasText(
-          page,
-          2,
-          amendApplicantDetailsSubmitContent,
-          "text16_9",
-          `${Selectors.GovukText16}`,
+        Helpers.checkVisibleAndPresent(
+            page,
+            `${Selectors.GovukText16}:text-is("${amendApplicantDetailsSubmitContent.text16_9}")`,
+            2,
         ),
-        Helpers.checkGroupHasText(
-          page,
-          2,
-          amendApplicantDetailsSubmitContent,
-          "text16_10",
-          `${Selectors.GovukText16}`,
+        Helpers.checkVisibleAndPresent(
+            page,
+            `${Selectors.GovukText16}:text-is("${amendApplicantDetailsSubmitContent.text16_10}")`,
+            2,
         ),
-        Helpers.checkGroupHasText(
-          page,
-          2,
-          amendApplicantDetailsSubmitContent,
-          "text16_11",
-          `${Selectors.GovukText16}`,
+        Helpers.checkVisibleAndPresent(
+            page,
+            `${Selectors.GovukText16}:text-is("${amendApplicantDetailsSubmitContent.text16_11}")`,
+            2,
         ),
-        Helpers.checkGroupHasText(
-          page,
-          2,
-          amendApplicantDetailsSubmitContent,
-          "text16_12",
-          `${Selectors.GovukText16}`,
+        Helpers.checkVisibleAndPresent(
+            page,
+            `${Selectors.GovukText16}:text-is("${amendApplicantDetailsSubmitContent.text16_12}")`,
+            2,
         ),
-        Helpers.checkGroupHasText(
-          page,
-          2,
-          amendApplicantDetailsSubmitContent,
-          "text16_20",
-          `${Selectors.GovukText16}`,
+        Helpers.checkVisibleAndPresent(
+            page,
+            `${Selectors.GovukText16}:text-is("${amendApplicantDetailsSubmitContent.text16_20}")`,
+            2,
         ),
       ]);
     } else {
@@ -225,32 +212,20 @@ export class AmendApplicantDetailsSubmitPage {
       );
     }
     if (keepDetailsConfidential) {
-      await expect(
-        page
-          .getByRole("row", {
-            name: "*Can you provide email address? Yes",
-            exact: true,
-          })
-          .locator("div")
-          .nth(1),
-      ).toBeVisible();
-      await expect(
-        page
-          .getByRole("row", {
-            name: "*Do you need to keep the contact number confidential? Yes",
-            exact: true,
-          })
-          .locator("div")
-          .nth(1),
-      ).toBeVisible();
-      await expect(
-        page
-          .getByRole("row", {
-            name: "*Do you need to keep the email address confidential? Yes",
-            exact: true,
-          })
-          .locator("td"),
-      ).toBeVisible();
+      await Promise.all([
+        expect(page.getByRole('row', {
+          name: `${amendApplicantDetailsSubmitContent.text16_13} ${CommonStaticText.yes}`,
+          exact: true
+        }).locator('td')).toBeVisible(),
+        expect(page.getByRole('row', {
+          name: `${amendApplicantDetailsSubmitContent.text16_16} ${CommonStaticText.yes}`,
+          exact: true
+        }).locator('td')).toBeVisible(),
+        expect(page.getByRole('row', {
+          name: `${amendApplicantDetailsSubmitContent.text16_email} ${CommonStaticText.yes}`,
+          exact: true
+        }).locator('td')).toBeVisible(),
+      ]);
     }
     if (solicitorDetailsChange) {
       await Helpers.checkVisibleAndPresent(
