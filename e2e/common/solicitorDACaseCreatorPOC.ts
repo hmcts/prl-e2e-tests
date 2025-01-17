@@ -5,7 +5,7 @@ import {
   completeCaseEventWithContext,
   completeServiceOfApplication,
   createBlankCase,
-} from "./solicitorDACaseHelper.ts";
+} from "./solicitorDACaseHelperPOC.ts";
 
 const CaseEvents: string[] = [
   "fl401TypeOfApplication",
@@ -24,7 +24,7 @@ const CaseEvents: string[] = [
   "serviceOfApplication",
 ];
 
-export class SolicitorDACaseCreator {
+export class SolicitorDACaseCreatorPOC {
   /**
    * Function to create a DA Solicitor case and complete the relevant case events from the CaseEvents list.
    * @param {Browser} browser the browser to be used if service of application needs to be completed
