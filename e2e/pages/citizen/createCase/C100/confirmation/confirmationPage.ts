@@ -40,7 +40,7 @@ export class ConfirmationPage {
         1,
       ),
       Helpers.checkGroup(page, 2, ConfirmationContent, "h2", Selectors.h2),
-      Helpers.checkGroup(page, 4, ConfirmationContent, "p", Selectors.p),
+      Helpers.checkGroup(page, 3, ConfirmationContent, "p", Selectors.p),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukButton}:text-is("${ConfirmationContent.buttonDownloadApplication}")`,

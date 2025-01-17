@@ -7,7 +7,6 @@ export enum ConfirmationContent {
   p1 = "If you cannot open the PDF file on your device, download and install",
   p2 = "and try again.",
   p3 = "A copy of your submitted application will be in your personal dashboard.",
-  p4 = "You can also:",
   li1 = "the court will be in touch with you to explain what will happen next and what you will need to do",
   li2 = "if you have informed the court that you need specific adjustments in order to take part in the case, the court will contact you to confirm what has been arranged. If you have not heard from the court within 3 days of the hearing, contact the court directly. You can",
   li3 = "on GOV.UK",
