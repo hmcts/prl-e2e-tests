@@ -1,15 +1,15 @@
-import { ActivateCase, CaseUser } from "../../../activateCase/activateCase.ts";
+import { ActivateCase, CaseUser } from "../../../../activateCase/activateCase.ts";
 import { Browser, Page } from "@playwright/test";
-import { UploadPage } from "../../../../../pages/citizen/caseView/uploadDocuments/uploadPage.ts";
-import { PositionStatementPage } from "../../../../../pages/citizen/caseView/uploadDocuments/witnessStatementsAndEvidence/positionStatementPage.ts";
-import { DocumentSharingDetailsPage } from "../../../../../pages/citizen/caseView/uploadDocuments/witnessStatementsAndEvidence/documentSharingDetailsPage.ts";
-import { SharingYourDocumentsPage } from "../../../../../pages/citizen/caseView/uploadDocuments/witnessStatementsAndEvidence/sharingYourDocumentsPage.ts";
-import { OtherPartyNotSeeDocumentPage } from "../../../../../pages/citizen/caseView/uploadDocuments/witnessStatementsAndEvidence/otherPartyNotSeeDocumentPage.ts";
-import { UploadYourDocumentsPage } from "../../../../../pages/citizen/caseView/uploadDocuments/witnessStatementsAndEvidence/uploadYourDocumentsPage.ts";
-import { SubmitExtraEvidencePage } from "../../../../../pages/citizen/caseView/uploadDocuments/witnessStatementsAndEvidence/submitExtraEvidencePage.ts";
-import { yesNoNA } from "../../../../../common/types.ts";
-import { UploadContent } from "../../../../../fixtures/citizen/caseView/uploadDocuments/uploadContent.ts";
-import { Selectors } from "../../../../../common/selectors.ts";
+import { UploadPage } from "../../../../../../pages/citizen/caseView/uploadDocuments/uploadPage.ts";
+import { PositionStatementPage } from "../../../../../../pages/citizen/caseView/uploadDocuments/witnessStatementsAndEvidence/positionStatementPage.ts";
+import { DocumentSharingDetailsPage } from "../../../../../../pages/citizen/caseView/uploadDocuments/witnessStatementsAndEvidence/documentSharingDetailsPage.ts";
+import { SharingYourDocumentsPage } from "../../../../../../pages/citizen/caseView/uploadDocuments/witnessStatementsAndEvidence/sharingYourDocumentsPage.ts";
+import { OtherPartyNotSeeDocumentPage } from "../../../../../../pages/citizen/caseView/uploadDocuments/witnessStatementsAndEvidence/otherPartyNotSeeDocumentPage.ts";
+import { UploadYourDocumentsPositionStatementPage } from "../../../../../../pages/citizen/caseView/uploadDocuments/witnessStatementsAndEvidence/uploadYourDocumentsPositionStatementPage.ts";
+import { SubmitExtraEvidencePage } from "../../../../../../pages/citizen/caseView/uploadDocuments/witnessStatementsAndEvidence/submitExtraEvidencePage.ts";
+import { yesNoNA } from "../../../../../../common/types.ts";
+import { UploadContent } from "../../../../../../fixtures/citizen/caseView/uploadDocuments/uploadContent.ts";
+import { Selectors } from "../../../../../../common/selectors.ts";
 
 interface uploadDocumentsPositionStatementParams {
   page: Page;
@@ -48,7 +48,7 @@ export class UploadDocumentsPositionStatement {
     );
     await page.click(`${Selectors.GovukLink}:has-text("${UploadContent.positionStatementLink}")`);
     if (yesNoNA == "Yes") {
-      await PositionStatementPage.courtPermissionPage(
+      await PositionStatementPage.positionStatementPage(
         page,
         accessibilityTest,
         yesNoNA,
@@ -66,7 +66,7 @@ export class UploadDocumentsPositionStatement {
         page,
         accessibilityTest,
       );
-      await UploadYourDocumentsPage.uploadYourDocumentsPage(
+      await UploadYourDocumentsPositionStatementPage.uploadYourDocumentsPositionStatementPage(
         page,
         accessibilityTest,
       );

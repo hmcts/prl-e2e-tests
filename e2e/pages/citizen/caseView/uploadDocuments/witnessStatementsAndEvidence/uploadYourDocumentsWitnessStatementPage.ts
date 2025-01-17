@@ -10,8 +10,8 @@ export enum UniqueSelectors {
   fileUpload = "#uploadDocumentFileUpload"
 }
 
-export class UploadYourDocumentsPage {
-  public static async uploadYourDocumentsPage(
+export class UploadYourDocumentsWitnessStatementPage {
+  public static async uploadYourDocumentsWitnessStatementPage(
     page: Page,
     accessibilityTest: boolean,
   ): Promise<void> {
@@ -26,7 +26,7 @@ export class UploadYourDocumentsPage {
   ): Promise<void> {
     await page
       .locator(Selectors.GovukHeadingL, {
-        hasText: UploadYourDocumentsContent.GovukHeadingL,
+        hasText: UploadYourDocumentsContent.GovukHeadingLWitnessStatement,
       })
       .waitFor();
     await Promise.all([
@@ -86,7 +86,7 @@ export class UploadYourDocumentsPage {
       1,
     );
     await page.click(
-        `${Selectors.GovukButton}:text-is("${CommonStaticText.submit}")`,
-      );
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.submit}")`,
+    );
   }
 }

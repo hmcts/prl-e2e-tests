@@ -1,9 +1,9 @@
 import { yesNoDontKnow } from "../../../../../common/types.ts";
 import { Browser, Page } from "@playwright/test";
 import { ActivateCase, CaseUser } from "../../../activateCase/activateCase.ts";
-import { DetailsKnownPage } from "../../../../../pages/citizen/caseView/keepDetailsPrivate/detailsKnownPage.ts";
-import { ApplicantStartAlternativePage } from "../../../../../pages/citizen/caseView/keepDetailsPrivate/startAlternativePage.ts";
-import { ApplicantPrivateDetailsConfirmedPage } from "../../../../../pages/citizen/caseView/keepDetailsPrivate/privateDetailsConfirmedPage.ts";
+import { DetailsKnownPage } from "../../../../../pages/citizen/caseView/keepDetailsPrivate/applicant/detailsKnownPage.ts";
+import { ApplicantStartAlternativePage } from "../../../../../pages/citizen/caseView/keepDetailsPrivate/applicant/startAlternativePage.ts";
+import { ApplicantPrivateDetailsConfirmedPage } from "../../../../../pages/citizen/caseView/keepDetailsPrivate/applicant/privateDetailsConfirmedPage.ts";
 
 interface keepDetailsPrivateParams {
   page: Page;
