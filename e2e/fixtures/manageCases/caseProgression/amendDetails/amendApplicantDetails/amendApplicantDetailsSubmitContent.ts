@@ -23,5 +23,5 @@ export enum amendApplicantDetailsSubmitContent {
   text16_20 = "Country",
   text16_hidden1 = "*Upload a C8 form with the refuge address",
   text16_refugeYes = "*Does the applicant currently live in a refuge? Yes",
-  text16_email =  "*Do you need to keep the email address confidential?",
+  text16_email = "*Do you need to keep the email address confidential?",
 }

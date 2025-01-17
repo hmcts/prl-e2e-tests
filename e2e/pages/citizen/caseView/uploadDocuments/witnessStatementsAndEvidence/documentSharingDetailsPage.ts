@@ -51,9 +51,7 @@ export class DocumentSharingDetailsPage {
     }
   }
 
-  private static async continue(
-    page: Page,
-  ): Promise<void> {
+  private static async continue(page: Page): Promise<void> {
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );

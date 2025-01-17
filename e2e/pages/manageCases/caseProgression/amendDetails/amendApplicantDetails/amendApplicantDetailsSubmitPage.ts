@@ -78,34 +78,34 @@ export class AmendApplicantDetailsSubmitPage {
       //if there is a change in solicitor details, the will be two instances of the address labels.
       await Promise.all([
         Helpers.checkVisibleAndPresent(
-            page,
-            `${Selectors.GovukText16}:text-is("${amendApplicantDetailsSubmitContent.text16_2}")`,
-            2,
+          page,
+          `${Selectors.GovukText16}:text-is("${amendApplicantDetailsSubmitContent.text16_2}")`,
+          2,
         ),
         Helpers.checkVisibleAndPresent(
-            page,
-            `${Selectors.GovukText16}:text-is("${amendApplicantDetailsSubmitContent.text16_9}")`,
-            2,
+          page,
+          `${Selectors.GovukText16}:text-is("${amendApplicantDetailsSubmitContent.text16_9}")`,
+          2,
         ),
         Helpers.checkVisibleAndPresent(
-            page,
-            `${Selectors.GovukText16}:text-is("${amendApplicantDetailsSubmitContent.text16_10}")`,
-            2,
+          page,
+          `${Selectors.GovukText16}:text-is("${amendApplicantDetailsSubmitContent.text16_10}")`,
+          2,
         ),
         Helpers.checkVisibleAndPresent(
-            page,
-            `${Selectors.GovukText16}:text-is("${amendApplicantDetailsSubmitContent.text16_11}")`,
-            2,
+          page,
+          `${Selectors.GovukText16}:text-is("${amendApplicantDetailsSubmitContent.text16_11}")`,
+          2,
         ),
         Helpers.checkVisibleAndPresent(
-            page,
-            `${Selectors.GovukText16}:text-is("${amendApplicantDetailsSubmitContent.text16_12}")`,
-            2,
+          page,
+          `${Selectors.GovukText16}:text-is("${amendApplicantDetailsSubmitContent.text16_12}")`,
+          2,
         ),
         Helpers.checkVisibleAndPresent(
-            page,
-            `${Selectors.GovukText16}:text-is("${amendApplicantDetailsSubmitContent.text16_20}")`,
-            2,
+          page,
+          `${Selectors.GovukText16}:text-is("${amendApplicantDetailsSubmitContent.text16_20}")`,
+          2,
         ),
       ]);
     } else {
@@ -213,18 +213,30 @@ export class AmendApplicantDetailsSubmitPage {
     }
     if (keepDetailsConfidential) {
       await Promise.all([
-        expect(page.getByRole('row', {
-          name: `${amendApplicantDetailsSubmitContent.text16_13} ${CommonStaticText.yes}`,
-          exact: true
-        }).locator('td')).toBeVisible(),
-        expect(page.getByRole('row', {
-          name: `${amendApplicantDetailsSubmitContent.text16_16} ${CommonStaticText.yes}`,
-          exact: true
-        }).locator('td')).toBeVisible(),
-        expect(page.getByRole('row', {
-          name: `${amendApplicantDetailsSubmitContent.text16_email} ${CommonStaticText.yes}`,
-          exact: true
-        }).locator('td')).toBeVisible(),
+        expect(
+          page
+            .getByRole("row", {
+              name: `${amendApplicantDetailsSubmitContent.text16_13} ${CommonStaticText.yes}`,
+              exact: true,
+            })
+            .locator("td"),
+        ).toBeVisible(),
+        expect(
+          page
+            .getByRole("row", {
+              name: `${amendApplicantDetailsSubmitContent.text16_16} ${CommonStaticText.yes}`,
+              exact: true,
+            })
+            .locator("td"),
+        ).toBeVisible(),
+        expect(
+          page
+            .getByRole("row", {
+              name: `${amendApplicantDetailsSubmitContent.text16_email} ${CommonStaticText.yes}`,
+              exact: true,
+            })
+            .locator("td"),
+        ).toBeVisible(),
       ]);
     }
     if (solicitorDetailsChange) {

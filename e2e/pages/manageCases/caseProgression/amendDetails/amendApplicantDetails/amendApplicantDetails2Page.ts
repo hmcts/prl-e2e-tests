@@ -5,7 +5,7 @@ import { ApplicantGender } from "../../../../../common/types.ts";
 import config from "../../../../../config.ts";
 import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
-import { AmendApplicantDetails2Content } from "../../../../../fixtures/manageCases/caseProgression/amendDetails/amendApplicantDetails/AmendApplicantDetails2Content.ts"
+import { AmendApplicantDetails2Content } from "../../../../../fixtures/manageCases/caseProgression/amendDetails/amendApplicantDetails/AmendApplicantDetails2Content.ts";
 
 interface AmendApplicantDetails2Options {
   page: Page;
@@ -377,7 +377,6 @@ export class AmendApplicantDetails2Page {
   private static async keepDetailsConfidentialFillFields(
     page: Page,
   ): Promise<void> {
-    await page.pause();
     await page.click(uniqueSelectors.confidentialAddressYes);
     await page.click(uniqueSelectors.canProvideEmailAddressYes);
     await page.fill(
