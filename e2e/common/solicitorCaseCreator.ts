@@ -82,15 +82,14 @@ export class SolicitorCaseCreator {
     const startCaseCreationHeaders = {
       Accept:
         "application/vnd.uk.gov.hmcts.ccd-data-store-api.ui-start-case-trigger.v2+json;charset=UTF-8",
-      Experimental: true,
+      Experimental: "true",
       "Content-type": "application/json; charset=UTF-8",
     };
-    const startCaseCreationRes = await getData(
+    const eventToken: string = await getData(
       page,
       startCaseCreationUrl,
       startCaseCreationHeaders,
     );
-    const eventToken = startCaseCreationRes.event_token;
 
     const submitCaseUrl = `/data/case-types/PRLAPPS/cases?ignore-warning=false`;
     const data = {
@@ -107,16 +106,14 @@ export class SolicitorCaseCreator {
     const submitEventHeaders = {
       Accept:
         "application/vnd.uk.gov.hmcts.ccd-data-store-api.create-case.v2+json;charset=UTF-8",
-      Experimental: true,
+      Experimental: "true",
       "Content-type": "application/json; charset=UTF-8",
     };
-    const submitEventRes = await postData(
+    return await postData(
       page,
       submitCaseUrl,
       submitEventHeaders,
-      data,
+      JSON.stringify(data),
     );
-
-    return submitEventRes.id;
   }
 }

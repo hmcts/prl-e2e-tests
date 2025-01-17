@@ -57,7 +57,6 @@ test.describe("Case creation examples", (): void => {
       "https://manage-case.aat.platform.hmcts.net/work/my-work/list",
     );
     await submitEvent(caPage, caseRef, "fl401SendToGateKeeper");
-    // await submitEvent(caPage, caseRef, "serviceOfApplication");
     console.log(caseRef);
   });
 });

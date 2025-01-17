@@ -5,8 +5,8 @@ import { Page } from "@playwright/test";
 export async function getData(
   page: Page,
   url: string,
-  headers: any,
-): Promise<any> {
+  headers: HeadersInit,
+): Promise<string> {
   return await page.evaluate(
     async ({ url, headers }) => {
       const getRes = await fetch(url, {
@@ -14,7 +14,10 @@ export async function getData(
         headers,
         credentials: "same-origin",
       });
-      return await getRes.json();
+      const resBody = await getRes.json();
+      if (resBody) {
+        return resBody.event_token;
+      }
     },
     { url, headers },
   );
@@ -23,17 +26,20 @@ export async function getData(
 export async function postData(
   page: Page,
   url: string,
-  headers: any,
-  requestData: any,
-): Promise<any> {
+  headers: HeadersInit,
+  requestData: string,
+): Promise<string> {
   return await page.evaluate(
     async ({ url, headers, requestData }) => {
       const postRes = await fetch(url, {
         method: "POST",
-        body: JSON.stringify(requestData),
+        body: requestData,
         headers,
       });
-      return await postRes.json();
+      const resBody = await postRes.json();
+      if (resBody) {
+        return resBody.id;
+      }
     },
     { url, headers, requestData },
   );
@@ -43,7 +49,7 @@ export async function submitEvent(
   page: Page,
   caseId: string,
   eventId: string,
-): Promise<any> {
+): Promise<void> {
   if (process.env.PWDEBUG) {
     console.log(`Start of event: ${eventId}`);
   }
@@ -54,11 +60,14 @@ export async function submitEvent(
   const startEventHeaders = {
     Accept:
       "application/vnd.uk.gov.hmcts.ccd-data-store-api.ui-start-event-trigger.v2+json;charset=UTF-8",
-    Experimental: true,
+    Experimental: "true",
     "Content-type": "application/json; charset=UTF-8",
   };
-  const startEventRes = await getData(page, startEventUrl, startEventHeaders);
-  const eventToken = startEventRes.event_token;
+  const eventToken: string = await getData(
+    page,
+    startEventUrl,
+    startEventHeaders,
+  );
 
   const submitEventUrl = `/data/cases/${caseId}/events`;
   let data = {
@@ -74,18 +83,17 @@ export async function submitEvent(
   const submitEventHeaders = {
     Accept:
       "application/vnd.uk.gov.hmcts.ccd-data-store-api.create-event.v2+json;charset=UTF-8",
-    Experimental: true,
+    Experimental: "true",
     "Content-type": "application/json; charset=UTF-8",
   };
-  const submitEventRes = await postData(
+  await postData(
     page,
     submitEventUrl,
     submitEventHeaders,
-    data,
+    JSON.stringify(data),
   );
 
   if (process.env.PWDEBUG) {
     console.log(`Completed event: ${eventId}`);
   }
-  return submitEventRes;
 }
