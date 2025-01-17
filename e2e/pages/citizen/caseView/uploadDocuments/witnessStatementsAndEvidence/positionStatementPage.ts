@@ -12,7 +12,7 @@ enum UniqueSelectors {
 }
 
 export class PositionStatementPage {
-  public static async courtPermissionPage(
+  public static async positionStatementPage(
     page: Page,
     accessibilityTest: boolean,
     yesNoNA: yesNoNA,

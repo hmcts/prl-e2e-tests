@@ -32,14 +32,14 @@ export class CheckAnswersPage {
       ),
       Helpers.checkGroup(
         page,
-        5,
+        6,
         CheckAnswersContent,
         `govukSummaryListKey`,
         `${Selectors.GovukSummaryListKey}`,
       ),
       Helpers.checkGroup(
         page,
-        5,
+        6,
         CheckAnswersContent,
         `govukSummaryListValue`,
         `${Selectors.GovukSummaryListValue}`,
