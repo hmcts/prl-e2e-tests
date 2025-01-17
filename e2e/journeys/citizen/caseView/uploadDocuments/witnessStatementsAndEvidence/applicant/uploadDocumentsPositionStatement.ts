@@ -32,7 +32,7 @@ export class UploadDocumentsPositionStatement {
     accessibilityTest,
     isApplicant,
     yesNoNA,
- }: uploadDocumentsPositionStatementParams): Promise<void> {
+  }: uploadDocumentsPositionStatementParams): Promise<void> {
     const caseUser: CaseUser = isApplicant ? "applicant" : "respondent";
     page = await ActivateCase.activateCase({
       page: page,
@@ -42,11 +42,10 @@ export class UploadDocumentsPositionStatement {
       accessibilityTest: accessibilityTest,
     });
     await page.click(UniqueSelectors.uploadDocumentsPrivateSelector);
-    await UploadPage.uploadPage(
-      page,
-      accessibilityTest,
+    await UploadPage.uploadPage(page, accessibilityTest);
+    await page.click(
+      `${Selectors.GovukLink}:has-text("${UploadContent.positionStatementLink}")`,
     );
-    await page.click(`${Selectors.GovukLink}:has-text("${UploadContent.positionStatementLink}")`);
     if (yesNoNA == "Yes") {
       await PositionStatementPage.positionStatementPage(
         page,

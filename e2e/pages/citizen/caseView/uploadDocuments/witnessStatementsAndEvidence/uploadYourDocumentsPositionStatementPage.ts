@@ -75,9 +75,7 @@ export class UploadYourDocumentsPositionStatementPage {
     }
   }
 
-  private static async fillInFields(
-    page: Page,
-  ): Promise<void> {
+  private static async fillInFields(page: Page): Promise<void> {
     const fileInput = page.locator(UniqueSelectors.fileUpload);
     await fileInput.setInputFiles(config.testPdfFile);
     await page.click(`${Selectors.GovukButton}:text-is("${CommonStaticText.uploadFile}")`);

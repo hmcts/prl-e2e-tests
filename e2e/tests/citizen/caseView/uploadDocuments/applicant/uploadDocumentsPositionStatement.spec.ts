@@ -17,8 +17,8 @@ test.describe("Applicant upload documents position statement tests", (): void =>
   });
 
   test("Applicant upload documents position statement page. @regression @accessibility @nightly", async ({
-   page,
-   browser,
+    page,
+    browser,
   }): Promise<void> => {
     await UploadDocumentsPositionStatement.uploadDocumentsPositionStatement({
       page: page,
@@ -26,7 +26,7 @@ test.describe("Applicant upload documents position statement tests", (): void =>
       caseRef: ccdRef,
       accessibilityTest: false,
       isApplicant: true,
-      yesNoNA: "Yes"
+      yesNoNA: "Yes",
     });
   });
 });
