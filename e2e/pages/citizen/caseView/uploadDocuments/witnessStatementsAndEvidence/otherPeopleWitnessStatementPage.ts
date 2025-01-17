@@ -28,7 +28,8 @@ export class PositionStatementPage {
   ): Promise<void> {
     await page
       .locator(Selectors.GovukHeadingXL, {
-        hasText: CourtPermissionContent.GovukHeadingXLOtherPeopleWitnessStatement,
+        hasText:
+          CourtPermissionContent.GovukHeadingXLOtherPeopleWitnessStatement,
       })
       .waitFor();
     await Promise.all([

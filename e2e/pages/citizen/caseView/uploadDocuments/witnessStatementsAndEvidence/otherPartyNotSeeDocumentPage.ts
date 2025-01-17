@@ -6,7 +6,7 @@ import { OtherPartyNotSeeDocumentContent } from "../../../../../fixtures/citizen
 import { Helpers } from "../../../../../common/helpers.ts";
 
 export enum UniqueSelectors {
-  reasonToRestrictDoc = "#reasonsToRestrictDocument"
+  reasonToRestrictDoc = "#reasonsToRestrictDocument",
 }
 
 export class OtherPartyNotSeeDocumentPage {
@@ -60,17 +60,20 @@ export class OtherPartyNotSeeDocumentPage {
     }
   }
 
-  private static async fillInFields(
-    page: Page,
-  ): Promise<void> {
+  private static async fillInFields(page: Page): Promise<void> {
     await page.check('input[type="checkbox"][value="hasConfidentailDetails"]');
-    await page.check('input[type="checkbox"][value="containsSentsitiveInformation"]');
+    await page.check(
+      'input[type="checkbox"][value="containsSentsitiveInformation"]',
+    );
     await Helpers.checkVisibleAndPresent(
       page,
       `${Selectors.GovukLabel}:text-is("${OtherPartyNotSeeDocumentContent.GovukLabel3}")`,
       1,
     );
-    await page.fill(`${UniqueSelectors.reasonToRestrictDoc}`, OtherPartyNotSeeDocumentContent.reasonToRestrictDocTextBox,);
+    await page.fill(
+      `${UniqueSelectors.reasonToRestrictDoc}`,
+      OtherPartyNotSeeDocumentContent.reasonToRestrictDocTextBox,
+    );
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );

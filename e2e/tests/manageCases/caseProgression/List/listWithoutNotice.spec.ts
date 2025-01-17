@@ -1,8 +1,8 @@
 import { test } from "@playwright/test";
 import Config from "../../../../config";
+import config from "../../../../config";
 import createDaCitizenCourtNavCase from "../../../../common/createCaseHelper";
 import { Helpers } from "../../../../common/helpers";
-import config from "../../../../config";
 import { ListWithoutNotice } from "../../../../journeys/manageCases/caseProgression/List/listWithoutNotice";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });

@@ -6,8 +6,7 @@ import { Fl401ListOnNoticeSubmitPage } from "../../../../pages/manageCases/caseP
 import { Fl401ListOnNoticeConfirmPage } from "../../../../pages/manageCases/caseProgression/List/fl401ListOnNoticeConfirmPage";
 import { Selectors } from "../../../../common/selectors";
 import { Fl401ListOnNoticeConfirmContent } from "../../../../fixtures/manageCases/caseProgression/List/fl401ListOnNoticeConfirmContent";
-import { CheckApplicationJourney } from "../e2eFlowUpToServiceOfApplication/checkApplication/checkApplicationJourney";
-import { SendToGateKeeperJourney } from "../e2eFlowUpToServiceOfApplication/sendToGateKeeper/sendToGateKeeperJourney";
+import { submitEvent } from "../../../../common/solicitorCaseCreatorHelper.ts";
 
 interface ListWithNoticeParams {
   page: Page;
@@ -23,18 +22,8 @@ export class ListWithNotice {
     ccdRef,
     accessibilityTest,
   }: ListWithNoticeParams): Promise<void> {
-    await CheckApplicationJourney.checkApplication({
-      page: page,
-      accessibilityTest: accessibilityTest,
-      yesNoSendToGateKeeper: true,
-      ccdRef: ccdRef,
-    });
-    await SendToGateKeeperJourney.sendToGateKeeper({
-      page: page,
-      accessibilityTest: accessibilityTest,
-      yesNoSendToGateKeeper: true,
-      ccdRef: ccdRef,
-    });
+    await submitEvent(page, ccdRef, "fl401AddCaseNumber");
+    await submitEvent(page, ccdRef, "fl401SendToGateKeeper");
     const judgePage: Page = await Helpers.openNewBrowserWindow(
       browser,
       "judge",

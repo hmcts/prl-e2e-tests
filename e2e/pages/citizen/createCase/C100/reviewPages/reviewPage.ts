@@ -1432,7 +1432,7 @@ export class ReviewPage {
         page,
         `${Selectors.GovukSummaryListKey}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.b_evidence}")`,
         1,
-      )
+      );
     } else {
       await Helpers.checkVisibleAndPresent(
         page,
