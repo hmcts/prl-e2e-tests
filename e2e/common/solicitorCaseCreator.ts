@@ -22,6 +22,7 @@ const CaseEvents: string[] = [
   "fl401StatementOfTruthAndSubmit",
   "fl401SendToGateKeeper",
   "serviceOfApplication",
+  "fl401AddCaseNumber",
 ];
 
 export class SolicitorCaseCreator {
@@ -93,7 +94,6 @@ export class SolicitorCaseCreator {
 
     const submitCaseUrl = `/data/case-types/PRLAPPS/cases?ignore-warning=false`;
     const data = {
-      // eslint-disable-next-line id-blacklist
       data: solicitorCaseData.solicitorCreate.data,
       draft_id: null,
       event: {

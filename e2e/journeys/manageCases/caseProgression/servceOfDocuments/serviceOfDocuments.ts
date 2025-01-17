@@ -8,8 +8,7 @@ import config from "../../../../config";
 import { ReviewDocuments } from "../reviewDocuments/reviewDocuments";
 import createDaCitizenCourtNavCase from "../../../../common/createCaseHelper";
 import { ServiceOfDocumentsSubmitPage } from "../../../../pages/manageCases/caseProgression/serviceOfDocuments/serviceOfDocumentsSubmitPage";
-import { CheckApplicationJourney } from "../e2eFlowUpToServiceOfApplication/checkApplication/checkApplicationJourney.ts";
-import { SendToGateKeeperJourney } from "../e2eFlowUpToServiceOfApplication/sendToGateKeeper/sendToGateKeeperJourney.ts";
+import { submitEvent } from "../../../../common/solicitorCaseCreatorHelper.ts";
 
 interface ServiceOfDocumentsParams {
   page: Page;
@@ -45,18 +44,8 @@ export class ServiceOfDocuments {
       });
       await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
     }
-    await CheckApplicationJourney.checkApplication({
-      page: page,
-      accessibilityTest: false,
-      yesNoSendToGateKeeper: true,
-      ccdRef: ccdRef,
-    });
-    await SendToGateKeeperJourney.sendToGateKeeper({
-      page: page,
-      accessibilityTest: false,
-      yesNoSendToGateKeeper: true,
-      ccdRef: ccdRef,
-    });
+    await submitEvent(page, ccdRef, "fl401AddCaseNumber");
+    await submitEvent(page, ccdRef, "fl401SendToGateKeeper");
     await this.serviceOfDocuments({
       page,
       withCaseDoc,
@@ -68,6 +57,7 @@ export class ServiceOfDocuments {
       checkDocuments,
     });
   }
+
   public static async serviceOfDocuments({
     page,
     withCaseDoc,
@@ -78,6 +68,7 @@ export class ServiceOfDocuments {
     accessibilityTest,
     checkDocuments,
   }: ServiceOfDocumentsParams): Promise<void> {
+    await page.reload();
     await page.waitForTimeout(500);
     await Helpers.chooseEventFromDropdown(page, "Service of documents");
     await ServiceOfDocuments1Page.serviceOfDocuments1Page({
