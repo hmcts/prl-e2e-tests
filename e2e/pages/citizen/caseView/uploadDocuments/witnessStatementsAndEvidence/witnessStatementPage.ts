@@ -11,8 +11,8 @@ enum UniqueSelectors {
   courtHasNotAskedForDoc = "#hasCourtAskedForThisDoc-2",
 }
 
-export class PositionStatementPage {
-  public static async courtPermissionPage(
+export class WitnessStatementPage {
+  public static async witnessStatementPage(
     page: Page,
     accessibilityTest: boolean,
     yesNoNA: yesNoNA,

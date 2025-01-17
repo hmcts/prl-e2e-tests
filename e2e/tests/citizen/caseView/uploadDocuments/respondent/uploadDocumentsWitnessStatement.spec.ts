@@ -3,11 +3,11 @@ import Config from "../../../../../config.ts";
 import config from "../../../../../config.ts";
 import createDaCitizenCourtNavCase from "../../../../../common/createCaseHelper.ts";
 import { Helpers } from "../../../../../common/helpers.ts";
-import { ConfirmContactDetails } from "../../../../../journeys/citizen/caseView/confirmContactDetails/confirmContactDetails.ts";
+import { UploadDocumentsWitnessStatement } from "../../../../../journeys/citizen/caseView/uploadDocuments/witnessStatementsAndEvidence/respondent/uploadDocumentsWitnessStatement.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
-test.describe("Respondent confirm contact details tests", (): void => {
+test.describe("Applicant upload documents position statement tests", (): void => {
   test.slow();
   let ccdRef: string;
 
@@ -16,16 +16,17 @@ test.describe("Respondent confirm contact details tests", (): void => {
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
   });
 
-  test("Respondent confirm contact details. @regression @accessibility @nightly", async ({
-    page,
-    browser,
-  }): Promise<void> => {
-    await ConfirmContactDetails.confirmContactDetails({
+  test("Applicant upload documents position statement page. @regression @accessibility @nightly", async ({
+   page,
+   browser,
+ }): Promise<void> => {
+    await UploadDocumentsWitnessStatement.uploadDocumentsWitnessStatement({
       page: page,
       browser: browser,
       caseRef: ccdRef,
+      accessibilityTest: false,
       isApplicant: false,
-      accessibilityTest: true,
+      yesNoNA: "Yes"
     });
   });
 });

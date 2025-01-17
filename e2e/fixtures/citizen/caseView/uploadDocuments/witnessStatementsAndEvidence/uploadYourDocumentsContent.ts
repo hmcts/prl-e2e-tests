@@ -1,6 +1,7 @@
 export enum UploadYourDocumentsContent {
   GovukCaptionL = "Witness statements and evidence",
-  GovukHeadingL = "Position statement",
+  GovukHeadingLPositionStatement = "Position statement",
+  GovukHeadingLWitnessStatement = "Witness statement",
   GovukLabel1 = "You can write your statement in the text box or upload it.",
   GovukLabel2 = "Write your statement (optional)",
   GovukBody1 = "If you are uploading documents from a computer, name the files clearly. For example, letter-from-school.doc.",

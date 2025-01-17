@@ -1,9 +1,9 @@
 import { ActivateCase } from "../../../activateCase/activateCase.ts";
-import { RespondentDetailsKnownPage } from "../../../../../pages/citizen/caseView/respondent/keepDetailsPrivate/respondentDetailsKnownPage.ts";
+import { RespondentDetailsKnownPage } from "../../../../../pages/citizen/caseView/keepDetailsPrivate/respondent/respondentDetailsKnownPage.ts";
 import { yesNoDontKnow } from "../../../../../common/types.ts";
 import { Browser, Page } from "@playwright/test";
-import { RespondentStartAlternativePage } from "../../../../../pages/citizen/caseView/respondent/keepDetailsPrivate/respondentStartAlternativePage.ts";
-import { RespondentPrivateDetailsConfirmedPage } from "../../../../../pages/citizen/caseView/respondent/keepDetailsPrivate/RespondentPrivateDetailsConfirmedPage.ts";
+import { RespondentStartAlternativePage } from "../../../../../pages/citizen/caseView/keepDetailsPrivate/respondent/respondentStartAlternativePage.ts";
+import { RespondentPrivateDetailsConfirmedPage } from "../../../../../pages/citizen/caseView/keepDetailsPrivate/respondent/RespondentPrivateDetailsConfirmedPage.ts";
 
 interface RespondentConfirmContactDetailsParams {
   page: Page;

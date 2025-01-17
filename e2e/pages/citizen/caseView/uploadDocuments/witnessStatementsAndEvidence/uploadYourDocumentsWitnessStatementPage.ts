@@ -7,13 +7,11 @@ import { Helpers } from "../../../../../common/helpers.ts";
 import config from "../../../../../config.ts";
 
 export enum UniqueSelectors {
-  fileUpload = "#uploadDocumentFileUpload",
-  declarationCheck = "#declarationCheck",
-  submitPositionStatement = "button[type='Submit'][name='onlyContinue']"
+  fileUpload = "#uploadDocumentFileUpload"
 }
 
-export class UploadYourDocumentsPage {
-  public static async uploadYourDocumentsPage(
+export class UploadYourDocumentsWitnessStatementPage {
+  public static async uploadYourDocumentsWitnessStatementPage(
     page: Page,
     accessibilityTest: boolean,
   ): Promise<void> {
@@ -28,7 +26,7 @@ export class UploadYourDocumentsPage {
   ): Promise<void> {
     await page
       .locator(Selectors.GovukHeadingL, {
-        hasText: UploadYourDocumentsContent.GovukHeadingL,
+        hasText: UploadYourDocumentsContent.GovukHeadingLWitnessStatement,
       })
       .waitFor();
     await Promise.all([
@@ -80,13 +78,15 @@ export class UploadYourDocumentsPage {
   ): Promise<void> {
     const fileInput = page.locator(UniqueSelectors.fileUpload);
     await fileInput.setInputFiles(config.testPdfFile);
-    await page.click(`${Selectors.GovukButton}:text-is("${CommonStaticText.uploadFile}")`);
+    await page.check('input[type="checkbox"][value="declaration"]');
+    await page.click(`${Selectors.GovukButton}:text-is("${CommonStaticText.uploadFile}")`,);
     await Helpers.checkVisibleAndPresent(
       page,
       `${Selectors.GovukSummaryListValue}:text-is("${UploadYourDocumentsContent.GovukSummaryListValue}")`,
       1,
     );
-    await page.check(UniqueSelectors.declarationCheck);
-    await page.click(UniqueSelectors.submitPositionStatement);
+    await page.click(
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.submit}")`,
+    );
   }
 }

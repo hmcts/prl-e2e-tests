@@ -1,9 +1,9 @@
 import { test } from "@playwright/test";
-import Config from "../../../../../config.ts";
-import config from "../../../../../config.ts";
-import createDaCitizenCourtNavCase from "../../../../../common/createCaseHelper.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
-import { Upload } from "../../../../../journeys/citizen/caseView/uploadDocuments/upload.ts";
+import Config from "../../../../config.ts";
+import config from "../../../../config.ts";
+import createDaCitizenCourtNavCase from "../../../../common/createCaseHelper.ts";
+import { Helpers } from "../../../../common/helpers.ts";
+import { Upload } from "../../../../journeys/citizen/caseView/uploadDocuments/upload.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
