@@ -22,6 +22,8 @@ test.describe("Review Documents task for DA Citizen case tests.", () => {
       page: page,
       accessibilityTest: false,
       yesNoNotSureRestrictDocs: "yes",
+      partyUploadedDocument: "CourtNav",
+      documentType: "Applicant's statements",
     });
   });
 
@@ -32,6 +34,8 @@ test.describe("Review Documents task for DA Citizen case tests.", () => {
       page: page,
       accessibilityTest: false,
       yesNoNotSureRestrictDocs: "no",
+      partyUploadedDocument: "CourtNav",
+      documentType: "Applicant's statements",
     });
   });
 
@@ -42,6 +46,8 @@ test.describe("Review Documents task for DA Citizen case tests.", () => {
       page: page,
       accessibilityTest: false,
       yesNoNotSureRestrictDocs: "dontKnow",
+      partyUploadedDocument: "CourtNav",
+      documentType: "Applicant's statements",
     });
   });
 
@@ -52,6 +58,8 @@ test.describe("Review Documents task for DA Citizen case tests.", () => {
       page: page,
       accessibilityTest: true,
       yesNoNotSureRestrictDocs: "yes",
+      partyUploadedDocument: "CourtNav",
+      documentType: "Applicant's statements",
     });
   });
 });

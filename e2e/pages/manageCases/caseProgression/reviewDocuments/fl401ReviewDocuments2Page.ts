@@ -2,13 +2,19 @@ import { Page } from "@playwright/test";
 import { CommonStaticText } from "../../../../common/commonStaticText";
 import { Helpers } from "../../../../common/helpers";
 import { Selectors } from "../../../../common/selectors";
-import { yesNoDontKnow } from "../../../../common/types";
+import {
+  yesNoDontKnow,
+  documentSubmittedBy,
+  documentCategory,
+} from "../../../../common/types";
 import { Fl401ReviewDocuments2Content } from "../../../../fixtures/manageCases/caseProgression/reviewDocuments/fl401ReviewDocuments2Content";
 
 interface FL401ReviewDocuments2PageOptions {
   page: Page;
   accessibilityTest: boolean;
   yesNoNotSureRestrictDocs: yesNoDontKnow;
+  documentSubmittedBy: documentSubmittedBy;
+  documentCategory: documentCategory;
 }
 
 enum radioIds {
@@ -22,8 +28,15 @@ export class FL401ReviewDocuments2Page {
     page,
     accessibilityTest,
     yesNoNotSureRestrictDocs,
+    documentSubmittedBy,
+    documentCategory,
   }: FL401ReviewDocuments2PageOptions): Promise<void> {
-    await this.checkPageLoads({ page, accessibilityTest });
+    await this.checkPageLoads({
+      page,
+      accessibilityTest,
+      documentSubmittedBy,
+      documentCategory,
+    });
     await this.fillInFields({
       page,
       yesNoNotSureRestrictDocs: yesNoNotSureRestrictDocs,
@@ -32,6 +45,8 @@ export class FL401ReviewDocuments2Page {
 
   private static async checkPageLoads({
     page,
+    documentSubmittedBy,
+    documentCategory,
   }: Partial<FL401ReviewDocuments2PageOptions>) {
     if (!page) {
       throw new Error("No page found");
@@ -40,6 +55,10 @@ export class FL401ReviewDocuments2Page {
       `${Selectors.h1}:text-is("${Fl401ReviewDocuments2Content.pageTitle}")`,
     );
     await pageTitle.waitFor();
+    const documentLink =
+      documentSubmittedBy == "CourtNav"
+        ? Fl401ReviewDocuments2Content.testPdflink
+        : Fl401ReviewDocuments2Content.mockPdflink;
     await Promise.all([
       Helpers.checkGroup(
         page,
@@ -48,17 +67,20 @@ export class FL401ReviewDocuments2Page {
         "h3_",
         `${Selectors.h3}`,
       ),
-      Helpers.checkGroup(
+      Helpers.checkVisibleAndPresent(
         page,
-        2,
-        Fl401ReviewDocuments2Content,
-        "li_",
-        `${Selectors.li}`,
+        `${Selectors.li}:text-is("${documentSubmittedBy}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${documentCategory}")`,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.li}:text-is("${CommonStaticText.yes}")`,
-        1,
+        documentCategory == "Position statements" ? 2 : 1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -77,7 +99,7 @@ export class FL401ReviewDocuments2Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${Fl401ReviewDocuments2Content.link}")`,
+        `${Selectors.a}:text-is("${documentLink}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(

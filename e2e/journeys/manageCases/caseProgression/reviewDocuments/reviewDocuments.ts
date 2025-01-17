@@ -3,12 +3,14 @@ import { Helpers } from "../../../../common/helpers";
 import { FL401ReviewDocuments1Page } from "../../../../pages/manageCases/caseProgression/reviewDocuments/fl401ReviewDocuments1Page";
 import { FL401ReviewDocuments2Page } from "../../../../pages/manageCases/caseProgression/reviewDocuments/fl401ReviewDocuments2Page";
 import { FL401ReviewDocumentsSubmitPage } from "../../../../pages/manageCases/caseProgression/reviewDocuments/fl401ReviewDocumentsSubmitPage";
-import { yesNoDontKnow } from "../../../../common/types";
+import { yesNoDontKnow, documentSubmittedBy, documentCategory } from "../../../../common/types";
 
 interface ReviewDocumentsParams {
   page: Page;
   accessibilityTest: boolean;
   yesNoNotSureRestrictDocs: yesNoDontKnow;
+  partyUploadedDocument: documentSubmittedBy;
+  documentType: documentCategory;
 }
 
 export class ReviewDocuments {
@@ -16,6 +18,8 @@ export class ReviewDocuments {
     page,
     accessibilityTest,
     yesNoNotSureRestrictDocs,
+    partyUploadedDocument,
+    documentType,
   }: ReviewDocumentsParams): Promise<void> {
     await Helpers.assignTaskToMeAndTriggerNextSteps(
       page,
@@ -30,11 +34,14 @@ export class ReviewDocuments {
       page,
       accessibilityTest,
       yesNoNotSureRestrictDocs: yesNoNotSureRestrictDocs,
+      documentSubmittedBy: partyUploadedDocument,
+      documentCategory: documentType,
     });
     await FL401ReviewDocumentsSubmitPage.fl401ReviewDocumentsSubmitPage({
       page,
       accessibilityTest,
       yesNoNotSureRestrictDocs: yesNoNotSureRestrictDocs,
+      documentSubmittedBy: partyUploadedDocument,
     });
   }
 }

@@ -195,3 +195,11 @@ export type yesNoNA = "Yes" | "No" | "Not applicable";
 export type courtAdminEvents = "Edit and serve an order";
 
 export type contactOption = "Digital" | "Post";
+
+export type documentCategory =
+  | "Applicant's statements"
+  | "Position statements";
+
+export type documentSubmittedBy =
+  | "CourtNav"
+  | "Citizen"

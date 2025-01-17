@@ -7,7 +7,9 @@ import { Helpers } from "../../../../../common/helpers.ts";
 import config from "../../../../../config.ts";
 
 export enum UniqueSelectors {
-  fileUpload = "#uploadDocumentFileUpload"
+  fileUpload = "#uploadDocumentFileUpload",
+  declarationCheck = "#declarationCheck",
+  submitPositionStatement = "button[type='Submit'][name='onlyContinue']"
 }
 
 export class UploadYourDocumentsPage {
@@ -78,15 +80,13 @@ export class UploadYourDocumentsPage {
   ): Promise<void> {
     const fileInput = page.locator(UniqueSelectors.fileUpload);
     await fileInput.setInputFiles(config.testPdfFile);
-    await page.check('input[type="checkbox"][value="declaration"]');
-    await page.click(`${Selectors.GovukButton}:text-is("${CommonStaticText.uploadFile}")`,);
+    await page.click(`${Selectors.GovukButton}:text-is("${CommonStaticText.uploadFile}")`);
     await Helpers.checkVisibleAndPresent(
       page,
       `${Selectors.GovukSummaryListValue}:text-is("${UploadYourDocumentsContent.GovukSummaryListValue}")`,
       1,
     );
-    await page.click(
-        `${Selectors.GovukButton}:text-is("${CommonStaticText.submit}")`,
-      );
+    await page.check(UniqueSelectors.declarationCheck);
+    await page.click(UniqueSelectors.submitPositionStatement);
   }
 }
