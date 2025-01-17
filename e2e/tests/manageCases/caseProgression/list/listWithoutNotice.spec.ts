@@ -3,7 +3,7 @@ import Config from "../../../../config";
 import config from "../../../../config";
 import createDaCitizenCourtNavCase from "../../../../common/createCaseHelper";
 import { Helpers } from "../../../../common/helpers";
-import { ListWithoutNotice } from "../../../../journeys/manageCases/caseProgression/List/listWithoutNotice";
+import { ListWithoutNotice } from "../../../../journeys/manageCases/caseProgression/list/listWithoutNotice";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
