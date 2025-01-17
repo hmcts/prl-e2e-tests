@@ -16,7 +16,7 @@ test.describe("Applicant confirm contact details tests", (): void => {
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
   });
 
-  test("Respondent keep details private with yes response. @regression @nightly", async ({
+  test("Respondent keep details private with yes response.  @regression @nightly", async ({
     page,
     browser,
   }): Promise<void> => {
