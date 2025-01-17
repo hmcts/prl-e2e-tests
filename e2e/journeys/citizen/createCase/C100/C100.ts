@@ -1166,7 +1166,7 @@ export class C100 {
       c100YesNoNeedHelpWithFees: c100YesNoNeedHelpWithFees,
     });
     await EqualityAndDiversityPage.equalityAndDiversityPage({
-      page
+      page,
     });
     await ConfirmationPage.confirmationPage({
       page: page,
