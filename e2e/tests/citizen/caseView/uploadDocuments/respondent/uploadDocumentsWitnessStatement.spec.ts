@@ -3,7 +3,7 @@ import Config from "../../../../../config.ts";
 import config from "../../../../../config.ts";
 import createDaCitizenCourtNavCase from "../../../../../common/createCaseHelper.ts";
 import { Helpers } from "../../../../../common/helpers.ts";
-import { UploadDocumentsPositionStatement } from "../../../../../journeys/citizen/caseView/uploadDocuments/witnessStatementsAndEvidence/applicant/uploadDocumentsPositionStatement.ts";
+import { UploadDocumentsWitnessStatement } from "../../../../../journeys/citizen/caseView/uploadDocuments/witnessStatementsAndEvidence/respondent/uploadDocumentsWitnessStatement.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
@@ -17,16 +17,16 @@ test.describe("Applicant upload documents position statement tests", (): void =>
   });
 
   test("Applicant upload documents position statement page. @regression @accessibility @nightly", async ({
-    page,
-    browser,
-  }): Promise<void> => {
-    await UploadDocumentsPositionStatement.uploadDocumentsPositionStatement({
+   page,
+   browser,
+ }): Promise<void> => {
+    await UploadDocumentsWitnessStatement.uploadDocumentsWitnessStatement({
       page: page,
       browser: browser,
       caseRef: ccdRef,
       accessibilityTest: false,
-      isApplicant: true,
-      yesNoNA: "Yes",
+      isApplicant: false,
+      yesNoNA: "Yes"
     });
   });
 });
