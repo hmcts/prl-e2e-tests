@@ -70,7 +70,7 @@ export async function submitEvent(
   );
 
   const submitEventUrl = `/data/cases/${caseId}/events`;
-  let data = {
+  const data = {
     data: eventData,
     event: {
       id: eventId,
