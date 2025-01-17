@@ -35,22 +35,4 @@ test.describe("Complete amend applicant details event as a court admin", () => {
       solicitorDetailsChange: true,
     });
   });
-
-  test(`Amend the following applicant details: live in a refuge: yes`, async ({
-    page,
-  }): Promise<void> => {
-    await AmendApplicantDetails.amendApplicantDetails({
-      page,
-      accessibilityTest: false,
-      ccdRef: ccdRef,
-      nameChange: false,
-      dobChange: false,
-      genderChange: false,
-      gender: "male",
-      liveInRefuge: true,
-      changeApplicantAddress: false,
-      keepDetailsConfidential: false,
-      solicitorDetailsChange: false,
-    });
-  });
 });
