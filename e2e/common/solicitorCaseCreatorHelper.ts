@@ -3,6 +3,8 @@ import manageOrderDataAmendDischargedVaried from "../caseData/orderData/manageOr
 import manageOrderDataPowerOfArrest from "../caseData/orderData/manageOrderData-powerOfArrest.json";
 import { Page } from "@playwright/test";
 
+// Using "any" type below because it represents a large JSON object
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type JsonData = Record<string, any>;
 export const jsonDatas: JsonData = {
   defaultData: solicitorCaseData,

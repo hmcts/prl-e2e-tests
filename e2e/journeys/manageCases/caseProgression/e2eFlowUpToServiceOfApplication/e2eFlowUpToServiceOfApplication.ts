@@ -58,16 +58,7 @@ export class E2eFlowUpToServiceOfApplication {
     await ApplicationJourneysCheckGatekeeperJudgeCOOrder.applicationJourneysCheckGatekeeperJudgeCOOrder(
       {
         page,
-        accessibilityTest,
         ccdRef,
-        c100CaseWorkerActions,
-        manageOrdersOptions,
-        createOrderFL401Options,
-        yesNoManageOrders,
-        judgeTitles,
-        withOrWithoutNotice,
-        createOrderManageOrders19Options,
-        howLongWillOrderBeInForce,
         browser,
         manageOrderData,
       },

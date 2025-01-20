@@ -1,13 +1,5 @@
 import { Browser, BrowserContext, Page } from "@playwright/test";
 import {
-  createOrderFL401Options,
-  judgeTitles,
-  manageOrdersOptions,
-  WACaseWorkerActions,
-} from "../../../../common/types.ts";
-import { createOrderManageOrders19Options } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders19Page.ts";
-import { howLongWillOrderBeInForce } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders12Page.ts";
-import {
   jsonDatas,
   submitEvent,
 } from "../../../../common/solicitorCaseCreatorHelper.ts";
@@ -17,16 +9,7 @@ import { Helpers } from "../../../../common/helpers.ts";
 
 interface CheckApplicationParams {
   page: Page;
-  accessibilityTest: boolean;
   ccdRef: string;
-  c100CaseWorkerActions: WACaseWorkerActions;
-  createOrderFL401Options: createOrderFL401Options;
-  yesNoManageOrders: boolean;
-  judgeTitles: judgeTitles;
-  withOrWithoutNotice: boolean;
-  createOrderManageOrders19Options: createOrderManageOrders19Options;
-  howLongWillOrderBeInForce: howLongWillOrderBeInForce;
-  manageOrdersOptions: manageOrdersOptions;
   browser: Browser;
   manageOrderData: typeof jsonDatas;
 }
@@ -34,16 +17,7 @@ interface CheckApplicationParams {
 export class ApplicationJourneysCheckGatekeeperJudgeCOOrder {
   public static async applicationJourneysCheckGatekeeperJudgeCOOrder({
     page,
-    accessibilityTest,
     ccdRef,
-    c100CaseWorkerActions,
-    createOrderFL401Options,
-    yesNoManageOrders,
-    judgeTitles,
-    withOrWithoutNotice,
-    createOrderManageOrders19Options,
-    howLongWillOrderBeInForce,
-    manageOrdersOptions,
     browser,
     manageOrderData,
   }: CheckApplicationParams): Promise<void> {
