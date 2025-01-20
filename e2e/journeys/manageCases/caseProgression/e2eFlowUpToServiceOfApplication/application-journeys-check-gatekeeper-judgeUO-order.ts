@@ -5,8 +5,6 @@ import {
   uploadOrderFL401Options,
 } from "../../../../common/types.ts";
 import { JudgeManageOrderJourney } from "./judgeManageOrders/judgeManageOrdersJourney.ts";
-import { CheckApplicationJourney } from "./checkApplication/checkApplicationJourney.ts";
-import { SendToGateKeeperJourney } from "./sendToGateKeeper/sendToGateKeeperJourney.ts";
 import { submitEvent } from "../../../../common/solicitorCaseCreatorHelper.ts";
 
 interface CheckApplicationParams {
