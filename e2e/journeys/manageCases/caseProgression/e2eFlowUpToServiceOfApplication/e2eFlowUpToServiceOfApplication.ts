@@ -32,6 +32,7 @@ interface CompleteTheOrderParams {
   responsibleForServing: responsibleForServing;
 }
 
+// note: params are always the same from activateCase
 export class E2eFlowUpToServiceOfApplication {
   public static async e2eFlowUpToServiceOfApplication({
     page,
@@ -55,7 +56,6 @@ export class E2eFlowUpToServiceOfApplication {
       {
         page,
         accessibilityTest,
-        yesNoSendToGateKeeper,
         ccdRef,
         c100CaseWorkerActions,
         manageOrdersOptions,
@@ -74,6 +74,9 @@ export class E2eFlowUpToServiceOfApplication {
       storageState: Config.sessionStoragePath + "caseWorker.json",
     });
     const newPage: Page = await newContext.newPage();
+    // TODO: new API call - need to check if/how the variables differ between tests unless it isn't needed see comment below
+    // TODO: move into own UI test - unless it isn't needed see comment below
+    // shouldn't need an order for service of application - is this not covered by the createAnOrderDA test??
     await CompleteTheOrder.completeTheOrder({
       page: newPage,
       accessibilityTest,
@@ -92,6 +95,8 @@ export class E2eFlowUpToServiceOfApplication {
       yesNoServiceOfApplication4,
       responsibleForServing,
     });
+    // TODO: new API call - need to check if/how the variables differ between tests
+    // TODO: move into own UI test
     await ServiceOfApplicationJourney.serviceOfApplicationJourney({
       page: newPage,
       accessibilityTest,
