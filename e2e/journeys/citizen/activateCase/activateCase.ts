@@ -7,6 +7,7 @@ import { CaseActivatedPage } from "../../../pages/citizen/activateCase/caseActiv
 import { ApplicantDashboardPage } from "../../../pages/citizen/activateCase/applicantDashboardPage.ts";
 import { RespondentDashboardPage } from "../../../pages/citizen/activateCase/respondentDashboardPage.ts";
 import { E2eFlowUpToServiceOfApplication } from "../../manageCases/caseProgression/e2eFlowUpToServiceOfApplication/e2eFlowUpToServiceOfApplication.ts";
+import { jsonDatas } from "../../../common/solicitorCaseCreatorHelper.ts";
 
 interface ActiveCaseParams {
   page: Page;
@@ -44,6 +45,7 @@ export class ActivateCase {
       personallyServed: true,
       yesNoServiceOfApplication4: false,
       responsibleForServing: "courtBailiff", // this isn't used when yesNoServiceOfApplication4 is false
+      manageOrderData: jsonDatas.defaultData,
     });
     switch (caseUser) {
       case "applicant":
