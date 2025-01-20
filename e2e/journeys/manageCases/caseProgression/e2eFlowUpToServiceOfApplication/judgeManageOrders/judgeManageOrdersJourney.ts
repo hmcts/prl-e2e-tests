@@ -1,10 +1,10 @@
 import { Browser, Page } from "@playwright/test";
 import {
-  WACaseWorkerActions,
   createOrderFL401Options,
   judgeTitles,
   manageOrdersOptions,
   uploadOrderFL401Options,
+  WACaseWorkerActions,
 } from "../../../../../common/types.ts";
 import {
   createOrderManageOrders19Options,
@@ -28,6 +28,7 @@ import { UploadOrderManageOrders5Page } from "../../../../../pages/manageCases/c
 import { judgeCreateUOManageOrderSubmitPage } from "../../../../../pages/manageCases/caseProgression/judge/judgeUploadOrder/judgeUploadOrderDASubmitPage.ts";
 
 interface JudgeDACaseProgressionJourneyParams {
+  page: Page;
   browser: Browser;
   ccdRef: string;
   accessibilityTest: boolean;
@@ -53,6 +54,7 @@ interface JudgeUOCaseProgressionJourneyParams {
 
 export class JudgeManageOrderJourney {
   public static async JudgeCreateOrderCaseProgressionJourney({
+    page,
     browser,
     ccdRef,
     accessibilityTest,
@@ -65,7 +67,7 @@ export class JudgeManageOrderJourney {
     howLongWillOrderBeInForce,
     manageOrdersOptions,
   }: JudgeDACaseProgressionJourneyParams): Promise<void> {
-    const page: Page = await Helpers.openNewBrowserWindow(browser, "judge");
+    page = await Helpers.openNewBrowserWindow(browser, "judge");
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
     await Helpers.waitForTask(page, "Directions on Issue");
     await Helpers.chooseEventFromDropdown(page, c100CaseWorkerActions);
