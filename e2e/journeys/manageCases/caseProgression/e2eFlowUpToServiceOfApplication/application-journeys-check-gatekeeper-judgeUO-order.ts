@@ -7,11 +7,11 @@ import {
 import { JudgeManageOrderJourney } from "./judgeManageOrders/judgeManageOrdersJourney.ts";
 import { CheckApplicationJourney } from "./checkApplication/checkApplicationJourney.ts";
 import { SendToGateKeeperJourney } from "./sendToGateKeeper/sendToGateKeeperJourney.ts";
+import { submitEvent } from "../../../../common/solicitorCaseCreatorHelper.ts";
 
 interface CheckApplicationParams {
   page: Page;
   accessibilityTest: boolean;
-  yesNoSendToGateKeeper: boolean;
   ccdRef: string;
   c100CaseWorkerActions: WACaseWorkerActions;
   yesNoManageOrders: boolean;
@@ -24,7 +24,6 @@ export class ApplicationJourneysCheckGatekeeperJudgeUOOrder {
   public static async applicationJourneysCheckGatekeeperJudgeUOOrder({
     page,
     accessibilityTest,
-    yesNoSendToGateKeeper,
     ccdRef,
     c100CaseWorkerActions,
     yesNoManageOrders,
@@ -32,18 +31,8 @@ export class ApplicationJourneysCheckGatekeeperJudgeUOOrder {
     manageOrdersOptions,
     browser,
   }: CheckApplicationParams): Promise<void> {
-    await CheckApplicationJourney.checkApplication({
-      page,
-      accessibilityTest,
-      yesNoSendToGateKeeper,
-      ccdRef,
-    });
-    await SendToGateKeeperJourney.sendToGateKeeper({
-      page,
-      accessibilityTest,
-      yesNoSendToGateKeeper,
-      ccdRef,
-    });
+    await submitEvent(page, ccdRef, "fl401AddCaseNumber");
+    await submitEvent(page, ccdRef, "fl401SendToGateKeeper");
     await JudgeManageOrderJourney.JudgeUploadOrderCaseProgressionJourney({
       browser,
       ccdRef,

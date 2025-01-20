@@ -3,7 +3,11 @@ import { Helpers } from "../../../../common/helpers";
 import { FL401ReviewDocuments1Page } from "../../../../pages/manageCases/caseProgression/reviewDocuments/fl401ReviewDocuments1Page";
 import { FL401ReviewDocuments2Page } from "../../../../pages/manageCases/caseProgression/reviewDocuments/fl401ReviewDocuments2Page";
 import { FL401ReviewDocumentsSubmitPage } from "../../../../pages/manageCases/caseProgression/reviewDocuments/fl401ReviewDocumentsSubmitPage";
-import { yesNoDontKnow, documentSubmittedBy, documentCategory } from "../../../../common/types";
+import {
+  yesNoDontKnow,
+  documentSubmittedBy,
+  documentCategory,
+} from "../../../../common/types";
 
 interface ReviewDocumentsParams {
   page: Page;

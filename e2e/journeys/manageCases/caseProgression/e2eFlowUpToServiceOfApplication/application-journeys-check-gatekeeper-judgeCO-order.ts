@@ -46,7 +46,6 @@ export class ApplicationJourneysCheckGatekeeperJudgeCOOrder {
     await CheckApplicationJourney.checkApplication({
       page,
       accessibilityTest,
-      yesNoSendToGateKeeper,
       ccdRef,
     });
     await SendToGateKeeperJourney.sendToGateKeeper({

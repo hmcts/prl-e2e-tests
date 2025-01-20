@@ -23,7 +23,6 @@ test.describe("Check Application task for DA Citizen case tests.", () => {
       {
         page: page,
         accessibilityTest: false,
-        yesNoSendToGateKeeper: true,
         ccdRef: ccdRef,
         c100CaseWorkerActions: "Manage orders",
         manageOrdersOptions: "upload order",
@@ -45,7 +44,6 @@ test.describe("Check Application task for DA Citizen case tests.", () => {
       {
         page: page,
         accessibilityTest: true,
-        yesNoSendToGateKeeper: true,
         ccdRef: ccdRef,
         c100CaseWorkerActions: "Manage orders",
         manageOrdersOptions: "upload order",

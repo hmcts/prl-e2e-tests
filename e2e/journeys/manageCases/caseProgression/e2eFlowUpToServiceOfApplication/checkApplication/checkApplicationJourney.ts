@@ -6,7 +6,6 @@ import { Fl401AddCaseNumberSubmitPage } from "../../../../../pages/manageCases/c
 interface CheckApplicationParams {
   page: Page;
   accessibilityTest: boolean;
-  yesNoSendToGateKeeper: boolean;
   ccdRef: string;
 }
 
