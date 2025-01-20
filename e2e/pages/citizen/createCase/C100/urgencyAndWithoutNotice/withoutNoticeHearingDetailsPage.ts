@@ -4,6 +4,7 @@ import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { WithoutNoticeHearingDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/urgencyAndWithoutNotice/withoutNoticeHearingDetailsContent";
 import { uniqueSelectors } from "./urgentFirstHearingPage";
+// import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 
 interface WithoutNoticeHearingDetailsPageOptions {
   page: Page;
@@ -84,7 +85,7 @@ export class WithoutNoticeHearingDetailsPage {
       ),
     ]);
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page); #TODO: Re-enable upon completion of PRL-6496
+      // await AccessibilityTestHelper.run(page); //#TODO: Re-enable upon completion of PRL-6496 (rerun 20/01/25, issue still exists)
     }
   }
 

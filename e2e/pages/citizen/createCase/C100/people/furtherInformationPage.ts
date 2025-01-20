@@ -5,6 +5,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { yesNoDontKnow } from "../../../../../common/types";
 import { FurtherInformationContent } from "../../../../../fixtures/citizen/createCase/C100/people/furtherInformationContent";
 import { uniqueSelectors } from "../urgencyAndWithoutNotice/urgentFirstHearingPage";
+// import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 
 interface FurtherInformationPageOptions {
   page: Page;
@@ -102,7 +103,7 @@ export class FurtherInformationPage {
       );
     }
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page); Accessibility Issues: PRL-6584
+      //await AccessibilityTestHelper.run(page); //#TODO turn back on once Accessibility Issues: PRL-6584 has been fixed (rerun 20/01/25, issue still exists)
     }
   }
 

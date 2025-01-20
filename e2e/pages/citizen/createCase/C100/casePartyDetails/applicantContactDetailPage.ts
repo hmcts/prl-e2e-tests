@@ -3,6 +3,7 @@ import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { ApplicantContactDetailContent } from "../../../../../fixtures/citizen/createCase/C100/casePartyDetails/applicantContactDetailContent";
+// import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 
 enum inputIds {
   provideEmailYes = "#canProvideEmail",
@@ -86,7 +87,7 @@ export class ApplicantContactDetailPage {
       ),
     ]);
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page); Accessibility Issues: PRL-6591
+      //await AccessibilityTestHelper.run(page); //#TODO turn back on once Accessibility Issues: PRL-6591 has been fixed (rerun 20/01/25, issue still exists)
     }
   }
 

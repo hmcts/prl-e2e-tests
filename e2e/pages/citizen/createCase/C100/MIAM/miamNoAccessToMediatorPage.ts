@@ -3,6 +3,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { MiamNoAccessToMediatorContent } from "../../../../../fixtures/citizen/createCase/C100/MIAM/miamNoAccessToMediatorContent";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
+// import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 
 interface MiamNoAccessToMediatorPageOptions {
   page: Page;
@@ -83,7 +84,7 @@ export class MiamNoAccessToMediatorPage {
       ),
     ]);
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page); #TODO: Re-enable when PRL-6521 is completed.
+      // await AccessibilityTestHelper.run(page); //#TODO: Re-enable when PRL-6521 is completed. (rerun 20/01/25, issue still exists)
     }
   }
 

@@ -166,7 +166,7 @@ export class CaseListPage extends CommonPage {
       1,
     );
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page); disabled due to ExUI issues (FPET-1135)
+      // await AccessibilityTestHelper.run(page); disabled due to ExUI issues (EXUI-2717)
     }
   }
 }
