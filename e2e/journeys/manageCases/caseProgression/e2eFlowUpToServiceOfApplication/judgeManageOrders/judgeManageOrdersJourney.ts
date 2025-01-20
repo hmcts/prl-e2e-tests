@@ -43,6 +43,7 @@ interface JudgeDACaseProgressionJourneyParams {
 }
 
 interface JudgeUOCaseProgressionJourneyParams {
+  page: Page;
   browser: Browser;
   ccdRef: string;
   accessibilityTest: boolean;
@@ -259,6 +260,7 @@ export class JudgeManageOrderJourney {
   }
 
   public static async JudgeUploadOrderCaseProgressionJourney({
+    page,
     browser,
     ccdRef,
     accessibilityTest,
@@ -267,7 +269,7 @@ export class JudgeManageOrderJourney {
     uploadOrderFL401Options,
     manageOrdersOptions,
   }: JudgeUOCaseProgressionJourneyParams): Promise<void> {
-    const page: Page = await Helpers.openNewBrowserWindow(browser, "judge");
+    page = await Helpers.openNewBrowserWindow(browser, "judge");
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
     await Helpers.waitForTask(page, "Directions on Issue");
     await Helpers.chooseEventFromDropdown(page, c100CaseWorkerActions);
