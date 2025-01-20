@@ -1,20 +1,18 @@
 import { Browser, Page } from "@playwright/test";
 import {
-  WACaseWorkerActions,
   createOrderFL401Options,
   judgeTitles,
   manageOrdersOptions,
+  WACaseWorkerActions,
 } from "../../../../common/types.ts";
 import { createOrderManageOrders19Options } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders19Page.ts";
 import { howLongWillOrderBeInForce } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders12Page.ts";
 import { JudgeManageOrderJourney } from "./judgeManageOrders/judgeManageOrdersJourney.ts";
-import { CheckApplicationJourney } from "./checkApplication/checkApplicationJourney.ts";
-import { SendToGateKeeperJourney } from "./sendToGateKeeper/sendToGateKeeperJourney.ts";
+import { submitEvent } from "../../../../common/solicitorCaseCreatorHelper.ts";
 
 interface CheckApplicationParams {
   page: Page;
   accessibilityTest: boolean;
-  yesNoSendToGateKeeper: boolean;
   ccdRef: string;
   c100CaseWorkerActions: WACaseWorkerActions;
   createOrderFL401Options: createOrderFL401Options;
@@ -31,7 +29,6 @@ export class ApplicationJourneysCheckGatekeeperJudgeCOOrder {
   public static async applicationJourneysCheckGatekeeperJudgeCOOrder({
     page,
     accessibilityTest,
-    yesNoSendToGateKeeper,
     ccdRef,
     c100CaseWorkerActions,
     createOrderFL401Options,
@@ -43,18 +40,11 @@ export class ApplicationJourneysCheckGatekeeperJudgeCOOrder {
     manageOrdersOptions,
     browser,
   }: CheckApplicationParams): Promise<void> {
-    await CheckApplicationJourney.checkApplication({
-      page,
-      accessibilityTest,
-      ccdRef,
-    });
-    await SendToGateKeeperJourney.sendToGateKeeper({
-      page,
-      accessibilityTest,
-      yesNoSendToGateKeeper,
-      ccdRef,
-    });
+    await submitEvent(page, ccdRef, "fl401AddCaseNumber");
+    await submitEvent(page, ccdRef, "fl401SendToGateKeeper");
+    // TODO: new API call, will need to think about this a bit more - need to check if/how the variables differ between tests
     await JudgeManageOrderJourney.JudgeCreateOrderCaseProgressionJourney({
+      page,
       browser,
       ccdRef,
       accessibilityTest,
