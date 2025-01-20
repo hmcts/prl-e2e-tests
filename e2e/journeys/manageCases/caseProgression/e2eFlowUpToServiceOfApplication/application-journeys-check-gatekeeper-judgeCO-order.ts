@@ -1,4 +1,4 @@
-import { Browser, Page } from "@playwright/test";
+import { Browser, BrowserContext, Page } from "@playwright/test";
 import {
   createOrderFL401Options,
   judgeTitles,
@@ -7,8 +7,13 @@ import {
 } from "../../../../common/types.ts";
 import { createOrderManageOrders19Options } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders19Page.ts";
 import { howLongWillOrderBeInForce } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders12Page.ts";
-import { JudgeManageOrderJourney } from "./judgeManageOrders/judgeManageOrdersJourney.ts";
-import { submitEvent } from "../../../../common/solicitorCaseCreatorHelper.ts";
+import {
+  jsonDatas,
+  submitEvent,
+} from "../../../../common/solicitorCaseCreatorHelper.ts";
+import Config from "../../../../config.ts";
+import config from "../../../../config.ts";
+import { Helpers } from "../../../../common/helpers.ts";
 
 interface CheckApplicationParams {
   page: Page;
@@ -23,6 +28,7 @@ interface CheckApplicationParams {
   howLongWillOrderBeInForce: howLongWillOrderBeInForce;
   manageOrdersOptions: manageOrdersOptions;
   browser: Browser;
+  manageOrderData: typeof jsonDatas;
 }
 
 export class ApplicationJourneysCheckGatekeeperJudgeCOOrder {
@@ -39,23 +45,30 @@ export class ApplicationJourneysCheckGatekeeperJudgeCOOrder {
     howLongWillOrderBeInForce,
     manageOrdersOptions,
     browser,
+    manageOrderData,
   }: CheckApplicationParams): Promise<void> {
     await submitEvent(page, ccdRef, "fl401AddCaseNumber");
     await submitEvent(page, ccdRef, "fl401SendToGateKeeper");
-    // TODO: new API call, will need to think about this a bit more - need to check if/how the variables differ between tests
-    await JudgeManageOrderJourney.JudgeCreateOrderCaseProgressionJourney({
-      page,
-      browser,
-      ccdRef,
-      accessibilityTest,
-      c100CaseWorkerActions,
-      createOrderFL401Options,
-      yesNoManageOrders,
-      judgeTitles,
-      withOrWithoutNotice,
-      createOrderManageOrders19Options,
-      howLongWillOrderBeInForce,
-      manageOrdersOptions,
+    const newBrowser = await browser.browserType().launch();
+    const newContext: BrowserContext = await newBrowser.newContext({
+      storageState: Config.sessionStoragePath + "judge.json",
     });
+    const newPage: Page = await newContext.newPage();
+    await Helpers.goToCase(newPage, config.manageCasesBaseURL, ccdRef, "tasks");
+    if (manageOrderData === jsonDatas.manageOrderDataAmendDischargedVaried) {
+      await submitEvent(
+        newPage,
+        ccdRef,
+        "manageOrders",
+        jsonDatas.manageOrderDataAmendDischargedVaried,
+      );
+    } else {
+      await submitEvent(
+        newPage,
+        ccdRef,
+        "manageOrders",
+        jsonDatas.manageOrderDataPowerOfArrest,
+      );
+    }
   }
 }

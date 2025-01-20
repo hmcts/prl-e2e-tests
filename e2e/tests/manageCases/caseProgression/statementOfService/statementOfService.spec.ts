@@ -1,9 +1,10 @@
 import { test } from "@playwright/test";
 import Config from "../../../../config";
+import config from "../../../../config";
 import createDaCitizenCourtNavCase from "../../../../common/createCaseHelper";
 import { Helpers } from "../../../../common/helpers";
-import config from "../../../../config";
 import { StatementOfService } from "../../../../journeys/manageCases/caseProgression/statementOfService/statementOfService.ts";
+import { jsonDatas } from "../../../../common/solicitorCaseCreatorHelper.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
@@ -36,6 +37,7 @@ test.describe("Complete the Order task for DA Citizen case tests.", () => {
       personallyServed: true,
       yesNoServiceOfApplication4: true,
       responsibleForServing: "courtBailiff",
+      manageOrderData: jsonDatas.manageOrderDataPowerOfArrest,
     });
   });
 
@@ -60,6 +62,7 @@ test.describe("Complete the Order task for DA Citizen case tests.", () => {
       personallyServed: false,
       yesNoServiceOfApplication4: true,
       responsibleForServing: "courtBailiff",
+      manageOrderData: jsonDatas.manageOrderDataAmendDischargedVaried,
     });
   });
 });

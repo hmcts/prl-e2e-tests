@@ -12,6 +12,7 @@ import { E2eFlowUpToServiceOfApplication } from "../e2eFlowUpToServiceOfApplicat
 import { createOrderManageOrders19Options } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders19Page.ts";
 import { howLongWillOrderBeInForce } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders12Page.ts";
 import { responsibleForServing } from "../../../../pages/manageCases/caseProgression/serviceOfApplication/ServiceOfApplication4Page.ts";
+import { jsonDatas } from "../../../../common/solicitorCaseCreatorHelper.ts";
 
 interface ServiceOfApplicationJourneyParams {
   page: Page;
@@ -30,6 +31,7 @@ interface ServiceOfApplicationJourneyParams {
   personallyServed: boolean;
   yesNoServiceOfApplication4: boolean;
   responsibleForServing: responsibleForServing;
+  manageOrderData: typeof jsonDatas;
 }
 
 export class CreateABundleJourney {
@@ -50,6 +52,7 @@ export class CreateABundleJourney {
     personallyServed,
     yesNoServiceOfApplication4,
     responsibleForServing,
+    manageOrderData,
   }: ServiceOfApplicationJourneyParams): Promise<void> {
     await E2eFlowUpToServiceOfApplication.e2eFlowUpToServiceOfApplication({
       page,
@@ -68,6 +71,7 @@ export class CreateABundleJourney {
       personallyServed,
       yesNoServiceOfApplication4,
       responsibleForServing,
+      manageOrderData,
     });
     await page.reload();
     await Helpers.chooseEventFromDropdown(page, "Create a bundle");

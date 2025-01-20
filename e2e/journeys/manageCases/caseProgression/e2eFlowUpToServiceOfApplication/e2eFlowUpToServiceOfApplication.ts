@@ -12,6 +12,7 @@ import { ApplicationJourneysCheckGatekeeperJudgeCOOrder } from "./application-jo
 import { CompleteTheOrder } from "./completeTheOrder/completeTheOrder.ts";
 import { ServiceOfApplicationJourney } from "./serviceOfApplication/serviceOfApplication.ts";
 import Config from "../../../../config.ts";
+import { jsonDatas } from "../../../../common/solicitorCaseCreatorHelper.ts";
 
 interface CompleteTheOrderParams {
   page: Page;
@@ -30,6 +31,7 @@ interface CompleteTheOrderParams {
   personallyServed: boolean;
   yesNoServiceOfApplication4: boolean;
   responsibleForServing: responsibleForServing;
+  manageOrderData: typeof jsonDatas;
 }
 
 // note: params are always the same from activateCase
@@ -51,6 +53,7 @@ export class E2eFlowUpToServiceOfApplication {
     personallyServed,
     yesNoServiceOfApplication4,
     responsibleForServing,
+    manageOrderData,
   }: CompleteTheOrderParams): Promise<void> {
     await ApplicationJourneysCheckGatekeeperJudgeCOOrder.applicationJourneysCheckGatekeeperJudgeCOOrder(
       {
@@ -66,6 +69,7 @@ export class E2eFlowUpToServiceOfApplication {
         createOrderManageOrders19Options,
         howLongWillOrderBeInForce,
         browser,
+        manageOrderData,
       },
     );
     // open new browser and sign in as court admin user

@@ -257,6 +257,7 @@ export class JudgeManageOrderJourney {
         });
         break;
     }
+    console.log("wait");
   }
 
   public static async JudgeUploadOrderCaseProgressionJourney({
