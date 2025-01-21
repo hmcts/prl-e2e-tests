@@ -7,33 +7,18 @@ import { AdminEditAndApproveAnOrder22Page } from "../../../../../pages/manageCas
 import { AdminEditAndApproveAnOrder23Page } from "../../../../../pages/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrder23Page.ts";
 import { AdminEditAndApproveAnOrderSubmitPage } from "../../../../../pages/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrderSubmitPage.ts";
 import config from "../../../../../config.ts";
-import {
-  createOrderFL401Options,
-  judgeTitles,
-  manageOrdersOptions,
-  WACaseWorkerActions,
-} from "../../../../../common/types.ts";
-import { createOrderManageOrders19Options } from "../../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders19Page.ts";
-import { howLongWillOrderBeInForce } from "../../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders12Page.ts";
-import { responsibleForServing } from "../../../../../pages/manageCases/caseProgression/serviceOfApplication/ServiceOfApplication4Page.ts";
+import { createOrderFL401Options } from "../../../../../common/types.ts";
+import { ApplicationJourneysCheckGatekeeperJudgeCOOrder } from "../application-journeys-check-gatekeeper-judgeCO-order.ts";
+import { jsonDatas } from "../../../../../common/solicitorCaseCreatorHelper.ts";
 
 interface CompleteTheOrderParams {
   page: Page;
-  accessibilityTest: boolean;
-  yesNoSendToGateKeeper: boolean;
-  ccdRef: string;
-  c100CaseWorkerActions: WACaseWorkerActions;
-  manageOrdersOptions: manageOrdersOptions;
-  createOrderFL401Options: createOrderFL401Options;
-  yesNoManageOrders: boolean;
-  judgeTitles: judgeTitles;
-  withOrWithoutNotice: boolean;
-  createOrderManageOrders19Options: createOrderManageOrders19Options;
-  howLongWillOrderBeInForce: howLongWillOrderBeInForce;
   browser: Browser;
+  accessibilityTest: boolean;
+  ccdRef: string;
+  createOrderFL401Options: createOrderFL401Options;
   personallyServed: boolean;
-  yesNoServiceOfApplication4: boolean;
-  responsibleForServing: responsibleForServing;
+  manageOrderData: typeof jsonDatas;
 }
 
 // ServiceOfApplicationJourney seems to only work when it is put into this file, and not if it
@@ -42,11 +27,22 @@ interface CompleteTheOrderParams {
 export class CompleteTheOrder {
   public static async completeTheOrder({
     page,
+    browser,
     accessibilityTest,
     ccdRef,
     createOrderFL401Options,
     personallyServed,
+    manageOrderData,
   }: CompleteTheOrderParams): Promise<void> {
+    await ApplicationJourneysCheckGatekeeperJudgeCOOrder.applicationJourneysCheckGatekeeperJudgeCOOrder(
+      {
+        page,
+        ccdRef,
+        browser,
+        manageOrderData,
+      },
+    );
+
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
     // complete the task Complete the Order
     switch (createOrderFL401Options) {

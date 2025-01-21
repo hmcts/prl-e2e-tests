@@ -39,16 +39,8 @@ export class E2eFlowUpToServiceOfApplication {
   public static async e2eFlowUpToServiceOfApplication({
     page,
     accessibilityTest,
-    yesNoSendToGateKeeper,
     ccdRef,
-    c100CaseWorkerActions,
-    manageOrdersOptions,
     createOrderFL401Options,
-    yesNoManageOrders,
-    judgeTitles,
-    withOrWithoutNotice,
-    createOrderManageOrders19Options,
-    howLongWillOrderBeInForce,
     browser,
     personallyServed,
     yesNoServiceOfApplication4,
@@ -71,24 +63,14 @@ export class E2eFlowUpToServiceOfApplication {
     const newPage: Page = await newContext.newPage();
     // TODO: new API call - need to check if/how the variables differ between tests unless it isn't needed see comment below
     // TODO: move into own UI test - unless it isn't needed see comment below
-    // shouldn't need an order for service of application - is this not covered by the createAnOrderDA test??
     await CompleteTheOrder.completeTheOrder({
       page: newPage,
-      accessibilityTest,
-      yesNoSendToGateKeeper,
-      ccdRef,
-      c100CaseWorkerActions,
-      manageOrdersOptions,
-      createOrderFL401Options,
-      yesNoManageOrders,
-      judgeTitles,
-      withOrWithoutNotice,
-      createOrderManageOrders19Options,
-      howLongWillOrderBeInForce,
       browser,
+      accessibilityTest,
+      ccdRef,
+      createOrderFL401Options,
       personallyServed,
-      yesNoServiceOfApplication4,
-      responsibleForServing,
+      manageOrderData,
     });
     // TODO: new API call - need to check if/how the variables differ between tests
     // TODO: move into own UI test
