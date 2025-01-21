@@ -1,13 +1,14 @@
 import { Selectors } from "../../../../../common/selectors.ts";
 import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 import { Page } from "@playwright/test";
-import { Start_alternativeContent } from "../../../../../fixtures/citizen/caseView/keepDetailsPrivate/applicant/start_alternativeContent.ts";
 import { Helpers } from "../../../../../common/helpers.ts";
+import { StartAlternativeContent } from "../../../../../fixtures/citizen/caseView/keepDetailsPrivate/startAlternativeContent.ts";
 
-interface StartAlternativeParams {
+interface Start_alternativeParams {
   page: Page;
   accessibilityTest: boolean;
   startAlternativeYesNo: boolean;
+  isApplicant: boolean;
 }
 
 enum UniqueSelectors {
@@ -18,32 +19,77 @@ enum UniqueSelectors {
   no = "#startAlternative-2",
 }
 
-export class StartAlternativePage {
-  public static async start_alternativePage({
+export class ApplicantStartAlternativePage {
+  public static async applicantStartAlternativePage({
     page,
     accessibilityTest,
     startAlternativeYesNo,
-  }: StartAlternativeParams): Promise<void> {
-    await this.checkPageLoads({ page, accessibilityTest });
-    await this.fillInFields({ page, startAlternativeYesNo });
+    isApplicant,
+  }: Start_alternativeParams): Promise<void> {
+    await this.applicantCheckPageLoads({ page, accessibilityTest });
+    await this.fillInFields({ page, startAlternativeYesNo, isApplicant });
   }
 
-  private static async checkPageLoads({
+  public static async respondentStartAlternativePage({
     page,
     accessibilityTest,
-  }: Partial<StartAlternativeParams>): Promise<void> {
+    startAlternativeYesNo,
+    isApplicant,
+  }: Start_alternativeParams): Promise<void> {
+    await this.respondentCheckPageLoads({ page, accessibilityTest });
+    await this.fillInFields({ page, startAlternativeYesNo, isApplicant });
+  }
+
+  private static async applicantCheckPageLoads({
+    page,
+    accessibilityTest,
+  }: Partial<Start_alternativeParams>): Promise<void> {
     if (!page) {
       throw new Error("Page is not defined)");
     }
     await page
       .locator(Selectors.GovukHeadingL, {
-        hasText: Start_alternativeContent.pageTitle,
+        hasText: StartAlternativeContent.applicantPageTitle,
       })
       .waitFor();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${Start_alternativeContent.span}")`,
+        `${Selectors.Span}:text-is("${StartAlternativeContent.span}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukLabel}:text-is("${CommonStaticText.yes}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukLabel}:text-is("${CommonStaticText.no}")`,
+        1,
+      ),
+    ]);
+    if (accessibilityTest) {
+      // await AccessibilityTestHelper.run(page); #TODO: Awaiting for accessibility ticket FPET-1242 to be resolved
+    }
+  }
+
+  private static async respondentCheckPageLoads({
+    page,
+    accessibilityTest,
+  }: Partial<Start_alternativeParams>): Promise<void> {
+    if (!page) {
+      throw new Error("Page is not defined)");
+    }
+    await page
+      .locator(Selectors.GovukHeadingL, {
+        hasText: StartAlternativeContent.respondentPageTitle,
+      })
+      .waitFor();
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${StartAlternativeContent.span}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -65,13 +111,18 @@ export class StartAlternativePage {
   private static async fillInFields({
     page,
     startAlternativeYesNo,
-  }: Partial<StartAlternativeParams>): Promise<void> {
+    isApplicant,
+  }: Partial<Start_alternativeParams>): Promise<void> {
     if (!page) {
       throw new Error("Page is not defined)");
     }
     if (startAlternativeYesNo) {
       await page.click(UniqueSelectors.yes);
-      await this.hiddenFormLabels(page);
+      if (isApplicant) {
+        await this.applicantHiddenFormLabels(page);
+      } else {
+        await this.respondentHiddenFormLabels(page);
+      }
       await page.click(UniqueSelectors.hiddenYesAddress);
       await page.click(UniqueSelectors.hiddenYesPhone);
       await page.click(UniqueSelectors.hiddenYesEmail);
@@ -83,23 +134,45 @@ export class StartAlternativePage {
     );
   }
 
-  private static async hiddenFormLabels(page: Page): Promise<void> {
+  private static async applicantHiddenFormLabels(page: Page): Promise<void> {
     await Promise.all([
       Helpers.checkGroup(
         page,
         3,
-        Start_alternativeContent,
+        StartAlternativeContent,
         "hiddenFormLabel",
         Selectors.GovukLabel,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.div}:text-is("${Start_alternativeContent.hiddenDiv}")`,
+        `${Selectors.div}:text-is("${StartAlternativeContent.hiddenDivApplicant}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukFieldsetLegend}:text-is("${Start_alternativeContent.hiddenLegend}")`,
+        `${Selectors.GovukFieldsetLegend}:text-is("${StartAlternativeContent.hiddenLegend}")`,
+        1,
+      ),
+    ]);
+  }
+
+  private static async respondentHiddenFormLabels(page: Page): Promise<void> {
+    await Promise.all([
+      Helpers.checkGroup(
+        page,
+        3,
+        StartAlternativeContent,
+        "hiddenFormLabel",
+        Selectors.GovukLabel,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.div}:text-is("${StartAlternativeContent.hiddenDivRespondent}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFieldsetLegend}:text-is("${StartAlternativeContent.hiddenLegend}")`,
         1,
       ),
     ]);

@@ -1,0 +1,15 @@
+export enum FL401SummaryTabContent {
+  tabName = "Summary",
+  tabTitle = "Summary",
+  subTitle1 = "Allocated judge",
+  subTitle2 = "Case Status",
+  subTitle3 = "Confidential details",
+  subTitle4 = "Urgency",
+  subTitle5 = "Type of application",
+  subTitle6 = "Special arrangements",
+  subTitle7 = "Other proceedings",
+  subTitle8 = "Date submitted to HMCTS",
+  refugeSubTitle = "Refuge case",
+  refugeQuestionText16 = "Anyone living in a refuge?",
+  refugeAnswerText16 = "Yes",
+}

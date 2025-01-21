@@ -3,7 +3,7 @@ import Config from "../../../../../config.ts";
 import config from "../../../../../config.ts";
 import createDaCitizenCourtNavCase from "../../../../../common/createCaseHelper.ts";
 import { Helpers } from "../../../../../common/helpers.ts";
-import { KeepDetailsPrivate } from "../../../../../journeys/citizen/caseView/keepDetailsPrivate/applicant/keepDetailsPrivate.ts";
+import { KeepDetailsPrivate } from "../../../../../journeys/citizen/caseView/keepDetailsPrivate/applicant&Respondent/keepDetailsPrivate.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
@@ -25,6 +25,7 @@ test.describe("Applicant keep details private tests", (): void => {
       browser: browser,
       caseRef: ccdRef,
       accessibilityTest: false,
+      isApplicant: true,
       startAlternativeYesNo: true,
       yesNoDontKnow: "yes",
     });
@@ -39,6 +40,7 @@ test.describe("Applicant keep details private tests", (): void => {
       browser: browser,
       caseRef: ccdRef,
       accessibilityTest: false,
+      isApplicant: true,
       startAlternativeYesNo: false,
       yesNoDontKnow: "no",
     });
@@ -53,6 +55,7 @@ test.describe("Applicant keep details private tests", (): void => {
       browser: browser,
       caseRef: ccdRef,
       accessibilityTest: true,
+      isApplicant: true,
       startAlternativeYesNo: true,
       yesNoDontKnow: "dontKnow",
     });

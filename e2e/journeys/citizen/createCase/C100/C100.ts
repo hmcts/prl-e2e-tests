@@ -6,8 +6,6 @@ import {
   typeOfPerson,
   yesNoDontKnow,
 } from "../../../../common/types";
-import { ConfirmationPage } from "../../../../pages/citizen/createCase/C100/confirmation/confirmationPage";
-import { EqualityAndDiversityPage } from "../../../../pages/citizen/createCase/C100/confirmation/equalityAndDiversityQuestionsPage";
 import { MiamChildProtectionConcernsType } from "../../../../pages/citizen/createCase/C100/MIAM/miamChildProtectionPage";
 import { MiamOtherReasonForNotAttending } from "../../../../pages/citizen/createCase/C100/MIAM/miamMiamOtherPage";
 import { MiamReasonForNoAccessToMediator } from "../../../../pages/citizen/createCase/C100/MIAM/miamNoAccessToMediatorPage";
@@ -26,7 +24,6 @@ import { C100ConsentOrderUpload } from "./subJourneys/C100ConsentOrderUpload";
 import { C100HelpWithFees } from "./subJourneys/c100HelpWithFees";
 import { C100InternationalElements } from "./subJourneys/c100InternationalElements";
 import { C100OtherProceedings } from "./subJourneys/C100OtherProceedings";
-import { C100Pay } from "./subJourneys/C100Pay";
 import { C100People } from "./subJourneys/C100People1";
 import { C100ReasonableAdjustments } from "./subJourneys/c100ReasonableAdjustments";
 import { C100SafetyConcerns } from "./subJourneys/c100SafetyConcerns";
@@ -34,6 +31,9 @@ import { C100ScreeningSections } from "./subJourneys/c100ScreeningSections";
 import { C100TypeOfOrder } from "./subJourneys/C100TypeOfOrder";
 import { C100UrgencyAndWithoutNotice } from "./subJourneys/C100UrgencyAndWithoutNotice";
 import { MIAM } from "./subJourneys/MIAM";
+import { EqualityAndDiversityPage } from "../../../../pages/citizen/createCase/C100/confirmation/equalityAndDiversityQuestionsPage.ts";
+import { C100Pay } from "./subJourneys/C100Pay.ts";
+import { ConfirmationPage } from "../../../../pages/citizen/createCase/C100/confirmation/confirmationPage.ts";
 
 interface C100ApplicationCompletedForYouOptions {
   page: Page;
@@ -76,6 +76,7 @@ interface C100TopMiroJourneyOptions {
   c100PrivateDetails: boolean;
   applicantChangedName: boolean;
   applicantGender: ApplicantGender;
+  applicantLivesInRefuge: boolean;
   applicantAddressLookup: boolean;
   appAddressLookupSuccessful: boolean;
   applicantPrevAddress5Years: boolean;
@@ -93,6 +94,7 @@ interface C100TopMiroJourneyOptions {
   c100OtherPeopleGender: ApplicantGender;
   c100OtherPeopleChangedName: yesNoDontKnow;
   c100OtherPeopleDoBKnown: boolean;
+  c100OtherPersonLivesInRefuge: boolean;
   c100ChildMainlyLivesWith: typeOfPerson;
   yesNoOtherProceedings: boolean;
   c100ChildrenSafetyConcerns: boolean;
@@ -125,6 +127,7 @@ interface C100EmergencyProtectionJourneyOptions {
   applicantChangedName: boolean;
   applicantGender: ApplicantGender;
   applicantRelationship: Relationship;
+  applicantLivesInRefuge: boolean;
   applicantAddressLookup: boolean;
   appAddressLookupSuccessful: boolean;
   applicantPrevAddress5Years: boolean;
@@ -144,6 +147,7 @@ interface C100EmergencyProtectionJourneyOptions {
   c100OtherPeopleChangedName: yesNoDontKnow;
   c100OtherPeopleDoBKnown: boolean;
   c100OtherPersonRelationship: Relationship;
+  c100OtherPersonLivesInRefuge: boolean;
   c100ChildMainlyLivesWith: typeOfPerson;
   c100ChildrenSafetyConcerns: boolean;
   c100SafetyConcernsYesNoToAll: boolean; // Applies to all booleans that don't affect the journey
@@ -185,6 +189,7 @@ interface C100ExistingMIAMDocumentOptions {
   applicantChangedName: boolean;
   applicantGender: ApplicantGender;
   applicantRelationship: Relationship;
+  applicantLivesInRefuge: boolean;
   applicantAddressLookup: boolean;
   appAddressLookupSuccessful: boolean;
   applicantPrevAddress5Years: boolean;
@@ -204,6 +209,7 @@ interface C100ExistingMIAMDocumentOptions {
   c100OtherPeopleChangedName: yesNoDontKnow;
   c100OtherPeopleDoBKnown: boolean;
   c100OtherPersonRelationship: Relationship;
+  c100OtherPersonLivesInRefuge: boolean;
   c100ChildMainlyLivesWith: typeOfPerson;
   yesNoChildArrangementOrderDetails: boolean;
   yesNoOtherProceedings: boolean;
@@ -246,6 +252,7 @@ interface C100FourthRowMiroJourneyOptions {
   applicantChangedName: boolean;
   applicantGender: ApplicantGender;
   applicantRelationship: Relationship;
+  applicantLivesInRefuge: boolean;
   applicantAddressLookup: boolean;
   appAddressLookupSuccessful: boolean;
   applicantPrevAddress5Years: boolean;
@@ -265,6 +272,7 @@ interface C100FourthRowMiroJourneyOptions {
   c100OtherPeopleChangedName: yesNoDontKnow;
   c100OtherPeopleDoBKnown: boolean;
   c100OtherPersonRelationship: Relationship;
+  c100OtherPersonLivesInRefuge: boolean;
   c100ChildMainlyLivesWith: typeOfPerson;
   yesNoOtherProceedings: boolean;
   c100ChildrenSafetyConcerns: boolean;
@@ -393,6 +401,7 @@ export class C100 {
     c100OthersKnowApplicantsContact,
     applicantChangedName,
     applicantGender,
+    applicantLivesInRefuge,
     applicantAddressLookup,
     appAddressLookupSuccessful,
     applicantPrevAddress5Years,
@@ -410,6 +419,7 @@ export class C100 {
     c100OtherPeopleGender,
     c100OtherPeopleChangedName,
     c100OtherPeopleDoBKnown,
+    c100OtherPersonLivesInRefuge,
     c100ChildMainlyLivesWith,
     yesNoOtherProceedings,
     c100ChildrenSafetyConcerns,
@@ -477,6 +487,7 @@ export class C100 {
       applicantChangedName: applicantChangedName,
       applicantGender: applicantGender,
       applicantRelationship: relationshipType,
+      applicantLivesInRefuge: applicantLivesInRefuge,
       applicantAddressLookup: applicantAddressLookup,
       appAddressLookupSuccessful: appAddressLookupSuccessful,
       applicantPrevAddress5Years: applicantPrevAddress5Years,
@@ -496,6 +507,7 @@ export class C100 {
       c100OtherPeopleChangedName: c100OtherPeopleChangedName,
       c100OtherPeopleDoBKnown: c100OtherPeopleDoBKnown,
       c100OtherPersonRelationship: relationshipType,
+      c100OtherPersonLivesInRefuge: c100OtherPersonLivesInRefuge,
       c100ChildMainlyLivesWith: c100ChildMainlyLivesWith,
     });
     await C100OtherProceedings.c100OtherProceedings1({
@@ -566,6 +578,7 @@ export class C100 {
     applicantChangedName,
     applicantGender,
     applicantRelationship,
+    applicantLivesInRefuge,
     applicantAddressLookup,
     appAddressLookupSuccessful,
     applicantPrevAddress5Years,
@@ -585,6 +598,7 @@ export class C100 {
     c100OtherPeopleChangedName,
     c100OtherPeopleDoBKnown,
     c100OtherPersonRelationship,
+    c100OtherPersonLivesInRefuge,
     c100ChildMainlyLivesWith,
     c100ChildrenSafetyConcerns,
     c100SafetyConcernsYesNoToAll,
@@ -669,6 +683,7 @@ export class C100 {
       applicantChangedName: applicantChangedName,
       applicantGender: applicantGender,
       applicantRelationship: applicantRelationship,
+      applicantLivesInRefuge: applicantLivesInRefuge,
       applicantAddressLookup: applicantAddressLookup,
       appAddressLookupSuccessful: appAddressLookupSuccessful,
       applicantPrevAddress5Years: applicantPrevAddress5Years,
@@ -688,6 +703,7 @@ export class C100 {
       c100OtherPeopleChangedName: c100OtherPeopleChangedName,
       c100OtherPeopleDoBKnown: c100OtherPeopleDoBKnown,
       c100OtherPersonRelationship: c100OtherPersonRelationship,
+      c100OtherPersonLivesInRefuge: c100OtherPersonLivesInRefuge,
       c100ChildMainlyLivesWith: c100ChildMainlyLivesWith,
     });
     await C100SafetyConcerns.c100SafetyConcerns({
@@ -769,6 +785,7 @@ export class C100 {
     applicantChangedName,
     applicantGender,
     applicantRelationship,
+    applicantLivesInRefuge,
     applicantAddressLookup,
     appAddressLookupSuccessful,
     applicantPrevAddress5Years,
@@ -788,6 +805,7 @@ export class C100 {
     c100OtherPeopleChangedName,
     c100OtherPeopleDoBKnown,
     c100OtherPersonRelationship,
+    c100OtherPersonLivesInRefuge,
     c100ChildMainlyLivesWith,
     yesNoOtherProceedings,
     c100ChildrenSafetyConcerns,
@@ -867,6 +885,7 @@ export class C100 {
       applicantChangedName: applicantChangedName,
       applicantGender: applicantGender,
       applicantRelationship: applicantRelationship,
+      applicantLivesInRefuge: applicantLivesInRefuge,
       applicantAddressLookup: applicantAddressLookup,
       appAddressLookupSuccessful: appAddressLookupSuccessful,
       applicantPrevAddress5Years: applicantPrevAddress5Years,
@@ -886,6 +905,7 @@ export class C100 {
       c100OtherPeopleChangedName: c100OtherPeopleChangedName,
       c100OtherPeopleDoBKnown: c100OtherPeopleDoBKnown,
       c100OtherPersonRelationship: c100OtherPersonRelationship,
+      c100OtherPersonLivesInRefuge: c100OtherPersonLivesInRefuge,
       c100ChildMainlyLivesWith: c100ChildMainlyLivesWith,
     });
     await C100OtherProceedings.c100OtherProceedings1({
@@ -974,6 +994,7 @@ export class C100 {
     applicantChangedName,
     applicantGender,
     applicantRelationship,
+    applicantLivesInRefuge,
     applicantAddressLookup,
     appAddressLookupSuccessful,
     applicantPrevAddress5Years,
@@ -993,6 +1014,7 @@ export class C100 {
     c100OtherPeopleChangedName,
     c100OtherPeopleDoBKnown,
     c100OtherPersonRelationship,
+    c100OtherPersonLivesInRefuge,
     c100ChildMainlyLivesWith,
     yesNoOtherProceedings,
     c100ChildrenSafetyConcerns,
@@ -1072,6 +1094,7 @@ export class C100 {
       applicantChangedName: applicantChangedName,
       applicantGender: applicantGender,
       applicantRelationship: applicantRelationship,
+      applicantLivesInRefuge: applicantLivesInRefuge,
       applicantAddressLookup: applicantAddressLookup,
       appAddressLookupSuccessful: appAddressLookupSuccessful,
       applicantPrevAddress5Years: applicantPrevAddress5Years,
@@ -1091,6 +1114,7 @@ export class C100 {
       c100OtherPeopleChangedName: c100OtherPeopleChangedName,
       c100OtherPeopleDoBKnown: c100OtherPeopleDoBKnown,
       c100OtherPersonRelationship: c100OtherPersonRelationship,
+      c100OtherPersonLivesInRefuge: c100OtherPersonLivesInRefuge,
       c100ChildMainlyLivesWith: c100ChildMainlyLivesWith,
     });
     await C100OtherProceedings.c100OtherProceedings1({
@@ -1141,12 +1165,12 @@ export class C100 {
       c100ChildrenSupervision: c100ChildrenSupervision,
       c100YesNoNeedHelpWithFees: c100YesNoNeedHelpWithFees,
     });
-    // await EqualityAndDiversityPage.equalityAndDiversityPage({
-    //   page
-    // });
-    // await ConfirmationPage.confirmationPage({
-    //   page: page,
-    //   accessibilityTest: accessibilityTest,
-    // });
+    await EqualityAndDiversityPage.equalityAndDiversityPage({
+      page,
+    });
+    await ConfirmationPage.confirmationPage({
+      page: page,
+      accessibilityTest: accessibilityTest,
+    });
   }
 }

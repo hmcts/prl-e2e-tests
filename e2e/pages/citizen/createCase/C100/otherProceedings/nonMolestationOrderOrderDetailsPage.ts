@@ -58,8 +58,8 @@ export class NonMolestationOrderDetailsPage {
         page,
         5,
         NonMolestationOrderDetailsContent,
-        "h1",
-        `${Selectors.h1}`,
+        "GovukFieldsetLegend",
+        `${Selectors.GovukFieldsetLegend}`,
       ),
       Helpers.checkGroup(
         page,

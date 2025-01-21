@@ -9,13 +9,13 @@ import idamLoginHelper from "./idamLoginHelper";
 import { Selectors } from "./selectors.ts";
 import {
   c100SolicitorEvents,
+  courtAdminEvents,
+  fl401CaseWorkerActions,
   fl401JudiciaryEvents,
   fl401SolicitorEvents,
   fl401SubmittedSolicitorEvents,
-  WACaseWorkerActions,
   UserRole,
-  fl401CaseWorkerActions,
-  courtAdminEvents,
+  WACaseWorkerActions,
 } from "./types";
 import Config from "../config.ts";
 
@@ -238,8 +238,15 @@ export class Helpers {
     caseNumber: string,
     caseTab: string,
   ): string {
-    const caseNumberDigits: string = caseNumber.replace(/\D/g, "");
-    return `${baseURL}/case-details/${caseNumberDigits}/${caseTab}`;
+    const caseNumberDigits: string = caseNumber.toString().replace(/\D/g, "");
+    if (
+      caseTab.toLowerCase() === "tasks" ||
+      caseTab.toLowerCase() === "roles and access"
+    ) {
+      return `${baseURL}/case-details/${caseNumberDigits}/${caseTab}`;
+    } else {
+      return `${baseURL}/case-details/${caseNumberDigits}#${caseTab}`;
+    }
   }
 
   private static shortMonth(index: number): string {
@@ -349,6 +356,17 @@ export class Helpers {
     return await newContext.newPage();
   }
 
+  public static async getCaseNumberFromUrl(page: Page): Promise<string> {
+    const url: string = page.url();
+    const caseNumberMatch: RegExpMatchArray | null = url.match(
+      /case-details\/(\d{16})\/.*?/,
+    );
+    if (caseNumberMatch === null) {
+      throw new Error("Unable to extract case number from URL");
+    }
+    return caseNumberMatch[1];
+  }
+
   public static async waitForTaskToDisappear(page: Page, taskName: string) {
     // Refresh page until the task disappears - there can be some delay
     await expect
@@ -372,5 +390,22 @@ export class Helpers {
         },
       )
       .toBeTruthy();
+  }
+
+  public static async IsEqualityAndDiversityPageDisplayed(page: Page) {
+    await expect
+      .poll(
+        async () => {
+          const url = page.url();
+          return !url.includes(Config.citizenFrontendBaseURL);
+        },
+        {
+          intervals: [1_000],
+          timeout: 100_000,
+        },
+      )
+      .toBeTruthy();
+
+    return page.url().includes("pcq");
   }
 }

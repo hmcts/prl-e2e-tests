@@ -2,13 +2,15 @@ import { Page, expect } from "@playwright/test";
 import { CommonStaticText } from "../../../../common/commonStaticText";
 import { Helpers } from "../../../../common/helpers";
 import { Selectors } from "../../../../common/selectors";
-import { yesNoDontKnow } from "../../../../common/types";
+import { yesNoDontKnow, documentSubmittedBy } from "../../../../common/types";
 import { Fl401ReviewDocumentsSubmitContent } from "../../../../fixtures/manageCases/caseProgression/reviewDocuments/fl401ReviewDocumentsSubmitContent";
+import { Fl401ReviewDocuments2Content } from "../../../../fixtures/manageCases/caseProgression/reviewDocuments/fl401ReviewDocuments2Content.ts";
 
 interface FL401ReviewDocumentsSubmitPageOptions {
   page: Page;
   accessibilityTest: boolean;
   yesNoNotSureRestrictDocs: yesNoDontKnow;
+  documentSubmittedBy: documentSubmittedBy;
 }
 
 export class FL401ReviewDocumentsSubmitPage {
@@ -16,11 +18,13 @@ export class FL401ReviewDocumentsSubmitPage {
     page,
     accessibilityTest,
     yesNoNotSureRestrictDocs,
+    documentSubmittedBy,
   }: FL401ReviewDocumentsSubmitPageOptions): Promise<void> {
     await this.checkPageLoads({
       page,
       accessibilityTest,
       yesNoNotSureRestrictDocs: yesNoNotSureRestrictDocs,
+      documentSubmittedBy,
     });
     await this.fillInFields({ page });
   }
@@ -28,6 +32,7 @@ export class FL401ReviewDocumentsSubmitPage {
   private static async checkPageLoads({
     page,
     yesNoNotSureRestrictDocs,
+    documentSubmittedBy,
   }: Partial<FL401ReviewDocumentsSubmitPageOptions>) {
     if (!page) {
       throw new Error("No page found");
@@ -50,6 +55,10 @@ export class FL401ReviewDocumentsSubmitPage {
       `${Selectors.h1}:text-is("${Fl401ReviewDocumentsSubmitContent.pageTitle}")`,
     );
     await pageTitle.waitFor();
+    const documentLink =
+      documentSubmittedBy == "CourtNav"
+        ? Fl401ReviewDocuments2Content.testPdflink
+        : Fl401ReviewDocuments2Content.mockPdflink;
     await Promise.all([
       Helpers.checkGroup(
         page,
@@ -67,7 +76,7 @@ export class FL401ReviewDocumentsSubmitPage {
     ]);
     await expect(
       page.locator("ccd-read-dynamic-list-field span", {
-        hasText: "testPdf.pdf",
+        hasText: `${documentLink}`,
       }),
     ).toBeVisible();
     // if (accessibilityTest) {

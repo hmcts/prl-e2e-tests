@@ -29,7 +29,7 @@ test.describe("Applicant view all documents tests", (): void => {
     });
   });
 
-  test("Applicant view all documents. @regression @accessibility @nightly", async ({
+  test("Applicant view all documents. @regression @accessibility", async ({
     page,
     browser,
   }): Promise<void> => {

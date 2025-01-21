@@ -58,8 +58,8 @@ export class OtherInjunctionOrderDetailsPage {
         page,
         5,
         OtherInjunctionOrderDetailsContent,
-        "h1",
-        `${Selectors.h1}`,
+        "GovukFieldsetLegend",
+        `${Selectors.GovukFieldsetLegend}`,
       ),
       Helpers.checkGroup(
         page,

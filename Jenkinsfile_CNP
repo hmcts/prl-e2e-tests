@@ -86,6 +86,8 @@ def secrets = [
     secret('ccd-datastore-client-secret', 'CCD_DATA_STORE_SECRET'),
     secret('ccd-datastore-url', 'CCD_DATA_STORE_URL'),
     secret('manage-case-redirect-uri', 'MANAGE_CASE_REDIRECT_URI'),
+    secret('jurisdiction', 'JURISDICTION'),
+    secret('case-type', 'CASE_TYPE'),
   ]
 ]
 

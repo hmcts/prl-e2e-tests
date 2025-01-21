@@ -3,6 +3,7 @@ import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelp
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { ApplicantGender } from "../../../../../common/types";
+import config from "../../../../../config";
 import { ApplicantDetails1Content } from "../../../../../fixtures/manageCases/createCase/FL401/applicantDetails/applicantDetails1Content";
 
 enum uniqueSelectorPaths {
@@ -10,6 +11,8 @@ enum uniqueSelectorPaths {
   applicantFindAddress = `div#applicantsFL401_address_address_postcodeLookup`,
   solicitorFindAddress = `div#applicantsFL401_solicitorAddress_solicitorAddress_postcodeLookup`,
   applicantAddressUniqueSelector = "div > ccd-field-write > div > ccd-write-complex-type-field > div > fieldset > ccd-field-write > div > ccd-write-address-field > div > ccd-write-complex-type-field > div > fieldset > ccd-field-write > div > ccd-write-text-field > div > ",
+  uploadC8FormLabel = "label[for='applicantsFL401_refugeConfidentialityC8Form'] .form-label",
+  uploadC8FormHint = "label[for='applicantsFL401_refugeConfidentialityC8Form'] + .form-hint",
 }
 
 enum applicantInputIDs {
@@ -23,6 +26,9 @@ enum applicantInputIDs {
   applicantGenderMale = "#applicantsFL401_gender-male",
   applicantGenderOther = "#applicantsFL401_gender-other",
   applicantGenderOtherInput = "#applicantsFL401_otherGender",
+  applicantLivesInRefugeYes = "#applicantsFL401_liveInRefuge_Yes",
+  applicantLivesInRefugeNo = "#applicantsFL401_liveInRefuge_No",
+  c8RefugeFormUploadFileInput = "#applicantsFL401_refugeConfidentialityC8Form",
   applicantInputPostCode = "#applicantsFL401_address_address_postcodeInput",
   applicantSelectAddress = "#applicantsFL401_address_address_addressList",
   applicantBuildingAndStreet = "#applicantsFL401_address__detailAddressLine1",
@@ -129,6 +135,11 @@ export class ApplicantDetails1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
+        `${Selectors.GovukFormLabel}:text-is("${ApplicantDetails1Content.formLabelApplicantLivesInRefuge}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
         `${Selectors.a}:text-is("${ApplicantDetails1Content.cantEnterPostcode_2}")`,
         2,
       ),
@@ -152,6 +163,7 @@ export class ApplicantDetails1Page {
     await this.fillInYesNoRadios(page, yesNoFL401ApplicantDetails);
     await this.fillInGenderRadio(page, applicantGender);
     if (yesNoFL401ApplicantDetails) {
+      await this.uploadC8RefugeForm(page);
       await this.fillInSecondLevelFields(page, applicantGender);
       await this.fillInSecondLevelRadios(page, yesNoFL401ApplicantDetails);
     }
@@ -235,6 +247,7 @@ export class ApplicantDetails1Page {
   ): Promise<void> {
     if (yesNoFL401ApplicantDetails) {
       const radiosToClick = [
+        applicantInputIDs.applicantLivesInRefugeYes,
         applicantInputIDs.confidentialAddressYes,
         applicantInputIDs.canProvideEmailAddressYes,
         applicantInputIDs.confidentialPhoneNumberYes,
@@ -244,6 +257,7 @@ export class ApplicantDetails1Page {
       }
     } else {
       const radiosToClick = [
+        applicantInputIDs.applicantLivesInRefugeNo,
         applicantInputIDs.confidentialAddressNo,
         applicantInputIDs.canProvideEmailAddressNo,
         applicantInputIDs.confidentialPhoneNumberNo,
@@ -321,6 +335,27 @@ export class ApplicantDetails1Page {
     await this.addressValidation(page);
     await this.applicantAddressValidation(page);
     await this.solicitorAddressValidation(page);
+  }
+
+  private static async uploadC8RefugeForm(page: Page): Promise<void> {
+    await Helpers.checkVisibleAndPresent(
+      page,
+      `${uniqueSelectorPaths.uploadC8FormLabel}:text-is("${ApplicantDetails1Content.formLabelC8FormUpload}")`,
+      1,
+    );
+    await Helpers.checkVisibleAndPresent(
+      page,
+      `${uniqueSelectorPaths.uploadC8FormHint}:text-is("${ApplicantDetails1Content.c8FormUploadHint}")`,
+      1,
+    );
+    const fileInput = page.locator(
+      `${applicantInputIDs.c8RefugeFormUploadFileInput}`,
+    );
+    await fileInput.setInputFiles(config.testPdfFile);
+    await page.waitForSelector(
+      `${Selectors.GovukErrorMessage}:text-is("${ApplicantDetails1Content.uploadingFile}")`,
+      { state: "hidden" },
+    );
   }
 
   private static async addressValidation(page: Page): Promise<void> {
@@ -471,12 +506,18 @@ export class ApplicantDetails1Page {
         `topLevelInputErrorMessage`,
         `${Selectors.GovukErrorMessage}`,
       ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorValidation}:text-is("${ApplicantDetails1Content.errorMessageRefugeDetailsRequired}")`,
+        1,
+      ),
     ]);
   }
 
   private static async checkSecondLevelInputErrors(page: Page): Promise<void> {
     await page.click(applicantInputIDs.applicantGenderOther);
     await page.click(applicantInputIDs.canProvideEmailAddressYes);
+    await page.click(applicantInputIDs.applicantLivesInRefugeYes);
     await page.waitForSelector(
       `${Selectors.GovukFormLabel}:text-is("${ApplicantDetails1Content.applicantEmail}")`,
     );
@@ -502,6 +543,11 @@ export class ApplicantDetails1Page {
         ApplicantDetails1Content,
         "secondLevelInputErrorMessage",
         `${Selectors.GovukErrorMessage}`,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukErrorValidation}:text-is("${ApplicantDetails1Content.errorMessageC8FormUploadRequired}")`,
+        1,
       ),
     ]);
   }

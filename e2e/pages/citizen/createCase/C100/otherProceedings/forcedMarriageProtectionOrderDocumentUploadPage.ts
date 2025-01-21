@@ -62,7 +62,7 @@ export class ForcedMarriageProtectionDocumentUploadPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${CommonStaticText.uploadAFile}")`,
+        `${Selectors.h2}:text-is("${CommonStaticText.uploadAFile}")`,
         1,
       ),
     ]);

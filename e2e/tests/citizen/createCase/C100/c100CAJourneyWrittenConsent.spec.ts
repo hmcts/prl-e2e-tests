@@ -10,6 +10,7 @@ test.describe("C100 Citizen Application with Written Consent from other people i
       Config.citizenFrontendBaseURL,
     );
   });
+
   test(`C100 of the citizen journey with the following options:
     Not Accessibility Testing,
     Not Error Messaging,
@@ -22,6 +23,7 @@ test.describe("C100 Citizen Application with Written Consent from other people i
     applicantChangedName: yes,
     applicantGender: male,
     all relationships: mother
+    applicant lives in a refuge: no,
     applicant address lookup: true,
     applicant address lookup successful: true,
     applicant lived at address more than 5 years: true,
@@ -39,6 +41,7 @@ test.describe("C100 Citizen Application with Written Consent from other people i
     Other person gender: male,
     Other person changed name: yes,
     other person birthday known: true,
+    Other Person lives in a refuge: yes,
     child mainly lives with: applicant,
     child arrangement order details: true,
     yes to all other proceedings radios: true,
@@ -64,6 +67,7 @@ test.describe("C100 Citizen Application with Written Consent from other people i
       c100PrivateDetails: true,
       applicantChangedName: true,
       applicantGender: "male",
+      applicantLivesInRefuge: false,
       applicantAddressLookup: true,
       appAddressLookupSuccessful: true,
       applicantPrevAddress5Years: true,
@@ -81,6 +85,7 @@ test.describe("C100 Citizen Application with Written Consent from other people i
       c100OtherPeopleGender: "male",
       c100OtherPeopleChangedName: "yes",
       c100OtherPeopleDoBKnown: true,
+      c100OtherPersonLivesInRefuge: true,
       c100ChildMainlyLivesWith: "applicant",
       yesNoOtherProceedings: true,
       c100ChildrenSafetyConcerns: true,
@@ -99,7 +104,7 @@ test.describe("C100 Citizen Application with Written Consent from other people i
     });
   });
 
-  test(`C100 of the citizen journey with the following options:
+  test(`C100 of the citizen journey with the following options: 
     Not Accessibility Testing,
     Not Error Messaging,
     Yes Screening and Written Review
@@ -111,8 +116,9 @@ test.describe("C100 Citizen Application with Written Consent from other people i
     applicantChangedName: yes,
     all relationships: father
     applicantGender: male,
+    applicant lives in a refuge: no,
     applicant address lookup: true,
-    applicant address lookup successful: true,
+    applicant address lookup successful: true, 
     applicant lived at address more than 5 years: true,
     applicant email and telephone: true,
     applicant digital preferences: true,
@@ -128,6 +134,7 @@ test.describe("C100 Citizen Application with Written Consent from other people i
     Other person gender: male,
     Other person changed name: yes,
     other person birthday known: true,
+    Other Person lives in a refuge: yes,
     child mainly lives with: 'applicant'
     child arrangement order details: true,
     yes to all other proceedings radios: true,
@@ -153,6 +160,7 @@ test.describe("C100 Citizen Application with Written Consent from other people i
       c100PrivateDetails: true,
       applicantChangedName: true,
       applicantGender: "male",
+      applicantLivesInRefuge: false,
       applicantAddressLookup: true,
       appAddressLookupSuccessful: true,
       applicantPrevAddress5Years: true,
@@ -170,6 +178,7 @@ test.describe("C100 Citizen Application with Written Consent from other people i
       c100OtherPeopleGender: "male",
       c100OtherPeopleChangedName: "yes",
       c100OtherPeopleDoBKnown: true,
+      c100OtherPersonLivesInRefuge: true,
       c100ChildMainlyLivesWith: "applicant",
       yesNoOtherProceedings: true,
       c100ChildrenSafetyConcerns: true,
@@ -190,7 +199,7 @@ test.describe("C100 Citizen Application with Written Consent from other people i
 
   test(`C100 of the citizen journey with the following options:
     Not Accessibility Testing,
-    Error Messaging,
+    Not Error Messaging,
     Yes Screening and Written Review
     With urgency and without notice all options yes
     People gender male,
@@ -200,6 +209,7 @@ test.describe("C100 Citizen Application with Written Consent from other people i
     applicantChangedName: yes,
     applicantGender: male,
     all relationships: father
+    applicant lives in a refuge: no,
     applicant address lookup: true,
     applicant address lookup successful: true,
     applicant lived at address more than 5 years: true,
@@ -217,6 +227,7 @@ test.describe("C100 Citizen Application with Written Consent from other people i
     Other person gender: male,
     Other person changed name: yes,
     other person birthday known: true,
+    Other Person lives in a refuge: yes,
     child mainly lives with: 'applicant'
     child arrangement order details: true,
     yes to all other proceedings radios: true,
@@ -234,7 +245,7 @@ test.describe("C100 Citizen Application with Written Consent from other people i
     await C100.c100caWrittenConsentJourney({
       page: page,
       accessibilityTest: false,
-      errorMessaging: true,
+      errorMessaging: false,
       urgencyAndWithoutNoticeAllOptionsYes: true,
       c100PeopleGender: "male",
       c100PeopleYesNoDontKnow: "yes",
@@ -242,6 +253,7 @@ test.describe("C100 Citizen Application with Written Consent from other people i
       c100PrivateDetails: true,
       applicantChangedName: true,
       applicantGender: "male",
+      applicantLivesInRefuge: false,
       applicantAddressLookup: true,
       appAddressLookupSuccessful: true,
       applicantPrevAddress5Years: true,
@@ -259,6 +271,7 @@ test.describe("C100 Citizen Application with Written Consent from other people i
       c100OtherPeopleGender: "male",
       c100OtherPeopleChangedName: "yes",
       c100OtherPeopleDoBKnown: true,
+      c100OtherPersonLivesInRefuge: true,
       c100ChildMainlyLivesWith: "applicant",
       yesNoOtherProceedings: true,
       c100ChildrenSafetyConcerns: true,
@@ -298,6 +311,7 @@ test.describe("Test the accessibility of the CA C100 Citizen Journey", (): void 
     all relationship types: 'father'
     applicantChangedName: yes,
     applicantGender: male,
+    applicant lives in a refuge: no,
     applicant address lookup: true,
     applicant address lookup successful: true,
     applicant lived at address more than 5 years: true,
@@ -316,6 +330,7 @@ test.describe("Test the accessibility of the CA C100 Citizen Journey", (): void 
     Other person changed name: yes,
     other person birthday known: true,
     child arrangement order details: true,
+    Other Person lives in a refuge: yes,
     child mainly lives with: 'applicant'
     yes to all other proceedings radios: true,
     safety concerns yes: true,
@@ -342,6 +357,7 @@ test.describe("Test the accessibility of the CA C100 Citizen Journey", (): void 
       c100PrivateDetails: true,
       applicantChangedName: true,
       applicantGender: "male",
+      applicantLivesInRefuge: false,
       applicantAddressLookup: true,
       appAddressLookupSuccessful: true,
       applicantPrevAddress5Years: true,
@@ -359,6 +375,7 @@ test.describe("Test the accessibility of the CA C100 Citizen Journey", (): void 
       c100OtherPeopleGender: "male",
       c100OtherPeopleChangedName: "yes",
       c100OtherPeopleDoBKnown: true,
+      c100OtherPersonLivesInRefuge: true,
       c100ChildMainlyLivesWith: "applicant",
       yesNoOtherProceedings: true,
       c100ChildrenSafetyConcerns: true,

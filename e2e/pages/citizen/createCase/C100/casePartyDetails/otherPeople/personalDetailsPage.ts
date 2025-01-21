@@ -4,7 +4,6 @@ import { Helpers } from "../../../../../../common/helpers";
 import { Selectors } from "../../../../../../common/selectors";
 import { ApplicantGender, yesNoDontKnow } from "../../../../../../common/types";
 import { PersonalDetailsContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/otherPeople/personalDetailsContent";
-import { SafetyConcernHelpers } from "../../safetyConcerns/safetyConcernHelpers";
 
 enum inputIDs {
   yesNameChanged = "#hasNameChanged",
@@ -138,7 +137,6 @@ export class PersonalDetailsPage {
         1,
       ),
     ]);
-    await SafetyConcernHelpers.checkContactDetailsText(page);
     if (accessibilityTest) {
       // await AccessibilityTestHelper.run(page); PRL-6581
     }

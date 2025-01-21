@@ -1,0 +1,16 @@
+export enum C100SummaryTabContent {
+  tabName = "Summary",
+  tabTitle = "Summary",
+  subTitle1 = "Allocated judge",
+  subTitle2 = "Case Status",
+  subTitle3 = "Confidential details",
+  subTitle4 = "Urgency",
+  subTitle5 = "Allegations of harm",
+  subTitle6 = "Special arrangements",
+  subTitle7 = "Order applied for",
+  subTitle8 = "Other proceedings",
+  subTitle9 = "Date submitted to HMCTS",
+  refugeSubTitle = "Refuge case",
+  refugeQuestionText16 = "Anyone living in a refuge?",
+  refugeAnswerText16 = "Yes",
+}

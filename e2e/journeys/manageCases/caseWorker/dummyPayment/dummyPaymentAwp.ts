@@ -12,6 +12,8 @@ interface DummyPaymentAwpParams {
   accessibilityTest: boolean;
   paymentStatusPaid: boolean;
   caseType: solicitorCaseCreateType;
+  applicantLivesInRefuge: boolean;
+  otherPersonLivesInRefuge: boolean;
 }
 
 export class DummyPaymentAwp {
@@ -21,8 +23,15 @@ export class DummyPaymentAwp {
     accessibilityTest,
     paymentStatusPaid,
     caseType,
-  }: DummyPaymentAwpParams): Promise<void> {
-    await this.submitCase(page, caseType);
+    applicantLivesInRefuge,
+    otherPersonLivesInRefuge,
+  }: DummyPaymentAwpParams): Promise<string> {
+    await this.submitCase(
+      page,
+      caseType,
+      applicantLivesInRefuge,
+      otherPersonLivesInRefuge,
+    );
     await Helpers.chooseEventFromDropdown(page, "Dummy Payment for AwP");
     await DummyPaymentAwp1Page.dummyPaymentAwp1Page(
       page,
@@ -35,16 +44,27 @@ export class DummyPaymentAwp {
       accessibilityTest,
       paymentStatusPaid,
     );
+
+    return await Helpers.getCaseNumberFromUrl(page);
   }
 
   private static async submitCase(
     page: Page,
     caseType: solicitorCaseCreateType,
+    applicantLivesInRefuge: boolean,
+    otherPersonLivesInRefuge: boolean,
   ): Promise<void> {
     if (caseType === "C100") {
-      await DummyC100.dummyC100({ page });
+      await DummyC100.dummyC100({
+        page: page,
+        applicantLivesInRefuge: applicantLivesInRefuge,
+        otherPersonLivesInRefuge: otherPersonLivesInRefuge,
+      });
     } else {
-      await DummyFL401.dummyFL401({ page });
+      await DummyFL401.dummyFL401({
+        page: page,
+        applicantLivesInRefuge: applicantLivesInRefuge,
+      });
     }
   }
 }

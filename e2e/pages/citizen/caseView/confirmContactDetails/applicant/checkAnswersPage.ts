@@ -27,31 +27,31 @@ export class CheckAnswersPage {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukCaptionM}:text-is("${CheckAnswersContent.govukCaptionM}")`,
+        `${Selectors.GovukHint}:text-is("${CheckAnswersContent.govukHint1}")`,
         1,
       ),
       Helpers.checkGroup(
         page,
-        5,
+        6,
         CheckAnswersContent,
         `govukSummaryListKey`,
         `${Selectors.GovukSummaryListKey}`,
       ),
       Helpers.checkGroup(
         page,
-        5,
+        6,
         CheckAnswersContent,
         `govukSummaryListValue`,
         `${Selectors.GovukSummaryListValue}`,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${CheckAnswersContent.govukHint1}")`,
+        `${Selectors.GovukHint}:text-is("${CheckAnswersContent.govukHint2}")`,
         3,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${CheckAnswersContent.govukHint2}")`,
+        `${Selectors.GovukHint}:text-is("${CheckAnswersContent.govukHint3}")`,
         1,
       ),
     ]);
