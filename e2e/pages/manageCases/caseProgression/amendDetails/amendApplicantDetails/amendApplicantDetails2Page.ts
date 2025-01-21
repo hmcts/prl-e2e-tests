@@ -398,17 +398,17 @@ export class AmendApplicantDetails2Page {
         AmendApplicantDetails2Content.solicitorLastNameInput,
       ),
       page.fill(
-        uniqueSelectors.solicitorPhoneNumber,
-        AmendApplicantDetails2Content.solicitorPhoneNumberInput,
-      ),
-      page.fill(
         uniqueSelectors.solicitorReference,
         AmendApplicantDetails2Content.solicitorReferenceInput,
       ),
     ]);
     await page.fill(
-        uniqueSelectors.solicitorEmail,
-        AmendApplicantDetails2Content.solicitorEmailInput,
+      uniqueSelectors.solicitorPhoneNumber,
+      AmendApplicantDetails2Content.solicitorPhoneNumberInput,
+    );
+    await page.fill(
+      uniqueSelectors.solicitorEmail,
+      AmendApplicantDetails2Content.solicitorEmailInput,
     );
     await page.fill(
       uniqueSelectors.searchOrg,
