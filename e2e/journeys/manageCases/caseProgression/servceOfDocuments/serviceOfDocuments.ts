@@ -41,6 +41,8 @@ export class ServiceOfDocuments {
         page,
         accessibilityTest: false,
         yesNoNotSureRestrictDocs: "no",
+        partyUploadedDocument: "CourtNav",
+        documentType: "Applicant's statements",
       });
       await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
     }
