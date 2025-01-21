@@ -398,10 +398,6 @@ export class AmendApplicantDetails2Page {
         AmendApplicantDetails2Content.solicitorLastNameInput,
       ),
       page.fill(
-        uniqueSelectors.solicitorEmail,
-        AmendApplicantDetails2Content.solicitorEmailInput,
-      ),
-      page.fill(
         uniqueSelectors.solicitorPhoneNumber,
         AmendApplicantDetails2Content.solicitorPhoneNumberInput,
       ),
@@ -410,6 +406,10 @@ export class AmendApplicantDetails2Page {
         AmendApplicantDetails2Content.solicitorReferenceInput,
       ),
     ]);
+    await page.fill(
+        uniqueSelectors.solicitorEmail,
+        AmendApplicantDetails2Content.solicitorEmailInput,
+    );
     await page.fill(
       uniqueSelectors.searchOrg,
       AmendApplicantDetails2Content.searchOrgInputTest,
