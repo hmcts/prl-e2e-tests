@@ -1,4 +1,4 @@
-import { Browser, BrowserContext, Page } from "@playwright/test";
+import { Browser, Page } from "@playwright/test";
 import {
   createOrderFL401Options,
   judgeTitles,
@@ -8,10 +8,8 @@ import {
 import { createOrderManageOrders19Options } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders19Page.ts";
 import { howLongWillOrderBeInForce } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders12Page.ts";
 import { responsibleForServing } from "../../../../pages/manageCases/caseProgression/serviceOfApplication/ServiceOfApplication4Page.ts";
-import { ApplicationJourneysCheckGatekeeperJudgeCOOrder } from "./application-journeys-check-gatekeeper-judgeCO-order.ts";
 import { CompleteTheOrder } from "../completeTheOrder/completeTheOrder.ts";
 import { ServiceOfApplicationJourney } from "../serviceOfApplication/serviceOfApplication.ts";
-import Config from "../../../../config.ts";
 import { jsonDatas } from "../../../../common/solicitorCaseCreatorHelper.ts";
 
 interface CompleteTheOrderParams {
@@ -47,24 +45,10 @@ export class E2eFlowUpToServiceOfApplication {
     responsibleForServing,
     manageOrderData,
   }: CompleteTheOrderParams): Promise<void> {
-    await ApplicationJourneysCheckGatekeeperJudgeCOOrder.applicationJourneysCheckGatekeeperJudgeCOOrder(
-      {
-        page,
-        ccdRef,
-        browser,
-        manageOrderData,
-      },
-    );
-    // open new browser and sign in as court admin user
-    const newBrowser = await browser.browserType().launch();
-    const newContext: BrowserContext = await newBrowser.newContext({
-      storageState: Config.sessionStoragePath + "caseWorker.json",
-    });
-    const newPage: Page = await newContext.newPage();
     // TODO: new API call - need to check if/how the variables differ between tests unless it isn't needed see comment below
     // TODO: move into own UI test - unless it isn't needed see comment below
     await CompleteTheOrder.completeTheOrder({
-      page: newPage,
+      page: page,
       browser,
       accessibilityTest,
       ccdRef,
@@ -72,10 +56,11 @@ export class E2eFlowUpToServiceOfApplication {
       personallyServed,
       manageOrderData,
     });
+    await page.reload();
     // TODO: new API call - need to check if/how the variables differ between tests
     // TODO: move into own UI test
     await ServiceOfApplicationJourney.serviceOfApplicationJourney({
-      page: newPage,
+      page,
       accessibilityTest,
       createOrderFL401Options,
       yesNoServiceOfApplication4,
