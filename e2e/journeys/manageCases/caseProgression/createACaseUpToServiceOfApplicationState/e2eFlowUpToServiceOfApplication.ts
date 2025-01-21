@@ -56,7 +56,6 @@ export class E2eFlowUpToServiceOfApplication {
       personallyServed,
       manageOrderData,
     });
-    await page.reload();
     // TODO: new API call - need to check if/how the variables differ between tests
     // TODO: move into own UI test
     await ServiceOfApplicationJourney.serviceOfApplicationJourney({
