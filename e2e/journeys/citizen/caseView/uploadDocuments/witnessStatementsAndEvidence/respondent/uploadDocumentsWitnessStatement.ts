@@ -1,4 +1,7 @@
-import { ActivateCase, CaseUser } from "../../../../activateCase/activateCase.ts";
+import {
+  ActivateCase,
+  CaseUser,
+} from "../../../../activateCase/activateCase.ts";
 import { Browser, Page } from "@playwright/test";
 import { UploadPage } from "../../../../../../pages/citizen/caseView/uploadDocuments/uploadPage.ts";
 import { WitnessStatementPage } from "../../../../../../pages/citizen/caseView/uploadDocuments/witnessStatementsAndEvidence/witnessStatementPage.ts";
@@ -26,13 +29,13 @@ enum UniqueSelectors {
 
 export class UploadDocumentsWitnessStatement {
   public static async uploadDocumentsWitnessStatement({
-   page,
-   browser,
-   caseRef,
-   accessibilityTest,
-   isApplicant,
-   yesNoNA,
- }: uploadDocumentsWitnessStatementParams): Promise<void> {
+    page,
+    browser,
+    caseRef,
+    accessibilityTest,
+    isApplicant,
+    yesNoNA,
+  }: uploadDocumentsWitnessStatementParams): Promise<void> {
     const caseUser: CaseUser = isApplicant ? "applicant" : "respondent";
     page = await ActivateCase.activateCase({
       page: page,
@@ -42,11 +45,10 @@ export class UploadDocumentsWitnessStatement {
       accessibilityTest: accessibilityTest,
     });
     await page.click(UniqueSelectors.uploadDocumentsPrivateSelector);
-    await UploadPage.uploadPage(
-      page,
-      accessibilityTest,
+    await UploadPage.uploadPage(page, accessibilityTest);
+    await page.click(
+      `${Selectors.GovukLink}:has-text("${UploadContent.witnessStatementLink}")`,
     );
-    await page.click(`${Selectors.GovukLink}:has-text("${UploadContent.witnessStatementLink}")`);
     if (yesNoNA == "Yes") {
       await WitnessStatementPage.witnessStatementPage(
         page,

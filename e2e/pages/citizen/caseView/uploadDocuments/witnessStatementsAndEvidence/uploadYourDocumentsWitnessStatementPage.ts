@@ -7,7 +7,7 @@ import { Helpers } from "../../../../../common/helpers.ts";
 import config from "../../../../../config.ts";
 
 export enum UniqueSelectors {
-  fileUpload = "#uploadDocumentFileUpload"
+  fileUpload = "#uploadDocumentFileUpload",
 }
 
 export class UploadYourDocumentsWitnessStatementPage {
@@ -73,13 +73,13 @@ export class UploadYourDocumentsWitnessStatementPage {
     }
   }
 
-  private static async fillInFields(
-    page: Page,
-  ): Promise<void> {
+  private static async fillInFields(page: Page): Promise<void> {
     const fileInput = page.locator(UniqueSelectors.fileUpload);
     await fileInput.setInputFiles(config.testPdfFile);
     await page.check('input[type="checkbox"][value="declaration"]');
-    await page.click(`${Selectors.GovukButton}:text-is("${CommonStaticText.uploadFile}")`,);
+    await page.click(
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.uploadFile}")`,
+    );
     await Helpers.checkVisibleAndPresent(
       page,
       `${Selectors.GovukSummaryListValue}:text-is("${UploadYourDocumentsContent.GovukSummaryListValue}")`,

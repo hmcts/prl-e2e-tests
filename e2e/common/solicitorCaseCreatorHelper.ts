@@ -1,6 +1,16 @@
-import process from "node:process";
 import solicitorCaseData from "../caseData/solicitorDACaseData.json";
+import manageOrderDataAmendDischargedVaried from "../caseData/orderData/manageOrderData-amendDischargedVaried.json";
+import manageOrderDataPowerOfArrest from "../caseData/orderData/manageOrderData-powerOfArrest.json";
 import { Page } from "@playwright/test";
+
+// Using "any" type below because it represents a large JSON object
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type JsonData = Record<string, any>;
+export const jsonDatas: JsonData = {
+  defaultData: solicitorCaseData,
+  manageOrderDataPowerOfArrest: manageOrderDataPowerOfArrest,
+  manageOrderDataAmendDischargedVaried: manageOrderDataAmendDischargedVaried,
+};
 
 export async function getData(
   page: Page,
@@ -49,12 +59,12 @@ export async function submitEvent(
   page: Page,
   caseId: string,
   eventId: string,
+  jsonData: JsonData = jsonDatas.defaultData,
 ): Promise<void> {
   if (process.env.PWDEBUG) {
     console.log(`Start of event: ${eventId}`);
   }
-  // @ts-expect-error - caseEvent will always map to its associated json object
-  const eventData = solicitorCaseData[eventId].data;
+  const eventData = jsonData[eventId].data;
   const startEventUrl = `/data/internal/cases/${caseId}/event-triggers/${eventId}?ignore-warning=false`;
 
   const startEventHeaders = {

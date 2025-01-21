@@ -1,13 +1,13 @@
 import { Page } from "@playwright/test";
-import { Helpers } from "../../../../../common/helpers.ts";
-import { ServiceOfApplication2Page } from "../../../../../pages/manageCases/caseProgression/serviceOfApplication/serviceOfApplication2Page.ts";
+import { Helpers } from "../../../../common/helpers.ts";
+import { ServiceOfApplication2Page } from "../../../../pages/manageCases/caseProgression/serviceOfApplication/serviceOfApplication2Page.ts";
 import {
   responsibleForServing,
   ServiceOfApplication4Page,
-} from "../../../../../pages/manageCases/caseProgression/serviceOfApplication/ServiceOfApplication4Page.ts";
-import { ServiceOfApplicationSubmitPage } from "../../../../../pages/manageCases/caseProgression/serviceOfApplication/serviceOfApplicationSubmitPage.ts";
-import { ServiceOfApplicationConfirmPage } from "../../../../../pages/manageCases/caseProgression/serviceOfApplication/serviceOfApplicationConfirmPage.ts";
-import { createOrderFL401Options } from "../../../../../common/types.ts";
+} from "../../../../pages/manageCases/caseProgression/serviceOfApplication/ServiceOfApplication4Page.ts";
+import { ServiceOfApplicationSubmitPage } from "../../../../pages/manageCases/caseProgression/serviceOfApplication/serviceOfApplicationSubmitPage.ts";
+import { ServiceOfApplicationConfirmPage } from "../../../../pages/manageCases/caseProgression/serviceOfApplication/serviceOfApplicationConfirmPage.ts";
+import { createOrderFL401Options } from "../../../../common/types.ts";
 
 interface ServiceOfApplicationJourneyParams {
   page: Page;

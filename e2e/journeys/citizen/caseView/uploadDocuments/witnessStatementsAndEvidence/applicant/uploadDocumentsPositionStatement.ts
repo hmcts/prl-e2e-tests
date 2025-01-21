@@ -1,4 +1,7 @@
-import { ActivateCase, CaseUser } from "../../../../activateCase/activateCase.ts";
+import {
+  ActivateCase,
+  CaseUser,
+} from "../../../../activateCase/activateCase.ts";
 import { Browser, Page } from "@playwright/test";
 import { UploadPage } from "../../../../../../pages/citizen/caseView/uploadDocuments/uploadPage.ts";
 import { PositionStatementPage } from "../../../../../../pages/citizen/caseView/uploadDocuments/witnessStatementsAndEvidence/positionStatementPage.ts";

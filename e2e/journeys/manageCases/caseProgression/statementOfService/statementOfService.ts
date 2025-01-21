@@ -8,10 +8,11 @@ import {
   manageOrdersOptions,
   WACaseWorkerActions,
 } from "../../../../common/types.ts";
-import { E2eFlowUpToServiceOfApplication } from "../e2eFlowUpToServiceOfApplication/e2eFlowUpToServiceOfApplication.ts";
+import { E2eFlowUpToServiceOfApplication } from "../createACaseUpToServiceOfApplicationState/e2eFlowUpToServiceOfApplication.ts";
 import { createOrderManageOrders19Options } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders19Page.ts";
 import { howLongWillOrderBeInForce } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders12Page.ts";
 import { responsibleForServing } from "../../../../pages/manageCases/caseProgression/serviceOfApplication/ServiceOfApplication4Page.ts";
+import { jsonDatas } from "../../../../common/solicitorCaseCreatorHelper.ts";
 
 interface statementOfServiceParams {
   page: Page;
@@ -30,6 +31,7 @@ interface statementOfServiceParams {
   personallyServed: boolean;
   yesNoServiceOfApplication4: boolean;
   responsibleForServing: responsibleForServing;
+  manageOrderData: typeof jsonDatas;
 }
 
 export class StatementOfService {
@@ -50,6 +52,7 @@ export class StatementOfService {
     personallyServed,
     yesNoServiceOfApplication4,
     responsibleForServing,
+    manageOrderData,
   }: statementOfServiceParams): Promise<void> {
     await E2eFlowUpToServiceOfApplication.e2eFlowUpToServiceOfApplication({
       page,
@@ -68,9 +71,10 @@ export class StatementOfService {
       personallyServed,
       yesNoServiceOfApplication4,
       responsibleForServing,
+      manageOrderData,
     });
-    const eventToSelect: WACaseWorkerActions = "Statement of service";
-    await Helpers.chooseEventFromDropdown(page, eventToSelect);
+    await page.reload();
+    await Helpers.chooseEventFromDropdown(page, "Statement of service");
     await StatementOfService1Page.statementOfService1Page({
       page,
       accessibilityTest,
