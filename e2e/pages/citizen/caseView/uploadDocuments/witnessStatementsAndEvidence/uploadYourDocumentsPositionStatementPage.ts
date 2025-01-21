@@ -9,7 +9,7 @@ import config from "../../../../../config.ts";
 export enum UniqueSelectors {
   fileUpload = "#uploadDocumentFileUpload",
   declarationCheck = "#declarationCheck",
-  submitPositionStatement = "button[type='Submit'][name='onlyContinue']"
+  submitPositionStatement = "button[type='Submit'][name='onlyContinue']",
 }
 
 export class UploadYourDocumentsPositionStatementPage {
@@ -78,7 +78,9 @@ export class UploadYourDocumentsPositionStatementPage {
   private static async fillInFields(page: Page): Promise<void> {
     const fileInput = page.locator(UniqueSelectors.fileUpload);
     await fileInput.setInputFiles(config.testPdfFile);
-    await page.click(`${Selectors.GovukButton}:text-is("${CommonStaticText.uploadFile}")`);
+    await page.click(
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.uploadFile}")`,
+    );
     await Helpers.checkVisibleAndPresent(
       page,
       `${Selectors.GovukSummaryListValue}:text-is("${UploadYourDocumentsContent.GovukSummaryListValue}")`,
