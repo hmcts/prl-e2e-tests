@@ -87,7 +87,7 @@ export class StatementOfService1Page {
       ),
     ]);
     if (accessibilityTest) {
-     // await AccessibilityTestHelper.run(page); //#TODO turn back on once EXUI-2724 is resolved
+      // await AccessibilityTestHelper.run(page); //#TODO turn back on once EXUI-2724 is resolved
     }
   }
 

@@ -211,11 +211,6 @@ export type amendEvents =
   | "Amend Other proceedings"
   | "Amend Type of application";
 
-export type documentCategory =
-  | "Applicant's statements"
-  | "Position statements";
+export type documentCategory = "Applicant's statements" | "Position statements";
 
-export type documentSubmittedBy =
-  | "CourtNav"
-  | "Citizen"
-
+export type documentSubmittedBy = "CourtNav" | "Citizen";

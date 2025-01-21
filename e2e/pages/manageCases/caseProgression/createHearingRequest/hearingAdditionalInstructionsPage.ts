@@ -6,7 +6,7 @@ import { Helpers } from "../../../../common/helpers";
 import { CommonStaticText } from "../../../../common/commonStaticText";
 
 export enum UniqueSelectors {
-  addInstructions = "#additionalInstructionsTextarea"
+  addInstructions = "#additionalInstructionsTextarea",
 }
 
 export class HearingAdditionalInstructionsPage {
@@ -51,7 +51,10 @@ export class HearingAdditionalInstructionsPage {
   }
 
   private static async fillInFields(page: Page): Promise<void> {
-    await page.fill(`${UniqueSelectors.addInstructions}`, HearingAdditionalInstructionsContent.addInstructions);
+    await page.fill(
+      `${UniqueSelectors.addInstructions}`,
+      HearingAdditionalInstructionsContent.addInstructions,
+    );
   }
 
   private static async continue(page: Page): Promise<void> {

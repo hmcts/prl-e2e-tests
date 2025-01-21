@@ -79,11 +79,11 @@ export class AmendApplicantDetailsSubmitPage {
       //if there is a change in solicitor details, the will be two instances of the address labels.
       await Promise.all([
         Helpers.checkGroup(
-            page,
-            10,
-            amendApplicantDetailsSubmitContent,
-            `text16_`,
-            `${Selectors.GovukText16}`,
+          page,
+          10,
+          amendApplicantDetailsSubmitContent,
+          `text16_`,
+          `${Selectors.GovukText16}`,
         ),
         Helpers.checkVisibleAndPresent(
           page,

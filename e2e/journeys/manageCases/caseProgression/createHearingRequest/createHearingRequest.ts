@@ -124,50 +124,28 @@ export class CreateHearingRequest {
         );
         break;
     }
-    await page.click(`${Selectors.a}:text-is("${CommonStaticText.hearingRequest}")`);
+    await page.click(
+      `${Selectors.a}:text-is("${CommonStaticText.hearingRequest}")`,
+    );
     await HearingRequirementsPage.hearingRequirementsPage(
       page,
-      accessibilityTest
+      accessibilityTest,
     );
-    await HearingFacilitiesPage.hearingFacilitiesPage(
-      page,
-      accessibilityTest
-    );
-    await HearingStagePage.hearingStagePage(
-      page,
-      accessibilityTest
-    );
-    await HearingAttendancePage.hearingAttendancePage(
-      page,
-      accessibilityTest
-    );
-    await HearingVenuePage.hearingVenuePage(
-      page,
-      accessibilityTest
-    );
-    await HearingWelshPage.hearingWelshPage(
-      page,
-      accessibilityTest
-    );
-    await HearingJudgePage.hearingJudgePage(
-      page,
-      accessibilityTest
-    );
-    await HearingTimingPage.hearingTimingPage(
-      page,
-      accessibilityTest
-    );
-    await HearingLinkPage.hearingLinkPage(
-      page,
-      accessibilityTest
-    );
+    await HearingFacilitiesPage.hearingFacilitiesPage(page, accessibilityTest);
+    await HearingStagePage.hearingStagePage(page, accessibilityTest);
+    await HearingAttendancePage.hearingAttendancePage(page, accessibilityTest);
+    await HearingVenuePage.hearingVenuePage(page, accessibilityTest);
+    await HearingWelshPage.hearingWelshPage(page, accessibilityTest);
+    await HearingJudgePage.hearingJudgePage(page, accessibilityTest);
+    await HearingTimingPage.hearingTimingPage(page, accessibilityTest);
+    await HearingLinkPage.hearingLinkPage(page, accessibilityTest);
     await HearingAdditionalInstructionsPage.hearingAdditionalInstructionsPage(
       page,
-      accessibilityTest
+      accessibilityTest,
     );
     await HearingCreateEditSummaryPage.hearingCreateEditSummaryPage(
       page,
-      accessibilityTest
+      accessibilityTest,
     );
   }
 }
