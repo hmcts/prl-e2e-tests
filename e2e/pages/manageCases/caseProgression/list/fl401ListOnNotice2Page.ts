@@ -3,14 +3,14 @@ import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper"
 import { Selectors } from "../../../../common/selectors";
 import { Helpers } from "../../../../common/helpers";
 import { CommonStaticText } from "../../../../common/commonStaticText";
-import { Fl401ListWithoutNotice1Content } from "../../../../fixtures/manageCases/caseProgression/List/fl401ListWithoutNotice1Content";
+import { Fl401ListOnNotice2Content } from "../../../../fixtures/manageCases/caseProgression/list/fl401ListOnNotice2Content";
 
 enum UniqueSelectors {
-  hearingInstructionsTextBox = "#listWithoutNoticeHearingInstruction",
+  hearingInstructionsTextBox = "#fl401listOnNoticeHearingInstruction",
 }
 
-export class Fl401ListWithoutNotice1Page {
-  public static async fl401ListWithoutNotice1Page(
+export class Fl401ListOnNotice2Page {
+  public static async fl401ListOnNotice2Page(
     page: Page,
     accessibilityTest: boolean,
   ): Promise<void> {
@@ -25,18 +25,18 @@ export class Fl401ListWithoutNotice1Page {
   ): Promise<void> {
     await page
       .locator(Selectors.h2, {
-        hasText: Fl401ListWithoutNotice1Content.h2,
+        hasText: Fl401ListOnNotice2Content.h2,
       })
       .waitFor();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHeadingL}:text-is("${Fl401ListWithoutNotice1Content.govHeadingL}")`,
+        `${Selectors.GovukHeadingL}:text-is("${Fl401ListOnNotice2Content.govHeadingL}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukFormLabel}:text-is("${Fl401ListWithoutNotice1Content.formLabel}")`,
+        `${Selectors.GovukFormLabel}:text-is("${Fl401ListOnNotice2Content.formLabel}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -58,7 +58,7 @@ export class Fl401ListWithoutNotice1Page {
   private static async fillInFields(page: Page): Promise<void> {
     await page.fill(
       UniqueSelectors.hearingInstructionsTextBox,
-      Fl401ListWithoutNotice1Content.adminHearingInstructions,
+      Fl401ListOnNotice2Content.adminHearingInstructions,
     );
   }
 
