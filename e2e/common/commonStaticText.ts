@@ -25,4 +25,8 @@ export enum CommonStaticText {
   startNow = "Start now",
   submitAndContinue = "Submit and continue",
   closeAndReturnToCaseOverview = "Close and return to case overview",
+  male = "Male",
+  female = "Female",
+  nonBinary = "Non-binary",
+  preferNotToSay = "Prefer not to say",
 }

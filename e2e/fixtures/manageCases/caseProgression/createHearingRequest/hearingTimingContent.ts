@@ -1,4 +1,4 @@
-export enum HearingTimingContent{
+export enum HearingTimingContent {
   govUkHeadingL = "Length, date and priority level of hearing",
   GovukFieldsetHeading1 = "Length of hearing",
   GovukFieldsetHeading2 = "Does the hearing need to take place on a specific date?",

@@ -49,7 +49,7 @@ export class ConcernsForSafetyPage {
 
   private static async checkPageLoads({
     page,
-    accessibilityTest
+    accessibilityTest,
   }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.GovukHeadingXL}:text-is("${ConcernsForSafetyContent.pageTitle}")`,
@@ -101,7 +101,7 @@ export class ConcernsForSafetyPage {
       ),
     ]);
     if (accessibilityTest) {
-    // await AccessibilityTestHelper.run(page); //#TODO Commented out until PRL-6592 is complete (rerun 20/01/25, issue still exists)
+      // await AccessibilityTestHelper.run(page); //#TODO Commented out until PRL-6592 is complete (rerun 20/01/25, issue still exists)
     }
   }
 

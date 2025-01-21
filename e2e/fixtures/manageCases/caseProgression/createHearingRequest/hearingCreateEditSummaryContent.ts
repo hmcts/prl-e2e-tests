@@ -1,4 +1,4 @@
-export enum HearingCreateEditSummaryContent{
+export enum HearingCreateEditSummaryContent {
   govUkHeadingL = "Check your answers before sending your request",
   GovukSummaryListKey1 = "Case name",
   GovukSummaryListKey2 = "Case number",

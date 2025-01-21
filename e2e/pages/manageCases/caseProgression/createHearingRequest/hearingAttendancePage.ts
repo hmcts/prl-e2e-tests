@@ -78,9 +78,18 @@ export class HearingAttendancePage {
   private static async fillInFields(page: Page): Promise<void> {
     await page.check(`${UniqueSelectors.paperHearingNo}`);
     await page.check(`${UniqueSelectors.attendanceInPerson}`);
-    await page.selectOption(`${UniqueSelectors.applicantAttend}`, HearingAttendanceContent.attendOption);
-    await page.selectOption(`${UniqueSelectors.respondentAttend}`, HearingAttendanceContent.attendOption);
-    await page.fill(`${UniqueSelectors.attendanceNumber}`, HearingAttendanceContent.numberOfPeople);
+    await page.selectOption(
+      `${UniqueSelectors.applicantAttend}`,
+      HearingAttendanceContent.attendOption,
+    );
+    await page.selectOption(
+      `${UniqueSelectors.respondentAttend}`,
+      HearingAttendanceContent.attendOption,
+    );
+    await page.fill(
+      `${UniqueSelectors.attendanceNumber}`,
+      HearingAttendanceContent.numberOfPeople,
+    );
   }
 
   private static async continue(page: Page): Promise<void> {

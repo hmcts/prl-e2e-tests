@@ -196,10 +196,21 @@ export type courtAdminEvents = "Edit and serve an order";
 
 export type contactOption = "Digital" | "Post";
 
-export type documentCategory =
-  | "Applicant's statements"
-  | "Position statements";
+export type amendEvents =
+  | "Amend applicant details"
+  | "Amend respondent details"
+  | "Amend Child details"
+  | "Amend attending the hearing"
+  | "Amend MIAM"
+  | "Amend International element"
+  | "Amend Allegations of harm"
+  | "Amend Other people in the case"
+  | "Amend children and respondents"
+  | "Amend children/other people"
+  | "Amend court details"
+  | "Amend Other proceedings"
+  | "Amend Type of application";
 
-export type documentSubmittedBy =
-  | "CourtNav"
-  | "Citizen"
+export type documentCategory = "Applicant's statements" | "Position statements";
+
+export type documentSubmittedBy = "CourtNav" | "Citizen";

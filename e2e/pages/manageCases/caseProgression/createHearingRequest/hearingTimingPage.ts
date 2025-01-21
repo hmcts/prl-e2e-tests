@@ -13,7 +13,7 @@ enum UniqueSelectors {
   priorityUrgent = "#Urgent",
   days = "#durationdays",
   hours = "#durationhours",
-  mins = "#durationmins"
+  mins = "#durationmins",
 }
 
 export class HearingTimingPage {
