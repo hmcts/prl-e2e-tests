@@ -4,6 +4,7 @@ import { Helpers } from "../../../../../../common/helpers";
 import { Selectors } from "../../../../../../common/selectors";
 import { Relationship } from "../../../../../../common/types";
 import { OtherPersonRelationshipContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/otherPeople/otherPersonRelationshipContent";
+// import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper.ts";
 
 interface applicantPageOptions {
   page: Page;
@@ -79,7 +80,7 @@ export class OtherPersonRelationshipPage {
       ),
     ]);
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page); Accessibility Issues: PRL-6589
+      // await AccessibilityTestHelper.run(page); //#TODO turn back on once Accessibility Issues: PRL-6900 has been fixed (re-ran on 20/01/25, issue still exists)
     }
   }
 

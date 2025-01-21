@@ -2,6 +2,7 @@ import { Page } from "@playwright/test";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { ShortStatementContent } from "../../../../../fixtures/citizen/createCase/C100/typeOfOrder/shortStatementContent";
+// import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 
 interface ShortStatementPageOptions {
   page: Page;
@@ -68,7 +69,7 @@ export class ShortStatementPage {
     ]);
 
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page); #TODO: Re-enable upon completion of PRL-6494
+      // await AccessibilityTestHelper.run(page); //#TODO: Re-enable upon completion of PRL-6494 (rerun 20/01/25, issue still exists)
     }
   }
 

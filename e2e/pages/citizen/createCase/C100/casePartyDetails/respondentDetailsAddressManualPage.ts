@@ -4,6 +4,7 @@ import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { yesNoDontKnow } from "../../../../../common/types";
 import { RespondentDetailsAddressManualContent } from "../../../../../fixtures/citizen/createCase/C100/casePartyDetails/respondentDetailsAddressManualContent";
+// import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 
 interface RespondentDetailsAddressManualPageOptions {
   page: Page;
@@ -136,7 +137,7 @@ export class RespondentDetailsAddressManualPage {
       ),
     ]);
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page); Accessibility Issues: PRL-6590
+      // await AccessibilityTestHelper.run(page); //#TODO turn back on once Accessibility Issues: PRL-6899 has been fixed (re-ran on 20/01/25, issue still exists)
     }
   }
 

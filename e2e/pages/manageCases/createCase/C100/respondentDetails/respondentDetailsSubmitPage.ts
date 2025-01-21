@@ -115,7 +115,7 @@ export class RespondentDetailsSubmitPage {
       ]);
     }
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page); #TODO: Disabled pending ticket FPET-1135
+      // await AccessibilityTestHelper.run(page); #TODO: Disabled pending ticket EXUI-2717
     }
   }
 

@@ -3,6 +3,7 @@ import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { ApplicantAddressManualContent } from "../../../../../fixtures/citizen/createCase/C100/casePartyDetails/applicantAddressManualContent";
+// import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 
 interface applicantAddressManualOptions {
   page: Page;
@@ -73,7 +74,7 @@ export class ApplicantAddressManualPage {
       ),
     ]);
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page); Accessibility Issues: PRL-6590
+      // await AccessibilityTestHelper.run(page); //#TODO turn back on once Accessibility Issues: PRL-6590 has been fixed (rerun 20/01/25, issue still exists)
     }
   }
   private static async triggerErrorMessages(page: Page): Promise<void> {

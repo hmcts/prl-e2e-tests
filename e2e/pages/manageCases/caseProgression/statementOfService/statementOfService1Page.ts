@@ -4,6 +4,7 @@ import { CommonStaticText } from "../../../../common/commonStaticText";
 import { StatementOfService1Content } from "../../../../fixtures/manageCases/caseProgression/statementOfService/statementOfService1Content";
 import config from "../../../../config";
 import { Helpers } from "../../../../common/helpers";
+// import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
 
 interface StatementOfService1PageOptions {
   page: Page;
@@ -86,7 +87,7 @@ export class StatementOfService1Page {
       ),
     ]);
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page); #TODO wait until FPET-1230 is resolved
+      // await AccessibilityTestHelper.run(page); //#TODO turn back on once EXUI-2724 is resolved
     }
   }
 
