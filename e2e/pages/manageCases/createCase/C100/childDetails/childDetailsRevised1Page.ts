@@ -2,7 +2,6 @@ import { Page } from "@playwright/test";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { ChildDetailsRevised1Content } from "../../../../../fixtures/manageCases/createCase/C100/childDetails/childDetailsRevised1Content";
-
 interface childDetailsRevised1PageOptions {
   page: Page;
   accessibilityTest: boolean;
@@ -90,7 +89,7 @@ export class ChildDetailsRevised1Page {
       ),
     ]);
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page); #TODO: Fix when FPET-1140 is completed.
+      // await AccessibilityTestHelper.run(page); #TODO: Fix when EXUI-2718 is completed.
     }
   }
 

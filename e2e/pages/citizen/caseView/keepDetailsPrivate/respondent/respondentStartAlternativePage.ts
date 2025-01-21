@@ -3,6 +3,7 @@ import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 import { Page } from "@playwright/test";
 import { Helpers } from "../../../../../common/helpers.ts";
 import { RespondentStartAlternativeContent } from "../../../../../fixtures/citizen/caseView/respondent/keepDetailsPrivate/respondentStartAlternativeContent.ts";
+// import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 
 interface StartAlternativeParams {
   page: Page;
@@ -58,7 +59,7 @@ export class RespondentStartAlternativePage {
       ),
     ]);
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page); #TODO: Awaiting for accessibility ticket FPET-1242 to be resolved
+      //await AccessibilityTestHelper.run(page); //#TODO: Awaiting for accessibility ticket PRL-6882 to be resolved
     }
   }
 

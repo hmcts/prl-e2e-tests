@@ -3,6 +3,7 @@ import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { ConcernsForSafetyContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/concernsForSafetyContent";
+// import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 
 enum inputIDs {
   yes = "#c1A_haveSafetyConcerns",
@@ -48,6 +49,7 @@ export class ConcernsForSafetyPage {
 
   private static async checkPageLoads({
     page,
+    accessibilityTest
   }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.GovukHeadingXL}:text-is("${ConcernsForSafetyContent.pageTitle}")`,
@@ -98,9 +100,9 @@ export class ConcernsForSafetyPage {
         `${Selectors.GovukLink}`,
       ),
     ]);
-    // if (accessibilityTest) {
-    // await AccessibilityTestHelper.run(page); #TODO Commented out until ticket-6592 is complete
-    // }
+    if (accessibilityTest) {
+    // await AccessibilityTestHelper.run(page); //#TODO Commented out until PRL-6592 is complete (rerun 20/01/25, issue still exists)
+    }
   }
 
   private static async checkErrorMessaging(page: Page): Promise<void> {
