@@ -9,7 +9,6 @@ import { createOrderManageOrders19Options } from "../../../../pages/manageCases/
 import { howLongWillOrderBeInForce } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders12Page.ts";
 import { responsibleForServing } from "../../../../pages/manageCases/caseProgression/serviceOfApplication/ServiceOfApplication4Page.ts";
 import { CompleteTheOrder } from "../completeTheOrder/completeTheOrder.ts";
-import { ServiceOfApplicationJourney } from "../serviceOfApplication/serviceOfApplication.ts";
 import { jsonDatas } from "../../../../common/solicitorCaseCreatorHelper.ts";
 
 interface CompleteTheOrderParams {
@@ -41,8 +40,6 @@ export class E2eFlowUpToServiceOfApplication {
     createOrderFL401Options,
     browser,
     personallyServed,
-    yesNoServiceOfApplication4,
-    responsibleForServing,
     manageOrderData,
   }: CompleteTheOrderParams): Promise<void> {
     // TODO: new API call - need to check if/how the variables differ between tests unless it isn't needed see comment below
@@ -55,15 +52,6 @@ export class E2eFlowUpToServiceOfApplication {
       createOrderFL401Options,
       personallyServed,
       manageOrderData,
-    });
-    // TODO: new API call - need to check if/how the variables differ between tests
-    // TODO: move into own UI test
-    await ServiceOfApplicationJourney.serviceOfApplicationJourney({
-      page,
-      accessibilityTest,
-      createOrderFL401Options,
-      yesNoServiceOfApplication4,
-      responsibleForServing,
     });
   }
 }

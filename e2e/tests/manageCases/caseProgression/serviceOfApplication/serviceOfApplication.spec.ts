@@ -3,24 +3,23 @@ import Config from "../../../../config";
 import config from "../../../../config";
 import createDaCitizenCourtNavCase from "../../../../common/createCaseHelper";
 import { Helpers } from "../../../../common/helpers";
-import { E2eFlowUpToServiceOfApplication } from "../../../../journeys/manageCases/caseProgression/createACaseUpToServiceOfApplicationState/e2eFlowUpToServiceOfApplication.ts";
 import { jsonDatas } from "../../../../common/solicitorCaseCreatorHelper.ts";
+import { ServiceOfApplication } from "../../../../journeys/manageCases/caseProgression/serviceOfApplication/serviceOfApplication.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
-test.describe("Complete the Order task for DA Citizen case tests.", () => {
+test.describe("Service of Application task for DA Citizen case tests.", () => {
   let ccdRef: string = "";
-
   test.beforeEach(async ({ page }) => {
     ccdRef = await createDaCitizenCourtNavCase(true, false);
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
   });
 
-  test("Complete Task - Complete the Order & statement of service - Power of arrest (FL406) without accessibility test. @regression", async ({
+  test(`Complete Task - statement of service - Power of arrest (FL406) without accessibility test. @regression`, async ({
     page,
     browser,
   }): Promise<void> => {
-    await E2eFlowUpToServiceOfApplication.e2eFlowUpToServiceOfApplication({
+    await ServiceOfApplication.serviceOfApplicationJourney({
       page: page,
       accessibilityTest: false,
       yesNoSendToGateKeeper: true,
@@ -41,11 +40,11 @@ test.describe("Complete the Order task for DA Citizen case tests.", () => {
     });
   });
 
-  test("Complete Task - Complete the Order & statement of service - Amended, discharged or varied order (FL404B)  with accessibility test. @regression @accessibility", async ({
+  test(`Complete Task - statement of service - Amended, discharged or varied order (FL404B)  with accessibility test. @regression @accessibility`, async ({
     page,
     browser,
   }): Promise<void> => {
-    await E2eFlowUpToServiceOfApplication.e2eFlowUpToServiceOfApplication({
+    await ServiceOfApplication.serviceOfApplicationJourney({
       page: page,
       accessibilityTest: false,
       yesNoSendToGateKeeper: true,
