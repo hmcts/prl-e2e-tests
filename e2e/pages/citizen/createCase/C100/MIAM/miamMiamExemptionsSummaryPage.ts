@@ -8,6 +8,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { MiamMiamExemptionsSummaryContent } from "../../../../../fixtures/citizen/createCase/C100/MIAM/miamMiamExemptionsSummaryContent";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 
 interface MiamMiamExemptionsSummaryPageOptions {
   page: Page;
@@ -89,7 +90,7 @@ export class MiamMiamExemptionsSummaryPage {
       miamReasonForNoAccessToMediator: miamReasonForNoAccessToMediator,
     });
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page); #TODO: Re-enable when PRL-6520 is completed
+      await AccessibilityTestHelper.run(page);
     }
   }
 
