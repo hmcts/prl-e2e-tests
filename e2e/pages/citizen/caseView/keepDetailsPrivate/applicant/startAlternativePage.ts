@@ -105,7 +105,7 @@ export class ApplicantStartAlternativePage {
       ),
     ]);
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page); //#TODO: Awaiting for accessibility ticket FPET-1242 to be resolved
+      // await AccessibilityTestHelper.run(page); //#TODO: Awaiting for accessibility ticket PRL-6882 to be resolved
     }
   }
 
