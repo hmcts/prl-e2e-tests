@@ -8,7 +8,7 @@ import {
   manageOrdersOptions,
   WACaseWorkerActions,
 } from "../../../../common/types.ts";
-import { E2eFlowUpToServiceOfApplication } from "../e2eFlowUpToServiceOfApplication/e2eFlowUpToServiceOfApplication.ts";
+import { E2eFlowUpToServiceOfApplication } from "../createACaseUpToServiceOfApplicationState/e2eFlowUpToServiceOfApplication.ts";
 import { createOrderManageOrders19Options } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders19Page.ts";
 import { howLongWillOrderBeInForce } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders12Page.ts";
 import { responsibleForServing } from "../../../../pages/manageCases/caseProgression/serviceOfApplication/ServiceOfApplication4Page.ts";

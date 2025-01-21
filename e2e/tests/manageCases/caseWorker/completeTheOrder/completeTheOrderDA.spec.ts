@@ -3,8 +3,8 @@ import createDaCitizenCourtNavCase from "../../../../common/createCaseHelper.ts"
 import { Helpers } from "../../../../common/helpers.ts";
 import config from "../../../../config.ts";
 import Config from "../../../../config.ts";
-import { CompleteTheOrder } from "../../../../journeys/manageCases/caseProgression/e2eFlowUpToServiceOfApplication/completeTheOrder/completeTheOrder.ts";
 import { jsonDatas } from "../../../../common/solicitorCaseCreatorHelper.ts";
+import { CompleteTheOrder } from "../../../../journeys/manageCases/caseProgression/completeTheOrder/completeTheOrder.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 

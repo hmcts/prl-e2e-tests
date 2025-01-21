@@ -6,7 +6,7 @@ import { EnterPinPage } from "../../../pages/citizen/activateCase/enterPinPage.t
 import { CaseActivatedPage } from "../../../pages/citizen/activateCase/caseActivatedPage.ts";
 import { ApplicantDashboardPage } from "../../../pages/citizen/activateCase/applicantDashboardPage.ts";
 import { RespondentDashboardPage } from "../../../pages/citizen/activateCase/respondentDashboardPage.ts";
-import { E2eFlowUpToServiceOfApplication } from "../../manageCases/caseProgression/e2eFlowUpToServiceOfApplication/e2eFlowUpToServiceOfApplication.ts";
+import { E2eFlowUpToServiceOfApplication } from "../../manageCases/caseProgression/createACaseUpToServiceOfApplicationState/e2eFlowUpToServiceOfApplication.ts";
 import { jsonDatas } from "../../../common/solicitorCaseCreatorHelper.ts";
 
 interface ActiveCaseParams {
