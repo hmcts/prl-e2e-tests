@@ -1,6 +1,6 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors";
-import { Fl401ListOnNoticeConfirmContent } from "../../../../fixtures/manageCases/caseProgression/list/fl401ListOnNoticeConfirmContent";
+import { Fl401ListOnNoticeConfirmContent } from "../../../../fixtures/manageCases/caseProgression/List/fl401ListOnNoticeConfirmContent";
 import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
 import { Helpers } from "../../../../common/helpers";
 

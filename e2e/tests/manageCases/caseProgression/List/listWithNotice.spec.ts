@@ -3,22 +3,22 @@ import Config from "../../../../config";
 import config from "../../../../config";
 import createDaCitizenCourtNavCase from "../../../../common/createCaseHelper";
 import { Helpers } from "../../../../common/helpers";
-import { ListWithoutNotice } from "../../../../journeys/manageCases/caseProgression/list/listWithoutNotice";
+import { ListWithNotice } from "../../../../journeys/manageCases/caseProgression/List/listWithNotice";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
-test.describe("List without notice tests", () => {
+test.describe("List with notice tests", () => {
   let ccdRef: string;
   test.beforeEach(async ({ page }) => {
-    ccdRef = await createDaCitizenCourtNavCase(false, false);
+    ccdRef = await createDaCitizenCourtNavCase(true, false);
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
   });
 
-  test(`Complete list without notice event. @regression @accessibility @nightly`, async ({
+  test(`Complete list with notice event. @regression @accessibility @nightly`, async ({
     page,
     browser,
   }): Promise<void> => {
-    await ListWithoutNotice.listWithoutNotice({
+    await ListWithNotice.listWithNotice({
       page: page,
       browser: browser,
       ccdRef: ccdRef,
