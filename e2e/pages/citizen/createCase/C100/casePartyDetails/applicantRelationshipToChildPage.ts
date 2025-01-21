@@ -4,6 +4,7 @@ import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { Relationship } from "../../../../../common/types";
 import { ApplicantRelationshipToChildContent } from "../../../../../fixtures/citizen/createCase/C100/casePartyDetails/applicantRelationshipToChildContent";
+// import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 
 interface applicantRelationshipToChildPageOptions {
   page: Page;
@@ -78,7 +79,7 @@ export class ApplicantRelationshipToChildPage {
       ),
     ]);
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page); Accessibility: PRL-6589
+      //await AccessibilityTestHelper.run(page); //#TODO turn back on once Accessibility: PRL-6589 is fixed (rerun 20/01/25, issue still exists)
     }
   }
   private static async triggerErrorMessages(page: Page): Promise<void> {
