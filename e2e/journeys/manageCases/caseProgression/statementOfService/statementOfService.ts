@@ -73,8 +73,8 @@ export class StatementOfService {
       responsibleForServing,
       manageOrderData,
     });
-    const eventToSelect: WACaseWorkerActions = "Statement of service";
-    await Helpers.chooseEventFromDropdown(page, eventToSelect);
+    await page.reload();
+    await Helpers.chooseEventFromDropdown(page, "Statement of service");
     await StatementOfService1Page.statementOfService1Page({
       page,
       accessibilityTest,
