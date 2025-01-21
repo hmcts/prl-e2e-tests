@@ -74,23 +74,16 @@ export class AmendApplicantDetailsSubmitPage {
       `${Selectors.h2}:text-is("${amendApplicantDetailsSubmitContent.h2}")`,
       1,
     );
+
     if (solicitorDetailsChange) {
       //if there is a change in solicitor details, the will be two instances of the address labels.
       await Promise.all([
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukText16}:text-is("${amendApplicantDetailsSubmitContent.text16_2}")`,
-          2,
-        ),
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukText16}:text-is("${amendApplicantDetailsSubmitContent.text16_9}")`,
-          2,
-        ),
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukText16}:text-is("${amendApplicantDetailsSubmitContent.text16_10}")`,
-          2,
+        Helpers.checkGroup(
+            page,
+            10,
+            amendApplicantDetailsSubmitContent,
+            `text16_`,
+            `${Selectors.GovukText16}`,
         ),
         Helpers.checkVisibleAndPresent(
           page,
@@ -104,7 +97,22 @@ export class AmendApplicantDetailsSubmitPage {
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukText16}:text-is("${amendApplicantDetailsSubmitContent.text16_20}")`,
+          `${Selectors.GovukText16}:text-is("${amendApplicantDetailsSubmitContent.text16_13}")`,
+          2,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukText16}:text-is("${amendApplicantDetailsSubmitContent.text16_14}")`,
+          2,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukText16}:text-is("${amendApplicantDetailsSubmitContent.text16_15}")`,
+          2,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukText16}:text-is("${amendApplicantDetailsSubmitContent.text16_16}")`,
           2,
         ),
       ]);
@@ -112,7 +120,7 @@ export class AmendApplicantDetailsSubmitPage {
       await Promise.all([
         Helpers.checkGroup(
           page,
-          20,
+          16,
           amendApplicantDetailsSubmitContent,
           `text16_`,
           `${Selectors.GovukText16}`,
@@ -216,7 +224,7 @@ export class AmendApplicantDetailsSubmitPage {
         expect(
           page
             .getByRole("row", {
-              name: `${amendApplicantDetailsSubmitContent.text16_13} ${CommonStaticText.yes}`,
+              name: `${amendApplicantDetailsSubmitContent.text16_6} ${CommonStaticText.yes}`,
               exact: true,
             })
             .locator("td"),
@@ -224,7 +232,7 @@ export class AmendApplicantDetailsSubmitPage {
         expect(
           page
             .getByRole("row", {
-              name: `${amendApplicantDetailsSubmitContent.text16_16} ${CommonStaticText.yes}`,
+              name: `${amendApplicantDetailsSubmitContent.text16_10} ${CommonStaticText.yes}`,
               exact: true,
             })
             .locator("td"),
