@@ -116,6 +116,7 @@ export class ServiceOfApplication2Page {
         break;
     }
     const fileInput = page.locator(UniqueSelectors.fileUpload);
+    await page.waitForTimeout(1000);
     await fileInput.setInputFiles(config.testPdfFile);
     await page.waitForSelector(
       `${Selectors.GovukErrorMessage}:text-is("${MiamPolicyUpgrade6Content.uploadingFile}")`,

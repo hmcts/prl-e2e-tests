@@ -392,6 +392,10 @@ export class Helpers {
       .toBeTruthy();
   }
 
+  public static async getFormattedCardExpiryDate(month: number, year: number): string {
+    return `${String(month).padStart(2, "0")}/${String(year).slice(-2)}`;
+  }
+  
   public static async IsEqualityAndDiversityPageDisplayed(page: Page) {
     await expect
       .poll(
