@@ -46,6 +46,7 @@ export class PayPage {
 
   private static async checkPageLoads({
     page,
+    accessibilityTest,
   }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.GovukHeadingL}:text-is("${PayContent.pageTitle}")`,
@@ -120,9 +121,9 @@ export class PayPage {
         1,
       ),
     ]);
-    // if (accessibilityTest) {
+    if (accessibilityTest) {
     //   await AccessibilityTestHelper.run(page); / TODO: Pending accessibility PRL-6654
-    // }
+    }
   }
 
   private static async checkErrorMessaging(page: Page): Promise<void> {
