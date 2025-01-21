@@ -16,7 +16,7 @@ test.describe("Complete an order for DA case tests.", () => {
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
   });
 
-  test("Complete the order - Power of arrest order - personally served", async ({
+  test("Complete the order - Power of arrest order - personally served. @nightly @regression @accessibility", async ({
     page,
     browser,
   }): Promise<void> => {
@@ -31,14 +31,14 @@ test.describe("Complete an order for DA case tests.", () => {
     });
   });
 
-  test("Complete the order - amend discharge varied order - not personally served", async ({
+  test("Complete the order - Amend discharge varied order - not personally served. @regression", async ({
     page,
     browser,
   }): Promise<void> => {
     await CompleteTheOrder.completeTheOrder({
       page: page,
       browser: browser,
-      accessibilityTest: true,
+      accessibilityTest: false,
       ccdRef: ccdRef,
       createOrderFL401Options: "amend discharge varied order",
       personallyServed: false,
