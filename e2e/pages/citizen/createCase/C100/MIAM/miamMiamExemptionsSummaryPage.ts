@@ -90,7 +90,7 @@ export class MiamMiamExemptionsSummaryPage {
       miamReasonForNoAccessToMediator: miamReasonForNoAccessToMediator,
     });
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page); //#TODO: Re-enable when PRL-6520 is completed
+      await AccessibilityTestHelper.run(page);
     }
   }
 
