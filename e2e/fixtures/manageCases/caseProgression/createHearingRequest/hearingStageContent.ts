@@ -1,4 +1,4 @@
-export enum HearingStageContent{
+export enum HearingStageContent {
   govUkHeadingL = "What stage is this hearing at?",
   GovukLabel1 = "Allocation",
   GovukLabel2 = "Appeal",
@@ -26,5 +26,5 @@ export enum HearingStageContent{
   GovukLabel24 = "Safeguarding Gatekeeping Appointment",
   GovukLabel25 = "Settlement Conference",
   GovukLabel26 = "First Hearing Dispute Resolution Appointment (FHDRA)",
-  continue = "Continue"
+  continue = "Continue",
 }

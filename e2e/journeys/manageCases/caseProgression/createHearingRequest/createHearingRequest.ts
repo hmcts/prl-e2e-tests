@@ -14,63 +14,34 @@ import { HearingAdditionalInstructionsPage } from "../../../../pages/manageCases
 import { HearingCreateEditSummaryPage } from "../../../../pages/manageCases/caseProgression/createHearingRequest/hearingCreateEditSummaryPage";
 import Config from "../../../../config";
 import config from "../../../../config";
-import { ApplicationJourneysCheckGatekeeperJudgeCOOrder } from "../e2eFlowUpToServiceOfApplication/application-journeys-check-gatekeeper-judgeCO-order";
-import {
-  WACaseWorkerActions,
-  createOrderFL401Options,
-  judgeTitles,
-  manageOrdersOptions,
-} from "../../../../common/types";
-import { createOrderManageOrders19Options } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders19Page";
-import { howLongWillOrderBeInForce } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders12Page";
+import { createOrderFL401Options } from "../../../../common/types";
 import { Selectors } from "../../../../common/selectors.ts";
+import { ApplicationJourneysCheckGatekeeperJudgeCOOrder } from "../createACaseUpToServiceOfApplicationState/application-journeys-check-gatekeeper-judgeCO-order.ts";
+import { jsonDatas } from "../../../../common/solicitorCaseCreatorHelper.ts";
 
 interface CreateHearingRequestParams {
   page: Page;
   accessibilityTest: boolean;
-  yesNoSendToGateKeeper: boolean;
-  c100CaseWorkerActions: WACaseWorkerActions;
-  manageOrdersOptions: manageOrdersOptions;
   createOrderFL401Options: createOrderFL401Options;
-  yesNoManageOrders: boolean;
-  judgeTitles: judgeTitles;
-  withOrWithoutNotice: boolean;
-  createOrderManageOrders19Options: createOrderManageOrders19Options;
-  howLongWillOrderBeInForce: howLongWillOrderBeInForce;
   ccdRef: string;
   browser: Browser;
+  manageOrderData: typeof jsonDatas;
 }
 export class CreateHearingRequest {
   public static async createHearingRequest({
     page,
     accessibilityTest,
-    yesNoSendToGateKeeper,
     ccdRef,
-    c100CaseWorkerActions,
-    manageOrdersOptions,
     createOrderFL401Options,
-    yesNoManageOrders,
-    judgeTitles,
-    withOrWithoutNotice,
-    createOrderManageOrders19Options,
-    howLongWillOrderBeInForce,
     browser,
+    manageOrderData,
   }: CreateHearingRequestParams): Promise<void> {
     await ApplicationJourneysCheckGatekeeperJudgeCOOrder.applicationJourneysCheckGatekeeperJudgeCOOrder(
       {
         page,
-        accessibilityTest,
-        yesNoSendToGateKeeper,
         ccdRef,
-        c100CaseWorkerActions,
-        createOrderFL401Options,
-        yesNoManageOrders,
-        judgeTitles,
-        withOrWithoutNotice,
-        createOrderManageOrders19Options,
-        howLongWillOrderBeInForce,
-        manageOrdersOptions,
         browser,
+        manageOrderData,
       },
     );
     // open new browser and sign in as court admin user
@@ -124,50 +95,28 @@ export class CreateHearingRequest {
         );
         break;
     }
-    await page.click(`${Selectors.a}:text-is("${CommonStaticText.hearingRequest}")`);
+    await page.click(
+      `${Selectors.a}:text-is("${CommonStaticText.hearingRequest}")`,
+    );
     await HearingRequirementsPage.hearingRequirementsPage(
       page,
-      accessibilityTest
+      accessibilityTest,
     );
-    await HearingFacilitiesPage.hearingFacilitiesPage(
-      page,
-      accessibilityTest
-    );
-    await HearingStagePage.hearingStagePage(
-      page,
-      accessibilityTest
-    );
-    await HearingAttendancePage.hearingAttendancePage(
-      page,
-      accessibilityTest
-    );
-    await HearingVenuePage.hearingVenuePage(
-      page,
-      accessibilityTest
-    );
-    await HearingWelshPage.hearingWelshPage(
-      page,
-      accessibilityTest
-    );
-    await HearingJudgePage.hearingJudgePage(
-      page,
-      accessibilityTest
-    );
-    await HearingTimingPage.hearingTimingPage(
-      page,
-      accessibilityTest
-    );
-    await HearingLinkPage.hearingLinkPage(
-      page,
-      accessibilityTest
-    );
+    await HearingFacilitiesPage.hearingFacilitiesPage(page, accessibilityTest);
+    await HearingStagePage.hearingStagePage(page, accessibilityTest);
+    await HearingAttendancePage.hearingAttendancePage(page, accessibilityTest);
+    await HearingVenuePage.hearingVenuePage(page, accessibilityTest);
+    await HearingWelshPage.hearingWelshPage(page, accessibilityTest);
+    await HearingJudgePage.hearingJudgePage(page, accessibilityTest);
+    await HearingTimingPage.hearingTimingPage(page, accessibilityTest);
+    await HearingLinkPage.hearingLinkPage(page, accessibilityTest);
     await HearingAdditionalInstructionsPage.hearingAdditionalInstructionsPage(
       page,
-      accessibilityTest
+      accessibilityTest,
     );
     await HearingCreateEditSummaryPage.hearingCreateEditSummaryPage(
       page,
-      accessibilityTest
+      accessibilityTest,
     );
   }
 }

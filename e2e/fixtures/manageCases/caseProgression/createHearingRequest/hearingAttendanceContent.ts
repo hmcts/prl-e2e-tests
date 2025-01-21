@@ -1,4 +1,4 @@
-export enum HearingAttendanceContent{
+export enum HearingAttendanceContent {
   govUkHeadingL = "Participant attendance",
   GovukInsetText = "Where known, contact details for remote attendees will be included in the request.",
   GovukFieldsetHeading1 = "Will this be a paper hearing?",
