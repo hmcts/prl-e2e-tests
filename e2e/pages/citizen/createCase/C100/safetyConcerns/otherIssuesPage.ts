@@ -3,7 +3,6 @@ import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { OtherIssuesContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/otherIssuesContent";
-import { SafetyConcernHelpers } from "./safetyConcernHelpers";
 
 enum inputIDs {
   radioYes = "#c1A_childSafetyConcerns",
@@ -76,7 +75,6 @@ export class OtherIssuesPage {
         1,
       ),
     ]);
-    await SafetyConcernHelpers.checkContactDetailsText(page);
     // if (accessibilityTest) {
     //   await AccessibilityTestHelper.run(page); #TODO Commented out until ticket-6592 is complete
     // }

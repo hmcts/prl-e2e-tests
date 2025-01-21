@@ -46,7 +46,7 @@ export class OtherPersonDetailsAddOtherPersonsPage {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukFieldsetHeading}:text-is("${OtherPersonDetailsAddOtherPersonsContent.govukFieldsetHeading}")`,
+        `${Selectors.GovukFieldsetLegend}:text-is("${OtherPersonDetailsAddOtherPersonsContent.govukFieldsetHeading}")`,
         1,
       ),
       Helpers.checkGroup(

@@ -9,13 +9,13 @@ import idamLoginHelper from "./idamLoginHelper";
 import { Selectors } from "./selectors.ts";
 import {
   c100SolicitorEvents,
+  courtAdminEvents,
+  fl401CaseWorkerActions,
   fl401JudiciaryEvents,
   fl401SolicitorEvents,
   fl401SubmittedSolicitorEvents,
-  WACaseWorkerActions,
   UserRole,
-  fl401CaseWorkerActions,
-  courtAdminEvents,
+  WACaseWorkerActions,
 } from "./types";
 import Config from "../config.ts";
 
@@ -238,7 +238,7 @@ export class Helpers {
     caseNumber: string,
     caseTab: string,
   ): string {
-    const caseNumberDigits: string = caseNumber.replace(/\D/g, "");
+    const caseNumberDigits: string = caseNumber.toString().replace(/\D/g, "");
     if (
       caseTab.toLowerCase() === "tasks" ||
       caseTab.toLowerCase() === "roles and access"
@@ -392,7 +392,24 @@ export class Helpers {
       .toBeTruthy();
   }
 
-  static getFormattedCardExpiryDate(month: number, year: number): string {
+  public static async getFormattedCardExpiryDate(month: number, year: number): string {
     return `${String(month).padStart(2, "0")}/${String(year).slice(-2)}`;
+  }
+  
+  public static async IsEqualityAndDiversityPageDisplayed(page: Page) {
+    await expect
+      .poll(
+        async () => {
+          const url = page.url();
+          return !url.includes(Config.citizenFrontendBaseURL);
+        },
+        {
+          intervals: [1_000],
+          timeout: 100_000,
+        },
+      )
+      .toBeTruthy();
+
+    return page.url().includes("pcq");
   }
 }

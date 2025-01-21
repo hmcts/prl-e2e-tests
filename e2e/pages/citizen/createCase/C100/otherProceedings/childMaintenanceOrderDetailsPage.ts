@@ -58,8 +58,8 @@ export class ChildMaintenanceOrderDetailsPage {
         page,
         5,
         ChildMaintenanceOrderDetailsContent,
-        "h1",
-        `${Selectors.h1}`,
+        "GovukFieldsetLegend",
+        `${Selectors.GovukFieldsetLegend}`,
       ),
       Helpers.checkGroup(
         page,

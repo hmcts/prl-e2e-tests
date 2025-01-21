@@ -3,7 +3,6 @@ import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { FeesAppliedContent } from "../../../../../fixtures/citizen/createCase/C100/helpWithFees/feesAppliedContent";
-import { SafetyConcernHelpers } from "../safetyConcerns/safetyConcernHelpers";
 
 enum inputIDs {
   radioYes = "#hwf_feesAppliedDetails",
@@ -66,7 +65,6 @@ export class FeesAppliedPage {
         1,
       ),
     ]);
-    await SafetyConcernHelpers.checkContactDetailsText(page);
     // if (accessibilityTest) {
     //   await AccessibilityTestHelper.run(page); #TODO Commented out until ticket-6603 is complete
     // }
@@ -129,17 +127,17 @@ export class FeesAppliedPage {
       await Promise.all([
         Helpers.checkVisibleAndPresent(
           page,
+          `${Selectors.h3}:text-is("${FeesAppliedContent.h3}")`,
+          1,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
           `${Selectors.GovukLabel}:text-is("${FeesAppliedContent.formLabel}")`,
           1,
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukHint}:text-is("${FeesAppliedContent.formHint1}")`,
-          1,
-        ),
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukHint}:text-is("${FeesAppliedContent.formHint2}")`,
+          `${Selectors.GovukHint}:text-is("${FeesAppliedContent.formHint}")`,
           1,
         ),
       ]);

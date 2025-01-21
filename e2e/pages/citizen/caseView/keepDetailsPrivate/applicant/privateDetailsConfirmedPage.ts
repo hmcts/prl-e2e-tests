@@ -1,9 +1,9 @@
-import { Helpers } from "../../../../common/helpers.ts";
+import { Helpers } from "../../../../../common/helpers.ts";
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors.ts";
-import { PrivateDetailsConfirmedContent } from "../../../../fixtures/citizen/caseView/keepDetailsPrivate/privateDetailsConfirmedContent.ts";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { Selectors } from "../../../../../common/selectors.ts";
+import { PrivateDetailsConfirmedContent } from "../../../../../fixtures/citizen/caseView/keepDetailsPrivate/privateDetailsConfirmedContent.ts";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
+import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 
 interface Start_alternativeContent {
   page: Page;

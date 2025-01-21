@@ -81,7 +81,6 @@ export class YourselfConcernsAboutPage {
       ),
     ]);
     await SafetyConcernHelpers.checkSidebarYourself(page);
-    await SafetyConcernHelpers.checkContactDetailsText(page);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }

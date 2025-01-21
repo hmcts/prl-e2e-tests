@@ -4,12 +4,12 @@ import { Fl401StatementOfTruth } from "../FL401StatementOfTruth/fl401StatementOf
 import { DummyFL401ApplicantDetails } from "./dummyFL401ApplicantDetails";
 
 interface dummyFL401Options {
-  page: Page,
-  applicantLivesInRefuge: boolean,
+  page: Page;
+  applicantLivesInRefuge: boolean;
 }
 
 export class DummyFL401 {
-  public static async dummyFL401({ 
+  public static async dummyFL401({
     page,
     applicantLivesInRefuge,
   }: dummyFL401Options): Promise<void> {

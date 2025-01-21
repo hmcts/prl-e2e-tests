@@ -58,7 +58,7 @@ export class AddChildrenPage {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h1}:text-is("${AddChildrenContent.heading}")`,
+        `${Selectors.GovukFieldsetLegend}:text-is("${AddChildrenContent.legend}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(

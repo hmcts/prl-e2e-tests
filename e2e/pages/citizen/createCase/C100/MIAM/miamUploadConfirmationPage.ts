@@ -27,7 +27,7 @@ export class MiamUploadConfirmationPage {
     accessibilityTest: accessibilityTest,
   }: MiamUploadConfirmationPageOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.h2}:text-is("${MiamUploadConfirmationContent.h23}")`,
+      `${Selectors.h3}:text-is("${MiamUploadConfirmationContent.h3}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -35,12 +35,10 @@ export class MiamUploadConfirmationPage {
         `${Selectors.GovukHeadingXL}:text-is("${MiamUploadConfirmationContent.pageTitle}")`,
         1,
       ),
-      Helpers.checkGroup(
+      Helpers.checkVisibleAndPresent(
         page,
-        2,
-        MiamUploadConfirmationContent,
-        `h2`,
-        Selectors.h2,
+        `${Selectors.h2}:text-is("${MiamUploadConfirmationContent.h2}")`,
+        1,
       ),
     ]);
     if (accessibilityTest) {

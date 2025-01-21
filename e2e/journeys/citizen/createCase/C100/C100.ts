@@ -6,8 +6,6 @@ import {
   typeOfPerson,
   yesNoDontKnow,
 } from "../../../../common/types";
-import { ConfirmationPage } from "../../../../pages/citizen/createCase/C100/confirmation/confirmationPage";
-import { EqualityAndDiversityPage } from "../../../../pages/citizen/createCase/C100/confirmation/equalityAndDiversityQuestionsPage";
 import { MiamChildProtectionConcernsType } from "../../../../pages/citizen/createCase/C100/MIAM/miamChildProtectionPage";
 import { MiamOtherReasonForNotAttending } from "../../../../pages/citizen/createCase/C100/MIAM/miamMiamOtherPage";
 import { MiamReasonForNoAccessToMediator } from "../../../../pages/citizen/createCase/C100/MIAM/miamNoAccessToMediatorPage";
@@ -26,7 +24,6 @@ import { C100ConsentOrderUpload } from "./subJourneys/C100ConsentOrderUpload";
 import { C100HelpWithFees } from "./subJourneys/c100HelpWithFees";
 import { C100InternationalElements } from "./subJourneys/c100InternationalElements";
 import { C100OtherProceedings } from "./subJourneys/C100OtherProceedings";
-import { C100Pay } from "./subJourneys/C100Pay";
 import { C100People } from "./subJourneys/C100People1";
 import { C100ReasonableAdjustments } from "./subJourneys/c100ReasonableAdjustments";
 import { C100SafetyConcerns } from "./subJourneys/c100SafetyConcerns";
@@ -34,6 +31,9 @@ import { C100ScreeningSections } from "./subJourneys/c100ScreeningSections";
 import { C100TypeOfOrder } from "./subJourneys/C100TypeOfOrder";
 import { C100UrgencyAndWithoutNotice } from "./subJourneys/C100UrgencyAndWithoutNotice";
 import { MIAM } from "./subJourneys/MIAM";
+import { EqualityAndDiversityPage } from "../../../../pages/citizen/createCase/C100/confirmation/equalityAndDiversityQuestionsPage.ts";
+import { C100Pay } from "./subJourneys/C100Pay.ts";
+import { ConfirmationPage } from "../../../../pages/citizen/createCase/C100/confirmation/confirmationPage.ts";
 
 interface C100ApplicationCompletedForYouOptions {
   page: Page;
@@ -1165,12 +1165,12 @@ export class C100 {
       c100ChildrenSupervision: c100ChildrenSupervision,
       c100YesNoNeedHelpWithFees: c100YesNoNeedHelpWithFees,
     });
-    // await EqualityAndDiversityPage.equalityAndDiversityPage({
-    //   page
-    // });
-    // await ConfirmationPage.confirmationPage({
-    //   page: page,
-    //   accessibilityTest: accessibilityTest,
-    // });
+    await EqualityAndDiversityPage.equalityAndDiversityPage({
+      page,
+    });
+    await ConfirmationPage.confirmationPage({
+      page: page,
+      accessibilityTest: accessibilityTest,
+    });
   }
 }

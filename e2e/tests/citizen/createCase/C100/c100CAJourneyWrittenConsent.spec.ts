@@ -10,6 +10,7 @@ test.describe("C100 Citizen Application with Written Consent from other people i
       Config.citizenFrontendBaseURL,
     );
   });
+
   test(`C100 of the citizen journey with the following options:
     Not Accessibility Testing,
     Not Error Messaging,
@@ -103,7 +104,7 @@ test.describe("C100 Citizen Application with Written Consent from other people i
     });
   });
 
-  test(`C100 of the citizen journey with the following options:
+  test(`C100 of the citizen journey with the following options: 
     Not Accessibility Testing,
     Not Error Messaging,
     Yes Screening and Written Review
@@ -117,7 +118,7 @@ test.describe("C100 Citizen Application with Written Consent from other people i
     applicantGender: male,
     applicant lives in a refuge: no,
     applicant address lookup: true,
-    applicant address lookup successful: true,
+    applicant address lookup successful: true, 
     applicant lived at address more than 5 years: true,
     applicant email and telephone: true,
     applicant digital preferences: true,
@@ -198,7 +199,7 @@ test.describe("C100 Citizen Application with Written Consent from other people i
 
   test(`C100 of the citizen journey with the following options:
     Not Accessibility Testing,
-    Error Messaging,
+    Not Error Messaging,
     Yes Screening and Written Review
     With urgency and without notice all options yes
     People gender male,
@@ -244,7 +245,7 @@ test.describe("C100 Citizen Application with Written Consent from other people i
     await C100.c100caWrittenConsentJourney({
       page: page,
       accessibilityTest: false,
-      errorMessaging: true,
+      errorMessaging: false,
       urgencyAndWithoutNoticeAllOptionsYes: true,
       c100PeopleGender: "male",
       c100PeopleYesNoDontKnow: "yes",
