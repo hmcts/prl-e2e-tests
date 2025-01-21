@@ -3,6 +3,7 @@ import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { ParentalResponsibilityContent } from "../../../../../fixtures/citizen/createCase/C100/people/parentalResponsibilityContent";
+// import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 
 interface ParentalResponsibilityPageOptions {
   page: Page;
@@ -66,7 +67,7 @@ export class ParentalResponsibilityPage {
       ),
     ]);
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page); Accessibility Issues: PRL-6583
+      // await AccessibilityTestHelper.run(page); //#TODO turn back on once Accessibility Issues: PRL-6583 has been fixed (rerun 20/01/25, issue still exists)
     }
   }
 

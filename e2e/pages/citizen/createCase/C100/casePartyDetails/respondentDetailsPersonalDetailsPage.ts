@@ -4,6 +4,7 @@ import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { ApplicantGender, yesNoDontKnow } from "../../../../../common/types";
 import { RespondentDetailsPersonalDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/casePartyDetails/respondentDetailsPersonalDetailsContent";
+// import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 
 enum InputIds {
   changeNameYes = "#hasNameChanged",
@@ -141,7 +142,7 @@ export class RespondentDetailsPersonalDetailsPage {
       ),
     ]);
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page); Accessibility Issues: PRL-6587
+      // await AccessibilityTestHelper.run(page); //#TODO turn back on once Accessibility Issues: PRL-6587 has been fixed (rerun 20/01/25, issues still exists)
     }
   }
 
