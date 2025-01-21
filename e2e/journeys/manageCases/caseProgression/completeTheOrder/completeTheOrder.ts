@@ -1,21 +1,21 @@
 import { Browser, Page } from "@playwright/test";
-import { Helpers } from "../../../../../common/helpers.ts";
-import { AdminEditAndApproveAnOrder1Page } from "../../../../../pages/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrder1Page.ts";
-import { AdminEditAndApproveAnOrder4Page } from "../../../../../pages/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrder4Page.ts";
-import { AdminEditAndApproveAnOrder21Page } from "../../../../../pages/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrder21Page.ts";
-import { AdminEditAndApproveAnOrder22Page } from "../../../../../pages/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrder22Page.ts";
-import { AdminEditAndApproveAnOrder23Page } from "../../../../../pages/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrder23Page.ts";
-import { AdminEditAndApproveAnOrderSubmitPage } from "../../../../../pages/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrderSubmitPage.ts";
-import config from "../../../../../config.ts";
+import { Helpers } from "../../../../common/helpers.ts";
+import { AdminEditAndApproveAnOrder1Page } from "../../../../pages/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrder1Page.ts";
+import { AdminEditAndApproveAnOrder4Page } from "../../../../pages/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrder4Page.ts";
+import { AdminEditAndApproveAnOrder21Page } from "../../../../pages/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrder21Page.ts";
+import { AdminEditAndApproveAnOrder22Page } from "../../../../pages/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrder22Page.ts";
+import { AdminEditAndApproveAnOrder23Page } from "../../../../pages/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrder23Page.ts";
+import { AdminEditAndApproveAnOrderSubmitPage } from "../../../../pages/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrderSubmitPage.ts";
+import config from "../../../../config.ts";
 import {
   createOrderFL401Options,
   judgeTitles,
   manageOrdersOptions,
   WACaseWorkerActions,
-} from "../../../../../common/types.ts";
-import { createOrderManageOrders19Options } from "../../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders19Page.ts";
-import { howLongWillOrderBeInForce } from "../../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders12Page.ts";
-import { responsibleForServing } from "../../../../../pages/manageCases/caseProgression/serviceOfApplication/ServiceOfApplication4Page.ts";
+} from "../../../../common/types.ts";
+import { createOrderManageOrders19Options } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders19Page.ts";
+import { howLongWillOrderBeInForce } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders12Page.ts";
+import { responsibleForServing } from "../../../../pages/manageCases/caseProgression/serviceOfApplication/ServiceOfApplication4Page.ts";
 
 interface CompleteTheOrderParams {
   page: Page;

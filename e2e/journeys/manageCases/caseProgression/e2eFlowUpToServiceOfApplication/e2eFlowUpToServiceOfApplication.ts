@@ -9,8 +9,8 @@ import { createOrderManageOrders19Options } from "../../../../pages/manageCases/
 import { howLongWillOrderBeInForce } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders12Page.ts";
 import { responsibleForServing } from "../../../../pages/manageCases/caseProgression/serviceOfApplication/ServiceOfApplication4Page.ts";
 import { ApplicationJourneysCheckGatekeeperJudgeCOOrder } from "./application-journeys-check-gatekeeper-judgeCO-order.ts";
-import { CompleteTheOrder } from "./completeTheOrder/completeTheOrder.ts";
-import { ServiceOfApplicationJourney } from "./serviceOfApplication/serviceOfApplication.ts";
+import { CompleteTheOrder } from "../completeTheOrder/completeTheOrder.ts";
+import { ServiceOfApplicationJourney } from "../serviceOfApplication/serviceOfApplication.ts";
 import Config from "../../../../config.ts";
 import { jsonDatas } from "../../../../common/solicitorCaseCreatorHelper.ts";
 

@@ -2,7 +2,7 @@ import { test } from "@playwright/test";
 import createDaCitizenCourtNavCase from "../../../../common/createCaseHelper";
 import { Helpers } from "../../../../common/helpers";
 import config, { Config } from "../../../../config";
-import { SendToGateKeeperJourney } from "../../../../journeys/manageCases/caseProgression/e2eFlowUpToServiceOfApplication/sendToGateKeeper/sendToGateKeeperJourney.ts";
+import { SendToGateKeeperJourney } from "../../../../journeys/manageCases/caseProgression/sendToGateKeeper/sendToGateKeeperJourney.ts";
 import { submitEvent } from "../../../../common/solicitorCaseCreatorHelper.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
