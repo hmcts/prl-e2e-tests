@@ -95,6 +95,7 @@ export class CreateHearingRequest {
         );
         break;
     }
+    await page.waitForTimeout(1000);
     await page.click(
       `${Selectors.a}:text-is("${CommonStaticText.hearingRequest}")`,
     );
