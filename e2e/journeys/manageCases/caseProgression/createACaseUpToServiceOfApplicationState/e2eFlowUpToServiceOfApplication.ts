@@ -9,10 +9,8 @@ import { createOrderManageOrders19Options } from "../../../../pages/manageCases/
 import { howLongWillOrderBeInForce } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders12Page.ts";
 import { responsibleForServing } from "../../../../pages/manageCases/caseProgression/serviceOfApplication/ServiceOfApplication4Page.ts";
 import { CompleteTheOrder } from "../completeTheOrder/completeTheOrder.ts";
-import {
-  jsonDatas,
-  submitEvent,
-} from "../../../../common/solicitorCaseCreatorHelper.ts";
+import { jsonDatas } from "../../../../common/solicitorCaseCreatorHelper.ts";
+import { ServiceOfApplication } from "../serviceOfApplication/serviceOfApplication.ts";
 
 interface CompleteTheOrderParams {
   page: Page;
@@ -42,6 +40,8 @@ export class E2eFlowUpToServiceOfApplication {
     ccdRef,
     createOrderFL401Options,
     browser,
+    yesNoServiceOfApplication4,
+    responsibleForServing,
     personallyServed,
     manageOrderData,
   }: CompleteTheOrderParams): Promise<void> {
@@ -59,6 +59,16 @@ export class E2eFlowUpToServiceOfApplication {
     await page.waitForResponse(
       `https://manage-case.aat.platform.hmcts.net/data/cases/${ccdRef}/events`,
     );
-    await submitEvent(page, ccdRef, "serviceOfApplication");
+    await ServiceOfApplication.serviceOfApplicationJourney({
+      page,
+      accessibilityTest,
+      ccdRef,
+      createOrderFL401Options,
+      browser,
+      personallyServed,
+      yesNoServiceOfApplication4,
+      responsibleForServing,
+      manageOrderData,
+    });
   }
 }

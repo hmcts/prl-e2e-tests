@@ -7,30 +7,15 @@ import {
 } from "../../../../pages/manageCases/caseProgression/serviceOfApplication/ServiceOfApplication4Page.ts";
 import { ServiceOfApplicationSubmitPage } from "../../../../pages/manageCases/caseProgression/serviceOfApplication/serviceOfApplicationSubmitPage.ts";
 import { ServiceOfApplicationConfirmPage } from "../../../../pages/manageCases/caseProgression/serviceOfApplication/serviceOfApplicationConfirmPage.ts";
-import {
-  createOrderFL401Options,
-  judgeTitles,
-  manageOrdersOptions,
-  WACaseWorkerActions,
-} from "../../../../common/types.ts";
+import { createOrderFL401Options } from "../../../../common/types.ts";
 import { CompleteTheOrder } from "../completeTheOrder/completeTheOrder.ts";
-import { createOrderManageOrders19Options } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders19Page.ts";
-import { howLongWillOrderBeInForce } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders12Page.ts";
 import { jsonDatas } from "../../../../common/solicitorCaseCreatorHelper.ts";
 
 interface ServiceOfApplicationJourneyParams {
   page: Page;
   accessibilityTest: boolean;
-  yesNoSendToGateKeeper: boolean;
   ccdRef: string;
-  c100CaseWorkerActions: WACaseWorkerActions;
-  manageOrdersOptions: manageOrdersOptions;
   createOrderFL401Options: createOrderFL401Options;
-  yesNoManageOrders: boolean;
-  judgeTitles: judgeTitles;
-  withOrWithoutNotice: boolean;
-  createOrderManageOrders19Options: createOrderManageOrders19Options;
-  howLongWillOrderBeInForce: howLongWillOrderBeInForce;
   browser: Browser;
   personallyServed: boolean;
   yesNoServiceOfApplication4: boolean;
