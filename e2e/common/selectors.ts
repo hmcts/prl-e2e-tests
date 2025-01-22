@@ -52,7 +52,7 @@ export enum Selectors {
   // Content
   NotificationBannerTitle = ".govuk-notification-banner__title",
   NotificationBannerHeading = ".govuk-notification-banner__heading",
-  NotoficationBannerLink = ".govuk-notification-banner__link",
+  NotificationBannerLink = ".govuk-notification-banner__link",
   GovukBody = ".govuk-body",
   GovukBodyL = ".govuk-body-l",
   GovukBodyM = ".govuk-body-m",

@@ -26,6 +26,7 @@ test.describe("Applicant confirm contact details tests", (): void => {
       caseRef: ccdRef,
       accessibilityTest: true,
       isApplicant: true,
+      applicationSubmittedBy: "Citizen",
     });
   });
 });

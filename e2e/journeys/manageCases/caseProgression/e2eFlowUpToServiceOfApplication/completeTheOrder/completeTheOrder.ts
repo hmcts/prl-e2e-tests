@@ -8,6 +8,7 @@ import { AdminEditAndApproveAnOrder23Page } from "../../../../../pages/manageCas
 import { AdminEditAndApproveAnOrderSubmitPage } from "../../../../../pages/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrderSubmitPage.ts";
 import config from "../../../../../config.ts";
 import {
+  applicationSubmittedBy,
   createOrderFL401Options,
   judgeTitles,
   manageOrdersOptions,
@@ -34,6 +35,7 @@ interface CompleteTheOrderParams {
   personallyServed: boolean;
   yesNoServiceOfApplication4: boolean;
   responsibleForServing: responsibleForServing;
+  applicationSubmittedBy: applicationSubmittedBy;
 }
 
 // ServiceOfApplicationJourney seems to only work when it is put into this file, and not if it
@@ -46,6 +48,7 @@ export class CompleteTheOrder {
     ccdRef,
     createOrderFL401Options,
     personallyServed,
+    applicationSubmittedBy,
   }: CompleteTheOrderParams): Promise<void> {
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
     // complete the task Complete the Order
@@ -87,6 +90,7 @@ export class CompleteTheOrder {
       page,
       accessibilityTest,
       personallyServed,
+      applicationSubmittedBy,
     );
     await AdminEditAndApproveAnOrderSubmitPage.adminEditAndApproveAnOrderSubmitPage(
       page,

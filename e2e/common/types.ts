@@ -203,3 +203,7 @@ export type documentCategory =
 export type documentSubmittedBy =
   | "CourtNav"
   | "Citizen"
+
+  export type applicationSubmittedBy =
+  | "Citizen"
+  | "Solicitor"
