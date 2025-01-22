@@ -54,7 +54,7 @@ export class StatementOfTruth3Page {
       ),
     ]);
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page); #TODO: Re-enable when FPET-1150 is fixed.
+      // await AccessibilityTestHelper.run(page); #TODO: Re-enable when EXUI-2721 is fixed.
     }
   }
 

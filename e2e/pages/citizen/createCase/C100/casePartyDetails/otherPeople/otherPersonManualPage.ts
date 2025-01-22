@@ -3,6 +3,7 @@ import { CommonStaticText } from "../../../../../../common/commonStaticText";
 import { Helpers } from "../../../../../../common/helpers";
 import { Selectors } from "../../../../../../common/selectors";
 import { OtherPersonManualContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/otherPeople/otherPersonManualContent";
+// import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper.ts";
 
 interface otherPersonManualOptions {
   page: Page;
@@ -54,7 +55,7 @@ export class OtherPersonManualPage {
       ),
     ]);
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page); Accessibility Issues: PRL-6590
+      // await AccessibilityTestHelper.run(page); //#TODO turn back on once Accessibility Issues: PRL-6590 has been fixed (rerun 20/01/25, issue still exists)
     }
   }
 

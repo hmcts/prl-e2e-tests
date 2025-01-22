@@ -17,16 +17,16 @@ test.describe("Applicant upload documents position statement tests", (): void =>
   });
 
   test("Applicant upload documents position statement page. @regression @accessibility @nightly", async ({
-   page,
-   browser,
- }): Promise<void> => {
+    page,
+    browser,
+  }): Promise<void> => {
     await UploadDocumentsWitnessStatement.uploadDocumentsWitnessStatement({
       page: page,
       browser: browser,
       caseRef: ccdRef,
       accessibilityTest: false,
       isApplicant: false,
-      yesNoNA: "Yes"
+      yesNoNA: "Yes",
     });
   });
 });

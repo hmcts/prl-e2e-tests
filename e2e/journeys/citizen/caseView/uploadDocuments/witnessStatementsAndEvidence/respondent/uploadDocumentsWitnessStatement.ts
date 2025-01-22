@@ -1,4 +1,7 @@
-import { ActivateCase, CaseUser } from "../../../../activateCase/activateCase.ts";
+import {
+  ActivateCase,
+  CaseUser,
+} from "../../../../activateCase/activateCase.ts";
 import { Browser, Page } from "@playwright/test";
 import { UploadPage } from "../../../../../../pages/citizen/caseView/uploadDocuments/uploadPage.ts";
 import { WitnessStatementPage } from "../../../../../../pages/citizen/caseView/uploadDocuments/witnessStatementsAndEvidence/witnessStatementPage.ts";
@@ -45,11 +48,10 @@ export class UploadDocumentsWitnessStatement {
       applicationSubmittedBy: applicationSubmittedBy,
     });
     await page.click(UniqueSelectors.uploadDocumentsPrivateSelector);
-    await UploadPage.uploadPage(
-      page,
-      accessibilityTest,
+    await UploadPage.uploadPage(page, accessibilityTest);
+    await page.click(
+      `${Selectors.GovukLink}:has-text("${UploadContent.witnessStatementLink}")`,
     );
-    await page.click(`${Selectors.GovukLink}:has-text("${UploadContent.witnessStatementLink}")`);
     if (yesNoNA == "Yes") {
       await WitnessStatementPage.witnessStatementPage(
         page,

@@ -44,9 +44,8 @@ export class AdminEditAndApproveAnOrder1Page {
       ),
     ]);
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page);
+      // await AccessibilityTestHelper.run(page); //#TODO commented out until ticket resolved EXUI-2723
     }
-    // #TODO commented out until ticket resolved FPET-1224
   }
 
   private static async fillInFields(
