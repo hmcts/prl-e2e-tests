@@ -9,7 +9,10 @@ import { createOrderManageOrders19Options } from "../../../../pages/manageCases/
 import { howLongWillOrderBeInForce } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders12Page.ts";
 import { responsibleForServing } from "../../../../pages/manageCases/caseProgression/serviceOfApplication/ServiceOfApplication4Page.ts";
 import { CompleteTheOrder } from "../completeTheOrder/completeTheOrder.ts";
-import { jsonDatas } from "../../../../common/solicitorCaseCreatorHelper.ts";
+import {
+  jsonDatas,
+  submitEvent,
+} from "../../../../common/solicitorCaseCreatorHelper.ts";
 
 interface CompleteTheOrderParams {
   page: Page;
@@ -53,5 +56,9 @@ export class E2eFlowUpToServiceOfApplication {
       personallyServed,
       manageOrderData,
     });
+    await page.waitForResponse(
+      `https://manage-case.aat.platform.hmcts.net/data/cases/${ccdRef}/events`,
+    );
+    await submitEvent(page, ccdRef, "serviceOfApplication");
   }
 }
