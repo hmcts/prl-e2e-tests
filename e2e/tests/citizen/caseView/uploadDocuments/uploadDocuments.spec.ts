@@ -26,6 +26,7 @@ test.describe("Applicant upload documents tests", (): void => {
       caseRef: ccdRef,
       accessibilityTest: true,
       isApplicant: true,
+      applicationSubmittedBy: "Citizen",
     });
   });
 });

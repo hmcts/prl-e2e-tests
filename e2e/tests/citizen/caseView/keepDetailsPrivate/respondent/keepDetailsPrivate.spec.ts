@@ -28,6 +28,7 @@ test.describe("Applicant confirm contact details tests", (): void => {
       isApplicant: false,
       startAlternativeYesNo: true,
       yesNoDontKnow: "yes",
+      applicationSubmittedBy: "Citizen",
     });
   });
 
@@ -43,6 +44,7 @@ test.describe("Applicant confirm contact details tests", (): void => {
       isApplicant: false,
       startAlternativeYesNo: false,
       yesNoDontKnow: "no",
+      applicationSubmittedBy: "Citizen",
     });
   });
 
@@ -58,6 +60,7 @@ test.describe("Applicant confirm contact details tests", (): void => {
       isApplicant: false,
       startAlternativeYesNo: true,
       yesNoDontKnow: "dontKnow",
+      applicationSubmittedBy: "Citizen",
     });
   });
 });

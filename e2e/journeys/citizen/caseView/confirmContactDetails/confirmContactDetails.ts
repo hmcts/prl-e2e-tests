@@ -5,6 +5,7 @@ import { CheckAnswersPage as CheckAnswersRespondent } from "../../../../pages/ci
 import Config from "../../../../config.ts";
 import { Selectors } from "../../../../common/selectors.ts";
 import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { applicationSubmittedBy } from "../../../../common/types.ts";
 
 interface confirmContactDetailsParams {
   page: Page;
@@ -12,6 +13,7 @@ interface confirmContactDetailsParams {
   caseRef: string;
   isApplicant: boolean;
   accessibilityTest: boolean;
+  applicationSubmittedBy: applicationSubmittedBy;
 }
 
 enum UniqueSelectors {
@@ -26,6 +28,7 @@ export class ConfirmContactDetails {
     caseRef,
     isApplicant,
     accessibilityTest,
+    applicationSubmittedBy,
   }: confirmContactDetailsParams): Promise<void> {
     const caseUser: CaseUser = isApplicant ? "applicant" : "respondent";
     page = await ActivateCase.activateCase({
@@ -33,6 +36,7 @@ export class ConfirmContactDetails {
       browser: browser,
       caseRef: caseRef,
       caseUser: caseUser,
+      applicationSubmittedBy: applicationSubmittedBy,
       accessibilityTest: accessibilityTest,
     });
     await page.click(UniqueSelectors.confirmOrEditYourContactDetailsSelector);

@@ -10,6 +10,7 @@ import { ConfirmationPage } from "../../../../pages/citizen/caseView/reasonableA
 import { Helpers } from "../../../../common/helpers.ts";
 import config from "../../../../config.ts";
 import { Selectors } from "../../../../common/selectors.ts";
+import { applicationSubmittedBy } from "../../../../common/types.ts";
 
 interface reasonableAdjustmentsParams {
   page: Page;
@@ -18,6 +19,7 @@ interface reasonableAdjustmentsParams {
   needsReasonableAdjustment: boolean;
   isApplicant: boolean;
   accessibilityTest: boolean;
+  applicationSubmittedBy: applicationSubmittedBy;
 }
 
 enum UniqueSelectors {
@@ -32,6 +34,7 @@ export class ReasonableAdjustments {
     needsReasonableAdjustment,
     isApplicant,
     accessibilityTest,
+    applicationSubmittedBy,
   }: reasonableAdjustmentsParams): Promise<void> {
     const caseUser: CaseUser = isApplicant ? "applicant" : "respondent";
     page = await ActivateCase.activateCase({
@@ -40,6 +43,7 @@ export class ReasonableAdjustments {
       caseRef: caseRef,
       caseUser: caseUser,
       accessibilityTest: accessibilityTest,
+      applicationSubmittedBy: applicationSubmittedBy,
     });
 
     await page.click(UniqueSelectors.supportYouNeedDuringYourCaseSelector);
