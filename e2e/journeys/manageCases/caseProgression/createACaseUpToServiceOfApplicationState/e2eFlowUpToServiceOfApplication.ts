@@ -9,7 +9,10 @@ import { createOrderManageOrders19Options } from "../../../../pages/manageCases/
 import { howLongWillOrderBeInForce } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders12Page.ts";
 import { responsibleForServing } from "../../../../pages/manageCases/caseProgression/serviceOfApplication/ServiceOfApplication4Page.ts";
 import { CompleteTheOrder } from "../completeTheOrder/completeTheOrder.ts";
-import { jsonDatas } from "../../../../common/solicitorCaseCreatorHelper.ts";
+import {
+  jsonDatas,
+  submitEvent,
+} from "../../../../common/solicitorCaseCreatorHelper.ts";
 import { ServiceOfApplication } from "../serviceOfApplication/serviceOfApplication.ts";
 
 interface CompleteTheOrderParams {
@@ -30,9 +33,9 @@ interface CompleteTheOrderParams {
   yesNoServiceOfApplication4: boolean;
   responsibleForServing: responsibleForServing;
   manageOrderData: typeof jsonDatas;
+  isManualSOA: boolean;
 }
 
-// note: params are always the same from activateCase
 export class E2eFlowUpToServiceOfApplication {
   public static async e2eFlowUpToServiceOfApplication({
     page,
@@ -44,6 +47,7 @@ export class E2eFlowUpToServiceOfApplication {
     responsibleForServing,
     personallyServed,
     manageOrderData,
+    isManualSOA,
   }: CompleteTheOrderParams): Promise<void> {
     // TODO: new API call - need to check if/how the variables differ between tests unless it isn't needed see comment below
     // TODO: move into own UI test - unless it isn't needed see comment below
@@ -59,16 +63,20 @@ export class E2eFlowUpToServiceOfApplication {
     await page.waitForResponse(
       `https://manage-case.aat.platform.hmcts.net/data/cases/${ccdRef}/events`,
     );
-    await ServiceOfApplication.serviceOfApplicationJourney({
-      page,
-      accessibilityTest,
-      ccdRef,
-      createOrderFL401Options,
-      browser,
-      personallyServed,
-      yesNoServiceOfApplication4,
-      responsibleForServing,
-      manageOrderData,
-    });
+    if (isManualSOA) {
+      await ServiceOfApplication.serviceOfApplicationJourney({
+        page,
+        accessibilityTest,
+        ccdRef,
+        createOrderFL401Options,
+        browser,
+        personallyServed,
+        yesNoServiceOfApplication4,
+        responsibleForServing,
+        manageOrderData,
+      });
+    } else {
+      await submitEvent(page, ccdRef, "serviceOfApplication");
+    }
   }
 }

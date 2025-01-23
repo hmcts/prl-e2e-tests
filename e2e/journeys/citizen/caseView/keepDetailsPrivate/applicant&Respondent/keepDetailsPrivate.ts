@@ -36,6 +36,7 @@ export class KeepDetailsPrivate {
       caseRef: caseRef,
       caseUser: caseUser,
       accessibilityTest: accessibilityTest,
+      isManualSOA: false,
     });
     await page.click(UniqueSelectors.keepDetailsPrivateSelector);
     if (isApplicant) {

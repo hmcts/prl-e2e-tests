@@ -29,20 +29,6 @@ export class ApplicationJourneysCheckGatekeeperJudgeCOOrder {
     });
     const newPage: Page = await newContext.newPage();
     await Helpers.goToCase(newPage, config.manageCasesBaseURL, ccdRef, "tasks");
-    if (manageOrderData === jsonDatas.manageOrderDataAmendDischargedVaried) {
-      await submitEvent(
-        newPage,
-        ccdRef,
-        "manageOrders",
-        jsonDatas.manageOrderDataAmendDischargedVaried,
-      );
-    } else {
-      await submitEvent(
-        newPage,
-        ccdRef,
-        "manageOrders",
-        jsonDatas.manageOrderDataPowerOfArrest,
-      );
-    }
+    await submitEvent(newPage, ccdRef, "manageOrders", manageOrderData);
   }
 }

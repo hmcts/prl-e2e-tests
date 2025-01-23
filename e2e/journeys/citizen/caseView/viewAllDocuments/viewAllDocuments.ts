@@ -30,6 +30,7 @@ export class ViewAllDocuments {
       caseRef: caseRef,
       caseUser: caseUser,
       accessibilityTest: accessibilityTest,
+      isManualSOA: false,
     });
 
     await page.click(UniqueSelectors.viewAllDocuments);
