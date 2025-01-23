@@ -7,6 +7,7 @@ import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelp
 import { ManageOrdersSubmitDAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrdersSubmitDAContent";
 import { howLongWillOrderBeInForce } from "./manageOrders12Page";
 import { ManageOrders12DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders12DAContent";
+import { CommonContent } from "../../../../../fixtures/manageCases/commonContent";
 
 interface ManageOrders20PageOptions {
   page: Page;
@@ -77,10 +78,15 @@ export class ManageOrdersSubmitPage {
       ),
       Helpers.checkGroup(
         page,
-        34,
+        33,
         ManageOrdersSubmitDAContent,
         "sharedText16",
         Selectors.GovukText16,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${CommonContent.judgeNameAndEmail}")`,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,

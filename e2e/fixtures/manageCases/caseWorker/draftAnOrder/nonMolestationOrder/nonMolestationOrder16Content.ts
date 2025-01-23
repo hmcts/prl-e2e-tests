@@ -34,7 +34,6 @@ export enum NonMolestationOrder16Content {
   addNew = "Add new",
   swanseaCourtLocation = "Swansea Civil Justice Centre - Quay West, Quay Parade - SA1 1SP",
   hearingType = "Allocation",
-  judge = "Ms Yolanda Cooper (HHJ.Yolanda.Cooper@ejudiciary.net)",
   joiningInstructions = "test joining instructions",
   additionalHearingDetails = "test additional hearing details",
 }
