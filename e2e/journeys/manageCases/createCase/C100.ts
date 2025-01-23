@@ -299,4 +299,178 @@ export class C100 {
       yesNoHelpWithFees: yesNoHelpWithFees,
     });
   }
+
+  public static async c100CreateCaseMandatorySections({
+    page,
+    user,
+    accessibilityTest,
+    errorMessaging,
+    yesNoHearingUrgency,
+    yesNoApplicantDetails,
+    applicantGender,
+    yesNoOtherPeopleInTheCase,
+    otherPersonLivesInRefuge,
+    yesNoC100TypeOfApplication,
+    typeOfChildArrangementOrder,
+    selectionC100TypeOfApplication,
+    yesNoRespondentDetails,
+    respondentGender,
+    respondentAddress5Years,
+    respondentLegalRepresentation,
+    c100ChildGender,
+    yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,
+    otherChildPresent,
+    otherChildGender,
+    otherChildDOBKnown,
+    applicantChildRelationship,
+    childLiveWithApplicant,
+    yesNoChildrenAndRespondents,
+    yesNoChildrenAndOtherPeople,
+    yesNoWelshLanguage,
+    c100YesNoAllegationsOfHarm,
+    c100DomesticAbuseTypePage3,
+    yesNoHelpWithFees,
+    C100MiamPolicyUpgrade1PageType,
+    yesNoMiamPolicyUpgrade,
+    miamSelection,
+    c100YesNoToAll,
+  }: c100Options): Promise<void> {
+    await SolicitorCreateInitial.createInitialCase({
+      page: page,
+      user: user,
+      accessibilityTest: false,
+      solicitorCaseType: "C100",
+      errorMessaging: false,
+    });
+    await C100TypeOfApplication.c100TypeOfApplication({
+      page: page,
+      user: user,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      yesNoC100TypeOfApplication: yesNoC100TypeOfApplication,
+      typeOfChildArrangementOrder: typeOfChildArrangementOrder,
+      selectionC100TypeOfApplication: selectionC100TypeOfApplication,
+      subJourney: false,
+    });
+    await C100HearingUrgency.c100HearingUrgency({
+      page: page,
+      user: user,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      yesNoHearingUrgency: yesNoHearingUrgency,
+      subJourney: false,
+    });
+    await C100ApplicantDetails.C100ApplicantDetails({
+      page: page,
+      user: user,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      yesNoApplicantDetails: yesNoApplicantDetails,
+      applicantGender: applicantGender,
+      subJourney: false,
+    });
+    await C100RespondentDetails.c100RespondentDetails({
+      page: page,
+      user: user,
+      accessibilityTest: accessibilityTest,
+      yesNoRespondentDetailsC100: yesNoRespondentDetails,
+      respondentGender: respondentGender,
+      respondentAddress5Years: respondentAddress5Years,
+      respondentLegalRepresentation: respondentLegalRepresentation,
+      subJourney: false,
+    });
+    await C100OtherPeopleInTheCase.c100OtherPeopleInTheCase({
+      page: page,
+      user: user,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      yesNoOtherPeopleInTheCase: yesNoOtherPeopleInTheCase,
+      otherPersonLivesInRefuge: otherPersonLivesInRefuge,
+      applicantGender: applicantGender,
+      subJourney: false,
+    });
+    await C100ChildDetails.c100ChildDetails({
+      page: page,
+      user: user,
+      accessibilityTest: accessibilityTest,
+      c100ChildGender: c100ChildGender,
+      yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions:
+        yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,
+      subJourney: false,
+    });
+    await C100OtherChildrenNotInTheCase.c100OtherChildrenNotInTheCase({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      otherChildPresent: otherChildPresent,
+      otherChildGender: otherChildGender,
+      otherChildDOBKnown: otherChildDOBKnown,
+      subJourney: false,
+    });
+    await C100ChildrenAndApplicants.c100ChildrenAndApplicants({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      applicantChildRelationship: applicantChildRelationship,
+      childLiveWithApplicant: childLiveWithApplicant,
+      subJourney: false,
+    });
+    await C100ChildAndRespondents.c100ChildrenAndRespondents({
+      page: page,
+      user: user,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      yesNoRespondentDetails: yesNoRespondentDetails,
+      respondentGender: respondentGender,
+      respondentAddress5Years: respondentAddress5Years,
+      respondentLegalRepresentation: respondentLegalRepresentation,
+      c100ChildGender: c100ChildGender,
+      yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions:
+        yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,
+      yesNoChildrenAndRespondents: yesNoChildrenAndRespondents,
+      subJourney: false,
+    });
+    await C100ChildrenAndOtherPeople.c100ChildrenAndOtherPeople({
+      page: page,
+      user: user,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      c100ChildGender: c100ChildGender,
+      yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions:
+        yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,
+      yesNoOtherPeopleInTheCase,
+      otherPersonLivesInRefuge: otherPersonLivesInRefuge,
+      applicantGender: applicantGender,
+      yesNoChildrenAndOtherPeople: yesNoChildrenAndOtherPeople,
+      subJourney: false,
+    });
+    await C100AllegationsOfHarm.c100AllegationsOfHarm({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      c100YesNoAllegationsOfHarm: c100YesNoAllegationsOfHarm,
+      subJourney: false,
+      c100DomesticAbuseTypePage3: c100DomesticAbuseTypePage3,
+    });
+    await C100MiamPolicyUpgrade.c100MiamPolicyUpgrade({
+      page: page,
+      user: user,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      C100MiamPolicyUpgrade1PageType: C100MiamPolicyUpgrade1PageType,
+      yesNoMiamPolicyUpgrade: yesNoMiamPolicyUpgrade,
+      miamSelection: miamSelection,
+      subJourney: false,
+    });
+    await C100ViewPDFApplication.c100ViewPDFApplication({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      c100YesNoToAll: c100YesNoToAll,
+    });
+    await C100SubmitAndPay.c100SubmitAndPay({
+      page: page,
+      yesNoWelshLanguage: yesNoWelshLanguage,
+      yesNoHelpWithFees: yesNoHelpWithFees,
+    });
+  }
 }

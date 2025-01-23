@@ -30,7 +30,7 @@ test.describe("Manage cases case solicitor create case tests.", (): void => {
   Saying no to all Miam
   C100MiamPolicyUpgrade1PageType is "yesExemption"
   Setting WelshPageRequirementType to "english"
-  Saying yes to all WelshRequirement options @regression @smoke`, async ({
+  Saying yes to all WelshRequirement options @regression @nightly`, async ({
     page,
   }): Promise<void> => {
     await C100.c100({
@@ -267,6 +267,62 @@ test.describe("Manage cases case solicitor create case tests.", (): void => {
       welshLanguageRequirementsAllOptionsYes: false,
       viewPdfTestCases: "3",
       fl401YesNoToEverything: false,
+    });
+  });
+
+  test(`Complete the C100 create case event as a solicitor completing only mandatory tasks with the following options:
+  Not Accessibility testing,
+  Not Error message testing,
+  Saying no to all hearing urgency questions,
+  Saying no to all applicant details questions with a female applicant
+  Saying yes to all respondent details questions with a female respondent
+  With another female child present, with a known DOB
+  Where the child does not live with their applicant mother
+  Saying no to all respondent details questions with a female respondent
+  Saying no to all other people in the case questions with a male applicant
+  Saying no to all child details question with a female child
+  Saying no to all children and respondents questions
+  Setting the allegations of harm to none.
+  @smoke @nightly`, async ({ page }): Promise<void> => {
+    await C100.c100CreateCaseMandatorySections({
+      page: page,
+      user: "solicitor",
+      accessibilityTest: false,
+      errorMessaging: false,
+      yesNoC100TypeOfApplication: false,
+      typeOfChildArrangementOrder: "Spend time with order",
+      selectionC100TypeOfApplication: "No, permission now sought",
+      yesNoHearingUrgency: false,
+      yesNoApplicantDetails: false,
+      applicantGender: "female",
+      yesNoRespondentDetails: false,
+      respondentGender: "female",
+      respondentAddress5Years: "no",
+      respondentLegalRepresentation: "no",
+      yesNoOtherPeopleInTheCase: false,
+      otherPersonLivesInRefuge: false,
+      c100ChildGender: "female",
+      yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions: "no",
+      otherChildPresent: true,
+      otherChildGender: "Female",
+      otherChildDOBKnown: true,
+      applicantChildRelationship: "Mother",
+      childLiveWithApplicant: false,
+      yesNoChildrenAndRespondents: false,
+      yesNoChildrenAndOtherPeople: false,
+      c100YesNoAllegationsOfHarm: false,
+      c100DomesticAbuseTypePage3: "Financial abuse",
+      c100AttendingTheHearingYesNo: false,
+      C100MiamPolicyUpgrade1PageType: "yesExemption",
+      yesNoMiamPolicyUpgrade: false,
+      miamSelection: "initiatedMIAMBeforeProceedings_MIAMCertificate",
+      yesNoInternationalElement: false,
+      yesNoLitigationCapacity: false,
+      c100OtherProceedings: "No",
+      WelshPageRequirementType: "english",
+      yesNoWelshLanguage: false,
+      c100YesNoToAll: false,
+      yesNoHelpWithFees: false,
     });
   });
 });

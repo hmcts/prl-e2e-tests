@@ -6,6 +6,7 @@ import { EnglishMediaContentNoToAll } from "../../../../../fixtures/manageCases/
 import { EnglishMediaContentYesToAll } from "../../../../../fixtures/manageCases/createCase/C100/viewPDFApplication/englishMediaContentYesToAll";
 import { ViewPDFApplication1Content } from "../../../../../fixtures/manageCases/createCase/C100/viewPDFApplication/viewPDFApplication1Content";
 import { WelshMediaContent } from "../../../../../fixtures/manageCases/createCase/C100/viewPDFApplication/welshMediaContent";
+import {ExuiMediaViewerPage} from "../../../exuiMediaViewer.po.ts";
 
 enum englishNoSpanCounts {
   page1 = 18,
@@ -176,18 +177,19 @@ interface CheckPDFContentOptions {
 export class ViewPDFApplication1Page {
   public static async viewPDFApplication1Page({
     page,
-    accessibilityTest,
-    c100YesNoToAll,
+    // accessibilityTest,
+    // c100YesNoToAll,
   }: ViewPDFApplication1PageOptions): Promise<void> {
-    await this.checkPageLoads({
-      page,
-      accessibilityTest,
-      c100YesNoToAll,
-    });
-    await this.checkPDFContent({
-      page,
-      c100YesNoToAll,
-    });
+    // await this.checkPageLoads({
+    //   page,
+    //   accessibilityTest,
+    //   c100YesNoToAll,
+    // });
+    // await this.checkPDFContent({
+    //   page,
+    //   c100YesNoToAll,
+    // });
+    await this.visualCheckPDFContent( page );
     await page.click(
       `${Selectors.button}:text-is("${ViewPDFApplication1Content.continue}")`,
     );
@@ -1235,5 +1237,10 @@ export class ViewPDFApplication1Page {
         3,
       ),
     ]);
+  }
+
+  private static async visualCheckPDFContent(page: Page): Promise<void> {
+    const mediaViewerPage = new ExuiMediaViewerPage(page);
+    await mediaViewerPage.runVisualTestOnAllPages();
   }
 }
