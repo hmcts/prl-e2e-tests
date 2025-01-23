@@ -333,7 +333,6 @@ export class C100 {
     C100MiamPolicyUpgrade1PageType,
     yesNoMiamPolicyUpgrade,
     miamSelection,
-    c100YesNoToAll,
   }: c100Options): Promise<void> {
     await SolicitorCreateInitial.createInitialCase({
       page: page,
@@ -461,11 +460,6 @@ export class C100 {
       yesNoMiamPolicyUpgrade: yesNoMiamPolicyUpgrade,
       miamSelection: miamSelection,
       subJourney: false,
-    });
-    await C100ViewPDFApplication.c100ViewPDFApplication({
-      page: page,
-      accessibilityTest: accessibilityTest,
-      c100YesNoToAll: c100YesNoToAll,
     });
     await C100SubmitAndPay.c100SubmitAndPay({
       page: page,
