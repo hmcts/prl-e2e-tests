@@ -1,7 +1,7 @@
 import { test } from "@playwright/test";
 import Config from "../../../../config";
 import { C100 } from "../../../../journeys/citizen/createCase/C100/C100";
-import IdamLoginHelper from "../../../../common/idamLoginHelper";
+import IdamLoginHelper from "../../../../common/userSetup/idamLoginHelper.ts";
 
 test.describe("Create Citizen Application but you don't have a MIAM document.", (): void => {
   test.beforeEach(async ({ page }) => {

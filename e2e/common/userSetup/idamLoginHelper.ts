@@ -1,8 +1,8 @@
 import { Cookie, Page, expect } from "@playwright/test";
 import { existsSync, readFileSync } from "fs";
-import Config from "../config.ts";
-import { setupUser } from "./idamCreateCitizenUserApiHelper.ts";
-import { UserCredentials, UserLoginInfo } from "./types.ts";
+import Config from "../../config.ts";
+import { setupUser } from "./idamCreateUserApiHelper.ts";
+import { UserCredentials, UserLoginInfo } from "../types.ts";
 
 export class IdamLoginHelper {
   private static fields: UserLoginInfo = {
@@ -44,17 +44,17 @@ export class IdamLoginHelper {
       await page.click(this.submitButton);
 
       await expect
-            .poll(
-              async () => {
-                return !page.url().includes("idam-web-public.");
-              },
-              {
-                intervals: [1_000],
-                timeout: 100_000,
-                message: `Unable to sign in as ${userType} user`,
-              },
-            )
-            .toBeTruthy();
+        .poll(
+          async () => {
+            return !page.url().includes("idam-web-public.");
+          },
+          {
+            intervals: [1_000],
+            timeout: 100_000,
+            message: `Unable to sign in as ${userType} user`,
+          },
+        )
+        .toBeTruthy();
 
       if (userType !== "citizen") {
         await page.context().storageState({ path: sessionPath });
@@ -62,7 +62,7 @@ export class IdamLoginHelper {
     }
   }
 
-  public static async signInUser(
+  public static async signInLongLivedUser(
     page: Page,
     user: keyof typeof Config.userCredentials,
     application: string,
@@ -84,13 +84,14 @@ export class IdamLoginHelper {
   public static async signInCitizenUser(
     page: Page,
     application: string,
+    user: string,
   ): Promise<void> {
     const token = process.env.CITIZEN_CREATE_USER_BEARER_TOKEN as string;
     if (!token) {
       console.error("Bearer token is not defined in the environment variables");
       return;
     }
-    const userInfo = await setupUser(token);
+    const userInfo = await setupUser(token, user);
     if (!userInfo) {
       console.error("Failed to set up citizen user");
       return;
@@ -103,6 +104,7 @@ export class IdamLoginHelper {
       "citizen",
     );
   }
+
   private static isSessionValid(path: string): boolean {
     try {
       const data = JSON.parse(readFileSync(path, "utf-8"));

@@ -1,5 +1,5 @@
 import { test } from "@playwright/test";
-import IdamLoginHelper from "../../../common/idamLoginHelper";
+import IdamLoginHelper from "../../../common/userSetup/idamLoginHelper.ts";
 import Config from "../../../config";
 import { CitizenCreateInitial } from "../../../journeys/citizen/citizenCreateInitial";
 
