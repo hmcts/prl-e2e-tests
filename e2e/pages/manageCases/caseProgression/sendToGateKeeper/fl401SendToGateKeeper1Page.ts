@@ -1,10 +1,10 @@
 import { Page } from "@playwright/test";
-import { ManageOrders24DAContent } from "../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders24DAContent";
 import { Selectors } from "../../../../common/selectors";
 import { Fl401SendToGateKeeper1Content } from "../../../../fixtures/manageCases/caseProgression/sendToGateKepper/fl401SendToGateKeeper1Content";
 import { Helpers } from "../../../../common/helpers";
 import { CommonStaticText } from "../../../../common/commonStaticText";
 import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+import { CommonContent } from "../../../../fixtures/manageCases/commonContent";
 
 interface FL401SendToGateKeeper1Options {
   page: Page;
@@ -87,10 +87,10 @@ export class FL401SendToGateKeeper1Page {
       await page.click(UniqueSelectors.judge);
       await page.fill(
         `${UniqueSelectors.nameOfJudge}`,
-        ManageOrders24DAContent.judgeName,
+        CommonContent.judgeName,
       );
       await page.click(
-        `${UniqueSelectors.judgeName}:text-is("${ManageOrders24DAContent.JudgeNameToSelect}")`,
+        `${UniqueSelectors.judgeName}:text-is("${CommonContent.judgeNameAndEmail}")`,
       );
     } else {
       await page.check(UniqueSelectors.isSpecificGateKeeperNeeded_No);

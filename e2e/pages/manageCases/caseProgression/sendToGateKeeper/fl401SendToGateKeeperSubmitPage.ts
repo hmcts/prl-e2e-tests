@@ -5,6 +5,7 @@ import { Helpers } from "../../../../common/helpers";
 import { CommonStaticText } from "../../../../common/commonStaticText";
 import { Fl401SendToGateKeeperSubmitContent } from "../../../../fixtures/manageCases/caseProgression/sendToGateKepper/fl401SendToGateKeeperSubmitContent";
 import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+import { CommonContent } from "../../../../fixtures/manageCases/commonContent";
 
 interface FL401SendToGateKeeperSubmitOptions {
   page: Page;
@@ -61,10 +62,15 @@ export class FL401SendToGateKeeperSubmitPage {
         ),
         Helpers.checkGroup(
           page,
-          3,
+          2,
           Fl401SendToGateKeeperSubmitContent,
-          "text16",
+          "yesText16",
           Selectors.GovukText16,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukText16}:text-is("${CommonContent.judgeNameAndEmail}")`,
+          1,
         ),
       ]);
     } else {
