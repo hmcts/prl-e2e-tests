@@ -7,6 +7,5 @@ export enum Fl401SendToGateKeeperSubmitContent {
   text164 = "Name of the judge",
   yesText161 = "Yes",
   yesText162 = "Judge",
-  yesText163 = "Ms Yolanda Cooper (HHJ.Yolanda.Cooper@ejudiciary.net)",
   noText16 = "No",
 }

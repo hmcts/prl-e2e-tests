@@ -5,6 +5,7 @@ import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { ManageOrders24DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders24DAContent";
+import { CommonContent } from "../../../../../fixtures/manageCases/commonContent";
 
 interface ManageOrders24PageOptions {
   page: Page;
@@ -76,10 +77,10 @@ export class ManageOrders24Page {
     await this.SecondaryHiddenFormLabels(page);
     await page.fill(
       `${hiddenSelectors.judgeNameInput}`,
-      ManageOrders24DAContent.judgeName,
+      CommonContent.judgeName,
     );
     await page.click(
-      `${hiddenSelectors.judgeName}:text-is("${ManageOrders24DAContent.JudgeNameToSelect}")`,
+      `${hiddenSelectors.judgeName}:text-is("${CommonContent.judgeNameAndEmail}")`,
     );
     await page.click(
       `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
