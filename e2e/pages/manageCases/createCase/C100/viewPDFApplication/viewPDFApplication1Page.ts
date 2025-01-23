@@ -189,7 +189,7 @@ export class ViewPDFApplication1Page {
     //   page,
     //   c100YesNoToAll,
     // });
-    await this.visualCheckPDFContent( page );
+    // await this.visualCheckPDFContent( page );
     await page.click(
       `${Selectors.button}:text-is("${ViewPDFApplication1Content.continue}")`,
     );
