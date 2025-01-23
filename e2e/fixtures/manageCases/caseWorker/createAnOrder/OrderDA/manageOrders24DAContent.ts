@@ -7,6 +7,4 @@ export enum ManageOrders24DAContent {
   hiddenFormLabel1 = "Judge",
   hiddenFormLabel2 = "Legal advisor",
   secondaryHiddenSpan = "Name of judge",
-  judgeName = "Ms Yolanda Cooper",
-  JudgeNameToSelect = "Ms Yolanda Cooper (HHJ.Yolanda.Cooper@ejudiciary.net)",
 }

@@ -4,6 +4,7 @@ import { Helpers } from "../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
 import { CommonStaticText } from "../../../../common/commonStaticText";
 import { SendAndReplyToMessages2Content } from "../../../../fixtures/manageCases/caseProgression/sendAndReplyToMessages/sendAndReplyToMessages2Content";
+import { CommonContent } from "../../../../fixtures/manageCases/commonContent";
 
 enum UniqueSelectors {
   internalMessageRadio = "#sendMessageObject_internalOrExternalMessage-INTERNAL",
@@ -94,10 +95,10 @@ export class SendAndReplyToMessages2Page {
     );
     await page.fill(
       UniqueSelectors.judgeNameInput,
-      SendAndReplyToMessages2Content.judgeName,
+      CommonContent.judgeName,
     );
     await page.click(
-      `${UniqueSelectors.judgeNameSelect}:text-is("${SendAndReplyToMessages2Content.judgeNameToSelect}")`,
+      `${UniqueSelectors.judgeNameSelect}:text-is("${CommonContent.judgeNameAndEmail}")`,
     );
     await page.check(UniqueSelectors.urgentMessageNoRadio);
     await page.check(UniqueSelectors.reviewSubmittedDocsRadio);

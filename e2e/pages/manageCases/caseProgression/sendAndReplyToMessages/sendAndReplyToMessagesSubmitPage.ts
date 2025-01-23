@@ -3,6 +3,7 @@ import { CommonStaticText } from "../../../../common/commonStaticText";
 import { Helpers } from "../../../../common/helpers";
 import { Selectors } from "../../../../common/selectors";
 import { SendAndReplyToMessagesSubmitContent } from "../../../../fixtures/manageCases/caseProgression/sendAndReplyToMessages/sendAndReplyToMessagesSubmitContent";
+import { CommonContent } from "../../../../fixtures/manageCases/commonContent";
 
 export class SendAndReplyToMessagesSubmitPage {
   public static async sendAndReplyToMessagesSubmitPage(
@@ -50,10 +51,15 @@ export class SendAndReplyToMessagesSubmitPage {
       await Promise.all([
         Helpers.checkGroup(
           page,
-          19,
+          18,
           SendAndReplyToMessagesSubmitContent,
           "sendMessageText16",
           Selectors.GovukText16,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukText16}:text-is("${CommonContent.judgeNameAndEmail}")`,
+          1,
         ),
         Helpers.checkVisibleAndPresent(
           page,
