@@ -17,7 +17,7 @@ interface fl401ViewPDFApplicationOptions {
 export class FL401ViewPDFApplication {
   public static async fl401ViewPDFApplication({
     page,
-    // accessibilityTest,
+    accessibilityTest,
     // errorMessaging,
     // viewPdfTestCases,
     subJourney,
