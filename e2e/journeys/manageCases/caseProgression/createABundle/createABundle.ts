@@ -72,6 +72,7 @@ export class CreateABundleJourney {
       yesNoServiceOfApplication4,
       responsibleForServing,
       manageOrderData,
+      isManualSOA: false,
     });
     await page.reload();
     await Helpers.chooseEventFromDropdown(page, "Create a bundle");

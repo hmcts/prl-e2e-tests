@@ -72,6 +72,7 @@ export class StatementOfService {
       yesNoServiceOfApplication4,
       responsibleForServing,
       manageOrderData,
+      isManualSOA: false,
     });
     await page.reload();
     await Helpers.chooseEventFromDropdown(page, "Statement of service");
