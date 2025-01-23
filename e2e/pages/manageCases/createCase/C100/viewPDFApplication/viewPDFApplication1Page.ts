@@ -6,7 +6,7 @@ import { EnglishMediaContentNoToAll } from "../../../../../fixtures/manageCases/
 import { EnglishMediaContentYesToAll } from "../../../../../fixtures/manageCases/createCase/C100/viewPDFApplication/englishMediaContentYesToAll";
 import { ViewPDFApplication1Content } from "../../../../../fixtures/manageCases/createCase/C100/viewPDFApplication/viewPDFApplication1Content";
 import { WelshMediaContent } from "../../../../../fixtures/manageCases/createCase/C100/viewPDFApplication/welshMediaContent";
-import {ExuiMediaViewerPage} from "../../../exuiMediaViewer.po.ts";
+import { ExuiMediaViewerPage } from "../../../exuiMediaViewer.po.ts";
 
 enum englishNoSpanCounts {
   page1 = 18,

@@ -93,10 +93,7 @@ export class SendAndReplyToMessages2Page {
       UniqueSelectors.judgeTierDropdown,
       SendAndReplyToMessages2Content.judgeTier,
     );
-    await page.fill(
-      UniqueSelectors.judgeNameInput,
-      CommonContent.judgeName,
-    );
+    await page.fill(UniqueSelectors.judgeNameInput, CommonContent.judgeName);
     await page.click(
       `${UniqueSelectors.judgeNameSelect}:text-is("${CommonContent.judgeNameAndEmail}")`,
     );

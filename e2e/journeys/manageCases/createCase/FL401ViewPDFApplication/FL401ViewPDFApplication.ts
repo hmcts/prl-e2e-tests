@@ -17,9 +17,9 @@ interface fl401ViewPDFApplicationOptions {
 export class FL401ViewPDFApplication {
   public static async fl401ViewPDFApplication({
     page,
-    accessibilityTest,
-    errorMessaging,
-    viewPdfTestCases,
+    // accessibilityTest,
+    // errorMessaging,
+    // viewPdfTestCases,
     subJourney,
   }: fl401ViewPDFApplicationOptions): Promise<void> {
     if (subJourney) {
@@ -34,9 +34,9 @@ export class FL401ViewPDFApplication {
     await Helpers.selectSolicitorEvent(page, "View PDF application");
     await ViewPDFApplicationPage.viewPDFApplicationPage(
       page,
-      errorMessaging,
-      accessibilityTest,
-      viewPdfTestCases,
+      // errorMessaging,
+      // accessibilityTest,
+      // viewPdfTestCases,
     );
     await ViewPDFApplicationSubmitPage.viewPDFApplicationSubmitPage(
       page,
