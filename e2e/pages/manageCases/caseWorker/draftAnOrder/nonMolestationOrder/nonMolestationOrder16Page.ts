@@ -4,6 +4,7 @@ import { DraftAnOrder16Content } from "../../../../../fixtures/manageCases/caseW
 import { orderTypesMap } from "../../../../../journeys/manageCases/caseWorker/draftAnOrder/draftAnOrder";
 import { Page } from "@playwright/test";
 import { NonMolestationOrder16Content } from "../../../../../fixtures/manageCases/caseWorker/draftAnOrder/nonMolestationOrder/nonMolestationOrder16Content";
+import { CommonContent } from "../../../../../fixtures/manageCases/commonContent";
 
 enum UniqueSelectors {
   judgeHasProvidedHearingDetails = "#hasJudgeProvidedHearingDetails_Yes",
@@ -147,7 +148,7 @@ export class NonMolestationOrder16Page {
       await page.check(`${UniqueSelectors.legalAdviserRadio}`);
       await page.fill(
         `${UniqueSelectors.hearingJudgeTextbox}`,
-        `${NonMolestationOrder16Content.judge}`,
+        `${CommonContent.judgeNameAndEmail}`,
       );
       await page.fill(
         `${UniqueSelectors.joiningInstructionsTextbox}`,
