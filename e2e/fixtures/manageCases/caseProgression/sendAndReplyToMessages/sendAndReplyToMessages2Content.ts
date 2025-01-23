@@ -13,7 +13,5 @@ export enum SendAndReplyToMessages2Content {
   formLabelSelectWhoToSendTo = "Select who to send to",
   formLabelIsThisUrgent = "Is this urgent?",
   judgeTier = "District Judge",
-  judgeName = "Ms Yolanda Cooper",
-  judgeNameToSelect = "Ms Yolanda Cooper (HHJ.Yolanda.Cooper@ejudiciary.net)",
   messageSubject = "Test message",
 }
