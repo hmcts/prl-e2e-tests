@@ -6,11 +6,12 @@ import { EnterPinPage } from "../../../pages/citizen/activateCase/enterPinPage.t
 import { CaseActivatedPage } from "../../../pages/citizen/activateCase/caseActivatedPage.ts";
 import { ApplicantDashboardPage } from "../../../pages/citizen/activateCase/applicantDashboardPage.ts";
 import { RespondentDashboardPage } from "../../../pages/citizen/activateCase/respondentDashboardPage.ts";
-import { E2eFlowUpToServiceOfApplication } from "../../manageCases/caseProgression/createACaseUpToServiceOfApplicationState/e2eFlowUpToServiceOfApplication.ts";
 import { jsonDatas } from "../../../common/solicitorCaseCreatorHelper.ts";
 import { Selectors } from "../../../common/selectors.ts";
 import { ApplicantDashboardContent } from "../../../fixtures/citizen/activateCase/applicantDashboardContent.ts";
 import { RespondentDashboardContent } from "../../../fixtures/citizen/activateCase/respondentDashboardContent.ts";
+import { ServiceOfApplication } from "../../manageCases/caseProgression/serviceOfApplication/serviceOfApplication.ts";
+import { completeEventsUpToServiceOfApplication } from "../../../common/caseEventsHelper.ts";
 
 interface ActiveCaseParams {
   page: Page;
@@ -33,26 +34,27 @@ export class ActivateCase {
     isManualSOA,
   }: ActiveCaseParams): Promise<Page> {
     let currentPage: Page = page;
-    await E2eFlowUpToServiceOfApplication.e2eFlowUpToServiceOfApplication({
-      page: page,
-      accessibilityTest: false,
-      yesNoSendToGateKeeper: true,
-      ccdRef: caseRef,
-      c100CaseWorkerActions: "Manage orders",
-      manageOrdersOptions: "create order",
-      createOrderFL401Options: "power of arrest",
-      yesNoManageOrders: false,
-      judgeTitles: "Her Honour Judge",
-      withOrWithoutNotice: true,
-      createOrderManageOrders19Options: "dateToBeFixed", // "dateConfirmed" will not pass because page 19 does not give a hearing you are allowed to select
-      howLongWillOrderBeInForce: "untilNextHearing", // Should not matter unless non-molestation order is selected.
-      browser: browser,
-      personallyServed: true,
-      yesNoServiceOfApplication4: false,
-      responsibleForServing: "courtBailiff", // this isn't used when yesNoServiceOfApplication4 is false
-      manageOrderData: jsonDatas.manageOrderDataPowerOfArrest,
-      isManualSOA,
-    });
+    if (isManualSOA) {
+      await ServiceOfApplication.serviceOfApplicationJourney({
+        page: page,
+        accessibilityTest: accessibilityTest,
+        ccdRef: caseRef,
+        createOrderFL401Options: "power of arrest",
+        browser: browser,
+        personallyServed: true,
+        yesNoServiceOfApplication4: false,
+        responsibleForServing: "courtBailiff",
+        manageOrderData: jsonDatas.manageOrderDataPowerOfArrest,
+      });
+    } else {
+      await completeEventsUpToServiceOfApplication(
+        page,
+        browser,
+        caseRef,
+        jsonDatas.manageOrderDataPowerOfArrest,
+        "power of arrest",
+      );
+    }
     switch (caseUser) {
       case "applicant":
         currentPage = await this.checkApplicantDashboard(

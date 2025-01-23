@@ -16,8 +16,8 @@ import Config from "../../../../config";
 import config from "../../../../config";
 import { createOrderFL401Options } from "../../../../common/types";
 import { Selectors } from "../../../../common/selectors.ts";
-import { ApplicationJourneysCheckGatekeeperJudgeCOOrder } from "../createACaseUpToServiceOfApplicationState/application-journeys-check-gatekeeper-judgeCO-order.ts";
 import { jsonDatas } from "../../../../common/solicitorCaseCreatorHelper.ts";
+import { completeCheckApplicationAndSendToGatekeeperAndCreateAnOrder } from "../../../../common/caseEventsHelper.ts";
 
 interface CreateHearingRequestParams {
   page: Page;
@@ -27,6 +27,7 @@ interface CreateHearingRequestParams {
   browser: Browser;
   manageOrderData: typeof jsonDatas;
 }
+
 export class CreateHearingRequest {
   public static async createHearingRequest({
     page,
@@ -36,13 +37,11 @@ export class CreateHearingRequest {
     browser,
     manageOrderData,
   }: CreateHearingRequestParams): Promise<void> {
-    await ApplicationJourneysCheckGatekeeperJudgeCOOrder.applicationJourneysCheckGatekeeperJudgeCOOrder(
-      {
-        page,
-        ccdRef,
-        browser,
-        manageOrderData,
-      },
+    await completeCheckApplicationAndSendToGatekeeperAndCreateAnOrder(
+      page,
+      browser,
+      ccdRef,
+      manageOrderData,
     );
     // open new browser and sign in as court admin user
     const newBrowser = await browser.browserType().launch();

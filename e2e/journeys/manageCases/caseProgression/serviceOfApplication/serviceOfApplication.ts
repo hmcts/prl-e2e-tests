@@ -35,8 +35,6 @@ export class ServiceOfApplication {
     responsibleForServing,
     manageOrderData,
   }: ServiceOfApplicationJourneyParams): Promise<void> {
-    // TODO: new API call - need to check if/how the variables differ between tests unless it isn't needed see comment below
-    // TODO: move into own UI test - unless it isn't needed see comment below
     await CompleteTheOrder.completeTheOrder({
       page: page,
       browser,

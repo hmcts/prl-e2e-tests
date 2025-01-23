@@ -1,4 +1,4 @@
-import { Cookie, Page, expect } from "@playwright/test";
+import { Cookie, expect, Page } from "@playwright/test";
 import { existsSync, readFileSync } from "fs";
 import Config from "../config.ts";
 import { setupUser } from "./idamCreateCitizenUserApiHelper.ts";
@@ -44,17 +44,17 @@ export class IdamLoginHelper {
       await page.click(this.submitButton);
 
       await expect
-            .poll(
-              async () => {
-                return !page.url().includes("idam-web-public.");
-              },
-              {
-                intervals: [1_000],
-                timeout: 100_000,
-                message: `Unable to sign in as ${userType} user`,
-              },
-            )
-            .toBeTruthy();
+        .poll(
+          async () => {
+            return !page.url().includes("idam-web-public.");
+          },
+          {
+            intervals: [1_000],
+            timeout: 100_000,
+            message: `Unable to sign in as ${userType} user`,
+          },
+        )
+        .toBeTruthy();
 
       if (userType !== "citizen") {
         await page.context().storageState({ path: sessionPath });

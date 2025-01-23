@@ -1,15 +1,17 @@
-import solicitorCaseData from "../caseData/solicitorDACaseData.json";
-import manageOrderDataAmendDischargedVaried from "../caseData/orderData/manageOrderData-amendDischargedVaried.json";
-import manageOrderDataPowerOfArrest from "../caseData/orderData/manageOrderData-powerOfArrest.json";
+import solicitorCaseData from "../caseData/solicitorDACaseEventData.json";
+import manageOrderEventDataAmendDischargedVaried from "../caseData/orderData/manageOrderEventData-amendDischargedVaried.json";
+import manageOrderEventDataPowerOfArrest from "../caseData/orderData/manageOrderEventData-powerOfArrest.json";
 import { Page } from "@playwright/test";
+import { CaseAPIEvent } from "./types.ts";
 
 // Using "any" type below because it represents a large JSON object
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type JsonData = Record<string, any>;
 export const jsonDatas: JsonData = {
   defaultData: solicitorCaseData,
-  manageOrderDataPowerOfArrest: manageOrderDataPowerOfArrest,
-  manageOrderDataAmendDischargedVaried: manageOrderDataAmendDischargedVaried,
+  manageOrderDataPowerOfArrest: manageOrderEventDataPowerOfArrest,
+  manageOrderDataAmendDischargedVaried:
+    manageOrderEventDataAmendDischargedVaried,
 };
 
 export async function getData(
@@ -58,7 +60,7 @@ export async function postData(
 export async function submitEvent(
   page: Page,
   caseId: string,
-  eventId: string,
+  eventId: CaseAPIEvent,
   jsonData: JsonData = jsonDatas.defaultData,
 ): Promise<void> {
   if (process.env.PWDEBUG) {

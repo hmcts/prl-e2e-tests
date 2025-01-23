@@ -1,7 +1,6 @@
 import { Browser, Page } from "@playwright/test";
 import { createOrderFL401Options } from "../../../../common/types.ts";
 import { jsonDatas } from "../../../../common/solicitorCaseCreatorHelper.ts";
-import { ApplicationJourneysCheckGatekeeperJudgeCOOrder } from "../createACaseUpToServiceOfApplicationState/application-journeys-check-gatekeeper-judgeCO-order.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import config from "../../../../config.ts";
 import { AdminEditAndApproveAnOrder1Page } from "../../../../pages/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrder1Page.ts";
@@ -10,6 +9,7 @@ import { AdminEditAndApproveAnOrder21Page } from "../../../../pages/manageCases/
 import { AdminEditAndApproveAnOrder22Page } from "../../../../pages/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrder22Page.ts";
 import { AdminEditAndApproveAnOrder23Page } from "../../../../pages/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrder23Page.ts";
 import { AdminEditAndApproveAnOrderSubmitPage } from "../../../../pages/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrderSubmitPage.ts";
+import { completeCheckApplicationAndSendToGatekeeperAndCreateAnOrder } from "../../../../common/caseEventsHelper.ts";
 
 interface CompleteTheOrderParams {
   page: Page;
@@ -34,15 +34,12 @@ export class CompleteTheOrder {
     personallyServed,
     manageOrderData,
   }: CompleteTheOrderParams): Promise<void> {
-    await ApplicationJourneysCheckGatekeeperJudgeCOOrder.applicationJourneysCheckGatekeeperJudgeCOOrder(
-      {
-        page,
-        ccdRef,
-        browser,
-        manageOrderData,
-      },
+    await completeCheckApplicationAndSendToGatekeeperAndCreateAnOrder(
+      page,
+      browser,
+      ccdRef,
+      manageOrderData,
     );
-
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
     // complete the task Complete the Order
     switch (createOrderFL401Options) {
