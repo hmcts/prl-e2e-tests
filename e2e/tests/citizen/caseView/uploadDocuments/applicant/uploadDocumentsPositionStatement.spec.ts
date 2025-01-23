@@ -6,7 +6,7 @@ import { Helpers } from "../../../../../common/helpers.ts";
 import { UploadDocumentsPositionStatement } from "../../../../../journeys/citizen/caseView/uploadDocuments/witnessStatementsAndEvidence/applicant/uploadDocumentsPositionStatement.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
-
+// comment to run test in pipeline - remove before merging
 test.describe("Applicant upload documents position statement tests", (): void => {
   test.slow();
   let ccdRef: string;

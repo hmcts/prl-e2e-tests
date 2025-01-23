@@ -6,7 +6,7 @@ import { Helpers } from "../../../../../common/helpers.ts";
 import { KeepDetailsPrivate } from "../../../../../journeys/citizen/caseView/keepDetailsPrivate/applicant&Respondent/keepDetailsPrivate.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
-
+// comment to run test in pipeline - remove before merging
 test.describe("Applicant keep details private tests", (): void => {
   test.slow();
   let ccdRef: string;

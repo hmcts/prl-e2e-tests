@@ -6,7 +6,7 @@ import { Helpers } from "../../../../../common/helpers.ts";
 import { ViewAllDocuments } from "../../../../../journeys/citizen/caseView/viewAllDocuments/viewAllDocuments.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
-
+// comment to run test in pipeline - remove before merging
 test.describe("Applicant view all documents tests", (): void => {
   test.slow();
   let ccdRef: string;
