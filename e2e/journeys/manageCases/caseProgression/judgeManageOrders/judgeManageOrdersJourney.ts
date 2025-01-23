@@ -26,6 +26,7 @@ import { BlankOrderManageOrders12Page } from "../../../../pages/manageCases/case
 import { ManageOrders3Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders3Page.ts";
 import { UploadOrderManageOrders5Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/uploadOrderManageOrders5Page.ts";
 import { judgeCreateUOManageOrderSubmitPage } from "../../../../pages/manageCases/caseProgression/judge/judgeUploadOrder/judgeUploadOrderDASubmitPage.ts";
+import { completeCheckApplicationAndSendToGatekeeper } from "../../../../common/caseEventsHelper.ts";
 
 interface JudgeDACaseProgressionJourneyParams {
   page: Page;
@@ -68,6 +69,7 @@ export class JudgeManageOrderJourney {
     howLongWillOrderBeInForce,
     manageOrdersOptions,
   }: JudgeDACaseProgressionJourneyParams): Promise<void> {
+    await completeCheckApplicationAndSendToGatekeeper(page, ccdRef);
     page = await Helpers.openNewBrowserWindow(browser, "judge");
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
     await Helpers.waitForTask(page, "Directions on Issue");
@@ -270,6 +272,7 @@ export class JudgeManageOrderJourney {
     uploadOrderFL401Options,
     manageOrdersOptions,
   }: JudgeUOCaseProgressionJourneyParams): Promise<void> {
+    await completeCheckApplicationAndSendToGatekeeper(page, ccdRef);
     page = await Helpers.openNewBrowserWindow(browser, "judge");
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
     await Helpers.waitForTask(page, "Directions on Issue");

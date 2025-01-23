@@ -4,7 +4,6 @@ import config from "../../../config";
 import createDaCitizenCourtNavCase from "../../../common/createCaseHelper";
 import { Helpers } from "../../../common/helpers";
 import { JudgeManageOrderJourney } from "../../../journeys/manageCases/caseProgression/judgeManageOrders/judgeManageOrdersJourney.ts";
-import { submitEvent } from "../../../common/solicitorCaseCreatorHelper.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
@@ -14,8 +13,6 @@ test.describe("Judge upload an order tests.", () => {
   test.beforeEach(async ({ page }) => {
     ccdRef = await createDaCitizenCourtNavCase(true, false);
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
-    await submitEvent(page, ccdRef, "fl401AddCaseNumber");
-    await submitEvent(page, ccdRef, "fl401SendToGateKeeper");
   });
 
   test("Upload a power of arrest order. @nightly @regression @accessibility", async ({

@@ -6,7 +6,8 @@ import { Helpers } from "./helpers.ts";
 import { CompleteTheOrder } from "../journeys/manageCases/caseProgression/completeTheOrder/completeTheOrder.ts";
 import { createOrderFL401Options } from "./types.ts";
 
-// These methods assume the current context is court admin
+// Note: These methods assume the current page context is court admin
+
 export async function completeCheckApplicationAndSendToGatekeeper(
   page: Page,
   caseRef: string,
@@ -48,6 +49,7 @@ export async function completeEventsUpToServiceOfApplication(
     personallyServed: true,
     manageOrderData: manageOrderEventData,
   });
+  // wait for response from previous event call before submitting next event
   await page.waitForResponse(
     `https://manage-case.aat.platform.hmcts.net/data/cases/${caseRef}/events`,
   );

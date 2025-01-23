@@ -3,8 +3,8 @@ import { SolicitorCaseCreator } from "../common/solicitorCaseCreator.ts";
 import Config from "../config.ts";
 import { AccessCodeHelper } from "../common/accessCodeHelper.ts";
 import createDaCitizenCourtNavCase from "../common/createCaseHelper.ts";
-import { submitEvent } from "../common/solicitorCaseCreatorHelper.ts";
 import { Helpers } from "../common/helpers.ts";
+import { completeCheckApplicationAndSendToGatekeeper } from "../common/caseEventsHelper.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
@@ -56,8 +56,7 @@ test.describe("Case creation examples", (): void => {
     await caPage.goto(
       "https://manage-case.aat.platform.hmcts.net/work/my-work/list",
     );
-    await submitEvent(caPage, caseRef, "fl401SendToGateKeeper");
-    await submitEvent(caPage, caseRef, "serviceOfApplication");
+    await completeCheckApplicationAndSendToGatekeeper(caPage, caseRef);
     console.log(caseRef);
   });
 });
