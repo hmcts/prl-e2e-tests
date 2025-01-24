@@ -7,7 +7,6 @@ import { CheckTheApplication } from "../../../../../journeys/citizen/caseView/ch
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
-// comment to run test in pipeline - remove before merging
 test.describe("Applicant confirm contact details tests", (): void => {
   test.slow();
   let ccdRef: string;
