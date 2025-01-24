@@ -34,6 +34,7 @@ export class ConfirmContactDetails {
       caseRef: caseRef,
       caseUser: caseUser,
       accessibilityTest: accessibilityTest,
+      isManualSOA: false,
     });
     await page.click(UniqueSelectors.confirmOrEditYourContactDetailsSelector);
     await this.completeStayingInARefuge(page, isApplicant);

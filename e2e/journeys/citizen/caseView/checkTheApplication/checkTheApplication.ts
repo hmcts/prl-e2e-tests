@@ -29,6 +29,7 @@ export class CheckTheApplication {
       caseRef,
       caseUser,
       accessibilityTest,
+      isManualSOA: false,
     });
     if (isApplicant) {
       await page.click(UniqueSelectors.yourApplicationApplicant);

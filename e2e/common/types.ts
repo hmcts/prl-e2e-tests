@@ -214,3 +214,21 @@ export type amendEvents =
 export type documentCategory = "Applicant's statements" | "Position statements";
 
 export type documentSubmittedBy = "CourtNav" | "Citizen";
+
+export type CaseAPIEvent =
+  | "fl401TypeOfApplication"
+  | "withoutNoticeOrderDetails"
+  | "applicantsDetails"
+  | "respondentsDetails"
+  | "fl401ApplicantFamilyDetails"
+  | "respondentRelationship"
+  | "respondentBehaviour"
+  | "fl401OtherProceedings"
+  | "attendingTheHearing"
+  | "welshLanguageRequirements"
+  | "fl401UploadDocuments"
+  | "fl401StatementOfTruthAndSubmit"
+  | "fl401AddCaseNumber"
+  | "fl401SendToGateKeeper"
+  | "manageOrders"
+  | "serviceOfApplication";

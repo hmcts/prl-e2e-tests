@@ -4,6 +4,7 @@ import createDaCitizenCourtNavCase from "../../../../common/createCaseHelper";
 import { Helpers } from "../../../../common/helpers";
 import config from "../../../../config";
 import { CreateHearingRequest } from "../../../../journeys/manageCases/caseProgression/createHearingRequest/createHearingRequest";
+import { jsonDatas } from "../../../../common/solicitorCaseCreatorHelper.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
@@ -21,18 +22,11 @@ test.describe("Complete the Order task for DA Citizen case tests.", () => {
   }): Promise<void> => {
     await CreateHearingRequest.createHearingRequest({
       page: page,
-      accessibilityTest: false,
-      yesNoSendToGateKeeper: true,
+      accessibilityTest: true,
       ccdRef: ccdRef,
-      c100CaseWorkerActions: "Manage orders",
-      manageOrdersOptions: "create order",
-      createOrderFL401Options: "blank order",
-      yesNoManageOrders: false,
-      judgeTitles: "District Judge",
-      withOrWithoutNotice: true,
-      createOrderManageOrders19Options: "dateToBeFixed", // "dateConfirmed" will not pass because page 19 does not give a hearing you are allowed to select
-      howLongWillOrderBeInForce: "untilNextHearing", // Should not matter unless non-molestation order is selected.
+      createOrderFL401Options: "amend discharge varied order",
       browser: browser,
+      manageOrderData: jsonDatas.manageOrderDataAmendDischargedVaried,
     });
   });
 
@@ -42,18 +36,11 @@ test.describe("Complete the Order task for DA Citizen case tests.", () => {
   }): Promise<void> => {
     await CreateHearingRequest.createHearingRequest({
       page: page,
-      accessibilityTest: false,
-      yesNoSendToGateKeeper: true,
+      accessibilityTest: true,
       ccdRef: ccdRef,
-      c100CaseWorkerActions: "Manage orders",
-      manageOrdersOptions: "create order",
       createOrderFL401Options: "amend discharge varied order",
-      yesNoManageOrders: false,
-      judgeTitles: "Deputy District Judge",
-      withOrWithoutNotice: false,
-      createOrderManageOrders19Options: "dateToBeFixed", // "dateConfirmed" will not pass because page 19 does not give a hearing you are allowed to select
-      howLongWillOrderBeInForce: "untilNextHearing", // Should not matter unless non-molestation order is selected.
       browser: browser,
+      manageOrderData: jsonDatas.manageOrderDataAmendDischargedVaried,
     });
   });
 });

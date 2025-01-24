@@ -5,9 +5,10 @@ import {
   postData,
   submitEvent,
 } from "./solicitorCaseCreatorHelper.ts";
-import solicitorCaseData from "../caseData/solicitorDACaseData.json";
+import solicitorCaseData from "../caseData/solicitorDACaseEventData.json";
+import { CaseAPIEvent } from "./types.ts";
 
-const CaseEvents: string[] = [
+const solicitorCaseEvents: CaseAPIEvent[] = [
   "fl401TypeOfApplication",
   "withoutNoticeOrderDetails",
   "applicantsDetails",
@@ -22,7 +23,6 @@ const CaseEvents: string[] = [
   "fl401StatementOfTruthAndSubmit",
   "fl401SendToGateKeeper",
   "serviceOfApplication",
-  "fl401AddCaseNumber",
 ];
 
 export class SolicitorCaseCreator {
@@ -30,7 +30,7 @@ export class SolicitorCaseCreator {
     page: Page,
   ): Promise<string> {
     const caseRef: string = await this.createBlankCase(page);
-    for (const event of CaseEvents) {
+    for (const event of solicitorCaseEvents) {
       await submitEvent(page, caseRef, event);
       if (event === "fl401StatementOfTruthAndSubmit") {
         break;
