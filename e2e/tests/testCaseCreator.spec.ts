@@ -38,7 +38,7 @@ test.describe("Case creation examples", (): void => {
     const caseRef = await SolicitorCaseCreator.createCaseSOA(page, browser);
     console.log(caseRef);
     const appAccessCode: string =
-      await AccessCodeHelper.getApplicantAccessCode("1733309023574046");
+      await AccessCodeHelper.getApplicantAccessCode(caseRef);
     console.log(`Applicant access code: ${appAccessCode}`);
     const respAccessCode: string =
       await AccessCodeHelper.getRespondentAccessCode(caseRef);

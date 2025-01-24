@@ -53,5 +53,10 @@ export async function completeEventsUpToServiceOfApplication(
   await page.waitForResponse(
     `https://manage-case.aat.platform.hmcts.net/data/cases/${caseRef}/events`,
   );
-  await submitEvent(page, caseRef, "serviceOfApplication");
+  await submitEvent(
+    page,
+    caseRef,
+    "serviceOfApplication",
+    manageOrderEventData,
+  );
 }

@@ -1520,40 +1520,23 @@
   },
   "serviceOfApplication": {
     "data": {
-      "serviceOfApplicationHeader": null,
       "isConfidential": "No",
+      "serviceOfApplicationHeader": null,
       "sentDocumentPlaceHolder": "<details class='govuk-details'>\n\n<summary class='govuk-details__summary'>\n\n<h3 class='govuk-details__summary-text'>\n\nDocuments served in the pack\n\n</h3>\n\n</summary>\n\n<div class='govuk-details__text'>\n\nCertain documents will be automatically included in the pack that is sent out on parties (the people in the case).\n\nThis includes:\n\n<ul><li>an application form (FL401)</li><li>witness statement</li><li>privacy notice</li><li>cover letter (if not represented)</li></ul>\n\nYou do not need to upload these documents yourself.\n\n</div>\n\n</details>",
-      "serviceOfApplicationScreen1": {
-        "value": [
-          {
-            "code": "af39a2ba-aad5-4347-b064-8c182faeb4ef",
-            "label": "Power of arrest (FL406) - 21 Jan 2025"
-          }
-        ],
-        "list_items": [
-          {
-            "code": "af39a2ba-aad5-4347-b064-8c182faeb4ef",
-            "label": "Power of arrest (FL406) - 21 Jan 2025"
-          }
-        ]
-      },
       "noticeOfSafetySupportLetter": {
-        "document_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/675b1066-e716-4272-8d22-b1b6c996287b",
-        "document_binary_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/675b1066-e716-4272-8d22-b1b6c996287b/binary",
-        "document_filename": "mockFile.pdf"
+        "document_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/dfff6f3b-dc6f-4638-9def-5104e1b7e84c",
+        "document_binary_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/dfff6f3b-dc6f-4638-9def-5104e1b7e84c/binary",
+        "document_filename": "prl-5427_1.png"
       },
       "additionalDocumentsList": [],
       "caseTypeOfApplication": "FL401",
-      "soaIsOrderListEmpty": "No",
+      "soaIsOrderListEmpty": "Yes",
       "missingAddressWarningText": "",
-      "displayLegalRepOption": "No",
+      "caseCreatedBy": "SOLICITOR",
       "isC8CheckNeeded": null,
       "responsibleForService": null,
       "isOccupationOrderSelected": null,
-      "isApplicantRepresented": null,
-      "productHearingBundleOn": null,
-      "soaServeToRespondentOptions": "Yes",
-      "soaCitizenServingRespondentsOptions": "courtBailiff"
+      "soaServingRespondentsOptionsDA": "applicantLegalRepresentative"
     }
   }
 }

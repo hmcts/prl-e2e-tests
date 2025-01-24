@@ -1,6 +1,6 @@
 import solicitorCaseData from "../caseData/solicitorDACaseEventData.json";
-import manageOrderEventDataAmendDischargedVaried from "../caseData/orderData/manageOrderEventData-amendDischargedVaried.json";
-import manageOrderEventDataPowerOfArrest from "../caseData/orderData/manageOrderEventData-powerOfArrest.json";
+import orderEventDataAmendDischargedVaried from "../caseData/orderData/orderEventData-amendDischargedVaried.json";
+import orderEventDataPowerOfArrest from "../caseData/orderData/orderEventData-powerOfArrest.json";
 import { Page } from "@playwright/test";
 import { CaseAPIEvent } from "./types.ts";
 
@@ -9,9 +9,8 @@ import { CaseAPIEvent } from "./types.ts";
 export type JsonData = Record<string, any>;
 export const jsonDatas: JsonData = {
   defaultData: solicitorCaseData,
-  manageOrderDataPowerOfArrest: manageOrderEventDataPowerOfArrest,
-  manageOrderDataAmendDischargedVaried:
-    manageOrderEventDataAmendDischargedVaried,
+  manageOrderDataPowerOfArrest: orderEventDataPowerOfArrest,
+  manageOrderDataAmendDischargedVaried: orderEventDataAmendDischargedVaried,
 };
 
 /**
