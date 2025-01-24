@@ -10,7 +10,7 @@ import { SharingYourDocumentsPage } from "../../../../../../pages/citizen/caseVi
 import { OtherPartyNotSeeDocumentPage } from "../../../../../../pages/citizen/caseView/uploadDocuments/witnessStatementsAndEvidence/otherPartyNotSeeDocumentPage.ts";
 import { UploadYourDocumentsWitnessStatementPage } from "../../../../../../pages/citizen/caseView/uploadDocuments/witnessStatementsAndEvidence/uploadYourDocumentsWitnessStatementPage.ts";
 import { SubmitExtraEvidencePage } from "../../../../../../pages/citizen/caseView/uploadDocuments/witnessStatementsAndEvidence/submitExtraEvidencePage.ts";
-import { yesNoNA } from "../../../../../../common/types.ts";
+import { applicationSubmittedBy, yesNoNA } from "../../../../../../common/types.ts";
 import { UploadContent } from "../../../../../../fixtures/citizen/caseView/uploadDocuments/uploadContent.ts";
 import { Selectors } from "../../../../../../common/selectors.ts";
 
@@ -21,6 +21,7 @@ interface uploadDocumentsWitnessStatementParams {
   accessibilityTest: boolean;
   isApplicant: boolean;
   yesNoNA: yesNoNA;
+  applicationSubmittedBy: applicationSubmittedBy;
 }
 
 enum UniqueSelectors {
@@ -29,13 +30,14 @@ enum UniqueSelectors {
 
 export class UploadDocumentsWitnessStatement {
   public static async uploadDocumentsWitnessStatement({
-    page,
-    browser,
-    caseRef,
-    accessibilityTest,
-    isApplicant,
-    yesNoNA,
-  }: uploadDocumentsWitnessStatementParams): Promise<void> {
+   page,
+   browser,
+   caseRef,
+   accessibilityTest,
+   isApplicant,
+   yesNoNA,
+   applicationSubmittedBy,
+ }: uploadDocumentsWitnessStatementParams): Promise<void> {
     const caseUser: CaseUser = isApplicant ? "applicant" : "respondent";
     page = await ActivateCase.activateCase({
       page: page,
@@ -43,6 +45,7 @@ export class UploadDocumentsWitnessStatement {
       caseRef: caseRef,
       caseUser: caseUser,
       accessibilityTest: accessibilityTest,
+      applicationSubmittedBy: applicationSubmittedBy,
     });
     await page.click(UniqueSelectors.uploadDocumentsPrivateSelector);
     await UploadPage.uploadPage(page, accessibilityTest);

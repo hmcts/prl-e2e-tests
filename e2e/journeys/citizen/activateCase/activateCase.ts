@@ -7,12 +7,14 @@ import { CaseActivatedPage } from "../../../pages/citizen/activateCase/caseActiv
 import { ApplicantDashboardPage } from "../../../pages/citizen/activateCase/applicantDashboardPage.ts";
 import { RespondentDashboardPage } from "../../../pages/citizen/activateCase/respondentDashboardPage.ts";
 import { E2eFlowUpToServiceOfApplication } from "../../manageCases/caseProgression/e2eFlowUpToServiceOfApplication/e2eFlowUpToServiceOfApplication.ts";
+import { applicationSubmittedBy } from "../../../common/types.ts";
 
 interface ActiveCaseParams {
   page: Page;
   browser: Browser;
   caseRef: string;
   caseUser: CaseUser;
+  applicationSubmittedBy: applicationSubmittedBy;
   accessibilityTest: boolean;
 }
 
@@ -24,6 +26,7 @@ export class ActivateCase {
     browser,
     caseRef,
     caseUser,
+    applicationSubmittedBy,
     accessibilityTest,
   }: ActiveCaseParams): Promise<Page> {
     let currentPage: Page = page;
@@ -44,6 +47,7 @@ export class ActivateCase {
       personallyServed: true,
       yesNoServiceOfApplication4: false,
       responsibleForServing: "courtBailiff", // this isn't used when yesNoServiceOfApplication4 is false
+      applicationSubmittedBy: applicationSubmittedBy,
     });
     switch (caseUser) {
       case "applicant":
@@ -51,6 +55,7 @@ export class ActivateCase {
           browser,
           caseRef,
           accessibilityTest,
+          applicationSubmittedBy,
         );
         break;
       case "respondent":
@@ -58,14 +63,21 @@ export class ActivateCase {
           browser,
           caseRef,
           accessibilityTest,
+          applicationSubmittedBy,
         );
         break;
       case "both":
-        await this.checkApplicantDashboard(browser, caseRef, accessibilityTest);
+        await this.checkApplicantDashboard(
+          browser,
+          caseRef,
+          accessibilityTest,
+          applicationSubmittedBy,
+          );
         await this.checkRespondentDashboard(
           browser,
           caseRef,
           accessibilityTest,
+          applicationSubmittedBy,
         );
         break;
       default:
@@ -80,6 +92,7 @@ export class ActivateCase {
     browser: Browser,
     caseRef: string,
     accessibilityTest: boolean,
+    applicationSubmittedBy: applicationSubmittedBy,
   ): Promise<Page> {
     const newBrowser = await browser.browserType().launch();
     const newContext: BrowserContext = await newBrowser.newContext();
@@ -97,6 +110,7 @@ export class ActivateCase {
       accessCode,
       true,
       accessibilityTest,
+      applicationSubmittedBy,
     );
     return page;
   }
@@ -105,6 +119,7 @@ export class ActivateCase {
     browser: Browser,
     caseRef: string,
     accessibilityTest: boolean,
+    applicationSubmittedBy: applicationSubmittedBy,
   ): Promise<Page> {
     const newBrowser = await browser.browserType().launch();
     const newContext: BrowserContext = await newBrowser.newContext();
@@ -122,6 +137,7 @@ export class ActivateCase {
       accessCode,
       false,
       accessibilityTest,
+      applicationSubmittedBy,
     );
     return page;
   }
@@ -132,6 +148,7 @@ export class ActivateCase {
     accessCode: string,
     isApplicant: boolean,
     accessibilityTest: boolean,
+    applicationSubmittedBy: applicationSubmittedBy
   ): Promise<void> {
     await EnterPinPage.enterPinPage(
       page,
@@ -145,12 +162,14 @@ export class ActivateCase {
         page,
         caseRef,
         accessibilityTest,
+        applicationSubmittedBy,
       );
     } else {
       await RespondentDashboardPage.respondentDashboardPage(
         page,
         caseRef,
         accessibilityTest,
+        applicationSubmittedBy,
       );
     }
   }

@@ -2,6 +2,7 @@ import { ActivateCase, CaseUser } from "../../activateCase/activateCase.ts";
 import { Browser, Page } from "@playwright/test";
 import { AllCategoriesPage } from "../../../../pages/citizen/caseView/viewAllDocuments/allCatergoriesPage.ts";
 import { ApplicationPackDocumentsPage } from "../../../../pages/citizen/caseView/viewAllDocuments/applicationPackDocumentsPage.ts";
+import { applicationSubmittedBy } from "../../../../common/types.ts";
 
 interface reasonableAdjustmentsParams {
   page: Page;
@@ -9,6 +10,7 @@ interface reasonableAdjustmentsParams {
   caseRef: string;
   isApplicant: boolean;
   accessibilityTest: boolean;
+  applicationSubmittedBy: applicationSubmittedBy;
 }
 
 enum UniqueSelectors {
@@ -22,6 +24,7 @@ export class ViewAllDocuments {
     caseRef,
     isApplicant,
     accessibilityTest,
+    applicationSubmittedBy,
   }: reasonableAdjustmentsParams): Promise<void> {
     const caseUser: CaseUser = isApplicant ? "applicant" : "respondent";
     page = await ActivateCase.activateCase({
@@ -30,6 +33,7 @@ export class ViewAllDocuments {
       caseRef: caseRef,
       caseUser: caseUser,
       accessibilityTest: accessibilityTest,
+      applicationSubmittedBy: applicationSubmittedBy,
     });
 
     await page.click(UniqueSelectors.viewAllDocuments);

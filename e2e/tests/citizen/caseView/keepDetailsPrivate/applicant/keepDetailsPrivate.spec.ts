@@ -28,6 +28,7 @@ test.describe("Applicant keep details private tests", (): void => {
       isApplicant: true,
       startAlternativeYesNo: true,
       yesNoDontKnow: "yes",
+      applicationSubmittedBy: "Citizen",
     });
   });
 
@@ -43,6 +44,7 @@ test.describe("Applicant keep details private tests", (): void => {
       isApplicant: true,
       startAlternativeYesNo: false,
       yesNoDontKnow: "no",
+      applicationSubmittedBy: "Citizen",
     });
   });
 
@@ -58,6 +60,7 @@ test.describe("Applicant keep details private tests", (): void => {
       isApplicant: true,
       startAlternativeYesNo: true,
       yesNoDontKnow: "dontKnow",
+      applicationSubmittedBy: "Citizen",
     });
   });
 });

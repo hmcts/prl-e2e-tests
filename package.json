@@ -28,7 +28,7 @@
     "uuid": "^11.0.2"
   },
   "scripts": {
-    "configure": "yarn playwright install && yarn playwright install webkit && yarn playwright install firefox",
+    "setup": "yarn install && ./scripts/get_secrets.sh && yarn playwright install && yarn playwright install webkit && yarn playwright install firefox",
     "lint": "yarn prettier . --write && yarn tsc -p tsconfig.json && yarn eslint .",
     "test:unit": "jest",
     "test:changes": "yarn playwright install && ts-node ./e2e/common/changedTestsRunner.ts",

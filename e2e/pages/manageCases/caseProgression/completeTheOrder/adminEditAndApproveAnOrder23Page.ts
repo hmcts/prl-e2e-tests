@@ -4,20 +4,23 @@ import { Selectors } from "../../../../common/selectors";
 import { AdminEditAndApproveAnOrder23Content } from "../../../../fixtures/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrder23Content";
 import { Helpers } from "../../../../common/helpers";
 import { CommonStaticText } from "../../../../common/commonStaticText";
+import { applicationSubmittedBy } from "../../../../common/types.ts";
 
 enum UniqueSelectors {
   respondentOptionYes = "#serveToRespondentOptions-Yes",
   respondentOptionNo = "#serveToRespondentOptions-No",
-  respondentsOptionsCourtBailiff = "#servingOptionsForNonLegalRep-courtBailiff",
+  noLegalRepRespondentsOptionsCourtBailiff = "#servingOptionsForNonLegalRep-courtBailiff",
+  respondentsOptionsCourtBailiff = "#personallyServeRespondentsOptions-courtBailiff",
 }
 export class AdminEditAndApproveAnOrder23Page {
   public static async adminEditAndApproveAnOrder23Page(
     page: Page,
     accessibilityTest: boolean,
     personallyServed: boolean,
+    applicationSubmittedBy: applicationSubmittedBy,
   ): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest);
-    await this.fillInFields(page, personallyServed);
+    await this.fillInFields(page, personallyServed, applicationSubmittedBy);
     await this.continue(page);
   }
 
@@ -70,6 +73,7 @@ export class AdminEditAndApproveAnOrder23Page {
   private static async fillInFields(
     page: Page,
     personallyServed: boolean,
+    applicationSubmittedBy: applicationSubmittedBy,
   ): Promise<void> {
     if (personallyServed) {
       await page.check(`${UniqueSelectors.respondentOptionYes}`);
@@ -78,7 +82,11 @@ export class AdminEditAndApproveAnOrder23Page {
         `${Selectors.GovukFormLabel}:text-is("${AdminEditAndApproveAnOrder23Content.fromLabel3}"):visible`,
         1,
       );
-      await page.check(`${UniqueSelectors.respondentsOptionsCourtBailiff}`);
+      if(applicationSubmittedBy == "Citizen") {
+        await page.check(`${UniqueSelectors.noLegalRepRespondentsOptionsCourtBailiff}`);
+      } else {
+        await page.check(`${UniqueSelectors.respondentsOptionsCourtBailiff}`);
+      }
     } else {
       await page.check(`${UniqueSelectors.respondentOptionNo}`);
       await page.check(`${Selectors.GovukFormLabel}:has-text("(Applicant)")`);

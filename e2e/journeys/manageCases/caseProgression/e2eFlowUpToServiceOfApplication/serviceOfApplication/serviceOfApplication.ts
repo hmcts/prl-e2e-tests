@@ -7,7 +7,7 @@ import {
 } from "../../../../../pages/manageCases/caseProgression/serviceOfApplication/ServiceOfApplication4Page.ts";
 import { ServiceOfApplicationSubmitPage } from "../../../../../pages/manageCases/caseProgression/serviceOfApplication/serviceOfApplicationSubmitPage.ts";
 import { ServiceOfApplicationConfirmPage } from "../../../../../pages/manageCases/caseProgression/serviceOfApplication/serviceOfApplicationConfirmPage.ts";
-import { createOrderFL401Options } from "../../../../../common/types.ts";
+import { applicationSubmittedBy, createOrderFL401Options } from "../../../../../common/types.ts";
 
 interface ServiceOfApplicationJourneyParams {
   page: Page;
@@ -15,6 +15,7 @@ interface ServiceOfApplicationJourneyParams {
   yesNoServiceOfApplication4: boolean;
   createOrderFL401Options: createOrderFL401Options;
   responsibleForServing: responsibleForServing;
+  applicationSubmittedBy: applicationSubmittedBy;
 }
 
 export class ServiceOfApplicationJourney {
@@ -24,6 +25,7 @@ export class ServiceOfApplicationJourney {
     createOrderFL401Options,
     yesNoServiceOfApplication4,
     responsibleForServing,
+    applicationSubmittedBy,
   }: ServiceOfApplicationJourneyParams): Promise<void> {
     await Helpers.chooseEventFromDropdown(page, "Service of application");
     await ServiceOfApplication2Page.serviceOfApplication2Page({
@@ -41,6 +43,7 @@ export class ServiceOfApplicationJourney {
       page,
       yesNoServiceOfApplication4,
       accessibilityTest,
+      applicationSubmittedBy,
     });
     await ServiceOfApplicationConfirmPage.serviceOfApplicationConfirmPage({
       page,

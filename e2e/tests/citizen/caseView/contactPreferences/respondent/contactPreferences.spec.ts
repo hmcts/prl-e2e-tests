@@ -27,6 +27,7 @@ test.describe("Respondent confirm contact details tests", (): void => {
       accessibilityTest: true,
       contactOption: "Post",
       isApplicant: false,
+      applicationSubmittedBy: "Citizen",
     });
   });
 });

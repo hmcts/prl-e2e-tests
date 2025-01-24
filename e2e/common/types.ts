@@ -214,3 +214,5 @@ export type amendEvents =
 export type documentCategory = "Applicant's statements" | "Position statements";
 
 export type documentSubmittedBy = "CourtNav" | "Citizen";
+
+export type applicationSubmittedBy = "Citizen" | "Solicitor";
