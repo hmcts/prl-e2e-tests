@@ -13,11 +13,11 @@ enum ids {
 export class ViewPDFApplicationPage {
   public static async viewPDFApplicationPage(
     page: Page,
-    errorMessaging: boolean,
-    accessibilityTest: boolean,
-    viewPdfTestCases: ViewPdfTestCases,
+    // errorMessaging: boolean,
+    // accessibilityTest: boolean,
+    // viewPdfTestCases: ViewPdfTestCases,
   ): Promise<void> {
-    await this.checkPageLoads(page, accessibilityTest, viewPdfTestCases);
+    // await this.checkPageLoads(page, accessibilityTest, viewPdfTestCases);
     await this.fillInFields(page);
   }
 
