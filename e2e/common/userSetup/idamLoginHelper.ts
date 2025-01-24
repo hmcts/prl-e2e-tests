@@ -11,7 +11,7 @@ export class IdamLoginHelper {
   };
   private static submitButton: string = 'input[value="Sign in"]';
 
-  private static async signIn(
+  static async signIn(
     page: Page,
     username: string,
     password: string,
@@ -86,7 +86,7 @@ export class IdamLoginHelper {
     application: string,
     user: string,
   ): Promise<void> {
-    const token = process.env.CITIZEN_CREATE_USER_BEARER_TOKEN as string;
+    const token = process.env.CREATE_USER_IDAM_BEARER_TOKEN as string;
     if (!token) {
       console.error("Bearer token is not defined in the environment variables");
       return;

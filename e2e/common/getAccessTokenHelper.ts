@@ -1,6 +1,6 @@
 import { APIRequestContext } from "@playwright/test";
 
-const citizenCreateUserData = {
+const createUserData = {
   grant_type: "client_credentials",
   client_id: process.env.CCD_DATA_STORE_CLIENT_ID as string,
   client_secret: process.env.IDAM_SECRET as string,
@@ -48,8 +48,8 @@ export async function getAccessToken(
   let data, url;
   try {
     switch (option) {
-      case "citizenCreateUser":
-        data = citizenCreateUserData;
+      case "createUser":
+        data = createUserData;
         url = process.env.IDAM_TOKEN_URL as string;
         break;
       case "daCourtNavCreateCase":

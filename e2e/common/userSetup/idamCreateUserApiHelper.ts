@@ -21,7 +21,7 @@ export async function createUser(
   let forename: string;
   let surname: string;
   const idamUrl = process.env.IDAM_TESTING_SUPPORT_USERS_URL as string;
-  let userId: string  = "";;
+  let userId: string = "";
   switch (user){
     case "citizen":
       password = process.env.IDAM_CITIZEN_USER_PASSWORD as string;
@@ -112,20 +112,21 @@ export async function createUser(
       );
       if (response.status() != 201) {
         throw new Error(
-            `Response from IDAM was not successful: ${await response.json()}\n Status Code: ${response.status()}`,
+            `Response from IDAM was not successful: ${await response.text()}\n Status Code: ${response.status()}`,
         );
       }
-      const responseData = await response.json();
+      const responseText = await response.text();
+      let responseData;
+      try {
+        responseData = JSON.parse(responseText);
+      } catch (error) {
+        throw new Error(`Failed to parse JSON response: ${responseText}: ${error}`);
+      }
       if (process.env.PWDEBUG) {
         console.log("User created:", responseData);
       }
       return { email, password, id, user };
     } catch (error) {
-      if (process.env.PWDEBUG) {
-        console.error(
-            `Error: Unable to create the "${user}" user. Please check your VPN connection and confirm that the IDAM service is available.\n${error}`,
-        );
-      }
       throw new Error(
           `Failed to create citizen user. Check the URL or your network connection.\n${error}`,
       );
@@ -160,20 +161,21 @@ export async function createUser(
       );
       if (response.status() != 200 && response.status() != 409) {
         throw new Error(
-            `Response from IDAM was not successful: ${await response.json()}\n Status Code: ${response.status()}`,
+            `Response from IDAM was not successful: ${await response.text()}\n Status Code: ${response.status()}`,
         );
       }
-      const responseData = await response.json();
+      const responseText = await response.text();
+      let responseData;
+      try {
+        responseData = JSON.parse(responseText);
+      } catch (error) {
+        throw new Error(`Failed to parse JSON response: ${responseText}: ${error}`);
+      }
       if (process.env.PWDEBUG) {
         console.log("User created:", responseData);
       }
       return { email, password, id, user };
     } catch (error) {
-      if (process.env.PWDEBUG) {
-        console.error(
-            `Error: Unable to create the "${user}" user. Please check your VPN connection and confirm that the IDAM service is available.\n${error}`,
-        );
-      }
       throw new Error(
           `Failed to create citizen user. Check the URL or your network connection.\n${error}`,
       );
