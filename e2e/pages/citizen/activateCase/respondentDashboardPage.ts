@@ -3,24 +3,31 @@ import { Selectors } from "../../../common/selectors.ts";
 import { Helpers } from "../../../common/helpers.ts";
 import AccessibilityTestHelper from "../../../common/accessibilityTestHelper.ts";
 import { RespondentDashboardContent } from "../../../fixtures/citizen/activateCase/respondentDashboardContent.ts";
+import { applicationSubmittedBy } from "../../../common/types.ts";
 
 export class RespondentDashboardPage {
   public static async respondentDashboardPage(
     page: Page,
     caseRef: string,
     accessibilityTest: boolean,
+    applicationSubmittedBy: applicationSubmittedBy,
   ): Promise<void> {
-    await this.checkPageLoads(page, caseRef, accessibilityTest);
+    await this.checkPageLoads(page, caseRef, accessibilityTest, applicationSubmittedBy);
   }
 
   private static async checkPageLoads(
     page: Page,
     caseRef: string,
     accessibilityTest: boolean,
+    applicationSubmittedBy: applicationSubmittedBy,
   ): Promise<void> {
+    const heading =
+      applicationSubmittedBy == "Solicitor"
+        ? RespondentDashboardContent.solicitorApplicationGovukHeadingXL
+        : RespondentDashboardContent.govukHeadingXL;
     await page
       .locator(Selectors.GovukHeadingXL, {
-        hasText: RespondentDashboardContent.govukHeadingXL,
+        hasText: heading,
       })
       .waitFor();
     await Promise.all([
@@ -41,7 +48,7 @@ export class RespondentDashboardPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.NotoficationBannerLink}:text-is("${RespondentDashboardContent.notificationBannerLink}")`,
+        `${Selectors.NotificationBannerLink}:text-is("${RespondentDashboardContent.notificationBannerLink}")`,
         1,
       ),
       Helpers.checkGroup(page, 2, RespondentDashboardContent, "p", Selectors.p),

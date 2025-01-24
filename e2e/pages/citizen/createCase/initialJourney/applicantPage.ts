@@ -93,7 +93,7 @@ export class ApplicantPage {
 
   private static async startApplication(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.NotoficationBannerLink}:text-is("${ApplicantContent.startApplication}")`,
+      `${Selectors.NotificationBannerLink}:text-is("${ApplicantContent.startApplication}")`,
     );
   }
 }

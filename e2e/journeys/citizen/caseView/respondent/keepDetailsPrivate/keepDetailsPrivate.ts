@@ -1,6 +1,6 @@
 import { ActivateCase } from "../../../activateCase/activateCase.ts";
 import { RespondentDetailsKnownPage } from "../../../../../pages/citizen/caseView/keepDetailsPrivate/respondent/respondentDetailsKnownPage.ts";
-import { yesNoDontKnow } from "../../../../../common/types.ts";
+import { applicationSubmittedBy, yesNoDontKnow } from "../../../../../common/types.ts";
 import { Browser, Page } from "@playwright/test";
 import { RespondentStartAlternativePage } from "../../../../../pages/citizen/caseView/keepDetailsPrivate/respondent/respondentStartAlternativePage.ts";
 import { RespondentPrivateDetailsConfirmedPage } from "../../../../../pages/citizen/caseView/keepDetailsPrivate/respondent/RespondentPrivateDetailsConfirmedPage.ts";
@@ -12,6 +12,7 @@ interface RespondentConfirmContactDetailsParams {
   accessibilityTest: boolean;
   yesNoDontKnow: yesNoDontKnow;
   startAlternativeYesNo: boolean;
+  applicationSubmittedBy: applicationSubmittedBy;
 }
 
 enum UniqueSelectors {
@@ -26,6 +27,7 @@ export class KeepDetailsPrivate {
     accessibilityTest,
     yesNoDontKnow,
     startAlternativeYesNo,
+    applicationSubmittedBy,
   }: RespondentConfirmContactDetailsParams): Promise<void> {
     page = await ActivateCase.activateCase({
       page: page,
@@ -33,6 +35,7 @@ export class KeepDetailsPrivate {
       caseRef: caseRef,
       caseUser: "respondent",
       accessibilityTest: accessibilityTest,
+      applicationSubmittedBy: applicationSubmittedBy,
     });
     await page.click(UniqueSelectors.keepDetailsPrivateSelector);
     await RespondentDetailsKnownPage.respondentDetailsKnownPage(

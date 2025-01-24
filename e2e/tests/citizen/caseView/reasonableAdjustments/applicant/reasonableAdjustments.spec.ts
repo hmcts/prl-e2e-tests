@@ -28,6 +28,7 @@ test.describe("Applicant reasonable adjustments tests", (): void => {
       needsReasonableAdjustment: false,
       isApplicant: true,
       accessibilityTest: true,
+      applicationSubmittedBy: "Citizen",
     });
   });
 
@@ -42,6 +43,7 @@ test.describe("Applicant reasonable adjustments tests", (): void => {
       needsReasonableAdjustment: true,
       isApplicant: true,
       accessibilityTest: false,
+      applicationSubmittedBy: "Citizen",
     });
   });
 });

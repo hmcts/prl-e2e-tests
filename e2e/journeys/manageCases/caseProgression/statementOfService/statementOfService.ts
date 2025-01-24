@@ -3,6 +3,7 @@ import { Helpers } from "../../../../common/helpers.ts";
 import { StatementOfService1Page } from "../../../../pages/manageCases/caseProgression/statementOfService/statementOfService1Page.ts";
 import { StatementOfServiceSubmitPage } from "../../../../pages/manageCases/caseProgression/statementOfService/StatementOfServiceSubmitPage.ts";
 import {
+  applicationSubmittedBy,
   createOrderFL401Options,
   judgeTitles,
   manageOrdersOptions,
@@ -30,6 +31,7 @@ interface statementOfServiceParams {
   personallyServed: boolean;
   yesNoServiceOfApplication4: boolean;
   responsibleForServing: responsibleForServing;
+  applicationSubmittedBy: applicationSubmittedBy;
 }
 
 export class StatementOfService {
@@ -50,6 +52,7 @@ export class StatementOfService {
     personallyServed,
     yesNoServiceOfApplication4,
     responsibleForServing,
+    applicationSubmittedBy,
   }: statementOfServiceParams): Promise<void> {
     await E2eFlowUpToServiceOfApplication.e2eFlowUpToServiceOfApplication({
       page,
@@ -68,6 +71,7 @@ export class StatementOfService {
       personallyServed,
       yesNoServiceOfApplication4,
       responsibleForServing,
+      applicationSubmittedBy,
     });
     const eventToSelect: WACaseWorkerActions = "Statement of service";
     await Helpers.chooseEventFromDropdown(page, eventToSelect);

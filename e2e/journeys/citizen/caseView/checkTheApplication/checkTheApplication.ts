@@ -1,3 +1,4 @@
+import { applicationSubmittedBy } from "../../../../common/types.ts";
 import { ActivateCase, CaseUser } from "../../activateCase/activateCase.ts";
 import { Browser, Page } from "@playwright/test";
 
@@ -7,6 +8,7 @@ interface checkTheApplicationParams {
   caseRef: string;
   accessibilityTest: boolean;
   isApplicant: boolean;
+  applicationSubmittedBy: applicationSubmittedBy
 }
 
 enum UniqueSelectors {
@@ -21,6 +23,7 @@ export class CheckTheApplication {
     caseRef,
     accessibilityTest,
     isApplicant,
+    applicationSubmittedBy,
   }: checkTheApplicationParams): Promise<void> {
     const caseUser: CaseUser = isApplicant ? "applicant" : "respondent";
     page = await ActivateCase.activateCase({
@@ -29,6 +32,7 @@ export class CheckTheApplication {
       caseRef,
       caseUser,
       accessibilityTest,
+      applicationSubmittedBy,
     });
     if (isApplicant) {
       await page.click(UniqueSelectors.yourApplicationApplicant);

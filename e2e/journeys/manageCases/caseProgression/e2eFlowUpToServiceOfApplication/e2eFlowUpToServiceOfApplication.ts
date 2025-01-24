@@ -1,5 +1,6 @@
 import { Browser, BrowserContext, Page } from "@playwright/test";
 import {
+  applicationSubmittedBy,
   createOrderFL401Options,
   judgeTitles,
   manageOrdersOptions,
@@ -30,6 +31,7 @@ interface CompleteTheOrderParams {
   personallyServed: boolean;
   yesNoServiceOfApplication4: boolean;
   responsibleForServing: responsibleForServing;
+  applicationSubmittedBy: applicationSubmittedBy;
 }
 
 export class E2eFlowUpToServiceOfApplication {
@@ -50,6 +52,7 @@ export class E2eFlowUpToServiceOfApplication {
     personallyServed,
     yesNoServiceOfApplication4,
     responsibleForServing,
+    applicationSubmittedBy,
   }: CompleteTheOrderParams): Promise<void> {
     await ApplicationJourneysCheckGatekeeperJudgeCOOrder.applicationJourneysCheckGatekeeperJudgeCOOrder(
       {
@@ -91,6 +94,7 @@ export class E2eFlowUpToServiceOfApplication {
       personallyServed,
       yesNoServiceOfApplication4,
       responsibleForServing,
+      applicationSubmittedBy,
     });
     await ServiceOfApplicationJourney.serviceOfApplicationJourney({
       page: newPage,
@@ -98,6 +102,7 @@ export class E2eFlowUpToServiceOfApplication {
       createOrderFL401Options,
       yesNoServiceOfApplication4,
       responsibleForServing,
+      applicationSubmittedBy,
     });
   }
 }

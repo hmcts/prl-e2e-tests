@@ -3,6 +3,7 @@ import { Helpers } from "../../../../common/helpers.ts";
 import { CreateBundleSubmitPage } from "../../../../pages/manageCases/caseProgression/createBundle/createBundleSubmitPage.ts";
 import { CreateBundle1Page } from "../../../../pages/manageCases/caseProgression/createBundle/createBundle1Page.ts";
 import {
+  applicationSubmittedBy,
   createOrderFL401Options,
   judgeTitles,
   manageOrdersOptions,
@@ -30,6 +31,7 @@ interface ServiceOfApplicationJourneyParams {
   personallyServed: boolean;
   yesNoServiceOfApplication4: boolean;
   responsibleForServing: responsibleForServing;
+  applicationSubmittedBy: applicationSubmittedBy;
 }
 
 export class CreateABundleJourney {
@@ -50,6 +52,7 @@ export class CreateABundleJourney {
     personallyServed,
     yesNoServiceOfApplication4,
     responsibleForServing,
+    applicationSubmittedBy,
   }: ServiceOfApplicationJourneyParams): Promise<void> {
     await E2eFlowUpToServiceOfApplication.e2eFlowUpToServiceOfApplication({
       page,
@@ -68,6 +71,7 @@ export class CreateABundleJourney {
       personallyServed,
       yesNoServiceOfApplication4,
       responsibleForServing,
+      applicationSubmittedBy,
     });
     await page.reload();
     await Helpers.chooseEventFromDropdown(page, "Create a bundle");

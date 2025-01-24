@@ -36,6 +36,7 @@ test.describe("Complete the Order task for DA Citizen case tests.", () => {
       personallyServed: true,
       yesNoServiceOfApplication4: true,
       responsibleForServing: "courtBailiff",
+      applicationSubmittedBy: "Citizen"
     });
   });
 
@@ -60,6 +61,7 @@ test.describe("Complete the Order task for DA Citizen case tests.", () => {
       personallyServed: false,
       yesNoServiceOfApplication4: true,
       responsibleForServing: "courtBailiff",
+      applicationSubmittedBy: "Citizen",
     });
   });
 });
