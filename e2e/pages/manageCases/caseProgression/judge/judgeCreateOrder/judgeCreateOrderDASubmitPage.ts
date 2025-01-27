@@ -72,10 +72,15 @@ export class judgeCreateODAManageOrderSubmitPage {
         await Promise.all([
           Helpers.checkGroup(
             page,
-            5,
+            4,
             JudgeCreateOrderDASubmitContent,
             "text16A",
             Selectors.GovukText16,
+          ),
+          Helpers.checkVisibleAndPresent(
+            page,
+            `${Selectors.GovukText16}:has-text("${JudgeCreateOrderDASubmitContent.text16DateAndTime}")`,
+            1,
           ),
           Helpers.checkVisibleAndPresent(
             page,
