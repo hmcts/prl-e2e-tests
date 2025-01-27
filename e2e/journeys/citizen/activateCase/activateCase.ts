@@ -12,12 +12,15 @@ import { ApplicantDashboardContent } from "../../../fixtures/citizen/activateCas
 import { RespondentDashboardContent } from "../../../fixtures/citizen/activateCase/respondentDashboardContent.ts";
 import { ServiceOfApplication } from "../../manageCases/caseProgression/serviceOfApplication/serviceOfApplication.ts";
 import { completeEventsUpToServiceOfApplication } from "../../../common/caseEventsHelper.ts";
+import { E2eFlowUpToServiceOfApplication } from "../../manageCases/caseProgression/e2eFlowUpToServiceOfApplication/e2eFlowUpToServiceOfApplication.ts";
+import { applicationSubmittedBy } from "../../../common/types.ts";
 
 interface ActiveCaseParams {
   page: Page;
   browser: Browser;
   caseRef: string;
   caseUser: CaseUser;
+  applicationSubmittedBy: applicationSubmittedBy;
   accessibilityTest: boolean;
   isManualSOA: boolean;
 }
@@ -30,6 +33,7 @@ export class ActivateCase {
     browser,
     caseRef,
     caseUser,
+    applicationSubmittedBy,
     accessibilityTest,
     isManualSOA,
   }: ActiveCaseParams): Promise<Page> {
@@ -61,6 +65,7 @@ export class ActivateCase {
           browser,
           caseRef,
           accessibilityTest,
+          applicationSubmittedBy,
           isManualSOA,
         );
         break;
@@ -69,6 +74,7 @@ export class ActivateCase {
           browser,
           caseRef,
           accessibilityTest,
+          applicationSubmittedBy,
           isManualSOA,
         );
         break;
@@ -77,12 +83,14 @@ export class ActivateCase {
           browser,
           caseRef,
           accessibilityTest,
+          applicationSubmittedBy,
           isManualSOA,
-        );
+          );
         await this.checkRespondentDashboard(
           browser,
           caseRef,
           accessibilityTest,
+          applicationSubmittedBy,
           isManualSOA,
         );
         break;
@@ -98,6 +106,7 @@ export class ActivateCase {
     browser: Browser,
     caseRef: string,
     accessibilityTest: boolean,
+    applicationSubmittedBy: applicationSubmittedBy,
     isManualSOA: boolean,
   ): Promise<Page> {
     const newBrowser = await browser.browserType().launch();
@@ -116,6 +125,7 @@ export class ActivateCase {
       accessCode,
       true,
       accessibilityTest,
+      applicationSubmittedBy,
       isManualSOA,
     );
     return page;
@@ -125,6 +135,7 @@ export class ActivateCase {
     browser: Browser,
     caseRef: string,
     accessibilityTest: boolean,
+    applicationSubmittedBy: applicationSubmittedBy,
     isManualSOA: boolean,
   ): Promise<Page> {
     const newBrowser = await browser.browserType().launch();
@@ -143,6 +154,7 @@ export class ActivateCase {
       accessCode,
       false,
       accessibilityTest,
+      applicationSubmittedBy,
       isManualSOA,
     );
     return page;
@@ -154,6 +166,7 @@ export class ActivateCase {
     accessCode: string,
     isApplicant: boolean,
     accessibilityTest: boolean,
+    applicationSubmittedBy: applicationSubmittedBy
     isManualSOA: boolean,
   ): Promise<void> {
     await EnterPinPage.enterPinPage(
@@ -168,12 +181,14 @@ export class ActivateCase {
         page,
         caseRef,
         accessibilityTest,
+        applicationSubmittedBy,
       );
     } else if (!isApplicant && isManualSOA) {
       await RespondentDashboardPage.respondentDashboardPage(
         page,
         caseRef,
         accessibilityTest,
+        applicationSubmittedBy,
       );
     } else if (isApplicant && !isManualSOA) {
       // just check the page heading

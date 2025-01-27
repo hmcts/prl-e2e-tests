@@ -215,6 +215,8 @@ export type documentCategory = "Applicant's statements" | "Position statements";
 
 export type documentSubmittedBy = "CourtNav" | "Citizen";
 
+export type applicationSubmittedBy = "Citizen" | "Solicitor";
+
 export type CaseAPIEvent =
   | "fl401TypeOfApplication"
   | "withoutNoticeOrderDetails"

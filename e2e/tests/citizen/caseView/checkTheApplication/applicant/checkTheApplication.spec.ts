@@ -7,7 +7,8 @@ import { CheckTheApplication } from "../../../../../journeys/citizen/caseView/ch
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
-test.describe("Respondent confirm contact details tests", (): void => {
+test.describe("Applicant confirm contact details tests", (): void => {
+  test.slow();
   let ccdRef: string;
 
   test.beforeEach(async ({ page }) => {
@@ -15,7 +16,7 @@ test.describe("Respondent confirm contact details tests", (): void => {
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
   });
 
-  test("Respondent Check The Application. @regression @accessibility @nightly", async ({
+  test("Applicant Check The Application. @regression @accessibility @nightly", async ({
     page,
     browser,
   }): Promise<void> => {
@@ -24,7 +25,8 @@ test.describe("Respondent confirm contact details tests", (): void => {
       browser,
       caseRef: ccdRef,
       accessibilityTest: true,
-      isApplicant: false,
+      isApplicant: true,
+      applicationSubmittedBy: "Citizen",
     });
   });
 });

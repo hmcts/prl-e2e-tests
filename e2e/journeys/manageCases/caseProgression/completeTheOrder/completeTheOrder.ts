@@ -1,5 +1,5 @@
 import { Browser, Page } from "@playwright/test";
-import { createOrderFL401Options } from "../../../../common/types.ts";
+import { applicationSubmittedBy, createOrderFL401Options } from "../../../../common/types.ts";
 import { jsonDatas } from "../../../../common/solicitorCaseCreatorHelper.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import config from "../../../../config.ts";
@@ -19,6 +19,7 @@ interface CompleteTheOrderParams {
   createOrderFL401Options: createOrderFL401Options;
   personallyServed: boolean;
   manageOrderData: typeof jsonDatas;
+  applicationSubmittedBy: applicationSubmittedBy;
 }
 
 // ServiceOfApplicationJourney seems to only work when it is put into this file, and not if it
@@ -33,6 +34,7 @@ export class CompleteTheOrder {
     createOrderFL401Options,
     personallyServed,
     manageOrderData,
+    applicationSubmittedBy,
   }: CompleteTheOrderParams): Promise<void> {
     await completeCheckApplicationAndSendToGatekeeperAndCreateAnOrder(
       page,
@@ -80,6 +82,7 @@ export class CompleteTheOrder {
       page,
       accessibilityTest,
       personallyServed,
+      applicationSubmittedBy,
     );
     await AdminEditAndApproveAnOrderSubmitPage.adminEditAndApproveAnOrderSubmitPage(
       page,

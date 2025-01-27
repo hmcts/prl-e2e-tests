@@ -16,7 +16,7 @@ test.describe("Activating case tests", (): void => {
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
   });
 
-  test("Activate case as an applicant  and respondent. @regression @accessibility @nightly", async ({
+  test("Activate case as an applicant and respondent. @regression @accessibility @nightly", async ({
     page,
     browser,
   }): Promise<void> => {
@@ -26,6 +26,7 @@ test.describe("Activating case tests", (): void => {
       caseRef: ccdRef,
       caseUser: "both",
       accessibilityTest: true,
+      applicationSubmittedBy: "Citizen",
       isManualSOA: true,
     });
   });

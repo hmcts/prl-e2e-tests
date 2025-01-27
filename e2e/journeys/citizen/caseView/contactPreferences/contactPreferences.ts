@@ -3,7 +3,7 @@ import { Browser, Page } from "@playwright/test";
 import { ContactPreferencesPage } from "../../../../pages/citizen/caseView/contactPreferences/contactPreferencesPage.ts";
 import { ReviewPage } from "../../../../pages/citizen/caseView/contactPreferences/reviewPage.ts";
 import { ConfirmationPage } from "../../../../pages/citizen/caseView/contactPreferences/confirmationPage.ts";
-import { contactOption } from "../../../../common/types.ts";
+import { applicationSubmittedBy, contactOption } from "../../../../common/types.ts";
 
 interface contactPreferencesParams {
   page: Page;
@@ -12,6 +12,7 @@ interface contactPreferencesParams {
   accessibilityTest: boolean;
   contactOption: contactOption;
   isApplicant: boolean;
+  applicationSubmittedBy: applicationSubmittedBy;
 }
 
 enum UniqueSelectors {
@@ -26,6 +27,7 @@ export class ContactPreferences {
     accessibilityTest,
     contactOption,
     isApplicant,
+    applicationSubmittedBy,
   }: contactPreferencesParams): Promise<void> {
     const caseUser: CaseUser = isApplicant ? "applicant" : "respondent";
     page = await ActivateCase.activateCase({
@@ -34,6 +36,7 @@ export class ContactPreferences {
       caseRef: caseRef,
       caseUser: caseUser,
       accessibilityTest: accessibilityTest,
+      applicationSubmittedBy: applicationSubmittedBy,
       isManualSOA: false,
     });
     await page.click(UniqueSelectors.contactPreferencesPrivateSelector);

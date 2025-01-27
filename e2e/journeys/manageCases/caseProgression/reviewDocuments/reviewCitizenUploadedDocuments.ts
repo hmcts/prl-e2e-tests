@@ -1,7 +1,7 @@
 import { Browser, Page } from "@playwright/test";
 import { UploadDocumentsPositionStatement } from "../../../citizen/caseView/uploadDocuments/witnessStatementsAndEvidence/applicant/uploadDocumentsPositionStatement.ts";
-import { yesNoDontKnow, documentCategory } from "../../../../common/types";
-import { ReviewDocuments } from "./reviewDocuments.ts";
+import { yesNoDontKnow, documentCategory, applicationSubmittedBy } from "../../../../common/types";
+import { ReviewDocuments} from "./reviewDocuments.ts";
 import { Helpers } from "../../../../common/helpers";
 import Config from "../../../../config";
 
@@ -13,6 +13,7 @@ interface reviewCitizenUploadedDocumentsParams {
   isApplicant: boolean;
   yesNoNotSureRestrictDocs: yesNoDontKnow;
   documentType: documentCategory;
+  applicationSubmittedBy: applicationSubmittedBy;
 }
 
 export class ReviewCitizenUploadedDocuments {
@@ -24,15 +25,19 @@ export class ReviewCitizenUploadedDocuments {
     isApplicant,
     yesNoNotSureRestrictDocs,
     documentType,
+    applicationSubmittedBy,
   }: reviewCitizenUploadedDocumentsParams): Promise<void> {
-    await UploadDocumentsPositionStatement.uploadDocumentsPositionStatement({
-      page: page,
-      browser: browser,
-      caseRef: caseRef,
-      accessibilityTest: accessibilityTest,
-      isApplicant: isApplicant,
-      yesNoNA: "Yes",
-    });
+    await UploadDocumentsPositionStatement.uploadDocumentsPositionStatement(
+      {
+        page: page,
+        browser: browser,
+        caseRef: caseRef,
+        accessibilityTest: accessibilityTest,
+        isApplicant: isApplicant,
+        yesNoNA: "Yes",
+        applicationSubmittedBy: applicationSubmittedBy,
+      },
+    );
     // open new browser and sign in as court admin user
     const courtAdminPage: Page = await Helpers.openNewBrowserWindow(
       browser,

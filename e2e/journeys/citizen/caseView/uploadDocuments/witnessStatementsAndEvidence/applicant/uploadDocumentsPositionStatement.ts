@@ -10,7 +10,7 @@ import { SharingYourDocumentsPage } from "../../../../../../pages/citizen/caseVi
 import { OtherPartyNotSeeDocumentPage } from "../../../../../../pages/citizen/caseView/uploadDocuments/witnessStatementsAndEvidence/otherPartyNotSeeDocumentPage.ts";
 import { UploadYourDocumentsPositionStatementPage } from "../../../../../../pages/citizen/caseView/uploadDocuments/witnessStatementsAndEvidence/uploadYourDocumentsPositionStatementPage.ts";
 import { SubmitExtraEvidencePage } from "../../../../../../pages/citizen/caseView/uploadDocuments/witnessStatementsAndEvidence/submitExtraEvidencePage.ts";
-import { yesNoNA } from "../../../../../../common/types.ts";
+import { applicationSubmittedBy, yesNoNA } from "../../../../../../common/types.ts";
 import { UploadContent } from "../../../../../../fixtures/citizen/caseView/uploadDocuments/uploadContent.ts";
 import { Selectors } from "../../../../../../common/selectors.ts";
 
@@ -21,6 +21,7 @@ interface uploadDocumentsPositionStatementParams {
   accessibilityTest: boolean;
   isApplicant: boolean;
   yesNoNA: yesNoNA;
+  applicationSubmittedBy: applicationSubmittedBy;
 }
 
 enum UniqueSelectors {
@@ -35,6 +36,7 @@ export class UploadDocumentsPositionStatement {
     accessibilityTest,
     isApplicant,
     yesNoNA,
+    applicationSubmittedBy,
   }: uploadDocumentsPositionStatementParams): Promise<void> {
     const caseUser: CaseUser = isApplicant ? "applicant" : "respondent";
     page = await ActivateCase.activateCase({
@@ -43,6 +45,7 @@ export class UploadDocumentsPositionStatement {
       caseRef: caseRef,
       caseUser: caseUser,
       accessibilityTest: accessibilityTest,
+      applicationSubmittedBy: applicationSubmittedBy,
       isManualSOA: false,
     });
     await page.click(UniqueSelectors.uploadDocumentsPrivateSelector);

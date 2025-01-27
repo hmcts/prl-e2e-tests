@@ -1,6 +1,7 @@
 import { ActivateCase, CaseUser } from "../../activateCase/activateCase.ts";
 import { Browser, Page } from "@playwright/test";
 import { UploadPage } from "../../../../pages/citizen/caseView/uploadDocuments/uploadPage.ts";
+import { applicationSubmittedBy } from "../../../../common/types.ts";
 
 interface uploadParams {
   page: Page;
@@ -8,6 +9,7 @@ interface uploadParams {
   caseRef: string;
   accessibilityTest: boolean;
   isApplicant: boolean;
+  applicationSubmittedBy: applicationSubmittedBy;
 }
 
 enum UniqueSelectors {
@@ -21,6 +23,7 @@ export class Upload {
     caseRef,
     accessibilityTest,
     isApplicant,
+    applicationSubmittedBy,
   }: uploadParams): Promise<void> {
     const caseUser: CaseUser = isApplicant ? "applicant" : "respondent";
     page = await ActivateCase.activateCase({
@@ -29,6 +32,7 @@ export class Upload {
       caseRef: caseRef,
       caseUser: caseUser,
       accessibilityTest: accessibilityTest,
+      applicationSubmittedBy: applicationSubmittedBy,
       isManualSOA: false,
     });
     await page.click(UniqueSelectors.uploadDocumentsPrivateSelector);
