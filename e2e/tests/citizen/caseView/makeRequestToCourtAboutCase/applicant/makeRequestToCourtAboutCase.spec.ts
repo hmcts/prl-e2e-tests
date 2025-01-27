@@ -24,7 +24,7 @@ test.describe("Applicant Make a request to the court about your case tests", ():
       page: page,
       browser: browser,
       caseRef: ccdRef,
-      accessibilityTest: false,
+      accessibilityTest: true,
       isApplicant: true,
       applicationSubmittedBy: "Citizen",
     });
