@@ -1,10 +1,12 @@
-import { yesNoDontKnow } from "../../../../../common/types.ts";
+import {
+  applicationSubmittedBy,
+  yesNoDontKnow,
+} from "../../../../../common/types.ts";
 import { Browser, Page } from "@playwright/test";
 import { ActivateCase, CaseUser } from "../../../activateCase/activateCase.ts";
 import { DetailsKnownPage } from "../../../../../pages/citizen/caseView/keepDetailsPrivate/applicant/detailsKnownPage.ts";
 import { ApplicantStartAlternativePage } from "../../../../../pages/citizen/caseView/keepDetailsPrivate/applicant/startAlternativePage.ts";
 import { ApplicantPrivateDetailsConfirmedPage } from "../../../../../pages/citizen/caseView/keepDetailsPrivate/applicant/privateDetailsConfirmedPage.ts";
-import { applicationSubmittedBy } from "../../../../../common/types.ts";
 
 interface keepDetailsPrivateParams {
   page: Page;
@@ -30,7 +32,7 @@ export class KeepDetailsPrivate {
     startAlternativeYesNo,
     yesNoDontKnow,
     isApplicant,
-    applicationSubmittedBy
+    applicationSubmittedBy,
   }: keepDetailsPrivateParams): Promise<void> {
     const caseUser: CaseUser = isApplicant ? "applicant" : "respondent";
     page = await ActivateCase.activateCase({

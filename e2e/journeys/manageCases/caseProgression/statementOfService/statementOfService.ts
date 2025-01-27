@@ -4,7 +4,7 @@ import { StatementOfService1Page } from "../../../../pages/manageCases/caseProgr
 import { StatementOfServiceSubmitPage } from "../../../../pages/manageCases/caseProgression/statementOfService/StatementOfServiceSubmitPage.ts";
 import { jsonDatas } from "../../../../common/solicitorCaseCreatorHelper.ts";
 import { completeEventsUpToServiceOfApplication } from "../../../../common/caseEventsHelper.ts";
-import { applicationSubmittedBy, createOrderFL401Options } from "../../../../common/types.ts";
+import { createOrderFL401Options } from "../../../../common/types.ts";
 
 interface statementOfServiceParams {
   page: Page;
@@ -13,7 +13,6 @@ interface statementOfServiceParams {
   browser: Browser;
   manageOrderData: typeof jsonDatas;
   createOrderFL401Options: createOrderFL401Options;
-  applicationSubmittedBy: applicationSubmittedBy;
 }
 
 export class StatementOfService {
@@ -24,7 +23,6 @@ export class StatementOfService {
     browser,
     manageOrderData,
     createOrderFL401Options,
-    applicationSubmittedBy,
   }: statementOfServiceParams): Promise<void> {
     await completeEventsUpToServiceOfApplication(
       page,
@@ -32,7 +30,6 @@ export class StatementOfService {
       ccdRef,
       manageOrderData,
       createOrderFL401Options,
-      applicationSubmittedBy,
     );
     await page.reload();
     await Helpers.chooseEventFromDropdown(page, "Statement of service");

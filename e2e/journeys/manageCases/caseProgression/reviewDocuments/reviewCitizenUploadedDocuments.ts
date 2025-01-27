@@ -1,7 +1,11 @@
 import { Browser, Page } from "@playwright/test";
 import { UploadDocumentsPositionStatement } from "../../../citizen/caseView/uploadDocuments/witnessStatementsAndEvidence/applicant/uploadDocumentsPositionStatement.ts";
-import { yesNoDontKnow, documentCategory, applicationSubmittedBy } from "../../../../common/types";
-import { ReviewDocuments} from "./reviewDocuments.ts";
+import {
+  applicationSubmittedBy,
+  documentCategory,
+  yesNoDontKnow,
+} from "../../../../common/types";
+import { ReviewDocuments } from "./reviewDocuments.ts";
 import { Helpers } from "../../../../common/helpers";
 import Config from "../../../../config";
 
@@ -27,17 +31,15 @@ export class ReviewCitizenUploadedDocuments {
     documentType,
     applicationSubmittedBy,
   }: reviewCitizenUploadedDocumentsParams): Promise<void> {
-    await UploadDocumentsPositionStatement.uploadDocumentsPositionStatement(
-      {
-        page: page,
-        browser: browser,
-        caseRef: caseRef,
-        accessibilityTest: accessibilityTest,
-        isApplicant: isApplicant,
-        yesNoNA: "Yes",
-        applicationSubmittedBy: applicationSubmittedBy,
-      },
-    );
+    await UploadDocumentsPositionStatement.uploadDocumentsPositionStatement({
+      page: page,
+      browser: browser,
+      caseRef: caseRef,
+      accessibilityTest: accessibilityTest,
+      isApplicant: isApplicant,
+      yesNoNA: "Yes",
+      applicationSubmittedBy: applicationSubmittedBy,
+    });
     // open new browser and sign in as court admin user
     const courtAdminPage: Page = await Helpers.openNewBrowserWindow(
       browser,

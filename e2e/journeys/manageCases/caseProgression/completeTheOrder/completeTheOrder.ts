@@ -1,5 +1,8 @@
 import { Browser, Page } from "@playwright/test";
-import { applicationSubmittedBy, createOrderFL401Options } from "../../../../common/types.ts";
+import {
+  applicationSubmittedBy,
+  createOrderFL401Options,
+} from "../../../../common/types.ts";
 import { jsonDatas } from "../../../../common/solicitorCaseCreatorHelper.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import config from "../../../../config.ts";

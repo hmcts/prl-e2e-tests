@@ -29,6 +29,7 @@ test.describe("Service of Application task for DA Citizen case tests.", () => {
       yesNoServiceOfApplication4: true,
       responsibleForServing: "courtBailiff",
       manageOrderData: jsonDatas.manageOrderDataPowerOfArrest,
+      applicationSubmittedBy: "Citizen",
     });
   });
 
@@ -46,6 +47,7 @@ test.describe("Service of Application task for DA Citizen case tests.", () => {
       yesNoServiceOfApplication4: true,
       responsibleForServing: "courtBailiff",
       manageOrderData: jsonDatas.manageOrderDataAmendDischargedVaried,
+      applicationSubmittedBy: "Citizen",
     });
   });
 });

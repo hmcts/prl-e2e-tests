@@ -8,7 +8,7 @@ interface checkTheApplicationParams {
   caseRef: string;
   accessibilityTest: boolean;
   isApplicant: boolean;
-  applicationSubmittedBy: applicationSubmittedBy
+  applicationSubmittedBy: applicationSubmittedBy;
 }
 
 enum UniqueSelectors {

@@ -12,7 +12,12 @@ export class RespondentDashboardPage {
     accessibilityTest: boolean,
     applicationSubmittedBy: applicationSubmittedBy,
   ): Promise<void> {
-    await this.checkPageLoads(page, caseRef, accessibilityTest, applicationSubmittedBy);
+    await this.checkPageLoads(
+      page,
+      caseRef,
+      accessibilityTest,
+      applicationSubmittedBy,
+    );
   }
 
   private static async checkPageLoads(
