@@ -7,7 +7,10 @@ import {
 } from "../../../../../pages/manageCases/caseProgression/serviceOfApplication/ServiceOfApplication4Page.ts";
 import { ServiceOfApplicationSubmitPage } from "../../../../../pages/manageCases/caseProgression/serviceOfApplication/serviceOfApplicationSubmitPage.ts";
 import { ServiceOfApplicationConfirmPage } from "../../../../../pages/manageCases/caseProgression/serviceOfApplication/serviceOfApplicationConfirmPage.ts";
-import { applicationSubmittedBy, createOrderFL401Options } from "../../../../../common/types.ts";
+import {
+  applicationSubmittedBy,
+  createOrderFL401Options,
+} from "../../../../../common/types.ts";
 
 interface ServiceOfApplicationJourneyParams {
   page: Page;

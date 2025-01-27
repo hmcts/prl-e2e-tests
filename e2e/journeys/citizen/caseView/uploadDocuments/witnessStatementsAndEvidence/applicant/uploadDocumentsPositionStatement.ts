@@ -10,7 +10,10 @@ import { SharingYourDocumentsPage } from "../../../../../../pages/citizen/caseVi
 import { OtherPartyNotSeeDocumentPage } from "../../../../../../pages/citizen/caseView/uploadDocuments/witnessStatementsAndEvidence/otherPartyNotSeeDocumentPage.ts";
 import { UploadYourDocumentsPositionStatementPage } from "../../../../../../pages/citizen/caseView/uploadDocuments/witnessStatementsAndEvidence/uploadYourDocumentsPositionStatementPage.ts";
 import { SubmitExtraEvidencePage } from "../../../../../../pages/citizen/caseView/uploadDocuments/witnessStatementsAndEvidence/submitExtraEvidencePage.ts";
-import { applicationSubmittedBy, yesNoNA } from "../../../../../../common/types.ts";
+import {
+  applicationSubmittedBy,
+  yesNoNA,
+} from "../../../../../../common/types.ts";
 import { UploadContent } from "../../../../../../fixtures/citizen/caseView/uploadDocuments/uploadContent.ts";
 import { Selectors } from "../../../../../../common/selectors.ts";
 

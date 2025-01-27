@@ -36,7 +36,7 @@ test.describe("Complete the Order task for DA Citizen case tests.", () => {
       personallyServed: true,
       yesNoServiceOfApplication4: true,
       responsibleForServing: "courtBailiff",
-      applicationSubmittedBy: "Citizen"
+      applicationSubmittedBy: "Citizen",
     });
   });
 

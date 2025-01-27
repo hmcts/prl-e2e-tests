@@ -1,5 +1,5 @@
 import { Browser, BrowserContext, Page } from "@playwright/test";
-import IdamLoginHelper from "../../../common/idamLoginHelper.ts";
+import IdamLoginHelper from "../../../common/userSetup/idamLoginHelper.ts";
 import Config from "../../../config.ts";
 import { AccessCodeHelper } from "../../../common/accessCodeHelper.ts";
 import { EnterPinPage } from "../../../pages/citizen/activateCase/enterPinPage.ts";
@@ -72,7 +72,7 @@ export class ActivateCase {
           caseRef,
           accessibilityTest,
           applicationSubmittedBy,
-          );
+        );
         await this.checkRespondentDashboard(
           browser,
           caseRef,
@@ -148,7 +148,7 @@ export class ActivateCase {
     accessCode: string,
     isApplicant: boolean,
     accessibilityTest: boolean,
-    applicationSubmittedBy: applicationSubmittedBy
+    applicationSubmittedBy: applicationSubmittedBy,
   ): Promise<void> {
     await EnterPinPage.enterPinPage(
       page,

@@ -82,8 +82,10 @@ export class AdminEditAndApproveAnOrder23Page {
         `${Selectors.GovukFormLabel}:text-is("${AdminEditAndApproveAnOrder23Content.fromLabel3}"):visible`,
         1,
       );
-      if(applicationSubmittedBy == "Citizen") {
-        await page.check(`${UniqueSelectors.noLegalRepRespondentsOptionsCourtBailiff}`);
+      if (applicationSubmittedBy == "Citizen") {
+        await page.check(
+          `${UniqueSelectors.noLegalRepRespondentsOptionsCourtBailiff}`,
+        );
       } else {
         await page.check(`${UniqueSelectors.respondentsOptionsCourtBailiff}`);
       }
