@@ -7,7 +7,10 @@ import {
 } from "../../../../pages/manageCases/caseProgression/serviceOfApplication/ServiceOfApplication4Page.ts";
 import { ServiceOfApplicationSubmitPage } from "../../../../pages/manageCases/caseProgression/serviceOfApplication/serviceOfApplicationSubmitPage.ts";
 import { ServiceOfApplicationConfirmPage } from "../../../../pages/manageCases/caseProgression/serviceOfApplication/serviceOfApplicationConfirmPage.ts";
-import { createOrderFL401Options } from "../../../../common/types.ts";
+import {
+  applicationSubmittedBy,
+  createOrderFL401Options,
+} from "../../../../common/types.ts";
 import { CompleteTheOrder } from "../completeTheOrder/completeTheOrder.ts";
 import { jsonDatas } from "../../../../common/solicitorCaseCreatorHelper.ts";
 
@@ -21,6 +24,7 @@ interface ServiceOfApplicationJourneyParams {
   yesNoServiceOfApplication4: boolean;
   responsibleForServing: responsibleForServing;
   manageOrderData: typeof jsonDatas;
+  applicationSubmittedBy: applicationSubmittedBy;
 }
 
 export class ServiceOfApplication {
@@ -34,6 +38,7 @@ export class ServiceOfApplication {
     yesNoServiceOfApplication4,
     responsibleForServing,
     manageOrderData,
+    applicationSubmittedBy,
   }: ServiceOfApplicationJourneyParams): Promise<void> {
     await CompleteTheOrder.completeTheOrder({
       page: page,
@@ -43,6 +48,7 @@ export class ServiceOfApplication {
       createOrderFL401Options,
       personallyServed,
       manageOrderData,
+      applicationSubmittedBy,
     });
     await Helpers.chooseEventFromDropdown(page, "Service of application");
     await ServiceOfApplication2Page.serviceOfApplication2Page({
@@ -60,6 +66,7 @@ export class ServiceOfApplication {
       page,
       yesNoServiceOfApplication4,
       accessibilityTest,
+      applicationSubmittedBy,
     });
     await ServiceOfApplicationConfirmPage.serviceOfApplicationConfirmPage({
       page,

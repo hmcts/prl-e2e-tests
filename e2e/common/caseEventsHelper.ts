@@ -48,6 +48,7 @@ export async function completeEventsUpToServiceOfApplication(
     createOrderFL401Options: createOrderFL401Options,
     personallyServed: true,
     manageOrderData: manageOrderEventData,
+    applicationSubmittedBy: "Citizen",
   });
   // wait for response from previous event call before submitting next event
   await page.waitForResponse(

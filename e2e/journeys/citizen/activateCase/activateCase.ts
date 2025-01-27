@@ -12,7 +12,6 @@ import { ApplicantDashboardContent } from "../../../fixtures/citizen/activateCas
 import { RespondentDashboardContent } from "../../../fixtures/citizen/activateCase/respondentDashboardContent.ts";
 import { ServiceOfApplication } from "../../manageCases/caseProgression/serviceOfApplication/serviceOfApplication.ts";
 import { completeEventsUpToServiceOfApplication } from "../../../common/caseEventsHelper.ts";
-import { E2eFlowUpToServiceOfApplication } from "../../manageCases/caseProgression/e2eFlowUpToServiceOfApplication/e2eFlowUpToServiceOfApplication.ts";
 import { applicationSubmittedBy } from "../../../common/types.ts";
 
 interface ActiveCaseParams {
@@ -49,6 +48,7 @@ export class ActivateCase {
         yesNoServiceOfApplication4: false,
         responsibleForServing: "courtBailiff",
         manageOrderData: jsonDatas.manageOrderDataPowerOfArrest,
+        applicationSubmittedBy: applicationSubmittedBy,
       });
     } else {
       await completeEventsUpToServiceOfApplication(
@@ -85,7 +85,7 @@ export class ActivateCase {
           accessibilityTest,
           applicationSubmittedBy,
           isManualSOA,
-          );
+        );
         await this.checkRespondentDashboard(
           browser,
           caseRef,
@@ -166,7 +166,7 @@ export class ActivateCase {
     accessCode: string,
     isApplicant: boolean,
     accessibilityTest: boolean,
-    applicationSubmittedBy: applicationSubmittedBy
+    applicationSubmittedBy: applicationSubmittedBy,
     isManualSOA: boolean,
   ): Promise<void> {
     await EnterPinPage.enterPinPage(
