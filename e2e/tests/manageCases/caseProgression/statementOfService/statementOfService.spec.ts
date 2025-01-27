@@ -16,7 +16,7 @@ test.describe("Complete the Order task for DA Citizen case tests.", () => {
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
   });
 
-  test("Complete Task - statement of Service - Power of arrest (FL406) without accessibility test. @regression", async ({
+  test("Complete Task - statement of Service - Power of arrest (FL406) without accessibility test. @nightly @regression", async ({
     page,
     browser,
   }): Promise<void> => {

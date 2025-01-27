@@ -1,8 +1,8 @@
 import { test } from "@playwright/test";
 import Config from "../../../../config";
+import config from "../../../../config";
 import createDaCitizenCourtNavCase from "../../../../common/createCaseHelper";
 import { Helpers } from "../../../../common/helpers";
-import config from "../../../../config";
 import { CreateHearingRequest } from "../../../../journeys/manageCases/caseProgression/createHearingRequest/createHearingRequest";
 import { jsonDatas } from "../../../../common/solicitorCaseCreatorHelper.ts";
 
@@ -16,13 +16,13 @@ test.describe("Complete the Order task for DA Citizen case tests.", () => {
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
   });
 
-  test("Complete Task - Create Hearing Request - Blank order (FL404B) without accessibility test. @regression", async ({
+  test("Complete Task - Create Hearing Request - Blank order (FL404B) without accessibility test. @nightly @regression", async ({
     page,
     browser,
   }): Promise<void> => {
     await CreateHearingRequest.createHearingRequest({
       page: page,
-      accessibilityTest: true,
+      accessibilityTest: false,
       ccdRef: ccdRef,
       createOrderFL401Options: "amend discharge varied order",
       browser: browser,

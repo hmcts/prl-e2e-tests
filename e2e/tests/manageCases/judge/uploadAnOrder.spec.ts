@@ -15,7 +15,7 @@ test.describe("Judge upload an order tests.", () => {
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
   });
 
-  test("Upload a power of arrest order. @nightly @regression @accessibility", async ({
+  test("Upload a power of arrest order. @nightly @regression", async ({
     page,
     browser,
   }): Promise<void> => {
@@ -23,7 +23,7 @@ test.describe("Judge upload an order tests.", () => {
       page: page,
       browser: browser,
       ccdRef: ccdRef,
-      accessibilityTest: true,
+      accessibilityTest: false,
       c100CaseWorkerActions: "Manage orders",
       yesNoManageOrders: false,
       uploadOrderFL401Options: "power of arrest",
@@ -31,7 +31,7 @@ test.describe("Judge upload an order tests.", () => {
     });
   });
 
-  test("Upload a bail notice order. @regression", async ({
+  test("Upload a bail notice order. @regression @accessibility", async ({
     page,
     browser,
   }): Promise<void> => {

@@ -15,13 +15,13 @@ test.describe("Service of Application task for DA Citizen case tests.", () => {
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
   });
 
-  test(`Complete Task - statement of service - Power of arrest (FL406) without accessibility test. @regression`, async ({
+  test(`Complete Task - statement of service - Power of arrest (FL406) without accessibility test. @nightly @regression @accessibility`, async ({
     page,
     browser,
   }): Promise<void> => {
     await ServiceOfApplication.serviceOfApplicationJourney({
       page: page,
-      accessibilityTest: false,
+      accessibilityTest: true,
       ccdRef: ccdRef,
       createOrderFL401Options: "power of arrest",
       browser: browser,
@@ -39,7 +39,7 @@ test.describe("Service of Application task for DA Citizen case tests.", () => {
   }): Promise<void> => {
     await ServiceOfApplication.serviceOfApplicationJourney({
       page: page,
-      accessibilityTest: false,
+      accessibilityTest: true,
       ccdRef: ccdRef,
       createOrderFL401Options: "amend discharge varied order",
       browser: browser,

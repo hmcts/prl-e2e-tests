@@ -14,7 +14,7 @@ test.describe("Complete the Order task for DA Citizen case tests.", () => {
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
   });
 
-  test("Complete Task - Send to GateKeeper - without accessibility test. @regression", async ({
+  test("Complete Task - Send to GateKeeper - without accessibility test. @nightly @regression", async ({
     page,
   }): Promise<void> => {
     await SendToGateKeeperJourney.sendToGateKeeper({
@@ -25,7 +25,7 @@ test.describe("Complete the Order task for DA Citizen case tests.", () => {
     });
   });
 
-  test("Complete Task - Send to GateKeeper - with accessibility test. @regression", async ({
+  test("Complete Task - Send to GateKeeper - with accessibility test. @regression @accessibility", async ({
     page,
   }): Promise<void> => {
     await SendToGateKeeperJourney.sendToGateKeeper({
