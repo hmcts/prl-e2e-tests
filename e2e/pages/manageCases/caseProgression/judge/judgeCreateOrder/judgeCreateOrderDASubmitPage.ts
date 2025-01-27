@@ -72,10 +72,16 @@ export class judgeCreateODAManageOrderSubmitPage {
         await Promise.all([
           Helpers.checkGroup(
             page,
-            5,
+            4,
             JudgeCreateOrderDASubmitContent,
             "text16A",
             Selectors.GovukText16,
+          ),
+          // checks for 2 elements as the same element is nested twice but only shows as one on the page
+          Helpers.checkVisibleAndPresent(
+            page,
+            `${Selectors.Span}:has-text("${JudgeCreateOrderDASubmitContent.spanDateAndTime}"):visible`,
+            2,
           ),
           Helpers.checkVisibleAndPresent(
             page,

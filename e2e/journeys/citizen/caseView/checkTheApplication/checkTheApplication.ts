@@ -8,7 +8,7 @@ interface checkTheApplicationParams {
   caseRef: string;
   accessibilityTest: boolean;
   isApplicant: boolean;
-  applicationSubmittedBy: applicationSubmittedBy
+  applicationSubmittedBy: applicationSubmittedBy;
 }
 
 enum UniqueSelectors {
@@ -33,6 +33,7 @@ export class CheckTheApplication {
       caseUser,
       accessibilityTest,
       applicationSubmittedBy,
+      isManualSOA: true,
     });
     if (isApplicant) {
       await page.click(UniqueSelectors.yourApplicationApplicant);

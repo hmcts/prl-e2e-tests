@@ -19,13 +19,13 @@ enum UniqueSelectors {
 
 export class MakeRequestToCourtAboutCase {
   public static async makeRequestToCourtAboutCase({
-   page,
-   browser,
-   caseRef,
-   accessibilityTest,
-   isApplicant,
-   applicationSubmittedBy,
- }: makeRequestToCourtAboutCaseParams): Promise<void> {
+    page,
+    browser,
+    caseRef,
+    accessibilityTest,
+    isApplicant,
+    applicationSubmittedBy,
+  }: makeRequestToCourtAboutCaseParams): Promise<void> {
     const caseUser: CaseUser = isApplicant ? "applicant" : "respondent";
     page = await ActivateCase.activateCase({
       page: page,
@@ -34,9 +34,16 @@ export class MakeRequestToCourtAboutCase {
       caseUser: caseUser,
       accessibilityTest: accessibilityTest,
       applicationSubmittedBy: applicationSubmittedBy,
+      isManualSOA: false,
     });
     await page.click(UniqueSelectors.requestToCourtAboutYourCase);
-    await ListOfApplications1Page.listOfApplications1Page(page, accessibilityTest);
-    await ListOfApplications2Page.listOfApplications2Page(page, accessibilityTest);
+    await ListOfApplications1Page.listOfApplications1Page(
+      page,
+      accessibilityTest,
+    );
+    await ListOfApplications2Page.listOfApplications2Page(
+      page,
+      accessibilityTest,
+    );
   }
 }

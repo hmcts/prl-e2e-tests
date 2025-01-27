@@ -1,12 +1,11 @@
 import { Page } from "@playwright/test";
-import { Helpers } from "../../../../../common/helpers.ts";
-import { Fl401AddCaseNumber1Page } from "../../../../../pages/manageCases/caseProgression/checkApplication/fl401AddCaseNumber1Page.ts";
-import { Fl401AddCaseNumberSubmitPage } from "../../../../../pages/manageCases/caseProgression/checkApplication/fl401AddCaseNumberSubmitPage.ts";
+import { Helpers } from "../../../../common/helpers.ts";
+import { Fl401AddCaseNumber1Page } from "../../../../pages/manageCases/caseProgression/checkApplication/fl401AddCaseNumber1Page.ts";
+import { Fl401AddCaseNumberSubmitPage } from "../../../../pages/manageCases/caseProgression/checkApplication/fl401AddCaseNumberSubmitPage.ts";
 
 interface CheckApplicationParams {
   page: Page;
   accessibilityTest: boolean;
-  yesNoSendToGateKeeper: boolean;
   ccdRef: string;
 }
 

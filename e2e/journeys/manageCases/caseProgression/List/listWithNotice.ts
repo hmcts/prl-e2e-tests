@@ -6,7 +6,7 @@ import { Fl401ListOnNoticeSubmitPage } from "../../../../pages/manageCases/caseP
 import { Fl401ListOnNoticeConfirmPage } from "../../../../pages/manageCases/caseProgression/list/fl401ListOnNoticeConfirmPage";
 import { Selectors } from "../../../../common/selectors";
 import { Fl401ListOnNoticeConfirmContent } from "../../../../fixtures/manageCases/caseProgression/List/fl401ListOnNoticeConfirmContent";
-import { submitEvent } from "../../../../common/solicitorCaseCreatorHelper.ts";
+import { completeCheckApplicationAndSendToGatekeeper } from "../../../../common/caseEventsHelper.ts";
 
 interface ListWithNoticeParams {
   page: Page;
@@ -22,8 +22,7 @@ export class ListWithNotice {
     ccdRef,
     accessibilityTest,
   }: ListWithNoticeParams): Promise<void> {
-    await submitEvent(page, ccdRef, "fl401AddCaseNumber");
-    await submitEvent(page, ccdRef, "fl401SendToGateKeeper");
+    await completeCheckApplicationAndSendToGatekeeper(page, ccdRef);
     const judgePage: Page = await Helpers.openNewBrowserWindow(
       browser,
       "judge",

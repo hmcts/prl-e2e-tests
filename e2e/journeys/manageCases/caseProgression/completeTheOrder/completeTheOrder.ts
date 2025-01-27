@@ -1,40 +1,27 @@
 import { Browser, Page } from "@playwright/test";
-import { Helpers } from "../../../../../common/helpers.ts";
-import { AdminEditAndApproveAnOrder1Page } from "../../../../../pages/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrder1Page.ts";
-import { AdminEditAndApproveAnOrder4Page } from "../../../../../pages/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrder4Page.ts";
-import { AdminEditAndApproveAnOrder21Page } from "../../../../../pages/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrder21Page.ts";
-import { AdminEditAndApproveAnOrder22Page } from "../../../../../pages/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrder22Page.ts";
-import { AdminEditAndApproveAnOrder23Page } from "../../../../../pages/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrder23Page.ts";
-import { AdminEditAndApproveAnOrderSubmitPage } from "../../../../../pages/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrderSubmitPage.ts";
-import config from "../../../../../config.ts";
 import {
   applicationSubmittedBy,
   createOrderFL401Options,
-  judgeTitles,
-  manageOrdersOptions,
-  WACaseWorkerActions,
-} from "../../../../../common/types.ts";
-import { createOrderManageOrders19Options } from "../../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders19Page.ts";
-import { howLongWillOrderBeInForce } from "../../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders12Page.ts";
-import { responsibleForServing } from "../../../../../pages/manageCases/caseProgression/serviceOfApplication/ServiceOfApplication4Page.ts";
+} from "../../../../common/types.ts";
+import { jsonDatas } from "../../../../common/solicitorCaseCreatorHelper.ts";
+import { Helpers } from "../../../../common/helpers.ts";
+import config from "../../../../config.ts";
+import { AdminEditAndApproveAnOrder1Page } from "../../../../pages/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrder1Page.ts";
+import { AdminEditAndApproveAnOrder4Page } from "../../../../pages/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrder4Page.ts";
+import { AdminEditAndApproveAnOrder21Page } from "../../../../pages/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrder21Page.ts";
+import { AdminEditAndApproveAnOrder22Page } from "../../../../pages/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrder22Page.ts";
+import { AdminEditAndApproveAnOrder23Page } from "../../../../pages/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrder23Page.ts";
+import { AdminEditAndApproveAnOrderSubmitPage } from "../../../../pages/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrderSubmitPage.ts";
+import { completeCheckApplicationAndSendToGatekeeperAndCreateAnOrder } from "../../../../common/caseEventsHelper.ts";
 
 interface CompleteTheOrderParams {
   page: Page;
-  accessibilityTest: boolean;
-  yesNoSendToGateKeeper: boolean;
-  ccdRef: string;
-  c100CaseWorkerActions: WACaseWorkerActions;
-  manageOrdersOptions: manageOrdersOptions;
-  createOrderFL401Options: createOrderFL401Options;
-  yesNoManageOrders: boolean;
-  judgeTitles: judgeTitles;
-  withOrWithoutNotice: boolean;
-  createOrderManageOrders19Options: createOrderManageOrders19Options;
-  howLongWillOrderBeInForce: howLongWillOrderBeInForce;
   browser: Browser;
+  accessibilityTest: boolean;
+  ccdRef: string;
+  createOrderFL401Options: createOrderFL401Options;
   personallyServed: boolean;
-  yesNoServiceOfApplication4: boolean;
-  responsibleForServing: responsibleForServing;
+  manageOrderData: typeof jsonDatas;
   applicationSubmittedBy: applicationSubmittedBy;
 }
 
@@ -44,12 +31,20 @@ interface CompleteTheOrderParams {
 export class CompleteTheOrder {
   public static async completeTheOrder({
     page,
+    browser,
     accessibilityTest,
     ccdRef,
     createOrderFL401Options,
     personallyServed,
+    manageOrderData,
     applicationSubmittedBy,
   }: CompleteTheOrderParams): Promise<void> {
+    await completeCheckApplicationAndSendToGatekeeperAndCreateAnOrder(
+      page,
+      browser,
+      ccdRef,
+      manageOrderData,
+    );
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
     // complete the task Complete the Order
     switch (createOrderFL401Options) {

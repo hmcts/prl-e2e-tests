@@ -3,7 +3,10 @@ import { Browser, Page } from "@playwright/test";
 import { ContactPreferencesPage } from "../../../../pages/citizen/caseView/contactPreferences/contactPreferencesPage.ts";
 import { ReviewPage } from "../../../../pages/citizen/caseView/contactPreferences/reviewPage.ts";
 import { ConfirmationPage } from "../../../../pages/citizen/caseView/contactPreferences/confirmationPage.ts";
-import { applicationSubmittedBy, contactOption } from "../../../../common/types.ts";
+import {
+  applicationSubmittedBy,
+  contactOption,
+} from "../../../../common/types.ts";
 
 interface contactPreferencesParams {
   page: Page;
@@ -37,6 +40,7 @@ export class ContactPreferences {
       caseUser: caseUser,
       accessibilityTest: accessibilityTest,
       applicationSubmittedBy: applicationSubmittedBy,
+      isManualSOA: false,
     });
     await page.click(UniqueSelectors.contactPreferencesPrivateSelector);
     await ContactPreferencesPage.contactPreferencesPage(

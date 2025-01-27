@@ -3,45 +3,50 @@ import Config from "../../../../config";
 import config from "../../../../config";
 import createDaCitizenCourtNavCase from "../../../../common/createCaseHelper";
 import { Helpers } from "../../../../common/helpers";
-import { StatementOfService } from "../../../../journeys/manageCases/caseProgression/statementOfService/statementOfService.ts";
 import { jsonDatas } from "../../../../common/solicitorCaseCreatorHelper.ts";
+import { ServiceOfApplication } from "../../../../journeys/manageCases/caseProgression/serviceOfApplication/serviceOfApplication.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
-test.describe("Complete the Order task for DA Citizen case tests.", () => {
+test.describe("Service of Application task for DA Citizen case tests.", () => {
   let ccdRef: string = "";
-
   test.beforeEach(async ({ page }) => {
     ccdRef = await createDaCitizenCourtNavCase(true, false);
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
   });
 
-  test("Complete Task - statement of Service - Power of arrest (FL406) without accessibility test. @nightly @regression", async ({
+  test(`Complete Task - statement of service - Power of arrest (FL406) without accessibility test. @nightly @regression @accessibility`, async ({
     page,
     browser,
   }): Promise<void> => {
-    await StatementOfService.statementOfService({
+    await ServiceOfApplication.serviceOfApplicationJourney({
       page: page,
-      accessibilityTest: false,
+      accessibilityTest: true,
       ccdRef: ccdRef,
-      browser: browser,
-      manageOrderData: jsonDatas.manageOrderDataPowerOfArrest,
       createOrderFL401Options: "power of arrest",
+      browser: browser,
+      personallyServed: true,
+      yesNoServiceOfApplication4: true,
+      responsibleForServing: "courtBailiff",
+      manageOrderData: jsonDatas.manageOrderDataPowerOfArrest,
       applicationSubmittedBy: "Citizen",
     });
   });
 
-  test("Complete Task - statement of Service - Amended, discharged or varied order (FL404B)  with accessibility test. @regression @accessibility", async ({
+  test(`Complete Task - statement of service - Amended, discharged or varied order (FL404B)  with accessibility test. @regression @accessibility`, async ({
     page,
     browser,
   }): Promise<void> => {
-    await StatementOfService.statementOfService({
+    await ServiceOfApplication.serviceOfApplicationJourney({
       page: page,
       accessibilityTest: true,
       ccdRef: ccdRef,
-      browser: browser,
-      manageOrderData: jsonDatas.manageOrderDataAmendDischargedVaried,
       createOrderFL401Options: "amend discharge varied order",
+      browser: browser,
+      personallyServed: false,
+      yesNoServiceOfApplication4: true,
+      responsibleForServing: "courtBailiff",
+      manageOrderData: jsonDatas.manageOrderDataAmendDischargedVaried,
       applicationSubmittedBy: "Citizen",
     });
   });

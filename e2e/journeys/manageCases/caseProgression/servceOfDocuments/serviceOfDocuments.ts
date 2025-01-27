@@ -8,7 +8,7 @@ import config from "../../../../config";
 import { ReviewDocuments } from "../reviewDocuments/reviewDocuments";
 import createDaCitizenCourtNavCase from "../../../../common/createCaseHelper";
 import { ServiceOfDocumentsSubmitPage } from "../../../../pages/manageCases/caseProgression/serviceOfDocuments/serviceOfDocumentsSubmitPage";
-import { submitEvent } from "../../../../common/solicitorCaseCreatorHelper.ts";
+import { completeCheckApplicationAndSendToGatekeeper } from "../../../../common/caseEventsHelper.ts";
 
 interface ServiceOfDocumentsParams {
   page: Page;
@@ -46,8 +46,7 @@ export class ServiceOfDocuments {
       });
       await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
     }
-    await submitEvent(page, ccdRef, "fl401AddCaseNumber");
-    await submitEvent(page, ccdRef, "fl401SendToGateKeeper");
+    await completeCheckApplicationAndSendToGatekeeper(page, ccdRef);
     await this.serviceOfDocuments({
       page,
       withCaseDoc,
