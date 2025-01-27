@@ -27,6 +27,7 @@ test.describe("Complete the Order task for DA Citizen case tests.", () => {
       browser: browser,
       manageOrderData: jsonDatas.manageOrderDataPowerOfArrest,
       createOrderFL401Options: "power of arrest",
+      applicationSubmittedBy: "Citizen",
     });
   });
 
@@ -41,6 +42,7 @@ test.describe("Complete the Order task for DA Citizen case tests.", () => {
       browser: browser,
       manageOrderData: jsonDatas.manageOrderDataAmendDischargedVaried,
       createOrderFL401Options: "amend discharge varied order",
+      applicationSubmittedBy: "Citizen",
     });
   });
 });

@@ -33,7 +33,7 @@ export class CheckTheApplication {
       caseUser,
       accessibilityTest,
       applicationSubmittedBy,
-      isManualSOA: false,
+      isManualSOA: true,
     });
     if (isApplicant) {
       await page.click(UniqueSelectors.yourApplicationApplicant);

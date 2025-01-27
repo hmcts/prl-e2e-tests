@@ -4,7 +4,10 @@ import { CreateBundleSubmitPage } from "../../../../pages/manageCases/caseProgre
 import { CreateBundle1Page } from "../../../../pages/manageCases/caseProgression/createBundle/createBundle1Page.ts";
 import { jsonDatas } from "../../../../common/solicitorCaseCreatorHelper.ts";
 import { completeEventsUpToServiceOfApplication } from "../../../../common/caseEventsHelper.ts";
-import { createOrderFL401Options } from "../../../../common/types.ts";
+import {
+  applicationSubmittedBy,
+  createOrderFL401Options,
+} from "../../../../common/types.ts";
 
 interface ServiceOfApplicationJourneyParams {
   page: Page;
@@ -13,6 +16,7 @@ interface ServiceOfApplicationJourneyParams {
   browser: Browser;
   manageOrderData: typeof jsonDatas;
   createOrderFL401Options: createOrderFL401Options;
+  applicationSubmittedBy: applicationSubmittedBy;
 }
 
 export class CreateABundleJourney {
@@ -23,6 +27,7 @@ export class CreateABundleJourney {
     browser,
     manageOrderData,
     createOrderFL401Options,
+    applicationSubmittedBy,
   }: ServiceOfApplicationJourneyParams): Promise<void> {
     await completeEventsUpToServiceOfApplication(
       page,
@@ -30,6 +35,7 @@ export class CreateABundleJourney {
       ccdRef,
       manageOrderData,
       createOrderFL401Options,
+      applicationSubmittedBy,
     );
     await page.reload();
     await Helpers.chooseEventFromDropdown(page, "Create a bundle");

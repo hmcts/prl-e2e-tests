@@ -4,7 +4,7 @@ import Config from "../config.ts";
 import config from "../config.ts";
 import { Helpers } from "./helpers.ts";
 import { CompleteTheOrder } from "../journeys/manageCases/caseProgression/completeTheOrder/completeTheOrder.ts";
-import { createOrderFL401Options } from "./types.ts";
+import { applicationSubmittedBy, createOrderFL401Options } from "./types.ts";
 
 // Note: These methods assume the current page context is court admin
 
@@ -39,6 +39,7 @@ export async function completeEventsUpToServiceOfApplication(
   caseRef: string,
   manageOrderEventData: typeof jsonDatas,
   createOrderFL401Options: createOrderFL401Options,
+  applicationSubmittedBy: applicationSubmittedBy,
 ): Promise<void> {
   await CompleteTheOrder.completeTheOrder({
     page: page,
@@ -48,7 +49,7 @@ export async function completeEventsUpToServiceOfApplication(
     createOrderFL401Options: createOrderFL401Options,
     personallyServed: true,
     manageOrderData: manageOrderEventData,
-    applicationSubmittedBy: "Citizen",
+    applicationSubmittedBy: applicationSubmittedBy,
   });
   // wait for response from previous event call before submitting next event
   await page.waitForResponse(

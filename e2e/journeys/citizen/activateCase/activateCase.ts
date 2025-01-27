@@ -57,6 +57,7 @@ export class ActivateCase {
         caseRef,
         jsonDatas.manageOrderDataPowerOfArrest,
         "power of arrest",
+        applicationSubmittedBy,
       );
     }
     switch (caseUser) {
