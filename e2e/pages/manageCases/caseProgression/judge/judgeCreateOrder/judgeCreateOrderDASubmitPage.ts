@@ -77,12 +77,12 @@ export class judgeCreateODAManageOrderSubmitPage {
             "text16A",
             Selectors.GovukText16,
           ),
-          // TODO: fix this
-          // Helpers.checkVisibleAndPresent(
-          //   page,
-          //   `${Selectors.GovukText16}:has-text("${JudgeCreateOrderDASubmitContent.text16DateAndTime}")`,
-          //   1,
-          // ),
+          // checks for 2 elements as the same element is nested twice but only shows as one on the page
+          Helpers.checkVisibleAndPresent(
+            page,
+            `${Selectors.Span}:has-text("${JudgeCreateOrderDASubmitContent.spanDateAndTime}"):visible`,
+            2,
+          ),
           Helpers.checkVisibleAndPresent(
             page,
             `${Selectors.Span}:text-is("${JudgeCreateOrderDASubmitContent.spanPowerOfArrest}")`,
