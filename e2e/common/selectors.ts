@@ -61,6 +61,7 @@ export enum Selectors {
   GovukHeadingM = ".govuk-heading-m",
   GovukHeadingS = ".govuk-heading-s",
   GovukHeadingAppTask = ".app-task-list__section",
+  GovukAccordionSection = ".govuk-accordion__section-heading-text-focus",
   GovukSummaryList = ".govuk-summary-list",
   GovukSummaryText = ".govuk-details__summary-text",
   GovukDetailsText = ".govuk-details__text",
