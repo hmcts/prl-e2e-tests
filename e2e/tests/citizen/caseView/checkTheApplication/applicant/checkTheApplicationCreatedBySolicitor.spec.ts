@@ -17,7 +17,10 @@ test.describe("Applicant confirm contact details tests - Solicitor created appli
       "solicitor",
     );
     await solicitorPage.goto(Config.manageCasesBaseURL);
-    ccdRef = await SolicitorCaseCreator.createCaseStatementOfTruthAndSubmit(solicitorPage);
+    ccdRef =
+      await SolicitorCaseCreator.createCaseStatementOfTruthAndSubmit(
+        solicitorPage,
+      );
     await solicitorPage.close();
     await Helpers.goToCase(page, Config.manageCasesBaseURL, ccdRef, "tasks");
   });
@@ -32,7 +35,7 @@ test.describe("Applicant confirm contact details tests - Solicitor created appli
       caseRef: ccdRef,
       accessibilityTest: true,
       isApplicant: true,
-      applicationSubmittedBy: "Solicitor"
+      applicationSubmittedBy: "Solicitor",
     });
   });
 });

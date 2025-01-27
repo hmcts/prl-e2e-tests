@@ -84,14 +84,13 @@ export class IdamLoginHelper {
   public static async signInCitizenUser(
     page: Page,
     application: string,
-    user: string,
   ): Promise<void> {
     const token = process.env.CREATE_USER_IDAM_BEARER_TOKEN as string;
     if (!token) {
       console.error("Bearer token is not defined in the environment variables");
       return;
     }
-    const userInfo = await setupUser(token, user);
+    const userInfo = await setupUser(token, "citizen");
     if (!userInfo) {
       console.error("Failed to set up citizen user");
       return;

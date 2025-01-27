@@ -72,7 +72,7 @@ export class ActivateCase {
           caseRef,
           accessibilityTest,
           applicationSubmittedBy,
-          );
+        );
         await this.checkRespondentDashboard(
           browser,
           caseRef,
@@ -148,7 +148,7 @@ export class ActivateCase {
     accessCode: string,
     isApplicant: boolean,
     accessibilityTest: boolean,
-    applicationSubmittedBy: applicationSubmittedBy
+    applicationSubmittedBy: applicationSubmittedBy,
   ): Promise<void> {
     await EnterPinPage.enterPinPage(
       page,

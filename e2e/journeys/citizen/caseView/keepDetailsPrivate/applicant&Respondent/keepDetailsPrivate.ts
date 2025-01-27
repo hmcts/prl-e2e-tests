@@ -30,7 +30,7 @@ export class KeepDetailsPrivate {
     startAlternativeYesNo,
     yesNoDontKnow,
     isApplicant,
-    applicationSubmittedBy
+    applicationSubmittedBy,
   }: keepDetailsPrivateParams): Promise<void> {
     const caseUser: CaseUser = isApplicant ? "applicant" : "respondent";
     page = await ActivateCase.activateCase({

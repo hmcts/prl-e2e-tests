@@ -10,9 +10,9 @@ import process from "node:process";
  * @returns {Promise<{ email: string; password: string; id: string; user: string }>} The created user's details
  */
 export async function createUser(
-    apiContext: APIRequestContext,
-    token: string,
-    user: string,
+  apiContext: APIRequestContext,
+  token: string,
+  user: string,
 ): Promise<{ email: string; password: string; id: string; user: string }> {
   let password: string;
   let email: string;
@@ -22,7 +22,7 @@ export async function createUser(
   let surname: string;
   const idamUrl = process.env.IDAM_TESTING_SUPPORT_USERS_URL as string;
   let userId: string = "";
-  switch (user){
+  switch (user) {
     case "citizen":
       password = process.env.IDAM_CITIZEN_USER_PASSWORD as string;
       email = `TEST_PRL_USER_citizen-user.${uniqueId}@test.local` as string;
@@ -56,7 +56,7 @@ export async function createUser(
         "caseworker-ia-legalrep-solicitor",
         "caseworker-divorce-financialremedy-solicitor",
         "caseworker-civil-solicitor",
-        "caseworker"
+        "caseworker",
       ];
       break;
     case "judge":
@@ -67,10 +67,10 @@ export async function createUser(
         "caseworker-privatelaw-judge",
         "judge",
         "caseworker",
-        "judiciary"
+        "judiciary",
       ];
       forename = "Yolanda";
-      surname= "Cooper";
+      surname = "Cooper";
       userId = "f7c3bcbd-3ee9-4b36-bc43-bdb02096f773";
       break;
     case "caseWorker":
@@ -80,7 +80,7 @@ export async function createUser(
         "caseworker-privatelaw",
         "cwd-user",
         "staff-admin",
-        "caseworker"
+        "caseworker",
       ];
       forename = "fn_" + uniqueId.split("-")[0];
       surname = "sn_" + uniqueId.split("-")[1];
@@ -89,30 +89,27 @@ export async function createUser(
       throw new Error(`Unknown user type: ${user}`);
   }
   const id = uniqueId;
-  if (user!="judge") {
+  if (user != "judge") {
     try {
-      const response = await apiContext.post(
-          idamUrl,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-              "Content-Type": "application/json",
-            },
-            data: {
-              password,
-              user: {
-                id,
-                email,
-                forename,
-                surname,
-                roleNames,
-              },
-            },
+      const response = await apiContext.post(idamUrl, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        data: {
+          password,
+          user: {
+            id,
+            email,
+            forename,
+            surname,
+            roleNames,
           },
-      );
+        },
+      });
       if (response.status() != 201) {
         throw new Error(
-            `Response from IDAM was not successful: ${await response.text()}\n Status Code: ${response.status()}`,
+          `Response from IDAM was not successful: ${await response.text()}\n Status Code: ${response.status()}`,
         );
       }
       const responseText = await response.text();
@@ -120,7 +117,9 @@ export async function createUser(
       try {
         responseData = JSON.parse(responseText);
       } catch (error) {
-        throw new Error(`Failed to parse JSON response: ${responseText}: ${error}`);
+        throw new Error(
+          `Failed to parse JSON response: ${responseText}: ${error}`,
+        );
       }
       if (process.env.PWDEBUG) {
         console.log("User created:", responseData);
@@ -128,40 +127,37 @@ export async function createUser(
       return { email, password, id, user };
     } catch (error) {
       throw new Error(
-          `Failed to create citizen user. Check the URL or your network connection.\n${error}`,
+        `Failed to create citizen user. Check the URL or your network connection.\n${error}`,
       );
     }
   } else {
     try {
-      const response = await apiContext.put(
-          idamUrl + "/" + userId,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-              "Content-Type": "application/json",
-            },
-            data: {
-              password,
-              user: {
-                id: "f7c3bcbd-3ee9-4b36-bc43-bdb02096f773",
-                email,
-                forename,
-                surname,
-                displayName: "Yolanda Cooper",
-                roleNames,
-                accountStatus: "ACTIVE",
-                recordType: "LIVE",
-                createDate: "2024-03-08T17:18:01.160098Z",
-                lastModified: "2024-03-08T17:18:02.174071Z",
-                accessLockedDate: "2025-01-21T12:52:21.69Z",
-                lastLoginDate: "2025-01-21T12:00:00Z"
-              }
-            },
+      const response = await apiContext.put(idamUrl + "/" + userId, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        data: {
+          password,
+          user: {
+            id: "f7c3bcbd-3ee9-4b36-bc43-bdb02096f773",
+            email,
+            forename,
+            surname,
+            displayName: "Yolanda Cooper",
+            roleNames,
+            accountStatus: "ACTIVE",
+            recordType: "LIVE",
+            createDate: "2024-03-08T17:18:01.160098Z",
+            lastModified: "2024-03-08T17:18:02.174071Z",
+            accessLockedDate: "2025-01-21T12:52:21.69Z",
+            lastLoginDate: "2025-01-21T12:00:00Z",
           },
-      );
+        },
+      });
       if (response.status() != 200 && response.status() != 409) {
         throw new Error(
-            `Response from IDAM was not successful: ${await response.text()}\n Status Code: ${response.status()}`,
+          `Response from IDAM was not successful: ${await response.text()}\n Status Code: ${response.status()}`,
         );
       }
       const responseText = await response.text();
@@ -169,7 +165,9 @@ export async function createUser(
       try {
         responseData = JSON.parse(responseText);
       } catch (error) {
-        throw new Error(`Failed to parse JSON response: ${responseText}: ${error}`);
+        throw new Error(
+          `Failed to parse JSON response: ${responseText}: ${error}`,
+        );
       }
       if (process.env.PWDEBUG) {
         console.log("User created:", responseData);
@@ -177,7 +175,7 @@ export async function createUser(
       return { email, password, id, user };
     } catch (error) {
       throw new Error(
-          `Failed to create citizen user. Check the URL or your network connection.\n${error}`,
+        `Failed to create citizen user. Check the URL or your network connection.\n${error}`,
       );
     }
   }
@@ -189,7 +187,10 @@ export async function createUser(
  * @param {string} user The type of user to create
  * @returns {Promise<{ email: string; password: string; id: string; user: string }>} User information if successful
  */
-export async function setupUser(token: string, user: string): Promise<{
+export async function setupUser(
+  token: string,
+  user: string,
+): Promise<{
   email: string;
   password: string;
   id: string;

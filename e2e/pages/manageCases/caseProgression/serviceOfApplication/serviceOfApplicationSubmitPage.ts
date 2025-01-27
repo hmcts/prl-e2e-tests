@@ -93,7 +93,9 @@ export class ServiceOfApplicationSubmitPage {
         page,
         2,
         ServiceOfApplicationSubmitContent,
-        applicationSubmittedBy == "Solicitor" ? "solicitorApplicationRecipientsP" : "recipientsP",
+        applicationSubmittedBy == "Solicitor"
+          ? "solicitorApplicationRecipientsP"
+          : "recipientsP",
         Selectors.p,
       );
     }

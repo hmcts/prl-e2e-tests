@@ -13,7 +13,9 @@ setup("Set up users", async ({ page }) => {
   const userCreationToken = await getAccessToken("createUser", apiContext);
 
   if (!userCreationToken) {
-    throw new Error("Setup failed: Unable to retrieve bearer token for user creation.");
+    throw new Error(
+      "Setup failed: Unable to retrieve bearer token for user creation.",
+    );
   }
 
   process.env.CREATE_USER_IDAM_BEARER_TOKEN = userCreationToken;
@@ -28,6 +30,12 @@ setup("Set up users", async ({ page }) => {
     }
     const userContext = await browser.newContext();
     const userPage = await userContext.newPage();
-    await IdamLoginHelper.signIn(userPage, email, password, config.manageCasesBaseURL, userRole);
+    await IdamLoginHelper.signIn(
+      userPage,
+      email,
+      password,
+      config.manageCasesBaseURL,
+      userRole,
+    );
   }
 });
