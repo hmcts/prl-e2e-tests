@@ -64,7 +64,4 @@ export enum OtherPeopleInTheCase1Content {
   errorMessageInvalidDOBErrorMessage = "The data entered is not valid for *Date of birth",
   errorMessageLived5YearsInAddress = "*Has this person lived at this address for less than 5 years? is required",
   errorMessage5YearsDetailsRequired = "*Provide details of all previous addresses for the last 5 years below(if known, including the dates and starting with most recent) is required",
-  errorMessageAddressConfidential = "*Do you need to keep the address confidential? is required",
-  errorMessageEmailConfidential = " *Do you need to keep the email address confidential? is required ",
-  errorMessageContactNumberConfidential = "*Do you need to keep the contact number confidential? is required",
 }
