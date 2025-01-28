@@ -10,11 +10,13 @@ export enum ServiceOfApplicationSubmitContent {
   text16Change = "Change",
 
   // served by court baliff
-  servedByBaliffText161 = "Who is responsible for serving the respondent?",
-  servedByBaliffText162 = "Court bailiff",
+  servedByBailiffText161 = "Who is responsible for serving the respondent?",
+  servedByBailiffText162 = "Court bailiff",
 
   // served to both parties but not personally
   recipientsText16 = "Confirm Recipients",
   recipientsP1 = "Applicant ApplLast(Applicant)",
   recipientsP2 = "Dolores Smith (Respondent)",
+  solicitorApplicationRecipientsP1 = "applicantone fn respondentone ln(Applicant)",
+  solicitorApplicationRecipientsP2 = "respondentoneFN respondentoneLN (Respondent)",
 }

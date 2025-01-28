@@ -13,7 +13,6 @@ test.describe("Respondent reasonable adjustments tests", (): void => {
 
   test.beforeEach(async ({ page }) => {
     ccdRef = await createDaCitizenCourtNavCase(true, false);
-    console.log(ccdRef);
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
   });
 
@@ -28,6 +27,7 @@ test.describe("Respondent reasonable adjustments tests", (): void => {
       needsReasonableAdjustment: false,
       isApplicant: false,
       accessibilityTest: true,
+      applicationSubmittedBy: "Citizen",
     });
   });
 
@@ -42,6 +42,7 @@ test.describe("Respondent reasonable adjustments tests", (): void => {
       needsReasonableAdjustment: true,
       isApplicant: false,
       accessibilityTest: false,
+      applicationSubmittedBy: "Citizen",
     });
   });
 });

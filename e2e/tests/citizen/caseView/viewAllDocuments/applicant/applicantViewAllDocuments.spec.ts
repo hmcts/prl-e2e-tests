@@ -26,6 +26,7 @@ test.describe("Applicant view all documents tests", (): void => {
       accessibilityTest: false,
       caseRef: ccdRef,
       isApplicant: true,
+      applicationSubmittedBy: "Citizen",
     });
   });
 
@@ -39,6 +40,7 @@ test.describe("Applicant view all documents tests", (): void => {
       accessibilityTest: true,
       caseRef: ccdRef,
       isApplicant: true,
+      applicationSubmittedBy: "Citizen",
     });
   });
 });

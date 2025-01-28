@@ -3,6 +3,7 @@ import { CommonStaticText } from "../../../../common/commonStaticText";
 import { Helpers } from "../../../../common/helpers";
 import { Selectors } from "../../../../common/selectors";
 import { SendAndReplyToMessages4Content } from "../../../../fixtures/manageCases/caseProgression/sendAndReplyToMessages/sendAndReplyToMessages4Content";
+import { CommonContent } from "../../../../fixtures/manageCases/commonContent";
 
 enum UniqueSelectors {
   respondToMessageYesRadio = "#respondToMessage_Yes",
@@ -38,10 +39,20 @@ export class SendAndReplyToMessages4Page {
       ),
       Helpers.checkGroup(
         page,
-        13,
+        11,
         SendAndReplyToMessages4Content,
         "formLabel",
         Selectors.GovukFormLabel,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${CommonContent.judgeName}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${CommonContent.judgeEmail}")`,
+        1,
       ),
       Helpers.checkGroup(
         page,

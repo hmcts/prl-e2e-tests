@@ -27,6 +27,7 @@ test.describe("Complete Task - Review Documents for DA case tests.", () => {
       isApplicant: true,
       yesNoNotSureRestrictDocs: "no",
       documentType: "Position statements",
+      applicationSubmittedBy: "Citizen",
     });
   });
 
@@ -42,6 +43,8 @@ test.describe("Complete Task - Review Documents for DA case tests.", () => {
       isApplicant: false,
       yesNoNotSureRestrictDocs: "no",
       documentType: "Position statements",
+      applicationSubmittedBy: "Citizen",
+
     });
   });
 });

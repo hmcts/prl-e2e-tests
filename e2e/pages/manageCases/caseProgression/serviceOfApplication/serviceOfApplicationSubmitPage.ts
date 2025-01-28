@@ -5,11 +5,13 @@ import { Helpers } from "../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
 import { CommonStaticText } from "../../../../common/commonStaticText";
 import { ServiceOfApplicationSubmitContent } from "../../../../fixtures/manageCases/caseProgression/serviceOfApplication/serviceOfApplicationSubmitContent";
+import { applicationSubmittedBy } from "../../../../common/types.ts";
 
 interface ServiceOfApplicationSubmitOptions {
   page: Page;
   yesNoServiceOfApplication4: boolean;
   accessibilityTest: boolean;
+  applicationSubmittedBy: applicationSubmittedBy;
 }
 
 export class ServiceOfApplicationSubmitPage {
@@ -17,11 +19,13 @@ export class ServiceOfApplicationSubmitPage {
     page,
     yesNoServiceOfApplication4,
     accessibilityTest,
+    applicationSubmittedBy,
   }: ServiceOfApplicationSubmitOptions): Promise<void> {
     await this.checkPageLoads({
       page,
       yesNoServiceOfApplication4,
       accessibilityTest,
+      applicationSubmittedBy,
     });
     await this.fillInFields({ page });
   }
@@ -30,6 +34,7 @@ export class ServiceOfApplicationSubmitPage {
     page,
     yesNoServiceOfApplication4,
     accessibilityTest,
+    applicationSubmittedBy,
   }: Partial<ServiceOfApplicationSubmitOptions>): Promise<void> {
     if (!page) {
       throw new Error("No page found");
@@ -75,7 +80,7 @@ export class ServiceOfApplicationSubmitPage {
         page,
         2,
         ServiceOfApplicationSubmitContent,
-        "servedByBaliffText16",
+        "servedByBailiffText16",
         Selectors.GovukText16,
       );
     } else {
@@ -88,7 +93,9 @@ export class ServiceOfApplicationSubmitPage {
         page,
         2,
         ServiceOfApplicationSubmitContent,
-        "recipientsP",
+        applicationSubmittedBy == "Solicitor"
+          ? "solicitorApplicationRecipientsP"
+          : "recipientsP",
         Selectors.p,
       );
     }

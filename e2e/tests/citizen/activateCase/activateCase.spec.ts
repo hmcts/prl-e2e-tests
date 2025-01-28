@@ -26,6 +26,8 @@ test.describe("Activating case tests", (): void => {
       caseRef: ccdRef,
       caseUser: "both",
       accessibilityTest: true,
+      applicationSubmittedBy: "Citizen",
+      isManualSOA: true,
     });
   });
 });

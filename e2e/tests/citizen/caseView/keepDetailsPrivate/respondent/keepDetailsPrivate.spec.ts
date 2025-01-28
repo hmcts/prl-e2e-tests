@@ -16,7 +16,7 @@ test.describe("Applicant confirm contact details tests", (): void => {
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
   });
 
-  test("Respondent keep details private with yes response. @regression @nightly", async ({
+  test("Respondent keep details private with yes response. @regression", async ({
     page,
     browser,
   }): Promise<void> => {
@@ -28,10 +28,11 @@ test.describe("Applicant confirm contact details tests", (): void => {
       isApplicant: false,
       startAlternativeYesNo: true,
       yesNoDontKnow: "yes",
+      applicationSubmittedBy: "Citizen",
     });
   });
 
-  test("Respondent keep details private with no response. @nightly", async ({
+  test("Respondent keep details private with no response. @regression", async ({
     page,
     browser,
   }): Promise<void> => {
@@ -43,6 +44,7 @@ test.describe("Applicant confirm contact details tests", (): void => {
       isApplicant: false,
       startAlternativeYesNo: false,
       yesNoDontKnow: "no",
+      applicationSubmittedBy: "Citizen",
     });
   });
 
@@ -58,6 +60,7 @@ test.describe("Applicant confirm contact details tests", (): void => {
       isApplicant: false,
       startAlternativeYesNo: true,
       yesNoDontKnow: "dontKnow",
+      applicationSubmittedBy: "Citizen",
     });
   });
 });

@@ -27,6 +27,7 @@ test.describe("Applicant upload documents position statement tests", (): void =>
       accessibilityTest: false,
       isApplicant: true,
       yesNoNA: "Yes",
+      applicationSubmittedBy: "Citizen",
     });
   });
 });

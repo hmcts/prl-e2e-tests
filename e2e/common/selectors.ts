@@ -52,7 +52,7 @@ export enum Selectors {
   // Content
   NotificationBannerTitle = ".govuk-notification-banner__title",
   NotificationBannerHeading = ".govuk-notification-banner__heading",
-  NotoficationBannerLink = ".govuk-notification-banner__link",
+  NotificationBannerLink = ".govuk-notification-banner__link",
   GovukBody = ".govuk-body",
   GovukBodyL = ".govuk-body-l",
   GovukBodyM = ".govuk-body-m",
@@ -61,6 +61,7 @@ export enum Selectors {
   GovukHeadingM = ".govuk-heading-m",
   GovukHeadingS = ".govuk-heading-s",
   GovukHeadingAppTask = ".app-task-list__section",
+  GovukAccordionSection = ".govuk-accordion__section-heading-text-focus",
   GovukSummaryList = ".govuk-summary-list",
   GovukSummaryText = ".govuk-details__summary-text",
   GovukDetailsText = ".govuk-details__text",

@@ -48,7 +48,7 @@ export class AmendDischargeVariedManageOrders12Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukFormLabel}:text-is("${AmendDischargeVariedManageOrders12Content.formLabel}")`,
+        `${Selectors.GovukFormLabel}:has-text("${AmendDischargeVariedManageOrders12Content.formLabel}")`,
         1,
       ),
     ]);
