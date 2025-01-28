@@ -1,9 +1,10 @@
 import { test } from "@playwright/test";
 import Config from "../../../../config";
+import config from "../../../../config";
 import createDaCitizenCourtNavCase from "../../../../common/createCaseHelper";
 import { Helpers } from "../../../../common/helpers";
-import config from "../../../../config";
 import { CreateABundleJourney } from "../../../../journeys/manageCases/caseProgression/createABundle/createABundle.ts";
+import { jsonDatas } from "../../../../common/solicitorCaseCreatorHelper.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
@@ -15,27 +16,17 @@ test.describe("Complete the Order task for DA Citizen case tests.", () => {
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
   });
 
-  test("Complete Task - Create a Bundle - Power of arrest (FL406) without accessibility test. @regression", async ({
+  test("Complete Task - Create a Bundle - Power of arrest (FL406) without accessibility test. @nightly @regression", async ({
     page,
     browser,
   }): Promise<void> => {
     await CreateABundleJourney.createABundleJourney({
       page: page,
       accessibilityTest: false,
-      yesNoSendToGateKeeper: true,
       ccdRef: ccdRef,
-      c100CaseWorkerActions: "Manage orders",
-      manageOrdersOptions: "create order",
-      createOrderFL401Options: "power of arrest",
-      yesNoManageOrders: false,
-      judgeTitles: "Her Honour Judge",
-      withOrWithoutNotice: true,
-      createOrderManageOrders19Options: "dateToBeFixed", // "dateConfirmed" will not pass because page 19 does not give a hearing you are allowed to select
-      howLongWillOrderBeInForce: "untilNextHearing", // Should not matter unless non-molestation order is selected.
       browser: browser,
-      personallyServed: true,
-      yesNoServiceOfApplication4: true,
-      responsibleForServing: "courtBailiff",
+      manageOrderData: jsonDatas.manageOrderDataPowerOfArrest,
+      createOrderFL401Options: "power of arrest",
       applicationSubmittedBy: "Citizen",
     });
   });
@@ -47,20 +38,10 @@ test.describe("Complete the Order task for DA Citizen case tests.", () => {
     await CreateABundleJourney.createABundleJourney({
       page: page,
       accessibilityTest: true,
-      yesNoSendToGateKeeper: true,
       ccdRef: ccdRef,
-      c100CaseWorkerActions: "Manage orders",
-      manageOrdersOptions: "create order",
-      createOrderFL401Options: "amend discharge varied order",
-      yesNoManageOrders: false,
-      judgeTitles: "Deputy Circuit Judge",
-      withOrWithoutNotice: false,
-      createOrderManageOrders19Options: "dateToBeFixed", // "dateConfirmed" will not pass because page 19 does not give a hearing you are allowed to select
-      howLongWillOrderBeInForce: "untilNextHearing", // Should not matter unless non-molestation order is selected.
       browser: browser,
-      personallyServed: false,
-      yesNoServiceOfApplication4: true,
-      responsibleForServing: "courtBailiff",
+      manageOrderData: jsonDatas.manageOrderDataAmendDischargedVaried,
+      createOrderFL401Options: "amend discharge varied order",
       applicationSubmittedBy: "Citizen",
     });
   });

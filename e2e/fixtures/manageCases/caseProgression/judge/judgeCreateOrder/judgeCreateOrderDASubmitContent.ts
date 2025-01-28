@@ -27,7 +27,7 @@ export enum JudgeCreateOrderDASubmitContent {
   text16A2 = "Date order ends",
   text16A3 = "Create an order",
   text16A4 = "Power of arrest (FL406)",
-  text16A5 = "10 Jun 2025, 12:00:00 PM",
+  spanDateAndTime = "10 Jun 2025, 12:00:00",
   spanOccupationOrder = "Amended, discharged or varied order (FL404B)",
   occupationOrderA = "amended_discharged_or_varied_order_fl404b_draft.pdf",
   text16B1 = "Hearing",

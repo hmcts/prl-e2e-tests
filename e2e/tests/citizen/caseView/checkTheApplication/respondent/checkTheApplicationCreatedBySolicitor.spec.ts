@@ -17,7 +17,10 @@ test.describe("Respondent confirm contact details tests - Solicitor created appl
       "solicitor",
     );
     await solicitorPage.goto(Config.manageCasesBaseURL);
-    ccdRef = await SolicitorCaseCreator.createCaseStatementOfTruthAndSubmit(solicitorPage);
+    ccdRef =
+      await SolicitorCaseCreator.createCaseStatementOfTruthAndSubmit(
+        solicitorPage,
+      );
     await solicitorPage.close();
     await Helpers.goToCase(page, Config.manageCasesBaseURL, ccdRef, "tasks");
   });

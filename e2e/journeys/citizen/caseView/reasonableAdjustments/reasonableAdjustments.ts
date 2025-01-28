@@ -44,6 +44,7 @@ export class ReasonableAdjustments {
       caseUser: caseUser,
       accessibilityTest: accessibilityTest,
       applicationSubmittedBy: applicationSubmittedBy,
+      isManualSOA: false,
     });
 
     await page.click(UniqueSelectors.supportYouNeedDuringYourCaseSelector);

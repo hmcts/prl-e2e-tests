@@ -6,7 +6,12 @@ import { EnterPinPage } from "../../../pages/citizen/activateCase/enterPinPage.t
 import { CaseActivatedPage } from "../../../pages/citizen/activateCase/caseActivatedPage.ts";
 import { ApplicantDashboardPage } from "../../../pages/citizen/activateCase/applicantDashboardPage.ts";
 import { RespondentDashboardPage } from "../../../pages/citizen/activateCase/respondentDashboardPage.ts";
-import { E2eFlowUpToServiceOfApplication } from "../../manageCases/caseProgression/e2eFlowUpToServiceOfApplication/e2eFlowUpToServiceOfApplication.ts";
+import { jsonDatas } from "../../../common/solicitorCaseCreatorHelper.ts";
+import { Selectors } from "../../../common/selectors.ts";
+import { ApplicantDashboardContent } from "../../../fixtures/citizen/activateCase/applicantDashboardContent.ts";
+import { RespondentDashboardContent } from "../../../fixtures/citizen/activateCase/respondentDashboardContent.ts";
+import { ServiceOfApplication } from "../../manageCases/caseProgression/serviceOfApplication/serviceOfApplication.ts";
+import { completeEventsUpToServiceOfApplication } from "../../../common/caseEventsHelper.ts";
 import { applicationSubmittedBy } from "../../../common/types.ts";
 
 interface ActiveCaseParams {
@@ -16,6 +21,7 @@ interface ActiveCaseParams {
   caseUser: CaseUser;
   applicationSubmittedBy: applicationSubmittedBy;
   accessibilityTest: boolean;
+  isManualSOA: boolean;
 }
 
 export type CaseUser = "applicant" | "respondent" | "both";
@@ -28,27 +34,32 @@ export class ActivateCase {
     caseUser,
     applicationSubmittedBy,
     accessibilityTest,
+    isManualSOA,
   }: ActiveCaseParams): Promise<Page> {
     let currentPage: Page = page;
-    await E2eFlowUpToServiceOfApplication.e2eFlowUpToServiceOfApplication({
-      page: page,
-      accessibilityTest: false,
-      yesNoSendToGateKeeper: true,
-      ccdRef: caseRef,
-      c100CaseWorkerActions: "Manage orders",
-      manageOrdersOptions: "create order",
-      createOrderFL401Options: "power of arrest",
-      yesNoManageOrders: false,
-      judgeTitles: "Her Honour Judge",
-      withOrWithoutNotice: true,
-      createOrderManageOrders19Options: "dateToBeFixed", // "dateConfirmed" will not pass because page 19 does not give a hearing you are allowed to select
-      howLongWillOrderBeInForce: "untilNextHearing", // Should not matter unless non-molestation order is selected.
-      browser: browser,
-      personallyServed: true,
-      yesNoServiceOfApplication4: false,
-      responsibleForServing: "courtBailiff", // this isn't used when yesNoServiceOfApplication4 is false
-      applicationSubmittedBy: applicationSubmittedBy,
-    });
+    if (isManualSOA) {
+      await ServiceOfApplication.serviceOfApplicationJourney({
+        page: page,
+        accessibilityTest: accessibilityTest,
+        ccdRef: caseRef,
+        createOrderFL401Options: "power of arrest",
+        browser: browser,
+        personallyServed: true,
+        yesNoServiceOfApplication4: false,
+        responsibleForServing: "courtBailiff",
+        manageOrderData: jsonDatas.manageOrderDataPowerOfArrest,
+        applicationSubmittedBy: applicationSubmittedBy,
+      });
+    } else {
+      await completeEventsUpToServiceOfApplication(
+        page,
+        browser,
+        caseRef,
+        jsonDatas.manageOrderDataPowerOfArrest,
+        "power of arrest",
+        applicationSubmittedBy,
+      );
+    }
     switch (caseUser) {
       case "applicant":
         currentPage = await this.checkApplicantDashboard(
@@ -56,6 +67,7 @@ export class ActivateCase {
           caseRef,
           accessibilityTest,
           applicationSubmittedBy,
+          isManualSOA,
         );
         break;
       case "respondent":
@@ -64,6 +76,7 @@ export class ActivateCase {
           caseRef,
           accessibilityTest,
           applicationSubmittedBy,
+          isManualSOA,
         );
         break;
       case "both":
@@ -72,12 +85,14 @@ export class ActivateCase {
           caseRef,
           accessibilityTest,
           applicationSubmittedBy,
-          );
+          isManualSOA,
+        );
         await this.checkRespondentDashboard(
           browser,
           caseRef,
           accessibilityTest,
           applicationSubmittedBy,
+          isManualSOA,
         );
         break;
       default:
@@ -93,6 +108,7 @@ export class ActivateCase {
     caseRef: string,
     accessibilityTest: boolean,
     applicationSubmittedBy: applicationSubmittedBy,
+    isManualSOA: boolean,
   ): Promise<Page> {
     const newBrowser = await browser.browserType().launch();
     const newContext: BrowserContext = await newBrowser.newContext();
@@ -111,6 +127,7 @@ export class ActivateCase {
       true,
       accessibilityTest,
       applicationSubmittedBy,
+      isManualSOA,
     );
     return page;
   }
@@ -120,6 +137,7 @@ export class ActivateCase {
     caseRef: string,
     accessibilityTest: boolean,
     applicationSubmittedBy: applicationSubmittedBy,
+    isManualSOA: boolean,
   ): Promise<Page> {
     const newBrowser = await browser.browserType().launch();
     const newContext: BrowserContext = await newBrowser.newContext();
@@ -138,6 +156,7 @@ export class ActivateCase {
       false,
       accessibilityTest,
       applicationSubmittedBy,
+      isManualSOA,
     );
     return page;
   }
@@ -148,7 +167,8 @@ export class ActivateCase {
     accessCode: string,
     isApplicant: boolean,
     accessibilityTest: boolean,
-    applicationSubmittedBy: applicationSubmittedBy
+    applicationSubmittedBy: applicationSubmittedBy,
+    isManualSOA: boolean,
   ): Promise<void> {
     await EnterPinPage.enterPinPage(
       page,
@@ -157,20 +177,34 @@ export class ActivateCase {
       accessibilityTest,
     );
     await CaseActivatedPage.caseActivatedPage(page, caseRef, accessibilityTest);
-    if (isApplicant) {
+    if (isApplicant && isManualSOA) {
       await ApplicantDashboardPage.applicantDashboardPage(
         page,
         caseRef,
         accessibilityTest,
         applicationSubmittedBy,
       );
-    } else {
+    } else if (!isApplicant && isManualSOA) {
       await RespondentDashboardPage.respondentDashboardPage(
         page,
         caseRef,
         accessibilityTest,
         applicationSubmittedBy,
       );
+    } else if (isApplicant && !isManualSOA) {
+      // just check the page heading
+      await page
+        .locator(Selectors.GovukHeadingXL, {
+          hasText: ApplicantDashboardContent.govukHeadingXL,
+        })
+        .waitFor();
+    } else {
+      // just check the page heading
+      await page
+        .locator(Selectors.GovukHeadingXL, {
+          hasText: RespondentDashboardContent.govukHeadingXL,
+        })
+        .waitFor();
     }
   }
 }
