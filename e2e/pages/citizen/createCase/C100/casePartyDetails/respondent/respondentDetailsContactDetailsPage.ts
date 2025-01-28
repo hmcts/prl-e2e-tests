@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { Selectors } from "../../../../../common/selectors";
-import { RespondentDetailsContactDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/casePartyDetails/respondentDetailsContactDetailsContent";
-import { Helpers } from "../../../../../common/helpers";
-import { CommonStaticText } from "../../../../../common/commonStaticText";
+import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper.ts";
+import { Selectors } from "../../../../../../common/selectors.ts";
+import { RespondentDetailsContactDetailsContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/respondent/respondentDetailsContactDetailsContent.ts";
+import { Helpers } from "../../../../../../common/helpers.ts";
+import { CommonStaticText } from "../../../../../../common/commonStaticText.ts";
 
 interface RespondentDetailsContactDetailsPageOptions {
   page: Page;

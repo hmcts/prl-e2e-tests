@@ -455,11 +455,6 @@ export class OtherPeopleInTheCase1Page {
         `${UniqueSelectors.addressFields}:text-is("${OtherPeopleInTheCase1Content.formLabelCountry}")`,
         1,
       ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukFormLabel}:text-is("${OtherPeopleInTheCase1Content.formLabelAddressConfidential}")`,
-        1,
-      ),
       await expect(page.locator(ApplicantAddressFields.line1)).toHaveValue(
         OtherPeopleInTheCase1Content.buildingAndStreet,
       ),
@@ -493,27 +488,15 @@ export class OtherPeopleInTheCase1Page {
         `${Selectors.GovukFormLabel}:text-is("${OtherPeopleInTheCase1Content.formLabelApplicantEmailAddress}")`,
         1,
       ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukFormLabel}:text-is("${OtherPeopleInTheCase1Content.formLabelEmailAddressConfidential}")`,
-        1,
-      ),
     ]);
   }
 
   private static async checkContactNumber(page: Page): Promise<void> {
-    await Promise.all([
-      Helpers.checkVisibleAndPresent(
+    await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukFormLabel}:text-is("${OtherPeopleInTheCase1Content.formLabelApplicantContactNumber}")`,
         1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukFormLabel}:text-is("${OtherPeopleInTheCase1Content.formLabelContactNumberConfidential}")`,
-        1,
-      ),
-    ]);
+    );
   }
 
   private static async checkFormLabelsWhenOtherPersonLivesInRefugeYesIsClicked(

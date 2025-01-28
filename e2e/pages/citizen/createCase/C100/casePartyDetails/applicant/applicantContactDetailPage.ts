@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
-import { CommonStaticText } from "../../../../../common/commonStaticText";
-import { Helpers } from "../../../../../common/helpers";
-import { Selectors } from "../../../../../common/selectors";
-import { ApplicantContactDetailContent } from "../../../../../fixtures/citizen/createCase/C100/casePartyDetails/applicantContactDetailContent";
+import { CommonStaticText } from "../../../../../../common/commonStaticText.ts";
+import { Helpers } from "../../../../../../common/helpers.ts";
+import { Selectors } from "../../../../../../common/selectors.ts";
+import { ApplicantContactDetailContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/applicant/applicantContactDetailContent.ts";
 // import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 
 enum inputIds {

@@ -1,10 +1,10 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { ApplicantUploadC8FormContent } from "../../../../../fixtures/citizen/createCase/C100/casePartyDetails/applicantUploadC8FormContent";
-import { Helpers } from "../../../../../common/helpers";
-import { CommonStaticText } from "../../../../../common/commonStaticText";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import config from "../../../../../config";
+import { Selectors } from "../../../../../../common/selectors.ts";
+import { ApplicantUploadC8FormContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/applicant/applicantUploadC8FormContent.ts";
+import { Helpers } from "../../../../../../common/helpers.ts";
+import { CommonStaticText } from "../../../../../../common/commonStaticText.ts";
+import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper.ts";
+import config from "../../../../../../config.ts";
 
 interface applicantUploadC8FormOptions {
   page: Page;

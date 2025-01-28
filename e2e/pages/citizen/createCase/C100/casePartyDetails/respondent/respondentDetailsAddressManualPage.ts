@@ -1,9 +1,9 @@
 import { Page, expect } from "@playwright/test";
-import { CommonStaticText } from "../../../../../common/commonStaticText";
-import { Helpers } from "../../../../../common/helpers";
-import { Selectors } from "../../../../../common/selectors";
-import { yesNoDontKnow } from "../../../../../common/types";
-import { RespondentDetailsAddressManualContent } from "../../../../../fixtures/citizen/createCase/C100/casePartyDetails/respondentDetailsAddressManualContent";
+import { CommonStaticText } from "../../../../../../common/commonStaticText.ts";
+import { Helpers } from "../../../../../../common/helpers.ts";
+import { Selectors } from "../../../../../../common/selectors.ts";
+import { yesNoDontKnow } from "../../../../../../common/types.ts";
+import { RespondentDetailsAddressManualContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/respondent/respondentDetailsAddressManualContent.ts";
 // import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 
 interface RespondentDetailsAddressManualPageOptions {
