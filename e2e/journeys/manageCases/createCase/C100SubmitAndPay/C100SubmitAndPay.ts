@@ -18,7 +18,7 @@ export class C100SubmitAndPay {
     yesNoWelshLanguage: yesNoWelshLanguage,
     yesNoHelpWithFees: yesNoHelpWithFees,
   }: C100SubmitAndPayOptions): Promise<void> {
-    await Helpers.selectSolicitorEvent(page, "Submit and pay");
+    await Helpers.handleEventBasedOnEnvironment(page, "Submit and pay");
     await SubmitAndPay1Page.submitAndPay1Page({
       page,
     });
