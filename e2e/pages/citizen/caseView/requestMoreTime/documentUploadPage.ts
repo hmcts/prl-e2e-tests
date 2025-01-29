@@ -72,6 +72,6 @@ export class DocumentUploadPage {
       `${Selectors.GovukTableCell}:text-is("${DocumentUploadContent.GovukTableCell}")`,
       1,
     );
-    await page.click(`${Selectors.GovukButton}:has-text("${DocumentUploadContent.continue}")`,);
+    await page.click(`${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,);
   }
 }

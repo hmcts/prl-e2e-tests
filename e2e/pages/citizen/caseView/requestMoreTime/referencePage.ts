@@ -3,6 +3,7 @@ import { Selectors } from "../../../../common/selectors.ts";
 import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
 import { ReferenceContent } from "../../../../fixtures/citizen/caseView/requestMoreTime/referenceContent.ts";
 import { Helpers } from "../../../../common/helpers.ts";
+import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 
 enum UniqueSelectors {
   haveRefNumberYes = "#awp_have_hwfReference",
@@ -68,6 +69,6 @@ export class ReferencePage {
     else {
       await page.check(`${UniqueSelectors.haveRefNumberNo}`);
     }
-    await page.click(`${Selectors.GovukButton}:has-text("${ReferenceContent.continue}")`,);
+    await page.click(`${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,);
   }
 }

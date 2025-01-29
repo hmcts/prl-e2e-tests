@@ -3,6 +3,7 @@ import { Selectors } from "../../../../common/selectors.ts";
 import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
 import { SupportingDocumentsContent } from "../../../../fixtures/citizen/caseView/requestMoreTime/supportingDocumentsContent.ts";
 import { Helpers } from "../../../../common/helpers.ts";
+import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 
 enum UniqueSelectors {
   supportingDocumentsYes = "#awp_hasSupportingDocuments",
@@ -56,6 +57,6 @@ export class SupportingDocumentsPage {
     else {
       await page.check(`${UniqueSelectors.supportingDocumentsNo}`);
     }
-    await page.click(`${Selectors.GovukButton}:has-text("${SupportingDocumentsContent.continue}")`,);
+    await page.click(`${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,);
   }
 }

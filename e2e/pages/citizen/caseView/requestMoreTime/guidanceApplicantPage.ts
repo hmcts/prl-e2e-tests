@@ -3,6 +3,7 @@ import { Selectors } from "../../../../common/selectors.ts";
 import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
 import { GuidanceContent } from "../../../../fixtures/citizen/caseView/requestMoreTime/guidanceContent.ts";
 import { Helpers } from "../../../../common/helpers.ts";
+import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 
 export class GuidanceApplicantPage {
   public static async guidanceApplicantPage(
@@ -57,6 +58,6 @@ export class GuidanceApplicantPage {
     }
   }
   private static async startNow(page: Page): Promise<void> {
-    await page.click(`${Selectors.GovukButton}:has-text("${GuidanceContent.startNow}")`,);
+    await page.click(`${Selectors.GovukButton}:text-is("${CommonStaticText.startNow}")`,);
   }
 }

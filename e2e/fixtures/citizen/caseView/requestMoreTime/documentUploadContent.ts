@@ -6,5 +6,4 @@ export enum DocumentUploadContent {
   GovukHint = "Give each document a file name that makes it clear what it is about. For example position-statement.docx. Files must end with JPG, JPEG, BMP, PNG, TIF, PDF, DOC or DOCX.",
   GovukSummaryText = "Take a picture of a document on your phone and upload it",
   GovukTableCell = "mockFile.pdf",
-  continue = "Continue",
 }

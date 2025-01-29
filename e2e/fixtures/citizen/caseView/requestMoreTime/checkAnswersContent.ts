@@ -10,5 +10,4 @@ export enum CheckAnswersContent {
   GovukSummaryListValueYes = "Yes",
   GovukSummaryListValue2 = "mockFile.pdf",
   GovukSummaryListValue3 = "Test123",
-  submitApplication = "Submit Application",
 }

@@ -5,5 +5,4 @@ export enum HelpWithFeesContent {
   GovukLink = "GOV.UK (opens in a new tab)",
   GovukBodyM2 = "to find out if you are eligible for support.",
   GovukFieldsetLegend = "Will you be using help with fees to pay for this application?",
-  continue = "Continue",
 }

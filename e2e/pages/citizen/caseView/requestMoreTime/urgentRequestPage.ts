@@ -3,6 +3,7 @@ import { Selectors } from "../../../../common/selectors.ts";
 import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
 import { UrgentRequestContent } from "../../../../fixtures/citizen/caseView/requestMoreTime/urgentRequestContent.ts";
 import { Helpers } from "../../../../common/helpers.ts";
+import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 
 enum UniqueSelectors {
   reasonUrgentRequestYes = "#awp_isThereReasonForUrgentRequest",
@@ -63,6 +64,6 @@ export class UrgentRequestPage {
     else {
       await page.check(`${UniqueSelectors.reasonUrgentRequestNo}`);
     }
-    await page.click(`${Selectors.GovukButton}:has-text("${UrgentRequestContent.continue}")`,);
+    await page.click(`${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,);
   }
 }

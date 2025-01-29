@@ -3,6 +3,7 @@ import { Selectors } from "../../../../common/selectors.ts";
 import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
 import { UploadYourApplicationContent } from "../../../../fixtures/citizen/caseView/requestMoreTime/uploadYourApplicationContent.ts";
 import { Helpers } from "../../../../common/helpers.ts";
+import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 
 enum UniqueSelectors {
   completedFormYes = "#awp_completedForm",
@@ -60,6 +61,6 @@ export class UploadYourApplicationPage {
     } else {
       await page.check(`${UniqueSelectors.completedFormNo}`);
     }
-    await page.click(`${Selectors.GovukButton}:has-text("${UploadYourApplicationContent.continue}")`,);
+    await page.click(`${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,);
   }
 }

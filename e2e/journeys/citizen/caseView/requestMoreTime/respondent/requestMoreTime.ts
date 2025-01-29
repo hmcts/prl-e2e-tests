@@ -11,6 +11,8 @@ import { SupportingDocumentUploadPage } from "../../../../../pages/citizen/caseV
 import { UrgentRequestPage } from "../../../../../pages/citizen/caseView/requestMoreTime/urgentRequestPage.ts";
 import { CheckAnswersRespondentPage } from "../../../../../pages/citizen/caseView/requestMoreTime/checkAnswersRespondentPage.ts";
 import { applicationSubmittedBy } from "../../../../../common/types.ts";
+import { Selectors } from "../../../../../common/selectors.ts";
+import { ListOfApplications1Content } from "../../../../../fixtures/citizen/caseView/makeRequestToCourtAboutCase/applicant/listOfApplications1Content.ts";
 
 interface requestMoreTimeParams {
   page: Page;
@@ -57,7 +59,7 @@ export class RequestMoreTime {
       isManualSOA: false,
     });
     await page.click(UniqueSelectors.requestToCourtAboutYourCase);
-    await page.click('a[href="/respondent/application-within-proceedings/C2/request-more-time/guidance"]');
+    await page.click(`${Selectors.a}:text-is("${ListOfApplications1Content.formLink}").nth(1)`);
     await GuidanceRespondentPage.guidanceRespondentPage(page, accessibilityTest);
     await UploadYourApplicationPage.uploadYourApplicationPage(page, accessibilityTest, completedForm);
     await AgreementForRequestPage.agreementForRequestPage(page, accessibilityTest, agreementForRequest);

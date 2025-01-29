@@ -3,6 +3,7 @@ import { Selectors } from "../../../../common/selectors.ts";
 import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
 import { AgreementForRequestContent } from "../../../../fixtures/citizen/caseView/requestMoreTime/agreementForRequestContent.ts";
 import { Helpers } from "../../../../common/helpers.ts";
+import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 
 enum UniqueSelectors {
   agreementForRequestYes = "#awp_agreementForRequest",
@@ -63,6 +64,6 @@ export class AgreementForRequestPage {
     else {
       await page.check(`${UniqueSelectors.agreementForRequestNo}`);
     }
-    await page.click(`${Selectors.GovukButton}:has-text("${AgreementForRequestContent.continue}")`,);
+    await page.click(`${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,);
   }
 }

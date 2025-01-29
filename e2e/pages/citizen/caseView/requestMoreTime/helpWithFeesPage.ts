@@ -3,6 +3,7 @@ import { Selectors } from "../../../../common/selectors.ts";
 import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
 import { HelpWithFeesContent } from "../../../../fixtures/citizen/caseView/requestMoreTime/helpWithFeesContent.ts";
 import { Helpers } from "../../../../common/helpers.ts";
+import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 
 enum UniqueSelectors {
   helpWithFeesYes = "#awp_need_hwf",
@@ -68,6 +69,6 @@ export class HelpWithFeesPage {
     else {
       await page.check(`${UniqueSelectors.helpWithFeesNo}`);
     }
-    await page.click(`${Selectors.GovukButton}:has-text("${HelpWithFeesContent.continue}")`,);
+    await page.click(`${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,);
   }
 }

@@ -8,5 +8,4 @@ export enum GuidanceContent {
   GovukBody2 = "You can check the help with fees guidance on",
   GovukLink = "GOV.UK (opens in a new tab)",
   GovukBody3 = "to find out if you are eligible for support.",
-  startNow = "Start now",
 }

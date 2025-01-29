@@ -3,6 +3,7 @@ import { Selectors } from "../../../../common/selectors.ts";
 import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
 import { CheckAnswersContent } from "../../../../fixtures/citizen/caseView/requestMoreTime/checkAnswersContent.ts";
 import { Helpers } from "../../../../common/helpers.ts";
+import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 
 export class CheckAnswersRespondentPage {
   public static async checkAnswersRespondentPage(
@@ -49,6 +50,6 @@ export class CheckAnswersRespondentPage {
     }
   }
   private static async submitApplication(page: Page): Promise<void> {
-    await page.click(`${Selectors.GovukButton}:has-text("${CheckAnswersContent.submitApplication}")`,);
+    await page.click(`${Selectors.GovukButton}:text-is("${CommonStaticText.submitApplication}")`,);
   }
 }
