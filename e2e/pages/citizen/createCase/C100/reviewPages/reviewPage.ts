@@ -1581,7 +1581,7 @@ export class ReviewPage {
     await Promise.all([
       Helpers.checkGroupHasText(
         page,
-        15,
+        16,
         CaJourneyExistingMIAMReviewContent,
         "h2_",
         Selectors.h2,
@@ -1916,7 +1916,7 @@ export class ReviewPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListValue}:text-is("${CaJourneyExistingMIAMReviewContent.p_yes}")`,
-        77,
+        78,
       ),
       Helpers.checkVisibleAndPresent(
         page,
