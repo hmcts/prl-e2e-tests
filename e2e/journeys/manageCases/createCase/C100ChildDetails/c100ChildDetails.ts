@@ -43,7 +43,7 @@ export class C100ChildDetails {
         subJourney: true,
       });
     }
-    await Helpers.selectSolicitorEvent(page, "Child details");
+    await Helpers.handleEventBasedOnEnvironment(page, "Child details");
     await ChildDetailsRevised1Page.childDetailsRevised1Page({
       page: page,
       accessibilityTest: accessibilityTest,

@@ -30,7 +30,7 @@ export class C100AttendingTheHearing {
         errorMessaging: false,
       });
     }
-    await Helpers.selectSolicitorEvent(page, "Attending the hearing");
+    await Helpers.handleEventBasedOnEnvironment(page, "Attending the hearing");
     await AttendingTheHearing1Page.attendingTheHearing1Page({
       page: page,
       accessibilityTest: accessibilityTest,

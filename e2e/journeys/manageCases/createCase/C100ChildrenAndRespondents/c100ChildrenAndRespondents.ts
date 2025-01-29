@@ -65,7 +65,7 @@ export class C100ChildAndRespondents {
         subJourney: false,
       });
     }
-    await Helpers.selectSolicitorEvent(page, "Children and respondents");
+    await Helpers.handleEventBasedOnEnvironment(page, "Children and respondents");
     await ChildrenAndRespondents1Page.childrenAndRespondents1Page(
       page,
       accessibilityTest,
