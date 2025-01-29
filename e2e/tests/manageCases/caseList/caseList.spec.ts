@@ -6,7 +6,7 @@ test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
 test.describe("Manage cases case list tests.", (): void => {
   // tests tagged as "fixme"
-  // TODO: bug ticket to fix issue causing test to fail FPET-1208
+  // TODO: bug ticket to fix issue causing test to fail l
   test.fixme(
     "Check the case list is visible to the user. @regression @smoke",
     async ({ page }): Promise<void> => {

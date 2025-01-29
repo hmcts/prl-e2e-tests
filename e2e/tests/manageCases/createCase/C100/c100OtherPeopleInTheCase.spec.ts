@@ -8,7 +8,7 @@ test.describe("C100 Create case Other people in the case Tests", (): void => {
   test(`Complete the C100 Create case Other people in the case as a solicitor with the following options:
   Not Accessibility testing,
   Error message testing,
-  Saying yes to all options,
+  Saying yes to all options, 
   Setting the applicant Gender to male. @regression @errorMessage`, async ({
     page,
   }): Promise<void> => {

@@ -1,9 +1,9 @@
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper.ts";
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { ApplicantAddressLookupContent } from "../../../../../fixtures/citizen/createCase/C100/casePartyDetails/applicantAddressLookupContent";
-import { Helpers } from "../../../../../common/helpers";
-import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { Selectors } from "../../../../../../common/selectors.ts";
+import { ApplicantAddressLookupContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/applicant/applicantAddressLookupContent.ts";
+import { Helpers } from "../../../../../../common/helpers.ts";
+import { CommonStaticText } from "../../../../../../common/commonStaticText.ts";
 
 interface applicantAddressLookupOptions {
   page: Page;

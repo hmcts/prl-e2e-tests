@@ -86,7 +86,7 @@ export class OtherPeopleInTheCaseSubmitPage {
         ),
         Helpers.checkGroup(
           page,
-          12,
+          9,
           OtherPeopleInTheCaseSubmitContent,
           "text16A",
           `${Selectors.GovukText16}`,
@@ -115,7 +115,7 @@ export class OtherPeopleInTheCaseSubmitPage {
         ),
         Helpers.checkGroup(
           page,
-          12,
+          9,
           OtherPeopleInTheCaseSubmitContent,
           "text16A",
           `${Selectors.GovukText16}`,
@@ -207,7 +207,7 @@ export class OtherPeopleInTheCaseSubmitPage {
         Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukText16}:text-is("${OtherPeopleInTheCase1Content.formLabelYes}")`,
-          otherPersonLivesInRefuge ? 10 : 9,
+          otherPersonLivesInRefuge ? 7 : 6,
         ),
         Helpers.checkVisibleAndPresent(
           page,

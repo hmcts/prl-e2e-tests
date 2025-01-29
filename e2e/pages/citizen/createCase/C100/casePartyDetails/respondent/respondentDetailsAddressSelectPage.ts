@@ -1,10 +1,10 @@
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper.ts";
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { Helpers } from "../../../../../common/helpers";
-import { CommonStaticText } from "../../../../../common/commonStaticText";
-import { RespondentDetailsAddressSelectContent } from "../../../../../fixtures/citizen/createCase/C100/casePartyDetails/respondentDetailsAddressSelectContent";
-import { RespondentDetailsAddressLookupContent } from "../../../../../fixtures/citizen/createCase/C100/casePartyDetails/respondentDetailsAddressLookupContent";
+import { Selectors } from "../../../../../../common/selectors.ts";
+import { Helpers } from "../../../../../../common/helpers.ts";
+import { CommonStaticText } from "../../../../../../common/commonStaticText.ts";
+import { RespondentDetailsAddressSelectContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/respondent/respondentDetailsAddressSelectContent.ts";
+import { RespondentDetailsAddressLookupContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/respondent/respondentDetailsAddressLookupContent.ts";
 
 interface respondentDetailsAddressSelectOptions {
   page: Page;
