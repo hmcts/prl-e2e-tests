@@ -53,7 +53,7 @@ export class RequestMoreTime {
       isManualSOA: false,
     });
     await page.click(UniqueSelectors.requestToCourtAboutYourCase);
-    await page.click(`${Selectors.a}:text-is("${ListOfApplications1Content.formLink}").nth(1)`);
+    await page.locator(`${Selectors.GovukLink}:has-text("${ListOfApplications1Content.formLink}")`).nth(1).click();
     await GuidanceApplicantPage.guidanceApplicantPage(page, accessibilityTest);
     await UploadYourApplicationPage.uploadYourApplicationPage(page, accessibilityTest, completedForm);
     await AgreementForRequestPage.agreementForRequestPage(page, accessibilityTest, agreementForRequest);
