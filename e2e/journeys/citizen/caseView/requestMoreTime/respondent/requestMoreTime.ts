@@ -54,6 +54,7 @@ export class RequestMoreTime {
       caseUser: caseUser,
       accessibilityTest: accessibilityTest,
       applicationSubmittedBy: applicationSubmittedBy,
+      isManualSOA: false,
     });
     await page.click(UniqueSelectors.requestToCourtAboutYourCase);
     await page.click('a[href="/respondent/application-within-proceedings/C2/request-more-time/guidance"]');
