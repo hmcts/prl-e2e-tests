@@ -410,4 +410,18 @@ export class Helpers {
 
     return page.url().includes("pcq");
   }
+
+  public static async handleEventBasedOnEnvironment(
+      page: Page,
+      event: c100SolicitorEvents | fl401SolicitorEvents,
+  ): Promise<void> {
+    const url = page.url();
+    if (url.includes("aat")) {
+      await Helpers.selectSolicitorEvent(page, event);
+    } else if (url.includes("preview")) {
+      await Helpers.chooseEventFromDropdown(page, event);
+    } else {
+      throw new Error("Unexpected environment in URL.");
+    }
+  }
 }

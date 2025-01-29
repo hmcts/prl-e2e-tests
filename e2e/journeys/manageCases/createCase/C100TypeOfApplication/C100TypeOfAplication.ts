@@ -46,7 +46,7 @@ export class C100TypeOfApplication {
         errorMessaging: false,
       });
     }
-    await Helpers.selectSolicitorEvent(page, "Type of application");
+    await Helpers.handleEventBasedOnEnvironment(page, "Type of application");
     await selectApplicationType1Page.selectApplicationType1Page(
       page,
       errorMessaging,

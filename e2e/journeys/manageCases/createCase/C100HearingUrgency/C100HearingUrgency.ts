@@ -33,7 +33,7 @@ export class C100HearingUrgency {
         errorMessaging: false,
       });
     }
-    await Helpers.selectSolicitorEvent(page, "Hearing urgency");
+    await Helpers.handleEventBasedOnEnvironment(page, "Hearing urgency");
     await HearingUrgency1Page.hearingUrgency1Page(
       page,
       accessibilityTest,

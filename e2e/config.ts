@@ -39,7 +39,7 @@ export class Config {
     "https://privatelaw.aat.platform.hmcts.net/";
   public static readonly manageCasesBaseURL: string =
     process.env.MANAGE_CASES_BASE_URL ||
-    "https://manage-case.aat.platform.hmcts.net/cases";
+    "https://xui-prl-ccd-definitions-pr-2462.preview.platform.hmcts.net/cases";
 
   public static readonly testFile: string = path.resolve(
     __dirname,

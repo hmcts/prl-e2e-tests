@@ -31,7 +31,7 @@ export class C100LitigationCapacity {
         errorMessaging: false,
       });
     }
-    await Helpers.selectSolicitorEvent(page, "Litigation capacity");
+    await Helpers.handleEventBasedOnEnvironment(page, "Litigation capacity");
     await LitigationCapacity1Page.litigationCapacity1Page({
       page: page,
       accessibilityTest: accessibilityTest,

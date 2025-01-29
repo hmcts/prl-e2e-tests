@@ -31,7 +31,7 @@ export class C100InternationalElement {
         errorMessaging: false,
       });
     }
-    await Helpers.selectSolicitorEvent(page, "International element");
+    await Helpers.handleEventBasedOnEnvironment(page, "International element");
     await InternationalElement1Page.internationalElement1Page({
       page,
       accessibilityTest,

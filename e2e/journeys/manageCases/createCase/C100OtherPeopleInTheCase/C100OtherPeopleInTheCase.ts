@@ -37,7 +37,7 @@ export class C100OtherPeopleInTheCase {
         errorMessaging: false,
       });
     }
-    await Helpers.selectSolicitorEvent(page, "Other people in the case");
+    await Helpers.handleEventBasedOnEnvironment(page, "Other people in the case");
     await OtherPeopleInTheCase1Page.otherPeopleInTheCase1Page(
       page,
       accessibilityTest,
