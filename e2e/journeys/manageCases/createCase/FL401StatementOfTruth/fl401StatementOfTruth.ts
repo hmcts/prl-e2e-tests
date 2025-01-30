@@ -112,7 +112,7 @@ export class Fl401StatementOfTruth {
         subJourney: false,
       });
     }
-    await Helpers.selectSolicitorEvent(page, "Statement of truth and submit");
+    await Helpers.handleEventBasedOnEnvironment(page, "Statement of truth and submit");
     await StatementOfTruth1Page.statementOfTruth1Page({
       page: page,
       accessibilityTest: accessibilityTest,

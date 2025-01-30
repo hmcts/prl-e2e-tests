@@ -39,7 +39,7 @@ export class FL401RespondentDetails {
         subJourney: false,
       });
     }
-    await Helpers.selectSolicitorEvent(page, "Respondent details");
+    await Helpers.handleEventBasedOnEnvironment(page, "Respondent details");
     await RespondentDetailsPage.respondentDetailsPage(
       page,
       errorMessaging,

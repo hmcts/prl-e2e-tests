@@ -1,10 +1,27 @@
-import { APIRequestContext, request, test as setup } from "@playwright/test";
+import {APIRequestContext, Page, request, test as setup, Browser} from "@playwright/test";
 import dotenv from "dotenv";
 import { getAccessToken } from "../common/getAccessTokenHelper";
 import IdamLoginHelper from "../common/idamLoginHelper";
 import config from "../config";
 
 dotenv.config();
+
+setup("Define test environment", async ({ page, browser }: { page: Page; browser: Browser }) => {
+  await page.goto(config.citizenFrontendBaseURL);
+  const citizenUrl = await page.evaluate(() => location.href);
+
+  const context = await browser.newContext();
+  const newPage = await context.newPage();
+  await newPage.goto(config.manageCasesBaseURL);
+  const manageCaseUrl = await newPage.evaluate(() => location.href);
+
+  const getEnvironment = (url: string) =>
+      ["aat", "demo", "preview"].find((env) => url.includes(env)) || "unknown";
+
+  process.env.CITIZEN_TEST_ENV = getEnvironment(citizenUrl);
+  process.env.MANAGE_CASES_TEST_ENV = getEnvironment(manageCaseUrl);
+});
+
 
 setup("Setup solicitor user", async ({ page }) => {
   await IdamLoginHelper.signInUser(

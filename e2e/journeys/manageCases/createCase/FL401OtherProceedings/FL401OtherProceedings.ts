@@ -32,7 +32,7 @@ export class FL401OtherProceedings {
         errorMessaging: false,
       });
     }
-    await Helpers.selectSolicitorEvent(page, "Other proceedings");
+    await Helpers.handleEventBasedOnEnvironment(page, "Other proceedings");
     await OtherProceedingsPage.otherProceedingsPage({
       page,
       errorMessaging,

@@ -38,7 +38,7 @@ export class FL401WithoutNoticeOrder {
         errorMessaging: false,
       });
     }
-    await Helpers.selectSolicitorEvent(page, "Without notice order");
+    await Helpers.handleEventBasedOnEnvironment(page, "Without notice order");
     await WithoutNoticeOrder1Page.withoutOrderNotice1Page(
       page,
       accessibilityTest,

@@ -30,7 +30,7 @@ export class FL401ApplicantsFamily {
         errorMessaging: false,
       });
     }
-    await Helpers.selectSolicitorEvent(page, "Applicant's family");
+    await Helpers.handleEventBasedOnEnvironment(page, "Applicant's family");
     await ApplicantsFamilyPage.applicantsFamilyPage(
       page,
       errorMessaging,
