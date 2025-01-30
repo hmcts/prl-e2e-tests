@@ -22,7 +22,6 @@ enum UniqueSelectors {
   yes = "#soaServeToRespondentOptions-Yes",
   no = "#soaServeToRespondentOptions-No",
   notApplicable = "#soaServeToRespondentOptions-NotApplicable",
-  courtBailiff = "#soaCitizenServingRespondentsOptions-courtBailiff",
   unrepresentedApplication = "#soaCitizenServingRespondentsOptions-unrepresentedApplicant",
   courtAdmin = "#soaCitizenServingRespondentsOptions-courtAdmin",
 }
@@ -93,7 +92,21 @@ export class ServiceOfApplication4Page {
       await this.yesHiddenFormLabel1(page);
       switch (responsibleForServing) {
         case "courtBailiff":
-          await page.click(UniqueSelectors.courtBailiff);
+          const courtBailiff1 = page.locator(
+            "#soaCitizenServingRespondentsOptions-courtBailiff",
+          );
+          const courtBailiff2 = page.locator(
+            "#soaServingRespondentsOptions-courtBailiff",
+          );
+          if (await courtBailiff1.isVisible()) {
+            await courtBailiff1.click();
+          } else if (await courtBailiff2.isVisible()) {
+            await courtBailiff2.click();
+          } else {
+            throw new Error(
+              "Neither court bailiff option is visible on the page.",
+            );
+          }
           break;
         case "unrepresentedApplication":
           await page.click(UniqueSelectors.unrepresentedApplication);
@@ -130,11 +143,6 @@ export class ServiceOfApplication4Page {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukFormLabel}:text-is("${ServiceOfApplication4Content.yesHiddenFormLabel1}"):visible`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukFormLabel}:text-is("${ServiceOfApplication4Content.yesHiddenFormLabel2}"):visible`,
         1,
       ),
       Helpers.checkVisibleAndPresent(

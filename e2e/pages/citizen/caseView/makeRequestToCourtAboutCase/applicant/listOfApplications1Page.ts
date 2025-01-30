@@ -56,6 +56,8 @@ export class ListOfApplications1Page {
     }
   }
   private static async next(page: Page): Promise<void> {
-    await page.click(`${Selectors.GovukLink}:has-text("${ListOfApplications1Content.next}")`,);
+    await page.click(
+      `${Selectors.GovukLink}:has-text("${ListOfApplications1Content.next}")`,
+    );
   }
 }

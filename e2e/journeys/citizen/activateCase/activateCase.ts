@@ -38,7 +38,7 @@ export class ActivateCase {
   }: ActiveCaseParams): Promise<Page> {
     let currentPage: Page = page;
     if (isManualSOA) {
-      await ServiceOfApplication.serviceOfApplicationJourney({
+      await ServiceOfApplication.fullServiceOfApplicationJourney({
         page: page,
         accessibilityTest: accessibilityTest,
         ccdRef: caseRef,
@@ -46,6 +46,7 @@ export class ActivateCase {
         browser: browser,
         personallyServed: true,
         yesNoServiceOfApplication4: false,
+        confidentialityCheck: false,
         responsibleForServing: "courtBailiff",
         manageOrderData: jsonDatas.manageOrderDataPowerOfArrest,
         applicationSubmittedBy: applicationSubmittedBy,
