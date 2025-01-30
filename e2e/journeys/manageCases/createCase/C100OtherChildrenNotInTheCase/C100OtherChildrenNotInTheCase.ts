@@ -36,7 +36,7 @@ export class C100OtherChildrenNotInTheCase {
         errorMessaging: false,
       });
     }
-    await Helpers.selectSolicitorEvent(page, "Other children not in the case");
+    await Helpers.handleEventBasedOnEnvironment(page, "Other children not in the case");
     await OtherChildNotInTheCase1Page.otherChildNotInTheCase1Page({
       page: page,
       accessibilityTest: accessibilityTest,

@@ -37,7 +37,7 @@ export class Helpers {
       await page.waitForLoadState("domcontentloaded");
       await page.waitForSelector("#next-step", { state: "visible" });
       await page.selectOption("#next-step", chosenEvent);
-      await page.waitForTimeout(3000);
+      await page.waitForTimeout(1500);
       const goButton: Locator = page.getByRole("button", { name: "Go" });
       await expect(goButton).toBeEnabled();
       await goButton.click();
@@ -416,5 +416,19 @@ export class Helpers {
       .toBeTruthy();
 
     return page.url().includes("pcq");
+  }
+
+  public static async handleEventBasedOnEnvironment(
+      page: Page,
+      event: c100SolicitorEvents | fl401SolicitorEvents,
+  ): Promise<void> {
+    const url = page.url();
+    if (url.includes("aat")) {
+      await Helpers.selectSolicitorEvent(page, event);
+    } else if (url.includes("preview")) {
+      await Helpers.chooseEventFromDropdown(page, event);
+    } else {
+      throw new Error("Unexpected environment in URL.");
+    }
   }
 }

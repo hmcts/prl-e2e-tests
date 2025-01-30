@@ -58,7 +58,7 @@ export class C100ChildrenAndOtherPeople {
         subJourney: false,
       });
     }
-    await Helpers.selectSolicitorEvent(page, "Children and other people");
+    await Helpers.handleEventBasedOnEnvironment(page, "Children and other people");
     await ChildrenAndOtherPeople1Page.childrenAndOtherPeople1Page(
       page,
       accessibilityTest,

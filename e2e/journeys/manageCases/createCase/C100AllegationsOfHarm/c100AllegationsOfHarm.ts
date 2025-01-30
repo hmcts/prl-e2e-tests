@@ -46,7 +46,7 @@ export class C100AllegationsOfHarm {
         subJourney: true,
       });
     }
-    await Helpers.selectSolicitorEvent(page, "Allegations of harm");
+    await Helpers.handleEventBasedOnEnvironment(page, "Allegations of harm");
     await AllegationsOfHarmRevised1Page.allegationsOfHarmRevised1Page({
       page: page,
       accessibilityTest: accessibilityTest,

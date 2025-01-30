@@ -50,7 +50,7 @@ export class C100MiamPolicyUpgrade {
         errorMessaging: false,
       });
     }
-    await Helpers.selectSolicitorEvent(page, "MIAM");
+    await Helpers.handleEventBasedOnEnvironment(page, "MIAM");
     await MiamPolicyUpgrade1Page.miamPolicyUpgrade1Page({
       page: page,
       accessibilityTest: accessibilityTest,

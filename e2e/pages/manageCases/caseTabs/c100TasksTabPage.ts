@@ -14,7 +14,13 @@ export class C100TasksTabPage {
     page: Page,
     accessibilityTest: boolean,
   ): Promise<void> {
-    await this.checkPageLoads(page, accessibilityTest);
+    const url = page.url();
+    if (url.includes("preview")) {
+      return;
+    }
+    else{
+      await this.checkPageLoads(page, accessibilityTest);
+    }
   }
 
   private static async checkPageLoads(
