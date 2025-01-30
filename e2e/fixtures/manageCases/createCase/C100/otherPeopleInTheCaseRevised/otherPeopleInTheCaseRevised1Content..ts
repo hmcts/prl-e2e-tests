@@ -28,13 +28,9 @@ export enum OtherPeopleInTheCase1Content {
   formLabelOtherPersonLivesInRefuge = "*Does this person currently live in a refuge?",
   formLabelC8FormUpload = "*Upload a C8 form with the refuge address (Optional)",
   FormLabelPostcode = "Enter a UK postcode",
-  formLabelAddressConfidential = "*Do you need to keep the address confidential?",
   formLabelApplicantAddressLessThan5Years = "*Provide details of all previous addresses for the last 5 years below(if known, including the dates and starting with most recent)",
   formLabelApplicantEmailAddress = "*Email address (Optional)",
-  formLabelEmailAddressConfidential = "*Do you need to keep the email address confidential?",
   formLabelApplicantContactNumber = "*Contact Number (Optional)",
-  formLabelContactNumberConfidential = "*Do you need to keep the contact number confidential?",
-
   formLabelBuildingAndStreet = "Building and Street (Optional)",
   formLabelAddressLine2 = "Address Line 2 (Optional)",
   formLabelAddressLine3 = "Address Line 3 (Optional)",
@@ -42,7 +38,6 @@ export enum OtherPeopleInTheCase1Content {
   formLabelCounty = "County (Optional)",
   formLabelPostcodeZipcode = "Postcode/Zipcode (Optional)",
   formLabelCountry = "Country (Optional)",
-
   c8FormUploadHint = "You can download the form from www.gov.uk. The address, email address and contact number entered for this party will be kept confidential.",
   applicantFirstName = "Automated applicant",
   applicantLastName = "TestapplicantLastName",
@@ -69,7 +64,4 @@ export enum OtherPeopleInTheCase1Content {
   errorMessageInvalidDOBErrorMessage = "The data entered is not valid for *Date of birth",
   errorMessageLived5YearsInAddress = "*Has this person lived at this address for less than 5 years? is required",
   errorMessage5YearsDetailsRequired = "*Provide details of all previous addresses for the last 5 years below(if known, including the dates and starting with most recent) is required",
-  errorMessageAddressConfidential = "*Do you need to keep the address confidential? is required",
-  errorMessageEmailConfidential = " *Do you need to keep the email address confidential? is required ",
-  errorMessageContactNumberConfidential = "*Do you need to keep the contact number confidential? is required",
 }

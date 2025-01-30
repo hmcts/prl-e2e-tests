@@ -21,6 +21,7 @@ export enum CommonStaticText {
   provideMoreDetails = "Provide more details",
   saveAndContinue = "Save and continue",
   submitRequest = "Submit request",
+  submitApplication = "Submit Application",
   hearingRequest = "Request a hearing",
   startNow = "Start now",
   submitAndContinue = "Submit and continue",

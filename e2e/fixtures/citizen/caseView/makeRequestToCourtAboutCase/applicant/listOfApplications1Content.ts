@@ -21,4 +21,6 @@ export enum ListOfApplications1Content {
   GovukBody7 = "You can ask for this when it may not be safe for you to deliver the court papers to the other person in a domestic abuse case.",
   GovukLink7 = "Apply to the court using form D89",
   next = "2 of 2",
+  formLink = "Apply to the court using form C2",
 }
+
