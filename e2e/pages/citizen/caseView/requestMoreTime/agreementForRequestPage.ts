@@ -57,13 +57,14 @@ export class AgreementForRequestPage {
   private static async fillInFields(
     page: Page,
     agreementForRequest: boolean,
-  ): Promise<void>{
-    if(agreementForRequest) {
+  ): Promise<void> {
+    if (agreementForRequest) {
       await page.check(`${UniqueSelectors.agreementForRequestYes}`);
-    }
-    else {
+    } else {
       await page.check(`${UniqueSelectors.agreementForRequestNo}`);
     }
-    await page.click(`${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,);
+    await page.click(
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
+    );
   }
 }

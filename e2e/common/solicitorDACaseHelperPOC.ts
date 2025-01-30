@@ -4,9 +4,7 @@ import process from "node:process";
 import solicitorCaseData from "../caseData/solicitorDACaseEventData.json";
 import { Helpers } from "./helpers.ts";
 import config from "../config.ts";
-import {
-  ServiceOfApplicationLite
-} from "../journeys/manageCases/caseProgression/serviceOfApplication/serviceOfApplicationLite.ts";
+import { ServiceOfApplicationLite } from "../journeys/manageCases/caseProgression/serviceOfApplication/serviceOfApplicationLite.ts";
 
 /**
  * Function to create a blank DA Solicitor case.

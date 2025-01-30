@@ -45,8 +45,8 @@ export class ReferencePage {
   private static async fillInFields(
     page: Page,
     haveRefNumber: boolean,
-    ): Promise<void>{
-    if(haveRefNumber) {
+  ): Promise<void> {
+    if (haveRefNumber) {
       await page.check(`${UniqueSelectors.haveRefNumberYes}`);
       await Helpers.checkVisibleAndPresent(
         page,
@@ -63,12 +63,15 @@ export class ReferencePage {
         `${Selectors.GovukHint}:text-is("${ReferenceContent.GovukHint}")`,
         1,
       );
-      await page.fill(`${UniqueSelectors.addRefNumber}`, ReferenceContent.refNumber,
+      await page.fill(
+        `${UniqueSelectors.addRefNumber}`,
+        ReferenceContent.refNumber,
       );
-    }
-    else {
+    } else {
       await page.check(`${UniqueSelectors.haveRefNumberNo}`);
     }
-    await page.click(`${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,);
+    await page.click(
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
+    );
   }
 }

@@ -45,8 +45,8 @@ export class UrgentRequestPage {
   private static async fillInFields(
     page: Page,
     reasonUrgentRequest: boolean,
-  ): Promise<void>{
-    if(reasonUrgentRequest) {
+  ): Promise<void> {
+    if (reasonUrgentRequest) {
       await page.check(`${UniqueSelectors.reasonUrgentRequestYes}`);
       await Helpers.checkVisibleAndPresent(
         page,
@@ -58,12 +58,15 @@ export class UrgentRequestPage {
         `${Selectors.GovukHint}:text-is("${UrgentRequestContent.GovukHint}")`,
         1,
       );
-      await page.fill(`${UniqueSelectors.addRefNumber}`, UrgentRequestContent.reasonUrgentRequest,
+      await page.fill(
+        `${UniqueSelectors.addRefNumber}`,
+        UrgentRequestContent.reasonUrgentRequest,
       );
-    }
-    else {
+    } else {
       await page.check(`${UniqueSelectors.reasonUrgentRequestNo}`);
     }
-    await page.click(`${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,);
+    await page.click(
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
+    );
   }
 }

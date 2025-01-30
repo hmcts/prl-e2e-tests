@@ -59,16 +59,50 @@ export class RequestMoreTime {
       isManualSOA: false,
     });
     await page.click(UniqueSelectors.requestToCourtAboutYourCase);
-    await page.locator(`${Selectors.GovukLink}:has-text("${ListOfApplications1Content.formLink}")`).nth(1).click();
-    await GuidanceRespondentPage.guidanceRespondentPage(page, accessibilityTest);
-    await UploadYourApplicationPage.uploadYourApplicationPage(page, accessibilityTest, completedForm);
-    await AgreementForRequestPage.agreementForRequestPage(page, accessibilityTest, agreementForRequest);
-    await HelpWithFeesPage.helpWithFeesPage(page, accessibilityTest, helpWithFees);
+    await page
+      .locator(
+        `${Selectors.GovukLink}:has-text("${ListOfApplications1Content.formLink}")`,
+      )
+      .nth(1)
+      .click();
+    await GuidanceRespondentPage.guidanceRespondentPage(
+      page,
+      accessibilityTest,
+    );
+    await UploadYourApplicationPage.uploadYourApplicationPage(
+      page,
+      accessibilityTest,
+      completedForm,
+    );
+    await AgreementForRequestPage.agreementForRequestPage(
+      page,
+      accessibilityTest,
+      agreementForRequest,
+    );
+    await HelpWithFeesPage.helpWithFeesPage(
+      page,
+      accessibilityTest,
+      helpWithFees,
+    );
     await ReferencePage.referencePage(page, accessibilityTest, haveRefNumber);
     await DocumentUploadPage.documentUploadPage(page, accessibilityTest);
-    await SupportingDocumentsPage.supportingDocumentsPage(page, accessibilityTest, supportingDocuments);
-    await SupportingDocumentUploadPage.supportingDocumentUploadPage(page, accessibilityTest);
-    await UrgentRequestPage.urgentRequestPage(page, accessibilityTest, reasonUrgentRequest);
-    await CheckAnswersRespondentPage.checkAnswersRespondentPage(page, accessibilityTest);
+    await SupportingDocumentsPage.supportingDocumentsPage(
+      page,
+      accessibilityTest,
+      supportingDocuments,
+    );
+    await SupportingDocumentUploadPage.supportingDocumentUploadPage(
+      page,
+      accessibilityTest,
+    );
+    await UrgentRequestPage.urgentRequestPage(
+      page,
+      accessibilityTest,
+      reasonUrgentRequest,
+    );
+    await CheckAnswersRespondentPage.checkAnswersRespondentPage(
+      page,
+      accessibilityTest,
+    );
   }
 }

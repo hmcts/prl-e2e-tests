@@ -412,8 +412,8 @@ export class Helpers {
   }
 
   public static async handleEventBasedOnEnvironment(
-      page: Page,
-      event: c100SolicitorEvents | fl401SolicitorEvents,
+    page: Page,
+    event: c100SolicitorEvents | fl401SolicitorEvents,
   ): Promise<void> {
     const url = page.url();
     if (url.includes("aat")) {

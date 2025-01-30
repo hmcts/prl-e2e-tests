@@ -58,6 +58,8 @@ export class GuidanceRespondentPage {
     }
   }
   private static async startNow(page: Page): Promise<void> {
-    await page.click(`${Selectors.GovukButton}:text-is("${CommonStaticText.startNow}")`,);
+    await page.click(
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.startNow}")`,
+    );
   }
 }

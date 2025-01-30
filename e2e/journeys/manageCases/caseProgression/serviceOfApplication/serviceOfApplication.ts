@@ -25,10 +25,11 @@ interface ServiceOfApplicationJourneyParams {
   responsibleForServing: responsibleForServing;
   manageOrderData: typeof jsonDatas;
   applicationSubmittedBy: applicationSubmittedBy;
+  confidentialityCheck: boolean;
 }
 
 export class ServiceOfApplication {
-  public static async serviceOfApplicationJourney({
+  public static async fullServiceOfApplicationJourney({
     page,
     accessibilityTest,
     ccdRef,
@@ -39,6 +40,7 @@ export class ServiceOfApplication {
     responsibleForServing,
     manageOrderData,
     applicationSubmittedBy,
+    confidentialityCheck,
   }: ServiceOfApplicationJourneyParams): Promise<void> {
     await CompleteTheOrder.completeTheOrder({
       page: page,
@@ -72,6 +74,42 @@ export class ServiceOfApplication {
       page,
       yesNoServiceOfApplication4,
       accessibilityTest,
+      confidentialityCheck,
+    });
+  }
+
+  public static async serviceOfApplicationJourney({
+    page,
+    accessibilityTest,
+    createOrderFL401Options,
+    yesNoServiceOfApplication4,
+    responsibleForServing,
+    applicationSubmittedBy,
+    confidentialityCheck,
+  }: ServiceOfApplicationJourneyParams): Promise<void> {
+    await Helpers.chooseEventFromDropdown(page, "Service of application");
+    await ServiceOfApplication2Page.serviceOfApplication2Page({
+      page,
+      accessibilityTest,
+      createOrderFL401Options,
+    });
+    await ServiceOfApplication4Page.serviceOfApplication4Page({
+      page,
+      accessibilityTest,
+      yesNoServiceOfApplication4,
+      responsibleForServing,
+    });
+    await ServiceOfApplicationSubmitPage.serviceOfApplicationSubmitPage({
+      page,
+      yesNoServiceOfApplication4,
+      accessibilityTest,
+      applicationSubmittedBy,
+    });
+    await ServiceOfApplicationConfirmPage.serviceOfApplicationConfirmPage({
+      page,
+      yesNoServiceOfApplication4,
+      accessibilityTest,
+      confidentialityCheck,
     });
   }
 }

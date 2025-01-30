@@ -9,6 +9,7 @@ interface ServiceOfApplicationConfirmOptions {
   page: Page;
   yesNoServiceOfApplication4: boolean;
   accessibilityTest: boolean;
+  confidentialityCheck: boolean;
 }
 
 export class ServiceOfApplicationConfirmPage {
@@ -16,11 +17,13 @@ export class ServiceOfApplicationConfirmPage {
     page,
     yesNoServiceOfApplication4,
     accessibilityTest,
+    confidentialityCheck,
   }: ServiceOfApplicationConfirmOptions): Promise<void> {
     await this.checkPageLoads({
       page,
       yesNoServiceOfApplication4,
       accessibilityTest,
+      confidentialityCheck,
     });
     await this.fillInFields({ page });
   }
@@ -29,6 +32,7 @@ export class ServiceOfApplicationConfirmPage {
     page,
     yesNoServiceOfApplication4,
     accessibilityTest,
+    confidentialityCheck,
   }: Partial<ServiceOfApplicationConfirmOptions>): Promise<void> {
     if (!page) {
       throw new Error("No page found");
@@ -56,7 +60,7 @@ export class ServiceOfApplicationConfirmPage {
         1,
       ),
     ]);
-    if (yesNoServiceOfApplication4) {
+    if (yesNoServiceOfApplication4 && !confidentialityCheck) {
       await Promise.all([
         Helpers.checkVisibleAndPresent(
           page,
@@ -71,7 +75,20 @@ export class ServiceOfApplicationConfirmPage {
           `${Selectors.p}`,
         ),
       ]);
-    } else {
+    } else if (yesNoServiceOfApplication4 && confidentialityCheck) {
+      await Promise.all([
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.h1}:text-is("${ServiceOfApplicationConfirmContent.confidentialityH1}")`,
+          1,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.p}:text-is("${ServiceOfApplicationConfirmContent.confidentialityP1}")`,
+          1,
+        ),
+      ]);
+    } else if (!yesNoServiceOfApplication4 && !confidentialityCheck) {
       await Promise.all([
         Helpers.checkVisibleAndPresent(
           page,
@@ -85,6 +102,7 @@ export class ServiceOfApplicationConfirmPage {
         ),
       ]);
     }
+
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }
@@ -96,7 +114,6 @@ export class ServiceOfApplicationConfirmPage {
     if (!page) {
       throw new Error("No page found");
     }
-
     await page.click(
       `${Selectors.button}:text-is("${ServiceOfApplicationConfirmContent.closeAndReturnToCaseDetails}")`,
     );

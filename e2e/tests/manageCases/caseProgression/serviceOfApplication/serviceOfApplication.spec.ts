@@ -19,7 +19,7 @@ test.describe("Service of Application task for DA Citizen case tests.", () => {
     page,
     browser,
   }): Promise<void> => {
-    await ServiceOfApplication.serviceOfApplicationJourney({
+    await ServiceOfApplication.fullServiceOfApplicationJourney({
       page: page,
       accessibilityTest: true,
       ccdRef: ccdRef,
@@ -27,6 +27,7 @@ test.describe("Service of Application task for DA Citizen case tests.", () => {
       browser: browser,
       personallyServed: true,
       yesNoServiceOfApplication4: true,
+      confidentialityCheck: false,
       responsibleForServing: "courtBailiff",
       manageOrderData: jsonDatas.manageOrderDataPowerOfArrest,
       applicationSubmittedBy: "Citizen",
@@ -37,7 +38,7 @@ test.describe("Service of Application task for DA Citizen case tests.", () => {
     page,
     browser,
   }): Promise<void> => {
-    await ServiceOfApplication.serviceOfApplicationJourney({
+    await ServiceOfApplication.fullServiceOfApplicationJourney({
       page: page,
       accessibilityTest: true,
       ccdRef: ccdRef,
@@ -45,6 +46,7 @@ test.describe("Service of Application task for DA Citizen case tests.", () => {
       browser: browser,
       personallyServed: false,
       yesNoServiceOfApplication4: true,
+      confidentialityCheck: false,
       responsibleForServing: "courtBailiff",
       manageOrderData: jsonDatas.manageOrderDataAmendDischargedVaried,
       applicationSubmittedBy: "Citizen",

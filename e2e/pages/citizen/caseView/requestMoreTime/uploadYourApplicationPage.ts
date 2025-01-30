@@ -61,6 +61,8 @@ export class UploadYourApplicationPage {
     } else {
       await page.check(`${UniqueSelectors.completedFormNo}`);
     }
-    await page.click(`${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,);
+    await page.click(
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
+    );
   }
 }
