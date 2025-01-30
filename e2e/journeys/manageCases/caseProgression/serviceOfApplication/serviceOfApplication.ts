@@ -11,7 +11,7 @@ import {
   applicationSubmittedBy,
   createOrderFL401Options,
 } from "../../../../common/types.ts";
-import { CompleteTheOrder } from "../completeTheOrder/completeTheOrder.ts";
+import { CompleteTheOrder } from "../manageOrders/completeTheOrder/completeTheOrder.ts";
 import { jsonDatas } from "../../../../common/solicitorCaseCreatorHelper.ts";
 
 interface ServiceOfApplicationJourneyParams {

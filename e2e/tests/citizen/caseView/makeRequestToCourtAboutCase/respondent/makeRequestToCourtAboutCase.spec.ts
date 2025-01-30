@@ -17,9 +17,9 @@ test.describe("Respondent Make a request to the court about your case tests", ()
   });
 
   test("Respondent Make a request to the court about your case page. @regression @accessibility @nightly", async ({
-   page,
-   browser,
- }): Promise<void> => {
+    page,
+    browser,
+  }): Promise<void> => {
     await MakeRequestToCourtAboutCase.makeRequestToCourtAboutCase({
       page: page,
       browser: browser,

@@ -7,7 +7,7 @@ import config from "../../../../config";
 import { MiamPolicyUpgrade6Content } from "../../../../fixtures/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade6Content";
 import { CommonStaticText } from "../../../../common/commonStaticText";
 import { createOrderFL401Options } from "../../../../common/types.ts";
-import { ManageOrders3DAContent } from "../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders3DAContent.ts";
+import { ManageOrders3DAContent } from "../../../../fixtures/manageCases/caseProgression/manageOrders/createAnOrder/OrderDA/manageOrders3DAContent.ts";
 
 interface ServiceOfApplication2Options {
   page: Page;

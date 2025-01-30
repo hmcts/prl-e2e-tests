@@ -17,8 +17,7 @@ export class C100TasksTabPage {
     const url = page.url();
     if (url.includes("preview")) {
       return;
-    }
-    else{
+    } else {
       await this.checkPageLoads(page, accessibilityTest);
     }
   }
