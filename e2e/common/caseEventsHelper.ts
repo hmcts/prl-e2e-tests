@@ -53,7 +53,7 @@ export async function completeEventsUpToServiceOfApplication(
   });
   // wait for response from previous event call before submitting next event
   await page.waitForResponse(
-    `https://manage-case.aat.platform.hmcts.net/data/cases/${caseRef}/events`,
+    `https://xui-webapp-pr-4183.preview.platform.hmcts.net/data/cases/${caseRef}/events`,
   );
   await submitEvent(
     page,
