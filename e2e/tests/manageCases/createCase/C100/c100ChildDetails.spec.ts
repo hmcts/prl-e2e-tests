@@ -4,7 +4,7 @@ import { C100ChildDetails } from "../../../../journeys/manageCases/createCase/C1
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-test.describe("C100 Create case child details tests", (): void => {
+test.describe("C100 Create case as a solicitor - child details tests", (): void => {
   test(`Complete the C100 child details event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,

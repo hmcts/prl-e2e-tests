@@ -4,7 +4,7 @@ import { Fl401StatementOfTruth } from "../../../../journeys/manageCases/createCa
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-test.describe("FL401 Statement of truth tests", (): void => {
+test.describe("FL401 create case as a solicitor - Statement of truth tests", (): void => {
   // Triple timeout for these slow tests
   test.slow();
 

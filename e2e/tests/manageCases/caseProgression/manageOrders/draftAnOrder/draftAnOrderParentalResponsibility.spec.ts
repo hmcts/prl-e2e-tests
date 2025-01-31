@@ -4,7 +4,7 @@ import { DraftAnOrder } from "../../../../../journeys/manageCases/caseProgressio
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-test.describe("Draft a parental responsibility order tests", (): void => {
+test.describe("Draft a parental responsibility order tests as a solicitor for solicitor CA case", (): void => {
   // Triple timeout for these slow tests
   test.slow();
 

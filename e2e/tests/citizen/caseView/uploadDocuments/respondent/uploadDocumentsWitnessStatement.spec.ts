@@ -7,7 +7,7 @@ import { UploadDocumentsWitnessStatement } from "../../../../../journeys/citizen
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
-test.describe("Applicant upload documents position statement tests", (): void => {
+test.describe("Respondent upload documents position statement in citizen dashboard tests for citizen DA case", (): void => {
   test.slow();
   let ccdRef: string;
 
@@ -16,7 +16,7 @@ test.describe("Applicant upload documents position statement tests", (): void =>
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
   });
 
-  test("Applicant upload documents position statement page. @regression @accessibility @nightly", async ({
+  test("Respondent upload documents position statement page. @regression @accessibility @nightly", async ({
     page,
     browser,
   }): Promise<void> => {
@@ -24,7 +24,7 @@ test.describe("Applicant upload documents position statement tests", (): void =>
       page: page,
       browser: browser,
       caseRef: ccdRef,
-      accessibilityTest: false,
+      accessibilityTest: true,
       isApplicant: false,
       yesNoNA: "Yes",
       applicationSubmittedBy: "Citizen",

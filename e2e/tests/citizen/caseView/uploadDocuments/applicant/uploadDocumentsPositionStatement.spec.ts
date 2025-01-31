@@ -7,7 +7,7 @@ import { UploadDocumentsPositionStatement } from "../../../../../journeys/citize
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
-test.describe("Applicant upload documents position statement tests", (): void => {
+test.describe("Applicant upload documents position statement in citizen dashboard tests for citizen DA case", (): void => {
   test.slow();
   let ccdRef: string;
 
@@ -24,7 +24,7 @@ test.describe("Applicant upload documents position statement tests", (): void =>
       page: page,
       browser: browser,
       caseRef: ccdRef,
-      accessibilityTest: false,
+      accessibilityTest: true,
       isApplicant: true,
       yesNoNA: "Yes",
       applicationSubmittedBy: "Citizen",

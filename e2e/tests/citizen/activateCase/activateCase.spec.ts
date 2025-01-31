@@ -7,7 +7,7 @@ import Config from "../../../config.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
-test.describe("Activating case tests", (): void => {
+test.describe("Activating case tests for citizen DA case", (): void => {
   test.slow();
   let ccdRef: string;
 

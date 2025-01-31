@@ -7,7 +7,7 @@ import { CheckTheApplication } from "../../../../../journeys/citizen/caseView/ch
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
-test.describe("Respondent confirm contact details tests", (): void => {
+test.describe("Respondent confirm contact details in citizen dashboard tests for citizen DA case", (): void => {
   let ccdRef: string;
 
   test.beforeEach(async ({ page }) => {

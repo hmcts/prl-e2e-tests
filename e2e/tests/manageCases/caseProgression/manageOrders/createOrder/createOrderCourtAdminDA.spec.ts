@@ -4,9 +4,9 @@ import { FL401CreateAnOrder } from "../../../../../journeys/manageCases/caseProg
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
-test.describe("Create an order tests", (): void => {
-  test(`Complete Creating an order as a Caseworker with the following options:
-  Case: C100,
+test.describe("Create an order tests as a court admin for solicitor DA case", (): void => {
+  test(`Complete Creating an order as a court admin with the following options:
+  Case: FL401,
   Not accessibility testing
   yesNoManageOrders: true,
   howLongWillOrderBeInForce: "untilNextHearing"
@@ -26,8 +26,8 @@ test.describe("Create an order tests", (): void => {
     });
   });
 
-  test(`Complete Creating an order as a Caseworker with the following options:
-  Case: C100,
+  test(`Complete Creating an order as a court admin with the following options:
+  Case: FL401,
   No Accessibility testing
   yesNoManageOrders: true,
   howLongWillOrderBeInForce: "noEndDate"
@@ -47,8 +47,8 @@ test.describe("Create an order tests", (): void => {
     });
   });
 
-  test(`Complete Creating an order as a Caseworker with the following options:
-  Case: C100,
+  test(`Complete Creating an order as a court admin with the following options:
+  Case: FL401,
   No Accessibility testing
   yesNoManageOrders: true,
   howLongWillOrderBeInForce: "specificDate"
@@ -67,8 +67,8 @@ test.describe("Create an order tests", (): void => {
       createOrderManageOrders19Options: "dateToBeFixed",
     });
   });
-  test(`Complete Creating an order as a Caseworker with the following options:
-  Case: C100,
+  test(`Complete Creating an order as a court admin with the following options:
+  Case: FL401,
   Accessibility testing: yes
   yesNoManageOrders: true,
   howLongWillOrderBeInForce: "untilNextHearing"

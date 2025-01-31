@@ -7,7 +7,7 @@ import { JudgeManageOrderJourney } from "../../../../../journeys/manageCases/cas
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
-test.describe("Judge upload an order tests.", () => {
+test.describe("Judge upload an order tests for citizen DA case.", () => {
   let ccdRef: string;
 
   test.beforeEach(async ({ page }) => {

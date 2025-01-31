@@ -4,7 +4,7 @@ import { C100HearingUrgency } from "../../../../journeys/manageCases/createCase/
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-test.describe("C100 Create case hearing urgency tests", (): void => {
+test.describe("C100 Create case as a solicitor - hearing urgency tests", (): void => {
   test(`Complete the C100 hearing urgency event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,

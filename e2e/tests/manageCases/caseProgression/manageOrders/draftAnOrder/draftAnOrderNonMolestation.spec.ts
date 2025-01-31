@@ -4,7 +4,7 @@ import { DraftAnOrder } from "../../../../../journeys/manageCases/caseProgressio
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-test.describe("Draft a non molestation order tests", (): void => {
+test.describe("Draft a non molestation order tests as a solicitor for solicitor DA case", (): void => {
   test(`Complete Drafting a non molestation order as a solicitor with the following options:
   No to all options,
   No respondent checkbox actions ticked,

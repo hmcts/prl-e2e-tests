@@ -4,7 +4,7 @@ import { C100OtherChildrenNotInTheCase } from "../../../../journeys/manageCases/
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-test.describe("C100 Create case Other children not in the case tests", (): void => {
+test.describe("C100 Create case as a solicitor - Other children not in the case tests", (): void => {
   test(`Complete the C100 Other children not in the case event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,

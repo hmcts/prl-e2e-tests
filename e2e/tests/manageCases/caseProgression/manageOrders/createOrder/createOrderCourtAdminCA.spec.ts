@@ -4,8 +4,8 @@ import { C100CreateAnOrder } from "../../../../../journeys/manageCases/caseProgr
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
-test.describe("Create an order tests", (): void => {
-  test(`Complete Creating an order as a Caseworker with the following options:
+test.describe("Create an order tests as a court admin for solicitor CA case", (): void => {
+  test(`Complete Creating an order as a court admin with the following options:
   Case: C100,
   Not accessibility testing. 
   @regression`, async ({ page }): Promise<void> => {
@@ -15,7 +15,7 @@ test.describe("Create an order tests", (): void => {
       solicitorCaseCreateType: "C100",
     });
   });
-  test(`Complete Creating an order as a Caseworker with the following options:
+  test(`Complete Creating an order as a court admin with the following options:
   Case: C100,
   Accessibility testing: yes. 
   @nightly @accessibility`, async ({ page }): Promise<void> => {

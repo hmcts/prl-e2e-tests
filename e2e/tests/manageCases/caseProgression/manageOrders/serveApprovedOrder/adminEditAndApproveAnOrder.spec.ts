@@ -4,7 +4,7 @@ import { AdminEditAndApproveAnOrder } from "../../../../../journeys/manageCases/
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-test.describe("Serve approved DA order tests @manageCases", (): void => {
+test.describe("Serve approved DA order tests as a solicitor for solicitor DA case", (): void => {
   test.slow();
   test(`Complete serve an order that is personally served with the following options:
   Case: FL401,

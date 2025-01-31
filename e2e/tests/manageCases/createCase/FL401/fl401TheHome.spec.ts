@@ -4,7 +4,7 @@ import Config from "../../../../config";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-test.describe("FL401 Create cases The Home tests", (): void => {
+test.describe("FL401 Create cases as a solicitor - The Home tests", (): void => {
   test(`Complete the FL401 The Home Journey with the following options:
         Not accessibility testing, 
         Not Error Messaging (There isn't any), 

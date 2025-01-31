@@ -4,7 +4,7 @@ import Config from "../../../../config";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-test.describe("C100 Create case Children and respondents Tests", (): void => {
+test.describe("C100 Create case as a solicitor - Children and respondents Tests", (): void => {
   test(`Complete the C100 Create case Children and respondents as a solicitor with the following options:
   Not Accessibility testing,
   Error message testing,

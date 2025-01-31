@@ -7,14 +7,14 @@ import { ListWithNotice } from "../../../../journeys/manageCases/caseProgression
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
-test.describe("List with notice tests", () => {
+test.describe("List with notice tests as a judge for a citizen DA case", () => {
   let ccdRef: string;
   test.beforeEach(async ({ page }) => {
     ccdRef = await createDaCitizenCourtNavCase(true, false);
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
   });
 
-  test(`Complete list with notice event. @regression @accessibility @nightly`, async ({
+  test(`Complete list with notice event as a judge for a citizen DA case. @regression @accessibility @nightly`, async ({
     page,
     browser,
   }): Promise<void> => {

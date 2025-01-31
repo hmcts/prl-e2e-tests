@@ -7,7 +7,7 @@ import { KeepDetailsPrivate } from "../../../../../journeys/citizen/caseView/kee
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
-test.describe("Applicant keep details private tests", (): void => {
+test.describe("Applicant keep details private in citizen dashboard tests for citizen DA case", (): void => {
   test.slow();
   let ccdRef: string;
 

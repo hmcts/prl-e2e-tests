@@ -4,7 +4,7 @@ import { FL401WelshLanguageRequirements } from "../../../../journeys/manageCases
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-test.describe("FL401 Create case welsh language requirements tests", (): void => {
+test.describe("FL401 Create case as a solicitor - welsh language requirements tests", (): void => {
   test(`Complete the FL401 welsh language requirements event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,

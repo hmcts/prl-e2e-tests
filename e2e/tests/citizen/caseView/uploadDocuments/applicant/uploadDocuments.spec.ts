@@ -1,13 +1,13 @@
 import { test } from "@playwright/test";
-import Config from "../../../../config.ts";
-import config from "../../../../config.ts";
-import createDaCitizenCourtNavCase from "../../../../common/createCaseHelper.ts";
-import { Helpers } from "../../../../common/helpers.ts";
-import { Upload } from "../../../../journeys/citizen/caseView/uploadDocuments/upload.ts";
+import Config from "../../../../../config.ts";
+import config from "../../../../../config.ts";
+import createDaCitizenCourtNavCase from "../../../../../common/createCaseHelper.ts";
+import { Helpers } from "../../../../../common/helpers.ts";
+import { Upload } from "../../../../../journeys/citizen/caseView/uploadDocuments/upload.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
-test.describe("Applicant upload documents tests", (): void => {
+test.describe("Applicant upload documents in citizen dashboard tests for citizen DA case", (): void => {
   test.slow();
   let ccdRef: string;
 

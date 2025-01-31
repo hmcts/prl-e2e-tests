@@ -7,7 +7,7 @@ import { ReasonableAdjustments } from "../../../../../journeys/citizen/caseView/
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
-test.describe("Respondent reasonable adjustments tests", (): void => {
+test.describe("Respondent reasonable adjustments in citizen dashboard tests for citizen DA case", (): void => {
   test.slow();
   let ccdRef: string;
 

@@ -4,7 +4,7 @@ import { DummyPaymentAwp } from "../../../../journeys/manageCases/caseProgressio
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-test.describe("FL401 Dummy payment for AWP tests", (): void => {
+test.describe("Solicitor created FL401 - Dummy payment for AWP tests", (): void => {
   test(`Complete the Dummy payment for AWP action as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
@@ -20,7 +20,7 @@ test.describe("FL401 Dummy payment for AWP tests", (): void => {
     });
   });
 
-  test(`Complete the Dummy payment for AWP action  as a solicitor with the following options:
+  test(`Complete the Dummy payment for AWP action as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
   Not Payment status paid. @regression`, async ({ page }): Promise<void> => {

@@ -4,7 +4,7 @@ import { C100WelshLanguageRequirements } from "../../../../journeys/manageCases/
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-test.describe("C100 Create case Welsh Language Requirements Tests", (): void => {
+test.describe("C100 Create case as a solicitor - Welsh Language Requirements Tests", (): void => {
   test(`Complete the C100 Create case Welsh Language Requirements as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,

@@ -4,7 +4,7 @@ import { FL401RespondentDetails } from "../../../../journeys/manageCases/createC
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-test.describe("FL401 Create case respondent details tests", (): void => {
+test.describe("FL401 Create case as a solicitor - respondent details tests", (): void => {
   test(`Complete the FL401 respondent details event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,

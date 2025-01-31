@@ -4,7 +4,7 @@ import { FL401RespondentsBehaviour } from "../../../../journeys/manageCases/crea
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-test.describe("FL401 Create case respondent’s behaviour tests", (): void => {
+test.describe("FL401 Create case as a solicitor - respondent’s behaviour tests", (): void => {
   test(`Complete the FL401 respondent’s behaviour event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing @regression`, async ({ page }): Promise<void> => {

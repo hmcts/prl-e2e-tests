@@ -4,7 +4,7 @@ import { FL401CaseTabs } from "../../../journeys/manageCases/caseTabs/fl401CaseT
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-test.describe("FL401 Case tabs", (): void => {
+test.describe("FL401 Case tabs as a court admin for solicitor created CA case", (): void => {
   test(`FL401 Case tabs with the following options:
   Not Accessibility testing,
   Not Error message testing,

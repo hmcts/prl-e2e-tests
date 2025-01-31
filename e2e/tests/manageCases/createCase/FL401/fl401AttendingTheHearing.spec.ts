@@ -4,7 +4,7 @@ import { Fl401AttendingTheHearing } from "../../../../journeys/manageCases/creat
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-test.describe("FL401 Create case respondent’s behaviour tests", (): void => {
+test.describe("FL401 Create case as a solicitor - respondent’s behaviour tests", (): void => {
   test(`FL401 Attending The Hearing Journey with the following options:
   Not Accessibility testing,
   Not error Messaging,

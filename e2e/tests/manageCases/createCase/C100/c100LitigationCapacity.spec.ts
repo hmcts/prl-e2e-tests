@@ -4,7 +4,7 @@ import { C100LitigationCapacity } from "../../../../journeys/manageCases/createC
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-test.describe("C100 Create case Litigation Capacity Tests", (): void => {
+test.describe("C100 Create case as a solicitor - Litigation Capacity Tests", (): void => {
   test(`Complete the C100 Litigation Capacity as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,

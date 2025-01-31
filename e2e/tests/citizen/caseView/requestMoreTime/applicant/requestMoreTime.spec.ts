@@ -7,7 +7,7 @@ import { RequestMoreTime } from "../../../../../journeys/citizen/caseView/reques
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
-test.describe("Applicant Request more time to do what is required by a court order tests", (): void => {
+test.describe("Applicant Request more time to do what is required by a court order in citizen dashboard tests for citizen DA case", (): void => {
   test.slow();
   let ccdRef: string;
 
@@ -16,7 +16,7 @@ test.describe("Applicant Request more time to do what is required by a court ord
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
   });
 
-  test("Applicant Request more time without fees. @regression @nightly", async ({
+  test("Applicant Request more time without fees. @accessibility @regression @nightly", async ({
     page,
     browser,
   }): Promise<void> => {
@@ -24,7 +24,7 @@ test.describe("Applicant Request more time to do what is required by a court ord
       page: page,
       browser: browser,
       caseRef: ccdRef,
-      accessibilityTest: false,
+      accessibilityTest: true,
       isApplicant: true,
       applicationSubmittedBy: "Citizen",
       completedForm: true,
