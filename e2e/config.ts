@@ -41,6 +41,21 @@ export class Config {
     process.env.MANAGE_CASES_BASE_URL ||
     "https://manage-case.aat.platform.hmcts.net/cases";
 
+  public static getEnvironment(url: string): string {
+    return (
+      ["aat", "demo", "preview"].find((env) => url.includes(env)) || "unknown"
+    );
+  }
+
+  public static setEnvironmentVariables(): void {
+    process.env.CITIZEN_TEST_ENV = this.getEnvironment(
+      this.citizenFrontendBaseURL,
+    );
+    process.env.MANAGE_CASES_TEST_ENV = this.getEnvironment(
+      this.manageCasesBaseURL,
+    );
+  }
+
   public static readonly testFile: string = path.resolve(
     __dirname,
     "./assets/mockFile.txt",
@@ -66,5 +81,7 @@ export class Config {
     return this.userCredentials[role];
   }
 }
+
+Config.setEnvironmentVariables();
 
 export default Config;

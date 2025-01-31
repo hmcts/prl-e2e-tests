@@ -50,6 +50,8 @@ export class CheckAnswersApplicantPage {
     }
   }
   private static async submitApplication(page: Page): Promise<void> {
-    await page.click(`${Selectors.GovukButton}:text-is("${CommonStaticText.submitApplication}")`,);
+    await page.click(
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.submitApplication}")`,
+    );
   }
 }

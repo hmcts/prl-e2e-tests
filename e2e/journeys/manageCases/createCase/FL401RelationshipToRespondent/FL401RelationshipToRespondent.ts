@@ -39,7 +39,10 @@ export class FL401RelationshipToRespondent {
         errorMessaging: false,
       });
     }
-    await Helpers.selectSolicitorEvent(page, "Relationship to respondent");
+    await Helpers.handleEventBasedOnEnvironment(
+      page,
+      "Relationship to respondent",
+    );
     await RelationshipToRespondent1Page.relationshipToRespondent1Page({
       page: page,
       accessibilityTest: accessibilityTest,

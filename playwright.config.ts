@@ -32,7 +32,7 @@ module.exports = defineConfig({
         channel: "chromium",
         screenshot: "off",
         video: "off",
-        trace: "on-first-retry",
+        trace: "on-all-retries",
         javaScriptEnabled: true,
         viewport: DEFAULT_VIEWPORT,
       },

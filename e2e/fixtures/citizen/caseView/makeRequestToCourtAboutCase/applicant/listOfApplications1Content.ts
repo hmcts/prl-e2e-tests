@@ -23,4 +23,3 @@ export enum ListOfApplications1Content {
   next = "2 of 2",
   formLink = "Apply to the court using form C2",
 }
-

@@ -53,14 +53,41 @@ export class RequestMoreTime {
       isManualSOA: false,
     });
     await page.click(UniqueSelectors.requestToCourtAboutYourCase);
-    await page.locator(`${Selectors.GovukLink}:has-text("${ListOfApplications1Content.formLink}")`).nth(1).click();
+    await page
+      .locator(
+        `${Selectors.GovukLink}:has-text("${ListOfApplications1Content.formLink}")`,
+      )
+      .nth(1)
+      .click();
     await GuidanceApplicantPage.guidanceApplicantPage(page, accessibilityTest);
-    await UploadYourApplicationPage.uploadYourApplicationPage(page, accessibilityTest, completedForm);
-    await AgreementForRequestPage.agreementForRequestPage(page, accessibilityTest, agreementForRequest);
+    await UploadYourApplicationPage.uploadYourApplicationPage(
+      page,
+      accessibilityTest,
+      completedForm,
+    );
+    await AgreementForRequestPage.agreementForRequestPage(
+      page,
+      accessibilityTest,
+      agreementForRequest,
+    );
     await DocumentUploadPage.documentUploadPage(page, accessibilityTest);
-    await SupportingDocumentsPage.supportingDocumentsPage(page, accessibilityTest, supportingDocuments);
-    await SupportingDocumentUploadPage.supportingDocumentUploadPage(page, accessibilityTest);
-    await UrgentRequestPage.urgentRequestPage(page, accessibilityTest, reasonUrgentRequest);
-    await CheckAnswersApplicantPage.checkAnswersApplicantPage(page, accessibilityTest);
+    await SupportingDocumentsPage.supportingDocumentsPage(
+      page,
+      accessibilityTest,
+      supportingDocuments,
+    );
+    await SupportingDocumentUploadPage.supportingDocumentUploadPage(
+      page,
+      accessibilityTest,
+    );
+    await UrgentRequestPage.urgentRequestPage(
+      page,
+      accessibilityTest,
+      reasonUrgentRequest,
+    );
+    await CheckAnswersApplicantPage.checkAnswersApplicantPage(
+      page,
+      accessibilityTest,
+    );
   }
 }

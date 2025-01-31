@@ -34,9 +34,7 @@ import { OtherPersonManualPage } from "../../../../../pages/citizen/createCase/C
 import { MainlyLiveWithPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/otherPeople/mainlyLiveWithPage";
 import { LivingArrangementsPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/otherPeople/livingArrangementsPage";
 import { RespondentRelationshipToChildPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/respondent/respondentDetailsRelationshipToChildPage.ts";
-import {
-  OtherPersonDetailsConfidentiality
-} from "../../../../../pages/citizen/createCase/C100/casePartyDetails/otherPeople/otherPersonDetailsConfidentialityPage.ts";
+import { OtherPersonDetailsConfidentiality } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/otherPeople/otherPersonDetailsConfidentialityPage.ts";
 
 interface c100CasePartyDetailsOptions {
   page: Page;
@@ -100,7 +98,7 @@ export class C100CasePartyDetails {
     c100OtherPersonRelationship,
     c100OtherPersonLivesInRefuge,
     c100ChildMainlyLivesWith,
-                                             C100YesNoConfidentiality
+    C100YesNoConfidentiality,
   }: c100CasePartyDetailsOptions): Promise<void> {
     await ApplicantPersonalDetailsPage.applicantPersonalDetailsPage({
       page: page,
@@ -306,11 +304,13 @@ export class C100CasePartyDetails {
       c100ChildMainlyLivesWith: c100ChildMainlyLivesWith,
     });
     if (c100ChildMainlyLivesWith === "otherPerson") {
-      await OtherPersonDetailsConfidentiality.otherPersonDetailsConfidentiality({
-        page: page,
-        accessibilityTest: accessibilityTest,
-        C100YesNoConfidentiality: C100YesNoConfidentiality
-      })
+      await OtherPersonDetailsConfidentiality.otherPersonDetailsConfidentiality(
+        {
+          page: page,
+          accessibilityTest: accessibilityTest,
+          C100YesNoConfidentiality: C100YesNoConfidentiality,
+        },
+      );
     }
   }
 }
