@@ -4,7 +4,7 @@ import { C100ChildrenAndOtherPeople } from "../../../../journeys/manageCases/cre
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-test.describe("C100 Create case Children and respondents Tests", (): void => {
+test.describe("C100 Create case as a solicitor - Children and respondents Tests", (): void => {
   test(`Complete the C100 Create case Children and Other people as a solicitor with the following options:
   Not Accessibility testing,
   Error message testing,

@@ -7,7 +7,7 @@ import { ViewAllDocuments } from "../../../../../journeys/citizen/caseView/viewA
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
-test.describe("Applicant view all documents tests", (): void => {
+test.describe("Applicant view all documents in citizen dashboard tests for citizen DA case", (): void => {
   test.slow();
   let ccdRef: string;
 
@@ -16,21 +16,7 @@ test.describe("Applicant view all documents tests", (): void => {
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
   });
 
-  test("Applicant view all documents. @regression @nightly", async ({
-    page,
-    browser,
-  }): Promise<void> => {
-    await ViewAllDocuments.applicantViewAllDocuments({
-      page: page,
-      browser: browser,
-      accessibilityTest: false,
-      caseRef: ccdRef,
-      isApplicant: true,
-      applicationSubmittedBy: "Citizen",
-    });
-  });
-
-  test("Applicant view all documents. @regression @accessibility", async ({
+  test("Applicant view all documents. @accessibility @regression @nightly", async ({
     page,
     browser,
   }): Promise<void> => {

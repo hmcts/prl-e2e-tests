@@ -7,7 +7,7 @@ import { AmendApplicantDetails } from "../../../../journeys/manageCases/caseProg
 
 test.use({ storageState: Config.sessionStoragePath + "courtAdminStoke.json" });
 
-test.describe("Complete amend applicant details event as a court admin", () => {
+test.describe("Complete amend applicant details event as a court admin for citizen DA case", () => {
   let ccdRef: string = "";
 
   test.beforeEach(async ({ page }) => {

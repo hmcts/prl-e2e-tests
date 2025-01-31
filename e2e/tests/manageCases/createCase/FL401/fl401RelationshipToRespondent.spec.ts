@@ -4,7 +4,7 @@ import { FL401RelationshipToRespondent } from "../../../../journeys/manageCases/
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-test.describe("FL401 Create case relationship to respondent tests", (): void => {
+test.describe("FL401 Create case as a solicitor - relationship to respondent tests", (): void => {
   test(`Complete the FL401 relationship to respondent event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,

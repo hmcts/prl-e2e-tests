@@ -8,7 +8,7 @@ import { ServiceOfApplication } from "../../../../journeys/manageCases/caseProgr
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
-test.describe("Service of Application task for DA Citizen case tests.", () => {
+test.describe("Service of Application task as a court admin for DA Citizen case tests.", () => {
   let ccdRef: string = "";
   test.beforeEach(async ({ page }) => {
     ccdRef = await createDaCitizenCourtNavCase(true, false);

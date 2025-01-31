@@ -5,7 +5,7 @@ import { FL401 } from "../../../journeys/manageCases/createCase/FL401";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-test.describe("Manage cases case solicitor create case tests.", (): void => {
+test.describe("Manage cases case solicitor create case e2e tests.", (): void => {
   // Triple timeout for these slow tests
   test.slow();
 

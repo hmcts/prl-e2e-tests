@@ -1,6 +1,6 @@
 import { Browser, Page } from "@playwright/test";
 import { solicitorCaseCreateType } from "../../../common/types";
-import { DummyPaymentAwp } from "../caseWorker/dummyPayment/dummyPaymentAwp";
+import { DummyPaymentAwp } from "../caseProgression/dummyPayment/dummyPaymentAwp";
 import { FL401SummaryTabPage } from "../../../pages/manageCases/caseTabs/FL401/fl401SummaryTabPage";
 import { Helpers } from "../../../common/helpers";
 import Config from "../../../config";

@@ -7,7 +7,7 @@ import config from "../../../../config.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
-test.describe("Complete Task - Review Documents for DA case tests.", () => {
+test.describe("Complete Task - Review Documents that were uploaded by a citizen in the citizen dashboard and review as a as a court admin for citizen DA case tests .", () => {
   let ccdRef: string = "";
 
   test.beforeEach(async ({ page }) => {

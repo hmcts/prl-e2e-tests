@@ -4,7 +4,7 @@ import { C100InternationalElement } from "../../../../journeys/manageCases/creat
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-test.describe("C100 Create case International Element Tests", (): void => {
+test.describe("C100 Create case as a solicitor - International Element Tests", (): void => {
   test(`Complete the C100 International Element as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,

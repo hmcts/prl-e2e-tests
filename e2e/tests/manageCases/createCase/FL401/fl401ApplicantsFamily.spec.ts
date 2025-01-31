@@ -4,7 +4,7 @@ import { FL401ApplicantsFamily } from "../../../../journeys/manageCases/createCa
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-test.describe("FL401 Create case applicants family tests", (): void => {
+test.describe("FL401 Create case as a solicitor - applicants family tests", (): void => {
   test(`Complete the FL401 applicants family event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,

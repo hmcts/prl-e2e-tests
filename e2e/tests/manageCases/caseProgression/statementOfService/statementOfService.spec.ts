@@ -8,7 +8,7 @@ import { jsonDatas } from "../../../../common/solicitorCaseCreatorHelper.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
-test.describe("Complete the Order task for DA Citizen case tests.", () => {
+test.describe("Complete the Order task for DA Citizen case tests as a court admin.", () => {
   let ccdRef: string = "";
 
   test.beforeEach(async ({ page }) => {

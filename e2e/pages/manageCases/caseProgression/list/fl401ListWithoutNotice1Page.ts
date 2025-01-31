@@ -3,7 +3,7 @@ import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper"
 import { Selectors } from "../../../../common/selectors";
 import { Helpers } from "../../../../common/helpers";
 import { CommonStaticText } from "../../../../common/commonStaticText";
-import { Fl401ListWithoutNotice1Content } from "../../../../fixtures/manageCases/caseProgression/List/fl401ListWithoutNotice1Content";
+import { Fl401ListWithoutNotice1Content } from "../../../../fixtures/manageCases/caseProgression/list/fl401ListWithoutNotice1Content";
 
 enum UniqueSelectors {
   hearingInstructionsTextBox = "#listWithoutNoticeHearingInstruction",

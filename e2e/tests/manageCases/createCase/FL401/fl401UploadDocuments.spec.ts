@@ -4,7 +4,7 @@ import { FL401UploadDocuments } from "../../../../journeys/manageCases/createCas
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-test.describe("FL401 Create case Upload Documents tests", (): void => {
+test.describe("FL401 Create case as a solicitor - Upload Documents tests", (): void => {
   test(`FL401 Upload Documents journey with following options:
   Not accessibility testing,
   Not error messaging`, async ({ page }): Promise<void> => {

@@ -4,7 +4,7 @@ import { FL401WithoutNoticeOrder } from "../../../../journeys/manageCases/create
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-test.describe("FL401 Create case without notice order tests", (): void => {
+test.describe("FL401 Create case as a solicitor - without notice order tests", (): void => {
   test(`Complete the FL401 without notice order event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
