@@ -1,14 +1,10 @@
 import { Selectors } from "../../../../common/selectors.ts";
-import {
-  ConfidentialityCheck1Content
-} from "../../../../fixtures/manageCases/caseProgression/confidentialityCheck/confidentialityCheck1Content.ts";
+import { ConfidentialityCheck1Content } from "../../../../fixtures/manageCases/caseProgression/confidentialityCheck/confidentialityCheck1Content.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
 import { Page } from "@playwright/test";
-import {
-  ConfidentialityCheckSubmitContent
-} from "../../../../fixtures/manageCases/caseProgression/confidentialityCheck/confidentialityCheckSubmitContent.ts";
+import { ConfidentialityCheckSubmitContent } from "../../../../fixtures/manageCases/caseProgression/confidentialityCheck/confidentialityCheckSubmitContent.ts";
 
 interface ConfidentialityCheck1PageParams {
   page: Page;
@@ -18,15 +14,19 @@ interface ConfidentialityCheck1PageParams {
 
 export class ConfidenitalityCheckSubmitPage {
   public static async confidentialityCheckSubmitPage({
-                                              page,
-                                              accessibilityTest,
-                                              yesNoConfidentialityCheck,
-                                            }: ConfidentialityCheck1PageParams): Promise<void> {
-    await this.checkPageLoads({page, accessibilityTest});
-    await this.fillInFields({page, yesNoConfidentialityCheck});
+    page,
+    accessibilityTest,
+    yesNoConfidentialityCheck,
+  }: ConfidentialityCheck1PageParams): Promise<void> {
+    await this.checkPageLoads({ page, accessibilityTest });
+    await this.fillInFields({ page, yesNoConfidentialityCheck });
   }
 
-  private static async checkPageLoads({page, accessibilityTest, yesNoConfidentialityCheck}: Partial<ConfidentialityCheck1PageParams>): Promise<void> {
+  private static async checkPageLoads({
+    page,
+    accessibilityTest,
+    yesNoConfidentialityCheck,
+  }: Partial<ConfidentialityCheck1PageParams>): Promise<void> {
     if (!page) {
       throw new Error("No page specified");
     }
@@ -38,14 +38,14 @@ export class ConfidenitalityCheckSubmitPage {
       page,
       `${Selectors.h2}:text-is("${ConfidentialityCheckSubmitContent.h2}")`,
       1,
-    )
+    );
     if (yesNoConfidentialityCheck) {
       await Helpers.checkGroup(
         page,
         4,
         ConfidentialityCheckSubmitContent,
         "yesText16",
-        Selectors.GovukText16
+        Selectors.GovukText16,
       );
     } else {
       await Promise.all([
@@ -54,13 +54,13 @@ export class ConfidenitalityCheckSubmitPage {
           5,
           ConfidentialityCheckSubmitContent,
           "noText16",
-          Selectors.GovukText16
+          Selectors.GovukText16,
         ),
         Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukLabel}:text-is("${ConfidentialityCheckSubmitContent.yesText164}")`,
           2,
-        )
+        ),
       ]);
     }
     if (accessibilityTest) {
@@ -68,7 +68,9 @@ export class ConfidenitalityCheckSubmitPage {
     }
   }
 
-  private static async fillInFields({ page }: Partial<ConfidentialityCheck1PageParams>): Promise<void> {
+  private static async fillInFields({
+    page,
+  }: Partial<ConfidentialityCheck1PageParams>): Promise<void> {
     if (!page) {
       throw new Error("No page specified");
     }

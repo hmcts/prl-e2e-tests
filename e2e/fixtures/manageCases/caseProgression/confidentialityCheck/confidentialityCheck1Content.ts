@@ -25,12 +25,12 @@ export enum ConfidentialityCheck1Content {
   text1615 = "C8_Document.pdf",
   text1616 = "mockFile.pdf",
   caseFieldLabel1 = "C8 Document",
-  caseFieldLabel2 ="C8 Document (Welsh)",
+  caseFieldLabel2 = "C8 Document (Welsh)",
   caseFieldLabel3 = "Respondent 1 English c8 Document",
   caseFieldLabel4 = "Respondent 1 Welsh c8 Document",
   caseFieldLabel5 = "Applicant 1 Refuge C8 Document",
   caseFieldLabel6 = "Respondent 1 Refuge C8 Document",
   formLabel = "Can the application be served?",
   hiddenFormLabel = "Give reasons why the application cannot be served",
-  inputText = "loremIpsum"
+  inputText = "loremIpsum",
 }
