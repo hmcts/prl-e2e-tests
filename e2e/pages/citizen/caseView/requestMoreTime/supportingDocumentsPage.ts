@@ -50,13 +50,14 @@ export class SupportingDocumentsPage {
   private static async fillInFields(
     page: Page,
     supportingDocuments: boolean,
-  ): Promise<void>{
-    if(supportingDocuments) {
+  ): Promise<void> {
+    if (supportingDocuments) {
       await page.check(`${UniqueSelectors.supportingDocumentsYes}`);
-    }
-    else {
+    } else {
       await page.check(`${UniqueSelectors.supportingDocumentsNo}`);
     }
-    await page.click(`${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,);
+    await page.click(
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
+    );
   }
 }

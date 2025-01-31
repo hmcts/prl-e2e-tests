@@ -31,7 +31,7 @@ export class FL401ViewPDFApplication {
         errorMessaging: false,
       });
     }
-    await Helpers.selectSolicitorEvent(page, "View PDF application");
+    await Helpers.handleEventBasedOnEnvironment(page, "View PDF application");
     await ViewPDFApplicationPage.viewPDFApplicationPage(
       page,
       // errorMessaging,
