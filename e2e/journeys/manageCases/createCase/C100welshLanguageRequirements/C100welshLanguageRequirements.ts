@@ -36,7 +36,10 @@ export class C100WelshLanguageRequirements {
         errorMessaging: false,
       });
     }
-    await Helpers.handleEventBasedOnEnvironment(page, "Welsh language requirements");
+    await Helpers.handleEventBasedOnEnvironment(
+      page,
+      "Welsh language requirements",
+    );
     await WelshLanguageRequirements1Page.welshLanguageRequirements1Page({
       page: page,
       accessibilityTest: accessibilityTest,

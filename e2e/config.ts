@@ -30,36 +30,51 @@ export class Config {
   };
 
   public static readonly sessionStoragePath: string = path.join(
-      __dirname,
-      ".sessions/",
+    __dirname,
+    ".sessions/",
   );
 
   public static readonly citizenFrontendBaseURL: string =
-      process.env.CITIZEN_FRONTEND_BASE_URL ||
-      "https://privatelaw.aat.platform.hmcts.net/";
+    process.env.CITIZEN_FRONTEND_BASE_URL ||
+    "https://privatelaw.aat.platform.hmcts.net/";
   public static readonly manageCasesBaseURL: string =
     process.env.MANAGE_CASES_BASE_URL ||
-    "https://manage-case.aat.platform.hmcts.net/cases";
+    "https://xui-prl-ccd-definitions-pr-2567.preview.platform.hmcts.net/cases";
+
+  public static getEnvironment(url: string): string {
+    return (
+      ["aat", "demo", "preview"].find((env) => url.includes(env)) || "unknown"
+    );
+  }
+
+  public static setEnvironmentVariables(): void {
+    process.env.CITIZEN_TEST_ENV = this.getEnvironment(
+      this.citizenFrontendBaseURL,
+    );
+    process.env.MANAGE_CASES_TEST_ENV = this.getEnvironment(
+      this.manageCasesBaseURL,
+    );
+  }
 
   public static readonly testFile: string = path.resolve(
-      __dirname,
-      "./assets/mockFile.txt",
+    __dirname,
+    "./assets/mockFile.txt",
   );
   public static readonly testPdfFile: string = path.resolve(
-      __dirname,
-      "./assets/mockFile.pdf",
+    __dirname,
+    "./assets/mockFile.pdf",
   );
   public static readonly testWordFile: string = path.resolve(
-      __dirname,
-      "./assets/mockFile.docx",
+    __dirname,
+    "./assets/mockFile.docx",
   );
   public static readonly testOdtFile: string = path.resolve(
-      __dirname,
-      "./assets/mockFile.odt",
+    __dirname,
+    "./assets/mockFile.odt",
   );
   public static readonly testMP3File: string = path.resolve(
-      __dirname,
-      "./assets/mockFile.mp3",
+    __dirname,
+    "./assets/mockFile.mp3",
   );
 
   public static getUserCredentials(role: UserRole): UserCredentials {

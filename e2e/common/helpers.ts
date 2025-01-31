@@ -412,16 +412,20 @@ export class Helpers {
   }
 
   public static async handleEventBasedOnEnvironment(
-      page: Page,
-      event: c100SolicitorEvents | fl401SolicitorEvents,
+    page: Page,
+    event: c100SolicitorEvents | fl401SolicitorEvents,
   ): Promise<void> {
-    if (process.env.MANAGE_CASES_TEST_ENV === "aat" || process.env.MANAGE_CASES_TEST_ENV === "demo") {
+    if (
+      process.env.MANAGE_CASES_TEST_ENV === "aat" ||
+      process.env.MANAGE_CASES_TEST_ENV === "demo"
+    ) {
       await Helpers.selectSolicitorEvent(page, event);
     } else if (process.env.MANAGE_CASES_TEST_ENV === "preview") {
       await Helpers.chooseEventFromDropdown(page, event);
     } else {
-      throw new Error(`Unexpected environment in URL: ${process.env.MANAGE_CASES_TEST_ENV}`);
+      throw new Error(
+        `Unexpected environment in URL: ${process.env.MANAGE_CASES_TEST_ENV}`,
+      );
     }
   }
-
 }

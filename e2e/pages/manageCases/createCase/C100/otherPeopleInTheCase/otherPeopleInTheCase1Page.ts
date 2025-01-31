@@ -457,9 +457,9 @@ export class OtherPeopleInTheCase1Page {
 
   private static async checkContactNumber(page: Page): Promise<void> {
     await Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukFormLabel}:text-is("${OtherPeopleInTheCase1Content.formLabelApplicantContactNumber}")`,
-        1,
+      page,
+      `${Selectors.GovukFormLabel}:text-is("${OtherPeopleInTheCase1Content.formLabelApplicantContactNumber}")`,
+      1,
     );
   }
 
