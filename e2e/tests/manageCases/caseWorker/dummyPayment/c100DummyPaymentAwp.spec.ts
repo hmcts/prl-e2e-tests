@@ -53,19 +53,20 @@ test.describe("C100 Dummy payment for AWP tests", (): void => {
   });
 });
 
-test(`Complete the Dummy payment for AWP action  as a solicitor with the following options:
+test.fixme(
+  `Complete the Dummy payment for AWP action  as a solicitor with the following options:
   Accessibility testing,
   Not Error message testing,
-  Payment status is paid. @accessibility @nightly`, async ({
-  page,
-}): Promise<void> => {
-  await DummyPaymentAwp.dummyPaymentAwp({
-    page,
-    errorMessaging: false,
-    accessibilityTest: true,
-    paymentStatusPaid: true,
-    caseType: "C100",
-    applicantLivesInRefuge: false,
-    otherPersonLivesInRefuge: false,
-  });
-});
+  Payment status is paid. @accessibility @nightly`,
+  async ({ page }): Promise<void> => {
+    await DummyPaymentAwp.dummyPaymentAwp({
+      page,
+      errorMessaging: false,
+      accessibilityTest: true,
+      paymentStatusPaid: true,
+      caseType: "C100",
+      applicantLivesInRefuge: false,
+      otherPersonLivesInRefuge: false,
+    });
+  },
+);

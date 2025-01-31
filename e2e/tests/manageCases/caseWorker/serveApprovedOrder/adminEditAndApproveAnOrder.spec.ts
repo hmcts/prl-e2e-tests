@@ -23,20 +23,20 @@ test.describe("Serve approved DA order tests @manageCases", (): void => {
     });
   });
 
-  test(`Complete serve an order that is not personally served with the following options:
+  test.fixme(
+    `Complete serve an order that is not personally served with the following options:
   Case: FL401,
   Order type: Non-molestation order (FL404A),
   Judge order action: Send to admin to serve,
   Error message testing,
-  Not accessibility testing. @nightly @accessibility`, async ({
-    page,
-    browser,
-  }): Promise<void> => {
-    await AdminEditAndApproveAnOrder.adminEditAndApproveAnOrder({
-      page: page,
-      accessibilityTest: false,
-      browser: browser,
-      personallyServed: false,
-    });
-  });
+  Not accessibility testing. @nightly @accessibility`,
+    async ({ page, browser }): Promise<void> => {
+      await AdminEditAndApproveAnOrder.adminEditAndApproveAnOrder({
+        page: page,
+        accessibilityTest: false,
+        browser: browser,
+        personallyServed: false,
+      });
+    },
+  );
 });

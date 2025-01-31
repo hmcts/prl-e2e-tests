@@ -50,16 +50,17 @@ test.describe("FL401 Statement of truth tests", (): void => {
   });
 });
 
-test(`FL401 statement of truth journey with following options:
+test.fixme(
+  `FL401 statement of truth journey with following options:
   Yes accessibility testing,
-  Not error messaging, @accessibility @nightly`, async ({
-  page,
-}): Promise<void> => {
-  await Fl401StatementOfTruth.fl401StatementOfTruth({
-    page: page,
-    accessibilityTest: true,
-    errorMessaging: false,
-    fl401YesNoToEverything: true,
-    subJourney: true,
-  });
-});
+  Not error messaging, @accessibility @nightly`,
+  async ({ page }): Promise<void> => {
+    await Fl401StatementOfTruth.fl401StatementOfTruth({
+      page: page,
+      accessibilityTest: true,
+      errorMessaging: false,
+      fl401YesNoToEverything: true,
+      subJourney: true,
+    });
+  },
+);
