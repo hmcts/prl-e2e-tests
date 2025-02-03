@@ -4,7 +4,7 @@ import config from "../../../../config";
 import createDaCitizenCourtNavCase from "../../../../common/createCaseHelper";
 import { Helpers } from "../../../../common/helpers";
 import { jsonDatas } from "../../../../common/solicitorCaseCreatorHelper.ts";
-import { ConfidentilityCheck } from "../../../../journeys/manageCases/caseProgression/confidentilityCheck/confidentilityCheck.ts";
+import { ConfidentialityCheck } from "../../../../journeys/manageCases/caseProgression/confidentilityCheck/confidentialityCheck.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
@@ -20,7 +20,7 @@ test.describe("Confidentiality check task for DA Citizen case tests.", () => {
     page,
     browser,
   }) => {
-    await ConfidentilityCheck.confidentilityCheck({
+    await ConfidentialityCheck.confidentialityCheck({
       page: page,
       accessibilityTest: false,
       ccdRef: ccdRef,
@@ -40,6 +40,7 @@ test.describe("Confidentiality check task for DA Citizen case tests.", () => {
       yesNoServiceOfApplication4: true,
       confidentialityCheck: true,
       responsibleForServing: "courtBailiff",
+      isApplicationServedAfterConfidentialityCheck: true,
     });
   });
 });

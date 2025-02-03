@@ -20,6 +20,7 @@ const UserRoles = {
   judge: "judge",
   caseWorker: "caseWorker",
   courtAdminStoke: "courtAdminStoke",
+  caseManager: "caseManager",
 } as const;
 
 export type UserRole = (typeof UserRoles)[keyof typeof UserRoles];

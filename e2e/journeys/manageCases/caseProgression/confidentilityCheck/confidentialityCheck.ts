@@ -9,8 +9,12 @@ import { jsonDatas } from "../../../../common/solicitorCaseCreatorHelper.ts";
 import { CompleteTheOrder } from "../completeTheOrder/completeTheOrder.ts";
 import { AmendApplicantDetails } from "../amendDetails/amendApplicantDetails.ts";
 import { ServiceOfApplication } from "../serviceOfApplication/serviceOfApplication.ts";
+import { Helpers } from "../../../../common/helpers.ts";
+import config from "../../../../config.ts";
+import { ConfidentialityCheck1Page } from "../../../../pages/manageCases/caseProgression/confidentialityCheck/confidentialityCheck1Page.ts";
+import { ConfidentialityCheckSubmitPage } from "../../../../pages/manageCases/caseProgression/confidentialityCheck/confidentialityCheckSubmitPage.ts";
 
-interface ConfidentilityCheckParams {
+interface ConfidentialityCheckParams {
   page: Page;
   accessibilityTest: boolean;
   ccdRef: string;
@@ -30,10 +34,11 @@ interface ConfidentilityCheckParams {
   manageOrderData: typeof jsonDatas;
   applicationSubmittedBy: applicationSubmittedBy;
   confidentialityCheck: boolean;
+  isApplicationServedAfterConfidentialityCheck: boolean;
 }
 
-export class ConfidentilityCheck {
-  public static async confidentilityCheck({
+export class ConfidentialityCheck {
+  public static async confidentialityCheck({
     page,
     accessibilityTest,
     ccdRef,
@@ -53,7 +58,8 @@ export class ConfidentilityCheck {
     manageOrderData,
     applicationSubmittedBy,
     confidentialityCheck,
-  }: ConfidentilityCheckParams): Promise<void> {
+    isApplicationServedAfterConfidentialityCheck,
+  }: ConfidentialityCheckParams): Promise<void> {
     await CompleteTheOrder.completeTheOrder({
       page,
       browser,
@@ -90,5 +96,34 @@ export class ConfidentilityCheck {
       applicationSubmittedBy,
       confidentialityCheck,
     });
+    // login as case manager & wait for confidential check task
+    const caseManagerPage: Page = await Helpers.openNewBrowserWindow(
+      browser,
+      "caseManager",
+    );
+    await Helpers.goToCase(
+      caseManagerPage,
+      config.manageCasesBaseURL,
+      ccdRef,
+      "tasks",
+    );
+    await Helpers.assignTaskToMeAndTriggerNextSteps(
+      caseManagerPage,
+      "C8 - Confidential details check",
+      "Confidential Check",
+    );
+    await ConfidentialityCheck1Page.confidentialityCheck1Page({
+      page: caseManagerPage,
+      accessibilityTest: accessibilityTest,
+      isApplicationServedAfterConfidentialityCheck:
+        isApplicationServedAfterConfidentialityCheck,
+    });
+    await ConfidentialityCheckSubmitPage.confidentialityCheckSubmitPage({
+      page: caseManagerPage,
+      accessibilityTest: accessibilityTest,
+      isApplicationServedAfterConfidentialityCheck:
+        isApplicationServedAfterConfidentialityCheck,
+    });
+    // TODO: check service of application tab??
   }
 }

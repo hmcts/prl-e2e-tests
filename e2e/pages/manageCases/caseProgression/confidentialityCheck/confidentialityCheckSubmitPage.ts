@@ -6,47 +6,56 @@ import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.
 import { Page } from "@playwright/test";
 import { ConfidentialityCheckSubmitContent } from "../../../../fixtures/manageCases/caseProgression/confidentialityCheck/confidentialityCheckSubmitContent.ts";
 
-interface ConfidentialityCheck1PageParams {
+interface ConfidentialityCheckSubmitPageParams {
   page: Page;
   accessibilityTest: boolean;
-  yesNoConfidentialityCheck: boolean;
+  isApplicationServedAfterConfidentialityCheck: boolean;
 }
 
-export class ConfidenitalityCheckSubmitPage {
+export class ConfidentialityCheckSubmitPage {
   public static async confidentialityCheckSubmitPage({
     page,
     accessibilityTest,
-    yesNoConfidentialityCheck,
-  }: ConfidentialityCheck1PageParams): Promise<void> {
-    await this.checkPageLoads({ page, accessibilityTest });
-    await this.fillInFields({ page, yesNoConfidentialityCheck });
+    isApplicationServedAfterConfidentialityCheck,
+  }: ConfidentialityCheckSubmitPageParams): Promise<void> {
+    await this.checkPageLoads({
+      page,
+      accessibilityTest,
+      isApplicationServedAfterConfidentialityCheck,
+    });
+    await this.saveAndContinue(page);
   }
 
   private static async checkPageLoads({
     page,
     accessibilityTest,
-    yesNoConfidentialityCheck,
-  }: Partial<ConfidentialityCheck1PageParams>): Promise<void> {
-    if (!page) {
-      throw new Error("No page specified");
-    }
-    const pageTitle = page.locator(
-      `${Selectors.GovukHeadingL}:text-is("${ConfidentialityCheck1Content.pageTitle}")`,
-    );
-    await pageTitle.waitFor();
+    isApplicationServedAfterConfidentialityCheck,
+  }: ConfidentialityCheckSubmitPageParams): Promise<void> {
+    await page
+      .locator(
+        `${Selectors.GovukHeadingL}:text-is("${ConfidentialityCheck1Content.pageTitle}")`,
+      )
+      .waitFor();
     await Helpers.checkVisibleAndPresent(
       page,
       `${Selectors.h2}:text-is("${ConfidentialityCheckSubmitContent.h2}")`,
       1,
     );
-    if (yesNoConfidentialityCheck) {
-      await Helpers.checkGroup(
-        page,
-        4,
-        ConfidentialityCheckSubmitContent,
-        "yesText16",
-        Selectors.GovukText16,
-      );
+    if (isApplicationServedAfterConfidentialityCheck) {
+      await Promise.all([
+        Helpers.checkGroup(
+          page,
+          3,
+          ConfidentialityCheckSubmitContent,
+          "yesText16",
+          Selectors.GovukText16,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukText16}:text-is("${CommonStaticText.change}")`,
+          1,
+        ),
+      ]);
     } else {
       await Promise.all([
         Helpers.checkGroup(
@@ -58,7 +67,7 @@ export class ConfidenitalityCheckSubmitPage {
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukLabel}:text-is("${ConfidentialityCheckSubmitContent.yesText164}")`,
+          `${Selectors.GovukText16}:text-is("${CommonStaticText.change}")`,
           2,
         ),
       ]);
@@ -68,14 +77,9 @@ export class ConfidenitalityCheckSubmitPage {
     }
   }
 
-  private static async fillInFields({
-    page,
-  }: Partial<ConfidentialityCheck1PageParams>): Promise<void> {
-    if (!page) {
-      throw new Error("No page specified");
-    }
+  private static async saveAndContinue(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+      `${Selectors.button}:text-is("${CommonStaticText.saveAndContinue}")`,
     );
   }
 }

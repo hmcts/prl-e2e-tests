@@ -8,7 +8,7 @@ import { ConfidentialityCheck1Content } from "../../../../fixtures/manageCases/c
 interface ConfidentialityCheck1PageParams {
   page: Page;
   accessibilityTest: boolean;
-  yesNoConfidentialityCheck: boolean;
+  isApplicationServedAfterConfidentialityCheck: boolean;
 }
 
 enum UniqueSelectors {
@@ -17,73 +17,106 @@ enum UniqueSelectors {
   inputText = "#rejectionReason",
 }
 
-export class ConfidenitalityCheck1Page {
+// TODO: add pdf check
+export class ConfidentialityCheck1Page {
   public static async confidentialityCheck1Page({
     page,
     accessibilityTest,
-    yesNoConfidentialityCheck,
+    isApplicationServedAfterConfidentialityCheck,
   }: ConfidentialityCheck1PageParams): Promise<void> {
-    await this.checkPageLoads({ page, accessibilityTest });
-    await this.fillInFields({ page, yesNoConfidentialityCheck });
+    await this.checkPageLoads(page, accessibilityTest);
+    await this.fillInFields(page, isApplicationServedAfterConfidentialityCheck);
+    await this.continue(page);
   }
 
-  private static async checkPageLoads({
-    page,
-    accessibilityTest,
-  }: Partial<ConfidentialityCheck1PageParams>): Promise<void> {
-    if (!page) {
-      throw new Error("No page specified");
-    }
-    const pageTitle = page.locator(
-      `${Selectors.GovukHeadingL}:text-is("${ConfidentialityCheck1Content.pageTitle}")`,
-    );
-    await pageTitle.waitFor();
+  private static async checkPageLoads(
+    page: Page,
+    accessibilityTest: boolean,
+  ): Promise<void> {
+    await page
+      .locator(
+        `${Selectors.GovukHeadingL}:text-is("${ConfidentialityCheck1Content.pageTitle}")`,
+      )
+      .waitFor();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${ConfidentialityCheck1Content.annexA}")`,
-        2,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.a}:text-is("${ConfidentialityCheck1Content.powerOfArrestA}")`,
-        2,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.a}:text-is("${ConfidentialityCheck1Content.mockFileA}")`,
-        2,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.a}:text-is("${ConfidentialityCheck1Content.privacyNoticeA}")`,
-        2,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.strong}:text-is("${ConfidentialityCheck1Content.strong}")`,
+        `${Selectors.GovukWarningText}:text-is("${ConfidentialityCheck1Content.warningText}")`,
         1,
       ),
       Helpers.checkGroup(
         page,
-        3,
-        ConfidentialityCheck1Content,
-        "a",
-        Selectors.a,
-      ),
-      Helpers.checkGroup(
-        page,
-        16,
+        4,
         ConfidentialityCheck1Content,
         "text16",
         Selectors.GovukText16,
       ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${ConfidentialityCheck1Content.documentText16}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${ConfidentialityCheck1Content.servedByText16}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${ConfidentialityCheck1Content.prlCourtAdminText16}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${ConfidentialityCheck1Content.packCreatedDateText16}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${ConfidentialityCheck1Content.respondentsPackText16}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.a}:text-is("${ConfidentialityCheck1Content.annex1Anchor}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.a}:text-is("${ConfidentialityCheck1Content.powerOfArrestAnchor}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.a}:text-is("${ConfidentialityCheck1Content.mockFileAnchor}")`,
+        3,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.a}:text-is("${ConfidentialityCheck1Content.privacyNoticeAnchor}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.a}:text-is("${ConfidentialityCheck1Content.finalDocumentAnchor}")`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.a}:text-is("${ConfidentialityCheck1Content.coverLetterAnchor}"):visible`,
+        1,
+      ),
       Helpers.checkGroup(
         page,
-        16,
+        6,
         ConfidentialityCheck1Content,
         "caseFieldLabel",
         Selectors.GovukTextFieldLabel,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.a}:text-is("${ConfidentialityCheck1Content.c8DocumentAnchor}")`,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -106,13 +139,10 @@ export class ConfidenitalityCheck1Page {
     }
   }
 
-  private static async fillInFields({
-    page,
-    yesNoConfidentialityCheck,
-  }: Partial<ConfidentialityCheck1PageParams>): Promise<void> {
-    if (!page) {
-      throw new Error("No page specified");
-    }
+  private static async fillInFields(
+    page: Page,
+    yesNoConfidentialityCheck: boolean,
+  ): Promise<void> {
     if (yesNoConfidentialityCheck) {
       await page.click(UniqueSelectors.yes);
     } else {
@@ -127,6 +157,9 @@ export class ConfidenitalityCheck1Page {
         ConfidentialityCheck1Content.inputText,
       );
     }
+  }
+
+  private static async continue(page: Page): Promise<void> {
     await page.click(
       `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
     );
