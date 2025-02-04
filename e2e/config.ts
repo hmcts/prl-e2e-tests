@@ -27,6 +27,10 @@ export class Config {
       email: process.env.COURT_ADMIN_STOKE_USERNAME as string,
       password: process.env.COURT_ADMIN_STOKE_PASSWORD as string,
     },
+    caseManager: {
+      email: process.env.CASEMANAGER_USERNAME as string,
+      password: process.env.CASEMANAGER_PASSWORD as string,
+    },
   };
 
   public static readonly sessionStoragePath: string = path.join(
