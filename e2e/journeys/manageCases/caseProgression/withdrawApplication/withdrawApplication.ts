@@ -44,6 +44,7 @@ export class WithdrawApplication {
       {
         page,
         accessibilityTest,
+        withdrawApplication,
       },
     );
   }
