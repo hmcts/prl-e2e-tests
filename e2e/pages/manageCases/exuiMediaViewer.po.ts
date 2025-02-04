@@ -1,13 +1,22 @@
-import { Page, expect } from "@playwright/test";
+import { expect, Page } from "@playwright/test";
+
+interface ClippingCoords {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+}
+
+export const clippingCoords = {
+  fullPage: { x: -1000, y: 0, width: 1920, height: 1080 },
+  centeredPageWithoutToolbar: { x: 500, y: 300, width: 900, height: 1080 },
+};
 
 export class ExuiMediaViewerPage {
   private readonly page: Page;
 
   readonly container;
   readonly toolbar;
-  readonly clippingCoords = {
-    fullPage: { x: -1000, y: 0, width: 1920, height: 1080 },
-  };
 
   constructor(page: Page) {
     this.page = page;
@@ -40,12 +49,14 @@ export class ExuiMediaViewerPage {
     return parseInt(text.replace("/", ""));
   }
 
-  public async runVisualTestOnAllPages(): Promise<void> {
+  public async runVisualTestOnAllPages(
+    clip: ClippingCoords = clippingCoords.fullPage,
+  ): Promise<void> {
     await this.waitForLoad();
     const totalPages = await this.getNumberOfPages();
     for (let i = 0; i < totalPages; i++) {
       await expect(this.page).toHaveScreenshot({
-        clip: this.clippingCoords.fullPage,
+        clip: clip,
       });
       if (i !== totalPages - 1) await this.toolbar.pageDownBtn.click();
     }

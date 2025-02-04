@@ -35,6 +35,7 @@ interface ConfidentialityCheckParams {
   applicationSubmittedBy: applicationSubmittedBy;
   confidentialityCheck: boolean;
   isApplicationServedAfterConfidentialityCheck: boolean;
+  browserName: string;
 }
 
 export class ConfidentialityCheck {
@@ -59,7 +60,20 @@ export class ConfidentialityCheck {
     applicationSubmittedBy,
     confidentialityCheck,
     isApplicationServedAfterConfidentialityCheck,
+    browserName,
   }: ConfidentialityCheckParams): Promise<void> {
+    // await page.goto("https://manage-case.aat.platform.hmcts.net/cases/case-details/1738656651300978/tasks");
+    // await page.click(`a:text-is("Confidential Check")`);
+    // const packLocator = page.locator("ccd-read-complex-field-table", {
+    //   hasText: "Applicants pack",
+    // });
+    // const [pdfPage] = await Promise.all([
+    //   page.waitForEvent("popup"),
+    //   packLocator.locator(Selectors.a, { hasText: "Annex 1 - Confidential contact details notice.pdf" }).click(),
+    // ]);
+    // await pdfPage.waitForLoadState();
+    // const mediaViewerPage = new ExuiMediaViewerPage(pdfPage);
+    // await mediaViewerPage.runVisualTestOnAllPages(true);
     await CompleteTheOrder.completeTheOrder({
       page,
       browser,
@@ -114,6 +128,7 @@ export class ConfidentialityCheck {
     );
     await ConfidentialityCheck1Page.confidentialityCheck1Page({
       page: caseManagerPage,
+      browserName: browserName,
       accessibilityTest: accessibilityTest,
       isApplicationServedAfterConfidentialityCheck:
         isApplicationServedAfterConfidentialityCheck,

@@ -6,7 +6,7 @@ import { Helpers } from "../../../../common/helpers";
 import { jsonDatas } from "../../../../common/solicitorCaseCreatorHelper.ts";
 import { ConfidentialityCheck } from "../../../../journeys/manageCases/caseProgression/confidentilityCheck/confidentialityCheck.ts";
 
-test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
+test.use({ storageState: Config.sessionStoragePath + "caseManager.json" });
 
 test.describe("Confidentiality check task for DA Citizen case tests.", () => {
   let ccdRef: string = "";
@@ -19,6 +19,7 @@ test.describe("Confidentiality check task for DA Citizen case tests.", () => {
   test("Complete Task - Confidentiality check - Power of arrest (FL406) without accessibility test. @nightly @regression", async ({
     page,
     browser,
+    browserName,
   }) => {
     await ConfidentialityCheck.confidentialityCheck({
       page: page,
@@ -41,6 +42,7 @@ test.describe("Confidentiality check task for DA Citizen case tests.", () => {
       confidentialityCheck: true,
       responsibleForServing: "courtBailiff",
       isApplicationServedAfterConfidentialityCheck: true,
+      browserName: browserName,
     });
   });
 });

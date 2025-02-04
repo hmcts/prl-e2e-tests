@@ -4,9 +4,14 @@ import { Helpers } from "../../../../common/helpers.ts";
 import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
 import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 import { ConfidentialityCheck1Content } from "../../../../fixtures/manageCases/caseProgression/confidentialityCheck/confidentialityCheck1Content.ts";
+import {
+  clippingCoords,
+  ExuiMediaViewerPage,
+} from "../../exuiMediaViewer.po.ts";
 
 interface ConfidentialityCheck1PageParams {
   page: Page;
+  browserName: string;
   accessibilityTest: boolean;
   isApplicationServedAfterConfidentialityCheck: boolean;
 }
@@ -17,14 +22,18 @@ enum UniqueSelectors {
   inputText = "#rejectionReason",
 }
 
-// TODO: add pdf check
 export class ConfidentialityCheck1Page {
   public static async confidentialityCheck1Page({
     page,
+    browserName,
     accessibilityTest,
     isApplicationServedAfterConfidentialityCheck,
   }: ConfidentialityCheck1PageParams): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest);
+    // only run the pdf check in chromium because the test is not run often enough to produce snapshots for all browsers
+    if (browserName === "chromium") {
+      await this.checkConfidentialContactDetailsNoticePdfContents(page);
+    }
     await this.fillInFields(page, isApplicationServedAfterConfidentialityCheck);
     await this.continue(page);
   }
@@ -137,6 +146,40 @@ export class ConfidentialityCheck1Page {
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }
+  }
+
+  private static async checkConfidentialContactDetailsNoticePdfContents(
+    page: Page,
+  ): Promise<void> {
+    // check applicant pdf
+    await this.pdfCheck(page, true);
+    // check respondent pdf
+    await this.pdfCheck(page, false);
+  }
+
+  private static async pdfCheck(
+    page: Page,
+    isApplicant: boolean,
+  ): Promise<void> {
+    const locatorText: string = isApplicant
+      ? "Applicants pack"
+      : "Respondents pack";
+    const packLocator = page.locator("ccd-read-complex-field-table", {
+      hasText: locatorText,
+    });
+    const [pdfPage] = await Promise.all([
+      page.waitForEvent("popup"),
+      packLocator
+        .locator(Selectors.a, {
+          hasText: "Annex 1 - Confidential contact details notice.pdf",
+        })
+        .click(),
+    ]);
+    await pdfPage.waitForLoadState();
+    const mediaViewerPage = new ExuiMediaViewerPage(pdfPage);
+    await mediaViewerPage.runVisualTestOnAllPages(
+      clippingCoords.centeredPageWithoutToolbar,
+    );
   }
 
   private static async fillInFields(
