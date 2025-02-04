@@ -40,17 +40,17 @@ export class WithdrawApplicationEventSubmitPage {
         1,
       ),
       Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukText16}:text-is("${WithdrawApplicationEventSubmitContent.text16_1}")`,
-          1,
+        page,
+        `${Selectors.GovukText16}:text-is("${WithdrawApplicationEventSubmitContent.text16_1}")`,
+        1,
       ),
     ]);
     if (withdrawApplication) {
       await Promise.all([
         Helpers.checkVisibleAndPresent(
-            page,
-            `${Selectors.GovukText16}:text-is("${WithdrawApplicationEventSubmitContent.text16_1}")`,
-            1,
+          page,
+          `${Selectors.GovukText16}:text-is("${WithdrawApplicationEventSubmitContent.text16_1}")`,
+          1,
         ),
         await Helpers.checkVisibleAndPresent(
           page,

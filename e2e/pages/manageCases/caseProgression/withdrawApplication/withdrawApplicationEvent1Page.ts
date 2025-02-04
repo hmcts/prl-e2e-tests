@@ -24,7 +24,7 @@ export class WithdrawApplicationEvent1Page {
     withdrawApplication,
   }: WithdrawApplicationEvent1PageOptions): Promise<void> {
     await this.checkPageLoads({ page, accessibilityTest, withdrawApplication });
-    await this.fillInFields({page, withdrawApplication });
+    await this.fillInFields({ page, withdrawApplication });
     await this.continue(page);
   }
 
@@ -64,6 +64,9 @@ export class WithdrawApplicationEvent1Page {
     page,
     withdrawApplication,
   }: Partial<WithdrawApplicationEvent1PageOptions>): Promise<void> {
+    if (!page) {
+      throw new Error("No page found");
+    }
     if (withdrawApplication) {
       await page.click(UniqueSelectors.withdrawApplicationRadioYes);
       await Promise.all([

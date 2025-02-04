@@ -21,11 +21,12 @@ export class WithdrawApplication {
     otherPersonLivesInRefuge,
     withdrawApplication,
   }: WithdrawApplicationParams) {
-    await DummyC100.dummyC100({
+    await DummyC100.dummyC100NoPaymentConfirmation({
       page: page,
       applicantLivesInRefuge,
       otherPersonLivesInRefuge,
-    });wa
+    });
+
     await Helpers.chooseEventFromDropdown(page, "Withdraw application");
     await WithdrawApplicationEvent1Page.withdrawApplicationEvent1Page({
       page,

@@ -7,52 +7,66 @@ import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 
 interface WithdrawApplicationEventConfirmPageOptions {
   page: Page;
-  accessibilityTest: boolean;
+  accessibilityTest?: boolean;
+  withdrawApplication: boolean;
 }
 
 export class WithdrawApplicationEventConfirmPage {
   public static async withdrawApplicationEventConfirmPage({
     page,
-    accessibilityTest,
+    accessibilityTest = false,
+    withdrawApplication,
   }: WithdrawApplicationEventConfirmPageOptions): Promise<void> {
-    await this.checkPageLoads({ page, accessibilityTest });
-    await this.saveAndContinue(page);
+    await this.checkPageContent({
+      page,
+      accessibilityTest,
+      withdrawApplication,
+    });
+    await this.closeAndReturnToCaseDetails(page);
   }
 
-  private static async checkPageLoads({
+  private static async checkPageContent({
     page,
     accessibilityTest,
-  }: WithdrawApplicationEventConfirmPageOptions) {
-    if (!page) {
-      throw new Error("No page found");
-    }
-    const pageTitle = page.locator("#confirmation-header", {
-      hasText: "Application withdrawn",
+    withdrawApplication,
+  }: WithdrawApplicationEventConfirmPageOptions): Promise<void> {
+    if (!page) throw new Error("No page found");
+
+    const confirmationHeader = page.locator("#confirmation-header", {
+      hasText: withdrawApplication
+        ? WithdrawApplicationEventConfirmContent.text2
+        : WithdrawApplicationEventConfirmContent.text,
     });
-    await pageTitle.waitFor();
-    await Promise.all([
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.headingH1}:text-is("${WithdrawApplicationEventConfirmContent.govUkHeadingL}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.h3}:text-is("${WithdrawApplicationEventConfirmContent.h3}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.p}:text-is("${WithdrawApplicationEventConfirmContent.p}")`,
-        1,
-      ),
-    ]);
+
+    await confirmationHeader.waitFor();
+
+    if (withdrawApplication) {
+      await Promise.all([
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.h3}:text-is("${WithdrawApplicationEventConfirmContent.h3}")`,
+          1,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.p}:text-is("${WithdrawApplicationEventConfirmContent.p}")`,
+          1,
+        ),
+      ]);
+    }
+
+    await Helpers.checkVisibleAndPresent(
+      page,
+      `${Selectors.headingH1}:text-is("${WithdrawApplicationEventConfirmContent.govUkHeadingL}")`,
+      1,
+    );
+
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }
   }
 
-  private static async saveAndContinue(page: Page) {
+  private static async closeAndReturnToCaseDetails(page: Page): Promise<void> {
     await page.click(
       `${Selectors.button}:text-is("${CommonStaticText.closeAndReturnToCaseDetails}")`,
     );
