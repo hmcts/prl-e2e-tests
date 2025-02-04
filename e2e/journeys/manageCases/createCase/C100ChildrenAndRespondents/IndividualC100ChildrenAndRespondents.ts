@@ -61,7 +61,7 @@ export class IndividualC100ChildAndRespondents {
         errorMessaging: false,
       });
     }
-    await Helpers.selectSolicitorEvent(page, "Respondent details");
+    await Helpers.handleEventBasedOnEnvironment(page, "Respondent details");
     await RespondentDetails1Page.respondent1DetailsPage({
       page,
       accessibilityTest,

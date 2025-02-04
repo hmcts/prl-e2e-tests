@@ -62,13 +62,14 @@ export class HelpWithFeesPage {
   private static async fillInFields(
     page: Page,
     helpWithFees: boolean,
-  ): Promise<void>{
-    if(helpWithFees) {
+  ): Promise<void> {
+    if (helpWithFees) {
       await page.check(`${UniqueSelectors.helpWithFeesYes}`);
-    }
-    else {
+    } else {
       await page.check(`${UniqueSelectors.helpWithFeesNo}`);
     }
-    await page.click(`${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,);
+    await page.click(
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
+    );
   }
 }

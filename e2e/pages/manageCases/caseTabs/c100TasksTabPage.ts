@@ -14,12 +14,10 @@ export class C100TasksTabPage {
     page: Page,
     accessibilityTest: boolean,
   ): Promise<void> {
-    const url = page.url();
-    if (url.includes("preview")) {
-      return;
-    }
-    else{
+    if (!(process.env.MANAGE_CASES_TEST_ENV == "preview")) {
       await this.checkPageLoads(page, accessibilityTest);
+    } else {
+      return;
     }
   }
 

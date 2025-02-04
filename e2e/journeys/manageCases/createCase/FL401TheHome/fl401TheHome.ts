@@ -37,7 +37,7 @@ export class FL401TheHome {
         errorMessaging: false,
       });
     }
-    await Helpers.selectSolicitorEvent(page, "The home");
+    await Helpers.handleEventBasedOnEnvironment(page, "The home");
     await Fl401TheHome1Page.fl401TheHome1Page({
       page,
       accessibilityTest,

@@ -28,7 +28,7 @@ export class FL401UploadDocuments {
         errorMessaging: false,
       });
     }
-    await Helpers.selectSolicitorEvent(page, "Upload documents");
+    await Helpers.handleEventBasedOnEnvironment(page, "Upload documents");
     await UploadDocuments1Page.uploadDocuments1Page({
       page,
       accessibilityTest,
