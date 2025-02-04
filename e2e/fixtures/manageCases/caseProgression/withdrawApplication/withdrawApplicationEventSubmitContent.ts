@@ -1,5 +1,6 @@
 export enum WithdrawApplicationEventSubmitContent {
   govUkHeadingL = "Withdraw application",
-  text = "Check your answers",
-  text2 = "Why are you withdrawing the application?",
+  h2 = "Check your answers",
+  text16_1 = "Check the information below carefully.",
+  text16_2 = "Why are you withdrawing the application?",
 }

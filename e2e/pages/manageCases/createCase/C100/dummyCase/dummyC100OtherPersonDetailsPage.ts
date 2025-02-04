@@ -64,7 +64,7 @@ export class DummyC100OtherPersonDetailsPage {
         `${UniqueSelectors.otherPersonAddressDropdown}`,
         OtherPeopleInTheCase1Content.address,
       );
-      await page.click(`${UniqueSelectors.addressConfidentialYes}`);
+      // await page.click(`${UniqueSelectors.addressConfidentialYes}`);
     } else {
       await page.click(`${PageLoadFields.otherPersonCurrentAddressNo}`);
     }

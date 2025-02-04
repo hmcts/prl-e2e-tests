@@ -2,7 +2,6 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.ts";
 import { WithdrawApplicationEvent1Content } from "../../../../fixtures/manageCases/caseProgression/withdrawApplication/withdrawApplicationEvent1Content.ts";
 import { Helpers } from "../../../../common/helpers.ts";
-import { StatementOfService1Content } from "../../../../fixtures/manageCases/caseProgression/statementOfService/statementOfService1Content.ts";
 import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
 import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 
@@ -18,14 +17,14 @@ enum UniqueSelectors {
   withdrawApplicationReason = "#withDrawApplicationData_withDrawApplicationReason",
 }
 
-export class WithdrawApplicationEvent1 {
-  public static async withdrawApplicationEvent1({
+export class WithdrawApplicationEvent1Page {
+  public static async withdrawApplicationEvent1Page({
     page,
     accessibilityTest,
     withdrawApplication,
   }: WithdrawApplicationEvent1PageOptions): Promise<void> {
-    await this.checkPageLoads(page, accessibilityTest);
-    await this.fillInFields(withdrawApplication);
+    await this.checkPageLoads({ page, accessibilityTest, withdrawApplication });
+    await this.fillInFields({page, withdrawApplication });
     await this.continue(page);
   }
 
@@ -33,9 +32,6 @@ export class WithdrawApplicationEvent1 {
     page,
     accessibilityTest,
   }: WithdrawApplicationEvent1PageOptions) {
-    if (!page) {
-      throw new Error("No page found");
-    }
     const pageTitle = page.locator(
       `${Selectors.GovukHeadingL}:text-is("${WithdrawApplicationEvent1Content.govUkHeadingL}")`,
     );
@@ -54,7 +50,7 @@ export class WithdrawApplicationEvent1 {
       Helpers.checkGroup(
         page,
         2,
-        StatementOfService1Content,
+        WithdrawApplicationEvent1Content,
         "formLabel",
         Selectors.GovukFormLabel,
       ),
@@ -68,20 +64,19 @@ export class WithdrawApplicationEvent1 {
     page,
     withdrawApplication,
   }: Partial<WithdrawApplicationEvent1PageOptions>): Promise<void> {
-    if (!page) {
-      throw new Error("No page found");
-    }
     if (withdrawApplication) {
       await page.click(UniqueSelectors.withdrawApplicationRadioYes);
-      await Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukFormLabel}:text-is("${WithdrawApplicationEvent1Content.formLabel3}")`,
-        1,
-      );
-      await page.fill(
-        UniqueSelectors.withdrawApplicationReason,
-        WithdrawApplicationEvent1Content.inputText,
-      );
+      await Promise.all([
+        await Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukFormLabel}:text-is("${WithdrawApplicationEvent1Content.formLabel3}")`,
+          1,
+        ),
+        await page.fill(
+          UniqueSelectors.withdrawApplicationReason,
+          WithdrawApplicationEvent1Content.inputText,
+        ),
+      ]);
     } else {
       await page.click(UniqueSelectors.withdrawApplicationRadioNo);
     }
