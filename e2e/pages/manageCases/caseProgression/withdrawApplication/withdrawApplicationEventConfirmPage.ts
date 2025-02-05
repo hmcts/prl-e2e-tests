@@ -34,8 +34,8 @@ export class WithdrawApplicationEventConfirmPage {
 
     const confirmationHeader = page.locator("#confirmation-header", {
       hasText: withdrawApplication
-        ? WithdrawApplicationEventConfirmContent.text2
-        : WithdrawApplicationEventConfirmContent.text,
+        ? WithdrawApplicationEventConfirmContent.text
+        : WithdrawApplicationEventConfirmContent.text2,
     });
 
     await confirmationHeader.waitFor();
