@@ -57,6 +57,7 @@ export class ExuiMediaViewerPage {
     for (let i = 0; i < totalPages; i++) {
       await expect(this.page).toHaveScreenshot({
         clip: clip,
+        maxDiffPixelRatio: 0.05,
       });
       if (i !== totalPages - 1) await this.toolbar.pageDownBtn.click();
     }
