@@ -13,6 +13,8 @@ import { Helpers } from "../../../../common/helpers.ts";
 import config from "../../../../config.ts";
 import { ConfidentialityCheck1Page } from "../../../../pages/manageCases/caseProgression/confidentialityCheck/confidentialityCheck1Page.ts";
 import { ConfidentialityCheckSubmitPage } from "../../../../pages/manageCases/caseProgression/confidentialityCheck/confidentialityCheckSubmitPage.ts";
+import { ConfidentialityCheckConfirmPage } from "../../../../pages/manageCases/caseProgression/confidentialityCheck/confidentialityCheckConfirmPage.ts";
+import { Selectors } from "../../../../common/selectors.ts";
 
 interface ConfidentialityCheckParams {
   page: Page;
@@ -36,6 +38,12 @@ interface ConfidentialityCheckParams {
   confidentialityCheck: boolean;
   isApplicationServedAfterConfidentialityCheck: boolean;
   browserName: string;
+}
+
+enum UniqueSelectors {
+  tab = ".mat-tab-label",
+  rightArrowTab = ".mat-tab-header-pagination-after",
+  plusButtonOnSoaTabView = ".accordion-image",
 }
 
 export class ConfidentialityCheck {
@@ -62,18 +70,6 @@ export class ConfidentialityCheck {
     isApplicationServedAfterConfidentialityCheck,
     browserName,
   }: ConfidentialityCheckParams): Promise<void> {
-    // await page.goto("https://manage-case.aat.platform.hmcts.net/cases/case-details/1738656651300978/tasks");
-    // await page.click(`a:text-is("Confidential Check")`);
-    // const packLocator = page.locator("ccd-read-complex-field-table", {
-    //   hasText: "Applicants pack",
-    // });
-    // const [pdfPage] = await Promise.all([
-    //   page.waitForEvent("popup"),
-    //   packLocator.locator(Selectors.a, { hasText: "Annex 1 - Confidential contact details notice.pdf" }).click(),
-    // ]);
-    // await pdfPage.waitForLoadState();
-    // const mediaViewerPage = new ExuiMediaViewerPage(pdfPage);
-    // await mediaViewerPage.runVisualTestOnAllPages(true);
     await CompleteTheOrder.completeTheOrder({
       page,
       browser,
@@ -139,6 +135,39 @@ export class ConfidentialityCheck {
       isApplicationServedAfterConfidentialityCheck:
         isApplicationServedAfterConfidentialityCheck,
     });
-    // TODO: check service of application tab??
+    await ConfidentialityCheckConfirmPage.confidentialityCheckConfirmPage(
+      caseManagerPage,
+      accessibilityTest,
+    );
+    await this.checkServiceOfApplicationTab(caseManagerPage);
+  }
+
+  private static async checkServiceOfApplicationTab(page: Page): Promise<void> {
+    // click service of application tab
+    await page.click(UniqueSelectors.rightArrowTab);
+    await page
+      .locator(UniqueSelectors.tab, {
+        hasText: "Service of application",
+      })
+      .click();
+    // check there is a served pack
+    await Helpers.checkVisibleAndPresent(
+      page,
+      `${Selectors.h2}:text-is("Served pack")`,
+      1,
+    );
+    // check served pack is served by prl case manager swansea
+    await Helpers.checkVisibleAndPresent(
+      page,
+      `${Selectors.Span}:text-is("prl case manager swansea")`,
+      1,
+    );
+    await page.click(UniqueSelectors.plusButtonOnSoaTabView);
+    // check confidential contact details notice is present
+    await Helpers.checkVisibleAndPresent(
+      page,
+      `${Selectors.a}:text-is("Annex 1 - Confidential contact details notice.pdf")`,
+      2,
+    );
   }
 }
