@@ -4,7 +4,7 @@ import { WithdrawApplication } from "../../../../journeys/manageCases/caseProgre
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-test.describe("Withdraw application event as a solicitor", () => {
+test.describe("Withdraw C100 (solicitor created) application event as a solicitor", () => {
   test(`Complete withdraw application event and select yes to successfully withdraw the application. With accessibility test. @nightly @accessibility @regression`, async ({
     page,
   }): Promise<void> => {
