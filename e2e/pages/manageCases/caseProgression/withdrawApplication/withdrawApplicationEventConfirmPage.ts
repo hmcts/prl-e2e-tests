@@ -14,7 +14,7 @@ interface WithdrawApplicationEventConfirmPageOptions {
 export class WithdrawApplicationEventConfirmPage {
   public static async withdrawApplicationEventConfirmPage({
     page,
-    accessibilityTest = false,
+    accessibilityTest,
     withdrawApplication,
   }: WithdrawApplicationEventConfirmPageOptions): Promise<void> {
     await this.checkPageContent({
