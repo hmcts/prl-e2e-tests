@@ -26,14 +26,15 @@ export class ManageDocumentsNewConfirmPage {
     if (!page) {
       throw new Error("No page found");
     }
-    const pageTitle = page.locator(
-      `#confirmation-header:text-is("${ManageDocumentsNewConfirmContent.confirmationHeader}")`,
-    );
-    await pageTitle.waitFor();
+    const confirmationHeader = page.locator("#confirmation-header", {
+      hasText: `${ManageDocumentsNewConfirmContent.confirmationHeader}`,
+    });
+
+    await confirmationHeader.waitFor();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHeadingL}:text-is("${ManageDocumentsNewConfirmContent.pageTitle}")`,
+        `${Selectors.headingH1}:text-is("${ManageDocumentsNewConfirmContent.pageTitle}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(

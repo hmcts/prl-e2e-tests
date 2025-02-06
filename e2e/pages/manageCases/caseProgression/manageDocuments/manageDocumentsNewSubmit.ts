@@ -112,7 +112,7 @@ export class ManageDocumentsNewSubmitPage {
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukText16}:text-is("${ManageDocumentsNew1Content.inputText}")`,
+          `${Selectors.Span}:text-is("${ManageDocumentsNew1Content.inputText}")`,
           1,
         ),
       ]);
