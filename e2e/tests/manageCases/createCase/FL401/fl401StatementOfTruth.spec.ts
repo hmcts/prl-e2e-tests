@@ -5,14 +5,12 @@ import { Fl401StatementOfTruth } from "../../../../journeys/manageCases/createCa
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
 test.describe("FL401 Statement of truth tests", (): void => {
-  // Triple timeout for these slow tests
-  test.slow();
-
   test(`FL401 statement of truth journey with following options:
   Not accessibility testing,
   Not error messaging,
   Yes to everything before,
   @regression`, async ({ page }): Promise<void> => {
+    test.slow();
     await Fl401StatementOfTruth.fl401StatementOfTruth({
       page: page,
       accessibilityTest: false,
@@ -26,6 +24,7 @@ test.describe("FL401 Statement of truth tests", (): void => {
   Not accessibility testing,
   Not error messaging,
   No to everything before, @regression`, async ({ page }): Promise<void> => {
+    test.slow();
     await Fl401StatementOfTruth.fl401StatementOfTruth({
       page: page,
       accessibilityTest: false,
@@ -40,6 +39,7 @@ test.describe("FL401 Statement of truth tests", (): void => {
   Yes error messaging,
   No to everything before,
   @regression @errorMessage`, async ({ page }): Promise<void> => {
+    test.slow();
     await Fl401StatementOfTruth.fl401StatementOfTruth({
       page: page,
       accessibilityTest: false,
@@ -55,6 +55,7 @@ test(`FL401 statement of truth journey with following options:
   Not error messaging, @accessibility @nightly`, async ({
   page,
 }): Promise<void> => {
+  test.slow();
   await Fl401StatementOfTruth.fl401StatementOfTruth({
     page: page,
     accessibilityTest: true,
