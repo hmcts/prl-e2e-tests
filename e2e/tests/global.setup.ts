@@ -39,6 +39,14 @@ setup("Setup judge user", async ({ page }) => {
   await IdamLoginHelper.signInUser(page, "judge", config.manageCasesBaseURL);
 });
 
+setup("Setup case manager user", async ({ page }) => {
+  await IdamLoginHelper.signInUser(
+    page,
+    "caseManager",
+    config.manageCasesBaseURL,
+  );
+});
+
 setup("Setup caseWorker user", async ({ page }) => {
   await IdamLoginHelper.signInUser(
     page,

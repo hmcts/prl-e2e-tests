@@ -31,4 +31,5 @@ export enum CommonStaticText {
   female = "Female",
   nonBinary = "Non-binary",
   preferNotToSay = "Prefer not to say",
+  change = "Change",
 }
