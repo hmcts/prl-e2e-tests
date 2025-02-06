@@ -44,6 +44,7 @@ test.describe("Complete Task - Review Documents for DA case tests.", () => {
       yesNoNotSureRestrictDocs: "no",
       documentType: "Position statements",
       applicationSubmittedBy: "Citizen",
+
     });
   });
 });

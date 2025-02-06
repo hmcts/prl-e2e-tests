@@ -461,10 +461,13 @@ export class C100 {
       miamSelection: miamSelection,
       subJourney: false,
     });
-    await C100SubmitAndPay.c100SubmitAndPay({
-      page: page,
-      yesNoWelshLanguage: yesNoWelshLanguage,
-      yesNoHelpWithFees: yesNoHelpWithFees,
-    });
+    // pay doesn't work in preview, so skip payment pages
+    if (!(process.env.MANAGE_CASES_TEST_ENV == "preview")) {
+      await C100SubmitAndPay.c100SubmitAndPay({
+        page: page,
+        yesNoWelshLanguage: yesNoWelshLanguage,
+        yesNoHelpWithFees: yesNoHelpWithFees,
+      });
+    }
   }
 }

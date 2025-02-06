@@ -31,7 +31,7 @@ export class FL401TypeOfApplication {
         errorMessaging: false,
       });
     }
-    await Helpers.selectSolicitorEvent(page, "Type of application");
+    await Helpers.handleEventBasedOnEnvironment(page, "Type of application");
     await TypeOfApplication1Page.typeOfApplication1Page(
       page,
       errorMessaging,

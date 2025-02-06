@@ -394,6 +394,13 @@ export class Helpers {
       .toBeTruthy();
   }
 
+  public static getFormattedCardExpiryDate(
+    month: number,
+    year: number,
+  ): string {
+    return `${String(month).padStart(2, "0")}/${String(year).slice(-2)}`;
+  }
+
   public static async IsEqualityAndDiversityPageDisplayed(page: Page) {
     await expect
       .poll(
@@ -415,13 +422,17 @@ export class Helpers {
     page: Page,
     event: c100SolicitorEvents | fl401SolicitorEvents,
   ): Promise<void> {
-    const url = page.url();
-    if (url.includes("aat")) {
+    if (
+      process.env.MANAGE_CASES_TEST_ENV === "aat" ||
+      process.env.MANAGE_CASES_TEST_ENV === "demo"
+    ) {
       await Helpers.selectSolicitorEvent(page, event);
-    } else if (url.includes("preview")) {
+    } else if (process.env.MANAGE_CASES_TEST_ENV === "preview") {
       await Helpers.chooseEventFromDropdown(page, event);
     } else {
-      throw new Error("Unexpected environment in URL.");
+      throw new Error(
+        `Unexpected environment in URL: ${process.env.MANAGE_CASES_TEST_ENV}`,
+      );
     }
   }
 }

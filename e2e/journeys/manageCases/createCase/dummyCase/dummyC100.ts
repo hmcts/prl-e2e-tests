@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import { DummyC100ChildDetails } from "./dummyC100ChildDetails";
 import { C100SubmitAndPay } from "../C100SubmitAndPay/C100SubmitAndPay";
 import { DummyCreateInitial } from "./dummyCreateInitial";
-import { DummyPaymentConfirmation } from "../../caseWorker/dummyPayment/dummyPaymentConfirmation";
+import { DummyPaymentConfirmation } from "../../caseWorker/dummyPayment/dummyPaymentConfirmation.ts";
 import { DummyC100ApplicantDetails } from "./dummyC100ApplicantDetails";
 import { DummyC100OtherPersonDetails } from "./dummyC100OtherPersonDetails";
 
@@ -22,10 +22,12 @@ export class DummyC100 {
       page: page,
       solicitorCaseType: "C100",
     });
-    await DummyC100ApplicantDetails.dummyC100ApplicantDetails(
-      page,
-      applicantLivesInRefuge,
-    );
+    if (applicantLivesInRefuge) {
+      await DummyC100ApplicantDetails.dummyC100ApplicantDetails(
+        page,
+        applicantLivesInRefuge,
+      );
+    }
     if (otherPersonLivesInRefuge) {
       await DummyC100OtherPersonDetails.dummyC100OtherPersonDetails(
         page,
@@ -41,6 +43,35 @@ export class DummyC100 {
     });
     await DummyPaymentConfirmation.dummyPaymentConfirmation({
       page,
+    });
+  }
+  public static async dummyC100NoPaymentConfirmation({
+    page,
+    applicantLivesInRefuge,
+    otherPersonLivesInRefuge,
+  }: dummyC100Options): Promise<void> {
+    await DummyCreateInitial.createDummyCase({
+      page: page,
+      solicitorCaseType: "C100",
+    });
+    if (applicantLivesInRefuge) {
+      await DummyC100ApplicantDetails.dummyC100ApplicantDetails(
+        page,
+        applicantLivesInRefuge,
+      );
+    }
+    if (otherPersonLivesInRefuge) {
+      await DummyC100OtherPersonDetails.dummyC100OtherPersonDetails(
+        page,
+        otherPersonLivesInRefuge,
+      );
+    }
+    // currently need to complete child details event as it is the only event not pre-completed for a dummy case
+    await DummyC100ChildDetails.dummyC100ChildDetails(page);
+    await C100SubmitAndPay.c100SubmitAndPay({
+      page: page,
+      yesNoWelshLanguage: false,
+      yesNoHelpWithFees: false,
     });
   }
 }

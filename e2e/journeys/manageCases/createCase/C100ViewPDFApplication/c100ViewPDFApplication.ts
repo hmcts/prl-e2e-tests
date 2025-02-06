@@ -15,7 +15,7 @@ export class C100ViewPDFApplication {
     accessibilityTest,
     c100YesNoToAll,
   }: C100ViewPDFApplicationOptions): Promise<void> {
-    await Helpers.selectSolicitorEvent(page, "View PDF application");
+    await Helpers.handleEventBasedOnEnvironment(page, "View PDF application");
     await ViewPDFApplication1Page.viewPDFApplication1Page({
       page: page,
       accessibilityTest: accessibilityTest,

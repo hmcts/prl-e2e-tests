@@ -33,7 +33,7 @@ export class FL401ApplicantDetails {
         errorMessaging: false,
       });
     }
-    await Helpers.selectSolicitorEvent(page, "Applicant details");
+    await Helpers.handleEventBasedOnEnvironment(page, "Applicant details");
     await ApplicantDetails1Page.applicantDetails1Page(
       page,
       accessibilityTest,
