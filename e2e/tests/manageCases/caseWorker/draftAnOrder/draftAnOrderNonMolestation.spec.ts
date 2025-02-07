@@ -1,10 +1,20 @@
 import { test } from "@playwright/test";
 import Config from "../../../../config";
 import { DraftAnOrder } from "../../../../journeys/manageCases/caseWorker/draftAnOrder/draftAnOrder";
+import { DummyFL401 } from "../../../../journeys/manageCases/createCase/dummyCase/dummyFL401.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
 test.describe("Draft a non molestation order tests", (): void => {
+  let caseRef: string;
+
+  test.beforeEach(async ({ page }) => {
+    caseRef = await DummyFL401.dummyFL401({
+      page: page,
+      applicantLivesInRefuge: false,
+    });
+  });
+
   test(`Complete Drafting a non molestation order as a solicitor with the following options:
   No to all options,
   No respondent checkbox actions ticked,
@@ -24,6 +34,7 @@ test.describe("Draft a non molestation order tests", (): void => {
       howLongWillOrderBeInForce: "noEndDate",
       willAllPartiesAttendHearing: false,
       browser: browser,
+      caseRef: caseRef,
     });
   });
 
@@ -46,6 +57,7 @@ test.describe("Draft a non molestation order tests", (): void => {
       howLongWillOrderBeInForce: "specifiedDateAndTime",
       willAllPartiesAttendHearing: false,
       browser: browser,
+      caseRef: caseRef,
     });
   });
 
@@ -68,6 +80,7 @@ test.describe("Draft a non molestation order tests", (): void => {
       howLongWillOrderBeInForce: "noEndDate",
       willAllPartiesAttendHearing: false,
       browser: browser,
+      caseRef: caseRef,
     });
   });
 
@@ -90,6 +103,7 @@ test.describe("Draft a non molestation order tests", (): void => {
       howLongWillOrderBeInForce: "specifiedDateAndTime",
       willAllPartiesAttendHearing: true,
       browser: browser,
+      caseRef: caseRef,
     });
   });
 
@@ -112,6 +126,7 @@ test.describe("Draft a non molestation order tests", (): void => {
       howLongWillOrderBeInForce: "noEndDate",
       willAllPartiesAttendHearing: false,
       browser: browser,
+      caseRef: caseRef,
     });
   });
 });

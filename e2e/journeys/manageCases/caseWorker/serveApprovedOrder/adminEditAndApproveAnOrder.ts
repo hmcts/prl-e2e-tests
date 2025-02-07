@@ -17,6 +17,7 @@ interface AdminEditAndApproveOrderParams {
   accessibilityTest: boolean;
   browser: Browser;
   personallyServed: boolean;
+  caseRef: string;
 }
 
 export class AdminEditAndApproveAnOrder {
@@ -25,8 +26,9 @@ export class AdminEditAndApproveAnOrder {
     accessibilityTest,
     browser,
     personallyServed,
+    caseRef,
   }: AdminEditAndApproveOrderParams): Promise<void> {
-    const caseRef: string = await EditAndApproveAnOrder.editAndApproveAnOrder({
+    await EditAndApproveAnOrder.editAndApproveAnOrder({
       page: page,
       caseType: "FL401",
       orderType: "nonMolestation",
@@ -34,6 +36,7 @@ export class AdminEditAndApproveAnOrder {
       errorMessaging: false,
       accessibilityTest: accessibilityTest,
       browser: browser,
+      caseRef: caseRef,
     });
     // open new browser and sign in as court admin user
     const newBrowser = await browser.browserType().launch();

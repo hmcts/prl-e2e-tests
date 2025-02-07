@@ -6,8 +6,6 @@ import { IssueAndSendToLocalCourtCallback1Page } from "../../../../pages/manageC
 import { IssueAndSendToLocalCourtCallbackSubmitPage } from "../../../../pages/manageCases/caseWorker/draftAnOrder/issueAndSendToLocalCourt/issueAndSendToLocalCourtCallbackSubmitPage";
 import { NonMolestationOrder } from "./nonMolestationOrder/nonMolestationOrder";
 import { ParentalResponsibilityOrder } from "./ParentalResponsibilityOrder/parentalResponsibilityOrder";
-import { DummyC100 } from "../../createCase/dummyCase/dummyC100.ts";
-import { DummyFL401 } from "../../createCase/dummyCase/dummyFL401.ts";
 
 interface DraftAnOrderParams {
   page: Page;
@@ -19,6 +17,7 @@ interface DraftAnOrderParams {
   howLongWillOrderBeInForce: HowLongWillTheOrderBeInForce;
   willAllPartiesAttendHearing: boolean;
   browser: Browser;
+  caseRef: string;
 }
 
 export type HowLongWillTheOrderBeInForce =
@@ -159,20 +158,8 @@ export class DraftAnOrder {
     howLongWillOrderBeInForce,
     willAllPartiesAttendHearing,
     browser,
-  }: DraftAnOrderParams): Promise<string> {
-    let caseRef;
-    if (caseType === "C100") {
-      caseRef = await DummyC100.dummyC100({
-        page: page,
-        applicantLivesInRefuge: false,
-        otherPersonLivesInRefuge: false,
-      });
-    } else {
-      caseRef = await DummyFL401.dummyFL401({
-        page: page,
-        applicantLivesInRefuge: false,
-      });
-    }
+    caseRef,
+  }: DraftAnOrderParams): Promise<void> {
     if (caseType === "C100") {
       // C100 orders are assigned to Central Family Court by default
       // need to assign the case to Swansea court if we want to allow a Swansea judge to edit & approve the order
@@ -206,7 +193,6 @@ export class DraftAnOrder {
         console.error("An invalid order type was given");
         break;
     }
-    return caseRef;
   }
 
   private static async assignCaseToSwanseaCourt(

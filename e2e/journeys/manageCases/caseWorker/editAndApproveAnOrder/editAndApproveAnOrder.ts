@@ -20,6 +20,7 @@ interface EditAndApproveOrderParams {
   errorMessaging: boolean;
   accessibilityTest: boolean;
   browser: Browser;
+  caseRef: string;
 }
 
 export class EditAndApproveAnOrder {
@@ -31,9 +32,10 @@ export class EditAndApproveAnOrder {
     errorMessaging,
     accessibilityTest,
     browser,
-  }: EditAndApproveOrderParams): Promise<string> {
+    caseRef,
+  }: EditAndApproveOrderParams): Promise<void> {
     // Draft the order and get case ref to be used to find case
-    const caseRef: string = await DraftAnOrder.draftAnOrder({
+    await DraftAnOrder.draftAnOrder({
       page: page,
       errorMessaging: errorMessaging,
       accessibilityTest: accessibilityTest,
@@ -43,6 +45,7 @@ export class EditAndApproveAnOrder {
       howLongWillOrderBeInForce: "noEndDate",
       willAllPartiesAttendHearing: true,
       browser: browser,
+      caseRef: caseRef,
     });
     page = await Helpers.openNewBrowserWindow(browser, "judge");
     await Helpers.goToCase(page, config.manageCasesBaseURL, caseRef, "tasks");
@@ -76,6 +79,5 @@ export class EditAndApproveAnOrder {
       judeOrderAction,
       accessibilityTest,
     );
-    return caseRef;
   }
 }
