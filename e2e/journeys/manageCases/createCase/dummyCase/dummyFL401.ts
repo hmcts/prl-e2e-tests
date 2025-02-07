@@ -2,6 +2,7 @@ import { Page } from "@playwright/test";
 import { DummyCreateInitial } from "./dummyCreateInitial";
 import { Fl401StatementOfTruth } from "../FL401StatementOfTruth/fl401StatementOfTruth";
 import { DummyFL401ApplicantDetails } from "./dummyFL401ApplicantDetails";
+import { Helpers } from "../../../../common/helpers.ts";
 
 interface dummyFL401Options {
   page: Page;
@@ -12,7 +13,7 @@ export class DummyFL401 {
   public static async dummyFL401({
     page,
     applicantLivesInRefuge,
-  }: dummyFL401Options): Promise<void> {
+  }: dummyFL401Options): Promise<string> {
     await DummyCreateInitial.createDummyCase({
       page: page,
       solicitorCaseType: "FL401",
@@ -31,5 +32,7 @@ export class DummyFL401 {
       },
       true,
     );
+
+    return await Helpers.getCaseNumberFromUrl(page);
   }
 }

@@ -16,12 +16,8 @@ test.describe("FL401 Case tabs", (): void => {
     await FL401CaseTabs.fl401CaseTabs({
       page: page,
       browser: browser,
-      errorMessaging: false,
       accessibilityTest: false,
-      paymentStatusPaid: true,
-      caseType: "FL401",
       applicantLivesInRefuge: true,
-      otherPersonLivesInRefuge: false,
     });
   });
 
@@ -36,12 +32,8 @@ test.describe("FL401 Case tabs", (): void => {
     await FL401CaseTabs.fl401CaseTabs({
       page: page,
       browser: browser,
-      errorMessaging: false,
       accessibilityTest: false,
-      paymentStatusPaid: true,
-      caseType: "FL401",
       applicantLivesInRefuge: false,
-      otherPersonLivesInRefuge: false,
     });
   });
 });
@@ -57,11 +49,7 @@ test(`FL401 Case tabs with the following options:
   await FL401CaseTabs.fl401CaseTabs({
     page: page,
     browser: browser,
-    errorMessaging: false,
     accessibilityTest: true,
-    paymentStatusPaid: true,
-    caseType: "FL401",
     applicantLivesInRefuge: true,
-    otherPersonLivesInRefuge: false,
   });
 });

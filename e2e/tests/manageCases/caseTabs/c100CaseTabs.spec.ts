@@ -17,10 +17,7 @@ test.describe("C100 Case tabs", (): void => {
     await C100CaseTabs.c100CaseTabs({
       page: page,
       browser: browser,
-      errorMessaging: false,
       accessibilityTest: false,
-      paymentStatusPaid: true,
-      caseType: "C100",
       applicantLivesInRefuge: true,
       otherPersonLivesInRefuge: false,
     });
@@ -38,10 +35,7 @@ test.describe("C100 Case tabs", (): void => {
     await C100CaseTabs.c100CaseTabs({
       page: page,
       browser: browser,
-      errorMessaging: false,
       accessibilityTest: false,
-      paymentStatusPaid: true,
-      caseType: "C100",
       applicantLivesInRefuge: false,
       otherPersonLivesInRefuge: false,
     });
@@ -60,10 +54,7 @@ test(`C100 Case tabs with the following options:
   await C100CaseTabs.c100CaseTabs({
     page: page,
     browser: browser,
-    errorMessaging: false,
     accessibilityTest: true,
-    paymentStatusPaid: true,
-    caseType: "C100",
     applicantLivesInRefuge: true,
     otherPersonLivesInRefuge: false,
   });

@@ -1,4 +1,4 @@
-import { Page, Browser } from "@playwright/test";
+import { Browser, Page } from "@playwright/test";
 import { Helpers } from "../../../../common/helpers";
 import { EditAndApproveAnOrder2Page } from "../../../../pages/manageCases/caseWorker/editAndApproveAnOrder/editAndApproveAnOrder2Page";
 import {
@@ -37,7 +37,6 @@ export class EditAndApproveAnOrder {
       page: page,
       errorMessaging: errorMessaging,
       accessibilityTest: accessibilityTest,
-      paymentStatusPaid: true,
       caseType: caseType,
       orderType: orderType,
       yesNoToAll: false,
