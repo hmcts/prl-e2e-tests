@@ -1,0 +1,16 @@
+export enum ManageDocumentsNewSubmitContent {
+  pageTitle = "Manage documents",
+  headingH2 = "Check your answers",
+  text16_1 = "Check the information below carefully.",
+  text16_2 = "Add a document",
+  text16_3 = "Add a document 1",
+  text16_4 = "Confirm the document is related to this case",
+  text16_5 = "Yes, the document belongs to the case",
+  text16_6 = "Submitting document on behalf of",
+  text16_7 = "Document category",
+  text16_8 = "Document",
+  text16_9 = "Does the document contain confidential information?",
+  text16_10 = "Do you want to request this document is restricted?",
+  text16_11 = "Change",
+  text16_a = "Explain why you want to restrict access to the document",
+}
