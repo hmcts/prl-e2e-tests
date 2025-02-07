@@ -3,6 +3,7 @@ import { ManageDocumentsNew1Page } from "../../../../pages/manageCases/caseProgr
 import { ManageDocumentsNewSubmitPage } from "../../../../pages/manageCases/caseProgression/manageDocuments/manageDocumentsNewSubmit.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import { ManageDocumentsNewConfirmPage } from "../../../../pages/manageCases/caseProgression/manageDocuments/manageDocumentsNewConfirmPage.ts";
+import { FL401ConfidentialDetailsTabPage } from "../../../../pages/manageCases/caseTabs/FL401/fl401ConfidentialDetailsTabPage.ts";
 
 interface ManageDocumentsParams {
   page: Page;
@@ -43,5 +44,15 @@ export class ManageDocuments {
       page,
       accessibilityTest,
     });
+    if (restrictDocument || confidentialDocument) {
+      await Helpers.clickTab(page, "Confidential details");
+      await FL401ConfidentialDetailsTabPage.fl401ConfidentialDetailsTabPageManageDocuments(
+        page,
+        documentParty,
+        documentCategory,
+        restrictDocument,
+        confidentialDocument,
+      );
+    }
   }
 }

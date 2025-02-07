@@ -131,7 +131,7 @@ export class ManageDocumentsNew1Page {
     });
     const fileInput = page.locator(UniqueSelectors.uploadDocument);
     await fileInput.setInputFiles(config.testPdfFile);
-    await page.waitForTimeout(2000);
+    await page.waitForTimeout(2000); //wait for the file to upload
     if (confidentialDocument) {
       await page.click(UniqueSelectors.documentConfidentialYes);
     } else {

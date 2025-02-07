@@ -80,7 +80,7 @@ export class ManageDocumentsNewSubmitPage {
       await expect(
         page
           .getByRole("row", {
-            name: `${ManageDocumentsNewSubmitContent.text16_10} ${CommonStaticText.yes}`,
+            name: `${ManageDocumentsNewSubmitContent.text16_9} ${CommonStaticText.yes}`,
             exact: true,
           })
           .locator("td"),
@@ -89,7 +89,7 @@ export class ManageDocumentsNewSubmitPage {
       await expect(
         page
           .getByRole("row", {
-            name: `${ManageDocumentsNewSubmitContent.text16_10} ${CommonStaticText.no}`,
+            name: `${ManageDocumentsNewSubmitContent.text16_9} ${CommonStaticText.no}`,
             exact: true,
           })
           .locator("td"),
@@ -100,7 +100,7 @@ export class ManageDocumentsNewSubmitPage {
         expect(
           page
             .getByRole("row", {
-              name: `${ManageDocumentsNewSubmitContent.text16_9} ${CommonStaticText.yes}`,
+              name: `${ManageDocumentsNewSubmitContent.text16_10} ${CommonStaticText.yes}`,
               exact: true,
             })
             .locator("td"),
@@ -120,7 +120,7 @@ export class ManageDocumentsNewSubmitPage {
       await expect(
         page
           .getByRole("row", {
-            name: `${ManageDocumentsNewSubmitContent.text16_9} ${CommonStaticText.no}`,
+            name: `${ManageDocumentsNewSubmitContent.text16_10} ${CommonStaticText.no}`,
             exact: true,
           })
           .locator("td"),

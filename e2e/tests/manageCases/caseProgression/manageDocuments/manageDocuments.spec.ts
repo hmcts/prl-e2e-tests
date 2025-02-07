@@ -40,4 +40,17 @@ test.describe("Manage documents event for DA Citizen case tests as a court admin
       confidentialDocument: false,
     });
   });
+
+  test("Complete Manage Documents where the document is an 'MIAM certificate/Exemption' and is uploaded on behalf of the Local authority. Saying no to Restrict Access and yes to confidential. @regression", async ({
+    page,
+  }): Promise<void> => {
+    await ManageDocuments.manageDocuments({
+      page: page,
+      accessibilityTest: false,
+      documentParty: "Local authority",
+      documentCategory: "MIAM certificate/Exemption",
+      restrictDocument: false,
+      confidentialDocument: true,
+    });
+  });
 });
