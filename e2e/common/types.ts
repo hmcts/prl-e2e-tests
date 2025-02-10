@@ -70,6 +70,7 @@ export type WACaseWorkerActions =
   | "Manage orders"
   | "Service of application"
   | "Create a bundle"
+  | "Manage documents"
   | "Statement of service";
 
 export type fl401CaseWorkerActions =

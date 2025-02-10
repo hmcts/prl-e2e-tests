@@ -435,4 +435,12 @@ export class Helpers {
       );
     }
   }
+  public static async clickTab(page: Page, tabName: string) {
+    await page
+      .getByRole("tab", {
+        name: tabName,
+        exact: true,
+      })
+      .click();
+  }
 }
