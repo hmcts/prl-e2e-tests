@@ -2,6 +2,7 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors";
 import { Helpers } from "../../../../common/helpers";
 import { FL401SummaryTabContent } from "../../../../fixtures/manageCases/caseTabs/FL401/fl401SummaryTabContent";
+import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
 
 export class FL401SummaryTabPage {
   public static async fl401SummaryTabPage(
@@ -48,7 +49,7 @@ export class FL401SummaryTabPage {
       ),
     ]);
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page); - ADD TICKET
+      await AccessibilityTestHelper.run(page);
     }
   }
 

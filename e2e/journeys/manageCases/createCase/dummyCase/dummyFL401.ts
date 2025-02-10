@@ -33,6 +33,15 @@ export class DummyFL401 {
       true,
     );
 
-    return await Helpers.getCaseNumberFromUrl(page);
+    const caseRef: string = await Helpers.getCaseNumberFromUrl(page);
+    // wait for statement of truth event to complete before performing next actions
+    await page.waitForResponse(
+      (response) =>
+        response.url() ===
+          `https://manage-case.aat.platform.hmcts.net/data/cases/${caseRef}/events` &&
+        response.status() === 201,
+    );
+
+    return caseRef;
   }
 }
