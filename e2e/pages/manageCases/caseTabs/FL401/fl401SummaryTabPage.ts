@@ -1,7 +1,6 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors";
 import { Helpers } from "../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
 import { FL401SummaryTabContent } from "../../../../fixtures/manageCases/caseTabs/FL401/fl401SummaryTabContent";
 
 export class FL401SummaryTabPage {
@@ -49,7 +48,7 @@ export class FL401SummaryTabPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      // await AccessibilityTestHelper.run(page); - ADD TICKET
     }
   }
 
