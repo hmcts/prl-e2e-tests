@@ -16,7 +16,7 @@ test.describe("Applicant keep details private tests", (): void => {
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
   });
 
-  test("Applicant keep details private with yes response. @regression @nightly", async ({
+  test("Applicant keep details private with yes response. @regression", async ({
     page,
     browser,
   }): Promise<void> => {
@@ -32,7 +32,7 @@ test.describe("Applicant keep details private tests", (): void => {
     });
   });
 
-  test("Applicant keep details private with no response. @nightly", async ({
+  test("Applicant keep details private with no response. @regression", async ({
     page,
     browser,
   }): Promise<void> => {

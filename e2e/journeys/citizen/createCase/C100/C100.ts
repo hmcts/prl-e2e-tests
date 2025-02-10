@@ -96,6 +96,7 @@ interface C100TopMiroJourneyOptions {
   c100OtherPeopleDoBKnown: boolean;
   c100OtherPersonLivesInRefuge: boolean;
   c100ChildMainlyLivesWith: typeOfPerson;
+  C100YesNoConfidentiality: boolean;
   yesNoOtherProceedings: boolean;
   c100ChildrenSafetyConcerns: boolean;
   c100SafetyConcernsYesNoToAll: boolean; // Applies to all booleans that don't affect the journey
@@ -143,6 +144,7 @@ interface C100EmergencyProtectionJourneyOptions {
   respAddressLookupSuccessful: boolean;
   respKnownEmailAndPhone: boolean;
   yesNoOtherPersonDetails: boolean;
+  C100YesNoConfidentiality: boolean;
   c100OtherPeopleGender: ApplicantGender;
   c100OtherPeopleChangedName: yesNoDontKnow;
   c100OtherPeopleDoBKnown: boolean;
@@ -212,6 +214,7 @@ interface C100ExistingMIAMDocumentOptions {
   c100OtherPersonLivesInRefuge: boolean;
   c100ChildMainlyLivesWith: typeOfPerson;
   yesNoChildArrangementOrderDetails: boolean;
+  C100YesNoConfidentiality: boolean;
   yesNoOtherProceedings: boolean;
   c100ChildrenSafetyConcerns: boolean;
   c100SafetyConcernsYesNoToAll: boolean; // Applies to all booleans that don't affect the journey
@@ -278,6 +281,7 @@ interface C100FourthRowMiroJourneyOptions {
   c100ChildrenSafetyConcerns: boolean;
   c100SafetyConcernsYesNoToAll: boolean; // Applies to all booleans that don't affect the journey
   c100ChildrenHavePassport: boolean; // If yes -> passport amount
+  C100YesNoConfidentiality: boolean;
   c100MoreThanOnePassport: boolean;
   c100PassportOfficeNotified: boolean;
   c100ChildrenAbductedBefore: boolean; // if yes -> previous abductions page
@@ -420,6 +424,7 @@ export class C100 {
     c100OtherPeopleChangedName,
     c100OtherPeopleDoBKnown,
     c100OtherPersonLivesInRefuge,
+    C100YesNoConfidentiality,
     c100ChildMainlyLivesWith,
     yesNoOtherProceedings,
     c100ChildrenSafetyConcerns,
@@ -509,6 +514,7 @@ export class C100 {
       c100OtherPersonRelationship: relationshipType,
       c100OtherPersonLivesInRefuge: c100OtherPersonLivesInRefuge,
       c100ChildMainlyLivesWith: c100ChildMainlyLivesWith,
+      C100YesNoConfidentiality: C100YesNoConfidentiality,
     });
     await C100OtherProceedings.c100OtherProceedings1({
       page: page,
@@ -599,6 +605,7 @@ export class C100 {
     c100OtherPeopleDoBKnown,
     c100OtherPersonRelationship,
     c100OtherPersonLivesInRefuge,
+    C100YesNoConfidentiality,
     c100ChildMainlyLivesWith,
     c100ChildrenSafetyConcerns,
     c100SafetyConcernsYesNoToAll,
@@ -705,6 +712,7 @@ export class C100 {
       c100OtherPersonRelationship: c100OtherPersonRelationship,
       c100OtherPersonLivesInRefuge: c100OtherPersonLivesInRefuge,
       c100ChildMainlyLivesWith: c100ChildMainlyLivesWith,
+      C100YesNoConfidentiality: C100YesNoConfidentiality,
     });
     await C100SafetyConcerns.c100SafetyConcerns({
       page: page,
@@ -806,6 +814,7 @@ export class C100 {
     c100OtherPeopleDoBKnown,
     c100OtherPersonRelationship,
     c100OtherPersonLivesInRefuge,
+    C100YesNoConfidentiality,
     c100ChildMainlyLivesWith,
     yesNoOtherProceedings,
     c100ChildrenSafetyConcerns,
@@ -907,6 +916,7 @@ export class C100 {
       c100OtherPersonRelationship: c100OtherPersonRelationship,
       c100OtherPersonLivesInRefuge: c100OtherPersonLivesInRefuge,
       c100ChildMainlyLivesWith: c100ChildMainlyLivesWith,
+      C100YesNoConfidentiality: C100YesNoConfidentiality,
     });
     await C100OtherProceedings.c100OtherProceedings1({
       page: page,
@@ -1016,6 +1026,7 @@ export class C100 {
     c100OtherPersonRelationship,
     c100OtherPersonLivesInRefuge,
     c100ChildMainlyLivesWith,
+    C100YesNoConfidentiality,
     yesNoOtherProceedings,
     c100ChildrenSafetyConcerns,
     c100ChildrenAbductedBefore,
@@ -1116,6 +1127,7 @@ export class C100 {
       c100OtherPersonRelationship: c100OtherPersonRelationship,
       c100OtherPersonLivesInRefuge: c100OtherPersonLivesInRefuge,
       c100ChildMainlyLivesWith: c100ChildMainlyLivesWith,
+      C100YesNoConfidentiality: C100YesNoConfidentiality,
     });
     await C100OtherProceedings.c100OtherProceedings1({
       page: page,

@@ -5,24 +5,24 @@ import {
   typeOfPerson,
   yesNoDontKnow,
 } from "../../../../../common/types";
-import { ApplicantAddressLookupPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicantAddressLookupPage";
-import { ApplicantAddressSelectPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicantAddressSelectPage";
-import { ApplicantPersonalDetailsPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicantPersonalDetailsPage";
-import { ApplicantRelationshipToChildPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicantRelationshipToChildPage";
-import { ApplicantStayingInRefugePage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicantStayingInRefugePage";
-import { ApplicantKeepingDetailsSafePage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicantKeepingDetailsSafePage";
-import { ApplicantUploadC8FormPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicantUploadC8FormPage";
-import { ApplicantAddressManualPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicantAddressManualPage";
-import { ApplicantContactDetailPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicantContactDetailPage";
-import { ApplicantContactPreferencePage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicantContactPreferencePage";
-import { RespondentDetailsAddRespondentsPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/respondentDetailsAddRespondentsPage";
-import { RespondentDetailsPersonalDetailsPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/respondentDetailsPersonalDetailsPage";
-import { RespondentDetailsAddressLookupPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/respondentDetailsAddressLookupPage";
-import { RespondentDetailsAddressSelectPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/respondentDetailsAddressSelectPage";
-import { RespondentDetailsAddressManualPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/respondentDetailsAddressManualPage";
-import { RespondentDetailsContactDetailsPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/respondentDetailsContactDetailsPage";
-import { OtherPersonDetailsAddOtherPersonsPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/otherPersonDetailsAddOtherPersonsPage";
-import { OtherPersonDetailsCheckPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/otherPersonDetailsCheckPage";
+import { ApplicantAddressLookupPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicant/applicantAddressLookupPage.ts";
+import { ApplicantAddressSelectPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicant/applicantAddressSelectPage.ts";
+import { ApplicantPersonalDetailsPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicant/applicantPersonalDetailsPage.ts";
+import { ApplicantRelationshipToChildPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicant/applicantRelationshipToChildPage.ts";
+import { ApplicantStayingInRefugePage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicant/applicantStayingInRefugePage.ts";
+import { ApplicantKeepingDetailsSafePage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicant/applicantKeepingDetailsSafePage.ts";
+import { ApplicantUploadC8FormPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicant/applicantUploadC8FormPage.ts";
+import { ApplicantAddressManualPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicant/applicantAddressManualPage.ts";
+import { ApplicantContactDetailPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicant/applicantContactDetailPage.ts";
+import { ApplicantContactPreferencePage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicant/applicantContactPreferencePage.ts";
+import { RespondentDetailsAddRespondentsPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/respondent/respondentDetailsAddRespondentsPage.ts";
+import { RespondentDetailsPersonalDetailsPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/respondent/respondentDetailsPersonalDetailsPage.ts";
+import { RespondentDetailsAddressLookupPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/respondent/respondentDetailsAddressLookupPage.ts";
+import { RespondentDetailsAddressSelectPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/respondent/respondentDetailsAddressSelectPage.ts";
+import { RespondentDetailsAddressManualPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/respondent/respondentDetailsAddressManualPage.ts";
+import { RespondentDetailsContactDetailsPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/respondent/respondentDetailsContactDetailsPage.ts";
+import { OtherPersonDetailsAddOtherPersonsPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/otherPeople/otherPersonDetailsAddOtherPersonsPage.ts";
+import { OtherPersonDetailsCheckPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/otherPeople/otherPersonDetailsCheckPage.ts";
 import { PersonalDetailsPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/otherPeople/personalDetailsPage";
 import { OtherPersonRelationshipPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/otherPeople/otherPersonRelationshipPage";
 import { OtherPersonStayingInRefugePage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/otherPeople/otherPersonStayingInRefugePage";
@@ -33,7 +33,8 @@ import { OtherPersonSelectPage } from "../../../../../pages/citizen/createCase/C
 import { OtherPersonManualPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/otherPeople/otherPersonManualPage";
 import { MainlyLiveWithPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/otherPeople/mainlyLiveWithPage";
 import { LivingArrangementsPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/otherPeople/livingArrangementsPage";
-import { RespondentRelationshipToChildPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/respondentDetailsRelationshipToChildPage";
+import { RespondentRelationshipToChildPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/respondent/respondentDetailsRelationshipToChildPage.ts";
+import { OtherPersonDetailsConfidentiality } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/otherPeople/otherPersonDetailsConfidentialityPage.ts";
 
 interface c100CasePartyDetailsOptions {
   page: Page;
@@ -64,6 +65,7 @@ interface c100CasePartyDetailsOptions {
   c100OtherPersonRelationship: Relationship;
   c100OtherPersonLivesInRefuge: boolean;
   c100ChildMainlyLivesWith: typeOfPerson;
+  C100YesNoConfidentiality: boolean;
 }
 
 export class C100CasePartyDetails {
@@ -96,6 +98,7 @@ export class C100CasePartyDetails {
     c100OtherPersonRelationship,
     c100OtherPersonLivesInRefuge,
     c100ChildMainlyLivesWith,
+    C100YesNoConfidentiality,
   }: c100CasePartyDetailsOptions): Promise<void> {
     await ApplicantPersonalDetailsPage.applicantPersonalDetailsPage({
       page: page,
@@ -300,5 +303,14 @@ export class C100CasePartyDetails {
       yesNoOtherPersonDetails: yesNoOtherPersonDetails,
       c100ChildMainlyLivesWith: c100ChildMainlyLivesWith,
     });
+    if (c100ChildMainlyLivesWith === "otherPerson") {
+      await OtherPersonDetailsConfidentiality.otherPersonDetailsConfidentiality(
+        {
+          page: page,
+          accessibilityTest: accessibilityTest,
+          C100YesNoConfidentiality: C100YesNoConfidentiality,
+        },
+      );
+    }
   }
 }

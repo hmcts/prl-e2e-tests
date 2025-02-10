@@ -40,7 +40,7 @@ export class C100OtherProceedings {
         errorMessaging: false,
       });
     }
-    await Helpers.selectSolicitorEvent(page, "Other proceedings");
+    await Helpers.handleEventBasedOnEnvironment(page, "Other proceedings");
     await OtherProceedings1Page.otherProceedings1Page({
       page: page,
       accessibilityTest: accessibilityTest,

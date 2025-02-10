@@ -26,7 +26,7 @@ export class FL401RespondentsBehaviour {
         errorMessaging: false,
       });
     }
-    await Helpers.selectSolicitorEvent(page, "Respondent's behaviour");
+    await Helpers.handleEventBasedOnEnvironment(page, "Respondent's behaviour");
     await RespondentsBehaviourPage.respondentsBehaviourPage(
       page,
       accessibilityTest,

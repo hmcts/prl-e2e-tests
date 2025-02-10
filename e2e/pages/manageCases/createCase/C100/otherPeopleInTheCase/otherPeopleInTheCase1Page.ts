@@ -38,14 +38,11 @@ enum UniqueSelectors {
   preferredGenderInput = "#otherPartyInTheCaseRevised_0_otherGender",
   placeOfBirthInput = "#otherPartyInTheCaseRevised_0_placeOfBirth",
   applicantCurrentAddressInput = "#otherPartyInTheCaseRevised_0_address_address_postcodeInput",
-  addressConfidentialYes = "#otherPartyInTheCaseRevised_0_isAddressConfidential_Yes",
   addressConfidentialNo = "#otherPartyInTheCaseRevised_0_isAddressConfidential_No",
   address5YearsDetailsRequiredInput = "#otherPartyInTheCaseRevised_0_addressLivedLessThan5YearsDetails",
   emailAddressInput = "#otherPartyInTheCaseRevised_0_email",
-  emailAddressConfidentialYes = "#otherPartyInTheCaseRevised_0_isEmailAddressConfidential_Yes",
   emailAddressConfidentialNo = "#otherPartyInTheCaseRevised_0_isEmailAddressConfidential_No",
   contactNumberInput = "#otherPartyInTheCaseRevised_0_phoneNumber",
-  contactNumberConfidentialityYes = "#otherPartyInTheCaseRevised_0_isPhoneNumberConfidential_Yes",
   contactNumberConfidentialityNo = "#otherPartyInTheCaseRevised_0_isPhoneNumberConfidential_No",
 }
 
@@ -172,36 +169,6 @@ export class OtherPeopleInTheCase1Page {
         `${Selectors.GovukErrorMessage}:text-is("${OtherPeopleInTheCase1Content.errorMessage5YearsDetailsRequired}")`,
         1,
       ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukErrorValidation}:text-is("${OtherPeopleInTheCase1Content.errorMessageAddressConfidential}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukErrorMessage}:text-is("${OtherPeopleInTheCase1Content.errorMessageAddressConfidential}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukErrorValidation}:text-is("${OtherPeopleInTheCase1Content.errorMessageEmailConfidential}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukErrorMessage}:text-is("${OtherPeopleInTheCase1Content.errorMessageEmailConfidential}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukErrorValidation}:text-is("${OtherPeopleInTheCase1Content.errorMessageContactNumberConfidential}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukErrorMessage}:text-is("${OtherPeopleInTheCase1Content.errorMessageContactNumberConfidential}")`,
-        1,
-      ),
     ]);
   }
 
@@ -303,7 +270,6 @@ export class OtherPeopleInTheCase1Page {
         OtherPeopleInTheCase1Content.address,
       );
       await this.AddressValidation(page);
-      await page.click(`${UniqueSelectors.addressConfidentialYes}`);
       await page.click(
         `${UniqueSelectors.applicantLivedAtAddressLessThan5YearsYes}`,
       );
@@ -317,14 +283,12 @@ export class OtherPeopleInTheCase1Page {
         `${UniqueSelectors.emailAddressInput}`,
         OtherPeopleInTheCase1Content.applicantEmail,
       );
-      await page.click(`${UniqueSelectors.emailAddressConfidentialYes}`);
       await this.checkEmailAddress(page);
       await page.click(`${UniqueSelectors.applicantContactNumberYes}`);
       await page.fill(
         `${UniqueSelectors.contactNumberInput}`,
         OtherPeopleInTheCase1Content.phoneNumber,
       );
-      await page.click(`${UniqueSelectors.contactNumberConfidentialityYes}`);
       await this.checkContactNumber(page);
     } else {
       await page.click(`${UniqueSelectors.applicantBirthDateNo}`);
@@ -455,11 +419,6 @@ export class OtherPeopleInTheCase1Page {
         `${UniqueSelectors.addressFields}:text-is("${OtherPeopleInTheCase1Content.formLabelCountry}")`,
         1,
       ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukFormLabel}:text-is("${OtherPeopleInTheCase1Content.formLabelAddressConfidential}")`,
-        1,
-      ),
       await expect(page.locator(ApplicantAddressFields.line1)).toHaveValue(
         OtherPeopleInTheCase1Content.buildingAndStreet,
       ),
@@ -493,27 +452,15 @@ export class OtherPeopleInTheCase1Page {
         `${Selectors.GovukFormLabel}:text-is("${OtherPeopleInTheCase1Content.formLabelApplicantEmailAddress}")`,
         1,
       ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukFormLabel}:text-is("${OtherPeopleInTheCase1Content.formLabelEmailAddressConfidential}")`,
-        1,
-      ),
     ]);
   }
 
   private static async checkContactNumber(page: Page): Promise<void> {
-    await Promise.all([
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukFormLabel}:text-is("${OtherPeopleInTheCase1Content.formLabelApplicantContactNumber}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukFormLabel}:text-is("${OtherPeopleInTheCase1Content.formLabelContactNumberConfidential}")`,
-        1,
-      ),
-    ]);
+    await Helpers.checkVisibleAndPresent(
+      page,
+      `${Selectors.GovukFormLabel}:text-is("${OtherPeopleInTheCase1Content.formLabelApplicantContactNumber}")`,
+      1,
+    );
   }
 
   private static async checkFormLabelsWhenOtherPersonLivesInRefugeYesIsClicked(

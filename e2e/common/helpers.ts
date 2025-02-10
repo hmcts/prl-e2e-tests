@@ -37,7 +37,7 @@ export class Helpers {
       await page.waitForLoadState("domcontentloaded");
       await page.waitForSelector("#next-step", { state: "visible" });
       await page.selectOption("#next-step", chosenEvent);
-      await page.waitForTimeout(3000);
+      await page.waitForTimeout(1500);
       const goButton: Locator = page.getByRole("button", { name: "Go" });
       await expect(goButton).toBeEnabled();
       await goButton.click();
@@ -394,6 +394,13 @@ export class Helpers {
       .toBeTruthy();
   }
 
+  public static getFormattedCardExpiryDate(
+    month: number,
+    year: number,
+  ): string {
+    return `${String(month).padStart(2, "0")}/${String(year).slice(-2)}`;
+  }
+
   public static async IsEqualityAndDiversityPageDisplayed(page: Page) {
     await expect
       .poll(
@@ -409,5 +416,31 @@ export class Helpers {
       .toBeTruthy();
 
     return page.url().includes("pcq");
+  }
+
+  public static async handleEventBasedOnEnvironment(
+    page: Page,
+    event: c100SolicitorEvents | fl401SolicitorEvents,
+  ): Promise<void> {
+    if (
+      process.env.MANAGE_CASES_TEST_ENV === "aat" ||
+      process.env.MANAGE_CASES_TEST_ENV === "demo"
+    ) {
+      await Helpers.selectSolicitorEvent(page, event);
+    } else if (process.env.MANAGE_CASES_TEST_ENV === "preview") {
+      await Helpers.chooseEventFromDropdown(page, event);
+    } else {
+      throw new Error(
+        `Unexpected environment in URL: ${process.env.MANAGE_CASES_TEST_ENV}`,
+      );
+    }
+  }
+  public static async clickTab(page: Page, tabName: string) {
+    await page
+      .getByRole("tab", {
+        name: tabName,
+        exact: true,
+      })
+      .click();
   }
 }

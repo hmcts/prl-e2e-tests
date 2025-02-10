@@ -1,0 +1,15 @@
+export enum ListOfApplications2Content {
+  GovukHeadingL = "Make a request to the court about your case",
+  GovukBody1 = "Select a form to make an application in your court proceedings.",
+  GovukAccordionSection1 = "Ask the court to prevent questioning in person when accusations of abuse have been made",
+  GovukBody2 = "If you have accused someone in the case of abuse and want the court to prevent in-person questioning,",
+  GovukLink1 = "complete and submit form EX740",
+  GovukBody3 = "If someone has accused you,",
+  GovukLink2 = "complete and submit form EX741",
+  GovukAccordionSection2 = "Make a request to order a witness to attend court",
+  GovukBody4 = "You can ask the court to order a witness to attend or bring in documents by completing and submitting the form FP25.",
+  GovukLink3 = "Apply to the court using form FP25",
+  GovukAccordionSection3 = "Request the court acts when someone in the case is disobeying a court order",
+  GovukBody5 = "If you believe someone is disobeying a court order or is unfairly influencing proceedings you can complete and submit form FC600 to request the court takes action. This is also known as 'contempt of court.'",
+  GovukLink4 = "Apply to the court using form FC600",
+}

@@ -27,6 +27,10 @@ export class Config {
       email: process.env.COURT_ADMIN_STOKE_USERNAME as string,
       password: process.env.COURT_ADMIN_STOKE_PASSWORD as string,
     },
+    caseManager: {
+      email: process.env.CASEMANAGER_USERNAME as string,
+      password: process.env.CASEMANAGER_PASSWORD as string,
+    },
   };
 
   public static readonly sessionStoragePath: string = path.join(
@@ -40,6 +44,21 @@ export class Config {
   public static readonly manageCasesBaseURL: string =
     process.env.MANAGE_CASES_BASE_URL ||
     "https://manage-case.aat.platform.hmcts.net/cases";
+
+  public static getEnvironment(url: string): string {
+    return (
+      ["aat", "demo", "preview"].find((env) => url.includes(env)) || "unknown"
+    );
+  }
+
+  public static setEnvironmentVariables(): void {
+    process.env.CITIZEN_TEST_ENV = this.getEnvironment(
+      this.citizenFrontendBaseURL,
+    );
+    process.env.MANAGE_CASES_TEST_ENV = this.getEnvironment(
+      this.manageCasesBaseURL,
+    );
+  }
 
   public static readonly testFile: string = path.resolve(
     __dirname,
@@ -66,5 +85,7 @@ export class Config {
     return this.userCredentials[role];
   }
 }
+
+Config.setEnvironmentVariables();
 
 export default Config;

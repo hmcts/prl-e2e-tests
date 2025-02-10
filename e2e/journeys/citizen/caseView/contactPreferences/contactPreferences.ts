@@ -40,6 +40,7 @@ export class ContactPreferences {
       caseUser: caseUser,
       accessibilityTest: accessibilityTest,
       applicationSubmittedBy: applicationSubmittedBy,
+      isManualSOA: false,
     });
     await page.click(UniqueSelectors.contactPreferencesPrivateSelector);
     await ContactPreferencesPage.contactPreferencesPage(

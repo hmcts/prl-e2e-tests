@@ -10,7 +10,7 @@ export class DummyC100ApplicantDetails {
     page: Page,
     applicantLivesInRefuge: boolean,
   ): Promise<void> {
-    await Helpers.selectSolicitorEvent(page, "Applicant details");
+    await Helpers.handleEventBasedOnEnvironment(page, "Applicant details");
     await DummyC100ApplicantDetailsPage.dummyApplicantDetailsPage(
       page,
       applicantLivesInRefuge,

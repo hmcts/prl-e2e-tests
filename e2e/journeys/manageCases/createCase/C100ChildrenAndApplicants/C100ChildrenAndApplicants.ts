@@ -36,7 +36,10 @@ export class C100ChildrenAndApplicants {
         subJourney: true,
       });
     }
-    await Helpers.selectSolicitorEvent(page, `Children and applicants`);
+    await Helpers.handleEventBasedOnEnvironment(
+      page,
+      `Children and applicants`,
+    );
     await ChildrenAndApplicants1Page.childrenAndApplicants1Page({
       page: page,
       accessibilityTest: accessibilityTest,

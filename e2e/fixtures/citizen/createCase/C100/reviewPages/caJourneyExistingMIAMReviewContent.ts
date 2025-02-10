@@ -167,6 +167,7 @@ export enum CaJourneyExistingMIAMReviewContent {
   h2_13 = "Help with Fees",
   h2_14 = "Where the children live",
   h2_15 = "Safety concerns",
+  h2_16 = "Confidential details of the other people",
   h3_1 = "MIAM attendance",
   h3_2 = "Children's details",
   h3_3 = "Additional details about the children",
@@ -454,7 +455,7 @@ export enum CaJourneyExistingMIAMReviewContent {
   span_84 = "I need something to feel comfortable during a court hearing",
   span_85 = "I need help travelling to, or moving around court buildings",
   span_86 = "Do you need help with paying the fee for this application?",
-  span_87 = "Enter your help with fees reference number",
+  span_87 = "Do you want to keep Other Person First Name Other Person Last Name’s identity private from the other people named in the application (the respondents)?",
   span_fullName = "Full name", // 4 occurrences
   span_dateOfBirth = "Date of birth", // 4 occurrences
   span_gender = "Gender", // 4 occurrences

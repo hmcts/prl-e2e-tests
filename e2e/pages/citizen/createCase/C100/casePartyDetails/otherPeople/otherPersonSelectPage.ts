@@ -4,7 +4,7 @@ import { Selectors } from "../../../../../../common/selectors";
 import { OtherPersonSelectContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/otherPeople/otherPersonSelectContent";
 import { Helpers } from "../../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../../common/commonStaticText";
-import { ApplicantAddressSelectContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/applicantAddressSelectContent.ts";
+import { ApplicantAddressSelectContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/applicant/applicantAddressSelectContent.ts";
 
 interface otherPersonSelectOptions {
   page: Page;

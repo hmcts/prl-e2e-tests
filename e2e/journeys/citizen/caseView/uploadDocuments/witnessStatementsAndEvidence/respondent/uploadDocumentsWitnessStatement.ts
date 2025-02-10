@@ -49,6 +49,7 @@ export class UploadDocumentsWitnessStatement {
       caseUser: caseUser,
       accessibilityTest: accessibilityTest,
       applicationSubmittedBy: applicationSubmittedBy,
+      isManualSOA: false,
     });
     await page.click(UniqueSelectors.uploadDocumentsPrivateSelector);
     await UploadPage.uploadPage(page, accessibilityTest);

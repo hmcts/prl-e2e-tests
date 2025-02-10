@@ -1,4 +1,4 @@
-import { Cookie, Page, expect } from "@playwright/test";
+import { Cookie, expect, Page } from "@playwright/test";
 import { existsSync, readFileSync } from "fs";
 import Config from "../../config.ts";
 import { setupUser } from "./idamCreateUserApiHelper.ts";

@@ -20,6 +20,7 @@ const UserRoles = {
   judge: "judge",
   caseWorker: "caseWorker",
   courtAdminStoke: "courtAdminStoke",
+  caseManager: "caseManager",
 } as const;
 
 export type UserRole = (typeof UserRoles)[keyof typeof UserRoles];
@@ -69,6 +70,7 @@ export type WACaseWorkerActions =
   | "Manage orders"
   | "Service of application"
   | "Create a bundle"
+  | "Manage documents"
   | "Statement of service";
 
 export type fl401CaseWorkerActions =
@@ -216,3 +218,21 @@ export type documentCategory = "Applicant's statements" | "Position statements";
 export type documentSubmittedBy = "CourtNav" | "Citizen";
 
 export type applicationSubmittedBy = "Citizen" | "Solicitor";
+
+export type CaseAPIEvent =
+  | "fl401TypeOfApplication"
+  | "withoutNoticeOrderDetails"
+  | "applicantsDetails"
+  | "respondentsDetails"
+  | "fl401ApplicantFamilyDetails"
+  | "respondentRelationship"
+  | "respondentBehaviour"
+  | "fl401OtherProceedings"
+  | "attendingTheHearing"
+  | "welshLanguageRequirements"
+  | "fl401UploadDocuments"
+  | "fl401StatementOfTruthAndSubmit"
+  | "fl401AddCaseNumber"
+  | "fl401SendToGateKeeper"
+  | "manageOrders"
+  | "serviceOfApplication";

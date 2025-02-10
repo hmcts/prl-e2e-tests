@@ -32,7 +32,10 @@ export class FL401WelshLanguageRequirements {
         errorMessaging: false,
       });
     }
-    await Helpers.selectSolicitorEvent(page, "Welsh language requirements");
+    await Helpers.handleEventBasedOnEnvironment(
+      page,
+      "Welsh language requirements",
+    );
     await WelshLanguageRequirementsPage.welshLanguageRequirementsPage(
       page,
       errorMessaging,

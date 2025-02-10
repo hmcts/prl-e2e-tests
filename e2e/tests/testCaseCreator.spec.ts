@@ -3,8 +3,8 @@ import { SolicitorCaseCreator } from "../common/solicitorCaseCreator.ts";
 import Config from "../config.ts";
 import { AccessCodeHelper } from "../common/accessCodeHelper.ts";
 import createDaCitizenCourtNavCase from "../common/createCaseHelper.ts";
-import { submitEvent } from "../common/solicitorCaseCreatorHelper.ts";
 import { Helpers } from "../common/helpers.ts";
+import { completeCheckApplicationAndSendToGatekeeper } from "../common/caseEventsHelper.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
@@ -13,9 +13,7 @@ test.describe("Case creation examples", (): void => {
     page,
   }): Promise<void> => {
     await page.goto(Config.manageCasesBaseURL);
-    const caseRef =
-      await SolicitorCaseCreator.createCaseStatementOfTruthAndSubmit(page);
-    console.log(caseRef);
+    await SolicitorCaseCreator.createCaseStatementOfTruthAndSubmit(page);
   });
 
   test("create solicitor case - gatekeeping", async ({
@@ -23,11 +21,7 @@ test.describe("Case creation examples", (): void => {
     browser,
   }): Promise<void> => {
     await page.goto(Config.manageCasesBaseURL);
-    const caseRef = await SolicitorCaseCreator.createCaseSendToGatekeeper(
-      page,
-      browser,
-    );
-    console.log(caseRef);
+    await SolicitorCaseCreator.createCaseSendToGatekeeper(page, browser);
   });
 
   test("create solicitor case and service of application example", async ({
@@ -36,13 +30,8 @@ test.describe("Case creation examples", (): void => {
   }): Promise<void> => {
     await page.goto(Config.manageCasesBaseURL);
     const caseRef = await SolicitorCaseCreator.createCaseSOA(page, browser);
-    console.log(caseRef);
-    const appAccessCode: string =
-      await AccessCodeHelper.getApplicantAccessCode("1733309023574046");
-    console.log(`Applicant access code: ${appAccessCode}`);
-    const respAccessCode: string =
-      await AccessCodeHelper.getRespondentAccessCode(caseRef);
-    console.log(`Respondent access code: ${respAccessCode}`);
+    await AccessCodeHelper.getApplicantAccessCode(caseRef);
+    await AccessCodeHelper.getRespondentAccessCode(caseRef);
   });
 
   test("create courtnav case and send to gatekeeper example", async ({
@@ -56,8 +45,6 @@ test.describe("Case creation examples", (): void => {
     await caPage.goto(
       "https://manage-case.aat.platform.hmcts.net/work/my-work/list",
     );
-    await submitEvent(caPage, caseRef, "fl401SendToGateKeeper");
-    await submitEvent(caPage, caseRef, "serviceOfApplication");
-    console.log(caseRef);
+    await completeCheckApplicationAndSendToGatekeeper(caPage, caseRef);
   });
 });

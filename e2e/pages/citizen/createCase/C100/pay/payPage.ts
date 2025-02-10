@@ -46,10 +46,16 @@ export class PayPage {
 
   private static async checkPageLoads({
     page,
+    accessibilityTest,
   }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.GovukHeadingL}:text-is("${PayContent.pageTitle}")`,
     );
+    const formattedExpiryDate = Helpers.getFormattedCardExpiryDate(
+      10,
+      new Date().getFullYear() + 2,
+    );
+
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
@@ -86,7 +92,21 @@ export class PayPage {
         `${Selectors.GovukBody}:text-is("${PayContent.body4}")`,
         1,
       ),
-      Helpers.checkGroup(page, 2, PayContent, "hint", `${Selectors.GovukHint}`),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukHint}:text-is("${PayContent.hint1}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukHint}:has-text("${PayContent.hintDynamicDate}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukHint}:has-text("${formattedExpiryDate}")`,
+        1,
+      ),
       Helpers.checkGroup(
         page,
         2,
@@ -101,9 +121,9 @@ export class PayPage {
         1,
       ),
     ]);
-    // if (accessibilityTest) {
-    //   await AccessibilityTestHelper.run(page); / TODO: Pending accessibility PRL-6654
-    // }
+    if (accessibilityTest) {
+      //   await AccessibilityTestHelper.run(page); / TODO: Pending accessibility PRL-6654
+    }
   }
 
   private static async checkErrorMessaging(page: Page): Promise<void> {
