@@ -1,10 +1,18 @@
 import { test } from "@playwright/test";
 import Config from "../../../../config";
 import { DummyPaymentAwp } from "../../../../journeys/manageCases/caseWorker/dummyPayment/dummyPaymentAwp";
+import { DummyFL401 } from "../../../../journeys/manageCases/createCase/dummyCase/dummyFL401.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
 test.describe("FL401 Dummy payment for AWP tests", (): void => {
+  test.beforeEach(async ({ page }) => {
+    await DummyFL401.dummyFL401({
+      page: page,
+      applicantLivesInRefuge: false,
+    });
+  });
+
   test(`Complete the Dummy payment for AWP action as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
@@ -42,18 +50,18 @@ test.describe("FL401 Dummy payment for AWP tests", (): void => {
       paymentStatusPaid: true,
     });
   });
-});
 
-test(`Complete the Dummy payment for AWP action  as a solicitor with the following options:
+  test(`Complete the Dummy payment for AWP action  as a solicitor with the following options:
   Accessibility testing,
   Not Error message testing,
   Payment status is paid. @accessibility @nightly`, async ({
-  page,
-}): Promise<void> => {
-  await DummyPaymentAwp.dummyPaymentAwp({
     page,
-    errorMessaging: false,
-    accessibilityTest: true,
-    paymentStatusPaid: true,
+  }): Promise<void> => {
+    await DummyPaymentAwp.dummyPaymentAwp({
+      page,
+      errorMessaging: false,
+      accessibilityTest: true,
+      paymentStatusPaid: true,
+    });
   });
 });

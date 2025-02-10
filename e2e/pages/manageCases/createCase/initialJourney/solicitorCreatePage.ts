@@ -50,10 +50,7 @@ export class SolicitorCreatePage {
     page: Page,
     isDummyCase: boolean,
   ): Promise<void> {
-    // wait for response from launch darkly - the drop-downs don't seem to populate correctly before the response is received - ADD TICKET NUMBER
-    await page.waitForResponse(
-      "https://app.launchdarkly.com/sdk/evalx/645baeea2787d812993d9d70/user",
-    );
+    await page.reload();
     await page.selectOption(fieldIds.jurisdiction, options.familyPrivateLaw);
     await page.selectOption(fieldIds.caseType, options.caseType);
     if (isDummyCase) {
