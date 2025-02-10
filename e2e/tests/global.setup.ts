@@ -1,4 +1,4 @@
-import { request, test as setup } from "@playwright/test";
+import { APIRequestContext, request, test as setup } from "@playwright/test";
 import dotenv from "dotenv";
 import { getAccessToken } from "../common/getAccessTokenHelper";
 import IdamLoginHelper from "../common/userSetup/idamLoginHelper.ts";
@@ -21,7 +21,7 @@ setup("Set up users", async ({ page }) => {
   process.env.CREATE_USER_IDAM_BEARER_TOKEN = userCreationToken;
 
   // define users and set up their accounts
-  const users = ["judge", "caseWorker", "solicitor"];
+  const users = ["solicitor", "caseWorker", "judge"];
   for (const userRole of users) {
     const { email, password } = await setupUser(userCreationToken, userRole);
     const browser = page.context().browser();
@@ -38,4 +38,16 @@ setup("Set up users", async ({ page }) => {
       userRole,
     );
   }
+});
+
+setup("Retrieve bearer token for courtNav DA case creation", async () => {
+  const apiContextDaCreateCase: APIRequestContext = await request.newContext();
+  const tokenDaCreateCase = await getAccessToken(
+    "daCourtNavCreateCase",
+    apiContextDaCreateCase,
+  );
+  if (!tokenDaCreateCase) {
+    throw new Error("Setup failed: Unable to get bearer token.");
+  }
+  process.env.COURTNAV_CREATE_CASE_BEARER_TOKEN = tokenDaCreateCase;
 });

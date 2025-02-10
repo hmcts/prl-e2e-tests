@@ -81,7 +81,7 @@ export class IdamLoginHelper {
     }
   }
 
-  public static async signInCitizenUser(
+  public static async createAndSignInCitizenUser(
     page: Page,
     application: string,
   ): Promise<void> {

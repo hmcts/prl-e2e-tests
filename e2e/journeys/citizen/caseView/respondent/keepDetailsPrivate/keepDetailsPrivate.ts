@@ -1,20 +1,21 @@
-import { ActivateCase } from "../../../activateCase/activateCase.ts";
-import { RespondentDetailsKnownPage } from "../../../../../pages/citizen/caseView/keepDetailsPrivate/respondent/respondentDetailsKnownPage.ts";
 import {
   applicationSubmittedBy,
   yesNoDontKnow,
 } from "../../../../../common/types.ts";
 import { Browser, Page } from "@playwright/test";
-import { RespondentStartAlternativePage } from "../../../../../pages/citizen/caseView/keepDetailsPrivate/respondent/respondentStartAlternativePage.ts";
-import { RespondentPrivateDetailsConfirmedPage } from "../../../../../pages/citizen/caseView/keepDetailsPrivate/respondent/RespondentPrivateDetailsConfirmedPage.ts";
+import { ActivateCase, CaseUser } from "../../../activateCase/activateCase.ts";
+import { DetailsKnownPage } from "../../../../../pages/citizen/caseView/keepDetailsPrivate/applicant/detailsKnownPage.ts";
+import { ApplicantStartAlternativePage } from "../../../../../pages/citizen/caseView/keepDetailsPrivate/applicant/startAlternativePage.ts";
+import { ApplicantPrivateDetailsConfirmedPage } from "../../../../../pages/citizen/caseView/keepDetailsPrivate/applicant/privateDetailsConfirmedPage.ts";
 
-interface RespondentConfirmContactDetailsParams {
+interface keepDetailsPrivateParams {
   page: Page;
   browser: Browser;
   caseRef: string;
   accessibilityTest: boolean;
-  yesNoDontKnow: yesNoDontKnow;
   startAlternativeYesNo: boolean;
+  yesNoDontKnow: yesNoDontKnow;
+  isApplicant: boolean;
   applicationSubmittedBy: applicationSubmittedBy;
 }
 
@@ -28,35 +29,52 @@ export class KeepDetailsPrivate {
     browser,
     caseRef,
     accessibilityTest,
-    yesNoDontKnow,
     startAlternativeYesNo,
+    yesNoDontKnow,
+    isApplicant,
     applicationSubmittedBy,
-  }: RespondentConfirmContactDetailsParams): Promise<void> {
+  }: keepDetailsPrivateParams): Promise<void> {
+    const caseUser: CaseUser = isApplicant ? "applicant" : "respondent";
     page = await ActivateCase.activateCase({
       page: page,
       browser: browser,
       caseRef: caseRef,
-      caseUser: "respondent",
+      caseUser: caseUser,
       accessibilityTest: accessibilityTest,
       applicationSubmittedBy: applicationSubmittedBy,
+      isManualSOA: false,
     });
     await page.click(UniqueSelectors.keepDetailsPrivateSelector);
-    await RespondentDetailsKnownPage.respondentDetailsKnownPage(
-      page,
-      accessibilityTest,
-      yesNoDontKnow,
-    );
-    await RespondentStartAlternativePage.respondentStartAlternativePage({
-      page,
-      accessibilityTest,
-      startAlternativeYesNo,
-    });
-    await RespondentPrivateDetailsConfirmedPage.respondentPrivateDetailsConfirmedPage(
-      {
+    if (isApplicant) {
+      await DetailsKnownPage.ApplicantDetailsKnownPage(
+        page,
+        accessibilityTest,
+        yesNoDontKnow,
+      );
+      await ApplicantStartAlternativePage.applicantStartAlternativePage({
         page,
         accessibilityTest,
         startAlternativeYesNo,
-      },
-    );
+        isApplicant,
+      });
+    } else {
+      await DetailsKnownPage.RespondentDetailsKnownPage(
+        page,
+        accessibilityTest,
+        yesNoDontKnow,
+      );
+      await ApplicantStartAlternativePage.respondentStartAlternativePage({
+        page,
+        accessibilityTest,
+        startAlternativeYesNo,
+        isApplicant,
+      });
+    }
+    await ApplicantPrivateDetailsConfirmedPage.privateDetailsConfirmedPage({
+      page,
+      accessibilityTest,
+      startAlternativeYesNo,
+      isApplicant,
+    });
   }
 }
