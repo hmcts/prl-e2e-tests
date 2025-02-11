@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import { DummyC100ChildDetails } from "./dummyC100ChildDetails";
 import { C100SubmitAndPay } from "../C100SubmitAndPay/C100SubmitAndPay";
 import { DummyCreateInitial } from "./dummyCreateInitial";
-import { DummyPaymentConfirmation } from "../../caseWorker/dummyPayment/dummyPaymentConfirmation.ts";
+import { DummyPaymentConfirmation } from "../../caseWorker/dummyPayment/dummyPaymentConfirmation";
 import { DummyC100ApplicantDetails } from "./dummyC100ApplicantDetails";
 import { DummyC100OtherPersonDetails } from "./dummyC100OtherPersonDetails";
 import { Helpers } from "../../../../common/helpers.ts";
