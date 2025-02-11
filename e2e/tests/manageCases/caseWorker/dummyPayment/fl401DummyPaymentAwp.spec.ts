@@ -1,16 +1,18 @@
 import { test } from "@playwright/test";
 import Config from "../../../../config";
 import { DummyPaymentAwp } from "../../../../journeys/manageCases/caseWorker/dummyPayment/dummyPaymentAwp";
-import { DummyFL401 } from "../../../../journeys/manageCases/createCase/dummyCase/dummyFL401.ts";
+import { SolicitorCaseCreator } from "../../../../common/solicitorCaseCreator.ts";
+import { Helpers } from "../../../../common/helpers.ts";
+import config from "../../../../config.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
 test.describe("FL401 Dummy payment for AWP tests", (): void => {
   test.beforeEach(async ({ page }) => {
-    await DummyFL401.dummyFL401({
-      page: page,
-      applicantLivesInRefuge: false,
-    });
+    await page.goto(Config.manageCasesBaseURL);
+    const caseRef: string =
+      await SolicitorCaseCreator.createCaseStatementOfTruthAndSubmit(page);
+    await Helpers.goToCase(page, config.manageCasesBaseURL, caseRef, "tasks");
   });
 
   test(`Complete the Dummy payment for AWP action as a solicitor with the following options:

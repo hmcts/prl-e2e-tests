@@ -226,6 +226,7 @@ export type CaseAPIEvent =
   | "fl401ApplicantFamilyDetails"
   | "respondentRelationship"
   | "respondentBehaviour"
+  | "fl401Home"
   | "fl401OtherProceedings"
   | "attendingTheHearing"
   | "welshLanguageRequirements"

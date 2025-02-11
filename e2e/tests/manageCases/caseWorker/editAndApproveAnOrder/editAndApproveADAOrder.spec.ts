@@ -1,7 +1,9 @@
 import { test } from "@playwright/test";
 import Config from "../../../../config";
 import { EditAndApproveAnOrder } from "../../../../journeys/manageCases/caseWorker/editAndApproveAnOrder/editAndApproveAnOrder";
-import { DummyFL401 } from "../../../../journeys/manageCases/createCase/dummyCase/dummyFL401.ts";
+import { SolicitorCaseCreator } from "../../../../common/solicitorCaseCreator.ts";
+import { Helpers } from "../../../../common/helpers.ts";
+import config from "../../../../config.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
@@ -9,10 +11,10 @@ test.describe("Edit and approve a DA order tests", (): void => {
   let caseRef: string;
 
   test.beforeEach(async ({ page }) => {
-    caseRef = await DummyFL401.dummyFL401({
-      page: page,
-      applicantLivesInRefuge: false,
-    });
+    await page.goto(Config.manageCasesBaseURL);
+    caseRef =
+      await SolicitorCaseCreator.createCaseStatementOfTruthAndSubmit(page);
+    await Helpers.goToCase(page, config.manageCasesBaseURL, caseRef, "tasks");
   });
 
   // tests failing due to EXUI-2621

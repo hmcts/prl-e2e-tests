@@ -1,7 +1,9 @@
 import { test } from "@playwright/test";
 import Config from "../../../../config";
 import { AdminEditAndApproveAnOrder } from "../../../../journeys/manageCases/caseWorker/serveApprovedOrder/adminEditAndApproveAnOrder";
-import { DummyFL401 } from "../../../../journeys/manageCases/createCase/dummyCase/dummyFL401.ts";
+import { SolicitorCaseCreator } from "../../../../common/solicitorCaseCreator.ts";
+import { Helpers } from "../../../../common/helpers.ts";
+import config from "../../../../config.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
@@ -11,10 +13,10 @@ test.describe("Serve approved DA order tests @manageCases", (): void => {
   let caseRef: string;
 
   test.beforeEach(async ({ page }) => {
-    caseRef = await DummyFL401.dummyFL401({
-      page: page,
-      applicantLivesInRefuge: false,
-    });
+    await page.goto(Config.manageCasesBaseURL);
+    caseRef =
+      await SolicitorCaseCreator.createCaseStatementOfTruthAndSubmit(page);
+    await Helpers.goToCase(page, config.manageCasesBaseURL, caseRef, "tasks");
   });
 
   test(`Complete serve an order that is personally served with the following options:

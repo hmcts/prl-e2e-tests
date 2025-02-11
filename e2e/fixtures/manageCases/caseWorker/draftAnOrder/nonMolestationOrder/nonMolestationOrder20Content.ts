@@ -5,7 +5,7 @@ export enum NonMolestationOrder20Content {
   // WELSH
   welshSpan1 = "Yn",
   welshSpan2 = "y Llys Teulu yn eistedd yn:",
-  welshSpan3 = "Aberystwyth Justice Centre",
+  welshSpan3 = "Swansea Civil And Family Justice Centre",
   welshSpan4 = "Rhif yr achos:",
   welshSpan5 = "Rhif FamilyMan:",
   welshSpan6 = "Adran 42 Deddf Cyfraith Teulu 1996",
@@ -151,7 +151,7 @@ export enum NonMolestationOrder20Content {
 
   // ENGLISH
   span1 = "In the Family Court sitting at:",
-  span2 = "Aberystwyth Justice Centre",
+  span2 = "Swansea Civil And Family Justice Centre",
   span3 = "Case number:",
   span4 = "FamilyMan number:",
   span5 = "Section 42 Family Law Act 1996",
