@@ -36,20 +36,20 @@ test.describe("FL401 Case tabs", (): void => {
       applicantLivesInRefuge: false,
     });
   });
-});
 
-test(`FL401 Case tabs with the following options:
+  test(`FL401 Case tabs with the following options:
   Accessibility testing,
   Not Error message testing,
   Saying Yes to applicant lives in refuge,
   Payment status paid. @accessibility @nightly`, async ({
-  page,
-  browser,
-}): Promise<void> => {
-  await FL401CaseTabs.fl401CaseTabs({
-    page: page,
-    browser: browser,
-    accessibilityTest: true,
-    applicantLivesInRefuge: true,
+    page,
+    browser,
+  }): Promise<void> => {
+    await FL401CaseTabs.fl401CaseTabs({
+      page: page,
+      browser: browser,
+      accessibilityTest: true,
+      applicantLivesInRefuge: true,
+    });
   });
 });
