@@ -23,10 +23,7 @@
   "fl401TypeOfApplication": {
     "data": {
       "typeOfApplicationOrders": {
-        "orderType": [
-          "nonMolestationOrder",
-          "occupationOrder"
-        ]
+        "orderType": ["nonMolestationOrder", "occupationOrder"]
       },
       "typeOfApplicationLinkToCA": {
         "linkToCaApplication": "No",
@@ -1399,9 +1396,7 @@
           "PostCode": "SW1H 9AJ",
           "Country": "United Kingdom"
         },
-        "peopleLivingAtThisAddress": [
-          "applicant"
-        ],
+        "peopleLivingAtThisAddress": ["applicant"],
         "children": [],
         "mortgages": {
           "textAreaSomethingElse": null,
@@ -1414,12 +1409,8 @@
           "landlordName": null,
           "mortgageNamedAfterList": []
         },
-        "livingSituation": [
-          "restrictFromEnteringHome"
-        ],
-        "familyHome": [
-          "useHouseholdContents"
-        ]
+        "livingSituation": ["restrictFromEnteringHome"],
+        "familyHome": ["useHouseholdContents"]
       }
     }
   },
@@ -1438,14 +1429,10 @@
         "nameOfFirm": "test form",
         "signOnBehalf": "test position",
         "signature": null,
-        "applicantConsent": [
-          "fl401Consent"
-        ]
+        "applicantConsent": ["fl401Consent"]
       },
       "fl401ConfidentialityCheck": {
-        "confidentialityConsent": [
-          "fl401ConfidentialConsent"
-        ]
+        "confidentialityConsent": ["fl401ConfidentialConsent"]
       },
       "submitCountyCourtSelection": {
         "value": {
