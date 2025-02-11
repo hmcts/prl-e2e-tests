@@ -15,7 +15,7 @@ test.describe("Service of Application task for DA Citizen case tests.", () => {
     await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
   });
 
-  test(`Complete Task - statement of service - Power of arrest (FL406) without accessibility test. @nightly @regression @accessibility`, async ({
+  test(`Complete Task - service of application (personally served) - Power of arrest (FL406) without accessibility test. @nightly @regression @accessibility`, async ({
     page,
     browser,
   }): Promise<void> => {
@@ -34,7 +34,7 @@ test.describe("Service of Application task for DA Citizen case tests.", () => {
     });
   });
 
-  test(`Complete Task - statement of service - Amended, discharged or varied order (FL404B)  with accessibility test. @regression @accessibility`, async ({
+  test(`Complete Task - service of application (non-personally served) - Amended, discharged or varied order (FL404B)  with accessibility test. @regression @accessibility`, async ({
     page,
     browser,
   }): Promise<void> => {

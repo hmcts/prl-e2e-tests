@@ -94,6 +94,7 @@ We use the following test tags to categorise and manage our test suite:
 
 - Each test can have multiple tags if it fits into more than one category.
 - Regularly review test tagging to maintain a well-organised and efficient test suite.
+
 ## Additional Documents:
 
 - [How to use our helper functions](https://cjscommonplatform.sharepoint.com/sites/PrivateLawQA/SitePages/Helper-Functions.aspx)

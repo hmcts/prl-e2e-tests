@@ -23,22 +23,26 @@ export class FL401CaseTabs {
       page: page,
       applicantLivesInRefuge: applicantLivesInRefuge,
     });
+
     const courtAdminPage: Page = await Helpers.openNewBrowserWindow(
       browser,
       "courtAdminStoke",
     );
+
     await Helpers.goToCase(
       courtAdminPage,
       Config.manageCasesBaseURL,
       caseRef,
       "Summary",
     );
+
     await FL401SummaryTabPage.fl401SummaryTabPage(
       courtAdminPage,
       accessibilityTest,
       applicantLivesInRefuge,
     );
-    await FL401ConfidentialDetailsTabPage.fl401ConfidentialDetailsTabPage(
+
+    await FL401ConfidentialDetailsTabPage.fl401ConfidentialDetailsTabPageC8Refuge(
       courtAdminPage,
       accessibilityTest,
       applicantLivesInRefuge,

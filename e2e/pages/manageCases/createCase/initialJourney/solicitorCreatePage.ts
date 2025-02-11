@@ -50,7 +50,7 @@ export class SolicitorCreatePage {
     page: Page,
     isDummyCase: boolean,
   ): Promise<void> {
-    await page.reload();
+    await page.reload(); // Not ideal - but an interim solution until the underlying problem is fixed
     await page.selectOption(fieldIds.jurisdiction, options.familyPrivateLaw);
     await page.selectOption(fieldIds.caseType, options.caseType);
     if (isDummyCase) {
