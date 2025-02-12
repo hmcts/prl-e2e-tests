@@ -1,5 +1,5 @@
 import { C100ChildGender } from "./amendChildDetailsRevised1Page";
-import { yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions } from "./amendChildDetailsRevised2Page";
+import { yesNoDontKnow } from "../../../../../common/types.ts";
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors.ts";
 import { AmendChildDetailsSubmitContent } from "../../../../../fixtures/manageCases/caseProgression/amendDetails/amendChildDetails/amendChildDetailsSubmitContent.ts";
@@ -12,60 +12,67 @@ interface c100ChildDetailsSubmitPageOptions {
   page: Page;
   accessibilityTest: boolean;
   c100ChildGender: C100ChildGender;
-  yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions: yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions;
+  yesNoDontKnow: yesNoDontKnow;
+  under18: boolean;
 }
 
 interface checkFilledData {
   page: Page;
   c100ChildGender: C100ChildGender;
-  yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions: yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions;
+  yesNoDontKnow: yesNoDontKnow;
+  under18: boolean;
 }
 
 export class AmendChildDetailsSubmitPage {
   public static async amendChildDetailsSubmitPage({
-    page: page,
-    accessibilityTest: accessibilityTest,
-    c100ChildGender: c100ChildGender,
-    yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions: yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,
-    }: c100ChildDetailsSubmitPageOptions): Promise<void> {
-      await this.checkPageContent({
-        page: page,
-        accessibilityTest: accessibilityTest,
-        c100ChildGender: c100ChildGender,
-        yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions: yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,
-      });
-      await this.continueOn(page);
-    }
+    page,
+    accessibilityTest,
+    c100ChildGender,
+    yesNoDontKnow,
+    under18,
+  }: c100ChildDetailsSubmitPageOptions): Promise<void> {
+    await this.checkPageContent({
+      page,
+      accessibilityTest,
+      c100ChildGender,
+      yesNoDontKnow,
+      under18,
+    });
+    await this.continueOn(page);
+  }
 
   private static async checkPageContent({
-    page: page,
-    accessibilityTest: accessibilityTest,
-    c100ChildGender: c100ChildGender,
-    yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions: yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,
-    }: c100ChildDetailsSubmitPageOptions): Promise<void> {
-      await page.waitForSelector(
+    page,
+    accessibilityTest,
+    c100ChildGender,
+    yesNoDontKnow,
+    under18,
+  }: c100ChildDetailsSubmitPageOptions): Promise<void> {
+    await page.waitForSelector(
       `${Selectors.h2}:text-is("${AmendChildDetailsSubmitContent.h2}")`,
-      );
-      await Promise.all([
-        await this.checkPageLabels({
-          page: page,
-          accessibilityTest: accessibilityTest,
-          c100ChildGender: c100ChildGender,
-          yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions: yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,
-        }),
-        this.checkFilledData({
-          page: page,
-          c100ChildGender: c100ChildGender,
-          yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions: yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,
-        }),
-      ]);
+    );
+    await Promise.all([
+      await this.checkPageLabels({
+        page,
+        accessibilityTest,
+        c100ChildGender,
+        yesNoDontKnow,
+        under18,
+      }),
+      this.checkFilledData({
+        page,
+        c100ChildGender,
+        yesNoDontKnow,
+        under18,
+      }),
+    ]);
   }
 
   private static async checkPageLabels({
-   page: page,
-   accessibilityTest: accessibilityTest,
-   c100ChildGender: c100ChildGender,
-   yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions: yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,
+    page,
+    accessibilityTest,
+    c100ChildGender,
+    yesNoDontKnow,
   }: c100ChildDetailsSubmitPageOptions): Promise<void> {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -143,7 +150,7 @@ export class AmendChildDetailsSubmitPage {
         1,
       );
     }
-    if (yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions === "yes") {
+    if (yesNoDontKnow === "yes") {
       await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukText16}:text-is("${AmendChildDetailsSubmitContent.text16ChildKnown}")`,
@@ -156,9 +163,11 @@ export class AmendChildDetailsSubmitPage {
   }
 
   private static async checkFilledData({
-   page: page,
-   yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions: yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,
+    page,
+    yesNoDontKnow,
+    under18,
   }: checkFilledData): Promise<void> {
+    const [day, month, year] = Helpers.generateDOB(under18);
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
@@ -172,7 +181,7 @@ export class AmendChildDetailsSubmitPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukText16}:text-is("${Helpers.dayAbbreviatedMonthYear(AmendChildDetailsRevised1Content.childDayOfBirth, AmendChildDetailsRevised1Content.childMonthOfBirth, AmendChildDetailsRevised1Content.childYearOfBirth)}")`,
+        `${Selectors.GovukText16}:text-is("${Helpers.dayAbbreviatedMonthYear(day, month, year)}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -196,7 +205,7 @@ export class AmendChildDetailsSubmitPage {
         1,
       ),
     ]);
-    switch (yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions) {
+    switch (yesNoDontKnow) {
       case "yes":
         await Promise.all([
           Helpers.checkVisibleAndPresent(

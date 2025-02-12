@@ -3,11 +3,12 @@ import { Selectors } from "../../../../../common/selectors.ts";
 import { AmendChildDetailsRevised2Content } from "../../../../../fixtures/manageCases/caseProgression/amendDetails/amendChildDetails/amendChildDetailsRevised2Content.ts";
 import { Helpers } from "../../../../../common/helpers.ts";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
+import { yesNoDontKnow } from "../../../../../common/types.ts";
 
 interface AmendChildDetailsRevised2PageOptions {
   page: Page;
   accessibilityTest: boolean;
-  yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions: yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions;
+  yesNoDontKnow: yesNoDontKnow;
 }
 
 interface checkPageLoadsOptions {
@@ -17,13 +18,8 @@ interface checkPageLoadsOptions {
 
 interface fillInFieldsOptions {
   page: Page;
-  yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions: yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions;
+  yesNoDontKnow: yesNoDontKnow;
 }
-
-export type yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions =
-  | "yes"
-  | "no"
-  | "dontKnow";
 
 enum uniqueSelectors {
   childrenKnownToAuthorityRadio = "#childrenKnownToLocalAuthority-",
@@ -33,20 +29,23 @@ enum uniqueSelectors {
 
 export class AmendChildDetailsRevised2Page {
   public static async amendChildDetailsRevised2Page({
-    page: page,
-    accessibilityTest: accessibilityTest,
-    yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions: yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,
+    page,
+    accessibilityTest,
+    yesNoDontKnow,
   }: AmendChildDetailsRevised2PageOptions): Promise<void> {
-    await this.checkPageLoads({ page, accessibilityTest });
+    await this.checkPageLoads({
+      page,
+      accessibilityTest,
+    });
     await this.fillInFields({
       page,
-      yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,
+      yesNoDontKnow,
     });
   }
 
   private static async checkPageLoads({
-    page: page,
-    accessibilityTest: accessibilityTest,
+    page,
+    accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.strong}:text-is("${AmendChildDetailsRevised2Content.strong}")`,
@@ -91,13 +90,13 @@ export class AmendChildDetailsRevised2Page {
   }
 
   private static async fillInFields({
-    page: page,
-    yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions: yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,
+    page,
+    yesNoDontKnow,
   }: fillInFieldsOptions): Promise<void> {
     await page.click(
-      `${uniqueSelectors.childrenKnownToAuthorityRadio}${yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions}`,
+      `${uniqueSelectors.childrenKnownToAuthorityRadio}${yesNoDontKnow}`,
     );
-    if (yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions === "yes") {
+    if (yesNoDontKnow === "yes") {
       await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukFormLabel}:text-is("${AmendChildDetailsRevised2Content.formLabelChildrenKnown}")`,
@@ -109,7 +108,7 @@ export class AmendChildDetailsRevised2Page {
       );
     }
     await page.click(
-      `${uniqueSelectors.childrenProtectionPlanRadio}${yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions}`,
+      `${uniqueSelectors.childrenProtectionPlanRadio}${yesNoDontKnow}`,
     );
     await page.click(
       `${Selectors.button}:text-is("${AmendChildDetailsRevised2Content.continue}")`,

@@ -1,6 +1,6 @@
 import { test } from "@playwright/test";
-import Config from "../../../../../config.ts";
-import { AmendChildDetails } from "../../../../../journeys/manageCases/caseProgression/amendDetails/amendChildDetails/amendChildDetails.ts";
+import Config from "../../../../config.ts";
+import { AmendChildDetails } from "../../../../journeys/manageCases/caseProgression/amendDetails/amendChildDetails.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
@@ -14,7 +14,8 @@ test.describe("Complete amend Child details event as a court admin", () => {
       browser: browser,
       accessibilityTest: false,
       c100ChildGender: "male",
-      yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions: "yes",
+      yesNoDontKnow: "yes",
+      under18: true,
     });
   });
 });
