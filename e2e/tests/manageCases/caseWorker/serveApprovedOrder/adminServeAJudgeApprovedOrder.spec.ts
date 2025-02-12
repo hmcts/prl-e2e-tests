@@ -1,7 +1,7 @@
 import { test } from "@playwright/test";
 import Config from "../../../../config";
 import { AdminEditAndServeAnOrder } from "../../../../journeys/manageCases/caseWorker/serveApprovedOrder/adminEditAndServeAnOrder.ts";
-import { SolicitorCaseCreator } from "../../../../common/solicitorCaseCreator.ts";
+import { SolicitorDACaseCreator } from "../../../../common/solicitorDACaseCreator.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import config from "../../../../config.ts";
 
@@ -15,7 +15,7 @@ test.describe("As a Court admin Serve a judge approved solicitor created DA case
   test.beforeEach(async ({ page }) => {
     await page.goto(Config.manageCasesBaseURL);
     caseRef =
-      await SolicitorCaseCreator.createCaseStatementOfTruthAndSubmit(page);
+      await SolicitorDACaseCreator.createCaseStatementOfTruthAndSubmit(page);
     await Helpers.goToCase(page, config.manageCasesBaseURL, caseRef, "tasks");
   });
 

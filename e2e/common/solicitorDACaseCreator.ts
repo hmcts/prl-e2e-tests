@@ -23,7 +23,7 @@ const solicitorCaseEvents: solicitorDACaseAPIEvent[] = [
   "serviceOfApplication",
 ];
 
-export class SolicitorCaseCreator {
+export class SolicitorDACaseCreator {
   public static async createCaseStatementOfTruthAndSubmit(
     page: Page,
     jsonData: JsonData = jsonDatas.solicitorDACaseData,
