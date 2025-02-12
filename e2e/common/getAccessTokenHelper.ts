@@ -50,7 +50,7 @@ export async function getAccessToken(
     switch (option) {
       case "citizenCreateUser":
         data = citizenCreateUserData;
-        url = process.env.IDAM_TOKEN_URL as string;
+        url = process.env.IDAM_TOKEN_URL_CITIZEN as string;
         break;
       case "daCourtNavCreateCase":
         data = daCourtNavCreateCaseData;
