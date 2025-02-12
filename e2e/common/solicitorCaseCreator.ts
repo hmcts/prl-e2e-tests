@@ -7,9 +7,9 @@ import {
   postData,
   submitEvent,
 } from "./solicitorCaseCreatorHelper.ts";
-import { CaseAPIEvent } from "./types.ts";
+import { solicitorDACaseAPIEvent } from "./types.ts";
 
-const solicitorCaseEvents: CaseAPIEvent[] = [
+const solicitorCaseEvents: solicitorDACaseAPIEvent[] = [
   "fl401TypeOfApplication",
   "withoutNoticeOrderDetails",
   "applicantsDetails",
