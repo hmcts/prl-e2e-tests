@@ -17,7 +17,7 @@ module.exports = defineConfig({
   reportSlowTests: { max: 15, threshold: 5 * 60 * 1000 },
   workers: process.env.FUNCTIONAL_TESTS_WORKERS
     ? parseInt(process.env.FUNCTIONAL_TESTS_WORKERS)
-    : 4,
+    : 2,
   reporter: process.env.CI ? [["html"], ["list"]] : [["list"]],
   projects: [
     {
