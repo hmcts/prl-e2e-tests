@@ -146,3 +146,47 @@ export async function submitEvent(
     console.log(`Completed event: ${eventId}`);
   }
 }
+
+export async function createBlankCase(
+  page: Page,
+  jsonData: JsonData,
+): Promise<string> {
+  const startCaseCreationUrl = `/data/internal/case-types/PRLAPPS/event-triggers/solicitorCreate?ignore-warning=false`;
+
+  const startCaseCreationHeaders = {
+    Accept:
+      "application/vnd.uk.gov.hmcts.ccd-data-store-api.ui-start-case-trigger.v2+json;charset=UTF-8",
+    Experimental: "true",
+    "Content-type": "application/json; charset=UTF-8",
+  };
+  const eventToken: string = await getData(
+    page,
+    startCaseCreationUrl,
+    startCaseCreationHeaders,
+  );
+
+  const submitCaseUrl = `/data/case-types/PRLAPPS/cases?ignore-warning=false`;
+  const data = {
+    data: jsonData.solicitorCreate.data,
+    draft_id: null,
+    event: {
+      id: "solicitorCreate",
+      summary: "",
+      description: "",
+    },
+    event_token: eventToken,
+    ignore_warning: false,
+  };
+  const submitEventHeaders = {
+    Accept:
+      "application/vnd.uk.gov.hmcts.ccd-data-store-api.create-case.v2+json;charset=UTF-8",
+    Experimental: "true",
+    "Content-type": "application/json; charset=UTF-8",
+  };
+  return await postData(
+    page,
+    submitCaseUrl,
+    submitEventHeaders,
+    JSON.stringify(data),
+  );
+}
