@@ -1,12 +1,24 @@
 import { test } from "@playwright/test";
 import Config from "../../../../config";
 import { EditAndApproveAnOrder } from "../../../../journeys/manageCases/caseWorker/editAndApproveAnOrder/editAndApproveAnOrder";
+import { DummyC100 } from "../../../../journeys/manageCases/createCase/dummyCase/dummyC100.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
 test.describe("Edit and approve a CA order tests", (): void => {
   // Triple timeout for these slow tests
   test.slow();
+
+  let caseRef: string;
+
+  test.beforeEach(async ({ page }) => {
+    caseRef = await DummyC100.dummyC100({
+      page: page,
+      applicantLivesInRefuge: false,
+      otherPersonLivesInRefuge: false,
+    });
+  });
+
   // tests failing due to EXUI-2621
   // TODO: turn tests back on once issue around "Client context information not matching" has been resolved
   test(`Complete Editing and approving an order with the following options:
@@ -25,6 +37,7 @@ test.describe("Edit and approve a CA order tests", (): void => {
       errorMessaging: false,
       accessibilityTest: false,
       browser: browser,
+      caseRef: caseRef,
     });
   });
 
@@ -44,6 +57,7 @@ test.describe("Edit and approve a CA order tests", (): void => {
       errorMessaging: false,
       accessibilityTest: false,
       browser: browser,
+      caseRef: caseRef,
     });
   });
 
@@ -63,6 +77,7 @@ test.describe("Edit and approve a CA order tests", (): void => {
       errorMessaging: false,
       accessibilityTest: true,
       browser: browser,
+      caseRef: caseRef,
     });
   });
 });

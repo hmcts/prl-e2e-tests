@@ -1,7 +1,7 @@
 export enum ApplicantDashboardContent {
   notificationBannerTitle = "Important",
   govukHeadingXL = "Applicant ApplLast",
-  solicitorApplicationGovukHeadingXL = "applicantone fn respondentone ln",
+  solicitorApplicationGovukHeadingXL = "John Smith",
   applicationNotificationBannerHeading = "The court has issued your application",
   orderNotificationBannerHeading = "You have a new order from the court",
   applicationPackLink = "View the application pack",

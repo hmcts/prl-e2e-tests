@@ -4,12 +4,14 @@ import { ServiceOfApplication2Content } from "../../../../fixtures/manageCases/c
 import { Helpers } from "../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
 import { ServiceOfApplicationConfirmContent } from "../../../../fixtures/manageCases/caseProgression/serviceOfApplication/serviceOfApplicationConfirmContent";
+import { applicationSubmittedBy } from "../../../../common/types.ts";
 
 interface ServiceOfApplicationConfirmOptions {
   page: Page;
   yesNoServiceOfApplication4: boolean;
   accessibilityTest: boolean;
   confidentialityCheck: boolean;
+  applicationSubmittedBy: applicationSubmittedBy;
 }
 
 export class ServiceOfApplicationConfirmPage {
@@ -18,12 +20,14 @@ export class ServiceOfApplicationConfirmPage {
     yesNoServiceOfApplication4,
     accessibilityTest,
     confidentialityCheck,
+    applicationSubmittedBy,
   }: ServiceOfApplicationConfirmOptions): Promise<void> {
     await this.checkPageLoads({
       page,
       yesNoServiceOfApplication4,
       accessibilityTest,
       confidentialityCheck,
+      applicationSubmittedBy,
     });
     await this.fillInFields({ page });
   }
@@ -33,6 +37,7 @@ export class ServiceOfApplicationConfirmPage {
     yesNoServiceOfApplication4,
     accessibilityTest,
     confidentialityCheck,
+    applicationSubmittedBy,
   }: Partial<ServiceOfApplicationConfirmOptions>): Promise<void> {
     if (!page) {
       throw new Error("No page found");
@@ -60,7 +65,22 @@ export class ServiceOfApplicationConfirmPage {
         1,
       ),
     ]);
-    if (yesNoServiceOfApplication4 && !confidentialityCheck) {
+    if (applicationSubmittedBy === "Solicitor" || confidentialityCheck) {
+      // solicitor application is treated as though it needs to be checked for confidentiality
+      await Promise.all([
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.h1}:text-is("${ServiceOfApplicationConfirmContent.confidentialityH1}")`,
+          1,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.p}:text-is("${ServiceOfApplicationConfirmContent.confidentialityP1}")`,
+          1,
+        ),
+      ]);
+    } else if (yesNoServiceOfApplication4) {
+      // personally served by court baliff
       await Promise.all([
         Helpers.checkVisibleAndPresent(
           page,
@@ -75,20 +95,8 @@ export class ServiceOfApplicationConfirmPage {
           `${Selectors.p}`,
         ),
       ]);
-    } else if (yesNoServiceOfApplication4 && confidentialityCheck) {
-      await Promise.all([
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.h1}:text-is("${ServiceOfApplicationConfirmContent.confidentialityH1}")`,
-          1,
-        ),
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.p}:text-is("${ServiceOfApplicationConfirmContent.confidentialityP1}")`,
-          1,
-        ),
-      ]);
-    } else if (!yesNoServiceOfApplication4 && !confidentialityCheck) {
+    } else if (!yesNoServiceOfApplication4) {
+      // not personally served
       await Promise.all([
         Helpers.checkVisibleAndPresent(
           page,

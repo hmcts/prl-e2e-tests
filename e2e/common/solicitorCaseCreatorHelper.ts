@@ -1,4 +1,4 @@
-import solicitorCaseData from "../caseData/solicitorDACaseEventData.json";
+import solicitorDACaseData from "../caseData/solicitorDACaseEventData.json";
 import orderEventDataAmendDischargedVaried from "../caseData/orderData/orderEventData-amendDischargedVaried.json";
 import orderEventDataPowerOfArrest from "../caseData/orderData/orderEventData-powerOfArrest.json";
 import { Page } from "@playwright/test";
@@ -8,7 +8,7 @@ import { CaseAPIEvent } from "./types.ts";
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type JsonData = Record<string, any>;
 export const jsonDatas: JsonData = {
-  defaultData: solicitorCaseData,
+  solicitorDACaseData: solicitorDACaseData,
   manageOrderDataPowerOfArrest: orderEventDataPowerOfArrest,
   manageOrderDataAmendDischargedVaried: orderEventDataAmendDischargedVaried,
 };
@@ -82,7 +82,7 @@ export async function submitEvent(
   page: Page,
   caseId: string,
   eventId: CaseAPIEvent,
-  jsonData: JsonData = jsonDatas.defaultData,
+  jsonData: JsonData = jsonDatas.solicitorDACaseData,
 ): Promise<void> {
   if (process.env.PWDEBUG) {
     console.log(`Start of event: ${eventId}`);
