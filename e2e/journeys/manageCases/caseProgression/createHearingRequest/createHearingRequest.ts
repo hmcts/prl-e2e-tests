@@ -1,29 +1,17 @@
 import { Browser, BrowserContext, Page } from "@playwright/test";
 import { Helpers } from "../../../../common/helpers";
 import { CommonStaticText } from "../../../../common/commonStaticText";
-import {
-  HearingRequirementsPage
-} from "../../../../pages/manageCases/caseProgression/createHearingRequest/hearingRequirementsPage";
-import {
-  HearingFacilitiesPage
-} from "../../../../pages/manageCases/caseProgression/createHearingRequest/hearingFacilitiesPage";
+import { HearingRequirementsPage } from "../../../../pages/manageCases/caseProgression/createHearingRequest/hearingRequirementsPage";
+import { HearingFacilitiesPage } from "../../../../pages/manageCases/caseProgression/createHearingRequest/hearingFacilitiesPage";
 import { HearingStagePage } from "../../../../pages/manageCases/caseProgression/createHearingRequest/hearingStagePage";
-import {
-  HearingAttendancePage
-} from "../../../../pages/manageCases/caseProgression/createHearingRequest/hearingAttendancePage";
+import { HearingAttendancePage } from "../../../../pages/manageCases/caseProgression/createHearingRequest/hearingAttendancePage";
 import { HearingVenuePage } from "../../../../pages/manageCases/caseProgression/createHearingRequest/hearingVenuePage";
 import { HearingWelshPage } from "../../../../pages/manageCases/caseProgression/createHearingRequest/hearingWelshPage";
 import { HearingJudgePage } from "../../../../pages/manageCases/caseProgression/createHearingRequest/hearingJudgePage";
-import {
-  HearingTimingPage
-} from "../../../../pages/manageCases/caseProgression/createHearingRequest/hearingTimingPage";
+import { HearingTimingPage } from "../../../../pages/manageCases/caseProgression/createHearingRequest/hearingTimingPage";
 import { HearingLinkPage } from "../../../../pages/manageCases/caseProgression/createHearingRequest/hearingLinkPage";
-import {
-  HearingAdditionalInstructionsPage
-} from "../../../../pages/manageCases/caseProgression/createHearingRequest/hearingAdditionalInstructionsPage";
-import {
-  HearingCreateEditSummaryPage
-} from "../../../../pages/manageCases/caseProgression/createHearingRequest/hearingCreateEditSummaryPage";
+import { HearingAdditionalInstructionsPage } from "../../../../pages/manageCases/caseProgression/createHearingRequest/hearingAdditionalInstructionsPage";
+import { HearingCreateEditSummaryPage } from "../../../../pages/manageCases/caseProgression/createHearingRequest/hearingCreateEditSummaryPage";
 import Config from "../../../../config";
 import config from "../../../../config";
 import { createOrderFL401Options } from "../../../../common/types";
@@ -107,7 +95,11 @@ export class CreateHearingRequest {
         break;
     }
     // wait for ref data to finish loading before clicking the hearing request button - if it clicks too fast the hearing requirements page fails to load
-    await page.waitForResponse(response => /.*\/api\/prd\/lov\/getLovRefData.*/.test(response.url()) && response.status() === 200);
+    await page.waitForResponse(
+      (response) =>
+        /.*\/api\/prd\/lov\/getLovRefData.*/.test(response.url()) &&
+        response.status() === 200,
+    );
     await page.click(
       `${Selectors.a}:text-is("${CommonStaticText.hearingRequest}")`,
     );

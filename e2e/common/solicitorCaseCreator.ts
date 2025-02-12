@@ -2,10 +2,11 @@ import { Browser, Page } from "@playwright/test";
 import { Helpers } from "./helpers.ts";
 import {
   getData,
+  JsonData,
+  jsonDatas,
   postData,
   submitEvent,
 } from "./solicitorCaseCreatorHelper.ts";
-import solicitorCaseData from "../caseData/solicitorDACaseEventData.json";
 import { CaseAPIEvent } from "./types.ts";
 
 const solicitorCaseEvents: CaseAPIEvent[] = [
@@ -16,10 +17,8 @@ const solicitorCaseEvents: CaseAPIEvent[] = [
   "fl401ApplicantFamilyDetails",
   "respondentRelationship",
   "respondentBehaviour",
-  "fl401OtherProceedings",
-  "attendingTheHearing",
+  "fl401Home",
   "welshLanguageRequirements",
-  "fl401UploadDocuments",
   "fl401StatementOfTruthAndSubmit",
   "fl401SendToGateKeeper",
   "serviceOfApplication",
@@ -28,10 +27,11 @@ const solicitorCaseEvents: CaseAPIEvent[] = [
 export class SolicitorCaseCreator {
   public static async createCaseStatementOfTruthAndSubmit(
     page: Page,
+    jsonData: JsonData = jsonDatas.solicitorDACaseData,
   ): Promise<string> {
     const caseRef: string = await this.createBlankCase(page);
     for (const event of solicitorCaseEvents) {
-      await submitEvent(page, caseRef, event);
+      await submitEvent(page, caseRef, event, jsonData);
       if (event === "fl401StatementOfTruthAndSubmit") {
         break;
       }
@@ -76,7 +76,10 @@ export class SolicitorCaseCreator {
     return caseRef;
   }
 
-  private static async createBlankCase(page: Page): Promise<string> {
+  private static async createBlankCase(
+    page: Page,
+    jsonData: JsonData = jsonDatas.solicitorDACaseData,
+  ): Promise<string> {
     const startCaseCreationUrl = `/data/internal/case-types/PRLAPPS/event-triggers/solicitorCreate?ignore-warning=false`;
 
     const startCaseCreationHeaders = {
@@ -93,7 +96,7 @@ export class SolicitorCaseCreator {
 
     const submitCaseUrl = `/data/case-types/PRLAPPS/cases?ignore-warning=false`;
     const data = {
-      data: solicitorCaseData.solicitorCreate.data,
+      data: jsonData.solicitorCreate.data,
       draft_id: null,
       event: {
         id: "solicitorCreate",
