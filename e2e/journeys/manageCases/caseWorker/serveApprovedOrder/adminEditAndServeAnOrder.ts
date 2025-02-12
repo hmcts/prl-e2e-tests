@@ -20,8 +20,8 @@ interface AdminEditAndApproveOrderParams {
   caseRef: string;
 }
 
-export class AdminEditAndApproveAnOrder {
-  public static async adminEditAndApproveAnOrder({
+export class AdminEditAndServeAnOrder {
+  public static async adminEditAndServeAnOrder({
     page,
     accessibilityTest,
     browser,
