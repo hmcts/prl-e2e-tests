@@ -20,7 +20,7 @@ test.describe("Allocate a judge to the case", () => {
   }) => {
     await AllocatedJudge.allocatedJudge({
       page: page,
-      accessibilityTest: false,
+      accessibilityTest: true,
       ccdRef: ccdRef,
     });
   });

@@ -57,12 +57,15 @@ export class AllocatedJudge1Page {
     await page.click(UniqueSelectors.isSpecificJudge);
     await page.click(UniqueSelectors.selectJudge);
     await page.fill(`${UniqueSelectors.nameOfJudge}`, CommonContent.judgeName);
-    // clicks on the elastic search drop down
+
+    // Wait for the judge option in the dropdown to become visible using dynamic content
     await page.waitForSelector(
-      `//mat-option/span[contains(text(), 'Ms Elizabeth Williams (HHJ.Elizabeth.Williams@ejudiciary.net)')]`,
+      `//mat-option/span[contains(text(), '${CommonContent.judgeName}')]`,
     );
+
+    // Click the option containing the judge name (dynamic value)
     await page.click(
-      `//mat-option/span[contains(text(), 'Ms Elizabeth Williams (HHJ.Elizabeth.Williams@ejudiciary.net)')]`,
+      `//mat-option/span[contains(text(), '${CommonContent.judgeName}')]`,
     );
 
     await page.waitForSelector(UniqueSelectors.nameOfJudge); // Ensure the name field is filled
