@@ -2,9 +2,9 @@ import { Browser, Page } from "@playwright/test";
 import { Helpers } from "../../../../common/helpers";
 import config from "../../../../config";
 import { Selectors } from "../../../../common/selectors";
-import { Fl401ListWithoutNotice1Page } from "../../../../pages/manageCases/caseProgression/list/fl401ListWithoutNotice1Page";
-import { Fl401ListWithoutNoticeSubmitPage } from "../../../../pages/manageCases/caseProgression/list/fl401ListWithoutNoticeSubmitPage";
-import { Fl401ListWithoutNoticeConfirmPage } from "../../../../pages/manageCases/caseProgression/list/fl401ListWithoutNoticeConfirmPage";
+import { Fl401ListWithoutNotice1Page } from "../../../../pages/manageCases/caseProgression/List/fl401ListWithoutNotice1Page";
+import { Fl401ListWithoutNoticeSubmitPage } from "../../../../pages/manageCases/caseProgression/List/fl401ListWithoutNoticeSubmitPage";
+import { Fl401ListWithoutNoticeConfirmPage } from "../../../../pages/manageCases/caseProgression/List/fl401ListWithoutNoticeConfirmPage";
 import { Fl401ListWithoutNoticeConfirmContent } from "../../../../fixtures/manageCases/caseProgression/List/fl401ListWithoutNoticeConfirmContent";
 import { completeCheckApplicationAndSendToGatekeeper } from "../../../../common/caseEventsHelper.ts";
 

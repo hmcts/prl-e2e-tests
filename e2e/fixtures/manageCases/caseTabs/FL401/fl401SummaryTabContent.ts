@@ -12,4 +12,7 @@ export enum FL401SummaryTabContent {
   refugeSubTitle = "Refuge case",
   refugeQuestionText16 = "Anyone living in a refuge?",
   refugeAnswerText16 = "Yes",
+  courtNameLabel = "Court name",
+  aberystwythCourt = "Aberystwyth Justice Centre",
+  testCourt = "Test Court",
 }

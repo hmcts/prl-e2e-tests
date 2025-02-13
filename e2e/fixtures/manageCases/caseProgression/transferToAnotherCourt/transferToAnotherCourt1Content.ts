@@ -1,0 +1,16 @@
+export enum TransferToAnotherCourt1Content {
+  pageTitle = "Transfer to another court",
+  strong = "You must have served any relevant orders before making this transfer as you will lose access to this case.",
+  h2 = "Court details",
+  formLabel1 = "Select from the list of courts (Optional)",
+  formLabel2 = "I can't find the court",
+  formLabel3 = "A party lives in a different court's jurisdiction",
+  formLabelCourtName = "Enter court's name (Optional)",
+  formLabelCourtEmailAddress = "Enter email address (Optional)",
+  formLabelAnotherReasonForTransfer = "There is another reason for proceedings to be transferred.",
+  formLabelAnotherReasonForTransferDetails = "State why this case should be transferred to another court.",
+  courtNameToSelect = "Aberystwyth Justice Centre - Trefechan - SY23 1AS",
+  courtNameToEnter = "Test Court",
+  emailAdddress = "testcourt@test.com",
+  anotherReasonDetails = "Test",
+}
