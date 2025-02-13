@@ -6,10 +6,8 @@ import config from "../config"; // Import config once
 import Config from "../config"; // Import config once (use this one)
 
 dotenv.config();
-
-const env = process.env.TEST_ENV || "aat";
-
 Config.setEnvironment();
+const env = process.env.TEST_ENV || "aat";
 Config.getEnvUserCredentials(env);
 Config.courtNavEnvConfig(env);
 Config.urlConfig(env);

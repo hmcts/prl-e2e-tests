@@ -30,7 +30,7 @@ export class IdamLoginHelper {
         await page.goto(application);
       }
 
-      if (page.url().includes("demo")) {
+      if (env === "ithc" || env === "demo") {
         await page.waitForSelector(`#skiplinktarget:text("Sign in")`);
       } else {
         await page.waitForSelector(
