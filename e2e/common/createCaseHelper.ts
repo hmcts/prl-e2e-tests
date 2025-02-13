@@ -3,13 +3,15 @@ import fs from "fs";
 import path from "path";
 import withNoticejsonData from "../caseData/citizenDA/courtNavDaCitizenCase_WithNotice.json";
 import withoutNoticejsonData from "../caseData/citizenDA/courtNavDaCitizenCase_WithoutNotice.json";
-
+import Config from "../config.ts";
+Config.courtNavEnvConfig(process.env.TEST_ENV as string);
 /**
  * Function to create a DA Citizen CourtNav case and optionally add a document.
  * @param {boolean} withDoc Whether to add a document after case creation
  * @param {boolean} withNotice Determines urgency of the case (with (true) or without Notice (false)
  * @returns {Promise<string>} The case reference if successful, otherwise throws an error
  */
+
 async function createDaCitizenCourtNavCase(
   withNotice: boolean,
   withDoc: boolean,

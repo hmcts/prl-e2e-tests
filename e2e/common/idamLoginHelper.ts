@@ -64,10 +64,12 @@ export class IdamLoginHelper {
 
   public static async signInUser(
     page: Page,
-    user: keyof typeof Config.userCredentials,
+    user: keyof typeof Config.baseUserCredentials,
     application: string,
+    env: string, // Add environment parameter
   ): Promise<void> {
-    const userCredentials: UserCredentials = Config.getUserCredentials(user);
+    const userCredentials: UserCredentials =
+      Config.getEnvUserCredentials(env)[user];
     if (userCredentials) {
       await this.signIn(
         page,
@@ -77,7 +79,7 @@ export class IdamLoginHelper {
         user,
       );
     } else {
-      console.error("Invalid credential type");
+      console.error("Invalid credential type or environment");
     }
   }
 

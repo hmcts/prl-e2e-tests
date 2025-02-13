@@ -40,7 +40,7 @@ test.describe("Case creation examples", (): void => {
     const caseRef = await createDaCitizenCourtNavCase(false, false);
     const caPage: Page = await Helpers.openNewBrowserWindow(
       browser,
-      "caseWorker",
+      "courtAdminSwansea",
     );
     await caPage.goto(
       "https://manage-case.aat.platform.hmcts.net/work/my-work/list",

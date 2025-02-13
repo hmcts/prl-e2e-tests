@@ -12,7 +12,7 @@ const daCourtNavCreateCaseData = {
   client_id: "courtnav-service",
   client_secret: process.env.COURTNAV_SECRET as string,
   scope: "openid profile roles",
-  username: process.env.COURTNAV_USERNAME as string,
+  username: process.env.AAT_COURTNAV_USERNAME as string,
   password: process.env.COURTNAV_PASSWORD as string,
 };
 
@@ -50,7 +50,7 @@ export async function getAccessToken(
     switch (option) {
       case "citizenCreateUser":
         data = citizenCreateUserData;
-        url = process.env.IDAM_TOKEN_URL_CITIZEN as string;
+        url = process.env.IDAM_TOKEN_URL as string;
         break;
       case "daCourtNavCreateCase":
         data = daCourtNavCreateCaseData;

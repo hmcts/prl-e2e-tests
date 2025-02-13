@@ -19,7 +19,7 @@ import {
   WACaseWorkerActions,
 } from "./types";
 import Config from "../config.ts";
-
+const env = process.env.TEST_ENV || "aat";
 export class Helpers {
   public static async chooseEventFromDropdown(
     page: Page,
@@ -108,7 +108,7 @@ export class Helpers {
     try {
       await page.locator(`a:text-is(" Sign out ")`).click();
       await page.waitForLoadState("domcontentloaded");
-      await idamLoginHelper.signInUser(page, user, baseURL);
+      await idamLoginHelper.signInUser(page, user, baseURL, env);
       await Helpers.goToCase(page, baseURL, caseNumber, caseTab);
     } catch (error) {
       console.error(

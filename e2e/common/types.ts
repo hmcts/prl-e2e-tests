@@ -4,8 +4,8 @@ export interface UserLoginInfo {
 }
 
 export interface UserCredentials {
-  readonly email: string;
-  readonly password: string;
+  email: string;
+  password: string;
 }
 
 export type solicitorCaseCreateType = "C100" | "FL401";
@@ -16,9 +16,8 @@ export type Events = "undefined";
 
 const UserRoles = {
   solicitor: "solicitor",
-  citizen: "citizen",
   judge: "judge",
-  caseWorker: "caseWorker",
+  courtAdminSwansea: "courtAdminSwansea",
   courtAdminStoke: "courtAdminStoke",
   caseManager: "caseManager",
 } as const;
