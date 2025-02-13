@@ -145,7 +145,9 @@ export class ApplicantDetailsSubmitPage {
         gender = ApplicantDetailsSubmitContent.applicantGenderOtherInput;
         break;
       default:
-        console.log("Unexpected input for applicantGender: ", applicantGender);
+        if (process.env.PWDEBUG) {
+          console.log("Unexpected input for applicantGender: ", applicantGender);
+        }
         gender = "null";
         break;
     }

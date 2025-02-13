@@ -213,7 +213,9 @@ export class OtherPeopleInTheCase1Page {
         );
         break;
       default:
-        console.log("Please select a gender");
+        if (process.env.PWDEBUG) {
+          console.log("Please select a gender");
+        }
     }
     if (yesNoOtherPeopleInTheCase) {
       await page.click(`${UniqueSelectors.applicantBirthDateYes}`);

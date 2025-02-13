@@ -504,9 +504,11 @@ export class Fl401TheHome1Page {
           isTopLevel: false,
         });
       } else {
-        console.log(
-          'fl401IntendToLiveAtAddress cannot be null if fl401EverLivedAtAddress is "No"',
-        );
+        if (process.env.PWDEBUG) {
+          console.log(
+              'fl401IntendToLiveAtAddress cannot be null if fl401EverLivedAtAddress is "No"',
+          );
+        }
       }
     }
   }

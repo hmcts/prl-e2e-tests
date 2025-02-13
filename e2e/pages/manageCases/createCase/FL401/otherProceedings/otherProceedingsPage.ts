@@ -188,10 +188,12 @@ export class OtherProceedingsPage {
         );
         break;
       default:
-        console.log(
-          "Unexpected input for otherProceedingsRadios: ",
-          otherProceedingsRadios,
-        );
+        if (process.env.PWDEBUG) {
+          console.log(
+              "Unexpected input for otherProceedingsRadios: ",
+              otherProceedingsRadios,
+          );
+        }
         await page.click(radioIds.dontKnow);
         await page.click(
           `${Selectors.button}:text-is("${OtherProceedingsContent.continue}")`,

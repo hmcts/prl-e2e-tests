@@ -65,7 +65,7 @@ setup("Setup case manager user", async ({ page }) => {
 setup("Setup caseWorker user", async ({ page }) => {
   await IdamLoginHelper.signInUser(
     page,
-    "courtAdminSwansea",
+    "caseWorker",
     config.manageCasesBaseURL,
     env,
   );

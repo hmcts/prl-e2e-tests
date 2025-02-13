@@ -169,7 +169,9 @@ export class WithoutNoticeOrder3Page {
         await page.click(withoutNoticeOrderInputIDs.radioDK);
         break;
       default:
-        console.log("Unexpected value for bailConditions: ", bailConditions);
+        if (process.env.PWDEBUG) {
+          console.log("Unexpected value for bailConditions: ", bailConditions);
+        }
         break;
     }
     await page.click(

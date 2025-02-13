@@ -4,7 +4,9 @@ import path from "path";
 import withNoticejsonData from "../caseData/citizenDA/courtNavDaCitizenCase_WithNotice.json";
 import withoutNoticejsonData from "../caseData/citizenDA/courtNavDaCitizenCase_WithoutNotice.json";
 import Config from "../config.ts";
-Config.courtNavEnvConfig(process.env.TEST_ENV as string);
+const env = process.env.TEST_ENV || "aat";
+const urlConfig = Config.urlConfig(env);
+const courtNavConfig = Config.courtNavEnvConfig(env);
 /**
  * Function to create a DA Citizen CourtNav case and optionally add a document.
  * @param {boolean} withDoc Whether to add a document after case creation
@@ -27,12 +29,11 @@ async function createDaCitizenCourtNavCase(
   }
   try {
     const response = await apiContextDaCreateCase2.post(
-      process.env.COURTNAV_CASE_URL as string,
+      urlConfig.COURTNAV_CASE_URL as string,
       {
         headers: {
           Authorization: `Bearer ${tokenDaCreateCase}`,
-          "Ocp-Apim-Subscription-Key": process.env
-            .COURTNAV_SUBSCRIPTION_KEY_CREATE_CASE as string,
+          "Ocp-Apim-Subscription-Key": courtNavConfig.COURTNAV_SUBSCRIPTION_KEY_CREATE_CASE as string,
         },
         data: jsonData,
       },

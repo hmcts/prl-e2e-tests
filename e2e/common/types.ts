@@ -17,7 +17,7 @@ export type Events = "undefined";
 const UserRoles = {
   solicitor: "solicitor",
   judge: "judge",
-  courtAdminSwansea: "courtAdminSwansea",
+  caseWorker: "caseWorker",
   courtAdminStoke: "courtAdminStoke",
   caseManager: "caseManager",
 } as const;

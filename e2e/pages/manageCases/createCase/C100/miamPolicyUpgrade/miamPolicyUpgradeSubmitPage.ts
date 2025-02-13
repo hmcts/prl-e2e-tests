@@ -167,7 +167,9 @@ export class MiamPolicyUpgradeSubmitPage {
             `${Selectors.GovukText16}`,
           );
         } else {
-          console.log("Need to select at least one miamSelection option");
+          if (process.env.PWDEBUG) {
+            console.log("Need to select at least one miamSelection option");
+          }
         }
         break;
     }
@@ -377,7 +379,9 @@ export class MiamPolicyUpgradeSubmitPage {
             ),
           ]);
         } else {
-          console.log("Need to select at least one miamSelection option");
+          if (process.env.PWDEBUG) {
+            console.log("Need to select at least one miamSelection option");
+          }
         }
         break;
     }

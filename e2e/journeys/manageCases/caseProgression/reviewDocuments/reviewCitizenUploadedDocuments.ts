@@ -43,7 +43,7 @@ export class ReviewCitizenUploadedDocuments {
     // open new browser and sign in as court admin user
     const courtAdminPage: Page = await Helpers.openNewBrowserWindow(
       browser,
-      "courtAdminSwansea",
+      "caseWorker",
     );
     await Helpers.goToCase(
       courtAdminPage,

@@ -70,7 +70,7 @@ export class ReasonableAdjustments {
     await ConfirmationPage.confirmationPage(page, accessibilityTest);
     if (needsReasonableAdjustment) {
       // login as court admin and check Case Flags are updated with correct reasonable adjustment
-      page = await Helpers.openNewBrowserWindow(browser, "courtAdminSwansea");
+      page = await Helpers.openNewBrowserWindow(browser, "caseWorker");
       await Helpers.goToCase(page, config.manageCasesBaseURL, caseRef, "tasks");
       await page
         .locator(Selectors.daTasklist, {

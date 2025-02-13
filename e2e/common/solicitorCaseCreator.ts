@@ -48,7 +48,7 @@ export class SolicitorCaseCreator {
     // open new browser and sign in as court admin user
     const caPage: Page = await Helpers.openNewBrowserWindow(
       browser,
-      "courtAdminSwansea",
+      "caseWorker",
     );
     await caPage.goto(
       "https://manage-case.aat.platform.hmcts.net/work/my-work/list",
@@ -66,7 +66,7 @@ export class SolicitorCaseCreator {
     // open new browser and sign in as court admin user
     const caPage: Page = await Helpers.openNewBrowserWindow(
       browser,
-      "courtAdminSwansea",
+      "caseWorker",
     );
     await caPage.goto(
       "https://manage-case.aat.platform.hmcts.net/work/my-work/list",

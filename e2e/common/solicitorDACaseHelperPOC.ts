@@ -278,7 +278,7 @@ export async function completeServiceOfApplication(
 ): Promise<void> {
   const page: Page = await Helpers.openNewBrowserWindow(
     browser,
-    "courtAdminSwansea",
+    "caseWorker",
   );
   await Helpers.goToCase(page, config.manageCasesBaseURL, caseRef, "tasks");
   await ServiceOfApplicationLite.serviceOfApplicationLite(page);
