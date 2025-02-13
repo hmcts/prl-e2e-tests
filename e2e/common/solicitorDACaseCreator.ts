@@ -1,15 +1,14 @@
 import { Browser, Page } from "@playwright/test";
 import { Helpers } from "./helpers.ts";
 import {
-  getData,
+  createBlankCase,
   JsonData,
   jsonDatas,
-  postData,
   submitEvent,
 } from "./solicitorCaseCreatorHelper.ts";
-import { CaseAPIEvent } from "./types.ts";
+import { solicitorDACaseAPIEvent } from "./types.ts";
 
-const solicitorCaseEvents: CaseAPIEvent[] = [
+const solicitorCaseEvents: solicitorDACaseAPIEvent[] = [
   "fl401TypeOfApplication",
   "withoutNoticeOrderDetails",
   "applicantsDetails",
@@ -24,12 +23,12 @@ const solicitorCaseEvents: CaseAPIEvent[] = [
   "serviceOfApplication",
 ];
 
-export class SolicitorCaseCreator {
+export class SolicitorDACaseCreator {
   public static async createCaseStatementOfTruthAndSubmit(
     page: Page,
     jsonData: JsonData = jsonDatas.solicitorDACaseData,
   ): Promise<string> {
-    const caseRef: string = await this.createBlankCase(page);
+    const caseRef: string = await createBlankCase(page, jsonData);
     for (const event of solicitorCaseEvents) {
       await submitEvent(page, caseRef, event, jsonData);
       if (event === "fl401StatementOfTruthAndSubmit") {
@@ -74,49 +73,5 @@ export class SolicitorCaseCreator {
     await submitEvent(caPage, caseRef, "fl401SendToGateKeeper");
     await submitEvent(caPage, caseRef, "serviceOfApplication");
     return caseRef;
-  }
-
-  private static async createBlankCase(
-    page: Page,
-    jsonData: JsonData = jsonDatas.solicitorDACaseData,
-  ): Promise<string> {
-    const startCaseCreationUrl = `/data/internal/case-types/PRLAPPS/event-triggers/solicitorCreate?ignore-warning=false`;
-
-    const startCaseCreationHeaders = {
-      Accept:
-        "application/vnd.uk.gov.hmcts.ccd-data-store-api.ui-start-case-trigger.v2+json;charset=UTF-8",
-      Experimental: "true",
-      "Content-type": "application/json; charset=UTF-8",
-    };
-    const eventToken: string = await getData(
-      page,
-      startCaseCreationUrl,
-      startCaseCreationHeaders,
-    );
-
-    const submitCaseUrl = `/data/case-types/PRLAPPS/cases?ignore-warning=false`;
-    const data = {
-      data: jsonData.solicitorCreate.data,
-      draft_id: null,
-      event: {
-        id: "solicitorCreate",
-        summary: "",
-        description: "",
-      },
-      event_token: eventToken,
-      ignore_warning: false,
-    };
-    const submitEventHeaders = {
-      Accept:
-        "application/vnd.uk.gov.hmcts.ccd-data-store-api.create-case.v2+json;charset=UTF-8",
-      Experimental: "true",
-      "Content-type": "application/json; charset=UTF-8",
-    };
-    return await postData(
-      page,
-      submitCaseUrl,
-      submitEventHeaders,
-      JSON.stringify(data),
-    );
   }
 }
