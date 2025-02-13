@@ -75,6 +75,7 @@ export class ServiceOfApplication {
       yesNoServiceOfApplication4,
       accessibilityTest,
       confidentialityCheck,
+      applicationSubmittedBy,
     });
   }
 
@@ -110,6 +111,7 @@ export class ServiceOfApplication {
       yesNoServiceOfApplication4,
       accessibilityTest,
       confidentialityCheck,
+      applicationSubmittedBy,
     });
   }
 }

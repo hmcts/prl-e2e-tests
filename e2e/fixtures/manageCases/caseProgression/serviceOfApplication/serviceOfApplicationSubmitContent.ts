@@ -17,6 +17,6 @@ export enum ServiceOfApplicationSubmitContent {
   recipientsText16 = "Confirm Recipients",
   recipientsP1 = "Applicant ApplLast(Applicant)",
   recipientsP2 = "Dolores Smith (Respondent)",
-  solicitorApplicationRecipientsP1 = "applicantone fn respondentone ln(Applicant)",
-  solicitorApplicationRecipientsP2 = "respondentoneFN respondentoneLN (Respondent)",
+  solicitorApplicationRecipientsP1 = "John Smith(Applicant)",
+  solicitorApplicationRecipientsP2 = "Elise Lynn (Respondent)",
 }
