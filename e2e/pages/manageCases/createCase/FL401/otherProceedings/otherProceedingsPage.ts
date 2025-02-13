@@ -190,8 +190,8 @@ export class OtherProceedingsPage {
       default:
         if (process.env.PWDEBUG) {
           console.log(
-              "Unexpected input for otherProceedingsRadios: ",
-              otherProceedingsRadios,
+            "Unexpected input for otherProceedingsRadios: ",
+            otherProceedingsRadios,
           );
         }
         await page.click(radioIds.dontKnow);

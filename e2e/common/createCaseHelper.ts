@@ -33,7 +33,8 @@ async function createDaCitizenCourtNavCase(
       {
         headers: {
           Authorization: `Bearer ${tokenDaCreateCase}`,
-          "Ocp-Apim-Subscription-Key": courtNavConfig.COURTNAV_SUBSCRIPTION_KEY_CREATE_CASE as string,
+          "Ocp-Apim-Subscription-Key":
+            courtNavConfig.COURTNAV_SUBSCRIPTION_KEY_CREATE_CASE as string,
         },
         data: jsonData,
       },

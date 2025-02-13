@@ -21,7 +21,6 @@ const daCourtNavCreateCaseData = {
   token_url: urlConfig.IDAM_TOKEN_URL,
 };
 
-
 const ccdCaseData = {
   grant_type: "password",
   username: process.env.CCD_DATA_STORE_CLIENT_USERNAME as string,
@@ -50,8 +49,8 @@ const solicitorCaseData = {
  * @returns {Promise<string>} The access token if successful, otherwise throws an error
  */
 export async function getAccessToken(
-    option: string,
-    apiContext: APIRequestContext,
+  option: string,
+  apiContext: APIRequestContext,
 ): Promise<string> {
   let data, url;
   try {
@@ -82,42 +81,42 @@ export async function getAccessToken(
     if (!response.ok()) {
       const errorText = await response.text();
       throw new Error(
-          `Failed to fetch access token: ${response.status()} - ${errorText}. Ensure your VPN is connected or check your URL/SECRET.`,
+        `Failed to fetch access token: ${response.status()} - ${errorText}. Ensure your VPN is connected or check your URL/SECRET.`,
       );
     }
     const responseData = await response.json();
     return responseData.access_token;
   } catch (error) {
     throw new Error(
-        `An error occurred while fetching the access token: ${error instanceof Error ? error.message : error}`,
+      `An error occurred while fetching the access token: ${error instanceof Error ? error.message : error}`,
     );
   }
 }
 
 export async function getS2SToken(
-    apiContext: APIRequestContext,
-    microservice: string,
+  apiContext: APIRequestContext,
+  microservice: string,
 ): Promise<string> {
   try {
     const response = await apiContext.post(
-        urlConfig.S2S_TOKEN_URL,  // Use the environment-specific URL
-        {
-          headers: { "content-type": "application/json", Accept: "*/*" },
-          data: {
-            microservice: microservice,
-          },
+      urlConfig.S2S_TOKEN_URL, // Use the environment-specific URL
+      {
+        headers: { "content-type": "application/json", Accept: "*/*" },
+        data: {
+          microservice: microservice,
         },
+      },
     );
     if (!response.ok()) {
       const errorText = await response.text();
       throw new Error(
-          `Failed to fetch access token: ${response.status()} - ${errorText}. Ensure your VPN is connected or check your URL/SECRET.`,
+        `Failed to fetch access token: ${response.status()} - ${errorText}. Ensure your VPN is connected or check your URL/SECRET.`,
       );
     }
     return response.text();
   } catch (error) {
     throw new Error(
-        `An error occurred while fetching the access token: ${error instanceof Error ? error.message : error}`,
+      `An error occurred while fetching the access token: ${error instanceof Error ? error.message : error}`,
     );
   }
 }

@@ -6,7 +6,7 @@ properties([
   parameters([
     string(
       name: 'CITIZEN_FRONTEND_BASE_URL',
-      defaultValue: 'https://privatelaw.ithc.platform.hmcts.net/',
+      defaultValue: 'https://privatelaw.aat.platform.hmcts.net/',
       description: 'The Citizen URL to test against'
     ),
     string(

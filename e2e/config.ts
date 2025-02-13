@@ -14,10 +14,10 @@ export class Config {
 
   public static readonly citizenFrontendBaseURL: string =
     process.env.CITIZEN_FRONTEND_BASE_URL ||
-    "https://privatelaw.demo.platform.hmcts.net/";
+    "https://privatelaw.aat.platform.hmcts.net/";
   public static readonly manageCasesBaseURL: string =
     process.env.MANAGE_CASES_BASE_URL ||
-    "https://manage-case.demo.platform.hmcts.net/cases";
+    "https://manage-case.aat.platform.hmcts.net/cases";
 
   public static getEnvironment(url: string): string {
     return (

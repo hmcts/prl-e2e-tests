@@ -2,7 +2,8 @@ import { APIRequestContext, request } from "@playwright/test";
 import { v4 as uuidv4 } from "uuid";
 import { Config } from "../config";
 import process from "node:process";
-Config.urlConfig(process.env.TEST_ENV as string);
+const env = process.env.TEST_ENV || "aat";
+const urlConfig = Config.urlConfig(env);
 /**
  * Function to create a citizen user
  * @param {APIRequestContext} apiContext The API request context
@@ -22,7 +23,7 @@ export async function createCitizenUser(
   const email = `TEST_PRL_USER_citizen-user.${uniqueId}@test.local`;
   try {
     const response = await apiContext.post(
-      process.env.IDAM_TESTING_SUPPORT_USERS_URL as string,
+      urlConfig.IDAM_TESTING_SUPPORT_USERS_URL as string,
       {
         headers: {
           Authorization: `Bearer ${token}`,
