@@ -66,6 +66,7 @@ export type fl401SolicitorEvents =
   | "Statement of truth and submit";
 
 export type WACaseWorkerActions =
+  | "Allocated judge"
   | "Manage orders"
   | "Service of application"
   | "Create a bundle"
