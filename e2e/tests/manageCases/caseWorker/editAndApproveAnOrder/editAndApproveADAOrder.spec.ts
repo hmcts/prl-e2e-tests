@@ -1,12 +1,22 @@
 import { test } from "@playwright/test";
 import Config from "../../../../config";
 import { EditAndApproveAnOrder } from "../../../../journeys/manageCases/caseWorker/editAndApproveAnOrder/editAndApproveAnOrder";
+import { SolicitorCaseCreator } from "../../../../common/solicitorCaseCreator.ts";
+import { Helpers } from "../../../../common/helpers.ts";
+import config from "../../../../config.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-test.describe("Edit and approve a DA order tests", (): void => {
-  // tests failing due to EXUI-2621
-  // TODO: turn tests back on once issue around "Client context information not matching" has been resolved
+test.describe("Judge Edit and approve a solicitor created DA case order tests", (): void => {
+  let caseRef: string;
+
+  test.beforeEach(async ({ page }) => {
+    await page.goto(Config.manageCasesBaseURL);
+    caseRef =
+      await SolicitorCaseCreator.createCaseStatementOfTruthAndSubmit(page);
+    await Helpers.goToCase(page, config.manageCasesBaseURL, caseRef, "tasks");
+  });
+
   test(`Complete Editing and approving an order with the following options:
   Case: FL401,
   Order type: Non-molestation order (FL404A),
@@ -24,6 +34,7 @@ test.describe("Edit and approve a DA order tests", (): void => {
       errorMessaging: true,
       accessibilityTest: false,
       browser: browser,
+      caseRef: caseRef,
     });
   });
 
@@ -44,6 +55,7 @@ test.describe("Edit and approve a DA order tests", (): void => {
       errorMessaging: false,
       accessibilityTest: false,
       browser: browser,
+      caseRef: caseRef,
     });
   });
 
@@ -64,6 +76,7 @@ test.describe("Edit and approve a DA order tests", (): void => {
       errorMessaging: false,
       accessibilityTest: true,
       browser: browser,
+      caseRef: caseRef,
     });
   });
 });

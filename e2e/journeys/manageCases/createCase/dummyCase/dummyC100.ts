@@ -5,6 +5,7 @@ import { DummyCreateInitial } from "./dummyCreateInitial";
 import { DummyPaymentConfirmation } from "../../caseWorker/dummyPayment/dummyPaymentConfirmation.ts";
 import { DummyC100ApplicantDetails } from "./dummyC100ApplicantDetails";
 import { DummyC100OtherPersonDetails } from "./dummyC100OtherPersonDetails";
+import { Helpers } from "../../../../common/helpers.ts";
 
 interface dummyC100Options {
   page: Page;
@@ -17,7 +18,7 @@ export class DummyC100 {
     page,
     applicantLivesInRefuge,
     otherPersonLivesInRefuge,
-  }: dummyC100Options): Promise<void> {
+  }: dummyC100Options): Promise<string> {
     await DummyCreateInitial.createDummyCase({
       page: page,
       solicitorCaseType: "C100",
@@ -44,6 +45,8 @@ export class DummyC100 {
     await DummyPaymentConfirmation.dummyPaymentConfirmation({
       page,
     });
+
+    return await Helpers.getCaseNumberFromUrl(page);
   }
   public static async dummyC100NoPaymentConfirmation({
     page,

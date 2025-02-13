@@ -1,4 +1,4 @@
-import { Page, Browser } from "@playwright/test";
+import { Browser, Page } from "@playwright/test";
 import { Helpers } from "../../../../common/helpers";
 import { EditAndApproveAnOrder2Page } from "../../../../pages/manageCases/caseWorker/editAndApproveAnOrder/editAndApproveAnOrder2Page";
 import {
@@ -20,6 +20,7 @@ interface EditAndApproveOrderParams {
   errorMessaging: boolean;
   accessibilityTest: boolean;
   browser: Browser;
+  caseRef: string;
 }
 
 export class EditAndApproveAnOrder {
@@ -31,19 +32,20 @@ export class EditAndApproveAnOrder {
     errorMessaging,
     accessibilityTest,
     browser,
-  }: EditAndApproveOrderParams): Promise<string> {
+    caseRef,
+  }: EditAndApproveOrderParams): Promise<void> {
     // Draft the order and get case ref to be used to find case
-    const caseRef: string = await DraftAnOrder.draftAnOrder({
+    await DraftAnOrder.draftAnOrder({
       page: page,
       errorMessaging: errorMessaging,
       accessibilityTest: accessibilityTest,
-      paymentStatusPaid: true,
       caseType: caseType,
       orderType: orderType,
       yesNoToAll: false,
       howLongWillOrderBeInForce: "noEndDate",
       willAllPartiesAttendHearing: true,
       browser: browser,
+      caseRef: caseRef,
     });
     page = await Helpers.openNewBrowserWindow(browser, "judge");
     await Helpers.goToCase(page, config.manageCasesBaseURL, caseRef, "tasks");
@@ -77,6 +79,5 @@ export class EditAndApproveAnOrder {
       judeOrderAction,
       accessibilityTest,
     );
-    return caseRef;
   }
 }

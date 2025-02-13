@@ -28,7 +28,7 @@ export class RespondentDashboardPage {
   ): Promise<void> {
     const heading =
       applicationSubmittedBy == "Solicitor"
-        ? RespondentDashboardContent.solicitorApplicationGovukHeadingXL
+        ? RespondentDashboardContent.respondentGovukHeadingXL
         : RespondentDashboardContent.govukHeadingXL;
     await page
       .locator(Selectors.GovukHeadingXL, {
