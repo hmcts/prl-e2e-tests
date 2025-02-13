@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors";
 import { Helpers } from "../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
 import { FL401SummaryTabContent } from "../../../../fixtures/manageCases/caseTabs/FL401/fl401SummaryTabContent";
+import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
 
 export class FL401SummaryTabPage {
   public static async fl401SummaryTabPage(

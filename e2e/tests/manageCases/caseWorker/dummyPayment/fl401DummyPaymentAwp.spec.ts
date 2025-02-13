@@ -1,10 +1,20 @@
 import { test } from "@playwright/test";
 import Config from "../../../../config";
 import { DummyPaymentAwp } from "../../../../journeys/manageCases/caseWorker/dummyPayment/dummyPaymentAwp";
+import { SolicitorCaseCreator } from "../../../../common/solicitorCaseCreator.ts";
+import { Helpers } from "../../../../common/helpers.ts";
+import config from "../../../../config.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
 test.describe("FL401 Dummy payment for AWP tests", (): void => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto(Config.manageCasesBaseURL);
+    const caseRef: string =
+      await SolicitorCaseCreator.createCaseStatementOfTruthAndSubmit(page);
+    await Helpers.goToCase(page, config.manageCasesBaseURL, caseRef, "tasks");
+  });
+
   test(`Complete the Dummy payment for AWP action as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
@@ -14,9 +24,6 @@ test.describe("FL401 Dummy payment for AWP tests", (): void => {
       errorMessaging: false,
       accessibilityTest: false,
       paymentStatusPaid: true,
-      caseType: "FL401",
-      applicantLivesInRefuge: true,
-      otherPersonLivesInRefuge: false,
     });
   });
 
@@ -29,9 +36,6 @@ test.describe("FL401 Dummy payment for AWP tests", (): void => {
       errorMessaging: false,
       accessibilityTest: false,
       paymentStatusPaid: false,
-      caseType: "FL401",
-      applicantLivesInRefuge: false,
-      otherPersonLivesInRefuge: false,
     });
   });
 
@@ -46,26 +50,20 @@ test.describe("FL401 Dummy payment for AWP tests", (): void => {
       errorMessaging: true,
       accessibilityTest: false,
       paymentStatusPaid: true,
-      caseType: "FL401",
-      applicantLivesInRefuge: false,
-      otherPersonLivesInRefuge: false,
     });
   });
-});
 
-test(`Complete the Dummy payment for AWP action  as a solicitor with the following options:
+  test(`Complete the Dummy payment for AWP action  as a solicitor with the following options:
   Accessibility testing,
   Not Error message testing,
   Payment status is paid. @accessibility @nightly`, async ({
-  page,
-}): Promise<void> => {
-  await DummyPaymentAwp.dummyPaymentAwp({
     page,
-    errorMessaging: false,
-    accessibilityTest: true,
-    paymentStatusPaid: true,
-    caseType: "FL401",
-    applicantLivesInRefuge: false,
-    otherPersonLivesInRefuge: false,
+  }): Promise<void> => {
+    await DummyPaymentAwp.dummyPaymentAwp({
+      page,
+      errorMessaging: false,
+      accessibilityTest: true,
+      paymentStatusPaid: true,
+    });
   });
 });
