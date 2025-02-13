@@ -33,9 +33,7 @@ export class SolicitorCACaseCreator {
   ): Promise<string> {
     const caseRef: string = await createBlankCase(page, jsonData);
     for (const event of solicitorCaseEvents) {
-      console.log(`Starting event: ${event}`);
       await submitEvent(page, caseRef, event, jsonData);
-      console.log(`Finished event: ${event}`);
     }
     return caseRef;
   }
