@@ -3,9 +3,7 @@ import { Selectors } from "../../../../common/selectors";
 import { Helpers } from "../../../../common/helpers";
 import { CommonStaticText } from "../../../../common/commonStaticText";
 import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
-import {
-  AllocatedJudgeSubmitContent
-} from "../../../../fixtures/manageCases/caseProgression/allocatedJudge/allocatedJudgeSubmitContent.ts";
+import { AllocatedJudgeSubmitContent } from "../../../../fixtures/manageCases/caseProgression/allocatedJudge/allocatedJudgeSubmitContent.ts";
 
 export class AllocatedJudgeSubmit {
   public static async allocatedJudgeSubmit(
@@ -70,7 +68,6 @@ export class AllocatedJudgeSubmit {
         `${Selectors.button}:text-is("${CommonStaticText.previous}")`,
         1,
       ),
-      ]
-    )
+    ]);
   }
 }

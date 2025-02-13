@@ -1,15 +1,10 @@
-import {  Page } from "@playwright/test";
-import {
-  WACaseWorkerActions,
-} from "../../../../common/types.ts";
+import { Page } from "@playwright/test";
+import { WACaseWorkerActions } from "../../../../common/types.ts";
 import { CommonStaticText } from "../../../../common/commonStaticText";
 import { Helpers } from "../../../../common/helpers";
 import { Selectors } from "../../../../common/selectors";
-import {
-  AllocatedJudge1Content
-} from "../../../../fixtures/manageCases/caseProgression/allocatedJudge/allocatedJudge1Content.ts";
+import { AllocatedJudge1Content } from "../../../../fixtures/manageCases/caseProgression/allocatedJudge/allocatedJudge1Content.ts";
 import { CommonContent } from "../../../../fixtures/manageCases/commonContent.ts";
-
 
 interface AllocatedJudge1Options {
   page: Page;
@@ -20,20 +15,23 @@ interface AllocatedJudge1Options {
 
 enum UniqueSelectors {
   isSpecificJudge = "#isSpecificJudgeOrLegalAdviserNeeded_Yes",
-  selectJudge ="#isJudgeOrLegalAdviser-judge",
+  selectJudge = "#isJudgeOrLegalAdviser-judge",
   nameOfJudge = "#judgeNameAndEmail",
   judgeName = "mat-option-257",
 }
 
 export class AllocatedJudge1Page {
-  public static async allocatedJudge1Page(page: Page, accessibilityTest: boolean): Promise<void> {
+  public static async allocatedJudge1Page(
+    page: Page,
+    accessibilityTest: boolean,
+  ): Promise<void> {
     await this.checkPageLoads({ page, accessibilityTest });
     await this.fillInFields({ page });
   }
 
   private static async checkPageLoads({
-                                        page,
-                                      }: Partial<AllocatedJudge1Options>) {
+    page,
+  }: Partial<AllocatedJudge1Options>) {
     if (!page) {
       throw new Error("No page found");
     }
@@ -45,30 +43,31 @@ export class AllocatedJudge1Page {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukFormLabel}:text-is("${AllocatedJudge1Content.formLabel}")`,
-        1
+        1,
       ),
     ]);
   }
 
   private static async fillInFields({
-                                      page,
-                                    }: Partial<AllocatedJudge1Options>): Promise<void> {
+    page,
+  }: Partial<AllocatedJudge1Options>): Promise<void> {
     if (!page) {
       throw new Error("No page found");
     }
     await page.click(UniqueSelectors.isSpecificJudge);
     await page.click(UniqueSelectors.selectJudge);
-    await page.fill(
-      `${UniqueSelectors.nameOfJudge}`,
-      CommonContent.judgeName,
-    );
+    await page.fill(`${UniqueSelectors.nameOfJudge}`, CommonContent.judgeName);
     // clicks on the elastic search drop down
-    await page.waitForSelector(`//mat-option/span[contains(text(), 'Ms Elizabeth Williams (HHJ.Elizabeth.Williams@ejudiciary.net)')]`);
-    await page.click(`//mat-option/span[contains(text(), 'Ms Elizabeth Williams (HHJ.Elizabeth.Williams@ejudiciary.net)')]`);
+    await page.waitForSelector(
+      `//mat-option/span[contains(text(), 'Ms Elizabeth Williams (HHJ.Elizabeth.Williams@ejudiciary.net)')]`,
+    );
+    await page.click(
+      `//mat-option/span[contains(text(), 'Ms Elizabeth Williams (HHJ.Elizabeth.Williams@ejudiciary.net)')]`,
+    );
 
     await page.waitForSelector(UniqueSelectors.nameOfJudge); // Ensure the name field is filled
 
-      await page.click(
+    await page.click(
       `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
     );
   }

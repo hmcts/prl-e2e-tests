@@ -5,5 +5,5 @@ export enum AllocatedJudgeSubmitContent {
   text162 = "Do you want to allocate a specific judge or legal adviser?",
   text163 = "Please select judge or legal adviser",
   text164 = "Name of judge",
-  submit = "Continue"
+  submit = "Continue",
 }

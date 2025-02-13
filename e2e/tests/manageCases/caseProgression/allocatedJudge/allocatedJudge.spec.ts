@@ -16,8 +16,8 @@ test.describe("Allocate a judge to the case", () => {
   });
 
   test("Allocate a Judge to a DA case @nightly @regression", async ({
-                                                                                                                                 page,
-                                                                                                                               }) => {
+    page,
+  }) => {
     await AllocatedJudge.allocatedJudge({
       page: page,
       accessibilityTest: false,
