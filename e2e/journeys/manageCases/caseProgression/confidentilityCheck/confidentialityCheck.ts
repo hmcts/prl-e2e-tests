@@ -15,6 +15,7 @@ import { ConfidentialityCheck1Page } from "../../../../pages/manageCases/casePro
 import { ConfidentialityCheckSubmitPage } from "../../../../pages/manageCases/caseProgression/confidentialityCheck/confidentialityCheckSubmitPage.ts";
 import { ConfidentialityCheckConfirmPage } from "../../../../pages/manageCases/caseProgression/confidentialityCheck/confidentialityCheckConfirmPage.ts";
 import { Selectors } from "../../../../common/selectors.ts";
+import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 
 interface ConfidentialityCheckParams {
   page: Page;
@@ -168,6 +169,42 @@ export class ConfidentialityCheck {
       page,
       `${Selectors.a}:text-is("Annex 1 - Confidential contact details notice.pdf")`,
       2,
+    );
+  }
+
+  // cut down version of the confidential details journey
+  public static async confidentialityCheckLite(
+    browser: Browser,
+    caseRef: string,
+  ): Promise<void> {
+    // login as case manager & wait for confidential check task
+    const caseManagerPage: Page = await Helpers.openNewBrowserWindow(
+      browser,
+      "caseManager",
+    );
+    await Helpers.goToCase(
+      caseManagerPage,
+      config.manageCasesBaseURL,
+      caseRef,
+      "tasks",
+    );
+    await Helpers.assignTaskToMeAndTriggerNextSteps(
+      caseManagerPage,
+      "C8 - Confidential details check",
+      "Confidential Check",
+    );
+    // confidentialityCheck1Page
+    await caseManagerPage.click("#applicationServedYesNo_Yes");
+    await caseManagerPage.click(
+      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+    );
+    // confidentialityCheckSubmitPage
+    await caseManagerPage.click(
+      `${Selectors.button}:text-is("${CommonStaticText.saveAndContinue}")`,
+    );
+    // confidentialityCheckConfirmPage
+    await caseManagerPage.click(
+      `${Selectors.button}:text-is("${CommonStaticText.closeAndReturnToCaseDetails}")`,
     );
   }
 }

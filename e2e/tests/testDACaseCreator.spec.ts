@@ -1,5 +1,5 @@
 import { Page, test } from "@playwright/test";
-import { SolicitorCaseCreator } from "../common/solicitorCaseCreator.ts";
+import { SolicitorDACaseCreator } from "../common/solicitorDACaseCreator.ts";
 import Config from "../config.ts";
 import { AccessCodeHelper } from "../common/accessCodeHelper.ts";
 import createDaCitizenCourtNavCase from "../common/createCaseHelper.ts";
@@ -13,7 +13,7 @@ test.describe("Case creation examples", (): void => {
     page,
   }): Promise<void> => {
     await page.goto(Config.manageCasesBaseURL);
-    await SolicitorCaseCreator.createCaseStatementOfTruthAndSubmit(page);
+    await SolicitorDACaseCreator.createCaseStatementOfTruthAndSubmit(page);
   });
 
   test("create solicitor case - gatekeeping", async ({
@@ -21,7 +21,7 @@ test.describe("Case creation examples", (): void => {
     browser,
   }): Promise<void> => {
     await page.goto(Config.manageCasesBaseURL);
-    await SolicitorCaseCreator.createCaseSendToGatekeeper(page, browser);
+    await SolicitorDACaseCreator.createCaseSendToGatekeeper(page, browser);
   });
 
   test("create solicitor case and service of application example", async ({
@@ -29,7 +29,7 @@ test.describe("Case creation examples", (): void => {
     browser,
   }): Promise<void> => {
     await page.goto(Config.manageCasesBaseURL);
-    const caseRef = await SolicitorCaseCreator.createCaseSOA(page, browser);
+    const caseRef = await SolicitorDACaseCreator.createCaseSOA(page, browser);
     await AccessCodeHelper.getApplicantAccessCode(caseRef);
     await AccessCodeHelper.getRespondentAccessCode(caseRef);
   });
