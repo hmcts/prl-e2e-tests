@@ -1,6 +1,6 @@
 import { test } from "@playwright/test";
 import Config from "../../../../../config.ts";
-import { SolicitorCaseCreator } from "../../../../../common/solicitorCaseCreator.ts";
+import { SolicitorDACaseCreator } from "../../../../../common/solicitorDACaseCreator.ts";
 import { Helpers } from "../../../../../common/helpers.ts";
 import { CheckTheApplication } from "../../../../../journeys/citizen/caseView/checkTheApplication/checkTheApplication.ts";
 
@@ -18,7 +18,7 @@ test.describe("Applicant confirm contact details tests - Solicitor created appli
     );
     await solicitorPage.goto(Config.manageCasesBaseURL);
     ccdRef =
-      await SolicitorCaseCreator.createCaseStatementOfTruthAndSubmit(
+      await SolicitorDACaseCreator.createCaseStatementOfTruthAndSubmit(
         solicitorPage,
       );
     await solicitorPage.close();

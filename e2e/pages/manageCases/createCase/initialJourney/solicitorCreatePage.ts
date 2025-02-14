@@ -50,9 +50,18 @@ export class SolicitorCreatePage {
     page: Page,
     isDummyCase: boolean,
   ): Promise<void> {
-    await page.reload(); // Not ideal - but an interim solution until the underlying problem is fixed
     await page.selectOption(fieldIds.jurisdiction, options.familyPrivateLaw);
     await page.selectOption(fieldIds.caseType, options.caseType);
+    // If event dropdown fails to load then fail the test fast - interim solution until the underlying problem is fixed
+    const eventDropdown = page.locator(fieldIds.event);
+    const eventOptions = await eventDropdown.evaluate((el: HTMLSelectElement) =>
+      Array.from(el.options).map((option) => option.value),
+    );
+    if (eventOptions.length <= 1) {
+      throw new Error(
+        "Could not create a case - unable to select an event from the dropdown",
+      );
+    }
     if (isDummyCase) {
       await page.selectOption(fieldIds.event, options.tsSolicitorApplication);
     } else {

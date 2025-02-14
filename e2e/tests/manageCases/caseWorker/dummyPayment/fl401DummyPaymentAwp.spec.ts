@@ -1,7 +1,7 @@
 import { test } from "@playwright/test";
 import Config from "../../../../config";
 import { DummyPaymentAwp } from "../../../../journeys/manageCases/caseWorker/dummyPayment/dummyPaymentAwp";
-import { SolicitorCaseCreator } from "../../../../common/solicitorCaseCreator.ts";
+import { SolicitorDACaseCreator } from "../../../../common/solicitorDACaseCreator.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import config from "../../../../config.ts";
 
@@ -11,7 +11,7 @@ test.describe("FL401 Dummy payment for AWP tests", (): void => {
   test.beforeEach(async ({ page }) => {
     await page.goto(Config.manageCasesBaseURL);
     const caseRef: string =
-      await SolicitorCaseCreator.createCaseStatementOfTruthAndSubmit(page);
+      await SolicitorDACaseCreator.createCaseStatementOfTruthAndSubmit(page);
     await Helpers.goToCase(page, config.manageCasesBaseURL, caseRef, "tasks");
   });
 

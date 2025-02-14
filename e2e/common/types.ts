@@ -67,6 +67,7 @@ export type fl401SolicitorEvents =
   | "Statement of truth and submit";
 
 export type WACaseWorkerActions =
+  | "Allocated judge"
   | "Manage orders"
   | "Service of application"
   | "Create a bundle"
@@ -219,7 +220,7 @@ export type documentSubmittedBy = "CourtNav" | "Citizen";
 
 export type applicationSubmittedBy = "Citizen" | "Solicitor";
 
-export type CaseAPIEvent =
+export type solicitorDACaseAPIEvent =
   | "fl401TypeOfApplication"
   | "withoutNoticeOrderDetails"
   | "applicantsDetails"
@@ -237,3 +238,22 @@ export type CaseAPIEvent =
   | "fl401SendToGateKeeper"
   | "manageOrders"
   | "serviceOfApplication";
+
+export type solicitorCACaseAPIEvent =
+  | "solicitorCreate"
+  | "selectApplicationType"
+  | "hearingUrgency"
+  | "applicantsDetails"
+  | "respondentsDetails"
+  | "otherPeopleInTheCaseRevised"
+  | "childDetailsRevised"
+  | "otherChildNotInTheCase"
+  | "childrenAndApplicants"
+  | "childrenAndRespondents"
+  | "childrenAndOtherPeople"
+  | "allegationsOfHarmRevised"
+  | "miamPolicyUpgrade"
+  | "internationalElement"
+  | "welshLanguageRequirements"
+  | "submitAndPay"
+  | "testingSupportPaymentSuccessCallback";

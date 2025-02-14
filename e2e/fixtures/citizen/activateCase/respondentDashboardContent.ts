@@ -1,7 +1,7 @@
 export enum RespondentDashboardContent {
   notificationBannerTitle = "Important",
   govukHeadingXL = "Dolores Smith",
-  respondentGovukHeadingXL = "Elise Reyes",
+  respondentGovukHeadingXL = "Elise Lynn",
   notificationBannerHeading = "You have been named as the respondent in a domestic abuse application and have been given instructions from the court",
   notificationBannerLink = "View the court documents",
   p1 = "This means that the applicant has applied to a court for protection from domestic abuse.",
