@@ -7,21 +7,46 @@ import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.
 export class FL401SummaryTabPage {
   public static async fl401SummaryTabPage(
     page: Page,
+    isCourtListed: boolean,
     accessibilityTest: boolean,
     applicantLivesInRefuge: boolean,
   ): Promise<void> {
     await this.clickTab(page);
-    await this.checkPageLoads(page, accessibilityTest, applicantLivesInRefuge);
+    await this.checkPageLoads(
+      page,
+      isCourtListed,
+      accessibilityTest,
+      applicantLivesInRefuge,
+    );
   }
 
   private static async checkPageLoads(
     page: Page,
+    isCourtListed: boolean,
     accessibilityTest: boolean,
     applicantLivesInRefuge: boolean,
   ): Promise<void> {
     await page.waitForSelector(
       `${Selectors.h1}:text-is("${FL401SummaryTabContent.tabTitle}")`,
     );
+    await Helpers.checkVisibleAndPresent(
+      page,
+      `${Selectors.GovukText16}:text-is("${FL401SummaryTabContent.courtNameLabel}")`,
+      1,
+    );
+    if (isCourtListed) {
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${FL401SummaryTabContent.aberystwythCourt}")`,
+        1,
+      );
+    } else {
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${FL401SummaryTabContent.testCourt}")`,
+        1,
+      );
+    }
     if (applicantLivesInRefuge) {
       await Helpers.checkVisibleAndPresent(
         page,

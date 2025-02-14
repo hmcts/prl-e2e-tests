@@ -8,6 +8,7 @@ import { DummyFL401 } from "../createCase/dummyCase/dummyFL401.ts";
 interface FL401CaseTabsParams {
   page: Page;
   browser: Browser;
+  courtIsListed: boolean;
   accessibilityTest: boolean;
   applicantLivesInRefuge: boolean;
 }
@@ -16,6 +17,7 @@ export class FL401CaseTabs {
   public static async fl401CaseTabs({
     page,
     browser,
+    courtIsListed,
     accessibilityTest,
     applicantLivesInRefuge,
   }: FL401CaseTabsParams): Promise<void> {
@@ -38,6 +40,7 @@ export class FL401CaseTabs {
 
     await FL401SummaryTabPage.fl401SummaryTabPage(
       courtAdminPage,
+      courtIsListed,
       accessibilityTest,
       applicantLivesInRefuge,
     );
