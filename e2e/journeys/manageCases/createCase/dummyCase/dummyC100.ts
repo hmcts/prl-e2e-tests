@@ -45,7 +45,14 @@ export class DummyC100 {
     await DummyPaymentConfirmation.dummyPaymentConfirmation({
       page,
     });
-    return await Helpers.getCaseNumberFromUrl(page);
+    const caseRef: string = await Helpers.getCaseNumberFromUrl(page)
+    await page.waitForResponse(
+      (response) =>
+        response.url() ===
+        `https://manage-case.aat.platform.hmcts.net/data/cases/${caseRef}/events` &&
+        response.status() === 201,
+    );
+    return caseRef;
   }
   public static async dummyC100NoPaymentConfirmation({
     page,
