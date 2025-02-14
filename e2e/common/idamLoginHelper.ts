@@ -113,7 +113,7 @@ export class IdamLoginHelper {
       if (!cookie?.domain?.includes(env)) return false;
 
       const expiry = new Date(cookie.expires * 1000);
-      // Ensure at least 4 hours remain before session expiry
+      // Check there is at least 4 hours left before the session expires
       return expiry.getTime() - Date.now() > 4 * 60 * 60 * 1000;
     } catch (error) {
       throw new Error(`Could not read session data from ${path}: ${error}`);
