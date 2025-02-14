@@ -4,7 +4,6 @@ import { OrderType, solicitorCaseCreateType } from "../../../../common/types";
 import config from "../../../../config";
 import { IssueAndSendToLocalCourtCallback1Page } from "../../../../pages/manageCases/caseWorker/draftAnOrder/issueAndSendToLocalCourt/issueAndSendToLocalCourtCallback1Page";
 import { IssueAndSendToLocalCourtCallbackSubmitPage } from "../../../../pages/manageCases/caseWorker/draftAnOrder/issueAndSendToLocalCourt/issueAndSendToLocalCourtCallbackSubmitPage";
-import { DummyPaymentAwp } from "../dummyPayment/dummyPaymentAwp";
 import { NonMolestationOrder } from "./nonMolestationOrder/nonMolestationOrder";
 import { ParentalResponsibilityOrder } from "./ParentalResponsibilityOrder/parentalResponsibilityOrder";
 
@@ -12,13 +11,13 @@ interface DraftAnOrderParams {
   page: Page;
   errorMessaging: boolean;
   accessibilityTest: boolean;
-  paymentStatusPaid: boolean;
   caseType: solicitorCaseCreateType;
   orderType: OrderType;
   yesNoToAll: boolean;
   howLongWillOrderBeInForce: HowLongWillTheOrderBeInForce;
   willAllPartiesAttendHearing: boolean;
   browser: Browser;
+  caseRef: string;
 }
 
 export type HowLongWillTheOrderBeInForce =
@@ -148,43 +147,23 @@ export const orderTypesMap: Map<OrderType, OrderTypeStrings> = new Map([
   ],
 ]);
 
-const caseNumberSelector: string = ".case-title h2:nth-child(3)";
-
 export class DraftAnOrder {
   public static async draftAnOrder({
     page,
     errorMessaging,
     accessibilityTest,
-    paymentStatusPaid,
     caseType,
     orderType,
     yesNoToAll,
     howLongWillOrderBeInForce,
     willAllPartiesAttendHearing,
     browser,
-  }: DraftAnOrderParams): Promise<string> {
-    await DummyPaymentAwp.dummyPaymentAwp({
-      page,
-      errorMessaging,
-      accessibilityTest,
-      paymentStatusPaid,
-      caseType,
-      applicantLivesInRefuge: false,
-      otherPersonLivesInRefuge: false,
-    });
-    // fetch the case ref to be used when editing and approving an order
-    const unformattedCaseRef: string | null = await page
-      .locator(caseNumberSelector)
-      .textContent();
-    const formattedCaseRef: string | undefined = unformattedCaseRef?.slice(12);
+    caseRef,
+  }: DraftAnOrderParams): Promise<void> {
     if (caseType === "C100") {
       // C100 orders are assigned to Central Family Court by default
       // need to assign the case to Swansea court if we want to allow a Swansea judge to edit & approve the order
-      await this.assignCaseToSwanseaCourt(
-        browser,
-        formattedCaseRef!,
-        accessibilityTest,
-      );
+      await this.assignCaseToSwanseaCourt(browser, caseRef, accessibilityTest);
     }
     await Helpers.chooseEventFromDropdown(page, "Draft an order");
     switch (orderType) {
@@ -214,7 +193,6 @@ export class DraftAnOrder {
         console.error("An invalid order type was given");
         break;
     }
-    return formattedCaseRef ? formattedCaseRef : "";
   }
 
   private static async assignCaseToSwanseaCourt(

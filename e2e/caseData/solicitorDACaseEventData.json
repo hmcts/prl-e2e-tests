@@ -23,7 +23,7 @@
   "fl401TypeOfApplication": {
     "data": {
       "typeOfApplicationOrders": {
-        "orderType": ["nonMolestationOrder"]
+        "orderType": ["nonMolestationOrder", "occupationOrder"]
       },
       "typeOfApplicationLinkToCA": {
         "linkToCaApplication": "No",
@@ -34,46 +34,31 @@
   "withoutNoticeOrderDetails": {
     "data": {
       "orderWithoutGivingNoticeToRespondent": {
-        "orderWithoutGivingNotice": "Yes"
-      },
-      "reasonForOrderWithoutGivingNotice": {
-        "futherDetails": "test details",
-        "reasonForOrderWithoutGivingNotice": [
-          "harmToApplicantOrChild",
-          "deferringApplicationIfNotImmediate",
-          "prejudiced"
-        ]
-      },
-      "bailDetails": {
-        "isRespondentAlreadyInBailCondition": "no",
-        "bailConditionEndDate": null
-      },
-      "anyOtherDtailsForWithoutNoticeOrder": {
-        "otherDetails": "none"
+        "orderWithoutGivingNotice": "No"
       }
     }
   },
   "applicantsDetails": {
     "data": {
       "applicantsFL401": {
-        "firstName": "applicantone fn",
-        "lastName": "respondentone ln",
-        "liveInRefuge": "No",
+        "firstName": "John",
+        "lastName": "Smith",
         "previousName": null,
-        "dateOfBirth": "2000-01-01",
+        "dateOfBirth": "1980-01-01",
         "gender": "male",
         "otherGender": null,
+        "liveInRefuge": "No",
         "isAddressConfidential": "No",
-        "canYouProvideEmailAddress": "No",
-        "email": null,
-        "isEmailAddressConfidential": null,
-        "phoneNumber": "09876543211",
-        "isPhoneNumberConfidential": "No",
-        "representativeFirstName": "applicantSol fn",
-        "representativeLastName": "applicantSol ln",
-        "solicitorEmail": "testapplicantsol@sol.com",
-        "solicitorTelephone": "09876543211",
-        "solicitorReference": "",
+        "canYouProvideEmailAddress": "Yes",
+        "email": "applicant1@example.net",
+        "isEmailAddressConfidential": "Yes",
+        "phoneNumber": "07405123456",
+        "isPhoneNumberConfidential": "Yes",
+        "representativeFirstName": "Legal",
+        "representativeLastName": "Solicitor",
+        "solicitorEmail": "legal.solicitor@example.net",
+        "solicitorTelephone": "01234568999",
+        "solicitorReference": null,
         "dxNumber": null,
         "isDateOfBirthUnknown": null,
         "placeOfBirth": null,
@@ -81,6 +66,7 @@
         "isAtAddressLessThan5Years": null,
         "addressLivedLessThan5YearsDetails": null,
         "landline": null,
+        "isPartyIdentityConfidential": null,
         "relationshipToChildren": null,
         "isDateOfBirthKnown": null,
         "isCurrentAddressKnown": null,
@@ -92,32 +78,23 @@
         "respondentLivedWithApplicant": null,
         "applicantContactInstructions": null,
         "currentRespondent": null,
-        "partyId": "3f327962-d96c-48d8-a093-1602b938fa5b",
-        "solicitorPartyId": "76b272d9-4331-4ed6-a603-c93ae1583e13",
-        "solicitorOrgUuid": "b4aff833-5fa8-4c8d-99b7-ad647b977186",
+        "partyId": "f2847b15-dbb8-4df0-868a-420d9de11d29",
+        "solicitorPartyId": "0d730a9e-74bf-468c-ac27-2f6cc9c9acef",
+        "solicitorOrgUuid": "c90440e6-22a4-4625-baa7-76a6fcb8309b",
         "contactPreferences": null,
         "isRemoveLegalRepresentativeRequested": null,
         "address": {
-          "AddressLine1": "Flat 10",
-          "AddressLine2": "Sheraton House",
-          "AddressLine3": "Churchill Gardens",
+          "AddressLine1": "Ministry Of Justice",
+          "AddressLine2": "Seventh Floor 102 Petty France",
+          "AddressLine3": null,
           "PostTown": "London",
           "County": null,
-          "PostCode": "SW1V 3BZ",
+          "PostCode": "SW1H 9AJ",
           "Country": "United Kingdom"
         },
         "solicitorOrg": {
           "OrganisationID": "QO4A1Q8",
           "OrganisationName": "FPRL-test-organisation"
-        },
-        "solicitorAddress": {
-          "AddressLine1": "Flat 10",
-          "AddressLine2": "Sheraton House",
-          "AddressLine3": "Churchill Gardens",
-          "PostTown": "London",
-          "County": null,
-          "PostCode": "SW1V 3BZ",
-          "Country": "United Kingdom"
         },
         "otherPersonRelationshipToChildren": [],
         "applicantPreferredContact": [],
@@ -240,6 +217,7 @@
             "previousName": null,
             "dateOfBirth": null,
             "placeOfBirth": null,
+            "liveInRefuge": null,
             "address": {
               "AddressLine1": null,
               "AddressLine2": null,
@@ -688,8 +666,8 @@
           }
         },
         "partyLevelFlag": {
-          "roleOnCase": null,
-          "partyName": null,
+          "roleOnCase": "Applicant",
+          "partyName": "John Smith",
           "groupId": null,
           "visibility": null,
           "details": []
@@ -700,17 +678,17 @@
   "respondentsDetails": {
     "data": {
       "respondentsFL401": {
-        "firstName": "respondentoneFN",
-        "lastName": "respondentoneLN",
+        "firstName": "Elise",
+        "lastName": "Lynn",
         "previousName": null,
-        "isDateOfBirthKnown": "Yes",
-        "dateOfBirth": "2001-01-01",
+        "isDateOfBirthKnown": "No",
+        "dateOfBirth": null,
         "respondentLivedWithApplicant": "No",
-        "isCurrentAddressKnown": "Yes",
+        "isCurrentAddressKnown": "No",
         "canYouProvideEmailAddress": "Yes",
-        "email": "respondentfl401@mailinator.com",
-        "canYouProvidePhoneNumber": "Yes",
-        "phoneNumber": "09876543211",
+        "email": "repondent1@example.net",
+        "canYouProvidePhoneNumber": "No",
+        "phoneNumber": null,
         "isDateOfBirthUnknown": null,
         "gender": null,
         "otherGender": null,
@@ -722,6 +700,7 @@
         "isEmailAddressConfidential": null,
         "landline": null,
         "isPhoneNumberConfidential": null,
+        "isPartyIdentityConfidential": null,
         "relationshipToChildren": null,
         "isPlaceOfBirthKnown": null,
         "dxNumber": null,
@@ -735,20 +714,12 @@
         "solicitorTelephone": null,
         "applicantContactInstructions": null,
         "currentRespondent": null,
-        "partyId": null,
-        "solicitorPartyId": null,
-        "solicitorOrgUuid": null,
+        "partyId": "a2b211f4-6072-4970-9c34-08a47ff6ec9c",
+        "solicitorPartyId": "999c6ae0-2a65-4fec-b08d-581e27aae2a1",
+        "solicitorOrgUuid": "c5aa1d18-bbd5-4f10-8254-0ff7bffddabb",
         "contactPreferences": null,
         "isRemoveLegalRepresentativeRequested": null,
-        "address": {
-          "AddressLine1": "Flat 14",
-          "AddressLine2": "Sheraton House",
-          "AddressLine3": "Churchill Gardens",
-          "PostTown": "London",
-          "County": "",
-          "PostCode": "SW1V 3BZ",
-          "Country": "United Kingdom"
-        },
+        "liveInRefuge": null,
         "solicitorOrg": {
           "OrganisationID": null,
           "OrganisationName": null
@@ -874,7 +845,7 @@
           },
           "keepDetailsPrivate": {
             "otherPeopleKnowYourContactDetails": null,
-            "confidentiality": null,
+            "confidentiality": "No",
             "confidentialityList": []
           },
           "citizenDetails": {
@@ -883,6 +854,7 @@
             "previousName": null,
             "dateOfBirth": null,
             "placeOfBirth": null,
+            "liveInRefuge": null,
             "address": {
               "AddressLine1": null,
               "AddressLine2": null,
@@ -1331,8 +1303,8 @@
           }
         },
         "partyLevelFlag": {
-          "roleOnCase": null,
-          "partyName": null,
+          "roleOnCase": "Respondent",
+          "partyName": "Elise Lynn",
           "groupId": null,
           "visibility": null,
           "details": []
@@ -1343,8 +1315,34 @@
   "fl401ApplicantFamilyDetails": {
     "data": {
       "applicantFamilyDetails": {
-        "doesApplicantHaveChildren": "No"
-      }
+        "doesApplicantHaveChildren": "Yes"
+      },
+      "applicantChildDetails": [
+        {
+          "value": {
+            "fullName": "Joe Doe",
+            "dateOfBirth": "2017-01-01",
+            "applicantChildRelationship": "Father",
+            "applicantRespondentShareParental": "Yes",
+            "respondentChildRelationship": "Mother",
+            "finalDecisionResolutionReason": null,
+            "finalDecisionResolutionDate": null
+          },
+          "id": "ac193d35-bcd1-4abf-8402-929295c9545c"
+        },
+        {
+          "value": {
+            "fullName": "Simon Anderson",
+            "dateOfBirth": "2018-01-01",
+            "applicantChildRelationship": "Father",
+            "applicantRespondentShareParental": "Yes",
+            "respondentChildRelationship": "Mother",
+            "finalDecisionResolutionReason": null,
+            "finalDecisionResolutionDate": null
+          },
+          "id": "5f9a3c81-f6ec-48c6-bd3a-ace5751a6229"
+        }
+      ]
     }
   },
   "respondentRelationship": {
@@ -1353,10 +1351,10 @@
         "applicantRelationship": "marriedOrCivil"
       },
       "respondentRelationDateInfoObject": {
-        "applicantRelationshipDate": "2020-01-01",
+        "applicantRelationshipDate": "2015-01-01",
         "relationStartAndEndComplexType": {
-          "relationshipDateComplexStartDate": "2020-01-01",
-          "relationshipDateComplexEndDate": "2023-01-01"
+          "relationshipDateComplexStartDate": "2015-01-01",
+          "relationshipDateComplexEndDate": "2020-01-01"
         }
       }
     }
@@ -1364,66 +1362,72 @@
   "respondentBehaviour": {
     "data": {
       "respondentBehaviourData": {
-        "otherReasonApplicantWantToStopFromRespondentDoing": "test",
+        "otherReasonApplicantWantToStopFromRespondentDoing": "Requesting to stop harassing applicant's parent",
         "applicantWantToStopFromRespondentDoing": [
           "applicantStopFromRespondentEnum_Value_1",
-          "applicantStopFromRespondentEnum_Value_2",
-          "applicantStopFromRespondentEnum_Value_3",
-          "applicantStopFromRespondentEnum_Value_4",
-          "applicantStopFromRespondentEnum_Value_5",
-          "applicantStopFromRespondentEnum_Value_6",
-          "applicantStopFromRespondentEnum_Value_7",
-          "applicantStopFromRespondentEnum_Value_8",
-          "applicantStopFromRespondentEnum_Value_9"
+          "applicantStopFromRespondentEnum_Value_2"
         ],
-        "applicantWantToStopFromRespondentDoingToChild": []
+        "applicantWantToStopFromRespondentDoingToChild": [
+          "applicantStopFromRespondentDoingToChildEnum_Value_1",
+          "applicantStopFromRespondentDoingToChildEnum_Value_2"
+        ]
       }
     }
   },
-  "fl401OtherProceedings": {
+  "fl401Home": {
     "data": {
-      "fl401OtherProceedingDetails": {
-        "hasPrevOrOngoingOtherProceeding": "no",
-        "fl401OtherProceedings": []
+      "home": {
+        "textAreaSomethingElse": null,
+        "everLivedAtTheAddress": "yesRespondent",
+        "intendToLiveAtTheAddress": null,
+        "doAnyChildrenLiveAtAddress": "No",
+        "isPropertyAdapted": "No",
+        "howIsThePropertyAdapted": null,
+        "isThereMortgageOnProperty": "No",
+        "isPropertyRented": "No",
+        "doesApplicantHaveHomeRights": "Yes",
+        "furtherInformation": "Nothing else",
+        "address": {
+          "AddressLine1": "Ministry Of Justice",
+          "AddressLine2": "Seventh Floor 102 Petty France",
+          "AddressLine3": null,
+          "PostTown": "London",
+          "County": null,
+          "PostCode": "SW1H 9AJ",
+          "Country": "United Kingdom"
+        },
+        "peopleLivingAtThisAddress": ["applicant"],
+        "children": [],
+        "mortgages": {
+          "textAreaSomethingElse": null,
+          "mortgageNumber": null,
+          "mortgageLenderName": null,
+          "mortgageNamedAfter": []
+        },
+        "landlords": {
+          "textAreaSomethingElse": null,
+          "landlordName": null,
+          "mortgageNamedAfterList": []
+        },
+        "livingSituation": ["restrictFromEnteringHome"],
+        "familyHome": ["useHouseholdContents"]
       }
-    }
-  },
-  "attendingTheHearing": {
-    "data": {
-      "isWelshNeeded": "No",
-      "isInterpreterNeeded": "No",
-      "isDisabilityPresent": "No",
-      "isSpecialArrangementsRequired": "No",
-      "isIntermediaryNeeded": "No"
     }
   },
   "welshLanguageRequirements": {
     "data": {
-      "welshLanguageRequirement": "No"
-    }
-  },
-  "fl401UploadDocuments": {
-    "data": {
-      "fl401UploadWitnessDocuments": [
-        {
-          "id": null,
-          "value": {
-            "document_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/0f0eb9bf-f0df-4153-87ce-a8f921644bf0",
-            "document_binary_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/0f0eb9bf-f0df-4153-87ce-a8f921644bf0/binary",
-            "document_filename": "testPdf.pdf"
-          }
-        }
-      ],
-      "fl401UploadSupportDocuments": []
+      "welshLanguageRequirement": "Yes",
+      "welshLanguageRequirementApplication": "english",
+      "languageRequirementApplicationNeedWelsh": "Yes"
     }
   },
   "fl401StatementOfTruthAndSubmit": {
     "data": {
       "fl401StmtOfTruth": {
-        "date": "2024-07-01",
-        "fullname": "testapplicant",
-        "nameOfFirm": "Test org",
-        "signOnBehalf": "director",
+        "date": "2025-01-01",
+        "fullname": "test name",
+        "nameOfFirm": "test form",
+        "signOnBehalf": "test position",
         "signature": null,
         "applicantConsent": ["fl401Consent"]
       },
@@ -1432,16 +1436,16 @@
       },
       "submitCountyCourtSelection": {
         "value": {
-          "code": "827534:test@hmcts.net",
-          "label": "Aberystwyth Justice Centre - Trefechan - SY23 1AS"
+          "code": "234946:",
+          "label": "Swansea Civil Justice Centre - Quay West, Quay Parade - SA1 1SP"
         },
         "list_items": [
           {
-            "code": "827534:test@hmcts.net",
+            "code": "827534:",
             "label": "Aberystwyth Justice Centre - Trefechan - SY23 1AS"
           },
           {
-            "code": "101959:test@hmcts.net",
+            "code": "101959:",
             "label": "Carmarthen County Court and Tribunal Hearing Centre - Hill House, Picton Terrace, Carmarthen - SA31 3BT"
           },
           {
@@ -1465,11 +1469,15 @@
             "label": "Gloucestershire Family and Civil Court - Kimbrose Way, Gloucester Docks - GL1 2DE"
           },
           {
-            "code": "700596:test@hmcts.net",
+            "code": "478126:",
+            "label": "Grimsby Combined Court Centre - Town Hall Square - DN31 1HX"
+          },
+          {
+            "code": "700596:",
             "label": "Haverfordwest County and Family - Penffynnon, Hawthorn Rise - SA61 2AZ"
           },
           {
-            "code": "195520:test@hmcts.net",
+            "code": "195520:",
             "label": "Kingston-upon-Hull Combined Court Centre - The Combined Court Centre - HU1 2EZ"
           },
           {
@@ -1477,7 +1485,7 @@
             "label": "Lincoln County Court and Family Court - High Street - LN5 7PS"
           },
           {
-            "code": "390932:test@hmcts.net",
+            "code": "390932:",
             "label": "Llanelli Law Courts - Town Hall Square, Llanelli - SA15 3AW"
           },
           {
@@ -1493,7 +1501,7 @@
             "label": "Peterborough Combined Court Centre - Crown Buildings, Rivergate - PE1 1EJ"
           },
           {
-            "code": "846055:test@hmcts.net",
+            "code": "846055:",
             "label": "Port Talbot Justice Centre - Harbourside Road - SA13 1SB"
           },
           {
@@ -1501,7 +1509,7 @@
             "label": "Southampton Combined Court Centre - The Courts of Justice, London Road - SO15 2XQ"
           },
           {
-            "code": "234946:test@hmcts.net",
+            "code": "234946:",
             "label": "Swansea Civil Justice Centre - Quay West, Quay Parade - SA1 1SP"
           }
         ]

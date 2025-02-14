@@ -94,7 +94,12 @@ export class CreateHearingRequest {
         );
         break;
     }
-    await page.waitForTimeout(2000);
+    // wait for ref data to finish loading before clicking the hearing request button - if it clicks too fast the hearing requirements page fails to load
+    await page.waitForResponse(
+      (response) =>
+        /.*\/api\/prd\/lov\/getLovRefData.*/.test(response.url()) &&
+        response.status() === 200,
+    );
     await page.click(
       `${Selectors.a}:text-is("${CommonStaticText.hearingRequest}")`,
     );

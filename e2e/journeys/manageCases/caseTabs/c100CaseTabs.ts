@@ -1,18 +1,14 @@
 import { Browser, Page } from "@playwright/test";
-import { solicitorCaseCreateType } from "../../../common/types";
-import { DummyPaymentAwp } from "../caseWorker/dummyPayment/dummyPaymentAwp";
 import { C100SummaryTabPage } from "../../../pages/manageCases/caseTabs/C100/c100SummaryTabPage";
 import { Helpers } from "../../../common/helpers";
 import Config from "../../../config";
 import { C100ConfidentialDetailsTabPage } from "../../../pages/manageCases/caseTabs/C100/c100ConfidentialDetailsTabPage";
+import { DummyC100 } from "../createCase/dummyCase/dummyC100.ts";
 
 interface C100CaseTabsParams {
   page: Page;
   browser: Browser;
-  errorMessaging: boolean;
   accessibilityTest: boolean;
-  paymentStatusPaid: boolean;
-  caseType: solicitorCaseCreateType;
   applicantLivesInRefuge: boolean;
   otherPersonLivesInRefuge: boolean;
 }
@@ -21,19 +17,12 @@ export class C100CaseTabs {
   public static async c100CaseTabs({
     page,
     browser,
-    errorMessaging,
     accessibilityTest,
-    paymentStatusPaid,
-    caseType,
     applicantLivesInRefuge,
     otherPersonLivesInRefuge,
   }: C100CaseTabsParams): Promise<void> {
-    const caseRef = await DummyPaymentAwp.dummyPaymentAwp({
+    const caseRef = await DummyC100.dummyC100({
       page: page,
-      errorMessaging: errorMessaging,
-      accessibilityTest: accessibilityTest,
-      paymentStatusPaid: paymentStatusPaid,
-      caseType: caseType,
       applicantLivesInRefuge: applicantLivesInRefuge,
       otherPersonLivesInRefuge: otherPersonLivesInRefuge,
     });
