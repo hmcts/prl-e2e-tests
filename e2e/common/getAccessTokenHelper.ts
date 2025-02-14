@@ -99,7 +99,7 @@ export async function getS2SToken(
 ): Promise<string> {
   try {
     const response = await apiContext.post(
-      urlConfig.S2S_TOKEN_URL, // Use the environment-specific URL
+      urlConfig.S2S_TOKEN_URL,
       {
         headers: { "content-type": "application/json", Accept: "*/*" },
         data: {
