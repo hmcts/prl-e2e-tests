@@ -1,4 +1,4 @@
-import { Config } from "../../config.ts"; // Assuming your Config class is in this file
+import { Config } from "../../config.ts";
 
 const getJudgeCredentials = (): { name: string; email: string } => {
   const judgeCredentials = Config.baseUserCredentials.judge;
