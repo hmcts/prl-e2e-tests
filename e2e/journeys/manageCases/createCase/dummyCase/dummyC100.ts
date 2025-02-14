@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import { DummyC100ChildDetails } from "./dummyC100ChildDetails";
 import { C100SubmitAndPay } from "../C100SubmitAndPay/C100SubmitAndPay";
 import { DummyCreateInitial } from "./dummyCreateInitial";
-import { DummyPaymentConfirmation } from "../../caseWorker/dummyPayment/dummyPaymentConfirmation.ts";
+import { DummyPaymentConfirmation } from "../../caseWorker/dummyPayment/dummyPaymentConfirmation";
 import { DummyC100ApplicantDetails } from "./dummyC100ApplicantDetails";
 import { DummyC100OtherPersonDetails } from "./dummyC100OtherPersonDetails";
 import { Helpers } from "../../../../common/helpers.ts";
@@ -45,8 +45,14 @@ export class DummyC100 {
     await DummyPaymentConfirmation.dummyPaymentConfirmation({
       page,
     });
-
-    return await Helpers.getCaseNumberFromUrl(page);
+    const caseRef: string = await Helpers.getCaseNumberFromUrl(page)
+    await page.waitForResponse(
+      (response) =>
+        response.url() ===
+        `https://manage-case.aat.platform.hmcts.net/data/cases/${caseRef}/events` &&
+        response.status() === 201,
+    );
+    return caseRef;
   }
   public static async dummyC100NoPaymentConfirmation({
     page,
