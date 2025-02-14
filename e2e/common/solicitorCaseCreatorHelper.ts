@@ -1,16 +1,21 @@
-import solicitorDACaseData from "../caseData/solicitorDACaseEventData.json";
-import solicitorCACaseData from "../caseData/solicitorCACaseEventData.json";
-import orderEventDataAmendDischargedVaried from "../caseData/orderData/orderEventData-amendDischargedVaried.json";
-import orderEventDataPowerOfArrest from "../caseData/orderData/orderEventData-powerOfArrest.json";
+import solicitorDACaseDataAAT from "../caseData/solicitorCreatedCase/aat-solicitor-da-case-event.json";
+import solicitorCACaseDataAAT from "../caseData/solicitorCreatedCase/aat-solicitor-ca-case-event.json";
+import solicitorDACaseDataDemo from "../caseData/solicitorCreatedCase/demo-solicitor-da-case-event.json";
+import solicitorCACaseDataDemo from "../caseData/solicitorCreatedCase/demo-solicitor-ca-case-event.json";
+import orderEventDataAmendDischargedVaried from "../caseData/orderData/order-event-data-amend-discharged-varied.json";
+import orderEventDataPowerOfArrest from "../caseData/orderData/order-event-data-power-of-arrest.json";
 import { Page } from "@playwright/test";
 import { solicitorCACaseAPIEvent, solicitorDACaseAPIEvent } from "./types.ts";
-
+const env = process.env.ENV || "aat";
+console.log(env);
 // Using "any" type below because it represents a large JSON object
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type JsonData = Record<string, any>;
 export const jsonDatas: JsonData = {
-  solicitorDACaseData: solicitorDACaseData,
-  solicitorCACaseData: solicitorCACaseData,
+  solicitorDACaseData:
+    env === "demo" ? solicitorDACaseDataDemo : solicitorDACaseDataAAT,
+  solicitorCACaseData:
+    env === "demo" ? solicitorCACaseDataDemo : solicitorCACaseDataAAT,
   manageOrderDataPowerOfArrest: orderEventDataPowerOfArrest,
   manageOrderDataAmendDischargedVaried: orderEventDataAmendDischargedVaried,
 };
@@ -98,7 +103,7 @@ export async function submitEvent(
   page: Page,
   caseId: string,
   eventId: solicitorDACaseAPIEvent | solicitorCACaseAPIEvent,
-  jsonData: JsonData = jsonDatas.solicitorDACaseData,
+  jsonData: JsonData = jsonDatas.solicitorDACaseDataAAT,
 ): Promise<void> {
   if (process.env.PWDEBUG) {
     console.log(`Start of event: ${eventId}`);

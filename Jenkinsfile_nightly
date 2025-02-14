@@ -61,8 +61,6 @@ def secrets = [
   'prl-${env}': [
     secret('solicitor-user', 'SOLICITOR_USERNAME'),
     secret('solicitor-password', 'SOLICITOR_PASSWORD'),
-    secret('citizen-user', 'CITIZEN_USERNAME'),
-    secret('citizen-password', 'CITIZEN_PASSWORD'),
     secret('prl-cos-idam-client-secret', 'IDAM_SECRET'),
     secret('idam-token-url', 'IDAM_TOKEN_URL'),
     secret('idam-citizen-password', 'IDAM_CITIZEN_USER_PASSWORD'),
@@ -89,8 +87,8 @@ def secrets = [
     secret('ccd-datastore-client-secret', 'CCD_DATA_STORE_SECRET'),
     secret('ccd-datastore-url', 'CCD_DATA_STORE_URL'),
     secret('manage-case-redirect-uri', 'MANAGE_CASE_REDIRECT_URI'),
-    secret('jurisdiction', 'JURISDICTION'),
-    secret('case-type', 'CASE_TYPE'),
+    -secret('jurisdiction', 'JURISDICTION'),
+    -secret('case-type', 'CASE_TYPE'),
   ]
 ]
 

@@ -1,7 +1,7 @@
 import { APIRequestContext, Browser, Page, request } from "@playwright/test";
 import { getAccessToken, getS2SToken } from "./getAccessTokenHelper.ts";
 import process from "node:process";
-import solicitorCaseData from "../caseData/solicitorDACaseEventData.json";
+import solicitorCaseData from "../caseData/solicitorCreatedCase/aat-solicitor-da-case-event.json";
 import { Helpers } from "./helpers.ts";
 import config from "../config.ts";
 import { ServiceOfApplicationLite } from "../journeys/manageCases/caseProgression/serviceOfApplication/serviceOfApplicationLite.ts";

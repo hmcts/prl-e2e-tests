@@ -11,10 +11,6 @@ export class Config {
       email: process.env.SOLICITOR_USERNAME as string,
       password: process.env.SOLICITOR_PASSWORD as string,
     },
-    citizen: {
-      email: process.env.CITIZEN_USERNAME as string,
-      password: process.env.CITIZEN_PASSWORD as string,
-    },
     judge: {
       email: process.env.JUDGE_USERNAME as string,
       password: process.env.JUDGE_PASSWORD as string,
@@ -51,15 +47,16 @@ export class Config {
     );
   }
 
-  public static setEnvironmentVariables(): void {
-    process.env.CITIZEN_TEST_ENV = this.getEnvironment(
-      this.citizenFrontendBaseURL,
-    );
-    process.env.MANAGE_CASES_TEST_ENV = this.getEnvironment(
-      this.manageCasesBaseURL,
-    );
+  public static setGlobalEnvironment(): void {
+    const env_citizen =
+      this.getEnvironment(this.citizenFrontendBaseURL) || "aat";
+    const env_manage_cases =
+      this.getEnvironment(this.manageCasesBaseURL) || "aat";
+    process.env.CITIZEN_TEST_ENV = env_citizen;
+    process.env.MANAGE_CASES_TEST_ENV = env_manage_cases;
+    process.env.TEST_ENV =
+      env_citizen !== "aat" || env_manage_cases !== "aat" ? env_citizen : "aat";
   }
-
   public static readonly testFile: string = path.resolve(
     __dirname,
     "./assets/mockFile.txt",
@@ -86,6 +83,5 @@ export class Config {
   }
 }
 
-Config.setEnvironmentVariables();
-
+Config.setGlobalEnvironment();
 export default Config;

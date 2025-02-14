@@ -1,8 +1,8 @@
 import { APIRequestContext, expect, request } from "@playwright/test";
 import fs from "fs";
 import path from "path";
-import withNoticejsonData from "../caseData/citizenDA/courtNavDaCitizenCase_WithNotice.json";
-import withoutNoticejsonData from "../caseData/citizenDA/courtNavDaCitizenCase_WithoutNotice.json";
+import withNoticejsonData from "../caseData/citizenCreatedCase/court-nav-da-citizen-case-with-notice.json";
+import withoutNoticejsonData from "../caseData/citizenCreatedCase/court-nav-da-citizen-case-without-notice.json";
 
 /**
  * Function to create a DA Citizen CourtNav case and optionally add a document.

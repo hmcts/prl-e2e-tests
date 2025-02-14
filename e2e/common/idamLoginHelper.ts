@@ -9,6 +9,7 @@ export class IdamLoginHelper {
     username: "#username",
     password: "#password",
   };
+
   private static submitButton: string = 'input[value="Sign in"]';
 
   private static async signIn(
@@ -19,7 +20,6 @@ export class IdamLoginHelper {
     userType: string,
   ): Promise<void> {
     const sessionPath = Config.sessionStoragePath + `${userType}.json`;
-
     if (
       userType !== "citizen" &&
       existsSync(sessionPath) &&
@@ -31,7 +31,7 @@ export class IdamLoginHelper {
         await page.goto(application);
       }
 
-      if (page.url().includes("demo")) {
+      if (process.env.TEST_ENV === "demo") {
         await page.waitForSelector(`#skiplinktarget:text("Sign in")`);
       } else {
         await page.waitForSelector(
@@ -109,6 +109,9 @@ export class IdamLoginHelper {
       const cookie = data.cookies.find(
         (cookie: Cookie) => cookie.name === "xui-webapp",
       );
+      //checks if the cookie domain is the same as the environment
+      if (!cookie?.domain?.includes(process.env.TEST_ENV)) return false;
+
       const expiry = new Date(cookie.expires * 1000);
       // Check there is at least 4 hours left before the session expires
       return expiry.getTime() - Date.now() > 4 * 60 * 60 * 1000;

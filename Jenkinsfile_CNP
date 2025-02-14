@@ -58,8 +58,6 @@ def secrets = [
   'prl-${env}': [
     secret('solicitor-user', 'SOLICITOR_USERNAME'),
     secret('solicitor-password', 'SOLICITOR_PASSWORD'),
-    secret('citizen-user', 'CITIZEN_USERNAME'),
-    secret('citizen-password', 'CITIZEN_PASSWORD'),
     secret('prl-cos-idam-client-secret', 'IDAM_SECRET'),
     secret('idam-token-url', 'IDAM_TOKEN_URL'),
     secret('idam-citizen-password', 'IDAM_CITIZEN_USER_PASSWORD'),
