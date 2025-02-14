@@ -63,7 +63,7 @@ export class IdamLoginHelper {
     page: Page,
     user: keyof typeof Config.baseUserCredentials,
     application: string,
-    env: string, // Add environment parameter
+    env: string,
   ): Promise<void> {
     const userCredentials: UserCredentials =
       Config.getEnvUserCredentials(env)[user];
