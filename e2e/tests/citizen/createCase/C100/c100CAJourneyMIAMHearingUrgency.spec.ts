@@ -1,11 +1,11 @@
 import Config from "../../../../config";
 import { C100 } from "../../../../journeys/citizen/createCase/C100/C100";
-import IdamLoginHelper from "../../../../common/idamLoginHelper";
+import IdamLoginHelper from "../../../../common/userSetup/idamLoginHelper.ts";
 import { test } from "@playwright/test";
 
 test.describe("C100 Citizen Application for the MIAM Hearing Urgency journey.", (): void => {
   test.beforeEach(async ({ page }) => {
-    await IdamLoginHelper.signInCitizenUser(
+    await IdamLoginHelper.createAndSignInCitizenUser(
       page,
       Config.citizenFrontendBaseURL,
     );
