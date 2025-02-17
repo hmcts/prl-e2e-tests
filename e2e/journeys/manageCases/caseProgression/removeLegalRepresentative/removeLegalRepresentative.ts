@@ -42,7 +42,6 @@ export class RemoveLegalRepresentative {
     );
     await page.reload();
     await Helpers.goToCase(page, config.manageCasesBaseURL, caseRef, "parties");
-    // await page.isVisible("text='Applicant Solicitor'");
     await page
       .locator(Selectors.h3, { hasText: "Applicant Solicitor" })
       .isVisible();
