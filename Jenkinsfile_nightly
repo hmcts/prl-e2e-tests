@@ -102,7 +102,8 @@ withNightlyPipeline(type, product, component, 600) {
   env.MANAGE_CASES_BASE_URL = params.MANAGE_CASES_BASE_URL
   env.FUNCTIONAL_TESTS_WORKERS = params.FUNCTIONAL_TESTS_WORKERS
   enableSlackNotifications(channel)
-  afterAlways('DependencyCheckNightly') {
+  enableFullFunctionalTest()
+  afterAlways('functionalTest:aat') {
     stage('Unit tests') {
       try {
         yarnBuilder.yarn('test:unit')
