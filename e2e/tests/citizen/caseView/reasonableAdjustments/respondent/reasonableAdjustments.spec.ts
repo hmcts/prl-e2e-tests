@@ -13,7 +13,7 @@ test.describe("Respondent reasonable adjustments tests", (): void => {
 
   test.beforeEach(async ({ page }) => {
     ccdRef = await createDaCitizenCourtNavCase(true, false);
-    await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
+    await Helpers.goToCase(page, config.manageCasesBaseURLCase, ccdRef, "tasks");
   });
 
   test("Respondent reasonable adjustments - no reasonable adjustments. @regression @accessibility @nightly", async ({

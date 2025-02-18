@@ -13,7 +13,7 @@ test.describe("Respondent confirm contact details tests", (): void => {
 
   test.beforeEach(async ({ page }) => {
     ccdRef = await createDaCitizenCourtNavCase(true, false);
-    await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
+    await Helpers.goToCase(page, config.manageCasesBaseURLCase, ccdRef, "tasks");
   });
 
   test("Respondent contact preferences. @regression @accessibility @nightly", async ({

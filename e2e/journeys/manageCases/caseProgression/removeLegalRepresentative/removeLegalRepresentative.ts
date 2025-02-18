@@ -26,7 +26,7 @@ export class RemoveLegalRepresentative {
     });
     // open new browser and sign in as court admin user
     page = await Helpers.openNewBrowserWindow(browser, "courtAdminStoke");
-    await Helpers.goToCase(page, config.manageCasesBaseURL, caseRef, "tasks");
+    await Helpers.goToCase(page, config.manageCasesBaseURLCase, caseRef, "tasks");
     await Helpers.chooseEventFromDropdown(page, "Remove legal representative");
     await AdminRemoveLegalRepresentativePage.adminRemoveLegalRepresentativePage(
       page,
@@ -41,7 +41,7 @@ export class RemoveLegalRepresentative {
       accessibilityTest,
     );
     await page.reload();
-    await Helpers.goToCase(page, config.manageCasesBaseURL, caseRef, "parties");
+    await Helpers.goToCase(page, config.manageCasesBaseURLCase, caseRef, "parties");
     await page
       .locator(Selectors.h3, { hasText: "Applicant Solicitor" })
       .isVisible();

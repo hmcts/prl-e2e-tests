@@ -33,10 +33,10 @@ export class ServiceOfDocuments {
     checkDocuments,
   }: ServiceOfDocumentsParams): Promise<void> {
     const ccdRef: string = await createDaCitizenCourtNavCase(true, withCaseDoc);
-    await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
+    await Helpers.goToCase(page, config.manageCasesBaseURLCase, ccdRef, "tasks");
     // Handle review documents if case documents are included in case creation
     if (withCaseDoc) {
-      await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
+      await Helpers.goToCase(page, config.manageCasesBaseURLCase, ccdRef, "tasks");
       await ReviewDocuments.reviewDocuments({
         page,
         accessibilityTest: false,
@@ -44,7 +44,7 @@ export class ServiceOfDocuments {
         partyUploadedDocument: "CourtNav",
         documentType: "Applicant's statements",
       });
-      await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
+      await Helpers.goToCase(page, config.manageCasesBaseURLCase, ccdRef, "tasks");
     }
     await completeCheckApplicationAndSendToGatekeeper(page, ccdRef);
     await this.serviceOfDocuments({

@@ -33,7 +33,7 @@ export class AmendChildDetails {
     });
     // open new browser and sign in as court admin user
     page = await Helpers.openNewBrowserWindow(browser, "courtAdminStoke");
-    await Helpers.goToCase(page, config.manageCasesBaseURL, caseRef, "tasks");
+    await Helpers.goToCase(page, config.manageCasesBaseURLCase, caseRef, "tasks");
 
     await Helpers.chooseEventFromDropdown(page, "Amend Child details");
     await AmendChildDetailsRevised1Page.amendChildDetailsRevised1Page({

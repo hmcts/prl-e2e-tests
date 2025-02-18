@@ -12,7 +12,7 @@ test.describe("Complete amend applicant details event as a court admin", () => {
 
   test.beforeEach(async ({ page }) => {
     ccdRef = await createDaCitizenCourtNavCase(true, false);
-    await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
+    await Helpers.goToCase(page, config.manageCasesBaseURLCase, ccdRef, "tasks");
   });
 
   test(`Amend the following applicant details: name, date of birth, gender,

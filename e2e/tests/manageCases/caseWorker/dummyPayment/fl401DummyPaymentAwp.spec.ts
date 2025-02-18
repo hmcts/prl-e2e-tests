@@ -9,10 +9,10 @@ test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
 test.describe("FL401 Dummy payment for AWP tests", (): void => {
   test.beforeEach(async ({ page }) => {
-    await page.goto(Config.manageCasesBaseURL);
+    await page.goto(Config.manageCasesBaseURLCase);
     const caseRef: string =
       await SolicitorDACaseCreator.createCaseStatementOfTruthAndSubmit(page);
-    await Helpers.goToCase(page, config.manageCasesBaseURL, caseRef, "tasks");
+    await Helpers.goToCase(page, config.manageCasesBaseURLCase, caseRef, "tasks");
   });
 
   test(`Complete the Dummy payment for AWP action as a solicitor with the following options:

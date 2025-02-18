@@ -13,7 +13,7 @@ test.describe("Complete the Order task for DA Citizen case tests.", () => {
 
   test.beforeEach(async ({ page }) => {
     ccdRef = await createDaCitizenCourtNavCase(true, false);
-    await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
+    await Helpers.goToCase(page, config.manageCasesBaseURLCase, ccdRef, "tasks");
   });
 
   test("Complete Task - Complete the Order - Power of arrest (FL406) without accessibility test. @nightly @regression", async ({

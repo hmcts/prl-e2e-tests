@@ -39,11 +39,25 @@ export class Config {
   );
 
   public static readonly citizenFrontendBaseURL: string =
-    process.env.CITIZEN_FRONTEND_BASE_URL ||
-    "https://privatelaw.aat.platform.hmcts.net/";
+      Config.ensureTrailingSlash(process.env.CITIZEN_FRONTEND_BASE_URL || "https://privatelaw.aat.platform.hmcts.net/");
+
+  public static readonly manageCasesBaseURLCase: string =
+      Config.ensureNoTrailingSlash(process.env.MANAGE_CASES_BASE_URL || "https://manage-case.aat.platform.hmcts.net/cases");
   public static readonly manageCasesBaseURL: string =
-    process.env.MANAGE_CASES_BASE_URL ||
-    "https://manage-case.aat.platform.hmcts.net/cases";
+      Config.removeCasesPath(process.env.MANAGE_CASES_BASE_URL || "https://manage-case.aat.platform.hmcts.net");
+
+  private static removeCasesPath(url: string): string {
+    return url.replace(/\/cases$/, ""); // Removes `/cases` only if it's at the end
+  }
+  //ensures url is in the correct format (with a trailing slash for citizenFrontendBaseURL, and without trailing slash for manageCasesBaseURLCase)
+  private static ensureTrailingSlash(url: string): string {
+    return url.endsWith("/") ? url : `${url}/`;
+  }
+  private static ensureNoTrailingSlash(url: string): string {
+    return url.endsWith("/") ? url.slice(0, -1) : url;
+  }
+
+
 
   public static getEnvironment(url: string): string {
     return (
@@ -56,7 +70,7 @@ export class Config {
       this.citizenFrontendBaseURL,
     );
     process.env.MANAGE_CASES_TEST_ENV = this.getEnvironment(
-      this.manageCasesBaseURL,
+      this.manageCasesBaseURLCase,
     );
   }
 

@@ -29,7 +29,7 @@ export class ListWithNotice {
     );
     await Helpers.goToCase(
       judgePage,
-      config.manageCasesBaseURL,
+      config.manageCasesBaseURLCase,
       ccdRef,
       "tasks",
     );

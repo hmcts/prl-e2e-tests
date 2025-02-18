@@ -9,7 +9,7 @@ export class CaseList {
     user: UserRole,
     accessibilityTest: boolean,
   ): Promise<void> {
-    await page.goto(config.manageCasesBaseURL);
+    await page.goto(config.manageCasesBaseURLCase);
     await CaseListPage.casesListPage(page, accessibilityTest);
   }
 }

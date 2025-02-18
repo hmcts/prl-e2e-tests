@@ -11,18 +11,18 @@ test.describe("Respondent confirm contact details tests - Solicitor created appl
   let ccdRef: string;
 
   test.beforeEach(async ({ page, browser }) => {
-    await page.goto(Config.manageCasesBaseURL);
+    await page.goto(Config.manageCasesBaseURLCase);
     const solicitorPage = await Helpers.openNewBrowserWindow(
       browser,
       "solicitor",
     );
-    await solicitorPage.goto(Config.manageCasesBaseURL);
+    await solicitorPage.goto(Config.manageCasesBaseURLCase);
     ccdRef =
       await SolicitorDACaseCreator.createCaseStatementOfTruthAndSubmit(
         solicitorPage,
       );
     await solicitorPage.close();
-    await Helpers.goToCase(page, Config.manageCasesBaseURL, ccdRef, "tasks");
+    await Helpers.goToCase(page, Config.manageCasesBaseURLCase, ccdRef, "tasks");
   });
 
   test("Respondent Check the Solicitor created application. @regression @accessibility @nightly", async ({

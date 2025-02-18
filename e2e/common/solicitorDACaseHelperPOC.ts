@@ -277,6 +277,6 @@ export async function completeServiceOfApplication(
   caseRef: string,
 ): Promise<void> {
   const page: Page = await Helpers.openNewBrowserWindow(browser, "caseWorker");
-  await Helpers.goToCase(page, config.manageCasesBaseURL, caseRef, "tasks");
+  await Helpers.goToCase(page, config.manageCasesBaseURLCase, caseRef, "tasks");
   await ServiceOfApplicationLite.serviceOfApplicationLite(page);
 }

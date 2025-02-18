@@ -13,7 +13,7 @@ test.describe("Activating case tests", (): void => {
 
   test.beforeEach(async ({ page }) => {
     ccdRef = await createDaCitizenCourtNavCase(true, false);
-    await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
+    await Helpers.goToCase(page, config.manageCasesBaseURLCase, ccdRef, "tasks");
   });
 
   test("Activate case as an applicant and respondent. @regression @accessibility @nightly", async ({

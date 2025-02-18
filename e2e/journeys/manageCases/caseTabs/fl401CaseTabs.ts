@@ -33,7 +33,7 @@ export class FL401CaseTabs {
 
     await Helpers.goToCase(
       courtAdminPage,
-      Config.manageCasesBaseURL,
+      Config.manageCasesBaseURLCase,
       caseRef,
       "Summary",
     );

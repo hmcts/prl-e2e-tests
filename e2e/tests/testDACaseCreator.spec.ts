@@ -12,7 +12,7 @@ test.describe("Case creation examples", (): void => {
   test("create case and statement of truth and submit", async ({
     page,
   }): Promise<void> => {
-    await page.goto(Config.manageCasesBaseURL);
+    await page.goto(Config.manageCasesBaseURLCase);
     await SolicitorDACaseCreator.createCaseStatementOfTruthAndSubmit(page);
   });
 
@@ -20,7 +20,7 @@ test.describe("Case creation examples", (): void => {
     page,
     browser,
   }): Promise<void> => {
-    await page.goto(Config.manageCasesBaseURL);
+    await page.goto(Config.manageCasesBaseURLCase);
     await SolicitorDACaseCreator.createCaseSendToGatekeeper(page, browser);
   });
 
@@ -28,7 +28,7 @@ test.describe("Case creation examples", (): void => {
     page,
     browser,
   }): Promise<void> => {
-    await page.goto(Config.manageCasesBaseURL);
+    await page.goto(Config.manageCasesBaseURLCase);
     const caseRef = await SolicitorDACaseCreator.createCaseSOA(page, browser);
     await AccessCodeHelper.getApplicantAccessCode(caseRef);
     await AccessCodeHelper.getRespondentAccessCode(caseRef);
@@ -42,9 +42,7 @@ test.describe("Case creation examples", (): void => {
       browser,
       "caseWorker",
     );
-    await caPage.goto(
-      "https://manage-case.aat.platform.hmcts.net/work/my-work/list",
-    );
+    await caPage.goto(`${Config.manageCasesBaseURL}/work/my-work/list`);
     await completeCheckApplicationAndSendToGatekeeper(caPage, caseRef);
   });
 });
