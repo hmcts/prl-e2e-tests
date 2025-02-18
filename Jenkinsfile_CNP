@@ -100,7 +100,7 @@ withNightlyPipeline(type, product, component, 600) {
   env.FUNCTIONAL_TESTS_WORKERS = params.FUNCTIONAL_TESTS_WORKERS
   enableSlackNotifications(channel)
   onPR() {
-    afterAlways('smoketest:preview') {
+    afterAlways('DependencyCheckNightly') {
       stage('Unit tests') {
         try {
           yarnBuilder.yarn('test:unit')
@@ -128,7 +128,7 @@ withNightlyPipeline(type, product, component, 600) {
     }
   }
   onMaster() {
-    afterAlways('smoketest:aat') {
+    afterAlways('DependencyCheckNightly') {
       stage('Unit tests') {
         try {
           yarnBuilder.yarn('test:unit')
