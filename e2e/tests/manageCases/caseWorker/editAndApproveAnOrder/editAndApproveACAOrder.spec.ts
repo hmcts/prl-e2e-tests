@@ -4,6 +4,7 @@ import { EditAndApproveAnOrder } from "../../../../journeys/manageCases/caseWork
 import { DummyC100 } from "../../../../journeys/manageCases/createCase/dummyCase/dummyC100.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
+
 test.describe("Edit and approve a CA order tests", (): void => {
   // Triple timeout for these slow tests
   test.slow();
