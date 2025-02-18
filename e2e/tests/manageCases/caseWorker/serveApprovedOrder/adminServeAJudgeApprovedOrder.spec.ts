@@ -6,7 +6,6 @@ import { Helpers } from "../../../../common/helpers.ts";
 import config from "../../../../config.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
-// comment to trigger test - REMOVE
 test.describe("As a Court admin Serve a judge approved solicitor created DA case order tests", (): void => {
   test.slow();
 
