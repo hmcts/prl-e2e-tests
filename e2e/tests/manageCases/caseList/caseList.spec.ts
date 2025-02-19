@@ -8,9 +8,9 @@ test.describe("Manage cases case list tests.", (): void => {
   // tests tagged as "fixme"
   // TODO: bug ticket to fix issue causing test to fail l
   test.fixme(
-    "Check the case list is visible to the user. @regression @smoke",
+    "Check the case list is visible to the user. @regression",
     async ({ page }): Promise<void> => {
-      await CaseList.caseList(page, "solicitor", false);
+      await CaseList.caseList(page, "solicitor", false)
     },
   );
 });
