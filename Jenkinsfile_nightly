@@ -104,7 +104,7 @@ withNightlyPipeline(type, product, component, 600) {
   enableSlackNotifications(channel)
   enableFullFunctionalTest()
 
-  afterAlways('functionalTest:aat') {
+  afterAlways('fullFunctionalTest') {
     if(params.tag) {
       stage("${params.tag} tests - ${params.browser}") {
         try {

@@ -101,7 +101,7 @@ withNightlyPipeline(type, product, component, 600) {
   enableSlackNotifications(channel)
   enableFullFunctionalTest()
   onPR() {
-    afterAlways('functionalTest:preview') {
+    afterAlways('fullFunctionalTest') {
       stage('Run changed tests - Chrome') {
         try {
           yarnBuilder.yarn('test:changes')
@@ -122,7 +122,7 @@ withNightlyPipeline(type, product, component, 600) {
     }
   }
   onMaster() {
-    afterAlways('functionalTest:aat') {
+    afterAlways('fullFunctionalTest') {
       stage('Unit tests') {
         try {
           yarnBuilder.yarn('test:unit')
