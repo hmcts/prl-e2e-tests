@@ -102,7 +102,6 @@ withNightlyPipeline(type, product, component, 600) {
   env.MANAGE_CASES_BASE_URL = params.MANAGE_CASES_BASE_URL
   env.FUNCTIONAL_TESTS_WORKERS = params.FUNCTIONAL_TESTS_WORKERS
   enableSlackNotifications(channel)
-  enableFullFunctionalTest()
 
   afterAlways('DependencyCheckNightly') {
     if(params.tag) {
