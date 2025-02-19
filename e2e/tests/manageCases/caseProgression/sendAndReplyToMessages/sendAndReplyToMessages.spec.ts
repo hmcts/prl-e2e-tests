@@ -10,7 +10,12 @@ test.describe("Send and reply to messages between court admin and judge tests", 
   let ccdRef: string;
   test.beforeEach(async ({ page }) => {
     ccdRef = await createDaCitizenCourtNavCase(true, false);
-    await Helpers.goToCase(page, config.manageCasesBaseURLCase, ccdRef, "tasks");
+    await Helpers.goToCase(
+      page,
+      config.manageCasesBaseURLCase,
+      ccdRef,
+      "tasks",
+    );
   });
 
   test(`Complete send and reply messages event between court admin and judge with required response. 

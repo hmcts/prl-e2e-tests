@@ -16,7 +16,12 @@ test.describe("As a Court admin Serve a judge approved solicitor created DA case
     await page.goto(Config.manageCasesBaseURLCase);
     caseRef =
       await SolicitorDACaseCreator.createCaseStatementOfTruthAndSubmit(page);
-    await Helpers.goToCase(page, config.manageCasesBaseURLCase, caseRef, "tasks");
+    await Helpers.goToCase(
+      page,
+      config.manageCasesBaseURLCase,
+      caseRef,
+      "tasks",
+    );
   });
 
   test(`Complete serve an order that is personally served with the following options:

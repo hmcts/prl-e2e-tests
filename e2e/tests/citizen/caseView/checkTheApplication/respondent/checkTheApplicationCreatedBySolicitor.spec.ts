@@ -22,7 +22,12 @@ test.describe("Respondent confirm contact details tests - Solicitor created appl
         solicitorPage,
       );
     await solicitorPage.close();
-    await Helpers.goToCase(page, Config.manageCasesBaseURLCase, ccdRef, "tasks");
+    await Helpers.goToCase(
+      page,
+      Config.manageCasesBaseURLCase,
+      ccdRef,
+      "tasks",
+    );
   });
 
   test("Respondent Check the Solicitor created application. @regression @accessibility @nightly", async ({

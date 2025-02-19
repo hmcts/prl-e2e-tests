@@ -29,7 +29,12 @@ export async function completeCheckApplicationAndSendToGatekeeperAndCreateAnOrde
     storageState: Config.sessionStoragePath + "judge.json",
   });
   const newPage: Page = await newContext.newPage();
-  await Helpers.goToCase(newPage, config.manageCasesBaseURLCase, caseRef, "tasks");
+  await Helpers.goToCase(
+    newPage,
+    config.manageCasesBaseURLCase,
+    caseRef,
+    "tasks",
+  );
   await submitEvent(newPage, caseRef, "manageOrders", manageOrderEventData);
 }
 

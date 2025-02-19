@@ -13,7 +13,12 @@ test.describe("Applicant Request more time to do what is required by a court ord
 
   test.beforeEach(async ({ page }) => {
     ccdRef = await createDaCitizenCourtNavCase(true, false);
-    await Helpers.goToCase(page, config.manageCasesBaseURLCase, ccdRef, "tasks");
+    await Helpers.goToCase(
+      page,
+      config.manageCasesBaseURLCase,
+      ccdRef,
+      "tasks",
+    );
   });
 
   test("Applicant Request more time without fees. @regression @nightly", async ({

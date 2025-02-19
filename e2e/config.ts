@@ -39,12 +39,20 @@ export class Config {
   );
 
   public static readonly citizenFrontendBaseURL: string =
-      Config.ensureTrailingSlash(process.env.CITIZEN_FRONTEND_BASE_URL || "https://privatelaw.aat.platform.hmcts.net/");
+    Config.ensureTrailingSlash(
+      process.env.CITIZEN_FRONTEND_BASE_URL ||
+        "https://privatelaw.aat.platform.hmcts.net/",
+    );
 
   public static readonly manageCasesBaseURLCase: string =
-      Config.ensureNoTrailingSlash(process.env.MANAGE_CASES_BASE_URL || "https://manage-case.aat.platform.hmcts.net/cases");
-  public static readonly manageCasesBaseURL: string =
-      Config.removeCasesPath(process.env.MANAGE_CASES_BASE_URL || "https://manage-case.aat.platform.hmcts.net");
+    Config.ensureNoTrailingSlash(
+      process.env.MANAGE_CASES_BASE_URL ||
+        "https://manage-case.aat.platform.hmcts.net/cases",
+    );
+  public static readonly manageCasesBaseURL: string = Config.removeCasesPath(
+    process.env.MANAGE_CASES_BASE_URL ||
+      "https://manage-case.aat.platform.hmcts.net",
+  );
 
   private static removeCasesPath(url: string): string {
     return url.replace(/\/cases$/, ""); // Removes `/cases` only if it's at the end
@@ -56,8 +64,6 @@ export class Config {
   private static ensureNoTrailingSlash(url: string): string {
     return url.endsWith("/") ? url.slice(0, -1) : url;
   }
-
-
 
   public static getEnvironment(url: string): string {
     return (

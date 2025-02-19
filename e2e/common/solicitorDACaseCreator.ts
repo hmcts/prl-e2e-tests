@@ -50,9 +50,7 @@ export class SolicitorDACaseCreator {
       browser,
       "caseWorker",
     );
-    await caPage.goto(
-      `${Config.manageCasesBaseURL}/work/my-work/list`,
-    );
+    await caPage.goto(`${Config.manageCasesBaseURL}/work/my-work/list`);
     await submitEvent(caPage, caseRef, "fl401SendToGateKeeper");
     return caseRef;
   }
@@ -68,9 +66,7 @@ export class SolicitorDACaseCreator {
       browser,
       "caseWorker",
     );
-    await caPage.goto(
-      `${Config.manageCasesBaseURL}/work/my-work/list`,
-    );
+    await caPage.goto(`${Config.manageCasesBaseURL}/work/my-work/list`);
     await submitEvent(caPage, caseRef, "fl401SendToGateKeeper");
     await submitEvent(caPage, caseRef, "serviceOfApplication");
     return caseRef;

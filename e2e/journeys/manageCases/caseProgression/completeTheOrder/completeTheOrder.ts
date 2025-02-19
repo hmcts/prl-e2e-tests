@@ -45,7 +45,12 @@ export class CompleteTheOrder {
       ccdRef,
       manageOrderData,
     );
-    await Helpers.goToCase(page, config.manageCasesBaseURLCase, ccdRef, "tasks");
+    await Helpers.goToCase(
+      page,
+      config.manageCasesBaseURLCase,
+      ccdRef,
+      "tasks",
+    );
     // complete the task Complete the Order
     switch (createOrderFL401Options) {
       case "power of arrest":

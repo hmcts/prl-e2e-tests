@@ -71,7 +71,12 @@ export class JudgeManageOrderJourney {
   }: JudgeDACaseProgressionJourneyParams): Promise<void> {
     await completeCheckApplicationAndSendToGatekeeper(page, ccdRef);
     page = await Helpers.openNewBrowserWindow(browser, "judge");
-    await Helpers.goToCase(page, config.manageCasesBaseURLCase, ccdRef, "tasks");
+    await Helpers.goToCase(
+      page,
+      config.manageCasesBaseURLCase,
+      ccdRef,
+      "tasks",
+    );
     await Helpers.waitForTask(page, "Directions on Issue");
     await Helpers.chooseEventFromDropdown(page, c100CaseWorkerActions);
     await ManageOrders1Page.manageOrders1Page({
@@ -274,7 +279,12 @@ export class JudgeManageOrderJourney {
   }: JudgeUOCaseProgressionJourneyParams): Promise<void> {
     await completeCheckApplicationAndSendToGatekeeper(page, ccdRef);
     page = await Helpers.openNewBrowserWindow(browser, "judge");
-    await Helpers.goToCase(page, config.manageCasesBaseURLCase, ccdRef, "tasks");
+    await Helpers.goToCase(
+      page,
+      config.manageCasesBaseURLCase,
+      ccdRef,
+      "tasks",
+    );
     await Helpers.waitForTask(page, "Directions on Issue");
     await Helpers.chooseEventFromDropdown(page, c100CaseWorkerActions);
     await ManageOrders1Page.manageOrders1Page({

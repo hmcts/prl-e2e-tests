@@ -13,7 +13,12 @@ test.describe("Complete the Order task for DA Citizen case tests.", () => {
 
   test.beforeEach(async ({ page }) => {
     ccdRef = await createDaCitizenCourtNavCase(true, false);
-    await Helpers.goToCase(page, config.manageCasesBaseURLCase, ccdRef, "tasks");
+    await Helpers.goToCase(
+      page,
+      config.manageCasesBaseURLCase,
+      ccdRef,
+      "tasks",
+    );
   });
 
   test("Complete Task - Create Hearing Request - Blank order (FL404B) without accessibility test. @nightly @regression", async ({

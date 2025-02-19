@@ -35,12 +35,14 @@ export async function getData(
         credentials: "same-origin",
       });
       const resBody = await getRes.json();
-      if (!resBody || (resBody.status !== undefined && resBody.status !== 200)) {
+      if (
+        !resBody ||
+        (resBody.status !== undefined && resBody.status !== 200)
+      ) {
         throw new Error(
-            `Failed to get event token. Status: ${resBody.status}, Error: ${resBody.error}, Callback Errors: ${resBody.callbackErrors}`,
+          `Failed to get event token. Status: ${resBody.status}, Error: ${resBody.error}, Callback Errors: ${resBody.callbackErrors}`,
         );
-      }
-      else{
+      } else {
         return resBody;
       }
     },

@@ -49,7 +49,12 @@ export class CreateHearingRequest {
       storageState: Config.sessionStoragePath + "caseWorker.json",
     });
     page = await newContext.newPage();
-    await Helpers.goToCase(page, config.manageCasesBaseURLCase, ccdRef, "tasks");
+    await Helpers.goToCase(
+      page,
+      config.manageCasesBaseURLCase,
+      ccdRef,
+      "tasks",
+    );
     switch (createOrderFL401Options) {
       case "non-molestation":
         await Helpers.assignTaskToMeAndTriggerNextSteps(

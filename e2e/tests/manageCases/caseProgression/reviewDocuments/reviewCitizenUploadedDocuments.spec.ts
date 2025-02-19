@@ -12,7 +12,12 @@ test.describe("Complete Task - Review Documents for DA case tests.", () => {
 
   test.beforeEach(async ({ page }) => {
     ccdRef = await createDaCitizenCourtNavCase(true, false);
-    await Helpers.goToCase(page, config.manageCasesBaseURLCase, ccdRef, "tasks");
+    await Helpers.goToCase(
+      page,
+      config.manageCasesBaseURLCase,
+      ccdRef,
+      "tasks",
+    );
   });
 
   test("Complete Task - Review Documents - Applicant uploaded documents without accessibility test. @nightly", async ({

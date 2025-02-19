@@ -20,7 +20,12 @@ export class SendToGateKeeperJourney {
     ccdRef,
   }: CheckApplicationParams): Promise<void> {
     await submitEvent(page, ccdRef, "fl401AddCaseNumber");
-    await Helpers.goToCase(page, config.manageCasesBaseURLCase, ccdRef, "tasks");
+    await Helpers.goToCase(
+      page,
+      config.manageCasesBaseURLCase,
+      ccdRef,
+      "tasks",
+    );
     await Helpers.assignTaskToMeAndTriggerNextSteps(
       page,
       "Send to Gatekeeper",

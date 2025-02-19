@@ -10,7 +10,7 @@ test.describe("Manage cases case list tests.", (): void => {
   test.fixme(
     "Check the case list is visible to the user. @regression",
     async ({ page }): Promise<void> => {
-      await CaseList.caseList(page, "solicitor", false)
+      await CaseList.caseList(page, "solicitor", false);
     },
   );
 });

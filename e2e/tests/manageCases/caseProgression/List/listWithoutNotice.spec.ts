@@ -11,7 +11,12 @@ test.describe("List without notice tests", () => {
   let ccdRef: string;
   test.beforeEach(async ({ page }) => {
     ccdRef = await createDaCitizenCourtNavCase(false, false);
-    await Helpers.goToCase(page, config.manageCasesBaseURLCase, ccdRef, "tasks");
+    await Helpers.goToCase(
+      page,
+      config.manageCasesBaseURLCase,
+      ccdRef,
+      "tasks",
+    );
   });
 
   test(`Complete list without notice event. @regression @accessibility @nightly`, async ({
