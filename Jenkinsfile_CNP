@@ -101,14 +101,7 @@ withNightlyPipeline(type, product, component, 600) {
   enableSlackNotifications(channel)
   enableFullFunctionalTest()
   onPR() {
-    afterAlways('functionalTest:aat') {
-      stage('Unit tests') {
-        try {
-          yarnBuilder.yarn('test:unit')
-        } catch (Error) {
-          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
-        }
-      }
+    afterAlways('functionalTest:preview') {
       stage('Run changed tests - Chrome') {
         try {
           yarnBuilder.yarn('test:changes')

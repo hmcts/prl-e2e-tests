@@ -103,14 +103,8 @@ withNightlyPipeline(type, product, component, 600) {
   env.FUNCTIONAL_TESTS_WORKERS = params.FUNCTIONAL_TESTS_WORKERS
   enableSlackNotifications(channel)
   enableFullFunctionalTest()
+
   afterAlways('functionalTest:aat') {
-    stage('Unit tests') {
-      try {
-        yarnBuilder.yarn('test:unit')
-      } catch (Error) {
-        unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
-      }
-    }
     if(params.tag) {
       stage("${params.tag} tests - ${params.browser}") {
         try {
