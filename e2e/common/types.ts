@@ -78,7 +78,9 @@ export type fl401CaseWorkerActions =
   | "Welsh language requirements"
   | "Send and reply to messages"
   | "Service of documents"
-  | "Transfer to another court";
+  | "Transfer to another court"
+  | "Remove draft order";
+
 
 export type fl401SubmittedSolicitorEvents =
   | "Draft an order"

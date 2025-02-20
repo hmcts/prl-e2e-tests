@@ -66,29 +66,6 @@ test.describe("Draft a non molestation order tests", (): void => {
   test(`Complete Drafting a non molestation order as a solicitor with the following options:
   Yes to all options,
   All respondent checkbox actions ticked,
-  Order in force until no fixed end date,
-  Not Accessibility testing,
-  Not error message testing. @regression`, async ({
-    page,
-    browser,
-  }): Promise<void> => {
-    await DraftAnOrder.draftAnOrder({
-      page: page,
-      errorMessaging: false,
-      accessibilityTest: false,
-      caseType: "FL401",
-      orderType: "nonMolestation",
-      yesNoToAll: true,
-      howLongWillOrderBeInForce: "noEndDate",
-      willAllPartiesAttendHearing: false,
-      browser: browser,
-      caseRef: caseRef,
-    });
-  });
-
-  test(`Complete Drafting a non molestation order as a solicitor with the following options:
-  Yes to all options,
-  All respondent checkbox actions ticked,
   Order in force until specific date and time,
   Not Accessibility testing,
   Not error message testing. @regression`, async ({
