@@ -10,7 +10,7 @@ test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
 test.describe("Remove draft order as a court admin for solicitor created CA case.", (): void => {
   let caseRef: string;
-
+  test.slow();
   test.beforeEach(async ({ page }) => {
     await page.goto(Config.manageCasesBaseURL);
     caseRef =

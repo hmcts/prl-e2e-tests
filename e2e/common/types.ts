@@ -242,7 +242,8 @@ export type solicitorDACaseAPIEvent =
   | "fl401AddCaseNumber"
   | "fl401SendToGateKeeper"
   | "manageOrders"
-  | "serviceOfApplication";
+  | "serviceOfApplication"
+  | "draftAnOrder";
 
 export type solicitorCACaseAPIEvent =
   | "solicitorCreate"

@@ -1,9 +1,10 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.ts";
-import { RemoveDraftOrderSubmitContent} from "../../../../fixtures/manageCases/caseProgression/removeDraftOrder/removeDraftOrder2Submit.ts";
+import { RemoveDraftOrderSubmitContent } from "../../../../fixtures/manageCases/caseProgression/removeDraftOrder/removeDraftOrder2Submit.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
-import {CommonStaticText} from "../../../../common/commonStaticText.ts";
+import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { RemoveDraftOrder2Content} from "../../../../fixtures/manageCases/caseProgression/removeDraftOrder/removeDraftOrder2Content.ts";
 
 interface RemoveDraftOrderSubmitPageParams {
     page: Page;
@@ -37,6 +38,7 @@ export class RemoveDraftOrderSubmitPage {
             ),
             page.getByRole('cell', { name: RemoveDraftOrderSubmitContent.cell1, exact: true }),
             page.getByRole('cell', { name: RemoveDraftOrderSubmitContent.cell2, exact: true }),
+            page.getByRole('cell', { name: RemoveDraftOrder2Content.inputText, exact: true }),
         ])
 
         if (accessibilityTest) {

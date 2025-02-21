@@ -193,6 +193,9 @@ export class DraftAnOrder {
         console.error("An invalid order type was given");
         break;
     }
+    //check added to wait to case page to load
+    await page.waitForLoadState("domcontentloaded");
+    await page.waitForSelector("#next-step", { state: "visible" });
   }
 
   private static async assignCaseToSwanseaCourt(
