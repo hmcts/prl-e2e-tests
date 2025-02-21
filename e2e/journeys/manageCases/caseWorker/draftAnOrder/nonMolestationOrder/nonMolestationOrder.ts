@@ -21,6 +21,7 @@ interface NonMolestationOrderParams {
   yesNoToAll: boolean;
   howLongWillOrderBeInForce: HowLongWillTheOrderBeInForce;
   willAllPartiesAttendHearing: boolean;
+  checkPdf: boolean,
 }
 
 export class NonMolestationOrder {
@@ -33,6 +34,7 @@ export class NonMolestationOrder {
     yesNoToAll,
     howLongWillOrderBeInForce,
     willAllPartiesAttendHearing,
+    checkPdf,
   }: NonMolestationOrderParams): Promise<void> {
     await DraftAnOrder1Page.draftAnOrder1Page(
       page,
@@ -77,6 +79,7 @@ export class NonMolestationOrder {
       howLongWillOrderBeInForce,
       willAllPartiesAttendHearing,
       accessibilityTest,
+      checkPdf,
     );
     await DraftAnOrderSubmitPage.draftAnOrderSubmitPage(
       page,

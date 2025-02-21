@@ -37,6 +37,7 @@ test.describe("Draft a non molestation order tests", (): void => {
       willAllPartiesAttendHearing: false,
       browser: browser,
       caseRef: caseRef,
+      checkPdf: true,
     });
   });
 
@@ -60,6 +61,7 @@ test.describe("Draft a non molestation order tests", (): void => {
       willAllPartiesAttendHearing: false,
       browser: browser,
       caseRef: caseRef,
+      checkPdf: true,
     });
   });
 
@@ -83,6 +85,7 @@ test.describe("Draft a non molestation order tests", (): void => {
       willAllPartiesAttendHearing: true,
       browser: browser,
       caseRef: caseRef,
+      checkPdf: true,
     });
   });
 
@@ -106,6 +109,7 @@ test.describe("Draft a non molestation order tests", (): void => {
       willAllPartiesAttendHearing: false,
       browser: browser,
       caseRef: caseRef,
+      checkPdf: true,
     });
   });
 });

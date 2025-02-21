@@ -4,7 +4,7 @@ import AxeBuilder from "@axe-core/playwright";
 export class AxeTest {
   public static async run(page: Page): Promise<void> {
     const accessibilityScanResults = await new AxeBuilder({ page })
-        .disableRules(["aria-required-parent"])
+      .disableRules(["aria-required-parent"])
       .withTags([
         "wcag2a",
         "wcag2aa",

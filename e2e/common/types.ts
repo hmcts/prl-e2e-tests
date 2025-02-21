@@ -81,7 +81,6 @@ export type fl401CaseWorkerActions =
   | "Transfer to another court"
   | "Remove draft order";
 
-
 export type fl401SubmittedSolicitorEvents =
   | "Draft an order"
   | "Dummy Payment for AwP"

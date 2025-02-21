@@ -1,10 +1,10 @@
 import { test, Page } from "@playwright/test";
 import Config from "../../../../config";
 import { DraftAnOrder } from "../../../../journeys/manageCases/caseWorker/draftAnOrder/draftAnOrder";
-import {Helpers} from "../../../../common/helpers.ts";
+import { Helpers } from "../../../../common/helpers.ts";
 import config from "../../../../config.ts";
-import {RemoveDraftOrder} from "../../../../journeys/manageCases/caseProgression/removeDraftOrder/removeDraftOrder.ts";
-import {SolicitorDACaseCreator} from "../../../../common/solicitorDACaseCreator.ts";
+import { RemoveDraftOrder } from "../../../../journeys/manageCases/caseProgression/removeDraftOrder/removeDraftOrder.ts";
+import { SolicitorDACaseCreator } from "../../../../common/solicitorDACaseCreator.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
@@ -14,7 +14,7 @@ test.describe("Remove draft order as a court admin for solicitor created CA case
   test.beforeEach(async ({ page }) => {
     await page.goto(Config.manageCasesBaseURL);
     caseRef =
-        await SolicitorDACaseCreator.createCaseStatementOfTruthAndSubmit(page);
+      await SolicitorDACaseCreator.createCaseStatementOfTruthAndSubmit(page);
     await Helpers.goToCase(page, config.manageCasesBaseURL, caseRef, "tasks");
   });
 
@@ -33,12 +33,18 @@ test.describe("Remove draft order as a court admin for solicitor created CA case
       willAllPartiesAttendHearing: false,
       browser: browser,
       caseRef: caseRef,
+      checkPdf: false,
     });
     const caseWorkerPage: Page = await Helpers.openNewBrowserWindow(
       browser,
       "caseWorker",
     );
-    await Helpers.goToCase(caseWorkerPage, config.manageCasesBaseURL, caseRef, "tasks");
+    await Helpers.goToCase(
+      caseWorkerPage,
+      config.manageCasesBaseURL,
+      caseRef,
+      "tasks",
+    );
     await RemoveDraftOrder.removeDraftOrder({
       page: caseWorkerPage,
       accessibilityTest: true,

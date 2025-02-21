@@ -18,6 +18,7 @@ interface DraftAnOrderParams {
   willAllPartiesAttendHearing: boolean;
   browser: Browser;
   caseRef: string;
+  checkPdf: boolean,
 }
 
 export type HowLongWillTheOrderBeInForce =
@@ -159,6 +160,7 @@ export class DraftAnOrder {
     willAllPartiesAttendHearing,
     browser,
     caseRef,
+    checkPdf,
   }: DraftAnOrderParams): Promise<void> {
     if (caseType === "C100") {
       // C100 orders are assigned to Central Family Court by default
@@ -177,6 +179,7 @@ export class DraftAnOrder {
           yesNoToAll,
           howLongWillOrderBeInForce,
           willAllPartiesAttendHearing,
+          checkPdf,
         });
         break;
       case "parentalResponsibility":
@@ -187,6 +190,7 @@ export class DraftAnOrder {
           yesNoToAll,
           errorMessaging,
           accessibilityTest,
+          checkPdf,
         });
         break;
       default:
