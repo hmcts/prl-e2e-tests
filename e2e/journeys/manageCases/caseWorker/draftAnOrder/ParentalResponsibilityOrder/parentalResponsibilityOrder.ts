@@ -17,7 +17,7 @@ interface ParentalResponsibilityOrderParams {
   yesNoToAll: boolean;
   errorMessaging: boolean;
   accessibilityTest: boolean;
-  checkPdf: boolean,
+  checkPdf: boolean;
 }
 
 export class ParentalResponsibilityOrder {

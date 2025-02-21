@@ -18,7 +18,7 @@ interface DraftAnOrderParams {
   willAllPartiesAttendHearing: boolean;
   browser: Browser;
   caseRef: string;
-  checkPdf: boolean,
+  checkPdf: boolean;
 }
 
 export type HowLongWillTheOrderBeInForce =

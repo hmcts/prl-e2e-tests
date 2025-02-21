@@ -22,14 +22,14 @@ export class DraftAnOrder20Page {
     checkPdf: boolean,
   ): Promise<void> {
     await this.checkPageLoads(page, orderType, accessibilityTest);
-    if (checkPdf){
-    await this.checkPDFContent(
-      page,
-      orderType,
-      yesToAll,
-      howLongWillOrderBeInForce,
-      willAllPartiesBeAttendingHearing,
-    );
+    if (checkPdf) {
+      await this.checkPDFContent(
+        page,
+        orderType,
+        yesToAll,
+        howLongWillOrderBeInForce,
+        willAllPartiesBeAttendingHearing,
+      );
     }
     await this.continue(page);
   }

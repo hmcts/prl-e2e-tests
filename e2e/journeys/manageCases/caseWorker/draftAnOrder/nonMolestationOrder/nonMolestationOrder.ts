@@ -21,7 +21,7 @@ interface NonMolestationOrderParams {
   yesNoToAll: boolean;
   howLongWillOrderBeInForce: HowLongWillTheOrderBeInForce;
   willAllPartiesAttendHearing: boolean;
-  checkPdf: boolean,
+  checkPdf: boolean;
 }
 
 export class NonMolestationOrder {
