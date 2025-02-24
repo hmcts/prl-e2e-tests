@@ -36,6 +36,7 @@ test.describe("Draft a parental responsibility order tests", (): void => {
       willAllPartiesAttendHearing: false,
       browser: browser,
       caseRef: caseRef,
+      checkPdf: true,
     });
   });
 
@@ -56,6 +57,7 @@ test.describe("Draft a parental responsibility order tests", (): void => {
       willAllPartiesAttendHearing: false,
       browser: browser,
       caseRef: caseRef,
+      checkPdf: true,
     });
   });
 
@@ -76,6 +78,7 @@ test.describe("Draft a parental responsibility order tests", (): void => {
       willAllPartiesAttendHearing: false,
       browser: browser,
       caseRef: caseRef,
+      checkPdf: true,
     });
   });
 });

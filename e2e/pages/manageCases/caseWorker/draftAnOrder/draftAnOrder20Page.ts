@@ -19,15 +19,18 @@ export class DraftAnOrder20Page {
     howLongWillOrderBeInForce: HowLongWillTheOrderBeInForce,
     willAllPartiesBeAttendingHearing: boolean,
     accessibilityTest: boolean,
+    checkPdf: boolean,
   ): Promise<void> {
     await this.checkPageLoads(page, orderType, accessibilityTest);
-    await this.checkPDFContent(
-      page,
-      orderType,
-      yesToAll,
-      howLongWillOrderBeInForce,
-      willAllPartiesBeAttendingHearing,
-    );
+    if (checkPdf) {
+      await this.checkPDFContent(
+        page,
+        orderType,
+        yesToAll,
+        howLongWillOrderBeInForce,
+        willAllPartiesBeAttendingHearing,
+      );
+    }
     await this.continue(page);
   }
 
