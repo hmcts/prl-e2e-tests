@@ -22,7 +22,7 @@ test.describe("Remove draft order as a court admin for solicitor-created CA case
     );
   });
 
-  test("Draft a non-molestation order as a solicitor and remove draft as a court admin for a DA case created by solicitor. @regression", async ({
+  test("Draft a non-molestation order for a DA case as a solicitor and remove draft as a court admin. @regression @nightly @accessibility", async ({
     page,
     browser,
   }): Promise<void> => {
