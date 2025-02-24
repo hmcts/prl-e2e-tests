@@ -1,5 +1,5 @@
 import { Browser, BrowserContext, Page } from "@playwright/test";
-import IdamLoginHelper from "../../../common/idamLoginHelper.ts";
+import IdamLoginHelper from "../../../common/userSetup/idamLoginHelper.ts";
 import Config from "../../../config.ts";
 import { AccessCodeHelper } from "../../../common/accessCodeHelper.ts";
 import { EnterPinPage } from "../../../pages/citizen/activateCase/enterPinPage.ts";
@@ -120,7 +120,7 @@ export class ActivateCase {
     const newBrowser = await browser.browserType().launch();
     const newContext: BrowserContext = await newBrowser.newContext();
     const page: Page = await newContext.newPage();
-    await IdamLoginHelper.signInCitizenUser(
+    await IdamLoginHelper.createAndSignInCitizenUser(
       page,
       Config.citizenFrontendBaseURL,
     );
@@ -149,7 +149,7 @@ export class ActivateCase {
     const newBrowser = await browser.browserType().launch();
     const newContext: BrowserContext = await newBrowser.newContext();
     const page = await newContext.newPage();
-    await IdamLoginHelper.signInCitizenUser(
+    await IdamLoginHelper.createAndSignInCitizenUser(
       page,
       Config.citizenFrontendBaseURL,
     );

@@ -1,11 +1,11 @@
 import { test } from "@playwright/test";
-import IdamLoginHelper from "../../../../common/idamLoginHelper";
+import IdamLoginHelper from "../../../../common/userSetup/idamLoginHelper.ts";
 import Config from "../../../../config";
 import { C100 } from "../../../../journeys/citizen/createCase/C100/C100";
 
 test.describe("C100 Citizen Application with an existing MIAM document.", (): void => {
   test.beforeEach(async ({ page }) => {
-    await IdamLoginHelper.signInCitizenUser(
+    await IdamLoginHelper.createAndSignInCitizenUser(
       page,
       Config.citizenFrontendBaseURL,
     );
@@ -1525,7 +1525,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
 
 test.describe("C100 Citizen Application accessibility tests on the third row journey set. @accessibility", (): void => {
   test.beforeEach(async ({ page }) => {
-    await IdamLoginHelper.signInCitizenUser(
+    await IdamLoginHelper.createAndSignInCitizenUser(
       page,
       Config.citizenFrontendBaseURL,
     );

@@ -1,11 +1,11 @@
 import { test } from "@playwright/test";
-import IdamLoginHelper from "../../../common/idamLoginHelper";
+import IdamLoginHelper from "../../../common/userSetup/idamLoginHelper.ts";
 import Config from "../../../config";
 import { CitizenCreateInitial } from "../../../journeys/citizen/citizenCreateInitial";
 
 test.describe("Manage citizen cases case dashboard tests.", (): void => {
   test.beforeEach(async ({ page }) => {
-    await IdamLoginHelper.signInCitizenUser(
+    await IdamLoginHelper.createAndSignInCitizenUser(
       page,
       Config.citizenFrontendBaseURL,
     );
