@@ -68,6 +68,7 @@ export class UploadAdditionalApplications {
     );
     await UploadAdditionalApplicationsConfirmPage.uploadAdditionalApplicationsConfirmPage(
       page,
+      caseType,
       accessibilityTest,
     );
     if (caseType === "C100") {

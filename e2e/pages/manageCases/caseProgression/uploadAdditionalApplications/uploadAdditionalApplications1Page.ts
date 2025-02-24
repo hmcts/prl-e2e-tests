@@ -93,11 +93,14 @@ export class UploadAdditionalApplications1Page {
       await page.check(UniqueSelectors.otherOrderRadio);
     }
     // select all applicant checkboxes in the list
-    await page
+    const checkboxes = await page
       .locator(
         `${UniqueSelectors.additionalApplicantList} input[type="checkbox"]`,
       )
-      .check();
+      .all();
+    for (const checkbox of checkboxes) {
+      await checkbox.check();
+    }
   }
 
   private static async continue(page: Page): Promise<void> {
