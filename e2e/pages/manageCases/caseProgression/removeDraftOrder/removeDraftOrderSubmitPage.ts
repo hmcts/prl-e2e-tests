@@ -7,17 +7,17 @@ import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 import { RemoveDraftOrder2Content } from "../../../../fixtures/manageCases/caseProgression/removeDraftOrder/removeDraftOrder2Content.ts";
 
 interface RemoveDraftOrderSubmitPageParams {
-  page: Page;
+  caseWorkerPage: Page;
   accessibilityTest: boolean;
 }
 
 export class RemoveDraftOrderSubmitPage {
   public static async removeDraftOrderSubmitPage({
-    page,
+    caseWorkerPage,
     accessibilityTest,
   }: RemoveDraftOrderSubmitPageParams): Promise<void> {
-    await this.checkPageLoads(page, accessibilityTest);
-    await this.submit(page);
+    await this.checkPageLoads(caseWorkerPage, accessibilityTest);
+    await this.submit(caseWorkerPage);
   }
 
   private static async checkPageLoads(page: Page, accessibilityTest: boolean) {

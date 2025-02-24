@@ -40,23 +40,28 @@ export class RemoveDraftOrder {
     );
     await Helpers.goToCase(
       caseWorkerPage,
-      config.manageCasesBaseURL,
+      config.manageCasesBaseURLCase,
       caseRef,
       "tasks",
     );
-    await submitEvent(page, caseRef, "fl401AddCaseNumber");
-    await Helpers.goToCase(page, config.manageCasesBaseURL, caseRef, "tasks");
-    await Helpers.chooseEventFromDropdown(page, "Remove draft order");
+    await submitEvent(caseWorkerPage, caseRef, "fl401AddCaseNumber");
+    await Helpers.goToCase(
+      caseWorkerPage,
+      config.manageCasesBaseURLCase,
+      caseRef,
+      "tasks",
+    );
+    await Helpers.chooseEventFromDropdown(caseWorkerPage, "Remove draft order");
     await RemoveDraftOrder1Page.removeDraftOrder1Page({
-      page,
+      caseWorkerPage,
       accessibilityTest,
     });
     await RemoveDraftOrder2Page.removeDraftOrder2Page({
-      page,
+      caseWorkerPage,
       accessibilityTest,
     });
     await RemoveDraftOrderSubmitPage.removeDraftOrderSubmitPage({
-      page,
+      caseWorkerPage,
       accessibilityTest,
     });
   }

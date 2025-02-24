@@ -2,11 +2,11 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.ts";
 import { RemoveDraftOrder2Content } from "../../../../fixtures/manageCases/caseProgression/removeDraftOrder/removeDraftOrder2Content.ts";
 import { Helpers } from "../../../../common/helpers.ts";
-// import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
+import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
 import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 
 interface RemoveDraftOrder2PageParams {
-  page: Page;
+  caseWorkerPage: Page;
   accessibilityTest: boolean;
 }
 
@@ -16,12 +16,12 @@ enum UniqueSelectors {
 
 export class RemoveDraftOrder2Page {
   public static async removeDraftOrder2Page({
-    page,
+    caseWorkerPage,
     accessibilityTest,
   }: RemoveDraftOrder2PageParams): Promise<void> {
-    await this.checkPageLoads(page, accessibilityTest);
-    await this.fillInField(page);
-    await this.continue(page);
+    await this.checkPageLoads(caseWorkerPage, accessibilityTest);
+    await this.fillInField(caseWorkerPage);
+    await this.continue(caseWorkerPage);
   }
 
   private static async checkPageLoads(page: Page, accessibilityTest: boolean) {
@@ -48,7 +48,7 @@ export class RemoveDraftOrder2Page {
     ]);
 
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page); //turn on once false positive is fixed for axe-core: https://github.com/alphagov/govuk-frontend/issues/979
+      await AccessibilityTestHelper.run(page);
     }
   }
 
