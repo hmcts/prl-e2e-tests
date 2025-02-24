@@ -5352,10 +5352,7 @@
           "id": "e4561ef7-ea93-4acb-be70-90091e7d5524"
         }
       ],
-      "childAbuses": [
-        "physicalAbuse",
-        "financialAbuse"
-      ],
+      "childAbuses": ["physicalAbuse", "financialAbuse"],
       "allChildrenAreRiskPhysicalAbuse": "Yes",
       "childPhysicalAbuse": {
         "typeOfAbuse": "physicalAbuse",
@@ -5456,17 +5453,13 @@
   "submitAndPay": {
     "data": {
       "confidentialityDisclaimer": {
-        "confidentialityChecksChecked": [
-          "confidentialityChecksChecked"
-        ]
+        "confidentialityChecksChecked": ["confidentialityChecksChecked"]
       },
       "applicantSolicitorEmailAddress": "prl_aat_solicitor11@mailinator.com",
       "caseworkerEmailAddress": "aloknath.datta@hmcts.net",
       "courtName": "Central Family Court",
       "solicitorName": "PET Solicitor 1 Solicitor",
-      "payAgreeStatement": [
-        "agree"
-      ],
+      "payAgreeStatement": ["agree"],
       "feeAmount": "£255.00",
       "submitAndPayDownloadApplicationLink": {
         "document_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/1331bfd3-65b5-4185-908c-edaceab40efc",

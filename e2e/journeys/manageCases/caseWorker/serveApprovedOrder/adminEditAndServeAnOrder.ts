@@ -44,7 +44,12 @@ export class AdminEditAndServeAnOrder {
       storageState: Config.sessionStoragePath + "caseWorker.json",
     });
     page = await newContext.newPage();
-    await Helpers.goToCase(page, config.manageCasesBaseURL, caseRef, "tasks");
+    await Helpers.goToCase(
+      page,
+      config.manageCasesBaseURLCase,
+      caseRef,
+      "tasks",
+    );
     // check application task needs to be completed for the Edit and serve an order event
     await Helpers.assignTaskToMeAndTriggerNextSteps(
       page,

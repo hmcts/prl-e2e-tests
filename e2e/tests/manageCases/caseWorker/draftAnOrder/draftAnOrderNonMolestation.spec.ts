@@ -11,10 +11,15 @@ test.describe("Draft a non molestation order tests", (): void => {
   let caseRef: string;
 
   test.beforeEach(async ({ page }) => {
-    await page.goto(Config.manageCasesBaseURL);
+    await page.goto(Config.manageCasesBaseURLCase);
     caseRef =
       await SolicitorDACaseCreator.createCaseStatementOfTruthAndSubmit(page);
-    await Helpers.goToCase(page, config.manageCasesBaseURL, caseRef, "tasks");
+    await Helpers.goToCase(
+      page,
+      config.manageCasesBaseURLCase,
+      caseRef,
+      "tasks",
+    );
   });
 
   test(`Complete Drafting a non molestation order as a solicitor with the following options:

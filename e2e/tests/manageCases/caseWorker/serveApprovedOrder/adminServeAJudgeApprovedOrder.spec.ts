@@ -13,10 +13,15 @@ test.describe("As a Court admin Serve a judge approved solicitor created DA case
   let caseRef: string;
 
   test.beforeEach(async ({ page }) => {
-    await page.goto(Config.manageCasesBaseURL);
+    await page.goto(Config.manageCasesBaseURLCase);
     caseRef =
       await SolicitorDACaseCreator.createCaseStatementOfTruthAndSubmit(page);
-    await Helpers.goToCase(page, config.manageCasesBaseURL, caseRef, "tasks");
+    await Helpers.goToCase(
+      page,
+      config.manageCasesBaseURLCase,
+      caseRef,
+      "tasks",
+    );
   });
 
   test(`Complete serve an order that is personally served with the following options:

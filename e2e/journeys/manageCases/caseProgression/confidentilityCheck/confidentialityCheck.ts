@@ -114,7 +114,7 @@ export class ConfidentialityCheck {
     );
     await Helpers.goToCase(
       caseManagerPage,
-      config.manageCasesBaseURL,
+      config.manageCasesBaseURLCase,
       ccdRef,
       "tasks",
     );
@@ -184,7 +184,7 @@ export class ConfidentialityCheck {
     );
     await Helpers.goToCase(
       caseManagerPage,
-      config.manageCasesBaseURL,
+      config.manageCasesBaseURLCase,
       caseRef,
       "tasks",
     );

@@ -3,6 +3,7 @@ import { DummyCreateInitial } from "./dummyCreateInitial";
 import { Fl401StatementOfTruth } from "../FL401StatementOfTruth/fl401StatementOfTruth";
 import { DummyFL401ApplicantDetails } from "./dummyFL401ApplicantDetails";
 import { Helpers } from "../../../../common/helpers.ts";
+import Config from "../../../../config.ts";
 
 interface dummyFL401Options {
   page: Page;
@@ -38,7 +39,7 @@ export class DummyFL401 {
     await page.waitForResponse(
       (response) =>
         response.url() ===
-          `https://manage-case.aat.platform.hmcts.net/data/cases/${caseRef}/events` &&
+          `${Config.manageCasesBaseURL}/data/cases/${caseRef}/events` &&
         response.status() === 201,
     );
 
