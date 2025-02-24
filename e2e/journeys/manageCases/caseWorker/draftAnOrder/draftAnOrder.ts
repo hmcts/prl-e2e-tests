@@ -211,7 +211,12 @@ export class DraftAnOrder {
       browser,
       "courtAdminStoke",
     );
-    await Helpers.goToCase(page, config.manageCasesBaseURL, caseRef, "tasks");
+    await Helpers.goToCase(
+      page,
+      config.manageCasesBaseURLCase,
+      caseRef,
+      "tasks",
+    );
     await Helpers.assignTaskToMeAndTriggerNextSteps(
       page,
       "Check Application",

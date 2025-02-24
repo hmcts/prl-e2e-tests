@@ -10,7 +10,7 @@ setup("Setup solicitor user", async ({ page }) => {
   await IdamLoginHelper.signInUser(
     page,
     "solicitor",
-    config.manageCasesBaseURL,
+    config.manageCasesBaseURLCase,
   );
 });
 
@@ -36,14 +36,18 @@ setup("Retrieve bearer token for citizen user creation", async () => {
 });
 
 setup("Setup judge user", async ({ page }) => {
-  await IdamLoginHelper.signInUser(page, "judge", config.manageCasesBaseURL);
+  await IdamLoginHelper.signInUser(
+    page,
+    "judge",
+    config.manageCasesBaseURLCase,
+  );
 });
 
 setup("Setup case manager user", async ({ page }) => {
   await IdamLoginHelper.signInUser(
     page,
     "caseManager",
-    config.manageCasesBaseURL,
+    config.manageCasesBaseURLCase,
   );
 });
 
@@ -51,7 +55,7 @@ setup("Setup caseWorker user", async ({ page }) => {
   await IdamLoginHelper.signInUser(
     page,
     "caseWorker",
-    config.manageCasesBaseURL,
+    config.manageCasesBaseURLCase,
   );
 });
 
@@ -59,6 +63,6 @@ setup("Setup Stoke court admin user", async ({ page }) => {
   await IdamLoginHelper.signInUser(
     page,
     "courtAdminStoke",
-    config.manageCasesBaseURL,
+    config.manageCasesBaseURLCase,
   );
 });

@@ -32,7 +32,7 @@ export class C100CaseTabs {
     );
     await Helpers.goToCase(
       courtAdminPage,
-      Config.manageCasesBaseURL,
+      Config.manageCasesBaseURLCase,
       caseRef,
       "Summary",
     );

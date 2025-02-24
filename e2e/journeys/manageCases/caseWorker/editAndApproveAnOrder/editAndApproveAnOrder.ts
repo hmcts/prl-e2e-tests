@@ -49,7 +49,12 @@ export class EditAndApproveAnOrder {
       checkPdf: true,
     });
     page = await Helpers.openNewBrowserWindow(browser, "judge");
-    await Helpers.goToCase(page, config.manageCasesBaseURL, caseRef, "tasks");
+    await Helpers.goToCase(
+      page,
+      config.manageCasesBaseURLCase,
+      caseRef,
+      "tasks",
+    );
     await Helpers.assignTaskToMeAndTriggerNextSteps(
       page,
       `${orderTypesMap.get(orderType)?.journeyName}`,

@@ -12,7 +12,12 @@ test.describe("Review Documents task for DA Citizen case tests.", () => {
 
   test.beforeEach(async ({ page }) => {
     ccdRef = await createDaCitizenCourtNavCase(true, true);
-    await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
+    await Helpers.goToCase(
+      page,
+      config.manageCasesBaseURLCase,
+      ccdRef,
+      "tasks",
+    );
   });
 
   test("Complete Review Documents without accessibility test. Saying yes to Restrict Access @regression", async ({

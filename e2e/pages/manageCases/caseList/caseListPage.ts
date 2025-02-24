@@ -15,7 +15,7 @@ export class CaseListPage extends CommonPage {
   }
 
   public static async navigateToCreateCasePage(page: Page): Promise<void> {
-    await page.goto(Config.manageCasesBaseURL + "/case-filter");
+    await page.goto(Config.manageCasesBaseURLCase + "/case-filter");
   }
 
   public static async startCreateCaseEvent(page: Page): Promise<void> {
