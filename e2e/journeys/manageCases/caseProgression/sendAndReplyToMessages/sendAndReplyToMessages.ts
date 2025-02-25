@@ -48,7 +48,7 @@ export class SendAndReplyToMessages {
     );
     await Helpers.goToCase(
       judgePage,
-      config.manageCasesBaseURL,
+      config.manageCasesBaseURLCase,
       ccdRef,
       "tasks",
     );

@@ -10,7 +10,12 @@ test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 test.describe("Welsh Language Requirements task for DA Citizen case tests as Court Admin.", () => {
   test.beforeEach(async ({ page }) => {
     const ccdRef: string = await createDaCitizenCourtNavCase(true, false);
-    await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
+    await Helpers.goToCase(
+      page,
+      config.manageCasesBaseURLCase,
+      ccdRef,
+      "tasks",
+    );
   });
 
   test(`Complete Welsh Language Requirements with following options: 

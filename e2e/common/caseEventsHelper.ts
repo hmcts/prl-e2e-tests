@@ -29,7 +29,12 @@ export async function completeCheckApplicationAndSendToGatekeeperAndCreateAnOrde
     storageState: Config.sessionStoragePath + "judge.json",
   });
   const newPage: Page = await newContext.newPage();
-  await Helpers.goToCase(newPage, config.manageCasesBaseURL, caseRef, "tasks");
+  await Helpers.goToCase(
+    newPage,
+    config.manageCasesBaseURLCase,
+    caseRef,
+    "tasks",
+  );
   await submitEvent(newPage, caseRef, "manageOrders", manageOrderEventData);
 }
 
@@ -53,7 +58,7 @@ export async function completeEventsUpToServiceOfApplication(
   });
   // wait for response from previous event call before submitting next event
   await page.waitForResponse(
-    `https://manage-case.aat.platform.hmcts.net/data/cases/${caseRef}/events`,
+    `${Config.manageCasesBaseURL}/data/cases/${caseRef}/events`,
   );
   await submitEvent(
     page,

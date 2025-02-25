@@ -47,7 +47,7 @@ export class ReviewCitizenUploadedDocuments {
     );
     await Helpers.goToCase(
       courtAdminPage,
-      Config.manageCasesBaseURL,
+      Config.manageCasesBaseURLCase,
       caseRef,
       "tasks",
     );

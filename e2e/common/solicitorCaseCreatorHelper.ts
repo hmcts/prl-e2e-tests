@@ -35,18 +35,20 @@ export async function getData(
         credentials: "same-origin",
       });
       const resBody = await getRes.json();
-      if (resBody) {
+      if (
+        !resBody ||
+        (resBody.status !== undefined && resBody.status !== 200)
+      ) {
+        throw new Error(
+          `Failed to get event token. Status: ${resBody.status}, Error: ${resBody.error}, Callback Errors: ${resBody.callbackErrors}`,
+        );
+      } else {
         return resBody;
       }
     },
     { url, headers },
   );
   // default response status is undefined
-  if (!res || (res.status !== undefined && res.status !== 200)) {
-    throw new Error(
-      `Failed to get event token. Status: ${res.status}, Error: ${res.error}, Callback Errors: ${res.callbackErrors}`,
-    );
-  }
   return res.event_token;
 }
 

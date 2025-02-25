@@ -10,7 +10,12 @@ test.use({ storageState: Config.sessionStoragePath + "courtAdminStoke.json" });
 test.describe("Transfer to another court event for DA Citizen case tests as a court admin.", () => {
   test.beforeEach(async ({ page }) => {
     const ccdRef = await createDaCitizenCourtNavCase(true, true);
-    await Helpers.goToCase(page, config.manageCasesBaseURL, ccdRef, "tasks");
+    await Helpers.goToCase(
+      page,
+      config.manageCasesBaseURLCase,
+      ccdRef,
+      "tasks",
+    );
   });
 
   test("Complete Transfer to another court. With accessibility test. @nightly @accessibility", async ({
