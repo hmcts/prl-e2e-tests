@@ -13,7 +13,12 @@ test.describe("Upload additional applications for C100 tests", (): void => {
   test.beforeEach(async ({ page }) => {
     await page.goto(Config.manageCasesBaseURL);
     caseRef = await SolicitorCACaseCreator.createCaseSubmitAndPay(page);
-    await Helpers.goToCase(page, config.manageCasesBaseURL, caseRef, "tasks");
+    await Helpers.goToCase(
+      page,
+      config.manageCasesBaseURLCase,
+      caseRef,
+      "tasks",
+    );
   });
 
   test(`Upload additional C2 application with notice. @nightly @regression @accessibility`, async ({

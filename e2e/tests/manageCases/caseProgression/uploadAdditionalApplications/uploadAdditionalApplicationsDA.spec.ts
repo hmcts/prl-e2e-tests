@@ -14,7 +14,12 @@ test.describe("Upload additional applications for FL401 tests", (): void => {
     await page.goto(Config.manageCasesBaseURL);
     caseRef =
       await SolicitorDACaseCreator.createCaseStatementOfTruthAndSubmit(page);
-    await Helpers.goToCase(page, config.manageCasesBaseURL, caseRef, "tasks");
+    await Helpers.goToCase(
+      page,
+      config.manageCasesBaseURLCase,
+      caseRef,
+      "tasks",
+    );
   });
 
   test(`Upload additional C2 application with notice. @nightly @regression @accessibility`, async ({
