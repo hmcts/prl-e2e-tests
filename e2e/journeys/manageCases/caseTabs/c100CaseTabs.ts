@@ -3,7 +3,8 @@ import { C100SummaryTabPage } from "../../../pages/manageCases/caseTabs/C100/c10
 import { Helpers } from "../../../common/helpers";
 import Config from "../../../config";
 import { C100ConfidentialDetailsTabPage } from "../../../pages/manageCases/caseTabs/C100/c100ConfidentialDetailsTabPage";
-import { DummyC100 } from "../createCase/dummyCase/dummyC100.ts";
+import { SolicitorCACaseCreator } from "../../../common/solicitorCACaseCreator.ts";
+import config from "../../../config.ts";
 
 interface C100CaseTabsParams {
   page: Page;
@@ -21,11 +22,15 @@ export class C100CaseTabs {
     applicantLivesInRefuge,
     otherPersonLivesInRefuge,
   }: C100CaseTabsParams): Promise<void> {
-    const caseRef = await DummyC100.dummyC100({
-      page: page,
-      applicantLivesInRefuge: applicantLivesInRefuge,
-      otherPersonLivesInRefuge: otherPersonLivesInRefuge,
-    });
+    await page.goto(Config.manageCasesBaseURLCase);
+    const caseRef: string =
+      await SolicitorCACaseCreator.createCaseSubmitAndPay(page);
+    await Helpers.goToCase(
+      page,
+      config.manageCasesBaseURLCase,
+      caseRef,
+      "tasks",
+    );
     const courtAdminPage: Page = await Helpers.openNewBrowserWindow(
       browser,
       "courtAdminStoke",

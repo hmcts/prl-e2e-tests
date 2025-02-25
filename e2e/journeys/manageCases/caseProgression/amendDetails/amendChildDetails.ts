@@ -6,7 +6,8 @@ import { AmendChildDetailsSubmitPage } from "../../../../pages/manageCases/caseP
 import { C100ChildGender } from "../../../../pages/manageCases/createCase/C100/childDetails/childDetailsRevised1Page.ts";
 import { yesNoDontKnow } from "../../../../common/types.ts";
 import config from "../../../../config.ts";
-import { DummyC100 } from "../../createCase/dummyCase/dummyC100.ts";
+import Config from "../../../../config.ts";
+import { SolicitorCACaseCreator } from "../../../../common/solicitorCACaseCreator.ts";
 
 interface AmendChildDetailsParams {
   page: Page;
@@ -26,11 +27,15 @@ export class AmendChildDetails {
     browser,
     under18,
   }: AmendChildDetailsParams): Promise<void> {
-    const caseRef = await DummyC100.dummyC100({
-      page: page,
-      applicantLivesInRefuge: true,
-      otherPersonLivesInRefuge: false,
-    });
+    await page.goto(Config.manageCasesBaseURLCase);
+    const caseRef: string =
+      await SolicitorCACaseCreator.createCaseSubmitAndPay(page);
+    await Helpers.goToCase(
+      page,
+      config.manageCasesBaseURLCase,
+      caseRef,
+      "tasks",
+    );
     // open new browser and sign in as court admin user
     page = await Helpers.openNewBrowserWindow(browser, "courtAdminStoke");
     await Helpers.goToCase(

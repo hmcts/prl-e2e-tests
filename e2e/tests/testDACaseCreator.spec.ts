@@ -9,9 +9,7 @@ import { completeCheckApplicationAndSendToGatekeeper } from "../common/caseEvent
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
 test.describe("Case creation examples", (): void => {
-  test("create case", async ({
-    page,
-  }): Promise<void> => {
+  test("create case", async ({ page }): Promise<void> => {
     await page.goto(Config.manageCasesBaseURLCase);
     await SolicitorDACaseCreator.createCaseStatementOfTruthAndSubmit(page);
   });
