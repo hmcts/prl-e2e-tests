@@ -46,6 +46,7 @@ export class EditAndApproveAnOrder {
       willAllPartiesAttendHearing: true,
       browser: browser,
       caseRef: caseRef,
+      checkPdf: true,
     });
     page = await Helpers.openNewBrowserWindow(browser, "judge");
     await Helpers.goToCase(
