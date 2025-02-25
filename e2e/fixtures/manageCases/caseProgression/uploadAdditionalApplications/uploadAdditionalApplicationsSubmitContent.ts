@@ -32,8 +32,8 @@ export enum UploadAdditionalApplicationsSubmitContent {
   c2Text1610 = "Please state how soon you want the judge to consider your application?",
   c2Text1611 = "On the same day",
 
-  c2ApplicationText16 = "C2 application",   // x2
-  c2ApplicationAnchor = "testPdf.pdf",
+  c2ApplicationText16 = "C2 application", // x2
+  c2ApplicationAnchor = "mockFile.pdf",
 
   c2WithNoticeText16 = "Application with notice. The other party will be notified about this application, even if there is no hearing",
   c2WithoutNoticeText16 = "Application by consent or without notice. No notice will be sent to the other party if the application is without notice, even if there is a hearing",
@@ -50,6 +50,6 @@ export enum UploadAdditionalApplicationsSubmitContent {
   c100ApplicationsText16 = "C1 - Apply for certain orders under the Children Act",
   fl401ApplicationsText16 = "FL403 - Application to vary, discharge or extend an order",
 
-  otherApplicationsText16 = "Other applications",  // x2
-  otherApplicationAnchor = "testPdf.pdf",
+  otherApplicationsText16 = "Other applications", // x2
+  otherApplicationAnchor = "mockFile.pdf",
 }

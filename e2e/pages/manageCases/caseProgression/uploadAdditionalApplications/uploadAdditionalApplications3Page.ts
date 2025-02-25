@@ -11,7 +11,7 @@ import { Helpers } from "../../../../common/helpers.ts";
 enum UniqueSelectors {
   daApplicationDropdown = "#temporaryOtherApplicationsBundle_daApplicantApplicationType",
   caApplicationDropdown = "#temporaryOtherApplicationsBundle_caApplicantApplicationType",
-  applicationFileUpload = "#itemporaryOtherApplicationsBundle_document",
+  applicationFileUpload = "#temporaryOtherApplicationsBundle_document",
   yesDocumentRelatesToCaseCheckbox = "#temporaryOtherApplicationsBundle_documentAcknowledge-ACK_RELATED_TO_CASE",
   sameDayRadio = "#temporaryOtherApplicationsBundle_urgencyTimeFrameType-SAME_DAY",
 }
@@ -33,7 +33,6 @@ export class UploadAdditionalApplications3Page {
     caseType: solicitorCaseCreateType,
     accessibilityTest: boolean,
   ): Promise<void> {
-    // check yes on page
     await page
       .locator(Selectors.headingH2, {
         hasText: UploadAdditionalApplications3Content.headingH2,
@@ -45,12 +44,40 @@ export class UploadAdditionalApplications3Page {
         `${Selectors.GovukHeadingL}:text-is("${UploadAdditionalApplications3Content.govUkHeadingL}")`,
         1,
       ),
-      Helpers.checkGroup(
+      Helpers.checkVisibleAndPresent(
         page,
-        7,
-        UploadAdditionalApplications3Content,
-        `formLabel`,
-        Selectors.GovukFormLabel,
+        `${Selectors.GovukFormLabel}:text-is("${UploadAdditionalApplications3Content.formLabel1}"):visible`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${UploadAdditionalApplications3Content.formLabel2}"):visible`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${UploadAdditionalApplications3Content.formLabel3}"):visible`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${UploadAdditionalApplications3Content.formLabel4}"):visible`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${UploadAdditionalApplications3Content.formLabel5}"):visible`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${UploadAdditionalApplications3Content.formLabel6}"):visible`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${UploadAdditionalApplications3Content.formLabel7}"):visible`,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -95,22 +122,21 @@ export class UploadAdditionalApplications3Page {
     if (caseType === "C100") {
       await page.selectOption(
         UniqueSelectors.caApplicationDropdown,
-        UploadAdditionalApplications3Content.daApplicationType,
+        UploadAdditionalApplications3Content.caApplicationType,
       );
     } else {
       await page.selectOption(
         UniqueSelectors.daApplicationDropdown,
-        UploadAdditionalApplications3Content.caApplicationType,
+        UploadAdditionalApplications3Content.daApplicationType,
       );
     }
     // upload application file
     const fileInput = page.locator(UniqueSelectors.applicationFileUpload);
     await fileInput.setInputFiles(config.testPdfFile);
-    // TODO: change this to uses generic manage case url once those changes have been merged
-    // wait for document upload to complete
-    await page.waitForResponse(
-      "https://manage-case.aat.platform.hmcts.net/documents",
-    );
+    // wait for file upload to complete
+    await page
+      .locator(".error-message", { hasText: " Uploading..." })
+      .waitFor({ state: "hidden" });
     await page.check(UniqueSelectors.yesDocumentRelatesToCaseCheckbox);
     await page.check(UniqueSelectors.sameDayRadio);
   }

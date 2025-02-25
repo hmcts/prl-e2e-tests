@@ -71,8 +71,5 @@ export class UploadAdditionalApplications {
       caseType,
       accessibilityTest,
     );
-    if (caseType === "C100") {
-      // TODO: check service request(s)??
-    }
   }
 }

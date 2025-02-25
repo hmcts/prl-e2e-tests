@@ -11,5 +11,7 @@ export enum UploadAdditionalApplicationsConfirmContent {
   // C100 case
   c100H1 = "Continue to payment",
   c100P1 = "This application has been submitted and you will now need to pay the application fee.",
-  c100P2 = "Go to the Service request section to make a payment. Once the fee has been paid, the court will process the application.",
+  c100P2 = "Go to the",
+  c100P3 = "section to make a payment. Once the fee has been paid, the court will process the application.",
+  c100Anchor = "Service request",
 }

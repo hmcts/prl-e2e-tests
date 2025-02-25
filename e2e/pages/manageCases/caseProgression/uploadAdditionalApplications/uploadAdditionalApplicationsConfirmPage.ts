@@ -40,10 +40,15 @@ export class UploadAdditionalApplicationsConfirmPage {
         ),
         Helpers.checkGroup(
           page,
-          2,
+          3,
           UploadAdditionalApplicationsConfirmContent,
           `c100P`,
           Selectors.p,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.a}:text-is("${UploadAdditionalApplicationsConfirmContent.c100Anchor}")`,
+          1,
         ),
       ]);
     } else {

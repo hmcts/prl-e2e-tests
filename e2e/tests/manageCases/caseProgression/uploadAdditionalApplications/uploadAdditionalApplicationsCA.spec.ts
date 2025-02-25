@@ -40,15 +40,15 @@ test.describe("Upload additional applications for C100 tests", (): void => {
     });
   });
 
-  test(`Upload additional Other application. @regression`, async ({
+  test(`Upload additional Other application. @regression @accessibility`, async ({
     page,
   }): Promise<void> => {
     await UploadAdditionalApplications.uploadAdditionalApplications({
       page: page,
       caseType: "C100",
       additionalApplicationType: "other",
-      withNotice: true, // with notice doesn't affect "Other" application type
-      accessibilityTest: false,
+      withNotice: true, // with/without notice doesn't affect "Other" application type
+      accessibilityTest: true,
     });
   });
 });

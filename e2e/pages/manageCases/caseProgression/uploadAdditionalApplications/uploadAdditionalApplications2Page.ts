@@ -10,7 +10,8 @@ import config from "../../../../config.ts";
 enum UniqueSelectors {
   c2ApplicationFileUpload = "#temporaryC2Document_document",
   yesDocumentRelatesToCaseCheckbox = "#temporaryC2Document_documentAcknowledge-ACK_RELATED_TO_CASE",
-  otherReasonCheckbox = "#temporaryC2Document_caReasonsForC2Application-OTHER",
+  c100OtherReasonCheckbox = "#temporaryC2Document_caReasonsForC2Application-OTHER",
+  fl401OtherReasonCheckbox = "#temporaryC2Document_daReasonsForC2Application-OTHER",
   otherReasonTextbox = "#temporaryC2Document_otherReasonsFoC2Application",
   sameDayRadio = "#temporaryC2Document_urgencyTimeFrameType-SAME_DAY",
 }
@@ -23,7 +24,7 @@ export class UploadAdditionalApplications2Page {
     accessibilityTest: boolean,
   ): Promise<void> {
     await this.checkPageLoads(page, caseType, accessibilityTest);
-    await this.fillInFields(page);
+    await this.fillInFields(page, caseType);
     await this.continue(page);
   }
 
@@ -43,16 +44,44 @@ export class UploadAdditionalApplications2Page {
         `${Selectors.GovukHeadingL}:text-is("${UploadAdditionalApplications2Content.govUkHeadingL}")`,
         1,
       ),
-      Helpers.checkGroup(
+      Helpers.checkVisibleAndPresent(
         page,
-        7,
-        UploadAdditionalApplications2Content,
-        `formLabel`,
-        Selectors.GovukFormLabel,
+        `${Selectors.GovukFormLabel}:text-is("${UploadAdditionalApplications2Content.formLabel1}"):visible`,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukFormHint}:text-is("${UploadAdditionalApplications2Content.formHint}")`,
+        `${Selectors.GovukFormLabel}:text-is("${UploadAdditionalApplications2Content.formLabel2}"):visible`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${UploadAdditionalApplications2Content.formLabel3}"):visible`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${UploadAdditionalApplications2Content.formLabel4}"):visible`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${UploadAdditionalApplications2Content.formLabel5}"):visible`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${UploadAdditionalApplications2Content.formLabel6}"):visible`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${UploadAdditionalApplications2Content.formLabel7}"):visible`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormHint}:text-is("${UploadAdditionalApplications2Content.formHint}"):visible`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -78,12 +107,35 @@ export class UploadAdditionalApplications2Page {
           `${Selectors.GovukWarningText}:text-is("${UploadAdditionalApplications2Content.govWarningTextCA}")`,
           1,
         ),
-        Helpers.checkGroup(
+        Helpers.checkVisibleAndPresent(
           page,
-          6,
-          UploadAdditionalApplications2Content,
-          `c100FromLabel`,
-          Selectors.GovukFormLabel,
+          `${Selectors.GovukFormLabel}:text-is("${UploadAdditionalApplications2Content.c100FromLabel1}"):visible`,
+          1,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukFormLabel}:text-is("${UploadAdditionalApplications2Content.c100FromLabel2}"):visible`,
+          1,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukFormLabel}:text-is("${UploadAdditionalApplications2Content.c100FromLabel3}"):visible`,
+          1,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukFormLabel}:text-is("${UploadAdditionalApplications2Content.c100FromLabel4}"):visible`,
+          1,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukFormLabel}:text-is("${UploadAdditionalApplications2Content.c100FromLabel5}"):visible`,
+          1,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukFormLabel}:text-is("${UploadAdditionalApplications2Content.c100FromLabel6}"):visible`,
+          1,
         ),
         Helpers.checkVisibleAndPresent(
           page,
@@ -103,12 +155,15 @@ export class UploadAdditionalApplications2Page {
           `${Selectors.GovukWarningText}:text-is("${UploadAdditionalApplications2Content.govWarningTextDA}")`,
           1,
         ),
-        Helpers.checkGroup(
+        Helpers.checkVisibleAndPresent(
           page,
-          2,
-          UploadAdditionalApplications2Content,
-          `fl401FromLabel`,
-          Selectors.GovukFormLabel,
+          `${Selectors.GovukFormLabel}:text-is("${UploadAdditionalApplications2Content.fl401FromLabel1}"):visible`,
+          1,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukFormLabel}:text-is("${UploadAdditionalApplications2Content.fl401FromLabel2}"):visible`,
+          1,
         ),
         Helpers.checkVisibleAndPresent(
           page,
@@ -122,18 +177,24 @@ export class UploadAdditionalApplications2Page {
     }
   }
 
-  private static async fillInFields(page: Page): Promise<void> {
+  private static async fillInFields(
+    page: Page,
+    caseType: solicitorCaseCreateType,
+  ): Promise<void> {
     // upload C2 application file
     const fileInput = page.locator(UniqueSelectors.c2ApplicationFileUpload);
     await fileInput.setInputFiles(config.testPdfFile);
-    // TODO: change this to uses generic manage case url once those changes have been merged
-    // wait for document upload to complete
-    await page.waitForResponse(
-      "https://manage-case.aat.platform.hmcts.net/documents",
-    );
+    // wait for file upload to complete
+    await page
+      .locator(".error-message", { hasText: " Uploading..." })
+      .waitFor({ state: "hidden" });
     await page.check(UniqueSelectors.yesDocumentRelatesToCaseCheckbox);
-    // select "Other" option for "Are you using the C2 to apply for any of the below?" regardless of case type
-    await page.check(UniqueSelectors.otherReasonCheckbox);
+    if (caseType === "C100") {
+      // select "Other" option for "Are you using the C2 to apply for any of the below?" regardless of case type
+      await page.check(UniqueSelectors.c100OtherReasonCheckbox);
+    } else {
+      await page.check(UniqueSelectors.fl401OtherReasonCheckbox);
+    }
     await Helpers.checkVisibleAndPresent(
       page,
       `${Selectors.GovukFormLabel}:text-is("${UploadAdditionalApplications2Content.otherReasonFormLabel}")`,
