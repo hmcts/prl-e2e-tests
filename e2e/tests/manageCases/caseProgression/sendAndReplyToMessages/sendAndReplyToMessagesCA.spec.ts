@@ -1,15 +1,40 @@
 import { test } from "@playwright/test";
-import createDaCitizenCourtNavCase from "../../../../common/createCaseHelper";
 import { Helpers } from "../../../../common/helpers";
 import { default as Config, default as config } from "../../../../config";
 import { SendAndReplyToMessages } from "../../../../journeys/manageCases/caseProgression/sendAndReplyToMessages/sendAndReplyToMessages";
+import { SolicitorCACaseCreator } from "../../../../common/solicitorCACaseCreator.ts";
+import {
+  jsonDatas,
+  submitEvent,
+} from "../../../../common/solicitorCaseCreatorHelper.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
-test.describe("Send and reply to messages between court admin and judge tests", () => {
+test.describe("Send and reply to messages between court admin and judge for CA case tests", () => {
   let ccdRef: string;
-  test.beforeEach(async ({ page }) => {
-    ccdRef = await createDaCitizenCourtNavCase(true, false);
+  test.beforeEach(async ({ page, browser }) => {
+    const solicitorPage = await Helpers.openNewBrowserWindow(
+      browser,
+      "solicitor",
+    );
+    await solicitorPage.goto(Config.manageCasesBaseURL);
+    ccdRef = await SolicitorCACaseCreator.createCaseSubmitAndPay(solicitorPage);
+    const ctscPage = await Helpers.openNewBrowserWindow(
+      browser,
+      "courtAdminStoke",
+    );
+    await Helpers.goToCase(
+      ctscPage,
+      config.manageCasesBaseURLCase,
+      ccdRef,
+      "tasks",
+    );
+    await submitEvent(
+      ctscPage,
+      ccdRef,
+      "issueAndSendToLocalCourtCallback",
+      jsonDatas.solicitorCACaseData,
+    );
     await Helpers.goToCase(
       page,
       config.manageCasesBaseURLCase,
@@ -28,7 +53,7 @@ test.describe("Send and reply to messages between court admin and judge tests", 
       browser: browser,
       ccdRef: ccdRef,
       responseRequired: true,
-      caseType: "FL401",
+      caseType: "C100",
       accessibilityTest: true,
     });
   });
@@ -40,7 +65,7 @@ test.describe("Send and reply to messages between court admin and judge tests", 
       browser: browser,
       ccdRef: ccdRef,
       responseRequired: false,
-      caseType: "FL401",
+      caseType: "C100",
       accessibilityTest: false,
     });
   });

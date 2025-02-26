@@ -13,7 +13,7 @@ export enum UploadAdditionalApplications2Content {
   govWarningTextDA = "Check if this document is related to auto test case 401",
   headingH2DraftOrders = "Draft Orders (Optional)",
   headingH2SupportingDocuments = "Supporting Documents (Optional)",
-  headingH2Supplements = "Supplements (Optional)",  // only present for CA case
+  headingH2Supplements = "Supplements (Optional)", // only present for CA case
   c100FromLabel1 = "Change surname or remove from jurisdiction.",
   c100FromLabel2 = "Appointment of a guardian",
   c100FromLabel3 = "Termination of appointment of a guardian",

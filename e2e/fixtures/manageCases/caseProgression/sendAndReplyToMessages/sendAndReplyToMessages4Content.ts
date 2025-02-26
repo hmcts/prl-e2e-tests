@@ -8,9 +8,12 @@ export enum SendAndReplyToMessages4Content {
   formLabel6 = "Judiciary",
   formLabel7 = "District Judge",
   formLabel8 = "Review submitted documents",
-  formLabel9 = "Applications -> Applicant documents -> Applicant application -> FL401FinalDocument.pdf",
-  formLabel10 = "Test message",
-  formLabel11 = "Test message content",
+  formLabel9 = "Test message",
+  formLabel10 = "Test message content",
+
+  fl401FormLabel = "Applications -> Applicant documents -> Applicant application -> FL401FinalDocument.pdf",
+  c100FormLabel = "Applications -> Applicant documents -> Applicant application -> Draft_C100_application.pdf",
+
   DuplicateFormLabelNo = "No", // x2
   formHint = "If no response is required, the message will be marked as closed.",
   headingH41 = "Message",
@@ -28,7 +31,8 @@ export enum SendAndReplyToMessages4Content {
   headingH413 = "Subject",
   headingH414 = "Message details",
   addNew = "Add new",
-  a = "DA-application.pdf",
+  fl401Anchor = "DA-application.pdf",
+  c100Anchor = "C100DraftDocument.pdf",
   caseFieldLabel1 = "Attached date & time",
   caseFieldLabel2 = "Document",
 }
