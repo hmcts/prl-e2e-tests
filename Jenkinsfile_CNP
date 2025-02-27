@@ -9,7 +9,6 @@ properties([
   pipelineTriggers([
           [$class: 'GitHubPushTrigger']
   ]),
-  disableConcurrentBuilds(),
   parameters([
     string(
       name: 'CITIZEN_FRONTEND_BASE_URL',
