@@ -10,12 +10,14 @@ import { SendAndReplyToMessages4Page } from "../../../../pages/manageCases/caseP
 import { SendAndReplyToMessages5Page } from "../../../../pages/manageCases/caseProgression/sendAndReplyToMessages/sendAndReplyToMessages5Page";
 import { SendAndReplyToMessagesConfirmPage } from "../../../../pages/manageCases/caseProgression/sendAndReplyToMessages/sendAndReplyToMessagesConfirmPage";
 import { SendAndReplyToMessagesSubmitPage } from "../../../../pages/manageCases/caseProgression/sendAndReplyToMessages/sendAndReplyToMessagesSubmitPage";
+import { solicitorCaseCreateType } from "../../../../common/types.ts";
 
 interface SendAndReplyToMessagesParams {
   page: Page;
   browser: Browser;
   ccdRef: string;
   responseRequired: boolean;
+  caseType: solicitorCaseCreateType;
   accessibilityTest: boolean;
 }
 
@@ -25,6 +27,7 @@ export class SendAndReplyToMessages {
     browser,
     ccdRef,
     responseRequired,
+    caseType,
     accessibilityTest,
   }: SendAndReplyToMessagesParams): Promise<void> {
     await Helpers.chooseEventFromDropdown(page, "Send and reply to messages");
@@ -39,6 +42,7 @@ export class SendAndReplyToMessages {
     );
     await SendAndReplyToMessagesSubmitPage.sendAndReplyToMessagesSubmitPage(
       page,
+      caseType,
       true,
       responseRequired,
     );
@@ -63,12 +67,17 @@ export class SendAndReplyToMessages {
     await SendAndReplyToMessages4Page.sendAndReplyToMessages4Page(
       judgePage,
       responseRequired,
+      caseType,
     );
     if (responseRequired) {
-      await SendAndReplyToMessages5Page.sendAndReplyToAMessage5Page(judgePage);
+      await SendAndReplyToMessages5Page.sendAndReplyToAMessage5Page(
+        judgePage,
+        caseType,
+      );
     }
     await SendAndReplyToMessagesSubmitPage.sendAndReplyToMessagesSubmitPage(
       judgePage,
+      caseType,
       false,
       responseRequired,
     );

@@ -4,6 +4,7 @@ import { Helpers } from "../../../../common/helpers";
 import { Selectors } from "../../../../common/selectors";
 import { SendAndReplyToMessages4Content } from "../../../../fixtures/manageCases/caseProgression/sendAndReplyToMessages/sendAndReplyToMessages4Content";
 import { CommonContent } from "../../../../fixtures/manageCases/commonContent";
+import { solicitorCaseCreateType } from "../../../../common/types.ts";
 
 enum UniqueSelectors {
   respondToMessageYesRadio = "#respondToMessage_Yes",
@@ -14,13 +15,17 @@ export class SendAndReplyToMessages4Page {
   public static async sendAndReplyToMessages4Page(
     page: Page,
     responseRequired: boolean,
+    caseType: solicitorCaseCreateType,
   ) {
-    await this.checkPageLoads(page);
+    await this.checkPageLoads(page, caseType);
     await this.fillInFields(page, responseRequired);
     await this.continue(page);
   }
 
-  private static async checkPageLoads(page: Page): Promise<void> {
+  private static async checkPageLoads(
+    page: Page,
+    caseType: solicitorCaseCreateType,
+  ): Promise<void> {
     await page
       .locator(Selectors.GovukFormLabel, {
         hasText: SendAndReplyToMessages4Content.formLabel1,
@@ -39,7 +44,7 @@ export class SendAndReplyToMessages4Page {
       ),
       Helpers.checkGroup(
         page,
-        11,
+        10,
         SendAndReplyToMessages4Content,
         "formLabel",
         Selectors.GovukFormLabel,
@@ -75,11 +80,6 @@ export class SendAndReplyToMessages4Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${SendAndReplyToMessages4Content.a}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
         `${Selectors.button}:text-is("${SendAndReplyToMessages4Content.addNew}")`,
         2,
       ),
@@ -104,6 +104,33 @@ export class SendAndReplyToMessages4Page {
         1,
       ),
     ]);
+    if (caseType === "C100") {
+      await Promise.all([
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukFormLabel}:text-is("${SendAndReplyToMessages4Content.c100FormLabel}")`,
+          1,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.a}:text-is("${SendAndReplyToMessages4Content.c100Anchor}")`,
+          1,
+        ),
+      ]);
+    } else {
+      await Promise.all([
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukFormLabel}:text-is("${SendAndReplyToMessages4Content.fl401FormLabel}")`,
+          1,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.a}:text-is("${SendAndReplyToMessages4Content.fl401Anchor}")`,
+          1,
+        ),
+      ]);
+    }
     // TODO Disabled pending ticket FPET:1211
     // if (accessibilityTest) {
     //   await AccessibilityTestHelper.run(page);

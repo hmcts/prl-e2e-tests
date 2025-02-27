@@ -11,7 +11,7 @@ export enum UploadAdditionalApplications3Content {
   govWarningTextCA = "Check if this document is related to auto test case CA",
   govWarningTextDA = "Check if this document is related to auto test case 401",
   headingH2SupportingDocuments = "Supporting Documents (Optional)",
-  headingH2Supplements = "Supplements (Optional)",  // only present for CA case
+  headingH2Supplements = "Supplements (Optional)", // only present for CA case
   daApplicationType = "FL403 - Application to vary, discharge or extend an order",
   caApplicationType = "C1 - Apply for certain orders under the Children Act",
 }

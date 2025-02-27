@@ -15,9 +15,8 @@ export enum SendAndReplyToMessages5Content {
   messageTableFormLabel1 = "PRL AAT AM Swansea HCA",
   messageTableFormLabel2 = "prl_aat_am_swansea_hca@justice.gov.uk",
   messageTableFormLabel3 = "District Judge",
-  messageTableFormLabel4 = "Applications -> Applicant documents -> Applicant application -> FL401FinalDocument.pdf",
-  messageTableFormLabel5 = "Test message",
-  messageTableFormLabel6 = "Test message content",
+  messageTableFormLabel4 = "Test message",
+  messageTableFormLabel5 = "Test message content",
   messageTableHeadingH41 = "Message",
   messageTableHeadingH42 = "Date and time sent",
   messageTableHeadingH43 = "Sender role",
@@ -32,4 +31,7 @@ export enum SendAndReplyToMessages5Content {
   messageTableHeadingH412 = "Document",
   messageTableHeadingH413 = "Subject",
   messageTableHeadingH414 = "Message details",
+
+  fl401MessageTableFormLabel = "Applications -> Applicant documents -> Applicant application -> FL401FinalDocument.pdf",
+  c100MessageTableFormLabel = "Applications -> Applicant documents -> Applicant application -> Draft_C100_application.pdf",
 }
