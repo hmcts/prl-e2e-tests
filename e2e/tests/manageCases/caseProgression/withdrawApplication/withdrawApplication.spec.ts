@@ -11,8 +11,6 @@ test.describe("Withdraw C100 (solicitor created) application event as a solicito
     await WithdrawApplication.withdrawApplication({
       page,
       accessibilityTest: true,
-      applicantLivesInRefuge: false,
-      otherPersonLivesInRefuge: false,
       withdrawApplication: true,
     });
   });
@@ -22,8 +20,6 @@ test.describe("Withdraw C100 (solicitor created) application event as a solicito
     await WithdrawApplication.withdrawApplication({
       page,
       accessibilityTest: false,
-      applicantLivesInRefuge: false,
-      otherPersonLivesInRefuge: false,
       withdrawApplication: false,
     });
   });

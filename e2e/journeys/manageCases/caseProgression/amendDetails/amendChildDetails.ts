@@ -6,6 +6,7 @@ import { AmendChildDetailsSubmitPage } from "../../../../pages/manageCases/caseP
 import { C100ChildGender } from "../../../../pages/manageCases/createCase/C100/childDetails/childDetailsRevised1Page.ts";
 import { yesNoDontKnow } from "../../../../common/types.ts";
 import config from "../../../../config.ts";
+import Config from "../../../../config.ts";
 import { DummyC100 } from "../../createCase/dummyCase/dummyC100.ts";
 
 interface AmendChildDetailsParams {
@@ -26,6 +27,7 @@ export class AmendChildDetails {
     browser,
     under18,
   }: AmendChildDetailsParams): Promise<void> {
+    await page.goto(Config.manageCasesBaseURLCase);
     const caseRef = await DummyC100.dummyC100({
       page: page,
       applicantLivesInRefuge: true,
