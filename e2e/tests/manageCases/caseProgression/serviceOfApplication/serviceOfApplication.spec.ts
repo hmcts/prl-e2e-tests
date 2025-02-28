@@ -20,7 +20,7 @@ test.describe("Service of Application task for DA Citizen case tests.", () => {
     );
   });
 
-  test(`Complete Task - service of application (personally served) - Power of arrest (FL406) without accessibility test. @nightly @regression @accessibility`, async ({
+  test(`Complete Task - service of application (personally served) - Power of arrest (FL406) without accessibility test. @smoke @nightly @regression @accessibility`, async ({
     page,
     browser,
   }): Promise<void> => {
