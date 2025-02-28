@@ -1532,9 +1532,9 @@
       "serviceOfApplicationHeader": null,
       "sentDocumentPlaceHolder": "<details class='govuk-details'>\n\n<summary class='govuk-details__summary'>\n\n<h3 class='govuk-details__summary-text'>\n\nDocuments served in the pack\n\n</h3>\n\n</summary>\n\n<div class='govuk-details__text'>\n\nCertain documents will be automatically included in the pack that is sent out on parties (the people in the case).\n\nThis includes:\n\n<ul><li>an application form (FL401)</li><li>witness statement</li><li>privacy notice</li><li>cover letter (if not represented)</li></ul>\n\nYou do not need to upload these documents yourself.\n\n</div>\n\n</details>",
       "noticeOfSafetySupportLetter": {
-        "document_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/dfff6f3b-dc6f-4638-9def-5104e1b7e84c",
-        "document_binary_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/dfff6f3b-dc6f-4638-9def-5104e1b7e84c/binary",
-        "document_filename": "prl-5427_1.png"
+        "document_url": "http://dm-store-demo.service.core-compute-demo.internal/documents/0448b3bc-8083-447c-a412-bc8d6ac5c5b0",
+        "document_binary_url": "http://dm-store-demo.service.core-compute-demo.internal/documents/0448b3bc-8083-447c-a412-bc8d6ac5c5b0/binary",
+        "document_filename": "testPdf.pdf"
       },
       "additionalDocumentsList": [],
       "caseTypeOfApplication": "FL401",
