@@ -21,9 +21,11 @@ export enum SendAndReplyToMessagesSubmitContent {
   sendMessageText1614 = "Enter the message subject",
   sendMessageText1615 = "Test message",
   sendMessageText1616 = "Select file",
-  sendMessageText1617 = "Applications -> Applicant documents -> Applicant application -> FL401FinalDocument.pdf",
-  sendMessageText1618 = "Enter your message",
+  sendMessageText1617 = "Enter your message",
   span = "Test message content",
+
+  fl401FileText16 = "Applications -> Applicant documents -> Applicant application -> FL401FinalDocument.pdf",
+  c100FileText16 = "Applications -> Applicant documents -> Applicant application -> Draft_C100_application.pdf",
 
   // responding to message - no response required
   respondNoText161 = "Do you want to send or reply to a message?",

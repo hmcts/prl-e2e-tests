@@ -4,19 +4,22 @@ import { Helpers } from "../../../../common/helpers";
 import { Selectors } from "../../../../common/selectors";
 import { SendAndReplyToMessagesSubmitContent } from "../../../../fixtures/manageCases/caseProgression/sendAndReplyToMessages/sendAndReplyToMessagesSubmitContent";
 import { CommonContent } from "../../../../fixtures/manageCases/commonContent";
+import { solicitorCaseCreateType } from "../../../../common/types.ts";
 
 export class SendAndReplyToMessagesSubmitPage {
   public static async sendAndReplyToMessagesSubmitPage(
     page: Page,
+    caseType: solicitorCaseCreateType,
     isSend: boolean,
     responseRequired: boolean,
   ) {
-    await this.checkPageLoads(page, isSend, responseRequired);
+    await this.checkPageLoads(page, caseType, isSend, responseRequired);
     await this.saveAndContinue(page);
   }
 
   private static async checkPageLoads(
     page: Page,
+    caseType: solicitorCaseCreateType,
     isSend: boolean,
     responseRequired: boolean,
   ): Promise<void> {
@@ -51,7 +54,7 @@ export class SendAndReplyToMessagesSubmitPage {
       await Promise.all([
         Helpers.checkGroup(
           page,
-          18,
+          17,
           SendAndReplyToMessagesSubmitContent,
           "sendMessageText16",
           Selectors.GovukText16,
@@ -67,6 +70,19 @@ export class SendAndReplyToMessagesSubmitPage {
           1,
         ),
       ]);
+      if (caseType === "C100") {
+        await Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukText16}:text-is("${SendAndReplyToMessagesSubmitContent.c100FileText16}")`,
+          1,
+        );
+      } else {
+        await Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukText16}:text-is("${SendAndReplyToMessagesSubmitContent.fl401FileText16}")`,
+          1,
+        );
+      }
     } else {
       if (responseRequired) {
         await Promise.all([
