@@ -58,7 +58,7 @@ export class SolicitorCreatePage {
       Array.from(el.options).map((option) => option.value),
     );
     if (eventOptions.length <= 1) {
-      console.log("Event dropdown failed to load, retrying...");
+      console.log("Event dropdown failed to load, retrying..."); // bug ticket raised: FPVTL-60
       await page.reload();
       await this.fillInFields(page, isDummyCase);
     }
