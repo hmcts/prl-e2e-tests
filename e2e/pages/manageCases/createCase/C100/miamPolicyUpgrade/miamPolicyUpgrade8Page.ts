@@ -14,7 +14,6 @@ interface MiamPolicyUpgrade8PageOptions {
 
 interface checkPageLoadsOptions {
   page: Page;
-  accessibilityTest: boolean;
 }
 
 interface fillInFieldsOptions {
@@ -31,12 +30,10 @@ enum UniqueSelectors {
 export class MiamPolicyUpgrade8Page {
   public static async miamPolicyUpgrade8Page({
     page: page,
-    accessibilityTest: accessibilityTest,
     errorMessaging: errorMessaging,
   }: MiamPolicyUpgrade8PageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
-      accessibilityTest: accessibilityTest,
     });
     if (errorMessaging) {
       await this.triggerErrorMessages(page);
@@ -48,7 +45,6 @@ export class MiamPolicyUpgrade8Page {
 
   private static async checkPageLoads({
     page: page,
-    accessibilityTest: accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.h2}:text-is("${MiamPolicyUpgrade8Content.h2}")`,

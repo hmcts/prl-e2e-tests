@@ -339,8 +339,16 @@ export class AmendApplicantDetails2Page {
 
   private static async liveInRefugeFillFields(page: Page): Promise<void> {
     await page.click(uniqueSelectors.applicantInRefugeYes);
-    await Helpers.checkVisibleAndPresent(page, `${Selectors.GovukFormHint}:text-is("${AmendApplicantDetails2Content.formHintDownloadC8Form}"):visible`, 1);
-    await Helpers.checkVisibleAndPresent(page, `${Selectors.GovukFormLabel}:text-is("${AmendApplicantDetails2Content.formLabelUploadC8Refuge}"):visible`, 1);
+    await Helpers.checkVisibleAndPresent(
+      page,
+      `${Selectors.GovukFormHint}:text-is("${AmendApplicantDetails2Content.formHintDownloadC8Form}"):visible`,
+      1,
+    );
+    await Helpers.checkVisibleAndPresent(
+      page,
+      `${Selectors.GovukFormLabel}:text-is("${AmendApplicantDetails2Content.formLabelUploadC8Refuge}"):visible`,
+      1,
+    );
     const fileInput = page.locator(uniqueSelectors.c8FormFileUpload);
     await fileInput.setInputFiles(config.testPdfFile);
   }

@@ -247,7 +247,10 @@ export class UploadDocuments1Page {
     await page.waitForTimeout(6000);
     await witnessUpload.setInputFiles(docFile);
     await page
-      .locator(Selectors.GovukErrorMessage, { hasText: UploadDocuments1Content.uploadingFile }).nth(0)
+      .locator(Selectors.GovukErrorMessage, {
+        hasText: UploadDocuments1Content.uploadingFile,
+      })
+      .nth(0)
       .waitFor({ state: "hidden" });
     const supportingUpload = page
       .locator(inputIDs.uploadSupportingDocuments)
@@ -255,7 +258,10 @@ export class UploadDocuments1Page {
     await page.waitForTimeout(6000);
     await supportingUpload.setInputFiles(docFile);
     await page
-      .locator(Selectors.GovukErrorMessage, { hasText: UploadDocuments1Content.uploadingFile }).nth(1)
+      .locator(Selectors.GovukErrorMessage, {
+        hasText: UploadDocuments1Content.uploadingFile,
+      })
+      .nth(1)
       .waitFor({ state: "hidden" });
   }
 }
