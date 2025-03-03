@@ -26,7 +26,7 @@ test.describe("Draft a parental responsibility order tests", (): void => {
 
   test(`Complete Drafting a parental responsibility as a solicitor with the following options:
   No to all options,
-  Not accessibility testing. @regression`, async ({
+  Not accessibility testing. @regression @nightlyDev`, async ({
     page,
     browser,
   }): Promise<void> => {
@@ -47,7 +47,7 @@ test.describe("Draft a parental responsibility order tests", (): void => {
 
   test(`Complete Drafting a parental responsibility as a solicitor with the following options:
   Yes to all options,
-  Not accessibility testing. @regression`, async ({
+  Not accessibility testing. @regression @nightlyDev`, async ({
     page,
     browser,
   }): Promise<void> => {
@@ -68,7 +68,7 @@ test.describe("Draft a parental responsibility order tests", (): void => {
 
   test(`Complete Drafting a parental responsibility as a solicitor with the following options:
   No to all options,
-  Accessibility testing. @accessibility @nightly`, async ({
+  Accessibility testing. @accessibility @nightly @nightlyDev`, async ({
     page,
     browser,
   }): Promise<void> => {
