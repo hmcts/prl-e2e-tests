@@ -1,11 +1,13 @@
-import { Page, expect } from "@playwright/test";
+import { expect, Page } from "@playwright/test";
 import { Helpers } from "../../../../../common/helpers.ts";
 import { Selectors } from "../../../../../common/selectors.ts";
 import { ApplicantGender } from "../../../../../common/types.ts";
 import config from "../../../../../config.ts";
 import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
-import { AmendApplicantDetails2Content } from "../../../../../fixtures/manageCases/caseProgression/amendDetails/amendApplicantDetails/AmendApplicantDetails2Content.ts";
+import {
+  AmendApplicantDetails2Content
+} from "../../../../../fixtures/manageCases/caseProgression/amendDetails/amendApplicantDetails/AmendApplicantDetails2Content.ts";
 
 interface AmendApplicantDetails2Options {
   page: Page;
@@ -337,22 +339,8 @@ export class AmendApplicantDetails2Page {
 
   private static async liveInRefugeFillFields(page: Page): Promise<void> {
     await page.click(uniqueSelectors.applicantInRefugeYes);
-    await Promise.all([
-      expect
-        .soft(
-          page
-            .getByText(AmendApplicantDetails2Content.formHintDownloadC8Form)
-            .first(),
-        )
-        .toBeVisible(),
-      expect
-        .soft(
-          page
-            .getByLabel(AmendApplicantDetails2Content.formLabelUploadC8Refuge)
-            .first(),
-        )
-        .toBeVisible(),
-    ]);
+    await Helpers.checkVisibleAndPresent(page, `${Selectors.GovukFormHint}:text-is("${AmendApplicantDetails2Content.formHintDownloadC8Form}"):visible`, 1);
+    await Helpers.checkVisibleAndPresent(page, `${Selectors.GovukFormLabel}:text-is("${AmendApplicantDetails2Content.formLabelUploadC8Refuge}"):visible`, 1);
     const fileInput = page.locator(uniqueSelectors.c8FormFileUpload);
     await fileInput.setInputFiles(config.testPdfFile);
   }

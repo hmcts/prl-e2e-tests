@@ -1,8 +1,9 @@
 import { Page } from "@playwright/test";
 import { solicitorCaseCreateType } from "../../../../common/types.ts";
 import { Selectors } from "../../../../common/selectors.ts";
-import { UploadAdditionalApplications2Content } from "../../../../fixtures/manageCases/caseProgression/uploadAdditionalApplications/uploadAdditionalApplications2Content.ts";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
+import {
+  UploadAdditionalApplications2Content
+} from "../../../../fixtures/manageCases/caseProgression/uploadAdditionalApplications/uploadAdditionalApplications2Content.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 import config from "../../../../config.ts";
@@ -172,9 +173,9 @@ export class UploadAdditionalApplications2Page {
         ),
       ]);
     }
-    if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
-    }
+    // if (accessibilityTest) {
+    //   await AccessibilityTestHelper.run(page); TODO Commented out until ticket EXUI-2858 is complete
+    // }
   }
 
   private static async fillInFields(

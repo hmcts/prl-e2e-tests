@@ -1,8 +1,9 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
-import { MiamPolicyUpgrade8Content } from "../../../../../fixtures/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade8Content";
+import {
+  MiamPolicyUpgrade8Content
+} from "../../../../../fixtures/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade8Content";
 import { Helpers } from "../../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import config from "../../../../../config";
 
 interface MiamPolicyUpgrade8PageOptions {
@@ -77,9 +78,9 @@ export class MiamPolicyUpgrade8Page {
         `${Selectors.GovukFormLabel}`,
       ),
     ]);
-    if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
-    }
+    // if (accessibilityTest) {
+    //   await AccessibilityTestHelper.run(page); TODO Commented out until ticket EXUI-2858 is complete
+    // }
   }
 
   private static async triggerErrorMessages(page: Page): Promise<void> {

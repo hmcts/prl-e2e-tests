@@ -1,10 +1,12 @@
-import { Page, expect } from "@playwright/test";
+import { expect, Page } from "@playwright/test";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { ApplicantGender } from "../../../../../common/types";
 import config from "../../../../../config";
-import { ApplicantDetails1Content } from "../../../../../fixtures/manageCases/createCase/FL401/applicantDetails/applicantDetails1Content";
+import {
+  ApplicantDetails1Content
+} from "../../../../../fixtures/manageCases/createCase/FL401/applicantDetails/applicantDetails1Content";
 
 enum uniqueSelectorPaths {
   dobFormLabel = "div > ccd-field-write > div > ccd-write-complex-type-field > div > fieldset > ccd-field-write > div > ccd-write-date-container-field > ccd-write-date-field > div > fieldset > cut-date-input > div > div",
@@ -340,12 +342,12 @@ export class ApplicantDetails1Page {
   private static async uploadC8RefugeForm(page: Page): Promise<void> {
     await Helpers.checkVisibleAndPresent(
       page,
-      `${uniqueSelectorPaths.uploadC8FormLabel}:text-is("${ApplicantDetails1Content.formLabelC8FormUpload}")`,
+      `${Selectors.GovukFormLabel}:text-is("${ApplicantDetails1Content.formLabelC8FormUpload}"):visible`,
       1,
     );
     await Helpers.checkVisibleAndPresent(
       page,
-      `${uniqueSelectorPaths.uploadC8FormHint}:text-is("${ApplicantDetails1Content.c8FormUploadHint}")`,
+      `${Selectors.GovukFormHint}:text-is("${ApplicantDetails1Content.c8FormUploadHint}"):visible`,
       1,
     );
     const fileInput = page.locator(
