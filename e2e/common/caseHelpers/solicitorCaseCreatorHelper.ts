@@ -1,9 +1,9 @@
-import solicitorDACaseData from "../caseData/solicitorDACaseEventData.json";
-import solicitorCACaseData from "../caseData/solicitorCACaseEventData.json";
-import orderEventDataAmendDischargedVaried from "../caseData/orderData/orderEventData-amendDischargedVaried.json";
-import orderEventDataPowerOfArrest from "../caseData/orderData/orderEventData-powerOfArrest.json";
+import solicitorDACaseData from "../../caseData/solicitorDACaseEventData.json";
+import solicitorCACaseData from "../../caseData/solicitorCACaseEventData.json";
+import orderEventDataAmendDischargedVaried from "../../caseData/orderData/orderEventData-amendDischargedVaried.json";
+import orderEventDataPowerOfArrest from "../../caseData/orderData/orderEventData-powerOfArrest.json";
 import { Page } from "@playwright/test";
-import { solicitorCACaseAPIEvent, solicitorDACaseAPIEvent } from "./types.ts";
+import { solicitorCACaseAPIEvent, solicitorDACaseAPIEvent } from "../types.ts";
 
 // Using "any" type below because it represents a large JSON object
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

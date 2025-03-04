@@ -6,7 +6,7 @@ import { Fl401ListWithoutNotice1Page } from "../../../../pages/manageCases/caseP
 import { Fl401ListWithoutNoticeSubmitPage } from "../../../../pages/manageCases/caseProgression/list/fl401ListWithoutNoticeSubmitPage";
 import { Fl401ListWithoutNoticeConfirmPage } from "../../../../pages/manageCases/caseProgression/list/fl401ListWithoutNoticeConfirmPage";
 import { Fl401ListWithoutNoticeConfirmContent } from "../../../../fixtures/manageCases/caseProgression/List/fl401ListWithoutNoticeConfirmContent";
-import { completeCheckApplicationAndSendToGatekeeper } from "../../../../common/caseEventsHelper.ts";
+import { completeCheckApplicationAndSendToGatekeeper } from "../../../../common/caseHelpers/caseEventsHelper.ts";
 
 interface ListWithoutNoticeParams {
   page: Page;

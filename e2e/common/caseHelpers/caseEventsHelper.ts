@@ -1,10 +1,10 @@
 import { Browser, BrowserContext, Page } from "@playwright/test";
 import { jsonDatas, submitEvent } from "./solicitorCaseCreatorHelper.ts";
-import Config from "../config.ts";
-import config from "../config.ts";
-import { Helpers } from "./helpers.ts";
-import { CompleteTheOrder } from "../journeys/manageCases/caseProgression/completeTheOrder/completeTheOrder.ts";
-import { applicationSubmittedBy, createOrderFL401Options } from "./types.ts";
+import Config from "../../config.ts";
+import config from "../../config.ts";
+import { Helpers } from "../helpers.ts";
+import { CompleteTheOrder } from "../../journeys/manageCases/caseProgression/completeTheOrder/completeTheOrder.ts";
+import { applicationSubmittedBy, createOrderFL401Options } from "../types.ts";
 
 // Note: These methods assume the current page context is court admin
 

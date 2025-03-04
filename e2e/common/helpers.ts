@@ -5,7 +5,7 @@ import {
   Locator,
   Page,
 } from "@playwright/test";
-import idamLoginHelper from "./idamLoginHelper";
+import idamLoginHelper from "./userHelpers/idamLoginHelper.ts";
 import { Selectors } from "./selectors.ts";
 import {
   c100SolicitorEvents,

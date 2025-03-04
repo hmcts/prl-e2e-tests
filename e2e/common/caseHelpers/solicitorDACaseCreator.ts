@@ -1,13 +1,13 @@
 import { Browser, Page } from "@playwright/test";
-import { Helpers } from "./helpers.ts";
+import { Helpers } from "../helpers.ts";
 import {
   createBlankCase,
   JsonData,
   jsonDatas,
   submitEvent,
 } from "./solicitorCaseCreatorHelper.ts";
-import { solicitorDACaseAPIEvent } from "./types.ts";
-import Config from "../config.ts";
+import { solicitorDACaseAPIEvent } from "../types.ts";
+import Config from "../../config.ts";
 
 const solicitorCaseEvents: solicitorDACaseAPIEvent[] = [
   "fl401TypeOfApplication",

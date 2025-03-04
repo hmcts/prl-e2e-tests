@@ -5,7 +5,7 @@ import {
 } from "../../../../common/types.ts";
 import { Browser, Page } from "@playwright/test";
 import { responsibleForServing } from "../../../../pages/manageCases/caseProgression/serviceOfApplication/ServiceOfApplication4Page.ts";
-import { jsonDatas } from "../../../../common/solicitorCaseCreatorHelper.ts";
+import { jsonDatas } from "../../../../common/caseHelpers/solicitorCaseCreatorHelper.ts";
 import { CompleteTheOrder } from "../completeTheOrder/completeTheOrder.ts";
 import { AmendApplicantDetails } from "../amendDetails/amendApplicantDetails.ts";
 import { ServiceOfApplication } from "../serviceOfApplication/serviceOfApplication.ts";

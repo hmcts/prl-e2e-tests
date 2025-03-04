@@ -20,4 +20,10 @@ export enum ApplicantContent {
   detailsBody5 = "This email should only be used for feedback on the digital service.",
   detailsLink1 = "contact the relevant court",
   detailsLink2 = "C100applications@justice.gov.uk",
+
+  //draft case
+  h3Draft = "You have not finished your application",
+  detailDraft1 = "You have 28 days to submit your application from the date you started it, or it will be deleted and you will need to start the application again. This is to keep your information secure.",
+  detailDraft2 = "You can review all your answers before you submit your application.",
+  linkDraft1 = "Continue your application",
 }

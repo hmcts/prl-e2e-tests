@@ -15,77 +15,58 @@ interface CheckPageLoadsOptions {
 }
 
 export class ApplicantPage {
-  public static async applicantPage({
-    page,
-    accessibilityTest,
-  }: ApplicantPageOptions): Promise<void> {
-    await this.checkPageLoads({
+  public static async applicantPageNewCase({
+                                             page,
+                                             accessibilityTest,
+                                           }: ApplicantPageOptions): Promise<void> {
+    await this.checkPageLoadsNewCase({
       page,
       accessibilityTest,
     });
     await this.startApplication(page);
   }
 
-  private static async checkPageLoads({
-    page,
-    accessibilityTest,
-  }: CheckPageLoadsOptions): Promise<void> {
+  private static async checkPageLoadsNewCase({
+                                        page,
+                                        accessibilityTest,
+                                      }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.NotificationBannerTitle}:text-is("${ApplicantContent.notificationBannerTitle}")`,
+        `${Selectors.NotificationBannerTitle}:text-is("${ApplicantContent.notificationBannerTitle}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.NotificationBannerHeading}:text-is("${ApplicantContent.notificationBannerHeading}")`,
-        1,
+          page,
+          `${Selectors.NotificationBannerHeading}:text-is("${ApplicantContent.notificationBannerHeading}")`,
+          1,
       ),
       Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukBody}:text-is("${ApplicantContent.body}")`,
-        1,
+          page,
+          `${Selectors.GovukBody}:text-is("${ApplicantContent.body}")`,
+          1,
       ),
       Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.strong}:text-is("${ApplicantContent.strong}")`,
-        1,
+          page,
+          `${Selectors.strong}:text-is("${ApplicantContent.strong}")`,
+          1,
       ),
       Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukHeadingM}:text-is("${ApplicantContent.headingM}")`,
-        1,
+          page,
+          `${Selectors.GovukHeadingM}:text-is("${ApplicantContent.headingM}")`,
+          1,
       ),
       Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.h2}:text-is("${ApplicantContent.h2}")`,
-        1,
+          page,
+          `${Selectors.h2}:text-is("${ApplicantContent.h2}")`,
+          1,
       ),
       Helpers.checkGroup(
-        page,
-        6,
-        ApplicantContent,
-        "link",
-        `${Selectors.GovukLink}`,
+          page,
+          6,
+          ApplicantContent,
+          "link",
+          `${Selectors.GovukLink}`,
       ),
     ]);
-    // await page.click(
-    //   `${Selectors.GovukSummaryText}:text-is("${ApplicantContent.detailsSummaryText}")`,
-    // );
-    // await Promise.all([
-    //   // Helpers.checkGroup(
-    //   //   page,
-    //   //   5,
-    //   //   ApplicantContent,
-    //   //   "detailsBody",
-    //   //   `${Selectors.GovukBody}`,
-    //   // ),
-    //   // Helpers.checkGroup(
-    //   //   page,
-    //   //   2,
-    //   //   ApplicantContent,
-    //   //   "detailsLink",
-    //   //   `${Selectors.GovukLink}`,
-    //   // ),
-    // ]);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }
@@ -93,7 +74,28 @@ export class ApplicantPage {
 
   private static async startApplication(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.NotificationBannerLink}:text-is("${ApplicantContent.startApplication}")`,
+        `${Selectors.NotificationBannerLink}:text-is("${ApplicantContent.startApplication}")`,
     );
   }
+
+  public static async applicantPageDraftCase({
+     page,
+     accessibilityTest,
+   }: ApplicantPageOptions): Promise<void> {
+    await this.checkPageLoadsDraftCase({
+      page,
+      accessibilityTest,
+    });
+  }
+  private static async checkPageLoadsDraftCase({
+                                        page,
+                                        accessibilityTest,
+                                      }: CheckPageLoadsOptions): Promise<void> {
+    await page.waitForSelector(
+        `${Selectors.NotificationBannerTitle}:text-is("${ApplicantContent.notificationBannerTitle}")`,
+    );
+    await Promise.all([
+        
+    ])
+
 }

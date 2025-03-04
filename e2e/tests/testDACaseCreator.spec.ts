@@ -1,10 +1,10 @@
 import { Page, test } from "@playwright/test";
-import { SolicitorDACaseCreator } from "../common/solicitorDACaseCreator.ts";
+import { SolicitorDACaseCreator } from "../common/caseHelpers/solicitorDACaseCreator.ts";
 import Config from "../config.ts";
-import { AccessCodeHelper } from "../common/accessCodeHelper.ts";
-import createDaCitizenCourtNavCase from "../common/createCaseHelper.ts";
+import { AccessCodeHelper } from "../common/caseHelpers/accessCodeHelper.ts";
+import createDaCitizenCourtNavCase from "../common/caseHelpers/citizenDACaseCreateHelper.ts";
 import { Helpers } from "../common/helpers.ts";
-import { completeCheckApplicationAndSendToGatekeeper } from "../common/caseEventsHelper.ts";
+import { completeCheckApplicationAndSendToGatekeeper } from "../common/caseHelpers/caseEventsHelper.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 

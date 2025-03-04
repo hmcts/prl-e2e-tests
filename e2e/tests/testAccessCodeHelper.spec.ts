@@ -1,5 +1,5 @@
 import { test } from "@playwright/test";
-import { AccessCodeHelper } from "../common/accessCodeHelper";
+import { AccessCodeHelper } from "../common/caseHelpers/accessCodeHelper.ts";
 
 // these tests are a POC - remove these tests once this has been implemented in a real scenario
 test("Get applicant access code", async () => {
