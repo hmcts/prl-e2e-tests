@@ -4,7 +4,7 @@ import { C100CaseTabs } from "../../../journeys/manageCases/caseTabs/c100CaseTab
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-test.describe("C100 Case tabs", (): void => {
+test.describe("C100 Case tabs tests for solicitor created case as a court admin", (): void => {
   test(`C100 Case tabs with the following options:
   Not Accessibility testing,
   Not Error message testing,

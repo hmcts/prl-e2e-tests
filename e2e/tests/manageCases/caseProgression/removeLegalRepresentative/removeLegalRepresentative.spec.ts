@@ -5,7 +5,7 @@ import { RemoveLegalRepresentative } from "../../../../journeys/manageCases/case
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
 test.describe("Complete Remove legal representative event as a court admin", () => {
-  test(`Remove legal representation from applicants and check on Parties tab @regression @nightly`, async ({
+  test(`Remove legal representation from applicants and check on Parties tab @regression @nightly @nightlyDev`, async ({
     page,
     browser,
   }): Promise<void> => {
