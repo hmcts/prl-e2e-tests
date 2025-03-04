@@ -6,7 +6,6 @@ import {
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-// COMMENT TO TRIGGER TEST IN PR PIPELINE - specifically to check the document uploading
 test.describe("FL401 Create case Upload Documents tests", (): void => {
   test(`FL401 Upload Documents journey with following options:
   Not accessibility testing,

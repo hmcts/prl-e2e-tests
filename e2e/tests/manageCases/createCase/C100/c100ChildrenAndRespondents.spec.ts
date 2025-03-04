@@ -6,7 +6,6 @@ import Config from "../../../../config";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-// COMMENT TO TRIGGER TEST IN PR PIPELINE
 test.describe("C100 Create case Children and respondents Tests", (): void => {
   test(`Complete the C100 Create case Children and respondents as a solicitor with the following options:
   Not Accessibility testing,
