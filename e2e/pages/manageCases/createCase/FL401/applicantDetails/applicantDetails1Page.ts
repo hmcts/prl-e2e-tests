@@ -13,8 +13,6 @@ enum uniqueSelectorPaths {
   applicantFindAddress = `div#applicantsFL401_address_address_postcodeLookup`,
   solicitorFindAddress = `div#applicantsFL401_solicitorAddress_solicitorAddress_postcodeLookup`,
   applicantAddressUniqueSelector = "div > ccd-field-write > div > ccd-write-complex-type-field > div > fieldset > ccd-field-write > div > ccd-write-address-field > div > ccd-write-complex-type-field > div > fieldset > ccd-field-write > div > ccd-write-text-field > div > ",
-  uploadC8FormLabel = "label[for='applicantsFL401_refugeConfidentialityC8Form'] .form-label",
-  uploadC8FormHint = "label[for='applicantsFL401_refugeConfidentialityC8Form'] + .form-hint",
 }
 
 enum applicantInputIDs {

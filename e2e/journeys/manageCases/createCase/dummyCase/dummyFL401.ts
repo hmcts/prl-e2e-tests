@@ -3,6 +3,7 @@ import { DummyCreateInitial } from "./dummyCreateInitial";
 import { Fl401StatementOfTruth } from "../FL401StatementOfTruth/fl401StatementOfTruth";
 import { DummyFL401ApplicantDetails } from "./dummyFL401ApplicantDetails";
 import { Helpers } from "../../../../common/helpers.ts";
+import { Selectors } from "../../../../common/selectors.ts";
 
 interface dummyFL401Options {
   page: Page;
@@ -32,6 +33,13 @@ export class DummyFL401 {
       },
       true,
     );
+
+    // wait for statement of truth event to complete before performing next actions
+    await page
+      .locator(Selectors.alertMessage, {
+        hasText: "Statement of Truth and submit"
+      })
+      .waitFor();
 
     return await Helpers.getCaseNumberFromUrl(page);
   }
