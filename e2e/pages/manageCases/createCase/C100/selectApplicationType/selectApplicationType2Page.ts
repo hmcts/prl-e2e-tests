@@ -2,7 +2,9 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { SelectApplicationType2Content } from "../../../../../fixtures/manageCases/createCase/C100/selectApplicationType/selectApplicationType2Content";
+import {
+  SelectApplicationType2Content
+} from "../../../../../fixtures/manageCases/createCase/C100/selectApplicationType/selectApplicationType2Content";
 import config from "../../../../../config";
 
 enum PageIDs {
@@ -102,7 +104,6 @@ export class selectApplicationType2Page {
 
   private static async fillInFields(page: Page, yesNo: boolean): Promise<void> {
     if (yesNo) {
-
       await page.click(`${PageIDs.yes}`);
       const fileInput = page.locator(`${PageIDs.uploadFileInput}`);
       await fileInput.setInputFiles(config.testPdfFile);

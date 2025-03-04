@@ -1,8 +1,9 @@
 import { Page } from "@playwright/test";
 import { solicitorCaseCreateType } from "../../../../common/types.ts";
 import { Selectors } from "../../../../common/selectors.ts";
-import { UploadAdditionalApplications2Content } from "../../../../fixtures/manageCases/caseProgression/uploadAdditionalApplications/uploadAdditionalApplications2Content.ts";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
+import {
+  UploadAdditionalApplications2Content
+} from "../../../../fixtures/manageCases/caseProgression/uploadAdditionalApplications/uploadAdditionalApplications2Content.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 import config from "../../../../config.ts";
@@ -21,9 +22,8 @@ export class UploadAdditionalApplications2Page {
   public static async uploadAdditionalApplications2Page(
     page: Page,
     caseType: solicitorCaseCreateType,
-    accessibilityTest: boolean,
   ): Promise<void> {
-    await this.checkPageLoads(page, caseType, accessibilityTest);
+    await this.checkPageLoads(page, caseType);
     await this.fillInFields(page, caseType);
     await this.continue(page);
   }
@@ -31,7 +31,6 @@ export class UploadAdditionalApplications2Page {
   private static async checkPageLoads(
     page: Page,
     caseType: solicitorCaseCreateType,
-    accessibilityTest: boolean,
   ): Promise<void> {
     await page
       .locator(Selectors.headingH2, {
@@ -172,9 +171,9 @@ export class UploadAdditionalApplications2Page {
         ),
       ]);
     }
-    if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
-    }
+    // if (accessibilityTest) {
+    //   await AccessibilityTestHelper.run(page); TODO Commented out until ticket EXUI-2858 is complete
+    // }
   }
 
   private static async fillInFields(
