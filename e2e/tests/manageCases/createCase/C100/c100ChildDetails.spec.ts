@@ -4,6 +4,7 @@ import { C100ChildDetails } from "../../../../journeys/manageCases/createCase/C1
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
+// COMMENT TO TRIGGER TEST IN PR PIPELINE
 test.describe("C100 Create case child details tests", (): void => {
   test(`Complete the C100 child details event as a solicitor with the following options:
   Not Accessibility testing,

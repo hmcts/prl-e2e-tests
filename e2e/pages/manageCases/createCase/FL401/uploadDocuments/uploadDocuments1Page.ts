@@ -246,22 +246,14 @@ export class UploadDocuments1Page {
       .nth(docIndex);
     await page.waitForTimeout(6000);
     await witnessUpload.setInputFiles(docFile);
-    await page
-      .locator(Selectors.GovukErrorMessage, {
-        hasText: UploadDocuments1Content.uploadingFile,
-      })
-      .nth(0)
-      .waitFor({ state: "hidden" });
+    await expect(page
+      .locator(`${Selectors.GovukErrorMessage}:visible`)).toHaveCount(0);
     const supportingUpload = page
       .locator(inputIDs.uploadSupportingDocuments)
       .nth(docIndex);
     await page.waitForTimeout(6000);
     await supportingUpload.setInputFiles(docFile);
-    await page
-      .locator(Selectors.GovukErrorMessage, {
-        hasText: UploadDocuments1Content.uploadingFile,
-      })
-      .nth(1)
-      .waitFor({ state: "hidden" });
+    await expect(page
+      .locator(`${Selectors.GovukErrorMessage}:visible`)).toHaveCount(0);
   }
 }

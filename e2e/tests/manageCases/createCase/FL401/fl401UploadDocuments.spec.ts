@@ -1,9 +1,12 @@
 import { test } from "@playwright/test";
 import Config from "../../../../config";
-import { FL401UploadDocuments } from "../../../../journeys/manageCases/createCase/FL401UploadDocuments/FL401UploadDocuments";
+import {
+  FL401UploadDocuments
+} from "../../../../journeys/manageCases/createCase/FL401UploadDocuments/FL401UploadDocuments";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
+// COMMENT TO TRIGGER TEST IN PR PIPELINE - specifically to check the document uploading
 test.describe("FL401 Create case Upload Documents tests", (): void => {
   test(`FL401 Upload Documents journey with following options:
   Not accessibility testing,

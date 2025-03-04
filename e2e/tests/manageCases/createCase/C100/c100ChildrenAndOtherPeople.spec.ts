@@ -1,9 +1,12 @@
 import { test } from "@playwright/test";
 import Config from "../../../../config";
-import { C100ChildrenAndOtherPeople } from "../../../../journeys/manageCases/createCase/C100ChildrenAndOtherPeople/c100ChildrenAndOtherPeople";
+import {
+  C100ChildrenAndOtherPeople
+} from "../../../../journeys/manageCases/createCase/C100ChildrenAndOtherPeople/c100ChildrenAndOtherPeople";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
+// COMMENT TO TRIGGER TEST IN PR PIPELINE
 test.describe("C100 Create case Children and respondents Tests", (): void => {
   test(`Complete the C100 Create case Children and Other people as a solicitor with the following options:
   Not Accessibility testing,
