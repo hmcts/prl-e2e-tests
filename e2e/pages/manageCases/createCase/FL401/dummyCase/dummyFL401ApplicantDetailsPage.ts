@@ -2,9 +2,7 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { Helpers } from "../../../../../common/helpers";
 import config from "../../../../../config";
-import {
-  ApplicantDetails1Content
-} from "../../../../../fixtures/manageCases/createCase/FL401/applicantDetails/applicantDetails1Content";
+import { ApplicantDetails1Content } from "../../../../../fixtures/manageCases/createCase/FL401/applicantDetails/applicantDetails1Content";
 
 enum UniqueSelectors {
   uploadC8FormLabel = "label[for='applicantsFL401_refugeConfidentialityC8Form'] .form-label",

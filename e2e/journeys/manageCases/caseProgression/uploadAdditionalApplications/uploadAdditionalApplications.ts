@@ -1,24 +1,15 @@
 import { Page } from "@playwright/test";
 import { Helpers } from "../../../../common/helpers.ts";
+import { UploadAdditionalApplications1Page } from "../../../../pages/manageCases/caseProgression/uploadAdditionalApplications/uploadAdditionalApplications1Page.ts";
 import {
-  UploadAdditionalApplications1Page
-} from "../../../../pages/manageCases/caseProgression/uploadAdditionalApplications/uploadAdditionalApplications1Page.ts";
-import { AdditionalApplicationType, solicitorCaseCreateType } from "../../../../common/types.ts";
-import {
-  UploadAdditionalApplications2Page
-} from "../../../../pages/manageCases/caseProgression/uploadAdditionalApplications/uploadAdditionalApplications2Page.ts";
-import {
-  UploadAdditionalApplications4Page
-} from "../../../../pages/manageCases/caseProgression/uploadAdditionalApplications/uploadAdditionalApplications4Page.ts";
-import {
-  UploadAdditionalApplications3Page
-} from "../../../../pages/manageCases/caseProgression/uploadAdditionalApplications/uploadAdditionalApplications3Page.ts";
-import {
-  UploadAdditionalApplicationsSubmitPage
-} from "../../../../pages/manageCases/caseProgression/uploadAdditionalApplications/uploadAdditionalApplicationsSubmitPage.ts";
-import {
-  UploadAdditionalApplicationsConfirmPage
-} from "../../../../pages/manageCases/caseProgression/uploadAdditionalApplications/uploadAdditionalApplicationsConfirmPage.ts";
+  AdditionalApplicationType,
+  solicitorCaseCreateType,
+} from "../../../../common/types.ts";
+import { UploadAdditionalApplications2Page } from "../../../../pages/manageCases/caseProgression/uploadAdditionalApplications/uploadAdditionalApplications2Page.ts";
+import { UploadAdditionalApplications4Page } from "../../../../pages/manageCases/caseProgression/uploadAdditionalApplications/uploadAdditionalApplications4Page.ts";
+import { UploadAdditionalApplications3Page } from "../../../../pages/manageCases/caseProgression/uploadAdditionalApplications/uploadAdditionalApplications3Page.ts";
+import { UploadAdditionalApplicationsSubmitPage } from "../../../../pages/manageCases/caseProgression/uploadAdditionalApplications/uploadAdditionalApplicationsSubmitPage.ts";
+import { UploadAdditionalApplicationsConfirmPage } from "../../../../pages/manageCases/caseProgression/uploadAdditionalApplications/uploadAdditionalApplicationsConfirmPage.ts";
 
 interface UploadAdditionalApplicationsParams {
   page: Page;

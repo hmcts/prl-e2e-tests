@@ -37,7 +37,7 @@ export class DummyFL401 {
     // wait for statement of truth event to complete before performing next actions
     await page
       .locator(Selectors.alertMessage, {
-        hasText: "Statement of Truth and submit"
+        hasText: "Statement of Truth and submit",
       })
       .waitFor();
 
