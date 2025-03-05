@@ -31,6 +31,12 @@ interface CheckPageLoadsOptions {
   accessibilityTest: boolean;
 }
 
+interface SelectDraftCaseOptions {
+  page: Page;
+  accessibilityTest: boolean;
+  ccdRef: string;
+}
+
 export class CaseDashboardPage {
   public static async caseDashboardPage({
     page,
@@ -84,5 +90,17 @@ export class CaseDashboardPage {
     const journeyTypeKey =
       childArrangementsJourney as keyof typeof linkSelectors;
     await page.click(linkSelectors[journeyTypeKey]);
+  }
+
+  public static async selectDraftCase({
+    page,
+    accessibilityTest,
+    ccdRef,
+  }: SelectDraftCaseOptions): Promise<void> {
+    await this.checkPageLoads({
+      page,
+      accessibilityTest,
+    });
+    await page.getByRole("link", { name: `${ccdRef}` }).click(); // Select draft case
   }
 }

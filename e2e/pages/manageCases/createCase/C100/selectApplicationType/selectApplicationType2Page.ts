@@ -2,9 +2,7 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import {
-  SelectApplicationType2Content
-} from "../../../../../fixtures/manageCases/createCase/C100/selectApplicationType/selectApplicationType2Content";
+import { SelectApplicationType2Content } from "../../../../../fixtures/manageCases/createCase/C100/selectApplicationType/selectApplicationType2Content";
 import config from "../../../../../config";
 
 enum PageIDs {

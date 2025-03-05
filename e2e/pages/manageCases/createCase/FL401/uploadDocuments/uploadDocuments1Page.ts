@@ -1,8 +1,6 @@
 import { expect, Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
-import {
-  UploadDocuments1Content
-} from "../../../../../fixtures/manageCases/createCase/FL401/uploadDocuments/uploadDocuments1Content";
+import { UploadDocuments1Content } from "../../../../../fixtures/manageCases/createCase/FL401/uploadDocuments/uploadDocuments1Content";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Config } from "../../../../../config";

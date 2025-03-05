@@ -61,7 +61,7 @@ export type reviewPageTopJourneyMotherFather = "mother" | "father";
 const statementOfTruthCheckbox: string = "#statementOfTruth";
 
 export class ReviewPage {
-  private static async checkCommonText({
+  public static async checkCommonText({
     page,
   }: checkCommonTextOptions): Promise<void> {
     if (!page) {
@@ -108,7 +108,7 @@ export class ReviewPage {
     // }
   }
 
-  private static async fillInFields(
+  public static async fillInFields(
     page: Page,
     c100YesNoNeedHelpWithFees: boolean,
   ): Promise<void> {
@@ -2019,13 +2019,6 @@ export class ReviewPage {
             `${Selectors.dd}:text-is("${CaJourneyExistingMIAMReviewContent.dd_attendanceDetails}")`,
             1,
           ),
-          // Helpers.checkGroup(
-          //   page,
-          //   2,
-          //   CaJourneyExistingMIAMReviewContent,
-          //   "b_existingProceedings_",
-          //   Selectors.b,
-          // ),
         ]);
     }
     await this.fillInFields(page, c100YesNoNeedHelpWithFees);

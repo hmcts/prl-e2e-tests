@@ -1,9 +1,7 @@
 import { Page } from "@playwright/test";
 import { solicitorCaseCreateType } from "../../../../common/types.ts";
 import { Selectors } from "../../../../common/selectors.ts";
-import {
-  UploadAdditionalApplications2Content
-} from "../../../../fixtures/manageCases/caseProgression/uploadAdditionalApplications/uploadAdditionalApplications2Content.ts";
+import { UploadAdditionalApplications2Content } from "../../../../fixtures/manageCases/caseProgression/uploadAdditionalApplications/uploadAdditionalApplications2Content.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 import config from "../../../../config.ts";
