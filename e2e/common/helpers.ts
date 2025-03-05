@@ -1,5 +1,11 @@
-import { Browser, BrowserContext, expect, Locator, Page } from "@playwright/test";
-import idamLoginHelper from "./idamLoginHelper";
+import {
+  Browser,
+  BrowserContext,
+  expect,
+  Locator,
+  Page,
+} from "@playwright/test";
+import idamLoginHelper from "./userHelpers/idamLoginHelper.ts";
 import { Selectors } from "./selectors.ts";
 import {
   amendEvents,
@@ -10,7 +16,7 @@ import {
   fl401SolicitorEvents,
   fl401SubmittedSolicitorEvents,
   UserRole,
-  WACaseWorkerActions
+  WACaseWorkerActions,
 } from "./types";
 import Config from "../config.ts";
 
