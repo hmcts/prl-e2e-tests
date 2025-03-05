@@ -3,14 +3,12 @@ import { Helpers } from "../../../../common/helpers";
 import { WithdrawApplicationEventConfirmPage } from "../../../../pages/manageCases/caseProgression/withdrawApplication/withdrawApplicationEventConfirmPage.ts";
 import { WithdrawApplicationEventSubmitPage } from "../../../../pages/manageCases/caseProgression/withdrawApplication/withdrawApplicationEventSubmitPage.ts";
 import { WithdrawApplicationEvent1Page } from "../../../../pages/manageCases/caseProgression/withdrawApplication/withdrawApplicationEvent1Page.ts";
-import Config from "../../../../config.ts";
-import { SolicitorCACaseCreator } from "../../../../common/solicitorCACaseCreator.ts";
-import config from "../../../../config.ts";
 
 interface WithdrawApplicationParams {
   page: Page;
   accessibilityTest: boolean;
   withdrawApplication: boolean;
+  caseRef: string;
 }
 
 export class WithdrawApplication {
@@ -19,16 +17,6 @@ export class WithdrawApplication {
     accessibilityTest,
     withdrawApplication,
   }: WithdrawApplicationParams) {
-    await page.goto(Config.manageCasesBaseURLCase);
-    const caseRef: string =
-      await SolicitorCACaseCreator.createCaseSubmitAndPay(page);
-    await Helpers.goToCase(
-      page,
-      config.manageCasesBaseURLCase,
-      caseRef,
-      "tasks",
-    );
-
     await Helpers.chooseEventFromDropdown(page, "Withdraw application");
     await WithdrawApplicationEvent1Page.withdrawApplicationEvent1Page({
       page,

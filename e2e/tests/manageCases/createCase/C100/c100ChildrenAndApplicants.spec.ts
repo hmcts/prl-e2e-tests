@@ -1,8 +1,6 @@
 import { test } from "@playwright/test";
 import Config from "../../../../config";
-import {
-  C100ChildrenAndApplicants
-} from "../../../../journeys/manageCases/createCase/C100ChildrenAndApplicants/C100ChildrenAndApplicants";
+import { C100ChildrenAndApplicants } from "../../../../journeys/manageCases/createCase/C100ChildrenAndApplicants/C100ChildrenAndApplicants";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 

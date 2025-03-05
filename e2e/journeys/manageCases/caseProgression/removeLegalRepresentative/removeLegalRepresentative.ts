@@ -5,13 +5,12 @@ import { RemoveLegalRepresentativeSubmitPage } from "../../../../pages/manageCas
 import { RemoveLegalRepresentativeConfirmPage } from "../../../../pages/manageCases/caseProgression/removeLegalRepresentative/removeLegalRepresentativeConfirmPage.ts";
 import config from "../../../../config.ts";
 import { Selectors } from "../../../../common/selectors.ts";
-import Config from "../../../../config.ts";
-import { SolicitorCACaseCreator } from "../../../../common/solicitorCACaseCreator.ts";
 
 interface RemoveLegalRepresentativeParams {
   page: Page;
   accessibilityTest: boolean;
   browser: Browser;
+  caseRef: string;
 }
 
 export class RemoveLegalRepresentative {
@@ -19,15 +18,8 @@ export class RemoveLegalRepresentative {
     page,
     accessibilityTest,
     browser,
+    caseRef,
   }: RemoveLegalRepresentativeParams): Promise<void> {
-    await page.goto(Config.manageCasesBaseURLCase);
-    const caseRef = await SolicitorCACaseCreator.createCaseSubmitAndPay(page);
-    await Helpers.goToCase(
-      page,
-      config.manageCasesBaseURLCase,
-      caseRef,
-      "tasks",
-    );
     // open new browser and sign in as court admin user
     page = await Helpers.openNewBrowserWindow(browser, "courtAdminStoke");
     await Helpers.goToCase(
