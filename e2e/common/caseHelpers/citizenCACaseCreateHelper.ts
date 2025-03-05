@@ -21,7 +21,7 @@ export class CitizenCACaseCreator {
         scope: "openid profile roles",
         client_id: microservice,
         client_secret: process.env.IDAM_SECRET as string,
-        redirect_uri: process.env.PRL_COS_AAT_REDIRECT_URL as string,
+        redirect_uri: `${process.env.PRL_COS_AAT_URL as string}/oauth2/callback,`
       },
     });
 
