@@ -4,13 +4,13 @@ import { AdminRemoveLegalRepresentativePage } from "../../../../pages/manageCase
 import { RemoveLegalRepresentativeSubmitPage } from "../../../../pages/manageCases/caseProgression/removeLegalRepresentative/removeLegalRepresentativeSubmitPage.ts";
 import { RemoveLegalRepresentativeConfirmPage } from "../../../../pages/manageCases/caseProgression/removeLegalRepresentative/removeLegalRepresentativeConfirmPage.ts";
 import config from "../../../../config.ts";
-import { DummyC100 } from "../../createCase/dummyCase/dummyC100.ts";
 import { Selectors } from "../../../../common/selectors.ts";
 
 interface RemoveLegalRepresentativeParams {
   page: Page;
   accessibilityTest: boolean;
   browser: Browser;
+  caseRef: string;
 }
 
 export class RemoveLegalRepresentative {
@@ -18,12 +18,8 @@ export class RemoveLegalRepresentative {
     page,
     accessibilityTest,
     browser,
+    caseRef,
   }: RemoveLegalRepresentativeParams): Promise<void> {
-    const caseRef = await DummyC100.dummyC100({
-      page: page,
-      applicantLivesInRefuge: true,
-      otherPersonLivesInRefuge: false,
-    });
     // open new browser and sign in as court admin user
     page = await Helpers.openNewBrowserWindow(browser, "courtAdminStoke");
     await Helpers.goToCase(

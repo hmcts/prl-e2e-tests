@@ -6,7 +6,7 @@ import { SolicitorDACaseCreator } from "../../../../common/caseHelpers/solicitor
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-test.describe("Remove draft order as a court admin for solicitor-created CA case", (): void => {
+test.describe("Remove draft order as a court admin for solicitor-created DA case", (): void => {
   let caseRef: string;
   test.slow();
 
