@@ -2,7 +2,9 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { Helpers } from "../../../../../common/helpers";
 import config from "../../../../../config";
-import { ApplicantDetails1Content } from "../../../../../fixtures/manageCases/createCase/C100/applicantDetails/applicantDetails1Content";
+import {
+  ApplicantDetails1Content
+} from "../../../../../fixtures/manageCases/createCase/C100/applicantDetails/applicantDetails1Content";
 
 enum UniqueSelectors {
   uploadC8FormLabel = "label[for='applicants_0_refugeConfidentialityC8Form'] .form-label",
@@ -30,12 +32,12 @@ export class DummyC100ApplicantDetailsPage {
       await page.click(`${PageLoadFields.applicantLivesInRefugeYes}`);
       await Helpers.checkVisibleAndPresent(
         page,
-        `${UniqueSelectors.uploadC8FormLabel}:text-is("${ApplicantDetails1Content.formLabelC8FormUpload}")`,
+        `${Selectors.GovukFormLabel}:text-is("${ApplicantDetails1Content.formLabelC8FormUpload}"):visible`,
         1,
       );
       await Helpers.checkVisibleAndPresent(
         page,
-        `${UniqueSelectors.uploadC8FormHint}:text-is("${ApplicantDetails1Content.c8FormUploadHint}")`,
+        `${Selectors.GovukFormHint}:text-is("${ApplicantDetails1Content.c8FormUploadHint}"):visible`,
         1,
       );
       const fileInput = page.locator(

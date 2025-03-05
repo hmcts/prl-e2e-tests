@@ -58,9 +58,9 @@ export class SolicitorCreatePage {
       Array.from(el.options).map((option) => option.value),
     );
     if (eventOptions.length <= 1) {
-      throw new Error(
-        "Could not create a case - unable to select an event from the dropdown",
-      );
+      console.log("Event dropdown failed to load, retrying..."); // bug ticket raised: FPVTL-60
+      await page.reload();
+      await this.fillInFields(page, isDummyCase);
     }
     if (isDummyCase) {
       await page.selectOption(fieldIds.event, options.tsSolicitorApplication);

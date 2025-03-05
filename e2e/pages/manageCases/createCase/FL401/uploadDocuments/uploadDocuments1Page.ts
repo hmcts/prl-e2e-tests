@@ -1,6 +1,8 @@
-import { Page, expect } from "@playwright/test";
+import { expect, Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
-import { UploadDocuments1Content } from "../../../../../fixtures/manageCases/createCase/FL401/uploadDocuments/uploadDocuments1Content";
+import {
+  UploadDocuments1Content
+} from "../../../../../fixtures/manageCases/createCase/FL401/uploadDocuments/uploadDocuments1Content";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Config } from "../../../../../config";
@@ -244,20 +246,14 @@ export class UploadDocuments1Page {
       .nth(docIndex);
     await page.waitForTimeout(6000);
     await witnessUpload.setInputFiles(docFile);
-    await expect(
-      page.locator(
-        `${Selectors.GovukErrorMessage}:text-is("${UploadDocuments1Content.uploadingFile}")`,
-      ),
-    ).toHaveCount(0);
+    await expect(page
+      .locator(`${Selectors.GovukErrorMessage}:visible`)).toHaveCount(0);
     const supportingUpload = page
       .locator(inputIDs.uploadSupportingDocuments)
       .nth(docIndex);
     await page.waitForTimeout(6000);
     await supportingUpload.setInputFiles(docFile);
-    await expect(
-      page.locator(
-        `${Selectors.GovukErrorMessage}:text-is("${UploadDocuments1Content.uploadingFile}")`,
-      ),
-    ).toHaveCount(0);
+    await expect(page
+      .locator(`${Selectors.GovukErrorMessage}:visible`)).toHaveCount(0);
   }
 }

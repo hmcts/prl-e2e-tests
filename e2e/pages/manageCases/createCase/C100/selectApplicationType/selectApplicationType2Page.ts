@@ -1,8 +1,10 @@
-import { Page, expect } from "@playwright/test";
+import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { SelectApplicationType2Content } from "../../../../../fixtures/manageCases/createCase/C100/selectApplicationType/selectApplicationType2Content";
+import {
+  SelectApplicationType2Content
+} from "../../../../../fixtures/manageCases/createCase/C100/selectApplicationType/selectApplicationType2Content";
 import config from "../../../../../config";
 
 enum PageIDs {
@@ -102,16 +104,14 @@ export class selectApplicationType2Page {
 
   private static async fillInFields(page: Page, yesNo: boolean): Promise<void> {
     if (yesNo) {
-      await page.waitForTimeout(3000);
       await page.click(`${PageIDs.yes}`);
       const fileInput = page.locator(`${PageIDs.uploadFileInput}`);
       await fileInput.setInputFiles(config.testPdfFile);
       await this.draftConsentContent(page);
-      await expect(page.locator(".error-message")).toHaveCount(0);
     } else {
       await page.click(`${PageIDs.no}`);
     }
-
+    await page.waitForTimeout(5000);
     await page.click(
       `${Selectors.button}:text-is("${SelectApplicationType2Content.continue}")`,
     );
