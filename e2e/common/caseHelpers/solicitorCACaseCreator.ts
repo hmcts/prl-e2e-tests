@@ -5,7 +5,7 @@ import {
   jsonDatas,
   submitEvent,
 } from "./solicitorCaseCreatorHelper.ts";
-import { solicitorCACaseAPIEvent } from "./types.ts";
+import { solicitorCACaseAPIEvent } from "../types.ts";
 
 const solicitorCaseEvents: solicitorCACaseAPIEvent[] = [
   "selectApplicationType",

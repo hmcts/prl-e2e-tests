@@ -1,5 +1,5 @@
 import { APIRequestContext, request } from "@playwright/test";
-import { getAccessToken, getS2SToken } from "./getAccessTokenHelper";
+import { getAccessToken, getS2SToken } from "./getAccessTokenHelper.ts";
 
 interface CaseInvite {
   id: string;

@@ -1,7 +1,7 @@
 import { test } from "@playwright/test";
 import Config from "../../../../config.ts";
 import config from "../../../../config.ts";
-import { SolicitorDACaseCreator } from "../../../../common/solicitorDACaseCreator.ts";
+import { SolicitorDACaseCreator } from "../../../../common/caseHelpers/solicitorDACaseCreator.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import { UploadAdditionalApplications } from "../../../../journeys/manageCases/caseProgression/uploadAdditionalApplications/uploadAdditionalApplications.ts";
 

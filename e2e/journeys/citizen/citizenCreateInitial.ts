@@ -24,7 +24,7 @@ export class CitizenCreateInitial {
     });
     switch (childArrangementsJourney) {
       case "C100":
-        await ApplicantPage.applicantPage({
+        await ApplicantPage.applicantPageNewCase({
           page: page,
           accessibilityTest: accessibilityTest,
         });

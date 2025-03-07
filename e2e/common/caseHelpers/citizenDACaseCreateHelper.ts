@@ -1,9 +1,8 @@
 import { APIRequestContext, expect, request } from "@playwright/test";
 import fs from "fs";
 import path from "path";
-import withNoticejsonData from "../caseData/citizenDA/courtNavDaCitizenCase_WithNotice.json";
-import withoutNoticejsonData from "../caseData/citizenDA/courtNavDaCitizenCase_WithoutNotice.json";
-
+import withNoticeJsonData from "../../caseData/citizenDA/courtNavDaCitizenCase_WithNotice.json";
+import withoutNoticeJsonData from "../../caseData/citizenDA/courtNavDaCitizenCase_WithoutNotice.json";
 /**
  * Function to create a DA Citizen CourtNav case and optionally add a document.
  * @param {boolean} withDoc Whether to add a document after case creation
@@ -19,9 +18,9 @@ async function createDaCitizenCourtNavCase(
     .COURTNAV_CREATE_CASE_BEARER_TOKEN as string;
   let jsonData;
   if (withNotice) {
-    jsonData = withNoticejsonData;
+    jsonData = withNoticeJsonData;
   } else {
-    jsonData = withoutNoticejsonData;
+    jsonData = withoutNoticeJsonData;
   }
   try {
     const response = await apiContextDaCreateCase2.post(
@@ -67,7 +66,7 @@ async function addDocumentToCase(
 ): Promise<void> {
   const apiContextDaAddDoc: APIRequestContext = await request.newContext();
   const courtNavAddDocURL = `${process.env.COURTNAV_DOC_URL}${ccdReference}/document`;
-  const pdfPath = path.resolve(__dirname, "../caseData/testPdf.pdf");
+  const pdfPath = path.resolve(__dirname, "../../caseData/testPdf.pdf");
   const pdfBuffer = fs.readFileSync(pdfPath);
 
   const docResponse = await apiContextDaAddDoc.post(courtNavAddDocURL, {

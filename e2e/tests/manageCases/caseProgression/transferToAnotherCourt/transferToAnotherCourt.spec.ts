@@ -1,6 +1,6 @@
 import { test } from "@playwright/test";
 import Config from "../../../../config";
-import createDaCitizenCourtNavCase from "../../../../common/createCaseHelper";
+import createDaCitizenCourtNavCase from "../../../../common/caseHelpers/citizenDACaseCreateHelper.ts";
 import { Helpers } from "../../../../common/helpers";
 import config from "../../../../config";
 import { TransferToAnotherCourt } from "../../../../journeys/manageCases/caseProgression/transferToAnotherCourt/transferToAnotherCourt";
@@ -9,7 +9,7 @@ test.use({ storageState: Config.sessionStoragePath + "courtAdminStoke.json" });
 
 test.describe("Transfer to another court event for DA Citizen case tests as a court admin.", () => {
   test.beforeEach(async ({ page }) => {
-    const ccdRef = await createDaCitizenCourtNavCase(true, true);
+    const ccdRef = await createDaCitizenCourtNavCase(false, false);
     await Helpers.goToCase(
       page,
       config.manageCasesBaseURLCase,
