@@ -8,6 +8,7 @@ import {
 import idamLoginHelper from "./userSetup/idamLoginHelper.ts";
 import { Selectors } from "./selectors.ts";
 import {
+  amendEvents,
   c100SolicitorEvents,
   courtAdminEvents,
   fl401CaseWorkerActions,
@@ -15,7 +16,6 @@ import {
   fl401SolicitorEvents,
   fl401SubmittedSolicitorEvents,
   UserRole,
-  amendEvents,
   WACaseWorkerActions,
 } from "./types";
 import Config from "../config.ts";
@@ -361,7 +361,7 @@ export class Helpers {
   public static async getCaseNumberFromUrl(page: Page): Promise<string> {
     const url: string = page.url();
     const caseNumberMatch: RegExpMatchArray | null = url.match(
-      /case-details\/(\d{16})\/.*?/,
+      /case-details\/(\d{16}).*?/,
     );
     if (caseNumberMatch === null) {
       throw new Error("Unable to extract case number from URL");

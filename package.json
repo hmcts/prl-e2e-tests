@@ -32,18 +32,16 @@
     "lint": "yarn prettier . --write && yarn tsc -p tsconfig.json && yarn eslint .",
     "test:unit": "jest",
     "test:changes": "yarn playwright install && ts-node ./e2e/common/changedTestsRunner.ts",
-    "test:fullfunctional": "echo 'This is a placeholder'",
-    "test:crossbrowser": "echo 'This is a placeholder'",
     "test:manageCasesSmoke": "yarn playwright install && yarn playwright test e2e/tests/manageCases --project chromium --grep @smoke",
     "test:manageCasesChrome": "yarn playwright install && yarn playwright test e2e/tests/manageCases --project chromium --grep @nightly",
     "test:manageCasesFirefox": "yarn playwright install firefox && yarn playwright test e2e/tests/manageCases --project firefox --grep @smoke",
     "test:manageCasesSafari": "yarn playwright install webkit && yarn playwright test e2e/tests/manageCases --project webkit --grep @smoke",
     "test:manageCasesAccessibility": "yarn playwright install && yarn playwright test e2e/tests/manageCases --project chromium --grep @accessibility",
     "test:citizenSmoke": "yarn playwright install && yarn playwright test e2e/tests/citizen --project chromium --grep @smoke",
-    "test:citizenFrontendChrome": "yarn playwright install && yarn playwright test e2e/tests/citizen --project chromium --grep @regression @nightly",
+    "test:citizenFrontendChrome": "yarn playwright install && yarn playwright test e2e/tests/citizen --project chromium --grep @nightly",
     "test:citizenFrontendFirefox": "yarn playwright install firefox && yarn playwright test e2e/tests/citizen --project firefox --grep @smoke",
     "test:citizenFrontendSafari": "yarn playwright install webkit && yarn playwright test e2e/tests/citizen --project webkit --grep @smoke",
     "test:citizenFrontendAccessibility": "yarn playwright install && yarn playwright test e2e/tests/citizen --project chromium --grep @accessibility"
   },
-  "packageManager": "yarn@4.6.0"
+  "packageManager": "yarn@4.7.0"
 }

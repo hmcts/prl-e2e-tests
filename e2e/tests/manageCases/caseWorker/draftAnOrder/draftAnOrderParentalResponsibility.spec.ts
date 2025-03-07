@@ -1,7 +1,9 @@
 import { test } from "@playwright/test";
 import Config from "../../../../config";
 import { DraftAnOrder } from "../../../../journeys/manageCases/caseWorker/draftAnOrder/draftAnOrder";
-import { DummyC100 } from "../../../../journeys/manageCases/createCase/dummyCase/dummyC100.ts";
+import { SolicitorCACaseCreator } from "../../../../common/solicitorCACaseCreator.ts";
+import { Helpers } from "../../../../common/helpers.ts";
+import config from "../../../../config.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
@@ -12,11 +14,14 @@ test.describe("Draft a parental responsibility order tests", (): void => {
   let caseRef: string;
 
   test.beforeEach(async ({ page }) => {
-    caseRef = await DummyC100.dummyC100({
-      page: page,
-      applicantLivesInRefuge: false,
-      otherPersonLivesInRefuge: false,
-    });
+    await page.goto(Config.manageCasesBaseURLCase);
+    caseRef = await SolicitorCACaseCreator.createCaseSubmitAndPay(page);
+    await Helpers.goToCase(
+      page,
+      config.manageCasesBaseURLCase,
+      caseRef,
+      "tasks",
+    );
   });
 
   test(`Complete Drafting a parental responsibility as a solicitor with the following options:
@@ -36,6 +41,7 @@ test.describe("Draft a parental responsibility order tests", (): void => {
       willAllPartiesAttendHearing: false,
       browser: browser,
       caseRef: caseRef,
+      checkPdf: true,
     });
   });
 
@@ -56,6 +62,7 @@ test.describe("Draft a parental responsibility order tests", (): void => {
       willAllPartiesAttendHearing: false,
       browser: browser,
       caseRef: caseRef,
+      checkPdf: true,
     });
   });
 
@@ -76,6 +83,7 @@ test.describe("Draft a parental responsibility order tests", (): void => {
       willAllPartiesAttendHearing: false,
       browser: browser,
       caseRef: caseRef,
+      checkPdf: true,
     });
   });
 });

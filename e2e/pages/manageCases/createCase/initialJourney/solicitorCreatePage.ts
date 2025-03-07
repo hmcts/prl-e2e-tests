@@ -50,9 +50,18 @@ export class SolicitorCreatePage {
     page: Page,
     isDummyCase: boolean,
   ): Promise<void> {
-    await page.reload(); // Not ideal - but an interim solution until the underlying problem is fixed
     await page.selectOption(fieldIds.jurisdiction, options.familyPrivateLaw);
     await page.selectOption(fieldIds.caseType, options.caseType);
+    // If event dropdown fails to load then fail the test fast - interim solution until the underlying problem is fixed
+    const eventDropdown = page.locator(fieldIds.event);
+    const eventOptions = await eventDropdown.evaluate((el: HTMLSelectElement) =>
+      Array.from(el.options).map((option) => option.value),
+    );
+    if (eventOptions.length <= 1) {
+      console.log("Event dropdown failed to load, retrying..."); // bug ticket raised: FPVTL-60
+      await page.reload();
+      await this.fillInFields(page, isDummyCase);
+    }
     if (isDummyCase) {
       await page.selectOption(fieldIds.event, options.tsSolicitorApplication);
     } else {

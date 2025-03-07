@@ -15,8 +15,6 @@ enum UniqueSelectors {
   applicantEmailAddressConfidential = "#applicants_0_isEmailAddressConfidential_Yes",
   addressFields = "div > ccd-field-write > div > ccd-write-complex-type-field > div > fieldset > ccd-field-write > div > ccd-write-address-field > div > ccd-write-complex-type-field > div > fieldset > ccd-field-write > div > ccd-write-text-field > div > label > span.form-label",
   emailAddressFields = "ccd-write-email-field > div > label > span.form-label",
-  uploadC8FormLabel = "label[for='applicants_0_refugeConfidentialityC8Form'] .form-label",
-  uploadC8FormHint = "label[for='applicants_0_refugeConfidentialityC8Form'] + .form-hint",
   c8RefugeFormUploadFileInput = "#applicants_0_refugeConfidentialityC8Form",
 }
 
@@ -354,12 +352,12 @@ export class ApplicantDetails1Page {
       await page.click(`${PageLoadFields.applicantLivesInRefugeYes}`);
       await Helpers.checkVisibleAndPresent(
         page,
-        `${UniqueSelectors.uploadC8FormLabel}:text-is("${ApplicantDetails1Content.formLabelC8FormUpload}")`,
+        `${Selectors.GovukFormLabel}:text-is("${ApplicantDetails1Content.formLabelC8FormUpload}"):visible`,
         1,
       );
       await Helpers.checkVisibleAndPresent(
         page,
-        `${UniqueSelectors.uploadC8FormHint}:text-is("${ApplicantDetails1Content.c8FormUploadHint}")`,
+        `${Selectors.GovukFormHint}:text-is("${ApplicantDetails1Content.c8FormUploadHint}"):visible`,
         1,
       );
       const fileInput = page.locator(

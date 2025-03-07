@@ -1,7 +1,7 @@
 import { test } from "@playwright/test";
 import Config from "../../../../config";
 import { DummyPaymentAwp } from "../../../../journeys/manageCases/caseWorker/dummyPayment/dummyPaymentAwp";
-import { SolicitorCaseCreator } from "../../../../common/solicitorCaseCreator.ts";
+import { SolicitorDACaseCreator } from "../../../../common/solicitorDACaseCreator.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import config from "../../../../config.ts";
 
@@ -9,10 +9,15 @@ test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
 test.describe("FL401 Dummy payment for AWP tests", (): void => {
   test.beforeEach(async ({ page }) => {
-    await page.goto(Config.manageCasesBaseURL);
+    await page.goto(Config.manageCasesBaseURLCase);
     const caseRef: string =
-      await SolicitorCaseCreator.createCaseStatementOfTruthAndSubmit(page);
-    await Helpers.goToCase(page, config.manageCasesBaseURL, caseRef, "tasks");
+      await SolicitorDACaseCreator.createCaseStatementOfTruthAndSubmit(page);
+    await Helpers.goToCase(
+      page,
+      config.manageCasesBaseURLCase,
+      caseRef,
+      "tasks",
+    );
   });
 
   test(`Complete the Dummy payment for AWP action as a solicitor with the following options:
@@ -56,7 +61,7 @@ test.describe("FL401 Dummy payment for AWP tests", (): void => {
   test(`Complete the Dummy payment for AWP action  as a solicitor with the following options:
   Accessibility testing,
   Not Error message testing,
-  Payment status is paid. @accessibility @nightly`, async ({
+  Payment status is paid. @accessibility`, async ({
     page,
   }): Promise<void> => {
     await DummyPaymentAwp.dummyPaymentAwp({

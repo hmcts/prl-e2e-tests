@@ -1,4 +1,4 @@
-import { Page, expect, Locator } from "@playwright/test";
+import { Locator, Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { AllegationsOfHarmRevised2Content } from "../../../../../fixtures/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevised2Content";
 import { Helpers } from "../../../../../common/helpers";
@@ -329,9 +329,10 @@ export class AllegationsOfHarmRevised2Page {
       `${uniqueSelectors.nonMolestationFileUpload}`,
     );
     await fileInput.setInputFiles(config.testPdfFile);
-    await expect(
-      page.locator(`.error-message:text-is("Uploading...")`),
-    ).toHaveCount(0);
+    await page
+      .locator(".error-message", { hasText: " Uploading..." })
+      .nth(0)
+      .waitFor({ state: "hidden" });
   }
 
   private static async fillInO(page: Page): Promise<void> {
@@ -375,9 +376,10 @@ export class AllegationsOfHarmRevised2Page {
       `${uniqueSelectors.occupationFileUpload}`,
     );
     await fileInput.setInputFiles(config.testPdfFile);
-    await expect(
-      page.locator(`.error-message:text-is("Uploading...")`),
-    ).toHaveCount(0);
+    await page
+      .locator(".error-message", { hasText: " Uploading..." })
+      .nth(1)
+      .waitFor({ state: "hidden" });
   }
 
   private static async fillInFM(page: Page): Promise<void> {
@@ -421,9 +423,10 @@ export class AllegationsOfHarmRevised2Page {
       `${uniqueSelectors.forcedMarriageFileUpload}`,
     );
     await fileInput.setInputFiles(config.testPdfFile);
-    await expect(
-      page.locator(`.error-message:text-is("Uploading...")`),
-    ).toHaveCount(0);
+    await page
+      .locator(".error-message", { hasText: " Uploading..." })
+      .nth(2)
+      .waitFor({ state: "hidden" });
   }
 
   private static async fillInR(page: Page): Promise<void> {
@@ -467,9 +470,10 @@ export class AllegationsOfHarmRevised2Page {
       `${uniqueSelectors.restrainingOrderFileUpload}`,
     );
     await fileInput.setInputFiles(config.testPdfFile);
-    await expect(
-      page.locator(`.error-message:text-is("Uploading...")`),
-    ).toHaveCount(0);
+    await page
+      .locator(".error-message", { hasText: " Uploading..." })
+      .nth(3)
+      .waitFor({ state: "hidden" });
   }
 
   private static async fillInOI(page: Page): Promise<void> {
@@ -513,9 +517,10 @@ export class AllegationsOfHarmRevised2Page {
       `${uniqueSelectors.otherInjunctiveFileUpload}`,
     );
     await fileInput.setInputFiles(config.testPdfFile);
-    await expect(
-      page.locator(`.error-message:text-is("Uploading...")`),
-    ).toHaveCount(0);
+    await page
+      .locator(".error-message", { hasText: " Uploading..." })
+      .nth(4)
+      .waitFor({ state: "hidden" });
   }
 
   private static async fillInUI(page: Page): Promise<void> {
@@ -559,9 +564,10 @@ export class AllegationsOfHarmRevised2Page {
       `${uniqueSelectors.undertakingFileUpload}`,
     );
     await fileInput.setInputFiles(config.testPdfFile);
-    await expect(
-      page.locator(`.error-message:text-is("Uploading...")`),
-    ).toHaveCount(0);
+    await page
+      .locator(".error-message", { hasText: " Uploading..." })
+      .nth(5)
+      .waitFor({ state: "hidden" });
   }
 
   private static async checkFilledDataFields(page: Page): Promise<void> {

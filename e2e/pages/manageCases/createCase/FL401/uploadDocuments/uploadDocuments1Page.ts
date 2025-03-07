@@ -1,4 +1,4 @@
-import { Page, expect } from "@playwright/test";
+import { expect, Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { UploadDocuments1Content } from "../../../../../fixtures/manageCases/createCase/FL401/uploadDocuments/uploadDocuments1Content";
 import { Helpers } from "../../../../../common/helpers";
@@ -245,9 +245,7 @@ export class UploadDocuments1Page {
     await page.waitForTimeout(6000);
     await witnessUpload.setInputFiles(docFile);
     await expect(
-      page.locator(
-        `${Selectors.GovukErrorMessage}:text-is("${UploadDocuments1Content.uploadingFile}")`,
-      ),
+      page.locator(`${Selectors.GovukErrorMessage}:visible`),
     ).toHaveCount(0);
     const supportingUpload = page
       .locator(inputIDs.uploadSupportingDocuments)
@@ -255,9 +253,7 @@ export class UploadDocuments1Page {
     await page.waitForTimeout(6000);
     await supportingUpload.setInputFiles(docFile);
     await expect(
-      page.locator(
-        `${Selectors.GovukErrorMessage}:text-is("${UploadDocuments1Content.uploadingFile}")`,
-      ),
+      page.locator(`${Selectors.GovukErrorMessage}:visible`),
     ).toHaveCount(0);
   }
 }

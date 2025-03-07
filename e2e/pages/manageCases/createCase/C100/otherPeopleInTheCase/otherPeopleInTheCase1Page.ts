@@ -1,4 +1,4 @@
-import { Page, expect } from "@playwright/test";
+import { expect, Page } from "@playwright/test";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
@@ -21,8 +21,6 @@ enum UniqueSelectors {
   applicantCurrentAddressNo = "#otherPartyInTheCaseRevised_0_isCurrentAddressKnown_No",
   otherPersonLivesInRefugeYes = "#otherPartyInTheCaseRevised_0_liveInRefuge_Yes",
   otherPersonLivesInRefugeNo = "#otherPartyInTheCaseRevised_0_liveInRefuge_No",
-  uploadC8FormLabel = "label[for='otherPartyInTheCaseRevised_0_refugeConfidentialityC8Form'] .form-label",
-  uploadC8FormHint = "label[for='otherPartyInTheCaseRevised_0_refugeConfidentialityC8Form'] + .form-hint",
   c8RefugeFormUploadFileInput = "#otherPartyInTheCaseRevised_0_refugeConfidentialityC8Form",
   applicantAddressDropdown = "#otherPartyInTheCaseRevised_0_address_address_addressList",
   applicantLivedAtAddressLessThan5YearsYes = "#otherPartyInTheCaseRevised_0_isAtAddressLessThan5Years_Yes",
@@ -469,12 +467,12 @@ export class OtherPeopleInTheCase1Page {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${UniqueSelectors.uploadC8FormLabel}:text-is("${OtherPeopleInTheCase1Content.formLabelC8FormUpload}")`,
+        `${Selectors.GovukFormLabel}:text-is("${OtherPeopleInTheCase1Content.formLabelC8FormUpload}"):visible`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${UniqueSelectors.uploadC8FormHint}:text-is("${OtherPeopleInTheCase1Content.c8FormUploadHint}")`,
+        `${Selectors.GovukFormHint}:text-is("${OtherPeopleInTheCase1Content.c8FormUploadHint}"):visible`,
         1,
       ),
     ]);

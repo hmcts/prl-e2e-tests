@@ -1,5 +1,5 @@
 import { Page, test } from "@playwright/test";
-import { SolicitorCaseCreator } from "../common/solicitorCaseCreator.ts";
+import { SolicitorDACaseCreator } from "../common/solicitorDACaseCreator.ts";
 import Config from "../config.ts";
 import { AccessCodeHelper } from "../common/accessCodeHelper.ts";
 import createDaCitizenCourtNavCase from "../common/createCaseHelper.ts";
@@ -9,27 +9,25 @@ import { completeCheckApplicationAndSendToGatekeeper } from "../common/caseEvent
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
 test.describe("Case creation examples", (): void => {
-  test("create case and statement of truth and submit", async ({
-    page,
-  }): Promise<void> => {
-    await page.goto(Config.manageCasesBaseURL);
-    await SolicitorCaseCreator.createCaseStatementOfTruthAndSubmit(page);
+  test("create case", async ({ page }): Promise<void> => {
+    await page.goto(Config.manageCasesBaseURLCase);
+    await SolicitorDACaseCreator.createCaseStatementOfTruthAndSubmit(page);
   });
 
   test("create solicitor case - gatekeeping", async ({
     page,
     browser,
   }): Promise<void> => {
-    await page.goto(Config.manageCasesBaseURL);
-    await SolicitorCaseCreator.createCaseSendToGatekeeper(page, browser);
+    await page.goto(Config.manageCasesBaseURLCase);
+    await SolicitorDACaseCreator.createCaseSendToGatekeeper(page, browser);
   });
 
   test("create solicitor case and service of application example", async ({
     page,
     browser,
   }): Promise<void> => {
-    await page.goto(Config.manageCasesBaseURL);
-    const caseRef = await SolicitorCaseCreator.createCaseSOA(page, browser);
+    await page.goto(Config.manageCasesBaseURLCase);
+    const caseRef = await SolicitorDACaseCreator.createCaseSOA(page, browser);
     await AccessCodeHelper.getApplicantAccessCode(caseRef);
     await AccessCodeHelper.getRespondentAccessCode(caseRef);
   });
@@ -42,9 +40,7 @@ test.describe("Case creation examples", (): void => {
       browser,
       "caseWorker",
     );
-    await caPage.goto(
-      "https://manage-case.aat.platform.hmcts.net/work/my-work/list",
-    );
+    await caPage.goto(`${Config.manageCasesBaseURL}/work/my-work/list`);
     await completeCheckApplicationAndSendToGatekeeper(caPage, caseRef);
   });
 });

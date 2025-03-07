@@ -1,7 +1,7 @@
 import { test } from "@playwright/test";
 import Config from "../../../../config";
 import { DraftAnOrder } from "../../../../journeys/manageCases/caseWorker/draftAnOrder/draftAnOrder";
-import { SolicitorCaseCreator } from "../../../../common/solicitorCaseCreator.ts";
+import { SolicitorDACaseCreator } from "../../../../common/solicitorDACaseCreator.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import config from "../../../../config.ts";
 
@@ -11,10 +11,15 @@ test.describe("Draft a non molestation order tests", (): void => {
   let caseRef: string;
 
   test.beforeEach(async ({ page }) => {
-    await page.goto(Config.manageCasesBaseURL);
+    await page.goto(Config.manageCasesBaseURLCase);
     caseRef =
-      await SolicitorCaseCreator.createCaseStatementOfTruthAndSubmit(page);
-    await Helpers.goToCase(page, config.manageCasesBaseURL, caseRef, "tasks");
+      await SolicitorDACaseCreator.createCaseStatementOfTruthAndSubmit(page);
+    await Helpers.goToCase(
+      page,
+      config.manageCasesBaseURLCase,
+      caseRef,
+      "tasks",
+    );
   });
 
   test(`Complete Drafting a non molestation order as a solicitor with the following options:
@@ -37,6 +42,7 @@ test.describe("Draft a non molestation order tests", (): void => {
       willAllPartiesAttendHearing: false,
       browser: browser,
       caseRef: caseRef,
+      checkPdf: true,
     });
   });
 
@@ -60,29 +66,7 @@ test.describe("Draft a non molestation order tests", (): void => {
       willAllPartiesAttendHearing: false,
       browser: browser,
       caseRef: caseRef,
-    });
-  });
-
-  test(`Complete Drafting a non molestation order as a solicitor with the following options:
-  Yes to all options,
-  All respondent checkbox actions ticked,
-  Order in force until no fixed end date,
-  Not Accessibility testing,
-  Not error message testing. @regression`, async ({
-    page,
-    browser,
-  }): Promise<void> => {
-    await DraftAnOrder.draftAnOrder({
-      page: page,
-      errorMessaging: false,
-      accessibilityTest: false,
-      caseType: "FL401",
-      orderType: "nonMolestation",
-      yesNoToAll: true,
-      howLongWillOrderBeInForce: "noEndDate",
-      willAllPartiesAttendHearing: false,
-      browser: browser,
-      caseRef: caseRef,
+      checkPdf: true,
     });
   });
 
@@ -106,6 +90,7 @@ test.describe("Draft a non molestation order tests", (): void => {
       willAllPartiesAttendHearing: true,
       browser: browser,
       caseRef: caseRef,
+      checkPdf: true,
     });
   });
 
@@ -129,6 +114,7 @@ test.describe("Draft a non molestation order tests", (): void => {
       willAllPartiesAttendHearing: false,
       browser: browser,
       caseRef: caseRef,
+      checkPdf: true,
     });
   });
 });

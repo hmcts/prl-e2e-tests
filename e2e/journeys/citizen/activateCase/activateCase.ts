@@ -13,6 +13,7 @@ import { RespondentDashboardContent } from "../../../fixtures/citizen/activateCa
 import { ServiceOfApplication } from "../../manageCases/caseProgression/serviceOfApplication/serviceOfApplication.ts";
 import { completeEventsUpToServiceOfApplication } from "../../../common/caseEventsHelper.ts";
 import { applicationSubmittedBy } from "../../../common/types.ts";
+import { ConfidentialityCheck } from "../../manageCases/caseProgression/confidentilityCheck/confidentialityCheck.ts";
 
 interface ActiveCaseParams {
   page: Page;
@@ -51,6 +52,11 @@ export class ActivateCase {
         manageOrderData: jsonDatas.manageOrderDataPowerOfArrest,
         applicationSubmittedBy: applicationSubmittedBy,
       });
+      // need to complete C8 confidential details event when it is a solicitor case
+      // this is a cut down version of the confidential details journey
+      if (applicationSubmittedBy == "Solicitor") {
+        await ConfidentialityCheck.confidentialityCheckLite(browser, caseRef);
+      }
     } else {
       await completeEventsUpToServiceOfApplication(
         page,

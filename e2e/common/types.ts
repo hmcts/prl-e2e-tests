@@ -67,6 +67,7 @@ export type fl401SolicitorEvents =
   | "Statement of truth and submit";
 
 export type WACaseWorkerActions =
+  | "Allocated judge"
   | "Manage orders"
   | "Service of application"
   | "Create a bundle"
@@ -76,7 +77,9 @@ export type WACaseWorkerActions =
 export type fl401CaseWorkerActions =
   | "Welsh language requirements"
   | "Send and reply to messages"
-  | "Service of documents";
+  | "Service of documents"
+  | "Transfer to another court"
+  | "Remove draft order";
 
 export type fl401SubmittedSolicitorEvents =
   | "Draft an order"
@@ -194,7 +197,9 @@ export type judgeTitles =
 
 export type yesNoNA = "Yes" | "No" | "Not applicable";
 
-export type courtAdminEvents = "Edit and serve an order";
+export type courtAdminEvents =
+  | "Edit and serve an order"
+  | "Remove legal representative";
 
 export type contactOption = "Digital" | "Post";
 
@@ -219,7 +224,7 @@ export type documentSubmittedBy = "CourtNav" | "Citizen";
 
 export type applicationSubmittedBy = "Citizen" | "Solicitor";
 
-export type CaseAPIEvent =
+export type solicitorDACaseAPIEvent =
   | "fl401TypeOfApplication"
   | "withoutNoticeOrderDetails"
   | "applicantsDetails"
@@ -236,4 +241,27 @@ export type CaseAPIEvent =
   | "fl401AddCaseNumber"
   | "fl401SendToGateKeeper"
   | "manageOrders"
-  | "serviceOfApplication";
+  | "serviceOfApplication"
+  | "draftAnOrder";
+
+export type solicitorCACaseAPIEvent =
+  | "solicitorCreate"
+  | "selectApplicationType"
+  | "hearingUrgency"
+  | "applicantsDetails"
+  | "respondentsDetails"
+  | "otherPeopleInTheCaseRevised"
+  | "childDetailsRevised"
+  | "otherChildNotInTheCase"
+  | "childrenAndApplicants"
+  | "childrenAndRespondents"
+  | "childrenAndOtherPeople"
+  | "allegationsOfHarmRevised"
+  | "miamPolicyUpgrade"
+  | "internationalElement"
+  | "welshLanguageRequirements"
+  | "submitAndPay"
+  | "testingSupportPaymentSuccessCallback"
+  | "issueAndSendToLocalCourtCallback";
+
+export type AdditionalApplicationType = "c2" | "other";

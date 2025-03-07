@@ -1,14 +1,16 @@
 import solicitorDACaseData from "../caseData/solicitorDACaseEventData.json";
+import solicitorCACaseData from "../caseData/solicitorCACaseEventData.json";
 import orderEventDataAmendDischargedVaried from "../caseData/orderData/orderEventData-amendDischargedVaried.json";
 import orderEventDataPowerOfArrest from "../caseData/orderData/orderEventData-powerOfArrest.json";
 import { Page } from "@playwright/test";
-import { CaseAPIEvent } from "./types.ts";
+import { solicitorCACaseAPIEvent, solicitorDACaseAPIEvent } from "./types.ts";
 
 // Using "any" type below because it represents a large JSON object
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type JsonData = Record<string, any>;
 export const jsonDatas: JsonData = {
   solicitorDACaseData: solicitorDACaseData,
+  solicitorCACaseData: solicitorCACaseData,
   manageOrderDataPowerOfArrest: orderEventDataPowerOfArrest,
   manageOrderDataAmendDischargedVaried: orderEventDataAmendDischargedVaried,
 };
@@ -25,7 +27,7 @@ export async function getData(
   url: string,
   headers: HeadersInit,
 ): Promise<string> {
-  return await page.evaluate(
+  const res = await page.evaluate(
     async ({ url, headers }) => {
       const getRes = await fetch(url, {
         method: "GET",
@@ -33,12 +35,21 @@ export async function getData(
         credentials: "same-origin",
       });
       const resBody = await getRes.json();
-      if (resBody) {
-        return resBody.event_token;
+      if (
+        !resBody ||
+        (resBody.status !== undefined && resBody.status !== 200)
+      ) {
+        throw new Error(
+          `Failed to get event token. Status: ${resBody.status}, Error: ${resBody.error}, Callback Errors: ${resBody.callbackErrors}`,
+        );
+      } else {
+        return resBody;
       }
     },
     { url, headers },
   );
+  // default response status is undefined
+  return res.event_token;
 }
 
 /**
@@ -55,7 +66,7 @@ export async function postData(
   headers: HeadersInit,
   requestData: string,
 ): Promise<string> {
-  return await page.evaluate(
+  const res = await page.evaluate(
     async ({ url, headers, requestData }) => {
       const postRes = await fetch(url, {
         method: "POST",
@@ -64,24 +75,31 @@ export async function postData(
       });
       const resBody = await postRes.json();
       if (resBody) {
-        return resBody.id;
+        return resBody;
       }
     },
     { url, headers, requestData },
   );
+  // default response status is undefined
+  if (!res || (res.status !== undefined && res.status !== 200)) {
+    throw new Error(
+      `Failed to get event token. Status: ${res.status}, Error: ${res.error}, Callback Errors: ${res.callbackErrors}`,
+    );
+  }
+  return res.id;
 }
 
 /**
  * Function to submit a specific event for a given case.
  * @param {Page} page the page to be used - this gives the API call its context
  * @param {string} caseId the ID of the case to perform the event against
- * @param {CaseAPIEvent} eventId the ID of the event to be submitted
+ * @param {solicitorDACaseAPIEvent | solicitorCACaseAPIEvent} eventId the ID of the event to be submitted
  * @param {JsonData} jsonData a JSON file stored in an object that contains the event data for the event to be submitted
  */
 export async function submitEvent(
   page: Page,
   caseId: string,
-  eventId: CaseAPIEvent,
+  eventId: solicitorDACaseAPIEvent | solicitorCACaseAPIEvent,
   jsonData: JsonData = jsonDatas.solicitorDACaseData,
 ): Promise<void> {
   if (process.env.PWDEBUG) {
@@ -129,4 +147,48 @@ export async function submitEvent(
   if (process.env.PWDEBUG) {
     console.log(`Completed event: ${eventId}`);
   }
+}
+
+export async function createBlankCase(
+  page: Page,
+  jsonData: JsonData,
+): Promise<string> {
+  const startCaseCreationUrl = `/data/internal/case-types/PRLAPPS/event-triggers/solicitorCreate?ignore-warning=false`;
+
+  const startCaseCreationHeaders = {
+    Accept:
+      "application/vnd.uk.gov.hmcts.ccd-data-store-api.ui-start-case-trigger.v2+json;charset=UTF-8",
+    Experimental: "true",
+    "Content-type": "application/json; charset=UTF-8",
+  };
+  const eventToken: string = await getData(
+    page,
+    startCaseCreationUrl,
+    startCaseCreationHeaders,
+  );
+
+  const submitCaseUrl = `/data/case-types/PRLAPPS/cases?ignore-warning=false`;
+  const data = {
+    data: jsonData.solicitorCreate.data,
+    draft_id: null,
+    event: {
+      id: "solicitorCreate",
+      summary: "",
+      description: "",
+    },
+    event_token: eventToken,
+    ignore_warning: false,
+  };
+  const submitEventHeaders = {
+    Accept:
+      "application/vnd.uk.gov.hmcts.ccd-data-store-api.create-case.v2+json;charset=UTF-8",
+    Experimental: "true",
+    "Content-type": "application/json; charset=UTF-8",
+  };
+  return await postData(
+    page,
+    submitCaseUrl,
+    submitEventHeaders,
+    JSON.stringify(data),
+  );
 }

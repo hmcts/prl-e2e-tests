@@ -12,7 +12,7 @@ export enum ApplicantDashboardContent {
   orderP1 = "The court has made a decision about your case. The order tells you what the court has decided.",
   orderP2 = "Order made date - 05/06/2021",
   commonP = "If you’re coming to a court or tribunal for a hearing, bring your hearing letter with your case number – the case number helps you find where you need to go in the building.", //x2
-  strong = "You must also bring any papers that you need for your hearing as the court will not provide you with electronic devices to view them or be able to print papers on the day.",
+  strong = "You must also bring any papers that you need for your hearing as the court will not provide you with electronic devices to view them.  For final hearings only, the court can print any bundle it provides if you do not have access to printing facilities.",
   h21 = "About you",
   h22 = "Your application",
   h23 = "Your court hearings",

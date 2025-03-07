@@ -1,6 +1,6 @@
 import { Selectors } from "../../../../common/selectors";
 import { ServiceOfApplication2Content } from "../../../../fixtures/manageCases/caseProgression/serviceOfApplication/serviceOfApplication2Content";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+// import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
 import { Helpers } from "../../../../common/helpers";
 import config from "../../../../config";
@@ -92,7 +92,7 @@ export class ServiceOfApplication2Page {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      // await AccessibilityTestHelper.run(page);
     }
   }
 

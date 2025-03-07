@@ -21,6 +21,7 @@ export class C100CaseTabs {
     applicantLivesInRefuge,
     otherPersonLivesInRefuge,
   }: C100CaseTabsParams): Promise<void> {
+    await page.goto(Config.manageCasesBaseURLCase);
     const caseRef = await DummyC100.dummyC100({
       page: page,
       applicantLivesInRefuge: applicantLivesInRefuge,
@@ -32,7 +33,7 @@ export class C100CaseTabs {
     );
     await Helpers.goToCase(
       courtAdminPage,
-      Config.manageCasesBaseURL,
+      Config.manageCasesBaseURLCase,
       caseRef,
       "Summary",
     );
