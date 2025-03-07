@@ -5,7 +5,7 @@ import Config from "../../../../config.ts";
 
 test.describe("Create Citizen Application but choose to have legal representative fill it out for you.", (): void => {
   test.beforeEach(async ({ page }) => {
-    await IdamLoginHelper.signInCitizenUser(
+    await IdamLoginHelper.createAndSignInCitizenUser(
       page,
       Config.citizenFrontendBaseURL,
     );

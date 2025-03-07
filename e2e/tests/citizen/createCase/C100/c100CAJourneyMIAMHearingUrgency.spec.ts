@@ -5,7 +5,7 @@ import { test } from "@playwright/test";
 
 test.describe("C100 Citizen Application for the MIAM Hearing Urgency journey.", (): void => {
   test.beforeEach(async ({ page }) => {
-    await IdamLoginHelper.signInCitizenUser(
+    await IdamLoginHelper.createAndSignInCitizenUser(
       page,
       Config.citizenFrontendBaseURL,
     );
