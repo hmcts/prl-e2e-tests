@@ -5,7 +5,7 @@ import { CitizenC100ApiCase } from "../journeys/citizen/createCase/createAndSubm
 const citizenUrl = Config.citizenFrontendBaseURL as string;
 
 test.describe("Citizen CA Case creation examples", () => {
-  test("Create and submit a citizen CA case @nightly @regression", async ({
+  test("Create and submit a citizen CA case @nightly @regression @nightlyDev", async ({
     page,
   }) => {
     await CitizenC100ApiCase.createAndSubmitDraftCase({

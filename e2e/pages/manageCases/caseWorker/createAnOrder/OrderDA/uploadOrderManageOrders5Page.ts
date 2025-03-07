@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+// import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { ManageOrders1DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders1DAContent";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { UploadOrderManageOrders5Content } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/uploadOrderManageOrders5Content";
@@ -83,7 +83,7 @@ export class UploadOrderManageOrders5Page {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      // await AccessibilityTestHelper.run(page); //to be turned on once EXUI-2858 is fixed
     }
   }
 
