@@ -101,6 +101,6 @@ export class CaseDashboardPage {
       page,
       accessibilityTest,
     });
-    await page.getByRole("link", { name: `${ccdRef}` }).click(); // Select draft case
+    await page.getByRole("link", { name: ccdRef }).click(); // Select draft case
   }
 }
