@@ -16,8 +16,8 @@ import Config from "../../../../config";
 import config from "../../../../config";
 import { createOrderFL401Options } from "../../../../common/types";
 import { Selectors } from "../../../../common/selectors.ts";
-import { jsonDatas } from "../../../../common/solicitorCaseCreatorHelper.ts";
-import { completeCheckApplicationAndSendToGatekeeperAndCreateAnOrder } from "../../../../common/caseEventsHelper.ts";
+import { jsonDatas } from "../../../../common/caseHelpers/solicitorCaseCreatorHelper.ts";
+import { completeCheckApplicationAndSendToGatekeeperAndCreateAnOrder } from "../../../../common/caseHelpers/caseEventsHelper.ts";
 
 interface CreateHearingRequestParams {
   page: Page;

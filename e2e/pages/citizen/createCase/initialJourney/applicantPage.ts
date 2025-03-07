@@ -15,24 +15,22 @@ interface CheckPageLoadsOptions {
 }
 
 export class ApplicantPage {
-  public static async applicantPage({
+  public static async applicantPageNewCase({
     page,
     accessibilityTest,
   }: ApplicantPageOptions): Promise<void> {
-    await this.checkPageLoads({
-      page,
-      accessibilityTest,
-    });
+    await this.checkPageLoadsNewCase({ page, accessibilityTest });
     await this.startApplication(page);
   }
 
-  private static async checkPageLoads({
+  private static async checkPageLoadsNewCase({
     page,
     accessibilityTest,
   }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.NotificationBannerTitle}:text-is("${ApplicantContent.notificationBannerTitle}")`,
     );
+
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
@@ -67,25 +65,7 @@ export class ApplicantPage {
         `${Selectors.GovukLink}`,
       ),
     ]);
-    // await page.click(
-    //   `${Selectors.GovukSummaryText}:text-is("${ApplicantContent.detailsSummaryText}")`,
-    // );
-    // await Promise.all([
-    //   // Helpers.checkGroup(
-    //   //   page,
-    //   //   5,
-    //   //   ApplicantContent,
-    //   //   "detailsBody",
-    //   //   `${Selectors.GovukBody}`,
-    //   // ),
-    //   // Helpers.checkGroup(
-    //   //   page,
-    //   //   2,
-    //   //   ApplicantContent,
-    //   //   "detailsLink",
-    //   //   `${Selectors.GovukLink}`,
-    //   // ),
-    // ]);
+
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }
@@ -95,5 +75,58 @@ export class ApplicantPage {
     await page.click(
       `${Selectors.NotificationBannerLink}:text-is("${ApplicantContent.startApplication}")`,
     );
+  }
+
+  public static async applicantPageDraftCase({
+    page,
+    accessibilityTest,
+  }: ApplicantPageOptions): Promise<void> {
+    await this.checkPageLoadsDraftCase({ page, accessibilityTest });
+    await page.click(
+      `${Selectors.GovukLink}:text-is("${ApplicantContent.link1}")`,
+    );
+  }
+
+  private static async checkPageLoadsDraftCase({
+    page,
+    accessibilityTest,
+  }: CheckPageLoadsOptions): Promise<void> {
+    await page.waitForSelector(
+      `${Selectors.NotificationBannerTitle}:text-is("${ApplicantContent.notificationBannerTitle}")`,
+    );
+
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.h3}:text-is("${ApplicantContent.h3Draft}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukBody}:text-is("${ApplicantContent.detailDraft1}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukBody}:text-is("${ApplicantContent.detailDraft2}")`,
+        1,
+      ),
+      Helpers.checkGroup(
+        page,
+        6,
+        ApplicantContent,
+        "link",
+        `${Selectors.GovukLink}`,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.h2}:text-is("${ApplicantContent.h2}")`,
+        1,
+      ),
+    ]);
+
+    if (accessibilityTest) {
+      await AccessibilityTestHelper.run(page);
+    }
   }
 }

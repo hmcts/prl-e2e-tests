@@ -3,7 +3,7 @@ import { Helpers } from "../../../../common/helpers.ts";
 import { RemoveDraftOrder1Page } from "../../../../pages/manageCases/caseProgression/removeDraftOrder/removeDraftOrder1Page.ts";
 import { RemoveDraftOrder2Page } from "../../../../pages/manageCases/caseProgression/removeDraftOrder/removeDraftOrder2Page.ts";
 import { RemoveDraftOrderSubmitPage } from "../../../../pages/manageCases/caseProgression/removeDraftOrder/removeDraftOrderSubmitPage.ts";
-import { submitEvent } from "../../../../common/solicitorCaseCreatorHelper.ts";
+import { submitEvent } from "../../../../common/caseHelpers/solicitorCaseCreatorHelper.ts";
 import config from "../../../../config.ts";
 import { DraftAnOrder } from "../../caseWorker/draftAnOrder/draftAnOrder.ts";
 

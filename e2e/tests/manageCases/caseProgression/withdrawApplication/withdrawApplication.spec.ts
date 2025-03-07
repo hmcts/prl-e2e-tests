@@ -2,7 +2,7 @@ import { test } from "@playwright/test";
 import Config from "../../../../config";
 import { WithdrawApplication } from "../../../../journeys/manageCases/caseProgression/withdrawApplication/withdrawApplication.ts";
 import config from "../../../../config.ts";
-import { SolicitorCACaseCreator } from "../../../../common/solicitorCACaseCreator.ts";
+import { SolicitorCACaseCreator } from ".././../../../common/caseHelpers/solicitorCACaseCreator.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });

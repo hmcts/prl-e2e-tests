@@ -87,6 +87,8 @@ def secrets = [
     secret('manage-case-redirect-uri', 'MANAGE_CASE_REDIRECT_URI'),
     secret('jurisdiction', 'JURISDICTION'),
     secret('case-type', 'CASE_TYPE'),
+    secret('idam-api-url', 'IDAM_API_URL'),
+    secret('prl-cos-aat-url', 'PRL_COS_API_URL'),
   ]
 ]
 

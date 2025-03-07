@@ -1,7 +1,7 @@
 import { test } from "@playwright/test";
 import config from "../../../../config.ts";
 import { RemoveLegalRepresentative } from "../../../../journeys/manageCases/caseProgression/removeLegalRepresentative/removeLegalRepresentative.ts";
-import { SolicitorCACaseCreator } from "../../../../common/solicitorCACaseCreator.ts";
+import { SolicitorCACaseCreator } from ".././../../../common/caseHelpers/solicitorCACaseCreator.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 
 test.use({ storageState: config.sessionStoragePath + "solicitor.json" });

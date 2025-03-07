@@ -12,7 +12,7 @@ import {
   createOrderFL401Options,
 } from "../../../../../common/types.ts";
 import { CompleteTheOrder } from "../../completeTheOrder/completeTheOrder.ts";
-import { jsonDatas } from "../../../../../common/solicitorCaseCreatorHelper.ts";
+import { jsonDatas } from "../../../../../common/caseHelpers/solicitorCaseCreatorHelper.ts";
 
 interface ServiceOfApplicationJourneyParams {
   page: Page;
@@ -75,6 +75,7 @@ export class ServiceOfApplication {
       yesNoServiceOfApplication4,
       accessibilityTest,
       confidentialityCheck,
+      applicationSubmittedBy,
     });
   }
 
@@ -110,6 +111,7 @@ export class ServiceOfApplication {
       yesNoServiceOfApplication4,
       accessibilityTest,
       confidentialityCheck,
+      applicationSubmittedBy,
     });
   }
 }

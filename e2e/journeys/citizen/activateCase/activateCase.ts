@@ -1,17 +1,17 @@
 import { Browser, BrowserContext, Page } from "@playwright/test";
-import IdamLoginHelper from "../../../common/userSetup/idamLoginHelper.ts";
+import IdamLoginHelper from "../../../common/userHelpers/idamLoginHelper.ts";
 import Config from "../../../config.ts";
-import { AccessCodeHelper } from "../../../common/accessCodeHelper.ts";
+import { AccessCodeHelper } from "../../../common/caseHelpers/accessCodeHelper.ts";
 import { EnterPinPage } from "../../../pages/citizen/activateCase/enterPinPage.ts";
 import { CaseActivatedPage } from "../../../pages/citizen/activateCase/caseActivatedPage.ts";
 import { ApplicantDashboardPage } from "../../../pages/citizen/activateCase/applicantDashboardPage.ts";
 import { RespondentDashboardPage } from "../../../pages/citizen/activateCase/respondentDashboardPage.ts";
-import { jsonDatas } from "../../../common/solicitorCaseCreatorHelper.ts";
+import { jsonDatas } from "../../../common/caseHelpers/solicitorCaseCreatorHelper.ts";
 import { Selectors } from "../../../common/selectors.ts";
 import { ApplicantDashboardContent } from "../../../fixtures/citizen/activateCase/applicantDashboardContent.ts";
 import { RespondentDashboardContent } from "../../../fixtures/citizen/activateCase/respondentDashboardContent.ts";
 import { ServiceOfApplication } from "../../manageCases/caseProgression/serviceOfApplication/serviceOfApplication.ts";
-import { completeEventsUpToServiceOfApplication } from "../../../common/caseEventsHelper.ts";
+import { completeEventsUpToServiceOfApplication } from "../../../common/caseHelpers/caseEventsHelper.ts";
 import { applicationSubmittedBy } from "../../../common/types.ts";
 import { ConfidentialityCheck } from "../../manageCases/caseProgression/confidentilityCheck/confidentialityCheck.ts";
 

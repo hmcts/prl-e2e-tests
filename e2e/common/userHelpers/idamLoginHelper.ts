@@ -1,7 +1,9 @@
 import { Cookie, expect, Page } from "@playwright/test";
 import { existsSync, readFileSync } from "fs";
 import Config from "../../config.ts";
+
 import { setupUser } from "./idamCreateUserApiHelper.ts";
+
 import { UserCredentials, UserLoginInfo } from "../types.ts";
 
 export class IdamLoginHelper {
@@ -11,7 +13,7 @@ export class IdamLoginHelper {
   };
   private static submitButton: string = 'input[value="Sign in"]';
 
-  static async signIn(
+  public static async signIn(
     page: Page,
     username: string,
     password: string,
@@ -111,7 +113,7 @@ export class IdamLoginHelper {
         (cookie: Cookie) => cookie.name === "xui-webapp",
       );
       const expiry = new Date(cookie.expires * 1000);
-      // Check there is at least 4 hours left before the session expires
+      // check there is at least 4 hours left before the session expires
       return expiry.getTime() - Date.now() > 4 * 60 * 60 * 1000;
     } catch (error) {
       throw new Error(`Could not read session data: ${error} for ${path}`);

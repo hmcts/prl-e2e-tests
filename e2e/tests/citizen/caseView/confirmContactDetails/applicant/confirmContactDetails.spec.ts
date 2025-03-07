@@ -1,7 +1,7 @@
 import { test } from "@playwright/test";
 import Config from "../../../../../config.ts";
 import config from "../../../../../config.ts";
-import createDaCitizenCourtNavCase from "../../../../../common/createCaseHelper.ts";
+import createDaCitizenCourtNavCase from "../../../../../common/caseHelpers/citizenDACaseCreateHelper.ts";
 import { Helpers } from "../../../../../common/helpers.ts";
 import { ConfirmContactDetails } from "../../../../../journeys/citizen/caseView/confirmContactDetails/confirmContactDetails.ts";
 

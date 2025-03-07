@@ -1,9 +1,9 @@
 import { APIRequestContext, request, test as setup } from "@playwright/test";
 import dotenv from "dotenv";
-import { getAccessToken } from "../common/getAccessTokenHelper";
-import IdamLoginHelper from "../common/userSetup/idamLoginHelper.ts";
+import { getAccessToken } from "../common/caseHelpers/getAccessTokenHelper.ts";
+import IdamLoginHelper from "../common/userHelpers/idamLoginHelper.ts";
 import config from "../config";
-import { setupUser } from "../common/userSetup/idamCreateUserApiHelper.ts";
+import { setupUser } from "../common/userHelpers/idamCreateUserApiHelper.ts";
 
 dotenv.config();
 
@@ -54,32 +54,32 @@ setup("Retrieve bearer token for courtNav DA case creation", async () => {
 
 setup("Setup judge user", async ({ page }) => {
   await IdamLoginHelper.signInLongLivedUser(
-      page,
-      "judge",
-      config.manageCasesBaseURLCase,
+    page,
+    "judge",
+    config.manageCasesBaseURLCase,
   );
 });
 
 setup("Setup case manager user", async ({ page }) => {
   await IdamLoginHelper.signInLongLivedUser(
-      page,
-      "caseManager",
-      config.manageCasesBaseURLCase,
+    page,
+    "caseManager",
+    config.manageCasesBaseURLCase,
   );
 });
 
 setup("Setup caseWorker user", async ({ page }) => {
   await IdamLoginHelper.signInLongLivedUser(
-      page,
-      "caseWorker",
-      config.manageCasesBaseURLCase,
+    page,
+    "caseWorker",
+    config.manageCasesBaseURLCase,
   );
 });
 
 setup("Setup Stoke court admin user", async ({ page }) => {
   await IdamLoginHelper.signInLongLivedUser(
-      page,
-      "courtAdminStoke",
-      config.manageCasesBaseURLCase,
+    page,
+    "courtAdminStoke",
+    config.manageCasesBaseURLCase,
   );
 });

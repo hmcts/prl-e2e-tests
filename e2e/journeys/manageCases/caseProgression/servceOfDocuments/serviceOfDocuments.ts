@@ -6,9 +6,9 @@ import { yesNoNA } from "../../../../common/types";
 import { Helpers } from "../../../../common/helpers";
 import config from "../../../../config";
 import { ReviewDocuments } from "../reviewDocuments/reviewDocuments";
-import createDaCitizenCourtNavCase from "../../../../common/createCaseHelper";
+import createDaCitizenCourtNavCase from "../../../../common/caseHelpers/citizenDACaseCreateHelper.ts";
 import { ServiceOfDocumentsSubmitPage } from "../../../../pages/manageCases/caseProgression/serviceOfDocuments/serviceOfDocumentsSubmitPage";
-import { completeCheckApplicationAndSendToGatekeeper } from "../../../../common/caseEventsHelper.ts";
+import { completeCheckApplicationAndSendToGatekeeper } from "../../../../common/caseHelpers/caseEventsHelper.ts";
 
 interface ServiceOfDocumentsParams {
   page: Page;
