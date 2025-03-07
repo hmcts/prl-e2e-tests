@@ -9,23 +9,23 @@ import { completeCheckApplicationAndSendToGatekeeper } from "../common/caseHelpe
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
 test.describe("Case creation examples", (): void => {
-  test("create case", async ({page}): Promise<void> => {
+  test("create case", async ({ page }): Promise<void> => {
     await page.goto(Config.manageCasesBaseURLCase);
     await SolicitorDACaseCreator.createCaseStatementOfTruthAndSubmit(page);
   });
 
   test("create solicitor case - gatekeeping", async ({
-                                                       page,
-                                                       browser,
-                                                     }): Promise<void> => {
+    page,
+    browser,
+  }): Promise<void> => {
     await page.goto(Config.manageCasesBaseURLCase);
     await SolicitorDACaseCreator.createCaseSendToGatekeeper(page, browser);
   });
 
   test("create solicitor case and service of application example", async ({
-                                                                            page,
-                                                                            browser,
-                                                                          }): Promise<void> => {
+    page,
+    browser,
+  }): Promise<void> => {
     await page.goto(Config.manageCasesBaseURLCase);
     const caseRef = await SolicitorDACaseCreator.createCaseSOA(page, browser);
     await AccessCodeHelper.getApplicantAccessCode(caseRef);
@@ -33,24 +33,22 @@ test.describe("Case creation examples", (): void => {
   });
 
   test("create courtnav case and send to gatekeeper example", async ({
-                                                                       browser,
-                                                                     }): Promise<void> => {
+    browser,
+  }): Promise<void> => {
     const caseRef = await createDaCitizenCourtNavCase(false, false);
     const caPage: Page = await Helpers.openNewBrowserWindow(
-        browser,
-        "caseWorker",
+      browser,
+      "caseWorker",
     );
     await caPage.goto(`${Config.manageCasesBaseURL}/work/my-work/list`);
     await completeCheckApplicationAndSendToGatekeeper(caPage, caseRef);
   });
 
-  test("create courtnav", async ({
-                                                                       browser,
-                                                                     }): Promise<void> => {
+  test("create courtnav", async ({ browser }): Promise<void> => {
     await createDaCitizenCourtNavCase(false, false);
     const caPage: Page = await Helpers.openNewBrowserWindow(
-        browser,
-        "caseWorker",
+      browser,
+      "caseWorker",
     );
     await caPage.goto(`${Config.manageCasesBaseURL}/work/my-work/list`);
   });
