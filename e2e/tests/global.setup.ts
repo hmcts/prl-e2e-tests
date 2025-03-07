@@ -7,7 +7,7 @@ import { setupUser } from "../common/userSetup/idamCreateUserApiHelper.ts";
 
 dotenv.config();
 
-setup("Set up users", async ({ page }) => {
+setup("Set up users - solicitor", async ({ page }) => {
   // retrieve bearer token for user creation
   const apiContext = await request.newContext();
   const userCreationToken = await getAccessToken("createUser", apiContext);
@@ -17,11 +17,11 @@ setup("Set up users", async ({ page }) => {
       "Setup failed: Unable to retrieve bearer token for user creation.",
     );
   }
-
+  //set user token as an environment variable to be used elsewhere
   process.env.CREATE_USER_IDAM_BEARER_TOKEN = userCreationToken;
 
   // define users and set up their accounts
-  const users = ["solicitor", "caseWorker", "judge"];
+  const users = ["solicitor"];
   for (const userRole of users) {
     const { email, password } = await setupUser(userCreationToken, userRole);
     const browser = page.context().browser();
@@ -50,4 +50,36 @@ setup("Retrieve bearer token for courtNav DA case creation", async () => {
     throw new Error("Setup failed: Unable to get bearer token.");
   }
   process.env.COURTNAV_CREATE_CASE_BEARER_TOKEN = tokenDaCreateCase;
+});
+
+setup("Setup judge user", async ({ page }) => {
+  await IdamLoginHelper.signInLongLivedUser(
+      page,
+      "judge",
+      config.manageCasesBaseURLCase,
+  );
+});
+
+setup("Setup case manager user", async ({ page }) => {
+  await IdamLoginHelper.signInLongLivedUser(
+      page,
+      "caseManager",
+      config.manageCasesBaseURLCase,
+  );
+});
+
+setup("Setup caseWorker user", async ({ page }) => {
+  await IdamLoginHelper.signInLongLivedUser(
+      page,
+      "caseWorker",
+      config.manageCasesBaseURLCase,
+  );
+});
+
+setup("Setup Stoke court admin user", async ({ page }) => {
+  await IdamLoginHelper.signInLongLivedUser(
+      page,
+      "courtAdminStoke",
+      config.manageCasesBaseURLCase,
+  );
 });
