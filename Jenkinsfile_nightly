@@ -65,6 +65,7 @@ if(params.skipManageCasesTests) {
 } else {
   matchingEnv = envSubstrings.find{envSubstring -> params.MANAGE_CASES_BASE_URL.contains(envSubstring)}
 }
+echo "Matching env: ${matchingEnv}"
 
 def secrets = [
   "prl-${matchingEnv}": [
