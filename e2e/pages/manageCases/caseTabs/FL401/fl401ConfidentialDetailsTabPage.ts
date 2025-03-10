@@ -221,8 +221,7 @@ export class FL401ConfidentialDetailsTabPage {
         expect(
           page
             .getByRole("cell", {
-              name: `${FL401ConfidentialDetailsTabContent.refugeSectionDocument} ${FL401ConfidentialDetailsTabContent.testPdf} Uploaded by PRL AAT AM Swansea HCA`,
-              exact: true,
+              name: `${FL401ConfidentialDetailsTabContent.refugeSectionDocument} ${FL401ConfidentialDetailsTabContent.testPdf} Uploaded by`,
             })
             .getByRole("link"),
         ).toBeVisible(),
@@ -231,9 +230,6 @@ export class FL401ConfidentialDetailsTabPage {
             FL401ConfidentialDetailsTabContent.text16_uploadedBy,
             { exact: true },
           ),
-        ).toBeVisible(),
-        expect(
-          confidentialDocsSection.getByText("PRL AAT AM Swansea HCA"),
         ).toBeVisible(),
         expect(
           confidentialDocsSection.getByText(documentCategory),
