@@ -7,6 +7,7 @@ import { AmendApplicantDetails } from "../../../../journeys/manageCases/caseProg
 
 test.use({ storageState: Config.sessionStoragePath + "courtAdminStoke.json" });
 
+// comment to trigger test in pipeline
 test.describe("Complete amend applicant details event as a court admin", () => {
   let ccdRef: string = "";
 

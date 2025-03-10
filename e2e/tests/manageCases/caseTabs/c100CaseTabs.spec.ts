@@ -4,6 +4,7 @@ import { C100CaseTabs } from "../../../journeys/manageCases/caseTabs/c100CaseTab
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
+// comment to trigger test in pipeline
 test.describe("C100 Case tabs", (): void => {
   test(`C100 Case tabs with the following options:
   Not Accessibility testing,
