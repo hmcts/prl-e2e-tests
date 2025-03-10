@@ -1,10 +1,14 @@
 import { test } from "@playwright/test";
 import { FL401TheHome } from "../../../../journeys/manageCases/createCase/FL401TheHome/fl401TheHome";
-import Config from "../../../../config";
-
-test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
+import { SolicitorCreateInitial } from "../../../../journeys/manageCases/createCase/solicitorCreateInitial.ts";
 
 test.describe("FL401 Create cases The Home tests", (): void => {
+  test.beforeEach(async ({ page }) => {
+    await SolicitorCreateInitial.createUserAndCase({
+      page,
+      solicitorCaseType: "FL401",
+    });
+  });
   test(`Complete the FL401 The Home Journey with the following options:
         Not accessibility testing, 
         Not Error Messaging (There isn't any), 
@@ -21,7 +25,6 @@ test.describe("FL401 Create cases The Home tests", (): void => {
       fl401TheHomeYesNo: true,
       fl401EverLivedAtAddress: "No",
       fl401IntendToLiveAtAddress: "No",
-      subJourney: true,
     });
   });
 
@@ -41,7 +44,6 @@ test.describe("FL401 Create cases The Home tests", (): void => {
       fl401TheHomeYesNo: true,
       fl401EverLivedAtAddress: "No",
       fl401IntendToLiveAtAddress: "yesApplicant",
-      subJourney: true,
     });
   });
 
@@ -61,7 +63,6 @@ test.describe("FL401 Create cases The Home tests", (): void => {
       fl401TheHomeYesNo: true,
       fl401EverLivedAtAddress: "No",
       fl401IntendToLiveAtAddress: "yesRespondent",
-      subJourney: true,
     });
   });
 
@@ -81,7 +82,6 @@ test.describe("FL401 Create cases The Home tests", (): void => {
       fl401TheHomeYesNo: true,
       fl401EverLivedAtAddress: "No",
       fl401IntendToLiveAtAddress: "yesBothOfThem",
-      subJourney: true,
     });
   });
 
@@ -99,7 +99,6 @@ test.describe("FL401 Create cases The Home tests", (): void => {
       applicantHasChildren: true,
       fl401TheHomeYesNo: true,
       fl401EverLivedAtAddress: "yesApplicant",
-      subJourney: true,
     });
   });
 
@@ -117,7 +116,6 @@ test.describe("FL401 Create cases The Home tests", (): void => {
       applicantHasChildren: true,
       fl401TheHomeYesNo: true,
       fl401EverLivedAtAddress: "yesRespondent",
-      subJourney: true,
     });
   });
 
@@ -135,7 +133,6 @@ test.describe("FL401 Create cases The Home tests", (): void => {
       applicantHasChildren: true,
       fl401TheHomeYesNo: true,
       fl401EverLivedAtAddress: "yesBothOfThem",
-      subJourney: true,
     });
   });
 
@@ -151,7 +148,6 @@ test.describe("FL401 Create cases The Home tests", (): void => {
       fl401TheHomeYesNo: false,
       fl401EverLivedAtAddress: "No",
       fl401IntendToLiveAtAddress: "No",
-      subJourney: true,
     });
   });
 
@@ -169,7 +165,6 @@ test.describe("FL401 Create cases The Home tests", (): void => {
       applicantHasChildren: true,
       fl401TheHomeYesNo: false,
       fl401EverLivedAtAddress: "yesBothOfThem",
-      subJourney: true,
     });
   });
 
@@ -187,7 +182,6 @@ test.describe("FL401 Create cases The Home tests", (): void => {
       applicantHasChildren: false,
       fl401TheHomeYesNo: false,
       fl401EverLivedAtAddress: "yesApplicant",
-      subJourney: true,
     });
   });
 });
@@ -206,6 +200,5 @@ test(`Complete the FL401 The Home Journey with the following options:
     fl401TheHomeYesNo: true,
     fl401EverLivedAtAddress: "yesApplicant",
     fl401IntendToLiveAtAddress: "yesRespondent",
-    subJourney: true,
   });
 });

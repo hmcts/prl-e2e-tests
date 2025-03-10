@@ -1,10 +1,14 @@
 import { test } from "@playwright/test";
-import Config from "../../../../config";
 import { C100OtherChildrenNotInTheCase } from "../../../../journeys/manageCases/createCase/C100OtherChildrenNotInTheCase/C100OtherChildrenNotInTheCase";
-
-test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
+import { SolicitorCreateInitial } from "../../../../journeys/manageCases/createCase/solicitorCreateInitial.ts";
 
 test.describe("C100 Create case Other children not in the case tests", (): void => {
+  test.beforeEach(async ({ page }) => {
+    await SolicitorCreateInitial.createUserAndCase({
+      page,
+      solicitorCaseType: "C100",
+    });
+  });
   test(`Complete the C100 Other children not in the case event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
@@ -20,7 +24,6 @@ test.describe("C100 Create case Other children not in the case tests", (): void 
       otherChildPresent: true,
       otherChildGender: "Female",
       otherChildDOBKnown: true,
-      subJourney: true,
     });
   });
 
@@ -39,7 +42,6 @@ test.describe("C100 Create case Other children not in the case tests", (): void 
       otherChildPresent: true,
       otherChildGender: "Male",
       otherChildDOBKnown: false,
-      subJourney: true,
     });
   });
 
@@ -58,7 +60,6 @@ test.describe("C100 Create case Other children not in the case tests", (): void 
       otherChildPresent: true,
       otherChildGender: "They identify in another way",
       otherChildDOBKnown: true,
-      subJourney: true,
     });
   });
 
@@ -75,7 +76,6 @@ test.describe("C100 Create case Other children not in the case tests", (): void 
       otherChildPresent: false,
       otherChildGender: "They identify in another way",
       otherChildDOBKnown: true,
-      subJourney: true,
     });
   });
 
@@ -94,7 +94,6 @@ test.describe("C100 Create case Other children not in the case tests", (): void 
       otherChildPresent: true,
       otherChildGender: "Female",
       otherChildDOBKnown: false,
-      subJourney: true,
     });
   });
 });
@@ -114,6 +113,5 @@ test(`C100 Other children not in the case event as a solicitor with the followin
     otherChildPresent: true,
     otherChildGender: "Female",
     otherChildDOBKnown: false,
-    subJourney: true,
   });
 });

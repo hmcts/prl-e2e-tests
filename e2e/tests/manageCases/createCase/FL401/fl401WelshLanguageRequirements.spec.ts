@@ -1,10 +1,14 @@
 import { test } from "@playwright/test";
-import Config from "../../../../config";
 import { FL401WelshLanguageRequirements } from "../../../../journeys/manageCases/createCase/FL401WelshLanguageRequirements/FL401WelshLanguageRequirements";
-
-test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
+import { SolicitorCreateInitial } from "../../../../journeys/manageCases/createCase/solicitorCreateInitial.ts";
 
 test.describe("FL401 Create case welsh language requirements tests", (): void => {
+  test.beforeEach(async ({ page }) => {
+    await SolicitorCreateInitial.createUserAndCase({
+      page,
+      solicitorCaseType: "FL401",
+    });
+  });
   test(`Complete the FL401 welsh language requirements event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
@@ -16,7 +20,6 @@ test.describe("FL401 Create case welsh language requirements tests", (): void =>
       errorMessaging: false,
       welshLanguageRequirementsAllOptionsYes: true,
       welshLanguageRequirementsSelectWelsh: false,
-      subJourney: true,
     });
   });
 
@@ -31,7 +34,6 @@ test.describe("FL401 Create case welsh language requirements tests", (): void =>
       errorMessaging: false,
       welshLanguageRequirementsAllOptionsYes: true,
       welshLanguageRequirementsSelectWelsh: true,
-      subJourney: true,
     });
   });
 
@@ -44,7 +46,6 @@ test.describe("FL401 Create case welsh language requirements tests", (): void =>
       accessibilityTest: false,
       errorMessaging: false,
       welshLanguageRequirementsAllOptionsYes: false,
-      subJourney: true,
     });
   });
 });
@@ -62,6 +63,5 @@ test(`Accessibility test the FL401 welsh language requirements event as a solici
     errorMessaging: false,
     welshLanguageRequirementsAllOptionsYes: true,
     welshLanguageRequirementsSelectWelsh: false,
-    subJourney: true,
   });
 });

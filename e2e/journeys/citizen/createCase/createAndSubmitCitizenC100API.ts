@@ -3,7 +3,7 @@ import IdamLoginHelper from "../../../common/userHelpers/idamLoginHelper.ts";
 import { ApplicantPage } from "../../../pages/citizen/createCase/initialJourney/applicantPage.ts";
 import { CitizenCACaseCreator } from "../../../common/caseHelpers/citizenCACaseCreateHelper.ts";
 import { CaseDashboardPage } from "../../../pages/citizen/createCase/initialJourney/caseDashboardPage.ts";
-import { setupUser } from "../../../common/userHelpers/idamCreateCitizenUserApiHelper.ts";
+import { setupUser } from "../../../common/userHelpers/idamCreateUserApiHelper.ts";
 import { C100Pay } from "./C100/subJourneys/C100Pay.ts";
 import { EqualityAndDiversityPage } from "../../../pages/citizen/createCase/C100/confirmation/equalityAndDiversityQuestionsPage.ts";
 import { ReviewPage } from "../../../pages/citizen/createCase/C100/reviewPages/reviewPage.ts";
@@ -24,7 +24,7 @@ export class CitizenC100ApiCase {
     errorMessaging,
   }: CitizenC100ApiCaseOptions): Promise<void> {
     const token = process.env.CITIZEN_CREATE_USER_BEARER_TOKEN as string;
-    const userInfo = await setupUser(token); // Create citizen user
+    const userInfo = await setupUser(token, "citizen"); // Create citizen user
     // create the C100 case
     const ccdRef = await CitizenCACaseCreator.createDraftCitizenCACase(
       page,

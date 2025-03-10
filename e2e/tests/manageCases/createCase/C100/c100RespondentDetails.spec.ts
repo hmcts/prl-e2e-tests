@@ -1,10 +1,14 @@
 import { test } from "@playwright/test";
-import Config from "../../../../config";
 import { C100RespondentDetails } from "../../../../journeys/manageCases/createCase/C100RespondentDetails/C100RespondentDetails";
-
-test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
+import { SolicitorCreateInitial } from "../../../../journeys/manageCases/createCase/solicitorCreateInitial.ts";
 
 test.describe("C100 Create case respondent details tests", (): void => {
+  test.beforeEach(async ({ page }) => {
+    await SolicitorCreateInitial.createUserAndCase({
+      page,
+      solicitorCaseType: "C100",
+    });
+  });
   test(`Complete the C100 respondent details event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
@@ -14,13 +18,11 @@ test.describe("C100 Create case respondent details tests", (): void => {
   }): Promise<void> => {
     await C100RespondentDetails.c100RespondentDetails({
       page: page,
-      user: "solicitor",
       accessibilityTest: false,
       yesNoRespondentDetailsC100: true,
       respondentGender: "male",
       respondentAddress5Years: "yes",
       respondentLegalRepresentation: "yes",
-      subJourney: true,
     });
   });
 
@@ -33,13 +35,11 @@ test.describe("C100 Create case respondent details tests", (): void => {
   }): Promise<void> => {
     await C100RespondentDetails.c100RespondentDetails({
       page: page,
-      user: "solicitor",
       accessibilityTest: false,
       yesNoRespondentDetailsC100: false,
       respondentGender: "male",
       respondentAddress5Years: "no",
       respondentLegalRepresentation: "no",
-      subJourney: true,
     });
   });
 
@@ -52,13 +52,11 @@ test.describe("C100 Create case respondent details tests", (): void => {
   }): Promise<void> => {
     await C100RespondentDetails.c100RespondentDetails({
       page: page,
-      user: "solicitor",
       accessibilityTest: false,
       yesNoRespondentDetailsC100: false,
       respondentGender: "other",
       respondentAddress5Years: "dontKnow",
       respondentLegalRepresentation: "dontKnow",
-      subJourney: true,
     });
   });
 });
@@ -72,12 +70,10 @@ test(`C100 respondent details event as a solicitor with the following options:
 }): Promise<void> => {
   await C100RespondentDetails.c100RespondentDetails({
     page: page,
-    user: "solicitor",
     accessibilityTest: true,
     yesNoRespondentDetailsC100: true,
     respondentGender: "female",
     respondentAddress5Years: "yes",
     respondentLegalRepresentation: "yes",
-    subJourney: true,
   });
 });

@@ -2,10 +2,16 @@ import { test } from "@playwright/test";
 import Config from "../../../config";
 import { C100 } from "../../../journeys/manageCases/createCase/C100";
 import { FL401 } from "../../../journeys/manageCases/createCase/FL401";
-
-test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
+import IdamLoginHelper from "../../../common/userHelpers/idamLoginHelper.ts";
 
 test.describe("Manage cases case solicitor create case tests.", (): void => {
+  test.beforeEach(async ({ page }) => {
+    await IdamLoginHelper.createAndSignInUser(
+      page,
+      Config.manageCasesBaseURLCase,
+      "solicitor",
+    );
+  });
   // Triple timeout for these slow tests
   test.slow();
 
