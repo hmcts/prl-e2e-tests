@@ -13,35 +13,22 @@ import { C100TasksTabPage } from "../../../../pages/manageCases/caseTabs/c100Tas
 
 interface C100RespondentDetailsOptions {
   page: Page;
-  user: UserRole;
   accessibilityTest: boolean;
   yesNoRespondentDetailsC100: boolean;
   respondentGender: C100RespondentGender;
   respondentAddress5Years: C100RespondentAddress5Years;
   respondentLegalRepresentation: C100RespondentLegalRepresentation;
-  subJourney: boolean;
 }
 
 export class C100RespondentDetails {
   public static async c100RespondentDetails({
     page: page,
-    user: user,
     accessibilityTest: accessibilityTest,
     yesNoRespondentDetailsC100: yesNoRespondentDetailsC100,
     respondentGender: respondentGender,
     respondentAddress5Years: respondentAddress5Years,
     respondentLegalRepresentation: respondentLegalRepresentation,
-    subJourney: subJourney,
   }: C100RespondentDetailsOptions): Promise<void> {
-    if (subJourney) {
-      await SolicitorCreateInitial.createInitialCase({
-        page: page,
-        user: user,
-        accessibilityTest: false,
-        solicitorCaseType: "C100",
-        errorMessaging: false,
-      });
-    }
     await Helpers.handleEventBasedOnEnvironment(page, "Respondent details");
     await RespondentDetails1Page.respondent1DetailsPage({
       page,

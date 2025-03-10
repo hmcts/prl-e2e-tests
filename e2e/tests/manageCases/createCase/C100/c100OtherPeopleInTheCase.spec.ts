@@ -1,10 +1,14 @@
 import { test } from "@playwright/test";
 import { C100OtherPeopleInTheCase } from "../../../../journeys/manageCases/createCase/C100OtherPeopleInTheCase/C100OtherPeopleInTheCase";
-import Config from "../../../../config";
-
-test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
+import {SolicitorCreateInitial} from "../../../../journeys/manageCases/createCase/solicitorCreateInitial.ts";
 
 test.describe("C100 Create case Other people in the case Tests", (): void => {
+  test.beforeEach(async ({ page }) => {
+    await SolicitorCreateInitial.createUserAndCase({
+      page,
+      solicitorCaseType:"C100",
+    });
+  });
   test(`Complete the C100 Create case Other people in the case as a solicitor with the following options:
   Not Accessibility testing,
   Error message testing,
@@ -14,13 +18,11 @@ test.describe("C100 Create case Other people in the case Tests", (): void => {
   }): Promise<void> => {
     await C100OtherPeopleInTheCase.c100OtherPeopleInTheCase({
       page: page,
-      user: "solicitor",
       accessibilityTest: false,
       errorMessaging: true,
       yesNoOtherPeopleInTheCase: true,
       otherPersonLivesInRefuge: true,
       applicantGender: "male",
-      subJourney: true,
     });
   });
   test(`Complete the C100 Create case Other people in the case as a solicitor with the following options:
@@ -32,13 +34,11 @@ test.describe("C100 Create case Other people in the case Tests", (): void => {
   }): Promise<void> => {
     await C100OtherPeopleInTheCase.c100OtherPeopleInTheCase({
       page: page,
-      user: "solicitor",
       accessibilityTest: false,
       errorMessaging: false,
       yesNoOtherPeopleInTheCase: false,
       otherPersonLivesInRefuge: false,
       applicantGender: "female",
-      subJourney: true,
     });
   });
   test(`Complete the C100 Create case Other people in the case as a solicitor with the following options:
@@ -50,13 +50,11 @@ test.describe("C100 Create case Other people in the case Tests", (): void => {
   }): Promise<void> => {
     await C100OtherPeopleInTheCase.c100OtherPeopleInTheCase({
       page: page,
-      user: "solicitor",
       accessibilityTest: false,
       errorMessaging: false,
       yesNoOtherPeopleInTheCase: true,
       otherPersonLivesInRefuge: true,
       applicantGender: "other",
-      subJourney: true,
     });
   });
   test(`Complete the C100 Create case Other people in the case as a solicitor with the following options:
@@ -69,13 +67,11 @@ test.describe("C100 Create case Other people in the case Tests", (): void => {
   }): Promise<void> => {
     await C100OtherPeopleInTheCase.c100OtherPeopleInTheCase({
       page: page,
-      user: "solicitor",
       accessibilityTest: false,
       errorMessaging: false,
       yesNoOtherPeopleInTheCase: true,
       otherPersonLivesInRefuge: false,
       applicantGender: "other",
-      subJourney: true,
     });
   });
 });
@@ -89,12 +85,10 @@ test(`Complete the C100 Create case Other people in the case as a solicitor with
 }): Promise<void> => {
   await C100OtherPeopleInTheCase.c100OtherPeopleInTheCase({
     page: page,
-    user: "solicitor",
     accessibilityTest: false,
     errorMessaging: false,
     yesNoOtherPeopleInTheCase: true,
     otherPersonLivesInRefuge: true,
     applicantGender: "male",
-    subJourney: true,
   });
 });

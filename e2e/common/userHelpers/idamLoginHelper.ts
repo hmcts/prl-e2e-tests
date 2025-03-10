@@ -1,11 +1,10 @@
 import { Cookie, expect, Page } from "@playwright/test";
 import { existsSync, readFileSync } from "fs";
 import Config from "../../config.ts";
-
 import { setupUser } from "./idamCreateUserApiHelper.ts";
-
 import { UserCredentials, UserLoginInfo } from "../types.ts";
 
+const env = process.env.TEST_ENV || "aat";
 export class IdamLoginHelper {
   private static fields: UserLoginInfo = {
     username: "#username",
@@ -25,7 +24,7 @@ export class IdamLoginHelper {
     if (
       userType !== "citizen" &&
       existsSync(sessionPath) &&
-      this.isSessionValid(sessionPath)
+      this.isSessionValid(sessionPath, env)
     ) {
       return;
     } else {
@@ -83,16 +82,17 @@ export class IdamLoginHelper {
     }
   }
 
-  public static async createAndSignInCitizenUser(
+  public static async createAndSignInUser(
     page: Page,
     application: string,
+    userType: string,
   ): Promise<void> {
     const token = process.env.CREATE_USER_IDAM_BEARER_TOKEN as string;
     if (!token) {
       console.error("Bearer token is not defined in the environment variables");
       return;
     }
-    const userInfo = await setupUser(token, "citizen");
+    const userInfo = await setupUser(token, userType);
     if (!userInfo) {
       console.error("Failed to set up citizen user");
       return;
@@ -106,17 +106,22 @@ export class IdamLoginHelper {
     );
   }
 
-  private static isSessionValid(path: string): boolean {
+  private static isSessionValid(path: string, env: string): boolean {
     try {
       const data = JSON.parse(readFileSync(path, "utf-8"));
+
       const cookie = data.cookies.find(
         (cookie: Cookie) => cookie.name === "xui-webapp",
       );
+      //checks if the cookie domain is the same as the environment
+      // if (!cookie.value.includes(env)) {
+      //   return false;
+      // }
       const expiry = new Date(cookie.expires * 1000);
-      // check there is at least 4 hours left before the session expires
+      // Check there is at least 4 hours left before the session expires
       return expiry.getTime() - Date.now() > 4 * 60 * 60 * 1000;
     } catch (error) {
-      throw new Error(`Could not read session data: ${error} for ${path}`);
+      throw new Error(`Could not read session data from ${path}: ${error}`);
     }
   }
 }

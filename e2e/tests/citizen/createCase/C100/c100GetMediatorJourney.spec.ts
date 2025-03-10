@@ -5,9 +5,10 @@ import { C100 } from "../../../../journeys/citizen/createCase/C100/C100";
 
 test.describe("Create Citizen Application but you must get a mediator", (): void => {
   test.beforeEach(async ({ page }) => {
-    await IdamLoginHelper.createAndSignInCitizenUser(
+    await IdamLoginHelper.createAndSignInUser(
       page,
       Config.citizenFrontendBaseURL,
+      "citizen",
     );
   });
   test(`MIAM testing  with no previously attended MIAM. Redirect to Get Mediator

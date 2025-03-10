@@ -1,10 +1,44 @@
 import { test } from "@playwright/test";
-import Config from "../../../../config";
 import { C100ChildrenAndOtherPeople } from "../../../../journeys/manageCases/createCase/C100ChildrenAndOtherPeople/c100ChildrenAndOtherPeople";
-
-test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
+import IdamLoginHelper from "../../../../common/userHelpers/idamLoginHelper.ts";
+import Config from "../../../../config.ts";
+import {C100ChildDetails} from "../../../../journeys/manageCases/createCase/C100ChildDetails/c100ChildDetails.ts";
+import {
+  C100OtherPeopleInTheCase
+} from "../../../../journeys/manageCases/createCase/C100OtherPeopleInTheCase/C100OtherPeopleInTheCase.ts";
+import {
+  C100ApplicantDetails
+} from "../../../../journeys/manageCases/createCase/C100ApplicantDetails/c100ApplicantDetails.ts";
+import {SolicitorCreateInitial} from "../../../../journeys/manageCases/createCase/solicitorCreateInitial.ts";
 
 test.describe("C100 Create case Children and respondents Tests", (): void => {
+  test.beforeEach(async ({ page }) => {
+    await SolicitorCreateInitial.createUserAndCase({
+      page,
+      solicitorCaseType:"C100",
+    });
+    await C100ApplicantDetails.C100ApplicantDetails({
+      page,
+      accessibilityTest: false,
+      errorMessaging: false,
+      yesNoApplicantDetails: true,
+      applicantGender: "male",
+    });
+    await C100ChildDetails.c100ChildDetails({
+      page: page,
+      accessibilityTest: false,
+      c100ChildGender: "male",
+      yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions: "yes",
+    });
+    await C100OtherPeopleInTheCase.c100OtherPeopleInTheCase({
+      page: page,
+      accessibilityTest: false,
+      errorMessaging: true,
+      yesNoOtherPeopleInTheCase: true,
+      otherPersonLivesInRefuge: true,
+      applicantGender: "male",
+    });
+  });
   test(`Complete the C100 Create case Children and Other people as a solicitor with the following options:
   Not Accessibility testing,
   Error message testing,

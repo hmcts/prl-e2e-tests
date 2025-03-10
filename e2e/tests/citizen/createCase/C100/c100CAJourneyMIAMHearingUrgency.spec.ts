@@ -5,9 +5,10 @@ import { test } from "@playwright/test";
 
 test.describe("C100 Citizen Application for the MIAM Hearing Urgency journey.", (): void => {
   test.beforeEach(async ({ page }) => {
-    await IdamLoginHelper.createAndSignInCitizenUser(
+    await IdamLoginHelper.createAndSignInUser(
       page,
       Config.citizenFrontendBaseURL,
+      "citizen",
     );
   });
   test(`C100 Citizen Application with the following options:

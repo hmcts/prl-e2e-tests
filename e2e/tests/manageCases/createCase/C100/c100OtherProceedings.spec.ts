@@ -1,10 +1,19 @@
 import { test } from "@playwright/test";
 import Config from "../../../../config";
 import { C100OtherProceedings } from "../../../../journeys/manageCases/createCase/C100OtherProceedings/C100OtherProceedings";
-
-test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
+import IdamLoginHelper from "../../../../common/userHelpers/idamLoginHelper.ts";
+import { SolicitorCreateInitial } from "../../../../journeys/manageCases/createCase/solicitorCreateInitial.ts";
+import { Helpers } from "../../../../common/helpers.ts";
+import { Selectors } from "../../../../common/selectors.ts";
+import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 
 test.describe("C100 Create case other proceedings tests", (): void => {
+  test.beforeEach(async ({ page }) => {
+    await SolicitorCreateInitial.createUserAndCase({
+      page,
+      solicitorCaseType:"C100",
+    });
+});
   test(`Complete the C100 other proceedings event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
@@ -16,7 +25,6 @@ test.describe("C100 Create case other proceedings tests", (): void => {
       errorMessaging: false,
       c100OtherProceedings: "Yes",
       c100OngoingProceedingsAndDocX: true,
-      subJourney: true,
     });
   });
 
@@ -31,7 +39,6 @@ test.describe("C100 Create case other proceedings tests", (): void => {
       errorMessaging: false,
       c100OtherProceedings: "Yes",
       c100OngoingProceedingsAndDocX: false,
-      subJourney: true,
     });
   });
 
@@ -45,7 +52,6 @@ test.describe("C100 Create case other proceedings tests", (): void => {
       accessibilityTest: false,
       errorMessaging: false,
       c100OtherProceedings: "No",
-      subJourney: true,
     });
   });
 
@@ -59,7 +65,6 @@ test.describe("C100 Create case other proceedings tests", (): void => {
       accessibilityTest: false,
       errorMessaging: false,
       c100OtherProceedings: "Don't know",
-      subJourney: true,
     });
   });
 
@@ -76,7 +81,6 @@ test.describe("C100 Create case other proceedings tests", (): void => {
       errorMessaging: true,
       c100OtherProceedings: "Yes",
       c100OngoingProceedingsAndDocX: true,
-      subJourney: true,
     });
   });
 });
@@ -92,6 +96,5 @@ test(`C100 other proceedings event as a solicitor with the following options:
     accessibilityTest: true,
     errorMessaging: false,
     c100OtherProceedings: "No",
-    subJourney: true,
   });
 });

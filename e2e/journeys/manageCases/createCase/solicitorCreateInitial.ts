@@ -12,6 +12,10 @@ import { SolicitorCreate6Page } from "../../../pages/manageCases/createCase/init
 import { SolicitorCreate7Page } from "../../../pages/manageCases/createCase/initialJourney/solicitorCreate7Page";
 import { SolicitorCreatePage } from "../../../pages/manageCases/createCase/initialJourney/solicitorCreatePage";
 import { SubmitPage } from "../../../pages/manageCases/createCase/initialJourney/submitPage";
+import IdamLoginHelper from "../../../common/userHelpers/idamLoginHelper.ts";
+import Config from "../../../config.ts";
+import { Helpers } from "../../../common/helpers.ts";
+import { CommonStaticText } from "../../../common/commonStaticText.ts";
 
 export class SolicitorCreateInitial {
   public static async createInitialCase({
@@ -95,5 +99,33 @@ export class SolicitorCreateInitial {
         console.error("An invalid case type was selected");
         await SubmitPage.submitPage(page, accessibilityTest, caseName);
     }
+  }
+  public static async createUserAndCase({
+    page,
+    solicitorCaseType,
+  }: {
+    page: Page;
+    solicitorCaseType: solicitorCaseCreateType;
+  }): Promise<void> {
+    await IdamLoginHelper.createAndSignInUser(
+      page,
+      Config.manageCasesBaseURLCase,
+      "solicitor",
+    );
+    await SolicitorCreateInitial.createInitialCase({
+      page: page,
+      user: "solicitor",
+      accessibilityTest: false,
+      solicitorCaseType: solicitorCaseType,
+      errorMessaging: false,
+    });
+    //this is a work around as tasks aren't loaded
+    await Helpers.chooseEventFromDropdown(page, "Case name");
+    await page
+      .locator(Selectors.button, { hasText: CommonStaticText.continue })
+      .click();
+    await page
+      .locator(Selectors.button, { hasText: CommonStaticText.saveAndContinue })
+      .click();
   }
 }

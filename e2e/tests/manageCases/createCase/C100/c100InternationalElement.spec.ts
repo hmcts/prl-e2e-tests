@@ -1,10 +1,16 @@
 import { test } from "@playwright/test";
 import Config from "../../../../config";
 import { C100InternationalElement } from "../../../../journeys/manageCases/createCase/C100InternationalElement/C100InternationalElement";
-
-test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
+import IdamLoginHelper from "../../../../common/userHelpers/idamLoginHelper.ts";
+import {SolicitorCreateInitial} from "../../../../journeys/manageCases/createCase/solicitorCreateInitial.ts";
 
 test.describe("C100 Create case International Element Tests", (): void => {
+  test.beforeEach(async ({ page }) => {
+    await SolicitorCreateInitial.createUserAndCase({
+      page,
+      solicitorCaseType:"C100",
+    });
+  });
   test(`Complete the C100 International Element as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
@@ -14,10 +20,8 @@ test.describe("C100 Create case International Element Tests", (): void => {
   }): Promise<void> => {
     await C100InternationalElement.c100InternationalElement({
       page: page,
-      user: "solicitor",
       accessibilityTest: false,
       yesNoInternationalElement: true,
-      subJourney: true,
     });
   });
 
@@ -30,10 +34,8 @@ test.describe("C100 Create case International Element Tests", (): void => {
   }): Promise<void> => {
     await C100InternationalElement.c100InternationalElement({
       page: page,
-      user: "solicitor",
       accessibilityTest: false,
       yesNoInternationalElement: false,
-      subJourney: true,
     });
   });
 });
@@ -47,9 +49,7 @@ test(`Complete the C100 Create case International Element as a solicitor with th
 }): Promise<void> => {
   await C100InternationalElement.c100InternationalElement({
     page: page,
-    user: "solicitor",
     accessibilityTest: true,
     yesNoInternationalElement: true,
-    subJourney: true,
   });
 });

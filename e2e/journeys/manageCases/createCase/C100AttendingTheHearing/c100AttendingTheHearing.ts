@@ -10,7 +10,6 @@ interface C100AttendingTheHearingOptions {
   accessibilityTest: boolean;
   errorMessaging: boolean;
   c100AttendingTheHearingYesNo: boolean;
-  subJourney: boolean;
 }
 
 export class C100AttendingTheHearing {
@@ -19,17 +18,7 @@ export class C100AttendingTheHearing {
     accessibilityTest,
     errorMessaging,
     c100AttendingTheHearingYesNo,
-    subJourney,
   }: C100AttendingTheHearingOptions): Promise<void> {
-    if (subJourney) {
-      await SolicitorCreateInitial.createInitialCase({
-        page: page,
-        user: "solicitor",
-        accessibilityTest: false,
-        solicitorCaseType: "C100",
-        errorMessaging: false,
-      });
-    }
     await Helpers.handleEventBasedOnEnvironment(page, "Attending the hearing");
     await AttendingTheHearing1Page.attendingTheHearing1Page({
       page: page,

@@ -38,25 +38,7 @@ export class C100ChildrenAndOtherPeople {
     subJourney,
   }: c100ChildrenAndOtherPeopleOptions): Promise<void> {
     if (subJourney) {
-      await C100ChildDetails.c100ChildDetails({
-        page: page,
-        user: user,
-        accessibilityTest: accessibilityTest,
-        c100ChildGender: c100ChildGender,
-        yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions:
-          yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,
-        subJourney: true,
-      });
-      await C100OtherPeopleInTheCase.c100OtherPeopleInTheCase({
-        page: page,
-        user: user,
-        accessibilityTest: accessibilityTest,
-        errorMessaging: errorMessaging,
-        yesNoOtherPeopleInTheCase: yesNoOtherPeopleInTheCase,
-        otherPersonLivesInRefuge: otherPersonLivesInRefuge,
-        applicantGender: applicantGender,
-        subJourney: false,
-      });
+
     }
     await Helpers.handleEventBasedOnEnvironment(
       page,

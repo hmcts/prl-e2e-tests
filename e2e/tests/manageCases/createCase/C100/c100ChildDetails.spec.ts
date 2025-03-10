@@ -1,10 +1,24 @@
 import { test } from "@playwright/test";
-import Config from "../../../../config";
 import { C100ChildDetails } from "../../../../journeys/manageCases/createCase/C100ChildDetails/c100ChildDetails";
-
-test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
+import {SolicitorCreateInitial} from "../../../../journeys/manageCases/createCase/solicitorCreateInitial.ts";
+import {
+  C100ApplicantDetails
+} from "../../../../journeys/manageCases/createCase/C100ApplicantDetails/c100ApplicantDetails.ts";
 
 test.describe("C100 Create case child details tests", (): void => {
+  test.beforeEach(async ({ page }) => {
+    await SolicitorCreateInitial.createUserAndCase({
+      page,
+      solicitorCaseType:"C100",
+    });
+    await C100ApplicantDetails.C100ApplicantDetails({
+      page,
+      accessibilityTest: false,
+      errorMessaging: false,
+      yesNoApplicantDetails: true,
+      applicantGender: "male",
+    });
+  });
   test(`Complete the C100 child details event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
@@ -14,11 +28,9 @@ test.describe("C100 Create case child details tests", (): void => {
   }): Promise<void> => {
     await C100ChildDetails.c100ChildDetails({
       page: page,
-      user: "solicitor",
       accessibilityTest: false,
       c100ChildGender: "male",
       yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions: "yes",
-      subJourney: true,
     });
   });
 
@@ -31,11 +43,9 @@ test.describe("C100 Create case child details tests", (): void => {
   }): Promise<void> => {
     await C100ChildDetails.c100ChildDetails({
       page: page,
-      user: "solicitor",
       accessibilityTest: false,
       c100ChildGender: "female",
       yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions: "no",
-      subJourney: true,
     });
   });
 
@@ -48,11 +58,9 @@ test.describe("C100 Create case child details tests", (): void => {
   }): Promise<void> => {
     await C100ChildDetails.c100ChildDetails({
       page: page,
-      user: "solicitor",
       accessibilityTest: false,
       c100ChildGender: "other",
       yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions: "dontKnow",
-      subJourney: true,
     });
   });
 });
@@ -66,10 +74,8 @@ test(`C100 child details event as a solicitor with the following options:
 }): Promise<void> => {
   await C100ChildDetails.c100ChildDetails({
     page: page,
-    user: "solicitor",
     accessibilityTest: true,
     c100ChildGender: "female",
     yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions: "no",
-    subJourney: true,
   });
 });

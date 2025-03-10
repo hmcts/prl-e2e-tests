@@ -24,7 +24,6 @@ interface C100AllegationsOfHarmOptions {
   errorMessaging: boolean;
   c100YesNoAllegationsOfHarm: boolean;
   c100DomesticAbuseTypePage3: C100AllegationsOfHarmTypeOfDomesticAbuse;
-  subJourney: boolean;
 }
 
 export class C100AllegationsOfHarm {
@@ -33,19 +32,8 @@ export class C100AllegationsOfHarm {
     accessibilityTest: accessibilityTest,
     errorMessaging: errorMessaging,
     c100YesNoAllegationsOfHarm: c100YesNoAllegationsOfHarm,
-    subJourney: subJourney,
     c100DomesticAbuseTypePage3: c100DomesticAbuseTypePage3,
   }: C100AllegationsOfHarmOptions): Promise<void> {
-    if (subJourney) {
-      await C100ChildDetails.c100ChildDetails({
-        page: page,
-        user: "solicitor",
-        accessibilityTest: accessibilityTest,
-        c100ChildGender: "male",
-        yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions: "yes",
-        subJourney: true,
-      });
-    }
     await Helpers.handleEventBasedOnEnvironment(page, "Allegations of harm");
     await AllegationsOfHarmRevised1Page.allegationsOfHarmRevised1Page({
       page: page,

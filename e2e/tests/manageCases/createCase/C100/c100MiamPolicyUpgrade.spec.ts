@@ -1,10 +1,14 @@
 import { test } from "@playwright/test";
-import Config from "../../../../config";
 import { C100MiamPolicyUpgrade } from "../../../../journeys/manageCases/createCase/C100MiamPolicyUpgrade/C100MiamPolicyUpgrade";
-
-test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
+import { SolicitorCreateInitial } from "../../../../journeys/manageCases/createCase/solicitorCreateInitial.ts";
 
 test.describe("C100 Create case MIAM Tests", (): void => {
+  test.beforeEach(async ({ page }) => {
+    await SolicitorCreateInitial.createUserAndCase({
+      page,
+      solicitorCaseType:"C100",
+    });
+  });
   test(`Complete the C100 Create case MIAM as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
@@ -14,13 +18,11 @@ test.describe("C100 Create case MIAM Tests", (): void => {
   }): Promise<void> => {
     await C100MiamPolicyUpgrade.c100MiamPolicyUpgrade({
       page: page,
-      user: "solicitor",
       accessibilityTest: false,
       errorMessaging: false,
       C100MiamPolicyUpgrade1PageType: "yes",
       yesNoMiamPolicyUpgrade: true,
       miamSelection: "attended4MonthsPrior",
-      subJourney: true,
     });
   });
 
@@ -33,13 +35,11 @@ test.describe("C100 Create case MIAM Tests", (): void => {
   }): Promise<void> => {
     await C100MiamPolicyUpgrade.c100MiamPolicyUpgrade({
       page: page,
-      user: "solicitor",
       accessibilityTest: false,
       errorMessaging: true,
       C100MiamPolicyUpgrade1PageType: "yesAttendedMiam",
       yesNoMiamPolicyUpgrade: true,
       miamSelection: "attended4MonthsPrior",
-      subJourney: true,
     });
   });
 
@@ -51,13 +51,11 @@ test.describe("C100 Create case MIAM Tests", (): void => {
   Saying Yes to all options. @regression`, async ({ page }): Promise<void> => {
     await C100MiamPolicyUpgrade.c100MiamPolicyUpgrade({
       page: page,
-      user: "solicitor",
       accessibilityTest: false,
       errorMessaging: false,
       C100MiamPolicyUpgrade1PageType: "yesExemption",
       yesNoMiamPolicyUpgrade: true,
       miamSelection: "attended4MonthsPrior",
-      subJourney: true,
     });
   });
 
@@ -69,13 +67,11 @@ test.describe("C100 Create case MIAM Tests", (): void => {
   Saying no to all options. @regression`, async ({ page }): Promise<void> => {
     await C100MiamPolicyUpgrade.c100MiamPolicyUpgrade({
       page: page,
-      user: "solicitor",
       accessibilityTest: false,
       errorMessaging: false,
       C100MiamPolicyUpgrade1PageType: "yesExemption",
       yesNoMiamPolicyUpgrade: false,
       miamSelection: "initiatedMIAMBeforeProceedings_MIAMCertificate",
-      subJourney: true,
     });
   });
 
@@ -89,13 +85,11 @@ test.describe("C100 Create case MIAM Tests", (): void => {
   }): Promise<void> => {
     await C100MiamPolicyUpgrade.c100MiamPolicyUpgrade({
       page: page,
-      user: "solicitor",
       accessibilityTest: false,
       errorMessaging: true,
       C100MiamPolicyUpgrade1PageType: "yesExemption",
       yesNoMiamPolicyUpgrade: false,
       miamSelection: "initiatedMIAMBeforeProceedings_MIAMDetails",
-      subJourney: true,
     });
   });
   test(`Accessibility test the C100 Miam event as a solicitor with the following options:
@@ -107,13 +101,11 @@ test.describe("C100 Create case MIAM Tests", (): void => {
   }): Promise<void> => {
     await C100MiamPolicyUpgrade.c100MiamPolicyUpgrade({
       page: page,
-      user: "solicitor",
       accessibilityTest: true,
       errorMessaging: false,
       C100MiamPolicyUpgrade1PageType: "yes",
       yesNoMiamPolicyUpgrade: true,
       miamSelection: "initiatedMIAMBeforeProceedings_MIAMDetails",
-      subJourney: true,
     });
   });
 
@@ -127,13 +119,11 @@ test.describe("C100 Create case MIAM Tests", (): void => {
   }): Promise<void> => {
     await C100MiamPolicyUpgrade.c100MiamPolicyUpgrade({
       page: page,
-      user: "solicitor",
       accessibilityTest: true,
       errorMessaging: false,
       C100MiamPolicyUpgrade1PageType: "yesAttendedMiam",
       yesNoMiamPolicyUpgrade: true,
       miamSelection: "attended4MonthsPrior",
-      subJourney: true,
     });
   });
 
@@ -147,13 +137,11 @@ test.describe("C100 Create case MIAM Tests", (): void => {
   }): Promise<void> => {
     await C100MiamPolicyUpgrade.c100MiamPolicyUpgrade({
       page: page,
-      user: "solicitor",
       accessibilityTest: true,
       errorMessaging: false,
       C100MiamPolicyUpgrade1PageType: "yesExemption",
       yesNoMiamPolicyUpgrade: true,
       miamSelection: "attended4MonthsPrior",
-      subJourney: true,
     });
   });
 });

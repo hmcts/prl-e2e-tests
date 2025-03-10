@@ -15,7 +15,6 @@ interface C100OtherChildrenNotInTheCaseOptions {
   otherChildPresent: boolean;
   otherChildGender: C100OtherChildGender;
   otherChildDOBKnown: boolean;
-  subJourney: boolean;
 }
 export class C100OtherChildrenNotInTheCase {
   public static async c100OtherChildrenNotInTheCase({
@@ -25,17 +24,7 @@ export class C100OtherChildrenNotInTheCase {
     otherChildPresent: otherChildPresent,
     otherChildGender: otherChildGender,
     otherChildDOBKnown: otherChildDOBKnown,
-    subJourney: subJourney,
   }: C100OtherChildrenNotInTheCaseOptions): Promise<void> {
-    if (subJourney) {
-      await SolicitorCreateInitial.createInitialCase({
-        page: page,
-        user: "solicitor",
-        accessibilityTest: false,
-        solicitorCaseType: "C100",
-        errorMessaging: false,
-      });
-    }
     await Helpers.handleEventBasedOnEnvironment(
       page,
       "Other children not in the case",

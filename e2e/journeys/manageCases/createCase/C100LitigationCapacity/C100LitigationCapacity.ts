@@ -8,29 +8,16 @@ import { C100TasksTabPage } from "../../../../pages/manageCases/caseTabs/c100Tas
 
 interface C100LitigationCapacityOptions {
   page: Page;
-  user: UserRole;
   accessibilityTest: boolean;
   yesNoLitigationCapacity: boolean;
-  subJourney: boolean;
 }
 
 export class C100LitigationCapacity {
   public static async c100LitigationCapacity({
     page,
-    user,
     accessibilityTest,
     yesNoLitigationCapacity,
-    subJourney,
   }: C100LitigationCapacityOptions): Promise<void> {
-    if (subJourney) {
-      await SolicitorCreateInitial.createInitialCase({
-        page: page,
-        user: user,
-        accessibilityTest: false,
-        solicitorCaseType: "C100",
-        errorMessaging: false,
-      });
-    }
     await Helpers.handleEventBasedOnEnvironment(page, "Litigation capacity");
     await LitigationCapacity1Page.litigationCapacity1Page({
       page: page,

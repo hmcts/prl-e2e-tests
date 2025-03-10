@@ -120,7 +120,7 @@ export class ActivateCase {
     const newBrowser = await browser.browserType().launch();
     const newContext: BrowserContext = await newBrowser.newContext();
     const page: Page = await newContext.newPage();
-    await IdamLoginHelper.createAndSignInCitizenUser(
+    await IdamLoginHelper.createAndSignInUser(
       page,
       Config.citizenFrontendBaseURL,
     );
@@ -149,7 +149,7 @@ export class ActivateCase {
     const newBrowser = await browser.browserType().launch();
     const newContext: BrowserContext = await newBrowser.newContext();
     const page = await newContext.newPage();
-    await IdamLoginHelper.createAndSignInCitizenUser(
+    await IdamLoginHelper.createAndSignInUser(
       page,
       Config.citizenFrontendBaseURL,
     );

@@ -7,7 +7,7 @@ import { setupUser } from "../common/userHelpers/idamCreateUserApiHelper.ts";
 
 dotenv.config();
 
-setup("Set up users - solicitor", async ({ page }) => {
+setup("Retrive bearer token for user creation", async ({ page }) => {
   // retrieve bearer token for user creation
   const apiContext = await request.newContext();
   const userCreationToken = await getAccessToken("createUser", apiContext);
@@ -19,25 +19,6 @@ setup("Set up users - solicitor", async ({ page }) => {
   }
   //set user token as an environment variable to be used elsewhere
   process.env.CREATE_USER_IDAM_BEARER_TOKEN = userCreationToken;
-
-  // define users and set up their accounts
-  const users = ["solicitor"];
-  for (const userRole of users) {
-    const { email, password } = await setupUser(userCreationToken, userRole);
-    const browser = page.context().browser();
-    if (!browser) {
-      throw new Error("Setup failed: Browser instance is null or undefined.");
-    }
-    const userContext = await browser.newContext();
-    const userPage = await userContext.newPage();
-    await IdamLoginHelper.signIn(
-      userPage,
-      email,
-      password,
-      config.manageCasesBaseURL,
-      userRole,
-    );
-  }
 });
 
 setup("Retrieve bearer token for courtNav DA case creation", async () => {

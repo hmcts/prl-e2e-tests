@@ -1,20 +1,22 @@
 import { test } from "@playwright/test";
-import Config from "../../../../config";
 import { C100LitigationCapacity } from "../../../../journeys/manageCases/createCase/C100LitigationCapacity/C100LitigationCapacity";
-
-test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
+import {SolicitorCreateInitial} from "../../../../journeys/manageCases/createCase/solicitorCreateInitial.ts";
 
 test.describe("C100 Create case Litigation Capacity Tests", (): void => {
+  test.beforeEach(async ({ page }) => {
+    await SolicitorCreateInitial.createUserAndCase({
+      page,
+      solicitorCaseType:"C100",
+    });
+  });
   test(`Complete the C100 Litigation Capacity as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
   Saying yes to all options. @regression`, async ({ page }): Promise<void> => {
     await C100LitigationCapacity.c100LitigationCapacity({
       page: page,
-      user: "solicitor",
       accessibilityTest: false,
       yesNoLitigationCapacity: true,
-      subJourney: true,
     });
   });
 
@@ -24,10 +26,8 @@ test.describe("C100 Create case Litigation Capacity Tests", (): void => {
   Saying no to all options. @regression`, async ({ page }): Promise<void> => {
     await C100LitigationCapacity.c100LitigationCapacity({
       page: page,
-      user: "solicitor",
       accessibilityTest: false,
       yesNoLitigationCapacity: false,
-      subJourney: true,
     });
   });
 });
@@ -40,9 +40,7 @@ test(`Complete the C100 Create case Litigation Capacity as a solicitor with the 
 }): Promise<void> => {
   await C100LitigationCapacity.c100LitigationCapacity({
     page: page,
-    user: "solicitor",
     accessibilityTest: true,
     yesNoLitigationCapacity: true,
-    subJourney: true,
   });
 });

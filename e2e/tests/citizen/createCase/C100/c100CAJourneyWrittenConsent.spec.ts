@@ -5,9 +5,10 @@ import { C100 } from "../../../../journeys/citizen/createCase/C100/C100";
 
 test.describe("C100 Citizen Application with Written Consent from other people in the case.", (): void => {
   test.beforeEach(async ({ page }) => {
-    await IdamLoginHelper.createAndSignInCitizenUser(
+    await IdamLoginHelper.createAndSignInUser(
       page,
       Config.citizenFrontendBaseURL,
+      "citizen",
     );
   });
 
@@ -297,9 +298,10 @@ test.describe("C100 Citizen Application with Written Consent from other people i
 test.describe("Test the accessibility of the CA C100 Citizen Journey", (): void => {
   test.beforeEach(async ({ page }) => {
     // Sign in as a citizen user before each test
-    await IdamLoginHelper.createAndSignInCitizenUser(
+    await IdamLoginHelper.createAndSignInUser(
       page,
       Config.citizenFrontendBaseURL,
+      "citizen",
     );
   });
   test(`C100 of the citizen journey with the following options:

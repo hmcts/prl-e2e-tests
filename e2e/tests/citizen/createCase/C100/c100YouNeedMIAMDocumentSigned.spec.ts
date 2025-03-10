@@ -5,9 +5,10 @@ import IdamLoginHelper from "../../../../common/userHelpers/idamLoginHelper.ts";
 
 test.describe("Create Citizen Application but you don't have a MIAM document.", (): void => {
   test.beforeEach(async ({ page }) => {
-    await IdamLoginHelper.createAndSignInCitizenUser(
+    await IdamLoginHelper.createAndSignInUser(
       page,
       Config.citizenFrontendBaseURL,
+      "citizen",
     );
   });
   test(

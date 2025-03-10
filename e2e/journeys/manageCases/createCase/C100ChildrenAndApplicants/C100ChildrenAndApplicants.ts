@@ -27,14 +27,6 @@ export class C100ChildrenAndApplicants {
     subJourney: subJourney,
   }: C100ChildrenAndApplicantsOptions): Promise<void> {
     if (subJourney) {
-      await C100ChildDetails.c100ChildDetails({
-        page: page,
-        user: "solicitor",
-        accessibilityTest: false,
-        c100ChildGender: "male",
-        yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions: "yes",
-        subJourney: true,
-      });
     }
     await Helpers.handleEventBasedOnEnvironment(
       page,
