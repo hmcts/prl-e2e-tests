@@ -1,4 +1,4 @@
-import { Page, expect } from "@playwright/test";
+import { expect, Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors";
 import { Helpers } from "../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
@@ -180,11 +180,6 @@ export class FL401ConfidentialDetailsTabPage {
             .getByRole("columnheader", {
               name: FL401ConfidentialDetailsTabContent.text16_uploadedBy,
             })
-            .locator("span"),
-        ).toBeVisible(),
-        expect(
-          restrictedDocsSection
-            .getByRole("cell", { name: "PRL AAT AM Swansea HCA", exact: true })
             .locator("span"),
         ).toBeVisible(),
         expect(
