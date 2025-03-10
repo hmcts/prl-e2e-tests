@@ -6,6 +6,7 @@ import { SendAndReplyToMessages } from "../../../../journeys/manageCases/casePro
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
+// comment to trigger test in pipeline
 test.describe("Send and reply to messages between court admin and judge for an FL401 case tests", () => {
   let ccdRef: string;
   test.beforeEach(async ({ page }) => {

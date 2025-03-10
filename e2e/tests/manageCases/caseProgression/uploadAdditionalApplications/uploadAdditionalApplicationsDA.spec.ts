@@ -7,6 +7,7 @@ import { UploadAdditionalApplications } from "../../../../journeys/manageCases/c
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
+// comment to trigger test in pipeline
 test.describe("Upload additional applications for FL401 tests", (): void => {
   let caseRef;
 

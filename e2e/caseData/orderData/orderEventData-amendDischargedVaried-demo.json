@@ -645,8 +645,8 @@
       "isRespondent4SolicitorPresent": "No",
       "isRespondent5SolicitorPresent": "No",
       "previewOrderDoc": {
-        "document_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/e9040c1f-6bb8-4962-a13f-c10e1f485888",
-        "document_binary_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/e9040c1f-6bb8-4962-a13f-c10e1f485888/binary",
+        "document_url": "http://dm-store-demo.service.core-compute-demo.internal/documents/0448b3bc-8083-447c-a412-bc8d6ac5c5b0",
+        "document_binary_url": "http://dm-store-demo.service.core-compute-demo.internal/documents/0448b3bc-8083-447c-a412-bc8d6ac5c5b0/binary",
         "document_filename": "amended_discharged_or_varied_order_fl404b_draft.pdf"
       },
       "judgeDirectionsToAdmin": "Lorem Ipsum",
@@ -673,8 +673,8 @@
         ]
       },
       "noticeOfSafetySupportLetter": {
-        "document_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/675b1066-e716-4272-8d22-b1b6c996287b",
-        "document_binary_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/675b1066-e716-4272-8d22-b1b6c996287b/binary",
+        "document_url": "http://dm-store-demo.service.core-compute-demo.internal/documents/0448b3bc-8083-447c-a412-bc8d6ac5c5b0",
+        "document_binary_url": "http://dm-store-demo.service.core-compute-demo.internal/documents/0448b3bc-8083-447c-a412-bc8d6ac5c5b0/binary",
         "document_filename": "mockFile.pdf"
       },
       "additionalDocumentsList": [],
