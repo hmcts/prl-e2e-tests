@@ -1,14 +1,12 @@
 import { test } from "@playwright/test";
-import Config from "../../../../config";
 import { C100WelshLanguageRequirements } from "../../../../journeys/manageCases/createCase/C100welshLanguageRequirements/C100welshLanguageRequirements";
-import IdamLoginHelper from "../../../../common/userHelpers/idamLoginHelper.ts";
-import {SolicitorCreateInitial} from "../../../../journeys/manageCases/createCase/solicitorCreateInitial.ts";
+import { SolicitorCreateInitial } from "../../../../journeys/manageCases/createCase/solicitorCreateInitial.ts";
 
 test.describe("C100 Create case Welsh Language Requirements Tests", (): void => {
   test.beforeEach(async ({ page }) => {
     await SolicitorCreateInitial.createUserAndCase({
       page,
-      solicitorCaseType:"C100",
+      solicitorCaseType: "C100",
     });
   });
   test(`Complete the C100 Create case Welsh Language Requirements as a solicitor with the following options:

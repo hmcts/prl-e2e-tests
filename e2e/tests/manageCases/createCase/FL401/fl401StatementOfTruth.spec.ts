@@ -1,10 +1,14 @@
 import { test } from "@playwright/test";
-import Config from "../../../../config";
 import { Fl401StatementOfTruth } from "../../../../journeys/manageCases/createCase/FL401StatementOfTruth/fl401StatementOfTruth";
-
-test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
+import { SolicitorCreateInitial } from "../../../../journeys/manageCases/createCase/solicitorCreateInitial.ts";
 
 test.describe("FL401 Statement of truth tests", (): void => {
+  test.beforeEach(async ({ page }) => {
+    await SolicitorCreateInitial.createUserAndCase({
+      page,
+      solicitorCaseType: "FL401",
+    });
+  });
   test(`FL401 statement of truth journey with following options:
   Not accessibility testing,
   Not error messaging,

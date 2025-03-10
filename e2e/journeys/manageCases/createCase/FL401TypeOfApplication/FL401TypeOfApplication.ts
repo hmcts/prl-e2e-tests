@@ -4,14 +4,12 @@ import { TypeOfApplication2Page } from "../../../../pages/manageCases/createCase
 import { TypeOfApplicationSubmitPage } from "../../../../pages/manageCases/createCase/FL401/typeOfApplication/typeOfApplicationSubmitPage";
 import { Page } from "@playwright/test";
 import { Fl401TasksTabPage } from "../../../../pages/manageCases/caseTabs/fl401TasksTabPage";
-import { SolicitorCreateInitial } from "../solicitorCreateInitial";
 
 interface fl401TypeOfApplicationOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
   isLinkedToC100: boolean;
-  subJourney: boolean;
 }
 
 export class FL401TypeOfApplication {
@@ -20,17 +18,7 @@ export class FL401TypeOfApplication {
     accessibilityTest,
     errorMessaging,
     isLinkedToC100,
-    subJourney,
   }: fl401TypeOfApplicationOptions): Promise<void> {
-    if (subJourney) {
-      await SolicitorCreateInitial.createInitialCase({
-        page: page,
-        user: "solicitor",
-        accessibilityTest: false,
-        solicitorCaseType: "FL401",
-        errorMessaging: false,
-      });
-    }
     await Helpers.handleEventBasedOnEnvironment(page, "Type of application");
     await TypeOfApplication1Page.typeOfApplication1Page(
       page,

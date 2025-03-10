@@ -2,12 +2,11 @@ import { test } from "@playwright/test";
 import { C100ApplicantDetails } from "../../../../journeys/manageCases/createCase/C100ApplicantDetails/c100ApplicantDetails";
 import { SolicitorCreateInitial } from "../../../../journeys/manageCases/createCase/solicitorCreateInitial.ts";
 
-
 test.describe("C100 Create case - Applicant Details tests", (): void => {
   test.beforeEach(async ({ page }) => {
     await SolicitorCreateInitial.createUserAndCase({
       page,
-      solicitorCaseType:"C100",
+      solicitorCaseType: "C100",
     });
   });
   test(`Complete the C100 applicant details event as a solicitor with the following options:

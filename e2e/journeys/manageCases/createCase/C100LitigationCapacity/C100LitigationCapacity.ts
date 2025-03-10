@@ -1,6 +1,4 @@
 import { Page } from "@playwright/test";
-import { UserRole } from "../../../../common/types";
-import { SolicitorCreateInitial } from "../solicitorCreateInitial";
 import { Helpers } from "../../../../common/helpers";
 import { LitigationCapacity1Page } from "../../../../pages/manageCases/createCase/C100/litigationCapacity/litigationCapacity1Page";
 import { LitigationCapacitySubmitPage } from "../../../../pages/manageCases/createCase/C100/litigationCapacity/litigationCapacitySubmitPage";

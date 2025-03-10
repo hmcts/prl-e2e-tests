@@ -3,7 +3,6 @@ import { Page } from "@playwright/test";
 import { WelshLanguageRequirementsPage } from "../../../../pages/manageCases/createCase/FL401/welshLanguageRequirements/welshLanguageRequirementsPage";
 import { Fl401TasksTabPage } from "../../../../pages/manageCases/caseTabs/fl401TasksTabPage";
 import { WelshLanguageRequirementsSubmitPage } from "../../../../pages/manageCases/createCase/FL401/welshLanguageRequirements/welshLanguageRequirementsSubmitPage";
-import { SolicitorCreateInitial } from "../solicitorCreateInitial";
 
 interface fl401WelshLanguageRequirementsOptions {
   page: Page;
@@ -11,7 +10,6 @@ interface fl401WelshLanguageRequirementsOptions {
   errorMessaging: boolean;
   welshLanguageRequirementsAllOptionsYes: boolean;
   welshLanguageRequirementsSelectWelsh?: boolean;
-  subJourney: boolean;
 }
 
 export class FL401WelshLanguageRequirements {
@@ -21,17 +19,7 @@ export class FL401WelshLanguageRequirements {
     errorMessaging,
     welshLanguageRequirementsAllOptionsYes,
     welshLanguageRequirementsSelectWelsh,
-    subJourney,
   }: fl401WelshLanguageRequirementsOptions): Promise<void> {
-    if (subJourney) {
-      await SolicitorCreateInitial.createInitialCase({
-        page: page,
-        user: "solicitor",
-        accessibilityTest: false,
-        solicitorCaseType: "FL401",
-        errorMessaging: false,
-      });
-    }
     await Helpers.handleEventBasedOnEnvironment(
       page,
       "Welsh language requirements",

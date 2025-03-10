@@ -1,4 +1,3 @@
-import { SolicitorCreateInitial } from "../solicitorCreateInitial";
 import { Helpers } from "../../../../common/helpers";
 import { Page } from "@playwright/test";
 import { Fl401TasksTabPage } from "../../../../pages/manageCases/caseTabs/fl401TasksTabPage";
@@ -15,7 +14,6 @@ interface FL401TheHomeOptions {
   fl401TheHomeYesNo: boolean;
   fl401EverLivedAtAddress: addressRadios;
   fl401IntendToLiveAtAddress?: addressRadios;
-  subJourney: boolean;
 }
 
 export class FL401TheHome {
@@ -26,17 +24,7 @@ export class FL401TheHome {
     fl401TheHomeYesNo,
     fl401EverLivedAtAddress,
     fl401IntendToLiveAtAddress,
-    subJourney,
   }: FL401TheHomeOptions): Promise<void> {
-    if (subJourney) {
-      await SolicitorCreateInitial.createInitialCase({
-        page: page,
-        user: "solicitor",
-        accessibilityTest: false,
-        solicitorCaseType: "FL401",
-        errorMessaging: false,
-      });
-    }
     await Helpers.handleEventBasedOnEnvironment(page, "The home");
     await Fl401TheHome1Page.fl401TheHome1Page({
       page,

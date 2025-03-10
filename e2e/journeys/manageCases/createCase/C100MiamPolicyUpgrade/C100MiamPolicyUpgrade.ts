@@ -7,8 +7,6 @@ import {
   MiamPolicyUpgrade6Page,
   miamSelection,
 } from "../../../../pages/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade6Page";
-import { SolicitorCreateInitial } from "../solicitorCreateInitial";
-import { UserRole } from "../../../../common/types";
 import { Helpers } from "../../../../common/helpers";
 import { MiamPolicyUpgradeSubmitPage } from "../../../../pages/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgradeSubmitPage";
 import { MiamPolicyUpgrade8Page } from "../../../../pages/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade8Page";

@@ -1,10 +1,14 @@
 import { test } from "@playwright/test";
-import Config from "../../../../config";
 import { FL401RelationshipToRespondent } from "../../../../journeys/manageCases/createCase/FL401RelationshipToRespondent/FL401RelationshipToRespondent";
-
-test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
+import { SolicitorCreateInitial } from "../../../../journeys/manageCases/createCase/solicitorCreateInitial.ts";
 
 test.describe("FL401 Create case relationship to respondent tests", (): void => {
+  test.beforeEach(async ({ page }) => {
+    await SolicitorCreateInitial.createUserAndCase({
+      page,
+      solicitorCaseType: "FL401",
+    });
+  });
   test(`Complete the FL401 relationship to respondent event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
@@ -16,7 +20,6 @@ test.describe("FL401 Create case relationship to respondent tests", (): void => 
       accessibilityTest: false,
       errorMessaging: false,
       relationshipToRespondent: "marriedOrCivil", // Changed here
-      subJourney: true,
     });
   });
 
@@ -31,7 +34,6 @@ test.describe("FL401 Create case relationship to respondent tests", (): void => 
       accessibilityTest: false,
       errorMessaging: false,
       relationshipToRespondent: "formerlyMarriedOrCivil", // Changed here
-      subJourney: true,
     });
   });
 
@@ -46,7 +48,6 @@ test.describe("FL401 Create case relationship to respondent tests", (): void => 
       accessibilityTest: false,
       errorMessaging: false,
       relationshipToRespondent: "engagedOrProposed", // Changed here
-      subJourney: true,
     });
   });
 
@@ -61,7 +62,6 @@ test.describe("FL401 Create case relationship to respondent tests", (): void => 
       accessibilityTest: false,
       errorMessaging: false,
       relationshipToRespondent: "formerlyEngagedOrProposed", // Changed here
-      subJourney: true,
     });
   });
 
@@ -76,7 +76,6 @@ test.describe("FL401 Create case relationship to respondent tests", (): void => 
       accessibilityTest: false,
       errorMessaging: false,
       relationshipToRespondent: "liveTogether", // Changed here
-      subJourney: true,
     });
   });
 
@@ -91,7 +90,6 @@ test.describe("FL401 Create case relationship to respondent tests", (): void => 
       accessibilityTest: false,
       errorMessaging: false,
       relationshipToRespondent: "foremerlyLivedTogether", // Changed here
-      subJourney: true,
     });
   });
 
@@ -106,7 +104,6 @@ test.describe("FL401 Create case relationship to respondent tests", (): void => 
       accessibilityTest: false,
       errorMessaging: false,
       relationshipToRespondent: "bfGfOrPartnerNotLivedTogether", // Changed here
-      subJourney: true,
     });
   });
 
@@ -121,7 +118,6 @@ test.describe("FL401 Create case relationship to respondent tests", (): void => 
       accessibilityTest: false,
       errorMessaging: false,
       relationshipToRespondent: "formerBfGfOrPartnerNotLivedTogether", // Changed here
-      subJourney: true,
     });
   });
 
@@ -138,7 +134,6 @@ test.describe("FL401 Create case relationship to respondent tests", (): void => 
       errorMessaging: false,
       relationshipToRespondent: "noneOfTheAbove",
       relationshipToRespondentOther: "Father",
-      subJourney: true,
     });
   });
 
@@ -155,7 +150,6 @@ test.describe("FL401 Create case relationship to respondent tests", (): void => 
       errorMessaging: false,
       relationshipToRespondent: "noneOfTheAbove",
       relationshipToRespondentOther: "Mother",
-      subJourney: true,
     });
   });
 
@@ -172,7 +166,6 @@ test.describe("FL401 Create case relationship to respondent tests", (): void => 
       errorMessaging: false,
       relationshipToRespondent: "noneOfTheAbove",
       relationshipToRespondentOther: "Son",
-      subJourney: true,
     });
   });
 
@@ -189,7 +182,6 @@ test.describe("FL401 Create case relationship to respondent tests", (): void => 
       errorMessaging: false,
       relationshipToRespondent: "noneOfTheAbove",
       relationshipToRespondentOther: "Daughter",
-      subJourney: true,
     });
   });
 
@@ -206,7 +198,6 @@ test.describe("FL401 Create case relationship to respondent tests", (): void => 
       errorMessaging: false,
       relationshipToRespondent: "noneOfTheAbove",
       relationshipToRespondentOther: "Brother",
-      subJourney: true,
     });
   });
 
@@ -223,7 +214,6 @@ test.describe("FL401 Create case relationship to respondent tests", (): void => 
       errorMessaging: false,
       relationshipToRespondent: "noneOfTheAbove",
       relationshipToRespondentOther: "Sister",
-      subJourney: true,
     });
   });
 
@@ -240,7 +230,6 @@ test.describe("FL401 Create case relationship to respondent tests", (): void => 
       errorMessaging: false,
       relationshipToRespondent: "noneOfTheAbove",
       relationshipToRespondentOther: "Grandfather",
-      subJourney: true,
     });
   });
 
@@ -257,7 +246,6 @@ test.describe("FL401 Create case relationship to respondent tests", (): void => 
       errorMessaging: false,
       relationshipToRespondent: "noneOfTheAbove",
       relationshipToRespondentOther: "Grandmother",
-      subJourney: true,
     });
   });
 
@@ -274,7 +262,6 @@ test.describe("FL401 Create case relationship to respondent tests", (): void => 
       errorMessaging: false,
       relationshipToRespondent: "noneOfTheAbove",
       relationshipToRespondentOther: "Uncle",
-      subJourney: true,
     });
   });
 
@@ -291,7 +278,6 @@ test.describe("FL401 Create case relationship to respondent tests", (): void => 
       errorMessaging: false,
       relationshipToRespondent: "noneOfTheAbove",
       relationshipToRespondentOther: "Aunt",
-      subJourney: true,
     });
   });
 
@@ -308,7 +294,6 @@ test.describe("FL401 Create case relationship to respondent tests", (): void => 
       errorMessaging: false,
       relationshipToRespondent: "noneOfTheAbove",
       relationshipToRespondentOther: "Nephew",
-      subJourney: true,
     });
   });
 
@@ -325,7 +310,6 @@ test.describe("FL401 Create case relationship to respondent tests", (): void => 
       errorMessaging: false,
       relationshipToRespondent: "noneOfTheAbove",
       relationshipToRespondentOther: "Niece",
-      subJourney: true,
     });
   });
 
@@ -342,7 +326,6 @@ test.describe("FL401 Create case relationship to respondent tests", (): void => 
       errorMessaging: false,
       relationshipToRespondent: "noneOfTheAbove",
       relationshipToRespondentOther: "Cousin",
-      subJourney: true,
     });
   });
 
@@ -359,7 +342,6 @@ test.describe("FL401 Create case relationship to respondent tests", (): void => 
       errorMessaging: false,
       relationshipToRespondent: "noneOfTheAbove",
       relationshipToRespondentOther: "Other",
-      subJourney: true,
     });
   });
 
@@ -374,7 +356,6 @@ test.describe("FL401 Create case relationship to respondent tests", (): void => 
       accessibilityTest: false,
       errorMessaging: true,
       relationshipToRespondent: "foremerlyLivedTogether",
-      subJourney: true,
     });
   });
 
@@ -391,7 +372,6 @@ test.describe("FL401 Create case relationship to respondent tests", (): void => 
       errorMessaging: true,
       relationshipToRespondent: "noneOfTheAbove",
       relationshipToRespondentOther: "Other",
-      subJourney: true,
     });
   });
 });
@@ -407,7 +387,6 @@ test(`FL401 relationship to respondent event as a solicitor with the following o
     accessibilityTest: true,
     errorMessaging: false,
     relationshipToRespondent: "bfGfOrPartnerNotLivedTogether",
-    subJourney: true,
   });
 });
 
@@ -424,6 +403,5 @@ test(`FL401 relationship to respondent event as a solicitor with the following o
     errorMessaging: false,
     relationshipToRespondent: "noneOfTheAbove",
     relationshipToRespondentOther: "Father",
-    subJourney: true,
   });
 });

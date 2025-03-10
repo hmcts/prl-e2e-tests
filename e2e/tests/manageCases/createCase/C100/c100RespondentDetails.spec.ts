@@ -1,17 +1,12 @@
 import { test } from "@playwright/test";
-import Config from "../../../../config";
 import { C100RespondentDetails } from "../../../../journeys/manageCases/createCase/C100RespondentDetails/C100RespondentDetails";
-import IdamLoginHelper from "../../../../common/userHelpers/idamLoginHelper.ts";
 import { SolicitorCreateInitial } from "../../../../journeys/manageCases/createCase/solicitorCreateInitial.ts";
-import { Helpers } from "../../../../common/helpers.ts";
-import { Selectors } from "../../../../common/selectors.ts";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 
 test.describe("C100 Create case respondent details tests", (): void => {
   test.beforeEach(async ({ page }) => {
     await SolicitorCreateInitial.createUserAndCase({
       page,
-      solicitorCaseType:"C100",
+      solicitorCaseType: "C100",
     });
   });
   test(`Complete the C100 respondent details event as a solicitor with the following options:

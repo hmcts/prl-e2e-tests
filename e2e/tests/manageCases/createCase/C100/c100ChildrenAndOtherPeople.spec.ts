@@ -1,21 +1,15 @@
 import { test } from "@playwright/test";
 import { C100ChildrenAndOtherPeople } from "../../../../journeys/manageCases/createCase/C100ChildrenAndOtherPeople/c100ChildrenAndOtherPeople";
-import IdamLoginHelper from "../../../../common/userHelpers/idamLoginHelper.ts";
-import Config from "../../../../config.ts";
-import {C100ChildDetails} from "../../../../journeys/manageCases/createCase/C100ChildDetails/c100ChildDetails.ts";
-import {
-  C100OtherPeopleInTheCase
-} from "../../../../journeys/manageCases/createCase/C100OtherPeopleInTheCase/C100OtherPeopleInTheCase.ts";
-import {
-  C100ApplicantDetails
-} from "../../../../journeys/manageCases/createCase/C100ApplicantDetails/c100ApplicantDetails.ts";
-import {SolicitorCreateInitial} from "../../../../journeys/manageCases/createCase/solicitorCreateInitial.ts";
+import { C100ChildDetails } from "../../../../journeys/manageCases/createCase/C100ChildDetails/c100ChildDetails.ts";
+import { C100OtherPeopleInTheCase } from "../../../../journeys/manageCases/createCase/C100OtherPeopleInTheCase/C100OtherPeopleInTheCase.ts";
+import { C100ApplicantDetails } from "../../../../journeys/manageCases/createCase/C100ApplicantDetails/c100ApplicantDetails.ts";
+import { SolicitorCreateInitial } from "../../../../journeys/manageCases/createCase/solicitorCreateInitial.ts";
 
 test.describe("C100 Create case Children and respondents Tests", (): void => {
   test.beforeEach(async ({ page }) => {
     await SolicitorCreateInitial.createUserAndCase({
       page,
-      solicitorCaseType:"C100",
+      solicitorCaseType: "C100",
     });
     await C100ApplicantDetails.C100ApplicantDetails({
       page,

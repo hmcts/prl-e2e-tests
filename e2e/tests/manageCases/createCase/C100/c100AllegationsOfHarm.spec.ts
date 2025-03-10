@@ -2,15 +2,13 @@ import { test } from "@playwright/test";
 import { C100AllegationsOfHarm } from "../../../../journeys/manageCases/createCase/C100AllegationsOfHarm/c100AllegationsOfHarm";
 import { SolicitorCreateInitial } from "../../../../journeys/manageCases/createCase/solicitorCreateInitial.ts";
 import { C100ChildDetails } from "../../../../journeys/manageCases/createCase/C100ChildDetails/c100ChildDetails.ts";
-import {
-  C100ApplicantDetails
-} from "../../../../journeys/manageCases/createCase/C100ApplicantDetails/c100ApplicantDetails.ts";
+import { C100ApplicantDetails } from "../../../../journeys/manageCases/createCase/C100ApplicantDetails/c100ApplicantDetails.ts";
 
 test.describe("C100 Create case Allegations of harm tests", (): void => {
   test.beforeEach(async ({ page }) => {
     await SolicitorCreateInitial.createUserAndCase({
       page,
-      solicitorCaseType:"C100",
+      solicitorCaseType: "C100",
     });
     //must complete applicant details and child details before allegations of harm
     await C100ApplicantDetails.C100ApplicantDetails({

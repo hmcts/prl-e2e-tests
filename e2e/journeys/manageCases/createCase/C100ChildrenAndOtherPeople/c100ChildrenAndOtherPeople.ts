@@ -6,8 +6,6 @@ import { C100ChildGender } from "../../../../pages/manageCases/createCase/C100/c
 import { yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions } from "../../../../pages/manageCases/createCase/C100/childDetails/childDetailsRevised2Page";
 import { ChildrenAndOtherPeople1Page } from "../../../../pages/manageCases/createCase/C100/childrenAndOtherPeople/childrenAndOtherPeople1Page";
 import { ChildrenAndOtherPeopleSubmitPage } from "../../../../pages/manageCases/createCase/C100/childrenAndOtherPeople/childrenAndOtherPeopleSubmitPage";
-import { C100ChildDetails } from "../C100ChildDetails/c100ChildDetails";
-import { C100OtherPeopleInTheCase } from "../C100OtherPeopleInTheCase/C100OtherPeopleInTheCase";
 
 interface c100ChildrenAndOtherPeopleOptions {
   page: Page;
@@ -26,19 +24,12 @@ interface c100ChildrenAndOtherPeopleOptions {
 export class C100ChildrenAndOtherPeople {
   public static async c100ChildrenAndOtherPeople({
     page,
-    user,
     accessibilityTest,
     errorMessaging,
-    c100ChildGender,
-    yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,
-    yesNoOtherPeopleInTheCase,
-    otherPersonLivesInRefuge,
-    applicantGender,
     yesNoChildrenAndOtherPeople,
     subJourney,
   }: c100ChildrenAndOtherPeopleOptions): Promise<void> {
     if (subJourney) {
-
     }
     await Helpers.handleEventBasedOnEnvironment(
       page,

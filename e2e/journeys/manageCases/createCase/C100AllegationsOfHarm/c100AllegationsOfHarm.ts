@@ -1,5 +1,4 @@
 import { Page } from "@playwright/test";
-import { C100ChildDetails } from "../C100ChildDetails/c100ChildDetails";
 import { AllegationsOfHarmRevised1Page } from "../../../../pages/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevised1Page";
 import { AllegationsOfHarmRevised2Page } from "../../../../pages/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevised2Page";
 import {

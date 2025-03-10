@@ -6,7 +6,7 @@ test.describe("C100 Create case type of application tests", (): void => {
   test.beforeEach(async ({ page }) => {
     await SolicitorCreateInitial.createUserAndCase({
       page,
-      solicitorCaseType:"C100",
+      solicitorCaseType: "C100",
     });
   });
   test(`Complete the C100 type of application event as a solicitor with the following options:

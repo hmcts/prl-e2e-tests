@@ -85,7 +85,6 @@ export class FL401 {
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
       isLinkedToC100: isLinkedToC100,
-      subJourney: false,
     });
     await FL401WithoutNoticeOrder.fl401WithoutNoticeOrder({
       page: page,
@@ -94,7 +93,6 @@ export class FL401 {
       isWithoutNoticeDetailsYes: isWithoutNoticeDetailsYes,
       isWithoutNoticeDetailsBailConditions:
         isWithoutNoticeDetailsBailConditions,
-      subJourney: false,
     });
     await FL401ApplicantDetails.fl401ApplicantDetails({
       page: page,
@@ -102,21 +100,18 @@ export class FL401 {
       errorMessaging: errorMessaging,
       yesNoFL401ApplicantDetails: yesNoFL401ApplicantDetails,
       applicantGender: applicantGender,
-      subJourney: false,
     });
     await FL401RespondentDetails.fl401RespondentDetails({
       page: page,
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
       respondentDetailsAllOptionsYes: respondentDetailsAllOptionsYes,
-      subJourney: false,
     });
     await FL401ApplicantsFamily.fl401ApplicantsFamily({
       page: page,
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
       applicantHasChildren: applicantHasChildren,
-      subJourney: false,
     });
     await FL401RelationshipToRespondent.fl401RelationshipToRespondent({
       page: page,
@@ -124,19 +119,16 @@ export class FL401 {
       errorMessaging: errorMessaging,
       relationshipToRespondent: relationshipToRespondent,
       relationshipToRespondentOther: relationshipToRespondentOther,
-      subJourney: false,
     });
     await FL401RespondentsBehaviour.fl401RespondentsBehaviour({
       page: page,
       accessibilityTest: accessibilityTest,
-      subJourney: false,
     });
     await FL401OtherProceedings.fl401OtherProceedings({
       page: page,
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
       otherProceedingsRadios: otherProceedingsRadios,
-      subJourney: false,
     });
     await FL401TheHome.fl401TheHome({
       page: page,
@@ -145,14 +137,12 @@ export class FL401 {
       fl401TheHomeYesNo: fl401TheHomeYesNo,
       fl401EverLivedAtAddress: fl401EverLivedAtAddress,
       fl401IntendToLiveAtAddress: fl401IntendToLiveAtAddress,
-      subJourney: false,
     });
     await Fl401AttendingTheHearing.fl401AttendingTheHearing({
       page: page,
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
       fl401AttendingTheHearingYesNo: fl401AttendingTheHearingYesNo,
-      subJourney: false,
     });
     await FL401WelshLanguageRequirements.fl401WelshLanguageRequirements({
       page: page,
@@ -162,13 +152,11 @@ export class FL401 {
         welshLanguageRequirementsAllOptionsYes,
       welshLanguageRequirementsSelectWelsh:
         welshLanguageRequirementsSelectWelsh,
-      subJourney: false,
     });
     await FL401UploadDocuments.fl401UploadDocuments({
       page,
       accessibilityTest,
       errorMessaging,
-      subJourney: false,
     });
     await FL401ViewPDFApplication.fl401ViewPDFApplication({
       page,

@@ -1,10 +1,8 @@
 import { Page } from "@playwright/test";
-import { UserRole } from "../../../../common/types";
 import { Helpers } from "../../../../common/helpers";
 import { HearingUrgency1Page } from "../../../../pages/manageCases/createCase/C100/hearingUrgency/hearingUrgency1Page";
 import { C100HearingUrgencySubmitPage } from "../../../../pages/manageCases/createCase/C100/hearingUrgency/c100HearingUrgencySubmitPage";
 import { C100TasksTabPage } from "../../../../pages/manageCases/caseTabs/c100TasksTabPage";
-import { SolicitorCreateInitial } from "../solicitorCreateInitial";
 
 interface c100HearingUrgencyOptions {
   page: Page;

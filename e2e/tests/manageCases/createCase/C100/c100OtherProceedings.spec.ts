@@ -1,19 +1,14 @@
 import { test } from "@playwright/test";
-import Config from "../../../../config";
 import { C100OtherProceedings } from "../../../../journeys/manageCases/createCase/C100OtherProceedings/C100OtherProceedings";
-import IdamLoginHelper from "../../../../common/userHelpers/idamLoginHelper.ts";
 import { SolicitorCreateInitial } from "../../../../journeys/manageCases/createCase/solicitorCreateInitial.ts";
-import { Helpers } from "../../../../common/helpers.ts";
-import { Selectors } from "../../../../common/selectors.ts";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 
 test.describe("C100 Create case other proceedings tests", (): void => {
   test.beforeEach(async ({ page }) => {
     await SolicitorCreateInitial.createUserAndCase({
       page,
-      solicitorCaseType:"C100",
+      solicitorCaseType: "C100",
     });
-});
+  });
   test(`Complete the C100 other proceedings event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,

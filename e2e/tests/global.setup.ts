@@ -3,11 +3,10 @@ import dotenv from "dotenv";
 import { getAccessToken } from "../common/caseHelpers/getAccessTokenHelper.ts";
 import IdamLoginHelper from "../common/userHelpers/idamLoginHelper.ts";
 import config from "../config";
-import { setupUser } from "../common/userHelpers/idamCreateUserApiHelper.ts";
 
 dotenv.config();
 
-setup("Retrive bearer token for user creation", async ({ page }) => {
+setup("Retrieve bearer token for user creation", async () => {
   // retrieve bearer token for user creation
   const apiContext = await request.newContext();
   const userCreationToken = await getAccessToken("createUser", apiContext);

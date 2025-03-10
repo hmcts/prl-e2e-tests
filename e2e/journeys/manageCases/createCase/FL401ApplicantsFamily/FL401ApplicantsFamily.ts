@@ -1,7 +1,6 @@
 import { Helpers } from "../../../../common/helpers";
 import { Page } from "@playwright/test";
 import { ApplicantsFamilyPage } from "../../../../pages/manageCases/createCase/FL401/applicantsFamily/applicantsFamilyPage";
-import { SolicitorCreateInitial } from "../solicitorCreateInitial";
 import { ApplicantsFamilySubmitPage } from "../../../../pages/manageCases/createCase/FL401/applicantsFamily/applicantsFamilySubmitPage";
 import { Fl401TasksTabPage } from "../../../../pages/manageCases/caseTabs/fl401TasksTabPage";
 
@@ -10,7 +9,6 @@ interface fl401ApplicantsFamilyOptions {
   accessibilityTest: boolean;
   errorMessaging: boolean;
   applicantHasChildren: boolean;
-  subJourney: boolean;
 }
 
 export class FL401ApplicantsFamily {
@@ -19,17 +17,7 @@ export class FL401ApplicantsFamily {
     accessibilityTest,
     errorMessaging,
     applicantHasChildren,
-    subJourney,
   }: fl401ApplicantsFamilyOptions): Promise<void> {
-    if (subJourney) {
-      await SolicitorCreateInitial.createInitialCase({
-        page: page,
-        user: "solicitor",
-        accessibilityTest: false,
-        solicitorCaseType: "FL401",
-        errorMessaging: false,
-      });
-    }
     await Helpers.handleEventBasedOnEnvironment(page, "Applicant's family");
     await ApplicantsFamilyPage.applicantsFamilyPage(
       page,

@@ -1,21 +1,14 @@
 import { test } from "@playwright/test";
 import { C100ChildrenAndApplicants } from "../../../../journeys/manageCases/createCase/C100ChildrenAndApplicants/C100ChildrenAndApplicants";
-import IdamLoginHelper from "../../../../common/userHelpers/idamLoginHelper.ts";
-import Config from "../../../../config.ts";
 import { C100ChildDetails } from "../../../../journeys/manageCases/createCase/C100ChildDetails/c100ChildDetails.ts";
-import { Helpers } from "../../../../common/helpers.ts";
-import { Selectors } from "../../../../common/selectors.ts";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 import { SolicitorCreateInitial } from "../../../../journeys/manageCases/createCase/solicitorCreateInitial.ts";
-import {
-  C100ApplicantDetails
-} from "../../../../journeys/manageCases/createCase/C100ApplicantDetails/c100ApplicantDetails.ts";
+import { C100ApplicantDetails } from "../../../../journeys/manageCases/createCase/C100ApplicantDetails/c100ApplicantDetails.ts";
 
 test.describe("C100 Create case children and applicants tests", (): void => {
   test.beforeEach(async ({ page }) => {
     await SolicitorCreateInitial.createUserAndCase({
       page,
-      solicitorCaseType:"C100",
+      solicitorCaseType: "C100",
     });
     //must complete applicant and child details before children and applicants event
     await C100ApplicantDetails.C100ApplicantDetails({
@@ -45,7 +38,6 @@ test.describe("C100 Create case children and applicants tests", (): void => {
       errorMessaging: false,
       applicantChildRelationship: "Father",
       childLiveWithApplicant: true,
-      subJourney: true,
     });
   });
 
@@ -62,7 +54,6 @@ test.describe("C100 Create case children and applicants tests", (): void => {
       errorMessaging: false,
       applicantChildRelationship: "Mother",
       childLiveWithApplicant: true,
-      subJourney: true,
     });
   });
 
@@ -79,7 +70,6 @@ test.describe("C100 Create case children and applicants tests", (): void => {
       errorMessaging: false,
       applicantChildRelationship: "Step-father",
       childLiveWithApplicant: true,
-      subJourney: true,
     });
   });
 
@@ -96,7 +86,6 @@ test.describe("C100 Create case children and applicants tests", (): void => {
       errorMessaging: false,
       applicantChildRelationship: "Step-mother",
       childLiveWithApplicant: true,
-      subJourney: true,
     });
   });
 
@@ -113,7 +102,6 @@ test.describe("C100 Create case children and applicants tests", (): void => {
       errorMessaging: false,
       applicantChildRelationship: "Grandparent",
       childLiveWithApplicant: true,
-      subJourney: true,
     });
   });
 
@@ -130,7 +118,6 @@ test.describe("C100 Create case children and applicants tests", (): void => {
       errorMessaging: false,
       applicantChildRelationship: "Guardian",
       childLiveWithApplicant: true,
-      subJourney: true,
     });
   });
 
@@ -147,7 +134,6 @@ test.describe("C100 Create case children and applicants tests", (): void => {
       errorMessaging: false,
       applicantChildRelationship: "Special Guardian",
       childLiveWithApplicant: true,
-      subJourney: true,
     });
   });
 
@@ -164,7 +150,6 @@ test.describe("C100 Create case children and applicants tests", (): void => {
       errorMessaging: false,
       applicantChildRelationship: "Other",
       childLiveWithApplicant: true,
-      subJourney: true,
     });
   });
 
@@ -181,7 +166,6 @@ test.describe("C100 Create case children and applicants tests", (): void => {
       errorMessaging: true,
       applicantChildRelationship: "Other",
       childLiveWithApplicant: true,
-      subJourney: true,
     });
   });
 });
@@ -199,6 +183,5 @@ test(`C100 children and applicants event as a solicitor with the following optio
     errorMessaging: false,
     applicantChildRelationship: "Other",
     childLiveWithApplicant: true,
-    subJourney: true,
   });
 });

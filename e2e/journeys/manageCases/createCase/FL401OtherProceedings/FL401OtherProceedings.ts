@@ -3,7 +3,6 @@ import { Page } from "@playwright/test";
 import { OtherProceedingsPage } from "../../../../pages/manageCases/createCase/FL401/otherProceedings/otherProceedingsPage";
 import { Fl401TasksTabPage } from "../../../../pages/manageCases/caseTabs/fl401TasksTabPage";
 import { OtherProceedingsSubmitPage } from "../../../../pages/manageCases/createCase/FL401/otherProceedings/otherProceedingsSubmitPage";
-import { SolicitorCreateInitial } from "../solicitorCreateInitial";
 
 import { otherProceedingsRadios } from "../../../../common/types";
 
@@ -12,7 +11,6 @@ interface fl401OtherProceedingsOptions {
   accessibilityTest: boolean;
   errorMessaging: boolean;
   otherProceedingsRadios: otherProceedingsRadios;
-  subJourney: boolean;
 }
 
 export class FL401OtherProceedings {
@@ -21,17 +19,7 @@ export class FL401OtherProceedings {
     accessibilityTest,
     errorMessaging,
     otherProceedingsRadios,
-    subJourney,
   }: fl401OtherProceedingsOptions): Promise<void> {
-    if (subJourney) {
-      await SolicitorCreateInitial.createInitialCase({
-        page: page,
-        user: "solicitor",
-        accessibilityTest: false,
-        solicitorCaseType: "FL401",
-        errorMessaging: false,
-      });
-    }
     await Helpers.handleEventBasedOnEnvironment(page, "Other proceedings");
     await OtherProceedingsPage.otherProceedingsPage({
       page,

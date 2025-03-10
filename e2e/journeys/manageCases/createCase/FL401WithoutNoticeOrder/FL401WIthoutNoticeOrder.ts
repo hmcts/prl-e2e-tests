@@ -9,7 +9,6 @@ import {
   WithoutNoticeOrder3Page,
 } from "../../../../pages/manageCases/createCase/FL401/withoutNoticeOrder/withoutNoticeOrder3Page";
 import { WithoutNoticeOrder4Page } from "../../../../pages/manageCases/createCase/FL401/withoutNoticeOrder/withoutNoticeOrder4Page";
-import { SolicitorCreateInitial } from "../solicitorCreateInitial";
 
 interface fl401WithoutNoticeOrderOptions {
   page: Page;
@@ -17,7 +16,6 @@ interface fl401WithoutNoticeOrderOptions {
   errorMessaging: boolean;
   isWithoutNoticeDetailsYes: boolean;
   isWithoutNoticeDetailsBailConditions: bailConditionRadios;
-  subJourney: boolean;
 }
 
 export class FL401WithoutNoticeOrder {
@@ -27,17 +25,7 @@ export class FL401WithoutNoticeOrder {
     errorMessaging,
     isWithoutNoticeDetailsYes,
     isWithoutNoticeDetailsBailConditions,
-    subJourney,
   }: fl401WithoutNoticeOrderOptions): Promise<void> {
-    if (subJourney) {
-      await SolicitorCreateInitial.createInitialCase({
-        page: page,
-        user: "solicitor",
-        accessibilityTest: false,
-        solicitorCaseType: "FL401",
-        errorMessaging: false,
-      });
-    }
     await Helpers.handleEventBasedOnEnvironment(page, "Without notice order");
     await WithoutNoticeOrder1Page.withoutOrderNotice1Page(
       page,

@@ -1,14 +1,12 @@
 import { test } from "@playwright/test";
-import Config from "../../../../config";
 import { C100OtherChildrenNotInTheCase } from "../../../../journeys/manageCases/createCase/C100OtherChildrenNotInTheCase/C100OtherChildrenNotInTheCase";
-import IdamLoginHelper from "../../../../common/userHelpers/idamLoginHelper.ts";
-import {SolicitorCreateInitial} from "../../../../journeys/manageCases/createCase/solicitorCreateInitial.ts";
+import { SolicitorCreateInitial } from "../../../../journeys/manageCases/createCase/solicitorCreateInitial.ts";
 
 test.describe("C100 Create case Other children not in the case tests", (): void => {
   test.beforeEach(async ({ page }) => {
     await SolicitorCreateInitial.createUserAndCase({
       page,
-      solicitorCaseType:"C100",
+      solicitorCaseType: "C100",
     });
   });
   test(`Complete the C100 Other children not in the case event as a solicitor with the following options:

@@ -1,12 +1,12 @@
 import { test } from "@playwright/test";
 import { C100LitigationCapacity } from "../../../../journeys/manageCases/createCase/C100LitigationCapacity/C100LitigationCapacity";
-import {SolicitorCreateInitial} from "../../../../journeys/manageCases/createCase/solicitorCreateInitial.ts";
+import { SolicitorCreateInitial } from "../../../../journeys/manageCases/createCase/solicitorCreateInitial.ts";
 
 test.describe("C100 Create case Litigation Capacity Tests", (): void => {
   test.beforeEach(async ({ page }) => {
     await SolicitorCreateInitial.createUserAndCase({
       page,
-      solicitorCaseType:"C100",
+      solicitorCaseType: "C100",
     });
   });
   test(`Complete the C100 Litigation Capacity as a solicitor with the following options:

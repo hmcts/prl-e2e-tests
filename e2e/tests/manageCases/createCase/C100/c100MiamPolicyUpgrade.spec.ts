@@ -6,7 +6,7 @@ test.describe("C100 Create case MIAM Tests", (): void => {
   test.beforeEach(async ({ page }) => {
     await SolicitorCreateInitial.createUserAndCase({
       page,
-      solicitorCaseType:"C100",
+      solicitorCaseType: "C100",
     });
   });
   test(`Complete the C100 Create case MIAM as a solicitor with the following options:
