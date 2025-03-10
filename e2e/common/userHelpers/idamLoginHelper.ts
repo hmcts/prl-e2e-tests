@@ -1,8 +1,8 @@
 import { Cookie, expect, Page } from "@playwright/test";
 import { existsSync, readFileSync } from "fs";
-import Config from "../config.ts";
+import Config from "../../config.ts";
 import { setupUser } from "./idamCreateCitizenUserApiHelper.ts";
-import { UserCredentials, UserLoginInfo } from "./types.ts";
+import { UserCredentials, UserLoginInfo } from "../types.ts";
 
 export class IdamLoginHelper {
   private static fields: UserLoginInfo = {
@@ -11,7 +11,7 @@ export class IdamLoginHelper {
   };
   private static submitButton: string = 'input[value="Sign in"]';
 
-  private static async signIn(
+  public static async signIn(
     page: Page,
     username: string,
     password: string,

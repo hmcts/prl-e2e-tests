@@ -3,7 +3,7 @@ import {
   applicationSubmittedBy,
   createOrderFL401Options,
 } from "../../../../common/types.ts";
-import { jsonDatas } from "../../../../common/solicitorCaseCreatorHelper.ts";
+import { jsonDatas } from "../../../../common/caseHelpers/solicitorCaseCreatorHelper.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import config from "../../../../config.ts";
 import { AdminEditAndApproveAnOrder1Page } from "../../../../pages/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrder1Page.ts";
@@ -12,7 +12,7 @@ import { AdminEditAndApproveAnOrder21Page } from "../../../../pages/manageCases/
 import { AdminEditAndApproveAnOrder22Page } from "../../../../pages/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrder22Page.ts";
 import { AdminEditAndApproveAnOrder23Page } from "../../../../pages/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrder23Page.ts";
 import { AdminEditAndApproveAnOrderSubmitPage } from "../../../../pages/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrderSubmitPage.ts";
-import { completeCheckApplicationAndSendToGatekeeperAndCreateAnOrder } from "../../../../common/caseEventsHelper.ts";
+import { completeCheckApplicationAndSendToGatekeeperAndCreateAnOrder } from "../../../../common/caseHelpers/caseEventsHelper.ts";
 
 interface CompleteTheOrderParams {
   page: Page;

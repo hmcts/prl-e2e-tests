@@ -2,12 +2,12 @@ import { test } from "@playwright/test";
 import Config from "../../../../config";
 import { Helpers } from "../../../../common/helpers";
 import { RemoveDraftOrder } from "../../../../journeys/manageCases/caseProgression/removeDraftOrder/removeDraftOrder";
-import { SolicitorDACaseCreator } from "../../../../common/solicitorDACaseCreator";
+import { SolicitorDACaseCreator } from "../../../../common/caseHelpers/solicitorDACaseCreator.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
 // comment to trigger test in pipeline
-test.describe("Remove draft order as a court admin for solicitor-created CA case", (): void => {
+test.describe("Remove draft order as a court admin for solicitor-created DA case", (): void => {
   let caseRef: string;
   test.slow();
 

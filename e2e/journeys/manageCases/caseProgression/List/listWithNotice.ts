@@ -6,7 +6,7 @@ import { Fl401ListOnNoticeSubmitPage } from "../../../../pages/manageCases/caseP
 import { Fl401ListOnNoticeConfirmPage } from "../../../../pages/manageCases/caseProgression/list/fl401ListOnNoticeConfirmPage";
 import { Selectors } from "../../../../common/selectors";
 import { Fl401ListOnNoticeConfirmContent } from "../../../../fixtures/manageCases/caseProgression/List/fl401ListOnNoticeConfirmContent";
-import { completeCheckApplicationAndSendToGatekeeper } from "../../../../common/caseEventsHelper.ts";
+import { completeCheckApplicationAndSendToGatekeeper } from "../../../../common/caseHelpers/caseEventsHelper.ts";
 
 interface ListWithNoticeParams {
   page: Page;

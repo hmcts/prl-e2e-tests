@@ -4,9 +4,7 @@ import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { ApplicantGender } from "../../../../../common/types";
 import config from "../../../../../config";
-import {
-  ApplicantDetails1Content
-} from "../../../../../fixtures/manageCases/createCase/FL401/applicantDetails/applicantDetails1Content";
+import { ApplicantDetails1Content } from "../../../../../fixtures/manageCases/createCase/FL401/applicantDetails/applicantDetails1Content";
 
 enum uniqueSelectorPaths {
   dobFormLabel = "div > ccd-field-write > div > ccd-write-complex-type-field > div > fieldset > ccd-field-write > div > ccd-write-date-container-field > ccd-write-date-field > div > fieldset > cut-date-input > div > div",

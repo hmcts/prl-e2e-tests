@@ -1,10 +1,10 @@
 import { test } from "@playwright/test";
 import Config from "../../../../config";
 import config from "../../../../config";
-import createDaCitizenCourtNavCase from "../../../../common/createCaseHelper";
+import createDaCitizenCourtNavCase from "../../../../common/caseHelpers/citizenDACaseCreateHelper.ts";
 import { Helpers } from "../../../../common/helpers";
 import { StatementOfService } from "../../../../journeys/manageCases/caseProgression/statementOfService/statementOfService.ts";
-import { jsonDatas } from "../../../../common/solicitorCaseCreatorHelper.ts";
+import { jsonDatas } from "../../../../common/caseHelpers/solicitorCaseCreatorHelper.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 

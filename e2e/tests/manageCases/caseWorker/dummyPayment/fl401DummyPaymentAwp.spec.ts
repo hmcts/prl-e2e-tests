@@ -1,7 +1,7 @@
 import { test } from "@playwright/test";
 import Config from "../../../../config";
 import { DummyPaymentAwp } from "../../../../journeys/manageCases/caseWorker/dummyPayment/dummyPaymentAwp";
-import { SolicitorDACaseCreator } from "../../../../common/solicitorDACaseCreator.ts";
+import { SolicitorDACaseCreator } from "../../../../common/caseHelpers/solicitorDACaseCreator.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import config from "../../../../config.ts";
 
@@ -61,9 +61,7 @@ test.describe("FL401 Dummy payment for AWP tests", (): void => {
   test(`Complete the Dummy payment for AWP action  as a solicitor with the following options:
   Accessibility testing,
   Not Error message testing,
-  Payment status is paid. @accessibility @nightly`, async ({
-    page,
-  }): Promise<void> => {
+  Payment status is paid. @accessibility`, async ({ page }): Promise<void> => {
     await DummyPaymentAwp.dummyPaymentAwp({
       page,
       errorMessaging: false,

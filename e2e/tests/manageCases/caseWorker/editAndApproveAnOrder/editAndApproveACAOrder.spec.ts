@@ -1,7 +1,9 @@
 import { test } from "@playwright/test";
 import Config from "../../../../config";
 import { EditAndApproveAnOrder } from "../../../../journeys/manageCases/caseWorker/editAndApproveAnOrder/editAndApproveAnOrder";
-import { DummyC100 } from "../../../../journeys/manageCases/createCase/dummyCase/dummyC100.ts";
+import { SolicitorCACaseCreator } from ".././../../../common/caseHelpers/solicitorCACaseCreator.ts";
+import { Helpers } from "../../../../common/helpers.ts";
+import config from "../../../../config.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
@@ -12,15 +14,16 @@ test.describe("Edit and approve a CA order tests", (): void => {
   let caseRef: string;
 
   test.beforeEach(async ({ page }) => {
-    caseRef = await DummyC100.dummyC100({
-      page: page,
-      applicantLivesInRefuge: false,
-      otherPersonLivesInRefuge: false,
-    });
+    await page.goto(Config.manageCasesBaseURLCase);
+    caseRef = await SolicitorCACaseCreator.createCaseSubmitAndPay(page);
+    await Helpers.goToCase(
+      page,
+      config.manageCasesBaseURLCase,
+      caseRef,
+      "tasks",
+    );
   });
 
-  // tests failing due to EXUI-2621
-  // TODO: turn tests back on once issue around "Client context information not matching" has been resolved
   test(`Complete Editing and approving an order with the following options:
   Case: C100,
   Order type: Parental responsibility order (C45A),

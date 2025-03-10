@@ -3,9 +3,7 @@ import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelp
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { ApplicantGender } from "../../../../../common/types";
-import {
-  OtherPeopleInTheCase1Content
-} from "../../../../../fixtures/manageCases/createCase/C100/otherPeopleInTheCaseRevised/otherPeopleInTheCaseRevised1Content.";
+import { OtherPeopleInTheCase1Content } from "../../../../../fixtures/manageCases/createCase/C100/otherPeopleInTheCaseRevised/otherPeopleInTheCaseRevised1Content.";
 import config from "../../../../../config";
 
 enum UniqueSelectors {

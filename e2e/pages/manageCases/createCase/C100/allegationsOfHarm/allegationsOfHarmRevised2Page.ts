@@ -1,8 +1,6 @@
 import { Locator, Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
-import {
-  AllegationsOfHarmRevised2Content
-} from "../../../../../fixtures/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevised2Content";
+import { AllegationsOfHarmRevised2Content } from "../../../../../fixtures/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevised2Content";
 import { Helpers } from "../../../../../common/helpers";
 import config from "../../../../../config";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
