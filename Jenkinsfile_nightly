@@ -11,7 +11,7 @@ properties([
     ),
     string(
       name: 'MANAGE_CASES_BASE_URL',
-      defaultValue: 'https://manage-case.aat.platform.hmcts.net/cases',
+      defaultValue: 'https://manage-case.demo.platform.hmcts.net/cases',
       description: 'The Manage Cases URL to test against'
     ),
     string(
@@ -58,7 +58,7 @@ static Map < String, Object > secret(String secretName, String envVariable) {
 }
 
 def secrets = [
-  'prl-${env}': [
+  'prl-demo': [
     secret('solicitor-user', 'SOLICITOR_USERNAME'),
     secret('solicitor-password', 'SOLICITOR_PASSWORD'),
     secret('citizen-user', 'CITIZEN_USERNAME'),
