@@ -17,7 +17,7 @@ properties([
     ),
     string(
       name: 'MANAGE_CASES_BASE_URL',
-      defaultValue: 'https://manage-case.demo.platform.hmcts.net/cases',
+      defaultValue: 'https://manage-case.aat.platform.hmcts.net/cases',
       description: 'The Manage Cases URL to test against'
     ),
     string(
@@ -53,8 +53,17 @@ static Map < String, Object > secret(String secretName, String envVariable) {
   ]
 }
 
+def envSubstrings = ["aat", "demo", "preview"]
+def matchingEnv = "unknown"
+
+if(params.skipManageCasesTests) {
+  matchingEnv = envSubstrings.find{envSubstring -> params.CITIZEN_FRONTEND_BASE_URL.contains(envSubstring)}
+} else {
+  matchingEnv = envSubstrings.find{envSubstring -> params.MANAGE_CASES_BASE_URL.contains(envSubstring)}
+}
+
 def secrets = [
-  'prl-demo': [
+  "prl-${matchingEnv}": [
     secret('solicitor-user', 'SOLICITOR_USERNAME'),
     secret('solicitor-password', 'SOLICITOR_PASSWORD'),
     secret('citizen-user', 'CITIZEN_USERNAME'),
