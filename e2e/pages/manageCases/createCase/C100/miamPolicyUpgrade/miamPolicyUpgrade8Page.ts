@@ -47,7 +47,7 @@ export class MiamPolicyUpgrade8Page {
 
   private static async checkPageLoads({
     page: page,
-      accessibilityTest: accessibilityTest,
+    accessibilityTest: accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.h2}:text-is("${MiamPolicyUpgrade8Content.h2}")`,
