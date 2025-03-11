@@ -78,7 +78,7 @@ export class MiamPolicyUpgrade8Page {
       ),
     ]);
     if (accessibilityTest) {
-     await AccessibilityTestHelper.run(page); //TODO Commented out until ticket EXUI-2858 is complete
+      await AccessibilityTestHelper.run(page); //TODO Commented out until ticket EXUI-2858 is complete
     }
   }
 
