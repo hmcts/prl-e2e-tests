@@ -34,14 +34,14 @@ export async function createUser(
   switch (user) {
     case "citizen":
       password = process.env.IDAM_CITIZEN_USER_PASSWORD!;
-      email = `TEST_PRL_USER_citizen-user.${uniqueId}@test.local`;
+      email = `TEST_PRL_USER_citizen.${uniqueId}@test.local`;
       forename = "fn_" + uniqueId.split("-")[0];
       surname = "sn_" + uniqueId.split("-")[1];
       roleNames = ["citizen"];
       break;
     case "solicitor":
       password = process.env.SOLICITOR_PASSWORD!;
-      email = `TEST_PRL_USER_solicitor-user.${uniqueId}@test.local`;
+      email = `TEST_PRL_USER_solicitor.${uniqueId}@test.local`;
       forename = "fn_" + uniqueId.split("-")[0];
       surname = "sn_" + uniqueId.split("-")[1];
       roleNames = [
@@ -71,7 +71,7 @@ export async function createUser(
       break;
     case "caseWorker":
       password = process.env.CASEWORKER_PASSWORD!;
-      email = process.env.CASEWORKER_USERNAME!;
+      email = `TEST_PRL_USER_court_admin.${uniqueId}@test.local`;
       roleNames = [
         "caseworker-privatelaw",
         "cwd-user",
@@ -81,6 +81,18 @@ export async function createUser(
       forename = "PRL AAT AM";
       surname = "Swansea HCTL";
       userId = "4beb9cfb-1178-4a2f-aaa3-ddf1dc6bb9de";
+      break;
+    case "caseManager":
+      password = process.env.CASEMANAGER_PASSWORD!;
+      email = `TEST_PRL_USER_case_manager.${uniqueId}@test.local`;
+      roleNames = [
+        "caseworker-privatelaw",
+        "cwd-user",
+        "caseworker",
+        "caseworker-privatelaw-courtadmin",
+      ];
+      forename = "PRL Case Manager";
+      surname = "CTSC Team Leader";
       break;
     default:
       throw new Error(`Unknown user type: ${user}`);

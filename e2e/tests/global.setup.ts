@@ -56,10 +56,10 @@ setup("Setup caseWorker user", async ({ page }) => {
   );
 });
 
-setup("Setup Stoke court admin user", async ({ page }) => {
-  await IdamLoginHelper.signInLongLivedUser(
+setup("Setup caseManager user", async ({ page }) => {
+  await IdamLoginHelper.createAndSignInUser(
     page,
-    "courtAdminStoke",
     config.manageCasesBaseURLCase,
+    "caseManager",
   );
 });
