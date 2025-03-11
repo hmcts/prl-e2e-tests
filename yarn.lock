@@ -918,7 +918,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@playwright/test@npm:^1.49.0":
+"@playwright/test@npm:^1.51.0":
   version: 1.51.0
   resolution: "@playwright/test@npm:1.51.0"
   dependencies:
@@ -3843,7 +3843,7 @@ __metadata:
     "@eslint/js": "npm:^9.11.1"
     "@jest/globals": "npm:^29.7.0"
     "@jest/types": "npm:^29.6.3"
-    "@playwright/test": "npm:^1.49.0"
+    "@playwright/test": "npm:^1.51.0"
     "@types/jest": "npm:^29.5.12"
     "@types/node": "npm:^22.4.1"
     axios: "npm:^1.7.4"

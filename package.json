@@ -10,7 +10,7 @@
     "@eslint/js": "^9.11.1",
     "@jest/globals": "^29.7.0",
     "@jest/types": "^29.6.3",
-    "@playwright/test": "^1.49.0",
+    "@playwright/test": "^1.51.0",
     "@types/jest": "^29.5.12",
     "@types/node": "^22.4.1",
     "axios": "^1.7.4",
