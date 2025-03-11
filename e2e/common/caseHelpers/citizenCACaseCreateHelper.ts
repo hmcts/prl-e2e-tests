@@ -27,7 +27,7 @@ export class CitizenCACaseCreator {
 
     if (!responseCitizenUser.ok()) {
       throw new Error(
-        `Failed to get user token: ${responseCitizenUser.status()} - ${responseCitizenUser.statusText()}`,
+        `Failed to get user token: ${responseCitizenUser.status()} - ${await responseCitizenUser.body()}`,
       );
     }
 
@@ -56,7 +56,7 @@ export class CitizenCACaseCreator {
 
     if (!responseCreateCase.ok()) {
       throw new Error(
-        `Failed to create case: ${responseCreateCase.status()} - ${responseCreateCase.statusText()}`,
+        `Failed to create case: ${responseCreateCase.status()} - ${await responseCreateCase.body()}`,
       );
     }
 
