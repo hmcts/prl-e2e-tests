@@ -56,20 +56,20 @@ test.describe("C100 Create case - Applicant Details tests", (): void => {
       applicantGender: "male",
     });
   });
-});
 
-test(`C100 applicant details event as a solicitor with the following options:
-  Accessibility testing,
-  Not Error message testing,
-  Saying yes to all options,
-  Setting the applicant Gender to female. @smoke @accessibility @nightly`, async ({
-  page,
-}): Promise<void> => {
-  await C100ApplicantDetails.C100ApplicantDetails({
+  test(`C100 applicant details event as a solicitor with the following options:
+    Accessibility testing,
+    Not Error message testing,
+    Saying yes to all options,
+    Setting the applicant Gender to female. @smoke @accessibility @nightly`, async ({
     page,
-    accessibilityTest: true,
-    errorMessaging: false,
-    yesNoApplicantDetails: false,
-    applicantGender: "female",
+  }): Promise<void> => {
+    await C100ApplicantDetails.C100ApplicantDetails({
+      page,
+      accessibilityTest: true,
+      errorMessaging: false,
+      yesNoApplicantDetails: false,
+      applicantGender: "female",
+    });
   });
 });

@@ -168,20 +168,21 @@ test.describe("C100 Create case children and applicants tests", (): void => {
       childLiveWithApplicant: true,
     });
   });
-});
 
-test(`C100 children and applicants event as a solicitor with the following options:
-  Accessibility testing,
-  Not Error message testing,
-  Setting the relationship to Other,
-  Setting the child to live with the applicant. @accessibility @nightly`, async ({
-  page,
-}): Promise<void> => {
-  await C100ChildrenAndApplicants.c100ChildrenAndApplicants({
-    page: page,
-    accessibilityTest: true,
-    errorMessaging: false,
-    applicantChildRelationship: "Other",
-    childLiveWithApplicant: true,
+
+  test(`C100 children and applicants event as a solicitor with the following options:
+    Accessibility testing,
+    Not Error message testing,
+    Setting the relationship to Other,
+    Setting the child to live with the applicant. @accessibility @nightly`, async ({
+    page,
+  }): Promise<void> => {
+    await C100ChildrenAndApplicants.c100ChildrenAndApplicants({
+      page: page,
+      accessibilityTest: true,
+      errorMessaging: false,
+      applicantChildRelationship: "Other",
+      childLiveWithApplicant: true,
+    });
   });
 });

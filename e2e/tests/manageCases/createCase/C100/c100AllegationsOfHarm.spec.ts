@@ -133,20 +133,20 @@ test.describe("C100 Create case Allegations of harm tests", (): void => {
       c100DomesticAbuseTypePage3: "Physical abuse",
     });
   });
-});
 
-test(`C100 allegations of harm event as a solicitor with the following options:
-  Accessibility testing,
-  Not Error message testing,
-  Saying yes to all options,
-  Setting the abuse type to Physical. @accessibility @nightly`, async ({
-  page,
-}): Promise<void> => {
-  await C100AllegationsOfHarm.c100AllegationsOfHarm({
-    page: page,
-    accessibilityTest: true,
-    errorMessaging: false,
-    c100YesNoAllegationsOfHarm: true,
-    c100DomesticAbuseTypePage3: "Physical abuse",
+  test(`C100 allegations of harm event as a solicitor with the following options:
+    Accessibility testing,
+    Not Error message testing,
+    Saying yes to all options,
+    Setting the abuse type to Physical. @accessibility @nightly`, async ({
+    page,
+  }): Promise<void> => {
+    await C100AllegationsOfHarm.c100AllegationsOfHarm({
+      page: page,
+      accessibilityTest: true,
+      errorMessaging: false,
+      c100YesNoAllegationsOfHarm: true,
+      c100DomesticAbuseTypePage3: "Physical abuse",
+    });
   });
 });

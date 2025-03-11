@@ -46,18 +46,18 @@ test.describe("FL401 Create case applicants family tests", (): void => {
       applicantHasChildren: true,
     });
   });
-});
 
-test(`FL401 applicants family event as a solicitor with the following options:
-  Accessibility testing,
-  Not Error message testing,
-  Saying yes to all options, @accessibility @nightly`, async ({
-  page,
-}): Promise<void> => {
-  await FL401ApplicantsFamily.fl401ApplicantsFamily({
-    page: page,
-    accessibilityTest: true,
-    errorMessaging: false,
-    applicantHasChildren: true,
+  test(`FL401 applicants family event as a solicitor with the following options:
+    Accessibility testing,
+    Not Error message testing,
+    Saying yes to all options, @accessibility @nightly`, async ({
+    page,
+  }): Promise<void> => {
+    await FL401ApplicantsFamily.fl401ApplicantsFamily({
+      page: page,
+      accessibilityTest: true,
+      errorMessaging: false,
+      applicantHasChildren: true,
+    });
   });
 });

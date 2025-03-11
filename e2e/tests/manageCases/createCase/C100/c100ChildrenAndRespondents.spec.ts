@@ -64,19 +64,18 @@ test.describe("C100 Create case Children and respondents Tests", (): void => {
       yesNoChildrenAndRespondents: false,
     });
   });
-});
-
-test(`Complete the C100 Create case Children and respondents as a solicitor with the following options:
-  Accessibility testing,
-  Not Error message testing,
-  Saying Yes to all options,
-  Setting the applicant Gender to female. @accessibility @nightly`, async ({
-  page,
-}): Promise<void> => {
-  await C100ChildAndRespondents.c100ChildrenAndRespondents({
-    page: page,
-    accessibilityTest: false,
-    errorMessaging: false,
-    yesNoChildrenAndRespondents: false,
+  test(`Complete the C100 Create case Children and respondents as a solicitor with the following options:
+    Accessibility testing,
+    Not Error message testing,
+    Saying Yes to all options,
+    Setting the applicant Gender to female. @accessibility @nightly`, async ({
+    page,
+  }): Promise<void> => {
+    await C100ChildAndRespondents.c100ChildrenAndRespondents({
+      page: page,
+      accessibilityTest: false,
+      errorMessaging: false,
+      yesNoChildrenAndRespondents: false,
+    });
   });
 });

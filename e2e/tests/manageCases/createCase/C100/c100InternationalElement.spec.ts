@@ -36,18 +36,18 @@ test.describe("C100 Create case International Element Tests", (): void => {
       yesNoInternationalElement: false,
     });
   });
-});
 
-test(`Complete the C100 Create case International Element as a solicitor with the following options:
-  Accessibility testing,
-  Not Error message testing,
-  Saying yes to all options,
-  Setting the applicant Gender to male. @accessibility @nightly`, async ({
-  page,
-}): Promise<void> => {
-  await C100InternationalElement.c100InternationalElement({
-    page: page,
-    accessibilityTest: true,
-    yesNoInternationalElement: true,
+  test(`Complete the C100 Create case International Element as a solicitor with the following options:
+    Accessibility testing,
+    Not Error message testing,
+    Saying yes to all options,
+    Setting the applicant Gender to male. @accessibility @nightly`, async ({
+    page,
+  }): Promise<void> => {
+    await C100InternationalElement.c100InternationalElement({
+      page: page,
+      accessibilityTest: true,
+      yesNoInternationalElement: true,
+    });
   });
 });

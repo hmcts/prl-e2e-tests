@@ -59,21 +59,21 @@ test.describe("C100 Create case respondent details tests", (): void => {
       respondentLegalRepresentation: "dontKnow",
     });
   });
-});
 
-test(`C100 respondent details event as a solicitor with the following options:
-  Accessibility testing,
-  Not Error message testing,
-  Saying yes to all options,
-  Setting the respondent Gender to female. @accessibility @nightly`, async ({
-  page,
-}): Promise<void> => {
-  await C100RespondentDetails.c100RespondentDetails({
-    page: page,
-    accessibilityTest: true,
-    yesNoRespondentDetailsC100: true,
-    respondentGender: "female",
-    respondentAddress5Years: "yes",
-    respondentLegalRepresentation: "yes",
+  test(`C100 respondent details event as a solicitor with the following options:
+    Accessibility testing,
+    Not Error message testing,
+    Saying yes to all options,
+    Setting the respondent Gender to female. @accessibility @nightly`, async ({
+    page,
+  }): Promise<void> => {
+    await C100RespondentDetails.c100RespondentDetails({
+      page: page,
+      accessibilityTest: true,
+      yesNoRespondentDetailsC100: true,
+      respondentGender: "female",
+      respondentAddress5Years: "yes",
+      respondentLegalRepresentation: "yes",
+    });
   });
 });

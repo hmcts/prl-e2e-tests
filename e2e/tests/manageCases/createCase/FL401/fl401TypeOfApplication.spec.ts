@@ -50,18 +50,18 @@ test.describe("FL401 Create case type of application tests", (): void => {
       isLinkedToC100: true,
     });
   });
-});
 
-test(`Accessibility test the FL401 type of application event as a solicitor with the following options:
-  Accessibility testing,
-  Not Error message testing,
-  Saying yes to linked to C100, @accessibility @nightly`, async ({
-  page,
-}): Promise<void> => {
-  await FL401TypeOfApplication.fl401TypeOfApplication({
-    page: page,
-    accessibilityTest: true,
-    errorMessaging: false,
-    isLinkedToC100: true,
+  test(`Accessibility test the FL401 type of application event as a solicitor with the following options:
+    Accessibility testing,
+    Not Error message testing,
+    Saying yes to linked to C100, @accessibility @nightly`, async ({
+    page,
+  }): Promise<void> => {
+    await FL401TypeOfApplication.fl401TypeOfApplication({
+      page: page,
+      accessibilityTest: true,
+      errorMessaging: false,
+      isLinkedToC100: true,
+    });
   });
 });

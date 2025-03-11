@@ -46,18 +46,18 @@ test.describe("FL401 Create case respondent’s behaviour tests", (): void => {
       fl401AttendingTheHearingYesNo: true,
     });
   });
-});
 
-test(`FL401 Attending The Hearing Journey with the following options:
-  Accessibility testing,
-  No error Messaging,
-  Yes to All Options, @accessibility @nightly`, async ({
-  page,
-}): Promise<void> => {
-  await Fl401AttendingTheHearing.fl401AttendingTheHearing({
-    page: page,
-    accessibilityTest: true,
-    errorMessaging: false,
-    fl401AttendingTheHearingYesNo: true,
+  test(`FL401 Attending The Hearing Journey with the following options:
+    Accessibility testing,
+    No error Messaging,
+    Yes to All Options, @accessibility @nightly`, async ({
+    page,
+  }): Promise<void> => {
+    await Fl401AttendingTheHearing.fl401AttendingTheHearing({
+      page: page,
+      accessibilityTest: true,
+      errorMessaging: false,
+      fl401AttendingTheHearingYesNo: true,
+    });
   });
 });

@@ -61,19 +61,20 @@ test.describe("C100 Create case child details tests", (): void => {
       yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions: "dontKnow",
     });
   });
-});
 
-test(`C100 child details event as a solicitor with the following options:
-  Accessibility testing,
-  Not Error message testing,
-  Answering no to all additional questions,
-  Setting the child Gender to female. @accessibility @nightly`, async ({
-  page,
-}): Promise<void> => {
-  await C100ChildDetails.c100ChildDetails({
-    page: page,
-    accessibilityTest: true,
-    c100ChildGender: "female",
-    yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions: "no",
+
+  test(`C100 child details event as a solicitor with the following options:
+    Accessibility testing,
+    Not Error message testing,
+    Answering no to all additional questions,
+    Setting the child Gender to female. @accessibility @nightly`, async ({
+    page,
+  }): Promise<void> => {
+    await C100ChildDetails.c100ChildDetails({
+      page: page,
+      accessibilityTest: true,
+      c100ChildGender: "female",
+      yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions: "no",
+    });
   });
 });

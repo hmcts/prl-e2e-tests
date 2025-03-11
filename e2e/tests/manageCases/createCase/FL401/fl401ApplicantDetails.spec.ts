@@ -122,32 +122,32 @@ test.describe("FL401 Create case applicant details tests", (): void => {
       applicantGender: "male",
     });
   });
-});
 
-test(`Complete the FL401 applicant details event as a solicitor with the following options:
-  Accessibility testing,
-  Not Error message testing,
-  Saying no to all options,
-  Male applicant @regression`, async ({ page }): Promise<void> => {
-  await FL401ApplicantDetails.fl401ApplicantDetails({
-    page: page,
-    accessibilityTest: true,
-    errorMessaging: false,
-    yesNoFL401ApplicantDetails: false,
-    applicantGender: "male",
+  test(`Complete the FL401 applicant details event as a solicitor with the following options:
+    Accessibility testing,
+    Not Error message testing,
+    Saying no to all options,
+    Male applicant @regression`, async ({ page }): Promise<void> => {
+    await FL401ApplicantDetails.fl401ApplicantDetails({
+      page: page,
+      accessibilityTest: true,
+      errorMessaging: false,
+      yesNoFL401ApplicantDetails: false,
+      applicantGender: "male",
+    });
   });
-});
 
-test(`Complete the FL401 applicant details event as a solicitor with the following options:
-  Accessibility testing,
-  Not Error message testing,
-  Saying yes to all options,
-  Male applicant. @accessibility @nightly`, async ({ page }): Promise<void> => {
-  await FL401ApplicantDetails.fl401ApplicantDetails({
-    page: page,
-    accessibilityTest: true,
-    errorMessaging: false,
-    yesNoFL401ApplicantDetails: true,
-    applicantGender: "male",
+  test(`Complete the FL401 applicant details event as a solicitor with the following options:
+    Accessibility testing,
+    Not Error message testing,
+    Saying yes to all options,
+    Male applicant. @accessibility @nightly`, async ({ page }): Promise<void> => {
+    await FL401ApplicantDetails.fl401ApplicantDetails({
+      page: page,
+      accessibilityTest: true,
+      errorMessaging: false,
+      yesNoFL401ApplicantDetails: true,
+      applicantGender: "male",
+    });
   });
 });

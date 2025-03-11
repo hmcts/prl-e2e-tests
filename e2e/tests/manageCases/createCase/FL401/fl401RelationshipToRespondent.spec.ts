@@ -374,34 +374,34 @@ test.describe("FL401 Create case relationship to respondent tests", (): void => 
       relationshipToRespondentOther: "Other",
     });
   });
-});
 
-test(`FL401 relationship to respondent event as a solicitor with the following options:
-  Accessibility testing,
-  Not Error message testing,
-  Relationship is 'Formerly boyfriend, girlfriend or partner who has not lived with them', @accessibility @nightly`, async ({
-  page,
-}): Promise<void> => {
-  await FL401RelationshipToRespondent.fl401RelationshipToRespondent({
-    page: page,
-    accessibilityTest: true,
-    errorMessaging: false,
-    relationshipToRespondent: "bfGfOrPartnerNotLivedTogether",
+  test(`FL401 relationship to respondent event as a solicitor with the following options:
+    Accessibility testing,
+    Not Error message testing,
+    Relationship is 'Formerly boyfriend, girlfriend or partner who has not lived with them', @accessibility @nightly`, async ({
+    page,
+  }): Promise<void> => {
+    await FL401RelationshipToRespondent.fl401RelationshipToRespondent({
+      page: page,
+      accessibilityTest: true,
+      errorMessaging: false,
+      relationshipToRespondent: "bfGfOrPartnerNotLivedTogether",
+    });
   });
-});
 
-test(`FL401 relationship to respondent event as a solicitor with the following options:
-  Accessibility testing,
-  Not Error message testing,
-  Relationship is 'None of the above',
-  Other Relationship Type is: 'Father', @accessibility @nightly`, async ({
-  page,
-}): Promise<void> => {
-  await FL401RelationshipToRespondent.fl401RelationshipToRespondent({
-    page: page,
-    accessibilityTest: true,
-    errorMessaging: false,
-    relationshipToRespondent: "noneOfTheAbove",
-    relationshipToRespondentOther: "Father",
+  test(`FL401 relationship to respondent event as a solicitor with the following options:
+    Accessibility testing,
+    Not Error message testing,
+    Relationship is 'None of the above',
+    Other Relationship Type is: 'Father', @accessibility @nightly`, async ({
+    page,
+  }): Promise<void> => {
+    await FL401RelationshipToRespondent.fl401RelationshipToRespondent({
+      page: page,
+      accessibilityTest: true,
+      errorMessaging: false,
+      relationshipToRespondent: "noneOfTheAbove",
+      relationshipToRespondentOther: "Father",
+    });
   });
 });

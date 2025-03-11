@@ -78,18 +78,18 @@ test.describe("C100 Create case other proceedings tests", (): void => {
       c100OngoingProceedingsAndDocX: true,
     });
   });
-});
 
-test(`C100 other proceedings event as a solicitor with the following options:
-  Accessibility testing,
-  Not Error message testing,
-  Saying no to previous or ongoing proceedings for the child(ren)?, @accessibility @nightly`, async ({
-  page,
-}): Promise<void> => {
-  await C100OtherProceedings.c100OtherProceedings({
-    page: page,
-    accessibilityTest: true,
-    errorMessaging: false,
-    c100OtherProceedings: "No",
+  test(`C100 other proceedings event as a solicitor with the following options:
+    Accessibility testing,
+    Not Error message testing,
+    Saying no to previous or ongoing proceedings for the child(ren)?, @accessibility @nightly`, async ({
+    page,
+  }): Promise<void> => {
+    await C100OtherProceedings.c100OtherProceedings({
+      page: page,
+      accessibilityTest: true,
+      errorMessaging: false,
+      c100OtherProceedings: "No",
+    });
   });
 });

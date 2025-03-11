@@ -98,19 +98,19 @@ test.describe("C100 Create case Welsh Language Requirements Tests", (): void => 
       yesNoWelshLanguage: false,
     });
   });
-});
 
-test(`Complete the C100 Create case Welsh Language Requirements as a solicitor with the following options:
-  Accessibility testing,
-  Not Error message testing,
-  Saying no to all options,
-  WelshPageRequirementType is welsh. @accessibility @nightly`, async ({
-  page,
-}): Promise<void> => {
-  await C100WelshLanguageRequirements.c100WelshLanguageRequirements({
-    page: page,
-    accessibilityTest: true,
-    WelshPageRequirementType: "english",
-    yesNoWelshLanguage: true,
+  test(`Complete the C100 Create case Welsh Language Requirements as a solicitor with the following options:
+    Accessibility testing,
+    Not Error message testing,
+    Saying no to all options,
+    WelshPageRequirementType is welsh. @accessibility @nightly`, async ({
+    page,
+  }): Promise<void> => {
+    await C100WelshLanguageRequirements.c100WelshLanguageRequirements({
+      page: page,
+      accessibilityTest: true,
+      WelshPageRequirementType: "english",
+      yesNoWelshLanguage: true,
+    });
   });
 });

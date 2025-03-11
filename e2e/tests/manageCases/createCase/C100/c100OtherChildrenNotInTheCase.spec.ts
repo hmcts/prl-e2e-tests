@@ -96,22 +96,22 @@ test.describe("C100 Create case Other children not in the case tests", (): void 
       otherChildDOBKnown: false,
     });
   });
-});
 
-test(`C100 Other children not in the case event as a solicitor with the following options:
-  Accessibility testing,
-  Not Error message testing,
-  Answering yes to the other child being present,
-  With a unknown DOB,
-  Setting the child Gender to female. @accessibility @nightly`, async ({
-  page,
-}): Promise<void> => {
-  await C100OtherChildrenNotInTheCase.c100OtherChildrenNotInTheCase({
-    page: page,
-    accessibilityTest: true,
-    errorMessaging: false,
-    otherChildPresent: true,
-    otherChildGender: "Female",
-    otherChildDOBKnown: false,
+  test(`C100 Other children not in the case event as a solicitor with the following options:
+    Accessibility testing,
+    Not Error message testing,
+    Answering yes to the other child being present,
+    With a unknown DOB,
+    Setting the child Gender to female. @accessibility @nightly`, async ({
+    page,
+  }): Promise<void> => {
+    await C100OtherChildrenNotInTheCase.c100OtherChildrenNotInTheCase({
+      page: page,
+      accessibilityTest: true,
+      errorMessaging: false,
+      otherChildPresent: true,
+      otherChildGender: "Female",
+      otherChildDOBKnown: false,
+    });
   });
 });

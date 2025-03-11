@@ -75,26 +75,26 @@ test.describe("C100 Create case Children and respondents Tests", (): void => {
       subJourney: true,
     });
   });
-});
 
-test(`Complete the C100 Create case Children and Other people as a solicitor with the following options:
-  Accessibility testing,
-  Not Error message testing,
-  Saying Yes to all options,
-  Setting the applicant Gender to Other. @accessibility @nightly`, async ({
-  page,
-}): Promise<void> => {
-  await C100ChildrenAndOtherPeople.c100ChildrenAndOtherPeople({
-    page: page,
-    user: "solicitor",
-    accessibilityTest: true,
-    errorMessaging: false,
-    yesNoOtherPeopleInTheCase: true,
-    otherPersonLivesInRefuge: false,
-    applicantGender: "male",
-    c100ChildGender: "male",
-    yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions: "yes",
-    yesNoChildrenAndOtherPeople: true,
-    subJourney: true,
+  test(`Complete the C100 Create case Children and Other people as a solicitor with the following options:
+    Accessibility testing,
+    Not Error message testing,
+    Saying Yes to all options,
+    Setting the applicant Gender to Other. @accessibility @nightly`, async ({
+    page,
+  }): Promise<void> => {
+    await C100ChildrenAndOtherPeople.c100ChildrenAndOtherPeople({
+      page: page,
+      user: "solicitor",
+      accessibilityTest: true,
+      errorMessaging: false,
+      yesNoOtherPeopleInTheCase: true,
+      otherPersonLivesInRefuge: false,
+      applicantGender: "male",
+      c100ChildGender: "male",
+      yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions: "yes",
+      yesNoChildrenAndOtherPeople: true,
+      subJourney: true,
+    });
   });
 });

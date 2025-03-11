@@ -74,21 +74,21 @@ test.describe("C100 Create case Other people in the case Tests", (): void => {
       applicantGender: "other",
     });
   });
-});
 
-test(`Complete the C100 Create case Other people in the case as a solicitor with the following options:
-  Accessibility testing,
-  not Error message testing,
-  Saying yes to all options,
-  Setting the applicant Gender to male. @accessibility @nightly`, async ({
-  page,
-}): Promise<void> => {
-  await C100OtherPeopleInTheCase.c100OtherPeopleInTheCase({
-    page: page,
-    accessibilityTest: false,
-    errorMessaging: false,
-    yesNoOtherPeopleInTheCase: true,
-    otherPersonLivesInRefuge: true,
-    applicantGender: "male",
+  test(`Complete the C100 Create case Other people in the case as a solicitor with the following options:
+    Accessibility testing,
+    not Error message testing,
+    Saying yes to all options,
+    Setting the applicant Gender to male. @accessibility @nightly`, async ({
+    page,
+  }): Promise<void> => {
+    await C100OtherPeopleInTheCase.c100OtherPeopleInTheCase({
+      page: page,
+      accessibilityTest: false,
+      errorMessaging: false,
+      yesNoOtherPeopleInTheCase: true,
+      otherPersonLivesInRefuge: true,
+      applicantGender: "male",
+    });
   });
 });

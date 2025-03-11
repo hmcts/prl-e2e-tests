@@ -9,6 +9,7 @@ test.describe("C100 Create case respondent’s behaviour tests", (): void => {
       solicitorCaseType: "C100",
     });
   });
+
   test(`C100 Attending The Hearing Journey with the following options:
   Not Accessibility testing,
   Not error Messaging,
@@ -45,19 +46,19 @@ test.describe("C100 Create case respondent’s behaviour tests", (): void => {
       errorMessaging: true,
       c100AttendingTheHearingYesNo: true,
     });
-  });
-});
+    });
 
-test(`C100 Attending The Hearing Journey with the following options:
-  Accessibility testing,
-  No error Messaging,
-  Yes to All Options, @accessibility @nightly`, async ({
-  page,
-}): Promise<void> => {
-  await C100AttendingTheHearing.c100AttendingTheHearing({
-    page: page,
-    accessibilityTest: true,
-    errorMessaging: false,
-    c100AttendingTheHearingYesNo: true,
+  test(`C100 Attending The Hearing Journey with the following options:
+    Accessibility testing,
+    No error Messaging,
+    Yes to All Options, @accessibility @nightly`, async ({
+    page,
+  }): Promise<void> => {
+    await C100AttendingTheHearing.c100AttendingTheHearing({
+      page: page,
+      accessibilityTest: true,
+      errorMessaging: false,
+      c100AttendingTheHearingYesNo: true,
+    });
   });
 });

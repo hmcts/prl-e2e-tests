@@ -184,21 +184,21 @@ test.describe("FL401 Create cases The Home tests", (): void => {
       fl401EverLivedAtAddress: "yesApplicant",
     });
   });
-});
 
-test(`Complete the FL401 The Home Journey with the following options:
-        Accessibility testing, 
-        Applicant has children
-        Yes to all booleans, 
-        'Yes the applicant' to has the applicant or respondent ever lived at the address @accessibility @nightly`, async ({
-  page,
-}): Promise<void> => {
-  await FL401TheHome.fl401TheHome({
-    page: page,
-    accessibilityTest: true,
-    applicantHasChildren: true,
-    fl401TheHomeYesNo: true,
-    fl401EverLivedAtAddress: "yesApplicant",
-    fl401IntendToLiveAtAddress: "yesRespondent",
+  test(`Complete the FL401 The Home Journey with the following options:
+          Accessibility testing, 
+          Applicant has children
+          Yes to all booleans, 
+          'Yes the applicant' to has the applicant or respondent ever lived at the address @accessibility @nightly`, async ({
+    page,
+  }): Promise<void> => {
+    await FL401TheHome.fl401TheHome({
+      page: page,
+      accessibilityTest: true,
+      applicantHasChildren: true,
+      fl401TheHomeYesNo: true,
+      fl401EverLivedAtAddress: "yesApplicant",
+      fl401IntendToLiveAtAddress: "yesRespondent",
+    });
   });
 });

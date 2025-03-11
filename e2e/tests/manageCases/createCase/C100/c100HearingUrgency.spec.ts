@@ -46,18 +46,18 @@ test.describe("C100 Create case hearing urgency tests", (): void => {
       yesNoHearingUrgency: true,
     });
   });
-});
 
-test(`C100 hearing urgency event as a solicitor with the following options:
-  Accessibility testing,
-  Not Error message testing,
-  Saying yes to all options, @accessibility @nightly`, async ({
-  page,
-}): Promise<void> => {
-  await C100HearingUrgency.c100HearingUrgency({
+  test(`C100 hearing urgency event as a solicitor with the following options:
+    Accessibility testing,
+    Not Error message testing,
+    Saying yes to all options, @accessibility @nightly`, async ({
     page,
-    accessibilityTest: true,
-    errorMessaging: false,
-    yesNoHearingUrgency: true,
+  }): Promise<void> => {
+    await C100HearingUrgency.c100HearingUrgency({
+      page,
+      accessibilityTest: true,
+      errorMessaging: false,
+      yesNoHearingUrgency: true,
+    });
   });
 });

@@ -78,18 +78,18 @@ test.describe("FL401 Create case other proceedings tests", (): void => {
       otherProceedingsRadios: "Yes",
     });
   });
-});
 
-test(`FL401 other proceedings event as a solicitor with the following options:
-  Accessibility testing,
-  Not Error message testing,
-  Saying yes to previous or ongoing family court proceedings involving the applicant and respondent, @accessibility @nightly`, async ({
-  page,
-}): Promise<void> => {
-  await FL401OtherProceedings.fl401OtherProceedings({
-    page: page,
-    accessibilityTest: true,
-    errorMessaging: false,
-    otherProceedingsRadios: "Yes",
+  test(`FL401 other proceedings event as a solicitor with the following options:
+    Accessibility testing,
+    Not Error message testing,
+    Saying yes to previous or ongoing family court proceedings involving the applicant and respondent, @accessibility @nightly`, async ({
+    page,
+  }): Promise<void> => {
+    await FL401OtherProceedings.fl401OtherProceedings({
+      page: page,
+      accessibilityTest: true,
+      errorMessaging: false,
+      otherProceedingsRadios: "Yes",
+    });
   });
 });
