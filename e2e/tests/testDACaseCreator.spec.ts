@@ -44,13 +44,11 @@ test.describe("Case creation examples", (): void => {
     await completeCheckApplicationAndSendToGatekeeper(caPage, caseRef);
   });
 
-  test("create courtnav", async ({
-                                                                       browser,
-                                                                     }): Promise<void> => {
+  test("create courtnav", async ({ browser }): Promise<void> => {
     await createDaCitizenCourtNavCase(false, false);
     const caPage: Page = await Helpers.openNewBrowserWindow(
-        browser,
-        "caseWorker",
+      browser,
+      "caseWorker",
     );
     await caPage.goto(`${Config.manageCasesBaseURL}/work/my-work/list`);
   });
