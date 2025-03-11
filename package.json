@@ -41,8 +41,7 @@
     "test:citizenFrontendChrome": "yarn playwright install && yarn playwright test e2e/tests/citizen --project chromium --grep @nightly",
     "test:citizenFrontendFirefox": "yarn playwright install firefox && yarn playwright test e2e/tests/citizen --project firefox --grep @smoke",
     "test:citizenFrontendSafari": "yarn playwright install webkit && yarn playwright test e2e/tests/citizen --project webkit --grep @smoke",
-    "test:citizenFrontendAccessibility": "yarn playwright install && yarn playwright test e2e/tests/citizen --project chromium --grep @accessibility",
-    "test:manageCasesCreateCase": "yarn playwright install && yarn playwright test e2e/tests/manageCases/createCase --project chromium"
+    "test:citizenFrontendAccessibility": "yarn playwright install && yarn playwright test e2e/tests/citizen --project chromium --grep @accessibility"
   },
   "packageManager": "yarn@4.7.0"
 }
