@@ -17,7 +17,7 @@ properties([
     ),
     string(
       name: 'MANAGE_CASES_BASE_URL',
-      defaultValue: 'https://manage-case.demo.platform.hmcts.net/cases',
+      defaultValue: 'https://manage-case.aat.platform.hmcts.net/cases',
       description: 'The Manage Cases URL to test against'
     ),
     string(
@@ -61,7 +61,6 @@ if(params.skipManageCasesTests) {
 } else {
   matchingEnv = envSubstrings.find{envSubstring -> params.MANAGE_CASES_BASE_URL.contains(envSubstring)}
 }
-echo "Matching env: ${matchingEnv}"
 
 def secrets = [
   "prl-${matchingEnv}": [
