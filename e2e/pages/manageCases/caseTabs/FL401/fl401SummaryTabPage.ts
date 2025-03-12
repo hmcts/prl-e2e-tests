@@ -11,7 +11,6 @@ export class FL401SummaryTabPage {
     accessibilityTest: boolean,
     applicantLivesInRefuge: boolean,
   ): Promise<void> {
-    await this.clickTab(page);
     await this.checkPageLoads(
       page,
       isCourtListed,
@@ -76,11 +75,5 @@ export class FL401SummaryTabPage {
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }
-  }
-
-  private static async clickTab(page: Page): Promise<void> {
-    await page
-      .getByRole("tab", { name: FL401SummaryTabContent.tabName, exact: true })
-      .click();
   }
 }

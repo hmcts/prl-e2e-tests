@@ -51,12 +51,12 @@ export class HearingAttendancePage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${HearingAttendanceContent.GovukLabel1}")`,
+        `${Selectors.GovukFieldsetHeading}:text-is("${HearingAttendanceContent.GovukFieldsetHeading3}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${HearingAttendanceContent.GovukLabel2}")`,
+        `${Selectors.GovukFieldsetHeading}:text-is("${HearingAttendanceContent.GovukFieldsetHeading4}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(

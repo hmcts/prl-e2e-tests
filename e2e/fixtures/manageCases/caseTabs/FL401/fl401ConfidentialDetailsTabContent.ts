@@ -13,7 +13,7 @@ export enum FL401ConfidentialDetailsTabContent {
   refugeSectionApplicantDetailsText162 = "John Smith",
   refugeSectionFile = "mockFile.pdf",
   link = "mockFile.pdf",
-  testPdf = "mockFile.pdf",
+  testPdf = "Confidential_mockFile.pdf",
 
   // Restricted documents
   text16_restrictedDoc = "Restricted documents",

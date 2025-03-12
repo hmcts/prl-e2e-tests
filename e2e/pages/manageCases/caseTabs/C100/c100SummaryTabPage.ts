@@ -11,7 +11,6 @@ export class C100SummaryTabPage {
     applicantLivesInRefuge: boolean,
     otherPersonLivesInRefuge: boolean,
   ): Promise<void> {
-    await this.clickTab(page);
     await this.checkPageLoads(
       page,
       accessibilityTest,
@@ -58,11 +57,5 @@ export class C100SummaryTabPage {
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }
-  }
-
-  private static async clickTab(page: Page): Promise<void> {
-    await page
-      .getByRole("tab", { name: C100SummaryTabContent.tabName, exact: true })
-      .click();
   }
 }
