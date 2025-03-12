@@ -223,7 +223,8 @@ export class FL401ConfidentialDetailsTabPage {
             .getByRole("cell", {
               name: `${FL401ConfidentialDetailsTabContent.refugeSectionDocument} ${FL401ConfidentialDetailsTabContent.testPdf} Uploaded by`,
             })
-            .getByRole("link"),
+            .getByRole("link")
+            .filter({ hasText: FL401ConfidentialDetailsTabContent.testPdf }),
         ).toBeVisible(),
         expect(
           confidentialDocsSection.getByText(
