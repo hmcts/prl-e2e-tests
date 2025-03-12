@@ -124,13 +124,6 @@ export class C100 {
     c100YesNoToAll,
     yesNoHelpWithFees,
   }: c100Options): Promise<void> {
-    await SolicitorCreateInitial.createInitialCase({
-      page: page,
-      user: user,
-      accessibilityTest: false,
-      solicitorCaseType: "C100",
-      errorMessaging: false,
-    });
     await C100TypeOfApplication.c100TypeOfApplication({
       page: page,
       accessibilityTest: accessibilityTest,

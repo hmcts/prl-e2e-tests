@@ -16,7 +16,7 @@ import IdamLoginHelper from "../../../common/userHelpers/idamLoginHelper.ts";
 import Config from "../../../config.ts";
 import { Helpers } from "../../../common/helpers.ts";
 import { CommonStaticText } from "../../../common/commonStaticText.ts";
-import {FL401WithoutNoticeOrder} from "./FL401WithoutNoticeOrder/FL401WIthoutNoticeOrder.ts";
+import { FL401WithoutNoticeOrder } from "./FL401WithoutNoticeOrder/FL401WIthoutNoticeOrder.ts";
 
 export class SolicitorCreateInitial {
   public static async createInitialCase({

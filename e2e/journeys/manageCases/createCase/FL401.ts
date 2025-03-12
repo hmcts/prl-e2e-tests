@@ -22,7 +22,6 @@ import { FL401UploadDocuments } from "./FL401UploadDocuments/FL401UploadDocument
 import { FL401ViewPDFApplication } from "./FL401ViewPDFApplication/FL401ViewPDFApplication";
 import { FL401WelshLanguageRequirements } from "./FL401WelshLanguageRequirements/FL401WelshLanguageRequirements";
 import { FL401WithoutNoticeOrder } from "./FL401WithoutNoticeOrder/FL401WIthoutNoticeOrder";
-import { SolicitorCreateInitial } from "./solicitorCreateInitial";
 
 interface fl401Options {
   page: Page;
@@ -52,7 +51,6 @@ interface fl401Options {
 export class FL401 {
   public static async fl401({
     page,
-    user,
     accessibilityTest,
     errorMessaging,
     isLinkedToC100,
@@ -73,13 +71,6 @@ export class FL401 {
     welshLanguageRequirementsSelectWelsh,
     viewPdfTestCases,
   }: fl401Options): Promise<void> {
-    await SolicitorCreateInitial.createInitialCase({
-      page: page,
-      user: user,
-      accessibilityTest: false,
-      solicitorCaseType: "FL401",
-      errorMessaging: false,
-    });
     await FL401TypeOfApplication.fl401TypeOfApplication({
       page: page,
       accessibilityTest: accessibilityTest,
