@@ -49,7 +49,6 @@ test.describe("FL401 Create case welsh language requirements tests", (): void =>
     });
   });
 
-
   test(`Accessibility test the FL401 welsh language requirements event as a solicitor with the following options:
     Accessibility testing,
     Not Error message testing,

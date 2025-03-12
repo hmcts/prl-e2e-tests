@@ -18,7 +18,6 @@ test.describe("FL401 Create case respondent’s behaviour tests", (): void => {
     });
   });
 
-
   test(`FL401 respondent’s behaviour event as a solicitor with the following options:
     Accessibility testing,
     Not Error message testing, @accessibility @nightly`, async ({

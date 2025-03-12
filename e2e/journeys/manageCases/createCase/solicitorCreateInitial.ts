@@ -16,6 +16,7 @@ import IdamLoginHelper from "../../../common/userHelpers/idamLoginHelper.ts";
 import Config from "../../../config.ts";
 import { Helpers } from "../../../common/helpers.ts";
 import { CommonStaticText } from "../../../common/commonStaticText.ts";
+import {FL401WithoutNoticeOrder} from "./FL401WithoutNoticeOrder/FL401WIthoutNoticeOrder.ts";
 
 export class SolicitorCreateInitial {
   public static async createInitialCase({
@@ -120,12 +121,26 @@ export class SolicitorCreateInitial {
       errorMessaging: false,
     });
     //this is a work around as tasks aren't loaded
-    await Helpers.chooseEventFromDropdown(page, "Case name");
-    await page
-      .locator(Selectors.button, { hasText: CommonStaticText.continue })
-      .click();
-    await page
-      .locator(Selectors.button, { hasText: CommonStaticText.saveAndContinue })
-      .click();
+    if (solicitorCaseType === "C100") {
+      await Helpers.chooseEventFromDropdown(page, "Case name");
+      await page
+        .locator(Selectors.button, { hasText: CommonStaticText.continue })
+        .click();
+      await page
+        .locator(Selectors.button, {
+          hasText: CommonStaticText.saveAndContinue,
+        })
+        .click();
+    }
+    if (solicitorCaseType === "FL401") {
+      await Helpers.chooseEventFromDropdown(page, "Without notice order");
+      await FL401WithoutNoticeOrder.fl401WithoutNoticeOrder({
+        page: page,
+        accessibilityTest: false,
+        errorMessaging: false,
+        isWithoutNoticeDetailsYes: true,
+        isWithoutNoticeDetailsBailConditions: "Yes",
+      });
+    }
   }
 }

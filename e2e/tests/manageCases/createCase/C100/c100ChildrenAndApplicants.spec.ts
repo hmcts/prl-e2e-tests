@@ -169,7 +169,6 @@ test.describe("C100 Create case children and applicants tests", (): void => {
     });
   });
 
-
   test(`C100 children and applicants event as a solicitor with the following options:
     Accessibility testing,
     Not Error message testing,

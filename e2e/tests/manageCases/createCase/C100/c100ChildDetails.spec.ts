@@ -62,7 +62,6 @@ test.describe("C100 Create case child details tests", (): void => {
     });
   });
 
-
   test(`C100 child details event as a solicitor with the following options:
     Accessibility testing,
     Not Error message testing,

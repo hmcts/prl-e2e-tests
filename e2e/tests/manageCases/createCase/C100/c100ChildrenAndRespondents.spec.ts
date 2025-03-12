@@ -1,18 +1,16 @@
 import { test } from "@playwright/test";
 import { C100ChildAndRespondents } from "../../../../journeys/manageCases/createCase/C100ChildrenAndRespondents/c100ChildrenAndRespondents";
-import Config from "../../../../config";
-import IdamLoginHelper from "../../../../common/userHelpers/idamLoginHelper.ts";
 import { C100ChildDetails } from "../../../../journeys/manageCases/createCase/C100ChildDetails/c100ChildDetails.ts";
 import { C100RespondentDetails } from "../../../../journeys/manageCases/createCase/C100RespondentDetails/C100RespondentDetails.ts";
 import { C100ApplicantDetails } from "../../../../journeys/manageCases/createCase/C100ApplicantDetails/c100ApplicantDetails.ts";
+import { SolicitorCreateInitial } from "../../../../journeys/manageCases/createCase/solicitorCreateInitial.ts";
 
 test.describe("C100 Create case Children and respondents Tests", (): void => {
   test.beforeEach(async ({ page }) => {
-    await IdamLoginHelper.createAndSignInUser(
+    await SolicitorCreateInitial.createUserAndCase({
       page,
-      Config.manageCasesBaseURLCase,
-      "solicitor",
-    );
+      solicitorCaseType: "C100",
+    });
     await C100ApplicantDetails.C100ApplicantDetails({
       page,
       accessibilityTest: false,

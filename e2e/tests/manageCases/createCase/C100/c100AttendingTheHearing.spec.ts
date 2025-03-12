@@ -46,7 +46,7 @@ test.describe("C100 Create case respondent’s behaviour tests", (): void => {
       errorMessaging: true,
       c100AttendingTheHearingYesNo: true,
     });
-    });
+  });
 
   test(`C100 Attending The Hearing Journey with the following options:
     Accessibility testing,
