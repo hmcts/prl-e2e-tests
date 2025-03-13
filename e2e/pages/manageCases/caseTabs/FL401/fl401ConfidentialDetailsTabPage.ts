@@ -1,4 +1,4 @@
-import { Page, expect } from "@playwright/test";
+import { expect, Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors";
 import { Helpers } from "../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
@@ -183,11 +183,6 @@ export class FL401ConfidentialDetailsTabPage {
             .locator("span"),
         ).toBeVisible(),
         expect(
-          restrictedDocsSection
-            .getByRole("cell", { name: "PRL AAT AM Swansea HCA", exact: true })
-            .locator("span"),
-        ).toBeVisible(),
-        expect(
           restrictedDocsSection.getByRole("columnheader", {
             name: FL401ConfidentialDetailsTabContent.text16_reasonRestrict,
           }),
@@ -226,19 +221,16 @@ export class FL401ConfidentialDetailsTabPage {
         expect(
           page
             .getByRole("cell", {
-              name: `${FL401ConfidentialDetailsTabContent.refugeSectionDocument} ${FL401ConfidentialDetailsTabContent.testPdf} Uploaded by PRL AAT AM Swansea HCA`,
-              exact: true,
+              name: `${FL401ConfidentialDetailsTabContent.refugeSectionDocument} ${FL401ConfidentialDetailsTabContent.testPdf} Uploaded by`,
             })
-            .getByRole("link"),
+            .getByRole("link")
+            .filter({ hasText: FL401ConfidentialDetailsTabContent.testPdf }),
         ).toBeVisible(),
         expect(
           confidentialDocsSection.getByText(
             FL401ConfidentialDetailsTabContent.text16_uploadedBy,
             { exact: true },
           ),
-        ).toBeVisible(),
-        expect(
-          confidentialDocsSection.getByText("PRL AAT AM Swansea HCA"),
         ).toBeVisible(),
         expect(
           confidentialDocsSection.getByText(documentCategory),

@@ -64,7 +64,21 @@ export class SubmitAndPay2Page {
         `${Selectors.GovukFormHint}:text-is("${SubmitAndPay2Content.formHint}")`,
         1,
       ),
-      Helpers.checkGroup(page, 2, SubmitAndPay2Content, "p", `${Selectors.p}`),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${SubmitAndPay2Content.p1}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:has-text("${SubmitAndPay2Content.p21}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:has-text("${SubmitAndPay2Content.p22}")`,
+        1,
+      ),
     ]);
     await AccessibilityTestHelper.run(page);
   }
