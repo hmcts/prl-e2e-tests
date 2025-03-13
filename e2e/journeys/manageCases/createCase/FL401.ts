@@ -22,7 +22,6 @@ import { FL401UploadDocuments } from "./FL401UploadDocuments/FL401UploadDocument
 import { FL401ViewPDFApplication } from "./FL401ViewPDFApplication/FL401ViewPDFApplication";
 import { FL401WelshLanguageRequirements } from "./FL401WelshLanguageRequirements/FL401WelshLanguageRequirements";
 import { FL401WithoutNoticeOrder } from "./FL401WithoutNoticeOrder/FL401WIthoutNoticeOrder";
-import { SolicitorCreateInitial } from "./solicitorCreateInitial";
 
 interface fl401Options {
   page: Page;
@@ -52,7 +51,6 @@ interface fl401Options {
 export class FL401 {
   public static async fl401({
     page,
-    user,
     accessibilityTest,
     errorMessaging,
     isLinkedToC100,
@@ -73,19 +71,11 @@ export class FL401 {
     welshLanguageRequirementsSelectWelsh,
     viewPdfTestCases,
   }: fl401Options): Promise<void> {
-    await SolicitorCreateInitial.createInitialCase({
-      page: page,
-      user: user,
-      accessibilityTest: false,
-      solicitorCaseType: "FL401",
-      errorMessaging: false,
-    });
     await FL401TypeOfApplication.fl401TypeOfApplication({
       page: page,
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
       isLinkedToC100: isLinkedToC100,
-      subJourney: false,
     });
     await FL401WithoutNoticeOrder.fl401WithoutNoticeOrder({
       page: page,
@@ -94,7 +84,6 @@ export class FL401 {
       isWithoutNoticeDetailsYes: isWithoutNoticeDetailsYes,
       isWithoutNoticeDetailsBailConditions:
         isWithoutNoticeDetailsBailConditions,
-      subJourney: false,
     });
     await FL401ApplicantDetails.fl401ApplicantDetails({
       page: page,
@@ -102,21 +91,18 @@ export class FL401 {
       errorMessaging: errorMessaging,
       yesNoFL401ApplicantDetails: yesNoFL401ApplicantDetails,
       applicantGender: applicantGender,
-      subJourney: false,
     });
     await FL401RespondentDetails.fl401RespondentDetails({
       page: page,
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
       respondentDetailsAllOptionsYes: respondentDetailsAllOptionsYes,
-      subJourney: false,
     });
     await FL401ApplicantsFamily.fl401ApplicantsFamily({
       page: page,
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
       applicantHasChildren: applicantHasChildren,
-      subJourney: false,
     });
     await FL401RelationshipToRespondent.fl401RelationshipToRespondent({
       page: page,
@@ -124,19 +110,16 @@ export class FL401 {
       errorMessaging: errorMessaging,
       relationshipToRespondent: relationshipToRespondent,
       relationshipToRespondentOther: relationshipToRespondentOther,
-      subJourney: false,
     });
     await FL401RespondentsBehaviour.fl401RespondentsBehaviour({
       page: page,
       accessibilityTest: accessibilityTest,
-      subJourney: false,
     });
     await FL401OtherProceedings.fl401OtherProceedings({
       page: page,
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
       otherProceedingsRadios: otherProceedingsRadios,
-      subJourney: false,
     });
     await FL401TheHome.fl401TheHome({
       page: page,
@@ -145,14 +128,12 @@ export class FL401 {
       fl401TheHomeYesNo: fl401TheHomeYesNo,
       fl401EverLivedAtAddress: fl401EverLivedAtAddress,
       fl401IntendToLiveAtAddress: fl401IntendToLiveAtAddress,
-      subJourney: false,
     });
     await Fl401AttendingTheHearing.fl401AttendingTheHearing({
       page: page,
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
       fl401AttendingTheHearingYesNo: fl401AttendingTheHearingYesNo,
-      subJourney: false,
     });
     await FL401WelshLanguageRequirements.fl401WelshLanguageRequirements({
       page: page,
@@ -162,13 +143,11 @@ export class FL401 {
         welshLanguageRequirementsAllOptionsYes,
       welshLanguageRequirementsSelectWelsh:
         welshLanguageRequirementsSelectWelsh,
-      subJourney: false,
     });
     await FL401UploadDocuments.fl401UploadDocuments({
       page,
       accessibilityTest,
       errorMessaging,
-      subJourney: false,
     });
     await FL401ViewPDFApplication.fl401ViewPDFApplication({
       page,
