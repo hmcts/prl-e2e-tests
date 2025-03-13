@@ -9,6 +9,7 @@ enum caseTypeSelectionIds {
   C100 = "#caseTypeOfApplication-C100",
   FL401 = "#caseTypeOfApplication-FL401",
   yes = "#caseFromCourtNav_Yes",
+  no = "#caseFromCourtNav_No",
 }
 
 export class SolicitorCreate2Page {
@@ -148,7 +149,7 @@ export class SolicitorCreate2Page {
     await page.click(selector);
     if (!isDummyCase && solicitorCaseType === "FL401") {
       await this.checkFL401(page, errorMessaging);
-      await page.click(`${caseTypeSelectionIds.yes}`);
+      await page.click(`${caseTypeSelectionIds.no}`);
     }
     await page.click(
       `${Selectors.button}:text-is("${SolicitorCreate2Content.continue}")`,
