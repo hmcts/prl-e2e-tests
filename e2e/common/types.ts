@@ -265,3 +265,14 @@ export type solicitorCACaseAPIEvent =
   | "issueAndSendToLocalCourtCallback";
 
 export type AdditionalApplicationType = "c2" | "other";
+
+export type EdgeCaseApplicationType =
+  | "FGM"
+  | "FMPO"
+  | "SpecialGuardianship"
+  | "DeclarationOfParentage"
+  | "ParentalOrder"
+  | "ParentalResponsibility"
+  | "ParentalResponsibility_secondFemaleParent"
+  | "AppointingChildGuardian"
+  | "ChangeOfChildSurname";

@@ -54,6 +54,11 @@ export class Config {
       "https://manage-case.aat.platform.hmcts.net",
   );
 
+  public static readonly edgeCasesBaseURL: string = Config.removeCasesPath(
+    process.env.EDGE_CASE_BASE_URL ||
+      "https://fis-ds-web-pr-349.preview.platform.hmcts.net/",
+  );
+
   private static removeCasesPath(url: string): string {
     return url.replace(/\/cases$/, ""); // Removes `/cases` only if it's at the end
   }
