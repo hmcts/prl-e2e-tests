@@ -26,7 +26,7 @@ export class FL401WithoutNoticeOrder {
     isWithoutNoticeDetailsYes,
     isWithoutNoticeDetailsBailConditions,
   }: fl401WithoutNoticeOrderOptions): Promise<void> {
-    await Helpers.handleEventBasedOnEnvironment(page, "Without notice order");
+    await Helpers.chooseEventFromDropdown(page, "Without notice order");
     await WithoutNoticeOrder1Page.withoutOrderNotice1Page(
       page,
       accessibilityTest,

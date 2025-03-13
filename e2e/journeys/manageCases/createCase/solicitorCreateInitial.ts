@@ -133,7 +133,6 @@ export class SolicitorCreateInitial {
         .click();
     }
     if (solicitorCaseType === "FL401") {
-      await Helpers.chooseEventFromDropdown(page, "Without notice order");
       await FL401WithoutNoticeOrder.fl401WithoutNoticeOrder({
         page: page,
         accessibilityTest: false,
