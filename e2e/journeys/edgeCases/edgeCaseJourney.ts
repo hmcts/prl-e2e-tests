@@ -4,7 +4,8 @@ import { Page } from "@playwright/test";
 import { EdgeCaseApplicationType } from "../../common/types.ts";
 import IdamLoginHelper from "../../common/userHelpers/idamLoginHelper.ts";
 import { UserRolePage } from "../../pages/edgeCases/userRolePage.ts";
-import {DateOfBirthPage} from "../../pages/edgeCases/dateOfBirthPage.ts";
+import { DateOfBirthPage } from "../../pages/edgeCases/dateOfBirthPage.ts";
+import { AddressLookupPage } from "../../pages/edgeCases/addressLookupPage.ts";
 
 interface InitialCreateEdgeCaseJourneyParams {
   page: Page;
@@ -12,6 +13,7 @@ interface InitialCreateEdgeCaseJourneyParams {
   typeOfApplication: EdgeCaseApplicationType;
   applyMyself: boolean;
   under18: boolean;
+  manualAddress: boolean;
 }
 
 export class EdgeCase {
@@ -20,7 +22,8 @@ export class EdgeCase {
     accessibilityTest,
     typeOfApplication,
     applyMyself,
-      under18,
+    under18,
+    manualAddress,
   }: InitialCreateEdgeCaseJourneyParams): Promise<void> {
     await StartPage.startPage({ page, accessibilityTest });
     const currentUrl: string = page.url();
@@ -31,8 +34,13 @@ export class EdgeCase {
       typeOfApplication,
     });
     if (typeOfApplication === "FGM" || typeOfApplication === "FMPO") {
-      await UserRolePage.userRole({page, accessibilityTest, applyMyself});
+      await UserRolePage.userRole({ page, accessibilityTest, applyMyself });
     }
-    await DateOfBirthPage.dateOfBirth({page, accessibilityTest, under18});
+    await DateOfBirthPage.dateOfBirth({ page, accessibilityTest, under18 });
+    await AddressLookupPage.addressLookup({
+      page,
+      accessibilityTest,
+      manualAddress,
+    });
   }
 }

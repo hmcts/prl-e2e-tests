@@ -23,7 +23,7 @@ export class UserRolePage {
   }: UserRoleOptions): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest);
     await this.selectOption(page, applyMyself);
-    await page.click("#main-form-submit");
+    await page.click(Selectors.edgeCaseContinue);
   }
 
   private static async checkPageLoads(

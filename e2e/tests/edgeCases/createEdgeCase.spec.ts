@@ -1,4 +1,3 @@
-
 import Config from "../../config.ts";
 import { EdgeCase } from "../../journeys/edgeCases/edgeCaseJourney.ts";
 import { test } from "@playwright/test";
@@ -12,6 +11,7 @@ test.describe("Create an edge case as a citizen", (): void => {
       typeOfApplication: "FGM",
       applyMyself: true,
       under18: true,
+      manualAddress: false,
     });
   });
 });

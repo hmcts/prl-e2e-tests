@@ -142,4 +142,6 @@ export enum Selectors {
   // XUI
   xuiSpinner = "xuilib-loading-spinner",
   xuiFilters = "exui-ccd-connector",
+
+  edgeCaseContinue = "#main-form-submit",
 }

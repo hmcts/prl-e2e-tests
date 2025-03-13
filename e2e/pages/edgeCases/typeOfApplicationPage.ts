@@ -31,8 +31,7 @@ export class TypeOfApplicationPage {
   }: TypeOfApplicationOptions): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest);
     await this.selectOption(page, typeOfApplication);
-    const continueButton = "#main-form-submit";
-    await page.click(continueButton);
+    await page.click(Selectors.edgeCaseContinue);
   }
 
   private static async checkPageLoads(
