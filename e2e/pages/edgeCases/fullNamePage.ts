@@ -2,30 +2,25 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../common/selectors.ts";
 import AccessibilityTestHelper from "../../common/accessibilityTestHelper.ts";
 import { Helpers } from "../../common/helpers.ts";
-import { DateOfBirthContent } from "../../fixtures/edgeCases/dateOfBirthContent.ts";
+import { FullNameContent } from "../../fixtures/edgeCases/fullNameContent.ts";
 
-interface DateOfBirthOptions {
+interface FullNamePageOptions {
   page: Page;
   accessibilityTest: boolean;
-  under18: boolean;
 }
 
 enum UniqueSelectors {
-  day = "#applicantDateOfBirth-day",
-  month = "#applicantDateOfBirth-month",
-  year = "#applicantDateOfBirth-year",
+  firstName = "#applicantFirstName",
+  lastName = "#applicantLastName",
 }
 
-export class DateOfBirthPage {
-  public static async dateOfBirth({
+export class FullNamePage {
+  public static async fullNamePage({
     page,
     accessibilityTest,
-    under18,
-  }: DateOfBirthOptions): Promise<void> {
+  }: FullNamePageOptions): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest);
-    if (under18) {
-      await this.fillInDOB(page, under18);
-    }
+    await this.fillInFields(page);
     await page.click(Selectors.edgeCaseContinue);
   }
 
@@ -34,21 +29,21 @@ export class DateOfBirthPage {
     accessibilityTest?: boolean,
   ): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.h1}:text-is("${DateOfBirthContent.h1}")`,
+      `${Selectors.h1}:text-is("${FullNameContent.h1}")`,
     );
     await Promise.all([
       Helpers.checkGroup(
         page,
-        3,
-        DateOfBirthContent,
+        2,
+        FullNameContent,
         "formLabel",
         `${Selectors.GovukLabel}`,
       ),
       Helpers.checkGroup(
         page,
-        2,
-        DateOfBirthContent,
-        "hint",
+        3,
+        FullNameContent,
+        "formHint",
         `${Selectors.GovukHint}`,
       ),
     ]);
@@ -56,10 +51,8 @@ export class DateOfBirthPage {
       await AccessibilityTestHelper.run(page);
     }
   }
-  private static async fillInDOB(page: Page, under18: boolean): Promise<void> {
-    const [day, month, year] = Helpers.generateDOB(under18);
-    await page.fill(UniqueSelectors.day, day);
-    await page.fill(UniqueSelectors.month, month);
-    await page.fill(UniqueSelectors.year, year);
+  private static async fillInFields(page: Page): Promise<void> {
+    await page.fill(UniqueSelectors.firstName, FullNameContent.firstNameInput);
+    await page.fill(UniqueSelectors.lastName, FullNameContent.lastNameInput);
   }
 }

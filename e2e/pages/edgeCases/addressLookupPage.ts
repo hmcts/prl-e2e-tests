@@ -23,11 +23,12 @@ export class AddressLookupPage {
   }: AddressLookupPageOptions): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest);
     if (manualAddress) {
-      await page.click(`${Selectors.GovukLink}:text-is("${AddressLookupContent.link}")`);
-    }
-    else {
-        await this.fillInPostcode(page);
-        await page.click(Selectors.edgeCaseContinue);
+      await page.click(
+        `${Selectors.GovukLink}:text-is("${AddressLookupContent.link}")`,
+      );
+    } else {
+      await this.fillInPostcode(page);
+      await page.click(Selectors.edgeCaseContinue);
     }
     await page.click(Selectors.edgeCaseContinue);
   }
