@@ -13,5 +13,4 @@ export enum UploadYourDocumentsContent {
   buttonText = "Upload",
   link2 = "Delete",
   p_optional = "If you are applying on behalf of someone else you will need to complete an additional form, unless you are a local authority.",
-
 }

@@ -5,7 +5,7 @@ import { Helpers } from "../../common/helpers.ts";
 import { UploadYourDocumentsContent } from "../../fixtures/edgeCases/uploadYourDocumentsContent.ts";
 
 import config from "../../config.ts";
-import {EdgeCaseApplicationType} from "../../common/types.ts";
+import { EdgeCaseApplicationType } from "../../common/types.ts";
 
 interface UploadYourDocumentsPageOptions {
   page: Page;
@@ -21,9 +21,9 @@ export class UploadYourDocumentsPage {
   public static async uploadApplication({
     page,
     accessibilityTest,
-    typeOfApplication
+    typeOfApplication,
   }: UploadYourDocumentsPageOptions): Promise<void> {
-    await this.checkPageLoads({ page, accessibilityTest, typeOfApplication});
+    await this.checkPageLoads({ page, accessibilityTest, typeOfApplication });
     await this.uploadFile({ page });
     await page.click(Selectors.edgeCaseContinue);
   }
@@ -58,14 +58,14 @@ export class UploadYourDocumentsPage {
     ]);
     if (typeOfApplication === "FGM" || typeOfApplication === "FMPO") {
       await expect(
-          page
-              .locator(Selectors.GovukWarningText)
-              .filter({ hasText: UploadYourDocumentsContent.warning }),
+        page
+          .locator(Selectors.GovukWarningText)
+          .filter({ hasText: UploadYourDocumentsContent.warning }),
       ).toBeVisible();
       await expect(
-          page
-              .locator(Selectors.p)
-              .filter({ hasText: UploadYourDocumentsContent.p_optional }),
+        page
+          .locator(Selectors.p)
+          .filter({ hasText: UploadYourDocumentsContent.p_optional }),
       ).toBeVisible();
     }
     await page.getByText(UploadYourDocumentsContent.details).click();
