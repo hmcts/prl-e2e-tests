@@ -1,9 +1,7 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../common/selectors.ts";
-import { DateOfBirthContent } from "../../fixtures/edgeCases/dateOfBirthContent.ts";
 import AccessibilityTestHelper from "../../common/accessibilityTestHelper.ts";
 import { Helpers } from "../../common/helpers.ts";
-import { StartPageContent } from "../../fixtures/edgeCases/startPageContent.ts";
 import { AddressLookupContent } from "../../fixtures/edgeCases/addressLookupContent.ts";
 interface AddressLookupPageOptions {
   page: Page;

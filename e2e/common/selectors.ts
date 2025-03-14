@@ -144,4 +144,6 @@ export enum Selectors {
   xuiFilters = "exui-ccd-connector",
 
   edgeCaseContinue = "#main-form-submit",
+
+  font = "font",
 }

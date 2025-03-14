@@ -10,8 +10,12 @@ import { AddressManualPage } from "../../pages/edgeCases/addressManualPage.ts";
 import { FullNamePage } from "../../pages/edgeCases/fullNamePage.ts";
 import { AddressSelectPage } from "../../pages/edgeCases/addressSelectPage.ts";
 import { EmailAddressPage } from "../../pages/edgeCases/emailAddressPage.ts";
-import {ContactDetailsPage} from "../../pages/edgeCases/contactDetailsPage.ts";
-import {SelectCourtPage} from "../../pages/edgeCases/selectCourtPage.ts";
+import { ContactDetailsPage } from "../../pages/edgeCases/contactDetailsPage.ts";
+import { SelectCourtPage } from "../../pages/edgeCases/selectCourtPage.ts";
+import { UploadYourDocumentsPage } from "../../pages/edgeCases/uploadYourDocumentsPage.ts";
+import { UploadAdditionalDocumentsPage } from "../../pages/edgeCases/uploadAdditionalDocumentsPage.ts";
+import { CheckYourAnswersPage } from "../../pages/edgeCases/checkYourAnswersPage.ts";
+import { StatementOfTruthPage } from "../../pages/edgeCases/statementOfTruthPage.ts";
 interface InitialCreateEdgeCaseJourneyParams {
   page: Page;
   accessibilityTest: boolean;
@@ -19,6 +23,7 @@ interface InitialCreateEdgeCaseJourneyParams {
   applyMyself: boolean;
   under18: boolean;
   manualAddress: boolean;
+  additionalDocuments: boolean;
 }
 
 export class EdgeCase {
@@ -29,6 +34,7 @@ export class EdgeCase {
     applyMyself,
     under18,
     manualAddress,
+    additionalDocuments,
   }: InitialCreateEdgeCaseJourneyParams): Promise<void> {
     await StartPage.startPage({ page, accessibilityTest });
     const currentUrl = page.url();
@@ -48,7 +54,7 @@ export class EdgeCase {
     if (typeOfApplication === "FGM" || typeOfApplication === "FMPO") {
       await UserRolePage.userRole({ page, accessibilityTest, applyMyself });
       if (!applyMyself) {
-        await FullNamePage.fullNamePage({ page, accessibilityTest, userInfo });
+        await FullNamePage.fullNamePage({ page, accessibilityTest });
       }
     }
     await DateOfBirthPage.dateOfBirth({ page, accessibilityTest, under18 });
@@ -68,6 +74,26 @@ export class EdgeCase {
       userInfo: { email: userInfo.email },
     });
     await ContactDetailsPage.contactDetailsPage({ page, accessibilityTest });
-    await SelectCourtPage.selectCourtPage({ page, accessibilityTest });
+    if (typeOfApplication === "FGM" || typeOfApplication === "FMPO") {
+      await SelectCourtPage.selectCourtPage({page, accessibilityTest});
+    }
+    await UploadYourDocumentsPage.uploadApplication({
+      page,
+      accessibilityTest,
+      typeOfApplication,
+    });
+    await UploadAdditionalDocumentsPage.uploadAdditionalDocuments({
+      page,
+      accessibilityTest,
+      additionalDocuments,
+    });
+    await CheckYourAnswersPage.checkYourAnswersPage({
+      page,
+      accessibilityTest,
+    });
+    await StatementOfTruthPage.statementOfTruthPage({
+      page,
+      accessibilityTest,
+    });
   }
 }

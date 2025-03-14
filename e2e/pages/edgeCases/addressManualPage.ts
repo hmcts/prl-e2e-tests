@@ -1,6 +1,6 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../common/selectors.ts";
-import AccessibilityTestHelper from "../../common/accessibilityTestHelper.ts";
+// import AccessibilityTestHelper from "../../common/accessibilityTestHelper.ts";
 import { Helpers } from "../../common/helpers.ts";
 import { AddressManualContent } from "../../fixtures/edgeCases/AddressManualContent.ts";
 
@@ -44,20 +44,20 @@ export class AddressManualPage {
       ),
     ]);
     if (accessibilityTest) {
-      //await AccessibilityTestHelper.run(page);
+      //await AccessibilityTestHelper.run(page); //to be turned on once PRL-7033 is fixed
     }
   }
   private static async fillInAddress(page: Page): Promise<void> {
-      await page.fill(
-        UniqueSelectors.buildingStreet1,
-        AddressManualContent.buildingStreet1,
-      );
-          await page.fill(
-        UniqueSelectors.buildingStreet2,
-        AddressManualContent.buildingStreet2,
-      );
-      await page.fill(UniqueSelectors.town, AddressManualContent.town);
-      await page.fill(UniqueSelectors.county, AddressManualContent.county);
-      await page.fill(UniqueSelectors.postcode, AddressManualContent.postcode);
+    await page.fill(
+      UniqueSelectors.buildingStreet1,
+      AddressManualContent.buildingStreet1,
+    );
+    await page.fill(
+      UniqueSelectors.buildingStreet2,
+      AddressManualContent.buildingStreet2,
+    );
+    await page.fill(UniqueSelectors.town, AddressManualContent.town);
+    await page.fill(UniqueSelectors.county, AddressManualContent.county);
+    await page.fill(UniqueSelectors.postcode, AddressManualContent.postcode);
   }
 }
