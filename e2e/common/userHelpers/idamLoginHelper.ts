@@ -113,7 +113,7 @@ export class IdamLoginHelper {
     );
 
     if (returnUserInfo) {
-      return userInfo; // ✅ Now includes firstName & lastName
+      return userInfo;
     }
   }
 
