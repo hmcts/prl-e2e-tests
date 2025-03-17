@@ -38,13 +38,13 @@ interface EdgeCaseCAParams {
   helpWithFees: boolean;
 }
 
-interface EdgeCaseParams1 {
+interface EdgeCaseParamsInitialSteps {
   page: Page;
   accessibilityTest: boolean;
   typeOfApplication: EdgeCaseApplicationType;
 }
 
-interface EdgeCaseParams2 {
+interface EdgeCaseParamsSubmission {
   page: Page;
   accessibilityTest: boolean;
 }
@@ -56,7 +56,7 @@ interface EdgeCaseParamsUploadDocs {
   additionalDocuments: boolean;
 }
 
-interface EdgeCaseParams3 {
+interface EdgeCaseParamsAddressEmail {
   page: Page;
   accessibilityTest: boolean;
   under18: boolean;
@@ -79,13 +79,10 @@ export class EdgeCase {
       accessibilityTest,
       typeOfApplication,
     });
-
     await UserRolePage.userRole({ page, accessibilityTest, applyMyself });
-
     if (!applyMyself) {
       await FullNamePage.fullNamePage({ page, accessibilityTest });
     }
-
     await this.completeAddressEmail({
       page,
       accessibilityTest,
@@ -93,7 +90,6 @@ export class EdgeCase {
       manualAddress,
       userInfo,
     });
-
     await SelectCourtPage.selectCourtPage({ page, accessibilityTest });
     await this.uploadDocuments({
       page,
@@ -121,7 +117,6 @@ export class EdgeCase {
       accessibilityTest,
       typeOfApplication,
     });
-
     await this.completeAddressEmail({
       page,
       accessibilityTest,
@@ -129,71 +124,63 @@ export class EdgeCase {
       manualAddress,
       userInfo,
     });
-
     await this.uploadDocuments({
       page,
       accessibilityTest,
       typeOfApplication,
       additionalDocuments,
     });
-
     await NeedHelpWithFeesPage.needHelpWithFees({
       page,
       accessibilityTest,
       helpWithFees,
     });
-
     await this.submissionSteps({
       page,
       accessibilityTest,
     });
   }
 
+  //sub-journey to initial steps (start page, login, type of application)
   private static async initialSteps({
     page,
     accessibilityTest,
     typeOfApplication,
-  }: EdgeCaseParams1): Promise<{ email: string }> {
+  }: EdgeCaseParamsInitialSteps): Promise<{ email: string }> {
     await StartPage.startPage({ page, accessibilityTest });
-
     const userInfo = await IdamLoginHelper.signInCitizenUser(
       page,
       page.url(),
       true,
     );
-
     if (!userInfo) throw new Error("Failed to retrieve user info");
-
     await TypeOfApplicationPage.typeOfApplication({
       page,
       accessibilityTest,
       typeOfApplication,
     });
-
-    return userInfo; // Return userInfo object directly
+    return userInfo;
   }
 
+  //sub-journey to complete address, email and contact details
   private static async completeAddressEmail({
     page,
     accessibilityTest,
     under18,
     manualAddress,
     userInfo,
-  }: EdgeCaseParams3): Promise<void> {
+  }: EdgeCaseParamsAddressEmail): Promise<void> {
     await DateOfBirthPage.dateOfBirth({ page, accessibilityTest, under18 });
-
     await AddressLookupPage.addressLookup({
       page,
       accessibilityTest,
       manualAddress,
     });
-
     if (manualAddress) {
       await AddressManualPage.addressManual({ page, accessibilityTest });
     } else {
       await AddressSelectPage.addressSelectPage({ page, accessibilityTest });
     }
-
     if (userInfo) {
       await EmailAddressPage.emailAddressPage({
         page,
@@ -201,10 +188,10 @@ export class EdgeCase {
         userInfo,
       });
     }
-
     await ContactDetailsPage.contactDetailsPage({ page, accessibilityTest });
   }
 
+  //sub-journey to upload documents
   private static async uploadDocuments({
     page,
     accessibilityTest,
@@ -224,10 +211,11 @@ export class EdgeCase {
     });
   }
 
+  //sub-journey to complete check your answers and statement of truth
   private static async submissionSteps({
     page,
     accessibilityTest,
-  }: EdgeCaseParams2): Promise<void> {
+  }: EdgeCaseParamsSubmission): Promise<void> {
     await CheckYourAnswersPage.checkYourAnswersPage({
       page,
       accessibilityTest,
