@@ -1,11 +1,11 @@
 import { Page, expect } from "@playwright/test";
-import { Selectors } from "../../common/selectors.ts";
+import { Selectors } from "../../../common/selectors.ts";
 // import AccessibilityTestHelper from "../../common/accessibilityTestHelper.ts";
-import { Helpers } from "../../common/helpers.ts";
-import { UploadYourDocumentsContent } from "../../fixtures/edgeCases/uploadYourDocumentsContent.ts";
+import { Helpers } from "../../../common/helpers.ts";
+import { UploadYourDocumentsContent } from "../../../fixtures/edgeCases/uploadApplicationDocuments/uploadYourDocumentsContent.ts";
 
-import config from "../../config.ts";
-import { EdgeCaseApplicationType } from "../../common/types.ts";
+import config from "../../../config.ts";
+import { EdgeCaseApplicationType } from "../../../common/types.ts";
 
 interface UploadYourDocumentsPageOptions {
   page: Page;

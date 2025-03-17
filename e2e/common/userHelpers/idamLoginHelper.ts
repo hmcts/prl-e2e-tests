@@ -85,7 +85,13 @@ export class IdamLoginHelper {
     page: Page,
     application: string,
     returnUserInfo: boolean = false,
-  ): Promise<{ email: string; password: string } | void> {
+  ): Promise<{
+    email: string;
+    password: string;
+    id: string;
+    forename: string;
+    surname: string;
+  } | void> {
     const token = process.env.CITIZEN_CREATE_USER_BEARER_TOKEN as string;
     if (!token) {
       console.error("Bearer token is not defined in the environment variables");
@@ -107,7 +113,7 @@ export class IdamLoginHelper {
     );
 
     if (returnUserInfo) {
-      return userInfo;
+      return userInfo; // ✅ Now includes firstName & lastName
     }
   }
 

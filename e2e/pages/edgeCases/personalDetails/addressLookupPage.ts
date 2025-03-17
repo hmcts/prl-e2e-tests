@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../common/selectors.ts";
-import AccessibilityTestHelper from "../../common/accessibilityTestHelper.ts";
-import { Helpers } from "../../common/helpers.ts";
-import { AddressLookupContent } from "../../fixtures/edgeCases/addressLookupContent.ts";
+import { Selectors } from "../../../common/selectors.ts";
+import AccessibilityTestHelper from "../../../common/accessibilityTestHelper.ts";
+import { Helpers } from "../../../common/helpers.ts";
+import { AddressLookupContent } from "../../../fixtures/edgeCases/personalDetails/addressLookupContent.ts";
 interface AddressLookupPageOptions {
   page: Page;
   accessibilityTest: boolean;

@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../common/selectors.ts";
-import AccessibilityTestHelper from "../../common/accessibilityTestHelper.ts";
-import { Helpers } from "../../common/helpers.ts";
-import { AddressSelectContent } from "../../fixtures/edgeCases/addressSelectContent.ts";
+import { Selectors } from "../../../common/selectors.ts";
+import AccessibilityTestHelper from "../../../common/accessibilityTestHelper.ts";
+import { Helpers } from "../../../common/helpers.ts";
+import { AddressSelectContent } from "../../../fixtures/edgeCases/personalDetails/addressSelectContent.ts";
 
 interface AddressSelectPageOptions {
   page: Page;

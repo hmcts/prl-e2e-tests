@@ -1,9 +1,9 @@
 import { Page, expect } from "@playwright/test";
-import { Selectors } from "../../common/selectors.ts";
+import { Selectors } from "../../../common/selectors.ts";
 // import AccessibilityTestHelper from "../../common/accessibilityTestHelper.ts";
-import { Helpers } from "../../common/helpers.ts";
-import config from "../../config.ts";
-import { UploadAdditionalDocumentsContent } from "../../fixtures/edgeCases/uploadAdditionalDocumentsContent.ts";
+import { Helpers } from "../../../common/helpers.ts";
+import config from "../../../config.ts";
+import { UploadAdditionalDocumentsContent } from "../../../fixtures/edgeCases/uploadApplicationDocuments/uploadAdditionalDocumentsContent.ts";
 import path from "path";
 
 interface UploadAdditionalDocumentsPageOptions {
@@ -25,7 +25,6 @@ export class UploadAdditionalDocumentsPage {
     await this.checkPageLoads({ page, accessibilityTest });
 
     if (additionalDocuments) {
-      // Upload two documents
       await this.uploadFile(page, config.testWordFile);
       await this.uploadFile(page, config.testPdfFile);
     }

@@ -1,7 +1,7 @@
 import { Page, expect } from "@playwright/test";
-import { Selectors } from "../../common/selectors.ts";
-import AccessibilityTestHelper from "../../common/accessibilityTestHelper.ts";
-import { StatementOfTruthContent } from "../../fixtures/edgeCases/statementOfTruthContent.ts";
+import { Selectors } from "../../../common/selectors.ts";
+import AccessibilityTestHelper from "../../../common/accessibilityTestHelper.ts";
+import { StatementOfTruthContent } from "../../../fixtures/edgeCases/submission/statementOfTruthContent.ts";
 
 interface StatementOfTruthPageOptions {
   page: Page;

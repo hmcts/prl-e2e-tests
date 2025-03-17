@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../common/selectors.ts";
-import AccessibilityTestHelper from "../../common/accessibilityTestHelper.ts";
-import { Helpers } from "../../common/helpers.ts";
-import { FullNameContent } from "../../fixtures/edgeCases/fullNameContent.ts";
+import { Selectors } from "../../../common/selectors.ts";
+import AccessibilityTestHelper from "../../../common/accessibilityTestHelper.ts";
+import { Helpers } from "../../../common/helpers.ts";
+import { FullNameContent } from "../../../fixtures/edgeCases/personalDetails/fullNameContent.ts";
 
 interface FullNamePageOptions {
   page: Page;

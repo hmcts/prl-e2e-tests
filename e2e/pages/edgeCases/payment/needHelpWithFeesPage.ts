@@ -1,8 +1,8 @@
-import { Page, expect } from "@playwright/test";
-import { Selectors } from "../../common/selectors.ts";
-import AccessibilityTestHelper from "../../common/accessibilityTestHelper.ts";
-import { Helpers } from "../../common/helpers.ts";
-import { NeedHelpWithFeesContent } from "../../fixtures/edgeCases/needHelpWithFeesContent.ts";
+import { Page } from "@playwright/test";
+import { Selectors } from "../../../common/selectors.ts";
+import AccessibilityTestHelper from "../../../common/accessibilityTestHelper.ts";
+import { Helpers } from "../../../common/helpers.ts";
+import { NeedHelpWithFeesContent } from "../../../fixtures/edgeCases/payment/needHelpWithFeesContent.ts";
 
 interface NeedHelpWithFeesOptions {
   page: Page;
@@ -30,14 +30,16 @@ export class NeedHelpWithFeesPage {
     page: Page,
     accessibilityTest?: boolean,
   ): Promise<void> {
-    await expect(page.locator(
-      `${Selectors.h1}:text(${NeedHelpWithFeesContent.h1})`)).toBeVisible();
+    const h1Locator = page.locator(
+      `${Selectors.GovukHeadingXL}:text(${NeedHelpWithFeesContent.h1})`,
+    );
+    await h1Locator.waitFor();
     await Promise.all([
       Helpers.checkGroup(
         page,
         2,
         NeedHelpWithFeesContent,
-        "l1",
+        "li",
         `${Selectors.li}`,
       ),
       Helpers.checkGroup(

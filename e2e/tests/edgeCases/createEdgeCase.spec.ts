@@ -44,6 +44,7 @@ test.describe("Create an edge case as a citizen", (): void => {
       manualAddress: true,
       additionalDocuments: true,
       helpWithFees: true,
+      appliedHWF: true,
     });
   });
   test("Create a Declaration of Parentage edge case as a citizen", async ({
@@ -57,6 +58,7 @@ test.describe("Create an edge case as a citizen", (): void => {
       manualAddress: false,
       additionalDocuments: false,
       helpWithFees: false,
+      appliedHWF: true,
     });
   });
   test("Create a Parental Order edge case as a citizen", async ({ page }) => {
@@ -68,6 +70,7 @@ test.describe("Create an edge case as a citizen", (): void => {
       manualAddress: false,
       additionalDocuments: false,
       helpWithFees: false,
+      appliedHWF: true,
     });
   });
   test("Create a Parental Responsibility edge case as a citizen", async ({
@@ -81,6 +84,7 @@ test.describe("Create an edge case as a citizen", (): void => {
       manualAddress: false,
       additionalDocuments: false,
       helpWithFees: false,
+      appliedHWF: true,
     });
   });
   test("Create a Parental responsibility (second female parent) edge case as a citizen", async ({
@@ -94,6 +98,7 @@ test.describe("Create an edge case as a citizen", (): void => {
       manualAddress: false,
       additionalDocuments: false,
       helpWithFees: false,
+      appliedHWF: true,
     });
   });
   test("Create an Appointing a child’s guardian edge case as a citizen", async ({
@@ -107,6 +112,7 @@ test.describe("Create an edge case as a citizen", (): void => {
       manualAddress: false,
       additionalDocuments: false,
       helpWithFees: false,
+      appliedHWF: true,
     });
   });
   test("Create a Change of child’s surname or removal from jurisdiction edge case as a citizen", async ({
@@ -120,6 +126,7 @@ test.describe("Create an edge case as a citizen", (): void => {
       manualAddress: false,
       additionalDocuments: false,
       helpWithFees: false,
+      appliedHWF: true,
     });
   });
 });

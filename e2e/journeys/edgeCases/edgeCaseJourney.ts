@@ -3,20 +3,23 @@ import { TypeOfApplicationPage } from "../../pages/edgeCases/typeOfApplicationPa
 import { Page } from "@playwright/test";
 import { EdgeCaseApplicationType } from "../../common/types.ts";
 import IdamLoginHelper from "../../common/userHelpers/idamLoginHelper.ts";
-import { UserRolePage } from "../../pages/edgeCases/userRolePage.ts";
-import { DateOfBirthPage } from "../../pages/edgeCases/dateOfBirthPage.ts";
-import { AddressLookupPage } from "../../pages/edgeCases/addressLookupPage.ts";
-import { AddressManualPage } from "../../pages/edgeCases/addressManualPage.ts";
-import { FullNamePage } from "../../pages/edgeCases/fullNamePage.ts";
-import { AddressSelectPage } from "../../pages/edgeCases/addressSelectPage.ts";
-import { EmailAddressPage } from "../../pages/edgeCases/emailAddressPage.ts";
-import { ContactDetailsPage } from "../../pages/edgeCases/contactDetailsPage.ts";
+import { UserRolePage } from "../../pages/edgeCases/personalDetails/userRolePage.ts";
+import { DateOfBirthPage } from "../../pages/edgeCases/personalDetails/dateOfBirthPage.ts";
+import { AddressLookupPage } from "../../pages/edgeCases/personalDetails/addressLookupPage.ts";
+import { AddressManualPage } from "../../pages/edgeCases/personalDetails/addressManualPage.ts";
+import { FullNamePage } from "../../pages/edgeCases/personalDetails/fullNamePage.ts";
+import { AddressSelectPage } from "../../pages/edgeCases/personalDetails/addressSelectPage.ts";
+import { EmailAddressPage } from "../../pages/edgeCases/personalDetails/emailAddressPage.ts";
+import { ContactDetailsPage } from "../../pages/edgeCases/personalDetails/contactDetailsPage.ts";
 import { SelectCourtPage } from "../../pages/edgeCases/selectCourtPage.ts";
-import { UploadYourDocumentsPage } from "../../pages/edgeCases/uploadYourDocumentsPage.ts";
-import { UploadAdditionalDocumentsPage } from "../../pages/edgeCases/uploadAdditionalDocumentsPage.ts";
-import { CheckYourAnswersPage } from "../../pages/edgeCases/checkYourAnswersPage.ts";
-import { StatementOfTruthPage } from "../../pages/edgeCases/statementOfTruthPage.ts";
-import { NeedHelpWithFeesPage } from "../../pages/edgeCases/needHelpWithFeesPage.ts";
+import { UploadYourDocumentsPage } from "../../pages/edgeCases/uploadApplicationDocuments/uploadYourDocumentsPage.ts";
+import { UploadAdditionalDocumentsPage } from "../../pages/edgeCases/uploadApplicationDocuments/uploadAdditionalDocumentsPage.ts";
+import { CheckYourAnswersPage } from "../../pages/edgeCases/submission/checkYourAnswersPage.ts";
+import { StatementOfTruthPage } from "../../pages/edgeCases/submission/statementOfTruthPage.ts";
+import { NeedHelpWithFeesPage } from "../../pages/edgeCases/payment/needHelpWithFeesPage.ts";
+import { PayYourFeePage } from "../../pages/edgeCases/payment/payYourFeePage.ts";
+import { FeesAppliedPage } from "../../pages/edgeCases/payment/feesAppliedPage.ts";
+import { Helpers } from "../../common/helpers.ts";
 
 interface EdgeCaseDAParams {
   page: Page;
@@ -36,6 +39,7 @@ interface EdgeCaseCAParams {
   manualAddress: boolean;
   additionalDocuments: boolean;
   helpWithFees: boolean;
+  appliedHWF: boolean;
 }
 
 interface EdgeCaseParamsInitialSteps {
@@ -47,6 +51,11 @@ interface EdgeCaseParamsInitialSteps {
 interface EdgeCaseParamsSubmission {
   page: Page;
   accessibilityTest: boolean;
+  typeOfApplication: EdgeCaseApplicationType;
+  additionalDocuments: boolean;
+  dob?: { day: string; month: string; year: string };
+  under18: boolean;
+  userInfo: { email: string; forename: string; surname: string };
 }
 
 interface EdgeCaseParamsUploadDocs {
@@ -61,7 +70,7 @@ interface EdgeCaseParamsAddressEmail {
   accessibilityTest: boolean;
   under18: boolean;
   manualAddress: boolean;
-  userInfo: { email: string };
+  userInfo: { email: string; forename: string; surname: string };
 }
 
 export class EdgeCase {
@@ -83,7 +92,7 @@ export class EdgeCase {
     if (!applyMyself) {
       await FullNamePage.fullNamePage({ page, accessibilityTest });
     }
-    await this.completeAddressEmail({
+    const { dob } = await this.completeAddressEmail({
       page,
       accessibilityTest,
       under18,
@@ -100,6 +109,11 @@ export class EdgeCase {
     await this.submissionSteps({
       page,
       accessibilityTest,
+      typeOfApplication,
+      additionalDocuments,
+      userInfo,
+      dob,
+      under18,
     });
   }
 
@@ -111,13 +125,14 @@ export class EdgeCase {
     manualAddress,
     additionalDocuments,
     helpWithFees,
+    appliedHWF,
   }: EdgeCaseCAParams): Promise<void> {
     const userInfo = await this.initialSteps({
       page,
       accessibilityTest,
       typeOfApplication,
     });
-    await this.completeAddressEmail({
+    const { dob } = await this.completeAddressEmail({
       page,
       accessibilityTest,
       under18,
@@ -135,10 +150,30 @@ export class EdgeCase {
       accessibilityTest,
       helpWithFees,
     });
+    if (helpWithFees) {
+      await FeesAppliedPage.feesAppliedPage({
+        page,
+        accessibilityTest,
+        appliedHWF,
+      });
+    }
     await this.submissionSteps({
       page,
       accessibilityTest,
+      typeOfApplication,
+      additionalDocuments,
+      userInfo,
+      dob,
+      under18,
     });
+
+    if (!helpWithFees) {
+      await PayYourFeePage.payYourFeePage({
+        page,
+        accessibilityTest,
+        typeOfApplication,
+      });
+    }
   }
 
   //sub-journey to initial steps (start page, login, type of application)
@@ -146,7 +181,11 @@ export class EdgeCase {
     page,
     accessibilityTest,
     typeOfApplication,
-  }: EdgeCaseParamsInitialSteps): Promise<{ email: string }> {
+  }: EdgeCaseParamsInitialSteps): Promise<{
+    email: string;
+    forename: string;
+    surname: string;
+  }> {
     await StartPage.startPage({ page, accessibilityTest });
     const userInfo = await IdamLoginHelper.signInCitizenUser(
       page,
@@ -162,15 +201,29 @@ export class EdgeCase {
     return userInfo;
   }
 
-  //sub-journey to complete address, email and contact details
+  // sub-journey to complete address, email, and contact details
   private static async completeAddressEmail({
     page,
     accessibilityTest,
     under18,
     manualAddress,
     userInfo,
-  }: EdgeCaseParamsAddressEmail): Promise<void> {
-    await DateOfBirthPage.dateOfBirth({ page, accessibilityTest, under18 });
+  }: EdgeCaseParamsAddressEmail): Promise<{
+    dob?: { day: string; month: string; year: string };
+  }> {
+    let dob: { day: string; month: string; year: string } | undefined;
+    if (under18) {
+      const [day, month, year] = Helpers.generateDOB(under18);
+      dob = { day, month, year };
+      await DateOfBirthPage.dateOfBirth({
+        page,
+        accessibilityTest,
+        under18,
+        dob,
+      });
+    } else {
+      await DateOfBirthPage.dateOfBirth({ page, accessibilityTest, under18 });
+    }
     await AddressLookupPage.addressLookup({
       page,
       accessibilityTest,
@@ -189,6 +242,7 @@ export class EdgeCase {
       });
     }
     await ContactDetailsPage.contactDetailsPage({ page, accessibilityTest });
+    return { dob }; // dob is optional and will be returned only when under18 is true
   }
 
   //sub-journey to upload documents
@@ -215,10 +269,20 @@ export class EdgeCase {
   private static async submissionSteps({
     page,
     accessibilityTest,
+    typeOfApplication,
+    additionalDocuments,
+    userInfo,
+    dob,
+    under18,
   }: EdgeCaseParamsSubmission): Promise<void> {
     await CheckYourAnswersPage.checkYourAnswersPage({
       page,
       accessibilityTest,
+      typeOfApplication,
+      additionalDocuments,
+      userInfo,
+      dob,
+      under18,
     });
 
     await StatementOfTruthPage.statementOfTruthPage({

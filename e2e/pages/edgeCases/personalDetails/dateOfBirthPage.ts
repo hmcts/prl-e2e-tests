@@ -1,13 +1,14 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../common/selectors.ts";
-import AccessibilityTestHelper from "../../common/accessibilityTestHelper.ts";
-import { Helpers } from "../../common/helpers.ts";
-import { DateOfBirthContent } from "../../fixtures/edgeCases/dateOfBirthContent.ts";
+import { Selectors } from "../../../common/selectors.ts";
+import AccessibilityTestHelper from "../../../common/accessibilityTestHelper.ts";
+import { Helpers } from "../../../common/helpers.ts";
+import { DateOfBirthContent } from "../../../fixtures/edgeCases/personalDetails/dateOfBirthContent.ts";
 
 interface DateOfBirthOptions {
   page: Page;
   accessibilityTest: boolean;
   under18: boolean;
+  dob?: { day: string; month: string; year: string }; // Optional
 }
 
 enum UniqueSelectors {
@@ -21,10 +22,11 @@ export class DateOfBirthPage {
     page,
     accessibilityTest,
     under18,
+    dob,
   }: DateOfBirthOptions): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest);
-    if (under18) {
-      await this.fillInDOB(page, under18);
+    if (under18 && dob) {
+      await this.fillInDOB(page, dob);
     }
     await page.click(Selectors.edgeCaseContinue);
   }
@@ -56,10 +58,12 @@ export class DateOfBirthPage {
       await AccessibilityTestHelper.run(page);
     }
   }
-  private static async fillInDOB(page: Page, under18: boolean): Promise<void> {
-    const [day, month, year] = Helpers.generateDOB(under18);
-    await page.fill(UniqueSelectors.day, day);
-    await page.fill(UniqueSelectors.month, month);
-    await page.fill(UniqueSelectors.year, year);
+  private static async fillInDOB(
+    page: Page,
+    dob: { day: string; month: string; year: string },
+  ): Promise<void> {
+    await page.fill(UniqueSelectors.day, dob.day);
+    await page.fill(UniqueSelectors.month, dob.month);
+    await page.fill(UniqueSelectors.year, dob.year);
   }
 }

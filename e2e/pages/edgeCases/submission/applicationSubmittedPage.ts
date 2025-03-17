@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../common/selectors.ts";
-import AccessibilityTestHelper from "../../common/accessibilityTestHelper.ts";
-import { Helpers } from "../../common/helpers.ts";
-import { ApplicationSubmittedContent } from "../../fixtures/edgeCases/applicationSubmittedContent.ts";
+import { Selectors } from "../../../common/selectors.ts";
+import AccessibilityTestHelper from "../../../common/accessibilityTestHelper.ts";
+import { Helpers } from "../../../common/helpers.ts";
+import { ApplicationSubmittedContent } from "../../../fixtures/edgeCases/submission/applicationSubmittedContent.ts";
 
 interface ApplicationSubmittedPageOptions {
   page: Page;
