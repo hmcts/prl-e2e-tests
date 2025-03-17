@@ -57,13 +57,12 @@ static Map < String, Object > secret(String secretName, String envVariable) {
   ]
 }
 
-def envSubstrings = ["aat", "demo", "preview"]
-def matchingEnv = "unknown"
+def matchingEnv = "aat"
 
 if(params.skipManageCasesTests) {
-  matchingEnv = envSubstrings.find{envSubstring -> params.CITIZEN_FRONTEND_BASE_URL.contains(envSubstring)}
+  matchingEnv = params.CITIZEN_FRONTEND_BASE_URL.contains("demo") ? "demo" : matchingEnv
 } else {
-  matchingEnv = envSubstrings.find{envSubstring -> params.MANAGE_CASES_BASE_URL.contains(envSubstring)}
+  matchingEnv = params.MANAGE_CASES_BASE_URL.contains("demo") ? "demo" : matchingEnv
 }
 
 def secrets = [
