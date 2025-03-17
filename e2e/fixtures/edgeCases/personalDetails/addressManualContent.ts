@@ -5,9 +5,9 @@ export enum AddressManualContent {
   formLabel2 = "Town or city",
   formLabel3 = "County",
   formLabel4 = "Postcode",
-  buildingStreet1 = "Buckingham",
-  buildingStreet2 = "Palace",
+  buildingStreet1 = "102 Petty France",
+  buildingStreet2 = "Westminster",
   town = "London",
   county = "Greater London",
-  postcode = "SW1A 1AA",
+  postcode = "SW1H 9AJ",
 }

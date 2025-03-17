@@ -32,7 +32,6 @@ test.describe("Create an edge case as a citizen", (): void => {
       additionalDocuments: false,
     });
   });
-
   test("Create a Special Guardianship edge case as a citizen", async ({
     page,
   }) => {
@@ -69,7 +68,7 @@ test.describe("Create an edge case as a citizen", (): void => {
       under18: false,
       manualAddress: false,
       additionalDocuments: false,
-      helpWithFees: false,
+      helpWithFees: true,
       appliedHWF: true,
     });
   });
@@ -83,7 +82,7 @@ test.describe("Create an edge case as a citizen", (): void => {
       under18: false,
       manualAddress: false,
       additionalDocuments: false,
-      helpWithFees: false,
+      helpWithFees: true,
       appliedHWF: true,
     });
   });

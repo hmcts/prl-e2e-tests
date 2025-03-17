@@ -3,11 +3,13 @@ import { Selectors } from "../../../common/selectors.ts";
 import AccessibilityTestHelper from "../../../common/accessibilityTestHelper.ts";
 import { Helpers } from "../../../common/helpers.ts";
 import { PayYourFeeContent } from "../../../fixtures/edgeCases/payment/payYourFeeContent.ts";
+import { NeedHelpWithFeesContent } from "../../../fixtures/edgeCases/payment/needHelpWithFeesContent.ts";
+import { EdgeCaseApplicationType } from "../../../common/types.ts";
 
 interface PayYourFeePageOptions {
   page: Page;
   accessibilityTest: boolean;
-  typeOfApplication: string;
+  typeOfApplication: EdgeCaseApplicationType;
 }
 
 export class PayYourFeePage {
@@ -26,19 +28,35 @@ export class PayYourFeePage {
     typeOfApplication,
   }: PayYourFeePageOptions): Promise<void> {
     await expect(
-      page.locator(`${Selectors.h1}:text(${PayYourFeeContent.h1})`),
+      page.locator(`${Selectors.h1}:has-text("${PayYourFeeContent.h1}")`),
     ).toBeVisible();
-    await Helpers.checkGroup(page, 3, PayYourFeeContent, "p", `${Selectors.p}`);
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:has-text("${PayYourFeeContent.p1}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:has-text("${PayYourFeeContent.p2}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:has-text("${PayYourFeeContent.p1}")`,
+        1,
+      ),
+    ]);
     if (typeOfApplication == "DeclarationOfParentage") {
       await Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${PayYourFeeContent.p_fee2}")`,
+        `${Selectors.p}:has-text("${NeedHelpWithFeesContent.p_fee2}")`,
         1,
       );
     } else {
       await Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${PayYourFeeContent.p_fee1}")`,
+        `${Selectors.p}:has-text("${NeedHelpWithFeesContent.p_fee1}")`,
         1,
       );
     }

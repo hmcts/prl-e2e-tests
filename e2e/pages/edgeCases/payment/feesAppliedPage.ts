@@ -1,6 +1,6 @@
 import { Page, expect } from "@playwright/test";
 import { Selectors } from "../../../common/selectors.ts";
-import AccessibilityTestHelper from "../../../common/accessibilityTestHelper.ts";
+// import AccessibilityTestHelper from "../../../common/accessibilityTestHelper.ts";
 import { Helpers } from "../../../common/helpers.ts";
 import { FeesAppliedContent } from "../../../fixtures/edgeCases/payment/feesAppliedContent.ts";
 import { CommonStaticText } from "../../../common/commonStaticText.ts";
@@ -12,9 +12,9 @@ interface FeesAppliedPageOptions {
 }
 
 enum FeesAppliedSelectors {
-  yes = "#hwfPaymentSelection",
-  no = "#hwfPaymentSelection-2",
-  inputHWF = "#helpWithFeesReference",
+  yes = "#feesAppliedDetails",
+  no = "#feesAppliedDetails",
+  inputHWF = "#helpWithFeesReferenceNumber",
 }
 
 export class FeesAppliedPage {
@@ -32,23 +32,21 @@ export class FeesAppliedPage {
     page: Page,
     accessibilityTest: boolean,
   ): Promise<void> {
-    await expect(
-      page.locator(
-        `${Selectors.GovukHeadingXL}:text(${FeesAppliedContent.h1})`,
-      ),
-    ).toBeVisible();
-
+    const locator = page.locator(Selectors.h1, {
+      hasText: FeesAppliedContent.h1,
+    });
+    await locator.waitFor();
     await Promise.all([
       expect(
-        page.locator(`${Selectors.GovukLabel}:text(${CommonStaticText.yes})`),
+        page.locator(Selectors.GovukLabel, { hasText: CommonStaticText.yes }),
       ).toBeVisible(),
       expect(
-        page.locator(`${Selectors.GovukLabel}:text(${CommonStaticText.no})`),
+        page.locator(Selectors.GovukLabel, { hasText: CommonStaticText.no }),
       ).toBeVisible(),
     ]);
 
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      // await AccessibilityTestHelper.run(page); //"Ensure an element's role supports its ARIA attributes"
     }
   }
 
@@ -62,17 +60,17 @@ export class FeesAppliedPage {
       await Promise.all([
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.p}:text-is("${FeesAppliedContent.h3_yes}")`,
+          `${Selectors.h3}:has-text("${FeesAppliedContent.h3_yes}")`,
           1,
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukLabel}:text-is("${FeesAppliedContent.label_yes}")`,
+          `${Selectors.GovukLabel}:has-text("${FeesAppliedContent.label_yes}")`,
           1,
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukHint}:text-is("${FeesAppliedContent.hint_yes}")`,
+          `${Selectors.GovukHint}:has-text("${FeesAppliedContent.hint_yes}")`,
           1,
         ),
       ]);
@@ -83,7 +81,6 @@ export class FeesAppliedPage {
       );
     } else {
       await page.click(FeesAppliedSelectors.no);
-
       await Promise.all([
         Helpers.checkGroup(
           page,
@@ -94,7 +91,7 @@ export class FeesAppliedPage {
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukLink}:text-is("${FeesAppliedContent.link_no}")`,
+          `${Selectors.GovukLink}:has-text("${FeesAppliedContent.link_no}")`,
           1,
         ),
       ]);

@@ -3,10 +3,12 @@ import { Selectors } from "../../../common/selectors.ts";
 import AccessibilityTestHelper from "../../../common/accessibilityTestHelper.ts";
 import { Helpers } from "../../../common/helpers.ts";
 import { NeedHelpWithFeesContent } from "../../../fixtures/edgeCases/payment/needHelpWithFeesContent.ts";
+import { EdgeCaseApplicationType } from "../../../common/types.ts";
 
 interface NeedHelpWithFeesOptions {
   page: Page;
   accessibilityTest: boolean;
+  typeOfApplication: EdgeCaseApplicationType;
   helpWithFees: boolean;
 }
 
@@ -19,21 +21,23 @@ export class NeedHelpWithFeesPage {
   public static async needHelpWithFees({
     page,
     accessibilityTest,
+    typeOfApplication,
     helpWithFees,
   }: NeedHelpWithFeesOptions): Promise<void> {
-    await this.checkPageLoads(page, accessibilityTest);
+    await this.checkPageLoads(page, accessibilityTest, typeOfApplication);
     await this.selectOption(page, helpWithFees);
     await page.click(Selectors.edgeCaseContinue);
   }
 
   private static async checkPageLoads(
     page: Page,
-    accessibilityTest?: boolean,
+    accessibilityTest: boolean,
+    typeOfApplication: EdgeCaseApplicationType,
   ): Promise<void> {
-    const h1Locator = page.locator(
-      `${Selectors.GovukHeadingXL}:text(${NeedHelpWithFeesContent.h1})`,
-    );
-    await h1Locator.waitFor();
+    const locator = page.locator(Selectors.h1, {
+      hasText: NeedHelpWithFeesContent.h1,
+    });
+    await locator.waitFor();
     await Promise.all([
       Helpers.checkGroup(
         page,
@@ -51,15 +55,33 @@ export class NeedHelpWithFeesPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${NeedHelpWithFeesContent.p}")`,
+        `${Selectors.p}:has-text("${NeedHelpWithFeesContent.p1}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLink}:text-is("${NeedHelpWithFeesContent.link}")`,
+        `${Selectors.p}:has-text("${NeedHelpWithFeesContent.p2}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukLink}:has-text("${NeedHelpWithFeesContent.link}")`,
         1,
       ),
     ]);
+    if (typeOfApplication == "DeclarationOfParentage") {
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:has-text("${NeedHelpWithFeesContent.p_fee2}")`,
+        1,
+      );
+    } else {
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:has-text("${NeedHelpWithFeesContent.p_fee1}")`,
+        1,
+      );
+    }
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }

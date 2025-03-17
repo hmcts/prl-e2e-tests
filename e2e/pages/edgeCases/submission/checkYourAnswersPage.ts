@@ -61,7 +61,7 @@ export class CheckYourAnswersPage {
     accessibilityTest,
   }: CheckYourAnswersPageStaticContent): Promise<void> {
     const h1Locator = page.locator(
-      `${Selectors.h1}:text("${CheckYourAnswersContent.h1}")`,
+      `${Selectors.h1}:text-is("${CheckYourAnswersContent.h1}")`,
     );
     await h1Locator.waitFor();
 
@@ -75,7 +75,7 @@ export class CheckYourAnswersPage {
       ),
       Helpers.checkGroup(
         page,
-        7,
+        6,
         CheckYourAnswersContent,
         "k",
         `${Selectors.GovukSummaryListKey}`,
@@ -95,7 +95,7 @@ export class CheckYourAnswersPage {
     under18,
     dob,
   }: CheckYourAnswersPageDynamicContent): Promise<void> {
-    // check type of application and user role
+    // check type of application. For FMPO and FGM cases, check user role and court name
     switch (typeOfApplication) {
       case "FGM":
         await Promise.all([
@@ -112,6 +112,16 @@ export class CheckYourAnswersPage {
           expect(
             page.locator(
               `${Selectors.h2}:text-is("${CheckYourAnswersContent.h2_userRole}")`,
+            ),
+          ).toBeVisible(),
+          expect(
+            page.locator(
+              `${Selectors.GovukSummaryListValue}:text-is("${SelectCourtContent.courtName}")`,
+            ),
+          ).toBeVisible(),
+          expect(
+            page.locator(
+              `${Selectors.GovukSummaryListKey}:text-is("${CheckYourAnswersContent.k_court}")`,
             ),
           ).toBeVisible(),
         ]);
@@ -131,6 +141,16 @@ export class CheckYourAnswersPage {
           expect(
             page.locator(
               `${Selectors.h2}:text-is("${CheckYourAnswersContent.h2_userRole}")`,
+            ),
+          ).toBeVisible(),
+          expect(
+            page.locator(
+              `${Selectors.GovukSummaryListValue}:text-is("${SelectCourtContent.courtName}")`,
+            ),
+          ).toBeVisible(),
+          expect(
+            page.locator(
+              `${Selectors.GovukSummaryListKey}:text-is("${CheckYourAnswersContent.k_court}")`,
             ),
           ).toBeVisible(),
         ]);
@@ -210,11 +230,6 @@ export class CheckYourAnswersPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukSummaryListValue}:text-is("${SelectCourtContent.courtName}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
         `${Selectors.p}:text-is("${CheckYourAnswersContent.p}")`,
         1,
       ),
@@ -246,12 +261,16 @@ export class CheckYourAnswersPage {
         ).toBeVisible(),
       ]);
     }
-
     //check dob (if provided)
     if (under18 && dob) {
+      const longDob: string = Helpers.dayLongMonthYear(
+        dob.day,
+        dob.month,
+        dob.year,
+      );
       await Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukSummaryListValue}:text-is("${dob.day + "/" + dob.month + "/" + dob.month}")`,
+        `${Selectors.GovukSummaryListValue}:text-is("${longDob}")`,
         1,
       );
     }

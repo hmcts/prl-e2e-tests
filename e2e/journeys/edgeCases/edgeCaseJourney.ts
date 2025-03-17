@@ -20,6 +20,9 @@ import { NeedHelpWithFeesPage } from "../../pages/edgeCases/payment/needHelpWith
 import { PayYourFeePage } from "../../pages/edgeCases/payment/payYourFeePage.ts";
 import { FeesAppliedPage } from "../../pages/edgeCases/payment/feesAppliedPage.ts";
 import { Helpers } from "../../common/helpers.ts";
+import { PayPage } from "../../pages/edgeCases/payment/payPage.ts";
+import { PaymentConfirmationPage } from "../../pages/edgeCases/payment/paymentConfirmationPage.ts";
+import { ApplicationSubmitted } from "../../pages/edgeCases/submission/applicationSubmittedPage.ts";
 
 interface EdgeCaseDAParams {
   page: Page;
@@ -115,6 +118,10 @@ export class EdgeCase {
       dob,
       under18,
     });
+    await ApplicationSubmitted.applicationSubmittedPage({
+      page,
+      accessibilityTest,
+    });
   }
 
   public static async createCAEdgeCase({
@@ -148,6 +155,7 @@ export class EdgeCase {
     await NeedHelpWithFeesPage.needHelpWithFees({
       page,
       accessibilityTest,
+      typeOfApplication,
       helpWithFees,
     });
     if (helpWithFees) {
@@ -166,12 +174,20 @@ export class EdgeCase {
       dob,
       under18,
     });
-
     if (!helpWithFees) {
       await PayYourFeePage.payYourFeePage({
         page,
         accessibilityTest,
         typeOfApplication,
+      });
+      await PayPage.payPage({ page, accessibilityTest });
+      await PaymentConfirmationPage.paymentConfirmationPage({
+        page,
+        accessibilityTest,
+      });
+      await ApplicationSubmitted.applicationSubmittedPage({
+        page,
+        accessibilityTest,
       });
     }
   }
@@ -257,7 +273,6 @@ export class EdgeCase {
       accessibilityTest,
       typeOfApplication,
     });
-
     await UploadAdditionalDocumentsPage.uploadAdditionalDocuments({
       page,
       accessibilityTest,
