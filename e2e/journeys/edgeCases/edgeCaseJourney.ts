@@ -42,7 +42,6 @@ interface EdgeCaseCAParams {
   manualAddress: boolean;
   additionalDocuments: boolean;
   helpWithFees: boolean;
-  appliedHWF: boolean;
 }
 
 interface EdgeCaseParamsInitialSteps {
@@ -132,7 +131,6 @@ export class EdgeCase {
     manualAddress,
     additionalDocuments,
     helpWithFees,
-    appliedHWF,
   }: EdgeCaseCAParams): Promise<void> {
     const userInfo = await this.initialSteps({
       page,
@@ -162,7 +160,7 @@ export class EdgeCase {
       await FeesAppliedPage.feesAppliedPage({
         page,
         accessibilityTest,
-        appliedHWF,
+        appliedHWF: true,
       });
     }
     await this.submissionSteps({

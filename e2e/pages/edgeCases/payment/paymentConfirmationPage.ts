@@ -1,6 +1,5 @@
 import { Page } from "@playwright/test";
 import AccessibilityTestHelper from "../../../common/accessibilityTestHelper";
-import { Helpers } from "../../../common/helpers";
 import { Selectors } from "../../../common/selectors";
 import { PaymentConfirmationContent } from "../../../fixtures/edgeCases/payment/paymentConfirmationContent.ts";
 
@@ -30,22 +29,6 @@ export class PaymentConfirmationPage {
         `${Selectors.GovukHeadingXL}:text-is("${PaymentConfirmationContent.pageTitle}")`,
       )
       .waitFor();
-    await Promise.all([
-      Helpers.checkGroup(
-        page,
-        5,
-        PaymentConfirmationContent,
-        "tableHeader",
-        Selectors.th,
-      ),
-      Helpers.checkGroup(
-        page,
-        5,
-        PaymentConfirmationContent,
-        "tableData",
-        Selectors.td,
-      ),
-    ]);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }

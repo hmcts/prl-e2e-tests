@@ -56,7 +56,7 @@ export class Config {
 
   public static readonly edgeCasesBaseURL: string =
     process.env.EDGE_CASE_BASE_URL ||
-    "https://fis-ds-web-pr-349.preview.platform.hmcts.net/";
+    "https://fis-ds-web.ithc.platform.hmcts.net/";
 
   private static removeCasesPath(url: string): string {
     return url.replace(/\/cases$/, ""); // Removes `/cases` only if it's at the end
@@ -71,7 +71,7 @@ export class Config {
 
   public static getEnvironment(url: string): string {
     return (
-      ["aat", "demo", "preview"].find((env) => url.includes(env)) || "unknown"
+      ["aat", "demo", "preview", "ithc"].find((env) => url.includes(env)) || "unknown"
     );
   }
 

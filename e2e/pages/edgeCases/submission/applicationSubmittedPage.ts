@@ -22,13 +22,13 @@ export class ApplicationSubmitted {
     accessibilityTest,
   }: ApplicationSubmittedPageOptions): Promise<void> {
     const h1Locator = page.locator(
-      `${Selectors.h1}:text(${ApplicationSubmittedContent.h1})`,
+      `${Selectors.GovukPanelTitle}:text(${ApplicationSubmittedContent.h1})`,
     );
     await h1Locator.waitFor();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.font}:text-is("${ApplicationSubmittedContent.font}")`,
+        `${Selectors.GovukPanelBody}:text-is("${ApplicationSubmittedContent.font}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(

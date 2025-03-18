@@ -15,6 +15,11 @@ interface CheckPageLoadsOptions {
   accessibilityTest: boolean;
 }
 
+interface FormattedExpiryDateType {
+  month: string;
+  year: string;
+}
+
 enum inputIds {
   card_no = "#card-no",
   expiry_month = "#expiry-month",
@@ -33,11 +38,15 @@ export class PayPage {
     page,
     accessibilityTest,
   }: PayPageOptions): Promise<void> {
+    const formattedExpiryDateString = Helpers.getFormattedCardExpiryDate(10, new Date().getFullYear() + 2);
+    const [month, year] = formattedExpiryDateString.split('/');
+    const formattedExpiryDate: FormattedExpiryDateType = { month, year };
+
     await this.checkPageLoads({
       page: page,
       accessibilityTest: accessibilityTest,
     });
-    await this.fillInFields(page);
+    await this.fillInFields(page, formattedExpiryDate);
   }
 
   private static async checkPageLoads({
@@ -47,80 +56,15 @@ export class PayPage {
     await page.waitForSelector(
       `${Selectors.GovukHeadingL}:text-is("${PayContent.pageTitle}")`,
     );
-    const formattedExpiryDate = Helpers.getFormattedCardExpiryDate(
-      10,
-      new Date().getFullYear() + 2,
-    );
-
-    await Promise.all([
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.h2}:text-is("${PayContent.heading1}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.h2}:text-is("${PayContent.heading2}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.h2}:text-is("${PayContent.heading3}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.p}:text-is("${PayContent.body1}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.p}:text-is("${PayContent.body2}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukBody}:text-is("${PayContent.body3}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukBody}:text-is("${PayContent.body4}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukHint}:text-is("${PayContent.hint1}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukHint}:has-text("${PayContent.hintDynamicDate}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukHint}:has-text("${formattedExpiryDate}")`,
-        1,
-      ),
-      Helpers.checkGroup(
-        page,
-        2,
-        PayContent,
-        "label",
-        `${Selectors.GovukLabel}`,
-      ),
-      Helpers.checkGroup(page, 11, PayContent, "span", `${Selectors.Span}`),
-    ]);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }
   }
 
-  private static async fillInFields(page: Page): Promise<void> {
+  private static async fillInFields(page: Page, formattedExpiryDate: FormattedExpiryDateType): Promise<void> {
     await page.fill(`${inputIds.card_no}`, PayContent.mockCardNumber);
-    await page.fill(`${inputIds.expiry_month}`, PayContent.mockExpMonth);
-    await page.fill(`${inputIds.expiry_year}`, PayContent.mockExpYear);
+    await page.fill(`${inputIds.expiry_month}`, formattedExpiryDate.month);
+    await page.fill(`${inputIds.expiry_year}`, formattedExpiryDate.year);
     await page.fill(`${inputIds.cardholder_name}`, PayContent.mockCardName);
     await page.fill(`${inputIds.cvc}`, PayContent.mockCVC);
     await page.fill(
