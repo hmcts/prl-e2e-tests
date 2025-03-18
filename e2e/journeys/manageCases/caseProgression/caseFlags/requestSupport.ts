@@ -16,6 +16,7 @@ interface RequestSupportParams {
   accessibilityTest: boolean;
 }
 
+// request support journey as a solicitor
 export class RequestSupport {
   public static async requestSupport({
     page,
@@ -75,7 +76,7 @@ export class RequestSupport {
     }
     await page
       .getByRole("row", { name: rowFlagText })
-      .getByText("Requested")
+      .getByText("REQUESTED")
       .isVisible();
   }
 }
