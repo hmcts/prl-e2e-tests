@@ -18,10 +18,11 @@ export class ManageCaseLinks2Page {
     accessibilityTest,
   }: ManageCaseLinks2PageOptions): Promise<void> {
     linkedCaseNumber = Helpers.getHyphenatedCaseReference(linkedCaseNumber);
-    await this.checkPageLoads({ 
+    await this.checkPageLoads({
       page,
       linkedCaseNumber,
-      accessibilityTest });
+      accessibilityTest,
+    });
     await this.fillInFields({ page, linkedCaseNumber });
     await this.continue(page);
   }
@@ -55,10 +56,12 @@ export class ManageCaseLinks2Page {
     if (!page) {
       throw new Error("No page found");
     }
-    if(!linkedCaseNumber) {
+    if (!linkedCaseNumber) {
       throw new Error("Cannot unlink case without the linked case number");
     }
-    await page.locator(`//div[label[contains(text(), "${linkedCaseNumber}")]]/input`).check();
+    await page
+      .locator(`//div[label[contains(text(), "${linkedCaseNumber}")]]/input`)
+      .check();
   }
 
   private static async continue(page: Page) {

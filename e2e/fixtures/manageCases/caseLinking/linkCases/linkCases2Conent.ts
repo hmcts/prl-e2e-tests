@@ -2,7 +2,7 @@ export enum LinkCases2Content {
   pageTitle = "Select a case you want to link to this case",
   h1 = "Select a case you want to link to this case",
   h31 = "Enter case reference",
-  h32 = "Why should these cases be linked?",  
+  h32 = "Why should these cases be linked?",
   div = "Select all that apply.",
   label1 = "Bail",
   label2 = "Case consolidated",

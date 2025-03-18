@@ -9,7 +9,7 @@ test.use({ storageState: Config.sessionStoragePath + "courtAdminStoke.json" });
 
 test.describe("Link DA cases as a court admin.", () => {
   let caseToBeLinked: string = "";
-  
+
   test.beforeEach(async ({ page }) => {
     const ccdRef = await createDaCitizenCourtNavCase(true, true);
     caseToBeLinked = await createDaCitizenCourtNavCase(true, true);
@@ -24,7 +24,6 @@ test.describe("Link DA cases as a court admin.", () => {
   test("Link cases. With accessibility test. @nightly @accessibility", async ({
     page,
   }): Promise<void> => {
-    test.setTimeout(100000);
     await LinkCases.linkCases({
       page: page,
       linkedCaseNumber: caseToBeLinked,
@@ -32,10 +31,7 @@ test.describe("Link DA cases as a court admin.", () => {
     });
   });
 
-  test("Link cases @regression", async ({
-    page,
-  }): Promise<void> => {
-    test.setTimeout(100000);
+  test("Link cases @regression", async ({ page }): Promise<void> => {
     await LinkCases.linkCases({
       page: page,
       linkedCaseNumber: caseToBeLinked,

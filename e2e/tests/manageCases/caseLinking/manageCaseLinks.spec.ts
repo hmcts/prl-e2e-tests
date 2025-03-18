@@ -38,10 +38,7 @@ test.describe("Manage case links as a court admin.", () => {
     });
   });
 
-  test("Manage case links @regression", async ({
-    page,
-  }): Promise<void> => {
-    test.setTimeout(100000);
+  test("Manage case links @regression", async ({ page }): Promise<void> => {
     await ManageCaseLinks.manageCaseLinks({
       page: page,
       linkedCaseNumber: linkedCase,

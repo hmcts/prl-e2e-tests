@@ -16,7 +16,11 @@ export class LinkCasesSubmitPage {
   }: LinkCasesSubmitPageOptions): Promise<void> {
     await this.checkPageLoads({ page, accessibilityTest });
     await Helpers.clickButton(page, LinkCaseSubmitContent.createCaseLinkButton);
-    await expect(page.locator(`${Selectors.alertMessage}:has-text("${LinkCaseSubmitContent.confirmationMessage}")`)).toBeVisible();
+    await expect(
+      page.locator(
+        `${Selectors.alertMessage}:has-text("${LinkCaseSubmitContent.confirmationMessage}")`,
+      ),
+    ).toBeVisible();
   }
 
   private static async checkPageLoads({
@@ -36,7 +40,7 @@ export class LinkCasesSubmitPage {
         `${Selectors.h2}:text-is("${LinkCaseSubmitContent.h2}")`,
         1,
       ),
-      
+
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukText16}:text-is("${LinkCaseSubmitContent.text16}")`,

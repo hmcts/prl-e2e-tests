@@ -30,13 +30,7 @@ export class LinkCases1Page {
       `${Selectors.h1}:text-is("${LinkCases1Content.pageTitle}")`,
     );
     await pageTitle.waitFor({ state: "visible" });
-    await Helpers.checkGroup(
-      page,
-      2,
-      LinkCases1Content,
-      "p",
-      Selectors.p,
-    );
+    await Helpers.checkGroup(page, 2, LinkCases1Content, "p", Selectors.p);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }

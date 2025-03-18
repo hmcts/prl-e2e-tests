@@ -18,9 +18,7 @@ export class ManageCaseLinks3Page {
     accessibilityTest,
   }: ManageCaseLinks3PageOptions): Promise<void> {
     linkedCaseNumber = Helpers.getHyphenatedCaseReference(linkedCaseNumber);
-    await this.checkPageLoads({ page,
-      linkedCaseNumber,
-      accessibilityTest });
+    await this.checkPageLoads({ page, linkedCaseNumber, accessibilityTest });
     await this.continue(page);
   }
 

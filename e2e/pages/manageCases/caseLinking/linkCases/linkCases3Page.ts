@@ -18,9 +18,7 @@ export class LinkCases3Page {
     accessibilityTest,
   }: LinkCases3PageOptions): Promise<void> {
     linkedCaseNumber = Helpers.getHyphenatedCaseReference(linkedCaseNumber);
-    await this.checkPageLoads({ page,
-      linkedCaseNumber,
-      accessibilityTest });
+    await this.checkPageLoads({ page, linkedCaseNumber, accessibilityTest });
     await this.continue(page);
   }
 
@@ -59,12 +57,12 @@ export class LinkCases3Page {
       LinkCases3Content,
       "proposedCaseDetailsSpan",
       Selectors.Span,
-    )
+    );
     await Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukLink}:has-text("${LinkCases3Content.changeLink}")`,
-          1,
-        );
+      page,
+      `${Selectors.GovukLink}:has-text("${LinkCases3Content.changeLink}")`,
+      1,
+    );
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }

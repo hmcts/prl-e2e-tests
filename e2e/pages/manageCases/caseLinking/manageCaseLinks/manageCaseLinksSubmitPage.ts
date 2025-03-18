@@ -15,8 +15,15 @@ export class ManageCaseLinksSubmitPage {
     accessibilityTest,
   }: ManageCaseLinksSubmitPageOptions): Promise<void> {
     await this.checkPageLoads({ page, accessibilityTest });
-    await Helpers.clickButton(page, ManageCaseLinksSubmitContent.maintainCaseLinksButton);
-    await expect(page.locator(`${Selectors.alertMessage}:has-text("${ManageCaseLinksSubmitContent.confirmationMessage}")`)).toBeVisible();
+    await Helpers.clickButton(
+      page,
+      ManageCaseLinksSubmitContent.maintainCaseLinksButton,
+    );
+    await expect(
+      page.locator(
+        `${Selectors.alertMessage}:has-text("${ManageCaseLinksSubmitContent.confirmationMessage}")`,
+      ),
+    ).toBeVisible();
   }
 
   private static async checkPageLoads({
@@ -36,7 +43,7 @@ export class ManageCaseLinksSubmitPage {
         `${Selectors.h2}:text-is("${ManageCaseLinksSubmitContent.h2}")`,
         1,
       ),
-      
+
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukText16}:text-is("${ManageCaseLinksSubmitContent.text16}")`,

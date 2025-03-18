@@ -40,13 +40,7 @@ export class LinkCases2Page {
     );
     await pageTitle.waitFor({ state: "visible" });
     await Promise.all([
-      Helpers.checkGroup(
-        page,
-        2,
-        LinkCases2Content,
-        "h3",
-        Selectors.h3,
-      ),
+      Helpers.checkGroup(page, 2, LinkCases2Content, "h3", Selectors.h3),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.div}:text-is("${LinkCases2Content.div}")`,
@@ -72,13 +66,10 @@ export class LinkCases2Page {
     if (!page) {
       throw new Error("No page found");
     }
-    if(!linkedCaseNumber) {
+    if (!linkedCaseNumber) {
       throw new Error("Cannot link case without the case number");
     }
-    await page.fill(
-      UniqueSelectors.caseReferenceInput,
-      linkedCaseNumber,
-    );
+    await page.fill(UniqueSelectors.caseReferenceInput, linkedCaseNumber);
     await Helpers.clickCheckbox(page, LinkCases2Content.label2);
     await Helpers.clickCheckbox(page, LinkCases2Content.label17);
     await Helpers.checkVisibleAndPresent(
@@ -99,7 +90,10 @@ export class LinkCases2Page {
     await this.verifyProposedCaseLinkDetails(page, linkedCaseNumber);
   }
 
-  private static async verifyProposedCaseLinkDetails(page: Page, caseNumber: string): Promise<void> {
+  private static async verifyProposedCaseLinkDetails(
+    page: Page,
+    caseNumber: string,
+  ): Promise<void> {
     await Helpers.checkGroup(
       page,
       5,
