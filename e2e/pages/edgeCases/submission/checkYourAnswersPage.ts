@@ -2,14 +2,15 @@ import { Page, expect } from "@playwright/test";
 import { Selectors } from "../../../common/selectors.ts";
 import AccessibilityTestHelper from "../../../common/accessibilityTestHelper.ts";
 import { Helpers } from "../../../common/helpers.ts";
+import config from "../../../config.ts";
+import path from "path";
 import { CheckYourAnswersContent } from "../../../fixtures/edgeCases/submission/checkYourAnswersContent.ts";
 import { TypeOfApplicationContent } from "../../../fixtures/edgeCases/typeOfApplicationContent.ts";
 import { EdgeCaseApplicationType } from "../../../common/types.ts";
-import config from "../../../config.ts";
 import { AddressLookupContent } from "../../../fixtures/edgeCases/personalDetails/addressLookupContent.ts";
 import { ContactDetailsContent } from "../../../fixtures/edgeCases/personalDetails/contactDetailsContent.ts";
 import { SelectCourtContent } from "../../../fixtures/edgeCases/selectCourtContent.ts";
-import path from "path";
+import {FullNameContent} from "../../../fixtures/edgeCases/personalDetails/fullNameContent.ts";
 
 interface CheckYourAnswersPageOptions {
   page: Page;
@@ -17,6 +18,7 @@ interface CheckYourAnswersPageOptions {
   typeOfApplication: EdgeCaseApplicationType;
   additionalDocuments: boolean;
   userInfo: { email: string; forename: string; surname: string };
+  applyMyself?: boolean;
   under18: boolean;
   dob?: { day: string; month: string; year: string };
 }
@@ -30,6 +32,7 @@ interface CheckYourAnswersPageDynamicContent {
   typeOfApplication: EdgeCaseApplicationType;
   additionalDocuments: boolean;
   userInfo: { email: string; forename: string; surname: string };
+  applyMyself?: boolean;
   under18: boolean;
   dob?: { day: string; month: string; year: string };
 }
@@ -41,6 +44,7 @@ export class CheckYourAnswersPage {
     typeOfApplication,
     additionalDocuments,
     userInfo,
+    applyMyself,
     under18,
     dob,
   }: CheckYourAnswersPageOptions): Promise<void> {
@@ -50,6 +54,7 @@ export class CheckYourAnswersPage {
       typeOfApplication,
       additionalDocuments,
       userInfo,
+      applyMyself,
       under18,
       dob,
     });
@@ -92,6 +97,7 @@ export class CheckYourAnswersPage {
     typeOfApplication,
     additionalDocuments,
     userInfo,
+    applyMyself,
     under18,
     dob,
   }: CheckYourAnswersPageDynamicContent): Promise<void> {
@@ -207,12 +213,21 @@ export class CheckYourAnswersPage {
     }
 
     // check applicant details
+    if (applyMyself){
+      await Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukSummaryListValue}:text-is("${userInfo.forename + " " + userInfo.surname}")`,
+          1,
+      );
+    }
+    else{
+        await Helpers.checkVisibleAndPresent(
+            page,
+            `${Selectors.GovukSummaryListValue}:text-is("${FullNameContent.firstNameInput + " " + FullNameContent.lastNameInput}")`,
+            1,
+        );
+    }
     await Promise.all([
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListValue}:text-is("${userInfo.forename + " " + userInfo.surname}")`,
-        1,
-      ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListValue}:text-is("${AddressLookupContent.postcodeInput}")`,

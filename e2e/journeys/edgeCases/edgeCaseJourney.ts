@@ -58,6 +58,7 @@ interface EdgeCaseParamsSubmission {
   dob?: { day: string; month: string; year: string };
   under18: boolean;
   userInfo: { email: string; forename: string; surname: string };
+  applyMyself?: boolean;
 }
 
 interface EdgeCaseParamsUploadDocs {
@@ -114,6 +115,7 @@ export class EdgeCase {
       typeOfApplication,
       additionalDocuments,
       userInfo,
+      applyMyself,
       dob,
       under18,
     });
@@ -169,6 +171,7 @@ export class EdgeCase {
       typeOfApplication,
       additionalDocuments,
       userInfo,
+      applyMyself:true,
       dob,
       under18,
     });
@@ -285,6 +288,7 @@ export class EdgeCase {
     typeOfApplication,
     additionalDocuments,
     userInfo,
+    applyMyself,
     dob,
     under18,
   }: EdgeCaseParamsSubmission): Promise<void> {
@@ -294,6 +298,7 @@ export class EdgeCase {
       typeOfApplication,
       additionalDocuments,
       userInfo,
+      applyMyself,
       dob,
       under18,
     });
