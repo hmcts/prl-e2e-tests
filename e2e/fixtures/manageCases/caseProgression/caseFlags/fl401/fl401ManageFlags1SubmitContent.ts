@@ -9,7 +9,8 @@ export enum Fl401ManageFlags1SubmitContent {
   govUkSummaryListValue2 = "test comments",
 
   govUkSummaryListValueReasonableAdjustment = "Documents in a specified colour",
-  govUkSummaryListValueLanguageInterpreter = "Language Interpreter - test description - Korean",
+  govUkSummaryListValueLanguageInterpreterApproved = "Language Interpreter - Korean",
+  govUkSummaryListValueLanguageInterpreterNotApproved = "Language Interpreter - test description - Korean",
   govUkSummaryListValueApproved = "Active",
   govUkSummaryListValueNotApproved = "Not approved",
 

@@ -73,12 +73,6 @@ export class Fl401ManageFlags1SubmitPage {
         `${Selectors.GovukSummaryListValue}:has-text("${Fl401ManageFlags1SubmitContent.govUkSummaryListValueReasonableAdjustment}")`,
         1,
       );
-    } else {
-      await Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListValue}:has-text("${Fl401ManageFlags1SubmitContent.govUkSummaryListValueLanguageInterpreter}")`,
-        1,
-      );
     }
     if (isApproved) {
       await Helpers.checkVisibleAndPresent(
@@ -86,12 +80,26 @@ export class Fl401ManageFlags1SubmitPage {
         `${Selectors.GovukSummaryListValue}:text-is("${Fl401ManageFlags1SubmitContent.govUkSummaryListValueApproved}")`,
         1,
       );
+      if (supportType === "languageInterpreter") {
+        await Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukSummaryListValue}:has-text("${Fl401ManageFlags1SubmitContent.govUkSummaryListValueLanguageInterpreterApproved}")`,
+          1,
+        );
+      }
     } else {
       await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListValue}:text-is("${Fl401ManageFlags1SubmitContent.govUkSummaryListValueNotApproved}")`,
         1,
       );
+      if (supportType === "languageInterpreter") {
+        await Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukSummaryListValue}:has-text("${Fl401ManageFlags1SubmitContent.govUkSummaryListValueLanguageInterpreterNotApproved}")`,
+          1,
+        );
+      }
     }
     if (withTranslation) {
       await Promise.all([
