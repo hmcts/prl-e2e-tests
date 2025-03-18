@@ -121,7 +121,7 @@ export class Fl401ManageFlags1UpdateCaseFlagPage {
       ]);
     }
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page);   TODO: add jira ticket
+      // await AccessibilityTestHelper.run(page);   TODO: Awaiting for accessibility ticket FPVTL-174 to be resolved
     }
   }
 
