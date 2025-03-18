@@ -47,11 +47,11 @@ export class Config {
   public static readonly manageCasesBaseURLCase: string =
     Config.ensureNoTrailingSlash(
       process.env.MANAGE_CASES_BASE_URL ||
-        "https://xui-webapp-pr-4302.preview.platform.hmcts.net/cases",
+        "https://manage-case.aat.platform.hmcts.net/cases",
     );
   public static readonly manageCasesBaseURL: string = Config.removeCasesPath(
     process.env.MANAGE_CASES_BASE_URL ||
-      "https://xui-webapp-pr-4302.preview.platform.hmcts.net",
+      "https://manage-case.aat.platform.hmcts.net",
   );
 
   private static removeCasesPath(url: string): string {
