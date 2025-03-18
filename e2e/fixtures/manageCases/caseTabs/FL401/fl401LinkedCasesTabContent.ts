@@ -1,0 +1,18 @@
+export enum FL401LinkedCasesTabContent {
+  tabName = "Linked cases",
+  tabTitle = "Linked cases",
+  tableHeader1 = "This case is linked to",
+  tableHeader2 = "This case is linked from",
+  columnHeader1 = "Case name and number",
+  columnHeader2 = "CaseType",
+  columnHeader3 = "Service",
+  columnHeader4 = "State",
+  columnHeader5 = "Reasons for case link",
+  linkedCaseName = "",
+  proposedCaseDetailsSpan1 = "C100 & FL401 Applications",
+  proposedCaseDetailsSpan2 = "Family Private Law",
+  proposedCaseDetailsSpan3 = "Submitted",
+  proposedCaseDetailsSpan4 = "Case consolidated",
+  proposedCaseDetailsSpan5 = "Other - Automation Test",
+  noCasesLinked = "None",
+}

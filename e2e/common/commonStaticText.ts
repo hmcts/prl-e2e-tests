@@ -33,4 +33,5 @@ export enum CommonStaticText {
   preferNotToSay = "Prefer not to say",
   change = "Change",
   addNew = "Add new",
+  proposeCaseLink = "Propose case link",
 }

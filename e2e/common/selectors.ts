@@ -113,6 +113,7 @@ export enum Selectors {
   GovukTableHeader = ".govuk-table__header",
   GovukTableRow = ".govuk-table__row",
   GovukTableCell = ".govuk-table__cell",
+  GovukTableSubheading = ".table-sub-heading",
 
   // Breadcrumbs
   GovukBreadcrumbs = ".govuk-breadcrumbs",
