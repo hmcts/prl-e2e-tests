@@ -1,19 +1,35 @@
 import solicitorDACaseData from "../../caseData/solicitorDACaseEventData.json";
+import solicitorDACaseDataDemo from "../../caseData/solicitorDACaseEventData-demo.json";
 import solicitorCACaseData from "../../caseData/solicitorCACaseEventData.json";
+import solicitorCACaseDataDemo from "../../caseData/solicitorCACaseEventData-demo.json";
 import orderEventDataAmendDischargedVaried from "../../caseData/orderData/orderEventData-amendDischargedVaried.json";
+import orderEventDataAmendDischargedVariedDemo from "../../caseData/orderData/orderEventData-amendDischargedVaried-demo.json";
 import orderEventDataPowerOfArrest from "../../caseData/orderData/orderEventData-powerOfArrest.json";
+import orderEventDataPowerOfArrestDemo from "../../caseData/orderData/orderEventData-powerOfArrest-demo.json";
 import { Page } from "@playwright/test";
 import { solicitorCACaseAPIEvent, solicitorDACaseAPIEvent } from "../types.ts";
+import process from "node:process";
 
 // Using "any" type below because it represents a large JSON object
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type JsonData = Record<string, any>;
-export const jsonDatas: JsonData = {
-  solicitorDACaseData: solicitorDACaseData,
-  solicitorCACaseData: solicitorCACaseData,
-  manageOrderDataPowerOfArrest: orderEventDataPowerOfArrest,
-  manageOrderDataAmendDischargedVaried: orderEventDataAmendDischargedVaried,
-};
+export let jsonDatas: JsonData;
+if (process.env.MANAGE_CASES_TEST_ENV === "demo") {
+  jsonDatas = {
+    solicitorDACaseData: solicitorDACaseDataDemo,
+    solicitorCACaseData: solicitorCACaseDataDemo,
+    manageOrderDataPowerOfArrest: orderEventDataPowerOfArrestDemo,
+    manageOrderDataAmendDischargedVaried:
+      orderEventDataAmendDischargedVariedDemo,
+  };
+} else {
+  jsonDatas = {
+    solicitorDACaseData: solicitorDACaseData,
+    solicitorCACaseData: solicitorCACaseData,
+    manageOrderDataPowerOfArrest: orderEventDataPowerOfArrest,
+    manageOrderDataAmendDischargedVaried: orderEventDataAmendDischargedVaried,
+  };
+}
 
 /**
  * Function to get the token required for the event submission request

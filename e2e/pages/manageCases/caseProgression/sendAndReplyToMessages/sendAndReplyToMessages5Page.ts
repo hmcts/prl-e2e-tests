@@ -86,7 +86,7 @@ export class SendAndReplyToMessages5Page {
       ),
       Helpers.checkGroup(
         page,
-        5,
+        3,
         SendAndReplyToMessages5Content,
         "messageTableFormLabel",
         Selectors.GovukFormLabel,

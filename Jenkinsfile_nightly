@@ -57,8 +57,16 @@ static Map < String, Object > secret(String secretName, String envVariable) {
   ]
 }
 
+def matchingEnv = "aat"
+
+if(params.skipManageCasesTests) {
+  matchingEnv = params.CITIZEN_FRONTEND_BASE_URL.contains("demo") ? "demo" : matchingEnv
+} else {
+  matchingEnv = params.MANAGE_CASES_BASE_URL.contains("demo") ? "demo" : matchingEnv
+}
+
 def secrets = [
-  'prl-${env}': [
+  "prl-${matchingEnv}": [
     secret('solicitor-user', 'SOLICITOR_USERNAME'),
     secret('solicitor-password', 'SOLICITOR_PASSWORD'),
     secret('citizen-user', 'CITIZEN_USERNAME'),

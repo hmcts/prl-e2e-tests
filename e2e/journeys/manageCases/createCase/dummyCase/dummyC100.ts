@@ -6,6 +6,7 @@ import { DummyPaymentConfirmation } from "../../caseWorker/dummyPayment/dummyPay
 import { DummyC100ApplicantDetails } from "./dummyC100ApplicantDetails";
 import { DummyC100OtherPersonDetails } from "./dummyC100OtherPersonDetails";
 import { Helpers } from "../../../../common/helpers.ts";
+import { Selectors } from "../../../../common/selectors.ts";
 
 interface dummyC100Options {
   page: Page;
@@ -45,14 +46,13 @@ export class DummyC100 {
     await DummyPaymentConfirmation.dummyPaymentConfirmation({
       page,
     });
-    const caseRef: string = await Helpers.getCaseNumberFromUrl(page);
-    await page.waitForResponse(
-      (response) =>
-        response.url() ===
-          `https://manage-case.aat.platform.hmcts.net/data/cases/${caseRef}/events` &&
-        response.status() === 201,
-    );
-    return caseRef;
+    // wait for statement of truth event to complete before performing next actions
+    await page
+      .locator(Selectors.alertMessage, {
+        hasText: "Dummy payment confirmation",
+      })
+      .waitFor();
+    return await Helpers.getCaseNumberFromUrl(page);
   }
   public static async dummyC100NoPaymentConfirmation({
     page,
