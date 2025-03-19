@@ -267,3 +267,5 @@ export type solicitorCACaseAPIEvent =
   | "issueAndSendToLocalCourtCallback";
 
 export type AdditionalApplicationType = "c2" | "other";
+
+export type SupportType = "reasonableAdjustment" | "languageInterpreter";
