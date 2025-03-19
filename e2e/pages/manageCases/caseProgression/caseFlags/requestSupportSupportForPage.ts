@@ -1,17 +1,17 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors.ts";
-import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
-import { Fl401RequestSupport1SupportForContent } from "../../../../../fixtures/manageCases/caseProgression/caseFlags/fl401/fl401RequestSupport1SupportForContent.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
-import { solicitorCaseCreateType } from "../../../../../common/types.ts";
+import { Selectors } from "../../../../common/selectors.ts";
+import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
+import { RequestSupportSupportForContent } from "../../../../fixtures/manageCases/caseProgression/caseFlags/requestSupportSupportForContent.ts";
+import { Helpers } from "../../../../common/helpers.ts";
+import { solicitorCaseCreateType } from "../../../../common/types.ts";
 
 enum UniqueSelectors {
   applicantRadio = "#flag-location-0",
 }
 
-export class Fl401RequestSupport1SupportForPage {
-  public static async fl401RequestSupport1SupportForPage(
+export class RequestSupportSupportForPage {
+  public static async requestSupportSupportForPage(
     page: Page,
     caseType: solicitorCaseCreateType,
     accessibilityTest: boolean,
@@ -28,13 +28,13 @@ export class Fl401RequestSupport1SupportForPage {
   ): Promise<void> {
     await page
       .locator(Selectors.GovukFieldsetHeading, {
-        hasText: Fl401RequestSupport1SupportForContent.govUkFieldSetHeading,
+        hasText: RequestSupportSupportForContent.govUkFieldSetHeading,
       })
       .waitFor();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHeadingL}:text-is("${Fl401RequestSupport1SupportForContent.govUKHeadingL}")`,
+        `${Selectors.GovukHeadingL}:text-is("${RequestSupportSupportForContent.govUKHeadingL}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -47,7 +47,7 @@ export class Fl401RequestSupport1SupportForPage {
       await Helpers.checkGroup(
         page,
         7,
-        Fl401RequestSupport1SupportForContent,
+        RequestSupportSupportForContent,
         `c100GovUkLabel`,
         `${Selectors.GovukLabel}`,
       );
@@ -55,7 +55,7 @@ export class Fl401RequestSupport1SupportForPage {
       await Helpers.checkGroup(
         page,
         2,
-        Fl401RequestSupport1SupportForContent,
+        RequestSupportSupportForContent,
         `fl401GovUkLabel`,
         `${Selectors.GovukLabel}`,
       );

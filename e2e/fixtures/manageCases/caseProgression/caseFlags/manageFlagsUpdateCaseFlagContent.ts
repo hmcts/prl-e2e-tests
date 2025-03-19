@@ -1,4 +1,4 @@
-export enum Fl401ManageFlags1UpdateCaseFlagContent {
+export enum ManageFlagsUpdateCaseFlagContent {
   govUkHeadingL = "Manage Flags",
   govUkLabelMReasonableAdjustment = 'Update flag "Documents in a specified colour"',
   govUkLabelMLanguageInterpreter = 'Update flag "Language Interpreter, Korean"',

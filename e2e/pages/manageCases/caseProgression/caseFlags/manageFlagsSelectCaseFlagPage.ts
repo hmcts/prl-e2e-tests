@@ -2,19 +2,19 @@ import { Page } from "@playwright/test";
 import {
   solicitorCaseCreateType,
   SupportType,
-} from "../../../../../common/types.ts";
-import { Selectors } from "../../../../../common/selectors.ts";
-import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
-import { Fl401ManageFlags1SelectCaseFlagContent } from "../../../../../fixtures/manageCases/caseProgression/caseFlags/fl401/fl401ManageFlags1SelectCaseFlagContent.ts";
+} from "../../../../common/types.ts";
+import { Selectors } from "../../../../common/selectors.ts";
+import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { Helpers } from "../../../../common/helpers.ts";
+import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
+import { ManageFlagsSelectCaseFlagContent } from "../../../../fixtures/manageCases/caseProgression/caseFlags/manageFlagsSelectCaseFlagContent.ts";
 
 enum UniqueSelectors {
   caseFlagRadio = "#flag-selection-0",
 }
 
-export class Fl401ManageFlags1SelectCaseFlagPage {
-  public static async fl401ManageFlags1SelectCaseFlagPage(
+export class ManageFlagsSelectCaseFlagPage {
+  public static async manageFlagsSelectCaseFlagPage(
     page: Page,
     caseType: solicitorCaseCreateType,
     supportType: SupportType,
@@ -33,13 +33,13 @@ export class Fl401ManageFlags1SelectCaseFlagPage {
   ): Promise<void> {
     await page
       .locator(Selectors.GovukFieldsetHeading, {
-        hasText: Fl401ManageFlags1SelectCaseFlagContent.govUkFieldSetHeading,
+        hasText: ManageFlagsSelectCaseFlagContent.govUkFieldSetHeading,
       })
       .waitFor();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHeadingL}:text-is("${Fl401ManageFlags1SelectCaseFlagContent.govUkHeadingL}")`,
+        `${Selectors.GovukHeadingL}:text-is("${ManageFlagsSelectCaseFlagContent.govUkHeadingL}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -52,13 +52,13 @@ export class Fl401ManageFlags1SelectCaseFlagPage {
       if (caseType === "C100") {
         await Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukLabel}:has-text("${Fl401ManageFlags1SelectCaseFlagContent.c100GovUkLabelReasonableAdjustment}")`,
+          `${Selectors.GovukLabel}:has-text("${ManageFlagsSelectCaseFlagContent.c100GovUkLabelReasonableAdjustment}")`,
           1,
         );
       } else {
         await Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukLabel}:has-text("${Fl401ManageFlags1SelectCaseFlagContent.fl401GovUkLabelReasonableAdjustment}")`,
+          `${Selectors.GovukLabel}:has-text("${ManageFlagsSelectCaseFlagContent.fl401GovUkLabelReasonableAdjustment}")`,
           1,
         );
       }
@@ -66,13 +66,13 @@ export class Fl401ManageFlags1SelectCaseFlagPage {
       if (caseType === "C100") {
         await Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukLabel}:has-text("${Fl401ManageFlags1SelectCaseFlagContent.c100GovUkLabelLanguageInterpreter}")`,
+          `${Selectors.GovukLabel}:has-text("${ManageFlagsSelectCaseFlagContent.c100GovUkLabelLanguageInterpreter}")`,
           1,
         );
       } else {
         await Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukLabel}:has-text("${Fl401ManageFlags1SelectCaseFlagContent.fl401GovUkLabelLanguageInterpreter}")`,
+          `${Selectors.GovukLabel}:has-text("${ManageFlagsSelectCaseFlagContent.fl401GovUkLabelLanguageInterpreter}")`,
           1,
         );
       }

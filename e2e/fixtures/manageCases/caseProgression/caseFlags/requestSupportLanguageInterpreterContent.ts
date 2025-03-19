@@ -1,4 +1,4 @@
-export enum Fl401RequestSupport1LanguageInterpreterContent {
+export enum RequestSupportLanguageInterpreterContent {
   govUKHeadingL = "Request support",
   guvUkLabelM = "Language Interpreter",
   guvUkLabel = "Enter the language manually",

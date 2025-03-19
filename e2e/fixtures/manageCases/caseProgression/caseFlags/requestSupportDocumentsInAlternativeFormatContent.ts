@@ -1,4 +1,4 @@
-export enum Fl401RequestSupport1DocumentsInAlternativeFormatContent {
+export enum RequestSupportDocumentsInAlternativeFormatContent {
   govUKHeadingL = "Request support",
   govUkFieldSetHeading = "I need documents in an alternative format",
   govUkLabel1 = "Documents in a specified colour",

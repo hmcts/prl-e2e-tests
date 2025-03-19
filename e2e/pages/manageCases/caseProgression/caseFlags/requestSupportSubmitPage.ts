@@ -2,15 +2,15 @@ import { Page } from "@playwright/test";
 import {
   solicitorCaseCreateType,
   SupportType,
-} from "../../../../../common/types.ts";
-import { Selectors } from "../../../../../common/selectors.ts";
-import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
-import { Fl401RequestSupport1SubmitContent } from "../../../../../fixtures/manageCases/caseProgression/caseFlags/fl401/fl401RequestSupport1SubmitContent.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
+} from "../../../../common/types.ts";
+import { Selectors } from "../../../../common/selectors.ts";
+import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
+import { RequestSupportSubmitContent } from "../../../../fixtures/manageCases/caseProgression/caseFlags/requestSupportSubmitContent.ts";
+import { Helpers } from "../../../../common/helpers.ts";
 
-export class Fl401RequestSupport1SubmitPage {
-  public static async fl401RequestSupport1SubmitPage(
+export class RequestSupportSubmitPage {
+  public static async requestSupportSubmitPage(
     page: Page,
     caseType: solicitorCaseCreateType,
     supportType: SupportType,
@@ -28,26 +28,26 @@ export class Fl401RequestSupport1SubmitPage {
   ): Promise<void> {
     await page
       .locator(Selectors.headingH2, {
-        hasText: Fl401RequestSupport1SubmitContent.headingH2,
+        hasText: RequestSupportSubmitContent.headingH2,
       })
       .waitFor();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHeadingL}:text-is("${Fl401RequestSupport1SubmitContent.govUKHeadingL}")`,
+        `${Selectors.GovukHeadingL}:text-is("${RequestSupportSubmitContent.govUKHeadingL}")`,
         1,
       ),
       Helpers.checkGroup(
         page,
         4,
-        Fl401RequestSupport1SubmitContent,
+        RequestSupportSubmitContent,
         `govUkSummaryListKey`,
         `${Selectors.GovukSummaryListKey}`,
       ),
       Helpers.checkGroup(
         page,
         2,
-        Fl401RequestSupport1SubmitContent,
+        RequestSupportSubmitContent,
         `govUkSummaryListValue`,
         `${Selectors.GovukSummaryListValue}`,
       ),
@@ -65,26 +65,26 @@ export class Fl401RequestSupport1SubmitPage {
     if (supportType === "reasonableAdjustment") {
       await Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukSummaryListValue}:text-is("${Fl401RequestSupport1SubmitContent.govUkSummaryListValueReasonableAdjustmentSupportType}")`,
+        `${Selectors.GovukSummaryListValue}:text-is("${RequestSupportSubmitContent.govUkSummaryListValueReasonableAdjustmentSupportType}")`,
         1,
       );
     } else {
       await Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukSummaryListValue}:text-is("${Fl401RequestSupport1SubmitContent.govUkSummaryListValueLanguageInterpreterSupportType}")`,
+        `${Selectors.GovukSummaryListValue}:text-is("${RequestSupportSubmitContent.govUkSummaryListValueLanguageInterpreterSupportType}")`,
         1,
       );
     }
     if (caseType === "C100") {
       await Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukSummaryListValue}:text-is("${Fl401RequestSupport1SubmitContent.c100GovUkSummaryListValue}")`,
+        `${Selectors.GovukSummaryListValue}:text-is("${RequestSupportSubmitContent.c100GovUkSummaryListValue}")`,
         1,
       );
     } else {
       await Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukSummaryListValue}:text-is("${Fl401RequestSupport1SubmitContent.fl401GovUkSummaryListValue}")`,
+        `${Selectors.GovukSummaryListValue}:text-is("${RequestSupportSubmitContent.fl401GovUkSummaryListValue}")`,
         1,
       );
     }

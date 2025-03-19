@@ -1,4 +1,4 @@
-export enum Fl401ManageFlags1SelectCaseFlagContent {
+export enum ManageFlagsSelectCaseFlagContent {
   govUkHeadingL = "Manage Flags",
   govUkFieldSetHeading = "Manage case flags",
   fl401GovUkLabelReasonableAdjustment = "John Smith (Applicant) - Reasonable adjustment, Documents in a specified colour (test comments)",

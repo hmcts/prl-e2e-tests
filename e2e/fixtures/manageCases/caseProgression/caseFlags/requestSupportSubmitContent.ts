@@ -1,4 +1,4 @@
-export enum Fl401RequestSupport1SubmitContent {
+export enum RequestSupportSubmitContent {
   govUKHeadingL = "Request support",
   headingH2 = "Review support request",
   govUkSummaryListKey1 = "Add support to",

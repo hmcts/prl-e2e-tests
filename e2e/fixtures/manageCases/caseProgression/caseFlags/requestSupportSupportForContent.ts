@@ -1,4 +1,4 @@
-export enum Fl401RequestSupport1SupportForContent {
+export enum RequestSupportSupportForContent {
   govUKHeadingL = "Request support",
   govUkFieldSetHeading = "Who is the support for?",
   fl401GovUkLabel1 = "John Smith (Applicant)",

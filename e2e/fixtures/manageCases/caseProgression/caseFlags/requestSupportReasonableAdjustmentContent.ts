@@ -1,4 +1,4 @@
-export enum Fl401RequestSupport1ReasonableAdjustmentContent {
+export enum RequestSupportReasonableAdjustmentContent {
   govUKHeadingL = "Request support",
   govUkFieldSetHeading = "Reasonable adjustment",
   govUkLabel1 = "I need documents in an alternative format",

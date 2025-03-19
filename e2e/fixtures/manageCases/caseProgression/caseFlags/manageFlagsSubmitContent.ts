@@ -1,4 +1,4 @@
-export enum Fl401ManageFlags1SubmitContent {
+export enum ManageFlagsSubmitContent {
   govUkHeadingL = "Manage Flags",
   headingH2 = "Review flag details",
   govUkSummaryListKey1 = "Update flag for",

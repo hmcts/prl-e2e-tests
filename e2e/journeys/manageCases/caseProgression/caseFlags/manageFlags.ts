@@ -5,10 +5,10 @@ import {
 } from "../../../../common/types.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import config from "../../../../config.ts";
-import { Fl401ManageFlags1SelectCaseFlagPage } from "../../../../pages/manageCases/caseProgression/caseFlags/fl401/fl401ManageFlags1SelectCaseFlagPage.ts";
-import { Fl401ManageFlags1UpdateCaseFlagPage } from "../../../../pages/manageCases/caseProgression/caseFlags/fl401/fl401ManageFlags1UpdateCaseFlagPage.ts";
-import { Fl401ManageFlags1SubmitPage } from "../../../../pages/manageCases/caseProgression/caseFlags/fl401/fl401ManageFlags1SubmitPage.ts";
-import { Fl401ManageFlags1AddTranslationsPage } from "../../../../pages/manageCases/caseProgression/caseFlags/fl401/fl401ManageFlags1AddTranslationsPage.ts";
+import { ManageFlagsSelectCaseFlagPage } from "../../../../pages/manageCases/caseProgression/caseFlags/manageFlagsSelectCaseFlagPage.ts";
+import { ManageFlagsUpdateCaseFlagPage } from "../../../../pages/manageCases/caseProgression/caseFlags/manageFlagsUpdateCaseFlagPage.ts";
+import { ManageFlagsSubmitPage } from "../../../../pages/manageCases/caseProgression/caseFlags/manageFlagsSubmitPage.ts";
+import { ManageFlagsAddTranslationsPage } from "../../../../pages/manageCases/caseProgression/caseFlags/manageFlagsAddTranslationsPage.ts";
 import { Selectors } from "../../../../common/selectors.ts";
 
 interface ManageFlagsParams {
@@ -47,13 +47,13 @@ export class ManageFlags {
       "Review RA request",
       "Review RA request",
     );
-    await Fl401ManageFlags1SelectCaseFlagPage.fl401ManageFlags1SelectCaseFlagPage(
+    await ManageFlagsSelectCaseFlagPage.manageFlagsSelectCaseFlagPage(
       page,
       caseType,
       supportType,
       accessibilityTest,
     );
-    await Fl401ManageFlags1UpdateCaseFlagPage.fl401ManageFlags1UpdateCaseFlagPage(
+    await ManageFlagsUpdateCaseFlagPage.manageFlagsUpdateCaseFlagPage(
       page,
       supportType,
       isApproved,
@@ -61,12 +61,12 @@ export class ManageFlags {
       accessibilityTest,
     );
     if (withTranslation) {
-      await Fl401ManageFlags1AddTranslationsPage.fl401ManageFlags1AddTranslationsPage(
+      await ManageFlagsAddTranslationsPage.manageFlagsAddTranslationsPage(
         page,
         accessibilityTest,
       );
     }
-    await Fl401ManageFlags1SubmitPage.fl401ManageFlags1SubmitPage(
+    await ManageFlagsSubmitPage.manageFlagsSubmitPage(
       page,
       caseType,
       supportType,
