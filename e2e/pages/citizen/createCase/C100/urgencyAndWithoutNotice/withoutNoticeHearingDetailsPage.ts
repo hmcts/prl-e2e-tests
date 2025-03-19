@@ -4,7 +4,7 @@ import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { WithoutNoticeHearingDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/urgencyAndWithoutNotice/withoutNoticeHearingDetailsContent";
 import { uniqueSelectors } from "./urgentFirstHearingPage";
-// import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 
 interface WithoutNoticeHearingDetailsPageOptions {
   page: Page;
@@ -66,7 +66,7 @@ export class WithoutNoticeHearingDetailsPage {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHeadingM}:text-is("${WithoutNoticeHearingDetailsContent.heading}")`,
+        `${Selectors.GovukLabel}:text-is("${WithoutNoticeHearingDetailsContent.heading}")`,
         1,
       ),
       Helpers.checkGroup(
@@ -85,7 +85,7 @@ export class WithoutNoticeHearingDetailsPage {
       ),
     ]);
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page); //#TODO: Re-enable upon completion of PRL-6496 (rerun 20/01/25, issue still exists)
+      await AccessibilityTestHelper.run(page); //#TODO: Re-enable upon completion of PRL-6496 (rerun 20/01/25, issue still exists)
     }
   }
 

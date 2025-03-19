@@ -3,7 +3,7 @@ import { CommonStaticText } from "../../../../../../common/commonStaticText";
 import { Helpers } from "../../../../../../common/helpers";
 import { Selectors } from "../../../../../../common/selectors";
 import { PreviousAbductionsContent } from "../../../../../../fixtures/citizen/createCase/C100/safetyConcerns/childConcerns/previousAbductionsContent";
-
+import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper.ts";
 enum inputIDs {
   abductionDescription = "#c1A_previousAbductionsShortDesc",
   radioYes = "#c1A_policeOrInvestigatorInvolved",
@@ -50,6 +50,7 @@ export class PreviousAbductionsPage {
 
   private static async checkPageLoads({
     page,
+    accessibilityTest
   }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.GovukHeadingXL}:text-is("${PreviousAbductionsContent.pageTitle}")`,
@@ -69,7 +70,7 @@ export class PreviousAbductionsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukBodyM}:text-is("${PreviousAbductionsContent.bodyM}")`,
+        `${Selectors.GovukLabel}:text-is("${PreviousAbductionsContent.bodyM}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -88,9 +89,9 @@ export class PreviousAbductionsPage {
         1,
       ),
     ]);
-    // if (accessibilityTest) {
-    //   await AccessibilityTestHelper.run(page); #TODO Commented out until ticket-6595 is complete
-    // }
+    if (accessibilityTest) {
+      await AccessibilityTestHelper.run(page); //#TODO Commented out until ticket-6595 is complete
+    }
   }
 
   private static async checkErrorMessaging(page: Page): Promise<void> {

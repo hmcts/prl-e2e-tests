@@ -4,6 +4,7 @@ import { reportAbuseInputIDs } from "../../../../../../common/commonUniqueSelect
 import { Selectors } from "../../../../../../common/selectors";
 import { OtherAbuseContent } from "../../../../../../fixtures/citizen/createCase/C100/safetyConcerns/yourselfConcerns/otherAbuseContent";
 import { SafetyConcernHelpers } from "../safetyConcernHelpers";
+import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper.ts";
 
 interface OtherAbusePageOptions {
   page: Page;
@@ -39,15 +40,16 @@ export class OtherAbusePage {
 
   private static async checkPageLoads({
     page,
+    accessibilityTest,
   }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.GovukHeadingXL}:text-is("${OtherAbuseContent.pageTitle}")`,
     );
     await SafetyConcernHelpers.checkStaticTextYourself(page);
     await SafetyConcernHelpers.checkSidebarYourself(page);
-    // if (accessibilityTest) {
-    //   await AccessibilityTestHelper.run(page); #TODO Commented out until ticket-6593 is complete
-    // }
+    if (accessibilityTest) {
+      await AccessibilityTestHelper.run(page); //#TODO Commented out until ticket-6593 is complete
+    }
   }
 
   private static async fillInFields({

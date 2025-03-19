@@ -4,6 +4,7 @@ import { Helpers } from "../../../../../../common/helpers";
 import { Selectors } from "../../../../../../common/selectors";
 import { ChildLocationContent } from "../../../../../../fixtures/citizen/createCase/C100/safetyConcerns/childConcerns/childLocationContent";
 import { SafetyConcernHelpers } from "../safetyConcernHelpers";
+import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper.ts";
 
 enum inputIDs {
   abductionReason = "#c1A_abductionReasonOutsideUk",
@@ -39,6 +40,7 @@ export class ChildLocationPage {
 
   private static async checkPageLoads({
     page,
+    accessibilityTest,
   }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.GovukHeadingXL}:text-is("${ChildLocationContent.pageTitle}")`,
@@ -83,9 +85,9 @@ export class ChildLocationPage {
       ),
     ]);
     await SafetyConcernHelpers.checkPassportSidebar(page);
-    // if (accessibilityTest) {
-    //   await AccessibilityTestHelper.run(page); #TODO Commented out until ticket-6594 is complete
-    // }
+    if (accessibilityTest) {
+      await AccessibilityTestHelper.run(page); //#TODO Commented out until ticket-6594 is complete
+    }
   }
 
   private static async checkErrorMessaging(page: Page): Promise<void> {

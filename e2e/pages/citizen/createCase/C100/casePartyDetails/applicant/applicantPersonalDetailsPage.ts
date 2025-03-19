@@ -4,7 +4,7 @@ import { Helpers } from "../../../../../../common/helpers.ts";
 import { Selectors } from "../../../../../../common/selectors.ts";
 import { ApplicantGender } from "../../../../../../common/types.ts";
 import { ApplicantPersonalDetailsContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/applicant/applicantPersonalDetailsContent.ts";
-// import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
+import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper.ts";
 
 interface applicantPersonalDetailsPageOptions {
   page: Page;
@@ -96,7 +96,7 @@ export class ApplicantPersonalDetailsPage {
       ),
     ]);
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page); //TODO turn back on once Accessibility Issues: PRL-6581 has been fixed (rerun 20/01/25, issue still exists)
+      await AccessibilityTestHelper.run(page); //TODO turn back on once Accessibility Issues: PRL-6581 has been fixed (rerun 20/01/25, issue still exists)
     }
   }
   private static async triggerErrorMessages(page: Page): Promise<void> {

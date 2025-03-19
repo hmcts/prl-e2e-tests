@@ -7,6 +7,7 @@ import {
 import { Selectors } from "../../../../../../common/selectors";
 import { SexualAbuseContent } from "../../../../../../fixtures/citizen/createCase/C100/safetyConcerns/childConcerns/sexualAbuseContent";
 import { SafetyConcernHelpers } from "../safetyConcernHelpers";
+import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper.ts";
 
 interface SexualAbusePageOptions {
   page: Page;
@@ -42,15 +43,16 @@ export class SexualAbusePage {
 
   private static async checkPageLoads({
     page,
+    accessibilityTest,
   }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.GovukHeadingXL}:text-is("${SexualAbuseContent.pageTitle}")`,
     );
     await SafetyConcernHelpers.checkStaticTextChild(page);
     await SafetyConcernHelpers.checkSidebarChild(page);
-    // if (accessibilityTest) {
-    //   await AccessibilityTestHelper.run(page); #TODO Commented out until ticket-6593 is complete
-    // }
+    if (accessibilityTest) {
+      await AccessibilityTestHelper.run(page); //#TODO Commented out until ticket-6593 is complete
+    }
   }
 
   private static async fillInFields({

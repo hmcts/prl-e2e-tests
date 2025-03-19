@@ -7,7 +7,7 @@ import {
   yesNoDontKnow,
 } from "../../../../../../common/types.ts";
 import { RespondentDetailsPersonalDetailsContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/respondent/respondentDetailsPersonalDetailsContent.ts";
-// import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
+import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper.ts";
 
 enum InputIds {
   changeNameYes = "#hasNameChanged",
@@ -145,7 +145,7 @@ export class RespondentDetailsPersonalDetailsPage {
       ),
     ]);
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page); //#TODO turn back on once Accessibility Issues: PRL-6587 has been fixed (rerun 20/01/25, issues still exists)
+      await AccessibilityTestHelper.run(page); //#TODO turn back on once Accessibility Issues: PRL-6587 has been fixed (rerun 20/01/25, issues still exists)
     }
   }
 

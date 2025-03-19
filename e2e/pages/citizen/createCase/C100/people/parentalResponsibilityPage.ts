@@ -3,7 +3,7 @@ import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { ParentalResponsibilityContent } from "../../../../../fixtures/citizen/createCase/C100/people/parentalResponsibilityContent";
-// import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 
 interface ParentalResponsibilityPageOptions {
   page: Page;
@@ -52,7 +52,7 @@ export class ParentalResponsibilityPage {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${ParentalResponsibilityContent.label1}")`,
+        `${Selectors.GovukLabelXS}:text-is("${ParentalResponsibilityContent.label1}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -67,7 +67,7 @@ export class ParentalResponsibilityPage {
       ),
     ]);
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page); //#TODO turn back on once Accessibility Issues: PRL-6583 has been fixed (rerun 20/01/25, issue still exists)
+      await AccessibilityTestHelper.run(page); //#TODO turn back on once Accessibility Issues: PRL-6583 has been fixed (rerun 20/01/25, issue still exists)
     }
   }
 

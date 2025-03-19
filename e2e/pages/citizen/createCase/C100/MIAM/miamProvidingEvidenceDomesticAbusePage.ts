@@ -3,7 +3,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { MiamProvidingEvidenceDomesticAbuseContent } from "../../../../../fixtures/citizen/createCase/C100/MIAM/miamProvidingEvidenceDomesticAbuseContent";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-// import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 
 interface MiamProvidingEvidenceDomesticAbusePageOptions {
   page: Page;
@@ -77,7 +77,7 @@ export class MiamProvidingEvidenceDomesticAbusePage {
       ),
     ]);
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page); //#TODO: Re-enable when PRL-6519 is completed (rerun 20/01/25, issue still exists)
+      await AccessibilityTestHelper.run(page); //#TODO: Re-enable when PRL-6519 is completed (rerun 20/01/25, issue still exists)
     }
   }
 

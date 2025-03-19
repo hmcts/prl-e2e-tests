@@ -21,6 +21,7 @@ export enum Selectors {
   GovukFormGroup = ".govuk-form-group",
   GovukLabel = ".govuk-label",
   GovukLabelS = ".govuk-label--s",
+  GovukLabelXS = ".govuk-label--xs",
   GovukLabelM = ".govuk-label--m",
   GovukInput = ".govuk-input",
   GovukTextarea = ".govuk-textarea",

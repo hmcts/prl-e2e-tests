@@ -3,6 +3,7 @@ import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { FeesAppliedContent } from "../../../../../fixtures/citizen/createCase/C100/helpWithFees/feesAppliedContent";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 
 enum inputIDs {
   radioYes = "#hwf_feesAppliedDetails",
@@ -49,6 +50,7 @@ export class FeesAppliedPage {
 
   private static async checkPageLoads({
     page,
+    accessibilityTest,
   }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.GovukHeadingXL}:text-is("${FeesAppliedContent.pageTitle}")`,
@@ -65,9 +67,9 @@ export class FeesAppliedPage {
         1,
       ),
     ]);
-    // if (accessibilityTest) {
-    //   await AccessibilityTestHelper.run(page); #TODO Commented out until ticket-6603 is complete
-    // }
+    if (accessibilityTest) {
+      await AccessibilityTestHelper.run(page); //#TODO Commented out until ticket-6603 is complete
+    }
   }
 
   private static async checkErrorMessaging(page: Page): Promise<void> {
@@ -127,12 +129,12 @@ export class FeesAppliedPage {
       await Promise.all([
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.h3}:text-is("${FeesAppliedContent.h3}")`,
+          `${Selectors.GovukLabel}:text-is("${FeesAppliedContent.label}")`,
           1,
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukLabel}:text-is("${FeesAppliedContent.formLabel}")`,
+          `${Selectors.GovukBody}:text-is("${FeesAppliedContent.body}")`,
           1,
         ),
         Helpers.checkVisibleAndPresent(

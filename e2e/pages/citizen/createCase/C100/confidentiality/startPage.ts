@@ -4,7 +4,7 @@ import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { yesNoDontKnow } from "../../../../../common/types";
 import { StartContent } from "../../../../../fixtures/citizen/createCase/C100/confidentiality/startContent";
-// import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 
 enum inputIDs {
   yes = "#start",
@@ -101,7 +101,7 @@ export class StartPage {
       ),
     ]);
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page); //TODO turn back on once Accessibility Issues: PRL-6586 has been fixed (rerun 20/01/25, issue still exists)
+      await AccessibilityTestHelper.run(page); //TODO turn back on once Accessibility Issues: PRL-6586 has been fixed (rerun 20/01/25, issue still exists)
     }
   }
 

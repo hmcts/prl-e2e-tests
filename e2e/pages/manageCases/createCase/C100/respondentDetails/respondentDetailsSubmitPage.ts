@@ -8,6 +8,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { C100RespondentDetailsSubmitContent } from "../../../../../fixtures/manageCases/createCase/C100/respondentDetails/c100RespondentDetailsSubmitContent";
 import { Helpers } from "../../../../../common/helpers";
 import { C100RespondentDetails1Content } from "../../../../../fixtures/manageCases/createCase/C100/respondentDetails/c100RespondentDetails1Content";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 
 interface RespondentDetailsSubmitPageOptions {
   page: Page;
@@ -115,7 +116,7 @@ export class RespondentDetailsSubmitPage {
       ]);
     }
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page); #TODO: Disabled pending ticket EXUI-2717
+      await AccessibilityTestHelper.run(page); //#TODO: Disabled pending ticket EXUI-2717
     }
   }
 

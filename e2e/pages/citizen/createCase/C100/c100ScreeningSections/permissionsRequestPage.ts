@@ -3,7 +3,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { PermissionsRequestContent } from "../../../../../fixtures/citizen/createCase/C100/c100ScreeningSections/permissionsRequestContent";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-//import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 
 enum inputIDs {
   permissionReasoning = "#sq_permissionsRequest",
@@ -49,7 +49,7 @@ export class PermissionsRequestPage {
       1,
     );
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page); //#TODO: Re-enable when PRL-6497 is completed (rerun 20/01/25, issue still exists)
+      await AccessibilityTestHelper.run(page); //#TODO: Re-enable when PRL-6497 is completed (rerun 20/01/25, issue still exists)
     }
   }
 

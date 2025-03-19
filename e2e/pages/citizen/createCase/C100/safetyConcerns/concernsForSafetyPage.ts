@@ -3,7 +3,7 @@ import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { ConcernsForSafetyContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/concernsForSafetyContent";
-// import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 
 enum inputIDs {
   yes = "#c1A_haveSafetyConcerns",
@@ -101,7 +101,7 @@ export class ConcernsForSafetyPage {
       ),
     ]);
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page); //#TODO Commented out until PRL-6592 is complete (rerun 20/01/25, issue still exists)
+      await AccessibilityTestHelper.run(page); //#TODO Commented out until PRL-6592 is complete (rerun 20/01/25, issue still exists)
     }
   }
 
