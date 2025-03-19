@@ -1,5 +1,8 @@
 import { Browser, Page } from "@playwright/test";
-import { SupportType } from "../../../../common/types.ts";
+import {
+  solicitorCaseCreateType,
+  SupportType,
+} from "../../../../common/types.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import config from "../../../../config.ts";
 import { Fl401ManageFlags1SelectCaseFlagPage } from "../../../../pages/manageCases/caseProgression/caseFlags/fl401/fl401ManageFlags1SelectCaseFlagPage.ts";
@@ -11,6 +14,7 @@ import { Selectors } from "../../../../common/selectors.ts";
 interface ManageFlagsParams {
   browser: Browser;
   caseRef: string;
+  caseType: solicitorCaseCreateType;
   supportType: SupportType;
   isApproved: boolean;
   withTranslation: boolean;
@@ -22,6 +26,7 @@ export class ManageFlags {
   public static async manageFlags({
     browser,
     caseRef,
+    caseType,
     supportType,
     isApproved,
     withTranslation,
@@ -44,6 +49,7 @@ export class ManageFlags {
     );
     await Fl401ManageFlags1SelectCaseFlagPage.fl401ManageFlags1SelectCaseFlagPage(
       page,
+      caseType,
       supportType,
       accessibilityTest,
     );
@@ -62,6 +68,7 @@ export class ManageFlags {
     }
     await Fl401ManageFlags1SubmitPage.fl401ManageFlags1SubmitPage(
       page,
+      caseType,
       supportType,
       isApproved,
       withTranslation,

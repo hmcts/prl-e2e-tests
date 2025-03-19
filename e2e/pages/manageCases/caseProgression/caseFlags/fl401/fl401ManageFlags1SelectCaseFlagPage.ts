@@ -1,5 +1,8 @@
 import { Page } from "@playwright/test";
-import { SupportType } from "../../../../../common/types.ts";
+import {
+  solicitorCaseCreateType,
+  SupportType,
+} from "../../../../../common/types.ts";
 import { Selectors } from "../../../../../common/selectors.ts";
 import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 import { Helpers } from "../../../../../common/helpers.ts";
@@ -13,16 +16,18 @@ enum UniqueSelectors {
 export class Fl401ManageFlags1SelectCaseFlagPage {
   public static async fl401ManageFlags1SelectCaseFlagPage(
     page: Page,
+    caseType: solicitorCaseCreateType,
     supportType: SupportType,
     accessibilityTest: boolean,
   ): Promise<void> {
-    await this.checkPageLoads(page, supportType, accessibilityTest);
+    await this.checkPageLoads(page, caseType, supportType, accessibilityTest);
     await this.fillInFields(page);
     await this.continue(page);
   }
 
   private static async checkPageLoads(
     page: Page,
+    caseType: solicitorCaseCreateType,
     supportType: SupportType,
     accessibilityTest: boolean,
   ): Promise<void> {
@@ -44,17 +49,33 @@ export class Fl401ManageFlags1SelectCaseFlagPage {
       ),
     ]);
     if (supportType === "reasonableAdjustment") {
-      await Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukLabel}:has-text("${Fl401ManageFlags1SelectCaseFlagContent.govUkLabelReasonableAdjustment}")`,
-        1,
-      );
+      if (caseType === "C100") {
+        await Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukLabel}:has-text("${Fl401ManageFlags1SelectCaseFlagContent.c100GovUkLabelReasonableAdjustment}")`,
+          1,
+        );
+      } else {
+        await Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukLabel}:has-text("${Fl401ManageFlags1SelectCaseFlagContent.fl401GovUkLabelReasonableAdjustment}")`,
+          1,
+        );
+      }
     } else {
-      await Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukLabel}:has-text("${Fl401ManageFlags1SelectCaseFlagContent.govUkLabelLanguageInterpreter}")`,
-        1,
-      );
+      if (caseType === "C100") {
+        await Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukLabel}:has-text("${Fl401ManageFlags1SelectCaseFlagContent.c100GovUkLabelLanguageInterpreter}")`,
+          1,
+        );
+      } else {
+        await Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukLabel}:has-text("${Fl401ManageFlags1SelectCaseFlagContent.fl401GovUkLabelLanguageInterpreter}")`,
+          1,
+        );
+      }
     }
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);

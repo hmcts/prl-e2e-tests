@@ -5,9 +5,11 @@ export enum Fl401RequestSupport1SubmitContent {
   govUkSummaryListKey2 = "Support type",
   govUkSummaryListKey3 = "Comments",
   govUkSummaryListKey4 = "Status",
-  govUkSummaryListValue1 = "John Smith",
-  govUkSummaryListValue2 = "test comments",
-  govUkSummaryListValue3 = "Requested",
+  govUkSummaryListValue1 = "test comments",
+  govUkSummaryListValue2 = "Requested",
   govUkSummaryListValueReasonableAdjustmentSupportType = "Documents in a specified colour",
   govUkSummaryListValueLanguageInterpreterSupportType = "Language Interpreter - Korean",
+
+  c100GovUkSummaryListValue = "John Doe",
+  fl401GovUkSummaryListValue = "John Smith",
 }

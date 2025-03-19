@@ -1,5 +1,8 @@
 import { Page } from "@playwright/test";
-import { SupportType } from "../../../../../common/types.ts";
+import {
+  solicitorCaseCreateType,
+  SupportType,
+} from "../../../../../common/types.ts";
 import { Selectors } from "../../../../../common/selectors.ts";
 import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
@@ -9,15 +12,17 @@ import { Helpers } from "../../../../../common/helpers.ts";
 export class Fl401RequestSupport1SubmitPage {
   public static async fl401RequestSupport1SubmitPage(
     page: Page,
+    caseType: solicitorCaseCreateType,
     supportType: SupportType,
     accessibilityTest: boolean,
   ): Promise<void> {
-    await this.checkPageLoads(page, supportType, accessibilityTest);
+    await this.checkPageLoads(page, caseType, supportType, accessibilityTest);
     await this.submit(page);
   }
 
   private static async checkPageLoads(
     page: Page,
+    caseType: solicitorCaseCreateType,
     supportType: SupportType,
     accessibilityTest: boolean,
   ): Promise<void> {
@@ -41,7 +46,7 @@ export class Fl401RequestSupport1SubmitPage {
       ),
       Helpers.checkGroup(
         page,
-        3,
+        2,
         Fl401RequestSupport1SubmitContent,
         `govUkSummaryListValue`,
         `${Selectors.GovukSummaryListValue}`,
@@ -67,6 +72,19 @@ export class Fl401RequestSupport1SubmitPage {
       await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListValue}:text-is("${Fl401RequestSupport1SubmitContent.govUkSummaryListValueLanguageInterpreterSupportType}")`,
+        1,
+      );
+    }
+    if (caseType === "C100") {
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukSummaryListValue}:text-is("${Fl401RequestSupport1SubmitContent.c100GovUkSummaryListValue}")`,
+        1,
+      );
+    } else {
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukSummaryListValue}:text-is("${Fl401RequestSupport1SubmitContent.fl401GovUkSummaryListValue}")`,
         1,
       );
     }

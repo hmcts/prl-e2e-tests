@@ -1,6 +1,9 @@
 import { Page } from "@playwright/test";
 import { Helpers } from "../../../../common/helpers.ts";
-import { SupportType } from "../../../../common/types.ts";
+import {
+  solicitorCaseCreateType,
+  SupportType,
+} from "../../../../common/types.ts";
 import { Fl401RequestSupport1SupportForPage } from "../../../../pages/manageCases/caseProgression/caseFlags/fl401/fl401RequestSupport1SupportForPage.ts";
 import { Fl401RequestSupport1SupportTypePage } from "../../../../pages/manageCases/caseProgression/caseFlags/fl401/fl401RequestSupport1SupportTypePage.ts";
 import { Fl401RequestSupport1ReasonableAdjustmentPage } from "../../../../pages/manageCases/caseProgression/caseFlags/fl401/fl401RequestSupport1ReasonableAdjustmentPage.ts";
@@ -12,6 +15,7 @@ import { Selectors } from "../../../../common/selectors.ts";
 
 interface RequestSupportParams {
   page: Page;
+  caseType: solicitorCaseCreateType;
   supportType: SupportType;
   accessibilityTest: boolean;
 }
@@ -20,12 +24,14 @@ interface RequestSupportParams {
 export class RequestSupport {
   public static async requestSupport({
     page,
+    caseType,
     supportType,
     accessibilityTest,
   }: RequestSupportParams): Promise<void> {
     await Helpers.chooseEventFromDropdown(page, "Request support");
     await Fl401RequestSupport1SupportForPage.fl401RequestSupport1SupportForPage(
       page,
+      caseType,
       accessibilityTest,
     );
     await Fl401RequestSupport1SupportTypePage.fl401RequestSupport1SupportTypePage(
@@ -54,6 +60,7 @@ export class RequestSupport {
     );
     await Fl401RequestSupport1SubmitPage.fl401RequestSupport1SubmitPage(
       page,
+      caseType,
       supportType,
       accessibilityTest,
     );

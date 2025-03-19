@@ -1,5 +1,8 @@
 import { Page } from "@playwright/test";
-import { SupportType } from "../../../../../common/types.ts";
+import {
+  solicitorCaseCreateType,
+  SupportType,
+} from "../../../../../common/types.ts";
 import { Selectors } from "../../../../../common/selectors.ts";
 import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 import { Fl401ManageFlags1SubmitContent } from "../../../../../fixtures/manageCases/caseProgression/caseFlags/fl401/fl401ManageFlags1SubmitContent.ts";
@@ -9,6 +12,7 @@ import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelp
 export class Fl401ManageFlags1SubmitPage {
   public static async fl401ManageFlags1SubmitPage(
     page: Page,
+    caseType: solicitorCaseCreateType,
     supportType: SupportType,
     isApproved: boolean,
     withTranslation: boolean,
@@ -16,6 +20,7 @@ export class Fl401ManageFlags1SubmitPage {
   ): Promise<void> {
     await this.checkPageLoads(
       page,
+      caseType,
       supportType,
       isApproved,
       withTranslation,
@@ -26,6 +31,7 @@ export class Fl401ManageFlags1SubmitPage {
 
   private static async checkPageLoads(
     page: Page,
+    caseType: solicitorCaseCreateType,
     supportType: SupportType,
     isApproved: boolean,
     withTranslation: boolean,
@@ -49,12 +55,10 @@ export class Fl401ManageFlags1SubmitPage {
         `govUkSummaryListKey`,
         `${Selectors.GovukSummaryListKey}`,
       ),
-      Helpers.checkGroup(
+      Helpers.checkVisibleAndPresent(
         page,
-        2,
-        Fl401ManageFlags1SubmitContent,
-        `govUkSummaryListValue`,
-        `${Selectors.GovukSummaryListValue}`,
+        `${Selectors.GovukSummaryListValue}:text-is("${Fl401ManageFlags1SubmitContent.govUkSummaryListValue}")`,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -67,6 +71,19 @@ export class Fl401ManageFlags1SubmitPage {
         1,
       ),
     ]);
+    if (caseType === "C100") {
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukSummaryListValue}:text-is("${Fl401ManageFlags1SubmitContent.c100GovUkSummaryListValue}")`,
+        1,
+      );
+    } else {
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukSummaryListValue}:text-is("${Fl401ManageFlags1SubmitContent.fl401GovUkSummaryListValue}")`,
+        1,
+      );
+    }
     if (supportType === "reasonableAdjustment") {
       await Helpers.checkVisibleAndPresent(
         page,
