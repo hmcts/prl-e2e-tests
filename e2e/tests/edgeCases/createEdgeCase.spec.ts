@@ -2,6 +2,7 @@ import Config from "../../config.ts";
 import { EdgeCase } from "../../journeys/edgeCases/edgeCaseJourney.ts";
 import { test } from "@playwright/test";
 
+//#TODO run in nightly pipeline once code has been deployed to AAT, currently only deployed to ITHC
 test.describe("Create an edge case as a citizen", (): void => {
   test.beforeEach(async ({ page }) => {
     await page.goto(Config.edgeCasesBaseURL);
