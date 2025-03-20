@@ -139,7 +139,7 @@ export class PersonalDetailsPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page); //#TODO turn back on once PRL-6581 has been fixed (re-ran on 20/01/25, issue still exists)
+      await AccessibilityTestHelper.run(page);
     }
   }
 

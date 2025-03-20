@@ -74,7 +74,7 @@ export class StartPage {
     accessibilityTest,
   }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukHeadingXL}:text-is("${StartContent.pageTitle}")`,
+        `${Selectors.GovukHeadingXL}:text-is("${StartContent.pageTitle_alt}"), ${Selectors.GovukHeadingXL}:text-is("${StartContent.pageTitle}")`,
     );
     await Promise.all([
       Helpers.checkGroup(
@@ -101,7 +101,7 @@ export class StartPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page); //TODO turn back on once Accessibility Issues: PRL-6586 has been fixed (rerun 20/01/25, issue still exists)
+      await AccessibilityTestHelper.run(page);
     }
   }
 

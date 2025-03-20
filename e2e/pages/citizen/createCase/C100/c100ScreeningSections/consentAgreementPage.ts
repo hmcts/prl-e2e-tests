@@ -3,7 +3,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { ConsentAgreementContent } from "../../../../../fixtures/citizen/createCase/C100/c100ScreeningSections/consentAgreementContent";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+// import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 
 enum uniqueSelectors {
   errorList = ".govuk-list govuk-error-summary__list > li > ",
@@ -80,7 +80,7 @@ export class ConsentAgreementPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      // await AccessibilityTestHelper.run(page); //turn back on once PRL-6493 is fixed - need to raise to DTS
     }
   }
 

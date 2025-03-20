@@ -41,7 +41,7 @@ export class PermissionsRequestPage {
     accessibilityTest,
   }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.GovukHeadingXL}:text-is("${PermissionsRequestContent.pageTitle}")`,
+      `${Selectors.GovukLabelXL}:text-is("${PermissionsRequestContent.pageTitle}")`,
     );
     await Helpers.checkVisibleAndPresent(
       page,

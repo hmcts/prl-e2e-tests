@@ -5,6 +5,7 @@ import { UploadAdditionalApplications2Content } from "../../../../fixtures/manag
 import { Helpers } from "../../../../common/helpers.ts";
 import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 import config from "../../../../config.ts";
+import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
 
 enum UniqueSelectors {
   c2ApplicationFileUpload = "#temporaryC2Document_document",
@@ -20,8 +21,9 @@ export class UploadAdditionalApplications2Page {
   public static async uploadAdditionalApplications2Page(
     page: Page,
     caseType: solicitorCaseCreateType,
+    accessibilityTest: boolean,
   ): Promise<void> {
-    await this.checkPageLoads(page, caseType);
+    await this.checkPageLoads(page, caseType, accessibilityTest);
     await this.fillInFields(page, caseType);
     await this.continue(page);
   }
@@ -29,6 +31,7 @@ export class UploadAdditionalApplications2Page {
   private static async checkPageLoads(
     page: Page,
     caseType: solicitorCaseCreateType,
+    accessibilityTest: boolean,
   ): Promise<void> {
     await page
       .locator(Selectors.headingH2, {
@@ -169,9 +172,9 @@ export class UploadAdditionalApplications2Page {
         ),
       ]);
     }
-    // if (accessibilityTest) {
-    //   await AccessibilityTestHelper.run(page); TODO Commented out until ticket EXUI-2858 is complete
-    // }
+    if (accessibilityTest) {
+      await AccessibilityTestHelper.run(page)
+    }
   }
 
   private static async fillInFields(

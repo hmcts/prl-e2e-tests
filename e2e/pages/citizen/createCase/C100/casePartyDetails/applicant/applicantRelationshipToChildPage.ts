@@ -79,7 +79,7 @@ export class ApplicantRelationshipToChildPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page); //#TODO turn back on once Accessibility: PRL-6589 is fixed (rerun 20/01/25, issue still exists)
+      await AccessibilityTestHelper.run(page);
     }
   }
   private static async triggerErrorMessages(page: Page): Promise<void> {
