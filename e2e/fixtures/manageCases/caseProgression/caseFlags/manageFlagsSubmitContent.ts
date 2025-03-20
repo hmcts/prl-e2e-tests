@@ -1,12 +1,13 @@
-export enum Fl401ManageFlags1SubmitContent {
+export enum ManageFlagsSubmitContent {
   govUkHeadingL = "Manage Flags",
   headingH2 = "Review flag details",
   govUkSummaryListKey1 = "Update flag for",
   govUkSummaryListKey2 = "Flag type",
   govUkSummaryListKey3 = "Comments",
   govUkSummaryListKey4 = "Status",
-  govUkSummaryListValue1 = "John Smith",
-  govUkSummaryListValue2 = "test comments",
+  govUkSummaryListValue = "test comments",
+  c100GovUkSummaryListValue = "John Doe",
+  fl401GovUkSummaryListValue = "John Smith",
 
   govUkSummaryListValueReasonableAdjustment = "Documents in a specified colour",
   govUkSummaryListValueLanguageInterpreterApproved = "Language Interpreter - Korean",

@@ -1,14 +1,18 @@
 import { Page } from "@playwright/test";
-import { SupportType } from "../../../../../common/types.ts";
-import { Selectors } from "../../../../../common/selectors.ts";
-import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
-import { Fl401ManageFlags1SubmitContent } from "../../../../../fixtures/manageCases/caseProgression/caseFlags/fl401/fl401ManageFlags1SubmitContent.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
+import {
+  solicitorCaseCreateType,
+  SupportType,
+} from "../../../../common/types.ts";
+import { Selectors } from "../../../../common/selectors.ts";
+import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { ManageFlagsSubmitContent } from "../../../../fixtures/manageCases/caseProgression/caseFlags/manageFlagsSubmitContent.ts";
+import { Helpers } from "../../../../common/helpers.ts";
+import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
 
-export class Fl401ManageFlags1SubmitPage {
-  public static async fl401ManageFlags1SubmitPage(
+export class ManageFlagsSubmitPage {
+  public static async manageFlagsSubmitPage(
     page: Page,
+    caseType: solicitorCaseCreateType,
     supportType: SupportType,
     isApproved: boolean,
     withTranslation: boolean,
@@ -16,6 +20,7 @@ export class Fl401ManageFlags1SubmitPage {
   ): Promise<void> {
     await this.checkPageLoads(
       page,
+      caseType,
       supportType,
       isApproved,
       withTranslation,
@@ -26,6 +31,7 @@ export class Fl401ManageFlags1SubmitPage {
 
   private static async checkPageLoads(
     page: Page,
+    caseType: solicitorCaseCreateType,
     supportType: SupportType,
     isApproved: boolean,
     withTranslation: boolean,
@@ -33,28 +39,26 @@ export class Fl401ManageFlags1SubmitPage {
   ): Promise<void> {
     await page
       .locator(Selectors.headingH2, {
-        hasText: Fl401ManageFlags1SubmitContent.headingH2,
+        hasText: ManageFlagsSubmitContent.headingH2,
       })
       .waitFor();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHeadingL}:text-is("${Fl401ManageFlags1SubmitContent.govUkHeadingL}")`,
+        `${Selectors.GovukHeadingL}:text-is("${ManageFlagsSubmitContent.govUkHeadingL}")`,
         1,
       ),
       Helpers.checkGroup(
         page,
         4,
-        Fl401ManageFlags1SubmitContent,
+        ManageFlagsSubmitContent,
         `govUkSummaryListKey`,
         `${Selectors.GovukSummaryListKey}`,
       ),
-      Helpers.checkGroup(
+      Helpers.checkVisibleAndPresent(
         page,
-        2,
-        Fl401ManageFlags1SubmitContent,
-        `govUkSummaryListValue`,
-        `${Selectors.GovukSummaryListValue}`,
+        `${Selectors.GovukSummaryListValue}:text-is("${ManageFlagsSubmitContent.govUkSummaryListValue}")`,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -67,36 +71,49 @@ export class Fl401ManageFlags1SubmitPage {
         1,
       ),
     ]);
+    if (caseType === "C100") {
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukSummaryListValue}:text-is("${ManageFlagsSubmitContent.c100GovUkSummaryListValue}")`,
+        1,
+      );
+    } else {
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukSummaryListValue}:text-is("${ManageFlagsSubmitContent.fl401GovUkSummaryListValue}")`,
+        1,
+      );
+    }
     if (supportType === "reasonableAdjustment") {
       await Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukSummaryListValue}:has-text("${Fl401ManageFlags1SubmitContent.govUkSummaryListValueReasonableAdjustment}")`,
+        `${Selectors.GovukSummaryListValue}:has-text("${ManageFlagsSubmitContent.govUkSummaryListValueReasonableAdjustment}")`,
         1,
       );
     }
     if (isApproved) {
       await Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukSummaryListValue}:text-is("${Fl401ManageFlags1SubmitContent.govUkSummaryListValueApproved}")`,
+        `${Selectors.GovukSummaryListValue}:text-is("${ManageFlagsSubmitContent.govUkSummaryListValueApproved}")`,
         1,
       );
       if (supportType === "languageInterpreter") {
         await Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukSummaryListValue}:has-text("${Fl401ManageFlags1SubmitContent.govUkSummaryListValueLanguageInterpreterApproved}")`,
+          `${Selectors.GovukSummaryListValue}:has-text("${ManageFlagsSubmitContent.govUkSummaryListValueLanguageInterpreterApproved}")`,
           1,
         );
       }
     } else {
       await Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukSummaryListValue}:text-is("${Fl401ManageFlags1SubmitContent.govUkSummaryListValueNotApproved}")`,
+        `${Selectors.GovukSummaryListValue}:text-is("${ManageFlagsSubmitContent.govUkSummaryListValueNotApproved}")`,
         1,
       );
       if (supportType === "languageInterpreter") {
         await Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukSummaryListValue}:has-text("${Fl401ManageFlags1SubmitContent.govUkSummaryListValueLanguageInterpreterNotApproved}")`,
+          `${Selectors.GovukSummaryListValue}:has-text("${ManageFlagsSubmitContent.govUkSummaryListValueLanguageInterpreterNotApproved}")`,
           1,
         );
       }
@@ -106,14 +123,14 @@ export class Fl401ManageFlags1SubmitPage {
         Helpers.checkGroup(
           page,
           2,
-          Fl401ManageFlags1SubmitContent,
+          ManageFlagsSubmitContent,
           `welshTranslationGovUkSummaryListKey`,
           `${Selectors.GovukSummaryListKey}`,
         ),
         Helpers.checkGroup(
           page,
           2,
-          Fl401ManageFlags1SubmitContent,
+          ManageFlagsSubmitContent,
           `welshTranslationGovUkSummaryListValue`,
           `${Selectors.GovukSummaryListValue}`,
         ),

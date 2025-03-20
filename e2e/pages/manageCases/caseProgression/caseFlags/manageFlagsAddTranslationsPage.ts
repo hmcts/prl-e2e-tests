@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors.ts";
-import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
-import { Fl401ManageFlags1AddTranslationsContent } from "../../../../../fixtures/manageCases/caseProgression/caseFlags/fl401/fl401ManageFlags1AddTranslationsContent.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
+import { Selectors } from "../../../../common/selectors.ts";
+import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { ManageFlagsAddTranslationsContent } from "../../../../fixtures/manageCases/caseProgression/caseFlags/manageFlagsAddTranslationsContent.ts";
+import { Helpers } from "../../../../common/helpers.ts";
+import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
 
 enum UniqueSelectors {
   otherDescriptionTextbox = "#otherDescription",
@@ -11,8 +11,8 @@ enum UniqueSelectors {
   flagCommentsWelshTextbox = "#flagComment_cy",
 }
 
-export class Fl401ManageFlags1AddTranslationsPage {
-  public static async fl401ManageFlags1AddTranslationsPage(
+export class ManageFlagsAddTranslationsPage {
+  public static async manageFlagsAddTranslationsPage(
     page: Page,
     accessibilityTest: boolean,
   ): Promise<void> {
@@ -27,30 +27,30 @@ export class Fl401ManageFlags1AddTranslationsPage {
   ): Promise<void> {
     await page
       .locator(Selectors.GovukLabelM, {
-        hasText: Fl401ManageFlags1AddTranslationsContent.govUkLabelM,
+        hasText: ManageFlagsAddTranslationsContent.govUkLabelM,
       })
       .waitFor();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHeadingL}:text-is("${Fl401ManageFlags1AddTranslationsContent.govUkHeadingL}")`,
+        `${Selectors.GovukHeadingL}:text-is("${ManageFlagsAddTranslationsContent.govUkHeadingL}")`,
         1,
       ),
       Helpers.checkGroup(
         page,
         4,
-        Fl401ManageFlags1AddTranslationsContent,
+        ManageFlagsAddTranslationsContent,
         `govUkLabel`,
         `${Selectors.GovukLabel}`,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${Fl401ManageFlags1AddTranslationsContent.govUkHint1}")`,
+        `${Selectors.GovukHint}:text-is("${ManageFlagsAddTranslationsContent.govUkHint1}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${Fl401ManageFlags1AddTranslationsContent.govUkHint2}")`,
+        `${Selectors.GovukHint}:text-is("${ManageFlagsAddTranslationsContent.govUkHint2}")`,
         4,
       ),
       Helpers.checkVisibleAndPresent(
@@ -72,15 +72,15 @@ export class Fl401ManageFlags1AddTranslationsPage {
   private static async fillInFields(page: Page): Promise<void> {
     await page.fill(
       UniqueSelectors.otherDescriptionTextbox,
-      Fl401ManageFlags1AddTranslationsContent.otherDescription,
+      ManageFlagsAddTranslationsContent.otherDescription,
     );
     await page.fill(
       UniqueSelectors.otherDescriptionWelshTextbox,
-      Fl401ManageFlags1AddTranslationsContent.otherDescriptionWelsh,
+      ManageFlagsAddTranslationsContent.otherDescriptionWelsh,
     );
     await page.fill(
       UniqueSelectors.flagCommentsWelshTextbox,
-      Fl401ManageFlags1AddTranslationsContent.flagCommentsWelsh,
+      ManageFlagsAddTranslationsContent.flagCommentsWelsh,
     );
   }
 

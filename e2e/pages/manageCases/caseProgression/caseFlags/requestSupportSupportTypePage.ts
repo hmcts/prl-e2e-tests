@@ -1,18 +1,18 @@
 import { Page } from "@playwright/test";
-import { SupportType } from "../../../../../common/types.ts";
-import { Selectors } from "../../../../../common/selectors.ts";
-import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
-import { Fl401RequestSupport1SupportTypeContent } from "../../../../../fixtures/manageCases/caseProgression/caseFlags/fl401/fl401RequestSupport1SupportTypeContent.ts";
+import { SupportType } from "../../../../common/types.ts";
+import { Selectors } from "../../../../common/selectors.ts";
+import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { Helpers } from "../../../../common/helpers.ts";
+import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
+import { RequestSupportSupportTypeContent } from "../../../../fixtures/manageCases/caseProgression/caseFlags/requestSupportSupportTypeContent.ts";
 
 enum UniqueSelectors {
   reasonableAdjustmentsRadio = "#flag-type-0",
   languageInterpreterRadio = "#flag-type-1",
 }
 
-export class Fl401RequestSupport1SupportTypePage {
-  public static async fl401RequestSupport1SupportTypePage(
+export class RequestSupportSupportTypePage {
+  public static async requestSupportSupportTypePage(
     page: Page,
     supportType: SupportType,
     accessibilityTest: boolean,
@@ -28,19 +28,19 @@ export class Fl401RequestSupport1SupportTypePage {
   ): Promise<void> {
     await page
       .locator(Selectors.GovukFieldsetHeading, {
-        hasText: Fl401RequestSupport1SupportTypeContent.govUkFieldSetHeading,
+        hasText: RequestSupportSupportTypeContent.govUkFieldSetHeading,
       })
       .waitFor();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHeadingL}:text-is("${Fl401RequestSupport1SupportTypeContent.govUKHeadingL}")`,
+        `${Selectors.GovukHeadingL}:text-is("${RequestSupportSupportTypeContent.govUKHeadingL}")`,
         1,
       ),
       Helpers.checkGroup(
         page,
         2,
-        Fl401RequestSupport1SupportTypeContent,
+        RequestSupportSupportTypeContent,
         `govUkLabel`,
         `${Selectors.GovukLabel}`,
       ),

@@ -1,4 +1,4 @@
-export enum Fl401ManageFlags1AddTranslationsContent {
+export enum ManageFlagsAddTranslationsContent {
   govUkHeadingL = "Manage Flags",
   govUkLabelM = "Add translations to flag",
   govUkLabel1 = "Other description",

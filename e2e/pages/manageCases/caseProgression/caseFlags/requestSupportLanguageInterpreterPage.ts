@@ -1,16 +1,16 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors.ts";
-import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
-import { Fl401RequestSupport1LanguageInterpreterContent } from "../../../../../fixtures/manageCases/caseProgression/caseFlags/fl401/fl401RequestSupport1LanguageInterpreterContent.ts";
+import { Selectors } from "../../../../common/selectors.ts";
+import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { Helpers } from "../../../../common/helpers.ts";
+import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
+import { RequestSupportLanguageInterpreterContent } from "../../../../fixtures/manageCases/caseProgression/caseFlags/requestSupportLanguageInterpreterContent.ts";
 
 enum UniqueSelectors {
   languageSearchBox = "#mat-input-0",
 }
 
-export class Fl401RequestSupport1LanguageInterpreterPage {
-  public static async fl401RequestSupport1LanguageInterpreterPage(
+export class RequestSupportLanguageInterpreterPage {
+  public static async requestSupportLanguageInterpreterPage(
     page: Page,
     accessibilityTest: boolean,
   ): Promise<void> {
@@ -25,23 +25,23 @@ export class Fl401RequestSupport1LanguageInterpreterPage {
   ): Promise<void> {
     await page
       .locator(Selectors.GovukLabelM, {
-        hasText: Fl401RequestSupport1LanguageInterpreterContent.guvUkLabelM,
+        hasText: RequestSupportLanguageInterpreterContent.guvUkLabelM,
       })
       .waitFor();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHeadingL}:text-is("${Fl401RequestSupport1LanguageInterpreterContent.govUKHeadingL}")`,
+        `${Selectors.GovukHeadingL}:text-is("${RequestSupportLanguageInterpreterContent.govUKHeadingL}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${Fl401RequestSupport1LanguageInterpreterContent.guvUkLabel}")`,
+        `${Selectors.GovukLabel}:text-is("${RequestSupportLanguageInterpreterContent.guvUkLabel}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${Fl401RequestSupport1LanguageInterpreterContent.govUkHint}")`,
+        `${Selectors.GovukHint}:text-is("${RequestSupportLanguageInterpreterContent.govUkHint}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(

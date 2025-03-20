@@ -1,16 +1,16 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors.ts";
-import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
-import { Fl401RequestSupport1TellUsMoreAboutTheRequestContent } from "../../../../../fixtures/manageCases/caseProgression/caseFlags/fl401/fl401RequestSupport1TellUsMoreAboutTheRequestContent.ts";
+import { Selectors } from "../../../../common/selectors.ts";
+import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { Helpers } from "../../../../common/helpers.ts";
+import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
+import { RequestSupportTellUsMoreAboutTheRequestContent } from "../../../../fixtures/manageCases/caseProgression/caseFlags/requestSupportTellUsMoreAboutTheRequestContent.ts";
 
 enum UniqueSelectors {
   flagCommentsTextbox = "#flagComments",
 }
 
-export class Fl401RequestSupport1TellUsMoreAboutTheRequestPage {
-  public static async fl401RequestSupport1TellUsMoreAboutTheRequestPage(
+export class RequestSupportTellUsMoreAboutTheRequestPage {
+  public static async requestSupportTellUsMoreAboutTheRequestPage(
     page: Page,
     accessibilityTest: boolean,
   ): Promise<void> {
@@ -25,20 +25,19 @@ export class Fl401RequestSupport1TellUsMoreAboutTheRequestPage {
   ): Promise<void> {
     await page
       .locator(Selectors.GovukLabel, {
-        hasText:
-          Fl401RequestSupport1TellUsMoreAboutTheRequestContent.govUkLabel,
+        hasText: RequestSupportTellUsMoreAboutTheRequestContent.govUkLabel,
       })
       .waitFor();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHeadingL}:text-is("${Fl401RequestSupport1TellUsMoreAboutTheRequestContent.govUKHeadingL}")`,
+        `${Selectors.GovukHeadingL}:text-is("${RequestSupportTellUsMoreAboutTheRequestContent.govUKHeadingL}")`,
         1,
       ),
       Helpers.checkGroup(
         page,
         2,
-        Fl401RequestSupport1TellUsMoreAboutTheRequestContent,
+        RequestSupportTellUsMoreAboutTheRequestContent,
         `govUkHint`,
         `${Selectors.GovukHint}`,
       ),
@@ -61,7 +60,7 @@ export class Fl401RequestSupport1TellUsMoreAboutTheRequestPage {
   private static async fillInFields(page: Page): Promise<void> {
     await page.fill(
       UniqueSelectors.flagCommentsTextbox,
-      Fl401RequestSupport1TellUsMoreAboutTheRequestContent.comments,
+      RequestSupportTellUsMoreAboutTheRequestContent.comments,
     );
   }
 

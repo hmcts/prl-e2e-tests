@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { SupportType } from "../../../../../common/types.ts";
-import { Selectors } from "../../../../../common/selectors.ts";
-import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
-import { Fl401ManageFlags1UpdateCaseFlagContent } from "../../../../../fixtures/manageCases/caseProgression/caseFlags/fl401/fl401ManageFlags1UpdateCaseFlagContent.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
+import { SupportType } from "../../../../common/types.ts";
+import { Selectors } from "../../../../common/selectors.ts";
+import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { ManageFlagsUpdateCaseFlagContent } from "../../../../fixtures/manageCases/caseProgression/caseFlags/manageFlagsUpdateCaseFlagContent.ts";
+import { Helpers } from "../../../../common/helpers.ts";
 
 enum UniqueSelectors {
   activeRadio = "#status_ACTIVE",
@@ -12,8 +12,8 @@ enum UniqueSelectors {
   addTranslationCheckbox = "#flagIsWelshTranslationNeeded",
 }
 
-export class Fl401ManageFlags1UpdateCaseFlagPage {
-  public static async fl401ManageFlags1UpdateCaseFlagPage(
+export class ManageFlagsUpdateCaseFlagPage {
+  public static async manageFlagsUpdateCaseFlagPage(
     page: Page,
     supportType: SupportType,
     isApproved: boolean,
@@ -34,47 +34,47 @@ export class Fl401ManageFlags1UpdateCaseFlagPage {
       await page
         .locator(Selectors.GovukLabelM, {
           hasText:
-            Fl401ManageFlags1UpdateCaseFlagContent.govUkLabelMReasonableAdjustment,
+            ManageFlagsUpdateCaseFlagContent.govUkLabelMReasonableAdjustment,
         })
         .waitFor();
     } else {
       await page
         .locator(Selectors.GovukLabelM, {
           hasText:
-            Fl401ManageFlags1UpdateCaseFlagContent.govUkLabelMLanguageInterpreter,
+            ManageFlagsUpdateCaseFlagContent.govUkLabelMLanguageInterpreter,
         })
         .waitFor();
     }
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHeadingL}:text-is("${Fl401ManageFlags1UpdateCaseFlagContent.govUkHeadingL}")`,
+        `${Selectors.GovukHeadingL}:text-is("${ManageFlagsUpdateCaseFlagContent.govUkHeadingL}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukWarningText}:text-is("${Fl401ManageFlags1UpdateCaseFlagContent.govUkWarningText}")`,
+        `${Selectors.GovukWarningText}:text-is("${ManageFlagsUpdateCaseFlagContent.govUkWarningText}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${Fl401ManageFlags1UpdateCaseFlagContent.govUkHint1}")`,
+        `${Selectors.GovukHint}:text-is("${ManageFlagsUpdateCaseFlagContent.govUkHint1}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${Fl401ManageFlags1UpdateCaseFlagContent.govUkHint2}")`,
+        `${Selectors.GovukHint}:text-is("${ManageFlagsUpdateCaseFlagContent.govUkHint2}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${Fl401ManageFlags1UpdateCaseFlagContent.govUkHint3}")`,
+        `${Selectors.GovukHint}:text-is("${ManageFlagsUpdateCaseFlagContent.govUkHint3}")`,
         1,
       ),
       Helpers.checkGroup(
         page,
         5,
-        Fl401ManageFlags1UpdateCaseFlagContent,
+        ManageFlagsUpdateCaseFlagContent,
         `govUkLabel`,
         `${Selectors.GovukLabel}`,
       ),
@@ -94,13 +94,13 @@ export class Fl401ManageFlags1UpdateCaseFlagPage {
         page
           .locator(Selectors.GovukLabelS, {
             hasText:
-              Fl401ManageFlags1UpdateCaseFlagContent.govUkLabelSReasonableAdjustment,
+              ManageFlagsUpdateCaseFlagContent.govUkLabelSReasonableAdjustment,
           })
           .waitFor(),
         page
           .locator(Selectors.GovukFieldsetHeading, {
             hasText:
-              Fl401ManageFlags1UpdateCaseFlagContent.govUkFieldSetHeadingReasonableAdjustment,
+              ManageFlagsUpdateCaseFlagContent.govUkFieldSetHeadingReasonableAdjustment,
           })
           .waitFor(),
       ]);
@@ -109,13 +109,13 @@ export class Fl401ManageFlags1UpdateCaseFlagPage {
         page
           .locator(Selectors.GovukLabelS, {
             hasText:
-              Fl401ManageFlags1UpdateCaseFlagContent.govUkLabelSLanguageInterpreter,
+              ManageFlagsUpdateCaseFlagContent.govUkLabelSLanguageInterpreter,
           })
           .waitFor(),
         page
           .locator(Selectors.GovukFieldsetHeading, {
             hasText:
-              Fl401ManageFlags1UpdateCaseFlagContent.govUkFieldSetHeadingLanguageInterpreter,
+              ManageFlagsUpdateCaseFlagContent.govUkFieldSetHeadingLanguageInterpreter,
           })
           .waitFor(),
       ]);
@@ -137,7 +137,7 @@ export class Fl401ManageFlags1UpdateCaseFlagPage {
     }
     await page.fill(
       UniqueSelectors.statusChangeTextbox,
-      Fl401ManageFlags1UpdateCaseFlagContent.statusChangeText,
+      ManageFlagsUpdateCaseFlagContent.statusChangeText,
     );
     if (withTranslation) {
       await page.check(UniqueSelectors.addTranslationCheckbox);
