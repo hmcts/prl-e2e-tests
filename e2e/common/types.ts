@@ -72,7 +72,9 @@ export type WACaseWorkerActions =
   | "Service of application"
   | "Create a bundle"
   | "Manage documents"
-  | "Statement of service";
+  | "Statement of service"
+  | "Link cases"
+  | "Manage case links";
 
 export type fl401CaseWorkerActions =
   | "Welsh language requirements"
@@ -265,3 +267,5 @@ export type solicitorCACaseAPIEvent =
   | "issueAndSendToLocalCourtCallback";
 
 export type AdditionalApplicationType = "c2" | "other";
+
+export type SupportType = "reasonableAdjustment" | "languageInterpreter";

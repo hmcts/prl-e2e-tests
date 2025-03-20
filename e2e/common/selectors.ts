@@ -20,6 +20,7 @@ export enum Selectors {
   // Forms
   GovukFormGroup = ".govuk-form-group",
   GovukLabel = ".govuk-label",
+  GovukLabelS = ".govuk-label--s",
   GovukLabelM = ".govuk-label--m",
   GovukInput = ".govuk-input",
   GovukTextarea = ".govuk-textarea",
@@ -113,6 +114,7 @@ export enum Selectors {
   GovukTableHeader = ".govuk-table__header",
   GovukTableRow = ".govuk-table__row",
   GovukTableCell = ".govuk-table__cell",
+  GovukTableSubheading = ".table-sub-heading",
 
   // Breadcrumbs
   GovukBreadcrumbs = ".govuk-breadcrumbs",
