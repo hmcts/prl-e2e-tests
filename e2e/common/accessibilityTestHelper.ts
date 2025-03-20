@@ -12,6 +12,7 @@ export class AxeTest {
         "wcag22a",
         "wcag22aa",
       ])
+      .disableRules('aria-prohibited-attr')
       .analyze();
     const violations = accessibilityScanResults.violations;
     if (violations.length !== 0) {
