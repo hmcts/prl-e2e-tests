@@ -72,7 +72,9 @@ export type WACaseWorkerActions =
   | "Service of application"
   | "Create a bundle"
   | "Manage documents"
-  | "Statement of service";
+  | "Statement of service"
+  | "Link cases"
+  | "Manage case links";
 
 export type fl401CaseWorkerActions =
   | "Welsh language requirements"
@@ -266,6 +268,7 @@ export type solicitorCACaseAPIEvent =
 
 export type AdditionalApplicationType = "c2" | "other";
 
+
 export type EdgeCaseApplicationType =
   | "FGM"
   | "FMPO"
@@ -276,3 +279,6 @@ export type EdgeCaseApplicationType =
   | "ParentalResponsibility_secondFemaleParent"
   | "AppointingChildGuardian"
   | "ChangeOfChildSurname";
+
+export type SupportType = "reasonableAdjustment" | "languageInterpreter";
+

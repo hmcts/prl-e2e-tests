@@ -443,4 +443,30 @@ export class Helpers {
       })
       .click();
   }
+  public static async clickCheckbox(page: Page, label: string) {
+    await page
+      .getByRole("checkbox", {
+        name: label,
+        exact: true,
+      })
+      .check();
+  }
+
+  public static async clickButton(page: Page, label: string) {
+    await page
+      .getByRole("button", {
+        name: label,
+        exact: true,
+      })
+      .click();
+  }
+
+  public static getHyphenatedCaseReference(caseNumber?: string): string {
+    if (!caseNumber?.trim()) {
+      throw new Error(
+        "Invalid case number: Expected a non-empty 16-digit string.",
+      );
+    }
+    return caseNumber.match(/.{1,4}/g)!.join("-");
+  }
 }
