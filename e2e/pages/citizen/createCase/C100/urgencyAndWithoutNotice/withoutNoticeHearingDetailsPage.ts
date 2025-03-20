@@ -85,7 +85,7 @@ export class WithoutNoticeHearingDetailsPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page); //#TODO: Re-enable upon completion of PRL-6496 (rerun 20/01/25, issue still exists)
+      await AccessibilityTestHelper.run(page);
     }
   }
 

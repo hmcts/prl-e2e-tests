@@ -51,7 +51,7 @@ export class EmotionalAbusePage {
     await SafetyConcernHelpers.checkStaticTextChild(page);
     await SafetyConcernHelpers.checkSidebarChild(page);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page); //#TODO Commented out until ticket-6593 is complete
+      await AccessibilityTestHelper.run(page);
     }
   }
 

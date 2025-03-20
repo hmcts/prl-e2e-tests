@@ -101,7 +101,7 @@ export class ConcernsForSafetyPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page); //#TODO Commented out until PRL-6592 is complete (rerun 20/01/25, issue still exists)
+      await AccessibilityTestHelper.run(page);
     }
   }
 

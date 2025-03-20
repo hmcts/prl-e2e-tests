@@ -87,7 +87,7 @@ export class ApplicantContactDetailPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page); //#TODO turn back on once Accessibility Issues: PRL-6591 has been fixed (rerun 20/01/25, issue still exists)
+      await AccessibilityTestHelper.run(page);
     }
   }
 

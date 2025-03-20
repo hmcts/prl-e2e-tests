@@ -107,7 +107,7 @@ export class EmergencyProtectionOrderDetailsPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page); //#TODO Disabled pending PRL-6552 ticket
+      await AccessibilityTestHelper.run(page);
     }
   }
 

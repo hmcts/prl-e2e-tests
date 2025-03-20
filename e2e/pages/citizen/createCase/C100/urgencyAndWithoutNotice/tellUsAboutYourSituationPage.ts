@@ -107,7 +107,7 @@ export class TellUsAboutYourSituationPage {
       1,
     );
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page); //#TODO: Re-enable upon completion of PRL-6495 (rerun 20/01/25, issue still exists)
+      await AccessibilityTestHelper.run(page);
     }
   }
 

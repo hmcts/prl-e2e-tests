@@ -90,7 +90,7 @@ export class PreviousAbductionsPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page); //#TODO Commented out until ticket-6595 is complete
+      await AccessibilityTestHelper.run(page);
     }
   }
 

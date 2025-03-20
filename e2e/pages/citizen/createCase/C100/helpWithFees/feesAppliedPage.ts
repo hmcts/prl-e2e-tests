@@ -68,7 +68,7 @@ export class FeesAppliedPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page); //#TODO Commented out until ticket-6603 is complete
+      await AccessibilityTestHelper.run(page);
     }
   }
 

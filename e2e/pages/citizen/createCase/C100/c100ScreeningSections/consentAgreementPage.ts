@@ -80,7 +80,7 @@ export class ConsentAgreementPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page); //#TODO: re-enable when PRL-6493 is completed (rerun 20/01/25, issue still exists)
+      await AccessibilityTestHelper.run(page);
     }
   }
 

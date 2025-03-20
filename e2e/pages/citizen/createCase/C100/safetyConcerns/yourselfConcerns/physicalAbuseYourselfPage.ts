@@ -48,7 +48,7 @@ export class PhysicalAbuseYourselfPage {
     await SafetyConcernHelpers.checkStaticTextYourself(page);
     await SafetyConcernHelpers.checkSidebarYourself(page);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page); //#TODO Commented out until ticket-6593 is complete
+      await AccessibilityTestHelper.run(page);
     }
   }
 

@@ -137,7 +137,7 @@ export class RespondentDetailsAddressManualPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page); //#TODO turn back on once Accessibility Issues: PRL-6899 has been fixed (re-ran on 20/01/25, issue still exists)
+      await AccessibilityTestHelper.run(page);
     }
   }
 
