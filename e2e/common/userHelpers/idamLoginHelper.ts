@@ -84,17 +84,26 @@ export class IdamLoginHelper {
   public static async signInCitizenUser(
     page: Page,
     application: string,
-  ): Promise<void> {
+    returnUserInfo: boolean = false,
+  ): Promise<{
+    email: string;
+    password: string;
+    id: string;
+    forename: string;
+    surname: string;
+  } | void> {
     const token = process.env.CITIZEN_CREATE_USER_BEARER_TOKEN as string;
     if (!token) {
       console.error("Bearer token is not defined in the environment variables");
       return;
     }
+
     const userInfo = await setupUser(token);
     if (!userInfo) {
       console.error("Failed to set up citizen user");
       return;
     }
+
     await this.signIn(
       page,
       userInfo.email,
@@ -102,7 +111,12 @@ export class IdamLoginHelper {
       application,
       "citizen",
     );
+
+    if (returnUserInfo) {
+      return userInfo;
+    }
   }
+
   private static isSessionValid(path: string): boolean {
     try {
       const data = JSON.parse(readFileSync(path, "utf-8"));
