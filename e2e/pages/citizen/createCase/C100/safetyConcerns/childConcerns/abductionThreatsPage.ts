@@ -73,6 +73,7 @@ export class AbductionThreatsPage {
       ),
     ]);
     await SafetyConcernHelpers.checkPassportSidebar(page);
+
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }

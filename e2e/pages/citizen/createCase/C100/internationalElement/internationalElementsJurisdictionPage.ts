@@ -3,6 +3,7 @@ import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { internationalElementsJurisdictionContent } from "../../../../../fixtures/citizen/createCase/C100/internationalElement/internationalElementsJurisdictionContent";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 
 interface InternationalElementsJurisdictionPageOptions {
   page: Page;
@@ -39,6 +40,7 @@ export class InternationalElementsJurisdictionPage {
 
   private static async checkPageLoads({
     page: page,
+    accessibilityTest: accessibilityTest,
   }: Partial<InternationalElementsJurisdictionPageOptions>): Promise<void> {
     if (!page) {
       throw new Error();
@@ -60,9 +62,9 @@ export class InternationalElementsJurisdictionPage {
         Selectors.GovukLabel,
       ),
     ]);
-    // if (accessibilityTest) {
-    //   await AccessibilityTestHelper.run(page); #TODO Commented out until ticket-6600 is complete
-    // }
+    if (accessibilityTest) {
+      await AccessibilityTestHelper.run(page); //#TODO Commented out until PRL-6600 is complete
+    }
   }
 
   private static async triggerErrorMessages({

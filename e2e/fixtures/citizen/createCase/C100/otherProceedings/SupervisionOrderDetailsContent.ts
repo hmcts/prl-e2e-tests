@@ -1,5 +1,5 @@
 export enum SupervisionOrderDetailsContent {
-  pageTitle = "Provide details of court cases you or the children have been involved in",
+  pageTitle = "Provide details of the order that you (the applicant) or the children have been involved in (optional)",
   GovukFieldsetLegend1 = "Supervision Order",
   GovukFieldsetLegend2 = "What date was it made? (optional)",
   GovukFieldsetLegend3 = "Is this a current order? (optional)",

@@ -1,5 +1,5 @@
 export enum MiamDomesticAbuseUploadEvidenceContent {
-  pageTitle = "Upload evidence of domestic abuse",
+  pageTitle = "Upload evidence of domestic abuse (optional)",
   fontBold = "Upload your documents",
   govukHint = "Give each document a file name that makes it clear what it is about. For example MIAMexemption.docx. Files must end with JPG, JPEG, BMP, PNG, TIF, PDF, DOC or DOCX.",
   govukDetailsSummaryText = "Take a picture of a document on your phone and upload it",

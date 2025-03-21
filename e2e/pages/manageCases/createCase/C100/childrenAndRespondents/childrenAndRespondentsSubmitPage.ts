@@ -5,6 +5,7 @@ import { ChildDetailsRevised1Content } from "../../../../../fixtures/manageCases
 import { ChildrenAndRespondents1Content } from "../../../../../fixtures/manageCases/createCase/C100/childrenAndRespondents/childrenAndRespondents1Content";
 import { ChildrenAndRespondentsSubmitContent } from "../../../../../fixtures/manageCases/createCase/C100/childrenAndRespondents/childrenAndRespondentsSubmitContent";
 import { C100RespondentDetails1Content } from "../../../../../fixtures/manageCases/createCase/C100/respondentDetails/c100RespondentDetails1Content";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 
 export class ChildrenAndRespondentsSubmitPage {
   public static async childrenAndRespondentsSubmitPage(
@@ -52,7 +53,7 @@ export class ChildrenAndRespondentsSubmitPage {
       ),
     ]);
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page); #TODO Disabled pending ticket EXUI-2719
+      await AccessibilityTestHelper.run(page); //#TODO Disabled pending ticket EXUI-2719
     }
   }
 
