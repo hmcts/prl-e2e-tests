@@ -1,5 +1,4 @@
 import { Page } from "@playwright/test";
-import { SolicitorCreateInitial } from "../solicitorCreateInitial";
 import { Helpers } from "../../../../common/helpers";
 import {
   fl401RelationshipToRespondent,
@@ -18,7 +17,6 @@ interface fl401RelationshipToRespondentOptions {
   errorMessaging: boolean;
   relationshipToRespondent: fl401RelationshipToRespondent;
   relationshipToRespondentOther?: fl401RespondentRelationshipOther;
-  subJourney: boolean;
 }
 
 export class FL401RelationshipToRespondent {
@@ -28,17 +26,7 @@ export class FL401RelationshipToRespondent {
     errorMessaging,
     relationshipToRespondent,
     relationshipToRespondentOther,
-    subJourney,
   }: fl401RelationshipToRespondentOptions): Promise<void> {
-    if (subJourney) {
-      await SolicitorCreateInitial.createInitialCase({
-        page: page,
-        user: "solicitor",
-        accessibilityTest: false,
-        solicitorCaseType: "FL401",
-        errorMessaging: false,
-      });
-    }
     await Helpers.handleEventBasedOnEnvironment(
       page,
       "Relationship to respondent",

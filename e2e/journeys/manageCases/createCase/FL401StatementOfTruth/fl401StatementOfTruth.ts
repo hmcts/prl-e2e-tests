@@ -1,5 +1,4 @@
 import { Page } from "@playwright/test";
-import { SolicitorCreateInitial } from "../solicitorCreateInitial";
 import { FL401TypeOfApplication } from "../FL401TypeOfApplication/FL401TypeOfApplication";
 import { FL401WithoutNoticeOrder } from "../FL401WithoutNoticeOrder/FL401WIthoutNoticeOrder";
 import { FL401ApplicantDetails } from "../FL401ApplicantDetails/FL401ApplicantDetails";
@@ -38,19 +37,11 @@ export class Fl401StatementOfTruth {
       ? "Yes"
       : "No";
     if (subJourney) {
-      await SolicitorCreateInitial.createInitialCase({
-        page: page,
-        user: "solicitor",
-        accessibilityTest: false,
-        solicitorCaseType: "FL401",
-        errorMessaging: false,
-      });
       await FL401TypeOfApplication.fl401TypeOfApplication({
         page: page,
         accessibilityTest: false,
         errorMessaging: false,
         isLinkedToC100: fl401YesNoToEverything,
-        subJourney: false,
       });
       await FL401WithoutNoticeOrder.fl401WithoutNoticeOrder({
         page: page,
@@ -58,7 +49,6 @@ export class Fl401StatementOfTruth {
         errorMessaging: false,
         isWithoutNoticeDetailsYes: fl401YesNoToEverything,
         isWithoutNoticeDetailsBailConditions: "Yes",
-        subJourney: false,
       });
       await FL401ApplicantDetails.fl401ApplicantDetails({
         page: page,
@@ -66,21 +56,18 @@ export class Fl401StatementOfTruth {
         errorMessaging: false,
         yesNoFL401ApplicantDetails: fl401YesNoToEverything,
         applicantGender: "female",
-        subJourney: false,
       });
       await FL401RespondentDetails.fl401RespondentDetails({
         page: page,
         accessibilityTest: false,
         errorMessaging: false,
         respondentDetailsAllOptionsYes: fl401YesNoToEverything,
-        subJourney: false,
       });
       await FL401ApplicantsFamily.fl401ApplicantsFamily({
         page: page,
         accessibilityTest: false,
         errorMessaging: false,
         applicantHasChildren: fl401YesNoToEverything,
-        subJourney: false,
       });
       await FL401RelationshipToRespondent.fl401RelationshipToRespondent({
         page: page,
@@ -88,12 +75,10 @@ export class Fl401StatementOfTruth {
         errorMessaging: false,
         relationshipToRespondent: "noneOfTheAbove",
         relationshipToRespondentOther: "Father",
-        subJourney: false,
       });
       await FL401RespondentsBehaviour.fl401RespondentsBehaviour({
         page: page,
         accessibilityTest: false,
-        subJourney: false,
       });
       await FL401TheHome.fl401TheHome({
         page: page,
@@ -102,14 +87,12 @@ export class Fl401StatementOfTruth {
         fl401TheHomeYesNo: fl401YesNoToEverything,
         fl401EverLivedAtAddress: "No",
         fl401IntendToLiveAtAddress: "No",
-        subJourney: false,
       });
       await FL401OtherProceedings.fl401OtherProceedings({
         page: page,
         accessibilityTest: false,
         errorMessaging: false,
         otherProceedingsRadios: otherProceedingsRadioSelection,
-        subJourney: false,
       });
     }
     await Helpers.handleEventBasedOnEnvironment(

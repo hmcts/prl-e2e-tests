@@ -7,8 +7,6 @@ import {
   MiamPolicyUpgrade6Page,
   miamSelection,
 } from "../../../../pages/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade6Page";
-import { SolicitorCreateInitial } from "../solicitorCreateInitial";
-import { UserRole } from "../../../../common/types";
 import { Helpers } from "../../../../common/helpers";
 import { MiamPolicyUpgradeSubmitPage } from "../../../../pages/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgradeSubmitPage";
 import { MiamPolicyUpgrade8Page } from "../../../../pages/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade8Page";
@@ -21,35 +19,22 @@ import { C100TasksTabPage } from "../../../../pages/manageCases/caseTabs/c100Tas
 
 interface c100MiamPolicyUpgradeOptions {
   page: Page;
-  user: UserRole;
   accessibilityTest: boolean;
   errorMessaging: boolean;
   C100MiamPolicyUpgrade1PageType: C100MiamPolicyUpgrade1PageType;
   yesNoMiamPolicyUpgrade: boolean;
   miamSelection: miamSelection;
-  subJourney: boolean;
 }
 
 export class C100MiamPolicyUpgrade {
   public static async c100MiamPolicyUpgrade({
     page: page,
-    user: user,
     accessibilityTest: accessibilityTest,
     errorMessaging: errorMessaging,
     C100MiamPolicyUpgrade1PageType: C100MiamPolicyUpgrade1PageType,
     yesNoMiamPolicyUpgrade: yesNoMiamPolicyUpgrade,
     miamSelection: miamSelection,
-    subJourney: subJourney,
   }: c100MiamPolicyUpgradeOptions): Promise<void> {
-    if (subJourney) {
-      await SolicitorCreateInitial.createInitialCase({
-        page: page,
-        user: user,
-        accessibilityTest: false,
-        solicitorCaseType: "C100",
-        errorMessaging: false,
-      });
-    }
     await Helpers.handleEventBasedOnEnvironment(page, "MIAM");
     await MiamPolicyUpgrade1Page.miamPolicyUpgrade1Page({
       page: page,

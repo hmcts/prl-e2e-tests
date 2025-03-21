@@ -1,9 +1,9 @@
 import { Browser, Page } from "@playwright/test";
 import { UploadDocumentsPositionStatement } from "../../../citizen/caseView/uploadDocuments/witnessStatementsAndEvidence/applicant/uploadDocumentsPositionStatement.ts";
 import {
-  applicationSubmittedBy,
-  documentCategory,
   yesNoDontKnow,
+  documentCategory,
+  applicationSubmittedBy,
 } from "../../../../common/types";
 import { ReviewDocuments } from "./reviewDocuments.ts";
 import { Helpers } from "../../../../common/helpers";

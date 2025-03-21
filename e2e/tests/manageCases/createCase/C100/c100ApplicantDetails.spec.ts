@@ -1,10 +1,14 @@
 import { test } from "@playwright/test";
-import Config from "../../../../config";
 import { C100ApplicantDetails } from "../../../../journeys/manageCases/createCase/C100ApplicantDetails/c100ApplicantDetails";
-
-test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
+import { SolicitorCreateInitial } from "../../../../journeys/manageCases/createCase/solicitorCreateInitial.ts";
 
 test.describe("C100 Create case - Applicant Details tests", (): void => {
+  test.beforeEach(async ({ page }) => {
+    await SolicitorCreateInitial.createUserAndCase({
+      page,
+      solicitorCaseType: "C100",
+    });
+  });
   test(`Complete the C100 applicant details event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
@@ -14,12 +18,10 @@ test.describe("C100 Create case - Applicant Details tests", (): void => {
   }): Promise<void> => {
     await C100ApplicantDetails.C100ApplicantDetails({
       page,
-      user: "solicitor",
       accessibilityTest: false,
       errorMessaging: false,
       yesNoApplicantDetails: true,
       applicantGender: "male",
-      subJourney: true,
     });
   });
 
@@ -32,12 +34,10 @@ test.describe("C100 Create case - Applicant Details tests", (): void => {
   }): Promise<void> => {
     await C100ApplicantDetails.C100ApplicantDetails({
       page,
-      user: "solicitor",
       accessibilityTest: false,
       errorMessaging: false,
       yesNoApplicantDetails: false,
       applicantGender: "female",
-      subJourney: true,
     });
   });
 
@@ -50,30 +50,26 @@ test.describe("C100 Create case - Applicant Details tests", (): void => {
   }): Promise<void> => {
     await C100ApplicantDetails.C100ApplicantDetails({
       page,
-      user: "solicitor",
       accessibilityTest: false,
       errorMessaging: true,
       yesNoApplicantDetails: false,
       applicantGender: "male",
-      subJourney: true,
     });
   });
-});
 
-test(`C100 applicant details event as a solicitor with the following options:
-  Accessibility testing,
-  Not Error message testing,
-  Saying yes to all options,
-  Setting the applicant Gender to female. @smoke @accessibility @nightly`, async ({
-  page,
-}): Promise<void> => {
-  await C100ApplicantDetails.C100ApplicantDetails({
+  test(`C100 applicant details event as a solicitor with the following options:
+    Accessibility testing,
+    Not Error message testing,
+    Saying yes to all options,
+    Setting the applicant Gender to female. @smoke @accessibility @nightly`, async ({
     page,
-    user: "solicitor",
-    accessibilityTest: true,
-    errorMessaging: false,
-    yesNoApplicantDetails: false,
-    applicantGender: "female",
-    subJourney: true,
+  }): Promise<void> => {
+    await C100ApplicantDetails.C100ApplicantDetails({
+      page,
+      accessibilityTest: true,
+      errorMessaging: false,
+      yesNoApplicantDetails: false,
+      applicantGender: "female",
+    });
   });
 });
