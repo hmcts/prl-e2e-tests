@@ -9,7 +9,7 @@ interface ClippingCoords {
 
 export const clippingCoords = {
   fullPage: { x: -1000, y: 0, width: 1920, height: 1080 },
-  centeredPageWithoutToolbar: { x: 500, y: 300, width: 900, height: 1080 },
+  centeredPageWithoutToolbar: { x: 500, y: 80, width: 900, height: 1080 },
 };
 
 export class ExuiMediaViewerPage {
@@ -50,16 +50,32 @@ export class ExuiMediaViewerPage {
   }
 
   public async runVisualTestOnAllPages(
+    page: Page,
+    screenShotName: string = "",
     clip: ClippingCoords = clippingCoords.fullPage,
   ): Promise<void> {
     await this.waitForLoad();
     const totalPages = await this.getNumberOfPages();
-    for (let i = 0; i < totalPages; i++) {
-      await expect(this.page).toHaveScreenshot({
-        clip: clip,
-        maxDiffPixelRatio: 0.02,
-      });
-      if (i !== totalPages - 1) await this.toolbar.pageDownBtn.click();
+    // zoom out to be able to capture all the page
+    await page.click("#mvMinusBtn");
+    if (screenShotName) {
+      for (let i = 0; i < totalPages; i++) {
+        await expect
+          .soft(this.page)
+          .toHaveScreenshot(`${screenShotName}-${i}.png`, {
+            clip: clip,
+            maxDiffPixelRatio: 0.02,
+          });
+        if (i !== totalPages - 1) await this.toolbar.pageDownBtn.click();
+      }
+    } else {
+      for (let i = 0; i < totalPages; i++) {
+        await expect(this.page).toHaveScreenshot({
+          clip: clip,
+          maxDiffPixelRatio: 0.02,
+        });
+        if (i !== totalPages - 1) await this.toolbar.pageDownBtn.click();
+      }
     }
   }
 }
