@@ -5,6 +5,7 @@ import { C100MiamPolicyUpgrade } from "../../../../journeys/manageCases/createCa
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
 test.describe("C100 Create case MIAM Tests", (): void => {
+  //comment to run tests
   test(`Complete the C100 Create case MIAM as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,

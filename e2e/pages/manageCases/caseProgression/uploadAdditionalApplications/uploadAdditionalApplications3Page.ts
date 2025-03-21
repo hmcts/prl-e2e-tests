@@ -2,7 +2,7 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.ts";
 import { CommonStaticText } from "../../../../common/commonStaticText.ts";
-// import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
+import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
 import { UploadAdditionalApplications3Content } from "../../../../fixtures/manageCases/caseProgression/uploadAdditionalApplications/uploadAdditionalApplications3Content.ts";
 import config from "../../../../config.ts";
 import { solicitorCaseCreateType } from "../../../../common/types.ts";
@@ -111,7 +111,7 @@ export class UploadAdditionalApplications3Page {
       );
     }
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page); //to be turned on once EXUI-2858 is fixed
+      await AccessibilityTestHelper.run(page);
     }
   }
 
