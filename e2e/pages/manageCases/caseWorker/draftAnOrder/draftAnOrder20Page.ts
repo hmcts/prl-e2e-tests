@@ -50,7 +50,7 @@ export class DraftAnOrder20Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.headingH3}:text-is("${orderTypesMap.get(orderType)?.journeyName}")`,
+        `${Selectors.headingH3}:text-is("${orderTypesMap.get(orderType)}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -86,7 +86,6 @@ export class DraftAnOrder20Page {
       case "nonMolestation":
         await NonMolestationOrder20Page.checkPdfContent(
           page,
-          orderType,
           yesToAll,
           howLongWillOrderBeInForce,
           willAllPartiesBeAttendingHearing,

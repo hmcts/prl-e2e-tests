@@ -14,6 +14,10 @@ test.describe("Draft a non molestation order tests", (): void => {
     await page.goto(Config.manageCasesBaseURLCase);
     caseRef =
       await SolicitorDACaseCreator.createCaseStatementOfTruthAndSubmit(page);
+    // accept analytic cookies to give pdf viewer more room when taking screenshots
+    await page
+      .getByRole("button", { name: "Accept analytics cookies" })
+      .click();
     await Helpers.goToCase(
       page,
       config.manageCasesBaseURLCase,
@@ -25,33 +29,9 @@ test.describe("Draft a non molestation order tests", (): void => {
   test(`Complete Drafting a non molestation order as a solicitor with the following options:
   No to all options,
   No respondent checkbox actions ticked,
-  Order in force until no fixed end date,
-  Not accessibility testing,
-  Not error message testing. @regression`, async ({
-    page,
-    browser,
-  }): Promise<void> => {
-    await DraftAnOrder.draftAnOrder({
-      page: page,
-      errorMessaging: false,
-      accessibilityTest: false,
-      caseType: "FL401",
-      orderType: "nonMolestation",
-      yesNoToAll: false,
-      howLongWillOrderBeInForce: "noEndDate",
-      willAllPartiesAttendHearing: false,
-      browser: browser,
-      caseRef: caseRef,
-      checkPdf: true,
-    });
-  });
-
-  test(`Complete Drafting a non molestation order as a solicitor with the following options:
-  No to all options,
-  No respondent checkbox actions ticked,
   Order in force until specific date and time,
   Not accessibility testing,
-  Not error message testing. @regression`, async ({
+  Not error message testing. @regression @visual`, async ({
     page,
     browser,
   }): Promise<void> => {
@@ -75,7 +55,7 @@ test.describe("Draft a non molestation order tests", (): void => {
   All respondent checkbox actions ticked,
   Order in force until specific date and time,
   Not Accessibility testing,
-  Not error message testing. @regression`, async ({
+  Not error message testing. @regression @visual`, async ({
     page,
     browser,
   }): Promise<void> => {
@@ -99,7 +79,7 @@ test.describe("Draft a non molestation order tests", (): void => {
   No respondent checkbox actions ticked,
   Order in force until no fixed end date,
   Accessibility testing,
-  Not error message testing. @accessibility @nightly`, async ({
+  Not error message testing. @accessibility @nightly @visual`, async ({
     page,
     browser,
   }): Promise<void> => {
