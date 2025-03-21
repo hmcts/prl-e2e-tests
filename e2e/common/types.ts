@@ -268,4 +268,17 @@ export type solicitorCACaseAPIEvent =
 
 export type AdditionalApplicationType = "c2" | "other";
 
+
+export type EdgeCaseApplicationType =
+  | "FGM"
+  | "FMPO"
+  | "SpecialGuardianship"
+  | "DeclarationOfParentage"
+  | "ParentalOrder"
+  | "ParentalResponsibility"
+  | "ParentalResponsibility_secondFemaleParent"
+  | "AppointingChildGuardian"
+  | "ChangeOfChildSurname";
+
 export type SupportType = "reasonableAdjustment" | "languageInterpreter";
+

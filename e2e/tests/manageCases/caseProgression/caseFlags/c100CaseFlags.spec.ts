@@ -2,18 +2,37 @@ import { test } from "@playwright/test";
 import Config from "../../../../config";
 import config from "../../../../config";
 import { Helpers } from "../../../../common/helpers";
-import { SolicitorDACaseCreator } from "../../../../common/caseHelpers/solicitorDACaseCreator.ts";
 import { CaseFlags } from "../../../../journeys/manageCases/caseProgression/caseFlags/caseFlags.ts";
+import { SolicitorCACaseCreator } from "../../../../common/caseHelpers/solicitorCACaseCreator.ts";
+import {
+  jsonDatas,
+  submitEvent,
+} from "../../../../common/caseHelpers/solicitorCaseCreatorHelper.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-test.describe("Case flags tests for DA case tests.", () => {
+test.describe("Case flags tests for CA case tests.", () => {
   let ccdRef: string = "";
 
-  test.beforeEach(async ({ page }) => {
+  test.beforeEach(async ({ page, browser }) => {
     await page.goto(Config.manageCasesBaseURLCase);
-    ccdRef =
-      await SolicitorDACaseCreator.createCaseStatementOfTruthAndSubmit(page);
+    ccdRef = await SolicitorCACaseCreator.createCaseSubmitAndPay(page);
+    const ctscPage = await Helpers.openNewBrowserWindow(
+      browser,
+      "courtAdminStoke",
+    );
+    await Helpers.goToCase(
+      ctscPage,
+      config.manageCasesBaseURLCase,
+      ccdRef,
+      "tasks",
+    );
+    await submitEvent(
+      ctscPage,
+      ccdRef,
+      "issueAndSendToLocalCourtCallback",
+      jsonDatas.solicitorCACaseData,
+    );
     await Helpers.goToCase(
       page,
       config.manageCasesBaseURLCase,
@@ -30,7 +49,7 @@ test.describe("Case flags tests for DA case tests.", () => {
       page: page,
       browser: browser,
       caseRef: ccdRef,
-      caseType: "FL401",
+      caseType: "C100",
       supportType: "reasonableAdjustment",
       isApproved: true,
       withTranslation: true,
@@ -46,7 +65,7 @@ test.describe("Case flags tests for DA case tests.", () => {
       page: page,
       browser: browser,
       caseRef: ccdRef,
-      caseType: "FL401",
+      caseType: "C100",
       supportType: "languageInterpreter",
       isApproved: false,
       withTranslation: true,
@@ -62,7 +81,7 @@ test.describe("Case flags tests for DA case tests.", () => {
       page: page,
       browser: browser,
       caseRef: ccdRef,
-      caseType: "FL401",
+      caseType: "C100",
       supportType: "reasonableAdjustment",
       isApproved: false,
       withTranslation: false,
@@ -78,7 +97,7 @@ test.describe("Case flags tests for DA case tests.", () => {
       page: page,
       browser: browser,
       caseRef: ccdRef,
-      caseType: "FL401",
+      caseType: "C100",
       supportType: "languageInterpreter",
       isApproved: true,
       withTranslation: false,
