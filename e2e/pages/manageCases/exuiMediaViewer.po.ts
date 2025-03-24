@@ -44,7 +44,7 @@ export class ExuiMediaViewerPage {
           const totalPages = await this.getNumberOfPages();
           return totalPages;
         },
-        { timeout: 10_000 },
+        { timeout: 15_000 },
       )
       .toBeGreaterThan(0);
   }
