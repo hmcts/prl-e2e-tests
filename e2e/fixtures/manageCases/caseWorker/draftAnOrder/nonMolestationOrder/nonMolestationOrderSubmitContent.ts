@@ -51,7 +51,7 @@ export enum NonMolestationOrderSubmitContent {
   yesToAllAdditionalText1625 = "How does the hearing need to take place?",
   yesToAllAdditionalText1626 = "In person",
   yesToAllAdditionalText1627 = "Will all parties attend the hearing in the same way?",
-  yesToAllAdditionalText1628 = "Hearing location",
+  yesToAllAdditionalText1628 = "Court location",
   yesToAllAdditionalText1629 = "Swansea Civil Justice Centre - Quay West, Quay Parade - SA1 1SP",
   yesToAllAdditionalText1630 = "This hearing will be before",
   yesToAllAdditionalText1631 = "Legal adviser",

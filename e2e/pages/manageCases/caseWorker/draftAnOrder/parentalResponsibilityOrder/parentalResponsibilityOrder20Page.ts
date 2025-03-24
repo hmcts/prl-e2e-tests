@@ -2,7 +2,10 @@ import { Page } from "@playwright/test";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { ParentalResponsibilityOrder20Content } from "../../../../../fixtures/manageCases/caseWorker/draftAnOrder/parentalResponsibilityOrder/parentalResponsibilityOrder20Content";
-import { DraftAnOrderPdfHelper } from "../draftAnOrderPdfHelper";
+import {
+  clippingCoords,
+  ExuiMediaViewerPage,
+} from "../../../exuiMediaViewer.po.ts";
 
 export class ParentalResponsibilityOrder20Page {
   public static async checkPdfLinks(page: Page): Promise<void> {
@@ -24,109 +27,40 @@ export class ParentalResponsibilityOrder20Page {
     page: Page,
     yesNoToAll: boolean,
   ): Promise<void> {
-    await this.checkWelshPdfContent(page, yesNoToAll);
-    await this.checkEnglishPdfContent(page, yesNoToAll);
-  }
-
-  private static async checkWelshPdfContent(
-    page: Page,
-    yesNoToAll: boolean,
-  ): Promise<void> {
-    const pdfPage: Page = await DraftAnOrderPdfHelper.openMediaViewer(
-      page,
-      "parentalResponsibility",
-      "Welsh",
-    );
-    await Promise.all([
-      Helpers.checkGroup(
-        pdfPage,
-        22,
-        ParentalResponsibilityOrder20Content,
-        "welshSpan",
-        `${Selectors.Span}`,
-      ),
-      Helpers.checkVisibleAndPresent(
-        pdfPage,
-        `${Selectors.Span}:text-is("${this.formatDate()}")`,
-        1,
-      ),
-    ]);
+    let pdfName = "parental-responsibility-";
+    // if statements based on the parameters passed into the tests from draftAnOrderParentalResponsibility.spec.ts
     if (yesNoToAll) {
-      await Helpers.checkGroup(
-        pdfPage,
-        16,
-        ParentalResponsibilityOrder20Content,
-        "welshYesToAllSpan",
-        `${Selectors.Span}`,
-      );
-      await Helpers.checkVisibleAndPresent(
-        pdfPage,
-        `${Selectors.Span}:text-is("${ParentalResponsibilityOrder20Content.welshYesToAllRepeatedSpan}")`,
-        4,
-      );
+      pdfName += "yes-to-all";
     } else {
-      await Helpers.checkGroup(
-        pdfPage,
-        10,
-        ParentalResponsibilityOrder20Content,
-        "welshNoToAllSpan",
-        `${Selectors.Span}`,
-      );
+      pdfName += "no-to-all";
     }
+    await this.checkContent(page, pdfName, "welsh");
+    await this.checkContent(page, pdfName, "english");
   }
 
-  private static async checkEnglishPdfContent(
+  private static async checkContent(
     page: Page,
-    yesNoToAll: boolean,
+    pdfName: string,
+    language: string,
   ): Promise<void> {
-    const pdfPage: Page = await DraftAnOrderPdfHelper.openMediaViewer(
-      page,
-      "parentalResponsibility",
-      "English",
-    );
-    await Promise.all([
-      await Helpers.checkGroup(
-        pdfPage,
-        19,
-        ParentalResponsibilityOrder20Content,
-        "span",
-        `${Selectors.Span}`,
-      ),
-      await Helpers.checkVisibleAndPresent(
-        pdfPage,
-        `${Selectors.Span}:text-is("Ordered on ${this.formatDate()} by Her Honour Judge Test judge name sitting with Justices'")`,
-        1,
-      ),
-    ]);
-    if (yesNoToAll) {
-      await Helpers.checkGroup(
-        pdfPage,
-        16,
-        ParentalResponsibilityOrder20Content,
-        "yesToAllSpan",
-        `${Selectors.Span}`,
-      );
-      await Helpers.checkVisibleAndPresent(
-        pdfPage,
-        `${Selectors.Span}:text-is("${ParentalResponsibilityOrder20Content.yesToAllRepeatedSpan}")`,
-        4,
-      );
-    } else {
-      await Helpers.checkGroup(
-        pdfPage,
-        10,
-        ParentalResponsibilityOrder20Content,
-        "noToAllSpan",
-        `${Selectors.Span}`,
-      );
-    }
-  }
+    const regionalPdfName = `${language}-${pdfName}`;
 
-  private static formatDate(): string {
-    const todayDate: string = Helpers.getCurrentDateFormatted();
-    const day: string = todayDate.substring(0, 2);
-    const month: string = todayDate.substring(2, 4);
-    const year: string = todayDate.substring(4);
-    return Helpers.dayLongMonthYear(day, month, year);
+    const pdfPage: Page = await Helpers.openPdfLink(
+      page,
+      page.getByRole("link", {
+        name:
+          language === "welsh"
+            ? ParentalResponsibilityOrder20Content.welshPdfLink
+            : ParentalResponsibilityOrder20Content.pdfLink,
+        exact: true,
+      }),
+    );
+    await pdfPage.waitForLoadState("domcontentloaded");
+    const mediaViewerPage = new ExuiMediaViewerPage(pdfPage);
+    await mediaViewerPage.runVisualTestOnAllPages(
+      pdfPage,
+      clippingCoords.centeredOrderPdfWithoutToolbar,
+      regionalPdfName,
+    );
   }
 }

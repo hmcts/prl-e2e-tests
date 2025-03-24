@@ -21,7 +21,7 @@ export enum NonMolestationOrder16Content {
   formLabel9 = "Video",
   formLabel10 = "On the papers",
   formLabel11 = "Will all parties attend the hearing in the same way?",
-  formLabel12 = "Hearing location (Optional)",
+  formLabel12 = "Court location (Optional)",
   formLabel13 = "This hearing will be before (Optional)",
   formLabel14 = "Legal adviser",
   formLabel15 = "Magistrates",
