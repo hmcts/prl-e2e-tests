@@ -175,10 +175,13 @@ export class ConfidentialityCheck1Page {
         })
         .click(),
     ]);
+    const pdfName: string = `${isApplicant ? "applicant" : "respondent"}-confidential-contact-details-notice`;
     await pdfPage.waitForLoadState();
     const mediaViewerPage = new ExuiMediaViewerPage(pdfPage);
     await mediaViewerPage.runVisualTestOnAllPages(
-      clippingCoords.centeredPageWithoutToolbar,
+      pdfPage,
+      clippingCoords.confidentialContactDetailsNoticePage,
+      pdfName,
     );
   }
 

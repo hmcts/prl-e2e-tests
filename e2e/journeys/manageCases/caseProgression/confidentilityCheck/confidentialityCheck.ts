@@ -112,6 +112,8 @@ export class ConfidentialityCheck {
       browser,
       "caseManager",
     );
+    // accept analytic cookies to give pdf viewer more room when taking screenshots
+    await Helpers.acceptAnalyticsCookies(page);
     await Helpers.goToCase(
       caseManagerPage,
       config.manageCasesBaseURLCase,

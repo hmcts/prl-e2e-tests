@@ -48,20 +48,23 @@ export class NonMolestationOrder20Page {
     language: string,
   ): Promise<void> {
     const regionalPdfName = `${language}-${pdfName}`;
-    const [pdfPage] = await Promise.all([
-      page.waitForEvent("popup"),
-      page
-        .locator(Selectors.a, {
-          hasText: NonMolestationOrder20Content.welshPdfLink,
-        })
-        .click(),
-    ]);
+
+    const pdfPage: Page = await Helpers.openPdfLink(
+      page,
+      page.getByRole("link", {
+        name:
+          language === "welsh"
+            ? NonMolestationOrder20Content.welshPdfLink
+            : NonMolestationOrder20Content.pdfLink,
+        exact: true,
+      }),
+    );
     await pdfPage.waitForLoadState("domcontentloaded");
     const mediaViewerPage = new ExuiMediaViewerPage(pdfPage);
     await mediaViewerPage.runVisualTestOnAllPages(
       pdfPage,
+      clippingCoords.centeredOrderPageWithoutToolbar,
       regionalPdfName,
-      clippingCoords.centeredPageWithoutToolbar,
     );
   }
 }

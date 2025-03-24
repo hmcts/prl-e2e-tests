@@ -68,7 +68,7 @@ test.describe("Draft a parental responsibility order tests", (): void => {
 
   test(`Complete Drafting a parental responsibility as a solicitor with the following options:
   No to all options,
-  Accessibility testing. @accessibility @nightly`, async ({
+  Accessibility testing. @accessibility @nightly @visual`, async ({
     page,
     browser,
   }): Promise<void> => {

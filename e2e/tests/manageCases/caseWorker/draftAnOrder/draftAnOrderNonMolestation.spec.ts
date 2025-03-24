@@ -15,9 +15,7 @@ test.describe("Draft a non molestation order tests", (): void => {
     caseRef =
       await SolicitorDACaseCreator.createCaseStatementOfTruthAndSubmit(page);
     // accept analytic cookies to give pdf viewer more room when taking screenshots
-    await page
-      .getByRole("button", { name: "Accept analytics cookies" })
-      .click();
+    await Helpers.acceptAnalyticsCookies(page);
     await Helpers.goToCase(
       page,
       config.manageCasesBaseURLCase,
