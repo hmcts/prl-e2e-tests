@@ -718,7 +718,7 @@ export class ReviewPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.dd}:text-is("${CaJourneyEmergencyProtectionReviewContent.dd_no}")`,
-        c100YesNoNeedHelpWithFees ? 3 : 4,
+        c100YesNoNeedHelpWithFees ? 2 : 3,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -1202,7 +1202,7 @@ export class ReviewPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.dd}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.dd_no}"):visible`,
-        44,
+        43,
       ),
       Helpers.checkGroup(
         page,
