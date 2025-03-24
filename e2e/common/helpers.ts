@@ -476,8 +476,12 @@ export class Helpers {
     const acceptAnalytics: Locator = page.getByRole("button", {
       name: "Accept analytics cookies",
     });
-    if (await acceptAnalytics.isVisible()) {
+    try {
+      await acceptAnalytics.waitFor({ state: "visible", timeout: 10000 });
       await acceptAnalytics.click();
+      await page.waitForLoadState();
+    } catch (e) {
+      console.debug("Analytics banner not present");
     }
   }
 

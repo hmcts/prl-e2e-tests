@@ -16,8 +16,6 @@ test.describe("Draft a parental responsibility order tests", (): void => {
   test.beforeEach(async ({ page }) => {
     await page.goto(Config.manageCasesBaseURLCase);
     caseRef = await SolicitorCACaseCreator.createCaseSubmitAndPay(page);
-    // accept analytic cookies to give pdf viewer more room when taking screenshots
-    await Helpers.acceptAnalyticsCookies(page);
     await Helpers.goToCase(
       page,
       config.manageCasesBaseURLCase,

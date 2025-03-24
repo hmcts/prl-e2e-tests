@@ -1,4 +1,5 @@
 import { expect, Page } from "@playwright/test";
+import { Helpers } from "../../common/helpers.ts";
 
 interface ClippingCoords {
   x: number;
@@ -9,13 +10,7 @@ interface ClippingCoords {
 
 export const clippingCoords = {
   fullPage: { x: -1000, y: 0, width: 1920, height: 1080 },
-  centeredOrderPdfWithoutToolbar: { x: 500, y: 80, width: 900, height: 1080 },
-  confidentialContactDetailsNoticePdf: {
-    x: 500,
-    y: 300,
-    width: 900,
-    height: 1080,
-  },
+  centeredPageWithoutToolbar: { x: 500, y: 80, width: 900, height: 1080 },
 };
 
 export class ExuiMediaViewerPage {
@@ -60,6 +55,8 @@ export class ExuiMediaViewerPage {
     clip: ClippingCoords = clippingCoords.fullPage,
     screenShotName: string = "",
   ): Promise<void> {
+    // handle analytics banner to make room for screenshot
+    await Helpers.acceptAnalyticsCookies(page);
     await this.waitForLoad();
     const totalPages = await this.getNumberOfPages();
     // zoom out to be able to capture all the page
