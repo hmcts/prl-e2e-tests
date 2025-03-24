@@ -17,7 +17,6 @@ export class DraftAnOrder20Page {
     orderType: OrderType,
     yesToAll: boolean,
     howLongWillOrderBeInForce: HowLongWillTheOrderBeInForce,
-    willAllPartiesBeAttendingHearing: boolean,
     accessibilityTest: boolean,
     checkPdf: boolean,
   ): Promise<void> {
@@ -28,7 +27,6 @@ export class DraftAnOrder20Page {
         orderType,
         yesToAll,
         howLongWillOrderBeInForce,
-        willAllPartiesBeAttendingHearing,
       );
     }
     await this.continue(page);
@@ -80,7 +78,6 @@ export class DraftAnOrder20Page {
     orderType: OrderType,
     yesToAll: boolean,
     howLongWillOrderBeInForce: HowLongWillTheOrderBeInForce,
-    willAllPartiesBeAttendingHearing: boolean,
   ): Promise<void> {
     switch (orderType) {
       case "nonMolestation":
@@ -88,7 +85,6 @@ export class DraftAnOrder20Page {
           page,
           yesToAll,
           howLongWillOrderBeInForce,
-          willAllPartiesBeAttendingHearing,
         );
         break;
       case "parentalResponsibility":

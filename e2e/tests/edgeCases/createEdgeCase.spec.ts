@@ -59,7 +59,9 @@ test.describe("Create an edge case as a citizen", (): void => {
       helpWithFees: false,
     });
   });
-  test("Create a Parental Order edge case as a citizen - with HWF", async ({ page }) => {
+  test("Create a Parental Order edge case as a citizen - with HWF", async ({
+    page,
+  }) => {
     await EdgeCase.createCAEdgeCase({
       page,
       accessibilityTest: false,

@@ -26,7 +26,7 @@ export type HowLongWillTheOrderBeInForce =
   | "untilNextHearing"
   | "specifiedDateAndTime";
 
-export const orderTypesMap: Map<OrderType, String> = new Map([
+export const orderTypesMap: Map<OrderType, string> = new Map([
   ["parentalResponsibility", "Parental responsibility order (C45A)"],
   ["nonMolestation", "Non-molestation order (FL404A)"],
   ["powerOfArrest", "Power of arrest (FL406)"],
