@@ -718,7 +718,7 @@ export class ReviewPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.dd}:text-is("${CaJourneyEmergencyProtectionReviewContent.dd_no}")`,
-        c100YesNoNeedHelpWithFees ? 2 : 3,
+        c100YesNoNeedHelpWithFees ? 3 : 4,
       ),
       Helpers.checkVisibleAndPresent(
         page,
