@@ -1539,16 +1539,16 @@ export class ReviewPage {
     });
     let ddNoCount: number;
     if (miamAlreadyAttended) {
-      ddNoCount = 8;
+      ddNoCount = 7;
     } else {
       ddNoCount =
         miamAttendanceType === "Application made in existing proceedings"
           ? c100YesNoNeedHelpWithFees
-            ? 9
-            : 10
-          : c100YesNoNeedHelpWithFees
             ? 8
-            : 9;
+            : 9
+          : c100YesNoNeedHelpWithFees
+            ? 7
+            : 8;
       await Promise.all([
         Helpers.checkGroup(
           page,
