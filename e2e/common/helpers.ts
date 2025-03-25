@@ -480,7 +480,7 @@ export class Helpers {
       await acceptAnalytics.waitFor({ state: "visible", timeout: 10000 });
       await acceptAnalytics.click();
       await page.waitForLoadState();
-    } catch (e) {
+    } catch {
       console.debug("Analytics banner not present");
     }
   }
