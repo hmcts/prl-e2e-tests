@@ -9,7 +9,6 @@ test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
 test.describe("Upload additional applications for C100 tests", (): void => {
   let caseRef;
-  //comment to run tests
   test.beforeEach(async ({ page }) => {
     await page.goto(Config.manageCasesBaseURL);
     caseRef = await SolicitorCACaseCreator.createCaseSubmitAndPay(page);
