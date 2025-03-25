@@ -1,5 +1,4 @@
 import { expect, Page } from "@playwright/test";
-import { Helpers } from "../../common/helpers.ts";
 
 interface ClippingCoords {
   x: number;
@@ -36,8 +35,7 @@ export class ExuiMediaViewerPage {
     await expect
       .poll(
         async () => {
-          const totalPages = await this.getNumberOfPages();
-          return totalPages;
+          return await this.getNumberOfPages();
         },
         { timeout: 15_000 },
       )
@@ -55,8 +53,6 @@ export class ExuiMediaViewerPage {
     screenShotName: string,
     clip: ClippingCoords = clippingCoords.fullPage,
   ): Promise<void> {
-    // handle analytics banner to make room for screenshot
-    await Helpers.acceptAnalyticsCookies(page);
     await this.waitForLoad();
     const totalPages = await this.getNumberOfPages();
     // zoom out to be able to capture all the page

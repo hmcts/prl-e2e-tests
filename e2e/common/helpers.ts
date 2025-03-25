@@ -472,19 +472,6 @@ export class Helpers {
     return caseNumber.match(/.{1,4}/g)!.join("-");
   }
 
-  public static async acceptAnalyticsCookies(page: Page): Promise<void> {
-    const acceptAnalytics: Locator = page.getByRole("button", {
-      name: "Accept analytics cookies",
-    });
-    try {
-      await acceptAnalytics.waitFor({ state: "visible", timeout: 10000 });
-      await acceptAnalytics.click();
-      await page.waitForLoadState();
-    } catch {
-      console.debug("Analytics banner not present");
-    }
-  }
-
   public static async openPdfLink(page: Page, linkLocator: Locator) {
     const [pdfPage] = await Promise.all([
       page.waitForEvent("popup"),
