@@ -135,7 +135,10 @@ export class IdamLoginHelper {
 
   private static async addAnalyticsCookie(sessionPath: string): Promise<void> {
     try {
-      const domain = (config.manageCasesBaseURL as string).replace("https://", "");
+      const domain = (config.manageCasesBaseURL as string).replace(
+        "https://",
+        "",
+      );
       const state = JSON.parse(fs.readFileSync(sessionPath, "utf-8"));
       const userId = state.cookies.find(
         (cookie: Cookie) => cookie.name === "__userid__",
