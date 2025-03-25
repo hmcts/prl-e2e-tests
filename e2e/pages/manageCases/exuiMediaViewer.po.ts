@@ -52,8 +52,8 @@ export class ExuiMediaViewerPage {
 
   public async runVisualTestOnAllPages(
     page: Page,
+    screenShotName: string,
     clip: ClippingCoords = clippingCoords.fullPage,
-    screenShotName: string = "",
   ): Promise<void> {
     // handle analytics banner to make room for screenshot
     await Helpers.acceptAnalyticsCookies(page);
@@ -61,22 +61,12 @@ export class ExuiMediaViewerPage {
     const totalPages = await this.getNumberOfPages();
     // zoom out to be able to capture all the page
     await page.click("#mvMinusBtn");
-    if (screenShotName) {
-      for (let i = 0; i < totalPages; i++) {
-        await expect(this.page).toHaveScreenshot(`${screenShotName}-${i}.png`, {
-          clip: clip,
-          maxDiffPixelRatio: 0.02,
-        });
-        if (i !== totalPages - 1) await this.toolbar.pageDownBtn.click();
-      }
-    } else {
-      for (let i = 0; i < totalPages; i++) {
-        await expect(this.page).toHaveScreenshot({
-          clip: clip,
-          maxDiffPixelRatio: 0.02,
-        });
-        if (i !== totalPages - 1) await this.toolbar.pageDownBtn.click();
-      }
+    for (let i = 0; i < totalPages; i++) {
+      await expect(this.page).toHaveScreenshot(`${screenShotName}-${i}.png`, {
+        clip: clip,
+        maxDiffPixelRatio: 0.02,
+      });
+      if (i !== totalPages - 1) await this.toolbar.pageDownBtn.click();
     }
   }
 }

@@ -59,8 +59,8 @@ export class ParentalResponsibilityOrder20Page {
     const mediaViewerPage = new ExuiMediaViewerPage(pdfPage);
     await mediaViewerPage.runVisualTestOnAllPages(
       pdfPage,
-      clippingCoords.centeredPageWithoutToolbar,
       regionalPdfName,
+      clippingCoords.centeredPageWithoutToolbar,
     );
   }
 }
