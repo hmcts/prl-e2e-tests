@@ -171,7 +171,7 @@ export class EdgeCase {
       typeOfApplication,
       additionalDocuments,
       userInfo,
-      applyMyself:true,
+      applyMyself: true,
       dob,
       under18,
     });

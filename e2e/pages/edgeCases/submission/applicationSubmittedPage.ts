@@ -21,11 +21,23 @@ export class ApplicationSubmitted {
     page,
     accessibilityTest,
   }: ApplicationSubmittedPageOptions): Promise<void> {
-    await expect(page.locator(Selectors.h1, {hasText: ApplicationSubmittedContent.h1})).toBeVisible();
+    await expect(
+      page.locator(Selectors.h1, { hasText: ApplicationSubmittedContent.h1 }),
+    ).toBeVisible();
     await Promise.all([
-      expect(page.locator(Selectors.font, {hasText: ApplicationSubmittedContent.font})).toBeVisible(),
-      expect(page.locator(Selectors.h2, {hasText: ApplicationSubmittedContent.h2})).toBeVisible(),
-      expect(page.locator(Selectors.GovukLink, {hasText: ApplicationSubmittedContent.link})).toBeVisible(),
+      expect(
+        page.locator(Selectors.font, {
+          hasText: ApplicationSubmittedContent.font,
+        }),
+      ).toBeVisible(),
+      expect(
+        page.locator(Selectors.h2, { hasText: ApplicationSubmittedContent.h2 }),
+      ).toBeVisible(),
+      expect(
+        page.locator(Selectors.GovukLink, {
+          hasText: ApplicationSubmittedContent.link,
+        }),
+      ).toBeVisible(),
       Helpers.checkGroup(
         page,
         3,

@@ -71,7 +71,8 @@ export class Config {
 
   public static getEnvironment(url: string): string {
     return (
-      ["aat", "demo", "preview", "ithc"].find((env) => url.includes(env)) || "unknown"
+      ["aat", "demo", "preview", "ithc"].find((env) => url.includes(env)) ||
+      "unknown"
     );
   }
 

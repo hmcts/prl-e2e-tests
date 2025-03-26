@@ -42,6 +42,7 @@ export class UploadAdditionalApplications {
       await UploadAdditionalApplications2Page.uploadAdditionalApplications2Page(
         page,
         caseType,
+        accessibilityTest,
       );
     } else {
       await UploadAdditionalApplications3Page.uploadAdditionalApplications3Page(

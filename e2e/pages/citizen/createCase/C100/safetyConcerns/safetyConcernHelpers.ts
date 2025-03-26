@@ -279,14 +279,14 @@ export class SafetyConcernHelpers {
       }
       await page.click(inputIDs.seekHelpYes);
       await Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukLabel}:text-is("${ChildSafetyConcernsCommonContent.seekHelpBody1}")`,
-          1,
+        page,
+        `${Selectors.GovukLabel}:text-is("${ChildSafetyConcernsCommonContent.seekHelpBody1}")`,
+        1,
       );
       await Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukBody}:text-is("${ChildSafetyConcernsCommonContent.seekHelpBody2}")`,
-          1,
+        page,
+        `${Selectors.GovukBody}:text-is("${ChildSafetyConcernsCommonContent.seekHelpBody2}")`,
+        1,
       );
       await page.fill(inputIDs.seekHelpDetails, abuseContent.seekHelpDetails);
     } else {
@@ -325,14 +325,14 @@ export class SafetyConcernHelpers {
       }
       await page.click(inputIDs.seekHelpYes);
       await Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukLabel}:text-is("${ChildSafetyConcernsCommonContent.seekHelpBody1}")`,
-          1,
+        page,
+        `${Selectors.GovukLabel}:text-is("${ChildSafetyConcernsCommonContent.seekHelpBody1}")`,
+        1,
       );
       await Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukBody}:text-is("${ChildSafetyConcernsCommonContent.seekHelpBody2}")`,
-          1,
+        page,
+        `${Selectors.GovukBody}:text-is("${ChildSafetyConcernsCommonContent.seekHelpBody2}")`,
+        1,
       );
       await page.fill(inputIDs.seekHelpDetails, abuseContent.seekHelpDetails);
     } else {

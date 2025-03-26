@@ -74,7 +74,7 @@ export class StartPage {
     accessibilityTest,
   }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
-        `${Selectors.GovukHeadingXL}:text-is("${StartContent.pageTitle_alt}"), ${Selectors.GovukHeadingXL}:text-is("${StartContent.pageTitle}")`,
+      `${Selectors.GovukHeadingXL}:text-is("${StartContent.pageTitle_alt}"), ${Selectors.GovukHeadingXL}:text-is("${StartContent.pageTitle}")`,
     );
     await Promise.all([
       Helpers.checkGroup(

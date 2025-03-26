@@ -43,7 +43,7 @@ export class PsychologicalAbusePage {
 
   private static async checkPageLoads({
     page,
-    accessibilityTest
+    accessibilityTest,
   }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.GovukHeadingXL}:text-is("${PsychologicalAbuseContent.pageTitle}")`,

@@ -45,7 +45,7 @@ export class ForcedMarriageProtectionOrderDetailsPage {
 
   private static async checkPageLoads({
     page: page,
-    accessibilityTest: accessibilityTest
+    accessibilityTest: accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.p}:text-is("${ForcedMarriageProtectionOrderDetailsContent.p}")`,

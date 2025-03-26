@@ -40,7 +40,7 @@ export class FinancialAbuseYourselfPage {
 
   private static async checkPageLoads({
     page,
-    accessibilityTest
+    accessibilityTest,
   }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.GovukHeadingXL}:text-is("${FinancialAbuseContent.pageTitle}")`,

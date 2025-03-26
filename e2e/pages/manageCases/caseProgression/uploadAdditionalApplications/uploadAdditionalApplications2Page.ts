@@ -173,7 +173,7 @@ export class UploadAdditionalApplications2Page {
       ]);
     }
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page)
+      await AccessibilityTestHelper.run(page);
     }
   }
 
