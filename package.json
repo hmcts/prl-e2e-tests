@@ -37,6 +37,7 @@
     "test:manageCasesFirefox": "yarn playwright install firefox && yarn playwright test e2e/tests/manageCases --project firefox --grep @smoke",
     "test:manageCasesSafari": "yarn playwright install webkit && yarn playwright test e2e/tests/manageCases --project webkit --grep @smoke",
     "test:manageCasesAccessibility": "yarn playwright install && yarn playwright test e2e/tests/manageCases --project chromium --grep @accessibility",
+    "test:manageCasesVisual": "yarn playwright install && yarn playwright test e2e/tests/manageCases --project chromium --grep @visual",
     "test:citizenSmoke": "yarn playwright install && yarn playwright test e2e/tests/citizen --project chromium --grep @smoke",
     "test:citizenFrontendChrome": "yarn playwright install && yarn playwright test e2e/tests/citizen --project chromium --grep @nightly",
     "test:citizenFrontendFirefox": "yarn playwright install firefox && yarn playwright test e2e/tests/citizen --project firefox --grep @smoke",
