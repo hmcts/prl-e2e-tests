@@ -17,7 +17,6 @@ export class DraftAnOrder20Page {
     orderType: OrderType,
     yesToAll: boolean,
     howLongWillOrderBeInForce: HowLongWillTheOrderBeInForce,
-    willAllPartiesBeAttendingHearing: boolean,
     accessibilityTest: boolean,
     checkPdf: boolean,
   ): Promise<void> {
@@ -28,7 +27,6 @@ export class DraftAnOrder20Page {
         orderType,
         yesToAll,
         howLongWillOrderBeInForce,
-        willAllPartiesBeAttendingHearing,
       );
     }
     await this.continue(page);
@@ -50,7 +48,7 @@ export class DraftAnOrder20Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.headingH3}:text-is("${orderTypesMap.get(orderType)?.journeyName}")`,
+        `${Selectors.headingH3}:text-is("${orderTypesMap.get(orderType)}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -80,16 +78,13 @@ export class DraftAnOrder20Page {
     orderType: OrderType,
     yesToAll: boolean,
     howLongWillOrderBeInForce: HowLongWillTheOrderBeInForce,
-    willAllPartiesBeAttendingHearing: boolean,
   ): Promise<void> {
     switch (orderType) {
       case "nonMolestation":
         await NonMolestationOrder20Page.checkPdfContent(
           page,
-          orderType,
           yesToAll,
           howLongWillOrderBeInForce,
-          willAllPartiesBeAttendingHearing,
         );
         break;
       case "parentalResponsibility":
