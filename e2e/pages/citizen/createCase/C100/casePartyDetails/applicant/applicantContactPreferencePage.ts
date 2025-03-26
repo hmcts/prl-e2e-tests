@@ -102,7 +102,7 @@ export class ApplicantContactPreferencePage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page); //#TODO Commented out until ticket-6591 is complete
+      //await AccessibilityTestHelper.run(page); //#TODO Commented out until PRL-6591 is complete
     }
   }
   private static async triggerErrorMessages(page: Page): Promise<void> {
