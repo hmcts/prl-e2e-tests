@@ -184,7 +184,7 @@ export enum CaJourneyEmergencyProtectionReviewContent {
   span_35 = "Are any of the children the subject of a child protection plan?",
   span_36 = "Do you or any respondents have other children who are not part of this application?",
   span_37 = "Do the other people named in this application (the respondents) know any of your contact details?",
-  span_38 = "Do you want to keep your contact details private from the other people named in the application (the respondents)?",
+  span_38 = "Do the other people named in the application (the respondents) know any contact details of exampleText exampleText?",
   span_39 = "Have you changed your name?",
   span_40 = "Contact details of  exampleText exampleText",
   span_41 = "Can the court leave you a voicemail?",
