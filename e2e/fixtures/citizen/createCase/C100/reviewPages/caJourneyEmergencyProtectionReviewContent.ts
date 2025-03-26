@@ -157,7 +157,7 @@ export enum CaJourneyEmergencyProtectionReviewContent {
   span_8 = "Are the children involved in any emergency protection, care or supervision proceedings (or have they been)?",
   span_9 = "Have the children been involved in a court case?",
   span_10 = "Have you had a court order made for your protection?",
-  span_11 = "Provide details of court cases you or the children have been involved in",
+  span_11 = "Provide details of the order that you (the applicant) or the children have been involved in (optional)",
   span_12 = "Child Arrangements Order",
   span_13 = "Emergency Protection Order",
   span_14 = "Supervision Order",

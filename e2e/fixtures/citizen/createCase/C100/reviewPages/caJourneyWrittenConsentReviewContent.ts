@@ -157,7 +157,7 @@ export enum CaJourneyWrittenConsentReviewContent {
   span_22 = "exampleText exampleText's living arrangements",
   span_23 = "Have the children been involved in a court case?",
   span_24 = "Have you had a court order made for your protection?",
-  span_25 = "Provide details of court cases you or the children have been involved in",
+  span_25 = "Provide details of the order that you (the applicant) or the children have been involved in (optional)",
   span_26 = "Child Arrangements Order",
   span_27 = "Emergency Protection Order",
   span_28 = "Supervision Order",
