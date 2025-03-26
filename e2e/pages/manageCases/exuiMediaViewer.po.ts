@@ -9,7 +9,7 @@ interface ClippingCoords {
 
 export const clippingCoords = {
   fullPage: { x: -1000, y: 0, width: 1920, height: 1080 },
-  centeredPageWithoutToolbar: { x: 500, y: 300, width: 900, height: 1080 },
+  centeredPageWithoutToolbar: { x: 500, y: 80, width: 900, height: 1080 },
 };
 
 export class ExuiMediaViewerPage {
@@ -35,10 +35,9 @@ export class ExuiMediaViewerPage {
     await expect
       .poll(
         async () => {
-          const totalPages = await this.getNumberOfPages();
-          return totalPages;
+          return await this.getNumberOfPages();
         },
-        { timeout: 10_000 },
+        { timeout: 15_000 },
       )
       .toBeGreaterThan(0);
   }
@@ -50,12 +49,16 @@ export class ExuiMediaViewerPage {
   }
 
   public async runVisualTestOnAllPages(
+    page: Page,
+    screenShotName: string,
     clip: ClippingCoords = clippingCoords.fullPage,
   ): Promise<void> {
     await this.waitForLoad();
     const totalPages = await this.getNumberOfPages();
+    // zoom out to be able to capture all the page
+    await page.click("#mvMinusBtn");
     for (let i = 0; i < totalPages; i++) {
-      await expect(this.page).toHaveScreenshot({
+      await expect(this.page).toHaveScreenshot(`${screenShotName}-${i}.png`, {
         clip: clip,
         maxDiffPixelRatio: 0.02,
       });

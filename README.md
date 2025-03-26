@@ -70,6 +70,7 @@ We use the following test tags to categorise and manage our test suite:
 - `@regression`: For tests that should only be run as part of major regression testing (e.g., releases or significant changes).
 - `@accessibility`: For tests utilising axe-core to check accessibility.
 - `@errorMessage`: For tests that trigger and verify error messages.
+- `@visual`: For tests that use screenshots for PDF comparison
 
 #### Tagging Rules
 

@@ -26,7 +26,7 @@ export class ParentalResponsibilityOrder8Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.headingH3}:text-is("${orderTypesMap.get("parentalResponsibility")?.journeyName}")`,
+        `${Selectors.headingH3}:text-is("${orderTypesMap.get("parentalResponsibility")}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(

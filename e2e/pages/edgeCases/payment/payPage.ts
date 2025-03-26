@@ -38,8 +38,11 @@ export class PayPage {
     page,
     accessibilityTest,
   }: PayPageOptions): Promise<void> {
-    const formattedExpiryDateString = Helpers.getFormattedCardExpiryDate(10, new Date().getFullYear() + 2);
-    const [month, year] = formattedExpiryDateString.split('/');
+    const formattedExpiryDateString = Helpers.getFormattedCardExpiryDate(
+      10,
+      new Date().getFullYear() + 2,
+    );
+    const [month, year] = formattedExpiryDateString.split("/");
     const formattedExpiryDate: FormattedExpiryDateType = { month, year };
 
     await this.checkPageLoads({
@@ -61,7 +64,10 @@ export class PayPage {
     }
   }
 
-  private static async fillInFields(page: Page, formattedExpiryDate: FormattedExpiryDateType): Promise<void> {
+  private static async fillInFields(
+    page: Page,
+    formattedExpiryDate: FormattedExpiryDateType,
+  ): Promise<void> {
     await page.fill(`${inputIds.card_no}`, PayContent.mockCardNumber);
     await page.fill(`${inputIds.expiry_month}`, formattedExpiryDate.month);
     await page.fill(`${inputIds.expiry_year}`, formattedExpiryDate.year);
