@@ -9,6 +9,7 @@ import orderEventDataPowerOfArrestDemo from "../../caseData/orderData/orderEvent
 import { Page } from "@playwright/test";
 import { solicitorCACaseAPIEvent, solicitorDACaseAPIEvent } from "../types.ts";
 import process from "node:process";
+import { PageFunction } from "playwright-core/types/structs";
 
 // Using "any" type below because it represents a large JSON object
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -43,29 +44,22 @@ export async function getData(
   url: string,
   headers: HeadersInit,
 ): Promise<string> {
-  const res = await page.evaluate(
+  return await retryEvaluate<string, { url: string; headers: HeadersInit }>(
+    page,
     async ({ url, headers }) => {
-      const getRes = await fetch(url, {
+      const res = await fetch(url, {
         method: "GET",
         headers,
         credentials: "same-origin",
       });
-      const resBody = await getRes.json();
-      if (
-        !resBody ||
-        (resBody.status !== undefined && resBody.status !== 200)
-      ) {
-        throw new Error(
-          `Failed to get event token. Status: ${resBody.status}, Error: ${resBody.error}, Callback Errors: ${resBody.callbackErrors}`,
-        );
-      } else {
-        return resBody;
+      if (!res.ok) {
+        throw new Error(`HTTP error ${res.status}`);
       }
+      const json = await res.json();
+      return json.event_token;
     },
     { url, headers },
   );
-  // default response status is undefined
-  return res.event_token;
 }
 
 /**
@@ -82,27 +76,25 @@ export async function postData(
   headers: HeadersInit,
   requestData: string,
 ): Promise<string> {
-  const res = await page.evaluate(
+  return await retryEvaluate<
+    string,
+    { url: string; headers: HeadersInit; requestData: string }
+  >(
+    page,
     async ({ url, headers, requestData }) => {
-      const postRes = await fetch(url, {
+      const res = await fetch(url, {
         method: "POST",
         body: requestData,
         headers,
       });
-      const resBody = await postRes.json();
-      if (resBody) {
-        return resBody;
+      if (!res.ok) {
+        throw new Error(`HTTP error ${res.status}`);
       }
+      const json = await res.json();
+      return json.id;
     },
     { url, headers, requestData },
   );
-  // default response status is undefined
-  if (!res || (res.status !== undefined && res.status !== 200)) {
-    throw new Error(
-      `Failed to get event token. Status: ${res.status}, Error: ${res.error}, Callback Errors: ${res.callbackErrors}`,
-    );
-  }
-  return res.id;
 }
 
 /**
@@ -207,4 +199,30 @@ export async function createBlankCase(
     submitEventHeaders,
     JSON.stringify(data),
   );
+}
+
+async function retryEvaluate<T, A>(
+  page: Page,
+  fn: PageFunction<A, T>, //fn: (arg: A) => Promise<T>,
+  arg: A,
+  maxRetries: number = 3,
+  delay: number = 500,
+): Promise<T> {
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    try {
+      return await page.evaluate(fn, arg);
+    } catch (error) {
+      if (attempt === maxRetries) {
+        console.error(
+          `Page evaluate failed on final attempt (attempt ${attempt})`,
+        );
+        throw error;
+      }
+      console.warn(
+        `Page evaluate failed (attempt ${attempt}), with ${error}, retrying in ${delay}ms`,
+      );
+      await page.waitForTimeout(delay);
+    }
+  }
+  throw new Error("Unexpected error occurred");
 }
