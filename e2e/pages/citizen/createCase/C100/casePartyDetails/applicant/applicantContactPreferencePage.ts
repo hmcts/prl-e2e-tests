@@ -3,7 +3,7 @@ import { CommonStaticText } from "../../../../../../common/commonStaticText.ts";
 import { Helpers } from "../../../../../../common/helpers.ts";
 import { Selectors } from "../../../../../../common/selectors.ts";
 import { ApplicantContactPreferenceContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/applicant/applicantContactPreferenceContent.ts";
-import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper.ts";
+// import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper.ts";
 
 enum inputIds {
   digitalPreference = "#applicantContactPreferences",

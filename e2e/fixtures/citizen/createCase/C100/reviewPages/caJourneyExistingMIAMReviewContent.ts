@@ -67,7 +67,7 @@ export enum CaJourneyExistingMIAMReviewContent {
   dt_16 = "Are any of the children the subject of a child protection plan?",
   dt_17 = "Do you or any respondents have other children who are not part of this application?",
   dt_18 = "Do the other people named in this application (the respondents) know any of your contact details?",
-  dt_19 = "Do the other people named in the application (the respondents) know any contact details of exampleText exampleText?",//"Do you want to keep your contact details private from the other people named in the application (the respondents)?",
+  dt_19 = "Do the other people named in the application (the respondents) know any contact details of exampleText exampleText?", //"Do you want to keep your contact details private from the other people named in the application (the respondents)?",
   dt_20 = "Have you changed your name?",
   dt_21 = "Contact details of exampleText exampleText",
   dt_22 = "Can the court leave you a voicemail?",
