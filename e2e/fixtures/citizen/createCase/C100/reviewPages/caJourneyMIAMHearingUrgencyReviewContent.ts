@@ -50,7 +50,7 @@ export enum CaJourneyMIAMHearingUrgencyReviewContent {
   dt_23 = "Are any of the children the subject of a child protection plan?",
   dt_24 = "Do you or any respondents have other children who are not part of this application?",
   dt_25 = "Do the other people named in this application (the respondents) know any of your contact details?",
-  dt_26 = "Do you want to keep your contact details private from the other people named in the application (the respondents)?",
+  dt_26 = "Do the other people named in the application (the respondents) know any contact details of exampleText exampleText?Fpr",
   dt_27 = "Have you changed your name?",
   dt_28 = "Place of birth",
   dt_29 = "Contact details of  exampleText exampleText",
