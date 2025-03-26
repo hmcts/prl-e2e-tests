@@ -268,7 +268,6 @@ export type solicitorCACaseAPIEvent =
 
 export type AdditionalApplicationType = "c2" | "other";
 
-
 export type EdgeCaseApplicationType =
   | "FGM"
   | "FMPO"
@@ -281,4 +280,3 @@ export type EdgeCaseApplicationType =
   | "ChangeOfChildSurname";
 
 export type SupportType = "reasonableAdjustment" | "languageInterpreter";
-

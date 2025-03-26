@@ -435,6 +435,7 @@ export class Helpers {
       );
     }
   }
+
   public static async clickTab(page: Page, tabName: string) {
     await page
       .getByRole("tab", {
@@ -443,6 +444,7 @@ export class Helpers {
       })
       .click();
   }
+
   public static async clickCheckbox(page: Page, label: string) {
     await page
       .getByRole("checkbox", {
@@ -468,5 +470,14 @@ export class Helpers {
       );
     }
     return caseNumber.match(/.{1,4}/g)!.join("-");
+  }
+
+  public static async openPdfLink(page: Page, linkLocator: Locator) {
+    const [pdfPage] = await Promise.all([
+      page.waitForEvent("popup"),
+      linkLocator.click(),
+    ]);
+    await pdfPage.waitForLoadState("domcontentloaded");
+    return pdfPage;
   }
 }

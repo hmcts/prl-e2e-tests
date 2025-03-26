@@ -35,7 +35,7 @@ export class EditAndApproveAnOrder21Page {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.headingH3}:text-is("${orderTypesMap.get(orderType)?.journeyName}")`,
+        `${Selectors.headingH3}:text-is("${orderTypesMap.get(orderType)}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
