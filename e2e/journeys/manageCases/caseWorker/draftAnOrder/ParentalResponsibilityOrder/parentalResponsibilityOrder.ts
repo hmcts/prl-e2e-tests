@@ -61,7 +61,6 @@ export class ParentalResponsibilityOrder {
       orderType,
       yesNoToAll,
       "noEndDate",
-      false,
       accessibilityTest,
       checkPdf,
     );

@@ -1,4 +1,4 @@
-import { Page, expect } from "@playwright/test";
+import { expect, Page } from "@playwright/test";
 import { Selectors } from "../../../common/selectors.ts";
 import AccessibilityTestHelper from "../../../common/accessibilityTestHelper.ts";
 import { Helpers } from "../../../common/helpers.ts";
