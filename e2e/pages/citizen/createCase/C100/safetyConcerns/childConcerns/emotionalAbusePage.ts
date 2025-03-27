@@ -7,6 +7,7 @@ import {
 import { Selectors } from "../../../../../../common/selectors";
 import { EmotionalAbuseContent } from "../../../../../../fixtures/citizen/createCase/C100/safetyConcerns/childConcerns/emotionalAbuseContent";
 import { SafetyConcernHelpers } from "../safetyConcernHelpers";
+import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper.ts";
 
 interface EmotionalAbusePageOptions {
   page: Page;
@@ -42,15 +43,20 @@ export class EmotionalAbusePage {
 
   private static async checkPageLoads({
     page,
+    accessibilityTest,
   }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.GovukHeadingXL}:text-is("${EmotionalAbuseContent.pageTitle}")`,
     );
     await SafetyConcernHelpers.checkStaticTextChild(page);
     await SafetyConcernHelpers.checkSidebarChild(page);
-    // if (accessibilityTest) {
-    //   await AccessibilityTestHelper.run(page); #TODO Commented out until ticket-6593 is complete
-    // }
+    if (accessibilityTest) {
+      await AccessibilityTestHelper.run(page, [
+        reportAbuseInputIDs.ongoingBehaviorYes,
+        reportAbuseInputIDs.seekHelpYes,
+        reportAbuseInputIDs.seekHelpNo,
+      ]); //false-positive (https://github.com/alphagov/govuk-frontend/issues/979, https://github.com/w3c/aria/issues/1404)
+    }
   }
 
   private static async fillInFields({

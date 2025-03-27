@@ -4,6 +4,7 @@ import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { internationalElementsParentsContent } from "../../../../../fixtures/citizen/createCase/C100/internationalElement/internationalElementsParentsContent";
 import { InternationalElementsStartContent } from "../../../../../fixtures/citizen/createCase/C100/internationalElement/internationalElementsStartContent";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 
 interface InternationalElementsParentsPageOptions {
   page: Page;
@@ -40,6 +41,7 @@ export class InternationalElementsParentsPage {
 
   private static async checkPageLoads({
     page: page,
+    accessibilityTest: accessibilityTest,
   }: Partial<InternationalElementsParentsPageOptions>): Promise<void> {
     if (!page) {
       throw new Error();
@@ -61,9 +63,9 @@ export class InternationalElementsParentsPage {
         Selectors.GovukLabel,
       ),
     ]);
-    // if (accessibilityTest) {
-    //   await AccessibilityTestHelper.run(page); #TODO Commented out until ticket-6600 is complete
-    // }
+    if (accessibilityTest) {
+      await AccessibilityTestHelper.run(page, [uniqueSelectors.yesRadio]);
+    }
   }
 
   private static async triggerErrorMessages({

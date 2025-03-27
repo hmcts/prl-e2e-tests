@@ -4,6 +4,7 @@ import { CitizensOtherProceedingsUniqueSelectors } from "../../../../../common/c
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { OccupationOrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/occupationOrderDetailsContent";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 
 interface OccupationOrderDetailsPageOptions {
   page: Page;
@@ -44,6 +45,7 @@ export class OccupationOrderDetailsPage {
 
   private static async checkPageLoads({
     page: page,
+    accessibilityTest: accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.p}:text-is("${OccupationOrderDetailsContent.p}")`,
@@ -104,9 +106,9 @@ export class OccupationOrderDetailsPage {
         2,
       ),
     ]);
-    // if (accessibilityTest) {
-    //   await AccessibilityTestHelper.run(page);
-    // }
+    if (accessibilityTest) {
+      await AccessibilityTestHelper.run(page);
+    }
   }
 
   private static async triggerErrorMessages(page: Page): Promise<void> {
