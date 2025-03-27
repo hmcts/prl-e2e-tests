@@ -326,7 +326,7 @@ test.describe("Manage cases case solicitor create case tests.", (): void => {
       yesNoHelpWithFees: false,
     });
   });
-  test(`Submit testing support case as a solicitor.
+  test(`Create case as a solicitor - intial screens only.
   @smoke`, async ({ page }): Promise<void> => {
     await SolicitorCreateInitial.createInitialCase({
       page: page,
