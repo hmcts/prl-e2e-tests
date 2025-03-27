@@ -63,7 +63,7 @@ export class InternationalElementsJurisdictionPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await AccessibilityTestHelper.run(page, [uniqueSelectors.yesRadio]);
     }
   }
 

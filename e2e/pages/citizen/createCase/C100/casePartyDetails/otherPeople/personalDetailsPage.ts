@@ -139,7 +139,10 @@ export class PersonalDetailsPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await AccessibilityTestHelper.run(page, [
+        inputIDs.yesNameChanged,
+        inputIDs.other,
+      ]); //false-positive (https://github.com/alphagov/govuk-frontend/issues/979, https://github.com/w3c/aria/issues/1404)
     }
   }
 

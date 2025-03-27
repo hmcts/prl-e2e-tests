@@ -137,7 +137,9 @@ export class RespondentDetailsAddressManualPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await AccessibilityTestHelper.run(page, [
+        UniqueSelectors.lessThan5YearsYes,
+      ]); //false-positive (https://github.com/alphagov/govuk-frontend/issues/979, https://github.com/w3c/aria/issues/1404)
     }
   }
 

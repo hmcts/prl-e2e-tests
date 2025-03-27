@@ -4,6 +4,7 @@ import { Helpers } from "../../../../../../common/helpers";
 import { Selectors } from "../../../../../../common/selectors";
 import { PreviousAbductionsContent } from "../../../../../../fixtures/citizen/createCase/C100/safetyConcerns/childConcerns/previousAbductionsContent";
 import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper.ts";
+import { reportAbuseInputIDs } from "../../../../../../common/commonUniqueSelectors.ts";
 enum inputIDs {
   abductionDescription = "#c1A_previousAbductionsShortDesc",
   radioYes = "#c1A_policeOrInvestigatorInvolved",
@@ -90,7 +91,12 @@ export class PreviousAbductionsPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await AccessibilityTestHelper.run(page, [
+        reportAbuseInputIDs.ongoingBehaviorYes,
+        reportAbuseInputIDs.seekHelpYes,
+        reportAbuseInputIDs.seekHelpNo,
+        inputIDs.radioYes,
+      ]); //false-positive (https://github.com/alphagov/govuk-frontend/issues/979, https://github.com/w3c/aria/issues/1404)
     }
   }
 

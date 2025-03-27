@@ -64,7 +64,7 @@ export class InternationalElementsParentsPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await AccessibilityTestHelper.run(page, [uniqueSelectors.yesRadio]);
     }
   }
 

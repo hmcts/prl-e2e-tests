@@ -84,7 +84,11 @@ export class MiamNoAccessToMediatorPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await AccessibilityTestHelper.run(page, [
+        uniqueSelectors.disabilityRadio,
+        uniqueSelectors.unableToConductWithin15DaysRadio,
+        uniqueSelectors.no15MilesRadio,
+      ]);
     }
   }
 

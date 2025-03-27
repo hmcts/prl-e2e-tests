@@ -77,7 +77,9 @@ export class MiamProvidingEvidenceDomesticAbusePage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await AccessibilityTestHelper.run(page, [
+        uniqueSelectors.canProvideEvidenceNo,
+      ]);
     }
   }
 
