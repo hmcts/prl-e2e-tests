@@ -7,7 +7,7 @@ import { ConfidentialityCheck1Content } from "../../../../fixtures/manageCases/c
 import {
   clippingCoords,
   ExuiMediaViewerPage,
-} from "../../exuiMediaViewer.po.ts";
+} from "../../../../common/exuiMediaViewer.po.ts";
 
 interface ConfidentialityCheck1PageParams {
   page: Page;
