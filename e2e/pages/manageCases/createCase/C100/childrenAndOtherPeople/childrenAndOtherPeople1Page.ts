@@ -95,7 +95,7 @@ export class ChildrenAndOtherPeople1Page {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page); //#TODO Disabled pending ticket EXUI-2720
+      await AccessibilityTestHelper.run(page);
     }
   }
 

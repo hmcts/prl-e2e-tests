@@ -91,7 +91,7 @@ export class ChildDetailsRevised1Page {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page); //#TODO: Fix when EXUI-2718 is completed.
+      await AccessibilityTestHelper.run(page);
     }
   }
 

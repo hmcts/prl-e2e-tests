@@ -64,7 +64,7 @@ export class InternationalElementsParentsPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page); //#TODO Commented out until PRL-6600 is complete
+      await AccessibilityTestHelper.run(page);
     }
   }
 

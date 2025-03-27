@@ -84,7 +84,7 @@ export class MiamNoAccessToMediatorPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page); //#TODO: Re-enable when PRL-6521 is completed. (rerun 20/01/25, issue still exists)
+      await AccessibilityTestHelper.run(page);
     }
   }
 

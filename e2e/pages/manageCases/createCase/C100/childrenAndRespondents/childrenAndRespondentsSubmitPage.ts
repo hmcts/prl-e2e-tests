@@ -53,7 +53,7 @@ export class ChildrenAndRespondentsSubmitPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page); //#TODO Disabled pending ticket EXUI-2719
+      await AccessibilityTestHelper.run(page);
     }
   }
 
