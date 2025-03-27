@@ -96,7 +96,10 @@ export class ApplicantPersonalDetailsPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page, [inputIds.changeNameYes, inputIds.identifyOther]); //false-positive (https://github.com/alphagov/govuk-frontend/issues/979, https://github.com/w3c/aria/issues/1404)
+      await AccessibilityTestHelper.run(page, [
+        inputIds.changeNameYes,
+        inputIds.identifyOther,
+      ]); //false-positive (https://github.com/alphagov/govuk-frontend/issues/979, https://github.com/w3c/aria/issues/1404)
     }
   }
   private static async triggerErrorMessages(page: Page): Promise<void> {

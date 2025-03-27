@@ -101,7 +101,10 @@ export class StartPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page, [inputIDs.yes, alternativeInputIDs.yes]); //false-positive (https://github.com/alphagov/govuk-frontend/issues/979, https://github.com/w3c/aria/issues/1404)
+      await AccessibilityTestHelper.run(page, [
+        inputIDs.yes,
+        alternativeInputIDs.yes,
+      ]); //false-positive (https://github.com/alphagov/govuk-frontend/issues/979, https://github.com/w3c/aria/issues/1404)
     }
   }
 

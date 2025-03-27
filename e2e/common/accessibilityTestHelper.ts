@@ -27,8 +27,8 @@ export class AxeTest {
           console.log(`${violation.id}: ${violation.description}`);
           console.log(`Impact: ${violation.impact}`);
           console.log(
-              `Affected nodes:`,
-              violation.nodes.map((node) => node.html).join("\n"),
+            `Affected nodes:`,
+            violation.nodes.map((node) => node.html).join("\n"),
           );
         });
       }
