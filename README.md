@@ -101,18 +101,22 @@ We use the following test tags to categorise and manage our test suite:
 - [How to use our helper functions](https://cjscommonplatform.sharepoint.com/sites/PrivateLawQA/SitePages/Helper-Functions.aspx)
 - [Testing endpoints used in our repo](https://cjscommonplatform.sharepoint.com/sites/PrivateLawQA/SitePages/Testing-endpoints.aspx)
 - [Using azure secrets](https://cjscommonplatform.sharepoint.com/sites/PrivateLawQA/SitePages/Using-azure-secrets.aspx)
-- 
-##  Accessibility Testing
+-
+
+## Accessibility Testing
+
 `AxeTest` runs accessibility checks using [Axe Core](https://www.deque.com/axe/) in Playwright.
 
 ### Usage:
+
 ```typescript
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 
 if (accessibilityTest) {
-   await AccessibilityTestHelper.run(page, [elements-to-exclude]); //reason to exclude element or bug ticket reference
+  await AccessibilityTestHelper.run(page, [elements - to - exclude]); //reason to exclude element or bug ticket reference
 }
 ```
+
 **Note**: if you exclude an element, ensure there is a comment explaining why it is excluded or a bug ticket reference.
 
 ## Visual Testing
