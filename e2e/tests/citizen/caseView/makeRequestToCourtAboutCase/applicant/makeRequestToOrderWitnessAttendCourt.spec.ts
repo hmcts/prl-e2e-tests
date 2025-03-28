@@ -3,7 +3,7 @@ import Config from "../../../../../config.ts";
 import config from "../../../../../config.ts";
 import createDaCitizenCourtNavCase from "../../../../../common/caseHelpers/citizenDACaseCreateHelper.ts";
 import { Helpers } from "../../../../../common/helpers.ts";
-import { MakeRequestToCourtAboutCase } from "../../../../../journeys/citizen/caseView/makeRequestToCourtAboutCase/applicant/makeRequestToCourtAboutCase.ts";
+import { RequestToOrderWitnessToAttendCourt } from "../../../../../journeys/citizen/caseView/makeRequestToCourtAboutCase/applicant/requestToOrderWitnessToAttendCourt.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
@@ -25,13 +25,18 @@ test.describe("Applicant Make a request to order a witness to attend court tests
     page,
     browser,
   }): Promise<void> => {
-    await MakeRequestToCourtAboutCase.makeRequestToCourtAboutCase({
-      page: page,
-      browser: browser,
-      caseRef: ccdRef,
-      accessibilityTest: true,
-      isApplicant: true,
-      applicationSubmittedBy: "Citizen",
-    });
+    await RequestToOrderWitnessToAttendCourt.requestToOrderWitnessToAttendCourt(
+      {
+        page: page,
+        browser: browser,
+        caseRef: ccdRef,
+        accessibilityTest: false,
+        isApplicant: true,
+        alreadyCompletedFP25: true,
+        haveSupportingDocumentsUpload: true,
+        reasonForUrgency: true,
+        applicationSubmittedBy: "Citizen",
+      },
+    );
   });
 });

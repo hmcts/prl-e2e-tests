@@ -1,4 +1,4 @@
-export enum RequestToOrderWitnessContent4 {
+export enum RequestToOrderWitnessContent3 {
   GovukCaptionL = "Make a request to order a witness to attend court",
   GovukHeadingL = "Upload your application",
   GovukBody = "If you are uploading a paper copy of the application, make sure this has been scanned in clearly and saved in a suitable format such as PDF.",

@@ -1,16 +1,15 @@
 import { Browser, Page } from "@playwright/test";
-import { ListOfApplications1Page } from "../../../../../pages/citizen/caseView/makeRequestToCourtAboutCase/respondent/listOfApplications1Page.ts";
-import { ListOfApplications2Page } from "../../../../../pages/citizen/caseView/makeRequestToCourtAboutCase/respondent/listOfApplications2Page.ts";
+import { ListOfApplications1Page } from "../../../../../pages/citizen/caseView/makeRequestToCourtAboutCase/applicant/listOfApplications1Page.ts";
+import { ListOfApplications2Page } from "../../../../../pages/citizen/caseView/makeRequestToCourtAboutCase/applicant/listOfApplications2Page.ts";
 import { ActivateCase, CaseUser } from "../../../activateCase/activateCase.ts";
 import { applicationSubmittedBy } from "../../../../../common/types.ts";
-import { RequestToOrderWitnessToAttendCourtPage1 } from "../../../../../pages/citizen/caseView/makeRequestToCourtAboutCase/respondent/requestToOrderWitnessToAttendCourtPage1.ts";
-import { RequestToOrderWitnessToAttendCourtPage2 } from "../../../../../pages/citizen/caseView/makeRequestToCourtAboutCase/respondent/requestToOrderWitnessToAttendCourtPage2.ts";
-import { RequestToOrderWitnessToAttendCourtPage4 } from "../../../../../pages/citizen/caseView/makeRequestToCourtAboutCase/respondent/requestToOrderWitnessToAttendCourtPage4.ts";
-import { RequestToOrderWitnessToAttendCourtPage5 } from "../../../../../pages/citizen/caseView/makeRequestToCourtAboutCase/respondent/requestToOrderWitnessToAttendCourtPage5.ts";
-import { RequestToOrderWitnessToAttendCourtPage6 } from "../../../../../pages/citizen/caseView/makeRequestToCourtAboutCase/respondent/requestToOrderWitnessToAttendCourtPage6.ts";
-import { RequestToOrderWitnessToAttendCourtPage7 } from "../../../../../pages/citizen/caseView/makeRequestToCourtAboutCase/respondent/requestToOrderWitnessToAttendCourtPage7.ts";
-import { RequestToOrderWitnessToAttendCourtCYA } from "../../../../../pages/citizen/caseView/makeRequestToCourtAboutCase/respondent/requestToOrderWitnessToAttendCourtCYA.ts";
-import { RequestToOrderWitnessToAttendCourtPage3 } from "../../../../../pages/citizen/caseView/makeRequestToCourtAboutCase/respondent/requestToOrderWitnessToAttendCourtPage3.ts";
+import { RequestToOrderWitnessToAttendCourtPage1 } from "../../../../../pages/citizen/caseView/makeRequestToCourtAboutCase/applicant/requestToOrderWitnessToAttendCourtPage1.ts";
+import { RequestToOrderWitnessToAttendCourtPage2 } from "../../../../../pages/citizen/caseView/makeRequestToCourtAboutCase/applicant/requestToOrderWitnessToAttendCourtPage2.ts";
+import { RequestToOrderWitnessToAttendCourtPage3 } from "../../../../../pages/citizen/caseView/makeRequestToCourtAboutCase/applicant/requestToOrderWitnessToAttendCourtPage3.ts";
+import { RequestToOrderWitnessToAttendCourtPage5 } from "../../../../../pages/citizen/caseView/makeRequestToCourtAboutCase/applicant/requestToOrderWitnessToAttendCourtPage5.ts";
+import { RequestToOrderWitnessToAttendCourtPage6 } from "../../../../../pages/citizen/caseView/makeRequestToCourtAboutCase/applicant/requestToOrderWitnessToAttendCourtPage6.ts";
+import { RequestToOrderWitnessToAttendCourtCYA } from "../../../../../pages/citizen/caseView/makeRequestToCourtAboutCase/applicant/requestToOrderWitnessToAttendCourtCYA.ts";
+import { RequestToOrderWitnessToAttendCourtPage4 } from "../../../../../pages/citizen/caseView/makeRequestToCourtAboutCase/applicant/requestToOrderWitnessToAttendCourtPage4.ts";
 
 interface requestToOrderWitnessToAttendCourtParams {
   page: Page;
@@ -21,7 +20,6 @@ interface requestToOrderWitnessToAttendCourtParams {
   applicationSubmittedBy: applicationSubmittedBy;
   alreadyCompletedFP25: boolean;
   haveSupportingDocumentsUpload: boolean;
-  usingHwf: boolean;
   reasonForUrgency: boolean;
 }
 
@@ -39,7 +37,6 @@ export class RequestToOrderWitnessToAttendCourt {
     applicationSubmittedBy,
     alreadyCompletedFP25,
     haveSupportingDocumentsUpload,
-    usingHwf,
     reasonForUrgency,
   }: requestToOrderWitnessToAttendCourtParams): Promise<void> {
     const caseUser: CaseUser = isApplicant ? "applicant" : "respondent";
@@ -71,27 +68,22 @@ export class RequestToOrderWitnessToAttendCourt {
       accessibilityTest,
       alreadyCompletedFP25,
     );
-    await RequestToOrderWitnessToAttendCourtPage3.requestToOrderWitnessToAttendCourtPage3(
-      page,
-      accessibilityTest,
-      usingHwf,
-    );
-    await RequestToOrderWitnessToAttendCourtPage4.uploadFP25page({
+    await RequestToOrderWitnessToAttendCourtPage3.uploadFP25page({
       page,
       accessibilityTest,
     });
-    await RequestToOrderWitnessToAttendCourtPage5.requestToOrderWitnessToAttendCourtPage5(
+    await RequestToOrderWitnessToAttendCourtPage4.requestToOrderWitnessToAttendCourtPage4(
       page,
       accessibilityTest,
       haveSupportingDocumentsUpload,
     );
-    await RequestToOrderWitnessToAttendCourtPage6.uploadSupportingDocumentsPage(
+    await RequestToOrderWitnessToAttendCourtPage5.uploadSupportingDocumentsPage(
       {
         page,
         accessibilityTest,
       },
     );
-    await RequestToOrderWitnessToAttendCourtPage7.requestToOrderWitnessToAttendCourtPage6(
+    await RequestToOrderWitnessToAttendCourtPage6.requestToOrderWitnessToAttendCourtPage6(
       page,
       accessibilityTest,
       reasonForUrgency,

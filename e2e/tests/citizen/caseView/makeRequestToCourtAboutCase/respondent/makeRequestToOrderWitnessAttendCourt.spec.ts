@@ -21,22 +21,25 @@ test.describe("Respondent Make a request to order a witness to attend court test
     );
   });
 
-  test("Respondent Make a request to order a witness to attend court page. @regression @accessibility @nightly", async ({
-    page,
-    browser,
-  }): Promise<void> => {
-    await RequestToOrderWitnessToAttendCourt.requestToOrderWitnessToAttendCourt(
-      {
-        page: page,
-        browser: browser,
-        caseRef: ccdRef,
-        accessibilityTest: false,
-        isApplicant: true,
-        alreadyCompletedFP25: true,
-        haveSupportingDocumentsUpload: true,
-        reasonForUrgency: true,
-        applicationSubmittedBy: "Citizen",
-      },
-    );
-  });
+  test(
+    "Respondent Make a request to order a witness to attend court page." +
+      "No Help With Fees." +
+      "Already Completed FP25 @regression @accessibility @nightly",
+    async ({ page, browser }): Promise<void> => {
+      await RequestToOrderWitnessToAttendCourt.requestToOrderWitnessToAttendCourt(
+        {
+          page: page,
+          browser: browser,
+          caseRef: ccdRef,
+          accessibilityTest: false,
+          isApplicant: false,
+          alreadyCompletedFP25: true,
+          haveSupportingDocumentsUpload: true,
+          usingHwf: false,
+          reasonForUrgency: true,
+          applicationSubmittedBy: "Citizen",
+        },
+      );
+    },
+  );
 });

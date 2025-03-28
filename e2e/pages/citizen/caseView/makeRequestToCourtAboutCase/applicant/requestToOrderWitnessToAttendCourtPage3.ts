@@ -3,7 +3,7 @@ import { Selectors } from "../../../../../common/selectors.ts";
 import { Helpers } from "../../../../../common/helpers.ts";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
-import { RequestToOrderWitnessContent4 } from "../../../../../fixtures/citizen/caseView/makeRequestToCourtAboutCase/respondent/requestToOrderWitnessContent4.ts";
+import { RequestToOrderWitnessContent3 } from "../../../../../fixtures/citizen/caseView/makeRequestToCourtAboutCase/applicant/requestToOrderWitnessContent3.ts";
 import config from "../../../../../config.ts";
 
 interface UploadFP25 {
@@ -19,7 +19,7 @@ enum UniqueSelectors {
   documentUpload = "#awp-doc-form-upload",
 }
 
-export class RequestToOrderWitnessToAttendCourtPage4 {
+export class RequestToOrderWitnessToAttendCourtPage3 {
   public static async uploadFP25page({
     page,
     accessibilityTest,
@@ -34,43 +34,43 @@ export class RequestToOrderWitnessToAttendCourtPage4 {
   ): Promise<void> {
     await page
       .locator(Selectors.GovukCaptionL, {
-        hasText: RequestToOrderWitnessContent4.GovukCaptionL,
+        hasText: RequestToOrderWitnessContent3.GovukCaptionL,
       })
       .waitFor();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHeadingL}:text-is("${RequestToOrderWitnessContent4.GovukHeadingL}")`,
+        `${Selectors.GovukHeadingL}:text-is("${RequestToOrderWitnessContent3.GovukHeadingL}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukBody}:text-is("${RequestToOrderWitnessContent4.GovukBody}")`,
+        `${Selectors.GovukBody}:text-is("${RequestToOrderWitnessContent3.GovukBody}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHeadingS}:text-is("${RequestToOrderWitnessContent4.GovukHeadingS}")`,
+        `${Selectors.GovukHeadingS}:text-is("${RequestToOrderWitnessContent3.GovukHeadingS}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${RequestToOrderWitnessContent4.GovukHint}")`,
+        `${Selectors.GovukHint}:text-is("${RequestToOrderWitnessContent3.GovukHint}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukSummaryText}:text-is("${RequestToOrderWitnessContent4.GovukSummaryText}")`,
+        `${Selectors.GovukSummaryText}:text-is("${RequestToOrderWitnessContent3.GovukSummaryText}")`,
         1,
       ),
       await page.click(
-        `${Selectors.GovukSummaryText}:text-is("${RequestToOrderWitnessContent4.GovukSummaryText}")`,
+        `${Selectors.GovukSummaryText}:text-is("${RequestToOrderWitnessContent3.GovukSummaryText}")`,
       ),
     ]);
     await Helpers.checkGroup(
       page,
       5,
-      RequestToOrderWitnessContent4,
+      RequestToOrderWitnessContent3,
       `GovukDetailsText`,
       `${Selectors.li}`,
     );
@@ -85,11 +85,11 @@ export class RequestToOrderWitnessToAttendCourtPage4 {
     await fileInput.setInputFiles(config.testPdfFile);
 
     await page.click(
-      `${Selectors.GovukButton}:text-is("${RequestToOrderWitnessContent4.uploadButton}")`,
+      `${Selectors.GovukButton}:text-is("${RequestToOrderWitnessContent3.uploadButton}")`,
     );
     await Helpers.checkVisibleAndPresent(
       page,
-      `${Selectors.a}:text-is("${RequestToOrderWitnessContent4.removeButton}")`,
+      `${Selectors.a}:text-is("${RequestToOrderWitnessContent3.removeButton}")`,
       1,
     );
     await page.click(
