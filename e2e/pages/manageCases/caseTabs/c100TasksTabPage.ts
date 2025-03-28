@@ -26,21 +26,21 @@ export class C100TasksTabPage {
     accessibilityTest: boolean,
   ): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.h2}:text-is("${C100TasksTabContent.subTitle1}")`,
+      `${Selectors.h2}:text-is("${C100TasksTabContent.subTitleW1}")`,
     );
     await Promise.all([
       await Helpers.checkGroup(
         page,
         8,
         C100TasksTabContent,
-        "subTitle",
+        "subTitleW",
         `${Selectors.h2}`,
       ),
       await Helpers.checkGroup(
         page,
         16,
         C100TasksTabContent,
-        "link",
+        "linkW",
         `${IndividualSelectors.links}`,
       ),
     ]);

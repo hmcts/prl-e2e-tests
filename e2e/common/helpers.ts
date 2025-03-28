@@ -56,7 +56,7 @@ export class Helpers {
   ): Promise<void> {
     await page.waitForSelector(`.mat-tab-label-content:text-is("Tasks")`);
     await page.click(
-      `${Selectors.markdown} > ${Selectors.div} > ${Selectors.p} > ${Selectors.a}:text-is("${event}")`,
+      `${Selectors.markdown} > ${Selectors.div} > ${Selectors.p} > ${Selectors.a}:has-text("${event}")`,
     );
   }
 
