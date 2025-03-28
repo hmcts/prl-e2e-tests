@@ -1,8 +1,9 @@
 import { Cookie, expect, Page } from "@playwright/test";
-import { existsSync, readFileSync } from "fs";
+import fs, { existsSync, readFileSync } from "fs";
 import Config from "../../config.ts";
 import { setupUser } from "./idamCreateCitizenUserApiHelper.ts";
 import { UserCredentials, UserLoginInfo } from "../types.ts";
+import config from "../../config.ts";
 
 export class IdamLoginHelper {
   private static fields: UserLoginInfo = {
@@ -58,6 +59,7 @@ export class IdamLoginHelper {
 
       if (userType !== "citizen") {
         await page.context().storageState({ path: sessionPath });
+        await this.addAnalyticsCookie(sessionPath);
       }
     }
   }
@@ -84,17 +86,26 @@ export class IdamLoginHelper {
   public static async signInCitizenUser(
     page: Page,
     application: string,
-  ): Promise<void> {
+    returnUserInfo: boolean = false,
+  ): Promise<{
+    email: string;
+    password: string;
+    id: string;
+    forename: string;
+    surname: string;
+  } | void> {
     const token = process.env.CITIZEN_CREATE_USER_BEARER_TOKEN as string;
     if (!token) {
       console.error("Bearer token is not defined in the environment variables");
       return;
     }
+
     const userInfo = await setupUser(token);
     if (!userInfo) {
       console.error("Failed to set up citizen user");
       return;
     }
+
     await this.signIn(
       page,
       userInfo.email,
@@ -102,7 +113,12 @@ export class IdamLoginHelper {
       application,
       "citizen",
     );
+
+    if (returnUserInfo) {
+      return userInfo;
+    }
   }
+
   private static isSessionValid(path: string): boolean {
     try {
       const data = JSON.parse(readFileSync(path, "utf-8"));
@@ -114,6 +130,32 @@ export class IdamLoginHelper {
       return expiry.getTime() - Date.now() > 4 * 60 * 60 * 1000;
     } catch (error) {
       throw new Error(`Could not read session data: ${error} for ${path}`);
+    }
+  }
+
+  private static async addAnalyticsCookie(sessionPath: string): Promise<void> {
+    try {
+      const domain = (config.manageCasesBaseURL as string).replace(
+        "https://",
+        "",
+      );
+      const state = JSON.parse(fs.readFileSync(sessionPath, "utf-8"));
+      const userId = state.cookies.find(
+        (cookie: Cookie) => cookie.name === "__userid__",
+      )?.value;
+      state.cookies.push({
+        name: `hmcts-exui-cookies-${userId}-mc-accepted`,
+        value: "true",
+        domain: `${domain}`,
+        path: "/",
+        expires: -1,
+        httpOnly: false,
+        secure: false,
+        sameSite: "Lax",
+      });
+      fs.writeFileSync(sessionPath, JSON.stringify(state, null, 2));
+    } catch (error) {
+      throw new Error(`Failed to read or write session data: ${error}`);
     }
   }
 }

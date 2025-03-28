@@ -46,7 +46,7 @@ export class EditAndApproveAnOrder {
       willAllPartiesAttendHearing: true,
       browser: browser,
       caseRef: caseRef,
-      checkPdf: true,
+      checkPdf: false,
     });
     page = await Helpers.openNewBrowserWindow(browser, "judge");
     await Helpers.goToCase(
@@ -57,7 +57,7 @@ export class EditAndApproveAnOrder {
     );
     await Helpers.assignTaskToMeAndTriggerNextSteps(
       page,
-      `${orderTypesMap.get(orderType)?.journeyName}`,
+      `${orderTypesMap.get(orderType)}`,
       "Review and Approve Legal rep Order",
     );
     await EditAndApproveAnOrder2Page.editAndApproveAnOrder2Page(

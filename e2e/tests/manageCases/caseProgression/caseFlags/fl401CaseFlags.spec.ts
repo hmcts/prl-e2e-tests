@@ -14,7 +14,6 @@ test.describe("Case flags tests for DA case tests.", () => {
     await page.goto(Config.manageCasesBaseURLCase);
     ccdRef =
       await SolicitorDACaseCreator.createCaseStatementOfTruthAndSubmit(page);
-    console.log(ccdRef);
     await Helpers.goToCase(
       page,
       config.manageCasesBaseURLCase,
@@ -31,6 +30,7 @@ test.describe("Case flags tests for DA case tests.", () => {
       page: page,
       browser: browser,
       caseRef: ccdRef,
+      caseType: "FL401",
       supportType: "reasonableAdjustment",
       isApproved: true,
       withTranslation: true,
@@ -46,6 +46,7 @@ test.describe("Case flags tests for DA case tests.", () => {
       page: page,
       browser: browser,
       caseRef: ccdRef,
+      caseType: "FL401",
       supportType: "languageInterpreter",
       isApproved: false,
       withTranslation: true,
@@ -61,6 +62,7 @@ test.describe("Case flags tests for DA case tests.", () => {
       page: page,
       browser: browser,
       caseRef: ccdRef,
+      caseType: "FL401",
       supportType: "reasonableAdjustment",
       isApproved: false,
       withTranslation: false,
@@ -76,6 +78,7 @@ test.describe("Case flags tests for DA case tests.", () => {
       page: page,
       browser: browser,
       caseRef: ccdRef,
+      caseType: "FL401",
       supportType: "languageInterpreter",
       isApproved: true,
       withTranslation: false,

@@ -6,7 +6,6 @@ import { EnglishMediaContentNoToAll } from "../../../../../fixtures/manageCases/
 import { EnglishMediaContentYesToAll } from "../../../../../fixtures/manageCases/createCase/C100/viewPDFApplication/englishMediaContentYesToAll";
 import { ViewPDFApplication1Content } from "../../../../../fixtures/manageCases/createCase/C100/viewPDFApplication/viewPDFApplication1Content";
 import { WelshMediaContent } from "../../../../../fixtures/manageCases/createCase/C100/viewPDFApplication/welshMediaContent";
-import { ExuiMediaViewerPage } from "../../../exuiMediaViewer.po.ts";
 
 enum englishNoSpanCounts {
   page1 = 18,
@@ -1239,8 +1238,8 @@ export class ViewPDFApplication1Page {
     ]);
   }
 
-  private static async visualCheckPDFContent(page: Page): Promise<void> {
-    const mediaViewerPage = new ExuiMediaViewerPage(page);
-    await mediaViewerPage.runVisualTestOnAllPages();
-  }
+  // private static async visualCheckPDFContent(page: Page): Promise<void> {
+  //   const mediaViewerPage = new ExuiMediaViewerPage(page);
+  //   await mediaViewerPage.runVisualTestOnAllPages();
+  // }
 }

@@ -1,5 +1,5 @@
 export enum FinancialOrderDetailsContent {
-  pageTitle = "Provide details of court cases you or the children have been involved in",
+  pageTitle = "Provide details of the order that you (the applicant) or the children have been involved in (optional)",
   p = "If you do not have the specific details, you can skip this section and proceed with the application.",
   GovukFieldsetLegend1 = "Financial Order",
   GovukFieldsetLegend2 = "What date was it made? (optional)",

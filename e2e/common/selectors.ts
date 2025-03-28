@@ -21,7 +21,9 @@ export enum Selectors {
   GovukFormGroup = ".govuk-form-group",
   GovukLabel = ".govuk-label",
   GovukLabelS = ".govuk-label--s",
+  GovukLabelXS = ".govuk-label--xs",
   GovukLabelM = ".govuk-label--m",
+  GovukLabelXL = ".govuk-label--xl",
   GovukInput = ".govuk-input",
   GovukTextarea = ".govuk-textarea",
   GovukSelect = ".govuk-select",
@@ -144,4 +146,8 @@ export enum Selectors {
   // XUI
   xuiSpinner = "xuilib-loading-spinner",
   xuiFilters = "exui-ccd-connector",
+
+  edgeCaseContinue = "#main-form-submit",
+
+  font = "font",
 }

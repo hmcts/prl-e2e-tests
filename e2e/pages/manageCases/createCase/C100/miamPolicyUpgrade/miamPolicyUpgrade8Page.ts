@@ -3,6 +3,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { MiamPolicyUpgrade8Content } from "../../../../../fixtures/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade8Content";
 import { Helpers } from "../../../../../common/helpers";
 import config from "../../../../../config";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 
 interface MiamPolicyUpgrade8PageOptions {
   page: Page;
@@ -12,6 +13,7 @@ interface MiamPolicyUpgrade8PageOptions {
 
 interface checkPageLoadsOptions {
   page: Page;
+  accessibilityTest: boolean;
 }
 
 interface fillInFieldsOptions {
@@ -29,9 +31,11 @@ export class MiamPolicyUpgrade8Page {
   public static async miamPolicyUpgrade8Page({
     page: page,
     errorMessaging: errorMessaging,
+    accessibilityTest: accessibilityTest,
   }: MiamPolicyUpgrade8PageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
+      accessibilityTest,
     });
     if (errorMessaging) {
       await this.triggerErrorMessages(page);
@@ -43,6 +47,7 @@ export class MiamPolicyUpgrade8Page {
 
   private static async checkPageLoads({
     page: page,
+    accessibilityTest: accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.h2}:text-is("${MiamPolicyUpgrade8Content.h2}")`,
@@ -72,9 +77,9 @@ export class MiamPolicyUpgrade8Page {
         `${Selectors.GovukFormLabel}`,
       ),
     ]);
-    // if (accessibilityTest) {
-    //   await AccessibilityTestHelper.run(page); TODO Commented out until ticket EXUI-2858 is complete
-    // }
+    if (accessibilityTest) {
+      await AccessibilityTestHelper.run(page);
+    }
   }
 
   private static async triggerErrorMessages(page: Page): Promise<void> {

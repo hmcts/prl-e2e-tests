@@ -4,6 +4,7 @@ import { reportAbuseInputIDs } from "../../../../../../common/commonUniqueSelect
 import { Selectors } from "../../../../../../common/selectors";
 import { PsychologicalAbuseContent } from "../../../../../../fixtures/citizen/createCase/C100/safetyConcerns/yourselfConcerns/psychologicalAbuseContent";
 import { SafetyConcernHelpers } from "../safetyConcernHelpers";
+import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper.ts";
 
 interface PsychologicalAbusePageOptions {
   page: Page;
@@ -39,15 +40,20 @@ export class PsychologicalAbuseYourselfPage {
 
   private static async checkPageLoads({
     page,
+    accessibilityTest,
   }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.GovukHeadingXL}:text-is("${PsychologicalAbuseContent.pageTitle}")`,
     );
     await SafetyConcernHelpers.checkStaticTextYourself(page);
     await SafetyConcernHelpers.checkSidebarYourself(page);
-    // if (accessibilityTest) {
-    //   await AccessibilityTestHelper.run(page); #TODO Commented out until ticket-6593 is complete
-    // }
+    if (accessibilityTest) {
+      await AccessibilityTestHelper.run(page, [
+        reportAbuseInputIDs.ongoingBehaviorYes,
+        reportAbuseInputIDs.seekHelpYes,
+        reportAbuseInputIDs.seekHelpNo,
+      ]); //false-positive (https://github.com/alphagov/govuk-frontend/issues/979, https://github.com/w3c/aria/issues/1404)
+    }
   }
 
   private static async fillInFields({

@@ -1,17 +1,21 @@
 import { Page } from "@playwright/test";
 import { Helpers } from "../../../../common/helpers.ts";
-import { SupportType } from "../../../../common/types.ts";
-import { Fl401RequestSupport1SupportForPage } from "../../../../pages/manageCases/caseProgression/caseFlags/fl401/fl401RequestSupport1SupportForPage.ts";
-import { Fl401RequestSupport1SupportTypePage } from "../../../../pages/manageCases/caseProgression/caseFlags/fl401/fl401RequestSupport1SupportTypePage.ts";
-import { Fl401RequestSupport1ReasonableAdjustmentPage } from "../../../../pages/manageCases/caseProgression/caseFlags/fl401/fl401RequestSupport1ReasonableAdjustmentPage.ts";
-import { Fl401RequestSupport1DocumentsInAlternativeFormatPage } from "../../../../pages/manageCases/caseProgression/caseFlags/fl401/fl401RequestSupport1DocumentsInAlternativeFormatPage.ts";
-import { Fl401RequestSupport1TellUsMoreAboutTheRequestPage } from "../../../../pages/manageCases/caseProgression/caseFlags/fl401/fl401RequestSupport1TellUsMoreAboutTheRequestPage.ts";
-import { Fl401RequestSupport1SubmitPage } from "../../../../pages/manageCases/caseProgression/caseFlags/fl401/fl401RequestSupport1SubmitPage.ts";
-import { Fl401RequestSupport1LanguageInterpreterPage } from "../../../../pages/manageCases/caseProgression/caseFlags/fl401/fl401RequestSupport1LanguageInterpreterPage.ts";
+import {
+  solicitorCaseCreateType,
+  SupportType,
+} from "../../../../common/types.ts";
+import { RequestSupportSupportForPage } from "../../../../pages/manageCases/caseProgression/caseFlags/requestSupportSupportForPage.ts";
+import { RequestSupportSupportTypePage } from "../../../../pages/manageCases/caseProgression/caseFlags/requestSupportSupportTypePage.ts";
+import { RequestSupportReasonableAdjustmentPage } from "../../../../pages/manageCases/caseProgression/caseFlags/requestSupportReasonableAdjustmentPage.ts";
+import { RequestSupportDocumentsInAlternativeFormatPage } from "../../../../pages/manageCases/caseProgression/caseFlags/requestSupportDocumentsInAlternativeFormatPage.ts";
+import { RequestSupportTellUsMoreAboutTheRequestPage } from "../../../../pages/manageCases/caseProgression/caseFlags/requestSupportTellUsMoreAboutTheRequestPage.ts";
+import { RequestSupportSubmitPage } from "../../../../pages/manageCases/caseProgression/caseFlags/requestSupportSubmitPage.ts";
+import { RequestSupportLanguageInterpreterPage } from "../../../../pages/manageCases/caseProgression/caseFlags/requestSupportLanguageInterpreterPage.ts";
 import { Selectors } from "../../../../common/selectors.ts";
 
 interface RequestSupportParams {
   page: Page;
+  caseType: solicitorCaseCreateType;
   supportType: SupportType;
   accessibilityTest: boolean;
 }
@@ -20,40 +24,43 @@ interface RequestSupportParams {
 export class RequestSupport {
   public static async requestSupport({
     page,
+    caseType,
     supportType,
     accessibilityTest,
   }: RequestSupportParams): Promise<void> {
     await Helpers.chooseEventFromDropdown(page, "Request support");
-    await Fl401RequestSupport1SupportForPage.fl401RequestSupport1SupportForPage(
+    await RequestSupportSupportForPage.requestSupportSupportForPage(
       page,
+      caseType,
       accessibilityTest,
     );
-    await Fl401RequestSupport1SupportTypePage.fl401RequestSupport1SupportTypePage(
+    await RequestSupportSupportTypePage.requestSupportSupportTypePage(
       page,
       supportType,
       accessibilityTest,
     );
     if (supportType === "reasonableAdjustment") {
-      await Fl401RequestSupport1ReasonableAdjustmentPage.fl401RequestSupport1ReasonableAdjustmentPage(
+      await RequestSupportReasonableAdjustmentPage.requestSupportReasonableAdjustmentPage(
         page,
         accessibilityTest,
       );
-      await Fl401RequestSupport1DocumentsInAlternativeFormatPage.fl401RequestSupport1DocumentsInAlternativeFormatPage(
+      await RequestSupportDocumentsInAlternativeFormatPage.requestSupportDocumentsInAlternativeFormatPage(
         page,
         accessibilityTest,
       );
     } else {
-      await Fl401RequestSupport1LanguageInterpreterPage.fl401RequestSupport1LanguageInterpreterPage(
+      await RequestSupportLanguageInterpreterPage.requestSupportLanguageInterpreterPage(
         page,
         accessibilityTest,
       );
     }
-    await Fl401RequestSupport1TellUsMoreAboutTheRequestPage.fl401RequestSupport1TellUsMoreAboutTheRequestPage(
+    await RequestSupportTellUsMoreAboutTheRequestPage.requestSupportTellUsMoreAboutTheRequestPage(
       page,
       accessibilityTest,
     );
-    await Fl401RequestSupport1SubmitPage.fl401RequestSupport1SubmitPage(
+    await RequestSupportSubmitPage.requestSupportSubmitPage(
       page,
+      caseType,
       supportType,
       accessibilityTest,
     );

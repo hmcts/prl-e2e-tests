@@ -58,7 +58,7 @@ export class DraftAnOrder4Page {
     accessibilityTest: boolean,
   ): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.headingH3}:text-is("${orderTypesMap.get(orderType)?.journeyName}")`,
+      `${Selectors.headingH3}:text-is("${orderTypesMap.get(orderType)}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(

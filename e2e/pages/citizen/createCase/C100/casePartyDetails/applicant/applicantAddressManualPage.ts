@@ -3,7 +3,7 @@ import { CommonStaticText } from "../../../../../../common/commonStaticText.ts";
 import { Helpers } from "../../../../../../common/helpers.ts";
 import { Selectors } from "../../../../../../common/selectors.ts";
 import { ApplicantAddressManualContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/applicant/applicantAddressManualContent.ts";
-// import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
+import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper.ts";
 
 interface applicantAddressManualOptions {
   page: Page;
@@ -62,7 +62,7 @@ export class ApplicantAddressManualPage {
     await Promise.all([
       Helpers.checkGroup(
         page,
-        7,
+        8,
         ApplicantAddressManualContent,
         "label",
         Selectors.GovukLabel,
@@ -74,7 +74,7 @@ export class ApplicantAddressManualPage {
       ),
     ]);
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page); //#TODO turn back on once Accessibility Issues: PRL-6590 has been fixed (rerun 20/01/25, issue still exists)
+      await AccessibilityTestHelper.run(page, [inputIds.addressHistoryYes]); //false-positive (https://github.com/alphagov/govuk-frontend/issues/979, https://github.com/w3c/aria/issues/1404)
     }
   }
   private static async triggerErrorMessages(page: Page): Promise<void> {

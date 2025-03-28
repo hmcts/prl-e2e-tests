@@ -67,7 +67,7 @@ export class ConfirmationPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.a}:has-text("${ConfirmationContent.notificationBanner}")`,
-        1, // bug   - waiting for locator('a:has-text("Please leave your feedback here(opens in a new tab).")').first()
+        1,
       ),
     ]);
     if (accessibilityTest) {

@@ -1,5 +1,5 @@
 export enum ProceedingDetailsContent {
-  h1 = "Provide details of court cases you or the children have been involved in",
+  h1 = "Which type of order have you (the applicant) or the children been involved in?",
   formHint1 = "Select all that apply to you or the children. If you have specific details, you will be able to provide that information shortly.",
   formHint2 = "Schedule 1 Children Act 1989",
   repeatedFormHint = "Section 8 Children Act 1989",

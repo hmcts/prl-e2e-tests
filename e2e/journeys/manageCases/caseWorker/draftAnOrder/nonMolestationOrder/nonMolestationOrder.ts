@@ -77,7 +77,6 @@ export class NonMolestationOrder {
       orderType,
       yesNoToAll,
       howLongWillOrderBeInForce,
-      willAllPartiesAttendHearing,
       accessibilityTest,
       checkPdf,
     );

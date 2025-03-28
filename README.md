@@ -42,20 +42,20 @@ To run the application on your pc, please ensure you have the following:
 
 Node.JS >v22.0.0
 
-### Running the application on local environment
+### Running the application locally.
 
 Please install the dependencies with the following cmd:
 
 `yarn setup`
 
-You will also need the config.ts file from a current developer, which should be located in e2e/config.ts, this file should **NEVER** be committed.
-
-### Running the application locally.
+This will run this [custom script](https://github.com/hmcts/prl-e2e-tests/blob/master/package.json#L31) defined in the package.json.
 
 Should you wish to run a test locally, I recommend using Intellij Aqua, and you can press the green play button against any of the tests defined in \_\_\_.test.ts.
 Should you wish to run in headed mode, you can select modify run configuration, and then change the playwright options, the following are recommended:
 `--project chromium --headed`
 This runs a test in Chrome, whilst headed.
+
+Should you need to change or create new azure secrets you can run the `get_secrets.sh` [script](https://github.com/hmcts/prl-e2e-tests/blob/master/scripts/get_secrets.sh) from your local prl-e2e-tests directory to generate a new .env file containing the new or updated secrets.
 
 ### Our Jenkins configuration
 
@@ -70,6 +70,7 @@ We use the following test tags to categorise and manage our test suite:
 - `@regression`: For tests that should only be run as part of major regression testing (e.g., releases or significant changes).
 - `@accessibility`: For tests utilising axe-core to check accessibility.
 - `@errorMessage`: For tests that trigger and verify error messages.
+- `@visual`: For tests that use screenshots for PDF comparison
 
 #### Tagging Rules
 
@@ -99,6 +100,24 @@ We use the following test tags to categorise and manage our test suite:
 
 - [How to use our helper functions](https://cjscommonplatform.sharepoint.com/sites/PrivateLawQA/SitePages/Helper-Functions.aspx)
 - [Testing endpoints used in our repo](https://cjscommonplatform.sharepoint.com/sites/PrivateLawQA/SitePages/Testing-endpoints.aspx)
+- [Using azure secrets](https://cjscommonplatform.sharepoint.com/sites/PrivateLawQA/SitePages/Using-azure-secrets.aspx)
+-
+
+## Accessibility Testing
+
+`AxeTest` runs accessibility checks using [Axe Core](https://www.deque.com/axe/) in Playwright.
+
+### Usage:
+
+```typescript
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
+
+if (accessibilityTest) {
+  await AccessibilityTestHelper.run(page, [elements - to - exclude]); //reason to exclude element or bug ticket reference
+}
+```
+
+**Note**: if you exclude an element, ensure there is a comment explaining why it is excluded or a bug ticket reference.
 
 ## Visual Testing
 

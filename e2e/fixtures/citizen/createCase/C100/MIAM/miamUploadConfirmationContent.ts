@@ -1,5 +1,5 @@
 export enum MiamUploadConfirmationContent {
-  pageTitle = "Upload your MIAM certificate",
+  pageTitle = "MIAM certificate upload complete",
   h3 = "Your MIAM certificate has been uploaded",
   h2 = "Your documents",
 }
