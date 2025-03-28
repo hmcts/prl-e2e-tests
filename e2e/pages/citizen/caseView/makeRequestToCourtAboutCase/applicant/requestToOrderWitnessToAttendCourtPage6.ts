@@ -58,9 +58,7 @@ export class RequestToOrderWitnessToAttendCourtPage6 {
     reasonForUrgency: boolean,
   ): Promise<void> {
     if (reasonForUrgency) {
-      console.log("Selecting Yes option...");
       await page.check(`${UniqueSelectors.urgentReason_Yes}`);
-      console.log("Yes option selected!");
       await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukLabel}:text-is("${RequestToOrderWitnessContent6.GovukLabel2}")`,
