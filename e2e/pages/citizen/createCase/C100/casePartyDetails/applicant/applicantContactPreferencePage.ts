@@ -3,6 +3,8 @@ import { CommonStaticText } from "../../../../../../common/commonStaticText.ts";
 import { Helpers } from "../../../../../../common/helpers.ts";
 import { Selectors } from "../../../../../../common/selectors.ts";
 import { ApplicantContactPreferenceContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/applicant/applicantContactPreferenceContent.ts";
+// import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper.ts";
+
 enum inputIds {
   digitalPreference = "#applicantContactPreferences",
   postPreference = "#applicantContactPreferences-2",
@@ -51,6 +53,7 @@ export class ApplicantContactPreferencePage {
   }
   private static async checkPageLoads({
     page,
+    accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.GovukHeadingXL}:has-text("${ApplicantContactPreferenceContent.pageTitle}")`,
@@ -98,9 +101,9 @@ export class ApplicantContactPreferencePage {
         1,
       ),
     ]);
-    // if (accessibilityTest) {
-    //   await AccessibilityTestHelper.run(page); #TODO Commented out until ticket-6591 is complete
-    // }
+    if (accessibilityTest) {
+      //await AccessibilityTestHelper.run(page); //#TODO Commented out until PRL-6591 is complete
+    }
   }
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(

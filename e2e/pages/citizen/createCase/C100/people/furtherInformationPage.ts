@@ -5,7 +5,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { yesNoDontKnow } from "../../../../../common/types";
 import { FurtherInformationContent } from "../../../../../fixtures/citizen/createCase/C100/people/furtherInformationContent";
 import { uniqueSelectors } from "../urgencyAndWithoutNotice/urgentFirstHearingPage";
-// import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 
 interface FurtherInformationPageOptions {
   page: Page;
@@ -99,11 +99,13 @@ export class FurtherInformationPage {
     if (c100PeopleYesNoDontKnow === "yes") {
       await page.click(radioIds.childrenKnownToSocialServices);
       await page.waitForSelector(
-        `${Selectors.GovukHint}:text-is("${FurtherInformationContent.hint1}")`,
+        `${Selectors.GovukLabel}:text-is("${FurtherInformationContent.hint1}")`,
       );
     }
     if (accessibilityTest) {
-      //await AccessibilityTestHelper.run(page); //#TODO turn back on once Accessibility Issues: PRL-6584 has been fixed (rerun 20/01/25, issue still exists)
+      await AccessibilityTestHelper.run(page, [
+        radioIds.childrenKnownToSocialServices,
+      ]); //false-positive (https://github.com/alphagov/govuk-frontend/issues/979, https://github.com/w3c/aria/issues/1404)
     }
   }
 

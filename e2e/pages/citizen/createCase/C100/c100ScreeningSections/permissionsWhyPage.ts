@@ -126,7 +126,7 @@ export class PermissionsWhyPage {
       3,
       PermissionsWhyContent,
       "details",
-      `${Selectors.GovukHint}`,
+      `${Selectors.GovukLabel}`,
     );
     for (const [key, textField] of Object.entries(inputIDs)) {
       const contentKey = key as keyof typeof PermissionsWhyContent;

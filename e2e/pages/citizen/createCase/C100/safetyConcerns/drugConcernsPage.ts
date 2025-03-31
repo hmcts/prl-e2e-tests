@@ -3,6 +3,7 @@ import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { DrugConcernsContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/drugConcernsContent";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 
 enum inputIDs {
   radioYes = "#c1A_otherConcernsDrugs",
@@ -49,6 +50,7 @@ export class DrugConcernsPage {
 
   private static async checkPageLoads({
     page,
+    accessibilityTest,
   }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.GovukHeadingXL}:text-is("${DrugConcernsContent.pageTitle}")`,
@@ -77,9 +79,9 @@ export class DrugConcernsPage {
         1,
       ),
     ]);
-    // if (accessibilityTest) {
-    //   await AccessibilityTestHelper.run(page); #TODO Commented out until ticket-6592 is complete
-    // }
+    if (accessibilityTest) {
+      await AccessibilityTestHelper.run(page, [inputIDs.radioYes]); //false-positive (https://github.com/alphagov/govuk-frontend/issues/979, https://github.com/w3c/aria/issues/1404)
+    }
   }
 
   private static async checkErrorMessaging(page: Page): Promise<void> {

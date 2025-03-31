@@ -38,7 +38,7 @@ export class NonMolestationOrder16Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.headingH3}:text-is("${orderTypesMap.get("nonMolestation")?.journeyName}")`,
+        `${Selectors.headingH3}:text-is("${orderTypesMap.get("nonMolestation")}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(

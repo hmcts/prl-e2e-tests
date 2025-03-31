@@ -1,5 +1,5 @@
 export enum EmergencyProtectionOrderDetailsContent {
-  pageTitle = "Provide details of court cases you or the children have been involved in",
+  pageTitle = "Provide details of the order that you (the applicant) or the children have been involved in (optional)",
   GovukFieldsetLegend1 = "Emergency Protection Order",
   GovukFieldsetLegend2 = "Is this a current order? (optional)",
   GovukFieldsetLegend3 = "What date did it end? (optional)",

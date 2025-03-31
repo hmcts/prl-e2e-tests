@@ -1,5 +1,5 @@
 export enum CommonReviewContent {
-  pageTitle = "Check your Answers",
+  pageTitle = "Check your answers to your C100 application",
   bodyL = "Please review your answers before you finish your application.",
   statementTitle = "Statement of Truth",
   confirmationHeading = "Confirm before you submit the application",

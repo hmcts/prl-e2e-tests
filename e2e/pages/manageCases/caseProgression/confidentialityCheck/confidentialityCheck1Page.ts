@@ -7,7 +7,7 @@ import { ConfidentialityCheck1Content } from "../../../../fixtures/manageCases/c
 import {
   clippingCoords,
   ExuiMediaViewerPage,
-} from "../../exuiMediaViewer.po.ts";
+} from "../../../../common/exuiMediaViewer.po.ts";
 
 interface ConfidentialityCheck1PageParams {
   page: Page;
@@ -175,9 +175,12 @@ export class ConfidentialityCheck1Page {
         })
         .click(),
     ]);
+    const pdfName: string = `${isApplicant ? "applicant" : "respondent"}-confidential-contact-details-notice`;
     await pdfPage.waitForLoadState();
     const mediaViewerPage = new ExuiMediaViewerPage(pdfPage);
     await mediaViewerPage.runVisualTestOnAllPages(
+      pdfPage,
+      pdfName,
       clippingCoords.centeredPageWithoutToolbar,
     );
   }

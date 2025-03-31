@@ -21,7 +21,7 @@ test.describe("Confidentiality check task for DA Citizen case tests.", () => {
     );
   });
 
-  test("Complete Task - Confidentiality check - Power of arrest (FL406) without accessibility test. @nightly @regression", async ({
+  test("Complete Task - Confidentiality check - Power of arrest (FL406) without accessibility test. @nightly @regression @visual", async ({
     page,
     browser,
     browserName,

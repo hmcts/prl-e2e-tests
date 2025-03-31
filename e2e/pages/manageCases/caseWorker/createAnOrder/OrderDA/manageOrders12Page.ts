@@ -161,7 +161,7 @@ export class ManageOrders12Page {
         await page.click(UniqueSelectors.untilNextHearing);
         break;
       case "specificDate":
-        await page.click(UniqueSelectors.specificDate); // #TODO: Add date
+        await page.click(UniqueSelectors.specificDate);
         await page.fill(
           UniqueSelectors.inputSpecificDate,
           ManageOrders12DAContent.specificDate,

@@ -3,6 +3,7 @@ import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { InternationalElementsStartContent } from "../../../../../fixtures/citizen/createCase/C100/internationalElement/internationalElementsStartContent";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 
 interface InternationalElementsStartPageOptions {
   page: Page;
@@ -39,6 +40,7 @@ export class InternationalElementsStartPage {
 
   private static async checkPageLoads({
     page: page,
+    accessibilityTest: accessibilityTest,
   }: Partial<InternationalElementsStartPageOptions>): Promise<void> {
     if (!page) {
       throw new Error();
@@ -60,9 +62,9 @@ export class InternationalElementsStartPage {
         Selectors.GovukLabel,
       ),
     ]);
-    // if (accessibilityTest) {
-    //   await AccessibilityTestHelper.run(page); #TODO Commented out until ticket-6600 is complete
-    // }
+    if (accessibilityTest) {
+      await AccessibilityTestHelper.run(page, [uniqueSelectors.yesRadio]);
+    }
   }
 
   private static async triggerErrorMessages({

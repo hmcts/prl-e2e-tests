@@ -2,6 +2,7 @@ import { test } from "@playwright/test";
 import Config from "../../../config";
 import { C100 } from "../../../journeys/manageCases/createCase/C100";
 import { FL401 } from "../../../journeys/manageCases/createCase/FL401";
+import { SolicitorCreateInitial } from "../../../journeys/manageCases/createCase/solicitorCreateInitial.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
@@ -323,6 +324,16 @@ test.describe("Manage cases case solicitor create case tests.", (): void => {
       yesNoWelshLanguage: false,
       c100YesNoToAll: false,
       yesNoHelpWithFees: false,
+    });
+  });
+  test(`Create case as a solicitor - intial screens only.
+  @smoke`, async ({ page }): Promise<void> => {
+    await SolicitorCreateInitial.createInitialCase({
+      page: page,
+      user: "solicitor",
+      accessibilityTest: false,
+      solicitorCaseType: "C100",
+      errorMessaging: false,
     });
   });
 });
