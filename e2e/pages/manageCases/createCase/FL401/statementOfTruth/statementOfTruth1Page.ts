@@ -14,6 +14,16 @@ enum inputIDs {
   positionHeld = "#fl401StmtOfTruth_signOnBehalf",
 }
 
+enum resubmitInputIDs {
+  applicantConsent = "#fl401StmtOfTruthResubmit_applicantConsent-fl401Consent",
+  day = "#date-day",
+  month = "#date-month",
+  year = "#date-year",
+  fullName = "#fl401StmtOfTruthResubmit_fullname",
+  nameOfFirm = "#fl401StmtOfTruthResubmit_nameOfFirm",
+  positionHeld = "#fl401StmtOfTruthResubmit_signOnBehalf",
+}
+
 enum invalidDate {
   day = "1",
   month = "s",
@@ -22,6 +32,7 @@ enum invalidDate {
 
 interface StatementOfTruth1PageOptions {
   page: Page;
+  isResubmit: boolean;
   accessibilityTest: boolean;
   errorMessaging: boolean;
 }
@@ -34,6 +45,7 @@ interface CheckPageLoadsOptions {
 export class StatementOfTruth1Page {
   public static async statementOfTruth1Page({
     page,
+    isResubmit,
     accessibilityTest,
     errorMessaging,
   }: StatementOfTruth1PageOptions): Promise<void> {
@@ -44,7 +56,7 @@ export class StatementOfTruth1Page {
     if (errorMessaging) {
       await this.checkErrorMessaging(page);
     }
-    await this.fillInFields(page);
+    await this.fillInFields(page, isResubmit);
   }
 
   private static async checkPageLoads({
@@ -119,8 +131,15 @@ export class StatementOfTruth1Page {
     ]);
   }
 
-  private static async fillInFields(page: Page): Promise<void> {
-    await page.check(inputIDs.applicantConsent);
+  private static async fillInFields(
+    page: Page,
+    isResubmit: boolean,
+  ): Promise<void> {
+    await page.check(
+      isResubmit
+        ? resubmitInputIDs.applicantConsent
+        : inputIDs.applicantConsent,
+    );
     const fieldsToFill: string[] = [
       "day",
       "month",
@@ -132,7 +151,17 @@ export class StatementOfTruth1Page {
     for (const key of fieldsToFill) {
       const inputKey = key as keyof typeof inputIDs;
       const contentKey = key as keyof typeof StatementOfTruth1Content;
-      await page.fill(inputIDs[inputKey], StatementOfTruth1Content[contentKey]);
+      if (isResubmit) {
+        await page.fill(
+          resubmitInputIDs[inputKey],
+          StatementOfTruth1Content[contentKey],
+        );
+      } else {
+        await page.fill(
+          inputIDs[inputKey],
+          StatementOfTruth1Content[contentKey],
+        );
+      }
     }
     await page.click(
       `${Selectors.button}:text-is("${StatementOfTruth1Content.continue}")`,
