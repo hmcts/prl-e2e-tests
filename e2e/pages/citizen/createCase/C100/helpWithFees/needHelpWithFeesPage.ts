@@ -4,6 +4,7 @@ import { NeedHelpWithFeesContent } from "../../../../../fixtures/citizen/createC
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { CommonContent } from "../../../../../fixtures/manageCases/commonContent.ts";
 
 enum inputIDs {
   radioYes = "#hwf_needHelpWithFees",
@@ -57,7 +58,17 @@ export class NeedHelpWithFeesPage {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukBodyM}:text-is("${NeedHelpWithFeesContent.bodyM}")`,
+        `${Selectors.GovukBodyM}:hasText("${NeedHelpWithFeesContent.bodyM1}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukBodyM}:hasText("${NeedHelpWithFeesContent.bodyM2}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukBodyM}:hasText("${CommonContent.c100Fee}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(

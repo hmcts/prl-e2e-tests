@@ -5,6 +5,7 @@ import { Helpers } from "../../../common/helpers.ts";
 import { PayYourFeeContent } from "../../../fixtures/edgeCases/payment/payYourFeeContent.ts";
 import { NeedHelpWithFeesContent } from "../../../fixtures/edgeCases/payment/needHelpWithFeesContent.ts";
 import { EdgeCaseApplicationType } from "../../../common/types.ts";
+import {CommonContent} from "../../../fixtures/manageCases/commonContent.ts";
 
 interface PayYourFeePageOptions {
   page: Page;
@@ -56,7 +57,7 @@ export class PayYourFeePage {
     } else {
       await Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:has-text("${NeedHelpWithFeesContent.p_fee1}")`,
+        `${Selectors.p}:has-text("${CommonContent.c100Fee}")`,
         1,
       );
     }

@@ -5,6 +5,7 @@ import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import { UploadAdditionalApplications4Content } from "../../../../fixtures/manageCases/caseProgression/uploadAdditionalApplications/uploadAdditionalApplications4Content.ts";
+import {CommonContent} from "../../../../fixtures/manageCases/commonContent.ts";
 
 enum UniqueSelectors {
   noHelpWithFeesRadio = "#additionalApplicationsHelpWithFees_No",
@@ -95,7 +96,7 @@ export class UploadAdditionalApplications4Page {
     } else {
       await Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${UploadAdditionalApplications4Content.otherFee}")`,
+        `${Selectors.p}:text-is("${CommonContent.c100Fee}")`,
         1,
       );
     }

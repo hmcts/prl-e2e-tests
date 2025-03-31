@@ -3,6 +3,7 @@ import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { PayContent } from "../../../../../fixtures/citizen/createCase/C100/pay/payContent";
+import {CommonContent} from "../../../../../fixtures/manageCases/commonContent.ts";
 
 interface PayPageOptions {
   page: Page;
@@ -117,7 +118,7 @@ export class PayPage {
       Helpers.checkGroup(page, 11, PayContent, "span", `${Selectors.Span}`),
       Helpers.checkVisibleAndPresent(
         page,
-        `#amount:text-is("${PayContent.price}")`,
+        `#amount:text-is("${CommonContent.c100Fee}")`,
         1,
       ),
     ]);

@@ -51,5 +51,5 @@ export enum Fl401TasksTabContent {
   hiddenP5 = "Ensure you have completed all relevant information / Sicrhau eich bod wedi darparu'r holl wybodaeth berthnasol",
   hiddenP6 = "Ensure you have added all relevant information / Sicrhau eich bod wedi ychwanegu'r holl wybodaeth berthnasol",
   hiddenP7 = "Ensure you have added relevant information / Sicrhau eich bod wedi ychwanegu'r wybodaeth berthnasol",
-  hiddenP8 = "Ensure you have added all relevant details / Sicrhau eich bod wedi ychwanegu'r holl fanylion perthnasol"
+  hiddenP8 = "Ensure you have added all relevant details / Sicrhau eich bod wedi ychwanegu'r holl fanylion perthnasol",
 }
