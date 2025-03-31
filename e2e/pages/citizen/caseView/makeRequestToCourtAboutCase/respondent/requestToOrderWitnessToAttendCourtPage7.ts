@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors.ts";
 import { Helpers } from "../../../../../common/helpers.ts";
-// import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 import { RequestToOrderWitnessContent7 } from "../../../../../fixtures/citizen/caseView/makeRequestToCourtAboutCase/respondent/requestToOrderWitnessContent7.ts";
 import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 
@@ -49,7 +49,7 @@ export class RequestToOrderWitnessToAttendCourtPage7 {
     ]);
 
     if (accessibilityTest) {
-      //   await AccessibilityTestHelper.run(page);
+        await AccessibilityTestHelper.run(page);
     }
   }
 
@@ -58,9 +58,7 @@ export class RequestToOrderWitnessToAttendCourtPage7 {
     reasonForUrgency: boolean,
   ): Promise<void> {
     if (reasonForUrgency) {
-      console.log("Selecting Yes option...");
       await page.check(`${UniqueSelectors.urgentReason_Yes}`);
-      console.log("Yes option selected!");
       await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukLabel}:text-is("${RequestToOrderWitnessContent7.GovukLabel2}")`,
