@@ -33,7 +33,8 @@ export class Submit2Page {
   }
 
   private static async checkPageLoads({
-    page: page,
+    page,
+    accessibilityTest,
   }: Submit2PageOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.h3}:text-is("${Submit2Content.h3}")`,
@@ -70,7 +71,9 @@ export class Submit2Page {
         1,
       ),
     ]);
-    await AccessibilityTestHelper.run(page);
+    if (accessibilityTest) {
+      await AccessibilityTestHelper.run(page);
+    }
   }
 
   private static async fillInFields(page: Page): Promise<void> {
