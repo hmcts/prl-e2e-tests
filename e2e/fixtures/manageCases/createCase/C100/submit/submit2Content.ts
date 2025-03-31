@@ -6,4 +6,5 @@ export enum Submit2Content {
   formHint = "This option should only be selected if the legal representative is signing the form on behalf of the applicant.",
   formLabelAgreeWithStatement = "I agree with this statement",
   submit = "Submit",
+  confirmationMessage = "has been updated with event: Submit",
 }

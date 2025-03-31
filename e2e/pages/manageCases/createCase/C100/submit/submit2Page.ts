@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test";
+import { Page, expect } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { Submit2Content } from "../../../../../fixtures/manageCases/createCase/C100/submit/submit2Content";
 import { Helpers } from "../../../../../common/helpers";
@@ -25,6 +25,11 @@ export class Submit2Page {
     });
     await this.fillInFields(page);
     await Helpers.clickButton(page, Submit2Content.submit);
+    await expect(
+      page.locator(
+        `${Selectors.alertMessage}:has-text("${Submit2Content.confirmationMessage}")`,
+      ),
+    ).toBeVisible();
   }
 
   private static async checkPageLoads({
