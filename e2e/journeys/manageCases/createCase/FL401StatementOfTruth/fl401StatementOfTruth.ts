@@ -114,15 +114,17 @@ export class Fl401StatementOfTruth {
     }
     await Helpers.handleEventBasedOnEnvironment(
       page,
-      "Statement of truth and submit",
+      "Statement of Truth and submit",
     );
     await StatementOfTruth1Page.statementOfTruth1Page({
       page: page,
+      isResubmit: false,
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
     });
     await StatementOfTruth2Page.statementOfTruth2Page({
       page: page,
+      isResubmit: false,
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
     });
