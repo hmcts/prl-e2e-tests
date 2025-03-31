@@ -10,4 +10,5 @@ export enum StatementOfTruth2Content {
   errorValidation = " Field is required ",
   errorMessage = " Field is required ",
   continue = "Continue",
+  submit = "Submit",
 }

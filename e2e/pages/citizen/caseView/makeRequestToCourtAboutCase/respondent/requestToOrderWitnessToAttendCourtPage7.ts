@@ -49,7 +49,7 @@ export class RequestToOrderWitnessToAttendCourtPage7 {
     ]);
 
     if (accessibilityTest) {
-        await AccessibilityTestHelper.run(page);
+      await AccessibilityTestHelper.run(page);
     }
   }
 

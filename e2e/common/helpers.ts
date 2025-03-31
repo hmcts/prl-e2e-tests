@@ -480,4 +480,17 @@ export class Helpers {
     await pdfPage.waitForLoadState("domcontentloaded");
     return pdfPage;
   }
+
+  public static async getCaseEndState(page: Page) {
+    await this.clickTab(page, "History");
+    return await page
+      .locator("//tr[th/span[contains(text(), 'End state')]]/td")
+      .textContent();
+  }
+
+  public static async getCaseStatusFromSummaryTab(page: Page) {
+    return await page
+      .locator("//tr[th/span[contains(text(), 'Case status')]]/td")
+      .innerText();
+  }
 }
