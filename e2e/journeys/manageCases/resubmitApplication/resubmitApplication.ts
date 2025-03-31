@@ -29,7 +29,7 @@ export class ResubmitApplication {
         await this.c100Resubmit({ page, accessibilityTest });
         break;
       case "FL401":
-        await this.fl401Resubmit(page);
+        await this.fl401Resubmit({ page, accessibilityTest });
     }
     expect(await Helpers.getCaseStatusFromSummaryTab(page)).toBe("Submitted");
   }
@@ -55,7 +55,16 @@ export class ResubmitApplication {
     });
   }
 
-  private static async fl401Resubmit(page: Page): Promise<void> {
+  private static async fl401Resubmit({
+    page,
+    accessibilityTest,
+  }: Partial<ResubmitApplicationParams>): Promise<void> {
+    if (!page) {
+      throw new Error("No page found");
+    }
+    if (accessibilityTest == undefined) {
+      throw new Error("accessibilityTest is undefined");
+    }
     await Helpers.handleEventBasedOnEnvironment(
       page,
       "Statement of Truth and submit",
@@ -63,13 +72,13 @@ export class ResubmitApplication {
     await StatementOfTruth1Page.statementOfTruth1Page({
       page: page,
       isResubmit: true,
-      accessibilityTest: false,
+      accessibilityTest: accessibilityTest,
       errorMessaging: false,
     });
     await StatementOfTruth2Page.statementOfTruth2Page({
       page: page,
       isResubmit: true,
-      accessibilityTest: false,
+      accessibilityTest: accessibilityTest,
       errorMessaging: false,
     });
   }
