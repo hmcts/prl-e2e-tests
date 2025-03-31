@@ -10,7 +10,7 @@ import { EdgeCaseApplicationType } from "../../../common/types.ts";
 import { AddressLookupContent } from "../../../fixtures/edgeCases/personalDetails/addressLookupContent.ts";
 import { ContactDetailsContent } from "../../../fixtures/edgeCases/personalDetails/contactDetailsContent.ts";
 import { SelectCourtContent } from "../../../fixtures/edgeCases/selectCourtContent.ts";
-import {FullNameContent} from "../../../fixtures/edgeCases/personalDetails/fullNameContent.ts";
+import { FullNameContent } from "../../../fixtures/edgeCases/personalDetails/fullNameContent.ts";
 
 interface CheckYourAnswersPageOptions {
   page: Page;
@@ -213,19 +213,18 @@ export class CheckYourAnswersPage {
     }
 
     // check applicant details
-    if (applyMyself){
+    if (applyMyself) {
       await Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukSummaryListValue}:text-is("${userInfo.forename + " " + userInfo.surname}")`,
-          1,
+        page,
+        `${Selectors.GovukSummaryListValue}:text-is("${userInfo.forename + " " + userInfo.surname}")`,
+        1,
       );
-    }
-    else{
-        await Helpers.checkVisibleAndPresent(
-            page,
-            `${Selectors.GovukSummaryListValue}:text-is("${FullNameContent.firstNameInput + " " + FullNameContent.lastNameInput}")`,
-            1,
-        );
+    } else {
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukSummaryListValue}:text-is("${FullNameContent.firstNameInput + " " + FullNameContent.lastNameInput}")`,
+        1,
+      );
     }
     await Promise.all([
       Helpers.checkVisibleAndPresent(

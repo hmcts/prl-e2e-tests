@@ -47,6 +47,7 @@ export type c100SolicitorEvents =
   | "Welsh language requirements"
   | "View PDF application"
   | "Submit and pay"
+  | "Submit"
   | "Dummy Payment confirmation";
 
 export type fl401SolicitorEvents =
@@ -64,7 +65,7 @@ export type fl401SolicitorEvents =
   | "Upload documents"
   | "Welsh language requirements"
   | "View PDF application"
-  | "Statement of truth and submit";
+  | "Statement of Truth and submit";
 
 export type WACaseWorkerActions =
   | "Allocated judge"
@@ -74,7 +75,8 @@ export type WACaseWorkerActions =
   | "Manage documents"
   | "Statement of service"
   | "Link cases"
-  | "Manage case links";
+  | "Manage case links"
+  | "Return application";
 
 export type fl401CaseWorkerActions =
   | "Welsh language requirements"
@@ -268,7 +270,6 @@ export type solicitorCACaseAPIEvent =
 
 export type AdditionalApplicationType = "c2" | "other";
 
-
 export type EdgeCaseApplicationType =
   | "FGM"
   | "FMPO"
@@ -282,3 +283,11 @@ export type EdgeCaseApplicationType =
 
 export type SupportType = "reasonableAdjustment" | "languageInterpreter";
 
+export type CaseState =
+  | "Draft"
+  | "Pending"
+  | "Submitted"
+  | "Returned"
+  | "Case issued"
+  | "Gatekeeping"
+  | "Hearing";

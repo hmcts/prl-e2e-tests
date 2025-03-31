@@ -56,7 +56,7 @@ export class Helpers {
   ): Promise<void> {
     await page.waitForSelector(`.mat-tab-label-content:text-is("Tasks")`);
     await page.click(
-      `${Selectors.markdown} > ${Selectors.div} > ${Selectors.p} > ${Selectors.a}:text-is("${event}")`,
+      `${Selectors.markdown} > ${Selectors.div} > ${Selectors.p} > ${Selectors.a}:has-text("${event}")`,
     );
   }
 
@@ -468,5 +468,18 @@ export class Helpers {
       );
     }
     return caseNumber.match(/.{1,4}/g)!.join("-");
+  }
+
+  public static async getCaseEndState(page: Page) {
+    await this.clickTab(page, "History");
+    return await page
+      .locator("//tr[th/span[contains(text(), 'End state')]]/td")
+      .textContent();
+  }
+
+  public static async getCaseStatusFromSummaryTab(page: Page) {
+    return await page
+      .locator("//tr[th/span[contains(text(), 'Case status')]]/td")
+      .innerText();
   }
 }

@@ -6,6 +6,7 @@ import { Helpers } from "../../../../../common/helpers";
 
 interface StatementOfTruth2PageOptions {
   page: Page;
+  isResubmit: boolean;
   accessibilityTest: boolean;
   errorMessaging: boolean;
 }
@@ -16,12 +17,14 @@ interface CheckPageLoadsOptions {
 }
 
 enum inputIDs {
-  checkbox = "#fl401ConfidentialityCheck_confidentialityConsent-fl401ConfidentialConsent",
+  consent = "#fl401ConfidentialityCheck_confidentialityConsent-fl401ConfidentialConsent",
+  consentResubmit = "#fl401ConfidentialityCheckResubmit_confidentialityConsent-fl401ConfidentialConsent",
 }
 
 export class StatementOfTruth2Page {
   public static async statementOfTruth2Page({
     page,
+    isResubmit,
     accessibilityTest,
     errorMessaging,
   }: StatementOfTruth2PageOptions): Promise<void> {
@@ -32,7 +35,7 @@ export class StatementOfTruth2Page {
     if (errorMessaging) {
       await this.checkErrorMessaging(page);
     }
-    await this.fillInFields(page);
+    await this.fillInFields(page, isResubmit);
   }
 
   private static async checkPageLoads({
@@ -86,10 +89,13 @@ export class StatementOfTruth2Page {
     ]);
   }
 
-  private static async fillInFields(page: Page): Promise<void> {
-    await page.check(inputIDs.checkbox);
+  private static async fillInFields(
+    page: Page,
+    isResubmit: boolean,
+  ): Promise<void> {
+    await page.check(isResubmit ? inputIDs.consentResubmit : inputIDs.consent);
     await page.click(
-      `${Selectors.button}:text-is("${StatementOfTruth2Content.continue}")`,
+      `${Selectors.button}:text-is("${isResubmit ? StatementOfTruth2Content.submit : StatementOfTruth2Content.continue}")`,
     );
   }
 }
