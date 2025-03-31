@@ -4,6 +4,7 @@ import { CitizensOtherProceedingsUniqueSelectors } from "../../../../../common/c
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { ContactOrderForAdoptionOrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/contactOrderForAdoptionOrderDetailsContent";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 
 interface ContactOrderForAdoptionOrderDetailsPageOptions {
   page: Page;
@@ -44,6 +45,7 @@ export class ContactOrderForAdoptionOrderDetailsPage {
 
   private static async checkPageLoads({
     page: page,
+    accessibilityTest: accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.p}:text-is("${ContactOrderForAdoptionOrderDetailsContent.p}")`,
@@ -104,9 +106,9 @@ export class ContactOrderForAdoptionOrderDetailsPage {
         2,
       ),
     ]);
-    // if (accessibilityTest) {
-    //   await AccessibilityTestHelper.run(page); #TODO Disabled pending PRL-6552 ticket
-    // }
+    if (accessibilityTest) {
+      await AccessibilityTestHelper.run(page);
+    }
   }
 
   private static async triggerErrorMessages(page: Page): Promise<void> {

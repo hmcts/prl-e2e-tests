@@ -4,6 +4,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { ChildrenAndOtherPeople1Content } from "../../../../../fixtures/manageCases/createCase/C100/childrenAndOtherPeople/childrenAndOtherPeople1Content";
 import { ChildrenAndOtherPeopleSubmitContent } from "../../../../../fixtures/manageCases/createCase/C100/childrenAndOtherPeople/childrenAndOtherPeopleSubmitContent";
 import { ChildrenAndRespondentsSubmitContent } from "../../../../../fixtures/manageCases/createCase/C100/childrenAndRespondents/childrenAndRespondentsSubmitContent";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 
 export class ChildrenAndOtherPeopleSubmitPage {
   public static async childrenAndOtherPeopleSubmitPage(
@@ -67,7 +68,7 @@ export class ChildrenAndOtherPeopleSubmitPage {
       );
     }
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page);
+      await AccessibilityTestHelper.run(page);
     }
   }
 

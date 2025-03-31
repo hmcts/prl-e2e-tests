@@ -4,7 +4,7 @@ import { Helpers } from "../../../../../../common/helpers.ts";
 import { Selectors } from "../../../../../../common/selectors.ts";
 import { yesNoDontKnow } from "../../../../../../common/types.ts";
 import { RespondentDetailsAddressManualContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/respondent/respondentDetailsAddressManualContent.ts";
-// import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
+import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper.ts";
 
 interface RespondentDetailsAddressManualPageOptions {
   page: Page;
@@ -110,7 +110,7 @@ export class RespondentDetailsAddressManualPage {
       ),
       Helpers.checkGroup(
         page,
-        6,
+        7,
         RespondentDetailsAddressManualContent,
         "govukLabel",
         Selectors.GovukLabel,
@@ -137,7 +137,9 @@ export class RespondentDetailsAddressManualPage {
       ),
     ]);
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page); //#TODO turn back on once Accessibility Issues: PRL-6899 has been fixed (re-ran on 20/01/25, issue still exists)
+      await AccessibilityTestHelper.run(page, [
+        UniqueSelectors.lessThan5YearsYes,
+      ]); //false-positive (https://github.com/alphagov/govuk-frontend/issues/979, https://github.com/w3c/aria/issues/1404)
     }
   }
 

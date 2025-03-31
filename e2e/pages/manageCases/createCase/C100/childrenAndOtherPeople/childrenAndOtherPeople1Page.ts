@@ -2,6 +2,7 @@ import { Page } from "@playwright/test";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { ChildrenAndOtherPeople1Content } from "../../../../../fixtures/manageCases/createCase/C100/childrenAndOtherPeople/childrenAndOtherPeople1Content";
+import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 
 enum UniqueSelectors {
   relationshipDropdown = "#buffChildAndOtherPeopleRelations_0_childAndOtherPeopleRelation",
@@ -94,7 +95,7 @@ export class ChildrenAndOtherPeople1Page {
       ),
     ]);
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page); #TODO Disabled pending ticket EXUI-2720
+      await AccessibilityTestHelper.run(page);
     }
   }
 
