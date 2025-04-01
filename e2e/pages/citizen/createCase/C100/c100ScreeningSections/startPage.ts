@@ -59,7 +59,7 @@ export class StartPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukInsetText}:text-is("${StartContent.insetText}")`,
+        `${Selectors.GovukInsetText}:has-text("${StartContent.insetText}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(

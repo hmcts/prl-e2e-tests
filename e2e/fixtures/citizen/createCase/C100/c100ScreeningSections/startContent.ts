@@ -16,6 +16,6 @@ export enum StartContent {
   li5 = "a written and signed agreement with the other person in the case (the ‘respondent’) if you are applying for a consent order",
   li6 = "your help with fees reference number if you have one",
   h2 = "Check you have the right documents ready",
-  insetText = " You will need to pay the court fee of",
+  insetText = "You will need to pay the court fee of",
   startNow = "Start now",
 }

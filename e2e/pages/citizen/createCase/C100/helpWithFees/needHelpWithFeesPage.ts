@@ -58,17 +58,17 @@ export class NeedHelpWithFeesPage {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukBodyM}:hasText("${NeedHelpWithFeesContent.bodyM1}")`,
+        `${Selectors.GovukBodyM}:has-text("${NeedHelpWithFeesContent.bodyM1}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukBodyM}:hasText("${NeedHelpWithFeesContent.bodyM2}")`,
+        `${Selectors.GovukBodyM}:has-text("${NeedHelpWithFeesContent.bodyM2}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukBodyM}:hasText("${CommonContent.c100Fee}")`,
+        `${Selectors.GovukBodyM}:has-text("${CommonContent.c100Fee}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
