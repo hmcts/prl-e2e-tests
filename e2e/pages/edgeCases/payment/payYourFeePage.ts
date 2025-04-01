@@ -5,7 +5,7 @@ import { Helpers } from "../../../common/helpers.ts";
 import { PayYourFeeContent } from "../../../fixtures/edgeCases/payment/payYourFeeContent.ts";
 import { NeedHelpWithFeesContent } from "../../../fixtures/edgeCases/payment/needHelpWithFeesContent.ts";
 import { EdgeCaseApplicationType } from "../../../common/types.ts";
-import {CommonContent} from "../../../fixtures/manageCases/commonContent.ts";
+import { CommonContent } from "../../../fixtures/manageCases/commonContent.ts";
 
 interface PayYourFeePageOptions {
   page: Page;

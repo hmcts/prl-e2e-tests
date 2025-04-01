@@ -4,7 +4,7 @@ import { SubmitAndPay2Content } from "../../../../../fixtures/manageCases/create
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { SubmitAndPay1Content } from "../../../../../fixtures/manageCases/createCase/C100/submitAndPay/submitAndPay1Content";
-import {CommonContent} from "../../../../../fixtures/manageCases/commonContent.ts";
+import { CommonContent } from "../../../../../fixtures/manageCases/commonContent.ts";
 
 interface SubmitAndPay2PageOptions {
   page: Page;

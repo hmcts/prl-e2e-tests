@@ -5,7 +5,7 @@ import { FL401 } from "../../../journeys/manageCases/createCase/FL401";
 import { SolicitorCreateInitial } from "../../../journeys/manageCases/createCase/solicitorCreateInitial.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
-//comment to run tests
+
 test.describe("Manage cases case solicitor create case tests.", (): void => {
   // Triple timeout for these slow tests
   test.slow();
