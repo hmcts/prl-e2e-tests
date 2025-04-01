@@ -18,6 +18,6 @@ export enum SubmitAndPay2Content {
   formLabelDraftDocumentWelsh = "Draft Document (Welsh)",
   a1 = "Draft_C100_application.pdf",
   a2 = "Draft_C100_application_welsh.pdf",
-  price = "£255.00",
+  price = "£263.00",
   continue = "Continue",
 }

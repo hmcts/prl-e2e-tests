@@ -10,5 +10,5 @@ export enum UploadAdditionalApplications4Content {
   formHint = "You must select 'No' to continue with your application.",
   withNoticeFee = "£184.00",
   withoutNoticeFee = "£58.00",
-  otherFee = "£255.00",
+  otherFee = "£263.00",
 }
