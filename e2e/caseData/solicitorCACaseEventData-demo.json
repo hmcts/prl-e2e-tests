@@ -5460,7 +5460,7 @@
       "courtName": "Central Family Court",
       "solicitorName": "PET Solicitor 1 Solicitor",
       "payAgreeStatement": ["agree"],
-      "feeAmount": "£255.00",
+      "feeAmount": "£263.00",
       "submitAndPayDownloadApplicationLink": {
         "document_url": "http://dm-store-demo.service.core-compute-demo.internal/documents/bcf80955-bc35-4246-b31d-7c9517f3899f",
         "document_binary_url": "http://dm-store-demo.service.core-compute-demo.internal/documents/bcf80955-bc35-4246-b31d-7c9517f3899f/binary",
