@@ -61,7 +61,7 @@ export class UploadYourDocumentsPositionStatementPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHeadingM}:text-is("${UploadYourDocumentsContent.GovukHeadingM}")`,
+        `${Selectors.GovukHeadingM}:text-is("${UploadYourDocumentsContent.GovukHeadingM1}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
