@@ -30,7 +30,7 @@ export enum UploadYourDocumentsContent {
   //position statements
   GovukHeadingLPositionStatement = "Position statement",
   GovukLabelP1 = "Write your position statement",
-  GovukLabelP2 = "Upload files",
+  GovukLabelP2 = "Upload a file",
   GovukLabelP3 = "I believe that the facts stated in these documents are true",
   GovukLabelP4 = "This confirms that the information you are submitting is true and accurate, to the best of your knowledge.",
   GovukBodyP1 = "If you are uploading documents or other files, name the files clearly. For example, 'Letter from school', 'Position statement'.",
@@ -39,4 +39,6 @@ export enum UploadYourDocumentsContent {
   GovukBodyP4 = "You can submit your position statement by either:",
   GovukBodyP5 = "Select 'Save', to save your text as a document in this page. You can remove it if you need to.",
   GovukBodyP6 = "Upload your statement as a file or write your statement in the text box. You can also use the text box to describe the files you are uploading.",
+  liP1 = "using the text box to write your statement",
+  liP2 = "uploading your statement as a document",
 }

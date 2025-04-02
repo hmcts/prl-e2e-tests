@@ -34,7 +34,7 @@ export class UploadYourDocumentsPositionStatementPage {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukCaptionL}:text-is("${UploadYourDocumentsContent.GovukHeadingLPositionStatement}")`,
+        `${Selectors.GovukHeadingL}:text-is("${UploadYourDocumentsContent.GovukHeadingLPositionStatement}")`,
         1,
       ),
       Helpers.checkGroup(
@@ -48,7 +48,7 @@ export class UploadYourDocumentsPositionStatementPage {
         page,
         2,
         UploadYourDocumentsContent,
-        `li`,
+        `liP`,
         `${Selectors.li}`,
       ),
       Helpers.checkGroup(
