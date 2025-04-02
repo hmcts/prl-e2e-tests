@@ -55,8 +55,10 @@ export class Helpers {
     event: c100SolicitorEvents | fl401SolicitorEvents,
   ): Promise<void> {
     await page.waitForSelector(`.mat-tab-label-content:text-is("Tasks")`);
+    await page.locator(`${Selectors.markdown} > ${Selectors.div} > ${Selectors.p} > ${Selectors.a}:has-text("${event}")`).waitFor();
+    await page.waitForTimeout(1500);
     await page.click(
-      `${Selectors.markdown} > ${Selectors.div} > ${Selectors.p} > ${Selectors.a}:has-text("${event}")`,
+      `${Selectors.markdown} > ${Selectors.div} > ${Selectors.p} > ${Selectors.a}:has-text("${event}")`, {force:true},
     );
   }
 
