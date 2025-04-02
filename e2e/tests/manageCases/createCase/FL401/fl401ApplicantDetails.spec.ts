@@ -3,7 +3,7 @@ import { FL401ApplicantDetails } from "../../../../journeys/manageCases/createCa
 import Config from "../../../../config";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
-//comment to run tests
+
 test.describe("FL401 Create case applicant details tests", (): void => {
   test(`Complete the FL401 applicant details event as a solicitor with the following options:
   Not Accessibility testing,
