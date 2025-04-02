@@ -34,25 +34,29 @@ export class UploadYourDocumentsPositionStatementPage {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukCaptionL}:text-is("${UploadYourDocumentsContent.GovukCaptionL}")`,
+        `${Selectors.GovukHeadingL}:text-is("${UploadYourDocumentsContent.GovukHeadingLPositionStatement}")`,
         1,
       ),
       Helpers.checkGroup(
         page,
-        5,
+        4,
         UploadYourDocumentsContent,
-        `GovukLabel`,
+        `GovukLabelP`,
         `${Selectors.GovukLabel}`,
       ),
-      Helpers.checkVisibleAndPresent(
+      Helpers.checkGroup(
         page,
-        `${Selectors.GovukBody}:text-is("${UploadYourDocumentsContent.GovukBody1}")`,
-        1,
+        2,
+        UploadYourDocumentsContent,
+        `liP`,
+        `${Selectors.li}`,
       ),
-      Helpers.checkVisibleAndPresent(
+      Helpers.checkGroup(
         page,
-        `${Selectors.GovukBody}:text-is("${UploadYourDocumentsContent.GovukBody2}")`,
-        1,
+        6,
+        UploadYourDocumentsContent,
+        `GovukBodyP`,
+        `${Selectors.GovukBody}`,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -61,13 +65,32 @@ export class UploadYourDocumentsPositionStatementPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHeadingM}:text-is("${UploadYourDocumentsContent.GovukHeadingM}")`,
+        `${Selectors.GovukHint}:text-is("${UploadYourDocumentsContent.GovukHint1}")`,
         1,
+      ),
+      Helpers.checkGroup(
+        page,
+        2,
+        UploadYourDocumentsContent,
+        `GovukHeadingM`,
+        `${Selectors.GovukHeadingM}`,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukWarningText}:text-is("${UploadYourDocumentsContent.GovukWarningText}")`,
         1,
+      ),
+    ]);
+    await page.click(
+      `${Selectors.GovukSummaryText}:text-is("${UploadYourDocumentsContent.GovukSummaryText}")`,
+    );
+    await Promise.all([
+      Helpers.checkGroup(
+        page,
+        5,
+        UploadYourDocumentsContent,
+        `hiddenLi`,
+        `${Selectors.li}`,
       ),
     ]);
     if (accessibilityTest) {

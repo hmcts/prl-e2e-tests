@@ -8,6 +8,7 @@ export enum UploadAdditionalApplications4Content {
   h34 = "Application fee",
   formLabel = "Has the applicant applied for Help with Fees?",
   formHint = "You must select 'No' to continue with your application.",
-  withNoticeFee = "£184.00",
-  withoutNoticeFee = "£58.00",
+  withNoticeFee = "£190.00",
+  withoutNoticeFee = "£60.00",
+  otherFee = "£263.00",
 }
