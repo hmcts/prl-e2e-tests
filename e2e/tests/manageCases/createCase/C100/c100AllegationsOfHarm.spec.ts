@@ -3,7 +3,7 @@ import Config from "../../../../config";
 import { C100AllegationsOfHarm } from "../../../../journeys/manageCases/createCase/C100AllegationsOfHarm/c100AllegationsOfHarm";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
-//comment to run tests
+
 test.describe("C100 Create case Allegations of harm tests", (): void => {
   test(`Complete the C100 allegations of harm event as a solicitor with the following options:
   Not Accessibility testing,
