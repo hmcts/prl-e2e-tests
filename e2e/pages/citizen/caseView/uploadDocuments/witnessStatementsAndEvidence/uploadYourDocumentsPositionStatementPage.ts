@@ -27,70 +27,72 @@ export class UploadYourDocumentsPositionStatementPage {
     accessibilityTest: boolean,
   ): Promise<void> {
     await page
-        .locator(Selectors.GovukHeadingL, {
-          hasText: UploadYourDocumentsContent.GovukHeadingLPositionStatement,
-        })
-        .waitFor();
+      .locator(Selectors.GovukHeadingL, {
+        hasText: UploadYourDocumentsContent.GovukHeadingLPositionStatement,
+      })
+      .waitFor();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukCaptionL}:text-is("${UploadYourDocumentsContent.GovukHeadingLPositionStatement}")`,
-          1,
+        page,
+        `${Selectors.GovukCaptionL}:text-is("${UploadYourDocumentsContent.GovukHeadingLPositionStatement}")`,
+        1,
       ),
       Helpers.checkGroup(
-          page,
-          4,
-          UploadYourDocumentsContent,
-          `GovukLabelP`,
-          `${Selectors.GovukLabel}`,
+        page,
+        4,
+        UploadYourDocumentsContent,
+        `GovukLabelP`,
+        `${Selectors.GovukLabel}`,
       ),
       Helpers.checkGroup(
-          page,
-          2,
-          UploadYourDocumentsContent,
-          `li`,
-          `${Selectors.li}`,
+        page,
+        2,
+        UploadYourDocumentsContent,
+        `li`,
+        `${Selectors.li}`,
       ),
       Helpers.checkGroup(
-          page,
-          6,
-          UploadYourDocumentsContent,
-          `GovukBodyP`,
-          `${Selectors.GovukBody}`,
+        page,
+        6,
+        UploadYourDocumentsContent,
+        `GovukBodyP`,
+        `${Selectors.GovukBody}`,
       ),
       Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukSummaryText}:text-is("${UploadYourDocumentsContent.GovukSummaryText}")`,
-          1,
+        page,
+        `${Selectors.GovukSummaryText}:text-is("${UploadYourDocumentsContent.GovukSummaryText}")`,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukHint}:text-is("${UploadYourDocumentsContent.GovukHint1}")`,
-          1,
+        page,
+        `${Selectors.GovukHint}:text-is("${UploadYourDocumentsContent.GovukHint1}")`,
+        1,
       ),
       Helpers.checkGroup(
-          page,
-          2,
-          UploadYourDocumentsContent,
-          `GovukHeadingM`,
-          `${Selectors.GovukHeadingM}`,
+        page,
+        2,
+        UploadYourDocumentsContent,
+        `GovukHeadingM`,
+        `${Selectors.GovukHeadingM}`,
       ),
       Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukWarningText}:text-is("${UploadYourDocumentsContent.GovukWarningText}")`,
-          1,
+        page,
+        `${Selectors.GovukWarningText}:text-is("${UploadYourDocumentsContent.GovukWarningText}")`,
+        1,
       ),
     ]);
-    await page.click(`${Selectors.GovukSummaryText}:text-is("${UploadYourDocumentsContent.GovukSummaryText}")`)
+    await page.click(
+      `${Selectors.GovukSummaryText}:text-is("${UploadYourDocumentsContent.GovukSummaryText}")`,
+    );
     await Promise.all([
       Helpers.checkGroup(
-          page,
-          5,
-          UploadYourDocumentsContent,
-          `hiddenLi`,
-          `${Selectors.li}`,
+        page,
+        5,
+        UploadYourDocumentsContent,
+        `hiddenLi`,
+        `${Selectors.li}`,
       ),
-    ])
+    ]);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }

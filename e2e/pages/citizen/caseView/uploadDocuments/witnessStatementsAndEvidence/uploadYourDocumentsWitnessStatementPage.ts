@@ -43,18 +43,18 @@ export class UploadYourDocumentsWitnessStatementPage {
         `${Selectors.GovukLabel}`,
       ),
       Helpers.checkGroup(
-          page,
-          2,
-          UploadYourDocumentsContent,
-          `li`,
-          `${Selectors.li}`,
+        page,
+        2,
+        UploadYourDocumentsContent,
+        `li`,
+        `${Selectors.li}`,
       ),
       Helpers.checkGroup(
-          page,
-          6,
-          UploadYourDocumentsContent,
-          `GovukBody`,
-          `${Selectors.GovukBody}`,
+        page,
+        6,
+        UploadYourDocumentsContent,
+        `GovukBody`,
+        `${Selectors.GovukBody}`,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -62,16 +62,16 @@ export class UploadYourDocumentsWitnessStatementPage {
         1,
       ),
       Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukHint}:text-is("${UploadYourDocumentsContent.GovukHint1}")`,
-          1,
+        page,
+        `${Selectors.GovukHint}:text-is("${UploadYourDocumentsContent.GovukHint1}")`,
+        1,
       ),
       Helpers.checkGroup(
-          page,
-          2,
-          UploadYourDocumentsContent,
-          `GovukHeadingM`,
-          `${Selectors.GovukHeadingM}`,
+        page,
+        2,
+        UploadYourDocumentsContent,
+        `GovukHeadingM`,
+        `${Selectors.GovukHeadingM}`,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -79,16 +79,18 @@ export class UploadYourDocumentsWitnessStatementPage {
         1,
       ),
     ]);
-    await page.click(`${Selectors.GovukSummaryText}:text-is("${UploadYourDocumentsContent.GovukSummaryText}")`)
+    await page.click(
+      `${Selectors.GovukSummaryText}:text-is("${UploadYourDocumentsContent.GovukSummaryText}")`,
+    );
     await Promise.all([
       Helpers.checkGroup(
-          page,
-          5,
-          UploadYourDocumentsContent,
-          `hiddenLi`,
-          `${Selectors.li}`,
+        page,
+        5,
+        UploadYourDocumentsContent,
+        `hiddenLi`,
+        `${Selectors.li}`,
       ),
-    ])
+    ]);
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }

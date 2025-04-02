@@ -39,5 +39,4 @@ export enum UploadYourDocumentsContent {
   GovukBodyP4 = "You can submit your position statement by either:",
   GovukBodyP5 = "Select 'Save', to save your text as a document in this page. You can remove it if you need to.",
   GovukBodyP6 = "Upload your statement as a file or write your statement in the text box. You can also use the text box to describe the files you are uploading.",
-
 }
