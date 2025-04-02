@@ -51,7 +51,7 @@ export class UploadYourDocumentsWitnessStatementPage {
       ),
       Helpers.checkGroup(
           page,
-          7,
+          6,
           UploadYourDocumentsContent,
           `GovukBody`,
           `${Selectors.GovukBody}`,
