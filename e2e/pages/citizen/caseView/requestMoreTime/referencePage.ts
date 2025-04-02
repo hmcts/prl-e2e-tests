@@ -50,12 +50,12 @@ export class ReferencePage {
       await page.check(`${UniqueSelectors.haveRefNumberYes}`);
       await Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHeadingS}:text-is("${ReferenceContent.GovukHeadingS}")`,
+        `${Selectors.GovukLabelS}:text-is("${ReferenceContent.GovukHeadingS}")`,
         1,
       );
       await Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${ReferenceContent.GovukLabel}")`,
+        `${Selectors.GovukBody}:text-is("${ReferenceContent.GovukLabel}")`,
         1,
       );
       await Helpers.checkVisibleAndPresent(
