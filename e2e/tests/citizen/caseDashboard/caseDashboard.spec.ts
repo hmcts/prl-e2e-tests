@@ -5,9 +5,10 @@ import { CitizenCreateInitial } from "../../../journeys/citizen/citizenCreateIni
 
 test.describe("Manage citizen cases case dashboard tests.", (): void => {
   test.beforeEach(async ({ page }) => {
-    await IdamLoginHelper.signInCitizenUser(
+    await IdamLoginHelper.setupAndSignInUser(
       page,
       Config.citizenFrontendBaseURL,
+      "citizen",
     );
   });
   test("Check the case dashboard is visible to the user. @regression @smoke", async ({

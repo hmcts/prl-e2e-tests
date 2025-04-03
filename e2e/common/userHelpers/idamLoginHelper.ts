@@ -1,16 +1,15 @@
 import { Cookie, expect, Page } from "@playwright/test";
-import fs, { existsSync, readFileSync } from "fs";
+import { existsSync, readFileSync } from "fs";
 import Config from "../../config.ts";
-import { setupUser } from "./idamCreateCitizenUserApiHelper.ts";
+import { setupUser } from "./idamCreateUserApiHelper.ts";
 import { UserCredentials, UserLoginInfo } from "../types.ts";
-import config from "../../config.ts";
 
 export class IdamLoginHelper {
   private static fields: UserLoginInfo = {
     username: "#username",
     password: "#password",
   };
-  private static submitButton: string = 'input[value="Sign in"]';
+  private static submitButton = 'input[value="Sign in"]';
 
   public static async signIn(
     page: Page,
@@ -19,8 +18,7 @@ export class IdamLoginHelper {
     application: string,
     userType: string,
   ): Promise<void> {
-    const sessionPath = Config.sessionStoragePath + `${userType}.json`;
-
+    const sessionPath = `${Config.sessionStoragePath}${userType}.json`;
     if (
       userType !== "citizen" &&
       existsSync(sessionPath) &&
@@ -28,134 +26,92 @@ export class IdamLoginHelper {
     ) {
       return;
     } else {
-      if (!page.url().includes("idam-web-public.")) {
-        await page.goto(application);
-      }
-
-      if (page.url().includes("demo")) {
-        await page.waitForSelector(`#skiplinktarget:text("Sign in")`);
+      if (!page.url().includes("fis-ds-web")) {
+        return;
       } else {
-        await page.waitForSelector(
-          `#skiplinktarget:text("Sign in or create an account")`,
-        );
+        if (!page.url().includes("idam-web-public.")) {
+          await page.goto(application);
+        }
+        if (page.url().includes("demo")) {
+          await page.waitForSelector(`#skiplinktarget:text("Sign in")`);
+        } else {
+          await page.waitForSelector(
+            `#skiplinktarget:text("Sign in or create an account")`,
+          );
+        }
       }
-
       await page.fill(this.fields.username, username);
       await page.fill(this.fields.password, password);
       await page.click(this.submitButton);
 
       await expect
-        .poll(
-          async () => {
-            return !page.url().includes("idam-web-public.");
-          },
-          {
-            intervals: [1_000],
-            timeout: 100_000,
-            message: `Unable to sign in as ${userType} user`,
-          },
-        )
+        .poll(() => !page.url().includes("idam-web-public."), {
+          intervals: [1_000],
+          timeout: 100_000,
+          message: `Unable to sign in as ${userType} user`,
+        })
         .toBeTruthy();
 
       if (userType !== "citizen") {
         await page.context().storageState({ path: sessionPath });
-        await this.addAnalyticsCookie(sessionPath);
       }
     }
   }
 
-  public static async signInUser(
+  public static async signInLongLivedUser(
     page: Page,
     user: keyof typeof Config.userCredentials,
     application: string,
   ): Promise<void> {
-    const userCredentials: UserCredentials = Config.getUserCredentials(user);
-    if (userCredentials) {
-      await this.signIn(
-        page,
-        userCredentials.email,
-        userCredentials.password,
-        application,
-        user,
-      );
-    } else {
-      console.error("Invalid credential type");
-    }
+    const userCredentials = Config.getUserCredentials(user);
+    if (!userCredentials) return;
+
+    await this.signIn(
+      page,
+      userCredentials.email,
+      userCredentials.password,
+      application,
+      user,
+    );
   }
 
-  public static async signInCitizenUser(
+  public static async setupAndSignInUser(
     page: Page,
     application: string,
-    returnUserInfo: boolean = false,
-  ): Promise<{
-    email: string;
-    password: string;
-    id: string;
-    forename: string;
-    surname: string;
-  } | void> {
-    const token = process.env.CITIZEN_CREATE_USER_BEARER_TOKEN as string;
-    if (!token) {
-      console.error("Bearer token is not defined in the environment variables");
-      return;
-    }
-
-    const userInfo = await setupUser(token);
-    if (!userInfo) {
-      console.error("Failed to set up citizen user");
-      return;
-    }
-
+    userType: string,
+    returnUserInfo?: boolean,
+  ): Promise<UserCredentials | void> {
+    const token = process.env.CREATE_USER_BEARER_TOKEN as string;
+    if (!token) return;
+    const userInfo = await setupUser(token, userType);
+    if (!userInfo) return;
     await this.signIn(
       page,
       userInfo.email,
       userInfo.password,
       application,
-      "citizen",
+      userType,
     );
-
-    if (returnUserInfo) {
-      return userInfo;
-    }
+    if (returnUserInfo)
+      return {
+        forename: userInfo.forename,
+        surname: userInfo.surname,
+        email: userInfo.email,
+        password: userInfo.password,
+      };
   }
 
   private static isSessionValid(path: string): boolean {
     try {
       const data = JSON.parse(readFileSync(path, "utf-8"));
-      const cookie = data.cookies.find(
-        (cookie: Cookie) => cookie.name === "xui-webapp",
+      const cookie = data.cookies.find((c: Cookie) => c.name === "xui-webapp");
+      return (
+        cookie &&
+        new Date(cookie.expires * 1000).getTime() - Date.now() >
+          4 * 60 * 60 * 1000
       );
-      const expiry = new Date(cookie.expires * 1000);
-      // Check there is at least 4 hours left before the session expires
-      return expiry.getTime() - Date.now() > 4 * 60 * 60 * 1000;
-    } catch (error) {
-      throw new Error(`Could not read session data: ${error} for ${path}`);
-    }
-  }
-
-  private static async addAnalyticsCookie(sessionPath: string): Promise<void> {
-    try {
-      const domain = (config.manageCasesBaseURL as string).replace(
-        "https://",
-        "",
-      );
-      const state = JSON.parse(fs.readFileSync(sessionPath, "utf-8"));
-      const userId = state.cookies.find(
-        (cookie: Cookie) => cookie.name === "__userid__",
-      )?.value;
-      state.cookies.push({
-        name: `hmcts-exui-cookies-${userId}-mc-accepted`,
-        value: "true",
-        domain: `${domain}`,
-        path: "/",
-        expires: -1,
-        httpOnly: false,
-        secure: false,
-        sameSite: "Lax",
-      });
-      fs.writeFileSync(sessionPath, JSON.stringify(state, null, 2));
-    } catch (error) {
-      throw new Error(`Failed to read or write session data: ${error}`);
+    } catch {
+      return false;
     }
   }
 }
