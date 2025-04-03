@@ -25,26 +25,26 @@ export class Fl401TasksTabPage {
     accessibilityTest: boolean,
   ): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.h2}:text-is("${Fl401TasksTabContent.subTitle1}")`,
+      `${Selectors.h2}:text-is("${Fl401TasksTabContent.subTitleW1}")`,
     );
     await Promise.all([
       Helpers.checkGroup(
         page,
         6,
         Fl401TasksTabContent,
-        "subTitle",
+        "subTitleW",
         `${Selectors.h2}`,
       ),
       Helpers.checkGroup(
         page,
         14,
         Fl401TasksTabContent,
-        "link",
+        "linkW",
         `${IndividualSelectors.links}`,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Panel}:text-is("${Fl401TasksTabContent.panel}")`,
+        `${Selectors.Panel}:text-is("${Fl401TasksTabContent.panelW}")`,
         1,
       ),
     ]);

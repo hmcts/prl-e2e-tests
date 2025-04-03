@@ -1,6 +1,7 @@
 export enum NeedHelpWithFeesContent {
   pageTitle = "Do you need help with paying the fee for this application?",
-  bodyM = "This application costs £263.00. You may be able to get help with paying the fee if you have little or no savings, and either:",
+  bodyM1 = "This application costs",
+  bodyM2 = "You may be able to get help with paying the fee if you have little or no savings, and either:",
   li1 = "get certain benefits",
   li2 = "are on a low income",
   link = "See if you are eligible for Help with Fees.",
