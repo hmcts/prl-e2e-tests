@@ -6,13 +6,10 @@ export interface UserLoginInfo {
 export interface UserCredentials {
   readonly email: string;
   readonly password: string;
+}
+export interface UserCredentialsLong extends UserCredentials {
   readonly forename: string;
   readonly surname: string;
-}
-
-export interface UserCredentialsShort {
-  readonly email: string;
-  readonly password: string;
 }
 
 export type solicitorCaseCreateType = "C100" | "FL401";

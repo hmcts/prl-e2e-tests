@@ -2,7 +2,7 @@ import { Cookie, expect, Page } from "@playwright/test";
 import fs, { existsSync, readFileSync } from "fs";
 import Config from "../../config.ts";
 import { setupUser } from "./idamCreateUserApiHelper.ts";
-import { UserCredentials, UserLoginInfo } from "../types.ts";
+import { UserCredentialsLong, UserLoginInfo } from "../types.ts";
 export class IdamLoginHelper {
   private static fields: UserLoginInfo = {
     username: "#username",
@@ -75,7 +75,7 @@ export class IdamLoginHelper {
     application: string,
     userType: string,
     returnUserInfo?: boolean,
-  ): Promise<UserCredentials | void> {
+  ): Promise<UserCredentialsLong | void> {
     const token = process.env.CREATE_USER_BEARER_TOKEN as string;
     if (!token) return;
     const userInfo = await setupUser(token, userType);
@@ -99,7 +99,7 @@ export class IdamLoginHelper {
     try {
       const data = JSON.parse(readFileSync(path, "utf-8"));
       const cookie = data.cookies.find(
-          (cookie: Cookie) => cookie.name === "xui-webapp",
+        (cookie: Cookie) => cookie.name === "xui-webapp",
       );
       const expiry = new Date(cookie.expires * 1000);
       // Check there is at least 4 hours left before the session expires
@@ -112,12 +112,12 @@ export class IdamLoginHelper {
   private static async addAnalyticsCookie(sessionPath: string): Promise<void> {
     try {
       const domain = (Config.manageCasesBaseURL as string).replace(
-          "https://",
-          "",
+        "https://",
+        "",
       );
       const state = JSON.parse(fs.readFileSync(sessionPath, "utf-8"));
       const userId = state.cookies.find(
-          (cookie: Cookie) => cookie.name === "__userid__",
+        (cookie: Cookie) => cookie.name === "__userid__",
       )?.value;
       state.cookies.push({
         name: `hmcts-exui-cookies-${userId}-mc-accepted`,

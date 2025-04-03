@@ -81,7 +81,6 @@ export async function createUser(
       ];
       forename = "Yolanda";
       surname = "Cooper";
-      userId = "49196024-14f7-4383-88dd-5a1a27293169";
       break;
     case "caseWorker":
       password = process.env.CASEWORKER_PASSWORD!;
@@ -94,7 +93,6 @@ export async function createUser(
       ];
       forename = "PRL AAT AM";
       surname = "Swansea HCTL";
-      userId = "4beb9cfb-1178-4a2f-aaa3-ddf1dc6bb9de";
       break;
     case "caseManager":
       password = process.env.CASEMANAGER_PASSWORD!;

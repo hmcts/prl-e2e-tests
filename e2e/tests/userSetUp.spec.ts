@@ -4,10 +4,10 @@ import Config from "../config.ts";
 
 test("Create citizen user", async ({ page }) => {
   const userInfo = await IdamLoginHelper.setupAndSignInUser(
-      page,
-      Config.citizenFrontendBaseURL,
-      "citizen",
-      true,
+    page,
+    Config.citizenFrontendBaseURL,
+    "citizen",
+    true,
   );
   console.log(userInfo);
 });
