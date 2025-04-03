@@ -204,9 +204,10 @@ export class EdgeCase {
     surname: string;
   }> {
     await StartPage.startPage({ page, accessibilityTest });
-    const userInfo = await IdamLoginHelper.signInCitizenUser(
+    const userInfo = await IdamLoginHelper.setupAndSignInUser(
       page,
       page.url(),
+      "citizen",
       true,
     );
     if (!userInfo) throw new Error("Failed to retrieve user info");
@@ -215,7 +216,11 @@ export class EdgeCase {
       accessibilityTest,
       typeOfApplication,
     });
-    return userInfo;
+    return {
+      email: userInfo.email,
+      forename: userInfo.forename,
+      surname: userInfo.surname,
+    };
   }
 
   // sub-journey to complete address, email, and contact details

@@ -1,12 +1,15 @@
 import path from "path";
 import dotenv from "dotenv";
 
-import { UserCredentials, UserRole } from "./common/types";
+import { UserCredentialsShort, UserRole } from "./common/types";
 
 dotenv.config();
 
 export class Config {
-  public static readonly userCredentials: Record<UserRole, UserCredentials> = {
+  public static readonly userCredentials: Record<
+    UserRole,
+    UserCredentialsShort
+  > = {
     solicitor: {
       email: process.env.SOLICITOR_USERNAME as string,
       password: process.env.SOLICITOR_PASSWORD as string,
@@ -106,7 +109,7 @@ export class Config {
     "./assets/mockFile.mp3",
   );
 
-  public static getUserCredentials(role: UserRole): UserCredentials {
+  public static getUserCredentials(role: UserRole): UserCredentialsShort {
     return this.userCredentials[role];
   }
 }
