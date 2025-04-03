@@ -25,19 +25,15 @@ export class IdamLoginHelper {
     ) {
       return;
     } else {
-      if (!page.url().includes("fis-ds-web")) {
-        return;
+      if (!page.url().includes("idam-web-public.")) {
+        await page.goto(application);
+      }
+      if (page.url().includes("demo")) {
+        await page.waitForSelector(`#skiplinktarget:text("Sign in")`);
       } else {
-        if (!page.url().includes("idam-web-public.")) {
-          await page.goto(application);
-        }
-        if (page.url().includes("demo")) {
-          await page.waitForSelector(`#skiplinktarget:text("Sign in")`);
-        } else {
-          await page.waitForSelector(
-            `#skiplinktarget:text("Sign in or create an account")`,
-          );
-        }
+        await page.waitForSelector(
+          `#skiplinktarget:text("Sign in or create an account")`,
+        );
       }
       await page.fill(this.fields.username, username);
       await page.fill(this.fields.password, password);
@@ -83,7 +79,6 @@ export class IdamLoginHelper {
     const token = process.env.CREATE_USER_BEARER_TOKEN as string;
     if (!token) return;
     const userInfo = await setupUser(token, userType);
-    if (!userInfo) return;
     await this.signIn(
       page,
       userInfo.email,
