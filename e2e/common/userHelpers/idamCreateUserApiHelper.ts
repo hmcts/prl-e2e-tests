@@ -8,7 +8,6 @@ export async function setupUser(
 ): Promise<{
   email: string;
   password: string;
-  id: string;
   user: string;
   forename: string;
   surname: string;
@@ -22,7 +21,7 @@ export async function setupUser(
  * @param {APIRequestContext} apiContext The API request context
  * @param {string} token Bearer token passed from global setup
  * @param {string} user The type of user to create
- * @returns {Promise<{ email: string; password: string; id: string; user: string }>} The created user's details
+ * @returns {Promise<{ email: string; password: string; user: string }>} The created user's details
  */
 export async function createUser(
   apiContext: APIRequestContext,
@@ -31,7 +30,6 @@ export async function createUser(
 ): Promise<{
   email: string;
   password: string;
-  id: string;
   user: string;
   forename: string;
   surname: string;
@@ -43,7 +41,6 @@ export async function createUser(
   let forename: string;
   let surname: string;
   const idamUrl = process.env.IDAM_TESTING_SUPPORT_USERS_URL!;
-  let userId = "";
 
   switch (user) {
     case "citizen":
@@ -130,14 +127,13 @@ export async function createUser(
   });
 
   if (response.status() === 201) {
-    return { email, password, id, user, forename, surname };
+    return { email, password, user, forename, surname };
   }
   if (response.status() === 409) {
     return updateUser(
       apiContext,
       token,
       idamUrl,
-      userId,
       email,
       forename,
       surname,
@@ -154,7 +150,6 @@ async function updateUser(
   apiContext: APIRequestContext,
   token: string,
   idamUrl: string,
-  userId: string,
   email: string,
   forename: string,
   surname: string,
@@ -163,12 +158,22 @@ async function updateUser(
 ): Promise<{
   email: string;
   password: string;
-  id: string;
   user: string;
   forename: string;
   surname: string;
 }> {
-  const response = await apiContext.put(`${idamUrl}/${userId}`, {
+  const responseGetId = await apiContext.get(`${idamUrl}?email=${encodeURIComponent(email)}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+  });
+  if (!responseGetId.ok()) {
+    throw new Error(`Failed to fetch user details: ${responseGetId.status()}`);
+  }
+  const responseGetIdBody = await responseGetId.json();
+  const judgeId =  responseGetIdBody.id;
+  const response = await apiContext.put(`${idamUrl}/${judgeId}`, {
     headers: {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
@@ -176,7 +181,6 @@ async function updateUser(
     data: {
       password,
       user: {
-        id: userId,
         email,
         forename,
         surname,
@@ -189,7 +193,7 @@ async function updateUser(
   });
 
   if (response.status() === 200 || response.status() === 409) {
-    return { email, password, id: userId, user: "updated", forename, surname };
+    return { email, password, user: "updated", forename, surname };
   }
 
   throw new Error(
