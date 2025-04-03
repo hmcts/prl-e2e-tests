@@ -42,12 +42,13 @@ test("Create case manager user", async ({ page }) => {
   console.log(userInfo);
 });
 
-test("Create judge user", async ({ page }) => {
-  const userInfo = await IdamLoginHelper.setupAndSignInUser(
-      page,
-      Config.manageCasesBaseURLCase,
-      "judge",
-      true,
-  );
-  console.log(userInfo);
-});
+// commented out until we change azure secrets to judge user: Yolanda Cooper
+// test("Create judge user", async ({ page }) => {
+//   const userInfo = await IdamLoginHelper.setupAndSignInUser(
+//       page,
+//       Config.manageCasesBaseURLCase,
+//       "judge",
+//       true,
+//   );
+//   console.log(userInfo);
+// });
