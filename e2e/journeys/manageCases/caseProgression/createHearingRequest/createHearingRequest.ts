@@ -105,6 +105,13 @@ export class CreateHearingRequest {
         /.*\/api\/prd\/lov\/getLovRefData.*/.test(response.url()) &&
         response.status() === 200,
     );
+    await this.requestAHearing(page, accessibilityTest);
+  }
+
+  public static async requestAHearing(
+    page: Page,
+    accessibilityTest: boolean,
+  ): Promise<void> {
     await page.click(
       `${Selectors.a}:text-is("${CommonStaticText.hearingRequest}")`,
     );
