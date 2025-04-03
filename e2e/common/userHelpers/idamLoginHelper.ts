@@ -49,6 +49,7 @@ export class IdamLoginHelper {
 
       if (userType !== "citizen") {
         await page.context().storageState({ path: sessionPath });
+        await this.addAnalyticsCookie(sessionPath);
       }
     }
   }
