@@ -1,9 +1,8 @@
 import { Cookie, expect, Page } from "@playwright/test";
-import { existsSync, readFileSync } from "fs";
+import fs, { existsSync, readFileSync } from "fs";
 import Config from "../../config.ts";
 import { setupUser } from "./idamCreateUserApiHelper.ts";
 import { UserCredentials, UserLoginInfo } from "../types.ts";
-
 export class IdamLoginHelper {
   private static fields: UserLoginInfo = {
     username: "#username",
@@ -104,14 +103,40 @@ export class IdamLoginHelper {
   private static isSessionValid(path: string): boolean {
     try {
       const data = JSON.parse(readFileSync(path, "utf-8"));
-      const cookie = data.cookies.find((c: Cookie) => c.name === "xui-webapp");
-      return (
-        cookie &&
-        new Date(cookie.expires * 1000).getTime() - Date.now() >
-          4 * 60 * 60 * 1000
+      const cookie = data.cookies.find(
+          (cookie: Cookie) => cookie.name === "xui-webapp",
       );
-    } catch {
-      return false;
+      const expiry = new Date(cookie.expires * 1000);
+      // Check there is at least 4 hours left before the session expires
+      return expiry.getTime() - Date.now() > 4 * 60 * 60 * 1000;
+    } catch (error) {
+      throw new Error(`Could not read session data: ${error} for ${path}`);
+    }
+  }
+
+  private static async addAnalyticsCookie(sessionPath: string): Promise<void> {
+    try {
+      const domain = (Config.manageCasesBaseURL as string).replace(
+          "https://",
+          "",
+      );
+      const state = JSON.parse(fs.readFileSync(sessionPath, "utf-8"));
+      const userId = state.cookies.find(
+          (cookie: Cookie) => cookie.name === "__userid__",
+      )?.value;
+      state.cookies.push({
+        name: `hmcts-exui-cookies-${userId}-mc-accepted`,
+        value: "true",
+        domain: `${domain}`,
+        path: "/",
+        expires: -1,
+        httpOnly: false,
+        secure: false,
+        sameSite: "Lax",
+      });
+      fs.writeFileSync(sessionPath, JSON.stringify(state, null, 2));
+    } catch (error) {
+      throw new Error(`Failed to read or write session data: ${error}`);
     }
   }
 }
