@@ -42,6 +42,7 @@ export class DummyC100 {
       page: page,
       yesNoWelshLanguage: false,
       yesNoHelpWithFees: false,
+      accessibilityTest: false,
     });
     await DummyPaymentConfirmation.dummyPaymentConfirmation({
       page,
@@ -81,6 +82,7 @@ export class DummyC100 {
       page: page,
       yesNoWelshLanguage: false,
       yesNoHelpWithFees: false,
+      accessibilityTest: false,
     });
   }
 }

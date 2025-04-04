@@ -8,10 +8,12 @@ import { SubmitAndPay1Content } from "../../../../../fixtures/manageCases/create
 interface SubmitAndPay3PageOptions {
   page: Page;
   yesNoHelpWithFees: boolean;
+  accessibilityTest: boolean;
 }
 
 interface checkPageLoadsOptions {
   page: Page;
+  accessibilityTest: boolean;
 }
 
 interface fillInFieldsOptions {
@@ -28,10 +30,12 @@ enum UniqueSelectors {
 export class SubmitAndPay3Page {
   public static async submitAndPay3Page({
     page: page,
+    accessibilityTest: accessibilityTest,
     yesNoHelpWithFees: yesNoHelpWithFees,
   }: SubmitAndPay3PageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
+      accessibilityTest: accessibilityTest,
     });
     await this.fillInFields({
       page: page,
@@ -41,6 +45,7 @@ export class SubmitAndPay3Page {
 
   private static async checkPageLoads({
     page: page,
+    accessibilityTest: accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.GovukFormLabel}:text-is("${SubmitAndPay3Content.formLabel}")`,
@@ -67,7 +72,9 @@ export class SubmitAndPay3Page {
         1,
       ),
     ]);
-    await AccessibilityTestHelper.run(page);
+    if (accessibilityTest) {
+      await AccessibilityTestHelper.run(page);
+    }
   }
 
   private static async fillInFields({
