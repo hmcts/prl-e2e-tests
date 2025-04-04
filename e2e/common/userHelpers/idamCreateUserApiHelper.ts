@@ -162,17 +162,20 @@ async function updateUser(
   forename: string;
   surname: string;
 }> {
-  const responseGetId = await apiContext.get(`${idamUrl}?email=${encodeURIComponent(email)}`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
+  const responseGetId = await apiContext.get(
+    `${idamUrl}?email=${encodeURIComponent(email)}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
     },
-  });
+  );
   if (!responseGetId.ok()) {
     throw new Error(`Failed to fetch user details: ${responseGetId.status()}`);
   }
   const responseGetIdBody = await responseGetId.json();
-  const judgeId =  responseGetIdBody.id;
+  const judgeId = responseGetIdBody.id;
   const response = await apiContext.put(`${idamUrl}/${judgeId}`, {
     headers: {
       Authorization: `Bearer ${token}`,

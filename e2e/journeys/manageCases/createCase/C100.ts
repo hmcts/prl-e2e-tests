@@ -297,6 +297,7 @@ export class C100 {
       page: page,
       yesNoWelshLanguage: yesNoWelshLanguage,
       yesNoHelpWithFees: yesNoHelpWithFees,
+      accessibilityTest: accessibilityTest,
     });
   }
 
@@ -467,6 +468,7 @@ export class C100 {
         page: page,
         yesNoWelshLanguage: yesNoWelshLanguage,
         yesNoHelpWithFees: yesNoHelpWithFees,
+        accessibilityTest: accessibilityTest,
       });
     }
   }
