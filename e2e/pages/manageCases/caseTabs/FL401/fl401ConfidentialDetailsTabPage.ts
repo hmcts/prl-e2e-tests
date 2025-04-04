@@ -139,7 +139,7 @@ export class FL401ConfidentialDetailsTabPage {
         ).toBeVisible(),
         expect(
           restrictedDocsSection.getByRole("columnheader", {
-            name: "Submitted by▲",
+            name: "Uploaded by",
           }),
         ).toBeVisible(),
         expect(
