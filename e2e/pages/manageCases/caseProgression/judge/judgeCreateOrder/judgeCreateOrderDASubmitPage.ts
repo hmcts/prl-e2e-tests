@@ -1,6 +1,6 @@
 import { Page } from "@playwright/test";
 import { createOrderFL401Options } from "../../../../../common/types";
-import { ManageOrders1DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders1DAContent";
+import { ManageOrders1DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderDA/manageOrders1DAContent";
 import { Selectors } from "../../../../../common/selectors";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { JudgeCreateOrderDASubmitContent } from "../../../../../fixtures/manageCases/caseProgression/judge/judgeCreateOrder/judgeCreateOrderDASubmitContent";

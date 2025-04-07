@@ -1,6 +1,6 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors";
-import { EditAndApproveAnOrder21Content } from "../../../../fixtures/manageCases/caseWorker/eidtAndApproveAnOrder/editAndApproveAnOrder21Content";
+import { EditAndApproveAnOrder21Content } from "../../../../fixtures/manageCases/caseWorker/editAndApproveAnOrder/editAndApproveAnOrder21Content";
 import { CommonStaticText } from "../../../../common/commonStaticText";
 import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
 import { Helpers } from "../../../../common/helpers";

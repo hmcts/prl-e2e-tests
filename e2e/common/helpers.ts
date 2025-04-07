@@ -126,16 +126,19 @@ export class Helpers {
     }
   }
 
-  public static todayDate(longFormat: boolean = false): string {
+  public static todayDate(longFormat: boolean = false, array: boolean = false): string | string[] {
     const now: Date = new Date();
     const options: Intl.DateTimeFormatOptions = {
       year: "numeric",
       month: "2-digit",
-      day: "numeric",
+      day: "2-digit",
     };
     const dateString: string = now.toLocaleDateString("en-US", options);
     const [month, day, year] = dateString.split("/");
-    if (longFormat) {
+
+    if (array) {
+      return [day, month, year];
+    } else if (longFormat) {
       return Helpers.dayLongMonthYear(day, month, year);
     } else {
       return Helpers.dayAbbreviatedMonthYear(day, month, year);
