@@ -1,10 +1,8 @@
 export enum Noc1Content {
-  govUkHeadingL = "Enter your client's details",
-  p = "You must enter the client details exactly as they're written on the case, including any mistakes. If the client's name is Smyth but it has been labelled \"Smith\", you should enter Smith. Please ensure that you are only performing a notice of change on behalf of the client that you are representing.",
-  formLabel1 = "Your client's first name",
-  formLabel2 = "Your client's last name",
-  applicantFirstName = "Applicant",
-  applicantLastName = "ApplLast",
-  respondentFirstName = "Dolores",
-  respondentLastName = "Smith",
+  govUkHeadingL = "Notice of change",
+  p = "You can use this notice of change (sometimes called a 'notice of acting') to get access to the digital case file in place of:",
+  li1 = "a client acting in person",
+  li2 = "a legal representative previously acting on your client's behalf",
+  span = "Online case reference number",
+  govUkHint = " This is a 16-digit number from MyHMCTS, for example 1111-2222-3333-4444",
 }

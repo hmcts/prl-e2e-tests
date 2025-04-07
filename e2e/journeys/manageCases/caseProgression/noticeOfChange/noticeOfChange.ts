@@ -1,15 +1,17 @@
-import { Page } from "@playwright/test";
-import { Noc1Page } from "../../../../pages/manageCases/caseProgression/noticeOfChange/noc1Page.ts";
+import { Browser, Page } from "@playwright/test";
+import { Noc2Page } from "../../../../pages/manageCases/caseProgression/noticeOfChange/noc2Page.ts";
 import { NocSubmitPage } from "../../../../pages/manageCases/caseProgression/noticeOfChange/nocSubmitPage.ts";
 import { NocSuccessfulPage } from "../../../../pages/manageCases/caseProgression/noticeOfChange/nocSuccessfulPage.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import config from "../../../../config.ts";
 import { CreateHearingRequest } from "../createHearingRequest/createHearingRequest.ts";
 import { solicitorCaseCreateType } from "../../../../common/types.ts";
-import idamLoginHelper from "../../../../common/userHelpers/idamLoginHelper.ts";
+import { Noc1Page } from "../../../../pages/manageCases/caseProgression/noticeOfChange/noc1Page.ts";
+import { submitEvent } from "../../../../common/caseHelpers/solicitorCaseCreatorHelper.ts";
 
 interface NoticeOfChangeParams {
   page: Page;
+  browser: Browser;
   caseType: solicitorCaseCreateType;
   caseRef: string;
   isApplicant: boolean;
@@ -19,18 +21,19 @@ interface NoticeOfChangeParams {
 export class NoticeOfChange {
   public static async noticeOfChange({
     page,
+    browser,
     caseType,
     caseRef,
     isApplicant,
     accessibilityTest,
   }: NoticeOfChangeParams): Promise<void> {
     await page.getByRole("link", { name: "Notice of change" }).click();
-    await Noc1Page.noc1Page(page, isApplicant, accessibilityTest);
+    await Noc1Page.noc1Page(page, caseRef, accessibilityTest);
+    await Noc2Page.noc2Page(page, isApplicant, accessibilityTest);
     await NocSubmitPage.nocSubmitPage(page, isApplicant, accessibilityTest);
     await NocSuccessfulPage.nocSuccessfulPage(page, accessibilityTest);
-    await page.getByRole("link", { name: "View this case" }).click();
     await this.checkSolicitorOnApplication(page, isApplicant);
-    await this.checkHearingRequest(page, caseType, caseRef);
+    await this.checkHearingRequest(browser, caseType, caseRef);
   }
 
   private static async checkSolicitorOnApplication(
@@ -48,32 +51,32 @@ export class NoticeOfChange {
     await tableLocator
       .getByRole("heading", { name: solicitorTitle })
       .isVisible();
-    // .locator(Selectors.h3, { hasText: solicitorTitle })
-    // .isVisible();
     await tableLocator
       .getByRole("link", { name: "prl_aat_solicitor@mailinator.com" })
       .isVisible();
-    // .locator(Selectors.a, { hasText: "prl_aat_solicitor@mailinator.com" })
-    // .isVisible();
   }
 
   private static async checkHearingRequest(
-    page: Page,
+    browser: Browser,
     caseType: solicitorCaseCreateType,
     caseRef: string,
   ): Promise<void> {
-    // TODO: finish this method
     if (caseType === "C100") {
       // login as ctsc and issue to local court
+      const ctscPage: Page = await Helpers.openNewBrowserWindow(
+        browser,
+        "courtAdminStoke",
+      );
+      await submitEvent(ctscPage, caseRef, "issueAndSendToLocalCourtCallback");
     }
-    await idamLoginHelper.signInUser(
-      page,
+    const caPage: Page = await Helpers.openNewBrowserWindow(
+      browser,
       "caseWorker",
-      config.manageCasesBaseURLCase,
     );
-    await page.goto(
+    await caPage.goto(
       `${config.manageCasesBaseURLCase}/case-details/${caseRef}/hearings`,
     );
-    // await CreateHearingRequest.requestAHearing(page, false); // this will need tweaking
+    // TODO
+    // await CreateHearingRequest.requestAHearing(page, false); // this will almost certainly need tweaking
   }
 }

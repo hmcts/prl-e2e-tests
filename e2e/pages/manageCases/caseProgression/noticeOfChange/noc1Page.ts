@@ -1,23 +1,22 @@
 import { Page } from "@playwright/test";
-import { Noc1Content } from "../../../../fixtures/manageCases/caseProgression/noticeOfChange/noc1Content.ts";
 import { Selectors } from "../../../../common/selectors.ts";
 import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
 import { Helpers } from "../../../../common/helpers.ts";
+import { Noc1Content } from "../../../../fixtures/manageCases/caseProgression/noticeOfChange/noc1Content.ts";
 
 enum UniqueSelectors {
-  nocClientFirstName = "#NoCChallengeQ1",
-  nocClientLastName = "#NoCChallengeQ2",
+  caseRefTextbox = "#caseRef",
 }
 
 export class Noc1Page {
   public static async noc1Page(
     page: Page,
-    isApplicant: boolean,
+    caseRef: string,
     accessibilityTest: boolean,
   ): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest);
-    await this.fillInfields(page, isApplicant);
+    await this.fillInFields(page, caseRef);
     await this.continue(page);
   }
 
@@ -36,12 +35,16 @@ export class Noc1Page {
         `${Selectors.p}:text-is("${Noc1Content.p}")`,
         1,
       ),
-      Helpers.checkGroup(
+      Helpers.checkGroup(page, 2, Noc1Content, `li`, `${Selectors.li}`),
+      Helpers.checkVisibleAndPresent(
         page,
-        2,
-        Noc1Content,
-        `formLabel`,
-        `${Selectors.GovukFormLabel}`,
+        `${Selectors.Span}:text-is("${Noc1Content.span}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukHint}:text-is("${Noc1Content.govUkHint}")`,
+        1,
       ),
     ]);
     if (accessibilityTest) {
@@ -49,29 +52,11 @@ export class Noc1Page {
     }
   }
 
-  private static async fillInfields(
+  private static async fillInFields(
     page: Page,
-    isApplicant: boolean,
+    caseRef: string,
   ): Promise<void> {
-    if (isApplicant) {
-      await page.fill(
-        UniqueSelectors.nocClientFirstName,
-        Noc1Content.applicantFirstName,
-      );
-      await page.fill(
-        UniqueSelectors.nocClientLastName,
-        Noc1Content.applicantLastName,
-      );
-    } else {
-      await page.fill(
-        UniqueSelectors.nocClientFirstName,
-        Noc1Content.respondentFirstName,
-      );
-      await page.fill(
-        UniqueSelectors.nocClientLastName,
-        Noc1Content.respondentLastName,
-      );
-    }
+    await page.fill(UniqueSelectors.caseRefTextbox, caseRef);
   }
 
   private static async continue(page: Page): Promise<void> {

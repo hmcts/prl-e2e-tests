@@ -22,9 +22,11 @@ test.describe("Notice of Change tests for CA case", () => {
 
   test("NOC applicant. @nightly @accessibility @regression", async ({
     page,
+    browser
   }): Promise<void> => {
     await NoticeOfChange.noticeOfChange({
       page: page,
+      browser: browser,
       caseType: "C100",
       caseRef: ccdRef,
       isApplicant: true,
@@ -32,9 +34,13 @@ test.describe("Notice of Change tests for CA case", () => {
     });
   });
 
-  test("NOC respondent. @regression", async ({ page }): Promise<void> => {
+  test("NOC respondent. @regression", async ({
+    page,
+    browser
+  }): Promise<void> => {
     await NoticeOfChange.noticeOfChange({
       page: page,
+      browser: browser,
       caseType: "C100",
       caseRef: ccdRef,
       isApplicant: false,
