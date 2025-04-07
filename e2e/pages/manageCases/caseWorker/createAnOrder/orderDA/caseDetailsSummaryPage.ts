@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Selectors } from "../../../../../common/selectors";
 import { Helpers } from "../../../../../common/helpers";
-import { CaseDetailsSummaryDAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/caseDetailsSummaryDAContent";
+import { CaseDetailsSummaryDAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderDA/caseDetailsSummaryDAContent";
 
 interface CaseDetailsSummaryPageOptions {
   page: Page;

@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
 import { JudgeOrderAction } from "../../../../common/types";
 import { Selectors } from "../../../../common/selectors";
-import { EditAndApproveAnOrderConfirmContent } from "../../../../fixtures/manageCases/caseWorker/eidtAndApproveAnOrder/editAndApproveAnOrderConfirmContent";
+import { EditAndApproveAnOrderConfirmContent } from "../../../../fixtures/manageCases/caseWorker/editAndApproveAnOrder/editAndApproveAnOrderConfirmContent";
 import { Helpers } from "../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
 

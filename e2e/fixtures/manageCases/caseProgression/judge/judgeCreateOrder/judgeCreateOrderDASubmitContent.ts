@@ -38,7 +38,7 @@ export enum JudgeCreateOrderDASubmitContent {
   text16B6 = "Hearing 1",
   text16B7 = "Hearing Type",
   text16B8 = "Has the hearing date been confirmed?",
-  text16B9 = "This order will be served with the 'date to be fixed' (Optional)",
+  text16B9 = "This order will be served with the 'date to be fixed'",
   text16B10 = "This order will be served with the 'date to be fixed'",
   text16B11 = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi ista probare, quae sunt a te dicta? Refert tamen, quo modo.",
 }

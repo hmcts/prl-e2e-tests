@@ -6,7 +6,7 @@ export enum ManageOrdersSubmitDAContent {
   p1 = "Order made by",
   p2 = "If you want to make further changes, go back to the previous screen.",
   strong1 = "Judge or Magistrate's title",
-  strong2 = "This order will be served with the 'date to be fixed' (Optional)",
+  strong2 = "This order will be served with the 'date to be fixed'",
   a1 = "welsh_non_molestation_order_fl404a_draft.pdf",
   a2 = "non_molestation_order_fl404a_draft.pdf",
   sharedText161 = "Create an order",
