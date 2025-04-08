@@ -131,7 +131,7 @@ export class Helpers {
     const options: Intl.DateTimeFormatOptions = {
       year: "numeric",
       month: "2-digit",
-      day: "2-digit",
+      day: "numeric",
     };
     const dateString: string = now.toLocaleDateString("en-US", options);
     const [month, day, year] = dateString.split("/");
