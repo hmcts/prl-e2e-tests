@@ -9,6 +9,7 @@ export enum CommonContent {
   betaContent = "This is a new service - your feedback(Opens in a new window) will help us to improve it.",
   welshTranslationButton = "Cymraeg",
   judgeName = "Ms Elizabeth Williams",
+  judgeNameNoPrefix = "Elizabeth Williams",
   judgeEmail = "HHJ.Elizabeth.Williams@ejudiciary.net",
   judgeNameAndEmail = "Ms Elizabeth Williams (HHJ.Elizabeth.Williams@ejudiciary.net)",
   c100Fee = "£263.00",
