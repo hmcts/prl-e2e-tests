@@ -78,17 +78,14 @@ export class HearingAttendancePage {
   private static async fillInFields(page: Page): Promise<void> {
     await page.check(`${UniqueSelectors.paperHearingNo}`);
     await page.check(`${UniqueSelectors.attendanceInPerson}`);
-    await page.selectOption(
-      `${UniqueSelectors.applicantAttend}`,
-      HearingAttendanceContent.attendOption,
-    );
-    await page.selectOption(
-      `${UniqueSelectors.respondentAttend}`,
-      HearingAttendanceContent.attendOption,
-    );
+    // get number of participants
+    const participants = await page.locator(Selectors.GovukSelect).all();
+    for (let participant of participants) {
+      await participant.selectOption(HearingAttendanceContent.attendOption);
+    }
     await page.fill(
       `${UniqueSelectors.attendanceNumber}`,
-      HearingAttendanceContent.numberOfPeople,
+      `${participants.length}`,
     );
   }
 

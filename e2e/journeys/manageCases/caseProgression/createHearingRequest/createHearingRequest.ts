@@ -18,6 +18,7 @@ import { createOrderFL401Options } from "../../../../common/types";
 import { Selectors } from "../../../../common/selectors.ts";
 import { jsonDatas } from "../../../../common/caseHelpers/solicitorCaseCreatorHelper.ts";
 import { completeCheckApplicationAndSendToGatekeeperAndCreateAnOrder } from "../../../../common/caseHelpers/caseEventsHelper.ts";
+import { HearingConfirmationPage } from "../../../../pages/manageCases/caseProgression/createHearingRequest/hearingConfirmationPage.ts";
 
 interface CreateHearingRequestParams {
   page: Page;
@@ -132,6 +133,10 @@ export class CreateHearingRequest {
       accessibilityTest,
     );
     await HearingCreateEditSummaryPage.hearingCreateEditSummaryPage(
+      page,
+      accessibilityTest,
+    );
+    await HearingConfirmationPage.hearingConfirmationPage(
       page,
       accessibilityTest,
     );
