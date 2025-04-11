@@ -7,6 +7,5 @@ export enum HearingAttendanceContent {
   GovukFieldsetHeading4 = " How many people will attend the hearing in person?",
   GovukHint = "Estimate how many people will attend in person, excluding judicial members. This number will determine the room size.",
   attendOption = "In Person",
-  numberOfPeople = "2",
   continue = "Continue",
 }

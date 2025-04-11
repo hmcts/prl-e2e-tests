@@ -66,3 +66,11 @@ setup("Setup Stoke court admin user", async ({ page }) => {
     config.manageCasesBaseURLCase,
   );
 });
+
+setup("Setup NOC Solicitor user", async ({ page }) => {
+  await IdamLoginHelper.signInLongLivedUser(
+    page,
+    "nocSolicitor",
+    config.manageCasesBaseURLCase,
+  );
+});

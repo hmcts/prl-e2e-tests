@@ -31,6 +31,10 @@ export class Config {
       email: process.env.CASEMANAGER_USERNAME as string,
       password: process.env.CASEMANAGER_PASSWORD as string,
     },
+    nocSolicitor: {
+      email: process.env.NOC_SOLICITOR_USERNAME as string,
+      password: process.env.NOC_SOLICITOR_PASSWORD as string,
+    },
   };
 
   public static readonly sessionStoragePath: string = path.join(
