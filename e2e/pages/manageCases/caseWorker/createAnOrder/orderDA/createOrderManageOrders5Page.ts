@@ -1,13 +1,13 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
-import { ManageOrders1DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders1DAContent";
+import { ManageOrders1DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderDA/manageOrders1DAContent";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import {
   CreateOrderFL401Options,
   CreateOrderManageOrders5Content,
-} from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/createOrderManageOrders5Content";
+} from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderDA/createOrderManageOrders5Content";
 import {
   createOrderFL401Options,
   judgeTitles,

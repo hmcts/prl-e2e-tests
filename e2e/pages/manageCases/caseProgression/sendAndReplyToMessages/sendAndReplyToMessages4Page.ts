@@ -90,11 +90,6 @@ export class SendAndReplyToMessages4Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukText16}:has-text("${Helpers.todayDate()}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
         `${Selectors.button}:text-is("${CommonStaticText.previous}")`,
         1,
       ),

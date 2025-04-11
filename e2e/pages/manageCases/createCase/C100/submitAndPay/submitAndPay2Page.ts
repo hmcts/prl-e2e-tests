@@ -4,14 +4,17 @@ import { SubmitAndPay2Content } from "../../../../../fixtures/manageCases/create
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { SubmitAndPay1Content } from "../../../../../fixtures/manageCases/createCase/C100/submitAndPay/submitAndPay1Content";
+import { CommonContent } from "../../../../../fixtures/manageCases/commonContent.ts";
 
 interface SubmitAndPay2PageOptions {
   page: Page;
+  accessibilityTest: boolean;
   yesNoWelshLanguage: boolean;
 }
 
 interface checkPageLoadsOptions {
   page: Page;
+  accessibilityTest: boolean;
 }
 
 interface fillInFieldsOptions {
@@ -31,10 +34,12 @@ enum UniqueSelectors {
 export class SubmitAndPay2Page {
   public static async submitAndPay2Page({
     page: page,
+    accessibilityTest: accessibilityTest,
     yesNoWelshLanguage: yesNoWelshLanguage,
   }: SubmitAndPay2PageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
+      accessibilityTest: accessibilityTest,
     });
     await this.fillInFields({
       page: page,
@@ -44,6 +49,7 @@ export class SubmitAndPay2Page {
 
   private static async checkPageLoads({
     page: page,
+    accessibilityTest: accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.h3}:text-is("${SubmitAndPay2Content.h3}")`,
@@ -80,7 +86,9 @@ export class SubmitAndPay2Page {
         1,
       ),
     ]);
-    await AccessibilityTestHelper.run(page);
+    if (accessibilityTest) {
+      await AccessibilityTestHelper.run(page);
+    }
   }
 
   private static async fillInFields({
@@ -111,7 +119,7 @@ export class SubmitAndPay2Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukText16}:text-is("${SubmitAndPay2Content.price}")`,
+        `${Selectors.GovukText16}:text-is("${CommonContent.c100Fee}")`,
         1,
       ),
       Helpers.checkGroup(

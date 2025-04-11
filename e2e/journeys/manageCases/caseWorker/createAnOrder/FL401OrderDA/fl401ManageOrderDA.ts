@@ -8,18 +8,18 @@ import {
 import {
   howLongWillOrderBeInForce,
   ManageOrders12Page,
-} from "../../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders12Page";
-import { CaseDetailsSummaryPage } from "../../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/caseDetailsSummaryPage";
-import { ManageOrders1Page } from "../../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders1Page";
-import { ManageOrders2Page } from "../../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders2Page";
-import { CreateOrderManageOrders5Page } from "../../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/createOrderManageOrders5Page";
+} from "../../../../../pages/manageCases/caseWorker/createAnOrder/orderDA/manageOrders12Page";
+import { CaseDetailsSummaryPage } from "../../../../../pages/manageCases/caseWorker/createAnOrder/orderDA/caseDetailsSummaryPage";
+import { ManageOrders1Page } from "../../../../../pages/manageCases/caseWorker/createAnOrder/orderDA/manageOrders1Page";
+import { ManageOrders2Page } from "../../../../../pages/manageCases/caseWorker/createAnOrder/orderDA/manageOrders2Page";
+import { CreateOrderManageOrders5Page } from "../../../../../pages/manageCases/caseWorker/createAnOrder/orderDA/createOrderManageOrders5Page";
 import {
   createOrderManageOrders19Options,
   ManageOrders19Page,
-} from "../../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders19Page";
-import { ManageOrders20Page } from "../../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders20Page";
-import { ManageOrders24Page } from "../../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders24Page";
-import { ManageOrdersSubmitPage } from "../../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrdersSubmitPage";
+} from "../../../../../pages/manageCases/caseWorker/createAnOrder/orderDA/manageOrders19Page";
+import { ManageOrders20Page } from "../../../../../pages/manageCases/caseWorker/createAnOrder/orderDA/manageOrders20Page";
+import { ManageOrders24Page } from "../../../../../pages/manageCases/caseWorker/createAnOrder/orderDA/manageOrders24Page";
+import { ManageOrdersSubmitPage } from "../../../../../pages/manageCases/caseWorker/createAnOrder/orderDA/manageOrdersSubmitPage";
 
 interface FL401Params {
   page: Page;

@@ -10,9 +10,9 @@ import {
 import { TestingSupportDummyAdminCreateNoc3Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/initialJourney/testingSupportDummyAdminCreateNoc3Page";
 import { CreateAnOrderSubmitPage } from "../../../../pages/manageCases/caseWorker/createAnOrder/initialJourney/SubmitPage";
 import { CaseListPage } from "../../../../pages/manageCases/caseList/caseListPage";
-import { howLongWillOrderBeInForce } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders12Page";
+import { howLongWillOrderBeInForce } from "../../../../pages/manageCases/caseWorker/createAnOrder/orderDA/manageOrders12Page";
 import { Fl401ManageOrderDA } from "./FL401OrderDA/fl401ManageOrderDA";
-import { createOrderManageOrders19Options } from "../../../../pages/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders19Page";
+import { createOrderManageOrders19Options } from "../../../../pages/manageCases/caseWorker/createAnOrder/orderDA/manageOrders19Page";
 
 interface FL401Params {
   page: Page;

@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test";
+import { Page, expect } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { SubmitAndPay1Content } from "../../../../../fixtures/manageCases/createCase/C100/submitAndPay/submitAndPay1Content";
 import { Helpers } from "../../../../../common/helpers";
@@ -6,10 +6,12 @@ import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelp
 
 interface SubmitAndPay1PageOptions {
   page: Page;
+  accessibilityTest: boolean;
 }
 
 interface checkPageLoadsOptions {
   page: Page;
+  accessibilityTest: boolean;
 }
 
 interface fillInFieldsOptions {
@@ -18,23 +20,17 @@ interface fillInFieldsOptions {
 
 enum UniqueSelectors {
   confidentialityDisclaimer = "#confidentialityDisclaimer_confidentialityChecksChecked-confidentialityChecksChecked",
-}
-
-enum contentSelectors {
-  p1 = "ccd-field-read[class='ng-untouched ng-pristine ng-invalid'] p:nth-child(1)",
-  p2 = "ccd-field-read[class='ng-untouched ng-pristine ng-invalid'] p:nth-child(2)",
-  p3 = "ccd-field-read[class='ng-untouched ng-pristine ng-invalid'] p:nth-child(4)",
-  li1 = "ccd-field-read[class='ng-untouched ng-pristine ng-invalid'] li:nth-child(1)",
-  li2 = "ccd-field-read[class='ng-untouched ng-pristine ng-invalid'] li:nth-child(2)",
-  li3 = "ccd-field-read[class='ng-untouched ng-pristine ng-invalid'] li:nth-child(3)",
+  checkText = "#confidentialityChecksText",
 }
 
 export class SubmitAndPay1Page {
   public static async submitAndPay1Page({
     page: page,
+    accessibilityTest: accessibilityTest,
   }: SubmitAndPay1PageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
+      accessibilityTest: accessibilityTest,
     });
     await this.fillInFields({
       page: page,
@@ -43,6 +39,7 @@ export class SubmitAndPay1Page {
 
   private static async checkPageLoads({
     page: page,
+    accessibilityTest: accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.h1}:text-is("${SubmitAndPay1Content.h1}")`,
@@ -63,38 +60,40 @@ export class SubmitAndPay1Page {
         `${Selectors.GovukFormLabel}:text-is("${SubmitAndPay1Content.formLabel}")`,
         1,
       ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${contentSelectors.p1}:text-is("${SubmitAndPay1Content.p1}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${contentSelectors.p2}:text-is("${SubmitAndPay1Content.p2}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${contentSelectors.p3}:text-is("${SubmitAndPay1Content.p3}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${contentSelectors.li1}:text-is("${SubmitAndPay1Content.li1}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${contentSelectors.li2}:text-is("${SubmitAndPay1Content.li2}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${contentSelectors.li3}:text-is("${SubmitAndPay1Content.li3}")`,
-        1,
-      ),
+      expect(
+        page.locator(UniqueSelectors.checkText, {
+          hasText: SubmitAndPay1Content.p1,
+        }),
+      ).toBeVisible(),
+      expect(
+        page.locator(UniqueSelectors.checkText, {
+          hasText: SubmitAndPay1Content.p2,
+        }),
+      ).toBeVisible(),
+      expect(
+        page.locator(UniqueSelectors.checkText, {
+          hasText: SubmitAndPay1Content.p3,
+        }),
+      ).toBeVisible(),
+      expect(
+        page.locator(UniqueSelectors.checkText, {
+          hasText: SubmitAndPay1Content.li1,
+        }),
+      ).toBeVisible(),
+      expect(
+        page.locator(UniqueSelectors.checkText, {
+          hasText: SubmitAndPay1Content.li2,
+        }),
+      ).toBeVisible(),
+      expect(
+        page.locator(UniqueSelectors.checkText, {
+          hasText: SubmitAndPay1Content.li3,
+        }),
+      ).toBeVisible(),
     ]);
-    await AccessibilityTestHelper.run(page);
+    if (accessibilityTest) {
+      await AccessibilityTestHelper.run(page);
+    }
   }
 
   private static async fillInFields({

@@ -11,7 +11,6 @@ export enum PayContent {
   hint1 = "We’ll send your payment confirmation here",
   label1 = "Month", // GovukLabel
   label2 = "Year",
-  price = "£263.00", // Span
   span1 = "Card number",
   span2 = "Expiry date",
   span3 = "Name on card",

@@ -120,9 +120,10 @@ export class ActivateCase {
     const newBrowser = await browser.browserType().launch();
     const newContext: BrowserContext = await newBrowser.newContext();
     const page: Page = await newContext.newPage();
-    await IdamLoginHelper.signInCitizenUser(
+    await IdamLoginHelper.setupAndSignInUser(
       page,
       Config.citizenFrontendBaseURL,
+      "citizen",
     );
     await page.click(`a:text-is("Activate access code")`);
     const accessCode: string =
@@ -149,9 +150,10 @@ export class ActivateCase {
     const newBrowser = await browser.browserType().launch();
     const newContext: BrowserContext = await newBrowser.newContext();
     const page = await newContext.newPage();
-    await IdamLoginHelper.signInCitizenUser(
+    await IdamLoginHelper.setupAndSignInUser(
       page,
       Config.citizenFrontendBaseURL,
+      "citizen",
     );
     await page.click(`a:text-is("Activate access code")`);
     const accessCode: string =

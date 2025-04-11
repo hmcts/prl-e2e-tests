@@ -1,11 +1,11 @@
 import { Page } from "@playwright/test";
 import { uploadOrderFL401Options } from "../../../../../common/types";
-import { ManageOrders1DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders1DAContent";
+import { ManageOrders1DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderDA/manageOrders1DAContent";
 import { Selectors } from "../../../../../common/selectors";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-import { ManageOrders3DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders3DAContent";
+import { ManageOrders3DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderDA/manageOrders3DAContent";
 import { JudgeUploadOrderDASubmitContent } from "../../../../../fixtures/manageCases/caseProgression/judge/judgeUploadOrder/judgeUploadOrderDASubmitContent";
 
 interface JudgeDACaseProgressionJourneyParams {

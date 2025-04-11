@@ -8,6 +8,7 @@ import { SubmitAndPay1Content } from "../../../../../fixtures/manageCases/create
 interface SubmitAndPayOptions {
   page: Page;
   yesNoHelpWithFees: boolean;
+  accessibilityTest: boolean;
 }
 
 interface checkFieldsOptions {
@@ -22,10 +23,12 @@ interface checkFilledDataOptions {
 export class SubmitAndPaySubmitPage {
   public static async submitAndPaySubmitPage({
     page: page,
+    accessibilityTest: accessibilityTest,
     yesNoHelpWithFees: yesNoHelpWithFees,
   }: SubmitAndPayOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
+      accessibilityTest: accessibilityTest,
       yesNoHelpWithFees: yesNoHelpWithFees,
     });
     await this.continue(page);
@@ -33,6 +36,7 @@ export class SubmitAndPaySubmitPage {
 
   private static async checkPageLoads({
     page: page,
+    accessibilityTest: accessibilityTest,
     yesNoHelpWithFees: yesNoHelpWithFees,
   }: SubmitAndPayOptions): Promise<void> {
     await page.waitForSelector(
@@ -47,7 +51,9 @@ export class SubmitAndPaySubmitPage {
         yesNoHelpWithFees: yesNoHelpWithFees,
       }),
     ]);
-    await AccessibilityTestHelper.run(page);
+    if (accessibilityTest) {
+      await AccessibilityTestHelper.run(page);
+    }
   }
 
   private static async checkPageFields({

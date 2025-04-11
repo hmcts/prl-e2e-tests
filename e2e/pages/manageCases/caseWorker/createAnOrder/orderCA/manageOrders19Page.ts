@@ -9,10 +9,16 @@ interface manageOrders19PageOptions {
   accessibilityTest: boolean;
 }
 
-const inputId = "#ordersHearingDetails_0_hearingTypes";
-const radioId =
-  "#ordersHearingDetails_0_hearingDateConfirmOptionEnum-dateConfirmedByListingTeam";
-
+enum UniqueSelectors {
+  inputId = "#ordersHearingDetails_0_hearingTypes",
+  radioId = "#ordersHearingDetails_0_hearingDateConfirmOptionEnum-dateConfirmedByListingTeam",
+  dateConfirmedListingNo = "#ordersHearingDetails_0_hearingSpecificDatesOptionsEnum-No",
+  standardPriority = "#ordersHearingDetails_0_hearingPriorityTypeEnum-StandardPriority",
+  estimatedTime_Hours = "#ordersHearingDetails_0_hearingEstimatedHours",
+  attendInPerson = "#ordersHearingDetails_0_hearingChannelsEnum-INTER",
+  partiesAttendSameWay_Yes = "#ordersHearingDetails_0_allPartiesAttendHearingSameWayYesOrNo_Yes",
+  hearingBefore_LA = "#ordersHearingDetails_0_hearingAuthority-legalAdviser",
+}
 export class ManageOrders19Page {
   public static async manageOrders19Page({
     page,
@@ -80,16 +86,24 @@ export class ManageOrders19Page {
     if (!page) {
       throw new Error("Page is not defined");
     }
-    await page.selectOption(inputId, ManageOrders19CAContent.hearingType);
-    await page.click(radioId);
+    await page.selectOption(
+      UniqueSelectors.inputId,
+      ManageOrders19CAContent.hearingType,
+    );
+    await page.click(UniqueSelectors.radioId);
     await page.waitForSelector(
       `${Selectors.strong}:text-is("${ManageOrders19CAContent.strong}")`,
     );
-    await Helpers.checkVisibleAndPresent(
-      page,
-      `${Selectors.GovukFormHint}:text-is("${ManageOrders19CAContent.hint}")`,
-      1,
+    await page.click(UniqueSelectors.dateConfirmedListingNo);
+    await page.click(UniqueSelectors.standardPriority);
+    await page.fill(
+      UniqueSelectors.estimatedTime_Hours,
+      ManageOrders19CAContent.inputHours,
     );
+    await page.click(UniqueSelectors.attendInPerson);
+    await page.click(UniqueSelectors.partiesAttendSameWay_Yes);
+    await page.click(UniqueSelectors.hearingBefore_LA);
+
     await page.click(
       `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
     );

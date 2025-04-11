@@ -2,9 +2,9 @@ import { Page } from "@playwright/test";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { ManageOrders1DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders1DAContent";
+import { ManageOrders1DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderDA/manageOrders1DAContent";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-import { UploadOrderManageOrders5Content } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/uploadOrderManageOrders5Content";
+import { UploadOrderManageOrders5Content } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderDA/uploadOrderManageOrders5Content";
 import config from "../../../../../config";
 
 interface UploadOrderManageOrders5PageOptions {
