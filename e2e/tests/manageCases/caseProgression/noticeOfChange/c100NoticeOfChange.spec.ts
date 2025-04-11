@@ -1,17 +1,24 @@
-import { test } from "@playwright/test";
+import { Page, test } from "@playwright/test";
 import Config from "../../../../config.ts";
-import createDaCitizenCourtNavCase from "../../../../common/caseHelpers/citizenDACaseCreateHelper.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import config from "../../../../config.ts";
 import { NoticeOfChange } from "../../../../journeys/manageCases/caseProgression/noticeOfChange/noticeOfChange.ts";
+import { SolicitorCACaseCreator } from "../../../../common/caseHelpers/solicitorCACaseCreator.ts";
+import { c1000IssueAndSendToLocalCourt } from "../../../../common/caseHelpers/caseEventsHelper.ts";
 
-test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
+test.use({ storageState: Config.sessionStoragePath + "nocSolicitor.json" });
 
 test.describe("Notice of Change tests for CA case", () => {
   let ccdRef: string = "";
 
-  test.beforeEach(async ({ page }) => {
-    ccdRef = await createDaCitizenCourtNavCase(true, false); // creates a case without representation
+  test.beforeEach(async ({ page, browser }) => {
+    const solicitorPage: Page = await Helpers.openNewBrowserWindow(
+      browser,
+      "solicitor",
+    );
+    await solicitorPage.goto(Config.manageCasesBaseURLCase);
+    ccdRef = await SolicitorCACaseCreator.createCaseSubmitAndPay(solicitorPage);
+    await c1000IssueAndSendToLocalCourt(browser, ccdRef);
     await Helpers.goToCase(
       page,
       config.manageCasesBaseURLCase,
@@ -20,9 +27,9 @@ test.describe("Notice of Change tests for CA case", () => {
     );
   });
 
-  test("NOC applicant. @nightly @accessibility @regression", async ({
+  test("NOC applicant. @regression", async ({
     page,
-    browser
+    browser,
   }): Promise<void> => {
     await NoticeOfChange.noticeOfChange({
       page: page,
@@ -30,13 +37,13 @@ test.describe("Notice of Change tests for CA case", () => {
       caseType: "C100",
       caseRef: ccdRef,
       isApplicant: true,
-      accessibilityTest: true,
+      accessibilityTest: false,
     });
   });
 
-  test("NOC respondent. @regression", async ({
+  test("NOC respondent. @nightly @accessibility @regression", async ({
     page,
-    browser
+    browser,
   }): Promise<void> => {
     await NoticeOfChange.noticeOfChange({
       page: page,
@@ -44,7 +51,7 @@ test.describe("Notice of Change tests for CA case", () => {
       caseType: "C100",
       caseRef: ccdRef,
       isApplicant: false,
-      accessibilityTest: false,
+      accessibilityTest: true,
     });
   });
 });

@@ -4,6 +4,7 @@ import { Selectors } from "../../../../common/selectors.ts";
 import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
 import { Helpers } from "../../../../common/helpers.ts";
+import { solicitorCaseCreateType } from "../../../../common/types.ts";
 
 enum UniqueSelectors {
   nocClientFirstName = "#NoCChallengeQ1",
@@ -13,11 +14,12 @@ enum UniqueSelectors {
 export class Noc2Page {
   public static async noc2Page(
     page: Page,
+    caseType: solicitorCaseCreateType,
     isApplicant: boolean,
     accessibilityTest: boolean,
   ): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest);
-    await this.fillInfields(page, isApplicant);
+    await this.fillInfields(page, caseType, isApplicant);
     await this.continue(page);
   }
 
@@ -47,26 +49,49 @@ export class Noc2Page {
 
   private static async fillInfields(
     page: Page,
+    caseType: solicitorCaseCreateType,
     isApplicant: boolean,
   ): Promise<void> {
     if (isApplicant) {
-      await page.fill(
-        UniqueSelectors.nocClientFirstName,
-        Noc2Content.applicantFirstName,
-      );
-      await page.fill(
-        UniqueSelectors.nocClientLastName,
-        Noc2Content.applicantLastName,
-      );
+      if (caseType === "C100") {
+        await page.fill(
+          UniqueSelectors.nocClientFirstName,
+          Noc2Content.c100ApplicantFirstName,
+        );
+        await page.fill(
+          UniqueSelectors.nocClientLastName,
+          Noc2Content.c100ApplicantLastName,
+        );
+      } else {
+        await page.fill(
+          UniqueSelectors.nocClientFirstName,
+          Noc2Content.fl401ApplicantFirstName,
+        );
+        await page.fill(
+          UniqueSelectors.nocClientLastName,
+          Noc2Content.fl401ApplicantLastName,
+        );
+      }
     } else {
-      await page.fill(
-        UniqueSelectors.nocClientFirstName,
-        Noc2Content.respondentFirstName,
-      );
-      await page.fill(
-        UniqueSelectors.nocClientLastName,
-        Noc2Content.respondentLastName,
-      );
+      if (caseType === "C100") {
+        await page.fill(
+          UniqueSelectors.nocClientFirstName,
+          Noc2Content.c100RespondentFirstName,
+        );
+        await page.fill(
+          UniqueSelectors.nocClientLastName,
+          Noc2Content.c100RespondentLastName,
+        );
+      } else {
+        await page.fill(
+          UniqueSelectors.nocClientFirstName,
+          Noc2Content.fl401RespondentFirstName,
+        );
+        await page.fill(
+          UniqueSelectors.nocClientLastName,
+          Noc2Content.fl401RespondentLastName,
+        );
+      }
     }
   }
 

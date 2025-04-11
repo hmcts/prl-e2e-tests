@@ -4,6 +4,7 @@ import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import { NocSubmitContent } from "../../../../fixtures/manageCases/caseProgression/noticeOfChange/nocSubmitContent.ts";
+import { solicitorCaseCreateType } from "../../../../common/types.ts";
 
 enum UniqueSelectors {
   detailsAccurateCheckbox = "#affirmation",
@@ -13,16 +14,18 @@ enum UniqueSelectors {
 export class NocSubmitPage {
   public static async nocSubmitPage(
     page: Page,
+    caseType: solicitorCaseCreateType,
     isApplicant: boolean,
     accessibilityTest: boolean,
   ): Promise<void> {
-    await this.checkPageLoads(page, isApplicant, accessibilityTest);
+    await this.checkPageLoads(page, caseType, isApplicant, accessibilityTest);
     await this.fillInfields(page);
     await this.submit(page);
   }
 
   private static async checkPageLoads(
     page: Page,
+    caseType: solicitorCaseCreateType,
     isApplicant: boolean,
     accessibilityTest: boolean,
   ): Promise<void> {
@@ -65,21 +68,41 @@ export class NocSubmitPage {
       ),
     ]);
     if (isApplicant) {
-      await Helpers.checkGroup(
-        page,
-        2,
-        NocSubmitContent,
-        `applicantGovSummaryListValue`,
-        `${Selectors.GovukSummaryListValue}`,
-      );
+      if (caseType === "C100") {
+        await Helpers.checkGroup(
+          page,
+          2,
+          NocSubmitContent,
+          `c100ApplicantGovSummaryListValue`,
+          `${Selectors.GovukSummaryListValue}`,
+        );
+      } else {
+        await Helpers.checkGroup(
+          page,
+          2,
+          NocSubmitContent,
+          `fl401ApplicantGovSummaryListValue`,
+          `${Selectors.GovukSummaryListValue}`,
+        );
+      }
     } else {
-      await Helpers.checkGroup(
-        page,
-        2,
-        NocSubmitContent,
-        `respondentGovSummaryListValue`,
-        `${Selectors.GovukSummaryListValue}`,
-      );
+      if (caseType === "C100") {
+        await Helpers.checkGroup(
+          page,
+          2,
+          NocSubmitContent,
+          `c100RespondentGovSummaryListValue`,
+          `${Selectors.GovukSummaryListValue}`,
+        );
+      } else {
+        await Helpers.checkGroup(
+          page,
+          2,
+          NocSubmitContent,
+          `fl401RespondentGovSummaryListValue`,
+          `${Selectors.GovukSummaryListValue}`,
+        );
+      }
     }
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
