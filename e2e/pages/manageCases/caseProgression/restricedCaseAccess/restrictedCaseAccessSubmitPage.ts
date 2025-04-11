@@ -6,50 +6,50 @@ import { RestrictedCaseAccessSubmitContent } from "../../../../fixtures/manageCa
 import { RestrictedCaseAccess2Content } from "../../../../fixtures/manageCases/caseProgression/restrictedCaseAccess/restrictedCaseAccess2Content.ts";
 
 interface RestrictedCaseAccessSubmitOptions {
-  judgePage: Page;
+  page: Page;
   accessibilityTest: boolean;
 }
 
 export class RestrictedCaseAccessSubmitPage {
   public static async restrictedCaseAccessSubmitPage({
-    judgePage,
+    page,
     accessibilityTest,
   }: RestrictedCaseAccessSubmitOptions): Promise<void> {
-    await this.checkPageLoads({ judgePage, accessibilityTest });
-    await this.submit(judgePage);
+    await this.checkPageLoads({ page, accessibilityTest });
+    await this.submit(page);
   }
 
   private static async checkPageLoads({
-    judgePage,
+    page,
     accessibilityTest,
   }: RestrictedCaseAccessSubmitOptions) {
-    if (!judgePage) {
+    if (!page) {
       throw new Error("No page found");
     }
 
-    const pageTitle = judgePage.locator(
+    const pageTitle = page.locator(
       `${Selectors.h2}:text-is("${RestrictedCaseAccessSubmitContent.h2}")`,
     );
     await pageTitle.waitFor();
     await Promise.all([
       expect(
-        judgePage.locator(Selectors.GovukText16, {
+        page.locator(Selectors.GovukText16, {
           hasText: RestrictedCaseAccessSubmitContent.text16_1,
         }),
       ).toBeVisible(),
       expect(
-        judgePage.locator(Selectors.GovukText16, {
+        page.locator(Selectors.GovukText16, {
           hasText: RestrictedCaseAccessSubmitContent.text16_2,
         }),
       ).toBeVisible(),
       Helpers.checkVisibleAndPresent(
-        judgePage,
+        page,
         `${Selectors.Span}:text-is("${RestrictedCaseAccess2Content.inputText}")`,
         1,
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(judgePage);
+      await AccessibilityTestHelper.run(page);
     }
   }
 

@@ -6,7 +6,7 @@ import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 import { RestrictedCaseAccess2Content } from "../../../../fixtures/manageCases/caseProgression/restrictedCaseAccess/restrictedCaseAccess2Content.ts";
 
 interface RestrictedCaseAccess2Options {
-  judgePage: Page;
+  page: Page;
   accessibilityTest: boolean;
 }
 
@@ -15,36 +15,36 @@ enum UniqueSelectors {
 }
 export class RestrictedCaseAccess2Page {
   public static async restrictedCaseAccess2Page({
-    judgePage,
+    page,
     accessibilityTest,
   }: RestrictedCaseAccess2Options): Promise<void> {
-    await this.checkPageLoads({ judgePage, accessibilityTest });
-    await this.fillInFields(judgePage);
-    await this.submit(judgePage);
+    await this.checkPageLoads({ page, accessibilityTest });
+    await this.fillInFields(page);
+    await this.submit(page);
   }
 
   private static async checkPageLoads({
-    judgePage,
+    page,
     accessibilityTest,
   }: RestrictedCaseAccess2Options) {
-    if (!judgePage) {
+    if (!page) {
       throw new Error("No page found");
     }
 
-    const pageTitle = judgePage.locator(
+    const pageTitle = page.locator(
       `${Selectors.h3}:text-is("${RestrictedCaseAccess2Content.h3}")`,
     );
     await pageTitle.waitFor();
 
     await Promise.all([
       Helpers.checkVisibleAndPresent(
-        judgePage,
+        page,
         `${Selectors.GovukFormLabel}:text-is("${RestrictedCaseAccess2Content.formLabel}")`,
         1,
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(judgePage);
+      await AccessibilityTestHelper.run(page);
     }
   }
   private static async fillInFields(page: Page) {

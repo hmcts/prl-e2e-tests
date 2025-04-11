@@ -6,50 +6,50 @@ import { RestrictedCaseAccessConfirmContent } from "../../../../fixtures/manageC
 import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 
 interface RestrictedCaseAccessConfirmOptions {
-  judgePage: Page;
+  page: Page;
   accessibilityTest: boolean;
 }
 
 export class RestrictedCaseAccessConfirmPage {
   public static async restrictedCaseAccessConfirmPage({
-    judgePage,
+    page,
     accessibilityTest,
   }: RestrictedCaseAccessConfirmOptions): Promise<void> {
-    await this.checkPageLoads({ judgePage, accessibilityTest });
-    await this.submit(judgePage);
+    await this.checkPageLoads({ page, accessibilityTest });
+    await this.submit(page);
   }
 
   private static async checkPageLoads({
-    judgePage,
+    page,
     accessibilityTest,
   }: RestrictedCaseAccessConfirmOptions) {
-    if (!judgePage) {
+    if (!page) {
       throw new Error("No page found");
     }
 
-    const pageTitle = judgePage.locator(
+    const pageTitle = page.locator(
       `${Selectors.h1}:text-is("${RestrictedCaseAccessConfirmContent.h1}")`,
     );
     await pageTitle.waitFor();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
-        judgePage,
+        page,
         `${Selectors.h2}:text-is("${RestrictedCaseAccessConfirmContent.h2}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
-        judgePage,
+        page,
         `${Selectors.p}:text-is("${RestrictedCaseAccessConfirmContent.p}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
-        judgePage,
+        page,
         `${Selectors.a}:text-is("${RestrictedCaseAccessConfirmContent.a}")`,
         1,
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(judgePage);
+      await AccessibilityTestHelper.run(page);
     }
   }
 

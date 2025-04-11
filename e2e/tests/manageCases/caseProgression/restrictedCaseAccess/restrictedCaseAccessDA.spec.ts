@@ -7,7 +7,7 @@ import { RestrictedCaseAccess } from "../../../../journeys/manageCases/caseProgr
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
-test.describe("Complete the Restricted Case Access events.", () => {
+test.describe("Complete the Restricted Case Access events for DA case.", () => {
   let ccdRef: string = "";
 
   test.beforeEach(async ({ page }) => {
@@ -26,13 +26,13 @@ test.describe("Complete the Restricted Case Access events.", () => {
     });
   });
 
-  test("Mark DA case as restricted as a gatekeeping judge. @nightly @regression @accessibility", async ({
-    browser,
+  test("Mark DA case as restricted as a gatekeeper judge. @nightly @regression @accessibility", async ({
+    page,
   }): Promise<void> => {
     await RestrictedCaseAccess.restrictedCaseAccess({
+      page,
       accessibilityTest: true,
       ccdRef,
-      browser: browser,
     });
   });
 });

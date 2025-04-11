@@ -7,73 +7,73 @@ import { RestrictedCaseAccess1Content } from "../../../../fixtures/manageCases/c
 import { CommonContent } from "../../../../fixtures/manageCases/commonContent.ts";
 
 interface RestrictedCaseAccess1Options {
-  judgePage: Page;
+  page: Page;
   accessibilityTest: boolean;
 }
 
 export class RestrictedCaseAccess1Page {
   public static async restrictedCaseAccess1Page({
-    judgePage,
+    page,
     accessibilityTest,
   }: RestrictedCaseAccess1Options): Promise<void> {
-    await this.checkPageLoads({ judgePage, accessibilityTest });
-    await this.continue(judgePage);
+    await this.checkPageLoads({ page, accessibilityTest });
+    await this.continue(page);
   }
 
   private static async checkPageLoads({
-    judgePage,
+    page,
     accessibilityTest,
   }: RestrictedCaseAccess1Options) {
-    if (!judgePage) {
+    if (!page) {
       throw new Error("No page found");
     }
 
-    const pageTitle = judgePage.locator(
+    const pageTitle = page.locator(
       `${Selectors.h1}:text-is("${RestrictedCaseAccess1Content.h1}")`,
     );
     await pageTitle.waitFor();
 
     await Promise.all([
       Helpers.checkGroup(
-        judgePage,
+        page,
         2,
         RestrictedCaseAccess1Content,
         "h2_",
         Selectors.h2,
       ),
       Helpers.checkGroup(
-        judgePage,
+        page,
         2,
         RestrictedCaseAccess1Content,
         "p",
         Selectors.p,
       ),
       Helpers.checkGroup(
-        judgePage,
+        page,
         3,
         RestrictedCaseAccess1Content,
         "tableHeader",
         Selectors.GovukTableHeader,
       ),
       Helpers.checkVisibleAndPresent(
-        judgePage,
+        page,
         `${Selectors.GovukTableCell}:text-is("${RestrictedCaseAccess1Content.tableCell}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
-        judgePage,
+        page,
         `${Selectors.GovukTableCell}:text-is("${CommonContent.judgeNameNoPrefix}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
-        judgePage,
+        page,
         `${Selectors.GovukTableCell}:text-is("${CommonContent.judgeEmail}")`,
         1,
       ),
     ]);
 
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(judgePage);
+      await AccessibilityTestHelper.run(page);
     }
   }
 
