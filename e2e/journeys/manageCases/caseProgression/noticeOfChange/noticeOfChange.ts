@@ -46,8 +46,8 @@ export class NoticeOfChange {
     caseType: solicitorCaseCreateType,
     isApplicant: boolean,
   ): Promise<void> {
-    const nocSolicitorName: string = "PRL NOC Respondent";
-    const nocSolicitorEmail: string = "prl_aat_noc_solicitor_1@mailinator.com";
+    const nocSolicitorEmail: string = process.env
+      .NOC_SOLICITOR_USERNAME as string;
     await page
       .getByRole("tab", {
         name: "Application",
@@ -68,7 +68,6 @@ export class NoticeOfChange {
           : "#case-viewer-field-read--fl401RespondentTable",
       );
     }
-    await tableLocator.getByText(nocSolicitorName).isVisible();
     await tableLocator
       .getByRole("link", { name: nocSolicitorEmail })
       .isVisible();

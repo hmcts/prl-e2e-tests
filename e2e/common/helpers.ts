@@ -126,7 +126,10 @@ export class Helpers {
     }
   }
 
-  public static todayDate(longFormat: boolean = false, array: boolean = false): string | string[] {
+  public static todayDate(
+    longFormat: boolean = false,
+    array: boolean = false,
+  ): string | string[] {
     const now: Date = new Date();
     const options: Intl.DateTimeFormatOptions = {
       year: "numeric",

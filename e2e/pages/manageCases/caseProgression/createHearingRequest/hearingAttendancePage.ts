@@ -80,7 +80,7 @@ export class HearingAttendancePage {
     await page.check(`${UniqueSelectors.attendanceInPerson}`);
     // get number of participants
     const participants = await page.locator(Selectors.GovukSelect).all();
-    for (let participant of participants) {
+    for (const participant of participants) {
       await participant.selectOption(HearingAttendanceContent.attendOption);
     }
     await page.fill(
