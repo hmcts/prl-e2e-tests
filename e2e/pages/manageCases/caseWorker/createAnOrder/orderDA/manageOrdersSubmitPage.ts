@@ -1,12 +1,12 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
-import { ManageOrders1DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders1DAContent";
+import { ManageOrders1DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderDA/manageOrders1DAContent";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { ManageOrdersSubmitDAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrdersSubmitDAContent";
+import { ManageOrdersSubmitDAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderDA/manageOrdersSubmitDAContent";
 import { howLongWillOrderBeInForce } from "./manageOrders12Page";
-import { ManageOrders12DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders12DAContent";
+import { ManageOrders12DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderDA/manageOrders12DAContent";
 import { CommonContent } from "../../../../../fixtures/manageCases/commonContent";
 
 interface ManageOrders20PageOptions {
@@ -98,11 +98,6 @@ export class ManageOrdersSubmitPage {
         `${Selectors.GovukText16}:text-is("${ManageOrdersSubmitDAContent.addFurtherDetails}")`,
         4,
       ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.Span}:text-is("${ManageOrdersSubmitDAContent.text16LoremIpsumExtended}")`,
-        1,
-      ),
     ]);
     if (yesNoManageOrders && howLongWillOrderBeInForce === "untilNextHearing") {
       await Promise.all([
@@ -141,7 +136,7 @@ export class ManageOrdersSubmitPage {
         Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukText16}:text-is("${CommonStaticText.yes}"):visible`,
-          4,
+          6,
         ),
         Helpers.checkVisibleAndPresent(
           page,

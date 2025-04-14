@@ -3,9 +3,9 @@ import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { createOrderFL401Options } from "../../../../../common/types";
-import { CreateOrderFL401Options } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/createOrderManageOrders5Content";
-import { ManageOrders19DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders19DAContent";
-import { ManageOrders1DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/OrderDA/manageOrders1DAContent";
+import { CreateOrderFL401Options } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderDA/createOrderManageOrders5Content";
+import { ManageOrders19DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderDA/manageOrders19DAContent";
+import { ManageOrders1DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderDA/manageOrders1DAContent";
 
 interface ManageOrders19PageOptions {
   page: Page;
@@ -27,9 +27,6 @@ enum UniqueSelectors {
   dateConfirmed = "#ordersHearingDetails_0_hearingDateConfirmOptionEnum-dateConfirmedInHearingsTab",
   dateToBeConfirmed = "#ordersHearingDetails_0_hearingDateConfirmOptionEnum-dateConfirmedByListingTeam",
   dateToBeFixed = "#ordersHearingDetails_0_hearingDateConfirmOptionEnum-dateToBeFixed",
-}
-
-enum dateReservedHidden {
   inputSpecificDate = ".datepicker-container > .mat-datepicker-input:visible",
   days = "#ordersHearingDetails_0_hearingEstimatedDays",
   hours = "#ordersHearingDetails_0_hearingEstimatedHours",
@@ -59,12 +56,23 @@ enum dateConfirmedHidden {
 
 enum dateToBeConfirmedHidden {
   ordersHearingDetails_0_additionalDetailsForHearingDateOptions = "#ordersHearingDetails_0_additionalDetailsForHearingDateOptions",
+  hearingOnSpecificDate_yes = "#ordersHearingDetails_0_hearingSpecificDatesOptionsEnum-Yes",
+  hearingOnSpecificDate_no = "#ordersHearingDetails_0_hearingSpecificDatesOptionsEnum-No",
+  hearingBetweenSpecificDates = "#ordersHearingDetails_0_hearingSpecificDatesOptionsEnum-HearingRequiredBetweenCertainDates",
+  standardPriority = "#ordersHearingDetails_0_hearingPriorityTypeEnum-StandardPriority",
+  urgentPriority = "#ordersHearingDetails_0_hearingPriorityTypeEnum-UrgentPriority",
 }
 
-enum dateToBeFixedHidden {
-  ordersHearingDetails_0_additionalDetailsForHearingDateOptions = "#ordersHearingDetails_0_additionalDetailsForHearingDateOptions",
+enum dateOfHearing {
+  day = "#firstDateOfTheHearing-day",
+  month = "#firstDateOfTheHearing-month",
+  year = "#firstDateOfTheHearing-year",
+  hearingHour = "#ordersHearingDetails_0_hearingMustTakePlaceAtHour",
+  hearingMinute = "#ordersHearingDetails_0_hearingMustTakePlaceAtMinute",
+  estimateHearingDays = "#ordersHearingDetails_0_hearingEstimatedDays",
+  estimateHearingHours = "#ordersHearingDetails_0_hearingEstimatedHours",
+  estimateHearingMinutes = "#ordersHearingDetails_0_hearingEstimatedMinutes",
 }
-
 export class ManageOrders19Page {
   public static async manageOrders19Page({
     page,
@@ -180,6 +188,7 @@ export class ManageOrders19Page {
     if (!page) {
       throw new Error("Page is not defined");
     }
+    const date = Helpers.todayDate(false, true);
     await page.selectOption(
       UniqueSelectors.Dropdown,
       ManageOrders19DAContent.judgement,
@@ -189,34 +198,34 @@ export class ManageOrders19Page {
         await page.click(UniqueSelectors.dateReserved);
         await this.hiddenFormLabels(page, "dateReserved");
         await page.fill(
-          dateReservedHidden.inputSpecificDate,
+          UniqueSelectors.inputSpecificDate,
           ManageOrders19DAContent.date1,
         );
-        await page.fill(dateReservedHidden.days, ManageOrders19DAContent.day);
-        await page.fill(dateReservedHidden.hours, ManageOrders19DAContent.hour);
+        await page.fill(UniqueSelectors.days, ManageOrders19DAContent.day);
+        await page.fill(UniqueSelectors.hours, ManageOrders19DAContent.hour);
         await page.fill(
-          dateReservedHidden.minutes,
+          UniqueSelectors.minutes,
           ManageOrders19DAContent.minute,
         );
-        await page.click(dateReservedHidden.inPerson);
+        await page.click(UniqueSelectors.inPerson);
         if (yesNoManageOrders) {
-          await page.click(dateReservedHidden.partiesAttendYes);
+          await page.click(UniqueSelectors.partiesAttendYes);
         } else {
-          await page.click(dateReservedHidden.partiesAttendNo);
+          await page.click(UniqueSelectors.partiesAttendNo);
         }
-        await page.selectOption(dateReservedHidden.courtLocationSelectOption, {
+        await page.selectOption(UniqueSelectors.courtLocationSelectOption, {
           index: 1,
         });
-        await page.click(dateReservedHidden.legalAdviser);
-        await page.selectOption(dateReservedHidden.hearingListedSelectOption, {
+        await page.click(UniqueSelectors.legalAdviser);
+        await page.selectOption(UniqueSelectors.hearingListedSelectOption, {
           index: 0,
         });
         await page.fill(
-          dateReservedHidden.insertJoiningInstructions,
+          UniqueSelectors.insertJoiningInstructions,
           ManageOrders19DAContent.loremIpsum,
         );
         await page.fill(
-          dateReservedHidden.additionalDetails,
+          UniqueSelectors.additionalDetails,
           ManageOrders19DAContent.loremIpsum,
         );
         break;
@@ -236,18 +245,28 @@ export class ManageOrders19Page {
       case "dateToBeConfirmed":
         await page.click(UniqueSelectors.dateToBeConfirmed);
         await this.hiddenFormLabels(page, "dateToBeConfirmed");
-        await page.fill(
-          dateToBeConfirmedHidden.ordersHearingDetails_0_additionalDetailsForHearingDateOptions,
-          ManageOrders19DAContent.lorem,
-        );
+        await page.click(dateToBeConfirmedHidden.hearingOnSpecificDate_yes);
+        await page.click(dateToBeConfirmedHidden.standardPriority);
+        await page.click(UniqueSelectors.video);
+        await page.click(UniqueSelectors.partiesAttendYes);
+        await page.fill(dateOfHearing.day, date[0]);
+        await page.fill(dateOfHearing.month, date[1]);
+        await page.fill(dateOfHearing.year, date[2]);
+        await page.fill(dateOfHearing.estimateHearingHours, "4");
+        await page.click(UniqueSelectors.magistrates);
         break;
       case "dateToBeFixed":
         await page.click(UniqueSelectors.dateToBeFixed);
         await this.hiddenFormLabels(page, "dateToBeFixed");
-        await page.fill(
-          dateToBeFixedHidden.ordersHearingDetails_0_additionalDetailsForHearingDateOptions,
-          ManageOrders19DAContent.lorem,
-        );
+        await page.click(dateToBeConfirmedHidden.hearingOnSpecificDate_yes);
+        await page.click(dateToBeConfirmedHidden.standardPriority);
+        await page.click(UniqueSelectors.video);
+        await page.click(UniqueSelectors.partiesAttendYes);
+        await page.fill(dateOfHearing.day, date[0]);
+        await page.fill(dateOfHearing.month, date[1]);
+        await page.fill(dateOfHearing.year, date[2]);
+        await page.fill(dateOfHearing.estimateHearingDays, "1");
+        await page.click(UniqueSelectors.legalAdviser);
         break;
     }
     await page.click(

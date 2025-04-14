@@ -8,7 +8,7 @@ export enum SubmitCAContent {
   p1 = "Order made by",
   p2 = "If you want to make further changes, go back to the previous screen.",
   strong1 = "Judge or Magistrate's title",
-  strong2 = "The date needs to be confirmed by the listing team before service (Optional)",
+  strong2 = "The date needs to be confirmed by the listing team before service",
   a1 = " Welsh_ChildArrangements_Specific_Prohibited_Steps_C43_Draft.pdf",
   a2 = " ChildArrangements_Specific_Prohibited_Steps_C43_Draft.pdf",
   change = " Change ", // 13

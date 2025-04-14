@@ -8,11 +8,13 @@ import { CommonContent } from "../../../../../fixtures/manageCases/commonContent
 
 interface SubmitAndPay2PageOptions {
   page: Page;
+  accessibilityTest: boolean;
   yesNoWelshLanguage: boolean;
 }
 
 interface checkPageLoadsOptions {
   page: Page;
+  accessibilityTest: boolean;
 }
 
 interface fillInFieldsOptions {
@@ -32,10 +34,12 @@ enum UniqueSelectors {
 export class SubmitAndPay2Page {
   public static async submitAndPay2Page({
     page: page,
+    accessibilityTest: accessibilityTest,
     yesNoWelshLanguage: yesNoWelshLanguage,
   }: SubmitAndPay2PageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
+      accessibilityTest: accessibilityTest,
     });
     await this.fillInFields({
       page: page,
@@ -45,6 +49,7 @@ export class SubmitAndPay2Page {
 
   private static async checkPageLoads({
     page: page,
+    accessibilityTest: accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.h3}:text-is("${SubmitAndPay2Content.h3}")`,
@@ -81,7 +86,9 @@ export class SubmitAndPay2Page {
         1,
       ),
     ]);
-    await AccessibilityTestHelper.run(page);
+    if (accessibilityTest) {
+      await AccessibilityTestHelper.run(page);
+    }
   }
 
   private static async fillInFields({

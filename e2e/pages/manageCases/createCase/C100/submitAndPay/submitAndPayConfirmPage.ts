@@ -7,20 +7,28 @@ import { SubmitAndPay1Content } from "../../../../../fixtures/manageCases/create
 
 interface SubmitAndPayOptions {
   page: Page;
+  yesNoWelshLanguage: boolean;
+  accessibilityTest: boolean;
 }
 
 export class SubmitAndPayConfirmPage {
   public static async submitAndPayConfirmPage({
     page: page,
+    yesNoWelshLanguage: yesNoWelshLanguage,
+    accessibilityTest: accessibilityTest,
   }: SubmitAndPayOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
+      yesNoWelshLanguage: yesNoWelshLanguage,
+      accessibilityTest: accessibilityTest,
     });
     await this.continue(page);
   }
 
   private static async checkPageLoads({
     page: page,
+    yesNoWelshLanguage: yesNoWelshLanguage,
+    accessibilityTest: accessibilityTest,
   }: SubmitAndPayOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.h1}:text-is("${SubmitAndPayConfirmContent.h1}")`,
@@ -42,7 +50,23 @@ export class SubmitAndPayConfirmPage {
         1,
       ),
     ]);
-    await AccessibilityTestHelper.run(page);
+    if (yesNoWelshLanguage) {
+      await Promise.all([
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.h3}:text-is("${SubmitAndPayConfirmContent.h3w}")`,
+          1,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.p}:text-is("${SubmitAndPayConfirmContent.pw}")`,
+          1,
+        ),
+      ]);
+    }
+    if (accessibilityTest) {
+      await AccessibilityTestHelper.run(page);
+    }
   }
 
   private static async continue(page: Page): Promise<void> {

@@ -4,7 +4,7 @@ export enum ManageOrders19CAContent {
   h3 = "Creating a hearing is optional",
   p = "You can create multiple hearings",
   headingh2 = "Hearing",
-  strong = "The date needs to be confirmed by the listing team before service (Optional)",
+  strong = "The date needs to be confirmed by the listing team before service",
   hint = "Give details of any additional requirements.",
   label1 = "Hearing Type (Optional)",
   label2 = "Has the hearing date been confirmed? (Optional)",
@@ -13,4 +13,5 @@ export enum ManageOrders19CAContent {
   label5 = "The date needs to be confirmed by the listing team before service",
   label6 = "This order will be served with the 'date to be fixed'",
   hearingType = "2nd Gatekeeping Appointment",
+  inputHours = "4",
 }
