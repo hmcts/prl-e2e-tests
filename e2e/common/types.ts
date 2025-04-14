@@ -7,6 +7,7 @@ export interface UserCredentials {
   readonly email: string;
   readonly password: string;
 }
+
 export interface UserCredentialsLong extends UserCredentials {
   readonly forename: string;
   readonly surname: string;
@@ -25,6 +26,7 @@ const UserRoles = {
   caseWorker: "caseWorker",
   courtAdminStoke: "courtAdminStoke",
   caseManager: "caseManager",
+  nocSolicitor: "nocSolicitor",
 } as const;
 
 export type UserRole = (typeof UserRoles)[keyof typeof UserRoles];
