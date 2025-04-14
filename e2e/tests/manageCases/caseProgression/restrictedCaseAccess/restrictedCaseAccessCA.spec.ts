@@ -2,10 +2,9 @@ import { test, Page } from "@playwright/test";
 import { Config } from "../../../../config";
 import { RestrictedCaseAccess } from "../../../../journeys/manageCases/caseProgression/restrictedCaseAccess/restrictedCaseAccessJourney.ts";
 import { SolicitorCACaseCreator } from "../../../../common/caseHelpers/solicitorCACaseCreator.ts";
-import { CheckApplicationJourney } from "../../../../journeys/manageCases/caseProgression/checkApplication/checkApplicationJourney.ts";
-import { SendToGateKeeperJourney } from "../../../../journeys/manageCases/caseProgression/sendToGateKeeper/sendToGateKeeperJourney.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import config from "../../../../config.ts";
+import { SendToGateKeeperJourney } from "../../../../journeys/manageCases/caseProgression/sendToGateKeeper/sendToGateKeeperJourney.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
@@ -13,30 +12,26 @@ test.describe("Complete the Restricted Case Access events for CA case.", () => {
   let ccdRef: string = "";
   test.beforeEach(async ({ page, browser }) => {
     await page.goto(Config.manageCasesBaseURLCase);
-    ccdRef = await SolicitorCACaseCreator.createCaseSubmitAndPay(
-      page,
-      undefined,
-      true,
-    );
-    const caseManagerPage: Page = await Helpers.openNewBrowserWindow(
+    //create a CA case as a solicitor and issue to local court
+    ccdRef = await SolicitorCACaseCreator.createCaseSubmitAndPay(page);
+    await SolicitorCACaseCreator.c100IssueAndSendToLocalCourt(browser, ccdRef);
+    //log in as a court admin and complete send to gatekeeper event
+    const caseWorkerPage: Page = await Helpers.openNewBrowserWindow(
       browser,
-      "caseManager",
+      "caseWorker",
     );
     await Helpers.goToCase(
-        caseManagerPage,
-        config.manageCasesBaseURLCase,
-        ccdRef,
-        "tasks",
+      caseWorkerPage,
+      config.manageCasesBaseURLCase,
+      ccdRef,
+      "tasks",
     );
-    await CheckApplicationJourney.checkApplication({
-      page: caseManagerPage,
-      accessibilityTest: false,
-    });
+    //#TODO: replace with page.evaluate calls for CA cases
     await SendToGateKeeperJourney.sendToGateKeeper({
-      page: caseManagerPage,
+      page: caseWorkerPage,
       ccdRef,
       accessibilityTest: false,
-      yesNoSendToGateKeeper: true,
+      yesNoSendToGateKeeper: true, //set to true to allocate specific judge to case so they can restrict case
       checkApplicationEvent: false,
     });
   });

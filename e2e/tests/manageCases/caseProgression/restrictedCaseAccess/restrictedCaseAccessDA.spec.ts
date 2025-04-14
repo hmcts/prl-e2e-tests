@@ -1,4 +1,4 @@
-import { test } from "@playwright/test";
+import { Page, test } from "@playwright/test";
 import createDaCitizenCourtNavCase from "../../../../common/caseHelpers/citizenDACaseCreateHelper.ts";
 import { Helpers } from "../../../../common/helpers";
 import config, { Config } from "../../../../config";
@@ -11,6 +11,7 @@ test.describe("Complete the Restricted Case Access events for DA case.", () => {
   let ccdRef: string = "";
 
   test.beforeEach(async ({ page }) => {
+    //create a DA case (court nav) and complete 'complete application' and 'send to gatekeeper' events
     ccdRef = await createDaCitizenCourtNavCase(true, false);
     await Helpers.goToCase(
       page,
@@ -21,16 +22,20 @@ test.describe("Complete the Restricted Case Access events for DA case.", () => {
     await SendToGateKeeperJourney.sendToGateKeeper({
       page,
       accessibilityTest: false,
-      yesNoSendToGateKeeper: true,
+      yesNoSendToGateKeeper: true, //set to true to allocate specific judge to case so they can restrict case
       ccdRef,
     });
   });
 
   test("Mark DA case as restricted as a gatekeeper judge. @nightly @regression @accessibility", async ({
-    page,
+    browser,
   }): Promise<void> => {
+    const judgePage: Page = await Helpers.openNewBrowserWindow(
+      browser,
+      "judge",
+    );
     await RestrictedCaseAccess.restrictedCaseAccess({
-      page,
+      page: judgePage,
       accessibilityTest: true,
       ccdRef,
     });

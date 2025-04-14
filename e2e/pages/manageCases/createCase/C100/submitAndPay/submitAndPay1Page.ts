@@ -19,6 +19,7 @@ interface fillInFieldsOptions {
 }
 
 enum UniqueSelectors {
+  confidentialityDisclaimer = "#confidentialityDisclaimer_confidentialityChecksChecked-confidentialityChecksChecked",
   checkText = "#confidentialityChecksText",
 }
 
