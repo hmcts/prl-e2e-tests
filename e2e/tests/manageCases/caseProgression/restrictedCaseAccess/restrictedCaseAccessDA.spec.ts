@@ -9,7 +9,6 @@ test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("Complete the Restricted Case Access events for DA case.", () => {
   let ccdRef: string = "";
-
   test.beforeEach(async ({ page }) => {
     //create a DA case (court nav) and complete 'complete application' and 'send to gatekeeper' events
     ccdRef = await createDaCitizenCourtNavCase(true, false);
