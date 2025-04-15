@@ -61,19 +61,21 @@ export class ServiceOfApplication2Page {
       ),
       Helpers.checkGroup(
         page,
-        3,
+        2,
         ServiceOfApplication2Content,
         "formHint",
         Selectors.GovukFormHint,
       ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.p}:text-is("${ServiceOfApplication2Content.p}")`,
-        1,
+      Helpers.checkGroup(
+          page,
+          2,
+          ServiceOfApplication2Content,
+          "p",
+          Selectors.p,
       ),
     ]);
     await page.click(
-      `${Selectors.p}:text-is("${ServiceOfApplication2Content.p}")`,
+      `${Selectors.p}:text-is("${ServiceOfApplication2Content.p2}")`,
     );
     await Promise.all([
       Helpers.checkGroup(
