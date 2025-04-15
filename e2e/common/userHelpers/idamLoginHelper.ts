@@ -3,7 +3,6 @@ import fs, { existsSync, readFileSync } from "fs";
 import Config from "../../config.ts";
 import { setupUser } from "./idamCreateUserApiHelper.ts";
 import { UserCredentialsLong, UserLoginInfo } from "../types.ts";
-import process from "node:process";
 
 export class IdamLoginHelper {
   private static fields: UserLoginInfo = {
