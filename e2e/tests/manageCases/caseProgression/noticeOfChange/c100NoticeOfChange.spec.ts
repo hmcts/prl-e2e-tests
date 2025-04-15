@@ -4,7 +4,6 @@ import { Helpers } from "../../../../common/helpers.ts";
 import config from "../../../../config.ts";
 import { NoticeOfChange } from "../../../../journeys/manageCases/caseProgression/noticeOfChange/noticeOfChange.ts";
 import { SolicitorCACaseCreator } from "../../../../common/caseHelpers/solicitorCACaseCreator.ts";
-import { c1000IssueAndSendToLocalCourt } from "../../../../common/caseHelpers/caseEventsHelper.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "nocSolicitor.json" });
 
@@ -18,7 +17,7 @@ test.describe("Notice of Change tests for CA case", () => {
     );
     await solicitorPage.goto(Config.manageCasesBaseURLCase);
     ccdRef = await SolicitorCACaseCreator.createCaseSubmitAndPay(solicitorPage);
-    await c1000IssueAndSendToLocalCourt(browser, ccdRef);
+    await SolicitorCACaseCreator.c100IssueAndSendToLocalCourt(browser, ccdRef);
     await Helpers.goToCase(
       page,
       config.manageCasesBaseURLCase,

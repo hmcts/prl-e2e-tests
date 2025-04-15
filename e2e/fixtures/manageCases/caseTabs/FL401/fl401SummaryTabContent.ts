@@ -15,4 +15,6 @@ export enum FL401SummaryTabContent {
   courtNameLabel = "Court name",
   aberystwythCourt = "Aberystwyth Justice Centre",
   testCourt = "Test Court",
+  h2_restrictedCase = "Restricted case",
+  text16_restrictedCaseReason = "Reasons to restrict this case",
 }
