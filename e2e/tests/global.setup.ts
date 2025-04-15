@@ -54,10 +54,10 @@ setup("Setup case manager user", async ({ page }) => {
 
 setup("Setup caseWorker user", async ({ page }) => {
   const userInfo = await IdamLoginHelper.setupAndSignInUser(
-      page,
-      config.manageCasesBaseURLCase,
-      "caseWorker",
-      true,
+    page,
+    config.manageCasesBaseURLCase,
+    "caseWorker",
+    true,
   );
   if (process.env.PWDEBUG) {
     console.log(userInfo);

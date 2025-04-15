@@ -81,9 +81,9 @@ export class IdamLoginHelper {
     //citizen users should be created for each test
     const sessionPath = `${Config.sessionStoragePath}${userType}.json`;
     if (
-        userType !== "citizen" &&
-        existsSync(sessionPath) &&
-        this.isSessionValid(sessionPath)
+      userType !== "citizen" &&
+      existsSync(sessionPath) &&
+      this.isSessionValid(sessionPath)
     ) {
       return;
     }
@@ -93,11 +93,11 @@ export class IdamLoginHelper {
       if (!token) return;
       const userInfo = await setupUser(token, userType);
       await this.signIn(
-          page,
-          userInfo.email,
-          userInfo.password,
-          application,
-          userType,
+        page,
+        userInfo.email,
+        userInfo.password,
+        application,
+        userType,
       );
       if (returnUserInfo) {
         return {
