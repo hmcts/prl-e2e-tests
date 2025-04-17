@@ -78,9 +78,14 @@ export class ManageDocumentsNew1Page {
         `${Selectors.button}:text-is("${ManageDocumentsNew1Content.buttonText2}")`,
         1,
       ),
+      Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.p}:text-is("${ManageDocumentsNew1Content.p}")`,
+          1,
+      ),
       Helpers.checkGroup(
         page,
-        6,
+        5,
         ManageDocumentsNew1Content,
         "formHint",
         Selectors.GovukFormHint,
