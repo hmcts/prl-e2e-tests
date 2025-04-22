@@ -51,20 +51,27 @@ export class Helpers {
   }
 
   public static async selectSolicitorEvent(
-    page: Page,
-    event: c100SolicitorEvents | fl401SolicitorEvents,
+      page: Page,
+      event: c100SolicitorEvents | fl401SolicitorEvents,
   ): Promise<void> {
+    const eventSelector = `${Selectors.markdown} > ${Selectors.div} > ${Selectors.p} > ${Selectors.a}:has-text("${event}")`;
     await page.waitForSelector(`.mat-tab-label-content:text-is("Tasks")`);
-    await page
-      .locator(
-        `${Selectors.markdown} > ${Selectors.div} > ${Selectors.p} > ${Selectors.a}:has-text("${event}")`,
-      )
-      .waitFor();
-    await page.waitForTimeout(3000);
-    await page.click(
-      `${Selectors.markdown} > ${Selectors.div} > ${Selectors.p} > ${Selectors.a}:has-text("${event}")`,
-      { force: true },
-    );
+    await page.locator(eventSelector).waitFor();
+    const maxRetries = 3;
+    const delay = 10000;
+    for (let retryCount = 0; retryCount < maxRetries; retryCount++) {
+      try {
+        const taskTitleStillVisible = await page.locator(`.mat-tab-label-content:text-is("Tasks")`).isVisible();
+        if (!taskTitleStillVisible) {
+          return;
+        }
+        await page.click(eventSelector, { force: true });
+      } catch (error) {
+        console.warn(`Click attempt ${retryCount + 1} failed: ${error}`);
+      }
+      await page.waitForTimeout(delay);
+    }
+    throw new Error(`Failed to select event "${event}" after ${maxRetries} retries`);
   }
 
   public static async checkVisibleAndPresent(
