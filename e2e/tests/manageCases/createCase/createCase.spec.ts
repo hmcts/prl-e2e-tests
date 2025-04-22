@@ -96,7 +96,7 @@ test.describe("Manage cases case solicitor create case tests.", (): void => {
   Saying no to all WelshRequirement options
   C100MiamPolicyUpgrade1PageType is "yesExemption"
   Saying Don't know to other proceedings
-  @regression @nightly`, async ({ page }): Promise<void> => {
+  @regression`, async ({ page }): Promise<void> => {
     await C100.c100({
       page: page,
       user: "solicitor",
@@ -280,8 +280,7 @@ test.describe("Manage cases case solicitor create case tests.", (): void => {
   Saying no to all other people in the case questions with a male applicant
   Saying no to all child details question with a female child
   Saying no to all children and respondents questions
-  Setting the allegations of harm to none.
-  @nightly`, async ({ page }): Promise<void> => {
+  Setting the allegations of harm to none. @regression`, async ({ page }): Promise<void> => {
     await C100.c100CreateCaseMandatorySections({
       page: page,
       user: "solicitor",
