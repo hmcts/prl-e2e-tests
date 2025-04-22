@@ -7,9 +7,6 @@ import { SolicitorCreateInitial } from "../../../journeys/manageCases/createCase
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
 test.describe("Manage cases case solicitor create case tests.", (): void => {
-  // Triple timeout for these slow tests
-  test.slow();
-
   test(`Complete the C100 create case event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
