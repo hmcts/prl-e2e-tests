@@ -53,7 +53,7 @@ export class StatementOfService1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${StatementOfService1Content.p}")`,
+        `${Selectors.GovukFormHint}:text-is("${StatementOfService1Content.formHint1}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -82,8 +82,8 @@ export class StatementOfService1Page {
         page,
         2,
         StatementOfService1Content,
-        "formHint",
-        Selectors.GovukFormHint,
+        "p",
+        Selectors.p,
       ),
     ]);
     if (accessibilityTest) {

@@ -71,7 +71,7 @@ export class SubmitAndPayConfirmPage {
 
   private static async continue(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.a}:text-is("${SubmitAndPayConfirmContent.a}")`,
+      `${Selectors.a}:has-text("${SubmitAndPayConfirmContent.a}")`,
     );
   }
 }

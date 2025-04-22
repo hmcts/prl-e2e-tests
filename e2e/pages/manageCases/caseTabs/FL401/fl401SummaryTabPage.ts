@@ -3,6 +3,7 @@ import { Selectors } from "../../../../common/selectors";
 import { Helpers } from "../../../../common/helpers";
 import { FL401SummaryTabContent } from "../../../../fixtures/manageCases/caseTabs/FL401/fl401SummaryTabContent";
 import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
+import { RestrictedCaseAccess2Content } from "../../../../fixtures/manageCases/caseProgression/restrictedCaseAccess/restrictedCaseAccess2Content.ts";
 
 export class FL401SummaryTabPage {
   public static async fl401SummaryTabPage(
@@ -75,5 +76,24 @@ export class FL401SummaryTabPage {
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }
+  }
+  public static async fl401SummaryTabRestrictCaseCheckPage(
+    page: Page,
+  ): Promise<void> {
+    await page.waitForSelector(
+      `${Selectors.h2}:text-is("${FL401SummaryTabContent.h2_restrictedCase}")`,
+    );
+    await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${FL401SummaryTabContent.text16_restrictedCaseReason}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${RestrictedCaseAccess2Content.inputText}")`,
+        1,
+      ),
+    ]);
   }
 }

@@ -87,6 +87,7 @@ export async function createUser(
         "cwd-user",
         "staff-admin",
         "caseworker",
+        "caseworker-privatelaw-courtadmin",
       ];
       forename = "PRL AAT AM";
       surname = "Swansea HCTL";

@@ -4,10 +4,8 @@ import Config from "../../config.ts";
 import { Helpers } from "../helpers.ts";
 import { CompleteTheOrder } from "../../journeys/manageCases/caseProgression/completeTheOrder/completeTheOrder.ts";
 import { applicationSubmittedBy, createOrderFL401Options } from "../types.ts";
-import config from "../../config.ts";
 
 // Note: These methods assume the current page context is court admin
-
 export async function completeCheckApplicationAndSendToGatekeeper(
   page: Page,
   caseRef: string,
@@ -65,27 +63,5 @@ export async function completeEventsUpToServiceOfApplication(
     caseRef,
     "serviceOfApplication",
     manageOrderEventData,
-  );
-}
-
-export async function c1000IssueAndSendToLocalCourt(
-  browser: Browser,
-  ccdRef: string,
-): Promise<void> {
-  const ctscPage = await Helpers.openNewBrowserWindow(
-    browser,
-    "courtAdminStoke",
-  );
-  await Helpers.goToCase(
-    ctscPage,
-    config.manageCasesBaseURLCase,
-    ccdRef,
-    "tasks",
-  );
-  await submitEvent(
-    ctscPage,
-    ccdRef,
-    "issueAndSendToLocalCourtCallback",
-    jsonDatas.solicitorCACaseData,
   );
 }
