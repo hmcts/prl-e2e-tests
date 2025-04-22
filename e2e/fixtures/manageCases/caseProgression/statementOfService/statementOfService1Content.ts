@@ -1,7 +1,8 @@
 export enum StatementOfService1Content {
   pageTitle = "Statement of service",
   recipientH2H3 = "Recipient",
-  p = "Add recipient",
+  p1 = "Add recipient",
+  p2 = "Do this if there are multiple recipients",
   strong = "Statement of service document",
   formLabelWhoWasServed = "Who was served?",
   formLabelWhenWereTheyServed = "When were they served?",
@@ -10,6 +11,5 @@ export enum StatementOfService1Content {
   formLabel3 = "Order",
   formLabel4 = "Upload document(PDF, .doc)",
   formHint1 = "For example: 16 4 2021, 10:09",
-  formHint2 = "Do this if there are multiple recipients",
   date = "19-12-2025 12:00 am",
 }
