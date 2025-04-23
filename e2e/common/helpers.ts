@@ -57,21 +57,23 @@ export class Helpers {
     const eventSelector = `${Selectors.markdown} > ${Selectors.div} > ${Selectors.p} > ${Selectors.a}:has-text("${event}")`;
     await page.waitForSelector(`.mat-tab-label-content:text-is("Tasks")`);
     await page.locator(eventSelector).waitFor();
-    const maxRetries = 4;
-    const delay = 20000;
-    for (let retryCount = 0; retryCount < maxRetries; retryCount++) {
-      try {
-        const taskTitleStillVisible = await page.locator(`.mat-tab-label-content:text-is("Tasks")`).isVisible();
-        if (!taskTitleStillVisible) {
-          return;
-        }
-        await page.click(eventSelector, { force: true });
-      } catch (error) {
-        console.warn(`Click attempt ${retryCount + 1} failed: ${error}`);
+    //retry until element is clicked or task heading is no longer visible
+    await expect.poll(async () => {
+      const taskTitleStillVisible = await page.locator('.mat-tab-label-content:text-is("Tasks")').isVisible();
+      if (!taskTitleStillVisible) {
+        return 'done';
       }
-      await page.waitForTimeout(delay);
-    }
-    throw new Error(`Failed to select event "${event}" after ${maxRetries} retries`);
+      try {
+        await page.click(eventSelector);
+        return 'clicked';
+      } catch (error) {
+        console.warn(`click failed: ${error}`);
+        return 'retrying';
+      }
+    }, {
+      intervals: [1_000, 2_000, 10_000],
+      timeout: 60_000
+    }).toMatch(/done/);
   }
 
   public static async checkVisibleAndPresent(
