@@ -1,4 +1,4 @@
-import { expect, Page } from "@playwright/test";
+import { expect, Locator, Page } from "@playwright/test";
 
 interface ClippingCoords {
   x: number;
@@ -52,6 +52,7 @@ export class ExuiMediaViewerPage {
     page: Page,
     screenShotName: string,
     clip: ClippingCoords = clippingCoords.fullPage,
+    mask: Locator[] = [],
   ): Promise<void> {
     await this.waitForLoad();
     const totalPages = await this.getNumberOfPages();
@@ -61,6 +62,7 @@ export class ExuiMediaViewerPage {
       await expect(this.page).toHaveScreenshot(`${screenShotName}-${i}.png`, {
         clip: clip,
         maxDiffPixelRatio: 0.02,
+        mask: mask,
       });
       if (i !== totalPages - 1) await this.toolbar.pageDownBtn.click();
     }

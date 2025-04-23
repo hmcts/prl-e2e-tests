@@ -79,9 +79,9 @@ export class ManageDocumentsNew1Page {
         1,
       ),
       Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.p}:text-is("${ManageDocumentsNew1Content.p}")`,
-          1,
+        page,
+        `${Selectors.p}:text-is("${ManageDocumentsNew1Content.p}")`,
+        1,
       ),
       Helpers.checkGroup(
         page,
