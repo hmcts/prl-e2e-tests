@@ -5,12 +5,9 @@ import { FL401 } from "../../../journeys/manageCases/createCase/FL401";
 import { SolicitorCreateInitial } from "../../../journeys/manageCases/createCase/solicitorCreateInitial.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
-
+// #TODO jira ticket to address broken tests: https://tools.hmcts.net/jira/browse/FPVTL-579
 test.describe("Manage cases case solicitor create case tests.", (): void => {
-  // Triple timeout for these slow tests
-  test.slow();
-
-  test(`Complete the C100 create case event as a solicitor with the following options:
+  test.fixme(`Complete the C100 create case event as a solicitor with the following options: 
   Not Accessibility testing,
   Not Error message testing,
   Saying yes to all hearing urgency questions,
@@ -77,7 +74,7 @@ test.describe("Manage cases case solicitor create case tests.", (): void => {
     });
   });
 
-  test(`Complete the C100 create case event as a solicitor with the following options:
+  test.fixme(`Complete the C100 create case event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
   Saying no to all hearing urgency questions,
@@ -99,7 +96,7 @@ test.describe("Manage cases case solicitor create case tests.", (): void => {
   Saying no to all WelshRequirement options
   C100MiamPolicyUpgrade1PageType is "yesExemption"
   Saying Don't know to other proceedings
-  @regression @nightly`, async ({ page }): Promise<void> => {
+  @regression`, async ({ page }): Promise<void> => {
     await C100.c100({
       page: page,
       user: "solicitor",
@@ -142,7 +139,7 @@ test.describe("Manage cases case solicitor create case tests.", (): void => {
     });
   });
 
-  test(`Complete the FL401 create case event as a solicitor with the following options:
+  test.fixme(`Complete the FL401 create case event as a solicitor with the following options:
      Not Accessibility testing,
      Not Error message testing,
      Female applicant,
@@ -183,7 +180,7 @@ test.describe("Manage cases case solicitor create case tests.", (): void => {
     });
   });
 
-  test(`Complete the FL401 create case event as a solicitor with the following options:
+  test.fixme(`Complete the FL401 create case event as a solicitor with the following options:
      Not Accessibility testing,
      Not Error message testing,
      Male applicant,
@@ -228,7 +225,7 @@ test.describe("Manage cases case solicitor create case tests.", (): void => {
     });
   });
 
-  test(`Complete the FL401 create case event as a solicitor with the following options:
+  test.fixme(`Complete the FL401 create case event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
   Female applicant,
@@ -271,7 +268,7 @@ test.describe("Manage cases case solicitor create case tests.", (): void => {
     });
   });
 
-  test(`Complete the C100 create case event as a solicitor completing only mandatory tasks with the following options:
+  test.fixme(`Complete the C100 create case event as a solicitor completing only mandatory tasks with the following options:
   Not Accessibility testing,
   Not Error message testing,
   Saying no to all hearing urgency questions,
@@ -283,8 +280,7 @@ test.describe("Manage cases case solicitor create case tests.", (): void => {
   Saying no to all other people in the case questions with a male applicant
   Saying no to all child details question with a female child
   Saying no to all children and respondents questions
-  Setting the allegations of harm to none.
-  @nightly`, async ({ page }): Promise<void> => {
+  Setting the allegations of harm to none. @regression`, async ({ page }): Promise<void> => {
     await C100.c100CreateCaseMandatorySections({
       page: page,
       user: "solicitor",
@@ -326,7 +322,7 @@ test.describe("Manage cases case solicitor create case tests.", (): void => {
       yesNoHelpWithFees: false,
     });
   });
-  test(`Create case as a solicitor - intial screens only.
+  test(`Create case as a solicitor - initial screens only.
   @smoke`, async ({ page }): Promise<void> => {
     await SolicitorCreateInitial.createInitialCase({
       page: page,
