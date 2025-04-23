@@ -57,7 +57,7 @@ export class Helpers {
     const eventSelector = `${Selectors.markdown} > ${Selectors.div} > ${Selectors.p} > ${Selectors.a}:has-text("${event}")`;
     await page.waitForSelector(`.mat-tab-label-content:text-is("Tasks")`);
     await page.locator(eventSelector).waitFor();
-    const maxRetries = 3;
+    const maxRetries = 4;
     const delay = 20000;
     for (let retryCount = 0; retryCount < maxRetries; retryCount++) {
       try {
