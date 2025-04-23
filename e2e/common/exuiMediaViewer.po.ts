@@ -62,7 +62,7 @@ export class ExuiMediaViewerPage {
       await expect(this.page).toHaveScreenshot(`${screenShotName}-${i}.png`, {
         clip: clip,
         maxDiffPixelRatio: 0.02,
-        mask: mask
+        mask: mask,
       });
       if (i !== totalPages - 1) await this.toolbar.pageDownBtn.click();
     }

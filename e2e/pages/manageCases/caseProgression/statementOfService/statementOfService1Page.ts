@@ -78,13 +78,7 @@ export class StatementOfService1Page {
         "formLabel",
         Selectors.GovukFormLabel,
       ),
-      Helpers.checkGroup(
-        page,
-        2,
-        StatementOfService1Content,
-        "p",
-        Selectors.p,
-      ),
+      Helpers.checkGroup(page, 2, StatementOfService1Content, "p", Selectors.p),
     ]);
     if (accessibilityTest) {
       // await AccessibilityTestHelper.run(page); //#TODO turn back on once EXUI-2724 is resolved

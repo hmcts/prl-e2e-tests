@@ -67,11 +67,11 @@ export class ServiceOfApplication2Page {
         Selectors.GovukFormHint,
       ),
       Helpers.checkGroup(
-          page,
-          2,
-          ServiceOfApplication2Content,
-          "p",
-          Selectors.p,
+        page,
+        2,
+        ServiceOfApplication2Content,
+        "p",
+        Selectors.p,
       ),
     ]);
     await page.click(
