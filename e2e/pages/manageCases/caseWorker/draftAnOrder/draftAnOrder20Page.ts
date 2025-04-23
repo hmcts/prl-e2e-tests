@@ -19,6 +19,7 @@ export class DraftAnOrder20Page {
     howLongWillOrderBeInForce: HowLongWillTheOrderBeInForce,
     accessibilityTest: boolean,
     checkPdf: boolean,
+    caseRef: string,
   ): Promise<void> {
     await this.checkPageLoads(page, orderType, accessibilityTest);
     if (checkPdf) {
@@ -27,6 +28,7 @@ export class DraftAnOrder20Page {
         orderType,
         yesToAll,
         howLongWillOrderBeInForce,
+        caseRef,
       );
     }
     await this.continue(page);
@@ -78,6 +80,7 @@ export class DraftAnOrder20Page {
     orderType: OrderType,
     yesToAll: boolean,
     howLongWillOrderBeInForce: HowLongWillTheOrderBeInForce,
+    caseRef: string,
   ): Promise<void> {
     switch (orderType) {
       case "nonMolestation":
@@ -85,10 +88,15 @@ export class DraftAnOrder20Page {
           page,
           yesToAll,
           howLongWillOrderBeInForce,
+          caseRef,
         );
         break;
       case "parentalResponsibility":
-        await ParentalResponsibilityOrder20Page.checkPdfContent(page, yesToAll);
+        await ParentalResponsibilityOrder20Page.checkPdfContent(
+          page,
+          yesToAll,
+          caseRef,
+        );
         break;
       default:
         console.error("Unknown order type");
