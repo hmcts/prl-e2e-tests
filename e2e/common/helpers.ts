@@ -60,20 +60,12 @@ export class Helpers {
     //retry until element is clicked or task heading is no longer visible
     await expect.poll(async () => {
       const taskTitleStillVisible = await page.locator('.mat-tab-label-content:text-is("Tasks")').isVisible();
-      if (!taskTitleStillVisible) {
-        return 'done';
-      }
-      try {
-        await page.click(eventSelector);
-        return 'clicked';
-      } catch (error) {
-        console.warn(`click failed: ${error}`);
-        return 'retrying';
-      }
+      if (taskTitleStillVisible) await page.click(eventSelector);
+      return taskTitleStillVisible;
     }, {
       intervals: [1_000, 2_000, 10_000],
       timeout: 60_000
-    }).toMatch(/done/);
+    }).toBeFalsy();
   }
 
   public static async checkVisibleAndPresent(
