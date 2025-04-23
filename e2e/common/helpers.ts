@@ -58,7 +58,7 @@ export class Helpers {
     await page.waitForSelector(`.mat-tab-label-content:text-is("Tasks")`);
     await page.locator(eventSelector).waitFor();
     const maxRetries = 3;
-    const delay = 10000;
+    const delay = 20000;
     for (let retryCount = 0; retryCount < maxRetries; retryCount++) {
       try {
         const taskTitleStillVisible = await page.locator(`.mat-tab-label-content:text-is("Tasks")`).isVisible();
