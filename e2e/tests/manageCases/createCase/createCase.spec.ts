@@ -5,9 +5,9 @@ import { FL401 } from "../../../journeys/manageCases/createCase/FL401";
 import { SolicitorCreateInitial } from "../../../journeys/manageCases/createCase/solicitorCreateInitial.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
-
+// #TODO jira ticket to address broken tests: https://tools.hmcts.net/jira/browse/FPVTL-579
 test.describe("Manage cases case solicitor create case tests.", (): void => {
-  test.fixme(`Complete the C100 create case event as a solicitor with the following options:
+  test.fixme(`Complete the C100 create case event as a solicitor with the following options: 
   Not Accessibility testing,
   Not Error message testing,
   Saying yes to all hearing urgency questions,
