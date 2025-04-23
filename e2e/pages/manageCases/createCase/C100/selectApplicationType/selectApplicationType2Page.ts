@@ -89,7 +89,7 @@ export class selectApplicationType2Page {
     ]);
     const fileInput = page.locator(`${PageIDs.uploadFileInput}`);
     await fileInput.setInputFiles(config.testOdtFile);
-    await page.waitForTimeout(5000);
+    await page.waitForTimeout(10000);
     await page.click(
       `${Selectors.button}:text-is("${SelectApplicationType2Content.continue}")`,
     );
