@@ -33,21 +33,20 @@ export class Helpers {
       | courtAdminEvents
       | amendEvents,
   ): Promise<void> {
-    try {
-      await page.waitForLoadState("domcontentloaded");
-      await page.waitForSelector("#next-step", { state: "visible" });
-      await page.selectOption("#next-step", chosenEvent);
-      await page.waitForTimeout(1500);
-      const goButton: Locator = page.getByRole("button", { name: "Go" });
-      await expect(goButton).toBeEnabled();
-      await goButton.click();
-    } catch (error) {
-      console.error(
-        "An error occurred while choosing the event from the dropdown:",
-        error,
-      );
-      throw error;
-    }
+    await page.waitForLoadState("domcontentloaded");
+    await page.waitForSelector("#next-step", { state: "visible" });
+    await page.selectOption("#next-step", chosenEvent);
+    await page.waitForTimeout(1500);
+    const goButton: Locator = page.getByRole("button", { name: "Go" });
+    await expect(goButton).toBeEnabled();
+    await expect.poll(async () => {
+      const goButtonStillVisible = await goButton.isVisible();
+      if (goButtonStillVisible) await goButton.click();
+      return goButtonStillVisible;
+    }, {
+      intervals: [1_000, 2_000, 10_000],
+      timeout: 60_000
+    }).toBeFalsy();
   }
 
   public static async selectSolicitorEvent(
