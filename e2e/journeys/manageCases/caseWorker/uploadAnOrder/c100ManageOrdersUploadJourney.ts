@@ -9,6 +9,7 @@ import {
   ManageOrders5PageCA
 } from "../../../../pages/manageCases/caseWorker/uploadAnOrder/manageOrders5PageCA";
 import { ManageOrders24PageCA } from "../../../../pages/manageCases/caseWorker/uploadAnOrder/manageOrders24PageCA";
+import { ManageOrders26PageCA } from "../../../../pages/manageCases/caseWorker/uploadAnOrder/manageOrders26PageCA.ts";
 import { SubmitPage } from "../../../../pages/manageCases/caseWorker/createAnOrder/orderCA/submitPage";
 
 interface C100ManageOrdersOptions {
@@ -43,6 +44,10 @@ export class C100ManageOrdersUploadJourney {
     await ManageOrders24PageCA.manageOrders24PageCA({
       page,
       accessibilityTest,
+    });
+    await ManageOrders26PageCA.manageOrders26PageCA({
+      page,
+      //accessibilityTest,
     });
     await SubmitPage.submitPage({
       page,

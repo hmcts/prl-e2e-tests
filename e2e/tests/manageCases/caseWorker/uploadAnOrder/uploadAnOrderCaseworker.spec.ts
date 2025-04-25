@@ -4,8 +4,8 @@ import { C100UploadAnOrder } from "../../../../journeys/manageCases/caseWorker/u
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
-test.describe("Upload an order tests", (): void => {
-  test(`Complete Uploading an order as a Caseworker with the following options:
+test.describe("Upload an order tests @newtest", (): void => {
+  test(`Complete Uploading an order as a Caseworker with the following options @newtest:
   Case: C100,
   Not accessibility testing. 
   @regression`, async ({ page }): Promise<void> => {
