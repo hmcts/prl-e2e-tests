@@ -147,7 +147,6 @@ See examples in the [tests](https://github.com/hmcts/tcoe-playwright-example/blo
 ### Running the visual tests locally
 Use the following command to start the visual testing container:
 `yarn playwright:visual`
-
 This will:
 - Ensure the Docker script is executable 
 - Start a Playwright Docker container (based on the mcr.microsoft.com/playwright image)
