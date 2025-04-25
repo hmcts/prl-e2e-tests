@@ -145,11 +145,12 @@ Your feature may have dynamic data that could skew visual testing results, fortu
 See examples in the [tests](https://github.com/hmcts/tcoe-playwright-example/blob/master/playwright-e2e/tests/visual-tests.spec.ts) and the [playwright docs](https://playwright.dev/docs/api/class-pageassertions#page-assertions-to-have-screenshot-2) for other options.
 
 ### Running the visual tests locally
+
 Use the following command to start the visual testing container:
 `yarn playwright:visual`
 This will:
-- Ensure the Docker script is executable 
-- Start a Playwright Docker container (based on the mcr.microsoft.com/playwright image)
-- Install dependencies inside the container 
-- Drop you into an interactive shell to run visual tests or debug issues
 
+- Ensure the Docker script is executable
+- Start a Playwright Docker container (based on the mcr.microsoft.com/playwright image)
+- Install dependencies inside the container
+- Drop you into an interactive shell to run visual tests or debug issues
