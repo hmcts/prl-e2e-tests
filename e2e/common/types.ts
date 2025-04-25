@@ -103,7 +103,8 @@ export type fl401SubmittedSolicitorEvents =
 export type fl401JudiciaryEvents =
   | "Edit and approve a draft order"
   | "List on notice"
-  | "List without notice";
+  | "List without notice"
+  | "Mark case as restricted";
 
 export type ApplicantGender = "female" | "male" | "other";
 

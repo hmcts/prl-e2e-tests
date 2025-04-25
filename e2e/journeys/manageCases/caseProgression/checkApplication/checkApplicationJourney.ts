@@ -6,7 +6,6 @@ import { Fl401AddCaseNumberSubmitPage } from "../../../../pages/manageCases/case
 interface CheckApplicationParams {
   page: Page;
   accessibilityTest: boolean;
-  ccdRef: string;
 }
 
 export class CheckApplicationJourney {

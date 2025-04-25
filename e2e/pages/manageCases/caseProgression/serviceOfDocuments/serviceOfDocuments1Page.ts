@@ -56,14 +56,19 @@ export class ServiceOfDocuments1Page {
       ),
       Helpers.checkGroup(
         page,
-        3,
+        2,
         ServiceOfDocuments1Content,
-        `formHint`,
-        `${Selectors.GovukFormHint}`,
+        `p`,
+        `${Selectors.p}`,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.headingH3}:text-is("${ServiceOfDocuments1Content.h3}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormHint}:text-is("${ServiceOfDocuments1Content.formHint}")`,
         1,
       ),
     ]);

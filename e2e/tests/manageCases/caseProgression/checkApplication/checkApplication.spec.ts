@@ -26,7 +26,6 @@ test.describe("Check Application task for DA Citizen case tests.", () => {
     await CheckApplicationJourney.checkApplication({
       page,
       accessibilityTest: false,
-      ccdRef,
     });
   });
 
@@ -36,7 +35,6 @@ test.describe("Check Application task for DA Citizen case tests.", () => {
     await CheckApplicationJourney.checkApplication({
       page,
       accessibilityTest: true,
-      ccdRef,
     });
   });
 });

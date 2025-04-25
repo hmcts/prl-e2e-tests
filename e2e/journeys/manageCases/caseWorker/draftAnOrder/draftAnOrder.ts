@@ -65,6 +65,7 @@ export class DraftAnOrder {
           howLongWillOrderBeInForce,
           willAllPartiesAttendHearing,
           checkPdf,
+          caseRef,
         });
         break;
       case "parentalResponsibility":
@@ -76,6 +77,7 @@ export class DraftAnOrder {
           errorMessaging,
           accessibilityTest,
           checkPdf,
+          caseRef,
         });
         break;
       default:
@@ -84,7 +86,10 @@ export class DraftAnOrder {
     }
     //check added to wait to case page to load
     await page.waitForLoadState("domcontentloaded");
-    await page.waitForSelector("#next-step", { state: "visible" });
+    await page
+      .locator(".hmcts-banner__message")
+      .getByText("updated with event: Draft an order")
+      .isVisible();
   }
 
   private static async assignCaseToSwanseaCourt(

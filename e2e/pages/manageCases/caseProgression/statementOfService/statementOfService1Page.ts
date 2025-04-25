@@ -53,7 +53,7 @@ export class StatementOfService1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${StatementOfService1Content.p}")`,
+        `${Selectors.GovukFormHint}:text-is("${StatementOfService1Content.formHint1}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -78,13 +78,7 @@ export class StatementOfService1Page {
         "formLabel",
         Selectors.GovukFormLabel,
       ),
-      Helpers.checkGroup(
-        page,
-        2,
-        StatementOfService1Content,
-        "formHint",
-        Selectors.GovukFormHint,
-      ),
+      Helpers.checkGroup(page, 2, StatementOfService1Content, "p", Selectors.p),
     ]);
     if (accessibilityTest) {
       // await AccessibilityTestHelper.run(page); //#TODO turn back on once EXUI-2724 is resolved
