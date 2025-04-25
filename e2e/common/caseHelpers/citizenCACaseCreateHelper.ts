@@ -44,7 +44,7 @@ export class CitizenCACaseCreator {
     // create case
     const caseData = json;
     const apiContextCreateCase: APIRequestContext = await request.newContext();
-    const urlCreateCase = `${process.env.PRL_COS_API_URL as string}/testing-support/create-dummy-citizen-case`;
+    const urlCreateCase = `${process.env.PRL_COS_API_URL as string}/testing-support/create-dummy-citizen-case-with-body`;
     const responseCreateCase = await apiContextCreateCase.post(urlCreateCase, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
