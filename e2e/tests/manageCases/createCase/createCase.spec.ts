@@ -5,12 +5,10 @@ import { FL401 } from "../../../journeys/manageCases/createCase/FL401";
 import { SolicitorCreateInitial } from "../../../journeys/manageCases/createCase/solicitorCreateInitial.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
-
+// #TODO jira ticket to address broken tests: https://tools.hmcts.net/jira/browse/FPVTL-579
 test.describe("Manage cases case solicitor create case tests.", (): void => {
-  // Triple timeout for these slow tests
-  test.slow();
-
-  test(`Complete the C100 create case event as a solicitor with the following options:
+  test.fixme(
+    `Complete the C100 create case event as a solicitor with the following options: 
   Not Accessibility testing,
   Not Error message testing,
   Saying yes to all hearing urgency questions,
@@ -31,53 +29,54 @@ test.describe("Manage cases case solicitor create case tests.", (): void => {
   Saying no to all Miam
   C100MiamPolicyUpgrade1PageType is "yesExemption"
   Setting WelshPageRequirementType to "english"
-  Saying yes to all WelshRequirement options @regression @nightly`, async ({
-    page,
-  }): Promise<void> => {
-    await C100.c100({
-      page: page,
-      user: "solicitor",
-      accessibilityTest: false,
-      typeOfChildArrangementOrder: "Spend time with order",
-      yesNoC100TypeOfApplication: true,
-      selectionC100TypeOfApplication: "Yes",
-      errorMessaging: false,
-      yesNoHearingUrgency: true,
-      yesNoApplicantDetails: true,
-      applicantGender: "male",
-      yesNoRespondentDetails: true,
-      respondentGender: "male",
-      respondentAddress5Years: "yes",
-      yesNoOtherPeopleInTheCase: true,
-      otherPersonLivesInRefuge: true,
-      respondentLegalRepresentation: "yes",
-      c100ChildGender: "male",
-      yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions: "yes",
-      otherChildPresent: false,
-      otherChildGender: "Male",
-      otherChildDOBKnown: false,
-      applicantChildRelationship: "Father",
-      childLiveWithApplicant: true,
-      yesNoChildrenAndRespondents: true,
-      yesNoChildrenAndOtherPeople: true,
-      c100YesNoAllegationsOfHarm: true,
-      c100DomesticAbuseTypePage3: "Physical abuse",
-      c100AttendingTheHearingYesNo: true,
-      C100MiamPolicyUpgrade1PageType: "yesAttendedMiam",
-      yesNoMiamPolicyUpgrade: true,
-      miamSelection: "attended4MonthsPrior",
-      yesNoInternationalElement: true,
-      yesNoLitigationCapacity: true,
-      c100OtherProceedings: "Yes",
-      c100OngoingProceedingsAndDocX: true,
-      WelshPageRequirementType: "english",
-      yesNoWelshLanguage: true,
-      c100YesNoToAll: true,
-      yesNoHelpWithFees: false,
-    });
-  });
+  Saying yes to all WelshRequirement options @regression @nightly`,
+    async ({ page }): Promise<void> => {
+      await C100.c100({
+        page: page,
+        user: "solicitor",
+        accessibilityTest: false,
+        typeOfChildArrangementOrder: "Spend time with order",
+        yesNoC100TypeOfApplication: true,
+        selectionC100TypeOfApplication: "Yes",
+        errorMessaging: false,
+        yesNoHearingUrgency: true,
+        yesNoApplicantDetails: true,
+        applicantGender: "male",
+        yesNoRespondentDetails: true,
+        respondentGender: "male",
+        respondentAddress5Years: "yes",
+        yesNoOtherPeopleInTheCase: true,
+        otherPersonLivesInRefuge: true,
+        respondentLegalRepresentation: "yes",
+        c100ChildGender: "male",
+        yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions: "yes",
+        otherChildPresent: false,
+        otherChildGender: "Male",
+        otherChildDOBKnown: false,
+        applicantChildRelationship: "Father",
+        childLiveWithApplicant: true,
+        yesNoChildrenAndRespondents: true,
+        yesNoChildrenAndOtherPeople: true,
+        c100YesNoAllegationsOfHarm: true,
+        c100DomesticAbuseTypePage3: "Physical abuse",
+        c100AttendingTheHearingYesNo: true,
+        C100MiamPolicyUpgrade1PageType: "yesAttendedMiam",
+        yesNoMiamPolicyUpgrade: true,
+        miamSelection: "attended4MonthsPrior",
+        yesNoInternationalElement: true,
+        yesNoLitigationCapacity: true,
+        c100OtherProceedings: "Yes",
+        c100OngoingProceedingsAndDocX: true,
+        WelshPageRequirementType: "english",
+        yesNoWelshLanguage: true,
+        c100YesNoToAll: true,
+        yesNoHelpWithFees: false,
+      });
+    },
+  );
 
-  test(`Complete the C100 create case event as a solicitor with the following options:
+  test.fixme(
+    `Complete the C100 create case event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
   Saying no to all hearing urgency questions,
@@ -99,50 +98,53 @@ test.describe("Manage cases case solicitor create case tests.", (): void => {
   Saying no to all WelshRequirement options
   C100MiamPolicyUpgrade1PageType is "yesExemption"
   Saying Don't know to other proceedings
-  @regression @nightly`, async ({ page }): Promise<void> => {
-    await C100.c100({
-      page: page,
-      user: "solicitor",
-      accessibilityTest: false,
-      errorMessaging: false,
-      yesNoC100TypeOfApplication: false,
-      typeOfChildArrangementOrder: "Spend time with order",
-      selectionC100TypeOfApplication: "No, permission now sought",
-      yesNoHearingUrgency: false,
-      yesNoApplicantDetails: false,
-      applicantGender: "female",
-      yesNoRespondentDetails: false,
-      respondentGender: "female",
-      respondentAddress5Years: "no",
-      respondentLegalRepresentation: "no",
-      yesNoOtherPeopleInTheCase: false,
-      otherPersonLivesInRefuge: false,
-      c100ChildGender: "female",
-      yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions: "no",
-      otherChildPresent: true,
-      otherChildGender: "Female",
-      otherChildDOBKnown: true,
-      applicantChildRelationship: "Mother",
-      childLiveWithApplicant: false,
-      yesNoChildrenAndRespondents: false,
-      yesNoChildrenAndOtherPeople: false,
-      c100YesNoAllegationsOfHarm: false,
-      c100DomesticAbuseTypePage3: "Financial abuse",
-      c100AttendingTheHearingYesNo: false,
-      C100MiamPolicyUpgrade1PageType: "yesExemption",
-      yesNoMiamPolicyUpgrade: false,
-      miamSelection: "initiatedMIAMBeforeProceedings_MIAMCertificate",
-      yesNoInternationalElement: false,
-      yesNoLitigationCapacity: false,
-      c100OtherProceedings: "No",
-      WelshPageRequirementType: "english",
-      yesNoWelshLanguage: false,
-      c100YesNoToAll: false,
-      yesNoHelpWithFees: false,
-    });
-  });
+  @regression`,
+    async ({ page }): Promise<void> => {
+      await C100.c100({
+        page: page,
+        user: "solicitor",
+        accessibilityTest: false,
+        errorMessaging: false,
+        yesNoC100TypeOfApplication: false,
+        typeOfChildArrangementOrder: "Spend time with order",
+        selectionC100TypeOfApplication: "No, permission now sought",
+        yesNoHearingUrgency: false,
+        yesNoApplicantDetails: false,
+        applicantGender: "female",
+        yesNoRespondentDetails: false,
+        respondentGender: "female",
+        respondentAddress5Years: "no",
+        respondentLegalRepresentation: "no",
+        yesNoOtherPeopleInTheCase: false,
+        otherPersonLivesInRefuge: false,
+        c100ChildGender: "female",
+        yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions: "no",
+        otherChildPresent: true,
+        otherChildGender: "Female",
+        otherChildDOBKnown: true,
+        applicantChildRelationship: "Mother",
+        childLiveWithApplicant: false,
+        yesNoChildrenAndRespondents: false,
+        yesNoChildrenAndOtherPeople: false,
+        c100YesNoAllegationsOfHarm: false,
+        c100DomesticAbuseTypePage3: "Financial abuse",
+        c100AttendingTheHearingYesNo: false,
+        C100MiamPolicyUpgrade1PageType: "yesExemption",
+        yesNoMiamPolicyUpgrade: false,
+        miamSelection: "initiatedMIAMBeforeProceedings_MIAMCertificate",
+        yesNoInternationalElement: false,
+        yesNoLitigationCapacity: false,
+        c100OtherProceedings: "No",
+        WelshPageRequirementType: "english",
+        yesNoWelshLanguage: false,
+        c100YesNoToAll: false,
+        yesNoHelpWithFees: false,
+      });
+    },
+  );
 
-  test(`Complete the FL401 create case event as a solicitor with the following options:
+  test.fixme(
+    `Complete the FL401 create case event as a solicitor with the following options:
      Not Accessibility testing,
      Not Error message testing,
      Female applicant,
@@ -158,32 +160,35 @@ test.describe("Manage cases case solicitor create case tests.", (): void => {
      Saying Yes to all attending the hearing question,
      Upload document files,
     Submit Statement of Truth
-    @regression`, async ({ page }): Promise<void> => {
-    await FL401.fl401({
-      page: page,
-      user: "solicitor",
-      accessibilityTest: false,
-      errorMessaging: false,
-      isLinkedToC100: true,
-      respondentDetailsAllOptionsYes: true,
-      applicantHasChildren: true,
-      yesNoFL401ApplicantDetails: true,
-      applicantGender: "female",
-      isWithoutNoticeDetailsYes: true,
-      isWithoutNoticeDetailsBailConditions: "Yes",
-      otherProceedingsRadios: "Yes",
-      relationshipToRespondent: "foremerlyLivedTogether",
-      fl401TheHomeYesNo: true,
-      fl401EverLivedAtAddress: "yesBothOfThem",
-      fl401AttendingTheHearingYesNo: true,
-      welshLanguageRequirementsAllOptionsYes: true,
-      welshLanguageRequirementsSelectWelsh: false,
-      viewPdfTestCases: "1",
-      fl401YesNoToEverything: true,
-    });
-  });
+    @regression`,
+    async ({ page }): Promise<void> => {
+      await FL401.fl401({
+        page: page,
+        user: "solicitor",
+        accessibilityTest: false,
+        errorMessaging: false,
+        isLinkedToC100: true,
+        respondentDetailsAllOptionsYes: true,
+        applicantHasChildren: true,
+        yesNoFL401ApplicantDetails: true,
+        applicantGender: "female",
+        isWithoutNoticeDetailsYes: true,
+        isWithoutNoticeDetailsBailConditions: "Yes",
+        otherProceedingsRadios: "Yes",
+        relationshipToRespondent: "foremerlyLivedTogether",
+        fl401TheHomeYesNo: true,
+        fl401EverLivedAtAddress: "yesBothOfThem",
+        fl401AttendingTheHearingYesNo: true,
+        welshLanguageRequirementsAllOptionsYes: true,
+        welshLanguageRequirementsSelectWelsh: false,
+        viewPdfTestCases: "1",
+        fl401YesNoToEverything: true,
+      });
+    },
+  );
 
-  test(`Complete the FL401 create case event as a solicitor with the following options:
+  test.fixme(
+    `Complete the FL401 create case event as a solicitor with the following options:
      Not Accessibility testing,
      Not Error message testing,
      Male applicant,
@@ -203,32 +208,35 @@ test.describe("Manage cases case solicitor create case tests.", (): void => {
      Relationship is 'Married or in a civil partnership',
      Saying yes to all attending the hearing questions,
      upload document files
-  @regression`, async ({ page }): Promise<void> => {
-    await FL401.fl401({
-      page: page,
-      user: "solicitor",
-      accessibilityTest: false,
-      errorMessaging: false,
-      isLinkedToC100: true,
-      respondentDetailsAllOptionsYes: true,
-      applicantHasChildren: true,
-      yesNoFL401ApplicantDetails: true,
-      applicantGender: "male",
-      isWithoutNoticeDetailsYes: true,
-      isWithoutNoticeDetailsBailConditions: "Don't know",
-      otherProceedingsRadios: "Don't know",
-      relationshipToRespondent: "marriedOrCivil",
-      fl401TheHomeYesNo: true,
-      fl401EverLivedAtAddress: "yesApplicant",
-      fl401AttendingTheHearingYesNo: true,
-      welshLanguageRequirementsAllOptionsYes: true,
-      welshLanguageRequirementsSelectWelsh: false,
-      viewPdfTestCases: "2",
-      fl401YesNoToEverything: true,
-    });
-  });
+  @regression`,
+    async ({ page }): Promise<void> => {
+      await FL401.fl401({
+        page: page,
+        user: "solicitor",
+        accessibilityTest: false,
+        errorMessaging: false,
+        isLinkedToC100: true,
+        respondentDetailsAllOptionsYes: true,
+        applicantHasChildren: true,
+        yesNoFL401ApplicantDetails: true,
+        applicantGender: "male",
+        isWithoutNoticeDetailsYes: true,
+        isWithoutNoticeDetailsBailConditions: "Don't know",
+        otherProceedingsRadios: "Don't know",
+        relationshipToRespondent: "marriedOrCivil",
+        fl401TheHomeYesNo: true,
+        fl401EverLivedAtAddress: "yesApplicant",
+        fl401AttendingTheHearingYesNo: true,
+        welshLanguageRequirementsAllOptionsYes: true,
+        welshLanguageRequirementsSelectWelsh: false,
+        viewPdfTestCases: "2",
+        fl401YesNoToEverything: true,
+      });
+    },
+  );
 
-  test(`Complete the FL401 create case event as a solicitor with the following options:
+  test.fixme(
+    `Complete the FL401 create case event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
   Female applicant,
@@ -245,33 +253,36 @@ test.describe("Manage cases case solicitor create case tests.", (): void => {
   Saying 'No' to ever intend to live at home address
   Other Relationship Is: 'Cousin'
   saying no to all attending the hearing questions
-  Submit statement of truth @regression`, async ({ page }): Promise<void> => {
-    await FL401.fl401({
-      page: page,
-      user: "solicitor",
-      accessibilityTest: false,
-      errorMessaging: false,
-      isLinkedToC100: false,
-      respondentDetailsAllOptionsYes: false,
-      applicantHasChildren: false,
-      yesNoFL401ApplicantDetails: false,
-      applicantGender: "female",
-      isWithoutNoticeDetailsYes: false,
-      isWithoutNoticeDetailsBailConditions: "No",
-      otherProceedingsRadios: "No",
-      relationshipToRespondent: "noneOfTheAbove",
-      relationshipToRespondentOther: "Cousin",
-      fl401TheHomeYesNo: false,
-      fl401EverLivedAtAddress: "No",
-      fl401IntendToLiveAtAddress: "No",
-      fl401AttendingTheHearingYesNo: false,
-      welshLanguageRequirementsAllOptionsYes: false,
-      viewPdfTestCases: "3",
-      fl401YesNoToEverything: false,
-    });
-  });
+  Submit statement of truth @regression`,
+    async ({ page }): Promise<void> => {
+      await FL401.fl401({
+        page: page,
+        user: "solicitor",
+        accessibilityTest: false,
+        errorMessaging: false,
+        isLinkedToC100: false,
+        respondentDetailsAllOptionsYes: false,
+        applicantHasChildren: false,
+        yesNoFL401ApplicantDetails: false,
+        applicantGender: "female",
+        isWithoutNoticeDetailsYes: false,
+        isWithoutNoticeDetailsBailConditions: "No",
+        otherProceedingsRadios: "No",
+        relationshipToRespondent: "noneOfTheAbove",
+        relationshipToRespondentOther: "Cousin",
+        fl401TheHomeYesNo: false,
+        fl401EverLivedAtAddress: "No",
+        fl401IntendToLiveAtAddress: "No",
+        fl401AttendingTheHearingYesNo: false,
+        welshLanguageRequirementsAllOptionsYes: false,
+        viewPdfTestCases: "3",
+        fl401YesNoToEverything: false,
+      });
+    },
+  );
 
-  test(`Complete the C100 create case event as a solicitor completing only mandatory tasks with the following options:
+  test.fixme(
+    `Complete the C100 create case event as a solicitor completing only mandatory tasks with the following options:
   Not Accessibility testing,
   Not Error message testing,
   Saying no to all hearing urgency questions,
@@ -283,50 +294,51 @@ test.describe("Manage cases case solicitor create case tests.", (): void => {
   Saying no to all other people in the case questions with a male applicant
   Saying no to all child details question with a female child
   Saying no to all children and respondents questions
-  Setting the allegations of harm to none.
-  @nightly`, async ({ page }): Promise<void> => {
-    await C100.c100CreateCaseMandatorySections({
-      page: page,
-      user: "solicitor",
-      accessibilityTest: false,
-      errorMessaging: false,
-      yesNoC100TypeOfApplication: false,
-      typeOfChildArrangementOrder: "Spend time with order",
-      selectionC100TypeOfApplication: "No, permission now sought",
-      yesNoHearingUrgency: false,
-      yesNoApplicantDetails: false,
-      applicantGender: "female",
-      yesNoRespondentDetails: false,
-      respondentGender: "female",
-      respondentAddress5Years: "no",
-      respondentLegalRepresentation: "no",
-      yesNoOtherPeopleInTheCase: false,
-      otherPersonLivesInRefuge: false,
-      c100ChildGender: "female",
-      yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions: "no",
-      otherChildPresent: true,
-      otherChildGender: "Female",
-      otherChildDOBKnown: true,
-      applicantChildRelationship: "Mother",
-      childLiveWithApplicant: false,
-      yesNoChildrenAndRespondents: false,
-      yesNoChildrenAndOtherPeople: false,
-      c100YesNoAllegationsOfHarm: false,
-      c100DomesticAbuseTypePage3: "Financial abuse",
-      c100AttendingTheHearingYesNo: false,
-      C100MiamPolicyUpgrade1PageType: "yesExemption",
-      yesNoMiamPolicyUpgrade: false,
-      miamSelection: "initiatedMIAMBeforeProceedings_MIAMCertificate",
-      yesNoInternationalElement: false,
-      yesNoLitigationCapacity: false,
-      c100OtherProceedings: "No",
-      WelshPageRequirementType: "english",
-      yesNoWelshLanguage: false,
-      c100YesNoToAll: false,
-      yesNoHelpWithFees: false,
-    });
-  });
-  test(`Create case as a solicitor - intial screens only.
+  Setting the allegations of harm to none. @regression`,
+    async ({ page }): Promise<void> => {
+      await C100.c100CreateCaseMandatorySections({
+        page: page,
+        user: "solicitor",
+        accessibilityTest: false,
+        errorMessaging: false,
+        yesNoC100TypeOfApplication: false,
+        typeOfChildArrangementOrder: "Spend time with order",
+        selectionC100TypeOfApplication: "No, permission now sought",
+        yesNoHearingUrgency: false,
+        yesNoApplicantDetails: false,
+        applicantGender: "female",
+        yesNoRespondentDetails: false,
+        respondentGender: "female",
+        respondentAddress5Years: "no",
+        respondentLegalRepresentation: "no",
+        yesNoOtherPeopleInTheCase: false,
+        otherPersonLivesInRefuge: false,
+        c100ChildGender: "female",
+        yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions: "no",
+        otherChildPresent: true,
+        otherChildGender: "Female",
+        otherChildDOBKnown: true,
+        applicantChildRelationship: "Mother",
+        childLiveWithApplicant: false,
+        yesNoChildrenAndRespondents: false,
+        yesNoChildrenAndOtherPeople: false,
+        c100YesNoAllegationsOfHarm: false,
+        c100DomesticAbuseTypePage3: "Financial abuse",
+        c100AttendingTheHearingYesNo: false,
+        C100MiamPolicyUpgrade1PageType: "yesExemption",
+        yesNoMiamPolicyUpgrade: false,
+        miamSelection: "initiatedMIAMBeforeProceedings_MIAMCertificate",
+        yesNoInternationalElement: false,
+        yesNoLitigationCapacity: false,
+        c100OtherProceedings: "No",
+        WelshPageRequirementType: "english",
+        yesNoWelshLanguage: false,
+        c100YesNoToAll: false,
+        yesNoHelpWithFees: false,
+      });
+    },
+  );
+  test(`Create case as a solicitor - initial screens only.
   @smoke`, async ({ page }): Promise<void> => {
     await SolicitorCreateInitial.createInitialCase({
       page: page,

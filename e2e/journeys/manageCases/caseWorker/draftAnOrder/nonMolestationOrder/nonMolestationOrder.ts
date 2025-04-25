@@ -22,6 +22,7 @@ interface NonMolestationOrderParams {
   howLongWillOrderBeInForce: HowLongWillTheOrderBeInForce;
   willAllPartiesAttendHearing: boolean;
   checkPdf: boolean;
+  caseRef: string;
 }
 
 export class NonMolestationOrder {
@@ -35,6 +36,7 @@ export class NonMolestationOrder {
     howLongWillOrderBeInForce,
     willAllPartiesAttendHearing,
     checkPdf,
+    caseRef,
   }: NonMolestationOrderParams): Promise<void> {
     await DraftAnOrder1Page.draftAnOrder1Page(
       page,
@@ -79,6 +81,7 @@ export class NonMolestationOrder {
       howLongWillOrderBeInForce,
       accessibilityTest,
       checkPdf,
+      caseRef,
     );
     await DraftAnOrderSubmitPage.draftAnOrderSubmitPage(
       page,

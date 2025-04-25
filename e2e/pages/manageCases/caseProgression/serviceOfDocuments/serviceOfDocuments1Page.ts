@@ -67,9 +67,9 @@ export class ServiceOfDocuments1Page {
         1,
       ),
       Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukFormHint}:text-is("${ServiceOfDocuments1Content.formHint}")`,
-          1,
+        page,
+        `${Selectors.GovukFormHint}:text-is("${ServiceOfDocuments1Content.formHint}")`,
+        1,
       ),
     ]);
     // if (accessibilityTest) {

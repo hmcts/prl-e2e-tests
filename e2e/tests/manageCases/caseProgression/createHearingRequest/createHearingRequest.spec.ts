@@ -8,7 +8,6 @@ import { jsonDatas } from "../../../../common/caseHelpers/solicitorCaseCreatorHe
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
-// COMMENT TO CHECK TEST PASSES - REMOVE BEFORE MERGE
 test.describe("Complete the Order task for DA Citizen case tests.", () => {
   let ccdRef: string = "";
 
