@@ -10,7 +10,7 @@ interface manageOrders1PageOptions {
   accessibilityTest: boolean;
 }
 
-const radioId2 = "#manageOrdersOptions-uploadAnOrder";
+const radioId = "#manageOrdersOptions-uploadAnOrder";
 
 export class ManageOrders1PageUpload {
   public static async manageOrders1PageUpload({
@@ -53,7 +53,7 @@ export class ManageOrders1PageUpload {
     if (!page) {
       throw new Error("Page is not defined");
     }
-    await page.click(radioId2);
+    await page.click(radioId);
     await page.click(
       `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
     );

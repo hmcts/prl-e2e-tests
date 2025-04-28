@@ -11,6 +11,9 @@ import {
 import { ManageOrders24PageCA } from "../../../../pages/manageCases/caseWorker/uploadAnOrder/manageOrders24PageCA";
 import { ManageOrders26PageCA } from "../../../../pages/manageCases/caseWorker/uploadAnOrder/manageOrders26PageCA.ts";
 import { SubmitPage } from "../../../../pages/manageCases/caseWorker/createAnOrder/orderCA/submitPage";
+import {
+  C100DraftOrdersTabPage
+} from "../../../../pages/manageCases/caseTabs/C100/c100DraftOrdersTabPage.ts";
 
 interface C100ManageOrdersOptions {
   page: Page;
@@ -47,11 +50,18 @@ export class C100ManageOrdersUploadJourney {
     });
     await ManageOrders26PageCA.manageOrders26PageCA({
       page,
-      //accessibilityTest,
+      accessibilityTest,
     });
     await SubmitPage.submitPage({
       page,
       accessibilityTest,
     });
+    //Validating the correct Judge's Name in the 'Draft orders' tab
+    await Helpers.clickTab(page, "Draft orders");
+    await C100DraftOrdersTabPage.c100DraftOrdersTabPage(
+      page,
+      accessibilityTest,
+    );
+
   }
 }
