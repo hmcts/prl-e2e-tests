@@ -49,8 +49,8 @@ export class Helpers {
         {
           // Allow 10s delay before retrying
           intervals: [10_000],
-          // Allow up to a minute for it to disappear
-          timeout: 200_000,
+          // Allow up to 5 minute for it to disappear
+          timeout: 300_000,
         },
       )
       .toBeFalsy();

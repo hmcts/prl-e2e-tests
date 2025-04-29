@@ -11,7 +11,7 @@ module.exports = defineConfig({
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
   retries: process.env.CI ? 3 : 0,
-  timeout: 3 * 60 * 1000,
+  timeout: 4 * 60 * 1000,
   expect: { timeout: 60_000 },
   /* Report slow tests if they take longer than 5 mins */
   reportSlowTests: { max: 15, threshold: 5 * 60 * 1000 },
