@@ -8,16 +8,27 @@ import { ManageOrders19Page } from "../../../../../pages/manageCases/caseWorker/
 import { ManageOrders20Page } from "../../../../../pages/manageCases/caseWorker/createAnOrder/orderCA/manageOrders20Page";
 import { ManageOrders24Page } from "../../../../../pages/manageCases/caseWorker/createAnOrder/orderCA/manageOrders24Page";
 import { SubmitPage } from "../../../../../pages/manageCases/caseWorker/createAnOrder/orderCA/submitPage";
+import {
+  solicitorCaseCreateType,
+  uploadOrderC100Options,
+  uploadOrderFL401Options,
+} from "../../../../../common/types.ts";
 
 interface C100ManageOrdersOptions {
   page: Page;
   accessibilityTest: boolean;
+  isUploadOrder: boolean;
+  uploadOrderC100Options?: uploadOrderC100Options;
+  uploadOrderFL401Options?: uploadOrderFL401Options;
+  solicitorCaseCreateType: solicitorCaseCreateType;
 }
 
 export class C100ManageOrders {
   public static async c100ManageOrders({
     page: page,
     accessibilityTest: accessibilityTest,
+    solicitorCaseCreateType,
+    isUploadOrder,
   }: C100ManageOrdersOptions): Promise<void> {
     await Helpers.chooseEventFromDropdown(page, `Manage orders`);
     await ManageOrders1Page.manageOrders1Page({
@@ -31,6 +42,8 @@ export class C100ManageOrders {
     await ManageOrders5Page.manageOrders5Page({
       page,
       accessibilityTest,
+      isUploadOrder,
+      solicitorCaseCreateType,
     });
     await ManageOrders10Page.manageOrders10Page({
       page,

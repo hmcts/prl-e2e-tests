@@ -14,9 +14,9 @@ const radioId = "#amendOrderSelectCheckOptions-noCheck";
 
 export class ManageOrders24PageCA {
   public static async manageOrders24PageCA({
-                                           page,
-                                           accessibilityTest,
-                                         }: manageOrders24PageOptions): Promise<void> {
+    page,
+    accessibilityTest,
+  }: manageOrders24PageOptions): Promise<void> {
     if (!page) {
       throw new Error("Page is not defined");
     }
@@ -25,9 +25,9 @@ export class ManageOrders24PageCA {
   }
 
   private static async checkPageLoads({
-                                        page,
-                                        accessibilityTest,
-                                      }: Partial<manageOrders24PageOptions>): Promise<void> {
+    page,
+    accessibilityTest,
+  }: Partial<manageOrders24PageOptions>): Promise<void> {
     if (!page) {
       throw new Error("Page is not defined");
     }
@@ -48,8 +48,8 @@ export class ManageOrders24PageCA {
   }
 
   private static async fillInFields({
-                                      page,
-                                    }: Partial<manageOrders24PageOptions>): Promise<void> {
+    page,
+  }: Partial<manageOrders24PageOptions>): Promise<void> {
     if (!page) {
       throw new Error("Page is not defined");
     }

@@ -37,6 +37,7 @@ test.describe("Judge create an order tests.", () => {
       createOrderManageOrders19Options: "dateToBeFixed",
       howLongWillOrderBeInForce: "untilNextHearing",
       manageOrdersOptions: "create order",
+      solicitorCaseCreateType: "FL401",
     });
   });
 
@@ -57,6 +58,7 @@ test.describe("Judge create an order tests.", () => {
       createOrderManageOrders19Options: "dateToBeFixed",
       howLongWillOrderBeInForce: "untilNextHearing",
       manageOrdersOptions: "create order",
+      solicitorCaseCreateType: "FL401",
     });
   });
 });

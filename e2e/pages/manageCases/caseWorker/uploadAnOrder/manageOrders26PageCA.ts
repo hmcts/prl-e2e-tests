@@ -23,17 +23,17 @@ enum radioIds {
 
 export class ManageOrders26PageCA {
   public static async manageOrders26PageCA({
-                                           page,
-                                           accessibilityTest,
-                                         }: ManageOrders26PageOptions): Promise<void> {
+    page,
+    accessibilityTest,
+  }: ManageOrders26PageOptions): Promise<void> {
     await this.checkPageLoads({ page, accessibilityTest });
     await this.fillInFields({ page });
   }
 
   private static async checkPageLoads({
-                                        page,
-                                        accessibilityTest,
-                                      }: Partial<ManageOrders26PageOptions>): Promise<void> {
+    page,
+    accessibilityTest,
+  }: Partial<ManageOrders26PageOptions>): Promise<void> {
     if (!page) {
       throw new Error("Page is not defined");
     }
@@ -71,8 +71,8 @@ export class ManageOrders26PageCA {
   }
 
   private static async fillInFields({
-                                      page,
-                                    }: Partial<ManageOrders26PageOptions>): Promise<void> {
+    page,
+  }: Partial<ManageOrders26PageOptions>): Promise<void> {
     if (!page) {
       throw new Error("Page is not defined");
     }
