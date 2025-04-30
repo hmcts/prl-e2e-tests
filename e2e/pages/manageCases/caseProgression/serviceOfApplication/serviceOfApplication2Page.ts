@@ -1,6 +1,6 @@
 import { Selectors } from "../../../../common/selectors";
 import { ServiceOfApplication2Content } from "../../../../fixtures/manageCases/caseProgression/serviceOfApplication/serviceOfApplication2Content";
-// import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
 import { Helpers } from "../../../../common/helpers";
 import config from "../../../../config";
@@ -54,28 +54,19 @@ export class ServiceOfApplication2Page {
       ),
       Helpers.checkGroup(
         page,
-        2,
-        ServiceOfApplication2Content,
-        "formLabel",
-        `${Selectors.GovukFormLabel}:visible`,
-      ),
-      Helpers.checkGroup(
-        page,
-        2,
-        ServiceOfApplication2Content,
-        "formHint",
-        Selectors.GovukFormHint,
-      ),
-      Helpers.checkGroup(
-        page,
-        2,
+        3,
         ServiceOfApplication2Content,
         "p",
         Selectors.p,
       ),
+      Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.Span}:text-is("${ServiceOfApplication2Content.span}")`,
+          1,
+      ),
     ]);
     await page.click(
-      `${Selectors.p}:text-is("${ServiceOfApplication2Content.p2}")`,
+      `${Selectors.p}:text-is("${ServiceOfApplication2Content.p3}")`,
     );
     await Promise.all([
       Helpers.checkGroup(
@@ -94,7 +85,7 @@ export class ServiceOfApplication2Page {
       ),
     ]);
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page);
+      await AccessibilityTestHelper.run(page);
     }
   }
 
