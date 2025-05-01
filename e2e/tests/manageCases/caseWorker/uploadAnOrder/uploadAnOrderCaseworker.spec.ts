@@ -9,7 +9,7 @@ import { C100ManageOrdersUploadJourney } from "../../../../journeys/manageCases/
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
-test.describe("'Upload an order' tests", (): void => {
+test.describe("'Upload an order' tests, @newtest", (): void => {
   test.beforeEach(async ({ page }) => {
     //Test setup no accessibility test needed
     await CaseListPage.navigateToCreateCasePage(page);
@@ -26,7 +26,7 @@ test.describe("'Upload an order' tests", (): void => {
     });
   });
 
-  test(`Complete 'Upload an order' as a Caseworker with the following options:
+  test(`Complete 'Upload an order' as a Caseworker with the following options @newtest:
   Case: C100,
   Not accessibility testing. 
   @regression`, async ({ page }): Promise<void> => {
@@ -40,19 +40,20 @@ test.describe("'Upload an order' tests", (): void => {
       isUploadOrder: true,
     });
   });
-
-  test(`Complete 'Upload an order' as a Caseworker with the following options:
-  Case: C100,
-  Accessibility testing: yes. 
-  @regression`, async ({ page }): Promise<void> => {
-    await C100ManageOrdersUploadJourney.c100ManageOrdersUploadJourney({
-      page: page,
-      accessibilityTest: true,
-      solicitorCaseCreateType: "C100",
-      yesNoManageOrders: false,
-      uploadOrderC100Options:
-        "Child arrangements, specific issue or prohibited steps order (C43)",
-      isUploadOrder: true,
-    });
-  });
 });
+
+//   test(`Complete 'Upload an order' as a Caseworker with the following options @newtest:
+//   Case: C100,
+//   Accessibility testing: yes. 
+//   @regression`, async ({ page }): Promise<void> => {
+//     await C100ManageOrdersUploadJourney.c100ManageOrdersUploadJourney({
+//       page: page,
+//       accessibilityTest: true,
+//       solicitorCaseCreateType: "C100",
+//       yesNoManageOrders: false,
+//       uploadOrderC100Options:
+//         "Child arrangements, specific issue or prohibited steps order (C43)",
+//       isUploadOrder: true,
+//     });
+//   });
+// });

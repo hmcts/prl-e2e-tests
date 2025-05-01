@@ -9,9 +9,9 @@ import { ManageOrders1Page } from "../../../../pages/manageCases/caseWorker/crea
 import { ManageOrders3Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/orderDA/manageOrders3Page.ts";
 import { ManageOrders24PageCA } from "../../../../pages/manageCases/caseWorker/uploadAnOrder/manageOrders24PageCA";
 import { ManageOrders26PageCA } from "../../../../pages/manageCases/caseWorker/uploadAnOrder/manageOrders26PageCA.ts";
-import { SubmitPage } from "../../../../pages/manageCases/caseWorker/createAnOrder/orderCA/submitPage";
 import { C100DraftOrdersTabPage } from "../../../../pages/manageCases/caseTabs/C100/c100DraftOrdersTabPage.ts";
 import { ManageOrders5Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/orderCA/manageOrders5Page.ts";
+import { SubmitPageCA } from "../../../../pages/manageCases/caseWorker/uploadAnOrder/SubmitPageCA.ts";
 
 interface C100ManageOrdersOptions {
   page: Page;
@@ -37,6 +37,7 @@ export class C100ManageOrdersUploadJourney {
     await ManageOrders1Page.manageOrders1Page({
       page,
       accessibilityTest,
+      isUploadOrder,
     });
     await ManageOrders3Page.manageOrders3Page({
       page,
@@ -60,7 +61,7 @@ export class C100ManageOrdersUploadJourney {
       page,
       accessibilityTest,
     });
-    await SubmitPage.submitPage({
+    await SubmitPageCA.submitPageCA({
       page,
       accessibilityTest,
     });

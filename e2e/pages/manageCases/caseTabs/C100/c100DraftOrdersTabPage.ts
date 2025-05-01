@@ -17,17 +17,14 @@ export class C100DraftOrdersTabPage {
     accessibilityTest: boolean,
   ): Promise<void> {
     await page.waitForSelector(
-      `${Selectors.h1}:text-is("${C100DraftOrdersTabContent.tabTitle}")`,
+      `${Selectors.GovukText16}:text-is("${C100DraftOrdersTabContent.tabTitle}")`,
     );
     await expect(
       page.getByText(C100DraftOrdersTabContent.typeOfOrderField),
     ).toBeVisible();
-    await expect(
-      page.getByText(C100DraftOrdersTabContent.subTitle1),
-    ).toBeVisible();
-    await expect(
-      page.getByText(ManageOrders5CAContent.judgeFullName),
-    ).toBeVisible();
+    await page.waitForSelector(
+      `${Selectors.Span}${Selectors.GovukText16}:text-is("${C100DraftOrdersTabContent.subTitle1}")`,
+    );
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }

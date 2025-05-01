@@ -8,20 +8,23 @@ import { CommonStaticText } from "../../../../../common/commonStaticText";
 interface manageOrders1PageOptions {
   page: Page;
   accessibilityTest: boolean;
+  isUploadOrder: boolean;
 }
 
 const radioId = "#manageOrdersOptions-createAnOrder";
+const radioId2 = "#manageOrdersOptions-uploadAnOrder";
 
 export class ManageOrders1Page {
   public static async manageOrders1Page({
     page,
     accessibilityTest,
+    isUploadOrder,
   }: manageOrders1PageOptions): Promise<void> {
     if (!page) {
       throw new Error("Page is not defined");
     }
     await this.checkPageLoads({ page, accessibilityTest });
-    await this.fillInFields({ page });
+    await this.fillInFields({ page, isUploadOrder });
   }
 
   private static async checkPageLoads({
@@ -49,11 +52,17 @@ export class ManageOrders1Page {
 
   private static async fillInFields({
     page,
+    isUploadOrder,
   }: Partial<manageOrders1PageOptions>): Promise<void> {
     if (!page) {
       throw new Error("Page is not defined");
     }
-    await page.click(radioId);
+    if (isUploadOrder === true) {
+      await page.click(radioId2);
+    }
+    else {
+      await page.click(radioId);
+    }
     await page.click(
       `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
     );

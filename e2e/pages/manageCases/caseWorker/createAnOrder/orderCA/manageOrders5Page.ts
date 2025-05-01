@@ -27,6 +27,12 @@ enum radioIds {
   isTheOrderAboutAllChildren_Yes = "#isTheOrderAboutAllChildren_Yes",
 }
 
+enum radioIds2 {
+  wasTheOrderApprovedAtHearing_Yes = "#wasTheOrderApprovedAtHearing_Yes",
+  judgeOrMagistrateTitle_herHonourJudge = "#judgeOrMagistrateTitle-herHonourJudge",
+  isTheOrderAboutAllChildren_Yes = "#isTheOrderAboutAllChildren_Yes",
+}
+
 enum UniqueSelectors {
   fileUpload = "#uploadOrderDoc",
 }
@@ -55,6 +61,7 @@ export class ManageOrders5Page {
       solicitorCaseCreateType,
       uploadOrderC100Options,
       uploadOrderFL401Options,
+      isUploadOrder,
     });
     if (isUploadOrder) {
       //Condition added to check the unique fields present in each of the journeys (Create Order and Upload Order)
@@ -62,7 +69,7 @@ export class ManageOrders5Page {
     } else {
       await this.checkCreateOrderPageContentLoads({ page });
     }
-    await this.fillInFields({ page });
+    await this.fillInFields({ page, isUploadOrder });
   }
 
   private static async checkCommonPageLoads({
@@ -71,6 +78,7 @@ export class ManageOrders5Page {
     uploadOrderC100Options,
     uploadOrderFL401Options,
     solicitorCaseCreateType,
+    isUploadOrder,
   }: Partial<manageOrders5PageOptions>): Promise<void> {
     if (!page) {
       throw new Error("Page is not defined");
@@ -85,21 +93,6 @@ export class ManageOrders5Page {
         `${Selectors.strong}:text-is("${ManageOrders5CAContent.strong}")`,
         1,
       ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukFormLabel}:text-is("${ManageOrders5CAContent.hiddenLabel2}"):visible`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukFormLabel}:text-is("${ManageOrders5CAContent.hiddenLabel3}"):visible`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukFormLabel}:text-is("${ManageOrders5CAContent.hiddenLabel4}"):visible`,
-        1,
-      ),
       Helpers.checkGroup(
         page,
         20,
@@ -108,16 +101,17 @@ export class ManageOrders5Page {
         `${Selectors.GovukFormLabel}`,
       ),
     ]);
-    if (solicitorCaseCreateType === "C100") {
-      await Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.headingH3}:text-is("${uploadOrderC100Options}")`,
-        1,
-      );
-    } else {
+    if (!isUploadOrder) {
       await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.headingH3}:text-is("${uploadOrderFL401Options}")`,
+        1,
+      );
+    }
+    else {
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.headingH3}:text-is("${uploadOrderC100Options}")`,
         1,
       );
     }
@@ -141,6 +135,21 @@ export class ManageOrders5Page {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukFormLabel}:text-is("${CommonStaticText.no}"):visible`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${ManageOrders5CAContent.hiddenLabel2}"):visible`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${ManageOrders5CAContent.hiddenLabel3}"):visible`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${ManageOrders5CAContent.hiddenLabel4}"):visible`,
         2,
       ),
     ]);
@@ -168,6 +177,21 @@ export class ManageOrders5Page {
         `${Selectors.GovukFormLabel}:text-is("${CommonStaticText.no}"):visible`,
         3,
       ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${ManageOrders5CAContent.hiddenLabel2}"):visible`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${ManageOrders5CAContent.hiddenLabel3}"):visible`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${ManageOrders5CAContent.hiddenLabel4}"):visible`,
+        1,
+      ),
       Helpers.checkGroup(
         page,
         2,
@@ -185,8 +209,15 @@ export class ManageOrders5Page {
     if (!page) {
       throw new Error("Page is not defined");
     }
-    for (const selector of Object.values(radioIds)) {
-      await page.click(selector);
+    if (!isUploadOrder) {
+      for (const selector of Object.values(radioIds)) {
+        await page.click(selector);
+      }
+    }
+    else {
+      for (const selector of Object.values(radioIds2)) {
+        await page.click(selector);
+      }
     }
     await Helpers.checkVisibleAndPresent(
       page,
@@ -203,6 +234,7 @@ export class ManageOrders5Page {
     );
     //IF you are on the 'Upload Order flow' this extra field will need to be populated, to upload a file
     if (isUploadOrder) {
+      await page.waitForTimeout(5000);
       const fileInput = page.locator(`${UniqueSelectors.fileUpload}`);
       await fileInput.setInputFiles(config.testPdfFile);
       await page.waitForTimeout(5000);
@@ -211,4 +243,4 @@ export class ManageOrders5Page {
       `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
     );
   }
-}
+  }

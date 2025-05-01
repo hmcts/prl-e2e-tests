@@ -31,4 +31,5 @@ export enum ManageOrders5CAContent {
   hiddenLabel4 = "Year",
   hearing = "No hearings available",
   judgeFullName = "judgeFirstName judgeLastName",
+  uploadingFile = "Uploading...",
 }

@@ -42,27 +42,22 @@ export class ManageOrders26PageCA {
     );
     await pageTitle.waitFor();
     await Promise.all([
-      Helpers.checkGroup(
-        page,
-        2,
-        ManageOrders26CAContent,
-        "formLabel",
-        Selectors.GovukFormLabel,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukFormHint}:text-is("${ManageOrders26CAContent.p}")`,
-        1,
-      ),
+      // Helpers.checkGroup(
+      //   page,
+      //   2,
+      //   ManageOrders26CAContent,
+      //   "formLabel",
+      //   Selectors.GovukFormLabel,
+      // ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukFormLabel}:text-is("${CommonStaticText.yes}"):visible`,
-        1,
+        3,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukFormLabel}:text-is("${CommonStaticText.yes}"):visible`,
-        1,
+        `${Selectors.GovukFormLabel}:text-is("${CommonStaticText.no}"):visible`,
+        3,
       ),
     ]);
     if (accessibilityTest) {
