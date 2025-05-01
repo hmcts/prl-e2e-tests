@@ -60,9 +60,9 @@ export class ServiceOfApplication2Page {
         Selectors.p,
       ),
       Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.Span}:text-is("${ServiceOfApplication2Content.span}")`,
-          1,
+        page,
+        `${Selectors.Span}:text-is("${ServiceOfApplication2Content.span}")`,
+        1,
       ),
     ]);
     await page.click(

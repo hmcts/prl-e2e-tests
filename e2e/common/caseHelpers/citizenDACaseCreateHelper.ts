@@ -11,12 +11,13 @@ import withoutNoticeJsonData from "../../caseData/citizenDA/courtNavDaCitizenCas
  * @returns {Promise<string>} The case reference if successful, otherwise throws an error
  */
 async function createDaCitizenCourtNavCase(
-    withNotice: boolean,
-    withDoc: boolean
+  withNotice: boolean,
+  withDoc: boolean,
 ): Promise<string> {
   const apiContext: APIRequestContext = await request.newContext();
   const token = process.env.COURTNAV_CREATE_CASE_BEARER_TOKEN as string;
-  const subscriptionKey = process.env.COURTNAV_SUBSCRIPTION_KEY_CREATE_CASE as string;
+  const subscriptionKey = process.env
+    .COURTNAV_SUBSCRIPTION_KEY_CREATE_CASE as string;
   const caseUrl = process.env.COURTNAV_CASE_URL as string;
   const jsonData = withNotice ? withNoticeJsonData : withoutNoticeJsonData;
   let ccd_reference = "";
@@ -51,8 +52,8 @@ async function createDaCitizenCourtNavCase(
  * @param {string} ccdReference The CCD reference of the created case
  */
 async function addDocumentToCase(
-    tokenDaCreateCase: string,
-    ccdReference: string
+  tokenDaCreateCase: string,
+  ccdReference: string,
 ): Promise<void> {
   const apiContextDaAddDoc: APIRequestContext = await request.newContext();
   const courtNavAddDocURL = `${process.env.COURTNAV_DOC_URL}${ccdReference}/document`;
@@ -62,7 +63,7 @@ async function addDocumentToCase(
     headers: {
       Authorization: `Bearer ${tokenDaCreateCase}`,
       "Ocp-Apim-Subscription-Key": process.env
-          .COURTNAV_SUBSCRIPTION_KEY_ADD_DOC as string,
+        .COURTNAV_SUBSCRIPTION_KEY_ADD_DOC as string,
       Accept: "*/*",
     },
     multipart: {
@@ -79,7 +80,7 @@ async function addDocumentToCase(
   expect(docResponse.status()).toBe(200);
   if (docResponse.status() !== 200) {
     throw new Error(
-        `Failed to upload document: ${docResponseBody.message || "Unknown error"}`
+      `Failed to upload document: ${docResponseBody.message || "Unknown error"}`,
     );
   }
 }
