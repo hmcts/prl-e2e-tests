@@ -339,7 +339,7 @@ export class AmendApplicantDetails2Page {
     await page.click(uniqueSelectors.applicantInRefugeYes);
     await Helpers.checkVisibleAndPresent(
       page,
-      `${Selectors.GovukFormHint}:text-is("${AmendApplicantDetails2Content.formHintDownloadC8Form}"):visible`,
+      `${Selectors.p}:text-is("${AmendApplicantDetails2Content.pDownloadC8Form}"):visible`,
       1,
     );
     await Helpers.checkVisibleAndPresent(
