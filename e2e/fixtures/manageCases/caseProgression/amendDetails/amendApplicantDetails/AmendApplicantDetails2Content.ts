@@ -38,7 +38,7 @@ export enum AmendApplicantDetails2Content {
   formLabelUploadC8Refuge = "*Upload a C8 form with the refuge address",
   a = "I can't enter a UK postcode",
   formHint1 = "For example, 12 11 2007",
-  formHintDownloadC8Form = "You can download the form from www.gov.uk. The address, email address and contact number entered for this party will be kept confidential.",
+  pDownloadC8Form = "You can download the form from www.gov.uk. The address, email address and contact number entered for this party will be kept confidential.",
   firstNameInput = "John",
   lastNameInput = "Doe",
   previousNameInput = "John Doe",
