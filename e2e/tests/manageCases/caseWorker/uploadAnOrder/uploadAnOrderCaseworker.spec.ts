@@ -26,10 +26,10 @@ test.describe("'Upload an order' tests, @newtest", (): void => {
     });
   });
 
-  test(`Complete 'Upload an order' as a Caseworker with the following options @newtest:
+  test(`Complete 'Upload an order' as a Caseworker with the following options:
   Case: C100,
   Not accessibility testing. 
-  @regression`, async ({ page }): Promise<void> => {
+  @regression, @nightly`, async ({ page }): Promise<void> => {
     await C100ManageOrdersUploadJourney.c100ManageOrdersUploadJourney({
       page: page,
       accessibilityTest: false,
@@ -40,20 +40,19 @@ test.describe("'Upload an order' tests, @newtest", (): void => {
       isUploadOrder: true,
     });
   });
-});
 
-//   test(`Complete 'Upload an order' as a Caseworker with the following options @newtest:
-//   Case: C100,
-//   Accessibility testing: yes. 
-//   @regression`, async ({ page }): Promise<void> => {
-//     await C100ManageOrdersUploadJourney.c100ManageOrdersUploadJourney({
-//       page: page,
-//       accessibilityTest: true,
-//       solicitorCaseCreateType: "C100",
-//       yesNoManageOrders: false,
-//       uploadOrderC100Options:
-//         "Child arrangements, specific issue or prohibited steps order (C43)",
-//       isUploadOrder: true,
-//     });
-//   });
-// });
+  test(`Complete 'Upload an order' as a Caseworker with the following options:
+  Case: C100,
+  Accessibility testing: yes. 
+  @regression, @nightly`, async ({ page }): Promise<void> => {
+    await C100ManageOrdersUploadJourney.c100ManageOrdersUploadJourney({
+      page: page,
+      accessibilityTest: true,
+      solicitorCaseCreateType: "C100",
+      yesNoManageOrders: false,
+      uploadOrderC100Options:
+        "Child arrangements, specific issue or prohibited steps order (C43)",
+      isUploadOrder: true,
+    });
+  });
+});

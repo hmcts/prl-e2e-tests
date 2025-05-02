@@ -4,33 +4,34 @@ import { Helpers } from "../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
 import { SubmitCAContent } from "../../../../fixtures/manageCases/caseWorker/createAnOrder/orderCA/submitCAContent";
 import { CommonStaticText } from "../../../../common/commonStaticText";
-import {
-    uploadOrderC100Options,
-} from "../../../../common/types.ts";
+import { uploadOrderC100Options } from "../../../../common/types.ts";
 
 interface submitPageOptions {
   page: Page;
-    accessibilityTest: boolean;
-    uploadOrderC100Options?: uploadOrderC100Options,
+  accessibilityTest: boolean;
+  uploadOrderC100Options?: uploadOrderC100Options;
 }
 
 export class SubmitPageCA {
   public static async submitPageCA({
     page,
-      accessibilityTest,
-      uploadOrderC100Options,
+    accessibilityTest,
+    uploadOrderC100Options,
   }: submitPageOptions): Promise<void> {
     if (!page) {
       throw new Error("Page is not defined");
     }
-    await this.checkPageLoads({ page, accessibilityTest, uploadOrderC100Options });
+    await this.checkPageLoads({
+      page,
+      accessibilityTest,
+      uploadOrderC100Options,
+    });
     await this.fillInFields({ page });
   }
 
   private static async checkPageLoads({
     page,
-      accessibilityTest,
-      uploadOrderC100Options,
+    accessibilityTest,
   }: Partial<submitPageOptions>): Promise<void> {
     if (!page) {
       throw new Error("Page is not defined");
@@ -47,13 +48,8 @@ export class SubmitPageCA {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-          `${Selectors.headingH3}:text-is("${uploadOrderC100Options}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
         `${Selectors.GovukText16}:text-is("${SubmitCAContent.change}")`,
-        15,
+        16,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -62,17 +58,17 @@ export class SubmitPageCA {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-          `${Selectors.h2}:text-is("${SubmitCAContent.h2upload1}")`,
+        `${Selectors.h2}:text-is("${SubmitCAContent.h2upload1}")`,
         1,
-        ),
+      ),
       Helpers.checkVisibleAndPresent(
         page,
-          `${Selectors.strong}:text-is("${SubmitCAContent.strong1}")`,
+        `${Selectors.strong}:text-is("${SubmitCAContent.strong1}")`,
         1,
       ),
       Helpers.checkGroup(
         page,
-        14,
+        13,
         SubmitCAContent,
         "uploadText16_",
         `${Selectors.GovukText16}`,

@@ -34,6 +34,7 @@ export class C100ManageOrders {
     await ManageOrders1Page.manageOrders1Page({
       page,
       accessibilityTest,
+      isUploadOrder,
     });
     await ManageOrders2Page.manageOrders2Page({
       page,

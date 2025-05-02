@@ -59,8 +59,7 @@ export class ManageOrders1Page {
     }
     if (isUploadOrder === true) {
       await page.click(radioId2);
-    }
-    else {
+    } else {
       await page.click(radioId);
     }
     await page.click(

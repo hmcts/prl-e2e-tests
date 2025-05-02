@@ -75,10 +75,6 @@ export class ManageOrders5Page {
   private static async checkCommonPageLoads({
     page,
     accessibilityTest,
-    uploadOrderC100Options,
-    uploadOrderFL401Options,
-    solicitorCaseCreateType,
-    isUploadOrder,
   }: Partial<manageOrders5PageOptions>): Promise<void> {
     if (!page) {
       throw new Error("Page is not defined");
@@ -101,20 +97,6 @@ export class ManageOrders5Page {
         `${Selectors.GovukFormLabel}`,
       ),
     ]);
-    if (!isUploadOrder) {
-      await Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.headingH3}:text-is("${uploadOrderFL401Options}")`,
-        1,
-      );
-    }
-    else {
-      await Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.headingH3}:text-is("${uploadOrderC100Options}")`,
-        1,
-      );
-    }
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }
@@ -213,8 +195,7 @@ export class ManageOrders5Page {
       for (const selector of Object.values(radioIds)) {
         await page.click(selector);
       }
-    }
-    else {
+    } else {
       for (const selector of Object.values(radioIds2)) {
         await page.click(selector);
       }
@@ -243,4 +224,4 @@ export class ManageOrders5Page {
       `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
     );
   }
-  }
+}
