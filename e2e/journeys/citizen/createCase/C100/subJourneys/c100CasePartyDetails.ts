@@ -9,9 +9,6 @@ import { ApplicantAddressLookupPage } from "../../../../../pages/citizen/createC
 import { ApplicantAddressSelectPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicant/applicantAddressSelectPage.ts";
 import { ApplicantPersonalDetailsPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicant/applicantPersonalDetailsPage.ts";
 import { ApplicantRelationshipToChildPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicant/applicantRelationshipToChildPage.ts";
-import { ApplicantStayingInRefugePage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicant/applicantStayingInRefugePage.ts";
-import { ApplicantKeepingDetailsSafePage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicant/applicantKeepingDetailsSafePage.ts";
-import { ApplicantUploadC8FormPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicant/applicantUploadC8FormPage.ts";
 import { ApplicantAddressManualPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicant/applicantAddressManualPage.ts";
 import { ApplicantContactDetailPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicant/applicantContactDetailPage.ts";
 import { ApplicantContactPreferencePage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicant/applicantContactPreferencePage.ts";
@@ -43,7 +40,6 @@ interface c100CasePartyDetailsOptions {
   applicantChangedName: boolean;
   applicantGender: ApplicantGender;
   applicantRelationship: Relationship;
-  applicantLivesInRefuge: boolean;
   applicantAddressLookup: boolean;
   appAddressLookupSuccessful: boolean;
   applicantPrevAddress5Years: boolean;
@@ -76,7 +72,6 @@ export class C100CasePartyDetails {
     applicantChangedName,
     applicantGender,
     applicantRelationship,
-    applicantLivesInRefuge,
     applicantAddressLookup,
     appAddressLookupSuccessful,
     applicantPrevAddress5Years,
