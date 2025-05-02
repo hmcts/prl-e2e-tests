@@ -114,23 +114,6 @@ export class C100CasePartyDetails {
       errorMessaging: errorMessaging,
       relationship: applicantRelationship,
     });
-    await ApplicantStayingInRefugePage.applicantStayingInRefugePage({
-      page: page,
-      accessibilityTest: accessibilityTest,
-      errorMessaging: errorMessaging,
-      applicantLivesInRefuge: applicantLivesInRefuge,
-    });
-    if (applicantLivesInRefuge) {
-      await ApplicantKeepingDetailsSafePage.applicantKeepingDetailsSafePage({
-        page: page,
-        accessibilityTest: accessibilityTest,
-      });
-      await ApplicantUploadC8FormPage.applicantUploadC8FormPage({
-        page: page,
-        accessibilityTest: accessibilityTest,
-        errorMessaging: errorMessaging,
-      });
-    }
     await ApplicantAddressLookupPage.applicantAddressLookupPage({
       page: page,
       accessibilityTest: accessibilityTest,
