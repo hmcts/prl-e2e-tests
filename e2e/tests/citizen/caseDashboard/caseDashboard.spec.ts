@@ -3,7 +3,6 @@ import IdamLoginHelper from "../../../common/userHelpers/idamLoginHelper.ts";
 import Config from "../../../config";
 import { CitizenCreateInitial } from "../../../journeys/citizen/citizenCreateInitial";
 
-// TEST comment to create PR - TO BE REMOVED
 test.describe("Manage citizen cases case dashboard tests.", (): void => {
   test.beforeEach(async ({ page }) => {
     await IdamLoginHelper.setupAndSignInUser(
