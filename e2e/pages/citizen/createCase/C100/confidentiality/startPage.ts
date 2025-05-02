@@ -163,12 +163,8 @@ export class StartPage {
     page,
     c100PrivateDetails,
   }: FillInFieldsOptions): Promise<void> {
-    let radioInputs: Record<string, string>;
-    let checkboxes: Record<string, string>;
-    radioInputs = inputIDs;
-    checkboxes = checkboxIDs;
     if (c100PrivateDetails) {
-      await page.click(radioInputs.yes);
+      await page.click(inputIDs.yes);
       await Promise.all([
         Helpers.checkVisibleAndPresent(
           page,
@@ -183,11 +179,11 @@ export class StartPage {
           `${Selectors.GovukLabel}`,
         ),
       ]);
-      for (const checkboxID of Object.values(checkboxes)) {
+      for (const checkboxID of Object.values(checkboxIDs)) {
         await page.check(checkboxID);
       }
     } else {
-      await page.click(radioInputs.no);
+      await page.click(inputIDs.no);
     }
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
