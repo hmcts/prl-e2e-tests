@@ -9,7 +9,7 @@ import { C100ManageOrdersUploadJourney } from "../../../../journeys/manageCases/
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
-test.describe("'Upload an order' tests, @newtest", (): void => {
+test.describe("'Upload an order' tests", (): void => {
   test.beforeEach(async ({ page }) => {
     //Test setup no accessibility test needed
     await CaseListPage.navigateToCreateCasePage(page);
