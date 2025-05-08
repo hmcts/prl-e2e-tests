@@ -39,10 +39,6 @@ export class SubmitPageCA {
     await expect(
       page.locator(Selectors.GovukHeadingL, { hasText: SubmitCAContent.pageTitle }),
     ).toBeVisible();
-    // const pageTitle = page.locator(
-    //   `${Selectors.GovukHeadingL}:text-is("${SubmitCAContent.pageTitle}")`,
-    // );
-    // await pageTitle.waitFor();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
