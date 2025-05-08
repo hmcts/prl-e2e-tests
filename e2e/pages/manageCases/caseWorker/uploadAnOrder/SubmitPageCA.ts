@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test";
+import { Page, expect } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors";
 import { Helpers } from "../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
@@ -36,10 +36,13 @@ export class SubmitPageCA {
     if (!page) {
       throw new Error("Page is not defined");
     }
-    const pageTitle = page.locator(
-      `${Selectors.GovukHeadingL}:text-is("${SubmitCAContent.pageTitle}")`,
-    );
-    await pageTitle.waitFor();
+    await expect(
+      page.locator(Selectors.GovukHeadingL, { hasText: SubmitCAContent.pageTitle }),
+    ).toBeVisible();
+    // const pageTitle = page.locator(
+    //   `${Selectors.GovukHeadingL}:text-is("${SubmitCAContent.pageTitle}")`,
+    // );
+    // await pageTitle.waitFor();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,

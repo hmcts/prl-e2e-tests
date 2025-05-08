@@ -10,16 +10,12 @@ import { ManageOrders24Page } from "../../../../../pages/manageCases/caseWorker/
 import { SubmitPage } from "../../../../../pages/manageCases/caseWorker/createAnOrder/orderCA/submitPage";
 import {
   solicitorCaseCreateType,
-  uploadOrderC100Options,
-  uploadOrderFL401Options,
 } from "../../../../../common/types.ts";
 
 interface C100ManageOrdersOptions {
   page: Page;
   accessibilityTest: boolean;
   isUploadOrder: boolean;
-  uploadOrderC100Options?: uploadOrderC100Options;
-  uploadOrderFL401Options?: uploadOrderFL401Options;
   solicitorCaseCreateType: solicitorCaseCreateType;
 }
 
