@@ -2,7 +2,7 @@ import { Selectors } from "../../../../common/selectors";
 import { Helpers } from "../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
 import { CommonStaticText } from "../../../../common/commonStaticText";
-import { Page } from "@playwright/test";
+import { Page, expect } from "@playwright/test";
 import { ManageOrders26CAContent } from "../../../../fixtures/manageCases/caseWorker/createAnOrder/orderCA/manageOrders26CAContent";
 
 interface ManageOrders26PageOptions {
@@ -37,10 +37,9 @@ export class ManageOrders26PageCA {
     if (!page) {
       throw new Error("Page is not defined");
     }
-    const pageTitle = page.locator(
-      `${Selectors.h1}:text-is("${ManageOrders26CAContent.pageTitle}")`,
-    );
-    await pageTitle.waitFor();
+    await expect(
+          page.locator(Selectors.h1, { hasText: ManageOrders26CAContent.pageTitle }),
+        ).toBeVisible();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,

@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test";
+import { Page, expect } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors";
 import { Helpers } from "../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
@@ -31,10 +31,9 @@ export class ManageOrders24PageCA {
     if (!page) {
       throw new Error("Page is not defined");
     }
-    const pageTitle = page.locator(
-      `${Selectors.GovukHeadingL}:text-is("${ManageOrders24CAContent.pageTitle}")`,
-    );
-    await pageTitle.waitFor();
+    await expect(
+          page.locator(Selectors.GovukHeadingL, { hasText: ManageOrders24CAContent.pageTitle }),
+        ).toBeVisible();
     await Helpers.checkGroup(
       page,
       4,
