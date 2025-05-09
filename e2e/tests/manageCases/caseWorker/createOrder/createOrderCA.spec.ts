@@ -13,6 +13,7 @@ test.describe("Create an order tests", (): void => {
       page: page,
       accessibilityTest: false,
       solicitorCaseCreateType: "C100",
+      isUploadOrder: false,
     });
   });
   test(`Complete Creating an order as a Caseworker with the following options:
@@ -23,6 +24,7 @@ test.describe("Create an order tests", (): void => {
       page: page,
       accessibilityTest: true,
       solicitorCaseCreateType: "C100",
+      isUploadOrder: false,
     });
   });
 });
