@@ -387,7 +387,7 @@ export enum CaJourneyExistingMIAMReviewContent {
   span_16 = "Are any of the children the subject of a child protection plan?",
   span_17 = "Do you or any respondents have other children who are not part of this application?",
   span_18 = "Do you want to keep Other Person First Name Other Person Last Name’s identity private from the other people named in the application (the respondents)?",
-  span_19 = "Do the other people named in the application (the respondents) know any contact details of exampleText exampleText?",
+  span_19 = "Do you want to keep your contact details private from the other people named in the application (the respondents)?",
   span_20 = "Have you changed your name?",
   span_21 = "Contact details of exampleText exampleText",
   span_22 = "Can the court leave you a voicemail?",
