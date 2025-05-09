@@ -34,6 +34,7 @@ import { MIAM } from "./subJourneys/MIAM";
 import { EqualityAndDiversityPage } from "../../../../pages/citizen/createCase/C100/confirmation/equalityAndDiversityQuestionsPage.ts";
 import { C100Pay } from "./subJourneys/C100Pay.ts";
 import { ConfirmationPage } from "../../../../pages/citizen/createCase/C100/confirmation/confirmationPage.ts";
+import { C100StayingInARefuge } from "./subJourneys/c100StayingInARefuge.ts";
 
 interface C100ApplicationCompletedForYouOptions {
   page: Page;
@@ -478,13 +479,21 @@ export class C100 {
       gender: c100PeopleGender,
       c100PeopleYesNoDontKnow: c100PeopleYesNoDontKnow,
     });
-    await C100Confidentiality.c100Confidentiality({
+    await C100StayingInARefuge.c100StayingInARefuge({
       page: page,
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
-      c100PrivateDetails: c100PrivateDetails,
-      c100OthersKnowApplicantsContact: c100OthersKnowApplicantsContact,
+      applicantLivesInRefuge: applicantLivesInRefuge,
     });
+    if (!applicantLivesInRefuge) {
+      await C100Confidentiality.c100Confidentiality({
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
+        c100PrivateDetails: c100PrivateDetails,
+        c100OthersKnowApplicantsContact: c100OthersKnowApplicantsContact,
+      });
+    }
     await C100CasePartyDetails.C100CasePartyDetails({
       page: page,
       accessibilityTest: accessibilityTest,
@@ -492,7 +501,6 @@ export class C100 {
       applicantChangedName: applicantChangedName,
       applicantGender: applicantGender,
       applicantRelationship: relationshipType,
-      applicantLivesInRefuge: applicantLivesInRefuge,
       applicantAddressLookup: applicantAddressLookup,
       appAddressLookupSuccessful: appAddressLookupSuccessful,
       applicantPrevAddress5Years: applicantPrevAddress5Years,
@@ -676,13 +684,21 @@ export class C100 {
       gender: gender,
       c100PeopleYesNoDontKnow: c100PeopleYesNoDontKnow,
     });
-    await C100Confidentiality.c100Confidentiality({
+    await C100StayingInARefuge.c100StayingInARefuge({
       page: page,
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
-      c100PrivateDetails: c100PrivateDetails,
-      c100OthersKnowApplicantsContact: c100OthersKnowApplicantsContact,
+      applicantLivesInRefuge: applicantLivesInRefuge,
     });
+    if(!applicantLivesInRefuge) {
+      await C100Confidentiality.c100Confidentiality({
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
+        c100PrivateDetails: c100PrivateDetails,
+        c100OthersKnowApplicantsContact: c100OthersKnowApplicantsContact,
+      });
+    }
     await C100CasePartyDetails.C100CasePartyDetails({
       page: page,
       accessibilityTest: accessibilityTest,
@@ -690,7 +706,6 @@ export class C100 {
       applicantChangedName: applicantChangedName,
       applicantGender: applicantGender,
       applicantRelationship: applicantRelationship,
-      applicantLivesInRefuge: applicantLivesInRefuge,
       applicantAddressLookup: applicantAddressLookup,
       appAddressLookupSuccessful: appAddressLookupSuccessful,
       applicantPrevAddress5Years: applicantPrevAddress5Years,
@@ -880,13 +895,21 @@ export class C100 {
       gender: c100PeopleGender,
       c100PeopleYesNoDontKnow: c100PeopleYesNoDontKnow,
     });
-    await C100Confidentiality.c100Confidentiality({
+    await C100StayingInARefuge.c100StayingInARefuge({
       page: page,
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
-      c100PrivateDetails: c100PrivateDetails,
-      c100OthersKnowApplicantsContact: c100OthersKnowApplicantsContact,
+      applicantLivesInRefuge: applicantLivesInRefuge,
     });
+    if(!applicantLivesInRefuge) {
+      await C100Confidentiality.c100Confidentiality({
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
+        c100PrivateDetails: c100PrivateDetails,
+        c100OthersKnowApplicantsContact: c100OthersKnowApplicantsContact,
+      });
+    }
     await C100CasePartyDetails.C100CasePartyDetails({
       page: page,
       accessibilityTest: accessibilityTest,
@@ -894,7 +917,6 @@ export class C100 {
       applicantChangedName: applicantChangedName,
       applicantGender: applicantGender,
       applicantRelationship: applicantRelationship,
-      applicantLivesInRefuge: applicantLivesInRefuge,
       applicantAddressLookup: applicantAddressLookup,
       appAddressLookupSuccessful: appAddressLookupSuccessful,
       applicantPrevAddress5Years: applicantPrevAddress5Years,
@@ -1091,13 +1113,21 @@ export class C100 {
       gender: c100PeopleGender,
       c100PeopleYesNoDontKnow: c100PeopleYesNoDontKnow,
     });
-    await C100Confidentiality.c100Confidentiality({
+    await C100StayingInARefuge.c100StayingInARefuge({
       page: page,
-      errorMessaging: errorMessaging,
       accessibilityTest: accessibilityTest,
-      c100OthersKnowApplicantsContact: c100OthersKnowApplicantsContact,
-      c100PrivateDetails: c100PrivateDetails,
+      errorMessaging: errorMessaging,
+      applicantLivesInRefuge: applicantLivesInRefuge,
     });
+    if(!applicantLivesInRefuge) {
+      await C100Confidentiality.c100Confidentiality({
+        page: page,
+        errorMessaging: errorMessaging,
+        accessibilityTest: accessibilityTest,
+        c100OthersKnowApplicantsContact: c100OthersKnowApplicantsContact,
+        c100PrivateDetails: c100PrivateDetails,
+      });
+    }
     await C100CasePartyDetails.C100CasePartyDetails({
       page: page,
       accessibilityTest: accessibilityTest,
@@ -1105,7 +1135,6 @@ export class C100 {
       applicantChangedName: applicantChangedName,
       applicantGender: applicantGender,
       applicantRelationship: applicantRelationship,
-      applicantLivesInRefuge: applicantLivesInRefuge,
       applicantAddressLookup: applicantAddressLookup,
       appAddressLookupSuccessful: appAddressLookupSuccessful,
       applicantPrevAddress5Years: applicantPrevAddress5Years,
