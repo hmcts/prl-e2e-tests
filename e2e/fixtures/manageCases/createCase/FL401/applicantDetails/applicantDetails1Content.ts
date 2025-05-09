@@ -26,7 +26,7 @@ export enum ApplicantDetails1Content {
   formLabel18 = "DX Number (Optional)",
   formLabelApplicantLivesInRefuge = "*Does the applicant currently live in a refuge?",
   formLabelC8FormUpload = "*Upload a C8 form with the refuge address",
-  c8FormUploadHint = "You can download the form from www.gov.uk. The address, email address and contact number entered for this party will be kept confidential.",
+  c8FormUploadP = "You can download the form from www.gov.uk. The address, email address and contact number entered for this party will be kept confidential.",
   dateLabel1 = "Day",
   dateLabel2 = "Month",
   dateLabel3 = "Year",

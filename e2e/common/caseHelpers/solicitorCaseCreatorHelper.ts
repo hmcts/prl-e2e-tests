@@ -206,7 +206,7 @@ async function retryEvaluate<T, A>(
   fn: PageFunction<A, T>, //fn: (arg: A) => Promise<T>,
   arg: A,
   maxRetries: number = 3,
-  delay: number = 500,
+  delay: number = 1000,
 ): Promise<T> {
   for (let attempt = 1; attempt <= maxRetries; attempt++) {
     try {

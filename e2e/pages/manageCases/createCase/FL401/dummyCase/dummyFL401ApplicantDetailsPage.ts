@@ -35,7 +35,7 @@ export class DummyFL401ApplicantDetailsPage {
       );
       await Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukFormHint}:text-is("${ApplicantDetails1Content.c8FormUploadHint}"):visible`,
+        `${Selectors.p}:text-is("${ApplicantDetails1Content.c8FormUploadP}"):visible`,
         1,
       );
       const fileInput = page.locator(

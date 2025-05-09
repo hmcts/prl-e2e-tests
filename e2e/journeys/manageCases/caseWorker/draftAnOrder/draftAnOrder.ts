@@ -6,6 +6,7 @@ import { IssueAndSendToLocalCourtCallback1Page } from "../../../../pages/manageC
 import { IssueAndSendToLocalCourtCallbackSubmitPage } from "../../../../pages/manageCases/caseWorker/draftAnOrder/issueAndSendToLocalCourt/issueAndSendToLocalCourtCallbackSubmitPage";
 import { NonMolestationOrder } from "./nonMolestationOrder/nonMolestationOrder";
 import { ParentalResponsibilityOrder } from "./ParentalResponsibilityOrder/parentalResponsibilityOrder";
+import Config from "../../../../config.ts";
 
 interface DraftAnOrderParams {
   page: Page;
@@ -84,6 +85,10 @@ export class DraftAnOrder {
         console.error("An invalid order type was given");
         break;
     }
+    // wait for response from previous event call before submitting next event
+    await page.waitForResponse(
+      `${Config.manageCasesBaseURL}/data/cases/${caseRef}/events`,
+    );
     //check added to wait to case page to load
     await page.waitForLoadState("domcontentloaded");
     await page

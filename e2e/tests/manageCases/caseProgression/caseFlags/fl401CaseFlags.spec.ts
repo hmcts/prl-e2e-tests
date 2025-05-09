@@ -6,6 +6,7 @@ import { SolicitorDACaseCreator } from "../../../../common/caseHelpers/solicitor
 import { CaseFlags } from "../../../../journeys/manageCases/caseProgression/caseFlags/caseFlags.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
+test.slow();
 
 test.describe("Case flags tests for DA case tests.", () => {
   let ccdRef: string = "";
