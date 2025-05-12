@@ -38,7 +38,7 @@ export enum OtherPeopleInTheCase1Content {
   formLabelCounty = "County (Optional)",
   formLabelPostcodeZipcode = "Postcode/Zipcode (Optional)",
   formLabelCountry = "Country (Optional)",
-  c8FormUploadHint = "You can download the form from www.gov.uk. The address, email address and contact number entered for this party will be kept confidential.",
+  c8FormUploadP = "You can download the form from www.gov.uk. The address, email address and contact number entered for this party will be kept confidential.",
   applicantFirstName = "Automated applicant",
   applicantLastName = "TestapplicantLastName",
   applicantPrevName = "CaseapplicantPrevName",
