@@ -191,6 +191,25 @@ export type uploadOrderFL401Options =
   | "blank order (FL514)"
   | "Notice landlord mortgage";
 
+export type uploadOrderC100Options =
+  | "Blank order or directions (C21)"
+  | "Child arrangements, specific issue or prohibited steps order (C43)"
+  | "Parental responsibility order (C45A)"
+  | "Special guardianship order (C43A)"
+  | "Declaration of parentage order (C63A)"
+  | "Order to disclose information about whereabouts of a child (C30)"
+  | "Authority for search, taking charge and delivery of a child (C31)"
+  | "Family assistance order (C42)"
+  | "Leave to change a child's surname or remove from the jurisdiction (C44)"
+  | "Appointment of a guardian (C47A)"
+  | "Appointment of a solicitor for the child (C48A)"
+  | "Enforcement of a child arrangements order (C80)"
+  | "Financial compensation order following C79 enforcement application (C82)"
+  | "Summons to appear at court for directions in contempt proceedings (FC601)"
+  | "Warrant to secure attendance at court (FC602)"
+  | "Order on determination of proceedings for contempt of court (FC603)"
+  | "Warrant of committal (FC604)";
+
 export type judgeTitles =
   | "Her Honour Judge"
   | "His Honour Judge"
