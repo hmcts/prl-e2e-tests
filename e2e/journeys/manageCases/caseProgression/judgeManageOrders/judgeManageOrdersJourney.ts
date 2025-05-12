@@ -3,6 +3,7 @@ import {
   createOrderFL401Options,
   judgeTitles,
   manageOrdersOptions,
+  solicitorCaseCreateType,
   uploadOrderFL401Options,
   WACaseWorkerActions,
 } from "../../../../common/types.ts";
@@ -41,6 +42,7 @@ interface JudgeDACaseProgressionJourneyParams {
   createOrderManageOrders19Options: createOrderManageOrders19Options;
   howLongWillOrderBeInForce: howLongWillOrderBeInForce;
   manageOrdersOptions: manageOrdersOptions;
+  solicitorCaseCreateType: solicitorCaseCreateType;
 }
 
 interface JudgeUOCaseProgressionJourneyParams {
@@ -52,6 +54,7 @@ interface JudgeUOCaseProgressionJourneyParams {
   yesNoManageOrders: boolean;
   uploadOrderFL401Options: uploadOrderFL401Options;
   manageOrdersOptions: manageOrdersOptions;
+  solicitorCaseCreateType: solicitorCaseCreateType;
 }
 
 export class JudgeManageOrderJourney {
@@ -276,6 +279,7 @@ export class JudgeManageOrderJourney {
     yesNoManageOrders,
     uploadOrderFL401Options,
     manageOrdersOptions,
+    solicitorCaseCreateType,
   }: JudgeUOCaseProgressionJourneyParams): Promise<void> {
     await completeCheckApplicationAndSendToGatekeeper(page, ccdRef);
     page = await Helpers.openNewBrowserWindow(browser, "judge");
@@ -297,6 +301,7 @@ export class JudgeManageOrderJourney {
       accessibilityTest,
       yesNoManageOrders,
       uploadOrderFL401Options,
+      solicitorCaseCreateType,
     });
     await UploadOrderManageOrders5Page.uploadOrderManageOrders5Page({
       page,
