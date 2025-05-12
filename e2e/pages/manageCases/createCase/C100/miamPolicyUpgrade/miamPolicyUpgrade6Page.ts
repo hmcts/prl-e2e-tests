@@ -192,7 +192,7 @@ export class MiamPolicyUpgrade6Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukFormHint}:text-is("${MiamPolicyUpgrade6Content.formHintAttended}")`,
+        `${Selectors.p}:text-is("${MiamPolicyUpgrade6Content.formPAttended}")`,
         1,
       ),
     ]);
