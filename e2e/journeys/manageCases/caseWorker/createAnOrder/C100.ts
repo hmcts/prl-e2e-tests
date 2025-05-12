@@ -11,6 +11,7 @@ interface C100Params {
   page: Page;
   accessibilityTest: boolean;
   solicitorCaseCreateType: solicitorCaseCreateType;
+  isUploadOrder: boolean;
 }
 
 export class C100CreateAnOrder {
@@ -18,6 +19,7 @@ export class C100CreateAnOrder {
     page,
     accessibilityTest,
     solicitorCaseCreateType,
+    isUploadOrder,
   }: C100Params): Promise<void> {
     await CaseListPage.navigateToCreateCasePage(page);
     await CaseFilterPage.caseFilterPage({ page, accessibilityTest });
@@ -35,6 +37,8 @@ export class C100CreateAnOrder {
       await C100ManageOrders.c100ManageOrders({
         page,
         accessibilityTest,
+        solicitorCaseCreateType,
+        isUploadOrder,
       });
     }
   }
