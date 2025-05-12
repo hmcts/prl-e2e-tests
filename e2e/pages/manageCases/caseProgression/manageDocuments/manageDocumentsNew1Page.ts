@@ -78,13 +78,7 @@ export class ManageDocumentsNew1Page {
         `${Selectors.button}:text-is("${ManageDocumentsNew1Content.buttonText2}")`,
         1,
       ),
-      Helpers.checkGroup(
-        page,
-        2,
-        ManageDocumentsNew1Content,
-        "p",
-        Selectors.p,
-      ),
+      Helpers.checkGroup(page, 2, ManageDocumentsNew1Content, "p", Selectors.p),
       Helpers.checkGroup(
         page,
         4,
@@ -138,7 +132,10 @@ export class ManageDocumentsNew1Page {
     });
     const fileInput = page.locator(UniqueSelectors.uploadDocument);
     await fileInput.setInputFiles(config.testPdfFile);
-    await page.waitForTimeout(2000); //wait for the file to upload
+    // wait for upload of document to be complete before continuing
+    await page
+      .locator(Selectors.GovukErrorMessage, { hasText: "Uploading..." })
+      .waitFor({ state: "hidden" });
     if (confidentialDocument) {
       await page.click(UniqueSelectors.documentConfidentialYes);
     } else {
@@ -154,6 +151,7 @@ export class ManageDocumentsNew1Page {
       await page.click(UniqueSelectors.documentRestrictedNo);
     }
   }
+
   private static async continue(page: Page) {
     await page.click(
       `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
