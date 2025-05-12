@@ -39,7 +39,7 @@ export class DummyC100OtherPersonDetailsPage {
       );
       await Helpers.checkVisibleAndPresent(
         page,
-        `${UniqueSelectors.uploadC8FormHint}:text-is("${OtherPeopleInTheCase1Content.c8FormUploadHint}")`,
+        `${Selectors.p}:text-is("${OtherPeopleInTheCase1Content.c8FormUploadP}")`,
         1,
       );
       const fileInput = page.locator(
