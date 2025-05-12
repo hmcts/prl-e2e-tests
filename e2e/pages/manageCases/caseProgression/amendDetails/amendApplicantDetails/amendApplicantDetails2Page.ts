@@ -99,6 +99,13 @@ export class AmendApplicantDetails2Page {
         "p",
         `${Selectors.p}`,
       ),
+      Helpers.checkGroup(
+        page,
+        3,
+        AmendApplicantDetails2Content,
+        "dateOfBirthFormLabel",
+        `${Selectors.GovukFormLabel}:visible`,
+      ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukFormHint}:text-is("${AmendApplicantDetails2Content.formHint1}")`,
@@ -160,14 +167,6 @@ export class AmendApplicantDetails2Page {
             .getByText(CommonStaticText.no),
         )
         .toBeVisible(),
-    ]);
-    const dateOfBirthLabels = page.getByRole("group", {
-      name: AmendApplicantDetails2Content.formLabel4,
-    });
-    await Promise.all([
-      expect.soft(dateOfBirthLabels.locator("label").nth(0)).toBeVisible(),
-      expect.soft(dateOfBirthLabels.locator("label").nth(1)).toBeVisible(),
-      expect.soft(dateOfBirthLabels.locator("label").nth(2)).toBeVisible(),
     ]);
     const headings = [
       AmendApplicantDetails2Content.h21,
@@ -309,9 +308,9 @@ export class AmendApplicantDetails2Page {
 
   private static async dobChangeFillFields(page: Page): Promise<void> {
     const [day, month, year] = Helpers.generateDOB(false);
-    await page.getByRole("textbox", { name: "Day Day" }).fill(day);
-    await page.getByRole("textbox", { name: "Month Month" }).fill(month);
-    await page.getByRole("textbox", { name: "Year Year" }).fill(year);
+    await page.getByRole("textbox", { name: "Day" }).fill(day);
+    await page.getByRole("textbox", { name: "Month" }).fill(month);
+    await page.getByRole("textbox", { name: "Year" }).fill(year);
   }
 
   private static async genderChangeFillFields(
