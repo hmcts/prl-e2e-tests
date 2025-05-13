@@ -8,17 +8,27 @@ enum UniqueSelectors {
   orderTypeRadio = "#draftOrderOptions-draftAnOrder",
 }
 
+enum UniqueSelectorUpload {
+  uploadRadioOption = "#draftOrderOptions-uploadAnOrder",
+}
+
 export class DraftAnOrder1Page {
   public static async draftAnOrder1Page(
     page: Page,
     errorMessaging: boolean,
     accessibilityTest: boolean,
+    isUploadOrder: boolean,
   ): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest);
     if (errorMessaging) {
       await this.checkErrorMessaging(page);
     }
-    await this.fillInFields(page);
+    if (!isUploadOrder) {
+      await this.fillInFields(page);
+    }
+    else {
+      await this.fillInFieldsUpload(page);
+    }
     await this.continue(page);
   }
 
@@ -76,6 +86,10 @@ export class DraftAnOrder1Page {
 
   private static async fillInFields(page: Page): Promise<void> {
     await page.check(UniqueSelectors.orderTypeRadio);
+  }
+
+  private static async fillInFieldsUpload(page: Page): Promise<void> {
+    await page.check(UniqueSelectorUpload.uploadRadioOption);
   }
 
   private static async continue(page: Page): Promise<void> {
