@@ -5,7 +5,7 @@ export enum SelectApplicationType2Content {
   formLabel2 = "Yes",
   formLabel3 = "No",
   formLabel4 = "*Draft Consent Order",
-  formHint = "Upload a scanned PDF or DOCX of the draft consent order, signed by both parties. Wherever possible, documents should be scanned in greyscale.",
+  formP = "Upload a scanned PDF or DOCX of the draft consent order, signed by both parties. Wherever possible, documents should be scanned in greyscale.",
   chooseFile = "Choose file",
   cancelUpload = "Cancel upload",
   continue = "Continue",

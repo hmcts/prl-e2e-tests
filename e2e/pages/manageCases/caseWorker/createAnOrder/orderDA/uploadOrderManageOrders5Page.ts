@@ -15,6 +15,8 @@ interface UploadOrderManageOrders5PageOptions {
 }
 
 enum UniqueSelectors {
+  herHonourJudge = "#judgeOrMagistrateTitle-herHonourJudge",
+  judgeOrMagistratesName = "#judgeOrMagistratesLastName",
   orderApprovedYes = "#wasTheOrderApprovedAtHearing_Yes",
   orderApprovedNo = "#wasTheOrderApprovedAtHearing_No",
   approvalDate_day = "#approvalDate-day",
@@ -103,6 +105,8 @@ export class UploadOrderManageOrders5Page {
     if (!page) {
       throw new Error("Page is not defined");
     }
+    await page.check(UniqueSelectors.herHonourJudge);
+    await page.fill(UniqueSelectors.judgeOrMagistratesName, "Elizabeth");
     await page.fill(
       UniqueSelectors.approvalDate_day,
       UploadOrderManageOrders5Content.day,
