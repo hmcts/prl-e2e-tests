@@ -608,7 +608,7 @@ export class ReviewPage {
       ),
       Helpers.checkGroup(
         page,
-        86,
+        84,
         CaJourneyEmergencyProtectionReviewContent,
         "dt_",
         Selectors.dt,
@@ -723,11 +723,11 @@ export class ReviewPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.dd}:text-is("${CaJourneyEmergencyProtectionReviewContent.dd_yes}")`,
-        c100YesNoNeedHelpWithFees ? 91 : 38,
+        c100YesNoNeedHelpWithFees ? 89 : 38,
       ),
       Helpers.checkGroup(
         page,
-        c100YesNoNeedHelpWithFees ? 87 : 86,
+        c100YesNoNeedHelpWithFees ? 85 : 86,
         CaJourneyEmergencyProtectionReviewContent,
         "span_",
         Selectors.GovukSummaryListKey,
@@ -774,7 +774,7 @@ export class ReviewPage {
       ),
       Helpers.checkGroup(
         page,
-        83,
+        80,
         CaJourneyEmergencyProtectionReviewContent,
         "li_",
         Selectors.li,
@@ -1048,7 +1048,7 @@ export class ReviewPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukSummaryListValue}:text-is("${CaJourneyEmergencyProtectionReviewContent.p_yes}")`,
-        91,
+        89,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -1065,7 +1065,7 @@ export class ReviewPage {
       await Promise.all([
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.dt}:text-is("${CaJourneyEmergencyProtectionReviewContent.dt_87}")`,
+          `${Selectors.dt}:text-is("${CaJourneyEmergencyProtectionReviewContent.dt_85}")`,
           1,
         ),
         Helpers.checkVisibleAndPresent(
