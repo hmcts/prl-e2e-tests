@@ -1,4 +1,4 @@
-import { Page, Locator } from "@playwright/test";
+import { Page, Locator, expect } from "@playwright/test";
 import { Config } from "../config";
 import { Selectors } from "../common/selectors";
 
@@ -30,9 +30,9 @@ export class FileUploadComponent {
 
   private async checkVisibleElements() {
     await Promise.all([
-      this.uploadLabel.waitFor({ state: "visible" }),
-      this.paragraph.waitFor({ state: "visible" }),
-      this.chooseFileButton.waitFor({ state: "visible" }),
+      expect(this.uploadLabel).toBeVisible(),
+      expect(this.paragraph).toBeVisible(),
+      expect(this.chooseFileButton).toBeVisible(),
     ]);
   }
 
