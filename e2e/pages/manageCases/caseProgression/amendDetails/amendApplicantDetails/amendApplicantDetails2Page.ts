@@ -6,6 +6,7 @@ import config from "../../../../../config.ts";
 import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 import { AmendApplicantDetails2Content } from "../../../../../fixtures/manageCases/caseProgression/amendDetails/amendApplicantDetails/AmendApplicantDetails2Content.ts";
+import { FileUploadComponent } from "../../../../../pageObjects/uploadFile.po.ts";
 
 interface AmendApplicantDetails2Options {
   page: Page;
@@ -337,18 +338,12 @@ export class AmendApplicantDetails2Page {
 
   private static async liveInRefugeFillFields(page: Page): Promise<void> {
     await page.click(uniqueSelectors.applicantInRefugeYes);
-    await Helpers.checkVisibleAndPresent(
-      page,
-      `${Selectors.p}:text-is("${AmendApplicantDetails2Content.pDownloadC8Form}"):visible`,
-      1,
-    );
-    await Helpers.checkVisibleAndPresent(
-      page,
-      `${Selectors.GovukFormLabel}:text-is("${AmendApplicantDetails2Content.formLabelUploadC8Refuge}"):visible`,
-      1,
-    );
-    const fileInput = page.locator(uniqueSelectors.c8FormFileUpload);
-    await fileInput.setInputFiles(config.testPdfFile);
+    const fileUpload = new FileUploadComponent(page, {
+      uploadLabelText: AmendApplicantDetails2Content.formLabelUploadC8Refuge,
+      downloadParagraphText: AmendApplicantDetails2Content.pDownloadC8Form,
+      chooseFileLocatorID: uniqueSelectors.c8FormFileUpload,
+    });
+    await fileUpload.completeUpload();
   }
 
   private static async changeApplicantAddressFillFields(
