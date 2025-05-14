@@ -1,6 +1,6 @@
-import { Page, Locator } from '@playwright/test';
-import { Config } from '../config';
-import { Selectors } from '../common/selectors';
+import { Page, Locator } from "@playwright/test";
+import { Config } from "../config";
+import { Selectors } from "../common/selectors";
 
 export class FileUploadComponent {
   private readonly page: Page;
@@ -15,30 +15,30 @@ export class FileUploadComponent {
       uploadLabelText: string;
       downloadParagraphText: string;
       chooseFileLocatorID: string;
-      uploadingMessageText: "Uploading...";
-    }
+    },
   ) {
     this.page = page;
     this.uploadLabel = page.getByLabel(options.uploadLabelText).first();
-    this.paragraph = page.getByRole('paragraph').filter({
+    this.paragraph = page.getByRole("paragraph").filter({
       hasText: options.downloadParagraphText,
     });
     this.chooseFileButton = page.locator(options.chooseFileLocatorID);
     this.uploadingMessage = page.locator(
-          `${Selectors.GovukErrorMessage}:text-is("${options.uploadingMessageText}")`);
+      `${Selectors.GovukErrorMessage}:text-is("Uploading...")`,
+    );
   }
 
   private async checkVisibleElements() {
     await Promise.all([
-      this.uploadLabel.waitFor({ state: 'visible' }),
-      this.paragraph.waitFor({ state: 'visible' }),
-      this.chooseFileButton.waitFor({ state: 'visible' }),
+      this.uploadLabel.waitFor({ state: "visible" }),
+      this.paragraph.waitFor({ state: "visible" }),
+      this.chooseFileButton.waitFor({ state: "visible" }),
     ]);
   }
 
   private async uploadFile(filePath: string = Config.testPdfFile) {
     await this.chooseFileButton.setInputFiles(filePath);
-    await this.uploadingMessage.waitFor({state: 'hidden'});
+    await this.uploadingMessage.waitFor({ state: "hidden" });
   }
 
   async completeUpload(filePath: string = Config.testPdfFile) {

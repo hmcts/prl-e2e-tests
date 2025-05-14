@@ -8,9 +8,7 @@ import { ManageOrders19Page } from "../../../../../pages/manageCases/caseWorker/
 import { ManageOrders20Page } from "../../../../../pages/manageCases/caseWorker/createAnOrder/orderCA/manageOrders20Page";
 import { ManageOrders24Page } from "../../../../../pages/manageCases/caseWorker/createAnOrder/orderCA/manageOrders24Page";
 import { SubmitPage } from "../../../../../pages/manageCases/caseWorker/createAnOrder/orderCA/submitPage";
-import {
-  solicitorCaseCreateType,
-} from "../../../../../common/types.ts";
+import { solicitorCaseCreateType } from "../../../../../common/types.ts";
 
 interface C100ManageOrdersOptions {
   page: Page;

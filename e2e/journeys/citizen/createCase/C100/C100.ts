@@ -690,7 +690,7 @@ export class C100 {
       errorMessaging: errorMessaging,
       applicantLivesInRefuge: applicantLivesInRefuge,
     });
-    if(!applicantLivesInRefuge) {
+    if (!applicantLivesInRefuge) {
       await C100Confidentiality.c100Confidentiality({
         page: page,
         accessibilityTest: accessibilityTest,
@@ -901,7 +901,7 @@ export class C100 {
       errorMessaging: errorMessaging,
       applicantLivesInRefuge: applicantLivesInRefuge,
     });
-    if(!applicantLivesInRefuge) {
+    if (!applicantLivesInRefuge) {
       await C100Confidentiality.c100Confidentiality({
         page: page,
         accessibilityTest: accessibilityTest,
@@ -1119,7 +1119,7 @@ export class C100 {
       errorMessaging: errorMessaging,
       applicantLivesInRefuge: applicantLivesInRefuge,
     });
-    if(!applicantLivesInRefuge) {
+    if (!applicantLivesInRefuge) {
       await C100Confidentiality.c100Confidentiality({
         page: page,
         errorMessaging: errorMessaging,
