@@ -38,7 +38,18 @@ export class FileUploadComponent {
 
   private async uploadFile(filePath: string = Config.testPdfFile) {
     await this.chooseFileButton.setInputFiles(filePath);
-    await expect(this.chooseFileButton).toBeHidden();
+    await expect
+      .poll(
+        async () => {
+          const isHidden = await this.uploadingMessage.isHidden();
+          return isHidden;
+        },
+        {
+          intervals: [1_000],
+          timeout: 30_000,
+        },
+      )
+      .toBe(true);
   }
 
   async completeUpload(filePath: string = Config.testPdfFile) {
