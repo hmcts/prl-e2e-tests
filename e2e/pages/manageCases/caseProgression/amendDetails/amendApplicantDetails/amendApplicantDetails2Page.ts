@@ -5,7 +5,7 @@ import { ApplicantGender } from "../../../../../common/types.ts";
 import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 import { AmendApplicantDetails2Content } from "../../../../../fixtures/manageCases/caseProgression/amendDetails/amendApplicantDetails/AmendApplicantDetails2Content.ts";
-import { FileUploadComponent } from "../../../../../pageObjects/uploadFile.component.ts";
+import { FileUploadComponent } from "../../../../../pageObjects/components/uploadFile.component.ts";
 
 interface AmendApplicantDetails2Options {
   page: Page;

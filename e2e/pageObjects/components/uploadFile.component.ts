@@ -1,6 +1,6 @@
 import { Page, Locator, expect } from "@playwright/test";
-import { Config } from "../config";
-import { Selectors } from "../common/selectors";
+import { Config } from "../../config";
+import { Selectors } from "../../common/selectors";
 
 export class FileUploadComponent {
   private readonly page: Page;
