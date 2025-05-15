@@ -37,7 +37,9 @@ export class SubmitPageCA {
       throw new Error("Page is not defined");
     }
     await expect(
-      page.locator(Selectors.GovukHeadingL, { hasText: SubmitCAContent.pageTitle }),
+      page.locator(Selectors.GovukHeadingL, {
+        hasText: SubmitCAContent.pageTitle,
+      }),
     ).toBeVisible();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
