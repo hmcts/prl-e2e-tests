@@ -60,7 +60,11 @@ export class UploadDraftAnOrder4Page {
       uploadOrderC100Options,
       uploadOrderFL401Options,
     });
-    await this.fillInFields({ page });
+    if (solicitorCaseCreateType === "C100") {
+      await this.fillInFieldsCA({ page });
+    } else {
+      await this.fillInFieldsDA({ page });
+    }
   }
 
   private static async checkPageLoads({
@@ -133,21 +137,40 @@ export class UploadDraftAnOrder4Page {
     }
   }
 
-  private static async fillInFields({
+  private static async fillInFieldsCA({
     page,
-    solicitorCaseCreateType,
   }: Partial<UploadDraftAnOrder4PageOptions>): Promise<void> {
     if (!page) {
       throw new Error("Page is not defined");
     }
-    if (solicitorCaseCreateType === "C100") {
-      for (const selector of Object.values(radioIds2)) {
-        await page.click(selector);
-      }
-    } else {
-      for (const selector of Object.values(radioIds2DA)) {
-        await page.click(selector);
-      }
+    for (const selector of Object.values(radioIds2)) {
+      await page.click(selector);
+    }
+    await page.selectOption(
+      inputIds.hearingsType,
+      UploadDraftAnOrder4Content.hearing,
+    );
+    await page.fill(
+      inputIds.judgeOrMagistratesLastName,
+      UploadDraftAnOrder4Content.judgeFullName,
+    );
+    await page.waitForTimeout(5000);
+    const fileInput = page.locator(`${UniqueSelectors.fileUpload}`);
+    await fileInput.setInputFiles(config.testPdfFile);
+    await page.waitForTimeout(5000);
+    await page.click(
+      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+    );
+  }
+
+  private static async fillInFieldsDA({
+    page,
+  }: Partial<UploadDraftAnOrder4PageOptions>): Promise<void> {
+    if (!page) {
+      throw new Error("Page is not defined");
+    }
+    for (const selector of Object.values(radioIds2DA)) {
+      await page.click(selector);
     }
     await page.selectOption(
       inputIds.hearingsType,
