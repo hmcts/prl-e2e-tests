@@ -116,13 +116,13 @@ export class UploadDraftAnOrder4Page {
       ),
     ]);
     if (solicitorCaseCreateType === "C100") {
-      Helpers.checkVisibleAndPresent(
+      await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukFormLabel}:text-is("${UploadDraftAnOrder4Content.CAchildren}"):visible`,
         1,
       );
     } else {
-      Helpers.checkVisibleAndPresent(
+      await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukFormLabel}:text-is("${UploadDraftAnOrder4Content.DAchildren}"):visible`,
         1,

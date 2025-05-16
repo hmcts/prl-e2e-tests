@@ -6,7 +6,6 @@ import { UploadAnOrderFL401SolicitorJourney } from "../../../../journeys/manageC
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
 test.describe("'Upload an order' by Solicitor via the 'Draft an Order' event tests", (): void => {
-  
   test(`CA 'Upload an order' as a Solicitor with the following options:
   Case: C100,
   Not accessibility testing.

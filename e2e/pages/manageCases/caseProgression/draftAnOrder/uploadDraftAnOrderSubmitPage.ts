@@ -59,38 +59,38 @@ export class UploadDraftAnOrderSubmitPage {
       ),
     ]);
     if (solicitorCaseCreateType === "C100") {
-      Helpers.checkVisibleAndPresent(
+      await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.strong}:text-is("${UploadDraftAnOrderSubmitContent.CAtext}")`,
         1,
       ),
-        Helpers.checkVisibleAndPresent(
+        await Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukText16}:text-is("${UploadDraftAnOrderSubmitContent.change}")`,
           9,
         ),
-        Helpers.checkVisibleAndPresent(
+        await Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukText16}:text-is("${UploadDraftAnOrderSubmitContent.CAchildren}")`,
           1,
         );
     } else {
-      Helpers.checkVisibleAndPresent(
+      await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukText16}:text-is("${UploadDraftAnOrderSubmitContent.DAtext}")`,
         1,
       ),
-        Helpers.checkVisibleAndPresent(
+        await Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukText16}:text-is("${UploadDraftAnOrderSubmitContent.change}")`,
           10,
         ),
-        Helpers.checkVisibleAndPresent(
+        await Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukText16}:text-is("${UploadDraftAnOrderSubmitContent.DAchildren}")`,
           1,
         );
-      Helpers.checkVisibleAndPresent(
+      await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukText16}:text-is("${UploadDraftAnOrderSubmitContent.DAchildrenQuestion}")`,
         1,
