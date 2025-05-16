@@ -1,5 +1,5 @@
 import { test } from "@playwright/test";
-import Config from "../config.ts";
+import Config from "../utils/config.ts";
 import { SolicitorCACaseCreator } from "../common/caseHelpers/solicitorCACaseCreator.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });

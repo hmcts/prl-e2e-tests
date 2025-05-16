@@ -1,8 +1,8 @@
 import { test } from "@playwright/test";
-import Config from "../../../../config";
+import Config from "../../../../utils/config.ts";
 import createDaCitizenCourtNavCase from "../../../../common/caseHelpers/citizenDACaseCreateHelper.ts";
 import { Helpers } from "../../../../common/helpers";
-import config from "../../../../config";
+import config from "../../../../utils/config.ts";
 import { WelshLanguageRequirements } from "../../../../journeys/manageCases/caseProgression/welshLanguageRequirements/welshLanguageRequirements";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });

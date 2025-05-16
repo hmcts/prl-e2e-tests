@@ -2,7 +2,7 @@ import { expect, Page } from "@playwright/test";
 import { Selectors } from "../../../common/selectors.ts";
 import AccessibilityTestHelper from "../../../common/accessibilityTestHelper.ts";
 import { Helpers } from "../../../common/helpers.ts";
-import config from "../../../config.ts";
+import config from "../../../utils/config.ts";
 import path from "path";
 import { CheckYourAnswersContent } from "../../../fixtures/edgeCases/submission/checkYourAnswersContent.ts";
 import { TypeOfApplicationContent } from "../../../fixtures/edgeCases/typeOfApplicationContent.ts";

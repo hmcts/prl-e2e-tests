@@ -3,7 +3,7 @@ import { ServiceOfApplication2Content } from "../../../../fixtures/manageCases/c
 import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
 import { Helpers } from "../../../../common/helpers";
-import config from "../../../../config";
+import config from "../../../../utils/config.ts";
 import { MiamPolicyUpgrade6Content } from "../../../../fixtures/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade6Content";
 import { CommonStaticText } from "../../../../common/commonStaticText";
 import { createOrderFL401Options } from "../../../../common/types.ts";

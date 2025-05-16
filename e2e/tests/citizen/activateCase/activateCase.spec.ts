@@ -2,8 +2,7 @@ import { test } from "@playwright/test";
 import { ActivateCase } from "../../../journeys/citizen/activateCase/activateCase.ts";
 import createDaCitizenCourtNavCase from "../../../common/caseHelpers/citizenDACaseCreateHelper.ts";
 import { Helpers } from "../../../common/helpers.ts";
-import config from "../../../config.ts";
-import Config from "../../../config.ts";
+import Config from "../../../utils/config.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
@@ -15,7 +14,7 @@ test.describe("Activating case tests", (): void => {
     ccdRef = await createDaCitizenCourtNavCase(true, false);
     await Helpers.goToCase(
       page,
-      config.manageCasesBaseURLCase,
+      Config.manageCasesBaseURLCase,
       ccdRef,
       "tasks",
     );

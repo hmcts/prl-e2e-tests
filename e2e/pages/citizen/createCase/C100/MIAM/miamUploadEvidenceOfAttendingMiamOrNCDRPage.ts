@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-import config from "../../../../../config";
+import config from "../../../../../utils/config";
 import { MiamUploadEvidenceOfAttendingMiamOrNCDRContent } from "../../../../../fixtures/citizen/createCase/C100/MIAM/miamUploadEvidenceOfAttendingMiamOrNCDRContent";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 

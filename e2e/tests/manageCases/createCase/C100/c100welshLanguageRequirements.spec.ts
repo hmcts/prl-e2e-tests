@@ -1,5 +1,5 @@
 import { test } from "@playwright/test";
-import Config from "../../../../config";
+import Config from "../../../../utils/config";
 import { C100WelshLanguageRequirements } from "../../../../journeys/manageCases/createCase/C100welshLanguageRequirements/C100welshLanguageRequirements";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });

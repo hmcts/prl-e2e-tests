@@ -1,6 +1,6 @@
 import { test } from "@playwright/test";
 import IdamLoginHelper from "../../../common/userHelpers/idamLoginHelper.ts";
-import Config from "../../../config";
+import Config from "../../../utils/config.ts";
 import { CitizenCreateInitial } from "../../../journeys/citizen/citizenCreateInitial";
 
 test.describe("Manage citizen cases case dashboard tests.", (): void => {

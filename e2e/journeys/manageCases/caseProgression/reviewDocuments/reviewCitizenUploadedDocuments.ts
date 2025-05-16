@@ -7,7 +7,7 @@ import {
 } from "../../../../common/types";
 import { ReviewDocuments } from "./reviewDocuments.ts";
 import { Helpers } from "../../../../common/helpers";
-import Config from "../../../../config";
+import Config from "../../../../utils/config.ts";
 
 interface reviewCitizenUploadedDocumentsParams {
   page: Page;

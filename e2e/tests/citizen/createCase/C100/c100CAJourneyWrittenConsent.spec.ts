@@ -1,6 +1,6 @@
 import { test } from "@playwright/test";
 import IdamLoginHelper from "../../../../common/userHelpers/idamLoginHelper.ts";
-import Config from "../../../../config";
+import Config from "../../../../utils/config.ts";
 import { C100 } from "../../../../journeys/citizen/createCase/C100/C100";
 
 test.describe("C100 Citizen Application with Written Consent from other people in the case.", (): void => {

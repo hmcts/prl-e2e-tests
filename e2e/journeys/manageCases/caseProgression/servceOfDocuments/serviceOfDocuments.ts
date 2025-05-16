@@ -4,7 +4,7 @@ import { ServiceOfDocuments2Page } from "../../../../pages/manageCases/caseProgr
 import { ServiceOfDocuments3Page } from "../../../../pages/manageCases/caseProgression/serviceOfDocuments/serviceOfDocuments3Page";
 import { yesNoNA } from "../../../../common/types";
 import { Helpers } from "../../../../common/helpers";
-import config from "../../../../config";
+import config from "../../../../utils/config.ts";
 import { ReviewDocuments } from "../reviewDocuments/reviewDocuments";
 import createDaCitizenCourtNavCase from "../../../../common/caseHelpers/citizenDACaseCreateHelper.ts";
 import { ServiceOfDocumentsSubmitPage } from "../../../../pages/manageCases/caseProgression/serviceOfDocuments/serviceOfDocumentsSubmitPage";

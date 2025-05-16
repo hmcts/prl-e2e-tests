@@ -1,6 +1,6 @@
 import { test } from "@playwright/test";
-import Config from "../../../../config";
-import config from "../../../../config";
+import Config from "../../../../utils/config.ts";
+import config from "../../../../utils/config.ts";
 import createDaCitizenCourtNavCase from "../../../../common/caseHelpers/citizenDACaseCreateHelper.ts";
 import { Helpers } from "../../../../common/helpers";
 import { CreateABundleJourney } from "../../../../journeys/manageCases/caseProgression/createABundle/createABundle.ts";

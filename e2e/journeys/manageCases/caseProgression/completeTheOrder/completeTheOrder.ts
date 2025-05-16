@@ -5,7 +5,7 @@ import {
 } from "../../../../common/types.ts";
 import { jsonDatas } from "../../../../common/caseHelpers/solicitorCaseCreatorHelper.ts";
 import { Helpers } from "../../../../common/helpers.ts";
-import config from "../../../../config.ts";
+import config from "../../../../utils/config.ts";
 import { AdminEditAndApproveAnOrder1Page } from "../../../../pages/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrder1Page.ts";
 import { AdminEditAndApproveAnOrder4Page } from "../../../../pages/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrder4Page.ts";
 import { AdminEditAndApproveAnOrder21Page } from "../../../../pages/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrder21Page.ts";

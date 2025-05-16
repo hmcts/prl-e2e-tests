@@ -3,7 +3,7 @@ import { Noc2Page } from "../../../../pages/manageCases/caseProgression/noticeOf
 import { NocSubmitPage } from "../../../../pages/manageCases/caseProgression/noticeOfChange/nocSubmitPage.ts";
 import { NocSuccessfulPage } from "../../../../pages/manageCases/caseProgression/noticeOfChange/nocSuccessfulPage.ts";
 import { Helpers } from "../../../../common/helpers.ts";
-import config from "../../../../config.ts";
+import config from "../../../../utils/config.ts";
 import { CreateHearingRequest } from "../createHearingRequest/createHearingRequest.ts";
 import { solicitorCaseCreateType } from "../../../../common/types.ts";
 import { Noc1Page } from "../../../../pages/manageCases/caseProgression/noticeOfChange/noc1Page.ts";

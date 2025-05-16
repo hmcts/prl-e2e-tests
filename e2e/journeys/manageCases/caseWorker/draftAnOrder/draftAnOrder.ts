@@ -1,12 +1,11 @@
 import { Browser, Page } from "@playwright/test";
 import { Helpers } from "../../../../common/helpers";
 import { OrderType, solicitorCaseCreateType } from "../../../../common/types";
-import config from "../../../../config";
 import { IssueAndSendToLocalCourtCallback1Page } from "../../../../pages/manageCases/caseWorker/draftAnOrder/issueAndSendToLocalCourt/issueAndSendToLocalCourtCallback1Page";
 import { IssueAndSendToLocalCourtCallbackSubmitPage } from "../../../../pages/manageCases/caseWorker/draftAnOrder/issueAndSendToLocalCourt/issueAndSendToLocalCourtCallbackSubmitPage";
 import { NonMolestationOrder } from "./nonMolestationOrder/nonMolestationOrder";
 import { ParentalResponsibilityOrder } from "./ParentalResponsibilityOrder/parentalResponsibilityOrder";
-import Config from "../../../../config.ts";
+import Config from "../../../../utils/config.ts";
 
 interface DraftAnOrderParams {
   page: Page;
@@ -108,7 +107,7 @@ export class DraftAnOrder {
     );
     await Helpers.goToCase(
       page,
-      config.manageCasesBaseURLCase,
+      Config.manageCasesBaseURLCase,
       caseRef,
       "tasks",
     );

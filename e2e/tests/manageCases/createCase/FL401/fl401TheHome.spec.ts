@@ -1,6 +1,6 @@
 import { test } from "@playwright/test";
 import { FL401TheHome } from "../../../../journeys/manageCases/createCase/FL401TheHome/fl401TheHome";
-import Config from "../../../../config";
+import Config from "../../../../utils/config";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 

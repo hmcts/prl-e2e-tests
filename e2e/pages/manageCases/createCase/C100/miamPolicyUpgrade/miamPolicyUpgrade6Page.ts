@@ -3,7 +3,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { MiamPolicyUpgrade6Content } from "../../../../../fixtures/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade6Content";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import config from "../../../../../config";
+import config from "../../../../../utils/config";
 
 interface MiamPolicyUpgrade6PageOptions {
   page: Page;

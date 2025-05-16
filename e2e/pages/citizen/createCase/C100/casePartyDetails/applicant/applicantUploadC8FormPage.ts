@@ -4,7 +4,7 @@ import { ApplicantUploadC8FormContent } from "../../../../../../fixtures/citizen
 import { Helpers } from "../../../../../../common/helpers.ts";
 import { CommonStaticText } from "../../../../../../common/commonStaticText.ts";
 import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper.ts";
-import config from "../../../../../../config.ts";
+import config from "../../../../../../utils/config.ts";
 
 interface applicantUploadC8FormOptions {
   page: Page;

@@ -1,6 +1,6 @@
 import { test } from "@playwright/test";
 import IdamLoginHelper from "../common/userHelpers/idamLoginHelper.ts";
-import Config from "../config.ts";
+import Config from "../utils/config.ts";
 
 test("Create citizen user", async ({ page }) => {
   const userInfo = await IdamLoginHelper.setupAndSignInUser(

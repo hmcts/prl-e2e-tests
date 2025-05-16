@@ -4,7 +4,7 @@ import { Helpers } from "../../../../../common/helpers.ts";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 import { RequestToOrderWitnessContent3 } from "../../../../../fixtures/citizen/caseView/makeRequestToCourtAboutCase/applicant/requestToOrderWitnessContent3.ts";
-import config from "../../../../../config.ts";
+import config from "../../../../../utils/config.ts";
 import { RequestToOrderWitnessContent5 } from "../../../../../fixtures/citizen/caseView/makeRequestToCourtAboutCase/applicant/requestToOrderWitnessContent5.ts";
 
 interface UploadSupportingDocuments {

@@ -7,7 +7,7 @@ import {
   submitEvent,
 } from "./solicitorCaseCreatorHelper.ts";
 import { solicitorDACaseAPIEvent } from "../types.ts";
-import Config from "../../config.ts";
+import Config from "../../utils/config.ts";
 
 const solicitorCaseEvents: solicitorDACaseAPIEvent[] = [
   "fl401TypeOfApplication",
