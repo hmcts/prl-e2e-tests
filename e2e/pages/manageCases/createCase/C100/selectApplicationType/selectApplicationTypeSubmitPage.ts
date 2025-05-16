@@ -4,7 +4,7 @@ import { SelectApplicationTypeSubmitContent } from "../../../../../fixtures/mana
 import { SelectApplicationType1Content } from "../../../../../fixtures/manageCases/createCase/C100/selectApplicationType/selectApplicationType1Content";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { Helpers } from "../../../../../common/helpers";
-import config from "../../../../../config";
+import config from "../../../../../utils/config";
 import path from "path";
 import { radioButtons } from "./selectApplicationType3Page";
 

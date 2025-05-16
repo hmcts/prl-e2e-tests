@@ -1,6 +1,6 @@
 import { test } from "@playwright/test";
 import { Helpers } from "../../../../common/helpers";
-import { default as Config, default as config } from "../../../../config";
+import { default as Config, default as config } from "../../../../utils/config.ts";
 import { SendAndReplyToMessages } from "../../../../journeys/manageCases/caseProgression/sendAndReplyToMessages/sendAndReplyToMessages";
 import { SolicitorCACaseCreator } from "../../../../common/caseHelpers/solicitorCACaseCreator.ts";
 import {

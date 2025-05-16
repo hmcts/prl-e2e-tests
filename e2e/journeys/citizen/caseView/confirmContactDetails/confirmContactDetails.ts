@@ -2,7 +2,7 @@ import { ActivateCase, CaseUser } from "../../activateCase/activateCase.ts";
 import { Browser, Page } from "@playwright/test";
 import { CheckAnswersPage as CheckAnswersApplicant } from "../../../../pages/citizen/caseView/confirmContactDetails/applicant/checkAnswersPage.ts";
 import { CheckAnswersPage as CheckAnswersRespondent } from "../../../../pages/citizen/caseView/confirmContactDetails/respondent/checkAnswersPage.ts";
-import Config from "../../../../config.ts";
+import Config from "../../../../utils/config.ts";
 import { Selectors } from "../../../../common/selectors.ts";
 import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 import { applicationSubmittedBy } from "../../../../common/types.ts";

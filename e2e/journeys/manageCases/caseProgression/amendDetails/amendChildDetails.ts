@@ -5,8 +5,7 @@ import { AmendChildDetailsRevised2Page } from "../../../../pages/manageCases/cas
 import { AmendChildDetailsSubmitPage } from "../../../../pages/manageCases/caseProgression/amendDetails/amendChildDetails/amendChildDetailsSubmitPage.ts";
 import { C100ChildGender } from "../../../../pages/manageCases/createCase/C100/childDetails/childDetailsRevised1Page.ts";
 import { yesNoDontKnow } from "../../../../common/types.ts";
-import config from "../../../../config.ts";
-import Config from "../../../../config.ts";
+import Config from "../../../../utils/config.ts";
 import { DummyC100 } from "../../createCase/dummyCase/dummyC100.ts";
 
 interface AmendChildDetailsParams {
@@ -37,7 +36,7 @@ export class AmendChildDetails {
     page = await Helpers.openNewBrowserWindow(browser, "courtAdminStoke");
     await Helpers.goToCase(
       page,
-      config.manageCasesBaseURLCase,
+      Config.manageCasesBaseURLCase,
       caseRef,
       "tasks",
     );

@@ -3,7 +3,7 @@ import { Helpers } from "../../../../common/helpers.ts";
 import { AdminRemoveLegalRepresentativePage } from "../../../../pages/manageCases/caseProgression/removeLegalRepresentative/adminRemoveLegalRepresentativePage.ts";
 import { RemoveLegalRepresentativeSubmitPage } from "../../../../pages/manageCases/caseProgression/removeLegalRepresentative/removeLegalRepresentativeSubmitPage.ts";
 import { RemoveLegalRepresentativeConfirmPage } from "../../../../pages/manageCases/caseProgression/removeLegalRepresentative/removeLegalRepresentativeConfirmPage.ts";
-import config from "../../../../config.ts";
+import config from "../../../../utils/config.ts";
 import { Selectors } from "../../../../common/selectors.ts";
 
 interface RemoveLegalRepresentativeParams {

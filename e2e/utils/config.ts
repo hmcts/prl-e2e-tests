@@ -1,7 +1,7 @@
 import path from "path";
 import dotenv from "dotenv";
 
-import { UserCredentials, UserRole } from "./common/types";
+import { UserCredentials, UserRole } from "../common/types";
 
 dotenv.config();
 

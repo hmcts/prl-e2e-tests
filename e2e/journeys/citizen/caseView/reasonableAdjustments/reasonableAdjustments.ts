@@ -8,7 +8,7 @@ import { HelpCommunicatingAndUnderstandingPage } from "../../../../pages/citizen
 import { ReasonableAdjustmentsReviewPage } from "../../../../pages/citizen/caseView/reasonableAdjustments/reasonableAdjustmentsReviewPage.ts";
 import { ConfirmationPage } from "../../../../pages/citizen/caseView/reasonableAdjustments/confirmationPage.ts";
 import { Helpers } from "../../../../common/helpers.ts";
-import config from "../../../../config.ts";
+import config from "../../../../utils/config.ts";
 import { Selectors } from "../../../../common/selectors.ts";
 import { applicationSubmittedBy } from "../../../../common/types.ts";
 

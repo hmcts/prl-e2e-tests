@@ -4,7 +4,7 @@ import { RemoveDraftOrder1Page } from "../../../../pages/manageCases/caseProgres
 import { RemoveDraftOrder2Page } from "../../../../pages/manageCases/caseProgression/removeDraftOrder/removeDraftOrder2Page.ts";
 import { RemoveDraftOrderSubmitPage } from "../../../../pages/manageCases/caseProgression/removeDraftOrder/removeDraftOrderSubmitPage.ts";
 import { submitEvent } from "../../../../common/caseHelpers/solicitorCaseCreatorHelper.ts";
-import config from "../../../../config.ts";
+import config from "../../../../utils/config.ts";
 import { DraftAnOrder } from "../../caseWorker/draftAnOrder/draftAnOrder.ts";
 
 interface RemoveDraftOrderParams {

@@ -1,6 +1,6 @@
 import { Page, test } from "@playwright/test";
 import { SolicitorDACaseCreator } from "../common/caseHelpers/solicitorDACaseCreator.ts";
-import Config from "../config.ts";
+import Config from "../utils/config.ts";
 import { AccessCodeHelper } from "../common/caseHelpers/accessCodeHelper.ts";
 import createDaCitizenCourtNavCase from "../common/caseHelpers/citizenDACaseCreateHelper.ts";
 import { Helpers } from "../common/helpers.ts";

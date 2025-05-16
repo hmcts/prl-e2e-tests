@@ -12,8 +12,7 @@ import { HearingTimingPage } from "../../../../pages/manageCases/caseProgression
 import { HearingLinkPage } from "../../../../pages/manageCases/caseProgression/createHearingRequest/hearingLinkPage";
 import { HearingAdditionalInstructionsPage } from "../../../../pages/manageCases/caseProgression/createHearingRequest/hearingAdditionalInstructionsPage";
 import { HearingCreateEditSummaryPage } from "../../../../pages/manageCases/caseProgression/createHearingRequest/hearingCreateEditSummaryPage";
-import Config from "../../../../config";
-import config from "../../../../config";
+import Config from "../../../../utils/config.ts";
 import { createOrderFL401Options } from "../../../../common/types";
 import { Selectors } from "../../../../common/selectors.ts";
 import { jsonDatas } from "../../../../common/caseHelpers/solicitorCaseCreatorHelper.ts";
@@ -52,7 +51,7 @@ export class CreateHearingRequest {
     page = await newContext.newPage();
     await Helpers.goToCase(
       page,
-      config.manageCasesBaseURLCase,
+      Config.manageCasesBaseURLCase,
       ccdRef,
       "tasks",
     );

@@ -1,6 +1,5 @@
 import { test } from "@playwright/test";
-import Config from "../../../../../config.ts";
-import config from "../../../../../config.ts";
+import Config from "../../../../../utils/config.ts";
 import createDaCitizenCourtNavCase from "../../../../../common/caseHelpers/citizenDACaseCreateHelper.ts";
 import { Helpers } from "../../../../../common/helpers.ts";
 import { CheckTheApplication } from "../../../../../journeys/citizen/caseView/checkTheApplication/checkTheApplication.ts";
@@ -14,7 +13,7 @@ test.describe("Respondent confirm contact details tests", (): void => {
     ccdRef = await createDaCitizenCourtNavCase(true, false);
     await Helpers.goToCase(
       page,
-      config.manageCasesBaseURLCase,
+      Config.manageCasesBaseURLCase,
       ccdRef,
       "tasks",
     );

@@ -4,7 +4,7 @@ import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 import { ManageOrders5CAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderCA/manageOrders5CAContent";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-import config from "../../../../../config.ts";
+import config from "../../../../../utils/config.ts";
 import {
   solicitorCaseCreateType,
   uploadOrderC100Options,

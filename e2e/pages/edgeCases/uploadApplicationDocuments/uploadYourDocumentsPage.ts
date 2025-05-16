@@ -4,7 +4,7 @@ import { Selectors } from "../../../common/selectors.ts";
 import { Helpers } from "../../../common/helpers.ts";
 import { UploadYourDocumentsContent } from "../../../fixtures/edgeCases/uploadApplicationDocuments/uploadYourDocumentsContent.ts";
 
-import config from "../../../config.ts";
+import config from "../../../utils/config.ts";
 import { EdgeCaseApplicationType } from "../../../common/types.ts";
 
 interface UploadYourDocumentsPageOptions {

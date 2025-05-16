@@ -1,5 +1,5 @@
 import { Page, Locator, expect } from "@playwright/test";
-import { Config } from "../../config";
+import { Config } from "../../utils/config";
 import { Selectors } from "../../common/selectors";
 
 export class FileUploadComponent {
