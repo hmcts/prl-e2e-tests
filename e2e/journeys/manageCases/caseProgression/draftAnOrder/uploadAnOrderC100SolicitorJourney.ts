@@ -38,9 +38,8 @@ export class UploadAnOrderC100SolicitorJourney {
     browser,
   }: C100DraftAnOrderOptions): Promise<void> {
     //CA case creation
-    let caseRef: string;
     await page.goto(Config.manageCasesBaseURLCase);
-    caseRef = await SolicitorCACaseCreator.createCaseSubmitAndPay(page);
+    const caseRef = await SolicitorCACaseCreator.createCaseSubmitAndPay(page);
     await Helpers.goToCase(
       page,
       Config.manageCasesBaseURLCase,

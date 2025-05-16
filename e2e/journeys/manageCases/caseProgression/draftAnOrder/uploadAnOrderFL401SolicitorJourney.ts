@@ -38,9 +38,8 @@ export class UploadAnOrderFL401SolicitorJourney {
     browser,
   }: FL401DraftAnOrderOptions): Promise<void> {
     //DA case creation
-    let caseRef: string;
     await page.goto(Config.manageCasesBaseURLCase);
-    caseRef =
+    const caseRef =
       await SolicitorDACaseCreator.createCaseStatementOfTruthAndSubmit(page);
     await Helpers.goToCase(
       page,

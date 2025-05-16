@@ -63,33 +63,33 @@ export class UploadDraftAnOrderSubmitPage {
         page,
         `${Selectors.strong}:text-is("${UploadDraftAnOrderSubmitContent.CAtext}")`,
         1,
-      ),
-        await Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukText16}:text-is("${UploadDraftAnOrderSubmitContent.change}")`,
-          9,
-        ),
-        await Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukText16}:text-is("${UploadDraftAnOrderSubmitContent.CAchildren}")`,
-          1,
-        );
+      );
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${UploadDraftAnOrderSubmitContent.change}")`,
+        9,
+      );
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${UploadDraftAnOrderSubmitContent.CAchildren}")`,
+        1,
+      );
     } else {
       await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukText16}:text-is("${UploadDraftAnOrderSubmitContent.DAtext}")`,
         1,
-      ),
-        await Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukText16}:text-is("${UploadDraftAnOrderSubmitContent.change}")`,
-          10,
-        ),
-        await Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukText16}:text-is("${UploadDraftAnOrderSubmitContent.DAchildren}")`,
-          1,
-        );
+      );
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${UploadDraftAnOrderSubmitContent.change}")`,
+        10,
+      );
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${UploadDraftAnOrderSubmitContent.DAchildren}")`,
+        1,
+      );
       await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukText16}:text-is("${UploadDraftAnOrderSubmitContent.DAchildrenQuestion}")`,
