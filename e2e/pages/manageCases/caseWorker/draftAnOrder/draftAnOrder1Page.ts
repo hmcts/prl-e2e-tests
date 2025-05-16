@@ -25,8 +25,7 @@ export class DraftAnOrder1Page {
     }
     if (!isUploadOrder) {
       await this.fillInFields(page);
-    }
-    else {
+    } else {
       await this.fillInFieldsUpload(page);
     }
     await this.continue(page);

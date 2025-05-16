@@ -273,14 +273,12 @@ export class Helpers {
       caseTab.toLowerCase() === "roles and access"
     ) {
       return `${baseURL}/case-details/${caseNumberDigits}/${caseTab}`;
-    }
-    else if (caseTab.toLowerCase() === "Draft orders") {
+    } else if (caseTab.toLowerCase() === "Draft orders") {
       return `${baseURL}/case-details/${caseNumberDigits}#Draft%20orders`;
+    } else {
+      return `${baseURL}/case-details/${caseNumberDigits}#${caseTab}`;
     }
-      else {
-        return `${baseURL}/case-details/${caseNumberDigits}#${caseTab}`;
-      }
-    }
+  }
 
   private static shortMonth(index: number): string {
     if (index < 1 || index > 12) {

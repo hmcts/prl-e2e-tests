@@ -58,14 +58,14 @@ enum UniqueSelectors {
 }
 
 export class UploadDraftAnOrder3Page {
-    public static async uploadDraftAnOrder3Page({
+  public static async uploadDraftAnOrder3Page({
     page,
     accessibilityTest,
     yesNoManageOrders,
     uploadOrderFL401Options,
     uploadOrderC100Options,
     solicitorCaseCreateType,
-    }: UploadDraftAnOrder3PageOptions): Promise<void> {
+  }: UploadDraftAnOrder3PageOptions): Promise<void> {
     await this.checkPageLoads({ page, accessibilityTest });
     if (solicitorCaseCreateType === "C100")
       await this.fillInCAFields({
@@ -90,16 +90,18 @@ export class UploadDraftAnOrder3Page {
       throw new Error("Page is not defined");
     }
     await expect(
-        page.locator(Selectors.GovukHeadingL, { hasText: UploadDraftAnOrder3Content.pageTitle }),
-        ).toBeVisible();
+      page.locator(Selectors.GovukHeadingL, {
+        hasText: UploadDraftAnOrder3Content.pageTitle,
+      }),
+    ).toBeVisible();
     await Promise.all([
-         Helpers.checkGroup(
-                 page,
-                 39,
-                 UploadDraftAnOrder3Content,
-                 "formLabel",
-                 `${Selectors.GovukFormLabel}`,
-               ),
+      Helpers.checkGroup(
+        page,
+        39,
+        UploadDraftAnOrder3Content,
+        "formLabel",
+        `${Selectors.GovukFormLabel}`,
+      ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukFormLabel}:text-is("${CommonStaticText.yes}")`,
@@ -111,9 +113,9 @@ export class UploadDraftAnOrder3Page {
         1,
       ),
       Helpers.checkVisibleAndPresent(
-            page,
-            `${Selectors.GovukFormLabel}:text-is("${CommonStaticText.other}")`,
-            1,
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${CommonStaticText.other}")`,
+        1,
       ),
     ]);
     if (accessibilityTest) {

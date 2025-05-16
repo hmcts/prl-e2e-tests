@@ -1,79 +1,79 @@
 import { test } from "@playwright/test";
 import Config from "../../../../config.ts";
-import config from "../../../../../jest.config.ts";
 import { UploadAnOrderC100SolicitorJourney } from "../../../../journeys/manageCases/caseProgression/draftAnOrder/uploadAnOrderC100SolicitorJourney.ts";
-import { SolicitorCACaseCreator } from "../../../../common/caseHelpers/solicitorCACaseCreator.ts";
-import { SolicitorDACaseCreator } from "../../../../common/caseHelpers/solicitorDACaseCreator.ts";
-import { Helpers } from "../../../../common/helpers.ts";
 import { UploadAnOrderFL401SolicitorJourney } from "../../../../journeys/manageCases/caseProgression/draftAnOrder/uploadAnOrderFL401SolicitorJourney.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-test.describe("'Upload an order' by Solicitor via the 'Draft an Order' event tests @newtest", (): void => {
-
-  // test(`CA 'Upload an order' as a Solicitor with the following options:
-  // Case: C100,
-  // Not accessibility testing. 
-  // @regression, @nightly`, async ({ page, browser }): Promise<void> => {
-  //   await UploadAnOrderC100SolicitorJourney.uploadAnOrderC100SolicitorJourney({
-  //     page: page,
-  //     accessibilityTest: false,
-  //     solicitorCaseCreateType: "C100",
-  //     yesNoManageOrders: false,
-  //     uploadOrderC100Options:
-  //       "Child arrangements, specific issue or prohibited steps order (C43)",
-  //     isUploadOrder: true,
-  //     errorMessaging: false,
-  //     browser: browser,
-  //   });
-  // });
-
-  // test(`CA 'Upload an order' as a Solicitor with the following options:
-  // Case: C100,
-  // Accessibility testing: yes. 
-  // @regression, @nightly`, async ({ page, browser }): Promise<void> => {
-  //   await UploadAnOrderC100SolicitorJourney.uploadAnOrderC100SolicitorJourney({
-  //     page: page,
-  //     accessibilityTest: false,
-  //     solicitorCaseCreateType: "C100",
-  //     yesNoManageOrders: false,
-  //     uploadOrderC100Options:
-  //       "Child arrangements, specific issue or prohibited steps order (C43)",
-  //     isUploadOrder: true,
-  //     errorMessaging: false,
-  //     browser: browser,
-  //   });
-  // });
-
-  test(`DA 'Upload an order' as a Solicitor with the following options:
-  Case: FL401,
-  Accessibility testing: yes. 
+test.describe("'Upload an order' by Solicitor via the 'Draft an Order' event tests", (): void => {
+  
+  test(`CA 'Upload an order' as a Solicitor with the following options:
+  Case: C100,
+  Not accessibility testing.
   @regression, @nightly`, async ({ page, browser }): Promise<void> => {
-    await UploadAnOrderFL401SolicitorJourney.uploadAnOrderFL401SolicitorJourney({
+    await UploadAnOrderC100SolicitorJourney.uploadAnOrderC100SolicitorJourney({
       page: page,
-      accessibilityTest: true,
-      solicitorCaseCreateType: "FL401",
+      accessibilityTest: false,
+      solicitorCaseCreateType: "C100",
       yesNoManageOrders: false,
-      uploadOrderFL401Options:
-        "non-molestation",
+      uploadOrderC100Options:
+        "Child arrangements, specific issue or prohibited steps order (C43)",
       isUploadOrder: true,
       errorMessaging: false,
       browser: browser,
     });
   });
 
-  // test(`DA 'Upload an order' as a Solicitor with the following options:
-  // Case: FL401,
-  // Accessibility testing: yes. 
-  // @regression, @nightly`, async ({ page }): Promise<void> => {
-  //   await C100ManageOrdersUploadJourney.c100ManageOrdersUploadJourney({
-  //     page: page,
-  //     accessibilityTest: true,
-  //     solicitorCaseCreateType: "FL401",
-  //     yesNoManageOrders: false,
-  //     uploadOrderFL401Options:
-  //       "Child arrangements, specific issue or prohibited steps order (C43)",
-  //     isUploadOrder: true,
-  //   });
-  // });
+  test(`CA 'Upload an order' as a Solicitor with the following options:
+  Case: C100,
+  Accessibility testing: yes.
+  @regression, @nightly`, async ({ page, browser }): Promise<void> => {
+    await UploadAnOrderC100SolicitorJourney.uploadAnOrderC100SolicitorJourney({
+      page: page,
+      accessibilityTest: false,
+      solicitorCaseCreateType: "C100",
+      yesNoManageOrders: false,
+      uploadOrderC100Options:
+        "Child arrangements, specific issue or prohibited steps order (C43)",
+      isUploadOrder: true,
+      errorMessaging: false,
+      browser: browser,
+    });
+  });
+
+  test(`DA 'Upload an order' as a Solicitor with the following options:
+  Case: FL401,
+  Not accessibility testing. 
+  @regression, @nightly`, async ({ page, browser }): Promise<void> => {
+    await UploadAnOrderFL401SolicitorJourney.uploadAnOrderFL401SolicitorJourney(
+      {
+        page: page,
+        accessibilityTest: false,
+        solicitorCaseCreateType: "FL401",
+        yesNoManageOrders: false,
+        uploadOrderFL401Options: "non-molestation",
+        isUploadOrder: true,
+        errorMessaging: false,
+        browser: browser,
+      },
+    );
+  });
+
+  test(`DA 'Upload an order' as a Solicitor with the following options:
+  Case: FL401,
+  Accessibility testing: yes.
+  @regression, @nightly`, async ({ page, browser }): Promise<void> => {
+    await UploadAnOrderFL401SolicitorJourney.uploadAnOrderFL401SolicitorJourney(
+      {
+        page: page,
+        accessibilityTest: true,
+        solicitorCaseCreateType: "FL401",
+        yesNoManageOrders: false,
+        uploadOrderFL401Options: "non-molestation",
+        isUploadOrder: true,
+        errorMessaging: false,
+        browser: browser,
+      },
+    );
+  });
 });

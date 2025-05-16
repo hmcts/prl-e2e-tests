@@ -32,8 +32,10 @@ export class ManageOrders24PageCA {
       throw new Error("Page is not defined");
     }
     await expect(
-          page.locator(Selectors.GovukHeadingL, { hasText: ManageOrders24CAContent.pageTitle }),
-        ).toBeVisible();
+      page.locator(Selectors.GovukHeadingL, {
+        hasText: ManageOrders24CAContent.pageTitle,
+      }),
+    ).toBeVisible();
     await Helpers.checkGroup(
       page,
       4,

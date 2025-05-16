@@ -2,9 +2,7 @@ import { Page, expect } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors";
 import { Helpers } from "../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
-import { SubmitCAContent } from "../../../../fixtures/manageCases/caseWorker/createAnOrder/orderCA/submitCAContent";
 import { CommonStaticText } from "../../../../common/commonStaticText";
-import { uploadOrderC100Options } from "../../../../common/types.ts";
 import { UploadDraftAnOrderSubmitContent } from "../../../../fixtures/manageCases/caseProgression/draftAnOrder/uploadDraftAnOrderSubmitContent.ts";
 
 interface submitPageOptions {
@@ -14,7 +12,7 @@ interface submitPageOptions {
 }
 
 export class UploadDraftAnOrderSubmitPage {
-    public static async uploadDraftAnOrderSubmitPage({
+  public static async uploadDraftAnOrderSubmitPage({
     page,
     accessibilityTest,
   }: submitPageOptions): Promise<void> {
@@ -37,12 +35,14 @@ export class UploadDraftAnOrderSubmitPage {
       throw new Error("Page is not defined");
     }
     await expect(
-      page.locator(Selectors.GovukHeadingL, { hasText: UploadDraftAnOrderSubmitContent.pageTitle }),
+      page.locator(Selectors.GovukHeadingL, {
+        hasText: UploadDraftAnOrderSubmitContent.pageTitle,
+      }),
     ).toBeVisible();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-          `${Selectors.headingH2}:text-is("${UploadDraftAnOrderSubmitContent.headingh2}")`,
+        `${Selectors.headingH2}:text-is("${UploadDraftAnOrderSubmitContent.headingh2}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -73,9 +73,8 @@ export class UploadDraftAnOrderSubmitPage {
           page,
           `${Selectors.GovukText16}:text-is("${UploadDraftAnOrderSubmitContent.CAchildren}")`,
           1,
-        )
-    }
-    else {
+        );
+    } else {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukText16}:text-is("${UploadDraftAnOrderSubmitContent.DAtext}")`,
@@ -90,12 +89,12 @@ export class UploadDraftAnOrderSubmitPage {
           page,
           `${Selectors.GovukText16}:text-is("${UploadDraftAnOrderSubmitContent.DAchildren}")`,
           1,
-        )
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukText16}:text-is("${UploadDraftAnOrderSubmitContent.DAchildrenQuestion}")`,
-          1,
-        )
+        );
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${UploadDraftAnOrderSubmitContent.DAchildrenQuestion}")`,
+        1,
+      );
     }
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);

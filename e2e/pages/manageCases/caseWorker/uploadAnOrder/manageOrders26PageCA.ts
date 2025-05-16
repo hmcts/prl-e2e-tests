@@ -38,8 +38,10 @@ export class ManageOrders26PageCA {
       throw new Error("Page is not defined");
     }
     await expect(
-          page.locator(Selectors.h1, { hasText: ManageOrders26CAContent.pageTitle }),
-        ).toBeVisible();
+      page.locator(Selectors.h1, {
+        hasText: ManageOrders26CAContent.pageTitle,
+      }),
+    ).toBeVisible();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,

@@ -23,7 +23,7 @@ interface NonMolestationOrderParams {
   willAllPartiesAttendHearing: boolean;
   checkPdf: boolean;
   caseRef: string;
-  isUploadOrder: boolean,
+  isUploadOrder: boolean;
 }
 
 export class NonMolestationOrder {

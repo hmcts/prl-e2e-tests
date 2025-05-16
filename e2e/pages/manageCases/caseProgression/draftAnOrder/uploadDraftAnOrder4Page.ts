@@ -14,17 +14,9 @@ import { UploadDraftAnOrder4Content } from "../../../../fixtures/manageCases/cas
 interface UploadDraftAnOrder4PageOptions {
   page: Page;
   accessibilityTest: boolean;
-  isUploadOrder: boolean;
   uploadOrderC100Options?: uploadOrderC100Options;
   uploadOrderFL401Options?: uploadOrderFL401Options;
   solicitorCaseCreateType: solicitorCaseCreateType;
-}
-
-enum radioIds {
-  isTheOrderByConsent_Yes = "#isTheOrderByConsent_Yes",
-  wasTheOrderApprovedAtHearing_Yes = "#wasTheOrderApprovedAtHearing_Yes",
-  judgeOrMagistrateTitle_herHonourJudge = "#judgeOrMagistrateTitle-herHonourJudge",
-  isTheOrderAboutAllChildren_Yes = "#isTheOrderAboutAllChildren_Yes",
 }
 
 enum radioIds2 {
@@ -51,14 +43,13 @@ enum inputIds {
 }
 
 export class UploadDraftAnOrder4Page {
-    public static async uploadDraftAnOrder4Page({
+  public static async uploadDraftAnOrder4Page({
     page,
     accessibilityTest,
-    isUploadOrder,
     uploadOrderC100Options,
     uploadOrderFL401Options,
     solicitorCaseCreateType,
-    }: UploadDraftAnOrder4PageOptions): Promise<void> {
+  }: UploadDraftAnOrder4PageOptions): Promise<void> {
     if (!page) {
       throw new Error("Page is not defined");
     }
@@ -68,9 +59,8 @@ export class UploadDraftAnOrder4Page {
       solicitorCaseCreateType,
       uploadOrderC100Options,
       uploadOrderFL401Options,
-      isUploadOrder,
     });
-    await this.fillInFields({ page, isUploadOrder });
+    await this.fillInFields({ page });
   }
 
   private static async checkPageLoads({
@@ -80,10 +70,12 @@ export class UploadDraftAnOrder4Page {
   }: Partial<UploadDraftAnOrder4PageOptions>): Promise<void> {
     if (!page) {
       throw new Error("Page is not defined");
-    }  
+    }
     await expect(
-            page.locator(Selectors.GovukHeadingL, { hasText: UploadDraftAnOrder4Content.pageTitle }),
-            ).toBeVisible();
+      page.locator(Selectors.GovukHeadingL, {
+        hasText: UploadDraftAnOrder4Content.pageTitle,
+      }),
+    ).toBeVisible();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
@@ -96,46 +88,45 @@ export class UploadDraftAnOrder4Page {
         UploadDraftAnOrder4Content,
         "label",
         `${Selectors.GovukFormLabel}`,
-        ),
+      ),
       Helpers.checkVisibleAndPresent(
-              page,
-              `${Selectors.GovukFormLabel}:text-is("${CommonStaticText.yes}"):visible`,
-              2,
-            ),
-            Helpers.checkVisibleAndPresent(
-              page,
-              `${Selectors.GovukFormLabel}:text-is("${CommonStaticText.no}"):visible`,
-              2,
-        ),
-            Helpers.checkVisibleAndPresent(
-                    page,
-                `${Selectors.GovukFormLabel}:text-is("${UploadDraftAnOrder4Content.hiddenLabel1}"):visible`,
-                    1,
-                  ),
-                  Helpers.checkVisibleAndPresent(
-                    page,
-                      `${Selectors.GovukFormLabel}:text-is("${UploadDraftAnOrder4Content.hiddenLabel2}"):visible`,
-                    1,
-                  ),
-                  Helpers.checkVisibleAndPresent(
-                    page,
-                      `${Selectors.GovukFormLabel}:text-is("${UploadDraftAnOrder4Content.hiddenLabel3}"):visible`,
-                    1,
-                  ),
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${CommonStaticText.yes}"):visible`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${CommonStaticText.no}"):visible`,
+        2,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${UploadDraftAnOrder4Content.hiddenLabel1}"):visible`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${UploadDraftAnOrder4Content.hiddenLabel2}"):visible`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${UploadDraftAnOrder4Content.hiddenLabel3}"):visible`,
+        1,
+      ),
     ]);
     if (solicitorCaseCreateType === "C100") {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukFormLabel}:text-is("${UploadDraftAnOrder4Content.CAchildren}"):visible`,
         1,
-      )
-    }
-    else {
+      );
+    } else {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukFormLabel}:text-is("${UploadDraftAnOrder4Content.DAchildren}"):visible`,
         1,
-      )
+      );
     }
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
@@ -144,7 +135,6 @@ export class UploadDraftAnOrder4Page {
 
   private static async fillInFields({
     page,
-    isUploadOrder,
     solicitorCaseCreateType,
   }: Partial<UploadDraftAnOrder4PageOptions>): Promise<void> {
     if (!page) {
@@ -154,8 +144,7 @@ export class UploadDraftAnOrder4Page {
       for (const selector of Object.values(radioIds2)) {
         await page.click(selector);
       }
-    }
-    else {
+    } else {
       for (const selector of Object.values(radioIds2DA)) {
         await page.click(selector);
       }
@@ -168,10 +157,10 @@ export class UploadDraftAnOrder4Page {
       inputIds.judgeOrMagistratesLastName,
       UploadDraftAnOrder4Content.judgeFullName,
     );
-      await page.waitForTimeout(5000);
-      const fileInput = page.locator(`${UniqueSelectors.fileUpload}`);
-      await fileInput.setInputFiles(config.testPdfFile);
-      await page.waitForTimeout(5000);
+    await page.waitForTimeout(5000);
+    const fileInput = page.locator(`${UniqueSelectors.fileUpload}`);
+    await fileInput.setInputFiles(config.testPdfFile);
+    await page.waitForTimeout(5000);
     await page.click(
       `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
     );

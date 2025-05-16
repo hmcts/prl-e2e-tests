@@ -1,4 +1,4 @@
-import { Page, Browser, test } from "@playwright/test";
+import { Page, Browser } from "@playwright/test";
 import { Helpers } from "../../../../common/helpers.ts";
 import {
   solicitorCaseCreateType,
@@ -13,7 +13,7 @@ import { UploadDraftAnOrder4Page } from "../../../../pages/manageCases/caseProgr
 import { C100DraftOrdersTabPage } from "../../../../pages/manageCases/caseTabs/C100/c100DraftOrdersTabPage.ts";
 import { UploadDraftAnOrderSubmitPage } from "../../../../pages/manageCases/caseProgression/draftAnOrder/uploadDraftAnOrderSubmitPage.ts";
 
-interface C100ManageOrdersOptions {
+interface C100DraftAnOrderOptions {
   page: Page;
   accessibilityTest: boolean;
   yesNoManageOrders: boolean;
@@ -22,7 +22,7 @@ interface C100ManageOrdersOptions {
   solicitorCaseCreateType: solicitorCaseCreateType;
   errorMessaging: boolean;
   isUploadOrder: boolean;
-  browser: Browser,
+  browser: Browser;
 }
 
 export class UploadAnOrderC100SolicitorJourney {
@@ -36,7 +36,7 @@ export class UploadAnOrderC100SolicitorJourney {
     errorMessaging,
     isUploadOrder,
     browser,
-  }: C100ManageOrdersOptions): Promise<void> {
+  }: C100DraftAnOrderOptions): Promise<void> {
     //CA case creation
     let caseRef: string;
     await page.goto(Config.manageCasesBaseURLCase);
@@ -47,13 +47,13 @@ export class UploadAnOrderC100SolicitorJourney {
       caseRef,
       "Summary",
     );
-//Starting the 'Draft an order' event to upload the order
+    //Starting the 'Draft an order' event to upload the order
     await Helpers.chooseEventFromDropdown(page, `Draft an order`);
     await DraftAnOrder1Page.draftAnOrder1Page(
-        page,
-        errorMessaging,
-        accessibilityTest,
-        isUploadOrder,
+      page,
+      errorMessaging,
+      accessibilityTest,
+      isUploadOrder,
     );
     await UploadDraftAnOrder3Page.uploadDraftAnOrder3Page({
       page,
@@ -66,7 +66,6 @@ export class UploadAnOrderC100SolicitorJourney {
     await UploadDraftAnOrder4Page.uploadDraftAnOrder4Page({
       page,
       accessibilityTest,
-      isUploadOrder,
       solicitorCaseCreateType,
     });
     await UploadDraftAnOrderSubmitPage.uploadDraftAnOrderSubmitPage({
@@ -74,16 +73,17 @@ export class UploadAnOrderC100SolicitorJourney {
       accessibilityTest,
       solicitorCaseCreateType,
     });
+    //Switching to CTSC user as Solicitor cannot see the 'Draft orders' tab in the case
     const checkPageCTSC: Page = await Helpers.openNewBrowserWindow(
-          browser,
-          "courtAdminStoke",
-        );
-        await Helpers.goToCase(
-          checkPageCTSC,
-          Config.manageCasesBaseURLCase,
-          caseRef,
-          "Draft orders",
-        );
+      browser,
+      "courtAdminStoke",
+    );
+    await Helpers.goToCase(
+      checkPageCTSC,
+      Config.manageCasesBaseURLCase,
+      caseRef,
+      "Draft orders",
+    );
     //Validating the correct Judge's Name in the 'Draft orders' tab
     await C100DraftOrdersTabPage.c100DraftOrdersTabPage(
       checkPageCTSC,
