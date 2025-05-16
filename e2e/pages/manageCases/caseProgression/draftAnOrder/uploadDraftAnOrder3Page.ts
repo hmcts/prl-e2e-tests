@@ -8,7 +8,7 @@ import {
 } from "../../../../common/types";
 import { CommonStaticText } from "../../../../common/commonStaticText";
 import { Helpers } from "../../../../common/helpers";
-import { UploadDraftAnOrder3Content } from "../../../../fixtures/manageCases/caseProgression/draftAnOrder/UploadDraftAnOrder3Content";
+import { UploadDraftAnOrder3Content } from "../../../../fixtures/manageCases/caseProgression/draftAnOrder/uploadDraftAnOrder3Content";
 
 interface UploadDraftAnOrder3PageOptions {
   page: Page;

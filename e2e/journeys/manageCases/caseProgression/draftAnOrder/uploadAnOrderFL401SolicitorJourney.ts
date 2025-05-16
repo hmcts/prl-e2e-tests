@@ -6,14 +6,14 @@ import {
   uploadOrderFL401Options,
 } from "../../../../common/types.ts";
 import Config from "../../../../config.ts";
-import { SolicitorCACaseCreator } from "../../../../common/caseHelpers/solicitorCACaseCreator.ts";
+import { SolicitorDACaseCreator } from "../../../../common/caseHelpers/solicitorDACaseCreator.ts";
 import { DraftAnOrder1Page } from "../../../../pages/manageCases/caseWorker/draftAnOrder/draftAnOrder1Page.ts";
 import { UploadDraftAnOrder3Page } from "../../../../pages/manageCases/caseProgression/draftAnOrder/uploadDraftAnOrder3Page.ts";
 import { UploadDraftAnOrder4Page } from "../../../../pages/manageCases/caseProgression/draftAnOrder/uploadDraftAnOrder4Page.ts";
 import { C100DraftOrdersTabPage } from "../../../../pages/manageCases/caseTabs/C100/c100DraftOrdersTabPage.ts";
 import { UploadDraftAnOrderSubmitPage } from "../../../../pages/manageCases/caseProgression/draftAnOrder/uploadDraftAnOrderSubmitPage.ts";
 
-interface C100ManageOrdersOptions {
+interface FL401ManageOrdersOptions {
   page: Page;
   accessibilityTest: boolean;
   yesNoManageOrders: boolean;
@@ -25,8 +25,8 @@ interface C100ManageOrdersOptions {
   browser: Browser,
 }
 
-export class UploadAnOrderC100SolicitorJourney {
-  public static async uploadAnOrderC100SolicitorJourney({
+export class UploadAnOrderFL401SolicitorJourney {
+    public static async uploadAnOrderFL401SolicitorJourney({
     page,
     accessibilityTest,
     yesNoManageOrders,
@@ -36,11 +36,11 @@ export class UploadAnOrderC100SolicitorJourney {
     errorMessaging,
     isUploadOrder,
     browser,
-  }: C100ManageOrdersOptions): Promise<void> {
-    //CA case creation
+  }: FL401ManageOrdersOptions): Promise<void> {
+    //DA case creation
     let caseRef: string;
     await page.goto(Config.manageCasesBaseURLCase);
-    caseRef = await SolicitorCACaseCreator.createCaseSubmitAndPay(page);
+        caseRef = await SolicitorDACaseCreator.createCaseStatementOfTruthAndSubmit(page);
     await Helpers.goToCase(
       page,
       Config.manageCasesBaseURLCase,
@@ -71,8 +71,8 @@ export class UploadAnOrderC100SolicitorJourney {
     });
     await UploadDraftAnOrderSubmitPage.uploadDraftAnOrderSubmitPage({
       page,
-      accessibilityTest,
-      solicitorCaseCreateType,
+        accessibilityTest,
+        solicitorCaseCreateType,
     });
     const checkPageCTSC: Page = await Helpers.openNewBrowserWindow(
           browser,

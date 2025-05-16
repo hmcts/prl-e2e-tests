@@ -33,6 +33,14 @@ enum radioIds2 {
   isTheOrderAboutAllChildren_Yes = "#isTheOrderAboutAllChildren_Yes",
 }
 
+//Locators are slightly different for DA in a few places
+enum radioIds2DA {
+  wasTheOrderApprovedAtHearing_Yes = "#wasTheOrderApprovedAtHearing_Yes",
+  judgeOrMagistrateTitle_herHonourJudge = "#judgeOrMagistrateTitle-herHonourJudge",
+  isTheOrderAboutAllChildren_Yes = "#isTheOrderAboutChildren_Yes",
+  childOption1 = "#childOption_ac193d35-bcd1-4abf-8402-929295c9545c",
+}
+
 enum UniqueSelectors {
   fileUpload = "#uploadOrderDoc",
 }
@@ -68,6 +76,7 @@ export class UploadDraftAnOrder4Page {
   private static async checkPageLoads({
     page,
     accessibilityTest,
+    solicitorCaseCreateType,
   }: Partial<UploadDraftAnOrder4PageOptions>): Promise<void> {
     if (!page) {
       throw new Error("Page is not defined");
@@ -83,7 +92,7 @@ export class UploadDraftAnOrder4Page {
       ),
       Helpers.checkGroup(
         page,
-        20,
+        19,
         UploadDraftAnOrder4Content,
         "label",
         `${Selectors.GovukFormLabel}`,
@@ -101,19 +110,33 @@ export class UploadDraftAnOrder4Page {
             Helpers.checkVisibleAndPresent(
                     page,
                 `${Selectors.GovukFormLabel}:text-is("${UploadDraftAnOrder4Content.hiddenLabel1}"):visible`,
-                    2,
+                    1,
                   ),
                   Helpers.checkVisibleAndPresent(
                     page,
                       `${Selectors.GovukFormLabel}:text-is("${UploadDraftAnOrder4Content.hiddenLabel2}"):visible`,
-                    2,
+                    1,
                   ),
                   Helpers.checkVisibleAndPresent(
                     page,
                       `${Selectors.GovukFormLabel}:text-is("${UploadDraftAnOrder4Content.hiddenLabel3}"):visible`,
-                    2,
+                    1,
                   ),
     ]);
+    if (solicitorCaseCreateType === "C100") {
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${UploadDraftAnOrder4Content.CAchildren}"):visible`,
+        1,
+      )
+    }
+    else {
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${UploadDraftAnOrder4Content.DAchildren}"):visible`,
+        1,
+      )
+    }
     if (accessibilityTest) {
       await AccessibilityTestHelper.run(page);
     }
@@ -122,13 +145,21 @@ export class UploadDraftAnOrder4Page {
   private static async fillInFields({
     page,
     isUploadOrder,
+    solicitorCaseCreateType,
   }: Partial<UploadDraftAnOrder4PageOptions>): Promise<void> {
     if (!page) {
       throw new Error("Page is not defined");
     }
+    if (solicitorCaseCreateType === "C100") {
       for (const selector of Object.values(radioIds2)) {
         await page.click(selector);
       }
+    }
+    else {
+      for (const selector of Object.values(radioIds2DA)) {
+        await page.click(selector);
+      }
+    }
     await page.selectOption(
       inputIds.hearingsType,
       UploadDraftAnOrder4Content.hearing,
