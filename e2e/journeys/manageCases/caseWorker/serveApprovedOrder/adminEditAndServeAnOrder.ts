@@ -6,8 +6,8 @@ import { AdminEditAndApproveAnOrder21Page } from "../../../../pages/manageCases/
 import { AdminEditAndApproveAnOrder22Page } from "../../../../pages/manageCases/caseWorker/serveApprovedOrder/adminEditAndApproveAnOrder22Page";
 import { AdminEditAndApproveAnOrder23Page } from "../../../../pages/manageCases/caseWorker/serveApprovedOrder/adminEditAndApproveAnOrder23Page";
 import { AdminEditAndApproveAnOrderSubmitPage } from "../../../../pages/manageCases/caseWorker/serveApprovedOrder/adminEditAndApproveAnOrderSubmitPage";
-import config from "../../../../utils/config";
-import Config from "../../../../utils/config";
+import config from "../../../../utils/config.utils";
+import Config from "../../../../utils/config.utils";
 import { EditAndApproveAnOrder } from "../editAndApproveAnOrder/editAndApproveAnOrder";
 import { Fl401AddCaseNumber1Page } from "../../../../pages/manageCases/caseProgression/checkApplication/fl401AddCaseNumber1Page";
 import { Fl401AddCaseNumberSubmitPage } from "../../../../pages/manageCases/caseProgression/checkApplication/fl401AddCaseNumberSubmitPage";

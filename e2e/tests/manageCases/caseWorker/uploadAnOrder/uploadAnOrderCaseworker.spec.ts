@@ -1,5 +1,5 @@
 import { test } from "@playwright/test";
-import Config from "../../../../utils/config.ts";
+import Config from "../../../../utils/config.utils.ts";
 import { CaseListPage } from "../../../../pages/manageCases/caseList/caseListPage.ts";
 import { CaseFilterPage } from "../../../../pages/manageCases/caseWorker/createAnOrder/initialJourney/caseFilterPage.ts";
 import { TestingSupportDummyAdminCreateNoc2Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/initialJourney/testingSupportDummyAdminCreateNoc2Page.ts";

@@ -2,7 +2,7 @@ import { test } from "@playwright/test";
 import { ActivateCase } from "../../../journeys/citizen/activateCase/activateCase.ts";
 import createDaCitizenCourtNavCase from "../../../common/caseHelpers/citizenDACaseCreateHelper.ts";
 import { Helpers } from "../../../common/helpers.ts";
-import Config from "../../../utils/config.ts";
+import Config from "../../../utils/config.utils.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 

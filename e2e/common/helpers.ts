@@ -18,7 +18,7 @@ import {
   UserRole,
   WACaseWorkerActions,
 } from "./types";
-import Config from "../utils/config.ts";
+import Config from "../utils/config.utils.ts";
 
 export class Helpers {
   public static async chooseEventFromDropdown(

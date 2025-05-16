@@ -1,6 +1,6 @@
 import { Browser, Page } from "@playwright/test";
 import { Helpers } from "../../../../common/helpers";
-import config from "../../../../utils/config.ts";
+import config from "../../../../utils/config.utils.ts";
 import { Selectors } from "../../../../common/selectors";
 import { Fl401ListWithoutNotice1Page } from "../../../../pages/manageCases/caseProgression/list/fl401ListWithoutNotice1Page";
 import { Fl401ListWithoutNoticeSubmitPage } from "../../../../pages/manageCases/caseProgression/list/fl401ListWithoutNoticeSubmitPage";

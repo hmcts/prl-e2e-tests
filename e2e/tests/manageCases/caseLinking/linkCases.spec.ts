@@ -1,8 +1,8 @@
 import { test } from "@playwright/test";
-import Config from "../../../utils/config";
+import Config from "../../../utils/config.utils";
 import createDaCitizenCourtNavCase from "../../../common/caseHelpers/citizenDACaseCreateHelper";
 import { Helpers } from "../../../common/helpers";
-import config from "../../../utils/config";
+import config from "../../../utils/config.utils";
 import { LinkCases } from "../../../journeys/manageCases/caseLinking/linkCases";
 
 test.use({ storageState: Config.sessionStoragePath + "courtAdminStoke.json" });

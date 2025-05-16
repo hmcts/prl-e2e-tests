@@ -2,7 +2,7 @@ import { APIRequestContext, request, test as setup } from "@playwright/test";
 import dotenv from "dotenv";
 import { getAccessToken } from "../common/caseHelpers/getAccessTokenHelper.ts";
 import IdamLoginHelper from "../common/userHelpers/idamLoginHelper.ts";
-import config from "../utils/config.ts";
+import config from "../utils/config.utils.ts";
 
 dotenv.config();
 

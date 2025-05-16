@@ -1,5 +1,5 @@
 import { test } from "@playwright/test";
-import config from "../../../../utils/config.ts";
+import config from "../../../../utils/config.utils.ts";
 import { RemoveLegalRepresentative } from "../../../../journeys/manageCases/caseProgression/removeLegalRepresentative/removeLegalRepresentative.ts";
 import { SolicitorCACaseCreator } from ".././../../../common/caseHelpers/solicitorCACaseCreator.ts";
 import { Helpers } from "../../../../common/helpers.ts";

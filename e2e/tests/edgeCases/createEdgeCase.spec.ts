@@ -1,4 +1,4 @@
-import Config from "../../utils/config.ts";
+import Config from "../../utils/config.utils.ts";
 import { EdgeCase } from "../../journeys/edgeCases/edgeCaseJourney.ts";
 import { test } from "@playwright/test";
 

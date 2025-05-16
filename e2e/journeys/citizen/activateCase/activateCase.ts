@@ -1,6 +1,6 @@
 import { Browser, BrowserContext, Page } from "@playwright/test";
 import IdamLoginHelper from "../../../common/userHelpers/idamLoginHelper.ts";
-import Config from "../../../utils/config.ts";
+import Config from "../../../utils/config.utils.ts";
 import { AccessCodeHelper } from "../../../common/caseHelpers/accessCodeHelper.ts";
 import { EnterPinPage } from "../../../pages/citizen/activateCase/enterPinPage.ts";
 import { CaseActivatedPage } from "../../../pages/citizen/activateCase/caseActivatedPage.ts";

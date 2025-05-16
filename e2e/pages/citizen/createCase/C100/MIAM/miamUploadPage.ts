@@ -3,7 +3,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { MiamUploadContent } from "../../../../../fixtures/citizen/createCase/C100/MIAM/miamUploadContent";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-import config from "../../../../../utils/config";
+import config from "../../../../../utils/config.utils";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 
 interface MiamUploadPageOptions {

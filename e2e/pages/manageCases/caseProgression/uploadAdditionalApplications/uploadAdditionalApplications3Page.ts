@@ -4,7 +4,7 @@ import { Selectors } from "../../../../common/selectors.ts";
 import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
 import { UploadAdditionalApplications3Content } from "../../../../fixtures/manageCases/caseProgression/uploadAdditionalApplications/uploadAdditionalApplications3Content.ts";
-import config from "../../../../utils/config.ts";
+import config from "../../../../utils/config.utils.ts";
 import { solicitorCaseCreateType } from "../../../../common/types.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 

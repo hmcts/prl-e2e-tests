@@ -1,8 +1,8 @@
 import { test } from "@playwright/test";
-import Config from "../../../utils/config.ts";
+import Config from "../../../utils/config.utils.ts";
 import createDaCitizenCourtNavCase from "../../../common/caseHelpers/citizenDACaseCreateHelper";
 import { Helpers } from "../../../common/helpers";
-import config from "../../../utils/config.ts";
+import config from "../../../utils/config.utils.ts";
 import { ManageCaseLinks } from "../../../journeys/manageCases/caseLinking/manageCaseLinks";
 import { LinkCases } from "../../../journeys/manageCases/caseLinking/linkCases.ts";
 

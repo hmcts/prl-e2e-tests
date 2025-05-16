@@ -6,7 +6,7 @@ import {
 } from "./solicitorCaseCreatorHelper.ts";
 import { solicitorCACaseAPIEvent } from "../types.ts";
 import { Helpers } from "../helpers.ts";
-import config from "../../utils/config.ts";
+import config from "../../utils/config.utils.ts";
 
 const solicitorCaseEvents: solicitorCACaseAPIEvent[] = [
   "selectApplicationType",

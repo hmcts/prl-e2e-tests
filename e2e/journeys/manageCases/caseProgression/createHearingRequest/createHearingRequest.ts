@@ -12,7 +12,7 @@ import { HearingTimingPage } from "../../../../pages/manageCases/caseProgression
 import { HearingLinkPage } from "../../../../pages/manageCases/caseProgression/createHearingRequest/hearingLinkPage";
 import { HearingAdditionalInstructionsPage } from "../../../../pages/manageCases/caseProgression/createHearingRequest/hearingAdditionalInstructionsPage";
 import { HearingCreateEditSummaryPage } from "../../../../pages/manageCases/caseProgression/createHearingRequest/hearingCreateEditSummaryPage";
-import Config from "../../../../utils/config.ts";
+import Config from "../../../../utils/config.utils.ts";
 import { createOrderFL401Options } from "../../../../common/types";
 import { Selectors } from "../../../../common/selectors.ts";
 import { jsonDatas } from "../../../../common/caseHelpers/solicitorCaseCreatorHelper.ts";

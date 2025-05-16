@@ -1,4 +1,4 @@
-import { defineConfig} from "@playwright/test";
+import { defineConfig } from "@playwright/test";
 import { CommonConfig, ProjectsConfig } from "@hmcts/playwright-common";
 
 export default defineConfig({
@@ -45,7 +45,6 @@ export default defineConfig({
     },
   ],
 });
-
 
 // const DEFAULT_VIEWPORT = { width: 1920, height: 1080 };
 

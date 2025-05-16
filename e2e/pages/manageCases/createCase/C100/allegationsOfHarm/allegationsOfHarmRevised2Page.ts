@@ -2,7 +2,7 @@ import { Locator, Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { AllegationsOfHarmRevised2Content } from "../../../../../fixtures/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevised2Content";
 import { Helpers } from "../../../../../common/helpers";
-import config from "../../../../../utils/config";
+import config from "../../../../../utils/config.utils";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 
 interface AllegationsOfHarmRevised2Options {

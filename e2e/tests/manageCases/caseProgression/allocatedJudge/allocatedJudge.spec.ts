@@ -1,6 +1,6 @@
 import { test } from "@playwright/test";
-import Config from "../../../../utils/config.ts";
-import config from "../../../../utils/config.ts";
+import Config from "../../../../utils/config.utils.ts";
+import config from "../../../../utils/config.utils.ts";
 import createDaCitizenCourtNavCase from "../../../../common/caseHelpers/citizenDACaseCreateHelper.ts";
 import { Helpers } from "../../../../common/helpers";
 import { AllocatedJudge } from "../../../../journeys/manageCases/caseProgression/allocatedJudge/allocatedJudge.ts";

@@ -3,7 +3,7 @@ import { getAccessToken, getS2SToken } from "./getAccessTokenHelper.ts";
 import process from "node:process";
 import solicitorCaseData from "../../caseData/solicitorDACaseEventData.json";
 import { Helpers } from "../helpers.ts";
-import config from "../../utils/config.ts";
+import config from "../../utils/config.utils.ts";
 import { ServiceOfApplicationLite } from "../../journeys/manageCases/caseProgression/serviceOfApplication/serviceOfApplicationLite.ts";
 
 /**

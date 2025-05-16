@@ -4,7 +4,7 @@ import { Helpers } from "../../../../../common/helpers.ts";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 import { RequestToOrderWitnessContent4 } from "../../../../../fixtures/citizen/caseView/makeRequestToCourtAboutCase/respondent/requestToOrderWitnessContent4.ts";
-import config from "../../../../../utils/config.ts";
+import config from "../../../../../utils/config.utils.ts";
 
 interface UploadFP25 {
   page: Page;

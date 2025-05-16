@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { MiamPolicyUpgrade3Content } from "../../../../../fixtures/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade3Content";
 import { Helpers } from "../../../../../common/helpers";
-import config from "../../../../../utils/config";
+import config from "../../../../../utils/config.utils";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
 
 interface MiamPolicyUpgrade3PageOptions {

@@ -1,7 +1,7 @@
 import { Page, expect } from "@playwright/test";
 import { Helpers } from "../../../common/helpers";
 import { Selectors } from "../../../common/selectors";
-import Config from "../../../utils/config";
+import Config from "../../../utils/config.utils";
 import { CaseListContent } from "../../../fixtures/manageCases/caseList/caseListContent";
 import { CommonContent } from "../../../fixtures/manageCases/commonContent";
 import { CommonPage } from "../commonPage";

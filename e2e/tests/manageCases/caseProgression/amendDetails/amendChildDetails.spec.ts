@@ -1,5 +1,5 @@
 import { test } from "@playwright/test";
-import Config from "../../../../utils/config.ts";
+import Config from "../../../../utils/config.utils.ts";
 import { AmendChildDetails } from "../../../../journeys/manageCases/caseProgression/amendDetails/amendChildDetails.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });

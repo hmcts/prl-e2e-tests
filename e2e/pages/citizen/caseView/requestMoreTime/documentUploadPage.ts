@@ -4,7 +4,7 @@ import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
 import { DocumentUploadContent } from "../../../../fixtures/citizen/caseView/requestMoreTime/documentUploadContent.ts";
 import { Helpers } from "../../../../common/helpers.ts";
-import config from "../../../../utils/config.ts";
+import config from "../../../../utils/config.utils.ts";
 
 export enum UniqueSelectors {
   fileUpload = "#awp-doc-form-upload",

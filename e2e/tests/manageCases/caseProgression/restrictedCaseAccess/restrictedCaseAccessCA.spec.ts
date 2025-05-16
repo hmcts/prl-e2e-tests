@@ -1,9 +1,9 @@
 import { test, Page } from "@playwright/test";
-import { Config } from "../../../../utils/config.ts";
+import { Config } from "../../../../utils/config.utils.ts";
 import { RestrictedCaseAccess } from "../../../../journeys/manageCases/caseProgression/restrictedCaseAccess/restrictedCaseAccessJourney.ts";
 import { SolicitorCACaseCreator } from "../../../../common/caseHelpers/solicitorCACaseCreator.ts";
 import { Helpers } from "../../../../common/helpers.ts";
-import config from "../../../../utils/config.ts";
+import config from "../../../../utils/config.utils.ts";
 import { SendToGateKeeperJourney } from "../../../../journeys/manageCases/caseProgression/sendToGateKeeper/sendToGateKeeperJourney.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });

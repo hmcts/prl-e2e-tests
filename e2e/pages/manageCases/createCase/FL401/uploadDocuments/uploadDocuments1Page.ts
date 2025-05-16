@@ -3,7 +3,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { UploadDocuments1Content } from "../../../../../fixtures/manageCases/createCase/FL401/uploadDocuments/uploadDocuments1Content";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { Config } from "../../../../../utils/config";
+import { Config } from "../../../../../utils/config.utils";
 
 type wordOrPdfType = "word" | "pdf";
 

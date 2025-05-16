@@ -10,7 +10,7 @@ import { EditAndApproveAnOrder21Page } from "../../../../pages/manageCases/caseW
 import { EditAndApproveAnOrderSubmitPage } from "../../../../pages/manageCases/caseWorker/editAndApproveAnOrder/editAndApproveAnOrderSubmitPage";
 import { EditAndApproveAnOrderConfirmPage } from "../../../../pages/manageCases/caseWorker/editAndApproveAnOrder/editAndApproveAnOrderConfirmPage";
 import { DraftAnOrder, orderTypesMap } from "../draftAnOrder/draftAnOrder";
-import config from "../../../../utils/config";
+import config from "../../../../utils/config.utils";
 
 interface EditAndApproveOrderParams {
   page: Page;

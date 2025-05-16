@@ -4,7 +4,7 @@ import {
   SupportType,
 } from "../../../../common/types.ts";
 import { Helpers } from "../../../../common/helpers.ts";
-import config from "../../../../utils/config.ts";
+import config from "../../../../utils/config.utils.ts";
 import { ManageFlagsSelectCaseFlagPage } from "../../../../pages/manageCases/caseProgression/caseFlags/manageFlagsSelectCaseFlagPage.ts";
 import { ManageFlagsUpdateCaseFlagPage } from "../../../../pages/manageCases/caseProgression/caseFlags/manageFlagsUpdateCaseFlagPage.ts";
 import { ManageFlagsSubmitPage } from "../../../../pages/manageCases/caseProgression/caseFlags/manageFlagsSubmitPage.ts";

@@ -13,7 +13,7 @@ import {
 } from "../../../../pages/manageCases/caseWorker/createAnOrder/orderDA/manageOrders19Page.ts";
 import { howLongWillOrderBeInForce } from "../../../../pages/manageCases/caseWorker/createAnOrder/orderDA/manageOrders12Page.ts";
 import { Helpers } from "../../../../common/helpers.ts";
-import config from "../../../../utils/config.ts";
+import config from "../../../../utils/config.utils.ts";
 import { ManageOrders1Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/orderDA/manageOrders1Page.ts";
 import { ManageOrders2Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/orderDA/manageOrders2Page.ts";
 import { CreateOrderManageOrders5Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/orderDA/createOrderManageOrders5Page.ts";

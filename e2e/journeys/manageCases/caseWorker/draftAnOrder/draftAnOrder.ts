@@ -5,7 +5,7 @@ import { IssueAndSendToLocalCourtCallback1Page } from "../../../../pages/manageC
 import { IssueAndSendToLocalCourtCallbackSubmitPage } from "../../../../pages/manageCases/caseWorker/draftAnOrder/issueAndSendToLocalCourt/issueAndSendToLocalCourtCallbackSubmitPage";
 import { NonMolestationOrder } from "./nonMolestationOrder/nonMolestationOrder";
 import { ParentalResponsibilityOrder } from "./ParentalResponsibilityOrder/parentalResponsibilityOrder";
-import Config from "../../../../utils/config.ts";
+import Config from "../../../../utils/config.utils.ts";
 
 interface DraftAnOrderParams {
   page: Page;
