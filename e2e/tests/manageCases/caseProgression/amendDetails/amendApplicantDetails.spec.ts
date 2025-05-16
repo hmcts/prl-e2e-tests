@@ -1,6 +1,5 @@
 import { test } from "@playwright/test";
 import Config from "../../../../config";
-import config from "../../../../config";
 import createDaCitizenCourtNavCase from "../../../../common/caseHelpers/citizenDACaseCreateHelper.ts";
 import { Helpers } from "../../../../common/helpers";
 import { AmendApplicantDetails } from "../../../../journeys/manageCases/caseProgression/amendDetails/amendApplicantDetails.ts";
@@ -14,7 +13,7 @@ test.describe("Complete amend applicant details event as a court admin", () => {
     ccdRef = await createDaCitizenCourtNavCase(true, false);
     await Helpers.goToCase(
       page,
-      config.manageCasesBaseURLCase,
+      Config.manageCasesBaseURLCase,
       ccdRef,
       "tasks",
     );
@@ -23,7 +22,7 @@ test.describe("Complete amend applicant details event as a court admin", () => {
   test(`Amend the following applicant details: name, date of birth, gender,
   live in a refuge: yes,
   whether to keep details confidential: yes to all.
-  Accessibility testing: Yes. @nightly @regression @accessibility`, async ({
+  Accessibility testing: Yes. @nightly @regression @accessibility @debug`, async ({
     page,
   }): Promise<void> => {
     await AmendApplicantDetails.amendApplicantDetails({

@@ -48,7 +48,7 @@ export enum ApplicantDetails1Content {
   formLabelApplicantEmailAddress = "*Email address",
   formLabelEmailAddressConfidential = "*Do you need to keep the email address confidential?",
   govukHint = "You can only search for organisations already registered with MyHMCTS. For example, you can search by organisation name or address.",
-  c8FormUploadHint = "You can download the form from www.gov.uk. The address, email address and contact number entered for this party will be kept confidential.",
+  c8FormUploadP = "You can download the form from www.gov.uk. The address, email address and contact number entered for this party will be kept confidential.",
   govukDetailsSummary = "Can’t find the organisation you are looking for?",
   govukDetailsText = "If you know that the solicitor is already registered with MyHMCTS, check that you have entered their details correctly. Remember that organisations can only register one office address. This means that the details could be slightly different from what you're expecting. Contact the solicitor directly if you have any concerns.",
   continue = "Continue",

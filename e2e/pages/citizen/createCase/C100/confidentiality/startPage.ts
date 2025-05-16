@@ -7,22 +7,11 @@ import { StartContent } from "../../../../../fixtures/citizen/createCase/C100/co
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 
 enum inputIDs {
-  yes = "#start",
-  no = "#start-2",
-}
-
-enum alternativeInputIDs {
   yes = "#startAlternative",
   no = "#startAlternative-2",
 }
 
 enum checkboxIDs {
-  address = "#contactDetailsPrivate",
-  telephone = "#contactDetailsPrivate-2",
-  email = "#contactDetailsPrivate-3",
-}
-
-enum alternativeCheckboxIDs {
   address = "#contactDetailsPrivateAlternative",
   telephone = "#contactDetailsPrivateAlternative-2",
   email = "#contactDetailsPrivateAlternative-3",
@@ -44,7 +33,6 @@ interface CheckPageLoadsOptions {
 interface FillInFieldsOptions {
   page: Page;
   c100PrivateDetails: boolean;
-  c100OthersKnowApplicantsContact: yesNoDontKnow;
 }
 
 export class StartPage {
@@ -65,7 +53,6 @@ export class StartPage {
     await this.fillInFields({
       page: page,
       c100PrivateDetails: c100PrivateDetails,
-      c100OthersKnowApplicantsContact: c100OthersKnowApplicantsContact,
     });
   }
 
@@ -101,10 +88,7 @@ export class StartPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page, [
-        inputIDs.yes,
-        alternativeInputIDs.yes,
-      ]); //false-positive (https://github.com/alphagov/govuk-frontend/issues/979, https://github.com/w3c/aria/issues/1404)
+      await AccessibilityTestHelper.run(page, [inputIDs.yes]); //false-positive (https://github.com/alphagov/govuk-frontend/issues/979, https://github.com/w3c/aria/issues/1404)
     }
   }
 
@@ -145,7 +129,7 @@ export class StartPage {
       c100OthersKnowApplicantsContact === "no" ||
       c100OthersKnowApplicantsContact === "dontKnow"
     ) {
-      await page.click(alternativeInputIDs.yes);
+      await page.click(inputIDs.yes);
     } else {
       throw new Error(
         `Unrecognised argument for c100OthersKnowApplicantsContact: ${c100OthersKnowApplicantsContact}`,
@@ -176,33 +160,13 @@ export class StartPage {
   private static async fillInFields({
     page,
     c100PrivateDetails,
-    c100OthersKnowApplicantsContact,
   }: FillInFieldsOptions): Promise<void> {
-    let radioInputs: Record<string, string>;
-    let checkboxes: Record<string, string>;
-    let formHintContentKey: keyof typeof StartContent;
-    if (c100OthersKnowApplicantsContact === "yes") {
-      formHintContentKey = "formHint";
-      radioInputs = inputIDs;
-      checkboxes = checkboxIDs;
-    } else if (
-      c100OthersKnowApplicantsContact === "no" ||
-      c100OthersKnowApplicantsContact === "dontKnow"
-    ) {
-      radioInputs = alternativeInputIDs;
-      formHintContentKey = "alternativeFormHint";
-      checkboxes = alternativeCheckboxIDs;
-    } else {
-      throw new Error(
-        `Unrecognised argument for c100OthersKnowApplicantsContact: ${c100OthersKnowApplicantsContact}`,
-      );
-    }
     if (c100PrivateDetails) {
-      await page.click(radioInputs.yes);
+      await page.click(inputIDs.yes);
       await Promise.all([
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukHint}:text-is("${StartContent[formHintContentKey]}")`,
+          `${Selectors.GovukHint}:text-is("${StartContent.formHint}")`,
           1,
         ),
         Helpers.checkGroup(
@@ -213,11 +177,11 @@ export class StartPage {
           `${Selectors.GovukLabel}`,
         ),
       ]);
-      for (const checkboxID of Object.values(checkboxes)) {
+      for (const checkboxID of Object.values(checkboxIDs)) {
         await page.check(checkboxID);
       }
     } else {
-      await page.click(radioInputs.no);
+      await page.click(inputIDs.no);
     }
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
