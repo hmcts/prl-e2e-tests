@@ -31,12 +31,9 @@ async function createDaCitizenCourtNavCase(
           },
           data: jsonData,
         });
-
         if (response.status() !== 201) return false;
-
         const json = await response.json();
         if (!json.ccd_reference) return false;
-
         ccd_reference = json.ccd_reference;
         return true;
       },
@@ -50,11 +47,9 @@ async function createDaCitizenCourtNavCase(
   if (process.env.PWDEBUG) {
     console.log("CCD Reference:", ccd_reference);
   }
-
   if (withDoc) {
     await addDocumentToCase(token, ccd_reference);
   }
-
   return ccd_reference;
 }
 
