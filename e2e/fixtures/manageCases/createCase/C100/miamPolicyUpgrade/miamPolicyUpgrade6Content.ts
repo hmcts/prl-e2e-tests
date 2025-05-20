@@ -7,7 +7,7 @@ export enum MiamPolicyUpgrade6Content {
   formLabel3 = "The application would be made in existing proceedings which are continuing and the prospective applicant attended a MIAM before initiating those proceedings. You will need to upload the mediator’s certificate. If you are the respondent in existing proceedings, provide the date of the MIAM alongside the name and contact details of the MIAM provider in the text area.",
   formHint = "*Select one",
   formLabelAttended = "* Upload the MIAM certificate or evidence of participating in non-court dispute resolution (Optional)",
-  formHintAttended = "These documents must be signed by the mediator or provider",
+  formPAttended = "These documents must be signed by the mediator or provider",
   formLabelEvidence1 = "*What evidence of MIAM attendance are you submitting? (Optional)",
   formLabelEvidence2 = "A MIAM certificate",
   formLabelEvidence3 = "MIAM attendance details",

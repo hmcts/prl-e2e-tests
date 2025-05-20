@@ -472,7 +472,7 @@ export class OtherPeopleInTheCase1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukFormHint}:text-is("${OtherPeopleInTheCase1Content.c8FormUploadHint}"):visible`,
+        `${Selectors.p}:text-is("${OtherPeopleInTheCase1Content.c8FormUploadP}"):visible`,
         1,
       ),
     ]);

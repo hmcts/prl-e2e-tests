@@ -124,7 +124,7 @@ export class selectApplicationType2Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukFormHint}:text-is("${SelectApplicationType2Content.formHint}")`,
+        `${Selectors.p}:text-is("${SelectApplicationType2Content.formP}")`,
         1,
       ),
     ]);

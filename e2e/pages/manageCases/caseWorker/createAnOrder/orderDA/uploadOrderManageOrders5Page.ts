@@ -6,6 +6,7 @@ import { ManageOrders1DAContent } from "../../../../../fixtures/manageCases/case
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { UploadOrderManageOrders5Content } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderDA/uploadOrderManageOrders5Content";
 import config from "../../../../../config";
+import { ManageOrders5CAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderCA/manageOrders5CAContent";
 
 interface UploadOrderManageOrders5PageOptions {
   page: Page;
@@ -14,6 +15,8 @@ interface UploadOrderManageOrders5PageOptions {
 }
 
 enum UniqueSelectors {
+  herHonourJudge = "#judgeOrMagistrateTitle-herHonourJudge",
+  judgeOrMagistratesName = "#judgeOrMagistratesLastName",
   orderApprovedYes = "#wasTheOrderApprovedAtHearing_Yes",
   orderApprovedNo = "#wasTheOrderApprovedAtHearing_No",
   approvalDate_day = "#approvalDate-day",
@@ -25,6 +28,14 @@ enum UniqueSelectors {
   orderChildrenYes = "#isTheOrderAboutChildren_Yes",
   orderChildrenNo = "#isTheOrderAboutChildren_No",
   fileUpload = "#uploadOrderDoc",
+}
+
+enum radioId2 {
+  judgeOrMagistrateTitle_herHonourJudge = "#judgeOrMagistrateTitle-herHonourJudge",
+}
+
+enum inputIds {
+  judgeOrMagistratesLastName = "#judgeOrMagistratesLastName",
 }
 
 export class UploadOrderManageOrders5Page {
@@ -94,6 +105,8 @@ export class UploadOrderManageOrders5Page {
     if (!page) {
       throw new Error("Page is not defined");
     }
+    await page.check(UniqueSelectors.herHonourJudge);
+    await page.fill(UniqueSelectors.judgeOrMagistratesName, "Elizabeth");
     await page.fill(
       UniqueSelectors.approvalDate_day,
       UploadOrderManageOrders5Content.day,
@@ -113,6 +126,13 @@ export class UploadOrderManageOrders5Page {
       await page.click(UniqueSelectors.orderApprovedNo);
       await page.click(UniqueSelectors.orderChildrenNo);
     }
+    for (const selector of Object.values(radioId2)) {
+      await page.click(selector);
+    }
+    await page.fill(
+      inputIds.judgeOrMagistratesLastName,
+      ManageOrders5CAContent.judgeFullName,
+    );
     await page.waitForTimeout(5000);
     const fileInput = page.locator(`${UniqueSelectors.fileUpload}`);
     await fileInput.setInputFiles(config.testPdfFile);

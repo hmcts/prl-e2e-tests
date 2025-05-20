@@ -2,10 +2,10 @@ import { expect, Page } from "@playwright/test";
 import { Helpers } from "../../../../../common/helpers.ts";
 import { Selectors } from "../../../../../common/selectors.ts";
 import { ApplicantGender } from "../../../../../common/types.ts";
-import config from "../../../../../config.ts";
 import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 import { AmendApplicantDetails2Content } from "../../../../../fixtures/manageCases/caseProgression/amendDetails/amendApplicantDetails/AmendApplicantDetails2Content.ts";
+import { FileUploadComponent } from "../../../../../pageObjects/components/uploadFile.component.ts";
 
 interface AmendApplicantDetails2Options {
   page: Page;
@@ -99,6 +99,13 @@ export class AmendApplicantDetails2Page {
         "p",
         `${Selectors.p}`,
       ),
+      Helpers.checkGroup(
+        page,
+        3,
+        AmendApplicantDetails2Content,
+        "dateOfBirthFormLabel",
+        `${Selectors.GovukFormLabel}:visible`,
+      ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukFormHint}:text-is("${AmendApplicantDetails2Content.formHint1}")`,
@@ -160,14 +167,6 @@ export class AmendApplicantDetails2Page {
             .getByText(CommonStaticText.no),
         )
         .toBeVisible(),
-    ]);
-    const dateOfBirthLabels = page.getByRole("group", {
-      name: AmendApplicantDetails2Content.formLabel4,
-    });
-    await Promise.all([
-      expect.soft(dateOfBirthLabels.locator("label").nth(0)).toBeVisible(),
-      expect.soft(dateOfBirthLabels.locator("label").nth(1)).toBeVisible(),
-      expect.soft(dateOfBirthLabels.locator("label").nth(2)).toBeVisible(),
     ]);
     const headings = [
       AmendApplicantDetails2Content.h21,
@@ -309,9 +308,9 @@ export class AmendApplicantDetails2Page {
 
   private static async dobChangeFillFields(page: Page): Promise<void> {
     const [day, month, year] = Helpers.generateDOB(false);
-    await page.getByRole("textbox", { name: "Day Day" }).fill(day);
-    await page.getByRole("textbox", { name: "Month Month" }).fill(month);
-    await page.getByRole("textbox", { name: "Year Year" }).fill(year);
+    await page.getByRole("textbox", { name: "Day" }).fill(day);
+    await page.getByRole("textbox", { name: "Month" }).fill(month);
+    await page.getByRole("textbox", { name: "Year" }).fill(year);
   }
 
   private static async genderChangeFillFields(
@@ -337,18 +336,12 @@ export class AmendApplicantDetails2Page {
 
   private static async liveInRefugeFillFields(page: Page): Promise<void> {
     await page.click(uniqueSelectors.applicantInRefugeYes);
-    await Helpers.checkVisibleAndPresent(
-      page,
-      `${Selectors.GovukFormHint}:text-is("${AmendApplicantDetails2Content.formHintDownloadC8Form}"):visible`,
-      1,
-    );
-    await Helpers.checkVisibleAndPresent(
-      page,
-      `${Selectors.GovukFormLabel}:text-is("${AmendApplicantDetails2Content.formLabelUploadC8Refuge}"):visible`,
-      1,
-    );
-    const fileInput = page.locator(uniqueSelectors.c8FormFileUpload);
-    await fileInput.setInputFiles(config.testPdfFile);
+    const fileUpload = new FileUploadComponent(page, {
+      uploadLabelText: AmendApplicantDetails2Content.formLabelUploadC8Refuge,
+      downloadParagraphText: AmendApplicantDetails2Content.pDownloadC8Form,
+      chooseFileLocatorID: uniqueSelectors.c8FormFileUpload,
+    });
+    await fileUpload.completeUpload();
   }
 
   private static async changeApplicantAddressFillFields(

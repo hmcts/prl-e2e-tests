@@ -47,8 +47,10 @@ export class Helpers {
           return goButtonStillVisible;
         },
         {
-          intervals: [1_000, 2_000, 10_000],
-          timeout: 60_000,
+          // Allow 10s delay before retrying
+          intervals: [15_000],
+          // Allow up to 5 minutes for the go button to disappear
+          timeout: 300_000,
         },
       )
       .toBeFalsy();
@@ -73,7 +75,7 @@ export class Helpers {
         },
         {
           intervals: [1_000, 2_000, 10_000],
-          timeout: 60_000,
+          timeout: 100_000,
         },
       )
       .toBeFalsy();

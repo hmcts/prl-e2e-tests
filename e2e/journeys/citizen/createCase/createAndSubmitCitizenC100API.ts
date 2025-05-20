@@ -23,7 +23,7 @@ export class CitizenC100ApiCase {
     application,
     errorMessaging,
   }: CitizenC100ApiCaseOptions): Promise<void> {
-    const token = process.env.CITIZEN_CREATE_USER_BEARER_TOKEN as string;
+    const token = process.env.CREATE_USER_BEARER_TOKEN as string;
     const userInfo = await setupUser(token, "citizen"); // Create citizen user
     // create the C100 case
     const ccdRef = await CitizenCACaseCreator.createDraftCitizenCACase(

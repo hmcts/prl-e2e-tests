@@ -33,6 +33,7 @@ test.describe("Judge upload an order tests.", () => {
       yesNoManageOrders: false,
       uploadOrderFL401Options: "power of arrest",
       manageOrdersOptions: "upload order",
+      solicitorCaseCreateType: "FL401",
     });
   });
 
@@ -49,6 +50,7 @@ test.describe("Judge upload an order tests.", () => {
       yesNoManageOrders: false,
       uploadOrderFL401Options: "bail notice",
       manageOrdersOptions: "upload order",
+      solicitorCaseCreateType: "FL401",
     });
   });
 });
