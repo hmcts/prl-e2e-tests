@@ -73,6 +73,7 @@ export class UploadAnOrderC100SolicitorJourney {
       solicitorCaseCreateType,
     });
     //Switching to CTSC user as Solicitor cannot see the 'Draft orders' tab in the case
+    await page.waitForTimeout(3000); //adding timeout because the browser opens faster than the completion of the order event, which can cause the test to fail
     const checkPageCTSC: Page = await Helpers.openNewBrowserWindow(
       browser,
       "courtAdminStoke",
