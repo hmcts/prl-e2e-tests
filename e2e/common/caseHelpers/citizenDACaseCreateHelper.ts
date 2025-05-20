@@ -21,28 +21,40 @@ async function createDaCitizenCourtNavCase(
   const caseUrl = process.env.COURTNAV_CASE_URL as string;
   const jsonData = withNotice ? withNoticeJsonData : withoutNoticeJsonData;
   let ccd_reference = "";
-  await expect(async () => {
-    const response = await apiContext.post(caseUrl, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Ocp-Apim-Subscription-Key": subscriptionKey,
+  await expect
+    .poll(
+      async () => {
+        const response = await apiContext.post(caseUrl, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Ocp-Apim-Subscription-Key": subscriptionKey,
+          },
+          data: jsonData,
+        });
+
+        if (response.status() !== 201) return false;
+
+        const json = await response.json();
+        if (!json.ccd_reference) return false;
+
+        ccd_reference = json.ccd_reference;
+        return true;
       },
-      data: jsonData,
-    });
-    expect(response.status()).toBe(201);
-    const json = await response.json();
-    expect(json.ccd_reference).toBeTruthy();
-    ccd_reference = json.ccd_reference;
-  }).toPass({
-    intervals: [1000],
-    timeout: 10000,
-  });
+      {
+        intervals: [4000],
+        timeout: 60000,
+      },
+    )
+    .toBeTruthy();
+
   if (process.env.PWDEBUG) {
     console.log("CCD Reference:", ccd_reference);
   }
+
   if (withDoc) {
     await addDocumentToCase(token, ccd_reference);
   }
+
   return ccd_reference;
 }
 
