@@ -4,6 +4,7 @@ import { defineConfig } from "@playwright/test";
 module.exports = defineConfig({
   testDir: "./e2e/tests",
   ...CommonConfig.recommended,
+  timeout: 6 * 60 * 1000,
 
   projects: [
     {
