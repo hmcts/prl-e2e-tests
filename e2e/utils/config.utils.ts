@@ -39,7 +39,7 @@ export class Config {
 
   public static readonly sessionStoragePath: string = path.join(
     __dirname,
-    ".sessions/",
+    "../.sessions/",
   );
 
   public static readonly citizenFrontendBaseURL: string =
@@ -91,23 +91,23 @@ export class Config {
 
   public static readonly testFile: string = path.resolve(
     __dirname,
-    "./assets/mockFile.txt",
+    "../assets/mockFile.txt",
   );
   public static readonly testPdfFile: string = path.resolve(
     __dirname,
-    "./assets/mockFile.pdf",
+    "../assets/mockFile.pdf",
   );
   public static readonly testWordFile: string = path.resolve(
     __dirname,
-    "./assets/mockFile.docx",
+    "../assets/mockFile.docx",
   );
   public static readonly testOdtFile: string = path.resolve(
     __dirname,
-    "./assets/mockFile.odt",
+    "../assets/mockFile.odt",
   );
   public static readonly testMP3File: string = path.resolve(
     __dirname,
-    "./assets/mockFile.mp3",
+    "../assets/mockFile.mp3",
   );
 
   public static getUserCredentials(role: UserRole): UserCredentials {
