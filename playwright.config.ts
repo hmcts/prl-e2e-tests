@@ -1,5 +1,5 @@
-import { defineConfig } from "@playwright/test";
 import { CommonConfig, ProjectsConfig } from "@hmcts/playwright-common";
+import { defineConfig } from "@playwright/test";
 
 export default defineConfig({
   testDir: "./playwright-e2e",
