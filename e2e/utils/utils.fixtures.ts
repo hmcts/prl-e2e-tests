@@ -5,7 +5,6 @@ export interface UtilsFixtures {
 }
 
 export const utilsFixtures = {
-  // @ts-expect-error: Suppressing "use implicitly has an 'any' type" error
   config: async ({}, use) => {
     await use(Config);
   },
