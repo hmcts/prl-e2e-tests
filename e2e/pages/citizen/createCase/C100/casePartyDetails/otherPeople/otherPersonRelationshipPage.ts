@@ -3,7 +3,7 @@ import { CommonStaticText } from "../../../../../../common/commonStaticText";
 import { Helpers } from "../../../../../../common/helpers";
 import { Selectors } from "../../../../../../common/selectors";
 import { Relationship } from "../../../../../../common/types";
-import { OtherPersonRelationshipContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/otherPeople/otherPersonRelationshipContent";
+import { OtherPersonRelationshipContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/otherPeople/otherPersonRelationshipContent.ts";
 import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper.ts";
 
 interface applicantPageOptions {

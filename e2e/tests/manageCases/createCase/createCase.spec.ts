@@ -1,5 +1,5 @@
 import { test } from "@playwright/test";
-import Config from "../../../config";
+import Config from "../../../utils/config.utils.ts";
 import { C100 } from "../../../journeys/manageCases/createCase/C100";
 import { FL401 } from "../../../journeys/manageCases/createCase/FL401";
 import { SolicitorCreateInitial } from "../../../journeys/manageCases/createCase/solicitorCreateInitial.ts";

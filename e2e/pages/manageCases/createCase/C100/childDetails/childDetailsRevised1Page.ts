@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
-import { ChildDetailsRevised1Content } from "../../../../../fixtures/manageCases/createCase/C100/childDetails/childDetailsRevised1Content";
+import { ChildDetailsRevised1Content } from "../../../../../fixtures/manageCases/createCase/C100/childDetails/childDetailsRevised1Content.ts";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 
 interface childDetailsRevised1PageOptions {

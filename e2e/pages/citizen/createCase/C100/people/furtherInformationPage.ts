@@ -3,7 +3,7 @@ import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { yesNoDontKnow } from "../../../../../common/types";
-import { FurtherInformationContent } from "../../../../../fixtures/citizen/createCase/C100/people/furtherInformationContent";
+import { FurtherInformationContent } from "../../../../../fixtures/citizen/createCase/C100/people/furtherInformationContent.ts";
 import { uniqueSelectors } from "../urgencyAndWithoutNotice/urgentFirstHearingPage";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 

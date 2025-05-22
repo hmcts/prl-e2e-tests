@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
 import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
 import { Selectors } from "../../../../common/selectors";
-import { AdminEditAndApproveAnOrder23Content } from "../../../../fixtures/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrder23Content";
+import { AdminEditAndApproveAnOrder23Content } from "../../../../fixtures/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrder23Content.ts";
 import { Helpers } from "../../../../common/helpers";
 import { CommonStaticText } from "../../../../common/commonStaticText";
 import { applicationSubmittedBy } from "../../../../common/types.ts";

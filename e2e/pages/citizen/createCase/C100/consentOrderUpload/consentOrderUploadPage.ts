@@ -3,7 +3,7 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { ConsentOrderUploadContent } from "../../../../../fixtures/citizen/createCase/C100/consentOrderUpload/consentOrderUploadContent";
 import { Helpers } from "../../../../../common/helpers";
-import config from "../../../../../config";
+import config from "../../../../../utils/config.utils";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 
 interface ConsentOrderUploadPageOptions {

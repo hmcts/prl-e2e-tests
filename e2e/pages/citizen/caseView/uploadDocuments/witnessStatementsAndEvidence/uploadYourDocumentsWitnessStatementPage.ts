@@ -4,7 +4,7 @@ import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 import { UploadYourDocumentsContent } from "../../../../../fixtures/citizen/caseView/uploadDocuments/witnessStatementsAndEvidence/uploadYourDocumentsContent.ts";
 import { Helpers } from "../../../../../common/helpers.ts";
-import config from "../../../../../config.ts";
+import config from "../../../../../utils/config.utils.ts";
 
 export enum UniqueSelectors {
   fileUpload = "#uploadDocumentFileUpload",

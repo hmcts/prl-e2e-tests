@@ -1,7 +1,10 @@
 import { test } from "@playwright/test";
 import createDaCitizenCourtNavCase from "../../../../common/caseHelpers/citizenDACaseCreateHelper.ts";
 import { Helpers } from "../../../../common/helpers";
-import { default as Config, default as config } from "../../../../config";
+import {
+  default as Config,
+  default as config,
+} from "../../../../utils/config.utils.ts";
 import { WelshLanguageRequirements } from "../../../../journeys/manageCases/caseProgression/welshLanguageRequirements/welshLanguageRequirements";
 
 test.use({ storageState: Config.sessionStoragePath + "judge.json" });

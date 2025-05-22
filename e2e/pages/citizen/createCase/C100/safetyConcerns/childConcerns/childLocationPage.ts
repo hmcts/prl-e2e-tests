@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import { CommonStaticText } from "../../../../../../common/commonStaticText";
 import { Helpers } from "../../../../../../common/helpers";
 import { Selectors } from "../../../../../../common/selectors";
-import { ChildLocationContent } from "../../../../../../fixtures/citizen/createCase/C100/safetyConcerns/childConcerns/childLocationContent";
+import { ChildLocationContent } from "../../../../../../fixtures/citizen/createCase/C100/safetyConcerns/childConcerns/childLocationContent.ts";
 import { SafetyConcernHelpers } from "../safetyConcernHelpers";
 import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper.ts";
 

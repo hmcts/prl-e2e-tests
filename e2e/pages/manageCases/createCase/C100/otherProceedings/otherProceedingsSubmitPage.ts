@@ -4,7 +4,7 @@ import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelp
 import { Selectors } from "../../../../../common/selectors";
 import { OtherProceedingsSubmitContent } from "../../../../../fixtures/manageCases/createCase/C100/otherProceedings/otherProceedingsSubmitContent";
 import { Helpers } from "../../../../../common/helpers";
-import Config from "../../../../../config";
+import Config from "../../../../../utils/config.utils";
 import path from "path";
 
 interface OtherProceedingsSubmitPageOptions {

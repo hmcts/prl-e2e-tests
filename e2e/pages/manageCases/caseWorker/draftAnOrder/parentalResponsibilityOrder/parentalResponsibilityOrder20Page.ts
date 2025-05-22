@@ -1,7 +1,7 @@
 import { Locator, Page } from "@playwright/test";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
-import { ParentalResponsibilityOrder20Content } from "../../../../../fixtures/manageCases/caseWorker/draftAnOrder/parentalResponsibilityOrder/parentalResponsibilityOrder20Content";
+import { ParentalResponsibilityOrder20Content } from "../../../../../fixtures/manageCases/caseWorker/draftAnOrder/parentalResponsibilityOrder/parentalResponsibilityOrder20Content.ts";
 import {
   clippingCoords,
   ExuiMediaViewerPage,

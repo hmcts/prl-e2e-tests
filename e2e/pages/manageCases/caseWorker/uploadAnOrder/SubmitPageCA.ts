@@ -2,7 +2,7 @@ import { Page, expect } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors";
 import { Helpers } from "../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
-import { SubmitCAContent } from "../../../../fixtures/manageCases/caseWorker/createAnOrder/orderCA/submitCAContent";
+import { SubmitCAContent } from "../../../../fixtures/manageCases/caseWorker/createAnOrder/orderCA/submitCAContent.ts";
 import { CommonStaticText } from "../../../../common/commonStaticText";
 import { uploadOrderC100Options } from "../../../../common/types.ts";
 

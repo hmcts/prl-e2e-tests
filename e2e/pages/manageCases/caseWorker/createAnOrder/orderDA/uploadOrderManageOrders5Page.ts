@@ -5,7 +5,7 @@ import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelp
 import { ManageOrders1DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderDA/manageOrders1DAContent";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { UploadOrderManageOrders5Content } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderDA/uploadOrderManageOrders5Content";
-import config from "../../../../../config";
+import config from "../../../../../utils/config.utils";
 import { ManageOrders5CAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderCA/manageOrders5CAContent";
 
 interface UploadOrderManageOrders5PageOptions {

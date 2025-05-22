@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors";
 import { CommonStaticText } from "../../../../common/commonStaticText";
 import { StatementOfService1Content } from "../../../../fixtures/manageCases/caseProgression/statementOfService/statementOfService1Content";
-import config from "../../../../config";
+import config from "../../../../utils/config.utils";
 import { Helpers } from "../../../../common/helpers";
 // import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
 

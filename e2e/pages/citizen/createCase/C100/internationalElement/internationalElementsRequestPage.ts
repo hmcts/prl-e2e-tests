@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
-import { internationalElementsRequestContent } from "../../../../../fixtures/citizen/createCase/C100/internationalElement/internationalElementsRequestContent";
+import { internationalElementsRequestContent } from "../../../../../fixtures/citizen/createCase/C100/internationalElement/internationalElementsRequestContent.ts";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 
 interface InternationalElementsRequestPageOptions {

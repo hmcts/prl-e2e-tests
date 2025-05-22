@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
-import { PayContent } from "../../../../../fixtures/citizen/createCase/C100/pay/payContent";
+import { PayContent } from "../../../../../fixtures/citizen/createCase/C100/pay/payContent.ts";
 import { CommonContent } from "../../../../../fixtures/manageCases/commonContent.ts";
 
 interface PayPageOptions {

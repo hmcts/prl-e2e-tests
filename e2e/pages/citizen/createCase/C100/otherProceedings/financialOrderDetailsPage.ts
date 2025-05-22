@@ -3,7 +3,7 @@ import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { CitizensOtherProceedingsUniqueSelectors } from "../../../../../common/commonUniqueSelectors";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
-import { FinancialOrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/financialOrderDetailsContent";
+import { FinancialOrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/financialOrderDetailsContent.ts";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 
 interface FinancialOrderDetailsPageOptions {

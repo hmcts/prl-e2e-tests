@@ -5,7 +5,7 @@ import {
   reportAbuseInputIDs,
 } from "../../../../../../common/commonUniqueSelectors";
 import { Selectors } from "../../../../../../common/selectors";
-import { SexualAbuseContent } from "../../../../../../fixtures/citizen/createCase/C100/safetyConcerns/childConcerns/sexualAbuseContent";
+import { SexualAbuseContent } from "../../../../../../fixtures/citizen/createCase/C100/safetyConcerns/childConcerns/sexualAbuseContent.ts";
 import { SafetyConcernHelpers } from "../safetyConcernHelpers";
 import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper.ts";
 

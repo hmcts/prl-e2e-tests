@@ -1,6 +1,6 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
-import { MiamNoAccessToMediatorContent } from "../../../../../fixtures/citizen/createCase/C100/MIAM/miamNoAccessToMediatorContent";
+import { MiamNoAccessToMediatorContent } from "../../../../../fixtures/citizen/createCase/C100/MIAM/miamNoAccessToMediatorContent.ts";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";

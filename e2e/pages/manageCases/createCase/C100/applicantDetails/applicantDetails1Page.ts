@@ -3,7 +3,7 @@ import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelp
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { ApplicantGender } from "../../../../../common/types";
-import config from "../../../../../config";
+import config from "../../../../../utils/config.utils";
 import { ApplicantDetails1Content } from "../../../../../fixtures/manageCases/createCase/C100/applicantDetails/applicantDetails1Content";
 
 enum UniqueSelectors {

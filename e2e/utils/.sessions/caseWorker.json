@@ -1,0 +1,125 @@
+{
+  "cookies": [
+    {
+      "name": "xui-webapp",
+      "value": "s%3A0h2OOl2R5tRZEw81RLegSDux8Z4ny7Xl.JkW3fh7f70Kdvm3u%2F8dMv%2BituyFBUFsclcx0FzpGnj0",
+      "domain": "manage-case.aat.platform.hmcts.net",
+      "path": "/",
+      "expires": 1747947279.754195,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "exui-preferred-language",
+      "value": "en",
+      "domain": "manage-case.aat.platform.hmcts.net",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "XSRF-TOKEN",
+      "value": "a61ead46-f934-4c90-bf22-7a4fa517a165",
+      "domain": "idam-web-public.aat.platform.hmcts.net",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Strict"
+    },
+    {
+      "name": "seen_cookie_message",
+      "value": "yes",
+      "domain": "idam-web-public.aat.platform.hmcts.net",
+      "path": "/",
+      "expires": 1750337678,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "cookies_policy",
+      "value": "{\"essential\":true,\"analytics\":false,\"apm\":false}",
+      "domain": "idam-web-public.aat.platform.hmcts.net",
+      "path": "/",
+      "expires": 1779454478,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "cookies_preferences_set",
+      "value": "false",
+      "domain": "idam-web-public.aat.platform.hmcts.net",
+      "path": "/",
+      "expires": 1779454478,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "Idam.Session",
+      "value": "*AAJTSQACMDIABHR5cGUAA0pXVAACUzEAAjAx*eyJ0eXAiOiJKV1QiLCJjdHkiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.ZXlKMGVYQWlPaUpLVjFRaUxDSmxibU1pT2lKQk1USTRRMEpETFVoVE1qVTJJaXdpWVd4bklqb2laR2x5SW4wLi5GQW1FNTRaNE1tUGEtMmJGRGZtTTR3LkZwQmxiY0MyZEFyenVUMjhNUDdZUFh6UTRabEFad2E1bVdsRUMxRDJwRVFlaEREZktEdl9DWE00WTJsVGh6a1RiMG9JLTBEUXI2VWRuZzRKb1hfYkE1STBfWEZFWVFVU2xhMFpncEI0Z2NBc1pkdWRhU1lqS1BTcFNxRndKWlFTekxfMkRtMF9RelNvbm5HQUdNR1NEazE5U1Y1cHUyN25ieE85bElrWHBXbWNQR29ETElaU2ZKVlNVQ2hEWHAzSTZjSE1DU0ZMVWpNRmlpZENLN0FQM2lHdE9kV0ZyMFZOLUZxOWtmQzd3U3RMdV9OX1Z0OVJTZ2lodGR3NUNkX3VPSkhEbF8tUTJCMUJSNUtSd0tQUG5BMm9kU19YemJ5X1dneEhUZmpRTVA4cXJiZXduNVpzVmlDQ1RzSkhNLUpTaHM2MExUdmp4RjVnQ0NHQ0pqRTR2OWpYWW9iRHJCdkFRZGU4YXRkcllickk1b3ZCam9WWTRfSmdHcTJYR0Z0STlwSUZMbDJsdzRfaTZiT25XUE1uMEhNQVdDT3FQeXgzSzZqU0loLTcwUDRmUWk4dmVTX3ozdEE2cm9ITjhIak9lVFVkbDhEQlpnakNacS0tT0RHcXcyYkhsd182MEdQb2dCb1I3MGpna1dkWnRLazQtUDBBOTZyeFF5VVZPdHlJbnJwQkw3Y1hEVG9IMG9aMEtsX1ZzclByaGx3V2VHM2tUTnpTTzluSDMtRVllTGlqUnY3V1ZhSVBKTXRxOHJzaWtDTTNNVkZDam9qTUFQcVZMeHFacFJZN0RGeHZfVlVNN3hObWtfOV8zcmFmYkRXa2JpblZSOVpoaHhPOEpSWTNqVnlOenh3czVrNnVlWllrcVpCcG83Wk1aa3pRRC1EcjFVNExfUV9NRXF0M1pvcGFMRF93aFJwNHhZSi0zMVJ0aHJJbFRweFpqdkVSNEVMUUd6Ri03S1RKWnZ5NUJ1SXAyelVTREkzN3ZILWxtc0tWeGpwLWd3TllrVG96aDYyWnFxLTNfa0lqRVQzY3RiMjZ5T2JQaDFNcXNod2g3VWRwcWYycHFuemdEa2dZV0FMTkVCaTI2LXNXcWVFc1FsVTVJN3BCZWdrN2UyZWFMTUsxYkM5eHh3amNWZlVHT1A1RmlkN1RUZTcwRjY2aWFkalRXc0FVOG4tbDBsa0xVTlM3RXFmZjVoQ2JhejZMV19RYkRYNUZjbDE0LThtTG4tTlgwbml4OTVQLXNEZ3BzcWRHNUJQcF9VeTBZR1JNeEFfRXNuZjZNaE1CM2ZROXFrTGtBOHd2WnNWYWJVWnd0amp5b0dDT3d1Z0lDek01RTVweWxUTnZvZmwzU1hZZHBramZTWGdENTh6ZWVPaWRGYnA1N1g3U2lRTEFDVU1YRng0dHJxZnVCVWJod0llTUJLSGFtejQyT2pQZ2JmUEdaQV9hZVhnZ3NWQkwtM3JsUlFqSTY2QXJZdTJCckpvd011dTBpQ0xWZnBTNUtZRXJha2VWcEx2ZTFNcEpVN2s3dkVaZ2R2eDEzbkdaVXBTZnl0QnBnUVYyYWdIRVlmdXBxM01YemtrMVBvWThaQVI2cVdpR0FpNnNpQWpsZURqWlF0eVZBU1hxQnlicW94SmVzMWpyaXlEdHc3alN0TGtkRE5KSEx6MnhiY2xKdFk4V2FGUzRxdktWOWstYTJtY3BzLVRoM1Z3bERlMXhzSlFNbHpIdDNsN0F6dzBaMks1U2E2UWZaM0pwY3MydEktckdfb1c5MVoyLTg2MS1VMUtSZ0R4QjRWeUR1QWhONThDT0JLSmJxSmxMUzdtTFBnM3NYOGdOUmFmendaN3NaNEFQaXJMNTE2Wk0xYU9mMFhNSG9lMGlkNEg3Ri1hUGE0Qy1UM1FFaEU0S1JzSTA0dUdZTTZmYndHcE5KQUZVNFFITl9FbFcxZHcyeHpxTzVxb1BMcWhTVHZONTZvUmxZYmlZLXgxWkJuWHU2cmFVVW1sejRrbDd4b0UwM3dwbFFpT2xGaXZ2QWZwQTRyRTR4azNzNWZkMl9LSy1XSTFpMXhaTUFJSGdHRE9fakJCdVgwTWNSR2FER0tBc05NVXN2VnBxRUVhejdKVFJneXVQTDIwaXVTVkN4aUgySXo4TWFfd19pT18wd0ExVXdaT1plYXBIU1hETmdLR001RFVaZU9UV1c1MWJaRW5hNU9iMXZvRHd5akJWLlVYQnA3Q1YzaDJxYmZsTG9maTc0aGc.mVpp2reTSxE5iIVALLH9tObqqcPEueGHK9A29p9AmKQ",
+      "domain": "idam-web-public.aat.platform.hmcts.net",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "__userid__",
+      "value": "930a5478-3b1d-4fed-bf9d-fdfb2f9e9eaf",
+      "domain": "manage-case.aat.platform.hmcts.net",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "__auth__",
+      "value": "eyJ0eXAiOiJKV1QiLCJraWQiOiIxZXIwV1J3Z0lPVEFGb2pFNHJDL2ZiZUt1M0k9IiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiJwcmxfYWF0X2FtX3N3YW5zZWFfaGNhQGp1c3RpY2UuZ292LnVrIiwiY3RzIjoiT0FVVEgyX1NUQVRFTEVTU19HUkFOVCIsImF1dGhfbGV2ZWwiOjAsImF1ZGl0VHJhY2tpbmdJZCI6Ijk5NDU3ZWMzLWNjNmYtNGVkMS1hODNiLWIwYTdhZjYwZmQ1OC01NzUxMTU1Iiwic3VibmFtZSI6InBybF9hYXRfYW1fc3dhbnNlYV9oY2FAanVzdGljZS5nb3YudWsiLCJpc3MiOiJodHRwczovL2Zvcmdlcm9jay1hbS5zZXJ2aWNlLmNvcmUtY29tcHV0ZS1pZGFtLWFhdDIuaW50ZXJuYWw6ODQ0My9vcGVuYW0vb2F1dGgyL3JlYWxtcy9yb290L3JlYWxtcy9obWN0cyIsInRva2VuTmFtZSI6ImFjY2Vzc190b2tlbiIsInRva2VuX3R5cGUiOiJCZWFyZXIiLCJhdXRoR3JhbnRJZCI6Im1xN0xuWDNBMmw4NWwzZDU4RUlaa2VWWmhOYyIsIm5vbmNlIjoiZkZCODRPYlNleTdtSmhsSy1zZDY0c0U4WDlWcjZuS2VyVDFvYWs5VU9WRSIsImF1ZCI6Inh1aXdlYmFwcCIsIm5iZiI6MTc0NzkxODQ3OSwiZ3JhbnRfdHlwZSI6ImF1dGhvcml6YXRpb25fY29kZSIsInNjb3BlIjpbIm9wZW5pZCIsInByb2ZpbGUiLCJyb2xlcyIsImNyZWF0ZS11c2VyIiwibWFuYWdlLXVzZXIiLCJzZWFyY2gtdXNlciJdLCJhdXRoX3RpbWUiOjE3NDc5MTg0NzksInJlYWxtIjoiL2htY3RzIiwiZXhwIjoxNzQ3OTQ3Mjc5LCJpYXQiOjE3NDc5MTg0NzksImV4cGlyZXNfaW4iOjI4ODAwLCJqdGkiOiJmRmtfZF9UNGlOcXU0RWNyUGZTVmtvendFNjgifQ.VCp1028GR6dre5L8L9iJBoqt1Ka2R4z8Ydq1a6qv8t1fl-cHTZNSTfiZPrGBn3OgO-8IKpA2x64wf3v6kft1nXsx8CvcBUe-xq3D6XIXumcU0iPChLcuFU9f-EWyq6qWO9dBKR4oVl7aZxZfNS13-gaDrAeJ-XUXgJ2ce4cV687AOi_R-JSkjmha5CO_S9gh_FIoSnmGYPeiuelX4bA4TCHUkEXY-wx512wJcJtYQJ85bFpY13CZPxpFecsJm8k_ddXwo4VyFVzDX9i8GV8Wz30etvmvnHhj-FPDceb5s3PLvL1CHijFbYiwVadcrac5_j9ciOmzeA31lZ91nqbNKA",
+      "domain": "manage-case.aat.platform.hmcts.net",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "XSRF-TOKEN",
+      "value": "5G92KT1x-ZVTAgSkamLXRK7moIw5g1PTmWA8",
+      "domain": "manage-case.aat.platform.hmcts.net",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "hmcts-exui-cookies-930a5478-3b1d-4fed-bf9d-fdfb2f9e9eaf-mc-accepted",
+      "value": "true",
+      "domain": "manage-case.aat.platform.hmcts.net",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    }
+  ],
+  "origins": [
+    {
+      "origin": "https://manage-case.aat.platform.hmcts.net",
+      "localStorage": [
+        {
+          "name": "ng2Idle.main.idling",
+          "value": "false"
+        }
+      ]
+    }
+  ]
+}

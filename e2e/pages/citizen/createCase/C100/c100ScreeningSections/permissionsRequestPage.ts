@@ -1,6 +1,6 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
-import { PermissionsRequestContent } from "../../../../../fixtures/citizen/createCase/C100/c100ScreeningSections/permissionsRequestContent";
+import { PermissionsRequestContent } from "../../../../../fixtures/citizen/createCase/C100/c100ScreeningSections/permissionsRequestContent.ts";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";

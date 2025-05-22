@@ -2,8 +2,8 @@ import { Page } from "@playwright/test";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
-import { internationalElementsParentsContent } from "../../../../../fixtures/citizen/createCase/C100/internationalElement/internationalElementsParentsContent";
-import { InternationalElementsStartContent } from "../../../../../fixtures/citizen/createCase/C100/internationalElement/internationalElementsStartContent";
+import { internationalElementsParentsContent } from "../../../../../fixtures/citizen/createCase/C100/internationalElement/internationalElementsParentsContent.ts";
+import { InternationalElementsStartContent } from "../../../../../fixtures/citizen/createCase/C100/internationalElement/internationalElementsStartContent.ts";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 
 interface InternationalElementsParentsPageOptions {

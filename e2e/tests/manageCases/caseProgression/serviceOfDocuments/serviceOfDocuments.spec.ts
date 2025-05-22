@@ -1,5 +1,5 @@
 import { test } from "@playwright/test";
-import Config from "../../../../config";
+import Config from "../../../../utils/config.utils";
 import { ServiceOfDocuments } from "../../../../journeys/manageCases/caseProgression/servceOfDocuments/serviceOfDocuments";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });

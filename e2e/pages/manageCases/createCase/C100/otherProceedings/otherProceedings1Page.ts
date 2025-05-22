@@ -4,7 +4,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { OtherProceedingsContent } from "../../../../../fixtures/manageCases/createCase/C100/otherProceedings/otherProceedingsContent";
 import { Helpers } from "../../../../../common/helpers";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import Config from "../../../../../config";
+import Config from "../../../../../utils/config.utils";
 
 const modalSelector: string =
   "#mat-dialog-0 > ccd-remove-dialog > div > div > ";

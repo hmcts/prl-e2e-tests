@@ -5,7 +5,7 @@ import { MiamAttendanceType } from "./miamPreviousAttendancePage";
 import { MiamOtherReasonForNotAttending } from "./miamMiamOtherPage";
 import { MiamReasonForNoAccessToMediator } from "./miamNoAccessToMediatorPage";
 import { Selectors } from "../../../../../common/selectors";
-import { MiamMiamExemptionsSummaryContent } from "../../../../../fixtures/citizen/createCase/C100/MIAM/miamMiamExemptionsSummaryContent";
+import { MiamMiamExemptionsSummaryContent } from "../../../../../fixtures/citizen/createCase/C100/MIAM/miamMiamExemptionsSummaryContent.ts";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";

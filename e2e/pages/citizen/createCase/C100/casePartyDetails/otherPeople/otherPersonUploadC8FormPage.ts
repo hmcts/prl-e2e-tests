@@ -4,7 +4,7 @@ import { OtherPersonUploadC8FormContent } from "../../../../../../fixtures/citiz
 import { Helpers } from "../../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../../common/commonStaticText";
 import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper";
-import config from "../../../../../../config";
+import config from "../../../../../../utils/config.utils";
 
 interface otherPersonUploadC8FormOptions {
   page: Page;

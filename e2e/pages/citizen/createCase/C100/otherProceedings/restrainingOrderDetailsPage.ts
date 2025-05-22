@@ -3,7 +3,7 @@ import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { CitizensOtherProceedingsUniqueSelectors } from "../../../../../common/commonUniqueSelectors";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
-import { RestrainingOrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/restrainingOrderDetailsContent";
+import { RestrainingOrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/restrainingOrderDetailsContent.ts";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 
 interface RestrainingOrderDetailsPageOptions {

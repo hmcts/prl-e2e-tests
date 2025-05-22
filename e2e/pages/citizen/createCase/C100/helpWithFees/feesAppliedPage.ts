@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
-import { FeesAppliedContent } from "../../../../../fixtures/citizen/createCase/C100/helpWithFees/feesAppliedContent";
+import { FeesAppliedContent } from "../../../../../fixtures/citizen/createCase/C100/helpWithFees/feesAppliedContent.ts";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 
 enum inputIDs {

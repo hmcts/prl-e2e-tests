@@ -3,7 +3,7 @@ import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { yesNoDontKnow } from "../../../../../common/types";
-import { StartContent } from "../../../../../fixtures/citizen/createCase/C100/confidentiality/startContent";
+import { StartContent } from "../../../../../fixtures/citizen/createCase/C100/confidentiality/startContent.ts";
 import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
 
 enum inputIDs {

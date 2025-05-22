@@ -1,10 +1,10 @@
 import { Selectors } from "../../../../common/selectors";
-import { ServiceOfApplication2Content } from "../../../../fixtures/manageCases/caseProgression/serviceOfApplication/serviceOfApplication2Content";
+import { ServiceOfApplication2Content } from "../../../../fixtures/manageCases/caseProgression/serviceOfApplication/serviceOfApplication2Content.ts";
 import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
 import { Page } from "@playwright/test";
 import { Helpers } from "../../../../common/helpers";
-import config from "../../../../config";
-import { MiamPolicyUpgrade6Content } from "../../../../fixtures/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade6Content";
+import config from "../../../../utils/config.utils.ts";
+import { MiamPolicyUpgrade6Content } from "../../../../fixtures/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade6Content.ts";
 import { CommonStaticText } from "../../../../common/commonStaticText";
 import { createOrderFL401Options } from "../../../../common/types.ts";
 import { ManageOrders3DAContent } from "../../../../fixtures/manageCases/caseWorker/createAnOrder/orderDA/manageOrders3DAContent.ts";
