@@ -4,7 +4,7 @@ import { CitizensOtherProceedingsUniqueSelectors } from "../../../../../common/c
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { OccupationOrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/occupationOrderDetailsContent.ts";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 interface OccupationOrderDetailsPageOptions {
   page: Page;
@@ -107,7 +107,7 @@ export class OccupationOrderDetailsPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

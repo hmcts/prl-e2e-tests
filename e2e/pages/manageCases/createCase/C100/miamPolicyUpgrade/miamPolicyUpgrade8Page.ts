@@ -3,7 +3,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { MiamPolicyUpgrade8Content } from "../../../../../fixtures/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade8Content.ts";
 import { Helpers } from "../../../../../common/helpers";
 import config from "../../../../../utils/config.utils.ts";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 interface MiamPolicyUpgrade8PageOptions {
   page: Page;
@@ -78,7 +78,7 @@ export class MiamPolicyUpgrade8Page {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

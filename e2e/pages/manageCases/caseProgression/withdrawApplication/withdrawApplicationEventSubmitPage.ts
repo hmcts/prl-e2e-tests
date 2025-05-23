@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors";
 import { WithdrawApplicationEventSubmitContent } from "../../../../fixtures/manageCases/caseProgression/withdrawApplication/withdrawApplicationEventSubmitContent";
 import { Helpers } from "../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { CommonStaticText } from "../../../../common/commonStaticText";
 
 interface WithdrawApplicationEventSubmitPageOptions {
@@ -66,7 +66,7 @@ export class WithdrawApplicationEventSubmitPage {
       );
     }
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

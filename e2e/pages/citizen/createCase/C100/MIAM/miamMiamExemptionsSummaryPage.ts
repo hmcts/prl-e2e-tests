@@ -8,7 +8,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { MiamMiamExemptionsSummaryContent } from "../../../../../fixtures/citizen/createCase/C100/MIAM/miamMiamExemptionsSummaryContent.ts";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 interface MiamMiamExemptionsSummaryPageOptions {
   page: Page;
@@ -90,7 +90,7 @@ export class MiamMiamExemptionsSummaryPage {
       miamReasonForNoAccessToMediator: miamReasonForNoAccessToMediator,
     });
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

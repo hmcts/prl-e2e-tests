@@ -123,7 +123,7 @@ export class PayPage {
       ),
     ]);
     if (accessibilityTest) {
-      //   await AccessibilityTestHelper.run(page); / TODO: Pending accessibility PRL-6654
+      //   await new AxeUtils(page).audit(); / TODO: Pending accessibility PRL-6654
     }
   }
 

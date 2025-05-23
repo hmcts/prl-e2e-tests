@@ -3,7 +3,7 @@ import { Selectors } from "../../../../../../common/selectors.ts";
 import { ApplicantKeepingDetailsSafeContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/applicant/applicantKeepingDetailsSafeContent.ts";
 import { Helpers } from "../../../../../../common/helpers.ts";
 import { CommonStaticText } from "../../../../../../common/commonStaticText.ts";
-import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 interface applicantKeepingDetailsSafeOptions {
   page: Page;
@@ -44,7 +44,7 @@ export class ApplicantKeepingDetailsSafePage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.ts";
 import { RemoveDraftOrder1Content } from "../../../../fixtures/manageCases/caseProgression/removeDraftOrder/removeDraftOrder1Content.ts";
 import { Helpers } from "../../../../common/helpers.ts";
-// import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
+// import { AxeUtils } from "@hmcts/playwright-common";
 import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 
 interface RemoveDraftOrder1PageParams {
@@ -35,7 +35,7 @@ export class RemoveDraftOrder1Page {
       1,
     );
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page); //turn on once false positive is fixed for axe-core: https://github.com/alphagov/govuk-frontend/issues/979
+      // await new AxeUtils(page).audit(); //turn on once false positive is fixed for axe-core: https://github.com/alphagov/govuk-frontend/issues/979
     }
   }
 

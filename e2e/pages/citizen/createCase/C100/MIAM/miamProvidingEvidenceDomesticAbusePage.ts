@@ -3,7 +3,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { MiamProvidingEvidenceDomesticAbuseContent } from "../../../../../fixtures/citizen/createCase/C100/MIAM/miamProvidingEvidenceDomesticAbuseContent.ts";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 interface MiamProvidingEvidenceDomesticAbusePageOptions {
   page: Page;
@@ -77,9 +77,9 @@ export class MiamProvidingEvidenceDomesticAbusePage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page, [
-        uniqueSelectors.canProvideEvidenceNo,
-      ]);
+      await new AxeUtils(page).audit({
+        exclude: [uniqueSelectors.canProvideEvidenceNo],
+      });
     }
   }
 

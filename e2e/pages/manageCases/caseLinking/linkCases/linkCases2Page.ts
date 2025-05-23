@@ -3,7 +3,7 @@ import { Selectors } from "../../../../common/selectors";
 import { CommonStaticText } from "../../../../common/commonStaticText";
 import { LinkCases2Content } from "../../../../fixtures/manageCases/caseLinking/linkCases/linkCases2Conent";
 import { Helpers } from "../../../../common/helpers";
-// import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+// import { AxeUtils } from "@hmcts/playwright-common";
 
 interface LinkCases2PageOptions {
   page: Page;
@@ -55,7 +55,7 @@ export class LinkCases2Page {
       ),
     ]);
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page); //#TODO: Awaiting for accessibility ticket FPVTL-338 to be resolved
+      // await new AxeUtils(page).audit(); //#TODO: Awaiting for accessibility ticket FPVTL-338 to be resolved
     }
   }
 

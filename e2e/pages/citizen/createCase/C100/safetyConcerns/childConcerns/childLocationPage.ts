@@ -4,7 +4,7 @@ import { Helpers } from "../../../../../../common/helpers";
 import { Selectors } from "../../../../../../common/selectors";
 import { ChildLocationContent } from "../../../../../../fixtures/citizen/createCase/C100/safetyConcerns/childConcerns/childLocationContent.ts";
 import { SafetyConcernHelpers } from "../safetyConcernHelpers";
-import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 enum inputIDs {
   abductionReason = "#c1A_abductionReasonOutsideUk",
@@ -86,7 +86,7 @@ export class ChildLocationPage {
     ]);
     await SafetyConcernHelpers.checkPassportSidebar(page);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

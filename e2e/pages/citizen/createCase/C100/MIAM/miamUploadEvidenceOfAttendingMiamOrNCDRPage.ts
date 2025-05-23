@@ -4,7 +4,7 @@ import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import config from "../../../../../utils/config.utils";
 import { MiamUploadEvidenceOfAttendingMiamOrNCDRContent } from "../../../../../fixtures/citizen/createCase/C100/MIAM/miamUploadEvidenceOfAttendingMiamOrNCDRContent";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 interface miamUploadEvidenceOfAttendingMiamOrNCDRPageOptions {
   page: Page;
@@ -63,7 +63,7 @@ export class MiamUploadEvidenceOfAttendingMiamOrNCDRPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

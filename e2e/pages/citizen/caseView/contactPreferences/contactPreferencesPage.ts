@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.ts";
 import { CommonStaticText } from "../../../../common/commonStaticText.ts";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { ContactPreferencesContent } from "../../../../fixtures/citizen/caseView/contactPreferences/contactPreferencesContent.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import { contactOption } from "../../../../common/types.ts";
@@ -78,7 +78,7 @@ export class ContactPreferencesPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

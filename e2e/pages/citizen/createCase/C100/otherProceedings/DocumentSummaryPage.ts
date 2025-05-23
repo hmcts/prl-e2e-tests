@@ -3,7 +3,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { DocumentSummaryContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/DocumentSummaryContent";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { Helpers } from "../../../../../common/helpers";
-import AxeTest from "../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 interface DocumentSummaryPageOptions {
   page: Page;

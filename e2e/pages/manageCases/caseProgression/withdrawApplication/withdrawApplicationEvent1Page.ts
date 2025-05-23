@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.ts";
 import { WithdrawApplicationEvent1Content } from "../../../../fixtures/manageCases/caseProgression/withdrawApplication/withdrawApplicationEvent1Content.ts";
 import { Helpers } from "../../../../common/helpers.ts";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 
 interface WithdrawApplicationEvent1PageOptions {
@@ -56,7 +56,7 @@ export class WithdrawApplicationEvent1Page {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

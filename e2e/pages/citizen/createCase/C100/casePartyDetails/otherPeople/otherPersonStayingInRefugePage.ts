@@ -3,7 +3,7 @@ import { Selectors } from "../../../../../../common/selectors";
 import { OtherPersonStayingInRefugeContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/otherPeople/otherPersonStayingInRefugeContent";
 import { Helpers } from "../../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../../common/commonStaticText";
-import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 interface otherPersonStayingInRefugeOptions {
   page: Page;
@@ -74,7 +74,7 @@ export class OtherPersonStayingInRefugePage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

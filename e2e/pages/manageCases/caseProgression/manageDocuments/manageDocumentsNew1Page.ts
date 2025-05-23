@@ -110,7 +110,7 @@ export class ManageDocumentsNew1Page {
       ),
     ]);
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page);
+      // await new AxeUtils(page).audit();
     }
   }
   private static async fillInFields({

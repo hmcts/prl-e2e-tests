@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import { OrderType, solicitorCaseCreateType } from "../../../../common/types";
 import { Selectors } from "../../../../common/selectors";
 import { DraftAnOrder4Content } from "../../../../fixtures/manageCases/caseWorker/draftAnOrder/draftAnOrder4Content";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { orderTypesMap } from "../../../../journeys/manageCases/caseWorker/draftAnOrder/draftAnOrder";
 import { Helpers } from "../../../../common/helpers";
 
@@ -158,7 +158,7 @@ export class DraftAnOrder4Page {
       ]);
     }
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

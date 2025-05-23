@@ -3,7 +3,7 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { OtherChildNotInTheCaseSubmitContent } from "../../../../../fixtures/manageCases/createCase/C100/otherChildrenNotInTheCase/otherChildNotInTheCaseSubmitContent";
 import { Helpers } from "../../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { OtherChildNotInTheCase1Content } from "../../../../../fixtures/manageCases/createCase/C100/otherChildrenNotInTheCase/otherChildNotInTheCase1Content";
 
 interface C100OtherChildNotInTheCase1PageOptions {
@@ -86,7 +86,7 @@ export class OtherChildNotInTheCaseSubmitPage {
       }
     }
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

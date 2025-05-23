@@ -1,5 +1,5 @@
 import { Page } from "@playwright/test";
-// import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+// import { AxeUtils } from "@hmcts/playwright-common";
 import { Selectors } from "../../../../common/selectors";
 import { AdminEditAndApproveAnOrder1Content } from "../../../../fixtures/manageCases/caseWorker/serveApprovedOrder/adminEditAndApproveAnOrder1Content";
 import { Helpers } from "../../../../common/helpers";
@@ -42,7 +42,7 @@ export class AdminEditAndApproveAnOrder1Page {
       ),
     ]);
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page);
+      // await new AxeUtils(page).audit();
     }
     // #TODO commented out until ticket resolved FPET-1224
   }

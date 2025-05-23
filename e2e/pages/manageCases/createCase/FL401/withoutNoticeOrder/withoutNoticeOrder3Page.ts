@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { Helpers } from "../../../../../common/helpers";
-import accessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { WithoutNoticeOrderDetails3Content } from "../../../../../fixtures/manageCases/createCase/FL401/withoutNoticeOrder/withoutNoticeOrderDetails3Content";
 
 enum withoutNoticeOrderInputIDs {
@@ -66,7 +66,7 @@ export class WithoutNoticeOrder3Page {
       ),
     ]);
     if (accessibilityTest) {
-      await accessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 
@@ -89,7 +89,7 @@ export class WithoutNoticeOrder3Page {
       ),
     ]);
     if (accessibilityTest) {
-      await accessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

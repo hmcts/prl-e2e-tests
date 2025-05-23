@@ -3,7 +3,7 @@ import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 import { Page } from "@playwright/test";
 import { Helpers } from "../../../../../common/helpers.ts";
 import { StartAlternativeContent } from "../../../../../fixtures/citizen/caseView/keepDetailsPrivate/startAlternativeContent.ts";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 interface Start_alternativeParams {
   page: Page;
@@ -71,7 +71,9 @@ export class ApplicantStartAlternativePage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page, [UniqueSelectors.yes]); //false-positive (https://github.com/alphagov/govuk-frontend/issues/979, https://github.com/w3c/aria/issues/1404)
+      await new AxeUtils(page).audit({
+        exclude: UniqueSelectors.yes,
+      }); //false-positive (https://github.com/alphagov/govuk-frontend/issues/979, https://github.com/w3c/aria/issues/1404)
     }
   }
 
@@ -105,7 +107,10 @@ export class ApplicantStartAlternativePage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page, [UniqueSelectors.yes]); //false-positive (https://github.com/alphagov/govuk-frontend/issues/979, https://github.com/w3c/aria/issues/1404)
+      await new AxeUtils(page).audit({
+        exclude: UniqueSelectors.yes,
+      });
+      //false-positive (https://github.com/alphagov/govuk-frontend/issues/979, https://github.com/w3c/aria/issues/1404)
     }
   }
 

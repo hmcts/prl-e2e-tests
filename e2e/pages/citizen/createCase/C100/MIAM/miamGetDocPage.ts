@@ -3,7 +3,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { MiamGetDocContent } from "../../../../../fixtures/citizen/createCase/C100/MIAM/miamGetDocContent";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 interface MiamGetDocPageOptions {
   page: Page;
@@ -39,7 +39,7 @@ export class MiamGetDocPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

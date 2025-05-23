@@ -1,6 +1,6 @@
 import { Selectors } from "../../../../common/selectors";
 import { ServiceOfApplication2Content } from "../../../../fixtures/manageCases/caseProgression/serviceOfApplication/serviceOfApplication2Content.ts";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { Page } from "@playwright/test";
 import { Helpers } from "../../../../common/helpers";
 import config from "../../../../utils/config.utils.ts";
@@ -85,7 +85,7 @@ export class ServiceOfApplication2Page {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

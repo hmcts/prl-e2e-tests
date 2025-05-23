@@ -3,7 +3,7 @@ import { Selectors } from "../../../../../../common/selectors.ts";
 import { ApplicantUploadC8FormContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/applicant/applicantUploadC8FormContent.ts";
 import { Helpers } from "../../../../../../common/helpers.ts";
 import { CommonStaticText } from "../../../../../../common/commonStaticText.ts";
-import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 import config from "../../../../../../utils/config.utils.ts";
 
 interface applicantUploadC8FormOptions {
@@ -70,7 +70,7 @@ export class ApplicantUploadC8FormPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

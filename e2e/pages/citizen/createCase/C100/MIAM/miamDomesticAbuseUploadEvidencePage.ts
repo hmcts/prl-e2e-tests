@@ -4,7 +4,7 @@ import { MiamDomesticAbuseUploadEvidenceContent } from "../../../../../fixtures/
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import config from "../../../../../utils/config.utils";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 export interface MiamDomesticAbuseUploadEvidencePageOptions {
   page: Page;
@@ -55,7 +55,7 @@ export class MiamDomesticAbuseUploadEvidencePage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

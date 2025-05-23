@@ -4,7 +4,7 @@ import { Helpers } from "../../../../../../common/helpers.ts";
 import { Selectors } from "../../../../../../common/selectors.ts";
 import { ApplicantGender } from "../../../../../../common/types.ts";
 import { ApplicantPersonalDetailsContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/applicant/applicantPersonalDetailsContent.ts";
-import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 interface applicantPersonalDetailsPageOptions {
   page: Page;
@@ -96,12 +96,12 @@ export class ApplicantPersonalDetailsPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page, [
+      await new AxeUtils(page).audit({
+        exclude: [
         inputIds.changeNameYes,
         inputIds.identifyOther,
-      ]); //false-positive (https://github.com/alphagov/govuk-frontend/issues/979, https://github.com/w3c/aria/issues/1404)
+      ]}); //false-positive (https://github.com/alphagov/govuk-frontend/issues/979, https://github.com/w3c/aria/issues/1404)
     }
-  }
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,

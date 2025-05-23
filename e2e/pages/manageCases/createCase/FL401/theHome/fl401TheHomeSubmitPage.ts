@@ -1,5 +1,5 @@
 import { Page } from "@playwright/test";
-import accessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { Fl401TheHomeSubmitContent } from "../../../../../fixtures/manageCases/createCase/FL401/theHome/fl401TheHomeSubmitContent";
@@ -82,7 +82,7 @@ export class Fl401TheHomeSubmitPage {
       }),
     ]);
     if (accessibilityTest) {
-      await accessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

@@ -5,7 +5,7 @@ import { UploadAdditionalApplications2Content } from "../../../../fixtures/manag
 import { Helpers } from "../../../../common/helpers.ts";
 import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 import config from "../../../../utils/config.utils.ts";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 enum UniqueSelectors {
   c2ApplicationFileUpload = "#temporaryC2Document_document",
@@ -173,7 +173,7 @@ export class UploadAdditionalApplications2Page {
       ]);
     }
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

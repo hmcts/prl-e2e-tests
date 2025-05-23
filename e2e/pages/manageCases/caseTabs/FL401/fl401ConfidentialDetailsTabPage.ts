@@ -1,7 +1,7 @@
 import { expect, Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors";
 import { Helpers } from "../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { FL401ConfidentialDetailsTabContent } from "../../../../fixtures/manageCases/caseTabs/FL401/fl401ConfidentialDetailsTabContent.ts";
 import { ManageDocumentsNew1Content } from "../../../../fixtures/manageCases/caseProgression/manageDocuments/manageDocumentsNew1Content.ts";
 
@@ -94,7 +94,7 @@ export class FL401ConfidentialDetailsTabPage {
     }
 
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

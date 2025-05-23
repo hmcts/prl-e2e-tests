@@ -3,7 +3,7 @@ import { Selectors } from "../../../../common/selectors";
 import { CommonStaticText } from "../../../../common/commonStaticText";
 import { TransferToAnotherCourt1Content } from "../../../../fixtures/manageCases/caseProgression/transferToAnotherCourt/transferToAnotherCourt1Content";
 import { Helpers } from "../../../../common/helpers";
-// import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+// import { AxeUtils } from "@hmcts/playwright-common";
 
 interface TransferToAnotherCourt1PageOptions {
   page: Page;
@@ -69,7 +69,7 @@ export class TransferToAnotherCourt1Page {
       ),
     ]);
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page); //#TODO: Awaiting for accessibility ticket EXUI-2794 to be resolved
+      // await new AxeUtils(page).audit(); //#TODO: Awaiting for accessibility ticket EXUI-2794 to be resolved
     }
   }
 

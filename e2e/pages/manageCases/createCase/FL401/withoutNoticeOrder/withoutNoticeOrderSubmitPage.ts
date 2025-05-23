@@ -1,5 +1,5 @@
 import { Page } from "@playwright/test";
-import accessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { WithoutNoticeOrderSubmitContent } from "../../../../../fixtures/manageCases/createCase/FL401/withoutNoticeOrder/withoutNoticeOrderSubmitContent";
@@ -49,7 +49,7 @@ export class WithoutNoticeOrderSubmitPage {
       await this.checkPageLoadsNo(page);
     }
     if (accessibilityTest) {
-      await accessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
   private static async checkPageLoadsYes(

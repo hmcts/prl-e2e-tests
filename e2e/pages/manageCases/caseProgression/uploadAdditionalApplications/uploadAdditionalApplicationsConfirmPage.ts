@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.ts";
 import { CommonStaticText } from "../../../../common/commonStaticText.ts";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { solicitorCaseCreateType } from "../../../../common/types.ts";
 import { UploadAdditionalApplicationsConfirmContent } from "../../../../fixtures/manageCases/caseProgression/uploadAdditionalApplications/uploadAdditionalApplicationsConfirmContent.ts";
 import { Helpers } from "../../../../common/helpers.ts";
@@ -68,7 +68,7 @@ export class UploadAdditionalApplicationsConfirmPage {
       ]);
     }
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

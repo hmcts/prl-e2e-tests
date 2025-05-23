@@ -1,6 +1,6 @@
 import { expect, Page } from "@playwright/test";
 import { Selectors } from "../../../common/selectors.ts";
-import AccessibilityTestHelper from "../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { Helpers } from "../../../common/helpers.ts";
 import config from "../../../utils/config.utils.ts";
 import path from "path";
@@ -88,7 +88,7 @@ export class CheckYourAnswersPage {
     ]);
 
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

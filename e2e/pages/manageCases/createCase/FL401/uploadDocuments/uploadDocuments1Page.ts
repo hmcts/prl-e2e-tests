@@ -2,7 +2,7 @@ import { expect, Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { UploadDocuments1Content } from "../../../../../fixtures/manageCases/createCase/FL401/uploadDocuments/uploadDocuments1Content";
 import { Helpers } from "../../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { Config } from "../../../../../utils/config.utils";
 
 type wordOrPdfType = "word" | "pdf";
@@ -93,7 +93,7 @@ export class UploadDocuments1Page {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

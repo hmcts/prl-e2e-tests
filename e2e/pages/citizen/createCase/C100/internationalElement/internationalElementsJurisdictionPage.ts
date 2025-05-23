@@ -3,7 +3,7 @@ import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { internationalElementsJurisdictionContent } from "../../../../../fixtures/citizen/createCase/C100/internationalElement/internationalElementsJurisdictionContent.ts";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 interface InternationalElementsJurisdictionPageOptions {
   page: Page;
@@ -63,7 +63,9 @@ export class InternationalElementsJurisdictionPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page, [uniqueSelectors.yesRadio]);
+      await new AxeUtils(page).audit({
+        exclude: [uniqueSelectors.yesRadio],
+      });
     }
   }
 

@@ -3,7 +3,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { PermissionsRequestContent } from "../../../../../fixtures/citizen/createCase/C100/c100ScreeningSections/permissionsRequestContent.ts";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 enum inputIDs {
   permissionReasoning = "#sq_permissionsRequest",
@@ -49,7 +49,7 @@ export class PermissionsRequestPage {
       1,
     );
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

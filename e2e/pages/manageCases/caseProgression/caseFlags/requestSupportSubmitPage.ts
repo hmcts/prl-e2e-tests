@@ -5,7 +5,7 @@ import {
 } from "../../../../common/types.ts";
 import { Selectors } from "../../../../common/selectors.ts";
 import { CommonStaticText } from "../../../../common/commonStaticText.ts";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { RequestSupportSubmitContent } from "../../../../fixtures/manageCases/caseProgression/caseFlags/requestSupportSubmitContent.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 
@@ -89,7 +89,7 @@ export class RequestSupportSubmitPage {
       );
     }
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

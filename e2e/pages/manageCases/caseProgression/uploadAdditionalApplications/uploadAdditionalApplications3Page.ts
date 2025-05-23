@@ -2,7 +2,7 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.ts";
 import { CommonStaticText } from "../../../../common/commonStaticText.ts";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { UploadAdditionalApplications3Content } from "../../../../fixtures/manageCases/caseProgression/uploadAdditionalApplications/uploadAdditionalApplications3Content.ts";
 import config from "../../../../utils/config.utils.ts";
 import { solicitorCaseCreateType } from "../../../../common/types.ts";
@@ -111,7 +111,7 @@ export class UploadAdditionalApplications3Page {
       );
     }
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

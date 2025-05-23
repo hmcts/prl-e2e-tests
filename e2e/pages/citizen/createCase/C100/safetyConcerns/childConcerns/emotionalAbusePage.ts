@@ -7,7 +7,7 @@ import {
 import { Selectors } from "../../../../../../common/selectors";
 import { EmotionalAbuseContent } from "../../../../../../fixtures/citizen/createCase/C100/safetyConcerns/childConcerns/emotionalAbuseContent.ts";
 import { SafetyConcernHelpers } from "../safetyConcernHelpers";
-import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 interface EmotionalAbusePageOptions {
   page: Page;
@@ -51,11 +51,13 @@ export class EmotionalAbusePage {
     await SafetyConcernHelpers.checkStaticTextChild(page);
     await SafetyConcernHelpers.checkSidebarChild(page);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page, [
-        reportAbuseInputIDs.ongoingBehaviorYes,
-        reportAbuseInputIDs.seekHelpYes,
-        reportAbuseInputIDs.seekHelpNo,
-      ]); //false-positive (https://github.com/alphagov/govuk-frontend/issues/979, https://github.com/w3c/aria/issues/1404)
+      await new AxeUtils(page).audit({
+        exclude: [
+          reportAbuseInputIDs.ongoingBehaviorYes,
+          reportAbuseInputIDs.seekHelpYes,
+          reportAbuseInputIDs.seekHelpNo,
+        ],
+      }); //false-positive (https://github.com/alphagov/govuk-frontend/issues/979, https://github.com/w3c/aria/issues/1404)
     }
   }
 

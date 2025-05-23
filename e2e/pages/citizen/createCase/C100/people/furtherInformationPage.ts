@@ -5,7 +5,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { yesNoDontKnow } from "../../../../../common/types";
 import { FurtherInformationContent } from "../../../../../fixtures/citizen/createCase/C100/people/furtherInformationContent.ts";
 import { uniqueSelectors } from "../urgencyAndWithoutNotice/urgentFirstHearingPage";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 interface FurtherInformationPageOptions {
   page: Page;
@@ -103,9 +103,9 @@ export class FurtherInformationPage {
       );
     }
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page, [
-        radioIds.childrenKnownToSocialServices,
-      ]); //false-positive (https://github.com/alphagov/govuk-frontend/issues/979, https://github.com/w3c/aria/issues/1404)
+      await new AxeUtils(page).audit({
+        exclude: [radioIds.childrenKnownToSocialServices],
+      }); //false-positive (https://github.com/alphagov/govuk-frontend/issues/979, https://github.com/w3c/aria/issues/1404)
     }
   }
 

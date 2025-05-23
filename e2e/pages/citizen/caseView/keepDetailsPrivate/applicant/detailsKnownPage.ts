@@ -1,5 +1,5 @@
 import { Selectors } from "../../../../../common/selectors.ts";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { Page } from "@playwright/test";
 import { Helpers } from "../../../../../common/helpers.ts";
 import { yesNoDontKnow } from "../../../../../common/types.ts";
@@ -65,7 +65,7 @@ export class DetailsKnownPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 
@@ -101,7 +101,7 @@ export class DetailsKnownPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

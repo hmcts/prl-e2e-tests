@@ -3,7 +3,7 @@ import { Selectors } from "../../../../../../common/selectors";
 import { OtherPersonUploadC8FormContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/otherPeople/otherPersonUploadC8FormContent";
 import { Helpers } from "../../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../../common/commonStaticText";
-import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import config from "../../../../../../utils/config.utils";
 
 interface otherPersonUploadC8FormOptions {
@@ -70,7 +70,7 @@ export class OtherPersonUploadC8FormPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

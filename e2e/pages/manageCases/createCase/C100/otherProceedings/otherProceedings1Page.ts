@@ -3,7 +3,7 @@ import { otherProceedingsRadios } from "../../../../../common/types";
 import { Selectors } from "../../../../../common/selectors";
 import { OtherProceedingsContent } from "../../../../../fixtures/manageCases/createCase/C100/otherProceedings/otherProceedingsContent";
 import { Helpers } from "../../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import Config from "../../../../../utils/config.utils";
 
 const modalSelector: string =
@@ -129,7 +129,7 @@ export class OtherProceedings1Page {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

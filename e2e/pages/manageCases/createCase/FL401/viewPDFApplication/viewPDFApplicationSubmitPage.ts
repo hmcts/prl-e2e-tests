@@ -1,5 +1,5 @@
 import { Page } from "@playwright/test";
-import accessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { Selectors } from "../../../../../common/selectors";
 import { SubmitContent } from "../../../../../fixtures/manageCases/createCase/FL401/viewPDFApplication/submitContent";
 
@@ -18,7 +18,7 @@ export class ViewPDFApplicationSubmitPage {
   ): Promise<void> {
     await Promise.all([this.checkPageLoads(page)]);
     if (accessibilityTest) {
-      await accessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

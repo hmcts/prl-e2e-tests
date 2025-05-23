@@ -1,5 +1,5 @@
 import { Page } from "@playwright/test";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { Selectors } from "../../../../../common/selectors";
 import { Helpers } from "../../../../../common/helpers";
 import { CaseDetailsSummaryDAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderDA/caseDetailsSummaryDAContent";
@@ -61,7 +61,7 @@ export class CaseDetailsSummaryPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

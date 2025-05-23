@@ -3,7 +3,7 @@ import { Selectors } from "../../../../../../common/selectors";
 import { OtherPersonKeepingDetailsSafeContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/otherPeople/otherPersonKeepingDetailsSafeContent";
 import { Helpers } from "../../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../../common/commonStaticText";
-import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 interface otherPersonKeepingDetailsSafeOptions {
   page: Page;
@@ -44,7 +44,7 @@ export class OtherPersonKeepingDetailsSafePage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

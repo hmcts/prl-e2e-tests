@@ -4,7 +4,7 @@ import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { TellUsAboutYourSituationContent } from "../../../../../fixtures/citizen/createCase/C100/urgencyAndWithoutNotice/tellUsAboutYourSituationContent.ts";
 import { uniqueSelectors } from "./urgentFirstHearingPage";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 interface TellUsAboutYourSituationPageOptions {
   page: Page;
@@ -107,7 +107,9 @@ export class TellUsAboutYourSituationPage {
       1,
     );
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page, [radioIds.yes]); //false-positive (https://github.com/alphagov/govuk-frontend/issues/979, https://github.com/w3c/aria/issues/1404)
+      await new AxeUtils(page).audit({
+        exclude: [radioIds.yes],
+      }); //false-positive (https://github.com/alphagov/govuk-frontend/issues/979, https://github.com/w3c/aria/issues/1404)
     }
   }
 

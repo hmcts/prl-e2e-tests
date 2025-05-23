@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import { C100MiamPolicyUpgrade1PageType } from "./miamPolicyUpgrade1Page";
 import { miamSelection } from "./miamPolicyUpgrade6Page";
 import { Selectors } from "../../../../../common/selectors";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { MiamPolicyUpgradeSubmitContent } from "../../../../../fixtures/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgradeSubmitContent";
 import { Helpers } from "../../../../../common/helpers";
 
@@ -81,7 +81,7 @@ export class MiamPolicyUpgradeSubmitPage {
       }),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

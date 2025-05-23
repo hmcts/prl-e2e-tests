@@ -1,4 +1,4 @@
-import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../../common/selectors";
 import { MainlyLiveWithContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/otherPeople/mainlyLiveWithContent";
@@ -75,7 +75,7 @@ export class MainlyLiveWithPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

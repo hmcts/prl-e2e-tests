@@ -104,7 +104,7 @@ export class ReviewPage {
       ),
     ]);
     // if (accessibilityTest) {
-    //   await AccessibilityTestHelper.run(page); #TODO Disabled pending PRL-6619 ticket
+    //   await new AxeUtils(page).audit(); #TODO Disabled pending PRL-6619 ticket
     // }
   }
 

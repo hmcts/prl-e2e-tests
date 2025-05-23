@@ -3,7 +3,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { MiamNoAccessToMediatorContent } from "../../../../../fixtures/citizen/createCase/C100/MIAM/miamNoAccessToMediatorContent.ts";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 interface MiamNoAccessToMediatorPageOptions {
   page: Page;
@@ -84,11 +84,13 @@ export class MiamNoAccessToMediatorPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page, [
-        uniqueSelectors.disabilityRadio,
-        uniqueSelectors.unableToConductWithin15DaysRadio,
-        uniqueSelectors.no15MilesRadio,
-      ]);
+      await new AxeUtils(page).audit({
+        exclude: [
+          uniqueSelectors.disabilityRadio,
+          uniqueSelectors.unableToConductWithin15DaysRadio,
+          uniqueSelectors.no15MilesRadio,
+        ],
+      });
     }
   }
 

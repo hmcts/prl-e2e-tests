@@ -134,7 +134,7 @@ export class SendAndReplyToMessages5Page {
     }
     // TODO Disabled pending ticket FPET:1211
     // if (accessibilityTest) {
-    //   await AccessibilityTestHelper.run(page);
+    //   await new AxeUtils(page).audit();
     // }
   }
 

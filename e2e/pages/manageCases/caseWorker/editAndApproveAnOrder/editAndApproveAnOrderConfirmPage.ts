@@ -3,7 +3,7 @@ import { JudgeOrderAction } from "../../../../common/types";
 import { Selectors } from "../../../../common/selectors";
 import { EditAndApproveAnOrderConfirmContent } from "../../../../fixtures/manageCases/caseWorker/editAndApproveAnOrder/editAndApproveAnOrderConfirmContent";
 import { Helpers } from "../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 export class EditAndApproveAnOrderConfirmPage {
   public static async editAndApproveOrderConfirmPage(
@@ -55,7 +55,7 @@ export class EditAndApproveAnOrderConfirmPage {
       ]);
     }
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

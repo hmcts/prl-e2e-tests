@@ -1,4 +1,4 @@
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { UrgentFirstHearingContent } from "../../../../../fixtures/citizen/createCase/C100/urgencyAndWithoutNotice/urgentFirstHearingContent";
@@ -80,7 +80,7 @@ export class UrgentFirstHearingPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 
