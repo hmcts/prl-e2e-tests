@@ -61,7 +61,24 @@ export class Helpers {
     event: c100SolicitorEvents | fl401SolicitorEvents,
   ): Promise<void> {
     const eventSelector = `${Selectors.markdown} > ${Selectors.div} > ${Selectors.p} > ${Selectors.a}:has-text("${event}")`;
-    await page.click(eventSelector);
+    await page.waitForSelector(`.mat-tab-label-content:text-is("Tasks")`);
+    await page.locator(eventSelector).waitFor();
+    //retry until element is clicked or task heading is no longer visible
+    await expect
+      .poll(
+        async () => {
+          const taskTitleStillVisible = await page
+            .locator('.mat-tab-label-content:text-is("Tasks")')
+            .isVisible();
+          if (taskTitleStillVisible) await page.click(eventSelector);
+          return taskTitleStillVisible;
+        },
+        {
+          intervals: [1_000, 2_000, 10_000],
+          timeout: 100_000,
+        },
+      )
+      .toBeFalsy();
   }
 
   public static async checkVisibleAndPresent(
@@ -432,7 +449,6 @@ export class Helpers {
     page: Page,
     event: c100SolicitorEvents | fl401SolicitorEvents,
   ): Promise<void> {
-    await page.waitForURL("**/*Tasks", {waitUntil: "load"});
     if (
       process.env.MANAGE_CASES_TEST_ENV === "aat" ||
       process.env.MANAGE_CASES_TEST_ENV === "demo"
