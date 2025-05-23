@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import { getAccessToken } from "../common/caseHelpers/getAccessTokenHelper.ts";
 import IdamLoginHelper from "../common/userHelpers/idamLoginHelper.ts";
 import config from "../config";
+import process from "node:process";
 
 dotenv.config();
 
@@ -52,11 +53,15 @@ setup("Setup case manager user", async ({ page }) => {
 });
 
 setup("Setup caseWorker user", async ({ page }) => {
-  await IdamLoginHelper.signInLongLivedUser(
+  const userInfo = await IdamLoginHelper.setupAndSignInUser(
     page,
-    "caseWorker",
     config.manageCasesBaseURLCase,
+    "caseWorker",
+    true,
   );
+  if (process.env.PWDEBUG) {
+    console.log(userInfo);
+  }
 });
 
 setup("Setup Stoke court admin user", async ({ page }) => {

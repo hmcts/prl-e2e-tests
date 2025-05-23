@@ -3,6 +3,7 @@ import fs, { existsSync, readFileSync } from "fs";
 import Config from "../../config.ts";
 import { setupUser } from "./idamCreateUserApiHelper.ts";
 import { UserCredentialsLong, UserLoginInfo } from "../types.ts";
+
 export class IdamLoginHelper {
   private static fields: UserLoginInfo = {
     username: "#username",
@@ -61,7 +62,6 @@ export class IdamLoginHelper {
   ): Promise<void> {
     const userCredentials = Config.getUserCredentials(user);
     if (!userCredentials) return;
-
     await this.signIn(
       page,
       userCredentials.email,
@@ -77,23 +77,37 @@ export class IdamLoginHelper {
     userType: string,
     returnUserInfo?: boolean,
   ): Promise<UserCredentialsLong | void> {
-    const token = process.env.CREATE_USER_BEARER_TOKEN as string;
-    if (!token) return;
-    const userInfo = await setupUser(token, userType);
-    await this.signIn(
-      page,
-      userInfo.email,
-      userInfo.password,
-      application,
-      userType,
-    );
-    if (returnUserInfo)
-      return {
-        forename: userInfo.forename,
-        surname: userInfo.surname,
-        email: userInfo.email,
-        password: userInfo.password,
-      };
+    //check whether the sessionPath is still valid and if it is, return as you dont need to create a new user
+    //citizen users should be created for each test
+    const sessionPath = `${Config.sessionStoragePath}${userType}.json`;
+    if (
+      userType !== "citizen" &&
+      existsSync(sessionPath) &&
+      this.isSessionValid(sessionPath)
+    ) {
+      return;
+    }
+    //if there isn't a valid session path, create the new user
+    else {
+      const token = process.env.CREATE_USER_BEARER_TOKEN as string;
+      if (!token) return;
+      const userInfo = await setupUser(token, userType);
+      await this.signIn(
+        page,
+        userInfo.email,
+        userInfo.password,
+        application,
+        userType,
+      );
+      if (returnUserInfo) {
+        return {
+          forename: userInfo.forename,
+          surname: userInfo.surname,
+          email: userInfo.email,
+          password: userInfo.password,
+        };
+      }
+    }
   }
 
   private static isSessionValid(path: string): boolean {
