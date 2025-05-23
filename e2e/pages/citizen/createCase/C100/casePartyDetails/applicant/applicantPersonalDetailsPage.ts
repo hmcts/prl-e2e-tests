@@ -97,11 +97,11 @@ export class ApplicantPersonalDetailsPage {
     ]);
     if (accessibilityTest) {
       await new AxeUtils(page).audit({
-        exclude: [
-        inputIds.changeNameYes,
-        inputIds.identifyOther,
-      ]}); //false-positive (https://github.com/alphagov/govuk-frontend/issues/979, https://github.com/w3c/aria/issues/1404)
+        exclude: [inputIds.changeNameYes, inputIds.identifyOther],
+      }); //false-positive (https://github.com/alphagov/govuk-frontend/issues/979, https://github.com/w3c/aria/issues/1404)
     }
+  }
+
   private static async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,

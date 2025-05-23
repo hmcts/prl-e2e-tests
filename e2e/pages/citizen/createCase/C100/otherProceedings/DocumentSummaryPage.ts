@@ -56,7 +56,7 @@ export class DocumentSummaryPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AxeTest.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

@@ -77,7 +77,7 @@ export class UndertakingOrderDocumentUploadPage {
       `${Selectors.li}`,
     );
     if (accessibilityTest) {
-      await AxeTest.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

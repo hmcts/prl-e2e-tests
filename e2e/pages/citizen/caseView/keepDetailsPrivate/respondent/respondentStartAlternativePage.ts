@@ -61,8 +61,8 @@ export class RespondentStartAlternativePage {
     if (accessibilityTest) {
       await new AxeUtils(page).audit({
         exclude: UniqueSelectors.yes,
-        });
-      } //false-positive (https://github.com/alphagov/govuk-frontend/issues/979, https://github.com/w3c/aria/issues/1404)
+      });
+      //false-positive (https://github.com/alphagov/govuk-frontend/issues/979, https://github.com/w3c/aria/issues/1404)
     }
   }
 
