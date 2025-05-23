@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
-import { NeedHelpWithFeesContent } from "../../../../../fixtures/citizen/createCase/C100/helpWithFees/needHelpWithFeesContent";
+import { NeedHelpWithFeesContent } from "../../../../../fixtures/citizen/createCase/C100/helpWithFees/needHelpWithFeesContent.ts";
 import { Helpers } from "../../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { CommonContent } from "../../../../../fixtures/manageCases/commonContent.ts";
 
@@ -86,7 +86,7 @@ export class NeedHelpWithFeesPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

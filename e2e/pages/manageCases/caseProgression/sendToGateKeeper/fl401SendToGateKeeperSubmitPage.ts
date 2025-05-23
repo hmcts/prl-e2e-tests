@@ -4,7 +4,7 @@ import { Fl401SendToGateKeeper1Content } from "../../../../fixtures/manageCases/
 import { Helpers } from "../../../../common/helpers";
 import { CommonStaticText } from "../../../../common/commonStaticText";
 import { Fl401SendToGateKeeperSubmitContent } from "../../../../fixtures/manageCases/caseProgression/sendToGateKepper/fl401SendToGateKeeperSubmitContent";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { CommonContent } from "../../../../fixtures/manageCases/commonContent";
 
 interface FL401SendToGateKeeperSubmitOptions {
@@ -87,7 +87,7 @@ export class FL401SendToGateKeeperSubmitPage {
         ),
       ]);
       if (accessibilityTest) {
-        await AccessibilityTestHelper.run(page);
+        await new AxeUtils(page).audit();
       }
     }
   }

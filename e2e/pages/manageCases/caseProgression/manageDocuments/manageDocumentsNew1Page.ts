@@ -3,7 +3,7 @@ import { ManageDocumentsNew1Content } from "../../../../fixtures/manageCases/cas
 import { Selectors } from "../../../../common/selectors.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import { CommonStaticText } from "../../../../common/commonStaticText.ts";
-import config from "../../../../config.ts";
+import config from "../../../../utils/config.utils.ts";
 
 interface ManageDocumentsNew1PageParams {
   page: Page;
@@ -110,7 +110,7 @@ export class ManageDocumentsNew1Page {
       ),
     ]);
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page);
+      // await new AxeUtils(page).audit();
     }
   }
   private static async fillInFields({

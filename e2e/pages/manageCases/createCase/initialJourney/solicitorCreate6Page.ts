@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors";
 import { SolicitorCreate6Content } from "../../../../fixtures/manageCases/createCase/initialJourney/solicitorCreate6Content";
 import { Helpers } from "../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 export class SolicitorCreate6Page {
   public static async solicitorCreate6Page(
@@ -56,7 +56,7 @@ export class SolicitorCreate6Page {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

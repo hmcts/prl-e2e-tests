@@ -1,5 +1,5 @@
 import { expect, Page } from "@playwright/test";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import {
@@ -83,7 +83,7 @@ export class RespondentDetailsPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 
@@ -221,7 +221,7 @@ export class RespondentDetailsPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 
@@ -249,7 +249,7 @@ export class RespondentDetailsPage {
     expect(receivedAddresses).toEqual(expectedAddresses);
 
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 }

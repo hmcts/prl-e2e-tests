@@ -73,7 +73,7 @@ export class ServiceOfDocuments1Page {
       ),
     ]);
     // if (accessibilityTest) {
-    //   await AccessibilityTestHelper.run(page); #TODO Enable after resolving FPET-1225
+    //   await new AxeUtils(page).audit(); #TODO Enable after resolving FPET-1225
     // }
   }
 

@@ -1,5 +1,5 @@
 import { Page } from "@playwright/test";
-import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { Selectors } from "../../../../../../common/selectors";
 import { PassportAmountContent } from "../../../../../../fixtures/citizen/createCase/C100/safetyConcerns/childConcerns/passportAmountContent";
 import { Helpers } from "../../../../../../common/helpers";
@@ -111,7 +111,7 @@ export class PassportAmountPage {
     ]);
     await SafetyConcernHelpers.checkPassportSidebar(page);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

@@ -176,7 +176,7 @@ export class ManageOrders19Page {
       ),
     ]);
     // if (accessibilityTest) {                         accessibility bug ticket raised: FPET-1210
-    //   await AccessibilityTestHelper.run(page);
+    //   await new AxeUtils(page).audit();
     // }
   }
 

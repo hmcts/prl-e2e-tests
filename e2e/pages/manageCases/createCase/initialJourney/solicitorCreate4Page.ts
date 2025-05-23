@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors";
 import { Helpers } from "../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { SolicitorCreate4Content } from "../../../../fixtures/manageCases/createCase/initialJourney/solicitorCreate4Content";
 
 enum caseName {
@@ -60,7 +60,7 @@ export class SolicitorCreate4Page {
       ]);
     }
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

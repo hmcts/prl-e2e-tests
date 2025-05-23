@@ -8,7 +8,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { C100RespondentDetailsSubmitContent } from "../../../../../fixtures/manageCases/createCase/C100/respondentDetails/c100RespondentDetailsSubmitContent";
 import { Helpers } from "../../../../../common/helpers";
 import { C100RespondentDetails1Content } from "../../../../../fixtures/manageCases/createCase/C100/respondentDetails/c100RespondentDetails1Content";
-// import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
+// import { AxeUtils } from "@hmcts/playwright-common";
 
 interface RespondentDetailsSubmitPageOptions {
   page: Page;
@@ -116,7 +116,7 @@ export class RespondentDetailsSubmitPage {
       ]);
     }
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page); //bug ticket raised: EXUI-3000
+      // await new AxeUtils(page).audit(); //bug ticket raised: EXUI-3000
     }
   }
 

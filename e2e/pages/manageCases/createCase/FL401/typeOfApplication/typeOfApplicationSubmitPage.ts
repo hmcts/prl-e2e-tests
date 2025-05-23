@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { SubmitContent } from "../../../../../fixtures/manageCases/createCase/FL401/typeOfApplication/submitContent";
 import { Helpers } from "../../../../../common/helpers";
-import accessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { dummyCaseNumber } from "./typeOfApplication2Page";
 
 export class TypeOfApplicationSubmitPage {
@@ -25,7 +25,7 @@ export class TypeOfApplicationSubmitPage {
       this.checkFilledInData(page, isLinked),
     ]);
     if (accessibilityTest) {
-      await accessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

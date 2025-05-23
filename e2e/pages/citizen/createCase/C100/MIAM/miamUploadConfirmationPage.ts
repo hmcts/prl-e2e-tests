@@ -3,7 +3,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { MiamUploadConfirmationContent } from "../../../../../fixtures/citizen/createCase/C100/MIAM/miamUploadConfirmationContent";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 interface MiamUploadConfirmationPageOptions {
   page: Page;
@@ -42,7 +42,7 @@ export class MiamUploadConfirmationPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

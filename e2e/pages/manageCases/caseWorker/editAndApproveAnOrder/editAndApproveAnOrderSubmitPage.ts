@@ -3,7 +3,7 @@ import { Selectors } from "../../../../common/selectors";
 import { CommonStaticText } from "../../../../common/commonStaticText";
 import { JudgeOrderAction, OrderType } from "../../../../common/types";
 import { EditAndApproveAnOrderSubmitContent } from "../../../../fixtures/manageCases/caseWorker/editAndApproveAnOrder/editAndApproveAnOrderSubmitContent";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { Helpers } from "../../../../common/helpers";
 import { EditAndApproveAnOrder2Page } from "./editAndApproveAnOrder2Page";
 import { orderTypesMap } from "../../../../journeys/manageCases/caseWorker/draftAnOrder/draftAnOrder";
@@ -83,7 +83,7 @@ export class EditAndApproveAnOrderSubmitPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

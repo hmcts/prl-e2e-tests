@@ -3,8 +3,8 @@ import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { CitizensOtherProceedingsUniqueSelectors } from "../../../../../common/commonUniqueSelectors";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
-import { ChildMaintenanceOrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/childMaintenanceOrderDetailsContent";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
+import { ChildMaintenanceOrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/childMaintenanceOrderDetailsContent.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 interface ChildMaintenanceOrderDetailsPageOptions {
   page: Page;
@@ -107,7 +107,7 @@ export class ChildMaintenanceOrderDetailsPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

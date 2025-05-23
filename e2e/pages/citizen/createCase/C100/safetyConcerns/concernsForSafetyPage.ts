@@ -2,8 +2,8 @@ import { Page } from "@playwright/test";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
-import { ConcernsForSafetyContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/concernsForSafetyContent";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
+import { ConcernsForSafetyContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/concernsForSafetyContent.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 enum inputIDs {
   yes = "#c1A_haveSafetyConcerns",
@@ -101,7 +101,9 @@ export class ConcernsForSafetyPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page, [inputIDs.yes]); //false-positive (https://github.com/alphagov/govuk-frontend/issues/979, https://github.com/w3c/aria/issues/1404)
+      await new AxeUtils(page).audit({
+        exclude: [inputIDs.yes],
+      }); //false-positive (https://github.com/alphagov/govuk-frontend/issues/979, https://github.com/w3c/aria/issues/1404)
     }
   }
 

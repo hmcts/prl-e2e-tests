@@ -1,6 +1,6 @@
 import { Page, expect } from "@playwright/test";
 import { Selectors } from "../../../common/selectors.ts";
-import AccessibilityTestHelper from "../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { StatementOfTruthContent } from "../../../fixtures/edgeCases/submission/statementOfTruthContent.ts";
 
 interface StatementOfTruthPageOptions {
@@ -38,7 +38,7 @@ export class StatementOfTruthPage {
       ).toBeVisible(),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 }

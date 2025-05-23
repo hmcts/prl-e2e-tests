@@ -1,5 +1,5 @@
 import { Page } from "@playwright/test";
-// import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+// import { AxeUtils } from "@hmcts/playwright-common";
 import { Selectors } from "../../../../common/selectors.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import { CommonStaticText } from "../../../../common/commonStaticText.ts";
@@ -73,7 +73,7 @@ export class RestrictedCaseAccess1Page {
     ]);
 
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page); //turn back on once EXUI-3016 is resolved.
+      // await new AxeUtils(page).audit(); //turn back on once EXUI-3016 is resolved.
     }
   }
 

@@ -1,6 +1,6 @@
 import { Selectors } from "../../../../../common/selectors.ts";
 import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { Page } from "@playwright/test";
 import { Helpers } from "../../../../../common/helpers.ts";
 import { RespondentPrivateDetailsConfirmedContent } from "../../../../../fixtures/citizen/caseView/respondent/keepDetailsPrivate/respondentPrivateDetailsConfirmedContent.ts";
@@ -89,7 +89,7 @@ export class RespondentPrivateDetailsConfirmedPage {
       ]);
     }
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

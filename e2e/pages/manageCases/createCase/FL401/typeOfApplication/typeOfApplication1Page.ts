@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { Helpers } from "../../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { TypeOfApplication1Content } from "../../../../../fixtures/manageCases/createCase/FL401/typeOfApplication/typeOfApplication1Content";
 
 enum applicationOrderSelectionIds {
@@ -44,7 +44,7 @@ export class TypeOfApplication1Page {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

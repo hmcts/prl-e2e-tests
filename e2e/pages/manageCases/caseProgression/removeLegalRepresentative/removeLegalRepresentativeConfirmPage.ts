@@ -1,5 +1,5 @@
 import { Page } from "@playwright/test";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { Selectors } from "../../../../common/selectors.ts";
 import { RemoveLegalRepresentativeConfirmContent } from "../../../../fixtures/manageCases/caseProgression/removeLegalRepresentative/removeLegalRepresentativeConfirmContent.ts";
 import { Helpers } from "../../../../common/helpers.ts";
@@ -41,7 +41,7 @@ export class RemoveLegalRepresentativeConfirmPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

@@ -2,8 +2,8 @@ import { Page } from "@playwright/test";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
-import { CourtActionContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/courtActionContent";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
+import { CourtActionContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/courtActionContent.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 enum inputIDs {
   courtActionStatement = "#c1A_keepingSafeStatement",
@@ -57,7 +57,7 @@ export class CourtActionPage {
     ]);
     await this.checkDetailsText(page);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

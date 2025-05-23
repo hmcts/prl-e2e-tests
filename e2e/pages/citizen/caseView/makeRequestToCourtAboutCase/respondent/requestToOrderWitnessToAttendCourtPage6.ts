@@ -1,10 +1,10 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors.ts";
 import { Helpers } from "../../../../../common/helpers.ts";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 import { RequestToOrderWitnessContent4 } from "../../../../../fixtures/citizen/caseView/makeRequestToCourtAboutCase/respondent/requestToOrderWitnessContent4.ts";
-import config from "../../../../../config.ts";
+import config from "../../../../../utils/config.utils.ts";
 import { RequestToOrderWitnessContent6 } from "../../../../../fixtures/citizen/caseView/makeRequestToCourtAboutCase/respondent/requestToOrderWitnessContent6.ts";
 
 interface UploadSupportingDocuments {
@@ -76,7 +76,7 @@ export class RequestToOrderWitnessToAttendCourtPage6 {
       `${Selectors.li}`,
     );
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
   private static async fillInFields({

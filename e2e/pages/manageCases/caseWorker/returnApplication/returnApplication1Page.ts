@@ -3,7 +3,7 @@ import { Selectors } from "../../../../common/selectors";
 import { CommonStaticText } from "../../../../common/commonStaticText";
 import { ReturnApplication1Content } from "../../../../fixtures/manageCases/caseWorker/returnApplication/returnApplication1Content";
 import { Helpers } from "../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { solicitorCaseCreateType } from "../../../../common/types";
 
 interface ReturnApplication1PageOptions {
@@ -88,7 +88,7 @@ export class ReturnApplication1Page {
       `${rejectReasonDiv} ${Selectors.GovukFormLabel}`,
     );
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

@@ -1,4 +1,4 @@
-import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../../common/selectors.ts";
 import { ApplicantAddressLookupContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/applicant/applicantAddressLookupContent.ts";
@@ -65,7 +65,7 @@ export class ApplicantAddressLookupPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
   private static async triggerErrorMessages(page: Page): Promise<void> {

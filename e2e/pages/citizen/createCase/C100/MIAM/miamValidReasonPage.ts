@@ -3,7 +3,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { MiamValidReasonContent } from "../../../../../fixtures/citizen/createCase/C100/MIAM/miamValidReasonContent";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 interface MiamValidReasonPageOptions {
   page: Page;
@@ -62,7 +62,7 @@ export class MiamValidReasonPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

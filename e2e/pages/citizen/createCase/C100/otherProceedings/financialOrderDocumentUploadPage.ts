@@ -1,10 +1,10 @@
 import { expect, Page } from "@playwright/test";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { CitizenOtherProceedingsDocumentUploadSelectors } from "../../../../../common/commonUniqueSelectors";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
-import config from "../../../../../config";
+import config from "../../../../../utils/config.utils";
 import { FinancialOrderDocumentUploadContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/financialOrderDocumentUploadContent";
 
 interface childMaintenanceOrderDocumentUploadPageOptions {
@@ -77,7 +77,7 @@ export class FinancialOrderDocumentUploadPage {
       `${Selectors.li}`,
     );
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

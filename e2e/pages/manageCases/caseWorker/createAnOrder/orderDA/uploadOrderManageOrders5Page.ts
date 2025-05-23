@@ -1,11 +1,11 @@
 import { Page } from "@playwright/test";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { ManageOrders1DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderDA/manageOrders1DAContent";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { UploadOrderManageOrders5Content } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderDA/uploadOrderManageOrders5Content";
-import config from "../../../../../config";
+import config from "../../../../../utils/config.utils";
 import { ManageOrders5CAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderCA/manageOrders5CAContent";
 
 interface UploadOrderManageOrders5PageOptions {
@@ -94,7 +94,7 @@ export class UploadOrderManageOrders5Page {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

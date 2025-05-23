@@ -3,7 +3,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { ReasonableAdjustmentsNeedsInCourtContent } from "../../../../../fixtures/citizen/createCase/C100/reasonableAdjustments/reasonableAdjustmentsNeedsInCourtContent";
 import { Helpers } from "../../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 interface ReasonableAdjustmentsNeedsInCourtPageOptions {
   page: Page;
@@ -81,7 +81,7 @@ export class ReasonableAdjustmentsNeedsInCourtPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

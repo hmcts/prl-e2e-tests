@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
-import { ChildrenAndRespondents1Content } from "../../../../../fixtures/manageCases/createCase/C100/childrenAndRespondents/childrenAndRespondents1Content";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
+import { ChildrenAndRespondents1Content } from "../../../../../fixtures/manageCases/createCase/C100/childrenAndRespondents/childrenAndRespondents1Content.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 enum UniqueSelectors {
   respondentsRelationshipDropdown = "#buffChildAndRespondentRelations_0_childAndRespondentRelation",
@@ -86,7 +86,7 @@ export class ChildrenAndRespondents1Page {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

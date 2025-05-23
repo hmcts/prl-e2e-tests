@@ -1,5 +1,5 @@
 import { Page } from "@playwright/test";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { Selectors } from "../../../../../common/selectors";
 import { CaOrderContent } from "../../../../../fixtures/citizen/createCase/C100/typeOfOrder/caOrderContent";
 import { SelectCourtOrderContent } from "../../../../../fixtures/citizen/createCase/C100/typeOfOrder/selectCourtOrderContent";
@@ -88,7 +88,7 @@ export class SelectCourtOrderPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

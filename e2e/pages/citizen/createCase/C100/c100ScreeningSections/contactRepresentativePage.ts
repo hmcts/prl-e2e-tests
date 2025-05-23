@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { ContactRepresentativeContent } from "../../../../../fixtures/citizen/createCase/C100/c100ScreeningSections/contactRepresentativeContent";
 import { Helpers } from "../../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 interface ContactRepresentativePageOptions {
   page: Page;
@@ -58,7 +58,7 @@ export class ContactRepresentativePage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

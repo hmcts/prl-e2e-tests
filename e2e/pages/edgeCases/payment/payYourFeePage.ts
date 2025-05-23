@@ -1,6 +1,6 @@
 import { Page, expect } from "@playwright/test";
 import { Selectors } from "../../../common/selectors.ts";
-import AccessibilityTestHelper from "../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { Helpers } from "../../../common/helpers.ts";
 import { PayYourFeeContent } from "../../../fixtures/edgeCases/payment/payYourFeeContent.ts";
 import { NeedHelpWithFeesContent } from "../../../fixtures/edgeCases/payment/needHelpWithFeesContent.ts";
@@ -62,7 +62,7 @@ export class PayYourFeePage {
       );
     }
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 }

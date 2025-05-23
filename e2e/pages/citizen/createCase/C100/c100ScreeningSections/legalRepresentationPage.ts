@@ -1,5 +1,5 @@
 import { Page } from "@playwright/test";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { Selectors } from "../../../../../common/selectors";
 import { LegalRepresentationContent } from "../../../../../fixtures/citizen/createCase/C100/c100ScreeningSections/legalRepresentationContent";
 import { Helpers } from "../../../../../common/helpers";
@@ -74,7 +74,7 @@ export class LegalRepresentationPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

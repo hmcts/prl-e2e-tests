@@ -2,8 +2,8 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { OtherProceedingsContent } from "../../../../../fixtures/manageCases/createCase/FL401/otherProceedings/otherProceedingsContent";
 import { Helpers } from "../../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import config from "../../../../../config";
+import { AxeUtils } from "@hmcts/playwright-common";
+import config from "../../../../../utils/config.utils";
 import { otherProceedingsRadios } from "../../../../../common/types";
 
 enum radioIds {
@@ -89,7 +89,7 @@ export class OtherProceedingsPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

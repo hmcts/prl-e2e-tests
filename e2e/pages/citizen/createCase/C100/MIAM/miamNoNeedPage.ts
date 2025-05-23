@@ -3,7 +3,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { MiamNoNeedContent } from "../../../../../fixtures/citizen/createCase/C100/MIAM/miamNoNeedContent";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 interface NoNeedPageOptions {
   page: Page;
@@ -33,7 +33,7 @@ export class MiamNoNeedPage {
       Helpers.checkGroup(page, 2, MiamNoNeedContent, `p`, Selectors.p),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

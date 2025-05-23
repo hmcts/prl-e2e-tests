@@ -1,10 +1,10 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors.ts";
 import { Helpers } from "../../../../../common/helpers.ts";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 import { RequestToOrderWitnessContent3 } from "../../../../../fixtures/citizen/caseView/makeRequestToCourtAboutCase/applicant/requestToOrderWitnessContent3.ts";
-import config from "../../../../../config.ts";
+import config from "../../../../../utils/config.utils.ts";
 
 interface UploadFP25 {
   page: Page;
@@ -75,7 +75,7 @@ export class RequestToOrderWitnessToAttendCourtPage3 {
       `${Selectors.li}`,
     );
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
   private static async fillInFields({

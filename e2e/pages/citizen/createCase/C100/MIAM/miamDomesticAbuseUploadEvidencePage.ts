@@ -3,8 +3,8 @@ import { Selectors } from "../../../../../common/selectors";
 import { MiamDomesticAbuseUploadEvidenceContent } from "../../../../../fixtures/citizen/createCase/C100/MIAM/miamDomesticAbuseUploadEvidenceContent";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-import config from "../../../../../config";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import config from "../../../../../utils/config.utils";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 export interface MiamDomesticAbuseUploadEvidencePageOptions {
   page: Page;
@@ -55,7 +55,7 @@ export class MiamDomesticAbuseUploadEvidencePage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

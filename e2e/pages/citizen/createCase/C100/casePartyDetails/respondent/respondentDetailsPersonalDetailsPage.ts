@@ -7,7 +7,7 @@ import {
   yesNoDontKnow,
 } from "../../../../../../common/types.ts";
 import { RespondentDetailsPersonalDetailsContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/respondent/respondentDetailsPersonalDetailsContent.ts";
-import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 enum InputIds {
   changeNameYes = "#hasNameChanged",
@@ -145,10 +145,9 @@ export class RespondentDetailsPersonalDetailsPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page, [
-        InputIds.changeNameYes,
-        InputIds.identifyOther,
-      ]); //false-positive (https://github.com/alphagov/govuk-frontend/issues/979, https://github.com/w3c/aria/issues/1404)
+      await new AxeUtils(page).audit({
+        exclude: [InputIds.changeNameYes, InputIds.identifyOther],
+      }); //false-positive (https://github.com/alphagov/govuk-frontend/issues/979, https://github.com/w3c/aria/issues/1404)
     }
   }
 

@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors";
 import { Helpers } from "../../../../common/helpers";
 import { CommonStaticText } from "../../../../common/commonStaticText";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { ServiceOfDocuments3Content } from "../../../../fixtures/manageCases/caseProgression/serviceOfDocuments/serviceOfDocuments3Content";
 
 interface serviceOfDocuments3Options {
@@ -47,7 +47,7 @@ export class ServiceOfDocuments3Page {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

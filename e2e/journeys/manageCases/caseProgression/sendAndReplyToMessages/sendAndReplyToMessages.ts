@@ -1,8 +1,8 @@
 import { Browser, Page } from "@playwright/test";
 import { Helpers } from "../../../../common/helpers";
 import { Selectors } from "../../../../common/selectors";
-import config from "../../../../config";
-import { SendAndReplyToMessagesSubmitContent } from "../../../../fixtures/manageCases/caseProgression/sendAndReplyToMessages/sendAndReplyToMessagesSubmitContent";
+import config from "../../../../utils/config.utils.ts";
+import { SendAndReplyToMessagesSubmitContent } from "../../../../fixtures/manageCases/caseProgression/sendAndReplyToMessages/sendAndReplyToMessagesSubmitContent.ts";
 import { SendAndReplyToMessages1Page } from "../../../../pages/manageCases/caseProgression/sendAndReplyToMessages/sendAndReplyToMessages1Page";
 import { SendAndReplyToMessages2Page } from "../../../../pages/manageCases/caseProgression/sendAndReplyToMessages/sendAndReplyToMessages2Page";
 import { SendAndReplyToMessages3Page } from "../../../../pages/manageCases/caseProgression/sendAndReplyToMessages/sendAndReplyToMessages3Page";

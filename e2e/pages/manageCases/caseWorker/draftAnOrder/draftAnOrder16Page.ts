@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors";
 import { DraftAnOrder16Content } from "../../../../fixtures/manageCases/caseWorker/draftAnOrder/draftAnOrder16Content";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { OrderType } from "../../../../common/types";
 import { NonMolestationOrder16Page } from "./nonMolestationOrder/nonMolestationOrder16Page";
 
@@ -41,7 +41,7 @@ export class DraftAnOrder16Page {
         break;
     }
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

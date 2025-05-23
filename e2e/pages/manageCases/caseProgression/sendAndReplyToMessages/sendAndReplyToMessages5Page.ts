@@ -2,8 +2,8 @@ import { Page } from "@playwright/test";
 import { CommonStaticText } from "../../../../common/commonStaticText";
 import { Helpers } from "../../../../common/helpers";
 import { Selectors } from "../../../../common/selectors";
-import { SendAndReplyToMessages5Content } from "../../../../fixtures/manageCases/caseProgression/sendAndReplyToMessages/sendAndReplyToMessages5Content";
-import { CommonContent } from "../../../../fixtures/manageCases/commonContent";
+import { SendAndReplyToMessages5Content } from "../../../../fixtures/manageCases/caseProgression/sendAndReplyToMessages/sendAndReplyToMessages5Content.ts";
+import { CommonContent } from "../../../../fixtures/manageCases/commonContent.ts";
 import { solicitorCaseCreateType } from "../../../../common/types.ts";
 
 enum UniqueSelectors {
@@ -134,7 +134,7 @@ export class SendAndReplyToMessages5Page {
     }
     // TODO Disabled pending ticket FPET:1211
     // if (accessibilityTest) {
-    //   await AccessibilityTestHelper.run(page);
+    //   await new AxeUtils(page).audit();
     // }
   }
 

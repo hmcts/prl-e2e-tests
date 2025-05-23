@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors";
-import { ServiceOfApplication2Content } from "../../../../fixtures/manageCases/caseProgression/serviceOfApplication/serviceOfApplication2Content";
+import { ServiceOfApplication2Content } from "../../../../fixtures/manageCases/caseProgression/serviceOfApplication/serviceOfApplication2Content.ts";
 import { Helpers } from "../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
-import { ServiceOfApplicationConfirmContent } from "../../../../fixtures/manageCases/caseProgression/serviceOfApplication/serviceOfApplicationConfirmContent";
+import { AxeUtils } from "@hmcts/playwright-common";
+import { ServiceOfApplicationConfirmContent } from "../../../../fixtures/manageCases/caseProgression/serviceOfApplication/serviceOfApplicationConfirmContent.ts";
 import { applicationSubmittedBy } from "../../../../common/types.ts";
 
 interface ServiceOfApplicationConfirmOptions {
@@ -112,7 +112,7 @@ export class ServiceOfApplicationConfirmPage {
     }
 
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

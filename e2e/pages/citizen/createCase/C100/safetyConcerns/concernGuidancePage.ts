@@ -1,5 +1,5 @@
 import { Page } from "@playwright/test";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { Selectors } from "../../../../../common/selectors";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { ConcernGuidanceContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/concernGuidanceContent";
@@ -102,7 +102,7 @@ export class ConcernGuidancePage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

@@ -1,5 +1,5 @@
 import { Selectors } from "../../../../common/selectors.ts";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { AllCategoriesContent } from "../../../../fixtures/citizen/caseView/viewAllDocuments/allCatergoriesContent.ts";
 import { Page } from "@playwright/test";
 import { Helpers } from "../../../../common/helpers.ts";
@@ -40,7 +40,7 @@ export class AllCategoriesPage {
       Helpers.checkGroup(page, 2, AllCategoriesContent, "a", Selectors.a),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

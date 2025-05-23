@@ -1,10 +1,10 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { Helpers } from "../../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { ManageOrders5CAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderCA/manageOrders5CAContent";
+import { AxeUtils } from "@hmcts/playwright-common";
+import { ManageOrders5CAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderCA/manageOrders5CAContent.ts";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-import config from "../../../../../config.ts";
+import config from "../../../../../utils/config.utils.ts";
 import {
   solicitorCaseCreateType,
   uploadOrderC100Options,
@@ -98,7 +98,7 @@ export class ManageOrders5Page {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

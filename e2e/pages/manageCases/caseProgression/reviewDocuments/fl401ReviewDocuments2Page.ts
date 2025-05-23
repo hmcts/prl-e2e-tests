@@ -109,7 +109,7 @@ export class FL401ReviewDocuments2Page {
       ),
     ]);
     // if (accessibilityTest) {
-    //   await AccessibilityTestHelper.run(page); #TODO Disabled pending ticket FPET-1209
+    //   await new AxeUtils(page).audit(); #TODO Disabled pending ticket FPET-1209
     // }
   }
 

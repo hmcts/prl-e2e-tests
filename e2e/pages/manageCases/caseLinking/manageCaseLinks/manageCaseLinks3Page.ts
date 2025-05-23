@@ -3,7 +3,7 @@ import { Selectors } from "../../../../common/selectors";
 import { CommonStaticText } from "../../../../common/commonStaticText";
 import { ManageCaseLinks3Content } from "../../../../fixtures/manageCases/caseLinking/manageCaseLinks/manageCaseLinks3Content";
 import { Helpers } from "../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 interface ManageCaseLinks3PageOptions {
   page: Page;
@@ -62,7 +62,7 @@ export class ManageCaseLinks3Page {
       1,
     );
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

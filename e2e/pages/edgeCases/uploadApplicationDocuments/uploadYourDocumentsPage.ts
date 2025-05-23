@@ -1,10 +1,10 @@
 import { Page, expect } from "@playwright/test";
 import { Selectors } from "../../../common/selectors.ts";
-// import AccessibilityTestHelper from "../../common/accessibilityTestHelper.ts";
+// import { AxeUtils } from "@hmcts/playwright-common";
 import { Helpers } from "../../../common/helpers.ts";
 import { UploadYourDocumentsContent } from "../../../fixtures/edgeCases/uploadApplicationDocuments/uploadYourDocumentsContent.ts";
 
-import config from "../../../config.ts";
+import config from "../../../utils/config.utils.ts";
 import { EdgeCaseApplicationType } from "../../../common/types.ts";
 
 interface UploadYourDocumentsPageOptions {
@@ -77,7 +77,7 @@ export class UploadYourDocumentsPage {
       `${Selectors.li}`,
     );
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page);
+      // await new AxeUtils(page).audit();
     }
   }
 
