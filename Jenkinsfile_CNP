@@ -115,7 +115,6 @@ withNightlyPipeline(type, product, component, 600) {
     afterAlways('DependencyCheckNightly') {
       stage('Run changed tests - Chrome') {
         try {
-          yarnBuilder.yarn('install')
           yarnBuilder.yarn('test:changes')
         } catch (Error) {
           unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())

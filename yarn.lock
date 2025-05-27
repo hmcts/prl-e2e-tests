@@ -718,9 +718,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hmcts/playwright-common@file:/Users/jay.ashton/dev/playwright-common/package.tgz::locator=prl-e2e-tests%40workspace%3A.":
+"@hmcts/playwright-common@npm:^1.0.18":
   version: 1.0.18
-  resolution: "@hmcts/playwright-common@file:/Users/jay.ashton/dev/playwright-common/package.tgz#/Users/jay.ashton/dev/playwright-common/package.tgz::hash=1bd893&locator=prl-e2e-tests%40workspace%3A."
+  resolution: "@hmcts/playwright-common@npm:1.0.18"
   dependencies:
     "@axe-core/playwright": "npm:^4.10.0"
     "@playwright/test": "npm:^1.48.2"
@@ -730,7 +730,7 @@ __metadata:
     playwright: "npm:^1.48.2"
     playwright-core: "npm:^1.48.2"
     playwright-lighthouse: "npm:^4.0.0"
-  checksum: 10c0/c158a9c4005530d3772934cbf88bdb9d563f3772cc145be3afd3d8126f5f542c2419ee45c1d4df061546adedecae8e2dd1810edcad5e878f07751ea8b3a1262c
+  checksum: 10c0/80d655b1aa8873bf8ea16452eb3db6d7e11826446ac51a6050aa95d385c32a8825d8dbfa2353a0a03c024a074f11f6cd1d2457e7c7a2e19d47e4d5c103510d17
   languageName: node
   linkType: hard
 
@@ -5214,7 +5214,7 @@ __metadata:
   dependencies:
     "@axe-core/playwright": "npm:^4.10.0"
     "@eslint/js": "npm:^9.11.1"
-    "@hmcts/playwright-common": /Users/jay.ashton/dev/playwright-common/package.tgz
+    "@hmcts/playwright-common": "npm:^1.0.18"
     "@playwright/test": "npm:^1.49.0"
     "@types/node": "npm:^22.4.1"
     axios: "npm:^1.7.4"
