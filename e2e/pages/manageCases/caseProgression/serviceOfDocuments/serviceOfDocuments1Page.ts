@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors";
-import { Helpers } from "../../../../common/helpers";
-import { CommonStaticText } from "../../../../common/commonStaticText";
-import { ServiceOfDocuments1Content } from "../../../../fixtures/manageCases/caseProgression/serviceOfDocuments/serviceOfDocuments1Content";
 import path from "path";
+import { CommonStaticText } from "../../../../common/commonStaticText";
+import { Helpers } from "../../../../common/helpers";
+import { Selectors } from "../../../../common/selectors";
+import { ServiceOfDocuments1Content } from "../../../../fixtures/manageCases/caseProgression/serviceOfDocuments/serviceOfDocuments1Content";
 
 interface serviceOfDocuments1Options {
   page: Page;
@@ -115,7 +115,7 @@ export class ServiceOfDocuments1Page {
       .locator(UniqueSelectors.addAdditionalDocSelector)
       .getByLabel("", { exact: true })
       .setInputFiles(
-        path.resolve(__dirname, "../../../../assets/mockFile.pdf"),
+        path.resolve(import.meta.dirname, "../../../../assets/mockFile.pdf"),
       );
   }
 }

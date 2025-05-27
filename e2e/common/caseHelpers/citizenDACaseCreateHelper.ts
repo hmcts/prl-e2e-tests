@@ -64,7 +64,10 @@ async function addDocumentToCase(
 ): Promise<void> {
   const apiContextDaAddDoc: APIRequestContext = await request.newContext();
   const courtNavAddDocURL = `${process.env.COURTNAV_DOC_URL}${ccdReference}/document`;
-  const pdfPath = path.resolve(__dirname, "../../caseData/testPdf.pdf");
+  const pdfPath = path.resolve(
+    import.meta.dirname,
+    "../../caseData/testPdf.pdf",
+  );
   const pdfBuffer = fs.readFileSync(pdfPath);
   const docResponse = await apiContextDaAddDoc.post(courtNavAddDocURL, {
     headers: {
