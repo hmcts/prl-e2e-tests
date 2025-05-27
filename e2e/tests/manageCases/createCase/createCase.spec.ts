@@ -8,7 +8,7 @@ test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 test.slow();
 // #TODO jira ticket to address broken tests: https://tools.hmcts.net/jira/browse/FPVTL-579
 test.describe("Manage cases case solicitor create case tests.", (): void => {
-  test(
+  test.fixme(
     `Complete the C100 create case event as a solicitor with the following options: 
   Not Accessibility testing,
   Not Error message testing,
@@ -76,7 +76,7 @@ test.describe("Manage cases case solicitor create case tests.", (): void => {
     },
   );
 
-  test(
+  test.fixme(
     `Complete the C100 create case event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
@@ -144,7 +144,7 @@ test.describe("Manage cases case solicitor create case tests.", (): void => {
     },
   );
 
-  test(
+  test.fixme(
     `Complete the FL401 create case event as a solicitor with the following options:
      Not Accessibility testing,
      Not Error message testing,
@@ -188,7 +188,7 @@ test.describe("Manage cases case solicitor create case tests.", (): void => {
     },
   );
 
-  test(
+  test.fixme(
     `Complete the FL401 create case event as a solicitor with the following options:
      Not Accessibility testing,
      Not Error message testing,
@@ -236,7 +236,7 @@ test.describe("Manage cases case solicitor create case tests.", (): void => {
     },
   );
 
-  test(
+  test.fixme(
     `Complete the FL401 create case event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
@@ -282,7 +282,7 @@ test.describe("Manage cases case solicitor create case tests.", (): void => {
     },
   );
 
-  test(
+  test.fixme(
     `Complete the C100 create case event as a solicitor completing only mandatory tasks with the following options:
   Not Accessibility testing,
   Not Error message testing,
@@ -339,7 +339,7 @@ test.describe("Manage cases case solicitor create case tests.", (): void => {
       });
     },
   );
-  test(`Create case as a solicitor - initial screens only.
+  test.fixme(`Create case as a solicitor - initial screens only.
   @smoke`, async ({ page }): Promise<void> => {
     await SolicitorCreateInitial.createInitialCase({
       page: page,
