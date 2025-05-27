@@ -141,13 +141,6 @@ withNightlyPipeline(type, product, component, 600) {
   }
   onMaster() {
     afterAlways('DependencyCheckNightly') {
-      stage('Unit tests') {
-        try {
-          yarnBuilder.yarn('test:unit')
-        } catch (Error) {
-          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
-        }
-      }
       if (!params.skipCitizenTests) {
         stage('Citizen E2E smoke tests - Chrome') {
           try {

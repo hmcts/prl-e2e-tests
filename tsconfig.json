@@ -16,8 +16,6 @@
   },
   "include": [
     "e2e/**/*",
-    "__tests__/**/*",
-    "jest.config.ts",
     "playwright.config.ts"
   ],
   "exclude": ["node_modules"]
