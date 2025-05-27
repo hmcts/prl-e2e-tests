@@ -15,6 +15,5 @@ test.describe("TS Solicitor Case creation examples", (): void => {
     await page.goto(config.manageCasesBaseURLCase);
     const caseRef = await createTSSolicitorCase(page, "FL401");
     console.log(caseRef);
-    console.log(caseRef);
   });
 });
