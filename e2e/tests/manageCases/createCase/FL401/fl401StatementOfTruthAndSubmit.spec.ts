@@ -1,11 +1,10 @@
 import { test } from "@playwright/test";
-import Config from "../../../../config";
 import { Helpers } from "../../../../common/helpers.ts";
-import config from "../../../../config.ts";
+import config from "../../../../utils/config.utils";
 import { Fl401StatementOfTruth } from "../../../../journeys/manageCases/createCase/FL401StatementOfTruth/fl401StatementOfTruth.ts";
 import { createTSSolicitorCase } from "../../../../common/caseHelpers/solicitorCaseCreatorHelper.ts";
 
-test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
+test.use({ storageState: config.sessionStoragePath + "solicitor.json" });
 
 test.describe("FL401 Create case Statement of Truth and Submit tests", (): void => {
   test.beforeEach(async ({ page }) => {

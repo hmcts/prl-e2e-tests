@@ -1,11 +1,10 @@
 import { test } from "@playwright/test";
-import Config from "../../../../config";
 import { Helpers } from "../../../../common/helpers.ts";
-import config from "../../../../config.ts";
+import config from "../../../../utils/config.utils";
 import { C100SubmitAndPay } from "../../../../journeys/manageCases/createCase/C100SubmitAndPay/C100SubmitAndPay.ts";
 import { createTSSolicitorCase } from "../../../../common/caseHelpers/solicitorCaseCreatorHelper.ts";
 
-test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
+test.use({ storageState: config.sessionStoragePath + "solicitor.json" });
 
 test.describe("C100 Create case Submit and Pay tests", (): void => {
   test.beforeEach(async ({ page }) => {
