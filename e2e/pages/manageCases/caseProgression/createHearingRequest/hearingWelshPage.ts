@@ -1,5 +1,5 @@
 import { Page } from "@playwright/test";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { Selectors } from "../../../../common/selectors";
 import { HearingWelshContent } from "../../../../fixtures/manageCases/caseProgression/createHearingRequest/hearingWelshContent";
 import { Helpers } from "../../../../common/helpers";
@@ -42,7 +42,7 @@ export class HearingWelshPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

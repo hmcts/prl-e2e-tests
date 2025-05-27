@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors";
 import { CaseDashboardContent } from "../../../../fixtures/citizen/initialJourney/caseDashboardContent";
 import { Helpers } from "../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { solicitorCaseCreateType } from "../../../../common/types";
 
 export type ChildArrangementsJourneyType =
@@ -79,7 +79,7 @@ export class CaseDashboardPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

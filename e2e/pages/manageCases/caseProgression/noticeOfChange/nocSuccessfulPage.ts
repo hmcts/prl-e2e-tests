@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.ts";
 import { Helpers } from "../../../../common/helpers.ts";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { NocSuccessfulContent } from "../../../../fixtures/manageCases/caseProgression/noticeOfChange/nocSuccessfulContent.ts";
 
 export class NocSuccessfulPage {
@@ -48,7 +48,7 @@ export class NocSuccessfulPage {
       Helpers.checkGroup(page, 2, NocSuccessfulContent, `a`, `${Selectors.a}`),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

@@ -2,8 +2,8 @@ import { Locator, Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { AllegationsOfHarmRevised2Content } from "../../../../../fixtures/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevised2Content";
 import { Helpers } from "../../../../../common/helpers";
-import config from "../../../../../config";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import config from "../../../../../utils/config.utils";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 interface AllegationsOfHarmRevised2Options {
   page: Page;
@@ -132,7 +132,7 @@ export class AllegationsOfHarmRevised2Page {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { OtherPeopleInTheCaseSubmitContent } from "../../../../../fixtures/manageCases/createCase/C100/otherPeopleInTheCaseRevised/otherPeopleInTheCaseSubmitContent";
 import { Helpers } from "../../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { OtherPeopleInTheCase1Content } from "../../../../../fixtures/manageCases/createCase/C100/otherPeopleInTheCaseRevised/otherPeopleInTheCaseRevised1Content.";
 import { ApplicantGender } from "../../../../../common/types";
 
@@ -143,7 +143,7 @@ export class OtherPeopleInTheCaseSubmitPage {
       ]);
     }
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
   private static async checkFilledData(

@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors";
 import { Helpers } from "../../../../common/helpers";
 import { CommonStaticText } from "../../../../common/commonStaticText";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { Fl401AddCaseNumberSubmitContent } from "../../../../fixtures/manageCases/caseProgression/checkApplication/fl401AddCaseNumberSubmitContent";
 
 export class Fl401AddCaseNumberSubmitPage {
@@ -49,7 +49,7 @@ export class Fl401AddCaseNumberSubmitPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

@@ -1,5 +1,5 @@
 import { Page } from "@playwright/test";
-// import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+// import { AxeUtils } from "@hmcts/playwright-common";
 import { Selectors } from "../../../../common/selectors";
 import { HearingVenueContent } from "../../../../fixtures/manageCases/caseProgression/createHearingRequest/hearingVenueContent";
 import { Helpers } from "../../../../common/helpers";
@@ -46,7 +46,7 @@ export class HearingVenuePage {
       ),
     ]);
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page);
+      // await new AxeUtils(page).audit();
     }
     // #TODO commented out until ticket resolved FPET-1231
   }

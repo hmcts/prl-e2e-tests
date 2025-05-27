@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors";
 import { Helpers } from "../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { CommonStaticText } from "../../../../common/commonStaticText";
 import { SendAndReplyToMessages2Content } from "../../../../fixtures/manageCases/caseProgression/sendAndReplyToMessages/sendAndReplyToMessages2Content";
 import { CommonContent } from "../../../../fixtures/manageCases/commonContent";
@@ -72,7 +72,7 @@ export class SendAndReplyToMessages2Page {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

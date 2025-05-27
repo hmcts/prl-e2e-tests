@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors";
 import { Helpers } from "../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { DraftAnOrder2Content } from "../../../../fixtures/manageCases/caseWorker/draftAnOrder/draftAnOrder2Content";
 import { OrderType, solicitorCaseCreateType } from "../../../../common/types";
 
@@ -84,7 +84,7 @@ export class DraftAnOrder2Page {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

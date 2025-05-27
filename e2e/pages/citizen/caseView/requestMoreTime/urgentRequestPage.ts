@@ -1,6 +1,6 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.ts";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { UrgentRequestContent } from "../../../../fixtures/citizen/caseView/requestMoreTime/urgentRequestContent.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import { CommonStaticText } from "../../../../common/commonStaticText.ts";
@@ -39,7 +39,7 @@ export class UrgentRequestPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
   private static async fillInFields(

@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors.ts";
 import { Helpers } from "../../../../../common/helpers.ts";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 import { RequestToOrderWitnessContent3 } from "../../../../../fixtures/citizen/caseView/makeRequestToCourtAboutCase/respondent/requestToOrderWitnessContent3.ts";
 
@@ -68,7 +68,7 @@ export class RequestToOrderWitnessToAttendCourtPage3 {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

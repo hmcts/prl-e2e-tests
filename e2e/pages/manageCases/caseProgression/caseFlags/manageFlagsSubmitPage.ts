@@ -7,7 +7,7 @@ import { Selectors } from "../../../../common/selectors.ts";
 import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 import { ManageFlagsSubmitContent } from "../../../../fixtures/manageCases/caseProgression/caseFlags/manageFlagsSubmitContent.ts";
 import { Helpers } from "../../../../common/helpers.ts";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 export class ManageFlagsSubmitPage {
   public static async manageFlagsSubmitPage(
@@ -137,7 +137,7 @@ export class ManageFlagsSubmitPage {
       ]);
     }
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

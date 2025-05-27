@@ -121,7 +121,7 @@ export class ManageFlagsUpdateCaseFlagPage {
       ]);
     }
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page);   TODO: Awaiting for accessibility ticket FPVTL-174 to be resolved
+      // await new AxeUtils(page).audit();   TODO: Awaiting for accessibility ticket FPVTL-174 to be resolved
     }
   }
 

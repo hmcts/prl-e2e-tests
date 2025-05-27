@@ -2,7 +2,7 @@ import { Page, expect } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors";
 import { LinkCaseSubmitContent } from "../../../../fixtures/manageCases/caseLinking/linkCases/linkCasesSubmitContent";
 import { Helpers } from "../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 interface LinkCasesSubmitPageOptions {
   page: Page;
@@ -48,7 +48,7 @@ export class LinkCasesSubmitPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 }

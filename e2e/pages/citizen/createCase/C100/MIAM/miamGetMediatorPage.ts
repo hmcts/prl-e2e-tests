@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { MiamGetMediatorContent } from "../../../../../fixtures/citizen/createCase/C100/MIAM/miamGetMediatorContent";
 import { Helpers } from "../../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 interface MiamGetMediatorPageOptions {
   page: Page;
@@ -61,7 +61,7 @@ export class MiamGetMediatorPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 }

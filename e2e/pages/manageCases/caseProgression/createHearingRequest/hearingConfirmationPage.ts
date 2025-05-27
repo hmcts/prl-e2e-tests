@@ -1,5 +1,5 @@
 import { Page } from "@playwright/test";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { Selectors } from "../../../../common/selectors.ts";
 import { HearingConfirmationContent } from "../../../../fixtures/manageCases/caseProgression/createHearingRequest/hearingConfirmationContent.ts";
 import { Helpers } from "../../../../common/helpers.ts";
@@ -45,7 +45,7 @@ export class HearingConfirmationPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

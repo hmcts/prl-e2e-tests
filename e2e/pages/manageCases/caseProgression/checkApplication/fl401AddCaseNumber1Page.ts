@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors";
 import { Fl401AddCaseNumber1Content } from "../../../../fixtures/manageCases/caseProgression/checkApplication/fl401AddCaseNumber1Content";
 import { Helpers } from "../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { CommonStaticText } from "../../../../common/commonStaticText";
 
 enum UniqueSelectors {
@@ -46,7 +46,7 @@ export class Fl401AddCaseNumber1Page {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

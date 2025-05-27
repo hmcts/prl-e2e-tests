@@ -1,6 +1,6 @@
 import { Selectors } from "../../../../common/selectors";
 import { Helpers } from "../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { CommonStaticText } from "../../../../common/commonStaticText";
 import { Page, expect } from "@playwright/test";
 import { ManageOrders26CAContent } from "../../../../fixtures/manageCases/caseWorker/createAnOrder/orderCA/manageOrders26CAContent";
@@ -38,8 +38,10 @@ export class ManageOrders26PageCA {
       throw new Error("Page is not defined");
     }
     await expect(
-          page.locator(Selectors.h1, { hasText: ManageOrders26CAContent.pageTitle }),
-        ).toBeVisible();
+      page.locator(Selectors.h1, {
+        hasText: ManageOrders26CAContent.pageTitle,
+      }),
+    ).toBeVisible();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
@@ -53,7 +55,7 @@ export class ManageOrders26PageCA {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

@@ -1,5 +1,5 @@
 import { Page } from "@playwright/test";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { EnglishMediaContentNoToAll } from "../../../../../fixtures/manageCases/createCase/C100/viewPDFApplication/englishMediaContentNoToAll";
@@ -239,7 +239,7 @@ export class ViewPDFApplication1Page {
       ]);
     }
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

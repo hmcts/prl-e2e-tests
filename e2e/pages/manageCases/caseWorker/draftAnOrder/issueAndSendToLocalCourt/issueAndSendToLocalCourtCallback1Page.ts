@@ -42,7 +42,7 @@ export class IssueAndSendToLocalCourtCallback1Page {
       ),
     ]);
     // if (accessibilityTest) {
-    //   await AccessibilityTestHelper.run(page); #TODO Disabled pending FPET-1194 ticket
+    //   await new AxeUtils(page).audit(); #TODO Disabled pending FPET-1194 ticket
     // }
   }
 

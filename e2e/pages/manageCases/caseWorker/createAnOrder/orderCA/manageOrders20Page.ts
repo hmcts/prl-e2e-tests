@@ -1,7 +1,7 @@
 import { expect, Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { Helpers } from "../../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { ManageOrders20CAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderCA/manageOrders20CAContent";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { Language } from "../../../../../common/types";
@@ -60,7 +60,7 @@ export class ManageOrders20Page {
     await this.checkWelshPdf(page);
 
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

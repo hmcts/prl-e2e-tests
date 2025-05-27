@@ -2,8 +2,8 @@ import { Page } from "@playwright/test";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
-import { InternationalElementsStartContent } from "../../../../../fixtures/citizen/createCase/C100/internationalElement/internationalElementsStartContent";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
+import { InternationalElementsStartContent } from "../../../../../fixtures/citizen/createCase/C100/internationalElement/internationalElementsStartContent.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 interface InternationalElementsStartPageOptions {
   page: Page;
@@ -63,7 +63,9 @@ export class InternationalElementsStartPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page, [uniqueSelectors.yesRadio]);
+      await new AxeUtils(page).audit({
+        exclude: [uniqueSelectors.yesRadio],
+      });
     }
   }
 

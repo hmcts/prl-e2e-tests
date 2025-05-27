@@ -10,7 +10,7 @@ import { CompleteTheOrder } from "../completeTheOrder/completeTheOrder.ts";
 import { AmendApplicantDetails } from "../amendDetails/amendApplicantDetails.ts";
 import { ServiceOfApplication } from "../serviceOfApplication/serviceOfApplication.ts";
 import { Helpers } from "../../../../common/helpers.ts";
-import config from "../../../../config.ts";
+import config from "../../../../utils/config.utils.ts";
 import { ConfidentialityCheck1Page } from "../../../../pages/manageCases/caseProgression/confidentialityCheck/confidentialityCheck1Page.ts";
 import { ConfidentialityCheckSubmitPage } from "../../../../pages/manageCases/caseProgression/confidentialityCheck/confidentialityCheckSubmitPage.ts";
 import { ConfidentialityCheckConfirmPage } from "../../../../pages/manageCases/caseProgression/confidentialityCheck/confidentialityCheckConfirmPage.ts";

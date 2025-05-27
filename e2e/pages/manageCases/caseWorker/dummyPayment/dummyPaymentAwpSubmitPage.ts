@@ -3,7 +3,7 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors";
 import { DummyPaymentAwpSubmitContent } from "../../../../fixtures/manageCases/caseWorker/dummyPayment/dummyPaymentAwpSubmitContent";
 import { Helpers } from "../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 export class DummyPaymentAwpSubmitPage extends CommonPage {
   public static async dummyPaymentAwpSubmitPage(
@@ -46,7 +46,7 @@ export class DummyPaymentAwpSubmitPage extends CommonPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

@@ -3,7 +3,7 @@ import { yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions } from "./child
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { ChildDetailsSubmitPageContent } from "../../../../../fixtures/manageCases/createCase/C100/childDetails/childDetailsSubmitPageContent";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { Helpers } from "../../../../../common/helpers";
 import { ChildDetailsRevised1Content } from "../../../../../fixtures/manageCases/createCase/C100/childDetails/childDetailsRevised1Content";
 import { ChildDetailsRevised2Content } from "../../../../../fixtures/manageCases/createCase/C100/childDetails/childDetailsRevised2Content";
@@ -114,7 +114,7 @@ export class C100ChildDetailsSubmitPage {
       );
     }
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

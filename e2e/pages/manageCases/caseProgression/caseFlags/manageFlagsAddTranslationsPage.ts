@@ -3,7 +3,7 @@ import { Selectors } from "../../../../common/selectors.ts";
 import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 import { ManageFlagsAddTranslationsContent } from "../../../../fixtures/manageCases/caseProgression/caseFlags/manageFlagsAddTranslationsContent.ts";
 import { Helpers } from "../../../../common/helpers.ts";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 enum UniqueSelectors {
   otherDescriptionTextbox = "#otherDescription",
@@ -65,7 +65,7 @@ export class ManageFlagsAddTranslationsPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

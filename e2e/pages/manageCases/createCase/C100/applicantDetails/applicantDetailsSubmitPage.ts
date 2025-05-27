@@ -3,7 +3,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { ApplicantDetailsSubmitContent } from "../../../../../fixtures/manageCases/createCase/C100/applicantDetails/applicantDetailsSubmitContent";
 import { Helpers } from "../../../../../common/helpers";
 import { ApplicantDetails1Content } from "../../../../../fixtures/manageCases/createCase/C100/applicantDetails/applicantDetails1Content";
-// import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
+// import { AxeUtils } from "@hmcts/playwright-common";
 import { ApplicantGender } from "../../../../../common/types";
 
 export class ApplicantDetailsSubmitPage {
@@ -104,7 +104,7 @@ export class ApplicantDetailsSubmitPage {
       );
     }
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page); //TODO: Disabled pending ticket FPET-1135
+      // await new AxeUtils(page).audit(); //TODO: Disabled pending ticket FPET-1135
     }
   }
 

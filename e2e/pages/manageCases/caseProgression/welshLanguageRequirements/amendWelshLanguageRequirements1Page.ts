@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import { Language } from "../../../../common/types";
 import { Selectors } from "../../../../common/selectors";
 import { CommonStaticText } from "../../../../common/commonStaticText";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { AmendWelshLanguageRequirements1Content } from "../../../../fixtures/manageCases/caseProgression/welshLanguagesRequirements/amendWelshLanguageRequirements1Content";
 import { Helpers } from "../../../../common/helpers";
 
@@ -73,7 +73,7 @@ export class AmendWelshLanguageRequirements1Page {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

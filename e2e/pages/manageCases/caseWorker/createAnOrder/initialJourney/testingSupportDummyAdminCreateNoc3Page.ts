@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import { solicitorCaseCreateType } from "../../../../../common/types";
 import { Selectors } from "../../../../../common/selectors";
 import { Helpers } from "../../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { TestingSupportDummyAdminCreateNoc3Content } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/initialJourney/TestingSupportDummyAdminCreateNoc3Content";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 
@@ -76,7 +76,7 @@ export class TestingSupportDummyAdminCreateNoc3Page {
       );
     }
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

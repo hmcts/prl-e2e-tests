@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import { createOrderFL401Options } from "../../../../../common/types";
 import { ManageOrders1DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderDA/manageOrders1DAContent";
 import { Selectors } from "../../../../../common/selectors";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { JudgeCreateOrderDASubmitContent } from "../../../../../fixtures/manageCases/caseProgression/judge/judgeCreateOrder/judgeCreateOrderDASubmitContent";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
@@ -138,7 +138,7 @@ export class judgeCreateODAManageOrderSubmitPage {
         break;
     }
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

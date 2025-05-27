@@ -1,5 +1,5 @@
 import { Page } from "@playwright/test";
-import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { Selectors } from "../../../../../../common/selectors";
 import { ChildConcernsAboutContent } from "../../../../../../fixtures/citizen/createCase/C100/safetyConcerns/childConcerns/childConcernsAboutContent";
 import { Helpers } from "../../../../../../common/helpers";
@@ -84,7 +84,7 @@ export class ChildConcernsAboutPage {
     ]);
     await SafetyConcernHelpers.checkSidebarChild(page);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

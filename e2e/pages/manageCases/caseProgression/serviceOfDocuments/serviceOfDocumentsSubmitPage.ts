@@ -2,7 +2,7 @@ import { expect, Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors";
 import { Helpers } from "../../../../common/helpers";
 import { CommonStaticText } from "../../../../common/commonStaticText";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { yesNoNA } from "../../../../common/types";
 import { ServiceOfDocumentsSubmitContent } from "../../../../fixtures/manageCases/caseProgression/serviceOfDocuments/serviceOfDocumentsSubmitContent";
 
@@ -69,7 +69,7 @@ export class ServiceOfDocumentsSubmitPage {
     await this.checkPersonalService(page, personallyServed);
     await this.checkDocumentVerification(page, checkDocuments);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

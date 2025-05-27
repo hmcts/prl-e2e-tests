@@ -1,6 +1,6 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors.ts";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { ListOfApplications1Content } from "../../../../../fixtures/citizen/caseView/makeRequestToCourtAboutCase/respondent/listOfApplications1Content.ts";
 import { Helpers } from "../../../../../common/helpers.ts";
 
@@ -52,7 +52,7 @@ export class ListOfApplications1Page {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
   private static async next(page: Page): Promise<void> {

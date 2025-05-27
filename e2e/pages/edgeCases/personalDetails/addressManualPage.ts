@@ -1,6 +1,6 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../common/selectors.ts";
-// import AccessibilityTestHelper from "../../common/accessibilityTestHelper.ts";
+// import { AxeUtils } from "@hmcts/playwright-common";
 import { Helpers } from "../../../common/helpers.ts";
 import { AddressManualContent } from "../../../fixtures/edgeCases/personalDetails/addressManualContent.ts";
 
@@ -44,7 +44,7 @@ export class AddressManualPage {
       ),
     ]);
     if (accessibilityTest) {
-      //await AccessibilityTestHelper.run(page); //to be turned on once PRL-7033 is fixed
+      //await new AxeUtils(page).audit(); //to be turned on once PRL-7033 is fixed
     }
   }
   private static async fillInAddress(page: Page): Promise<void> {

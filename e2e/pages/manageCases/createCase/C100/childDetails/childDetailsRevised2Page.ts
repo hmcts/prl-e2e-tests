@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { ChildDetailsRevised2Content } from "../../../../../fixtures/manageCases/createCase/C100/childDetails/childDetailsRevised2Content";
 import { Helpers } from "../../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 interface ChildDetailsRevised2PageOptions {
   page: Page;
@@ -82,7 +82,7 @@ export class ChildDetailsRevised2Page {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

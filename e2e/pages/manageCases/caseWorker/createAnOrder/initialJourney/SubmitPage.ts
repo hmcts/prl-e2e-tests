@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { SubmitContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/initialJourney/submitContent";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 interface SubmitPageContent {
   page: Page;
@@ -40,7 +40,7 @@ export class CreateAnOrderSubmitPage {
       Selectors.GovukText16,
     );
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

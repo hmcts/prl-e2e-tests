@@ -1,13 +1,13 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.ts";
 import { Helpers } from "../../../../common/helpers.ts";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 import { ConfidentialityCheck1Content } from "../../../../fixtures/manageCases/caseProgression/confidentialityCheck/confidentialityCheck1Content.ts";
 import {
   clippingCoords,
   ExuiMediaViewerPage,
-} from "../../../../common/exuiMediaViewer.po.ts";
+} from "../../../../pageObjects/exuiMediaViewer.po.ts";
 
 interface ConfidentialityCheck1PageParams {
   page: Page;
@@ -144,7 +144,7 @@ export class ConfidentialityCheck1Page {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

@@ -3,7 +3,7 @@ import { Selectors } from "../../../../../../common/selectors.ts";
 import { ApplicantStayingInRefugeContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/applicant/applicantStayingInRefugeContent.ts";
 import { Helpers } from "../../../../../../common/helpers.ts";
 import { CommonStaticText } from "../../../../../../common/commonStaticText.ts";
-import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 interface applicantStayingInRefugeOptions {
   page: Page;
@@ -74,7 +74,7 @@ export class ApplicantStayingInRefugePage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

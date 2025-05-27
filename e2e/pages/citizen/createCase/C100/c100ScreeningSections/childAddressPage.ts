@@ -1,5 +1,5 @@
 import { Page } from "@playwright/test";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { Selectors } from "../../../../../common/selectors";
 import { ChildAddressContent } from "../../../../../fixtures/citizen/createCase/C100/c100ScreeningSections/childAddressContent";
 import { Helpers } from "../../../../../common/helpers";
@@ -79,7 +79,7 @@ export class ChildAddressPage {
       1,
     );
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

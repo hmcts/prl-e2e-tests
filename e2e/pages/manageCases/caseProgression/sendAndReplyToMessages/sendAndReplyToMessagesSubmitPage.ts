@@ -2,8 +2,8 @@ import { Page } from "@playwright/test";
 import { CommonStaticText } from "../../../../common/commonStaticText";
 import { Helpers } from "../../../../common/helpers";
 import { Selectors } from "../../../../common/selectors";
-import { SendAndReplyToMessagesSubmitContent } from "../../../../fixtures/manageCases/caseProgression/sendAndReplyToMessages/sendAndReplyToMessagesSubmitContent";
-import { CommonContent } from "../../../../fixtures/manageCases/commonContent";
+import { SendAndReplyToMessagesSubmitContent } from "../../../../fixtures/manageCases/caseProgression/sendAndReplyToMessages/sendAndReplyToMessagesSubmitContent.ts";
+import { CommonContent } from "../../../../fixtures/manageCases/commonContent.ts";
 import { solicitorCaseCreateType } from "../../../../common/types.ts";
 
 export class SendAndReplyToMessagesSubmitPage {
@@ -123,7 +123,7 @@ export class SendAndReplyToMessagesSubmitPage {
     }
     // TODO Disabled pending ticket FPET:1211
     // if (accessibilityTest) {
-    //   await AccessibilityTestHelper.run(page);
+    //   await new AxeUtils(page).audit();
     // }
   }
 

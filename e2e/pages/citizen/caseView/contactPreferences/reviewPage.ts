@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.ts";
 import { CommonStaticText } from "../../../../common/commonStaticText.ts";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { ReviewContent } from "../../../../fixtures/citizen/caseView/contactPreferences/reviewContent.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 
@@ -44,7 +44,7 @@ export class ReviewPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

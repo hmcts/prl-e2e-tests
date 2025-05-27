@@ -3,7 +3,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { ManageOrders1DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderDA/manageOrders1DAContent";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { OccupationOrderManageOrders12Content } from "../../../../../fixtures/manageCases/caseProgression/judge/individualManageOrders12/occupationOrderManageOrders12Content";
 import { C100RespondentDetails1Content } from "../../../../../fixtures/manageCases/createCase/C100/respondentDetails/c100RespondentDetails1Content";
 
@@ -117,7 +117,7 @@ export class OccupationOrderManageOrders12Page {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

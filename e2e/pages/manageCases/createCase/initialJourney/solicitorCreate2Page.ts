@@ -1,5 +1,5 @@
 import { Page } from "@playwright/test";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { Helpers } from "../../../../common/helpers";
 import { Selectors } from "../../../../common/selectors";
 import { solicitorCaseCreateType } from "../../../../common/types";
@@ -67,7 +67,7 @@ export class SolicitorCreate2Page {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

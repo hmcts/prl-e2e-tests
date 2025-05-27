@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors";
 import { DraftAnOrder20Content } from "../../../../fixtures/manageCases/caseWorker/draftAnOrder/draftAnOrder20Content";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { OrderType } from "../../../../common/types";
 import {
   HowLongWillTheOrderBeInForce,
@@ -71,7 +71,7 @@ export class DraftAnOrder20Page {
     ]);
     await this.checkPdfLinks(page, orderType);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

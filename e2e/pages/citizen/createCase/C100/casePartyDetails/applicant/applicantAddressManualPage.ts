@@ -3,7 +3,7 @@ import { CommonStaticText } from "../../../../../../common/commonStaticText.ts";
 import { Helpers } from "../../../../../../common/helpers.ts";
 import { Selectors } from "../../../../../../common/selectors.ts";
 import { ApplicantAddressManualContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/applicant/applicantAddressManualContent.ts";
-import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 interface applicantAddressManualOptions {
   page: Page;
@@ -74,7 +74,9 @@ export class ApplicantAddressManualPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page, [inputIds.addressHistoryYes]); //false-positive (https://github.com/alphagov/govuk-frontend/issues/979, https://github.com/w3c/aria/issues/1404)
+      await new AxeUtils(page).audit({
+        exclude: inputIds.addressHistoryYes,
+      }); //false-positive (https://github.com/alphagov/govuk-frontend/issues/979, https://github.com/w3c/aria/issues/1404)
     }
   }
   private static async triggerErrorMessages(page: Page): Promise<void> {

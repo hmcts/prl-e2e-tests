@@ -1,6 +1,6 @@
 import { Cookie, expect, Page } from "@playwright/test";
 import fs, { existsSync, readFileSync } from "fs";
-import Config from "../../config.ts";
+import Config from "../../utils/config.utils.ts";
 import { setupUser } from "./idamCreateUserApiHelper.ts";
 import { UserCredentialsLong, UserLoginInfo } from "../types.ts";
 export class IdamLoginHelper {

@@ -5,7 +5,7 @@ export enum ManageDocumentsNew1Content {
   buttonText = "Add new",
   buttonText2 = "Remove",
   p1 = "Upload a file to the system",
-  p2 = "File size must be under 500MB.",      // TODO this should be a form hint but it is a <p>
+  p2 = "File size must be under 500MB.", // TODO this should be a form hint but it is a <p>
   formHint1 = "Select a party",
   formHint2 = "Select a document category",
   formHint3 = "Only HMCTS staff and the judiciary will be able to see it.",

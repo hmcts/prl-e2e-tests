@@ -3,7 +3,7 @@ import { Selectors } from "../../../../common/selectors";
 import { Fl401SendToGateKeeper1Content } from "../../../../fixtures/manageCases/caseProgression/sendToGateKepper/fl401SendToGateKeeper1Content";
 import { Helpers } from "../../../../common/helpers";
 import { CommonStaticText } from "../../../../common/commonStaticText";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { CommonContent } from "../../../../fixtures/manageCases/commonContent";
 
 interface FL401SendToGateKeeper1Options {
@@ -71,7 +71,7 @@ export class FL401SendToGateKeeper1Page {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

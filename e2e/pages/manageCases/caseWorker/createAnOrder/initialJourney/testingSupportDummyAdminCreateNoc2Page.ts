@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { Helpers } from "../../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { TestingSupportDummyAdminCreateNoc2Content } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/initialJourney/testingSupportDummyAdminCreateNoc2Content";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { solicitorCaseCreateType } from "../../../../../common/types";
@@ -61,7 +61,7 @@ export class TestingSupportDummyAdminCreateNoc2Page {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

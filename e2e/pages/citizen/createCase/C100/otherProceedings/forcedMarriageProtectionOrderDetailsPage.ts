@@ -3,8 +3,8 @@ import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { CitizensOtherProceedingsUniqueSelectors } from "../../../../../common/commonUniqueSelectors";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
-import { ForcedMarriageProtectionOrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/forcedMarriageProtectionOrderDetailsContent";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
+import { ForcedMarriageProtectionOrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/forcedMarriageProtectionOrderDetailsContent.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 interface ForcedMarriageProtectionOrderDetailsPageOptions {
   page: Page;
@@ -107,7 +107,7 @@ export class ForcedMarriageProtectionOrderDetailsPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

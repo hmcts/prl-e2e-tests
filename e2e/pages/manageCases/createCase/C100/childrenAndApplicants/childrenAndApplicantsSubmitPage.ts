@@ -3,7 +3,7 @@ import { Page } from "@playwright/test";
 import { ChildrenAndApplicantsSubmitContent } from "../../../../../fixtures/manageCases/createCase/C100/childrenAndApplicants/childrenAndApplicantsSubmitContent";
 import { Selectors } from "../../../../../common/selectors";
 import { Helpers } from "../../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { ApplicantDetails1Content } from "../../../../../fixtures/manageCases/createCase/C100/applicantDetails/applicantDetails1Content";
 import { ChildDetailsRevised1Content } from "../../../../../fixtures/manageCases/createCase/C100/childDetails/childDetailsRevised1Content";
 import { ChildrenAndApplicants1Content } from "../../../../../fixtures/manageCases/createCase/C100/childrenAndApplicants/childrenAndApplicants1Content";
@@ -63,7 +63,7 @@ export class ChildrenAndApplicantsSubmitPage {
       }),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

@@ -1,8 +1,8 @@
 import { Page, expect } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors";
 import { Helpers } from "../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
-import { SubmitCAContent } from "../../../../fixtures/manageCases/caseWorker/createAnOrder/orderCA/submitCAContent";
+import { AxeUtils } from "@hmcts/playwright-common";
+import { SubmitCAContent } from "../../../../fixtures/manageCases/caseWorker/createAnOrder/orderCA/submitCAContent.ts";
 import { CommonStaticText } from "../../../../common/commonStaticText";
 import { uploadOrderC100Options } from "../../../../common/types.ts";
 
@@ -37,7 +37,9 @@ export class SubmitPageCA {
       throw new Error("Page is not defined");
     }
     await expect(
-      page.locator(Selectors.GovukHeadingL, { hasText: SubmitCAContent.pageTitle }),
+      page.locator(Selectors.GovukHeadingL, {
+        hasText: SubmitCAContent.pageTitle,
+      }),
     ).toBeVisible();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
@@ -74,7 +76,7 @@ export class SubmitPageCA {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

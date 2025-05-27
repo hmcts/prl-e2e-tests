@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import { Noc2Content } from "../../../../fixtures/manageCases/caseProgression/noticeOfChange/noc2Content.ts";
 import { Selectors } from "../../../../common/selectors.ts";
 import { CommonStaticText } from "../../../../common/commonStaticText.ts";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { Helpers } from "../../../../common/helpers.ts";
 import { solicitorCaseCreateType } from "../../../../common/types.ts";
 
@@ -43,7 +43,7 @@ export class Noc2Page {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

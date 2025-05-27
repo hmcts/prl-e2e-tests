@@ -2,9 +2,9 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { SelectApplicationTypeSubmitContent } from "../../../../../fixtures/manageCases/createCase/C100/selectApplicationType/selectApplicationTypeSubmitContent";
 import { SelectApplicationType1Content } from "../../../../../fixtures/manageCases/createCase/C100/selectApplicationType/selectApplicationType1Content";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { Helpers } from "../../../../../common/helpers";
-import config from "../../../../../config";
+import config from "../../../../../utils/config.utils";
 import path from "path";
 import { radioButtons } from "./selectApplicationType3Page";
 
@@ -84,7 +84,7 @@ export class selectApplicationTypeSubmitPage {
     }
 
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

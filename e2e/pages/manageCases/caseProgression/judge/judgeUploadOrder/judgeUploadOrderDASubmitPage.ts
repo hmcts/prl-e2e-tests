@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import { uploadOrderFL401Options } from "../../../../../common/types";
 import { ManageOrders1DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderDA/manageOrders1DAContent";
 import { Selectors } from "../../../../../common/selectors";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { ManageOrders3DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderDA/manageOrders3DAContent";
@@ -186,7 +186,7 @@ export class judgeCreateUOManageOrderSubmitPage {
         throw new Error("Invalid option");
     }
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

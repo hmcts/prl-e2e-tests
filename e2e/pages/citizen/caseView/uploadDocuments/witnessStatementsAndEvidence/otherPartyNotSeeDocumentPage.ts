@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors.ts";
 import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { OtherPartyNotSeeDocumentContent } from "../../../../../fixtures/citizen/caseView/uploadDocuments/witnessStatementsAndEvidence/otherPartyNotSeeDocumentContent.ts";
 import { Helpers } from "../../../../../common/helpers.ts";
 
@@ -56,7 +56,7 @@ export class OtherPartyNotSeeDocumentPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

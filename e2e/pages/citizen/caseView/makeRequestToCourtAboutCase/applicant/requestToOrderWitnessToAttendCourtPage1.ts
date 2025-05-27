@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors.ts";
 import { RequestToOrderWitnessContent1 } from "../../../../../fixtures/citizen/caseView/makeRequestToCourtAboutCase/applicant/requestToOrderWitnessContent.ts";
 import { Helpers } from "../../../../../common/helpers.ts";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 
 export class RequestToOrderWitnessToAttendCourtPage1 {
@@ -38,7 +38,7 @@ export class RequestToOrderWitnessToAttendCourtPage1 {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
   private static async startNow(page: Page): Promise<void> {

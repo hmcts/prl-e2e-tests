@@ -1,6 +1,6 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { InternationalElementSubmitContent } from "../../../../../fixtures/manageCases/createCase/C100/internationalElement/internationalElementSubmitContent";
 import { Helpers } from "../../../../../common/helpers";
 import { InternationalElement1Content } from "../../../../../fixtures/manageCases/createCase/C100/internationalElement/internationalElement1Content";
@@ -54,7 +54,7 @@ export class InternationalElementSubmitPage {
       }),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 
