@@ -29,7 +29,6 @@ test.describe("FL401 Create case Statement of Truth and Submit tests", (): void 
         fl401YesNoToEverything: true,
         subJourney: false,
       },
-      true,
     );
   });
 
@@ -44,7 +43,6 @@ test.describe("FL401 Create case Statement of Truth and Submit tests", (): void 
         fl401YesNoToEverything: false,
         subJourney: false,
       },
-      true,
     );
   });
 });

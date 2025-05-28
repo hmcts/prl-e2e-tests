@@ -13,7 +13,6 @@ import { StatementOfTruth1Page } from "../../../../pages/manageCases/createCase/
 import { Helpers } from "../../../../common/helpers";
 import { StatementOfTruth2Page } from "../../../../pages/manageCases/createCase/FL401/statementOfTruth/statementOfTruth2Page";
 import { StatementOfTruth3Page } from "../../../../pages/manageCases/createCase/FL401/statementOfTruth/statementOfTruth3Page";
-import { StatementOfTruthSummaryPage } from "../../../../pages/manageCases/createCase/FL401/statementOfTruth/statementOfTruthSummaryPage";
 
 interface Fl401StatementOfTruthOptions {
   page: Page;
@@ -32,7 +31,6 @@ export class Fl401StatementOfTruth {
       fl401YesNoToEverything,
       subJourney,
     }: Fl401StatementOfTruthOptions,
-    isDummyCase: boolean = false,
   ): Promise<void> {
     const otherProceedingsRadioSelection = fl401YesNoToEverything
       ? "Yes"
@@ -133,12 +131,5 @@ export class Fl401StatementOfTruth {
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
     });
-    if (!isDummyCase) {
-      await StatementOfTruthSummaryPage.statementOfTruthSummaryPage({
-        page,
-        accessibilityTest,
-        fl401YesNoToEverything,
-      });
-    }
   }
 }
