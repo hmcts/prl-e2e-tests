@@ -54,7 +54,7 @@ export class StatementOfTruth3Page {
       ),
     ]);
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page); #TODO: Re-enable when EXUI-2721 is fixed.
+      // await new AxeUtils(page).audit(); #TODO: Re-enable when EXUI-2721 is fixed.
     }
   }
 

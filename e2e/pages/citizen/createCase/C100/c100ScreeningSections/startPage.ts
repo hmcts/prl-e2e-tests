@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { StartContent } from "../../../../../fixtures/citizen/createCase/C100/c100ScreeningSections/startContent";
 import { Helpers } from "../../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 enum uniqueSelectors {
   uniquePSelector = "div.govuk-grid-column-two-thirds > ",
@@ -69,7 +69,7 @@ export class StartPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

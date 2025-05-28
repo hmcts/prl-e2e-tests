@@ -3,7 +3,7 @@ import { Selectors } from "../../../../common/selectors";
 import { CommonStaticText } from "../../../../common/commonStaticText";
 import { ReturnApplication2Content } from "../../../../fixtures/manageCases/caseWorker/returnApplication/returnApplication2Content";
 import { Helpers } from "../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { solicitorCaseCreateType } from "../../../../common/types";
 
 interface ReturnApplication2PageOptions {
@@ -59,7 +59,7 @@ export class ReturnApplication2Page {
       ).toContain(ReturnApplication2Content.fl401ReturnMessageContent);
     }
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 }

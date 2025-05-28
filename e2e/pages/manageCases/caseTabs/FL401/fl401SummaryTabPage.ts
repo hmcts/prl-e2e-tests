@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors";
 import { Helpers } from "../../../../common/helpers";
-import { FL401SummaryTabContent } from "../../../../fixtures/manageCases/caseTabs/FL401/fl401SummaryTabContent";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
+import { FL401SummaryTabContent } from "../../../../fixtures/manageCases/caseTabs/FL401/fl401SummaryTabContent.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { RestrictedCaseAccess2Content } from "../../../../fixtures/manageCases/caseProgression/restrictedCaseAccess/restrictedCaseAccess2Content.ts";
 
 export class FL401SummaryTabPage {
@@ -74,7 +74,7 @@ export class FL401SummaryTabPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
   public static async fl401SummaryTabRestrictCaseCheckPage(

@@ -1,6 +1,6 @@
 import { Page } from "@playwright/test";
 import { JudgeOrderAction, OrderType } from "../../../../common/types";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { Selectors } from "../../../../common/selectors";
 import { EditAndApproveAnOrder2Content } from "../../../../fixtures/manageCases/caseWorker/editAndApproveAnOrder/editAndApproveAnOrder2Content";
 import { Helpers } from "../../../../common/helpers";
@@ -110,7 +110,7 @@ export class EditAndApproveAnOrder2Page {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

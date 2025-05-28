@@ -1,7 +1,7 @@
 import { StartPageContent } from "../../fixtures/edgeCases/startPageContent.ts";
 import { Page } from "@playwright/test";
 import { Selectors } from "../../common/selectors.ts";
-import AccessibilityTestHelper from "../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { Helpers } from "../../common/helpers.ts";
 
 interface StartPageOptions {
@@ -51,7 +51,7 @@ export class StartPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 }

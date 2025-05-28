@@ -1,5 +1,5 @@
 import { Page } from "@playwright/test";
-import accessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { Selectors } from "../../../../common/selectors";
 import { SubmitContent } from "../../../../fixtures/manageCases/createCase/initialJourney/submitContent";
 import { Helpers } from "../../../../common/helpers";
@@ -25,7 +25,7 @@ export class SubmitPage {
       this.checkFilledInData(page, caseName),
     ]);
     if (accessibilityTest) {
-      await accessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

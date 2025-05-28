@@ -2,7 +2,7 @@ import { Page, expect } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { SubmitAndPay1Content } from "../../../../../fixtures/manageCases/createCase/C100/submitAndPay/submitAndPay1Content";
 import { Helpers } from "../../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 interface SubmitAndPay1PageOptions {
   page: Page;
@@ -92,7 +92,7 @@ export class SubmitAndPay1Page {
       ).toBeVisible(),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

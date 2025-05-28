@@ -1,7 +1,7 @@
 import { Page, expect } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors";
 import { Helpers } from "../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { ManageOrders24CAContent } from "../../../../fixtures/manageCases/caseWorker/createAnOrder/orderCA/manageOrders24CAContent";
 import { CommonStaticText } from "../../../../common/commonStaticText";
 
@@ -44,7 +44,7 @@ export class ManageOrders24PageCA {
       `${Selectors.GovukFormLabel}`,
     );
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

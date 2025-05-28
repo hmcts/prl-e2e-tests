@@ -3,8 +3,8 @@ import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { CitizensOtherProceedingsUniqueSelectors } from "../../../../../common/commonUniqueSelectors";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
-import { NonMolestationOrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/nonMolestationOrderDetailsContent";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
+import { NonMolestationOrderDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/nonMolestationOrderDetailsContent.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 interface NonMolestationOrderDetailsPageOptions {
   page: Page;
@@ -107,7 +107,7 @@ export class NonMolestationOrderDetailsPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

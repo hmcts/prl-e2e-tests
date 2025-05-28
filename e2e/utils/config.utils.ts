@@ -1,7 +1,7 @@
-import path from "path";
 import dotenv from "dotenv";
+import path from "path";
 
-import { UserCredentials, UserRole } from "./common/types";
+import { UserCredentials, UserRole } from "../common/types";
 
 dotenv.config();
 
@@ -38,8 +38,8 @@ export class Config {
   };
 
   public static readonly sessionStoragePath: string = path.join(
-    __dirname,
-    ".sessions/",
+    import.meta.dirname,
+    "../.sessions/",
   );
 
   public static readonly citizenFrontendBaseURL: string =
@@ -90,24 +90,24 @@ export class Config {
   }
 
   public static readonly testFile: string = path.resolve(
-    __dirname,
-    "./assets/mockFile.txt",
+    import.meta.dirname,
+    "../assets/mockFile.txt",
   );
   public static readonly testPdfFile: string = path.resolve(
-    __dirname,
-    "./assets/mockFile.pdf",
+    import.meta.dirname,
+    "../assets/mockFile.pdf",
   );
   public static readonly testWordFile: string = path.resolve(
-    __dirname,
-    "./assets/mockFile.docx",
+    import.meta.dirname,
+    "../assets/mockFile.docx",
   );
   public static readonly testOdtFile: string = path.resolve(
-    __dirname,
-    "./assets/mockFile.odt",
+    import.meta.dirname,
+    "../assets/mockFile.odt",
   );
   public static readonly testMP3File: string = path.resolve(
-    __dirname,
-    "./assets/mockFile.mp3",
+    import.meta.dirname,
+    "../assets/mockFile.mp3",
   );
 
   public static getUserCredentials(role: UserRole): UserCredentials {

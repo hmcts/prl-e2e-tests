@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
-import { PayContent } from "../../../../../fixtures/citizen/createCase/C100/pay/payContent";
+import { PayContent } from "../../../../../fixtures/citizen/createCase/C100/pay/payContent.ts";
 import { CommonContent } from "../../../../../fixtures/manageCases/commonContent.ts";
 
 interface PayPageOptions {
@@ -123,7 +123,7 @@ export class PayPage {
       ),
     ]);
     if (accessibilityTest) {
-      //   await AccessibilityTestHelper.run(page); / TODO: Pending accessibility PRL-6654
+      //   await new AxeUtils(page).audit(); / TODO: Pending accessibility PRL-6654
     }
   }
 

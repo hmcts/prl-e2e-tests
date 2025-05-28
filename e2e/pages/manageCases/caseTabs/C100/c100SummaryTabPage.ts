@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors";
 import { Helpers } from "../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { C100SummaryTabContent } from "../../../../fixtures/manageCases/caseTabs/C100/c100SummaryTabContent";
 
 export class C100SummaryTabPage {
@@ -55,7 +55,7 @@ export class C100SummaryTabPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 }

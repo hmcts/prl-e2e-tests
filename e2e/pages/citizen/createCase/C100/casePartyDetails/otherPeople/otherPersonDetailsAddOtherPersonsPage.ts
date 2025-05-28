@@ -3,7 +3,7 @@ import { Selectors } from "../../../../../../common/selectors.ts";
 import { OtherPersonDetailsAddOtherPersonsContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/otherPeople/otherPersonDetailsAddOtherPersonsContent.ts";
 import { Helpers } from "../../../../../../common/helpers.ts";
 import { CommonStaticText } from "../../../../../../common/commonStaticText.ts";
-import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 interface OtherPersonDetailsAddOtherPersonsPageOptions {
   page: Page;
@@ -63,7 +63,7 @@ export class OtherPersonDetailsAddOtherPersonsPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

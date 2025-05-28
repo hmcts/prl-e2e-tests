@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { RelationshipToRespondentSubmitContent } from "../../../../../fixtures/manageCases/createCase/FL401/relationshipToRespondent/relationshipToRespondentSubmitContent";
 import { Helpers } from "../../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { fl401RelationshipToRespondent } from "./relationshipToRespondent1Page";
 import { fl401RespondentRelationshipOther } from "./relationshipToRespondent2Page";
 
@@ -77,7 +77,7 @@ export class RelationshipToRespondentSubmitPage {
       respondentRelationshipOther: respondentRelationshipOther,
     });
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

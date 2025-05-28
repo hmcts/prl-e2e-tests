@@ -1,4 +1,4 @@
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { ApplicationPackDocumentsContent } from "../../../../fixtures/citizen/caseView/viewAllDocuments/applicationPackDocumentsContent.ts";
 import { Selectors } from "../../../../common/selectors.ts";
 import { Page } from "@playwright/test";
@@ -55,7 +55,7 @@ export class ApplicationPackDocumentsPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

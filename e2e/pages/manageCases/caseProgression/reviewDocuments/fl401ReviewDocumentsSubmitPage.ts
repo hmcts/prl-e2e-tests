@@ -3,7 +3,7 @@ import { CommonStaticText } from "../../../../common/commonStaticText";
 import { Helpers } from "../../../../common/helpers";
 import { Selectors } from "../../../../common/selectors";
 import { yesNoDontKnow, documentSubmittedBy } from "../../../../common/types";
-import { Fl401ReviewDocumentsSubmitContent } from "../../../../fixtures/manageCases/caseProgression/reviewDocuments/fl401ReviewDocumentsSubmitContent";
+import { Fl401ReviewDocumentsSubmitContent } from "../../../../fixtures/manageCases/caseProgression/reviewDocuments/fl401ReviewDocumentsSubmitContent.ts";
 import { Fl401ReviewDocuments2Content } from "../../../../fixtures/manageCases/caseProgression/reviewDocuments/fl401ReviewDocuments2Content.ts";
 
 interface FL401ReviewDocumentsSubmitPageOptions {
@@ -80,7 +80,7 @@ export class FL401ReviewDocumentsSubmitPage {
       }),
     ).toBeVisible();
     // if (accessibilityTest) {
-    //   await AccessibilityTestHelper.run(page); #TODO Disabled pending ticket FPET-1209
+    //   await new AxeUtils(page).audit(); #TODO Disabled pending ticket FPET-1209
     // }
   }
 

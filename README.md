@@ -105,16 +105,21 @@ We use the following test tags to categorise and manage our test suite:
 
 ## Accessibility Testing
 
-`AxeTest` runs accessibility checks using [Axe Core](https://www.deque.com/axe/) in Playwright.
+`AxeTest` runs accessibility checks using [Axe Core](https://www.deque.com/axe/) in Playwright. We import the fixture from the HMCTS playwright common library.
 
 ### Usage:
 
 ```typescript
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 if (accessibilityTest) {
-  await AccessibilityTestHelper.run(page, [elements - to - exclude]); //reason to exclude element or bug ticket reference
+  await new AxeUtils(page).audit();
 }
+
+//to exclude elements you can use
+await new AxeUtils(page).audit({
+  exclude: "element-to-be-excluded-from-accessibility-test",
+}); //reason element is excluded (e.g. bug ticket reference, false positive example link)
 ```
 
 **Note**: if you exclude an element, ensure there is a comment explaining why it is excluded or a bug ticket reference.

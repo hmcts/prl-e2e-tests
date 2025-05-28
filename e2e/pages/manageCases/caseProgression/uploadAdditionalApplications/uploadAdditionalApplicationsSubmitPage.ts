@@ -5,7 +5,7 @@ import {
 } from "../../../../common/types.ts";
 import { Selectors } from "../../../../common/selectors.ts";
 import { CommonStaticText } from "../../../../common/commonStaticText.ts";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { UploadAdditionalApplicationsSubmitContent } from "../../../../fixtures/manageCases/caseProgression/uploadAdditionalApplications/uploadAdditionalApplicationsSubmitContent.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 
@@ -147,7 +147,7 @@ export class UploadAdditionalApplicationsSubmitPage {
       }
     }
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

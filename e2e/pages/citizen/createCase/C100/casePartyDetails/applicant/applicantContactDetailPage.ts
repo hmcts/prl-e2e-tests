@@ -3,7 +3,7 @@ import { CommonStaticText } from "../../../../../../common/commonStaticText.ts";
 import { Helpers } from "../../../../../../common/helpers.ts";
 import { Selectors } from "../../../../../../common/selectors.ts";
 import { ApplicantContactDetailContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/applicant/applicantContactDetailContent.ts";
-import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 enum inputIds {
   provideEmailYes = "#canProvideEmail",
@@ -87,11 +87,13 @@ export class ApplicantContactDetailPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page, [
-        inputIds.provideEmailYes,
-        inputIds.provideTelYes,
-        inputIds.provideTelNo,
-      ]); //false-positive (https://github.com/alphagov/govuk-frontend/issues/979, https://github.com/w3c/aria/issues/1404)
+      await new AxeUtils(page).audit({
+        exclude: [
+          inputIds.provideEmailYes,
+          inputIds.provideTelYes,
+          inputIds.provideTelNo,
+        ],
+      }); //false-positive (https://github.com/alphagov/govuk-frontend/issues/979, https://github.com/w3c/aria/issues/1404)
     }
   }
 

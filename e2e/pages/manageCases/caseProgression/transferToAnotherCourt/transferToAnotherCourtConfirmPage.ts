@@ -3,7 +3,7 @@ import { TransferToAnotherCourtConfirmContent } from "../../../../fixtures/manag
 import { Selectors } from "../../../../common/selectors.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import { CommonStaticText } from "../../../../common/commonStaticText.ts";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 interface TransferToAnotherCourtConfirmPageParams {
   page: Page;
@@ -49,7 +49,7 @@ export class TransferToAnotherCourtConfirmPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

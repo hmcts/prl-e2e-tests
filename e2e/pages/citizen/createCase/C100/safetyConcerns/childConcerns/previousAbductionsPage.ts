@@ -2,8 +2,8 @@ import { Page } from "@playwright/test";
 import { CommonStaticText } from "../../../../../../common/commonStaticText";
 import { Helpers } from "../../../../../../common/helpers";
 import { Selectors } from "../../../../../../common/selectors";
-import { PreviousAbductionsContent } from "../../../../../../fixtures/citizen/createCase/C100/safetyConcerns/childConcerns/previousAbductionsContent";
-import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper.ts";
+import { PreviousAbductionsContent } from "../../../../../../fixtures/citizen/createCase/C100/safetyConcerns/childConcerns/previousAbductionsContent.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { reportAbuseInputIDs } from "../../../../../../common/commonUniqueSelectors.ts";
 enum inputIDs {
   abductionDescription = "#c1A_previousAbductionsShortDesc",
@@ -91,12 +91,14 @@ export class PreviousAbductionsPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page, [
-        reportAbuseInputIDs.ongoingBehaviorYes,
-        reportAbuseInputIDs.seekHelpYes,
-        reportAbuseInputIDs.seekHelpNo,
-        inputIDs.radioYes,
-      ]); //false-positive (https://github.com/alphagov/govuk-frontend/issues/979, https://github.com/w3c/aria/issues/1404)
+      await new AxeUtils(page).audit({
+        exclude: [
+          reportAbuseInputIDs.ongoingBehaviorYes,
+          reportAbuseInputIDs.seekHelpYes,
+          reportAbuseInputIDs.seekHelpNo,
+          inputIDs.radioYes,
+        ],
+      }); //false-positive (https://github.com/alphagov/govuk-frontend/issues/979, https://github.com/w3c/aria/issues/1404)
     }
   }
 

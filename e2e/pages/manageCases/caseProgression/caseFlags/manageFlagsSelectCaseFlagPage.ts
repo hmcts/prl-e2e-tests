@@ -6,7 +6,7 @@ import {
 import { Selectors } from "../../../../common/selectors.ts";
 import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 import { Helpers } from "../../../../common/helpers.ts";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { ManageFlagsSelectCaseFlagContent } from "../../../../fixtures/manageCases/caseProgression/caseFlags/manageFlagsSelectCaseFlagContent.ts";
 
 enum UniqueSelectors {
@@ -78,7 +78,7 @@ export class ManageFlagsSelectCaseFlagPage {
       }
     }
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

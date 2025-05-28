@@ -3,8 +3,8 @@ import { Selectors } from "../../../../../common/selectors";
 import { MiamUploadContent } from "../../../../../fixtures/citizen/createCase/C100/MIAM/miamUploadContent";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-import config from "../../../../../config";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import config from "../../../../../utils/config.utils";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 interface MiamUploadPageOptions {
   page: Page;
@@ -45,7 +45,7 @@ export class MiamUploadPage {
     );
     await Helpers.checkGroup(page, 5, MiamUploadContent, `li`, Selectors.li);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

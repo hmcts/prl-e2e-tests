@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { Helpers } from "../../../../../common/helpers";
-// import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+// import { AxeUtils } from "@hmcts/playwright-common";
 import { SelectApplicationType4Content } from "../../../../../fixtures/manageCases/createCase/C100/selectApplicationType/selectApplicationType4Content";
 
 enum PageIDs {
@@ -53,7 +53,7 @@ export class selectApplicationType4Page {
       ),
     ]);
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page); //bug ticket raised: EXUI-3000
+      // await new AxeUtils(page).audit(); //bug ticket raised: EXUI-3000
     }
   }
 

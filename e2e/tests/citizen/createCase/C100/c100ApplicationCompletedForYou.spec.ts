@@ -1,7 +1,7 @@
 import { test } from "@playwright/test";
 import IdamLoginHelper from "../../../../common/userHelpers/idamLoginHelper.ts";
 import { C100 } from "../../../../journeys/citizen/createCase/C100/C100";
-import Config from "../../../../config.ts";
+import Config from "../../../../utils/config.utils.ts";
 
 test.describe("Create Citizen Application but choose to have legal representative fill it out for you.", (): void => {
   test.beforeEach(async ({ page }) => {

@@ -32,7 +32,7 @@ export class ApplicantDetailsSubmitPage {
       this.checkFilledInData(page, yesNoFL401ApplicantDetails, applicantGender),
     ]);
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page); TODO: Disabled pending ticket EXUI-2717
+      // await new AxeUtils(page).audit(); TODO: Disabled pending ticket EXUI-2717
     }
   }
 

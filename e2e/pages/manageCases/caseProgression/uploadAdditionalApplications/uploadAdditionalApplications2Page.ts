@@ -4,8 +4,8 @@ import { Selectors } from "../../../../common/selectors.ts";
 import { UploadAdditionalApplications2Content } from "../../../../fixtures/manageCases/caseProgression/uploadAdditionalApplications/uploadAdditionalApplications2Content.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import { CommonStaticText } from "../../../../common/commonStaticText.ts";
-import config from "../../../../config.ts";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
+import config from "../../../../utils/config.utils.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 enum UniqueSelectors {
   c2ApplicationFileUpload = "#temporaryC2Document_document",
@@ -173,7 +173,7 @@ export class UploadAdditionalApplications2Page {
       ]);
     }
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

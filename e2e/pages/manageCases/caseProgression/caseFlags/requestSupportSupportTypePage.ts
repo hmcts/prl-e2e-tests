@@ -3,7 +3,7 @@ import { SupportType } from "../../../../common/types.ts";
 import { Selectors } from "../../../../common/selectors.ts";
 import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 import { Helpers } from "../../../../common/helpers.ts";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { RequestSupportSupportTypeContent } from "../../../../fixtures/manageCases/caseProgression/caseFlags/requestSupportSupportTypeContent.ts";
 
 enum UniqueSelectors {
@@ -56,7 +56,7 @@ export class RequestSupportSupportTypePage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

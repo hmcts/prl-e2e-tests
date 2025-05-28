@@ -1,8 +1,19 @@
 import { APIRequestContext, expect, request } from "@playwright/test";
 import fs from "fs";
 import path from "path";
-import withNoticeJsonData from "../../caseData/citizenDA/courtNavDaCitizenCase_WithNotice.json";
-import withoutNoticeJsonData from "../../caseData/citizenDA/courtNavDaCitizenCase_WithoutNotice.json";
+
+const withNoticeJsonData = JSON.parse(
+  fs.readFileSync(
+    "./e2e/caseData/citizenDA/courtNavDaCitizenCase_WithNotice.json",
+    "utf8",
+  ),
+);
+const withoutNoticeJsonData = JSON.parse(
+  fs.readFileSync(
+    "./e2e/caseData/citizenDA/courtNavDaCitizenCase_WithoutNotice.json",
+    "utf8",
+  ),
+);
 
 /**
  * Function to create a DA Citizen CourtNav case and optionally add a document.
@@ -21,22 +32,29 @@ async function createDaCitizenCourtNavCase(
   const caseUrl = process.env.COURTNAV_CASE_URL as string;
   const jsonData = withNotice ? withNoticeJsonData : withoutNoticeJsonData;
   let ccd_reference = "";
-  await expect(async () => {
-    const response = await apiContext.post(caseUrl, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Ocp-Apim-Subscription-Key": subscriptionKey,
+  await expect
+    .poll(
+      async () => {
+        const response = await apiContext.post(caseUrl, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Ocp-Apim-Subscription-Key": subscriptionKey,
+          },
+          data: jsonData,
+        });
+        if (response.status() !== 201) return false;
+        const json = await response.json();
+        if (!json.ccd_reference) return false;
+        ccd_reference = json.ccd_reference;
+        return true;
       },
-      data: jsonData,
-    });
-    expect(response.status()).toBe(201);
-    const json = await response.json();
-    expect(json.ccd_reference).toBeTruthy();
-    ccd_reference = json.ccd_reference;
-  }).toPass({
-    intervals: [1000],
-    timeout: 10000,
-  });
+      {
+        intervals: [4000],
+        timeout: 60000,
+      },
+    )
+    .toBeTruthy();
+
   if (process.env.PWDEBUG) {
     console.log("CCD Reference:", ccd_reference);
   }
@@ -57,7 +75,10 @@ async function addDocumentToCase(
 ): Promise<void> {
   const apiContextDaAddDoc: APIRequestContext = await request.newContext();
   const courtNavAddDocURL = `${process.env.COURTNAV_DOC_URL}${ccdReference}/document`;
-  const pdfPath = path.resolve(__dirname, "../../caseData/testPdf.pdf");
+  const pdfPath = path.resolve(
+    import.meta.dirname,
+    "../../caseData/testPdf.pdf",
+  );
   const pdfBuffer = fs.readFileSync(pdfPath);
   const docResponse = await apiContextDaAddDoc.post(courtNavAddDocURL, {
     headers: {

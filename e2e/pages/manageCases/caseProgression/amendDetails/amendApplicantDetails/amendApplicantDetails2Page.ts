@@ -3,7 +3,7 @@ import { Helpers } from "../../../../../common/helpers.ts";
 import { Selectors } from "../../../../../common/selectors.ts";
 import { ApplicantGender } from "../../../../../common/types.ts";
 import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { AmendApplicantDetails2Content } from "../../../../../fixtures/manageCases/caseProgression/amendDetails/amendApplicantDetails/AmendApplicantDetails2Content.ts";
 import { FileUploadComponent } from "../../../../../pageObjects/components/uploadFile.component.ts";
 
@@ -243,7 +243,7 @@ export class AmendApplicantDetails2Page {
       .soft(page.locator(uniqueSelectors.cannotFindOrgReason))
       .toBeVisible();
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

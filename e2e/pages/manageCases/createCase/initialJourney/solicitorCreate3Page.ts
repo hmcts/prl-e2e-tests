@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors";
 import { SolicitorCreate3Content } from "../../../../fixtures/manageCases/createCase/initialJourney/solicitorCreate3Content";
 import { Helpers } from "../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 enum checkbox {
   checkboxID = "#confidentialityStatementDisclaimer-confidentialityStatementUnderstood",
@@ -67,7 +67,7 @@ export class SolicitorCreate3Page {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 
