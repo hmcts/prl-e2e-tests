@@ -31,10 +31,10 @@ export class SolicitorDACaseCreator {
   ): Promise<string> {
     const caseRef: string = await createBlankCase(page, jsonData);
     for (const event of solicitorCaseEvents) {
-      await submitEvent(page, caseRef, event, jsonData);
       if (event === "fl401StatementOfTruthAndSubmit") {
         break;
       }
+      await submitEvent(page, caseRef, event, jsonData);
     }
     return caseRef;
   }
