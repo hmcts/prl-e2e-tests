@@ -80,7 +80,9 @@ export class IdamLoginHelper {
     const token = process.env.CREATE_USER_BEARER_TOKEN as string;
     if (!token) return;
     const userInfo = await setupUser(token, userType);
-    console.log(userInfo);
+    if (process.env.PWDEBUG) {
+      console.log(userType + " email : " + userInfo.email);
+    }
     await this.signIn(
       page,
       userInfo.email,
