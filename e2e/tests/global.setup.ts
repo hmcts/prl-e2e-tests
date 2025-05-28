@@ -6,14 +6,6 @@ import config from "../utils/config.utils.ts";
 
 dotenv.config();
 
-setup("Setup solicitor user", async ({ page }) => {
-  await IdamLoginHelper.signInLongLivedUser(
-    page,
-    "solicitor",
-    config.manageCasesBaseURLCase,
-  );
-});
-
 setup("Retrieve bearer token for courtNav DA case creation", async () => {
   const apiContextDaCreateCase: APIRequestContext = await request.newContext();
   const tokenDaCreateCase = await getAccessToken(
@@ -26,13 +18,21 @@ setup("Retrieve bearer token for courtNav DA case creation", async () => {
   process.env.COURTNAV_CREATE_CASE_BEARER_TOKEN = tokenDaCreateCase;
 });
 
-setup("Retrieve bearer token for user creation", async () => {
+setup("Retrieve bearer token for user creation and create users", async ({ page }) => {
   const apiContext: APIRequestContext = await request.newContext();
   const token = await getAccessToken("citizenCreateUser", apiContext);
   if (!token) {
     throw new Error("Setup failed: Unable to get bearer token.");
   }
   process.env.CREATE_USER_BEARER_TOKEN = token;
+  
+  //create and log in solicitor user
+  await IdamLoginHelper.setupAndSignInUser(
+    page,
+    config.manageCasesBaseURLCase,
+    "solicitor",
+    true,
+  );
 });
 
 setup("Setup judge user", async ({ page }) => {
