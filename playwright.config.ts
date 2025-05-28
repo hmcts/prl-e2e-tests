@@ -1,7 +1,7 @@
 import { CommonConfig, ProjectsConfig } from "@hmcts/playwright-common";
 import { defineConfig } from "@playwright/test";
 
-module.exports = defineConfig({
+export default defineConfig({
   testDir: "./e2e/tests",
   ...CommonConfig.recommended,
   timeout: 6 * 60 * 1000,
