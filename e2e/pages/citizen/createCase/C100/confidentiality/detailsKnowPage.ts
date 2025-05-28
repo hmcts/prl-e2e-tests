@@ -1,6 +1,6 @@
 import { Page } from "@playwright/test";
 import { yesNoDontKnow } from "../../../../../common/types";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { Selectors } from "../../../../../common/selectors";
 import { DetailsKnowContent } from "../../../../../fixtures/citizen/createCase/C100/confidentiality/detailsKnowContent";
 import { Helpers } from "../../../../../common/helpers";
@@ -79,7 +79,7 @@ export class DetailsKnowPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

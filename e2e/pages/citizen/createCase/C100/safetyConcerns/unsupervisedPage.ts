@@ -3,7 +3,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { UnsupervisedContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/unsupervisedContent";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 enum inputIDs {
   yesSpendTime = "#c1A_supervisionAgreementDetails",
@@ -108,7 +108,7 @@ export class UnsupervisedPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

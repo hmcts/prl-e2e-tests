@@ -3,7 +3,7 @@ import { Selectors } from "../../../../common/selectors";
 import { CommonStaticText } from "../../../../common/commonStaticText";
 import { LinkCases1Content } from "../../../../fixtures/manageCases/caseLinking/linkCases/linkCases1Content";
 import { Helpers } from "../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 interface LinkCases1PageOptions {
   page: Page;
@@ -32,7 +32,7 @@ export class LinkCases1Page {
     await pageTitle.waitFor({ state: "visible" });
     await Helpers.checkGroup(page, 2, LinkCases1Content, "p", Selectors.p);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

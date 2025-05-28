@@ -3,7 +3,7 @@ import { OtherPersonDetailsCheckContent } from "../../../../../../fixtures/citiz
 import { Selectors } from "../../../../../../common/selectors.ts";
 import { Helpers } from "../../../../../../common/helpers.ts";
 import { CommonStaticText } from "../../../../../../common/commonStaticText.ts";
-import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 interface OtherPersonDetailsCheckPageOptions {
   page: Page;
@@ -71,7 +71,7 @@ export class OtherPersonDetailsCheckPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

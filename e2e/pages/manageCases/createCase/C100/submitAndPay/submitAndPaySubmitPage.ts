@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
 import { SubmitAndPaySubmitContent } from "../../../../../fixtures/manageCases/createCase/C100/submitAndPay/submitAndPaySubmitContent";
 import { Selectors } from "../../../../../common/selectors";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { Helpers } from "../../../../../common/helpers";
 import { SubmitAndPay1Content } from "../../../../../fixtures/manageCases/createCase/C100/submitAndPay/submitAndPay1Content";
 
@@ -52,7 +52,7 @@ export class SubmitAndPaySubmitPage {
       }),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

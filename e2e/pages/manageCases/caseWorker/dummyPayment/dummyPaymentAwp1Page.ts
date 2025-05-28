@@ -3,7 +3,7 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors";
 import { Helpers } from "../../../../common/helpers";
 import { DummyPaymentAwp1Content } from "../../../../fixtures/manageCases/caseWorker/dummyPayment/dummyPaymentAwp1Content";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 enum UniqueSelectors {
   paymentServiceRefInput = "#tsPaymentServiceRequestReferenceNumber",
@@ -59,7 +59,7 @@ export class DummyPaymentAwp1Page extends CommonPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

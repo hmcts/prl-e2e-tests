@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
 import { Helpers } from "../../../../common/helpers.ts";
 import { RestrictedCaseAccess1Page } from "../../../../pages/manageCases/caseProgression/restricedCaseAccess/restrictedCaseAccess1Page.ts";
-import config from "../../../../config.ts";
+import config from "../../../../utils/config.utils.ts";
 import { RestrictedCaseAccess2Page } from "../../../../pages/manageCases/caseProgression/restricedCaseAccess/restrictedCaseAccess2Page.ts";
 import { RestrictedCaseAccessSubmitPage } from "../../../../pages/manageCases/caseProgression/restricedCaseAccess/restrictedCaseAccessSubmitPage.ts";
 import { FL401SummaryTabPage } from "../../../../pages/manageCases/caseTabs/FL401/fl401SummaryTabPage.ts";

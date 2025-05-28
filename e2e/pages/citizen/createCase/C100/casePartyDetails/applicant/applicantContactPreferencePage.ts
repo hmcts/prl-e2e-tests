@@ -3,7 +3,7 @@ import { CommonStaticText } from "../../../../../../common/commonStaticText.ts";
 import { Helpers } from "../../../../../../common/helpers.ts";
 import { Selectors } from "../../../../../../common/selectors.ts";
 import { ApplicantContactPreferenceContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/applicant/applicantContactPreferenceContent.ts";
-// import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper.ts";
+// import { AxeUtils } from "@hmcts/playwright-common";
 
 enum inputIds {
   digitalPreference = "#applicantContactPreferences",
@@ -102,7 +102,7 @@ export class ApplicantContactPreferencePage {
       ),
     ]);
     if (accessibilityTest) {
-      //await AccessibilityTestHelper.run(page); //#TODO Commented out until PRL-6591 is complete
+      //await new AxeUtils(page).audit(); //#TODO Commented out until PRL-6591 is complete
     }
   }
   private static async triggerErrorMessages(page: Page): Promise<void> {

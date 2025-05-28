@@ -5,9 +5,9 @@ import {
   reportAbuseInputIDs,
 } from "../../../../../../common/commonUniqueSelectors";
 import { Selectors } from "../../../../../../common/selectors";
-import { SexualAbuseContent } from "../../../../../../fixtures/citizen/createCase/C100/safetyConcerns/childConcerns/sexualAbuseContent";
+import { SexualAbuseContent } from "../../../../../../fixtures/citizen/createCase/C100/safetyConcerns/childConcerns/sexualAbuseContent.ts";
 import { SafetyConcernHelpers } from "../safetyConcernHelpers";
-import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 interface SexualAbusePageOptions {
   page: Page;
@@ -51,11 +51,13 @@ export class SexualAbusePage {
     await SafetyConcernHelpers.checkStaticTextChild(page);
     await SafetyConcernHelpers.checkSidebarChild(page);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page, [
-        reportAbuseInputIDs.ongoingBehaviorYes,
-        reportAbuseInputIDs.seekHelpYes,
-        reportAbuseInputIDs.seekHelpNo,
-      ]); //false-positive (https://github.com/alphagov/govuk-frontend/issues/979, https://github.com/w3c/aria/issues/1404)
+      await new AxeUtils(page).audit({
+        exclude: [
+          reportAbuseInputIDs.ongoingBehaviorYes,
+          reportAbuseInputIDs.seekHelpYes,
+          reportAbuseInputIDs.seekHelpNo,
+        ],
+      }); //false-positive (https://github.com/alphagov/govuk-frontend/issues/979, https://github.com/w3c/aria/issues/1404)
     }
   }
 

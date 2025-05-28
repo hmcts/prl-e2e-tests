@@ -1,10 +1,14 @@
 import { APIRequestContext, Browser, Page, request } from "@playwright/test";
-import { getAccessToken, getS2SToken } from "./getAccessTokenHelper.ts";
+import fs from "fs";
 import process from "node:process";
-import solicitorCaseData from "../../caseData/solicitorDACaseEventData.json";
-import { Helpers } from "../helpers.ts";
-import config from "../../config.ts";
 import { ServiceOfApplicationLite } from "../../journeys/manageCases/caseProgression/serviceOfApplication/serviceOfApplicationLite.ts";
+import config from "../../utils/config.utils.ts";
+import { Helpers } from "../helpers.ts";
+import { getAccessToken, getS2SToken } from "./getAccessTokenHelper.ts";
+
+const solicitorCaseData = JSON.parse(
+  fs.readFileSync("./e2e/caseData/solicitorDACaseEventData.json", "utf8"),
+);
 
 /**
  * Function to create a blank DA Solicitor case.
@@ -200,7 +204,6 @@ async function actionCaseEvent(
   caseEventToken: string,
 ): Promise<void> {
   try {
-    // @ts-expect-error - caseEvent will always map to its associated json object
     const jsonData = solicitorCaseData[caseEvent].data;
     await apiContext.post(`${getUrlPrefix(userID)}/cases/${caseID}/events`, {
       headers: {

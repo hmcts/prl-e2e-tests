@@ -2,7 +2,7 @@ import { Page, expect } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { Submit2Content } from "../../../../../fixtures/manageCases/createCase/C100/submit/submit2Content";
 import { Helpers } from "../../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { Submit1Content } from "../../../../../fixtures/manageCases/createCase/C100/submit/submit1Content";
 
 interface Submit2PageOptions {
@@ -72,7 +72,7 @@ export class Submit2Page {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

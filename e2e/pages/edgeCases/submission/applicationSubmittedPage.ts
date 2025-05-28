@@ -1,6 +1,6 @@
 import { expect, Page } from "@playwright/test";
 import { Selectors } from "../../../common/selectors.ts";
-import AccessibilityTestHelper from "../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { Helpers } from "../../../common/helpers.ts";
 import { ApplicationSubmittedContent } from "../../../fixtures/edgeCases/submission/applicationSubmittedContent.ts";
 
@@ -47,7 +47,7 @@ export class ApplicationSubmitted {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 }

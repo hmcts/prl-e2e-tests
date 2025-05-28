@@ -1,4 +1,4 @@
-import AccessibilityTestHelper from "../../../../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../../common/selectors.ts";
 import { Helpers } from "../../../../../../common/helpers.ts";
@@ -74,7 +74,7 @@ export class RespondentDetailsAddRespondentsPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
   private static async triggerErrorMessages(page: Page): Promise<void> {

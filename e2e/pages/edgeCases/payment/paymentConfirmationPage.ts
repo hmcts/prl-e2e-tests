@@ -1,5 +1,5 @@
 import { Page } from "@playwright/test";
-import AccessibilityTestHelper from "../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { Selectors } from "../../../common/selectors";
 import { PaymentConfirmationContent } from "../../../fixtures/edgeCases/payment/paymentConfirmationContent.ts";
 
@@ -30,7 +30,7 @@ export class PaymentConfirmationPage {
       )
       .waitFor();
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

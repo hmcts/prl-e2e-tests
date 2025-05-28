@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors";
 import { Helpers } from "../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { SolicitorCreate5Content } from "../../../../fixtures/manageCases/createCase/initialJourney/solicitorCreate5Content";
 
 enum caseName {
@@ -53,7 +53,7 @@ export class SolicitorCreate5Page {
       ]);
     }
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

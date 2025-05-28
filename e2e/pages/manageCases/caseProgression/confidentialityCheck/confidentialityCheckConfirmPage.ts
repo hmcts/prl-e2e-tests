@@ -1,6 +1,6 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.ts";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 import { ConfidentialityCheckConfirmContent } from "../../../../fixtures/manageCases/caseProgression/confidentialityCheck/confidentialityCheckConfirmContent.ts";
 import { Helpers } from "../../../../common/helpers.ts";
@@ -41,7 +41,7 @@ export class ConfidentialityCheckConfirmPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

@@ -1,5 +1,5 @@
 import { expect, Page } from "@playwright/test";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
 import { Language, ViewPdfTestCases } from "../../../../../common/types";
@@ -32,7 +32,7 @@ export class ViewPDFApplicationPage {
     }
 
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

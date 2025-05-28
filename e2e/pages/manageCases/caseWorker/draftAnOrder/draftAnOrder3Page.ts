@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors";
 import { Helpers } from "../../../../common/helpers";
 import { DraftAnOrder3Content } from "../../../../fixtures/manageCases/caseWorker/draftAnOrder/draftAnOrder3Content";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { OrderType } from "../../../../common/types";
 
 // this page is specific for C100 "Blank Order or directions (C21)" type
@@ -52,7 +52,7 @@ export class DraftAnOrder3Page {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

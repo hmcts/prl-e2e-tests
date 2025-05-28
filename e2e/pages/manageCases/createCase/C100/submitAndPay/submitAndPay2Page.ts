@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
-import { SubmitAndPay2Content } from "../../../../../fixtures/manageCases/createCase/C100/submitAndPay/submitAndPay2Content";
+import { SubmitAndPay2Content } from "../../../../../fixtures/manageCases/createCase/C100/submitAndPay/submitAndPay2Content.ts";
 import { Helpers } from "../../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
-import { SubmitAndPay1Content } from "../../../../../fixtures/manageCases/createCase/C100/submitAndPay/submitAndPay1Content";
+import { AxeUtils } from "@hmcts/playwright-common";
+import { SubmitAndPay1Content } from "../../../../../fixtures/manageCases/createCase/C100/submitAndPay/submitAndPay1Content.ts";
 import { CommonContent } from "../../../../../fixtures/manageCases/commonContent.ts";
 
 interface SubmitAndPay2PageOptions {
@@ -87,7 +87,7 @@ export class SubmitAndPay2Page {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

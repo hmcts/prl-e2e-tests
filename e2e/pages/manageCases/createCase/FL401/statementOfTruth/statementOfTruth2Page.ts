@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors";
 import { StatementOfTruth2Content } from "../../../../../fixtures/manageCases/createCase/FL401/statementOfTruth/statementOfTruth2Content";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { Helpers } from "../../../../../common/helpers";
 
 interface StatementOfTruth2PageOptions {
@@ -62,7 +62,7 @@ export class StatementOfTruth2Page {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

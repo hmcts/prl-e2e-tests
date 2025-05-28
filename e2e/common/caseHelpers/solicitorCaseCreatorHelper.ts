@@ -1,15 +1,49 @@
-import solicitorDACaseData from "../../caseData/solicitorDACaseEventData.json";
-import solicitorDACaseDataDemo from "../../caseData/solicitorDACaseEventData-demo.json";
-import solicitorCACaseData from "../../caseData/solicitorCACaseEventData.json";
-import solicitorCACaseDataDemo from "../../caseData/solicitorCACaseEventData-demo.json";
-import orderEventDataAmendDischargedVaried from "../../caseData/orderData/orderEventData-amendDischargedVaried.json";
-import orderEventDataAmendDischargedVariedDemo from "../../caseData/orderData/orderEventData-amendDischargedVaried-demo.json";
-import orderEventDataPowerOfArrest from "../../caseData/orderData/orderEventData-powerOfArrest.json";
-import orderEventDataPowerOfArrestDemo from "../../caseData/orderData/orderEventData-powerOfArrest-demo.json";
 import { Page } from "@playwright/test";
-import { solicitorCACaseAPIEvent, solicitorDACaseAPIEvent } from "../types.ts";
+import fs from "fs";
 import process from "node:process";
 import { PageFunction } from "playwright-core/types/structs";
+import {
+  solicitorCACaseAPIEvent,
+  solicitorCaseCreateType,
+  solicitorDACaseAPIEvent,
+} from "../types.ts";
+
+const solicitorDACaseData = JSON.parse(
+  fs.readFileSync("./e2e/caseData/solicitorDACaseEventData.json", "utf8"),
+);
+const solicitorDACaseDataDemo = JSON.parse(
+  fs.readFileSync("./e2e/caseData/solicitorDACaseEventData-demo.json", "utf8"),
+);
+const orderEventDataAmendDischargedVariedDemo = JSON.parse(
+  fs.readFileSync(
+    "./e2e/caseData/orderData/orderEventData-amendDischargedVaried-demo.json",
+    "utf8",
+  ),
+);
+const orderEventDataAmendDischargedVaried = JSON.parse(
+  fs.readFileSync(
+    "./e2e/caseData/orderData/orderEventData-amendDischargedVaried.json",
+    "utf8",
+  ),
+);
+const orderEventDataPowerOfArrestDemo = JSON.parse(
+  fs.readFileSync(
+    "./e2e/caseData/orderData/orderEventData-powerOfArrest-demo.json",
+    "utf8",
+  ),
+);
+const orderEventDataPowerOfArrest = JSON.parse(
+  fs.readFileSync(
+    "./e2e/caseData/orderData/orderEventData-powerOfArrest.json",
+    "utf8",
+  ),
+);
+const solicitorCACaseDataDemo = JSON.parse(
+  fs.readFileSync("./e2e/caseData/solicitorCACaseEventData-demo.json", "utf8"),
+);
+const solicitorCACaseData = JSON.parse(
+  fs.readFileSync("./e2e/caseData/solicitorCACaseEventData.json", "utf8"),
+);
 
 // Using "any" type below because it represents a large JSON object
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -181,6 +215,54 @@ export async function createBlankCase(
     draft_id: null,
     event: {
       id: "solicitorCreate",
+      summary: "",
+      description: "",
+    },
+    event_token: eventToken,
+    ignore_warning: false,
+  };
+  const submitEventHeaders = {
+    Accept:
+      "application/vnd.uk.gov.hmcts.ccd-data-store-api.create-case.v2+json;charset=UTF-8",
+    Experimental: "true",
+    "Content-type": "application/json; charset=UTF-8",
+  };
+  return await postData(
+    page,
+    submitCaseUrl,
+    submitEventHeaders,
+    JSON.stringify(data),
+  );
+}
+
+export async function createTSSolicitorCase(
+  page: Page,
+  caseType: solicitorCaseCreateType,
+): Promise<string> {
+  const startCaseCreationUrl = `/data/internal/case-types/PRLAPPS/event-triggers/testingSupportDummySolicitorCreate?ignore-warning=false`;
+
+  const startCaseCreationHeaders = {
+    Accept:
+      "application/vnd.uk.gov.hmcts.ccd-data-store-api.ui-start-case-trigger.v2+json;charset=UTF-8",
+    Experimental: "true",
+    "Content-type": "application/json; charset=UTF-8",
+  };
+  const eventToken: string = await getData(
+    page,
+    startCaseCreationUrl,
+    startCaseCreationHeaders,
+  );
+
+  const submitCaseUrl = `/data/case-types/PRLAPPS/cases?ignore-warning=false`;
+  const data = {
+    data: {
+      caseTypeOfApplication: caseType,
+      applicantOrganisationPolicy: null,
+      applicantCaseName: "TEST",
+    },
+    draft_id: null,
+    event: {
+      id: "testingSupportDummySolicitorCreate",
       summary: "",
       description: "",
     },

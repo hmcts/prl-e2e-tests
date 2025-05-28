@@ -1,6 +1,6 @@
 import { Browser, BrowserContext, Page } from "@playwright/test";
 import { jsonDatas, submitEvent } from "./solicitorCaseCreatorHelper.ts";
-import Config from "../../config.ts";
+import Config from "../../utils/config.utils.ts";
 import { Helpers } from "../helpers.ts";
 import { CompleteTheOrder } from "../../journeys/manageCases/caseProgression/completeTheOrder/completeTheOrder.ts";
 import { applicationSubmittedBy, createOrderFL401Options } from "../types.ts";

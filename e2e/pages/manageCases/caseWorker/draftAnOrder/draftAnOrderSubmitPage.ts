@@ -1,5 +1,5 @@
 import { Page } from "@playwright/test";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { OrderType } from "../../../../common/types";
 import { NonMolestationOrderSubmitPage } from "./nonMolestationOrder/nonMolestationOrderSubmitPage";
 import { Selectors } from "../../../../common/selectors";
@@ -47,7 +47,7 @@ export class DraftAnOrderSubmitPage {
         break;
     }
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

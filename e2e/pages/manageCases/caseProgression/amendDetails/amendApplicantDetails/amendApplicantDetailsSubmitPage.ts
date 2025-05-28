@@ -55,7 +55,7 @@ export class AmendApplicantDetailsSubmitPage {
       accessibilityTest,
     });
     if (accessibilityTest) {
-      //await AccessibilityTestHelper.run(page); #TODO run accessibility test once EXUI-2726 ticket is fixed
+      //await new AxeUtils(page).audit(); #TODO run accessibility test once EXUI-2726 ticket is fixed
     }
     await page.click(
       `${Selectors.button}:text-is("${CommonStaticText.saveAndContinue}")`,

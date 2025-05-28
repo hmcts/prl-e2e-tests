@@ -6,7 +6,7 @@ import {
 import { Selectors } from "../../../../common/selectors.ts";
 import { UploadAdditionalApplications1Content } from "../../../../fixtures/manageCases/caseProgression/uploadAdditionalApplications/uploadAdditionalApplications1Content.ts";
 import { Helpers } from "../../../../common/helpers.ts";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 
 enum UniqueSelectors {
@@ -65,7 +65,7 @@ export class UploadAdditionalApplications1Page {
       );
     }
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

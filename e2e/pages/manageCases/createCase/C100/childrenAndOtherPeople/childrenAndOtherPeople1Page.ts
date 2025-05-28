@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
 import { Helpers } from "../../../../../common/helpers";
 import { Selectors } from "../../../../../common/selectors";
-import { ChildrenAndOtherPeople1Content } from "../../../../../fixtures/manageCases/createCase/C100/childrenAndOtherPeople/childrenAndOtherPeople1Content";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper.ts";
+import { ChildrenAndOtherPeople1Content } from "../../../../../fixtures/manageCases/createCase/C100/childrenAndOtherPeople/childrenAndOtherPeople1Content.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 enum UniqueSelectors {
   relationshipDropdown = "#buffChildAndOtherPeopleRelations_0_childAndOtherPeopleRelation",
@@ -95,7 +95,7 @@ export class ChildrenAndOtherPeople1Page {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

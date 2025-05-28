@@ -3,7 +3,7 @@ import { Selectors } from "../../../../../common/selectors";
 import { MiamChildProtectionContent } from "../../../../../fixtures/citizen/createCase/C100/MIAM/miamChildProtectionContent";
 import { Helpers } from "../../../../../common/helpers";
 import { CommonStaticText } from "../../../../../common/commonStaticText";
-import AccessibilityTestHelper from "../../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 
 export interface MiamChildProtectionPageOptions {
   page: Page;
@@ -78,7 +78,7 @@ export class MiamChildProtectionPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

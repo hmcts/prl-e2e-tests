@@ -1,5 +1,5 @@
 import { Page } from "@playwright/test";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { Selectors } from "../../../../common/selectors";
 import { HearingCreateEditSummaryContent } from "../../../../fixtures/manageCases/caseProgression/createHearingRequest/hearingCreateEditSummaryContent.ts";
 import { Helpers } from "../../../../common/helpers";
@@ -45,7 +45,7 @@ export class HearingCreateEditSummaryPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../common/selectors.ts";
 import { CommonStaticText } from "../../../common/commonStaticText.ts";
-import AccessibilityTestHelper from "../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { Helpers } from "../../../common/helpers.ts";
 import { CaseActivatedContent } from "../../../fixtures/citizen/activateCase/caseActivatedContent.ts";
 
@@ -38,7 +38,7 @@ export class CaseActivatedPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

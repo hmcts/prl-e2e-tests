@@ -1,6 +1,6 @@
 import { Page, expect } from "@playwright/test";
 import { Selectors } from "../../../common/selectors.ts";
-// import AccessibilityTestHelper from "../../../common/accessibilityTestHelper.ts";
+// import { AxeUtils } from "@hmcts/playwright-common";
 import { Helpers } from "../../../common/helpers.ts";
 import { FeesAppliedContent } from "../../../fixtures/edgeCases/payment/feesAppliedContent.ts";
 import { CommonStaticText } from "../../../common/commonStaticText.ts";
@@ -46,7 +46,7 @@ export class FeesAppliedPage {
     ]);
 
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page); //"Ensure an element's role supports its ARIA attributes"
+      // await new AxeUtils(page).audit(); //"Ensure an element's role supports its ARIA attributes"
     }
   }
 

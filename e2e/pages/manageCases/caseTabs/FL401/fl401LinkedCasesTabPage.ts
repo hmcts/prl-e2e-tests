@@ -2,7 +2,7 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import { FL401LinkedCasesTabContent } from "../../../../fixtures/manageCases/caseTabs/FL401/fl401LinkedCasesTabContent.ts";
-// import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper.ts";
+// import { AxeUtils } from "@hmcts/playwright-common";
 
 export class FL401LinkedCasesTabPage {
   public static async fl401LinkedCasesTabPage(
@@ -57,7 +57,7 @@ export class FL401LinkedCasesTabPage {
       isCaseLinked ? 1 : 2,
     );
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page); //#TODO: Awaiting for accessibility ticket FPVTL-337 to be resolved
+      // await new AxeUtils(page).audit(); //#TODO: Awaiting for accessibility ticket FPVTL-337 to be resolved
     }
   }
 }

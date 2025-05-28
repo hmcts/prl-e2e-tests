@@ -2,9 +2,9 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors";
 import { CommonStaticText } from "../../../../common/commonStaticText";
 import { StatementOfService1Content } from "../../../../fixtures/manageCases/caseProgression/statementOfService/statementOfService1Content";
-import config from "../../../../config";
+import config from "../../../../utils/config.utils";
 import { Helpers } from "../../../../common/helpers";
-// import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
+// import { AxeUtils } from "@hmcts/playwright-common";
 
 interface StatementOfService1PageOptions {
   page: Page;
@@ -81,7 +81,7 @@ export class StatementOfService1Page {
       Helpers.checkGroup(page, 2, StatementOfService1Content, "p", Selectors.p),
     ]);
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page); //#TODO turn back on once EXUI-2724 is resolved
+      // await new AxeUtils(page).audit(); //#TODO turn back on once EXUI-2724 is resolved
     }
   }
 

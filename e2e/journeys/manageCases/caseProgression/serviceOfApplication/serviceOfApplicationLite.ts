@@ -1,6 +1,6 @@
 import { Page } from "@playwright/test";
 import { Helpers } from "../../../../common/helpers.ts";
-import config from "../../../../config.ts";
+import config from "../../../../utils/config.utils.ts";
 import { Selectors } from "../../../../common/selectors.ts";
 import { MiamPolicyUpgrade6Content } from "../../../../fixtures/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade6Content.ts";
 import { CommonStaticText } from "../../../../common/commonStaticText.ts";

@@ -1,7 +1,7 @@
 import { Page, expect } from "@playwright/test";
 import { Helpers } from "../../../common/helpers";
 import { Selectors } from "../../../common/selectors";
-import Config from "../../../config";
+import Config from "../../../utils/config.utils";
 import { CaseListContent } from "../../../fixtures/manageCases/caseList/caseListContent";
 import { CommonContent } from "../../../fixtures/manageCases/commonContent";
 import { CommonPage } from "../commonPage";
@@ -166,7 +166,7 @@ export class CaseListPage extends CommonPage {
       1,
     );
     if (accessibilityTest) {
-      // await AccessibilityTestHelper.run(page); disabled due to ExUI issues (EXUI-2717)
+      // await new AxeUtils(page).audit(); disabled due to ExUI issues (EXUI-2717)
     }
   }
 }

@@ -1,5 +1,5 @@
 import { Page } from "@playwright/test";
-import AccessibilityTestHelper from "../../../common/accessibilityTestHelper.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
 import { Selectors } from "../../../common/selectors.ts";
 import { CommonStaticText } from "../../../common/commonStaticText.ts";
 import { EnterPinPageContent } from "../../../fixtures/citizen/activateCase/enterPinPageContent.ts";
@@ -58,7 +58,7 @@ export class EnterPinPage {
       ),
     ]);
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 

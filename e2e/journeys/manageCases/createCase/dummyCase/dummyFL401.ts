@@ -31,7 +31,6 @@ export class DummyFL401 {
         fl401YesNoToEverything: false,
         subJourney: false,
       },
-      true,
     );
 
     // wait for statement of truth event to complete before performing next actions
