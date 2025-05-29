@@ -719,18 +719,25 @@ __metadata:
   linkType: hard
 
 "@hmcts/playwright-common@npm:^1.0.19":
-  version: 1.0.19
-  resolution: "@hmcts/playwright-common@npm:1.0.19"
+  version: 1.0.20
+  resolution: "@hmcts/playwright-common@npm:1.0.20"
   dependencies:
     "@axe-core/playwright": "npm:^4.10.0"
+    "@eslint/js": "npm:^9.11.1"
     "@playwright/test": "npm:^1.48.2"
+    "@types/node": "npm:^22.6.1"
+    "@typescript-eslint/eslint-plugin": "npm:^8.8.0"
+    eslint: "npm:^9.11.1"
+    eslint-plugin-playwright: "npm:^1.6.2"
     get-port: "npm:^7.1.0"
     globals: "npm:^15.10.0"
     lighthouse: "npm:^12.2.1"
     playwright: "npm:^1.48.2"
     playwright-core: "npm:^1.48.2"
     playwright-lighthouse: "npm:^4.0.0"
-  checksum: 10c0/51a90b118c6b0f4d8a72690bc0f1b35346cd418a994b90ca57b1547e27c3dd27a4f7e286a04e198b18a614c7cdc2bbebb6995afec794a91319475bdde93bb725
+    typescript: "npm:^5.6.2"
+    typescript-eslint: "npm:^8.8.0"
+  checksum: 10c0/44e502ae5236a961bcdcd5df4eb9229828aed7e25ce0ade6a5c1ac5242071f0cb3fc17c421a95a64f06f4e4c2d303e5e2036a62bf751b7110b1c4c74b2ad3254
   languageName: node
   linkType: hard
 
@@ -1380,12 +1387,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^22.4.1":
-  version: 22.15.23
-  resolution: "@types/node@npm:22.15.23"
+"@types/node@npm:*, @types/node@npm:^22.4.1, @types/node@npm:^22.6.1":
+  version: 22.15.24
+  resolution: "@types/node@npm:22.15.24"
   dependencies:
     undici-types: "npm:~6.21.0"
-  checksum: 10c0/e3ae0629dfb4357dad2a7838c481656abf089d852d83f0d0f14368f03ad21ce276cbecfdf62be2276ef39920db6b114e5bc8d87c37714bbab9aefb0ce1eb1473
+  checksum: 10c0/16c38e98168fa6c3d2f2b6e95f14f80878d969b39093bc5384385a884d73a7fe361c563b36f14bc27536b337f5baad74321f717b31d2c061b9c48074567eb8c6
   languageName: node
   linkType: hard
 
@@ -1421,7 +1428,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/eslint-plugin@npm:8.33.0":
+"@typescript-eslint/eslint-plugin@npm:8.33.0, @typescript-eslint/eslint-plugin@npm:^8.8.0":
   version: 8.33.0
   resolution: "@typescript-eslint/eslint-plugin@npm:8.33.0"
   dependencies:
@@ -2543,6 +2550,21 @@ __metadata:
     escodegen: bin/escodegen.js
     esgenerate: bin/esgenerate.js
   checksum: 10c0/e1450a1f75f67d35c061bf0d60888b15f62ab63aef9df1901cffc81cffbbb9e8b3de237c5502cf8613a017c1df3a3003881307c78835a1ab54d8c8d2206e01d3
+  languageName: node
+  linkType: hard
+
+"eslint-plugin-playwright@npm:^1.6.2":
+  version: 1.8.3
+  resolution: "eslint-plugin-playwright@npm:1.8.3"
+  dependencies:
+    globals: "npm:^13.23.0"
+  peerDependencies:
+    eslint: ">=8.40.0"
+    eslint-plugin-jest: ">=25"
+  peerDependenciesMeta:
+    eslint-plugin-jest:
+      optional: true
+  checksum: 10c0/41c90ad82d7bfd336b11d88a7dd4aee3832878f3abc5df0c7e988124ac3d4e0ffc7de760f4e986a275bf088da2a360d177e8a48d6b3193dcb5f60b17138cf0fe
   languageName: node
   linkType: hard
 
@@ -5553,7 +5575,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^5.5.4":
+"typescript@npm:^5.5.4, typescript@npm:^5.6.2":
   version: 5.8.3
   resolution: "typescript@npm:5.8.3"
   bin:
@@ -5563,7 +5585,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A^5.5.4#optional!builtin<compat/typescript>":
+"typescript@patch:typescript@npm%3A^5.5.4#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.6.2#optional!builtin<compat/typescript>":
   version: 5.8.3
   resolution: "typescript@patch:typescript@npm%3A5.8.3#optional!builtin<compat/typescript>::version=5.8.3&hash=5786d5"
   bin:
