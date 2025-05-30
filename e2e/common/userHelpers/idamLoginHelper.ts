@@ -22,7 +22,8 @@ export class IdamLoginHelper {
   ): Promise<void> {
     const sessionFile = `${Config.sessionStoragePath}${userType}.json`;
     if (
-      (userType !== "citizen" && userType !== "citizen_idam") &&
+      userType !== "citizen" &&
+      userType !== "citizen_idam" &&
       SessionUtils.isSessionValid(sessionFile, "xui-webapp")
     ) {
       return;

@@ -13,7 +13,7 @@ export interface UserCredentialsLong extends UserCredentials {
   readonly surname: string;
 }
 
-export interface UserCredentialsSession extends UserCredentials { 
+export interface UserCredentialsSession extends UserCredentials {
   readonly sessionFile?: string;
   readonly cookieName?: string;
 }
@@ -32,7 +32,7 @@ const UserRoles = {
   caseManager: "caseManager",
   nocSolicitor: "nocSolicitor",
   solicitor_idam: "solicitor_idam",
-  citizen_idam: "citizen_idam"
+  citizen_idam: "citizen_idam",
 } as const;
 
 export type UserRole = (typeof UserRoles)[keyof typeof UserRoles];

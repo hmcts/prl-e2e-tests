@@ -1,60 +1,40 @@
 import dotenv from "dotenv";
 import path from "path";
 import { UserCredentialsSession, UserRole } from "../common/types";
-import { fileURLToPath } from "url";
 
 dotenv.config();
 
 export class Config {
-  public static readonly userCredentials: Record<UserRole, UserCredentialsSession> = {
+  public static readonly userCredentials: Record<
+    UserRole,
+    UserCredentialsSession
+  > = {
     solicitor: {
       email: process.env.SOLICITOR_USERNAME as string,
       password: process.env.SOLICITOR_PASSWORD as string,
-      // sessionFile:
-      //   path.join(fileURLToPath(import.meta.url), "../../.sessions/") +
-      //   `solicitor.json`,
-      // cookieName: "xui-webapp",
     },
     judge: {
       email: process.env.JUDGE_USERNAME as string,
       password: process.env.JUDGE_PASSWORD as string,
-      // sessionFile:
-      //   path.join(fileURLToPath(import.meta.url), "../../.sessions/") +
-      //   `judge.json`,
-      // cookieName: "xui-webapp",
     },
     caseWorker: {
       email: process.env.CASEWORKER_USERNAME as string,
       password: process.env.CASEWORKER_PASSWORD as string,
-      // sessionFile:
-      //   path.join(fileURLToPath(import.meta.url), "../../.sessions/") +
-      //   `caseWorker.json`,
-      // cookieName: "xui-webapp",
     },
     courtAdminStoke: {
       email: process.env.COURT_ADMIN_STOKE_USERNAME as string,
       password: process.env.COURT_ADMIN_STOKE_PASSWORD as string,
-      // sessionFile:
-      //   path.join(fileURLToPath(import.meta.url), "../../.sessions/") +
-      //   `courtAdminStoke.json`,
-      // cookieName: "xui-webapp",
     },
     caseManager: {
       email: process.env.CASEMANAGER_USERNAME as string,
       password: process.env.CASEMANAGER_PASSWORD as string,
-      // sessionFile:
-      //   path.join(fileURLToPath(import.meta.url), "../../.sessions/") +
-      //   `caseManager.json`,
-      // cookieName: "xui-webapp",
     },
     nocSolicitor: {
       email: process.env.NOC_SOLICITOR_USERNAME as string,
       password: process.env.NOC_SOLICITOR_PASSWORD as string,
-      // sessionFile:
-      //   path.join(fileURLToPath(import.meta.url), "../../.sessions/") +
-      //   `nocSolicitor.json`,
-      // cookieName: "xui-webapp",
     },
+    solicitor_idam: undefined,
+    citizen_idam: undefined,
   };
 
   public static readonly sessionStoragePath: string = path.join(

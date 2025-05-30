@@ -18,10 +18,11 @@ setup.describe("Setup users and retrieve tokens", () => {
   });
 
   setup("Retrieve bearer token for courtNav DA case creation", async () => {
-    const apiContextDaCreateCase: APIRequestContext = await request.newContext();
+    const apiContextDaCreateCase: APIRequestContext =
+      await request.newContext();
     const tokenDaCreateCase = await getAccessToken(
       "daCourtNavCreateCase",
-      apiContextDaCreateCase
+      apiContextDaCreateCase,
     );
     if (!tokenDaCreateCase) {
       throw new Error("Setup failed: Unable to get bearer token.");
@@ -31,11 +32,11 @@ setup.describe("Setup users and retrieve tokens", () => {
 
   setup("Setup IDAM solicitor user", async ({ page }) => {
     await IdamLoginHelper.setupAndSignInUser(
-        page,
-        config.manageCasesBaseURLCase,
-        "solicitor_idam",
-        true,
-      );
+      page,
+      config.manageCasesBaseURLCase,
+      "solicitor_idam",
+      true,
+    );
   });
 
   setup("Setup old solicitor user - to be removed", async ({ page }) => {
@@ -45,7 +46,6 @@ setup.describe("Setup users and retrieve tokens", () => {
       config.manageCasesBaseURLCase,
     );
   });
-
 
   setup("Setup judge user", async ({ page }) => {
     await IdamLoginHelper.signInLongLivedUser(

@@ -14,9 +14,6 @@
     "useDefineForClassFields": false,
     "resolveJsonModule": true
   },
-  "include": [
-    "e2e/**/*",
-    "playwright.config.ts"
-  ],
+  "include": ["e2e/**/*", "playwright.config.ts"],
   "exclude": ["node_modules"]
 }
