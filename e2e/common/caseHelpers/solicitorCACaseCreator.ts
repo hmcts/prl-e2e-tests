@@ -1,12 +1,33 @@
 import { Page, Browser } from "@playwright/test";
 import {
+  createBlankCase,
   createTSSolicitorCase,
   JsonData,
   jsonDatas,
-  submitEvent,
+  submitEvent
 } from "./solicitorCaseCreatorHelper.ts";
 import { Helpers } from "../helpers.ts";
 import config from "../../utils/config.utils.ts";
+import { solicitorCACaseAPIEvent } from "../types.ts";
+
+const solicitorCaseEvents: solicitorCACaseAPIEvent[] = [
+  "selectApplicationType",
+  "hearingUrgency",
+  "applicantsDetails",
+  "respondentsDetails",
+  "otherPeopleInTheCaseRevised",
+  "childDetailsRevised",
+  "otherChildNotInTheCase",
+  "childrenAndApplicants",
+  "childrenAndRespondents",
+  "childrenAndOtherPeople",
+  "allegationsOfHarmRevised",
+  "miamPolicyUpgrade",
+  "internationalElement",
+  "welshLanguageRequirements",
+  "submitAndPay",
+  "testingSupportPaymentSuccessCallback",
+];
 
 export class SolicitorCACaseCreator {
   public static async createCaseSubmitAndPay(
@@ -21,6 +42,14 @@ export class SolicitorCACaseCreator {
       "testingSupportPaymentSuccessCallback",
       jsonData,
     );
+    return caseRef;
+  }
+
+  public static async createCaseSubmitAndPayIndividualEvents(page: Page, jsonData: JsonData = jsonDatas.solicitorCACaseData): Promise<string> {
+    const caseRef = await createBlankCase(page, jsonData);
+    for (const event of solicitorCaseEvents) {
+      await submitEvent(page, caseRef, event, jsonData);
+    }
     return caseRef;
   }
 
