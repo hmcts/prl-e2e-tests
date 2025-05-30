@@ -4,7 +4,7 @@ import { C100AllegationsOfHarm } from "../../../../journeys/manageCases/createCa
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-test.describe("C100 Create case Allegations of harm tests", (): void => {
+test.describe("C100 Create case Allegations of harm tests @test", (): void => {
   test(`Complete the C100 allegations of harm event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,

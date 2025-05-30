@@ -13,6 +13,11 @@ export interface UserCredentialsLong extends UserCredentials {
   readonly surname: string;
 }
 
+export interface UserCredentialsSession extends UserCredentials { 
+  readonly sessionFile?: string;
+  readonly cookieName?: string;
+}
+
 export type solicitorCaseCreateType = "C100" | "FL401";
 
 export type State = "undefined";
@@ -21,12 +26,13 @@ export type Events = "undefined";
 
 const UserRoles = {
   solicitor: "solicitor",
-  citizen: "citizen",
   judge: "judge",
   caseWorker: "caseWorker",
   courtAdminStoke: "courtAdminStoke",
   caseManager: "caseManager",
   nocSolicitor: "nocSolicitor",
+  solicitor_idam: "solicitor_idam",
+  citizen_idam: "citizen_idam"
 } as const;
 
 export type UserRole = (typeof UserRoles)[keyof typeof UserRoles];
