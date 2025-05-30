@@ -1,41 +1,25 @@
 import { Browser, Page } from "@playwright/test";
 import { Helpers } from "../helpers.ts";
 import {
-  createBlankCase,
+  createTSSolicitorCase,
   JsonData,
   jsonDatas,
   submitEvent,
 } from "./solicitorCaseCreatorHelper.ts";
-import { solicitorDACaseAPIEvent } from "../types.ts";
 import Config from "../../utils/config.utils.ts";
-
-const solicitorCaseEvents: solicitorDACaseAPIEvent[] = [
-  "fl401TypeOfApplication",
-  "withoutNoticeOrderDetails",
-  "applicantsDetails",
-  "respondentsDetails",
-  "fl401ApplicantFamilyDetails",
-  "respondentRelationship",
-  "respondentBehaviour",
-  "fl401Home",
-  "welshLanguageRequirements",
-  "fl401StatementOfTruthAndSubmit",
-  "fl401SendToGateKeeper",
-  "serviceOfApplication",
-];
 
 export class SolicitorDACaseCreator {
   public static async createCaseStatementOfTruthAndSubmit(
     page: Page,
     jsonData: JsonData = jsonDatas.solicitorDACaseData,
   ): Promise<string> {
-    const caseRef: string = await createBlankCase(page, jsonData);
-    for (const event of solicitorCaseEvents) {
-      if (event === "fl401StatementOfTruthAndSubmit") {
-        break;
-      }
-      await submitEvent(page, caseRef, event, jsonData);
-    }
+    const caseRef = await createTSSolicitorCase(page, "FL401");
+    await submitEvent(
+      page,
+      caseRef,
+      "fl401StatementOfTruthAndSubmit",
+      jsonData,
+    );
     return caseRef;
   }
 
