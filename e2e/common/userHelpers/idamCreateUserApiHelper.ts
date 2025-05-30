@@ -43,14 +43,14 @@ export async function createUser(
   const idamUrl = process.env.IDAM_TESTING_SUPPORT_USERS_URL!;
 
   switch (user) {
-    case "citizen":
+    case "citizen_idam":
       password = process.env.IDAM_CITIZEN_USER_PASSWORD!;
       email = `TEST_PRL_USER_citizen.${uniqueId}@test.local`;
       forename = "fn_" + uniqueId.split("-")[0];
       surname = "sn_" + uniqueId.split("-")[1];
       roleNames = ["citizen"];
       break;
-    case "solicitor":
+    case "solicitor_idam":
       password = process.env.SOLICITOR_PASSWORD!;
       email = `TEST_PRL_USER_solicitor.${uniqueId}@test.local`;
       forename = "fn_" + uniqueId.split("-")[0];
@@ -66,7 +66,7 @@ export async function createUser(
         "caseworker",
       ];
       break;
-    case "judge":
+    case "judge_idam":
       password = process.env.JUDGE_PASSWORD!;
       email = process.env.JUDGE_USERNAME!;
       roleNames = [
@@ -79,7 +79,7 @@ export async function createUser(
       forename = "Yolanda";
       surname = "Cooper";
       break;
-    case "caseWorker":
+    case "caseWorker_idam":
       password = process.env.CASEWORKER_PASSWORD!;
       email = `TEST_PRL_USER_court_admin.${uniqueId}@test.local`;
       roleNames = [
@@ -92,7 +92,7 @@ export async function createUser(
       forename = "PRL AAT AM";
       surname = "Swansea HCTL";
       break;
-    case "caseManager":
+    case "caseManager_idam":
       password = process.env.CASEMANAGER_PASSWORD!;
       email = `TEST_PRL_USER_case_manager.${uniqueId}@test.local`;
       roleNames = [
