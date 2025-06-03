@@ -2,7 +2,7 @@ import { test } from "@playwright/test";
 import { createTSSolicitorCase } from "../common/caseHelpers/solicitorCaseCreatorHelper.ts";
 import config from "../utils/config.utils";
 
-test.use({ storageState: config.sessionStoragePath + "solicitor.json" });
+test.use({ storageState: config.sessionStoragePath + "solicitor_idam.json" });
 
 test.describe("TS Solicitor Case creation examples", (): void => {
   test("create C100 case", async ({ page }): Promise<void> => {

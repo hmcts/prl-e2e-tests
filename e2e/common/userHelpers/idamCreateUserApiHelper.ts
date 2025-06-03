@@ -41,6 +41,7 @@ export async function createUser(
   let forename: string;
   let surname: string;
   const idamUrl = process.env.IDAM_TESTING_SUPPORT_USERS_URL!;
+  let roleCategory: string;
 
   switch (user) {
     case "citizen_idam":
@@ -55,15 +56,12 @@ export async function createUser(
       email = `TEST_PRL_USER_solicitor.${uniqueId}@test.local`;
       forename = "fn_" + uniqueId.split("-")[0];
       surname = "sn_" + uniqueId.split("-")[1];
+      roleCategory = "solicitor";
       roleNames = [
-        "pui-user-manager",
-        "caseworker-privatelaw",
-        "pui-caa",
-        "payments",
-        "caseworker-privatelaw-solicitor",
-        "pui-organisation-manager",
-        "pui-case-manager",
         "caseworker",
+        "caseworker-privatelaw",
+        "caseworker-privatelaw-solicitor", 
+        "pui-case-manager",
       ];
       break;
     case "judge_idam":
@@ -122,6 +120,7 @@ export async function createUser(
         email,
         forename,
         surname,
+        roleCategory,
         roleNames,
       },
     },

@@ -14,7 +14,6 @@ setup.describe("Setup users and retrieve tokens", () => {
       throw new Error("Setup failed: Unable to get bearer token.");
     }
     process.env.CREATE_USER_BEARER_TOKEN = token;
-    console.log(token);
   });
 
   setup("Retrieve bearer token for courtNav DA case creation", async () => {
