@@ -8,7 +8,7 @@ test.describe("Create Citizen Application but you don't have a MIAM document.", 
     await IdamLoginHelper.setupAndSignInUser(
       page,
       Config.citizenFrontendBaseURL,
-      "citizen",
+      "citizen_idam",
     );
   });
   test(

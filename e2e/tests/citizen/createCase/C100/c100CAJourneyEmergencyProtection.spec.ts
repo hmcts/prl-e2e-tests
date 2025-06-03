@@ -8,7 +8,7 @@ test.describe("C100 Citizen Application tests on the second MIRO set.", (): void
     await IdamLoginHelper.setupAndSignInUser(
       page,
       Config.citizenFrontendBaseURL,
-      "citizen",
+      "citizen_idam",
     );
   });
   test(`Second row of the second row c100 citizen journey with the following options:

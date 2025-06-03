@@ -8,7 +8,7 @@ test.describe("Manage citizen cases case dashboard tests.", (): void => {
     await IdamLoginHelper.setupAndSignInUser(
       page,
       Config.citizenFrontendBaseURL,
-      "citizen",
+      "citizen_idam",
     );
   });
   test("Check the case dashboard is visible to the user. @regression @smoke", async ({
