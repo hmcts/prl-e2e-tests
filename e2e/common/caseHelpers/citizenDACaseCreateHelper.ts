@@ -1,19 +1,8 @@
 import { APIRequestContext, expect, request } from "@playwright/test";
 import fs from "fs";
 import path from "path";
-
-const withNoticeJsonData = JSON.parse(
-  fs.readFileSync(
-    "./e2e/caseData/citizenDA/courtNavDaCitizenCase_WithNotice.json",
-    "utf8",
-  ),
-);
-const withoutNoticeJsonData = JSON.parse(
-  fs.readFileSync(
-    "./e2e/caseData/citizenDA/courtNavDaCitizenCase_WithoutNotice.json",
-    "utf8",
-  ),
-);
+import withNoticeJsonData from "../../caseData/citizenDA/courtNavDaCitizenCase_WithNotice.json" with { type: "json" };
+import withoutNoticeJsonData from "../../caseData/citizenDA/courtNavDaCitizenCase_WithoutNotice.json" with { type: "json" };
 
 /**
  * Function to create a DA Citizen CourtNav case and optionally add a document.
