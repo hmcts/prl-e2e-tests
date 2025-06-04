@@ -104,7 +104,7 @@ export class UploadAdditionalApplications2Page {
       await Promise.all([
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukWarningText}:text-is("${UploadAdditionalApplications2Content.govWarningTextCA}")`,
+          `${Selectors.GovukWarningText}:has-text("${UploadAdditionalApplications2Content.govWarningText}")`,
           1,
         ),
         Helpers.checkVisibleAndPresent(
@@ -152,7 +152,7 @@ export class UploadAdditionalApplications2Page {
       await Promise.all([
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukWarningText}:text-is("${UploadAdditionalApplications2Content.govWarningTextDA}")`,
+          `${Selectors.GovukWarningText}:has-text("${UploadAdditionalApplications2Content.govWarningText}")`,
           1,
         ),
         Helpers.checkVisibleAndPresent(

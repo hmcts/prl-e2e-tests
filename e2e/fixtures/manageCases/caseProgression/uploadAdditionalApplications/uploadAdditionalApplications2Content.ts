@@ -9,8 +9,7 @@ export enum UploadAdditionalApplications2Content {
   formLabel6 = "Within 2 days",
   formLabel7 = "Within 5 days",
   formHint = "Select all that apply",
-  govWarningTextCA = "Check if this document is related to auto test case CA",
-  govWarningTextDA = "Check if this document is related to auto test case 401",
+  govWarningText = "Check if this document is related to",
   headingH2DraftOrders = "Draft Orders (Optional)",
   headingH2SupportingDocuments = "Supporting Documents (Optional)",
   headingH2Supplements = "Supplements (Optional)", // only present for CA case
