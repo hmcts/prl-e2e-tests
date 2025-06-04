@@ -23,6 +23,7 @@ interface NonMolestationOrderParams {
   willAllPartiesAttendHearing: boolean;
   checkPdf: boolean;
   caseRef: string;
+  isUploadOrder: boolean;
 }
 
 export class NonMolestationOrder {
@@ -37,11 +38,13 @@ export class NonMolestationOrder {
     willAllPartiesAttendHearing,
     checkPdf,
     caseRef,
+    isUploadOrder,
   }: NonMolestationOrderParams): Promise<void> {
     await DraftAnOrder1Page.draftAnOrder1Page(
       page,
       errorMessaging,
       accessibilityTest,
+      isUploadOrder,
     );
     await DraftAnOrder2Page.draftAnOrder2Page(
       page,

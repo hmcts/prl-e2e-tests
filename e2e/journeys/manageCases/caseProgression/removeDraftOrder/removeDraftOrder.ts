@@ -33,6 +33,7 @@ export class RemoveDraftOrder {
       caseRef: caseRef,
       checkPdf: false,
       browser: browser,
+      isUploadOrder: false,
     });
     const caseWorkerPage: Page = await Helpers.openNewBrowserWindow(
       browser,
