@@ -13,7 +13,8 @@ test.describe("Upload additional applications for C100 tests", (): void => {
     // upload additional applications is not present when the case is created via TS support
     // so we need to create the case the long way to enable the upload additional applications event
     // Ticket FPVTL-734 will update the testing support data to create a case that can upload additional applications
-    const caseRef = await SolicitorCACaseCreator.createCaseSubmitAndPayIndividualEvents(page);
+    const caseRef =
+      await SolicitorCACaseCreator.createCaseSubmitAndPayIndividualEvents(page);
     await Helpers.goToCase(
       page,
       config.manageCasesBaseURLCase,

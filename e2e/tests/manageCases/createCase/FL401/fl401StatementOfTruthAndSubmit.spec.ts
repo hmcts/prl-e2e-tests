@@ -21,28 +21,24 @@ test.describe("FL401 Create case Statement of Truth and Submit tests", (): void 
   test(`Complete the FL401 Statement of Truth and Submit event as a solicitor with yes to everything. @accessibility @regression @nightly`, async ({
     page,
   }): Promise<void> => {
-    await Fl401StatementOfTruth.fl401StatementOfTruth(
-      {
-        page: page,
-        accessibilityTest: true,
-        errorMessaging: false,
-        fl401YesNoToEverything: true,
-        subJourney: false,
-      },
-    );
+    await Fl401StatementOfTruth.fl401StatementOfTruth({
+      page: page,
+      accessibilityTest: true,
+      errorMessaging: false,
+      fl401YesNoToEverything: true,
+      subJourney: false,
+    });
   });
 
   test(`Complete the FL401 Statement of Truth and Submit event as a solicitor with no to everything. @regression`, async ({
     page,
   }): Promise<void> => {
-    await Fl401StatementOfTruth.fl401StatementOfTruth(
-      {
-        page: page,
-        accessibilityTest: false,
-        errorMessaging: false,
-        fl401YesNoToEverything: false,
-        subJourney: false,
-      },
-    );
+    await Fl401StatementOfTruth.fl401StatementOfTruth({
+      page: page,
+      accessibilityTest: false,
+      errorMessaging: false,
+      fl401YesNoToEverything: false,
+      subJourney: false,
+    });
   });
 });
