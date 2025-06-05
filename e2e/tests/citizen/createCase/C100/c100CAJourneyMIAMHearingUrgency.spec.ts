@@ -56,7 +56,7 @@ test.describe("C100 Citizen Application for the MIAM Hearing Urgency journey.", 
   passport: false,
   more than one passport: false,
   passport office notified: false,
-  safety concerns yes/no to everything else: no @regression @nightly`, async ({
+  safety concerns yes/no to everything else: no @smoke @regression @nightly`, async ({
     page,
   }): Promise<void> => {
     await C100.c100CAJourneyMIAMHearingUrgency({
