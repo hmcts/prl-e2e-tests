@@ -1,10 +1,10 @@
 import { Page } from "@playwright/test";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Helpers } from "../../../../../common/helpers";
-import { Selectors } from "../../../../../common/selectors";
-import { WithoutNoticeOrderSubmitContent } from "../../../../../fixtures/manageCases/createCase/FL401/withoutNoticeOrder/withoutNoticeOrderSubmitContent";
+import { Helpers } from "../../../../../common/helpers.ts";
+import { Selectors } from "../../../../../common/selectors.ts";
+import { WithoutNoticeOrderSubmitContent } from "../../../../../fixtures/manageCases/createCase/FL401/withoutNoticeOrder/withoutNoticeOrderSubmitContent.ts";
 
-import { bailConditionRadios } from "./withoutNoticeOrder3Page";
+import { bailConditionRadios } from "./withoutNoticeOrder3Page.ts";
 
 export class WithoutNoticeOrderSubmitPage {
   public static async withoutNoticeOrderSubmitPage(

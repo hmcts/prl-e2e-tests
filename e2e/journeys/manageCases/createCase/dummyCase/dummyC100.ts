@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { DummyC100ChildDetails } from "./dummyC100ChildDetails";
-import { C100SubmitAndPay } from "../C100SubmitAndPay/C100SubmitAndPay";
-import { DummyCreateInitial } from "./dummyCreateInitial";
-import { DummyC100ApplicantDetails } from "./dummyC100ApplicantDetails";
-import { DummyC100OtherPersonDetails } from "./dummyC100OtherPersonDetails";
+import { DummyC100ChildDetails } from "./dummyC100ChildDetails.ts";
+import { C100SubmitAndPay } from "../C100SubmitAndPay/C100SubmitAndPay.ts";
+import { DummyCreateInitial } from "./dummyCreateInitial.ts";
+import { DummyC100ApplicantDetails } from "./dummyC100ApplicantDetails.ts";
+import { DummyC100OtherPersonDetails } from "./dummyC100OtherPersonDetails.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import {
   jsonDatas,

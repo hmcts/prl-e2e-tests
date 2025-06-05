@@ -1,6 +1,6 @@
 import { test } from "@playwright/test";
 import Config from "../../../../utils/config.utils.ts";
-import { DraftAnOrder } from "../../../../journeys/manageCases/caseWorker/draftAnOrder/draftAnOrder";
+import { DraftAnOrder } from "../../../../journeys/manageCases/caseWorker/draftAnOrder/draftAnOrder.ts";
 import { SolicitorCACaseCreator } from ".././../../../common/caseHelpers/solicitorCACaseCreator.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import config from "../../../../utils/config.utils.ts";

@@ -1,15 +1,15 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
+import { Selectors } from "../../../../../common/selectors.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { ManageOrders24CAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderCA/manageOrders24CAContent";
+import { ManageOrders24CAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderCA/manageOrders24CAContent.ts";
 import {
   solicitorCaseCreateType,
   uploadOrderC100Options,
   uploadOrderFL401Options,
-} from "../../../../../common/types";
-import { CommonStaticText } from "../../../../../common/commonStaticText";
-import { Helpers } from "../../../../../common/helpers";
-import { ManageOrders3DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderDA/manageOrders3DAContent";
+} from "../../../../../common/types.ts";
+import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
+import { Helpers } from "../../../../../common/helpers.ts";
+import { ManageOrders3DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderDA/manageOrders3DAContent.ts";
 
 interface manageOrders3PageOptions {
   page: Page;

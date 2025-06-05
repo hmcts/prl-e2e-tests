@@ -1,10 +1,10 @@
 import { Page } from "@playwright/test";
-import { SendAndReplyToMessages3Content } from "../../../../fixtures/manageCases/caseProgression/sendAndReplyToMessages/sendAndReplyToMessages3Content";
-import { Selectors } from "../../../../common/selectors";
-import { CommonStaticText } from "../../../../common/commonStaticText";
+import { SendAndReplyToMessages3Content } from "../../../../fixtures/manageCases/caseProgression/sendAndReplyToMessages/sendAndReplyToMessages3Content.ts";
+import { Selectors } from "../../../../common/selectors.ts";
+import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { SendAndReplyToMessages2Content } from "../../../../fixtures/manageCases/caseProgression/sendAndReplyToMessages/sendAndReplyToMessages2Content";
-import { Helpers } from "../../../../common/helpers";
+import { SendAndReplyToMessages2Content } from "../../../../fixtures/manageCases/caseProgression/sendAndReplyToMessages/sendAndReplyToMessages2Content.ts";
+import { Helpers } from "../../../../common/helpers.ts";
 
 enum UniqueSelectors {
   messageContentTextArea = "#messageContent",

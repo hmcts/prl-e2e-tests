@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
+import { Selectors } from "../../../../../common/selectors.ts";
 import { MiamPolicyUpgrade8Content } from "../../../../../fixtures/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade8Content.ts";
-import { Helpers } from "../../../../../common/helpers";
+import { Helpers } from "../../../../../common/helpers.ts";
 import config from "../../../../../utils/config.utils.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
 

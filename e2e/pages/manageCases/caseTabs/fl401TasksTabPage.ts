@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../common/selectors";
-import { Helpers } from "../../../common/helpers";
+import { Selectors } from "../../../common/selectors.ts";
+import { Helpers } from "../../../common/helpers.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Fl401TasksTabContent } from "../../../fixtures/manageCases/caseTabs/FL401/fl401TasksTabContent";
+import { Fl401TasksTabContent } from "../../../fixtures/manageCases/caseTabs/FL401/fl401TasksTabContent.ts";
 
 enum IndividualSelectors {
   links = "markdown > div > p > a",

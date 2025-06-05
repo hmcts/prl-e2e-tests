@@ -1,13 +1,13 @@
 import { Page } from "@playwright/test";
-import { ServiceOfDocuments1Page } from "../../../../pages/manageCases/caseProgression/serviceOfDocuments/serviceOfDocuments1Page";
-import { ServiceOfDocuments2Page } from "../../../../pages/manageCases/caseProgression/serviceOfDocuments/serviceOfDocuments2Page";
-import { ServiceOfDocuments3Page } from "../../../../pages/manageCases/caseProgression/serviceOfDocuments/serviceOfDocuments3Page";
-import { yesNoNA } from "../../../../common/types";
-import { Helpers } from "../../../../common/helpers";
+import { ServiceOfDocuments1Page } from "../../../../pages/manageCases/caseProgression/serviceOfDocuments/serviceOfDocuments1Page.ts";
+import { ServiceOfDocuments2Page } from "../../../../pages/manageCases/caseProgression/serviceOfDocuments/serviceOfDocuments2Page.ts";
+import { ServiceOfDocuments3Page } from "../../../../pages/manageCases/caseProgression/serviceOfDocuments/serviceOfDocuments3Page.ts";
+import { yesNoNA } from "../../../../common/types.ts";
+import { Helpers } from "../../../../common/helpers.ts";
 import config from "../../../../utils/config.utils.ts";
-import { ReviewDocuments } from "../reviewDocuments/reviewDocuments";
+import { ReviewDocuments } from "../reviewDocuments/reviewDocuments.ts";
 import createDaCitizenCourtNavCase from "../../../../common/caseHelpers/citizenDACaseCreateHelper.ts";
-import { ServiceOfDocumentsSubmitPage } from "../../../../pages/manageCases/caseProgression/serviceOfDocuments/serviceOfDocumentsSubmitPage";
+import { ServiceOfDocumentsSubmitPage } from "../../../../pages/manageCases/caseProgression/serviceOfDocuments/serviceOfDocumentsSubmitPage.ts";
 import { completeCheckApplicationAndSendToGatekeeper } from "../../../../common/caseHelpers/caseEventsHelper.ts";
 
 interface ServiceOfDocumentsParams {

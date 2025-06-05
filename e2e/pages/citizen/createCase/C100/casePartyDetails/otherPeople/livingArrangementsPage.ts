@@ -1,10 +1,10 @@
 import { Page } from "@playwright/test";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { CommonStaticText } from "../../../../../../common/commonStaticText";
-import { Helpers } from "../../../../../../common/helpers";
-import { Selectors } from "../../../../../../common/selectors";
-import { typeOfPerson } from "../../../../../../common/types";
-import { LivingArrangementsContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/otherPeople/livingArrangementsContent";
+import { CommonStaticText } from "../../../../../../common/commonStaticText.ts";
+import { Helpers } from "../../../../../../common/helpers.ts";
+import { Selectors } from "../../../../../../common/selectors.ts";
+import { typeOfPerson } from "../../../../../../common/types.ts";
+import { LivingArrangementsContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/otherPeople/livingArrangementsContent.ts";
 
 interface livingArrangementsOptions {
   page: Page;

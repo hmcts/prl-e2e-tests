@@ -1,11 +1,11 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors";
-import { Fl401SendToGateKeeper1Content } from "../../../../fixtures/manageCases/caseProgression/sendToGateKepper/fl401SendToGateKeeper1Content";
-import { Helpers } from "../../../../common/helpers";
-import { CommonStaticText } from "../../../../common/commonStaticText";
-import { Fl401SendToGateKeeperSubmitContent } from "../../../../fixtures/manageCases/caseProgression/sendToGateKepper/fl401SendToGateKeeperSubmitContent";
+import { Selectors } from "../../../../common/selectors.ts";
+import { Fl401SendToGateKeeper1Content } from "../../../../fixtures/manageCases/caseProgression/sendToGateKepper/fl401SendToGateKeeper1Content.ts";
+import { Helpers } from "../../../../common/helpers.ts";
+import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { Fl401SendToGateKeeperSubmitContent } from "../../../../fixtures/manageCases/caseProgression/sendToGateKepper/fl401SendToGateKeeperSubmitContent.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { CommonContent } from "../../../../fixtures/manageCases/commonContent";
+import { CommonContent } from "../../../../fixtures/manageCases/commonContent.ts";
 
 interface FL401SendToGateKeeperSubmitOptions {
   page: Page;

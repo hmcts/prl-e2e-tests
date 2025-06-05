@@ -1,20 +1,20 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { AllegationsOfHarmRevisedSubmitContent } from "../../../../../fixtures/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevisedSubmitContent";
-import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors.ts";
+import { AllegationsOfHarmRevisedSubmitContent } from "../../../../../fixtures/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevisedSubmitContent.ts";
+import { Helpers } from "../../../../../common/helpers.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { AllegationsOfHarmRevised2Content } from "../../../../../fixtures/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevised2Content";
+import { AllegationsOfHarmRevised2Content } from "../../../../../fixtures/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevised2Content.ts";
 import path from "path";
-import config from "../../../../../utils/config.utils";
-import { AllegationsOfHarmRevised3Content } from "../../../../../fixtures/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevised3Content";
-import { AllegationsOfHarmRevised5Content } from "../../../../../fixtures/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevised5Content";
-import { AllegationsOfHarmRevised6Content } from "../../../../../fixtures/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevised6Content";
-import { AllegationsOfHarmRevised7Content } from "../../../../../fixtures/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevised7Content";
-import { AllegationsOfHarmRevised8Content } from "../../../../../fixtures/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevised8Content";
-import { AllegationsOfHarmRevised9Content } from "../../../../../fixtures/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevised9Content";
-import { AllegationsOfHarmRevised10Content } from "../../../../../fixtures/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevised10Content";
-import { AllegationsOfHarmRevised11Content } from "../../../../../fixtures/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevised11Content";
-import { C100AllegationsOfHarmTypeOfDomesticAbuse } from "./allegationsOfHarmRevised3Page";
+import config from "../../../../../utils/config.utils.ts";
+import { AllegationsOfHarmRevised3Content } from "../../../../../fixtures/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevised3Content.ts";
+import { AllegationsOfHarmRevised5Content } from "../../../../../fixtures/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevised5Content.ts";
+import { AllegationsOfHarmRevised6Content } from "../../../../../fixtures/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevised6Content.ts";
+import { AllegationsOfHarmRevised7Content } from "../../../../../fixtures/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevised7Content.ts";
+import { AllegationsOfHarmRevised8Content } from "../../../../../fixtures/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevised8Content.ts";
+import { AllegationsOfHarmRevised9Content } from "../../../../../fixtures/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevised9Content.ts";
+import { AllegationsOfHarmRevised10Content } from "../../../../../fixtures/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevised10Content.ts";
+import { AllegationsOfHarmRevised11Content } from "../../../../../fixtures/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevised11Content.ts";
+import { C100AllegationsOfHarmTypeOfDomesticAbuse } from "./allegationsOfHarmRevised3Page.ts";
 
 interface AllegationsOfHarmRevisedSubmitPageOptions {
   page: Page;

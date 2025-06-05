@@ -1,10 +1,10 @@
 import { Page } from "@playwright/test";
-import { yesNoDontKnow } from "../../../../../common/types";
+import { yesNoDontKnow } from "../../../../../common/types.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Selectors } from "../../../../../common/selectors";
-import { DetailsKnowContent } from "../../../../../fixtures/citizen/createCase/C100/confidentiality/detailsKnowContent";
-import { Helpers } from "../../../../../common/helpers";
-import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { Selectors } from "../../../../../common/selectors.ts";
+import { DetailsKnowContent } from "../../../../../fixtures/citizen/createCase/C100/confidentiality/detailsKnowContent.ts";
+import { Helpers } from "../../../../../common/helpers.ts";
+import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 
 enum inputIDs {
   yes = "#detailsKnown",

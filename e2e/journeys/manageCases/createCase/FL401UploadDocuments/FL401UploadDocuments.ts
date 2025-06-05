@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { SolicitorCreateInitial } from "../solicitorCreateInitial";
-import { Helpers } from "../../../../common/helpers";
-import { UploadDocuments1Page } from "../../../../pages/manageCases/createCase/FL401/uploadDocuments/uploadDocuments1Page";
-import { UploadDocumentsSubmitPage } from "../../../../pages/manageCases/createCase/FL401/uploadDocuments/uploadDocumentsSubmitPage";
-import { Fl401TasksTabPage } from "../../../../pages/manageCases/caseTabs/fl401TasksTabPage";
+import { SolicitorCreateInitial } from "../solicitorCreateInitial.ts";
+import { Helpers } from "../../../../common/helpers.ts";
+import { UploadDocuments1Page } from "../../../../pages/manageCases/createCase/FL401/uploadDocuments/uploadDocuments1Page.ts";
+import { UploadDocumentsSubmitPage } from "../../../../pages/manageCases/createCase/FL401/uploadDocuments/uploadDocumentsSubmitPage.ts";
+import { Fl401TasksTabPage } from "../../../../pages/manageCases/caseTabs/fl401TasksTabPage.ts";
 
 interface FL401UploadDocumentsOptions {
   page: Page;

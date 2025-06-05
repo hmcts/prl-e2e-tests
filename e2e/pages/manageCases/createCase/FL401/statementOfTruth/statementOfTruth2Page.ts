@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { StatementOfTruth2Content } from "../../../../../fixtures/manageCases/createCase/FL401/statementOfTruth/statementOfTruth2Content";
+import { Selectors } from "../../../../../common/selectors.ts";
+import { StatementOfTruth2Content } from "../../../../../fixtures/manageCases/createCase/FL401/statementOfTruth/statementOfTruth2Content.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Helpers } from "../../../../../common/helpers";
+import { Helpers } from "../../../../../common/helpers.ts";
 
 interface StatementOfTruth2PageOptions {
   page: Page;

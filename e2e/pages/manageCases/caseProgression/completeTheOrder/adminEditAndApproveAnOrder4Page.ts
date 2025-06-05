@@ -1,10 +1,10 @@
 import { Page } from "@playwright/test";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Selectors } from "../../../../common/selectors";
-import { AdminEditAndApproveAnOrder4Content } from "../../../../fixtures/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrder4Content";
-import { Helpers } from "../../../../common/helpers";
-import { CommonStaticText } from "../../../../common/commonStaticText";
-import { createOrderFL401Options } from "../../../../common/types";
+import { Selectors } from "../../../../common/selectors.ts";
+import { AdminEditAndApproveAnOrder4Content } from "../../../../fixtures/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrder4Content.ts";
+import { Helpers } from "../../../../common/helpers.ts";
+import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { createOrderFL401Options } from "../../../../common/types.ts";
 
 enum UniqueSelectors {
   editOrderNo = "#doYouWantToEditTheOrder_No",

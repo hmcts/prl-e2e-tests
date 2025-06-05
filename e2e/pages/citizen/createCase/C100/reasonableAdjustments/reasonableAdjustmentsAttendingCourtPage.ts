@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { ReasonableAdjustmentsAttendingCourtContent } from "../../../../../fixtures/citizen/createCase/C100/reasonableAdjustments/reasonableAdjustmentsAttendingCourtContent";
-import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors.ts";
+import { ReasonableAdjustmentsAttendingCourtContent } from "../../../../../fixtures/citizen/createCase/C100/reasonableAdjustments/reasonableAdjustmentsAttendingCourtContent.ts";
+import { Helpers } from "../../../../../common/helpers.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 
 interface ReasonableAdjustmentsAttendingCourtPageOptions {
   page: Page;

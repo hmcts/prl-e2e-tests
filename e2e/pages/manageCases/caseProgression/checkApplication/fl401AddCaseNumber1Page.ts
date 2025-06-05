@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors";
-import { Fl401AddCaseNumber1Content } from "../../../../fixtures/manageCases/caseProgression/checkApplication/fl401AddCaseNumber1Content";
-import { Helpers } from "../../../../common/helpers";
+import { Selectors } from "../../../../common/selectors.ts";
+import { Fl401AddCaseNumber1Content } from "../../../../fixtures/manageCases/caseProgression/checkApplication/fl401AddCaseNumber1Content.ts";
+import { Helpers } from "../../../../common/helpers.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { CommonStaticText } from "../../../../common/commonStaticText";
+import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 
 enum UniqueSelectors {
   familyManCaseNumberInput = "#familymanCaseNumber",

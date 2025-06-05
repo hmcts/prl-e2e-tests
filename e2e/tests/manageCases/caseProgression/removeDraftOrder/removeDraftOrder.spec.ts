@@ -1,7 +1,7 @@
 import { test } from "@playwright/test";
 import Config from "../../../../utils/config.utils.ts";
-import { Helpers } from "../../../../common/helpers";
-import { RemoveDraftOrder } from "../../../../journeys/manageCases/caseProgression/removeDraftOrder/removeDraftOrder";
+import { Helpers } from "../../../../common/helpers.ts";
+import { RemoveDraftOrder } from "../../../../journeys/manageCases/caseProgression/removeDraftOrder/removeDraftOrder.ts";
 import { SolicitorDACaseCreator } from "../../../../common/caseHelpers/solicitorDACaseCreator.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });

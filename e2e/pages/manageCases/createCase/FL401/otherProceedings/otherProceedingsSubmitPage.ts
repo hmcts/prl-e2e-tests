@@ -1,11 +1,11 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { SubmitContent } from "../../../../../fixtures/manageCases/createCase/FL401/otherProceedings/submitContent";
-import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors.ts";
+import { SubmitContent } from "../../../../../fixtures/manageCases/createCase/FL401/otherProceedings/submitContent.ts";
+import { Helpers } from "../../../../../common/helpers.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { OtherProceedingsContent } from "../../../../../fixtures/manageCases/createCase/FL401/otherProceedings/otherProceedingsContent";
+import { OtherProceedingsContent } from "../../../../../fixtures/manageCases/createCase/FL401/otherProceedings/otherProceedingsContent.ts";
 import Path from "path";
-import { otherProceedingsRadios } from "../../../../../common/types";
+import { otherProceedingsRadios } from "../../../../../common/types.ts";
 
 export class OtherProceedingsSubmitPage {
   public static async otherProceedingsSubmitPage(

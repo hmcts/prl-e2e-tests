@@ -1,11 +1,11 @@
 import { test } from "@playwright/test";
 import createDaCitizenCourtNavCase from "../../../../common/caseHelpers/citizenDACaseCreateHelper.ts";
-import { Helpers } from "../../../../common/helpers";
+import { Helpers } from "../../../../common/helpers.ts";
 import {
   default as Config,
   default as config,
 } from "../../../../utils/config.utils.ts";
-import { WelshLanguageRequirements } from "../../../../journeys/manageCases/caseProgression/welshLanguageRequirements/welshLanguageRequirements";
+import { WelshLanguageRequirements } from "../../../../journeys/manageCases/caseProgression/welshLanguageRequirements/welshLanguageRequirements.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "judge.json" });
 

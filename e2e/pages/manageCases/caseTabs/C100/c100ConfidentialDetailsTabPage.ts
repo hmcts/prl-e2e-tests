@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors";
-import { Helpers } from "../../../../common/helpers";
+import { Selectors } from "../../../../common/selectors.ts";
+import { Helpers } from "../../../../common/helpers.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { C100ConfidentialDetailsTabContent } from "../../../../fixtures/manageCases/caseTabs/C100/c100ConfidentialDetailsTabContent";
+import { C100ConfidentialDetailsTabContent } from "../../../../fixtures/manageCases/caseTabs/C100/c100ConfidentialDetailsTabContent.ts";
 
 enum UniqueSelectors {
   refugeDocumentsSection = "td#case-viewer-field-read--refugeDocuments",
