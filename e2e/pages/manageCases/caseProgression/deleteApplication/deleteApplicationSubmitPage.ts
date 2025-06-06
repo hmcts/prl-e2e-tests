@@ -1,4 +1,4 @@
-import { expect, Page } from "@playwright/test";
+import { Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
@@ -14,20 +14,14 @@ export class DeleteApplicationSubmitPage {
   ): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest);
     await this.delete(page);
-    await page
-      .locator(Selectors.alertMessage, {
-        hasText: DeleteApplicationSubmitContent.confirmationMessage,
-      })
-      .waitFor();
   }
 
   private static async checkPageLoads(
     page: Page,
     accessibilityTest: boolean,
   ): Promise<void> {
-    await expect(
-      page.locator(Selectors.GovukHeadingL, { hasText: DeleteApplicationSubmitContent.pageTitle }),
-    ).toBeVisible();
+    await page.locator(Selectors.GovukHeadingL, { hasText: DeleteApplicationSubmitContent.pageTitle })
+      .waitFor();
     await Promise.all([
       Helpers.checkGroupHasText(
         page,
@@ -63,5 +57,10 @@ export class DeleteApplicationSubmitPage {
     await page.click(
       `${Selectors.button}:text-is("${DeleteApplicationSubmitContent.delete}")`,
     );
+    await page
+      .locator(Selectors.alertMessage, {
+        hasText: DeleteApplicationSubmitContent.confirmationMessage,
+      })
+      .waitFor();
   }
 }
