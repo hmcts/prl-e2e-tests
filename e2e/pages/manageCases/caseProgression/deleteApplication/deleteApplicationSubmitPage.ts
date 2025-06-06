@@ -14,11 +14,11 @@ export class DeleteApplicationSubmitPage {
   ): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest);
     await this.delete(page);
-    await expect(
-      page.locator(
-        `${Selectors.alertMessage}:has-text("${DeleteApplicationSubmitContent.confirmationMessage}")`,
-      ),
-    ).toBeVisible({timeout : 15000});
+    await page
+      .locator(Selectors.alertMessage, {
+        hasText: DeleteApplicationSubmitContent.confirmationMessage,
+      })
+      .waitFor();
   }
 
   private static async checkPageLoads(
