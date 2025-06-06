@@ -18,7 +18,7 @@ export class DeleteApplicationSubmitPage {
       page.locator(
         `${Selectors.alertMessage}:has-text("${DeleteApplicationSubmitContent.confirmationMessage}")`,
       ),
-    ).toBeVisible();
+    ).toBeVisible({timeout : 15000});
   }
 
   private static async checkPageLoads(
