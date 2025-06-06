@@ -1,10 +1,14 @@
 import { APIRequestContext, Browser, Page, request } from "@playwright/test";
+import fs from "fs";
 import process from "node:process";
 import { ServiceOfApplicationLite } from "../../journeys/manageCases/caseProgression/serviceOfApplication/serviceOfApplicationLite.ts";
 import config from "../../utils/config.utils.ts";
 import { Helpers } from "../helpers.ts";
 import { getAccessToken, getS2SToken } from "./getAccessTokenHelper.ts";
-import solicitorCaseData from "../../caseData/solicitorDACaseEventData.json" with { type: "json" };
+
+const solicitorCaseData = JSON.parse(
+  fs.readFileSync("./e2e/caseData/solicitorDACaseEventData.json", "utf8"),
+);
 
 /**
  * Function to create a blank DA Solicitor case.

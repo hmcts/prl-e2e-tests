@@ -1,4 +1,5 @@
 import { Page } from "@playwright/test";
+import fs from "fs";
 import process from "node:process";
 import { PageFunction } from "playwright-core/types/structs";
 import {
@@ -6,14 +7,43 @@ import {
   solicitorCaseCreateType,
   solicitorDACaseAPIEvent,
 } from "../types.ts";
-import solicitorDACaseData from "../../caseData/solicitorDACaseEventData.json" with { type: "json" };
-import solicitorDACaseDataDemo from "../../caseData/solicitorDACaseEventData-demo.json" with { type: "json" };
-import orderEventDataAmendDischargedVariedDemo from "../../caseData/orderData/orderEventData-amendDischargedVaried-demo.json" with { type: "json" };
-import orderEventDataAmendDischargedVaried from "../../caseData/orderData/orderEventData-amendDischargedVaried.json" with { type: "json" };
-import orderEventDataPowerOfArrestDemo from "../../caseData/orderData/orderEventData-powerOfArrest-demo.json" with { type: "json" };
-import orderEventDataPowerOfArrest from "../../caseData/orderData/orderEventData-powerOfArrest.json" with { type: "json" };
-import solicitorCACaseDataDemo from "../../caseData/solicitorCACaseEventData-demo.json" with { type: "json" };
-import solicitorCACaseData from "../../caseData/solicitorCACaseEventData.json" with { type: "json" };
+
+const solicitorDACaseData = JSON.parse(
+  fs.readFileSync("./e2e/caseData/solicitorDACaseEventData.json", "utf8"),
+);
+const solicitorDACaseDataDemo = JSON.parse(
+  fs.readFileSync("./e2e/caseData/solicitorDACaseEventData-demo.json", "utf8"),
+);
+const orderEventDataAmendDischargedVariedDemo = JSON.parse(
+  fs.readFileSync(
+    "./e2e/caseData/orderData/orderEventData-amendDischargedVaried-demo.json",
+    "utf8",
+  ),
+);
+const orderEventDataAmendDischargedVaried = JSON.parse(
+  fs.readFileSync(
+    "./e2e/caseData/orderData/orderEventData-amendDischargedVaried.json",
+    "utf8",
+  ),
+);
+const orderEventDataPowerOfArrestDemo = JSON.parse(
+  fs.readFileSync(
+    "./e2e/caseData/orderData/orderEventData-powerOfArrest-demo.json",
+    "utf8",
+  ),
+);
+const orderEventDataPowerOfArrest = JSON.parse(
+  fs.readFileSync(
+    "./e2e/caseData/orderData/orderEventData-powerOfArrest.json",
+    "utf8",
+  ),
+);
+const solicitorCACaseDataDemo = JSON.parse(
+  fs.readFileSync("./e2e/caseData/solicitorCACaseEventData-demo.json", "utf8"),
+);
+const solicitorCACaseData = JSON.parse(
+  fs.readFileSync("./e2e/caseData/solicitorCACaseEventData.json", "utf8"),
+);
 
 // Using "any" type below because it represents a large JSON object
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
