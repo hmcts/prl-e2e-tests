@@ -1,4 +1,4 @@
-import { Page, expect } from "@playwright/test";
+import { Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
@@ -24,9 +24,7 @@ export class DeleteApplication1Page {
     page: Page,
     accessibilityTest: boolean,
   ): Promise<void> {
-    await expect(
-      page.locator(Selectors.GovukHeadingL, { hasText: DeleteApplication1Content.pageTitle }),
-    ).toBeVisible();
+    await page.locator(Selectors.GovukHeadingL, { hasText: DeleteApplication1Content.pageTitle }).waitFor();
     await Promise.all([
       Helpers.checkGroupHasText(
         page,
