@@ -24,7 +24,8 @@ export class DeleteApplication1Page {
     page: Page,
     accessibilityTest: boolean,
   ): Promise<void> {
-    await page.locator(Selectors.GovukHeadingL, { hasText: DeleteApplication1Content.pageTitle }).waitFor();
+    await page.locator(Selectors.GovukHeadingL, { hasText: DeleteApplication1Content.pageTitle })
+      .waitFor();
     await Promise.all([
       Helpers.checkGroupHasText(
         page,
