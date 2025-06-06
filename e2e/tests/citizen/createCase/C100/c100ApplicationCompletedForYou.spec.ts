@@ -8,7 +8,7 @@ test.describe("Create Citizen Application but choose to have legal representativ
     await IdamLoginHelper.setupAndSignInUser(
       page,
       Config.citizenFrontendBaseURL,
-      "citizen",
+      "citizen_idam",
     );
   });
   test(

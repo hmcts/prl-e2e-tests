@@ -23,15 +23,13 @@ export class DummyFL401 {
       page,
       applicantLivesInRefuge,
     );
-    await Fl401StatementOfTruth.fl401StatementOfTruth(
-      {
-        page: page,
-        accessibilityTest: false,
-        errorMessaging: false,
-        fl401YesNoToEverything: false,
-        subJourney: false,
-      },
-    );
+    await Fl401StatementOfTruth.fl401StatementOfTruth({
+      page: page,
+      accessibilityTest: false,
+      errorMessaging: false,
+      fl401YesNoToEverything: false,
+      subJourney: false,
+    });
 
     // wait for statement of truth event to complete before performing next actions
     await page

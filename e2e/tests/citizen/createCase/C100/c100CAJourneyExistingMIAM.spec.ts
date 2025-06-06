@@ -8,7 +8,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
     await IdamLoginHelper.setupAndSignInUser(
       page,
       Config.citizenFrontendBaseURL,
-      "citizen",
+      "citizen_idam",
     );
   });
   test(`C100 Citizen Application with the following options:
@@ -1529,7 +1529,7 @@ test.describe("C100 Citizen Application accessibility tests on the third row jou
     await IdamLoginHelper.setupAndSignInUser(
       page,
       Config.citizenFrontendBaseURL,
-      "citizen",
+      "citizen_idam",
     );
   });
   test(`C100 Citizen Application with the following options:
