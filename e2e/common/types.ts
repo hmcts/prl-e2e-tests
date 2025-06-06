@@ -60,7 +60,8 @@ export type c100SolicitorEvents =
   | "View PDF application"
   | "Submit and pay"
   | "Submit"
-  | "Dummy Payment confirmation";
+  | "Dummy Payment confirmation"
+  | "Delete application";
 
 export type fl401SolicitorEvents =
   | "Case name"
@@ -77,7 +78,8 @@ export type fl401SolicitorEvents =
   | "Upload documents"
   | "Welsh language requirements"
   | "View PDF application"
-  | "Statement of Truth and submit";
+  | "Statement of Truth and submit"
+  | "Delete application";
 
 export type WACaseWorkerActions =
   | "Allocated judge"
