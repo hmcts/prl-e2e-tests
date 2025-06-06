@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
+import { Selectors } from "../../../../../common/selectors.ts";
 import { NeedHelpWithFeesContent } from "../../../../../fixtures/citizen/createCase/C100/helpWithFees/needHelpWithFeesContent.ts";
-import { Helpers } from "../../../../../common/helpers";
+import { Helpers } from "../../../../../common/helpers.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 import { CommonContent } from "../../../../../fixtures/manageCases/commonContent.ts";
 
 enum inputIDs {

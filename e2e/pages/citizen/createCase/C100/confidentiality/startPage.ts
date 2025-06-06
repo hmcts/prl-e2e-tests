@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
-import { CommonStaticText } from "../../../../../common/commonStaticText";
-import { Helpers } from "../../../../../common/helpers";
-import { Selectors } from "../../../../../common/selectors";
-import { yesNoDontKnow } from "../../../../../common/types";
+import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
+import { Helpers } from "../../../../../common/helpers.ts";
+import { Selectors } from "../../../../../common/selectors.ts";
+import { yesNoDontKnow } from "../../../../../common/types.ts";
 import { StartContent } from "../../../../../fixtures/citizen/createCase/C100/confidentiality/startContent.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
 

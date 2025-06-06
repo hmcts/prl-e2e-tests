@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Selectors } from "../../../../common/selectors";
-import { Helpers } from "../../../../common/helpers";
-import { CommonStaticText } from "../../../../common/commonStaticText";
-import { Fl401ListOnNotice2Content } from "../../../../fixtures/manageCases/caseProgression/List/fl401ListOnNotice2Content";
+import { Selectors } from "../../../../common/selectors.ts";
+import { Helpers } from "../../../../common/helpers.ts";
+import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { Fl401ListOnNotice2Content } from "../../../../fixtures/manageCases/caseProgression/List/fl401ListOnNotice2Content.ts";
 
 enum UniqueSelectors {
   hearingInstructionsTextBox = "#fl401listOnNoticeHearingInstruction",

@@ -1,14 +1,14 @@
 import { Page } from "@playwright/test";
-import { AlternativeResolutionPage } from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/alternativeResolutionPage";
-import { AlternativeRoutesPage } from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/alternativeRoutesPage";
-import { LegalRepresentationPage } from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/legalRepresentationPage";
-import { LegalRepresentationApplicationPage } from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/legalRepresentationApplicationPage";
-import { ContactRepresentativePage } from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/contactRepresentativePage";
-import { StartPage } from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/startPage";
-import { ChildAddressPage } from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/childAddressPage";
-import { ConsentAgreementPage } from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/consentAgreementPage";
-import { CitizenCreateInitial } from "../../citizenCreateInitial";
-import { CaseDashboardPage } from "../../../../pages/citizen/createCase/initialJourney/caseDashboardPage";
+import { AlternativeResolutionPage } from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/alternativeResolutionPage.ts";
+import { AlternativeRoutesPage } from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/alternativeRoutesPage.ts";
+import { LegalRepresentationPage } from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/legalRepresentationPage.ts";
+import { LegalRepresentationApplicationPage } from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/legalRepresentationApplicationPage.ts";
+import { ContactRepresentativePage } from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/contactRepresentativePage.ts";
+import { StartPage } from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/startPage.ts";
+import { ChildAddressPage } from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/childAddressPage.ts";
+import { ConsentAgreementPage } from "../../../../pages/citizen/createCase/C100/c100ScreeningSections/consentAgreementPage.ts";
+import { CitizenCreateInitial } from "../../citizenCreateInitial.ts";
+import { CaseDashboardPage } from "../../../../pages/citizen/createCase/initialJourney/caseDashboardPage.ts";
 
 interface C100Options {
   page: Page;

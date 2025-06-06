@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors.ts";
+import { Helpers } from "../../../../../common/helpers.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { ConfirmationContent } from "../../../../../fixtures/citizen/createCase/C100/confirmation/confirmationContent";
+import { ConfirmationContent } from "../../../../../fixtures/citizen/createCase/C100/confirmation/confirmationContent.ts";
 
 interface ConfirmationPageOptions {
   page: Page;

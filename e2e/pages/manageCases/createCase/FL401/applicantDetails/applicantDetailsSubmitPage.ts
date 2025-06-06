@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { ApplicantDetailsSubmitContent } from "../../../../../fixtures/manageCases/createCase/FL401/applicantDetails/applicantDetailsSubmitContent";
-import { Helpers } from "../../../../../common/helpers";
-import { SubmitContent } from "../../../../../fixtures/manageCases/createCase/FL401/typeOfApplication/submitContent";
-import { ApplicantGender } from "../../../../../common/types";
+import { Selectors } from "../../../../../common/selectors.ts";
+import { ApplicantDetailsSubmitContent } from "../../../../../fixtures/manageCases/createCase/FL401/applicantDetails/applicantDetailsSubmitContent.ts";
+import { Helpers } from "../../../../../common/helpers.ts";
+import { SubmitContent } from "../../../../../fixtures/manageCases/createCase/FL401/typeOfApplication/submitContent.ts";
+import { ApplicantGender } from "../../../../../common/types.ts";
 
 export class ApplicantDetailsSubmitPage {
   public static async applicantDetailsSubmitPage(

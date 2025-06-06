@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Selectors } from "../../../../common/selectors";
-import { HearingWelshContent } from "../../../../fixtures/manageCases/caseProgression/createHearingRequest/hearingWelshContent";
-import { Helpers } from "../../../../common/helpers";
-import { CommonStaticText } from "../../../../common/commonStaticText";
+import { Selectors } from "../../../../common/selectors.ts";
+import { HearingWelshContent } from "../../../../fixtures/manageCases/caseProgression/createHearingRequest/hearingWelshContent.ts";
+import { Helpers } from "../../../../common/helpers.ts";
+import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 
 enum UniqueSelectors {
   welshYes = "#welsh_hearing_yes",

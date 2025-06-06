@@ -1,8 +1,7 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { Helpers } from "../../../../../common/helpers";
-// import { AxeUtils } from "@hmcts/playwright-common";
-import { SelectApplicationType4Content } from "../../../../../fixtures/manageCases/createCase/C100/selectApplicationType/selectApplicationType4Content";
+import { Selectors } from "../../../../../common/selectors.ts";
+import { Helpers } from "../../../../../common/helpers.ts";
+import { SelectApplicationType4Content } from "../../../../../fixtures/manageCases/createCase/C100/selectApplicationType/selectApplicationType4Content.ts";
 
 enum PageIDs {
   textbox = "#applicationDetails",

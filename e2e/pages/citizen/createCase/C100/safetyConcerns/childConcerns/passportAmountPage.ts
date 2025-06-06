@@ -1,10 +1,10 @@
 import { Page } from "@playwright/test";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Selectors } from "../../../../../../common/selectors";
-import { PassportAmountContent } from "../../../../../../fixtures/citizen/createCase/C100/safetyConcerns/childConcerns/passportAmountContent";
-import { Helpers } from "../../../../../../common/helpers";
-import { CommonStaticText } from "../../../../../../common/commonStaticText";
-import { SafetyConcernHelpers } from "../safetyConcernHelpers";
+import { Selectors } from "../../../../../../common/selectors.ts";
+import { PassportAmountContent } from "../../../../../../fixtures/citizen/createCase/C100/safetyConcerns/childConcerns/passportAmountContent.ts";
+import { Helpers } from "../../../../../../common/helpers.ts";
+import { CommonStaticText } from "../../../../../../common/commonStaticText.ts";
+import { SafetyConcernHelpers } from "../safetyConcernHelpers.ts";
 
 enum inputIDs {
   radioYes = "#c1A_childrenMoreThanOnePassport",

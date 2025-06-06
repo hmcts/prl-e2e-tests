@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Selectors } from "../../../../../common/selectors";
-import { LitigationCapacitySubmitContent } from "../../../../../fixtures/manageCases/createCase/C100/litigationCapacity/litigationCapacitySubmitContent";
-import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors.ts";
+import { LitigationCapacitySubmitContent } from "../../../../../fixtures/manageCases/createCase/C100/litigationCapacity/litigationCapacitySubmitContent.ts";
+import { Helpers } from "../../../../../common/helpers.ts";
 
 interface LitigationCapacityOptions {
   page: Page;

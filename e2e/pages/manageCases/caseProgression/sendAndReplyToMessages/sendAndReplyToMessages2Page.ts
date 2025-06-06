@@ -1,10 +1,10 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors";
-import { Helpers } from "../../../../common/helpers";
+import { Selectors } from "../../../../common/selectors.ts";
+import { Helpers } from "../../../../common/helpers.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { CommonStaticText } from "../../../../common/commonStaticText";
-import { SendAndReplyToMessages2Content } from "../../../../fixtures/manageCases/caseProgression/sendAndReplyToMessages/sendAndReplyToMessages2Content";
-import { CommonContent } from "../../../../fixtures/manageCases/commonContent";
+import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { SendAndReplyToMessages2Content } from "../../../../fixtures/manageCases/caseProgression/sendAndReplyToMessages/sendAndReplyToMessages2Content.ts";
+import { CommonContent } from "../../../../fixtures/manageCases/commonContent.ts";
 
 enum UniqueSelectors {
   internalMessageRadio = "#sendMessageObject_internalOrExternalMessage-INTERNAL",

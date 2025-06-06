@@ -1,2 +1,2 @@
-export * from "./config.utils";
-export * from "./utils.fixtures";
+export * from "./config.utils.ts";
+export * from "./utils.fixtures.ts";

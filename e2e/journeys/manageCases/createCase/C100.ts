@@ -2,43 +2,43 @@ import {
   ApplicantGender,
   otherProceedingsRadios,
   UserRole,
-} from "../../../common/types";
+} from "../../../common/types.ts";
 import { Page } from "@playwright/test";
-import { SolicitorCreateInitial } from "./solicitorCreateInitial";
-import { C100HearingUrgency } from "./C100HearingUrgency/C100HearingUrgency";
-import { C100ApplicantDetails } from "./C100ApplicantDetails/c100ApplicantDetails";
-import { typeOfChildArrangementOrderID } from "../../../pages/manageCases/createCase/C100/selectApplicationType/selectApplicationType1Page";
-import { radioButtons } from "../../../pages/manageCases/createCase/C100/selectApplicationType/selectApplicationType3Page";
-import { C100TypeOfApplication } from "./C100TypeOfApplication/C100TypeOfAplication";
-import { C100RespondentDetails } from "./C100RespondentDetails/C100RespondentDetails";
+import { SolicitorCreateInitial } from "./solicitorCreateInitial.ts";
+import { C100HearingUrgency } from "./C100HearingUrgency/C100HearingUrgency.ts";
+import { C100ApplicantDetails } from "./C100ApplicantDetails/c100ApplicantDetails.ts";
+import { typeOfChildArrangementOrderID } from "../../../pages/manageCases/createCase/C100/selectApplicationType/selectApplicationType1Page.ts";
+import { radioButtons } from "../../../pages/manageCases/createCase/C100/selectApplicationType/selectApplicationType3Page.ts";
+import { C100TypeOfApplication } from "./C100TypeOfApplication/C100TypeOfAplication.ts";
+import { C100RespondentDetails } from "./C100RespondentDetails/C100RespondentDetails.ts";
 import {
   C100RespondentAddress5Years,
   C100RespondentGender,
   C100RespondentLegalRepresentation,
-} from "../../../pages/manageCases/createCase/C100/respondentDetails/respondentDetails1Page";
-import { C100OtherPeopleInTheCase } from "./C100OtherPeopleInTheCase/C100OtherPeopleInTheCase";
-import { C100ChildDetails } from "./C100ChildDetails/c100ChildDetails";
-import { C100ChildGender } from "../../../pages/manageCases/createCase/C100/childDetails/childDetailsRevised1Page";
-import { yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions } from "../../../pages/manageCases/createCase/C100/childDetails/childDetailsRevised2Page";
-import { C100OtherChildrenNotInTheCase } from "./C100OtherChildrenNotInTheCase/C100OtherChildrenNotInTheCase";
-import { C100OtherChildGender } from "../../../pages/manageCases/createCase/C100/otherChildrenNotInTheCase/otherChildNotInTheCase1Page";
-import { C100ChildrenAndOtherPeople } from "./C100ChildrenAndOtherPeople/c100ChildrenAndOtherPeople";
-import { C100ChildrenAndApplicantsRelationship } from "../../../pages/manageCases/createCase/C100/childrenAndApplicants/childrenAndApplicants1Page";
-import { C100ChildrenAndApplicants } from "./C100ChildrenAndApplicants/C100ChildrenAndApplicants";
-import { C100ChildAndRespondents } from "./C100ChildrenAndRespondents/c100ChildrenAndRespondents";
-import { C100AllegationsOfHarmTypeOfDomesticAbuse } from "../../../pages/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevised3Page";
-import { C100AllegationsOfHarm } from "./C100AllegationsOfHarm/c100AllegationsOfHarm";
-import { C100InternationalElement } from "./C100InternationalElement/C100InternationalElement";
-import { C100AttendingTheHearing } from "./C100AttendingTheHearing/c100AttendingTheHearing";
-import { C100MiamPolicyUpgrade } from "./C100MiamPolicyUpgrade/C100MiamPolicyUpgrade";
-import { C100MiamPolicyUpgrade1PageType } from "../../../pages/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade1Page";
-import { miamSelection } from "../../../pages/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade6Page";
-import { C100LitigationCapacity } from "./C100LitigationCapacity/C100LitigationCapacity";
-import { C100OtherProceedings } from "./C100OtherProceedings/C100OtherProceedings";
-import { C100WelshLanguageRequirements } from "./C100welshLanguageRequirements/C100welshLanguageRequirements";
-import { WelshPageRequirementType } from "../../../pages/manageCases/createCase/C100/welshLanguageRequirements/welshLanguageRequirements1Page";
-import { C100ViewPDFApplication } from "./C100ViewPDFApplication/c100ViewPDFApplication";
-import { C100SubmitAndPay } from "./C100SubmitAndPay/C100SubmitAndPay";
+} from "../../../pages/manageCases/createCase/C100/respondentDetails/respondentDetails1Page.ts";
+import { C100OtherPeopleInTheCase } from "./C100OtherPeopleInTheCase/C100OtherPeopleInTheCase.ts";
+import { C100ChildDetails } from "./C100ChildDetails/c100ChildDetails.ts";
+import { C100ChildGender } from "../../../pages/manageCases/createCase/C100/childDetails/childDetailsRevised1Page.ts";
+import { yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions } from "../../../pages/manageCases/createCase/C100/childDetails/childDetailsRevised2Page.ts";
+import { C100OtherChildrenNotInTheCase } from "./C100OtherChildrenNotInTheCase/C100OtherChildrenNotInTheCase.ts";
+import { C100OtherChildGender } from "../../../pages/manageCases/createCase/C100/otherChildrenNotInTheCase/otherChildNotInTheCase1Page.ts";
+import { C100ChildrenAndOtherPeople } from "./C100ChildrenAndOtherPeople/c100ChildrenAndOtherPeople.ts";
+import { C100ChildrenAndApplicantsRelationship } from "../../../pages/manageCases/createCase/C100/childrenAndApplicants/childrenAndApplicants1Page.ts";
+import { C100ChildrenAndApplicants } from "./C100ChildrenAndApplicants/C100ChildrenAndApplicants.ts";
+import { C100ChildAndRespondents } from "./C100ChildrenAndRespondents/c100ChildrenAndRespondents.ts";
+import { C100AllegationsOfHarmTypeOfDomesticAbuse } from "../../../pages/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevised3Page.ts";
+import { C100AllegationsOfHarm } from "./C100AllegationsOfHarm/c100AllegationsOfHarm.ts";
+import { C100InternationalElement } from "./C100InternationalElement/C100InternationalElement.ts";
+import { C100AttendingTheHearing } from "./C100AttendingTheHearing/c100AttendingTheHearing.ts";
+import { C100MiamPolicyUpgrade } from "./C100MiamPolicyUpgrade/C100MiamPolicyUpgrade.ts";
+import { C100MiamPolicyUpgrade1PageType } from "../../../pages/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade1Page.ts";
+import { miamSelection } from "../../../pages/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade6Page.ts";
+import { C100LitigationCapacity } from "./C100LitigationCapacity/C100LitigationCapacity.ts";
+import { C100OtherProceedings } from "./C100OtherProceedings/C100OtherProceedings.ts";
+import { C100WelshLanguageRequirements } from "./C100welshLanguageRequirements/C100welshLanguageRequirements.ts";
+import { WelshPageRequirementType } from "../../../pages/manageCases/createCase/C100/welshLanguageRequirements/welshLanguageRequirements1Page.ts";
+import { C100ViewPDFApplication } from "./C100ViewPDFApplication/c100ViewPDFApplication.ts";
+import { C100SubmitAndPay } from "./C100SubmitAndPay/C100SubmitAndPay.ts";
 
 interface c100Options {
   page: Page;

@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
-import { CommonStaticText } from "../../../../common/commonStaticText";
-import { Helpers } from "../../../../common/helpers";
-import { Selectors } from "../../../../common/selectors";
+import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { Helpers } from "../../../../common/helpers.ts";
+import { Selectors } from "../../../../common/selectors.ts";
 import { SendAndReplyToMessages5Content } from "../../../../fixtures/manageCases/caseProgression/sendAndReplyToMessages/sendAndReplyToMessages5Content.ts";
 import { CommonContent } from "../../../../fixtures/manageCases/commonContent.ts";
 import { solicitorCaseCreateType } from "../../../../common/types.ts";

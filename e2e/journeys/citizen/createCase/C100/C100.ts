@@ -5,32 +5,32 @@ import {
   Relationship,
   typeOfPerson,
   yesNoDontKnow,
-} from "../../../../common/types";
-import { MiamChildProtectionConcernsType } from "../../../../pages/citizen/createCase/C100/MIAM/miamChildProtectionPage";
-import { MiamOtherReasonForNotAttending } from "../../../../pages/citizen/createCase/C100/MIAM/miamMiamOtherPage";
-import { MiamReasonForNoAccessToMediator } from "../../../../pages/citizen/createCase/C100/MIAM/miamNoAccessToMediatorPage";
-import { MiamAttendanceType } from "../../../../pages/citizen/createCase/C100/MIAM/miamPreviousAttendancePage";
-import { MiamUrgencyType } from "../../../../pages/citizen/createCase/C100/MIAM/miamUrgencyPage";
+} from "../../../../common/types.ts";
+import { MiamChildProtectionConcernsType } from "../../../../pages/citizen/createCase/C100/MIAM/miamChildProtectionPage.ts";
+import { MiamOtherReasonForNotAttending } from "../../../../pages/citizen/createCase/C100/MIAM/miamMiamOtherPage.ts";
+import { MiamReasonForNoAccessToMediator } from "../../../../pages/citizen/createCase/C100/MIAM/miamNoAccessToMediatorPage.ts";
+import { MiamAttendanceType } from "../../../../pages/citizen/createCase/C100/MIAM/miamPreviousAttendancePage.ts";
+import { MiamUrgencyType } from "../../../../pages/citizen/createCase/C100/MIAM/miamUrgencyPage.ts";
 import {
   ReviewPage,
   reviewPageTopJourneyMotherFather,
-} from "../../../../pages/citizen/createCase/C100/reviewPages/reviewPage";
-import { c100ChildrenSupervisionRadios } from "../../../../pages/citizen/createCase/C100/safetyConcerns/unsupervisedPage";
-import { CitizenCreateInitial } from "../../citizenCreateInitial";
-import { C100ApplicationCompletedForYou } from "./C100ApplicationCompletedForYou";
-import { C100CasePartyDetails } from "./subJourneys/c100CasePartyDetails";
-import { C100Confidentiality } from "./subJourneys/c100Confidentiality";
-import { C100ConsentOrderUpload } from "./subJourneys/C100ConsentOrderUpload";
-import { C100HelpWithFees } from "./subJourneys/c100HelpWithFees";
-import { C100InternationalElements } from "./subJourneys/c100InternationalElements";
-import { C100OtherProceedings } from "./subJourneys/C100OtherProceedings";
-import { C100People } from "./subJourneys/C100People1";
-import { C100ReasonableAdjustments } from "./subJourneys/c100ReasonableAdjustments";
-import { C100SafetyConcerns } from "./subJourneys/c100SafetyConcerns";
-import { C100ScreeningSections } from "./subJourneys/c100ScreeningSections";
-import { C100TypeOfOrder } from "./subJourneys/C100TypeOfOrder";
-import { C100UrgencyAndWithoutNotice } from "./subJourneys/C100UrgencyAndWithoutNotice";
-import { MIAM } from "./subJourneys/MIAM";
+} from "../../../../pages/citizen/createCase/C100/reviewPages/reviewPage.ts";
+import { c100ChildrenSupervisionRadios } from "../../../../pages/citizen/createCase/C100/safetyConcerns/unsupervisedPage.ts";
+import { CitizenCreateInitial } from "../../citizenCreateInitial.ts";
+import { C100ApplicationCompletedForYou } from "./C100ApplicationCompletedForYou.ts";
+import { C100CasePartyDetails } from "./subJourneys/c100CasePartyDetails.ts";
+import { C100Confidentiality } from "./subJourneys/c100Confidentiality.ts";
+import { C100ConsentOrderUpload } from "./subJourneys/C100ConsentOrderUpload.ts";
+import { C100HelpWithFees } from "./subJourneys/c100HelpWithFees.ts";
+import { C100InternationalElements } from "./subJourneys/c100InternationalElements.ts";
+import { C100OtherProceedings } from "./subJourneys/C100OtherProceedings.ts";
+import { C100People } from "./subJourneys/C100People1.ts";
+import { C100ReasonableAdjustments } from "./subJourneys/c100ReasonableAdjustments.ts";
+import { C100SafetyConcerns } from "./subJourneys/c100SafetyConcerns.ts";
+import { C100ScreeningSections } from "./subJourneys/c100ScreeningSections.ts";
+import { C100TypeOfOrder } from "./subJourneys/C100TypeOfOrder.ts";
+import { C100UrgencyAndWithoutNotice } from "./subJourneys/C100UrgencyAndWithoutNotice.ts";
+import { MIAM } from "./subJourneys/MIAM.ts";
 import { EqualityAndDiversityPage } from "../../../../pages/citizen/createCase/C100/confirmation/equalityAndDiversityQuestionsPage.ts";
 import { C100Pay } from "./subJourneys/C100Pay.ts";
 import { ConfirmationPage } from "../../../../pages/citizen/createCase/C100/confirmation/confirmationPage.ts";

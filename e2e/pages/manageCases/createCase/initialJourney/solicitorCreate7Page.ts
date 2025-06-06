@@ -1,10 +1,10 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors";
-import { SolicitorCreate7Content } from "../../../../fixtures/manageCases/createCase/initialJourney/solicitorCreate7Content";
-import { Helpers } from "../../../../common/helpers";
+import { Selectors } from "../../../../common/selectors.ts";
+import { SolicitorCreate7Content } from "../../../../fixtures/manageCases/createCase/initialJourney/solicitorCreate7Content.ts";
+import { Helpers } from "../../../../common/helpers.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { CommonStaticText } from "../../../../common/commonStaticText";
-import { solicitorCaseCreateType } from "../../../../common/types";
+import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { solicitorCaseCreateType } from "../../../../common/types.ts";
 
 const submitCountyCourtSelection = "#submitCountyCourtSelection";
 

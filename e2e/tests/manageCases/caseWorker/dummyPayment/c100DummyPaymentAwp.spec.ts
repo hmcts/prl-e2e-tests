@@ -1,6 +1,6 @@
 import { test } from "@playwright/test";
 import Config from "../../../../utils/config.utils.ts";
-import { DummyPaymentAwp } from "../../../../journeys/manageCases/caseWorker/dummyPayment/dummyPaymentAwp";
+import { DummyPaymentAwp } from "../../../../journeys/manageCases/caseWorker/dummyPayment/dummyPaymentAwp.ts";
 import { DummyC100 } from "../../../../journeys/manageCases/createCase/dummyCase/dummyC100.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });

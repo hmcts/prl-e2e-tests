@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
-import { InternationalElementsStartPage } from "../../../../../pages/citizen/createCase/C100/internationalElement/internationalElementsStartPage";
-import { InternationalElementsParentsPage } from "../../../../../pages/citizen/createCase/C100/internationalElement/internationalElementsParentsPage";
-import { InternationalElementsJurisdictionPage } from "../../../../../pages/citizen/createCase/C100/internationalElement/internationalElementsJurisdictionPage";
-import { InternationalElementsRequestPage } from "../../../../../pages/citizen/createCase/C100/internationalElement/internationalElementsRequestPage";
+import { InternationalElementsStartPage } from "../../../../../pages/citizen/createCase/C100/internationalElement/internationalElementsStartPage.ts";
+import { InternationalElementsParentsPage } from "../../../../../pages/citizen/createCase/C100/internationalElement/internationalElementsParentsPage.ts";
+import { InternationalElementsJurisdictionPage } from "../../../../../pages/citizen/createCase/C100/internationalElement/internationalElementsJurisdictionPage.ts";
+import { InternationalElementsRequestPage } from "../../../../../pages/citizen/createCase/C100/internationalElement/internationalElementsRequestPage.ts";
 
 interface C100InternationalElementsOptions {
   page: Page;

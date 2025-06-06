@@ -4,9 +4,9 @@ import {
   applicationSubmittedBy,
   documentCategory,
   yesNoDontKnow,
-} from "../../../../common/types";
+} from "../../../../common/types.ts";
 import { ReviewDocuments } from "./reviewDocuments.ts";
-import { Helpers } from "../../../../common/helpers";
+import { Helpers } from "../../../../common/helpers.ts";
 import Config from "../../../../utils/config.utils.ts";
 
 interface reviewCitizenUploadedDocumentsParams {

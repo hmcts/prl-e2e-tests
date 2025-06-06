@@ -1,7 +1,7 @@
 import { test } from "@playwright/test";
 import Config from "../../../../utils/config.utils.ts";
 import createDaCitizenCourtNavCase from "../../../../common/caseHelpers/citizenDACaseCreateHelper.ts";
-import { Helpers } from "../../../../common/helpers";
+import { Helpers } from "../../../../common/helpers.ts";
 import { AmendApplicantDetails } from "../../../../journeys/manageCases/caseProgression/amendDetails/amendApplicantDetails.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "courtAdminStoke.json" });

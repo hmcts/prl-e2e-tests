@@ -3,7 +3,7 @@ import { TransferToAnotherCourt1Page } from "../../../../pages/manageCases/caseP
 import { TransferToAnotherCourtSubmitPage } from "../../../../pages/manageCases/caseProgression/transferToAnotherCourt/transferToAnotherCourtSubmitPage.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import { TransferToAnotherCourtConfirmPage } from "../../../../pages/manageCases/caseProgression/transferToAnotherCourt/transferToAnotherCourtConfirmPage.ts";
-import { FL401SummaryTabPage } from "../../../../pages/manageCases/caseTabs/FL401/fl401SummaryTabPage";
+import { FL401SummaryTabPage } from "../../../../pages/manageCases/caseTabs/FL401/fl401SummaryTabPage.ts";
 
 interface TransferToAnotherCourtParams {
   page: Page;

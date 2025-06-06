@@ -1,5 +1,5 @@
 import { Page, expect } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors";
+import { Selectors } from "../../../../common/selectors.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
 import { C100DraftOrdersTabContent } from "../../../../fixtures/manageCases/caseTabs/C100/c100DraftOrdersTabContent.ts";
 

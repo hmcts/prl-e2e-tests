@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
-import { Helpers } from "../../../../../common/helpers";
-import { Selectors } from "../../../../../common/selectors";
-import { StatementOfTruth3Content } from "../../../../../fixtures/manageCases/createCase/FL401/statementOfTruth/statementOfTruth3Content";
+import { Helpers } from "../../../../../common/helpers.ts";
+import { Selectors } from "../../../../../common/selectors.ts";
+import { StatementOfTruth3Content } from "../../../../../fixtures/manageCases/createCase/FL401/statementOfTruth/statementOfTruth3Content.ts";
 
 enum inputIDs {
   courtSelection = "#submitCountyCourtSelection",

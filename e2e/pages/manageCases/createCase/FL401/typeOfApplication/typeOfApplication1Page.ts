@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors.ts";
+import { Helpers } from "../../../../../common/helpers.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { TypeOfApplication1Content } from "../../../../../fixtures/manageCases/createCase/FL401/typeOfApplication/typeOfApplication1Content";
+import { TypeOfApplication1Content } from "../../../../../fixtures/manageCases/createCase/FL401/typeOfApplication/typeOfApplication1Content.ts";
 
 enum applicationOrderSelectionIds {
   nonMolestationOrder = "#typeOfApplicationOrders_orderType-nonMolestationOrder",

@@ -1,5 +1,5 @@
 import { Page } from "@playwright/test";
-import { Helpers } from "../../../../common/helpers";
+import { Helpers } from "../../../../common/helpers.ts";
 import { AmendApplicantDetails2Page } from "../../../../pages/manageCases/caseProgression/amendDetails/amendApplicantDetails/amendApplicantDetails2Page.ts";
 import { ApplicantGender } from "../../../../common/types.ts";
 import { AmendApplicantDetailsSubmitPage } from "../../../../pages/manageCases/caseProgression/amendDetails/amendApplicantDetails/amendApplicantDetailsSubmitPage.ts";

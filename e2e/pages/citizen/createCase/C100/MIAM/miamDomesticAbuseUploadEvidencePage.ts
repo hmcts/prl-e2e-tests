@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { MiamDomesticAbuseUploadEvidenceContent } from "../../../../../fixtures/citizen/createCase/C100/MIAM/miamDomesticAbuseUploadEvidenceContent";
-import { Helpers } from "../../../../../common/helpers";
-import { CommonStaticText } from "../../../../../common/commonStaticText";
-import config from "../../../../../utils/config.utils";
+import { Selectors } from "../../../../../common/selectors.ts";
+import { MiamDomesticAbuseUploadEvidenceContent } from "../../../../../fixtures/citizen/createCase/C100/MIAM/miamDomesticAbuseUploadEvidenceContent.ts";
+import { Helpers } from "../../../../../common/helpers.ts";
+import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
+import config from "../../../../../utils/config.utils.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
 
 export interface MiamDomesticAbuseUploadEvidencePageOptions {

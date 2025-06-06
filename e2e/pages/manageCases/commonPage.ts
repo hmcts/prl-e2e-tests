@@ -1,7 +1,7 @@
-import { Helpers } from "../../common/helpers";
+import { Helpers } from "../../common/helpers.ts";
 import { Page } from "@playwright/test";
-import { Selectors } from "../../common/selectors";
-import { CommonContent } from "../../fixtures/manageCases/commonContent";
+import { Selectors } from "../../common/selectors.ts";
+import { CommonContent } from "../../fixtures/manageCases/commonContent.ts";
 
 export class CommonPage {
   protected static async checkCommonContent(page: Page): Promise<void> {

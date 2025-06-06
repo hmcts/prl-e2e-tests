@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
-import { Helpers } from "../../../../../common/helpers";
-import { Selectors } from "../../../../../common/selectors";
-import { SubmitContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/initialJourney/submitContent";
+import { Helpers } from "../../../../../common/helpers.ts";
+import { Selectors } from "../../../../../common/selectors.ts";
+import { SubmitContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/initialJourney/submitContent.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
 
 interface SubmitPageContent {

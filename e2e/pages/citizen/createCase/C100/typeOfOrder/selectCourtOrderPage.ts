@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Selectors } from "../../../../../common/selectors";
-import { CaOrderContent } from "../../../../../fixtures/citizen/createCase/C100/typeOfOrder/caOrderContent";
-import { SelectCourtOrderContent } from "../../../../../fixtures/citizen/createCase/C100/typeOfOrder/selectCourtOrderContent";
-import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors.ts";
+import { CaOrderContent } from "../../../../../fixtures/citizen/createCase/C100/typeOfOrder/caOrderContent.ts";
+import { SelectCourtOrderContent } from "../../../../../fixtures/citizen/createCase/C100/typeOfOrder/selectCourtOrderContent.ts";
+import { Helpers } from "../../../../../common/helpers.ts";
 
 interface SelectCourtOrderPageOptions {
   page: Page;

@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Selectors } from "../../../../../common/selectors";
-import { CommonStaticText } from "../../../../../common/commonStaticText";
-import { ConcernGuidanceContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/concernGuidanceContent";
-import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors.ts";
+import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
+import { ConcernGuidanceContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/concernGuidanceContent.ts";
+import { Helpers } from "../../../../../common/helpers.ts";
 
 interface CheckPageLoadsOptions {
   page: Page;

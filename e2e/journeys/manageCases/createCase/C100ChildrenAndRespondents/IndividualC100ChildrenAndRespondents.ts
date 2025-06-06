@@ -1,26 +1,26 @@
 import { Page } from "@playwright/test";
-import { UserRole } from "../../../../common/types";
-import { SolicitorCreateInitial } from "../solicitorCreateInitial";
-import { Helpers } from "../../../../common/helpers";
-import { ChildrenAndRespondents1Page } from "../../../../pages/manageCases/createCase/C100/childrenAndRespondents/childrenAndRespondents1Page";
-import { ChildrenAndRespondentsSubmitPage } from "../../../../pages/manageCases/createCase/C100/childrenAndRespondents/childrenAndRespondentsSubmitPage";
-import { C100TasksTabPage } from "../../../../pages/manageCases/caseTabs/c100TasksTabPage";
+import { UserRole } from "../../../../common/types.ts";
+import { SolicitorCreateInitial } from "../solicitorCreateInitial.ts";
+import { Helpers } from "../../../../common/helpers.ts";
+import { ChildrenAndRespondents1Page } from "../../../../pages/manageCases/createCase/C100/childrenAndRespondents/childrenAndRespondents1Page.ts";
+import { ChildrenAndRespondentsSubmitPage } from "../../../../pages/manageCases/createCase/C100/childrenAndRespondents/childrenAndRespondentsSubmitPage.ts";
+import { C100TasksTabPage } from "../../../../pages/manageCases/caseTabs/c100TasksTabPage.ts";
 import {
   C100ChildGender,
   ChildDetailsRevised1Page,
-} from "../../../../pages/manageCases/createCase/C100/childDetails/childDetailsRevised1Page";
+} from "../../../../pages/manageCases/createCase/C100/childDetails/childDetailsRevised1Page.ts";
 import {
   ChildDetailsRevised2Page,
   yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,
-} from "../../../../pages/manageCases/createCase/C100/childDetails/childDetailsRevised2Page";
-import { C100ChildDetailsSubmitPage } from "../../../../pages/manageCases/createCase/C100/childDetails/childDetailsSubmitPage";
+} from "../../../../pages/manageCases/createCase/C100/childDetails/childDetailsRevised2Page.ts";
+import { C100ChildDetailsSubmitPage } from "../../../../pages/manageCases/createCase/C100/childDetails/childDetailsSubmitPage.ts";
 import {
   C100RespondentAddress5Years,
   C100RespondentGender,
   C100RespondentLegalRepresentation,
   RespondentDetails1Page,
-} from "../../../../pages/manageCases/createCase/C100/respondentDetails/respondentDetails1Page";
-import { RespondentDetailsSubmitPage } from "../../../../pages/manageCases/createCase/C100/respondentDetails/respondentDetailsSubmitPage";
+} from "../../../../pages/manageCases/createCase/C100/respondentDetails/respondentDetails1Page.ts";
+import { RespondentDetailsSubmitPage } from "../../../../pages/manageCases/createCase/C100/respondentDetails/respondentDetailsSubmitPage.ts";
 
 interface c100ChildrenAndRespondentsOptions {
   page: Page;

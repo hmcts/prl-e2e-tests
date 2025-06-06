@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors";
-import { Helpers } from "../../../../common/helpers";
+import { Selectors } from "../../../../common/selectors.ts";
+import { Helpers } from "../../../../common/helpers.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { SolicitorCreate5Content } from "../../../../fixtures/manageCases/createCase/initialJourney/solicitorCreate5Content";
+import { SolicitorCreate5Content } from "../../../../fixtures/manageCases/createCase/initialJourney/solicitorCreate5Content.ts";
 
 enum caseName {
   fieldID = "#applicantOrRespondentCaseName",

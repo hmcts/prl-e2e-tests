@@ -1,10 +1,10 @@
 import { Page } from "@playwright/test";
-import { Language } from "../../../../common/types";
-import { Selectors } from "../../../../common/selectors";
-import { CommonStaticText } from "../../../../common/commonStaticText";
+import { Language } from "../../../../common/types.ts";
+import { Selectors } from "../../../../common/selectors.ts";
+import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { AmendWelshLanguageRequirementsSubmitContent } from "../../../../fixtures/manageCases/caseProgression/welshLanguagesRequirements/amendWelshLanguageRequirementsSubmitContent";
-import { Helpers } from "../../../../common/helpers";
+import { AmendWelshLanguageRequirementsSubmitContent } from "../../../../fixtures/manageCases/caseProgression/welshLanguagesRequirements/amendWelshLanguageRequirementsSubmitContent.ts";
+import { Helpers } from "../../../../common/helpers.ts";
 
 export class AmendWelshLanguageRequirementsSubmitPage {
   public static async amendWelshLanguageRequirementsSubmitPage(

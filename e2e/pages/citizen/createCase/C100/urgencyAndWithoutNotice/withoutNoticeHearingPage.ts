@@ -1,10 +1,10 @@
 import { AxeUtils } from "@hmcts/playwright-common";
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { WithoutNoticeHearingContent } from "../../../../../fixtures/citizen/createCase/C100/urgencyAndWithoutNotice/withoutNoticeHearingContent";
-import { Helpers } from "../../../../../common/helpers";
-import { uniqueSelectors } from "./urgentFirstHearingPage";
-import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { Selectors } from "../../../../../common/selectors.ts";
+import { WithoutNoticeHearingContent } from "../../../../../fixtures/citizen/createCase/C100/urgencyAndWithoutNotice/withoutNoticeHearingContent.ts";
+import { Helpers } from "../../../../../common/helpers.ts";
+import { uniqueSelectors } from "./urgentFirstHearingPage.ts";
+import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 
 interface WithoutNoticeHearingPageOptions {
   page: Page;

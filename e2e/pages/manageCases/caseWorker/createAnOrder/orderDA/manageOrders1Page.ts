@@ -1,10 +1,10 @@
 import { Page } from "@playwright/test";
-import { Helpers } from "../../../../../common/helpers";
-import { Selectors } from "../../../../../common/selectors";
+import { Helpers } from "../../../../../common/helpers.ts";
+import { Selectors } from "../../../../../common/selectors.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { ManageOrders1DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderDA/manageOrders1DAContent";
-import { CommonStaticText } from "../../../../../common/commonStaticText";
-import { manageOrdersOptions } from "../../../../../common/types";
+import { ManageOrders1DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderDA/manageOrders1DAContent.ts";
+import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
+import { manageOrdersOptions } from "../../../../../common/types.ts";
 
 interface ManageOrders1PageOptions {
   page: Page;

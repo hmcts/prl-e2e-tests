@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { Helpers } from "../../../../../common/helpers";
-import { Selectors } from "../../../../../common/selectors";
-import { ChildSafetyConcernsCommonContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/childConcerns/childSafetyConcernsCommonContent";
-import { PassportSidebarContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/childConcerns/passportSidebarContent";
-import { YourselfSafetyConcernsCommonContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/yourselfConcerns/yourselfSafetyConcernsCommonContent";
+import { Helpers } from "../../../../../common/helpers.ts";
+import { Selectors } from "../../../../../common/selectors.ts";
+import { ChildSafetyConcernsCommonContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/childConcerns/childSafetyConcernsCommonContent.ts";
+import { PassportSidebarContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/childConcerns/passportSidebarContent.ts";
+import { YourselfSafetyConcernsCommonContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/yourselfConcerns/yourselfSafetyConcernsCommonContent.ts";
 
 interface SeekHelpOptions {
   page: Page;

@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { DocumentSummaryContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/DocumentSummaryContent";
-import { CommonStaticText } from "../../../../../common/commonStaticText";
-import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors.ts";
+import { DocumentSummaryContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/DocumentSummaryContent.ts";
+import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
+import { Helpers } from "../../../../../common/helpers.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
 
 interface DocumentSummaryPageOptions {

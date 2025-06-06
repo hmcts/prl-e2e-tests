@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { AllegationsOfHarmRevised10Content } from "../../../../../fixtures/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevised10Content";
+import { Selectors } from "../../../../../common/selectors.ts";
+import { AllegationsOfHarmRevised10Content } from "../../../../../fixtures/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevised10Content.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Helpers } from "../../../../../common/helpers";
+import { Helpers } from "../../../../../common/helpers.ts";
 
 interface AllegationsOfHarmRevised10PageOptions {
   page: Page;

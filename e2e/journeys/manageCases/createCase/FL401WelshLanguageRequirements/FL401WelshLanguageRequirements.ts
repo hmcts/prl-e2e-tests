@@ -1,9 +1,9 @@
-import { Helpers } from "../../../../common/helpers";
+import { Helpers } from "../../../../common/helpers.ts";
 import { Page } from "@playwright/test";
-import { WelshLanguageRequirementsPage } from "../../../../pages/manageCases/createCase/FL401/welshLanguageRequirements/welshLanguageRequirementsPage";
-import { Fl401TasksTabPage } from "../../../../pages/manageCases/caseTabs/fl401TasksTabPage";
-import { WelshLanguageRequirementsSubmitPage } from "../../../../pages/manageCases/createCase/FL401/welshLanguageRequirements/welshLanguageRequirementsSubmitPage";
-import { SolicitorCreateInitial } from "../solicitorCreateInitial";
+import { WelshLanguageRequirementsPage } from "../../../../pages/manageCases/createCase/FL401/welshLanguageRequirements/welshLanguageRequirementsPage.ts";
+import { Fl401TasksTabPage } from "../../../../pages/manageCases/caseTabs/fl401TasksTabPage.ts";
+import { WelshLanguageRequirementsSubmitPage } from "../../../../pages/manageCases/createCase/FL401/welshLanguageRequirements/welshLanguageRequirementsSubmitPage.ts";
+import { SolicitorCreateInitial } from "../solicitorCreateInitial.ts";
 
 interface fl401WelshLanguageRequirementsOptions {
   page: Page;

@@ -1,10 +1,10 @@
 import { Page } from "@playwright/test";
-import { otherProceedingsRadios } from "../../../../../common/types";
-import { Selectors } from "../../../../../common/selectors";
-import { OtherProceedingsContent } from "../../../../../fixtures/manageCases/createCase/C100/otherProceedings/otherProceedingsContent";
-import { Helpers } from "../../../../../common/helpers";
+import { otherProceedingsRadios } from "../../../../../common/types.ts";
+import { Selectors } from "../../../../../common/selectors.ts";
+import { OtherProceedingsContent } from "../../../../../fixtures/manageCases/createCase/C100/otherProceedings/otherProceedingsContent.ts";
+import { Helpers } from "../../../../../common/helpers.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
-import Config from "../../../../../utils/config.utils";
+import Config from "../../../../../utils/config.utils.ts";
 
 const modalSelector: string =
   "#mat-dialog-0 > ccd-remove-dialog > div > div > ";

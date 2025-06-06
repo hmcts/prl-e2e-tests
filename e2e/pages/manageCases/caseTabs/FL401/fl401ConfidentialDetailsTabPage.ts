@@ -1,6 +1,6 @@
 import { expect, Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors";
-import { Helpers } from "../../../../common/helpers";
+import { Selectors } from "../../../../common/selectors.ts";
+import { Helpers } from "../../../../common/helpers.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
 import { FL401ConfidentialDetailsTabContent } from "../../../../fixtures/manageCases/caseTabs/FL401/fl401ConfidentialDetailsTabContent.ts";
 import { ManageDocumentsNew1Content } from "../../../../fixtures/manageCases/caseProgression/manageDocuments/manageDocumentsNew1Content.ts";

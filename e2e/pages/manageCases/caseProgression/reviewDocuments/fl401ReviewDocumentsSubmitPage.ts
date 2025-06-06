@@ -1,8 +1,11 @@
 import { Page, expect } from "@playwright/test";
-import { CommonStaticText } from "../../../../common/commonStaticText";
-import { Helpers } from "../../../../common/helpers";
-import { Selectors } from "../../../../common/selectors";
-import { yesNoDontKnow, documentSubmittedBy } from "../../../../common/types";
+import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { Helpers } from "../../../../common/helpers.ts";
+import { Selectors } from "../../../../common/selectors.ts";
+import {
+  yesNoDontKnow,
+  documentSubmittedBy,
+} from "../../../../common/types.ts";
 import { Fl401ReviewDocumentsSubmitContent } from "../../../../fixtures/manageCases/caseProgression/reviewDocuments/fl401ReviewDocumentsSubmitContent.ts";
 import { Fl401ReviewDocuments2Content } from "../../../../fixtures/manageCases/caseProgression/reviewDocuments/fl401ReviewDocuments2Content.ts";
 

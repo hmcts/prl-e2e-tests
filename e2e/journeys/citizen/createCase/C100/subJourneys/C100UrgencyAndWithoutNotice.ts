@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
-import { TellUsAboutYourSituationPage } from "../../../../../pages/citizen/createCase/C100/urgencyAndWithoutNotice/tellUsAboutYourSituationPage";
-import { UrgentFirstHearingPage } from "../../../../../pages/citizen/createCase/C100/urgencyAndWithoutNotice/urgentFirstHearingPage";
-import { WithoutNoticeHearingDetailsPage } from "../../../../../pages/citizen/createCase/C100/urgencyAndWithoutNotice/withoutNoticeHearingDetailsPage";
-import { WithoutNoticeHearingPage } from "../../../../../pages/citizen/createCase/C100/urgencyAndWithoutNotice/withoutNoticeHearingPage";
+import { TellUsAboutYourSituationPage } from "../../../../../pages/citizen/createCase/C100/urgencyAndWithoutNotice/tellUsAboutYourSituationPage.ts";
+import { UrgentFirstHearingPage } from "../../../../../pages/citizen/createCase/C100/urgencyAndWithoutNotice/urgentFirstHearingPage.ts";
+import { WithoutNoticeHearingDetailsPage } from "../../../../../pages/citizen/createCase/C100/urgencyAndWithoutNotice/withoutNoticeHearingDetailsPage.ts";
+import { WithoutNoticeHearingPage } from "../../../../../pages/citizen/createCase/C100/urgencyAndWithoutNotice/withoutNoticeHearingPage.ts";
 
 interface C100UrgencyAndWithoutNoticeOptions {
   page: Page;

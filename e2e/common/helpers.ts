@@ -17,7 +17,7 @@ import {
   fl401SubmittedSolicitorEvents,
   UserRole,
   WACaseWorkerActions,
-} from "./types";
+} from "./types.ts";
 import Config from "../utils/config.utils.ts";
 
 export class Helpers {

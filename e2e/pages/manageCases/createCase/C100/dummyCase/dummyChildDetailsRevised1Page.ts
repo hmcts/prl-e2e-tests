@@ -1,6 +1,6 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { ChildDetailsRevised1Content } from "../../../../../fixtures/manageCases/createCase/C100/childDetails/childDetailsRevised1Content";
+import { Selectors } from "../../../../../common/selectors.ts";
+import { ChildDetailsRevised1Content } from "../../../../../fixtures/manageCases/createCase/C100/childDetails/childDetailsRevised1Content.ts";
 
 export class DummyChildDetailsRevised1Page {
   public static async dummyChildDetailsRevised1Page(page: Page): Promise<void> {

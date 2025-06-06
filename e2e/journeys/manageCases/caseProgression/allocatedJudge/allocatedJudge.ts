@@ -1,5 +1,5 @@
 import { Page } from "@playwright/test";
-import { Helpers } from "../../../../common/helpers";
+import { Helpers } from "../../../../common/helpers.ts";
 import { AllocatedJudge1Page } from "../../../../pages/manageCases/caseProgression/allocatedJudge/allocatedJudge1.ts";
 import { completeCheckApplicationAndSendToGatekeeper } from "../../../../common/caseHelpers/caseEventsHelper.ts";
 import { AllocatedJudgeSubmit } from "../../../../pages/manageCases/caseProgression/allocatedJudge/allocatedJudgeSubmit.ts";

@@ -1,8 +1,8 @@
-import { CommonPage } from "../../commonPage";
+import { CommonPage } from "../../commonPage.ts";
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors";
-import { Helpers } from "../../../../common/helpers";
-import { DummyPaymentAwp1Content } from "../../../../fixtures/manageCases/caseWorker/dummyPayment/dummyPaymentAwp1Content";
+import { Selectors } from "../../../../common/selectors.ts";
+import { Helpers } from "../../../../common/helpers.ts";
+import { DummyPaymentAwp1Content } from "../../../../fixtures/manageCases/caseWorker/dummyPayment/dummyPaymentAwp1Content.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
 
 enum UniqueSelectors {

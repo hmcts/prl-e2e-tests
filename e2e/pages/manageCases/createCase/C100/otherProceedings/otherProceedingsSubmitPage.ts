@@ -1,10 +1,10 @@
-import { otherProceedingsRadios } from "../../../../../common/types";
+import { otherProceedingsRadios } from "../../../../../common/types.ts";
 import { Page } from "@playwright/test";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Selectors } from "../../../../../common/selectors";
-import { OtherProceedingsSubmitContent } from "../../../../../fixtures/manageCases/createCase/C100/otherProceedings/otherProceedingsSubmitContent";
-import { Helpers } from "../../../../../common/helpers";
-import Config from "../../../../../utils/config.utils";
+import { Selectors } from "../../../../../common/selectors.ts";
+import { OtherProceedingsSubmitContent } from "../../../../../fixtures/manageCases/createCase/C100/otherProceedings/otherProceedingsSubmitContent.ts";
+import { Helpers } from "../../../../../common/helpers.ts";
+import Config from "../../../../../utils/config.utils.ts";
 import path from "path";
 
 interface OtherProceedingsSubmitPageOptions {

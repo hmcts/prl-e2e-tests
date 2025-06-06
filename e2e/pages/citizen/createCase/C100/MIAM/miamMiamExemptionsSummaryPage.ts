@@ -1,13 +1,13 @@
 import { Page } from "@playwright/test";
-import { MiamChildProtectionConcernsType } from "./miamChildProtectionPage";
-import { MiamUrgencyType } from "./miamUrgencyPage";
-import { MiamAttendanceType } from "./miamPreviousAttendancePage";
-import { MiamOtherReasonForNotAttending } from "./miamMiamOtherPage";
-import { MiamReasonForNoAccessToMediator } from "./miamNoAccessToMediatorPage";
-import { Selectors } from "../../../../../common/selectors";
+import { MiamChildProtectionConcernsType } from "./miamChildProtectionPage.ts";
+import { MiamUrgencyType } from "./miamUrgencyPage.ts";
+import { MiamAttendanceType } from "./miamPreviousAttendancePage.ts";
+import { MiamOtherReasonForNotAttending } from "./miamMiamOtherPage.ts";
+import { MiamReasonForNoAccessToMediator } from "./miamNoAccessToMediatorPage.ts";
+import { Selectors } from "../../../../../common/selectors.ts";
 import { MiamMiamExemptionsSummaryContent } from "../../../../../fixtures/citizen/createCase/C100/MIAM/miamMiamExemptionsSummaryContent.ts";
-import { Helpers } from "../../../../../common/helpers";
-import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { Helpers } from "../../../../../common/helpers.ts";
+import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
 
 interface MiamMiamExemptionsSummaryPageOptions {

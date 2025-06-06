@@ -1,10 +1,10 @@
-import { Helpers } from "../../../../common/helpers";
+import { Helpers } from "../../../../common/helpers.ts";
 import { Page } from "@playwright/test";
-import { RespondentDetailsPage } from "../../../../pages/manageCases/createCase/FL401/respondentDetails/respondentDetailsPage";
-import { Fl401TasksTabPage } from "../../../../pages/manageCases/caseTabs/fl401TasksTabPage";
-import { RespondentDetailsSubmitPage } from "../../../../pages/manageCases/createCase/FL401/respondentDetails/respondentDetailsSubmitPage";
-import { SolicitorCreateInitial } from "../solicitorCreateInitial";
-import { FL401ApplicantDetails } from "../FL401ApplicantDetails/FL401ApplicantDetails";
+import { RespondentDetailsPage } from "../../../../pages/manageCases/createCase/FL401/respondentDetails/respondentDetailsPage.ts";
+import { Fl401TasksTabPage } from "../../../../pages/manageCases/caseTabs/fl401TasksTabPage.ts";
+import { RespondentDetailsSubmitPage } from "../../../../pages/manageCases/createCase/FL401/respondentDetails/respondentDetailsSubmitPage.ts";
+import { SolicitorCreateInitial } from "../solicitorCreateInitial.ts";
+import { FL401ApplicantDetails } from "../FL401ApplicantDetails/FL401ApplicantDetails.ts";
 
 interface fl401RespondentDetailsOptions {
   page: Page;

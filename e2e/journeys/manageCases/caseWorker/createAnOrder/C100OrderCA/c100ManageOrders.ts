@@ -1,13 +1,13 @@
 import { Page } from "@playwright/test";
-import { Helpers } from "../../../../../common/helpers";
-import { ManageOrders1Page } from "../../../../../pages/manageCases/caseWorker/createAnOrder/orderCA/manageOrders1Page";
-import { ManageOrders2Page } from "../../../../../pages/manageCases/caseWorker/createAnOrder/orderCA/manageOrders2Page";
-import { ManageOrders5Page } from "../../../../../pages/manageCases/caseWorker/createAnOrder/orderCA/manageOrders5Page";
-import { ManageOrders10Page } from "../../../../../pages/manageCases/caseWorker/createAnOrder/orderCA/manageOrders10Page";
-import { ManageOrders19Page } from "../../../../../pages/manageCases/caseWorker/createAnOrder/orderCA/manageOrders19Page";
-import { ManageOrders20Page } from "../../../../../pages/manageCases/caseWorker/createAnOrder/orderCA/manageOrders20Page";
-import { ManageOrders24Page } from "../../../../../pages/manageCases/caseWorker/createAnOrder/orderCA/manageOrders24Page";
-import { SubmitPage } from "../../../../../pages/manageCases/caseWorker/createAnOrder/orderCA/submitPage";
+import { Helpers } from "../../../../../common/helpers.ts";
+import { ManageOrders1Page } from "../../../../../pages/manageCases/caseWorker/createAnOrder/orderCA/manageOrders1Page.ts";
+import { ManageOrders2Page } from "../../../../../pages/manageCases/caseWorker/createAnOrder/orderCA/manageOrders2Page.ts";
+import { ManageOrders5Page } from "../../../../../pages/manageCases/caseWorker/createAnOrder/orderCA/manageOrders5Page.ts";
+import { ManageOrders10Page } from "../../../../../pages/manageCases/caseWorker/createAnOrder/orderCA/manageOrders10Page.ts";
+import { ManageOrders19Page } from "../../../../../pages/manageCases/caseWorker/createAnOrder/orderCA/manageOrders19Page.ts";
+import { ManageOrders20Page } from "../../../../../pages/manageCases/caseWorker/createAnOrder/orderCA/manageOrders20Page.ts";
+import { ManageOrders24Page } from "../../../../../pages/manageCases/caseWorker/createAnOrder/orderCA/manageOrders24Page.ts";
+import { SubmitPage } from "../../../../../pages/manageCases/caseWorker/createAnOrder/orderCA/submitPage.ts";
 import { solicitorCaseCreateType } from "../../../../../common/types.ts";
 
 interface C100ManageOrdersOptions {

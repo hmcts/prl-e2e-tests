@@ -1,7 +1,7 @@
-import { DummyPaymentAwp1Page } from "../../../../pages/manageCases/caseWorker/dummyPayment/dummyPaymentAwp1Page";
+import { DummyPaymentAwp1Page } from "../../../../pages/manageCases/caseWorker/dummyPayment/dummyPaymentAwp1Page.ts";
 import { Page } from "@playwright/test";
-import { DummyPaymentAwpSubmitPage } from "../../../../pages/manageCases/caseWorker/dummyPayment/dummyPaymentAwpSubmitPage";
-import { Helpers } from "../../../../common/helpers";
+import { DummyPaymentAwpSubmitPage } from "../../../../pages/manageCases/caseWorker/dummyPayment/dummyPaymentAwpSubmitPage.ts";
+import { Helpers } from "../../../../common/helpers.ts";
 
 interface DummyPaymentAwpParams {
   page: Page;

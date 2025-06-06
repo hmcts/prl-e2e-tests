@@ -1,15 +1,15 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors";
-import { DraftAnOrder20Content } from "../../../../fixtures/manageCases/caseWorker/draftAnOrder/draftAnOrder20Content";
+import { Selectors } from "../../../../common/selectors.ts";
+import { DraftAnOrder20Content } from "../../../../fixtures/manageCases/caseWorker/draftAnOrder/draftAnOrder20Content.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { OrderType } from "../../../../common/types";
+import { OrderType } from "../../../../common/types.ts";
 import {
   HowLongWillTheOrderBeInForce,
   orderTypesMap,
-} from "../../../../journeys/manageCases/caseWorker/draftAnOrder/draftAnOrder";
-import { NonMolestationOrder20Page } from "./nonMolestationOrder/nonMolestationOrder20Page";
-import { Helpers } from "../../../../common/helpers";
-import { ParentalResponsibilityOrder20Page } from "./parentalResponsibilityOrder/parentalResponsibilityOrder20Page";
+} from "../../../../journeys/manageCases/caseWorker/draftAnOrder/draftAnOrder.ts";
+import { NonMolestationOrder20Page } from "./nonMolestationOrder/nonMolestationOrder20Page.ts";
+import { Helpers } from "../../../../common/helpers.ts";
+import { ParentalResponsibilityOrder20Page } from "./parentalResponsibilityOrder/parentalResponsibilityOrder20Page.ts";
 
 export class DraftAnOrder20Page {
   public static async draftAnOrder20Page(

@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Selectors } from "../../../../common/selectors";
-import { SolicitorCreateContent } from "../../../../fixtures/manageCases/createCase/initialJourney/solicitorCreateContent";
-import { Helpers } from "../../../../common/helpers";
+import { Selectors } from "../../../../common/selectors.ts";
+import { SolicitorCreateContent } from "../../../../fixtures/manageCases/createCase/initialJourney/solicitorCreateContent.ts";
+import { Helpers } from "../../../../common/helpers.ts";
 
 enum fieldIds {
   jurisdiction = "#cc-jurisdiction",

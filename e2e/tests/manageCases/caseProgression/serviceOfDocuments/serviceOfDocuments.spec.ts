@@ -1,6 +1,6 @@
 import { test } from "@playwright/test";
-import Config from "../../../../utils/config.utils";
-import { ServiceOfDocuments } from "../../../../journeys/manageCases/caseProgression/servceOfDocuments/serviceOfDocuments";
+import Config from "../../../../utils/config.utils.ts";
+import { ServiceOfDocuments } from "../../../../journeys/manageCases/caseProgression/servceOfDocuments/serviceOfDocuments.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 test.describe("Service of Document event for DA Citizen case tests as court admin.", () => {

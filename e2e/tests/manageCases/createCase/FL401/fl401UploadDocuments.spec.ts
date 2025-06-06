@@ -1,6 +1,6 @@
 import { test } from "@playwright/test";
-import Config from "../../../../utils/config.utils";
-import { FL401UploadDocuments } from "../../../../journeys/manageCases/createCase/FL401UploadDocuments/FL401UploadDocuments";
+import Config from "../../../../utils/config.utils.ts";
+import { FL401UploadDocuments } from "../../../../journeys/manageCases/createCase/FL401UploadDocuments/FL401UploadDocuments.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 

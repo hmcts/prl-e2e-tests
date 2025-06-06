@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Helpers } from "../../../../../common/helpers";
-import { Selectors } from "../../../../../common/selectors";
-import { PaymentConfirmationContent } from "../../../../../fixtures/citizen/createCase/C100/pay/paymentConfirmationContent";
+import { Helpers } from "../../../../../common/helpers.ts";
+import { Selectors } from "../../../../../common/selectors.ts";
+import { PaymentConfirmationContent } from "../../../../../fixtures/citizen/createCase/C100/pay/paymentConfirmationContent.ts";
 
 interface PaymentConfirmationOptions {
   page: Page;

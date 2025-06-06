@@ -1,9 +1,9 @@
 import { test } from "@playwright/test";
-import Config from "../../../utils/config.utils";
-import createDaCitizenCourtNavCase from "../../../common/caseHelpers/citizenDACaseCreateHelper";
-import { Helpers } from "../../../common/helpers";
-import config from "../../../utils/config.utils";
-import { LinkCases } from "../../../journeys/manageCases/caseLinking/linkCases";
+import Config from "../../../utils/config.utils.ts";
+import createDaCitizenCourtNavCase from "../../../common/caseHelpers/citizenDACaseCreateHelper.ts";
+import { Helpers } from "../../../common/helpers.ts";
+import config from "../../../utils/config.utils.ts";
+import { LinkCases } from "../../../journeys/manageCases/caseLinking/linkCases.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "courtAdminStoke.json" });
 

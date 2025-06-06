@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors";
-import { SolicitorCreate6Content } from "../../../../fixtures/manageCases/createCase/initialJourney/solicitorCreate6Content";
-import { Helpers } from "../../../../common/helpers";
+import { Selectors } from "../../../../common/selectors.ts";
+import { SolicitorCreate6Content } from "../../../../fixtures/manageCases/createCase/initialJourney/solicitorCreate6Content.ts";
+import { Helpers } from "../../../../common/helpers.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
 
 export class SolicitorCreate6Page {

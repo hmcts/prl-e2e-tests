@@ -1,10 +1,10 @@
-import { Helpers } from "../../../../common/helpers";
+import { Helpers } from "../../../../common/helpers.ts";
 import { Page } from "@playwright/test";
-import { ViewPDFApplicationPage } from "../../../../pages/manageCases/createCase/FL401/viewPDFApplication/viewPDFApplicationPage";
-import { Fl401TasksTabPage } from "../../../../pages/manageCases/caseTabs/fl401TasksTabPage";
-import { ViewPDFApplicationSubmitPage } from "../../../../pages/manageCases/createCase/FL401/viewPDFApplication/viewPDFApplicationSubmitPage";
-import { SolicitorCreateInitial } from "../solicitorCreateInitial";
-import { ViewPdfTestCases } from "../../../../common/types";
+import { ViewPDFApplicationPage } from "../../../../pages/manageCases/createCase/FL401/viewPDFApplication/viewPDFApplicationPage.ts";
+import { Fl401TasksTabPage } from "../../../../pages/manageCases/caseTabs/fl401TasksTabPage.ts";
+import { ViewPDFApplicationSubmitPage } from "../../../../pages/manageCases/createCase/FL401/viewPDFApplication/viewPDFApplicationSubmitPage.ts";
+import { SolicitorCreateInitial } from "../solicitorCreateInitial.ts";
+import { ViewPdfTestCases } from "../../../../common/types.ts";
 
 interface fl401ViewPDFApplicationOptions {
   page: Page;

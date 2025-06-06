@@ -1,8 +1,8 @@
 import { expect, Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
+import { Selectors } from "../../../../../common/selectors.ts";
 import { amendApplicantDetailsSubmitContent } from "../../../../../fixtures/manageCases/caseProgression/amendDetails/amendApplicantDetails/amendApplicantDetailsSubmitContent.ts";
-import { Helpers } from "../../../../../common/helpers";
-import { ApplicantGender } from "../../../../../common/types";
+import { Helpers } from "../../../../../common/helpers.ts";
+import { ApplicantGender } from "../../../../../common/types.ts";
 import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 import { AmendApplicantDetails2Content } from "../../../../../fixtures/manageCases/caseProgression/amendDetails/amendApplicantDetails/AmendApplicantDetails2Content.ts";
 

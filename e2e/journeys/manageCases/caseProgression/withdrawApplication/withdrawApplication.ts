@@ -1,5 +1,5 @@
 import { Page } from "@playwright/test";
-import { Helpers } from "../../../../common/helpers";
+import { Helpers } from "../../../../common/helpers.ts";
 import { WithdrawApplicationEventConfirmPage } from "../../../../pages/manageCases/caseProgression/withdrawApplication/withdrawApplicationEventConfirmPage.ts";
 import { WithdrawApplicationEventSubmitPage } from "../../../../pages/manageCases/caseProgression/withdrawApplication/withdrawApplicationEventSubmitPage.ts";
 import { WithdrawApplicationEvent1Page } from "../../../../pages/manageCases/caseProgression/withdrawApplication/withdrawApplicationEvent1Page.ts";

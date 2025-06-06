@@ -2,22 +2,22 @@ import { Page } from "@playwright/test";
 import {
   C100MiamPolicyUpgrade1PageType,
   MiamPolicyUpgrade1Page,
-} from "../../../../pages/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade1Page";
+} from "../../../../pages/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade1Page.ts";
 import {
   MiamPolicyUpgrade6Page,
   miamSelection,
-} from "../../../../pages/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade6Page";
-import { SolicitorCreateInitial } from "../solicitorCreateInitial";
-import { UserRole } from "../../../../common/types";
-import { Helpers } from "../../../../common/helpers";
-import { MiamPolicyUpgradeSubmitPage } from "../../../../pages/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgradeSubmitPage";
-import { MiamPolicyUpgrade8Page } from "../../../../pages/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade8Page";
-import { MiamPolicyUpgrade2Page } from "../../../../pages/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade2Page";
-import { MiamPolicyUpgrade3Page } from "../../../../pages/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade3Page";
-import { MiamPolicyUpgrade4Page } from "../../../../pages/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade4Page";
-import { MiamPolicyUpgrade5Page } from "../../../../pages/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade5Page";
-import { MiamPolicyUpgrade7Page } from "../../../../pages/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade7Page";
-import { C100TasksTabPage } from "../../../../pages/manageCases/caseTabs/c100TasksTabPage";
+} from "../../../../pages/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade6Page.ts";
+import { SolicitorCreateInitial } from "../solicitorCreateInitial.ts";
+import { UserRole } from "../../../../common/types.ts";
+import { Helpers } from "../../../../common/helpers.ts";
+import { MiamPolicyUpgradeSubmitPage } from "../../../../pages/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgradeSubmitPage.ts";
+import { MiamPolicyUpgrade8Page } from "../../../../pages/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade8Page.ts";
+import { MiamPolicyUpgrade2Page } from "../../../../pages/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade2Page.ts";
+import { MiamPolicyUpgrade3Page } from "../../../../pages/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade3Page.ts";
+import { MiamPolicyUpgrade4Page } from "../../../../pages/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade4Page.ts";
+import { MiamPolicyUpgrade5Page } from "../../../../pages/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade5Page.ts";
+import { MiamPolicyUpgrade7Page } from "../../../../pages/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade7Page.ts";
+import { C100TasksTabPage } from "../../../../pages/manageCases/caseTabs/c100TasksTabPage.ts";
 
 interface c100MiamPolicyUpgradeOptions {
   page: Page;

@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { AttendingTheHearing1Content } from "../../../../../fixtures/manageCases/createCase/FL401/attendingTheHearing/attendingTheHearing1Content";
-import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors.ts";
+import { AttendingTheHearing1Content } from "../../../../../fixtures/manageCases/createCase/FL401/attendingTheHearing/attendingTheHearing1Content.ts";
+import { Helpers } from "../../../../../common/helpers.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { solicitorCaseCreateType } from "../../../../../common/types";
+import { solicitorCaseCreateType } from "../../../../../common/types.ts";
 
 enum uniqueSelectors {
   fl401WelshNeeds = "div#fl401WelshNeeds > div > ",

@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { Helpers } from "../../../../../common/helpers";
-import { MiamOtherAttendanceOrNCDRContent } from "../../../../../fixtures/citizen/createCase/C100/MIAM/miamOtherAttendanceOrNCDRContent";
-import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { Selectors } from "../../../../../common/selectors.ts";
+import { Helpers } from "../../../../../common/helpers.ts";
+import { MiamOtherAttendanceOrNCDRContent } from "../../../../../fixtures/citizen/createCase/C100/MIAM/miamOtherAttendanceOrNCDRContent.ts";
+import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
 
 interface MiamOtherAttendanceOrNCDRPageOptions {

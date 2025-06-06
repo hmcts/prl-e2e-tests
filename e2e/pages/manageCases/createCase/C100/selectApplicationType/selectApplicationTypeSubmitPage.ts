@@ -1,12 +1,12 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { SelectApplicationTypeSubmitContent } from "../../../../../fixtures/manageCases/createCase/C100/selectApplicationType/selectApplicationTypeSubmitContent";
-import { SelectApplicationType1Content } from "../../../../../fixtures/manageCases/createCase/C100/selectApplicationType/selectApplicationType1Content";
+import { Selectors } from "../../../../../common/selectors.ts";
+import { SelectApplicationTypeSubmitContent } from "../../../../../fixtures/manageCases/createCase/C100/selectApplicationType/selectApplicationTypeSubmitContent.ts";
+import { SelectApplicationType1Content } from "../../../../../fixtures/manageCases/createCase/C100/selectApplicationType/selectApplicationType1Content.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Helpers } from "../../../../../common/helpers";
-import config from "../../../../../utils/config.utils";
+import { Helpers } from "../../../../../common/helpers.ts";
+import config from "../../../../../utils/config.utils.ts";
 import path from "path";
-import { radioButtons } from "./selectApplicationType3Page";
+import { radioButtons } from "./selectApplicationType3Page.ts";
 
 type typeOfChildArrangementOrder =
   | "Spend time with order"

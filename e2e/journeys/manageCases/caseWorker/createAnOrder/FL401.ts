@@ -1,18 +1,18 @@
 import { Page } from "@playwright/test";
-import { CaseFilterPage } from "../../../../pages/manageCases/caseWorker/createAnOrder/initialJourney/caseFilterPage";
-import { TestingSupportDummyAdminCreateNoc2Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/initialJourney/testingSupportDummyAdminCreateNoc2Page";
+import { CaseFilterPage } from "../../../../pages/manageCases/caseWorker/createAnOrder/initialJourney/caseFilterPage.ts";
+import { TestingSupportDummyAdminCreateNoc2Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/initialJourney/testingSupportDummyAdminCreateNoc2Page.ts";
 import {
   createOrderFL401Options,
   judgeTitles,
   manageOrdersOptions,
   solicitorCaseCreateType,
-} from "../../../../common/types";
-import { TestingSupportDummyAdminCreateNoc3Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/initialJourney/testingSupportDummyAdminCreateNoc3Page";
-import { CreateAnOrderSubmitPage } from "../../../../pages/manageCases/caseWorker/createAnOrder/initialJourney/SubmitPage";
-import { CaseListPage } from "../../../../pages/manageCases/caseList/caseListPage";
-import { howLongWillOrderBeInForce } from "../../../../pages/manageCases/caseWorker/createAnOrder/orderDA/manageOrders12Page";
-import { Fl401ManageOrderDA } from "./FL401OrderDA/fl401ManageOrderDA";
-import { createOrderManageOrders19Options } from "../../../../pages/manageCases/caseWorker/createAnOrder/orderDA/manageOrders19Page";
+} from "../../../../common/types.ts";
+import { TestingSupportDummyAdminCreateNoc3Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/initialJourney/testingSupportDummyAdminCreateNoc3Page.ts";
+import { CreateAnOrderSubmitPage } from "../../../../pages/manageCases/caseWorker/createAnOrder/initialJourney/SubmitPage.ts";
+import { CaseListPage } from "../../../../pages/manageCases/caseList/caseListPage.ts";
+import { howLongWillOrderBeInForce } from "../../../../pages/manageCases/caseWorker/createAnOrder/orderDA/manageOrders12Page.ts";
+import { Fl401ManageOrderDA } from "./FL401OrderDA/fl401ManageOrderDA.ts";
+import { createOrderManageOrders19Options } from "../../../../pages/manageCases/caseWorker/createAnOrder/orderDA/manageOrders19Page.ts";
 
 interface FL401Params {
   page: Page;

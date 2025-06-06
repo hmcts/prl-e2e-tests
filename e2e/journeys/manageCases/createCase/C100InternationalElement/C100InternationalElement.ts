@@ -1,10 +1,10 @@
 import { Page } from "@playwright/test";
-import { SolicitorCreateInitial } from "../solicitorCreateInitial";
-import { UserRole } from "../../../../common/types";
-import { Helpers } from "../../../../common/helpers";
-import { InternationalElement1Page } from "../../../../pages/manageCases/createCase/C100/internationalElement/internationalElement1Page";
-import { InternationalElementSubmitPage } from "../../../../pages/manageCases/createCase/C100/internationalElement/internationalElementSubmitPage";
-import { C100TasksTabPage } from "../../../../pages/manageCases/caseTabs/c100TasksTabPage";
+import { SolicitorCreateInitial } from "../solicitorCreateInitial.ts";
+import { UserRole } from "../../../../common/types.ts";
+import { Helpers } from "../../../../common/helpers.ts";
+import { InternationalElement1Page } from "../../../../pages/manageCases/createCase/C100/internationalElement/internationalElement1Page.ts";
+import { InternationalElementSubmitPage } from "../../../../pages/manageCases/createCase/C100/internationalElement/internationalElementSubmitPage.ts";
+import { C100TasksTabPage } from "../../../../pages/manageCases/caseTabs/c100TasksTabPage.ts";
 
 interface internationalElementOptions {
   page: Page;

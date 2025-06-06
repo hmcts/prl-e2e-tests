@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Selectors } from "../../../../common/selectors";
-import { HearingJudgeContent } from "../../../../fixtures/manageCases/caseProgression/createHearingRequest/hearingJudgeContent";
-import { Helpers } from "../../../../common/helpers";
-import { CommonStaticText } from "../../../../common/commonStaticText";
+import { Selectors } from "../../../../common/selectors.ts";
+import { HearingJudgeContent } from "../../../../fixtures/manageCases/caseProgression/createHearingRequest/hearingJudgeContent.ts";
+import { Helpers } from "../../../../common/helpers.ts";
+import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 
 enum UniqueSelectors {
   specificJudgeYes = "#specificJudgeName",

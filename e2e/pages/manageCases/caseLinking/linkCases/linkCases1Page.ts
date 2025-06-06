@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors";
-import { CommonStaticText } from "../../../../common/commonStaticText";
-import { LinkCases1Content } from "../../../../fixtures/manageCases/caseLinking/linkCases/linkCases1Content";
-import { Helpers } from "../../../../common/helpers";
+import { Selectors } from "../../../../common/selectors.ts";
+import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { LinkCases1Content } from "../../../../fixtures/manageCases/caseLinking/linkCases/linkCases1Content.ts";
+import { Helpers } from "../../../../common/helpers.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
 
 interface LinkCases1PageOptions {

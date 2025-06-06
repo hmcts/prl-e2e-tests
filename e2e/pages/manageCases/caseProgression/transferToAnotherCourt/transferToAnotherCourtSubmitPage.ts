@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors";
-import { TransferToAnotherCourtSubmitContent } from "../../../../fixtures/manageCases/caseProgression/transferToAnotherCourt/transferToAnotherCourtSubmitContent";
-import { Helpers } from "../../../../common/helpers";
+import { Selectors } from "../../../../common/selectors.ts";
+import { TransferToAnotherCourtSubmitContent } from "../../../../fixtures/manageCases/caseProgression/transferToAnotherCourt/transferToAnotherCourtSubmitContent.ts";
+import { Helpers } from "../../../../common/helpers.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { CommonStaticText } from "../../../../common/commonStaticText";
+import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 
 interface TransferToAnotherCourtSubmitPageOptions {
   page: Page;

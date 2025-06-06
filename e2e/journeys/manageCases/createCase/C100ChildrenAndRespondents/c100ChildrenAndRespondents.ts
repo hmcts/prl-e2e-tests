@@ -1,18 +1,18 @@
 import { Page } from "@playwright/test";
-import { UserRole } from "../../../../common/types";
-import { Helpers } from "../../../../common/helpers";
-import { ChildrenAndRespondents1Page } from "../../../../pages/manageCases/createCase/C100/childrenAndRespondents/childrenAndRespondents1Page";
-import { C100TasksTabPage } from "../../../../pages/manageCases/caseTabs/c100TasksTabPage";
-import { ChildrenAndRespondentsSubmitPage } from "../../../../pages/manageCases/createCase/C100/childrenAndRespondents/childrenAndRespondentsSubmitPage";
-import { C100RespondentDetails } from "../C100RespondentDetails/C100RespondentDetails";
-import { C100ChildDetails } from "../C100ChildDetails/c100ChildDetails";
-import { C100ChildGender } from "../../../../pages/manageCases/createCase/C100/childDetails/childDetailsRevised1Page";
-import { yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions } from "../../../../pages/manageCases/createCase/C100/childDetails/childDetailsRevised2Page";
+import { UserRole } from "../../../../common/types.ts";
+import { Helpers } from "../../../../common/helpers.ts";
+import { ChildrenAndRespondents1Page } from "../../../../pages/manageCases/createCase/C100/childrenAndRespondents/childrenAndRespondents1Page.ts";
+import { C100TasksTabPage } from "../../../../pages/manageCases/caseTabs/c100TasksTabPage.ts";
+import { ChildrenAndRespondentsSubmitPage } from "../../../../pages/manageCases/createCase/C100/childrenAndRespondents/childrenAndRespondentsSubmitPage.ts";
+import { C100RespondentDetails } from "../C100RespondentDetails/C100RespondentDetails.ts";
+import { C100ChildDetails } from "../C100ChildDetails/c100ChildDetails.ts";
+import { C100ChildGender } from "../../../../pages/manageCases/createCase/C100/childDetails/childDetailsRevised1Page.ts";
+import { yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions } from "../../../../pages/manageCases/createCase/C100/childDetails/childDetailsRevised2Page.ts";
 import {
   C100RespondentAddress5Years,
   C100RespondentGender,
   C100RespondentLegalRepresentation,
-} from "../../../../pages/manageCases/createCase/C100/respondentDetails/respondentDetails1Page";
+} from "../../../../pages/manageCases/createCase/C100/respondentDetails/respondentDetails1Page.ts";
 
 interface c100ChildrenAndRespondentsOptions {
   page: Page;
