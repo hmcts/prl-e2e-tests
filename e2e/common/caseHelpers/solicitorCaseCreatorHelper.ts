@@ -303,7 +303,6 @@ async function retryEvaluate<T, A>(
       console.warn(
         `Page evaluate failed (attempt ${attempt}), with ${error}, retrying in ${delay}ms`,
       );
-      await page.waitForTimeout(delay);
     }
   }
   throw new Error("Unexpected error occurred");

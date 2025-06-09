@@ -60,7 +60,7 @@ export async function createUser(
       roleNames = [
         "caseworker",
         "caseworker-privatelaw",
-        "caseworker-privatelaw-solicitor", 
+        "caseworker-privatelaw-solicitor",
         "pui-case-manager",
       ];
       break;

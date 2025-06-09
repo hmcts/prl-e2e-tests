@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 import path from "path";
-import { UserCredentialsSession, UserRole } from "../common/types";
+import { UserCredentialsSession, UserRole } from "../common/types.ts";
 
 dotenv.config();
 
