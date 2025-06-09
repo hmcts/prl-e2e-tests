@@ -2,13 +2,12 @@ import {
   C100RespondentAddress5Years,
   C100RespondentGender,
   C100RespondentLegalRepresentation,
-} from "./respondentDetails1Page";
+} from "./respondentDetails1Page.ts";
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { C100RespondentDetailsSubmitContent } from "../../../../../fixtures/manageCases/createCase/C100/respondentDetails/c100RespondentDetailsSubmitContent";
-import { Helpers } from "../../../../../common/helpers";
-import { C100RespondentDetails1Content } from "../../../../../fixtures/manageCases/createCase/C100/respondentDetails/c100RespondentDetails1Content";
-// import { AxeUtils } from "@hmcts/playwright-common";
+import { Selectors } from "../../../../../common/selectors.ts";
+import { C100RespondentDetailsSubmitContent } from "../../../../../fixtures/manageCases/createCase/C100/respondentDetails/c100RespondentDetailsSubmitContent.ts";
+import { Helpers } from "../../../../../common/helpers.ts";
+import { C100RespondentDetails1Content } from "../../../../../fixtures/manageCases/createCase/C100/respondentDetails/c100RespondentDetails1Content.ts";
 
 interface RespondentDetailsSubmitPageOptions {
   page: Page;

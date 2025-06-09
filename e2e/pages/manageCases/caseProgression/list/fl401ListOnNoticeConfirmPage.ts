@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors";
-import { Fl401ListOnNoticeConfirmContent } from "../../../../fixtures/manageCases/caseProgression/List/fl401ListOnNoticeConfirmContent";
+import { Selectors } from "../../../../common/selectors.ts";
+import { Fl401ListOnNoticeConfirmContent } from "../../../../fixtures/manageCases/caseProgression/List/fl401ListOnNoticeConfirmContent.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Helpers } from "../../../../common/helpers";
+import { Helpers } from "../../../../common/helpers.ts";
 
 export class Fl401ListOnNoticeConfirmPage {
   public static async fl401ListOnNoticeConfirmPage(

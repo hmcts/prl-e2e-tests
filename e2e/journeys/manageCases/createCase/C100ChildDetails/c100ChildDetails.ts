@@ -1,17 +1,17 @@
 import {
   C100ChildGender,
   ChildDetailsRevised1Page,
-} from "../../../../pages/manageCases/createCase/C100/childDetails/childDetailsRevised1Page";
+} from "../../../../pages/manageCases/createCase/C100/childDetails/childDetailsRevised1Page.ts";
 import { Page } from "@playwright/test";
-import { UserRole } from "../../../../common/types";
-import { Helpers } from "../../../../common/helpers";
+import { UserRole } from "../../../../common/types.ts";
+import { Helpers } from "../../../../common/helpers.ts";
 import {
   ChildDetailsRevised2Page,
   yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions,
-} from "../../../../pages/manageCases/createCase/C100/childDetails/childDetailsRevised2Page";
-import { C100ChildDetailsSubmitPage } from "../../../../pages/manageCases/createCase/C100/childDetails/childDetailsSubmitPage";
-import { C100TasksTabPage } from "../../../../pages/manageCases/caseTabs/c100TasksTabPage";
-import { C100ApplicantDetails } from "../C100ApplicantDetails/c100ApplicantDetails";
+} from "../../../../pages/manageCases/createCase/C100/childDetails/childDetailsRevised2Page.ts";
+import { C100ChildDetailsSubmitPage } from "../../../../pages/manageCases/createCase/C100/childDetails/childDetailsSubmitPage.ts";
+import { C100TasksTabPage } from "../../../../pages/manageCases/caseTabs/c100TasksTabPage.ts";
+import { C100ApplicantDetails } from "../C100ApplicantDetails/c100ApplicantDetails.ts";
 
 interface c100ChildDetailsOptions {
   page: Page;

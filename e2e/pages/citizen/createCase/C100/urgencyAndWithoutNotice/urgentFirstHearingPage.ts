@@ -1,9 +1,9 @@
 import { AxeUtils } from "@hmcts/playwright-common";
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { UrgentFirstHearingContent } from "../../../../../fixtures/citizen/createCase/C100/urgencyAndWithoutNotice/urgentFirstHearingContent";
-import { Helpers } from "../../../../../common/helpers";
-import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { Selectors } from "../../../../../common/selectors.ts";
+import { UrgentFirstHearingContent } from "../../../../../fixtures/citizen/createCase/C100/urgencyAndWithoutNotice/urgentFirstHearingContent.ts";
+import { Helpers } from "../../../../../common/helpers.ts";
+import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 
 interface UrgentFirstHearingPageOptions {
   page: Page;

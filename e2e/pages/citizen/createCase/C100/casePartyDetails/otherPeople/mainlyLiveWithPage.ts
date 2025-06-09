@@ -1,10 +1,10 @@
 import { AxeUtils } from "@hmcts/playwright-common";
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../../common/selectors";
-import { MainlyLiveWithContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/otherPeople/mainlyLiveWithContent";
-import { Helpers } from "../../../../../../common/helpers";
-import { CommonStaticText } from "../../../../../../common/commonStaticText";
-import { typeOfPerson } from "../../../../../../common/types";
+import { Selectors } from "../../../../../../common/selectors.ts";
+import { MainlyLiveWithContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/otherPeople/mainlyLiveWithContent.ts";
+import { Helpers } from "../../../../../../common/helpers.ts";
+import { CommonStaticText } from "../../../../../../common/commonStaticText.ts";
+import { typeOfPerson } from "../../../../../../common/types.ts";
 
 interface mainlyLiveWithOptions {
   page: Page;

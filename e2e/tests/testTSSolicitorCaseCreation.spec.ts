@@ -1,6 +1,6 @@
 import { test } from "@playwright/test";
 import { createTSSolicitorCase } from "../common/caseHelpers/solicitorCaseCreatorHelper.ts";
-import config from "../utils/config.utils";
+import config from "../utils/config.utils.ts";
 
 test.use({ storageState: config.sessionStoragePath + "solicitor_idam.json" });
 

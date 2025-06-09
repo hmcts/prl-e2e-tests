@@ -1,10 +1,13 @@
 import { Page } from "@playwright/test";
-import { OrderType, solicitorCaseCreateType } from "../../../../common/types";
-import { Selectors } from "../../../../common/selectors";
-import { DraftAnOrder4Content } from "../../../../fixtures/manageCases/caseWorker/draftAnOrder/draftAnOrder4Content";
+import {
+  OrderType,
+  solicitorCaseCreateType,
+} from "../../../../common/types.ts";
+import { Selectors } from "../../../../common/selectors.ts";
+import { DraftAnOrder4Content } from "../../../../fixtures/manageCases/caseWorker/draftAnOrder/draftAnOrder4Content.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { orderTypesMap } from "../../../../journeys/manageCases/caseWorker/draftAnOrder/draftAnOrder";
-import { Helpers } from "../../../../common/helpers";
+import { orderTypesMap } from "../../../../journeys/manageCases/caseWorker/draftAnOrder/draftAnOrder.ts";
+import { Helpers } from "../../../../common/helpers.ts";
 
 enum UniqueSelectors {
   dateOrderMadeDateLabels = "[field_id='dateOrderMade'] .form-label",

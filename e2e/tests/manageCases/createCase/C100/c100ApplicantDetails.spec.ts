@@ -1,6 +1,6 @@
 import { test } from "@playwright/test";
-import Config from "../../../../utils/config.utils";
-import { C100ApplicantDetails } from "../../../../journeys/manageCases/createCase/C100ApplicantDetails/c100ApplicantDetails";
+import Config from "../../../../utils/config.utils.ts";
+import { C100ApplicantDetails } from "../../../../journeys/manageCases/createCase/C100ApplicantDetails/c100ApplicantDetails.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 

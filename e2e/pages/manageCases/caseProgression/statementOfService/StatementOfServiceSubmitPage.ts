@@ -1,10 +1,10 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors";
-import { StatementOfService1Content } from "../../../../fixtures/manageCases/caseProgression/statementOfService/statementOfService1Content";
-import { Helpers } from "../../../../common/helpers";
+import { Selectors } from "../../../../common/selectors.ts";
+import { StatementOfService1Content } from "../../../../fixtures/manageCases/caseProgression/statementOfService/statementOfService1Content.ts";
+import { Helpers } from "../../../../common/helpers.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { CommonStaticText } from "../../../../common/commonStaticText";
-import { StatementOfServiceSubmitContent } from "../../../../fixtures/manageCases/caseProgression/statementOfService/StatementOfServiceSubmitContent";
+import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { StatementOfServiceSubmitContent } from "../../../../fixtures/manageCases/caseProgression/statementOfService/StatementOfServiceSubmitContent.ts";
 
 interface StatementOfServiceSubmitPageOptions {
   page: Page;

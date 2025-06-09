@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { OrderType } from "../../../../common/types";
+import { OrderType } from "../../../../common/types.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { ParentalResponsibilityOrder8Page } from "./parentalResponsibilityOrder/parentalResponsibilityOrder8Page";
-import { Selectors } from "../../../../common/selectors";
-import { CommonStaticText } from "../../../../common/commonStaticText";
+import { ParentalResponsibilityOrder8Page } from "./parentalResponsibilityOrder/parentalResponsibilityOrder8Page.ts";
+import { Selectors } from "../../../../common/selectors.ts";
+import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 
 export class DraftAnOrder8Page {
   public static async draftAnOrder8Page(

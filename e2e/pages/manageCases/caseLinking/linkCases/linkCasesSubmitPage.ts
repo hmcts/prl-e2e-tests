@@ -1,7 +1,7 @@
 import { Page, expect } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors";
-import { LinkCaseSubmitContent } from "../../../../fixtures/manageCases/caseLinking/linkCases/linkCasesSubmitContent";
-import { Helpers } from "../../../../common/helpers";
+import { Selectors } from "../../../../common/selectors.ts";
+import { LinkCaseSubmitContent } from "../../../../fixtures/manageCases/caseLinking/linkCases/linkCasesSubmitContent.ts";
+import { Helpers } from "../../../../common/helpers.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
 
 interface LinkCasesSubmitPageOptions {

@@ -1,14 +1,14 @@
 import { Page } from "@playwright/test";
-import { AlternativeResolutionPage } from "../../../../../pages/citizen/createCase/C100/c100ScreeningSections/alternativeResolutionPage";
-import { AlternativeRoutesPage } from "../../../../../pages/citizen/createCase/C100/c100ScreeningSections/alternativeRoutesPage";
-import { LegalRepresentationPage } from "../../../../../pages/citizen/createCase/C100/c100ScreeningSections/legalRepresentationPage";
-import { LegalRepresentationApplicationPage } from "../../../../../pages/citizen/createCase/C100/c100ScreeningSections/legalRepresentationApplicationPage";
-import { StartPage } from "../../../../../pages/citizen/createCase/C100/c100ScreeningSections/startPage";
-import { ChildAddressPage } from "../../../../../pages/citizen/createCase/C100/c100ScreeningSections/childAddressPage";
-import { ConsentAgreementPage } from "../../../../../pages/citizen/createCase/C100/c100ScreeningSections/consentAgreementPage";
-import { PermissionPage } from "../../../../../pages/citizen/createCase/C100/c100ScreeningSections/permissionPage";
-import { PermissionsWhyPage } from "../../../../../pages/citizen/createCase/C100/c100ScreeningSections/permissionsWhyPage";
-import { PermissionsRequestPage } from "../../../../../pages/citizen/createCase/C100/c100ScreeningSections/permissionsRequestPage";
+import { AlternativeResolutionPage } from "../../../../../pages/citizen/createCase/C100/c100ScreeningSections/alternativeResolutionPage.ts";
+import { AlternativeRoutesPage } from "../../../../../pages/citizen/createCase/C100/c100ScreeningSections/alternativeRoutesPage.ts";
+import { LegalRepresentationPage } from "../../../../../pages/citizen/createCase/C100/c100ScreeningSections/legalRepresentationPage.ts";
+import { LegalRepresentationApplicationPage } from "../../../../../pages/citizen/createCase/C100/c100ScreeningSections/legalRepresentationApplicationPage.ts";
+import { StartPage } from "../../../../../pages/citizen/createCase/C100/c100ScreeningSections/startPage.ts";
+import { ChildAddressPage } from "../../../../../pages/citizen/createCase/C100/c100ScreeningSections/childAddressPage.ts";
+import { ConsentAgreementPage } from "../../../../../pages/citizen/createCase/C100/c100ScreeningSections/consentAgreementPage.ts";
+import { PermissionPage } from "../../../../../pages/citizen/createCase/C100/c100ScreeningSections/permissionPage.ts";
+import { PermissionsWhyPage } from "../../../../../pages/citizen/createCase/C100/c100ScreeningSections/permissionsWhyPage.ts";
+import { PermissionsRequestPage } from "../../../../../pages/citizen/createCase/C100/c100ScreeningSections/permissionsRequestPage.ts";
 
 interface C100ScreeningSectionsOptions {
   page: Page;

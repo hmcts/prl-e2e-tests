@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { MiamOtherProceedingsContent } from "../../../../../fixtures/citizen/createCase/C100/MIAM/miamOtherProceedingsContent";
-import { Helpers } from "../../../../../common/helpers";
-import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { Selectors } from "../../../../../common/selectors.ts";
+import { MiamOtherProceedingsContent } from "../../../../../fixtures/citizen/createCase/C100/MIAM/miamOtherProceedingsContent.ts";
+import { Helpers } from "../../../../../common/helpers.ts";
+import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
 
 interface OtherProceedingsPageOptions {
