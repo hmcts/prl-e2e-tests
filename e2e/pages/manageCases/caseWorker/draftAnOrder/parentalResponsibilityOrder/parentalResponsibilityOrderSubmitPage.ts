@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { ParentalResponsibilityOrderSubmitContent } from "../../../../../fixtures/manageCases/caseWorker/draftAnOrder/parentalResponsibilityOrder/parentalResponsibilityOrderSubmitContent";
-import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors.ts";
+import { ParentalResponsibilityOrderSubmitContent } from "../../../../../fixtures/manageCases/caseWorker/draftAnOrder/parentalResponsibilityOrder/parentalResponsibilityOrderSubmitContent.ts";
+import { Helpers } from "../../../../../common/helpers.ts";
 
 export class ParentalResponsibilityOrderSubmitPage {
   public static async checkPageContent(

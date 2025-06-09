@@ -1,10 +1,10 @@
 import { AxeUtils } from "@hmcts/playwright-common";
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { ConsentOrderUploadContent } from "../../../../../fixtures/citizen/createCase/C100/consentOrderUpload/consentOrderUploadContent";
-import { Helpers } from "../../../../../common/helpers";
-import config from "../../../../../utils/config.utils";
-import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { Selectors } from "../../../../../common/selectors.ts";
+import { ConsentOrderUploadContent } from "../../../../../fixtures/citizen/createCase/C100/consentOrderUpload/consentOrderUploadContent.ts";
+import { Helpers } from "../../../../../common/helpers.ts";
+import config from "../../../../../utils/config.utils.ts";
+import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 
 interface ConsentOrderUploadPageOptions {
   page: Page;

@@ -1,10 +1,10 @@
 import { Page } from "@playwright/test";
-import { CommonStaticText } from "../../../../../common/commonStaticText";
-import { Helpers } from "../../../../../common/helpers";
-import { Selectors } from "../../../../../common/selectors";
-import { ApplicantGender } from "../../../../../common/types";
-import { ProvideDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/people/provideDetailsContent";
-import { uniqueSelectors } from "../urgencyAndWithoutNotice/urgentFirstHearingPage";
+import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
+import { Helpers } from "../../../../../common/helpers.ts";
+import { Selectors } from "../../../../../common/selectors.ts";
+import { ApplicantGender } from "../../../../../common/types.ts";
+import { ProvideDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/people/provideDetailsContent.ts";
+import { uniqueSelectors } from "../urgencyAndWithoutNotice/urgentFirstHearingPage.ts";
 
 interface ProvideDetailsPageOptions {
   page: Page;

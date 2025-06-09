@@ -1,20 +1,20 @@
 import { Page } from "@playwright/test";
-import { C100MiamPolicyUpgrade1PageType } from "./miamPolicyUpgrade1Page";
-import { miamSelection } from "./miamPolicyUpgrade6Page";
-import { Selectors } from "../../../../../common/selectors";
+import { C100MiamPolicyUpgrade1PageType } from "./miamPolicyUpgrade1Page.ts";
+import { miamSelection } from "./miamPolicyUpgrade6Page.ts";
+import { Selectors } from "../../../../../common/selectors.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { MiamPolicyUpgradeSubmitContent } from "../../../../../fixtures/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgradeSubmitContent";
-import { Helpers } from "../../../../../common/helpers";
+import { MiamPolicyUpgradeSubmitContent } from "../../../../../fixtures/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgradeSubmitContent.ts";
+import { Helpers } from "../../../../../common/helpers.ts";
 
-import { MiamPolicyUpgrade8Content } from "../../../../../fixtures/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade8Content";
+import { MiamPolicyUpgrade8Content } from "../../../../../fixtures/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade8Content.ts";
 import path from "path";
-import config from "../../../../../utils/config.utils";
-import { MiamPolicyUpgrade2Content } from "../../../../../fixtures/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade2Content";
-import { MiamPolicyUpgrade3Content } from "../../../../../fixtures/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade3Content";
-import { MiamPolicyUpgrade4Content } from "../../../../../fixtures/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade4Content";
-import { MiamPolicyUpgrade5Content } from "../../../../../fixtures/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade5Content";
-import { MiamPolicyUpgrade6Content } from "../../../../../fixtures/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade6Content";
-import { MiamPolicyUpgrade7Content } from "../../../../../fixtures/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade7Content";
+import config from "../../../../../utils/config.utils.ts";
+import { MiamPolicyUpgrade2Content } from "../../../../../fixtures/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade2Content.ts";
+import { MiamPolicyUpgrade3Content } from "../../../../../fixtures/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade3Content.ts";
+import { MiamPolicyUpgrade4Content } from "../../../../../fixtures/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade4Content.ts";
+import { MiamPolicyUpgrade5Content } from "../../../../../fixtures/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade5Content.ts";
+import { MiamPolicyUpgrade6Content } from "../../../../../fixtures/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade6Content.ts";
+import { MiamPolicyUpgrade7Content } from "../../../../../fixtures/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade7Content.ts";
 
 interface MiamPolicyUpgradeSubmitPageOptions {
   page: Page;

@@ -1,6 +1,6 @@
 import { Page } from "@playwright/test";
-import { PayPage } from "../../../../../pages/citizen/createCase/C100/pay/payPage";
-import { PaymentConfirmationPage } from "../../../../../pages/citizen/createCase/C100/pay/paymentConfirmationPage";
+import { PayPage } from "../../../../../pages/citizen/createCase/C100/pay/payPage.ts";
+import { PaymentConfirmationPage } from "../../../../../pages/citizen/createCase/C100/pay/paymentConfirmationPage.ts";
 
 interface C100PayOptions {
   page: Page;

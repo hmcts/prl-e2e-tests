@@ -1,6 +1,6 @@
 import { Locator, Page } from "@playwright/test";
-import { Helpers } from "../../../../../common/helpers";
-import { Selectors } from "../../../../../common/selectors";
+import { Helpers } from "../../../../../common/helpers.ts";
+import { Selectors } from "../../../../../common/selectors.ts";
 import { ParentalResponsibilityOrder20Content } from "../../../../../fixtures/manageCases/caseWorker/draftAnOrder/parentalResponsibilityOrder/parentalResponsibilityOrder20Content.ts";
 import {
   clippingCoords,

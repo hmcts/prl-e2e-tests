@@ -1,11 +1,11 @@
 import { Page } from "@playwright/test";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Helpers } from "../../../../../common/helpers";
-import { Selectors } from "../../../../../common/selectors";
-import { EnglishMediaContentNoToAll } from "../../../../../fixtures/manageCases/createCase/C100/viewPDFApplication/englishMediaContentNoToAll";
-import { EnglishMediaContentYesToAll } from "../../../../../fixtures/manageCases/createCase/C100/viewPDFApplication/englishMediaContentYesToAll";
-import { ViewPDFApplication1Content } from "../../../../../fixtures/manageCases/createCase/C100/viewPDFApplication/viewPDFApplication1Content";
-import { WelshMediaContent } from "../../../../../fixtures/manageCases/createCase/C100/viewPDFApplication/welshMediaContent";
+import { Helpers } from "../../../../../common/helpers.ts";
+import { Selectors } from "../../../../../common/selectors.ts";
+import { EnglishMediaContentNoToAll } from "../../../../../fixtures/manageCases/createCase/C100/viewPDFApplication/englishMediaContentNoToAll.ts";
+import { EnglishMediaContentYesToAll } from "../../../../../fixtures/manageCases/createCase/C100/viewPDFApplication/englishMediaContentYesToAll.ts";
+import { ViewPDFApplication1Content } from "../../../../../fixtures/manageCases/createCase/C100/viewPDFApplication/viewPDFApplication1Content.ts";
+import { WelshMediaContent } from "../../../../../fixtures/manageCases/createCase/C100/viewPDFApplication/welshMediaContent.ts";
 
 enum englishNoSpanCounts {
   page1 = 18,

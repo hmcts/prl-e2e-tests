@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { CommonStaticText } from "../../../../../common/commonStaticText";
-import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors.ts";
+import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
+import { Helpers } from "../../../../../common/helpers.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { IssueAndSendToLocalCourtCallbackSubmitContent } from "../../../../../fixtures/manageCases/caseWorker/draftAnOrder/issueAndSendToLocalCourt/issueAndSendToLocalCourtCallbackSubmitContent";
+import { IssueAndSendToLocalCourtCallbackSubmitContent } from "../../../../../fixtures/manageCases/caseWorker/draftAnOrder/issueAndSendToLocalCourt/issueAndSendToLocalCourtCallbackSubmitContent.ts";
 
 export class IssueAndSendToLocalCourtCallbackSubmitPage {
   public static async issueAndSendToLocalCourtCallbackSubmitPage(

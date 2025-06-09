@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Selectors } from "../../../../common/selectors";
-import { CommonStaticText } from "../../../../common/commonStaticText";
-import { Helpers } from "../../../../common/helpers";
-import { Fl401ListOnNoticeSubmitContent } from "../../../../fixtures/manageCases/caseProgression/List/fl401ListOnNoticeSubmitContent";
+import { Selectors } from "../../../../common/selectors.ts";
+import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { Helpers } from "../../../../common/helpers.ts";
+import { Fl401ListOnNoticeSubmitContent } from "../../../../fixtures/manageCases/caseProgression/List/fl401ListOnNoticeSubmitContent.ts";
 
 export class Fl401ListOnNoticeSubmitPage {
   public static async fl401ListOnNoticeSubmitPage(

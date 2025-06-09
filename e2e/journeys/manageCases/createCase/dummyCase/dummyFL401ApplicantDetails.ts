@@ -1,9 +1,9 @@
-import { Helpers } from "../../../../common/helpers";
+import { Helpers } from "../../../../common/helpers.ts";
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors";
-import { ApplicantDetails1Content } from "../../../../fixtures/manageCases/createCase/FL401/applicantDetails/applicantDetails1Content";
-import { ApplicantDetailsSubmitContent } from "../../../../fixtures/manageCases/createCase/FL401/applicantDetails/applicantDetailsSubmitContent";
-import { DummyFL401ApplicantDetailsPage } from "../../../../pages/manageCases/createCase/FL401/dummyCase/dummyFL401ApplicantDetailsPage";
+import { Selectors } from "../../../../common/selectors.ts";
+import { ApplicantDetails1Content } from "../../../../fixtures/manageCases/createCase/FL401/applicantDetails/applicantDetails1Content.ts";
+import { ApplicantDetailsSubmitContent } from "../../../../fixtures/manageCases/createCase/FL401/applicantDetails/applicantDetailsSubmitContent.ts";
+import { DummyFL401ApplicantDetailsPage } from "../../../../pages/manageCases/createCase/FL401/dummyCase/dummyFL401ApplicantDetailsPage.ts";
 
 export class DummyFL401ApplicantDetails {
   public static async dummyFL401ApplicantDetails(

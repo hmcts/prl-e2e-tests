@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Selectors } from "../../../../common/selectors";
-import { HearingStageContent } from "../../../../fixtures/manageCases/caseProgression/createHearingRequest/hearingStageContent";
-import { Helpers } from "../../../../common/helpers";
-import { CommonStaticText } from "../../../../common/commonStaticText";
+import { Selectors } from "../../../../common/selectors.ts";
+import { HearingStageContent } from "../../../../fixtures/manageCases/caseProgression/createHearingRequest/hearingStageContent.ts";
+import { Helpers } from "../../../../common/helpers.ts";
+import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 
 enum UniqueSelectors {
   allocation = "#ABA5-ALL",

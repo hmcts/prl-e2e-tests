@@ -1,8 +1,8 @@
 import { Browser, Page } from "@playwright/test";
-import { FL401SummaryTabPage } from "../../../pages/manageCases/caseTabs/FL401/fl401SummaryTabPage";
-import { Helpers } from "../../../common/helpers";
+import { FL401SummaryTabPage } from "../../../pages/manageCases/caseTabs/FL401/fl401SummaryTabPage.ts";
+import { Helpers } from "../../../common/helpers.ts";
 import Config from "../../../utils/config.utils.ts";
-import { FL401ConfidentialDetailsTabPage } from "../../../pages/manageCases/caseTabs/FL401/fl401ConfidentialDetailsTabPage";
+import { FL401ConfidentialDetailsTabPage } from "../../../pages/manageCases/caseTabs/FL401/fl401ConfidentialDetailsTabPage.ts";
 import { DummyFL401 } from "../createCase/dummyCase/dummyFL401.ts";
 
 interface FL401CaseTabsParams {

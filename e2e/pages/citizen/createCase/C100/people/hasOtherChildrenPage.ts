@@ -1,10 +1,10 @@
 import { Page } from "@playwright/test";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { CommonStaticText } from "../../../../../common/commonStaticText";
-import { Helpers } from "../../../../../common/helpers";
-import { Selectors } from "../../../../../common/selectors";
-import { yesNoDontKnow } from "../../../../../common/types";
-import { HasOtherChildrenContent } from "../../../../../fixtures/citizen/createCase/C100/people/hasOtherChildrenContent";
+import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
+import { Helpers } from "../../../../../common/helpers.ts";
+import { Selectors } from "../../../../../common/selectors.ts";
+import { yesNoDontKnow } from "../../../../../common/types.ts";
+import { HasOtherChildrenContent } from "../../../../../fixtures/citizen/createCase/C100/people/hasOtherChildrenContent.ts";
 
 interface HasOtherChildrenPageOptions {
   page: Page;

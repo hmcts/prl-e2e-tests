@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors.ts";
+import { Helpers } from "../../../../../common/helpers.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { AlternativeRoutesContent } from "../../../../../fixtures/citizen/createCase/C100/c100ScreeningSections/alternativeRoutesContent";
-import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { AlternativeRoutesContent } from "../../../../../fixtures/citizen/createCase/C100/c100ScreeningSections/alternativeRoutesContent.ts";
+import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 
 interface AlternativeRoutesPageOptions {
   page: Page;
