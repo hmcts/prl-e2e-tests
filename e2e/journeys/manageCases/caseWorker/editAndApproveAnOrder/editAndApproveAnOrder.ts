@@ -1,16 +1,16 @@
 import { Browser, Page } from "@playwright/test";
-import { Helpers } from "../../../../common/helpers";
-import { EditAndApproveAnOrder2Page } from "../../../../pages/manageCases/caseWorker/editAndApproveAnOrder/editAndApproveAnOrder2Page";
+import { Helpers } from "../../../../common/helpers.ts";
+import { EditAndApproveAnOrder2Page } from "../../../../pages/manageCases/caseWorker/editAndApproveAnOrder/editAndApproveAnOrder2Page.ts";
 import {
   JudgeOrderAction,
   OrderType,
   solicitorCaseCreateType,
-} from "../../../../common/types";
-import { EditAndApproveAnOrder21Page } from "../../../../pages/manageCases/caseWorker/editAndApproveAnOrder/editAndApproveAnOrder21Page";
-import { EditAndApproveAnOrderSubmitPage } from "../../../../pages/manageCases/caseWorker/editAndApproveAnOrder/editAndApproveAnOrderSubmitPage";
-import { EditAndApproveAnOrderConfirmPage } from "../../../../pages/manageCases/caseWorker/editAndApproveAnOrder/editAndApproveAnOrderConfirmPage";
-import { DraftAnOrder, orderTypesMap } from "../draftAnOrder/draftAnOrder";
-import config from "../../../../utils/config.utils";
+} from "../../../../common/types.ts";
+import { EditAndApproveAnOrder21Page } from "../../../../pages/manageCases/caseWorker/editAndApproveAnOrder/editAndApproveAnOrder21Page.ts";
+import { EditAndApproveAnOrderSubmitPage } from "../../../../pages/manageCases/caseWorker/editAndApproveAnOrder/editAndApproveAnOrderSubmitPage.ts";
+import { EditAndApproveAnOrderConfirmPage } from "../../../../pages/manageCases/caseWorker/editAndApproveAnOrder/editAndApproveAnOrderConfirmPage.ts";
+import { DraftAnOrder, orderTypesMap } from "../draftAnOrder/draftAnOrder.ts";
+import config from "../../../../utils/config.utils.ts";
 
 interface EditAndApproveOrderParams {
   page: Page;

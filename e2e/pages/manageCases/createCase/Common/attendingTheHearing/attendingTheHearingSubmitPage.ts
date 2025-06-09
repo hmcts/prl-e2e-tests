@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Selectors } from "../../../../../common/selectors";
-import { AttendingTheHearingSubmitContent } from "../../../../../fixtures/manageCases/createCase/FL401/attendingTheHearing/attendingTheHearingSubmitContent";
-import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors.ts";
+import { AttendingTheHearingSubmitContent } from "../../../../../fixtures/manageCases/createCase/FL401/attendingTheHearing/attendingTheHearingSubmitContent.ts";
+import { Helpers } from "../../../../../common/helpers.ts";
 
 interface AttendingTheHearingSubmitPageOptions {
   page: Page;

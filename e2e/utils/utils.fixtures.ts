@@ -1,4 +1,4 @@
-import { Config } from "./config.utils";
+import { Config } from "./config.utils.ts";
 
 export interface UtilsFixtures {
   config: Config;

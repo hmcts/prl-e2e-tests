@@ -1,10 +1,10 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { ParentalResponsibilityOrder8Content } from "../../../../../fixtures/manageCases/caseWorker/draftAnOrder/parentalResponsibilityOrder/parentalResponsibilityOrder8Content";
-import { Helpers } from "../../../../../common/helpers";
-import { CommonStaticText } from "../../../../../common/commonStaticText";
-import { orderTypesMap } from "../../../../../journeys/manageCases/caseWorker/draftAnOrder/draftAnOrder";
-import { DraftAnOrder8Content } from "../../../../../fixtures/manageCases/caseWorker/draftAnOrder/draftAnOrder8Content";
+import { Selectors } from "../../../../../common/selectors.ts";
+import { ParentalResponsibilityOrder8Content } from "../../../../../fixtures/manageCases/caseWorker/draftAnOrder/parentalResponsibilityOrder/parentalResponsibilityOrder8Content.ts";
+import { Helpers } from "../../../../../common/helpers.ts";
+import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
+import { orderTypesMap } from "../../../../../journeys/manageCases/caseWorker/draftAnOrder/draftAnOrder.ts";
+import { DraftAnOrder8Content } from "../../../../../fixtures/manageCases/caseWorker/draftAnOrder/draftAnOrder8Content.ts";
 
 enum UniqueSelectors {
   parentNameTextbox = "#parentName",

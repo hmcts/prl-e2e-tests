@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors";
-import { WithdrawApplicationEventSubmitContent } from "../../../../fixtures/manageCases/caseProgression/withdrawApplication/withdrawApplicationEventSubmitContent";
-import { Helpers } from "../../../../common/helpers";
+import { Selectors } from "../../../../common/selectors.ts";
+import { WithdrawApplicationEventSubmitContent } from "../../../../fixtures/manageCases/caseProgression/withdrawApplication/withdrawApplicationEventSubmitContent.ts";
+import { Helpers } from "../../../../common/helpers.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { CommonStaticText } from "../../../../common/commonStaticText";
+import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 
 interface WithdrawApplicationEventSubmitPageOptions {
   page: Page;

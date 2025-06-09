@@ -1,4 +1,4 @@
-import { C100ChildGender } from "./amendChildDetailsRevised1Page";
+import { C100ChildGender } from "./amendChildDetailsRevised1Page.ts";
 import { yesNoDontKnow } from "../../../../../common/types.ts";
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors.ts";

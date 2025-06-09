@@ -1,11 +1,11 @@
 import { expect, Page } from "@playwright/test";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { CommonStaticText } from "../../../../../common/commonStaticText";
-import { CitizenOtherProceedingsDocumentUploadSelectors } from "../../../../../common/commonUniqueSelectors";
-import { Helpers } from "../../../../../common/helpers";
-import { Selectors } from "../../../../../common/selectors";
-import config from "../../../../../utils/config.utils";
-import { FinancialOrderDocumentUploadContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/financialOrderDocumentUploadContent";
+import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
+import { CitizenOtherProceedingsDocumentUploadSelectors } from "../../../../../common/commonUniqueSelectors.ts";
+import { Helpers } from "../../../../../common/helpers.ts";
+import { Selectors } from "../../../../../common/selectors.ts";
+import config from "../../../../../utils/config.utils.ts";
+import { FinancialOrderDocumentUploadContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/financialOrderDocumentUploadContent.ts";
 
 interface childMaintenanceOrderDocumentUploadPageOptions {
   page: Page;

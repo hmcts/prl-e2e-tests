@@ -1,11 +1,11 @@
 import { Page } from "@playwright/test";
-import { CaseFilterPage } from "../../../../pages/manageCases/caseWorker/createAnOrder/initialJourney/caseFilterPage";
-import { TestingSupportDummyAdminCreateNoc2Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/initialJourney/testingSupportDummyAdminCreateNoc2Page";
-import { solicitorCaseCreateType } from "../../../../common/types";
-import { TestingSupportDummyAdminCreateNoc3Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/initialJourney/testingSupportDummyAdminCreateNoc3Page";
-import { CreateAnOrderSubmitPage } from "../../../../pages/manageCases/caseWorker/createAnOrder/initialJourney/SubmitPage";
-import { CaseListPage } from "../../../../pages/manageCases/caseList/caseListPage";
-import { C100ManageOrders } from "./C100OrderCA/c100ManageOrders";
+import { CaseFilterPage } from "../../../../pages/manageCases/caseWorker/createAnOrder/initialJourney/caseFilterPage.ts";
+import { TestingSupportDummyAdminCreateNoc2Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/initialJourney/testingSupportDummyAdminCreateNoc2Page.ts";
+import { solicitorCaseCreateType } from "../../../../common/types.ts";
+import { TestingSupportDummyAdminCreateNoc3Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/initialJourney/testingSupportDummyAdminCreateNoc3Page.ts";
+import { CreateAnOrderSubmitPage } from "../../../../pages/manageCases/caseWorker/createAnOrder/initialJourney/SubmitPage.ts";
+import { CaseListPage } from "../../../../pages/manageCases/caseList/caseListPage.ts";
+import { C100ManageOrders } from "./C100OrderCA/c100ManageOrders.ts";
 
 interface C100Params {
   page: Page;

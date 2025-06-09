@@ -1,7 +1,7 @@
 import { test } from "@playwright/test";
 import IdamLoginHelper from "../../../../common/userHelpers/idamLoginHelper.ts";
 import Config from "../../../../utils/config.utils.ts";
-import { C100 } from "../../../../journeys/citizen/createCase/C100/C100";
+import { C100 } from "../../../../journeys/citizen/createCase/C100/C100.ts";
 
 test.describe("Create Citizen Application but you must get a mediator", (): void => {
   test.beforeEach(async ({ page }) => {

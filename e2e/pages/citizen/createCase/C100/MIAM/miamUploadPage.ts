@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { MiamUploadContent } from "../../../../../fixtures/citizen/createCase/C100/MIAM/miamUploadContent";
-import { Helpers } from "../../../../../common/helpers";
-import { CommonStaticText } from "../../../../../common/commonStaticText";
-import config from "../../../../../utils/config.utils";
+import { Selectors } from "../../../../../common/selectors.ts";
+import { MiamUploadContent } from "../../../../../fixtures/citizen/createCase/C100/MIAM/miamUploadContent.ts";
+import { Helpers } from "../../../../../common/helpers.ts";
+import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
+import config from "../../../../../utils/config.utils.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
 
 interface MiamUploadPageOptions {

@@ -1,9 +1,9 @@
-import { Helpers } from "../../../../common/helpers";
+import { Helpers } from "../../../../common/helpers.ts";
 import { Page } from "@playwright/test";
-import { RespondentsBehaviourPage } from "../../../../pages/manageCases/createCase/FL401/respondentsBehaviour/respondentsBehaviourPage";
-import { SolicitorCreateInitial } from "../solicitorCreateInitial";
-import { RespondentsBehaviourSubmitPage } from "../../../../pages/manageCases/createCase/FL401/respondentsBehaviour/respondentsBehaviourSubmitPage";
-import { Fl401TasksTabPage } from "../../../../pages/manageCases/caseTabs/fl401TasksTabPage";
+import { RespondentsBehaviourPage } from "../../../../pages/manageCases/createCase/FL401/respondentsBehaviour/respondentsBehaviourPage.ts";
+import { SolicitorCreateInitial } from "../solicitorCreateInitial.ts";
+import { RespondentsBehaviourSubmitPage } from "../../../../pages/manageCases/createCase/FL401/respondentsBehaviour/respondentsBehaviourSubmitPage.ts";
+import { Fl401TasksTabPage } from "../../../../pages/manageCases/caseTabs/fl401TasksTabPage.ts";
 
 interface fl401RespondentsBehaviourOptions {
   page: Page;

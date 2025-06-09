@@ -1,9 +1,9 @@
 import { AxeUtils } from "@hmcts/playwright-common";
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { Helpers } from "../../../../../common/helpers";
-import { ProceedingDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/proceeding-detailsContent";
-import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { Selectors } from "../../../../../common/selectors.ts";
+import { Helpers } from "../../../../../common/helpers.ts";
+import { ProceedingDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/proceeding-detailsContent.ts";
+import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 
 interface ProceedingDetailsPageOptions {
   page: Page;
