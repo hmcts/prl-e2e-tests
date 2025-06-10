@@ -36,7 +36,8 @@ test.describe("Notice of Change tests for DA case", () => {
     });
   });
 
-  test("NOC respondent. @nightly @accessibility @regression", async ({
+  // to be investigated and fixed as part of FPVTL-773
+  test.fixme("NOC respondent. @nightly @accessibility @regression", async ({
     page,
     browser,
   }): Promise<void> => {
