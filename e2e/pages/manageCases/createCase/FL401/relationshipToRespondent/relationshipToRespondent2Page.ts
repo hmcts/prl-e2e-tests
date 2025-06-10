@@ -354,6 +354,8 @@ export class RelationshipToRespondent2Page {
         RelationshipToRespondent2Content[contentKey],
       );
     }
+    // playwright is clicking the continue button too quickly so timeout is required
+    await page.waitForTimeout(1000);
     await page.click(
       `${Selectors.button}:text-is("${RelationshipToRespondent2Content.continue}")`,
     );
