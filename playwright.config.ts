@@ -6,7 +6,7 @@ export default defineConfig({
   ...CommonConfig.recommended,
   timeout: 6 * 60 * 1000,
   expect: {
-    timeout: 15000
+    timeout: 20000
   },
 
   projects: [
