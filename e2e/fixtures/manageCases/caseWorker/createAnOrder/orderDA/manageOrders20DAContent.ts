@@ -118,8 +118,8 @@ export enum ManageOrders20DAContent {
   welshRepeatedYesToAllSpan1 = "yn", // x2
 
   // no to all
-  welshNoToAllSpan1 = "Os yw’r atebydd yn bwriadu gwrthwynebu’r gorchymyn yn y gwrandawiad nesaf, rhaid iddo/",
-  welshNoToAllSpan2 = "i hysbysu’r llys ymlaen llaw ei f/bod yn bwriadu dod i'r gwrandawiad a gwrthwynebu'r",
+  welshNoToAllSpan1 = "Os yw’r atebydd yn bwriadu gwrthwynebu’r gorchymyn yn y gwrandawiad nesaf, rhaid",
+  welshNoToAllSpan2 = "iddo/i hysbysu’r llys ymlaen llaw ei f/bod yn bwriadu dod i'r gwrandawiad a gwrthwynebu'r",
   welshNoToAllSpan3 = "gorchymyn. Os nad yw’r atebydd yn hysbysu’r llys, gall y llys benderfynu nad oes angen i’r",
   welshNoToAllSpan4 = "ceisydd neu gyfreithiwr y ceisydd ddod i'r gwrandawiad nesaf, ac yn y gwrandawiad nesaf",
   welshNoToAllSpan5 = "gall wneud gorchymyn i ymestyn y waharddeb.",
