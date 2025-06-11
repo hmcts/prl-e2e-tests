@@ -1,19 +1,9 @@
 import { APIRequestContext, expect, request } from "@playwright/test";
 import fs from "fs";
 import path from "path";
-
-const withNoticeJsonData = JSON.parse(
-  fs.readFileSync(
-    "./e2e/caseData/citizenDA/courtNavDaCitizenCase_WithNotice.json",
-    "utf8",
-  ),
-);
-const withoutNoticeJsonData = JSON.parse(
-  fs.readFileSync(
-    "./e2e/caseData/citizenDA/courtNavDaCitizenCase_WithoutNotice.json",
-    "utf8",
-  ),
-);
+import withNoticeJsonData from "../../caseData/citizenDA/courtNavDaCitizenCase_WithNotice.json" with { type: "json" };
+import withoutNoticeJsonData
+  from "../../caseData/citizenDA/courtNavDaCitizenCase_WithoutNotice.json" with { type: "json" };
 
 /**
  * Function to create a DA Citizen CourtNav case and optionally add a document.
@@ -23,7 +13,7 @@ const withoutNoticeJsonData = JSON.parse(
  */
 async function createDaCitizenCourtNavCase(
   withNotice: boolean,
-  withDoc: boolean,
+  withDoc: boolean
 ): Promise<string> {
   const apiContext: APIRequestContext = await request.newContext();
   const token = process.env.COURTNAV_CREATE_CASE_BEARER_TOKEN as string;
@@ -38,9 +28,9 @@ async function createDaCitizenCourtNavCase(
         const response = await apiContext.post(caseUrl, {
           headers: {
             Authorization: `Bearer ${token}`,
-            "Ocp-Apim-Subscription-Key": subscriptionKey,
+            "Ocp-Apim-Subscription-Key": subscriptionKey
           },
-          data: jsonData,
+          data: jsonData
         });
         if (response.status() !== 201) return false;
         const json = await response.json();
@@ -50,8 +40,8 @@ async function createDaCitizenCourtNavCase(
       },
       {
         intervals: [4000],
-        timeout: 60000,
-      },
+        timeout: 60000
+      }
     )
     .toBeTruthy();
 
@@ -71,13 +61,13 @@ async function createDaCitizenCourtNavCase(
  */
 async function addDocumentToCase(
   tokenDaCreateCase: string,
-  ccdReference: string,
+  ccdReference: string
 ): Promise<void> {
   const apiContextDaAddDoc: APIRequestContext = await request.newContext();
   const courtNavAddDocURL = `${process.env.COURTNAV_DOC_URL}${ccdReference}/document`;
   const pdfPath = path.resolve(
     import.meta.dirname,
-    "../../caseData/testPdf.pdf",
+    "../../caseData/testPdf.pdf"
   );
   const pdfBuffer = fs.readFileSync(pdfPath);
   const docResponse = await apiContextDaAddDoc.post(courtNavAddDocURL, {
@@ -85,24 +75,25 @@ async function addDocumentToCase(
       Authorization: `Bearer ${tokenDaCreateCase}`,
       "Ocp-Apim-Subscription-Key": process.env
         .COURTNAV_SUBSCRIPTION_KEY_ADD_DOC as string,
-      Accept: "*/*",
+      Accept: "*/*"
     },
     multipart: {
       typeOfDocument: "WITNESS_STATEMENT",
       file: {
         name: "testPdf.pdf",
         mimeType: "application/pdf",
-        buffer: pdfBuffer,
-      },
-    },
+        buffer: pdfBuffer
+      }
+    }
   });
 
   const docResponseBody = await docResponse.json();
   expect(docResponse.status()).toBe(200);
   if (docResponse.status() !== 200) {
     throw new Error(
-      `Failed to upload document: ${docResponseBody.message || "Unknown error"}`,
+      `Failed to upload document: ${docResponseBody.message || "Unknown error"}`
     );
   }
 }
+
 export default createDaCitizenCourtNavCase;
