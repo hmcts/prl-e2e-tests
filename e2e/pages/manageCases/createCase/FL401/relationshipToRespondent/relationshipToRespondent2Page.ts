@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test";
+import { expect, Locator, Page } from "@playwright/test";
 import { AxeUtils } from "@hmcts/playwright-common";
 import { Helpers } from "../../../../../common/helpers.ts";
 import { Selectors } from "../../../../../common/selectors.ts";
@@ -354,10 +354,24 @@ export class RelationshipToRespondent2Page {
         RelationshipToRespondent2Content[contentKey],
       );
     }
-    // playwright is clicking the continue button too quickly so timeout is required
-    await page.waitForTimeout(2000);
-    await page.click(
-      `${Selectors.button}:text-is("${RelationshipToRespondent2Content.continue}")`,
-    );
+
+    // continue button behaviour is flaky, polling seems like the most stable way to continue the journey
+    const continueButton: Locator = page.getByRole("button", {
+      name: RelationshipToRespondent2Content.continue,
+      exact: true,
+    });
+    await expect
+      .poll(
+        async () => {
+          const continueButtonStillVisible = await continueButton.isVisible();
+          if (continueButtonStillVisible) await continueButton.click();
+          return continueButtonStillVisible;
+        },
+        {
+          intervals: [5_000],
+          timeout: 30_000,
+        },
+      )
+      .toBeFalsy();
   }
 }
