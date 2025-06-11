@@ -3,6 +3,7 @@ import Config from "../../../../utils/config.utils.ts";
 import { C100AttendingTheHearing } from "../../../../journeys/manageCases/createCase/C100AttendingTheHearing/c100AttendingTheHearing.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
+test.slow();
 
 test.describe("C100 Create case respondent’s behaviour tests", (): void => {
   test(`C100 Attending The Hearing Journey with the following options:

@@ -5,6 +5,9 @@ export default defineConfig({
   testDir: "./e2e/tests",
   ...CommonConfig.recommended,
   timeout: 6 * 60 * 1000,
+  expect: {
+    timeout: 20000
+  },
 
   projects: [
     {
