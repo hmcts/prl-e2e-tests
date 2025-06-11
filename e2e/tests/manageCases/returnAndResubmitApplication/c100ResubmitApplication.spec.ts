@@ -6,7 +6,7 @@ import { ReturnApplication } from "../../../journeys/manageCases/caseWorker/retu
 import { ResubmitApplication } from "../../../journeys/manageCases/resubmitApplication/resubmitApplication.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
-// TEST COMMENT
+
 test.describe("Resubmit returned CA(C100) application tests", (): void => {
   let ccdRef: string = "";
 
