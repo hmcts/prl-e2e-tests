@@ -1,10 +1,30 @@
-import { test } from "@playwright/test";
+import { Page, test } from "@playwright/test";
 import Config from "../../../../utils/config.utils.ts";
-import { FL401CreateAnOrder } from "../../../../journeys/manageCases/caseWorker/createAnOrder/FL401.ts";
+import { SolicitorDACaseCreator } from "../../../../common/caseHelpers/solicitorDACaseCreator.js";
+import { Helpers } from "../../../../common/helpers.js";
+import { Fl401ManageOrderDA } from "../../../../journeys/manageCases/caseWorker/createAnOrder/FL401OrderDA/fl401ManageOrderDA.js";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("Create an order tests", (): void => {
+  test.beforeEach(async ({ page, browser }) => {
+    const solicitorPage: Page = await Helpers.openNewBrowserWindow(
+      browser,
+      "solicitor",
+    );
+    await solicitorPage.goto(Config.manageCasesBaseURLCase);
+    const caseRef = await SolicitorDACaseCreator.createCaseSendToGatekeeper(
+      solicitorPage,
+      browser,
+    );
+    await Helpers.goToCase(
+      page,
+      Config.manageCasesBaseURLCase,
+      caseRef,
+      "Summary",
+    );
+  });
+
   test(`Complete Creating an order as a Caseworker with the following options:
   Case: C100,
   Not accessibility testing
@@ -13,7 +33,7 @@ test.describe("Create an order tests", (): void => {
   "This order will be served with the 'date to be fixed'" selected on ManageOrders19. @regression`, async ({
     page,
   }): Promise<void> => {
-    await FL401CreateAnOrder.fL401CreateAnOrder({
+    await Fl401ManageOrderDA.fl401ManageOrderDA({
       page: page,
       accessibilityTest: false, // failing
       solicitorCaseCreateType: "FL401",
@@ -34,7 +54,7 @@ test.describe("Create an order tests", (): void => {
   "This order will be served with the 'date to be fixed'" selected on ManageOrders19. @regression`, async ({
     page,
   }): Promise<void> => {
-    await FL401CreateAnOrder.fL401CreateAnOrder({
+    await Fl401ManageOrderDA.fl401ManageOrderDA({
       page: page,
       accessibilityTest: false,
       solicitorCaseCreateType: "FL401",
@@ -55,7 +75,7 @@ test.describe("Create an order tests", (): void => {
   "This order will be served with the 'date to be fixed'" selected on ManageOrders19. @regression`, async ({
     page,
   }): Promise<void> => {
-    await FL401CreateAnOrder.fL401CreateAnOrder({
+    await Fl401ManageOrderDA.fl401ManageOrderDA({
       page: page,
       accessibilityTest: false,
       solicitorCaseCreateType: "FL401",
@@ -75,7 +95,7 @@ test.describe("Create an order tests", (): void => {
   "This order will be served with the 'date to be fixed'" selected on ManageOrders19. @nightly @accessibility`, async ({
     page,
   }): Promise<void> => {
-    await FL401CreateAnOrder.fL401CreateAnOrder({
+    await Fl401ManageOrderDA.fl401ManageOrderDA({
       page: page,
       accessibilityTest: true,
       solicitorCaseCreateType: "FL401",
