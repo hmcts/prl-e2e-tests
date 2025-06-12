@@ -24,9 +24,7 @@ export class judgeCreateODAManageOrderSubmitPage {
       accessibilityTest,
       createOrderFL401Options,
     });
-    await this.fillInFields({ page,
-      createOrderFL401Options,
-    });
+    await this.fillInFields({ page });
   }
 
   private static async checkPageLoads({
@@ -177,7 +175,6 @@ export class judgeCreateODAManageOrderSubmitPage {
 
   private static async fillInFields({
     page,
-    createOrderFL401Options,
   }: Partial<JudgeDACaseProgressionJourneyParams>): Promise<void> {
     if (!page) {
       throw new Error("Page is not defined");
@@ -186,12 +183,8 @@ export class judgeCreateODAManageOrderSubmitPage {
       `${Selectors.button}:text-is("${CommonStaticText.submit}")`,
     );
 
-    switch (createOrderFL401Options) {
-      case "amend discharge varied order":
-        await page.locator(Selectors.alertMessage, {
-        hasText: JudgeCreateOrderDASubmitContent.confirmationMessage,
-      }).waitFor();
-      break;
-    }
+    await page.locator(Selectors.alertMessage, {
+      hasText: JudgeCreateOrderDASubmitContent.confirmationMessage,
+    }).waitFor();
   }
 }
