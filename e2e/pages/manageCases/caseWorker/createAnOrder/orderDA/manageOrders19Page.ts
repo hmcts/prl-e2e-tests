@@ -54,6 +54,10 @@ enum dateConfirmedHidden {
   additionalDetails = "#ordersHearingDetails_0_additionalHearingDetails",
 }
 
+enum dateToBeFixedHidden {
+  additionalRequirements = "#ordersHearingDetails_0_additionalDetailsForHearingDateOptions",
+}
+
 enum dateToBeConfirmedHidden {
   ordersHearingDetails_0_additionalDetailsForHearingDateOptions = "#ordersHearingDetails_0_additionalDetailsForHearingDateOptions",
   hearingOnSpecificDate_yes = "#ordersHearingDetails_0_hearingSpecificDatesOptionsEnum-Yes",
@@ -258,15 +262,10 @@ export class ManageOrders19Page {
       case "dateToBeFixed":
         await page.click(UniqueSelectors.dateToBeFixed);
         await this.hiddenFormLabels(page, "dateToBeFixed");
-        await page.click(dateToBeConfirmedHidden.hearingOnSpecificDate_yes);
-        await page.click(dateToBeConfirmedHidden.standardPriority);
-        await page.click(UniqueSelectors.video);
-        await page.click(UniqueSelectors.partiesAttendYes);
-        await page.fill(dateOfHearing.day, date[0]);
-        await page.fill(dateOfHearing.month, date[1]);
-        await page.fill(dateOfHearing.year, date[2]);
-        await page.fill(dateOfHearing.estimateHearingDays, "1");
-        await page.click(UniqueSelectors.legalAdviser);
+        await page.fill(
+          dateToBeFixedHidden.additionalRequirements,
+          ManageOrders19DAContent.loremIpsum,
+        );
         break;
     }
     await page.click(
@@ -344,12 +343,12 @@ export class ManageOrders19Page {
         await Promise.all([
           Helpers.checkVisibleAndPresent(
             page,
-            `${Selectors.strong}:text-is("${ManageOrders19DAContent.dateToBeFixedStrong}"):visible`,
+            `${Selectors.strong}:has-text("${ManageOrders19DAContent.dateToBeFixedStrong}"):visible`,
             1,
           ),
           Helpers.checkVisibleAndPresent(
             page,
-            `${Selectors.GovukFormHint}:text-is("${ManageOrders19DAContent.dateToBeFixedHiddenFormHint}"):visible`,
+            `${Selectors.GovukFormHint}:has-text("${ManageOrders19DAContent.dateToBeConfirmedFormHintHidden1}"):visible`,
             1,
           ),
         ]);
