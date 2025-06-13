@@ -6,7 +6,7 @@ test("Create citizen user", async ({ page }) => {
   const userInfo = await IdamLoginHelper.setupAndSignInUser(
     page,
     Config.citizenFrontendBaseURL,
-    "citizen",
+    "citizen_idam",
     true,
   );
   console.log(userInfo);
@@ -16,7 +16,7 @@ test("Create court admin user", async ({ page }) => {
   const userInfo = await IdamLoginHelper.setupAndSignInUser(
     page,
     Config.manageCasesBaseURLCase,
-    "caseWorker",
+    "caseWorker_idam",
     true,
   );
   console.log(userInfo);
@@ -26,7 +26,7 @@ test("Create solicitor user", async ({ page }) => {
   const userInfo = await IdamLoginHelper.setupAndSignInUser(
     page,
     Config.manageCasesBaseURLCase,
-    "solicitor",
+    "solicitor_idam",
     true,
   );
   console.log(userInfo);
@@ -36,7 +36,7 @@ test("Create case manager user", async ({ page }) => {
   const userInfo = await IdamLoginHelper.setupAndSignInUser(
     page,
     Config.manageCasesBaseURLCase,
-    "caseManager",
+    "caseManager_idam",
     true,
   );
   console.log(userInfo);

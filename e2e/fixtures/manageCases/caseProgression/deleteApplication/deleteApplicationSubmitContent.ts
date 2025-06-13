@@ -1,4 +1,4 @@
-export enum DeleteApplicationSubmitContent{
+export enum DeleteApplicationSubmitContent {
   pageTitle = "Delete application",
   h21 = "FamilyMan ID:",
   h22 = "Casenumber:",

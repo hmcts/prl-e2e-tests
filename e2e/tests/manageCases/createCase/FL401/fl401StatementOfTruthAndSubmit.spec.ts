@@ -4,7 +4,7 @@ import config from "../../../../utils/config.utils.ts";
 import { Fl401StatementOfTruth } from "../../../../journeys/manageCases/createCase/FL401StatementOfTruth/fl401StatementOfTruth.ts";
 import { createTSSolicitorCase } from "../../../../common/caseHelpers/solicitorCaseCreatorHelper.ts";
 
-test.use({ storageState: config.sessionStoragePath + "solicitor.json" });
+test.use({ storageState: config.sessionStoragePath + "solicitor_idam.json" });
 
 test.describe("FL401 Create case Statement of Truth and Submit tests", (): void => {
   test.beforeEach(async ({ page }) => {

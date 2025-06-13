@@ -1,19 +1,17 @@
 import dotenv from "dotenv";
 import path from "path";
-
-import { UserCredentials, UserRole } from "../common/types.ts";
+import { UserCredentialsSession, UserRole } from "../common/types.ts";
 
 dotenv.config();
 
 export class Config {
-  public static readonly userCredentials: Record<UserRole, UserCredentials> = {
+  public static readonly userCredentials: Record<
+    UserRole,
+    UserCredentialsSession
+  > = {
     solicitor: {
       email: process.env.SOLICITOR_USERNAME as string,
       password: process.env.SOLICITOR_PASSWORD as string,
-    },
-    citizen: {
-      email: process.env.CITIZEN_USERNAME as string,
-      password: process.env.CITIZEN_PASSWORD as string,
     },
     judge: {
       email: process.env.JUDGE_USERNAME as string,
@@ -35,6 +33,8 @@ export class Config {
       email: process.env.NOC_SOLICITOR_USERNAME as string,
       password: process.env.NOC_SOLICITOR_PASSWORD as string,
     },
+    solicitor_idam: undefined,
+    citizen_idam: undefined,
   };
 
   public static readonly sessionStoragePath: string = path.join(
@@ -110,7 +110,7 @@ export class Config {
     "../assets/mockFile.mp3",
   );
 
-  public static getUserCredentials(role: UserRole): UserCredentials {
+  public static getUserCredentials(role: UserRole): UserCredentialsSession {
     return this.userCredentials[role];
   }
 }

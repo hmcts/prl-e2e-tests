@@ -1,4 +1,4 @@
-export enum DeleteApplication1Content{
+export enum DeleteApplication1Content {
   pageTitle = "Delete application",
   h21 = "FamilyMan ID:",
   h22 = "Casenumber:",
