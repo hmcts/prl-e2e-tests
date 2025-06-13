@@ -55,6 +55,7 @@ export type c100SolicitorEvents =
   | "Submit and pay"
   | "Submit"
   | "Dummy Payment confirmation"
+  | "Draft an order"
   | "Delete application";
 
 export type fl401SolicitorEvents =
