@@ -205,7 +205,7 @@ export class ManageOrdersSubmitPage {
         Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukText16}:text-is("${CommonStaticText.yes}"):visible`,
-          4,
+          6,
         ),
         Helpers.checkVisibleAndPresent(
           page,
