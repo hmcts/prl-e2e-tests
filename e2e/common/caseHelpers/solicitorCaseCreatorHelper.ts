@@ -4,18 +4,14 @@ import { PageFunction } from "playwright-core/types/structs";
 import {
   solicitorCACaseAPIEvent,
   solicitorCaseCreateType,
-  solicitorDACaseAPIEvent
+  solicitorDACaseAPIEvent,
 } from "../types.ts";
 import solicitorDACaseData from "../../caseData/solicitorDACaseEventData.json" with { type: "json" };
 import solicitorDACaseDataDemo from "../../caseData/solicitorDACaseEventData-demo.json" with { type: "json" };
-import orderEventDataAmendDischargedVariedDemo
-  from "../../caseData/orderData/orderEventData-amendDischargedVaried-demo.json" with { type: "json" };
-import orderEventDataAmendDischargedVaried
-  from "../../caseData/orderData/orderEventData-amendDischargedVaried.json" with { type: "json" };
-import orderEventDataPowerOfArrestDemo
-  from "../../caseData/orderData/orderEventData-powerOfArrest-demo.json" with { type: "json" };
-import orderEventDataPowerOfArrest
-  from "../../caseData/orderData/orderEventData-powerOfArrest.json" with { type: "json" };
+import orderEventDataAmendDischargedVariedDemo from "../../caseData/orderData/orderEventData-amendDischargedVaried-demo.json" with { type: "json" };
+import orderEventDataAmendDischargedVaried from "../../caseData/orderData/orderEventData-amendDischargedVaried.json" with { type: "json" };
+import orderEventDataPowerOfArrestDemo from "../../caseData/orderData/orderEventData-powerOfArrest-demo.json" with { type: "json" };
+import orderEventDataPowerOfArrest from "../../caseData/orderData/orderEventData-powerOfArrest.json" with { type: "json" };
 import solicitorCACaseDataDemo from "../../caseData/solicitorCACaseEventData-demo.json" with { type: "json" };
 import solicitorCACaseData from "../../caseData/solicitorCACaseEventData.json" with { type: "json" };
 
@@ -29,14 +25,14 @@ if (process.env.MANAGE_CASES_TEST_ENV === "demo") {
     solicitorCACaseData: solicitorCACaseDataDemo,
     manageOrderDataPowerOfArrest: orderEventDataPowerOfArrestDemo,
     manageOrderDataAmendDischargedVaried:
-    orderEventDataAmendDischargedVariedDemo
+      orderEventDataAmendDischargedVariedDemo,
   };
 } else {
   jsonDatas = {
     solicitorDACaseData: solicitorDACaseData,
     solicitorCACaseData: solicitorCACaseData,
     manageOrderDataPowerOfArrest: orderEventDataPowerOfArrest,
-    manageOrderDataAmendDischargedVaried: orderEventDataAmendDischargedVaried
+    manageOrderDataAmendDischargedVaried: orderEventDataAmendDischargedVaried,
   };
 }
 
@@ -50,7 +46,7 @@ if (process.env.MANAGE_CASES_TEST_ENV === "demo") {
 export async function getData(
   page: Page,
   url: string,
-  headers: HeadersInit
+  headers: HeadersInit,
 ): Promise<string> {
   return await retryEvaluate<string, { url: string; headers: HeadersInit }>(
     page,
@@ -58,7 +54,7 @@ export async function getData(
       const res = await fetch(url, {
         method: "GET",
         headers,
-        credentials: "same-origin"
+        credentials: "same-origin",
       });
       if (!res.ok) {
         throw new Error(`HTTP error ${res.status}`);
@@ -66,7 +62,7 @@ export async function getData(
       const json = await res.json();
       return json.event_token;
     },
-    { url, headers }
+    { url, headers },
   );
 }
 
@@ -82,7 +78,7 @@ export async function postData(
   page: Page,
   url: string,
   headers: HeadersInit,
-  requestData: string
+  requestData: string,
 ): Promise<string> {
   return await retryEvaluate<
     string,
@@ -93,7 +89,7 @@ export async function postData(
       const res = await fetch(url, {
         method: "POST",
         body: requestData,
-        headers
+        headers,
       });
       if (!res.ok) {
         throw new Error(`HTTP error ${res.status}`);
@@ -101,7 +97,7 @@ export async function postData(
       const json = await res.json();
       return json.id;
     },
-    { url, headers, requestData }
+    { url, headers, requestData },
   );
 }
 
@@ -116,7 +112,7 @@ export async function submitEvent(
   page: Page,
   caseId: string,
   eventId: solicitorDACaseAPIEvent | solicitorCACaseAPIEvent,
-  jsonData: JsonData = jsonDatas.solicitorDACaseData
+  jsonData: JsonData = jsonDatas.solicitorDACaseData,
 ): Promise<void> {
   if (process.env.PWDEBUG) {
     console.log(`Start of event: ${eventId}`);
@@ -128,12 +124,12 @@ export async function submitEvent(
     Accept:
       "application/vnd.uk.gov.hmcts.ccd-data-store-api.ui-start-event-trigger.v2+json;charset=UTF-8",
     Experimental: "true",
-    "Content-type": "application/json; charset=UTF-8"
+    "Content-type": "application/json; charset=UTF-8",
   };
   const eventToken: string = await getData(
     page,
     startEventUrl,
-    startEventHeaders
+    startEventHeaders,
   );
 
   const submitEventUrl = `/data/cases/${caseId}/events`;
@@ -142,22 +138,22 @@ export async function submitEvent(
     event: {
       id: eventId,
       summary: "",
-      description: ""
+      description: "",
     },
     event_token: eventToken,
-    ignore_warning: false
+    ignore_warning: false,
   };
   const submitEventHeaders = {
     Accept:
       "application/vnd.uk.gov.hmcts.ccd-data-store-api.create-event.v2+json;charset=UTF-8",
     Experimental: "true",
-    "Content-type": "application/json; charset=UTF-8"
+    "Content-type": "application/json; charset=UTF-8",
   };
   await postData(
     page,
     submitEventUrl,
     submitEventHeaders,
-    JSON.stringify(data)
+    JSON.stringify(data),
   );
 
   if (process.env.PWDEBUG) {
@@ -167,7 +163,7 @@ export async function submitEvent(
 
 export async function createBlankCase(
   page: Page,
-  jsonData: JsonData
+  jsonData: JsonData,
 ): Promise<string> {
   const startCaseCreationUrl = `/data/internal/case-types/PRLAPPS/event-triggers/solicitorCreate?ignore-warning=false`;
 
@@ -175,12 +171,12 @@ export async function createBlankCase(
     Accept:
       "application/vnd.uk.gov.hmcts.ccd-data-store-api.ui-start-case-trigger.v2+json;charset=UTF-8",
     Experimental: "true",
-    "Content-type": "application/json; charset=UTF-8"
+    "Content-type": "application/json; charset=UTF-8",
   };
   const eventToken: string = await getData(
     page,
     startCaseCreationUrl,
-    startCaseCreationHeaders
+    startCaseCreationHeaders,
   );
 
   const submitCaseUrl = `/data/case-types/PRLAPPS/cases?ignore-warning=false`;
@@ -190,28 +186,28 @@ export async function createBlankCase(
     event: {
       id: "solicitorCreate",
       summary: "",
-      description: ""
+      description: "",
     },
     event_token: eventToken,
-    ignore_warning: false
+    ignore_warning: false,
   };
   const submitEventHeaders = {
     Accept:
       "application/vnd.uk.gov.hmcts.ccd-data-store-api.create-case.v2+json;charset=UTF-8",
     Experimental: "true",
-    "Content-type": "application/json; charset=UTF-8"
+    "Content-type": "application/json; charset=UTF-8",
   };
   return await postData(
     page,
     submitCaseUrl,
     submitEventHeaders,
-    JSON.stringify(data)
+    JSON.stringify(data),
   );
 }
 
 export async function createTSSolicitorCase(
   page: Page,
-  caseType: solicitorCaseCreateType
+  caseType: solicitorCaseCreateType,
 ): Promise<string> {
   const startCaseCreationUrl = `/data/internal/case-types/PRLAPPS/event-triggers/testingSupportDummySolicitorCreate?ignore-warning=false`;
 
@@ -219,12 +215,12 @@ export async function createTSSolicitorCase(
     Accept:
       "application/vnd.uk.gov.hmcts.ccd-data-store-api.ui-start-case-trigger.v2+json;charset=UTF-8",
     Experimental: "true",
-    "Content-type": "application/json; charset=UTF-8"
+    "Content-type": "application/json; charset=UTF-8",
   };
   const eventToken: string = await getData(
     page,
     startCaseCreationUrl,
-    startCaseCreationHeaders
+    startCaseCreationHeaders,
   );
 
   const submitCaseUrl = `/data/case-types/PRLAPPS/cases?ignore-warning=false`;
@@ -232,28 +228,28 @@ export async function createTSSolicitorCase(
     data: {
       caseTypeOfApplication: caseType,
       applicantOrganisationPolicy: null,
-      applicantCaseName: "TEST"
+      applicantCaseName: "TEST",
     },
     draft_id: null,
     event: {
       id: "testingSupportDummySolicitorCreate",
       summary: "",
-      description: ""
+      description: "",
     },
     event_token: eventToken,
-    ignore_warning: false
+    ignore_warning: false,
   };
   const submitEventHeaders = {
     Accept:
       "application/vnd.uk.gov.hmcts.ccd-data-store-api.create-case.v2+json;charset=UTF-8",
     Experimental: "true",
-    "Content-type": "application/json; charset=UTF-8"
+    "Content-type": "application/json; charset=UTF-8",
   };
   return await postData(
     page,
     submitCaseUrl,
     submitEventHeaders,
-    JSON.stringify(data)
+    JSON.stringify(data),
   );
 }
 
@@ -262,7 +258,7 @@ async function retryEvaluate<T, A>(
   fn: PageFunction<A, T>, //fn: (arg: A) => Promise<T>,
   arg: A,
   maxRetries: number = 3,
-  delay: number = 1000
+  delay: number = 1000,
 ): Promise<T> {
   for (let attempt = 1; attempt <= maxRetries; attempt++) {
     try {
@@ -270,12 +266,12 @@ async function retryEvaluate<T, A>(
     } catch (error) {
       if (attempt === maxRetries) {
         console.error(
-          `Page evaluate failed on final attempt (attempt ${attempt})`
+          `Page evaluate failed on final attempt (attempt ${attempt})`,
         );
         throw error;
       }
       console.warn(
-        `Page evaluate failed (attempt ${attempt}), with ${error}, retrying in ${delay}ms`
+        `Page evaluate failed (attempt ${attempt}), with ${error}, retrying in ${delay}ms`,
       );
       await page.waitForTimeout(delay);
     }

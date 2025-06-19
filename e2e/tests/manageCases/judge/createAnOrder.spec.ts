@@ -41,24 +41,24 @@ test.describe("Judge create an order tests.", () => {
     });
   });
 
-  test(
-    "Create an amend discharge varied order. @nightly @regression @accessibility",
-    async ({ page, browser }): Promise<void> => {
-      await JudgeManageOrderJourney.JudgeCreateOrderCaseProgressionJourney({
-        page,
-        browser,
-        ccdRef: ccdRef,
-        accessibilityTest: true,
-        c100CaseWorkerActions: "Manage orders",
-        createOrderFL401Options: "amend discharge varied order",
-        yesNoManageOrders: false,
-        judgeTitles: "Deputy Circuit Judge",
-        withOrWithoutNotice: false,
-        createOrderManageOrders19Options: "dateToBeFixed",
-        howLongWillOrderBeInForce: "untilNextHearing",
-        manageOrdersOptions: "create order",
-        solicitorCaseCreateType: "FL401",
-      });
-    },
-  );
+  test("Create an amend discharge varied order. @nightly @regression @accessibility", async ({
+    page,
+    browser,
+  }): Promise<void> => {
+    await JudgeManageOrderJourney.JudgeCreateOrderCaseProgressionJourney({
+      page,
+      browser,
+      ccdRef: ccdRef,
+      accessibilityTest: true,
+      c100CaseWorkerActions: "Manage orders",
+      createOrderFL401Options: "amend discharge varied order",
+      yesNoManageOrders: false,
+      judgeTitles: "Deputy Circuit Judge",
+      withOrWithoutNotice: false,
+      createOrderManageOrders19Options: "dateToBeFixed",
+      howLongWillOrderBeInForce: "untilNextHearing",
+      manageOrdersOptions: "create order",
+      solicitorCaseCreateType: "FL401",
+    });
+  });
 });
