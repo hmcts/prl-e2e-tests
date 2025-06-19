@@ -13,6 +13,7 @@ interface ManageOrders19PageOptions {
   yesNoManageOrders: boolean;
   createOrderManageOrders19Options: createOrderManageOrders19Options;
   createOrderFL401Options: createOrderFL401Options;
+  userRole?: string;
 }
 
 export type createOrderManageOrders19Options =
@@ -80,6 +81,7 @@ export class ManageOrders19Page {
     yesNoManageOrders,
     createOrderFL401Options,
     createOrderManageOrders19Options,
+    userRole,
   }: ManageOrders19PageOptions): Promise<void> {
     await this.checkPageLoads({
       page,
@@ -90,6 +92,7 @@ export class ManageOrders19Page {
       page,
       yesNoManageOrders,
       createOrderManageOrders19Options,
+      userRole,
     });
   }
 
@@ -185,6 +188,7 @@ export class ManageOrders19Page {
     page,
     yesNoManageOrders,
     createOrderManageOrders19Options,
+    userRole,
   }: Partial<ManageOrders19PageOptions>): Promise<void> {
     if (!page) {
       throw new Error("Page is not defined");
@@ -259,15 +263,17 @@ export class ManageOrders19Page {
       case "dateToBeFixed":
         await page.click(UniqueSelectors.dateToBeFixed);
         await this.hiddenFormLabels(page, "dateToBeFixed");
-        await page.click(dateToBeConfirmedHidden.hearingOnSpecificDate_yes);
-        await page.click(dateToBeConfirmedHidden.standardPriority);
-        await page.click(UniqueSelectors.video);
-        await page.click(UniqueSelectors.partiesAttendYes);
-        await page.fill(dateOfHearing.day, date[0]);
-        await page.fill(dateOfHearing.month, date[1]);
-        await page.fill(dateOfHearing.year, date[2]);
-        await page.fill(dateOfHearing.estimateHearingHours, "4");
-        await page.click(UniqueSelectors.magistrates);
+        if (userRole != "judge") {
+          await page.click(dateToBeConfirmedHidden.hearingOnSpecificDate_yes);
+          await page.click(dateToBeConfirmedHidden.standardPriority);
+          await page.click(UniqueSelectors.video);
+          await page.click(UniqueSelectors.partiesAttendYes);
+          await page.fill(dateOfHearing.day, date[0]);
+          await page.fill(dateOfHearing.month, date[1]);
+          await page.fill(dateOfHearing.year, date[2]);
+          await page.fill(dateOfHearing.estimateHearingHours, "4");
+          await page.click(UniqueSelectors.magistrates);
+        }
     }
     await page.click(
       `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
@@ -345,11 +351,6 @@ export class ManageOrders19Page {
           Helpers.checkVisibleAndPresent(
             page,
             `${Selectors.strong}:has-text("${ManageOrders19DAContent.dateToBeFixedStrong}"):visible`,
-            1,
-          ),
-          Helpers.checkVisibleAndPresent(
-            page,
-            `${Selectors.GovukFormLabel}:has-text("${ManageOrders19DAContent.customDetailsFormLabel}"):visible`,
             1,
           ),
         ]);

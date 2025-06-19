@@ -140,6 +140,7 @@ export class JudgeManageOrderJourney {
           yesNoManageOrders,
           createOrderManageOrders19Options,
           createOrderFL401Options,
+          userRole: "judge",
         });
         await ManageOrders20Page.manageOrders20Page({
           page,
@@ -172,6 +173,7 @@ export class JudgeManageOrderJourney {
           yesNoManageOrders,
           createOrderManageOrders19Options,
           createOrderFL401Options,
+          userRole: "judge",
         });
         await ManageOrders20Page.manageOrders20Page({
           page,
