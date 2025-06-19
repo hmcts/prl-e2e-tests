@@ -6,7 +6,7 @@ import { createOrderFL401Options } from "../../../../../common/types.ts";
 import { CreateOrderFL401Options } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderDA/createOrderManageOrders5Content.ts";
 import { ManageOrders19DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderDA/manageOrders19DAContent.ts";
 import { ManageOrders1DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderDA/manageOrders1DAContent.ts";
-
+// import { AxeUtils } from "@hmcts/playwright-common";
 interface ManageOrders19PageOptions {
   page: Page;
   accessibilityTest: boolean;
@@ -100,6 +100,7 @@ export class ManageOrders19Page {
   private static async checkPageLoads({
     page,
     createOrderFL401Options,
+    accessibilityTest,
   }: Partial<ManageOrders19PageOptions>): Promise<void> {
     if (!page) {
       throw new Error("Page is not defined");
@@ -179,9 +180,9 @@ export class ManageOrders19Page {
         Selectors.GovukFormLabel,
       ),
     ]);
-    // if (accessibilityTest) {                         accessibility bug ticket raised: FPET-1210
-    //   await new AxeUtils(page).audit();
-    // }
+    if (accessibilityTest) {                         
+      // await new AxeUtils(page).audit(); //accessibility bug ticket raised: FPET-1210 (still failing 18/06/25)
+    }
   }
 
   private static async fillInFields({
@@ -262,11 +263,15 @@ export class ManageOrders19Page {
       case "dateToBeFixed":
         await page.click(UniqueSelectors.dateToBeFixed);
         await this.hiddenFormLabels(page, "dateToBeFixed");
-        await page.fill(
-          dateToBeFixedHidden.additionalRequirements,
-          ManageOrders19DAContent.loremIpsum,
-        );
-        break;
+        await page.click(dateToBeConfirmedHidden.hearingOnSpecificDate_yes);
+        await page.click(dateToBeConfirmedHidden.standardPriority);
+        await page.click(UniqueSelectors.video);
+        await page.click(UniqueSelectors.partiesAttendYes);
+        await page.fill(dateOfHearing.day, date[0]);
+        await page.fill(dateOfHearing.month, date[1]);
+        await page.fill(dateOfHearing.year, date[2]);
+        await page.fill(dateOfHearing.estimateHearingHours, "4");
+        await page.click(UniqueSelectors.magistrates);
     }
     await page.click(
       `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
@@ -334,7 +339,7 @@ export class ManageOrders19Page {
           ),
           Helpers.checkVisibleAndPresent(
             page,
-            `${Selectors.GovukFormHint}:text-is("${ManageOrders19DAContent.dateToBeConfirmedFormHintHidden1}"):visible`,
+            `${Selectors.GovukFormLabel}:text-is("${ManageOrders19DAContent.customDetailsFormLabel}"):visible`,
             1,
           ),
         ]);
@@ -348,7 +353,7 @@ export class ManageOrders19Page {
           ),
           Helpers.checkVisibleAndPresent(
             page,
-            `${Selectors.GovukFormHint}:has-text("${ManageOrders19DAContent.dateToBeConfirmedFormHintHidden1}"):visible`,
+            `${Selectors.GovukFormLabel}:has-text("${ManageOrders19DAContent.customDetailsFormLabel}"):visible`,
             1,
           ),
         ]);
