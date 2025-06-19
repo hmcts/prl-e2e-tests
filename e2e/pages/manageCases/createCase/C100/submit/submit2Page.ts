@@ -30,7 +30,7 @@ export class Submit2Page {
       page.locator(
         `${Selectors.alertMessage}:has-text("${Submit2Content.confirmationMessage}")`,
       ),
-    ).toBeVisible({timeout: 30000});
+    ).toBeVisible({ timeout: 30000 });
   }
 
   private static async checkPageLoads({

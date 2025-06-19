@@ -2,10 +2,7 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
-import {
-  DeleteApplicationSubmitContent
-} from "../../../../fixtures/manageCases/caseProgression/deleteApplication/deleteApplicationSubmitContent.ts";
-
+import { DeleteApplicationSubmitContent } from "../../../../fixtures/manageCases/caseProgression/deleteApplication/deleteApplicationSubmitContent.ts";
 
 export class DeleteApplicationSubmitPage {
   public static async deleteApplicationSubmitPage(
@@ -20,7 +17,10 @@ export class DeleteApplicationSubmitPage {
     page: Page,
     accessibilityTest: boolean,
   ): Promise<void> {
-    await page.locator(Selectors.GovukHeadingL, { hasText: DeleteApplicationSubmitContent.pageTitle })
+    await page
+      .locator(Selectors.GovukHeadingL, {
+        hasText: DeleteApplicationSubmitContent.pageTitle,
+      })
       .waitFor();
     await Promise.all([
       Helpers.checkGroupHasText(
@@ -53,7 +53,7 @@ export class DeleteApplicationSubmitPage {
     }
   }
 
-  private static async delete(page: Page): Promise<void>  {
+  private static async delete(page: Page): Promise<void> {
     await page.click(
       `${Selectors.button}:text-is("${DeleteApplicationSubmitContent.delete}")`,
     );

@@ -2,14 +2,11 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
-import {
-  DeleteApplication1Content
-} from "../../../../fixtures/manageCases/caseProgression/deleteApplication/deleteApplication1Content.ts";
+import { DeleteApplication1Content } from "../../../../fixtures/manageCases/caseProgression/deleteApplication/deleteApplication1Content.ts";
 
 export class DeleteApplication1Page {
-
-  public static async deleteApplication1Page (
-    page : Page,
+  public static async deleteApplication1Page(
+    page: Page,
     accessibilityTest: boolean,
     errorMessaging: boolean,
   ): Promise<void> {
@@ -24,7 +21,10 @@ export class DeleteApplication1Page {
     page: Page,
     accessibilityTest: boolean,
   ): Promise<void> {
-    await page.locator(Selectors.GovukHeadingL, { hasText: DeleteApplication1Content.pageTitle })
+    await page
+      .locator(Selectors.GovukHeadingL, {
+        hasText: DeleteApplication1Content.pageTitle,
+      })
       .waitFor();
     await Promise.all([
       Helpers.checkGroupHasText(
@@ -84,7 +84,6 @@ export class DeleteApplication1Page {
   }
 
   private static async fillInFields(page: Page): Promise<void> {
-
     await page.click(Selectors.formControl);
     await page.click(
       `${Selectors.button}:text-is("${DeleteApplication1Content.continue}")`,

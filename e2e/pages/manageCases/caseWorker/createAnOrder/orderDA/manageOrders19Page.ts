@@ -180,7 +180,7 @@ export class ManageOrders19Page {
         Selectors.GovukFormLabel,
       ),
     ]);
-    if (accessibilityTest) {                         
+    if (accessibilityTest) {
       // await new AxeUtils(page).audit(); //accessibility bug ticket raised: FPET-1210 (still failing 18/06/25)
     }
   }

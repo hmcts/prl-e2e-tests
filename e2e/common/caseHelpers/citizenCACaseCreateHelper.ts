@@ -6,7 +6,7 @@ export class CitizenCACaseCreator {
   public static async createDraftCitizenCACase(
     page: Page,
     application: string,
-    userInfo: { email: string; password: string }
+    userInfo: { email: string; password: string },
   ): Promise<string> {
     // get IDAM citizen user token
     const microservice = process.env.CCD_DATA_STORE_CLIENT_ID as string;
@@ -20,13 +20,13 @@ export class CitizenCACaseCreator {
         scope: "openid profile roles",
         client_id: microservice,
         client_secret: process.env.IDAM_SECRET as string,
-        redirect_uri: `${process.env.PRL_COS_AAT_URL as string}/oauth2/callback,`
-      }
+        redirect_uri: `${process.env.PRL_COS_AAT_URL as string}/oauth2/callback,`,
+      },
     });
 
     if (!responseCitizenUser.ok()) {
       throw new Error(
-        `Failed to get user token: ${responseCitizenUser.status()} - ${await responseCitizenUser.body()}`
+        `Failed to get user token: ${responseCitizenUser.status()} - ${await responseCitizenUser.body()}`,
       );
     }
 
@@ -48,14 +48,14 @@ export class CitizenCACaseCreator {
       headers: {
         Authorization: `Bearer ${accessToken}`,
         ServiceAuthorization: `Bearer ${s2sToken}`,
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      data: caseData
+      data: caseData,
     });
 
     if (!responseCreateCase.ok()) {
       throw new Error(
-        `Failed to create case: ${responseCreateCase.status()} - ${await responseCreateCase.body()}`
+        `Failed to create case: ${responseCreateCase.status()} - ${await responseCreateCase.body()}`,
       );
     }
 

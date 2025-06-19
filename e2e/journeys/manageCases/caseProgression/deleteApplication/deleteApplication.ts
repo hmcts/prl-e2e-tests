@@ -1,12 +1,8 @@
 import { solicitorCaseCreateType } from "../../../../common/types.ts";
 import { Page } from "@playwright/test";
 import { Helpers } from "../../../../common/helpers.ts";
-import {
-  DeleteApplication1Page
-} from "../../../../pages/manageCases/caseProgression/deleteApplication/deleteApplication1Page.ts";
-import {
-  DeleteApplicationSubmitPage
-} from "../../../../pages/manageCases/caseProgression/deleteApplication/deleteApplicationSubmitPage.ts";
+import { DeleteApplication1Page } from "../../../../pages/manageCases/caseProgression/deleteApplication/deleteApplication1Page.ts";
+import { DeleteApplicationSubmitPage } from "../../../../pages/manageCases/caseProgression/deleteApplication/deleteApplicationSubmitPage.ts";
 import Config from "../../../../utils/config.utils.ts";
 import { createTSSolicitorCase } from "../../../../common/caseHelpers/solicitorCaseCreatorHelper.ts";
 
@@ -23,8 +19,7 @@ export class DeleteApplication {
     caseType,
     accessibilityTest,
     errorMessaging,
-     }: DeleteApplicationParams): Promise<void> {
-
+  }: DeleteApplicationParams): Promise<void> {
     let caseRef: string;
 
     switch (caseType) {

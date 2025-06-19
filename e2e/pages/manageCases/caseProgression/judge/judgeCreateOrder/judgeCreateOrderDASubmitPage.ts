@@ -138,13 +138,13 @@ export class judgeCreateODAManageOrderSubmitPage {
         break;
       case "amend discharge varied order":
         await Promise.all([
-            Helpers.checkGroup(
-              page,
-              8,
-              JudgeCreateOrderDASubmitContent,
-              "text16C",
-              Selectors.GovukText16,
-            ),
+          Helpers.checkGroup(
+            page,
+            8,
+            JudgeCreateOrderDASubmitContent,
+            "text16C",
+            Selectors.GovukText16,
+          ),
           Helpers.checkVisibleAndPresent(
             page,
             `${Selectors.Span}:text-is("${JudgeCreateOrderDASubmitContent.spanAmendDischargedVaried}")`,
@@ -183,8 +183,10 @@ export class judgeCreateODAManageOrderSubmitPage {
       `${Selectors.button}:text-is("${CommonStaticText.submit}")`,
     );
 
-    await page.locator(Selectors.alertMessage, {
-      hasText: JudgeCreateOrderDASubmitContent.confirmationMessage,
-    }).waitFor();
+    await page
+      .locator(Selectors.alertMessage, {
+        hasText: JudgeCreateOrderDASubmitContent.confirmationMessage,
+      })
+      .waitFor();
   }
 }
