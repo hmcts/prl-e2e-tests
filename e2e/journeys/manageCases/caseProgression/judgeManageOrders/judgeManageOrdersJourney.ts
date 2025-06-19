@@ -198,9 +198,11 @@ export class JudgeManageOrderJourney {
         await FL401DraftOrdersTabPage.fl401DraftOrdersTabPage({
           page,
           accessibilityTest,
-          createOrderFL401Options,
         });
-
+        await Helpers.checkTypeOfOrder(
+          page,
+          "Amended, discharged or varied order (FL404B)",
+        );
         break;
       case "blank order":
         await BlankOrderManageOrders12Page.BlankOrderManageOrders12Page({

@@ -398,6 +398,13 @@ export class Helpers {
 
   public static async waitForTaskToDisappear(page: Page, taskName: string) {
     // Refresh page until the task disappears - there can be some delay
+
+    await page
+      .locator(Selectors.h2, {
+        hasText: "Active tasks",
+      })
+      .waitFor();
+
     await expect
       .poll(
         async () => {
@@ -519,5 +526,32 @@ export class Helpers {
     return await page
       .locator("//tr[th/span[contains(text(), 'Case status')]]/td")
       .innerText();
+  }
+
+  public static async getCourtNameFromSummaryTab(page: Page) {
+    return await page
+      .locator("//tr[th/span[contains(text(), 'Court name')]]/td")
+      .innerText();
+  }
+
+  public static async checkTypeOfOrder(page: Page, orderType: string) {
+    await expect
+      .poll(
+        async () => {
+          return await page
+            .locator(Selectors.Span, {
+              hasText: orderType,
+            })
+            .first()
+            .isVisible();
+        },
+        {
+          // Allow 10s delay before retrying
+          intervals: [10_000],
+          // Allow up to a minute for it to become visible
+          timeout: 100_000,
+        },
+      )
+      .toBeTruthy();
   }
 }
