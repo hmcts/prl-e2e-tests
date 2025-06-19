@@ -54,10 +54,6 @@ enum dateConfirmedHidden {
   additionalDetails = "#ordersHearingDetails_0_additionalHearingDetails",
 }
 
-enum dateToBeFixedHidden {
-  additionalRequirements = "#ordersHearingDetails_0_additionalDetailsForHearingDateOptions",
-}
-
 enum dateToBeConfirmedHidden {
   ordersHearingDetails_0_additionalDetailsForHearingDateOptions = "#ordersHearingDetails_0_additionalDetailsForHearingDateOptions",
   hearingOnSpecificDate_yes = "#ordersHearingDetails_0_hearingSpecificDatesOptionsEnum-Yes",
