@@ -47,6 +47,7 @@ export class EditAndApproveAnOrder {
       browser: browser,
       caseRef: caseRef,
       checkPdf: false,
+      isUploadOrder: false,
     });
     page = await Helpers.openNewBrowserWindow(browser, "judge");
     await Helpers.goToCase(

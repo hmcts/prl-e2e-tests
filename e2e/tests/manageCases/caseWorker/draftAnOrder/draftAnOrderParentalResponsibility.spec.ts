@@ -42,6 +42,7 @@ test.describe("Draft a parental responsibility order tests", (): void => {
       browser: browser,
       caseRef: caseRef,
       checkPdf: true,
+      isUploadOrder: false,
     });
   });
 
@@ -63,6 +64,7 @@ test.describe("Draft a parental responsibility order tests", (): void => {
       browser: browser,
       caseRef: caseRef,
       checkPdf: true,
+      isUploadOrder: false,
     });
   });
 });
