@@ -29,6 +29,7 @@ import { UploadOrderManageOrders5Page } from "../../../../pages/manageCases/case
 import { judgeCreateUOManageOrderSubmitPage } from "../../../../pages/manageCases/caseProgression/judge/judgeUploadOrder/judgeUploadOrderDASubmitPage.ts";
 import { completeCheckApplicationAndSendToGatekeeper } from "../../../../common/caseHelpers/caseEventsHelper.ts";
 import { FL401DraftOrdersTabPage } from "../../../../pages/manageCases/caseTabs/FL401/fl401DraftOrdersTabPage.js";
+import { Selectors } from "../../../../common/selectors.js";
 
 interface JudgeDACaseProgressionJourneyParams {
   page: Page;
@@ -198,8 +199,14 @@ export class JudgeManageOrderJourney {
         await FL401DraftOrdersTabPage.fl401DraftOrdersTabPage({
           page,
           accessibilityTest,
-          createOrderFL401Options,
         });
+
+        await page
+          .locator(Selectors.Span, {
+            hasText: "Amended, discharged or varied order (FL404B)",
+          })
+          .first()
+          .waitFor({state : 'visible'});
 
         break;
       case "blank order":
