@@ -4,7 +4,7 @@ import config from "../../../../utils/config.utils.ts";
 import { C100SubmitAndPay } from "../../../../journeys/manageCases/createCase/C100SubmitAndPay/C100SubmitAndPay.ts";
 import { createTSSolicitorCase } from "../../../../common/caseHelpers/solicitorCaseCreatorHelper.ts";
 
-test.use({ storageState: config.sessionStoragePath + "solicitor.json" });
+test.use({ storageState: config.sessionStoragePath + "solicitor_idam.json" });
 
 test.describe("C100 Create case Submit and Pay tests", (): void => {
   test.beforeEach(async ({ page }) => {

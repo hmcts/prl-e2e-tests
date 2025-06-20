@@ -123,7 +123,7 @@ export class ActivateCase {
     await IdamLoginHelper.setupAndSignInUser(
       page,
       Config.citizenFrontendBaseURL,
-      "citizen",
+      "citizen_idam",
     );
     await page.click(`a:text-is("Activate access code")`);
     const accessCode: string =
@@ -153,7 +153,7 @@ export class ActivateCase {
     await IdamLoginHelper.setupAndSignInUser(
       page,
       Config.citizenFrontendBaseURL,
-      "citizen",
+      "citizen_idam",
     );
     await page.click(`a:text-is("Activate access code")`);
     const accessCode: string =
