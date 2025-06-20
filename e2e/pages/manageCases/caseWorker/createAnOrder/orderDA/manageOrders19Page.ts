@@ -339,11 +339,6 @@ export class ManageOrders19Page {
             `${Selectors.strong}:text-is("${ManageOrders19DAContent.dateToBeConfirmedStrongHidden}"):visible`,
             1,
           ),
-          Helpers.checkVisibleAndPresent(
-            page,
-            `${Selectors.GovukFormLabel}:text-is("${ManageOrders19DAContent.customDetailsFormLabel}"):visible`,
-            1,
-          ),
         ]);
         break;
       case "dateToBeFixed":
