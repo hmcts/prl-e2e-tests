@@ -39,7 +39,7 @@ export enum ManageOrders19DAContent {
   dateConfirmedFormLabelHidden2 = "Insert joining instructions for remote hearing (Optional)",
   dateConfirmedFormLabelHidden3 = "Additional hearing details (Optional)",
   dateToBeConfirmedStrongHidden = "The date needs to be confirmed by the listing team before service",
-  dateToBeConfirmedFormHintHidden1 = "Give details of any additional requirements.",
+  customDetailsFormLabel = "Custom details (Optional)",
   dateToBeFixedStrong = "This order will be served with the 'date to be fixed'",
   dateToBeFixedHiddenFormHint = "Please note that if any details are entered here that any listing request will be manually sent for listing rather than automatically.",
   judgement = "Judgment",

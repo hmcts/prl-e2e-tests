@@ -23,32 +23,32 @@ test.describe("Notice of Change tests for DA case", () => {
   });
 
   // to be investigated and fixed as part of FPVTL-773
-  test.fixme("NOC applicant. @regression", async ({
-    page,
-    browser,
-  }): Promise<void> => {
-    await NoticeOfChange.noticeOfChange({
-      page: page,
-      browser: browser,
-      caseType: "FL401",
-      caseRef: ccdRef,
-      isApplicant: true,
-      accessibilityTest: false,
-    });
-  });
+  test.fixme(
+    "NOC applicant. @regression",
+    async ({ page, browser }): Promise<void> => {
+      await NoticeOfChange.noticeOfChange({
+        page: page,
+        browser: browser,
+        caseType: "FL401",
+        caseRef: ccdRef,
+        isApplicant: true,
+        accessibilityTest: false,
+      });
+    },
+  );
 
   // to be investigated and fixed as part of FPVTL-773
-  test.fixme("NOC respondent. @nightly @accessibility @regression", async ({
-    page,
-    browser,
-  }): Promise<void> => {
-    await NoticeOfChange.noticeOfChange({
-      page: page,
-      browser: browser,
-      caseType: "FL401",
-      caseRef: ccdRef,
-      isApplicant: false,
-      accessibilityTest: true,
-    });
-  });
+  test.fixme(
+    "NOC respondent. @nightly @accessibility @regression",
+    async ({ page, browser }): Promise<void> => {
+      await NoticeOfChange.noticeOfChange({
+        page: page,
+        browser: browser,
+        caseType: "FL401",
+        caseRef: ccdRef,
+        isApplicant: false,
+        accessibilityTest: true,
+      });
+    },
+  );
 });

@@ -2,9 +2,7 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
 import { createOrderFL401Options } from "../../../../common/types.js";
-import {
-  FL401DraftOrdersTabContent
-} from "../../../../fixtures/manageCases/caseTabs/FL401/FL401DraftOrdersTabContent.js";
+import { FL401DraftOrdersTabContent } from "../../../../fixtures/manageCases/caseTabs/FL401/FL401DraftOrdersTabContent.js";
 
 interface FL401DraftOrdersTabPageParams {
   page: Page;
@@ -32,10 +30,17 @@ export class FL401DraftOrdersTabPage {
     await page
       .locator(Selectors.GovukText16, {
         hasText: FL401DraftOrdersTabContent.tabTitle,
-      }).first()
+      })
+      .first()
       .waitFor();
-    await page.getByText(FL401DraftOrdersTabContent.typeOfOrderField).first().waitFor();
-    await page.getByText(FL401DraftOrdersTabContent.subTitle1).first().waitFor();
+    await page
+      .getByText(FL401DraftOrdersTabContent.typeOfOrderField)
+      .first()
+      .waitFor();
+    await page
+      .getByText(FL401DraftOrdersTabContent.subTitle1)
+      .first()
+      .waitFor();
 
     if (accessibilityTest) {
       await new AxeUtils(page).audit();
@@ -55,7 +60,8 @@ export class FL401DraftOrdersTabPage {
         await page
           .locator(Selectors.Span, {
             hasText: FL401DraftOrdersTabContent.spanAmendDischargedVaried,
-          }).first()
+          })
+          .first()
           .waitFor();
         break;
     }
