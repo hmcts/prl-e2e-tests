@@ -206,7 +206,7 @@ export class JudgeManageOrderJourney {
             hasText: "Amended, discharged or varied order (FL404B)",
           })
           .first()
-          .waitFor({state : 'visible'});
+          .waitFor({ state: "visible" });
 
         break;
       case "blank order":
