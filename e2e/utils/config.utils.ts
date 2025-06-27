@@ -51,11 +51,11 @@ export class Config {
   public static readonly manageCasesBaseURLCase: string =
     Config.ensureNoTrailingSlash(
       process.env.MANAGE_CASES_BASE_URL ||
-        "https://manage-case.aat.platform.hmcts.net/cases",
+        "https://xui-prl-ccd-definitions-pr-2785.preview.platform.hmcts.net/cases",
     );
   public static readonly manageCasesBaseURL: string = Config.removeCasesPath(
     process.env.MANAGE_CASES_BASE_URL ||
-      "https://manage-case.aat.platform.hmcts.net",
+      "https://xui-prl-ccd-definitions-pr-2785.preview.platform.hmcts.net",
   );
 
   public static readonly edgeCasesBaseURL: string =

@@ -42,7 +42,7 @@ test.describe("Case flags tests for CA case tests.", () => {
     );
   });
 
-  test("Case flags - request support - reasonable adjustments - court admin approved - with translation. @nightly @accessibility @regression", async ({
+  test("Case flags - request support - reasonable adjustments - court admin approved - with translation. @caseFlags @nightly @accessibility @regression", async ({
     page,
     browser,
   }): Promise<void> => {
@@ -58,7 +58,7 @@ test.describe("Case flags tests for CA case tests.", () => {
     });
   });
 
-  test("Case flags - request support - language interpreter - court admin not approved - with translation. @nightly @accessibility @regression", async ({
+  test("Case flags - request support - language interpreter - court admin not approved - with translation. @caseFlags @nightly @accessibility @regression", async ({
     page,
     browser,
   }): Promise<void> => {
@@ -74,7 +74,7 @@ test.describe("Case flags tests for CA case tests.", () => {
     });
   });
 
-  test("Case flags - request support - reasonable adjustments - court admin not approved - without translation. @regression", async ({
+  test("Case flags - request support - reasonable adjustments - court admin not approved - without translation. @caseFlags @regression", async ({
     page,
     browser,
   }): Promise<void> => {
@@ -90,7 +90,7 @@ test.describe("Case flags tests for CA case tests.", () => {
     });
   });
 
-  test("Case flags - request support - language interpreter - court admin approved - without translation. @regression", async ({
+  test("Case flags - request support - language interpreter - court admin approved - without translation. @caseFlags @regression", async ({
     page,
     browser,
   }): Promise<void> => {
