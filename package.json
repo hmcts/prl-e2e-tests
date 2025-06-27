@@ -32,7 +32,7 @@
     "playwright:visual": "chmod +x ./scripts/start_visual_container.sh && ./scripts/start_visual_container.sh",
     "test:changes": "yarn pwinstall && yarn tsx ./e2e/common/changedTestsRunner.ts",
     "test:manageCasesSmoke": "yarn pwinstall && yarn playwright test e2e/tests/manageCases --project chromium --grep @smoke",
-    "test:manageCasesChrome": "yarn pwinstall && yarn playwright test e2e/tests/manageCases --project chromium --grep @nightly",
+    "test:manageCasesChrome": "yarn pwinstall && yarn playwright test e2e/tests/manageCases --project chromium --grep @caseFlags",
     "test:manageCasesFirefox": "yarn pwinstall firefox && yarn playwright test e2e/tests/manageCases --project firefox --grep @smoke",
     "test:manageCasesSafari": "yarn pwinstall webkit && yarn playwright test e2e/tests/manageCases --project webkit --grep @smoke",
     "test:manageCasesAccessibility": "yarn pwinstall && yarn playwright test e2e/tests/manageCases --project chromium --grep @accessibility",

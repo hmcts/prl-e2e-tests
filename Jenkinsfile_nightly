@@ -191,7 +191,7 @@ withNightlyPipeline(type, product, component, 600) {
         }
       }
       if (!params.skipManageCasesTests) {
-        stage('Manage Cases E2E tests - Chrome with accessibility') {
+        stage('Manage Cases Case Flag E2E tests - Chrome with accessibility') {
           try {
             yarnBuilder.yarn('test:manageCasesChrome')
           } catch (Error) {
