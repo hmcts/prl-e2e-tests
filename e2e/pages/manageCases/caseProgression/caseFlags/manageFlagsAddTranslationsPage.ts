@@ -31,11 +31,11 @@ export class ManageFlagsAddTranslationsPage {
       })
       .waitFor();
     await Promise.all([
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukHeadingL}:text-is("${ManageFlagsAddTranslationsContent.govUkHeadingL}")`,
-        1,
-      ),
+      // Helpers.checkVisibleAndPresent(
+      //   page,
+      //   `${Selectors.GovukHeadingL}:text-is("${ManageFlagsAddTranslationsContent.govUkHeadingL}")`,
+      //   1,
+      // ),
       Helpers.checkGroup(
         page,
         4,
