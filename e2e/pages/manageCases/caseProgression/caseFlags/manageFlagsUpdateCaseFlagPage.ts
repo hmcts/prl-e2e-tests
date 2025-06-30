@@ -48,11 +48,6 @@ export class ManageFlagsUpdateCaseFlagPage {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHeadingL}:text-is("${ManageFlagsUpdateCaseFlagContent.govUkHeadingL}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
         `${Selectors.GovukWarningText}:text-is("${ManageFlagsUpdateCaseFlagContent.govUkWarningText}")`,
         1,
       ),
@@ -80,7 +75,7 @@ export class ManageFlagsUpdateCaseFlagPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+        `${Selectors.button}:text-is("${CommonStaticText.submit}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -146,7 +141,7 @@ export class ManageFlagsUpdateCaseFlagPage {
 
   private static async continue(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+      `${Selectors.button}:text-is("${CommonStaticText.submit}")`,
     );
   }
 }

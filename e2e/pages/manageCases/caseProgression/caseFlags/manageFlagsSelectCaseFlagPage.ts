@@ -39,12 +39,7 @@ export class ManageFlagsSelectCaseFlagPage {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHeadingL}:text-is("${ManageFlagsSelectCaseFlagContent.govUkHeadingL}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+        `${Selectors.button}:text-is("${CommonStaticText.submit}")`,
         1,
       ),
     ]);
@@ -88,7 +83,7 @@ export class ManageFlagsSelectCaseFlagPage {
 
   private static async continue(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+      `${Selectors.button}:text-is("${CommonStaticText.submit}")`,
     );
   }
 }

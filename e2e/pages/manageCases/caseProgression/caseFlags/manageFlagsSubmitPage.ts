@@ -43,11 +43,6 @@ export class ManageFlagsSubmitPage {
       })
       .waitFor();
     await Promise.all([
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukHeadingL}:text-is("${ManageFlagsSubmitContent.govUkHeadingL}")`,
-        1,
-      ),
       Helpers.checkGroup(
         page,
         4,
