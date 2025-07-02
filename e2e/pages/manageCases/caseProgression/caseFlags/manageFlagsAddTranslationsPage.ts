@@ -55,7 +55,7 @@ export class ManageFlagsAddTranslationsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+        `${Selectors.button}:text-is("${CommonStaticText.submit}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -86,7 +86,7 @@ export class ManageFlagsAddTranslationsPage {
 
   private static async continue(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+      `${Selectors.button}:text-is("${CommonStaticText.submit}")`,
     );
   }
 }

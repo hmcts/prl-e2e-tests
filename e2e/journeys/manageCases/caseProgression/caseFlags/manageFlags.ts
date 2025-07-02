@@ -7,7 +7,6 @@ import { Helpers } from "../../../../common/helpers.ts";
 import config from "../../../../utils/config.utils.ts";
 import { ManageFlagsSelectCaseFlagPage } from "../../../../pages/manageCases/caseProgression/caseFlags/manageFlagsSelectCaseFlagPage.ts";
 import { ManageFlagsUpdateCaseFlagPage } from "../../../../pages/manageCases/caseProgression/caseFlags/manageFlagsUpdateCaseFlagPage.ts";
-import { ManageFlagsSubmitPage } from "../../../../pages/manageCases/caseProgression/caseFlags/manageFlagsSubmitPage.ts";
 import { ManageFlagsAddTranslationsPage } from "../../../../pages/manageCases/caseProgression/caseFlags/manageFlagsAddTranslationsPage.ts";
 import { Selectors } from "../../../../common/selectors.ts";
 
@@ -66,14 +65,6 @@ export class ManageFlags {
         accessibilityTest,
       );
     }
-    await ManageFlagsSubmitPage.manageFlagsSubmitPage(
-      page,
-      caseType,
-      supportType,
-      isApproved,
-      withTranslation,
-      accessibilityTest,
-    );
     await this.checkCaseFlagsTab(page, supportType, isApproved);
   }
 
