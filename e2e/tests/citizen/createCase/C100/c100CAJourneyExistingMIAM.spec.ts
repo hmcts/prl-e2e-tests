@@ -12,58 +12,53 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
     );
   });
   test(`C100 Citizen Application with the following options:
-  Not Accessibility Testing
-  Not Error Messaging
-  Legal Representation
-  No Permission Needed
-  MIAM testing with previously attended MIAM
-  With a signed MIAM document
-  urgency and without notice all options: no
-  c100PeopleGender: 'other'
-  c100PeopleYesNoDontKnow: no
-  keep details private: false,
-  applicantChangedName: true,
-  applicantGender: 'other',
-  applicantRelationship: special guardian,
-  applicant lives in a refuge: no,
-  applicant address lookup: false,
-  applicant address lookup successful: false,
-  applicant lived at address more than 5 years: false,
-  applicant email and telephone: false,
-  applicant digital preferences: false,
-  respondent DoB false,
-  respondent place of birth false,
-  respondent gender: female,
-  respondent changed name: no,
-  respondent lived aat address less than 5 years: no,
-  respondent relationship: special guardian,
-  respondent address lookup: false,
-  respondent address lookup successful: false,
-  respondent known contacts: no,
-  Other Person details: false,
-  Other person gender: female,
-  Other person changed name: no,
-  other person birthday known: false,
-  other person relationship: special guardian,
-  other person lives in a refuge: no,
-  child mainly lives with: applicant,
-  other proceedings radios: false,
-  safety concerns : false,
-  safety concerns : false,
-  children have passport: false,
-  more than one passport: false,
-  passport office notified: no,
-  children abducted before: no,
-  child supervision: yes spend time,
-  international elements : false,
-  reasonable adjustments: false,
-  need help with fees: no,
-  fees applied: no @regression @nightly`, {
-    annotation: {
-    type: 'Not Accessibility Testing',
-      description: 'Accessibility Testing - No',
-  }
-  },
+  Not Accessibility Testing **newline**
+  Not Error Messaging **newline**
+  Legal Representation **newline**
+  No Permission Needed **newline**
+  MIAM testing with previously attended MIAM **newline**
+  With a signed MIAM document **newline**
+  urgency and without notice all options: no **newline**
+  c100PeopleGender: 'other' **newline**
+  c100PeopleYesNoDontKnow: no **newline**
+  keep details private: false, **newline**
+  applicantChangedName: true, **newline**
+  applicantGender: 'other', **newline**
+  applicantRelationship: special guardian, **newline**
+  applicant lives in a refuge: no, **newline**
+  applicant address lookup: false, **newline**
+  applicant address lookup successful: false, **newline**
+  applicant lived at address more than 5 years: false, **newline**
+  applicant email and telephone: false, **newline**
+  applicant digital preferences: false, **newline**
+  respondent DoB false, **newline**
+  respondent place of birth false, **newline**
+  respondent gender: female, **newline**
+  respondent changed name: no, **newline**
+  respondent lived aat address less than 5 years: no, **newline**
+  respondent relationship: special guardian, **newline**
+  respondent address lookup: false, **newline**
+  respondent address lookup successful: false, **newline**
+  respondent known contacts: no, **newline**
+  Other Person details: false, **newline**
+  Other person gender: female, **newline**
+  Other person changed name: no, **newline**
+  other person birthday known: false, **newline**
+  other person relationship: special guardian, **newline**
+  other person lives in a refuge: no, **newline**
+  child mainly lives with: applicant, **newline**
+  other proceedings radios: false, **newline**
+  safety concerns : false, **newline**
+  safety concerns : false, **newline**
+  children have passport: false, **newline**
+  more than one passport: false, **newline**
+  passport office notified: no, **newline**
+  children abducted before: no, **newline**
+  child supervision: yes spend time, **newline**
+  international elements : false, **newline**
+  reasonable adjustments: false, **newline**
+  need help with fees: no, **newline**
+  fees applied: no **newline** @regression @nightly`,
     async ({ page }): Promise<void> => {
     await C100.c100CAExistingMIAMDocumentJourney({
       page: page,
