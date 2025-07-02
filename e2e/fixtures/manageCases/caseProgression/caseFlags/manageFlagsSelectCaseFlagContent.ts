@@ -1,5 +1,5 @@
 export enum ManageFlagsSelectCaseFlagContent {
-  govUkHeadingL = "Manage Flags",
+  govUkHeadingL = "Review RA Request",
   govUkFieldSetHeading = "Manage case flags",
   fl401GovUkLabelReasonableAdjustment = "John Smith (Applicant) - Reasonable adjustment, Documents in a specified colour (test comments)",
   fl401GovUkLabelLanguageInterpreter = "John Smith (Applicant) - Language Interpreter, Korean (test comments)",

@@ -1,5 +1,5 @@
 export enum ManageFlagsUpdateCaseFlagContent {
-  govUkHeadingL = "Manage Flags",
+  govUkHeadingL = "Review RA Request",
   govUkLabelMReasonableAdjustment = 'Update flag "Documents in a specified colour"',
   govUkLabelMLanguageInterpreter = 'Update flag "Language Interpreter, Korean"',
   govUkLabelSReasonableAdjustment = 'Update flag "Documents in a specified colour" comments',
