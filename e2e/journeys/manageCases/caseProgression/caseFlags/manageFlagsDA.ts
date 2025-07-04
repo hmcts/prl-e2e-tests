@@ -67,9 +67,6 @@ export class ManageFlagsDA {
         accessibilityTest,
         caseType,
       );
-      //   if (caseType === "FL401") {
-
-      //   }
     }
     await ManageFlagsSubmitPage.manageFlagsSubmitPage(
       page,
