@@ -8,7 +8,7 @@ test.describe("C100 Citizen Application for the MIAM Hearing Urgency journey.", 
     await IdamLoginHelper.setupAndSignInUser(
       page,
       Config.citizenFrontendBaseURL,
-      "citizen",
+      "citizen_idam",
     );
   });
   test(`C100 Citizen Application with the following options:

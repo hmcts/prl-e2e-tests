@@ -8,7 +8,7 @@ test.describe("C100 Citizen Application with Written Consent from other people i
     await IdamLoginHelper.setupAndSignInUser(
       page,
       Config.citizenFrontendBaseURL,
-      "citizen",
+      "citizen_idam",
     );
   });
 
@@ -301,7 +301,7 @@ test.describe("Test the accessibility of the CA C100 Citizen Journey", (): void 
     await IdamLoginHelper.setupAndSignInUser(
       page,
       Config.citizenFrontendBaseURL,
-      "citizen",
+      "citizen_idam",
     );
   });
   test(`C100 of the citizen journey with the following options:
