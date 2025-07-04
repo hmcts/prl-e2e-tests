@@ -3,7 +3,7 @@ import Config from "../../../../utils/config.utils.ts";
 import config from "../../../../utils/config.utils.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import { SolicitorDACaseCreator } from "../../../../common/caseHelpers/solicitorDACaseCreator.ts";
-import { CaseFlags } from "../../../../journeys/manageCases/caseProgression/caseFlags/caseFlags.ts";
+import { CaseFlagsDA } from "../../../../journeys/manageCases/caseProgression/caseFlags/caseFlagsDA.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 test.slow();
@@ -27,7 +27,7 @@ test.describe("Case flags tests for DA case tests.", () => {
     page,
     browser,
   }): Promise<void> => {
-    await CaseFlags.caseFlags({
+    await CaseFlagsDA.caseFlagsDA({
       page: page,
       browser: browser,
       caseRef: ccdRef,
@@ -43,7 +43,7 @@ test.describe("Case flags tests for DA case tests.", () => {
     page,
     browser,
   }): Promise<void> => {
-    await CaseFlags.caseFlags({
+    await CaseFlagsDA.caseFlagsDA({
       page: page,
       browser: browser,
       caseRef: ccdRef,
@@ -59,7 +59,7 @@ test.describe("Case flags tests for DA case tests.", () => {
     page,
     browser,
   }): Promise<void> => {
-    await CaseFlags.caseFlags({
+    await CaseFlagsDA.caseFlagsDA({
       page: page,
       browser: browser,
       caseRef: ccdRef,
@@ -75,7 +75,7 @@ test.describe("Case flags tests for DA case tests.", () => {
     page,
     browser,
   }): Promise<void> => {
-    await CaseFlags.caseFlags({
+    await CaseFlagsDA.caseFlagsDA({
       page: page,
       browser: browser,
       caseRef: ccdRef,

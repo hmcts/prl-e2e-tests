@@ -1,5 +1,5 @@
 export enum ManageFlagsSubmitContent {
-  govUkHeadingL = "Manage Flags",
+  govUkHeadingL = "Review RA Request",
   headingH2 = "Review flag details",
   govUkSummaryListKey1 = "Update flag for",
   govUkSummaryListKey2 = "Flag type",

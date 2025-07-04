@@ -12,7 +12,8 @@ import {
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 test.slow();
 
-test.describe("Case flags tests for CA case tests.", () => {
+//Adding change to run this spec file in the pipeline
+test.describe("Case flags tests for CA case tests p.", () => {
   let ccdRef: string = "";
 
   test.beforeEach(async ({ page, browser }) => {
