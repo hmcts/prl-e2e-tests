@@ -4,6 +4,7 @@ import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 import { ManageFlagsAddTranslationsContent } from "../../../../fixtures/manageCases/caseProgression/caseFlags/manageFlagsAddTranslationsContent.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
+import { solicitorCaseCreateType } from "../../../../common/types.ts";
 
 enum UniqueSelectors {
   otherDescriptionTextbox = "#otherDescription",
@@ -15,10 +16,11 @@ export class ManageFlagsAddTranslationsPage {
   public static async manageFlagsAddTranslationsPage(
     page: Page,
     accessibilityTest: boolean,
+    caseType: solicitorCaseCreateType,
   ): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest);
     await this.fillInFields(page);
-    await this.continue(page);
+    await this.continue(page, caseType);
   }
 
   private static async checkPageLoads(
@@ -55,11 +57,6 @@ export class ManageFlagsAddTranslationsPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.button}:text-is("${CommonStaticText.submit}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
         `${Selectors.button}:text-is("${CommonStaticText.previous}")`,
         1,
       ),
@@ -84,9 +81,18 @@ export class ManageFlagsAddTranslationsPage {
     );
   }
 
-  private static async continue(page: Page): Promise<void> {
-    await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.submit}")`,
-    );
+  private static async continue(
+    page: Page,
+    caseType: solicitorCaseCreateType,
+  ): Promise<void> {
+    if (caseType === "C100") {
+      await page.click(
+        `${Selectors.button}:text-is("${CommonStaticText.submit}")`,
+      );
+    } else {
+      await page.click(
+        `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+      );
+    }
   }
 }

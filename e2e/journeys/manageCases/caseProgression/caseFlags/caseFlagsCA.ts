@@ -4,7 +4,7 @@ import {
   SupportType,
 } from "../../../../common/types.ts";
 import { RequestSupport } from "./requestSupport.ts";
-import { ManageFlags } from "./manageFlags.ts";
+import { ManageFlagsCA } from "./manageFlagsCA.ts";
 
 interface CaseFlagsParams {
   page: Page;
@@ -19,8 +19,8 @@ interface CaseFlagsParams {
 
 // full journey for solicitor requested, court admin managed case flags
 // although the pages have different names the contents are extremely similar
-export class CaseFlags {
-  public static async caseFlags({
+export class CaseFlagsCA {
+  public static async caseFlagsCA({
     page,
     browser,
     caseRef,
@@ -36,7 +36,7 @@ export class CaseFlags {
       supportType,
       accessibilityTest,
     });
-    await ManageFlags.manageFlags({
+    await ManageFlagsCA.manageFlagsCA({
       browser,
       caseRef,
       caseType,
