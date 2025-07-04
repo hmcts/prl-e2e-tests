@@ -21,8 +21,8 @@ interface ManageFlagsParams {
 }
 
 // manage solicitor requested case flags
-export class ManageFlags {
-  public static async manageFlags({
+export class ManageFlagsCA {
+  public static async manageFlagsCA({
     browser,
     caseRef,
     caseType,

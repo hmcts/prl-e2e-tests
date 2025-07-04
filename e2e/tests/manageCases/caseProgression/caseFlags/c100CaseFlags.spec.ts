@@ -2,7 +2,7 @@ import { test } from "@playwright/test";
 import Config from "../../../../utils/config.utils.ts";
 import config from "../../../../utils/config.utils.ts";
 import { Helpers } from "../../../../common/helpers.ts";
-import { CaseFlags } from "../../../../journeys/manageCases/caseProgression/caseFlags/caseFlags.ts";
+import { CaseFlagsCA } from "../../../../journeys/manageCases/caseProgression/caseFlags/caseFlagsCA.ts";
 import { SolicitorCACaseCreator } from "../../../../common/caseHelpers/solicitorCACaseCreator.ts";
 import {
   jsonDatas,
@@ -46,7 +46,7 @@ test.describe("Case flags tests for CA case tests.", () => {
     page,
     browser,
   }): Promise<void> => {
-    await CaseFlags.caseFlags({
+    await CaseFlagsCA.caseFlagsCA({
       page: page,
       browser: browser,
       caseRef: ccdRef,
@@ -62,7 +62,7 @@ test.describe("Case flags tests for CA case tests.", () => {
     page,
     browser,
   }): Promise<void> => {
-    await CaseFlags.caseFlags({
+    await CaseFlagsCA.caseFlagsCA({
       page: page,
       browser: browser,
       caseRef: ccdRef,
@@ -78,7 +78,7 @@ test.describe("Case flags tests for CA case tests.", () => {
     page,
     browser,
   }): Promise<void> => {
-    await CaseFlags.caseFlags({
+    await CaseFlagsCA.caseFlagsCA({
       page: page,
       browser: browser,
       caseRef: ccdRef,
@@ -94,7 +94,7 @@ test.describe("Case flags tests for CA case tests.", () => {
     page,
     browser,
   }): Promise<void> => {
-    await CaseFlags.caseFlags({
+    await CaseFlagsCA.caseFlagsCA({
       page: page,
       browser: browser,
       caseRef: ccdRef,
