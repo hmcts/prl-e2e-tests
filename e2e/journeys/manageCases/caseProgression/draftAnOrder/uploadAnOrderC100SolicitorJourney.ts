@@ -5,15 +5,13 @@ import {
   uploadOrderC100Options,
   uploadOrderFL401Options,
 } from "../../../../common/types.ts";
-//import Config from "../../../../config.ts";
-import config from "../../../../utils/config.utils.ts";
-import { SolicitorCACaseCreator } from "../../../../common/caseHelpers/solicitorCACaseCreator.ts";
+import Config from "../../../../utils/config.utils.ts";
 import { DraftAnOrder1Page } from "../../../../pages/manageCases/caseWorker/draftAnOrder/draftAnOrder1Page.ts";
 import { UploadDraftAnOrder3Page } from "../../../../pages/manageCases/caseProgression/draftAnOrder/uploadDraftAnOrder3Page.ts";
 import { UploadDraftAnOrder4Page } from "../../../../pages/manageCases/caseProgression/draftAnOrder/uploadDraftAnOrder4Page.ts";
 import { C100DraftOrdersTabPage } from "../../../../pages/manageCases/caseTabs/C100/c100DraftOrdersTabPage.ts";
 import { UploadDraftAnOrderSubmitPage } from "../../../../pages/manageCases/caseProgression/draftAnOrder/uploadDraftAnOrderSubmitPage.ts";
-import { createTSSolicitorCase } from "../../../../common/caseHelpers/solicitorCaseCreatorHelper.ts";
+import { SolicitorCACaseCreator } from "../../../../common/caseHelpers/solicitorCACaseCreator.ts";
 
 interface C100DraftAnOrderOptions {
   page: Page;
@@ -40,22 +38,14 @@ export class UploadAnOrderC100SolicitorJourney {
     browser,
   }: C100DraftAnOrderOptions): Promise<void> {
     //CA case creation
-    await page.goto(config.manageCasesBaseURLCase);
-    const ccdRef = await createTSSolicitorCase(page, "C100");
+    await page.goto(Config.manageCasesBaseURLCase);
+    const caseRef = await SolicitorCACaseCreator.createCaseSubmitAndPay(page);
     await Helpers.goToCase(
       page,
-      config.manageCasesBaseURLCase,
-      ccdRef,
+      Config.manageCasesBaseURLCase,
+      caseRef,
       "Summary",
     );
-    // await page.goto(Config.manageCasesBaseURLCase);
-    // const caseRef = await SolicitorCACaseCreator.createCaseSubmitAndPay(page);
-    // await Helpers.goToCase(
-    //   page,
-    //   Config.manageCasesBaseURLCase,
-    //   caseRef,
-    //   "Summary",
-    // );
     //Starting the 'Draft an order' event to upload the order
     await Helpers.chooseEventFromDropdown(page, `Draft an order`);
     await DraftAnOrder1Page.draftAnOrder1Page(
@@ -90,8 +80,8 @@ export class UploadAnOrderC100SolicitorJourney {
     );
     await Helpers.goToCase(
       checkPageCTSC,
-      config.manageCasesBaseURLCase,
-      ccdRef,
+      Config.manageCasesBaseURLCase,
+      caseRef,
       "Draft orders",
     );
     //Validating the correct Judge's Name in the 'Draft orders' tab

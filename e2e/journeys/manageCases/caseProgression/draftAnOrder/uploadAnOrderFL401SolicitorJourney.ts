@@ -5,7 +5,7 @@ import {
   uploadOrderC100Options,
   uploadOrderFL401Options,
 } from "../../../../common/types.ts";
-import Config from "../../../../config.ts";
+import Config from "../../../../utils/config.utils.ts";
 import { SolicitorDACaseCreator } from "../../../../common/caseHelpers/solicitorDACaseCreator.ts";
 import { DraftAnOrder1Page } from "../../../../pages/manageCases/caseWorker/draftAnOrder/draftAnOrder1Page.ts";
 import { UploadDraftAnOrder3Page } from "../../../../pages/manageCases/caseProgression/draftAnOrder/uploadDraftAnOrder3Page.ts";
@@ -84,7 +84,8 @@ export class UploadAnOrderFL401SolicitorJourney {
       caseRef,
       "Draft orders",
     );
-    //Validating the correct Judge's Name in the 'Draft orders' tab
+    //Validating if the 'Order made by' is present in the 'Draft orders' tab
+    //The file below is the same for FL401 in this journey, but it's also used else where, so won't rename it to remove "C100.."
     await C100DraftOrdersTabPage.c100DraftOrdersTabPage(
       checkPageCTSC,
       accessibilityTest,

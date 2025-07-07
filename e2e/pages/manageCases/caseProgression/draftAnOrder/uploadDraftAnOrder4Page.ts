@@ -1,9 +1,9 @@
 import { Page, expect } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors";
-import { Helpers } from "../../../../common/helpers";
-import AccessibilityTestHelper from "../../../../common/accessibilityTestHelper";
-import { CommonStaticText } from "../../../../common/commonStaticText";
-import config from "../../../../config.ts";
+import { Selectors } from "../../../../common/selectors.ts";
+import { Helpers } from "../../../../common/helpers.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
+import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import Config from "../../../../utils/config.utils.ts";
 import {
   solicitorCaseCreateType,
   uploadOrderC100Options,
@@ -133,7 +133,7 @@ export class UploadDraftAnOrder4Page {
       );
     }
     if (accessibilityTest) {
-      await AccessibilityTestHelper.run(page);
+      await new AxeUtils(page).audit();
     }
   }
 
@@ -156,7 +156,7 @@ export class UploadDraftAnOrder4Page {
     );
     await page.waitForTimeout(5000);
     const fileInput = page.locator(`${UniqueSelectors.fileUpload}`);
-    await fileInput.setInputFiles(config.testPdfFile);
+    await fileInput.setInputFiles(Config.testPdfFile);
     await page.waitForTimeout(5000);
     await page.click(
       `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
@@ -182,7 +182,7 @@ export class UploadDraftAnOrder4Page {
     );
     await page.waitForTimeout(5000);
     const fileInput = page.locator(`${UniqueSelectors.fileUpload}`);
-    await fileInput.setInputFiles(config.testPdfFile);
+    await fileInput.setInputFiles(Config.testPdfFile);
     await page.waitForTimeout(5000);
     await page.click(
       `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
