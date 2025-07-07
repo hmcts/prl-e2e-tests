@@ -4,7 +4,7 @@ import {
   createTSSolicitorCase,
   JsonData,
   jsonDatas,
-  submitEvent
+  submitEvent,
 } from "./solicitorCaseCreatorHelper.ts";
 import { Helpers } from "../helpers.ts";
 import config from "../../utils/config.utils.ts";
@@ -45,7 +45,10 @@ export class SolicitorCACaseCreator {
     return caseRef;
   }
 
-  public static async createCaseSubmitAndPayIndividualEvents(page: Page, jsonData: JsonData = jsonDatas.solicitorCACaseData): Promise<string> {
+  public static async createCaseSubmitAndPayIndividualEvents(
+    page: Page,
+    jsonData: JsonData = jsonDatas.solicitorCACaseData,
+  ): Promise<string> {
     const caseRef = await createBlankCase(page, jsonData);
     for (const event of solicitorCaseEvents) {
       await submitEvent(page, caseRef, event, jsonData);

@@ -1,17 +1,17 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../common/selectors";
-import { solicitorCaseCreateType, UserRole } from "../../../common/types";
-import { CaseListPage } from "../../../pages/manageCases/caseList/caseListPage";
-import { C100TasksTabPage } from "../../../pages/manageCases/caseTabs/c100TasksTabPage";
-import { Fl401TasksTabPage } from "../../../pages/manageCases/caseTabs/fl401TasksTabPage";
-import { SolicitorCreate2Page } from "../../../pages/manageCases/createCase/initialJourney/solicitorCreate2Page";
-import { SolicitorCreate3Page } from "../../../pages/manageCases/createCase/initialJourney/solicitorCreate3Page";
-import { SolicitorCreate4Page } from "../../../pages/manageCases/createCase/initialJourney/solicitorCreate4Page";
-import { SolicitorCreate5Page } from "../../../pages/manageCases/createCase/initialJourney/solicitorCreate5Page";
-import { SolicitorCreate6Page } from "../../../pages/manageCases/createCase/initialJourney/solicitorCreate6Page";
-import { SolicitorCreate7Page } from "../../../pages/manageCases/createCase/initialJourney/solicitorCreate7Page";
-import { SolicitorCreatePage } from "../../../pages/manageCases/createCase/initialJourney/solicitorCreatePage";
-import { SubmitPage } from "../../../pages/manageCases/createCase/initialJourney/submitPage";
+import { Selectors } from "../../../common/selectors.ts";
+import { solicitorCaseCreateType, UserRole } from "../../../common/types.ts";
+import { CaseListPage } from "../../../pages/manageCases/caseList/caseListPage.ts";
+import { C100TasksTabPage } from "../../../pages/manageCases/caseTabs/c100TasksTabPage.ts";
+import { Fl401TasksTabPage } from "../../../pages/manageCases/caseTabs/fl401TasksTabPage.ts";
+import { SolicitorCreate2Page } from "../../../pages/manageCases/createCase/initialJourney/solicitorCreate2Page.ts";
+import { SolicitorCreate3Page } from "../../../pages/manageCases/createCase/initialJourney/solicitorCreate3Page.ts";
+import { SolicitorCreate4Page } from "../../../pages/manageCases/createCase/initialJourney/solicitorCreate4Page.ts";
+import { SolicitorCreate5Page } from "../../../pages/manageCases/createCase/initialJourney/solicitorCreate5Page.ts";
+import { SolicitorCreate6Page } from "../../../pages/manageCases/createCase/initialJourney/solicitorCreate6Page.ts";
+import { SolicitorCreate7Page } from "../../../pages/manageCases/createCase/initialJourney/solicitorCreate7Page.ts";
+import { SolicitorCreatePage } from "../../../pages/manageCases/createCase/initialJourney/solicitorCreatePage.ts";
+import { SubmitPage } from "../../../pages/manageCases/createCase/initialJourney/submitPage.ts";
 
 export class SolicitorCreateInitial {
   public static async createInitialCase({

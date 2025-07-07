@@ -1,10 +1,10 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors.ts";
+import { Helpers } from "../../../../../common/helpers.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { TestingSupportDummyAdminCreateNoc2Content } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/initialJourney/testingSupportDummyAdminCreateNoc2Content";
-import { CommonStaticText } from "../../../../../common/commonStaticText";
-import { solicitorCaseCreateType } from "../../../../../common/types";
+import { TestingSupportDummyAdminCreateNoc2Content } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/initialJourney/testingSupportDummyAdminCreateNoc2Content.ts";
+import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
+import { solicitorCaseCreateType } from "../../../../../common/types.ts";
 
 interface testingSupportDummyAdminCreateNocPage2Options {
   page: Page;

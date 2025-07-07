@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { MiamChildProtectionContent } from "../../../../../fixtures/citizen/createCase/C100/MIAM/miamChildProtectionContent";
-import { Helpers } from "../../../../../common/helpers";
-import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { Selectors } from "../../../../../common/selectors.ts";
+import { MiamChildProtectionContent } from "../../../../../fixtures/citizen/createCase/C100/MIAM/miamChildProtectionContent.ts";
+import { Helpers } from "../../../../../common/helpers.ts";
+import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
 
 export interface MiamChildProtectionPageOptions {

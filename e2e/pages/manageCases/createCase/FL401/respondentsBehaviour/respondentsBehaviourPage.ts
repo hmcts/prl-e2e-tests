@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Helpers } from "../../../../../common/helpers";
-import { Selectors } from "../../../../../common/selectors";
-import { RespondentsBehaviourContent } from "../../../../../fixtures/manageCases/createCase/FL401/respondentsBehaviour/respondentsBehaviourContent";
+import { Helpers } from "../../../../../common/helpers.ts";
+import { Selectors } from "../../../../../common/selectors.ts";
+import { RespondentsBehaviourContent } from "../../../../../fixtures/manageCases/createCase/FL401/respondentsBehaviour/respondentsBehaviourContent.ts";
 
 enum checkBoxIds {
   applicantStopFromRespondentEnum_Value_1 = "#respondentBehaviourData_applicantWantToStopFromRespondentDoing-applicantStopFromRespondentEnum_Value_1",

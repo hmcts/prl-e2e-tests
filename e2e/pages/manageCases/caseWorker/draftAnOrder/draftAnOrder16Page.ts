@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors";
-import { DraftAnOrder16Content } from "../../../../fixtures/manageCases/caseWorker/draftAnOrder/draftAnOrder16Content";
+import { Selectors } from "../../../../common/selectors.ts";
+import { DraftAnOrder16Content } from "../../../../fixtures/manageCases/caseWorker/draftAnOrder/draftAnOrder16Content.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { OrderType } from "../../../../common/types";
-import { NonMolestationOrder16Page } from "./nonMolestationOrder/nonMolestationOrder16Page";
+import { OrderType } from "../../../../common/types.ts";
+import { NonMolestationOrder16Page } from "./nonMolestationOrder/nonMolestationOrder16Page.ts";
 
 export class DraftAnOrder16Page {
   public static async draftAnOrder16Page(

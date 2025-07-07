@@ -1,13 +1,13 @@
 import { Page } from "@playwright/test";
-import { Helpers } from "../../../../common/helpers";
-import { ApplicantGender, UserRole } from "../../../../common/types";
-import { C100TasksTabPage } from "../../../../pages/manageCases/caseTabs/c100TasksTabPage";
-import { C100ChildGender } from "../../../../pages/manageCases/createCase/C100/childDetails/childDetailsRevised1Page";
-import { yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions } from "../../../../pages/manageCases/createCase/C100/childDetails/childDetailsRevised2Page";
-import { ChildrenAndOtherPeople1Page } from "../../../../pages/manageCases/createCase/C100/childrenAndOtherPeople/childrenAndOtherPeople1Page";
-import { ChildrenAndOtherPeopleSubmitPage } from "../../../../pages/manageCases/createCase/C100/childrenAndOtherPeople/childrenAndOtherPeopleSubmitPage";
-import { C100ChildDetails } from "../C100ChildDetails/c100ChildDetails";
-import { C100OtherPeopleInTheCase } from "../C100OtherPeopleInTheCase/C100OtherPeopleInTheCase";
+import { Helpers } from "../../../../common/helpers.ts";
+import { ApplicantGender, UserRole } from "../../../../common/types.ts";
+import { C100TasksTabPage } from "../../../../pages/manageCases/caseTabs/c100TasksTabPage.ts";
+import { C100ChildGender } from "../../../../pages/manageCases/createCase/C100/childDetails/childDetailsRevised1Page.ts";
+import { yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions } from "../../../../pages/manageCases/createCase/C100/childDetails/childDetailsRevised2Page.ts";
+import { ChildrenAndOtherPeople1Page } from "../../../../pages/manageCases/createCase/C100/childrenAndOtherPeople/childrenAndOtherPeople1Page.ts";
+import { ChildrenAndOtherPeopleSubmitPage } from "../../../../pages/manageCases/createCase/C100/childrenAndOtherPeople/childrenAndOtherPeopleSubmitPage.ts";
+import { C100ChildDetails } from "../C100ChildDetails/c100ChildDetails.ts";
+import { C100OtherPeopleInTheCase } from "../C100OtherPeopleInTheCase/C100OtherPeopleInTheCase.ts";
 
 interface c100ChildrenAndOtherPeopleOptions {
   page: Page;

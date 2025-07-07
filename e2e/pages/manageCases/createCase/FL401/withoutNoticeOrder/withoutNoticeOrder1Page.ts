@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { WithoutNoticeOrderDetails1Content } from "../../../../../fixtures/manageCases/createCase/FL401/withoutNoticeOrder/withoutNoticeOrderDetails1Content";
-import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors.ts";
+import { WithoutNoticeOrderDetails1Content } from "../../../../../fixtures/manageCases/createCase/FL401/withoutNoticeOrder/withoutNoticeOrderDetails1Content.ts";
+import { Helpers } from "../../../../../common/helpers.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
 
 enum WithoutNoticeOrderRadioIDs {

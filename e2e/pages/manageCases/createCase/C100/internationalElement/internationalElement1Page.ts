@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { InternationalElement1Content } from "../../../../../fixtures/manageCases/createCase/C100/internationalElement/internationalElement1Content";
-import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors.ts";
+import { InternationalElement1Content } from "../../../../../fixtures/manageCases/createCase/C100/internationalElement/internationalElement1Content.ts";
+import { Helpers } from "../../../../../common/helpers.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
 
 interface internationalElement1PageOptions {

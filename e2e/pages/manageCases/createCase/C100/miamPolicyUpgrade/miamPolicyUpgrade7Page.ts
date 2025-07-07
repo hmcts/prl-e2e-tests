@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { MiamPolicyUpgrade7Content } from "../../../../../fixtures/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade7Content";
-import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors.ts";
+import { MiamPolicyUpgrade7Content } from "../../../../../fixtures/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade7Content.ts";
+import { Helpers } from "../../../../../common/helpers.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
 
 interface MiamPolicyUpgrade7PageOptions {

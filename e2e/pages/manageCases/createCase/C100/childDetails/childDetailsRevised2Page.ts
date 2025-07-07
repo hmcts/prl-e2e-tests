@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { ChildDetailsRevised2Content } from "../../../../../fixtures/manageCases/createCase/C100/childDetails/childDetailsRevised2Content";
-import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors.ts";
+import { ChildDetailsRevised2Content } from "../../../../../fixtures/manageCases/createCase/C100/childDetails/childDetailsRevised2Content.ts";
+import { Helpers } from "../../../../../common/helpers.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
 
 interface ChildDetailsRevised2PageOptions {

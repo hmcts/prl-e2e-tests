@@ -1,6 +1,6 @@
 import { test } from "@playwright/test";
 import Config from "../../../../utils/config.utils.ts";
-import { DummyPaymentAwp } from "../../../../journeys/manageCases/caseWorker/dummyPayment/dummyPaymentAwp";
+import { DummyPaymentAwp } from "../../../../journeys/manageCases/caseWorker/dummyPayment/dummyPaymentAwp.ts";
 import { SolicitorDACaseCreator } from "../../../../common/caseHelpers/solicitorDACaseCreator.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import config from "../../../../utils/config.utils.ts";

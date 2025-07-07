@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Selectors } from "../../../../common/selectors";
+import { Selectors } from "../../../../common/selectors.ts";
 import { AdminEditAndApproveAnOrder23Content } from "../../../../fixtures/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrder23Content.ts";
-import { Helpers } from "../../../../common/helpers";
-import { CommonStaticText } from "../../../../common/commonStaticText";
+import { Helpers } from "../../../../common/helpers.ts";
+import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 import { applicationSubmittedBy } from "../../../../common/types.ts";
 
 enum UniqueSelectors {

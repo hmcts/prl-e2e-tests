@@ -1,11 +1,11 @@
-import { Helpers } from "../../../../common/helpers";
+import { Helpers } from "../../../../common/helpers.ts";
 import { Page } from "@playwright/test";
-import { OtherProceedingsPage } from "../../../../pages/manageCases/createCase/FL401/otherProceedings/otherProceedingsPage";
-import { Fl401TasksTabPage } from "../../../../pages/manageCases/caseTabs/fl401TasksTabPage";
-import { OtherProceedingsSubmitPage } from "../../../../pages/manageCases/createCase/FL401/otherProceedings/otherProceedingsSubmitPage";
-import { SolicitorCreateInitial } from "../solicitorCreateInitial";
+import { OtherProceedingsPage } from "../../../../pages/manageCases/createCase/FL401/otherProceedings/otherProceedingsPage.ts";
+import { Fl401TasksTabPage } from "../../../../pages/manageCases/caseTabs/fl401TasksTabPage.ts";
+import { OtherProceedingsSubmitPage } from "../../../../pages/manageCases/createCase/FL401/otherProceedings/otherProceedingsSubmitPage.ts";
+import { SolicitorCreateInitial } from "../solicitorCreateInitial.ts";
 
-import { otherProceedingsRadios } from "../../../../common/types";
+import { otherProceedingsRadios } from "../../../../common/types.ts";
 
 interface fl401OtherProceedingsOptions {
   page: Page;

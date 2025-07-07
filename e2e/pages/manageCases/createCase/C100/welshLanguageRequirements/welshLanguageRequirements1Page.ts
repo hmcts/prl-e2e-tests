@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { WelshLanguageRequirements1Content } from "../../../../../fixtures/manageCases/createCase/C100/welshLanguageRequirements/welshLanguageRequirements1Content";
+import { Selectors } from "../../../../../common/selectors.ts";
+import { WelshLanguageRequirements1Content } from "../../../../../fixtures/manageCases/createCase/C100/welshLanguageRequirements/welshLanguageRequirements1Content.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Helpers } from "../../../../../common/helpers";
+import { Helpers } from "../../../../../common/helpers.ts";
 
 interface WelshLanguageRequirements1PageOptions {
   page: Page;

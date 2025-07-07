@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors";
-import { Helpers } from "../../../../../common/helpers";
-import config from "../../../../../utils/config.utils";
-import { OtherPeopleInTheCase1Content } from "../../../../../fixtures/manageCases/createCase/C100/otherPeopleInTheCaseRevised/otherPeopleInTheCaseRevised1Content.";
+import { Selectors } from "../../../../../common/selectors.ts";
+import { Helpers } from "../../../../../common/helpers.ts";
+import config from "../../../../../utils/config.utils.ts";
+import { OtherPeopleInTheCase1Content } from "../../../../../fixtures/manageCases/createCase/C100/otherPeopleInTheCaseRevised/otherPeopleInTheCaseRevised1Content.ts";
 
 enum UniqueSelectors {
   uploadC8FormLabel = "label[for='otherPartyInTheCaseRevised_0_refugeConfidentialityC8Form'] .form-label",

@@ -1,11 +1,14 @@
 import { Browser, Page } from "@playwright/test";
-import { Helpers } from "../../../../common/helpers";
-import { OrderType, solicitorCaseCreateType } from "../../../../common/types";
+import { Helpers } from "../../../../common/helpers.ts";
+import {
+  OrderType,
+  solicitorCaseCreateType,
+} from "../../../../common/types.ts";
 import config from "../../../../utils/config.utils.ts";
-import { IssueAndSendToLocalCourtCallback1Page } from "../../../../pages/manageCases/caseWorker/draftAnOrder/issueAndSendToLocalCourt/issueAndSendToLocalCourtCallback1Page";
-import { IssueAndSendToLocalCourtCallbackSubmitPage } from "../../../../pages/manageCases/caseWorker/draftAnOrder/issueAndSendToLocalCourt/issueAndSendToLocalCourtCallbackSubmitPage";
-import { NonMolestationOrder } from "./nonMolestationOrder/nonMolestationOrder";
-import { ParentalResponsibilityOrder } from "./ParentalResponsibilityOrder/parentalResponsibilityOrder";
+import { IssueAndSendToLocalCourtCallback1Page } from "../../../../pages/manageCases/caseWorker/draftAnOrder/issueAndSendToLocalCourt/issueAndSendToLocalCourtCallback1Page.ts";
+import { IssueAndSendToLocalCourtCallbackSubmitPage } from "../../../../pages/manageCases/caseWorker/draftAnOrder/issueAndSendToLocalCourt/issueAndSendToLocalCourtCallbackSubmitPage.ts";
+import { NonMolestationOrder } from "./nonMolestationOrder/nonMolestationOrder.ts";
+import { ParentalResponsibilityOrder } from "./ParentalResponsibilityOrder/parentalResponsibilityOrder.ts";
 import Config from "../../../../utils/config.utils.ts";
 
 interface DraftAnOrderParams {
