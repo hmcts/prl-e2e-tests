@@ -1,13 +1,6 @@
 import { APIRequestContext, Page, request } from "@playwright/test";
-import fs from "fs";
 import { getS2SToken } from "./getAccessTokenHelper.ts";
-
-const json = JSON.parse(
-  fs.readFileSync(
-    "./e2e/caseData/citizenCA/c100-citizen-dummy-case-details.json",
-    "utf8",
-  ),
-);
+import json from "../../caseData/citizenCA/c100-citizen-dummy-case-details.json" with { type: "json" };
 
 export class CitizenCACaseCreator {
   public static async createDraftCitizenCACase(

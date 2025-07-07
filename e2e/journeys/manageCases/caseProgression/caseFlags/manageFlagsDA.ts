@@ -7,8 +7,8 @@ import { Helpers } from "../../../../common/helpers.ts";
 import config from "../../../../utils/config.utils.ts";
 import { ManageFlagsSelectCaseFlagPage } from "../../../../pages/manageCases/caseProgression/caseFlags/manageFlagsSelectCaseFlagPage.ts";
 import { ManageFlagsUpdateCaseFlagPage } from "../../../../pages/manageCases/caseProgression/caseFlags/manageFlagsUpdateCaseFlagPage.ts";
-import { ManageFlagsSubmitPage } from "../../../../pages/manageCases/caseProgression/caseFlags/manageFlagsSubmitPage.ts";
 import { ManageFlagsAddTranslationsPage } from "../../../../pages/manageCases/caseProgression/caseFlags/manageFlagsAddTranslationsPage.ts";
+import { ManageFlagsSubmitPage } from "../../../../pages/manageCases/caseProgression/caseFlags/manageFlagsSubmitPage.ts";
 import { Selectors } from "../../../../common/selectors.ts";
 
 interface ManageFlagsParams {
@@ -22,8 +22,8 @@ interface ManageFlagsParams {
 }
 
 // manage solicitor requested case flags
-export class ManageFlags {
-  public static async manageFlags({
+export class ManageFlagsDA {
+  public static async manageFlagsDA({
     browser,
     caseRef,
     caseType,
@@ -59,11 +59,13 @@ export class ManageFlags {
       isApproved,
       withTranslation,
       accessibilityTest,
+      caseType,
     );
     if (withTranslation) {
       await ManageFlagsAddTranslationsPage.manageFlagsAddTranslationsPage(
         page,
         accessibilityTest,
+        caseType,
       );
     }
     await ManageFlagsSubmitPage.manageFlagsSubmitPage(

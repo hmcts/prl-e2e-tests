@@ -9,10 +9,6 @@ interface CaseDetailsSummaryPageOptions {
   accessibilityTest: boolean;
 }
 
-enum UniqueSelectors {
-  nextStepDropDown = "#next-step",
-}
-
 export class CaseDetailsSummaryPage {
   public static async caseDetailsSummaryPage({
     page,
@@ -66,12 +62,6 @@ export class CaseDetailsSummaryPage {
   }
 
   private static async fillInFields(page: Page): Promise<void> {
-    await page.selectOption(
-      UniqueSelectors.nextStepDropDown,
-      CaseDetailsSummaryDAContent.manageOrders,
-    );
-    await page.click(
-      `${Selectors.button}:text-is("${CaseDetailsSummaryDAContent.go}")`,
-    );
+    await Helpers.chooseEventFromDropdown(page, "Manage orders");
   }
 }

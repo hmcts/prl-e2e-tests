@@ -28,6 +28,8 @@ import { ManageOrders3Page } from "../../../../pages/manageCases/caseWorker/crea
 import { UploadOrderManageOrders5Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/orderDA/uploadOrderManageOrders5Page.ts";
 import { judgeCreateUOManageOrderSubmitPage } from "../../../../pages/manageCases/caseProgression/judge/judgeUploadOrder/judgeUploadOrderDASubmitPage.ts";
 import { completeCheckApplicationAndSendToGatekeeper } from "../../../../common/caseHelpers/caseEventsHelper.ts";
+import { FL401DraftOrdersTabPage } from "../../../../pages/manageCases/caseTabs/FL401/fl401DraftOrdersTabPage.js";
+import { Selectors } from "../../../../common/selectors.js";
 
 interface JudgeDACaseProgressionJourneyParams {
   page: Page;
@@ -139,6 +141,7 @@ export class JudgeManageOrderJourney {
           yesNoManageOrders,
           createOrderManageOrders19Options,
           createOrderFL401Options,
+          userRole: "judge",
         });
         await ManageOrders20Page.manageOrders20Page({
           page,
@@ -171,6 +174,7 @@ export class JudgeManageOrderJourney {
           yesNoManageOrders,
           createOrderManageOrders19Options,
           createOrderFL401Options,
+          userRole: "judge",
         });
         await ManageOrders20Page.manageOrders20Page({
           page,
@@ -189,6 +193,21 @@ export class JudgeManageOrderJourney {
           accessibilityTest,
           createOrderFL401Options,
         });
+
+        //Validating the correct order created within draft tab
+        await Helpers.clickTab(page, "Draft orders");
+        await FL401DraftOrdersTabPage.fl401DraftOrdersTabPage({
+          page,
+          accessibilityTest,
+        });
+
+        await page
+          .locator(Selectors.Span, {
+            hasText: "Amended, discharged or varied order (FL404B)",
+          })
+          .first()
+          .waitFor({ state: "visible" });
+
         break;
       case "blank order":
         await BlankOrderManageOrders12Page.BlankOrderManageOrders12Page({
@@ -267,7 +286,6 @@ export class JudgeManageOrderJourney {
         });
         break;
     }
-    console.log("wait");
   }
 
   public static async JudgeUploadOrderCaseProgressionJourney({

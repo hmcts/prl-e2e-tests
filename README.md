@@ -77,15 +77,12 @@ We use the following test tags to categorise and manage our test suite:
 1. **General Tagging:**
    - Tag all tests with `@regression`, unless the test is specifically for accessibility.
 2. **Nightly Pipeline Tests:**
-
    - Identify tests for `@nightly`.
 
 3. **Accessibility Tests:**
-
    - Add accessibility tag `@accessibility` for tests that are run in nightly.
 
 4. **Smoke Tests:**
-
    - For critical path tests that ensure key functionality is operational, tag them with `@smoke` for inclusion in the master pipeline.
 
 5. **Error Message Validation:**

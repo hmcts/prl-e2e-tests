@@ -136,6 +136,37 @@ export class judgeCreateODAManageOrderSubmitPage {
           ),
         ]);
         break;
+      case "amend discharge varied order":
+        await Promise.all([
+          Helpers.checkGroup(
+            page,
+            8,
+            JudgeCreateOrderDASubmitContent,
+            "text16C",
+            Selectors.GovukText16,
+          ),
+          Helpers.checkVisibleAndPresent(
+            page,
+            `${Selectors.Span}:text-is("${JudgeCreateOrderDASubmitContent.spanAmendDischargedVaried}")`,
+            4,
+          ),
+          Helpers.checkVisibleAndPresent(
+            page,
+            `${Selectors.a}:text-is("${JudgeCreateOrderDASubmitContent.amendDischargedVariedOrderA}")`,
+            1,
+          ),
+          Helpers.checkVisibleAndPresent(
+            page,
+            `${Selectors.GovukText16}:text-is("${CommonStaticText.no}")`,
+            3,
+          ),
+          Helpers.checkVisibleAndPresent(
+            page,
+            `${Selectors.Span}:text-is("${JudgeCreateOrderDASubmitContent.text16LoremIpsum}")`,
+            3,
+          ),
+        ]);
+        break;
     }
     if (accessibilityTest) {
       await new AxeUtils(page).audit();
@@ -151,5 +182,11 @@ export class judgeCreateODAManageOrderSubmitPage {
     await page.click(
       `${Selectors.button}:text-is("${CommonStaticText.submit}")`,
     );
+
+    await page
+      .locator(Selectors.alertMessage, {
+        hasText: JudgeCreateOrderDASubmitContent.confirmationMessage,
+      })
+      .waitFor();
   }
 }

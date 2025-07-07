@@ -1,5 +1,8 @@
 import { Page } from "@playwright/test";
-import { SupportType } from "../../../../common/types.ts";
+import {
+  SupportType,
+  solicitorCaseCreateType,
+} from "../../../../common/types.ts";
 import { Selectors } from "../../../../common/selectors.ts";
 import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 import { ManageFlagsUpdateCaseFlagContent } from "../../../../fixtures/manageCases/caseProgression/caseFlags/manageFlagsUpdateCaseFlagContent.ts";
@@ -19,10 +22,11 @@ export class ManageFlagsUpdateCaseFlagPage {
     isApproved: boolean,
     withTranslation: boolean,
     accessibilityTest: boolean,
+    caseType: solicitorCaseCreateType,
   ): Promise<void> {
     await this.checkPageLoads(page, supportType, accessibilityTest);
     await this.fillInFields(page, isApproved, withTranslation);
-    await this.continue(page);
+    await this.continue(page, caseType);
   }
 
   private static async checkPageLoads(
@@ -77,11 +81,6 @@ export class ManageFlagsUpdateCaseFlagPage {
         ManageFlagsUpdateCaseFlagContent,
         `govUkLabel`,
         `${Selectors.GovukLabel}`,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
-        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -144,9 +143,18 @@ export class ManageFlagsUpdateCaseFlagPage {
     }
   }
 
-  private static async continue(page: Page): Promise<void> {
-    await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
-    );
+  private static async continue(
+    page: Page,
+    caseType: solicitorCaseCreateType,
+  ): Promise<void> {
+    if (caseType === "C100") {
+      await page.click(
+        `${Selectors.button}:text-is("${CommonStaticText.submit}")`,
+      );
+    } else {
+      await page.click(
+        `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+      );
+    }
   }
 }

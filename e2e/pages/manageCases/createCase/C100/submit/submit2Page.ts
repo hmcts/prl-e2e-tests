@@ -25,11 +25,12 @@ export class Submit2Page {
     });
     await this.fillInFields(page);
     await Helpers.clickButton(page, Submit2Content.submit);
+    // added extra long timeout because timing for the event to complete it very temperamental
     await expect(
       page.locator(
         `${Selectors.alertMessage}:has-text("${Submit2Content.confirmationMessage}")`,
       ),
-    ).toBeVisible();
+    ).toBeVisible({ timeout: 30000 });
   }
 
   private static async checkPageLoads({

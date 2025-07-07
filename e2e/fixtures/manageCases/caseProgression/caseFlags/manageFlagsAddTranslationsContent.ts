@@ -1,5 +1,5 @@
 export enum ManageFlagsAddTranslationsContent {
-  govUkHeadingL = "Manage Flags",
+  govUkHeadingL = "Review RA Request",
   govUkLabelM = "Add translations to flag",
   govUkLabel1 = "Other description",
   govUkLabel2 = "Other description (Welsh)",

@@ -22,7 +22,7 @@ export class ManageFlagsSelectCaseFlagPage {
   ): Promise<void> {
     await this.checkPageLoads(page, caseType, supportType, accessibilityTest);
     await this.fillInFields(page);
-    await this.continue(page);
+    await this.continue(page, caseType);
   }
 
   private static async checkPageLoads(
@@ -40,11 +40,6 @@ export class ManageFlagsSelectCaseFlagPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukHeadingL}:text-is("${ManageFlagsSelectCaseFlagContent.govUkHeadingL}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
         1,
       ),
     ]);
@@ -86,9 +81,18 @@ export class ManageFlagsSelectCaseFlagPage {
     await page.check(UniqueSelectors.caseFlagRadio);
   }
 
-  private static async continue(page: Page): Promise<void> {
-    await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
-    );
+  private static async continue(
+    page: Page,
+    caseType: solicitorCaseCreateType,
+  ): Promise<void> {
+    if (caseType === "C100") {
+      await page.click(
+        `${Selectors.button}:text-is("${CommonStaticText.submit}")`,
+      );
+    } else {
+      await page.click(
+        `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+      );
+    }
   }
 }
