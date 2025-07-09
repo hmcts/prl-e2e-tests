@@ -18,7 +18,7 @@ export class UserUtils {
         if (responseBody) {
           return responseBody.id;
         } else {
-          throw new Error("Failed to get event token");
+          throw new Error("Failed to get user details");
         }
       }
     } catch (e) {
