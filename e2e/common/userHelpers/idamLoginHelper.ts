@@ -4,7 +4,8 @@ import Config from "../../utils/config.utils.ts";
 import { setupUser } from "./idamCreateUserApiHelper.ts";
 import { UserCredentialsLong, UserLoginInfo } from "../types.ts";
 import process from "node:process";
-import { UserUtils } from "./userUtils.js";
+import { IdamUtils } from "@hmcts/playwright-common";
+import { UserInfoParams } from "@hmcts/playwright-common/dist/utils/idam.utils.js";
 
 export class IdamLoginHelper {
   private static fields: UserLoginInfo = {
@@ -126,7 +127,12 @@ export class IdamLoginHelper {
       let userId: string;
       if (process.env.MANAGE_CASES_TEST_ENV === "preview") {
         // when using preview environment the __userid__ cookie is undefined so need to fetch user ID a different way
-        userId = await UserUtils.getUserId(username);
+        const token = process.env.CREATE_USER_BEARER_TOKEN as string;
+        const userDetails: UserInfoParams = await new IdamUtils().getUserInfo({
+          email: username,
+          bearerToken: token,
+        });
+        userId = userDetails.id;
       } else {
         userId = state.cookies.find(
           (cookie: Cookie) => cookie.name === "__userid__",
