@@ -50,19 +50,19 @@ export async function getAccessToken(
     switch (option) {
       case "citizenCreateUser":
         data = citizenCreateUserData;
-        url = process.env.IDAM_TOKEN_URL as string;
+        url = process.env.IDAM_WEB_URL as string;
         break;
       case "daCourtNavCreateCase":
         data = daCourtNavCreateCaseData;
-        url = process.env.IDAM_TOKEN_URL as string;
+        url = process.env.IDAM_WEB_URL as string;
         break;
       case "accessCode":
         data = ccdCaseData;
-        url = process.env.IDAM_TOKEN_URL as string;
+        url = process.env.IDAM_WEB_URL as string;
         break;
       case "solicitorCreateCase":
         data = solicitorCaseData;
-        url = process.env.IDAM_TOKEN_URL as string;
+        url = process.env.IDAM_WEB_URL as string;
         break;
       default:
         throw new Error(`Invalid option: ${option}`);
@@ -92,7 +92,7 @@ export async function getS2SToken(
 ): Promise<string> {
   try {
     const response = await apiContext.post(
-      process.env.S2S_TOKEN_URL as string,
+      process.env.IDAM_S2S_URL as string,
       {
         headers: { "content-type": "application/json", Accept: "*/*" },
         data: {
