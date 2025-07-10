@@ -6,7 +6,7 @@ import { Helpers } from "../../../../common/helpers.ts";
 import config from "../../../../utils/config.utils.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
-// TEST COMMENT
+
 test.describe("Draft a parental responsibility order tests", (): void => {
   // Triple timeout for these slow tests
   test.slow();
