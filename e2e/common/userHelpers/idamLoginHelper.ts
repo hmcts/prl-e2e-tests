@@ -3,6 +3,10 @@ import fs, { existsSync, readFileSync } from "fs";
 import Config from "../../utils/config.utils.ts";
 import { setupUser } from "./idamCreateUserApiHelper.ts";
 import { UserCredentialsLong, UserLoginInfo } from "../types.ts";
+import process from "node:process";
+import { IdamUtils } from "@hmcts/playwright-common";
+import { UserInfoParams } from "@hmcts/playwright-common/dist/utils/idam.utils.js";
+
 export class IdamLoginHelper {
   private static fields: UserLoginInfo = {
     username: "#username",
@@ -49,7 +53,7 @@ export class IdamLoginHelper {
 
       if (userType !== "citizen") {
         await page.context().storageState({ path: sessionPath });
-        await this.addAnalyticsCookie(sessionPath);
+        await this.addAnalyticsCookie(sessionPath, username);
       }
     }
   }
@@ -110,16 +114,30 @@ export class IdamLoginHelper {
     }
   }
 
-  private static async addAnalyticsCookie(sessionPath: string): Promise<void> {
+  private static async addAnalyticsCookie(
+    sessionPath: string,
+    username: string,
+  ): Promise<void> {
     try {
       const domain = (Config.manageCasesBaseURL as string).replace(
         "https://",
         "",
       );
       const state = JSON.parse(fs.readFileSync(sessionPath, "utf-8"));
-      const userId = state.cookies.find(
-        (cookie: Cookie) => cookie.name === "__userid__",
-      )?.value;
+      let userId: string;
+      if (process.env.MANAGE_CASES_TEST_ENV === "preview") {
+        // when using preview environment the __userid__ cookie is undefined so need to fetch user ID a different way
+        const token = process.env.CREATE_USER_BEARER_TOKEN as string;
+        const userDetails: UserInfoParams = await new IdamUtils().getUserInfo({
+          email: username,
+          bearerToken: token,
+        });
+        userId = userDetails.id;
+      } else {
+        userId = state.cookies.find(
+          (cookie: Cookie) => cookie.name === "__userid__",
+        )?.value;
+      }
       state.cookies.push({
         name: `hmcts-exui-cookies-${userId}-mc-accepted`,
         value: "true",
