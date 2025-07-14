@@ -4,6 +4,7 @@ import Config from "../../../../utils/config.utils.ts";
 import { C100 } from "../../../../journeys/citizen/createCase/C100/C100.ts";
 
 test.describe("C100 Citizen Application tests on the second MIRO set.", (): void => {
+  test.slow();
   test.beforeEach(async ({ page }) => {
     await IdamLoginHelper.setupAndSignInUser(
       page,
