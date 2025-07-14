@@ -135,28 +135,53 @@ export class AllegationsOfHarmRevisedSubmitPage {
         ),
         Helpers.checkVisibleAndPresent(
           page,
+          `${Selectors.GovukText16}:text-is("${AllegationsOfHarmRevisedSubmitContent.text16YesDescribeAbuseMandatory}")`,
+          1,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
           `${Selectors.GovukText16}:text-is("${AllegationsOfHarmRevisedSubmitContent.text16YesDescribeAbuse}")`,
-          6,
+          5,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukText16}:text-is("${AllegationsOfHarmRevisedSubmitContent.text16YesDurationAbuseMandatory}")`,
+          1,
         ),
         Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukText16}:text-is("${AllegationsOfHarmRevisedSubmitContent.text16YesDurationAbuse}")`,
-          6,
+          5,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukText16}:text-is("${AllegationsOfHarmRevisedSubmitContent.text16YesApplicantSoughtHelpMandatory}")`,
+          1,
         ),
         Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukText16}:text-is("${AllegationsOfHarmRevisedSubmitContent.text16YesApplicantSoughtHelp}")`,
-          6,
+          5,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukText16}:text-is("${AllegationsOfHarmRevisedSubmitContent.text16YesApplicantSoughtHelpWhoMandatory}")`,
+          1,
         ),
         Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukText16}:text-is("${AllegationsOfHarmRevisedSubmitContent.text16YesApplicantSoughtHelpWho}")`,
-          6,
+          5,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukText16}:text-is("${AllegationsOfHarmRevisedSubmitContent.text16YesTypeOfAbuseMandatory}")`,
+          1,
         ),
         Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukText16}:text-is("${AllegationsOfHarmRevisedSubmitContent.text16YesTypeOfAbuse}")`,
-          2,
+          1,
         ),
         Helpers.checkVisibleAndPresent(
           page,
