@@ -24,6 +24,12 @@ export class C100DraftOrdersTabPage {
     await page.waitForSelector(
       `${Selectors.Span}${Selectors.GovukText16}:text-is("${C100DraftOrdersTabContent.subTitle1}")`,
     );
+    await page.waitForSelector(
+      `${Selectors.Span}${Selectors.GovukText16}:text-is("${C100DraftOrdersTabContent.otherdetails1}")`,
+    );
+    await page.waitForSelector(
+      `${Selectors.Span}${Selectors.GovukText16}:text-is("${C100DraftOrdersTabContent.otherdetails2}")`,
+    );
     if (accessibilityTest) {
       await new AxeUtils(page).audit();
     }

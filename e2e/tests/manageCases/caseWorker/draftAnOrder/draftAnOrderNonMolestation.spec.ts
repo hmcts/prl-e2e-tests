@@ -44,6 +44,7 @@ test.describe("Draft a non molestation order tests", (): void => {
       browser: browser,
       caseRef: caseRef,
       checkPdf: true,
+      isUploadOrder: false,
     });
   });
 
@@ -68,6 +69,7 @@ test.describe("Draft a non molestation order tests", (): void => {
       browser: browser,
       caseRef: caseRef,
       checkPdf: true,
+      isUploadOrder: false,
     });
   });
 
@@ -92,6 +94,7 @@ test.describe("Draft a non molestation order tests", (): void => {
       browser: browser,
       caseRef: caseRef,
       checkPdf: true,
+      isUploadOrder: false,
     });
   });
 });

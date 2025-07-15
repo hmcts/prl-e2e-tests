@@ -1,7 +1,7 @@
 export enum HearingCreateEditSummaryContent {
   govUkHeadingL = "Check your answers before sending your request",
   GovukSummaryListKey1 = "Case name",
-  GovukSummaryListKey2 = "Case number",
+  GovukSummaryListKey2 = "Case reference",
   GovukSummaryListKey3 = "Type",
 
   GovukHeadingM1 = "Hearing requirements",

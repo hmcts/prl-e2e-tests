@@ -21,7 +21,7 @@ test.describe("Applicant confirm contact details tests", (): void => {
     );
   });
 
-  test("Applicant Check The Application. @regression @accessibility @nightly", async ({
+  test("Applicant Check The Application. @regression @accessibility", async ({
     page,
     browser,
   }): Promise<void> => {
