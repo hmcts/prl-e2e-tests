@@ -20,7 +20,7 @@ test.describe("Respondent confirm contact details tests", (): void => {
     );
   });
 
-  test("Respondent Check The Application. @regression @accessibility @nightly", async ({
+  test("Respondent Check The Application. @regression @accessibility", async ({
     page,
     browser,
   }): Promise<void> => {
