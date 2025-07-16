@@ -4,7 +4,8 @@ import process from "node:process";
 import { ServiceOfApplicationLite } from "../../journeys/manageCases/caseProgression/serviceOfApplication/serviceOfApplicationLite.ts";
 import config from "../../utils/config.utils.ts";
 import { Helpers } from "../helpers.ts";
-import { getAccessToken, getS2SToken } from "./getAccessTokenHelper.ts";
+import { TokenUtils } from "../../utils/token.utils.ts";
+import { IdamUtils, ServiceAuthUtils } from "@hmcts/playwright-common";
 
 const solicitorCaseData = JSON.parse(
   fs.readFileSync("./e2e/caseData/solicitorDACaseEventData.json", "utf8"),
@@ -112,13 +113,14 @@ export async function completeCaseEventWithoutContext(
   caseEvent: string,
 ) {
   const apiContext: APIRequestContext = await request.newContext();
-  const bearerToken = await getAccessToken("solicitorCreateCase", apiContext);
+  const newTokenUtil = await new TokenUtils(new IdamUtils());
+  const bearerToken = await newTokenUtil.getAccessToken("solicitorCreateCase");
   if (!bearerToken) {
     throw new Error("Setup failed: Unable to get bearer token.");
   }
-  const apiContextS2SToken: APIRequestContext = await request.newContext();
   const microservice: string = "prl_cos_api";
-  const s2sToken: string = await getS2SToken(apiContextS2SToken, microservice);
+  const newServiceAuthUtil = await new ServiceAuthUtils()
+  const s2sToken: string = await newServiceAuthUtil.retrieveToken({ microservice: microservice });
   const userID: string = await getUserID(apiContext, bearerToken);
   const caseEventToken: string = await getEventToken(
     apiContext,
