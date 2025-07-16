@@ -1,4 +1,4 @@
-import { test, Browser } from "@playwright/test";
+import { test } from "@playwright/test";
 import createDaCitizenCourtNavCase from "../../../../common/caseHelpers/citizenDACaseCreateHelper.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import config, { Config } from "../../../../utils/config.utils.ts";
@@ -8,7 +8,6 @@ test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("Complete the Order task for DA Citizen case tests.", () => {
   let ccdRef: string = "";
-  let browser: Browser;
 
   test.beforeEach(async ({ page }) => {
     ccdRef = await createDaCitizenCourtNavCase(true, false);
@@ -28,7 +27,6 @@ test.describe("Complete the Order task for DA Citizen case tests.", () => {
       accessibilityTest: false,
       yesNoSendToGateKeeper: true,
       ccdRef,
-      browser,
     });
   });
 
@@ -40,19 +38,18 @@ test.describe("Complete the Order task for DA Citizen case tests.", () => {
       accessibilityTest: true,
       yesNoSendToGateKeeper: true,
       ccdRef,
-      browser,
     });
   });
 
   test("Manual Completion Task - Team leader - Send to GateKeeper - without accessibility test. @regression @accessibility", async ({
-    page,
+    page, browser
   }): Promise<void> => {
     await SendToGateKeeperJourney.teamLeaderCheckSendToGateKeeper({
       page,
       accessibilityTest: false,
       yesNoSendToGateKeeper: true,
       ccdRef,
-      browser,
+      browser: browser,
     });
   });
 });
