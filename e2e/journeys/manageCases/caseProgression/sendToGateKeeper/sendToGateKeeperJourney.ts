@@ -4,7 +4,7 @@ import config from "../../../../utils/config.utils.ts";
 import { FL401SendToGateKeeper1Page } from "../../../../pages/manageCases/caseProgression/sendToGateKeeper/fl401SendToGateKeeper1Page.ts";
 import { FL401SendToGateKeeperSubmitPage } from "../../../../pages/manageCases/caseProgression/sendToGateKeeper/fl401SendToGateKeeperSubmitPage.ts";
 import { submitEvent } from "../../../../common/caseHelpers/solicitorCaseCreatorHelper.ts";
-import { Selectors } from "../../../../common/selectors.ts";
+//import { Selectors } from "../../../../common/selectors.ts";
 
 interface SendToGateKeeperParams {
   page: Page;
@@ -52,29 +52,29 @@ export class SendToGateKeeperJourney {
   }
 
   public static async teamLeaderCheckSendToGateKeeper({
-      ccdRef,
+    ccdRef,
+    browser,
+  }: SendToGateKeeperParams): Promise<void> {
+    const teamLeaderPage: Page = await Helpers.openNewBrowserWindow(
       browser,
-    }: SendToGateKeeperParams): Promise<void> {
-      const teamLeaderPage: Page = await Helpers.openNewBrowserWindow(
-        browser,
-        "caseManager",
-      );
-      await Helpers.goToCase(
-        teamLeaderPage,
-        config.manageCasesBaseURLCase,
-        ccdRef,
-        "tasks",
-      );
-      await Helpers.waitForTask(teamLeaderPage, 'Send to Gatekeeper');
-      const taskLocator = teamLeaderPage.locator("exui-case-task", {
-        hasText: 'Send to Gatekeeper',
-      });
+      "caseManager",
+    );
+    await Helpers.goToCase(
+      teamLeaderPage,
+      config.manageCasesBaseURLCase,
+      ccdRef,
+      "tasks",
+    );
+    await Helpers.waitForTask(teamLeaderPage, "Send to Gatekeeper");
+    // const taskLocator = teamLeaderPage.locator("exui-case-task", {
+    //   hasText: "Send to Gatekeeper",
+    // });
     //THIS BIT below will be 'on hold' due to the AAT leader user NOT having the correct user roles, so the MARK AS DONE doesn't show up as expected
-    
-      //await taskLocator.locator(Selectors.a, { hasText: "Assign to me" }).click();
-      //checking if the 'Send to gatekeeper' WA task has the team-leader 'manage options'
-      //await this.checkSendToGatekeeperTaskMarkAsDone(teamLeaderPage);
-    }
+
+    //await taskLocator.locator(Selectors.a, { hasText: "Assign to me" }).click();
+    //checking if the 'Send to gatekeeper' WA task has the team-leader 'manage options'
+    //await this.checkSendToGatekeeperTaskMarkAsDone(teamLeaderPage);
+  }
 
   private static async checkSendToGatekeeperTaskAutoClosure(
     page: Page,
@@ -86,13 +86,13 @@ export class SendToGateKeeperJourney {
       ccdRef,
       "tasks",
     );
-    await expect(page.getByText('Send to Gatekeeper')).not.toBeVisible();
+    await expect(page.getByText("Send to Gatekeeper")).not.toBeVisible();
   }
 
   private static async checkSendToGatekeeperTaskMarkAsDone(
     page: Page,
   ): Promise<void> {
-    await expect(page.getByText('Mark as done')).toBeVisible();
-    await expect(page.getByText('Reassign task')).toBeVisible();
+    await expect(page.getByText("Mark as done")).toBeVisible();
+    await expect(page.getByText("Reassign task")).toBeVisible();
   }
 }
