@@ -35,5 +35,11 @@ export class CreateBundleSubmitPage {
     await page.click(
       `${Selectors.button}:text-is("${CreateBundleSubmitContent.creatBundle}")`,
     );
+    // check for success message
+    await page
+      .locator(Selectors.alertMessage, {
+        hasText: "updated with event: Create a bundle",
+      })
+      .waitFor();
   }
 }
