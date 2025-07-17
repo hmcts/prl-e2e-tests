@@ -119,8 +119,10 @@ export async function completeCaseEventWithoutContext(
     throw new Error("Setup failed: Unable to get bearer token.");
   }
   const microservice: string = "prl_cos_api";
-  const newServiceAuthUtil = await new ServiceAuthUtils()
-  const s2sToken: string = await newServiceAuthUtil.retrieveToken({ microservice: microservice });
+  const newServiceAuthUtil = await new ServiceAuthUtils();
+  const s2sToken: string = await newServiceAuthUtil.retrieveToken({
+    microservice: microservice,
+  });
   const userID: string = await getUserID(apiContext, bearerToken);
   const caseEventToken: string = await getEventToken(
     apiContext,

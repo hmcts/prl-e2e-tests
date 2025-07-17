@@ -204,7 +204,8 @@ export class EdgeCase {
     surname: string;
   }> {
     await StartPage.startPage({ page, accessibilityTest });
-    const userInfo = await IdamLoginHelper.setupAndSignInUser(
+    const newIdamLoginHelper = await new IdamLoginHelper();
+    const userInfo = await newIdamLoginHelper.setupAndSignInUser(
       page,
       page.url(),
       "citizen",

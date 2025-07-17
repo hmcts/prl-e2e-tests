@@ -1,9 +1,9 @@
-import { Page, APIRequestContext } from "@playwright/test";
+import { Page } from "@playwright/test";
 import IdamLoginHelper from "../../../utils/idamLoginHelper.utils.ts";
 import { ApplicantPage } from "../../../pages/citizen/createCase/initialJourney/applicantPage.ts";
 import { CitizenCACaseUtils } from "../../../utils/citizenCACase.utils.ts";
 import { CaseDashboardPage } from "../../../pages/citizen/createCase/initialJourney/caseDashboardPage.ts";
-import { CreateUserUtil } from "../../../utils/createUser.utils.ts"; // <--- FIX IS HERE: Changed from UserCreationUtil to CreateUserUtil
+import { CreateUserUtil } from "../../../utils/createUser.utils.ts";
 import { C100Pay } from "./C100/subJourneys/C100Pay.ts";
 import { EqualityAndDiversityPage } from "../../../pages/citizen/createCase/C100/confirmation/equalityAndDiversityQuestionsPage.ts";
 import { ReviewPage } from "../../../pages/citizen/createCase/C100/reviewPages/reviewPage.ts";
@@ -15,7 +15,6 @@ interface CitizenC100ApiCaseOptions {
   accessibilityTest: boolean;
   application: string;
   errorMessaging: boolean;
-  request: APIRequestContext;
 }
 
 export class CitizenC100ApiCase {
@@ -26,8 +25,6 @@ export class CitizenC100ApiCase {
     errorMessaging,
   }: CitizenC100ApiCaseOptions): Promise<void> {
     const token = process.env.CREATE_USER_BEARER_TOKEN as string;
-
-    // Use the correct class name for the static setupUser method
     const userInfo = await CreateUserUtil.createUser(token, "citizen");
 
     const caCaseCreator = new CitizenCACaseUtils(
