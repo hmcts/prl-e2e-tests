@@ -81,7 +81,7 @@ export class CreateABundleJourney {
           // Allow 5s delay before retrying
           intervals: [5_000],
           // Allow up to a minute
-          timeout: 50_000,
+          timeout: 60_000,
         },
       )
       .toBeTruthy();
