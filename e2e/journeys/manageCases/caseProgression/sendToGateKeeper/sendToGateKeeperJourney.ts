@@ -4,7 +4,7 @@ import config from "../../../../utils/config.utils.ts";
 import { FL401SendToGateKeeper1Page } from "../../../../pages/manageCases/caseProgression/sendToGateKeeper/fl401SendToGateKeeper1Page.ts";
 import { FL401SendToGateKeeperSubmitPage } from "../../../../pages/manageCases/caseProgression/sendToGateKeeper/fl401SendToGateKeeperSubmitPage.ts";
 import { submitEvent } from "../../../../common/caseHelpers/solicitorCaseCreatorHelper.ts";
-//import { Selectors } from "../../../../common/selectors.ts";
+import { Selectors } from "../../../../common/selectors.ts";
 
 interface SendToGateKeeperParams {
   page: Page;
@@ -66,14 +66,12 @@ export class SendToGateKeeperJourney {
       "tasks",
     );
     await Helpers.waitForTask(teamLeaderPage, "Send to Gatekeeper");
-    // const taskLocator = teamLeaderPage.locator("exui-case-task", {
-    //   hasText: "Send to Gatekeeper",
-    // });
-    //THIS BIT below will be 'on hold' due to the AAT leader user NOT having the correct user roles, so the MARK AS DONE doesn't show up as expected
-
-    //await taskLocator.locator(Selectors.a, { hasText: "Assign to me" }).click();
+    const taskLocator = teamLeaderPage.locator("exui-case-task", {
+      hasText: "Send to Gatekeeper",
+    });
+    await taskLocator.locator(Selectors.a, { hasText: "Assign to me" }).click();
     //checking if the 'Send to gatekeeper' WA task has the team-leader 'manage options'
-    //await this.checkSendToGatekeeperTaskMarkAsDone(teamLeaderPage);
+    await this.checkSendToGatekeeperTaskMarkAsDone(teamLeaderPage);
   }
 
   private static async checkSendToGatekeeperTaskAutoClosure(
