@@ -1,17 +1,15 @@
-import { test } from "@playwright/test";
-import Config from "../../../../utils/config.utils.ts";
-import createDaCitizenCourtNavCase from "../../../../common/caseHelpers/citizenDACaseCreateHelper.ts";
+import { test } from "../../../fixtures.ts";
 import { ReviewDocuments } from "../../../../journeys/manageCases/caseProgression/reviewDocuments/reviewDocuments.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import config from "../../../../utils/config.utils.ts";
 
-test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
+test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("Review Documents task for DA Citizen case tests.", () => {
   let ccdRef: string = "";
 
-  test.beforeEach(async ({ page }) => {
-    ccdRef = await createDaCitizenCourtNavCase(true, true);
+  test.beforeEach(async ({ page, courtNavUtils }) => {
+    ccdRef = await courtNavUtils.createCase(true, true);
     await Helpers.goToCase(
       page,
       config.manageCasesBaseURLCase,

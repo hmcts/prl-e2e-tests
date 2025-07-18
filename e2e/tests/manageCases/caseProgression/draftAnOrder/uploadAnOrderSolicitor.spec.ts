@@ -21,7 +21,7 @@ test.describe("'Upload an order' by Solicitor via the 'Draft an Order' event tes
       errorMessaging: false,
       browser: browser,
     });
-  })
+  });
 
   test(`CA 'Upload an order' as a Solicitor with the following options:
   Case: C100,

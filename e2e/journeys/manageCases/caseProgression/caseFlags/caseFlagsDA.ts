@@ -36,8 +36,8 @@ export class CaseFlagsDA {
       supportType,
       accessibilityTest,
     });
-      //The behaviour between CA and DA case flags differs according to the flag type - Submit/Continue, with/without submission page, etc
-      //because this is a common component, a manageFlagsDA file was created to avoid conflicts between them
+    //The behaviour between CA and DA case flags differs according to the flag type - Submit/Continue, with/without submission page, etc
+    //because this is a common component, a manageFlagsDA file was created to avoid conflicts between them
     await ManageFlagsDA.manageFlagsDA({
       browser,
       caseRef,
