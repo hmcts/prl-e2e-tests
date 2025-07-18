@@ -15,7 +15,7 @@ export enum Selectors {
   GovukNavLink = ".govuk-nav-link",
   GovukPhaseBanner = ".govuk-phase-banner",
   formControl = ".form-control",
-  daTasklist = ".mat-tab-label-content",
+  tab = ".mat-tab-label-content",
 
   // Forms
   GovukFormGroup = ".govuk-form-group",

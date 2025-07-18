@@ -157,7 +157,7 @@ export class judgeCreateODAManageOrderSubmitPage {
           ),
           Helpers.checkVisibleAndPresent(
             page,
-            `${Selectors.GovukText16}:text-is("${CommonStaticText.no}")`,
+            `${Selectors.GovukText16}:text-is("${CommonStaticText.no}"):visible`,
             3,
           ),
           Helpers.checkVisibleAndPresent(

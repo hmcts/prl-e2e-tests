@@ -19,6 +19,7 @@ interface ParentalResponsibilityOrderParams {
   accessibilityTest: boolean;
   checkPdf: boolean;
   caseRef: string;
+  isUploadOrder: boolean;
 }
 
 export class ParentalResponsibilityOrder {
@@ -31,11 +32,13 @@ export class ParentalResponsibilityOrder {
     accessibilityTest,
     checkPdf,
     caseRef,
+    isUploadOrder,
   }: ParentalResponsibilityOrderParams): Promise<void> {
     await DraftAnOrder1Page.draftAnOrder1Page(
       page,
       errorMessaging,
       accessibilityTest,
+      isUploadOrder,
     );
     await DraftAnOrder2Page.draftAnOrder2Page(
       page,
