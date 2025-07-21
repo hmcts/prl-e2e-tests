@@ -89,6 +89,7 @@ def secrets = [
     secret('court-admin-stoke-username', 'COURT_ADMIN_STOKE_USERNAME'),
     secret('court-admin-stoke-password', 'COURT_ADMIN_STOKE_PASSWORD'),
     secret('s2s-token-url', 'IDAM_S2S_URL'),
+    secret('s2s-token-url', 'S2S_URL'),
     secret('ccd-datastore-username', 'CCD_DATA_STORE_CLIENT_USERNAME'),
     secret('ccd-datastore-password', 'CCD_DATA_STORE_CLIENT_PASSWORD'),
     secret('ccd-datastore-client-id', 'CCD_DATA_STORE_CLIENT_ID'),
