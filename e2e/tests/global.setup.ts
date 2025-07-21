@@ -24,7 +24,7 @@ setup.describe("Setup users and retrieve tokens", () => {
   setup(
     "Retrieve bearer token for courtNav DA case creation",
     async ({ tokenUtils }) => {
-      const token = await tokenUtils.getAccessToken("daCourtNavCreateCaseData");
+      const token = await tokenUtils.getAccessToken("daCourtNavCreateCase");
       process.env.COURTNAV_CREATE_CASE_BEARER_TOKEN = token;
     },
   );

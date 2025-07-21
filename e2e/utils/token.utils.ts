@@ -1,5 +1,15 @@
 import { IdamUtils } from "@hmcts/playwright-common";
 
+export interface IdamTokenParams {
+  grantType: string;
+  clientId: string;
+  clientSecret: string;
+  scope: string;
+  username?: string;
+  password?: string;
+  redirectUri?: string;
+}
+
 /**
  * Utility class for managing authentication tokens (IDAM and S2S).
  */
@@ -52,25 +62,40 @@ export class TokenUtils {
    * @throws {Error} If an invalid option is provided or if token retrieval fails.
    */
   public async getAccessToken(option: string): Promise<string> {
-    let data;
+    let rawData;
     switch (option) {
       case "citizenCreateUser":
-        data = this.citizenCreateUserData;
+        rawData = this.citizenCreateUserData;
         break;
       case "daCourtNavCreateCase":
-        data = this.daCourtNavCreateCaseData;
+        rawData = this.daCourtNavCreateCaseData;
         break;
       case "ccdCaseData":
-        data = this.ccdCaseData;
+        rawData = this.ccdCaseData;
         break;
       case "solicitorCreateCase":
-        data = this.solicitorCaseData;
+        rawData = this.solicitorCaseData;
+        break;
+      case "accessCode":
+        rawData = this.ccdCaseData;
         break;
       default:
         throw new Error(
           `Invalid option: '${option}'. Please provide a valid option like 'citizenCreateUser', 'daCourtNavCreateCase', 'accessCode', or 'solicitorCreateCase'.`,
         );
     }
-    return this.idamUtils.generateIdamToken(data);
+    const transformedData: IdamTokenParams = {
+      grantType: rawData.grant_type,
+      clientId: rawData.client_id,
+      clientSecret: rawData.client_secret,
+      scope: rawData.scope,
+      // Optional properties - only include if they exist in rawData to avoid passing undefined
+      ...(rawData.username && { username: rawData.username }),
+      ...(rawData.password && { password: rawData.password }),
+      ...(rawData.redirect_uri && { redirectUri: rawData.redirect_uri }),
+    };
+
+    return this.idamUtils.generateIdamToken(transformedData);
   }
+
 }
