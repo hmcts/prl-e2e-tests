@@ -5,7 +5,7 @@ import withNoticeJsonData from "../caseData/citizenDA/courtNavDaCitizenCase_With
 import withoutNoticeJsonData from "../caseData/citizenDA/courtNavDaCitizenCase_WithoutNotice.json" with { type: "json" };
 
 export class CourtNavUtils {
-  private apiContext: APIRequestContext;
+  private apiContext!: APIRequestContext;
   private token: string;
   private createCaseSubscriptionKey: string;
   private addDocSubscriptionKey: string;
@@ -13,7 +13,7 @@ export class CourtNavUtils {
   private docUrl: string;
 
   constructor() {
-    this.initializeApiClients();
+    this.apiContext = this.apiContext;
     this.token = process.env.COURTNAV_CREATE_CASE_BEARER_TOKEN as string;
     this.createCaseSubscriptionKey = process.env
       .COURTNAV_SUBSCRIPTION_KEY_CREATE_CASE as string;
@@ -35,10 +35,6 @@ export class CourtNavUtils {
     }
   }
 
-  private async initializeApiClients() {
-    this.apiContext = await request.newContext();
-  }
-
   /**
    * Creates a DA Citizen CourtNav case and optionally adds a document.
    * @param {boolean} withNotice Determines urgency of the case (with (true) or without Notice (false))
@@ -48,11 +44,11 @@ export class CourtNavUtils {
   async createCase(withNotice: boolean, withDoc: boolean): Promise<string> {
     const jsonData = withNotice ? withNoticeJsonData : withoutNoticeJsonData;
     let ccd_reference = "";
-
+    const apiContext = await request.newContext();
     await expect
       .poll(
         async () => {
-          const response = await this.apiContext.post(this.caseUrl, {
+          const response = await apiContext.post(this.caseUrl, {
             headers: {
               Authorization: `Bearer ${this.token}`,
               "Ocp-Apim-Subscription-Key": this.createCaseSubscriptionKey,

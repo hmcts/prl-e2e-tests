@@ -46,8 +46,8 @@ export const utilsFixtures = {
   courtNavUtils: async ({}, use) => {
     await use(new CourtNavUtils());
   },
-  accessCodeHelper: async ({ idamUtils, tokenUtils }, use) => {
-    await use(new AccessCodeHelper(idamUtils, tokenUtils));
+  accessCodeHelper: async ({ serviceAuthUtils, tokenUtils }, use) => {
+    await use(new AccessCodeHelper(serviceAuthUtils, tokenUtils));
   },
   createUserUtil: async ({}, use) => {
     await use(new CreateUserUtil());

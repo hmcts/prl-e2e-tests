@@ -1,4 +1,4 @@
-import { APIRequestContext } from "@playwright/test";
+import { APIRequestContext, request } from "@playwright/test";
 import { TokenUtils } from "./token.utils.ts";
 import { ServiceAuthUtils } from "@hmcts/playwright-common";
 
@@ -13,11 +13,18 @@ interface CaseInviteDetails {
 }
 
 export class AccessCodeHelper {
-  private apiContextSystemUser: APIRequestContext;
+  private apiContextSystemUser!: APIRequestContext;
   constructor(
     private serviceAuthUtils: ServiceAuthUtils,
     private tokenUtils: TokenUtils,
   ) {}
+
+  public async initializeApiContext(): Promise<void> {
+    // Only create a new context if one doesn't already exist to avoid redundant creations
+    if (!this.apiContextSystemUser) {
+      this.apiContextSystemUser = await request.newContext();
+    }
+  }
 
   public async getApplicantAccessCode(ccdRef: string): Promise<string> {
     const caseInvites: CaseInvite[] = await this.getAccessCode(ccdRef);
@@ -38,13 +45,20 @@ export class AccessCodeHelper {
   }
 
   private async getAccessCode(ccdRef: string): Promise<CaseInvite[]> {
+    if (!this.apiContextSystemUser) {
+      await this.initializeApiContext(); // Call the async initialization method
+  }
     let caseInvites: CaseInvite[] = [];
     const tokenSystemUserCreateCase =
       await this.tokenUtils.getAccessToken("accessCode");
+    console.log("token: " + tokenSystemUserCreateCase);
+
     const s2sToken = await this.serviceAuthUtils.retrieveToken({
-      microservice: process.env.CCD_DATA_STORE_CLIENT_ID as string,
+      microservice: "prl-cos-api",
     });
+    console.log("s2s token: " + s2sToken);
     const url = `${process.env.CCD_DATA_STORE_URL as string}/cases/${ccdRef}`;
+
     const response = await this.apiContextSystemUser.get(url, {
       headers: {
         Authorization: `Bearer ${tokenSystemUserCreateCase}`,

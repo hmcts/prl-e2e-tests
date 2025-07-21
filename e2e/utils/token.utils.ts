@@ -70,9 +70,6 @@ export class TokenUtils {
       case "daCourtNavCreateCase":
         rawData = this.daCourtNavCreateCaseData;
         break;
-      case "ccdCaseData":
-        rawData = this.ccdCaseData;
-        break;
       case "solicitorCreateCase":
         rawData = this.solicitorCaseData;
         break;
