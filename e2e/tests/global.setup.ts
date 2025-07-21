@@ -29,6 +29,13 @@ setup.describe("Setup users and retrieve tokens", () => {
     },
   );
 
+  setup("Retrieve s2s token", async ({ serviceAuthUtils }) => {
+    const s2sToken = await serviceAuthUtils.retrieveToken({
+      microservice: process.env.CCD_DATA_STORE_CLIENT_ID as string,
+    });
+    process.env.S2S_TOKEN = s2sToken;
+  });
+
   setup("Setup judge user", async ({ page, idamLoginHelper }) => {
     await idamLoginHelper.signInLongLivedUser(
       page,

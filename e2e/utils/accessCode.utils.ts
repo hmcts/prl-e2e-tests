@@ -46,17 +46,13 @@ export class AccessCodeHelper {
 
   private async getAccessCode(ccdRef: string): Promise<CaseInvite[]> {
     if (!this.apiContextSystemUser) {
-      await this.initializeApiContext(); // Call the async initialization method
+      await this.initializeApiContext();
     }
     let caseInvites: CaseInvite[] = [];
     const tokenSystemUserCreateCase =
       await this.tokenUtils.getAccessToken("accessCode");
-
-    const s2sToken = await this.serviceAuthUtils.retrieveToken({
-      microservice: "prl-cos-api",
-    });
+    const s2sToken = process.env.S2S_TOKEN as string;
     const url = `${process.env.CCD_DATA_STORE_URL as string}/cases/${ccdRef}`;
-
     const response = await this.apiContextSystemUser.get(url, {
       headers: {
         Authorization: `Bearer ${tokenSystemUserCreateCase}`,
