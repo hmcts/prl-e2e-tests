@@ -94,5 +94,4 @@ export class TokenUtils {
 
     return this.idamUtils.generateIdamToken(transformedData);
   }
-
 }

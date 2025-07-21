@@ -47,7 +47,7 @@ export class AccessCodeHelper {
   private async getAccessCode(ccdRef: string): Promise<CaseInvite[]> {
     if (!this.apiContextSystemUser) {
       await this.initializeApiContext(); // Call the async initialization method
-  }
+    }
     let caseInvites: CaseInvite[] = [];
     const tokenSystemUserCreateCase =
       await this.tokenUtils.getAccessToken("accessCode");
