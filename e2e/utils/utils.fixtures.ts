@@ -10,7 +10,7 @@ import { CourtNavUtils } from "./courtNav.utils.ts";
 import { AccessCodeHelper } from "./accessCode.utils.ts";
 import { CreateUserUtil } from "./createUser.utils.ts";
 import { IdamLoginHelper } from "./idamLoginHelper.utils.ts";
-import { CreateCaseUtils } from "./createCase.utils.js";
+import { CaseEventUtils } from "./caseEvent.utils.js";
 
 export interface UtilsFixtures {
   config: Config;
@@ -23,7 +23,7 @@ export interface UtilsFixtures {
   idamLoginHelper: IdamLoginHelper;
   sessionUtils: SessionUtils;
   serviceAuthUtils: ServiceAuthUtils;
-  createCaseUtils: CreateCaseUtils;
+  caseEventUtils: CaseEventUtils;
 }
 
 export const utilsFixtures = {
@@ -57,7 +57,7 @@ export const utilsFixtures = {
   idamLoginHelper: async ({}, use) => {
     await use(new IdamLoginHelper());
   },
-  createCaseUtils: async ({}, use) => {
-    await use(new CreateCaseUtils());
+  caseEventUtils: async ({}, use) => {
+    await use(new CaseEventUtils());
   }
 };

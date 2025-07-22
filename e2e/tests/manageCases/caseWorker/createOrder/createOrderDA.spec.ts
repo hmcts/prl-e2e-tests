@@ -6,8 +6,8 @@ import { Fl401ManageOrderDA } from "../../../../journeys/manageCases/caseWorker/
 test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("Create an order tests", (): void => {
-  test.beforeEach(async ({ page, browser, createCaseUtils }) => {
-    const caseRef = await createCaseUtils.createDACaseSendToGatekeeper(browser);
+  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
+    const caseRef = await caseEventUtils.createDACaseSendToGatekeeper(browser);
     await Helpers.goToCase(
       page,
       config.manageCasesBaseURLCase,

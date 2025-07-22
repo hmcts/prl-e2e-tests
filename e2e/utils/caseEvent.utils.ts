@@ -8,7 +8,7 @@ import { Helpers } from "../common/helpers.js";
 import config from "./config.utils.js";
 import Config from "./config.utils.js";
 
-export class CreateCaseUtils {
+export class CaseEventUtils {
   private readonly contentTypeHeader: string;
   private readonly experimentalHeader: string;
 
@@ -36,7 +36,14 @@ export class CreateCaseUtils {
     return caseRef;
   }
 
-  async createCACase(page: Page, jsonData: JsonData) {
+  async createCACase(browser: Browser, jsonData: JsonData,  page?: Page) {
+    if(!page) {
+      page = await Helpers.openNewBrowserWindow(
+        browser,
+        "solicitor",
+      );
+      await page.goto(config.manageCasesBaseURLCase);
+    }
     const caseRef = await this.createTSSolicitorCase(page, "C100");
     await this.submitEvent(page, caseRef, "submitAndPay", jsonData);
     await this.submitEvent(
@@ -45,6 +52,7 @@ export class CreateCaseUtils {
       "testingSupportPaymentSuccessCallback",
       jsonData
     );
+    await page.close();
     return caseRef;
   }
 
@@ -60,6 +68,29 @@ export class CreateCaseUtils {
     );
     await caPage.goto(`${Config.manageCasesBaseURL}/work/my-work/list`);
     await submitEvent(caPage, caseRef, "fl401SendToGateKeeper");
+    await caPage.close();
+    return caseRef;
+  }
+
+  async createCACaseIssueAndSendToLocalCourt(browser: Browser): Promise<string> {
+    const caseRef: string = await this.createCACase(browser, jsonDatas.solicitorCACaseData);
+    const ctscPage = await Helpers.openNewBrowserWindow(
+      browser,
+      "courtAdminStoke",
+    );
+    await Helpers.goToCase(
+      ctscPage,
+      config.manageCasesBaseURLCase,
+      caseRef,
+      "tasks",
+    );
+    await submitEvent(
+      ctscPage,
+      caseRef,
+      "issueAndSendToLocalCourtCallback",
+      jsonDatas.solicitorCACaseData,
+    );
+    await ctscPage.close();
     return caseRef;
   }
 
