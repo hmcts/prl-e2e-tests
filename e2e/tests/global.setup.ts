@@ -25,7 +25,8 @@ setup.describe("Setup users and retrieve tokens", () => {
   });
 
   setup("Retrieve bearer token for courtNav DA case creation", async () => {
-    const apiContextDaCreateCase: APIRequestContext = await request.newContext();
+    const apiContextDaCreateCase: APIRequestContext =
+      await request.newContext();
     const tokenDaCreateCase = await getAccessToken(
       "daCourtNavCreateCase",
       apiContextDaCreateCase,

@@ -21,6 +21,7 @@ interface C100ManageOrdersOptions {
   uploadOrderFL401Options?: uploadOrderFL401Options;
   solicitorCaseCreateType: solicitorCaseCreateType;
   isUploadOrder: boolean;
+  serveOrderNow: boolean;
 }
 
 export class C100ManageOrdersUploadJourney {
@@ -32,6 +33,7 @@ export class C100ManageOrdersUploadJourney {
     uploadOrderFL401Options,
     solicitorCaseCreateType,
     isUploadOrder,
+    serveOrderNow,
   }: C100ManageOrdersOptions): Promise<void> {
     await Helpers.chooseEventFromDropdown(page, `Manage orders`);
     await ManageOrders1Page.manageOrders1Page({
@@ -60,6 +62,7 @@ export class C100ManageOrdersUploadJourney {
     await ManageOrders26PageCA.manageOrders26PageCA({
       page,
       accessibilityTest,
+      serveOrderNow,
     });
     await SubmitPageCA.submitPageCA({
       page,

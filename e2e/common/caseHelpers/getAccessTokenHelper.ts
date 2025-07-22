@@ -91,15 +91,12 @@ export async function getS2SToken(
   microservice: string,
 ): Promise<string> {
   try {
-    const response = await apiContext.post(
-      process.env.IDAM_S2S_URL as string,
-      {
-        headers: { "content-type": "application/json", Accept: "*/*" },
-        data: {
-          microservice: microservice,
-        },
+    const response = await apiContext.post(process.env.IDAM_S2S_URL as string, {
+      headers: { "content-type": "application/json", Accept: "*/*" },
+      data: {
+        microservice: microservice,
       },
-    );
+    });
     if (!response.ok()) {
       const errorText = await response.text();
       throw new Error(
