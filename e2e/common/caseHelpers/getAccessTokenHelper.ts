@@ -89,7 +89,7 @@ export async function getS2SToken(
 ): Promise<string> {
   try {
     const response = await apiContext.post(
-      process.env.IDAM_S2S_URL as string,
+      process.env.S2S_URL as string,
       {
         headers: { "content-type": "application/json", Accept: "*/*" },
         data: {
