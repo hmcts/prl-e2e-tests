@@ -24,10 +24,17 @@ setup.describe("Setup users and retrieve tokens", () => {
   setup(
     "Retrieve bearer token for courtNav DA case creation",
     async ({ tokenUtils }) => {
-      const token = await tokenUtils.getAccessToken("daCourtNavCreateCaseData");
+      const token = await tokenUtils.getAccessToken("daCourtNavCreateCase");
       process.env.COURTNAV_CREATE_CASE_BEARER_TOKEN = token;
     },
   );
+
+  setup("Retrieve s2s token", async ({ serviceAuthUtils }) => {
+    const s2sToken = await serviceAuthUtils.retrieveToken({
+      microservice: process.env.CCD_DATA_STORE_CLIENT_ID as string,
+    });
+    process.env.S2S_TOKEN = s2sToken;
+  });
 
   setup("Setup judge user", async ({ page, idamLoginHelper }) => {
     await idamLoginHelper.signInLongLivedUser(

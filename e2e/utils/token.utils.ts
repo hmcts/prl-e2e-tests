@@ -11,35 +11,35 @@ export class TokenUtils {
    * These are private as they are internal configurations for the class methods.
    */
   private readonly citizenCreateUserData = {
-    grant_type: "client_credentials",
-    client_id: process.env.CCD_DATA_STORE_CLIENT_ID as string,
-    client_secret: process.env.IDAM_SECRET as string,
+    grantType: "client_credentials",
+    clientId: process.env.CCD_DATA_STORE_CLIENT_ID as string,
+    clientSecret: process.env.IDAM_SECRET as string,
     scope: "profile roles",
   };
 
   private readonly daCourtNavCreateCaseData = {
-    grant_type: "password",
-    client_id: "courtnav-service",
-    client_secret: process.env.COURTNAV_SECRET as string,
+    grantType: "password",
+    clientId: "courtnav-service",
+    clientSecret: process.env.COURTNAV_SECRET as string,
     scope: "openid profile roles",
     username: process.env.COURTNAV_USERNAME as string,
     password: process.env.COURTNAV_PASSWORD as string,
   };
 
   private readonly ccdCaseData = {
-    grant_type: "password",
+    grantType: "password",
     username: process.env.CCD_DATA_STORE_CLIENT_USERNAME as string,
     password: process.env.CCD_DATA_STORE_CLIENT_PASSWORD as string,
-    client_id: process.env.CCD_DATA_STORE_CLIENT_ID as string,
-    client_secret: process.env.CCD_DATA_STORE_SECRET as string,
+    clientId: process.env.CCD_DATA_STORE_CLIENT_ID as string,
+    clientSecret: process.env.CCD_DATA_STORE_SECRET as string,
     scope: "openid profile roles",
-    redirect_uri: process.env.MANAGE_CASE_REDIRECT_URI as string,
+    redirectUri: process.env.MANAGE_CASE_REDIRECT_URI as string,
   };
 
   private readonly solicitorCaseData = {
-    client_id: process.env.CCD_DATA_STORE_CLIENT_ID as string,
-    client_secret: process.env.IDAM_SECRET as string,
-    grant_type: "password",
+    clientId: process.env.CCD_DATA_STORE_CLIENT_ID as string,
+    clientSecret: process.env.IDAM_SECRET as string,
+    grantType: "password",
     scope: "openid profile roles",
     username: process.env.CCD_DATA_STORE_CLIENT_USERNAME as string,
     password: process.env.CCD_DATA_STORE_CLIENT_PASSWORD as string,
@@ -60,17 +60,18 @@ export class TokenUtils {
       case "daCourtNavCreateCase":
         data = this.daCourtNavCreateCaseData;
         break;
-      case "ccdCaseData":
-        data = this.ccdCaseData;
-        break;
       case "solicitorCreateCase":
         data = this.solicitorCaseData;
+        break;
+      case "accessCode":
+        data = this.ccdCaseData;
         break;
       default:
         throw new Error(
           `Invalid option: '${option}'. Please provide a valid option like 'citizenCreateUser', 'daCourtNavCreateCase', 'accessCode', or 'solicitorCreateCase'.`,
         );
     }
+
     return this.idamUtils.generateIdamToken(data);
   }
 }
