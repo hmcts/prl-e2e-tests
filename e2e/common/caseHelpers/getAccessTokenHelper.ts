@@ -45,24 +45,21 @@ export async function getAccessToken(
   option: string,
   apiContext: APIRequestContext,
 ): Promise<string> {
-  let data, url;
+  let data;
+  const url = `${process.env.IDAM_WEB_URL}/o/token` ;
   try {
     switch (option) {
       case "citizenCreateUser":
         data = citizenCreateUserData;
-        url = process.env.IDAM_WEB_URL as string;
         break;
       case "daCourtNavCreateCase":
         data = daCourtNavCreateCaseData;
-        url = process.env.IDAM_WEB_URL as string;
         break;
       case "accessCode":
         data = ccdCaseData;
-        url = process.env.IDAM_WEB_URL as string;
         break;
       case "solicitorCreateCase":
         data = solicitorCaseData;
-        url = process.env.IDAM_WEB_URL as string;
         break;
       default:
         throw new Error(`Invalid option: ${option}`);
