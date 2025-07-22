@@ -3,15 +3,16 @@ import { Helpers } from "../../../common/helpers.ts";
 import config from "../../../utils/config.utils.ts";
 import { ManageCaseLinks } from "../../../journeys/manageCases/caseLinking/manageCaseLinks.ts";
 import { LinkCases } from "../../../journeys/manageCases/caseLinking/linkCases.ts";
+import { jsonDatas } from "../../../common/caseHelpers/solicitorCaseCreatorHelper.js";
 
 test.use({ storageState: config.sessionStoragePath + "courtAdminStoke.json" });
 
 test.describe("Manage case links as a court admin.", () => {
   let linkedCase: string = "";
 
-  test.beforeEach(async ({ page, courtNavUtils }) => {
-    const ccdRef = await courtNavUtils.createCase(true, true);
-    linkedCase = await courtNavUtils.createCase(true, true);
+  test.beforeEach(async ({ page, browser, createCaseUtils }) => {
+    const ccdRef = await createCaseUtils.createDACase(browser, jsonDatas.solicitorDACaseData);
+    linkedCase = await createCaseUtils.createDACase(browser, jsonDatas.solicitorDACaseData);
     await Helpers.goToCase(
       page,
       config.manageCasesBaseURLCase,
