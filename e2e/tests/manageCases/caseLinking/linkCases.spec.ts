@@ -2,7 +2,6 @@ import { test } from "../../fixtures.ts";
 import { Helpers } from "../../../common/helpers.ts";
 import config from "../../../utils/config.utils.ts";
 import { LinkCases } from "../../../journeys/manageCases/caseLinking/linkCases.ts";
-import { jsonDatas } from "../../../common/caseHelpers/solicitorCaseCreatorHelper.js";
 
 test.use({ storageState: config.sessionStoragePath + "courtAdminStoke.json" });
 
@@ -10,8 +9,8 @@ test.describe("Link DA cases as a court admin.", () => {
   let caseToBeLinked: string = "";
 
   test.beforeEach(async ({ page, browser, caseEventUtils }) => {
-    const ccdRef = await caseEventUtils.createDACase(browser, jsonDatas.solicitorDACaseData);
-    caseToBeLinked = await caseEventUtils.createDACase(browser, jsonDatas.solicitorDACaseData);
+    const ccdRef = await caseEventUtils.createDACase(browser);
+    caseToBeLinked = await caseEventUtils.createDACase(browser);
     await Helpers.goToCase(
       page,
       config.manageCasesBaseURLCase,

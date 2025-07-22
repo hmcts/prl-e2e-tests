@@ -17,7 +17,7 @@ export class CaseEventUtils {
     this.experimentalHeader = "true";
   }
 
-  async createDACase(browser: Browser, jsonData: JsonData, page?: Page): Promise<string> {
+  async createDACase(browser: Browser, jsonData: JsonData = jsonDatas.solicitorDACaseData, page?: Page): Promise<string> {
     if(!page) {
       page = await Helpers.openNewBrowserWindow(
         browser,
@@ -36,7 +36,7 @@ export class CaseEventUtils {
     return caseRef;
   }
 
-  async createCACase(browser: Browser, jsonData: JsonData,  page?: Page) {
+  async createCACase(browser: Browser, jsonData: JsonData = jsonDatas.solicitorCACaseData,  page?: Page) {
     if(!page) {
       page = await Helpers.openNewBrowserWindow(
         browser,
