@@ -53,7 +53,7 @@ export class ListWithoutNotice {
 
   private static async checkCaseNotes(page: Page): Promise<void> {
     await page
-      .locator(Selectors.daTasklist, {
+      .locator(Selectors.tab, {
         hasText: "Case Notes",
       })
       .click();
