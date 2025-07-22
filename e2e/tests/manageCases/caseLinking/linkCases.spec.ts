@@ -8,9 +8,9 @@ test.use({ storageState: config.sessionStoragePath + "courtAdminStoke.json" });
 test.describe("Link DA cases as a court admin.", () => {
   let caseToBeLinked: string = "";
 
-  test.beforeEach(async ({ page, courtNavUtils }) => {
-    const ccdRef = await courtNavUtils.createCase(true, true);
-    caseToBeLinked = await courtNavUtils.createCase(true, true);
+  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
+    const ccdRef = await caseEventUtils.createDACase(browser);
+    caseToBeLinked = await caseEventUtils.createDACase(browser);
     await Helpers.goToCase(
       page,
       config.manageCasesBaseURLCase,
