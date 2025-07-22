@@ -42,7 +42,8 @@ test.describe("Complete the Order task for DA Citizen case tests.", () => {
   });
 
   test("Manual Completion Task - Team leader - Send to GateKeeper - without accessibility test. @regression @accessibility", async ({
-    page, browser
+    page,
+    browser,
   }): Promise<void> => {
     await SendToGateKeeperJourney.teamLeaderCheckSendToGateKeeper({
       page,
