@@ -1,7 +1,6 @@
 #!groovy
 
 properties([
-  // H allow predefined but random minute see https://en.wikipedia.org/wiki/Cron#Non-standard_characters
   pipelineTriggers([cron('H 12 * * 1-5')]),
   parameters([
     string(
@@ -44,12 +43,12 @@ properties([
 
 @Library("Infrastructure")
 
-def type  = "nodejs"
+def type = "nodejs"
 def product = "prl"
 def component = "e2e-tests"
 def channel = "#prl-tech-notifications"
 
-static Map < String, Object > secret(String secretName, String envVariable) {
+static Map<String, Object> secret(String secretName, String envVariable) {
   [
     $class: 'AzureKeyVaultSecret',
     secretType: 'Secret',
@@ -60,7 +59,7 @@ static Map < String, Object > secret(String secretName, String envVariable) {
 
 def matchingEnv = "aat"
 
-if(params.skipManageCasesTests) {
+if (params.skipManageCasesTests) {
   matchingEnv = params.CITIZEN_FRONTEND_BASE_URL.contains("demo") ? "demo" : matchingEnv
 } else {
   matchingEnv = params.MANAGE_CASES_BASE_URL.contains("demo") ? "demo" : matchingEnv
@@ -118,7 +117,7 @@ withNightlyPipeline(type, product, component, 600) {
   enableSlackNotifications(channel)
 
   afterAlways('DependencyCheckNightly') {
-    if(params.tag) {
+    if (params.tag) {
       stage("${params.tag} tests - ${params.browser}") {
         try {
           yarnBuilder.yarn('playwright install --with-deps')
@@ -145,10 +144,13 @@ withNightlyPipeline(type, product, component, 600) {
           unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
         }
       }
-      if (!params.skipCitizenTests) {
+
+      if (!params.skipCitizenTests || !params.skipManageCasesTests) {
         stage("Test Execution") {
-          parallel(
-            'Citizen E2E tests - Chrome with accessibility': {
+          def testStages = [:]
+
+          if (!params.skipCitizenTests) {
+            testStages['Citizen E2E tests - Chrome with accessibility'] = {
               try {
                 yarnBuilder.yarn('test:citizenFrontendChrome')
               } catch (Error) {
@@ -164,8 +166,9 @@ withNightlyPipeline(type, product, component, 600) {
                 ])
                 steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CitizenFunctional/*'
               }
-            },
-            'Citizen E2E tests Smoke - Firefox': {
+            }
+
+            testStages['Citizen E2E tests Smoke - Firefox'] = {
               try {
                 yarnBuilder.yarn('test:citizenFrontendFirefox')
               } catch (Error) {
@@ -181,8 +184,9 @@ withNightlyPipeline(type, product, component, 600) {
                 ])
                 steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CitizenFunctional/*'
               }
-            },
-            'Citizen E2E tests Smoke - Webkit': {
+            }
+
+            testStages['Citizen E2E tests Smoke - Webkit'] = {
               try {
                 yarnBuilder.yarn('test:citizenFrontendSafari')
               } catch (Error) {
@@ -199,7 +203,65 @@ withNightlyPipeline(type, product, component, 600) {
                 steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CitizenFunctional/*'
               }
             }
-          )
+          }
+
+          if (!params.skipManageCasesTests) {
+            testStages['Manage Cases E2E tests - Chrome with accessibility'] = {
+              try {
+                yarnBuilder.yarn('test:manageCasesChrome')
+              } catch (Error) {
+                unstable(message: "Manage Cases Chrome is unstable: " + Error.toString())
+              } finally {
+                publishHTML([
+                  allowMissing: true,
+                  alwaysLinkToLastBuild: true,
+                  keepAll: true,
+                  reportDir: "playwright-report",
+                  reportFiles: 'index.html',
+                  reportName: 'Manage Cases Chrome E2E Test Report'
+                ])
+                steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/ManageCasesFunctional/*'
+              }
+            }
+
+            testStages['Manage Cases E2E tests Smoke - Firefox'] = {
+              try {
+                yarnBuilder.yarn('test:manageCasesFirefox')
+              } catch (Error) {
+                unstable(message: "Manage Cases Firefox is unstable: " + Error.toString())
+              } finally {
+                publishHTML([
+                  allowMissing: true,
+                  alwaysLinkToLastBuild: true,
+                  keepAll: true,
+                  reportDir: "playwright-report",
+                  reportFiles: 'index.html',
+                  reportName: 'Manage Cases Firefox E2E Test Report'
+                ])
+                steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/ManageCasesFunctional/*'
+              }
+            }
+
+            testStages['Manage Cases E2E tests Smoke - Webkit'] = {
+              try {
+                yarnBuilder.yarn('test:manageCasesSafari')
+              } catch (Error) {
+                unstable(message: "Manage Cases Webkit is unstable: " + Error.toString())
+              } finally {
+                publishHTML([
+                  allowMissing: true,
+                  alwaysLinkToLastBuild: true,
+                  keepAll: true,
+                  reportDir: "playwright-report",
+                  reportFiles: 'index.html',
+                  reportName: 'Manage Cases Webkit E2E Test Report'
+                ])
+                steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/ManageCasesFunctional/*'
+              }
+            }
+          }
+
+          parallel testStages
         }
       }
     }
