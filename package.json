@@ -12,7 +12,7 @@
     "@hmcts/playwright-common": "^1.0.29",
     "@playwright/test": "^1.49.0",
     "@types/node": "^22.4.1",
-    "axios": "^1.7.4",
+    "axios": "^1.11.0",
     "dotenv": "^16.4.5",
     "eslint": "^9.11.1",
     "eslint-plugin-playwright": "^2.1.0",
