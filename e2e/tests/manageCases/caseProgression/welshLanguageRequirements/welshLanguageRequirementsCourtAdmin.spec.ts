@@ -6,8 +6,8 @@ import { WelshLanguageRequirements } from "../../../../journeys/manageCases/case
 test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("Welsh Language Requirements task for DA Citizen case tests as Court Admin.", () => {
-  test.beforeEach(async ({ page, courtNavUtils }) => {
-    const ccdRef: string = await courtNavUtils.createCase(true, false);
+  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
+    const ccdRef: string = await caseEventUtils.createDACase(browser);
     await Helpers.goToCase(
       page,
       config.manageCasesBaseURLCase,

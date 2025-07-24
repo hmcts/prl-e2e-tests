@@ -38,6 +38,6 @@ export enum AdminEditAndApproveAnOrderSubmitContent {
   amendText168 = "Does this order need to be personally served on the respondent?",
   amendText169 = "Confirm Recipients",
   amendText1610 = "General",
-  pApplicant = "Applicant ApplLast(Applicant)",
-  pRespondent = "Dolores Smith (Respondent)",
+  pApplicant = "John Smith(Applicant)",
+  pRespondent = "Elise Lynn (Respondent)",
 }

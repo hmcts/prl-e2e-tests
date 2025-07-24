@@ -1,7 +1,7 @@
-import { test } from "../../../fixtures.ts";
-import { ReviewDocuments } from "../../../../journeys/manageCases/caseProgression/reviewDocuments/reviewDocuments.ts";
-import { Helpers } from "../../../../common/helpers.ts";
-import config from "../../../../utils/config.utils.ts";
+import { test } from "../../fixtures.ts";
+import { ReviewDocuments } from "../../../journeys/manageCases/caseProgression/reviewDocuments/reviewDocuments.ts";
+import { Helpers } from "../../../common/helpers.ts";
+import config from "../../../utils/config.utils.ts";
 
 test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 

@@ -67,6 +67,7 @@ export class CaseEventUtils {
       "caseWorker",
     );
     await caPage.goto(`${Config.manageCasesBaseURL}/work/my-work/list`);
+    await submitEvent(caPage, caseRef, "fl401AddCaseNumber");
     await submitEvent(caPage, caseRef, "fl401SendToGateKeeper");
     await caPage.close();
     return caseRef;
@@ -198,7 +199,7 @@ export class CaseEventUtils {
     );
   }
 
-  private async createTSSolicitorCase(
+  async createTSSolicitorCase(
     page: Page,
     caseType: solicitorCaseCreateType,
   ): Promise<string> {

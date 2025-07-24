@@ -8,8 +8,8 @@ test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 test.describe("Manage documents event for DA Citizen case tests as a court admin.", () => {
   let ccdRef: string = "";
 
-  test.beforeEach(async ({ page, courtNavUtils }) => {
-    ccdRef = await courtNavUtils.createCase(true, true);
+  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
+    ccdRef = await caseEventUtils.createDACase(browser);
     await Helpers.goToCase(
       page,
       config.manageCasesBaseURLCase,

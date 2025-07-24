@@ -47,6 +47,12 @@ export class SendToGateKeeperJourney {
       accessibilityTest,
       yesNoSendToGateKeeper,
     });
+    // wait for success message
+    await page
+      .locator(`.alert-message`, {
+        hasText: `Send to gatekeeper`,
+      })
+      .waitFor();
     //checking if the 'Send to gatekeeper' WA task has auto-closed as expected
     await this.checkSendToGatekeeperTaskAutoClosure(page, ccdRef);
   }

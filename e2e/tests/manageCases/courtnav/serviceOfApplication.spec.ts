@@ -1,15 +1,15 @@
-import { test } from "../../../fixtures.ts";
-import config from "../../../../utils/config.utils.ts";
-import { Helpers } from "../../../../common/helpers.ts";
-import { jsonDatas } from "../../../../common/caseHelpers/solicitorCaseCreatorHelper.ts";
-import { ServiceOfApplication } from "../../../../journeys/manageCases/caseProgression/serviceOfApplication/serviceOfApplication.ts";
+import config from "../../../utils/config.utils.ts";
+import { Helpers } from "../../../common/helpers.ts";
+import { jsonDatas } from "../../../common/caseHelpers/solicitorCaseCreatorHelper.ts";
+import { ServiceOfApplication } from "../../../journeys/manageCases/caseProgression/serviceOfApplication/serviceOfApplication.ts";
+import { test } from "../../fixtures.js";
 
 test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("Service of Application task for DA Citizen case tests.", () => {
   let ccdRef: string = "";
-  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
-    ccdRef = await caseEventUtils.createDACase(browser);
+  test.beforeEach(async ({ page, courtNavUtils }) => {
+    ccdRef = await courtNavUtils.createCase(true, false);
     await Helpers.goToCase(
       page,
       config.manageCasesBaseURLCase,
@@ -33,7 +33,7 @@ test.describe("Service of Application task for DA Citizen case tests.", () => {
       confidentialityCheck: false,
       responsibleForServing: "courtBailiff",
       manageOrderData: jsonDatas.manageOrderDataPowerOfArrest,
-      applicationSubmittedBy: "Solicitor",
+      applicationSubmittedBy: "Citizen",
     });
   });
 
@@ -52,7 +52,7 @@ test.describe("Service of Application task for DA Citizen case tests.", () => {
       confidentialityCheck: false,
       responsibleForServing: "courtBailiff",
       manageOrderData: jsonDatas.manageOrderDataAmendDischargedVaried,
-      applicationSubmittedBy: "Solicitor",
+      applicationSubmittedBy: "Citizen",
     });
   });
 });

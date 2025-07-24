@@ -1,24 +1,14 @@
-import { Page, test } from "@playwright/test";
 import Config from "../../../../utils/config.utils.ts";
 import { NoticeOfChange } from "../../../../journeys/manageCases/caseProgression/noticeOfChange/noticeOfChange.ts";
-import { SolicitorDACaseCreator } from "../../../../common/caseHelpers/solicitorDACaseCreator.ts";
-import { Helpers } from "../../../../common/helpers.ts";
+import { test } from "../../../fixtures.js";
 
 test.use({ storageState: Config.sessionStoragePath + "nocSolicitor.json" });
 
 test.describe("Notice of Change tests for DA case", () => {
   let ccdRef: string = "";
 
-  test.beforeEach(async ({ page, browser }) => {
-    const solicitorPage: Page = await Helpers.openNewBrowserWindow(
-      browser,
-      "solicitor",
-    );
-    await solicitorPage.goto(Config.manageCasesBaseURLCase);
-    ccdRef =
-      await SolicitorDACaseCreator.createCaseStatementOfTruthAndSubmit(
-        solicitorPage,
-      );
+  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
+    ccdRef = await caseEventUtils.createDACase(browser);
     await page.goto(Config.manageCasesBaseURLCase);
   });
 

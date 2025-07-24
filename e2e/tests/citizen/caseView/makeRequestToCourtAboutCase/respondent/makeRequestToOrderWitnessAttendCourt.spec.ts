@@ -9,8 +9,8 @@ test.describe("Respondent Make a request to order a witness to attend court test
   test.slow();
   let ccdRef: string;
 
-  test.beforeEach(async ({ page, courtNavUtils }) => {
-    ccdRef = await courtNavUtils.createCase(true, false);
+  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
+    ccdRef = await caseEventUtils.createDACase(browser);
     await Helpers.goToCase(
       page,
       config.manageCasesBaseURLCase,
@@ -35,7 +35,7 @@ test.describe("Respondent Make a request to order a witness to attend court test
           haveSupportingDocumentsUpload: true,
           usingHwf: false,
           reasonForUrgency: true,
-          applicationSubmittedBy: "Citizen",
+          applicationSubmittedBy: "Solicitor",
         },
       );
     },

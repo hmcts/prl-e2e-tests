@@ -9,8 +9,8 @@ test.describe("Applicant Request more time to do what is required by a court ord
   test.slow();
   let ccdRef: string;
 
-  test.beforeEach(async ({ page, courtNavUtils }) => {
-    ccdRef = await courtNavUtils.createCase(true, false);
+  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
+    ccdRef = await caseEventUtils.createDACase(browser);
     await Helpers.goToCase(
       page,
       config.manageCasesBaseURLCase,
@@ -29,7 +29,7 @@ test.describe("Applicant Request more time to do what is required by a court ord
       caseRef: ccdRef,
       accessibilityTest: false,
       isApplicant: true,
-      applicationSubmittedBy: "Citizen",
+      applicationSubmittedBy: "Solicitor",
       completedForm: true,
       agreementForRequest: true,
       supportingDocuments: true,

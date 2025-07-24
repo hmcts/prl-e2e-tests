@@ -8,8 +8,8 @@ test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 test.describe("Complete Task - Review Documents for DA case tests.", () => {
   let ccdRef: string = "";
 
-  test.beforeEach(async ({ page, courtNavUtils }) => {
-    ccdRef = await courtNavUtils.createCase(true, false);
+  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
+    ccdRef = await caseEventUtils.createDACase(browser);
     await Helpers.goToCase(
       page,
       config.manageCasesBaseURLCase,
@@ -30,7 +30,7 @@ test.describe("Complete Task - Review Documents for DA case tests.", () => {
       isApplicant: true,
       yesNoNotSureRestrictDocs: "no",
       documentType: "Position statements",
-      applicationSubmittedBy: "Citizen",
+      applicationSubmittedBy: "Solicitor",
     });
   });
 
@@ -46,7 +46,7 @@ test.describe("Complete Task - Review Documents for DA case tests.", () => {
       isApplicant: false,
       yesNoNotSureRestrictDocs: "no",
       documentType: "Position statements",
-      applicationSubmittedBy: "Citizen",
+      applicationSubmittedBy: "Solicitor",
     });
   });
 });

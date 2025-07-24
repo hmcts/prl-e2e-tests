@@ -4,6 +4,9 @@ import Config from "../../utils/config.utils.ts";
 import { Helpers } from "../helpers.ts";
 import { CompleteTheOrder } from "../../journeys/manageCases/caseProgression/completeTheOrder/completeTheOrder.ts";
 import { applicationSubmittedBy, createOrderFL401Options } from "../types.ts";
+import {
+  ConfidentialityCheck
+} from "../../journeys/manageCases/caseProgression/confidentilityCheck/confidentialityCheck.js";
 
 // Note: These methods assume the current page context is court admin
 export async function completeCheckApplicationAndSendToGatekeeper(
@@ -64,4 +67,6 @@ export async function completeEventsUpToServiceOfApplication(
     "serviceOfApplication",
     manageOrderEventData,
   );
+  // this will have to be conditional
+  await ConfidentialityCheck.confidentialityCheckLite(browser, caseRef);
 }

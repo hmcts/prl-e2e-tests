@@ -1,15 +1,27 @@
-import { test } from "@playwright/test";
 import config from "../../../../utils/config.utils.ts";
 import { UploadAnOrderC100SolicitorJourney } from "../../../../journeys/manageCases/caseProgression/draftAnOrder/uploadAnOrderC100SolicitorJourney.ts";
 import { UploadAnOrderFL401SolicitorJourney } from "../../../../journeys/manageCases/caseProgression/draftAnOrder/uploadAnOrderFL401SolicitorJourney.ts";
+import { Helpers } from "../../../../common/helpers.js";
+import { test } from "../../../fixtures.js";
 
 test.use({ storageState: config.sessionStoragePath + "solicitor.json" });
-
 test.describe("'Upload an order' by Solicitor via the 'Draft an Order' event tests", (): void => {
+  let caseRef: string;
+
+  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
+    caseRef = await caseEventUtils.createCACase(browser);
+    await Helpers.goToCase(
+      page,
+      config.manageCasesBaseURLCase,
+      caseRef,
+      "tasks",
+    );
+  });
+
   test(`CA 'Upload an order' as a Solicitor with the following options:
   Case: C100,
   Not accessibility testing.
-  @newtest @regression, @nightly`, async ({ page, browser }): Promise<void> => {
+  @regression, @nightly`, async ({ page, browser }): Promise<void> => {
     await UploadAnOrderC100SolicitorJourney.uploadAnOrderC100SolicitorJourney({
       page: page,
       accessibilityTest: false,
@@ -20,6 +32,7 @@ test.describe("'Upload an order' by Solicitor via the 'Draft an Order' event tes
       isUploadOrder: true,
       errorMessaging: false,
       browser: browser,
+      caseRef: caseRef,
     });
   });
 
@@ -37,6 +50,7 @@ test.describe("'Upload an order' by Solicitor via the 'Draft an Order' event tes
       isUploadOrder: true,
       errorMessaging: false,
       browser: browser,
+      caseRef: caseRef,
     });
   });
 

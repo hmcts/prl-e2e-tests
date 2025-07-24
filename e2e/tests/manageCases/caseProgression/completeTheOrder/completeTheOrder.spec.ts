@@ -10,8 +10,8 @@ test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 test.describe("Complete the Order task for DA Citizen case tests.", () => {
   let ccdRef: string = "";
 
-  test.beforeEach(async ({ page, courtNavUtils }) => {
-    ccdRef = await courtNavUtils.createCase(true, false);
+  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
+    ccdRef = await caseEventUtils.createDACase(browser);
     await Helpers.goToCase(
       page,
       config.manageCasesBaseURLCase,
@@ -32,7 +32,7 @@ test.describe("Complete the Order task for DA Citizen case tests.", () => {
       browser: browser,
       personallyServed: true,
       manageOrderData: jsonDatas.manageOrderDataPowerOfArrest,
-      applicationSubmittedBy: "Citizen",
+      applicationSubmittedBy: "Solicitor",
     });
   });
 
@@ -48,7 +48,7 @@ test.describe("Complete the Order task for DA Citizen case tests.", () => {
       browser: browser,
       personallyServed: true,
       manageOrderData: jsonDatas.manageOrderDataAmendDischargedVaried,
-      applicationSubmittedBy: "Citizen",
+      applicationSubmittedBy: "Solicitor",
     });
   });
 });
