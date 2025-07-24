@@ -9,7 +9,7 @@ test.describe("'Upload an order' by Solicitor via the 'Draft an Order' event tes
   test(`CA 'Upload an order' as a Solicitor with the following options:
   Case: C100,
   Not accessibility testing.
-  @newtest @regression, @nightly`, async ({ page, browser }): Promise<void> => {
+  @regression, @nightly`, async ({ page, browser }): Promise<void> => {
     await UploadAnOrderC100SolicitorJourney.uploadAnOrderC100SolicitorJourney({
       page: page,
       accessibilityTest: false,
