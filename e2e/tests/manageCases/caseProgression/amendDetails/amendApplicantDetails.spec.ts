@@ -1,6 +1,5 @@
-import { test } from "@playwright/test";
+import { test } from "../../../fixtures.ts";
 import Config from "../../../../utils/config.utils.ts";
-import createDaCitizenCourtNavCase from "../../../../common/caseHelpers/citizenDACaseCreateHelper.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import { AmendApplicantDetails } from "../../../../journeys/manageCases/caseProgression/amendDetails/amendApplicantDetails.ts";
 
@@ -9,8 +8,8 @@ test.use({ storageState: Config.sessionStoragePath + "courtAdminStoke.json" });
 test.describe("Complete amend applicant details event as a court admin", () => {
   let ccdRef: string = "";
 
-  test.beforeEach(async ({ page }) => {
-    ccdRef = await createDaCitizenCourtNavCase(true, false);
+  test.beforeEach(async ({ page, courtNavUtils }) => {
+    ccdRef = await courtNavUtils.createCase(true, false);
     await Helpers.goToCase(
       page,
       Config.manageCasesBaseURLCase,

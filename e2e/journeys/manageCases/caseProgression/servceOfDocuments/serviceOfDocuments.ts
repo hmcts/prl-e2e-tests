@@ -6,9 +6,9 @@ import { yesNoNA } from "../../../../common/types.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import config from "../../../../utils/config.utils.ts";
 import { ReviewDocuments } from "../reviewDocuments/reviewDocuments.ts";
-import createDaCitizenCourtNavCase from "../../../../common/caseHelpers/citizenDACaseCreateHelper.ts";
 import { ServiceOfDocumentsSubmitPage } from "../../../../pages/manageCases/caseProgression/serviceOfDocuments/serviceOfDocumentsSubmitPage.ts";
 import { completeCheckApplicationAndSendToGatekeeper } from "../../../../common/caseHelpers/caseEventsHelper.ts";
+import { CourtNavUtils } from "../../../../utils/courtNav.utils.ts";
 
 interface ServiceOfDocumentsParams {
   page: Page;
@@ -32,7 +32,8 @@ export class ServiceOfDocuments {
     accessibilityTest,
     checkDocuments,
   }: ServiceOfDocumentsParams): Promise<void> {
-    const ccdRef: string = await createDaCitizenCourtNavCase(true, withCaseDoc);
+    const newCourtNavUtil = await new CourtNavUtils();
+    const ccdRef: string = await newCourtNavUtil.createCase(true, withCaseDoc);
     await Helpers.goToCase(
       page,
       config.manageCasesBaseURLCase,

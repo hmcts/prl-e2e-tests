@@ -1,4 +1,4 @@
-import { test } from "@playwright/test";
+import { test } from "./fixtures.ts";
 import Config from "../utils/config.utils.ts";
 import { SolicitorCACaseCreator } from "../common/caseHelpers/solicitorCACaseCreator.ts";
 
