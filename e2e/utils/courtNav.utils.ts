@@ -85,9 +85,6 @@ export class CourtNavUtils {
   private async addDocumentToCase(ccdReference: string): Promise<void> {
     const apiContext = await request.newContext();
     const courtNavAddDocURL = `${this.docUrl}${ccdReference}/document`;
-    console.log(courtNavAddDocURL)
-    console.log(this.token)
-    console.log(this.addDocSubscriptionKey)
     const pdfPath = path.resolve(
       import.meta.dirname,
       "../caseData/testPdf.pdf",
