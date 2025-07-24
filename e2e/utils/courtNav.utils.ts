@@ -1,11 +1,10 @@
-import { APIRequestContext, expect, request } from "@playwright/test";
+import { expect, request } from "@playwright/test";
 import fs from "fs";
 import path from "path";
 import withNoticeJsonData from "../caseData/citizenDA/courtNavDaCitizenCase_WithNotice.json" with { type: "json" };
 import withoutNoticeJsonData from "../caseData/citizenDA/courtNavDaCitizenCase_WithoutNotice.json" with { type: "json" };
 
 export class CourtNavUtils {
-  private apiContext!: APIRequestContext;
   private token: string;
   private createCaseSubscriptionKey: string;
   private addDocSubscriptionKey: string;
@@ -13,7 +12,6 @@ export class CourtNavUtils {
   private docUrl: string;
 
   constructor() {
-    this.apiContext = this.apiContext;
     this.token = process.env.COURTNAV_CREATE_CASE_BEARER_TOKEN as string;
     this.createCaseSubscriptionKey = process.env
       .COURTNAV_SUBSCRIPTION_KEY_CREATE_CASE as string;
@@ -85,14 +83,18 @@ export class CourtNavUtils {
    * @param {string} ccdReference The CCD reference of the created case
    */
   private async addDocumentToCase(ccdReference: string): Promise<void> {
+    const apiContext = await request.newContext();
     const courtNavAddDocURL = `${this.docUrl}${ccdReference}/document`;
+    console.log(courtNavAddDocURL)
+    console.log(this.token)
+    console.log(this.addDocSubscriptionKey)
     const pdfPath = path.resolve(
       import.meta.dirname,
-      "../../caseData/testPdf.pdf",
+      "../caseData/testPdf.pdf",
     );
     const pdfBuffer = fs.readFileSync(pdfPath);
 
-    const docResponse = await this.apiContext.post(courtNavAddDocURL, {
+    const docResponse = await apiContext.post(courtNavAddDocURL, {
       headers: {
         Authorization: `Bearer ${this.token}`,
         "Ocp-Apim-Subscription-Key": this.addDocSubscriptionKey,
