@@ -16,7 +16,7 @@ test.describe("Complete the Order task for C100 case tests.", () => {
     await solicitorPage.goto(Config.manageCasesBaseURLCase);
     ccdRef = await SolicitorCACaseCreator.createCaseSubmitAndPay(solicitorPage);
     await SolicitorCACaseCreator.c100IssueAndSendToLocalCourt(browser, ccdRef);
-    await SolicitorCACaseCreator.c100sendToGatekeeper(browser,ccdRef);
+    await SolicitorCACaseCreator.c100sendToGatekeeper(browser, ccdRef);
     await Helpers.goToCase(
       page,
       Config.manageCasesBaseURLCase,

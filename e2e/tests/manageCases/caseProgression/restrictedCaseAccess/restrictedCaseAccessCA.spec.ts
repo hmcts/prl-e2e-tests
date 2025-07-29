@@ -14,7 +14,7 @@ test.describe("Complete the Restricted Case Access events for CA case.", () => {
     ccdRef = await SolicitorCACaseCreator.createCaseSubmitAndPay(page);
     await SolicitorCACaseCreator.c100IssueAndSendToLocalCourt(browser, ccdRef);
     //log in as a court admin and complete send to gatekeeper event
-    await SolicitorCACaseCreator.c100sendToGatekeeper(browser,ccdRef);
+    await SolicitorCACaseCreator.c100sendToGatekeeper(browser, ccdRef);
   });
 
   test("Mark CA case as restricted as a gatekeeper judge. @nightly @regression @accessibility", async ({

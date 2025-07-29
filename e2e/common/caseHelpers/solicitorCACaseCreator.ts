@@ -97,6 +97,6 @@ export class SolicitorCACaseCreator {
       caseRef,
       "sendToGateKeeper",
       jsonDatas.solicitorCACaseData,
-      );
-    }
+    );
+  }
 }
