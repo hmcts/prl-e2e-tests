@@ -14,6 +14,7 @@ interface C100ManageOrdersOptions {
   page: Page;
   accessibilityTest: boolean;
   isUploadOrder: boolean;
+  checkOption: string;
   solicitorCaseCreateType: solicitorCaseCreateType;
 }
 
@@ -23,6 +24,7 @@ export class C100ManageOrders {
     accessibilityTest: accessibilityTest,
     solicitorCaseCreateType,
     isUploadOrder,
+    checkOption,
   }: C100ManageOrdersOptions): Promise<void> {
     await Helpers.chooseEventFromDropdown(page, `Manage orders`);
     await ManageOrders1Page.manageOrders1Page({
@@ -55,6 +57,7 @@ export class C100ManageOrders {
     await ManageOrders24Page.manageOrders24Page({
       page,
       accessibilityTest,
+      checkOption,
     });
     await SubmitPage.submitPage({
       page,

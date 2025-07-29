@@ -25,6 +25,7 @@ export class FL401SendToGateKeeperSubmitPage {
       yesNoSendToGateKeeper,
     });
     await this.continue(page);
+    await this.checkSubmissionSuccessful(page);
   }
 
   private static async checkPageLoads({
@@ -96,5 +97,13 @@ export class FL401SendToGateKeeperSubmitPage {
     await page.click(
       `${Selectors.button}:text-is("${CommonStaticText.submit}")`,
     );
+  }
+
+  private static async checkSubmissionSuccessful(page: Page): Promise<void> {
+    await page
+      .locator(`.alert-message`, {
+        hasText: `Send to gatekeeper`,
+      })
+      .waitFor();
   }
 }

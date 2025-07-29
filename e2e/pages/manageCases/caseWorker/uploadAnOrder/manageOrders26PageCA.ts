@@ -8,6 +8,7 @@ import { ManageOrders26CAContent } from "../../../../fixtures/manageCases/caseWo
 interface ManageOrders26PageOptions {
   page: Page;
   accessibilityTest: boolean;
+  serveOrderNow: boolean;
 }
 
 enum UniqueSelectors {
@@ -21,13 +22,16 @@ enum radioIds {
   saveOrderAsDraft = "#whatDoWithOrder-saveAsDraft",
 }
 
+const readyToServeID = "#doYouWantToServeOrder_Yes";
+
 export class ManageOrders26PageCA {
   public static async manageOrders26PageCA({
     page,
     accessibilityTest,
+    serveOrderNow,
   }: ManageOrders26PageOptions): Promise<void> {
     await this.checkPageLoads({ page, accessibilityTest });
-    await this.fillInFields({ page });
+    await this.fillInFields({ page, serveOrderNow });
   }
 
   private static async checkPageLoads({
@@ -61,13 +65,22 @@ export class ManageOrders26PageCA {
 
   private static async fillInFields({
     page,
+    serveOrderNow,
   }: Partial<ManageOrders26PageOptions>): Promise<void> {
     if (!page) {
       throw new Error("Page is not defined");
     }
-    for (const selector of Object.values(radioIds)) {
-      await page.click(selector);
+
+    if (serveOrderNow) {
+      await page.click(radioIds.cafcassReport);
+      await page.click(radioIds.cafcassInvolvement);
+      await page.click(readyToServeID);
+    } else {
+      for (const selector of Object.values(radioIds)) {
+        await page.click(selector);
+      }
     }
+
     await page.selectOption(
       UniqueSelectors.selectTypeOfOrder,
       ManageOrders26CAContent.orderType,

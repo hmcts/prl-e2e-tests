@@ -83,13 +83,14 @@ export class CourtNavUtils {
    * @param {string} ccdReference The CCD reference of the created case
    */
   private async addDocumentToCase(ccdReference: string): Promise<void> {
+    const apiContext = await request.newContext();
     const courtNavAddDocURL = `${this.docUrl}${ccdReference}/document`;
     const pdfPath = path.resolve(
       import.meta.dirname,
       "../caseData/testPdf.pdf",
     );
     const pdfBuffer = fs.readFileSync(pdfPath);
-    const apiContext = await request.newContext();
+
     const docResponse = await apiContext.post(courtNavAddDocURL, {
       headers: {
         Authorization: `Bearer ${this.token}`,
