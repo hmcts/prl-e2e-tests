@@ -1,22 +1,15 @@
-import { Page, test } from "@playwright/test";
 import Config from "../../../../utils/config.utils.ts";
 import { Helpers } from "../../../../common/helpers.ts";
-import { SolicitorCACaseCreator } from "../../../../common/caseHelpers/solicitorCACaseCreator.js";
 import { SendToGateKeeperJourney } from "../../../../journeys/manageCases/caseProgression/sendToGateKeeper/sendToGateKeeperJourney.js";
 import { C100CompleteTheOrder } from "../../../../journeys/manageCases/caseProgression/completeTheOrder/C100completeTheOrder.js";
+import { test } from "../../../fixtures.js";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("Complete the Order task for C100 case tests.", () => {
   let ccdRef: string = "";
-  test.beforeEach(async ({ page, browser }) => {
-    const solicitorPage: Page = await Helpers.openNewBrowserWindow(
-      browser,
-      "solicitor",
-    );
-    await solicitorPage.goto(Config.manageCasesBaseURLCase);
-    ccdRef = await SolicitorCACaseCreator.createCaseSubmitAndPay(solicitorPage);
-    await SolicitorCACaseCreator.c100IssueAndSendToLocalCourt(browser, ccdRef);
+  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
+    ccdRef = await caseEventUtils.createCACaseIssueAndSendToLocalCourt(browser);
     await SendToGateKeeperJourney.sendToGateKeeper({
       page: page,
       ccdRef,
