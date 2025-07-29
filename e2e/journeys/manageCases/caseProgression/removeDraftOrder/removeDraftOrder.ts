@@ -3,9 +3,10 @@ import { Helpers } from "../../../../common/helpers.ts";
 import { RemoveDraftOrder1Page } from "../../../../pages/manageCases/caseProgression/removeDraftOrder/removeDraftOrder1Page.ts";
 import { RemoveDraftOrder2Page } from "../../../../pages/manageCases/caseProgression/removeDraftOrder/removeDraftOrder2Page.ts";
 import { RemoveDraftOrderSubmitPage } from "../../../../pages/manageCases/caseProgression/removeDraftOrder/removeDraftOrderSubmitPage.ts";
-import { submitEvent } from "../../../../common/caseHelpers/solicitorCaseCreatorHelper.ts";
+import { jsonDatas } from "../../../../common/caseHelpers/jsonDatas.ts";
 import config from "../../../../utils/config.utils.ts";
 import { DraftAnOrder } from "../../caseWorker/draftAnOrder/draftAnOrder.ts";
+import { CaseEventUtils } from "../../../../utils/caseEvent.utils.js";
 
 interface RemoveDraftOrderParams {
   page: Page;
@@ -45,7 +46,8 @@ export class RemoveDraftOrder {
       caseRef,
       "tasks",
     );
-    await submitEvent(caseWorkerPage, caseRef, "fl401AddCaseNumber");
+    const caseEventUtils = new CaseEventUtils();
+    await caseEventUtils.submitEvent(caseWorkerPage, caseRef, "fl401AddCaseNumber", jsonDatas.solicitorDACaseData);
     await Helpers.goToCase(
       caseWorkerPage,
       config.manageCasesBaseURLCase,

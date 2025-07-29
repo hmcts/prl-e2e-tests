@@ -1,7 +1,7 @@
 import { Browser, Page } from "@playwright/test";
 import {
-  JsonData, jsonDatas, submitEvent
-} from "../common/caseHelpers/solicitorCaseCreatorHelper.js";
+  JsonDatas, jsonDatas
+} from "../common/caseHelpers/jsonDatas.js";
 import { PageFunction } from "playwright-core/types/structs";
 import { solicitorCACaseAPIEvent, solicitorCaseCreateType, solicitorDACaseAPIEvent } from "../common/types.js";
 import { Helpers } from "../common/helpers.js";
@@ -17,7 +17,7 @@ export class CaseEventUtils {
     this.experimentalHeader = "true";
   }
 
-  async createDACase(browser: Browser, jsonData: JsonData = jsonDatas.solicitorDACaseData, page?: Page): Promise<string> {
+  async createDACase(browser: Browser, jsonData: JsonDatas = jsonDatas.solicitorDACaseData, page?: Page): Promise<string> {
     if(!page) {
       page = await Helpers.openNewBrowserWindow(
         browser,
@@ -36,7 +36,7 @@ export class CaseEventUtils {
     return caseRef;
   }
 
-  async createCACase(browser: Browser, jsonData: JsonData = jsonDatas.solicitorCACaseData,  page?: Page) {
+  async createCACase(browser: Browser, jsonData: JsonDatas = jsonDatas.solicitorCACaseData, page?: Page) {
     if(!page) {
       page = await Helpers.openNewBrowserWindow(
         browser,
@@ -67,8 +67,8 @@ export class CaseEventUtils {
       "caseWorker",
     );
     await caPage.goto(`${Config.manageCasesBaseURL}/work/my-work/list`);
-    await submitEvent(caPage, caseRef, "fl401AddCaseNumber");
-    await submitEvent(caPage, caseRef, "fl401SendToGateKeeper");
+    await this.submitEvent(caPage, caseRef, "fl401AddCaseNumber", jsonDatas.solicitorDACaseData);
+    await this.submitEvent(caPage, caseRef, "fl401SendToGateKeeper", jsonDatas.solicitorDACaseData);
     await caPage.close();
     return caseRef;
   }
@@ -85,7 +85,7 @@ export class CaseEventUtils {
       caseRef,
       "tasks",
     );
-    await submitEvent(
+    await this.submitEvent(
       ctscPage,
       caseRef,
       "issueAndSendToLocalCourtCallback",
@@ -100,13 +100,13 @@ export class CaseEventUtils {
    * @param {Page} page the page to be used - this gives the API call its context
    * @param {string} caseId the ID of the case to perform the event against
    * @param {solicitorDACaseAPIEvent | solicitorCACaseAPIEvent} eventId the ID of the event to be submitted
-   * @param {JsonData} jsonData a JSON file stored in an object that contains the event data for the event to be submitted
+   * @param {JsonDatas} jsonData a JSON file stored in an object that contains the event data for the event to be submitted
    */
-  private async submitEvent(
+  async submitEvent(
     page: Page,
     caseId: string,
     eventId: solicitorDACaseAPIEvent | solicitorCACaseAPIEvent,
-    jsonData: JsonData,
+    jsonData: JsonDatas,
   ): Promise<void> {
     if (process.env.PWDEBUG) {
       console.log(`Start of event: ${eventId}`);
@@ -157,7 +157,7 @@ export class CaseEventUtils {
 
   private async createBlankCase(
     page: Page,
-    jsonData: JsonData
+    jsonData: JsonDatas
   ): Promise<string> {
     const startCaseCreationUrl = `/data/internal/case-types/PRLAPPS/event-triggers/solicitorCreate?ignore-warning=false`;
 

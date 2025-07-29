@@ -1,6 +1,5 @@
 import { test } from "./fixtures.ts";
 import { Page } from "playwright-core";
-import { SolicitorDACaseCreator } from "../common/caseHelpers/solicitorDACaseCreator.ts";
 import Config from "../utils/config.utils.ts";
 import { Helpers } from "../common/helpers.ts";
 import { completeCheckApplicationAndSendToGatekeeper } from "../common/caseHelpers/caseEventsHelper.ts";
@@ -8,28 +7,15 @@ import { completeCheckApplicationAndSendToGatekeeper } from "../common/caseHelpe
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
 test.describe("Case creation examples", (): void => {
-  test("create case", async ({ page }): Promise<void> => {
-    await page.goto(Config.manageCasesBaseURLCase);
-    await SolicitorDACaseCreator.createCaseStatementOfTruthAndSubmit(page);
+  test("create case", async ({ browser, caseEventUtils }): Promise<void> => {
+    await caseEventUtils.createDACase(browser);
   });
 
   test("create solicitor case - gatekeeping", async ({
-    page,
     browser,
+    caseEventUtils
   }): Promise<void> => {
-    await page.goto(Config.manageCasesBaseURLCase);
-    await SolicitorDACaseCreator.createCaseSendToGatekeeper(page, browser);
-  });
-
-  test("create solicitor case and service of application example", async ({
-    page,
-    browser,
-    accessCodeHelper,
-  }): Promise<void> => {
-    await page.goto(Config.manageCasesBaseURLCase);
-    const caseRef = await SolicitorDACaseCreator.createCaseSOA(page, browser);
-    await accessCodeHelper.getApplicantAccessCode(caseRef);
-    await accessCodeHelper.getRespondentAccessCode(caseRef);
+    await caseEventUtils.createDACaseSendToGatekeeper(browser);
   });
 
   test("create courtnav case and send to gatekeeper example", async ({

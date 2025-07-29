@@ -1,6 +1,6 @@
 import config from "../../../utils/config.utils.ts";
 import { Helpers } from "../../../common/helpers.ts";
-import { jsonDatas } from "../../../common/caseHelpers/solicitorCaseCreatorHelper.ts";
+import { jsonDatas } from "../../../common/caseHelpers/jsonDatas.ts";
 import { ServiceOfApplication } from "../../../journeys/manageCases/caseProgression/serviceOfApplication/serviceOfApplication.ts";
 import { test } from "../../fixtures.js";
 

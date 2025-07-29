@@ -1,15 +1,14 @@
-import { test } from "@playwright/test";
 import { Helpers } from "../../../../common/helpers.ts";
 import config from "../../../../utils/config.utils.ts";
 import { Fl401StatementOfTruth } from "../../../../journeys/manageCases/createCase/FL401StatementOfTruth/fl401StatementOfTruth.ts";
-import { createTSSolicitorCase } from "../../../../common/caseHelpers/solicitorCaseCreatorHelper.ts";
+import { test } from "../../../fixtures.js";
 
 test.use({ storageState: config.sessionStoragePath + "solicitor.json" });
 
 test.describe("FL401 Create case Statement of Truth and Submit tests", (): void => {
-  test.beforeEach(async ({ page }) => {
+  test.beforeEach(async ({ page, caseEventUtils }) => {
     await page.goto(config.manageCasesBaseURLCase);
-    const ccdRef = await createTSSolicitorCase(page, "FL401");
+    const ccdRef = await caseEventUtils.createTSSolicitorCase(page, "FL401");
     await Helpers.goToCase(
       page,
       config.manageCasesBaseURLCase,

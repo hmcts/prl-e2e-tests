@@ -6,9 +6,9 @@ import { DummyC100ApplicantDetails } from "./dummyC100ApplicantDetails.ts";
 import { DummyC100OtherPersonDetails } from "./dummyC100OtherPersonDetails.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import {
-  jsonDatas,
-  submitEvent,
-} from "../../../../common/caseHelpers/solicitorCaseCreatorHelper.ts";
+  jsonDatas
+} from "../../../../common/caseHelpers/jsonDatas.ts";
+import { CaseEventUtils } from "../../../../utils/caseEvent.utils.js";
 
 interface dummyC100Options {
   page: Page;
@@ -47,7 +47,8 @@ export class DummyC100 {
       accessibilityTest: false,
     });
     const caseRef: string = await Helpers.getCaseNumberFromUrl(page);
-    await submitEvent(
+    const caseEventUtils = new CaseEventUtils();
+    await caseEventUtils.submitEvent(
       page,
       caseRef,
       "testingSupportPaymentSuccessCallback",

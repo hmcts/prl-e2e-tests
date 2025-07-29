@@ -2,25 +2,31 @@ import { test } from "@playwright/test";
 import Config from "../../../../utils/config.utils.ts";
 import config from "../../../../utils/config.utils.ts";
 import { Helpers } from "../../../../common/helpers.ts";
-import { SolicitorCACaseCreator } from "../../../../common/caseHelpers/solicitorCACaseCreator.ts";
 import { UploadAdditionalApplications } from "../../../../journeys/manageCases/caseProgression/uploadAdditionalApplications/uploadAdditionalApplications.ts";
+import { DummyC100 } from "../../../../journeys/manageCases/createCase/dummyCase/dummyC100.js";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
 test.describe("Upload additional applications for C100 tests", (): void => {
   test.beforeEach(async ({ page }) => {
-    await page.goto(Config.manageCasesBaseURL);
-    // upload additional applications is not present when the case is created via TS support
-    // so we need to create the case the long way to enable the upload additional applications event
-    // Ticket FPVTL-734 will update the testing support data to create a case that can upload additional applications
-    const caseRef =
-      await SolicitorCACaseCreator.createCaseSubmitAndPayIndividualEvents(page);
+    // await page.goto(Config.manageCasesBaseURL);
+    // // upload additional applications is not present when the case is created via TS support
+    // // so we need to create the case the long way to enable the upload additional applications event
+    // // Ticket FPVTL-734 will update the testing support data to create a case that can upload additional applications
+    // const caseRef =
+    //   await SolicitorCACaseCreator.createCaseSubmitAndPayIndividualEvents(page);
+    const caseRef = await DummyC100.dummyC100({
+      page,
+      applicantLivesInRefuge: false,
+      otherPersonLivesInRefuge: false,
+    });
     await Helpers.goToCase(
       page,
       config.manageCasesBaseURLCase,
       caseRef,
       "tasks",
     );
+
   });
 
   test(`Upload additional C2 application with notice. @nightly @regression @accessibility`, async ({
