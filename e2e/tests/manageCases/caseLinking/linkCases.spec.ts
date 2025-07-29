@@ -1,18 +1,16 @@
-import { test } from "@playwright/test";
-import Config from "../../../utils/config.utils.ts";
-import createDaCitizenCourtNavCase from "../../../common/caseHelpers/citizenDACaseCreateHelper.ts";
+import { test } from "../../fixtures.ts";
 import { Helpers } from "../../../common/helpers.ts";
 import config from "../../../utils/config.utils.ts";
 import { LinkCases } from "../../../journeys/manageCases/caseLinking/linkCases.ts";
 
-test.use({ storageState: Config.sessionStoragePath + "courtAdminStoke.json" });
+test.use({ storageState: config.sessionStoragePath + "courtAdminStoke.json" });
 
 test.describe("Link DA cases as a court admin.", () => {
   let caseToBeLinked: string = "";
 
-  test.beforeEach(async ({ page }) => {
-    const ccdRef = await createDaCitizenCourtNavCase(true, true);
-    caseToBeLinked = await createDaCitizenCourtNavCase(true, true);
+  test.beforeEach(async ({ page, courtNavUtils }) => {
+    const ccdRef = await courtNavUtils.createCase(true, true);
+    caseToBeLinked = await courtNavUtils.createCase(true, true);
     await Helpers.goToCase(
       page,
       config.manageCasesBaseURLCase,

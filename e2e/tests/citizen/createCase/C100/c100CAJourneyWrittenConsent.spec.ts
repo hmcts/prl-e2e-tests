@@ -1,11 +1,10 @@
-import { test } from "@playwright/test";
-import IdamLoginHelper from "../../../../common/userHelpers/idamLoginHelper.ts";
+import { test } from "../../../fixtures.ts";
 import Config from "../../../../utils/config.utils.ts";
 import { C100 } from "../../../../journeys/citizen/createCase/C100/C100.ts";
 
 test.describe("C100 Citizen Application with Written Consent from other people in the case.", (): void => {
-  test.beforeEach(async ({ page }) => {
-    await IdamLoginHelper.setupAndSignInUser(
+  test.beforeEach(async ({ page, idamLoginHelper }) => {
+    await idamLoginHelper.setupAndSignInUser(
       page,
       Config.citizenFrontendBaseURL,
       "citizen",
@@ -296,9 +295,8 @@ test.describe("C100 Citizen Application with Written Consent from other people i
 });
 
 test.describe("Test the accessibility of the CA C100 Citizen Journey", (): void => {
-  test.beforeEach(async ({ page }) => {
-    // Sign in as a citizen user before each test
-    await IdamLoginHelper.setupAndSignInUser(
+  test.beforeEach(async ({ page, idamLoginHelper }) => {
+    await idamLoginHelper.setupAndSignInUser(
       page,
       Config.citizenFrontendBaseURL,
       "citizen",
