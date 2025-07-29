@@ -27,6 +27,8 @@ test.describe("CA Case creation examples", (): void => {
     const caseRef = await SolicitorCACaseCreator.createCaseSubmitAndPay(page);
     console.log(caseRef);
 
+    await SolicitorCACaseCreator.c100IssueAndSendToLocalCourt(browser, caseRef);
+
     const caPage: Page = await Helpers.openNewBrowserWindow(
       browser,
       "caseWorker",
