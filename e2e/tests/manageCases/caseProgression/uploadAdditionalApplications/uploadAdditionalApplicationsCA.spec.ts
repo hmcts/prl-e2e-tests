@@ -26,7 +26,6 @@ test.describe("Upload additional applications for C100 tests", (): void => {
       caseRef,
       "tasks",
     );
-
   });
 
   test(`Upload additional C2 application with notice. @nightly @regression @accessibility`, async ({

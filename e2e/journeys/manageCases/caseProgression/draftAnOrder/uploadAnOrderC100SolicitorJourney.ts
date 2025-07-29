@@ -36,7 +36,7 @@ export class UploadAnOrderC100SolicitorJourney {
     errorMessaging,
     isUploadOrder,
     browser,
-    caseRef
+    caseRef,
   }: C100DraftAnOrderOptions): Promise<void> {
     //Starting the 'Draft an order' event to upload the order
     await Helpers.chooseEventFromDropdown(page, `Draft an order`);

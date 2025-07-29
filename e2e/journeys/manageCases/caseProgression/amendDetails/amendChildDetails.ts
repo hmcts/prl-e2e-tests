@@ -23,7 +23,7 @@ export class AmendChildDetails {
     c100ChildGender,
     yesNoDontKnow,
     under18,
-    caseRef
+    caseRef,
   }: AmendChildDetailsParams): Promise<void> {
     await Helpers.goToCase(
       page,

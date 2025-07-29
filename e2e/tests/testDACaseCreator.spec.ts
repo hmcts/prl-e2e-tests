@@ -13,7 +13,7 @@ test.describe("Case creation examples", (): void => {
 
   test("create solicitor case - gatekeeping", async ({
     browser,
-    caseEventUtils
+    caseEventUtils,
   }): Promise<void> => {
     await caseEventUtils.createDACaseSendToGatekeeper(browser);
   });

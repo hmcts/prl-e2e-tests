@@ -47,7 +47,12 @@ export class RemoveDraftOrder {
       "tasks",
     );
     const caseEventUtils = new CaseEventUtils();
-    await caseEventUtils.submitEvent(caseWorkerPage, caseRef, "fl401AddCaseNumber", jsonDatas.solicitorDACaseData);
+    await caseEventUtils.submitEvent(
+      caseWorkerPage,
+      caseRef,
+      "fl401AddCaseNumber",
+      jsonDatas.solicitorDACaseData,
+    );
     await Helpers.goToCase(
       caseWorkerPage,
       config.manageCasesBaseURLCase,

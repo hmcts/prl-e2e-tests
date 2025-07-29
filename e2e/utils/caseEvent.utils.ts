@@ -1,9 +1,11 @@
 import { Browser, Page } from "@playwright/test";
-import {
-  JsonDatas, jsonDatas
-} from "../common/caseHelpers/jsonDatas.js";
+import { JsonDatas, jsonDatas } from "../common/caseHelpers/jsonDatas.js";
 import { PageFunction } from "playwright-core/types/structs";
-import { solicitorCACaseAPIEvent, solicitorCaseCreateType, solicitorDACaseAPIEvent } from "../common/types.js";
+import {
+  solicitorCACaseAPIEvent,
+  solicitorCaseCreateType,
+  solicitorDACaseAPIEvent,
+} from "../common/types.js";
 import { Helpers } from "../common/helpers.js";
 import config from "./config.utils.js";
 import Config from "./config.utils.js";
@@ -17,12 +19,13 @@ export class CaseEventUtils {
     this.experimentalHeader = "true";
   }
 
-  async createDACase(browser: Browser, jsonData: JsonDatas = jsonDatas.solicitorDACaseData, page?: Page): Promise<string> {
-    if(!page) {
-      page = await Helpers.openNewBrowserWindow(
-        browser,
-        "solicitor",
-      );
+  async createDACase(
+    browser: Browser,
+    jsonData: JsonDatas = jsonDatas.solicitorDACaseData,
+    page?: Page,
+  ): Promise<string> {
+    if (!page) {
+      page = await Helpers.openNewBrowserWindow(browser, "solicitor");
       await page.goto(config.manageCasesBaseURLCase);
     }
     const caseRef = await this.createTSSolicitorCase(page, "FL401");
@@ -30,18 +33,19 @@ export class CaseEventUtils {
       page,
       caseRef,
       "fl401StatementOfTruthAndSubmit",
-      jsonData
+      jsonData,
     );
     await page.close();
     return caseRef;
   }
 
-  async createCACase(browser: Browser, jsonData: JsonDatas = jsonDatas.solicitorCACaseData, page?: Page) {
-    if(!page) {
-      page = await Helpers.openNewBrowserWindow(
-        browser,
-        "solicitor",
-      );
+  async createCACase(
+    browser: Browser,
+    jsonData: JsonDatas = jsonDatas.solicitorCACaseData,
+    page?: Page,
+  ) {
+    if (!page) {
+      page = await Helpers.openNewBrowserWindow(browser, "solicitor");
       await page.goto(config.manageCasesBaseURLCase);
     }
     const caseRef = await this.createTSSolicitorCase(page, "C100");
@@ -50,31 +54,46 @@ export class CaseEventUtils {
       page,
       caseRef,
       "testingSupportPaymentSuccessCallback",
-      jsonData
+      jsonData,
     );
     await page.close();
     return caseRef;
   }
 
-  async createDACaseSendToGatekeeper(
-    browser: Browser,
-  ): Promise<string> {
-    const caseRef: string =
-      await this.createDACase(browser, jsonDatas.solicitorDACaseData);
+  async createDACaseSendToGatekeeper(browser: Browser): Promise<string> {
+    const caseRef: string = await this.createDACase(
+      browser,
+      jsonDatas.solicitorDACaseData,
+    );
     // open new browser and sign in as court admin user
     const caPage: Page = await Helpers.openNewBrowserWindow(
       browser,
       "caseWorker",
     );
     await caPage.goto(`${Config.manageCasesBaseURL}/work/my-work/list`);
-    await this.submitEvent(caPage, caseRef, "fl401AddCaseNumber", jsonDatas.solicitorDACaseData);
-    await this.submitEvent(caPage, caseRef, "fl401SendToGateKeeper", jsonDatas.solicitorDACaseData);
+    await this.submitEvent(
+      caPage,
+      caseRef,
+      "fl401AddCaseNumber",
+      jsonDatas.solicitorDACaseData,
+    );
+    await this.submitEvent(
+      caPage,
+      caseRef,
+      "fl401SendToGateKeeper",
+      jsonDatas.solicitorDACaseData,
+    );
     await caPage.close();
     return caseRef;
   }
 
-  async createCACaseIssueAndSendToLocalCourt(browser: Browser): Promise<string> {
-    const caseRef: string = await this.createCACase(browser, jsonDatas.solicitorCACaseData);
+  async createCACaseIssueAndSendToLocalCourt(
+    browser: Browser,
+  ): Promise<string> {
+    const caseRef: string = await this.createCACase(
+      browser,
+      jsonDatas.solicitorCACaseData,
+    );
     const ctscPage = await Helpers.openNewBrowserWindow(
       browser,
       "courtAdminStoke",
@@ -157,7 +176,7 @@ export class CaseEventUtils {
 
   private async createBlankCase(
     page: Page,
-    jsonData: JsonDatas
+    jsonData: JsonDatas,
   ): Promise<string> {
     const startCaseCreationUrl = `/data/internal/case-types/PRLAPPS/event-triggers/solicitorCreate?ignore-warning=false`;
 

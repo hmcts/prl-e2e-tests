@@ -10,7 +10,7 @@ test.describe("Upload additional applications for FL401 tests", (): void => {
   let caseRef;
 
   test.beforeEach(async ({ page, browser, caseEventUtils }) => {
-    caseRef =  await caseEventUtils.createDACase(browser);
+    caseRef = await caseEventUtils.createDACase(browser);
     await Helpers.goToCase(
       page,
       config.manageCasesBaseURLCase,

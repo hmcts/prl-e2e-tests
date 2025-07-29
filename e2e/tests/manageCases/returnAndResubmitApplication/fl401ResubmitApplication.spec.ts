@@ -10,7 +10,7 @@ test.describe("Resubmit returned DA(FL401) application tests", (): void => {
   let ccdRef: string = "";
 
   test.beforeEach(async ({ page, browser, caseEventUtils }) => {
-    ccdRef =  await caseEventUtils.createDACase(browser);
+    ccdRef = await caseEventUtils.createDACase(browser);
     const ctscPage = await Helpers.openNewBrowserWindow(
       browser,
       "courtAdminStoke",

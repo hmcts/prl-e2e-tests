@@ -4,9 +4,7 @@ import Config from "../../utils/config.utils.ts";
 import { Helpers } from "../helpers.ts";
 import { CompleteTheOrder } from "../../journeys/manageCases/caseProgression/completeTheOrder/completeTheOrder.ts";
 import { applicationSubmittedBy, createOrderFL401Options } from "../types.ts";
-import {
-  ConfidentialityCheck
-} from "../../journeys/manageCases/caseProgression/confidentilityCheck/confidentialityCheck.js";
+import { ConfidentialityCheck } from "../../journeys/manageCases/caseProgression/confidentilityCheck/confidentialityCheck.js";
 import { CaseEventUtils } from "../../utils/caseEvent.utils.js";
 
 // Note: These methods assume the current page context is court admin
@@ -15,8 +13,18 @@ export async function completeCheckApplicationAndSendToGatekeeper(
   caseRef: string,
 ): Promise<void> {
   const caseEventUtils = new CaseEventUtils();
-  await caseEventUtils.submitEvent(page, caseRef, "fl401AddCaseNumber", jsonDatas.solicitorDACaseData);
-  await caseEventUtils.submitEvent(page, caseRef, "fl401SendToGateKeeper", jsonDatas.solicitorDACaseData);
+  await caseEventUtils.submitEvent(
+    page,
+    caseRef,
+    "fl401AddCaseNumber",
+    jsonDatas.solicitorDACaseData,
+  );
+  await caseEventUtils.submitEvent(
+    page,
+    caseRef,
+    "fl401SendToGateKeeper",
+    jsonDatas.solicitorDACaseData,
+  );
 }
 
 export async function completeCheckApplicationAndSendToGatekeeperAndCreateAnOrder(
@@ -39,7 +47,12 @@ export async function completeCheckApplicationAndSendToGatekeeperAndCreateAnOrde
     "tasks",
   );
   const caseEventUtils = new CaseEventUtils();
-  await caseEventUtils.submitEvent(newPage, caseRef, "manageOrders", manageOrderEventData);
+  await caseEventUtils.submitEvent(
+    newPage,
+    caseRef,
+    "manageOrders",
+    manageOrderEventData,
+  );
 }
 
 export async function completeEventsUpToServiceOfApplication(

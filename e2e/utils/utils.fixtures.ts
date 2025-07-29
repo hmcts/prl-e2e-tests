@@ -59,5 +59,5 @@ export const utilsFixtures = {
   },
   caseEventUtils: async ({}, use) => {
     await use(new CaseEventUtils());
-  }
+  },
 };

@@ -7,7 +7,8 @@ import { test } from "../../../fixtures.js";
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 test.describe("Service of Document event for DA Citizen case tests as court admin.", () => {
   test.beforeEach(async ({ page, browser, caseEventUtils }) => {
-    const ccdRef: string = await caseEventUtils.createDACaseSendToGatekeeper(browser);
+    const ccdRef: string =
+      await caseEventUtils.createDACaseSendToGatekeeper(browser);
     await Helpers.goToCase(
       page,
       config.manageCasesBaseURLCase,

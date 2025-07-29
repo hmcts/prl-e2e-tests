@@ -26,7 +26,12 @@ export class SendToGateKeeperJourney {
   }: SendToGateKeeperParams): Promise<void> {
     if (checkApplicationEvent) {
       const caseEventUtils = new CaseEventUtils();
-      await caseEventUtils.submitEvent(page, ccdRef, "fl401AddCaseNumber", jsonDatas.solicitorDACaseData);
+      await caseEventUtils.submitEvent(
+        page,
+        ccdRef,
+        "fl401AddCaseNumber",
+        jsonDatas.solicitorDACaseData,
+      );
     }
     await Helpers.goToCase(
       page,

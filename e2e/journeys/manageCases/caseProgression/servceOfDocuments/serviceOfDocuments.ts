@@ -29,7 +29,7 @@ export class ServiceOfDocuments {
     accessibilityTest,
     checkDocuments,
   }: ServiceOfDocumentsParams): Promise<void> {
-    if(withCaseDoc) {
+    if (withCaseDoc) {
       // Upload a document
       await ManageDocuments.manageDocuments({
         page: page,
@@ -41,16 +41,15 @@ export class ServiceOfDocuments {
       });
     }
     await this.serviceOfDocuments({
-        page,
-        withCaseDoc,
-        additionalDoc,
-        personallyServed,
-        additionalRecipient,
-        servedByPost,
-        accessibilityTest,
-        checkDocuments,
-      }
-    );
+      page,
+      withCaseDoc,
+      additionalDoc,
+      personallyServed,
+      additionalRecipient,
+      servedByPost,
+      accessibilityTest,
+      checkDocuments,
+    });
   }
 
   public static async serviceOfDocuments({
