@@ -295,7 +295,8 @@ export type solicitorCACaseAPIEvent =
   | "welshLanguageRequirements"
   | "submitAndPay"
   | "testingSupportPaymentSuccessCallback"
-  | "issueAndSendToLocalCourtCallback";
+  | "issueAndSendToLocalCourtCallback"
+  | "sendToGateKeeper";
 
 export type AdditionalApplicationType = "c2" | "other";
 
