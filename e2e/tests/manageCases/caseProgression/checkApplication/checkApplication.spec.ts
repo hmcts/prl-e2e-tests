@@ -5,7 +5,7 @@ import { CheckApplicationJourney } from "../../../../journeys/manageCases/casePr
 
 test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 
-test.describe("Check Application task for DA Citizen case tests.", () => {
+test.describe("Check Application task for DA Solicitor case tests.", () => {
   let ccdRef: string = "";
 
   test.beforeEach(async ({ page, browser, caseEventUtils }) => {

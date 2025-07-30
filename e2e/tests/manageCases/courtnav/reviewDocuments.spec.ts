@@ -5,7 +5,7 @@ import config from "../../../utils/config.utils.ts";
 
 test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 
-test.describe("Review Documents task for DA Citizen case tests.", () => {
+test.describe("Review Documents task for DA Solicitor case tests.", () => {
   let ccdRef: string = "";
 
   test.beforeEach(async ({ page, courtNavUtils }) => {

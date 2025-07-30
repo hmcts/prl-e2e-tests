@@ -6,7 +6,7 @@ import { TransferToAnotherCourt } from "../../../../journeys/manageCases/casePro
 
 test.use({ storageState: Config.sessionStoragePath + "courtAdminStoke.json" });
 
-test.describe("Transfer to another court event for DA Citizen case tests as a court admin.", () => {
+test.describe("Transfer to another court event for DA Solicitor case tests as a court admin.", () => {
   test.beforeEach(async ({ page, browser, caseEventUtils }) => {
     const ccdRef = await caseEventUtils.createDACase(browser);
     await Helpers.goToCase(

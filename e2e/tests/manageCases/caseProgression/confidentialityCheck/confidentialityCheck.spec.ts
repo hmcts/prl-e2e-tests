@@ -6,7 +6,7 @@ import { ConfidentialityCheck } from "../../../../journeys/manageCases/caseProgr
 
 test.use({ storageState: config.sessionStoragePath + "caseManager.json" });
 
-test.describe("Confidentiality check task for DA Citizen case tests.", () => {
+test.describe("Confidentiality check task for DA Solicitor case tests.", () => {
   let ccdRef: string = "";
 
   test.beforeEach(async ({ page, browser, caseEventUtils }) => {
@@ -32,7 +32,7 @@ test.describe("Confidentiality check task for DA Citizen case tests.", () => {
       browser: browser,
       personallyServed: true,
       manageOrderData: jsonDatas.manageOrderDataPowerOfArrest,
-      applicationSubmittedBy: "Citizen",
+      applicationSubmittedBy: "Solicitor",
       nameChange: true,
       dobChange: true,
       genderChange: true,

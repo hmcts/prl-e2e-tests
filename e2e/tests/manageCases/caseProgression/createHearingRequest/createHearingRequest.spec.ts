@@ -6,7 +6,7 @@ import { jsonDatas } from "../../../../common/caseHelpers/jsonDatas.ts";
 
 test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 
-test.describe("Complete the Order task for DA Citizen case tests.", () => {
+test.describe("Complete the Order task for DA Solicitor case tests.", () => {
   let ccdRef: string = "";
 
   test.beforeEach(async ({ page, browser, caseEventUtils }) => {
