@@ -12,7 +12,7 @@ import {
 } from "../../../../common/caseHelpers/solicitorCaseCreatorHelper.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
-
+//
 test.describe("Send and reply to messages between court admin and judge for a C100 case tests", () => {
   let ccdRef: string;
   test.beforeEach(async ({ page, browser }) => {
