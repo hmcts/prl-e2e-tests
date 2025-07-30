@@ -40,4 +40,16 @@ test.describe("Complete the Order task for DA Citizen case tests.", () => {
       ccdRef,
     });
   });
+
+  test("Manual Completion Task - Team leader - Send to GateKeeper - without accessibility test. @regression @accessibility", async ({
+    page, browser
+  }): Promise<void> => {
+    await SendToGateKeeperJourney.teamLeaderCheckSendToGateKeeper({
+      page,
+      accessibilityTest: false,
+      yesNoSendToGateKeeper: true,
+      ccdRef,
+      browser: browser,
+    });
+  });
 });

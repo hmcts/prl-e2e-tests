@@ -78,7 +78,7 @@ export class ReasonableAdjustments {
         "tasks",
       );
       await page
-        .locator(Selectors.daTasklist, {
+        .locator(Selectors.tab, {
           hasText: "Case Flags",
         })
         .click();
