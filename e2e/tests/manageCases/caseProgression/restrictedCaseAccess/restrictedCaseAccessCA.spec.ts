@@ -12,25 +12,7 @@ test.describe("Complete the Restricted Case Access events for CA case.", () => {
   let ccdRef: string = "";
   test.beforeEach(async ({ browser, caseEventUtils }) => {
     ccdRef = await caseEventUtils.createCACaseIssueAndSendToLocalCourt(browser);
-    //log in as a court admin and complete send to gatekeeper event
-    const caseWorkerPage: Page = await Helpers.openNewBrowserWindow(
-      browser,
-      "caseWorker",
-    );
-    await Helpers.goToCase(
-      caseWorkerPage,
-      config.manageCasesBaseURLCase,
-      ccdRef,
-      "tasks",
-    );
-    //#TODO: replace with page.evaluate calls for CA cases
-    await SendToGateKeeperJourney.sendToGateKeeper({
-      page: caseWorkerPage,
-      ccdRef,
-      accessibilityTest: false,
-      yesNoSendToGateKeeper: true, //set to true to allocate specific judge to case so they can restrict case
-      checkApplicationEvent: false,
-    });
+    await SolicitorCACaseCreator.c100sendToGatekeeper(browser, ccdRef);
   });
 
   test("Mark CA case as restricted as a gatekeeper judge. @nightly @regression @accessibility", async ({

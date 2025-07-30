@@ -10,13 +10,7 @@ test.describe("Complete the Order task for C100 case tests.", () => {
   let ccdRef: string = "";
   test.beforeEach(async ({ page, browser, caseEventUtils }) => {
     ccdRef = await caseEventUtils.createCACaseIssueAndSendToLocalCourt(browser);
-    await SendToGateKeeperJourney.sendToGateKeeper({
-      page: page,
-      ccdRef,
-      accessibilityTest: false,
-      yesNoSendToGateKeeper: true, //set to true to allocate specific judge to case so they can restrict case
-      checkApplicationEvent: false,
-    });
+    await SolicitorCACaseCreator.c100sendToGatekeeper(browser, ccdRef);
     await Helpers.goToCase(
       page,
       Config.manageCasesBaseURLCase,
