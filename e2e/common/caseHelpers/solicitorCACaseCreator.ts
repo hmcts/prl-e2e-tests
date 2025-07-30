@@ -77,4 +77,26 @@ export class SolicitorCACaseCreator {
       jsonDatas.solicitorCACaseData,
     );
   }
+  public static async c100sendToGatekeeper(
+    browser: Browser,
+    caseRef: string,
+  ): Promise<void> {
+    const caPage: Page = await Helpers.openNewBrowserWindow(
+      browser,
+      "caseWorker",
+    );
+    await Helpers.goToCase(
+      caPage,
+      config.manageCasesBaseURLCase,
+      caseRef,
+      "tasks",
+    );
+    //CA json data currently sending to judge - "Elizabeth Williams". Need to rework payload strategy to point to LA or different judge as & when required - FPVTL-995
+    await submitEvent(
+      caPage,
+      caseRef,
+      "sendToGateKeeper",
+      jsonDatas.solicitorCACaseData,
+    );
+  }
 }

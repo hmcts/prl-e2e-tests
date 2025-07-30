@@ -5560,5 +5560,15 @@
         ]
       }
     }
+  },
+  "sendToGateKeeper": {
+    "data": {
+      "isSpecificGateKeeperNeeded": "Yes",
+      "isJudgeOrLegalAdviserGatekeeping": "judge",
+      "judgeName": {
+        "idamId": "e431b6cf-b6eb-4f7b-a6c1-4f42da41ed06",
+        "personalCode": "4923961"
+      }
+    }
   }
 }

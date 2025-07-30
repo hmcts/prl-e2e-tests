@@ -5,7 +5,7 @@ import {
   Locator,
   Page,
 } from "@playwright/test";
-import idamLoginHelper from "./userHelpers/idamLoginHelper.ts";
+import { IdamLoginHelper } from "../utils/idamLoginHelper.utils.ts";
 import { Selectors } from "./selectors.ts";
 import {
   amendEvents,
@@ -129,6 +129,7 @@ export class Helpers {
     try {
       await page.locator(`a:text-is(" Sign out ")`).click();
       await page.waitForLoadState("domcontentloaded");
+      const idamLoginHelper = await new IdamLoginHelper();
       await idamLoginHelper.signInLongLivedUser(page, user, baseURL);
       await Helpers.goToCase(page, baseURL, caseNumber, caseTab);
     } catch (error) {

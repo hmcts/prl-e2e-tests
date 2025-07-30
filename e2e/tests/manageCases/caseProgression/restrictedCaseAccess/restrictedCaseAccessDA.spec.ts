@@ -1,17 +1,17 @@
-import { Page, test } from "@playwright/test";
-import createDaCitizenCourtNavCase from "../../../../common/caseHelpers/citizenDACaseCreateHelper.ts";
+import { test } from "../../../fixtures.ts";
+import { Page } from "@playwright/test";
 import { Helpers } from "../../../../common/helpers.ts";
-import config, { Config } from "../../../../utils/config.utils.ts";
+import config from "../../../../utils/config.utils.ts";
 import { SendToGateKeeperJourney } from "../../../../journeys/manageCases/caseProgression/sendToGateKeeper/sendToGateKeeperJourney.ts";
 import { RestrictedCaseAccess } from "../../../../journeys/manageCases/caseProgression/restrictedCaseAccess/restrictedCaseAccessJourney.ts";
 
-test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
+test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("Complete the Restricted Case Access events for DA case.", () => {
   let ccdRef: string = "";
-  test.beforeEach(async ({ page }) => {
+  test.beforeEach(async ({ page, courtNavUtils }) => {
     //create a DA case (court nav) and complete 'complete application' and 'send to gatekeeper' events
-    ccdRef = await createDaCitizenCourtNavCase(true, false);
+    ccdRef = await courtNavUtils.createCase(true, false);
     await Helpers.goToCase(
       page,
       config.manageCasesBaseURLCase,
