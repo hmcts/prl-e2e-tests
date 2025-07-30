@@ -1,6 +1,5 @@
 import Config from "../../../../utils/config.utils.ts";
 import { Helpers } from "../../../../common/helpers.ts";
-import { SendToGateKeeperJourney } from "../../../../journeys/manageCases/caseProgression/sendToGateKeeper/sendToGateKeeperJourney.js";
 import { C100CompleteTheOrder } from "../../../../journeys/manageCases/caseProgression/completeTheOrder/C100completeTheOrder.js";
 import { test } from "../../../fixtures.js";
 
@@ -9,8 +8,7 @@ test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 test.describe("Complete the Order task for C100 case tests.", () => {
   let ccdRef: string = "";
   test.beforeEach(async ({ page, browser, caseEventUtils }) => {
-    ccdRef = await caseEventUtils.createCACaseIssueAndSendToLocalCourt(browser);
-    await SolicitorCACaseCreator.c100sendToGatekeeper(browser, ccdRef);
+    ccdRef = await caseEventUtils.createCACaseSendToGatekeeper(browser);
     await Helpers.goToCase(
       page,
       Config.manageCasesBaseURLCase,

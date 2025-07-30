@@ -114,6 +114,31 @@ export class CaseEventUtils {
     return caseRef;
   }
 
+   async createCACaseSendToGatekeeper(
+    browser: Browser,
+  ): Promise<string> {
+    const caseRef: string = await this.createCACaseIssueAndSendToLocalCourt(browser);
+    const caPage: Page = await Helpers.openNewBrowserWindow(
+      browser,
+      "caseWorker",
+    );
+    await Helpers.goToCase(
+      caPage,
+      config.manageCasesBaseURLCase,
+      caseRef,
+      "tasks",
+    );
+    //CA json data currently sending to judge - "Elizabeth Williams". Need to rework payload strategy to point to LA or different judge as & when required - FPVTL-995
+    await this.submitEvent(
+      caPage,
+      caseRef,
+      "sendToGateKeeper",
+      jsonDatas.solicitorCACaseData,
+    );
+    await caPage.close();
+    return caseRef;
+  }
+
   /**
    * Function to submit a specific event for a given case.
    * @param {Page} page the page to be used - this gives the API call its context
