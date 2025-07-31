@@ -23,8 +23,8 @@
       "additionalDetailsForCourt": "Rejections are nothing but the fall of the truth. There is no one where they can be. It is up to the architect to push it back. Who are they to take up?"
     },
     "applicantDetails": {
-      "applicantFirstName": "Applicant",
-      "applicantLastName": "ApplLast",
+      "applicantFirstName": "John",
+      "applicantLastName": "Smith",
       "applicantGender": "other",
       "applicantGenderOther": "Prefer not to say",
       "applicantDateOfBirth": {
@@ -64,8 +64,8 @@
     "legalRepresentativeEmail": "test",
     "legalRepresentativePhone": "test",
     "respondentDetails": {
-      "respondentFirstName": "Dolores",
-      "respondentLastName": "Smith",
+      "respondentFirstName": "Elise",
+      "respondentLastName": "Lynn",
       "respondentOtherNames": "",
       "respondentDateOfBirth": {
         "day": 10,

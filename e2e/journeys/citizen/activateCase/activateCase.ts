@@ -48,7 +48,7 @@ export class ActivateCase {
         yesNoServiceOfApplication4: false,
         confidentialityCheck: false,
         responsibleForServing: "courtBailiff",
-        manageOrderData: jsonDatas.manageOrderDataPowerOfArrest,
+        manageOrderData: jsonDatas.citizenManageOrderDataPowerOfArrest,
         applicationSubmittedBy: applicationSubmittedBy,
       });
       // need to complete C8 confidential details event when it is a solicitor case
@@ -61,7 +61,7 @@ export class ActivateCase {
         page,
         browser,
         caseRef,
-        jsonDatas.manageOrderDataPowerOfArrest,
+        jsonDatas.citizenManageOrderDataPowerOfArrest,
         "power of arrest",
         applicationSubmittedBy,
       );

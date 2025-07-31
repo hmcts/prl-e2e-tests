@@ -32,7 +32,7 @@ test.describe("Service of Application task for DA Citizen case tests.", () => {
       yesNoServiceOfApplication4: true,
       confidentialityCheck: false,
       responsibleForServing: "courtBailiff",
-      manageOrderData: jsonDatas.manageOrderDataPowerOfArrest,
+      manageOrderData: jsonDatas.citizenManageOrderDataPowerOfArrest,
       applicationSubmittedBy: "Citizen",
     });
   });
@@ -51,7 +51,7 @@ test.describe("Service of Application task for DA Citizen case tests.", () => {
       yesNoServiceOfApplication4: true,
       confidentialityCheck: false,
       responsibleForServing: "courtBailiff",
-      manageOrderData: jsonDatas.manageOrderDataAmendDischargedVaried,
+      manageOrderData: jsonDatas.citizenManageOrderDataAmendDischargedVaried,
       applicationSubmittedBy: "Citizen",
     });
   });

@@ -6,6 +6,7 @@ import { CompleteTheOrder } from "../../journeys/manageCases/caseProgression/com
 import { applicationSubmittedBy, createOrderFL401Options } from "../types.ts";
 import { ConfidentialityCheck } from "../../journeys/manageCases/caseProgression/confidentilityCheck/confidentialityCheck.js";
 import { CaseEventUtils } from "../../utils/caseEvent.utils.js";
+import { ServiceOfApplication } from "../../journeys/manageCases/caseProgression/serviceOfApplication/serviceOfApplication.js";
 
 // Note: These methods assume the current page context is court admin
 export async function completeCheckApplicationAndSendToGatekeeper(
@@ -84,6 +85,8 @@ export async function completeEventsUpToServiceOfApplication(
     "serviceOfApplication",
     manageOrderEventData,
   );
-  // this will have to be conditional
-  await ConfidentialityCheck.confidentialityCheckLite(browser, caseRef);
+  if(applicationSubmittedBy === "Solicitor") {
+    // this will have to be conditional
+    await ConfidentialityCheck.confidentialityCheckLite(browser, caseRef);
+  }
 }
