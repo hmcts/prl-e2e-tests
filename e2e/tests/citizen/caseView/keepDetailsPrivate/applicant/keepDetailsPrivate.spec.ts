@@ -9,8 +9,8 @@ test.describe("Applicant keep details private tests", (): void => {
   test.slow();
   let ccdRef: string;
 
-  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
-    ccdRef = await caseEventUtils.createDACase(browser);
+  test.beforeEach(async ({ page, courtNavUtils }) => {
+    ccdRef = await courtNavUtils.createCase(true, false);
     await Helpers.goToCase(
       page,
       config.manageCasesBaseURLCase,
@@ -31,7 +31,7 @@ test.describe("Applicant keep details private tests", (): void => {
       isApplicant: true,
       startAlternativeYesNo: true,
       yesNoDontKnow: "yes",
-      applicationSubmittedBy: "Solicitor",
+      applicationSubmittedBy: "Citizen",
     });
   });
 
@@ -47,7 +47,7 @@ test.describe("Applicant keep details private tests", (): void => {
       isApplicant: true,
       startAlternativeYesNo: false,
       yesNoDontKnow: "no",
-      applicationSubmittedBy: "Solicitor",
+      applicationSubmittedBy: "Citizen",
     });
   });
 
@@ -63,7 +63,7 @@ test.describe("Applicant keep details private tests", (): void => {
       isApplicant: true,
       startAlternativeYesNo: true,
       yesNoDontKnow: "dontKnow",
-      applicationSubmittedBy: "Solicitor",
+      applicationSubmittedBy: "Citizen",
     });
   });
 });

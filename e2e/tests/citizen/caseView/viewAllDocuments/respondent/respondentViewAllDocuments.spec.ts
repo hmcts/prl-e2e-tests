@@ -10,8 +10,8 @@ test.describe("Applicant view all documents tests", (): void => {
   test.slow();
   let ccdRef: string;
 
-  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
-    ccdRef = await caseEventUtils.createDACase(browser);
+  test.beforeEach(async ({ page, courtNavUtils }) => {
+    ccdRef = await courtNavUtils.createCase(true, false);
     await Helpers.goToCase(
       page,
       config.manageCasesBaseURLCase,
@@ -30,7 +30,7 @@ test.describe("Applicant view all documents tests", (): void => {
       accessibilityTest: false,
       caseRef: ccdRef,
       isApplicant: false,
-      applicationSubmittedBy: "Solicitor",
+      applicationSubmittedBy: "Citizen",
     });
   });
 
@@ -44,7 +44,7 @@ test.describe("Applicant view all documents tests", (): void => {
       accessibilityTest: true,
       caseRef: ccdRef,
       isApplicant: false,
-      applicationSubmittedBy: "Solicitor",
+      applicationSubmittedBy: "Citizen",
     });
   });
 });

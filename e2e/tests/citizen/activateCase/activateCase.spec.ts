@@ -9,8 +9,8 @@ test.describe("Activating case tests", (): void => {
   test.slow();
   let ccdRef: string;
 
-  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
-    ccdRef = await caseEventUtils.createDACase(browser);
+  test.beforeEach(async ({ page, courtNavUtils }) => {
+    ccdRef = await courtNavUtils.createCase(true, false);
     await Helpers.goToCase(
       page,
       config.manageCasesBaseURLCase,
@@ -29,7 +29,7 @@ test.describe("Activating case tests", (): void => {
       caseRef: ccdRef,
       caseUser: "both",
       accessibilityTest: true,
-      applicationSubmittedBy: "Solicitor",
+      applicationSubmittedBy: "Citizen",
       isManualSOA: true,
     });
   });
