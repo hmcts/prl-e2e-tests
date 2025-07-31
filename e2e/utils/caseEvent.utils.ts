@@ -139,6 +139,36 @@ export class CaseEventUtils {
     return caseRef;
   }
 
+  async createCACaseSubmitAndPayIndividualEvents(
+    page: Page,
+  ): Promise<string> {
+    const solicitorCaseEvents: solicitorCACaseAPIEvent[] = [
+      "selectApplicationType",
+      "hearingUrgency",
+      "applicantsDetails",
+      "respondentsDetails",
+      "otherPeopleInTheCaseRevised",
+      "childDetailsRevised",
+      "otherChildNotInTheCase",
+      "childrenAndApplicants",
+      "childrenAndRespondents",
+      "childrenAndOtherPeople",
+      "allegationsOfHarmRevised",
+      "miamPolicyUpgrade",
+      "internationalElement",
+      "welshLanguageRequirements",
+      "submitAndPay",
+      "testingSupportPaymentSuccessCallback",
+    ];
+
+    await page.goto(Config.manageCasesBaseURL);
+    const caseRef = await this.createBlankCase(page, jsonDatas.solicitorCACaseData);
+    for (const event of solicitorCaseEvents) {
+      await this.submitEvent(page, caseRef, event, jsonDatas.solicitorCACaseData);
+    }
+    return caseRef;
+  }
+
   /**
    * Function to submit a specific event for a given case.
    * @param {Page} page the page to be used - this gives the API call its context
