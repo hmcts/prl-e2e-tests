@@ -9,7 +9,7 @@ export enum SendAndReplyToMessages4Content {
   formLabel7 = "Test message",
   formLabel8 = "Test message content",
 
-  fl401FormLabel = "Applications -> Applicant documents -> Applicant application -> FL401FinalDocument.pdf",
+  fl401FormLabel = "Applications -> Applicant documents -> Applicant application -> FL401FinalDocumentWelsh.pdf",
   c100FormLabel = "Applications -> Applicant documents -> Applicant application -> Draft_C100_application.pdf",
 
   DuplicateFormLabelNo = "No", // x2
@@ -29,7 +29,7 @@ export enum SendAndReplyToMessages4Content {
   headingH413 = "Subject",
   headingH414 = "Message details",
   addNew = "Add new",
-  fl401Anchor = "DA-application.pdf",
+  fl401Anchor = "DA-Welsh-application.pdf",
   c100Anchor = "C100DraftDocument.pdf",
   caseFieldLabel1 = "Attached date & time",
   caseFieldLabel2 = "Document",

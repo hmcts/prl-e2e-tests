@@ -398,11 +398,6 @@ export class AmendApplicantDetails2Page {
       AmendApplicantDetails2Content.solicitorEmailInput,
     );
     await page.fill(
-      uniqueSelectors.searchOrg,
-      AmendApplicantDetails2Content.searchOrgInputTest,
-    );
-    await page.locator(uniqueSelectors.selectOrg).first().click();
-    await page.fill(
       uniqueSelectors.solicitorPostcodeInput,
       AmendApplicantDetails2Content.postcodeInput2,
     );

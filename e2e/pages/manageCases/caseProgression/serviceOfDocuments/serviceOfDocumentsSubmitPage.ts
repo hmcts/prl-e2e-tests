@@ -110,7 +110,7 @@ export class ServiceOfDocumentsSubmitPage {
       case "Yes":
         await Helpers.checkGroup(
           page,
-          3,
+          5,
           ServiceOfDocumentsSubmitContent,
           `textPersonallyServed`,
           `${Selectors.GovukText16}`,

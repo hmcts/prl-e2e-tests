@@ -5,11 +5,11 @@ import { SendToGateKeeperJourney } from "../../../../journeys/manageCases/casePr
 
 test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 
-test.describe("Complete the Order task for DA Citizen case tests.", () => {
+test.describe("Complete the Order task for DA Solicitor case tests.", () => {
   let ccdRef: string = "";
 
-  test.beforeEach(async ({ page, courtNavUtils }) => {
-    ccdRef = await courtNavUtils.createCase(true, false);
+  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
+    ccdRef = await caseEventUtils.createDACase(browser);
     await Helpers.goToCase(
       page,
       config.manageCasesBaseURLCase,

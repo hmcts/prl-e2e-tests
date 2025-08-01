@@ -11,7 +11,6 @@ import { UploadDraftAnOrder3Page } from "../../../../pages/manageCases/caseProgr
 import { UploadDraftAnOrder4Page } from "../../../../pages/manageCases/caseProgression/draftAnOrder/uploadDraftAnOrder4Page.ts";
 import { C100DraftOrdersTabPage } from "../../../../pages/manageCases/caseTabs/C100/c100DraftOrdersTabPage.ts";
 import { UploadDraftAnOrderSubmitPage } from "../../../../pages/manageCases/caseProgression/draftAnOrder/uploadDraftAnOrderSubmitPage.ts";
-import { SolicitorCACaseCreator } from "../../../../common/caseHelpers/solicitorCACaseCreator.ts";
 
 interface C100DraftAnOrderOptions {
   page: Page;
@@ -23,6 +22,7 @@ interface C100DraftAnOrderOptions {
   errorMessaging: boolean;
   isUploadOrder: boolean;
   browser: Browser;
+  caseRef: string;
 }
 
 export class UploadAnOrderC100SolicitorJourney {
@@ -36,16 +36,8 @@ export class UploadAnOrderC100SolicitorJourney {
     errorMessaging,
     isUploadOrder,
     browser,
+    caseRef,
   }: C100DraftAnOrderOptions): Promise<void> {
-    //CA case creation
-    await page.goto(Config.manageCasesBaseURLCase);
-    const caseRef = await SolicitorCACaseCreator.createCaseSubmitAndPay(page);
-    await Helpers.goToCase(
-      page,
-      Config.manageCasesBaseURLCase,
-      caseRef,
-      "Summary",
-    );
     //Starting the 'Draft an order' event to upload the order
     await Helpers.chooseEventFromDropdown(page, `Draft an order`);
     await DraftAnOrder1Page.draftAnOrder1Page(

@@ -656,39 +656,39 @@
   "serviceOfApplication": {
     "data": {
       "serviceOfApplicationHeader": null,
-      "isConfidential": "Yes",
+      "isConfidential": "No",
       "sentDocumentPlaceHolder": "<details class='govuk-details'>\n\n<summary class='govuk-details__summary'>\n\n<h3 class='govuk-details__summary-text'>\n\nDocuments served in the pack\n\n</h3>\n\n</summary>\n\n<div class='govuk-details__text'>\n\nCertain documents will be automatically included in the pack that is sent out on parties (the people in the case).\n\nThis includes:\n\n<ul><li>an application form (FL401)</li><li>witness statement</li><li>privacy notice</li><li>cover letter (if not represented)</li></ul>\n\nYou do not need to upload these documents yourself.\n\n</div>\n\n</details>",
       "serviceOfApplicationScreen1": {
         "value": [
           {
-            "code": "8df63a2a-59a9-4a43-8953-19585e57d071",
-            "label": "Amended, discharged or varied order (FL404B) - 30 Jul 2025"
+            "code": "af39a2ba-aad5-4347-b064-8c182faeb4ef",
+            "label": "Power of arrest (FL406) - 21 Jan 2025"
           }
         ],
         "list_items": [
           {
-            "code": "8df63a2a-59a9-4a43-8953-19585e57d071",
-            "label": "Amended, discharged or varied order (FL404B) - 30 Jul 2025"
+            "code": "af39a2ba-aad5-4347-b064-8c182faeb4ef",
+            "label": "Power of arrest (FL406) - 21 Jan 2025"
           }
         ]
       },
       "noticeOfSafetySupportLetter": {
-        "document_url": "http://dm-store-demo.service.core-compute-demo.internal/documents/8ba1fa5e-17ec-42d4-84be-2d694264fae4",
-        "document_binary_url": "http://dm-store-demo.service.core-compute-demo.internal/documents/8ba1fa5e-17ec-42d4-84be-2d694264fae4/binary",
-        "document_filename": "Safety Letter.docx"
+        "document_url": "http://dm-store-demo.service.core-compute-demo.internal/documents/0448b3bc-8083-447c-a412-bc8d6ac5c5b0",
+        "document_binary_url": "http://dm-store-demo.service.core-compute-demo.internal/documents/0448b3bc-8083-447c-a412-bc8d6ac5c5b0/binary",
+        "document_filename": "mockFile.pdf"
       },
       "additionalDocumentsList": [],
       "caseTypeOfApplication": "FL401",
       "soaIsOrderListEmpty": "No",
-      "missingAddressWarningText": "<div class='govuk-warning-text'><span class='govuk-warning-text__icon' aria-hidden='true'>!</span><strong class='govuk-warning-text__text'>There is no postal address for the respondent</strong></div>",
-      "displayLegalRepOption": "Yes",
+      "missingAddressWarningText": "",
+      "displayLegalRepOption": "No",
       "isC8CheckNeeded": null,
       "responsibleForService": null,
       "isOccupationOrderSelected": null,
       "isApplicantRepresented": null,
       "productHearingBundleOn": null,
       "soaServeToRespondentOptions": "Yes",
-      "soaServingRespondentsOptions": "courtBailiff"
+      "soaCitizenServingRespondentsOptions": "courtBailiff"
     }
   }
 }

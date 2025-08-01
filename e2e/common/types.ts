@@ -275,7 +275,8 @@ export type solicitorDACaseAPIEvent =
   | "fl401SendToGateKeeper"
   | "manageOrders"
   | "serviceOfApplication"
-  | "draftAnOrder";
+  | "draftAnOrder"
+  | "confidentialityCheck";
 
 export type solicitorCACaseAPIEvent =
   | "solicitorCreate"

@@ -78,7 +78,7 @@ export class ManageDocumentsNew1Page {
         `${Selectors.button}:text-is("${ManageDocumentsNew1Content.buttonText2}")`,
         1,
       ),
-      Helpers.checkGroup(page, 2, ManageDocumentsNew1Content, "p", Selectors.p),
+      Helpers.checkGroup(page, 3, ManageDocumentsNew1Content, "p", Selectors.p),
       Helpers.checkGroup(
         page,
         4,

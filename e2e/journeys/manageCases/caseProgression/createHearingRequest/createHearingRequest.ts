@@ -16,7 +16,7 @@ import Config from "../../../../utils/config.utils.ts";
 import config from "../../../../utils/config.utils.ts";
 import { createOrderFL401Options } from "../../../../common/types.ts";
 import { Selectors } from "../../../../common/selectors.ts";
-import { jsonDatas } from "../../../../common/caseHelpers/solicitorCaseCreatorHelper.ts";
+import { jsonDatas } from "../../../../common/caseHelpers/jsonDatas.ts";
 import { completeCheckApplicationAndSendToGatekeeperAndCreateAnOrder } from "../../../../common/caseHelpers/caseEventsHelper.ts";
 import { HearingConfirmationPage } from "../../../../pages/manageCases/caseProgression/createHearingRequest/hearingConfirmationPage.ts";
 

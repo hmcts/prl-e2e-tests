@@ -12,7 +12,7 @@ import {
   createOrderFL401Options,
 } from "../../../../common/types.ts";
 import { CompleteTheOrder } from "../completeTheOrder/completeTheOrder.ts";
-import { jsonDatas } from "../../../../common/caseHelpers/solicitorCaseCreatorHelper.ts";
+import { jsonDatas } from "../../../../common/caseHelpers/jsonDatas.ts";
 
 interface ServiceOfApplicationJourneyParams {
   page: Page;

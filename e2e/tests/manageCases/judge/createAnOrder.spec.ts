@@ -8,8 +8,8 @@ test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 test.describe("Judge create an order tests.", () => {
   let ccdRef: string;
 
-  test.beforeEach(async ({ page, courtNavUtils }) => {
-    ccdRef = await courtNavUtils.createCase(true, false);
+  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
+    ccdRef = await caseEventUtils.createDACase(browser);
     await Helpers.goToCase(
       page,
       config.manageCasesBaseURLCase,

@@ -6,6 +6,7 @@ export enum ManageDocumentsNew1Content {
   buttonText2 = "Remove",
   p1 = "Upload a file to the system",
   p2 = "File size must be under 500MB.", // TODO this should be a form hint but it is a <p>
+  p3 = "Before you add a document, remove any confidential details. You cannot delete or edit a document after you submit it.",
   formHint1 = "Select a party",
   formHint2 = "Select a document category",
   formHint3 = "Only HMCTS staff and the judiciary will be able to see it.",
@@ -17,6 +18,6 @@ export enum ManageDocumentsNew1Content {
   formLabel5 = "Document",
   formLabel6 = "Does the document contain confidential information?",
   formLabel7 = "Do you want to request this document is restricted?",
-  warningText = "You cannot delete or edit a document once it is submitted.",
+  warningText = "There is confidential information in this case.",
   inputText = "This needs to be restricted as this is very sensitive information.",
 }

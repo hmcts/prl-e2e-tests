@@ -1,25 +1,16 @@
-import { Page, test } from "@playwright/test";
-import Config from "../../../../utils/config.utils.ts";
-import { SolicitorDACaseCreator } from "../../../../common/caseHelpers/solicitorDACaseCreator.js";
+import { test } from "../../../fixtures.ts";
+import config from "../../../../utils/config.utils.ts";
 import { Helpers } from "../../../../common/helpers.js";
 import { Fl401ManageOrderDA } from "../../../../journeys/manageCases/caseWorker/createAnOrder/FL401OrderDA/fl401ManageOrderDA.js";
 
-test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
+test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("Create an order tests", (): void => {
-  test.beforeEach(async ({ page, browser }) => {
-    const solicitorPage: Page = await Helpers.openNewBrowserWindow(
-      browser,
-      "solicitor",
-    );
-    await solicitorPage.goto(Config.manageCasesBaseURLCase);
-    const caseRef = await SolicitorDACaseCreator.createCaseSendToGatekeeper(
-      solicitorPage,
-      browser,
-    );
+  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
+    const caseRef = await caseEventUtils.createDACaseSendToGatekeeper(browser);
     await Helpers.goToCase(
       page,
-      Config.manageCasesBaseURLCase,
+      config.manageCasesBaseURLCase,
       caseRef,
       "Summary",
     );

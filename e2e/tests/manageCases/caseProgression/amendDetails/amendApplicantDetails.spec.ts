@@ -8,8 +8,8 @@ test.use({ storageState: Config.sessionStoragePath + "courtAdminStoke.json" });
 test.describe("Complete amend applicant details event as a court admin", () => {
   let ccdRef: string = "";
 
-  test.beforeEach(async ({ page, courtNavUtils }) => {
-    ccdRef = await courtNavUtils.createCase(true, false);
+  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
+    ccdRef = await caseEventUtils.createDACase(browser);
     await Helpers.goToCase(
       page,
       Config.manageCasesBaseURLCase,

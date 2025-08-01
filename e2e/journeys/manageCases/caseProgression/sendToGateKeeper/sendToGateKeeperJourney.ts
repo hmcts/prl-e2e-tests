@@ -3,8 +3,9 @@ import { Helpers } from "../../../../common/helpers.ts";
 import config from "../../../../utils/config.utils.ts";
 import { FL401SendToGateKeeper1Page } from "../../../../pages/manageCases/caseProgression/sendToGateKeeper/fl401SendToGateKeeper1Page.ts";
 import { FL401SendToGateKeeperSubmitPage } from "../../../../pages/manageCases/caseProgression/sendToGateKeeper/fl401SendToGateKeeperSubmitPage.ts";
-import { submitEvent } from "../../../../common/caseHelpers/solicitorCaseCreatorHelper.ts";
+import { jsonDatas } from "../../../../common/caseHelpers/jsonDatas.ts";
 import { Selectors } from "../../../../common/selectors.ts";
+import { CaseEventUtils } from "../../../../utils/caseEvent.utils.js";
 
 interface SendToGateKeeperParams {
   page: Page;
@@ -24,7 +25,13 @@ export class SendToGateKeeperJourney {
     ccdRef,
   }: SendToGateKeeperParams): Promise<void> {
     if (checkApplicationEvent) {
-      await submitEvent(page, ccdRef, "fl401AddCaseNumber");
+      const caseEventUtils = new CaseEventUtils();
+      await caseEventUtils.submitEvent(
+        page,
+        ccdRef,
+        "fl401AddCaseNumber",
+        jsonDatas.solicitorDACaseData,
+      );
     }
     await Helpers.goToCase(
       page,
@@ -47,6 +54,12 @@ export class SendToGateKeeperJourney {
       accessibilityTest,
       yesNoSendToGateKeeper,
     });
+    // wait for success message
+    await page
+      .locator(`.alert-message`, {
+        hasText: `Send to gatekeeper`,
+      })
+      .waitFor();
     //checking if the 'Send to gatekeeper' WA task has auto-closed as expected
     await this.checkSendToGatekeeperTaskAutoClosure(page, ccdRef);
   }

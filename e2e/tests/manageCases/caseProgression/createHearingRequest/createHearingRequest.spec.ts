@@ -2,15 +2,15 @@ import { test } from "../../../fixtures.ts";
 import config from "../../../../utils/config.utils.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import { CreateHearingRequest } from "../../../../journeys/manageCases/caseProgression/createHearingRequest/createHearingRequest.ts";
-import { jsonDatas } from "../../../../common/caseHelpers/solicitorCaseCreatorHelper.ts";
+import { jsonDatas } from "../../../../common/caseHelpers/jsonDatas.ts";
 
 test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 
-test.describe("Complete the Order task for DA Citizen case tests.", () => {
+test.describe("Complete the Order task for DA Solicitor case tests.", () => {
   let ccdRef: string = "";
 
-  test.beforeEach(async ({ page, courtNavUtils }) => {
-    ccdRef = await courtNavUtils.createCase(true, false);
+  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
+    ccdRef = await caseEventUtils.createDACase(browser);
     await Helpers.goToCase(
       page,
       config.manageCasesBaseURLCase,
