@@ -127,6 +127,9 @@ export class MiamPolicyUpgrade3Page {
   public static async triggerErrorMessages(page: Page): Promise<void> {
     await page.click(`${UniqueSelectors.provideEvidenceYes}`);
     await this.provideEvidence_yes(page);
+    // need to wait for the rate request limit to expire before uploading another file
+    // the first file is uploaded earlier in the journey miamPolicyUpgrade3Page
+    await page.waitForTimeout(5000);
     const fileInput = page.locator(`${UniqueSelectors.uploadFileInput}`);
     await fileInput.setInputFiles(config.testOdtFile);
     await page.waitForSelector(
