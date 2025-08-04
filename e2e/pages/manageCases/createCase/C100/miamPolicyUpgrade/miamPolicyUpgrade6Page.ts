@@ -109,7 +109,7 @@ export class MiamPolicyUpgrade6Page {
       page.locator(Selectors.GovukErrorMessage, {
         hasText: MiamPolicyUpgrade6Content.uploadingFile,
       }),
-    ).toBeVisible();
+    ).toBeHidden();
     await Helpers.checkVisibleAndPresent(
       page,
       `${Selectors.GovukErrorMessage}:text-is("${MiamPolicyUpgrade6Content.errorMessageUpload}")`,
@@ -134,7 +134,7 @@ export class MiamPolicyUpgrade6Page {
           page.locator(Selectors.GovukErrorMessage, {
             hasText: MiamPolicyUpgrade6Content.uploadingFile,
           }),
-        ).toBeVisible();
+        ).toBeHidden();
         break;
 
       case "initiatedMIAMBeforeProceedings_MIAMCertificate":
@@ -158,7 +158,7 @@ export class MiamPolicyUpgrade6Page {
           page.locator(Selectors.GovukErrorMessage, {
             hasText: MiamPolicyUpgrade6Content.uploadingFile,
           }),
-        ).toBeVisible();
+        ).toBeHidden();
         break;
       case "initiatedMIAMBeforeProceedings_MIAMDetails":
         await page.click(`${UniqueSelectors.initiatedMIAMBeforeProceedings}`);
