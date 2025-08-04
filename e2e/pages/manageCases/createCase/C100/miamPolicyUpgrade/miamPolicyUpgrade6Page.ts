@@ -60,13 +60,14 @@ export class MiamPolicyUpgrade6Page {
       miamSelection: miamSelection,
     });
   }
+
   private static async checkPageLoads({
     page: page,
     accessibilityTest: accessibilityTest,
   }: checkPageLoadsOptions): Promise<void> {
-    await page.waitForSelector(
-      `${Selectors.h2}:text-is("${MiamPolicyUpgrade6Content.h2}")`,
-    );
+    await page
+      .locator(Selectors.h2, { hasText: MiamPolicyUpgrade6Content.h2 })
+      .waitFor();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
@@ -101,10 +102,11 @@ export class MiamPolicyUpgrade6Page {
     await this.fileUploadContent(page);
     const fileInput1 = page.locator(`${UniqueSelectors.uploadFileInput1}`);
     await fileInput1.setInputFiles(config.testOdtFile);
-    await page.waitForSelector(
-      `${Selectors.GovukErrorMessage}:text-is("${MiamPolicyUpgrade6Content.uploadingFile}")`,
-      { state: "hidden" },
-    );
+    await page
+      .locator(Selectors.GovukErrorMessage, {
+        hasText: MiamPolicyUpgrade6Content.uploadingFile,
+      })
+      .waitFor({ state: "hidden" });
     await Helpers.checkVisibleAndPresent(
       page,
       `${Selectors.GovukErrorMessage}:text-is("${MiamPolicyUpgrade6Content.errorMessageUpload}")`,
@@ -120,13 +122,16 @@ export class MiamPolicyUpgrade6Page {
       case "attended4MonthsPrior":
         await page.click(`${UniqueSelectors.attended4MonthsPrior}`);
         await this.fileUploadContent(page);
+        // need to wait for the rate request limit to expire before uploading another file
+        // the first file is uploaded earlier in the journey miamPolicyUpgrade3Page
+        await page.waitForTimeout(5000);
         const fileInput1 = page.locator(`${UniqueSelectors.uploadFileInput1}`);
         await fileInput1.setInputFiles(config.testPdfFile);
-        await page.waitForSelector(
-          `${Selectors.GovukErrorMessage}:text-is("${MiamPolicyUpgrade6Content.uploadingFile}")`,
-          { state: "hidden" },
-        );
-        await page.waitForTimeout(1000);
+        await page
+          .locator(Selectors.GovukErrorMessage, {
+            hasText: MiamPolicyUpgrade6Content.uploadingFile,
+          })
+          .waitFor({ state: "hidden" });
         break;
 
       case "initiatedMIAMBeforeProceedings_MIAMCertificate":
@@ -146,10 +151,11 @@ export class MiamPolicyUpgrade6Page {
         );
         const fileInput2 = page.locator(`${UniqueSelectors.uploadFileInput2}`);
         await fileInput2.setInputFiles(config.testPdfFile);
-        await page.waitForSelector(
-          `${Selectors.GovukErrorMessage}:text-is("${MiamPolicyUpgrade6Content.uploadingFile}")`,
-          { state: "hidden" },
-        );
+        await page
+          .locator(Selectors.GovukErrorMessage, {
+            hasText: MiamPolicyUpgrade6Content.uploadingFile,
+          })
+          .waitFor({ state: "hidden" });
         break;
       case "initiatedMIAMBeforeProceedings_MIAMDetails":
         await page.click(`${UniqueSelectors.initiatedMIAMBeforeProceedings}`);
