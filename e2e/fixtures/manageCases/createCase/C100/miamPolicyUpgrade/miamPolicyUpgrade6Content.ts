@@ -15,7 +15,7 @@ export enum MiamPolicyUpgrade6Content {
   formLabelEvidenceProvideMediator = "*Provide the mediator details (Optional)",
   formHintEvidence = "Provide the date of the MIAM, as well as the name and contact details of the MIAM provider",
   loremIpsum = "loremIpsum",
-  errorMessageUpload = "Error Uploading File",
+  errorMessageUpload = "Your upload contains a disallowed file type",
   continue = "Continue",
   uploadingFile = "Uploading...",
 }
