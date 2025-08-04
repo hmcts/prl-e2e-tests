@@ -23,7 +23,7 @@ export class CitizenC100ApiCase {
     accessibilityTest,
     application,
     errorMessaging,
-  }: CitizenC100ApiCaseOptions): Promise<string> {
+  }: CitizenC100ApiCaseOptions): Promise<void> {
     const token = process.env.CREATE_USER_BEARER_TOKEN as string;
     const userInfo = await CreateUserUtil.createUser(token, "citizen");
 
@@ -55,6 +55,5 @@ export class CitizenC100ApiCase {
     await EqualityAndDiversityPage.equalityAndDiversityPage({ page });
     await C100Pay.c100Pay({ page, accessibilityTest, errorMessaging });
     await ConfirmationPage.confirmationPage({ page, accessibilityTest });
-    return ccdRef;
   }
 }
