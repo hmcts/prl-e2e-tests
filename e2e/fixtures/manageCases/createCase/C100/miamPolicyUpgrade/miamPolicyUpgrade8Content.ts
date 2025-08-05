@@ -10,6 +10,6 @@ export enum MiamPolicyUpgrade8Content {
   mediatorRegistrationNumber = "0123456789",
   familyMediationServiceNumber = "0123456789",
   soleTraderName = "SoleTraderFirstName SoleTraderLastName",
-  errorMessageUpload = "Error Uploading File",
+  errorMessageUpload = "Your upload contains a disallowed file type",
   continue = "Continue",
 }
