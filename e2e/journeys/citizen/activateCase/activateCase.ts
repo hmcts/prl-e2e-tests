@@ -7,6 +7,9 @@ import { CaseActivatedPage } from "../../../pages/citizen/activateCase/caseActiv
 import { ApplicantDashboardPage } from "../../../pages/citizen/activateCase/applicantDashboardPage.ts";
 import { RespondentDashboardPage } from "../../../pages/citizen/activateCase/respondentDashboardPage.ts";
 import { jsonDatas } from "../../../common/caseHelpers/jsonDatas.ts";
+import { Selectors } from "../../../common/selectors.ts";
+import { ApplicantDashboardContent } from "../../../fixtures/citizen/activateCase/applicantDashboardContent.ts";
+import { RespondentDashboardContent } from "../../../fixtures/citizen/activateCase/respondentDashboardContent.ts";
 import { ServiceOfApplication } from "../../manageCases/caseProgression/serviceOfApplication/serviceOfApplication.ts";
 import { completeEventsUpToServiceOfApplication } from "../../../common/caseHelpers/caseEventsHelper.ts";
 import { applicationSubmittedBy } from "../../../common/types.ts";
@@ -73,6 +76,7 @@ export class ActivateCase {
           caseRef,
           accessibilityTest,
           applicationSubmittedBy,
+          isManualSOA,
         );
         break;
       case "respondent":
@@ -81,6 +85,7 @@ export class ActivateCase {
           caseRef,
           accessibilityTest,
           applicationSubmittedBy,
+          isManualSOA,
         );
         break;
       case "both":
@@ -89,12 +94,14 @@ export class ActivateCase {
           caseRef,
           accessibilityTest,
           applicationSubmittedBy,
+          isManualSOA,
         );
         await this.checkRespondentDashboard(
           browser,
           caseRef,
           accessibilityTest,
           applicationSubmittedBy,
+          isManualSOA,
         );
         break;
       default:
@@ -110,6 +117,7 @@ export class ActivateCase {
     caseRef: string,
     accessibilityTest: boolean,
     applicationSubmittedBy: applicationSubmittedBy,
+    isManualSOA: boolean,
   ): Promise<Page> {
     const newBrowser = await browser.browserType().launch();
     const newContext: BrowserContext = await newBrowser.newContext();
@@ -134,6 +142,7 @@ export class ActivateCase {
       true,
       accessibilityTest,
       applicationSubmittedBy,
+      isManualSOA,
     );
     return page;
   }
@@ -143,6 +152,7 @@ export class ActivateCase {
     caseRef: string,
     accessibilityTest: boolean,
     applicationSubmittedBy: applicationSubmittedBy,
+    isManualSOA: boolean,
   ): Promise<Page> {
     const newBrowser = await browser.browserType().launch();
     const newContext: BrowserContext = await newBrowser.newContext();
@@ -167,6 +177,7 @@ export class ActivateCase {
       false,
       accessibilityTest,
       applicationSubmittedBy,
+      isManualSOA,
     );
     return page;
   }
@@ -178,6 +189,7 @@ export class ActivateCase {
     isApplicant: boolean,
     accessibilityTest: boolean,
     applicationSubmittedBy: applicationSubmittedBy,
+    isManualSOA: boolean,
   ): Promise<void> {
     await EnterPinPage.enterPinPage(
       page,
@@ -186,20 +198,34 @@ export class ActivateCase {
       accessibilityTest,
     );
     await CaseActivatedPage.caseActivatedPage(page, caseRef, accessibilityTest);
-    if (isApplicant) {
+    if (isApplicant && isManualSOA) {
       await ApplicantDashboardPage.applicantDashboardPage(
         page,
         caseRef,
         accessibilityTest,
         applicationSubmittedBy,
       );
-    } else {
+    } else if (!isApplicant && isManualSOA) {
       await RespondentDashboardPage.respondentDashboardPage(
         page,
         caseRef,
         accessibilityTest,
         applicationSubmittedBy,
       );
+    } else if (isApplicant && !isManualSOA) {
+      // just check the page heading
+      await page
+        .locator(Selectors.GovukHeadingXL, {
+          hasText: ApplicantDashboardContent.govukHeadingXL,
+        })
+        .waitFor();
+    } else {
+      // just check the page heading
+      await page
+        .locator(Selectors.GovukHeadingXL, {
+          hasText: RespondentDashboardContent.govukHeadingXL,
+        })
+        .waitFor();
     }
   }
 }
