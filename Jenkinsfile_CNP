@@ -12,7 +12,7 @@ properties([
   parameters([
     string(
       name: 'CITIZEN_FRONTEND_BASE_URL',
-      defaultValue: 'https://privatelaw.aat.platform.hmcts.net/',
+      defaultValue: 'https://privatelaw.ithc.platform.hmcts.net/',
       description: 'The Citizen URL to test against'
     ),
     string(
@@ -114,9 +114,9 @@ withNightlyPipeline(type, product, component, 600) {
   enableSlackNotifications(channel)
   onPR() {
     afterAlways('DependencyCheckNightly') {
-      stage('Run changed tests - Chrome') {
+      stage('Run citizen create case tests - Chrome') {
         try {
-          yarnBuilder.yarn('test:changes')
+          yarnBuilder.yarn('test:citizenFrontendChrome')
         } catch (Error) {
           unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
         } finally {
@@ -126,7 +126,7 @@ withNightlyPipeline(type, product, component, 600) {
                   keepAll              : true,
                   reportDir            : "playwright-report",
                   reportFiles          : 'index.html',
-                  reportName           : 'Changed Chrome E2E Test Report'
+                  reportName           : 'Citizen Create Case Chrome E2E Test Report'
           ])
           steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/ChangedTests/*'
         }
