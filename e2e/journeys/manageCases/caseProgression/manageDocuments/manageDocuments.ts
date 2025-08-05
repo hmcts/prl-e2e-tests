@@ -5,9 +5,7 @@ import { Helpers } from "../../../../common/helpers.ts";
 import { ManageDocumentsNewConfirmPage } from "../../../../pages/manageCases/caseProgression/manageDocuments/manageDocumentsNewConfirmPage.ts";
 import { FL401ConfidentialDetailsTabPage } from "../../../../pages/manageCases/caseTabs/FL401/fl401ConfidentialDetailsTabPage.ts";
 import { solicitorCaseCreateType } from "../../../../common/types.js";
-import {
-  C100ConfidentialDetailsTabPage
-} from "../../../../pages/manageCases/caseTabs/C100/c100ConfidentialDetailsTabPage.js";
+import { C100ConfidentialDetailsTabPage } from "../../../../pages/manageCases/caseTabs/C100/c100ConfidentialDetailsTabPage.js";
 import { C100CaseDocumentsTabPage } from "../../../../pages/manageCases/caseTabs/C100/c100CaseDocumentsTabPage.js";
 import { Fl401CaseDocumentsTabPage } from "../../../../pages/manageCases/caseTabs/FL401/fl401CaseDocumentsTabPage.js";
 
@@ -62,7 +60,7 @@ export class ManageDocuments {
           restrictDocument,
           confidentialDocument,
         );
-      }else{
+      } else {
         await FL401ConfidentialDetailsTabPage.fl401ConfidentialDetailsTabPageManageDocuments(
           page,
           documentParty,
@@ -71,7 +69,7 @@ export class ManageDocuments {
           confidentialDocument,
         );
       }
-    } else{
+    } else {
       await Helpers.clickTab(page, "Case documents");
       if (caseType === "C100") {
         await C100CaseDocumentsTabPage.c100CaseDocumentsTabPageManageDocuments(
@@ -79,7 +77,7 @@ export class ManageDocuments {
           documentParty,
           documentCategory,
         );
-      }else{
+      } else {
         await Fl401CaseDocumentsTabPage.fl401CaseDocumentsTabPageManageDocuments(
           page,
           documentParty,

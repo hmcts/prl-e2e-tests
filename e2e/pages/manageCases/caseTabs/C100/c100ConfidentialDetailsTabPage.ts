@@ -3,9 +3,7 @@ import { Selectors } from "../../../../common/selectors.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
 import { C100ConfidentialDetailsTabContent } from "../../../../fixtures/manageCases/caseTabs/C100/c100ConfidentialDetailsTabContent.ts";
-import {
-  ManageDocumentsNew1Content
-} from "../../../../fixtures/manageCases/caseProgression/manageDocuments/manageDocumentsNew1Content.js";
+import { ManageDocumentsNew1Content } from "../../../../fixtures/manageCases/caseProgression/manageDocuments/manageDocumentsNew1Content.js";
 
 enum UniqueSelectors {
   refugeDocumentsSection = "td#case-viewer-field-read--refugeDocuments",
