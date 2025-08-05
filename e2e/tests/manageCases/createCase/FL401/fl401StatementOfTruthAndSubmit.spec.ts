@@ -1,7 +1,7 @@
 import { Helpers } from "../../../../common/helpers.ts";
 import config from "../../../../utils/config.utils.ts";
 import { Fl401StatementOfTruth } from "../../../../journeys/manageCases/createCase/FL401StatementOfTruth/fl401StatementOfTruth.ts";
-import { test } from "../../../fixtures.js";
+import { test } from "../../../fixtures.ts";
 
 test.use({ storageState: config.sessionStoragePath + "solicitor.json" });
 

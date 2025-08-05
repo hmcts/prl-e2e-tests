@@ -1,7 +1,7 @@
 import config from "../../../../utils/config.utils.ts";
 import { RemoveLegalRepresentative } from "../../../../journeys/manageCases/caseProgression/removeLegalRepresentative/removeLegalRepresentative.ts";
 import { Helpers } from "../../../../common/helpers.ts";
-import { test } from "../../../fixtures.js";
+import { test } from "../../../fixtures.ts";
 
 test.use({ storageState: config.sessionStoragePath + "solicitor.json" });
 

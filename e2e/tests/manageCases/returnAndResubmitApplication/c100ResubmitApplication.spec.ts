@@ -2,7 +2,7 @@ import Config from "../../../utils/config.utils.ts";
 import { Helpers } from "../../../common/helpers.ts";
 import { ReturnApplication } from "../../../journeys/manageCases/caseWorker/returnApplication/returnApplication.ts";
 import { ResubmitApplication } from "../../../journeys/manageCases/resubmitApplication/resubmitApplication.ts";
-import { test } from "../../fixtures.js";
+import { test } from "../../fixtures.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 

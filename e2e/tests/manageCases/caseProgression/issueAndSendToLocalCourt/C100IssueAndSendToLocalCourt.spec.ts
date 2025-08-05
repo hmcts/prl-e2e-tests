@@ -2,7 +2,7 @@ import Config from "../../../../utils/config.utils.js";
 import { Helpers } from "../../../../common/helpers.js";
 import config from "../../../../utils/config.utils.ts";
 import { IssueAndSendToLocalCourt } from "../../../../journeys/manageCases/caseProgression/issueAndSendToLocalCourt/issueAndSendToLocalCourt.js";
-import { test } from "../../../fixtures.js";
+import { test } from "../../../fixtures.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "courtAdminStoke.json" });
 

@@ -2,7 +2,7 @@ import Config from "../../../../utils/config.utils.ts";
 import { ServiceOfDocuments } from "../../../../journeys/manageCases/caseProgression/servceOfDocuments/serviceOfDocuments.ts";
 import { Helpers } from "../../../../common/helpers.js";
 import config from "../../../../utils/config.utils.js";
-import { test } from "../../../fixtures.js";
+import { test } from "../../../fixtures.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 test.describe("Service of Document event for DA Solicitor case tests as court admin.", () => {

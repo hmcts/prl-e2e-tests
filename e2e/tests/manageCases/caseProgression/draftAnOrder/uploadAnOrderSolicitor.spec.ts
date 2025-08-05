@@ -2,7 +2,7 @@ import config from "../../../../utils/config.utils.ts";
 import { UploadAnOrderC100SolicitorJourney } from "../../../../journeys/manageCases/caseProgression/draftAnOrder/uploadAnOrderC100SolicitorJourney.ts";
 import { UploadAnOrderFL401SolicitorJourney } from "../../../../journeys/manageCases/caseProgression/draftAnOrder/uploadAnOrderFL401SolicitorJourney.ts";
 import { Helpers } from "../../../../common/helpers.js";
-import { test } from "../../../fixtures.js";
+import { test } from "../../../fixtures.ts";
 
 test.use({ storageState: config.sessionStoragePath + "solicitor.json" });
 test.describe("'Upload an order' by Solicitor via the 'Draft an Order' event tests", (): void => {

@@ -4,7 +4,7 @@ import {
   default as config,
 } from "../../../../utils/config.utils.ts";
 import { SendAndReplyToMessages } from "../../../../journeys/manageCases/caseProgression/sendAndReplyToMessages/sendAndReplyToMessages.ts";
-import { test } from "../../../fixtures.js";
+import { test } from "../../../fixtures.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 

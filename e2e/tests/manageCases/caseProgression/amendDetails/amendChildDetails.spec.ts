@@ -1,6 +1,6 @@
 import Config from "../../../../utils/config.utils.ts";
 import { AmendChildDetails } from "../../../../journeys/manageCases/caseProgression/amendDetails/amendChildDetails.ts";
-import { test } from "../../../fixtures.js";
+import { test } from "../../../fixtures.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "courtAdminStoke.json" });
 
