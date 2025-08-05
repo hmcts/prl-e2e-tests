@@ -2,19 +2,29 @@ import { test } from "../../../fixtures.ts";
 import config from "../../../../utils/config.utils.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import { ManageDocuments } from "../../../../journeys/manageCases/caseProgression/manageDocuments/manageDocuments.ts";
+import { Page } from "@playwright/test";
+import Config from "../../../../utils/config.utils.js";
+import { SolicitorCACaseCreator } from "../../../../common/caseHelpers/solicitorCACaseCreator.js";
 
 test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 
-test.describe("Manage documents event for DA Citizen case tests as a court admin.", () => {
+test.describe("Manage documents event for C100 case tests as a court admin.", () => {
   let ccdRef: string = "";
 
-  test.beforeEach(async ({ page, courtNavUtils }) => {
-    ccdRef = await courtNavUtils.createCase(true, true);
+  test.beforeEach(async ({ page, browser }) => {
+    const solicitorPage: Page = await Helpers.openNewBrowserWindow(
+      browser,
+      "solicitor",
+    );
+    await solicitorPage.goto(Config.manageCasesBaseURLCase);
+    ccdRef = await SolicitorCACaseCreator.createCaseSubmitAndPay(solicitorPage);
+    await SolicitorCACaseCreator.c100IssueAndSendToLocalCourt(browser, ccdRef);
+    await SolicitorCACaseCreator.c100sendToGatekeeper(browser, ccdRef);
     await Helpers.goToCase(
       page,
-      config.manageCasesBaseURLCase,
+      Config.manageCasesBaseURLCase,
       ccdRef,
-      "tasks",
+      "Summary",
     );
   });
 
@@ -24,6 +34,7 @@ test.describe("Manage documents event for DA Citizen case tests as a court admin
     await ManageDocuments.manageDocuments({
       page: page,
       accessibilityTest: true,
+      caseType: "C100",
       documentParty: "Applicant",
       documentCategory: "Position statements",
       restrictDocument: true,
@@ -37,6 +48,7 @@ test.describe("Manage documents event for DA Citizen case tests as a court admin
     await ManageDocuments.manageDocuments({
       page: page,
       accessibilityTest: true,
+      caseType: "C100",
       documentParty: "Respondent",
       documentCategory: "Guardian report",
       restrictDocument: false,
@@ -50,6 +62,7 @@ test.describe("Manage documents event for DA Citizen case tests as a court admin
     await ManageDocuments.manageDocuments({
       page: page,
       accessibilityTest: false,
+      caseType: "C100",
       documentParty: "Local authority",
       documentCategory: "MIAM certificate/Exemption",
       restrictDocument: false,
