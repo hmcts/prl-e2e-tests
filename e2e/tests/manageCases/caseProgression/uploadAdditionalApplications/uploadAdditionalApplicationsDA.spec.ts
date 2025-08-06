@@ -1,19 +1,16 @@
-import { test } from "@playwright/test";
 import Config from "../../../../utils/config.utils.ts";
 import config from "../../../../utils/config.utils.ts";
-import { SolicitorDACaseCreator } from "../../../../common/caseHelpers/solicitorDACaseCreator.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import { UploadAdditionalApplications } from "../../../../journeys/manageCases/caseProgression/uploadAdditionalApplications/uploadAdditionalApplications.ts";
+import { test } from "../../../fixtures.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
 test.describe("Upload additional applications for FL401 tests", (): void => {
   let caseRef;
 
-  test.beforeEach(async ({ page }) => {
-    await page.goto(Config.manageCasesBaseURL);
-    caseRef =
-      await SolicitorDACaseCreator.createCaseStatementOfTruthAndSubmit(page);
+  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
+    caseRef = await caseEventUtils.createDACase(browser);
     await Helpers.goToCase(
       page,
       config.manageCasesBaseURLCase,

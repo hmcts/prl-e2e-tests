@@ -2,15 +2,15 @@ import { test } from "../../../fixtures.ts";
 import config from "../../../../utils/config.utils.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import { StatementOfService } from "../../../../journeys/manageCases/caseProgression/statementOfService/statementOfService.ts";
-import { jsonDatas } from "../../../../common/caseHelpers/solicitorCaseCreatorHelper.ts";
+import { jsonDatas } from "../../../../common/caseHelpers/jsonDatas.ts";
 
 test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 
-test.describe("Statement of Service event for DA Citizen case tests.", () => {
+test.describe("Statement of Service event for DA Solicitor case tests.", () => {
   let ccdRef: string = "";
 
-  test.beforeEach(async ({ page, courtNavUtils }) => {
-    ccdRef = await courtNavUtils.createCase(true, false);
+  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
+    ccdRef = await caseEventUtils.createDACase(browser);
     await Helpers.goToCase(
       page,
       config.manageCasesBaseURLCase,
@@ -30,7 +30,7 @@ test.describe("Statement of Service event for DA Citizen case tests.", () => {
       browser: browser,
       manageOrderData: jsonDatas.manageOrderDataPowerOfArrest,
       createOrderFL401Options: "power of arrest",
-      applicationSubmittedBy: "Citizen",
+      applicationSubmittedBy: "Solicitor",
     });
   });
 
@@ -45,7 +45,7 @@ test.describe("Statement of Service event for DA Citizen case tests.", () => {
       browser: browser,
       manageOrderData: jsonDatas.manageOrderDataAmendDischargedVaried,
       createOrderFL401Options: "amend discharge varied order",
-      applicationSubmittedBy: "Citizen",
+      applicationSubmittedBy: "Solicitor",
     });
   });
 });

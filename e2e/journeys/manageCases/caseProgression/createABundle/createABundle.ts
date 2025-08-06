@@ -2,7 +2,7 @@ import { Browser, expect, Page } from "@playwright/test";
 import { Helpers } from "../../../../common/helpers.ts";
 import { CreateBundleSubmitPage } from "../../../../pages/manageCases/caseProgression/createBundle/createBundleSubmitPage.ts";
 import { CreateBundle1Page } from "../../../../pages/manageCases/caseProgression/createBundle/createBundle1Page.ts";
-import { jsonDatas } from "../../../../common/caseHelpers/solicitorCaseCreatorHelper.ts";
+import { jsonDatas } from "../../../../common/caseHelpers/jsonDatas.ts";
 import { completeEventsUpToServiceOfApplication } from "../../../../common/caseHelpers/caseEventsHelper.ts";
 import {
   applicationSubmittedBy,

@@ -1,7 +1,6 @@
-import { test } from "@playwright/test";
+import { test } from "../../../fixtures.ts";
 import Config from "../../../../utils/config.utils.ts";
 import { DraftAnOrder } from "../../../../journeys/manageCases/caseWorker/draftAnOrder/draftAnOrder.ts";
-import { SolicitorDACaseCreator } from "../../../../common/caseHelpers/solicitorDACaseCreator.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import config from "../../../../utils/config.utils.ts";
 
@@ -11,10 +10,8 @@ test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 test.describe("Draft a non molestation order tests", (): void => {
   let caseRef: string;
 
-  test.beforeEach(async ({ page }) => {
-    await page.goto(Config.manageCasesBaseURLCase);
-    caseRef =
-      await SolicitorDACaseCreator.createCaseStatementOfTruthAndSubmit(page);
+  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
+    caseRef = await caseEventUtils.createDACase(browser);
     await Helpers.goToCase(
       page,
       config.manageCasesBaseURLCase,

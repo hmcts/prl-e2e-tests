@@ -1,22 +1,15 @@
-import { Page, test } from "@playwright/test";
+import { test } from "../../../fixtures.ts";
 import Config from "../../../../utils/config.utils.ts";
 import { Helpers } from "../../../../common/helpers.js";
-import { SolicitorCACaseCreator } from "../../../../common/caseHelpers/solicitorCACaseCreator.js";
 import { C100ManageOrders } from "../../../../journeys/manageCases/caseWorker/createAnOrder/C100OrderCA/c100ManageOrders.js";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 //
 
 test.describe("Create an order tests", (): void => {
-  test.beforeEach(async ({ page, browser }) => {
-    const solicitorPage: Page = await Helpers.openNewBrowserWindow(
-      browser,
-      "solicitor",
-    );
-    await solicitorPage.goto(Config.manageCasesBaseURLCase);
+  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
     const caseRef =
-      await SolicitorCACaseCreator.createCaseSubmitAndPay(solicitorPage);
-    await SolicitorCACaseCreator.c100IssueAndSendToLocalCourt(browser, caseRef);
+      await caseEventUtils.createCACaseIssueAndSendToLocalCourt(browser);
     await Helpers.goToCase(
       page,
       Config.manageCasesBaseURLCase,

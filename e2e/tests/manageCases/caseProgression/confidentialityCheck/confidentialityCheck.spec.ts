@@ -1,16 +1,17 @@
 import { test } from "../../../fixtures.ts";
 import config from "../../../../utils/config.utils.ts";
 import { Helpers } from "../../../../common/helpers.ts";
-import { jsonDatas } from "../../../../common/caseHelpers/solicitorCaseCreatorHelper.ts";
+import { jsonDatas } from "../../../../common/caseHelpers/jsonDatas.ts";
 import { ConfidentialityCheck } from "../../../../journeys/manageCases/caseProgression/confidentilityCheck/confidentialityCheck.ts";
 
 test.use({ storageState: config.sessionStoragePath + "caseManager.json" });
-//
-test.describe("Confidentiality check task for DA Citizen case tests.", () => {
+
+test.describe("Confidentiality check task for DA Solicitor case tests.", () => {
+
   let ccdRef: string = "";
 
-  test.beforeEach(async ({ page, courtNavUtils }) => {
-    ccdRef = await courtNavUtils.createCase(true, false);
+  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
+    ccdRef = await caseEventUtils.createDACase(browser);
     await Helpers.goToCase(
       page,
       config.manageCasesBaseURLCase,
@@ -32,7 +33,7 @@ test.describe("Confidentiality check task for DA Citizen case tests.", () => {
       browser: browser,
       personallyServed: true,
       manageOrderData: jsonDatas.manageOrderDataPowerOfArrest,
-      applicationSubmittedBy: "Citizen",
+      applicationSubmittedBy: "Solicitor",
       nameChange: true,
       dobChange: true,
       genderChange: true,

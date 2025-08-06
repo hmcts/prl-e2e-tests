@@ -1,8 +1,7 @@
-import { test } from "@playwright/test";
 import Config from "../../../../utils/config.utils.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import { RemoveDraftOrder } from "../../../../journeys/manageCases/caseProgression/removeDraftOrder/removeDraftOrder.ts";
-import { SolicitorDACaseCreator } from "../../../../common/caseHelpers/solicitorDACaseCreator.ts";
+import { test } from "../../../fixtures.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 //
@@ -11,10 +10,8 @@ test.describe("Remove draft order as a court admin for solicitor-created DA case
   let caseRef: string;
   test.slow();
 
-  test.beforeEach(async ({ page }) => {
-    await page.goto(Config.manageCasesBaseURLCase);
-    caseRef =
-      await SolicitorDACaseCreator.createCaseStatementOfTruthAndSubmit(page);
+  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
+    caseRef = await caseEventUtils.createDACase(browser);
     await Helpers.goToCase(
       page,
       Config.manageCasesBaseURLCase,
