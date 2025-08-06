@@ -1,9 +1,8 @@
-import { test } from "@playwright/test";
 import Config from "../../../../utils/config.utils.ts";
 import { EditAndApproveAnOrder } from "../../../../journeys/manageCases/caseWorker/editAndApproveAnOrder/editAndApproveAnOrder.ts";
-import { SolicitorCACaseCreator } from ".././../../../common/caseHelpers/solicitorCACaseCreator.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import config from "../../../../utils/config.utils.ts";
+import { test } from "../../../fixtures.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
@@ -13,9 +12,8 @@ test.describe("Edit and approve a CA order tests", (): void => {
 
   let caseRef: string;
 
-  test.beforeEach(async ({ page }) => {
-    await page.goto(Config.manageCasesBaseURLCase);
-    caseRef = await SolicitorCACaseCreator.createCaseSubmitAndPay(page);
+  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
+    caseRef = await caseEventUtils.createCACase(browser);
     await Helpers.goToCase(
       page,
       config.manageCasesBaseURLCase,

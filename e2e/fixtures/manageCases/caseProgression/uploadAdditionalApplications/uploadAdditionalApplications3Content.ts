@@ -9,7 +9,7 @@ export enum UploadAdditionalApplications3Content {
   formLabel6 = "Within 2 days",
   formLabel7 = "Within 5 days",
   govWarningTextCA = "Check if this document is related to auto test case CA",
-  govWarningTextDA = "Check if this document is related to auto test case 401",
+  govWarningTextDA = "Check if this document is related to TEST",
   headingH2SupportingDocuments = "Supporting Documents (Optional)",
   headingH2Supplements = "Supplements (Optional)", // only present for CA case
   daApplicationType = "FL403 - Application to vary, discharge or extend an order",

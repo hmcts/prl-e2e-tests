@@ -6,12 +6,12 @@ import {
   uploadOrderFL401Options,
 } from "../../../../common/types.ts";
 import Config from "../../../../utils/config.utils.ts";
-import { SolicitorDACaseCreator } from "../../../../common/caseHelpers/solicitorDACaseCreator.ts";
 import { DraftAnOrder1Page } from "../../../../pages/manageCases/caseWorker/draftAnOrder/draftAnOrder1Page.ts";
 import { UploadDraftAnOrder3Page } from "../../../../pages/manageCases/caseProgression/draftAnOrder/uploadDraftAnOrder3Page.ts";
 import { UploadDraftAnOrder4Page } from "../../../../pages/manageCases/caseProgression/draftAnOrder/uploadDraftAnOrder4Page.ts";
 import { C100DraftOrdersTabPage } from "../../../../pages/manageCases/caseTabs/C100/c100DraftOrdersTabPage.ts";
 import { UploadDraftAnOrderSubmitPage } from "../../../../pages/manageCases/caseProgression/draftAnOrder/uploadDraftAnOrderSubmitPage.ts";
+import { CaseEventUtils } from "../../../../utils/caseEvent.utils.js";
 
 interface FL401DraftAnOrderOptions {
   page: Page;
@@ -37,10 +37,8 @@ export class UploadAnOrderFL401SolicitorJourney {
     isUploadOrder,
     browser,
   }: FL401DraftAnOrderOptions): Promise<void> {
-    //DA case creation
-    await page.goto(Config.manageCasesBaseURLCase);
-    const caseRef =
-      await SolicitorDACaseCreator.createCaseStatementOfTruthAndSubmit(page);
+    const caseEventUtils = new CaseEventUtils();
+    const caseRef: string = await caseEventUtils.createDACase(browser);
     await Helpers.goToCase(
       page,
       Config.manageCasesBaseURLCase,
