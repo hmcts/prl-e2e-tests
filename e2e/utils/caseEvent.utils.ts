@@ -114,10 +114,9 @@ export class CaseEventUtils {
     return caseRef;
   }
 
-   async createCACaseSendToGatekeeper(
-    browser: Browser,
-  ): Promise<string> {
-    const caseRef: string = await this.createCACaseIssueAndSendToLocalCourt(browser);
+  async createCACaseSendToGatekeeper(browser: Browser): Promise<string> {
+    const caseRef: string =
+      await this.createCACaseIssueAndSendToLocalCourt(browser);
     const caPage: Page = await Helpers.openNewBrowserWindow(
       browser,
       "caseWorker",
@@ -139,9 +138,7 @@ export class CaseEventUtils {
     return caseRef;
   }
 
-  async createCACaseSubmitAndPayIndividualEvents(
-    page: Page,
-  ): Promise<string> {
+  async createCACaseSubmitAndPayIndividualEvents(page: Page): Promise<string> {
     const solicitorCaseEvents: solicitorCACaseAPIEvent[] = [
       "selectApplicationType",
       "hearingUrgency",
@@ -162,9 +159,17 @@ export class CaseEventUtils {
     ];
 
     await page.goto(Config.manageCasesBaseURL);
-    const caseRef = await this.createBlankCase(page, jsonDatas.solicitorCACaseData);
+    const caseRef = await this.createBlankCase(
+      page,
+      jsonDatas.solicitorCACaseData,
+    );
     for (const event of solicitorCaseEvents) {
-      await this.submitEvent(page, caseRef, event, jsonDatas.solicitorCACaseData);
+      await this.submitEvent(
+        page,
+        caseRef,
+        event,
+        jsonDatas.solicitorCACaseData,
+      );
     }
     return caseRef;
   }
