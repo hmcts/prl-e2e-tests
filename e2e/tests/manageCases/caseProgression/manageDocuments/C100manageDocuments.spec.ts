@@ -1,25 +1,15 @@
 import { test } from "../../../fixtures.ts";
-import config from "../../../../utils/config.utils.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import { ManageDocuments } from "../../../../journeys/manageCases/caseProgression/manageDocuments/manageDocuments.ts";
-import { Page } from "@playwright/test";
 import Config from "../../../../utils/config.utils.js";
-import { SolicitorCACaseCreator } from "../../../../common/caseHelpers/solicitorCACaseCreator.js";
 
-test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
+test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("Manage documents event for C100 case tests as a court admin.", () => {
   let ccdRef: string = "";
 
-  test.beforeEach(async ({ page, browser }) => {
-    const solicitorPage: Page = await Helpers.openNewBrowserWindow(
-      browser,
-      "solicitor",
-    );
-    await solicitorPage.goto(Config.manageCasesBaseURLCase);
-    ccdRef = await SolicitorCACaseCreator.createCaseSubmitAndPay(solicitorPage);
-    await SolicitorCACaseCreator.c100IssueAndSendToLocalCourt(browser, ccdRef);
-    await SolicitorCACaseCreator.c100sendToGatekeeper(browser, ccdRef);
+  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
+    ccdRef = await caseEventUtils.createCACaseSendToGatekeeper(browser);
     await Helpers.goToCase(
       page,
       Config.manageCasesBaseURLCase,

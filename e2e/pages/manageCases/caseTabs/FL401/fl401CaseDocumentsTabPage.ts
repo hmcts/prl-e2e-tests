@@ -22,9 +22,9 @@ export class Fl401CaseDocumentsTabPage {
         ),
       ).toBeVisible(),
       expect(
-        uploadedDocsSection.getByText(
-          FL401CaseDocumentsTabContent.text16_document,
-        ),
+        uploadedDocsSection
+          .getByText(FL401CaseDocumentsTabContent.text16_document)
+          .first(),
       ).toBeVisible(),
       expect(
         uploadedDocsSection.getByText(

@@ -6,7 +6,7 @@ import { EnterPinPage } from "../../../pages/citizen/activateCase/enterPinPage.t
 import { CaseActivatedPage } from "../../../pages/citizen/activateCase/caseActivatedPage.ts";
 import { ApplicantDashboardPage } from "../../../pages/citizen/activateCase/applicantDashboardPage.ts";
 import { RespondentDashboardPage } from "../../../pages/citizen/activateCase/respondentDashboardPage.ts";
-import { jsonDatas } from "../../../common/caseHelpers/solicitorCaseCreatorHelper.ts";
+import { jsonDatas } from "../../../common/caseHelpers/jsonDatas.ts";
 import { Selectors } from "../../../common/selectors.ts";
 import { ApplicantDashboardContent } from "../../../fixtures/citizen/activateCase/applicantDashboardContent.ts";
 import { RespondentDashboardContent } from "../../../fixtures/citizen/activateCase/respondentDashboardContent.ts";
@@ -51,7 +51,7 @@ export class ActivateCase {
         yesNoServiceOfApplication4: false,
         confidentialityCheck: false,
         responsibleForServing: "courtBailiff",
-        manageOrderData: jsonDatas.manageOrderDataPowerOfArrest,
+        manageOrderData: jsonDatas.citizenManageOrderDataPowerOfArrest,
         applicationSubmittedBy: applicationSubmittedBy,
       });
       // need to complete C8 confidential details event when it is a solicitor case
@@ -64,7 +64,7 @@ export class ActivateCase {
         page,
         browser,
         caseRef,
-        jsonDatas.manageOrderDataPowerOfArrest,
+        jsonDatas.citizenManageOrderDataPowerOfArrest,
         "power of arrest",
         applicationSubmittedBy,
       );

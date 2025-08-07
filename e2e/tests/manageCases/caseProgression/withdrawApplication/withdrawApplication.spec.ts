@@ -1,17 +1,15 @@
-import { test } from "@playwright/test";
 import Config from "../../../../utils/config.utils.ts";
 import { WithdrawApplication } from "../../../../journeys/manageCases/caseProgression/withdrawApplication/withdrawApplication.ts";
 import config from "../../../../utils/config.utils.ts";
-import { SolicitorCACaseCreator } from ".././../../../common/caseHelpers/solicitorCACaseCreator.ts";
 import { Helpers } from "../../../../common/helpers.ts";
+import { test } from "../../../fixtures.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
 test.describe("Withdraw C100 (solicitor created) application event as a solicitor", () => {
   let caseRef: string;
-  test.beforeEach(async ({ page }) => {
-    await page.goto(config.manageCasesBaseURLCase);
-    caseRef = await SolicitorCACaseCreator.createCaseSubmitAndPay(page);
+  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
+    caseRef = await caseEventUtils.createCACase(browser);
     await Helpers.goToCase(
       page,
       config.manageCasesBaseURLCase,

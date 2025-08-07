@@ -1,9 +1,8 @@
-import { test } from "@playwright/test";
 import Config from "../../../../utils/config.utils.ts";
 import config from "../../../../utils/config.utils.ts";
 import { Helpers } from "../../../../common/helpers.ts";
-import { SolicitorDACaseCreator } from "../../../../common/caseHelpers/solicitorDACaseCreator.ts";
 import { CaseFlagsDA } from "../../../../journeys/manageCases/caseProgression/caseFlags/caseFlagsDA.ts";
+import { test } from "../../../fixtures.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 test.slow();
@@ -11,10 +10,8 @@ test.slow();
 test.describe("Case flags tests for DA case tests.", () => {
   let ccdRef: string = "";
 
-  test.beforeEach(async ({ page }) => {
-    await page.goto(Config.manageCasesBaseURLCase);
-    ccdRef =
-      await SolicitorDACaseCreator.createCaseStatementOfTruthAndSubmit(page);
+  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
+    ccdRef = await caseEventUtils.createDACase(browser);
     await Helpers.goToCase(
       page,
       config.manageCasesBaseURLCase,

@@ -1,18 +1,16 @@
-import { test } from "@playwright/test";
 import Config from "../../../utils/config.utils.ts";
 import { Helpers } from "../../../common/helpers.ts";
-import { SolicitorCACaseCreator } from "../../../common/caseHelpers/solicitorCACaseCreator.ts";
 import { ReturnApplication } from "../../../journeys/manageCases/caseWorker/returnApplication/returnApplication.ts";
 import { ResubmitApplication } from "../../../journeys/manageCases/resubmitApplication/resubmitApplication.ts";
+import { test } from "../../fixtures.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
 test.describe("Resubmit returned CA(C100) application tests", (): void => {
   let ccdRef: string = "";
 
-  test.beforeEach(async ({ page, browser }) => {
-    await page.goto(Config.manageCasesBaseURLCase);
-    ccdRef = await SolicitorCACaseCreator.createCaseSubmitAndPay(page);
+  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
+    ccdRef = await caseEventUtils.createCACase(browser);
     const ctscPage = await Helpers.openNewBrowserWindow(
       browser,
       "courtAdminStoke",

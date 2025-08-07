@@ -3,7 +3,7 @@ import {
   applicationSubmittedBy,
   createOrderFL401Options,
 } from "../../../../common/types.ts";
-import { jsonDatas } from "../../../../common/caseHelpers/solicitorCaseCreatorHelper.ts";
+import { jsonDatas } from "../../../../common/caseHelpers/jsonDatas.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import config from "../../../../utils/config.utils.ts";
 import { AdminEditAndApproveAnOrder1Page } from "../../../../pages/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrder1Page.ts";
@@ -97,6 +97,7 @@ export class CompleteTheOrder {
       accessibilityTest,
       createOrderFL401Options,
       personallyServed,
+      applicationSubmittedBy,
     );
   }
 }

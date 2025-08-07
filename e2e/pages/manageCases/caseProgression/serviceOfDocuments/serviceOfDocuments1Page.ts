@@ -94,9 +94,9 @@ export class ServiceOfDocuments1Page {
 
     if (withCaseDoc) {
       await page.getByRole("button", { name: "Add new" }).nth(2).click(); //second add new button
-      await page
-        .locator(UniqueSelectors.docList2Selector)
-        .selectOption("2: witnessStatementAndEvidence -> applicantStateme");
+      await page.locator(UniqueSelectors.docList2Selector).selectOption({
+        label: "Preliminary Documents -> Position statements -> mockFile.pdf",
+      });
     }
   }
 
