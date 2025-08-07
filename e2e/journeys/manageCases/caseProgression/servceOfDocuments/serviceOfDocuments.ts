@@ -4,11 +4,8 @@ import { ServiceOfDocuments2Page } from "../../../../pages/manageCases/caseProgr
 import { ServiceOfDocuments3Page } from "../../../../pages/manageCases/caseProgression/serviceOfDocuments/serviceOfDocuments3Page.ts";
 import { yesNoNA } from "../../../../common/types.ts";
 import { Helpers } from "../../../../common/helpers.ts";
-import config from "../../../../utils/config.utils.ts";
-import { ReviewDocuments } from "../reviewDocuments/reviewDocuments.ts";
-import createDaCitizenCourtNavCase from "../../../../common/caseHelpers/citizenDACaseCreateHelper.ts";
 import { ServiceOfDocumentsSubmitPage } from "../../../../pages/manageCases/caseProgression/serviceOfDocuments/serviceOfDocumentsSubmitPage.ts";
-import { completeCheckApplicationAndSendToGatekeeper } from "../../../../common/caseHelpers/caseEventsHelper.ts";
+import { ManageDocuments } from "../manageDocuments/manageDocuments.js";
 
 interface ServiceOfDocumentsParams {
   page: Page;
@@ -32,36 +29,17 @@ export class ServiceOfDocuments {
     accessibilityTest,
     checkDocuments,
   }: ServiceOfDocumentsParams): Promise<void> {
-    const ccdRef: string = await createDaCitizenCourtNavCase(true, withCaseDoc);
-    await Helpers.goToCase(
-      page,
-      config.manageCasesBaseURLCase,
-      ccdRef,
-      "tasks",
-    );
-    // Handle review documents if case documents are included in case creation
     if (withCaseDoc) {
-      await Helpers.goToCase(
-        page,
-        config.manageCasesBaseURLCase,
-        ccdRef,
-        "tasks",
-      );
-      await ReviewDocuments.reviewDocuments({
-        page,
-        accessibilityTest: false,
-        yesNoNotSureRestrictDocs: "no",
-        partyUploadedDocument: "CourtNav",
-        documentType: "Applicant's statements",
+      // Upload a document
+      await ManageDocuments.manageDocuments({
+        page: page,
+        accessibilityTest: true,
+        documentParty: "Applicant",
+        documentCategory: "Position statements",
+        restrictDocument: false,
+        confidentialDocument: false,
       });
-      await Helpers.goToCase(
-        page,
-        config.manageCasesBaseURLCase,
-        ccdRef,
-        "tasks",
-      );
     }
-    await completeCheckApplicationAndSendToGatekeeper(page, ccdRef);
     await this.serviceOfDocuments({
       page,
       withCaseDoc,

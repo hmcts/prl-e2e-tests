@@ -1,9 +1,22 @@
-import { test } from "@playwright/test";
 import Config from "../../../../utils/config.utils.ts";
 import { ServiceOfDocuments } from "../../../../journeys/manageCases/caseProgression/servceOfDocuments/serviceOfDocuments.ts";
+import { Helpers } from "../../../../common/helpers.js";
+import config from "../../../../utils/config.utils.js";
+import { test } from "../../../fixtures.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
-test.describe("Service of Document event for DA Citizen case tests as court admin.", () => {
+test.describe("Service of Document event for DA Solicitor case tests as court admin.", () => {
+  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
+    const ccdRef: string =
+      await caseEventUtils.createDACaseSendToGatekeeper(browser);
+    await Helpers.goToCase(
+      page,
+      config.manageCasesBaseURLCase,
+      ccdRef,
+      "tasks",
+    );
+  });
+
   test(`Complete 'Service of Documents' with following options: 
   Additional documents added: no, 
   Witness statement (case doc) added to event: no, 

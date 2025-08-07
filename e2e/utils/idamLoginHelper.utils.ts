@@ -1,20 +1,28 @@
 import { Cookie, expect, Page } from "@playwright/test";
 import fs, { existsSync, readFileSync } from "fs";
-import Config from "../../utils/config.utils.ts";
-import { setupUser } from "./idamCreateUserApiHelper.ts";
-import { UserCredentialsLong, UserLoginInfo } from "../types.ts";
+import Config from "./config.utils.ts";
+import { CreateUserUtil } from "./createUser.utils.ts";
+import { UserCredentialsLong, UserLoginInfo } from "../common/types.ts";
 import process from "node:process";
 import { IdamUtils } from "@hmcts/playwright-common";
 import { UserInfoParams } from "@hmcts/playwright-common/dist/utils/idam.utils.js";
 
 export class IdamLoginHelper {
-  private static fields: UserLoginInfo = {
+  private fields: UserLoginInfo = {
     username: "#username",
     password: "#password",
   };
-  private static submitButton = 'input[value="Sign in"]';
+  private submitButton = 'input[value="Sign in"]';
 
-  public static async signIn(
+  /**
+   * Signs a user into the application. It attempts to reuse an existing session if valid.
+   * @param page Playwright Page object.
+   * @param username The user's email/username.
+   * @param password The user's password.
+   * @param application The URL of the application to sign into.
+   * @param userType The type of user (e.g., "citizen", "solicitor").
+   */
+  public async signIn(
     page: Page,
     username: string,
     password: string,
@@ -58,7 +66,13 @@ export class IdamLoginHelper {
     }
   }
 
-  public static async signInLongLivedUser(
+  /**
+   * Signs in a long-lived user based on predefined credentials in Config.
+   * @param page Playwright Page object.
+   * @param user Key of the user credentials in Config.
+   * @param application The URL of the application.
+   */
+  public async signInLongLivedUser(
     page: Page,
     user: keyof typeof Config.userCredentials,
     application: string,
@@ -75,7 +89,15 @@ export class IdamLoginHelper {
     );
   }
 
-  public static async setupAndSignInUser(
+  /**
+   * Sets up a new user via API and then signs them into the application.
+   * @param page Playwright Page object.
+   * @param application The URL of the application.
+   * @param userType The type of user to create and sign in.
+   * @param returnUserInfo Optional. If true, returns the created user's credentials.
+   * @returns The user's credentials if `returnUserInfo` is true, otherwise void.
+   */
+  public async setupAndSignInUser(
     page: Page,
     application: string,
     userType: string,
@@ -83,7 +105,8 @@ export class IdamLoginHelper {
   ): Promise<UserCredentialsLong | void> {
     const token = process.env.CREATE_USER_BEARER_TOKEN as string;
     if (!token) return;
-    const userInfo = await setupUser(token, userType);
+    // Directly call the static createUser method from CreateUserUtil
+    const userInfo = await CreateUserUtil.createUser(token, userType);
     await this.signIn(
       page,
       userInfo.email,
@@ -100,21 +123,38 @@ export class IdamLoginHelper {
       };
   }
 
-  private static isSessionValid(path: string): boolean {
+  /**
+   * Checks if a session file is valid (i.e., the 'xui-webapp' cookie has at least 4 hours left).
+   * @param path The path to the session storage JSON file.
+   * @returns True if the session is valid, false otherwise.
+   * @private
+   */
+  private isSessionValid(path: string): boolean {
     try {
       const data = JSON.parse(readFileSync(path, "utf-8"));
       const cookie = data.cookies.find(
         (cookie: Cookie) => cookie.name === "xui-webapp",
       );
+      if (!cookie) return false; // No session cookie found
       const expiry = new Date(cookie.expires * 1000);
       // Check there is at least 4 hours left before the session expires
       return expiry.getTime() - Date.now() > 4 * 60 * 60 * 1000;
     } catch (error) {
-      throw new Error(`Could not read session data: ${error} for ${path}`);
+      console.error(
+        `Error reading or parsing session data for ${path}:`,
+        error,
+      );
+      return false; // Treat any error as an invalid session
     }
   }
 
-  private static async addAnalyticsCookie(
+  /**
+   * Adds a specific analytics cookie to the session storage file.
+   * @param sessionPath The path to the session storage JSON file.
+   * @param username The username for which to add the cookie.
+   * @private
+   */
+  private async addAnalyticsCookie(
     sessionPath: string,
     username: string,
   ): Promise<void> {
@@ -126,9 +166,9 @@ export class IdamLoginHelper {
       const state = JSON.parse(fs.readFileSync(sessionPath, "utf-8"));
       let userId: string;
       if (process.env.MANAGE_CASES_TEST_ENV === "preview") {
-        // when using preview environment the __userid__ cookie is undefined so need to fetch user ID a different way
         const token = process.env.CREATE_USER_BEARER_TOKEN as string;
-        const userDetails: UserInfoParams = await new IdamUtils().getUserInfo({
+        const idamUtils = new IdamUtils(); // Instantiate IdamUtils
+        const userDetails: UserInfoParams = await idamUtils.getUserInfo({
           email: username,
           bearerToken: token,
         });
@@ -138,17 +178,22 @@ export class IdamLoginHelper {
           (cookie: Cookie) => cookie.name === "__userid__",
         )?.value;
       }
-      state.cookies.push({
-        name: `hmcts-exui-cookies-${userId}-mc-accepted`,
-        value: "true",
-        domain: `${domain}`,
-        path: "/",
-        expires: -1,
-        httpOnly: false,
-        secure: false,
-        sameSite: "Lax",
-      });
-      fs.writeFileSync(sessionPath, JSON.stringify(state, null, 2));
+
+      // Prevent adding duplicate cookies if it already exists
+      const cookieName = `hmcts-exui-cookies-${userId}-mc-accepted`;
+      if (!state.cookies.some((cookie: Cookie) => cookie.name === cookieName)) {
+        state.cookies.push({
+          name: cookieName,
+          value: "true",
+          domain: `${domain}`,
+          path: "/",
+          expires: -1, // -1 typically means session cookie or never expires
+          httpOnly: false,
+          secure: false,
+          sameSite: "Lax",
+        });
+        fs.writeFileSync(sessionPath, JSON.stringify(state, null, 2));
+      }
     } catch (error) {
       throw new Error(`Failed to read or write session data: ${error}`);
     }

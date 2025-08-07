@@ -1,15 +1,14 @@
-import { test } from "@playwright/test";
+import { test } from "../../../fixtures.ts";
 import Config from "../../../../utils/config.utils.ts";
-import createDaCitizenCourtNavCase from "../../../../common/caseHelpers/citizenDACaseCreateHelper.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import config from "../../../../utils/config.utils.ts";
 import { TransferToAnotherCourt } from "../../../../journeys/manageCases/caseProgression/transferToAnotherCourt/transferToAnotherCourt.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "courtAdminStoke.json" });
 
-test.describe("Transfer to another court event for DA Citizen case tests as a court admin.", () => {
-  test.beforeEach(async ({ page }) => {
-    const ccdRef = await createDaCitizenCourtNavCase(false, false);
+test.describe("Transfer to another court event for DA Solicitor case tests as a court admin.", () => {
+  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
+    const ccdRef = await caseEventUtils.createDACase(browser);
     await Helpers.goToCase(
       page,
       config.manageCasesBaseURLCase,

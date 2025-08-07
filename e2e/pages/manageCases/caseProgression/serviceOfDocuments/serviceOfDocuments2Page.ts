@@ -17,7 +17,7 @@ enum UniqueSelectors {
   personallyServedSelectorYes = "#sodServeToRespondentOptions-Yes",
   personallyServedSelectorNo = "#sodServeToRespondentOptions-No",
   personallyServedSelectorNA = "#sodServeToRespondentOptions-NotApplicable",
-  responsibleForServingSelector = "#sodCitizenServingRespondentsOptions-unrepresentedApplicant",
+  responsibleForServingSelector = "#sodSolicitorServingRespondentsOptions-applicantLegalRepresentative",
   additionalRecipientsSelector = "#sodAdditionalRecipients-additionalRecipients",
   additionalRecipientPostSelector = "#sodAdditionalRecipientsList_0_serveByPostOrEmail-post",
   additionalRecipientEmailSelector = "#sodAdditionalRecipientsList_0_serveByPostOrEmail-email",

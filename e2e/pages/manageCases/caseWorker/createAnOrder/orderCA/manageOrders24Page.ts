@@ -8,20 +8,22 @@ import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 interface manageOrders24PageOptions {
   page: Page;
   accessibilityTest: boolean;
+  checkOption: string;
 }
 
-const radioId = "#amendOrderSelectCheckOptions-managerCheck";
+const baseCheckSelector = "#amendOrderSelectCheckOptions-";
 
 export class ManageOrders24Page {
   public static async manageOrders24Page({
     page,
     accessibilityTest,
+    checkOption,
   }: manageOrders24PageOptions): Promise<void> {
     if (!page) {
       throw new Error("Page is not defined");
     }
     await this.checkPageLoads({ page, accessibilityTest });
-    await this.fillInFields({ page });
+    await this.fillInFields({ page, checkOption });
   }
 
   private static async checkPageLoads({
@@ -49,11 +51,12 @@ export class ManageOrders24Page {
 
   private static async fillInFields({
     page,
+    checkOption,
   }: Partial<manageOrders24PageOptions>): Promise<void> {
     if (!page) {
       throw new Error("Page is not defined");
     }
-    await page.click(radioId);
+    await page.click(`${baseCheckSelector}${checkOption}`);
     await page.click(
       `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
     );

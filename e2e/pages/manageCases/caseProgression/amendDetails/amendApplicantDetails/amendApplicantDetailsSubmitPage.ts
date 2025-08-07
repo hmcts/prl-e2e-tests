@@ -87,7 +87,7 @@ export class AmendApplicantDetailsSubmitPage {
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.GovukText16}:text-is("${amendApplicantDetailsSubmitContent.text16_11}")`,
+          `${Selectors.GovukText16}:text-is("${amendApplicantDetailsSubmitContent.text16_11}"):visible`,
           2,
         ),
         Helpers.checkVisibleAndPresent(

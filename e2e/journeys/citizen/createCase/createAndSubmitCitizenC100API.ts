@@ -1,13 +1,14 @@
 import { Page } from "@playwright/test";
-import IdamLoginHelper from "../../../common/userHelpers/idamLoginHelper.ts";
+import IdamLoginHelper from "../../../utils/idamLoginHelper.utils.ts";
 import { ApplicantPage } from "../../../pages/citizen/createCase/initialJourney/applicantPage.ts";
-import { CitizenCACaseCreator } from "../../../common/caseHelpers/citizenCACaseCreateHelper.ts";
+import { CitizenCACaseUtils } from "../../../utils/citizenCACase.utils.ts";
 import { CaseDashboardPage } from "../../../pages/citizen/createCase/initialJourney/caseDashboardPage.ts";
-import { setupUser } from "../../../common/userHelpers/idamCreateUserApiHelper.ts";
+import { CreateUserUtil } from "../../../utils/createUser.utils.ts";
 import { C100Pay } from "./C100/subJourneys/C100Pay.ts";
 import { EqualityAndDiversityPage } from "../../../pages/citizen/createCase/C100/confirmation/equalityAndDiversityQuestionsPage.ts";
 import { ReviewPage } from "../../../pages/citizen/createCase/C100/reviewPages/reviewPage.ts";
 import { ConfirmationPage } from "../../../pages/citizen/createCase/C100/confirmation/confirmationPage.ts";
+import { IdamUtils, ServiceAuthUtils } from "@hmcts/playwright-common";
 
 interface CitizenC100ApiCaseOptions {
   page: Page;
@@ -24,15 +25,15 @@ export class CitizenC100ApiCase {
     errorMessaging,
   }: CitizenC100ApiCaseOptions): Promise<void> {
     const token = process.env.CREATE_USER_BEARER_TOKEN as string;
-    const userInfo = await setupUser(token, "citizen"); // Create citizen user
-    // create the C100 case
-    const ccdRef = await CitizenCACaseCreator.createDraftCitizenCACase(
-      page,
-      application,
-      userInfo,
+    const userInfo = await CreateUserUtil.createUser(token, "citizen");
+
+    const caCaseCreator = new CitizenCACaseUtils(
+      new ServiceAuthUtils(),
+      new IdamUtils(),
     );
-    // log into citizen portal
-    await IdamLoginHelper.signIn(
+    const ccdRef = await caCaseCreator.createDraftCase(userInfo);
+    const idamLoginHelperInstance = new IdamLoginHelper();
+    await idamLoginHelperInstance.signIn(
       page,
       userInfo.email,
       userInfo.password,
@@ -45,7 +46,7 @@ export class CitizenC100ApiCase {
       ccdRef,
     });
     await ApplicantPage.applicantPageDraftCase({ page, accessibilityTest });
-    //check non-dynamic content of check your answers
+
     await ReviewPage.checkCommonText({
       page,
       accessibilityTest: true,

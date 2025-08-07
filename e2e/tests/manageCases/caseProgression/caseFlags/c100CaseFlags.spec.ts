@@ -1,13 +1,8 @@
-import { test } from "@playwright/test";
 import Config from "../../../../utils/config.utils.ts";
 import config from "../../../../utils/config.utils.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import { CaseFlagsCA } from "../../../../journeys/manageCases/caseProgression/caseFlags/caseFlagsCA.ts";
-import { SolicitorCACaseCreator } from "../../../../common/caseHelpers/solicitorCACaseCreator.ts";
-import {
-  jsonDatas,
-  submitEvent,
-} from "../../../../common/caseHelpers/solicitorCaseCreatorHelper.ts";
+import { test } from "../../../fixtures.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 test.slow();
@@ -15,25 +10,8 @@ test.slow();
 test.describe("Case flags tests for CA case tests.", () => {
   let ccdRef: string = "";
 
-  test.beforeEach(async ({ page, browser }) => {
-    await page.goto(Config.manageCasesBaseURLCase);
-    ccdRef = await SolicitorCACaseCreator.createCaseSubmitAndPay(page);
-    const ctscPage = await Helpers.openNewBrowserWindow(
-      browser,
-      "courtAdminStoke",
-    );
-    await Helpers.goToCase(
-      ctscPage,
-      config.manageCasesBaseURLCase,
-      ccdRef,
-      "tasks",
-    );
-    await submitEvent(
-      ctscPage,
-      ccdRef,
-      "issueAndSendToLocalCourtCallback",
-      jsonDatas.solicitorCACaseData,
-    );
+  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
+    ccdRef = await caseEventUtils.createCACaseIssueAndSendToLocalCourt(browser);
     await Helpers.goToCase(
       page,
       config.manageCasesBaseURLCase,

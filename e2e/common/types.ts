@@ -275,7 +275,8 @@ export type solicitorDACaseAPIEvent =
   | "fl401SendToGateKeeper"
   | "manageOrders"
   | "serviceOfApplication"
-  | "draftAnOrder";
+  | "draftAnOrder"
+  | "confidentialityCheck";
 
 export type solicitorCACaseAPIEvent =
   | "solicitorCreate"
@@ -295,7 +296,8 @@ export type solicitorCACaseAPIEvent =
   | "welshLanguageRequirements"
   | "submitAndPay"
   | "testingSupportPaymentSuccessCallback"
-  | "issueAndSendToLocalCourtCallback";
+  | "issueAndSendToLocalCourtCallback"
+  | "sendToGateKeeper";
 
 export type AdditionalApplicationType = "c2" | "other";
 

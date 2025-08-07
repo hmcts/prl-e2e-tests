@@ -1,11 +1,12 @@
-import { getAccessToken, getS2SToken } from "./getAccessTokenHelper.ts";
-import { APIRequestContext, Browser, request } from "@playwright/test";
+import { TokenUtils } from "../../utils/token.utils.ts";
+import { Browser, request } from "@playwright/test";
 import * as process from "node:process";
 import {
   completeCaseEventWithContext,
   completeServiceOfApplication,
   createBlankCase,
 } from "./solicitorDACaseHelperPOC.ts";
+import { IdamUtils, ServiceAuthUtils } from "@hmcts/playwright-common";
 
 const CaseEvents: string[] = [
   "fl401TypeOfApplication",
@@ -36,21 +37,19 @@ export class SolicitorDACaseCreatorPOC {
     browser: Browser,
     finalCaseEvent: string = "",
   ): Promise<string> {
-    const apiContextSolicitorCreateCase: APIRequestContext =
-      await request.newContext();
-    const tokenSolicitorCreateCase = await getAccessToken(
+    const newTokenUtil = new TokenUtils(new IdamUtils());
+    const tokenSolicitorCreateCase = await newTokenUtil.getAccessToken(
       "solicitorCreateCase",
-      apiContextSolicitorCreateCase,
     );
     if (!tokenSolicitorCreateCase) {
       throw new Error("Setup failed: Unable to get bearer token.");
     }
-    const apiContextS2SToken: APIRequestContext = await request.newContext();
     const microservice: string = "prl_cos_api";
-    const s2sToken: string = await getS2SToken(
-      apiContextS2SToken,
-      microservice,
-    );
+    const newServiceAuthUtil = await new ServiceAuthUtils();
+    const s2sToken = await newServiceAuthUtil.retrieveToken({
+      microservice: microservice,
+    });
+    const apiContextSolicitorCreateCase = await request.newContext();
     const { userID, caseRef } = await createBlankCase(
       apiContextSolicitorCreateCase,
       tokenSolicitorCreateCase,

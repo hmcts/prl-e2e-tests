@@ -35,7 +35,7 @@ export enum MiamPolicyUpgrade3Content {
   formLabelUpload = "Upload evidence (Optional)",
   Evidence = "Evidence",
   loremIpsum = "loremIpsum",
-  errorMessageFileUpload = "Error Uploading File",
+  errorMessageFileUpload = "Your upload contains a disallowed file type",
   continue = "Continue",
   uploadingFile = "Uploading...",
 }

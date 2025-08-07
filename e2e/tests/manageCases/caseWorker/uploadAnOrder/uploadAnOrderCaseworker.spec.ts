@@ -39,6 +39,7 @@ test.describe("'Upload an order' tests", (): void => {
       uploadOrderC100Options:
         "Child arrangements, specific issue or prohibited steps order (C43)",
       isUploadOrder: true,
+      serveOrderNow: false,
     });
   });
 
@@ -54,6 +55,7 @@ test.describe("'Upload an order' tests", (): void => {
       uploadOrderC100Options:
         "Child arrangements, specific issue or prohibited steps order (C43)",
       isUploadOrder: true,
+      serveOrderNow: false,
     });
   });
 });

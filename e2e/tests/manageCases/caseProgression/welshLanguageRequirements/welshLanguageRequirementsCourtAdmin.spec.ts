@@ -1,15 +1,13 @@
-import { test } from "@playwright/test";
-import Config from "../../../../utils/config.utils.ts";
-import createDaCitizenCourtNavCase from "../../../../common/caseHelpers/citizenDACaseCreateHelper.ts";
+import { test } from "../../../fixtures.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import config from "../../../../utils/config.utils.ts";
 import { WelshLanguageRequirements } from "../../../../journeys/manageCases/caseProgression/welshLanguageRequirements/welshLanguageRequirements.ts";
 
-test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
+test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 
-test.describe("Welsh Language Requirements task for DA Citizen case tests as Court Admin.", () => {
-  test.beforeEach(async ({ page }) => {
-    const ccdRef: string = await createDaCitizenCourtNavCase(true, false);
+test.describe("Welsh Language Requirements task for DA Solicitor case tests as Court Admin.", () => {
+  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
+    const ccdRef: string = await caseEventUtils.createDACase(browser);
     await Helpers.goToCase(
       page,
       config.manageCasesBaseURLCase,

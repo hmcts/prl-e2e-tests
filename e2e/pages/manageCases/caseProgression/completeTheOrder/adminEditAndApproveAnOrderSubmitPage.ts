@@ -4,7 +4,7 @@ import { Selectors } from "../../../../common/selectors.ts";
 import { AdminEditAndApproveAnOrderSubmitContent } from "../../../../fixtures/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrderSubmitContent.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import { CommonStaticText } from "../../../../common/commonStaticText.ts";
-import { createOrderFL401Options } from "../../../../common/types.ts";
+import { applicationSubmittedBy, createOrderFL401Options } from "../../../../common/types.ts";
 
 export class AdminEditAndApproveAnOrderSubmitPage {
   public static async adminEditAndApproveAnOrderSubmitPage(
@@ -12,12 +12,14 @@ export class AdminEditAndApproveAnOrderSubmitPage {
     accessibilityTest: boolean,
     createOrderFL401Options: createOrderFL401Options,
     personallyServed: boolean,
+    applicationSubmittedBy: applicationSubmittedBy,
   ): Promise<void> {
     await this.checkPageLoads(
       page,
       accessibilityTest,
       createOrderFL401Options,
       personallyServed,
+      applicationSubmittedBy,
     );
     await this.submit(page);
   }
@@ -27,6 +29,7 @@ export class AdminEditAndApproveAnOrderSubmitPage {
     accessibilityTest: boolean,
     createOrderFL401Options: createOrderFL401Options,
     personallyServed: boolean,
+    applicationSubmittedBy: applicationSubmittedBy,
   ): Promise<void> {
     await page
       .locator(`${Selectors.headingH2}`, {
@@ -141,32 +144,35 @@ export class AdminEditAndApproveAnOrderSubmitPage {
         `${Selectors.GovukText16}:text-is("${AdminEditAndApproveAnOrderSubmitContent.No}"):visible`,
         2,
       );
-      await Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.p}:text-is("${AdminEditAndApproveAnOrderSubmitContent.pApplicant}"):visible`,
-        1,
-      );
-      await Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.p}:text-is("${AdminEditAndApproveAnOrderSubmitContent.pRespondent}"):visible`,
-        1,
-      );
+      if(applicationSubmittedBy === "Citizen") {
+        await Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.p}:text-is("${AdminEditAndApproveAnOrderSubmitContent.pApplicantCitizen}"):visible`,
+          1,
+        );
+        await Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.p}:text-is("${AdminEditAndApproveAnOrderSubmitContent.pRespondentCitizen}"):visible`,
+          1,
+        );
+      } else {
+        await Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.p}:text-is("${AdminEditAndApproveAnOrderSubmitContent.pApplicantSolicitor}"):visible`,
+          1,
+        );
+        await Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.p}:text-is("${AdminEditAndApproveAnOrderSubmitContent.pRespondentSolicitor}"):visible`,
+          1,
+        );
+      }
       await Helpers.checkGroup(
         page,
         10,
         AdminEditAndApproveAnOrderSubmitContent,
         `amendText16`,
         Selectors.GovukText16,
-      );
-      await Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.p}:text-is("${AdminEditAndApproveAnOrderSubmitContent.pApplicant}"):visible`,
-        1,
-      );
-      await Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.p}:text-is("${AdminEditAndApproveAnOrderSubmitContent.pRespondent}"):visible`,
-        1,
       );
     }
 

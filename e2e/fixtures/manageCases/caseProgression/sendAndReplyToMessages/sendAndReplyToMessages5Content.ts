@@ -30,6 +30,6 @@ export enum SendAndReplyToMessages5Content {
   messageTableHeadingH413 = "Subject",
   messageTableHeadingH414 = "Message details",
 
-  fl401MessageTableFormLabel = "Applications -> Applicant documents -> Applicant application -> FL401FinalDocument.pdf",
+  fl401MessageTableFormLabel = "Applications -> Applicant documents -> Applicant application -> FL401FinalDocumentWelsh.pdf",
   c100MessageTableFormLabel = "Applications -> Applicant documents -> Applicant application -> Draft_C100_application.pdf",
 }

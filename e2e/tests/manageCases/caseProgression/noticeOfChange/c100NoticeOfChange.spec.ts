@@ -1,23 +1,16 @@
-import { Page, test } from "@playwright/test";
 import Config from "../../../../utils/config.utils.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import config from "../../../../utils/config.utils.ts";
 import { NoticeOfChange } from "../../../../journeys/manageCases/caseProgression/noticeOfChange/noticeOfChange.ts";
-import { SolicitorCACaseCreator } from "../../../../common/caseHelpers/solicitorCACaseCreator.ts";
+import { test } from "../../../fixtures.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "nocSolicitor.json" });
 
 test.describe("Notice of Change tests for CA case", () => {
   let ccdRef: string = "";
 
-  test.beforeEach(async ({ page, browser }) => {
-    const solicitorPage: Page = await Helpers.openNewBrowserWindow(
-      browser,
-      "solicitor",
-    );
-    await solicitorPage.goto(Config.manageCasesBaseURLCase);
-    ccdRef = await SolicitorCACaseCreator.createCaseSubmitAndPay(solicitorPage);
-    await SolicitorCACaseCreator.c100IssueAndSendToLocalCourt(browser, ccdRef);
+  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
+    ccdRef = await caseEventUtils.createCACaseIssueAndSendToLocalCourt(browser);
     await Helpers.goToCase(
       page,
       config.manageCasesBaseURLCase,

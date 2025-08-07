@@ -2,7 +2,7 @@ import { StartPage } from "../../pages/edgeCases/startPage.ts";
 import { TypeOfApplicationPage } from "../../pages/edgeCases/typeOfApplicationPage.ts";
 import { Page } from "@playwright/test";
 import { EdgeCaseApplicationType } from "../../common/types.ts";
-import IdamLoginHelper from "../../common/userHelpers/idamLoginHelper.ts";
+import IdamLoginHelper from "../../utils/idamLoginHelper.utils.ts";
 import { UserRolePage } from "../../pages/edgeCases/personalDetails/userRolePage.ts";
 import { DateOfBirthPage } from "../../pages/edgeCases/personalDetails/dateOfBirthPage.ts";
 import { AddressLookupPage } from "../../pages/edgeCases/personalDetails/addressLookupPage.ts";
@@ -204,7 +204,8 @@ export class EdgeCase {
     surname: string;
   }> {
     await StartPage.startPage({ page, accessibilityTest });
-    const userInfo = await IdamLoginHelper.setupAndSignInUser(
+    const newIdamLoginHelper = await new IdamLoginHelper();
+    const userInfo = await newIdamLoginHelper.setupAndSignInUser(
       page,
       page.url(),
       "citizen",

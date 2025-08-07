@@ -1,12 +1,12 @@
 import { Browser, BrowserContext, Page } from "@playwright/test";
-import IdamLoginHelper from "../../../common/userHelpers/idamLoginHelper.ts";
+import IdamLoginHelper from "../../../utils/idamLoginHelper.utils.ts";
 import Config from "../../../utils/config.utils.ts";
-import { AccessCodeHelper } from "../../../common/caseHelpers/accessCodeHelper.ts";
+import { AccessCodeHelper } from "../../../utils/accessCode.utils.ts";
 import { EnterPinPage } from "../../../pages/citizen/activateCase/enterPinPage.ts";
 import { CaseActivatedPage } from "../../../pages/citizen/activateCase/caseActivatedPage.ts";
 import { ApplicantDashboardPage } from "../../../pages/citizen/activateCase/applicantDashboardPage.ts";
 import { RespondentDashboardPage } from "../../../pages/citizen/activateCase/respondentDashboardPage.ts";
-import { jsonDatas } from "../../../common/caseHelpers/solicitorCaseCreatorHelper.ts";
+import { jsonDatas } from "../../../common/caseHelpers/jsonDatas.ts";
 import { Selectors } from "../../../common/selectors.ts";
 import { ApplicantDashboardContent } from "../../../fixtures/citizen/activateCase/applicantDashboardContent.ts";
 import { RespondentDashboardContent } from "../../../fixtures/citizen/activateCase/respondentDashboardContent.ts";
@@ -14,6 +14,8 @@ import { ServiceOfApplication } from "../../manageCases/caseProgression/serviceO
 import { completeEventsUpToServiceOfApplication } from "../../../common/caseHelpers/caseEventsHelper.ts";
 import { applicationSubmittedBy } from "../../../common/types.ts";
 import { ConfidentialityCheck } from "../../manageCases/caseProgression/confidentilityCheck/confidentialityCheck.ts";
+import { IdamUtils, ServiceAuthUtils } from "@hmcts/playwright-common";
+import { TokenUtils } from "../../../utils/token.utils.ts";
 
 interface ActiveCaseParams {
   page: Page;
@@ -49,7 +51,7 @@ export class ActivateCase {
         yesNoServiceOfApplication4: false,
         confidentialityCheck: false,
         responsibleForServing: "courtBailiff",
-        manageOrderData: jsonDatas.manageOrderDataPowerOfArrest,
+        manageOrderData: jsonDatas.citizenManageOrderDataPowerOfArrest,
         applicationSubmittedBy: applicationSubmittedBy,
       });
       // need to complete C8 confidential details event when it is a solicitor case
@@ -62,7 +64,7 @@ export class ActivateCase {
         page,
         browser,
         caseRef,
-        jsonDatas.manageOrderDataPowerOfArrest,
+        jsonDatas.citizenManageOrderDataPowerOfArrest,
         "power of arrest",
         applicationSubmittedBy,
       );
@@ -120,14 +122,19 @@ export class ActivateCase {
     const newBrowser = await browser.browserType().launch();
     const newContext: BrowserContext = await newBrowser.newContext();
     const page: Page = await newContext.newPage();
-    await IdamLoginHelper.setupAndSignInUser(
+    const newIdamUtil = await new IdamLoginHelper();
+    await newIdamUtil.setupAndSignInUser(
       page,
       Config.citizenFrontendBaseURL,
       "citizen",
     );
     await page.click(`a:text-is("Activate access code")`);
+    const newAccessCodeUtil = await new AccessCodeHelper(
+      new ServiceAuthUtils(),
+      new TokenUtils(new IdamUtils()),
+    );
     const accessCode: string =
-      await AccessCodeHelper.getApplicantAccessCode(caseRef);
+      await newAccessCodeUtil.getApplicantAccessCode(caseRef);
     await this.checkDashboard(
       page,
       caseRef,
@@ -150,14 +157,19 @@ export class ActivateCase {
     const newBrowser = await browser.browserType().launch();
     const newContext: BrowserContext = await newBrowser.newContext();
     const page = await newContext.newPage();
-    await IdamLoginHelper.setupAndSignInUser(
+    const newIdamUtil = await new IdamLoginHelper();
+    await newIdamUtil.setupAndSignInUser(
       page,
       Config.citizenFrontendBaseURL,
       "citizen",
     );
     await page.click(`a:text-is("Activate access code")`);
+    const newAccessCodeUtil = await new AccessCodeHelper(
+      new ServiceAuthUtils(),
+      new TokenUtils(new IdamUtils()),
+    );
     const accessCode: string =
-      await AccessCodeHelper.getRespondentAccessCode(caseRef);
+      await newAccessCodeUtil.getRespondentAccessCode(caseRef);
     await this.checkDashboard(
       page,
       caseRef,

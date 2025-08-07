@@ -1,18 +1,14 @@
-import { test } from "@playwright/test";
-import createDaCitizenCourtNavCase from "../../../../common/caseHelpers/citizenDACaseCreateHelper.ts";
+import { test } from "../../../fixtures.ts";
 import { Helpers } from "../../../../common/helpers.ts";
-import {
-  default as Config,
-  default as config,
-} from "../../../../utils/config.utils.ts";
+import { default as config } from "../../../../utils/config.utils.ts";
 import { SendAndReplyToMessages } from "../../../../journeys/manageCases/caseProgression/sendAndReplyToMessages/sendAndReplyToMessages.ts";
 
-test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
-//
+test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
+
 test.describe("Send and reply to messages between court admin and judge for an FL401 case tests", () => {
   let ccdRef: string;
-  test.beforeEach(async ({ page }) => {
-    ccdRef = await createDaCitizenCourtNavCase(true, false);
+  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
+    ccdRef = await caseEventUtils.createDACase(browser);
     await Helpers.goToCase(
       page,
       config.manageCasesBaseURLCase,
