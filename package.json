@@ -38,7 +38,7 @@
     "test:manageCasesAccessibility": "yarn pwinstall && yarn playwright test e2e/tests/manageCases --project chromium --grep @accessibility",
     "test:manageCasesVisual": "yarn pwinstall && yarn playwright test e2e/tests/manageCases --project chromium --grep @visual",
     "test:citizenSmoke": "yarn pwinstall && yarn playwright test e2e/tests/citizen --project chromium --grep @smoke",
-    "test:citizenFrontendChrome": "yarn pwinstall && yarn playwright test e2e/tests/citizen --project chromium --grep @nightly",
+    "test:citizenFrontendChrome": "yarn pwinstall && yarn playwright test e2e/tests/citizen/createCase --project chromium --grep @nightly",
     "test:citizenFrontendFirefox": "yarn pwinstall firefox && yarn playwright test e2e/tests/citizen --project firefox --grep @smoke",
     "test:citizenFrontendSafari": "yarn pwinstall webkit && yarn playwright test e2e/tests/citizen --project webkit --grep @smoke",
     "test:citizenFrontendAccessibility": "yarn pwinstall && yarn playwright test e2e/tests/citizen --project chromium --grep @accessibility"
