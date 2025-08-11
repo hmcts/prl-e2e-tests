@@ -34,6 +34,7 @@ export class ListWithNotice {
       "tasks",
     );
     await Helpers.waitForTask(judgePage, "Directions on Issue");
+    await Helpers.assignTaskToMe(judgePage, "Directions on Issue");
     await Helpers.chooseEventFromDropdown(judgePage, "List on notice");
     await Fl401ListOnNotice2Page.fl401ListOnNotice2Page(
       judgePage,
@@ -47,8 +48,27 @@ export class ListWithNotice {
       judgePage,
       accessibilityTest,
     );
+
+    //check if task gets auto-closed
+    await Helpers.clickTab(judgePage, "Tasks");
+    await Helpers.waitForTaskToDisappear(judgePage, "Directions on Issue");
+
     // check case notes are updated
     await this.checkCaseNotes(judgePage);
+
+    //check if list on notice task is getting initiated for HCA and Case manager
+    await Helpers.checkTaskAppearsForUser(
+      browser,
+      "caseWorker",
+      ccdRef,
+      "Listing instructions (refer to case notes)",
+    );
+    await Helpers.checkTaskAppearsForUser(
+      browser,
+      "caseManager",
+      ccdRef,
+      "Listing instructions (refer to case notes)",
+    );
   }
 
   private static async checkCaseNotes(page: Page): Promise<void> {
