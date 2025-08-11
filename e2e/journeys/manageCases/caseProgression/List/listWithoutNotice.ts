@@ -34,6 +34,7 @@ export class ListWithoutNotice {
       "tasks",
     );
     await Helpers.waitForTask(judgePage, "Directions on Issue");
+    await Helpers.assignTaskToMe(judgePage, "Directions on Issue");
     await Helpers.chooseEventFromDropdown(judgePage, "List without notice");
     await Fl401ListWithoutNotice1Page.fl401ListWithoutNotice1Page(
       judgePage,
@@ -47,8 +48,27 @@ export class ListWithoutNotice {
       judgePage,
       accessibilityTest,
     );
+
+    //check if task gets auto-closed
+    await Helpers.clickTab(judgePage, "Tasks");
+    await Helpers.waitForTaskToDisappear(judgePage, "Directions on Issue");
+
     // check case notes are updated
     await this.checkCaseNotes(judgePage);
+
+    //check if list on notice task is getting initiated for HCA and Case manager
+    await Helpers.checkTaskAppearsForUser(
+      browser,
+      "caseWorker",
+      ccdRef,
+      "List without notice hearing (see case notes)",
+    );
+    await Helpers.checkTaskAppearsForUser(
+      browser,
+      "caseManager",
+      ccdRef,
+      "List without notice hearing (see case notes)",
+    );
   }
 
   private static async checkCaseNotes(page: Page): Promise<void> {
