@@ -5,7 +5,7 @@ import { CreateHearingRequest } from "../../../../journeys/manageCases/caseProgr
 import { jsonDatas } from "../../../../common/caseHelpers/jsonDatas.ts";
 
 test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
-// TEST COMMENT
+
 test.describe("Complete the Order task for DA Solicitor case tests.", () => {
   let ccdRef: string = "";
 
