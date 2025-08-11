@@ -332,10 +332,7 @@ export class Helpers {
     return [day, month, year];
   }
 
-  public static async assignTaskToMe(
-    page: Page,
-    taskName: string,
-  ) {
+  public static async assignTaskToMe(page: Page, taskName: string) {
     await this.waitForTask(page, taskName);
     const taskLocator = page.locator("exui-case-task", {
       hasText: taskName,
@@ -400,12 +397,7 @@ export class Helpers {
     taskName: string,
   ): Promise<void> {
     const page: Page = await this.openNewBrowserWindow(browser, userRole);
-    await this.goToCase(
-      page,
-      Config.manageCasesBaseURLCase,
-      ccdRef,
-      "tasks",
-    );
+    await this.goToCase(page, Config.manageCasesBaseURLCase, ccdRef, "tasks");
     await this.waitForTask(page, taskName);
   }
 
