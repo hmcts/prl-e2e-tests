@@ -4,8 +4,8 @@ import { test } from "../../../fixtures.ts";
 import { Helpers } from "../../../../common/helpers.js";
 import config from "../../../../utils/config.utils.js";
 import { CommonStaticText } from "../../../../common/commonStaticText.js";
-import { Fl401StatementOfTruth } from "../../../../journeys/manageCases/createCase/FL401StatementOfTruth/fl401StatementOfTruth.js";
 import { Selectors } from "../../../../common/selectors.js";
+import { jsonDatas } from "../../../../common/caseHelpers/jsonDatas.js";
 
 test.use({ storageState: Config.sessionStoragePath + "nocSolicitor.json" });
 
@@ -40,15 +40,14 @@ test.describe("Notice of Change tests for DA case", () => {
     await applicantSolPage
       .locator(Selectors.button, { hasText: CommonStaticText.saveAndContinue })
       .click();
-    await Fl401StatementOfTruth.fl401StatementOfTruth({
-      page: applicantSolPage,
-      accessibilityTest: false,
-      errorMessaging: false,
-      fl401YesNoToEverything: true,
-      subJourney: false,
-    });
     await applicantSolPage.waitForResponse(
       `${Config.manageCasesBaseURL}/data/cases/${ccdRef}/events`,
+    );
+    await caseEventUtils.submitEvent(
+      applicantSolPage,
+      ccdRef,
+      "fl401StatementOfTruthAndSubmit",
+      jsonDatas.solicitorDACaseData,
     );
     await page.goto(Config.manageCasesBaseURLCase);
   });
