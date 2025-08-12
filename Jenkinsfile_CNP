@@ -116,7 +116,7 @@ withNightlyPipeline(type, product, component, 600) {
     afterAlways('DependencyCheckNightly') {
       stage('Run changed tests - Chrome') {
         try {
-          yarnBuilder.yarn('test:changes')
+          yarnBuilder.yarn('test:citizenFrontendChrome')
         } catch (Error) {
           unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
         } finally {
@@ -126,7 +126,7 @@ withNightlyPipeline(type, product, component, 600) {
                   keepAll              : true,
                   reportDir            : "playwright-report",
                   reportFiles          : 'index.html',
-                  reportName           : 'Changed Chrome E2E Test Report'
+                  reportName           : 'Citizen Frontend Create Case Tests Chrome E2E Test Report'
           ])
           steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/ChangedTests/*'
         }
