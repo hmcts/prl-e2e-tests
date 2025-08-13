@@ -1,21 +1,18 @@
-import { ExuiCaseTaskComponent } from "./exuiCaseTask.component.js";
+import { CaseAccessViewPage } from "./caseAccessView.po.js";
 import { expect, Locator, Page } from "@playwright/test";
-import { Selectors } from "../../../common/selectors.js";
-import { AlertBannerComponent } from "./alertBanner.component.js";
+import { ExuiCaseTaskComponent } from "../../../components/exui/exuiCaseTask.component.js";
+import { Selectors } from "../../../../common/selectors.js";
 
-export class ExuiTasksContainerComponent {
-  page: Page;
+export class TasksPage extends CaseAccessViewPage {
   readonly heading: Locator;
-  readonly alertBanner: AlertBannerComponent;
   readonly task: ExuiCaseTaskComponent;
 
   constructor(page: Page) {
-    this.page = page;
+    super(page);
     this.heading = page.locator(".govuk-heading-m", {
       hasText: "Active tasks",
     });
     this.task = new ExuiCaseTaskComponent(page);
-    this.alertBanner = new AlertBannerComponent(page);
   }
 
   async assignTaskToMeAndTriggerNextSteps(
