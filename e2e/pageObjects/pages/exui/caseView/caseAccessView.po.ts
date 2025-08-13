@@ -3,7 +3,7 @@ import { CcdCaseHeaderComponent } from "../../../components/exui/ccdCaseHeader.c
 import { Base } from "../../base.po.js";
 import { AlertBannerComponent } from "../../../components/exui/alertBanner.component.js";
 
-export class CaseAccessViewPage extends Base {
+export abstract class CaseAccessViewPage extends Base {
   readonly caseHeader: CcdCaseHeaderComponent = new CcdCaseHeaderComponent(
     this.page,
   );
@@ -11,7 +11,7 @@ export class CaseAccessViewPage extends Base {
     this.page,
   );
 
-  constructor(page: Page) {
+  protected constructor(page: Page) {
     super(page);
   }
 }
