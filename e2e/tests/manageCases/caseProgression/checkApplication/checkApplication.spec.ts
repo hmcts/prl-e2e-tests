@@ -7,7 +7,7 @@ test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 test.describe("Check Application task for DA Solicitor case tests.", () => {
   let caseNumber: string;
 
-  test.beforeEach(async ({ page, browser, caseEventUtils, tasksPage }) => {
+  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
     caseNumber = await caseEventUtils.createDACase(browser);
     await Helpers.goToCase(
       page,
@@ -15,7 +15,6 @@ test.describe("Check Application task for DA Solicitor case tests.", () => {
       caseNumber,
       "tasks",
     );
-    await tasksPage.exuiHeader.checkIsVisible();
   });
 
   test("Complete Task - Check Application with accessibility test. @nightly @accessibility @regression", async ({
@@ -25,6 +24,7 @@ test.describe("Check Application task for DA Solicitor case tests.", () => {
     fl401AddCaseNumberSubmitPage,
   }): Promise<void> => {
     const familManNumber: string = "1234";
+    await tasksPage.exuiHeader.checkIsVisible();
     await tasksPage.assignTaskToMeAndTriggerNextSteps(
       "Check Application",
       "Add Case Number",
