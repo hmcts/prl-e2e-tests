@@ -1,4 +1,4 @@
-import { EventPage } from "../../eventPage.po.js";
+import { EventPage } from "../eventPage.po.js";
 import { expect, Locator, Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.js";
 import { ButtonComponent } from "../../../components/exui/button.component.js";

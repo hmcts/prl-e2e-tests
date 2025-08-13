@@ -5,7 +5,7 @@ import { SummaryPage } from "./pages/exui/caseView/summary.po.js";
 
 export interface PageFixtures {
   tasksPage: TasksPage;
-  summaryPage: SummaryPage
+  summaryPage: SummaryPage;
   fl401AddCaseNumber1Page: Fl401AddCaseNumber1;
   fl401AddCaseNumberSubmitPage: Fl401AddCaseNumberSubmit;
 }

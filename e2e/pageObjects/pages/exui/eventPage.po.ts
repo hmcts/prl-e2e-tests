@@ -1,7 +1,7 @@
 import { Page, expect, Locator } from "@playwright/test";
-import { Selectors } from "../../common/selectors.js";
+import { Selectors } from "../../../common/selectors.js";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Base } from "./base.po.js";
+import { Base } from "../base.po.js";
 
 // Base page for event pages
 export class EventPage extends Base {

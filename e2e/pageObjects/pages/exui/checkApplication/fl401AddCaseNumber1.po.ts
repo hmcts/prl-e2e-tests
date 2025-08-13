@@ -1,4 +1,4 @@
-import { EventPage } from "../../eventPage.po.js";
+import { EventPage } from "../eventPage.po.js";
 import { expect, Locator, Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.js";
 import { ButtonComponent } from "../../../components/exui/button.component.js";
@@ -28,7 +28,7 @@ export class Fl401AddCaseNumber1 extends EventPage {
     await this.accessibilityTest(accessibilityTest);
   }
 
-  async fillInFields(): Promise<void> {
-    await this.familyManNumberInput.fill("1234");
+  async fillInFields(familyManNumber: string): Promise<void> {
+    await this.familyManNumberInput.fill(familyManNumber);
   }
 }
