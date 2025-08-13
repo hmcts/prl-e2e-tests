@@ -9,8 +9,8 @@ import { AdminEditAndApproveAnOrderSubmitPage } from "../../../../pages/manageCa
 import config from "../../../../utils/config.utils.ts";
 import Config from "../../../../utils/config.utils.ts";
 import { EditAndApproveAnOrder } from "../editAndApproveAnOrder/editAndApproveAnOrder.ts";
-import { Fl401AddCaseNumber1Page } from "../../../../pages/manageCases/caseProgression/checkApplication/fl401AddCaseNumber1Page.ts";
-import { Fl401AddCaseNumberSubmitPage } from "../../../../pages/manageCases/caseProgression/checkApplication/fl401AddCaseNumberSubmitPage.ts";
+import { Fl401AddCaseNumber1 } from "../../../../pageObjects/pages/exui/checkApplication/fl401AddCaseNumber1.po.js";
+import { Fl401AddCaseNumberSubmit } from "../../../../pageObjects/pages/exui/checkApplication/fl401AddCaseNumberSubmit.po.js";
 
 interface AdminEditAndApproveOrderParams {
   page: Page;
@@ -56,14 +56,16 @@ export class AdminEditAndServeAnOrder {
       "Check Application",
       "Add Case Number",
     );
-    await Fl401AddCaseNumber1Page.fl401AddCaseNumber1Page(
-      page,
-      accessibilityTest,
-    );
-    await Fl401AddCaseNumberSubmitPage.fl401AddCaseNumberSubmitPage(
-      page,
-      accessibilityTest,
-    );
+
+    const fl401AddCaseNumber1Page = new Fl401AddCaseNumber1(page);
+    await fl401AddCaseNumber1Page.checkPageContent(accessibilityTest);
+    await fl401AddCaseNumber1Page.fillInFields();
+    await fl401AddCaseNumber1Page.continueButton.click();
+
+    const fl401AddCaseNumberSubmitPage = new Fl401AddCaseNumberSubmit(page);
+    await fl401AddCaseNumberSubmitPage.checkPageContents(accessibilityTest);
+    await fl401AddCaseNumberSubmitPage.saveAndContinueButton.click();
+
     await Helpers.chooseEventFromDropdown(page, "Edit and serve an order");
     await AdminEditAndApproveAnOrder1Page.adminEditAndApproveAnOrder1Page(
       page,
