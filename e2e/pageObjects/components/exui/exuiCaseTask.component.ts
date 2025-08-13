@@ -2,11 +2,7 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../common/selectors.js";
 
 export class ExuiCaseTaskComponent {
-  readonly page: Page;
-
-  constructor(page: Page) {
-    this.page = page;
-  }
+  constructor(private page: Page) {}
 
   async assignTaskToMe(taskName: string): Promise<void> {
     await this.page

@@ -29,7 +29,7 @@ test.describe("Check Application task for DA Solicitor case tests.", () => {
       "Check Application",
       "Add Case Number",
     );
-    await fl401AddCaseNumber1Page.checkPageContent();
+    await fl401AddCaseNumber1Page.checkPageContents();
     await fl401AddCaseNumber1Page.fillInFields(familManNumber);
     await fl401AddCaseNumber1Page.continueButton.click();
     await fl401AddCaseNumberSubmitPage.checkPageContents();

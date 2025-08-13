@@ -58,7 +58,7 @@ export class AdminEditAndServeAnOrder {
     );
 
     const fl401AddCaseNumber1Page = new Fl401AddCaseNumber1(page);
-    await fl401AddCaseNumber1Page.checkPageContent(accessibilityTest);
+    await fl401AddCaseNumber1Page.checkPageContents(accessibilityTest);
     await fl401AddCaseNumber1Page.fillInFields("1234");
     await fl401AddCaseNumber1Page.continueButton.click();
 

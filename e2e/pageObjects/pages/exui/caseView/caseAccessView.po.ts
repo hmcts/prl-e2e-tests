@@ -4,12 +4,14 @@ import { Base } from "../../base.po.js";
 import { AlertBannerComponent } from "../../../components/exui/alertBanner.component.js";
 
 export class CaseAccessViewPage extends Base {
-  readonly caseHeader: CcdCaseHeaderComponent;
-  readonly alertBanner: AlertBannerComponent;
+  readonly caseHeader: CcdCaseHeaderComponent = new CcdCaseHeaderComponent(
+    this.page,
+  );
+  readonly alertBanner: AlertBannerComponent = new AlertBannerComponent(
+    this.page,
+  );
 
   constructor(page: Page) {
     super(page);
-    this.caseHeader = new CcdCaseHeaderComponent(page);
-    this.alertBanner = new AlertBannerComponent(page);
   }
 }

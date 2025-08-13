@@ -4,15 +4,13 @@ import { ExuiCaseTaskComponent } from "../../../components/exui/exuiCaseTask.com
 import { Selectors } from "../../../../common/selectors.js";
 
 export class TasksPage extends CaseAccessViewPage {
-  readonly heading: Locator;
-  readonly task: ExuiCaseTaskComponent;
+  readonly heading: Locator = this.page.locator(".govuk-heading-m", {
+    hasText: "Active tasks",
+  });
+  readonly task: ExuiCaseTaskComponent = new ExuiCaseTaskComponent(this.page);
 
   constructor(page: Page) {
     super(page);
-    this.heading = page.locator(".govuk-heading-m", {
-      hasText: "Active tasks",
-    });
-    this.task = new ExuiCaseTaskComponent(page);
   }
 
   async assignTaskToMeAndTriggerNextSteps(

@@ -2,13 +2,9 @@ import { expect, Locator, Page } from "@playwright/test";
 import { Helpers } from "../../../common/helpers.js";
 
 export class CcdCaseHeaderComponent {
-  readonly page: Page;
-  readonly caseHeader: Locator;
+  readonly caseHeader: Locator = this.page.locator("ccd-case-header");
 
-  constructor(page: Page) {
-    this.page = page;
-    this.caseHeader = this.caseHeader = page.locator("ccd-case-header");
-  }
+  constructor(private page: Page) {}
 
   async checkCaseName(caseName: string): Promise<void> {
     await expect(

@@ -2,13 +2,9 @@ import { expect, Locator, Page } from "@playwright/test";
 import { Helpers } from "../../../common/helpers.js";
 
 export class AlertBannerComponent {
-  readonly page: Page;
-  readonly alertBanner: Locator;
+  readonly alertBanner: Locator = this.page.locator(".hmcts-banner");
 
-  constructor(page: Page) {
-    this.page = page;
-    this.alertBanner = page.locator(".hmcts-banner");
-  }
+  constructor(private page: Page) {}
 
   async assertTaskAssignedAlert(): Promise<void> {
     await expect(
