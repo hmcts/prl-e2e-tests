@@ -4,7 +4,7 @@ import { Selectors } from "../../../../common/selectors.js";
 import { ButtonComponent } from "../../../components/exui/button.component.js";
 import { CommonStaticText } from "../../../../common/commonStaticText.js";
 
-export class Fl401AddCaseNumber1 extends EventPage {
+export class Fl401AddCaseNumber1Page extends EventPage {
   readonly familyManNumberInput: Locator = this.page.locator(
     "#familymanCaseNumber",
   );

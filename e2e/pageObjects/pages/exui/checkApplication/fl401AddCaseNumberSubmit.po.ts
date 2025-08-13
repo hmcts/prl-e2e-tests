@@ -4,7 +4,7 @@ import { Selectors } from "../../../../common/selectors.js";
 import { ButtonComponent } from "../../../components/exui/button.component.js";
 import { CommonStaticText } from "../../../../common/commonStaticText.js";
 
-export class Fl401AddCaseNumberSubmit extends EventPage {
+export class Fl401AddCaseNumberSubmitPage extends EventPage {
   readonly subHeading: Locator = this.page.locator(Selectors.headingH2, {
     hasText: "Check your answers",
   });
