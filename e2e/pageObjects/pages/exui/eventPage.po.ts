@@ -15,8 +15,6 @@ export abstract class EventPage extends Base {
     });
   }
 
-  abstract checkPageContents(): Promise<void>;
-
   async checkHeading(): Promise<void> {
     await expect(this.headingLocator).toBeVisible();
   }

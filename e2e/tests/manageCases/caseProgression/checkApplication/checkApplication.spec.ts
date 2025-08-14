@@ -17,27 +17,30 @@ test.describe("Check Application task for DA Solicitor case tests.", () => {
     );
   });
 
-  test("Complete Task - Check Application with accessibility test. @nightly @accessibility @regression", async ({
-    summaryPage,
-    tasksPage,
-    fl401AddCaseNumber1Page,
-    fl401AddCaseNumberSubmitPage,
-  }): Promise<void> => {
-    const familManNumber: string = "1234";
-    await tasksPage.exuiHeader.checkIsVisible();
-    await tasksPage.assignTaskToMeAndTriggerNextSteps(
-      "Check Application",
-      "Add Case Number",
-    );
-    await fl401AddCaseNumber1Page.checkPageContents();
-    await fl401AddCaseNumber1Page.fillInFields(familManNumber);
-    await fl401AddCaseNumber1Page.clickContinue();
-    await fl401AddCaseNumberSubmitPage.checkPageContents();
-    await fl401AddCaseNumberSubmitPage.clickSaveAndContinue();
-    await summaryPage.alertBanner.assertEventAlert(
-      caseNumber,
-      "Add case number",
-    );
-    await summaryPage.caseHeader.assertFamilyManNumberIsVisible(familManNumber);
+  [{ familyManNumber: "1234" }].forEach(({ familyManNumber }) => {
+    test("Complete Task - Check Application with accessibility test. @nightly @accessibility @regression", async ({
+      summaryPage,
+      tasksPage,
+      fl401AddCaseNumber1Page,
+      fl401AddCaseNumberSubmitPage,
+    }): Promise<void> => {
+      await tasksPage.exuiHeader.checkIsVisible();
+      await tasksPage.assignTaskToMeAndTriggerNextSteps(
+        "Check Application",
+        "Add Case Number",
+      );
+      await fl401AddCaseNumber1Page.checkPageContents();
+      await fl401AddCaseNumber1Page.fillInFields(familyManNumber);
+      await fl401AddCaseNumber1Page.clickContinue();
+      await fl401AddCaseNumberSubmitPage.checkPageContents(familyManNumber);
+      await fl401AddCaseNumberSubmitPage.clickSaveAndContinue();
+      await summaryPage.alertBanner.assertEventAlert(
+        caseNumber,
+        "Add case number",
+      );
+      await summaryPage.caseHeader.assertFamilyManNumberIsVisible(
+        familyManNumber,
+      );
+    });
   });
 });
