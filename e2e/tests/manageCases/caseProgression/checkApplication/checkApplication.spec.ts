@@ -38,6 +38,6 @@ test.describe("Check Application task for DA Solicitor case tests.", () => {
       caseNumber,
       "Add case number",
     );
-    await summaryPage.caseHeader.checkFamilyManNumber(familManNumber);
+    await summaryPage.caseHeader.assertFamilyManNumberIsVisible(familManNumber);
   });
 });
