@@ -719,12 +719,13 @@ __metadata:
   linkType: hard
 
 "@hmcts/playwright-common@npm:^1.0.32":
-  version: 1.0.33
-  resolution: "@hmcts/playwright-common@npm:1.0.33"
+  version: 1.0.34
+  resolution: "@hmcts/playwright-common@npm:1.0.34"
   dependencies:
     "@axe-core/playwright": "npm:^4.10.0"
     "@eslint/js": "npm:^9.11.1"
     "@typescript-eslint/eslint-plugin": "npm:^8.8.0"
+    axe-html-reporter: "npm:^2.2.11"
     eslint: "npm:^9.11.1"
     eslint-plugin-playwright: "npm:^2.0.0"
     get-port: "npm:^7.1.0"
@@ -735,7 +736,7 @@ __metadata:
     typescript-eslint: "npm:^8.8.0"
   peerDependencies:
     "@playwright/test": ^1.53.0
-  checksum: 10c0/99aaab697de968b9ac06fd7b5b2a4b99c63b3e53f4708ebb9b33076dff7d4261a7e3399eb890defd4e6bba749adf458a2f41ec14baf7fa5e88c5d032487f76e7
+  checksum: 10c0/62ec202d93d9f150094a6c563d22072f02777912538946261c18255da565e9fa724e36fb7f6accf8d22583d6ec8917930158738cce1893ffa4328e512b4bfc15
   languageName: node
   linkType: hard
 
@@ -1851,6 +1852,17 @@ __metadata:
   version: 4.10.3
   resolution: "axe-core@npm:4.10.3"
   checksum: 10c0/1b1c24f435b2ffe89d76eca0001cbfff42dbf012ad9bd37398b70b11f0d614281a38a28bc3069e8972e3c90ec929a8937994bd24b0ebcbaab87b8d1e241ab0c7
+  languageName: node
+  linkType: hard
+
+"axe-html-reporter@npm:^2.2.11":
+  version: 2.2.11
+  resolution: "axe-html-reporter@npm:2.2.11"
+  dependencies:
+    mustache: "npm:^4.0.1"
+  peerDependencies:
+    axe-core: ">=3"
+  checksum: 10c0/7f56c06e28aea591762c10f151bd48efbf7cff6a4a783a8074e779d283366a745085be64de72e6f9208006bab8dedc83681c8a9a691c9904886244d579375acd
   languageName: node
   linkType: hard
 
@@ -4702,6 +4714,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"mustache@npm:^4.0.1":
+  version: 4.2.0
+  resolution: "mustache@npm:4.2.0"
+  bin:
+    mustache: bin/mustache
+  checksum: 10c0/1f8197e8a19e63645a786581d58c41df7853da26702dbc005193e2437c98ca49b255345c173d50c08fe4b4dbb363e53cb655ecc570791f8deb09887248dd34a2
+  languageName: node
+  linkType: hard
+
 "natural-compare@npm:^1.4.0":
   version: 1.4.0
   resolution: "natural-compare@npm:1.4.0"
@@ -5749,8 +5770,8 @@ __metadata:
   linkType: hard
 
 "tsx@npm:^4.19.4":
-  version: 4.20.3
-  resolution: "tsx@npm:4.20.3"
+  version: 4.20.4
+  resolution: "tsx@npm:4.20.4"
   dependencies:
     esbuild: "npm:~0.25.0"
     fsevents: "npm:~2.3.3"
@@ -5760,7 +5781,7 @@ __metadata:
       optional: true
   bin:
     tsx: dist/cli.mjs
-  checksum: 10c0/6ff0d91ed046ec743fac7ed60a07f3c025e5b71a5aaf58f3d2a6b45e4db114c83e59ebbb078c8e079e48d3730b944a02bc0de87695088aef4ec8bbc705dc791b
+  checksum: 10c0/2deb24b0c689031962901f29fc3411bc9a3753780e9a39b8bf0233dba7fc59dc8f9732f6ebbfe16f498fc27b6adf1eeecfa46360d1161081aafffaaa26371998
   languageName: node
   linkType: hard
 
