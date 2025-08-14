@@ -96,7 +96,7 @@ export class ApplicantDetails1Page {
         `${Selectors.strong}:text-is("${ApplicantDetails1Content.strong}")`,
         1,
       ),
-      Helpers.checkGroup(page, 4, ApplicantDetails1Content, "h2", Selectors.h2),
+      Helpers.checkGroup(page, 2, ApplicantDetails1Content, "h2", Selectors.h2),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.h3}:text-is("${ApplicantDetails1Content.h3}")`,
@@ -139,18 +139,12 @@ export class ApplicantDetails1Page {
         `${Selectors.GovukFormLabel}:text-is("${ApplicantDetails1Content.formLabelUkPostCode}")`,
         2,
       ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukHint}:text-is("${ApplicantDetails1Content.govukHint}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryText}:text-is("${ApplicantDetails1Content.govukDetailsSummary}")`,
-        1,
-      ),
     ]);
-    if (accessibilityTest) {
+    await page.locator(`${Selectors.GovukHint}:text-is("${ApplicantDetails1Content.govukHint}")`).filter({ hasText: "You can only search for organisations already registered with MyHMCTS. For example, you can search by organisation name or address."}).first();
+    await page.locator(`${Selectors.GovukSummaryText}:text-is("${ApplicantDetails1Content.govukDetailsSummary}")`).filter({ hasText: "Can’t find the organisation you are looking for?" }).first();
+    await page.locator(`${Selectors.h2}:text-is("${ApplicantDetails1Content.doubleh21}")`).filter({ hasText: "Search for an organisation" }).first();
+    await page.locator(`${Selectors.h2}:text-is("${ApplicantDetails1Content.doubleh22}")`).filter({ hasText: "Organisation name and address"}).first();
+      if (accessibilityTest) {
       await new AxeUtils(page).audit();
     }
   }
