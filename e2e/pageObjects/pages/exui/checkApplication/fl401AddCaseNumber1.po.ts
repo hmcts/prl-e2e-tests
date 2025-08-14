@@ -32,4 +32,8 @@ export class Fl401AddCaseNumber1Page extends EventPage {
   async fillInFields(familyManNumber: string): Promise<void> {
     await this.familyManNumberInput.fill(familyManNumber);
   }
+
+  async clickContinue(): Promise<void> {
+    await this.continueButton.click();
+  }
 }

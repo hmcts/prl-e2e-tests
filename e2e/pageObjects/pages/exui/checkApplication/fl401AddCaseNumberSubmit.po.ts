@@ -34,4 +34,8 @@ export class Fl401AddCaseNumberSubmitPage extends EventPage {
     await expect(this.previousButton).toBeVisible();
     await this.accessibilityTest(accessibilityTest);
   }
+
+  async clickSaveAndContinue(): Promise<void> {
+    await this.saveAndContinueButton.click();
+  }
 }
