@@ -6,7 +6,7 @@ export class CcdCaseHeaderComponent {
 
   constructor(private page: Page) {}
 
-  async checkCaseName(caseName: string): Promise<void> {
+  async assertCaseNameIsVisible(caseName: string): Promise<void> {
     await expect(
       this.caseHeader.locator("h2", {
         hasText: caseName,
@@ -14,7 +14,7 @@ export class CcdCaseHeaderComponent {
     ).toBeVisible();
   }
 
-  async checkFamilyManNumber(familyManNumber: string): Promise<void> {
+  async assertFamilyManNumberIsVisible(familyManNumber: string): Promise<void> {
     await expect(
       this.caseHeader.locator("h2", {
         hasText: `FamilyMan ID: ${familyManNumber}`,
@@ -22,7 +22,7 @@ export class CcdCaseHeaderComponent {
     ).toBeVisible();
   }
 
-  async checkCaseNumber(caseNumber: string): Promise<void> {
+  async assertCaseNumberIsVisible(caseNumber: string): Promise<void> {
     const formattedCaseNumber = Helpers.getHyphenatedCaseReference(caseNumber);
     await expect(
       this.caseHeader.locator("h2", {
