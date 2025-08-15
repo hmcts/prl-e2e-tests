@@ -1,38 +1,46 @@
 import { test } from "../../../fixtures.ts";
 import config from "../../../../utils/config.utils.ts";
 import { Helpers } from "../../../../common/helpers.ts";
-import { CheckApplicationJourney } from "../../../../journeys/manageCases/caseProgression/checkApplication/checkApplicationJourney.ts";
 
 test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("Check Application task for DA Solicitor case tests.", () => {
-  let ccdRef: string = "";
+  let caseNumber: string;
 
   test.beforeEach(async ({ page, browser, caseEventUtils }) => {
-    ccdRef = await caseEventUtils.createDACase(browser);
+    caseNumber = await caseEventUtils.createDACase(browser);
     await Helpers.goToCase(
       page,
       config.manageCasesBaseURLCase,
-      ccdRef,
+      caseNumber,
       "tasks",
     );
   });
 
-  test("Complete Task - Check Application without accessibility test. @nightly @regression", async ({
-    page,
-  }): Promise<void> => {
-    await CheckApplicationJourney.checkApplication({
-      page,
-      accessibilityTest: false,
-    });
-  });
-
-  test("Complete Task - Check Application with accessibility test. @regression @accessibility", async ({
-    page,
-  }): Promise<void> => {
-    await CheckApplicationJourney.checkApplication({
-      page,
-      accessibilityTest: true,
+  [{ familyManNumber: "1234" }].forEach(({ familyManNumber }) => {
+    test("Complete Task - Check Application with accessibility test. @nightly @accessibility @regression", async ({
+      summaryPage,
+      tasksPage,
+      fl401AddCaseNumber1Page,
+      fl401AddCaseNumberSubmitPage,
+    }): Promise<void> => {
+      await tasksPage.exuiHeader.checkIsVisible();
+      await tasksPage.assignTaskToMeAndTriggerNextSteps(
+        "Check Application",
+        "Add Case Number",
+      );
+      await fl401AddCaseNumber1Page.checkPageContents();
+      await fl401AddCaseNumber1Page.fillInFields(familyManNumber);
+      await fl401AddCaseNumber1Page.clickContinue();
+      await fl401AddCaseNumberSubmitPage.checkPageContents(familyManNumber);
+      await fl401AddCaseNumberSubmitPage.clickSaveAndContinue();
+      await summaryPage.alertBanner.assertEventAlert(
+        caseNumber,
+        "Add case number",
+      );
+      await summaryPage.caseHeader.assertFamilyManNumberIsVisible(
+        familyManNumber,
+      );
     });
   });
 });
