@@ -38,7 +38,7 @@ test.describe("C100 Create case Children and respondents Tests", (): void => {
     await C100ChildAndRespondents.c100ChildrenAndRespondents({
       page: page,
       user: "solicitor",
-      accessibilityTest: false, 
+      accessibilityTest: false,
       errorMessaging: false,
       yesNoRespondentDetails: true,
       respondentGender: "male",

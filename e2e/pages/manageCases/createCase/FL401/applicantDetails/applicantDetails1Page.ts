@@ -145,8 +145,18 @@ export class ApplicantDetails1Page {
         2,
       ),
     ]);
-    await page.locator(`${Selectors.h2}:text-is("${ApplicantDetails1Content.doubleh21}")`).filter({ hasText: "Search for an organisation" }).first();
-    await page.locator(`${Selectors.h2}:text-is("${ApplicantDetails1Content.doubleh22}")`).filter({ hasText: "Organisation name and address" }).first();
+    await page
+      .locator(
+        `${Selectors.h2}:text-is("${ApplicantDetails1Content.doubleh21}")`,
+      )
+      .filter({ hasText: "Search for an organisation" })
+      .first();
+    await page
+      .locator(
+        `${Selectors.h2}:text-is("${ApplicantDetails1Content.doubleh22}")`,
+      )
+      .filter({ hasText: "Organisation name and address" })
+      .first();
     if (accessibilityTest) {
       await new AxeUtils(page).audit();
     }
