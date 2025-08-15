@@ -1,9 +1,9 @@
 import { test } from "../../../fixtures.ts";
-import config from "../../../../utils/config.utils.ts";
+import Config from "../../../../utils/config.utils.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import { ManageDocuments } from "../../../../journeys/manageCases/caseProgression/manageDocuments/manageDocuments.ts";
 
-test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
+test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("Manage documents event for DA Solicitor case tests as a court admin.", () => {
   let ccdRef: string = "";
@@ -13,7 +13,7 @@ test.describe("Manage documents event for DA Solicitor case tests as a court adm
     ccdRef = await caseEventUtils.createDACase(browser);
     await Helpers.goToCase(
       page,
-      config.manageCasesBaseURLCase,
+      Config.manageCasesBaseURLCase,
       ccdRef,
       "tasks",
     );
@@ -25,6 +25,7 @@ test.describe("Manage documents event for DA Solicitor case tests as a court adm
     await ManageDocuments.manageDocuments({
       page: page,
       accessibilityTest: true,
+      caseType: "FL401",
       documentParty: "Applicant",
       documentCategory: "Position statements",
       restrictDocument: true,
@@ -38,6 +39,7 @@ test.describe("Manage documents event for DA Solicitor case tests as a court adm
     await ManageDocuments.manageDocuments({
       page: page,
       accessibilityTest: true,
+      caseType: "FL401",
       documentParty: "Respondent",
       documentCategory: "Guardian report",
       restrictDocument: false,
@@ -51,6 +53,7 @@ test.describe("Manage documents event for DA Solicitor case tests as a court adm
     await ManageDocuments.manageDocuments({
       page: page,
       accessibilityTest: false,
+      caseType: "FL401",
       documentParty: "Local authority",
       documentCategory: "MIAM certificate/Exemption",
       restrictDocument: false,

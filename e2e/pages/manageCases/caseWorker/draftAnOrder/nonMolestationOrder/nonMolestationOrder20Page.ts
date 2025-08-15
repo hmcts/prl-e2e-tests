@@ -6,7 +6,7 @@ import { NonMolestationOrder20Content } from "../../../../../fixtures/manageCase
 import {
   clippingCoords,
   ExuiMediaViewerPage,
-} from "../../../../../pageObjects/exuiMediaViewer.po.ts";
+} from "../../../../../pageObjects/pages/exui/exuiMediaViewer.po.ts";
 
 export class NonMolestationOrder20Page {
   public static async checkPdfLinks(page: Page): Promise<void> {

@@ -4,7 +4,10 @@ import { Selectors } from "../../../../common/selectors.ts";
 import { AdminEditAndApproveAnOrderSubmitContent } from "../../../../fixtures/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrderSubmitContent.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import { CommonStaticText } from "../../../../common/commonStaticText.ts";
-import { applicationSubmittedBy, createOrderFL401Options } from "../../../../common/types.ts";
+import {
+  applicationSubmittedBy,
+  createOrderFL401Options,
+} from "../../../../common/types.ts";
 
 export class AdminEditAndApproveAnOrderSubmitPage {
   public static async adminEditAndApproveAnOrderSubmitPage(
@@ -144,7 +147,7 @@ export class AdminEditAndApproveAnOrderSubmitPage {
         `${Selectors.GovukText16}:text-is("${AdminEditAndApproveAnOrderSubmitContent.No}"):visible`,
         2,
       );
-      if(applicationSubmittedBy === "Citizen") {
+      if (applicationSubmittedBy === "Citizen") {
         await Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.p}:text-is("${AdminEditAndApproveAnOrderSubmitContent.pApplicantCitizen}"):visible`,

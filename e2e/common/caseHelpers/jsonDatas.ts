@@ -24,7 +24,8 @@ if (process.env.MANAGE_CASES_TEST_ENV === "demo") {
     manageOrderDataAmendDischargedVaried:
       orderEventDataAmendDischargedVariedDemo,
     citizenManageOrderDataPowerOfArrest: citizenOrderEventDataPowerOfArrestDemo,
-    citizenManageOrderDataAmendDischargedVaried: citizenOrderEventDataAmendDischargedVariedDemo,
+    citizenManageOrderDataAmendDischargedVaried:
+      citizenOrderEventDataAmendDischargedVariedDemo,
   };
 } else {
   jsonDatas = {
@@ -33,6 +34,7 @@ if (process.env.MANAGE_CASES_TEST_ENV === "demo") {
     manageOrderDataPowerOfArrest: orderEventDataPowerOfArrest,
     manageOrderDataAmendDischargedVaried: orderEventDataAmendDischargedVaried,
     citizenManageOrderDataPowerOfArrest: citizenOrderEventDataPowerOfArrest,
-    citizenManageOrderDataAmendDischargedVaried: citizenOrderEventDataAmendDischargedVaried,
+    citizenManageOrderDataAmendDischargedVaried:
+      citizenOrderEventDataAmendDischargedVaried,
   };
 }
