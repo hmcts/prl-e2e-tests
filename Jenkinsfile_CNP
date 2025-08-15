@@ -17,7 +17,7 @@ properties([
     ),
     string(
       name: 'MANAGE_CASES_BASE_URL',
-      defaultValue: 'https://manage-case.aat.platform.hmcts.net/cases',
+      defaultValue: 'https://xui-prl-ccd-definitions-pr-2818.preview.platform.hmcts.net/cases',
       description: 'The Manage Cases URL to test against'
     ),
     string(
@@ -116,7 +116,7 @@ withNightlyPipeline(type, product, component, 600) {
     afterAlways('DependencyCheckNightly') {
       stage('Run changed tests - Chrome') {
         try {
-          yarnBuilder.yarn('test:changes')
+          yarnBuilder.yarn('test:manageCasesCreateCase')
         } catch (Error) {
           unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
         } finally {
@@ -126,7 +126,7 @@ withNightlyPipeline(type, product, component, 600) {
                   keepAll              : true,
                   reportDir            : "playwright-report",
                   reportFiles          : 'index.html',
-                  reportName           : 'Changed Chrome E2E Test Report'
+                  reportName           : 'Create Case E2E Test Report'
           ])
           steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/ChangedTests/*'
         }

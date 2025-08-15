@@ -340,7 +340,7 @@ export class RespondentDetails1Page {
       ),
       Helpers.checkGroup(
         page,
-        5,
+        3,
         C100RespondentDetails1Content,
         `h2Yes`,
         `${Selectors.h2}`,
@@ -351,6 +351,18 @@ export class RespondentDetails1Page {
         1,
       ),
     ]);
+    await page
+      .locator(
+        `${Selectors.h2}:text-is("${C100RespondentDetails1Content.doubleh21}")`,
+      )
+      .filter({ hasText: "Search for an organisation" })
+      .first();
+    await page
+      .locator(
+        `${Selectors.h2}:text-is("${C100RespondentDetails1Content.doubleh22}")`,
+      )
+      .filter({ hasText: "Organisation name and address" })
+      .first();
     await page.fill(
       `${uniqueSelectors.representativeFirstNameField}`,
       `${C100RespondentDetails1Content.representativeFirstName}`,
