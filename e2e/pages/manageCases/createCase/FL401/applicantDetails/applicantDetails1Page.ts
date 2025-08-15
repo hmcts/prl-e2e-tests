@@ -110,12 +110,10 @@ export class ApplicantDetails1Page {
         "dateLabel",
         `${uniqueSelectorPaths.dobFormLabel} > ${Selectors.GovukFormLabel}`,
       ),
-      Helpers.checkGroup(
+      Helpers.checkVisibleAndPresent(
         page,
-        3,
-        ApplicantDetails1Content,
-        "h2Heading",
-        `${Selectors.h2}`,
+        `${Selectors.h2}:text-is("${ApplicantDetails1Content.h2Heading1}")`,
+        1,
       ),
       Helpers.checkGroup(
         page,
@@ -147,6 +145,8 @@ export class ApplicantDetails1Page {
         2,
       ),
     ]);
+    await page.locator(`${Selectors.h2}:text-is("${ApplicantDetails1Content.doubleh21}")`).filter({ hasText: "Search for an organisation" }).first();
+    await page.locator(`${Selectors.h2}:text-is("${ApplicantDetails1Content.doubleh22}")`).filter({ hasText: "Organisation name and address" }).first();
     if (accessibilityTest) {
       await new AxeUtils(page).audit();
     }

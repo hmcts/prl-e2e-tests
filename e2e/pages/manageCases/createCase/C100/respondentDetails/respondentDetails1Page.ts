@@ -3,6 +3,7 @@ import { AxeUtils } from "@hmcts/playwright-common";
 import { Helpers } from "../../../../../common/helpers.ts";
 import { Selectors } from "../../../../../common/selectors.ts";
 import { C100RespondentDetails1Content } from "../../../../../fixtures/manageCases/createCase/C100/respondentDetails/c100RespondentDetails1Content.ts";
+import { C100RespondentDetails } from "../../../../../journeys/manageCases/createCase/C100RespondentDetails/C100RespondentDetails.ts";
 
 export type C100RespondentGender = "female" | "male" | "other";
 export type C100RespondentAddress5Years = "yes" | "no" | "dontKnow";
@@ -340,7 +341,7 @@ export class RespondentDetails1Page {
       ),
       Helpers.checkGroup(
         page,
-        5,
+        3,
         C100RespondentDetails1Content,
         `h2Yes`,
         `${Selectors.h2}`,
@@ -351,6 +352,8 @@ export class RespondentDetails1Page {
         1,
       ),
     ]);
+    await page.locator(`${Selectors.h2}:text-is("${C100RespondentDetails1Content.doubleh21}")`).filter({ hasText: "Search for an organisation" }).first();
+    await page.locator(`${Selectors.h2}:text-is("${C100RespondentDetails1Content.doubleh22}")`).filter({ hasText: "Organisation name and address" }).first();
     await page.fill(
       `${uniqueSelectors.representativeFirstNameField}`,
       `${C100RespondentDetails1Content.representativeFirstName}`,
