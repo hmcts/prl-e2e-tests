@@ -1,16 +1,16 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors.ts";
-import { Fl401AddCaseNumber1Content } from "../../../../fixtures/manageCases/caseProgression/checkApplication/fl401AddCaseNumber1Content.ts";
-import { Helpers } from "../../../../common/helpers.ts";
+import { Selectors } from "../../../../common/selectors.js";
+import { CommonStaticText } from "../../../../common/commonStaticText.js";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { Helpers } from "../../../../common/helpers.js";
+import { C100ListOnNotice1Content } from "../../../../fixtures/manageCases/caseProgression/List/C100ListOnNotice1Content.js";
 
 enum UniqueSelectors {
-  familyManCaseNumberInput = "#familymanCaseNumber",
+  selectedReasonsForListOnNoticeCheckbox = "#selectedReasonsForListOnNotice-noEvidenceOfImmediateRiskOfHarmToTheChildren",
 }
 
-export class Fl401AddCaseNumber1Page {
-  public static async fl401AddCaseNumber1Page(
+export class C100ListOnNotice1Page {
+  public static async c100ListOnNotice1Page(
     page: Page,
     accessibilityTest: boolean,
   ): Promise<void> {
@@ -23,16 +23,18 @@ export class Fl401AddCaseNumber1Page {
     page: Page,
     accessibilityTest: boolean,
   ): Promise<void> {
-    await page
-      .locator(Selectors.GovukHeadingL, {
-        hasText: Fl401AddCaseNumber1Content.govUkHeadingL,
-      })
-      .waitFor();
+    const pageTitle = page.locator(
+      `${Selectors.GovukHeadingL}:text-is("${C100ListOnNotice1Content.pageTitle}")`,
+    );
+    await pageTitle.waitFor();
+
     await Promise.all([
-      Helpers.checkVisibleAndPresent(
+      Helpers.checkGroup(
         page,
-        `${Selectors.GovukFormLabel}:text-is("${Fl401AddCaseNumber1Content.formLabel}")`,
-        1,
+        8,
+        C100ListOnNotice1Content,
+        "formLabel",
+        Selectors.GovukFormLabel,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -45,16 +47,17 @@ export class Fl401AddCaseNumber1Page {
         1,
       ),
     ]);
+
     if (accessibilityTest) {
       await new AxeUtils(page).audit();
     }
   }
 
   private static async fillInFields(page: Page): Promise<void> {
-    await page.fill(
-      UniqueSelectors.familyManCaseNumberInput,
-      Fl401AddCaseNumber1Content.familyManNumber,
-    );
+    if (!page) {
+      throw new Error("Page is not defined");
+    }
+    await page.check(UniqueSelectors.selectedReasonsForListOnNoticeCheckbox);
   }
 
   private static async continue(page: Page): Promise<void> {

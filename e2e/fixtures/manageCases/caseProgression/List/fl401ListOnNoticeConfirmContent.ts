@@ -6,9 +6,4 @@ export enum Fl401ListOnNoticeConfirmContent {
   p2 = "Your request details will be saved in case notes.",
   closeAndReturnToCaseDetails = "Close and Return to case details",
   alertMessage = "List on notice",
-
-  // case notes confirmation
-  text161 = "Case notes 1",
-  text162 = "List on notice - hearing instructions",
-  span1 = "Test admin hearing instructions",
 }

@@ -34,6 +34,7 @@ export class ServiceOfDocuments {
       await ManageDocuments.manageDocuments({
         page: page,
         accessibilityTest: true,
+        caseType: "FL401",
         documentParty: "Applicant",
         documentCategory: "Position statements",
         restrictDocument: false,

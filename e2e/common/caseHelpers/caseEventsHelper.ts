@@ -84,7 +84,7 @@ export async function completeEventsUpToServiceOfApplication(
     "serviceOfApplication",
     manageOrderEventData,
   );
-  if(applicationSubmittedBy === "Solicitor") {
+  if (applicationSubmittedBy === "Solicitor") {
     // this will have to be conditional
     await ConfidentialityCheck.confidentialityCheckLite(browser, caseRef);
   }

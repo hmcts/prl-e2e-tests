@@ -332,6 +332,19 @@ export class Helpers {
     return [day, month, year];
   }
 
+  public static async assignTaskToMe(page: Page, taskName: string) {
+    await this.waitForTask(page, taskName);
+    const taskLocator = page.locator("exui-case-task", {
+      hasText: taskName,
+    });
+    await taskLocator.locator(Selectors.a, { hasText: "Assign to me" }).click();
+    await page
+      .locator(Selectors.alertMessage, {
+        hasText: "You've assigned yourself a task. It's available in My tasks.",
+      })
+      .waitFor();
+  }
+
   public static async assignTaskToMeAndTriggerNextSteps(
     page: Page,
     taskName: string,
@@ -375,6 +388,17 @@ export class Helpers {
         },
       )
       .toBeTruthy();
+  }
+
+  public static async checkTaskAppearsForUser(
+    browser: Browser,
+    userRole: UserRole,
+    ccdRef: string,
+    taskName: string,
+  ): Promise<void> {
+    const page: Page = await this.openNewBrowserWindow(browser, userRole);
+    await this.goToCase(page, Config.manageCasesBaseURLCase, ccdRef, "tasks");
+    await this.waitForTask(page, taskName);
   }
 
   public static async openNewBrowserWindow(
