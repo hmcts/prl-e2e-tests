@@ -44,7 +44,7 @@ export class ListWithoutNotice {
       case "C100":
         await Helpers.waitForTask(judgePage, "Gatekeeping");
         await Helpers.chooseEventFromDropdown(judgePage, "List without notice");
-        //actions and elements on list without notice is same for C100/FL401, so reusing and avoiding duplication
+        //actions and page elements on list without notice is same for C100/FL401, so reusing to avoid duplication
         await Fl401ListWithoutNotice1Page.fl401ListWithoutNotice1Page(
           judgePage,
           accessibilityTest,
