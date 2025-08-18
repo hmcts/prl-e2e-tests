@@ -5,7 +5,7 @@ import { ApplicantGender } from "../../../../../common/types.ts";
 import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
 import { AmendApplicantDetails2Content } from "../../../../../fixtures/manageCases/caseProgression/amendDetails/amendApplicantDetails/AmendApplicantDetails2Content.ts";
-import { FileUploadComponent } from "../../../../../pageObjects/components/uploadFile.component.ts";
+import { FileUploadComponent } from "../../../../../pageObjects/components/exui/uploadFile.component.ts";
 
 interface AmendApplicantDetails2Options {
   page: Page;

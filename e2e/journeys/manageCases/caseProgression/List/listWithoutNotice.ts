@@ -7,11 +7,13 @@ import { Fl401ListWithoutNoticeSubmitPage } from "../../../../pages/manageCases/
 import { Fl401ListWithoutNoticeConfirmPage } from "../../../../pages/manageCases/caseProgression/list/fl401ListWithoutNoticeConfirmPage.ts";
 import { Fl401ListWithoutNoticeConfirmContent } from "../../../../fixtures/manageCases/caseProgression/List/fl401ListWithoutNoticeConfirmContent.ts";
 import { completeCheckApplicationAndSendToGatekeeper } from "../../../../common/caseHelpers/caseEventsHelper.ts";
+import { solicitorCaseCreateType } from "../../../../common/types.js";
 
 interface ListWithoutNoticeParams {
   page: Page;
   browser: Browser;
   ccdRef: string;
+  caseType: solicitorCaseCreateType;
   accessibilityTest: boolean;
 }
 
@@ -20,9 +22,13 @@ export class ListWithoutNotice {
     page,
     browser,
     ccdRef,
+    caseType,
     accessibilityTest,
   }: ListWithoutNoticeParams): Promise<void> {
-    await completeCheckApplicationAndSendToGatekeeper(page, ccdRef);
+    if (caseType === "FL401") {
+      await completeCheckApplicationAndSendToGatekeeper(page, ccdRef);
+    }
+
     const judgePage: Page = await Helpers.openNewBrowserWindow(
       browser,
       "judge",
@@ -33,25 +39,51 @@ export class ListWithoutNotice {
       ccdRef,
       "tasks",
     );
-    await Helpers.waitForTask(judgePage, "Directions on Issue");
-    await Helpers.assignTaskToMe(judgePage, "Directions on Issue");
-    await Helpers.chooseEventFromDropdown(judgePage, "List without notice");
-    await Fl401ListWithoutNotice1Page.fl401ListWithoutNotice1Page(
-      judgePage,
-      accessibilityTest,
-    );
-    await Fl401ListWithoutNoticeSubmitPage.fl401ListWithoutNoticeSubmitPage(
-      judgePage,
-      accessibilityTest,
-    );
-    await Fl401ListWithoutNoticeConfirmPage.fl401ListWithoutNoticeConfirmPage(
-      judgePage,
-      accessibilityTest,
-    );
 
-    //check if task gets auto-closed
-    await Helpers.clickTab(judgePage, "Tasks");
-    await Helpers.waitForTaskToDisappear(judgePage, "Directions on Issue");
+    switch (caseType) {
+      case "C100":
+        await Helpers.waitForTask(judgePage, "Gatekeeping");
+        await Helpers.chooseEventFromDropdown(judgePage, "List without notice");
+        //actions and page elements on list without notice is same for C100/FL401, so reusing to avoid duplication
+        await Fl401ListWithoutNotice1Page.fl401ListWithoutNotice1Page(
+          judgePage,
+          accessibilityTest,
+        );
+        await Fl401ListWithoutNoticeSubmitPage.fl401ListWithoutNoticeSubmitPage(
+          judgePage,
+          accessibilityTest,
+        );
+        await Fl401ListWithoutNoticeConfirmPage.fl401ListWithoutNoticeConfirmPage(
+          judgePage,
+          accessibilityTest,
+        );
+
+        //check if task gets auto-closed
+        await Helpers.clickTab(judgePage, "Tasks");
+        await Helpers.waitForTaskToDisappear(judgePage, "Gatekeeping");
+        break;
+
+      case "FL401":
+        await Helpers.waitForTask(judgePage, "Directions on Issue");
+        await Helpers.assignTaskToMe(judgePage, "Directions on Issue");
+        await Helpers.chooseEventFromDropdown(judgePage, "List without notice");
+        await Fl401ListWithoutNotice1Page.fl401ListWithoutNotice1Page(
+          judgePage,
+          accessibilityTest,
+        );
+        await Fl401ListWithoutNoticeSubmitPage.fl401ListWithoutNoticeSubmitPage(
+          judgePage,
+          accessibilityTest,
+        );
+        await Fl401ListWithoutNoticeConfirmPage.fl401ListWithoutNoticeConfirmPage(
+          judgePage,
+          accessibilityTest,
+        );
+
+        //check if task gets auto-closed
+        await Helpers.clickTab(judgePage, "Tasks");
+        await Helpers.waitForTaskToDisappear(judgePage, "Directions on Issue");
+    }
 
     // check case notes are updated
     await this.checkCaseNotes(judgePage);

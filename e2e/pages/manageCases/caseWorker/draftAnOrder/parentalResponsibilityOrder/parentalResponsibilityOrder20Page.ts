@@ -5,7 +5,7 @@ import { ParentalResponsibilityOrder20Content } from "../../../../../fixtures/ma
 import {
   clippingCoords,
   ExuiMediaViewerPage,
-} from "../../../../../pageObjects/exuiMediaViewer.po.ts";
+} from "../../../../../pageObjects/pages/exui/exuiMediaViewer.po.ts";
 
 export class ParentalResponsibilityOrder20Page {
   public static async checkPdfLinks(page: Page): Promise<void> {
