@@ -4,8 +4,6 @@ export enum ApplicantDetails1Content {
   p2 = "If you fill out this section you do not need to send a separate C8 form.",
   strong = "Solicitor's Details",
   h21 = "*Applicant",
-  doubleh21 = "Search for an organisation",
-  doubleh22 = "Organisation name and address",
   h22 = "Add new applicant",
   h3 = "*Applicant",
   formLabel1 = "*First name(s)",

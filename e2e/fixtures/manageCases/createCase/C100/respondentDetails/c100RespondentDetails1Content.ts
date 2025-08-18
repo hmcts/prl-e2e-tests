@@ -46,8 +46,6 @@ export enum C100RespondentDetails1Content {
   formLabelSolicitorYes5 = "If the organisation you need isn’t listed, enter their details to send them a sign-up request Organisation name (Optional)",
   formLabelYesPostcode = "Enter a UK postcode",
   strong = "Solicitor's Details",
-  doubleh21 = "Search for an organisation",
-  doubleh22 = "Organisation name and address",
   h2Yes1 = "Organisation (unregistered) (Optional)",
   h2Yes2 = "Ask an organisation to register",
   h2Yes3 = "Address (Optional)",
