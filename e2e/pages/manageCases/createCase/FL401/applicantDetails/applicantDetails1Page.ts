@@ -156,7 +156,7 @@ export class ApplicantDetails1Page {
         .locator(Selectors.h2)
         .filter({ hasText: "Search for an organisation" })
         .last(),
-    ).toBeVisible();
+    ).toBeHidden();
     await expect(
       page
         .locator(Selectors.h2)
@@ -173,7 +173,7 @@ export class ApplicantDetails1Page {
         .locator(Selectors.h2)
         .filter({ hasText: "Organisation name and address" })
         .last(),
-    ).toBeVisible();
+    ).toBeHidden();
     await expect(
       page
         .locator(Selectors.h2)

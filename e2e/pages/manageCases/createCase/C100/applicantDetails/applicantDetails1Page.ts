@@ -151,7 +151,7 @@ export class ApplicantDetails1Page {
         .locator(Selectors.h2)
         .filter({ hasText: "Search for an organisation" })
         .last(),
-    ).toBeVisible();
+    ).toBeHidden();
     await expect(
       page
         .locator(Selectors.h2)
@@ -168,7 +168,7 @@ export class ApplicantDetails1Page {
         .locator(Selectors.h2)
         .filter({ hasText: "Organisation name and address" })
         .last(),
-    ).toBeVisible();
+    ).toBeHidden();
     await expect(
       page
         .locator(Selectors.h2)
@@ -176,7 +176,7 @@ export class ApplicantDetails1Page {
     ).toHaveCount(2);
     await expect(
       page
-        .locator(Selectors.h2)
+        .locator(Selectors.GovukHint)
         .filter({
           hasText:
             "You can only search for organisations already registered with MyHMCTS. For example, you can search by organisation name or address.",
@@ -185,35 +185,35 @@ export class ApplicantDetails1Page {
     ).toBeVisible();
     await expect(
       page
-        .locator(Selectors.h2)
+        .locator(Selectors.GovukHint)
         .filter({
           hasText:
             "You can only search for organisations already registered with MyHMCTS. For example, you can search by organisation name or address.",
         })
         .last(),
-    ).toBeVisible();
+    ).toBeHidden();
     await expect(
-      page.locator(Selectors.h2).filter({
+      page.locator(Selectors.GovukHint).filter({
         hasText:
           "You can only search for organisations already registered with MyHMCTS. For example, you can search by organisation name or address.",
       }),
     ).toHaveCount(2);
     await expect(
       page
-        .locator(Selectors.h2)
+        .locator(Selectors.GovukSummaryText)
         .filter({ hasText: "Can’t find the organisation you are looking for?" })
         .first(),
     ).toBeVisible();
     await expect(
       page
-        .locator(Selectors.h2)
+        .locator(Selectors.GovukSummaryText)
         .filter({
           hasText: "Can’t find the organisation you are looking for?",
         })
         .last(),
-    ).toBeVisible();
+    ).toBeHidden();
     await expect(
-      page.locator(Selectors.h2).filter({
+      page.locator(Selectors.GovukSummaryText).filter({
         hasText: "Can’t find the organisation you are looking for?",
       }),
     ).toHaveCount(2);
