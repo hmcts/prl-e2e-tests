@@ -145,35 +145,35 @@ export class ApplicantDetails1Page {
         .locator(Selectors.h2)
         .filter({ hasText: "Search for an organisation" })
         .first(),
-    ).toBeVisible(),
+    ).toBeVisible();
     await expect(
-        page
-          .locator(Selectors.h2)
-          .filter({ hasText: "Search for an organisation" })
-          .last(),
-      ).toBeVisible(),
+      page
+        .locator(Selectors.h2)
+        .filter({ hasText: "Search for an organisation" })
+        .last(),
+    ).toBeVisible();
     await expect(
-        page
-          .locator(Selectors.h2)
-          .filter({ hasText: "Search for an organisation" }),
-      ).toHaveCount(2),
+      page
+        .locator(Selectors.h2)
+        .filter({ hasText: "Search for an organisation" }),
+    ).toHaveCount(2);
     await expect(
-        page
-          .locator(Selectors.h2)
-          .filter({ hasText: "Organisation name and address" })
-          .first(),
-      ).toBeVisible(),
+      page
+        .locator(Selectors.h2)
+        .filter({ hasText: "Organisation name and address" })
+        .first(),
+    ).toBeVisible();
     await expect(
-        page
-          .locator(Selectors.h2)
-          .filter({ hasText: "Organisation name and address" })
-          .last(),
-      ).toBeVisible(),
+      page
+        .locator(Selectors.h2)
+        .filter({ hasText: "Organisation name and address" })
+        .last(),
+    ).toBeVisible();
     await expect(
       page
         .locator(Selectors.h2)
         .filter({ hasText: "Organisation name and address" }),
-    ).toHaveCount(2),
+    ).toHaveCount(2);
     await expect(
       page
         .locator(Selectors.h2)
@@ -182,44 +182,40 @@ export class ApplicantDetails1Page {
             "You can only search for organisations already registered with MyHMCTS. For example, you can search by organisation name or address.",
         })
         .first(),
-    ).toBeVisible(),
-    await expect(
-        page
-          .locator(Selectors.h2)
-          .filter({
-            hasText:
-              "You can only search for organisations already registered with MyHMCTS. For example, you can search by organisation name or address.",
-          })
-          .last(),
-      ).toBeVisible(),
+    ).toBeVisible();
     await expect(
       page
         .locator(Selectors.h2)
         .filter({
           hasText:
             "You can only search for organisations already registered with MyHMCTS. For example, you can search by organisation name or address.",
-        }),
+        })
+        .last(),
+    ).toBeVisible();
+    await expect(
+      page.locator(Selectors.h2).filter({
+        hasText:
+          "You can only search for organisations already registered with MyHMCTS. For example, you can search by organisation name or address.",
+      }),
     ).toHaveCount(2);
     await expect(
       page
         .locator(Selectors.h2)
         .filter({ hasText: "Can’t find the organisation you are looking for?" })
         .first(),
-    ).toBeVisible(),
-    await expect(
-        page
-          .locator(Selectors.h2)
-          .filter({
-            hasText: "Can’t find the organisation you are looking for?",
-          })
-          .last(),
-      ).toBeVisible(),
+    ).toBeVisible();
     await expect(
       page
         .locator(Selectors.h2)
         .filter({
           hasText: "Can’t find the organisation you are looking for?",
-        }),
+        })
+        .last(),
+    ).toBeVisible();
+    await expect(
+      page.locator(Selectors.h2).filter({
+        hasText: "Can’t find the organisation you are looking for?",
+      }),
     ).toHaveCount(2);
     if (accessibilityTest) {
       await new AxeUtils(page).audit();
