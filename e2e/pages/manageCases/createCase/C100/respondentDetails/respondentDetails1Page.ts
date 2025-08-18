@@ -355,36 +355,36 @@ export class RespondentDetails1Page {
       page
         .locator(Selectors.h2)
         .filter({ hasText: "Search for an organisation" })
-        .first()
+        .first(),
     ).toBeVisible(),
       await expect(
         page
           .locator(Selectors.h2)
           .filter({ hasText: "Search for an organisation" })
-          .last()
+          .last(),
       ).toBeVisible(),
       await expect(
         page
           .locator(Selectors.h2)
-          .filter({ hasText: "Search for an organisation" })
+          .filter({ hasText: "Search for an organisation" }),
       ).toHaveCount(2),
       await expect(
         page
           .locator(Selectors.h2)
           .filter({ hasText: "Organisation name and address" })
-          .first()
+          .first(),
       ).toBeVisible(),
       await expect(
         page
           .locator(Selectors.h2)
           .filter({ hasText: "Organisation name and address" })
-          .last()
-      ).toBeVisible()
+          .last(),
+      ).toBeVisible(),
     await expect(
       page
         .locator(Selectors.h2)
-        .filter({ hasText: "Organisation name and address" })
-    ).toHaveCount(2)
+        .filter({ hasText: "Organisation name and address" }),
+    ).toHaveCount(2);
     await page.fill(
       `${uniqueSelectors.representativeFirstNameField}`,
       `${C100RespondentDetails1Content.representativeFirstName}`,

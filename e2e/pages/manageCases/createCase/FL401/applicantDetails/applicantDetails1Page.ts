@@ -149,36 +149,36 @@ export class ApplicantDetails1Page {
       page
         .locator(Selectors.h2)
         .filter({ hasText: "Search for an organisation" })
-        .first()
+        .first(),
     ).toBeVisible(),
-    await expect(
-      page
-        .locator(Selectors.h2)
-        .filter({ hasText: "Search for an organisation" })
-        .last()
-    ).toBeVisible(),
-    await expect(
-      page
-        .locator(Selectors.h2)
-        .filter({ hasText: "Search for an organisation" })
-    ).toHaveCount(2),
-    await expect(
-      page
-        .locator(Selectors.h2)
-        .filter({ hasText: "Organisation name and address" })
-        .first()
-    ).toBeVisible(),
-    await expect(
-      page
-        .locator(Selectors.h2)
-        .filter({ hasText: "Organisation name and address" })
-        .last()
-    ).toBeVisible()
-    await expect(
-      page
-        .locator(Selectors.h2)
-        .filter({ hasText: "Organisation name and address" })
-    ).toHaveCount(2)
+      await expect(
+        page
+          .locator(Selectors.h2)
+          .filter({ hasText: "Search for an organisation" })
+          .last(),
+      ).toBeVisible(),
+      await expect(
+        page
+          .locator(Selectors.h2)
+          .filter({ hasText: "Search for an organisation" }),
+      ).toHaveCount(2),
+      await expect(
+        page
+          .locator(Selectors.h2)
+          .filter({ hasText: "Organisation name and address" })
+          .first(),
+      ).toBeVisible(),
+      await expect(
+        page
+          .locator(Selectors.h2)
+          .filter({ hasText: "Organisation name and address" })
+          .last(),
+      ).toBeVisible(),
+      await expect(
+        page
+          .locator(Selectors.h2)
+          .filter({ hasText: "Organisation name and address" }),
+      ).toHaveCount(2);
     if (accessibilityTest) {
       await new AxeUtils(page).audit();
     }
