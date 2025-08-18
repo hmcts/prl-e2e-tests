@@ -351,40 +351,18 @@ export class RespondentDetails1Page {
         1,
       ),
     ]);
-    await expect(
-      page
-        .locator(Selectors.h2)
-        .filter({ hasText: "Search for an organisation" })
-        .first(),
-    ).toBeVisible();
-    await expect(
-      page
-        .locator(Selectors.h2)
-        .filter({ hasText: "Search for an organisation" })
-        .last(),
-    ).toBeHidden();
-    await expect(
-      page
-        .locator(Selectors.h2)
-        .filter({ hasText: "Search for an organisation" }),
-    ).toHaveCount(2);
-    await expect(
-      page
-        .locator(Selectors.h2)
-        .filter({ hasText: "Organisation name and address" })
-        .first(),
-    ).toBeVisible();
-    await expect(
-      page
-        .locator(Selectors.h2)
-        .filter({ hasText: "Organisation name and address" })
-        .last(),
-    ).toBeHidden();
-    await expect(
-      page
-        .locator(Selectors.h2)
-        .filter({ hasText: "Organisation name and address" }),
-    ).toHaveCount(2);
+    const searchForOrg = page
+      .locator(Selectors.h2)
+      .filter({ hasText: "Search for an organisation" });
+    await expect(searchForOrg.first()).toBeVisible();
+    await expect(searchForOrg.last()).toBeHidden();
+    await expect(searchForOrg).toHaveCount(2);
+    const orgNameAndAddress = page
+      .locator(Selectors.h2)
+      .filter({ hasText: "Organisation name and address" })
+    await expect(orgNameAndAddress.first()).toBeVisible();
+    await expect(orgNameAndAddress.last()).toBeHidden();
+    await expect(orgNameAndAddress).toHaveCount(2);
     await page.fill(
       `${uniqueSelectors.representativeFirstNameField}`,
       `${C100RespondentDetails1Content.representativeFirstName}`,
