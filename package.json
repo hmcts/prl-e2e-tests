@@ -1,0 +1,47 @@
+{
+  "name": "prl-e2e-tests",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=20.11.1"
+  },
+  "type": "module",
+  "devDependencies": {
+    "@axe-core/playwright": "^4.10.0",
+    "@eslint/js": "^9.11.1",
+    "@hmcts/playwright-common": "^1.0.32",
+    "@playwright/test": "^1.49.0",
+    "@types/node": "^22.4.1",
+    "axios": "^1.7.4",
+    "dotenv": "^16.4.5",
+    "eslint": "^9.11.1",
+    "eslint-plugin-playwright": "^2.1.0",
+    "jest": "^29.7.0",
+    "playwright-core": "^1.49.0",
+    "prettier": "^3.3.3",
+    "simple-git": "^3.27.0",
+    "tsx": "^4.19.4",
+    "typescript": "^5.5.4",
+    "typescript-eslint": "^8.8.0",
+    "uuid": "^11.0.2"
+  },
+  "scripts": {
+    "pwinstall": "yarn playwright install --with-deps",
+    "setup": "yarn install && ./scripts/get_secrets.sh && yarn pwinstall && yarn playwright install webkit && yarn playwright install firefox",
+    "lint": "yarn prettier . --write && yarn tsc -p tsconfig.json && yarn eslint .",
+    "playwright:visual": "chmod +x ./scripts/start_visual_container.sh && ./scripts/start_visual_container.sh",
+    "test:changes": "yarn pwinstall && yarn tsx ./e2e/common/changedTestsRunner.ts",
+    "test:manageCasesSmoke": "yarn pwinstall && yarn playwright test e2e/tests/manageCases --project chromium --grep @smoke",
+    "test:manageCasesChrome": "yarn pwinstall && yarn playwright test e2e/tests/manageCases --project chromium --grep @nightly",
+    "test:manageCasesFirefox": "yarn pwinstall firefox && yarn playwright test e2e/tests/manageCases --project firefox --grep @smoke",
+    "test:manageCasesSafari": "yarn pwinstall webkit && yarn playwright test e2e/tests/manageCases --project webkit --grep @smoke",
+    "test:manageCasesAccessibility": "yarn pwinstall && yarn playwright test e2e/tests/manageCases --project chromium --grep @accessibility",
+    "test:manageCasesVisual": "yarn pwinstall && yarn playwright test e2e/tests/manageCases --project chromium --grep @visual",
+    "test:citizenSmoke": "yarn pwinstall && yarn playwright test e2e/tests/citizen --project chromium --grep @smoke",
+    "test:citizenFrontendChrome": "yarn pwinstall && yarn playwright test e2e/tests/citizen --project chromium --grep @nightly",
+    "test:citizenFrontendFirefox": "yarn pwinstall firefox && yarn playwright test e2e/tests/citizen --project firefox --grep @smoke",
+    "test:citizenFrontendSafari": "yarn pwinstall webkit && yarn playwright test e2e/tests/citizen --project webkit --grep @smoke",
+    "test:citizenFrontendAccessibility": "yarn pwinstall && yarn playwright test e2e/tests/citizen --project chromium --grep @accessibility"
+  },
+  "packageManager": "yarn@4.9.2"
+}
