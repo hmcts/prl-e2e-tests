@@ -351,18 +351,40 @@ export class RespondentDetails1Page {
         1,
       ),
     ]);
-    await page
-      .locator(
-        `${Selectors.h2}:text-is("${C100RespondentDetails1Content.doubleh21}")`,
-      )
-      .filter({ hasText: "Search for an organisation" })
-      .first();
-    await page
-      .locator(
-        `${Selectors.h2}:text-is("${C100RespondentDetails1Content.doubleh22}")`,
-      )
-      .filter({ hasText: "Organisation name and address" })
-      .first();
+    await expect(
+      page
+        .locator(Selectors.h2)
+        .filter({ hasText: "Search for an organisation" })
+        .first()
+    ).toBeVisible(),
+      await expect(
+        page
+          .locator(Selectors.h2)
+          .filter({ hasText: "Search for an organisation" })
+          .last()
+      ).toBeVisible(),
+      await expect(
+        page
+          .locator(Selectors.h2)
+          .filter({ hasText: "Search for an organisation" })
+      ).toHaveCount(2),
+      await expect(
+        page
+          .locator(Selectors.h2)
+          .filter({ hasText: "Organisation name and address" })
+          .first()
+      ).toBeVisible(),
+      await expect(
+        page
+          .locator(Selectors.h2)
+          .filter({ hasText: "Organisation name and address" })
+          .last()
+      ).toBeVisible()
+    await expect(
+      page
+        .locator(Selectors.h2)
+        .filter({ hasText: "Organisation name and address" })
+    ).toHaveCount(2)
     await page.fill(
       `${uniqueSelectors.representativeFirstNameField}`,
       `${C100RespondentDetails1Content.representativeFirstName}`,
