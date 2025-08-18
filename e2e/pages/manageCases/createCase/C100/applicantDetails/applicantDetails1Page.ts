@@ -96,7 +96,7 @@ export class ApplicantDetails1Page {
         `${Selectors.strong}:text-is("${ApplicantDetails1Content.strong}")`,
         1,
       ),
-      Helpers.checkGroup(page, 4, ApplicantDetails1Content, "h2", Selectors.h2),
+      Helpers.checkGroup(page, 2, ApplicantDetails1Content, "h2", Selectors.h2),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.h3}:text-is("${ApplicantDetails1Content.h3}")`,
@@ -139,17 +139,34 @@ export class ApplicantDetails1Page {
         `${Selectors.GovukFormLabel}:text-is("${ApplicantDetails1Content.formLabelUkPostCode}")`,
         2,
       ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukHint}:text-is("${ApplicantDetails1Content.govukHint}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryText}:text-is("${ApplicantDetails1Content.govukDetailsSummary}")`,
-        1,
-      ),
     ]);
+    const searchForOrg = page
+      .locator(Selectors.h2)
+      .filter({ hasText: "Search for an organisation" });
+    await expect(searchForOrg.first()).toBeVisible();
+    await expect(searchForOrg.last()).toBeHidden();
+    await expect(searchForOrg).toHaveCount(2);
+    const orgNameAndAddress = page
+      .locator(Selectors.h2)
+      .filter({ hasText: "Organisation name and address" })
+    await expect(orgNameAndAddress.first()).toBeVisible();
+    await expect(orgNameAndAddress.last()).toBeHidden();
+    await expect(orgNameAndAddress).toHaveCount(2);
+    const youCanOnlySearch = page
+      .locator(Selectors.GovukHint)
+      .filter({
+        hasText:
+          "You can only search for organisations already registered with MyHMCTS. For example, you can search by organisation name or address.",
+      });
+    await expect(youCanOnlySearch.first()).toBeVisible();
+    await expect(youCanOnlySearch.last()).toBeHidden();
+    await expect(youCanOnlySearch).toHaveCount(2);
+    const cantFindTheOrg = page
+      .locator(Selectors.GovukSummaryText)
+      .filter({ hasText: "Can’t find the organisation you are looking for?" });
+    await expect(cantFindTheOrg.first()).toBeVisible();
+    await expect(cantFindTheOrg.last()).toBeHidden();
+    await expect(cantFindTheOrg).toHaveCount(2);
     if (accessibilityTest) {
       await new AxeUtils(page).audit();
     }
