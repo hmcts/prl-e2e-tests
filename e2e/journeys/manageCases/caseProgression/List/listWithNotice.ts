@@ -5,13 +5,19 @@ import { Fl401ListOnNotice2Page } from "../../../../pages/manageCases/caseProgre
 import { Fl401ListOnNoticeSubmitPage } from "../../../../pages/manageCases/caseProgression/list/fl401ListOnNoticeSubmitPage.ts";
 import { Fl401ListOnNoticeConfirmPage } from "../../../../pages/manageCases/caseProgression/list/fl401ListOnNoticeConfirmPage.ts";
 import { Selectors } from "../../../../common/selectors.ts";
-import { Fl401ListOnNoticeConfirmContent } from "../../../../fixtures/manageCases/caseProgression/List/fl401ListOnNoticeConfirmContent.ts";
 import { completeCheckApplicationAndSendToGatekeeper } from "../../../../common/caseHelpers/caseEventsHelper.ts";
+import { solicitorCaseCreateType } from "../../../../common/types.js";
+import { C100ListOnNotice1Page } from "../../../../pages/manageCases/caseProgression/list/c100ListOnNotice1Page.js";
+import { C100ListOnNotice2Page } from "../../../../pages/manageCases/caseProgression/list/c100ListOnNotice2Page.js";
+import { C100ListOnNotice3Page } from "../../../../pages/manageCases/caseProgression/list/c100ListOnNotice3Page.js";
+import { FL401CaseNotesTabContent } from "../../../../fixtures/manageCases/caseTabs/FL401/fl401CaseNotesTabContent.js";
+import { C100CaseNotesTabContent } from "../../../../fixtures/manageCases/caseTabs/C100/c100CaseNotesTabContent.js";
 
 interface ListWithNoticeParams {
   page: Page;
   browser: Browser;
   ccdRef: string;
+  caseType: solicitorCaseCreateType;
   accessibilityTest: boolean;
 }
 
@@ -20,9 +26,13 @@ export class ListWithNotice {
     page,
     browser,
     ccdRef,
+    caseType,
     accessibilityTest,
   }: ListWithNoticeParams): Promise<void> {
-    await completeCheckApplicationAndSendToGatekeeper(page, ccdRef);
+    if (caseType === "FL401") {
+      await completeCheckApplicationAndSendToGatekeeper(page, ccdRef);
+    }
+
     const judgePage: Page = await Helpers.openNewBrowserWindow(
       browser,
       "judge",
@@ -33,28 +43,52 @@ export class ListWithNotice {
       ccdRef,
       "tasks",
     );
-    await Helpers.waitForTask(judgePage, "Directions on Issue");
-    await Helpers.assignTaskToMe(judgePage, "Directions on Issue");
-    await Helpers.chooseEventFromDropdown(judgePage, "List on notice");
-    await Fl401ListOnNotice2Page.fl401ListOnNotice2Page(
-      judgePage,
-      accessibilityTest,
-    );
-    await Fl401ListOnNoticeSubmitPage.fl401ListOnNoticeSubmitPage(
-      judgePage,
-      accessibilityTest,
-    );
-    await Fl401ListOnNoticeConfirmPage.fl401ListOnNoticeConfirmPage(
-      judgePage,
-      accessibilityTest,
-    );
 
-    //check if task gets auto-closed
-    await Helpers.clickTab(judgePage, "Tasks");
-    await Helpers.waitForTaskToDisappear(judgePage, "Directions on Issue");
+    switch (caseType) {
+      case "C100":
+        await Helpers.waitForTask(judgePage, "Gatekeeping");
+        await Helpers.chooseEventFromDropdown(judgePage, "List on notice");
+        await C100ListOnNotice1Page.c100ListOnNotice1Page(
+          judgePage,
+          accessibilityTest,
+        );
+        await C100ListOnNotice2Page.c100ListOnNotice2Page(
+          judgePage,
+          accessibilityTest,
+        );
+        await C100ListOnNotice3Page.c100ListOnNotice3Page(
+          judgePage,
+          accessibilityTest,
+        );
+
+        await Helpers.clickTab(judgePage, "Tasks");
+        await Helpers.waitForTaskToDisappear(judgePage, "Gatekeeping");
+        break;
+
+      case "FL401":
+        await Helpers.waitForTask(judgePage, "Directions on Issue");
+        await Helpers.assignTaskToMe(judgePage, "Directions on Issue");
+        await Helpers.chooseEventFromDropdown(judgePage, "List on notice");
+        await Fl401ListOnNotice2Page.fl401ListOnNotice2Page(
+          judgePage,
+          accessibilityTest,
+        );
+        await Fl401ListOnNoticeSubmitPage.fl401ListOnNoticeSubmitPage(
+          judgePage,
+          accessibilityTest,
+        );
+        await Fl401ListOnNoticeConfirmPage.fl401ListOnNoticeConfirmPage(
+          judgePage,
+          accessibilityTest,
+        );
+
+        await Helpers.clickTab(judgePage, "Tasks");
+        await Helpers.waitForTaskToDisappear(judgePage, "Directions on Issue");
+        break;
+    }
 
     // check case notes are updated
-    await this.checkCaseNotes(judgePage);
+    await this.checkCaseNotes(judgePage, caseType);
 
     //check if list on notice task is getting initiated for HCA and Case manager
     await Helpers.checkTaskAppearsForUser(
@@ -71,23 +105,41 @@ export class ListWithNotice {
     );
   }
 
-  private static async checkCaseNotes(page: Page): Promise<void> {
+  private static async checkCaseNotes(
+    page: Page,
+    caseType: string,
+  ): Promise<void> {
     await page
       .locator(Selectors.tab, {
         hasText: "Case Notes",
       })
       .click();
-    await Helpers.checkGroup(
-      page,
-      2,
-      Fl401ListOnNoticeConfirmContent,
-      "text16",
-      Selectors.GovukText16,
-    );
-    await Helpers.checkVisibleAndPresent(
-      page,
-      `${Selectors.Span}:text-is("${Fl401ListOnNoticeConfirmContent.span1}")`,
-      1,
-    );
+    if (caseType === "FL401") {
+      await Helpers.checkGroup(
+        page,
+        2,
+        FL401CaseNotesTabContent,
+        "text16",
+        Selectors.GovukText16,
+      );
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${FL401CaseNotesTabContent.span1}")`,
+        1,
+      );
+    } else {
+      await Helpers.checkGroup(
+        page,
+        2,
+        C100CaseNotesTabContent,
+        "text16",
+        Selectors.GovukText16,
+      );
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${C100CaseNotesTabContent.span1}")`,
+        1,
+      );
+    }
   }
 }
