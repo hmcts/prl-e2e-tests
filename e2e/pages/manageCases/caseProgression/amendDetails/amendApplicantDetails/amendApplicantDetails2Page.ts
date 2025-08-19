@@ -235,13 +235,20 @@ export class AmendApplicantDetails2Page {
             .locator("span"),
         )
         .toBeVisible(),
-      expect.soft(page.locator(uniqueSelectors.searchOrg)).toBeVisible(),
-      expect.soft(page.locator(uniqueSelectors.cannotFindOrg)).toBeVisible(),
     ]);
-    await page.locator(uniqueSelectors.cannotFindOrg).click();
-    await expect
-      .soft(page.locator(uniqueSelectors.cannotFindOrgReason))
-      .toBeVisible();
+    const pageSearchOrg = page.locator(uniqueSelectors.searchOrg);
+    await expect(pageSearchOrg.first()).toBeVisible();
+    await expect(pageSearchOrg.last()).toBeHidden();
+    await expect(pageSearchOrg).toHaveCount(2);
+    const pageCannotFindOrg = page.locator(uniqueSelectors.cannotFindOrg);
+    await expect(pageCannotFindOrg.first()).toBeVisible();
+    await expect(pageCannotFindOrg.last()).toBeHidden();
+    await expect(pageCannotFindOrg).toHaveCount(2);
+    const pageCannotFindOrgReason = page.locator(uniqueSelectors.cannotFindOrgReason);
+    await expect(pageCannotFindOrgReason.first()).toBeHidden();
+    await expect(pageCannotFindOrgReason.last()).toBeHidden();
+    await expect(pageCannotFindOrgReason).toHaveCount(2);
+    await page.locator(uniqueSelectors.cannotFindOrg).first().click();
     if (accessibilityTest) {
       await new AxeUtils(page).audit();
     }
