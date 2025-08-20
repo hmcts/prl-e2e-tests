@@ -63,7 +63,10 @@ export class AdminEditAndServeAnOrder {
     await fl401AddCaseNumber1Page.continueButton.click();
 
     const fl401AddCaseNumberSubmitPage = new Fl401AddCaseNumberSubmitPage(page);
-    await fl401AddCaseNumberSubmitPage.checkPageContents("1234", accessibilityTest);
+    await fl401AddCaseNumberSubmitPage.checkPageContents(
+      "1234",
+      accessibilityTest,
+    );
     await fl401AddCaseNumberSubmitPage.saveAndContinueButton.click();
 
     await Helpers.chooseEventFromDropdown(page, "Edit and serve an order");
