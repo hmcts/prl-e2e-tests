@@ -43,5 +43,5 @@
     "test:citizenFrontendSafari": "yarn pwinstall webkit && yarn playwright test e2e/tests/citizen --project webkit --grep @smoke",
     "test:citizenFrontendAccessibility": "yarn pwinstall && yarn playwright test e2e/tests/citizen --project chromium --grep @accessibility"
   },
-  "packageManager": "yarn@4.9.2"
+  "packageManager": "yarn@4.9.4"
 }
