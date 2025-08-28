@@ -150,5 +150,7 @@ See examples in the [tests](https://github.com/hmcts/tcoe-playwright-example/blo
 
 Run the following command to create the docker image for the playwright-container (this uses the Dockerfile):
 `yarn build-image`
-Then run the following command to create the container which can be used to run the tests inside (this uses the docker-compose.yaml):
+*Note: you will only need to create the image once*
+
+Then run the following command whenever you want to create the container which can be used to run the tests inside (this uses the docker-compose.yaml):
 `yarn start-container`
