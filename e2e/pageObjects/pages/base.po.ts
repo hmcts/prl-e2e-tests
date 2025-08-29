@@ -6,7 +6,7 @@ import { AxeUtils } from "@hmcts/playwright-common";
 export abstract class Base {
   readonly page: Page;
   readonly exuiHeader: ExuiHeaderComponent;
-
+  
   protected constructor(page: Page) {
     this.page = page;
     this.exuiHeader = new ExuiHeaderComponent(page);
