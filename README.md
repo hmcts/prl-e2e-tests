@@ -128,7 +128,7 @@ Visual testing in playwright is the process of comparing an expected screenshot 
 ### Recording snapshots
 
 In order to match screenshots, they need to be the same. Therefore things like OS, Browser and viewport need to be consistent when creating the snapshots and when running the tests. This is also reflected in the way playwright names the screenshots (although you can choose your own names/rename the generated screenshots).
-As a solution to this, it's recommended to use Docker to both create the snapshots and run the tests (locally and on CI). See the [`start_visual_container.sh` script](https://github.com/hmcts/prl-e2e-tests/blob/master/scripts/start_visual_container.sh).
+As a solution to this, it's recommended to use Docker to both create the snapshots and run the tests (locally and on CI).
 
 You may also have some UI changes to your service, in which you will need to re-generate any snapshots. Playwright provides a `--update-snapshots` flag to do this.
 
@@ -148,11 +148,9 @@ See examples in the [tests](https://github.com/hmcts/tcoe-playwright-example/blo
 
 ### Running the visual tests locally
 
-Use the following command to start the visual testing container:
-`yarn playwright:visual`
-This will:
+Run the following command to create the docker image for the playwright-container (this uses the Dockerfile):
+`yarn build-image`
+*Note: you will only need to create the image once*
 
-- Ensure the Docker script is executable
-- Start a Playwright Docker container (based on the mcr.microsoft.com/playwright image)
-- Install dependencies inside the container
-- Drop you into an interactive shell to run visual tests or debug issues
+Then run the following command whenever you want to create the container which can be used to run the tests inside (this uses the docker-compose.yaml):
+`yarn start-container`
