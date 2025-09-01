@@ -176,8 +176,6 @@ export type createOrderFL401Options =
   | "general form of undertaking"
   | "notice of proceedings";
 
-export type createOrderC10Options = "child arrangement";
-
 export type uploadOrderFL401Options =
   | "power of arrest"
   | "non-molestation"
