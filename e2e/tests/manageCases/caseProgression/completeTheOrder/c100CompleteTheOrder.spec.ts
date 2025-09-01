@@ -1,7 +1,7 @@
 import Config from "../../../../utils/config.utils.ts";
 import { Helpers } from "../../../../common/helpers.ts";
-import { C100CompleteTheOrder } from "../../../../journeys/manageCases/caseProgression/completeTheOrder/C100completeTheOrder.js";
 import { test } from "../../../fixtures.ts";
+import { CompleteTheOrder } from "../../../../journeys/manageCases/caseProgression/completeTheOrder/completeTheOrder.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
@@ -21,7 +21,7 @@ test.describe("Complete the Order task for C100 case tests.", () => {
   Case: C100,
   Accessibility testing: yes. 
   @nightly @accessibility @regression`, async ({ page }): Promise<void> => {
-    await C100CompleteTheOrder.C100completeTheOrder({
+    await CompleteTheOrder.C100completeTheOrder({
       page: page,
       accessibilityTest: true,
       solicitorCaseCreateType: "C100",

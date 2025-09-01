@@ -63,7 +63,7 @@ export async function completeEventsUpToServiceOfApplication(
   createOrderFL401Options: createOrderFL401Options,
   applicationSubmittedBy: applicationSubmittedBy,
 ): Promise<void> {
-  await CompleteTheOrder.completeTheOrder({
+  await CompleteTheOrder.FL401completeTheOrder({
     page: page,
     browser: browser,
     accessibilityTest: false,
