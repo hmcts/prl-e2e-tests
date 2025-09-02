@@ -273,11 +273,11 @@ export class Helpers {
       caseTab.toLowerCase() === "tasks" ||
       caseTab.toLowerCase() === "roles and access"
     ) {
-      return `${baseURL}/case-details/${caseNumberDigits}/${caseTab}`;
+      return `${baseURL}/case-details/PRIVATELAW/PRLAPPS/${caseNumberDigits}/${caseTab}`;
     } else if (caseTab.toLowerCase() === "Draft orders") {
-      return `${baseURL}/case-details/${caseNumberDigits}#Draft%20orders`;
+      return `${baseURL}/case-details/PRIVATELAW/PRLAPPS/${caseNumberDigits}#Draft%20orders`;
     } else {
-      return `${baseURL}/case-details/${caseNumberDigits}#${caseTab}`;
+      return `${baseURL}/case-details/PRIVATELAW/PRLAPPS/${caseNumberDigits}#${caseTab}`;
     }
   }
 
