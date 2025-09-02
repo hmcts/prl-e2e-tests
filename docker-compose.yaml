@@ -7,7 +7,7 @@ services:
     tty: true
     network_mode: host
     ipc: host
-    working_dir: /playwright
+    working_dir: /prl-e2e-tests
     volumes:
-      - .:/playwright
+      - .:/prl-e2e-tests
     entrypoint: ["/bin/bash"]

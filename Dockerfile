@@ -1,6 +1,6 @@
 FROM mcr.microsoft.com/playwright:v1.55.0-noble
 
-WORKDIR /playwright/
+WORKDIR /prl-e2e-tests/
 
 COPY package.json ./
 
