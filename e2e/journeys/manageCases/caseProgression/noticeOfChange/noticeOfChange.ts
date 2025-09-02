@@ -82,7 +82,7 @@ export class NoticeOfChange {
       "caseWorker",
     );
     await caPage.goto(
-      `${config.manageCasesBaseURLCase}/case-details/${caseRef}/hearings`,
+      `${config.manageCasesBaseURLCase}/case-details/PRIVATELAW/PRLAPPS/${caseRef}/hearings`,
     );
     await CreateHearingRequest.requestAHearing(caPage, false);
   }
