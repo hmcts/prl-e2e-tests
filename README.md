@@ -147,10 +147,6 @@ Your feature may have dynamic data that could skew visual testing results, fortu
 See examples in the [tests](https://github.com/hmcts/tcoe-playwright-example/blob/master/playwright-e2e/tests/visual-tests.spec.ts) and the [playwright docs](https://playwright.dev/docs/api/class-pageassertions#page-assertions-to-have-screenshot-2) for other options.
 
 ### Running the visual tests locally
-
-Run the following command to create the docker image for the playwright-container (this uses the Dockerfile):
-`yarn build-image`
-*Note: you will only need to create the image once*
-
-Then run the following command whenever you want to create the container which can be used to run the tests inside (this uses the docker-compose.yaml):
-`yarn start-container`
+Run the following command to run the visual container (from the Dockerfile):
+`yarn start-visual-container`
+This will build the playwright-container image if it doesn't already exist and also start the docker container (via docker-compose.yaml)

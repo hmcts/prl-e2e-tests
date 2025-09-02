@@ -41,8 +41,7 @@
     "test:citizenFrontendFirefox": "yarn pwinstall firefox && yarn playwright test e2e/tests/citizen --project firefox --grep @smoke",
     "test:citizenFrontendSafari": "yarn pwinstall webkit && yarn playwright test e2e/tests/citizen --project webkit --grep @smoke",
     "test:citizenFrontendAccessibility": "yarn pwinstall && yarn playwright test e2e/tests/citizen --project chromium --grep @accessibility",
-    "build-image": "docker build -t playwright-container .",
-    "start-container": "docker compose run --rm playwright"
+    "start-visual-container": "docker compose run --rm playwright"
   },
   "packageManager": "yarn@4.9.4"
 }

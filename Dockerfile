@@ -1,11 +1,12 @@
 FROM mcr.microsoft.com/playwright:v1.55.0-noble
 
-WORKDIR /playwright/
+WORKDIR /prl-e2e-tests/
 
 COPY package.json ./
 
 RUN corepack enable
 RUN yarn install
+RUN yarn playwright install
 
 COPY . .
 
