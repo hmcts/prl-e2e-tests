@@ -148,16 +148,14 @@ export class ApplicantDetails1Page {
     await expect(searchForOrg).toHaveCount(2);
     const orgNameAndAddress = page
       .locator(Selectors.h2)
-      .filter({ hasText: "Organisation name and address" })
+      .filter({ hasText: "Organisation name and address" });
     await expect(orgNameAndAddress.first()).toBeVisible();
     await expect(orgNameAndAddress.last()).toBeHidden();
     await expect(orgNameAndAddress).toHaveCount(2);
-    const youCanOnlySearch = page
-      .locator(Selectors.GovukHint)
-      .filter({
-        hasText:
-          "You can only search for organisations already registered with MyHMCTS. For example, you can search by organisation name or address.",
-      });
+    const youCanOnlySearch = page.locator(Selectors.GovukHint).filter({
+      hasText:
+        "You can only search for organisations already registered with MyHMCTS. For example, you can search by organisation name or address.",
+    });
     await expect(youCanOnlySearch.first()).toBeVisible();
     await expect(youCanOnlySearch.last()).toBeHidden();
     await expect(youCanOnlySearch).toHaveCount(2);

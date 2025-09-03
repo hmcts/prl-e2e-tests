@@ -244,7 +244,9 @@ export class AmendApplicantDetails2Page {
     await expect(pageCannotFindOrg.first()).toBeVisible();
     await expect(pageCannotFindOrg.last()).toBeHidden();
     await expect(pageCannotFindOrg).toHaveCount(2);
-    const pageCannotFindOrgReason = page.locator(uniqueSelectors.cannotFindOrgReason);
+    const pageCannotFindOrgReason = page.locator(
+      uniqueSelectors.cannotFindOrgReason,
+    );
     await expect(pageCannotFindOrgReason.first()).toBeHidden();
     await expect(pageCannotFindOrgReason.last()).toBeHidden();
     await expect(pageCannotFindOrgReason).toHaveCount(2);

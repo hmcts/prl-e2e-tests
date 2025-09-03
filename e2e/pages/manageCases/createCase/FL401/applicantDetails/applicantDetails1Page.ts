@@ -153,7 +153,7 @@ export class ApplicantDetails1Page {
     await expect(searchForOrg).toHaveCount(2);
     const orgNameAndAddress = page
       .locator(Selectors.h2)
-      .filter({ hasText: "Organisation name and address" })
+      .filter({ hasText: "Organisation name and address" });
     await expect(orgNameAndAddress.first()).toBeVisible();
     await expect(orgNameAndAddress.last()).toBeHidden();
     await expect(orgNameAndAddress).toHaveCount(2);

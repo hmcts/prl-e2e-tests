@@ -24,7 +24,7 @@ test.describe("Complete the Order task for DA Solicitor case tests.", () => {
     page,
     browser,
   }) => {
-    await CompleteTheOrder.completeTheOrder({
+    await CompleteTheOrder.FL401completeTheOrder({
       page: page,
       accessibilityTest: false,
       ccdRef: ccdRef,
@@ -40,7 +40,7 @@ test.describe("Complete the Order task for DA Solicitor case tests.", () => {
     page,
     browser,
   }) => {
-    await CompleteTheOrder.completeTheOrder({
+    await CompleteTheOrder.FL401completeTheOrder({
       page: page,
       accessibilityTest: true,
       ccdRef: ccdRef,
