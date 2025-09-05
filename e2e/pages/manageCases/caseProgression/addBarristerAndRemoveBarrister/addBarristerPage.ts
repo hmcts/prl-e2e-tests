@@ -5,10 +5,6 @@ import { AxeUtils } from "@hmcts/playwright-common";
 import { Helpers } from "../../../../common/helpers.ts";
 import { AddBarristerContent } from "../../../../fixtures/manageCases/caseProgression/addBarristerAndRemoveBarrister/addBarristerContent.ts";
 
-// enum UniqueSelectors {
-//   caseRefTextbox = "#caseRef",
-// }
-
 export class AddBarrister {
   public static async addBarrister(
     page: Page,

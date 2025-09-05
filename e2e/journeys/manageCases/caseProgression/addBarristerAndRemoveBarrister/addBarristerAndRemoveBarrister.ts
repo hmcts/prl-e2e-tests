@@ -7,6 +7,8 @@ import config from "../../../../utils/config.utils.ts";
 import { CreateHearingRequest } from "../createHearingRequest/createHearingRequest.ts";
 import { solicitorCaseCreateType } from "../../../../common/types.ts";
 import { Noc1Page } from "../../../../pages/manageCases/caseProgression/noticeOfChange/noc1Page.ts";
+import { AddBarrister } from "../../../../pages/manageCases/caseProgression/addBarristerAndRemoveBarrister/addBarristerPage.ts";
+import { RemoveBarrister } from "../../../../pages/manageCases/caseProgression/addBarristerAndRemoveBarrister/removeBarristerPage.ts";
 
 interface addBarristerAndRemoveBarristerParams {
   page: Page;
@@ -39,11 +41,9 @@ export class AddBarristerAndRemoveBarrister {
     await NocSuccessfulPage.nocSuccessfulPage(page, accessibilityTest);
     await this.checkSolicitorOnApplication(page, caseType, isApplicant);
     //Adding Barrister as the Solicitor
-    await AddBarrister.addBarrister();
-    await RemoveBarrister.removeBarrister();
-        
-
-
+        await AddBarrister.addBarrister(page, caseRef, accessibilityTest);
+        //TO ADD CHECKS APPLICATION AND PARTIES TAB
+    await RemoveBarrister.removeBarrister(page, caseRef, accessibilityTest);
   }
 
   private static async checkSolicitorOnApplication(

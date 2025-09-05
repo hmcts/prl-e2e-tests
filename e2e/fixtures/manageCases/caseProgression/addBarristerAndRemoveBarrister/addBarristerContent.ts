@@ -1,5 +1,5 @@
 export enum AddBarristerContent {
-    govUkHeadingL = "Add Barrister",
+    govUkHeadingL = "Add barrister",
     span1 = "For which party do you want to add a barrister?",
     span2 = "First names of the barrister",
     span3 = "Last name of the barrister",
