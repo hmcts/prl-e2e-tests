@@ -5,7 +5,6 @@ import { Helpers } from "../../../../common/helpers.ts";
 import config from "../../../../utils/config.utils.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
-//
 
 test.describe("Draft a non molestation order tests", (): void => {
   let caseRef: string;

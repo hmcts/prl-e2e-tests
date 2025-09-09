@@ -4,7 +4,6 @@ import { RemoveDraftOrder } from "../../../../journeys/manageCases/caseProgressi
 import { test } from "../../../fixtures.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
-//
 
 test.describe("Remove draft order as a court admin for solicitor-created DA case", (): void => {
   let caseRef: string;
