@@ -8,4 +8,5 @@ export enum ManageOrders28CAContent {
   formHint = "For example, DWP or the local authority",
   previous = "Previous",
   continue = "Continue",
+  noHiddenFormLabel1 = "Confirm Recipients",
 }

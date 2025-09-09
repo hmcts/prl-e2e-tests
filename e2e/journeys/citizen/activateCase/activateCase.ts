@@ -41,7 +41,7 @@ export class ActivateCase {
   }: ActiveCaseParams): Promise<Page> {
     let currentPage: Page = page;
     if (isManualSOA) {
-      await ServiceOfApplication.fullServiceOfApplicationJourney({
+      await ServiceOfApplication.FL401FullServiceOfApplicationJourney({
         page: page,
         accessibilityTest: accessibilityTest,
         ccdRef: caseRef,
