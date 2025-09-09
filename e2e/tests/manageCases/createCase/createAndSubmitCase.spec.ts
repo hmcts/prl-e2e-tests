@@ -14,62 +14,30 @@ import { Fl401AttendingTheHearing } from "../../../journeys/manageCases/createCa
 import { FL401WelshLanguageRequirements } from "../../../journeys/manageCases/createCase/FL401WelshLanguageRequirements/FL401WelshLanguageRequirements.js";
 import { Fl401StatementOfTruth } from "../../../journeys/manageCases/createCase/FL401StatementOfTruth/fl401StatementOfTruth.js";
 import { Helpers } from "../../../common/helpers.js";
-import {
-  C100TypeOfApplication
-} from "../../../journeys/manageCases/createCase/C100TypeOfApplication/C100TypeOfAplication.js";
+import { C100TypeOfApplication } from "../../../journeys/manageCases/createCase/C100TypeOfApplication/C100TypeOfAplication.js";
 import { C100HearingUrgency } from "../../../journeys/manageCases/createCase/C100HearingUrgency/C100HearingUrgency.js";
-import {
-  C100ApplicantDetails
-} from "../../../journeys/manageCases/createCase/C100ApplicantDetails/c100ApplicantDetails.js";
-import {
-  C100RespondentDetails
-} from "../../../journeys/manageCases/createCase/C100RespondentDetails/C100RespondentDetails.js";
-import {
-  C100OtherPeopleInTheCase
-} from "../../../journeys/manageCases/createCase/C100OtherPeopleInTheCase/C100OtherPeopleInTheCase.js";
+import { C100ApplicantDetails } from "../../../journeys/manageCases/createCase/C100ApplicantDetails/c100ApplicantDetails.js";
+import { C100RespondentDetails } from "../../../journeys/manageCases/createCase/C100RespondentDetails/C100RespondentDetails.js";
+import { C100OtherPeopleInTheCase } from "../../../journeys/manageCases/createCase/C100OtherPeopleInTheCase/C100OtherPeopleInTheCase.js";
 import { C100ChildDetails } from "../../../journeys/manageCases/createCase/C100ChildDetails/c100ChildDetails.js";
-import {
-  C100OtherChildrenNotInTheCase
-} from "../../../journeys/manageCases/createCase/C100OtherChildrenNotInTheCase/C100OtherChildrenNotInTheCase.js";
-import {
-  C100ChildrenAndApplicants
-} from "../../../journeys/manageCases/createCase/C100ChildrenAndApplicants/C100ChildrenAndApplicants.js";
-import {
-  C100ChildAndRespondents
-} from "../../../journeys/manageCases/createCase/C100ChildrenAndRespondents/c100ChildrenAndRespondents.js";
-import {
-  C100ChildrenAndOtherPeople
-} from "../../../journeys/manageCases/createCase/C100ChildrenAndOtherPeople/c100ChildrenAndOtherPeople.js";
-import {
-  C100AllegationsOfHarm
-} from "../../../journeys/manageCases/createCase/C100AllegationsOfHarm/c100AllegationsOfHarm.js";
-import {
-  C100MiamPolicyUpgrade
-} from "../../../journeys/manageCases/createCase/C100MiamPolicyUpgrade/C100MiamPolicyUpgrade.js";
-import {
-  C100OtherProceedings
-} from "../../../journeys/manageCases/createCase/C100OtherProceedings/C100OtherProceedings.js";
-import {
-  C100AttendingTheHearing
-} from "../../../journeys/manageCases/createCase/C100AttendingTheHearing/c100AttendingTheHearing.js";
-import {
-  C100InternationalElement
-} from "../../../journeys/manageCases/createCase/C100InternationalElement/C100InternationalElement.js";
-import {
-  C100LitigationCapacity
-} from "../../../journeys/manageCases/createCase/C100LitigationCapacity/C100LitigationCapacity.js";
-import {
-  C100WelshLanguageRequirements
-} from "../../../journeys/manageCases/createCase/C100welshLanguageRequirements/C100welshLanguageRequirements.js";
+import { C100OtherChildrenNotInTheCase } from "../../../journeys/manageCases/createCase/C100OtherChildrenNotInTheCase/C100OtherChildrenNotInTheCase.js";
+import { C100ChildrenAndApplicants } from "../../../journeys/manageCases/createCase/C100ChildrenAndApplicants/C100ChildrenAndApplicants.js";
+import { C100ChildAndRespondents } from "../../../journeys/manageCases/createCase/C100ChildrenAndRespondents/c100ChildrenAndRespondents.js";
+import { C100ChildrenAndOtherPeople } from "../../../journeys/manageCases/createCase/C100ChildrenAndOtherPeople/c100ChildrenAndOtherPeople.js";
+import { C100AllegationsOfHarm } from "../../../journeys/manageCases/createCase/C100AllegationsOfHarm/c100AllegationsOfHarm.js";
+import { C100MiamPolicyUpgrade } from "../../../journeys/manageCases/createCase/C100MiamPolicyUpgrade/C100MiamPolicyUpgrade.js";
+import { C100OtherProceedings } from "../../../journeys/manageCases/createCase/C100OtherProceedings/C100OtherProceedings.js";
+import { C100AttendingTheHearing } from "../../../journeys/manageCases/createCase/C100AttendingTheHearing/c100AttendingTheHearing.js";
+import { C100InternationalElement } from "../../../journeys/manageCases/createCase/C100InternationalElement/C100InternationalElement.js";
+import { C100LitigationCapacity } from "../../../journeys/manageCases/createCase/C100LitigationCapacity/C100LitigationCapacity.js";
+import { C100WelshLanguageRequirements } from "../../../journeys/manageCases/createCase/C100welshLanguageRequirements/C100welshLanguageRequirements.js";
 import { C100SubmitAndPay } from "../../../journeys/manageCases/createCase/C100SubmitAndPay/C100SubmitAndPay.js";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
 // Class to create a non-TS-Support case locally
 test.describe("Create and submit a case", (): void => {
-  test(`Create and submit an FL401 case`, async ({
-    page,
-  }): Promise<void> => {
+  test(`Create and submit an FL401 case`, async ({ page }): Promise<void> => {
     await SolicitorCreateInitial.createInitialCase({
       page: page,
       user: "solicitor",
@@ -81,16 +49,16 @@ test.describe("Create and submit a case", (): void => {
       page: page,
       accessibilityTest: false,
       errorMessaging: false,
-      isLinkedToC100: false,
+      isLinkedToC100: true,
       subJourney: false,
     });
     await FL401WithoutNoticeOrder.fl401WithoutNoticeOrder({
       page: page,
       accessibilityTest: false,
       errorMessaging: false,
+      isWithoutNoticeDetailsYes: false,
+      isWithoutNoticeDetailsBailConditions: "No",
       subJourney: false,
-      isWithoutNoticeDetailsYes: true,
-      isWithoutNoticeDetailsBailConditions: "Yes",
     });
     await FL401ApplicantDetails.fl401ApplicantDetails({
       page: page,
@@ -104,22 +72,22 @@ test.describe("Create and submit a case", (): void => {
       page: page,
       accessibilityTest: false,
       errorMessaging: false,
-      subJourney: false,
       respondentDetailsAllOptionsYes: true,
+      subJourney: false,
     });
     await FL401ApplicantsFamily.fl401ApplicantsFamily({
       page: page,
       accessibilityTest: false,
       errorMessaging: false,
+      applicantHasChildren: true,
       subJourney: false,
-      applicantHasChildren: false,
     });
     await FL401RelationshipToRespondent.fl401RelationshipToRespondent({
       page: page,
       accessibilityTest: false,
       errorMessaging: false,
+      relationshipToRespondent: "bfGfOrPartnerNotLivedTogether",
       subJourney: false,
-      relationshipToRespondent: "marriedOrCivil",
     });
     await FL401RespondentsBehaviour.fl401RespondentsBehaviour({
       page: page,
@@ -129,40 +97,40 @@ test.describe("Create and submit a case", (): void => {
     await FL401TheHome.fl401TheHome({
       page: page,
       accessibilityTest: false,
-      subJourney: false,
-      applicantHasChildren: false,
+      applicantHasChildren: true,
       fl401TheHomeYesNo: true,
-      fl401EverLivedAtAddress: "yesBothOfThem",
-      fl401IntendToLiveAtAddress: "yesBothOfThem",
+      fl401EverLivedAtAddress: "yesApplicant",
+      fl401IntendToLiveAtAddress: "yesRespondent",
+      subJourney: false,
     });
     await FL401OtherProceedings.fl401OtherProceedings({
       page: page,
       accessibilityTest: false,
       errorMessaging: false,
+      otherProceedingsRadios: "Yes",
       subJourney: false,
-      otherProceedingsRadios: "No",
     });
     await Fl401AttendingTheHearing.fl401AttendingTheHearing({
       page: page,
       accessibilityTest: false,
       errorMessaging: false,
-      subJourney: false,
       fl401AttendingTheHearingYesNo: true,
+      subJourney: false,
     });
     await FL401WelshLanguageRequirements.fl401WelshLanguageRequirements({
       page: page,
       accessibilityTest: false,
       errorMessaging: false,
-      subJourney: false,
       welshLanguageRequirementsAllOptionsYes: true,
-      welshLanguageRequirementsSelectWelsh: true,
+      welshLanguageRequirementsSelectWelsh: false,
+      subJourney: false,
     });
     await Fl401StatementOfTruth.fl401StatementOfTruth({
       page: page,
       accessibilityTest: false,
       errorMessaging: false,
-      subJourney: false,
       fl401YesNoToEverything: true,
+      subJourney: false,
     });
     console.log(await Helpers.getCaseNumberFromUrl(page));
   });
@@ -180,7 +148,7 @@ test.describe("Create and submit a case", (): void => {
     await C100TypeOfApplication.c100TypeOfApplication({
       page,
       user: "solicitor",
-      accessibilityTest: true,
+      accessibilityTest: false,
       errorMessaging: false,
       yesNoC100TypeOfApplication: true,
       typeOfChildArrangementOrder: "Spend time with order",
@@ -190,7 +158,7 @@ test.describe("Create and submit a case", (): void => {
     await C100HearingUrgency.c100HearingUrgency({
       page,
       user: "solicitor",
-      accessibilityTest: true,
+      accessibilityTest: false,
       errorMessaging: false,
       yesNoHearingUrgency: true,
       subJourney: false,
@@ -207,7 +175,7 @@ test.describe("Create and submit a case", (): void => {
     await C100RespondentDetails.c100RespondentDetails({
       page: page,
       user: "solicitor",
-      accessibilityTest: true,
+      accessibilityTest: false,
       yesNoRespondentDetailsC100: true,
       respondentGender: "female",
       respondentAddress5Years: "yes",
@@ -227,7 +195,7 @@ test.describe("Create and submit a case", (): void => {
     await C100ChildDetails.c100ChildDetails({
       page: page,
       user: "solicitor",
-      accessibilityTest: true,
+      accessibilityTest: false,
       c100ChildGender: "female",
       yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions: "no",
       subJourney: false,
@@ -243,7 +211,7 @@ test.describe("Create and submit a case", (): void => {
     });
     await C100ChildrenAndApplicants.c100ChildrenAndApplicants({
       page: page,
-      accessibilityTest: true,
+      accessibilityTest: false,
       errorMessaging: false,
       applicantChildRelationship: "Other",
       childLiveWithApplicant: true,
@@ -266,7 +234,7 @@ test.describe("Create and submit a case", (): void => {
     await C100ChildrenAndOtherPeople.c100ChildrenAndOtherPeople({
       page: page,
       user: "solicitor",
-      accessibilityTest: true,
+      accessibilityTest: false,
       errorMessaging: false,
       yesNoOtherPeopleInTheCase: true,
       otherPersonLivesInRefuge: false,
@@ -278,7 +246,7 @@ test.describe("Create and submit a case", (): void => {
     });
     await C100AllegationsOfHarm.c100AllegationsOfHarm({
       page: page,
-      accessibilityTest: true,
+      accessibilityTest: false,
       errorMessaging: false,
       c100YesNoAllegationsOfHarm: true,
       subJourney: false,
@@ -287,7 +255,7 @@ test.describe("Create and submit a case", (): void => {
     await C100MiamPolicyUpgrade.c100MiamPolicyUpgrade({
       page: page,
       user: "solicitor",
-      accessibilityTest: true,
+      accessibilityTest: false,
       errorMessaging: false,
       C100MiamPolicyUpgrade1PageType: "yes",
       yesNoMiamPolicyUpgrade: true,
@@ -296,14 +264,14 @@ test.describe("Create and submit a case", (): void => {
     });
     await C100OtherProceedings.c100OtherProceedings({
       page: page,
-      accessibilityTest: true,
+      accessibilityTest: false,
       errorMessaging: false,
       c100OtherProceedings: "No",
       subJourney: false,
     });
     await C100AttendingTheHearing.c100AttendingTheHearing({
       page: page,
-      accessibilityTest: true,
+      accessibilityTest: false,
       errorMessaging: false,
       c100AttendingTheHearingYesNo: true,
       subJourney: false,
@@ -311,21 +279,21 @@ test.describe("Create and submit a case", (): void => {
     await C100InternationalElement.c100InternationalElement({
       page: page,
       user: "solicitor",
-      accessibilityTest: true,
+      accessibilityTest: false,
       yesNoInternationalElement: true,
       subJourney: false,
     });
     await C100LitigationCapacity.c100LitigationCapacity({
       page: page,
       user: "solicitor",
-      accessibilityTest: true,
+      accessibilityTest: false,
       yesNoLitigationCapacity: true,
       subJourney: false,
     });
     await C100WelshLanguageRequirements.c100WelshLanguageRequirements({
       page: page,
       user: "solicitor",
-      accessibilityTest: true,
+      accessibilityTest: false,
       WelshPageRequirementType: "english",
       yesNoWelshLanguage: true,
       subJourney: false,
@@ -334,7 +302,7 @@ test.describe("Create and submit a case", (): void => {
       page: page,
       yesNoWelshLanguage: true,
       yesNoHelpWithFees: false, // Help with Fees is not yet available in Family Private Law digital service.
-      accessibilityTest: true,
+      accessibilityTest: false,
     });
     console.log(await Helpers.getCaseNumberFromUrl(page));
   });

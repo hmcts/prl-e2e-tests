@@ -15,7 +15,7 @@ test.describe("Manage cases case solicitor create case tests.", (): void => {
     });
   });
 
-  test(`Create a FL401 case as a solicitor - initial screens only.
+  test(`Create an FL401 case as a solicitor - initial screens only.
   @smoke`, async ({ page }): Promise<void> => {
     await SolicitorCreateInitial.createInitialCase({
       page: page,
