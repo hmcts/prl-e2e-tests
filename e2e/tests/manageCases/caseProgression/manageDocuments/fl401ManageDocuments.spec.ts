@@ -7,7 +7,6 @@ test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("Manage documents event for DA Solicitor case tests as a court admin.", () => {
   let ccdRef: string = "";
-  //
 
   test.beforeEach(async ({ page, browser, caseEventUtils }) => {
     ccdRef = await caseEventUtils.createDACase(browser);

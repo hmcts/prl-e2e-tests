@@ -29,7 +29,6 @@
     "pwinstall": "yarn playwright install --with-deps",
     "setup": "yarn install && ./scripts/get_secrets.sh && yarn pwinstall && yarn playwright install webkit && yarn playwright install firefox",
     "lint": "yarn prettier . --write && yarn tsc -p tsconfig.json && yarn eslint .",
-    "playwright:visual": "chmod +x ./scripts/start_visual_container.sh && ./scripts/start_visual_container.sh",
     "test:changes": "yarn pwinstall && yarn tsx ./e2e/common/changedTestsRunner.ts",
     "test:manageCasesSmoke": "yarn pwinstall && yarn playwright test e2e/tests/manageCases --project chromium --grep @smoke",
     "test:manageCasesChrome": "yarn pwinstall && yarn playwright test e2e/tests/manageCases --project chromium --grep @nightly",
@@ -41,7 +40,8 @@
     "test:citizenFrontendChrome": "yarn pwinstall && yarn playwright test e2e/tests/citizen --project chromium --grep @nightly",
     "test:citizenFrontendFirefox": "yarn pwinstall firefox && yarn playwright test e2e/tests/citizen --project firefox --grep @smoke",
     "test:citizenFrontendSafari": "yarn pwinstall webkit && yarn playwright test e2e/tests/citizen --project webkit --grep @smoke",
-    "test:citizenFrontendAccessibility": "yarn pwinstall && yarn playwright test e2e/tests/citizen --project chromium --grep @accessibility"
+    "test:citizenFrontendAccessibility": "yarn pwinstall && yarn playwright test e2e/tests/citizen --project chromium --grep @accessibility",
+    "start-visual-container": "docker compose run --rm playwright"
   },
-  "packageManager": "yarn@4.9.2"
+  "packageManager": "yarn@4.9.4"
 }
