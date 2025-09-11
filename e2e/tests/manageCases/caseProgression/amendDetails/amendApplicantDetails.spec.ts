@@ -93,7 +93,6 @@ test.describe("Complete amend applicant details event as a court admin", () => {
       solicitorInfo.email,
       solicitorInfo.phone,
       solicitorInfo.ref,
-      solicitorInfo.posstcode,
     );
   });
 });

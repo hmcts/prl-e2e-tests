@@ -4,7 +4,6 @@ import { AmendApplicantDetails2Page } from "./pages/exui/amendDetails/amendAppli
 import { TasksPage } from "./pages/exui/caseView/tasks.po.js";
 import { SummaryPage } from "./pages/exui/caseView/summary.po.js";
 import { AmendApplicantDetailsSubmitPage } from "./pages/exui/amendDetails/amendApplicantDetailsSubmitPage.po.ts";
-import { CheckYourAnswersTable } from "./components/exui/checkYourAnswersTable.component.ts";
 export interface PageFixtures {
   tasksPage: TasksPage;
   summaryPage: SummaryPage;
@@ -12,7 +11,6 @@ export interface PageFixtures {
   fl401AddCaseNumberSubmitPage: Fl401AddCaseNumberSubmitPage;
   amendApplicantDetails2Page: AmendApplicantDetails2Page;
   amendApplicantDetailsSubmitPage: AmendApplicantDetailsSubmitPage;
-  checkYourAnswersTable: CheckYourAnswersTable;
 }
 
 export const pageFixtures = {
@@ -30,9 +28,6 @@ export const pageFixtures = {
   },
   amendApplicantDetails2Page: async ({ page }, use) => {
     await use(new AmendApplicantDetails2Page(page));
-  },
-  checkYourAnswersTable: async ({ page }, use) => {
-    await use(new CheckYourAnswersTable(page));
   },
   amendApplicantDetailsSubmitPage: async (
     { page, checkYourAnswersTable },

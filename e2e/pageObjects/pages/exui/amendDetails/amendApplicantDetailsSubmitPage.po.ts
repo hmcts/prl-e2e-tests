@@ -1,13 +1,12 @@
 import { Page } from "@playwright/test";
-import { CheckYourAnswersTable } from "../../../components/exui/checkYourAnswersTable.component.ts"; // Adjust the path as necessary
 import { EventPage } from "../eventPage.po.ts";
-
+import { CheckYourAnswersTable } from "../../../components/exui/checkYourAnswersTable.component.ts";
 export class AmendApplicantDetailsSubmitPage extends EventPage {
-  readonly table: CheckYourAnswersTable;
-
-  constructor(page: Page, table: CheckYourAnswersTable) {
+  constructor(
+    page: Page,
+    private table: CheckYourAnswersTable,
+  ) {
     super(page, "Amend applicant details");
-    this.table = table;
   }
 
   async checkPageLoaded() {
@@ -59,17 +58,22 @@ export class AmendApplicantDetailsSubmitPage extends EventPage {
   }
 
   async checkConfidentialDetails(email: string) {
-    await this.table.checkYesNo("*Can you provide email address?", true);
-    await this.table.checkAnswer("*Email address", email);
-    await this.table.checkYesNo("*Do you need to keep the email address confidential?", true);
-    await this.table.checkYesNo(
-      "*Do you need to keep the address confidential?",
-      true,
-    );
-    await this.table.checkYesNo(
-      "*Do you need to keep the contact number confidential?",
-      true,
-    );
+    await Promise.all([
+      this.table.checkYesNo("*Can you provide email address?", true),
+      this.table.checkAnswer("*Email address", email),
+      this.table.checkYesNo(
+        "*Do you need to keep the address confidential?",
+        true,
+      ),
+      this.table.checkYesNo(
+        "*Do you need to keep the contact number confidential?",
+        true,
+      ),
+      this.table.checkYesNo(
+        "*Do you need to keep the email address confidential?",
+        true,
+      ),
+    ]);
   }
 
   async checkSolicitorDetails(
@@ -78,13 +82,13 @@ export class AmendApplicantDetailsSubmitPage extends EventPage {
     email: string,
     phone: string,
     reference: string,
-    postcode: string,
   ) {
-    await this.table.checkAnswer("*Representative's first name", first);
-    await this.table.checkAnswer("*Representative's last name", last);
-    await this.table.checkAnswer("*Email address", email);
-    await this.table.checkAnswer("*Telephone number", phone);
-    await this.table.checkAnswer("Solicitor reference", reference);
-    await this.table.checkAnswer("Postcode/Zipcode", postcode);
+    await Promise.all([
+      this.table.checkAnswer("*Representative's first name", first),
+      this.table.checkAnswer("*Representative's last name", last),
+      this.table.checkAnswer("*Email address", email),
+      this.table.checkAnswer("*Telephone number", phone),
+      this.table.checkAnswer("Solicitor reference", reference),
+    ]);
   }
 }
