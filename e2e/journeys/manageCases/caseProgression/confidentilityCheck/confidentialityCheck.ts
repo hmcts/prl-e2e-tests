@@ -2,6 +2,7 @@ import {
   ApplicantGender,
   applicationSubmittedBy,
   createOrderFL401Options,
+  solicitorCaseCreateType,
 } from "../../../../common/types.ts";
 import { Browser, Page } from "@playwright/test";
 import { responsibleForServing } from "../../../../pages/manageCases/caseProgression/serviceOfApplication/ServiceOfApplication4Page.ts";
@@ -16,8 +17,10 @@ import { ConfidentialityCheckSubmitPage } from "../../../../pages/manageCases/ca
 import { ConfidentialityCheckConfirmPage } from "../../../../pages/manageCases/caseProgression/confidentialityCheck/confidentialityCheckConfirmPage.ts";
 import { Selectors } from "../../../../common/selectors.ts";
 import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { C100ConfidentialityCheck1Page } from "../../../../pages/manageCases/caseProgression/confidentialityCheck/c100ConfidentialityCheck1Page.js";
+import { C100ConfidentialityCheckConfirmPage } from "../../../../pages/manageCases/caseProgression/confidentialityCheck/c100ConfidentialityCheckConfirmPage.js";
 
-interface ConfidentialityCheckParams {
+interface FL401ConfidentialityCheckParams {
   page: Page;
   accessibilityTest: boolean;
   ccdRef: string;
@@ -41,6 +44,24 @@ interface ConfidentialityCheckParams {
   browserName: string;
 }
 
+interface C100ConfidentialityCheckParams {
+  page: Page;
+  browser: Browser;
+  accessibilityTest: boolean;
+  ccdRef: string;
+  personallyServed: boolean;
+  isUploadOrder: boolean;
+  checkOption: string;
+  serveOrderNow: boolean;
+  yesNoServiceOfApplication4: boolean;
+  responsibleForServing: responsibleForServing;
+  applicationSubmittedBy: applicationSubmittedBy;
+  confidentialityCheck: boolean;
+  isApplicationServedAfterConfidentialityCheck: boolean;
+  browserName: string;
+  solicitorCaseCreateType: solicitorCaseCreateType;
+}
+
 enum UniqueSelectors {
   tab = ".mat-tab-label",
   rightArrowTab = ".mat-tab-header-pagination-after",
@@ -48,7 +69,7 @@ enum UniqueSelectors {
 }
 
 export class ConfidentialityCheck {
-  public static async confidentialityCheck({
+  public static async FL401confidentialityCheck({
     page,
     accessibilityTest,
     ccdRef,
@@ -70,8 +91,8 @@ export class ConfidentialityCheck {
     confidentialityCheck,
     isApplicationServedAfterConfidentialityCheck,
     browserName,
-  }: ConfidentialityCheckParams): Promise<void> {
-    await CompleteTheOrder.completeTheOrder({
+  }: FL401ConfidentialityCheckParams): Promise<void> {
+    await CompleteTheOrder.FL401completeTheOrder({
       page,
       browser,
       accessibilityTest,
@@ -94,7 +115,7 @@ export class ConfidentialityCheck {
       keepDetailsConfidential,
       solicitorDetailsChange,
     });
-    await ServiceOfApplication.serviceOfApplicationJourney({
+    await ServiceOfApplication.FL401ServiceOfApplicationJourney({
       page,
       accessibilityTest,
       ccdRef,
@@ -157,19 +178,73 @@ export class ConfidentialityCheck {
       `${Selectors.h2}:text-is("Served pack")`,
       1,
     );
-    // check served pack is served by prl case manager swansea
-    await Helpers.checkVisibleAndPresent(
+  }
+
+  public static async C100confidentialityCheck({
+    page,
+    accessibilityTest,
+    ccdRef,
+    browser,
+    personallyServed,
+    yesNoServiceOfApplication4,
+    responsibleForServing,
+    applicationSubmittedBy,
+    confidentialityCheck,
+    isApplicationServedAfterConfidentialityCheck,
+    browserName,
+    solicitorCaseCreateType,
+    isUploadOrder,
+    serveOrderNow,
+    checkOption,
+  }: C100ConfidentialityCheckParams): Promise<void> {
+    await ServiceOfApplication.C100FullServiceOfApplicationJourney({
       page,
-      `${Selectors.Span}:text-is("prl case manager swansea")`,
-      1,
+      ccdRef,
+      accessibilityTest,
+      personallyServed,
+      solicitorCaseCreateType,
+      yesNoServiceOfApplication4,
+      responsibleForServing,
+      applicationSubmittedBy,
+      confidentialityCheck,
+      isUploadOrder,
+      serveOrderNow,
+      checkOption,
+    });
+    // login as case manager & wait for confidential check task
+    const caseManagerPage: Page = await Helpers.openNewBrowserWindow(
+      browser,
+      "caseManager",
     );
-    await page.click(UniqueSelectors.plusButtonOnSoaTabView);
-    // check confidential contact details notice is present
-    await Helpers.checkVisibleAndPresent(
-      page,
-      `${Selectors.a}:text-is("Annex 1 - Confidential contact details notice.pdf")`,
-      2,
+    await Helpers.goToCase(
+      caseManagerPage,
+      config.manageCasesBaseURLCase,
+      ccdRef,
+      "tasks",
     );
+    await Helpers.assignTaskToMeAndTriggerNextSteps(
+      caseManagerPage,
+      "C8 - Confidential details check",
+      "Confidential Check",
+    );
+    await C100ConfidentialityCheck1Page.c100ConfidentialityCheck1Page({
+      page: caseManagerPage,
+      browserName: browserName,
+      accessibilityTest: accessibilityTest,
+      isApplicationServedAfterConfidentialityCheck:
+        isApplicationServedAfterConfidentialityCheck,
+    });
+    await ConfidentialityCheckSubmitPage.confidentialityCheckSubmitPage({
+      page: caseManagerPage,
+      accessibilityTest: accessibilityTest,
+      isApplicationServedAfterConfidentialityCheck:
+        isApplicationServedAfterConfidentialityCheck,
+    });
+    await C100ConfidentialityCheckConfirmPage.c100ConfidentialityCheckConfirmPage(
+      caseManagerPage,
+      accessibilityTest,
+    );
+    await this.checkServiceOfApplicationTab(caseManagerPage);
   }
 
   // cut down version of the confidential details journey

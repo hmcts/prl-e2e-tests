@@ -22,7 +22,7 @@ test.describe("Service of Application task for DA Solicitor case tests.", () => 
     page,
     browser,
   }): Promise<void> => {
-    await ServiceOfApplication.fullServiceOfApplicationJourney({
+    await ServiceOfApplication.FL401FullServiceOfApplicationJourney({
       page: page,
       accessibilityTest: true,
       ccdRef: ccdRef,
@@ -41,7 +41,7 @@ test.describe("Service of Application task for DA Solicitor case tests.", () => 
     page,
     browser,
   }): Promise<void> => {
-    await ServiceOfApplication.fullServiceOfApplicationJourney({
+    await ServiceOfApplication.FL401FullServiceOfApplicationJourney({
       page: page,
       accessibilityTest: true,
       ccdRef: ccdRef,

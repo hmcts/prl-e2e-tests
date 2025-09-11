@@ -55,7 +55,7 @@ Should you wish to run in headed mode, you can select modify run configuration, 
 `--project chromium --headed`
 This runs a test in Chrome, whilst headed.
 
-Should you need to change or create new azure secrets you can run the `get_secrets.sh` [script](https://github.com/hmcts/prl-e2e-tests/blob/master/scripts/get_secrets.sh) from your local prl-e2e-tests directory to generate a new .env file containing the new or updated secrets.
+Should you need to change or create new azure secrets you can run the `yarn get-secrets prl-aat` from your local prl-e2e-tests directory to generate a new .env file containing the new or updated secrets.
 
 ### Our Jenkins configuration
 
@@ -128,7 +128,7 @@ Visual testing in playwright is the process of comparing an expected screenshot 
 ### Recording snapshots
 
 In order to match screenshots, they need to be the same. Therefore things like OS, Browser and viewport need to be consistent when creating the snapshots and when running the tests. This is also reflected in the way playwright names the screenshots (although you can choose your own names/rename the generated screenshots).
-As a solution to this, it's recommended to use Docker to both create the snapshots and run the tests (locally and on CI). See the [`start_visual_container.sh` script](https://github.com/hmcts/prl-e2e-tests/blob/master/scripts/start_visual_container.sh).
+As a solution to this, it's recommended to use Docker to both create the snapshots and run the tests (locally and on CI).
 
 You may also have some UI changes to your service, in which you will need to re-generate any snapshots. Playwright provides a `--update-snapshots` flag to do this.
 
@@ -148,11 +148,6 @@ See examples in the [tests](https://github.com/hmcts/tcoe-playwright-example/blo
 
 ### Running the visual tests locally
 
-Use the following command to start the visual testing container:
-`yarn playwright:visual`
-This will:
-
-- Ensure the Docker script is executable
-- Start a Playwright Docker container (based on the mcr.microsoft.com/playwright image)
-- Install dependencies inside the container
-- Drop you into an interactive shell to run visual tests or debug issues
+Run the following command to run the visual container (from the Dockerfile):
+`yarn start-visual-container`
+This will build the playwright-container image if it doesn't already exist and also start the docker container (via docker-compose.yaml)

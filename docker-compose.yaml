@@ -1,0 +1,13 @@
+services:
+  playwright:
+    build: .
+    image: playwright-container
+    container_name: playwright
+    stdin_open: true
+    tty: true
+    network_mode: host
+    ipc: host
+    working_dir: /prl-e2e-tests
+    volumes:
+      - .:/prl-e2e-tests
+    entrypoint: ["/bin/bash"]
