@@ -1,6 +1,5 @@
 import { Page } from "@playwright/test";
 import { FileUploadComponent } from "../../../components/exui/uploadFile.component.ts";
-import { ApplicantGender } from "../../../../common/types.ts";
 import { EventPage } from "../eventPage.po.ts";
 
 export class AmendApplicantDetails2Page extends EventPage {
@@ -75,7 +74,7 @@ export class AmendApplicantDetails2Page extends EventPage {
     await this.dobYear.fill(year);
   }
 
-  async selectGender(gender: ApplicantGender) {
+  async selectGender(gender: string) {
     if (gender === "female") await this.genderFemale.click();
     if (gender === "male") await this.genderMale.click();
     if (gender === "other") {
@@ -88,7 +87,8 @@ export class AmendApplicantDetails2Page extends EventPage {
     await this.refugeYes.click();
     const fileUpload = new FileUploadComponent(this.page, {
       uploadLabelText: "*Upload a C8 form with the refuge address",
-      downloadParagraphText: "You can download the form from www.gov.uk. The address, email address and contact number entered for this party will be kept confidential.",
+      downloadParagraphText:
+        "You can download the form from www.gov.uk. The address, email address and contact number entered for this party will be kept confidential.",
       chooseFileLocatorID: this.c8FormUpload,
     });
     await fileUpload.completeUpload();
@@ -114,7 +114,6 @@ export class AmendApplicantDetails2Page extends EventPage {
     await this.solicitorEmail.fill(email);
     await this.solicitorPhone.fill(phone);
     await this.solicitorReference.fill(reference);
-
     await this.solicitorPostcode.fill(postcode);
     await this.solicitorLookup.click();
     await this.solicitorSelectAddress.selectOption("1: Object");

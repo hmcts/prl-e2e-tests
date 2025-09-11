@@ -20,12 +20,9 @@ export abstract class EventPage extends Base {
     this.continueButton = this.page.locator(Selectors.button, {
       hasText: CommonStaticText.continue,
     });
-    this.saveAndContinueButton = this.page.locator(
-      Selectors.button,
-      {
-        hasText: CommonStaticText.saveAndContinue,
-      },
-    );
+    this.saveAndContinueButton = this.page.locator(Selectors.button, {
+      hasText: CommonStaticText.saveAndContinue,
+    });
     this.previousButton = this.page.locator(Selectors.button, {
       hasText: CommonStaticText.previous,
     });

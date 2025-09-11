@@ -21,33 +21,79 @@ test.describe("Complete amend applicant details event as a court admin", () => {
   live in a refuge: yes,
   whether to keep details confidential: yes to all.
   Accessibility testing: Yes. @nightly @regression @accessibility`, async ({
+    axeUtils,
     amendApplicantDetails2Page,
-    summaryPage
+    amendApplicantDetailsSubmitPage,
+    summaryPage,
+    dateHelperUtils,
   }): Promise<void> => {
-    await summaryPage.chooseEventFromDropdown( "Amend applicant details");
+    //set test data
+    const applicantInfo = {
+      first: "John",
+      last: "Doe",
+      previous: "John Smith",
+      gender: "male",
+    };
+    const [dobChangeDay, dobChangeMonth, dobChangeYear] =
+      dateHelperUtils.generateDOB(false);
+    const emailInput = `test@test.com`;
+    const solicitorInfo = {
+      first: "Jane",
+      last: "Smith",
+      email: "solicitor@test.com",
+      phone: "07123456789",
+      ref: "123",
+      posstcode: "SW1H 9AJ",
+    };
+
+    //start test steps
+    await summaryPage.chooseEventFromDropdown("Amend applicant details");
     await amendApplicantDetails2Page.checkPageLoaded();
     await amendApplicantDetails2Page.enterApplicantName(
-      "John",
-      "Doe",
-      "John Smith",
+      applicantInfo.first,
+      applicantInfo.last,
+      applicantInfo.previous,
     );
-    const [dobChangeDay, dobChangeMonth, dobChangeYear] =
-      Helpers.generateDOB(false);
     await amendApplicantDetails2Page.enterDateOfBirth(
       dobChangeDay,
       dobChangeMonth,
       dobChangeYear,
     );
-    await amendApplicantDetails2Page.selectGender("female");
+    await amendApplicantDetails2Page.selectGender(applicantInfo.gender);
     await amendApplicantDetails2Page.selectRefugeAndUpload();
-    await amendApplicantDetails2Page.setConfidentialDetails("test@test.com");
+    await amendApplicantDetails2Page.setConfidentialDetails(emailInput);
     await amendApplicantDetails2Page.fillSolicitorDetails(
-      "Jane",
-      "Smith",
-      "solicitor@test.com",
-      "07123456789",
-      "123",
-      "SW1H 9AJ",
+      solicitorInfo.first,
+      solicitorInfo.last,
+      solicitorInfo.email,
+      solicitorInfo.phone,
+      solicitorInfo.ref,
+      solicitorInfo.posstcode,
+    );
+    await axeUtils.audit();
+    await amendApplicantDetails2Page.clickContinue();
+
+    await amendApplicantDetailsSubmitPage.checkPageLoaded();
+    await amendApplicantDetailsSubmitPage.checkApplicantName(
+      applicantInfo.first,
+      applicantInfo.last,
+      applicantInfo.previous,
+    );
+    await amendApplicantDetailsSubmitPage.checkDateOfBirth(
+      dobChangeDay,
+      dobChangeMonth,
+      dobChangeYear,
+    );
+    await amendApplicantDetailsSubmitPage.checkGender(applicantInfo.gender);
+    await amendApplicantDetailsSubmitPage.checkRefugeAndUpload();
+    await amendApplicantDetailsSubmitPage.checkConfidentialDetails(emailInput);
+    await amendApplicantDetailsSubmitPage.checkSolicitorDetails(
+      solicitorInfo.first,
+      solicitorInfo.last,
+      solicitorInfo.email,
+      solicitorInfo.phone,
+      solicitorInfo.ref,
+      solicitorInfo.posstcode,
     );
   });
 });

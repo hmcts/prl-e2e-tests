@@ -1,8 +1,10 @@
 import { Config } from "./config.utils.ts";
 import {
+  AxeUtils,
   IdamUtils,
   SessionUtils,
   ServiceAuthUtils,
+  TableUtils,
 } from "@hmcts/playwright-common";
 import { TokenUtils } from "./token.utils.ts";
 import { CitizenCACaseUtils } from "./citizenCACase.utils.ts";
@@ -10,7 +12,8 @@ import { CourtNavUtils } from "./courtNav.utils.ts";
 import { AccessCodeHelper } from "./accessCode.utils.ts";
 import { CreateUserUtil } from "./createUser.utils.ts";
 import { IdamLoginHelper } from "./idamLoginHelper.utils.ts";
-import { CaseEventUtils } from "./caseEvent.utils.js";
+import { CaseEventUtils } from "./caseEvent.utils.ts";
+import { DateHelperUtils } from "./dateHelpers.utils.ts";
 
 export interface UtilsFixtures {
   config: Config;
@@ -24,11 +27,20 @@ export interface UtilsFixtures {
   sessionUtils: SessionUtils;
   serviceAuthUtils: ServiceAuthUtils;
   caseEventUtils: CaseEventUtils;
+  axeUtils: AxeUtils;
+  tableUtils: TableUtils;
+  dateHelperUtils: DateHelperUtils;
 }
 
 export const utilsFixtures = {
+  axeUtils: async ({ page }, use) => {
+    await use(new AxeUtils(page));
+  },
   config: async ({}, use) => {
     await use(Config);
+  },
+  dateHelperUtils: async ({}, use) => {
+    await use(new DateHelperUtils());
   },
   idamUtils: async ({}, use) => {
     await use(new IdamUtils());
@@ -38,6 +50,9 @@ export const utilsFixtures = {
   },
   sessionUtils: async ({}, use) => {
     await use(new SessionUtils());
+  },
+  tableUtils: async ({}, use) => {
+    await use(new TableUtils());
   },
   tokenUtils: async ({ idamUtils }, use) => {
     await use(new TokenUtils(idamUtils));
