@@ -3,6 +3,7 @@ import { Helpers } from "../../../../common/helpers.ts";
 import config from "../../../../utils/config.utils.ts";
 import { NoticeOfChange } from "../../../../journeys/manageCases/caseProgression/noticeOfChange/noticeOfChange.ts";
 import { test } from "../../../fixtures.ts";
+import { AddBarristerAndRemoveBarrister } from "../../../../journeys/manageCases/caseProgression/addBarristerAndRemoveBarrister/addBarristerAndRemoveBarrister.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "nocSolicitor.json" });
 
@@ -23,7 +24,7 @@ test.describe("Add/Remove Barrister for CA case", () => {
     page,
     browser,
   }): Promise<void> => {
-    await NoticeOfChange.noticeOfChange({
+      await AddBarristerAndRemoveBarrister.addBarristerAndRemoveBarrister({
       page: page,
       browser: browser,
       caseType: "C100",
@@ -37,14 +38,14 @@ test.describe("Add/Remove Barrister for CA case", () => {
         page,
         browser,
     }): Promise<void> => {
-        await NoticeOfChange.noticeOfChange({
-            page: page,
-            browser: browser,
-            caseType: "C100",
-            caseRef: ccdRef,
-            isApplicant: true,
-            accessibilityTest: true,
-        });
+      await AddBarristerAndRemoveBarrister.addBarristerAndRemoveBarrister({
+          page: page,
+          browser: browser,
+          caseType: "C100",
+          caseRef: ccdRef,
+          isApplicant: true,
+          accessibilityTest: true,
+    });
     });
 
     // Repeat above scenarios for a Citizen created case
