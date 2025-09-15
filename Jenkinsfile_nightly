@@ -105,7 +105,6 @@ def secrets = [
     secret('prl-cos-aat-url', 'PRL_COS_API_URL'),
     secret('prl-noc-solicitor-username', 'NOC_SOLICITOR_USERNAME'),
     secret('prl-noc-solicitor-password', 'NOC_SOLICITOR_PASSWORD'),
-    secret('prl-noc-solicitor-password', 'NOC_SOLICITOR_PASSWORD'),
     secret('e2e-tests-github-token', 'GITHUB_TOKEN'),
   ]
 ]
