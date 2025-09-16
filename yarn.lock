@@ -718,9 +718,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hmcts/playwright-common@npm:^1.0.32":
-  version: 1.0.35
-  resolution: "@hmcts/playwright-common@npm:1.0.35"
+"@hmcts/playwright-common@npm:^1.0.36":
+  version: 1.0.36
+  resolution: "@hmcts/playwright-common@npm:1.0.36"
   dependencies:
     "@axe-core/playwright": "npm:^4.10.0"
     "@eslint/js": "npm:^9.11.1"
@@ -736,7 +736,10 @@ __metadata:
     typescript-eslint: "npm:^8.8.0"
   peerDependencies:
     "@playwright/test": ^1.53.0
-  checksum: 10c0/602bbc0864a2eb3dfa40caad1ec270f7fb1aff0ccddd83febeafba864c75816ad8b9ef99516db25dffda7ec97028bf6700047901d1cada19cdbb29a110446cce
+  bin:
+    delete-nightly-dev-branch: ./dist/scripts/delete-nightly-dev-branch.js
+    get-secrets: ./dist/scripts/get-secrets.js
+  checksum: 10c0/89f0e4849ba6b0ca41d6ad4f1e63ec4a4675c0456ec79696f30d79dd8ea3b369284ed6dbb73ad4cbd43de8bd1c0e102db665cc6f9f115eec0839daf4d9e2cabe
   languageName: node
   linkType: hard
 
@@ -1387,20 +1390,20 @@ __metadata:
   linkType: hard
 
 "@types/node@npm:*":
-  version: 24.3.1
-  resolution: "@types/node@npm:24.3.1"
+  version: 24.4.0
+  resolution: "@types/node@npm:24.4.0"
   dependencies:
-    undici-types: "npm:~7.10.0"
-  checksum: 10c0/99b86fc32294fcd61136ca1f771026443a1e370e9f284f75e243b29299dd878e18c193deba1ce29a374932db4e30eb80826e1049b9aad02d36f5c30b94b6f928
+    undici-types: "npm:~7.11.0"
+  checksum: 10c0/3aefa4c6b006b3478f2d28a48d830ab7350ce24efdaf352011418e3ee17ed7683ca9c0a1840e770685ce78f413344badafa91e034be02488efe2eb6b612bd542
   languageName: node
   linkType: hard
 
 "@types/node@npm:^22.4.1":
-  version: 22.18.1
-  resolution: "@types/node@npm:22.18.1"
+  version: 22.18.3
+  resolution: "@types/node@npm:22.18.3"
   dependencies:
     undici-types: "npm:~6.21.0"
-  checksum: 10c0/1912b0ea6cb9ef59722b0fed64652388e13b41d52569c16198f1278a882837bbf4c8a4ec913e852893356f07c0c44b4e00fbca289ac7222741d03449104e22fe
+  checksum: 10c0/29ec5674a7eaac50c4c779e937c4449e813ff70c411eb525b6e12837e7b88c39219c3c2f29e39ea8f72cd6b7975f8696dc05f78c07bce35a241e0c9eaf5523a8
   languageName: node
   linkType: hard
 
@@ -1867,13 +1870,13 @@ __metadata:
   linkType: hard
 
 "axios@npm:^1.7.4":
-  version: 1.11.0
-  resolution: "axios@npm:1.11.0"
+  version: 1.12.2
+  resolution: "axios@npm:1.12.2"
   dependencies:
     follow-redirects: "npm:^1.15.6"
     form-data: "npm:^4.0.4"
     proxy-from-env: "npm:^1.1.0"
-  checksum: 10c0/5de273d33d43058610e4d252f0963cc4f10714da0bfe872e8ef2cbc23c2c999acc300fd357b6bce0fc84a2ca9bd45740fa6bb28199ce2c1266c8b1a393f2b36e
+  checksum: 10c0/80b063e318cf05cd33a4d991cea0162f3573481946f9129efb7766f38fde4c061c34f41a93a9f9521f02b7c9565ccbc197c099b0186543ac84a24580017adfed
   languageName: node
   linkType: hard
 
@@ -5107,7 +5110,7 @@ __metadata:
   dependencies:
     "@axe-core/playwright": "npm:^4.10.0"
     "@eslint/js": "npm:^9.11.1"
-    "@hmcts/playwright-common": "npm:^1.0.32"
+    "@hmcts/playwright-common": "npm:^1.0.36"
     "@playwright/test": "npm:^1.49.0"
     "@types/node": "npm:^22.4.1"
     axios: "npm:^1.7.4"
@@ -5882,10 +5885,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"undici-types@npm:~7.10.0":
-  version: 7.10.0
-  resolution: "undici-types@npm:7.10.0"
-  checksum: 10c0/8b00ce50e235fe3cc601307f148b5e8fb427092ee3b23e8118ec0a5d7f68eca8cee468c8fc9f15cbb2cf2a3797945ebceb1cbd9732306a1d00e0a9b6afa0f635
+"undici-types@npm:~7.11.0":
+  version: 7.11.0
+  resolution: "undici-types@npm:7.11.0"
+  checksum: 10c0/24ff69baeaebc7d09f4dae68564df850b4ff561810148ff6c37d3fc64dd1460c55e59e604420495e73b1fb48594a1c98e69f6732086a24e01b88f2d926378af1
   languageName: node
   linkType: hard
 
