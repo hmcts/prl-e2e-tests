@@ -25,10 +25,7 @@ export class Fl401AddCaseNumberSubmitPage extends EventPage {
     super(page, "Add case number");
   }
 
-  async checkPageContents(
-    familyManNumber: string,
-    accessibilityTest: boolean = true,
-  ): Promise<void> {
+  async checkPageContents(familyManNumber: string): Promise<void> {
     await this.checkHeading();
     await expect(this.subHeading).toBeVisible();
     await this.checkStrings(Selectors.GovukText16, this.text16Strings);
@@ -39,7 +36,6 @@ export class Fl401AddCaseNumberSubmitPage extends EventPage {
     ).toBeVisible();
     await expect(this.saveAndContinueButton).toBeVisible();
     await expect(this.previousButton).toBeVisible();
-    await this.accessibilityTest(accessibilityTest);
   }
 
   async clickSaveAndContinue(): Promise<void> {
