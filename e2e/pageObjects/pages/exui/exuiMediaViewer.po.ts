@@ -9,7 +9,7 @@ interface ClippingCoords {
 
 export const clippingCoords = {
   fullPage: { x: -1000, y: 0, width: 1920, height: 1080 },
-  cyaTable: { x: 0, y: 500, width: 1920, height: 1080 },
+  cyaTable: { x: 0, y: 675, width: 1920, height: 1080 },
   centeredPageWithoutToolbar: { x: 500, y: 80, width: 900, height: 1080 },
 };
 
