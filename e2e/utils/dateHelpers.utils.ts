@@ -14,8 +14,7 @@ export class DateHelperUtils {
     "December",
   ];
 
-  constructor() {
-  }
+  constructor() {}
 
   todayDate(
     longFormat: boolean = false,
@@ -40,11 +39,7 @@ export class DateHelperUtils {
   }
 
   // gets today's date in long format e.g. 	17 September 2025
-  dayLongMonthYear(
-    day: string,
-    month: string,
-    year: string,
-  ): string {
+  dayLongMonthYear(day: string, month: string, year: string): string {
     const monthIndex: number = parseInt(month, 10);
     if (isNaN(monthIndex) || monthIndex < 1 || monthIndex > 12) {
       throw new Error("Invalid month value");
@@ -52,11 +47,7 @@ export class DateHelperUtils {
     return `${day} ${this.longMonth(monthIndex)} ${year}`;
   }
 
-  dayAbbreviatedMonthYear(
-    day: string,
-    month: string,
-    year: string,
-  ): string {
+  dayAbbreviatedMonthYear(day: string, month: string, year: string): string {
     const monthIndex: number = parseInt(month, 10);
     if (isNaN(monthIndex) || monthIndex < 1 || monthIndex > 12) {
       throw new Error("Invalid month value");

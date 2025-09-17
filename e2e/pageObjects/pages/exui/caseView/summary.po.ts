@@ -1,6 +1,15 @@
 import { CaseAccessViewPage } from "./caseAccessView.po.js";
 import { expect, Locator, Page } from "@playwright/test";
 
+interface AllocatedJudgeSectionParams {
+  isSpecificJudgeOrLegalAdviser: boolean;
+  isJudge?: boolean;
+  judgeTier?: string;
+  courtName: string;
+  judgeLastName?: string;
+  judgeEmailAddress?: string;
+}
+
 export class SummaryPage extends CaseAccessViewPage {
   readonly allocatedJudgeLabel: Locator = this.page.locator(
     "#case-viewer-field-read--allocatedJudgeLabel",
@@ -17,18 +26,19 @@ export class SummaryPage extends CaseAccessViewPage {
     await this.page.getByRole("tab", { name: "Summary" }).click();
   }
 
-  async assertAllocatedJudgeSection(
-    isSpecificJudgeOrLegalAdviser: boolean,
-    judgeTier: string,
-    court: string,
-    judgeLastName?: string,
-    judgeEmailAddress?: string,
-  ): Promise<void> {
+  async assertAllocatedJudgeSection({
+    isSpecificJudgeOrLegalAdviser,
+    isJudge,
+    judgeTier,
+    courtName,
+    judgeLastName,
+    judgeEmailAddress,
+  }: AllocatedJudgeSectionParams): Promise<void> {
     await expect(this.allocatedJudgeLabel).toBeVisible();
     await expect(
       this.allocatedJudgeDetails.getByText("Allocated judge", { exact: true }),
     ).toBeVisible();
-    if (isSpecificJudgeOrLegalAdviser) {
+    if (isSpecificJudgeOrLegalAdviser && isJudge) {
       await expect(
         this.allocatedJudgeDetails.getByText("Tier of judge", { exact: true }),
       ).toBeVisible();
@@ -64,7 +74,7 @@ export class SummaryPage extends CaseAccessViewPage {
       this.allocatedJudgeDetails.getByText("Court name", { exact: true }),
     ).toBeVisible();
     await expect(
-      this.allocatedJudgeDetails.getByText(court, { exact: true }),
+      this.allocatedJudgeDetails.getByText(courtName, { exact: true }),
     ).toBeVisible();
   }
 }

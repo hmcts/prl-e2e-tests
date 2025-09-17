@@ -65,15 +65,18 @@ test.describe("Allocate a judge to the case", () => {
           caseNumber,
           "Allocated judge",
         );
-        await summaryPage.assertAllocatedJudgeSection(
+        await summaryPage.assertAllocatedJudgeSection({
           isSpecificJudgeOrLegalAdviser,
+          isJudge,
           judgeTier,
           courtName,
           judgeLastName,
           judgeEmailAddress,
-        );
+        });
         await rolesAndAccessPage.goToPage();
-        await rolesAndAccessPage.assertJudiciaryRolesAndAccess();
+        await rolesAndAccessPage.assertJudiciaryRolesAndAccess(
+          judgeOrLegalAdviserName,
+        );
       });
     },
   );
@@ -118,16 +121,14 @@ test.describe("Allocate a judge to the case", () => {
           caseNumber,
           "Allocated judge",
         );
-        await summaryPage.assertAllocatedJudgeSection(
+        await summaryPage.assertAllocatedJudgeSection({
           isSpecificJudgeOrLegalAdviser,
           judgeTier,
           courtName,
           judgeLastName,
           judgeEmailAddress,
-        );
+        });
       });
     },
   );
-
-  // TODO: think about adding a test for legal adviser selection?? - would require adding more to roles and access
 });

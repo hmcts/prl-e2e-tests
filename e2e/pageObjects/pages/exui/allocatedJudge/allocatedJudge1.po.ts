@@ -138,7 +138,7 @@ export class AllocatedJudge1Page extends EventPage {
     } else {
       await this.legalAdviserRadio.click();
       await expect(this.nameOfLegalAdviserLabel).toBeVisible();
-      await this.legalAdviserDropdown.selectOption(judgeOrLegalAdviserName); // "legaladvisor swansea three(prl_legaladvisor_swansea_three@justice.gov.uk)"
+      await this.legalAdviserDropdown.selectOption(judgeOrLegalAdviserName);
     }
   }
 

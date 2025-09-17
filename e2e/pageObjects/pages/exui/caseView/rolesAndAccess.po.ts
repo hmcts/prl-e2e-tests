@@ -7,10 +7,10 @@ export class RolesAndAccessPage extends CaseAccessViewPage {
   readonly heading: Locator = this.page.locator(Selectors.GovukHeadingL, {
     hasText: "Roles and access",
   });
-  readonly judiciarySection: Locator = this.page.locator(
-    "exui-role-access-section",
-    { hasText: "Judiciary" },
-  );
+  readonly judiciarySectionTable: Locator = this.page
+    .locator("exui-role-access-section", { hasText: "Judiciary" })
+    .getByRole("table");
+
   readonly dateHelpersUtils: DateHelperUtils = new DateHelperUtils();
 
   constructor(page: Page) {
@@ -21,31 +21,28 @@ export class RolesAndAccessPage extends CaseAccessViewPage {
     await this.page.getByRole("tab", { name: "Roles and access" }).click();
   }
 
-  async assertJudiciaryRolesAndAccess(): Promise<void> {
-    const table: Locator = this.judiciarySection.locator(
-      "exui-case-roles-table",
-    );
+  async assertJudiciaryRolesAndAccess(judgeName: string): Promise<void> {
     await expect(
-      table.getByRole("columnheader", { name: "Name" }),
+      this.judiciarySectionTable.getByRole("columnheader", { name: "Name" }),
     ).toBeVisible();
     await expect(
-      table.getByRole("columnheader", { name: "Role" }),
+      this.judiciarySectionTable.getByRole("columnheader", { name: "Role" }),
     ).toBeVisible();
     await expect(
-      table.getByRole("columnheader", { name: "Start" }),
+      this.judiciarySectionTable.getByRole("columnheader", { name: "Start" }),
     ).toBeVisible();
     await expect(
-      table.getByRole("columnheader", { name: "End" }),
+      this.judiciarySectionTable.getByRole("columnheader", { name: "End" }),
     ).toBeVisible();
     await expect(
-      table.getByRole("cell", { name: "Ms Elizabeth Williams" }),
+      this.judiciarySectionTable.getByRole("cell", { name: judgeName }),
     ).toBeVisible();
     await expect(
-      table.getByRole("cell", { name: "Allocated Judge" }),
+      this.judiciarySectionTable.getByRole("cell", { name: "Allocated Judge" }),
     ).toBeVisible();
     const date: string | string[] = this.dateHelpersUtils.todayDate(true);
     await expect(
-      table.getByRole("cell", { name: date as string }),
+      this.judiciarySectionTable.getByRole("cell", { name: date as string }),
     ).toBeVisible();
   }
 }
