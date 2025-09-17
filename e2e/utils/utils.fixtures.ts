@@ -3,7 +3,7 @@ import {
   IdamUtils,
   SessionUtils,
   ServiceAuthUtils,
-  AxeUtils
+  AxeUtils,
 } from "@hmcts/playwright-common";
 import { TokenUtils } from "./token.utils.ts";
 import { CitizenCACaseUtils } from "./citizenCACase.utils.ts";
