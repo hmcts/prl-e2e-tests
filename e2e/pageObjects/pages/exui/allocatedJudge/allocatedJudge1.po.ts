@@ -59,8 +59,8 @@ export class AllocatedJudge1Page extends EventPage {
     ".mat-option-text",
     { hasText: "Ms Elizabeth Williams" },
   );
-  readonly circuitJudgeRadio: Locator = this.page.locator(
-    "#tierOfJudiciary-circuitJudge",
+  readonly magistratesJudgeRadio: Locator = this.page.locator(
+    "#tierOfJudiciary-magistrates",
   );
   readonly continueButton: Locator = this.page.locator(Selectors.button, {
     hasText: CommonStaticText.continue,
@@ -107,7 +107,7 @@ export class AllocatedJudge1Page extends EventPage {
         this.judiciaryTierFormLabels,
       );
       // always select circuit judge
-      await this.circuitJudgeRadio.click();
+      await this.magistratesJudgeRadio.click();
     }
   }
 

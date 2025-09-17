@@ -42,7 +42,8 @@ export class AllocatedJudgeSubmitPage extends EventPage {
     if (isSpecificJudgeOrLegalAdviser) {
       fileName += "-specific-judge";
     } else {
-      fileName += "-circuit-judge";
+      // should this always default to magistrates judge or should I build in a way to handle this??
+      fileName += "-magistrates-judge";
     }
     return fileName;
   }
