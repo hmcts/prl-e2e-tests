@@ -4,7 +4,7 @@ import { Helpers } from "../../../../common/helpers.ts";
 import { AmendApplicantDetails } from "../../../../journeys/manageCases/caseProgression/amendDetails/amendApplicantDetails.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "courtAdminStoke.json" });
-
+//
 test.describe("Complete amend applicant details event as a court admin", () => {
   let ccdRef: string = "";
 
