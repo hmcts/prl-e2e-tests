@@ -12,6 +12,7 @@ import { AccessCodeHelper } from "./accessCode.utils.ts";
 import { CreateUserUtil } from "./createUser.utils.ts";
 import { IdamLoginHelper } from "./idamLoginHelper.utils.ts";
 import { CaseEventUtils } from "./caseEvent.utils.js";
+import { DateHelperUtils } from "./dateHelpers.utils.js";
 
 export interface UtilsFixtures {
   config: Config;
@@ -26,6 +27,7 @@ export interface UtilsFixtures {
   serviceAuthUtils: ServiceAuthUtils;
   caseEventUtils: CaseEventUtils;
   axeUtils: AxeUtils;
+  dateHelperUtils: DateHelperUtils;
 }
 
 export const utilsFixtures = {
@@ -64,5 +66,8 @@ export const utilsFixtures = {
   },
   caseEventUtils: async ({}, use) => {
     await use(new CaseEventUtils());
+  },
+  dateHelperUtils: async ({}, use) => {
+    await use(new DateHelperUtils());
   },
 };

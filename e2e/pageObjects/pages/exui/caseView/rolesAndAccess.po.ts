@@ -1,6 +1,7 @@
 import { CaseAccessViewPage } from "./caseAccessView.po.js";
 import { expect, Locator, Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.js";
+import { DateHelperUtils } from "../../../../utils/dateHelpers.utils.js";
 
 export class RolesAndAccessPage extends CaseAccessViewPage {
   readonly heading: Locator = this.page.locator(Selectors.GovukHeadingL, {
@@ -10,6 +11,7 @@ export class RolesAndAccessPage extends CaseAccessViewPage {
     "exui-role-access-section",
     { hasText: "Judiciary" },
   );
+  readonly dateHelpersUtils: DateHelperUtils = new DateHelperUtils();
 
   constructor(page: Page) {
     super(page);
@@ -41,9 +43,9 @@ export class RolesAndAccessPage extends CaseAccessViewPage {
     await expect(
       table.getByRole("cell", { name: "Allocated Judge" }),
     ).toBeVisible();
-    // TODO: need a way of getting and formatting the start date
+    const date: string | string[] = this.dateHelpersUtils.todayDate(true);
     await expect(
-      table.getByRole("cell", { name: "17 September 2025" }),
+      table.getByRole("cell", { name: date as string }),
     ).toBeVisible();
   }
 }
