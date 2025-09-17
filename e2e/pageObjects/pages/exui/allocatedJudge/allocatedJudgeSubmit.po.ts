@@ -4,6 +4,12 @@ import { Selectors } from "../../../../common/selectors.js";
 import { ExuiMediaViewerPage } from "../exuiMediaViewer.po.js";
 import { CommonStaticText } from "../../../../common/commonStaticText.js";
 
+interface AllocatedJudgeSubmitParams {
+  isSpecificJudgeOrLegalAdviser: boolean;
+  isJudge?: boolean;
+  judgeTier?: string;
+}
+
 export class AllocatedJudgeSubmitPage extends EventPage {
   readonly headingH2: Locator = this.page.locator(Selectors.headingH2, {
     hasText: "Check your answers",
@@ -25,25 +31,41 @@ export class AllocatedJudgeSubmitPage extends EventPage {
     super(page, "Allocated judge");
   }
 
-  async checkPageContents(
-    isSpecificJudgeOrLegalAdviser: boolean,
-  ): Promise<void> {
+  async checkPageContents({
+    isSpecificJudgeOrLegalAdviser,
+    isJudge,
+    judgeTier,
+  }: AllocatedJudgeSubmitParams): Promise<void> {
     await this.checkHeading();
     await expect(this.headingH2).toBeVisible();
     await expect(this.tex16).toBeVisible();
     await expect(this.h2).toBeVisible();
-    const fileName = this.buildFileName(isSpecificJudgeOrLegalAdviser);
+    const fileName = this.buildSnapshotFileName({
+      isSpecificJudgeOrLegalAdviser,
+      isJudge,
+      judgeTier,
+    });
     // snapshot cya page for easier comparison
     await this.exuiMediaViewer.runVisualTestOnCyaPage(fileName);
   }
 
-  private buildFileName(isSpecificJudgeOrLegalAdviser: boolean): string {
+  private buildSnapshotFileName({
+    isSpecificJudgeOrLegalAdviser,
+    isJudge,
+    judgeTier,
+  }: AllocatedJudgeSubmitParams): string {
     let fileName: string = "allocated-judge-cya";
     if (isSpecificJudgeOrLegalAdviser) {
-      fileName += "-specific-judge";
+      if (isJudge) {
+        fileName += "-specific-judge";
+      } else {
+        fileName += "-specific-legal-adviser";
+      }
     } else {
-      // should this always default to magistrates judge or should I build in a way to handle this??
-      fileName += "-magistrates-judge";
+      const formattedJudgeTier: string = judgeTier
+        .replace(/ /g, "-")
+        .toLowerCase();
+      fileName += `-${formattedJudgeTier}`;
     }
     return fileName;
   }

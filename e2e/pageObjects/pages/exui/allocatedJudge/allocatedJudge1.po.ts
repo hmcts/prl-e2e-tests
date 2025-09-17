@@ -27,6 +27,12 @@ export class AllocatedJudge1Page extends EventPage {
       hasText: "Name of judge",
     },
   );
+  readonly nameOfLegalAdviserLabel: Locator = this.page.locator(
+    Selectors.GovukFormLabel,
+    {
+      hasText: "Name of legal adviser",
+    },
+  );
   readonly tierOfJudiciaryLabel: Locator = this.page.locator(
     Selectors.GovukFormLabel,
     {
@@ -51,16 +57,30 @@ export class AllocatedJudge1Page extends EventPage {
   readonly radioNo: Locator = this.page.locator(
     "#isSpecificJudgeOrLegalAdviserNeeded_No",
   );
-  readonly judgeNameInput: Locator = this.page.locator("#judgeNameAndEmail");
   readonly judgeRadio: Locator = this.page.locator(
     "#isJudgeOrLegalAdviser-judge",
   );
+  readonly legalAdviserRadio: Locator = this.page.locator(
+    "#isJudgeOrLegalAdviser-legalAdviser",
+  );
+  readonly judgeNameInput: Locator = this.page.locator("#judgeNameAndEmail");
+  readonly legalAdviserDropdown: Locator =
+    this.page.locator("#legalAdviserList");
   readonly judgeNameDropdownOption: Locator = this.page.locator(
     ".mat-option-text",
     { hasText: "Ms Elizabeth Williams" },
   );
   readonly magistratesJudgeRadio: Locator = this.page.locator(
     "#tierOfJudiciary-magistrates",
+  );
+  readonly districtJudgeRadio: Locator = this.page.locator(
+    "#tierOfJudiciary-districtJudge",
+  );
+  readonly circuitJudgeRadio: Locator = this.page.locator(
+    "#tierOfJudiciary-circuitJudge",
+  );
+  readonly highCourtJudgeRadio: Locator = this.page.locator(
+    "#tierOfJudiciary-highCourtJudge",
   );
   readonly continueButton: Locator = this.page.locator(Selectors.button, {
     hasText: CommonStaticText.continue,
@@ -84,21 +104,15 @@ export class AllocatedJudge1Page extends EventPage {
     await expect(this.previousButton).toBeVisible();
   }
 
-  async fillInFields(isSpecificJudgeOrLegalAdviser: boolean): Promise<void> {
+  async selectIsJudgeOrLegalAdviser(
+    isSpecificJudgeOrLegalAdviser: boolean,
+  ): Promise<void> {
     if (isSpecificJudgeOrLegalAdviser) {
       await this.radioYes.click();
       await this.checkStrings(
         Selectors.GovukFormLabel,
         this.isJudgeOrLegalAdviserFormLabels,
       );
-      // always select judge
-      await this.judgeRadio.click();
-      await expect(this.nameOfJudgeLabel).toBeVisible();
-      await this.judgeNameInput.fill("Ms Elizabeth Williams");
-      // Wait for the judge option in the dropdown to become visible using dynamic content
-      await expect(this.judgeNameDropdownOption).toBeVisible();
-      // Click the option containing the judge name (dynamic value)
-      await this.judgeNameDropdownOption.click();
     } else {
       await this.radioNo.click();
       await expect(this.tierOfJudiciaryLabel).toBeVisible();
@@ -106,8 +120,42 @@ export class AllocatedJudge1Page extends EventPage {
         Selectors.GovukFormLabel,
         this.judiciaryTierFormLabels,
       );
-      // always select circuit judge
-      await this.magistratesJudgeRadio.click();
+    }
+  }
+
+  async selectJudgeOrLegalAdviser(
+    isJudge: boolean,
+    judgeOrLegalAdviserName: string,
+  ): Promise<void> {
+    if (isJudge) {
+      await this.judgeRadio.click();
+      await expect(this.nameOfJudgeLabel).toBeVisible();
+      await this.judgeNameInput.fill(judgeOrLegalAdviserName);
+      // Wait for the judge option in the dropdown to become visible using dynamic content
+      await expect(this.judgeNameDropdownOption).toBeVisible();
+      // Click the option containing the judge name (dynamic value)
+      await this.judgeNameDropdownOption.click();
+    } else {
+      await this.legalAdviserRadio.click();
+      await expect(this.nameOfLegalAdviserLabel).toBeVisible();
+      await this.legalAdviserDropdown.selectOption(judgeOrLegalAdviserName); // "legaladvisor swansea three(prl_legaladvisor_swansea_three@justice.gov.uk)"
+    }
+  }
+
+  async selectJudiciaryTier(judiciaryTier: string): Promise<void> {
+    switch (judiciaryTier) {
+      case "Magistrates":
+        await this.magistratesJudgeRadio.click();
+        break;
+      case "District Judge":
+        await this.districtJudgeRadio.click();
+        break;
+      case "Circuit Judge":
+        await this.circuitJudgeRadio.click();
+        break;
+      case "High Court Judge":
+        await this.highCourtJudgeRadio.click();
+        break;
     }
   }
 

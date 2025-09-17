@@ -20,11 +20,65 @@ test.describe("Allocate a judge to the case", () => {
   [
     {
       isSpecificJudgeOrLegalAdviser: true,
+      isJudge: true,
+      judgeOrLegalAdviserName: "Ms Elizabeth Williams",
       judgeTier: "Circuit Judge",
       judgeLastName: "Williams",
       judgeEmailAddress: "HHJ.Elizabeth.Williams@ejudiciary.net",
       courtName: "Swansea Civil And Family Justice Centre",
     },
+  ].forEach(
+    ({
+      isSpecificJudgeOrLegalAdviser,
+      isJudge,
+      judgeOrLegalAdviserName,
+      judgeTier,
+      judgeLastName,
+      judgeEmailAddress,
+      courtName,
+    }) => {
+      test(`Allocate a Judge to a DA case specific judge @nightly @regression`, async ({
+        summaryPage,
+        rolesAndAccessPage,
+        allocatedJudge1Page,
+        allocatedJudgeSubmitPage,
+        axeUtils,
+      }) => {
+        await summaryPage.chooseEventFromDropdown("Allocated judge");
+        await allocatedJudge1Page.checkPageContents();
+        await axeUtils.audit();
+        await allocatedJudge1Page.selectIsJudgeOrLegalAdviser(
+          isSpecificJudgeOrLegalAdviser,
+        );
+        await allocatedJudge1Page.selectJudgeOrLegalAdviser(
+          isJudge,
+          judgeOrLegalAdviserName,
+        );
+        await allocatedJudge1Page.clickContinue();
+        await allocatedJudgeSubmitPage.checkPageContents({
+          isSpecificJudgeOrLegalAdviser,
+          isJudge,
+        });
+        await axeUtils.audit();
+        await allocatedJudgeSubmitPage.clickSubmit();
+        await summaryPage.alertBanner.assertEventAlert(
+          caseNumber,
+          "Allocated judge",
+        );
+        await summaryPage.assertAllocatedJudgeSection(
+          isSpecificJudgeOrLegalAdviser,
+          judgeTier,
+          courtName,
+          judgeLastName,
+          judgeEmailAddress,
+        );
+        await rolesAndAccessPage.goToPage();
+        await rolesAndAccessPage.assertJudiciaryRolesAndAccess();
+      });
+    },
+  );
+
+  [
     {
       isSpecificJudgeOrLegalAdviser: false,
       judgeTier: "Magistrates",
@@ -40,9 +94,8 @@ test.describe("Allocate a judge to the case", () => {
       judgeEmailAddress,
       courtName,
     }) => {
-      test(`Allocate a Judge to a DA case isSpecificJudgeOrLegalAdviser: ${isSpecificJudgeOrLegalAdviser} @nightly @regression`, async ({
+      test(`Allocate a Judge to a DA case non-specific judge @regression`, async ({
         summaryPage,
-        rolesAndAccessPage,
         allocatedJudge1Page,
         allocatedJudgeSubmitPage,
         axeUtils,
@@ -50,11 +103,15 @@ test.describe("Allocate a judge to the case", () => {
         await summaryPage.chooseEventFromDropdown("Allocated judge");
         await allocatedJudge1Page.checkPageContents();
         await axeUtils.audit();
-        await allocatedJudge1Page.fillInFields(isSpecificJudgeOrLegalAdviser);
-        await allocatedJudge1Page.clickContinue();
-        await allocatedJudgeSubmitPage.checkPageContents(
+        await allocatedJudge1Page.selectIsJudgeOrLegalAdviser(
           isSpecificJudgeOrLegalAdviser,
         );
+        await allocatedJudge1Page.selectJudiciaryTier(judgeTier);
+        await allocatedJudge1Page.clickContinue();
+        await allocatedJudgeSubmitPage.checkPageContents({
+          isSpecificJudgeOrLegalAdviser,
+          judgeTier,
+        });
         await axeUtils.audit();
         await allocatedJudgeSubmitPage.clickSubmit();
         await summaryPage.alertBanner.assertEventAlert(
@@ -68,11 +125,9 @@ test.describe("Allocate a judge to the case", () => {
           judgeLastName,
           judgeEmailAddress,
         );
-        if (isSpecificJudgeOrLegalAdviser) {
-          await rolesAndAccessPage.goToPage();
-          await rolesAndAccessPage.assertJudiciaryRolesAndAccess();
-        }
       });
     },
   );
+
+  // TODO: think about adding a test for legal adviser selection?? - would require adding more to roles and access
 });
