@@ -18,19 +18,9 @@ export class SummaryPage extends CaseAccessViewPage {
     super(page);
   }
 
-  public async chooseEventFromDropdown(
-    chosenEvent:
-      | c100SolicitorEvents
-      | fl401SolicitorEvents
-      | fl401SubmittedSolicitorEvents
-      | fl401JudiciaryEvents
-      | WACaseWorkerActions
-      | fl401CaseWorkerActions
-      | courtAdminEvents
-      | amendEvents,
-  ) {
-    await this.page.waitForLoadState("domcontentloaded");
-    await expect(this.page.locator("#next-step")).toBeVisible();
+  async goToPage(): Promise<void> {
+    await this.page.getByRole("tab", { name: "Summary" }).click();
+  }
 
     await this.page.selectOption("#next-step", chosenEvent);
 
