@@ -10,30 +10,22 @@ export class Fl401AddCaseNumber1Page extends EventPage {
   readonly formLabel: Locator = this.page.locator(Selectors.GovukFormLabel, {
     hasText: "FamilyMan case number (Optional)",
   });
-  readonly continueButton: Locator = this.page.locator(Selectors.button, {
-    hasText: CommonStaticText.continue,
-  });
   readonly previousButton: Locator = this.page.locator(Selectors.button, {
-    hasText: CommonStaticText.continue,
+    hasText: CommonStaticText.previous,
   });
 
   constructor(page: Page) {
     super(page, "Add case number");
   }
 
-  async checkPageContents(accessibilityTest: boolean = true): Promise<void> {
+  async checkPageContents(): Promise<void> {
     await this.checkHeading();
     await expect(this.formLabel).toBeVisible();
     await expect(this.continueButton).toBeVisible();
     await expect(this.previousButton).toBeVisible();
-    await this.accessibilityTest(accessibilityTest);
   }
 
   async fillInFields(familyManNumber: string): Promise<void> {
     await this.familyManNumberInput.fill(familyManNumber);
-  }
-
-  async clickContinue(): Promise<void> {
-    await this.continueButton.click();
   }
 }
