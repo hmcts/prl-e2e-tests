@@ -31,9 +31,11 @@ export class Fl401AddCaseNumberSubmitPage extends EventPage {
     await this.checkHeading();
     await expect(this.subHeading).toBeVisible();
     await expect(this.text16).toBeVisible();
-    await this.checkYourAnswersTableComponent.runVisualTest(
-      "check-application",
-    );
+    await this.checkYourAnswersTableComponent.runVisualTest([
+      "caseProgression",
+      "checkApplication",
+      "check-application.png",
+    ]);
     await expect(this.saveAndContinueButton).toBeVisible();
     await expect(this.previousButton).toBeVisible();
   }

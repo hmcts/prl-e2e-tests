@@ -43,7 +43,11 @@ export class AllocatedJudgeSubmitPage extends EventPage {
       isJudge,
       judgeTier,
     });
-    await this.checkYourAnswersTable.runVisualTest(fileName);
+    await this.checkYourAnswersTable.runVisualTest([
+      "caseProgression",
+      "allocatedJudge",
+      `${fileName}.png`,
+    ]);
     await expect(this.submitButton).toBeVisible();
     await expect(this.previousButton).toBeVisible();
   }
