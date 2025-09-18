@@ -72,7 +72,7 @@ export class AdminEditAndServeAnOrder {
     await fl401AddCaseNumber1Page.continueButton.click();
 
     const fl401AddCaseNumberSubmitPage = new Fl401AddCaseNumberSubmitPage(page);
-    await fl401AddCaseNumberSubmitPage.checkPageContents("1234");
+    await fl401AddCaseNumberSubmitPage.checkPageContents();
     if (accessibilityTest) {
       await axeUtils.audit();
     }
