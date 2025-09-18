@@ -34,7 +34,7 @@ test.describe("Check Application task for DA Solicitor case tests.", () => {
       await axeUtils.audit();
       await fl401AddCaseNumber1Page.fillInFields(familyManNumber);
       await fl401AddCaseNumber1Page.clickContinue();
-      await fl401AddCaseNumberSubmitPage.checkPageContents(familyManNumber);
+      await fl401AddCaseNumberSubmitPage.checkPageContents();
       await axeUtils.audit();
       await fl401AddCaseNumberSubmitPage.clickSaveAndContinue();
       await summaryPage.alertBanner.assertEventAlert(
