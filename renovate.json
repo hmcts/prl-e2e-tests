@@ -10,7 +10,7 @@
       "groupName": "All patch-minor dependencies",
       "groupSlug": "All-minor-patch",
       "addLabels": ["Renovate All-minor-patch"],
-      "automerge": true
+      "automerge": false
     }
   ]
 }
