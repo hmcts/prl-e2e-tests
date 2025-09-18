@@ -55,7 +55,7 @@ export async function completeCheckApplicationAndSendToGatekeeperAndCreateAnOrde
   );
 }
 
-export async function completeEventsUpToServiceOfApplication(
+export async function fl401CompleteEventsUpToServiceOfApplication(
   page: Page,
   browser: Browser,
   caseRef: string,
@@ -77,6 +77,36 @@ export async function completeEventsUpToServiceOfApplication(
   await page.waitForResponse(
     `${Config.manageCasesBaseURL}/data/cases/${caseRef}/events`,
   );
+  const caseEventUtils = new CaseEventUtils();
+  await caseEventUtils.submitEvent(
+    page,
+    caseRef,
+    "serviceOfApplication",
+    manageOrderEventData,
+  );
+  if (applicationSubmittedBy === "Solicitor") {
+    // this will have to be conditional
+    await ConfidentialityCheck.confidentialityCheckLite(browser, caseRef);
+  }
+}
+
+export async function c100CompleteEventsUpToServiceOfApplication(
+  page: Page,
+  caseRef: string,
+  browser: Browser,
+  manageOrderEventData: typeof jsonDatas,
+  applicationSubmittedBy: applicationSubmittedBy,
+): Promise<void> {
+  await CompleteTheOrder.C100completeTheOrder({
+    page: page,
+    accessibilityTest: false,
+    personallyServed: true,
+    solicitorCaseCreateType: "C100",
+    isUploadOrder: false,
+    checkOption: "noCheck", //options passed could be either noCheck or judgeOrLegalAdvisorCheck or managerCheck
+    serveOrderNow: true, //select to serve order instantly
+  });
+
   const caseEventUtils = new CaseEventUtils();
   await caseEventUtils.submitEvent(
     page,

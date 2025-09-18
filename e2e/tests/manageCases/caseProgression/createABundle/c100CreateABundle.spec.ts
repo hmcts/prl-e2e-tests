@@ -7,11 +7,11 @@ import { jsonDatas } from "../../../../common/caseHelpers/jsonDatas.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
-test.describe("Complete the Order task for DA Solicitor case tests.", () => {
+test.describe("Complete the Order task for CA Solicitor case tests.", () => {
   let ccdRef: string = "";
 
   test.beforeEach(async ({ page, browser, caseEventUtils }) => {
-    ccdRef = await caseEventUtils.createDACase(browser);
+    ccdRef = await caseEventUtils.createCACaseSendToGatekeeper(browser);
     await Helpers.goToCase(
       page,
       config.manageCasesBaseURLCase,
@@ -20,32 +20,30 @@ test.describe("Complete the Order task for DA Solicitor case tests.", () => {
     );
   });
 
-  test("Complete Task - Create a Bundle - Power of arrest (FL406) without accessibility test. @nightly @regression", async ({
+  test("Complete Task - Create a Bundle - Child arrangements, specific issue or prohibited steps order (C43) without accessibility test. @nightly @regression", async ({
     page,
     browser,
   }): Promise<void> => {
-    await CreateABundleJourney.createABundleJourney({
+    await CreateABundleJourney.C100CreateABundleJourney({
       page: page,
       accessibilityTest: false,
-      ccdRef: ccdRef,
       browser: browser,
-      manageOrderData: jsonDatas.manageOrderDataPowerOfArrest,
-      createOrderFL401Options: "power of arrest",
+      ccdRef: ccdRef,
+      manageOrderData: jsonDatas.manageOrderDataC43CreateOrder,
       applicationSubmittedBy: "Solicitor",
     });
   });
 
-  test("Complete Task - Create a Bundle - Amended, discharged or varied order (FL404B)  with accessibility test. @regression @accessibility", async ({
+  test("Complete Task - Create a Bundle - Child arrangements, specific issue or prohibited steps order (C43) with accessibility test. @regression @accessibility", async ({
     page,
     browser,
   }): Promise<void> => {
-    await CreateABundleJourney.createABundleJourney({
+    await CreateABundleJourney.C100CreateABundleJourney({
       page: page,
       accessibilityTest: true,
       ccdRef: ccdRef,
       browser: browser,
-      manageOrderData: jsonDatas.manageOrderDataAmendDischargedVaried,
-      createOrderFL401Options: "amend discharge varied order",
+      manageOrderData: jsonDatas.manageOrderDataC43CreateOrder,
       applicationSubmittedBy: "Solicitor",
     });
   });

@@ -11,6 +11,8 @@ import citizenOrderEventDataAmendDischargedVariedDemo from "../../caseData/order
 import citizenOrderEventDataAmendDischargedVaried from "../../caseData/orderData/citizen/orderEventData-amendDischargedVaried.json" with { type: "json" };
 import citizenOrderEventDataPowerOfArrestDemo from "../../caseData/orderData/citizen/orderEventData-powerOfArrest-demo.json" with { type: "json" };
 import citizenOrderEventDataPowerOfArrest from "../../caseData/orderData/citizen/orderEventData-powerOfArrest.json" with { type: "json" };
+import manageOrderDataC43CreateOrder from "../../caseData/orderData/orderEventData-C43CreateOrder.json" with { type: "json" };
+import manageOrderDataC43CreateOrderDemo from "../../caseData/orderData/orderEventData-C43CreateOrder-demo.json" with { type: "json" };
 
 // Using "any" type below because it represents a large JSON object
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -23,6 +25,7 @@ if (process.env.MANAGE_CASES_TEST_ENV === "demo") {
     manageOrderDataPowerOfArrest: orderEventDataPowerOfArrestDemo,
     manageOrderDataAmendDischargedVaried:
       orderEventDataAmendDischargedVariedDemo,
+    manageOrderDataC43CreateOrder: manageOrderDataC43CreateOrderDemo,
     citizenManageOrderDataPowerOfArrest: citizenOrderEventDataPowerOfArrestDemo,
     citizenManageOrderDataAmendDischargedVaried:
       citizenOrderEventDataAmendDischargedVariedDemo,
@@ -33,6 +36,7 @@ if (process.env.MANAGE_CASES_TEST_ENV === "demo") {
     solicitorCACaseData: solicitorCACaseData,
     manageOrderDataPowerOfArrest: orderEventDataPowerOfArrest,
     manageOrderDataAmendDischargedVaried: orderEventDataAmendDischargedVaried,
+    manageOrderDataC43CreateOrder: manageOrderDataC43CreateOrder,
     citizenManageOrderDataPowerOfArrest: citizenOrderEventDataPowerOfArrest,
     citizenManageOrderDataAmendDischargedVaried:
       citizenOrderEventDataAmendDischargedVaried,
