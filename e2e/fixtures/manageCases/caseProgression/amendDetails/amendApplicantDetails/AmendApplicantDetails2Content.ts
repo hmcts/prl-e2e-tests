@@ -47,6 +47,7 @@ export enum AmendApplicantDetails2Content {
   previousNameInput = "John Doe",
   applicantGenderOtherInput = "NonBinary",
   applicantEmailAddressInput = "test@test.com",
+  applicantPhoneNumberInput = "07123456781",
   solicitorFirstNameInput = "Joe",
   solicitorLastNameInput = "Bloggs",
   solicitorEmailInput = "test@test.com",

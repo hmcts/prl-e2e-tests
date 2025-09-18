@@ -5,7 +5,7 @@ import { AmendApplicantDetails } from "../../../../journeys/manageCases/caseProg
 
 test.use({ storageState: Config.sessionStoragePath + "courtAdminStoke.json" });
 
-test.describe("Complete amend applicant details event as a court admin", () => {
+test.describe("Complete amend applicant details event as a court admin for a DA case", () => {
   let ccdRef: string = "";
 
   test.beforeEach(async ({ page, browser, caseEventUtils }) => {
@@ -24,7 +24,7 @@ test.describe("Complete amend applicant details event as a court admin", () => {
   Accessibility testing: Yes. @nightly @regression @accessibility`, async ({
     page,
   }): Promise<void> => {
-    await AmendApplicantDetails.amendApplicantDetails({
+    await AmendApplicantDetails.fl401AmendApplicantDetails({
       page,
       accessibilityTest: true,
       ccdRef: ccdRef,
