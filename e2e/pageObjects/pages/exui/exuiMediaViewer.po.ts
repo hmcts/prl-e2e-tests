@@ -1,15 +1,8 @@
 import { expect, Locator, Page } from "@playwright/test";
-
-interface ClippingCoords {
-  x: number;
-  y: number;
-  width: number;
-  height: number;
-}
+import { ClippingCoords } from "../../../common/types.js";
 
 export const clippingCoords = {
   fullPage: { x: -1000, y: 0, width: 1920, height: 1080 },
-  cyaTable: { x: 0, y: 675, width: 1920, height: 1080 },
   centeredPageWithoutToolbar: { x: 500, y: 80, width: 900, height: 1080 },
 };
 
@@ -67,12 +60,5 @@ export class ExuiMediaViewerPage {
       });
       if (i !== totalPages - 1) await this.toolbar.pageDownBtn.click();
     }
-  }
-
-  public async runVisualTestOnCyaPage(screenShotName: string): Promise<void> {
-    await expect(this.page).toHaveScreenshot(`${screenShotName}.png`, {
-      clip: clippingCoords.cyaTable,
-      maxDiffPixelRatio: 0.02,
-    });
   }
 }

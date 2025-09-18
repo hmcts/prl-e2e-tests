@@ -322,3 +322,10 @@ export type CaseState =
   | "Case issued"
   | "Gatekeeping"
   | "Hearing";
+
+export interface ClippingCoords {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+}
