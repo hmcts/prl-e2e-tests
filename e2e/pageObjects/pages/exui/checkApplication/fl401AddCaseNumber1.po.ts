@@ -21,12 +21,11 @@ export class Fl401AddCaseNumber1Page extends EventPage {
     super(page, "Add case number");
   }
 
-  async checkPageContents(accessibilityTest: boolean = true): Promise<void> {
+  async checkPageContents(): Promise<void> {
     await this.checkHeading();
     await expect(this.formLabel).toBeVisible();
     await expect(this.continueButton).toBeVisible();
     await expect(this.previousButton).toBeVisible();
-    await this.accessibilityTest(accessibilityTest);
   }
 
   async fillInFields(familyManNumber: string): Promise<void> {

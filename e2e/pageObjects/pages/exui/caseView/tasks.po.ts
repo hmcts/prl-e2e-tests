@@ -13,6 +13,10 @@ export class TasksPage extends CaseAccessViewPage {
     super(page);
   }
 
+  async goToPage(): Promise<void> {
+    await this.page.getByRole("tab", { name: "Tasks" }).click();
+  }
+
   async assignTaskToMeAndTriggerNextSteps(
     taskName: string,
     nextStepsActionName: string,
