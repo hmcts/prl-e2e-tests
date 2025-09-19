@@ -180,7 +180,7 @@ export class ConfidentialityCheck1Page {
     const mediaViewerPage = new ExuiMediaViewerPage(pdfPage);
     await mediaViewerPage.runVisualTestOnAllPages(
       pdfPage,
-      pdfName,
+      ["caseProgression", "fl401ConfidentialityCheck", pdfName],
       clippingCoords.centeredPageWithoutToolbar,
     );
   }
