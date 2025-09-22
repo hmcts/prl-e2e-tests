@@ -1,11 +1,5 @@
 import { expect, Locator, Page } from "@playwright/test";
-
-interface ClippingCoords {
-  x: number;
-  y: number;
-  width: number;
-  height: number;
-}
+import { ClippingCoords } from "../../../common/types.js";
 
 export const clippingCoords = {
   fullPage: { x: -1000, y: 0, width: 1920, height: 1080 },
