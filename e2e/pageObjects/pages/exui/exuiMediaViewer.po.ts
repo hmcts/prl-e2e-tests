@@ -44,7 +44,7 @@ export class ExuiMediaViewerPage {
 
   public async runVisualTestOnAllPages(
     page: Page,
-    screenShotName: string,
+    screenShotPath: string[],
     clip: ClippingCoords = clippingCoords.fullPage,
     mask: Locator[] = [],
   ): Promise<void> {
@@ -52,8 +52,11 @@ export class ExuiMediaViewerPage {
     const totalPages = await this.getNumberOfPages();
     // zoom out to be able to capture all the page
     await page.click("#mvMinusBtn");
+    const lastIndex = screenShotPath.length - 1;
+    const screenShotName = screenShotPath[lastIndex];
     for (let i = 0; i < totalPages; i++) {
-      await expect(this.page).toHaveScreenshot(`${screenShotName}-${i}.png`, {
+      screenShotPath.splice(lastIndex, 1, `${screenShotName}-${i}.png`);
+      await expect(this.page).toHaveScreenshot(screenShotPath, {
         clip: clip,
         maxDiffPixelRatio: 0.02,
         mask: mask,
