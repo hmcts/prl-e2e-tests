@@ -3,6 +3,7 @@ import {
   IdamUtils,
   SessionUtils,
   ServiceAuthUtils,
+  AxeUtils,
 } from "@hmcts/playwright-common";
 import { TokenUtils } from "./token.utils.ts";
 import { CitizenCACaseUtils } from "./citizenCACase.utils.ts";
@@ -11,6 +12,7 @@ import { AccessCodeHelper } from "./accessCode.utils.ts";
 import { CreateUserUtil } from "./createUser.utils.ts";
 import { IdamLoginHelper } from "./idamLoginHelper.utils.ts";
 import { CaseEventUtils } from "./caseEvent.utils.js";
+import { DateHelperUtils } from "./dateHelpers.utils.js";
 
 export interface UtilsFixtures {
   config: Config;
@@ -24,11 +26,16 @@ export interface UtilsFixtures {
   sessionUtils: SessionUtils;
   serviceAuthUtils: ServiceAuthUtils;
   caseEventUtils: CaseEventUtils;
+  axeUtils: AxeUtils;
+  dateHelperUtils: DateHelperUtils;
 }
 
 export const utilsFixtures = {
   config: async ({}, use) => {
     await use(Config);
+  },
+  axeUtils: async ({ page }, use) => {
+    await use(new AxeUtils(page));
   },
   idamUtils: async ({}, use) => {
     await use(new IdamUtils());
@@ -59,5 +66,8 @@ export const utilsFixtures = {
   },
   caseEventUtils: async ({}, use) => {
     await use(new CaseEventUtils());
+  },
+  dateHelperUtils: async ({}, use) => {
+    await use(new DateHelperUtils());
   },
 };
