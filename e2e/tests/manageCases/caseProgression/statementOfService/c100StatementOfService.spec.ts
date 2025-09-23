@@ -6,11 +6,11 @@ import { jsonDatas } from "../../../../common/caseHelpers/jsonDatas.ts";
 
 test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 
-test.describe("Statement of Service event for DA Solicitor case tests.", () => {
+test.describe("Statement of Service event for CA Solicitor case tests.", () => {
   let ccdRef: string = "";
 
   test.beforeEach(async ({ page, browser, caseEventUtils }) => {
-    ccdRef = await caseEventUtils.createDACase(browser);
+    ccdRef = await caseEventUtils.createCACaseSendToGatekeeper(browser);
     await Helpers.goToCase(
       page,
       config.manageCasesBaseURLCase,
@@ -19,32 +19,30 @@ test.describe("Statement of Service event for DA Solicitor case tests.", () => {
     );
   });
 
-  test("Complete Task - statement of Service - Power of arrest (FL406) without accessibility test. @nightly @regression", async ({
+  test("Complete Task - statement of Service - Child arrangements, specific issue or prohibited steps order (C43) without accessibility test. @nightly @regression", async ({
     page,
     browser,
   }): Promise<void> => {
-    await StatementOfService.statementOfService({
+    await StatementOfService.C100StatementOfService({
       page: page,
       accessibilityTest: false,
-      ccdRef: ccdRef,
       browser: browser,
-      manageOrderData: jsonDatas.manageOrderDataPowerOfArrest,
-      createOrderFL401Options: "power of arrest",
+      ccdRef: ccdRef,
+      manageOrderData: jsonDatas.manageOrderDataC43CreateOrder,
       applicationSubmittedBy: "Solicitor",
     });
   });
 
-  test("Complete Task - statement of Service - Amended, discharged or varied order (FL404B)  with accessibility test. @regression @accessibility", async ({
+  test("Complete Task - statement of Service - Child arrangements, specific issue or prohibited steps order (C43) with accessibility test. @regression @accessibility", async ({
     page,
     browser,
   }): Promise<void> => {
-    await StatementOfService.statementOfService({
+    await StatementOfService.C100StatementOfService({
       page: page,
       accessibilityTest: true,
-      ccdRef: ccdRef,
       browser: browser,
-      manageOrderData: jsonDatas.manageOrderDataAmendDischargedVaried,
-      createOrderFL401Options: "amend discharge varied order",
+      ccdRef: ccdRef,
+      manageOrderData: jsonDatas.manageOrderDataC43CreateOrder,
       applicationSubmittedBy: "Solicitor",
     });
   });
