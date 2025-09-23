@@ -60,6 +60,11 @@ export class AmendApplicantDetailsSubmitPage {
     await page.click(
       `${Selectors.button}:text-is("${CommonStaticText.saveAndContinue}")`,
     );
+    await expect(
+      page.locator(
+        `${Selectors.alertMessage}:has-text("${amendApplicantDetailsSubmitContent.confirmationMessage}")`,
+      ),
+    ).toBeVisible();
   }
 
   private static async checkStaticContent(
@@ -225,6 +230,14 @@ export class AmendApplicantDetailsSubmitPage {
           page
             .getByRole("row", {
               name: `${amendApplicantDetailsSubmitContent.text16_6} ${CommonStaticText.yes}`,
+              exact: true,
+            })
+            .locator("td"),
+        ).toBeVisible(),
+        expect(
+          page
+            .getByRole("row", {
+              name: `${amendApplicantDetailsSubmitContent.text16_9} ${AmendApplicantDetails2Content.applicantPhoneNumberInput}`,
               exact: true,
             })
             .locator("td"),
