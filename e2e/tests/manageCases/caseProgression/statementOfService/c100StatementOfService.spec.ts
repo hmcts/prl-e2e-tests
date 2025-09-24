@@ -19,21 +19,7 @@ test.describe("Statement of Service event for CA Solicitor case tests.", () => {
     );
   });
 
-  test("Complete Task - statement of Service - Child arrangements, specific issue or prohibited steps order (C43) without accessibility test. @nightly @regression", async ({
-    page,
-    browser,
-  }): Promise<void> => {
-    await StatementOfService.C100StatementOfService({
-      page: page,
-      accessibilityTest: false,
-      browser: browser,
-      ccdRef: ccdRef,
-      manageOrderData: jsonDatas.manageOrderDataC43CreateOrder,
-      applicationSubmittedBy: "Solicitor",
-    });
-  });
-
-  test("Complete Task - statement of Service - Child arrangements, specific issue or prohibited steps order (C43) with accessibility test. @regression @accessibility", async ({
+  test("Complete Task - statement of Service - Child arrangements, specific issue or prohibited steps order (C43) with accessibility test. @nightly @regression @accessibility", async ({
     page,
     browser,
   }): Promise<void> => {
