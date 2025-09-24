@@ -35,7 +35,7 @@ export class AllocatedJudgeSubmitPage extends EventPage {
     isJudge,
     judgeTier,
   }: AllocatedJudgeSubmitParams): Promise<void> {
-    await this.checkHeading();
+    await this.checkPageHeadings();
     await expect(this.headingH2).toBeVisible();
     await expect(this.tex16).toBeVisible();
     const fileName = this.buildSnapshotFileName({

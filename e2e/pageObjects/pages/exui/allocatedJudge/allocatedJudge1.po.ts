@@ -94,7 +94,7 @@ export class AllocatedJudge1Page extends EventPage {
   }
 
   async checkPageContents(): Promise<void> {
-    await this.checkHeading();
+    await this.checkPageHeadings();
     await expect(this.heading2).toBeVisible();
     await expect(this.p).toBeVisible();
     await expect(this.actionFormLabel).toBeVisible();
