@@ -20,21 +20,7 @@ test.describe("Complete the Order task for CA Solicitor case tests.", () => {
     );
   });
 
-  test("Complete Task - Create a Bundle - Child arrangements, specific issue or prohibited steps order (C43) without accessibility test. @nightly @regression", async ({
-    page,
-    browser,
-  }): Promise<void> => {
-    await CreateABundleJourney.C100CreateABundleJourney({
-      page: page,
-      accessibilityTest: false,
-      browser: browser,
-      ccdRef: ccdRef,
-      manageOrderData: jsonDatas.manageOrderDataC43CreateOrder,
-      applicationSubmittedBy: "Solicitor",
-    });
-  });
-
-  test("Complete Task - Create a Bundle - Child arrangements, specific issue or prohibited steps order (C43) with accessibility test. @regression @accessibility", async ({
+  test("Complete Task - Create a Bundle - Child arrangements, specific issue or prohibited steps order (C43) with accessibility test. @nightly @regression @accessibility", async ({
     page,
     browser,
   }): Promise<void> => {
