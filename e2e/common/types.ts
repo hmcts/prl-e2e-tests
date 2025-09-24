@@ -167,6 +167,9 @@ export type Language = "English" | "Welsh";
 
 export type manageOrdersOptions = "create order" | "upload order";
 
+export type createOrderC100Options =
+  | "C43 order";
+
 export type createOrderFL401Options =
   | "power of arrest"
   | "non-molestation"
@@ -298,6 +301,7 @@ export type solicitorCACaseAPIEvent =
   | "testingSupportPaymentSuccessCallback"
   | "issueAndSendToLocalCourtCallback"
   | "serviceOfApplication"
+  | "manageOrders"
   | "sendToGateKeeper";
 
 export type AdditionalApplicationType = "c2" | "other";

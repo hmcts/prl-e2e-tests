@@ -14,13 +14,16 @@ import { HearingAdditionalInstructionsPage } from "../../../../pages/manageCases
 import { HearingCreateEditSummaryPage } from "../../../../pages/manageCases/caseProgression/createHearingRequest/hearingCreateEditSummaryPage.ts";
 import Config from "../../../../utils/config.utils.ts";
 import config from "../../../../utils/config.utils.ts";
-import { createOrderFL401Options } from "../../../../common/types.ts";
+import { createOrderC100Options, createOrderFL401Options } from "../../../../common/types.ts";
 import { Selectors } from "../../../../common/selectors.ts";
 import { jsonDatas } from "../../../../common/caseHelpers/jsonDatas.ts";
-import { completeCheckApplicationAndSendToGatekeeperAndCreateAnOrder } from "../../../../common/caseHelpers/caseEventsHelper.ts";
+import {
+  completeC100Order,
+  completeCheckApplicationAndSendToGatekeeperAndCreateAnOrder
+} from "../../../../common/caseHelpers/caseEventsHelper.ts";
 import { HearingConfirmationPage } from "../../../../pages/manageCases/caseProgression/createHearingRequest/hearingConfirmationPage.ts";
 
-interface CreateHearingRequestParams {
+interface FL401CreateHearingRequestParams {
   page: Page;
   accessibilityTest: boolean;
   createOrderFL401Options: createOrderFL401Options;
@@ -29,15 +32,24 @@ interface CreateHearingRequestParams {
   manageOrderData: typeof jsonDatas;
 }
 
+interface C100CreateHearingRequestParams {
+  page: Page;
+  accessibilityTest: boolean;
+  createOrderC100Options: createOrderC100Options;
+  ccdRef: string;
+  browser: Browser;
+  manageOrderData: typeof jsonDatas;
+}
+
 export class CreateHearingRequest {
-  public static async createHearingRequest({
+  public static async FL401CreateHearingRequest({
     page,
     accessibilityTest,
     ccdRef,
     createOrderFL401Options,
     browser,
     manageOrderData,
-  }: CreateHearingRequestParams): Promise<void> {
+  }: FL401CreateHearingRequestParams): Promise<void> {
     await completeCheckApplicationAndSendToGatekeeperAndCreateAnOrder(
       page,
       browser,
@@ -96,6 +108,50 @@ export class CreateHearingRequest {
         await Helpers.assignTaskToMeAndTriggerNextSteps(
           page,
           "Create Hearing Request - Notice of proceedings (FL402)",
+          "Create Hearing Request",
+        );
+        break;
+    }
+    // wait for ref data to finish loading before clicking the hearing request button - if it clicks too fast the hearing requirements page fails to load
+    await page.waitForResponse(
+      (response) =>
+        /.*\/api\/prd\/lov\/getLovRefData.*/.test(response.url()) &&
+        response.status() === 200,
+    );
+    await this.requestAHearing(page, accessibilityTest);
+  }
+
+  public static async C100CreateHearingRequest({
+    page,
+    accessibilityTest,
+    ccdRef,
+    createOrderC100Options,
+    browser,
+    manageOrderData,
+  }: C100CreateHearingRequestParams): Promise<void> {
+    await completeC100Order(
+      page,
+      browser,
+      ccdRef,
+      manageOrderData,
+    );
+    // open new browser and sign in as court admin user
+    const newBrowser = await browser.browserType().launch();
+    const newContext: BrowserContext = await newBrowser.newContext({
+      storageState: Config.sessionStoragePath + "caseWorker.json",
+    });
+    page = await newContext.newPage();
+    await Helpers.goToCase(
+      page,
+      config.manageCasesBaseURLCase,
+      ccdRef,
+      "tasks",
+    );
+    switch (createOrderC100Options) {
+      case "C43 order":
+        await Helpers.assignTaskToMeAndTriggerNextSteps(
+          page,
+          "Create Hearing Request - Non-molestation order (FL404A)",
           "Create Hearing Request",
         );
         break;
