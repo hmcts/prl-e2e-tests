@@ -1,5 +1,4 @@
 import { test } from "../../fixtures.ts";
-import { Helpers } from "../../../common/helpers.ts";
 import config from "../../../utils/config.utils.ts";
 
 test.use({ storageState: config.sessionStoragePath + "courtAdminStoke.json" });
@@ -8,11 +7,10 @@ test.describe("Link DA cases as a court admin.", () => {
   let caseNumber: string = "";
   let linkedCaseNumber: string = "";
 
-  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
+  test.beforeEach(async ({ browser, caseEventUtils, navigationUtils }) => {
     caseNumber = await caseEventUtils.createDACase(browser);
     linkedCaseNumber = await caseEventUtils.createDACase(browser);
-    await Helpers.goToCase(
-      page,
+    await navigationUtils.goToCase(
       config.manageCasesBaseURLCase,
       caseNumber,
       "tasks",
@@ -28,13 +26,13 @@ test.describe("Link DA cases as a court admin.", () => {
     },
   ].forEach(({ caseName, state, reasonsForCaseLink, otherReason }) => {
     test("Link cases. With accessibility test. @nightly @accessibility", async ({
-      page,
       summaryPage,
       createCaseLink1Page,
       createCaseLink2Page,
       createCaseLink3Page,
       createCaseLinkSubmitPage,
       linkedCasesPage,
+      navigationUtils,
       axeUtils,
     }): Promise<void> => {
       // Create case link
@@ -78,8 +76,7 @@ test.describe("Link DA cases as a court admin.", () => {
         ],
       });
       // check the linked cases tab for the case that has been linked from
-      await Helpers.goToCase(
-        page,
+      await navigationUtils.goToCase(
         config.manageCasesBaseURLCase,
         linkedCaseNumber,
         "tasks",

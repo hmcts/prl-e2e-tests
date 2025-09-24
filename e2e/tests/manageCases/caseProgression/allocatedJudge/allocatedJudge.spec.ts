@@ -1,16 +1,14 @@
 import { test } from "../../../fixtures.ts";
 import config from "../../../../utils/config.utils.ts";
-import { Helpers } from "../../../../common/helpers.ts";
 
 test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("Allocate a judge to the case", () => {
   let caseNumber: string = "";
 
-  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
+  test.beforeEach(async ({ browser, caseEventUtils, navigationUtils }) => {
     caseNumber = await caseEventUtils.createDACaseSendToGatekeeper(browser);
-    await Helpers.goToCase(
-      page,
+    await navigationUtils.goToCase(
       config.manageCasesBaseURLCase,
       caseNumber,
       "tasks",
