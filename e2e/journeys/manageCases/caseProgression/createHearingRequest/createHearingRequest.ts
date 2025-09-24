@@ -135,6 +135,17 @@ export class CreateHearingRequest {
       ccdRef,
       manageOrderData,
     );
+
+/*    await CompleteTheOrder.C100completeTheOrder({
+      page: page,
+      accessibilityTest: false,
+      personallyServed: true,
+      solicitorCaseCreateType: "C100",
+      isUploadOrder: false,
+      checkOption: "noCheck", //options passed could be either noCheck or judgeOrLegalAdvisorCheck or managerCheck
+      serveOrderNow: true, //select to serve order instantly
+    });*/
+
     // open new browser and sign in as court admin user
     const newBrowser = await browser.browserType().launch();
     const newContext: BrowserContext = await newBrowser.newContext({
