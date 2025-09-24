@@ -297,6 +297,7 @@ export type solicitorCACaseAPIEvent =
   | "submitAndPay"
   | "testingSupportPaymentSuccessCallback"
   | "issueAndSendToLocalCourtCallback"
+  | "serviceOfApplication"
   | "sendToGateKeeper";
 
 export type AdditionalApplicationType = "c2" | "other";
