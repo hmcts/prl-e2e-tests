@@ -11,7 +11,7 @@ import { Selectors } from "../../../common/selectors.ts";
 import { ApplicantDashboardContent } from "../../../fixtures/citizen/activateCase/applicantDashboardContent.ts";
 import { RespondentDashboardContent } from "../../../fixtures/citizen/activateCase/respondentDashboardContent.ts";
 import { ServiceOfApplication } from "../../manageCases/caseProgression/serviceOfApplication/serviceOfApplication.ts";
-import { completeEventsUpToServiceOfApplication } from "../../../common/caseHelpers/caseEventsHelper.ts";
+import { fl401CompleteEventsUpToServiceOfApplication } from "../../../common/caseHelpers/caseEventsHelper.ts";
 import { applicationSubmittedBy } from "../../../common/types.ts";
 import { ConfidentialityCheck } from "../../manageCases/caseProgression/confidentilityCheck/confidentialityCheck.ts";
 import { IdamUtils, ServiceAuthUtils } from "@hmcts/playwright-common";
@@ -60,7 +60,7 @@ export class ActivateCase {
         await ConfidentialityCheck.confidentialityCheckLite(browser, caseRef);
       }
     } else {
-      await completeEventsUpToServiceOfApplication(
+      await fl401CompleteEventsUpToServiceOfApplication(
         page,
         browser,
         caseRef,

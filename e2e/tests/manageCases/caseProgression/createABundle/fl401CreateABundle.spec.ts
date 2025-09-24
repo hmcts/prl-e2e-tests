@@ -24,7 +24,7 @@ test.describe("Complete the Order task for DA Solicitor case tests.", () => {
     page,
     browser,
   }): Promise<void> => {
-    await CreateABundleJourney.createABundleJourney({
+    await CreateABundleJourney.FL401CreateABundleJourney({
       page: page,
       accessibilityTest: false,
       ccdRef: ccdRef,
@@ -39,7 +39,7 @@ test.describe("Complete the Order task for DA Solicitor case tests.", () => {
     page,
     browser,
   }): Promise<void> => {
-    await CreateABundleJourney.createABundleJourney({
+    await CreateABundleJourney.FL401CreateABundleJourney({
       page: page,
       accessibilityTest: true,
       ccdRef: ccdRef,
