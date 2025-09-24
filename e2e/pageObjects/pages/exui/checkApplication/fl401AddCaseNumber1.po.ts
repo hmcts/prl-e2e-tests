@@ -21,7 +21,7 @@ export class Fl401AddCaseNumber1Page extends EventPage {
     super(page, "Add case number");
   }
 
-  async checkPageContents(): Promise<void> {
+  async assertPageContents(): Promise<void> {
     await this.checkPageHeadings();
     await expect(this.formLabel).toBeVisible();
     await expect(this.continueButton).toBeVisible();

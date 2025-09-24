@@ -30,11 +30,11 @@ test.describe("Check Application task for DA Solicitor case tests.", () => {
         "Check Application",
         "Add Case Number",
       );
-      await fl401AddCaseNumber1Page.checkPageContents();
+      await fl401AddCaseNumber1Page.assertPageContents();
       await axeUtils.audit();
       await fl401AddCaseNumber1Page.fillInFields(familyManNumber);
       await fl401AddCaseNumber1Page.clickContinue();
-      await fl401AddCaseNumberSubmitPage.checkPageContents();
+      await fl401AddCaseNumberSubmitPage.assertPageContents();
       await axeUtils.audit();
       await fl401AddCaseNumberSubmitPage.clickSaveAndContinue();
       await summaryPage.alertBanner.assertEventAlert(

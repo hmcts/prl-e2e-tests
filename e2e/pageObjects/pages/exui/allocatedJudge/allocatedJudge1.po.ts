@@ -93,7 +93,7 @@ export class AllocatedJudge1Page extends EventPage {
     super(page, "Allocated judge");
   }
 
-  async checkPageContents(): Promise<void> {
+  async assertPageContents(): Promise<void> {
     await this.checkPageHeadings();
     await expect(this.heading2).toBeVisible();
     await expect(this.p).toBeVisible();

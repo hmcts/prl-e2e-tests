@@ -30,7 +30,7 @@ export class AllocatedJudgeSubmitPage extends EventPage {
     super(page, "Allocated judge");
   }
 
-  async checkPageContents({
+  async assertPageContents({
     isSpecificJudgeOrLegalAdviser,
     isJudge,
     judgeTier,

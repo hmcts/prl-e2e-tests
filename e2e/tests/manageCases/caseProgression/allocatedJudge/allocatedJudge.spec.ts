@@ -45,7 +45,7 @@ test.describe("Allocate a judge to the case", () => {
         axeUtils,
       }) => {
         await summaryPage.chooseEventFromDropdown("Allocated judge");
-        await allocatedJudge1Page.checkPageContents();
+        await allocatedJudge1Page.assertPageContents();
         await axeUtils.audit();
         await allocatedJudge1Page.selectIsJudgeOrLegalAdviser(
           isSpecificJudgeOrLegalAdviser,
@@ -55,7 +55,7 @@ test.describe("Allocate a judge to the case", () => {
           judgeOrLegalAdviserName,
         );
         await allocatedJudge1Page.clickContinue();
-        await allocatedJudgeSubmitPage.checkPageContents({
+        await allocatedJudgeSubmitPage.assertPageContents({
           isSpecificJudgeOrLegalAdviser,
           isJudge,
         });
@@ -104,14 +104,14 @@ test.describe("Allocate a judge to the case", () => {
         axeUtils,
       }) => {
         await summaryPage.chooseEventFromDropdown("Allocated judge");
-        await allocatedJudge1Page.checkPageContents();
+        await allocatedJudge1Page.assertPageContents();
         await axeUtils.audit();
         await allocatedJudge1Page.selectIsJudgeOrLegalAdviser(
           isSpecificJudgeOrLegalAdviser,
         );
         await allocatedJudge1Page.selectJudiciaryTier(judgeTier);
         await allocatedJudge1Page.clickContinue();
-        await allocatedJudgeSubmitPage.checkPageContents({
+        await allocatedJudgeSubmitPage.assertPageContents({
           isSpecificJudgeOrLegalAdviser,
           judgeTier,
         });

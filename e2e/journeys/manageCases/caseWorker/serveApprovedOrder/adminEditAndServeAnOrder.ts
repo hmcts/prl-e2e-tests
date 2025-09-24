@@ -64,7 +64,7 @@ export class AdminEditAndServeAnOrder {
     }
 
     const fl401AddCaseNumber1Page = new Fl401AddCaseNumber1Page(page);
-    await fl401AddCaseNumber1Page.checkPageContents();
+    await fl401AddCaseNumber1Page.assertPageContents();
     if (accessibilityTest) {
       await axeUtils.audit();
     }
@@ -72,7 +72,7 @@ export class AdminEditAndServeAnOrder {
     await fl401AddCaseNumber1Page.continueButton.click();
 
     const fl401AddCaseNumberSubmitPage = new Fl401AddCaseNumberSubmitPage(page);
-    await fl401AddCaseNumberSubmitPage.checkPageContents();
+    await fl401AddCaseNumberSubmitPage.assertPageContents();
     if (accessibilityTest) {
       await axeUtils.audit();
     }
