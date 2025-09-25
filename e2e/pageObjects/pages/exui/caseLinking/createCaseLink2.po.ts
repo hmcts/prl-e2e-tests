@@ -120,12 +120,10 @@ export class CreateCaseLink2Page extends Base {
   }
 
   async proposeCaseLink({
-    caseName,
     linkedCaseNumber,
-    state,
     reasonsForCaseLink,
     otherReason,
-  }: CaseLinksTableParams): Promise<void> {
+  }: Partial<CaseLinksTableParams>): Promise<void> {
     await this.caseNumberInput.fill(linkedCaseNumber);
     for (const checkboxName of reasonsForCaseLink) {
       const checkbox: Locator = this.page.getByRole("checkbox", {
@@ -139,6 +137,15 @@ export class CreateCaseLink2Page extends Base {
     await expect(this.otherCommentsHint).toBeVisible();
     await this.otherDescriptionInput.fill(otherReason);
     await this.proposeCaseLinkButton.click();
+  }
+
+  async assertProposedCaseLinksTableContents({
+    caseName,
+    linkedCaseNumber,
+    state,
+    reasonsForCaseLink,
+    otherReason,
+  }: CaseLinksTableParams): Promise<void> {
     await expect(this.tableHeading).toBeVisible();
     await this.proposedCaseLinksTable.assertTableContents([
       {

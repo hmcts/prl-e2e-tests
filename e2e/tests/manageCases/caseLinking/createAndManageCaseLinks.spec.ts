@@ -47,6 +47,11 @@ test.describe("Create and manage linked DA cases as a court admin.", () => {
       await createCaseLink2Page.assertPageContents();
       // await axeUtils.audit();  TODO: add ticket due to failing accessibility
       await createCaseLink2Page.proposeCaseLink({
+        linkedCaseNumber,
+        reasonsForCaseLink,
+        otherReason,
+      });
+      await createCaseLink2Page.assertProposedCaseLinksTableContents({
         caseName,
         linkedCaseNumber,
         state,
