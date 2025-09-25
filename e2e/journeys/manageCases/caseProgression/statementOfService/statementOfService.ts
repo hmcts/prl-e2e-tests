@@ -3,7 +3,7 @@ import { Helpers } from "../../../../common/helpers.ts";
 import { StatementOfService1Page } from "../../../../pages/manageCases/caseProgression/statementOfService/statementOfService1Page.ts";
 import { StatementOfServiceSubmitPage } from "../../../../pages/manageCases/caseProgression/statementOfService/StatementOfServiceSubmitPage.ts";
 import { jsonDatas } from "../../../../common/caseHelpers/jsonDatas.ts";
-import { completeEventsUpToServiceOfApplication } from "../../../../common/caseHelpers/caseEventsHelper.ts";
+import { fl401CompleteEventsUpToServiceOfApplication } from "../../../../common/caseHelpers/caseEventsHelper.ts";
 import {
   applicationSubmittedBy,
   createOrderFL401Options,
@@ -29,7 +29,7 @@ export class StatementOfService {
     createOrderFL401Options,
     applicationSubmittedBy,
   }: statementOfServiceParams): Promise<void> {
-    await completeEventsUpToServiceOfApplication(
+    await fl401CompleteEventsUpToServiceOfApplication(
       page,
       browser,
       ccdRef,
