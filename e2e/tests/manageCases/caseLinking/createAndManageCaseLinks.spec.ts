@@ -13,7 +13,7 @@ test.describe("Create and manage linked DA cases as a court admin.", () => {
     await navigationUtils.goToCase(
       config.manageCasesBaseURLCase,
       caseNumber,
-      "tasks",
+      "Summary",
     );
   });
 
