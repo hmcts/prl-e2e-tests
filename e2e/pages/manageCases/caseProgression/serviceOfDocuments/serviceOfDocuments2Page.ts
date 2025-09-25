@@ -13,6 +13,7 @@ interface serviceOfDocuments2Options {
   servedByPost: boolean;
   additionalRecipient: boolean;
 }
+
 enum UniqueSelectors {
   personallyServedSelectorYes = "#sodServeToRespondentOptions-Yes",
   personallyServedSelectorNo = "#sodServeToRespondentOptions-No",
@@ -139,11 +140,13 @@ export class ServiceOfDocuments2Page {
       await this.handleServeByEmail(page);
     }
   }
+
   private static async continue(page: Page): Promise<void> {
     await page.click(
       `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
     );
   }
+
   private static async handleServeByPost(page: Page): Promise<void> {
     await page.click(UniqueSelectors.additionalRecipientPostSelector);
     await page.click(UniqueSelectors.additionalRecipientPostSelector);
@@ -160,9 +163,10 @@ export class ServiceOfDocuments2Page {
       ServiceOfDocuments2Content.inputPostcode,
     );
     await page.getByRole("button", { name: "Find address" }).click();
-    await page
-      .locator(UniqueSelectors.additionalRecipientPost_SelectAddress)
-      .selectOption("1: Object");
+    await page.selectOption(
+      UniqueSelectors.additionalRecipientPost_SelectAddress,
+      { index: 1 },
+    );
     await Promise.all([
       Helpers.checkGroup(
         page,
