@@ -5,7 +5,7 @@ import { NoticeOfChange } from "../../../../journeys/manageCases/caseProgression
 import { test } from "../../../fixtures.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "nocSolicitor.json" });
-// TEST COMMENT
+
 test.describe("Notice of Change tests for CA case", () => {
   let ccdRef: string = "";
 
