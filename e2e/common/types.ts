@@ -297,6 +297,7 @@ export type solicitorCACaseAPIEvent =
   | "submitAndPay"
   | "testingSupportPaymentSuccessCallback"
   | "issueAndSendToLocalCourtCallback"
+  | "serviceOfApplication"
   | "sendToGateKeeper";
 
 export type AdditionalApplicationType = "c2" | "other";
@@ -322,3 +323,10 @@ export type CaseState =
   | "Case issued"
   | "Gatekeeping"
   | "Hearing";
+
+export interface ClippingCoords {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+}

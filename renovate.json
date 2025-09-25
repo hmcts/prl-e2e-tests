@@ -1,16 +1,10 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["local>hmcts/.github:renovate-config"],
-  "major": {
-    "dependencyDashboardApproval": true
-  },
-  "packageRules": [
-    {
-      "matchUpdateTypes": ["minor", "patch"],
-      "groupName": "All patch-minor dependencies",
-      "groupSlug": "All-minor-patch",
-      "addLabels": ["Renovate All-minor-patch"],
-      "automerge": true
-    }
-  ]
+  "extends": [
+    "local>hmcts/.github:renovate-config",
+    "local>hmcts/.github//renovate/automerge-minor"
+  ],
+  "prConcurrentLimit": 6,
+  "schedule": ["after 4pm"],
+  "rebaseWhen": "behind-base-branch"
 }

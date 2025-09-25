@@ -3,7 +3,10 @@ import { Helpers } from "../../../../common/helpers.ts";
 import { CreateBundleSubmitPage } from "../../../../pages/manageCases/caseProgression/createBundle/createBundleSubmitPage.ts";
 import { CreateBundle1Page } from "../../../../pages/manageCases/caseProgression/createBundle/createBundle1Page.ts";
 import { jsonDatas } from "../../../../common/caseHelpers/jsonDatas.ts";
-import { completeEventsUpToServiceOfApplication } from "../../../../common/caseHelpers/caseEventsHelper.ts";
+import {
+  c100CompleteEventsUpToServiceOfApplication,
+  fl401CompleteEventsUpToServiceOfApplication,
+} from "../../../../common/caseHelpers/caseEventsHelper.ts";
 import {
   applicationSubmittedBy,
   createOrderFL401Options,
@@ -20,6 +23,15 @@ interface ServiceOfApplicationJourneyParams {
   applicationSubmittedBy: applicationSubmittedBy;
 }
 
+interface C100ServiceOfApplicationJourneyParams {
+  page: Page;
+  accessibilityTest: boolean;
+  ccdRef: string;
+  browser: Browser;
+  manageOrderData: typeof jsonDatas;
+  applicationSubmittedBy: applicationSubmittedBy;
+}
+
 const bundleContents: string[] = [
   "Bundle Details",
   "Bundle Creation Date and Time",
@@ -32,7 +44,7 @@ const bundleContents: string[] = [
 ];
 
 export class CreateABundleJourney {
-  public static async createABundleJourney({
+  public static async FL401CreateABundleJourney({
     page,
     accessibilityTest,
     ccdRef,
@@ -41,12 +53,40 @@ export class CreateABundleJourney {
     createOrderFL401Options,
     applicationSubmittedBy,
   }: ServiceOfApplicationJourneyParams): Promise<void> {
-    await completeEventsUpToServiceOfApplication(
+    await fl401CompleteEventsUpToServiceOfApplication(
       page,
       browser,
       ccdRef,
       manageOrderData,
       createOrderFL401Options,
+      applicationSubmittedBy,
+    );
+    await page.reload();
+    await Helpers.chooseEventFromDropdown(page, "Create a bundle");
+    await CreateBundle1Page.createBundle1Page({
+      page,
+      accessibilityTest,
+    });
+    await CreateBundleSubmitPage.createBundleSubmitPage({
+      page,
+      accessibilityTest,
+    });
+    await this.checkBundleTab(page);
+  }
+
+  public static async C100CreateABundleJourney({
+    page,
+    accessibilityTest,
+    browser,
+    ccdRef,
+    manageOrderData,
+    applicationSubmittedBy,
+  }: C100ServiceOfApplicationJourneyParams): Promise<void> {
+    await c100CompleteEventsUpToServiceOfApplication(
+      page,
+      ccdRef,
+      browser,
+      manageOrderData,
       applicationSubmittedBy,
     );
     await page.reload();
