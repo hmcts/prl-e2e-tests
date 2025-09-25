@@ -35,7 +35,7 @@ export class CreateCaseLink1Page extends Base {
     super(page);
   }
 
-  async checkPageContents(): Promise<void> {
+  async assertPageContents(): Promise<void> {
     await expect(this.familyManHeading).toBeVisible();
     await expect(this.caseNumberHeading).toBeVisible();
     await expect(this.sectionHeading).toBeVisible();

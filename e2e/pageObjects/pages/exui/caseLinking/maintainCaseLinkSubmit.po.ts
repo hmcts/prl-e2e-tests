@@ -1,11 +1,16 @@
-import { expect, Locator, Page } from "@playwright/test";
 import { Base } from "../../base.po.js";
+import { expect, Locator, Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.js";
 import { CommonStaticText } from "../../../../common/commonStaticText.js";
-import { CheckYourAnswersTableComponent } from "../../../components/exui/checkYourAnswersTable.component.js";
 
 // Not a standard event page so don't extend EventPage
-export class CreateCaseLink3Page extends Base {
+export class MaintainCaseLinkSubmitPage extends Base {
+  private readonly pageHeading: Locator = this.page.locator(
+    Selectors.GovukHeadingL,
+    {
+      hasText: "Manage case links",
+    },
+  );
   private readonly familyManHeading: Locator = this.page.locator(Selectors.h2, {
     hasText: "FamilyMan ID",
   });
@@ -16,17 +21,18 @@ export class CreateCaseLink3Page extends Base {
     },
   );
   private readonly sectionHeading: Locator = this.page.locator(
-    Selectors.GovukHeadingXL,
+    Selectors.headingH2,
     {
       hasText: "Check your answers",
     },
   );
-  private readonly table: CheckYourAnswersTableComponent =
-    new CheckYourAnswersTableComponent(this.page);
-  private readonly continueButton: Locator = this.page.locator(
+  private readonly content: Locator = this.page.locator(Selectors.GovukText16, {
+    hasText: "Check the information below carefully.",
+  });
+  private readonly maintainLinkButton: Locator = this.page.locator(
     Selectors.button,
     {
-      hasText: CommonStaticText.continue,
+      hasText: "Maintain Case Links",
     },
   );
   private readonly previousButton: Locator = this.page.locator(
@@ -41,20 +47,16 @@ export class CreateCaseLink3Page extends Base {
   }
 
   async assertPageContents(): Promise<void> {
+    await expect(this.pageHeading).toBeVisible();
     await expect(this.familyManHeading).toBeVisible();
     await expect(this.caseNumberHeading).toBeVisible();
     await expect(this.sectionHeading).toBeVisible();
-    await this.table.runVisualTest(["caseLinking", "create-case-link"], {
-      x: 0,
-      y: 450,
-      width: 1920,
-      height: 1080,
-    });
-    await expect(this.continueButton).toBeVisible();
+    await expect(this.content).toBeVisible();
+    await expect(this.maintainLinkButton).toBeVisible();
     await expect(this.previousButton).toBeVisible();
   }
 
-  async clickContinue(): Promise<void> {
-    await this.continueButton.click();
+  async clickMaintainCaseLink(): Promise<void> {
+    await this.maintainLinkButton.click();
   }
 }

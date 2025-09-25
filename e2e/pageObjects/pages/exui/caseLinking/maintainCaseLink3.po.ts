@@ -1,11 +1,11 @@
-import { expect, Locator, Page } from "@playwright/test";
 import { Base } from "../../base.po.js";
+import { expect, Locator, Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.js";
-import { CommonStaticText } from "../../../../common/commonStaticText.js";
 import { CheckYourAnswersTableComponent } from "../../../components/exui/checkYourAnswersTable.component.js";
+import { CommonStaticText } from "../../../../common/commonStaticText.js";
 
 // Not a standard event page so don't extend EventPage
-export class CreateCaseLink3Page extends Base {
+export class MaintainCaseLink3Page extends Base {
   private readonly familyManHeading: Locator = this.page.locator(Selectors.h2, {
     hasText: "FamilyMan ID",
   });
@@ -44,7 +44,7 @@ export class CreateCaseLink3Page extends Base {
     await expect(this.familyManHeading).toBeVisible();
     await expect(this.caseNumberHeading).toBeVisible();
     await expect(this.sectionHeading).toBeVisible();
-    await this.table.runVisualTest(["caseLinking", "create-case-link"], {
+    await this.table.runVisualTest(["caseLinking", "maintain-case-link"], {
       x: 0,
       y: 450,
       width: 1920,

@@ -10,6 +10,10 @@ import { CreateCaseLink2Page } from "./pages/exui/caseLinking/createCaseLink2.po
 import { CreateCaseLink3Page } from "./pages/exui/caseLinking/createCaseLink3.po.js";
 import { CreateCaseLinkSubmitPage } from "./pages/exui/caseLinking/createCaseLinkSubmit.po.js";
 import { LinkedCasesPage } from "./pages/exui/caseView/linkedCases.po.js";
+import { MaintainCaseLink1Page } from "./pages/exui/caseLinking/maintainCaseLink1.po.js";
+import { MaintainCaseLink2Page } from "./pages/exui/caseLinking/maintainCaseLink2.po.js";
+import { MaintainCaseLink3Page } from "./pages/exui/caseLinking/maintainCaseLink3.po.js";
+import { MaintainCaseLinkSubmitPage } from "./pages/exui/caseLinking/maintainCaseLinkSubmit.po.js";
 
 export interface PageFixtures {
   tasksPage: TasksPage;
@@ -24,6 +28,10 @@ export interface PageFixtures {
   createCaseLink2Page: CreateCaseLink2Page;
   createCaseLink3Page: CreateCaseLink3Page;
   createCaseLinkSubmitPage: CreateCaseLinkSubmitPage;
+  maintainCaseLink1Page: MaintainCaseLink1Page;
+  maintainCaseLink2Page: MaintainCaseLink2Page;
+  maintainCaseLink3Page: MaintainCaseLink3Page;
+  maintainCaseLinkSubmitPage: MaintainCaseLinkSubmitPage;
 }
 
 export const pageFixtures = {
@@ -62,5 +70,17 @@ export const pageFixtures = {
   },
   createCaseLinkSubmitPage: async ({ page }, use) => {
     await use(new CreateCaseLinkSubmitPage(page));
+  },
+  maintainCaseLink1Page: async ({ page }, use) => {
+    await use(new MaintainCaseLink1Page(page));
+  },
+  maintainCaseLink2Page: async ({ page }, use) => {
+    await use(new MaintainCaseLink2Page(page));
+  },
+  maintainCaseLink3Page: async ({ page }, use) => {
+    await use(new MaintainCaseLink3Page(page));
+  },
+  maintainCaseLinkSubmitPage: async ({ page }, use) => {
+    await use(new MaintainCaseLinkSubmitPage(page));
   },
 };
