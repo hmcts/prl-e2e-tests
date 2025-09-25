@@ -28,7 +28,7 @@ export class Fl401AddCaseNumberSubmitPage extends EventPage {
   }
 
   async assertPageContents(): Promise<void> {
-    await this.checkPageHeadings();
+    await this.assertPageHeadings();
     await expect(this.subHeading).toBeVisible();
     await expect(this.text16).toBeVisible();
     await this.checkYourAnswersTableComponent.runVisualTest([

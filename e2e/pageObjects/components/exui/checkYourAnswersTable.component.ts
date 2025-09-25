@@ -25,22 +25,21 @@ export class CheckYourAnswersTableComponent {
     screenShotPath: string[],
     customCoords?: ClippingCoords,
   ): Promise<void> {
-    const screenshotName: string = screenShotPath[screenShotPath.length - 1];
-    screenShotPath[screenShotPath.length - 1] = `${screenshotName}-cya.png`;
     // if another user is viewing a case then a banner is present so we need to adjust the coordinates to get the same image
-    if (await this.someoneViewing.isVisible()) {
-      const screenshotName: string = screenShotPath[screenShotPath.length - 1];
-      screenShotPath[screenShotPath.length - 1] =
-        `someone-viewing-${screenshotName}`;
-      await expect(this.page).toHaveScreenshot(screenShotPath, {
-        clip: customCoords ?? this.someoneViewingCoords,
-        maxDiffPixelRatio: 0.02,
-      });
-    } else {
-      await expect(this.page).toHaveScreenshot(screenShotPath, {
-        clip: customCoords ?? this.cyaTableClippingCoords,
-        maxDiffPixelRatio: 0.02,
-      });
-    }
+    const isSomeoneViewing: boolean = await this.someoneViewing.isVisible();
+    const providedScreenshotName: string =
+      screenShotPath[screenShotPath.length - 1];
+    screenShotPath[screenShotPath.length - 1] = isSomeoneViewing
+      ? `someone-viewing-${providedScreenshotName}-cya.png`
+      : `${providedScreenshotName}-cya.png`;
+    const coords =
+      customCoords ??
+      (isSomeoneViewing
+        ? this.someoneViewingCoords
+        : this.cyaTableClippingCoords);
+    await expect(this.page).toHaveScreenshot(screenShotPath, {
+      clip: coords,
+      maxDiffPixelRatio: 0.02,
+    });
   }
 }

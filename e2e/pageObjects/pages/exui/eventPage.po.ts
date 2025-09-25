@@ -21,7 +21,7 @@ export abstract class EventPage extends Base {
     });
   }
 
-  async checkPageHeadings(): Promise<void> {
+  async assertPageHeadings(): Promise<void> {
     await expect(this.pageHeading).toBeVisible();
     await expect(this.familyManHeading).toBeVisible();
     await expect(this.caseNumberHeading).toBeVisible();

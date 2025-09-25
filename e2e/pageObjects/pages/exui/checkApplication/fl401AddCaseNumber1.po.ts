@@ -22,7 +22,7 @@ export class Fl401AddCaseNumber1Page extends EventPage {
   }
 
   async assertPageContents(): Promise<void> {
-    await this.checkPageHeadings();
+    await this.assertPageHeadings();
     await expect(this.formLabel).toBeVisible();
     await expect(this.continueButton).toBeVisible();
     await expect(this.previousButton).toBeVisible();
