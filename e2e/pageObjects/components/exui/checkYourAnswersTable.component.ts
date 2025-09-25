@@ -21,7 +21,10 @@ export class CheckYourAnswersTableComponent {
     this.page = page;
   }
 
-  async runVisualTest(screenShotPath: string[]): Promise<void> {
+  async runVisualTest(
+    screenShotPath: string[],
+    customCoords?: ClippingCoords,
+  ): Promise<void> {
     const screenshotName: string = screenShotPath[screenShotPath.length - 1];
     screenShotPath[screenShotPath.length - 1] = `${screenshotName}-cya.png`;
     // if another user is viewing a case then a banner is present so we need to adjust the coordinates to get the same image
@@ -30,12 +33,12 @@ export class CheckYourAnswersTableComponent {
       screenShotPath[screenShotPath.length - 1] =
         `someone-viewing-${screenshotName}`;
       await expect(this.page).toHaveScreenshot(screenShotPath, {
-        clip: this.someoneViewingCoords,
+        clip: customCoords ?? this.someoneViewingCoords,
         maxDiffPixelRatio: 0.02,
       });
     } else {
       await expect(this.page).toHaveScreenshot(screenShotPath, {
-        clip: this.cyaTableClippingCoords,
+        clip: customCoords ?? this.cyaTableClippingCoords,
         maxDiffPixelRatio: 0.02,
       });
     }
