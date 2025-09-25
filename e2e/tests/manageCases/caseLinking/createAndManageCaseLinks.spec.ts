@@ -1,9 +1,9 @@
 import { test } from "../../fixtures.ts";
 import config from "../../../utils/config.utils.ts";
 
-test.use({ storageState: config.sessionStoragePath + "courtAdminStoke.json" });
+test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 
-test.describe("Link DA cases as a court admin.", () => {
+test.describe("Create and manage linked DA cases as a court admin.", () => {
   let caseNumber: string = "";
   let linkedCaseNumber: string = "";
 
@@ -25,23 +25,27 @@ test.describe("Link DA cases as a court admin.", () => {
       otherReason: "TEST",
     },
   ].forEach(({ caseName, state, reasonsForCaseLink, otherReason }) => {
-    test("Link cases. With accessibility test. @nightly @accessibility", async ({
+    test("Create and manage linked case. @nightly @regression @accessibility", async ({
       summaryPage,
       createCaseLink1Page,
       createCaseLink2Page,
       createCaseLink3Page,
       createCaseLinkSubmitPage,
+      maintainCaseLink1Page,
+      maintainCaseLink2Page,
+      maintainCaseLink3Page,
+      maintainCaseLinkSubmitPage,
       linkedCasesPage,
       navigationUtils,
       axeUtils,
     }): Promise<void> => {
       // Create case link
       await summaryPage.chooseEventFromDropdown("Link cases");
-      await createCaseLink1Page.checkPageContents();
+      await createCaseLink1Page.assertPageContents();
       await axeUtils.audit();
       await createCaseLink1Page.clickContinue();
-      await createCaseLink2Page.checkPageContents();
-      // await axeUtils.audit();    TODO: add ticket due to failing accessibility
+      await createCaseLink2Page.assertPageContents();
+      // await axeUtils.audit();  TODO: add ticket due to failing accessibility
       await createCaseLink2Page.proposeCaseLink({
         caseName,
         linkedCaseNumber,
@@ -50,15 +54,10 @@ test.describe("Link DA cases as a court admin.", () => {
         otherReason,
       });
       await createCaseLink2Page.clickContinue();
-      await createCaseLink3Page.assertPageContents({
-        caseName,
-        linkedCaseNumber,
-        reasonsForCaseLink,
-        otherReason,
-      });
+      await createCaseLink3Page.assertPageContents();
       await axeUtils.audit();
       await createCaseLink3Page.clickContinue();
-      await createCaseLinkSubmitPage.checkPageContents();
+      await createCaseLinkSubmitPage.assertPageContents();
       await axeUtils.audit();
       await createCaseLinkSubmitPage.clickCreateCaseLink();
       await summaryPage.alertBanner.assertEventAlert(caseNumber, "Link Cases");
@@ -79,7 +78,7 @@ test.describe("Link DA cases as a court admin.", () => {
       await navigationUtils.goToCase(
         config.manageCasesBaseURLCase,
         linkedCaseNumber,
-        "tasks",
+        "Summary",
       );
       await linkedCasesPage.goToPage();
       await linkedCasesPage.clickShowHideLink();
@@ -95,7 +94,44 @@ test.describe("Link DA cases as a court admin.", () => {
         ],
       });
 
-      // TODO: Add manage case links part of the journey
+      // manage case links
+      await navigationUtils.goToCase(
+        config.manageCasesBaseURLCase,
+        caseNumber,
+        "Summary",
+      );
+      await summaryPage.chooseEventFromDropdown("Manage case links");
+      await maintainCaseLink1Page.assertPageContents();
+      await axeUtils.audit();
+      await maintainCaseLink1Page.clickContinue();
+      await maintainCaseLink2Page.assertPageContents(
+        caseName,
+        linkedCaseNumber,
+      );
+      // await axeUtils.audit();  TODO: add ticket due to failing accessibility
+      await maintainCaseLink2Page.selectCaseToUnlink();
+      await maintainCaseLink2Page.clickContinue();
+      await maintainCaseLink3Page.assertPageContents();
+      await axeUtils.audit();
+      await maintainCaseLink3Page.clickContinue();
+      await maintainCaseLinkSubmitPage.assertPageContents();
+      await axeUtils.audit();
+      await maintainCaseLinkSubmitPage.clickMaintainCaseLink();
+      await summaryPage.alertBanner.assertEventAlert(
+        caseNumber,
+        "Manage case links",
+      );
+      // check linked cases tab
+      await linkedCasesPage.goToPage();
+      await linkedCasesPage.assertPageContents({});
+      // check the linked cases tab for the case that has been linked from
+      await navigationUtils.goToCase(
+        config.manageCasesBaseURLCase,
+        linkedCaseNumber,
+        "Summary",
+      );
+      await linkedCasesPage.goToPage();
+      await linkedCasesPage.assertPageContents({});
     });
   });
 });
