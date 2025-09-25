@@ -39,7 +39,7 @@ test.describe("Create and manage linked DA cases as a court admin.", () => {
       navigationUtils,
       axeUtils,
     }): Promise<void> => {
-      // Create case link
+      // Create case link journey
       await summaryPage.chooseEventFromDropdown("Link cases");
       await createCaseLink1Page.assertPageContents();
       await axeUtils.audit();
@@ -99,7 +99,7 @@ test.describe("Create and manage linked DA cases as a court admin.", () => {
         ],
       });
 
-      // manage case links
+      // manage case links journey
       await navigationUtils.goToCase(
         config.manageCasesBaseURLCase,
         caseNumber,
