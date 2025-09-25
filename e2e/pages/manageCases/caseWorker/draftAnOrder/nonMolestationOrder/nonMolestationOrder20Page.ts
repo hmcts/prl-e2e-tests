@@ -70,7 +70,7 @@ export class NonMolestationOrder20Page {
     );
     await mediaViewerPage.runVisualTestOnAllPages(
       pdfPage,
-      regionalPdfName,
+      ["caseWorker", "nonMolestationOrder", regionalPdfName],
       clippingCoords.centeredPageWithoutToolbar,
       [caseRefLocator, dateLocator],
     );

@@ -102,7 +102,7 @@ export class ConfidentialityCheck {
       manageOrderData,
       applicationSubmittedBy,
     });
-    await AmendApplicantDetails.amendApplicantDetails({
+    await AmendApplicantDetails.fl401AmendApplicantDetails({
       page,
       accessibilityTest,
       ccdRef,

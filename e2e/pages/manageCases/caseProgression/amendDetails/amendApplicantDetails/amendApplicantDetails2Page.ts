@@ -45,6 +45,9 @@ enum uniqueSelectors {
   canProvideEmailAddressNo = "#applicantsFL401_canYouProvideEmailAddress_No",
   confidentialEmailYes = "#applicantsFL401_isEmailAddressConfidential_Yes",
   confidentialEmailNo = "#applicantsFL401_isEmailAddressConfidential_No",
+
+  applicantPhoneNumber = "#applicantsFL401_phoneNumber",
+
   phoneNumberConfidentialRadio = "#applicantsFL401_isPhoneNumberConfidential_radio",
   confidentialPhoneNumberYes = "#applicantsFL401_isPhoneNumberConfidential_Yes",
   confidentialPhoneNumberNo = "#applicantsFL401_isPhoneNumberConfidential_No",
@@ -378,6 +381,10 @@ export class AmendApplicantDetails2Page {
     await page.fill(
       uniqueSelectors.applicantEmailAddress,
       AmendApplicantDetails2Content.applicantEmailAddressInput,
+    );
+    await page.fill(
+      uniqueSelectors.applicantPhoneNumber,
+      AmendApplicantDetails2Content.applicantPhoneNumberInput,
     );
     await page.click(uniqueSelectors.confidentialEmailYes);
     await page.click(uniqueSelectors.confidentialPhoneNumberYes);
