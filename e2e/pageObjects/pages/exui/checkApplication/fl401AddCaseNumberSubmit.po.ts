@@ -34,7 +34,7 @@ export class Fl401AddCaseNumberSubmitPage extends EventPage {
     await this.checkYourAnswersTableComponent.runVisualTest([
       "caseProgression",
       "checkApplication",
-      "check-application.png",
+      "check-application",
     ]);
     await expect(this.saveAndContinueButton).toBeVisible();
     await expect(this.previousButton).toBeVisible();
