@@ -2,7 +2,7 @@ import { Base } from "../../base.po.js";
 import { expect, Locator, Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.js";
 import { CommonStaticText } from "../../../../common/commonStaticText.js";
-import { Helpers } from "../../../../common/helpers.js";
+import { CaseNumberUtils } from "../../../../utils/caseNumber.utils.js";
 
 // Not a standard event page so don't extend EventPage
 export class MaintainCaseLink2Page extends Base {
@@ -34,6 +34,7 @@ export class MaintainCaseLink2Page extends Base {
       hasText: CommonStaticText.previous,
     },
   );
+  private readonly caseNumberUtils: CaseNumberUtils = new CaseNumberUtils();
 
   constructor(page: Page) {
     super(page);
@@ -47,7 +48,7 @@ export class MaintainCaseLink2Page extends Base {
     await expect(this.caseNumberHeading).toBeVisible();
     await expect(this.sectionHeading).toBeVisible();
     const label: Locator = this.page.locator(Selectors.GovukLabel, {
-      hasText: `${caseName} ${Helpers.getHyphenatedCaseReference(linkedCaseNumber)}`,
+      hasText: `${caseName} ${this.caseNumberUtils.getHyphenatedCaseReference(linkedCaseNumber)}`,
     });
     await expect(label).toBeVisible();
     await expect(this.continueButton).toBeVisible();
