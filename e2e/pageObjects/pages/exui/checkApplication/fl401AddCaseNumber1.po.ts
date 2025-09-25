@@ -14,7 +14,7 @@ export class Fl401AddCaseNumber1Page extends EventPage {
     hasText: CommonStaticText.continue,
   });
   readonly previousButton: Locator = this.page.locator(Selectors.button, {
-    hasText: CommonStaticText.continue,
+    hasText: CommonStaticText.previous,
   });
 
   constructor(page: Page) {
