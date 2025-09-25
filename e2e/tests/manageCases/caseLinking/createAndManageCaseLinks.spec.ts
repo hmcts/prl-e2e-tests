@@ -45,7 +45,7 @@ test.describe("Create and manage linked DA cases as a court admin.", () => {
       await axeUtils.audit();
       await createCaseLink1Page.clickContinue();
       await createCaseLink2Page.assertPageContents();
-      // await axeUtils.audit();  TODO: add ticket due to failing accessibility
+      // await axeUtils.audit(); // TODO: failing accessibility waiting on FPVTL-1242
       await createCaseLink2Page.proposeCaseLink({
         linkedCaseNumber,
         reasonsForCaseLink,
@@ -113,7 +113,7 @@ test.describe("Create and manage linked DA cases as a court admin.", () => {
         caseName,
         linkedCaseNumber,
       );
-      // await axeUtils.audit();  TODO: add ticket due to failing accessibility
+      // await axeUtils.audit();  // TODO: failing accessibility waiting on FPVTL-1242
       await maintainCaseLink2Page.selectCaseToUnlink();
       await maintainCaseLink2Page.clickContinue();
       await maintainCaseLink3Page.assertPageContents();
