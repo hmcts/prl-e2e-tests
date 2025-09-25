@@ -35,6 +35,7 @@ enum uniqueSelectors {
   applicantInRefugeYes = "#applicantsFL401_liveInRefuge_Yes",
   applicantInRefugeNo = "#applicantsFL401_liveInRefuge_No",
   applicantPostcodeInput = "#applicantsFL401_address_address_postcodeInput",
+  applicantSelectAddress = "#applicantsFL401_address_address_addressList",
   c8FormFileUpload = "#applicantsFL401_refugeConfidentialityC8Form",
   applicantEmailAddress = "#applicantsFL401_email",
   confidentialAddressRadio = "#applicantsFL401_isAddressConfidential_radio",
@@ -368,9 +369,9 @@ export class AmendApplicantDetails2Page {
         name: AmendApplicantDetails2Content.findAddressButtonText,
       })
       .click();
-    await page
-      .getByLabel(AmendApplicantDetails2Content.formLabelSelectAddress)
-      .selectOption("1: Object");
+    await page.selectOption(uniqueSelectors.applicantSelectAddress, {
+      index: 1,
+    });
   }
 
   private static async keepDetailsConfidentialFillFields(
@@ -423,9 +424,9 @@ export class AmendApplicantDetails2Page {
         name: AmendApplicantDetails2Content.findAddressButtonText,
       })
       .click();
-    await page
-      .locator(uniqueSelectors.solicitorSelectAddress)
-      .selectOption("1: Object");
+    await page.selectOption(uniqueSelectors.solicitorSelectAddress, {
+      index: 1,
+    });
     await Promise.all([
       expect
         .soft(
