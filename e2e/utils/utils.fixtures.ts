@@ -26,6 +26,7 @@ export interface UtilsFixtures {
   idamLoginHelper: IdamLoginHelper;
   sessionUtils: SessionUtils;
   serviceAuthUtils: ServiceAuthUtils;
+
   caseEventUtils: CaseEventUtils;
   axeUtils: AxeUtils;
   dateHelperUtils: DateHelperUtils;
