@@ -1,8 +1,9 @@
 import { expect, Locator, Page } from "@playwright/test";
-import { Helpers } from "../../../common/helpers.js";
+import { CaseNumberUtils } from "../../../utils/caseNumber.utils.js";
 
 export class AlertBannerComponent {
-  readonly alertBanner: Locator = this.page.locator(".hmcts-banner");
+  private readonly alertBanner: Locator = this.page.locator(".hmcts-banner");
+  private readonly caseNumberUtils: CaseNumberUtils = new CaseNumberUtils();
 
   constructor(private page: Page) {}
 
@@ -18,7 +19,8 @@ export class AlertBannerComponent {
     caseNumber: string,
     alertMessage: string,
   ): Promise<void> {
-    const formattedCaseNumber = Helpers.getHyphenatedCaseReference(caseNumber);
+    const formattedCaseNumber =
+      this.caseNumberUtils.getHyphenatedCaseReference(caseNumber);
     await expect(
       this.alertBanner.locator(".alert-message", {
         hasText: `Case #${formattedCaseNumber} has been updated with event: ${alertMessage}`,

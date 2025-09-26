@@ -1,8 +1,9 @@
 import { expect, Locator, Page } from "@playwright/test";
-import { Helpers } from "../../../common/helpers.js";
+import { CaseNumberUtils } from "../../../utils/caseNumber.utils.js";
 
 export class CcdCaseHeaderComponent {
-  readonly caseHeader: Locator = this.page.locator("ccd-case-header");
+  private readonly caseHeader: Locator = this.page.locator("ccd-case-header");
+  private readonly caseNumberUtils: CaseNumberUtils = new CaseNumberUtils();
 
   constructor(private page: Page) {}
 
@@ -23,7 +24,8 @@ export class CcdCaseHeaderComponent {
   }
 
   async assertCaseNumberIsVisible(caseNumber: string): Promise<void> {
-    const formattedCaseNumber = Helpers.getHyphenatedCaseReference(caseNumber);
+    const formattedCaseNumber =
+      this.caseNumberUtils.getHyphenatedCaseReference(caseNumber);
     await expect(
       this.caseHeader.locator("h2", {
         hasText: `Casenumber: ${formattedCaseNumber}`,
