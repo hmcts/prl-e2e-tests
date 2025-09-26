@@ -2,7 +2,6 @@ import { test } from "../../../fixtures.ts";
 import config from "../../../../utils/config.utils.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import { CreateHearingRequest } from "../../../../journeys/manageCases/caseProgression/createHearingRequest/createHearingRequest.ts";
-import { jsonDatas } from "../../../../common/caseHelpers/jsonDatas.ts";
 
 test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 
@@ -15,21 +14,19 @@ test.describe("Complete the Hearing Request Order task for CA Solicitor case tes
       page,
       config.manageCasesBaseURLCase,
       ccdRef,
-      "tasks",
+      "Summary",
     );
   });
 
   test("Complete Task - Create Hearing Request - Child arrangements, specific issue or prohibited steps order (C43) with accessibility test. @nightly @regression @accessibility", async ({
     page,
-    browser,
+    //browser,
   }): Promise<void> => {
     await CreateHearingRequest.C100CreateHearingRequest({
       page: page,
       accessibilityTest: true,
       ccdRef: ccdRef,
       createOrderC100Options: "C43 order",
-      browser: browser,
-      manageOrderData: jsonDatas.manageOrderDataC43CreateOrder,
     });
   });
 });

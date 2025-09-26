@@ -120,14 +120,14 @@ export async function c100CompleteEventsUpToServiceOfApplication(
   }
 }
 
+//need rework as failing with 403.
 export async function completeC100Order(
   page: Page,
   browser: Browser,
   caseRef: string,
   manageOrderEventData: typeof jsonDatas,
 ): Promise<void> {
-
-  // open new browser context as case worker to creat the order
+  // open new browser context as case worker to create the order
   const newBrowser = await browser.browserType().launch();
   const newContext: BrowserContext = await newBrowser.newContext({
     storageState: Config.sessionStoragePath + "judge.json",
@@ -139,17 +139,6 @@ export async function completeC100Order(
     caseRef,
     "tasks",
   );
-
-  /*const caPage: Page = await Helpers.openNewBrowserWindow(
-    browser,
-    "caseWorker",
-  );
-  await Helpers.goToCase(
-    caPage,
-    config.manageCasesBaseURLCase,
-    caseRef,
-    "tasks",
-  );*/
 
   const caseEventUtils = new CaseEventUtils();
   await caseEventUtils.submitEvent(

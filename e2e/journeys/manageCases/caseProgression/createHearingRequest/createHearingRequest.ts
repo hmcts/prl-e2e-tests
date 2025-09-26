@@ -14,14 +14,15 @@ import { HearingAdditionalInstructionsPage } from "../../../../pages/manageCases
 import { HearingCreateEditSummaryPage } from "../../../../pages/manageCases/caseProgression/createHearingRequest/hearingCreateEditSummaryPage.ts";
 import Config from "../../../../utils/config.utils.ts";
 import config from "../../../../utils/config.utils.ts";
-import { createOrderC100Options, createOrderFL401Options } from "../../../../common/types.ts";
+import {
+  createOrderC100Options,
+  createOrderFL401Options,
+} from "../../../../common/types.ts";
 import { Selectors } from "../../../../common/selectors.ts";
 import { jsonDatas } from "../../../../common/caseHelpers/jsonDatas.ts";
-import {
-  completeC100Order,
-  completeCheckApplicationAndSendToGatekeeperAndCreateAnOrder
-} from "../../../../common/caseHelpers/caseEventsHelper.ts";
+import { completeCheckApplicationAndSendToGatekeeperAndCreateAnOrder } from "../../../../common/caseHelpers/caseEventsHelper.ts";
 import { HearingConfirmationPage } from "../../../../pages/manageCases/caseProgression/createHearingRequest/hearingConfirmationPage.ts";
+import { CompleteTheOrder } from "../completeTheOrder/completeTheOrder.js";
 
 interface FL401CreateHearingRequestParams {
   page: Page;
@@ -35,10 +36,8 @@ interface FL401CreateHearingRequestParams {
 interface C100CreateHearingRequestParams {
   page: Page;
   accessibilityTest: boolean;
-  createOrderC100Options: createOrderC100Options;
   ccdRef: string;
-  browser: Browser;
-  manageOrderData: typeof jsonDatas;
+  createOrderC100Options: createOrderC100Options;
 }
 
 export class CreateHearingRequest {
@@ -126,17 +125,9 @@ export class CreateHearingRequest {
     accessibilityTest,
     ccdRef,
     createOrderC100Options,
-    browser,
-    manageOrderData,
   }: C100CreateHearingRequestParams): Promise<void> {
-    await completeC100Order(
-      page,
-      browser,
-      ccdRef,
-      manageOrderData,
-    );
-
-/*    await CompleteTheOrder.C100completeTheOrder({
+    //C43 order can be created using page eval but throwing 403, need to debug
+    await CompleteTheOrder.C100completeTheOrder({
       page: page,
       accessibilityTest: false,
       personallyServed: true,
@@ -144,25 +135,20 @@ export class CreateHearingRequest {
       isUploadOrder: false,
       checkOption: "noCheck", //options passed could be either noCheck or judgeOrLegalAdvisorCheck or managerCheck
       serveOrderNow: true, //select to serve order instantly
-    });*/
-
-    // open new browser and sign in as court admin user
-    const newBrowser = await browser.browserType().launch();
-    const newContext: BrowserContext = await newBrowser.newContext({
-      storageState: Config.sessionStoragePath + "caseWorker.json",
     });
-    page = await newContext.newPage();
+
     await Helpers.goToCase(
       page,
       config.manageCasesBaseURLCase,
       ccdRef,
       "tasks",
     );
+
     switch (createOrderC100Options) {
       case "C43 order":
         await Helpers.assignTaskToMeAndTriggerNextSteps(
           page,
-          "Create Hearing Request - Non-molestation order (FL404A)",
+          "Create Hearing Request - Child arrangements, specific issue or prohibited steps order (C43)",
           "Create Hearing Request",
         );
         break;
