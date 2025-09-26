@@ -4,6 +4,7 @@ import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 import { StatementOfService1Content } from "../../../../fixtures/manageCases/caseProgression/statementOfService/statementOfService1Content.ts";
 import config from "../../../../utils/config.utils.ts";
 import { Helpers } from "../../../../common/helpers.ts";
+import { StatementOfServiceSubmitContent } from "../../../../fixtures/manageCases/caseProgression/statementOfService/StatementOfServiceSubmitContent.js";
 // import { AxeUtils } from "@hmcts/playwright-common";
 
 interface StatementOfService1PageOptions {
@@ -92,7 +93,18 @@ export class StatementOfService1Page {
       throw new Error("No page found");
     }
     await page.click(UniqueSelectors.applicationPack);
-    await page.selectOption(UniqueSelectors.whoWasServedDropDown, { index: 1 });
+
+    const whoServed = page.locator(
+      `${UniqueSelectors.whoWasServedDropDown} option`,
+      {
+        hasText: StatementOfServiceSubmitContent.respondenttext16Answers,
+      },
+    );
+
+    await page.selectOption(
+      UniqueSelectors.whoWasServedDropDown,
+      await whoServed.getAttribute("value"),
+    );
     await page.fill(
       UniqueSelectors.inputSpecificDate,
       StatementOfService1Content.date,

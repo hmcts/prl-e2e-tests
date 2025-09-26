@@ -23,7 +23,7 @@ test.describe("Statement of Service event for DA Solicitor case tests.", () => {
     page,
     browser,
   }): Promise<void> => {
-    await StatementOfService.statementOfService({
+    await StatementOfService.FL401statementOfService({
       page: page,
       accessibilityTest: false,
       ccdRef: ccdRef,
@@ -38,7 +38,7 @@ test.describe("Statement of Service event for DA Solicitor case tests.", () => {
     page,
     browser,
   }): Promise<void> => {
-    await StatementOfService.statementOfService({
+    await StatementOfService.FL401statementOfService({
       page: page,
       accessibilityTest: true,
       ccdRef: ccdRef,
