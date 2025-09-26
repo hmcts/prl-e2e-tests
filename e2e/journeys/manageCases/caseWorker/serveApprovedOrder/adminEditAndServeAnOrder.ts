@@ -72,11 +72,11 @@ export class AdminEditAndServeAnOrder {
     await fl401AddCaseNumber1Page.continueButton.click();
 
     const fl401AddCaseNumberSubmitPage = new Fl401AddCaseNumberSubmitPage(page);
-    await fl401AddCaseNumberSubmitPage.assertPageContents();
+    await fl401AddCaseNumberSubmitPage.assertPageContents("check-application");
     if (accessibilityTest) {
       await axeUtils.audit();
     }
-    await fl401AddCaseNumberSubmitPage.saveAndContinueButton.click();
+    await fl401AddCaseNumberSubmitPage.clickSubmit();
 
     await Helpers.chooseEventFromDropdown(page, "Edit and serve an order");
     await AdminEditAndApproveAnOrder1Page.adminEditAndApproveAnOrder1Page(
