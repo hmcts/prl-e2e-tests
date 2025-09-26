@@ -24,6 +24,7 @@ test.describe("Allocate a judge to the case", () => {
       judgeLastName: "Williams",
       judgeEmailAddress: "HHJ.Elizabeth.Williams@ejudiciary.net",
       courtName: "Swansea Civil And Family Justice Centre",
+      snapshotName: "allocated-judge-specific-judge",
     },
   ].forEach(
     ({
@@ -34,6 +35,7 @@ test.describe("Allocate a judge to the case", () => {
       judgeLastName,
       judgeEmailAddress,
       courtName,
+      snapshotName,
     }) => {
       test(`Allocate a Judge to a DA case specific judge @nightly @regression`, async ({
         summaryPage,
@@ -53,10 +55,7 @@ test.describe("Allocate a judge to the case", () => {
           judgeOrLegalAdviserName,
         );
         await allocatedJudge1Page.clickContinue();
-        await allocatedJudgeSubmitPage.assertPageContents({
-          isSpecificJudgeOrLegalAdviser,
-          isJudge,
-        });
+        await allocatedJudgeSubmitPage.assertPageContents(snapshotName);
         await axeUtils.audit();
         await allocatedJudgeSubmitPage.clickSubmit();
         await summaryPage.alertBanner.assertEventAlert(
@@ -86,6 +85,7 @@ test.describe("Allocate a judge to the case", () => {
       judgeLastName: null,
       judgeEmailAddress: null,
       courtName: "Swansea Civil And Family Justice Centre",
+      snapshotName: "allocated-judge-magistrates",
     },
   ].forEach(
     ({
@@ -94,6 +94,7 @@ test.describe("Allocate a judge to the case", () => {
       judgeLastName,
       judgeEmailAddress,
       courtName,
+      snapshotName,
     }) => {
       test(`Allocate a Judge to a DA case non-specific judge @regression`, async ({
         summaryPage,
@@ -109,10 +110,7 @@ test.describe("Allocate a judge to the case", () => {
         );
         await allocatedJudge1Page.selectJudiciaryTier(judgeTier);
         await allocatedJudge1Page.clickContinue();
-        await allocatedJudgeSubmitPage.assertPageContents({
-          isSpecificJudgeOrLegalAdviser,
-          judgeTier,
-        });
+        await allocatedJudgeSubmitPage.assertPageContents(snapshotName);
         await axeUtils.audit();
         await allocatedJudgeSubmitPage.clickSubmit();
         await summaryPage.alertBanner.assertEventAlert(
