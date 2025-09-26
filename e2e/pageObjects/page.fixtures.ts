@@ -14,12 +14,20 @@ import { MaintainCaseLink1Page } from "./pages/exui/caseLinking/maintainCaseLink
 import { MaintainCaseLink2Page } from "./pages/exui/caseLinking/maintainCaseLink2.po.js";
 import { MaintainCaseLink3Page } from "./pages/exui/caseLinking/maintainCaseLink3.po.js";
 import { MaintainCaseLinkSubmitPage } from "./pages/exui/caseLinking/maintainCaseLinkSubmit.po.js";
+import { C100RemoveLegalRepresentative1Page } from "./pages/exui/removeLegalRepresentation/c100RemoveLegalRepresentative1.po.js";
+import { C100RemoveLegalRepresentativeSubmitPage } from "./pages/exui/removeLegalRepresentation/c100RemoveLegalRepresentativeSubmit.po.js";
+import { Fl401RemoveLegalRepresentative1Page } from "./pages/exui/removeLegalRepresentation/fl401RemoveLegalRepresentative1.po.js";
+import { Fl401RemoveLegalRepresentativeSubmitPage } from "./pages/exui/removeLegalRepresentation/fl401RemoveLegalRepresentativeSubmit.po.js";
+import { C100RemoveLegalRepresentativeConfirmPage } from "./pages/exui/removeLegalRepresentation/c100RemoveLegalRepresentativeConfirm.po.js";
+import { Fl401RemoveLegalRepresentativeConfirmPage } from "./pages/exui/removeLegalRepresentation/fl401RemoveLegalRepresentativeConfirm.po.js";
+import { PartiesPage } from "./pages/exui/caseView/parties.po.js";
 
 export interface PageFixtures {
   tasksPage: TasksPage;
   summaryPage: SummaryPage;
   rolesAndAccessPage: RolesAndAccessPage;
   linkedCasesPage: LinkedCasesPage;
+  partiesPage: PartiesPage;
   fl401AddCaseNumber1Page: Fl401AddCaseNumber1Page;
   fl401AddCaseNumberSubmitPage: Fl401AddCaseNumberSubmitPage;
   allocatedJudge1Page: AllocatedJudge1Page;
@@ -32,6 +40,12 @@ export interface PageFixtures {
   maintainCaseLink2Page: MaintainCaseLink2Page;
   maintainCaseLink3Page: MaintainCaseLink3Page;
   maintainCaseLinkSubmitPage: MaintainCaseLinkSubmitPage;
+  c100RemoveLegalRepresentative1Page: C100RemoveLegalRepresentative1Page;
+  c100RemoveLegalRepresentativeSubmitPage: C100RemoveLegalRepresentativeSubmitPage;
+  c100RemoveLegalRepresentativeConfirmPage: C100RemoveLegalRepresentativeConfirmPage;
+  fl401RemoveLegalRepresentative1Page: Fl401RemoveLegalRepresentative1Page;
+  fl401RemoveLegalRepresentativeSubmitPage: Fl401RemoveLegalRepresentativeSubmitPage;
+  fl401RemoveLegalRepresentativeConfirmPage: Fl401RemoveLegalRepresentativeConfirmPage;
 }
 
 export const pageFixtures = {
@@ -46,6 +60,9 @@ export const pageFixtures = {
   },
   linkedCasesPage: async ({ page }, use) => {
     await use(new LinkedCasesPage(page));
+  },
+  partiesPage: async ({ page }, use) => {
+    await use(new PartiesPage(page));
   },
   fl401AddCaseNumber1Page: async ({ page }, use) => {
     await use(new Fl401AddCaseNumber1Page(page));
@@ -82,5 +99,23 @@ export const pageFixtures = {
   },
   maintainCaseLinkSubmitPage: async ({ page }, use) => {
     await use(new MaintainCaseLinkSubmitPage(page));
+  },
+  c100RemoveLegalRepresentative1Page: async ({ page }, use) => {
+    await use(new C100RemoveLegalRepresentative1Page(page));
+  },
+  c100RemoveLegalRepresentativeSubmitPage: async ({ page }, use) => {
+    await use(new C100RemoveLegalRepresentativeSubmitPage(page));
+  },
+  c100RemoveLegalRepresentativeConfirmPage: async ({ page }, use) => {
+    await use(new C100RemoveLegalRepresentativeConfirmPage(page));
+  },
+  fl401RemoveLegalRepresentative1Page: async ({ page }, use) => {
+    await use(new Fl401RemoveLegalRepresentative1Page(page));
+  },
+  fl401RemoveLegalRepresentativeSubmitPage: async ({ page }, use) => {
+    await use(new Fl401RemoveLegalRepresentativeSubmitPage(page));
+  },
+  fl401RemoveLegalRepresentativeConfirmPage: async ({ page }, use) => {
+    await use(new Fl401RemoveLegalRepresentativeConfirmPage(page));
   },
 };
