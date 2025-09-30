@@ -6,7 +6,7 @@ import { jsonDatas } from "../../../../common/caseHelpers/jsonDatas.ts";
 
 test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 
-test.describe("Complete the Order task for DA Solicitor case tests.", () => {
+test.describe("Complete the Hearing Request Order task for DA Solicitor case tests.", () => {
   let ccdRef: string = "";
 
   test.beforeEach(async ({ page, browser, caseEventUtils }) => {
@@ -23,7 +23,7 @@ test.describe("Complete the Order task for DA Solicitor case tests.", () => {
     page,
     browser,
   }): Promise<void> => {
-    await CreateHearingRequest.createHearingRequest({
+    await CreateHearingRequest.FL401CreateHearingRequest({
       page: page,
       accessibilityTest: false,
       ccdRef: ccdRef,
@@ -37,7 +37,7 @@ test.describe("Complete the Order task for DA Solicitor case tests.", () => {
     page,
     browser,
   }): Promise<void> => {
-    await CreateHearingRequest.createHearingRequest({
+    await CreateHearingRequest.FL401CreateHearingRequest({
       page: page,
       accessibilityTest: true,
       ccdRef: ccdRef,
