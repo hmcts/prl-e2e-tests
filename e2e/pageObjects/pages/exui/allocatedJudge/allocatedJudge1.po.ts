@@ -86,15 +86,15 @@ export class AllocatedJudge1Page extends EventPage {
     hasText: CommonStaticText.continue,
   });
   readonly previousButton: Locator = this.page.locator(Selectors.button, {
-    hasText: CommonStaticText.continue,
+    hasText: CommonStaticText.previous,
   });
 
   constructor(page: Page) {
     super(page, "Allocated judge");
   }
 
-  async checkPageContents(): Promise<void> {
-    await this.checkHeading();
+  async assertPageContents(): Promise<void> {
+    await this.assertPageHeadings();
     await expect(this.heading2).toBeVisible();
     await expect(this.p).toBeVisible();
     await expect(this.actionFormLabel).toBeVisible();

@@ -14,15 +14,15 @@ export class Fl401AddCaseNumber1Page extends EventPage {
     hasText: CommonStaticText.continue,
   });
   readonly previousButton: Locator = this.page.locator(Selectors.button, {
-    hasText: CommonStaticText.continue,
+    hasText: CommonStaticText.previous,
   });
 
   constructor(page: Page) {
     super(page, "Add case number");
   }
 
-  async checkPageContents(): Promise<void> {
-    await this.checkHeading();
+  async assertPageContents(): Promise<void> {
+    await this.assertPageHeadings();
     await expect(this.formLabel).toBeVisible();
     await expect(this.continueButton).toBeVisible();
     await expect(this.previousButton).toBeVisible();
