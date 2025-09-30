@@ -20,7 +20,6 @@ test.describe("Complete the Hearing Request Order task for CA Solicitor case tes
 
   test("Complete Task - Create Hearing Request - Child arrangements, specific issue or prohibited steps order (C43) with accessibility test. @nightly @regression @accessibility", async ({
     page,
-    //browser,
   }): Promise<void> => {
     await CreateHearingRequest.C100CreateHearingRequest({
       page: page,
