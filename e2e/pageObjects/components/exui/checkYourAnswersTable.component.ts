@@ -12,7 +12,7 @@ export class CheckYourAnswersTableComponent {
     this.page.locator(".someoneViewing");
   private readonly someoneViewingCoords: ClippingCoords = {
     x: 0,
-    y: 525,
+    y: 480,
     width: 1920,
     height: 1080,
   };
@@ -21,16 +21,24 @@ export class CheckYourAnswersTableComponent {
     this.page = page;
   }
 
-  async runVisualTest(screenShotPath: string[]): Promise<void> {
+  async runVisualTest(
+    screenShotPath: string[],
+    customCoords?: ClippingCoords,
+  ): Promise<void> {
     // if another user is viewing a case then a banner is present so we need to adjust the coordinates to get the same image
-    if (await this.someoneViewing.isVisible()) {
-      await expect(this.page).toHaveScreenshot(screenShotPath, {
-        clip: this.someoneViewingCoords,
-        maxDiffPixelRatio: 0.02,
-      });
-    }
+    const isSomeoneViewing: boolean = await this.someoneViewing.isVisible();
+    const providedScreenshotName: string =
+      screenShotPath[screenShotPath.length - 1];
+    screenShotPath[screenShotPath.length - 1] = isSomeoneViewing
+      ? `someone-viewing-${providedScreenshotName}-cya.png`
+      : `${providedScreenshotName}-cya.png`;
+    const coords =
+      customCoords ??
+      (isSomeoneViewing
+        ? this.someoneViewingCoords
+        : this.cyaTableClippingCoords);
     await expect(this.page).toHaveScreenshot(screenShotPath, {
-      clip: this.cyaTableClippingCoords,
+      clip: coords,
       maxDiffPixelRatio: 0.02,
     });
   }

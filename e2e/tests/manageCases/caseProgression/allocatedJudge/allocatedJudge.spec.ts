@@ -1,16 +1,14 @@
 import { test } from "../../../fixtures.ts";
 import config from "../../../../utils/config.utils.ts";
-import { Helpers } from "../../../../common/helpers.ts";
 
 test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("Allocate a judge to the case", () => {
   let caseNumber: string = "";
 
-  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
+  test.beforeEach(async ({ browser, caseEventUtils, navigationUtils }) => {
     caseNumber = await caseEventUtils.createDACaseSendToGatekeeper(browser);
-    await Helpers.goToCase(
-      page,
+    await navigationUtils.goToCase(
       config.manageCasesBaseURLCase,
       caseNumber,
       "tasks",
@@ -26,6 +24,7 @@ test.describe("Allocate a judge to the case", () => {
       judgeLastName: "Williams",
       judgeEmailAddress: "HHJ.Elizabeth.Williams@ejudiciary.net",
       courtName: "Swansea Civil And Family Justice Centre",
+      snapshotName: "allocated-judge-specific-judge",
     },
   ].forEach(
     ({
@@ -36,6 +35,7 @@ test.describe("Allocate a judge to the case", () => {
       judgeLastName,
       judgeEmailAddress,
       courtName,
+      snapshotName,
     }) => {
       test(`Allocate a Judge to a DA case specific judge @nightly @regression`, async ({
         summaryPage,
@@ -45,7 +45,7 @@ test.describe("Allocate a judge to the case", () => {
         axeUtils,
       }) => {
         await summaryPage.chooseEventFromDropdown("Allocated judge");
-        await allocatedJudge1Page.checkPageContents();
+        await allocatedJudge1Page.assertPageContents();
         await axeUtils.audit();
         await allocatedJudge1Page.selectIsJudgeOrLegalAdviser(
           isSpecificJudgeOrLegalAdviser,
@@ -55,10 +55,7 @@ test.describe("Allocate a judge to the case", () => {
           judgeOrLegalAdviserName,
         );
         await allocatedJudge1Page.clickContinue();
-        await allocatedJudgeSubmitPage.checkPageContents({
-          isSpecificJudgeOrLegalAdviser,
-          isJudge,
-        });
+        await allocatedJudgeSubmitPage.assertPageContents(snapshotName);
         await axeUtils.audit();
         await allocatedJudgeSubmitPage.clickSubmit();
         await summaryPage.alertBanner.assertEventAlert(
@@ -88,6 +85,7 @@ test.describe("Allocate a judge to the case", () => {
       judgeLastName: null,
       judgeEmailAddress: null,
       courtName: "Swansea Civil And Family Justice Centre",
+      snapshotName: "allocated-judge-magistrates",
     },
   ].forEach(
     ({
@@ -96,6 +94,7 @@ test.describe("Allocate a judge to the case", () => {
       judgeLastName,
       judgeEmailAddress,
       courtName,
+      snapshotName,
     }) => {
       test(`Allocate a Judge to a DA case non-specific judge @regression`, async ({
         summaryPage,
@@ -104,17 +103,14 @@ test.describe("Allocate a judge to the case", () => {
         axeUtils,
       }) => {
         await summaryPage.chooseEventFromDropdown("Allocated judge");
-        await allocatedJudge1Page.checkPageContents();
+        await allocatedJudge1Page.assertPageContents();
         await axeUtils.audit();
         await allocatedJudge1Page.selectIsJudgeOrLegalAdviser(
           isSpecificJudgeOrLegalAdviser,
         );
         await allocatedJudge1Page.selectJudiciaryTier(judgeTier);
         await allocatedJudge1Page.clickContinue();
-        await allocatedJudgeSubmitPage.checkPageContents({
-          isSpecificJudgeOrLegalAdviser,
-          judgeTier,
-        });
+        await allocatedJudgeSubmitPage.assertPageContents(snapshotName);
         await axeUtils.audit();
         await allocatedJudgeSubmitPage.clickSubmit();
         await summaryPage.alertBanner.assertEventAlert(
