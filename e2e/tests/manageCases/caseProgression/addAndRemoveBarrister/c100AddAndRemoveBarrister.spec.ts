@@ -3,7 +3,7 @@ import { Helpers } from "../../../../common/helpers.ts";
 import config from "../../../../utils/config.utils.ts";
 import { NoticeOfChange } from "../../../../journeys/manageCases/caseProgression/noticeOfChange/noticeOfChange.ts";
 import { test } from "../../../fixtures.ts";
-import { AddBarristerAndRemoveBarrister } from "../../../../journeys/manageCases/caseProgression/addBarristerAndRemoveBarrister/addBarristerAndRemoveBarrister.ts";
+import { AddAndRemoveBarrister } from "../../../../journeys/manageCases/caseProgression/addAndRemoveBarrister/addAndRemoveBarrister.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "nocSolicitor.json" });
 
@@ -20,33 +20,33 @@ test.describe("Add/Remove Barrister for CA case", () => {
     );
   });
 
-    test("Solicitor adds and removes Barrister. @nightly @accessibility @regression", async ({
+    test("Solicitor adds and removes Barrister for a CA case. @nightly @accessibility @regression", async ({
     page,
     browser,
-  }): Promise<void> => {
-      await AddBarristerAndRemoveBarrister.addBarristerAndRemoveBarrister({
+    }): Promise<void> => {
+      await AddAndRemoveBarrister.addAndRemoveBarrister({
       page: page,
       browser: browser,
       caseType: "C100",
-      caseRef: ccdRef,
-      isApplicant: true,
+      ccdRef: ccdRef,
+      isApplicant: false,
       accessibilityTest: true,
+      isCaseworker: false,
     });
     });
         
-    test("Caseworker adds and removes Barrister. @nightly @accessibility @regression", async ({
+    test("Caseworker adds and removes Barrister for a CA case. @nightly @accessibility @regression", async ({
         page,
         browser,
     }): Promise<void> => {
-      await AddBarristerAndRemoveBarrister.addBarristerAndRemoveBarrister({
-          page: page,
-          browser: browser,
-          caseType: "C100",
-          caseRef: ccdRef,
-          isApplicant: true,
-          accessibilityTest: true,
+      await AddAndRemoveBarrister.addAndRemoveBarrister({
+      page: page,
+      browser: browser,
+      caseType: "C100",
+      ccdRef: ccdRef,
+      isApplicant: false,
+      accessibilityTest: true,
+      isCaseworker: true,
     });
     });
-
-    // Repeat above scenarios for a Citizen created case
 });

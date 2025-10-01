@@ -1,16 +1,21 @@
-import { Page, expect } from "@playwright/test";
+import { Page, expect, Browser } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.ts";
 import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
 import { Helpers } from "../../../../common/helpers.ts";
 import { AddBarristerContent } from "../../../../fixtures/manageCases/caseProgression/addBarristerAndRemoveBarrister/addBarristerContent.ts";
 
-export class AddBarrister {
-  public static async addBarrister(
-    page: Page,
+export class CaseworkerAddBarrister {
+  public static async caseworkerAddBarrister(
     caseRef: string,
     accessibilityTest: boolean,
+    browser: Browser,
   ): Promise<void> {
+    const page: Page = await Helpers.openNewBrowserWindow(
+          browser,
+          "caseWorker",
+    );
+    await Helpers.chooseEventFromDropdown(page, "Add barrister");
     await this.checkPageLoads(page, accessibilityTest);
     await this.fillInFields(page, caseRef);
     await this.continue(page);
@@ -29,13 +34,11 @@ export class AddBarrister {
         page,
           `${Selectors.GovukHint}:text-is("${AddBarristerContent.govUkHint}")`,
         1,
-        ),
-        Helpers.checkVisibleAndPresent(
-            page,
-            `${Selectors.GovukDetailsText}:text-is("${AddBarristerContent.govukDetailsText}")`,
-            1,
-        ),
+      ),
     ]);
+    await expect(
+      page.locator(Selectors.GovukDetailsText, { hasText: AddBarristerContent.govukDetailsText }),
+    ).toBeHidden();
     if (accessibilityTest) {
       await new AxeUtils(page).audit();
     }
@@ -46,16 +49,19 @@ export class AddBarrister {
     caseRef: string,
   ): Promise<void> {
     await page.locator('[id^="allocatedBarrister_partyList_"]').first().check();
-    await page.getByRole('textbox', { name: 'allocatedBarrister_barristerFirstName' }).fill(AddBarristerContent.barristerFirstName);
-    await page.getByRole('textbox', { name: 'allocatedBarrister_barristerLastName' }).fill(AddBarristerContent.barristerLastName);
-    await page.getByRole('textbox', { name: 'allocatedBarrister_barristerEmail' }).fill(AddBarristerContent.barristerEmail);
-    await page.getByRole('textbox', { name: 'search-org-text' }).fill(AddBarristerContent.barristerOrgAAT);
-    await page.getByText(' Select ').click();
+    await page.locator('#allocatedBarrister_barristerFirstName').fill(AddBarristerContent.barristerFirstName);
+    await page.locator('#allocatedBarrister_barristerLastName').fill(AddBarristerContent.barristerLastName);
+    await page.locator('#allocatedBarrister_barristerEmail').fill(AddBarristerContent.barristerEmail);
+    await page.locator('#search-org-text').fill(AddBarristerContent.barristerOrgAAT);
+    await page.getByTitle('Select the organisation PRL Barrister Org2').click();
   }
 
   private static async continue(page: Page): Promise<void> {
     await page.click(
       `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+    );
+    await page.click(
+      `${Selectors.button}:text-is("${CommonStaticText.submit}")`,
     );
   }
 }

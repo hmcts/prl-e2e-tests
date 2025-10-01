@@ -4,36 +4,37 @@ import { NocSubmitPage } from "../../../../pages/manageCases/caseProgression/not
 import { NocSuccessfulPage } from "../../../../pages/manageCases/caseProgression/noticeOfChange/nocSuccessfulPage.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import config from "../../../../utils/config.utils.ts";
-import { CreateHearingRequest } from "../createHearingRequest/createHearingRequest.ts";
 import { solicitorCaseCreateType } from "../../../../common/types.ts";
 import { Noc1Page } from "../../../../pages/manageCases/caseProgression/noticeOfChange/noc1Page.ts";
-import { AddBarrister } from "../../../../pages/manageCases/caseProgression/addBarristerAndRemoveBarrister/addBarristerPage.ts";
+import { SolicitorAddBarrister } from "../../../../pages/manageCases/caseProgression/addBarristerAndRemoveBarrister/solicitorAddBarristerPage.ts";
 import { RemoveBarrister } from "../../../../pages/manageCases/caseProgression/addBarristerAndRemoveBarrister/removeBarristerPage.ts";
-import { table } from "console";
 import { Selectors } from "../../../../common/selectors.ts";
 import { BarristerDetailsTabContent } from "../../../../fixtures/manageCases/caseProgression/addBarristerAndRemoveBarrister/barristerDetailsTabContent.ts";
+import { CaseworkerAddBarrister } from "../../../../pages/manageCases/caseProgression/addBarristerAndRemoveBarrister/caseworkerAddBarristerPage.ts";
 
 interface addBarristerAndRemoveBarristerParams {
   page: Page;
   browser: Browser;
   caseType: solicitorCaseCreateType;
-  caseRef: string;
+  ccdRef: string;
   isApplicant: boolean;
   accessibilityTest: boolean;
+  isCaseworker: boolean;
 }
 
-export class AddBarristerAndRemoveBarrister {
-    public static async addBarristerAndRemoveBarrister({
+export class AddAndRemoveBarrister {
+    public static async addAndRemoveBarrister({
     page,
-    browser,
     caseType,
-    caseRef,
+    ccdRef,
     isApplicant,
     accessibilityTest,
+    browser,
+    isCaseworker,
     }: addBarristerAndRemoveBarristerParams): Promise<void> {
-    //Adding Solicitor via NOC
+      //Adding Solicitor via NOC
     await page.getByRole("link", { name: "Notice of change" }).click();
-    await Noc1Page.noc1Page(page, caseRef, accessibilityTest);
+    await Noc1Page.noc1Page(page, ccdRef, accessibilityTest);
     await Noc2Page.noc2Page(page, caseType, isApplicant, accessibilityTest);
     await NocSubmitPage.nocSubmitPage(
       page,
@@ -43,12 +44,15 @@ export class AddBarristerAndRemoveBarrister {
     );
     await NocSuccessfulPage.nocSuccessfulPage(page, accessibilityTest);
     await this.checkSolicitorOnApplication(page, caseType, isApplicant);
-    //Adding Barrister as the Solicitor
-        await AddBarrister.addBarrister(page, caseRef, accessibilityTest);
-      //TO ADD CHECKS APPLICATION AND PARTIES TAB
-      await this.checkTabsBarristerDetails(page, caseType);
-      await RemoveBarrister.removeBarrister(page, caseRef, accessibilityTest);
-      await this.checkTabsBarristerDetailsNotVisible(page, caseType);
+      if (isCaseworker === false) {
+        await SolicitorAddBarrister.solicitorAddBarrister(page, ccdRef, accessibilityTest);
+      } else {
+        await CaseworkerAddBarrister.caseworkerAddBarrister(ccdRef, accessibilityTest, browser);
+    }
+    //Checking barrister details in the case tabs
+    await this.checkTabsBarristerDetails(ccdRef, browser);
+    await RemoveBarrister.removeBarrister(page, ccdRef, accessibilityTest);
+    await this.checkTabsBarristerDetailsNotVisible(ccdRef, browser);
   }
 
   private static async checkSolicitorOnApplication(
@@ -84,13 +88,17 @@ export class AddBarristerAndRemoveBarrister {
   }
 
   private static async checkTabsBarristerDetails(
-    page: Page,
-    caseRef: string,
+    ccdRef: string,
+    browser: Browser,
   ): Promise<void> {
+    const page: Page = await Helpers.openNewBrowserWindow(
+      browser,
+      "caseWorker",
+    );
     await Helpers.goToCase(
       page,
       config.manageCasesBaseURLCase,
-      caseRef,
+      ccdRef,
       "History",
     );
     await Helpers.checkVisibleAndPresent(
@@ -98,48 +106,42 @@ export class AddBarristerAndRemoveBarrister {
       `${Selectors.a}:text-is("${BarristerDetailsTabContent.a}")`,
                 1,
     );
-    await Helpers.goToCase(
-      page,
-      config.manageCasesBaseURLCase,
-      caseRef,
-      "Application",
-    );
-    await Helpers.checkVisibleAndPresent(
-      page,
-      `${Selectors.h3}:text-is("${BarristerDetailsTabContent.h3}")`,
-      1,
-    );
-    await Helpers.checkVisibleAndPresent(
-      page,
-      `${Selectors.Span}:text-is("${BarristerDetailsTabContent.span}")`,
-      1,
-    );
-    await Helpers.goToCase(
-      page,
-      config.manageCasesBaseURLCase,
-      caseRef,
-      "Parties",
-    );
-    await Helpers.checkVisibleAndPresent(
-      page,
-      `${Selectors.h3}:text-is("${BarristerDetailsTabContent.h3}")`,
-      1,
-    );
-    await Helpers.checkVisibleAndPresent(
-      page,
-      `${Selectors.Span}:text-is("${BarristerDetailsTabContent.span}")`,
-      1,
-    );
+    await page.locator(`${Selectors.div}:text-is("${BarristerDetailsTabContent.tab1}")`).click();
+    await expect(
+      page.locator
+        (`${Selectors.h3}:text-is("${BarristerDetailsTabContent.h3}")`)
+       .first()
+    ).toBeVisible();
+    await expect(
+      page.locator
+        (`${Selectors.Span}:text-is("${BarristerDetailsTabContent.span}")`)
+        .first()
+    ).toBeHidden();
+    await page.locator(`${Selectors.div}:text-is("${BarristerDetailsTabContent.tab2}")`).click();
+    await expect(
+      page.locator
+        (`${Selectors.h3}:text-is("${BarristerDetailsTabContent.h3}")`)
+      .first()
+    ).toBeVisible();
+    await expect(
+      page.locator
+        (`${Selectors.Span}:text-is("${BarristerDetailsTabContent.span}")`)
+      .first()
+    ).toBeHidden();
    }
 
   private static async checkTabsBarristerDetailsNotVisible(
-    page: Page,
-    caseRef: string,
+    ccdRef: string,
+    browser: Browser,
   ): Promise<void> {
+    const page: Page = await Helpers.openNewBrowserWindow(
+      browser,
+      "caseWorker",
+    );
     await Helpers.goToCase(
       page,
       config.manageCasesBaseURLCase,
-      caseRef,
+      ccdRef,
       "History",
     );
     await Helpers.checkVisibleAndPresent(
@@ -147,30 +149,22 @@ export class AddBarristerAndRemoveBarrister {
       `${Selectors.a}:text-is("${BarristerDetailsTabContent.removeEvent}")`,
       1,
     );
-    await Helpers.goToCase(
-      page,
-      config.manageCasesBaseURLCase,
-      caseRef,
-      "Application",
-    );
+    await page.locator(`${Selectors.div}:text-is("${BarristerDetailsTabContent.tab1}")`).click();
+    //Checking hidden Barrister elements, which will still be present with count 3
     await expect(
       page.locator
         (`${Selectors.h3}:text-is("${BarristerDetailsTabContent.h3}")`),
-    ).toHaveCount(0);
+    ).toHaveCount(3);
+    //Checking the orgs related to the Barrister, which the expected is 0, as there are no Barristers anymore
     await expect(
       page.locator
         (`${Selectors.Span}:text-is("${BarristerDetailsTabContent.span}")`),
     ).toHaveCount(0);
-    await Helpers.goToCase(
-      page,
-      config.manageCasesBaseURLCase,
-      caseRef,
-      "Parties",
-    );
+    await page.locator(`${Selectors.div}:text-is("${BarristerDetailsTabContent.tab2}")`).click();
     await expect(
       page.locator
         (`${Selectors.h3}:text-is("${BarristerDetailsTabContent.h3}")`),
-    ).toHaveCount(0);
+    ).toHaveCount(3);
     await expect(
       page.locator
         (`${Selectors.Span}:text-is("${BarristerDetailsTabContent.span}")`),

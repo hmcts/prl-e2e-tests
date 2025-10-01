@@ -11,6 +11,7 @@ export class RemoveBarrister {
     caseRef: string,
     accessibilityTest: boolean,
   ): Promise<void> {
+    await Helpers.chooseEventFromDropdown(page, "Remove barrister");
     await this.checkPageLoads(page, accessibilityTest);
     await this.fillInFields(page, caseRef);
     await this.continue(page);
@@ -28,13 +29,11 @@ export class RemoveBarrister {
           `${Selectors.Span}:text-is("${RemoveBarristerContent.span}")`,
           1,
     );
-    await Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.Span}:text-is("${RemoveBarristerContent.change}")`,
-        1,
-    );
-    const radioButton = page.locator(`${Selectors.formControl} input[type="radio"]`);
-    await expect(radioButton).toBeVisible();
+    await expect(
+      page.locator('[id^="allocatedBarrister_partyList_"]')
+        .first()
+    )
+        .toBeVisible();
     if (accessibilityTest) {
       await new AxeUtils(page).audit();
     }
@@ -50,6 +49,9 @@ export class RemoveBarrister {
   private static async continue(page: Page): Promise<void> {
     await page.click(
       `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+    );
+    await page.click(
+      `${Selectors.button}:text-is("${CommonStaticText.submit}")`,
     );
   }
 }
