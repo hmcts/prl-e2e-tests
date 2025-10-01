@@ -10,8 +10,8 @@ export enum StatementOfServiceSubmitContent {
   strong = "Statement of service document",
 
   text16Answers1 = "Application pack",
-  text16Answers2 = "Elise Lynn (Respondent)",
-  text16Answers3 = "19 Dec 2025, 12:00:00 AM",
+  text16Answers2 = "19 Dec 2025, 12:00:00 AM",
+  respondenttext16Answers = "Elise Lynn",
   text16Change = "Change",
   a = "mockFile.pdf",
 }
