@@ -11,10 +11,10 @@ interface BarristerEventSubmissionPageOptions {
 }
 
 export class BarristerEventSubmissionPage {
-    public static async barristerEventSubmissionPage({
+  public static async barristerEventSubmissionPage({
     page,
     accessibilityTest,
-    }: BarristerEventSubmissionPageOptions): Promise<void> {
+  }: BarristerEventSubmissionPageOptions): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest);
   }
 
@@ -23,22 +23,30 @@ export class BarristerEventSubmissionPage {
     accessibilityTest: boolean,
   ): Promise<void> {
     await expect(
-        page.locator(Selectors.GovukHeadingL, { hasText: BarristerEventSubmissionContent.govUkHeadingL }),
-        ).toBeVisible();
-    await Helpers.checkGroup(page, 5, BarristerEventSubmissionContent, `span`, `${Selectors.Span}`);
+      page.locator(Selectors.GovukHeadingL, {
+        hasText: BarristerEventSubmissionContent.govUkHeadingL,
+      }),
+    ).toBeVisible();
+    await Helpers.checkGroup(
+      page,
+      5,
+      BarristerEventSubmissionContent,
+      `span`,
+      `${Selectors.Span}`,
+    );
     await Helpers.checkVisibleAndPresent(
-            page,
-        `${Selectors.Span}:text-is("${BarristerEventSubmissionContent.change}")`,
-            5,
+      page,
+      `${Selectors.Span}:text-is("${BarristerEventSubmissionContent.change}")`,
+      5,
     );
     if (accessibilityTest) {
-        await new AxeUtils(page).audit();
+      await new AxeUtils(page).audit();
     }
   }
 
   private static async continue(page: Page): Promise<void> {
-      await page.click(
-        `${Selectors.button}:text-is("${CommonStaticText.submit}")`,
-      );
-    }
+    await page.click(
+      `${Selectors.button}:text-is("${CommonStaticText.submit}")`,
+    );
+  }
 }

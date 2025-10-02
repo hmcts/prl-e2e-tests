@@ -1,7 +1,6 @@
 import Config from "../../../../utils/config.utils.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import config from "../../../../utils/config.utils.ts";
-import { NoticeOfChange } from "../../../../journeys/manageCases/caseProgression/noticeOfChange/noticeOfChange.ts";
 import { test } from "../../../fixtures.ts";
 import { AddAndRemoveBarrister } from "../../../../journeys/manageCases/caseProgression/addAndRemoveBarrister/addAndRemoveBarrister.ts";
 
@@ -20,11 +19,11 @@ test.describe("Add/Remove Barrister for CA case", () => {
     );
   });
 
-    test("Solicitor adds and removes Barrister for a CA case. @nightly @accessibility @regression", async ({
+  test("Solicitor adds and removes Barrister for a CA case. @nightly @accessibility @regression", async ({
     page,
     browser,
-    }): Promise<void> => {
-      await AddAndRemoveBarrister.addAndRemoveBarrister({
+  }): Promise<void> => {
+    await AddAndRemoveBarrister.addAndRemoveBarrister({
       page: page,
       browser: browser,
       caseType: "C100",
@@ -33,13 +32,13 @@ test.describe("Add/Remove Barrister for CA case", () => {
       accessibilityTest: true,
       isCaseworker: false,
     });
-    });
-        
-    test("Caseworker adds and removes Barrister for a CA case. @nightly @accessibility @regression", async ({
-        page,
-        browser,
-    }): Promise<void> => {
-      await AddAndRemoveBarrister.addAndRemoveBarrister({
+  });
+
+  test("Caseworker adds and removes Barrister for a CA case. @nightly @accessibility @regression", async ({
+    page,
+    browser,
+  }): Promise<void> => {
+    await AddAndRemoveBarrister.addAndRemoveBarrister({
       page: page,
       browser: browser,
       caseType: "C100",
@@ -48,5 +47,5 @@ test.describe("Add/Remove Barrister for CA case", () => {
       accessibilityTest: true,
       isCaseworker: true,
     });
-    });
+  });
 });

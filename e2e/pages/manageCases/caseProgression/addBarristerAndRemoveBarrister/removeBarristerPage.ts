@@ -8,12 +8,11 @@ import { RemoveBarristerContent } from "../../../../fixtures/manageCases/casePro
 export class RemoveBarrister {
   public static async removeBarrister(
     page: Page,
-    caseRef: string,
     accessibilityTest: boolean,
   ): Promise<void> {
     await Helpers.chooseEventFromDropdown(page, "Remove barrister");
     await this.checkPageLoads(page, accessibilityTest);
-    await this.fillInFields(page, caseRef);
+    await this.fillInFields(page);
     await this.continue(page);
   }
 
@@ -22,27 +21,24 @@ export class RemoveBarrister {
     accessibilityTest: boolean,
   ): Promise<void> {
     await expect(
-        page.locator(Selectors.GovukHeadingL, { hasText: RemoveBarristerContent.govUkHeadingL }),
-      ).toBeVisible();
+      page.locator(Selectors.GovukHeadingL, {
+        hasText: RemoveBarristerContent.govUkHeadingL,
+      }),
+    ).toBeVisible();
     await Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.Span}:text-is("${RemoveBarristerContent.span}")`,
-          1,
+      page,
+      `${Selectors.Span}:text-is("${RemoveBarristerContent.span}")`,
+      1,
     );
     await expect(
-      page.locator('[id^="allocatedBarrister_partyList_"]')
-        .first()
-    )
-        .toBeVisible();
+      page.locator('[id^="allocatedBarrister_partyList_"]').first(),
+    ).toBeVisible();
     if (accessibilityTest) {
       await new AxeUtils(page).audit();
     }
   }
 
-  private static async fillInFields(
-    page: Page,
-    caseRef: string,
-  ): Promise<void> {
+  private static async fillInFields(page: Page): Promise<void> {
     await page.locator('[id^="allocatedBarrister_partyList_"]').first().check();
   }
 
