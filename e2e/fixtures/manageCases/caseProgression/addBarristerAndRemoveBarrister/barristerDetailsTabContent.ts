@@ -3,8 +3,10 @@ export enum BarristerDetailsTabContent {
     h3 = "Respondent barrister",
     span = "PRL Barrister Org2",
     removeEvent = "Remove barrister",
-    tab1 = "Application_",
-    tab2 = "Parties",
+    tab1CA = "Application_",
+    tab1DA = "Application",
+    tab2CA = "Parties",
+    tab2DA = "Parties_",
     tab3 = "History"
 }
 
