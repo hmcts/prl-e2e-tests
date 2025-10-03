@@ -79,7 +79,7 @@ export class AddAndRemoveBarrister {
       );
     }
     //Checking barrister details in the case tabs
-    await this.checkTabsBarristerDetails(ccdRef, browser, caseType);
+    await this.checkTabsBarristerDetails(ccdRef, browser, caseType, isCaseworker);
     await RemoveBarrister.removeBarrister(accessibilityTest, ccdRef, browser);
     await this.checkTabsBarristerDetailsNotVisible(ccdRef, browser, caseType);
   }
@@ -120,6 +120,7 @@ export class AddAndRemoveBarrister {
     ccdRef: string,
     browser: Browser,
     caseType: string,
+    isCaseworker: boolean,
   ): Promise<void> {
     const page: Page = await Helpers.openNewBrowserWindow(
       browser,
@@ -177,7 +178,11 @@ export class AddAndRemoveBarrister {
       const locatorBarrister = page
         .getByRole("heading", { name: "Applicant barrister" })
         .first();
-      await expect(locatorBarrister).toBeVisible();
+      if (isCaseworker === true) {
+        await expect(locatorBarrister).toBeVisible();
+      } else {
+        await expect(locatorBarrister).toBeHidden();
+      }
       await expect(
         page
           .locator(
@@ -190,7 +195,11 @@ export class AddAndRemoveBarrister {
           `${Selectors.div}:text-is("${BarristerDetailsTabContent.tab2DA}")`,
         )
         .click();
-      await expect(locatorBarrister).toBeVisible();
+      if (isCaseworker === true) {
+        await expect(locatorBarrister).toBeVisible();
+      } else {
+        await expect(locatorBarrister).toBeHidden();
+      }
       await expect(
         page
           .locator(
