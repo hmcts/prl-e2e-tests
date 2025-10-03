@@ -53,6 +53,7 @@ export class AddAndRemoveBarrister {
         `${Selectors.button}:text-is("${CommonStaticText.saveAndContinue}")`,
       );
     }
+    await console.log("case ref is:", ccdRef);
     //Adding Solicitor via NOC
     await page.getByRole("link", { name: "Notice of change" }).click();
     await Noc1Page.noc1Page(page, ccdRef, accessibilityTest);
@@ -74,11 +75,12 @@ export class AddAndRemoveBarrister {
       await CaseworkerAddBarrister.caseworkerAddBarrister(
         accessibilityTest,
         browser,
+        ccdRef,
       );
     }
     //Checking barrister details in the case tabs
     await this.checkTabsBarristerDetails(ccdRef, browser, caseType);
-    await RemoveBarrister.removeBarrister(page, accessibilityTest);
+    await RemoveBarrister.removeBarrister(accessibilityTest, ccdRef, browser);
     await this.checkTabsBarristerDetailsNotVisible(ccdRef, browser, caseType);
   }
 
@@ -172,29 +174,29 @@ export class AddAndRemoveBarrister {
           `${Selectors.div}:text-is("${BarristerDetailsTabContent.tab1DA}")`,
         )
         .click();
-      await expect(
-        page
-          .locator(
-            `${Selectors.h3}:text-is("${BarristerDetailsTabContent.h3}")`,
-          )
-          .first(),
-      ).toBeVisible();
+      const locatorBarrister = page
+        .getByRole("heading", { name: "Applicant barrister" })
+        .first();
+      await expect(locatorBarrister).toBeVisible();
       await expect(
         page
           .locator(
             `${Selectors.Span}:text-is("${BarristerDetailsTabContent.span}")`,
           )
           .first(),
-      ).toBeHidden();
+      ).toBeVisible();
       await page
         .locator(
           `${Selectors.div}:text-is("${BarristerDetailsTabContent.tab2DA}")`,
         )
         .click();
+      await expect(locatorBarrister).toBeVisible();
       await expect(
-        page.locator(
-          `${Selectors.h3}:text-is("${BarristerDetailsTabContent.h3}")`,
-        ),
+        page
+          .locator(
+            `${Selectors.Span}:text-is("${BarristerDetailsTabContent.span}")`,
+          )
+          .first(),
       ).toBeVisible();
     }
   }
@@ -260,9 +262,9 @@ export class AddAndRemoveBarrister {
         .click();
       await expect(
         page.locator(
-          `${Selectors.h3}:text-is("${BarristerDetailsTabContent.h3}")`,
+          `${Selectors.h3}:text-is("${BarristerDetailsTabContent.h3DA}")`,
         ),
-      ).toHaveCount(1);
+      ).toHaveCount(2);
       await expect(
         page.locator(
           `${Selectors.Span}:text-is("${BarristerDetailsTabContent.span}")`,
@@ -275,9 +277,9 @@ export class AddAndRemoveBarrister {
         .click();
       await expect(
         page.locator(
-          `${Selectors.h3}:text-is("${BarristerDetailsTabContent.h3}")`,
+          `${Selectors.h3}:text-is("${BarristerDetailsTabContent.h3DA}")`,
         ),
-      ).toHaveCount(1);
+      ).toHaveCount(2);
       await expect(
         page.locator(
           `${Selectors.Span}:text-is("${BarristerDetailsTabContent.span}")`,

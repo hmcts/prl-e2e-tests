@@ -4,15 +4,23 @@ import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
 import { Helpers } from "../../../../common/helpers.ts";
 import { AddBarristerContent } from "../../../../fixtures/manageCases/caseProgression/addBarristerAndRemoveBarrister/addBarristerContent.ts";
+import config from "../../../../utils/config.utils.ts";
 
 export class CaseworkerAddBarrister {
   public static async caseworkerAddBarrister(
     accessibilityTest: boolean,
     browser: Browser,
+    ccdRef: string,
   ): Promise<void> {
     const page: Page = await Helpers.openNewBrowserWindow(
       browser,
       "caseWorker",
+    );
+    await Helpers.goToCase(
+      page,
+      config.manageCasesBaseURLCase,
+      ccdRef,
+      "tasks",
     );
     await Helpers.chooseEventFromDropdown(page, "Add barrister");
     await this.checkPageLoads(page, accessibilityTest);

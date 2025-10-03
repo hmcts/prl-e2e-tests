@@ -1,15 +1,28 @@
-import { Page, expect } from "@playwright/test";
+import { Browser, Page, expect } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.ts";
 import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
 import { Helpers } from "../../../../common/helpers.ts";
 import { RemoveBarristerContent } from "../../../../fixtures/manageCases/caseProgression/addBarristerAndRemoveBarrister/removeBarristerContent.ts";
+import config from "../../../../utils/config.utils.ts";
 
 export class RemoveBarrister {
   public static async removeBarrister(
-    page: Page,
     accessibilityTest: boolean,
+    ccdRef: string,
+    browser: Browser,
   ): Promise<void> {
+    const page: Page = await Helpers.openNewBrowserWindow(
+      browser,
+      "caseWorker",
+    );
+    await Helpers.goToCase(
+      page,
+      config.manageCasesBaseURLCase,
+      ccdRef,
+      "tasks",
+    );
+    await page.reload();
     await Helpers.chooseEventFromDropdown(page, "Remove barrister");
     await this.checkPageLoads(page, accessibilityTest);
     await this.fillInFields(page);
