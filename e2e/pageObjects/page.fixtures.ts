@@ -21,6 +21,11 @@ import { Fl401RemoveLegalRepresentativeSubmitPage } from "./pages/exui/removeLeg
 import { C100RemoveLegalRepresentativeConfirmPage } from "./pages/exui/removeLegalRepresentation/c100RemoveLegalRepresentativeConfirm.po.js";
 import { Fl401RemoveLegalRepresentativeConfirmPage } from "./pages/exui/removeLegalRepresentation/fl401RemoveLegalRepresentativeConfirm.po.js";
 import { PartiesPage } from "./pages/exui/caseView/parties.po.js";
+import { DraftAnOrder1Page } from "./pages/exui/orders/solicitor/draftAnOrder1.po.js";
+import { DraftAnOrder2Page } from "./pages/exui/orders/solicitor/draftAnOrder2.po.js";
+import { DraftAnOrder4Page } from "./pages/exui/orders/solicitor/draftAnOrder4.po.js";
+import { DraftAnOrder5Page } from "./pages/exui/orders/solicitor/draftAnOrder5.po.js";
+import { DraftAnOrder16Page } from "./pages/exui/orders/solicitor/draftAnOrder16.po.js";
 
 export interface PageFixtures {
   tasksPage: TasksPage;
@@ -46,6 +51,11 @@ export interface PageFixtures {
   fl401RemoveLegalRepresentative1Page: Fl401RemoveLegalRepresentative1Page;
   fl401RemoveLegalRepresentativeSubmitPage: Fl401RemoveLegalRepresentativeSubmitPage;
   fl401RemoveLegalRepresentativeConfirmPage: Fl401RemoveLegalRepresentativeConfirmPage;
+  draftAnOrder1Page: DraftAnOrder1Page;
+  draftAnOrder2Page: DraftAnOrder2Page;
+  draftAnOrder4Page: DraftAnOrder4Page;
+  draftAnOrder5Page: DraftAnOrder5Page;
+  draftAnOrder16Page: DraftAnOrder16Page;
 }
 
 export const pageFixtures = {
@@ -117,5 +127,20 @@ export const pageFixtures = {
   },
   fl401RemoveLegalRepresentativeConfirmPage: async ({ page }, use) => {
     await use(new Fl401RemoveLegalRepresentativeConfirmPage(page));
+  },
+  draftAnOrder1Page: async ({ page }, use) => {
+    await use(new DraftAnOrder1Page(page));
+  },
+  draftAnOrder2Page: async ({ page }, use) => {
+    await use(new DraftAnOrder2Page(page));
+  },
+  draftAnOrder4Page: async ({ page }, use) => {
+    await use(new DraftAnOrder4Page(page));
+  },
+  draftAnOrder5Page: async ({ page }, use) => {
+    await use(new DraftAnOrder5Page(page));
+  },
+  draftAnOrder16Page: async ({ page }, use) => {
+    await use(new DraftAnOrder16Page(page));
   },
 };
