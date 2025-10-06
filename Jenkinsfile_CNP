@@ -114,9 +114,9 @@ withNightlyPipeline(type, product, component, 600) {
   enableSlackNotifications(channel)
   onPR() {
     afterAlways('DependencyCheckNightly') {
-      stage('Run changed tests - Chrome') {
+      stage('Run nightly tests - Chrome') {
         try {
-          yarnBuilder.yarn('test:changes')
+          yarnBuilder.yarn('test:manageCasesChrome')
         } catch (Error) {
           unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
         } finally {
@@ -126,7 +126,7 @@ withNightlyPipeline(type, product, component, 600) {
                   keepAll              : true,
                   reportDir            : "playwright-report",
                   reportFiles          : 'index.html',
-                  reportName           : 'Changed Chrome E2E Test Report'
+                  reportName           : 'Nightly Chrome E2E Test Report'
           ])
           steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/ChangedTests/*'
         }
