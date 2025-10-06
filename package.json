@@ -23,7 +23,7 @@
     "tsx": "^4.19.4",
     "typescript": "^5.5.4",
     "typescript-eslint": "^8.8.0",
-    "uuid": "^11.0.2"
+    "uuid": "^13.0.0"
   },
   "scripts": {
     "pwinstall": "yarn playwright install --with-deps",
