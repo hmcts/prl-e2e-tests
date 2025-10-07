@@ -673,9 +673,9 @@
         ]
       },
       "noticeOfSafetySupportLetter": {
-        "document_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/675b1066-e716-4272-8d22-b1b6c996287b",
-        "document_binary_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/675b1066-e716-4272-8d22-b1b6c996287b/binary",
-        "document_filename": "mockFile.pdf"
+        "document_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/18c016e7-9473-4a5c-93ee-056ef808c925",
+        "document_binary_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/18c016e7-9473-4a5c-93ee-056ef808c925/binary",
+        "document_filename": "Safety Letter.docx"
       },
       "additionalDocumentsList": [],
       "caseTypeOfApplication": "FL401",
