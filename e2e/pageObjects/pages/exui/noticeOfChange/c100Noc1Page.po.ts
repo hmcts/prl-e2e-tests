@@ -10,26 +10,24 @@ export class C100Noc1Page extends EventPage {
       hasText: CommonStaticText.continue,
     },
   );
-  private readonly caseNumberField: Locator = this.page.locator('#caseRef');
+  private readonly caseNumberField: Locator = this.page.locator("#caseRef");
 
   constructor(page: Page) {
     super(page, "Notice of change");
   }
 
-//   async assertPageContents(existingRepresentatives: string[]): Promise<void> {
-//     await this.assertPageHeadings();
-//     for (const representative of existingRepresentatives) {
-//       await expect(
-//         this.page.locator(Selectors.p, { hasText: representative }),
-//       ).toBeVisible();
-//     }
-//     await expect(this.continueButton).toBeVisible();
-//   }
+  //   async assertPageContents(existingRepresentatives: string[]): Promise<void> {
+  //     await this.assertPageHeadings();
+  //     for (const representative of existingRepresentatives) {
+  //       await expect(
+  //         this.page.locator(Selectors.p, { hasText: representative }),
+  //       ).toBeVisible();
+  //     }
+  //     await expect(this.continueButton).toBeVisible();
+  //   }
 
-  async fillInCaseNumber(
-    caseNumber: string,
-  ): Promise<void> {
-      await this.caseNumberField.fill(caseNumber);
+  async fillInCaseNumber(caseNumber: string): Promise<void> {
+    await this.caseNumberField.fill(caseNumber);
   }
 
   async clickContinue(): Promise<void> {

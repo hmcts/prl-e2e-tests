@@ -46,8 +46,8 @@ export class ApplicationPage extends CaseAccessViewPage {
     }
   }
 
-//   async assertFl401ApplicantSolicitorDetailsRemoved(): Promise<void> {
-//     // FL401 is a bit different only need to check the solicitor section is hidden once
-//     await expect(this.fl401LegalRepresentativeDetailsHeading).toBeHidden();
-//     await expect(this.fl401SolicitorDetailsTable).toBeHidden();
-  }
+  //   async assertFl401ApplicantSolicitorDetailsRemoved(): Promise<void> {
+  //     // FL401 is a bit different only need to check the solicitor section is hidden once
+  //     await expect(this.fl401LegalRepresentativeDetailsHeading).toBeHidden();
+  //     await expect(this.fl401SolicitorDetailsTable).toBeHidden();
+}

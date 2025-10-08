@@ -10,12 +10,23 @@ export class C100AdminAddBarrister1Page extends EventPage {
       hasText: CommonStaticText.continue,
     },
   );
-  private readonly partyToAddBarristerCheckbox: Locator = this.page.locator('[id^="allocatedBarrister_partyList_"]');
-  private readonly barristerFirstName: Locator = this.page.locator('#allocatedBarrister_barristerFirstName');
-  private readonly barristerLasttName: Locator = this.page.locator('#allocatedBarrister_barristerLastName');
-  private readonly barristerEmail: Locator = this.page.locator('#allocatedBarrister_barristerEmail');
-  private readonly barristerOrg: Locator = this.page.locator('#search-org-text');
-  private readonly selectBarristerOrg: Locator = this.page.getByTitle('Select the organisation PRL Barrister Org2');
+  private readonly partyToAddBarristerCheckbox: Locator = this.page.locator(
+    '[id^="allocatedBarrister_partyList_"]',
+  );
+  private readonly barristerFirstName: Locator = this.page.locator(
+    "#allocatedBarrister_barristerFirstName",
+  ).first();
+  private readonly barristerLastName: Locator = this.page.locator(
+    "#allocatedBarrister_barristerLastName",
+  ).first();
+  private readonly barristerEmail: Locator = this.page.locator(
+    "#allocatedBarrister_barristerEmail",
+  ).first();
+  private readonly barristerOrg: Locator =
+    this.page.locator("#search-org-text").first();
+  private readonly selectBarristerOrg: Locator = this.page.getByTitle(
+    "Select the organisation PRL Barrister Org2",
+  );
 
   constructor(page: Page) {
     super(page, "Add barrister");
@@ -40,7 +51,7 @@ export class C100AdminAddBarrister1Page extends EventPage {
   //     await this.page.getByLabel(representative).check();
   //   }
   // }
-    
+
   async selectPartyAndFillInBarristerDetails(
     firstnames: string,
     lastname: string,
@@ -49,11 +60,11 @@ export class C100AdminAddBarrister1Page extends EventPage {
   ): Promise<void> {
     await this.partyToAddBarristerCheckbox.check();
     await this.barristerFirstName.fill(firstnames);
-    await this.barristerLasttName.fill(lastname);
+    await this.barristerLastName.fill(lastname);
     await this.barristerEmail.fill(email);
     await this.barristerOrg.fill(org);
     await this.selectBarristerOrg.click();
-}
+  }
 
   async clickContinue(): Promise<void> {
     await this.continueButton.click();

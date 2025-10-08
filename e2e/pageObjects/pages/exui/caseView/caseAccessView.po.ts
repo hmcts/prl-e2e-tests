@@ -1,4 +1,4 @@
-import { expect, Locator, Page, Browser } from "@playwright/test";
+import { expect, Locator, Page } from "@playwright/test";
 import { CcdCaseHeaderComponent } from "../../../components/exui/ccdCaseHeader.component.js";
 import { Base } from "../../base.po.js";
 import { AlertBannerComponent } from "../../../components/exui/alertBanner.component.js";
@@ -12,8 +12,6 @@ import {
   fl401SubmittedSolicitorEvents,
   WACaseWorkerActions,
 } from "../../../../common/types.js";
-import { Helpers } from "../../../../common/helpers.ts";
-import config from "../../../../utils/config.utils.ts";
 
 export abstract class CaseAccessViewPage extends Base {
   readonly caseHeader: CcdCaseHeaderComponent = new CcdCaseHeaderComponent(
@@ -65,27 +63,5 @@ export abstract class CaseAccessViewPage extends Base {
         },
       )
       .toBeFalsy();
-  }
-
-  public async loginAsCaseworker(
-    browser: Browser,
-    caseNumber: string,
-    page: Page,
-  ) {
-    const newPage = await Helpers.openNewBrowserWindow(
-      browser,
-      "caseWorker",
-    );
-    await Helpers.goToCase(
-      page,
-      config.manageCasesBaseURLCase,
-      caseNumber,
-      "tasks",
-    );
-  }
-
-  public async endCaseworkerSession(
-  ) {
-    await this.page.close();
   }
 }

@@ -4,18 +4,19 @@ import { Selectors } from "../../../../common/selectors.js";
 import { CommonStaticText } from "../../../../common/commonStaticText.js";
 
 export class C100AmendApplicantDetailsSubmitShortPage extends EventPage {
-    private readonly submitButton: Locator = this.page.locator(
-        Selectors.button,
-        {
-            hasText: CommonStaticText.submit,
-        },
-    );
+  // private readonly saveAndContinueButton: Locator = this.page.locator(Selectors.button, {
+  //   hasText: CommonStaticText.saveAndContinue,
+  // });
 
-  constructor(page: Page) {
-    super(page, "Amend applicant details");
+  // constructor(page: Page) {
+  //   super(page, "Amend applicant details");
+  // }
+
+  async clickSaveAndContinue(): Promise<void> {
+    await caseworkerPage.getByRole('button', { name: "Continue" }).click();
   }
-    
-    async clickSubmit(): Promise<void> {
-        await this.submitButton.click();
-    }
+
+  public async endCaseworkerSession() {
+    await this.page.close();
+  }
 }

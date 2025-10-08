@@ -79,7 +79,12 @@ export class AddAndRemoveBarrister {
       );
     }
     //Checking barrister details in the case tabs
-    await this.checkTabsBarristerDetails(ccdRef, browser, caseType, isCaseworker);
+    await this.checkTabsBarristerDetails(
+      ccdRef,
+      browser,
+      caseType,
+      isCaseworker,
+    );
     await RemoveBarrister.removeBarrister(accessibilityTest, ccdRef, browser);
     await this.checkTabsBarristerDetailsNotVisible(ccdRef, browser, caseType);
   }

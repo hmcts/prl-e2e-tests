@@ -10,7 +10,9 @@ export class C100AdminRemoveBarrister1Page extends EventPage {
       hasText: CommonStaticText.continue,
     },
   );
-    private readonly partyToRemoveBarristerCheckbox: Locator = this.page.locator('[id^="allocatedBarrister_partyList_"]');
+  private readonly partyToRemoveBarristerCheckbox: Locator = this.page.locator(
+    '[id^="allocatedBarrister_partyList_"]',
+  );
 
   constructor(page: Page) {
     super(page, "Remove barrister");
@@ -35,11 +37,10 @@ export class C100AdminRemoveBarrister1Page extends EventPage {
   //     await this.page.getByLabel(representative).check();
   //   }
   // }
-    
-  async selectPartyToRemoveBarrister(
-  ): Promise<void> {
+
+  async selectPartyToRemoveBarrister(): Promise<void> {
     await this.partyToRemoveBarristerCheckbox.check();
-}
+  }
 
   async clickContinue(): Promise<void> {
     await this.continueButton.click();

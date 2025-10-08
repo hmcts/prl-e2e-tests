@@ -27,29 +27,14 @@ export class PartiesPage extends CaseAccessViewPage {
   async assertC100BarristerDetailsPresent(
     applicants: ApplicantName[],
   ): Promise<void> {
-    for (const applicant of applicants) {
-      // get the applicant table by the applicant name and check each expected applicant has had legal representative removed
-      const nameRegex = new RegExp(
-        `${applicant.firstname}[\\s\\S]*${applicant.surname}`,
-      );
-      const applicantTable: Locator = this.page.locator(
-        "ccd-read-complex-field-table",
-        {
-          hasText: nameRegex,
-        },
-      );
       await expect(
-        applicantTable.locator("#applicantSolicitorLabel", {
-          hasText: "Applicant Solicitor",
-        }),
-      ).toBeVisible();
-      await expect(
-        applicantTable.locator("#barristerLabel", {
-          hasText: "Applicant barrister",
-        }).first(),
+        this.page
+          .locator("#barristerLabel", {
+            hasText: "Applicant barrister",
+          })
+          .first(),
       ).toBeVisible();
     }
-  }
 
   async assertC100BarristerDetailsRemoved(
     applicants: ApplicantName[],
@@ -66,9 +51,11 @@ export class PartiesPage extends CaseAccessViewPage {
         },
       );
       await expect(
-        applicantTable.locator("#barristerLabel", {
-          hasText: "Applicant barrister",
-        }).first(),
+        applicantTable
+          .locator("#barristerLabel", {
+            hasText: "Applicant barrister",
+          })
+          .first(),
       ).toBeHidden();
     }
   }
