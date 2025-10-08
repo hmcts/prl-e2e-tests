@@ -24,7 +24,7 @@ test.describe("Check Application task for DA Solicitor case tests.", () => {
         fl401AddCaseNumberSubmitPage,
         axeUtils,
       }): Promise<void> => {
-        await tasksPage.exuiHeader.checkIsVisible();
+        await tasksPage.exuiHeader.checkEuiHeaderIsVisible();
         await tasksPage.assignTaskToMeAndTriggerNextSteps(
           "Check Application",
           "Add Case Number",

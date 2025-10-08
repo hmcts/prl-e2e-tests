@@ -21,6 +21,7 @@ import { Fl401RemoveLegalRepresentativeSubmitPage } from "./pages/exui/removeLeg
 import { C100RemoveLegalRepresentativeConfirmPage } from "./pages/exui/removeLegalRepresentation/c100RemoveLegalRepresentativeConfirm.po.js";
 import { Fl401RemoveLegalRepresentativeConfirmPage } from "./pages/exui/removeLegalRepresentation/fl401RemoveLegalRepresentativeConfirm.po.js";
 import { PartiesPage } from "./pages/exui/caseView/parties.po.js";
+import { CaseListPage } from "./pages/exui/caseListPage.po.js";
 
 export interface PageFixtures {
   tasksPage: TasksPage;
@@ -46,6 +47,7 @@ export interface PageFixtures {
   fl401RemoveLegalRepresentative1Page: Fl401RemoveLegalRepresentative1Page;
   fl401RemoveLegalRepresentativeSubmitPage: Fl401RemoveLegalRepresentativeSubmitPage;
   fl401RemoveLegalRepresentativeConfirmPage: Fl401RemoveLegalRepresentativeConfirmPage;
+  caseListPage: CaseListPage;
 }
 
 export const pageFixtures = {
@@ -117,5 +119,8 @@ export const pageFixtures = {
   },
   fl401RemoveLegalRepresentativeConfirmPage: async ({ page }, use) => {
     await use(new Fl401RemoveLegalRepresentativeConfirmPage(page));
+  },
+  caseListPage: async ({ page }, use) => {
+    await use(new CaseListPage(page));
   },
 };

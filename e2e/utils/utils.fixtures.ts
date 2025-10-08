@@ -4,6 +4,7 @@ import {
   SessionUtils,
   ServiceAuthUtils,
   AxeUtils,
+  TableUtils,
 } from "@hmcts/playwright-common";
 import { TokenUtils } from "./token.utils.ts";
 import { CitizenCACaseUtils } from "./citizenCACase.utils.ts";
@@ -26,7 +27,7 @@ export interface UtilsFixtures {
   idamLoginHelper: IdamLoginHelper;
   sessionUtils: SessionUtils;
   serviceAuthUtils: ServiceAuthUtils;
-
+  tableUtils: TableUtils;
   caseEventUtils: CaseEventUtils;
   axeUtils: AxeUtils;
   dateHelperUtils: DateHelperUtils;
@@ -75,5 +76,8 @@ export const utilsFixtures = {
   },
   navigationUtils: async ({ page }, use) => {
     await use(new NavigationUtils(page));
+  },
+  tableUtils: async ({}, use) => {
+    await use(new TableUtils());
   },
 };
