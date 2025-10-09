@@ -2,6 +2,7 @@ import { EventPage } from "../eventPage.po.ts";
 import { expect, Locator, Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.ts";
 import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { Helpers } from "../../../../common/helpers.ts";
 
 export class C100AdminAddBarrister1Page extends EventPage {
   private readonly continueButton: Locator = this.page.locator(
@@ -13,17 +14,18 @@ export class C100AdminAddBarrister1Page extends EventPage {
   private readonly partyToAddBarristerCheckbox: Locator = this.page.locator(
     '[id^="allocatedBarrister_partyList_"]',
   );
-  private readonly barristerFirstName: Locator = this.page.locator(
-    "#allocatedBarrister_barristerFirstName",
-  ).first();
-  private readonly barristerLastName: Locator = this.page.locator(
-    "#allocatedBarrister_barristerLastName",
-  ).first();
-  private readonly barristerEmail: Locator = this.page.locator(
-    "#allocatedBarrister_barristerEmail",
-  ).first();
-  private readonly barristerOrg: Locator =
-    this.page.locator("#search-org-text").first();
+  private readonly barristerFirstName: Locator = this.page
+    .locator("#allocatedBarrister_barristerFirstName")
+    .first();
+  private readonly barristerLastName: Locator = this.page
+    .locator("#allocatedBarrister_barristerLastName")
+    .first();
+  private readonly barristerEmail: Locator = this.page
+    .locator("#allocatedBarrister_barristerEmail")
+    .first();
+  private readonly barristerOrg: Locator = this.page
+    .locator("#search-org-text")
+    .first();
   private readonly selectBarristerOrg: Locator = this.page.getByTitle(
     "Select the organisation PRL Barrister Org2",
   );
@@ -32,25 +34,41 @@ export class C100AdminAddBarrister1Page extends EventPage {
     super(page, "Add barrister");
   }
 
-  // async assertPageContents(existingRepresentative: string[]): Promise<void> {
-  //   await this.assertPageHeadings();
-  //   for (const representative of existingRepresentative) {
-  //     await expect(
-  //       this.page.locator(Selectors.p, { hasText: representative }),
-  //     ).toBeVisible();
-  //   }
-
-  //   await expect(this.continueButton).toBeVisible();
-  //   await expect(this.previousButton).toBeVisible();
-  // }
-
-  // async selectPartyToAddBarrister(
-  //   existingRepresentative: string[],
-  // ): Promise<void> {
-  //   for (const representative of existingRepresentative) {
-  //     await this.page.getByLabel(representative).check();
-  //   }
-  // }
+  async assertPageContents(
+    govUkHeadingL: string,
+    span1: string,
+    span2: string,
+    span3: string,
+    span4: string,
+    govUkHint: string,
+    govukDetailsText: string,
+  ): Promise<void> {
+    await this.assertPageHeadings();
+    await expect(
+      this.page.locator(Selectors.GovukHeadingL, { hasText: govUkHeadingL }),
+    ).toBeVisible();
+    await expect(
+      this.page.locator(Selectors.Span, { hasText: span1 }),
+    ).toBeVisible();
+    await expect(
+      this.page.locator(Selectors.Span, { hasText: span2 }),
+    ).toBeVisible();
+    await expect(
+      this.page.locator(Selectors.Span, { hasText: span3 }),
+    ).toBeVisible();
+    await expect(
+      this.page.locator(Selectors.Span, { hasText: span4 }),
+    ).toBeVisible();
+    await expect(
+      this.page.locator(Selectors.GovukHint, { hasText: govUkHint }),
+    ).toBeVisible();
+    await expect(
+      this.page.locator(Selectors.GovukDetailsText, {
+        hasText: govukDetailsText,
+      }),
+    ).toBeHidden();
+    await expect(this.continueButton).toBeVisible();
+  }
 
   async selectPartyAndFillInBarristerDetails(
     firstnames: string,

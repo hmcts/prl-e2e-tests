@@ -21,7 +21,6 @@ import { Fl401RemoveLegalRepresentativeSubmitPage } from "./pages/exui/removeLeg
 import { C100RemoveLegalRepresentativeConfirmPage } from "./pages/exui/removeLegalRepresentation/c100RemoveLegalRepresentativeConfirm.po.js";
 import { Fl401RemoveLegalRepresentativeConfirmPage } from "./pages/exui/removeLegalRepresentation/fl401RemoveLegalRepresentativeConfirm.po.js";
 import { C100AmendApplicantDetails1ShortPage } from "./pages/exui/addAndRemoveBarrister/c100AmendApplicantDetails1ShortPage.po.ts";
-import { C100AmendApplicantDetailsSubmitShortPage } from "./pages/exui/addAndRemoveBarrister/c100AmendApplicantDetailsSubmitShortPage.po.ts";
 import { PartiesPage } from "./pages/exui/caseView/parties.po.js";
 import { ApplicationPage } from "./pages/exui/caseView/application.po.ts";
 import { C100Noc1Page } from "./pages/exui/noticeOfChange/c100Noc1Page.po.ts";
@@ -59,7 +58,6 @@ export interface PageFixtures {
   fl401RemoveLegalRepresentativeSubmitPage: Fl401RemoveLegalRepresentativeSubmitPage;
   fl401RemoveLegalRepresentativeConfirmPage: Fl401RemoveLegalRepresentativeConfirmPage;
   c100AmendApplicantDetails1ShortPage: C100AmendApplicantDetails1ShortPage;
-  c100AmendApplicantDetailsSubmitShortPage: C100AmendApplicantDetailsSubmitShortPage;
   c100Noc1Page: C100Noc1Page;
   c100Noc2Page: C100Noc2Page;
   c100NocSubmitPage: C100NocSubmitPage;
@@ -143,11 +141,8 @@ export const pageFixtures = {
   fl401RemoveLegalRepresentativeConfirmPage: async ({ page }, use) => {
     await use(new Fl401RemoveLegalRepresentativeConfirmPage(page));
   },
-  c100AmendApplicantDetails1ShortPage: async ({ page }, use) => {
-    await use(new C100AmendApplicantDetails1ShortPage(page));
-  },
-  c100AmendApplicantDetailsSubmitShortPage: async ({ page }, use) => {
-    await use(new C100AmendApplicantDetailsSubmitShortPage(page));
+  c100AmendApplicantDetails1ShortPage: async (use) => {
+    await use(new C100AmendApplicantDetails1ShortPage());
   },
   c100Noc1Page: async ({ page }, use) => {
     await use(new C100Noc1Page(page));

@@ -15,6 +15,19 @@ export class PartiesPage extends CaseAccessViewPage {
   private readonly fl401SolicitorDetailsTable: Locator = this.page.locator(
     "#case-viewer-field-read--fl401SolicitorDetailsTable",
   );
+  private readonly barristerFirstName: Locator = this.page
+    .locator("#allocatedBarrister_barristerFirstName")
+    .first();
+  private readonly barristerLastName: Locator = this.page
+    .locator("#allocatedBarrister_barristerLastName")
+    .first();
+  private readonly barristerEmail: Locator = this.page
+    .locator("#allocatedBarrister_barristerEmail")
+    .first();
+  //UPDATE LOCATOR BARRISTER ORG
+  private readonly barristerOrg: Locator = this.page
+    .locator("#search-org-text")
+    .first();
 
   constructor(page: Page) {
     super(page);
@@ -25,16 +38,31 @@ export class PartiesPage extends CaseAccessViewPage {
   }
 
   async assertC100BarristerDetailsPresent(
-    applicants: ApplicantName[],
+    firstnames: string,
+    lastname: string,
+    email: string,
+    org: string,
   ): Promise<void> {
-      await expect(
-        this.page
-          .locator("#barristerLabel", {
-            hasText: "Applicant barrister",
-          })
-          .first(),
-      ).toBeVisible();
-    }
+    await expect(
+      this.page
+        .locator("#barristerLabel", {
+          hasText: "Applicant barrister",
+        })
+        .first(),
+    ).toBeVisible();
+    await expect(
+      this.page.locator(Selectors.Span, { hasText: firstnames }).first(),
+    ).toBeVisible();
+    await expect(
+      this.page.locator(Selectors.Span, { hasText: lastname }).first(),
+    ).toBeVisible();
+    await expect(
+      this.page.locator(Selectors.Span, { hasText: email }).first(),
+    ).toBeVisible();
+    await expect(
+      this.page.locator(Selectors.Span, { hasText: org }).first(),
+    ).toBeVisible();
+  }
 
   async assertC100BarristerDetailsRemoved(
     applicants: ApplicantName[],

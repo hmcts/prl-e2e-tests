@@ -18,25 +18,19 @@ export class C100AdminRemoveBarrister1Page extends EventPage {
     super(page, "Remove barrister");
   }
 
-  // async assertPageContents(existingRepresentative: string[]): Promise<void> {
-  //   await this.assertPageHeadings();
-  //   for (const representative of existingRepresentative) {
-  //     await expect(
-  //       this.page.locator(Selectors.p, { hasText: representative }),
-  //     ).toBeVisible();
-  //   }
-
-  //   await expect(this.continueButton).toBeVisible();
-  //   await expect(this.previousButton).toBeVisible();
-  // }
-
-  // async selectPartyToAddBarrister(
-  //   existingRepresentative: string[],
-  // ): Promise<void> {
-  //   for (const representative of existingRepresentative) {
-  //     await this.page.getByLabel(representative).check();
-  //   }
-  // }
+  async assertPageContents(
+    govUkHeadingL: string,
+    spanRemove: string,
+  ): Promise<void> {
+    await this.assertPageHeadings();
+    await expect(
+      this.page.locator(Selectors.GovukHeadingL, { hasText: govUkHeadingL }),
+    ).toBeVisible();
+    await expect(
+      this.page.locator(Selectors.Span, { hasText: spanRemove }),
+    ).toBeVisible();
+    await expect(this.continueButton).toBeVisible();
+  }
 
   async selectPartyToRemoveBarrister(): Promise<void> {
     await this.partyToRemoveBarristerCheckbox.check();

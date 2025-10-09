@@ -16,15 +16,33 @@ export class C100Noc1Page extends EventPage {
     super(page, "Notice of change");
   }
 
-  //   async assertPageContents(existingRepresentatives: string[]): Promise<void> {
-  //     await this.assertPageHeadings();
-  //     for (const representative of existingRepresentatives) {
-  //       await expect(
-  //         this.page.locator(Selectors.p, { hasText: representative }),
-  //       ).toBeVisible();
-  //     }
-  //     await expect(this.continueButton).toBeVisible();
-  //   }
+  async assertPageContents(
+    govUkHeadingL: string,
+    p: string,
+    li1: string,
+    li2: string,
+    span: string,
+    govUkHint: string,
+  ): Promise<void> {
+    await this.assertPageHeadings();
+    await expect(
+      this.page.locator(Selectors.GovukHeadingL, { hasText: govUkHeadingL }),
+    ).toBeVisible();
+    await expect(this.page.locator(Selectors.p, { hasText: p })).toBeVisible();
+    await expect(
+      this.page.locator(Selectors.li, { hasText: li1 }),
+    ).toBeVisible();
+    await expect(
+      this.page.locator(Selectors.li, { hasText: li2 }),
+    ).toBeVisible();
+    await expect(
+      this.page.locator(Selectors.Span, { hasText: span }),
+    ).toBeVisible();
+    await expect(
+      this.page.locator(Selectors.GovukHint, { hasText: govUkHint }),
+    ).toBeVisible();
+    await expect(this.continueButton).toBeVisible();
+  }
 
   async fillInCaseNumber(caseNumber: string): Promise<void> {
     await this.caseNumberField.fill(caseNumber);
