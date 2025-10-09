@@ -1,6 +1,5 @@
-import { Page } from "@playwright/test";
+import { expect, Locator, Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
 import config from "../../../../../utils/config.utils.ts";
 import { ApplicantDetails1Content } from "../../../../../fixtures/manageCases/createCase/C100/applicantDetails/applicantDetails1Content.ts";
 
@@ -23,29 +22,37 @@ export class DummyC100ApplicantDetailsPage {
     page: Page,
     applicantLivesInRefuge: boolean,
   ): Promise<void> {
-    await page.waitForSelector(
-      `${Selectors.GovukHeadingL}:text-is("${ApplicantDetails1Content.pageTitle}")`,
-    );
+    await expect(
+      page.locator(Selectors.GovukHeadingL, {
+        hasText: ApplicantDetails1Content.pageTitle,
+      }),
+    ).toBeVisible();
     if (applicantLivesInRefuge) {
-      await page.click(`${PageLoadFields.applicantLivesInRefugeYes}`);
-      await Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukFormLabel}:text-is("${ApplicantDetails1Content.formLabelC8FormUpload}"):visible`,
-        1,
-      );
-      await Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.p}:text-is("${ApplicantDetails1Content.c8FormUploadP}"):visible`,
-        1,
-      );
-      const fileInput = page.locator(
-        `${UniqueSelectors.c8RefugeFormUploadFileInput}`,
+      await page.click(PageLoadFields.applicantLivesInRefugeYes);
+      const applicant1: Locator = page.locator("#applicants_0_0");
+      await expect(
+        applicant1
+          .locator(Selectors.GovukFormLabel, {
+            hasText: ApplicantDetails1Content.formLabelC8FormUpload,
+          })
+          .first(),
+      ).toBeVisible({ timeout: 30000 }); // big timeout as it seems to take a while to load
+      await expect(
+        applicant1
+          .locator(Selectors.p, {
+            hasText: ApplicantDetails1Content.c8FormUploadP,
+          })
+          .first(),
+      ).toBeVisible();
+      const fileInput = applicant1.locator(
+        UniqueSelectors.c8RefugeFormUploadFileInput,
       );
       await fileInput.setInputFiles(config.testPdfFile);
-      await page.waitForSelector(
-        `${Selectors.GovukErrorMessage}:text-is("${ApplicantDetails1Content.uploadingFile}")`,
-        { state: "hidden" },
-      );
+      await expect(
+        applicant1.locator(Selectors.GovukErrorMessage, {
+          hasText: ApplicantDetails1Content.uploadingFile,
+        }),
+      ).toBeHidden();
       await page.click(`${PageLoadFields.addressConfidentialYes}`);
     } else {
       await page.click(`${PageLoadFields.applicantLivesInRefugeNo}`);
