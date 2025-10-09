@@ -141,8 +141,8 @@ export const pageFixtures = {
   fl401RemoveLegalRepresentativeConfirmPage: async ({ page }, use) => {
     await use(new Fl401RemoveLegalRepresentativeConfirmPage(page));
   },
-  c100AmendApplicantDetails1ShortPage: async (use) => {
-    await use(new C100AmendApplicantDetails1ShortPage());
+  c100AmendApplicantDetails1ShortPage: async ({ page }, use) => {
+    await use(new C100AmendApplicantDetails1ShortPage(page));
   },
   c100Noc1Page: async ({ page }, use) => {
     await use(new C100Noc1Page(page));
