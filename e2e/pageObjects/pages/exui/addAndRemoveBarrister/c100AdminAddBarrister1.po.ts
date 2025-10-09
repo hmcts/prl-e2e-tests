@@ -2,7 +2,6 @@ import { EventPage } from "../eventPage.po.ts";
 import { expect, Locator, Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.ts";
 import { CommonStaticText } from "../../../../common/commonStaticText.ts";
-import { Helpers } from "../../../../common/helpers.ts";
 
 export class C100AdminAddBarrister1Page extends EventPage {
   private readonly continueButton: Locator = this.page.locator(

@@ -67,8 +67,8 @@ test.describe("Add/Remove Barrister for CA case", () => {
     },
   ].forEach(
     ({
-      existingRepresentative,
-      snapshotName,
+      //existingRepresentative,
+      //snapshotName,
       applicants,
       barrister,
       nocContent,
@@ -96,7 +96,7 @@ test.describe("Add/Remove Barrister for CA case", () => {
       }) => {
         // login as caseworker and complete 'amend applicant details' to allow NoC
         const solicitorPage = page;
-        const solicitorContext = page.context();
+        //const solicitorContext = page.context();
         const caseworkerContext = await browser.newContext({
           storageState: config.sessionStoragePath + "caseWorker.json",
         });
