@@ -56,7 +56,9 @@ export type c100SolicitorEvents =
   | "Submit"
   | "Dummy Payment confirmation"
   | "Draft an order"
-  | "Delete application";
+  | "Delete application"
+  | "Add barrister"
+  | "Remove barrister";
 
 export type fl401SolicitorEvents =
   | "Case name"
@@ -74,7 +76,9 @@ export type fl401SolicitorEvents =
   | "Welsh language requirements"
   | "View PDF application"
   | "Statement of Truth and submit"
-  | "Delete application";
+  | "Delete application"
+  | "Add barrister"
+  | "Remove barrister";
 
 export type WACaseWorkerActions =
   | "Allocated judge"
@@ -85,7 +89,9 @@ export type WACaseWorkerActions =
   | "Statement of service"
   | "Link cases"
   | "Manage case links"
-  | "Return application";
+  | "Return application"
+  | "Add barrister"
+  | "Remove barrister";
 
 export type fl401CaseWorkerActions =
   | "Welsh language requirements"
