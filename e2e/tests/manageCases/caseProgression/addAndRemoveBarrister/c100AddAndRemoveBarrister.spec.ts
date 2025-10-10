@@ -14,6 +14,19 @@ test.describe("Add/Remove Barrister for CA case", () => {
       caseNumber,
       "summary",
     );
+    const caseworkerContext = await browser.newContext({
+      storageState: config.sessionStoragePath + "caseWorker.json",
+    });
+    const caseworkerPage = await caseworkerContext.newPage();
+    await c100AmendApplicantDetails1ShortPage.loginAsCaseworkerAndGoToEvent(
+      caseworkerPage,
+      caseNumber,
+    );
+    await c100AmendApplicantDetails1ShortPage.clickContinue(caseworkerPage);
+    await c100AmendApplicantDetails1ShortPage.clickSaveAndContinue(
+      caseworkerPage,
+    );
+    await caseworkerContext.close();
   });
   [
     {
@@ -33,7 +46,8 @@ test.describe("Add/Remove Barrister for CA case", () => {
         formLabel1: "Your client's first name",
         formLabel2: "Your client's last name",
       },
-      snapshotName: "c100-add-barrister",
+      addBarristersnapshotName: "c100-add-barrister",
+      removeBarristersnapshotName: "c100-remove-barrister",
       applicants: [{ firstname: "John", surname: "Doe" }],
       barrister: {
         firstnames: "BarristerOneFN",
@@ -68,7 +82,8 @@ test.describe("Add/Remove Barrister for CA case", () => {
   ].forEach(
     ({
       //existingRepresentative,
-      //snapshotName,
+      addBarristersnapshotName,
+      removeBarristersnapshotName,
       applicants,
       barrister,
       nocContent,
@@ -80,40 +95,22 @@ test.describe("Add/Remove Barrister for CA case", () => {
     }) => {
       test(`Solicitor adds and removes Barrister for a CA case. @regression @accessibility @nightly`, async ({
         summaryPage,
-        c100AmendApplicantDetails1ShortPage,
         c100Noc1Page,
         c100Noc2Page,
         c100NocSubmitPage,
         partiesPage,
         axeUtils,
-        page,
         c100AdminAddBarrister1Page,
         c100AdminAddBarrister2Page,
         c100NocConfirmationPage,
-        browser,
         c100AdminRemoveBarrister1Page,
         c100AdminRemoveBarrister2Page,
       }) => {
         // login as caseworker and complete 'amend applicant details' to allow NoC
-        const solicitorPage = page;
         //const solicitorContext = page.context();
-        const caseworkerContext = await browser.newContext({
-          storageState: config.sessionStoragePath + "caseWorker.json",
-        });
-        const caseworkerPage = await caseworkerContext.newPage();
-        await c100AmendApplicantDetails1ShortPage.loginAsCaseworkerAndGoToEvent(
-          caseworkerPage,
-          caseNumber,
-        );
-        await c100AmendApplicantDetails1ShortPage.clickContinue(caseworkerPage);
-        await c100AmendApplicantDetails1ShortPage.clickSaveAndContinue(
-          caseworkerPage,
-        );
-        await caseworkerContext.close();
+
         // adding solicitor via NoC to allow Barrister functionality
-        await solicitorPage
-          .getByRole("link", { name: "Notice of change" })
-          .click();
+        await summaryPage.exuiHeader.clickNoticeOfChange();
         await c100Noc1Page.assertPageContents(
           nocContent.govUkHeadingL,
           nocContent.p,
@@ -165,10 +162,7 @@ test.describe("Add/Remove Barrister for CA case", () => {
           barrister.org,
         );
         await c100AdminAddBarrister1Page.clickContinue();
-        await c100AdminAddBarrister2Page.assertPageContents(
-          addBarristerContent2.change,
-          addBarristerContent2.checkYA,
-        );
+        await c100AdminAddBarrister2Page.assertPageContents(addBarristersnapshotName);
         await axeUtils.audit();
         await c100AdminAddBarrister2Page.clickSubmit();
         await summaryPage.alertBanner.assertEventAlert(

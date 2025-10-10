@@ -14,4 +14,10 @@ export class ExuiHeaderComponent {
   async checkIsVisible(): Promise<void> {
     await expect(this.globalHeader).toBeVisible();
   }
+
+  async clickNoticeOfChange(): Promise<void> {
+    await this.navigationHeader
+      .getByRole("link", { name: "Notice of change" })
+      .click();
+  }
 }

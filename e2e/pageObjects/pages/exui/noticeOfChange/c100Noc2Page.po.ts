@@ -1,9 +1,9 @@
-import { EventPage } from "../eventPage.po.js";
 import { Locator, Page, expect } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.js";
 import { CommonStaticText } from "../../../../common/commonStaticText.js";
+import { Base } from "../../base.po.js";
 
-export class C100Noc2Page extends EventPage {
+export class C100Noc2Page extends Base {
   private readonly continueButton: Locator = this.page.locator(
     Selectors.button,
     {
@@ -14,6 +14,10 @@ export class C100Noc2Page extends EventPage {
     this.page.locator("#NoCChallengeQ1");
   private readonly clientLastNameField: Locator =
     this.page.locator("#NoCChallengeQ2");
+
+  private readonly firstNameLabel: Locator =
+    this.page.locator("#someId", { hasText: "Your client's first name"});
+
 
   constructor(page: Page) {
     super(page, "Enter your client's details");
