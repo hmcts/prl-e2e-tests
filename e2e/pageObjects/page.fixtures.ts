@@ -21,6 +21,9 @@ import { Fl401RemoveLegalRepresentativeSubmitPage } from "./pages/exui/removeLeg
 import { C100RemoveLegalRepresentativeConfirmPage } from "./pages/exui/removeLegalRepresentation/c100RemoveLegalRepresentativeConfirm.po.js";
 import { Fl401RemoveLegalRepresentativeConfirmPage } from "./pages/exui/removeLegalRepresentation/fl401RemoveLegalRepresentativeConfirm.po.js";
 import { PartiesPage } from "./pages/exui/caseView/parties.po.js";
+import { AmendApplicantDetails2Page } from "./pages/exui/amendDetails/amendApplicantDetails2.po.ts";
+import { AmendApplicantDetails1Page } from "./pages/exui/amendDetails/amendApplicantDetails1.po.ts";
+import { AmendApplicantDetailsSubmitPage } from "./pages/exui/amendDetails/amendApplicantDetailsSubmit.po.ts";
 
 export interface PageFixtures {
   tasksPage: TasksPage;
@@ -46,6 +49,9 @@ export interface PageFixtures {
   fl401RemoveLegalRepresentative1Page: Fl401RemoveLegalRepresentative1Page;
   fl401RemoveLegalRepresentativeSubmitPage: Fl401RemoveLegalRepresentativeSubmitPage;
   fl401RemoveLegalRepresentativeConfirmPage: Fl401RemoveLegalRepresentativeConfirmPage;
+  amendApplicantDetails1Page: AmendApplicantDetails1Page;
+  amendApplicantDetails2Page: AmendApplicantDetails2Page;
+  amendApplicantDetailsSubmitPage: AmendApplicantDetailsSubmitPage;
 }
 
 export const pageFixtures = {
@@ -117,5 +123,14 @@ export const pageFixtures = {
   },
   fl401RemoveLegalRepresentativeConfirmPage: async ({ page }, use) => {
     await use(new Fl401RemoveLegalRepresentativeConfirmPage(page));
+  },
+  amendApplicantDetails1Page: async ({ page }, use) => {
+    await use(new AmendApplicantDetails1Page(page));
+  },
+  amendApplicantDetails2Page: async ({ page }, use) => {
+    await use(new AmendApplicantDetails2Page(page));
+  },
+  amendApplicantDetailsSubmitPage: async ({ page }, use) => {
+    await use(new AmendApplicantDetailsSubmitPage(page));
   },
 };
