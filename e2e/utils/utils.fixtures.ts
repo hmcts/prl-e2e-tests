@@ -37,8 +37,10 @@ export const utilsFixtures = {
   config: async ({}, use) => {
     await use(Config);
   },
-  axeUtils: async ({ page }, use) => {
-    await use(new AxeUtils(page));
+  axeUtils: async ({ page }, use, testInfo) => {
+    const axeUtils = new AxeUtils(page);
+    await use(axeUtils);
+    await axeUtils.generateReport(testInfo);
   },
   idamUtils: async ({}, use) => {
     await use(new IdamUtils());
