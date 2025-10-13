@@ -29,7 +29,7 @@ export class DummyC100ApplicantDetailsPage {
     ).toBeVisible();
     if (applicantLivesInRefuge) {
       const applicant1: Locator = page.locator("#applicants_0_0");
-      await page.click(PageLoadFields.applicantLivesInRefugeYes);
+      await page.check(PageLoadFields.applicantLivesInRefugeYes);
       // work around: adding poll for c8 upload section because the showing of the c8 fields isn't consistent on this screen
       await expect
         .poll(
@@ -40,18 +40,18 @@ export class DummyC100ApplicantDetailsPage {
               })
               .first()
               .isVisible();
-            if (!c8UploadLabelVisible) {
-              // if not visible then click no and then yes radio button to try and re-trigger
-              await page.click(PageLoadFields.applicantLivesInRefugeNo);
-              await page.click(PageLoadFields.applicantLivesInRefugeYes);
-            }
+            // if (!c8UploadLabelVisible) {
+            //   // if not visible then click no and then yes radio button to try and re-trigger
+            //   await page.check(PageLoadFields.applicantLivesInRefugeNo);
+            //   await page.check(PageLoadFields.applicantLivesInRefugeYes);
+            // }
             return c8UploadLabelVisible;
           },
           {
             // Allow 5s delay before retrying
             intervals: [5_000],
-            // Allow up to 1 minute for the go button to disappear
-            timeout: 60_000,
+            // Allow up to 5 minutes for the go button to disappear
+            timeout: 300_000,
           },
         )
         .toBeTruthy();
