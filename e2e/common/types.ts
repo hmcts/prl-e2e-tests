@@ -58,7 +58,8 @@ export type c100SolicitorEvents =
   | "Draft an order"
   | "Delete application"
   | "Add barrister"
-  | "Remove barrister";
+  | "Remove barrister"
+  | "Withdraw application";
 
 export type fl401SolicitorEvents =
   | "Case name"
