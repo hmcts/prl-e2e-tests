@@ -14,21 +14,17 @@ export class C100AdminRemoveBarrister1Page extends EventPage {
     '[id^="allocatedBarrister_partyList_"]',
   );
 
+  private readonly textLabel1: Locator = this.page.locator(Selectors.Span, {
+    hasText: "Select a party to remove a Barrister",
+  });
+
   constructor(page: Page) {
     super(page, "Remove barrister");
   }
 
-  async assertPageContents(
-    govUkHeadingL: string,
-    spanRemove: string,
-  ): Promise<void> {
+  async assertPageContents(): Promise<void> {
     await this.assertPageHeadings();
-    await expect(
-      this.page.locator(Selectors.GovukHeadingL, { hasText: govUkHeadingL }),
-    ).toBeVisible();
-    await expect(
-      this.page.locator(Selectors.Span, { hasText: spanRemove }),
-    ).toBeVisible();
+    await expect(this.textLabel1).toBeVisible();
     await expect(this.continueButton).toBeVisible();
   }
 

@@ -4,8 +4,8 @@ import { CheckYourAnswersPage } from "../checkYourAnswers.po.js";
 
 export class C100AdminAddBarrister2Page extends CheckYourAnswersPage {
   constructor(page: Page) {
-    super(page, "Add Barrister", {
-      snapshotPath: ["caseProgression", "addAndRemoveBarrister"],
+    super(page, "Add barrister", {
+      snapshotPath: ["caseProgression", "addBarrister"],
       submitButtonText: CommonStaticText.submit,
     });
   }

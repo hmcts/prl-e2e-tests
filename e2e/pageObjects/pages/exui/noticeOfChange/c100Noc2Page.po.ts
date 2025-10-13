@@ -1,9 +1,9 @@
 import { Locator, Page, expect } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.js";
 import { CommonStaticText } from "../../../../common/commonStaticText.js";
-import { Base } from "../../base.po.js";
+import { EventPage } from "../eventPage.po.ts";
 
-export class C100Noc2Page extends Base {
+export class C100Noc2Page extends EventPage {
   private readonly continueButton: Locator = this.page.locator(
     Selectors.button,
     {
@@ -14,33 +14,26 @@ export class C100Noc2Page extends Base {
     this.page.locator("#NoCChallengeQ1");
   private readonly clientLastNameField: Locator =
     this.page.locator("#NoCChallengeQ2");
-
-  private readonly firstNameLabel: Locator =
-    this.page.locator("#someId", { hasText: "Your client's first name"});
-
+  private readonly textLabel1: Locator = this.page.locator(Selectors.p, {
+    hasText: `You must enter the client details exactly as they're written on the case, including any mistakes. If the client's name is Smyth but it has been labelled \"Smith\", you should enter Smith. Please ensure that you are only performing a notice of change on behalf of the client that you are representing.`,
+  });
+  private readonly textLabel2: Locator = this.page.locator(
+    Selectors.GovukFormLabel,
+    { hasText: "Your client's first name" },
+  );
+  private readonly textLabel3: Locator = this.page.locator(
+    Selectors.GovukFormLabel,
+    { hasText: "Your client's last name" },
+  );
 
   constructor(page: Page) {
     super(page, "Enter your client's details");
   }
 
-  async assertPageContents(
-    govUkHeadingL: string,
-    p: string,
-    formLabel1: string,
-    formLabel2: string,
-  ): Promise<void> {
-    await this.assertPageHeadings();
-    await expect(
-      this.page.locator(Selectors.GovukHeadingL, { hasText: govUkHeadingL }),
-    ).toBeVisible();
-    await expect(this.page.locator(Selectors.p, { hasText: p })).toBeVisible();
-
-    await expect(
-      this.page.locator(Selectors.GovukFormLabel, { hasText: formLabel1 }),
-    ).toBeVisible();
-    await expect(
-      this.page.locator(Selectors.GovukFormLabel, { hasText: formLabel2 }),
-    ).toBeVisible();
+  async assertPageContents(): Promise<void> {
+    await expect(this.textLabel1).toBeVisible();
+    await expect(this.textLabel2).toBeVisible();
+    await expect(this.textLabel3).toBeVisible();
     await expect(this.continueButton).toBeVisible();
   }
 

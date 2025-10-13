@@ -29,43 +29,42 @@ export class C100AdminAddBarrister1Page extends EventPage {
     "Select the organisation PRL Barrister Org2",
   );
 
+  private readonly textLabel1: Locator = this.page.locator(Selectors.Span, {
+    hasText: "For which party do you want to add a barrister?",
+  });
+  private readonly textLabel2: Locator = this.page.locator(Selectors.Span, {
+    hasText: "First names of the barrister",
+  });
+  private readonly textLabel3: Locator = this.page.locator(Selectors.Span, {
+    hasText: "Last name of the barrister",
+  });
+  private readonly textLabel4: Locator = this.page.locator(Selectors.Span, {
+    hasText: "Email address of the barrister",
+  });
+  private readonly govUkHint: Locator = this.page.locator(Selectors.GovukHint, {
+    hasText:
+      " You can only search for organisations already registered with MyHMCTS. For example, you can search by organisation name or address. ",
+  });
+  private readonly govUKDetails: Locator = this.page.locator(
+    Selectors.GovukDetailsText,
+    {
+      hasText:
+        " If you know that the solicitor is already registered with MyHMCTS, check that you have entered their details correctly. Remember that organisations can only register one office address. This means that the details could be slightly different from what you're expecting. Contact the solicitor directly if you have any concerns. ",
+    },
+  );
+
   constructor(page: Page) {
     super(page, "Add barrister");
   }
 
-  async assertPageContents(
-    govUkHeadingL: string,
-    span1: string,
-    span2: string,
-    span3: string,
-    span4: string,
-    govUkHint: string,
-    govukDetailsText: string,
-  ): Promise<void> {
+  async assertPageContents(): Promise<void> {
     await this.assertPageHeadings();
-    await expect(
-      this.page.locator(Selectors.GovukHeadingL, { hasText: govUkHeadingL }),
-    ).toBeVisible();
-    await expect(
-      this.page.locator(Selectors.Span, { hasText: span1 }),
-    ).toBeVisible();
-    await expect(
-      this.page.locator(Selectors.Span, { hasText: span2 }),
-    ).toBeVisible();
-    await expect(
-      this.page.locator(Selectors.Span, { hasText: span3 }),
-    ).toBeVisible();
-    await expect(
-      this.page.locator(Selectors.Span, { hasText: span4 }),
-    ).toBeVisible();
-    await expect(
-      this.page.locator(Selectors.GovukHint, { hasText: govUkHint }),
-    ).toBeVisible();
-    await expect(
-      this.page.locator(Selectors.GovukDetailsText, {
-        hasText: govukDetailsText,
-      }),
-    ).toBeHidden();
+    await expect(this.textLabel1).toBeVisible();
+    await expect(this.textLabel2).toBeVisible();
+    await expect(this.textLabel3).toBeVisible();
+    await expect(this.textLabel4).toBeVisible();
+    await expect(this.govUkHint).toBeVisible();
+    await expect(this.govUKDetails).toBeHidden();
     await expect(this.continueButton).toBeVisible();
   }
 
