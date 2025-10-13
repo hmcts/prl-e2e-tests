@@ -142,8 +142,8 @@
         }
       },
       "previewOrderDoc": {
-        "document_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/6cd6d608-ae5f-4657-a6fa-d4bfb9a6470e",
-        "document_binary_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/6cd6d608-ae5f-4657-a6fa-d4bfb9a6470e/binary",
+        "document_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/892e933c-5e51-42ff-a328-ed2548ecd672",
+        "document_binary_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/892e933c-5e51-42ff-a328-ed2548ecd672/binary",
         "document_filename": "Power_of_arrest_draft.pdf"
       },
       "judgeDirectionsToAdmin": "Lorem Ipsum",
@@ -170,9 +170,9 @@
         ]
       },
       "noticeOfSafetySupportLetter": {
-        "document_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/675b1066-e716-4272-8d22-b1b6c996287b",
-        "document_binary_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/675b1066-e716-4272-8d22-b1b6c996287b/binary",
-        "document_filename": "mockFile.pdf"
+        "document_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/18c016e7-9473-4a5c-93ee-056ef808c925",
+        "document_binary_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/18c016e7-9473-4a5c-93ee-056ef808c925/binary",
+        "document_filename": "Safety Letter.docx"
       },
       "additionalDocumentsList": [],
       "caseTypeOfApplication": "FL401",
