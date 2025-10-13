@@ -3,7 +3,7 @@ import Config from "../../../utils/config.utils.ts";
 import { C100CaseTabs } from "../../../journeys/manageCases/caseTabs/c100CaseTabs.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
-// TEST COMMENT
+
 test.describe("C100 Case tabs tests for solicitor created case as a court admin", (): void => {
   test(`C100 Case tabs with the following options:
   Not Accessibility testing,
