@@ -1,15 +1,13 @@
 import config from "../../../../utils/config.utils.ts";
-import { Helpers } from "../../../../common/helpers.ts";
 import { test } from "../../../fixtures.ts";
 
 test.use({ storageState: config.sessionStoragePath + "solicitor.json" });
 
 test.describe("Withdraw C100 (Solicitor created) application event as a solicitor", () => {
   let caseRef: string;
-  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
+  test.beforeEach(async ({ browser, caseEventUtils, navigationUtils }) => {
     caseRef = await caseEventUtils.createCACase(browser);
-    await Helpers.goToCase(
-      page,
+    await navigationUtils.goToCase(
       config.manageCasesBaseURLCase,
       caseRef,
       "summary",
@@ -20,7 +18,7 @@ test.describe("Withdraw C100 (Solicitor created) application event as a solicito
     { withdrawApplication: true, snapshotName: "withdraw-application-yes" },
     { withdrawApplication: false, snapshotName: "withdraw-application-no" },
   ].forEach(({ withdrawApplication, snapshotName }) => {
-    test(`Complete withdraw application event with accessibility test (${snapshotName}). @nightly @accessibility @regression`, async ({
+    test(`Complete withdraw application event by withdrawing application: ${withdrawApplication}. @nightly @accessibility @regression`, async ({
       summaryPage,
       withdrawApplicationEvent1Page,
       withdrawApplicationEventSubmitPage,
