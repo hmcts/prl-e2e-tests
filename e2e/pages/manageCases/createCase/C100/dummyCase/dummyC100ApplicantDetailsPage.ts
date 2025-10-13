@@ -28,33 +28,15 @@ export class DummyC100ApplicantDetailsPage {
       }),
     ).toBeVisible();
     if (applicantLivesInRefuge) {
-      const applicant1: Locator = page.locator("#applicants_0_0");
       await page.check(PageLoadFields.applicantLivesInRefugeYes);
-      // work around: adding poll for c8 upload section because the showing of the c8 fields isn't consistent on this screen
-      await expect
-        .poll(
-          async () => {
-            const c8UploadLabelVisible = await applicant1
-              .locator(Selectors.GovukFormLabel, {
-                hasText: ApplicantDetails1Content.formLabelC8FormUpload,
-              })
-              .first()
-              .isVisible();
-            // if (!c8UploadLabelVisible) {
-            //   // if not visible then click no and then yes radio button to try and re-trigger
-            //   await page.check(PageLoadFields.applicantLivesInRefugeNo);
-            //   await page.check(PageLoadFields.applicantLivesInRefugeYes);
-            // }
-            return c8UploadLabelVisible;
-          },
-          {
-            // Allow 5s delay before retrying
-            intervals: [5_000],
-            // Allow up to 5 minutes for the go button to disappear
-            timeout: 300_000,
-          },
-        )
-        .toBeTruthy();
+      const applicant1: Locator = page.locator("#applicants_0_0");
+      await expect(
+        applicant1
+          .locator(Selectors.GovukFormLabel, {
+            hasText: ApplicantDetails1Content.formLabelC8FormUpload,
+          })
+          .first(),
+      ).toBeVisible({ timeout: 120000 }); // 2 min timeout as it seems to take a while to load
       await expect(
         applicant1
           .locator(Selectors.p, {
