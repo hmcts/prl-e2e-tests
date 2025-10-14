@@ -27,7 +27,7 @@ export interface HearingDetailsParams {
   estimatedTime: DayHourMinute;
   howDoesHearingNeedToTakePlace: HowHearingTakesPlaceOptions;
   willAllPartiesAttendTheSameWay: boolean;
-  // TODO: how to handle not attending in the some way??
+  // TODO: how to handle not attending in some way??
   hearingLocation?: string; // populated by default
   hearingWillBeBefore?: HearingWillBeBeforeOptions;
   hearingJudge?: string;
@@ -38,9 +38,9 @@ export interface HearingDetailsParams {
 
 export class OrderHearingDetailsComponent {
   private readonly hearingTitle: Locator;
-  private readonly hearingsTitle = this.page.locator(Selectors.h2, {
-    hasText: "Hearing",
-  });
+  private readonly hearingsTitle = this.page
+    .locator(Selectors.h2)
+    .getByText("Hearing", { exact: true });
   private readonly hearingTypeLabel = this.page.locator(
     Selectors.GovukFormLabel,
     {
@@ -241,6 +241,9 @@ export class OrderHearingDetailsComponent {
       await this.page
         .locator("#ordersHearingDetails_0_hearingJudgeNameAndEmail")
         .fill(hearingJudge);
+      await this.page
+        .locator(".mat-option-text", { hasText: hearingJudge })
+        .click();
     }
     if (hearingListedWithALinkedCase) {
       await this.page.selectOption(
@@ -265,9 +268,9 @@ export class OrderHearingDetailsComponent {
     buttonName: string,
     count: number,
   ): Promise<void> {
-    const buttonLocator: Locator = this.page.locator(Selectors.button, {
-      hasText: buttonName,
-    });
+    const buttonLocator: Locator = this.page
+      .locator(".button")
+      .filter({ hasText: buttonName, visible: true });
     await expect(buttonLocator).toHaveCount(count);
   }
 

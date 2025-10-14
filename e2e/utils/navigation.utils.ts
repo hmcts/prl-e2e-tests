@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test";
+import { Locator, Page } from "@playwright/test";
 
 export class NavigationUtils {
   constructor(private page: Page) {}
@@ -32,5 +32,14 @@ export class NavigationUtils {
     } else {
       return `${baseURL}/case-details/${caseNumberDigits}#${caseTab}`;
     }
+  }
+
+  async openPdfLink(page: Page, linkLocator: Locator) {
+    const [pdfPage] = await Promise.all([
+      page.waitForEvent("popup"),
+      linkLocator.click(),
+    ]);
+    await pdfPage.waitForLoadState("domcontentloaded");
+    return pdfPage;
   }
 }

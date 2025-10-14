@@ -17,15 +17,15 @@ interface DayMonthYear {
 interface DraftAnOrderParams {
   isOrderByConsent: boolean;
   wasOrderApprovedAtAHearing: boolean;
+  hearing?: string; // No hearings available is a valid hearing
   judgeOrMagistratesTitle?: JudgeOrMagistrateTitles;
   judgeFullName?: string;
   justicesLegalAdviserFullName?: string;
   dateOrderMade?: DayMonthYear; // this is autofilled to today's date
   isOrderAboutTheChildren: boolean;
+  allChildrenInOrder?: string[];
   recitalsAndPreamble?: string;
   directions?: string;
-  allChildrenInOrder?: string[];
-  hearing?: string; // No hearings available is a valid hearing
 }
 
 export class DraftAnOrder4Page extends EventPage {

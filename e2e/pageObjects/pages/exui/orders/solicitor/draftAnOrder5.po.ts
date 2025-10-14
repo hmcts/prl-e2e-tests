@@ -186,7 +186,8 @@ export class DraftAnOrder5Page extends EventPage {
     await this.page.getByRole("radio", { name: orderLength }).check();
     if (specificDateAndTime) {
       await this.page
-        .locator(".mat-datepicker-input")
+        .locator("#orderSpecifiedDateTime")
+        .getByLabel("Please enter a date and time")
         .fill(specificDateAndTime);
     }
     if (costsOfApplication) {
