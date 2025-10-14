@@ -1,5 +1,5 @@
 import { EventPage } from "../eventPage.po.js";
-import { Locator, Page } from "@playwright/test";
+import { Locator, Page, expect } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.js";
 import { CommonStaticText } from "../../../../common/commonStaticText.js";
 
@@ -19,16 +19,6 @@ export class C100NocConfirmationPage extends EventPage {
     super(page, "Enter your client's details");
   }
 
-  //   async assertPageContents(existingRepresentatives: string[]): Promise<void> {
-  //     await this.assertPageHeadings();
-  //     for (const representative of existingRepresentatives) {
-  //       await expect(
-  //         this.page.locator(Selectors.p, { hasText: representative }),
-  //       ).toBeVisible();
-  //     }
-  //     await expect(this.continueButton).toBeVisible();
-  //   }
-
   async checkBoxes(): Promise<void> {
     await this.detailsAccurateCheckbox.check();
     await this.notifyEveryPartyCheckbox.check();
@@ -36,5 +26,9 @@ export class C100NocConfirmationPage extends EventPage {
 
   async clickViewThisCase(): Promise<void> {
     await this.viewThisCaseButton.click();
+    await expect(
+      this.page.getByRole("link", { name: "Notice of change" }),
+    ).toBeVisible();
+    await this.page.waitForTimeout(5000);
   }
 }
