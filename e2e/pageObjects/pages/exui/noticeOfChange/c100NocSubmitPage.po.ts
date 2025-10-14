@@ -23,6 +23,7 @@ export class C100NocSubmitPage extends EventPage {
 
   async clickSubmit(): Promise<void> {
     await this.SubmitButton.click();
+    // extra await to avoid test failure due to timeout, to be investigated/removed in the future
     await expect(
       this.page.getByRole("link", { name: "Notice of change" }),
     ).toBeVisible();

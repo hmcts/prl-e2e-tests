@@ -26,6 +26,7 @@ export class C100NocConfirmationPage extends EventPage {
 
   async clickViewThisCase(): Promise<void> {
     await this.viewThisCaseButton.click();
+    // extra awaits to avoid test failure due to timeout, to be investigated/removed in the future
     await expect(
       this.page.getByRole("link", { name: "Notice of change" }),
     ).toBeVisible();
