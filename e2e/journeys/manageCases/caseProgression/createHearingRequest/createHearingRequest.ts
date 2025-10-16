@@ -111,12 +111,12 @@ export class CreateHearingRequest {
         );
         break;
     }
-    // wait for ref data to finish loading before clicking the hearing request button - if it clicks too fast the hearing requirements page fails to load
-    await page.waitForResponse(
-      (response) =>
-        /.*\/api\/prd\/lov\/getLovRefData.*/.test(response.url()) &&
-        response.status() === 200,
-    );
+    // // wait for ref data to finish loading before clicking the hearing request button - if it clicks too fast the hearing requirements page fails to load
+    // await page.waitForResponse(
+    //   (response) =>
+    //     /.*\/api\/prd\/lov\/getLovRefData.*/.test(response.url()) &&
+    //     response.status() === 200,
+    // );
     await this.requestAHearing(page, accessibilityTest);
   }
 

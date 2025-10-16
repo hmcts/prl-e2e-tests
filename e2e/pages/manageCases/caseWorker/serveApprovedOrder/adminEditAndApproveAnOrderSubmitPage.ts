@@ -53,12 +53,12 @@ export class AdminEditAndApproveAnOrderSubmitPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${AdminEditAndApproveAnOrderSubmitContent.nonMolestation}")`,
+        `${Selectors.GovLink}:text-is("${AdminEditAndApproveAnOrderSubmitContent.nonMolestation}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${AdminEditAndApproveAnOrderSubmitContent.welshNonMolestation}")`,
+        `${Selectors.GovLink}:text-is("${AdminEditAndApproveAnOrderSubmitContent.welshNonMolestation}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(

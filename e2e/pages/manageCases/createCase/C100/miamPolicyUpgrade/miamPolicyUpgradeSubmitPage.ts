@@ -211,7 +211,7 @@ export class MiamPolicyUpgradeSubmitPage {
           ),
           Helpers.checkVisibleAndPresent(
             page,
-            `${Selectors.a}:text-is("${path.basename(config.testPdfFile)}")`,
+            `${Selectors.GovLink}:text-is("${path.basename(config.testPdfFile)}")`,
             1,
           ),
         ]);
@@ -251,7 +251,7 @@ export class MiamPolicyUpgradeSubmitPage {
             ),
             Helpers.checkVisibleAndPresent(
               page,
-              `${Selectors.a}:text-is("${path.basename(config.testPdfFile)}")`,
+              `${Selectors.GovLink}:text-is("${path.basename(config.testPdfFile)}")`,
               2,
             ),
             Helpers.checkVisibleAndPresent(
@@ -292,7 +292,7 @@ export class MiamPolicyUpgradeSubmitPage {
             ),
             Helpers.checkVisibleAndPresent(
               page,
-              `${Selectors.a}:text-is("${path.basename(config.testPdfFile)}")`,
+              `${Selectors.GovLink}:text-is("${path.basename(config.testPdfFile)}")`,
               2,
             ),
             Helpers.checkVisibleAndPresent(

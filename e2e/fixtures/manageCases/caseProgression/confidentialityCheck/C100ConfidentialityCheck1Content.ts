@@ -18,7 +18,7 @@ export enum C100ConfidentialityCheck1Content {
   text164 = "Cafcass cymru",
   documentText16 = "Document",
   servedByText16 = "Served by",
-  prlCourtAdminText16 = "prl case manager swansea",
+  prlCourtAdminText16 = "PRL Demo Swansea HCTL",
   packCreatedDateText16 = "Pack created date",
   respondentsPackText16 = "Respondents pack",
   caseFieldLabel1 = "C8 Document",

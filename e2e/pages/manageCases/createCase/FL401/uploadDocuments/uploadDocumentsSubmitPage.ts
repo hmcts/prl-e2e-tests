@@ -85,12 +85,12 @@ export class UploadDocumentsSubmitPage {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${UploadDocumentsSubmitContent.mockDocx}")`,
+        `${Selectors.GovLink}:text-is("${UploadDocumentsSubmitContent.mockDocx}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${UploadDocumentsSubmitContent.mockPdf}")`,
+        `${Selectors.GovLink}:text-is("${UploadDocumentsSubmitContent.mockPdf}")`,
         2,
       ),
     ]);

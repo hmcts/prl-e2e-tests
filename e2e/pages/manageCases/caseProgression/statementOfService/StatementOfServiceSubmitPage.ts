@@ -62,7 +62,7 @@ export class StatementOfServiceSubmitPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${StatementOfServiceSubmitContent.a}")`,
+        `${Selectors.GovLink}:text-is("${StatementOfServiceSubmitContent.link}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(

@@ -90,7 +90,7 @@ export class NonMolestationOrderSubmitPage {
         2,
         NonMolestationOrderSubmitContent,
         "pdfLink",
-        `${Selectors.a}`,
+        `${Selectors.GovLink}`,
       ),
       Helpers.checkVisibleAndPresent(
         page,

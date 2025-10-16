@@ -13,5 +13,5 @@ export enum StatementOfServiceSubmitContent {
   text16Answers2 = "19 Dec 2025, 12:00:00 AM",
   respondenttext16Answers = "Elise Lynn",
   text16Change = "Change",
-  a = "mockFile.pdf",
+  link = "mockFile.pdf",
 }

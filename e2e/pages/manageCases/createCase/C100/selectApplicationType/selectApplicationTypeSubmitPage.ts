@@ -62,7 +62,7 @@ export class selectApplicationTypeSubmitPage {
       );
       await Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${path.basename(config.testPdfFile)}")`,
+        `${Selectors.GovLink}:text-is("${path.basename(config.testPdfFile)}")`,
         1,
       );
       await Helpers.checkVisibleAndPresent(

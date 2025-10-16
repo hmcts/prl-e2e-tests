@@ -88,7 +88,7 @@ export class FL401ConfidentialDetailsTabPage {
       );
       await Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${FL401ConfidentialDetailsTabContent.link}")`,
+        `${Selectors.GovLink}:text-is("${FL401ConfidentialDetailsTabContent.link}")`,
         1,
       );
     }
@@ -171,8 +171,8 @@ export class FL401ConfidentialDetailsTabPage {
           }),
         ).toBeVisible(),
         expect(
-          page.getByRole("link", {
-            name: FL401ConfidentialDetailsTabContent.testPdf,
+          page.locator(Selectors.GovLink, {
+            hasText: FL401ConfidentialDetailsTabContent.testPdf,
           }),
         ).toBeVisible(),
         expect(
