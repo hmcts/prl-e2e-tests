@@ -10,6 +10,12 @@ export class C100AdminRemoveBarrister1Page extends EventPage {
       hasText: CommonStaticText.continue,
     },
   );
+  private readonly previousButton: Locator = this.page.locator(
+    Selectors.button,
+    {
+      hasText: CommonStaticText.previous,
+    },
+  );
   private readonly partyToRemoveBarristerCheckbox: Locator = this.page.locator(
     '[id^="allocatedBarrister_partyList_"]',
   );
@@ -26,10 +32,15 @@ export class C100AdminRemoveBarrister1Page extends EventPage {
     await this.assertPageHeadings();
     await expect(this.textLabel1).toBeVisible();
     await expect(this.continueButton).toBeVisible();
+    await expect(this.previousButton).toBeVisible();
   }
 
-  async selectPartyToRemoveBarrister(): Promise<void> {
-    await this.partyToRemoveBarristerCheckbox.check();
+  async selectPartyToRemoveBarrister(
+    existingRepresentative: string[],
+  ): Promise<void> {
+    await this.page
+      .getByRole("radio", { name: existingRepresentative[0] })
+      .check();
   }
 
   async clickContinue(): Promise<void> {

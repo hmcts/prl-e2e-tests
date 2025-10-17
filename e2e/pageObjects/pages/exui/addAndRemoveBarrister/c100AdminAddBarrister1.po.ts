@@ -10,6 +10,12 @@ export class C100AdminAddBarrister1Page extends EventPage {
       hasText: CommonStaticText.continue,
     },
   );
+  private readonly previousButton: Locator = this.page.locator(
+    Selectors.button,
+    {
+      hasText: CommonStaticText.previous,
+    },
+  );
   private readonly partyToAddBarristerCheckbox: Locator = this.page.locator(
     '[id^="allocatedBarrister_partyList_"]',
   );
@@ -66,6 +72,7 @@ export class C100AdminAddBarrister1Page extends EventPage {
     await expect(this.govUkHint).toBeVisible();
     await expect(this.govUKDetails).toBeHidden();
     await expect(this.continueButton).toBeVisible();
+    await expect(this.previousButton).toBeVisible();
   }
 
   async selectPartyAndFillInBarristerDetails(
@@ -73,8 +80,11 @@ export class C100AdminAddBarrister1Page extends EventPage {
     lastname: string,
     email: string,
     org: string,
+    existingRepresentative: string[],
   ): Promise<void> {
-    await this.partyToAddBarristerCheckbox.check();
+    await this.page
+      .getByRole("radio", { name: existingRepresentative[0] })
+      .check();
     await this.barristerFirstName.fill(firstnames);
     await this.barristerLastName.fill(lastname);
     await this.barristerEmail.fill(email);

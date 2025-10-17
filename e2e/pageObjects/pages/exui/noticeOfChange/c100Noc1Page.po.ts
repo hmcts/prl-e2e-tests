@@ -39,6 +39,7 @@ export class C100Noc1Page extends EventPage {
     await expect(this.textLabel3).toBeVisible();
     await expect(this.textLabel4).toBeVisible();
     await expect(this.govUkHint).toBeVisible();
+    await expect(this.continueButton).toBeVisible();
   }
 
   async fillInCaseNumber(caseNumber: string): Promise<void> {

@@ -42,6 +42,7 @@ test.describe("Add/Remove Barrister for CA case", () => {
       addBarristerSnapshotName: "c100-add-barrister",
       removeBarristerSnapshotName: "c100-remove-barrister",
       applicants: [{ firstname: "John", surname: "Doe" }],
+      nocParty: { firstname: "John", surname: "Doe" },
       barrister: {
         firstnames: "BarristerOneFN",
         lastname: "BarristerOneLN",
@@ -51,10 +52,12 @@ test.describe("Add/Remove Barrister for CA case", () => {
     },
   ].forEach(
     ({
+      existingRepresentative,
       addBarristerSnapshotName,
       removeBarristerSnapshotName,
       applicants,
       barrister,
+      nocParty,
     }) => {
       test(`Solicitor adds and removes Barrister for a CA case. @regression @accessibility @nightly`, async ({
         summaryPage,
@@ -77,16 +80,17 @@ test.describe("Add/Remove Barrister for CA case", () => {
         await c100Noc1Page.clickContinue();
         await c100Noc2Page.assertPageContents();
         await axeUtils.audit();
-        for (const partyName of applicants) {
-          await c100Noc2Page.fillInPartyName(
-            partyName.firstname,
-            partyName.surname,
-          );
-        }
+        await c100Noc2Page.fillInPartyName(
+          nocParty.firstname,
+          nocParty.surname,
+        );
         await c100Noc2Page.clickContinue();
+        await c100NocSubmitPage.assertPageContents();
+        await axeUtils.audit();
         await c100NocSubmitPage.checkBoxes();
         await c100NocSubmitPage.clickSubmit();
-        await c100NocConfirmationPage.checkBoxes();
+        await c100NocConfirmationPage.assertPageContents();
+        await axeUtils.audit();
         await c100NocConfirmationPage.clickViewThisCase();
         // adding barrister
         await summaryPage.chooseEventFromDropdown("Add barrister");
@@ -97,6 +101,7 @@ test.describe("Add/Remove Barrister for CA case", () => {
           barrister.lastname,
           barrister.email,
           barrister.org,
+          existingRepresentative,
         );
         await c100AdminAddBarrister1Page.clickContinue();
         await c100AdminAddBarrister2Page.assertPageContents(
@@ -120,7 +125,9 @@ test.describe("Add/Remove Barrister for CA case", () => {
         await summaryPage.chooseEventFromDropdown("Remove barrister");
         await c100AdminRemoveBarrister1Page.assertPageContents();
         await axeUtils.audit();
-        await c100AdminRemoveBarrister1Page.selectPartyToRemoveBarrister();
+        await c100AdminRemoveBarrister1Page.selectPartyToRemoveBarrister(
+          existingRepresentative,
+        );
         await c100AdminRemoveBarrister1Page.clickContinue();
         await c100AdminRemoveBarrister2Page.assertPageContents(
           removeBarristerSnapshotName,
