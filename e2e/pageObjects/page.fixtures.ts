@@ -24,6 +24,14 @@ import { PartiesPage } from "./pages/exui/caseView/parties.po.js";
 import { WithdrawApplicationEvent1Page } from "./pages/exui/withdrawApplication/withdrawApplicationEvent1.po.js";
 import { WithdrawApplicationEventSubmitPage } from "./pages/exui/withdrawApplication/withdrawApplicationEventSubmit.po.js";
 import { WithdrawApplicationEventConfirmPage } from "./pages/exui/withdrawApplication/withdrawApplicationEventConfirm.po.js";
+import { DraftAnOrder1Page } from "./pages/exui/orders/solicitor/draftAnOrder1.po.js";
+import { DraftAnOrder2Page } from "./pages/exui/orders/solicitor/draftAnOrder2.po.js";
+import { DraftAnOrder4Page } from "./pages/exui/orders/solicitor/draftAnOrder4.po.js";
+import { DraftAnOrder5Page } from "./pages/exui/orders/solicitor/draftAnOrder5.po.js";
+import { DraftAnOrder16Page } from "./pages/exui/orders/solicitor/draftAnOrder16.po.js";
+import { DraftAnOrder20Page } from "./pages/exui/orders/solicitor/draftAnOrder20.po.js";
+import { DraftAnOrderSubmitPage } from "./pages/exui/orders/solicitor/draftAnOrderSubmit.po.js";
+import { DraftOrdersPage } from "./pages/exui/caseView/draftOrders.po.js";
 
 export interface PageFixtures {
   tasksPage: TasksPage;
@@ -31,6 +39,7 @@ export interface PageFixtures {
   rolesAndAccessPage: RolesAndAccessPage;
   linkedCasesPage: LinkedCasesPage;
   partiesPage: PartiesPage;
+  draftOrdersPage: DraftOrdersPage;
   fl401AddCaseNumber1Page: Fl401AddCaseNumber1Page;
   fl401AddCaseNumberSubmitPage: Fl401AddCaseNumberSubmitPage;
   allocatedJudge1Page: AllocatedJudge1Page;
@@ -52,6 +61,13 @@ export interface PageFixtures {
   withdrawApplicationEvent1Page: WithdrawApplicationEvent1Page;
   withdrawApplicationEventSubmitPage: WithdrawApplicationEventSubmitPage;
   withdrawApplicationEventConfirmPage: WithdrawApplicationEventConfirmPage;
+  draftAnOrder1Page: DraftAnOrder1Page;
+  draftAnOrder2Page: DraftAnOrder2Page;
+  draftAnOrder4Page: DraftAnOrder4Page;
+  draftAnOrder5Page: DraftAnOrder5Page;
+  draftAnOrder16Page: DraftAnOrder16Page;
+  draftAnOrder20Page: DraftAnOrder20Page;
+  draftAnOrderSubmitPage: DraftAnOrderSubmitPage;
 }
 
 export const pageFixtures = {
@@ -69,6 +85,9 @@ export const pageFixtures = {
   },
   partiesPage: async ({ page }, use) => {
     await use(new PartiesPage(page));
+  },
+  draftOrdersPage: async ({ page }, use) => {
+    await use(new DraftOrdersPage(page));
   },
   fl401AddCaseNumber1Page: async ({ page }, use) => {
     await use(new Fl401AddCaseNumber1Page(page));
@@ -132,5 +151,26 @@ export const pageFixtures = {
   },
   withdrawApplicationEventConfirmPage: async ({ page }, use) => {
     await use(new WithdrawApplicationEventConfirmPage(page));
+  },
+  draftAnOrder1Page: async ({ page }, use) => {
+    await use(new DraftAnOrder1Page(page));
+  },
+  draftAnOrder2Page: async ({ page }, use) => {
+    await use(new DraftAnOrder2Page(page));
+  },
+  draftAnOrder4Page: async ({ page }, use) => {
+    await use(new DraftAnOrder4Page(page));
+  },
+  draftAnOrder5Page: async ({ page }, use) => {
+    await use(new DraftAnOrder5Page(page));
+  },
+  draftAnOrder16Page: async ({ page }, use) => {
+    await use(new DraftAnOrder16Page(page));
+  },
+  draftAnOrder20Page: async ({ page }, use) => {
+    await use(new DraftAnOrder20Page(page));
+  },
+  draftAnOrderSubmitPage: async ({ page }, use) => {
+    await use(new DraftAnOrderSubmitPage(page));
   },
 };

@@ -47,15 +47,19 @@ export class CheckYourAnswersPage extends EventPage {
     });
   }
 
+  // TODO: clean this method up
   async assertPageContents(snapshotName: string): Promise<void> {
     await this.assertPageHeadings();
     await expect(this.headingH2).toBeVisible();
     await expect(this.text16).toBeVisible();
     this.snapshotPath.push(snapshotName);
-    await this.checkYourAnswersTable.runVisualTest(
+    await this.checkYourAnswersTable.captureFullTableScreenshots(
       this.snapshotPath,
-      this.customClippingCoords,
     );
+    // await this.checkYourAnswersTable.runVisualTest(
+    //   this.snapshotPath,
+    //   this.customClippingCoords,
+    // );
     await expect(this.submitButton).toBeVisible();
     await expect(this.previousButton).toBeVisible();
   }

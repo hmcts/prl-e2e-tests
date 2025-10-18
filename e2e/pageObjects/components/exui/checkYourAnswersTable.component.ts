@@ -42,4 +42,43 @@ export class CheckYourAnswersTableComponent {
       maxDiffPixelRatio: 0.02,
     });
   }
+
+  async captureFullTableScreenshots(screenShotPath: string[]): Promise<void> {
+    const table: Locator = this.page.locator(".form-table");
+    const boundingBox = await table.boundingBox();
+
+    const viewportHeight = await this.page.evaluate(() => window.innerHeight);
+    const totalHeight = boundingBox.height;
+    const scrollStep = viewportHeight;
+    const scrollStartY = boundingBox.y;
+    const scrollEndY = scrollStartY + totalHeight;
+
+    let currentY = scrollStartY;
+    let index = 0;
+
+    while (currentY < scrollEndY) {
+      await this.page.evaluate((y) => window.scrollTo(0, y), currentY);
+      // await this.page.waitForTimeout(200); // Allow time for scroll/render
+
+      const clip = {
+        x: 0,
+        y: 0, // because it has already scrolled down to the top of the table the screenshot starts at 0
+        width: 1920,
+        height: Math.min(scrollStep, scrollEndY - currentY),
+      };
+
+      const providedScreenshotName: string =
+        screenShotPath[screenShotPath.length - 1];
+      const screenshotPathCopy: string[] = Array.from(screenShotPath);
+      screenshotPathCopy[screenShotPath.length - 1] =
+        `${providedScreenshotName}-cya-${index}.png`;
+      await expect(this.page).toHaveScreenshot(screenshotPathCopy, {
+        clip,
+        maxDiffPixelRatio: 0.02,
+      });
+
+      currentY += scrollStep;
+      index++;
+    }
+  }
 }
