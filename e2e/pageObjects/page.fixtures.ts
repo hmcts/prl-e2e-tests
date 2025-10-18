@@ -20,10 +20,21 @@ import { Fl401RemoveLegalRepresentative1Page } from "./pages/exui/removeLegalRep
 import { Fl401RemoveLegalRepresentativeSubmitPage } from "./pages/exui/removeLegalRepresentation/fl401RemoveLegalRepresentativeSubmit.po.js";
 import { C100RemoveLegalRepresentativeConfirmPage } from "./pages/exui/removeLegalRepresentation/c100RemoveLegalRepresentativeConfirm.po.js";
 import { Fl401RemoveLegalRepresentativeConfirmPage } from "./pages/exui/removeLegalRepresentation/fl401RemoveLegalRepresentativeConfirm.po.js";
+import { AmendApplicantDetails1 } from "./pages/exui/amendApplicantDetails/amendApplicantDetails1.po.ts";
+import { AmendApplicantDetailsSubmit } from "./pages/exui/amendApplicantDetails/amendApplicantDetailsSubmit.po.ts";
 import { PartiesPage } from "./pages/exui/caseView/parties.po.js";
 import { WithdrawApplicationEvent1Page } from "./pages/exui/withdrawApplication/withdrawApplicationEvent1.po.js";
 import { WithdrawApplicationEventSubmitPage } from "./pages/exui/withdrawApplication/withdrawApplicationEventSubmit.po.js";
 import { WithdrawApplicationEventConfirmPage } from "./pages/exui/withdrawApplication/withdrawApplicationEventConfirm.po.js";
+import { ApplicationPage } from "./pages/exui/caseView/application.po.ts";
+import { C100Noc1Page } from "./pages/exui/noticeOfChange/c100Noc1Page.po.ts";
+import { C100Noc2Page } from "./pages/exui/noticeOfChange/c100Noc2Page.po.ts";
+import { C100NocSubmitPage } from "./pages/exui/noticeOfChange/c100NocSubmitPage.po.ts";
+import { C100AdminAddBarrister1Page } from "./pages/exui/addAndRemoveBarrister/c100AdminAddBarrister1.po.ts";
+import { C100AdminAddBarrister2Page } from "./pages/exui/addAndRemoveBarrister/c100AdminAddBarristerSubmit.po.ts";
+import { C100NocConfirmationPage } from "./pages/exui/noticeOfChange/c100NocConfirmationPage.po.ts";
+import { C100AdminRemoveBarrister1Page } from "./pages/exui/addAndRemoveBarrister/c100AdminRemoveBarrister1Page.po.ts";
+import { C100AdminRemoveBarrister2Page } from "./pages/exui/addAndRemoveBarrister/c100AdminRemoveBarristerSubmit.po.ts";
 
 export interface PageFixtures {
   tasksPage: TasksPage;
@@ -31,6 +42,7 @@ export interface PageFixtures {
   rolesAndAccessPage: RolesAndAccessPage;
   linkedCasesPage: LinkedCasesPage;
   partiesPage: PartiesPage;
+  applicationPage: ApplicationPage;
   fl401AddCaseNumber1Page: Fl401AddCaseNumber1Page;
   fl401AddCaseNumberSubmitPage: Fl401AddCaseNumberSubmitPage;
   allocatedJudge1Page: AllocatedJudge1Page;
@@ -52,6 +64,16 @@ export interface PageFixtures {
   withdrawApplicationEvent1Page: WithdrawApplicationEvent1Page;
   withdrawApplicationEventSubmitPage: WithdrawApplicationEventSubmitPage;
   withdrawApplicationEventConfirmPage: WithdrawApplicationEventConfirmPage;
+  amendApplicantDetails1: AmendApplicantDetails1;
+  amendApplicantDetailsSubmit: AmendApplicantDetailsSubmit;
+  c100Noc1Page: C100Noc1Page;
+  c100Noc2Page: C100Noc2Page;
+  c100NocSubmitPage: C100NocSubmitPage;
+  c100AdminAddBarrister1Page: C100AdminAddBarrister1Page;
+  c100AdminAddBarrister2Page: C100AdminAddBarrister2Page;
+  c100NocConfirmationPage: C100NocConfirmationPage;
+  c100AdminRemoveBarrister1Page: C100AdminRemoveBarrister1Page;
+  c100AdminRemoveBarrister2Page: C100AdminRemoveBarrister2Page;
 }
 
 export const pageFixtures = {
@@ -69,6 +91,9 @@ export const pageFixtures = {
   },
   partiesPage: async ({ page }, use) => {
     await use(new PartiesPage(page));
+  },
+  applicationPage: async ({ page }, use) => {
+    await use(new ApplicationPage(page));
   },
   fl401AddCaseNumber1Page: async ({ page }, use) => {
     await use(new Fl401AddCaseNumber1Page(page));
@@ -132,5 +157,35 @@ export const pageFixtures = {
   },
   withdrawApplicationEventConfirmPage: async ({ page }, use) => {
     await use(new WithdrawApplicationEventConfirmPage(page));
+  },
+  amendApplicantDetails1: async ({ page }, use) => {
+    await use(new AmendApplicantDetails1(page));
+  },
+  amendApplicantDetailsSubmit: async ({ page }, use) => {
+    await use(new AmendApplicantDetailsSubmit(page));
+  },
+  c100Noc1Page: async ({ page }, use) => {
+    await use(new C100Noc1Page(page));
+  },
+  c100Noc2Page: async ({ page }, use) => {
+    await use(new C100Noc2Page(page));
+  },
+  c100NocSubmitPage: async ({ page }, use) => {
+    await use(new C100NocSubmitPage(page));
+  },
+  c100AdminAddBarrister1Page: async ({ page }, use) => {
+    await use(new C100AdminAddBarrister1Page(page));
+  },
+  c100AdminAddBarrister2Page: async ({ page }, use) => {
+    await use(new C100AdminAddBarrister2Page(page));
+  },
+  c100NocConfirmationPage: async ({ page }, use) => {
+    await use(new C100NocConfirmationPage(page));
+  },
+  c100AdminRemoveBarrister1Page: async ({ page }, use) => {
+    await use(new C100AdminRemoveBarrister1Page(page));
+  },
+  c100AdminRemoveBarrister2Page: async ({ page }, use) => {
+    await use(new C100AdminRemoveBarrister2Page(page));
   },
 };
