@@ -10,7 +10,7 @@ import {
 } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderDA/createOrderManageOrders5Content.ts";
 import {
   createOrderFL401Options,
-  judgeTitles,
+  JudgeOrMagistrateTitles,
 } from "../../../../../common/types.ts";
 
 interface ManageOrders5PageOptions {
@@ -18,7 +18,7 @@ interface ManageOrders5PageOptions {
   accessibilityTest: boolean;
   yesNoManageOrders: boolean;
   createOrderFL401Options: createOrderFL401Options;
-  judgeTitles: judgeTitles;
+  judgeTitles: JudgeOrMagistrateTitles;
 }
 
 enum UniqueSelectors {
