@@ -72,7 +72,7 @@ export class C100ConfidentialityCheck1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukText16}:text-is("${C100ConfidentialityCheck1Content.prlCourtAdminText16}")`,
+        `${Selectors.GovukText16}:text-is("${process.env.MANAGE_CASES_TEST_ENV === "demo" ? C100ConfidentialityCheck1Content.prlCourtAdminText16Demo : C100ConfidentialityCheck1Content.prlCourtAdminText16Aat}")`,
         3,
       ),
       Helpers.checkVisibleAndPresent(
