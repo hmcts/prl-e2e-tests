@@ -3,57 +3,58 @@ import { FileUploadComponent } from "../../../components/exui/uploadFile.compone
 import { EventPage } from "../eventPage.po.ts";
 
 export class AmendApplicantDetails1Page extends EventPage {
-  readonly firstName = this.page.locator("#applicantsC100_firstName");
-  readonly lastName = this.page.locator("#applicantsC100_lastName");
-  readonly previousName = this.page.locator("#applicantsC100_previousName");
+  readonly firstName = this.page.locator("#applicants_0_firstName");
+  readonly lastName = this.page.locator("#applicants_0_lastName");
+  readonly previousName = this.page.locator("#applicants_0_previousName");
 
-  readonly genderFemale = this.page.locator("#applicantsC100_gender-female");
-  readonly genderMale = this.page.locator("#applicantsC100_gender-male");
-  readonly genderOther = this.page.locator("#applicantsC100_gender-other");
-  readonly genderOtherInput = this.page.locator("#applicantsC100_otherGender");
+  readonly genderFemale = this.page.locator("#applicants_0_gender-female");
+  readonly genderMale = this.page.locator("#applicants_0_gender-male");
+  readonly genderOther = this.page.locator("#applicants_0_gender-other");
+  readonly genderOtherInput = this.page.locator("#applicants_0_otherGender");
 
-  readonly dobDay = this.page.getByRole("textbox", { name: "Day" });
-  readonly dobMonth = this.page.getByRole("textbox", { name: "Month" });
-  readonly dobYear = this.page.getByRole("textbox", { name: "Year" });
+  readonly dobDay = this.page.locator("#dateOfBirth-day"); 
+  readonly dobMonth = this.page.locator("#dateOfBirth-month");
+  readonly dobYear = this.page.locator("#dateOfBirth-year");
 
-  readonly refugeYes = this.page.locator("#applicantsC100_liveInRefuge_Yes");
-  readonly c8FormUpload = "#applicantsC100_refugeConfidentialityC8Form";
+  readonly refugeYes = this.page.locator("#applicants_0_liveInRefuge_Yes");
+  readonly c8FormUpload = "#applicants_0_refugeConfidentialityC8Form";
 
   readonly confidentialAddressYes = this.page.locator(
-    "#applicantsC100_isAddressConfidential_Yes",
+    "#applicants_0_isAddressConfidential_Yes",
   );
-  readonly emailField = this.page.locator("#applicantsC100_email");
+  readonly emailField = this.page.locator("#applicants_0_email");
   readonly confidentialEmailYes = this.page.locator(
-    "#applicantsC100_isEmailAddressConfidential_Yes",
+    "#applicants_0_isEmailAddressConfidential_Yes",
   );
   readonly confidentialPhoneYes = this.page.locator(
-    "#applicantsC100_isPhoneNumberConfidential_Yes",
+    "#applicants_0_isPhoneNumberConfidential_Yes",
   );
 
   readonly solicitorFirstName = this.page.locator(
-    "#applicantsC100_representativeFirstName",
+    "#applicants_0_representativeFirstName",
   );
   readonly solicitorLastName = this.page.locator(
-    "#applicantsC100_representativeLastName",
+    "#applicants_0_representativeLastName",
   );
   readonly solicitorEmail = this.page.locator(
-    "#applicantsC100_solicitorEmail",
+    "#applicants_0_solicitorEmail",
   );
   readonly solicitorPhone = this.page.locator(
-    "#applicantsC100_solicitorTelephone",
+    "#applicants_0_solicitorTelephone",
   );
   readonly solicitorReference = this.page.locator(
-    "#applicantsC100_solicitorReference",
+    "#applicants_0_solicitorReference",
   );
   readonly solicitorPostcode = this.page.locator(
-    "#applicantsC100_solicitorAddress_solicitorAddress_postcodeInput",
+    "#applicants_0_solicitorAddress_solicitorAddress_postcodeInput",
   );
   readonly solicitorLookup = this.page.locator(
-    "#applicantsC100_solicitorAddress_solicitorAddress_postcodeLookup",
+    "#applicants_0_solicitorAddress_solicitorAddress_postcodeLookup",
   );
   readonly solicitorSelectAddress = this.page.locator(
-    "#applicantsC100_solicitorAddress_solicitorAddress_addressList",
+    "#applicants_0_solicitorAddress_solicitorAddress_addressList",
   );
+
   constructor(page: Page) {
     super(page, "Amend applicant details");
   }
@@ -75,11 +76,13 @@ export class AmendApplicantDetails1Page extends EventPage {
   }
 
   async selectGender(gender: string) {
-    if (gender === "female") await this.genderFemale.click();
-    if (gender === "male") await this.genderMale.click();
-    if (gender === "other") {
+    const genderId = `#applicants_0_gender-${gender.toLowerCase()}`;
+    
+    if (gender.toLowerCase() === "other") {
       await this.genderOther.click();
       await this.genderOtherInput.fill("NonBinary");
+    } else {
+      await this.page.locator(genderId).click();
     }
   }
 
@@ -117,13 +120,6 @@ export class AmendApplicantDetails1Page extends EventPage {
     await this.solicitorPostcode.fill(postcode);
     await this.solicitorLookup.click();
     await this.solicitorSelectAddress.waitFor({ state: 'visible' });
-    try {
-      await this.solicitorSelectAddress.selectOption({ index: 1 });
-    } catch (error) {
-      console.log('Could not select address, logging options');
-      const options = await this.solicitorSelectAddress.evaluate((node: HTMLSelectElement) => Array.from(node.options).map(o => o.value));
-      console.log(options);
-      throw error;
-    }
+    await this.solicitorSelectAddress.selectOption({ index: 1 });
   }
 }

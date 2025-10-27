@@ -50,7 +50,6 @@ Please install the dependencies with the following cmd:
 
 This will run this [custom script](https://github.com/hmcts/prl-e2e-tests/blob/master/package.json#L31) defined in the package.json.
 
-Should you wish to run a test locally, I recommend using Intellij Aqua, and you can press the green play button against any of the tests defined in \_\_\_.test.ts.
 Should you wish to run in headed mode, you can select modify run configuration, and then change the playwright options, the following are recommended:
 `--project chromium --headed`
 This runs a test in Chrome, whilst headed.
