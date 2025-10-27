@@ -18,6 +18,4 @@ export abstract class Base {
       ).toBeVisible();
     }
   }
-
-  
 }

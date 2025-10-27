@@ -5,9 +5,7 @@ import { CheckYourAnswersTableComponent } from "../../../components/exui/checkYo
 export class AmendApplicantDetailsSubmitPage extends EventPage {
   readonly cyaTable: CheckYourAnswersTableComponent;
 
-  constructor(
-    page: Page,
-  ) {
+  constructor(page: Page) {
     super(page, "Amend applicant details");
     this.cyaTable = new CheckYourAnswersTableComponent(page);
   }
@@ -17,7 +15,9 @@ export class AmendApplicantDetailsSubmitPage extends EventPage {
   }
 
   async checkCYASnapshot() {
-    await this.cyaTable.runVisualTest(['amendDetails', 'fl401-amend-applicant-details']);
+    await this.cyaTable.runVisualTest([
+      "amendDetails",
+      "fl401-amend-applicant-details",
+    ]);
   }
-
 }

@@ -12,7 +12,7 @@ export class AmendApplicantDetails1Page extends EventPage {
   readonly genderOther = this.page.locator("#applicants_0_gender-other");
   readonly genderOtherInput = this.page.locator("#applicants_0_otherGender");
 
-  readonly dobDay = this.page.locator("#dateOfBirth-day"); 
+  readonly dobDay = this.page.locator("#dateOfBirth-day");
   readonly dobMonth = this.page.locator("#dateOfBirth-month");
   readonly dobYear = this.page.locator("#dateOfBirth-year");
 
@@ -36,9 +36,7 @@ export class AmendApplicantDetails1Page extends EventPage {
   readonly solicitorLastName = this.page.locator(
     "#applicants_0_representativeLastName",
   );
-  readonly solicitorEmail = this.page.locator(
-    "#applicants_0_solicitorEmail",
-  );
+  readonly solicitorEmail = this.page.locator("#applicants_0_solicitorEmail");
   readonly solicitorPhone = this.page.locator(
     "#applicants_0_solicitorTelephone",
   );
@@ -77,7 +75,7 @@ export class AmendApplicantDetails1Page extends EventPage {
 
   async selectGender(gender: string) {
     const genderId = `#applicants_0_gender-${gender.toLowerCase()}`;
-    
+
     if (gender.toLowerCase() === "other") {
       await this.genderOther.click();
       await this.genderOtherInput.fill("NonBinary");
@@ -119,7 +117,7 @@ export class AmendApplicantDetails1Page extends EventPage {
     await this.solicitorReference.fill(reference);
     await this.solicitorPostcode.fill(postcode);
     await this.solicitorLookup.click();
-    await this.solicitorSelectAddress.waitFor({ state: 'visible' });
+    await this.solicitorSelectAddress.waitFor({ state: "visible" });
     await this.solicitorSelectAddress.selectOption({ index: 1 });
   }
 }

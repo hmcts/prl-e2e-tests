@@ -116,12 +116,15 @@ export class AmendApplicantDetails2Page extends EventPage {
     await this.solicitorReference.fill(reference);
     await this.solicitorPostcode.fill(postcode);
     await this.solicitorLookup.click();
-    await this.solicitorSelectAddress.waitFor({ state: 'visible' });
+    await this.solicitorSelectAddress.waitFor({ state: "visible" });
     try {
       await this.solicitorSelectAddress.selectOption({ index: 1 });
     } catch (error) {
-      console.log('Could not select address, logging options');
-      const options = await this.solicitorSelectAddress.evaluate((node: HTMLSelectElement) => Array.from(node.options).map(o => o.value));
+      console.log("Could not select address, logging options");
+      const options = await this.solicitorSelectAddress.evaluate(
+        (node: HTMLSelectElement) =>
+          Array.from(node.options).map((o) => o.value),
+      );
       console.log(options);
       throw error;
     }
