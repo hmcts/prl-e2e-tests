@@ -199,7 +199,7 @@ export class OtherPeopleInTheCaseSubmitPage {
       if (otherPersonLivesInRefuge) {
         await Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.a}:text-is("${OtherPeopleInTheCase1Content.uploadedFile}")`,
+          `${Selectors.GovLink}:text-is("${OtherPeopleInTheCase1Content.uploadedFile}")`,
           1,
         );
       }

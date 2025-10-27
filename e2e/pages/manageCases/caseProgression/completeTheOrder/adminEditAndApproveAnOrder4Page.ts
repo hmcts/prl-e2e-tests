@@ -40,7 +40,7 @@ export class AdminEditAndApproveAnOrder4Page {
           ),
           Helpers.checkVisibleAndPresent(
             page,
-            `${Selectors.a}:text-is("${AdminEditAndApproveAnOrder4Content.powerOfArrest}")`,
+            `${Selectors.GovLink}:text-is("${AdminEditAndApproveAnOrder4Content.powerOfArrest}")`,
             1,
           ),
         ]);
@@ -54,7 +54,7 @@ export class AdminEditAndApproveAnOrder4Page {
           ),
           Helpers.checkVisibleAndPresent(
             page,
-            `${Selectors.a}:text-is("${AdminEditAndApproveAnOrder4Content.amendedDischarged}")`,
+            `${Selectors.GovLink}:text-is("${AdminEditAndApproveAnOrder4Content.amendedDischarged}")`,
             1,
           ),
         ]);

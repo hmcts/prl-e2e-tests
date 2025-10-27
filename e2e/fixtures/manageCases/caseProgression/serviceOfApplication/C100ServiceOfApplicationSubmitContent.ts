@@ -3,7 +3,7 @@ export enum C100ServiceOfApplicationSubmitContent {
   h21 = "Check your answers",
   h22 = "Select and upload orders and documents to be served",
   p = "Documents served in the pack",
-  a = "mockFile.pdf",
+  link = "mockFile.pdf",
   text161 = "Check the information below carefully.",
   text162 = "Select orders",
   text163 = "Special arrangements letter",

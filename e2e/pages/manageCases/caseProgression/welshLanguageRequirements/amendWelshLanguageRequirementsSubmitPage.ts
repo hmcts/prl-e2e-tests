@@ -171,19 +171,19 @@ export class AmendWelshLanguageRequirementsSubmitPage {
           await Promise.all([
             Helpers.checkVisibleAndPresent(
               page,
-              `${Selectors.a}:text-is("${AmendWelshLanguageRequirementsSubmitContent.welshFinalDocPdfLink}")`,
+              `${Selectors.GovLink}:text-is("${AmendWelshLanguageRequirementsSubmitContent.welshFinalDocPdfLink}")`,
               1,
             ),
             Helpers.checkVisibleAndPresent(
               page,
-              `${Selectors.a}:text-is("${AmendWelshLanguageRequirementsSubmitContent.englishFinalDocPdfLink}")`,
+              `${Selectors.GovLink}:text-is("${AmendWelshLanguageRequirementsSubmitContent.englishFinalDocPdfLink}")`,
               1,
             ),
           ]);
         } else {
           await Helpers.checkVisibleAndPresent(
             page,
-            `${Selectors.a}:text-is("${AmendWelshLanguageRequirementsSubmitContent.englishFinalDocPdfLink}")`,
+            `${Selectors.GovLink}:text-is("${AmendWelshLanguageRequirementsSubmitContent.englishFinalDocPdfLink}")`,
             1,
           );
         }
@@ -192,19 +192,19 @@ export class AmendWelshLanguageRequirementsSubmitPage {
           await Promise.all([
             Helpers.checkVisibleAndPresent(
               page,
-              `${Selectors.a}:text-is("${AmendWelshLanguageRequirementsSubmitContent.welshFinalDocPdfLink}")`,
+              `${Selectors.GovLink}:text-is("${AmendWelshLanguageRequirementsSubmitContent.welshFinalDocPdfLink}")`,
               1,
             ),
             Helpers.checkVisibleAndPresent(
               page,
-              `${Selectors.a}:text-is("${AmendWelshLanguageRequirementsSubmitContent.englishFinalDocPdfLink}")`,
+              `${Selectors.GovLink}:text-is("${AmendWelshLanguageRequirementsSubmitContent.englishFinalDocPdfLink}")`,
               1,
             ),
           ]);
         } else {
           await Helpers.checkVisibleAndPresent(
             page,
-            `${Selectors.a}:text-is("${AmendWelshLanguageRequirementsSubmitContent.welshFinalDocPdfLink}")`,
+            `${Selectors.GovLink}:text-is("${AmendWelshLanguageRequirementsSubmitContent.welshFinalDocPdfLink}")`,
             1,
           );
         }
@@ -212,7 +212,7 @@ export class AmendWelshLanguageRequirementsSubmitPage {
     } else {
       await Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${AmendWelshLanguageRequirementsSubmitContent.englishFinalDocPdfLink}")`,
+        `${Selectors.GovLink}:text-is("${AmendWelshLanguageRequirementsSubmitContent.englishFinalDocPdfLink}")`,
         1,
       );
     }

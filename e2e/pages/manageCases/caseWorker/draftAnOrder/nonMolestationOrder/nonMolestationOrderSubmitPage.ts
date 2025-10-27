@@ -9,11 +9,11 @@ import {
 import { DraftAnOrderSubmitContent } from "../../../../../fixtures/manageCases/caseWorker/draftAnOrder/draftAnOrderSubmitContent.ts";
 
 enum UniqueSelectors {
-  yesNoSelector1 = "body > exui-root > exui-case-home > div > exui-case-details-home > ccd-case-event-trigger > div > ccd-case-edit > ccd-case-edit-submit > div > form > div.ng-star-inserted > table.form-table.ng-star-inserted > tbody > tr:nth-child(4) > td.form-cell.case-field-content > ccd-field-read > div > ccd-field-read-label > div > ccd-read-yes-no-field > span",
-  yesNoSelector2 = "body > exui-root > exui-case-home > div > exui-case-details-home > ccd-case-event-trigger > div > ccd-case-edit > ccd-case-edit-submit > div > form > div.ng-star-inserted > table.form-table.ng-star-inserted > tbody > tr:nth-child(5) > td.form-cell.case-field-content > ccd-field-read > div > ccd-field-read-label > div > ccd-read-yes-no-field > span",
-  yesNoSelector3 = "body > exui-root > exui-case-home > div > exui-case-details-home > ccd-case-event-trigger > div > ccd-case-edit > ccd-case-edit-submit > div > form > div.ng-star-inserted > table.form-table.ng-star-inserted > tbody > tr:nth-child(13) > td.form-cell.case-field-content > ccd-field-read > div > ccd-field-read-label > div > ccd-read-yes-no-field > span",
-  yesNoSelector4 = "body > exui-root > exui-case-home > div > exui-case-details-home > ccd-case-event-trigger > div > ccd-case-edit > ccd-case-edit-submit > div > form > div.ng-star-inserted > table.form-table.ng-star-inserted > tbody > tr:nth-child(17) > td.form-cell.case-field-content > ccd-field-read > div > ccd-field-read-label > div > ccd-read-complex-field > ccd-read-complex-field-table > div > table > tbody > tr:nth-child(1) > td > span > ccd-field-read > div > ccd-field-read-label > div > ccd-read-yes-no-field > span",
-  yesNoSelector5 = "body > exui-root > exui-case-home > div > exui-case-details-home > ccd-case-event-trigger > div > ccd-case-edit > ccd-case-edit-submit > div > form > div.ng-star-inserted > table.form-table.ng-star-inserted > tbody > tr:nth-child(18) > td.form-cell.case-field-content > ccd-field-read > div > ccd-field-read-label > div > ccd-read-collection-field > table > tbody > tr > td > ccd-field-read > div > ccd-field-read-label > div > ccd-read-complex-field > ccd-read-complex-field-table > div > table > tbody > tr:nth-child(8) > td > span > ccd-field-read > div > ccd-field-read-label > div > ccd-read-yes-no-field > span",
+  yesNoSelector1 = "body > exui-root > exui-case-home > div > exui-case-details-home > ccd-case-event-trigger > div > ccd-case-edit > ccd-case-edit-submit > div > form > div.ng-star-inserted > table.form-table.ng-star-inserted > tbody > tr:nth-child(3) > td.form-cell.case-field-content > ccd-field-read > div > ccd-field-read-label > div > ccd-read-yes-no-field > span",
+  yesNoSelector2 = "body > exui-root > exui-case-home > div > exui-case-details-home > ccd-case-event-trigger > div > ccd-case-edit > ccd-case-edit-submit > div > form > div.ng-star-inserted > table.form-table.ng-star-inserted > tbody > tr:nth-child(4) > td.form-cell.case-field-content > ccd-field-read > div > ccd-field-read-label > div > ccd-read-yes-no-field > span",
+  yesNoSelector3 = "body > exui-root > exui-case-home > div > exui-case-details-home > ccd-case-event-trigger > div > ccd-case-edit > ccd-case-edit-submit > div > form > div.ng-star-inserted > table.form-table.ng-star-inserted > tbody > tr:nth-child(12) > td.form-cell.case-field-content > ccd-field-read > div > ccd-field-read-label > div > ccd-read-yes-no-field > span",
+  yesNoSelector4 = "body > exui-root > exui-case-home > div > exui-case-details-home > ccd-case-event-trigger > div > ccd-case-edit > ccd-case-edit-submit > div > form > div.ng-star-inserted > table.form-table.ng-star-inserted > tbody > tr:nth-child(16) > td.form-cell.case-field-content > ccd-field-read > div > ccd-field-read-label > div > ccd-read-complex-field > ccd-read-complex-field-table > div > table > tbody > tr:nth-child(1) > td > span > ccd-field-read > div > ccd-field-read-label > div > ccd-read-yes-no-field > span",
+  yesNoSelector5 = "body > exui-root > exui-case-home > div > exui-case-details-home > ccd-case-event-trigger > div > ccd-case-edit > ccd-case-edit-submit > div > form > div.ng-star-inserted > table.form-table.ng-star-inserted > tbody > tr:nth-child(17) > td.form-cell.case-field-content > ccd-field-read > div > ccd-field-read-label > div > ccd-read-collection-field > table > tbody > tr > td > ccd-field-read > div > ccd-field-read-label > div > ccd-read-complex-field > ccd-read-complex-field-table > div > table > tbody > tr:nth-child(8) > td > span > ccd-field-read > div > ccd-field-read-label > div > ccd-read-yes-no-field > span",
 }
 
 export class NonMolestationOrderSubmitPage {
@@ -90,7 +90,7 @@ export class NonMolestationOrderSubmitPage {
         2,
         NonMolestationOrderSubmitContent,
         "pdfLink",
-        `${Selectors.a}`,
+        `${Selectors.GovLink}`,
       ),
       Helpers.checkVisibleAndPresent(
         page,

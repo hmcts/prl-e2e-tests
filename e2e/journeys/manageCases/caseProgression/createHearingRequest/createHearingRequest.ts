@@ -14,13 +14,17 @@ import { HearingAdditionalInstructionsPage } from "../../../../pages/manageCases
 import { HearingCreateEditSummaryPage } from "../../../../pages/manageCases/caseProgression/createHearingRequest/hearingCreateEditSummaryPage.ts";
 import Config from "../../../../utils/config.utils.ts";
 import config from "../../../../utils/config.utils.ts";
-import { createOrderFL401Options } from "../../../../common/types.ts";
+import {
+  createOrderC100Options,
+  createOrderFL401Options,
+} from "../../../../common/types.ts";
 import { Selectors } from "../../../../common/selectors.ts";
 import { jsonDatas } from "../../../../common/caseHelpers/jsonDatas.ts";
 import { completeCheckApplicationAndSendToGatekeeperAndCreateAnOrder } from "../../../../common/caseHelpers/caseEventsHelper.ts";
 import { HearingConfirmationPage } from "../../../../pages/manageCases/caseProgression/createHearingRequest/hearingConfirmationPage.ts";
+import { CompleteTheOrder } from "../completeTheOrder/completeTheOrder.js";
 
-interface CreateHearingRequestParams {
+interface FL401CreateHearingRequestParams {
   page: Page;
   accessibilityTest: boolean;
   createOrderFL401Options: createOrderFL401Options;
@@ -29,15 +33,21 @@ interface CreateHearingRequestParams {
   manageOrderData: typeof jsonDatas;
 }
 
+interface C100CreateHearingRequestParams {
+  page: Page;
+  accessibilityTest: boolean;
+  ccdRef: string;
+  createOrderC100Options: createOrderC100Options;
+}
+
 export class CreateHearingRequest {
-  public static async createHearingRequest({
+  public static async FL401CreateHearingRequest({
     page,
     accessibilityTest,
     ccdRef,
-    createOrderFL401Options,
     browser,
     manageOrderData,
-  }: CreateHearingRequestParams): Promise<void> {
+  }: FL401CreateHearingRequestParams): Promise<void> {
     await completeCheckApplicationAndSendToGatekeeperAndCreateAnOrder(
       page,
       browser,
@@ -56,50 +66,43 @@ export class CreateHearingRequest {
       ccdRef,
       "tasks",
     );
-    switch (createOrderFL401Options) {
-      case "non-molestation":
-        await Helpers.assignTaskToMeAndTriggerNextSteps(
-          page,
-          "Create Hearing Request - Non-molestation order (FL404A)",
-          "Create Hearing Request",
-        );
-        break;
-      case "occupation order":
-        await Helpers.assignTaskToMeAndTriggerNextSteps(
-          page,
-          "Create Hearing Request - Occupation order (FL404)",
-          "Create Hearing Request",
-        );
-        break;
-      case "power of arrest":
-        await Helpers.assignTaskToMeAndTriggerNextSteps(
-          page,
-          "Create Hearing Request - Power of arrest (FL406)",
-          "Create Hearing Request",
-        );
-        break;
-      case "amend discharge varied order":
-        await Helpers.assignTaskToMeAndTriggerNextSteps(
-          page,
-          "Create Hearing Request - Amended, discharged or varied order (FL404B)",
-          "Create Hearing Request",
-        );
-        break;
-      case "blank order":
-        await Helpers.assignTaskToMeAndTriggerNextSteps(
-          page,
-          "Create Hearing Request - Blank order (FL404B)",
-          "Create Hearing Request",
-        );
-        break;
-      case "notice of proceedings":
-        await Helpers.assignTaskToMeAndTriggerNextSteps(
-          page,
-          "Create Hearing Request - Notice of proceedings (FL402)",
-          "Create Hearing Request",
-        );
-        break;
-    }
+    // rather than waiting for the task just go directly to the hearings tab and request a hearing
+    // for some reason clicking on the task as part of the test causes an error but not when done manually
+    await page.getByRole("tab", { name: "Hearings" }).click();
+    // wait for ref data to finish loading before clicking the hearing request button - if it clicks too fast the hearing requirements page fails to load
+    await page.waitForResponse(
+      (response) =>
+        /.*\/api\/prd\/lov\/getLovRefData.*/.test(response.url()) &&
+        response.status() === 200,
+    );
+    await this.requestAHearing(page, accessibilityTest);
+  }
+
+  public static async C100CreateHearingRequest({
+    page,
+    accessibilityTest,
+    ccdRef,
+  }: C100CreateHearingRequestParams): Promise<void> {
+    //C43 order can be created using page eval but throwing 403, need to debug
+    await CompleteTheOrder.C100completeTheOrder({
+      page: page,
+      accessibilityTest: false,
+      personallyServed: true,
+      solicitorCaseCreateType: "C100",
+      isUploadOrder: false,
+      checkOption: "noCheck", //options passed could be either noCheck or judgeOrLegalAdvisorCheck or managerCheck
+      serveOrderNow: true, //select to serve order instantly
+    });
+
+    await Helpers.goToCase(
+      page,
+      config.manageCasesBaseURLCase,
+      ccdRef,
+      "tasks",
+    );
+    // rather than waiting for the task just go directly to the hearings tab and request a hearing
+    // for some reason clicking on the task as part of the test causes an error but not when done manually
+    await page.getByRole("tab", { name: "Hearings" }).click();
     // wait for ref data to finish loading before clicking the hearing request button - if it clicks too fast the hearing requirements page fails to load
     await page.waitForResponse(
       (response) =>

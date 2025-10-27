@@ -40,12 +40,12 @@ export class AdminEditAndApproveAnOrder4Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${AdminEditAndApproveAnOrder4Content.welshNonMolestation}")`,
+        `${Selectors.GovLink}:text-is("${AdminEditAndApproveAnOrder4Content.welshNonMolestation}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${AdminEditAndApproveAnOrder4Content.nonMolestation}")`,
+        `${Selectors.GovLink}:text-is("${AdminEditAndApproveAnOrder4Content.nonMolestation}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(

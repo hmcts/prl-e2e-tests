@@ -415,7 +415,7 @@ export class Helpers {
   public static async getCaseNumberFromUrl(page: Page): Promise<string> {
     const url: string = page.url();
     const caseNumberMatch: RegExpMatchArray | null = url.match(
-      /case-details\/(\d{16}).*?/,
+      /case-details\/PRIVATELAW\/PRLAPPS\/(\d{16}).*?/,
     );
     if (caseNumberMatch === null) {
       throw new Error("Unable to extract case number from URL");

@@ -108,7 +108,7 @@ export class SendAndReplyToMessages4Page {
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.a}:text-is("${SendAndReplyToMessages4Content.c100Anchor}")`,
+          `${Selectors.GovLink}:text-is("${SendAndReplyToMessages4Content.c100Anchor}")`,
           1,
         ),
       ]);
@@ -121,7 +121,7 @@ export class SendAndReplyToMessages4Page {
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.a}:text-is("${SendAndReplyToMessages4Content.fl401Anchor}")`,
+          `${Selectors.GovLink}:text-is("${SendAndReplyToMessages4Content.fl401Anchor}")`,
           1,
         ),
       ]);

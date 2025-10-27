@@ -24,6 +24,9 @@ import { PartiesPage } from "./pages/exui/caseView/parties.po.js";
 import { AmendApplicantDetails2Page } from "./pages/exui/amendDetails/amendApplicantDetails2.po.ts";
 import { AmendApplicantDetails1Page } from "./pages/exui/amendDetails/amendApplicantDetails1.po.ts";
 import { AmendApplicantDetailsSubmitPage } from "./pages/exui/amendDetails/amendApplicantDetailsSubmit.po.ts";
+import { WithdrawApplicationEvent1Page } from "./pages/exui/withdrawApplication/withdrawApplicationEvent1.po.js";
+import { WithdrawApplicationEventSubmitPage } from "./pages/exui/withdrawApplication/withdrawApplicationEventSubmit.po.js";
+import { WithdrawApplicationEventConfirmPage } from "./pages/exui/withdrawApplication/withdrawApplicationEventConfirm.po.js";
 
 export interface PageFixtures {
   tasksPage: TasksPage;
@@ -52,6 +55,9 @@ export interface PageFixtures {
   amendApplicantDetails1Page: AmendApplicantDetails1Page;
   amendApplicantDetails2Page: AmendApplicantDetails2Page;
   amendApplicantDetailsSubmitPage: AmendApplicantDetailsSubmitPage;
+  withdrawApplicationEvent1Page: WithdrawApplicationEvent1Page;
+  withdrawApplicationEventSubmitPage: WithdrawApplicationEventSubmitPage;
+  withdrawApplicationEventConfirmPage: WithdrawApplicationEventConfirmPage;
 }
 
 export const pageFixtures = {
@@ -132,5 +138,14 @@ export const pageFixtures = {
   },
   amendApplicantDetailsSubmitPage: async ({ page }, use) => {
     await use(new AmendApplicantDetailsSubmitPage(page));
+  },
+  withdrawApplicationEvent1Page: async ({ page }, use) => {
+    await use(new WithdrawApplicationEvent1Page(page));
+  },
+  withdrawApplicationEventSubmitPage: async ({ page }, use) => {
+    await use(new WithdrawApplicationEventSubmitPage(page));
+  },
+  withdrawApplicationEventConfirmPage: async ({ page }, use) => {
+    await use(new WithdrawApplicationEventConfirmPage(page));
   },
 };
