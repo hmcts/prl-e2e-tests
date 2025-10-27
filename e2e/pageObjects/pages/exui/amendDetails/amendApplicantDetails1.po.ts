@@ -12,9 +12,9 @@ export class AmendApplicantDetails1Page extends EventPage {
   readonly genderOther = this.page.locator("#applicants_0_gender-other");
   readonly genderOtherInput = this.page.locator("#applicants_0_otherGender");
 
-  readonly dobDay = this.page.locator("#dateOfBirth-day");
-  readonly dobMonth = this.page.locator("#dateOfBirth-month");
-  readonly dobYear = this.page.locator("#dateOfBirth-year");
+  readonly dobDay = this.page.locator("#applicants_0_dateOfBirth-day");
+  readonly dobMonth = this.page.locator("#applicants_0_dateOfBirth-month");
+  readonly dobYear = this.page.locator("#applicants_0_dateOfBirth-year");
 
   readonly refugeYes = this.page.locator("#applicants_0_liveInRefuge_Yes");
   readonly c8FormUpload = "#applicants_0_refugeConfidentialityC8Form";
