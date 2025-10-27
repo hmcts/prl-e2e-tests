@@ -2,7 +2,7 @@ export enum JudgeUploadOrderDASubmitContent {
   h2 = "Check your answers",
   h3 = "Upload an order",
   p = "Select an order",
-  a = "mockFile.pdf",
+  link = "mockFile.pdf",
   text161 = "Check the information below carefully.",
   text162 = "What do you want to do?",
   text163 = "Domestic abuse orders",

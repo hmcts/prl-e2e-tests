@@ -16,7 +16,7 @@ export enum SubmitAndPay2Content {
   hiddenP2 = "Download and check the application before you proceed. Make sure that all details are correct.",
   formLabelDraftConsent = "Draft Document",
   formLabelDraftDocumentWelsh = "Draft Document (Welsh)",
-  a1 = "Draft_C100_application.pdf",
-  a2 = "Draft_C100_application_welsh.pdf",
+  link1 = "Draft_C100_application.pdf",
+  link2 = "Draft_C100_application_welsh.pdf",
   continue = "Continue",
 }

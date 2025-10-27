@@ -442,7 +442,7 @@ export class AllegationsOfHarmRevisedSubmitPage {
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.a}:text-is("${path.basename(config.testPdfFile)}")`,
+          `${Selectors.GovLink}:text-is("${path.basename(config.testPdfFile)}")`,
           6,
         ),
         Helpers.checkVisibleAndPresent(

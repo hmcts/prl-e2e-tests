@@ -86,7 +86,7 @@ export class AdminEditAndApproveAnOrderSubmitPage {
           ),
           Helpers.checkVisibleAndPresent(
             page,
-            `${Selectors.a}:text-is("${AdminEditAndApproveAnOrderSubmitContent.powerOfArrest}")`,
+            `${Selectors.GovLink}:text-is("${AdminEditAndApproveAnOrderSubmitContent.powerOfArrest}")`,
             1,
           ),
           await expect(
@@ -106,7 +106,7 @@ export class AdminEditAndApproveAnOrderSubmitPage {
           ),
           Helpers.checkVisibleAndPresent(
             page,
-            `${Selectors.a}:text-is("${AdminEditAndApproveAnOrderSubmitContent.amendedDischarged}")`,
+            `${Selectors.GovLink}:text-is("${AdminEditAndApproveAnOrderSubmitContent.amendedDischarged}")`,
             1,
           ),
           await expect(

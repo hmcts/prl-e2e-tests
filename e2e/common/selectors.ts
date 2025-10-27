@@ -40,6 +40,7 @@ export enum Selectors {
   ColumnLabel = ".search-result-column-label",
   Span = "span",
   Panel = ".panel",
+  GovLink = ".govuk-js-link",
 
   // Buttons
   GovukButton = ".govuk-button",
