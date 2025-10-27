@@ -45,7 +45,6 @@ export class CreateHearingRequest {
     page,
     accessibilityTest,
     ccdRef,
-    createOrderFL401Options,
     browser,
     manageOrderData,
   }: FL401CreateHearingRequestParams): Promise<void> {
@@ -67,55 +66,9 @@ export class CreateHearingRequest {
       ccdRef,
       "tasks",
     );
-    switch (createOrderFL401Options) {
-      // case "non-molestation":
-      //   await Helpers.assignTaskToMeAndTriggerNextSteps(
-      //     page,
-      //     "Create Hearing Request - Non-molestation order (FL404A)",
-      //     "Create Hearing Request",
-      //   );
-      //   break;
-      // case "occupation order":
-      //   await Helpers.assignTaskToMeAndTriggerNextSteps(
-      //     page,
-      //     "Create Hearing Request - Occupation order (FL404)",
-      //     "Create Hearing Request",
-      //   );
-      //   break;
-      // case "power of arrest":
-      //   await Helpers.assignTaskToMeAndTriggerNextSteps(
-      //     page,
-      //     "Create Hearing Request - Power of arrest (FL406)",
-      //     "Create Hearing Request",
-      //   );
-      //   break;
-      // case "amend discharge varied order":
-      //   await Helpers.assignTaskToMeAndTriggerNextSteps(
-      //     page,
-      //     "Create Hearing Request - Amended, discharged or varied order (FL404B)",
-      //     "Create Hearing Request",
-      //   );
-      //   break;
-      // case "blank order":
-      //   await Helpers.assignTaskToMeAndTriggerNextSteps(
-      //     page,
-      //     "Create Hearing Request - Blank order (FL404B)",
-      //     "Create Hearing Request",
-      //   );
-      //   break;
-      // case "notice of proceedings":
-      //   await Helpers.assignTaskToMeAndTriggerNextSteps(
-      //     page,
-      //     "Create Hearing Request - Notice of proceedings (FL402)",
-      //     "Create Hearing Request",
-      //   );
-      //   break;
-      default:
-        // rather than waiting for the task just go directly to the hearings tab and request a hearing
-        // for some reason clicking on the task as part of the test causes an error but not when done manually
-        await page.getByRole("tab", { name: "Hearings" }).click();
-        break;
-    }
+    // rather than waiting for the task just go directly to the hearings tab and request a hearing
+    // for some reason clicking on the task as part of the test causes an error but not when done manually
+    await page.getByRole("tab", { name: "Hearings" }).click();
     // wait for ref data to finish loading before clicking the hearing request button - if it clicks too fast the hearing requirements page fails to load
     await page.waitForResponse(
       (response) =>
@@ -129,7 +82,6 @@ export class CreateHearingRequest {
     page,
     accessibilityTest,
     ccdRef,
-    createOrderC100Options,
   }: C100CreateHearingRequestParams): Promise<void> {
     //C43 order can be created using page eval but throwing 403, need to debug
     await CompleteTheOrder.C100completeTheOrder({
@@ -148,20 +100,9 @@ export class CreateHearingRequest {
       ccdRef,
       "tasks",
     );
-
-    switch (createOrderC100Options) {
-      case "C43 order":
-        // await Helpers.assignTaskToMeAndTriggerNextSteps(
-        //   page,
-        //   "Create Hearing Request - Child arrangements, specific issue or prohibited steps order (C43)",
-        //   "Create Hearing Request",
-        // );
-
-        // rather than waiting for the task just go directly to the hearings tab and request a hearing
-        // for some reason clicking on the task as part of the test causes an error but not when done manually
-        await page.getByRole("tab", { name: "Hearings" }).click();
-        break;
-    }
+    // rather than waiting for the task just go directly to the hearings tab and request a hearing
+    // for some reason clicking on the task as part of the test causes an error but not when done manually
+    await page.getByRole("tab", { name: "Hearings" }).click();
     // wait for ref data to finish loading before clicking the hearing request button - if it clicks too fast the hearing requirements page fails to load
     await page.waitForResponse(
       (response) =>
