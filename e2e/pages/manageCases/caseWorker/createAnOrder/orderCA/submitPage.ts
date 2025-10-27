@@ -63,7 +63,13 @@ export class SubmitPage {
         "strong",
         `${Selectors.strong}`,
       ),
-      Helpers.checkGroup(page, 2, SubmitCAContent, "link", `${Selectors.GovLink}`),
+      Helpers.checkGroup(
+        page,
+        2,
+        SubmitCAContent,
+        "link",
+        `${Selectors.GovLink}`,
+      ),
       Helpers.checkGroup(
         page,
         29,
