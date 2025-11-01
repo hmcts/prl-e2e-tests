@@ -1,6 +1,5 @@
 import { expect, Locator, Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.ts";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 import { EventPage } from "../eventPage.po.js";
 
 export class WithdrawApplicationEvent1Page extends EventPage {
@@ -30,13 +29,6 @@ export class WithdrawApplicationEvent1Page extends EventPage {
     {
       hasText:
         "Once you have withdrawn this application you cannot resubmit it.",
-    },
-  );
-
-  private readonly continueButton: Locator = this.page.locator(
-    Selectors.button,
-    {
-      hasText: CommonStaticText.continue,
     },
   );
 

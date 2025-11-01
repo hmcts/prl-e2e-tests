@@ -3,7 +3,6 @@ import { expect, Locator, Page } from "@playwright/test";
 import { Selectors } from "../../../common/selectors.js";
 import { CheckYourAnswersTableComponent } from "../../components/exui/checkYourAnswersTable.component.js";
 import { ClippingCoords } from "../../../common/types.js";
-import { CommonStaticText } from "../../../common/commonStaticText.js";
 
 interface CyaConstructorParams {
   snapshotPath: string[];
@@ -22,29 +21,15 @@ export class CheckYourAnswersPage extends EventPage {
   });
   private readonly checkYourAnswersTable: CheckYourAnswersTableComponent =
     new CheckYourAnswersTableComponent(this.page);
-  private readonly previousButton: Locator = this.page.locator(
-    Selectors.button,
-    {
-      hasText: CommonStaticText.previous,
-    },
-  );
-  private readonly submitButton: Locator;
 
   constructor(
     page: Page,
     headingText: string,
-    {
-      snapshotPath,
-      submitButtonText,
-      customClippingCoords,
-    }: CyaConstructorParams,
+    { snapshotPath, customClippingCoords }: CyaConstructorParams,
   ) {
     super(page, headingText);
     this.snapshotPath = snapshotPath;
     this.customClippingCoords = customClippingCoords;
-    this.submitButton = this.page.locator(Selectors.button, {
-      hasText: submitButtonText,
-    });
   }
 
   // might have to implement new snapshot approach and update all snapshots - looks like there are some banners present on demo

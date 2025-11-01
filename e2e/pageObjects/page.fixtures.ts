@@ -21,6 +21,9 @@ import { Fl401RemoveLegalRepresentativeSubmitPage } from "./pages/exui/removeLeg
 import { C100RemoveLegalRepresentativeConfirmPage } from "./pages/exui/removeLegalRepresentation/c100RemoveLegalRepresentativeConfirm.po.js";
 import { Fl401RemoveLegalRepresentativeConfirmPage } from "./pages/exui/removeLegalRepresentation/fl401RemoveLegalRepresentativeConfirm.po.js";
 import { PartiesPage } from "./pages/exui/caseView/parties.po.js";
+import { AmendApplicantDetails2Page } from "./pages/exui/amendDetails/amendApplicantDetails2.po.ts";
+import { AmendApplicantDetails1Page } from "./pages/exui/amendDetails/amendApplicantDetails1.po.ts";
+import { AmendApplicantDetailsSubmitPage } from "./pages/exui/amendDetails/amendApplicantDetailsSubmit.po.ts";
 import { WithdrawApplicationEvent1Page } from "./pages/exui/withdrawApplication/withdrawApplicationEvent1.po.js";
 import { WithdrawApplicationEventSubmitPage } from "./pages/exui/withdrawApplication/withdrawApplicationEventSubmit.po.js";
 import { WithdrawApplicationEventConfirmPage } from "./pages/exui/withdrawApplication/withdrawApplicationEventConfirm.po.js";
@@ -49,6 +52,9 @@ export interface PageFixtures {
   fl401RemoveLegalRepresentative1Page: Fl401RemoveLegalRepresentative1Page;
   fl401RemoveLegalRepresentativeSubmitPage: Fl401RemoveLegalRepresentativeSubmitPage;
   fl401RemoveLegalRepresentativeConfirmPage: Fl401RemoveLegalRepresentativeConfirmPage;
+  amendApplicantDetails1Page: AmendApplicantDetails1Page;
+  amendApplicantDetails2Page: AmendApplicantDetails2Page;
+  amendApplicantDetailsSubmitPage: AmendApplicantDetailsSubmitPage;
   withdrawApplicationEvent1Page: WithdrawApplicationEvent1Page;
   withdrawApplicationEventSubmitPage: WithdrawApplicationEventSubmitPage;
   withdrawApplicationEventConfirmPage: WithdrawApplicationEventConfirmPage;
@@ -123,6 +129,15 @@ export const pageFixtures = {
   },
   fl401RemoveLegalRepresentativeConfirmPage: async ({ page }, use) => {
     await use(new Fl401RemoveLegalRepresentativeConfirmPage(page));
+  },
+  amendApplicantDetails1Page: async ({ page }, use) => {
+    await use(new AmendApplicantDetails1Page(page));
+  },
+  amendApplicantDetails2Page: async ({ page }, use) => {
+    await use(new AmendApplicantDetails2Page(page));
+  },
+  amendApplicantDetailsSubmitPage: async ({ page }, use) => {
+    await use(new AmendApplicantDetailsSubmitPage(page));
   },
   withdrawApplicationEvent1Page: async ({ page }, use) => {
     await use(new WithdrawApplicationEvent1Page(page));
