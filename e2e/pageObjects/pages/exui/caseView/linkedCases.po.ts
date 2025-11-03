@@ -34,9 +34,12 @@ export class LinkedCasesPage extends CaseAccessViewPage {
   private readonly linkedFromTable: CaseLinksTableComponent =
     new CaseLinksTableComponent(this.page, this.linkedFromTableLocator);
   // This link is only present when viewing linked cases from the case that is linked from
-  private readonly showHideLink: Locator = this.page.getByRole("link", {
-    name: "Show",
-  });
+  private readonly showHideLink: Locator = this.page.locator(
+    Selectors.GovLink,
+    {
+      hasText: "Show",
+    },
+  );
 
   constructor(page: Page) {
     super(page);

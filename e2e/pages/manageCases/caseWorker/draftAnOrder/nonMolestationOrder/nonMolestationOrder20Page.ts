@@ -13,12 +13,12 @@ export class NonMolestationOrder20Page {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${NonMolestationOrder20Content.welshPdfLink}")`,
+        `${Selectors.GovLink}:text-is("${NonMolestationOrder20Content.welshPdfLink}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${NonMolestationOrder20Content.pdfLink}")`,
+        `${Selectors.GovLink}:text-is("${NonMolestationOrder20Content.pdfLink}")`,
         1,
       ),
     ]);
@@ -53,7 +53,7 @@ export class NonMolestationOrder20Page {
 
     const pdfPage: Page = await Helpers.openPdfLink(
       page,
-      page.getByRole("link", {
+      page.getByRole("button", {
         name:
           language === "welsh"
             ? NonMolestationOrder20Content.welshPdfLink

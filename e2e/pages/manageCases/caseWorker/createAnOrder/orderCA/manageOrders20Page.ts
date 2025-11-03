@@ -68,7 +68,7 @@ export class ManageOrders20Page {
     const [pdfPage] = await Promise.all([
       page.waitForEvent("popup"),
       page.click(
-        `${Selectors.a}:text-is("${language === "English" ? ManageOrders20CAContent.englishLink : ManageOrders20CAContent.welshLink}")`,
+        `${Selectors.GovLink}:text-is("${language === "English" ? ManageOrders20CAContent.englishLink : ManageOrders20CAContent.welshLink}")`,
       ),
     ]);
     await pdfPage.waitForLoadState();
