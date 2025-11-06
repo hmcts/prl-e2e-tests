@@ -17,7 +17,7 @@ properties([
     ),
     string(
       name: 'MANAGE_CASES_BASE_URL',
-      defaultValue: 'https://xui-prl-ccd-definitions-pr-2938.preview.platform.hmcts.net/cases',
+      defaultValue: 'https://manage-case.aat.platform.hmcts.net/cases',
       description: 'The Manage Cases URL to test against'
     ),
     string(
