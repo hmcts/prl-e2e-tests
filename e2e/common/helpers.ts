@@ -31,7 +31,8 @@ export class Helpers {
       | WACaseWorkerActions
       | fl401CaseWorkerActions
       | courtAdminEvents
-      | amendEvents,
+      | amendEvents
+      | "Applicant’s family", // this is a temporary fix - the dropdown event needs to be renamed to match "Applicant's family"
   ): Promise<void> {
     await page.waitForLoadState("domcontentloaded");
     await page.waitForSelector("#next-step", { state: "visible" });
@@ -489,7 +490,12 @@ export class Helpers {
     ) {
       await Helpers.selectSolicitorEvent(page, event);
     } else if (process.env.MANAGE_CASES_TEST_ENV === "preview") {
-      await Helpers.chooseEventFromDropdown(page, event);
+      if (event === "Applicant's family") {
+        // this is a temporary fix - the dropdown event is spelt with a different apostrophe
+        await Helpers.chooseEventFromDropdown(page, "Applicant’s family");
+      } else {
+        await Helpers.chooseEventFromDropdown(page, event);
+      }
     } else {
       throw new Error(
         `Unexpected environment in URL: ${process.env.MANAGE_CASES_TEST_ENV}`,
