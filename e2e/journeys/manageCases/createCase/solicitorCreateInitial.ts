@@ -83,7 +83,7 @@ export class SolicitorCreateInitial {
         if (
           await page
             .locator(
-              `${Selectors.markdown} > ${Selectors.div} > ${Selectors.p} > ${Selectors.a}:text-is("Case name")`,
+              `${Selectors.markdown} > ${Selectors.div} > ${Selectors.p} > ${Selectors.a}:text-is("Type of application / Math o gais")`,
             )
             .isVisible()
         ) {

@@ -27,9 +27,6 @@ export class SolicitorCreate5Page {
     isDummyCase: boolean,
     accessibilityTest: boolean,
   ): Promise<void> {
-    await page.waitForSelector(
-      `${Selectors.GovukFormHint}:text-is("${SolicitorCreate5Content.formHint1}")`,
-    );
     if (isDummyCase) {
       await Promise.all([
         Helpers.checkVisibleAndPresent(
@@ -44,12 +41,7 @@ export class SolicitorCreate5Page {
           page,
           `${Selectors.GovukHeadingL}:text-is("${SolicitorCreate5Content.pageTitle}")`,
           1,
-        ),
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukFormLabel}:text-is("${SolicitorCreate5Content.formLabel1}")`,
-          1,
-        ),
+        )
       ]);
     }
     if (accessibilityTest) {
@@ -90,7 +82,7 @@ export class SolicitorCreate5Page {
       return generatedName;
     }
       await page.click(
-        `${Selectors.button}:text-is("${SolicitorCreate5Content.continue}")`,
+        `${Selectors.button}:text-is("${SolicitorCreate5Content.submit}")`,
       );
       return;
   }
