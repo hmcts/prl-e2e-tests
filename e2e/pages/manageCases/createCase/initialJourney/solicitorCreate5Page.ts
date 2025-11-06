@@ -19,7 +19,7 @@ export class SolicitorCreate5Page {
     if (errorMessaging) {
       await this.triggerErrorMessages(page);
     }
-    return await this.fillInFields(page);
+    return await this.fillInFields(page, isDummyCase);
   }
 
   private static async checkPageLoads(
@@ -80,12 +80,18 @@ export class SolicitorCreate5Page {
     ]);
   }
 
-  private static async fillInFields(page: Page): Promise<string> {
-    const generatedName: string = Helpers.generateCaseName();
-    await page.fill(`${caseName.fieldID}`, generatedName);
-    await page.click(
-      `${Selectors.button}:text-is("${SolicitorCreate5Content.continue}")`,
-    );
-    return generatedName;
+  private static async fillInFields(page: Page, isDummyCase: boolean = false): Promise<string> {
+    if (isDummyCase) {
+      const generatedName: string = Helpers.generateCaseName();
+      await page.fill(`${caseName.fieldID}`, generatedName);
+      await page.click(
+        `${Selectors.button}:text-is("${SolicitorCreate5Content.continue}")`,
+      );
+      return generatedName;
+    }
+      await page.click(
+        `${Selectors.button}:text-is("${SolicitorCreate5Content.continue}")`,
+      );
+      return;
   }
 }
