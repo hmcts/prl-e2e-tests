@@ -13,7 +13,6 @@ export class Fl401AddCaseNumber1Page extends EventPage {
   readonly continueButton: Locator = this.page.locator(Selectors.button, {
     hasText: CommonStaticText.continue,
   });
-  
 
   constructor(page: Page) {
     super(page, "Add case number");

@@ -25,15 +25,11 @@ export class CheckYourAnswersPage extends EventPage {
   constructor(
     page: Page,
     headingText: string,
-    {
-      snapshotPath,
-      customClippingCoords,
-    }: CyaConstructorParams,
+    { snapshotPath, customClippingCoords }: CyaConstructorParams,
   ) {
     super(page, headingText);
     this.snapshotPath = snapshotPath;
     this.customClippingCoords = customClippingCoords;
-    
   }
 
   // might have to implement new snapshot approach and update all snapshots - looks like there are some banners present on demo

@@ -11,9 +11,9 @@ export abstract class Base {
   protected constructor(page: Page) {
     this.page = page;
     this.exuiHeader = new ExuiHeaderComponent(page);
-    this.continueButton = this.page.getByRole('button', { name: 'Continue' });
-    this.previousButton = this.page.locator('button', {
-      hasText: 'Previous',
+    this.continueButton = this.page.getByRole("button", { name: "Continue" });
+    this.previousButton = this.page.locator("button", {
+      hasText: "Previous",
     });
   }
 
