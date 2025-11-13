@@ -1,6 +1,5 @@
 import { expect, Locator, Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.js";
-import { CommonStaticText } from "../../../../common/commonStaticText.js";
 import { Base } from "../../base.po.js";
 
 // Not a standard event page so don't extend EventPage
@@ -24,12 +23,6 @@ export class CreateCaseLink1Page extends Base {
     "If a group of linked cases has a lead case, you must start from the lead case.",
     "If the cases to be linked has no lead, you can start the linking journey from any of those cases.",
   ];
-  private readonly continueButton: Locator = this.page.locator(
-    Selectors.button,
-    {
-      hasText: CommonStaticText.continue,
-    },
-  );
 
   constructor(page: Page) {
     super(page);

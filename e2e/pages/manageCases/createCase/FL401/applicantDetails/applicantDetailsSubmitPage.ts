@@ -127,7 +127,7 @@ export class ApplicantDetailsSubmitPage {
       );
       await Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${ApplicantDetailsSubmitContent.uploadedFile}")`,
+        `${Selectors.GovLink}:text-is("${ApplicantDetailsSubmitContent.uploadedFile}")`,
         1,
       );
     } else {

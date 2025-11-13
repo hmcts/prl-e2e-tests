@@ -72,7 +72,7 @@ export class C100ConfidentialityCheck1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukText16}:text-is("${C100ConfidentialityCheck1Content.prlCourtAdminText16}")`,
+        `${Selectors.GovukText16}:text-is("${process.env.MANAGE_CASES_TEST_ENV === "demo" ? C100ConfidentialityCheck1Content.prlCourtAdminText16Demo : C100ConfidentialityCheck1Content.prlCourtAdminText16Aat}")`,
         3,
       ),
       Helpers.checkVisibleAndPresent(
@@ -87,52 +87,52 @@ export class C100ConfidentialityCheck1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${C100ConfidentialityCheck1Content.annex1Anchor}")`,
+        `${Selectors.GovLink}:text-is("${C100ConfidentialityCheck1Content.annex1Anchor}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${C100ConfidentialityCheck1Content.C43Anchor}")`,
+        `${Selectors.GovLink}:text-is("${C100ConfidentialityCheck1Content.C43Anchor}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${C100ConfidentialityCheck1Content.mockFileAnchor}")`,
+        `${Selectors.GovLink}:text-is("${C100ConfidentialityCheck1Content.mockFileAnchor}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${C100ConfidentialityCheck1Content.privacyNoticeAnchor}")`,
+        `${Selectors.GovLink}:text-is("${C100ConfidentialityCheck1Content.privacyNoticeAnchor}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${C100ConfidentialityCheck1Content.finalDocumentAnchor}")`,
+        `${Selectors.GovLink}:text-is("${C100ConfidentialityCheck1Content.finalDocumentAnchor}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${C100ConfidentialityCheck1Content.c1ADocumentAnchor}")`,
+        `${Selectors.GovLink}:text-is("${C100ConfidentialityCheck1Content.c1ADocumentAnchor}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${C100ConfidentialityCheck1Content.familyDocumentAnchor}")`,
+        `${Selectors.GovLink}:text-is("${C100ConfidentialityCheck1Content.familyDocumentAnchor}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${C100ConfidentialityCheck1Content.c1ABlankAnchor}")`,
+        `${Selectors.GovLink}:text-is("${C100ConfidentialityCheck1Content.c1ABlankAnchor}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${C100ConfidentialityCheck1Content.blankC7Anchor}")`,
+        `${Selectors.GovLink}:text-is("${C100ConfidentialityCheck1Content.blankC7Anchor}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${C100ConfidentialityCheck1Content.coverLetterAnchor}"):visible`,
+        `${Selectors.GovLink}:text-is("${C100ConfidentialityCheck1Content.coverLetterAnchor}"):visible`,
         3,
       ),
       Helpers.checkGroup(
@@ -144,7 +144,7 @@ export class C100ConfidentialityCheck1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${C100ConfidentialityCheck1Content.c8DocumentAnchor}")`,
+        `${Selectors.GovLink}:text-is("${C100ConfidentialityCheck1Content.c8DocumentAnchor}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -190,7 +190,7 @@ export class C100ConfidentialityCheck1Page {
     const [pdfPage] = await Promise.all([
       page.waitForEvent("popup"),
       packLocator
-        .locator(Selectors.a, {
+        .locator(Selectors.GovLink, {
           hasText: "Annex 1 - Confidential contact details notice.pdf",
         })
         .click(),

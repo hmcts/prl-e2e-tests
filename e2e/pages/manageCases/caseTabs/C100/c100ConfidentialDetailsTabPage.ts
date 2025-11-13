@@ -102,7 +102,7 @@ export class C100ConfidentialDetailsTabPage {
       );
       await Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${C100ConfidentialDetailsTabContent.link}")`,
+        `${Selectors.GovLink}:text-is("${C100ConfidentialDetailsTabContent.link}")`,
         applicantLivesInRefuge && otherPersonLivesInRefuge ? 2 : 1,
       );
     }
@@ -185,8 +185,8 @@ export class C100ConfidentialDetailsTabPage {
           }),
         ).toBeVisible(),
         expect(
-          page.getByRole("link", {
-            name: C100ConfidentialDetailsTabContent.testPdf,
+          page.locator(Selectors.GovLink, {
+            hasText: C100ConfidentialDetailsTabContent.testPdf,
           }),
         ).toBeVisible(),
         expect(

@@ -13,9 +13,6 @@ export class Fl401AddCaseNumber1Page extends EventPage {
   readonly continueButton: Locator = this.page.locator(Selectors.button, {
     hasText: CommonStaticText.continue,
   });
-  readonly previousButton: Locator = this.page.locator(Selectors.button, {
-    hasText: CommonStaticText.previous,
-  });
 
   constructor(page: Page) {
     super(page, "Add case number");
@@ -30,9 +27,5 @@ export class Fl401AddCaseNumber1Page extends EventPage {
 
   async fillInFields(familyManNumber: string): Promise<void> {
     await this.familyManNumberInput.fill(familyManNumber);
-  }
-
-  async clickContinue(): Promise<void> {
-    await this.continueButton.click();
   }
 }
