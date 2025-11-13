@@ -3,10 +3,15 @@ import { expect, Locator, Page } from "@playwright/test";
 import { Selectors } from "../../../common/selectors.js";
 import { CheckYourAnswersTableComponent } from "../../components/exui/checkYourAnswersTable.component.js";
 import { ClippingCoords } from "../../../common/types.js";
+import { CommonStaticText } from "../../../common/commonStaticText.js";
+
+type CyaSubmitButton =
+  | CommonStaticText.submit
+  | CommonStaticText.saveAndContinue;
 
 interface CyaConstructorParams {
   snapshotPath: string[];
-  submitButtonText: string;
+  cyaSubmitButton: CyaSubmitButton;
   customClippingCoords?: ClippingCoords;
 }
 
@@ -21,15 +26,21 @@ export class CheckYourAnswersPage extends EventPage {
   });
   private readonly checkYourAnswersTable: CheckYourAnswersTableComponent =
     new CheckYourAnswersTableComponent(this.page);
+  private readonly submitButtonText: string;
 
   constructor(
     page: Page,
     headingText: string,
-    { snapshotPath, customClippingCoords }: CyaConstructorParams,
+    {
+      snapshotPath,
+      cyaSubmitButton,
+      customClippingCoords,
+    }: CyaConstructorParams,
   ) {
     super(page, headingText);
     this.snapshotPath = snapshotPath;
     this.customClippingCoords = customClippingCoords;
+    this.submitButtonText = cyaSubmitButton;
   }
 
   // might have to implement new snapshot approach and update all snapshots - looks like there are some banners present on demo
@@ -42,7 +53,12 @@ export class CheckYourAnswersPage extends EventPage {
       this.snapshotPath,
       this.customClippingCoords,
     );
-    await expect(this.submitButton).toBeVisible();
+    // not all cya pages have the same "submit" button
+    if (this.submitButtonText === CommonStaticText.saveAndContinue) {
+      await expect(this.saveAndContinueButton).toBeVisible();
+    } else {
+      await expect(this.submitButton).toBeVisible();
+    }
     await expect(this.previousButton).toBeVisible();
   }
 }
