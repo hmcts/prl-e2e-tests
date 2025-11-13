@@ -35,7 +35,7 @@ test.describe("Check Application task for DA Solicitor case tests.", () => {
         await fl401AddCaseNumber1Page.clickContinue();
         await fl401AddCaseNumberSubmitPage.assertPageContents(snapshotName);
         await axeUtils.audit();
-        await fl401AddCaseNumberSubmitPage.clickSubmit();
+        await fl401AddCaseNumberSubmitPage.clickSaveAndContinue();
         await summaryPage.alertBanner.assertEventAlert(
           caseNumber,
           "Add case number",
