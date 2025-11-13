@@ -26,7 +26,7 @@ export class CheckYourAnswersPage extends EventPage {
   });
   private readonly checkYourAnswersTable: CheckYourAnswersTableComponent =
     new CheckYourAnswersTableComponent(this.page);
-  private readonly submitButtonText: string;
+  private readonly cyaSubmitButton: string;
 
   constructor(
     page: Page,
@@ -40,7 +40,7 @@ export class CheckYourAnswersPage extends EventPage {
     super(page, headingText);
     this.snapshotPath = snapshotPath;
     this.customClippingCoords = customClippingCoords;
-    this.submitButtonText = cyaSubmitButton;
+    this.cyaSubmitButton = cyaSubmitButton;
   }
 
   // might have to implement new snapshot approach and update all snapshots - looks like there are some banners present on demo
@@ -54,7 +54,7 @@ export class CheckYourAnswersPage extends EventPage {
       this.customClippingCoords,
     );
     // not all cya pages have the same "submit" button
-    if (this.submitButtonText === CommonStaticText.saveAndContinue) {
+    if (this.cyaSubmitButton === CommonStaticText.saveAndContinue) {
       await expect(this.saveAndContinueButton).toBeVisible();
     } else {
       await expect(this.submitButton).toBeVisible();
