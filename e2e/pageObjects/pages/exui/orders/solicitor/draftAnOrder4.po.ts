@@ -184,7 +184,7 @@ export class DraftAnOrder4Page extends EventPage {
         );
       }
     }
-    
+
     if (recitalsAndPreamble) {
       await this.page
         .getByRole("textbox", {

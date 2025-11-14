@@ -111,7 +111,10 @@ export class DraftAnOrder5Page extends EventPage {
     withNotice,
   }: DraftAnOrderParams): Promise<void> {
     await this.page
-      .getByRole("radio", { name: doesOrderMentionProperty ? "Yes" : "No", exact: true })
+      .getByRole("radio", {
+        name: doesOrderMentionProperty ? "Yes" : "No",
+        exact: true,
+      })
       .check();
     if (doesOrderMentionProperty) {
       await expect(this.addPropertyAddressLabel).toBeVisible();
