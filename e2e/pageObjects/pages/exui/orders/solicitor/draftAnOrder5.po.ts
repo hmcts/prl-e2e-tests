@@ -74,18 +74,6 @@ export class DraftAnOrder5Page extends EventPage {
     "With notice",
     "Without notice",
   ];
-  private readonly continueButton: Locator = this.page.locator(
-    Selectors.button,
-    {
-      hasText: CommonStaticText.continue,
-    },
-  );
-  private readonly previousButton: Locator = this.page.locator(
-    Selectors.button,
-    {
-      hasText: CommonStaticText.previous,
-    },
-  );
 
   constructor(page: Page) {
     super(page, "Draft an order");
@@ -201,9 +189,5 @@ export class DraftAnOrder5Page extends EventPage {
         name: withNotice ? "With notice" : "Without notice",
       })
       .check();
-  }
-
-  async clickContinue(): Promise<void> {
-    await this.continueButton.click();
   }
 }

@@ -1,7 +1,6 @@
 import { EventPage } from "../../eventPage.po.js";
 import { expect, Locator, Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors.js";
-import { CommonStaticText } from "../../../../../common/commonStaticText.js";
 import { OrderTypes } from "../../../../../common/types.js";
 import { Helpers } from "../../../../../common/helpers.js";
 import {
@@ -19,18 +18,6 @@ export class DraftAnOrder20Page extends EventPage {
     hasText:
       "If you want to make further changes, go back to the previous screen.",
   });
-  private readonly continueButton: Locator = this.page.locator(
-    Selectors.button,
-    {
-      hasText: CommonStaticText.continue,
-    },
-  );
-  private readonly previousButton: Locator = this.page.locator(
-    Selectors.button,
-    {
-      hasText: CommonStaticText.previous,
-    },
-  );
   private readonly navigationUtils: NavigationUtils = new NavigationUtils(
     this.page,
   );
@@ -52,13 +39,13 @@ export class DraftAnOrder20Page extends EventPage {
     ).toBeVisible();
     await expect(this.previewOrderHeading).toBeVisible();
     await expect(
-      this.page.getByRole("link", {
+      this.page.getByRole("button", {
         name: this.getOrderNameFromOrderType(orderType, true),
         exact: true,
       }),
     ).toBeVisible();
     await expect(
-      this.page.getByRole("link", {
+      this.page.getByRole("button", {
         name: this.getOrderNameFromOrderType(orderType, false),
         exact: true,
       }),
@@ -91,7 +78,7 @@ export class DraftAnOrder20Page extends EventPage {
     isWelsh: boolean,
     pdfName: string,
   ): Promise<void> {
-    const draftOrderLink: Locator = this.page.getByRole("link", {
+    const draftOrderLink: Locator = this.page.getByRole("button", {
       name: isWelsh ? this.welshPdfLink : this.englishPdfLink,
       exact: true,
     });
@@ -112,9 +99,5 @@ export class DraftAnOrder20Page extends EventPage {
       clippingCoords.centeredPageWithoutToolbar,
       [caseRefLocator, dateLocator],
     );
-  }
-
-  async clickContinue(): Promise<void> {
-    await this.continueButton.click();
   }
 }

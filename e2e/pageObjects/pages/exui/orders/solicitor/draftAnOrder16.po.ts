@@ -2,7 +2,6 @@ import { EventPage } from "../../eventPage.po.js";
 import { expect, Locator, Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors.js";
 import { OrderTypes } from "../../../../../common/types.js";
-import { CommonStaticText } from "../../../../../common/commonStaticText.js";
 import {
   HearingDetailsParams,
   OrderHearingDetailsComponent,
@@ -27,19 +26,6 @@ export class DraftAnOrder16Page extends EventPage {
   });
   private readonly hearingDetails: OrderHearingDetailsComponent =
     new OrderHearingDetailsComponent(this.page, "Hearing");
-
-  private readonly continueButton: Locator = this.page.locator(
-    Selectors.button,
-    {
-      hasText: CommonStaticText.continue,
-    },
-  );
-  private readonly previousButton: Locator = this.page.locator(
-    Selectors.button,
-    {
-      hasText: CommonStaticText.previous,
-    },
-  );
 
   constructor(page: Page) {
     super(page, "Draft an order");
@@ -73,9 +59,5 @@ export class DraftAnOrder16Page extends EventPage {
       await this.hearingDetails.assertHearingDetailsContents();
       await this.hearingDetails.fillInHearingDetails(hearingDetails);
     }
-  }
-
-  async clickContinue(): Promise<void> {
-    await this.continueButton.click();
   }
 }

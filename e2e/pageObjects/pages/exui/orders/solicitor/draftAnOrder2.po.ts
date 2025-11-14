@@ -1,7 +1,6 @@
 import { EventPage } from "../../eventPage.po.js";
 import { expect, Locator, Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors.js";
-import { CommonStaticText } from "../../../../../common/commonStaticText.js";
 import { OrderTypes, OrderTypesArray } from "../../../../../common/types.js";
 
 export class DraftAnOrder2Page extends EventPage {
@@ -15,19 +14,6 @@ export class DraftAnOrder2Page extends EventPage {
   private readonly orderTypeLabel: Locator = this.page.locator(
     Selectors.GovukFormLabel,
     { hasText: "Select the type of order" },
-  );
-
-  private readonly continueButton: Locator = this.page.locator(
-    Selectors.button,
-    {
-      hasText: CommonStaticText.continue,
-    },
-  );
-  private readonly previousButton: Locator = this.page.locator(
-    Selectors.button,
-    {
-      hasText: CommonStaticText.previous,
-    },
   );
 
   constructor(page: Page) {
@@ -44,9 +30,5 @@ export class DraftAnOrder2Page extends EventPage {
 
   async selectOrderType(orderType: OrderTypes): Promise<void> {
     await this.page.getByRole("radio", { name: orderType }).check();
-  }
-
-  async clickContinue(): Promise<void> {
-    await this.continueButton.click();
   }
 }

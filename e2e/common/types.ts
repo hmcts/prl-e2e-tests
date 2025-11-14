@@ -400,15 +400,16 @@ export type NonMolestationRespondentMustNotDoOptions =
   | "must not telephone, text, email or otherwise contact or attempt to contact the relevant children"
   | "must not go to, enter or attempt to enter the school";
 
-export const NonMolestationRespondentMustNotDoOptionsArray: NonMolestationRespondentMustNotDoOptions[] = [
-  "use or threaten violence against the applicant, and must not instruct, encourage or in any way suggest that any other person should do so",
-  "must not intimidate, harass or pester the applicant, and must not instruct, encourage or in any way suggest that any other person should do so",
-  "must not telephone, text, email or otherwise contact or attempt to contact the applicant",
-  "must not damage, attempt to damage or threaten to damage any property owned by or in the possession or control of the applicant, and must not instruct, encourage or in any way suggest that any other person should do so",
-  "must not damage, attempt to damage or threaten to damage the property or contents of the property, and must not instruct, encourage or in any way suggest that any other person should do so",
-  "must not go to, enter or attempt to enter the property",
-  "must not use or threaten violence against the relevant children, and must not instruct, encourage or in any way suggest that any other person should do so",
-  "must not intimidate, harass or pester the relevant children, and must not instruct, encourage or in any way suggest that any other person should do so",
-  "must not telephone, text, email or otherwise contact or attempt to contact the relevant children",
-  "must not go to, enter or attempt to enter the school",
-];
+export const NonMolestationRespondentMustNotDoOptionsArray: NonMolestationRespondentMustNotDoOptions[] =
+  [
+    "use or threaten violence against the applicant, and must not instruct, encourage or in any way suggest that any other person should do so",
+    "must not intimidate, harass or pester the applicant, and must not instruct, encourage or in any way suggest that any other person should do so",
+    "must not telephone, text, email or otherwise contact or attempt to contact the applicant",
+    "must not damage, attempt to damage or threaten to damage any property owned by or in the possession or control of the applicant, and must not instruct, encourage or in any way suggest that any other person should do so",
+    "must not damage, attempt to damage or threaten to damage the property or contents of the property, and must not instruct, encourage or in any way suggest that any other person should do so",
+    "must not go to, enter or attempt to enter the property",
+    "must not use or threaten violence against the relevant children, and must not instruct, encourage or in any way suggest that any other person should do so",
+    "must not intimidate, harass or pester the relevant children, and must not instruct, encourage or in any way suggest that any other person should do so",
+    "must not telephone, text, email or otherwise contact or attempt to contact the relevant children",
+    "must not go to, enter or attempt to enter the school",
+  ];

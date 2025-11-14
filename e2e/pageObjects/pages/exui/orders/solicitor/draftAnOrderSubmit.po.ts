@@ -6,7 +6,7 @@ export class DraftAnOrderSubmitPage extends CheckYourAnswersPage {
   constructor(page: Page) {
     super(page, "Draft an order", {
       snapshotPath: ["caseWorker", "nonMolestationOrder"],
-      submitButtonText: CommonStaticText.submit,
+      cyaSubmitButton: CommonStaticText.submit,
     });
   }
 }

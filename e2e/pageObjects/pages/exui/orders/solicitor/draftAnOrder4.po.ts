@@ -6,7 +6,6 @@ import {
   OrderTypes,
 } from "../../../../../common/types.js";
 import { Selectors } from "../../../../../common/selectors.js";
-import { CommonStaticText } from "../../../../../common/commonStaticText.js";
 
 interface DayMonthYear {
   day: string;
@@ -96,18 +95,6 @@ export class DraftAnOrder4Page extends EventPage {
     this.page.locator(Selectors.GovukFormLabel, {
       hasText: "At which hearing was the order approved?",
     });
-  private readonly continueButton: Locator = this.page.locator(
-    Selectors.button,
-    {
-      hasText: CommonStaticText.continue,
-    },
-  );
-  private readonly previousButton: Locator = this.page.locator(
-    Selectors.button,
-    {
-      hasText: CommonStaticText.previous,
-    },
-  );
 
   constructor(page: Page) {
     super(page, "Draft an order");
@@ -235,9 +222,5 @@ export class DraftAnOrder4Page extends EventPage {
         })
         .fill(directions);
     }
-  }
-
-  async clickContinue(): Promise<void> {
-    await this.continueButton.click();
   }
 }

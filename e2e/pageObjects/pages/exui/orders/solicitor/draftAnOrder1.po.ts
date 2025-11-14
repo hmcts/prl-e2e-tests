@@ -1,7 +1,6 @@
 import { EventPage } from "../../eventPage.po.js";
 import { expect, Locator, Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors.js";
-import { CommonStaticText } from "../../../../../common/commonStaticText.js";
 
 export class DraftAnOrder1Page extends EventPage {
   private readonly descriptionLabel: Locator = this.page.locator(
@@ -18,18 +17,6 @@ export class DraftAnOrder1Page extends EventPage {
   private readonly uploadAnOrderRadio: Locator = this.page.getByRole("radio", {
     name: "Upload an order",
   });
-  private readonly continueButton: Locator = this.page.locator(
-    Selectors.button,
-    {
-      hasText: CommonStaticText.continue,
-    },
-  );
-  private readonly previousButton: Locator = this.page.locator(
-    Selectors.button,
-    {
-      hasText: CommonStaticText.previous,
-    },
-  );
 
   constructor(page: Page) {
     super(page, "Draft an order");
@@ -49,9 +36,5 @@ export class DraftAnOrder1Page extends EventPage {
     } else {
       await this.uploadAnOrderRadio.check();
     }
-  }
-
-  async clickContinue(): Promise<void> {
-    await this.continueButton.click();
   }
 }
