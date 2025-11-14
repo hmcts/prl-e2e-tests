@@ -3,9 +3,8 @@ import { expect, Locator, Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors.js";
 
 export class DraftAnOrder1Page extends EventPage {
-  private readonly descriptionLabel: Locator = this.page.locator(
-    Selectors.GovukFormLabel,
-    { hasText: "What do you want to do?" },
+  private readonly descriptionLabel: Locator = this.page.getByText(
+    "What do you want to do?",
   );
   private readonly actionLabels: string[] = [
     "Draft an order",

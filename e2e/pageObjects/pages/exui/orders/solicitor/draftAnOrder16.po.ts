@@ -15,17 +15,15 @@ interface DraftAnOrderParams {
 export class DraftAnOrder16Page extends EventPage {
   private readonly yesAndNoLabels: string[] = ["Yes", "No"];
   private readonly judgeProvidedHearingDetailsLabel: Locator =
-    this.page.locator(Selectors.GovukFormLabel, {
-      hasText: "Has the judge provided you with the hearing details?",
-    });
-  private readonly optionalHearingHeading = this.page.locator(Selectors.h3, {
-    hasText: "Creating a hearing is optional",
+    this.page.getByText("Has the judge provided you with the hearing details?");
+  private readonly optionalHearingHeading = this.page.getByRole("heading", {
+    name: "Creating a hearing is optional",
   });
-  private readonly optionalHearingDescription = this.page.locator(Selectors.p, {
-    hasText: "You can create multiple hearings",
-  });
+  private readonly optionalHearingDescription = this.page.getByText(
+    "You can create multiple hearings",
+  );
   private readonly hearingDetails: OrderHearingDetailsComponent =
-    new OrderHearingDetailsComponent(this.page, "Hearing");
+    new OrderHearingDetailsComponent(this.page);
 
   constructor(page: Page) {
     super(page, "Draft an order");
@@ -33,9 +31,7 @@ export class DraftAnOrder16Page extends EventPage {
 
   async assertPageContents(orderType: OrderTypes): Promise<void> {
     await this.assertPageHeadings();
-    await expect(
-      this.page.locator(Selectors.headingH3, { hasText: orderType }),
-    ).toBeVisible();
+    await expect(this.page.getByText(orderType)).toBeVisible();
     await expect(this.judgeProvidedHearingDetailsLabel).toBeVisible();
     await this.checkStrings(
       `#hasJudgeProvidedHearingDetails ${Selectors.GovukFormLabel}`,
@@ -50,14 +46,16 @@ export class DraftAnOrder16Page extends EventPage {
     hearingDetails,
   }: DraftAnOrderParams): Promise<void> {
     await this.page
-      .locator("#hasJudgeProvidedHearingDetails")
-      .getByRole("radio", {
-        name: hasJudgeProvidedHearingDetails ? "Yes" : "No",
-      })
+      .getByRole("group", { name: "Has the judge provided you" })
+      .getByLabel(hasJudgeProvidedHearingDetails ? "Yes" : "No")
       .check();
     if (hasJudgeProvidedHearingDetails) {
+      await expect(this.optionalHearingHeading).toBeVisible();
+      await expect(this.optionalHearingDescription).toBeVisible();
       await this.hearingDetails.assertHearingDetailsContents();
       await this.hearingDetails.fillInHearingDetails(hearingDetails);
     }
+    await expect(this.continueButton).toBeVisible();
+    await expect(this.previousButton).toBeVisible();
   }
 }

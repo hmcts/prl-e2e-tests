@@ -1,6 +1,5 @@
 import { EventPage } from "../../eventPage.po.js";
 import { expect, Locator, Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors.js";
 import { OrderTypes } from "../../../../../common/types.js";
 import { Helpers } from "../../../../../common/helpers.js";
 import {
@@ -10,14 +9,13 @@ import {
 import { NavigationUtils } from "../../../../../utils/navigation.utils.js";
 
 export class DraftAnOrder20Page extends EventPage {
-  private readonly previewOrderHeading: Locator = this.page.locator(
-    Selectors.h2,
-    { hasText: "Preview the order" },
+  private readonly previewOrderHeading: Locator = this.page.getByRole(
+    "heading",
+    { name: "Preview the order" },
   );
-  private readonly paragraph: Locator = this.page.locator(Selectors.p, {
-    hasText:
-      "If you want to make further changes, go back to the previous screen.",
-  });
+  private readonly paragraph: Locator = this.page.getByText(
+    "If you want to make further changes, go back to the previous screen.",
+  );
   private readonly navigationUtils: NavigationUtils = new NavigationUtils(
     this.page,
   );
@@ -34,9 +32,7 @@ export class DraftAnOrder20Page extends EventPage {
     pdfName: string,
   ): Promise<void> {
     await this.assertPageHeadings();
-    await expect(
-      this.page.locator(Selectors.headingH3, { hasText: orderType }),
-    ).toBeVisible();
+    await expect(this.page.getByText(orderType)).toBeVisible();
     await expect(this.previewOrderHeading).toBeVisible();
     await expect(
       this.page.getByRole("button", {
@@ -95,7 +91,7 @@ export class DraftAnOrder20Page extends EventPage {
     const mediaViewerPage = new ExuiMediaViewerPage(pdfPage);
     await mediaViewerPage.runVisualTestOnAllPages(
       pdfPage,
-      ["caseWorker", "nonMolestationOrder", regionalPdfName],
+      ["solicitor", "draftNonMolestationOrder", regionalPdfName],
       clippingCoords.centeredPageWithoutToolbar,
       [caseRefLocator, dateLocator],
     );

@@ -4,16 +4,11 @@ import { Selectors } from "../../../../../common/selectors.js";
 import { OrderTypes, OrderTypesArray } from "../../../../../common/types.js";
 
 export class DraftAnOrder2Page extends EventPage {
-  private readonly insetText: Locator = this.page.locator(
-    Selectors.GovukInsetText,
-    {
-      hasText:
-        "If the order you need is not on the list, go back to the previous page to upload it.",
-    },
+  private readonly insetText: Locator = this.page.getByText(
+    "If the order you need is not on the list, go back to the previous page to upload it.",
   );
-  private readonly orderTypeLabel: Locator = this.page.locator(
-    Selectors.GovukFormLabel,
-    { hasText: "Select the type of order" },
+  private readonly orderTypeLabel: Locator = this.page.getByText(
+    "Select the type of order",
   );
 
   constructor(page: Page) {
@@ -22,6 +17,7 @@ export class DraftAnOrder2Page extends EventPage {
 
   async assertPageContents(): Promise<void> {
     await this.assertPageHeadings();
+    await expect(this.insetText).toBeVisible();
     await expect(this.orderTypeLabel).toBeVisible();
     await this.checkStrings(Selectors.GovukFormLabel, OrderTypesArray);
     await expect(this.continueButton).toBeVisible();

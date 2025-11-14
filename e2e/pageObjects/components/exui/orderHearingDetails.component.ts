@@ -1,6 +1,4 @@
 import { expect, Locator, Page } from "@playwright/test";
-import { Selectors } from "../../../common/selectors.js";
-import { CommonStaticText } from "../../../common/commonStaticText.js";
 
 interface DayHourMinute {
   days?: string;
@@ -21,8 +19,37 @@ type HearingWillBeBeforeOptions =
   | "District judge"
   | "Circuit judge";
 
+type HearingType =
+  | "2nd Gatekeeping Appointment"
+  | "Allocation"
+  | "Appeal"
+  | "Application"
+  | "Breach"
+  | "Case Management Conference"
+  | "Case Management Hearing"
+  | "Committal"
+  | "Conciliation"
+  | "Costs"
+  | "Decision Hearing"
+  | "Directions (First/Further)"
+  | "Dispute Resolution Appointment"
+  | "Further Case Management Hearing"
+  | "Full/Final hearing"
+  | "First Hearing Dispute Resolution Appointment (FHDRA)"
+  | "First Hearing"
+  | "Finding of Fact"
+  | "Ground Rules Hearing"
+  | "Human Rights Act Application"
+  | "Judgment"
+  | "Neutral Evaluation Hearing"
+  | "Permission Hearing"
+  | "Pre Hearing Review"
+  | "Review"
+  | "Settlement Conference"
+  | "Safeguarding Gatekeeping Appointment";
+
 export interface HearingDetailsParams {
-  hearingType?: string; // this should probably have it's own custom type - that would be effort though
+  hearingType?: HearingType;
   hearingDateAndTime: string;
   estimatedTime: DayHourMinute;
   howDoesHearingNeedToTakePlace: HowHearingTakesPlaceOptions;
@@ -37,41 +64,29 @@ export interface HearingDetailsParams {
 }
 
 export class OrderHearingDetailsComponent {
-  private readonly hearingTitle: Locator;
   private readonly hearingsTitle = this.page
-    .locator(Selectors.h2)
-    .getByText("Hearing", { exact: true });
-  private readonly hearingTypeLabel = this.page.locator(
-    Selectors.GovukFormLabel,
-    {
-      hasText: "Hearing Type (Optional)",
-    },
+    .getByRole("heading", { name: "Hearing", exact: true })
+    .nth(0);
+  private readonly hearingTitle = this.page
+    .getByRole("heading", { name: "Hearing", exact: true })
+    .nth(1);
+  private readonly hearingTypeLabel = this.page.getByText(
+    "Hearing Type (Optional)",
   );
-  private readonly enterDateAndTimeLabel = this.page.locator(
-    Selectors.GovukFormLabel,
-    {
-      hasText: "Enter date and time",
-    },
+  private readonly enterDateAndTimeLabel = this.page.getByText(
+    "Enter date and time",
   );
-  private readonly estimatedTimeLabel = this.page.locator(Selectors.p, {
-    hasText: "Estimated time",
-  });
-  private readonly dateTimeInputDescriptionLabel = this.page.locator(
-    Selectors.p,
-    {
-      hasText: "A minimum of one input is required",
-    },
+  private readonly estimatedTimeLabel = this.page.getByText("Estimated time");
+  private readonly dateTimeInputDescriptionLabel = this.page.getByText(
+    "A minimum of one input is required",
   );
   private readonly timeOptions: string[] = [
     "Days (Optional)",
     "Hours (Optional)",
     "Minutes (Optional)",
   ];
-  private readonly howDoesHearingNeedToTakePlaceLabel = this.page.locator(
-    Selectors.GovukFormLabel,
-    {
-      hasText: "How does the hearing need to take place?",
-    },
+  private readonly howDoesHearingNeedToTakePlaceLabel = this.page.getByText(
+    "How does the hearing need to take place?",
   );
   private readonly howDoesHearingNeedToTakePlaceOptions: string[] = [
     "In person",
@@ -79,23 +94,14 @@ export class OrderHearingDetailsComponent {
     "Video",
     "On the papers",
   ];
-  private readonly willAllPartiesAttendInTheSameWayLabel = this.page.locator(
-    Selectors.GovukFormLabel,
-    {
-      hasText: "Will all parties attend the hearing in the same way?",
-    },
+  private readonly willAllPartiesAttendInTheSameWayLabel = this.page.getByText(
+    "Will all parties attend the hearing in the same way?",
   );
-  private readonly hearingLocationLabel = this.page.locator(
-    Selectors.GovukFormLabel,
-    {
-      hasText: "Hearing location (Optional)",
-    },
+  private readonly hearingLocationLabel = this.page.getByText(
+    "Hearing location (Optional)",
   );
-  private readonly hearingWillBeBeforeLabel = this.page.locator(
-    Selectors.GovukFormLabel,
-    {
-      hasText: "This hearing will be before (Optional)",
-    },
+  private readonly hearingWillBeBeforeLabel = this.page.getByText(
+    "This hearing will be before (Optional)",
   );
   private readonly hearingWillBeBeforeOptions: string[] = [
     "Legal adviser",
@@ -103,80 +109,44 @@ export class OrderHearingDetailsComponent {
     "District judge",
     "Circuit judge",
   ];
-  private readonly hearingJudgeLabel = this.page.locator(
-    Selectors.GovukFormLabel,
-    {
-      hasText: "Hearing judge (Optional)",
-    },
+  private readonly hearingJudgeLabel = this.page.getByText(
+    "Hearing judge (Optional)",
   );
-  private readonly hearingListedWithLinkedCaseLabel = this.page.locator(
-    Selectors.GovukFormLabel,
-    {
-      hasText: "Hearing listed with a linked case (Optional)",
-    },
+  private readonly hearingListedWithLinkedCaseLabel = this.page.getByText(
+    "Hearing listed with a linked case (Optional)",
   );
-  private readonly joiningInstructionsLabel = this.page.locator(
-    Selectors.GovukFormLabel,
-    {
-      hasText: "Insert joining instructions for remote hearing (Optional)",
-    },
+  private readonly joiningInstructionsLabel = this.page.getByText(
+    "Insert joining instructions for remote hearing (Optional)",
   );
-  private readonly additionalHearingDetailsLabel = this.page.locator(
-    Selectors.GovukFormLabel,
-    {
-      hasText: "Additional hearing details (Optional)",
-    },
-  );
-  private readonly continueButton: Locator = this.page.locator(
-    Selectors.button,
-    {
-      hasText: CommonStaticText.continue,
-    },
-  );
-  private readonly previousButton: Locator = this.page.locator(
-    Selectors.button,
-    {
-      hasText: CommonStaticText.previous,
-    },
+  private readonly additionalHearingDetailsLabel = this.page.getByText(
+    "Additional hearing details (Optional)",
   );
 
-  constructor(
-    private page: Page,
-    hearingTitle: string,
-  ) {
-    this.hearingTitle = this.page.locator(Selectors.headingH3, {
-      hasText: hearingTitle,
-    });
-  }
+  constructor(private page: Page) {}
 
   async assertHearingDetailsContents(): Promise<void> {
     await expect(this.hearingsTitle).toBeVisible();
-    await this.assertMultipleButtons(CommonStaticText.addNew, 4);
-    await this.assertMultipleButtons(CommonStaticText.remove, 2);
+    await this.assertMultipleButtons("Add new", 4);
+    await this.assertMultipleButtons("Remove", 2);
     await expect(this.hearingTitle).toBeVisible();
     await expect(this.hearingTypeLabel).toBeVisible();
     await expect(this.enterDateAndTimeLabel).toBeVisible();
     await expect(this.estimatedTimeLabel).toBeVisible();
     await expect(this.dateTimeInputDescriptionLabel).toBeVisible();
-    await this.assertStrings(Selectors.GovukFormLabel, this.timeOptions);
+    await this.assertStrings(this.timeOptions);
     await expect(this.howDoesHearingNeedToTakePlaceLabel).toBeVisible();
     await this.assertStrings(
-      Selectors.GovukFormLabel,
       this.howDoesHearingNeedToTakePlaceOptions,
+      this.page.getByRole("group", { name: "How does the hearing need to" }),
     );
     await expect(this.willAllPartiesAttendInTheSameWayLabel).toBeVisible();
     await expect(this.hearingLocationLabel).toBeVisible();
     await expect(this.hearingWillBeBeforeLabel).toBeVisible();
-    await this.assertStrings(
-      Selectors.GovukFormLabel,
-      this.hearingWillBeBeforeOptions,
-    );
+    await this.assertStrings(this.hearingWillBeBeforeOptions);
     await expect(this.hearingJudgeLabel).toBeVisible();
     await expect(this.hearingListedWithLinkedCaseLabel).toBeVisible();
     await expect(this.joiningInstructionsLabel).toBeVisible();
     await expect(this.additionalHearingDetailsLabel).toBeVisible();
-    await expect(this.continueButton).toBeVisible();
-    await expect(this.previousButton).toBeVisible();
   }
 
   async fillInHearingDetails({
@@ -193,26 +163,27 @@ export class OrderHearingDetailsComponent {
     additionalHearingInstructions,
   }: HearingDetailsParams): Promise<void> {
     if (hearingType) {
-      await this.page.selectOption(
-        "#ordersHearingDetails_0_hearingTypes",
-        hearingType,
-      );
+      await this.page
+        .getByLabel("Hearing Type (Optional)")
+        .selectOption(hearingType);
     }
-    await this.page.locator(".mat-datepicker-input").fill(hearingDateAndTime);
+    await this.page
+      .getByRole("textbox", { name: "Please enter a date and time" })
+      .fill(hearingDateAndTime);
     if (estimatedTime) {
       if (estimatedTime.days) {
         await this.page
-          .locator("#ordersHearingDetails_0_hearingEstimatedDays")
+          .getByRole("textbox", { name: "Days (Optional)" })
           .fill(estimatedTime.days);
       }
       if (estimatedTime.hours) {
         await this.page
-          .locator("#ordersHearingDetails_0_hearingEstimatedHours")
+          .getByRole("textbox", { name: "Hours (Optional)" })
           .fill(estimatedTime.hours);
       }
       if (estimatedTime.minutes) {
         await this.page
-          .locator("#ordersHearingDetails_0_hearingEstimatedMinutes")
+          .getByRole("textbox", { name: "Minutes (Optional)" })
           .fill(estimatedTime.minutes);
       }
     }
@@ -220,7 +191,7 @@ export class OrderHearingDetailsComponent {
       .getByRole("radio", { name: howDoesHearingNeedToTakePlace })
       .check();
     await this.page
-      .locator("#ordersHearingDetails_0_allPartiesAttendHearingSameWayYesOrNo")
+      .getByRole("group", { name: "Will all parties attend the" })
       .getByRole("radio", {
         name: willAllPartiesAttendTheSameWay ? "Yes" : "No",
       })
@@ -229,36 +200,38 @@ export class OrderHearingDetailsComponent {
       // TODO: how to handle this
     }
     if (hearingLocation) {
-      await this.page.selectOption(
-        "#ordersHearingDetails_0_courtList",
-        hearingLocation,
-      );
+      await this.page
+        .getByLabel("Hearing location (Optional)")
+        .selectOption(hearingLocation);
     }
     if (hearingWillBeBefore) {
       await this.page.getByRole("radio", { name: hearingWillBeBefore }).check();
     }
     if (hearingJudge) {
       await this.page
-        .locator("#ordersHearingDetails_0_hearingJudgeNameAndEmail")
+        .getByRole("combobox", { name: "Hearing judge (Optional)" })
         .fill(hearingJudge);
       await this.page
         .locator(".mat-option-text", { hasText: hearingJudge })
         .click();
     }
     if (hearingListedWithALinkedCase) {
-      await this.page.selectOption(
-        "#ordersHearingDetails_0_hearingListedLinkedCases",
-        hearingListedWithALinkedCase,
-      );
+      await this.page
+        .getByLabel("Hearing listed with a linked")
+        .selectOption(hearingListedWithALinkedCase);
     }
     if (joiningInstructionsForRemoteHearing) {
       await this.page
-        .locator("#ordersHearingDetails_0_instructionsForRemoteHearing")
+        .getByRole("textbox", {
+          name: "Insert joining instructions for remote hearing (Optional)",
+        })
         .fill(joiningInstructionsForRemoteHearing);
     }
     if (additionalHearingInstructions) {
       await this.page
-        .locator("#ordersHearingDetails_0_additionalHearingDetails")
+        .getByRole("textbox", {
+          name: "Additional hearing details (Optional)",
+        })
         .fill(additionalHearingInstructions);
     }
   }
@@ -268,20 +241,26 @@ export class OrderHearingDetailsComponent {
     buttonName: string,
     count: number,
   ): Promise<void> {
-    const buttonLocator: Locator = this.page
-      .locator(".button")
-      .filter({ hasText: buttonName, visible: true });
+    const buttonLocator: Locator = this.page.getByRole("button", {
+      name: buttonName,
+    });
     await expect(buttonLocator).toHaveCount(count);
   }
 
+  // TODO: this is similar to the checkStrings method somewhere else - probably move both into a helper
   private async assertStrings(
-    selector: string,
     stringArray: string[],
+    locator?: Locator,
   ): Promise<void> {
     for (const string of stringArray) {
-      await expect(
-        this.page.locator(selector).getByText(string, { exact: true }),
-      ).toBeVisible();
+      // use locator if more specificity is needed
+      if (locator) {
+        await expect(locator.getByText(string, { exact: true })).toBeVisible();
+      } else {
+        await expect(
+          this.page.getByText(string, { exact: true }),
+        ).toBeVisible();
+      }
     }
   }
 }

@@ -1,14 +1,14 @@
-import { test } from "../../../fixtures.ts";
-import Config from "../../../../utils/config.utils.ts";
-import config from "../../../../utils/config.utils.ts";
+import { test } from "../../../../fixtures.ts";
+import Config from "../../../../../utils/config.utils.ts";
+import config from "../../../../../utils/config.utils.ts";
 import {
   JudgeOrMagistrateTitles,
   NonMolestationRespondentMustNotDoOptions,
   OrderTypes,
-} from "../../../../common/types.js";
-import { OrderLengthOptions } from "../../../../pageObjects/pages/exui/orders/solicitor/draftAnOrder5.po.js";
-import { HearingDetailsParams } from "../../../../pageObjects/components/exui/orderHearingDetails.component.js";
-import { OrderInformation } from "../../../../pageObjects/pages/exui/caseView/draftOrders.po.js";
+} from "../../../../../common/types.js";
+import { OrderLengthOptions } from "../../../../../pageObjects/pages/exui/orders/solicitor/draftAnOrder5.po.js";
+import { HearingDetailsParams } from "../../../../../pageObjects/components/exui/orderHearingDetails.component.js";
+import { OrderInformation } from "../../../../../pageObjects/pages/exui/caseView/draftOrders.po.js";
 
 const noToAllParams = {
   isDraftAnOrder: true,
@@ -114,7 +114,7 @@ const yesToAllParams = {
         orderCreatedBy: "AAT Solicitor",
         status: "Drafted by Solicitor",
       },
-      childrenList: ["Joe Doe","Simon Anderson"],
+      childrenList: ["Joe Doe", "Simon Anderson"],
       isOrderAboutChildren: true,
     },
   ] as OrderInformation[],

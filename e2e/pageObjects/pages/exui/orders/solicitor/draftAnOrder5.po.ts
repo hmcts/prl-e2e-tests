@@ -1,7 +1,6 @@
 import { EventPage } from "../../eventPage.po.js";
 import { expect, Locator, Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors.js";
-import { CommonStaticText } from "../../../../../common/commonStaticText.js";
 import {
   NonMolestationRespondentMustNotDoOptions,
   NonMolestationRespondentMustNotDoOptionsArray,
@@ -30,46 +29,34 @@ interface DraftAnOrderParams {
 
 export class DraftAnOrder5Page extends EventPage {
   private readonly yesAndNoLabels: string[] = ["Yes", "No"];
-  private readonly doesOrderMentionPropertyLabel: Locator = this.page.locator(
-    Selectors.GovukFormLabel,
-    { hasText: "Does the order mention a property?" },
+  private readonly doesOrderMentionPropertyLabel: Locator = this.page.getByText(
+    "Does the order mention a property?",
   );
-  private readonly addPropertyAddressLabel: Locator = this.page.locator(
-    Selectors.GovukFormLabel,
-    {
-      hasText: "Add the address of the property",
-    },
+  private readonly addPropertyAddressLabel: Locator = this.page.getByText(
+    "Add the address of the property",
   );
   private readonly respondentMustNotDoFollowingTitle: Locator =
-    this.page.locator(Selectors.h1, {
-      hasText: "The respondent must not do the following:",
+    this.page.getByRole("heading", {
+      name: "The respondent must not do the following:",
     });
-  private readonly selectAnyThatApplyLabel: Locator = this.page.locator(
-    Selectors.GovukFormLabel,
-    {
-      hasText: "Select any that apply (Optional)",
-    },
+  private readonly selectAnyThatApplyLabel: Locator = this.page.getByText(
+    "Select any that apply (Optional)",
   );
-  private readonly addNewButton: Locator = this.page.locator(Selectors.button, {
-    hasText: CommonStaticText.addNew,
+  private readonly addNewButton: Locator = this.page.getByRole("button", {
+    name: "Add new",
   });
-  private readonly howLongWillOrderBeInForceLabel: Locator = this.page.locator(
-    Selectors.GovukFormLabel,
-    { hasText: "How long will the order be in force?" },
-  );
+  private readonly howLongWillOrderBeInForceLabel: Locator =
+    this.page.getByText("How long will the order be in force?");
   private readonly orderEndDateTimeOptionsArray: OrderLengthOptions[] = [
     "No fixed end date",
     "Until the next hearing",
     "Specific date and time",
   ];
-  private readonly costsOfThisApplicationLabel: Locator = this.page.locator(
-    Selectors.GovukFormLabel,
-    { hasText: "Costs of this application (Optional)" },
+  private readonly costsOfThisApplicationLabel: Locator = this.page.getByText(
+    "Costs of this application (Optional)",
   );
   private readonly orderMadeWithOrWithoutNoticeLabel: Locator =
-    this.page.locator(Selectors.GovukFormLabel, {
-      hasText: "Is this order made with or without notice?",
-    });
+    this.page.getByText("Is this order made with or without notice?");
   private readonly withOrWithoutNoticeOptions: string[] = [
     "With notice",
     "Without notice",
@@ -81,9 +68,7 @@ export class DraftAnOrder5Page extends EventPage {
 
   async assertPageContents(orderType: OrderTypes): Promise<void> {
     await this.assertPageHeadings();
-    await expect(
-      this.page.locator(Selectors.headingH3, { hasText: orderType }),
-    ).toBeVisible();
+    await expect(this.page.getByText(orderType)).toBeVisible();
     await expect(this.doesOrderMentionPropertyLabel).toBeVisible();
     await this.checkStrings(
       `#fl404CustomFields_fl404bMentionedProperty ${Selectors.GovukFormLabel}`,
@@ -126,8 +111,7 @@ export class DraftAnOrder5Page extends EventPage {
     withNotice,
   }: DraftAnOrderParams): Promise<void> {
     await this.page
-      .locator("#fl404CustomFields_fl404bMentionedProperty")
-      .getByRole("radio", { name: doesOrderMentionProperty ? "Yes" : "No" })
+      .getByRole("radio", { name: doesOrderMentionProperty ? "Yes" : "No", exact: true })
       .check();
     if (doesOrderMentionProperty) {
       await expect(this.addPropertyAddressLabel).toBeVisible();
@@ -163,7 +147,7 @@ export class DraftAnOrder5Page extends EventPage {
         }
         if (option === "must not go to, enter or attempt to enter the school") {
           await this.page
-            .locator("#fl404CustomFields_fl404bAddSchool")
+            .getByRole("textbox", { name: "Add school name" })
             .fill(schoolName);
           await this.page
             .locator("#fl404CustomFields_fl404bAddMoreDetailsSchool")
@@ -174,8 +158,7 @@ export class DraftAnOrder5Page extends EventPage {
     await this.page.getByRole("radio", { name: orderLength }).check();
     if (specificDateAndTime) {
       await this.page
-        .locator("#orderSpecifiedDateTime")
-        .getByLabel("Please enter a date and time")
+        .getByRole("textbox", { name: "Please enter a date and time" })
         .fill(specificDateAndTime);
     }
     if (costsOfApplication) {
@@ -184,7 +167,6 @@ export class DraftAnOrder5Page extends EventPage {
         .fill(costsOfApplication);
     }
     await this.page
-      .locator("#fl404CustomFields_fl404bIsNoticeGiven")
       .getByRole("radio", {
         name: withNotice ? "With notice" : "Without notice",
       })
