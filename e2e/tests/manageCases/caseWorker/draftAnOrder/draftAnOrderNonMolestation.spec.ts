@@ -8,6 +8,7 @@ import {
 } from "../../../../common/types.js";
 import { OrderLengthOptions } from "../../../../pageObjects/pages/exui/orders/solicitor/draftAnOrder5.po.js";
 import { HearingDetailsParams } from "../../../../pageObjects/components/exui/orderHearingDetails.component.js";
+import { OrderInformation } from "../../../../pageObjects/pages/exui/caseView/draftOrders.po.js";
 
 const noToAllParams = {
   isDraftAnOrder: true,
@@ -38,6 +39,18 @@ const noToAllParams = {
   hasJudgeProvidedHearingDetails: false,
   hearingDetails: undefined as HearingDetailsParams,
   snapshotName: "draft-order-non-molestation-no-to-all",
+  orderInformation: [
+    {
+      typeOfOrder: "Non-molestation order (FL404A)" as OrderTypes,
+      welshDocument: "welsh_non_molestation_order_fl404a_draft.pdf",
+      englishDocument: "non_molestation_order_fl404a_draft.pdf",
+      otherDetails: {
+        orderCreatedBy: "AAT Solicitor",
+        status: "Drafted by Solicitor",
+      },
+      isOrderAboutChildren: false,
+    },
+  ] as OrderInformation[],
 };
 
 const yesToAllParams = {
@@ -91,20 +104,30 @@ const yesToAllParams = {
     additionalHearingInstructions: "Test additional hearing instructions",
   } as HearingDetailsParams,
   snapshotName: "draft-order-non-molestation-yes-to-all",
+  orderInformation: [
+    {
+      typeOfOrder: "Non-molestation order (FL404A)" as OrderTypes,
+      welshDocument: "welsh_non_molestation_order_fl404a_draft.pdf",
+      englishDocument: "non_molestation_order_fl404a_draft.pdf",
+      otherDetails: {
+        orderMadeBy: "Test judge name",
+        orderCreatedBy: "AAT Solicitor",
+        status: "Drafted by Solicitor",
+      },
+      childrenList: ["Joe Doe","Simon Anderson"],
+      isOrderAboutChildren: true,
+    },
+  ] as OrderInformation[],
 };
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
-// Just have two tests one which fills out as little as possible and one which fills out as much as possible
+
 test.describe("Draft a non molestation order tests", (): void => {
   let caseNumber: string;
 
   test.beforeEach(async ({ browser, caseEventUtils, navigationUtils }) => {
     caseNumber = await caseEventUtils.createDACase(browser);
-    await navigationUtils.goToCase(
-      config.manageCasesBaseURLCase,
-      caseNumber,
-      "summary",
-    );
+    await navigationUtils.goToCase(config.manageCasesBaseURLCase, caseNumber);
   });
 
   [noToAllParams, yesToAllParams].forEach(
@@ -137,8 +160,10 @@ test.describe("Draft a non molestation order tests", (): void => {
       hasJudgeProvidedHearingDetails,
       hearingDetails,
       snapshotName,
+      orderInformation,
     }) => {
       test(`POM Test - no to everything ${withNotice ? "Yes to all" : "No to all"}`, async ({
+        page,
         summaryPage,
         draftAnOrder1Page,
         draftAnOrder2Page,
@@ -147,7 +172,10 @@ test.describe("Draft a non molestation order tests", (): void => {
         draftAnOrder16Page,
         draftAnOrder20Page,
         draftAnOrderSubmitPage,
+        draftOrdersPage,
         axeUtils,
+        idamLoginHelper,
+        navigationUtils,
       }): Promise<void> => {
         await summaryPage.chooseEventFromDropdown("Draft an order");
         await draftAnOrder1Page.assertPageContents();
@@ -212,9 +240,20 @@ test.describe("Draft a non molestation order tests", (): void => {
           caseNumber,
           "Draft an order",
         );
-        // TODO: need to go to court admin first to view draft orders tab and assert draft order
-        // check draft order present on draft orders tab page
-        // await draftOrdersPage.goToPage();
+
+        // sign in as case worker and check draft order present on draft orders tab page
+        await summaryPage.exuiHeader.signOut();
+        await idamLoginHelper.signInLongLivedUser(
+          page,
+          "caseWorker",
+          config.manageCasesBaseURLCase,
+        );
+        await navigationUtils.goToCase(
+          config.manageCasesBaseURLCase,
+          caseNumber,
+        );
+        await draftOrdersPage.goToPage();
+        await draftOrdersPage.assertDraftOrders(orderInformation);
       });
     },
   );

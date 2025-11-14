@@ -6,7 +6,7 @@ export class NavigationUtils {
   async goToCase(
     baseURL: string,
     caseNumber: string,
-    caseTab: string,
+    caseTab: string = "summary",
   ): Promise<void> {
     try {
       await this.page.goto(this.generateUrl(baseURL, caseNumber, caseTab));
