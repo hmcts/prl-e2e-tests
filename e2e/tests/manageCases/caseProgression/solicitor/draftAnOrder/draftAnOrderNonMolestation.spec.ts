@@ -162,7 +162,7 @@ test.describe("Draft a non molestation order tests", (): void => {
       snapshotName,
       orderInformation,
     }) => {
-      test(`POM Test - no to everything ${withNotice ? "Yes to all" : "No to all"}`, async ({
+      test(`Complete drafting non-molestation order as solicitor with the following options: ${withNotice ? "Yes to all" : "No to all"} @accessibility @regression @nightly @visual`, async ({
         page,
         summaryPage,
         draftAnOrder1Page,
