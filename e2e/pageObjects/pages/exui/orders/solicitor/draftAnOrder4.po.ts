@@ -6,6 +6,7 @@ import {
   OrderTypes,
 } from "../../../../../common/types.js";
 import { Selectors } from "../../../../../common/selectors.js";
+import { PageUtils } from "../../../../../utils/page.utils.js";
 
 interface DayMonthYear {
   day: string;
@@ -69,6 +70,7 @@ export class DraftAnOrder4Page extends EventPage {
     this.page.getByText("Which children are included in the order?");
   private readonly whichHearingWasOrderApprovedLabel: Locator =
     this.page.getByText("At which hearing was the order approved?");
+  private readonly pageUtils: PageUtils = new PageUtils(this.page);
 
   constructor(page: Page) {
     super(page, "Draft an order");
@@ -78,28 +80,27 @@ export class DraftAnOrder4Page extends EventPage {
     await this.assertPageHeadings();
     await expect(this.page.getByText(orderType)).toBeVisible();
     await expect(this.consentLabel).toBeVisible();
-    await this.checkStrings(
-      `#isTheOrderByConsent ${Selectors.GovukFormLabel}`,
+    await this.pageUtils.assertStrings(
       this.yesAndNoLabels,
+      this.page.locator(`#isTheOrderByConsent ${Selectors.GovukFormLabel}`),
     );
     await expect(this.approvedAtHearingLabel).toBeVisible();
-    await this.checkStrings(
-      `#wasTheOrderApprovedAtHearing ${Selectors.GovukFormLabel}`,
+    await this.pageUtils.assertStrings(
       this.yesAndNoLabels,
+      this.page.locator(
+        `#wasTheOrderApprovedAtHearing ${Selectors.GovukFormLabel}`,
+      ),
     );
     await expect(this.orderMadeByParagraph).toBeVisible();
     await expect(this.judgeOrMagistratesTitle).toBeVisible();
     await expect(this.amendTitleLabel).toBeVisible();
-    await this.checkStrings(
-      Selectors.GovukFormLabel,
-      JudgeOrMagistrateTitlesArray,
-    );
+    await this.pageUtils.assertStrings(JudgeOrMagistrateTitlesArray);
     await expect(this.judgeFullNameLabel).toBeVisible();
     await expect(this.justicesLegalAdviserFullNameLabel).toBeVisible();
     await expect(this.dateOrderMadeLabel).toBeVisible();
-    await this.checkStrings(
-      `#dateOrderMade ${Selectors.GovukFormLabel}`,
+    await this.pageUtils.assertStrings(
       this.dayMonthYearLabels,
+      this.page.locator(`#dateOrderMade ${Selectors.GovukFormLabel}`),
     );
     await expect(this.orderAboutChildrenLabel).toBeVisible();
     await expect(this.recitalsOrPreamblesLabel).toBeVisible();

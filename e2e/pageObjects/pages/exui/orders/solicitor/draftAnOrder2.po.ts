@@ -2,6 +2,7 @@ import { EventPage } from "../../eventPage.po.js";
 import { expect, Locator, Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors.js";
 import { OrderTypes, OrderTypesArray } from "../../../../../common/types.js";
+import { PageUtils } from "../../../../../utils/page.utils.js";
 
 export class DraftAnOrder2Page extends EventPage {
   private readonly insetText: Locator = this.page.getByText(
@@ -10,6 +11,7 @@ export class DraftAnOrder2Page extends EventPage {
   private readonly orderTypeLabel: Locator = this.page.getByText(
     "Select the type of order",
   );
+  private readonly pageUtils: PageUtils = new PageUtils(this.page);
 
   constructor(page: Page) {
     super(page, "Draft an order");
@@ -19,7 +21,7 @@ export class DraftAnOrder2Page extends EventPage {
     await this.assertPageHeadings();
     await expect(this.insetText).toBeVisible();
     await expect(this.orderTypeLabel).toBeVisible();
-    await this.checkStrings(Selectors.GovukFormLabel, OrderTypesArray);
+    await this.pageUtils.assertStrings(OrderTypesArray);
     await expect(this.continueButton).toBeVisible();
     await expect(this.previousButton).toBeVisible();
   }

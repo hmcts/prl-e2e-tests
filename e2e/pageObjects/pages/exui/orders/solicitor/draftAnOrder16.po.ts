@@ -6,6 +6,7 @@ import {
   HearingDetailsParams,
   OrderHearingDetailsComponent,
 } from "../../../../components/exui/orderHearingDetails.component.js";
+import { PageUtils } from "../../../../../utils/page.utils.js";
 
 interface DraftAnOrderParams {
   hasJudgeProvidedHearingDetails: boolean;
@@ -24,6 +25,7 @@ export class DraftAnOrder16Page extends EventPage {
   );
   private readonly hearingDetails: OrderHearingDetailsComponent =
     new OrderHearingDetailsComponent(this.page);
+  private readonly pageUtils: PageUtils = new PageUtils(this.page);
 
   constructor(page: Page) {
     super(page, "Draft an order");
@@ -33,9 +35,11 @@ export class DraftAnOrder16Page extends EventPage {
     await this.assertPageHeadings();
     await expect(this.page.getByText(orderType)).toBeVisible();
     await expect(this.judgeProvidedHearingDetailsLabel).toBeVisible();
-    await this.checkStrings(
-      `#hasJudgeProvidedHearingDetails ${Selectors.GovukFormLabel}`,
+    await this.pageUtils.assertStrings(
       this.yesAndNoLabels,
+      this.page.locator(
+        `#hasJudgeProvidedHearingDetails ${Selectors.GovukFormLabel}`,
+      ),
     );
     await expect(this.continueButton).toBeVisible();
     await expect(this.previousButton).toBeVisible();

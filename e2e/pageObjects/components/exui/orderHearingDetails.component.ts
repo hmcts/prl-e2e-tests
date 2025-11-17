@@ -1,4 +1,5 @@
-import { expect, Locator, Page } from "@playwright/test";
+import { expect, Page } from "@playwright/test";
+import { PageUtils } from "../../../utils/page.utils.js";
 
 interface DayHourMinute {
   days?: string;
@@ -121,28 +122,29 @@ export class OrderHearingDetailsComponent {
   private readonly additionalHearingDetailsLabel = this.page.getByText(
     "Additional hearing details (Optional)",
   );
+  private readonly pageUtils: PageUtils = new PageUtils(this.page);
 
   constructor(private page: Page) {}
 
   async assertHearingDetailsContents(): Promise<void> {
     await expect(this.hearingsTitle).toBeVisible();
-    await this.assertMultipleButtons("Add new", 4);
-    await this.assertMultipleButtons("Remove", 2);
+    await this.pageUtils.assertMultipleButtons("Add new", 4);
+    await this.pageUtils.assertMultipleButtons("Remove", 2);
     await expect(this.hearingTitle).toBeVisible();
     await expect(this.hearingTypeLabel).toBeVisible();
     await expect(this.enterDateAndTimeLabel).toBeVisible();
     await expect(this.estimatedTimeLabel).toBeVisible();
     await expect(this.dateTimeInputDescriptionLabel).toBeVisible();
-    await this.assertStrings(this.timeOptions);
+    await this.pageUtils.assertStrings(this.timeOptions);
     await expect(this.howDoesHearingNeedToTakePlaceLabel).toBeVisible();
-    await this.assertStrings(
+    await this.pageUtils.assertStrings(
       this.howDoesHearingNeedToTakePlaceOptions,
       this.page.getByRole("group", { name: "How does the hearing need to" }),
     );
     await expect(this.willAllPartiesAttendInTheSameWayLabel).toBeVisible();
     await expect(this.hearingLocationLabel).toBeVisible();
     await expect(this.hearingWillBeBeforeLabel).toBeVisible();
-    await this.assertStrings(this.hearingWillBeBeforeOptions);
+    await this.pageUtils.assertStrings(this.hearingWillBeBeforeOptions);
     await expect(this.hearingJudgeLabel).toBeVisible();
     await expect(this.hearingListedWithLinkedCaseLabel).toBeVisible();
     await expect(this.joiningInstructionsLabel).toBeVisible();
@@ -233,34 +235,6 @@ export class OrderHearingDetailsComponent {
           name: "Additional hearing details (Optional)",
         })
         .fill(additionalHearingInstructions);
-    }
-  }
-
-  // TODO: probably make these methods more generic - move into a helper
-  private async assertMultipleButtons(
-    buttonName: string,
-    count: number,
-  ): Promise<void> {
-    const buttonLocator: Locator = this.page.getByRole("button", {
-      name: buttonName,
-    });
-    await expect(buttonLocator).toHaveCount(count);
-  }
-
-  // TODO: this is similar to the checkStrings method somewhere else - probably move both into a helper
-  private async assertStrings(
-    stringArray: string[],
-    locator?: Locator,
-  ): Promise<void> {
-    for (const string of stringArray) {
-      // use locator if more specificity is needed
-      if (locator) {
-        await expect(locator.getByText(string, { exact: true })).toBeVisible();
-      } else {
-        await expect(
-          this.page.getByText(string, { exact: true }),
-        ).toBeVisible();
-      }
     }
   }
 }

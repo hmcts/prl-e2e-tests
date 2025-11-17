@@ -6,6 +6,7 @@ import {
   NonMolestationRespondentMustNotDoOptionsArray,
   OrderTypes,
 } from "../../../../../common/types.js";
+import { PageUtils } from "../../../../../utils/page.utils.js";
 
 export type OrderLengthOptions =
   | "No fixed end date"
@@ -61,6 +62,7 @@ export class DraftAnOrder5Page extends EventPage {
     "With notice",
     "Without notice",
   ];
+  private readonly pageUtils: PageUtils = new PageUtils(this.page);
 
   constructor(page: Page) {
     super(page, "Draft an order");
@@ -70,28 +72,23 @@ export class DraftAnOrder5Page extends EventPage {
     await this.assertPageHeadings();
     await expect(this.page.getByText(orderType)).toBeVisible();
     await expect(this.doesOrderMentionPropertyLabel).toBeVisible();
-    await this.checkStrings(
-      `#fl404CustomFields_fl404bMentionedProperty ${Selectors.GovukFormLabel}`,
+    await this.pageUtils.assertStrings(
       this.yesAndNoLabels,
+      this.page.locator(
+        `#fl404CustomFields_fl404bMentionedProperty ${Selectors.GovukFormLabel}`,
+      ),
     );
     await expect(this.respondentMustNotDoFollowingTitle).toBeVisible();
     await expect(this.selectAnyThatApplyLabel).toBeVisible();
-    await this.checkStrings(
-      Selectors.GovukFormLabel,
+    await this.pageUtils.assertStrings(
       NonMolestationRespondentMustNotDoOptionsArray,
     );
     await expect(this.addNewButton).toBeVisible();
     await expect(this.howLongWillOrderBeInForceLabel).toBeVisible();
-    await this.checkStrings(
-      Selectors.GovukFormLabel,
-      this.orderEndDateTimeOptionsArray,
-    );
+    await this.pageUtils.assertStrings(this.orderEndDateTimeOptionsArray);
     await expect(this.costsOfThisApplicationLabel).toBeVisible();
     await expect(this.orderMadeWithOrWithoutNoticeLabel).toBeVisible();
-    await this.checkStrings(
-      Selectors.GovukFormLabel,
-      this.withOrWithoutNoticeOptions,
-    );
+    await this.pageUtils.assertStrings(this.withOrWithoutNoticeOptions);
     await expect(this.continueButton).toBeVisible();
     await expect(this.previousButton).toBeVisible();
   }
