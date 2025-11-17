@@ -25,7 +25,10 @@ export class DraftAnOrder1Page extends EventPage {
   async assertPageContents(): Promise<void> {
     await this.assertPageHeadings();
     await expect(this.descriptionLabel).toBeVisible();
-    await this.pageUtils.assertStrings(this.actionLabels);
+    await this.pageUtils.assertStrings(
+      this.actionLabels,
+      this.page.getByRole("group", { name: "What do you want to do?" }),
+    );
     await expect(this.continueButton).toBeVisible();
     await expect(this.previousButton).toBeVisible();
   }

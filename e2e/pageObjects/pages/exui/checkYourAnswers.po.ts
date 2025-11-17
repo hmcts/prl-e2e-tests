@@ -43,8 +43,6 @@ export class CheckYourAnswersPage extends EventPage {
     this.cyaSubmitButton = cyaSubmitButton;
   }
 
-  // might have to implement new snapshot approach and update all snapshots - looks like there are some banners present on demo
-  // TODO: clean this method up
   async assertPageContents(snapshotName: string): Promise<void> {
     await this.assertPageHeadings();
     await expect(this.headingH2).toBeVisible();
