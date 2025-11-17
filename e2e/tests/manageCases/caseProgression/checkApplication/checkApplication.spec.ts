@@ -2,7 +2,7 @@ import { test } from "../../../fixtures.ts";
 import config from "../../../../utils/config.utils.ts";
 
 test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
-
+// TEST COMMENT
 test.describe("Check Application task for DA Solicitor case tests.", () => {
   let caseNumber: string;
 
