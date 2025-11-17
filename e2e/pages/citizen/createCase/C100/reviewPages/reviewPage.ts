@@ -606,10 +606,15 @@ export class ReviewPage {
       ),
       Helpers.checkGroup(
         page,
-        11,
+        10,
         CaJourneyEmergencyProtectionReviewContent,
         "h3_",
         Selectors.h3,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFieldsetLegend}:text-is("${CaJourneyEmergencyProtectionReviewContent.legendFieldSet}")`,
+        1,
       ),
       Helpers.checkGroup(
         page,
@@ -1111,10 +1116,15 @@ export class ReviewPage {
       ),
       Helpers.checkGroup(
         page,
-        12,
+        11,
         CaJourneyMIAMHearingUrgencyReviewContent,
         "h3_",
         Selectors.h3,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFieldsetLegend}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.legendFieldSet}")`,
+        1,
       ),
       Helpers.checkGroup(
         page,
@@ -1593,10 +1603,15 @@ export class ReviewPage {
       ),
       Helpers.checkGroupHasText(
         page,
-        8,
+        7,
         CaJourneyExistingMIAMReviewContent,
         "h3_",
         Selectors.h3,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFieldsetLegend}:text-is("${CaJourneyExistingMIAMReviewContent.legendFieldSet}")`,
+        1,
       ),
       Helpers.checkGroup(
         page,

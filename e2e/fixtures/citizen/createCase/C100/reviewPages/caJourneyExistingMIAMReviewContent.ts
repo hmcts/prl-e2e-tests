@@ -175,7 +175,7 @@ export enum CaJourneyExistingMIAMReviewContent {
   h3_5 = "Details of the applicants",
   h3_6 = "Details of the respondents",
   h3_7 = "Details of the other people in the application",
-  h3_8 = "Confirm before you submit the application",
+  legendFieldSet = "Confirm before you submit the application",
   h3_miamExemption = "MIAM exemption",
   h3_SafetyConcernsChildren = "the children in the application",
   h4_1 = "Who is in possession of the children’s passports?",
