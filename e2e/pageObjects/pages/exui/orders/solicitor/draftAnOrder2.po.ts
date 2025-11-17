@@ -1,6 +1,5 @@
 import { EventPage } from "../../eventPage.po.js";
 import { expect, Locator, Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors.js";
 import { OrderTypes, OrderTypesArray } from "../../../../../common/types.js";
 import { PageUtils } from "../../../../../utils/page.utils.js";
 
