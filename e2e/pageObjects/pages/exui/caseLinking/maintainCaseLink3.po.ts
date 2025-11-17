@@ -2,7 +2,6 @@ import { Base } from "../../base.po.js";
 import { expect, Locator, Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.js";
 import { CheckYourAnswersTableComponent } from "../../../components/exui/checkYourAnswersTable.component.js";
-import { CommonStaticText } from "../../../../common/commonStaticText.js";
 
 // Not a standard event page so don't extend EventPage
 export class MaintainCaseLink3Page extends Base {
@@ -23,18 +22,6 @@ export class MaintainCaseLink3Page extends Base {
   );
   private readonly table: CheckYourAnswersTableComponent =
     new CheckYourAnswersTableComponent(this.page);
-  private readonly continueButton: Locator = this.page.locator(
-    Selectors.button,
-    {
-      hasText: CommonStaticText.continue,
-    },
-  );
-  private readonly previousButton: Locator = this.page.locator(
-    Selectors.button,
-    {
-      hasText: CommonStaticText.previous,
-    },
-  );
 
   constructor(page: Page) {
     super(page);
@@ -52,9 +39,5 @@ export class MaintainCaseLink3Page extends Base {
     });
     await expect(this.continueButton).toBeVisible();
     await expect(this.previousButton).toBeVisible();
-  }
-
-  async clickContinue(): Promise<void> {
-    await this.continueButton.click();
   }
 }

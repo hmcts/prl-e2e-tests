@@ -6,7 +6,7 @@ export class C100RemoveLegalRepresentativeSubmitPage extends CheckYourAnswersPag
   constructor(page: Page) {
     super(page, "Remove legal representative", {
       snapshotPath: ["removeLegalRepresentative"],
-      submitButtonText: CommonStaticText.submit,
+      cyaSubmitButton: CommonStaticText.submit,
     });
   }
 }

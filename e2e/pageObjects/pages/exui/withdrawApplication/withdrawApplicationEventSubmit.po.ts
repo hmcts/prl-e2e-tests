@@ -6,7 +6,7 @@ export class WithdrawApplicationEventSubmitPage extends CheckYourAnswersPage {
   constructor(page: Page) {
     super(page, "Withdraw application", {
       snapshotPath: ["caseProgression", "withdrawApplication"],
-      submitButtonText: CommonStaticText.saveAndContinue,
+      cyaSubmitButton: CommonStaticText.saveAndContinue,
     });
   }
 }

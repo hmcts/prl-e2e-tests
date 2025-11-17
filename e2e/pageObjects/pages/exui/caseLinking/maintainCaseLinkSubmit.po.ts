@@ -1,7 +1,6 @@
 import { Base } from "../../base.po.js";
 import { expect, Locator, Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.js";
-import { CommonStaticText } from "../../../../common/commonStaticText.js";
 
 // Not a standard event page so don't extend EventPage
 export class MaintainCaseLinkSubmitPage extends Base {
@@ -33,12 +32,6 @@ export class MaintainCaseLinkSubmitPage extends Base {
     Selectors.button,
     {
       hasText: "Maintain Case Links",
-    },
-  );
-  private readonly previousButton: Locator = this.page.locator(
-    Selectors.button,
-    {
-      hasText: CommonStaticText.previous,
     },
   );
 

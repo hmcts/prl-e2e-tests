@@ -1,7 +1,6 @@
 import { Base } from "../../base.po.js";
 import { expect, Locator, Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.js";
-import { CommonStaticText } from "../../../../common/commonStaticText.js";
 import {
   CaseLinksTableComponent,
   CaseLinksTableParams,
@@ -89,18 +88,6 @@ export class CreateCaseLink2Page extends Base {
     "#other-description-char-limit-info",
     { hasText: "You can enter up to 100 characters" },
   );
-  private readonly continueButton: Locator = this.page.locator(
-    Selectors.button,
-    {
-      hasText: CommonStaticText.continue,
-    },
-  );
-  private readonly previousButton: Locator = this.page.locator(
-    Selectors.button,
-    {
-      hasText: CommonStaticText.previous,
-    },
-  );
 
   constructor(page: Page) {
     super(page);
@@ -156,9 +143,5 @@ export class CreateCaseLink2Page extends Base {
         otherReason,
       },
     ]);
-  }
-
-  async clickContinue(): Promise<void> {
-    await this.continueButton.click();
   }
 }

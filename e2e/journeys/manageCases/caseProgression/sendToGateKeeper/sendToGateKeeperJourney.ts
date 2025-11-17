@@ -97,7 +97,7 @@ export class SendToGateKeeperJourney {
       ccdRef,
       "tasks",
     );
-    await expect(page.getByText("Send to Gatekeeper")).not.toBeVisible();
+    await expect(page.getByText("Send to Gatekeeper")).toBeHidden();
   }
 
   private static async checkSendToGatekeeperTaskMarkAsDone(

@@ -76,7 +76,7 @@ export class AdminEditAndServeAnOrder {
     if (accessibilityTest) {
       await axeUtils.audit();
     }
-    await fl401AddCaseNumberSubmitPage.clickSubmit();
+    await fl401AddCaseNumberSubmitPage.clickSaveAndContinue();
 
     await Helpers.chooseEventFromDropdown(page, "Edit and serve an order");
     await AdminEditAndApproveAnOrder1Page.adminEditAndApproveAnOrder1Page(

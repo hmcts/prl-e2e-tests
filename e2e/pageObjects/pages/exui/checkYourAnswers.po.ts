@@ -5,9 +5,13 @@ import { CheckYourAnswersTableComponent } from "../../components/exui/checkYourA
 import { ClippingCoords } from "../../../common/types.js";
 import { CommonStaticText } from "../../../common/commonStaticText.js";
 
+type CyaSubmitButton =
+  | CommonStaticText.submit
+  | CommonStaticText.saveAndContinue;
+
 interface CyaConstructorParams {
   snapshotPath: string[];
-  submitButtonText: string;
+  cyaSubmitButton: CyaSubmitButton;
   customClippingCoords?: ClippingCoords;
 }
 
@@ -22,29 +26,21 @@ export class CheckYourAnswersPage extends EventPage {
   });
   private readonly checkYourAnswersTable: CheckYourAnswersTableComponent =
     new CheckYourAnswersTableComponent(this.page);
-  private readonly previousButton: Locator = this.page.locator(
-    Selectors.button,
-    {
-      hasText: CommonStaticText.previous,
-    },
-  );
-  private readonly submitButton: Locator;
+  private readonly cyaSubmitButton: string;
 
   constructor(
     page: Page,
     headingText: string,
     {
       snapshotPath,
-      submitButtonText,
+      cyaSubmitButton,
       customClippingCoords,
     }: CyaConstructorParams,
   ) {
     super(page, headingText);
     this.snapshotPath = snapshotPath;
     this.customClippingCoords = customClippingCoords;
-    this.submitButton = this.page.locator(Selectors.button, {
-      hasText: submitButtonText,
-    });
+    this.cyaSubmitButton = cyaSubmitButton;
   }
 
   // might have to implement new snapshot approach and update all snapshots - looks like there are some banners present on demo
@@ -57,11 +53,12 @@ export class CheckYourAnswersPage extends EventPage {
       this.snapshotPath,
       this.customClippingCoords,
     );
-    await expect(this.submitButton).toBeVisible();
+    // not all cya pages have the same "submit" button
+    if (this.cyaSubmitButton === CommonStaticText.saveAndContinue) {
+      await expect(this.saveAndContinueButton).toBeVisible();
+    } else {
+      await expect(this.submitButton).toBeVisible();
+    }
     await expect(this.previousButton).toBeVisible();
-  }
-
-  async clickSubmit(): Promise<void> {
-    await this.submitButton.click();
   }
 }
