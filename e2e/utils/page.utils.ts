@@ -14,10 +14,7 @@ export class PageUtils {
     await expect(buttonLocator).toHaveCount(count);
   }
 
-  async assertStrings(
-    stringArray: string[],
-    locator?: Locator,
-  ): Promise<void> {
+  async assertStrings(stringArray: string[], locator?: Locator): Promise<void> {
     for (const string of stringArray) {
       // use locator if more specificity is needed
       if (locator) {
