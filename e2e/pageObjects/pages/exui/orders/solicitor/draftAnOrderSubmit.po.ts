@@ -5,7 +5,11 @@ import { CommonStaticText } from "../../../../../common/commonStaticText.js";
 export class DraftAnOrderSubmitPage extends CheckYourAnswersPage {
   constructor(page: Page) {
     super(page, "Draft an order", {
-      snapshotPath: ["solicitor", "draftNonMolestationOrder"],
+      snapshotPath: [
+        "caseProgression",
+        "solicitor",
+        "draftNonMolestationOrder",
+      ],
       cyaSubmitButton: CommonStaticText.submit,
     });
   }

@@ -91,7 +91,7 @@ export class DraftAnOrder20Page extends EventPage {
     const mediaViewerPage = new ExuiMediaViewerPage(pdfPage);
     await mediaViewerPage.runVisualTestOnAllPages(
       pdfPage,
-      ["solicitor", "draftNonMolestationOrder", regionalPdfName],
+      ["caseProgression", "solicitor", "draftNonMolestationOrder", regionalPdfName],
       clippingCoords.centeredPageWithoutToolbar,
       [caseRefLocator, dateLocator],
     );
