@@ -34,6 +34,11 @@ properties([
       defaultValue: '',
       description: 'Test tag to be used'
     ),
+    string(
+      name: 'tests',
+      defaultValue: '',
+      description: 'Test names to be used as comma separated list'
+    ),
     choice(
       name: 'browser',
       choices: ['chromium', 'firefox', 'webkit', 'MicrosoftEdge', 'MobileChrome', 'MobileSafari'],
@@ -126,7 +131,45 @@ withNightlyPipeline(type, product, component, 600) {
         unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
       }
     }
-    if(params.tag) {
+    if(params.tests && params.tag) {
+      stage("${params.tag} custom tests - ${params.browser}") {
+        try {
+          yarnBuilder.yarn('playwright install --with-deps')
+          yarnBuilder.yarn("playwright test ${params.tests} --grep ${params.tag} --project ${params.browser}")
+        } catch (Error) {
+          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+        } finally {
+          publishHTML([
+                  allowMissing: true,
+                  alwaysLinkToLastBuild: true,
+                  keepAll: true,
+                  reportDir: "playwright-report",
+                  reportFiles: 'index.html',
+                  reportName: "${params.tag} custom tests - ${params.browser}"
+          ])
+          steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CitizenFunctional/*'
+        }
+      }
+    } else if (params.tests && !params.tag) {
+      stage("custom tests - ${params.browser}") {
+        try {
+          yarnBuilder.yarn('playwright install --with-deps')
+          yarnBuilder.yarn("playwright test ${params.tests} --project ${params.browser}")
+        } catch (Error) {
+          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+        } finally {
+          publishHTML([
+                  allowMissing: true,
+                  alwaysLinkToLastBuild: true,
+                  keepAll: true,
+                  reportDir: "playwright-report",
+                  reportFiles: 'index.html',
+                  reportName: "custom tests - ${params.browser}"
+          ])
+          steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CitizenFunctional/*'
+        }
+      }
+    } else if(params.tag && !params.test) {
       stage("${params.tag} tests - ${params.browser}") {
         try {
           yarnBuilder.yarn('playwright install --with-deps')
