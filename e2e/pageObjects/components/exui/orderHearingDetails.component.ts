@@ -7,11 +7,16 @@ interface DayHourMinute {
   minutes?: string;
 }
 
-type HowHearingTakesPlaceOptions =
-  | "In person"
+export interface PartyHearingAttendance {
+  partyName: string;
+  attendanceMethod: HowHearingTakesPlaceOptions;
+}
+
+export type HowHearingTakesPlaceOptions =
+  | "In Person"
   | "Telephone"
   | "Video"
-  | "On the papers"
+  | "On the Papers"
   | "Not in Attendance";
 
 type HearingWillBeBeforeOptions =
@@ -55,7 +60,7 @@ export interface HearingDetailsParams {
   estimatedTime: DayHourMinute;
   howDoesHearingNeedToTakePlace: HowHearingTakesPlaceOptions;
   willAllPartiesAttendTheSameWay: boolean;
-  // TODO: how to handle not attending in some way??
+  partiesAttendanceMethods?: PartyHearingAttendance[];
   hearingLocation?: string; // populated by default
   hearingWillBeBefore?: HearingWillBeBeforeOptions;
   hearingJudge?: string;
@@ -157,6 +162,7 @@ export class OrderHearingDetailsComponent {
     estimatedTime,
     howDoesHearingNeedToTakePlace,
     willAllPartiesAttendTheSameWay,
+    partiesAttendanceMethods,
     hearingLocation,
     hearingWillBeBefore,
     hearingJudge,
@@ -199,7 +205,14 @@ export class OrderHearingDetailsComponent {
       })
       .check();
     if (!willAllPartiesAttendTheSameWay) {
-      // TODO: how to handle this
+      for (const partyAttendanceMethod of partiesAttendanceMethods) {
+        await expect(
+          this.page.getByText(partyAttendanceMethod.partyName),
+        ).toBeVisible();
+        await this.page
+          .getByLabel(partyAttendanceMethod.partyName)
+          .selectOption(partyAttendanceMethod.attendanceMethod);
+      }
     }
     if (hearingLocation) {
       await this.page

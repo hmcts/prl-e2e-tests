@@ -7,7 +7,11 @@ import {
   OrderTypes,
 } from "../../../../../common/types.js";
 import { OrderLengthOptions } from "../../../../../pageObjects/pages/exui/orders/solicitor/draftAnOrder5.po.js";
-import { HearingDetailsParams } from "../../../../../pageObjects/components/exui/orderHearingDetails.component.js";
+import {
+  HearingDetailsParams,
+  HowHearingTakesPlaceOptions,
+  PartyHearingAttendance,
+} from "../../../../../pageObjects/components/exui/orderHearingDetails.component.js";
 import { OrderInformation } from "../../../../../pageObjects/pages/exui/caseView/draftOrders.po.js";
 
 const noToAllParams = {
@@ -95,8 +99,26 @@ const yesToAllParams = {
     hearingType: "2nd Gatekeeping Appointment",
     hearingDateAndTime: "14-10-2025 12:00 am",
     estimatedTime: { days: "1", hours: "1", minutes: "1" },
-    howDoesHearingNeedToTakePlace: "In person",
-    willAllPartiesAttendTheSameWay: true,
+    howDoesHearingNeedToTakePlace: "In Person",
+    willAllPartiesAttendTheSameWay: false,
+    partiesAttendanceMethods: [
+      {
+        partyName: "John Smith (Applicant) (Optional)",
+        attendanceMethod: "In Person" as HowHearingTakesPlaceOptions,
+      } as PartyHearingAttendance,
+      {
+        partyName: "Legal Solicitor (Applicant solicitor) (Optional)",
+        attendanceMethod: "In Person" as HowHearingTakesPlaceOptions,
+      } as PartyHearingAttendance,
+      {
+        partyName: "Elise Lynn (Respondent) (Optional)",
+        attendanceMethod: "In Person" as HowHearingTakesPlaceOptions,
+      } as PartyHearingAttendance,
+      {
+        partyName: "Local authority (Optional)",
+        attendanceMethod: "Not in Attendance" as HowHearingTakesPlaceOptions,
+      } as PartyHearingAttendance,
+    ],
     hearingLocation: undefined, // hearing location is pre-populated
     hearingWillBeBefore: "District judge",
     hearingJudge: "Ms Elizabeth Williams",
