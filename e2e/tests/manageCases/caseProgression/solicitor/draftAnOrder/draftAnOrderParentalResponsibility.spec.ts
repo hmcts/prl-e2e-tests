@@ -1,7 +1,6 @@
 import Config from "../../../../../utils/config.utils.ts";
 import { DraftAnOrder } from "../../../../../journeys/manageCases/caseWorker/draftAnOrder/draftAnOrder.ts";
 import { Helpers } from "../../../../../common/helpers.ts";
-import config from "../../../../../utils/config.utils.ts";
 import { test } from "../../../../fixtures.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
@@ -13,7 +12,7 @@ test.describe("Draft a parental responsibility order tests", (): void => {
     caseRef = await caseEventUtils.createCACase(browser);
     await Helpers.goToCase(
       page,
-      config.manageCasesBaseURLCase,
+      Config.manageCasesBaseURLCase,
       caseRef,
       "tasks",
     );

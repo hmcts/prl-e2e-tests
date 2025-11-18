@@ -1,6 +1,5 @@
 import { test } from "../../../../fixtures.ts";
 import Config from "../../../../../utils/config.utils.ts";
-import config from "../../../../../utils/config.utils.ts";
 import {
   JudgeOrMagistrateTitles,
   NonMolestationRespondentMustNotDoOptions,
@@ -156,7 +155,7 @@ test.describe("Draft a non molestation order tests", (): void => {
       caseNumber = await caseEventUtils.createDACase(browser);
       await navigationUtils.goToCase(
         page,
-        config.manageCasesBaseURLCase,
+        Config.manageCasesBaseURLCase,
         caseNumber,
       );
     },
@@ -278,7 +277,7 @@ test.describe("Draft a non molestation order tests", (): void => {
         );
         await navigationUtils.goToCase(
           adminPage,
-          config.manageCasesBaseURLCase,
+          Config.manageCasesBaseURLCase,
           caseNumber,
         );
         const draftOrdersPage: DraftOrdersPage = new DraftOrdersPage(adminPage);
