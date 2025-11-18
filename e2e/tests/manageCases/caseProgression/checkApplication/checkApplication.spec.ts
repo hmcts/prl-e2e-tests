@@ -2,18 +2,20 @@ import { test } from "../../../fixtures.ts";
 import config from "../../../../utils/config.utils.ts";
 
 test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
-// TEST COMMENT
+
 test.describe("Check Application task for DA Solicitor case tests.", () => {
   let caseNumber: string;
 
-  test.beforeEach(async ({ browser, caseEventUtils, navigationUtils }) => {
-    caseNumber = await caseEventUtils.createDACase(browser);
-    await navigationUtils.goToCase(
-      config.manageCasesBaseURLCase,
-      caseNumber,
-      "tasks",
-    );
-  });
+  test.beforeEach(
+    async ({ page, browser, caseEventUtils, navigationUtils }) => {
+      caseNumber = await caseEventUtils.createDACase(browser);
+      await navigationUtils.goToCase(
+        page,
+        config.manageCasesBaseURLCase,
+        caseNumber,
+      );
+    },
+  );
 
   [{ familyManNumber: "1234", snapshotName: "check-application" }].forEach(
     ({ familyManNumber, snapshotName }) => {
@@ -24,7 +26,7 @@ test.describe("Check Application task for DA Solicitor case tests.", () => {
         fl401AddCaseNumberSubmitPage,
         axeUtils,
       }): Promise<void> => {
-        await tasksPage.exuiHeader.checkIsVisible();
+        await tasksPage.goToPage();
         await tasksPage.assignTaskToMeAndTriggerNextSteps(
           "Check Application",
           "Add Case Number",

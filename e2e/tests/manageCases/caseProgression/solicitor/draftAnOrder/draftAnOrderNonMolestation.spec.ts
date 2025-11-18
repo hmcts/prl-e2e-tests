@@ -12,7 +12,11 @@ import {
   HowHearingTakesPlaceOptions,
   PartyHearingAttendance,
 } from "../../../../../pageObjects/components/exui/orderHearingDetails.component.js";
-import { OrderInformation } from "../../../../../pageObjects/pages/exui/caseView/draftOrders.po.js";
+import {
+  DraftOrdersPage,
+  OrderInformation,
+} from "../../../../../pageObjects/pages/exui/caseView/draftOrders.po.js";
+import { Page } from "@playwright/test";
 
 const noToAllParams = {
   isDraftAnOrder: true,
@@ -147,10 +151,16 @@ test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 test.describe("Draft a non molestation order tests", (): void => {
   let caseNumber: string;
 
-  test.beforeEach(async ({ browser, caseEventUtils, navigationUtils }) => {
-    caseNumber = await caseEventUtils.createDACase(browser);
-    await navigationUtils.goToCase(config.manageCasesBaseURLCase, caseNumber);
-  });
+  test.beforeEach(
+    async ({ page, browser, caseEventUtils, navigationUtils }) => {
+      caseNumber = await caseEventUtils.createDACase(browser);
+      await navigationUtils.goToCase(
+        page,
+        config.manageCasesBaseURLCase,
+        caseNumber,
+      );
+    },
+  );
 
   [noToAllParams, yesToAllParams].forEach(
     ({
@@ -185,7 +195,7 @@ test.describe("Draft a non molestation order tests", (): void => {
       orderInformation,
     }) => {
       test(`Complete drafting non-molestation order as solicitor with the following options: ${withNotice ? "Yes to all" : "No to all"} @accessibility @regression @nightly @visual`, async ({
-        page,
+        browser,
         summaryPage,
         draftAnOrder1Page,
         draftAnOrder2Page,
@@ -194,9 +204,7 @@ test.describe("Draft a non molestation order tests", (): void => {
         draftAnOrder16Page,
         draftAnOrder20Page,
         draftAnOrderSubmitPage,
-        draftOrdersPage,
         axeUtils,
-        idamLoginHelper,
         navigationUtils,
       }): Promise<void> => {
         await summaryPage.chooseEventFromDropdown("Draft an order");
@@ -263,17 +271,17 @@ test.describe("Draft a non molestation order tests", (): void => {
           "Draft an order",
         );
 
-        // sign in as case worker and check draft order present on draft orders tab page
-        await summaryPage.exuiHeader.signOut();
-        await idamLoginHelper.signInLongLivedUser(
-          page,
+        // open new window as court admin to check the draft orders tab
+        const adminPage: Page = await navigationUtils.openNewBrowserWindow(
+          browser,
           "caseWorker",
-          config.manageCasesBaseURLCase,
         );
         await navigationUtils.goToCase(
+          adminPage,
           config.manageCasesBaseURLCase,
           caseNumber,
         );
+        const draftOrdersPage: DraftOrdersPage = new DraftOrdersPage(adminPage);
         await draftOrdersPage.goToPage();
         await draftOrdersPage.assertDraftOrders(orderInformation);
       });

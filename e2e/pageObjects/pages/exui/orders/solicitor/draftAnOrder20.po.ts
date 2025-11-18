@@ -16,9 +16,7 @@ export class DraftAnOrder20Page extends EventPage {
   private readonly paragraph: Locator = this.page.getByText(
     "If you want to make further changes, go back to the previous screen.",
   );
-  private readonly navigationUtils: NavigationUtils = new NavigationUtils(
-    this.page,
-  );
+  private readonly navigationUtils: NavigationUtils = new NavigationUtils();
   private welshPdfLink: string;
   private englishPdfLink: string;
 

@@ -70,8 +70,8 @@ export const utilsFixtures = {
   dateHelperUtils: async ({}, use) => {
     await use(new DateHelperUtils());
   },
-  navigationUtils: async ({ page }, use) => {
-    await use(new NavigationUtils(page));
+  navigationUtils: async ({}, use) => {
+    await use(new NavigationUtils());
   },
   pageUtils: async ({ page }, use) => {
     await use(new PageUtils(page));
