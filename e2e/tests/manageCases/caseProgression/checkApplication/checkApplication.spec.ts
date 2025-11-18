@@ -13,6 +13,7 @@ test.describe("Check Application task for DA Solicitor case tests.", () => {
         page,
         config.manageCasesBaseURLCase,
         caseNumber,
+        "tasks"
       );
     },
   );
@@ -26,7 +27,6 @@ test.describe("Check Application task for DA Solicitor case tests.", () => {
         fl401AddCaseNumberSubmitPage,
         axeUtils,
       }): Promise<void> => {
-        await tasksPage.goToPage();
         await tasksPage.assignTaskToMeAndTriggerNextSteps(
           "Check Application",
           "Add Case Number",
