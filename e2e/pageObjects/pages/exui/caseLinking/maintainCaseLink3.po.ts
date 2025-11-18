@@ -31,11 +31,11 @@ export class MaintainCaseLink3Page extends Base {
     await expect(this.familyManHeading).toBeVisible();
     await expect(this.caseNumberHeading).toBeVisible();
     await expect(this.sectionHeading).toBeVisible();
-    await this.table.captureFullTableScreenshots(
+    await this.table.captureFullTableScreenshot(
       ["caseLinking", "maintain-case-link-unlink-table"],
       "#cases-to-unlink-table",
     );
-    await this.table.captureFullTableScreenshots(
+    await this.table.captureFullTableScreenshot(
       ["caseLinking", "maintain-case-link-linked-table"],
       "#linked-cases-table",
     );

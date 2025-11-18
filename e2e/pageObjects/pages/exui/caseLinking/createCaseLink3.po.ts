@@ -31,7 +31,7 @@ export class CreateCaseLink3Page extends Base {
     await expect(this.familyManHeading).toBeVisible();
     await expect(this.caseNumberHeading).toBeVisible();
     await expect(this.sectionHeading).toBeVisible();
-    await this.table.captureFullTableScreenshots(
+    await this.table.captureFullTableScreenshot(
       ["caseLinking", "create-case-link"],
       "#linked-cases-table",
     );
