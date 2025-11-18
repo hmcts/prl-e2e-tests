@@ -13,7 +13,7 @@ test.describe("Check Application task for DA Solicitor case tests.", () => {
         page,
         config.manageCasesBaseURLCase,
         caseNumber,
-        "tasks"
+        "tasks",
       );
     },
   );
