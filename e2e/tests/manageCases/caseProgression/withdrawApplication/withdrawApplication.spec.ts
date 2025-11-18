@@ -2,7 +2,7 @@ import config from "../../../../utils/config.utils.ts";
 import { test } from "../../../fixtures.ts";
 
 test.use({ storageState: config.sessionStoragePath + "solicitor.json" });
-// TEST COMMENT
+
 test.describe("Withdraw C100 (Solicitor created) application event as a solicitor", () => {
   let caseRef: string;
   test.beforeEach(
