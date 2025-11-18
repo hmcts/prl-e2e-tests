@@ -4,7 +4,7 @@ import { Helpers } from "../../../../common/helpers.js";
 import { ServiceOfApplication } from "../../../../journeys/manageCases/caseProgression/serviceOfApplication/serviceOfApplication.js";
 
 test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
-
+// TEST COMMENT
 test.describe("Service of Application task for CA Solicitor case tests.", () => {
   let ccdRef: string = "";
   test.beforeEach(async ({ page, browser, caseEventUtils }) => {
