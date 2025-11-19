@@ -37,7 +37,7 @@ properties([
     string(
       name: 'tests',
       defaultValue: '',
-      description: 'Test names to be used as comma separated list'
+      description: 'Space separated list of test names to be run'
     ),
     choice(
       name: 'browser',
