@@ -12,6 +12,9 @@ export abstract class EventPage extends Base {
   readonly caseNumberHeading: Locator = this.page.locator(Selectors.h2, {
     hasText: "Casenumber",
   });
+  readonly continueButton: Locator = this.page.getByRole("button", {
+    name: "Continue",
+  });
   readonly submitButton: Locator = this.page.getByRole("button", {
     name: "Submit",
   });
@@ -37,6 +40,10 @@ export abstract class EventPage extends Base {
     await expect(this.pageHeading).toBeVisible();
     await expect(this.familyManHeading).toBeVisible();
     await expect(this.caseNumberHeading).toBeVisible();
+  }
+
+  async clickContinue() {
+    await this.continueButton.click();
   }
 
   async clickSubmit() {

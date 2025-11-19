@@ -6,14 +6,16 @@ test.use({ storageState: config.sessionStoragePath + "courtAdminStoke.json" });
 test.describe("Complete Remove legal representative event for FL401 case", () => {
   let caseNumber: string;
 
-  test.beforeEach(async ({ browser, caseEventUtils, navigationUtils }) => {
-    caseNumber = await caseEventUtils.createDACase(browser);
-    await navigationUtils.goToCase(
-      config.manageCasesBaseURLCase,
-      caseNumber,
-      "summary",
-    );
-  });
+  test.beforeEach(
+    async ({ page, browser, caseEventUtils, navigationUtils }) => {
+      caseNumber = await caseEventUtils.createDACase(browser);
+      await navigationUtils.goToCase(
+        page,
+        config.manageCasesBaseURLCase,
+        caseNumber,
+      );
+    },
+  );
 
   [
     {

@@ -5,14 +5,16 @@ test.use({ storageState: config.sessionStoragePath + "solicitor.json" });
 
 test.describe("Withdraw C100 (Solicitor created) application event as a solicitor", () => {
   let caseRef: string;
-  test.beforeEach(async ({ browser, caseEventUtils, navigationUtils }) => {
-    caseRef = await caseEventUtils.createCACase(browser);
-    await navigationUtils.goToCase(
-      config.manageCasesBaseURLCase,
-      caseRef,
-      "summary",
-    );
-  });
+  test.beforeEach(
+    async ({ page, browser, caseEventUtils, navigationUtils }) => {
+      caseRef = await caseEventUtils.createCACase(browser);
+      await navigationUtils.goToCase(
+        page,
+        config.manageCasesBaseURLCase,
+        caseRef,
+      );
+    },
+  );
 
   [
     { withdrawApplication: true, snapshotName: "withdraw-application-yes" },

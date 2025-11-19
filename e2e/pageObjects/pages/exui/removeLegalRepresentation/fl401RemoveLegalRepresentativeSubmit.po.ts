@@ -5,7 +5,7 @@ import { CommonStaticText } from "../../../../common/commonStaticText.js";
 export class Fl401RemoveLegalRepresentativeSubmitPage extends CheckYourAnswersPage {
   constructor(page: Page) {
     super(page, "Remove legal representative", {
-      snapshotPath: ["removeLegalRepresentative"],
+      snapshotPath: ["caseProgression", "removeLegalRepresentative"],
       cyaSubmitButton: CommonStaticText.submit,
     });
   }
