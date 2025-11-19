@@ -37,7 +37,7 @@ properties([
     string(
       name: 'tests',
       defaultValue: '',
-      description: 'Space separated list of test names to be run'
+      description: 'Space separated list of test names to be used'
     ),
     choice(
       name: 'browser',
