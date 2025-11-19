@@ -66,7 +66,12 @@ export class ParentalResponsibilityOrder20Page {
     );
     await mediaViewerPage.runVisualTestOnAllPages(
       pdfPage,
-      ["caseWorker", "parentalResponsibilityOrder", regionalPdfName],
+      [
+        "caseProgression",
+        "solicitor",
+        "parentalResponsibilityOrder",
+        regionalPdfName,
+      ],
       clippingCoords.centeredPageWithoutToolbar,
       [caseRefLocator, dateLocator],
     );

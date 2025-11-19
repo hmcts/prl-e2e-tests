@@ -1,4 +1,4 @@
-import { expect, Page, Locator } from "@playwright/test";
+import { Page, Locator } from "@playwright/test";
 import { ExuiHeaderComponent } from "../components/exui/ExuiHeader.component.js";
 
 // Base page for all page types
@@ -15,14 +15,6 @@ export abstract class Base {
     this.previousButton = this.page.locator("button", {
       hasText: "Previous",
     });
-  }
-
-  async checkStrings(selector: string, stringArray: string[]): Promise<void> {
-    for (const string of stringArray) {
-      await expect(
-        this.page.locator(selector).getByText(string, { exact: true }),
-      ).toBeVisible();
-    }
   }
 
   async clickContinue() {
