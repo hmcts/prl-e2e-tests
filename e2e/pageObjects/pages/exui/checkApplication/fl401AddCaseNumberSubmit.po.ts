@@ -6,7 +6,7 @@ export class Fl401AddCaseNumberSubmitPage extends CheckYourAnswersPage {
   constructor(page: Page) {
     super(page, "Add case number", {
       snapshotPath: ["caseProgression", "checkApplication"],
-      submitButtonText: CommonStaticText.saveAndContinue,
+      cyaSubmitButton: CommonStaticText.saveAndContinue,
     });
   }
 }
