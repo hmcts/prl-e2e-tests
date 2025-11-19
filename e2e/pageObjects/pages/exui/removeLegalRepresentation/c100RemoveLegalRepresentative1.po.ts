@@ -1,22 +1,8 @@
 import { EventPage } from "../eventPage.po.js";
-import { expect, Locator, Page } from "@playwright/test";
+import { expect, Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.js";
-import { CommonStaticText } from "../../../../common/commonStaticText.js";
 
 export class C100RemoveLegalRepresentative1Page extends EventPage {
-  private readonly continueButton: Locator = this.page.locator(
-    Selectors.button,
-    {
-      hasText: CommonStaticText.continue,
-    },
-  );
-  private readonly previousButton: Locator = this.page.locator(
-    Selectors.button,
-    {
-      hasText: CommonStaticText.previous,
-    },
-  );
-
   constructor(page: Page) {
     super(page, "Remove legal representative");
   }
@@ -38,9 +24,5 @@ export class C100RemoveLegalRepresentative1Page extends EventPage {
     for (const representative of existingRepresentatives) {
       await this.page.getByLabel(representative).check();
     }
-  }
-
-  async clickContinue(): Promise<void> {
-    await this.continueButton.click();
   }
 }

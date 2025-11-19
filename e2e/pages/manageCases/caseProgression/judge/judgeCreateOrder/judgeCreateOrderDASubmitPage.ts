@@ -90,7 +90,7 @@ export class judgeCreateODAManageOrderSubmitPage {
           ),
           Helpers.checkVisibleAndPresent(
             page,
-            `${Selectors.a}:text-is("${JudgeCreateOrderDASubmitContent.powerOfArrestA}")`,
+            `${Selectors.GovLink}:text-is("${JudgeCreateOrderDASubmitContent.powerOfArrestA}")`,
             1,
           ),
           Helpers.checkVisibleAndPresent(
@@ -121,7 +121,7 @@ export class judgeCreateODAManageOrderSubmitPage {
           ),
           Helpers.checkVisibleAndPresent(
             page,
-            `${Selectors.a}:text-is("${JudgeCreateOrderDASubmitContent.occupationOrderA}")`,
+            `${Selectors.GovLink}:text-is("${JudgeCreateOrderDASubmitContent.occupationOrderA}")`,
             1,
           ),
           Helpers.checkVisibleAndPresent(
@@ -152,7 +152,7 @@ export class judgeCreateODAManageOrderSubmitPage {
           ),
           Helpers.checkVisibleAndPresent(
             page,
-            `${Selectors.a}:text-is("${JudgeCreateOrderDASubmitContent.amendDischargedVariedOrderA}")`,
+            `${Selectors.GovLink}:text-is("${JudgeCreateOrderDASubmitContent.amendDischargedVariedOrderA}")`,
             1,
           ),
           Helpers.checkVisibleAndPresent(

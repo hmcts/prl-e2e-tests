@@ -6,7 +6,7 @@ export class AllocatedJudgeSubmitPage extends CheckYourAnswersPage {
   constructor(page: Page) {
     super(page, "Allocated judge", {
       snapshotPath: ["caseProgression", "allocatedJudge"],
-      submitButtonText: CommonStaticText.submit,
+      cyaSubmitButton: CommonStaticText.submit,
     });
   }
 }

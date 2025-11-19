@@ -1,7 +1,6 @@
 import { Config } from "./config.utils.ts";
 import {
   IdamUtils,
-  SessionUtils,
   ServiceAuthUtils,
   AxeUtils,
 } from "@hmcts/playwright-common";
@@ -24,7 +23,6 @@ export interface UtilsFixtures {
   accessCodeHelper: AccessCodeHelper;
   createUserUtil: CreateUserUtil;
   idamLoginHelper: IdamLoginHelper;
-  sessionUtils: SessionUtils;
   serviceAuthUtils: ServiceAuthUtils;
 
   caseEventUtils: CaseEventUtils;
@@ -45,9 +43,6 @@ export const utilsFixtures = {
   },
   serviceAuthUtils: async ({}, use) => {
     await use(new ServiceAuthUtils());
-  },
-  sessionUtils: async ({}, use) => {
-    await use(new SessionUtils());
   },
   tokenUtils: async ({ idamUtils }, use) => {
     await use(new TokenUtils(idamUtils));

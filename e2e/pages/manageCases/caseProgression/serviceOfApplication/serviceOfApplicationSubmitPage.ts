@@ -59,7 +59,7 @@ export class ServiceOfApplicationSubmitPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${ServiceOfApplicationSubmitContent.a}")`,
+        `${Selectors.GovLink}:text-is("${ServiceOfApplicationSubmitContent.link}")`,
         1,
       ),
       Helpers.checkGroup(

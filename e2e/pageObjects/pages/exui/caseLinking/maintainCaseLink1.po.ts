@@ -1,7 +1,6 @@
 import { Base } from "../../base.po.js";
 import { expect, Locator, Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.js";
-import { CommonStaticText } from "../../../../common/commonStaticText.js";
 
 // Not a standard event page so don't extend EventPage
 export class MaintainCaseLink1Page extends Base {
@@ -24,12 +23,6 @@ export class MaintainCaseLink1Page extends Base {
     hasText:
       "If there are linked hearings for the case you need to un-link then you must unlink the hearing first.",
   });
-  private readonly continueButton: Locator = this.page.locator(
-    Selectors.button,
-    {
-      hasText: CommonStaticText.continue,
-    },
-  );
 
   constructor(page: Page) {
     super(page);
@@ -41,9 +34,5 @@ export class MaintainCaseLink1Page extends Base {
     await expect(this.sectionHeading).toBeVisible();
     await expect(this.paragraph).toBeVisible();
     await expect(this.continueButton).toBeVisible();
-  }
-
-  async clickContinue(): Promise<void> {
-    await this.continueButton.click();
   }
 }

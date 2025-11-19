@@ -87,32 +87,32 @@ export class ConfidentialityCheck1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${ConfidentialityCheck1Content.annex1Anchor}")`,
+        `${Selectors.GovLink}:text-is("${ConfidentialityCheck1Content.annex1Anchor}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${ConfidentialityCheck1Content.powerOfArrestAnchor}")`,
+        `${Selectors.GovLink}:text-is("${ConfidentialityCheck1Content.powerOfArrestAnchor}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${ConfidentialityCheck1Content.mockFileAnchor}")`,
+        `${Selectors.GovLink}:text-is("${ConfidentialityCheck1Content.mockFileAnchor}")`,
         3,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${ConfidentialityCheck1Content.privacyNoticeAnchor}")`,
+        `${Selectors.GovLink}:text-is("${ConfidentialityCheck1Content.privacyNoticeAnchor}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${ConfidentialityCheck1Content.finalDocumentAnchor}")`,
+        `${Selectors.GovLink}:text-is("${ConfidentialityCheck1Content.finalDocumentAnchor}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${ConfidentialityCheck1Content.coverLetterAnchor}"):visible`,
+        `${Selectors.GovLink}:text-is("${ConfidentialityCheck1Content.coverLetterAnchor}"):visible`,
         1,
       ),
       Helpers.checkGroup(
@@ -124,7 +124,7 @@ export class ConfidentialityCheck1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${ConfidentialityCheck1Content.c8DocumentAnchor}")`,
+        `${Selectors.GovLink}:text-is("${ConfidentialityCheck1Content.c8DocumentAnchor}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -170,7 +170,7 @@ export class ConfidentialityCheck1Page {
     const [pdfPage] = await Promise.all([
       page.waitForEvent("popup"),
       packLocator
-        .locator(Selectors.a, {
+        .locator(Selectors.GovLink, {
           hasText: "Annex 1 - Confidential contact details notice.pdf",
         })
         .click(),

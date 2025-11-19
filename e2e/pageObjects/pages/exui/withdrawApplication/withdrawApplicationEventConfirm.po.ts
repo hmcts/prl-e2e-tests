@@ -1,6 +1,4 @@
 import { expect, Locator, Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors.ts";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 import { EventPage } from "../eventPage.po.js";
 
 export class WithdrawApplicationEventConfirmPage extends EventPage {
@@ -25,10 +23,6 @@ export class WithdrawApplicationEventConfirmPage extends EventPage {
       hasText: "This case will now display as “withdrawn” in your case list.",
     },
   );
-  private readonly closeAndReturnToCaseDetailsButton: Locator =
-    this.page.locator(Selectors.button, {
-      hasText: CommonStaticText.closeAndReturnToCaseDetails,
-    });
 
   constructor(page: Page) {
     super(page, "Withdraw application");
@@ -46,9 +40,5 @@ export class WithdrawApplicationEventConfirmPage extends EventPage {
     }
 
     await expect(this.closeAndReturnToCaseDetailsButton).toBeVisible();
-  }
-
-  async clickCloseAndReturnToCaseDetails(): Promise<void> {
-    await this.closeAndReturnToCaseDetailsButton.click();
   }
 }

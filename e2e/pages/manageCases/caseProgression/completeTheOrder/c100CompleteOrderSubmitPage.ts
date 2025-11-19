@@ -79,8 +79,8 @@ export class c100CompleteOrderSubmitPage {
         page,
         2,
         c100CompleteOrderSubmitCAContent,
-        "a",
-        `${Selectors.a}`,
+        "link",
+        `${Selectors.GovLink}`,
       ),
       Helpers.checkGroup(
         page,

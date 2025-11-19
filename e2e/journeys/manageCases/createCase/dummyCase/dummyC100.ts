@@ -38,13 +38,13 @@ export class DummyC100 {
     }
     // currently need to complete child details event as it is the only event not pre-completed for a dummy case
     await DummyC100ChildDetails.dummyC100ChildDetails(page);
+    const caseRef: string = await Helpers.getCaseNumberFromUrl(page);
     await C100SubmitAndPay.c100SubmitAndPay({
       page: page,
       yesNoWelshLanguage: false,
       yesNoHelpWithFees: false,
       accessibilityTest: false,
     });
-    const caseRef: string = await Helpers.getCaseNumberFromUrl(page);
     const caseEventUtils = new CaseEventUtils();
     await caseEventUtils.submitEvent(
       page,

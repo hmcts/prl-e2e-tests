@@ -99,7 +99,7 @@ export class FL401ReviewDocuments2Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${documentLink}")`,
+        `${Selectors.GovLink}:text-is("${documentLink}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(

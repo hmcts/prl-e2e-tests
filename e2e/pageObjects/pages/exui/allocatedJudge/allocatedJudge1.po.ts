@@ -82,12 +82,6 @@ export class AllocatedJudge1Page extends EventPage {
   readonly highCourtJudgeRadio: Locator = this.page.locator(
     "#tierOfJudiciary-highCourtJudge",
   );
-  readonly continueButton: Locator = this.page.locator(Selectors.button, {
-    hasText: CommonStaticText.continue,
-  });
-  readonly previousButton: Locator = this.page.locator(Selectors.button, {
-    hasText: CommonStaticText.previous,
-  });
 
   constructor(page: Page) {
     super(page, "Allocated judge");
@@ -157,9 +151,5 @@ export class AllocatedJudge1Page extends EventPage {
         await this.highCourtJudgeRadio.click();
         break;
     }
-  }
-
-  async clickContinue(): Promise<void> {
-    await this.continueButton.click();
   }
 }

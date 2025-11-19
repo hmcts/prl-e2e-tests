@@ -66,8 +66,8 @@ export class ManageOrdersSubmitPage {
         page,
         2,
         ManageOrdersSubmitDAContent,
-        "a",
-        Selectors.a,
+        "link",
+        Selectors.GovLink,
       ),
       Helpers.checkGroup(
         page,

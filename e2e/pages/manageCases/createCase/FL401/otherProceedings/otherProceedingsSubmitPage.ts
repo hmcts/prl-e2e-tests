@@ -99,7 +99,7 @@ export class OtherProceedingsSubmitPage {
           ),
           Helpers.checkVisibleAndPresent(
             page,
-            `${Selectors.a}:text-is("${Path.basename("../../../../../assets/mockFile.pdf")}")`,
+            `${Selectors.GovLink}:text-is("${Path.basename("../../../../../assets/mockFile.pdf")}")`,
             1,
           ),
         ]);
