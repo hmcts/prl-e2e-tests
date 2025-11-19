@@ -35,6 +35,14 @@ import { C100AdminAddBarrister2Page } from "./pages/exui/addAndRemoveBarrister/c
 import { C100NocConfirmationPage } from "./pages/exui/noticeOfChange/c100NocConfirmationPage.po.ts";
 import { C100AdminRemoveBarrister1Page } from "./pages/exui/addAndRemoveBarrister/c100AdminRemoveBarrister1Page.po.ts";
 import { C100AdminRemoveBarrister2Page } from "./pages/exui/addAndRemoveBarrister/c100AdminRemoveBarristerSubmit.po.ts";
+import { DraftAnOrder1Page } from "./pages/exui/orders/solicitor/draftAnOrder1.po.js";
+import { DraftAnOrder2Page } from "./pages/exui/orders/solicitor/draftAnOrder2.po.js";
+import { DraftAnOrder4Page } from "./pages/exui/orders/solicitor/draftAnOrder4.po.js";
+import { DraftAnOrder5Page } from "./pages/exui/orders/solicitor/draftAnOrder5.po.js";
+import { DraftAnOrder16Page } from "./pages/exui/orders/solicitor/draftAnOrder16.po.js";
+import { DraftAnOrder20Page } from "./pages/exui/orders/solicitor/draftAnOrder20.po.js";
+import { DraftAnOrderSubmitPage } from "./pages/exui/orders/solicitor/draftAnOrderSubmit.po.js";
+import { DraftOrdersPage } from "./pages/exui/caseView/draftOrders.po.js";
 
 export interface PageFixtures {
   tasksPage: TasksPage;
@@ -43,6 +51,7 @@ export interface PageFixtures {
   linkedCasesPage: LinkedCasesPage;
   partiesPage: PartiesPage;
   applicationPage: ApplicationPage;
+  draftOrdersPage: DraftOrdersPage;
   fl401AddCaseNumber1Page: Fl401AddCaseNumber1Page;
   fl401AddCaseNumberSubmitPage: Fl401AddCaseNumberSubmitPage;
   allocatedJudge1Page: AllocatedJudge1Page;
@@ -74,6 +83,13 @@ export interface PageFixtures {
   c100NocConfirmationPage: C100NocConfirmationPage;
   c100AdminRemoveBarrister1Page: C100AdminRemoveBarrister1Page;
   c100AdminRemoveBarrister2Page: C100AdminRemoveBarrister2Page;
+  draftAnOrder1Page: DraftAnOrder1Page;
+  draftAnOrder2Page: DraftAnOrder2Page;
+  draftAnOrder4Page: DraftAnOrder4Page;
+  draftAnOrder5Page: DraftAnOrder5Page;
+  draftAnOrder16Page: DraftAnOrder16Page;
+  draftAnOrder20Page: DraftAnOrder20Page;
+  draftAnOrderSubmitPage: DraftAnOrderSubmitPage;
 }
 
 export const pageFixtures = {
@@ -94,6 +110,9 @@ export const pageFixtures = {
   },
   applicationPage: async ({ page }, use) => {
     await use(new ApplicationPage(page));
+  },
+  draftOrdersPage: async ({ page }, use) => {
+    await use(new DraftOrdersPage(page));
   },
   fl401AddCaseNumber1Page: async ({ page }, use) => {
     await use(new Fl401AddCaseNumber1Page(page));
@@ -187,5 +206,26 @@ export const pageFixtures = {
   },
   c100AdminRemoveBarrister2Page: async ({ page }, use) => {
     await use(new C100AdminRemoveBarrister2Page(page));
+  },
+  draftAnOrder1Page: async ({ page }, use) => {
+    await use(new DraftAnOrder1Page(page));
+  },
+  draftAnOrder2Page: async ({ page }, use) => {
+    await use(new DraftAnOrder2Page(page));
+  },
+  draftAnOrder4Page: async ({ page }, use) => {
+    await use(new DraftAnOrder4Page(page));
+  },
+  draftAnOrder5Page: async ({ page }, use) => {
+    await use(new DraftAnOrder5Page(page));
+  },
+  draftAnOrder16Page: async ({ page }, use) => {
+    await use(new DraftAnOrder16Page(page));
+  },
+  draftAnOrder20Page: async ({ page }, use) => {
+    await use(new DraftAnOrder20Page(page));
+  },
+  draftAnOrderSubmitPage: async ({ page }, use) => {
+    await use(new DraftAnOrderSubmitPage(page));
   },
 };

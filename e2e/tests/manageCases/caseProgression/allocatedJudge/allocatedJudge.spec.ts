@@ -6,14 +6,16 @@ test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 test.describe("Allocate a judge to the case", () => {
   let caseNumber: string = "";
 
-  test.beforeEach(async ({ browser, caseEventUtils, navigationUtils }) => {
-    caseNumber = await caseEventUtils.createDACaseSendToGatekeeper(browser);
-    await navigationUtils.goToCase(
-      config.manageCasesBaseURLCase,
-      caseNumber,
-      "tasks",
-    );
-  });
+  test.beforeEach(
+    async ({ page, browser, caseEventUtils, navigationUtils }) => {
+      caseNumber = await caseEventUtils.createDACaseSendToGatekeeper(browser);
+      await navigationUtils.goToCase(
+        page,
+        config.manageCasesBaseURLCase,
+        caseNumber,
+      );
+    },
+  );
 
   [
     {

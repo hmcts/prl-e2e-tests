@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
 import {
   createOrderFL401Options,
-  judgeTitles,
+  JudgeOrMagistrateTitles,
   manageOrdersOptions,
   solicitorCaseCreateType,
 } from "../../../../../common/types.ts";
@@ -29,7 +29,7 @@ interface FL401Params {
   manageOrdersOptions: manageOrdersOptions;
   howLongWillOrderBeInForce: howLongWillOrderBeInForce;
   createOrderFL401Options: createOrderFL401Options;
-  judgeTitles: judgeTitles;
+  judgeTitles: JudgeOrMagistrateTitles;
   createOrderManageOrders19Options: createOrderManageOrders19Options;
 }
 
