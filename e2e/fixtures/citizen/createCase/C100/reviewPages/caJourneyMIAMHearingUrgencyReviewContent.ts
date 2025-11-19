@@ -24,7 +24,7 @@ export enum CaJourneyMIAMHearingUrgencyReviewContent {
   h3_9 = "Safety concerns: the children in the application",
   h3_10 = "Safety concern: your safety",
   h3_11 = "Safety concern: other concerns that you have",
-  h3_12 = "Confirm before you submit the application",
+  legendFieldSet = "Confirm before you submit the application",
   dt_1 = "Where do the children live?",
   dt_2 = "Do you have a written agreement with the other people in the case that you want the court to review?",
   dt_3 = "Will you be using a legal representative in these proceedings?",
