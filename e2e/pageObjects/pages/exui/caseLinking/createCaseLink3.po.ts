@@ -31,12 +31,10 @@ export class CreateCaseLink3Page extends Base {
     await expect(this.familyManHeading).toBeVisible();
     await expect(this.caseNumberHeading).toBeVisible();
     await expect(this.sectionHeading).toBeVisible();
-    await this.table.runVisualTest(["caseLinking", "create-case-link"], {
-      x: 0,
-      y: 450,
-      width: 1920,
-      height: 1080,
-    });
+    await this.table.captureFullTableScreenshot(
+      ["caseLinking", "create-case-link"],
+      "#linked-cases-table",
+    );
     await expect(this.continueButton).toBeVisible();
     await expect(this.previousButton).toBeVisible();
   }

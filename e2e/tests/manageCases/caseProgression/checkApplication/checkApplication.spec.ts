@@ -6,14 +6,17 @@ test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 test.describe("Check Application task for DA Solicitor case tests.", () => {
   let caseNumber: string;
 
-  test.beforeEach(async ({ browser, caseEventUtils, navigationUtils }) => {
-    caseNumber = await caseEventUtils.createDACase(browser);
-    await navigationUtils.goToCase(
-      config.manageCasesBaseURLCase,
-      caseNumber,
-      "tasks",
-    );
-  });
+  test.beforeEach(
+    async ({ page, browser, caseEventUtils, navigationUtils }) => {
+      caseNumber = await caseEventUtils.createDACase(browser);
+      await navigationUtils.goToCase(
+        page,
+        config.manageCasesBaseURLCase,
+        caseNumber,
+        "tasks",
+      );
+    },
+  );
 
   [{ familyManNumber: "1234", snapshotName: "check-application" }].forEach(
     ({ familyManNumber, snapshotName }) => {
@@ -24,7 +27,6 @@ test.describe("Check Application task for DA Solicitor case tests.", () => {
         fl401AddCaseNumberSubmitPage,
         axeUtils,
       }): Promise<void> => {
-        await tasksPage.exuiHeader.checkIsVisible();
         await tasksPage.assignTaskToMeAndTriggerNextSteps(
           "Check Application",
           "Add Case Number",

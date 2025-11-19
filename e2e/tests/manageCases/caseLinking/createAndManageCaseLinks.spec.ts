@@ -7,15 +7,17 @@ test.describe("Create and manage linked DA cases as a court admin.", () => {
   let caseNumber: string = "";
   let linkedCaseNumber: string = "";
 
-  test.beforeEach(async ({ browser, caseEventUtils, navigationUtils }) => {
-    caseNumber = await caseEventUtils.createDACase(browser);
-    linkedCaseNumber = await caseEventUtils.createDACase(browser);
-    await navigationUtils.goToCase(
-      config.manageCasesBaseURLCase,
-      caseNumber,
-      "Summary",
-    );
-  });
+  test.beforeEach(
+    async ({ page, browser, caseEventUtils, navigationUtils }) => {
+      caseNumber = await caseEventUtils.createDACase(browser);
+      linkedCaseNumber = await caseEventUtils.createDACase(browser);
+      await navigationUtils.goToCase(
+        page,
+        config.manageCasesBaseURLCase,
+        caseNumber,
+      );
+    },
+  );
 
   [
     {
@@ -26,6 +28,7 @@ test.describe("Create and manage linked DA cases as a court admin.", () => {
     },
   ].forEach(({ caseName, state, reasonsForCaseLink, otherReason }) => {
     test("Create and manage linked case. @nightly @regression @accessibility", async ({
+      page,
       summaryPage,
       createCaseLink1Page,
       createCaseLink2Page,
@@ -81,9 +84,9 @@ test.describe("Create and manage linked DA cases as a court admin.", () => {
       });
       // check the linked cases tab for the case that has been linked from
       await navigationUtils.goToCase(
+        page,
         config.manageCasesBaseURLCase,
         linkedCaseNumber,
-        "Summary",
       );
       await linkedCasesPage.goToPage();
       await linkedCasesPage.clickShowHideLink();
@@ -101,9 +104,9 @@ test.describe("Create and manage linked DA cases as a court admin.", () => {
 
       // manage case links journey
       await navigationUtils.goToCase(
+        page,
         config.manageCasesBaseURLCase,
         caseNumber,
-        "Summary",
       );
       await summaryPage.chooseEventFromDropdown("Manage case links");
       await maintainCaseLink1Page.assertPageContents();
@@ -131,9 +134,9 @@ test.describe("Create and manage linked DA cases as a court admin.", () => {
       await linkedCasesPage.assertPageContents({});
       // check the linked cases tab for the case that has been linked from
       await navigationUtils.goToCase(
+        page,
         config.manageCasesBaseURLCase,
         linkedCaseNumber,
-        "Summary",
       );
       await linkedCasesPage.goToPage();
       await linkedCasesPage.assertPageContents({});

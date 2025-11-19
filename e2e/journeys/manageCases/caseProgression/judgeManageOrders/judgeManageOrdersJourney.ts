@@ -1,7 +1,7 @@
 import { Browser, Page } from "@playwright/test";
 import {
   createOrderFL401Options,
-  judgeTitles,
+  JudgeOrMagistrateTitles,
   manageOrdersOptions,
   solicitorCaseCreateType,
   uploadOrderFL401Options,
@@ -38,7 +38,7 @@ interface JudgeDACaseProgressionJourneyParams {
   accessibilityTest: boolean;
   c100CaseWorkerActions: WACaseWorkerActions;
   createOrderFL401Options: createOrderFL401Options;
-  judgeTitles: judgeTitles;
+  judgeTitles: JudgeOrMagistrateTitles;
   yesNoManageOrders: boolean;
   withOrWithoutNotice: boolean;
   createOrderManageOrders19Options: createOrderManageOrders19Options;

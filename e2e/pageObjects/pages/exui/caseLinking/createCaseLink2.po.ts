@@ -5,6 +5,7 @@ import {
   CaseLinksTableComponent,
   CaseLinksTableParams,
 } from "../../../components/exui/caseLinksTable.component.js";
+import { PageUtils } from "../../../../utils/page.utils.js";
 
 // Not a standard event page so don't extend EventPage
 export class CreateCaseLink2Page extends Base {
@@ -88,6 +89,7 @@ export class CreateCaseLink2Page extends Base {
     "#other-description-char-limit-info",
     { hasText: "You can enter up to 100 characters" },
   );
+  private readonly pageUtils: PageUtils = new PageUtils(this.page);
 
   constructor(page: Page) {
     super(page);
@@ -97,9 +99,9 @@ export class CreateCaseLink2Page extends Base {
     await expect(this.familyManHeading).toBeVisible();
     await expect(this.caseNumberHeading).toBeVisible();
     await expect(this.sectionHeading).toBeVisible();
-    await this.checkStrings(Selectors.GovukHeadingS, this.subHeadings);
+    await this.pageUtils.assertStrings(this.subHeadings);
     await expect(this.hint).toBeVisible();
-    await this.checkStrings(Selectors.GovukLabel, this.caseLinkReasons);
+    await this.pageUtils.assertStrings(this.caseLinkReasons);
     await expect(this.proposeCaseLinkButton).toBeVisible();
     await this.proposedCaseLinksTable.assertTableContents();
     await expect(this.continueButton).toBeVisible();
