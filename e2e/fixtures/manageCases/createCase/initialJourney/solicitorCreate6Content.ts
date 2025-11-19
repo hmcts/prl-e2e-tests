@@ -13,6 +13,7 @@ export enum SolicitorCreate6Content {
   formLabel = "I understand that information should be marked as confidential if it is to be kept private.",
   continue = "Continue",
 
+  submit = "Submit",
   errorBanner = "There is a problem",
   errorText = "Field is required",
 }
