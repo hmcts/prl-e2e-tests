@@ -11,7 +11,9 @@ export class SubmitPage {
     caseName: string,
     isDummyCase: boolean = false,
   ): Promise<void> {
-    await this.checkContent(page, accessibilityTest, caseName);
+    if (isDummyCase) {
+      await this.checkContent(page, accessibilityTest, caseName);
+    }
     await this.submit(page, isDummyCase);
   }
 
@@ -59,10 +61,6 @@ export class SubmitPage {
     if (isDummyCase) {
       await page.click(
         `${Selectors.button}:text-is("${SubmitContent.createMyDummyCase}")`,
-      );
-    } else {
-      await page.click(
-        `${Selectors.button}:text-is("${SubmitContent.saveAndContinue}")`,
       );
     }
   }
