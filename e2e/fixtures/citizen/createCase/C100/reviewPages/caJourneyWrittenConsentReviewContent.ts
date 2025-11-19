@@ -19,7 +19,7 @@ export enum CaJourneyWrittenConsentReviewContent {
   h3_7 = "Safety concerns: the children in the application",
   h3_8 = "Safety concern: your safety",
   h3_9 = "Safety concern: other concerns that you have",
-  h3_10 = "Confirm before you submit the application",
+  legendFieldSet = "Confirm before you submit the application",
   dt_1 = "Where do the children live?",
   dt_2 = "Do you have a written agreement with the other people in the case that you want the court to review?",
   dt_3 = "What are you asking the court to do?",
