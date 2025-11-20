@@ -36,7 +36,10 @@ test.describe("Withdraw C100 (Solicitor created) application event as a solicito
       );
       await withdrawApplicationEvent1Page.clickContinue();
 
-      await withdrawApplicationEventSubmitPage.assertPageContents(snapshotName);
+      await withdrawApplicationEventSubmitPage.assertPageContents(
+        ["caseProgression", "withdrawApplication"],
+        snapshotName,
+      );
       await axeUtils.audit();
       await withdrawApplicationEventSubmitPage.clickSaveAndContinue();
 

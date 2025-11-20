@@ -50,6 +50,7 @@ test.describe("Complete Remove legal representative event for C100 case", () => 
       );
       await c100RemoveLegalRepresentative1Page.clickContinue();
       await c100RemoveLegalRepresentativeSubmitPage.assertPageContents(
+        ["caseProgression", "removeLegalRepresentative"],
         snapshotName,
       );
       await axeUtils.audit();

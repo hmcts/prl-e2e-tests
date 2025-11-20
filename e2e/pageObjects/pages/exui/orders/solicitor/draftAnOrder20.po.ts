@@ -28,6 +28,7 @@ export class DraftAnOrder20Page extends EventPage {
     orderType: OrderTypes,
     caseNumber: string,
     pdfName: string,
+    snapshotsPath: string[],
   ): Promise<void> {
     await this.assertPageHeadings();
     await expect(this.page.getByText(orderType)).toBeVisible();
@@ -45,8 +46,8 @@ export class DraftAnOrder20Page extends EventPage {
       }),
     ).toBeVisible();
     // assert draft orders in media viewer
-    await this.assertPdfContents(caseNumber, true, pdfName);
-    await this.assertPdfContents(caseNumber, false, pdfName);
+    await this.assertPdfContents(caseNumber, true, pdfName, snapshotsPath);
+    await this.assertPdfContents(caseNumber, false, pdfName, snapshotsPath);
     await expect(this.paragraph).toBeVisible();
     await expect(this.continueButton).toBeVisible();
     await expect(this.previousButton).toBeVisible();
@@ -61,16 +62,23 @@ export class DraftAnOrder20Page extends EventPage {
       case "Non-molestation order (FL404A)":
         this.welshPdfLink = "welsh_non_molestation_order_fl404a_draft.pdf";
         this.englishPdfLink = "non_molestation_order_fl404a_draft.pdf";
-        return isWelsh ? this.welshPdfLink : this.englishPdfLink;
+        break;
+      case "Parental responsibility order (C45A)":
+        this.welshPdfLink =
+          "Welsh_Parental_Responsibility_Order_C45A_draft.pdf";
+        this.englishPdfLink = "Parental_Responsibility_Order_C45A_draft.pdf";
+        break;
       default:
         throw new Error(`Unexpected order type ${orderType}`);
     }
+    return isWelsh ? this.welshPdfLink : this.englishPdfLink;
   }
 
   private async assertPdfContents(
     caseNumber: string,
     isWelsh: boolean,
     pdfName: string,
+    snapshotsPath: string[],
   ): Promise<void> {
     const draftOrderLink: Locator = this.page.getByRole("button", {
       name: isWelsh ? this.welshPdfLink : this.englishPdfLink,
@@ -86,15 +94,11 @@ export class DraftAnOrder20Page extends EventPage {
     const dateLocator: Locator = pdfPage.getByText(
       Helpers.todayDate(true) as string,
     );
+    const snapshotPath: string[] = [...snapshotsPath, regionalPdfName];
     const mediaViewerPage = new ExuiMediaViewerPage(pdfPage);
     await mediaViewerPage.runVisualTestOnAllPages(
       pdfPage,
-      [
-        "caseProgression",
-        "solicitor",
-        "draftNonMolestationOrder",
-        regionalPdfName,
-      ],
+      snapshotPath,
       clippingCoords.centeredPageWithoutToolbar,
       [caseRefLocator, dateLocator],
     );

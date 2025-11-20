@@ -4,9 +4,6 @@ import { CheckYourAnswersPage } from "../checkYourAnswers.po.js";
 
 export class WithdrawApplicationEventSubmitPage extends CheckYourAnswersPage {
   constructor(page: Page) {
-    super(page, "Withdraw application", {
-      snapshotPath: ["caseProgression", "withdrawApplication"],
-      cyaSubmitButton: CommonStaticText.saveAndContinue,
-    });
+    super(page, "Withdraw application", CommonStaticText.saveAndContinue);
   }
 }

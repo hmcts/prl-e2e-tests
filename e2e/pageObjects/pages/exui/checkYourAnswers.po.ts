@@ -8,13 +8,7 @@ type CyaSubmitButton =
   | CommonStaticText.submit
   | CommonStaticText.saveAndContinue;
 
-interface CyaConstructorParams {
-  snapshotPath: string[];
-  cyaSubmitButton: CyaSubmitButton;
-}
-
 export class CheckYourAnswersPage extends EventPage {
-  private readonly snapshotPath: string[];
   private readonly headingH2: Locator = this.page.locator(Selectors.headingH2, {
     hasText: "Check your answers",
   });
@@ -28,21 +22,21 @@ export class CheckYourAnswersPage extends EventPage {
   constructor(
     page: Page,
     headingText: string,
-    { snapshotPath, cyaSubmitButton }: CyaConstructorParams,
+    cyaSubmitButton: CyaSubmitButton,
   ) {
     super(page, headingText);
-    this.snapshotPath = snapshotPath;
     this.cyaSubmitButton = cyaSubmitButton;
   }
 
-  async assertPageContents(snapshotName: string): Promise<void> {
+  async assertPageContents(
+    snapshotPath: string[],
+    snapshotName: string,
+  ): Promise<void> {
     await this.assertPageHeadings();
     await expect(this.headingH2).toBeVisible();
     await expect(this.text16).toBeVisible();
-    this.snapshotPath.push(snapshotName);
-    await this.checkYourAnswersTable.captureFullTableScreenshot(
-      this.snapshotPath,
-    );
+    snapshotPath.push(snapshotName);
+    await this.checkYourAnswersTable.captureFullTableScreenshot(snapshotPath);
     // not all cya pages have the same "submit" button
     if (this.cyaSubmitButton === CommonStaticText.saveAndContinue) {
       await expect(this.saveAndContinueButton).toBeVisible();

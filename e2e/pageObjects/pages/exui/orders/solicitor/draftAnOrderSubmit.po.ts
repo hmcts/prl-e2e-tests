@@ -4,13 +4,6 @@ import { CommonStaticText } from "../../../../../common/commonStaticText.js";
 
 export class DraftAnOrderSubmitPage extends CheckYourAnswersPage {
   constructor(page: Page) {
-    super(page, "Draft an order", {
-      snapshotPath: [
-        "caseProgression",
-        "solicitor",
-        "draftNonMolestationOrder",
-      ],
-      cyaSubmitButton: CommonStaticText.submit,
-    });
+    super(page, "Draft an order", CommonStaticText.submit);
   }
 }
