@@ -38,7 +38,7 @@ export class C100TasksTabPage {
       ),
       await Helpers.checkGroup(
         page,
-        16,
+        15,
         C100TasksTabContent,
         "linkW",
         `${IndividualSelectors.links}`,
