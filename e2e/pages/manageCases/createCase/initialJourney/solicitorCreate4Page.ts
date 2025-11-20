@@ -82,7 +82,10 @@ export class SolicitorCreate4Page {
     ]);
   }
 
-  private static async fillInFields(page: Page, isDummyCase: boolean = false): Promise<string> {
+  private static async fillInFields(
+    page: Page,
+    isDummyCase: boolean = false,
+  ): Promise<string> {
     if (isDummyCase) {
       const generatedName: string = Helpers.generateCaseName();
       await page.fill(`${caseName.fieldID}`, generatedName);
