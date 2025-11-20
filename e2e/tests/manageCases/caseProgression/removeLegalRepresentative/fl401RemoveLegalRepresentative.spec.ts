@@ -41,6 +41,7 @@ test.describe("Complete Remove legal representative event for FL401 case", () =>
       );
       await fl401RemoveLegalRepresentative1Page.clickContinue();
       await fl401RemoveLegalRepresentativeSubmitPage.assertPageContents(
+        ["caseProgression", "removeLegalRepresentative"],
         snapshotName,
       );
       await axeUtils.audit();

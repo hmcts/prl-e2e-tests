@@ -4,9 +4,6 @@ import { CheckYourAnswersPage } from "../checkYourAnswers.po.js";
 
 export class Fl401AddCaseNumberSubmitPage extends CheckYourAnswersPage {
   constructor(page: Page) {
-    super(page, "Add case number", {
-      snapshotPath: ["caseProgression", "checkApplication"],
-      cyaSubmitButton: CommonStaticText.saveAndContinue,
-    });
+    super(page, "Add case number", CommonStaticText.saveAndContinue);
   }
 }
