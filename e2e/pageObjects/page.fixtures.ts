@@ -32,6 +32,7 @@ import { DraftAnOrder16Page } from "./pages/exui/orders/solicitor/draftAnOrder16
 import { DraftAnOrder20Page } from "./pages/exui/orders/solicitor/draftAnOrder20.po.js";
 import { DraftAnOrderSubmitPage } from "./pages/exui/orders/solicitor/draftAnOrderSubmit.po.js";
 import { DraftOrdersPage } from "./pages/exui/caseView/draftOrders.po.js";
+import { DraftAnOrder8Page } from "./pages/exui/orders/solicitor/draftAnOrder8.po.js";
 
 export interface PageFixtures {
   tasksPage: TasksPage;
@@ -65,6 +66,7 @@ export interface PageFixtures {
   draftAnOrder2Page: DraftAnOrder2Page;
   draftAnOrder4Page: DraftAnOrder4Page;
   draftAnOrder5Page: DraftAnOrder5Page;
+  draftAnOrder8Page: DraftAnOrder8Page;
   draftAnOrder16Page: DraftAnOrder16Page;
   draftAnOrder20Page: DraftAnOrder20Page;
   draftAnOrderSubmitPage: DraftAnOrderSubmitPage;
@@ -163,6 +165,9 @@ export const pageFixtures = {
   },
   draftAnOrder5Page: async ({ page }, use) => {
     await use(new DraftAnOrder5Page(page));
+  },
+  draftAnOrder8Page: async ({ page }, use) => {
+    await use(new DraftAnOrder8Page(page));
   },
   draftAnOrder16Page: async ({ page }, use) => {
     await use(new DraftAnOrder16Page(page));

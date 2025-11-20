@@ -4,6 +4,7 @@ import {
   JudgeOrMagistrateTitles,
   NonMolestationRespondentMustNotDoOptions,
   OrderTypes,
+  solicitorCaseCreateType,
 } from "../../../../../common/types.js";
 import { OrderLengthOptions } from "../../../../../pageObjects/pages/exui/orders/solicitor/draftAnOrder5.po.js";
 import {
@@ -17,7 +18,14 @@ import {
 } from "../../../../../pageObjects/pages/exui/caseView/draftOrders.po.js";
 import { Page } from "@playwright/test";
 
+const snapshotsPath: string[] = [
+  "caseProgression",
+  "solicitor",
+  "draftNonMolestationOrder",
+];
+
 const noToAllParams = {
+  caseType: "FL401" as solicitorCaseCreateType,
   isDraftAnOrder: true,
   orderType: "Non-molestation order (FL404A)" as OrderTypes,
   isOrderByConsent: false,
@@ -61,6 +69,7 @@ const noToAllParams = {
 };
 
 const yesToAllParams = {
+  caseType: "FL401" as solicitorCaseCreateType,
   isDraftAnOrder: true,
   orderType: "Non-molestation order (FL404A)" as OrderTypes,
   isOrderByConsent: true,
@@ -163,6 +172,7 @@ test.describe("Draft a non molestation order tests", (): void => {
 
   [noToAllParams, yesToAllParams].forEach(
     ({
+      caseType,
       isDraftAnOrder,
       orderType,
       isOrderByConsent,
@@ -193,7 +203,7 @@ test.describe("Draft a non molestation order tests", (): void => {
       snapshotName,
       orderInformation,
     }) => {
-      test(`Complete drafting non-molestation order as solicitor with the following options: ${withNotice ? "Yes to all" : "No to all"} @accessibility @regression @nightly @visual`, async ({
+      test(`Complete drafting Non-Molestation order as solicitor with the following options: ${isOrderByConsent ? "Yes to all" : "No to all"} @accessibility @regression @nightly @visual`, async ({
         browser,
         summaryPage,
         draftAnOrder1Page,
@@ -215,9 +225,10 @@ test.describe("Draft a non molestation order tests", (): void => {
         await axeUtils.audit();
         await draftAnOrder2Page.selectOrderType(orderType);
         await draftAnOrder2Page.clickContinue();
-        await draftAnOrder4Page.assertPageContents(orderType);
+        await draftAnOrder4Page.assertPageContents({ caseType, orderType });
         await axeUtils.audit();
         await draftAnOrder4Page.fillInFields({
+          caseType,
           isOrderByConsent,
           wasOrderApprovedAtAHearing,
           hearing,
@@ -259,10 +270,14 @@ test.describe("Draft a non molestation order tests", (): void => {
           orderType,
           caseNumber,
           snapshotName,
+          snapshotsPath,
         );
         await axeUtils.audit();
         await draftAnOrder20Page.clickContinue();
-        await draftAnOrderSubmitPage.assertPageContents(snapshotName);
+        await draftAnOrderSubmitPage.assertPageContents(
+          snapshotsPath,
+          snapshotName,
+        );
         await axeUtils.audit();
         await draftAnOrderSubmitPage.clickSubmit();
         await summaryPage.alertBanner.assertEventAlert(
