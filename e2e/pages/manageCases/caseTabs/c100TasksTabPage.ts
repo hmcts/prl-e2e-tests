@@ -14,11 +14,7 @@ export class C100TasksTabPage {
     page: Page,
     accessibilityTest: boolean,
   ): Promise<void> {
-    if (!(process.env.MANAGE_CASES_TEST_ENV == "preview")) {
-      await this.checkPageLoads(page, accessibilityTest);
-    } else {
-      return;
-    }
+    await this.checkPageLoads(page, accessibilityTest);
   }
 
   private static async checkPageLoads(
