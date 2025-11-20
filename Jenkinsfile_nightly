@@ -34,6 +34,11 @@ properties([
       defaultValue: '',
       description: 'Test tag to be used'
     ),
+    string(
+      name: 'tests',
+      defaultValue: '',
+      description: 'Space separated list of test names to be used'
+    ),
     choice(
       name: 'browser',
       choices: ['chromium', 'firefox', 'webkit', 'MicrosoftEdge', 'MobileChrome', 'MobileSafari'],
@@ -126,21 +131,21 @@ withNightlyPipeline(type, product, component, 600) {
         unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
       }
     }
-    if(params.tag) {
-      stage("${params.tag} tests - ${params.browser}") {
+    if(params.tests || params.tag) {
+      stage("${params.tag} ${params.tests ? "custom" : ""} tests - ${params.browser}") {
         try {
           yarnBuilder.yarn('playwright install --with-deps')
-          yarnBuilder.yarn("playwright test --grep ${params.tag} --project ${params.browser}")
+          yarnBuilder.yarn("playwright test ${params.tests} ${params.tag ? "--grep ${params.tag}": ""} --project ${params.browser}")
         } catch (Error) {
           unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
         } finally {
           publishHTML([
-            allowMissing: true,
-            alwaysLinkToLastBuild: true,
-            keepAll: true,
-            reportDir: "playwright-report",
-            reportFiles: 'index.html',
-            reportName: "${params.tag} tests - ${params.browser}"
+                  allowMissing: true,
+                  alwaysLinkToLastBuild: true,
+                  keepAll: true,
+                  reportDir: "playwright-report",
+                  reportFiles: 'index.html',
+                  reportName: "${params.tag} custom tests - ${params.browser}"
           ])
           steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CitizenFunctional/*'
         }
