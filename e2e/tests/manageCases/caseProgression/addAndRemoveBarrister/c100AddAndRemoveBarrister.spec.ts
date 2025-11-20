@@ -5,9 +5,9 @@ test.use({ storageState: config.sessionStoragePath + "nocSolicitor.json" });
 
 test.describe("Add/Remove Barrister for CA case", () => {
   let caseNumber: string;
-
   test.beforeEach(
     async ({
+      page,
       browser,
       caseEventUtils,
       navigationUtils,
@@ -17,6 +17,7 @@ test.describe("Add/Remove Barrister for CA case", () => {
       caseNumber =
         await caseEventUtils.createCACaseIssueAndSendToLocalCourt(browser);
       await navigationUtils.goToCase(
+        page,
         config.manageCasesBaseURLCase,
         caseNumber,
         "summary",
@@ -30,15 +31,19 @@ test.describe("Add/Remove Barrister for CA case", () => {
         caseworkerPage,
         caseNumber,
       );
-      await amendApplicantDetails1.clickContinue(caseworkerPage);
-      await amendApplicantDetailsSubmit.clickSaveAndContinue(caseworkerPage);
+      await amendApplicantDetailsSubmit.saveAndContinue(caseworkerPage);
       await caseworkerContext.close();
     },
   );
 
   [
     {
-      existingRepresentative: ["Legal Solicitor (John Doe)"],
+      existingRepresentative: [
+        "John Doe (Applicant), PRL NOC Respondent Solicitor 1, Private law NOC solution",
+      ],
+      existingRepresentativeRemoval: [
+        "John Doe (Applicant), PRL NOC Respondent Solicitor 1, BarristerOneFN BarristerOneLN",
+      ],
       addBarristerSnapshotName: "c100-add-barrister",
       removeBarristerSnapshotName: "c100-remove-barrister",
       applicants: [{ firstname: "John", surname: "Doe" }],
@@ -53,6 +58,7 @@ test.describe("Add/Remove Barrister for CA case", () => {
   ].forEach(
     ({
       existingRepresentative,
+      existingRepresentativeRemoval,
       addBarristerSnapshotName,
       removeBarristerSnapshotName,
       applicants,
@@ -60,6 +66,7 @@ test.describe("Add/Remove Barrister for CA case", () => {
       nocParty,
     }) => {
       test(`Solicitor adds and removes Barrister for a CA case. @regression @accessibility @nightly`, async ({
+        page,
         summaryPage,
         c100Noc1Page,
         c100Noc2Page,
@@ -67,11 +74,11 @@ test.describe("Add/Remove Barrister for CA case", () => {
         partiesPage,
         axeUtils,
         c100AdminAddBarrister1Page,
-        c100AdminAddBarrister2Page,
+        c100AdminAddBarristerSubmit,
         c100NocConfirmationPage,
         c100AdminRemoveBarrister1Page,
-        c100AdminRemoveBarrister2Page,
-      }) => {
+        c100AdminRemoveBarristerSubmit,
+      }): Promise<void> => {
         // adding solicitor via NoC to allow Barrister functionality
         await summaryPage.exuiHeader.clickNoticeOfChange();
         await c100Noc1Page.assertPageContents();
@@ -93,6 +100,7 @@ test.describe("Add/Remove Barrister for CA case", () => {
         await axeUtils.audit();
         await c100NocConfirmationPage.clickViewThisCase();
         // adding barrister
+        await page.reload(); //adding a page reload because the test was failing by not finding the Go button
         await summaryPage.chooseEventFromDropdown("Add barrister");
         await c100AdminAddBarrister1Page.assertPageContents();
         await axeUtils.audit();
@@ -104,11 +112,11 @@ test.describe("Add/Remove Barrister for CA case", () => {
           existingRepresentative,
         );
         await c100AdminAddBarrister1Page.clickContinue();
-        await c100AdminAddBarrister2Page.assertPageContents(
+        await c100AdminAddBarristerSubmit.assertPageContents(
           addBarristerSnapshotName,
         );
         // await axeUtils.audit(); Note: to remove this comment once FPVTL-1357 fix is deployed
-        await c100AdminAddBarrister2Page.clickSubmit();
+        await c100AdminAddBarristerSubmit.clickSubmit();
         await summaryPage.alertBanner.assertEventAlert(
           caseNumber,
           "Add barrister",
@@ -122,18 +130,19 @@ test.describe("Add/Remove Barrister for CA case", () => {
           barrister.org,
         );
         // removing barrister
+        await page.reload();
         await summaryPage.chooseEventFromDropdown("Remove barrister");
         await c100AdminRemoveBarrister1Page.assertPageContents();
         await axeUtils.audit();
         await c100AdminRemoveBarrister1Page.selectPartyToRemoveBarrister(
-          existingRepresentative,
+          existingRepresentativeRemoval,
         );
         await c100AdminRemoveBarrister1Page.clickContinue();
-        await c100AdminRemoveBarrister2Page.assertPageContents(
+        await c100AdminRemoveBarristerSubmit.assertPageContents(
           removeBarristerSnapshotName,
         );
         await axeUtils.audit();
-        await c100AdminRemoveBarrister2Page.clickSubmit();
+        await c100AdminRemoveBarristerSubmit.clickSubmit();
         await summaryPage.alertBanner.assertEventAlert(
           caseNumber,
           "Remove barrister",

@@ -4,12 +4,9 @@ import { Selectors } from "../../../../common/selectors.js";
 import { CommonStaticText } from "../../../../common/commonStaticText.js";
 
 export class C100Noc1Page extends EventPage {
-  private readonly continueButton: Locator = this.page.locator(
-    Selectors.button,
-    {
-      hasText: CommonStaticText.continue,
-    },
-  );
+  readonly continueButton: Locator = this.page.locator(Selectors.button, {
+    hasText: CommonStaticText.continue,
+  });
   private readonly caseNumberField: Locator = this.page.locator("#caseRef");
   private readonly textLabel1: Locator = this.page.locator(Selectors.p, {
     hasText:

@@ -31,10 +31,10 @@ import { C100Noc1Page } from "./pages/exui/noticeOfChange/c100Noc1Page.po.ts";
 import { C100Noc2Page } from "./pages/exui/noticeOfChange/c100Noc2Page.po.ts";
 import { C100NocSubmitPage } from "./pages/exui/noticeOfChange/c100NocSubmitPage.po.ts";
 import { C100AdminAddBarrister1Page } from "./pages/exui/addAndRemoveBarrister/c100AdminAddBarrister1.po.ts";
-import { C100AdminAddBarrister2Page } from "./pages/exui/addAndRemoveBarrister/c100AdminAddBarristerSubmit.po.ts";
+import { C100AdminAddBarristerSubmit } from "./pages/exui/addAndRemoveBarrister/c100AdminAddBarristerSubmit.po.ts";
 import { C100NocConfirmationPage } from "./pages/exui/noticeOfChange/c100NocConfirmationPage.po.ts";
 import { C100AdminRemoveBarrister1Page } from "./pages/exui/addAndRemoveBarrister/c100AdminRemoveBarrister1Page.po.ts";
-import { C100AdminRemoveBarrister2Page } from "./pages/exui/addAndRemoveBarrister/c100AdminRemoveBarristerSubmit.po.ts";
+import { C100AdminRemoveBarristerSubmit } from "./pages/exui/addAndRemoveBarrister/c100AdminRemoveBarristerSubmit.po.ts";
 import { DraftAnOrder1Page } from "./pages/exui/orders/solicitor/draftAnOrder1.po.js";
 import { DraftAnOrder2Page } from "./pages/exui/orders/solicitor/draftAnOrder2.po.js";
 import { DraftAnOrder4Page } from "./pages/exui/orders/solicitor/draftAnOrder4.po.js";
@@ -79,10 +79,10 @@ export interface PageFixtures {
   c100Noc2Page: C100Noc2Page;
   c100NocSubmitPage: C100NocSubmitPage;
   c100AdminAddBarrister1Page: C100AdminAddBarrister1Page;
-  c100AdminAddBarrister2Page: C100AdminAddBarrister2Page;
+  c100AdminAddBarristerSubmit: C100AdminAddBarristerSubmit;
   c100NocConfirmationPage: C100NocConfirmationPage;
   c100AdminRemoveBarrister1Page: C100AdminRemoveBarrister1Page;
-  c100AdminRemoveBarrister2Page: C100AdminRemoveBarrister2Page;
+  c100AdminRemoveBarristerSubmit: C100AdminRemoveBarristerSubmit;
   draftAnOrder1Page: DraftAnOrder1Page;
   draftAnOrder2Page: DraftAnOrder2Page;
   draftAnOrder4Page: DraftAnOrder4Page;
@@ -195,8 +195,8 @@ export const pageFixtures = {
   c100AdminAddBarrister1Page: async ({ page }, use) => {
     await use(new C100AdminAddBarrister1Page(page));
   },
-  c100AdminAddBarrister2Page: async ({ page }, use) => {
-    await use(new C100AdminAddBarrister2Page(page));
+  c100AdminAddBarristerSubmit: async ({ page }, use) => {
+    await use(new C100AdminAddBarristerSubmit(page));
   },
   c100NocConfirmationPage: async ({ page }, use) => {
     await use(new C100NocConfirmationPage(page));
@@ -204,8 +204,8 @@ export const pageFixtures = {
   c100AdminRemoveBarrister1Page: async ({ page }, use) => {
     await use(new C100AdminRemoveBarrister1Page(page));
   },
-  c100AdminRemoveBarrister2Page: async ({ page }, use) => {
-    await use(new C100AdminRemoveBarrister2Page(page));
+  c100AdminRemoveBarristerSubmit: async ({ page }, use) => {
+    await use(new C100AdminRemoveBarristerSubmit(page));
   },
   draftAnOrder1Page: async ({ page }, use) => {
     await use(new DraftAnOrder1Page(page));

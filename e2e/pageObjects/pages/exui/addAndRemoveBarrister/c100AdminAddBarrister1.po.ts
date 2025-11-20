@@ -4,18 +4,12 @@ import { Selectors } from "../../../../common/selectors.ts";
 import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 
 export class C100AdminAddBarrister1Page extends EventPage {
-  private readonly continueButton: Locator = this.page.locator(
-    Selectors.button,
-    {
-      hasText: CommonStaticText.continue,
-    },
-  );
-  private readonly previousButton: Locator = this.page.locator(
-    Selectors.button,
-    {
-      hasText: CommonStaticText.previous,
-    },
-  );
+  readonly continueButton: Locator = this.page.locator(Selectors.button, {
+    hasText: CommonStaticText.continue,
+  });
+  readonly previousButton: Locator = this.page.locator(Selectors.button, {
+    hasText: CommonStaticText.previous,
+  });
   private readonly partyToAddBarristerCheckbox: Locator = this.page.locator(
     '[id^="allocatedBarrister_partyList_"]',
   );
@@ -34,7 +28,6 @@ export class C100AdminAddBarrister1Page extends EventPage {
   private readonly selectBarristerOrg: Locator = this.page.getByTitle(
     "Select the organisation PRL Barrister Org2",
   );
-
   private readonly textLabel1: Locator = this.page.locator(Selectors.Span, {
     hasText: "For which party do you want to add a barrister?",
   });

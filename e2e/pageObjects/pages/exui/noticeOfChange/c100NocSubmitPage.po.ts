@@ -56,7 +56,7 @@ export class C100NocSubmitPage extends EventPage {
   });
   private readonly textLi2: Locator = this.page.locator(Selectors.li, {
     hasText:
-      "You have served notice of this change on every party to the case, including the former legal representative(if there was one)",
+      "You have served notice of this change on every party to the case, including the former legal representative (if there was one)",
   });
   private readonly textLabel1: Locator = this.page.locator(
     Selectors.GovukLabel,
@@ -66,10 +66,10 @@ export class C100NocSubmitPage extends EventPage {
     },
   );
   private readonly textLabel2: Locator = this.page.locator(
-    Selectors.GovukCheckboxes,
+    Selectors.GovukLabel,
     {
       hasText:
-        "I have served notice of this change on every party to the case, including the former legal representative(if there was one).",
+        " I have served notice of this change on every party to the case, including the former legal representative (if there was one). ",
     },
   );
   private readonly h2: Locator = this.page.locator(Selectors.h2, {
@@ -83,7 +83,7 @@ export class C100NocSubmitPage extends EventPage {
     Selectors.GovukInsetText,
     {
       hasText:
-        "fter you submit a notice of change, you might not see the confirmation page immediately",
+        "After you submit a notice of change, you might not see the confirmation page immediately",
     },
   );
 

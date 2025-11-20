@@ -4,12 +4,9 @@ import { CommonStaticText } from "../../../../common/commonStaticText.js";
 import { EventPage } from "../eventPage.po.ts";
 
 export class C100Noc2Page extends EventPage {
-  private readonly continueButton: Locator = this.page.locator(
-    Selectors.button,
-    {
-      hasText: CommonStaticText.continue,
-    },
-  );
+  readonly continueButton: Locator = this.page.locator(Selectors.button, {
+    hasText: CommonStaticText.continue,
+  });
   private readonly clientFirstNameField: Locator =
     this.page.locator("#NoCChallengeQ1");
   private readonly clientLastNameField: Locator =

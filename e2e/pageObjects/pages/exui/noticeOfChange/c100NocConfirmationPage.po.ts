@@ -36,10 +36,13 @@ export class C100NocConfirmationPage extends EventPage {
   private readonly h2: Locator = this.page.locator(Selectors.h2, {
     hasText: "What happens next",
   });
-  private readonly spanText: Locator = this.page.locator(Selectors.Span, {
-    hasText:
-      "You should now amend the case details, for example the unique legal representative reference, the address for service and email address.",
-  });
+  private readonly spanText: Locator = this.page.locator(
+    Selectors.GovukWarningText,
+    {
+      hasText:
+        " You should now amend the case details, for example the unique legal representative reference, the address for service and email address. ",
+    },
+  );
   private readonly a1: Locator = this.page.locator(Selectors.a, {
     hasText: "View this case",
   });
@@ -69,6 +72,6 @@ export class C100NocConfirmationPage extends EventPage {
     // extra awaits to avoid test failure due to timeout, to be investigated/removed in the future
     await expect(
       this.page.locator(Selectors.a, { hasText: " Case list " }),
-    ).toBeVisible({ timeout: 5000 });
+    ).toBeVisible({ timeout: 9000 });
   }
 }

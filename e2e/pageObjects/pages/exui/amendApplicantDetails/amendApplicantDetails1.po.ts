@@ -2,6 +2,8 @@ import { Page } from "@playwright/test";
 import { Helpers } from "../../../../common/helpers.ts";
 import config from "../../../../utils/config.utils.ts";
 import { EventPage } from "../eventPage.po.ts";
+import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { Selectors } from "../../../../common/selectors.ts";
 
 // more details and page asserts to be added as needed in the future
 export class AmendApplicantDetails1 extends EventPage {
@@ -20,9 +22,8 @@ export class AmendApplicantDetails1 extends EventPage {
       caseworkerPage,
       "Amend applicant details",
     );
-  }
-
-  async clickContinue(caseworkerPage): Promise<void> {
-    await caseworkerPage.getByRole("button", { name: "Continue" }).click();
+    await caseworkerPage.click(
+      `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
+    );
   }
 }

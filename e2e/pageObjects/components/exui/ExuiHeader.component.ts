@@ -26,7 +26,7 @@ export class ExuiHeaderComponent {
       .getByRole("link", { name: "Notice of change" })
       .click();
   }
-  
+
   async signOut(): Promise<void> {
     await this.signOutLink.click();
   }

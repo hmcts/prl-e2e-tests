@@ -4,18 +4,12 @@ import { Selectors } from "../../../../common/selectors.ts";
 import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 
 export class C100AdminRemoveBarrister1Page extends EventPage {
-  private readonly continueButton: Locator = this.page.locator(
-    Selectors.button,
-    {
-      hasText: CommonStaticText.continue,
-    },
-  );
-  private readonly previousButton: Locator = this.page.locator(
-    Selectors.button,
-    {
-      hasText: CommonStaticText.previous,
-    },
-  );
+  readonly continueButton: Locator = this.page.locator(Selectors.button, {
+    hasText: CommonStaticText.continue,
+  });
+  readonly previousButton: Locator = this.page.locator(Selectors.button, {
+    hasText: CommonStaticText.previous,
+  });
   private readonly partyToRemoveBarristerCheckbox: Locator = this.page.locator(
     '[id^="allocatedBarrister_partyList_"]',
   );
@@ -36,10 +30,10 @@ export class C100AdminRemoveBarrister1Page extends EventPage {
   }
 
   async selectPartyToRemoveBarrister(
-    existingRepresentative: string[],
+    existingRepresentativeRemoval: string[],
   ): Promise<void> {
     await this.page
-      .getByRole("radio", { name: existingRepresentative[0] })
+      .getByRole("radio", { name: existingRepresentativeRemoval[0] })
       .check();
   }
 
