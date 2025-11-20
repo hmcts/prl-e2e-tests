@@ -6,7 +6,7 @@ export enum SolicitorCreate4Content {
   formLabel1 = "Case Name",
   formHint1 = "Enter the eldest child’s full name. For example, John Smith",
   continue = "Continue",
-  submit="Submit",
+  submit = "Submit",
   errorBanner = "There is a problem",
   errorText = "Case Name is required",
 }
