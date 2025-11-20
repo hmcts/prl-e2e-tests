@@ -37,8 +37,12 @@ export class NoticeOfChange {
     );
     await NocSuccessfulPage.nocSuccessfulPage(page, accessibilityTest);
     await this.checkSolicitorOnApplication(page, caseType, isApplicant);
-    // check hearing can still be requested with change of solicitor
-    await this.checkHearingRequest(browser, caseRef);
+
+    // hearings do not work on preview environment but the rest of the test is still worth checking on a preview env
+    if(process.env.MANAGE_CASES_TEST_ENV !== "preview") {
+      // check hearing can still be requested with change of solicitor
+      await this.checkHearingRequest(browser, caseRef);
+    }
   }
 
   private static async checkSolicitorOnApplication(
