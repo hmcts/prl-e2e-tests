@@ -6,6 +6,11 @@ import config from "../../../../utils/config.utils.ts";
 test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("Complete Task - Review Documents for DA case tests.", () => {
+  test.skip(
+    process.env.MANAGE_CASES_TEST_ENV === "preview",
+    "Doesn't work on preview env - initial Courtnav case creation doesn't work",
+  );
+
   let ccdRef: string = "";
 
   test.beforeEach(async ({ page, courtNavUtils }) => {

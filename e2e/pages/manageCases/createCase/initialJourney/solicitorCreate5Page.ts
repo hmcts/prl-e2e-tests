@@ -41,7 +41,7 @@ export class SolicitorCreate5Page {
           page,
           `${Selectors.GovukHeadingL}:text-is("${SolicitorCreate5Content.pageTitle}")`,
           1,
-        )
+        ),
       ]);
     }
     if (accessibilityTest) {
@@ -72,7 +72,10 @@ export class SolicitorCreate5Page {
     ]);
   }
 
-  private static async fillInFields(page: Page, isDummyCase: boolean = false): Promise<string> {
+  private static async fillInFields(
+    page: Page,
+    isDummyCase: boolean = false,
+  ): Promise<string> {
     if (isDummyCase) {
       const generatedName: string = Helpers.generateCaseName();
       await page.fill(`${caseName.fieldID}`, generatedName);
@@ -81,9 +84,9 @@ export class SolicitorCreate5Page {
       );
       return generatedName;
     }
-      await page.click(
-        `${Selectors.button}:text-is("${SolicitorCreate5Content.submit}")`,
-      );
-      return;
+    await page.click(
+      `${Selectors.button}:text-is("${SolicitorCreate5Content.submit}")`,
+    );
+    return;
   }
 }

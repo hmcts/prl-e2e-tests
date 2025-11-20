@@ -7,6 +7,11 @@ import { jsonDatas } from "../../../../common/caseHelpers/jsonDatas.ts";
 test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("Complete the Hearing Request Order task for DA Solicitor case tests.", () => {
+  test.skip(
+    process.env.MANAGE_CASES_TEST_ENV === "preview",
+    "Doesn't work on preview env - hearings don't work",
+  );
+
   let ccdRef: string = "";
 
   test.beforeEach(async ({ page, browser, caseEventUtils }) => {
