@@ -4,6 +4,11 @@ import config from "../../../../utils/config.utils.ts";
 test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("Allocate a judge to the case", () => {
+  test.skip(
+    process.env.MANAGE_CASES_TEST_ENV === "preview",
+    "Doesn't work on preview env - roles and access doesn't work",
+  );
+
   let caseNumber: string = "";
 
   test.beforeEach(
