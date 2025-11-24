@@ -1,7 +1,6 @@
 import { EventPage } from "../eventPage.po.js";
 import { Locator, Page, expect } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.js";
-import { CommonStaticText } from "../../../../common/commonStaticText.js";
 
 export class C100NocSubmitPage extends EventPage {
   private readonly detailsAccurateCheckbox: Locator =

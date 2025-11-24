@@ -1,7 +1,6 @@
 import { EventPage } from "../eventPage.po.js";
 import { expect, Locator, Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.js";
-import { CommonStaticText } from "../../../../common/commonStaticText.js";
 
 export class C100Noc1Page extends EventPage {
   private readonly caseNumberField: Locator = this.page.locator("#caseRef");

@@ -9,12 +9,7 @@ test.use({ storageState: config.sessionStoragePath + "nocSolicitor.json" });
 test.describe("Add/Remove Barrister for CA case", () => {
   let caseNumber: string;
   test.beforeEach(
-    async ({
-      page,
-      browser,
-      caseEventUtils,
-      navigationUtils,
-    }) => {
+    async ({ page, browser, caseEventUtils, navigationUtils }) => {
       caseNumber =
         await caseEventUtils.createCACaseIssueAndSendToLocalCourt(browser);
       await navigationUtils.goToCase(
@@ -40,7 +35,9 @@ test.describe("Add/Remove Barrister for CA case", () => {
       );
       //Initiating new page object with the Caseworker context
       const amendApplicantDetails1 = new AmendApplicantDetails1(caseworkerPage);
-      const amendApplicantDetailsSubmit = new AmendApplicantDetailsSubmit(caseworkerPage);
+      const amendApplicantDetailsSubmit = new AmendApplicantDetailsSubmit(
+        caseworkerPage,
+      );
       await expect(amendApplicantDetails1.pageHeading).toBeVisible();
       await amendApplicantDetails1.clickContinue();
       await amendApplicantDetailsSubmit.clickSaveAndContinue();
@@ -78,7 +75,6 @@ test.describe("Add/Remove Barrister for CA case", () => {
       nocParty,
     }) => {
       test(`Solicitor adds and removes Barrister for a CA case. @regression @accessibility @nightly`, async ({
-        page,
         summaryPage,
         c100Noc1Page,
         c100Noc2Page,

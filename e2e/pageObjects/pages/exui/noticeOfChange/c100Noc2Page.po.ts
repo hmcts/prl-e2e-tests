@@ -1,6 +1,5 @@
 import { Locator, Page, expect } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.js";
-import { CommonStaticText } from "../../../../common/commonStaticText.js";
 import { EventPage } from "../eventPage.po.ts";
 
 export class C100Noc2Page extends EventPage {
