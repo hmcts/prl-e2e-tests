@@ -1,5 +1,6 @@
 import { expect, Page } from "@playwright/test";
 import { FL401CaseDocumentsTabContent } from "../../../../fixtures/manageCases/caseTabs/FL401/fl401CaseDocumentsTabContent.js";
+import { Selectors } from "../../../../common/selectors.js";
 
 export class Fl401CaseDocumentsTabPage {
   public static async fl401CaseDocumentsTabPageManageDocuments(
@@ -33,7 +34,7 @@ export class Fl401CaseDocumentsTabPage {
       ).toBeVisible(),
       expect(
         page
-          .getByRole("link")
+          .locator(Selectors.GovLink)
           .filter({ hasText: FL401CaseDocumentsTabContent.link }),
       ).toBeVisible(),
       expect(
