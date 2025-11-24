@@ -24,7 +24,6 @@ export class PartiesPage extends CaseAccessViewPage {
   private readonly barristerEmail: Locator = this.page
     .locator("#allocatedBarrister_barristerEmail")
     .first();
-  //UPDATE LOCATOR BARRISTER ORG
   private readonly barristerOrg: Locator = this.page
     .locator("#search-org-text")
     .first();

@@ -4,9 +4,6 @@ import { Selectors } from "../../../../common/selectors.js";
 import { CommonStaticText } from "../../../../common/commonStaticText.js";
 
 export class C100Noc1Page extends EventPage {
-  readonly continueButton: Locator = this.page.locator(Selectors.button, {
-    hasText: CommonStaticText.continue,
-  });
   private readonly caseNumberField: Locator = this.page.locator("#caseRef");
   private readonly textLabel1: Locator = this.page.locator(Selectors.p, {
     hasText:
@@ -41,9 +38,5 @@ export class C100Noc1Page extends EventPage {
 
   async fillInCaseNumber(caseNumber: string): Promise<void> {
     await this.caseNumberField.fill(caseNumber);
-  }
-
-  async clickContinue(): Promise<void> {
-    await this.continueButton.click();
   }
 }

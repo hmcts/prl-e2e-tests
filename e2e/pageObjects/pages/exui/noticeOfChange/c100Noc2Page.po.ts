@@ -4,9 +4,6 @@ import { CommonStaticText } from "../../../../common/commonStaticText.js";
 import { EventPage } from "../eventPage.po.ts";
 
 export class C100Noc2Page extends EventPage {
-  readonly continueButton: Locator = this.page.locator(Selectors.button, {
-    hasText: CommonStaticText.continue,
-  });
   private readonly clientFirstNameField: Locator =
     this.page.locator("#NoCChallengeQ1");
   private readonly clientLastNameField: Locator =
@@ -37,9 +34,5 @@ export class C100Noc2Page extends EventPage {
   async fillInPartyName(firstname: string, surname: string): Promise<void> {
     await this.clientFirstNameField.fill(firstname);
     await this.clientLastNameField.fill(surname);
-  }
-
-  async clickContinue(): Promise<void> {
-    await this.continueButton.click();
   }
 }

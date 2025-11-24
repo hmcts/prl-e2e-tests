@@ -62,7 +62,7 @@ export class CaseworkerAddBarrister {
   }
 
   private static async fillInFields(page: Page): Promise<void> {
-    await page.locator('[id^="allocatedBarrister_partyList_"]').first().check();
+    await page.locator('#allocatedBarrister_partyList_').first().check();
     await page
       .locator("#allocatedBarrister_barristerFirstName")
       .fill(AddBarristerContent.barristerFirstName);

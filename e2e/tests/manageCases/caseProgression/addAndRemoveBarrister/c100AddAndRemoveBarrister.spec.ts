@@ -1,5 +1,6 @@
 import config from "../../../../utils/config.utils.ts";
-import { test } from "../../../fixtures.ts";
+import { test, expect } from "../../../fixtures.ts";
+import { Helpers } from "../../../../common/helpers.ts";
 
 test.use({ storageState: config.sessionStoragePath + "nocSolicitor.json" });
 
@@ -27,11 +28,19 @@ test.describe("Add/Remove Barrister for CA case", () => {
         storageState: config.sessionStoragePath + "caseWorker.json",
       });
       const caseworkerPage = await caseworkerContext.newPage();
-      await amendApplicantDetails1.loginAsCaseworkerAndGoToEvent(
+      await Helpers.goToCase(
         caseworkerPage,
+        config.manageCasesBaseURLCase,
         caseNumber,
+        "tasks",
       );
-      await amendApplicantDetailsSubmit.saveAndContinue(caseworkerPage);
+      await Helpers.chooseEventFromDropdown(
+        caseworkerPage,
+        "Amend applicant details",
+      );
+      await expect(amendApplicantDetails1.pageHeading).toBeVisible();
+      await amendApplicantDetails1.clickContinue();
+      await amendApplicantDetailsSubmit.clickSaveAndContinue();
       await caseworkerContext.close();
     },
   );
@@ -100,7 +109,6 @@ test.describe("Add/Remove Barrister for CA case", () => {
         await axeUtils.audit();
         await c100NocConfirmationPage.clickViewThisCase();
         // adding barrister
-        await page.reload(); //adding a page reload because the test was failing by not finding the Go button
         await summaryPage.chooseEventFromDropdown("Add barrister");
         await c100AdminAddBarrister1Page.assertPageContents();
         await axeUtils.audit();
@@ -130,7 +138,6 @@ test.describe("Add/Remove Barrister for CA case", () => {
           barrister.org,
         );
         // removing barrister
-        await page.reload();
         await summaryPage.chooseEventFromDropdown("Remove barrister");
         await c100AdminRemoveBarrister1Page.assertPageContents();
         await axeUtils.audit();

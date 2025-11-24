@@ -44,7 +44,7 @@ export class RemoveBarrister {
       1,
     );
     await expect(
-      page.locator('[id^="allocatedBarrister_partyList_"]').first(),
+      page.locator('#allocatedBarrister_partyList_').first(),
     ).toBeVisible();
     if (accessibilityTest) {
       await new AxeUtils(page).audit();
@@ -52,7 +52,7 @@ export class RemoveBarrister {
   }
 
   private static async fillInFields(page: Page): Promise<void> {
-    await page.locator('[id^="allocatedBarrister_partyList_"]').first().check();
+    await page.locator('#allocatedBarrister_partyList_').first().check();
   }
 
   private static async continue(page: Page): Promise<void> {

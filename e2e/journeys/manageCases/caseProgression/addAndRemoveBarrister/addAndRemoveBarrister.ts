@@ -53,7 +53,6 @@ export class AddAndRemoveBarrister {
         `${Selectors.button}:text-is("${CommonStaticText.saveAndContinue}")`,
       );
     }
-    await console.log("case ref is:", ccdRef);
     //Adding Solicitor via NOC
     await page.getByRole("link", { name: "Notice of change" }).click();
     await Noc1Page.noc1Page(page, ccdRef, accessibilityTest);

@@ -4,14 +4,8 @@ import { Selectors } from "../../../../common/selectors.ts";
 import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 
 export class C100AdminAddBarrister1Page extends EventPage {
-  readonly continueButton: Locator = this.page.locator(Selectors.button, {
-    hasText: CommonStaticText.continue,
-  });
-  readonly previousButton: Locator = this.page.locator(Selectors.button, {
-    hasText: CommonStaticText.previous,
-  });
   private readonly partyToAddBarristerCheckbox: Locator = this.page.locator(
-    '[id^="allocatedBarrister_partyList_"]',
+    '#allocatedBarrister_partyList_',
   );
   private readonly barristerFirstName: Locator = this.page
     .locator("#allocatedBarrister_barristerFirstName")

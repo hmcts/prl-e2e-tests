@@ -8,10 +8,4 @@ export class AmendApplicantDetailsSubmit extends EventPage {
   constructor(page: Page) {
     super(page, "Amend applicant details");
   }
-
-  async saveAndContinue(caseworkerPage) {
-    await caseworkerPage.click(
-      `${Selectors.button}:text-is("${CommonStaticText.saveAndContinue}")`,
-    );
-  }
 }

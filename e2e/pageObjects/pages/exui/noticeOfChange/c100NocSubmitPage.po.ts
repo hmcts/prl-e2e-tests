@@ -4,9 +4,6 @@ import { Selectors } from "../../../../common/selectors.js";
 import { CommonStaticText } from "../../../../common/commonStaticText.js";
 
 export class C100NocSubmitPage extends EventPage {
-  private readonly SubmitButton: Locator = this.page.locator(Selectors.button, {
-    hasText: CommonStaticText.submit,
-  });
   private readonly detailsAccurateCheckbox: Locator =
     this.page.locator("#affirmation");
   private readonly notifyEveryPartyCheckbox: Locator =
@@ -111,11 +108,6 @@ export class C100NocSubmitPage extends EventPage {
     await expect(this.textLabel3).toBeVisible();
     await expect(this.h2).toBeVisible();
     await expect(this.p2).toBeVisible();
-  }
-
-  async clickSubmit(): Promise<void> {
-    await this.SubmitButton.click();
-    // extra await to avoid test failure due to timeout, to be investigated/removed in the future
     await expect(
       this.page.getByRole("link", { name: "Notice of change" }),
     ).toBeVisible();
