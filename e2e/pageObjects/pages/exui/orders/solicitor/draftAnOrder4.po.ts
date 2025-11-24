@@ -15,8 +15,7 @@ interface DayMonthYear {
   year: string;
 }
 
-interface DraftAnOrderParams {
-  caseType: solicitorCaseCreateType;
+export interface DraftAnOrder4Params {
   orderType: OrderTypes;
   isOrderByConsent: boolean;
   wasOrderApprovedAtAHearing: boolean;
@@ -83,10 +82,10 @@ export class DraftAnOrder4Page extends EventPage {
     super(page, "Draft an order");
   }
 
-  async assertPageContents({
-    caseType,
-    orderType,
-  }: Partial<DraftAnOrderParams>): Promise<void> {
+  async assertPageContents(
+    caseType: solicitorCaseCreateType,
+    orderType: OrderTypes,
+  ): Promise<void> {
     await this.assertPageHeadings();
     await expect(this.page.getByText(orderType)).toBeVisible();
     await expect(this.consentLabel).toBeVisible();
@@ -124,21 +123,23 @@ export class DraftAnOrder4Page extends EventPage {
     await expect(this.previousButton).toBeVisible();
   }
 
-  async fillInFields({
-    caseType,
-    isOrderByConsent,
-    wasOrderApprovedAtAHearing,
-    judgeOrMagistratesTitle,
-    judgeFullName,
-    justicesLegalAdviserFullName,
-    dateOrderMade,
-    isOrderAboutTheChildren,
-    isOrderAboutAllTheChildren,
-    recitalsAndPreamble,
-    directions,
-    allChildrenInOrder,
-    hearing,
-  }: Partial<DraftAnOrderParams>): Promise<void> {
+  async fillInFields(
+    caseType: solicitorCaseCreateType,
+    {
+      isOrderByConsent,
+      wasOrderApprovedAtAHearing,
+      judgeOrMagistratesTitle,
+      judgeFullName,
+      justicesLegalAdviserFullName,
+      dateOrderMade,
+      isOrderAboutTheChildren,
+      isOrderAboutAllTheChildren,
+      recitalsAndPreamble,
+      directions,
+      allChildrenInOrder,
+      hearing,
+    }: DraftAnOrder4Params,
+  ): Promise<void> {
     await this.page
       .getByRole("group", { name: "Is the order by consent?" })
       .getByLabel(isOrderByConsent ? "Yes" : "No")

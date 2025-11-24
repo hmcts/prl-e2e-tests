@@ -8,7 +8,7 @@ import {
 } from "../../../../components/exui/orderHearingDetails.component.js";
 import { PageUtils } from "../../../../../utils/page.utils.js";
 
-interface DraftAnOrderParams {
+export interface DraftAnOrder16Params {
   hasJudgeProvidedHearingDetails: boolean;
   hearingDetails?: HearingDetailsParams;
 }
@@ -48,7 +48,7 @@ export class DraftAnOrder16Page extends EventPage {
   async fillInFields({
     hasJudgeProvidedHearingDetails,
     hearingDetails,
-  }: DraftAnOrderParams): Promise<void> {
+  }: DraftAnOrder16Params): Promise<void> {
     await this.page
       .getByRole("group", { name: "Has the judge provided you" })
       .getByLabel(hasJudgeProvidedHearingDetails ? "Yes" : "No")
