@@ -1,6 +1,8 @@
 import config from "../../../../utils/config.utils.ts";
 import { test, expect } from "../../../fixtures.ts";
 import { Helpers } from "../../../../common/helpers.ts";
+import { AmendApplicantDetails1 } from "../../../../pageObjects/pages/exui/amendApplicantDetails/amendApplicantDetails1.po.ts";
+import { AmendApplicantDetailsSubmit } from "../../../../pageObjects/pages/exui/amendApplicantDetails/amendApplicantDetailsSubmit.po.ts";
 
 test.use({ storageState: config.sessionStoragePath + "nocSolicitor.json" });
 
@@ -12,8 +14,6 @@ test.describe("Add/Remove Barrister for CA case", () => {
       browser,
       caseEventUtils,
       navigationUtils,
-      amendApplicantDetails1,
-      amendApplicantDetailsSubmit,
     }) => {
       caseNumber =
         await caseEventUtils.createCACaseIssueAndSendToLocalCourt(browser);
@@ -38,10 +38,13 @@ test.describe("Add/Remove Barrister for CA case", () => {
         caseworkerPage,
         "Amend applicant details",
       );
+      //Initiating new page object with the Caseworker context
+      const amendApplicantDetails1 = new AmendApplicantDetails1(caseworkerPage);
+      const amendApplicantDetailsSubmit = new AmendApplicantDetailsSubmit(caseworkerPage);
       await expect(amendApplicantDetails1.pageHeading).toBeVisible();
       await amendApplicantDetails1.clickContinue();
       await amendApplicantDetailsSubmit.clickSaveAndContinue();
-      await caseworkerContext.close();
+      await caseworkerPage.close();
     },
   );
 
