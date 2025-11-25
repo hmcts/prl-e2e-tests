@@ -4,6 +4,7 @@ import {
   JudgeOrMagistrateTitles,
   JudgeOrMagistrateTitlesArray,
   OrderTypes,
+  solicitorCaseCreateType,
 } from "../../../../../common/types.js";
 import { Selectors } from "../../../../../common/selectors.js";
 import { PageUtils } from "../../../../../utils/page.utils.js";
@@ -14,7 +15,8 @@ interface DayMonthYear {
   year: string;
 }
 
-interface DraftAnOrderParams {
+export interface DraftAnOrder4Params {
+  orderType: OrderTypes;
   isOrderByConsent: boolean;
   wasOrderApprovedAtAHearing: boolean;
   hearing?: string; // No hearings available is a valid hearing
@@ -22,7 +24,8 @@ interface DraftAnOrderParams {
   judgeFullName?: string;
   justicesLegalAdviserFullName?: string;
   dateOrderMade?: DayMonthYear; // this is autofilled to today's date
-  isOrderAboutTheChildren: boolean;
+  isOrderAboutTheChildren?: boolean;
+  isOrderAboutAllTheChildren?: boolean;
   allChildrenInOrder?: string[];
   recitalsAndPreamble?: string;
   directions?: string;
@@ -60,6 +63,9 @@ export class DraftAnOrder4Page extends EventPage {
   private readonly orderAboutChildrenLabel: Locator = this.page.getByText(
     "Is the order about the children?",
   );
+  private readonly orderAboutAllTheChildrenLabel: Locator = this.page.getByText(
+    "Is the order about all the children?",
+  );
   private readonly recitalsOrPreamblesLabel: Locator = this.page.getByText(
     "Add recitals or preamble (Optional)",
   );
@@ -76,7 +82,10 @@ export class DraftAnOrder4Page extends EventPage {
     super(page, "Draft an order");
   }
 
-  async assertPageContents(orderType: OrderTypes): Promise<void> {
+  async assertPageContents(
+    caseType: solicitorCaseCreateType,
+    orderType: OrderTypes,
+  ): Promise<void> {
     await this.assertPageHeadings();
     await expect(this.page.getByText(orderType)).toBeVisible();
     await expect(this.consentLabel).toBeVisible();
@@ -102,26 +111,35 @@ export class DraftAnOrder4Page extends EventPage {
       this.dayMonthYearLabels,
       this.page.locator(`#dateOrderMade ${Selectors.GovukFormLabel}`),
     );
-    await expect(this.orderAboutChildrenLabel).toBeVisible();
+    // if order is DA then check one label if order is CA then check another
+    if (caseType === "C100") {
+      await expect(this.orderAboutAllTheChildrenLabel).toBeVisible();
+    } else {
+      await expect(this.orderAboutChildrenLabel).toBeVisible();
+    }
     await expect(this.recitalsOrPreamblesLabel).toBeVisible();
     await expect(this.directionsLabel).toBeVisible();
     await expect(this.continueButton).toBeVisible();
     await expect(this.previousButton).toBeVisible();
   }
 
-  async fillInFields({
-    isOrderByConsent,
-    wasOrderApprovedAtAHearing,
-    judgeOrMagistratesTitle,
-    judgeFullName,
-    justicesLegalAdviserFullName,
-    dateOrderMade,
-    isOrderAboutTheChildren,
-    recitalsAndPreamble,
-    directions,
-    allChildrenInOrder,
-    hearing,
-  }: DraftAnOrderParams): Promise<void> {
+  async fillInFields(
+    caseType: solicitorCaseCreateType,
+    {
+      isOrderByConsent,
+      wasOrderApprovedAtAHearing,
+      judgeOrMagistratesTitle,
+      judgeFullName,
+      justicesLegalAdviserFullName,
+      dateOrderMade,
+      isOrderAboutTheChildren,
+      isOrderAboutAllTheChildren,
+      recitalsAndPreamble,
+      directions,
+      allChildrenInOrder,
+      hearing,
+    }: DraftAnOrder4Params,
+  ): Promise<void> {
     await this.page
       .getByRole("group", { name: "Is the order by consent?" })
       .getByLabel(isOrderByConsent ? "Yes" : "No")
@@ -162,27 +180,53 @@ export class DraftAnOrder4Page extends EventPage {
         .getByRole("textbox", { name: "Year" })
         .fill(dateOrderMade.year);
     }
-    await this.page
-      .getByRole("group", { name: "Is the order about the children?" })
-      .getByLabel(isOrderAboutTheChildren ? "Yes" : "No")
-      .check();
 
-    // This may change based on C100 or FL401
-    if (isOrderAboutTheChildren) {
-      await expect(this.whichChildrenAreIncludedInTheOrderLabel).toBeVisible();
-      // select all children by default - this functionality can be changed in the future if required
-      if (allChildrenInOrder) {
-        for (const child of allChildrenInOrder) {
-          const childCheckbox: Locator = this.page.getByRole("checkbox", {
-            name: child,
-          });
-          await expect(this.page.getByText(child)).toBeVisible();
-          await childCheckbox.check();
+    // this section is specific to FL401 or C100 orders
+    if (caseType === "FL401") {
+      await this.page
+        .getByRole("group", { name: "Is the order about the children?" })
+        .getByLabel(isOrderAboutTheChildren ? "Yes" : "No")
+        .check();
+      if (isOrderAboutTheChildren) {
+        await expect(
+          this.whichChildrenAreIncludedInTheOrderLabel,
+        ).toBeVisible();
+        if (allChildrenInOrder) {
+          for (const child of allChildrenInOrder) {
+            const childCheckbox: Locator = this.page.getByRole("checkbox", {
+              name: child,
+            });
+            await expect(this.page.getByText(child)).toBeVisible();
+            await childCheckbox.check();
+          }
+        } else {
+          throw new Error(
+            "If the order is about the children then you need to pass in the children involved",
+          );
         }
-      } else {
-        throw new Error(
-          "If the order is about the children then ou need to pass in the children involved",
-        );
+      }
+    } else {
+      await this.page
+        .getByRole("group", { name: "Is the order about all the children?" })
+        .getByLabel(isOrderAboutAllTheChildren ? "Yes" : "No")
+        .check();
+      if (!isOrderAboutAllTheChildren) {
+        await expect(
+          this.whichChildrenAreIncludedInTheOrderLabel,
+        ).toBeVisible();
+        if (allChildrenInOrder) {
+          for (const child of allChildrenInOrder) {
+            const childCheckbox: Locator = this.page.getByRole("checkbox", {
+              name: child,
+            });
+            await expect(this.page.getByText(child)).toBeVisible();
+            await childCheckbox.check();
+          }
+        } else {
+          throw new Error(
+            "If the order is not about all the children then you need to pass in the children involved",
+          );
+        }
       }
     }
 

@@ -13,7 +13,7 @@ export type OrderLengthOptions =
   | "Until the next hearing"
   | "Specific date and time";
 
-interface DraftAnOrderParams {
+export interface DraftAnOrder5Params {
   doesOrderMentionProperty: boolean;
   propertyAddress?: string;
   respondentMustNotDoOptions?: NonMolestationRespondentMustNotDoOptions[];
@@ -106,7 +106,7 @@ export class DraftAnOrder5Page extends EventPage {
     specificDateAndTime,
     costsOfApplication,
     withNotice,
-  }: DraftAnOrderParams): Promise<void> {
+  }: DraftAnOrder5Params): Promise<void> {
     await this.page
       .getByRole("radio", {
         name: doesOrderMentionProperty ? "Yes" : "No",
