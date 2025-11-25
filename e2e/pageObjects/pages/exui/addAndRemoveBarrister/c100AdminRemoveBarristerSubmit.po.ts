@@ -4,9 +4,6 @@ import { CheckYourAnswersPage } from "../checkYourAnswers.po.ts";
 
 export class C100AdminRemoveBarristerSubmit extends CheckYourAnswersPage {
   constructor(page: Page) {
-    super(page, "Remove barrister", {
-      snapshotPath: ["caseProgression", "removeBarrister"],
-      cyaSubmitButton: CommonStaticText.submit,
-    });
+    super(page, "Remove barrister", CommonStaticText.submit);
   }
 }
