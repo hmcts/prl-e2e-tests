@@ -62,7 +62,10 @@ test.describe("Allocate a judge to the case", () => {
           judgeOrLegalAdviserName,
         );
         await allocatedJudge1Page.clickContinue();
-        await allocatedJudgeSubmitPage.assertPageContents(snapshotName);
+        await allocatedJudgeSubmitPage.assertPageContents(
+          ["caseProgression", "allocatedJudge"],
+          snapshotName,
+        );
         await axeUtils.audit();
         await allocatedJudgeSubmitPage.clickSubmit();
         await summaryPage.alertBanner.assertEventAlert(
@@ -117,7 +120,10 @@ test.describe("Allocate a judge to the case", () => {
         );
         await allocatedJudge1Page.selectJudiciaryTier(judgeTier);
         await allocatedJudge1Page.clickContinue();
-        await allocatedJudgeSubmitPage.assertPageContents(snapshotName);
+        await allocatedJudgeSubmitPage.assertPageContents(
+          ["caseProgression", "allocatedJudge"],
+          snapshotName,
+        );
         await axeUtils.audit();
         await allocatedJudgeSubmitPage.clickSubmit();
         await summaryPage.alertBanner.assertEventAlert(

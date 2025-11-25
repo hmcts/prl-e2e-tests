@@ -9,7 +9,8 @@ export interface OrderInformation {
   englishDocument: string;
   otherDetails: OtherDetails;
   childrenList?: string[];
-  isOrderAboutChildren: boolean;
+  isOrderAboutChildren?: boolean;
+  isOrderAboutAllTheChildren?: boolean;
 }
 
 interface OtherDetails {
@@ -62,11 +63,22 @@ export class DraftOrdersPage extends CaseAccessViewPage {
         "English document",
         draftOrder.englishDocument,
       );
-      await this.assertTableRow(
-        draftOrderTable,
-        "Is the order about the children?",
-        `${draftOrder.isOrderAboutChildren ? "Yes" : "No"}`,
-      );
+      // specific to FL401
+      if (draftOrder.isOrderAboutChildren) {
+        await this.assertTableRow(
+          draftOrderTable,
+          "Is the order about the children?",
+          `${draftOrder.isOrderAboutChildren ? "Yes" : "No"}`,
+        );
+      }
+      // specific to C100
+      if (draftOrder.isOrderAboutAllTheChildren) {
+        await this.assertTableRow(
+          draftOrderTable,
+          "Is the order about all the children?",
+          `${draftOrder.isOrderAboutAllTheChildren ? "Yes" : "No"}`,
+        );
+      }
       if (draftOrder.childrenList) {
         await this.assertTableRow(
           draftOrderTable,

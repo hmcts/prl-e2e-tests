@@ -45,6 +45,7 @@ test.describe("Issue and send to local court for CA cases", () => {
       await issueAndSendToLocalCourtCallback1Page.clickContinue();
 
       await issueAndSendToLocalCourtCallbackSubmitPage.assertPageContents(
+        ["caseProgression", "issueAndSendToLocalCourt"],
         snapshotName,
       );
       await axeUtils.audit();
