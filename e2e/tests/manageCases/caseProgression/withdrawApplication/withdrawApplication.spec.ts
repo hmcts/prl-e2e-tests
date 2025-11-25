@@ -50,6 +50,7 @@ test.describe("Withdraw C100 (Solicitor created) application event as a solicito
         caseRef,
         "Withdraw application",
       );
+      await summaryPage.assertCaseStatus("Withdrawn");
     });
   });
 });
