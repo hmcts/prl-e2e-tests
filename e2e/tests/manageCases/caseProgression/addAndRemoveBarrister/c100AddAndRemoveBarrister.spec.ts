@@ -120,7 +120,7 @@ test.describe("Add/Remove Barrister for CA case", () => {
         );
         await c100AdminAddBarrister1Page.clickContinue();
         await c100AdminAddBarristerSubmit.assertPageContents(
-          ["caseProgression", "Add barrister"],
+          ["caseProgression", "addBarrister"],
           addBarristerSnapshotName,
         );
         // await axeUtils.audit(); Note: to remove this comment once FPVTL-1357 fix is deployed
@@ -146,7 +146,7 @@ test.describe("Add/Remove Barrister for CA case", () => {
         );
         await c100AdminRemoveBarrister1Page.clickContinue();
         await c100AdminRemoveBarristerSubmit.assertPageContents(
-          ["caseProgression", "Remove barrister"],
+          ["caseProgression", "removeBarrister"],
           removeBarristerSnapshotName,
         );
         await axeUtils.audit();
