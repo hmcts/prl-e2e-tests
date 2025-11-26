@@ -17,6 +17,9 @@ export class SummaryPage extends CaseAccessViewPage {
   readonly allocatedJudgeDetails: Locator = this.page.locator(
     "#case-viewer-field-read--allocatedJudgeDetails",
   );
+  readonly caseStatusDetails: Locator = this.page.locator(
+    "#case-viewer-field-read--caseStatus",
+  );
 
   constructor(page: Page) {
     super(page);
@@ -75,6 +78,15 @@ export class SummaryPage extends CaseAccessViewPage {
     ).toBeVisible();
     await expect(
       this.allocatedJudgeDetails.getByText(courtName, { exact: true }),
+    ).toBeVisible();
+  }
+
+  async assertCaseStatus(status: string): Promise<void> {
+    await expect(
+      this.caseStatusDetails.getByText("Case status", { exact: true }),
+    ).toBeVisible();
+    await expect(
+      this.caseStatusDetails.getByText(status, { exact: true }),
     ).toBeVisible();
   }
 }
