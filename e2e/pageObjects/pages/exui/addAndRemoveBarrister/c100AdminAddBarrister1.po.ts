@@ -77,8 +77,4 @@ export class C100AdminAddBarrister1Page extends EventPage {
     await this.barristerOrg.fill(org);
     await this.selectBarristerOrg.click();
   }
-
-  async clickContinue(): Promise<void> {
-    await this.continueButton.click();
-  }
 }
