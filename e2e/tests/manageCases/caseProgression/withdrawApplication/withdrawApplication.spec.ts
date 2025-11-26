@@ -17,9 +17,17 @@ test.describe("Withdraw C100 (Solicitor created) application event as a solicito
   );
 
   [
-    { withdrawApplication: true, snapshotName: "withdraw-application-yes" },
-    { withdrawApplication: false, snapshotName: "withdraw-application-no" },
-  ].forEach(({ withdrawApplication, snapshotName }) => {
+    {
+      withdrawApplication: true,
+      snapshotName: "withdraw-application-yes",
+      caseStatus: "Withdrawn",
+    },
+    {
+      withdrawApplication: false,
+      snapshotName: "withdraw-application-no",
+      caseStatus: "Submitted",
+    },
+  ].forEach(({ withdrawApplication, snapshotName, caseStatus }) => {
     test(`Complete withdraw application event by withdrawing application: ${withdrawApplication}. @nightly @accessibility @regression`, async ({
       summaryPage,
       withdrawApplicationEvent1Page,
@@ -53,6 +61,7 @@ test.describe("Withdraw C100 (Solicitor created) application event as a solicito
         caseRef,
         "Withdraw application",
       );
+      await summaryPage.assertCaseStatus(caseStatus);
     });
   });
 });

@@ -1,31 +1,65 @@
-import Config from "../../../../utils/config.utils.js";
-import { Helpers } from "../../../../common/helpers.js";
 import config from "../../../../utils/config.utils.ts";
-import { IssueAndSendToLocalCourt } from "../../../../journeys/manageCases/caseProgression/issueAndSendToLocalCourt/issueAndSendToLocalCourt.js";
 import { test } from "../../../fixtures.ts";
 
-test.use({ storageState: Config.sessionStoragePath + "courtAdminStoke.json" });
+test.use({ storageState: config.sessionStoragePath + "courtAdminStoke.json" });
 
 test.describe("Issue and send to local court for CA cases", () => {
-  let ccdRef: string = "";
+  let caseNumber: string = "";
 
-  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
-    ccdRef = await caseEventUtils.createCACase(browser);
-    await Helpers.goToCase(
-      page,
-      config.manageCasesBaseURLCase,
-      ccdRef,
-      "tasks",
-    );
-  });
+  test.beforeEach(
+    async ({ page, browser, caseEventUtils, navigationUtils }) => {
+      caseNumber = await caseEventUtils.createCACase(browser);
+      await navigationUtils.goToCase(
+        page,
+        config.manageCasesBaseURLCase,
+        caseNumber,
+        "tasks",
+      );
+    },
+  );
 
-  test(`Issue and send CA(C100) submitted case to local court as a CTSC user or CTSC admin with the following options:
+  [
+    {
+      courtName:
+        "Swansea Civil Justice Centre - Quay West, Quay Parade - SA1 1SP",
+      snapshotName: "issueAndSendToLocalCourt",
+    },
+  ].forEach(({ courtName, snapshotName }) => {
+    test(`Issue and send CA(C100) submitted case to local court as a CTSC user or CTSC admin with the following options:
   Case: C100,
   Accessibility testing: yes. 
-  @nightly @accessibility`, async ({ page }): Promise<void> => {
-    await IssueAndSendToLocalCourt.issueAndSendToLocalCourt({
-      page: page,
-      accessibilityTest: true,
+  @nightly @accessibility @regression`, async ({
+      summaryPage,
+      tasksPage,
+      issueAndSendToLocalCourtCallback1Page,
+      issueAndSendToLocalCourtCallbackSubmitPage,
+      axeUtils,
+    }): Promise<void> => {
+      await tasksPage.assignTaskToMeAndTriggerNextSteps(
+        "Check Application",
+        "Issue and send to local Court",
+      );
+
+      await issueAndSendToLocalCourtCallback1Page.assertPageContents();
+
+      // #TODO Disabled pending FPET-1194 ticket
+      //await axeUtils.audit();
+
+      await issueAndSendToLocalCourtCallback1Page.selectCourt(courtName);
+      await issueAndSendToLocalCourtCallback1Page.clickContinue();
+
+      await issueAndSendToLocalCourtCallbackSubmitPage.assertPageContents(
+        ["caseProgression", "issueAndSendToLocalCourt"],
+        snapshotName,
+      );
+      await axeUtils.audit();
+      await issueAndSendToLocalCourtCallbackSubmitPage.clickSubmit();
+
+      await summaryPage.alertBanner.assertEventAlert(
+        caseNumber,
+        "Issue and send to local Court",
+      );
+      await summaryPage.assertCaseStatus("Case Issued");
     });
   });
 });

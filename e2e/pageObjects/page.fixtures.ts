@@ -43,6 +43,8 @@ import { DraftAnOrder16Page } from "./pages/exui/orders/solicitor/draftAnOrder16
 import { DraftAnOrder20Page } from "./pages/exui/orders/solicitor/draftAnOrder20.po.js";
 import { DraftAnOrderSubmitPage } from "./pages/exui/orders/solicitor/draftAnOrderSubmit.po.js";
 import { DraftOrdersPage } from "./pages/exui/caseView/draftOrders.po.js";
+import { IssueAndSendToLocalCourtCallback1Page } from "./pages/exui/issueAndSendToLocalCourt/issueAndSendToLocalCourtCallback1.po.js";
+import { IssueAndSendToLocalCourtCallbackSubmitPage } from "./pages/exui/issueAndSendToLocalCourt/issueAndSendToLocalCourtCallbackSubmit.po.js";
 import { DraftAnOrder8Page } from "./pages/exui/orders/solicitor/draftAnOrder8.po.js";
 
 export interface PageFixtures {
@@ -92,6 +94,8 @@ export interface PageFixtures {
   draftAnOrder16Page: DraftAnOrder16Page;
   draftAnOrder20Page: DraftAnOrder20Page;
   draftAnOrderSubmitPage: DraftAnOrderSubmitPage;
+  issueAndSendToLocalCourtCallback1Page: IssueAndSendToLocalCourtCallback1Page;
+  issueAndSendToLocalCourtCallbackSubmitPage: IssueAndSendToLocalCourtCallbackSubmitPage;
 }
 
 export const pageFixtures = {
@@ -232,5 +236,11 @@ export const pageFixtures = {
   },
   draftAnOrderSubmitPage: async ({ page }, use) => {
     await use(new DraftAnOrderSubmitPage(page));
+  },
+  issueAndSendToLocalCourtCallback1Page: async ({ page }, use) => {
+    await use(new IssueAndSendToLocalCourtCallback1Page(page));
+  },
+  issueAndSendToLocalCourtCallbackSubmitPage: async ({ page }, use) => {
+    await use(new IssueAndSendToLocalCourtCallbackSubmitPage(page));
   },
 };
