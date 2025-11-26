@@ -28,7 +28,7 @@ test.describe("Issue and send to local court for CA cases", () => {
     test(`Issue and send CA(C100) submitted case to local court as a CTSC user or CTSC admin with the following options:
   Case: C100,
   Accessibility testing: yes. 
-  @nightly @accessibility`, async ({
+  @nightly @accessibility @regression`, async ({
       summaryPage,
       tasksPage,
       issueAndSendToLocalCourtCallback1Page,
@@ -41,6 +41,10 @@ test.describe("Issue and send to local court for CA cases", () => {
       );
 
       await issueAndSendToLocalCourtCallback1Page.assertPageContents();
+
+      // #TODO Disabled pending FPET-1194 ticket
+      //await axeUtils.audit();
+
       await issueAndSendToLocalCourtCallback1Page.selectCourt(courtName);
       await issueAndSendToLocalCourtCallback1Page.clickContinue();
 
