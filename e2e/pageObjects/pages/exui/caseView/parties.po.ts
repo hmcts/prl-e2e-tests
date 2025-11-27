@@ -87,6 +87,28 @@ export class PartiesPage extends CaseAccessViewPage {
     }
   }
 
+  async assertC100ApplicantsSolicitorsDetailsPresent(
+      applicants: ApplicantName[],
+  ): Promise<void> {
+    for (const applicant of applicants) {
+      // get the applicant table by the applicant name and check each expected applicant has had legal representative removed
+      const nameRegex = new RegExp(
+        `${applicant.firstname}[\\s\\S]*${applicant.surname}`,
+      );
+      const applicantTable: Locator = this.page.locator(
+        "ccd-read-complex-field-table",
+        {
+          hasText: nameRegex,
+        },
+      );
+      await expect(
+        applicantTable.locator("#applicantSolicitorLabel", {
+          hasText: "Applicant Solicitor",
+        }),
+      ).toBeVisible();
+    }
+  }
+
   async assertC100ApplicantsSolicitorsDetailsRemoved(
     applicants: ApplicantName[],
   ): Promise<void> {
