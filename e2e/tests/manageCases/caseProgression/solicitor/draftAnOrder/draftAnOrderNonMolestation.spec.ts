@@ -40,61 +40,19 @@ test.describe("Draft a non molestation order tests", (): void => {
     },
   );
 
-  scenarios.forEach(
-    ({
-      name,
-      caseType,
-      orderType,
-      isDraftAnOrder,
-      draftAnOrder4Params,
-      draftAnOrder5Params,
-      draftAnOrder16Params,
-      snapshotName,
-      snapshotsPath,
-      orderInformation,
-    }: NonMolestationDraftOrderParams) => {
-      test(`Complete drafting Non-Molestation order as solicitor with the following options: ${name} @accessibility @regression @nightly @visual`, async ({
+  scenarios.forEach((draftOrderParams: NonMolestationDraftOrderParams) => {
+    test(`Complete drafting Non-Molestation order as solicitor with the following options: ${name} @accessibility @regression @nightly @visual`, async ({
+      page,
+      browser,
+    }): Promise<void> => {
+      const draftAnOrderJourney: DraftAnOrderJourney =
+        new DraftAnOrderJourney();
+      await draftAnOrderJourney.draftAnOrder(
+        page,
         browser,
-        summaryPage,
-        draftAnOrder1Page,
-        draftAnOrder2Page,
-        draftAnOrder4Page,
-        draftAnOrder5Page,
-        draftAnOrder16Page,
-        draftAnOrder20Page,
-        draftAnOrderSubmitPage,
-        navigationUtils,
-      }): Promise<void> => {
-        const draftAnOrderJourney: DraftAnOrderJourney =
-          new DraftAnOrderJourney();
-        await draftAnOrderJourney.draftAnOrder(
-          browser,
-          caseNumber,
-          {
-            summaryPage,
-            draftAnOrder1Page,
-            draftAnOrder2Page,
-            draftAnOrder4Page,
-            draftAnOrder5Page,
-            draftAnOrder16Page,
-            draftAnOrder20Page,
-            draftAnOrderSubmitPage,
-            navigationUtils,
-          },
-          {
-            name,
-            caseType,
-            orderType,
-            isDraftAnOrder,
-            draftAnOrder4Params,
-            draftAnOrder5Params,
-            draftAnOrder16Params,
-            snapshotName,
-            snapshotsPath,
-            orderInformation,
-          },
-        );
-      });
-    },
-  );
+        caseNumber,
+        draftOrderParams,
+      );
+    });
+  });
 });

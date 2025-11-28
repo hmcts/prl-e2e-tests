@@ -17,19 +17,6 @@ import { NavigationUtils } from "../../../../utils/navigation.utils.js";
 import { DraftAnOrder8Page } from "../../../../pageObjects/pages/exui/orders/solicitor/draftAnOrder8.po.js";
 import { ParentalResponsibilityDraftOrderParams } from "../../../../tests/manageCases/caseProgression/solicitor/draftAnOrder/draftAnOrderParentalResponsibility.spec.js";
 
-interface DraftAnOrderPages {
-  summaryPage: SummaryPage;
-  draftAnOrder1Page: DraftAnOrder1Page;
-  draftAnOrder2Page: DraftAnOrder2Page;
-  draftAnOrder4Page?: DraftAnOrder4Page;
-  draftAnOrder5Page?: DraftAnOrder5Page;
-  draftAnOrder8Page?: DraftAnOrder8Page;
-  draftAnOrder16Page?: DraftAnOrder16Page;
-  draftAnOrder20Page: DraftAnOrder20Page;
-  draftAnOrderSubmitPage: DraftAnOrderSubmitPage;
-  navigationUtils: NavigationUtils;
-}
-
 type OrderDetails =
   | NonMolestationDraftOrderParams
   | ParentalResponsibilityDraftOrderParams;
@@ -37,25 +24,25 @@ type OrderDetails =
 // class to handle draft order journeys - required because this journey is large and re-used quite a lot
 export class DraftAnOrderJourney {
   async draftAnOrder(
+    page: Page,
     browser: Browser,
     caseNumber: string,
-    draftOrderPages: DraftAnOrderPages,
     orderParams: OrderDetails,
   ): Promise<void> {
     switch (orderParams.orderType) {
       case "Non-molestation order (FL404A)":
         await this.draftNonMolestationOrder(
+          page,
           browser,
           caseNumber,
-          draftOrderPages,
           orderParams as NonMolestationDraftOrderParams,
         );
         break;
       case "Parental responsibility order (C45A)":
         await this.draftParentalResponsibilityOrder(
+          page,
           browser,
           caseNumber,
-          draftOrderPages,
           orderParams as ParentalResponsibilityDraftOrderParams,
         );
         break;
@@ -63,125 +50,120 @@ export class DraftAnOrderJourney {
   }
 
   private async draftNonMolestationOrder(
+    page: Page,
     browser: Browser,
     caseNumber: string,
-    draftOrderPages: DraftAnOrderPages,
     orderDetails: NonMolestationDraftOrderParams,
   ): Promise<void> {
-    await this.selectOrderAndFillInGenericOrderDetails(
-      draftOrderPages.summaryPage,
-      draftOrderPages.draftAnOrder1Page,
-      draftOrderPages.draftAnOrder2Page,
-      draftOrderPages.draftAnOrder4Page,
-      orderDetails,
-    );
-    await draftOrderPages.draftAnOrder5Page.assertPageContents(
-      orderDetails.orderType,
-    );
-    await draftOrderPages.draftAnOrder5Page.verifyAccessibility();
-    await draftOrderPages.draftAnOrder5Page.fillInFields(
-      orderDetails.draftAnOrder5Params,
-    );
-    await draftOrderPages.draftAnOrder5Page.clickContinue();
-    await draftOrderPages.draftAnOrder16Page.assertPageContents(
-      orderDetails.orderType,
-    );
-    await draftOrderPages.draftAnOrder16Page.verifyAccessibility();
-    await draftOrderPages.draftAnOrder16Page.fillInFields(
-      orderDetails.draftAnOrder16Params,
-    );
-    await draftOrderPages.draftAnOrder16Page.clickContinue();
-    await draftOrderPages.draftAnOrder20Page.assertPageContents(
+    const summaryPage: SummaryPage = new SummaryPage(page);
+    await summaryPage.chooseEventFromDropdown("Draft an order");
+    await this.selectOrderAndFillInGenericOrderDetails(page, orderDetails);
+
+    const draftAnOrder5Page: DraftAnOrder5Page = new DraftAnOrder5Page(page);
+    await draftAnOrder5Page.assertPageContents(orderDetails.orderType);
+    await draftAnOrder5Page.verifyAccessibility();
+    await draftAnOrder5Page.fillInFields(orderDetails.draftAnOrder5Params);
+    await draftAnOrder5Page.clickContinue();
+
+    const draftAnOrder16Page: DraftAnOrder16Page = new DraftAnOrder16Page(page);
+    await draftAnOrder16Page.assertPageContents(orderDetails.orderType);
+    await draftAnOrder16Page.verifyAccessibility();
+    await draftAnOrder16Page.fillInFields(orderDetails.draftAnOrder16Params);
+    await draftAnOrder16Page.clickContinue();
+
+    const draftAnOrder20Page: DraftAnOrder20Page = new DraftAnOrder20Page(page);
+    await draftAnOrder20Page.assertPageContents(
       orderDetails.orderType,
       caseNumber,
       orderDetails.snapshotName,
       orderDetails.snapshotsPath,
     );
-    await draftOrderPages.draftAnOrder20Page.verifyAccessibility();
-    await draftOrderPages.draftAnOrder20Page.clickContinue();
-    await draftOrderPages.draftAnOrderSubmitPage.assertPageContents(
+    await draftAnOrder20Page.verifyAccessibility();
+    await draftAnOrder20Page.clickContinue();
+
+    const draftAnOrderSubmitPage: DraftAnOrderSubmitPage =
+      new DraftAnOrderSubmitPage(page);
+    await draftAnOrderSubmitPage.assertPageContents(
       orderDetails.snapshotsPath,
       orderDetails.snapshotName,
     );
-    await draftOrderPages.draftAnOrderSubmitPage.verifyAccessibility();
-    await draftOrderPages.draftAnOrderSubmitPage.clickSubmit();
-    await draftOrderPages.summaryPage.alertBanner.assertEventAlert(
+    await draftAnOrderSubmitPage.verifyAccessibility();
+    await draftAnOrderSubmitPage.clickSubmit();
+    await summaryPage.alertBanner.assertEventAlert(
       caseNumber,
       "Draft an order",
     );
     await this.assertDraftOrderAsCourtAdmin(
       browser,
       caseNumber,
-      draftOrderPages.navigationUtils,
       orderDetails.orderInformation,
     );
   }
 
   private async draftParentalResponsibilityOrder(
+    page: Page,
     browser: Browser,
     caseNumber: string,
-    draftOrderPages: DraftAnOrderPages,
     orderParams: ParentalResponsibilityDraftOrderParams,
   ): Promise<void> {
-    await this.selectOrderAndFillInGenericOrderDetails(
-      draftOrderPages.summaryPage,
-      draftOrderPages.draftAnOrder1Page,
-      draftOrderPages.draftAnOrder2Page,
-      draftOrderPages.draftAnOrder4Page,
-      orderParams,
-    );
-    await draftOrderPages.draftAnOrder8Page.assertPageContents(
-      orderParams.orderType,
-    );
-    await draftOrderPages.draftAnOrder8Page.verifyAccessibility();
-    await draftOrderPages.draftAnOrder8Page.fillInFields(
-      orderParams.responsibleParentFullName,
-    );
-    await draftOrderPages.draftAnOrder8Page.clickContinue();
-    await draftOrderPages.draftAnOrder20Page.assertPageContents(
+    const summaryPage: SummaryPage = new SummaryPage(page);
+    await summaryPage.chooseEventFromDropdown("Draft an order");
+    await this.selectOrderAndFillInGenericOrderDetails(page, orderParams);
+
+    const draftAnOrder8Page: DraftAnOrder8Page = new DraftAnOrder8Page(page);
+    await draftAnOrder8Page.assertPageContents(orderParams.orderType);
+    await draftAnOrder8Page.verifyAccessibility();
+    await draftAnOrder8Page.fillInFields(orderParams.responsibleParentFullName);
+    await draftAnOrder8Page.clickContinue();
+
+    const draftAnOrder20Page: DraftAnOrder20Page = new DraftAnOrder20Page(page);
+    await draftAnOrder20Page.assertPageContents(
       orderParams.orderType,
       caseNumber,
       orderParams.snapshotName,
       orderParams.snapshotsPath,
     );
-    await draftOrderPages.draftAnOrder20Page.verifyAccessibility();
-    await draftOrderPages.draftAnOrder20Page.clickContinue();
-    await draftOrderPages.draftAnOrderSubmitPage.assertPageContents(
+    await draftAnOrder20Page.verifyAccessibility();
+    await draftAnOrder20Page.clickContinue();
+
+    const draftAnOrderSubmitPage: DraftAnOrderSubmitPage =
+      new DraftAnOrderSubmitPage(page);
+    await draftAnOrderSubmitPage.assertPageContents(
       orderParams.snapshotsPath,
       orderParams.snapshotName,
     );
-    await draftOrderPages.draftAnOrderSubmitPage.verifyAccessibility();
-    await draftOrderPages.draftAnOrderSubmitPage.clickSubmit();
-    await draftOrderPages.summaryPage.alertBanner.assertEventAlert(
+    await draftAnOrderSubmitPage.verifyAccessibility();
+    await draftAnOrderSubmitPage.clickSubmit();
+    await summaryPage.alertBanner.assertEventAlert(
       caseNumber,
       "Draft an order",
     );
     await this.assertDraftOrderAsCourtAdmin(
       browser,
       caseNumber,
-      draftOrderPages.navigationUtils,
       orderParams.orderInformation,
     );
   }
 
   private async selectOrderAndFillInGenericOrderDetails(
-    summaryPage: SummaryPage,
-    draftAnOrder1Page: DraftAnOrder1Page,
-    draftAnOrder2Page: DraftAnOrder2Page,
-    draftAnOrder4Page: DraftAnOrder4Page,
+    page: Page,
     draftOrderParams: Partial<OrderDetails>,
   ): Promise<void> {
-    await summaryPage.chooseEventFromDropdown("Draft an order");
+    const draftAnOrder1Page: DraftAnOrder1Page = new DraftAnOrder1Page(page);
     await draftAnOrder1Page.assertPageContents();
     await draftAnOrder1Page.verifyAccessibility();
     await draftAnOrder1Page.selectWhatYouWantToDo(
       draftOrderParams.isDraftAnOrder,
     );
     await draftAnOrder1Page.clickContinue();
+
+    const draftAnOrder2Page: DraftAnOrder2Page = new DraftAnOrder2Page(page);
     await draftAnOrder2Page.assertPageContents();
     await draftAnOrder2Page.verifyAccessibility();
     await draftAnOrder2Page.selectOrderType(draftOrderParams.orderType);
     await draftAnOrder2Page.clickContinue();
+
+    const draftAnOrder4Page: DraftAnOrder4Page = new DraftAnOrder4Page(page);
     await draftAnOrder4Page.assertPageContents(
       draftOrderParams.caseType,
       draftOrderParams.orderType,
@@ -197,9 +179,9 @@ export class DraftAnOrderJourney {
   private async assertDraftOrderAsCourtAdmin(
     browser: Browser,
     caseNumber: string,
-    navigationUtils: NavigationUtils,
     orderInformation: OrderInformation[],
   ): Promise<void> {
+    const navigationUtils: NavigationUtils = new NavigationUtils();
     const adminPage: Page = await navigationUtils.openNewBrowserWindow(
       browser,
       "caseWorker",

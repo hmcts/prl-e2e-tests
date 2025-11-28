@@ -39,54 +39,18 @@ test.describe("Draft a parental responsibility order tests", (): void => {
   );
 
   scenarios.forEach(
-    ({
-      name,
-      caseType,
-      orderType,
-      isDraftAnOrder,
-      draftAnOrder4Params,
-      responsibleParentFullName,
-      snapshotName,
-      snapshotsPath,
-      orderInformation,
-    }: ParentalResponsibilityDraftOrderParams) => {
+    (draftOrderParams: ParentalResponsibilityDraftOrderParams) => {
       test(`Complete drafting Parental Responsibility order as solicitor with the following options: ${name} @accessibility @regression @nightly @visual`, async ({
+        page,
         browser,
-        summaryPage,
-        draftAnOrder1Page,
-        draftAnOrder2Page,
-        draftAnOrder4Page,
-        draftAnOrder8Page,
-        draftAnOrder20Page,
-        draftAnOrderSubmitPage,
-        navigationUtils,
       }): Promise<void> => {
         const draftAnOrderJourney: DraftAnOrderJourney =
           new DraftAnOrderJourney();
         await draftAnOrderJourney.draftAnOrder(
+          page,
           browser,
           caseNumber,
-          {
-            summaryPage,
-            draftAnOrder1Page,
-            draftAnOrder2Page,
-            draftAnOrder4Page,
-            draftAnOrder8Page,
-            draftAnOrder20Page,
-            draftAnOrderSubmitPage,
-            navigationUtils,
-          },
-          {
-            name,
-            caseType,
-            orderType,
-            isDraftAnOrder,
-            draftAnOrder4Params,
-            responsibleParentFullName,
-            snapshotName,
-            snapshotsPath,
-            orderInformation,
-          },
+          draftOrderParams,
         );
       });
     },
