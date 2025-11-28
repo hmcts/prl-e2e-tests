@@ -61,6 +61,11 @@ test.describe("Remove draft order as a court admin for solicitor created C100 ca
           browser,
           "caseWorker",
         );
+        await navigationUtils.goToCase(
+          adminPage,
+          Config.manageCasesBaseURLCase,
+          caseNumber,
+        );
         const draftOrdersPage: DraftOrdersPage = new DraftOrdersPage(adminPage);
         await draftOrdersPage.chooseEventFromDropdown("Remove draft order");
         const removeDraftOrder1Page: RemoveDraftOrder1Page =
