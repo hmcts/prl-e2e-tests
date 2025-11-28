@@ -41,7 +41,7 @@ test.describe("Draft a non molestation order tests", (): void => {
   );
 
   scenarios.forEach((draftOrderParams: NonMolestationDraftOrderParams) => {
-    test(`Complete drafting Non-Molestation order as solicitor with the following options: ${name} @accessibility @regression @nightly @visual`, async ({
+    test(`Complete drafting Non-Molestation order as solicitor with the following options: ${draftOrderParams.name} @accessibility @regression @nightly @visual`, async ({
       page,
       browser,
     }): Promise<void> => {

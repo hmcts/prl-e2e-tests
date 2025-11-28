@@ -40,7 +40,7 @@ test.describe("Draft a parental responsibility order tests", (): void => {
 
   scenarios.forEach(
     (draftOrderParams: ParentalResponsibilityDraftOrderParams) => {
-      test(`Complete drafting Parental Responsibility order as solicitor with the following options: ${name} @accessibility @regression @nightly @visual`, async ({
+      test(`Complete drafting Parental Responsibility order as solicitor with the following options: ${draftOrderParams.name} @accessibility @regression @nightly @visual`, async ({
         page,
         browser,
       }): Promise<void> => {
