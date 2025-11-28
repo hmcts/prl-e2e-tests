@@ -29,13 +29,12 @@ test.describe("Complete Remove legal representative event for FL401 case", () =>
       fl401RemoveLegalRepresentativeSubmitPage,
       fl401RemoveLegalRepresentativeConfirmPage,
       partiesPage,
-      axeUtils,
     }) => {
       await summaryPage.chooseEventFromDropdown("Remove legal representative");
       await fl401RemoveLegalRepresentative1Page.assertPageContents(
         existingRepresentatives,
       );
-      await axeUtils.audit();
+      await fl401RemoveLegalRepresentative1Page.verifyAccessibility();
       await fl401RemoveLegalRepresentative1Page.selectRepresentativesToRemove(
         existingRepresentatives,
       );
@@ -44,10 +43,10 @@ test.describe("Complete Remove legal representative event for FL401 case", () =>
         ["caseProgression", "removeLegalRepresentative"],
         snapshotName,
       );
-      await axeUtils.audit();
+      await fl401RemoveLegalRepresentativeSubmitPage.verifyAccessibility();
       await fl401RemoveLegalRepresentativeSubmitPage.clickSubmit();
       await fl401RemoveLegalRepresentativeConfirmPage.assertPageContents();
-      await axeUtils.audit();
+      await fl401RemoveLegalRepresentativeConfirmPage.verifyAccessibility();
       await fl401RemoveLegalRepresentativeConfirmPage.clickCloseAndReturnToCaseDetails();
       await summaryPage.alertBanner.assertEventAlert(
         caseNumber,

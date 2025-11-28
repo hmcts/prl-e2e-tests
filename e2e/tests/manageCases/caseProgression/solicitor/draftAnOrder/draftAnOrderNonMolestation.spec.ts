@@ -66,28 +66,27 @@ test.describe("Draft a non molestation order tests", (): void => {
         draftAnOrder16Page,
         draftAnOrder20Page,
         draftAnOrderSubmitPage,
-        axeUtils,
         navigationUtils,
       }): Promise<void> => {
         await summaryPage.chooseEventFromDropdown("Draft an order");
         await draftAnOrder1Page.assertPageContents();
-        await axeUtils.audit();
+        await draftAnOrder1Page.verifyAccessibility();
         await draftAnOrder1Page.selectWhatYouWantToDo(isDraftAnOrder);
         await draftAnOrder1Page.clickContinue();
         await draftAnOrder2Page.assertPageContents();
-        await axeUtils.audit();
+        await draftAnOrder2Page.verifyAccessibility();
         await draftAnOrder2Page.selectOrderType(orderType);
         await draftAnOrder2Page.clickContinue();
         await draftAnOrder4Page.assertPageContents(caseType, orderType);
-        await axeUtils.audit();
+        await draftAnOrder4Page.verifyAccessibility();
         await draftAnOrder4Page.fillInFields(caseType, draftAnOrder4Params);
         await draftAnOrder4Page.clickContinue();
         await draftAnOrder5Page.assertPageContents(orderType);
-        await axeUtils.audit();
+        await draftAnOrder5Page.verifyAccessibility();
         await draftAnOrder5Page.fillInFields(draftAnOrder5Params);
         await draftAnOrder5Page.clickContinue();
         await draftAnOrder16Page.assertPageContents(orderType);
-        await axeUtils.audit();
+        await draftAnOrder16Page.verifyAccessibility();
         await draftAnOrder16Page.fillInFields(draftAnOrder16Params);
         await draftAnOrder16Page.clickContinue();
         await draftAnOrder20Page.assertPageContents(
@@ -96,13 +95,13 @@ test.describe("Draft a non molestation order tests", (): void => {
           snapshotName,
           snapshotsPath,
         );
-        await axeUtils.audit();
+        await draftAnOrder20Page.verifyAccessibility();
         await draftAnOrder20Page.clickContinue();
         await draftAnOrderSubmitPage.assertPageContents(
           snapshotsPath,
           snapshotName,
         );
-        await axeUtils.audit();
+        await draftAnOrderSubmitPage.verifyAccessibility();
         await draftAnOrderSubmitPage.clickSubmit();
         await summaryPage.alertBanner.assertEventAlert(
           caseNumber,
