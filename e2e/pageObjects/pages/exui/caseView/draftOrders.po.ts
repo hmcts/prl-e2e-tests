@@ -130,7 +130,7 @@ export class DraftOrdersPage extends CaseAccessViewPage {
     value: string,
   ): Promise<void> {
     const labelLocator: Locator = draftOrderTable
-      .getByRole("cell", {
+      .getByRole("rowheader", {
         name: label,
         exact: true,
       })
