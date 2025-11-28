@@ -80,7 +80,6 @@ test.describe("Add/Remove Barrister for CA case", () => {
         c100Noc2Page,
         c100NocSubmitPage,
         partiesPage,
-        axeUtils,
         c100AdminAddBarrister1Page,
         c100AdminAddBarristerSubmit,
         c100NocConfirmationPage,
@@ -90,27 +89,27 @@ test.describe("Add/Remove Barrister for CA case", () => {
         // adding solicitor via NoC to allow Barrister functionality
         await summaryPage.exuiHeader.clickNoticeOfChange();
         await c100Noc1Page.assertPageContents();
-        await axeUtils.audit();
+        await c100Noc1Page.verifyAccessibility();
         await c100Noc1Page.fillInCaseNumber(caseNumber);
         await c100Noc1Page.clickContinue();
         await c100Noc2Page.assertPageContents();
-        await axeUtils.audit();
+        await c100Noc2Page.verifyAccessibility();
         await c100Noc2Page.fillInPartyName(
           nocParty.firstname,
           nocParty.surname,
         );
         await c100Noc2Page.clickContinue();
         await c100NocSubmitPage.assertPageContents();
-        await axeUtils.audit();
+        await c100NocSubmitPage.verifyAccessibility();
         await c100NocSubmitPage.checkBoxes();
         await c100NocSubmitPage.clickSubmit();
         await c100NocConfirmationPage.assertPageContents();
-        await axeUtils.audit();
+        await c100NocConfirmationPage.verifyAccessibility();
         await c100NocConfirmationPage.clickViewThisCase();
         // adding barrister
         await summaryPage.chooseEventFromDropdown("Add barrister");
         await c100AdminAddBarrister1Page.assertPageContents();
-        await axeUtils.audit();
+        await c100AdminAddBarrister1Page.verifyAccessibility();
         await c100AdminAddBarrister1Page.selectPartyAndFillInBarristerDetails(
           barrister.firstnames,
           barrister.lastname,
@@ -123,7 +122,7 @@ test.describe("Add/Remove Barrister for CA case", () => {
           ["caseProgression", "addBarrister"],
           addBarristerSnapshotName,
         );
-        // await axeUtils.audit(); Note: to remove this comment once FPVTL-1357 fix is deployed
+        // await c100AdminAddBarristerSubmit.verifyAccessibility(); Note: to remove this comment once FPVTL-1357 fix is deployed
         await c100AdminAddBarristerSubmit.clickSubmit();
         await summaryPage.alertBanner.assertEventAlert(
           caseNumber,
@@ -140,7 +139,7 @@ test.describe("Add/Remove Barrister for CA case", () => {
         // removing barrister
         await summaryPage.chooseEventFromDropdown("Remove barrister");
         await c100AdminRemoveBarrister1Page.assertPageContents();
-        await axeUtils.audit();
+        await c100AdminRemoveBarrister1Page.verifyAccessibility();
         await c100AdminRemoveBarrister1Page.selectPartyToRemoveBarrister(
           existingRepresentativeRemoval,
         );
@@ -149,7 +148,7 @@ test.describe("Add/Remove Barrister for CA case", () => {
           ["caseProgression", "removeBarrister"],
           removeBarristerSnapshotName,
         );
-        await axeUtils.audit();
+        await c100AdminRemoveBarristerSubmit.verifyAccessibility();
         await c100AdminRemoveBarristerSubmit.clickSubmit();
         await summaryPage.alertBanner.assertEventAlert(
           caseNumber,

@@ -38,13 +38,12 @@ test.describe("Complete Remove legal representative event for C100 case", () => 
       c100RemoveLegalRepresentativeSubmitPage,
       c100RemoveLegalRepresentativeConfirmPage,
       partiesPage,
-      axeUtils,
     }) => {
       await summaryPage.chooseEventFromDropdown("Remove legal representative");
       await c100RemoveLegalRepresentative1Page.assertPageContents(
         existingRepresentatives,
       );
-      await axeUtils.audit();
+      await c100RemoveLegalRepresentative1Page.verifyAccessibility();
       await c100RemoveLegalRepresentative1Page.selectRepresentativesToRemove(
         existingRepresentatives,
       );
@@ -53,10 +52,10 @@ test.describe("Complete Remove legal representative event for C100 case", () => 
         ["caseProgression", "removeLegalRepresentative"],
         snapshotName,
       );
-      await axeUtils.audit();
+      await c100RemoveLegalRepresentativeSubmitPage.verifyAccessibility();
       await c100RemoveLegalRepresentativeSubmitPage.clickSubmit();
       await c100RemoveLegalRepresentativeConfirmPage.assertPageContents();
-      await axeUtils.audit();
+      await c100RemoveLegalRepresentativeConfirmPage.verifyAccessibility();
       await c100RemoveLegalRepresentativeConfirmPage.clickCloseAndReturnToCaseDetails();
       await summaryPage.alertBanner.assertEventAlert(
         caseNumber,

@@ -25,21 +25,20 @@ test.describe("Check Application task for DA Solicitor case tests.", () => {
         tasksPage,
         fl401AddCaseNumber1Page,
         fl401AddCaseNumberSubmitPage,
-        axeUtils,
       }): Promise<void> => {
         await tasksPage.assignTaskToMeAndTriggerNextSteps(
           "Check Application",
           "Add Case Number",
         );
         await fl401AddCaseNumber1Page.assertPageContents();
-        await axeUtils.audit();
+        await fl401AddCaseNumber1Page.verifyAccessibility();
         await fl401AddCaseNumber1Page.fillInFields(familyManNumber);
         await fl401AddCaseNumber1Page.clickContinue();
         await fl401AddCaseNumberSubmitPage.assertPageContents(
           ["caseProgression", "checkApplication"],
           snapshotName,
         );
-        await axeUtils.audit();
+        await fl401AddCaseNumberSubmitPage.verifyAccessibility();
         await fl401AddCaseNumberSubmitPage.clickSaveAndContinue();
         await summaryPage.alertBanner.assertEventAlert(
           caseNumber,
