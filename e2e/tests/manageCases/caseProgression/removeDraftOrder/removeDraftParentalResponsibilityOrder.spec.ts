@@ -8,7 +8,6 @@ import { AxeUtils } from "@hmcts/playwright-common";
 import { RemoveDraftOrder2Page } from "../../../../pageObjects/pages/exui/orders/removeDraftOrder/removeDraftOrder2.po.js";
 import { RemoveDraftOrderSubmitPage } from "../../../../pageObjects/pages/exui/orders/removeDraftOrder/removeDraftOrderSubmit.po.js";
 import { SummaryPage } from "../../../../pageObjects/pages/exui/caseView/summary.po.js";
-import { DraftOrdersPage } from "../../../../pageObjects/pages/exui/caseView/draftOrders.po.js";
 import { ParentalResponsibilityDraftOrderParams } from "../solicitor/draftAnOrder/draftAnOrderParentalResponsibility.spec.js";
 
 export interface RemoveDraftParentalResponsibilityOrderParams {
@@ -79,9 +78,14 @@ test.describe("Remove draft order as a court admin for solicitor created C100 ca
           browser,
           "caseWorker",
         );
+        await navigationUtils.goToCase(
+          adminPage,
+          Config.manageCasesBaseURLCase,
+          caseNumber,
+        );
         const adminAxeUtils: AxeUtils = new AxeUtils(adminPage);
-        const draftOrdersPage: DraftOrdersPage = new DraftOrdersPage(adminPage);
-        await draftOrdersPage.chooseEventFromDropdown("Remove draft order");
+        const adminSummaryPage: SummaryPage = new SummaryPage(adminPage);
+        await adminSummaryPage.chooseEventFromDropdown("Remove draft order");
         const removeDraftOrder1Page: RemoveDraftOrder1Page =
           new RemoveDraftOrder1Page(adminPage);
         await removeDraftOrder1Page.assertPageContents();
@@ -103,7 +107,6 @@ test.describe("Remove draft order as a court admin for solicitor created C100 ca
           snapshotName,
         );
         await removeDraftOrderSubmitPage.clickSubmit();
-        const adminSummaryPage: SummaryPage = new SummaryPage(adminPage);
         await adminSummaryPage.alertBanner.assertEventAlert(
           caseNumber,
           "Remove draft order",
