@@ -88,7 +88,7 @@ export class PartiesPage extends CaseAccessViewPage {
   }
 
   async assertC100ApplicantsSolicitorsDetailsPresent(
-      applicants: ApplicantName[],
+    applicants: ApplicantName[],
   ): Promise<void> {
     for (const applicant of applicants) {
       // get the applicant table by the applicant name and check each expected applicant has had legal representative removed

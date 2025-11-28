@@ -208,7 +208,9 @@ test.describe("Add/Remove Barrister for CA case", () => {
         // adding barrister in the new caseworker context
         const newSummaryPage = new SummaryPage(caseworkerPage);
         await newSummaryPage.chooseEventFromDropdown("Add barrister");
-        const addBarrister1Page = new C100AdminAddBarrister1Page(caseworkerPage);
+        const addBarrister1Page = new C100AdminAddBarrister1Page(
+          caseworkerPage,
+        );
         await addBarrister1Page.assertPageContents();
         await axeUtils.audit();
         await addBarrister1Page.selectPartyAndFillInBarristerDetails(
@@ -219,7 +221,9 @@ test.describe("Add/Remove Barrister for CA case", () => {
           existingRepresentative,
         );
         await addBarrister1Page.clickContinue();
-        const addBarrister1Submit = new C100AdminAddBarristerSubmit(caseworkerPage);
+        const addBarrister1Submit = new C100AdminAddBarristerSubmit(
+          caseworkerPage,
+        );
         await addBarrister1Submit.assertPageContents(
           ["caseProgression", "addBarrister"],
           addBarristerSnapshotName,
@@ -239,17 +243,23 @@ test.describe("Add/Remove Barrister for CA case", () => {
           barrister.email,
           barrister.org,
         );
-        await newPartiesPage.assertC100ApplicantsSolicitorsDetailsPresent(applicants);
+        await newPartiesPage.assertC100ApplicantsSolicitorsDetailsPresent(
+          applicants,
+        );
         // removing barrister in the new caseworker context
         await newSummaryPage.chooseEventFromDropdown("Remove barrister");
-        const removeBarrister1Page = new C100AdminRemoveBarrister1Page(caseworkerPage);
+        const removeBarrister1Page = new C100AdminRemoveBarrister1Page(
+          caseworkerPage,
+        );
         await removeBarrister1Page.assertPageContents();
         await axeUtils.audit();
         await removeBarrister1Page.selectPartyToRemoveBarrister(
           existingRepresentativeRemoval,
         );
         await removeBarrister1Page.clickContinue();
-        const removeBarristerSubmit = new C100AdminRemoveBarristerSubmit(caseworkerPage);
+        const removeBarristerSubmit = new C100AdminRemoveBarristerSubmit(
+          caseworkerPage,
+        );
         await removeBarristerSubmit.assertPageContents(
           ["caseProgression", "removeBarrister"],
           removeBarristerSnapshotName,
@@ -263,10 +273,9 @@ test.describe("Add/Remove Barrister for CA case", () => {
         // asserting barrister is removed on Parties tab
         await newPartiesPage.goToPage();
         await newPartiesPage.assertC100BarristerDetailsRemoved(applicants);
-        await newPartiesPage.assertC100ApplicantsSolicitorsDetailsPresent(applicants);
-
-        // logging case ref for testing purposes, TO BE REMOVED
-        await console.log("The case ref is:", caseNumber);
+        await newPartiesPage.assertC100ApplicantsSolicitorsDetailsPresent(
+          applicants,
+        );
       });
     },
   );
