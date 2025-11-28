@@ -13,7 +13,6 @@ import { DraftAnOrder5Page } from "../../../../pageObjects/pages/exui/orders/sol
 import { DraftAnOrder16Page } from "../../../../pageObjects/pages/exui/orders/solicitor/draftAnOrder16.po.js";
 import { DraftAnOrder20Page } from "../../../../pageObjects/pages/exui/orders/solicitor/draftAnOrder20.po.js";
 import { DraftAnOrderSubmitPage } from "../../../../pageObjects/pages/exui/orders/solicitor/draftAnOrderSubmit.po.js";
-import { AxeUtils } from "@hmcts/playwright-common";
 import { NavigationUtils } from "../../../../utils/navigation.utils.js";
 import { DraftAnOrder8Page } from "../../../../pageObjects/pages/exui/orders/solicitor/draftAnOrder8.po.js";
 import { ParentalResponsibilityDraftOrderParams } from "../../../../tests/manageCases/caseProgression/solicitor/draftAnOrder/draftAnOrderParentalResponsibility.spec.js";
@@ -28,7 +27,6 @@ interface DraftAnOrderPages {
   draftAnOrder16Page?: DraftAnOrder16Page;
   draftAnOrder20Page: DraftAnOrder20Page;
   draftAnOrderSubmitPage: DraftAnOrderSubmitPage;
-  axeUtils: AxeUtils;
   navigationUtils: NavigationUtils;
 }
 
@@ -75,13 +73,12 @@ export class DraftAnOrderJourney {
       draftOrderPages.draftAnOrder1Page,
       draftOrderPages.draftAnOrder2Page,
       draftOrderPages.draftAnOrder4Page,
-      draftOrderPages.axeUtils,
       orderDetails,
     );
     await draftOrderPages.draftAnOrder5Page.assertPageContents(
       orderDetails.orderType,
     );
-    await draftOrderPages.axeUtils.audit();
+    await draftOrderPages.draftAnOrder5Page.verifyAccessibility();
     await draftOrderPages.draftAnOrder5Page.fillInFields(
       orderDetails.draftAnOrder5Params,
     );
@@ -89,7 +86,7 @@ export class DraftAnOrderJourney {
     await draftOrderPages.draftAnOrder16Page.assertPageContents(
       orderDetails.orderType,
     );
-    await draftOrderPages.axeUtils.audit();
+    await draftOrderPages.draftAnOrder16Page.verifyAccessibility();
     await draftOrderPages.draftAnOrder16Page.fillInFields(
       orderDetails.draftAnOrder16Params,
     );
@@ -100,13 +97,13 @@ export class DraftAnOrderJourney {
       orderDetails.snapshotName,
       orderDetails.snapshotsPath,
     );
-    await draftOrderPages.axeUtils.audit();
+    await draftOrderPages.draftAnOrder20Page.verifyAccessibility();
     await draftOrderPages.draftAnOrder20Page.clickContinue();
     await draftOrderPages.draftAnOrderSubmitPage.assertPageContents(
       orderDetails.snapshotsPath,
       orderDetails.snapshotName,
     );
-    await draftOrderPages.axeUtils.audit();
+    await draftOrderPages.draftAnOrderSubmitPage.verifyAccessibility();
     await draftOrderPages.draftAnOrderSubmitPage.clickSubmit();
     await draftOrderPages.summaryPage.alertBanner.assertEventAlert(
       caseNumber,
@@ -131,13 +128,12 @@ export class DraftAnOrderJourney {
       draftOrderPages.draftAnOrder1Page,
       draftOrderPages.draftAnOrder2Page,
       draftOrderPages.draftAnOrder4Page,
-      draftOrderPages.axeUtils,
       orderParams,
     );
     await draftOrderPages.draftAnOrder8Page.assertPageContents(
       orderParams.orderType,
     );
-    await draftOrderPages.axeUtils.audit();
+    await draftOrderPages.draftAnOrder8Page.verifyAccessibility();
     await draftOrderPages.draftAnOrder8Page.fillInFields(
       orderParams.responsibleParentFullName,
     );
@@ -148,13 +144,13 @@ export class DraftAnOrderJourney {
       orderParams.snapshotName,
       orderParams.snapshotsPath,
     );
-    await draftOrderPages.axeUtils.audit();
+    await draftOrderPages.draftAnOrder20Page.verifyAccessibility();
     await draftOrderPages.draftAnOrder20Page.clickContinue();
     await draftOrderPages.draftAnOrderSubmitPage.assertPageContents(
       orderParams.snapshotsPath,
       orderParams.snapshotName,
     );
-    await draftOrderPages.axeUtils.audit();
+    await draftOrderPages.draftAnOrderSubmitPage.verifyAccessibility();
     await draftOrderPages.draftAnOrderSubmitPage.clickSubmit();
     await draftOrderPages.summaryPage.alertBanner.assertEventAlert(
       caseNumber,
@@ -173,25 +169,24 @@ export class DraftAnOrderJourney {
     draftAnOrder1Page: DraftAnOrder1Page,
     draftAnOrder2Page: DraftAnOrder2Page,
     draftAnOrder4Page: DraftAnOrder4Page,
-    axeUtils: AxeUtils,
     draftOrderParams: Partial<OrderDetails>,
   ): Promise<void> {
     await summaryPage.chooseEventFromDropdown("Draft an order");
     await draftAnOrder1Page.assertPageContents();
-    await axeUtils.audit();
+    await draftAnOrder1Page.verifyAccessibility();
     await draftAnOrder1Page.selectWhatYouWantToDo(
       draftOrderParams.isDraftAnOrder,
     );
     await draftAnOrder1Page.clickContinue();
     await draftAnOrder2Page.assertPageContents();
-    await axeUtils.audit();
+    await draftAnOrder2Page.verifyAccessibility();
     await draftAnOrder2Page.selectOrderType(draftOrderParams.orderType);
     await draftAnOrder2Page.clickContinue();
     await draftAnOrder4Page.assertPageContents(
       draftOrderParams.caseType,
       draftOrderParams.orderType,
     );
-    await axeUtils.audit();
+    await draftAnOrder4Page.verifyAccessibility();
     await draftAnOrder4Page.fillInFields(
       draftOrderParams.caseType,
       draftOrderParams.draftAnOrder4Params,

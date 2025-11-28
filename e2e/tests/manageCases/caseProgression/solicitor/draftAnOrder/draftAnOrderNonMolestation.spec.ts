@@ -63,7 +63,6 @@ test.describe("Draft a non molestation order tests", (): void => {
         draftAnOrder16Page,
         draftAnOrder20Page,
         draftAnOrderSubmitPage,
-        axeUtils,
         navigationUtils,
       }): Promise<void> => {
         const draftAnOrderJourney: DraftAnOrderJourney =
@@ -80,7 +79,6 @@ test.describe("Draft a non molestation order tests", (): void => {
             draftAnOrder16Page,
             draftAnOrder20Page,
             draftAnOrderSubmitPage,
-            axeUtils,
             navigationUtils,
           },
           {

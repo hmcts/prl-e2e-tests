@@ -59,7 +59,6 @@ test.describe("Draft a parental responsibility order tests", (): void => {
         draftAnOrder8Page,
         draftAnOrder20Page,
         draftAnOrderSubmitPage,
-        axeUtils,
         navigationUtils,
       }): Promise<void> => {
         const draftAnOrderJourney: DraftAnOrderJourney =
@@ -75,7 +74,6 @@ test.describe("Draft a parental responsibility order tests", (): void => {
             draftAnOrder8Page,
             draftAnOrder20Page,
             draftAnOrderSubmitPage,
-            axeUtils,
             navigationUtils,
           },
           {

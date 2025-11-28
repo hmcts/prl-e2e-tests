@@ -5,7 +5,6 @@ import { RemoveDraftNonMolestationOrderScenarios as scenarios } from "../../../.
 import { DraftAnOrderJourney } from "../../../../journeys/manageCases/caseProgression/solicitor/draftAnOrderJourney.js";
 import { Page } from "@playwright/test";
 import { RemoveDraftOrder1Page } from "../../../../pageObjects/pages/exui/orders/removeDraftOrder/removeDraftOrder1.po.js";
-import { AxeUtils } from "@hmcts/playwright-common";
 import { RemoveDraftOrder2Page } from "../../../../pageObjects/pages/exui/orders/removeDraftOrder/removeDraftOrder2.po.js";
 import { RemoveDraftOrderSubmitPage } from "../../../../pageObjects/pages/exui/orders/removeDraftOrder/removeDraftOrderSubmit.po.js";
 import { SummaryPage } from "../../../../pageObjects/pages/exui/caseView/summary.po.js";
@@ -50,7 +49,6 @@ test.describe("Remove draft order as a court admin for solicitor created FL401 c
         draftAnOrder16Page,
         draftAnOrder20Page,
         draftAnOrderSubmitPage,
-        axeUtils,
         navigationUtils,
       }): Promise<void> => {
         const draftAnOrderJourney: DraftAnOrderJourney =
@@ -68,7 +66,6 @@ test.describe("Remove draft order as a court admin for solicitor created FL401 c
             draftAnOrder16Page,
             draftAnOrder20Page,
             draftAnOrderSubmitPage,
-            axeUtils,
             navigationUtils,
           },
           draftOrderParams,
@@ -84,13 +81,12 @@ test.describe("Remove draft order as a court admin for solicitor created FL401 c
           Config.manageCasesBaseURLCase,
           caseNumber,
         );
-        const adminAxeUtils: AxeUtils = new AxeUtils(adminPage);
         const adminSummaryPage: SummaryPage = new SummaryPage(adminPage);
         await adminSummaryPage.chooseEventFromDropdown("Remove draft order");
         const removeDraftOrder1Page: RemoveDraftOrder1Page =
           new RemoveDraftOrder1Page(adminPage);
         await removeDraftOrder1Page.assertPageContents();
-        await adminAxeUtils.audit();
+        await removeDraftOrder1Page.verifyAccessibility();
         await removeDraftOrder1Page.selectOrderToRemove(
           draftOrderParams.orderType,
         );
@@ -98,7 +94,7 @@ test.describe("Remove draft order as a court admin for solicitor created FL401 c
         const removeDraftOrder2Page: RemoveDraftOrder2Page =
           new RemoveDraftOrder2Page(adminPage);
         await removeDraftOrder2Page.assertPageContents();
-        await adminAxeUtils.audit();
+        await removeDraftOrder2Page.verifyAccessibility();
         await removeDraftOrder2Page.inputOrderRemovalReason(removalReason);
         await removeDraftOrder2Page.clickContinue();
         const removeDraftOrderSubmitPage: RemoveDraftOrderSubmitPage =
