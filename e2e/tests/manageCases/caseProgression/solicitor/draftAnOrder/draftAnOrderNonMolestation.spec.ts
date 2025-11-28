@@ -5,14 +5,12 @@ import {
   solicitorCaseCreateType,
 } from "../../../../../common/types.js";
 import { DraftAnOrder5Params } from "../../../../../pageObjects/pages/exui/orders/solicitor/draftAnOrder5.po.js";
-import {
-  DraftOrdersPage,
-  OrderInformation,
-} from "../../../../../pageObjects/pages/exui/caseView/draftOrders.po.js";
-import { Page } from "@playwright/test";
+import { OrderInformation } from "../../../../../pageObjects/pages/exui/caseView/draftOrders.po.js";
 import { DraftAnOrder4Params } from "../../../../../pageObjects/pages/exui/orders/solicitor/draftAnOrder4.po.js";
 import { DraftAnOrder16Params } from "../../../../../pageObjects/pages/exui/orders/solicitor/draftAnOrder16.po.js";
 import { NonMolestationDraftOrderScenarios as scenarios } from "../../../../../testData/draftOrders.js";
+import { DraftAnOrderJourney } from "../../../../../journeys/manageCases/caseProgression/solicitor/draftAnOrderJourney.js";
+import { Page } from "@playwright/test";
 
 export interface NonMolestationDraftOrderParams {
   name: string;
@@ -69,59 +67,40 @@ test.describe("Draft a non molestation order tests", (): void => {
         axeUtils,
         navigationUtils,
       }): Promise<void> => {
-        await summaryPage.chooseEventFromDropdown("Draft an order");
-        await draftAnOrder1Page.assertPageContents();
-        await axeUtils.audit();
-        await draftAnOrder1Page.selectWhatYouWantToDo(isDraftAnOrder);
-        await draftAnOrder1Page.clickContinue();
-        await draftAnOrder2Page.assertPageContents();
-        await axeUtils.audit();
-        await draftAnOrder2Page.selectOrderType(orderType);
-        await draftAnOrder2Page.clickContinue();
-        await draftAnOrder4Page.assertPageContents(caseType, orderType);
-        await axeUtils.audit();
-        await draftAnOrder4Page.fillInFields(caseType, draftAnOrder4Params);
-        await draftAnOrder4Page.clickContinue();
-        await draftAnOrder5Page.assertPageContents(orderType);
-        await axeUtils.audit();
-        await draftAnOrder5Page.fillInFields(draftAnOrder5Params);
-        await draftAnOrder5Page.clickContinue();
-        await draftAnOrder16Page.assertPageContents(orderType);
-        await axeUtils.audit();
-        await draftAnOrder16Page.fillInFields(draftAnOrder16Params);
-        await draftAnOrder16Page.clickContinue();
-        await draftAnOrder20Page.assertPageContents(
-          orderType,
-          caseNumber,
-          snapshotName,
-          snapshotsPath,
-        );
-        await axeUtils.audit();
-        await draftAnOrder20Page.clickContinue();
-        await draftAnOrderSubmitPage.assertPageContents(
-          snapshotsPath,
-          snapshotName,
-        );
-        await axeUtils.audit();
-        await draftAnOrderSubmitPage.clickSubmit();
-        await summaryPage.alertBanner.assertEventAlert(
-          caseNumber,
-          "Draft an order",
-        );
-
-        // open new window as court admin to check the draft orders tab
         const adminPage: Page = await navigationUtils.openNewBrowserWindow(
           browser,
           "caseWorker",
         );
-        await navigationUtils.goToCase(
-          adminPage,
-          Config.manageCasesBaseURLCase,
+        const draftAnOrderJourney: DraftAnOrderJourney =
+          new DraftAnOrderJourney();
+        await draftAnOrderJourney.draftAnOrder(
           caseNumber,
+          {
+            summaryPage,
+            draftAnOrder1Page,
+            draftAnOrder2Page,
+            draftAnOrder4Page,
+            draftAnOrder5Page,
+            draftAnOrder16Page,
+            draftAnOrder20Page,
+            draftAnOrderSubmitPage,
+            axeUtils,
+            navigationUtils,
+            adminPage,
+          },
+          {
+            name,
+            caseType,
+            orderType,
+            isDraftAnOrder,
+            draftAnOrder4Params,
+            draftAnOrder5Params,
+            draftAnOrder16Params,
+            snapshotName,
+            snapshotsPath,
+            orderInformation,
+          },
         );
-        const draftOrdersPage: DraftOrdersPage = new DraftOrdersPage(adminPage);
-        await draftOrdersPage.goToPage();
-        await draftOrdersPage.assertDraftOrders(orderInformation);
       });
     },
   );
