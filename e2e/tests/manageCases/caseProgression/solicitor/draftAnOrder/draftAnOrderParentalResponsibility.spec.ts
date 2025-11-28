@@ -8,7 +8,6 @@ import { OrderInformation } from "../../../../../pageObjects/pages/exui/caseView
 import { DraftAnOrder4Params } from "../../../../../pageObjects/pages/exui/orders/solicitor/draftAnOrder4.po.js";
 import { ParentalResponsibilityOrderScenarios as scenarios } from "../../../../../testData/draftOrders.ts";
 import { DraftAnOrderJourney } from "../../../../../journeys/manageCases/caseProgression/solicitor/draftAnOrderJourney.js";
-import { Page } from "@playwright/test";
 
 export interface ParentalResponsibilityDraftOrderParams {
   name: string;
@@ -63,13 +62,10 @@ test.describe("Draft a parental responsibility order tests", (): void => {
         axeUtils,
         navigationUtils,
       }): Promise<void> => {
-        const adminPage: Page = await navigationUtils.openNewBrowserWindow(
-          browser,
-          "caseWorker",
-        );
         const draftAnOrderJourney: DraftAnOrderJourney =
           new DraftAnOrderJourney();
         await draftAnOrderJourney.draftAnOrder(
+          browser,
           caseNumber,
           {
             summaryPage,
@@ -81,7 +77,6 @@ test.describe("Draft a parental responsibility order tests", (): void => {
             draftAnOrderSubmitPage,
             axeUtils,
             navigationUtils,
-            adminPage,
           },
           {
             name,

@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test";
+import { Browser, Page } from "@playwright/test";
 import Config from "../../../../utils/config.utils.js";
 import {
   DraftOrdersPage,
@@ -30,7 +30,6 @@ interface DraftAnOrderPages {
   draftAnOrderSubmitPage: DraftAnOrderSubmitPage;
   axeUtils: AxeUtils;
   navigationUtils: NavigationUtils;
-  adminPage: Page;
 }
 
 type OrderDetails =
@@ -40,6 +39,7 @@ type OrderDetails =
 // class to handle draft order journeys - required because this journey is large and re-used quite a lot
 export class DraftAnOrderJourney {
   async draftAnOrder(
+    browser: Browser,
     caseNumber: string,
     draftOrderPages: DraftAnOrderPages,
     orderParams: OrderDetails,
@@ -47,6 +47,7 @@ export class DraftAnOrderJourney {
     switch (orderParams.orderType) {
       case "Non-molestation order (FL404A)":
         await this.draftNonMolestationOrder(
+          browser,
           caseNumber,
           draftOrderPages,
           orderParams as NonMolestationDraftOrderParams,
@@ -54,6 +55,7 @@ export class DraftAnOrderJourney {
         break;
       case "Parental responsibility order (C45A)":
         await this.draftParentalResponsibilityOrder(
+          browser,
           caseNumber,
           draftOrderPages,
           orderParams as ParentalResponsibilityDraftOrderParams,
@@ -63,6 +65,7 @@ export class DraftAnOrderJourney {
   }
 
   private async draftNonMolestationOrder(
+    browser: Browser,
     caseNumber: string,
     draftOrderPages: DraftAnOrderPages,
     orderDetails: NonMolestationDraftOrderParams,
@@ -110,7 +113,7 @@ export class DraftAnOrderJourney {
       "Draft an order",
     );
     await this.assertDraftOrderAsCourtAdmin(
-      draftOrderPages.adminPage,
+      browser,
       caseNumber,
       draftOrderPages.navigationUtils,
       orderDetails.orderInformation,
@@ -118,6 +121,7 @@ export class DraftAnOrderJourney {
   }
 
   private async draftParentalResponsibilityOrder(
+    browser: Browser,
     caseNumber: string,
     draftOrderPages: DraftAnOrderPages,
     orderParams: ParentalResponsibilityDraftOrderParams,
@@ -157,7 +161,7 @@ export class DraftAnOrderJourney {
       "Draft an order",
     );
     await this.assertDraftOrderAsCourtAdmin(
-      draftOrderPages.adminPage,
+      browser,
       caseNumber,
       draftOrderPages.navigationUtils,
       orderParams.orderInformation,
@@ -196,11 +200,15 @@ export class DraftAnOrderJourney {
   }
 
   private async assertDraftOrderAsCourtAdmin(
-    adminPage: Page,
+    browser: Browser,
     caseNumber: string,
     navigationUtils: NavigationUtils,
     orderInformation: OrderInformation[],
   ): Promise<void> {
+    const adminPage: Page = await navigationUtils.openNewBrowserWindow(
+      browser,
+      "caseWorker",
+    );
     // check the draft orders tab as court admin
     await navigationUtils.goToCase(
       adminPage,
@@ -210,5 +218,6 @@ export class DraftAnOrderJourney {
     const draftOrdersPage: DraftOrdersPage = new DraftOrdersPage(adminPage);
     await draftOrdersPage.goToPage();
     await draftOrdersPage.assertDraftOrders(orderInformation);
+    await adminPage.close();
   }
 }

@@ -54,15 +54,11 @@ test.describe("Remove draft order as a court admin for solicitor created FL401 c
         axeUtils,
         navigationUtils,
       }): Promise<void> => {
-        const adminPage: Page = await navigationUtils.openNewBrowserWindow(
-          browser,
-          "caseWorker",
-        );
-        const adminAxeUtils: AxeUtils = new AxeUtils(adminPage);
         const draftAnOrderJourney: DraftAnOrderJourney =
           new DraftAnOrderJourney();
 
         await draftAnOrderJourney.draftAnOrder(
+          browser,
           caseNumber,
           {
             summaryPage,
@@ -75,12 +71,16 @@ test.describe("Remove draft order as a court admin for solicitor created FL401 c
             draftAnOrderSubmitPage,
             axeUtils,
             navigationUtils,
-            adminPage,
           },
           draftOrderParams,
         );
 
         // remove draft order as admin
+        const adminPage: Page = await navigationUtils.openNewBrowserWindow(
+          browser,
+          "caseWorker",
+        );
+        const adminAxeUtils: AxeUtils = new AxeUtils(adminPage);
         const draftOrdersPage: DraftOrdersPage = new DraftOrdersPage(adminPage);
         await draftOrdersPage.chooseEventFromDropdown("Remove draft order");
         const removeDraftOrder1Page: RemoveDraftOrder1Page =

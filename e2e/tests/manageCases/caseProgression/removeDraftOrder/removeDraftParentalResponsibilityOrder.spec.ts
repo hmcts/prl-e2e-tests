@@ -54,16 +54,11 @@ test.describe("Remove draft order as a court admin for solicitor created C100 ca
         axeUtils,
         navigationUtils,
       }): Promise<void> => {
-        // TODO: is there a way to make this neater??
-        const adminPage: Page = await navigationUtils.openNewBrowserWindow(
-          browser,
-          "caseWorker",
-        );
-        const adminAxeUtils: AxeUtils = new AxeUtils(adminPage);
         const draftAnOrderJourney: DraftAnOrderJourney =
           new DraftAnOrderJourney();
 
         await draftAnOrderJourney.draftAnOrder(
+          browser,
           caseNumber,
           {
             summaryPage,
@@ -75,12 +70,16 @@ test.describe("Remove draft order as a court admin for solicitor created C100 ca
             draftAnOrderSubmitPage,
             axeUtils,
             navigationUtils,
-            adminPage,
           },
           draftOrderParams,
         );
 
         // remove draft order as admin
+        const adminPage: Page = await navigationUtils.openNewBrowserWindow(
+          browser,
+          "caseWorker",
+        );
+        const adminAxeUtils: AxeUtils = new AxeUtils(adminPage);
         const draftOrdersPage: DraftOrdersPage = new DraftOrdersPage(adminPage);
         await draftOrdersPage.chooseEventFromDropdown("Remove draft order");
         const removeDraftOrder1Page: RemoveDraftOrder1Page =

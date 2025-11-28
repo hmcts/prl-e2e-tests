@@ -10,7 +10,6 @@ import { DraftAnOrder4Params } from "../../../../../pageObjects/pages/exui/order
 import { DraftAnOrder16Params } from "../../../../../pageObjects/pages/exui/orders/solicitor/draftAnOrder16.po.js";
 import { NonMolestationDraftOrderScenarios as scenarios } from "../../../../../testData/draftOrders.js";
 import { DraftAnOrderJourney } from "../../../../../journeys/manageCases/caseProgression/solicitor/draftAnOrderJourney.js";
-import { Page } from "@playwright/test";
 
 export interface NonMolestationDraftOrderParams {
   name: string;
@@ -67,13 +66,10 @@ test.describe("Draft a non molestation order tests", (): void => {
         axeUtils,
         navigationUtils,
       }): Promise<void> => {
-        const adminPage: Page = await navigationUtils.openNewBrowserWindow(
-          browser,
-          "caseWorker",
-        );
         const draftAnOrderJourney: DraftAnOrderJourney =
           new DraftAnOrderJourney();
         await draftAnOrderJourney.draftAnOrder(
+          browser,
           caseNumber,
           {
             summaryPage,
@@ -86,7 +82,6 @@ test.describe("Draft a non molestation order tests", (): void => {
             draftAnOrderSubmitPage,
             axeUtils,
             navigationUtils,
-            adminPage,
           },
           {
             name,
