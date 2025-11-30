@@ -59,6 +59,27 @@ export class CaseEventUtils {
     return caseRef;
   }
 
+  async createDACaseAddCaseNumber(browser: Browser): Promise<string> {
+    const caseRef: string = await this.createDACase(
+      browser,
+      jsonDatas.solicitorDACaseData,
+    );
+    // open new browser and sign in as court admin user
+    const caPage: Page = await Helpers.openNewBrowserWindow(
+      browser,
+      "caseWorker",
+    );
+    await caPage.goto(`${Config.manageCasesBaseURL}/work/my-work/list`);
+    await this.submitEvent(
+      caPage,
+      caseRef,
+      "fl401AddCaseNumber",
+      jsonDatas.solicitorDACaseData,
+    );
+    await caPage.close();
+    return caseRef;
+  }
+
   async createDACaseSendToGatekeeper(browser: Browser): Promise<string> {
     const caseRef: string = await this.createDACase(
       browser,

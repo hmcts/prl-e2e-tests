@@ -1,5 +1,7 @@
 import { NonMolestationDraftOrderParams } from "../tests/manageCases/caseProgression/solicitor/draftAnOrder/draftAnOrderNonMolestation.spec.js";
 import { ParentalResponsibilityDraftOrderParams } from "../tests/manageCases/caseProgression/solicitor/draftAnOrder/draftAnOrderParentalResponsibility.spec.js";
+import { RemoveDraftNonMolestationOrderParams } from "../tests/manageCases/caseProgression/removeDraftOrder/removeDraftNonMolestationOrder.spec.js";
+import { RemoveDraftParentalResponsibilityOrderParams } from "../tests/manageCases/caseProgression/removeDraftOrder/removeDraftParentalResponsibilityOrder.spec.js";
 
 export const NonMolestationDraftOrderScenarios: NonMolestationDraftOrderParams[] =
   [
@@ -252,5 +254,131 @@ export const ParentalResponsibilityOrderScenarios: ParentalResponsibilityDraftOr
           isOrderAboutAllTheChildren: true,
         },
       ],
+    },
+  ];
+
+export const RemoveDraftNonMolestationOrderScenarios: RemoveDraftNonMolestationOrderParams[] =
+  [
+    {
+      draftOrderParams: {
+        name: "No to all",
+        caseType: "FL401",
+        orderType: "Non-molestation order (FL404A)",
+        isDraftAnOrder: true,
+        draftAnOrder4Params: {
+          orderType: "Non-molestation order (FL404A)",
+          isOrderByConsent: false,
+          wasOrderApprovedAtAHearing: false,
+          hearing: undefined,
+          judgeOrMagistratesTitle: undefined,
+          judgeFullName: undefined,
+          justicesLegalAdviserFullName: undefined,
+          dateOrderMade: undefined,
+          isOrderAboutTheChildren: false,
+          allChildrenInOrder: undefined,
+          recitalsAndPreamble: undefined,
+          directions: undefined,
+        },
+        draftAnOrder5Params: {
+          doesOrderMentionProperty: false,
+          propertyAddress: undefined,
+          respondentMustNotDoOptions: undefined,
+          mustNotContactApplicantFurtherDetails: undefined,
+          mustNotEnterPropertyFurtherDetails: undefined,
+          mustNotContactChildrenFurtherDetails: undefined,
+          schoolName: undefined,
+          mustNotGoToSchoolFurtherDetails: undefined,
+          orderLength: "No fixed end date",
+          specificDateAndTime: undefined,
+          costsOfApplication: undefined,
+          withNotice: false,
+        },
+        draftAnOrder16Params: {
+          hasJudgeProvidedHearingDetails: false,
+          hearingDetails: undefined,
+        },
+        snapshotName: "draft-order-non-molestation-no-to-all",
+        snapshotsPath: [
+          "caseProgression",
+          "solicitor",
+          "draftNonMolestationOrder",
+        ],
+        orderInformation: [
+          {
+            typeOfOrder: "Non-molestation order (FL404A)",
+            welshDocument: "welsh_non_molestation_order_fl404a_draft.pdf",
+            englishDocument: "non_molestation_order_fl404a_draft.pdf",
+            otherDetails: {
+              orderCreatedBy: "AAT Solicitor",
+              status: "Drafted by Solicitor",
+            },
+            isOrderAboutChildren: false,
+          },
+        ],
+      },
+      removalReason: "Test removal reason",
+      snapshotsPath: ["caseProgression", "removeDraftOrder"],
+      snapshotName: "remove-draft-non-molestation-order",
+    },
+  ];
+
+export const RemoveDraftParentalResponsibilityOrderScenarios: RemoveDraftParentalResponsibilityOrderParams[] =
+  [
+    {
+      draftOrderParams: {
+        name: "No to all",
+        caseType: "C100",
+        orderType: "Parental responsibility order (C45A)",
+        isDraftAnOrder: true,
+        draftAnOrder4Params: {
+          orderType: "Parental responsibility order (C45A)",
+          isOrderByConsent: false,
+          wasOrderApprovedAtAHearing: false,
+          hearing: undefined,
+          judgeOrMagistratesTitle: undefined,
+          judgeFullName: undefined,
+          justicesLegalAdviserFullName: undefined,
+          dateOrderMade: undefined,
+          isOrderAboutAllTheChildren: false,
+          allChildrenInOrder: [
+            "Joe Doe",
+            "Simon Anderson",
+            "Lilly Anderson",
+            "Charlotte Saxon",
+            "Selena Lees",
+          ],
+          recitalsAndPreamble: undefined,
+          directions: undefined,
+        },
+        responsibleParentFullName: "Test Name",
+        snapshotName: "draft-order-parental-responsibility-no-to-all",
+        snapshotsPath: [
+          "caseProgression",
+          "solicitor",
+          "draftParentalResponsibilityOrder",
+        ],
+        orderInformation: [
+          {
+            typeOfOrder: "Parental responsibility order (C45A)",
+            welshDocument: "Welsh_Parental_Responsibility_Order_C45A_draft.pdf",
+            englishDocument: "Parental_Responsibility_Order_C45A_draft.pdf",
+            otherDetails: {
+              orderCreatedBy: "AAT Solicitor",
+              status: "Drafted by Solicitor",
+            },
+            childrenList: [
+              "Joe Doe (Child 1)",
+              "Simon Anderson (Child 2)",
+              "Lilly Anderson (Child 3)",
+              "Charlotte Saxon (Child 4)",
+              "Selena Lees (Child 5)",
+            ],
+            isOrderAboutAllTheChildren: false,
+          },
+        ],
+      },
+      removalReason: "Test removal reason",
+      snapshotsPath: ["caseProgression", "removeDraftOrder"],
+      snapshotName: "remove-draft-parental-responsibility-order",
     },
   ];
