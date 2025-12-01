@@ -4,7 +4,7 @@ import { Helpers } from "../../../../common/helpers.ts";
 import { ManageDocuments } from "../../../../journeys/manageCases/caseProgression/manageDocuments/manageDocuments.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
-// TEST COMMENT
+
 test.describe("Manage documents event for DA Solicitor case tests as a court admin.", () => {
   let ccdRef: string = "";
 
