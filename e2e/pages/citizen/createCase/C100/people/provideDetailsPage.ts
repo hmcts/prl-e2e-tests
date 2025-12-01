@@ -71,13 +71,27 @@ export class ProvideDetailsPage {
     );
     await page.click(checkBoxIds.isDateOfBirthUnknown);
     await Promise.all([
-      Helpers.checkGroup(
-        page,
-        2,
-        ProvideDetailsContent,
-        "legend",
-        `${uniqueSelectors.legend}`,
-      ),
+      // "Date of birth" legend – appears twice (main DOB + approximate DOB)
+  Helpers.checkVisibleAndPresent(
+    page,
+    `${Selectors.GovukFieldsetLegend}:text-is("${ProvideDetailsContent.legend1}")`,
+    1,
+  ),
+
+  // "Gender" legend – appears once
+  Helpers.checkVisibleAndPresent(
+    page,
+    `${Selectors.GovukFieldsetLegend}:text-is("${ProvideDetailsContent.legend2}")`,
+    1,
+  ),
+      // Helpers.checkGroup(
+      //   page,
+      //   2,
+      //   ProvideDetailsContent,
+      //   "legend",
+      //   `${uniqueSelectors.legend}`,
+      // ),
+      
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukHint}:text-is("${ProvideDetailsContent.hint}")`,
