@@ -158,7 +158,6 @@ test.describe("Add/Remove Barrister for CA case", () => {
       navigationUtils,
     }): Promise<void> => {
       const {
-        page,
         summaryPage,
         c100AdminAddBarrister1Page,
         c100AdminAddBarristerSubmit,

@@ -88,7 +88,7 @@ test.describe("Create and manage linked DA cases as a court admin.", () => {
           },
         ],
       });
-      
+
       // check the linked cases tab for the case that has been linked from
       await navigationUtils.goToCase(
         caseWorker.page,
