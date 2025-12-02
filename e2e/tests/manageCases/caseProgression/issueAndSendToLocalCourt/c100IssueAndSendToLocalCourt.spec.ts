@@ -29,11 +29,8 @@ test.describe("Issue and send to local court for CA cases", () => {
   @nightly @accessibility @regression`, async ({
       courtAdminStoke,
     }): Promise<void> => {
-      const {
-        tasksPage,
-        issueAndSendToLocalCourt,
-        summaryPage,
-      } = courtAdminStoke;
+      const { tasksPage, issueAndSendToLocalCourt, summaryPage } =
+        courtAdminStoke;
 
       await tasksPage.assignTaskToMeAndTriggerNextSteps(
         "Check Application",

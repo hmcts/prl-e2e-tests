@@ -25,32 +25,24 @@ export class CourtAdminStokePagesGroup {
 
   get issueAndSendToLocalCourt() {
     return {
-      page1:
-        new IssueAndSendToLocalCourtCallback1Page(this.page),
-      submitPage:
-        new IssueAndSendToLocalCourtCallbackSubmitPage(this.page),
+      page1: new IssueAndSendToLocalCourtCallback1Page(this.page),
+      submitPage: new IssueAndSendToLocalCourtCallbackSubmitPage(this.page),
     };
   }
 
   get c100RemoveLegalRepresentative() {
     return {
-      page1:
-        new C100RemoveLegalRepresentative1Page(this.page),
-      submitPage:
-        new C100RemoveLegalRepresentativeSubmitPage(this.page),
-      confirmPage:
-        new C100RemoveLegalRepresentativeConfirmPage(this.page),
+      page1: new C100RemoveLegalRepresentative1Page(this.page),
+      submitPage: new C100RemoveLegalRepresentativeSubmitPage(this.page),
+      confirmPage: new C100RemoveLegalRepresentativeConfirmPage(this.page),
     };
   }
 
   get fl401RemoveLegalRepresentative() {
     return {
-      page1:
-        new Fl401RemoveLegalRepresentative1Page(this.page),
-      submitPage:
-        new Fl401RemoveLegalRepresentativeSubmitPage(this.page),
-      confirmPage:
-        new Fl401RemoveLegalRepresentativeConfirmPage(this.page),
+      page1: new Fl401RemoveLegalRepresentative1Page(this.page),
+      submitPage: new Fl401RemoveLegalRepresentativeSubmitPage(this.page),
+      confirmPage: new Fl401RemoveLegalRepresentativeConfirmPage(this.page),
     };
   }
 }

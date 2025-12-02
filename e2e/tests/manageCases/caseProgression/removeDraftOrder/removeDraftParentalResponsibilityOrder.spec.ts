@@ -68,9 +68,7 @@ test.describe("Remove draft order as a court admin for solicitor created C100 ca
         await removeDraftOrders.page1.clickContinue();
         await removeDraftOrders.page2.assertPageContents();
         await removeDraftOrders.page2.verifyAccessibility();
-        await removeDraftOrders.page2.inputOrderRemovalReason(
-          removalReason,
-        );
+        await removeDraftOrders.page2.inputOrderRemovalReason(removalReason);
         await removeDraftOrders.page2.clickContinue();
         await removeDraftOrders.submitPage.assertPageContents(
           snapshotsPath,

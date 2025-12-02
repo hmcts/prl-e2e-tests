@@ -37,12 +37,8 @@ export class NocSolicitorPagesGroup {
     return {
       addBarrister1Page: new C100AdminAddBarrister1Page(this.page),
       addBarristerSubmit: new C100AdminAddBarristerSubmit(this.page),
-      removeBarrister1Page: new C100AdminRemoveBarrister1Page(
-        this.page,
-      ),
-      removeBarristerSubmit: new C100AdminRemoveBarristerSubmit(
-        this.page,
-      ),
+      removeBarrister1Page: new C100AdminRemoveBarrister1Page(this.page),
+      removeBarristerSubmit: new C100AdminRemoveBarristerSubmit(this.page),
     };
   }
 }

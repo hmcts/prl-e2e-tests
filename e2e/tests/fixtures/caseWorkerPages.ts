@@ -30,16 +30,36 @@ import { LinkedCasesPage } from "../../pageObjects/pages/exui/caseView/linkedCas
 export class CaseWorkerPagesGroup {
   constructor(public readonly page: Page) {}
 
-  get tasksPage() { return new TasksPage(this.page); }
-  get summaryPage() { return new SummaryPage(this.page); }
-  get partiesPage() { return new PartiesPage(this.page); }
-  get rolesAndAccessPage() { return new RolesAndAccessPage(this.page); }
-  get draftOrdersPage() { return new DraftOrdersPage(this.page); }
-  get linkedCasesPage() { return new LinkedCasesPage(this.page); }
-  get fl401AddCaseNumber1Page() { return new Fl401AddCaseNumber1Page(this.page); }
-  get fl401AddCaseNumberSubmitPage() { return new Fl401AddCaseNumberSubmitPage(this.page); }
-  get allocatedJudge1Page() { return new AllocatedJudge1Page(this.page); }
-  get allocatedJudgeSubmitPage() { return new AllocatedJudgeSubmitPage(this.page); }
+  get tasksPage() {
+    return new TasksPage(this.page);
+  }
+  get summaryPage() {
+    return new SummaryPage(this.page);
+  }
+  get partiesPage() {
+    return new PartiesPage(this.page);
+  }
+  get rolesAndAccessPage() {
+    return new RolesAndAccessPage(this.page);
+  }
+  get draftOrdersPage() {
+    return new DraftOrdersPage(this.page);
+  }
+  get linkedCasesPage() {
+    return new LinkedCasesPage(this.page);
+  }
+  get fl401AddCaseNumber1Page() {
+    return new Fl401AddCaseNumber1Page(this.page);
+  }
+  get fl401AddCaseNumberSubmitPage() {
+    return new Fl401AddCaseNumberSubmitPage(this.page);
+  }
+  get allocatedJudge1Page() {
+    return new AllocatedJudge1Page(this.page);
+  }
+  get allocatedJudgeSubmitPage() {
+    return new AllocatedJudgeSubmitPage(this.page);
+  }
 
   get manageBarristerC100() {
     return {

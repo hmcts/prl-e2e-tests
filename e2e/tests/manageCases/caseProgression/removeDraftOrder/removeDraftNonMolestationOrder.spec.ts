@@ -67,9 +67,7 @@ test.describe("Remove draft order as a court admin for solicitor created FL401 c
 
         await removeDraftOrders.page2.assertPageContents();
         await removeDraftOrders.page2.verifyAccessibility();
-        await removeDraftOrders.page2.inputOrderRemovalReason(
-          removalReason,
-        );
+        await removeDraftOrders.page2.inputOrderRemovalReason(removalReason);
         await removeDraftOrders.page2.clickContinue();
 
         await removeDraftOrders.submitPage.assertPageContents(

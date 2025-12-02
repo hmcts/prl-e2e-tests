@@ -12,13 +12,9 @@ export class SolicitorPagesGroup {
 
   get withdrawApplicationEvent() {
     return {
-      page1: new WithdrawApplicationEvent1Page(
-        this.page,
-      ),
-      submitPage:
-        new WithdrawApplicationEventSubmitPage(this.page),
-      confirmPage:
-        new WithdrawApplicationEventConfirmPage(this.page),
+      page1: new WithdrawApplicationEvent1Page(this.page),
+      submitPage: new WithdrawApplicationEventSubmitPage(this.page),
+      confirmPage: new WithdrawApplicationEventConfirmPage(this.page),
     };
   }
 }

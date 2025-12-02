@@ -2,30 +2,27 @@ import config from "../../../../utils/config.utils.ts";
 import { test, expect } from "../../../fixtures/fixtures.ts";
 
 async function performNoticeOfChange(nocSolicitor, caseNumber, nocParty) {
-  const {
-    summaryPage,
-    c100Noc1Page,
-    c100Noc2Page,
-    c100NocSubmitPage,
-    c100NocConfirmationPage,
-  } = nocSolicitor;
+  const { summaryPage, noticeOfChangeC100 } = nocSolicitor;
 
   await summaryPage.exuiHeader.clickNoticeOfChange();
-  await c100Noc1Page.assertPageContents();
-  await c100Noc1Page.verifyAccessibility();
-  await c100Noc1Page.fillInCaseNumber(caseNumber);
-  await c100Noc1Page.clickContinue();
-  await c100Noc2Page.assertPageContents();
-  await c100Noc2Page.verifyAccessibility();
-  await c100Noc2Page.fillInPartyName(nocParty.firstname, nocParty.surname);
-  await c100Noc2Page.clickContinue();
-  await c100NocSubmitPage.assertPageContents();
-  await c100NocSubmitPage.verifyAccessibility();
-  await c100NocSubmitPage.checkBoxes();
-  await c100NocSubmitPage.clickSubmit();
-  await c100NocConfirmationPage.assertPageContents();
-  await c100NocConfirmationPage.verifyAccessibility();
-  await c100NocConfirmationPage.clickViewThisCase();
+  await noticeOfChangeC100.page1.assertPageContents();
+  await noticeOfChangeC100.page1.verifyAccessibility();
+  await noticeOfChangeC100.page1.fillInCaseNumber(caseNumber);
+  await noticeOfChangeC100.page1.clickContinue();
+  await noticeOfChangeC100.page2.assertPageContents();
+  await noticeOfChangeC100.page2.verifyAccessibility();
+  await noticeOfChangeC100.page2.fillInPartyName(
+    nocParty.firstname,
+    nocParty.surname,
+  );
+  await noticeOfChangeC100.page2.clickContinue();
+  await noticeOfChangeC100.submitPage.assertPageContents();
+  await noticeOfChangeC100.submitPage.verifyAccessibility();
+  await noticeOfChangeC100.submitPage.checkBoxes();
+  await noticeOfChangeC100.submitPage.clickSubmit();
+  await noticeOfChangeC100.confirmPage.assertPageContents();
+  await noticeOfChangeC100.confirmPage.verifyAccessibility();
+  await noticeOfChangeC100.confirmPage.clickViewThisCase();
 }
 
 test.describe("Add/Remove Barrister for CA case", () => {
