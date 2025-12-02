@@ -77,7 +77,7 @@ test.describe("Add/Remove Barrister for CA case", () => {
       },
     },
   ].forEach((data) => {
-    test(`Solicitor adds and removes Barrister for a CA case. @regression @accessibility @nightly`, async ({
+    test(`Solicitor adds and removes Barrister for a CA case. @regression @accessibility @nightly @test`, async ({
       nocSolicitor,
       navigationUtils,
     }): Promise<void> => {
@@ -175,14 +175,13 @@ test.describe("Add/Remove Barrister for CA case", () => {
         "summary",
       );
       await performNoticeOfChange(nocSolicitor, caseNumber, data.nocParty);
-      await nocSolicitor.page.close();
 
       //change to caseworker to add/remove barrister
       await navigationUtils.goToCase(
-        page,
+        caseWorker.page,
         config.manageCasesBaseURLCase,
         caseNumber,
-        "tasks",
+        "summary",
       );
       // adding barrister as a caseworker
       await summaryPage.chooseEventFromDropdown("Add barrister");
