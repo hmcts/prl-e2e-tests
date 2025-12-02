@@ -39,6 +39,8 @@ export class SendToGateKeeperJourney {
 
     const sendToGateKeeperSubmitPage: SendToGateKeeperSubmitPage =
       new SendToGateKeeperSubmitPage(page);
+    console.log("Initial snapshot path: " + params.snapshotPath);
+    console.log("Initial snapshot name: " + params.snapshotName);
     await sendToGateKeeperSubmitPage.assertPageContents(
       params.snapshotPath,
       params.snapshotName,
