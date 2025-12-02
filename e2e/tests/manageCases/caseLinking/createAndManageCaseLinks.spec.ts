@@ -42,7 +42,7 @@ test.describe("Create and manage linked DA cases as a court admin.", () => {
         maintainCaseLink3Page,
         maintainCaseLinkSubmitPage,
       } = caseWorker;
-
+      // Create case link journey
       await summaryPage.chooseEventFromDropdown("Link cases");
 
       await createCaseLink1Page.assertPageContents();
@@ -50,6 +50,7 @@ test.describe("Create and manage linked DA cases as a court admin.", () => {
       await createCaseLink1Page.clickContinue();
 
       await createCaseLink2Page.assertPageContents();
+      // await createCaseLink2Page.verifyAccessibility(); // TODO: failing accessibility waiting on FPVTL-1242
       await createCaseLink2Page.proposeCaseLink({
         linkedCaseNumber,
         reasonsForCaseLink,
@@ -74,7 +75,7 @@ test.describe("Create and manage linked DA cases as a court admin.", () => {
 
       await summaryPage.alertBanner.assertEventAlert(caseNumber, "Link Cases");
 
-      // --- VERIFY LINK (Current Case) ---
+      // check linked cases tab
       await linkedCasesPage.goToPage();
       await linkedCasesPage.assertPageContents({
         linkedToTableRowParams: [
@@ -87,7 +88,8 @@ test.describe("Create and manage linked DA cases as a court admin.", () => {
           },
         ],
       });
-
+      
+      // check the linked cases tab for the case that has been linked from
       await navigationUtils.goToCase(
         caseWorker.page,
         config.manageCasesBaseURLCase,
@@ -108,6 +110,7 @@ test.describe("Create and manage linked DA cases as a court admin.", () => {
         ],
       });
 
+      // manage case links journey
       await navigationUtils.goToCase(
         caseWorker.page,
         config.manageCasesBaseURLCase,
@@ -124,6 +127,8 @@ test.describe("Create and manage linked DA cases as a court admin.", () => {
         caseName,
         linkedCaseNumber,
       );
+
+      // await maintainCaseLink2Page.verifyAccessibility();  // TODO: failing accessibility waiting on FPVTL-1242
       await maintainCaseLink2Page.selectCaseToUnlink();
       await maintainCaseLink2Page.clickContinue();
 
@@ -140,9 +145,11 @@ test.describe("Create and manage linked DA cases as a court admin.", () => {
         "Manage case links",
       );
 
+      // check linked cases tab
       await linkedCasesPage.goToPage();
       await linkedCasesPage.assertPageContents({});
 
+      // check the linked cases tab for the case that has been linked from
       await navigationUtils.goToCase(
         caseWorker.page,
         config.manageCasesBaseURLCase,
