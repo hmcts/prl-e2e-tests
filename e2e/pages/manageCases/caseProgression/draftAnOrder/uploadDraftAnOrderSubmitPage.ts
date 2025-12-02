@@ -9,6 +9,7 @@ interface submitPageOptions {
   page: Page;
   accessibilityTest: boolean;
   solicitorCaseCreateType: string;
+  hasJudgeNameAndTitle: boolean;
 }
 
 export class UploadDraftAnOrderSubmitPage {
@@ -37,6 +38,7 @@ export class UploadDraftAnOrderSubmitPage {
   private static async checkPageLoadsCA({
     page,
     accessibilityTest,
+    hasJudgeNameAndTitle,
   }: Partial<submitPageOptions>): Promise<void> {
     if (!page) {
       throw new Error("Page is not defined");
@@ -59,7 +61,7 @@ export class UploadDraftAnOrderSubmitPage {
       ),
       Helpers.checkGroup(
         page,
-        12,
+        10,
         UploadDraftAnOrderSubmitContent,
         "text16_",
         `${Selectors.GovukText16}`,
@@ -80,6 +82,18 @@ export class UploadDraftAnOrderSubmitPage {
         1,
       ),
     ]);
+    if (hasJudgeNameAndTitle) {
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${UploadDraftAnOrderSubmitContent.judgeName}")`,
+        1,
+      );
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${UploadDraftAnOrderSubmitContent.judgeNameLabel}")`,
+        1,
+      );
+    }
     if (accessibilityTest) {
       await new AxeUtils(page).audit();
     }

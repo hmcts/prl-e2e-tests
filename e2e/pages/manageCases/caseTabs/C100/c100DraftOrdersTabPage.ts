@@ -7,13 +7,15 @@ export class C100DraftOrdersTabPage {
   public static async c100DraftOrdersTabPage(
     page: Page,
     accessibilityTest: boolean,
+    magistrateTitle: boolean,
   ): Promise<void> {
-    await this.checkPageLoads(page, accessibilityTest);
+    await this.checkPageLoads(page, accessibilityTest, magistrateTitle);
   }
 
   private static async checkPageLoads(
     page: Page,
     accessibilityTest: boolean,
+    magistrateTitle:boolean,
   ): Promise<void> {
     await page.waitForSelector(
       `${Selectors.GovukText16}:text-is("${C100DraftOrdersTabContent.tabTitle}")`,
@@ -24,9 +26,11 @@ export class C100DraftOrdersTabPage {
     await page.waitForSelector(
       `${Selectors.Span}${Selectors.GovukText16}:text-is("${C100DraftOrdersTabContent.subTitle1}")`,
     );
-    await page.waitForSelector(
-      `${Selectors.Span}${Selectors.GovukText16}:text-is("${C100DraftOrdersTabContent.otherdetails1}")`,
-    );
+    if (magistrateTitle) {
+      await page.waitForSelector(
+        `${Selectors.Span}${Selectors.GovukText16}:text-is("${C100DraftOrdersTabContent.otherdetails1}")`,
+      );
+    }
     await page.waitForSelector(
       `${Selectors.Span}${Selectors.GovukText16}:text-is("${C100DraftOrdersTabContent.otherdetails2}")`,
     );
