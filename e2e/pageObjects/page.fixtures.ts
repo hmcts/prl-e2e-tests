@@ -49,6 +49,8 @@ import { DraftAnOrder8Page } from "./pages/exui/orders/solicitor/draftAnOrder8.p
 import { RemoveDraftOrder1Page } from "./pages/exui/orders/removeDraftOrder/removeDraftOrder1.po.js";
 import { RemoveDraftOrder2Page } from "./pages/exui/orders/removeDraftOrder/removeDraftOrder2.po.js";
 import { RemoveDraftOrderSubmitPage } from "./pages/exui/orders/removeDraftOrder/removeDraftOrderSubmit.po.js";
+import { SendToGateKeeper1Page } from "./pages/exui/sendToGateKeeper/sendToGateKeeper1.po.js";
+import { SendToGateKeeperSubmitPage } from "./pages/exui/sendToGateKeeper/sendToGateKeeperSubmit.po.js";
 
 export interface PageFixtures {
   tasksPage: TasksPage;
@@ -102,6 +104,8 @@ export interface PageFixtures {
   removeDraftOrder1Page: RemoveDraftOrder1Page;
   removeDraftOrder2Page: RemoveDraftOrder2Page;
   removeDraftOrderSubmitPage: RemoveDraftOrderSubmitPage;
+  sendToGateKeeper1Page: SendToGateKeeper1Page;
+  sendToGateKeeperSubmitPage: SendToGateKeeperSubmitPage;
 }
 
 export const pageFixtures = {
@@ -257,5 +261,11 @@ export const pageFixtures = {
   },
   removeDraftOrderSubmitPage: async ({ page }, use) => {
     await use(new RemoveDraftOrderSubmitPage(page));
+  },
+  sendToGateKeeper1Page: async ({ page }, use) => {
+    await use(new SendToGateKeeper1Page(page));
+  },
+  sendToGateKeeperSubmitPage: async ({ page }, use) => {
+    await use(new SendToGateKeeperSubmitPage(page));
   },
 };

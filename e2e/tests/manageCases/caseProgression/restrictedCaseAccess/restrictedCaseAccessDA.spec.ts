@@ -2,8 +2,8 @@ import { test } from "../../../fixtures.ts";
 import { Page } from "@playwright/test";
 import { Helpers } from "../../../../common/helpers.ts";
 import config from "../../../../utils/config.utils.ts";
-import { SendToGateKeeperJourney } from "../../../../journeys/manageCases/caseProgression/sendToGateKeeper/sendToGateKeeperJourney.ts";
 import { RestrictedCaseAccess } from "../../../../journeys/manageCases/caseProgression/restrictedCaseAccess/restrictedCaseAccessJourney.ts";
+import { SendToGateKeeperJourney } from "../../../../journeys/manageCases/caseProgression/sendToGateKeeper/sendToGateKeeperJourney.js";
 
 test.use({ storageState: config.sessionStoragePath + "judge.json" });
 
@@ -27,12 +27,23 @@ test.describe("Complete the Restricted Case Access events for DA case.", () => {
       ccdRef,
       "tasks",
     );
-    await SendToGateKeeperJourney.sendToGateKeeper({
-      page: caPage,
-      accessibilityTest: false,
-      yesNoSendToGateKeeper: true, //set to true to allocate specific judge to case so they can restrict case
+
+    const sendToGatekeeperJourney: SendToGateKeeperJourney =
+      new SendToGateKeeperJourney();
+    await sendToGatekeeperJourney.sendToGateKeeper(
+      caPage,
       ccdRef,
-    });
+      "caseWorker",
+      {
+        sendToGateKeeperParams: {
+          sendToSpecificGateKeeper: true,
+          judgeOrLegalAdviser: "Judge",
+          judgeName: "Ms Elizabeth Williams",
+        },
+        snapshotPath: ["caseProgression", "sendToGateKeeper"],
+        snapshotName: "send-to-judiciary-gatekeeper",
+      },
+    );
   });
 
   test("Mark DA case as restricted as a gatekeeper judge. @nightly @regression @accessibility", async ({

@@ -419,3 +419,5 @@ export const NonMolestationRespondentMustNotDoOptionsArray: NonMolestationRespon
     "must not telephone, text, email or otherwise contact or attempt to contact the relevant children",
     "must not go to, enter or attempt to enter the school",
   ];
+
+export type JudgeAndLegalAdviser = "Judge" | "Legal adviser";

@@ -1,109 +1,83 @@
-import { Page, expect, Browser } from "@playwright/test";
-import { Helpers } from "../../../../common/helpers.ts";
-import config from "../../../../utils/config.utils.ts";
-import { FL401SendToGateKeeper1Page } from "../../../../pages/manageCases/caseProgression/sendToGateKeeper/fl401SendToGateKeeper1Page.ts";
-import { FL401SendToGateKeeperSubmitPage } from "../../../../pages/manageCases/caseProgression/sendToGateKeeper/fl401SendToGateKeeperSubmitPage.ts";
-import { jsonDatas } from "../../../../common/caseHelpers/jsonDatas.ts";
-import { Selectors } from "../../../../common/selectors.ts";
-import { CaseEventUtils } from "../../../../utils/caseEvent.utils.js";
+import {
+  SendToGateKeeper1Page,
+  SendToGateKeeperParams,
+} from "../../../../pageObjects/pages/exui/sendToGateKeeper/sendToGateKeeper1.po.js";
+import { TasksPage } from "../../../../pageObjects/pages/exui/caseView/tasks.po.js";
+import { Page } from "@playwright/test";
+import { SendToGateKeeperSubmitPage } from "../../../../pageObjects/pages/exui/sendToGateKeeper/sendToGateKeeperSubmit.po.js";
+import { SummaryPage } from "../../../../pageObjects/pages/exui/caseView/summary.po.js";
+import { RolesAndAccessPage } from "../../../../pageObjects/pages/exui/caseView/rolesAndAccess.po.js";
+import { UserRole } from "../../../../common/types.js";
 
-interface SendToGateKeeperParams {
-  page: Page;
-  accessibilityTest: boolean;
-  checkApplicationEvent?: boolean;
-  yesNoSendToGateKeeper: boolean;
-  ccdRef: string;
-  browser?: Browser;
+export interface SendToGateKeeperJourneyParams {
+  sendToGateKeeperParams: SendToGateKeeperParams;
+  snapshotPath: string[];
+  snapshotName: string;
 }
 
+// class to handle send to gatekeeper journeys - required because this journey is large and re-used
 export class SendToGateKeeperJourney {
-  public static async sendToGateKeeper({
-    page,
-    accessibilityTest,
-    checkApplicationEvent = true,
-    yesNoSendToGateKeeper,
-    ccdRef,
-  }: SendToGateKeeperParams): Promise<void> {
-    if (checkApplicationEvent) {
-      const caseEventUtils = new CaseEventUtils();
-      await caseEventUtils.submitEvent(
+  async sendToGateKeeper(
+    page: Page,
+    caseNumber: string,
+    userRole: UserRole,
+    params: SendToGateKeeperJourneyParams,
+  ): Promise<void> {
+    const tasksPage: TasksPage = new TasksPage(page);
+    await tasksPage.assignTaskToMeAndTriggerNextSteps(
+      "Send to Gatekeeper",
+      "Send to Gatekeeper",
+      userRole,
+    );
+
+    const sendToGateKeeper1Page: SendToGateKeeper1Page =
+      new SendToGateKeeper1Page(page);
+    await sendToGateKeeper1Page.assertPageContents();
+    await sendToGateKeeper1Page.verifyAccessibility();
+    await sendToGateKeeper1Page.fillInFields(params.sendToGateKeeperParams);
+    await sendToGateKeeper1Page.clickContinue();
+
+    const sendToGateKeeperSubmitPage: SendToGateKeeperSubmitPage =
+      new SendToGateKeeperSubmitPage(page);
+    await sendToGateKeeperSubmitPage.assertPageContents(
+      params.snapshotPath,
+      params.snapshotName,
+    );
+    await sendToGateKeeperSubmitPage.verifyAccessibility();
+    await sendToGateKeeperSubmitPage.clickSubmit();
+
+    const summaryPage: SummaryPage = new SummaryPage(page);
+    await summaryPage.alertBanner.assertEventAlert(
+      caseNumber,
+      "Send to gatekeeper",
+    );
+    await summaryPage.assertCaseStatus("Gatekeeping");
+    if (params.sendToGateKeeperParams.sendToSpecificGateKeeper) {
+      await this.assertGateKeeperRolesAndAccess(
         page,
-        ccdRef,
-        "fl401AddCaseNumber",
-        jsonDatas.solicitorDACaseData,
+        params.sendToGateKeeperParams,
       );
     }
-    await Helpers.goToCase(
-      page,
-      config.manageCasesBaseURLCase,
-      ccdRef,
-      "tasks",
-    );
-    await Helpers.assignTaskToMeAndTriggerNextSteps(
-      page,
-      "Send to Gatekeeper",
-      "Send to Gatekeeper",
-    );
-    await FL401SendToGateKeeper1Page.fl401SendToGateKeeper1Page({
-      page,
-      accessibilityTest,
-      yesNoSendToGateKeeper,
-    });
-    await FL401SendToGateKeeperSubmitPage.fl401SendToGateKeeperSubmitPage({
-      page,
-      accessibilityTest,
-      yesNoSendToGateKeeper,
-    });
-    // wait for success message
-    await page
-      .locator(`.alert-message`, {
-        hasText: `Send to gatekeeper`,
-      })
-      .waitFor();
-    //checking if the 'Send to gatekeeper' WA task has auto-closed as expected
-    await this.checkSendToGatekeeperTaskAutoClosure(page, ccdRef);
   }
 
-  public static async teamLeaderCheckSendToGateKeeper({
-    ccdRef,
-    browser,
-  }: SendToGateKeeperParams): Promise<void> {
-    const teamLeaderPage: Page = await Helpers.openNewBrowserWindow(
-      browser,
-      "caseManager",
-    );
-    await Helpers.goToCase(
-      teamLeaderPage,
-      config.manageCasesBaseURLCase,
-      ccdRef,
-      "tasks",
-    );
-    await Helpers.waitForTask(teamLeaderPage, "Send to Gatekeeper");
-    const taskLocator = teamLeaderPage.locator("exui-case-task", {
-      hasText: "Send to Gatekeeper",
-    });
-    await taskLocator.locator(Selectors.a, { hasText: "Assign to me" }).click();
-    //checking if the 'Send to gatekeeper' WA task has the team-leader 'manage options'
-    await this.checkSendToGatekeeperTaskMarkAsDone(teamLeaderPage);
-  }
-
-  private static async checkSendToGatekeeperTaskAutoClosure(
+  private async assertGateKeeperRolesAndAccess(
     page: Page,
-    ccdRef: string,
+    params: Partial<SendToGateKeeperParams>,
   ): Promise<void> {
-    await Helpers.goToCase(
-      page,
-      config.manageCasesBaseURLCase,
-      ccdRef,
-      "tasks",
-    );
-    await expect(page.getByText("Send to Gatekeeper")).toBeHidden();
-  }
-
-  private static async checkSendToGatekeeperTaskMarkAsDone(
-    page: Page,
-  ): Promise<void> {
-    await expect(page.getByText("Mark as done")).toBeVisible();
-    await expect(page.getByText("Reassign task")).toBeVisible();
+    const rolesAndAccessPage: RolesAndAccessPage = new RolesAndAccessPage(page);
+    await rolesAndAccessPage.goToPage();
+    if (params.judgeOrLegalAdviser === "Judge") {
+      await rolesAndAccessPage.assertRolesAndAccessSection(
+        "Judiciary",
+        params.judgeName,
+        "Gatekeeping Judge",
+      );
+    } else {
+      await rolesAndAccessPage.assertRolesAndAccessSection(
+        "Legal Ops",
+        params.legalAdviserDisplayName,
+        "Allocated Legal Adviser",
+      );
+    }
   }
 }
