@@ -1,16 +1,14 @@
 import config from "../../../../utils/config.utils.ts";
-import { test } from "../../../fixtures.ts";
-
-test.use({ storageState: config.sessionStoragePath + "courtAdminStoke.json" });
+import { test } from "../../../fixtures/fixtures.ts";
 
 test.describe("Issue and send to local court for CA cases", () => {
   let caseNumber: string = "";
 
   test.beforeEach(
-    async ({ page, browser, caseEventUtils, navigationUtils }) => {
+    async ({ courtAdminStoke, browser, caseEventUtils, navigationUtils }) => {
       caseNumber = await caseEventUtils.createCACase(browser);
       await navigationUtils.goToCase(
-        page,
+        courtAdminStoke.page,
         config.manageCasesBaseURLCase,
         caseNumber,
         "tasks",
@@ -29,11 +27,15 @@ test.describe("Issue and send to local court for CA cases", () => {
   Case: C100,
   Accessibility testing: yes. 
   @nightly @accessibility @regression`, async ({
-      summaryPage,
-      tasksPage,
-      issueAndSendToLocalCourtCallback1Page,
-      issueAndSendToLocalCourtCallbackSubmitPage,
+      courtAdminStoke,
     }): Promise<void> => {
+      const {
+        tasksPage,
+        issueAndSendToLocalCourtCallback1Page,
+        issueAndSendToLocalCourtCallbackSubmitPage,
+        summaryPage,
+      } = courtAdminStoke;
+
       await tasksPage.assignTaskToMeAndTriggerNextSteps(
         "Check Application",
         "Issue and send to local Court",

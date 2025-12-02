@@ -1,7 +1,5 @@
-import { test } from "../../../fixtures.ts";
+import { test } from "../../../fixtures/fixtures.ts";
 import config from "../../../../utils/config.utils.ts";
-
-test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("Allocate a judge to the case", () => {
   test.skip(
@@ -12,10 +10,10 @@ test.describe("Allocate a judge to the case", () => {
   let caseNumber: string = "";
 
   test.beforeEach(
-    async ({ page, browser, caseEventUtils, navigationUtils }) => {
+    async ({ caseWorker, browser, caseEventUtils, navigationUtils }) => {
       caseNumber = await caseEventUtils.createDACaseSendToGatekeeper(browser);
       await navigationUtils.goToCase(
-        page,
+        caseWorker.page,
         config.manageCasesBaseURLCase,
         caseNumber,
       );
@@ -45,12 +43,17 @@ test.describe("Allocate a judge to the case", () => {
       snapshotName,
     }) => {
       test(`Allocate a Judge to a DA case specific judge @nightly @regression`, async ({
-        summaryPage,
-        rolesAndAccessPage,
-        allocatedJudge1Page,
-        allocatedJudgeSubmitPage,
+        caseWorker,
       }) => {
+        const {
+          summaryPage,
+          allocatedJudge1Page,
+          allocatedJudgeSubmitPage,
+          rolesAndAccessPage,
+        } = caseWorker;
+
         await summaryPage.chooseEventFromDropdown("Allocated judge");
+
         await allocatedJudge1Page.assertPageContents();
         await allocatedJudge1Page.verifyAccessibility();
         await allocatedJudge1Page.selectIsJudgeOrLegalAdviser(
@@ -61,12 +64,14 @@ test.describe("Allocate a judge to the case", () => {
           judgeOrLegalAdviserName,
         );
         await allocatedJudge1Page.clickContinue();
+
         await allocatedJudgeSubmitPage.assertPageContents(
           ["caseProgression", "allocatedJudge"],
           snapshotName,
         );
         await allocatedJudgeSubmitPage.verifyAccessibility();
         await allocatedJudgeSubmitPage.clickSubmit();
+
         await summaryPage.alertBanner.assertEventAlert(
           caseNumber,
           "Allocated judge",
@@ -79,6 +84,7 @@ test.describe("Allocate a judge to the case", () => {
           judgeLastName,
           judgeEmailAddress,
         });
+
         await rolesAndAccessPage.goToPage();
         await rolesAndAccessPage.assertJudiciaryRolesAndAccess(
           judgeOrLegalAdviserName,
@@ -106,11 +112,13 @@ test.describe("Allocate a judge to the case", () => {
       snapshotName,
     }) => {
       test(`Allocate a Judge to a DA case non-specific judge @regression`, async ({
-        summaryPage,
-        allocatedJudge1Page,
-        allocatedJudgeSubmitPage,
+        caseWorker,
       }) => {
+        const { summaryPage, allocatedJudge1Page, allocatedJudgeSubmitPage } =
+          caseWorker;
+
         await summaryPage.chooseEventFromDropdown("Allocated judge");
+
         await allocatedJudge1Page.assertPageContents();
         await allocatedJudge1Page.verifyAccessibility();
         await allocatedJudge1Page.selectIsJudgeOrLegalAdviser(
@@ -118,12 +126,14 @@ test.describe("Allocate a judge to the case", () => {
         );
         await allocatedJudge1Page.selectJudiciaryTier(judgeTier);
         await allocatedJudge1Page.clickContinue();
+
         await allocatedJudgeSubmitPage.assertPageContents(
           ["caseProgression", "allocatedJudge"],
           snapshotName,
         );
         await allocatedJudgeSubmitPage.verifyAccessibility();
         await allocatedJudgeSubmitPage.clickSubmit();
+
         await summaryPage.alertBanner.assertEventAlert(
           caseNumber,
           "Allocated judge",

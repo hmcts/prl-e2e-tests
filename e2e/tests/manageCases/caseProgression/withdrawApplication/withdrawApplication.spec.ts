@@ -1,21 +1,11 @@
 import config from "../../../../utils/config.utils.ts";
-import { test } from "../../../fixtures.ts";
-
-test.use({ storageState: config.sessionStoragePath + "solicitor.json" });
+import { test } from "../../../fixtures/fixtures.ts";
 
 test.describe("Withdraw C100 (Solicitor created) application event as a solicitor", () => {
   let caseRef: string;
-  test.beforeEach(
-    async ({ page, browser, caseEventUtils, navigationUtils }) => {
-      caseRef = await caseEventUtils.createCACase(browser);
-      await navigationUtils.goToCase(
-        page,
-        config.manageCasesBaseURLCase,
-        caseRef,
-      );
-    },
-  );
-
+  test.beforeEach(async ({ browser, caseEventUtils }) => {
+    caseRef = await caseEventUtils.createCACase(browser);
+  });
   [
     {
       withdrawApplication: true,
@@ -29,15 +19,26 @@ test.describe("Withdraw C100 (Solicitor created) application event as a solicito
     },
   ].forEach(({ withdrawApplication, snapshotName, caseStatus }) => {
     test(`Complete withdraw application event by withdrawing application: ${withdrawApplication}. @nightly @accessibility @regression`, async ({
-      summaryPage,
-      withdrawApplicationEvent1Page,
-      withdrawApplicationEventSubmitPage,
-      withdrawApplicationEventConfirmPage,
+      solicitor,
+      navigationUtils,
     }): Promise<void> => {
+      const {
+        page,
+        summaryPage,
+        withdrawApplicationEvent1Page,
+        withdrawApplicationEventSubmitPage,
+        withdrawApplicationEventConfirmPage,
+      } = solicitor;
+
+      await navigationUtils.goToCase(
+        page,
+        config.manageCasesBaseURLCase,
+        caseRef,
+      );
       await summaryPage.chooseEventFromDropdown("Withdraw application");
+
       await withdrawApplicationEvent1Page.assertPageContents();
       await withdrawApplicationEvent1Page.verifyAccessibility();
-
       await withdrawApplicationEvent1Page.selectWithdrawApplication(
         withdrawApplication,
       );
