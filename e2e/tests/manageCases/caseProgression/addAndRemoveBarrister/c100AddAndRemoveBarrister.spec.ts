@@ -53,7 +53,6 @@ test.describe("Add/Remove Barrister for CA case", () => {
       await expect(amendApplicantDetails1.pageHeading).toBeVisible();
       await amendApplicantDetails1.clickContinue();
       await amendApplicantDetailsSubmit.clickSaveAndContinue();
-      await page.close();
     },
   );
 
