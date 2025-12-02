@@ -42,14 +42,13 @@ test.describe("Add/Remove Barrister for CA case", () => {
         amendApplicantDetails1,
         amendApplicantDetailsSubmit,
       } = caseWorker;
-
+      // running Amend appl details event to allow Noc (if Noc gets fixed in the future, this bit can be removed)
       await navigationUtils.goToCase(
         page,
         config.manageCasesBaseURLCase,
         caseNumber,
         "summary",
       );
-      // running Amend appl details event to allow Noc (if Noc gets fixed in the future, this bit can be removed)
       await summaryPage.chooseEventFromDropdown("Amend applicant details");
       await expect(amendApplicantDetails1.pageHeading).toBeVisible();
       await amendApplicantDetails1.clickContinue();
@@ -169,6 +168,12 @@ test.describe("Add/Remove Barrister for CA case", () => {
       } = caseWorker;
 
       // adding solicitor via NoC to allow Barrister functionality
+      await navigationUtils.goToCase(
+        nocSolicitor.page,
+        config.manageCasesBaseURLCase,
+        caseNumber,
+        "summary",
+      );
       await performNoticeOfChange(nocSolicitor, caseNumber, data.nocParty);
       await nocSolicitor.page.close();
 
