@@ -39,14 +39,8 @@ test.describe("Remove draft order as a court admin for solicitor created C100 ca
         caseWorker,
         solicitor,
       }): Promise<void> => {
-        const {
-          page,
-          draftOrdersPage,
-          removeDraftOrder1Page,
-          removeDraftOrder2Page,
-          removeDraftOrderSubmitPage,
-          summaryPage,
-        } = caseWorker;
+        const { page, draftOrdersPage, removeDraftOrders, summaryPage } =
+          caseWorker;
 
         const draftAnOrderJourney: DraftAnOrderJourney =
           new DraftAnOrderJourney();
@@ -66,21 +60,23 @@ test.describe("Remove draft order as a court admin for solicitor created C100 ca
         );
 
         await draftOrdersPage.chooseEventFromDropdown("Remove draft order");
-        await removeDraftOrder1Page.assertPageContents();
-        await removeDraftOrder1Page.verifyAccessibility();
-        await removeDraftOrder1Page.selectOrderToRemove(
+        await removeDraftOrders.page1.assertPageContents();
+        await removeDraftOrders.page1.verifyAccessibility();
+        await removeDraftOrders.page1.selectOrderToRemove(
           draftOrderParams.orderType,
         );
-        await removeDraftOrder1Page.clickContinue();
-        await removeDraftOrder2Page.assertPageContents();
-        await removeDraftOrder2Page.verifyAccessibility();
-        await removeDraftOrder2Page.inputOrderRemovalReason(removalReason);
-        await removeDraftOrder2Page.clickContinue();
-        await removeDraftOrderSubmitPage.assertPageContents(
+        await removeDraftOrders.page1.clickContinue();
+        await removeDraftOrders.page2.assertPageContents();
+        await removeDraftOrders.page2.verifyAccessibility();
+        await removeDraftOrders.page2.inputOrderRemovalReason(
+          removalReason,
+        );
+        await removeDraftOrders.page2.clickContinue();
+        await removeDraftOrders.submitPage.assertPageContents(
           snapshotsPath,
           snapshotName,
         );
-        await removeDraftOrderSubmitPage.clickSubmit();
+        await removeDraftOrders.submitPage.clickSubmit();
         await summaryPage.alertBanner.assertEventAlert(
           caseNumber,
           "Remove draft order",

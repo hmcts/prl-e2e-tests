@@ -12,37 +12,45 @@ import { Fl401RemoveLegalRepresentativeSubmitPage } from "../../pageObjects/page
 import { Fl401RemoveLegalRepresentativeConfirmPage } from "../../pageObjects/pages/exui/removeLegalRepresentation/fl401RemoveLegalRepresentativeConfirm.po.ts";
 
 export class CourtAdminStokePagesGroup {
-  readonly tasksPage: TasksPage;
-  readonly issueAndSendToLocalCourtCallback1Page: IssueAndSendToLocalCourtCallback1Page;
-  readonly issueAndSendToLocalCourtCallbackSubmitPage: IssueAndSendToLocalCourtCallbackSubmitPage;
-  readonly summaryPage: SummaryPage;
-  readonly c100RemoveLegalRepresentative1Page: C100RemoveLegalRepresentative1Page;
-  readonly c100RemoveLegalRepresentativeSubmitPage: C100RemoveLegalRepresentativeSubmitPage;
-  readonly c100RemoveLegalRepresentativeConfirmPage: C100RemoveLegalRepresentativeConfirmPage;
-  readonly partiesPage: PartiesPage;
-  readonly fl401RemoveLegalRepresentative1Page: Fl401RemoveLegalRepresentative1Page;
-  readonly fl401RemoveLegalRepresentativeSubmitPage: Fl401RemoveLegalRepresentativeSubmitPage;
-  readonly fl401RemoveLegalRepresentativeConfirmPage: Fl401RemoveLegalRepresentativeConfirmPage;
+  constructor(public readonly page: Page) {}
+  get tasksPage() {
+    return new TasksPage(this.page);
+  }
+  get summaryPage() {
+    return new SummaryPage(this.page);
+  }
+  get partiesPage() {
+    return new PartiesPage(this.page);
+  }
 
-  constructor(public page: Page) {
-    this.tasksPage = new TasksPage(page);
-    this.issueAndSendToLocalCourtCallback1Page =
-      new IssueAndSendToLocalCourtCallback1Page(page);
-    this.issueAndSendToLocalCourtCallbackSubmitPage =
-      new IssueAndSendToLocalCourtCallbackSubmitPage(page);
-    this.summaryPage = new SummaryPage(page);
-    this.c100RemoveLegalRepresentative1Page =
-      new C100RemoveLegalRepresentative1Page(page);
-    this.c100RemoveLegalRepresentativeSubmitPage =
-      new C100RemoveLegalRepresentativeSubmitPage(page);
-    this.c100RemoveLegalRepresentativeConfirmPage =
-      new C100RemoveLegalRepresentativeConfirmPage(page);
-    this.partiesPage = new PartiesPage(page);
-    this.fl401RemoveLegalRepresentative1Page =
-      new Fl401RemoveLegalRepresentative1Page(page);
-    this.fl401RemoveLegalRepresentativeSubmitPage =
-      new Fl401RemoveLegalRepresentativeSubmitPage(page);
-    this.fl401RemoveLegalRepresentativeConfirmPage =
-      new Fl401RemoveLegalRepresentativeConfirmPage(page);
+  get issueAndSendToLocalCourt() {
+    return {
+      page1:
+        new IssueAndSendToLocalCourtCallback1Page(this.page),
+      submitPage:
+        new IssueAndSendToLocalCourtCallbackSubmitPage(this.page),
+    };
+  }
+
+  get c100RemoveLegalRepresentative() {
+    return {
+      page1:
+        new C100RemoveLegalRepresentative1Page(this.page),
+      submitPage:
+        new C100RemoveLegalRepresentativeSubmitPage(this.page),
+      confirmPage:
+        new C100RemoveLegalRepresentativeConfirmPage(this.page),
+    };
+  }
+
+  get fl401RemoveLegalRepresentative() {
+    return {
+      page1:
+        new Fl401RemoveLegalRepresentative1Page(this.page),
+      submitPage:
+        new Fl401RemoveLegalRepresentativeSubmitPage(this.page),
+      confirmPage:
+        new Fl401RemoveLegalRepresentativeConfirmPage(this.page),
+    };
   }
 }

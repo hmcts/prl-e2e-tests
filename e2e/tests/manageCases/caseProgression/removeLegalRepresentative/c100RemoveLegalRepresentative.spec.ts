@@ -33,35 +33,30 @@ test.describe("Complete Remove legal representative event for C100 case", () => 
     test(`Remove legal representation from applicants. @regression @accessibility @nightly`, async ({
       courtAdminStoke,
     }) => {
-      const {
-        summaryPage,
-        c100RemoveLegalRepresentative1Page,
-        c100RemoveLegalRepresentativeSubmitPage,
-        c100RemoveLegalRepresentativeConfirmPage,
-        partiesPage,
-      } = courtAdminStoke;
+      const { summaryPage, c100RemoveLegalRepresentative, partiesPage } =
+        courtAdminStoke;
 
       await summaryPage.chooseEventFromDropdown("Remove legal representative");
 
-      await c100RemoveLegalRepresentative1Page.assertPageContents(
+      await c100RemoveLegalRepresentative.page1.assertPageContents(
         existingRepresentatives,
       );
-      await c100RemoveLegalRepresentative1Page.verifyAccessibility();
-      await c100RemoveLegalRepresentative1Page.selectRepresentativesToRemove(
+      await c100RemoveLegalRepresentative.page1.verifyAccessibility();
+      await c100RemoveLegalRepresentative.page1.selectRepresentativesToRemove(
         existingRepresentatives,
       );
-      await c100RemoveLegalRepresentative1Page.clickContinue();
+      await c100RemoveLegalRepresentative.page1.clickContinue();
 
-      await c100RemoveLegalRepresentativeSubmitPage.assertPageContents(
+      await c100RemoveLegalRepresentative.submitPage.assertPageContents(
         ["caseProgression", "removeLegalRepresentative"],
         snapshotName,
       );
-      await c100RemoveLegalRepresentativeSubmitPage.verifyAccessibility();
-      await c100RemoveLegalRepresentativeSubmitPage.clickSubmit();
+      await c100RemoveLegalRepresentative.submitPage.verifyAccessibility();
+      await c100RemoveLegalRepresentative.submitPage.clickSubmit();
 
-      await c100RemoveLegalRepresentativeConfirmPage.assertPageContents();
-      await c100RemoveLegalRepresentativeConfirmPage.verifyAccessibility();
-      await c100RemoveLegalRepresentativeConfirmPage.clickCloseAndReturnToCaseDetails();
+      await c100RemoveLegalRepresentative.confirmPage.assertPageContents();
+      await c100RemoveLegalRepresentative.confirmPage.verifyAccessibility();
+      await c100RemoveLegalRepresentative.confirmPage.clickCloseAndReturnToCaseDetails();
 
       await summaryPage.alertBanner.assertEventAlert(
         caseNumber,

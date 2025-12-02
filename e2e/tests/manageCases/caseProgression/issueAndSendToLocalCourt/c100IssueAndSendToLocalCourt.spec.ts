@@ -31,8 +31,7 @@ test.describe("Issue and send to local court for CA cases", () => {
     }): Promise<void> => {
       const {
         tasksPage,
-        issueAndSendToLocalCourtCallback1Page,
-        issueAndSendToLocalCourtCallbackSubmitPage,
+        issueAndSendToLocalCourt,
         summaryPage,
       } = courtAdminStoke;
 
@@ -41,20 +40,20 @@ test.describe("Issue and send to local court for CA cases", () => {
         "Issue and send to local Court",
       );
 
-      await issueAndSendToLocalCourtCallback1Page.assertPageContents();
+      await issueAndSendToLocalCourt.page1.assertPageContents();
 
       // #TODO Disabled pending FPET-1194 ticket
-      //await issueAndSendToLocalCourtCallback1Page.verifyAccessibility();
+      //await issueAndSendToLocalCourt.page1.verifyAccessibility();
 
-      await issueAndSendToLocalCourtCallback1Page.selectCourt(courtName);
-      await issueAndSendToLocalCourtCallback1Page.clickContinue();
+      await issueAndSendToLocalCourt.page1.selectCourt(courtName);
+      await issueAndSendToLocalCourt.page1.clickContinue();
 
-      await issueAndSendToLocalCourtCallbackSubmitPage.assertPageContents(
+      await issueAndSendToLocalCourt.submitPage.assertPageContents(
         ["caseProgression", "issueAndSendToLocalCourt"],
         snapshotName,
       );
-      await issueAndSendToLocalCourtCallbackSubmitPage.verifyAccessibility();
-      await issueAndSendToLocalCourtCallbackSubmitPage.clickSubmit();
+      await issueAndSendToLocalCourt.submitPage.verifyAccessibility();
+      await issueAndSendToLocalCourt.submitPage.clickSubmit();
 
       await summaryPage.alertBanner.assertEventAlert(
         caseNumber,

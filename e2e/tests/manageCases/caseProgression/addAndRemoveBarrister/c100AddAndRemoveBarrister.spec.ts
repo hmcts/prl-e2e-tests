@@ -36,12 +36,7 @@ test.describe("Add/Remove Barrister for CA case", () => {
       caseNumber =
         await caseEventUtils.createCACaseIssueAndSendToLocalCourt(browser);
 
-      const {
-        page,
-        summaryPage,
-        amendApplicantDetails1,
-        amendApplicantDetailsSubmit,
-      } = caseWorker;
+      const { page, summaryPage, amendDetails } = caseWorker;
       // running Amend appl details event to allow Noc (if Noc gets fixed in the future, this bit can be removed)
       await navigationUtils.goToCase(
         page,
@@ -50,9 +45,11 @@ test.describe("Add/Remove Barrister for CA case", () => {
         "summary",
       );
       await summaryPage.chooseEventFromDropdown("Amend applicant details");
-      await expect(amendApplicantDetails1.pageHeading).toBeVisible();
-      await amendApplicantDetails1.clickContinue();
-      await amendApplicantDetailsSubmit.clickSaveAndContinue();
+      await expect(
+        amendDetails.amendApplicantDetails1.pageHeading,
+      ).toBeVisible();
+      await amendDetails.amendApplicantDetails1.clickContinue();
+      await amendDetails.amendApplicantDetailsSubmit.clickSaveAndContinue();
     },
   );
 
@@ -80,15 +77,8 @@ test.describe("Add/Remove Barrister for CA case", () => {
       nocSolicitor,
       navigationUtils,
     }): Promise<void> => {
-      const {
-        page,
-        summaryPage,
-        c100AdminAddBarrister1Page,
-        c100AdminAddBarristerSubmit,
-        partiesPage,
-        c100AdminRemoveBarrister1Page,
-        c100AdminRemoveBarristerSubmit,
-      } = nocSolicitor;
+      const { page, summaryPage, manageBarristerC100, partiesPage } =
+        nocSolicitor;
 
       // adding solicitor via NoC to allow Barrister functionality
       await navigationUtils.goToCase(
@@ -100,22 +90,22 @@ test.describe("Add/Remove Barrister for CA case", () => {
       await performNoticeOfChange(nocSolicitor, caseNumber, data.nocParty);
       // adding barrister
       await summaryPage.chooseEventFromDropdown("Add barrister");
-      await c100AdminAddBarrister1Page.assertPageContents();
-      await c100AdminAddBarrister1Page.verifyAccessibility();
-      await c100AdminAddBarrister1Page.selectPartyAndFillInBarristerDetails(
+      await manageBarristerC100.addBarrister1Page.assertPageContents();
+      await manageBarristerC100.addBarrister1Page.verifyAccessibility();
+      await manageBarristerC100.addBarrister1Page.selectPartyAndFillInBarristerDetails(
         data.barrister.firstnames,
         data.barrister.lastname,
         data.barrister.email,
         data.barrister.org,
         data.existingRepresentative,
       );
-      await c100AdminAddBarrister1Page.clickContinue();
-      await c100AdminAddBarristerSubmit.assertPageContents(
+      await manageBarristerC100.addBarrister1Page.clickContinue();
+      await manageBarristerC100.addBarristerSubmit.assertPageContents(
         ["caseProgression", "addBarrister"],
         data.addBarristerSnapshotName,
       );
       // await c100AdminAddBarristerSubmit.verifyAccessibility(); Note: to remove this comment once FPVTL-1357 fix is deployed
-      await c100AdminAddBarristerSubmit.clickSubmit();
+      await manageBarristerC100.addBarristerSubmit.clickSubmit();
       await summaryPage.alertBanner.assertEventAlert(
         caseNumber,
         "Add barrister",
@@ -130,18 +120,18 @@ test.describe("Add/Remove Barrister for CA case", () => {
       );
       // removing barrister
       await summaryPage.chooseEventFromDropdown("Remove barrister");
-      await c100AdminRemoveBarrister1Page.assertPageContents();
-      await c100AdminRemoveBarrister1Page.verifyAccessibility();
-      await c100AdminRemoveBarrister1Page.selectPartyToRemoveBarrister(
+      await manageBarristerC100.removeBarrister1Page.assertPageContents();
+      await manageBarristerC100.removeBarrister1Page.verifyAccessibility();
+      await manageBarristerC100.removeBarrister1Page.selectPartyToRemoveBarrister(
         data.existingRepresentativeRemoval,
       );
-      await c100AdminRemoveBarrister1Page.clickContinue();
-      await c100AdminRemoveBarristerSubmit.assertPageContents(
+      await manageBarristerC100.removeBarrister1Page.clickContinue();
+      await manageBarristerC100.removeBarristerSubmit.assertPageContents(
         ["caseProgression", "removeBarrister"],
         data.removeBarristerSnapshotName,
       );
-      await c100AdminRemoveBarristerSubmit.verifyAccessibility();
-      await c100AdminRemoveBarristerSubmit.clickSubmit();
+      await manageBarristerC100.removeBarristerSubmit.verifyAccessibility();
+      await manageBarristerC100.removeBarristerSubmit.clickSubmit();
       await summaryPage.alertBanner.assertEventAlert(
         caseNumber,
         "Remove barrister",
@@ -156,14 +146,7 @@ test.describe("Add/Remove Barrister for CA case", () => {
       caseWorker,
       navigationUtils,
     }): Promise<void> => {
-      const {
-        summaryPage,
-        c100AdminAddBarrister1Page,
-        c100AdminAddBarristerSubmit,
-        partiesPage,
-        c100AdminRemoveBarrister1Page,
-        c100AdminRemoveBarristerSubmit,
-      } = caseWorker;
+      const { summaryPage, manageBarristerC100, partiesPage } = caseWorker;
 
       // adding solicitor via NoC to allow Barrister functionality
       await navigationUtils.goToCase(
@@ -183,22 +166,22 @@ test.describe("Add/Remove Barrister for CA case", () => {
       );
       // adding barrister as a caseworker
       await summaryPage.chooseEventFromDropdown("Add barrister");
-      await c100AdminAddBarrister1Page.assertPageContents();
-      await c100AdminAddBarrister1Page.verifyAccessibility();
-      await c100AdminAddBarrister1Page.selectPartyAndFillInBarristerDetails(
+      await manageBarristerC100.addBarrister1Page.assertPageContents();
+      await manageBarristerC100.addBarrister1Page.verifyAccessibility();
+      await manageBarristerC100.addBarrister1Page.selectPartyAndFillInBarristerDetails(
         data.barrister.firstnames,
         data.barrister.lastname,
         data.barrister.email,
         data.barrister.org,
         data.existingRepresentative,
       );
-      await c100AdminAddBarrister1Page.clickContinue();
-      await c100AdminAddBarristerSubmit.assertPageContents(
+      await manageBarristerC100.addBarrister1Page.clickContinue();
+      await manageBarristerC100.addBarristerSubmit.assertPageContents(
         ["caseProgression", "addBarrister"],
         data.addBarristerSnapshotName,
       );
-      // await caseWorker.c100AdminAddBarristerSubmit.verifyAccessibility(); Note: to remove this comment once FPVTL-1357 fix is deployed
-      await c100AdminAddBarristerSubmit.clickSubmit();
+      // await manageBarrister.c100AdminAddBarristerSubmit.verifyAccessibility(); Note: to remove this comment once FPVTL-1357 fix is deployed
+      await manageBarristerC100.addBarristerSubmit.clickSubmit();
       await summaryPage.alertBanner.assertEventAlert(
         caseNumber,
         "Add barrister",
@@ -215,18 +198,18 @@ test.describe("Add/Remove Barrister for CA case", () => {
       );
       // removing barrister
       await summaryPage.chooseEventFromDropdown("Remove barrister");
-      await c100AdminRemoveBarrister1Page.assertPageContents();
-      await c100AdminRemoveBarrister1Page.verifyAccessibility();
-      await c100AdminRemoveBarrister1Page.selectPartyToRemoveBarrister(
+      await manageBarristerC100.removeBarrister1Page.assertPageContents();
+      await manageBarristerC100.removeBarrister1Page.verifyAccessibility();
+      await manageBarristerC100.removeBarrister1Page.selectPartyToRemoveBarrister(
         data.existingRepresentativeRemoval,
       );
-      await c100AdminRemoveBarrister1Page.clickContinue();
-      await c100AdminRemoveBarristerSubmit.assertPageContents(
+      await manageBarristerC100.removeBarrister1Page.clickContinue();
+      await manageBarristerC100.removeBarristerSubmit.assertPageContents(
         ["caseProgression", "removeBarrister"],
         data.removeBarristerSnapshotName,
       );
-      await c100AdminRemoveBarristerSubmit.verifyAccessibility();
-      await c100AdminRemoveBarristerSubmit.clickSubmit();
+      await manageBarristerC100.removeBarristerSubmit.verifyAccessibility();
+      await manageBarristerC100.removeBarristerSubmit.clickSubmit();
       await summaryPage.alertBanner.assertEventAlert(
         caseNumber,
         "Remove barrister",

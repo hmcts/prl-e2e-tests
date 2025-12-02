@@ -24,35 +24,30 @@ test.describe("Complete Remove legal representative event for FL401 case", () =>
     test(`Remove legal representation from applicants. @regression @accessibility @nightly`, async ({
       courtAdminStoke,
     }) => {
-      const {
-        summaryPage,
-        fl401RemoveLegalRepresentative1Page,
-        fl401RemoveLegalRepresentativeSubmitPage,
-        fl401RemoveLegalRepresentativeConfirmPage,
-        partiesPage,
-      } = courtAdminStoke;
+      const { summaryPage, fl401RemoveLegalRepresentative, partiesPage } =
+        courtAdminStoke;
 
       await summaryPage.chooseEventFromDropdown("Remove legal representative");
 
-      await fl401RemoveLegalRepresentative1Page.assertPageContents(
+      await fl401RemoveLegalRepresentative.page1.assertPageContents(
         existingRepresentatives,
       );
-      await fl401RemoveLegalRepresentative1Page.verifyAccessibility();
-      await fl401RemoveLegalRepresentative1Page.selectRepresentativesToRemove(
+      await fl401RemoveLegalRepresentative.page1.verifyAccessibility();
+      await fl401RemoveLegalRepresentative.page1.selectRepresentativesToRemove(
         existingRepresentatives,
       );
-      await fl401RemoveLegalRepresentative1Page.clickContinue();
+      await fl401RemoveLegalRepresentative.page1.clickContinue();
 
-      await fl401RemoveLegalRepresentativeSubmitPage.assertPageContents(
+      await fl401RemoveLegalRepresentative.submitPage.assertPageContents(
         ["caseProgression", "removeLegalRepresentative"],
         snapshotName,
       );
-      await fl401RemoveLegalRepresentativeSubmitPage.verifyAccessibility();
-      await fl401RemoveLegalRepresentativeSubmitPage.clickSubmit();
+      await fl401RemoveLegalRepresentative.submitPage.verifyAccessibility();
+      await fl401RemoveLegalRepresentative.submitPage.clickSubmit();
 
-      await fl401RemoveLegalRepresentativeConfirmPage.assertPageContents();
-      await fl401RemoveLegalRepresentativeConfirmPage.verifyAccessibility();
-      await fl401RemoveLegalRepresentativeConfirmPage.clickCloseAndReturnToCaseDetails();
+      await fl401RemoveLegalRepresentative.confirmPage.assertPageContents();
+      await fl401RemoveLegalRepresentative.confirmPage.verifyAccessibility();
+      await fl401RemoveLegalRepresentative.confirmPage.clickCloseAndReturnToCaseDetails();
 
       await summaryPage.alertBanner.assertEventAlert(
         caseNumber,

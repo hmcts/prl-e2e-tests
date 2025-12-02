@@ -28,65 +28,53 @@ import { MaintainCaseLinkSubmitPage } from "../../pageObjects/pages/exui/caseLin
 import { LinkedCasesPage } from "../../pageObjects/pages/exui/caseView/linkedCases.po.ts";
 
 export class CaseWorkerPagesGroup {
-  readonly tasksPage: TasksPage;
-  readonly summaryPage: SummaryPage;
-  readonly amendApplicantDetails1: AmendApplicantDetails1;
-  readonly amendApplicantDetailsSubmit: AmendApplicantDetailsSubmit;
-  readonly c100AdminAddBarrister1Page: C100AdminAddBarrister1Page;
-  readonly c100AdminAddBarristerSubmit: C100AdminAddBarristerSubmit;
-  readonly partiesPage: PartiesPage;
-  readonly c100AdminRemoveBarrister1Page: C100AdminRemoveBarrister1Page;
-  readonly c100AdminRemoveBarristerSubmit: C100AdminRemoveBarristerSubmit;
-  readonly fl401AddCaseNumber1Page: Fl401AddCaseNumber1Page;
-  readonly fl401AddCaseNumberSubmitPage: Fl401AddCaseNumberSubmitPage;
-  readonly allocatedJudge1Page: AllocatedJudge1Page;
-  readonly allocatedJudgeSubmitPage: AllocatedJudgeSubmitPage;
-  readonly rolesAndAccessPage: RolesAndAccessPage;
-  readonly draftOrdersPage: DraftOrdersPage;
-  readonly removeDraftOrder1Page: RemoveDraftOrder1Page;
-  readonly removeDraftOrder2Page: RemoveDraftOrder2Page;
-  readonly removeDraftOrderSubmitPage: RemoveDraftOrderSubmitPage;
-  readonly createCaseLink1Page: CreateCaseLink1Page;
-  readonly createCaseLink2Page: CreateCaseLink2Page;
-  readonly createCaseLinkSubmitPage: CreateCaseLinkSubmitPage;
-  readonly createCaseLink3Page: CreateCaseLink3Page;
-  readonly maintainCaseLink1Page: MaintainCaseLink1Page;
-  readonly maintainCaseLink2Page: MaintainCaseLink2Page;
-  readonly maintainCaseLink3Page: MaintainCaseLink3Page;
-  readonly maintainCaseLinkSubmitPage: MaintainCaseLinkSubmitPage;
-  readonly linkedCasesPage: LinkedCasesPage;
+  constructor(public readonly page: Page) {}
 
-  constructor(public page: Page) {
-    this.tasksPage = new TasksPage(page);
-    this.summaryPage = new SummaryPage(page);
-    this.amendApplicantDetails1 = new AmendApplicantDetails1(page);
-    this.amendApplicantDetailsSubmit = new AmendApplicantDetailsSubmit(page);
-    this.c100AdminAddBarrister1Page = new C100AdminAddBarrister1Page(page);
-    this.c100AdminAddBarristerSubmit = new C100AdminAddBarristerSubmit(page);
-    this.partiesPage = new PartiesPage(page);
-    this.c100AdminRemoveBarrister1Page = new C100AdminRemoveBarrister1Page(
-      page,
-    );
-    this.c100AdminRemoveBarristerSubmit = new C100AdminRemoveBarristerSubmit(
-      page,
-    );
-    this.fl401AddCaseNumber1Page = new Fl401AddCaseNumber1Page(page);
-    this.fl401AddCaseNumberSubmitPage = new Fl401AddCaseNumberSubmitPage(page);
-    this.allocatedJudge1Page = new AllocatedJudge1Page(page);
-    this.allocatedJudgeSubmitPage = new AllocatedJudgeSubmitPage(page);
-    this.rolesAndAccessPage = new RolesAndAccessPage(page);
-    this.draftOrdersPage = new DraftOrdersPage(page);
-    this.removeDraftOrder1Page = new RemoveDraftOrder1Page(page);
-    this.removeDraftOrder2Page = new RemoveDraftOrder2Page(page);
-    this.removeDraftOrderSubmitPage = new RemoveDraftOrderSubmitPage(page);
-    this.createCaseLink1Page = new CreateCaseLink1Page(page);
-    this.createCaseLink2Page = new CreateCaseLink2Page(page);
-    this.createCaseLinkSubmitPage = new CreateCaseLinkSubmitPage(page);
-    this.createCaseLink3Page = new CreateCaseLink3Page(page);
-    this.maintainCaseLink1Page = new MaintainCaseLink1Page(page);
-    this.maintainCaseLink2Page = new MaintainCaseLink2Page(page);
-    this.maintainCaseLink3Page = new MaintainCaseLink3Page(page);
-    this.maintainCaseLinkSubmitPage = new MaintainCaseLinkSubmitPage(page);
-    this.linkedCasesPage = new LinkedCasesPage(page);
+  get tasksPage() { return new TasksPage(this.page); }
+  get summaryPage() { return new SummaryPage(this.page); }
+  get partiesPage() { return new PartiesPage(this.page); }
+  get rolesAndAccessPage() { return new RolesAndAccessPage(this.page); }
+  get draftOrdersPage() { return new DraftOrdersPage(this.page); }
+  get linkedCasesPage() { return new LinkedCasesPage(this.page); }
+  get fl401AddCaseNumber1Page() { return new Fl401AddCaseNumber1Page(this.page); }
+  get fl401AddCaseNumberSubmitPage() { return new Fl401AddCaseNumberSubmitPage(this.page); }
+  get allocatedJudge1Page() { return new AllocatedJudge1Page(this.page); }
+  get allocatedJudgeSubmitPage() { return new AllocatedJudgeSubmitPage(this.page); }
+
+  get manageBarristerC100() {
+    return {
+      addBarrister1Page: new C100AdminAddBarrister1Page(this.page),
+      addBarristerSubmit: new C100AdminAddBarristerSubmit(this.page),
+      removeBarrister1Page: new C100AdminRemoveBarrister1Page(this.page),
+      removeBarristerSubmit: new C100AdminRemoveBarristerSubmit(this.page),
+    };
+  }
+
+  get manageCaseLinks() {
+    return {
+      createCaseLink1Page: new CreateCaseLink1Page(this.page),
+      createCaseLink2Page: new CreateCaseLink2Page(this.page),
+      createCaseLink3Page: new CreateCaseLink3Page(this.page),
+      createCaseLinkSubmitPage: new CreateCaseLinkSubmitPage(this.page),
+      maintainCaseLink1Page: new MaintainCaseLink1Page(this.page),
+      maintainCaseLink2Page: new MaintainCaseLink2Page(this.page),
+      maintainCaseLink3Page: new MaintainCaseLink3Page(this.page),
+      maintainCaseLinkSubmitPage: new MaintainCaseLinkSubmitPage(this.page),
+    };
+  }
+
+  get removeDraftOrders() {
+    return {
+      page1: new RemoveDraftOrder1Page(this.page),
+      page2: new RemoveDraftOrder2Page(this.page),
+      submitPage: new RemoveDraftOrderSubmitPage(this.page),
+    };
+  }
+
+  get amendDetails() {
+    return {
+      amendApplicantDetails1: new AmendApplicantDetails1(this.page),
+      amendApplicantDetailsSubmit: new AmendApplicantDetailsSubmit(this.page),
+    };
   }
 }

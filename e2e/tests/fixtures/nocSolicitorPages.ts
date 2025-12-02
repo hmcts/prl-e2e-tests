@@ -12,33 +12,37 @@ import { C100AdminRemoveBarristerSubmit } from "../../pageObjects/pages/exui/add
 import { PartiesPage } from "../../pageObjects/pages/exui/caseView/parties.po.ts";
 
 export class NocSolicitorPagesGroup {
-  readonly tasksPage: TasksPage;
-  readonly c100Noc1Page: C100Noc1Page;
-  readonly c100Noc2Page: C100Noc2Page;
-  readonly c100NocSubmitPage: C100NocSubmitPage;
-  readonly summaryPage: SummaryPage;
-  readonly c100NocConfirmationPage: C100NocConfirmationPage;
-  readonly c100AdminAddBarrister1Page: C100AdminAddBarrister1Page;
-  readonly c100AdminAddBarristerSubmit: C100AdminAddBarristerSubmit;
-  readonly c100AdminRemoveBarrister1Page: C100AdminRemoveBarrister1Page;
-  readonly c100AdminRemoveBarristerSubmit: C100AdminRemoveBarristerSubmit;
-  readonly partiesPage: PartiesPage;
+  constructor(public readonly page: Page) {}
 
-  constructor(public page: Page) {
-    this.tasksPage = new TasksPage(page);
-    this.c100Noc1Page = new C100Noc1Page(page);
-    this.c100Noc2Page = new C100Noc2Page(page);
-    this.c100NocSubmitPage = new C100NocSubmitPage(page);
-    this.summaryPage = new SummaryPage(page);
-    this.c100NocConfirmationPage = new C100NocConfirmationPage(page);
-    this.c100AdminAddBarrister1Page = new C100AdminAddBarrister1Page(page);
-    this.c100AdminAddBarristerSubmit = new C100AdminAddBarristerSubmit(page);
-    this.c100AdminRemoveBarrister1Page = new C100AdminRemoveBarrister1Page(
-      page,
-    );
-    this.c100AdminRemoveBarristerSubmit = new C100AdminRemoveBarristerSubmit(
-      page,
-    );
-    this.partiesPage = new PartiesPage(page);
+  get tasksPage() {
+    return new TasksPage(this.page);
+  }
+  get summaryPage() {
+    return new SummaryPage(this.page);
+  }
+  get partiesPage() {
+    return new PartiesPage(this.page);
+  }
+
+  get noticeOfChangeC100() {
+    return {
+      page1: new C100Noc1Page(this.page),
+      page2: new C100Noc2Page(this.page),
+      submitPage: new C100NocSubmitPage(this.page),
+      confirmPage: new C100NocConfirmationPage(this.page),
+    };
+  }
+
+  get manageBarristerC100() {
+    return {
+      addBarrister1Page: new C100AdminAddBarrister1Page(this.page),
+      addBarristerSubmit: new C100AdminAddBarristerSubmit(this.page),
+      removeBarrister1Page: new C100AdminRemoveBarrister1Page(
+        this.page,
+      ),
+      removeBarristerSubmit: new C100AdminRemoveBarristerSubmit(
+        this.page,
+      ),
+    };
   }
 }

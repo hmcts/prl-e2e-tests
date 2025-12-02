@@ -30,48 +30,39 @@ test.describe("Create and manage linked DA cases as a court admin.", () => {
       caseWorker,
       navigationUtils,
     }) => {
-      const {
-        summaryPage,
-        linkedCasesPage,
-        createCaseLink1Page,
-        createCaseLink2Page,
-        createCaseLink3Page,
-        createCaseLinkSubmitPage,
-        maintainCaseLink1Page,
-        maintainCaseLink2Page,
-        maintainCaseLink3Page,
-        maintainCaseLinkSubmitPage,
-      } = caseWorker;
+      const { summaryPage, linkedCasesPage, manageCaseLinks } = caseWorker;
       // Create case link journey
       await summaryPage.chooseEventFromDropdown("Link cases");
 
-      await createCaseLink1Page.assertPageContents();
-      await createCaseLink1Page.verifyAccessibility();
-      await createCaseLink1Page.clickContinue();
+      await manageCaseLinks.createCaseLink1Page.assertPageContents();
+      await manageCaseLinks.createCaseLink1Page.verifyAccessibility();
+      await manageCaseLinks.createCaseLink1Page.clickContinue();
 
-      await createCaseLink2Page.assertPageContents();
+      await manageCaseLinks.createCaseLink2Page.assertPageContents();
       // await createCaseLink2Page.verifyAccessibility(); // TODO: failing accessibility waiting on FPVTL-1242
-      await createCaseLink2Page.proposeCaseLink({
+      await manageCaseLinks.createCaseLink2Page.proposeCaseLink({
         linkedCaseNumber,
         reasonsForCaseLink,
         otherReason,
       });
-      await createCaseLink2Page.assertProposedCaseLinksTableContents({
-        caseName,
-        linkedCaseNumber,
-        state,
-        reasonsForCaseLink,
-        otherReason,
-      });
-      await createCaseLink2Page.clickContinue();
+      await manageCaseLinks.createCaseLink2Page.assertProposedCaseLinksTableContents(
+        {
+          caseName,
+          linkedCaseNumber,
+          state,
+          reasonsForCaseLink,
+          otherReason,
+        },
+      );
+      await manageCaseLinks.createCaseLink2Page.clickContinue();
 
-      await createCaseLink3Page.assertPageContents();
-      await createCaseLink3Page.verifyAccessibility();
-      await createCaseLink3Page.clickContinue();
+      await manageCaseLinks.createCaseLink3Page.assertPageContents();
+      await manageCaseLinks.createCaseLink3Page.verifyAccessibility();
+      await manageCaseLinks.createCaseLink3Page.clickContinue();
 
-      await createCaseLinkSubmitPage.assertPageContents();
-      await createCaseLinkSubmitPage.verifyAccessibility();
-      await createCaseLinkSubmitPage.clickCreateCaseLink();
+      await manageCaseLinks.createCaseLinkSubmitPage.assertPageContents();
+      await manageCaseLinks.createCaseLinkSubmitPage.verifyAccessibility();
+      await manageCaseLinks.createCaseLinkSubmitPage.clickCreateCaseLink();
 
       await summaryPage.alertBanner.assertEventAlert(caseNumber, "Link Cases");
 
@@ -119,26 +110,26 @@ test.describe("Create and manage linked DA cases as a court admin.", () => {
 
       await summaryPage.chooseEventFromDropdown("Manage case links");
 
-      await maintainCaseLink1Page.assertPageContents();
-      await maintainCaseLink1Page.verifyAccessibility();
-      await maintainCaseLink1Page.clickContinue();
+      await manageCaseLinks.maintainCaseLink1Page.assertPageContents();
+      await manageCaseLinks.maintainCaseLink1Page.verifyAccessibility();
+      await manageCaseLinks.maintainCaseLink1Page.clickContinue();
 
-      await maintainCaseLink2Page.assertPageContents(
+      await manageCaseLinks.maintainCaseLink2Page.assertPageContents(
         caseName,
         linkedCaseNumber,
       );
 
       // await maintainCaseLink2Page.verifyAccessibility();  // TODO: failing accessibility waiting on FPVTL-1242
-      await maintainCaseLink2Page.selectCaseToUnlink();
-      await maintainCaseLink2Page.clickContinue();
+      await manageCaseLinks.maintainCaseLink2Page.selectCaseToUnlink();
+      await manageCaseLinks.maintainCaseLink2Page.clickContinue();
 
-      await maintainCaseLink3Page.assertPageContents();
-      await maintainCaseLink3Page.verifyAccessibility();
-      await maintainCaseLink3Page.clickContinue();
+      await manageCaseLinks.maintainCaseLink3Page.assertPageContents();
+      await manageCaseLinks.maintainCaseLink3Page.verifyAccessibility();
+      await manageCaseLinks.maintainCaseLink3Page.clickContinue();
 
-      await maintainCaseLinkSubmitPage.assertPageContents();
-      await maintainCaseLinkSubmitPage.verifyAccessibility();
-      await maintainCaseLinkSubmitPage.clickMaintainCaseLink();
+      await manageCaseLinks.maintainCaseLinkSubmitPage.assertPageContents();
+      await manageCaseLinks.maintainCaseLinkSubmitPage.verifyAccessibility();
+      await manageCaseLinks.maintainCaseLinkSubmitPage.clickMaintainCaseLink();
 
       await summaryPage.alertBanner.assertEventAlert(
         caseNumber,

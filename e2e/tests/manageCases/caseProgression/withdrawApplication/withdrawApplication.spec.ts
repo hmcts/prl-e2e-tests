@@ -22,13 +22,7 @@ test.describe("Withdraw C100 (Solicitor created) application event as a solicito
       solicitor,
       navigationUtils,
     }): Promise<void> => {
-      const {
-        page,
-        summaryPage,
-        withdrawApplicationEvent1Page,
-        withdrawApplicationEventSubmitPage,
-        withdrawApplicationEventConfirmPage,
-      } = solicitor;
+      const { page, summaryPage, withdrawApplicationEvent } = solicitor;
 
       await navigationUtils.goToCase(
         page,
@@ -37,25 +31,25 @@ test.describe("Withdraw C100 (Solicitor created) application event as a solicito
       );
       await summaryPage.chooseEventFromDropdown("Withdraw application");
 
-      await withdrawApplicationEvent1Page.assertPageContents();
-      await withdrawApplicationEvent1Page.verifyAccessibility();
-      await withdrawApplicationEvent1Page.selectWithdrawApplication(
+      await withdrawApplicationEvent.page1.assertPageContents();
+      await withdrawApplicationEvent.page1.verifyAccessibility();
+      await withdrawApplicationEvent.page1.selectWithdrawApplication(
         withdrawApplication,
       );
-      await withdrawApplicationEvent1Page.clickContinue();
+      await withdrawApplicationEvent.page1.clickContinue();
 
-      await withdrawApplicationEventSubmitPage.assertPageContents(
+      await withdrawApplicationEvent.submitPage.assertPageContents(
         ["caseProgression", "withdrawApplication"],
         snapshotName,
       );
-      await withdrawApplicationEventSubmitPage.verifyAccessibility();
-      await withdrawApplicationEventSubmitPage.clickSaveAndContinue();
+      await withdrawApplicationEvent.submitPage.verifyAccessibility();
+      await withdrawApplicationEvent.submitPage.clickSaveAndContinue();
 
-      await withdrawApplicationEventConfirmPage.assertPageContents(
+      await withdrawApplicationEvent.confirmPage.assertPageContents(
         withdrawApplication,
       );
-      await withdrawApplicationEventConfirmPage.verifyAccessibility();
-      await withdrawApplicationEventConfirmPage.clickCloseAndReturnToCaseDetails();
+      await withdrawApplicationEvent.confirmPage.verifyAccessibility();
+      await withdrawApplicationEvent.confirmPage.clickCloseAndReturnToCaseDetails();
 
       await summaryPage.alertBanner.assertEventAlert(
         caseRef,

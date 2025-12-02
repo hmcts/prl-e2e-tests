@@ -5,19 +5,20 @@ import { WithdrawApplicationEventConfirmPage } from "../../pageObjects/pages/exu
 import { SummaryPage } from "../../pageObjects/pages/exui/caseView/summary.po.ts";
 
 export class SolicitorPagesGroup {
-  readonly withdrawApplicationEvent1Page: WithdrawApplicationEvent1Page;
-  readonly withdrawApplicationEventSubmitPage: WithdrawApplicationEventSubmitPage;
-  readonly withdrawApplicationEventConfirmPage: WithdrawApplicationEventConfirmPage;
-  readonly summaryPage: SummaryPage;
+  constructor(public readonly page: Page) {}
+  get summaryPage() {
+    return new SummaryPage(this.page);
+  }
 
-  constructor(public page: Page) {
-    this.withdrawApplicationEvent1Page = new WithdrawApplicationEvent1Page(
-      page,
-    );
-    this.withdrawApplicationEventSubmitPage =
-      new WithdrawApplicationEventSubmitPage(page);
-    this.withdrawApplicationEventConfirmPage =
-      new WithdrawApplicationEventConfirmPage(page);
-    this.summaryPage = new SummaryPage(page);
+  get withdrawApplicationEvent() {
+    return {
+      page1: new WithdrawApplicationEvent1Page(
+        this.page,
+      ),
+      submitPage:
+        new WithdrawApplicationEventSubmitPage(this.page),
+      confirmPage:
+        new WithdrawApplicationEventConfirmPage(this.page),
+    };
   }
 }
