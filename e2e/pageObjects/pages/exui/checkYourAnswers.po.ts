@@ -32,13 +32,12 @@ export class CheckYourAnswersPage extends EventPage {
     snapshotPath: string[],
     snapshotName: string,
   ): Promise<void> {
-    console.log("Snapshot path when asserting page contents: " + snapshotPath);
     await this.assertPageHeadings();
     await expect(this.headingH2).toBeVisible();
     await expect(this.text16).toBeVisible();
-    snapshotPath.push(snapshotName);
-    console.log("Snapshot path after initial snapshot name push: " + snapshotPath);
-    await this.checkYourAnswersTable.captureFullTableScreenshot(snapshotPath);
+    const snapshotPathCopy: string[] = Array.from(snapshotPath);
+    snapshotPathCopy.push(snapshotName);
+    await this.checkYourAnswersTable.captureFullTableScreenshot(snapshotPathCopy);
     // not all cya pages have the same "submit" button
     if (this.cyaSubmitButton === CommonStaticText.saveAndContinue) {
       await expect(this.saveAndContinueButton).toBeVisible();
