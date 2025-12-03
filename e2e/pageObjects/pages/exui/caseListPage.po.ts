@@ -6,7 +6,7 @@ import { ExuiSpinnerComponent, TableUtils } from "@hmcts/playwright-common";
 
 export class CaseListPage extends Base {
   private readonly spinnerComponent = new ExuiSpinnerComponent(this.page);
-  readonly caseListTable = this.page.locator("#search-result table");
+  private readonly caseListTable = this.page.locator("#search-result table");
   private readonly caseListHeading: Locator = this.page.locator(Selectors.h1, {
     hasText: "Case list",
   });
