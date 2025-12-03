@@ -1,10 +1,9 @@
 import { EventPage } from "../eventPage.po.js";
 import { expect, Locator, Page } from "@playwright/test";
-import { JudgeAndLegalAdviser } from "../../../../common/types.js";
 
 export interface SendToGateKeeperParams {
   sendToSpecificGateKeeper: boolean;
-  judgeOrLegalAdviser?: JudgeAndLegalAdviser;
+  judgeOrLegalAdviser?: string;
   judgeName?: string;
   legalAdviserDropdownName?: string;
   legalAdviserDisplayName?: string;
