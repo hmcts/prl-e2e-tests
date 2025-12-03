@@ -11,7 +11,6 @@ test.describe("Manage cases case list tests.", (): void => {
   //accessibility is failing and nightly execution blocked due to ccd-issue CCD-6819
   test(`Check the case list is visible to the user and user is able to search by case name for specific court.@accessibility @nightly @regression`, async ({
     caseListPage,
-    tableUtils,
   }) => {
     await caseListPage.exuiHeader.checkIsVisible();
     await caseListPage.assertPageContents();
@@ -20,9 +19,7 @@ test.describe("Manage cases case list tests.", (): void => {
 
     const caseName = "test";
     await caseListPage.searchByCaseName(caseName);
-
-    const table = await tableUtils.mapExuiTable(caseListPage.caseListTable);
-    await caseListPage.verifyCaseListTableData(table, caseName, "Case");
+    await caseListPage.verifyCaseListTableData(caseName, "Case");
     //await caseListPage.verifyAccessibility();
   });
 
@@ -33,13 +30,10 @@ test.describe("Manage cases case list tests.", (): void => {
   ].forEach(({ state }) => {
     test(`Search for cases with state: ${state} @accessibility @regression`, async ({
       caseListPage,
-      tableUtils,
     }) => {
       await caseListPage.exuiHeader.checkIsVisible();
       await caseListPage.searchByCaseState(state);
-      const table = await tableUtils.mapExuiTable(caseListPage.caseListTable);
-
-      await caseListPage.verifyCaseListTableData(table, state, "State");
+      await caseListPage.verifyCaseListTableData(state, "State");
     });
   });
 });

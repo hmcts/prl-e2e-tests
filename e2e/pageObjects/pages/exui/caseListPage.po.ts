@@ -2,7 +2,7 @@ import { Page, expect, Locator } from "@playwright/test";
 import { Selectors } from "../../../common/selectors.ts";
 import { Base } from "../base.po.js";
 import { PageUtils } from "../../../utils/page.utils.js";
-import { ExuiSpinnerComponent } from "@hmcts/playwright-common";
+import { ExuiSpinnerComponent, TableUtils } from "@hmcts/playwright-common";
 
 export class CaseListPage extends Base {
   private readonly spinnerComponent = new ExuiSpinnerComponent(this.page);
@@ -101,6 +101,7 @@ export class CaseListPage extends Base {
   );
 
   private readonly pageUtils: PageUtils = new PageUtils(this.page);
+  private readonly tableUtils: TableUtils = new TableUtils();
 
   constructor(page: Page) {
     super(page);
@@ -159,10 +160,11 @@ export class CaseListPage extends Base {
   }
 
   public async verifyCaseListTableData(
-    table: Record<string, string>[],
     columnValue: string,
     columnName: string,
   ): Promise<void> {
+    const table = await this.tableUtils.mapExuiTable(this.caseListTable);
+
     const correctedData = table.map((row) => {
       const keys = Object.keys(row);
       const values = Object.values(row);
