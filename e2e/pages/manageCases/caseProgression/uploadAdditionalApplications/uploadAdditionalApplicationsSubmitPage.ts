@@ -95,7 +95,7 @@ export class UploadAdditionalApplicationsSubmitPage {
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.a}:text-is("${UploadAdditionalApplicationsSubmitContent.c2ApplicationAnchor}")`,
+          `${Selectors.GovLink}:text-is("${UploadAdditionalApplicationsSubmitContent.c2ApplicationAnchor}")`,
           1,
         ),
       ]);

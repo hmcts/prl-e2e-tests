@@ -64,7 +64,7 @@ export class C100ServiceOfApplicationSubmitPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${C100ServiceOfApplicationSubmitContent.a}")`,
+        `${Selectors.GovLink}:text-is("${C100ServiceOfApplicationSubmitContent.link}")`,
         1,
       ),
       Helpers.checkGroup(

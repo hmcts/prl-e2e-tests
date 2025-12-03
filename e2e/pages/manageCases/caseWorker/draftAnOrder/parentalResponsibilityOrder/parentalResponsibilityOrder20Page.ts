@@ -12,12 +12,12 @@ export class ParentalResponsibilityOrder20Page {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${ParentalResponsibilityOrder20Content.welshPdfLink}")`,
+        `${Selectors.GovLink}:text-is("${ParentalResponsibilityOrder20Content.welshPdfLink}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${ParentalResponsibilityOrder20Content.pdfLink}")`,
+        `${Selectors.GovLink}:text-is("${ParentalResponsibilityOrder20Content.pdfLink}")`,
         1,
       ),
     ]);
@@ -49,7 +49,7 @@ export class ParentalResponsibilityOrder20Page {
 
     const pdfPage: Page = await Helpers.openPdfLink(
       page,
-      page.getByRole("link", {
+      page.getByRole("button", {
         name:
           language === "welsh"
             ? ParentalResponsibilityOrder20Content.welshPdfLink
@@ -66,7 +66,12 @@ export class ParentalResponsibilityOrder20Page {
     );
     await mediaViewerPage.runVisualTestOnAllPages(
       pdfPage,
-      ["caseWorker", "parentalResponsibilityOrder", regionalPdfName],
+      [
+        "caseProgression",
+        "solicitor",
+        "parentalResponsibilityOrder",
+        regionalPdfName,
+      ],
       clippingCoords.centeredPageWithoutToolbar,
       [caseRefLocator, dateLocator],
     );

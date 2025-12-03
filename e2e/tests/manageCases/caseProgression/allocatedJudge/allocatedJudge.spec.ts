@@ -4,16 +4,23 @@ import config from "../../../../utils/config.utils.ts";
 test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("Allocate a judge to the case", () => {
+  test.skip(
+    process.env.MANAGE_CASES_TEST_ENV === "preview",
+    "Doesn't work on preview env - roles and access doesn't work",
+  );
+
   let caseNumber: string = "";
 
-  test.beforeEach(async ({ browser, caseEventUtils, navigationUtils }) => {
-    caseNumber = await caseEventUtils.createDACaseSendToGatekeeper(browser);
-    await navigationUtils.goToCase(
-      config.manageCasesBaseURLCase,
-      caseNumber,
-      "tasks",
-    );
-  });
+  test.beforeEach(
+    async ({ page, browser, caseEventUtils, navigationUtils }) => {
+      caseNumber = await caseEventUtils.createDACaseSendToGatekeeper(browser);
+      await navigationUtils.goToCase(
+        page,
+        config.manageCasesBaseURLCase,
+        caseNumber,
+      );
+    },
+  );
 
   [
     {
@@ -55,7 +62,10 @@ test.describe("Allocate a judge to the case", () => {
           judgeOrLegalAdviserName,
         );
         await allocatedJudge1Page.clickContinue();
-        await allocatedJudgeSubmitPage.assertPageContents(snapshotName);
+        await allocatedJudgeSubmitPage.assertPageContents(
+          ["caseProgression", "allocatedJudge"],
+          snapshotName,
+        );
         await axeUtils.audit();
         await allocatedJudgeSubmitPage.clickSubmit();
         await summaryPage.alertBanner.assertEventAlert(
@@ -110,7 +120,10 @@ test.describe("Allocate a judge to the case", () => {
         );
         await allocatedJudge1Page.selectJudiciaryTier(judgeTier);
         await allocatedJudge1Page.clickContinue();
-        await allocatedJudgeSubmitPage.assertPageContents(snapshotName);
+        await allocatedJudgeSubmitPage.assertPageContents(
+          ["caseProgression", "allocatedJudge"],
+          snapshotName,
+        );
         await axeUtils.audit();
         await allocatedJudgeSubmitPage.clickSubmit();
         await summaryPage.alertBanner.assertEventAlert(

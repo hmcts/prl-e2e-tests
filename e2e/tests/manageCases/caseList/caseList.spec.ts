@@ -9,44 +9,36 @@ test.describe("Manage cases case list tests.", (): void => {
   });
 
   //accessibility is failing and nightly execution blocked due to ccd-issue CCD-6819
-  // TODO: bug ticket to fix issue causing test to fail l
-  test(`Check the case list is visible to the user and user is able to search by case name.@accessibility @regression`, async ({
+  test(`Check the case list is visible to the user and user is able to search by case name for specific court.@accessibility @nightly @regression`, async ({
     caseListPage,
     tableUtils,
-    axeUtils,
   }) => {
     await caseListPage.exuiHeader.checkIsVisible();
     await caseListPage.assertPageContents();
 
+    await caseListPage.selectCourt("Swansea", "Swansea");
+
     const caseName = "test";
-    await caseListPage.exuiCaseListComponent.searchByCaseName(caseName);
+    await caseListPage.searchByCaseName(caseName);
 
-    const table = await tableUtils.mapExuiTable(
-      caseListPage.exuiCaseListComponent.caseListTable,
-    );
-
+    const table = await tableUtils.mapExuiTable(caseListPage.caseListTable);
     await caseListPage.verifyCaseListTableData(table, caseName, "Case");
-    await axeUtils.audit();
   });
-
-  // this test is intermittently failing due to application behaviour, CCD-6819
 
   [
     { state: "Case Issued" },
-    //{ state: "Submitted" },
-    //{ state: "Pending" },
+    { state: "Submitted" },
+    { state: "Pending" },
   ].forEach(({ state }) => {
-    test.fixme(
-      `Search for cases with state: ${state}`,
-      async ({ caseListPage, tableUtils }) => {
-        await caseListPage.exuiHeader.checkIsVisible();
-        await caseListPage.exuiCaseListComponent.searchByCaseState(state);
-        const table = await tableUtils.mapExuiTable(
-          caseListPage.exuiCaseListComponent.caseListTable,
-        );
+    test(`Search for cases with state: ${state} @accessibility @regression`, async ({
+      caseListPage,
+      tableUtils,
+    }) => {
+      await caseListPage.exuiHeader.checkIsVisible();
+      await caseListPage.searchByCaseState(state);
+      const table = await tableUtils.mapExuiTable(caseListPage.caseListTable);
 
-        await caseListPage.verifyCaseListTableData(table, state, "State");
-      },
-    );
+      await caseListPage.verifyCaseListTableData(table, state, "State");
+    });
   });
 });

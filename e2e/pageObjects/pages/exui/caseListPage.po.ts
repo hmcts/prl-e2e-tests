@@ -1,8 +1,12 @@
 import { Page, expect, Locator } from "@playwright/test";
 import { Selectors } from "../../../common/selectors.ts";
 import { Base } from "../base.po.js";
+import { PageUtils } from "../../../utils/page.utils.js";
+import { ExuiSpinnerComponent } from "@hmcts/playwright-common";
 
 export class CaseListPage extends Base {
+  private readonly spinnerComponent = new ExuiSpinnerComponent(this.page);
+  readonly caseListTable = this.page.locator("#search-result table");
   private readonly caseListHeading: Locator = this.page.locator(Selectors.h1, {
     hasText: "Case list",
   });
@@ -46,7 +50,15 @@ export class CaseListPage extends Base {
     hasText: "Reset case selection",
   });
 
-  readonly caseListColumnLabels: string[] = [
+  private readonly filters = {
+    caseNameFilter: this.page.locator("#applicantCaseName"),
+    caseNumberFilter: this.page.locator("#\\[CASE_REFERENCE\\]"),
+    caseStateFilter: this.page.locator("select#wb-case-state"),
+    dfjAreaFilter: this.page.locator("#dfjArea"),
+    courtFilter: this.page.locator("#swanseaDFJCourt"),
+  } as const;
+
+  private readonly caseListColumnLabels: string[] = [
     "Case",
     "Familyman number",
     "Case type",
@@ -57,10 +69,11 @@ export class CaseListPage extends Base {
     "Case type",
   ];
 
-  readonly caseListFiltersLabels: string[] = [
+  private readonly caseListFiltersLabels: string[] = [
     "Jurisdiction",
     "Case type",
     "State",
+    "DFJ Area",
     "Case name",
     "Familyman number",
     "CCD number",
@@ -87,11 +100,14 @@ export class CaseListPage extends Base {
     },
   );
 
+  private readonly pageUtils: PageUtils = new PageUtils(this.page);
+
   constructor(page: Page) {
     super(page);
   }
 
   async assertPageContents(): Promise<void> {
+    await expect(this.caseListHeading).toBeVisible();
     await expect(this.hideFilterButton).toBeVisible();
     await expect(this.shareCaseButton).toBeVisible();
     await expect(this.filtersHeading).toBeVisible();
@@ -99,18 +115,50 @@ export class CaseListPage extends Base {
     await expect(this.resetButton).toBeVisible();
     await expect(this.caseListAmount).toBeVisible();
     await expect(this.resetLink).toBeVisible();
-    await this.checkStrings(Selectors.ColumnLabel, this.caseListColumnLabels);
-    await this.checkStrings(
-      Selectors.GovukFormLabel,
-      this.caseListFiltersLabels,
+    await this.pageUtils.assertStrings(
+      this.caseListColumnLabels,
+      this.page.locator(Selectors.ColumnLabel),
     );
-
+    await this.pageUtils.assertStrings(
+      this.caseListFiltersLabels,
+      this.page.locator(Selectors.GovukFormLabel),
+    );
     await expect(this.unselectableDropdown).toBeVisible();
     await this.unselectableDropdown.click();
     await expect(this.dropdownTest).toBeVisible();
   }
 
-  async verifyCaseListTableData(
+  public async searchByCaseName(caseName: string): Promise<void> {
+    await this.filters.caseNameFilter.fill(caseName);
+    await this.applyButton.click();
+    await this.spinnerComponent.wait();
+  }
+
+  public async searchByCaseNumber(caseNumber: string): Promise<void> {
+    await this.filters.caseNumberFilter.fill(caseNumber);
+    await this.applyButton.click();
+    await this.spinnerComponent.wait();
+  }
+
+  public async searchByCaseState(state: string): Promise<void> {
+    await this.filters.caseStateFilter.selectOption(state);
+    await this.applyButton.click();
+    await this.spinnerComponent.wait();
+  }
+
+  public async selectCourt(dfjArea: string, court: string): Promise<void> {
+    await this.filters.dfjAreaFilter.selectOption(dfjArea);
+    await expect(this.filters.courtFilter).toBeVisible();
+    await this.filters.courtFilter.selectOption(court);
+  }
+
+  public async searchByCourt(dfjArea: string, court: string): Promise<void> {
+    await this.selectCourt(dfjArea, court);
+    await this.applyButton.click();
+    await this.spinnerComponent.wait();
+  }
+
+  public async verifyCaseListTableData(
     table: Record<string, string>[],
     columnValue: string,
     columnName: string,

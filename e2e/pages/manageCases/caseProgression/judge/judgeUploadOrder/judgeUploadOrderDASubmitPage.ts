@@ -58,7 +58,7 @@ export class judgeCreateUOManageOrderSubmitPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${JudgeUploadOrderDASubmitContent.a}")`,
+        `${Selectors.GovLink}:text-is("${JudgeUploadOrderDASubmitContent.link}")`,
         1,
       ),
       Helpers.checkGroup(

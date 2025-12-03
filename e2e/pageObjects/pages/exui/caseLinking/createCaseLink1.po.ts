@@ -1,7 +1,7 @@
 import { expect, Locator, Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.js";
-import { CommonStaticText } from "../../../../common/commonStaticText.js";
 import { Base } from "../../base.po.js";
+import { PageUtils } from "../../../../utils/page.utils.js";
 
 // Not a standard event page so don't extend EventPage
 export class CreateCaseLink1Page extends Base {
@@ -24,12 +24,7 @@ export class CreateCaseLink1Page extends Base {
     "If a group of linked cases has a lead case, you must start from the lead case.",
     "If the cases to be linked has no lead, you can start the linking journey from any of those cases.",
   ];
-  private readonly continueButton: Locator = this.page.locator(
-    Selectors.button,
-    {
-      hasText: CommonStaticText.continue,
-    },
-  );
+  private readonly pageUtils: PageUtils = new PageUtils(this.page);
 
   constructor(page: Page) {
     super(page);
@@ -39,7 +34,7 @@ export class CreateCaseLink1Page extends Base {
     await expect(this.familyManHeading).toBeVisible();
     await expect(this.caseNumberHeading).toBeVisible();
     await expect(this.sectionHeading).toBeVisible();
-    await this.checkStrings(Selectors.p, this.paragraphs);
+    await this.pageUtils.assertStrings(this.paragraphs);
     await expect(this.continueButton).toBeVisible();
   }
 

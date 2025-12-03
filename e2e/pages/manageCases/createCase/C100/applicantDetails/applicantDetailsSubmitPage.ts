@@ -198,7 +198,7 @@ export class ApplicantDetailsSubmitPage {
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.a}:text-is("${ApplicantDetails1Content.uploadedFile}")`,
+          `${Selectors.GovLink}:text-is("${ApplicantDetails1Content.uploadedFile}")`,
           1,
         ),
         Helpers.checkVisibleAndPresent(

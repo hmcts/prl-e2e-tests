@@ -1,7 +1,6 @@
 import { Config } from "./config.utils.ts";
 import {
   IdamUtils,
-  SessionUtils,
   ServiceAuthUtils,
   AxeUtils,
   TableUtils,
@@ -15,6 +14,7 @@ import { IdamLoginHelper } from "./idamLoginHelper.utils.ts";
 import { CaseEventUtils } from "./caseEvent.utils.js";
 import { DateHelperUtils } from "./dateHelpers.utils.js";
 import { NavigationUtils } from "./navigation.utils.js";
+import { PageUtils } from "./page.utils.js";
 
 export interface UtilsFixtures {
   config: Config;
@@ -25,13 +25,13 @@ export interface UtilsFixtures {
   accessCodeHelper: AccessCodeHelper;
   createUserUtil: CreateUserUtil;
   idamLoginHelper: IdamLoginHelper;
-  sessionUtils: SessionUtils;
   serviceAuthUtils: ServiceAuthUtils;
   tableUtils: TableUtils;
   caseEventUtils: CaseEventUtils;
   axeUtils: AxeUtils;
   dateHelperUtils: DateHelperUtils;
   navigationUtils: NavigationUtils;
+  pageUtils: PageUtils;
 }
 
 export const utilsFixtures = {
@@ -46,9 +46,6 @@ export const utilsFixtures = {
   },
   serviceAuthUtils: async ({}, use) => {
     await use(new ServiceAuthUtils());
-  },
-  sessionUtils: async ({}, use) => {
-    await use(new SessionUtils());
   },
   tokenUtils: async ({ idamUtils }, use) => {
     await use(new TokenUtils(idamUtils));
@@ -74,8 +71,11 @@ export const utilsFixtures = {
   dateHelperUtils: async ({}, use) => {
     await use(new DateHelperUtils());
   },
-  navigationUtils: async ({ page }, use) => {
-    await use(new NavigationUtils(page));
+  navigationUtils: async ({}, use) => {
+    await use(new NavigationUtils());
+  },
+  pageUtils: async ({ page }, use) => {
+    await use(new PageUtils(page));
   },
   tableUtils: async ({}, use) => {
     await use(new TableUtils());

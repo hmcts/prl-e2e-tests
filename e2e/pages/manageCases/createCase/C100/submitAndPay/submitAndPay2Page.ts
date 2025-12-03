@@ -146,8 +146,8 @@ export class SubmitAndPay2Page {
           page,
           2,
           SubmitAndPay2Content,
-          "a",
-          `${Selectors.a}`,
+          "link",
+          `${Selectors.GovLink}`,
         ),
       ]);
     } else {
@@ -159,7 +159,7 @@ export class SubmitAndPay2Page {
         ),
         Helpers.checkVisibleAndPresent(
           page,
-          `${Selectors.a}:text-is("${SubmitAndPay2Content.a1}")`,
+          `${Selectors.GovLink}:text-is("${SubmitAndPay2Content.link1}")`,
           1,
         ),
       ]);

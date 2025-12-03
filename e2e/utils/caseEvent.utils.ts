@@ -1,6 +1,5 @@
 import { Browser, Page } from "@playwright/test";
 import { JsonDatas, jsonDatas } from "../common/caseHelpers/jsonDatas.js";
-import { PageFunction } from "playwright-core/types/structs";
 import {
   solicitorCACaseAPIEvent,
   solicitorCaseCreateType,
@@ -396,7 +395,7 @@ export class CaseEventUtils {
 
   private async retryEvaluate<T, A>(
     page: Page,
-    fn: PageFunction<A, T>, //fn: (arg: A) => Promise<T>,
+    fn: (arg: never) => T | Promise<T>,
     arg: A,
     maxRetries: number = 3,
     delay: number = 1000,
