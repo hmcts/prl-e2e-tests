@@ -33,11 +33,10 @@ test.describe("Withdraw C100 (Solicitor created) application event as a solicito
       withdrawApplicationEvent1Page,
       withdrawApplicationEventSubmitPage,
       withdrawApplicationEventConfirmPage,
-      axeUtils,
     }): Promise<void> => {
       await summaryPage.chooseEventFromDropdown("Withdraw application");
       await withdrawApplicationEvent1Page.assertPageContents();
-      await axeUtils.audit();
+      await withdrawApplicationEvent1Page.verifyAccessibility();
 
       await withdrawApplicationEvent1Page.selectWithdrawApplication(
         withdrawApplication,
@@ -48,13 +47,13 @@ test.describe("Withdraw C100 (Solicitor created) application event as a solicito
         ["caseProgression", "withdrawApplication"],
         snapshotName,
       );
-      await axeUtils.audit();
+      await withdrawApplicationEventSubmitPage.verifyAccessibility();
       await withdrawApplicationEventSubmitPage.clickSaveAndContinue();
 
       await withdrawApplicationEventConfirmPage.assertPageContents(
         withdrawApplication,
       );
-      await axeUtils.audit();
+      await withdrawApplicationEventConfirmPage.verifyAccessibility();
       await withdrawApplicationEventConfirmPage.clickCloseAndReturnToCaseDetails();
 
       await summaryPage.alertBanner.assertEventAlert(

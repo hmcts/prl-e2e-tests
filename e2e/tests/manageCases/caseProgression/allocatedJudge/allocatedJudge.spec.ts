@@ -49,11 +49,10 @@ test.describe("Allocate a judge to the case", () => {
         rolesAndAccessPage,
         allocatedJudge1Page,
         allocatedJudgeSubmitPage,
-        axeUtils,
       }) => {
         await summaryPage.chooseEventFromDropdown("Allocated judge");
         await allocatedJudge1Page.assertPageContents();
-        await axeUtils.audit();
+        await allocatedJudge1Page.verifyAccessibility();
         await allocatedJudge1Page.selectIsJudgeOrLegalAdviser(
           isSpecificJudgeOrLegalAdviser,
         );
@@ -66,7 +65,7 @@ test.describe("Allocate a judge to the case", () => {
           ["caseProgression", "allocatedJudge"],
           snapshotName,
         );
-        await axeUtils.audit();
+        await allocatedJudgeSubmitPage.verifyAccessibility();
         await allocatedJudgeSubmitPage.clickSubmit();
         await summaryPage.alertBanner.assertEventAlert(
           caseNumber,
@@ -81,8 +80,10 @@ test.describe("Allocate a judge to the case", () => {
           judgeEmailAddress,
         });
         await rolesAndAccessPage.goToPage();
-        await rolesAndAccessPage.assertJudiciaryRolesAndAccess(
+        await rolesAndAccessPage.assertRolesAndAccessSection(
+          "Judiciary",
           judgeOrLegalAdviserName,
+          "Allocated Judge",
         );
       });
     },
@@ -110,11 +111,10 @@ test.describe("Allocate a judge to the case", () => {
         summaryPage,
         allocatedJudge1Page,
         allocatedJudgeSubmitPage,
-        axeUtils,
       }) => {
         await summaryPage.chooseEventFromDropdown("Allocated judge");
         await allocatedJudge1Page.assertPageContents();
-        await axeUtils.audit();
+        await allocatedJudge1Page.verifyAccessibility();
         await allocatedJudge1Page.selectIsJudgeOrLegalAdviser(
           isSpecificJudgeOrLegalAdviser,
         );
@@ -124,7 +124,7 @@ test.describe("Allocate a judge to the case", () => {
           ["caseProgression", "allocatedJudge"],
           snapshotName,
         );
-        await axeUtils.audit();
+        await allocatedJudgeSubmitPage.verifyAccessibility();
         await allocatedJudgeSubmitPage.clickSubmit();
         await summaryPage.alertBanner.assertEventAlert(
           caseNumber,

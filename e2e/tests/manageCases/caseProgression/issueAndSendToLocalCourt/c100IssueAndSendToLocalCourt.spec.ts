@@ -33,17 +33,17 @@ test.describe("Issue and send to local court for CA cases", () => {
       tasksPage,
       issueAndSendToLocalCourtCallback1Page,
       issueAndSendToLocalCourtCallbackSubmitPage,
-      axeUtils,
     }): Promise<void> => {
       await tasksPage.assignTaskToMeAndTriggerNextSteps(
         "Check Application",
         "Issue and send to local Court",
+        "courtAdminStoke",
       );
 
       await issueAndSendToLocalCourtCallback1Page.assertPageContents();
 
       // #TODO Disabled pending FPET-1194 ticket
-      //await axeUtils.audit();
+      //await issueAndSendToLocalCourtCallback1Page.verifyAccessibility();
 
       await issueAndSendToLocalCourtCallback1Page.selectCourt(courtName);
       await issueAndSendToLocalCourtCallback1Page.clickContinue();
@@ -52,7 +52,7 @@ test.describe("Issue and send to local court for CA cases", () => {
         ["caseProgression", "issueAndSendToLocalCourt"],
         snapshotName,
       );
-      await axeUtils.audit();
+      await issueAndSendToLocalCourtCallbackSubmitPage.verifyAccessibility();
       await issueAndSendToLocalCourtCallbackSubmitPage.clickSubmit();
 
       await summaryPage.alertBanner.assertEventAlert(

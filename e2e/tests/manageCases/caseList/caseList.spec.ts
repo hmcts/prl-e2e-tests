@@ -23,6 +23,7 @@ test.describe("Manage cases case list tests.", (): void => {
 
     const table = await tableUtils.mapExuiTable(caseListPage.caseListTable);
     await caseListPage.verifyCaseListTableData(table, caseName, "Case");
+    //await caseListPage.verifyAccessibility();
   });
 
   [
