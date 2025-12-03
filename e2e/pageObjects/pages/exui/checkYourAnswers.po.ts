@@ -37,7 +37,9 @@ export class CheckYourAnswersPage extends EventPage {
     await expect(this.text16).toBeVisible();
     const snapshotPathCopy: string[] = Array.from(snapshotPath);
     snapshotPathCopy.push(snapshotName);
-    await this.checkYourAnswersTable.captureFullTableScreenshot(snapshotPathCopy);
+    await this.checkYourAnswersTable.captureFullTableScreenshot(
+      snapshotPathCopy,
+    );
     // not all cya pages have the same "submit" button
     if (this.cyaSubmitButton === CommonStaticText.saveAndContinue) {
       await expect(this.saveAndContinueButton).toBeVisible();
