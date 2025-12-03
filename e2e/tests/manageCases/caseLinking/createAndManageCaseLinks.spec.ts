@@ -30,7 +30,7 @@ test.describe("Create and manage linked DA cases as a court admin.", () => {
       caseWorker,
       navigationUtils,
     }) => {
-      const { summaryPage, linkedCasesPage, manageCaseLinks } = caseWorker;
+      const { summaryPage, manageCaseLinks } = caseWorker;
       // Create case link journey
       await summaryPage.chooseEventFromDropdown("Link cases");
 
@@ -67,8 +67,8 @@ test.describe("Create and manage linked DA cases as a court admin.", () => {
       await summaryPage.alertBanner.assertEventAlert(caseNumber, "Link Cases");
 
       // check linked cases tab
-      await linkedCasesPage.goToPage();
-      await linkedCasesPage.assertPageContents({
+      await manageCaseLinks.linkedCasesTab.goToPage();
+      await manageCaseLinks.linkedCasesTab.assertPageContents({
         linkedToTableRowParams: [
           {
             caseName,
@@ -87,9 +87,9 @@ test.describe("Create and manage linked DA cases as a court admin.", () => {
         linkedCaseNumber,
       );
 
-      await linkedCasesPage.goToPage();
-      await linkedCasesPage.clickShowHideLink();
-      await linkedCasesPage.assertPageContents({
+      await manageCaseLinks.linkedCasesTab.goToPage();
+      await manageCaseLinks.linkedCasesTab.clickShowHideLink();
+      await manageCaseLinks.linkedCasesTab.assertPageContents({
         linkedFromTableRowParams: [
           {
             caseName,
@@ -137,8 +137,8 @@ test.describe("Create and manage linked DA cases as a court admin.", () => {
       );
 
       // check linked cases tab
-      await linkedCasesPage.goToPage();
-      await linkedCasesPage.assertPageContents({});
+      await manageCaseLinks.linkedCasesTab.goToPage();
+      await manageCaseLinks.linkedCasesTab.assertPageContents({});
 
       // check the linked cases tab for the case that has been linked from
       await navigationUtils.goToCase(
@@ -146,8 +146,8 @@ test.describe("Create and manage linked DA cases as a court admin.", () => {
         config.manageCasesBaseURLCase,
         linkedCaseNumber,
       );
-      await linkedCasesPage.goToPage();
-      await linkedCasesPage.assertPageContents({});
+      await manageCaseLinks.linkedCasesTab.goToPage();
+      await manageCaseLinks.linkedCasesTab.assertPageContents({});
     });
   });
 });

@@ -39,8 +39,7 @@ test.describe("Remove draft order as a court admin for solicitor created C100 ca
         caseWorker,
         solicitor,
       }): Promise<void> => {
-        const { page, draftOrdersPage, removeDraftOrders, summaryPage } =
-          caseWorker;
+        const { page, removeDraftOrders, summaryPage } = caseWorker;
 
         const draftAnOrderJourney: DraftAnOrderJourney =
           new DraftAnOrderJourney();
@@ -59,7 +58,7 @@ test.describe("Remove draft order as a court admin for solicitor created C100 ca
           caseNumber,
         );
 
-        await draftOrdersPage.chooseEventFromDropdown("Remove draft order");
+        await summaryPage.chooseEventFromDropdown("Remove draft order");
         await removeDraftOrders.page1.assertPageContents();
         await removeDraftOrders.page1.verifyAccessibility();
         await removeDraftOrders.page1.selectOrderToRemove(

@@ -42,23 +42,19 @@ export class CaseWorkerPagesGroup {
   get rolesAndAccessPage() {
     return new RolesAndAccessPage(this.page);
   }
-  get draftOrdersPage() {
-    return new DraftOrdersPage(this.page);
+
+  get allocatedJudge() {
+    return {
+      page1: new AllocatedJudge1Page(this.page),
+      submitPage: new AllocatedJudgeSubmitPage(this.page),
+    };
   }
-  get linkedCasesPage() {
-    return new LinkedCasesPage(this.page);
-  }
-  get fl401AddCaseNumber1Page() {
-    return new Fl401AddCaseNumber1Page(this.page);
-  }
-  get fl401AddCaseNumberSubmitPage() {
-    return new Fl401AddCaseNumberSubmitPage(this.page);
-  }
-  get allocatedJudge1Page() {
-    return new AllocatedJudge1Page(this.page);
-  }
-  get allocatedJudgeSubmitPage() {
-    return new AllocatedJudgeSubmitPage(this.page);
+
+  get fl401AddCaseNumber() {
+    return {
+      page1: new Fl401AddCaseNumber1Page(this.page),
+      submitPage: new Fl401AddCaseNumberSubmitPage(this.page),
+    };
   }
 
   get manageBarristerC100() {
@@ -72,6 +68,7 @@ export class CaseWorkerPagesGroup {
 
   get manageCaseLinks() {
     return {
+      linkedCasesTab: new LinkedCasesPage(this.page),
       createCaseLink1Page: new CreateCaseLink1Page(this.page),
       createCaseLink2Page: new CreateCaseLink2Page(this.page),
       createCaseLink3Page: new CreateCaseLink3Page(this.page),
@@ -85,6 +82,7 @@ export class CaseWorkerPagesGroup {
 
   get removeDraftOrders() {
     return {
+      draftOrdersPage: new DraftOrdersPage(this.page),
       page1: new RemoveDraftOrder1Page(this.page),
       page2: new RemoveDraftOrder2Page(this.page),
       submitPage: new RemoveDraftOrderSubmitPage(this.page),

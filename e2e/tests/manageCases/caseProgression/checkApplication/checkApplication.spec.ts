@@ -14,13 +14,7 @@ test.describe("Check Application task for DA Solicitor case tests.", () => {
         caseWorker,
         navigationUtils,
       }): Promise<void> => {
-        const {
-          page,
-          tasksPage,
-          fl401AddCaseNumber1Page,
-          fl401AddCaseNumberSubmitPage,
-          summaryPage,
-        } = caseWorker;
+        const { page, tasksPage, fl401AddCaseNumber, summaryPage } = caseWorker;
 
         await navigationUtils.goToCase(
           page, // accessing the destructured page property
@@ -34,17 +28,17 @@ test.describe("Check Application task for DA Solicitor case tests.", () => {
           "Add Case Number",
         );
 
-        await fl401AddCaseNumber1Page.assertPageContents();
-        await fl401AddCaseNumber1Page.verifyAccessibility();
-        await fl401AddCaseNumber1Page.fillInFields(familyManNumber);
-        await fl401AddCaseNumber1Page.clickContinue();
+        await fl401AddCaseNumber.page1.assertPageContents();
+        await fl401AddCaseNumber.page1.verifyAccessibility();
+        await fl401AddCaseNumber.page1.fillInFields(familyManNumber);
+        await fl401AddCaseNumber.page1.clickContinue();
 
-        await fl401AddCaseNumberSubmitPage.assertPageContents(
+        await fl401AddCaseNumber.submitPage.assertPageContents(
           ["caseProgression", "checkApplication"],
           snapshotName,
         );
-        await fl401AddCaseNumberSubmitPage.verifyAccessibility();
-        await fl401AddCaseNumberSubmitPage.clickSaveAndContinue();
+        await fl401AddCaseNumber.submitPage.verifyAccessibility();
+        await fl401AddCaseNumber.submitPage.clickSaveAndContinue();
 
         await summaryPage.alertBanner.assertEventAlert(
           caseNumber,
