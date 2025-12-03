@@ -1,5 +1,5 @@
 import Config from "../../../../utils/config.utils.ts";
-import { test } from "../../../fixtures/fixtures.ts";
+import { test } from "../../../fixtures.ts";
 import { RemoveDraftParentalResponsibilityOrderScenarios as scenarios } from "../../../../testData/draftOrders.js";
 import { DraftAnOrderJourney } from "../../../../journeys/manageCases/caseProgression/solicitor/draftAnOrderJourney.js";
 import { ParentalResponsibilityDraftOrderParams } from "../solicitor/draftAnOrder/draftAnOrderParentalResponsibility.spec.js";

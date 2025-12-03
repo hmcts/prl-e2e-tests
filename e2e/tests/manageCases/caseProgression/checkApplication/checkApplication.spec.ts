@@ -1,4 +1,4 @@
-import { test } from "../../../fixtures/fixtures.ts";
+import { test } from "../../../fixtures.ts";
 import config from "../../../../utils/config.utils.ts";
 
 test.describe("Check Application task for DA Solicitor case tests.", () => {

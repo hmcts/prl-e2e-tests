@@ -1,5 +1,5 @@
 import config from "../../../../utils/config.utils.ts";
-import { test } from "../../../fixtures/fixtures.ts";
+import { test } from "../../../fixtures.ts";
 
 test.describe("Withdraw C100 (Solicitor created) application event as a solicitor", () => {
   let caseRef: string;

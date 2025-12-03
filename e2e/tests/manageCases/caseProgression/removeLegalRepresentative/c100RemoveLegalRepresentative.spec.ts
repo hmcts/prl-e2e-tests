@@ -1,5 +1,5 @@
 import config from "../../../../utils/config.utils.ts";
-import { test } from "../../../fixtures/fixtures.ts";
+import { test } from "../../../fixtures.ts";
 
 test.describe("Complete Remove legal representative event for C100 case", () => {
   let caseNumber: string;

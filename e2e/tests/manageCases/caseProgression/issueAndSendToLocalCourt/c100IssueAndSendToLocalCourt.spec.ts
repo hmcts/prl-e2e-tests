@@ -1,5 +1,5 @@
 import config from "../../../../utils/config.utils.ts";
-import { test } from "../../../fixtures/fixtures.ts";
+import { test } from "../../../fixtures.ts";
 
 test.describe("Issue and send to local court for CA cases", () => {
   let caseNumber: string = "";
