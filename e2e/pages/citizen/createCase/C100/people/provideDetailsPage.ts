@@ -72,13 +72,13 @@ export class ProvideDetailsPage {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukFieldsetLegend}:text-is("${ProvideDetailsContent.legend1}")`,
+        `${Selectors.GovukFieldsetVisibleLegend}:text-is("${ProvideDetailsContent.legend1}")`,
         1,
       ),
 
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukFieldsetLegend}:text-is("${ProvideDetailsContent.legend2}")`,
+        `${Selectors.GovukFieldsetVisibleLegend}:text-is("${ProvideDetailsContent.legend2}")`,
         1,
       ),
 
