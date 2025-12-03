@@ -51,7 +51,7 @@ export class Config {
   public static readonly manageCasesBaseURLCase: string =
     Config.ensureNoTrailingSlash(
       process.env.MANAGE_CASES_BASE_URL ||
-        "https://manage-case.aat.platform.hmcts.net/cases",
+        "https://manage-case.aat.platform.hmcts.net",
     );
   public static readonly manageCasesBaseURL: string = Config.removeCasesPath(
     process.env.MANAGE_CASES_BASE_URL ||
