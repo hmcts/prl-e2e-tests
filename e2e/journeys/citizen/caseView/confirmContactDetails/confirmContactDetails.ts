@@ -45,13 +45,13 @@ export class ConfirmContactDetails {
     });
     await page.click(UniqueSelectors.confirmOrEditYourContactDetailsSelector);
     await this.completeStayingInARefuge(page, isApplicant);
-    await this.validateYourContactDetailsUpdate(page, isApplicant);
-    
+    await this.validateYourContactDetailsUpdate(page);
+
     if (isApplicant) {
       await CheckAnswersApplicant.checkAnswersPage(page, accessibilityTest);
     } else {
       await CheckAnswersRespondent.checkAnswersPage(page, accessibilityTest);
-    }    
+    }
   }
 
   // these pages are already tested in ApplicantStayingInRefugePage.ts
@@ -76,29 +76,29 @@ export class ConfirmContactDetails {
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
   }
-  
+
   private static async validateYourContactDetailsUpdate(
     page: Page,
-    isApplicant: boolean,
   ): Promise<void> {
-    const applicantRespondentUrlParam = isApplicant
-      ? "applicant"
-      : "respondent";
     // go to your contact details page
     await page.click(UniqueSelectors.phoneNumberEditButtonSelector);
     // get value from phone number text field
-    const phoneNumberValue = await page.inputValue(
+    const phoneNumberValue = page.locator(
       UniqueSelectors.phoneNumberFieldSelector,
     );
     expect(phoneNumberValue).not.toBeNull();
-    
+
     // check that value is not empty
     expect(phoneNumberValue).not.toBe("");
-    
+
     // Enter a value into the "When it is safe to call you?" field and continue
-    const safeToCallField = page.locator(UniqueSelectors.safeToCallFieldSelector);
+    const safeToCallField = page.locator(
+      UniqueSelectors.safeToCallFieldSelector,
+    );
     await safeToCallField.clear();
-    await safeToCallField.fill(`${CommonStaticText.applicantContactInstructions}`);
+    await safeToCallField.fill(
+      `${CommonStaticText.applicantContactInstructions}`,
+    );
     await page.click(Selectors.edgeCaseContinue);
   }
 }

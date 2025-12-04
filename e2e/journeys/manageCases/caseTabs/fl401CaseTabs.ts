@@ -58,14 +58,10 @@ export class FL401CaseTabs {
       applicantLivesInRefuge,
     );
   }
-public static async fl401CaseConfidentialTab({
-    page,
+  public static async fl401CaseConfidentialTab({
     browser,
-    courtIsListed,
-    accessibilityTest,
     caseRef,
   }: FL401CaseConfidentialParams): Promise<void> {
-   
     const courtAdminPage: Page = await Helpers.openNewBrowserWindow(
       browser,
       "courtAdminStoke",
@@ -80,8 +76,6 @@ public static async fl401CaseConfidentialTab({
 
     await FL401ConfidentialDetailsTabPage.fl401ConfidentialDetailsTabPage(
       courtAdminPage,
-      accessibilityTest,
     );
   }
-
 }
