@@ -34,4 +34,5 @@ export enum CommonStaticText {
   change = "Change",
   addNew = "Add new",
   proposeCaseLink = "Propose case link",
+  applicantContactInstructions = "Anytime",
 }
