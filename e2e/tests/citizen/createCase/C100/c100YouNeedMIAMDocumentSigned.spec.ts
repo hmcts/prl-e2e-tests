@@ -3,6 +3,7 @@ import Config from "../../../../utils/config.utils.ts";
 import { C100 } from "../../../../journeys/citizen/createCase/C100/C100.ts";
 
 test.describe("Create Citizen Application but you don't have a MIAM document.", (): void => {
+  //
   test.beforeEach(async ({ page, idamLoginHelper }) => {
     await idamLoginHelper.setupAndSignInUser(
       page,

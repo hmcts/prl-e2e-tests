@@ -4,6 +4,7 @@ import { C100 } from "../../../../journeys/citizen/createCase/C100/C100.ts";
 
 test.describe("C100 Citizen Application with Written Consent from other people in the case.", (): void => {
   test.beforeEach(async ({ page, idamLoginHelper }) => {
+    //
     await idamLoginHelper.setupAndSignInUser(
       page,
       Config.citizenFrontendBaseURL,
