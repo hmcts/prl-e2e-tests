@@ -112,7 +112,7 @@ test.describe("Complete the Restricted Case Access events for DA case.", () => {
 
     const sendToGatekeeperJourney: SendToGateKeeperJourney =
       new SendToGateKeeperJourney();
-      
+
     await sendToGatekeeperJourney.sendToGateKeeper(
       caPage,
       ccdRef,

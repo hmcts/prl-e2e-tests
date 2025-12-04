@@ -13,14 +13,15 @@ async function completeSendToGatekeeperJourney(
   actor: CaseWorkerPagesGroup | CaseManagerPagesGroup,
   caseNumber: string,
   params: SendToGateKeeperJourneyParams,
-  roleName: "caseWorker" | "caseManager"
+  roleName: "caseWorker" | "caseManager",
 ) {
-  const { rolesAndAccessPage, sendToGateKeeper, tasksPage, summaryPage } = actor;
+  const { rolesAndAccessPage, sendToGateKeeper, tasksPage, summaryPage } =
+    actor;
 
   await tasksPage.assignTaskToMeAndTriggerNextSteps(
     "Send to Gatekeeper",
     "Send to Gatekeeper",
-    roleName
+    roleName,
   );
 
   await sendToGateKeeper.page1.assertPageContents();
@@ -30,12 +31,15 @@ async function completeSendToGatekeeperJourney(
 
   await sendToGateKeeper.submitPage.assertPageContents(
     params.snapshotPath,
-    params.snapshotName
+    params.snapshotName,
   );
   await sendToGateKeeper.submitPage.verifyAccessibility();
   await sendToGateKeeper.submitPage.clickSubmit();
 
-  await summaryPage.alertBanner.assertEventAlert(caseNumber, "Send to gatekeeper");
+  await summaryPage.alertBanner.assertEventAlert(
+    caseNumber,
+    "Send to gatekeeper",
+  );
   await summaryPage.assertCaseStatus("Gatekeeping");
 
   if (params.sendToGateKeeperParams.sendToSpecificGateKeeper) {
@@ -45,13 +49,13 @@ async function completeSendToGatekeeperJourney(
       await rolesAndAccessPage.assertRolesAndAccessSection(
         "Judiciary",
         params.sendToGateKeeperParams.judgeName,
-        "Gatekeeping Judge"
+        "Gatekeeping Judge",
       );
     } else {
       await rolesAndAccessPage.assertRolesAndAccessSection(
         "Legal Ops",
         params.sendToGateKeeperParams.legalAdviserDisplayName,
-        "Allocated Legal Adviser"
+        "Allocated Legal Adviser",
       );
     }
   }
@@ -61,24 +65,34 @@ async function completeSendToGatekeeperJourney(
 test.describe("Court Admin: Send to Gatekeeper (C100)", () => {
   let caseNumber: string = "";
 
-  test.beforeEach(async ({ caseWorker, browser, caseEventUtils, navigationUtils }) => {
-    // Note: createCACase... implies C100 setup
-    caseNumber = await caseEventUtils.createCACaseIssueAndSendToLocalCourt(browser);
-    await navigationUtils.goToCase(
-      caseWorker.page,
-      config.manageCasesBaseURLCase,
-      caseNumber,
-      "tasks"
-    );
-  });
+  test.beforeEach(
+    async ({ caseWorker, browser, caseEventUtils, navigationUtils }) => {
+      // Note: createCACase... implies C100 setup
+      caseNumber =
+        await caseEventUtils.createCACaseIssueAndSendToLocalCourt(browser);
+      await navigationUtils.goToCase(
+        caseWorker.page,
+        config.manageCasesBaseURLCase,
+        caseNumber,
+        "tasks",
+      );
+    },
+  );
 
   scenarios.forEach((params) => {
-    const gatekeeperType = params.sendToGateKeeperParams.judgeOrLegalAdviser || "no specific gatekeeper";
-    
+    const gatekeeperType =
+      params.sendToGateKeeperParams.judgeOrLegalAdviser ||
+      "no specific gatekeeper";
+
     test(`Complete Send to Gatekeeper with ${gatekeeperType} @nightly @regression @accessibility`, async ({
       caseWorker,
     }) => {
-      await completeSendToGatekeeperJourney(caseWorker, caseNumber, params, "caseWorker");
+      await completeSendToGatekeeperJourney(
+        caseWorker,
+        caseNumber,
+        params,
+        "caseWorker",
+      );
     });
   });
 });
@@ -90,24 +104,33 @@ test.describe("Case Manager: Send to Gatekeeper (FL401)", () => {
   // Set the specific storage state for this describe block
   test.use({ storageState: config.sessionStoragePath + "caseManager.json" });
 
-  test.beforeEach(async ({ caseManager, browser, caseEventUtils, navigationUtils }) => {
-    // Note: createDACase implies FL401 setup
-    caseNumber = await caseEventUtils.createDACase(browser);
-    await navigationUtils.goToCase(
-      caseManager.page,
-      config.manageCasesBaseURLCase,
-      caseNumber,
-      "tasks"
-    );
-  });
+  test.beforeEach(
+    async ({ caseManager, browser, caseEventUtils, navigationUtils }) => {
+      // Note: createDACase implies FL401 setup
+      caseNumber = await caseEventUtils.createDACase(browser);
+      await navigationUtils.goToCase(
+        caseManager.page,
+        config.manageCasesBaseURLCase,
+        caseNumber,
+        "tasks",
+      );
+    },
+  );
 
   scenarios.forEach((params) => {
-     const gatekeeperType = params.sendToGateKeeperParams.judgeOrLegalAdviser || "no specific gatekeeper";
+    const gatekeeperType =
+      params.sendToGateKeeperParams.judgeOrLegalAdviser ||
+      "no specific gatekeeper";
 
     test(`Complete Send to Gatekeeper with ${gatekeeperType} @regression @accessibility`, async ({
       caseManager,
     }) => {
-      await completeSendToGatekeeperJourney(caseManager, caseNumber, params, "caseManager");
+      await completeSendToGatekeeperJourney(
+        caseManager,
+        caseNumber,
+        params,
+        "caseManager",
+      );
     });
   });
 });

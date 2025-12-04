@@ -52,9 +52,9 @@ export class SolicitorCreate2Page {
         1,
       );
       await Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.h3}:text-is("${SolicitorCreate2Content.h3Label}")`,
-          1,
+        page,
+        `${Selectors.h3}:text-is("${SolicitorCreate2Content.h3Label}")`,
+        1,
       );
     }
     await Promise.all([
