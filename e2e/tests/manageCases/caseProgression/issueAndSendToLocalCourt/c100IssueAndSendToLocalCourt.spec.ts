@@ -35,6 +35,7 @@ test.describe("Issue and send to local court for CA cases", () => {
       await tasksPage.assignTaskToMeAndTriggerNextSteps(
         "Check Application",
         "Issue and send to local Court",
+        "courtAdminStoke",
       );
 
       await issueAndSendToLocalCourt.page1.assertPageContents();

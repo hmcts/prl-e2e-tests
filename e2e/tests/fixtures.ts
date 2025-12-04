@@ -1,8 +1,10 @@
 import { test as base } from "@playwright/test";
-import { NocSolicitorPagesGroup } from "./fixtures/nocSolicitorPages.ts";
-import { CaseWorkerPagesGroup } from "./fixtures/caseWorkerPages.ts";
-import { SolicitorPagesGroup } from "./fixtures/solicitorPages.ts";
-import { CourtAdminStokePagesGroup } from "./fixtures/courtAdminStokePages.ts";
+import { NocSolicitorPagesGroup } from "../pageObjects/roleBasedGroupedPages/nocSolicitorPages.ts";
+import { CaseWorkerPagesGroup } from "../pageObjects/roleBasedGroupedPages/caseWorkerPages.ts";
+import { SolicitorPagesGroup } from "../pageObjects/roleBasedGroupedPages/solicitorPages.ts";
+import { CourtAdminStokePagesGroup } from "../pageObjects/roleBasedGroupedPages/courtAdminStokePages.ts";
+import { CaseManagerPagesGroup } from "../pageObjects/roleBasedGroupedPages/caseManagerPages.ts";
+import { JudgePagesGroup } from "../pageObjects/roleBasedGroupedPages/judgePages.ts";
 import { utilsFixtures, UtilsFixtures } from "../utils/utils.fixtures.ts";
 import Config from "../utils/config.utils.ts";
 
@@ -11,6 +13,8 @@ type MyFixtures = UtilsFixtures & {
   caseWorker: CaseWorkerPagesGroup;
   solicitor: SolicitorPagesGroup;
   courtAdminStoke: CourtAdminStokePagesGroup;
+  caseManager: CaseManagerPagesGroup;
+  judge: JudgePagesGroup;
 };
 
 export const test = base.extend<MyFixtures>({
@@ -49,6 +53,24 @@ export const test = base.extend<MyFixtures>({
     });
     const page = await context.newPage();
     await use(new CourtAdminStokePagesGroup(page));
+    await context.close();
+  },
+
+  caseManager: async ({ browser }, use) => {
+    const context = await browser.newContext({
+      storageState: Config.sessionStoragePath + "caseManager.json",
+    });
+    const page = await context.newPage();
+    await use(new CaseManagerPagesGroup(page));
+    await context.close();
+  },
+
+  judge: async ({ browser }, use) => {
+    const context = await browser.newContext({
+      storageState: Config.sessionStoragePath + "judge.json",
+    });
+    const page = await context.newPage();
+    await use(new JudgePagesGroup(page));
     await context.close();
   },
 });

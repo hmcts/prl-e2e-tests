@@ -81,8 +81,10 @@ test.describe("Allocate a judge to the case", () => {
         });
 
         await rolesAndAccessPage.goToPage();
-        await rolesAndAccessPage.assertJudiciaryRolesAndAccess(
+        await rolesAndAccessPage.assertRolesAndAccessSection(
+          "Judiciary",
           judgeOrLegalAdviserName,
+          "Allocated Judge",
         );
       });
     },

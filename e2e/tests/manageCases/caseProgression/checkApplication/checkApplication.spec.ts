@@ -26,6 +26,7 @@ test.describe("Check Application task for DA Solicitor case tests.", () => {
         await tasksPage.assignTaskToMeAndTriggerNextSteps(
           "Check Application",
           "Add Case Number",
+          "caseWorker",
         );
 
         await fl401AddCaseNumber.page1.assertPageContents();
