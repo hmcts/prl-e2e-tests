@@ -1,7 +1,6 @@
 import { Base } from "../../base.po.js";
 import { expect, Locator, Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.js";
-import { CommonStaticText } from "../../../../common/commonStaticText.js";
 import { CaseNumberUtils } from "../../../../utils/caseNumber.utils.js";
 
 // Not a standard event page so don't extend EventPage
@@ -22,18 +21,6 @@ export class MaintainCaseLink2Page extends Base {
     },
   );
   private readonly checkBox: Locator = this.page.getByRole("checkbox");
-  private readonly continueButton: Locator = this.page.locator(
-    Selectors.button,
-    {
-      hasText: CommonStaticText.continue,
-    },
-  );
-  private readonly previousButton: Locator = this.page.locator(
-    Selectors.button,
-    {
-      hasText: CommonStaticText.previous,
-    },
-  );
   private readonly caseNumberUtils: CaseNumberUtils = new CaseNumberUtils();
 
   constructor(page: Page) {
@@ -57,9 +44,5 @@ export class MaintainCaseLink2Page extends Base {
 
   async selectCaseToUnlink(): Promise<void> {
     await this.checkBox.check();
-  }
-
-  async clickContinue(): Promise<void> {
-    await this.continueButton.click();
   }
 }

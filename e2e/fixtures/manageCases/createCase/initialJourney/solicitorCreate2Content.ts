@@ -3,6 +3,7 @@ export enum SolicitorCreate2Content {
   dummyPageTitle = "TS-Solicitor application",
   subTitle = "Type of application",
   textOnPage = "Which application are you applying for ?",
+  h3Label = "You have 28 days to submit your application from the date you started it, or it will be deleted and you will need to start the application again. This is to keep your information secure.",
   formLabel1 = "C100 Child Arrangements Application",
   formLabel2 = "FL401 Non-Molestation &/or Occupation Order Application",
   continue = "Continue",

@@ -19,7 +19,7 @@ export class SolicitorCreate4Page {
     if (errorMessaging) {
       await this.triggerErrorMessages(page);
     }
-    return await this.fillInFields(page);
+    return await this.fillInFields(page, isDummyCase);
   }
 
   private static async checkPageLoads(
@@ -27,10 +27,10 @@ export class SolicitorCreate4Page {
     isDummyCase: boolean,
     accessibilityTest: boolean,
   ): Promise<void> {
-    await page.waitForSelector(
-      `${Selectors.GovukFormHint}:text-is("${SolicitorCreate4Content.formHint1}")`,
-    );
     if (isDummyCase) {
+      await page.waitForSelector(
+        `${Selectors.GovukFormHint}:text-is("${SolicitorCreate4Content.formHint1}")`,
+      );
       await Promise.all([
         Helpers.checkVisibleAndPresent(
           page,
@@ -51,11 +51,6 @@ export class SolicitorCreate4Page {
           SolicitorCreate4Content,
           "p",
           `${Selectors.p}`,
-        ),
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukFormLabel}:text-is("${SolicitorCreate4Content.formLabel1}")`,
-          1,
         ),
       ]);
     }
@@ -87,12 +82,21 @@ export class SolicitorCreate4Page {
     ]);
   }
 
-  private static async fillInFields(page: Page): Promise<string> {
-    const generatedName: string = Helpers.generateCaseName();
-    await page.fill(`${caseName.fieldID}`, generatedName);
+  private static async fillInFields(
+    page: Page,
+    isDummyCase: boolean = false,
+  ): Promise<string> {
+    if (isDummyCase) {
+      const generatedName: string = Helpers.generateCaseName();
+      await page.fill(`${caseName.fieldID}`, generatedName);
+      await page.click(
+        `${Selectors.button}:text-is("${SolicitorCreate4Content.continue}")`,
+      );
+      return generatedName;
+    }
     await page.click(
-      `${Selectors.button}:text-is("${SolicitorCreate4Content.continue}")`,
+      `${Selectors.button}:text-is("${SolicitorCreate4Content.submit}")`,
     );
-    return generatedName;
+    return;
   }
 }

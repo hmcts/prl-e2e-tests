@@ -1,6 +1,5 @@
 import { Browser, Page } from "@playwright/test";
 import { JsonDatas, jsonDatas } from "../common/caseHelpers/jsonDatas.js";
-import { PageFunction } from "playwright-core/types/structs";
 import {
   solicitorCACaseAPIEvent,
   solicitorCaseCreateType,
@@ -57,6 +56,27 @@ export class CaseEventUtils {
       jsonData,
     );
     await page.close();
+    return caseRef;
+  }
+
+  async createDACaseAddCaseNumber(browser: Browser): Promise<string> {
+    const caseRef: string = await this.createDACase(
+      browser,
+      jsonDatas.solicitorDACaseData,
+    );
+    // open new browser and sign in as court admin user
+    const caPage: Page = await Helpers.openNewBrowserWindow(
+      browser,
+      "caseWorker",
+    );
+    await caPage.goto(`${Config.manageCasesBaseURL}/work/my-work/list`);
+    await this.submitEvent(
+      caPage,
+      caseRef,
+      "fl401AddCaseNumber",
+      jsonDatas.solicitorDACaseData,
+    );
+    await caPage.close();
     return caseRef;
   }
 
@@ -396,7 +416,7 @@ export class CaseEventUtils {
 
   private async retryEvaluate<T, A>(
     page: Page,
-    fn: PageFunction<A, T>, //fn: (arg: A) => Promise<T>,
+    fn: (arg: never) => T | Promise<T>,
     arg: A,
     maxRetries: number = 3,
     delay: number = 1000,

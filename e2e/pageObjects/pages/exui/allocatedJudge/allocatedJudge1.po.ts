@@ -2,6 +2,7 @@ import { EventPage } from "../eventPage.po.js";
 import { expect, Locator, Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.js";
 import { CommonStaticText } from "../../../../common/commonStaticText.js";
+import { PageUtils } from "../../../../utils/page.utils.js";
 
 export class AllocatedJudge1Page extends EventPage {
   readonly heading2: Locator = this.page.locator(Selectors.h2, {
@@ -82,12 +83,7 @@ export class AllocatedJudge1Page extends EventPage {
   readonly highCourtJudgeRadio: Locator = this.page.locator(
     "#tierOfJudiciary-highCourtJudge",
   );
-  readonly continueButton: Locator = this.page.locator(Selectors.button, {
-    hasText: CommonStaticText.continue,
-  });
-  readonly previousButton: Locator = this.page.locator(Selectors.button, {
-    hasText: CommonStaticText.previous,
-  });
+  private readonly pageUtils: PageUtils = new PageUtils(this.page);
 
   constructor(page: Page) {
     super(page, "Allocated judge");
@@ -109,17 +105,11 @@ export class AllocatedJudge1Page extends EventPage {
   ): Promise<void> {
     if (isSpecificJudgeOrLegalAdviser) {
       await this.radioYes.click();
-      await this.checkStrings(
-        Selectors.GovukFormLabel,
-        this.isJudgeOrLegalAdviserFormLabels,
-      );
+      await this.pageUtils.assertStrings(this.isJudgeOrLegalAdviserFormLabels);
     } else {
       await this.radioNo.click();
       await expect(this.tierOfJudiciaryLabel).toBeVisible();
-      await this.checkStrings(
-        Selectors.GovukFormLabel,
-        this.judiciaryTierFormLabels,
-      );
+      await this.pageUtils.assertStrings(this.judiciaryTierFormLabels);
     }
   }
 
@@ -157,9 +147,5 @@ export class AllocatedJudge1Page extends EventPage {
         await this.highCourtJudgeRadio.click();
         break;
     }
-  }
-
-  async clickContinue(): Promise<void> {
-    await this.continueButton.click();
   }
 }

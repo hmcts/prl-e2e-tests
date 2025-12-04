@@ -1,7 +1,6 @@
 import { expect, Locator, Page } from "@playwright/test";
 import { Base } from "../../base.po.js";
 import { Selectors } from "../../../../common/selectors.js";
-import { CommonStaticText } from "../../../../common/commonStaticText.js";
 import { CheckYourAnswersTableComponent } from "../../../components/exui/checkYourAnswersTable.component.js";
 
 // Not a standard event page so don't extend EventPage
@@ -23,18 +22,6 @@ export class CreateCaseLink3Page extends Base {
   );
   private readonly table: CheckYourAnswersTableComponent =
     new CheckYourAnswersTableComponent(this.page);
-  private readonly continueButton: Locator = this.page.locator(
-    Selectors.button,
-    {
-      hasText: CommonStaticText.continue,
-    },
-  );
-  private readonly previousButton: Locator = this.page.locator(
-    Selectors.button,
-    {
-      hasText: CommonStaticText.previous,
-    },
-  );
 
   constructor(page: Page) {
     super(page);
@@ -44,17 +31,11 @@ export class CreateCaseLink3Page extends Base {
     await expect(this.familyManHeading).toBeVisible();
     await expect(this.caseNumberHeading).toBeVisible();
     await expect(this.sectionHeading).toBeVisible();
-    await this.table.runVisualTest(["caseLinking", "create-case-link"], {
-      x: 0,
-      y: 450,
-      width: 1920,
-      height: 1080,
-    });
+    await this.table.captureFullTableScreenshot(
+      ["caseLinking", "create-case-link"],
+      "#linked-cases-table",
+    );
     await expect(this.continueButton).toBeVisible();
     await expect(this.previousButton).toBeVisible();
-  }
-
-  async clickContinue(): Promise<void> {
-    await this.continueButton.click();
   }
 }

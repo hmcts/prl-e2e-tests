@@ -51,6 +51,11 @@ export class SolicitorCreate2Page {
         `${Selectors.GovukHeadingL}:text-is("${SolicitorCreate2Content.title}")`,
         1,
       );
+      await Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.h3}:text-is("${SolicitorCreate2Content.h3Label}")`,
+          1,
+      );
     }
     await Promise.all([
       Helpers.checkVisibleAndPresent(

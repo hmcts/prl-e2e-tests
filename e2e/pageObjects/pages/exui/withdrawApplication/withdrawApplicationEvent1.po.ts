@@ -1,6 +1,5 @@
 import { expect, Locator, Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.ts";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 import { EventPage } from "../eventPage.po.js";
 
 export class WithdrawApplicationEvent1Page extends EventPage {
@@ -33,13 +32,6 @@ export class WithdrawApplicationEvent1Page extends EventPage {
     },
   );
 
-  private readonly continueButton: Locator = this.page.locator(
-    Selectors.button,
-    {
-      hasText: CommonStaticText.continue,
-    },
-  );
-
   constructor(page: Page) {
     super(page, "Withdraw application");
   }
@@ -64,9 +56,5 @@ export class WithdrawApplicationEvent1Page extends EventPage {
     } else {
       await this.withdrawApplicationRadioNo.click();
     }
-  }
-
-  async clickContinue(): Promise<void> {
-    await this.continueButton.click();
   }
 }
