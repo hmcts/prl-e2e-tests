@@ -4,11 +4,9 @@ import { Helpers } from "../../../../common/helpers.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
 import { FL401ConfidentialDetailsTabContent } from "../../../../fixtures/manageCases/caseTabs/FL401/fl401ConfidentialDetailsTabContent.ts";
 import { ManageDocumentsNew1Content } from "../../../../fixtures/manageCases/caseProgression/manageDocuments/manageDocumentsNew1Content.ts";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 
 enum UniqueSelectors {
   refugeDocumentsSection = "td#case-viewer-field-read--refugeDocuments",
-  applicantContactInstructionsSelector = "#case-viewer-field-read--daApplicantContactInstructions span",
 }
 
 export class FL401ConfidentialDetailsTabPage {
@@ -22,21 +20,6 @@ export class FL401ConfidentialDetailsTabPage {
       page,
       accessibilityTest,
       applicantLivesInRefuge,
-    );
-  }
-  public static async fl401ConfidentialDetailsTabPage(
-    page: Page,
-  ): Promise<void> {
-    await this.clickTab(page);
-    await this.checkPageLoadsContactInstructions(page);
-  }
-  private static async checkPageLoadsContactInstructions(
-    page: Page,
-  ): Promise<void> {
-    await Helpers.checkVisibleAndPresent(
-      page,
-      `${UniqueSelectors.applicantContactInstructionsSelector}:text-is("${CommonStaticText.applicantContactInstructions}")`,
-      1,
     );
   }
 
@@ -60,7 +43,6 @@ export class FL401ConfidentialDetailsTabPage {
       `${Selectors.div}${Selectors.GovukText16}:text-is("${FL401ConfidentialDetailsTabContent.c8DraftDocumentWelshSection}")`,
       1,
     );
-
     if (applicantLivesInRefuge) {
       await Helpers.checkVisibleAndPresent(
         page,

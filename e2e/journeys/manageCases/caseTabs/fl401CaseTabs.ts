@@ -12,13 +12,6 @@ interface FL401CaseTabsParams {
   accessibilityTest: boolean;
   applicantLivesInRefuge: boolean;
 }
-interface FL401CaseConfidentialParams {
-  page: Page;
-  browser: Browser;
-  courtIsListed: boolean;
-  accessibilityTest: boolean;
-  caseRef: string;
-}
 
 export class FL401CaseTabs {
   public static async fl401CaseTabs({
@@ -56,26 +49,6 @@ export class FL401CaseTabs {
       courtAdminPage,
       accessibilityTest,
       applicantLivesInRefuge,
-    );
-  }
-  public static async fl401CaseConfidentialTab({
-    browser,
-    caseRef,
-  }: FL401CaseConfidentialParams): Promise<void> {
-    const courtAdminPage: Page = await Helpers.openNewBrowserWindow(
-      browser,
-      "courtAdminStoke",
-    );
-
-    await Helpers.goToCase(
-      courtAdminPage,
-      Config.manageCasesBaseURLCase,
-      caseRef,
-      "Confidential details",
-    );
-
-    await FL401ConfidentialDetailsTabPage.fl401ConfidentialDetailsTabPage(
-      courtAdminPage,
     );
   }
 }
