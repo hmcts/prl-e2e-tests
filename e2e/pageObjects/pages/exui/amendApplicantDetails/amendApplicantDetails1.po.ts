@@ -1,19 +1,12 @@
-import { Page, Locator, expect } from "@playwright/test";
+import { Page, Locator } from "@playwright/test";
 import { EventPage } from "../eventPage.po.ts";
 
 // more details and page asserts to be added as needed in the future
 
-interface ApplicantName {
-  firstname: string;
-  surname: string;
-}
-
-
 export class AmendApplicantDetails1 extends EventPage {
-
   private readonly applicantFirstNameField: Locator = this.page
     .locator("#applicants_0_firstName")
-      .first();
+    .first();
 
   private readonly applicantLastNameField: Locator = this.page
     .locator("#applicants_0_lastName")

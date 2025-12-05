@@ -140,15 +140,11 @@ export class PartiesPage extends CaseAccessViewPage {
     await expect(this.fl401SolicitorDetailsTable).toBeHidden();
   }
 
-  async assertUpdatedApplName(
-    surname: string,
-  ): Promise<void> {
+  async assertUpdatedApplName(surname: string): Promise<void> {
     await this.page.getByText(surname);
   }
 
-  async assertUpdatedRespName(
-    surname: string,
-  ): Promise<void> {
+  async assertUpdatedRespName(surname: string): Promise<void> {
     await this.page.getByText(surname);
   }
 }

@@ -170,10 +170,7 @@ export class CaseListPage extends CommonPage {
     }
   }
 
-  async assertNewCaseName(
-    page: Page,
-    newCaseName: string,
-  ): Promise<void> {
+  async assertNewCaseName(page: Page, newCaseName: string): Promise<void> {
     await page.goto(Config.manageCasesBaseURLCase + "/cases");
     await expect(
       page.locator(`${Selectors.Span}:text-is("${newCaseName}")`).first(),
@@ -186,7 +183,9 @@ export class CaseListPage extends CommonPage {
   ): Promise<void> {
     await page.goto(Config.manageCasesBaseURLCase + "/cases");
     await expect(
-      page.locator(`${Selectors.Span}:text-is("${newCaseNameRespondent}")`).first(),
+      page
+        .locator(`${Selectors.Span}:text-is("${newCaseNameRespondent}")`)
+        .first(),
     ).toBeVisible();
   }
 }
