@@ -169,4 +169,16 @@ export class CaseListPage extends CommonPage {
       // await new AxeUtils(page).audit(); disabled due to ExUI issues (EXUI-2717)
     }
   }
+
+  async assertNewCaseName(
+    page: Page,
+    newCaseName: string,
+  ): Promise<void> {
+    await page.goto(Config.manageCasesBaseURLCase + "/cases");
+    Helpers.checkVisibleAndPresent(
+      page,
+      `${Selectors.Span}:text-is("${newCaseName}")`,
+      1,
+    );
+  }
 }

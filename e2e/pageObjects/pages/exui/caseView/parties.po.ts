@@ -27,6 +27,9 @@ export class PartiesPage extends CaseAccessViewPage {
   private readonly barristerOrg: Locator = this.page
     .locator("#search-org-text")
     .first();
+  private readonly applicantLastNameField: Locator = this.page
+    .locator("applicants_0_lastName")
+    .first();
 
   constructor(page: Page) {
     super(page);
@@ -135,5 +138,11 @@ export class PartiesPage extends CaseAccessViewPage {
     // FL401 is a bit different only need to check the solicitor section is hidden once
     await expect(this.fl401LegalRepresentativeDetailsHeading).toBeHidden();
     await expect(this.fl401SolicitorDetailsTable).toBeHidden();
+  }
+
+  async assertUpdatedApplName(
+    surname: string,
+  ): Promise<void> {
+    await expect(this.applicantLastNameField).toHaveText(surname);
   }
 }
