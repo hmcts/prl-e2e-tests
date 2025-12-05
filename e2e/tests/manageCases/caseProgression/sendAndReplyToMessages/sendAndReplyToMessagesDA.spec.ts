@@ -6,10 +6,6 @@ import { SendAndReplyToMessages } from "../../../../journeys/manageCases/casePro
 test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("Send and reply to messages between court admin and judge for an FL401 case tests", () => {
-  test.skip(
-    process.env.MANAGE_CASES_TEST_ENV === "preview",
-    "Doesn't work on preview env - internal send and reply to messages doesn't work",
-  );
 
   let ccdRef: string;
   test.beforeEach(async ({ page, browser, caseEventUtils }) => {

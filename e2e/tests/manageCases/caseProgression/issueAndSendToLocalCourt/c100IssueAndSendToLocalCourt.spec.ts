@@ -1,16 +1,14 @@
 import config from "../../../../utils/config.utils.ts";
 import { test } from "../../../fixtures.ts";
 
-test.use({ storageState: config.sessionStoragePath + "courtAdminStoke.json" });
-
 test.describe("Issue and send to local court for CA cases", () => {
   let caseNumber: string = "";
 
   test.beforeEach(
-    async ({ page, browser, caseEventUtils, navigationUtils }) => {
+    async ({ courtAdminStoke, browser, caseEventUtils, navigationUtils }) => {
       caseNumber = await caseEventUtils.createCACase(browser);
       await navigationUtils.goToCase(
-        page,
+        courtAdminStoke.page,
         config.manageCasesBaseURLCase,
         caseNumber,
         "tasks",
@@ -29,31 +27,31 @@ test.describe("Issue and send to local court for CA cases", () => {
   Case: C100,
   Accessibility testing: yes. 
   @nightly @accessibility @regression`, async ({
-      summaryPage,
-      tasksPage,
-      issueAndSendToLocalCourtCallback1Page,
-      issueAndSendToLocalCourtCallbackSubmitPage,
+      courtAdminStoke,
     }): Promise<void> => {
+      const { tasksPage, issueAndSendToLocalCourt, summaryPage } =
+        courtAdminStoke;
+
       await tasksPage.assignTaskToMeAndTriggerNextSteps(
         "Check Application",
         "Issue and send to local Court",
         "courtAdminStoke",
       );
 
-      await issueAndSendToLocalCourtCallback1Page.assertPageContents();
+      await issueAndSendToLocalCourt.page1.assertPageContents();
 
       // #TODO Disabled pending FPET-1194 ticket
-      //await issueAndSendToLocalCourtCallback1Page.verifyAccessibility();
+      //await issueAndSendToLocalCourt.page1.verifyAccessibility();
 
-      await issueAndSendToLocalCourtCallback1Page.selectCourt(courtName);
-      await issueAndSendToLocalCourtCallback1Page.clickContinue();
+      await issueAndSendToLocalCourt.page1.selectCourt(courtName);
+      await issueAndSendToLocalCourt.page1.clickContinue();
 
-      await issueAndSendToLocalCourtCallbackSubmitPage.assertPageContents(
+      await issueAndSendToLocalCourt.submitPage.assertPageContents(
         ["caseProgression", "issueAndSendToLocalCourt"],
         snapshotName,
       );
-      await issueAndSendToLocalCourtCallbackSubmitPage.verifyAccessibility();
-      await issueAndSendToLocalCourtCallbackSubmitPage.clickSubmit();
+      await issueAndSendToLocalCourt.submitPage.verifyAccessibility();
+      await issueAndSendToLocalCourt.submitPage.clickSubmit();
 
       await summaryPage.alertBanner.assertEventAlert(
         caseNumber,
