@@ -1,6 +1,5 @@
 import { Page } from "@playwright/test";
 import { solicitorCaseCreateType } from "../../../../common/types.ts";
-import { CaseListPage } from "../../../../pages/manageCases/caseList/caseListPage.ts";
 import { SolicitorCreatePage } from "../../../../pages/manageCases/createCase/initialJourney/solicitorCreatePage.ts";
 import { SolicitorCreate2Page } from "../../../../pages/manageCases/createCase/initialJourney/solicitorCreate2Page.ts";
 import { SolicitorCreate4Page } from "../../../../pages/manageCases/createCase/initialJourney/solicitorCreate4Page.ts";
@@ -9,6 +8,7 @@ import { Selectors } from "../../../../common/selectors.ts";
 import { C100TasksTabPage } from "../../../../pages/manageCases/caseTabs/c100TasksTabPage.ts";
 import { SolicitorCreate5Page } from "../../../../pages/manageCases/createCase/initialJourney/solicitorCreate5Page.ts";
 import { Fl401TasksTabPage } from "../../../../pages/manageCases/caseTabs/fl401TasksTabPage.ts";
+import Config from "../../../../utils/config.utils.js";
 
 export class DummyCreateInitial {
   public static async createDummyCase({
@@ -19,7 +19,7 @@ export class DummyCreateInitial {
     solicitorCaseType: solicitorCaseCreateType;
   }): Promise<void> {
     let caseName: string;
-    await CaseListPage.navigateToCreateCasePage(page);
+    await page.goto(Config.manageCasesBaseURLCase + "/case-filter");
     await SolicitorCreatePage.solicitorCreatePage(page, false, true);
     await SolicitorCreate2Page.solicitorCreate2Page(
       page,

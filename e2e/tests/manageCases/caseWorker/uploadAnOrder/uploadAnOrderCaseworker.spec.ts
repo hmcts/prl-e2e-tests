@@ -1,6 +1,5 @@
 import { test } from "@playwright/test";
 import Config from "../../../../utils/config.utils.ts";
-import { CaseListPage } from "../../../../pages/manageCases/caseList/caseListPage.ts";
 import { CaseFilterPage } from "../../../../pages/manageCases/caseWorker/createAnOrder/initialJourney/caseFilterPage.ts";
 import { TestingSupportDummyAdminCreateNoc2Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/initialJourney/testingSupportDummyAdminCreateNoc2Page.ts";
 import { TestingSupportDummyAdminCreateNoc3Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/initialJourney/testingSupportDummyAdminCreateNoc3Page.ts";
@@ -12,7 +11,7 @@ test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 test.describe("'Upload an order' tests", (): void => {
   test.beforeEach(async ({ page }) => {
     //Test setup no accessibility test needed
-    await CaseListPage.navigateToCreateCasePage(page);
+    await page.goto(Config.manageCasesBaseURLCase + "/case-filter");
     await CaseFilterPage.caseFilterPage({ page, accessibilityTest: false });
     await TestingSupportDummyAdminCreateNoc2Page.testingSupportDummyAdminCreateNoc2Page(
       { page, accessibilityTest: false, solicitorCaseCreateType: "C100" },

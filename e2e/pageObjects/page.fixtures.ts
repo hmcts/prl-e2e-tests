@@ -23,6 +23,7 @@ import { Fl401RemoveLegalRepresentativeConfirmPage } from "./pages/exui/removeLe
 import { AmendApplicantDetails1 } from "./pages/exui/amendApplicantDetails/amendApplicantDetails1.po.ts";
 import { AmendApplicantDetailsSubmit } from "./pages/exui/amendApplicantDetails/amendApplicantDetailsSubmit.po.ts";
 import { PartiesPage } from "./pages/exui/caseView/parties.po.js";
+import { CaseListPage } from "./pages/exui/caseListPage.po.js";
 import { WithdrawApplicationEvent1Page } from "./pages/exui/withdrawApplication/withdrawApplicationEvent1.po.js";
 import { WithdrawApplicationEventSubmitPage } from "./pages/exui/withdrawApplication/withdrawApplicationEventSubmit.po.js";
 import { WithdrawApplicationEventConfirmPage } from "./pages/exui/withdrawApplication/withdrawApplicationEventConfirm.po.js";
@@ -78,6 +79,7 @@ export interface PageFixtures {
   fl401RemoveLegalRepresentative1Page: Fl401RemoveLegalRepresentative1Page;
   fl401RemoveLegalRepresentativeSubmitPage: Fl401RemoveLegalRepresentativeSubmitPage;
   fl401RemoveLegalRepresentativeConfirmPage: Fl401RemoveLegalRepresentativeConfirmPage;
+  caseListPage: CaseListPage;
   withdrawApplicationEvent1Page: WithdrawApplicationEvent1Page;
   withdrawApplicationEventSubmitPage: WithdrawApplicationEventSubmitPage;
   withdrawApplicationEventConfirmPage: WithdrawApplicationEventConfirmPage;
@@ -183,6 +185,9 @@ export const pageFixtures = {
   },
   fl401RemoveLegalRepresentativeConfirmPage: async ({ page }, use) => {
     await use(new Fl401RemoveLegalRepresentativeConfirmPage(page));
+  },
+  caseListPage: async ({ page }, use) => {
+    await use(new CaseListPage(page));
   },
   withdrawApplicationEvent1Page: async ({ page }, use) => {
     await use(new WithdrawApplicationEvent1Page(page));

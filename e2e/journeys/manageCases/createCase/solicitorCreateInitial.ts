@@ -1,7 +1,6 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../common/selectors.ts";
 import { solicitorCaseCreateType, UserRole } from "../../../common/types.ts";
-import { CaseListPage } from "../../../pages/manageCases/caseList/caseListPage.ts";
 import { C100TasksTabPage } from "../../../pages/manageCases/caseTabs/c100TasksTabPage.ts";
 import { Fl401TasksTabPage } from "../../../pages/manageCases/caseTabs/fl401TasksTabPage.ts";
 import { SolicitorCreate2Page } from "../../../pages/manageCases/createCase/initialJourney/solicitorCreate2Page.ts";
@@ -12,6 +11,7 @@ import { SolicitorCreate6Page } from "../../../pages/manageCases/createCase/init
 import { SolicitorCreate7Page } from "../../../pages/manageCases/createCase/initialJourney/solicitorCreate7Page.ts";
 import { SolicitorCreatePage } from "../../../pages/manageCases/createCase/initialJourney/solicitorCreatePage.ts";
 import { SubmitPage } from "../../../pages/manageCases/createCase/initialJourney/submitPage.ts";
+import Config from "../../../utils/config.utils.js";
 
 export class SolicitorCreateInitial {
   public static async createInitialCase({
@@ -27,7 +27,7 @@ export class SolicitorCreateInitial {
     errorMessaging: boolean;
   }): Promise<void> {
     let caseName: string;
-    await CaseListPage.navigateToCreateCasePage(page);
+    await page.goto(Config.manageCasesBaseURLCase + "/case-filter");
     await SolicitorCreatePage.solicitorCreatePage(page, accessibilityTest);
     await SolicitorCreate2Page.solicitorCreate2Page(
       page,
