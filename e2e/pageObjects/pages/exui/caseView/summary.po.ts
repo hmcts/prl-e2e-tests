@@ -89,4 +89,16 @@ export class SummaryPage extends CaseAccessViewPage {
       this.caseStatusDetails.getByText(status, { exact: true }),
     ).toBeVisible();
   }
+
+  async assertCaseNameAfterUpdate(newCaseName: string): Promise<void> {
+    await expect(this.page.getByRole("tab", { name: "Summary" })).toBeVisible();
+    await this.page.getByRole("heading", { name: newCaseName });
+  }
+
+  async assertCaseNameAfterUpdateRespondent(
+    newCaseNameRespondent: string,
+  ): Promise<void> {
+    await expect(this.page.getByRole("tab", { name: "Summary" })).toBeVisible();
+    await this.page.getByRole("heading", { name: newCaseNameRespondent });
+  }
 }
