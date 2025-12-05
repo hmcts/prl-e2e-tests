@@ -7,10 +7,7 @@ interface ApplicantName {
   firstname: string;
   surname: string;
 }
-interface RespondentName {
-  firstname: string;
-  surname: string;
-}
+
 
 export class AmendApplicantDetails1 extends EventPage {
 

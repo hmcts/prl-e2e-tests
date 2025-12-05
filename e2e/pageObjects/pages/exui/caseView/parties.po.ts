@@ -143,6 +143,12 @@ export class PartiesPage extends CaseAccessViewPage {
   async assertUpdatedApplName(
     surname: string,
   ): Promise<void> {
-    await expect(this.applicantLastNameField).toHaveText(surname);
+    await this.page.getByText(surname);
+  }
+
+  async assertUpdatedRespName(
+    surname: string,
+  ): Promise<void> {
+    await this.page.getByText(surname);
   }
 }

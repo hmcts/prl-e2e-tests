@@ -175,10 +175,18 @@ export class CaseListPage extends CommonPage {
     newCaseName: string,
   ): Promise<void> {
     await page.goto(Config.manageCasesBaseURLCase + "/cases");
-    Helpers.checkVisibleAndPresent(
-      page,
-      `${Selectors.Span}:text-is("${newCaseName}")`,
-      1,
-    );
+    await expect(
+      page.locator(`${Selectors.Span}:text-is("${newCaseName}")`).first(),
+    ).toBeVisible();
+  }
+
+  async assertNewCaseNameRespondent(
+    page: Page,
+    newCaseNameRespondent: string,
+  ): Promise<void> {
+    await page.goto(Config.manageCasesBaseURLCase + "/cases");
+    await expect(
+      page.locator(`${Selectors.Span}:text-is("${newCaseNameRespondent}")`).first(),
+    ).toBeVisible();
   }
 }

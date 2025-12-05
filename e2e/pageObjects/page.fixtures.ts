@@ -49,6 +49,8 @@ import { DraftAnOrder8Page } from "./pages/exui/orders/solicitor/draftAnOrder8.p
 import { RemoveDraftOrder1Page } from "./pages/exui/orders/removeDraftOrder/removeDraftOrder1.po.js";
 import { RemoveDraftOrder2Page } from "./pages/exui/orders/removeDraftOrder/removeDraftOrder2.po.js";
 import { RemoveDraftOrderSubmitPage } from "./pages/exui/orders/removeDraftOrder/removeDraftOrderSubmit.po.js";
+import { AmendRespondentDetails1 } from "./pages/exui/amendRespondentDetails/amendRespondentDetails1.po.ts";
+import { AmendRespondentDetailsSubmit } from "./pages/exui/amendRespondentDetails/amendRespondentDetailsSubmit.po.ts";
 
 export interface PageFixtures {
   tasksPage: TasksPage;
@@ -102,6 +104,8 @@ export interface PageFixtures {
   removeDraftOrder1Page: RemoveDraftOrder1Page;
   removeDraftOrder2Page: RemoveDraftOrder2Page;
   removeDraftOrderSubmitPage: RemoveDraftOrderSubmitPage;
+  amendRespondentDetails1: AmendRespondentDetails1;
+  amendRespondentDetailsSubmit: AmendRespondentDetailsSubmit;
 }
 
 export const pageFixtures = {
@@ -257,5 +261,11 @@ export const pageFixtures = {
   },
   removeDraftOrderSubmitPage: async ({ page }, use) => {
     await use(new RemoveDraftOrderSubmitPage(page));
+  },
+  amendRespondentDetails1: async ({ page }, use) => {
+    await use(new AmendRespondentDetails1(page));
+  },
+  amendRespondentDetailsSubmit: async ({ page }, use) => {
+    await use(new AmendRespondentDetailsSubmit(page));
   },
 };
