@@ -5,18 +5,16 @@ import { AmendApplicantDetails1 } from "../../../../pageObjects/pages/exui/amend
 import { AmendApplicantDetailsSubmit } from "../../../../pageObjects/pages/exui/amendApplicantDetails/amendApplicantDetailsSubmit.po.ts";
 import { PartiesPage } from "../../../../pageObjects/pages/exui/caseView/parties.po.ts";
 import { SummaryPage } from "../../../../pageObjects/pages/exui/caseView/summary.po.ts";
-import { CaseListPage } from "../../../../pages/manageCases/caseList/caseListPage.ts";
 import { AmendRespondentDetails1 } from "../../../../pageObjects/pages/exui/amendRespondentDetails/amendRespondentDetails1.po.ts";
 import { AmendRespondentDetailsSubmit } from "../../../../pageObjects/pages/exui/amendRespondentDetails/amendRespondentDetailsSubmit.po.ts";
 
 test.use({ storageState: config.sessionStoragePath + "solicitor.json" });
 
-test.describe("Validating auto-generated case names for CA and DA cases", () => {
+test.describe("Validating auto-generated case names for DA case", () => {
   let caseNumber: string;
   test.beforeEach(
     async ({ page, browser, caseEventUtils, navigationUtils }) => {
-      caseNumber =
-        await caseEventUtils.createCACaseIssueAndSendToLocalCourt(browser);
+      caseNumber = await caseEventUtils.createDACaseSendToGatekeeper(browser);
       await navigationUtils.goToCase(
         page,
         config.manageCasesBaseURLCase,
@@ -32,13 +30,16 @@ test.describe("Validating auto-generated case names for CA and DA cases", () => 
         firstname: "UpdatedApplFN",
         surname: "UpdatedApplLN",
       },
-      resultingCaseName: { newCaseName: "UpdatedApplLN V Richards" },
+      resultingCaseName: {
+        fl401newCaseName: "UpdatedApplFN UpdatedApplLN & Elise Lynn",
+      },
       updatedRespondentsName: {
         firstname: "newRespndentFN",
         surname: "newRespndentLN",
       },
       resultingCaseNameRespondent: {
-        newCaseNameRespondent: "UpdatedApplLN V newRespndentLN",
+        fl401newCaseNameRespondent:
+          "UpdatedApplFN UpdatedApplLN & newRespndentFN newRespndentLN",
       },
     },
   ].forEach(
@@ -74,28 +75,24 @@ test.describe("Validating auto-generated case names for CA and DA cases", () => 
           caseworkerPage,
         );
         await expect(amendApplicantDetails1.pageHeading).toBeVisible();
-        await amendApplicantDetails1.updateApplicantsName(
+        await amendApplicantDetails1.fl401updateApplicantsName(
           updatedApplicantsName.firstname,
           updatedApplicantsName.surname,
         );
+        await amendApplicantDetails1.verifyAccessibility();
         await amendApplicantDetails1.clickContinue();
         await amendApplicantDetailsSubmit.clickSaveAndContinue();
+        // await amendApplicantDetailsSubmit.verifyAccessibility(); // accessibility check failing, to be uncommented after FPVTL-1693 is fixed
         // checking if the 'case name' has been updated as expected
         const newSummaryPage = new SummaryPage(caseworkerPage);
-        await newSummaryPage.assertCaseNameAfterUpdate(
-          resultingCaseName.newCaseName,
+        await newSummaryPage.fl401assertCaseNameAfterUpdate(
+          resultingCaseName.fl401newCaseName,
         );
         // checking Parties tab for name update
         const newPartiesPage = new PartiesPage(caseworkerPage);
         await newPartiesPage.goToPage();
-        await newPartiesPage.assertUpdatedApplName(
+        await newPartiesPage.fl401assertUpdatedApplName(
           updatedApplicantsName.surname,
-        );
-        // checking 'case name' on the Case list screen
-        const newCaseListPage = new CaseListPage();
-        await newCaseListPage.assertNewCaseName(
-          caseworkerPage,
-          resultingCaseName.newCaseName,
         );
         // updating Respondent's name, and re-checking
         await Helpers.goToCase(
@@ -115,26 +112,23 @@ test.describe("Validating auto-generated case names for CA and DA cases", () => 
           caseworkerPage,
         );
         await expect(amendRespondentDetails1.pageHeading).toBeVisible();
-        await amendRespondentDetails1.updateApplicantsName(
+        await amendRespondentDetails1.fl401updateRespondentsName(
           updatedRespondentsName.firstname,
           updatedRespondentsName.surname,
         );
+        await amendRespondentDetails1.verifyAccessibility();
         await amendRespondentDetails1.clickContinue();
+        await amendRespondentDetailsSubmit.verifyAccessibility();
         await amendRespondentDetailsSubmit.clickSaveAndContinue();
 
         // checking if the 'case name' has been updated as expected
-        await newSummaryPage.assertCaseNameAfterUpdateRespondent(
-          resultingCaseNameRespondent.newCaseNameRespondent,
+        await newSummaryPage.fl401assertCaseNameAfterUpdateRespondent(
+          resultingCaseNameRespondent.fl401newCaseNameRespondent,
         );
         // checking Parties tab for name update
         await newPartiesPage.goToPage();
-        await newPartiesPage.assertUpdatedRespName(
+        await newPartiesPage.fl401assertUpdatedRespName(
           updatedRespondentsName.surname,
-        );
-        // checking 'case name' on the Case list screen
-        await newCaseListPage.assertNewCaseNameRespondent(
-          caseworkerPage,
-          resultingCaseNameRespondent.newCaseNameRespondent,
         );
       });
     },

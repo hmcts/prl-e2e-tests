@@ -90,19 +90,39 @@ export class SummaryPage extends CaseAccessViewPage {
     ).toBeVisible();
   }
 
-  async assertCaseNameAfterUpdate(newCaseName: string): Promise<void> {
+  async c100assertCaseNameAfterUpdate(c100newCaseName: string): Promise<void> {
     await expect(this.page.getByRole("tab", { name: "Summary" })).toBeVisible();
     await expect(
-      this.page.getByRole("heading", { name: newCaseName }),
+      this.page.getByRole("heading", { name: c100newCaseName }),
     ).toBeVisible();
   }
 
-  async assertCaseNameAfterUpdateRespondent(
-    newCaseNameRespondent: string,
+  async c100assertCaseNameAfterUpdateRespondent(
+    c100newCaseNameRespondent: string,
   ): Promise<void> {
     await expect(this.page.getByRole("tab", { name: "Summary" })).toBeVisible();
     await expect(
-      this.page.getByRole("heading", { name: newCaseNameRespondent }),
+      this.page.getByRole("heading", { name: c100newCaseNameRespondent }),
     ).toBeVisible();
   }
+
+  async fl401assertCaseNameAfterUpdate(
+    fl401newCaseName: string,
+  ): Promise<void> {
+    await expect(this.page.getByRole("tab", { name: "Summary" })).toBeVisible();
+    await expect(
+      this.page.getByRole("heading", { name: fl401newCaseName }),
+    ).toBeVisible();
+  }
+
+  async fl401assertCaseNameAfterUpdateRespondent(
+    fl401newCaseNameRespondent: string,
+  ): Promise<void> {
+    await expect(this.page.getByRole("tab", { name: "Summary" })).toBeVisible();
+    await expect(
+      this.page.getByRole("heading", { name: fl401newCaseNameRespondent }),
+    ).toBeVisible();
+  }
+
+  //Mario Kart & Luigi Kert
 }

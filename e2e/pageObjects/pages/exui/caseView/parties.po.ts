@@ -140,14 +140,28 @@ export class PartiesPage extends CaseAccessViewPage {
     await expect(this.fl401SolicitorDetailsTable).toBeHidden();
   }
 
-  async assertUpdatedApplName(surname: string): Promise<void> {
+  async c100assertUpdatedApplName(surname: string): Promise<void> {
     //await this.page.getByText(surname);
     await expect(
       this.page.locator(Selectors.Span, { hasText: surname }).first(),
     ).toBeVisible();
   }
 
-  async assertUpdatedRespName(surname: string): Promise<void> {
+  async c100assertUpdatedRespName(surname: string): Promise<void> {
+    //await this.page.getByText(surname);
+    await expect(
+      this.page.locator(Selectors.Span, { hasText: surname }).first(),
+    ).toBeVisible();
+  }
+
+  async fl401assertUpdatedApplName(surname: string): Promise<void> {
+    //await this.page.getByText(surname);
+    await expect(
+      this.page.locator(Selectors.Span, { hasText: surname }).first(),
+    ).toBeVisible();
+  }
+
+  async fl401assertUpdatedRespName(surname: string): Promise<void> {
     //await this.page.getByText(surname);
     await expect(
       this.page.locator(Selectors.Span, { hasText: surname }).first(),
