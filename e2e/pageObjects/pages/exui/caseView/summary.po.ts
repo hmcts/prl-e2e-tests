@@ -92,13 +92,17 @@ export class SummaryPage extends CaseAccessViewPage {
 
   async assertCaseNameAfterUpdate(newCaseName: string): Promise<void> {
     await expect(this.page.getByRole("tab", { name: "Summary" })).toBeVisible();
-    await this.page.getByRole("heading", { name: newCaseName });
+    await expect(
+      this.page.getByRole("heading", { name: newCaseName }),
+    ).toBeVisible();
   }
 
   async assertCaseNameAfterUpdateRespondent(
     newCaseNameRespondent: string,
   ): Promise<void> {
     await expect(this.page.getByRole("tab", { name: "Summary" })).toBeVisible();
-    await this.page.getByRole("heading", { name: newCaseNameRespondent });
+    await expect(
+      this.page.getByRole("heading", { name: newCaseNameRespondent }),
+    ).toBeVisible();
   }
 }

@@ -1,4 +1,4 @@
-import { Page, expect } from "@playwright/test";
+import { Page, expect, test } from "@playwright/test";
 import { Helpers } from "../../../common/helpers.ts";
 import { Selectors } from "../../../common/selectors.ts";
 import Config from "../../../utils/config.utils.ts";
@@ -172,6 +172,7 @@ export class CaseListPage extends CommonPage {
 
   async assertNewCaseName(page: Page, newCaseName: string): Promise<void> {
     await page.goto(Config.manageCasesBaseURLCase + "/cases");
+    await test.setTimeout(125_000); // the updated 'case name' takes about 2 minutes to appear in 'Case list'
     await expect(
       page.locator(`${Selectors.Span}:text-is("${newCaseName}")`).first(),
     ).toBeVisible();
@@ -182,6 +183,7 @@ export class CaseListPage extends CommonPage {
     newCaseNameRespondent: string,
   ): Promise<void> {
     await page.goto(Config.manageCasesBaseURLCase + "/cases");
+    await test.setTimeout(125_000);
     await expect(
       page
         .locator(`${Selectors.Span}:text-is("${newCaseNameRespondent}")`)

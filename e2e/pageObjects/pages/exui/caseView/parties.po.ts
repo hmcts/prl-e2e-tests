@@ -141,10 +141,16 @@ export class PartiesPage extends CaseAccessViewPage {
   }
 
   async assertUpdatedApplName(surname: string): Promise<void> {
-    await this.page.getByText(surname);
+    //await this.page.getByText(surname);
+    await expect(
+      this.page.locator(Selectors.Span, { hasText: surname }).first(),
+    ).toBeVisible();
   }
 
   async assertUpdatedRespName(surname: string): Promise<void> {
-    await this.page.getByText(surname);
+    //await this.page.getByText(surname);
+    await expect(
+      this.page.locator(Selectors.Span, { hasText: surname }).first(),
+    ).toBeVisible();
   }
 }
