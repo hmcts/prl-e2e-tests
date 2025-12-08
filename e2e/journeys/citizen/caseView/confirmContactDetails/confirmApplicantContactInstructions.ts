@@ -74,12 +74,9 @@ export class ConfirmApplicantContactInstructions {
     const phoneNumberValue = page.locator(
       UniqueSelectors.phoneNumberFieldSelector,
     );
-     expect(phoneNumberValue).not.toBeNull();
-
-    // check that value is not empty
-     expect(phoneNumberValue).not.toBe("");
-
-    // Enter a value into the "When it is safe to call you?" field and continue
+    // verify phone number value is not null or empty
+    await Promise.all([expect(phoneNumberValue).not.toBeNull(), expect(phoneNumberValue).not.toBe("")]);
+  
     const safeToCallField = page.locator(
       UniqueSelectors.safeToCallFieldSelector,
     );
