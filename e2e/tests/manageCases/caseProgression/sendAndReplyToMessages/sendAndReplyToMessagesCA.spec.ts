@@ -9,10 +9,6 @@ import { test } from "../../../fixtures.ts";
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("Send and reply to messages between court admin and judge for a C100 case tests", () => {
-  test.skip(
-    process.env.MANAGE_CASES_TEST_ENV === "preview",
-    "Doesn't work on preview env - internal send and reply to messages doesn't work",
-  );
 
   let ccdRef: string;
   test.beforeEach(async ({ page, browser, caseEventUtils }) => {

@@ -257,6 +257,7 @@ export type yesNoNA = "Yes" | "No" | "Not applicable";
 
 export type courtAdminEvents =
   | "Edit and serve an order"
+  | "Send to gatekeeper"
   | "Remove legal representative";
 
 export type contactOption = "Digital" | "Post";
