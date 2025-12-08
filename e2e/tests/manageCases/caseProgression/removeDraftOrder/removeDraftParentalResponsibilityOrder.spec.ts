@@ -2,12 +2,6 @@ import Config from "../../../../utils/config.utils.ts";
 import { test } from "../../../fixtures.ts";
 import { RemoveDraftParentalResponsibilityOrderScenarios as scenarios } from "../../../../testData/draftOrders.js";
 import { DraftAnOrderJourney } from "../../../../journeys/manageCases/caseProgression/solicitor/draftAnOrderJourney.js";
-import { Page } from "@playwright/test";
-import { RemoveDraftOrder1Page } from "../../../../pageObjects/pages/exui/orders/removeDraftOrder/removeDraftOrder1.po.js";
-import { RemoveDraftOrder2Page } from "../../../../pageObjects/pages/exui/orders/removeDraftOrder/removeDraftOrder2.po.js";
-import { RemoveDraftOrderSubmitPage } from "../../../../pageObjects/pages/exui/orders/removeDraftOrder/removeDraftOrderSubmit.po.js";
-import { SummaryPage } from "../../../../pageObjects/pages/exui/caseView/summary.po.js";
-import { DraftOrdersPage } from "../../../../pageObjects/pages/exui/caseView/draftOrders.po.js";
 import { ParentalResponsibilityDraftOrderParams } from "../solicitor/draftAnOrder/draftAnOrderParentalResponsibility.spec.js";
 
 export interface RemoveDraftParentalResponsibilityOrderParams {
@@ -17,17 +11,15 @@ export interface RemoveDraftParentalResponsibilityOrderParams {
   snapshotName: string;
 }
 
-test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
-
 test.describe("Remove draft order as a court admin for solicitor created C100 cases", (): void => {
   let caseNumber: string;
 
   test.beforeEach(
-    async ({ page, browser, caseEventUtils, navigationUtils }) => {
+    async ({ solicitor, browser, caseEventUtils, navigationUtils }) => {
       caseNumber =
         await caseEventUtils.createCACaseIssueAndSendToLocalCourt(browser);
       await navigationUtils.goToCase(
-        page,
+        solicitor.page,
         Config.manageCasesBaseURLCase,
         caseNumber,
       );
@@ -42,60 +34,52 @@ test.describe("Remove draft order as a court admin for solicitor created C100 ca
       snapshotName,
     }: RemoveDraftParentalResponsibilityOrderParams) => {
       test(`Remove draft solicitor ${draftOrderParams.caseType} case order as a court admin. @regression @nightly @accessibility`, async ({
-        page,
         browser,
         navigationUtils,
+        caseWorker,
+        solicitor,
       }): Promise<void> => {
+        const { page, removeDraftOrders, summaryPage } = caseWorker;
+
         const draftAnOrderJourney: DraftAnOrderJourney =
           new DraftAnOrderJourney();
 
         await draftAnOrderJourney.draftAnOrder(
-          page,
+          solicitor.page,
           browser,
           caseNumber,
           draftOrderParams,
         );
 
         // remove draft order as admin
-        const adminPage: Page = await navigationUtils.openNewBrowserWindow(
-          browser,
-          "caseWorker",
-        );
         await navigationUtils.goToCase(
-          adminPage,
+          page,
           Config.manageCasesBaseURLCase,
           caseNumber,
         );
-        const draftOrdersPage: DraftOrdersPage = new DraftOrdersPage(adminPage);
-        await draftOrdersPage.chooseEventFromDropdown("Remove draft order");
-        const removeDraftOrder1Page: RemoveDraftOrder1Page =
-          new RemoveDraftOrder1Page(adminPage);
-        await removeDraftOrder1Page.assertPageContents();
-        await removeDraftOrder1Page.verifyAccessibility();
-        await removeDraftOrder1Page.selectOrderToRemove(
+
+        await summaryPage.chooseEventFromDropdown("Remove draft order");
+        await removeDraftOrders.page1.assertPageContents();
+        await removeDraftOrders.page1.verifyAccessibility();
+        await removeDraftOrders.page1.selectOrderToRemove(
           draftOrderParams.orderType,
         );
-        await removeDraftOrder1Page.clickContinue();
-        const removeDraftOrder2Page: RemoveDraftOrder2Page =
-          new RemoveDraftOrder2Page(adminPage);
-        await removeDraftOrder2Page.assertPageContents();
-        await removeDraftOrder2Page.verifyAccessibility();
-        await removeDraftOrder2Page.inputOrderRemovalReason(removalReason);
-        await removeDraftOrder2Page.clickContinue();
-        const removeDraftOrderSubmitPage: RemoveDraftOrderSubmitPage =
-          new RemoveDraftOrderSubmitPage(adminPage);
-        await removeDraftOrderSubmitPage.assertPageContents(
+        await removeDraftOrders.page1.clickContinue();
+        await removeDraftOrders.page2.assertPageContents();
+        await removeDraftOrders.page2.verifyAccessibility();
+        await removeDraftOrders.page2.inputOrderRemovalReason(removalReason);
+        await removeDraftOrders.page2.clickContinue();
+        await removeDraftOrders.submitPage.assertPageContents(
           snapshotsPath,
           snapshotName,
         );
-        await removeDraftOrderSubmitPage.clickSubmit();
-        const adminSummaryPage: SummaryPage = new SummaryPage(adminPage);
-        await adminSummaryPage.alertBanner.assertEventAlert(
+        await removeDraftOrders.submitPage.clickSubmit();
+        await summaryPage.alertBanner.assertEventAlert(
           caseNumber,
           "Remove draft order",
         );
         // check draft orders tab has been removed
-        await adminSummaryPage.tabHeader.assertTabDoesNotExist("Draft orders");
+        await summaryPage.tabHeader.assertTabDoesNotExist("Draft orders");
       });
     },
   );
