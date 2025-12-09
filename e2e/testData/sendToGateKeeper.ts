@@ -23,8 +23,13 @@ export const SendToGateKeeperCourtAdminScenarios: SendToGateKeeperJourneyParams[
         sendToSpecificGateKeeper: true,
         judgeOrLegalAdviser: "Legal adviser",
         legalAdviserDropdownName:
-          "legaladvisor-swansea-two(prl_legaladvisor_swansea@justice.gov.uk)",
-        legalAdviserDisplayName: "prl legaladvisor-swansea-two",
+          process.env.MANAGE_CASES_TEST_ENV === "demo"
+            ? "legal advisor(prl_demo_la_swansea@justice.gov.uk)"
+            : "legaladvisor-swansea-two(prl_legaladvisor_swansea@justice.gov.uk)",
+        legalAdviserDisplayName:
+          process.env.MANAGE_CASES_TEST_ENV === "demo"
+            ? "Prl legal advisor"
+            : "prl legaladvisor-swansea-two",
       },
       snapshotPath: ["caseProgression", "sendToGateKeeper"],
       snapshotName: "send-to-legal-adviser-gatekeeper",
