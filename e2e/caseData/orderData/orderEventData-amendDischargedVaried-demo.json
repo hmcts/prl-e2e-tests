@@ -34,7 +34,7 @@
       "judgeOrMagistrateTitle": "deputyCircuitJudge",
       "judgeOrMagistratesLastName": "Automated JudgeName",
       "justiceLegalAdviserFullName": "Automated Legal Advisor",
-      "dateOrderMade": "2021-06-05",
+      "dateOrderMade": "2025-12-09",
       "isTheOrderAboutChildren": "No",
       "recitalsOrPreamble": "loremIpsum",
       "orderDirections": "loremIpsum",
@@ -645,8 +645,8 @@
       "isRespondent4SolicitorPresent": "No",
       "isRespondent5SolicitorPresent": "No",
       "previewOrderDoc": {
-        "document_url": "http://dm-store-demo.service.core-compute-demo.internal/documents/0448b3bc-8083-447c-a412-bc8d6ac5c5b0",
-        "document_binary_url": "http://dm-store-demo.service.core-compute-demo.internal/documents/0448b3bc-8083-447c-a412-bc8d6ac5c5b0/binary",
+        "document_url": "http://dm-store-demo.service.core-compute-demo.internal/documents/f9c88b2c-f238-4902-beed-f3ad44019961",
+        "document_binary_url": "http://dm-store-demo.service.core-compute-demo.internal/documents/f9c88b2c-f238-4902-beed-f3ad44019961/binary",
         "document_filename": "amended_discharged_or_varied_order_fl404b_draft.pdf"
       },
       "judgeDirectionsToAdmin": "Lorem Ipsum",
