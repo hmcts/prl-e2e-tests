@@ -1,21 +1,11 @@
 import config from "../../../../utils/config.utils.ts";
 import { test } from "../../../fixtures.ts";
 
-test.use({ storageState: config.sessionStoragePath + "solicitor.json" });
-
 test.describe("Withdraw C100 (Solicitor created) application event as a solicitor", () => {
   let caseRef: string;
-  test.beforeEach(
-    async ({ page, browser, caseEventUtils, navigationUtils }) => {
-      caseRef = await caseEventUtils.createCACase(browser);
-      await navigationUtils.goToCase(
-        page,
-        config.manageCasesBaseURLCase,
-        caseRef,
-      );
-    },
-  );
-
+  test.beforeEach(async ({ browser, caseEventUtils }) => {
+    caseRef = await caseEventUtils.createCACase(browser);
+  });
   [
     {
       withdrawApplication: true,
@@ -29,32 +19,37 @@ test.describe("Withdraw C100 (Solicitor created) application event as a solicito
     },
   ].forEach(({ withdrawApplication, snapshotName, caseStatus }) => {
     test(`Complete withdraw application event by withdrawing application: ${withdrawApplication}. @nightly @accessibility @regression`, async ({
-      summaryPage,
-      withdrawApplicationEvent1Page,
-      withdrawApplicationEventSubmitPage,
-      withdrawApplicationEventConfirmPage,
+      solicitor,
+      navigationUtils,
     }): Promise<void> => {
-      await summaryPage.chooseEventFromDropdown("Withdraw application");
-      await withdrawApplicationEvent1Page.assertPageContents();
-      await withdrawApplicationEvent1Page.verifyAccessibility();
+      const { page, summaryPage, withdrawApplicationEvent } = solicitor;
 
-      await withdrawApplicationEvent1Page.selectWithdrawApplication(
+      await navigationUtils.goToCase(
+        page,
+        config.manageCasesBaseURLCase,
+        caseRef,
+      );
+      await summaryPage.chooseEventFromDropdown("Withdraw application");
+
+      await withdrawApplicationEvent.page1.assertPageContents();
+      await withdrawApplicationEvent.page1.verifyAccessibility();
+      await withdrawApplicationEvent.page1.selectWithdrawApplication(
         withdrawApplication,
       );
-      await withdrawApplicationEvent1Page.clickContinue();
+      await withdrawApplicationEvent.page1.clickContinue();
 
-      await withdrawApplicationEventSubmitPage.assertPageContents(
+      await withdrawApplicationEvent.submitPage.assertPageContents(
         ["caseProgression", "withdrawApplication"],
         snapshotName,
       );
-      await withdrawApplicationEventSubmitPage.verifyAccessibility();
-      await withdrawApplicationEventSubmitPage.clickSaveAndContinue();
+      await withdrawApplicationEvent.submitPage.verifyAccessibility();
+      await withdrawApplicationEvent.submitPage.clickSaveAndContinue();
 
-      await withdrawApplicationEventConfirmPage.assertPageContents(
+      await withdrawApplicationEvent.confirmPage.assertPageContents(
         withdrawApplication,
       );
-      await withdrawApplicationEventConfirmPage.verifyAccessibility();
-      await withdrawApplicationEventConfirmPage.clickCloseAndReturnToCaseDetails();
+      await withdrawApplicationEvent.confirmPage.verifyAccessibility();
+      await withdrawApplicationEvent.confirmPage.clickCloseAndReturnToCaseDetails();
 
       await summaryPage.alertBanner.assertEventAlert(
         caseRef,

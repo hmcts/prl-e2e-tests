@@ -4,7 +4,6 @@ import { Helpers } from "../../../../../common/helpers.ts";
 import { Selectors } from "../../../../../common/selectors.ts";
 import { ApplicantGender } from "../../../../../common/types.ts";
 import { ProvideDetailsContent } from "../../../../../fixtures/citizen/createCase/C100/people/provideDetailsContent.ts";
-import { uniqueSelectors } from "../urgencyAndWithoutNotice/urgentFirstHearingPage.ts";
 
 interface ProvideDetailsPageOptions {
   page: Page;
@@ -71,13 +70,18 @@ export class ProvideDetailsPage {
     );
     await page.click(checkBoxIds.isDateOfBirthUnknown);
     await Promise.all([
-      Helpers.checkGroup(
+      Helpers.checkVisibleAndPresent(
         page,
-        2,
-        ProvideDetailsContent,
-        "legend",
-        `${uniqueSelectors.legend}`,
+        `${Selectors.GovukFieldsetVisibleLegend}:text-is("${ProvideDetailsContent.legend1}")`,
+        1,
       ),
+
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFieldsetVisibleLegend}:text-is("${ProvideDetailsContent.legend2}")`,
+        1,
+      ),
+
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukHint}:text-is("${ProvideDetailsContent.hint}")`,

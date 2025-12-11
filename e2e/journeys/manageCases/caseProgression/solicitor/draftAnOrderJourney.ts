@@ -21,7 +21,7 @@ type OrderDetails =
   | NonMolestationDraftOrderParams
   | ParentalResponsibilityDraftOrderParams;
 
-// class to handle draft order journeys - required because this journey is large and re-used quite a lot
+// class to handle draft order journeys - required because this journey is large and re-used
 export class DraftAnOrderJourney {
   async draftAnOrder(
     page: Page,

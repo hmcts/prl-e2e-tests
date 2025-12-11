@@ -142,8 +142,8 @@
         }
       },
       "previewOrderDoc": {
-        "document_url": "http://dm-store-demo.service.core-compute-demo.internal/documents/0448b3bc-8083-447c-a412-bc8d6ac5c5b0",
-        "document_binary_url": "http://dm-store-demo.service.core-compute-demo.internal/documents/0448b3bc-8083-447c-a412-bc8d6ac5c5b0/binary",
+        "document_url": "http://dm-store-demo.service.core-compute-demo.internal/documents/f8fcfb05-441c-498b-a3c6-0b9a7bc5dbb4",
+        "document_binary_url": "http://dm-store-demo.service.core-compute-demo.internal/documents/f8fcfb05-441c-498b-a3c6-0b9a7bc5dbb4/binary",
         "document_filename": "Power_of_arrest_draft.pdf"
       },
       "judgeDirectionsToAdmin": "Lorem Ipsum",
