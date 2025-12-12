@@ -47,7 +47,6 @@ test.describe("Validating auto-generated case names for CA case", () => {
       );
       await amendDetails.amendApplicantDetails1.verifyAccessibility();
       await amendDetails.amendApplicantDetails1.clickContinue();
-      //await amendApplicantDetailsSubmit.verifyAccessibility(); // accessibility check failing, to be uncommented after FPVTL-1693 is fixed
       await amendDetails.amendApplicantDetailsSubmit.clickSaveAndContinue();
       // checking if the 'case name' has been updated as expected
       await summaryPage.c100assertCaseNameAfterUpdate(
