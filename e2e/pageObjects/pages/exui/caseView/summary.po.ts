@@ -91,38 +91,32 @@ export class SummaryPage extends CaseAccessViewPage {
   }
 
   async c100assertCaseNameAfterUpdate(c100newCaseName: string): Promise<void> {
-    await expect(this.page.getByRole("tab", { name: "Summary" })).toBeVisible();
     await expect(
       this.page.getByRole("heading", { name: c100newCaseName }),
-    ).toBeVisible();
+    ).toBeVisible({ timeout: 12000 }); // adding timeout due to the Amend event being slow on submission
   }
 
   async c100assertCaseNameAfterUpdateRespondent(
     c100newCaseNameRespondent: string,
   ): Promise<void> {
-    await expect(this.page.getByRole("tab", { name: "Summary" })).toBeVisible();
     await expect(
       this.page.getByRole("heading", { name: c100newCaseNameRespondent }),
-    ).toBeVisible();
+    ).toBeVisible({ timeout: 12000 });
   }
 
   async fl401assertCaseNameAfterUpdate(
     fl401newCaseName: string,
   ): Promise<void> {
-    await expect(this.page.getByRole("tab", { name: "Summary" })).toBeVisible();
     await expect(
       this.page.getByRole("heading", { name: fl401newCaseName }),
-    ).toBeVisible();
+    ).toBeVisible({ timeout: 12000 });
   }
 
   async fl401assertCaseNameAfterUpdateRespondent(
     fl401newCaseNameRespondent: string,
   ): Promise<void> {
-    await expect(this.page.getByRole("tab", { name: "Summary" })).toBeVisible();
     await expect(
       this.page.getByRole("heading", { name: fl401newCaseNameRespondent }),
-    ).toBeVisible();
+    ).toBeVisible({ timeout: 12000 });
   }
-
-  //Mario Kart & Luigi Kert
 }

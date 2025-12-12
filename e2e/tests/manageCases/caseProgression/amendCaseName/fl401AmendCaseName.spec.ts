@@ -1,8 +1,6 @@
 import config from "../../../../utils/config.utils.ts";
 import { test, expect } from "../../../fixtures.ts";
 
-test.use({ storageState: config.sessionStoragePath + "solicitor.json" });
-
 test.describe("Validating auto-generated case names for DA case", () => {
   let caseNumber: string;
 
