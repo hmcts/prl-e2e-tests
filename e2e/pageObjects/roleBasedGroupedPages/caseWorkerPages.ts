@@ -28,6 +28,8 @@ import { MaintainCaseLinkSubmitPage } from "../pages/exui/caseLinking/maintainCa
 import { LinkedCasesPage } from "../pages/exui/caseView/linkedCases.po.ts";
 import { SendToGateKeeper1Page } from "../pages/exui/sendToGateKeeper/sendToGateKeeper1.po.ts";
 import { SendToGateKeeperSubmitPage } from "../pages/exui/sendToGateKeeper/sendToGateKeeperSubmit.po.ts";
+import { AmendRespondentDetails1 } from "../pages/exui/amendRespondentDetails/amendRespondentDetails1.po.js";
+import { AmendRespondentDetailsSubmit } from "../pages/exui/amendRespondentDetails/amendRespondentDetailsSubmit.po.js";
 
 export class CaseWorkerPagesGroup {
   constructor(public readonly page: Page) {}
@@ -35,12 +37,15 @@ export class CaseWorkerPagesGroup {
   get tasksPage() {
     return new TasksPage(this.page);
   }
+
   get summaryPage() {
     return new SummaryPage(this.page);
   }
+
   get partiesPage() {
     return new PartiesPage(this.page);
   }
+
   get rolesAndAccessPage() {
     return new RolesAndAccessPage(this.page);
   }
@@ -95,6 +100,8 @@ export class CaseWorkerPagesGroup {
     return {
       amendApplicantDetails1: new AmendApplicantDetails1(this.page),
       amendApplicantDetailsSubmit: new AmendApplicantDetailsSubmit(this.page),
+      amendRespondentDetails1: new AmendRespondentDetails1(this.page),
+      amendRespondentDetailsSubmit: new AmendRespondentDetailsSubmit(this.page),
     };
   }
 
