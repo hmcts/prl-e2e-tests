@@ -39,7 +39,7 @@ export class ConfirmApplicantContactInstructions {
     accessibilityTest,
     applicationSubmittedBy,
   }: confirmApplicantContactInstructionsParams): Promise<void> {
-    const caseUser: CaseUser = isApplicant ? "applicant" : "respondent";    
+    const caseUser: CaseUser = isApplicant ? "applicant" : "respondent";
     page = await ActivateCase.activateCase({
       page: page,
       browser: browser,
@@ -55,14 +55,13 @@ export class ConfirmApplicantContactInstructions {
       `${Selectors.GovukButton}:text-is("${CommonStaticText.saveAndContinue}")`,
     );
     // Calling FL401 Case Tabs to navigate to Confidential details tab and click on confidential details tab
-    await this.fl401CaseConfidentialTab ({
+    await this.fl401CaseConfidentialTab({
       page,
       browser,
       courtIsListed: true,
       accessibilityTest: true,
       caseRef: caseRef,
-    }    
-    )
+    });
   }
 
   private static async updateApplicantContactInstructions(
@@ -75,8 +74,11 @@ export class ConfirmApplicantContactInstructions {
       UniqueSelectors.phoneNumberFieldSelector,
     );
     // verify phone number value is not null or empty
-    await Promise.all([expect(phoneNumberValue).not.toBeNull(), expect(phoneNumberValue).not.toBe("")]);
-  
+    await Promise.all([
+      expect(phoneNumberValue).not.toBeNull(),
+      expect(phoneNumberValue).not.toBe(""),
+    ]);
+
     const safeToCallField = page.locator(
       UniqueSelectors.safeToCallFieldSelector,
     );
@@ -102,7 +104,7 @@ export class ConfirmApplicantContactInstructions {
       caseRef,
       "Confidential details",
     );
-    
+
     // Verify updated contact instructions are displayed on the Confidential details tab as expected
     await Helpers.checkVisibleAndPresent(
       courtAdminPage,
@@ -111,4 +113,3 @@ export class ConfirmApplicantContactInstructions {
     );
   }
 }
-
