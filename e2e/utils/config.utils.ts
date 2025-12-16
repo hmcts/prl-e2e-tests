@@ -45,7 +45,8 @@ export class Config {
   public static readonly citizenFrontendBaseURL: string =
     Config.ensureTrailingSlash(
       process.env.CITIZEN_FRONTEND_BASE_URL ||
-        "https://privatelaw.aat.platform.hmcts.net/",
+        // "https://privatelaw.aat.platform.hmcts.net/", //# point this to the correct url to run locally  https://prl-citizen-frontend-pr-1948.preview.platform.hmcts.net/
+        "https://prl-citizen-frontend-pr-1977.preview.platform.hmcts.net"
     );
 
   public static readonly manageCasesBaseURLCase: string =
