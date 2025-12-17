@@ -152,26 +152,26 @@
   },
   "serviceOfApplication": {
     "data": {
-      "serviceOfApplicationHeader": null,
       "isConfidential": "No",
+      "serviceOfApplicationHeader": null,
       "sentDocumentPlaceHolder": "<details class='govuk-details'>\n\n<summary class='govuk-details__summary'>\n\n<h3 class='govuk-details__summary-text'>\n\nDocuments served in the pack\n\n</h3>\n\n</summary>\n\n<div class='govuk-details__text'>\n\nCertain documents will be automatically included in the pack that is sent out on parties (the people in the case).\n\nThis includes:\n\n<ul><li>an application form (FL401)</li><li>witness statement</li><li>privacy notice</li><li>cover letter (if not represented)</li></ul>\n\nYou do not need to upload these documents yourself.\n\n</div>\n\n</details>",
       "serviceOfApplicationScreen1": {
         "value": [
           {
-            "code": "af39a2ba-aad5-4347-b064-8c182faeb4ef",
-            "label": "Power of arrest (FL406) - 21 Jan 2025"
+            "code": "148e4a8b-d621-41d6-bf30-be0431520e2a",
+            "label": "Power of arrest (FL406) - 16 Dec 2025"
           }
         ],
         "list_items": [
           {
-            "code": "af39a2ba-aad5-4347-b064-8c182faeb4ef",
-            "label": "Power of arrest (FL406) - 21 Jan 2025"
+            "code": "148e4a8b-d621-41d6-bf30-be0431520e2a",
+            "label": "Power of arrest (FL406) - 16 Dec 2025"
           }
         ]
       },
       "noticeOfSafetySupportLetter": {
-        "document_url": "http://dm-store-demo.service.core-compute-demo.internal/documents/0448b3bc-8083-447c-a412-bc8d6ac5c5b0",
-        "document_binary_url": "http://dm-store-demo.service.core-compute-demo.internal/documents/0448b3bc-8083-447c-a412-bc8d6ac5c5b0/binary",
+        "document_url": "http://dm-store-demo.service.core-compute-demo.internal/documents/9294f87a-a205-473a-a2d2-cf5e311a8fef",
+        "document_binary_url": "http://dm-store-demo.service.core-compute-demo.internal/documents/9294f87a-a205-473a-a2d2-cf5e311a8fef/binary",
         "document_filename": "mockFile.pdf"
       },
       "additionalDocumentsList": [],
