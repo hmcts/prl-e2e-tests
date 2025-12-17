@@ -25,7 +25,7 @@ export interface NonMolestationDraftOrderParams {
 }
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
-// TEST COMMENT
+
 test.describe("Draft a non molestation order tests", (): void => {
   let caseNumber: string;
 

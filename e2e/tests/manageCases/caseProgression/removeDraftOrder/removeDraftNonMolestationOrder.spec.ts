@@ -10,7 +10,7 @@ export interface RemoveDraftNonMolestationOrderParams {
   snapshotsPath: string[];
   snapshotName: string;
 }
-// TEST COMMENT
+
 test.describe("Remove draft order as a court admin for solicitor created FL401 cases", (): void => {
   let caseNumber: string;
 
