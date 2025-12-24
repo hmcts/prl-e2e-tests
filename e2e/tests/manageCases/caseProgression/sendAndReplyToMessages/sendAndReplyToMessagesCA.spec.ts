@@ -39,8 +39,6 @@ test.describe("Send and reply to messages between court admin and judge for a C1
         judge,
         navigationUtils,
       }) => {
-        //const { summaryPage, sendAndReplyToMessages } = caseWorker;
-
         //send as a case worker
         await sendMessageToJudgeOrLegalAdvisorJourney(
           caseWorker,
@@ -191,7 +189,6 @@ async function replyToCourtAdminJourney(
   await sendAndReplyToMessages.sendAndReplyToMessages1Page.selectReply();
   await sendAndReplyToMessages.sendAndReplyToMessages1Page.clickContinue();
 
-  //To-Do include case-type to handle CA/DA docs
   await sendAndReplyToMessages.sendAndReplyToMessages4Page.assertPageContents(
     judgeOrLegalAdviserName,
     "C100",

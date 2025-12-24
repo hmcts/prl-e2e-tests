@@ -190,7 +190,6 @@ async function replyToCourtAdminJourney(
   await sendAndReplyToMessages.sendAndReplyToMessages1Page.selectReply();
   await sendAndReplyToMessages.sendAndReplyToMessages1Page.clickContinue();
 
-  //To-Do include case-type to handle CA/DA docs
   await sendAndReplyToMessages.sendAndReplyToMessages4Page.assertPageContents(
     judgeOrLegalAdviserName,
     "FL401",
