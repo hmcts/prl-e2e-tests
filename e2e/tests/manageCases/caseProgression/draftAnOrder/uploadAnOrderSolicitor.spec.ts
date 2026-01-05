@@ -22,7 +22,7 @@ test.describe("'Upload an order' by Solicitor via the 'Draft an Order' event tes
   test(`CA 'Upload an order' as a Solicitor with the following options:
   Case: C100,
   Accessibility testing: yes.
-  Magistrate title: true
+  Judge or Magistrate title: true
   @regression, @nightly, @accessibility`, async ({
     page,
     browser,
@@ -46,7 +46,7 @@ test.describe("'Upload an order' by Solicitor via the 'Draft an Order' event tes
   test(`CA 'Upload an order' as a Solicitor with the following options:
   Case: C100,
   Accessibility testing: yes.
-  Magistrate title: false
+  Judge or Magistrate title: false
   @regression, @nightly, @accessibility`, async ({
     page,
     browser,

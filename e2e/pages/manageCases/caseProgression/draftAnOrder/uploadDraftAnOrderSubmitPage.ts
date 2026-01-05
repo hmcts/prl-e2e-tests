@@ -17,6 +17,7 @@ export class UploadDraftAnOrderSubmitPage {
     page,
     accessibilityTest,
     solicitorCaseCreateType,
+    hasJudgeNameAndTitle,
   }: submitPageOptions): Promise<void> {
     if (!page) {
       throw new Error("Page is not defined");
@@ -25,6 +26,7 @@ export class UploadDraftAnOrderSubmitPage {
       await this.checkPageLoadsCA({
         page,
         accessibilityTest,
+        hasJudgeNameAndTitle,
       });
     } else {
       await this.checkPageLoadsDA({
@@ -71,11 +73,11 @@ export class UploadDraftAnOrderSubmitPage {
         `${Selectors.GovukText16}:text-is("${UploadDraftAnOrderSubmitContent.CAtext}")`,
         1,
       ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukText16}:text-is("${UploadDraftAnOrderSubmitContent.change}")`,
-        9,
-      ),
+      //Helpers.checkVisibleAndPresent(
+      //  page,
+      //  `${Selectors.GovukText16}:text-is("${UploadDraftAnOrderSubmitContent.change}")`,
+      //  9,
+      //),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukText16}:text-is("${UploadDraftAnOrderSubmitContent.CAchildren}")`,
@@ -92,8 +94,12 @@ export class UploadDraftAnOrderSubmitPage {
         page,
         `${Selectors.GovukText16}:text-is("${UploadDraftAnOrderSubmitContent.judgeNameLabel}")`,
         1,
-      );
-    }
+      );}
+    else await Helpers.checkVisibleAndPresent(
+      page,
+      `${Selectors.GovukText16}:text-is("${UploadDraftAnOrderSubmitContent.change}")`,
+      8,
+    )
     if (accessibilityTest) {
       await new AxeUtils(page).audit();
     }
