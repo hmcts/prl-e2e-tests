@@ -65,7 +65,7 @@ export class UploadDraftAnOrder4Page {
     if (solicitorCaseCreateType === "C100") {
       await this.fillInFieldsCA({ page, hasJudgeNameAndTitle });
     } else {
-      await this.fillInFieldsDA({ page });
+      await this.fillInFieldsDA({ page }); //hasJudgeNameAndTitle not required for DA as code is shared with CA
     }
   }
 
