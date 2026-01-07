@@ -94,12 +94,13 @@ export class UploadDraftAnOrderSubmitPage {
         page,
         `${Selectors.GovukText16}:text-is("${UploadDraftAnOrderSubmitContent.judgeNameLabel}")`,
         1,
-      );}
-    else await Helpers.checkVisibleAndPresent(
-      page,
-      `${Selectors.GovukText16}:text-is("${UploadDraftAnOrderSubmitContent.change}")`,
-      8,
-    )
+      );
+    } else
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${UploadDraftAnOrderSubmitContent.change}")`,
+        8,
+      );
     if (accessibilityTest) {
       await new AxeUtils(page).audit();
     }

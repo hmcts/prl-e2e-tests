@@ -69,6 +69,7 @@ test.describe("'Upload an order' by Solicitor via the 'Draft an Order' event tes
   test(`DA 'Upload an order' as a Solicitor with the following options:
   Case: FL401,
   Accessibility testing: yes.
+  Judge or Magistrate title: true.
   @regression, @nightly, @accessibility`, async ({
     page,
     browser,
@@ -83,6 +84,7 @@ test.describe("'Upload an order' by Solicitor via the 'Draft an Order' event tes
         isUploadOrder: true,
         errorMessaging: false,
         browser: browser,
+        hasJudgeNameAndTitle: true,
       },
     );
   });

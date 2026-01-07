@@ -7,15 +7,15 @@ export class C100DraftOrdersTabPage {
   public static async c100DraftOrdersTabPage(
     page: Page,
     accessibilityTest: boolean,
-    magistrateTitle: boolean,
+    hasJudgeNameAndTitle: boolean,
   ): Promise<void> {
-    await this.checkPageLoads(page, accessibilityTest, magistrateTitle);
+    await this.checkPageLoads(page, accessibilityTest, hasJudgeNameAndTitle);
   }
 
   private static async checkPageLoads(
     page: Page,
     accessibilityTest: boolean,
-    magistrateTitle:boolean,
+    hasJudgeNameAndTitle: boolean,
   ): Promise<void> {
     await page.waitForSelector(
       `${Selectors.GovukText16}:text-is("${C100DraftOrdersTabContent.tabTitle}")`,
@@ -26,7 +26,7 @@ export class C100DraftOrdersTabPage {
     await page.waitForSelector(
       `${Selectors.Span}${Selectors.GovukText16}:text-is("${C100DraftOrdersTabContent.subTitle1}")`,
     );
-    if (magistrateTitle) {
+    if (hasJudgeNameAndTitle) {
       await page.waitForSelector(
         `${Selectors.Span}${Selectors.GovukText16}:text-is("${C100DraftOrdersTabContent.otherdetails1}")`,
       );

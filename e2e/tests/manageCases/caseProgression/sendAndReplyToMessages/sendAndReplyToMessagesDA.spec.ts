@@ -6,7 +6,6 @@ import { SendAndReplyToMessages } from "../../../../journeys/manageCases/casePro
 test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("Send and reply to messages between court admin and judge for an FL401 case tests", () => {
-
   let ccdRef: string;
   test.beforeEach(async ({ page, browser, caseEventUtils }) => {
     ccdRef = await caseEventUtils.createDACase(browser);
