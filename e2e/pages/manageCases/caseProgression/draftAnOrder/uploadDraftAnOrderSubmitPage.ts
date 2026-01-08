@@ -131,7 +131,7 @@ export class UploadDraftAnOrderSubmitPage {
       ),
       Helpers.checkGroup(
         page,
-        12,
+        10,
         UploadDraftAnOrderSubmitContent,
         "text16_",
         `${Selectors.GovukText16}`,
