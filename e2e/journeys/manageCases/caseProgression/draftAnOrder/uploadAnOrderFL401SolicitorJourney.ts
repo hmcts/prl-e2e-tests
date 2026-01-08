@@ -23,6 +23,7 @@ interface FL401DraftAnOrderOptions {
   errorMessaging: boolean;
   browser: Browser;
   isUploadOrder: boolean;
+  hasJudgeNameAndTitle: boolean;
 }
 
 export class UploadAnOrderFL401SolicitorJourney {
@@ -36,6 +37,7 @@ export class UploadAnOrderFL401SolicitorJourney {
     errorMessaging,
     isUploadOrder,
     browser,
+    hasJudgeNameAndTitle,
   }: FL401DraftAnOrderOptions): Promise<void> {
     const caseEventUtils = new CaseEventUtils();
     const caseRef: string = await caseEventUtils.createDACase(browser);
@@ -65,11 +67,13 @@ export class UploadAnOrderFL401SolicitorJourney {
       page,
       accessibilityTest,
       solicitorCaseCreateType,
+      hasJudgeNameAndTitle,
     });
     await UploadDraftAnOrderSubmitPage.uploadDraftAnOrderSubmitPage({
       page,
       accessibilityTest,
       solicitorCaseCreateType,
+      hasJudgeNameAndTitle,
     });
     //Switching to CTSC user as Solicitor cannot see the 'Draft orders' tab in the case
     const checkPageCTSC: Page = await Helpers.openNewBrowserWindow(
@@ -87,6 +91,7 @@ export class UploadAnOrderFL401SolicitorJourney {
     await C100DraftOrdersTabPage.c100DraftOrdersTabPage(
       checkPageCTSC,
       accessibilityTest,
+      hasJudgeNameAndTitle,
     );
   }
 }
