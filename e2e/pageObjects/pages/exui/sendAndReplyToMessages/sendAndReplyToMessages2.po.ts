@@ -122,7 +122,5 @@ export class SendAndReplyToMessages2Page extends EventPage {
     await this.legalAdvisorRecipientRadio.check();
     await expect(this.selectLegalAdvisorLabel).toBeVisible();
     await this.legalAdvisorDropdown.selectOption(legalAdvisorName);
-    //if demo, change user
-    //prl legaladvisor-swansea-two (prl_legaladvisor_swansea@justice.gov.uk)
   }
 }
