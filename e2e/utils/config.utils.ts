@@ -35,6 +35,10 @@ export class Config {
       email: process.env.NOC_SOLICITOR_USERNAME as string,
       password: process.env.NOC_SOLICITOR_PASSWORD as string,
     },
+    citizenDev: {
+      email: process.env.CITIZEN_DEV_USERNAME as string,
+      password: process.env.CITIZEN_DEV_PASSWORD as string,
+    },
   };
 
   public static readonly sessionStoragePath: string = path.join(
@@ -45,7 +49,7 @@ export class Config {
   public static readonly citizenFrontendBaseURL: string =
     Config.ensureTrailingSlash(
       process.env.CITIZEN_FRONTEND_BASE_URL ||
-        "https://privatelaw.aat.platform.hmcts.net/", 
+        "https://privatelaw.aat.platform.hmcts.net/",
     );
 
   public static readonly manageCasesBaseURLCase: string =
