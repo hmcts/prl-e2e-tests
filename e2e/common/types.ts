@@ -420,3 +420,26 @@ export const NonMolestationRespondentMustNotDoOptionsArray: NonMolestationRespon
     "must not telephone, text, email or otherwise contact or attempt to contact the relevant children",
     "must not go to, enter or attempt to enter the school",
   ];
+
+// export type ReasonableAdjustments =
+//   |   "I need documents in an alternative format"
+//   | "I need help with forms"
+//   | "I need adjustments to get to, into and around our buildings"
+//   | "I need to bring support with me to a hearing"
+//   | "I need something to feel comfortable during my hearing"
+//   | "I need to request a certain type of hearing"
+//   | "I need help communicating and understanding"
+//   | "Other";
+
+export const reasonableAdjustments = [
+  "I need documents in an alternative format",
+  "I need help with forms",
+  "I need adjustments to get to, into and around our buildings",
+  "I need to bring support with me to a hearing",
+  "I need something to feel comfortable during my hearing",
+  "I need to request a certain type of hearing",
+  "I need help communicating and understanding",
+  "Other",
+];
+
+export type ReasonableAdjustment = (typeof reasonableAdjustments)[number];
