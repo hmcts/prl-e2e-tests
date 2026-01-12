@@ -1,86 +1,82 @@
 import Config from "../../../../utils/config.utils.ts";
 import config from "../../../../utils/config.utils.ts";
-import { Helpers } from "../../../../common/helpers.ts";
-import { CaseFlagsDA } from "../../../../journeys/manageCases/caseProgression/caseFlags/caseFlagsDA.ts";
 import { test } from "../../../fixtures.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 test.slow();
 
 test.describe("Case flags tests for DA case tests.", () => {
-  let ccdRef: string = "";
+  let caseNumber: string = "";
 
-  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
-    ccdRef = await caseEventUtils.createDACase(browser);
-    await Helpers.goToCase(
-      page,
-      config.manageCasesBaseURLCase,
-      ccdRef,
-      "tasks",
-    );
-  });
+  test.beforeEach(
+    async ({ solicitor, browser, caseEventUtils, navigationUtils }) => {
+      caseNumber = await caseEventUtils.createDACase(browser);
+      await navigationUtils.goToCase(
+        solicitor.page,
+        config.manageCasesBaseURLCase,
+        caseNumber,
+      );
+    },
+  );
 
-  test("Case flags - request support - reasonable adjustments - court admin approved - with translation. @nightly @accessibility @regression", async ({
-    page,
-    browser,
-  }): Promise<void> => {
-    await CaseFlagsDA.caseFlagsDA({
-      page: page,
-      browser: browser,
-      caseRef: ccdRef,
-      caseType: "FL401",
-      supportType: "reasonableAdjustment",
-      isApproved: true,
-      withTranslation: true,
-      accessibilityTest: true,
-    });
-  });
+  [
+    {
+      recipient: "John Smith",
+      supportType: "Reasonable adjustment",
+      reasonableAdjustment: "I need documents in an alternative format",
+      adjustment: "Documents in a specified colour",
+      reason: "Test reason",
+    },
+  ].forEach(
+    ({ recipient, supportType, reasonableAdjustment, adjustment, reason }) => {
+      test("do something @nightly @accessibility @regression", async ({
+        solicitor,
+      }): Promise<void> => {
+        const { summaryPage, caseFlags, supportPage } = solicitor;
+        await summaryPage.chooseEventFromDropdown("Request support");
 
-  test("Case flags - request support - language interpreter - court admin not approved - with translation. @nightly @accessibility @regression", async ({
-    page,
-    browser,
-  }): Promise<void> => {
-    await CaseFlagsDA.caseFlagsDA({
-      page: page,
-      browser: browser,
-      caseRef: ccdRef,
-      caseType: "FL401",
-      supportType: "languageInterpreter",
-      isApproved: false,
-      withTranslation: true,
-      accessibilityTest: true,
-    });
-  });
+        // complete support request
+        await caseFlags.requestSupport1Page.assertPageContents();
+        // await caseFlags.requestSupport1Page.verifyAccessibility();
+        await caseFlags.requestSupport1Page.selectSupportRecipient(recipient);
+        await caseFlags.requestSupport1Page.clickContinue();
 
-  test("Case flags - request support - reasonable adjustments - court admin not approved - without translation. @regression", async ({
-    page,
-    browser,
-  }): Promise<void> => {
-    await CaseFlagsDA.caseFlagsDA({
-      page: page,
-      browser: browser,
-      caseRef: ccdRef,
-      caseType: "FL401",
-      supportType: "reasonableAdjustment",
-      isApproved: false,
-      withTranslation: false,
-      accessibilityTest: false,
-    });
-  });
+        await caseFlags.requestSupport2Page.assertPageContents();
+        // await caseFlags.requestSupport2Page.verifyAccessibility();
+        await caseFlags.requestSupport2Page.selectSupportType(supportType);
+        await caseFlags.requestSupport2Page.clickContinue();
 
-  test("Case flags - request support - language interpreter - court admin approved - without translation. @regression", async ({
-    page,
-    browser,
-  }): Promise<void> => {
-    await CaseFlagsDA.caseFlagsDA({
-      page: page,
-      browser: browser,
-      caseRef: ccdRef,
-      caseType: "FL401",
-      supportType: "languageInterpreter",
-      isApproved: true,
-      withTranslation: false,
-      accessibilityTest: false,
-    });
-  });
+        await caseFlags.requestSupport3Page.assertPageContents();
+        // await caseFlags.requestSupport3Page.verifyAccessibility();
+        await caseFlags.requestSupport3Page.selectReasonableAdjustment(
+          reasonableAdjustment,
+        );
+        await caseFlags.requestSupport3Page.clickContinue();
+
+        await caseFlags.requestSupport4Page.assertPageContents(
+          reasonableAdjustment,
+        );
+        // await caseFlags.requestSupport4Page.verifyAccessibility();
+        await caseFlags.requestSupport4Page.selectAdjustment(adjustment);
+        await caseFlags.requestSupport4Page.clickContinue();
+
+        await caseFlags.requestSupport5Page.assertPageContents();
+        // await caseFlags.requestSupport5Page.verifyAccessibility();
+        await caseFlags.requestSupport5Page.enterReason(reason);
+        await caseFlags.requestSupport5Page.clickContinue();
+
+        await caseFlags.requestSupportSubmitPage.assertPageContents();
+        // await caseFlags.requestSupportSubmitPage.verifyAccessibility();
+        await caseFlags.requestSupportSubmitPage.clickSubmit();
+        await summaryPage.alertBanner.assertEventAlert(
+          caseNumber,
+          "Request support",
+        );
+
+        // check support request in tab
+        await supportPage.goToPage();
+        await supportPage.assertCaseFlag(recipient, adjustment, reason);
+      });
+    },
+  );
 });
