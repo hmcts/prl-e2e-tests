@@ -37,7 +37,9 @@ export class ChangedTestsRunner {
         "FETCH_HEAD...HEAD",
       ]);
       const changedFiles: string[] = diff.split("\n").filter(Boolean);
-      return changedFiles.filter((file) => file.endsWith(".spec.ts"));
+      return changedFiles
+        .filter((file) => !file.includes("DevOnly"))
+        .filter((file) => file.endsWith(".spec.ts"));
     } catch (error) {
       console.error("Error detecting changed test files: ", error);
       process.exit(1);

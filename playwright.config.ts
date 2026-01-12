@@ -16,6 +16,14 @@ export default defineConfig({
       testMatch: /global\.setup\.ts/,
     },
     {
+      name: "setup cftlib",
+      testMatch: /cftlib\.setup\.ts/,
+    },
+    {
+      name: "cftlib",
+      dependencies: ["setup cftlib"],
+    },
+    {
       ...ProjectsConfig.chrome,
       dependencies: ["setup"],
     },
