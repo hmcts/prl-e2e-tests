@@ -111,6 +111,8 @@ def secrets = [
     secret('prl-noc-solicitor-username', 'NOC_SOLICITOR_USERNAME'),
     secret('prl-noc-solicitor-password', 'NOC_SOLICITOR_PASSWORD'),
     secret('e2e-tests-github-token', 'GITHUB_TOKEN'),
+    secret('legaladvisor-swansea-username', 'LEGALADVISOR_USERNAME'),
+    secret('legaladvisor-swansea-password', 'LEGALADVISOR_PASSWORD'),
   ]
 ]
 
