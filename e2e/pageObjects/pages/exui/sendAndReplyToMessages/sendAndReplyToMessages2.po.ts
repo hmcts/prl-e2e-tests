@@ -91,13 +91,12 @@ export class SendAndReplyToMessages2Page extends EventPage {
   async selectJudgeOrLegalAdviser(
     isJudge: boolean,
     judgeOrLegalAdviserName: string,
-    judgeTier: string,
   ): Promise<void> {
     await this.internalMessageRadio.check();
     await this.pageUtils.assertStrings(this.internalMessagesFormLabels);
     await expect(this.otherFormLabel).toBeVisible();
     if (isJudge) {
-      await this.selectJudge(judgeTier, judgeOrLegalAdviserName);
+      await this.selectJudge("Circuit Judge", judgeOrLegalAdviserName);
     } else {
       await this.selectLegalAdvisor(judgeOrLegalAdviserName);
     }

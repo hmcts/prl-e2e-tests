@@ -63,12 +63,18 @@ export class SendAndReplyToMessages5Page extends EventPage {
     "Sender role",
     "Sender's name",
     "Recipient role",
-    "Judicial or magistrate Tier",
-    "Judge name",
-    "Judge email",
     "Urgency",
     "Subject",
     "Message details",
+  ];
+  readonly replyingMessagesHeadingH4ForJudiciary: string[] = [
+    "Judicial or magistrate Tier",
+    "Judge name",
+    "Judge email",
+  ];
+  readonly replyingMessagesHeadingH4ForLA: string[] = [
+    "Legal Adviser name",
+    "Legal Adviser email",
   ];
 
   readonly strong: Locator = this.page.locator(Selectors.strong, {
@@ -97,17 +103,36 @@ export class SendAndReplyToMessages5Page extends EventPage {
   readonly dateHelpersUtils: DateHelperUtils = new DateHelperUtils();
 
   async assertPageContents(
+    isJudge: boolean,
     judgeOrLegalAdviserName: string,
     caseType: string,
   ): Promise<void> {
     await this.assertPageHeadings();
     await expect(this.formHint).toBeVisible();
     await expect(this.strong).toBeVisible();
+    if (isJudge) {
+      await this.pageUtils.assertStrings(
+        this.replyingMessagesHeadingH4ForJudiciary,
+      );
+      await expect(this.judiciaryFormLabel).toBeVisible();
+      await expect(this.circuitJudgeformLabel).toBeVisible();
+      await expect(
+        this.page.locator(Selectors.GovukFormLabel, {
+          hasText: judgeOrLegalAdviserName,
+        }),
+      ).toBeVisible();
+    } else {
+      await this.pageUtils.assertStrings(this.replyingMessagesHeadingH4ForLA);
+      await expect(this.legalAdvisorFormLabel).toBeVisible();
+      const email = judgeOrLegalAdviserName.match(/\((.*)\)/)?.[1];
+      await expect(
+        this.page.locator(Selectors.GovukFormLabel, {
+          hasText: email,
+        }),
+      ).toBeVisible();
+    }
     await this.pageUtils.assertStrings(this.replyingMessageContentsFormLabels);
     await expect(this.courtAdminFormLabel).toBeVisible();
-    await expect(this.legalAdvisorFormLabel).toBeVisible();
-    await expect(this.judiciaryFormLabel).toBeVisible();
-    await expect(this.circuitJudgeformLabel).toBeVisible();
     await expect(this.yesFormLabel).toBeVisible();
     await expect(this.noFormLabel).toBeVisible();
     await expect(this.reviewSubmittedDocumentsFormLabel).toBeVisible();
@@ -120,11 +145,6 @@ export class SendAndReplyToMessages5Page extends EventPage {
     await expect(
       this.page.locator(Selectors.GovukFormLabel, {
         hasText: this.dateHelpersUtils.todayDate().toString(),
-      }),
-    ).toBeVisible();
-    await expect(
-      this.page.locator(Selectors.GovukFormLabel, {
-        hasText: judgeOrLegalAdviserName,
       }),
     ).toBeVisible();
     if (caseType === "C100") {

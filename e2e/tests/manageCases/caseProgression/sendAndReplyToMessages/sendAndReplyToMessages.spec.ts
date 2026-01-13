@@ -1,7 +1,17 @@
 import config from "../../../../utils/config.utils.ts";
 import { test } from "../../../fixtures.ts";
+import {
+  C100SendAndReplyToMessagesScenarios,
+  FL401SendAndReplyToMessagesScenarios,
+} from "../../../../testData/sendAndReplyToMessages.js";
+import { CaseWorkerPagesGroup } from "../../../../pageObjects/roleBasedGroupedPages/caseWorkerPages.ts";
+import { JudgePagesGroup } from "../../../../pageObjects/roleBasedGroupedPages/judgePages.js";
+import { LegalAdvisorPagesGroup } from "../../../../pageObjects/roleBasedGroupedPages/legalAdvisorPages.js";
 
-test.describe("Send and reply to messages between court admin and judge for a C100 case tests", () => {
+// -------------------------------
+// C100 CASE TYPE: Send and reply for judges
+// -------------------------------
+test.describe("C100 Send & Reply to messages scenarios", () => {
   let caseNumber: string;
   test.beforeEach(
     async ({ caseWorker, browser, caseEventUtils, navigationUtils }) => {
@@ -15,122 +25,123 @@ test.describe("Send and reply to messages between court admin and judge for a C1
     },
   );
 
-  [
-    {
-      isJudge: true,
-      judgeOrLegalAdviserName: "Ms Elizabeth Williams",
-      judgeTier: "Circuit Judge",
-      sendSnapshotName: "send_message_caseworker",
-      respondToMessage: true,
-      replySnapshotName: "reply_yes_message_judge",
-    },
-  ].forEach(
-    ({
+  C100SendAndReplyToMessagesScenarios.forEach((scenario) => {
+    const {
       isJudge,
       judgeOrLegalAdviserName,
-      judgeTier,
       respondToMessage,
+      snapshotPath,
       sendSnapshotName,
       replySnapshotName,
-    }) => {
-      test(`Complete send and reply messages event between court admin and judge with required response. 
+    } = scenario;
+
+    test(`Complete C100 send and reply messages event between court admin and judge with : response=${respondToMessage}. 
   @regression @accessibility @nightly`, async ({
+      caseWorker,
+      judge,
+      navigationUtils,
+    }) => {
+      await sendMessageToJudgeOrLegalAdvisorJourney(
         caseWorker,
+        caseNumber,
+        isJudge,
+        judgeOrLegalAdviserName,
+        snapshotPath,
+        sendSnapshotName,
+      );
+
+      await navigationUtils.goToCase(
+        judge.page,
+        config.manageCasesBaseURLCase,
+        caseNumber,
+        "summary",
+      );
+
+      await replyToCourtAdminJourney(
+        "C100",
+        isJudge,
         judge,
-        navigationUtils,
-      }) => {
-        //send as a case worker
-        await sendMessageToJudgeOrLegalAdvisorJourney(
-          caseWorker,
-          caseNumber,
-          isJudge,
-          judgeTier,
-          judgeOrLegalAdviserName,
-          sendSnapshotName,
-        );
+        caseNumber,
+        respondToMessage,
+        judgeOrLegalAdviserName,
+        snapshotPath,
+        replySnapshotName,
+      );
+    });
+  });
+});
 
-        //reply as a judge or Legal advisor
-        await navigationUtils.goToCase(
-          judge.page,
-          config.manageCasesBaseURLCase,
-          caseNumber,
-          "summary",
-        );
-
-        await replyToCourtAdminJourney(
-          judge,
-          caseNumber,
-          respondToMessage,
-          judgeOrLegalAdviserName,
-          replySnapshotName,
-        );
-      });
+// -------------------------------
+// FL401 CASE TYPE:Send and reply for Legal Advisors
+// -------------------------------
+test.describe("FL401 Send & Reply to messages scenarios", () => {
+  let caseNumber: string;
+  test.beforeEach(
+    async ({ caseWorker, browser, caseEventUtils, navigationUtils }) => {
+      caseNumber = await caseEventUtils.createDACase(browser);
+      await navigationUtils.goToCase(
+        caseWorker.page,
+        config.manageCasesBaseURLCase,
+        caseNumber,
+      );
     },
   );
 
-  [
-    {
-      isJudge: true,
-      judgeOrLegalAdviserName: "Ms Elizabeth Williams",
-      judgeTier: "Circuit Judge",
-      sendSnapshotName: "send_message_caseworker",
-      respondToMessage: false,
-      replySnapshotName: "reply_no_message_judge",
-    },
-  ].forEach(
-    ({
+  FL401SendAndReplyToMessagesScenarios.forEach((scenario) => {
+    const {
       isJudge,
       judgeOrLegalAdviserName,
-      judgeTier,
       respondToMessage,
+      snapshotPath,
       sendSnapshotName,
       replySnapshotName,
+    } = scenario;
+
+    test(`Complete FL401 send and reply messages event between court admin and legal advisor with : response=${respondToMessage}. 
+  @regression @accessibility @nightly`, async ({
+      caseWorker,
+      legalAdvisor,
+      navigationUtils,
     }) => {
-      test(`Complete send and reply messages event between court admin and judge without required response.
-  @regression @accessibility`, async ({
+      await sendMessageToJudgeOrLegalAdvisorJourney(
         caseWorker,
-        judge,
-        navigationUtils,
-      }) => {
-        //send as a case worker
-        await sendMessageToJudgeOrLegalAdvisorJourney(
-          caseWorker,
-          caseNumber,
-          isJudge,
-          judgeTier,
-          judgeOrLegalAdviserName,
-          sendSnapshotName,
-        );
+        caseNumber,
+        isJudge,
+        judgeOrLegalAdviserName,
+        snapshotPath,
+        sendSnapshotName,
+      );
 
-        //reply as a judge or Legal Advisor
-        await navigationUtils.goToCase(
-          judge.page,
-          config.manageCasesBaseURLCase,
-          caseNumber,
-          "summary",
-        );
+      await navigationUtils.goToCase(
+        legalAdvisor.page,
+        config.manageCasesBaseURLCase,
+        caseNumber,
+        "summary",
+      );
 
-        await replyToCourtAdminJourney(
-          judge,
-          caseNumber,
-          respondToMessage,
-          judgeOrLegalAdviserName,
-          replySnapshotName,
-        );
-      });
-    },
-  );
+      await replyToCourtAdminJourney(
+        "FL401",
+        isJudge,
+        legalAdvisor,
+        caseNumber,
+        respondToMessage,
+        judgeOrLegalAdviserName,
+        snapshotPath,
+        replySnapshotName,
+      );
+    });
+  });
 });
 
 /**
  * Sending message to judge or legal advisor as a court admin
  */
 async function sendMessageToJudgeOrLegalAdvisorJourney(
-  caseWorker,
+  caseWorker: CaseWorkerPagesGroup,
   caseNumber: string,
   isJudge: boolean,
-  judgeTier: string,
   judgeOrLegalAdviserName: string,
+  snapshotPath: string[],
   sendSnapshotName: string,
 ) {
   const { sendAndReplyToMessages, summaryPage } = caseWorker;
@@ -147,7 +158,6 @@ async function sendMessageToJudgeOrLegalAdvisorJourney(
   await sendAndReplyToMessages.sendAndReplyToMessages2page.selectJudgeOrLegalAdviser(
     isJudge,
     judgeOrLegalAdviserName,
-    judgeTier,
   );
   await sendAndReplyToMessages.sendAndReplyToMessages2page.clickContinue();
 
@@ -157,7 +167,7 @@ async function sendMessageToJudgeOrLegalAdvisorJourney(
   await sendAndReplyToMessages.sendAndReplyToMessages3Page.clickContinue();
 
   await sendAndReplyToMessages.sendAndReplyToMessagesSubmitPage.assertPageContents(
-    ["caseProgression", "c100SendAndReplyToMessages"],
+    snapshotPath,
     sendSnapshotName,
   );
   await sendAndReplyToMessages.sendAndReplyToMessagesSubmitPage.clickSaveAndContinue();
@@ -174,13 +184,16 @@ async function sendMessageToJudgeOrLegalAdvisorJourney(
  * Replying message to court admin as a judge or legal advisor
  */
 async function replyToCourtAdminJourney(
-  judge,
+  caseType: string,
+  isJudge: boolean,
+  actor: JudgePagesGroup | LegalAdvisorPagesGroup,
   caseNumber: string,
   respondToMessage: boolean,
   judgeOrLegalAdviserName: string,
+  snapshotPath: string[],
   replySnapshotName: string,
 ) {
-  const { sendAndReplyToMessages, summaryPage } = judge;
+  const { sendAndReplyToMessages, summaryPage } = actor;
 
   await summaryPage.chooseEventFromDropdown("Send and reply to messages");
   await sendAndReplyToMessages.sendAndReplyToMessages1Page.assertPageContents();
@@ -190,8 +203,9 @@ async function replyToCourtAdminJourney(
   await sendAndReplyToMessages.sendAndReplyToMessages1Page.clickContinue();
 
   await sendAndReplyToMessages.sendAndReplyToMessages4Page.assertPageContents(
+    isJudge,
     judgeOrLegalAdviserName,
-    "C100",
+    caseType,
   );
   // TODO Disabled pending ticket FPET:1211
   //await sendAndReplyToMessages.sendAndReplyToMessages4Page.verifyAccessibility();
@@ -202,8 +216,9 @@ async function replyToCourtAdminJourney(
 
   if (respondToMessage) {
     await sendAndReplyToMessages.sendAndReplyToMessages5Page.assertPageContents(
+      isJudge,
       judgeOrLegalAdviserName,
-      "C100",
+      caseType,
     );
     // TODO Disabled pending ticket FPET:1211
     //await sendAndReplyToMessages.sendAndReplyToMessages5Page.verifyAccessibility();
@@ -212,7 +227,7 @@ async function replyToCourtAdminJourney(
   }
 
   await sendAndReplyToMessages.sendAndReplyToMessagesSubmitPage.assertPageContents(
-    ["caseProgression", "c100SendAndReplyToMessages"],
+    snapshotPath,
     replySnapshotName,
   );
   await sendAndReplyToMessages.sendAndReplyToMessagesSubmitPage.clickSaveAndContinue();

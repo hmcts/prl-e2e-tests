@@ -56,12 +56,15 @@ export class SendAndReplyToMessages4Page extends EventPage {
     "Do you need to respond to this message?",
     "Yes",
     "Court admin",
-    "Judiciary",
-    "Circuit Judge",
     "Review submitted documents",
     "Test Message",
     "Test message content",
   ];
+  readonly replyingMessagesFormLabelsForJudiciary: string[] = [
+    "Judiciary",
+    "Circuit Judge",
+  ];
+  readonly replyingMessagesFormLabelsForLA: string[] = ["Legal adviser"];
   readonly documentH4: Locator = this.page.locator(Selectors.headingH4, {
     hasText: "Document",
   });
@@ -72,13 +75,19 @@ export class SendAndReplyToMessages4Page extends EventPage {
     "Sender's name",
     "Sender's email",
     "Recipient role",
-    "Judicial or magistrate Tier",
-    "Judge name",
-    "Judge email",
     "Urgency",
     "What is it about",
     "Subject",
     "Message details",
+  ];
+  readonly replyingMessagesHeadingH4ForJudiciary: string[] = [
+    "Judicial or magistrate Tier",
+    "Judge name",
+    "Judge email",
+  ];
+  readonly replyingMessagesHeadingH4ForLA: string[] = [
+    "Legal Adviser name",
+    "Legal Adviser email",
   ];
 
   constructor(page: Page) {
@@ -89,11 +98,35 @@ export class SendAndReplyToMessages4Page extends EventPage {
   readonly dateHelpersUtils: DateHelperUtils = new DateHelperUtils();
 
   async assertPageContents(
+    isJudge: boolean,
     judgeOrLegalAdviserName: string,
     caseType: string,
   ): Promise<void> {
     await this.assertPageHeadings();
     await expect(this.formHint).toBeVisible();
+
+    if (isJudge) {
+      await this.pageUtils.assertStrings(
+        this.replyingMessagesFormLabelsForJudiciary,
+      );
+      await this.pageUtils.assertStrings(
+        this.replyingMessagesHeadingH4ForJudiciary,
+      );
+      await expect(
+        this.page.locator(Selectors.GovukFormLabel, {
+          hasText: judgeOrLegalAdviserName,
+        }),
+      ).toBeVisible();
+    } else {
+      await this.pageUtils.assertStrings(this.replyingMessagesFormLabelsForLA);
+      await this.pageUtils.assertStrings(this.replyingMessagesHeadingH4ForLA);
+      const email = judgeOrLegalAdviserName.match(/\((.*)\)/)?.[1];
+      await expect(
+        this.page.locator(Selectors.GovukFormLabel, {
+          hasText: email,
+        }),
+      ).toBeVisible();
+    }
     await this.pageUtils.assertStrings(this.replyingMessagesFormLabels);
     await expect(this.noFormLabel).toBeVisible();
     await this.pageUtils.assertStrings(this.replyingMessagesHeadingH4);
@@ -106,11 +139,6 @@ export class SendAndReplyToMessages4Page extends EventPage {
     await expect(
       this.page.locator(Selectors.GovukFormLabel, {
         hasText: this.dateHelpersUtils.todayDate().toString(),
-      }),
-    ).toBeVisible();
-    await expect(
-      this.page.locator(Selectors.GovukFormLabel, {
-        hasText: judgeOrLegalAdviserName,
       }),
     ).toBeVisible();
     if (caseType === "C100") {
