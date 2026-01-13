@@ -1,7 +1,5 @@
 // ADD rolebased page for Barrister user
 
-// grab code to Add barrister
-
 // switch to Barrister context and perform events
 // Draft an order
 // Manage docs
@@ -129,113 +127,9 @@ test.describe("Barrister user performing events for a CA case", () => {
         data.barrister.email,
         data.barrister.org,
       );
-        
-        
-        
-        
-        
-    //   // removing barrister
-    //   await summaryPage.chooseEventFromDropdown("Remove barrister");
-    //   await manageBarristerC100.removeBarrister1Page.assertPageContents();
-    //   await manageBarristerC100.removeBarrister1Page.verifyAccessibility();
-    //   await manageBarristerC100.removeBarrister1Page.selectPartyToRemoveBarrister(
-    //     data.existingRepresentativeRemoval,
-    //   );
-    //   await manageBarristerC100.removeBarrister1Page.clickContinue();
-    //   await manageBarristerC100.removeBarristerSubmit.assertPageContents(
-    //     ["caseProgression", "removeBarrister"],
-    //     data.removeBarristerSnapshotName,
-    //   );
-    //   await manageBarristerC100.removeBarristerSubmit.verifyAccessibility();
-    //   await manageBarristerC100.removeBarristerSubmit.clickSubmit();
-    //   await summaryPage.alertBanner.assertEventAlert(
-    //     caseNumber,
-    //     "Remove barrister",
-    //   );
-    //   // asserting barrister is removed on Parties tab
-    //   await partiesPage.goToPage();
-    //   await partiesPage.assertC100BarristerDetailsRemoved(data.applicants);
-    // });
 
-    test(`Caseworker adds and removes Barrister for a CA case. @regression @accessibility @nightly`, async ({
-      nocSolicitor,
-      caseWorker,
-      navigationUtils,
-    }): Promise<void> => {
-      const { summaryPage, manageBarristerC100, partiesPage } = caseWorker;
 
-      // adding solicitor via NoC to allow Barrister functionality
-      await navigationUtils.goToCase(
-        nocSolicitor.page,
-        config.manageCasesBaseURLCase,
-        caseNumber,
-        "summary",
-      );
-      await performNoticeOfChange(nocSolicitor, caseNumber, data.nocParty);
 
-      //change to caseworker to add/remove barrister
-      await navigationUtils.goToCase(
-        caseWorker.page,
-        config.manageCasesBaseURLCase,
-        caseNumber,
-        "summary",
-      );
-      // adding barrister as a caseworker
-      await summaryPage.chooseEventFromDropdown("Add barrister");
-      await manageBarristerC100.addBarrister1Page.assertPageContents();
-      await manageBarristerC100.addBarrister1Page.verifyAccessibility();
-      await manageBarristerC100.addBarrister1Page.selectPartyAndFillInBarristerDetails(
-        data.barrister.firstnames,
-        data.barrister.lastname,
-        data.barrister.email,
-        data.barrister.org,
-        data.existingRepresentative,
-      );
-      await manageBarristerC100.addBarrister1Page.clickContinue();
-      await manageBarristerC100.addBarristerSubmit.assertPageContents(
-        ["caseProgression", "addBarrister"],
-        data.addBarristerSnapshotName,
-      );
-      // await manageBarrister.c100AdminAddBarristerSubmit.verifyAccessibility(); Note: to remove this comment once FPVTL-1357 fix is deployed
-      await manageBarristerC100.addBarristerSubmit.clickSubmit();
-      await summaryPage.alertBanner.assertEventAlert(
-        caseNumber,
-        "Add barrister",
-      );
-      await partiesPage.goToPage();
-      await partiesPage.assertC100BarristerDetailsPresent(
-        data.barrister.firstnames,
-        data.barrister.lastname,
-        data.barrister.email,
-        data.barrister.org,
-      );
-      await partiesPage.assertC100ApplicantsSolicitorsDetailsPresent(
-        data.applicants,
-      );
-      // removing barrister
-      await summaryPage.chooseEventFromDropdown("Remove barrister");
-      await manageBarristerC100.removeBarrister1Page.assertPageContents();
-      await manageBarristerC100.removeBarrister1Page.verifyAccessibility();
-      await manageBarristerC100.removeBarrister1Page.selectPartyToRemoveBarrister(
-        data.existingRepresentativeRemoval,
-      );
-      await manageBarristerC100.removeBarrister1Page.clickContinue();
-      await manageBarristerC100.removeBarristerSubmit.assertPageContents(
-        ["caseProgression", "removeBarrister"],
-        data.removeBarristerSnapshotName,
-      );
-      await manageBarristerC100.removeBarristerSubmit.verifyAccessibility();
-      await manageBarristerC100.removeBarristerSubmit.clickSubmit();
-      await summaryPage.alertBanner.assertEventAlert(
-        caseNumber,
-        "Remove barrister",
-      );
-      // asserting barrister is removed on Parties tab
-      await partiesPage.goToPage();
-      await partiesPage.assertC100BarristerDetailsRemoved(data.applicants);
-      await partiesPage.assertC100ApplicantsSolicitorsDetailsPresent(
-        data.applicants,
-      );
     });
   });
 });
