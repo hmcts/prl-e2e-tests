@@ -29,7 +29,7 @@ test.describe("'Upload an order' by Solicitor via the 'Draft an Order' event tes
   }): Promise<void> => {
     await UploadAnOrderC100SolicitorJourney.uploadAnOrderC100SolicitorJourney({
       page: page,
-      accessibilityTest: false, //outstanding EXUI issue causing axe tests to fail
+      accessibilityTest: true,
       solicitorCaseCreateType: "C100",
       yesNoManageOrders: false,
       uploadOrderC100Options:
