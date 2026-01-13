@@ -1,12 +1,12 @@
 import { Page } from "@playwright/test";
+import { SummaryPage } from "../pages/exui/caseView/summary.po.js";
 import { SendAndReplyToMessages1Page } from "../pages/exui/sendAndReplyToMessages/sendAndReplyToMessages1.po.js";
 import { SendAndReplyToMessages4Page } from "../pages/exui/sendAndReplyToMessages/sendAndReplyToMessages4.po.js";
 import { SendAndReplyToMessages5Page } from "../pages/exui/sendAndReplyToMessages/sendAndReplyToMessages5.po.js";
 import { SendAndReplyToMessagesConfirmPage } from "../pages/exui/sendAndReplyToMessages/sendAndReplyToMessagesConfirm.po.js";
 import { SendAndReplyToMessagesSubmitPage } from "../pages/exui/sendAndReplyToMessages/sendAndReplyToMessagesSubmit.po.js";
-import { SummaryPage } from "../pages/exui/caseView/summary.po.js";
 
-export class JudgePagesGroup {
+export class LegalAdvisorPagesGroup {
   constructor(public readonly page: Page) {}
 
   get summaryPage() {
