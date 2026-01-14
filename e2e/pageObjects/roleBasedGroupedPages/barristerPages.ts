@@ -8,9 +8,9 @@ import { DraftAnOrder8Page } from "../pages/exui/orders/solicitor/draftAnOrder8.
 import { DraftAnOrder16Page } from "../pages/exui/orders/solicitor/draftAnOrder16.po.ts";
 import { DraftAnOrder20Page } from "../pages/exui/orders/solicitor/draftAnOrder20.po.ts";
 import { DraftAnOrderSubmitPage } from "../pages/exui/orders/solicitor/draftAnOrderSubmit.po.ts";
-import { ManageDocumentsNew1Page } from "../../pages/manageCases/caseProgression/manageDocuments/manageDocumentsNew1Page.ts";
-import { ManageDocumentsNewSubmitPage } from "../../pages/manageCases/caseProgression/manageDocuments/manageDocumentsNewSubmit.ts";
-import { ManageDocumentsNewConfirmPage } from "../../pages/manageCases/caseProgression/manageDocuments/manageDocumentsNewConfirmPage.ts";
+import { ManageDocumentsNew1Page } from "../pages/exui/manageDocuments/manageDocumentsNew1.po.ts";
+
+
 import { ManageDocuments}
 
 

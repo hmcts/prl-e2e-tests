@@ -6,7 +6,8 @@ import { CommonStaticText } from "../../../common/commonStaticText.js";
 
 type CyaSubmitButton =
   | CommonStaticText.submit
-  | CommonStaticText.saveAndContinue;
+  | CommonStaticText.saveAndContinue
+  | CommonStaticText.closeAndReturnToCaseDetails;
 
 export class CheckYourAnswersPage extends EventPage {
   private readonly headingH2: Locator = this.page.locator(Selectors.headingH2, {

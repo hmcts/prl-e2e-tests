@@ -1,6 +1,7 @@
 import { EventPage } from "../eventPage.po.ts";
 import { expect, Locator, Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.ts";
+import config from "../../../../utils/config.utils.ts";
 
 export interface ManageDocumentsNew1PageParams {
     page: Page;
@@ -11,7 +12,7 @@ export interface ManageDocumentsNew1PageParams {
     confidentialDocument: boolean;
 }
 
-export class ManageDocuments1Page extends EventPage {
+export class ManageDocumentsNew1Page extends EventPage {
     private readonly headingH2: Locator = this.page.locator(
         Selectors.headingH2,
         {
@@ -150,18 +151,38 @@ async assertPageContents(): Promise<void> {
         page,
         documentParty,
         documentCategory,
+        confidentialDocument,
+        restrictDocument,
     ): Promise<void> {
+        if (!page) {
+            throw new Error("No page found");
+        }
         await this.documentRelatedToCaseYes.check();
         await page.selectOption(this.documentParty, {
               label: documentParty,
             });
-            await page.selectOption(this.documentCategory, {
-              label: documentCategory,
-            });
-            const fileInput = page.locator(UniqueSelectors.uploadDocument);
-            await fileInput.setInputFiles(config.testPdfFile);
-
-
-       
+        await page.selectOption(this.documentCategory, {
+            label: documentCategory,
+        });
+        const fileInput = page.locator(this.uploadDocument);
+        await fileInput.setInputFiles(config.testPdfFile);
+        // wait for upload of document to be complete before continuing
+        await page
+            .locator(Selectors.GovukErrorMessage, { hasText: "Uploading..." })
+            .waitFor({ state: "hidden" });
+        if (confidentialDocument) {
+            await page.click(this.documentConfidentialYes);
+        } else {
+            await page.click(this.documentConfidentialNo);
+        }
+        if (restrictDocument) {
+            await page.click(this.documentRestrictedYes);
+            await page.fill(
+            this.documentRestrictedReason,
+            this.inputText,
+            );
+        } else {
+            await page.click(this.documentRestrictedNo);
+        }
     }
 }

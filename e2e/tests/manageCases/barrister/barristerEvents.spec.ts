@@ -129,6 +129,21 @@ test.describe("Barrister user performing events for a CA case", () => {
       );
 
 
+      // logging in as the Barrister and performing the next steps events
+      //new context here
+
+      //draft an order
+
+      //manage docs
+
+      //edit a returned order(might need to switch context and reject an order as the Judge??)
+
+      //stop representing client
+
+
+
+
+
 
     });
   });
