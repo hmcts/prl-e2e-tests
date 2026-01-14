@@ -30,6 +30,10 @@ import { SendToGateKeeper1Page } from "../pages/exui/sendToGateKeeper/sendToGate
 import { SendToGateKeeperSubmitPage } from "../pages/exui/sendToGateKeeper/sendToGateKeeperSubmit.po.ts";
 import { AmendRespondentDetails1 } from "../pages/exui/amendRespondentDetails/amendRespondentDetails1.po.js";
 import { AmendRespondentDetailsSubmit } from "../pages/exui/amendRespondentDetails/amendRespondentDetailsSubmit.po.js";
+import { ReviewRARequest1Page } from "../pages/exui/caseFlags/reviewRARequest/reviewRARequest1.po.js";
+import { ReviewRARequest2Page } from "../pages/exui/caseFlags/reviewRARequest/reviewRARequest2.po.js";
+import { ReviewRARequestSubmitPage } from "../pages/exui/caseFlags/reviewRARequest/reviewRARequestSubmit.po.js";
+import { CaseFlagsPage } from "../pages/exui/caseView/caseFlags.po.js";
 
 export class CaseWorkerPagesGroup {
   constructor(public readonly page: Page) {}
@@ -48,6 +52,10 @@ export class CaseWorkerPagesGroup {
 
   get rolesAndAccessPage() {
     return new RolesAndAccessPage(this.page);
+  }
+
+  get caseFlagsPage() {
+    return new CaseFlagsPage(this.page);
   }
 
   get allocatedJudge() {
@@ -109,6 +117,14 @@ export class CaseWorkerPagesGroup {
     return {
       page1: new SendToGateKeeper1Page(this.page),
       submitPage: new SendToGateKeeperSubmitPage(this.page),
+    };
+  }
+
+  get caseFlags() {
+    return {
+      reviewRARequestPage1: new ReviewRARequest1Page(this.page),
+      reviewRARequestPage2: new ReviewRARequest2Page(this.page),
+      reviewRARequestPageSubmit: new ReviewRARequestSubmitPage(this.page),
     };
   }
 }

@@ -92,7 +92,8 @@ export type WACaseWorkerActions =
   | "Manage case links"
   | "Return application"
   | "Add barrister"
-  | "Remove barrister";
+  | "Remove barrister"
+  | "Review RA Request";
 
 export type fl401CaseWorkerActions =
   | "Welsh language requirements"

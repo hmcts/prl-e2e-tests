@@ -1,8 +1,8 @@
 import { CaseAccessViewPage } from "./caseAccessView.po.js";
-import { Page } from "@playwright/test";
 import { CaseFlagSectionComponent } from "../../../components/exui/caseFlagSection.component.js";
+import { Page } from "@playwright/test";
 
-export class SupportPage extends CaseAccessViewPage {
+export class CaseFlagsPage extends CaseAccessViewPage {
   readonly caseFlagSection: CaseFlagSectionComponent =
     new CaseFlagSectionComponent(this.page);
 
@@ -11,6 +11,6 @@ export class SupportPage extends CaseAccessViewPage {
   }
 
   async goToPage(): Promise<void> {
-    await this.page.getByRole("tab", { name: "Support" }).click();
+    await this.page.getByRole("tab", { name: "Case Flags" }).click();
   }
 }
