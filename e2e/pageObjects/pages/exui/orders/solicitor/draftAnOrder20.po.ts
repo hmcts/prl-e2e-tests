@@ -21,7 +21,7 @@ export class DraftAnOrder20Page extends EventPage {
   private englishPdfLink: string;
 
   constructor(page: Page) {
-    super(page, "Draft an order");
+    super(page, "Create/upload draft order");
   }
 
   async assertPageContents(

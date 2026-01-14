@@ -1,5 +1,5 @@
 export enum UploadDraftAnOrder4Content {
-  pageTitle = "Draft an order",
+  pageTitle = "Create/upload draft order",
   strong = "Judge or Magistrate's title",
   label1 = "Is the order by consent?",
   label2 = "Was the order approved at a hearing?",
