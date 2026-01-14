@@ -9,6 +9,7 @@ interface submitPageOptions {
   page: Page;
   accessibilityTest: boolean;
   solicitorCaseCreateType: string;
+  hasJudgeNameAndTitle: boolean;
 }
 
 export class UploadDraftAnOrderSubmitPage {
@@ -16,6 +17,7 @@ export class UploadDraftAnOrderSubmitPage {
     page,
     accessibilityTest,
     solicitorCaseCreateType,
+    hasJudgeNameAndTitle,
   }: submitPageOptions): Promise<void> {
     if (!page) {
       throw new Error("Page is not defined");
@@ -24,6 +26,7 @@ export class UploadDraftAnOrderSubmitPage {
       await this.checkPageLoadsCA({
         page,
         accessibilityTest,
+        hasJudgeNameAndTitle,
       });
     } else {
       await this.checkPageLoadsDA({
@@ -37,6 +40,7 @@ export class UploadDraftAnOrderSubmitPage {
   private static async checkPageLoadsCA({
     page,
     accessibilityTest,
+    hasJudgeNameAndTitle,
   }: Partial<submitPageOptions>): Promise<void> {
     if (!page) {
       throw new Error("Page is not defined");
@@ -59,7 +63,7 @@ export class UploadDraftAnOrderSubmitPage {
       ),
       Helpers.checkGroup(
         page,
-        12,
+        10,
         UploadDraftAnOrderSubmitContent,
         "text16_",
         `${Selectors.GovukText16}`,
@@ -71,15 +75,32 @@ export class UploadDraftAnOrderSubmitPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukText16}:text-is("${UploadDraftAnOrderSubmitContent.change}")`,
-        9,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
         `${Selectors.GovukText16}:text-is("${UploadDraftAnOrderSubmitContent.CAchildren}")`,
         1,
       ),
     ]);
+    if (hasJudgeNameAndTitle) {
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${UploadDraftAnOrderSubmitContent.judgeName}")`,
+        1,
+      );
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${UploadDraftAnOrderSubmitContent.judgeNameLabel}")`,
+        1,
+      );
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${UploadDraftAnOrderSubmitContent.change}")`,
+        9,
+      );
+    } else
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${UploadDraftAnOrderSubmitContent.change}")`,
+        8,
+      );
     if (accessibilityTest) {
       await new AxeUtils(page).audit();
     }
@@ -110,7 +131,7 @@ export class UploadDraftAnOrderSubmitPage {
       ),
       Helpers.checkGroup(
         page,
-        12,
+        10,
         UploadDraftAnOrderSubmitContent,
         "text16_",
         `${Selectors.GovukText16}`,
