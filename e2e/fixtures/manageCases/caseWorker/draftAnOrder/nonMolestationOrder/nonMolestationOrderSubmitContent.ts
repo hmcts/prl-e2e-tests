@@ -2,7 +2,7 @@ export enum NonMolestationOrderSubmitContent {
   checkYourAnswers = "Check your answers",
   text161 = "Check the information below carefully.",
   text162 = "What do you want to do?",
-  text163 = "Create/upload draft order",
+  text163 = "Draft an order",
   text164 = "Select the type of order",
   text165 = "Is the order by consent?",
   text166 = "Was the order approved at a hearing?",
