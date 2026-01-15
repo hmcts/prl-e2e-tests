@@ -974,8 +974,8 @@ __metadata:
   linkType: hard
 
 "@hmcts/playwright-common@npm:^1.0.39":
-  version: 1.0.39
-  resolution: "@hmcts/playwright-common@npm:1.0.39"
+  version: 1.1.0
+  resolution: "@hmcts/playwright-common@npm:1.1.0"
   dependencies:
     "@axe-core/playwright": "npm:^4.10.0"
     "@eslint/js": "npm:^9.11.1"
@@ -988,16 +988,17 @@ __metadata:
     globals: "npm:^16.0.0"
     lighthouse: "npm:^12.2.1"
     playwright-lighthouse: "npm:^4.0.0"
+    ts-morph: "npm:^22.0.0"
     typescript: "npm:^5.6.2"
     typescript-eslint: "npm:^8.8.0"
     winston: "npm:^3.13.0"
   peerDependencies:
-    "@playwright/test": ^1.56.1
-    playwright-core: ^1.56.1
+    "@playwright/test": ^1.57.0
+    playwright-core: ^1.57.0
   bin:
-    delete-nightly-dev-branch: ./dist/scripts/delete-nightly-dev-branch.js
-    get-secrets: ./dist/scripts/get-secrets.js
-  checksum: 10c0/d13edb659ec3ac47b5c0124908aafc3ca3c566c220b34f447dcfbb6af038636087a7f35eacf87dfb4e0140cbf1299cb8cca751d8f1251c20cffc3008ac4ab15e
+    delete-nightly-dev-branch: dist/scripts/delete-nightly-dev-branch.js
+    get-secrets: dist/scripts/get-secrets.js
+  checksum: 10c0/6156d60e6d24e2f0de43d93895cf0ec9b8049ad44f1daa3840f76abc2b300811121af08bc6a2fcb91377a8e942456b2a202d8c3ee2ddfc4dae969b5dbd5ce9a0
   languageName: node
   linkType: hard
 
@@ -1659,6 +1660,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@ts-morph/common@npm:~0.23.0":
+  version: 0.23.0
+  resolution: "@ts-morph/common@npm:0.23.0"
+  dependencies:
+    fast-glob: "npm:^3.3.2"
+    minimatch: "npm:^9.0.3"
+    mkdirp: "npm:^3.0.1"
+    path-browserify: "npm:^1.0.1"
+  checksum: 10c0/80d8f230618b022537846b515cb928c636004f216821bec7fea289fd37533b4eaa783d276cc5838b4b6be867fec60fdee5795baac3ed98f1ab7cdd6b35a85179
+  languageName: node
+  linkType: hard
+
 "@tybys/wasm-util@npm:^0.10.0":
   version: 0.10.1
   resolution: "@tybys/wasm-util@npm:0.10.1"
@@ -1749,20 +1762,20 @@ __metadata:
   linkType: hard
 
 "@types/node@npm:*":
-  version: 25.0.6
-  resolution: "@types/node@npm:25.0.6"
+  version: 25.0.8
+  resolution: "@types/node@npm:25.0.8"
   dependencies:
     undici-types: "npm:~7.16.0"
-  checksum: 10c0/4ee3b6b606bc28f6840c04d58769e1e75dd8085149908956c874c85f8f8c890990701bcbe783fc2d14017817861dc07fcf23de6fc2805fe491f84eae717b5705
+  checksum: 10c0/2282464cd928ab184b2310b79899c76bfaa88c8d14640dfab2f9218fdee7e2d916056492de683aa3a26050c8f3bbcade0305616a55277a7c344926c0393149e0
   languageName: node
   linkType: hard
 
 "@types/node@npm:^24.0.0":
-  version: 24.10.7
-  resolution: "@types/node@npm:24.10.7"
+  version: 24.10.8
+  resolution: "@types/node@npm:24.10.8"
   dependencies:
     undici-types: "npm:~7.16.0"
-  checksum: 10c0/dcc1b8caf16c7b54dfccbe5c23cf4156e924cebcd9ab0a00147c841279f8151a10888c76fd82dda76e0a849aaf5a57097ee2b156308a355959900c1e647d7e61
+  checksum: 10c0/aed2ac8c4a87be5c710f65ccfc57a272829dd00d0f6a687375323b348c55c92a6e7ff3b9d3ec596b1cc09ba2d080ce71b2ec9a67c14d12e04b02b67b14e81a74
   languageName: node
   linkType: hard
 
@@ -2755,6 +2768,13 @@ __metadata:
   version: 4.6.0
   resolution: "co@npm:4.6.0"
   checksum: 10c0/c0e85ea0ca8bf0a50cbdca82efc5af0301240ca88ebe3644a6ffb8ffe911f34d40f8fbcf8f1d52c5ddd66706abd4d3bfcd64259f1e8e2371d4f47573b0dc8c28
+  languageName: node
+  linkType: hard
+
+"code-block-writer@npm:^13.0.1":
+  version: 13.0.3
+  resolution: "code-block-writer@npm:13.0.3"
+  checksum: 10c0/87db97b37583f71cfd7eced8bf3f0a0a0ca53af912751a734372b36c08cd27f3e8a4878ec05591c0cd9ae11bea8add1423e132d660edd86aab952656dd41fd66
   languageName: node
   linkType: hard
 
@@ -5173,7 +5193,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"minimatch@npm:^9.0.4, minimatch@npm:^9.0.5":
+"minimatch@npm:^9.0.3, minimatch@npm:^9.0.4, minimatch@npm:^9.0.5":
   version: 9.0.5
   resolution: "minimatch@npm:9.0.5"
   dependencies:
@@ -5549,6 +5569,13 @@ __metadata:
     json-parse-even-better-errors: "npm:^2.3.0"
     lines-and-columns: "npm:^1.1.6"
   checksum: 10c0/77947f2253005be7a12d858aedbafa09c9ae39eb4863adf330f7b416ca4f4a08132e453e08de2db46459256fb66afaac5ee758b44fe6541b7cdaf9d252e59585
+  languageName: node
+  linkType: hard
+
+"path-browserify@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "path-browserify@npm:1.0.1"
+  checksum: 10c0/8b8c3fd5c66bd340272180590ae4ff139769e9ab79522e2eb82e3d571a89b8117c04147f65ad066dccfb42fcad902e5b7d794b3d35e0fd840491a8ddbedf8c66
   languageName: node
   linkType: hard
 
@@ -6387,6 +6414,16 @@ __metadata:
   peerDependencies:
     typescript: ">=4.8.4"
   checksum: 10c0/ed185861aef4e7124366a3f6561113557a57504267d4d452a51e0ba516a9b6e713b56b4aeaab9fa13de9db9ab755c65c8c13a777dba9133c214632cb7b65c083
+  languageName: node
+  linkType: hard
+
+"ts-morph@npm:^22.0.0":
+  version: 22.0.0
+  resolution: "ts-morph@npm:22.0.0"
+  dependencies:
+    "@ts-morph/common": "npm:~0.23.0"
+    code-block-writer: "npm:^13.0.1"
+  checksum: 10c0/0275606effaa24f6d8ad3ee9df3bb37c0330be002682f9e9157462b38b949e00fb81e0df20f571e08a0bd06107922eb35022bad5e2fb48ca89fda4299140b5de
   languageName: node
   linkType: hard
 

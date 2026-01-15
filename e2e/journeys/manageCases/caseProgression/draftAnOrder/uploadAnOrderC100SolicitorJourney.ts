@@ -23,6 +23,7 @@ interface C100DraftAnOrderOptions {
   isUploadOrder: boolean;
   browser: Browser;
   caseRef: string;
+  hasJudgeNameAndTitle: boolean;
 }
 
 export class UploadAnOrderC100SolicitorJourney {
@@ -37,6 +38,7 @@ export class UploadAnOrderC100SolicitorJourney {
     isUploadOrder,
     browser,
     caseRef,
+    hasJudgeNameAndTitle,
   }: C100DraftAnOrderOptions): Promise<void> {
     //Starting the 'Draft an order' event to upload the order
     await Helpers.chooseEventFromDropdown(page, `Draft an order`);
@@ -58,11 +60,13 @@ export class UploadAnOrderC100SolicitorJourney {
       page,
       accessibilityTest,
       solicitorCaseCreateType,
+      hasJudgeNameAndTitle,
     });
     await UploadDraftAnOrderSubmitPage.uploadDraftAnOrderSubmitPage({
       page,
       accessibilityTest,
       solicitorCaseCreateType,
+      hasJudgeNameAndTitle,
     });
     //Switching to CTSC user as Solicitor cannot see the 'Draft orders' tab in the case
     await page.waitForResponse(
@@ -82,6 +86,7 @@ export class UploadAnOrderC100SolicitorJourney {
     await C100DraftOrdersTabPage.c100DraftOrdersTabPage(
       checkPageCTSC,
       accessibilityTest,
+      hasJudgeNameAndTitle,
     );
   }
 }
