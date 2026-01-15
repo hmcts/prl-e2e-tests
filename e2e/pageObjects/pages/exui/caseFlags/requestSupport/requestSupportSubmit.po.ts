@@ -1,6 +1,7 @@
-import { Base } from "../../../base.po.js";
+import { Base } from "../../../base.po.ts";
 import { expect, Locator, Page } from "@playwright/test";
-import { CheckYourAnswersTableComponent } from "../../../../components/exui/checkYourAnswersTable.component.js";
+import { CheckYourAnswersTableComponent } from "../../../../components/exui/checkYourAnswersTable.component.ts";
+import { solicitorCaseCreateType } from "../../../../../common/types.ts";
 
 // Not a standard event page so don't extend EventPage
 export class RequestSupportSubmitPage extends Base {
@@ -17,13 +18,13 @@ export class RequestSupportSubmitPage extends Base {
     super(page);
   }
 
-  async assertPageContents(): Promise<void> {
+  async assertPageContents(caseType: solicitorCaseCreateType): Promise<void> {
     await expect(this.eventHeading).toBeVisible();
     await expect(this.pageHeading).toBeVisible();
     await this.table.captureFullTableScreenshot([
       "caseProgression",
       "caseFlags",
-      "request-support",
+      `request-support-${caseType}`,
     ]);
     await expect(this.submitButton).toBeVisible();
     await expect(this.previousButton).toBeVisible();

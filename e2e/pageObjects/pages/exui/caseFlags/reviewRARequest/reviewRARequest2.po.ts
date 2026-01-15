@@ -1,6 +1,7 @@
-import { Base } from "../../../base.po.js";
+import { Base } from "../../../base.po.ts";
 import { expect, Locator, Page } from "@playwright/test";
-import { PageUtils } from "../../../../../utils/page.utils.js";
+import { PageUtils } from "../../../../../utils/page.utils.ts";
+import { solicitorCaseCreateType } from "../../../../../common/types.ts";
 
 // Not a standard event page so don't extend EventPage
 export class ReviewRARequest2Page extends Base {
@@ -38,7 +39,10 @@ export class ReviewRARequest2Page extends Base {
     super(page);
   }
 
-  async assertPageContents(adjustment: string): Promise<void> {
+  async assertPageContents(
+    adjustment: string,
+    caseType: solicitorCaseCreateType,
+  ): Promise<void> {
     await expect(this.eventHeading).toBeVisible();
     await expect(
       this.page.getByRole("heading", {
@@ -61,7 +65,12 @@ export class ReviewRARequest2Page extends Base {
     );
     await expect(this.updateFlagStatusHint).toBeVisible();
     await expect(this.iNeedTranslationLabel).toBeVisible();
-    await expect(this.continueButton).toBeVisible();
+    // not sure why the buttons are different for the different case types
+    if (caseType === "C100") {
+      await expect(this.submitButton).toBeVisible();
+    } else {
+      await expect(this.continueButton).toBeVisible();
+    }
     await expect(this.previousButton).toBeVisible();
   }
 

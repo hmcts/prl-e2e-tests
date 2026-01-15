@@ -1,5 +1,6 @@
-import { Base } from "../../../base.po.js";
+import { Base } from "../../../base.po.ts";
 import { expect, Locator, Page } from "@playwright/test";
+import { solicitorCaseCreateType } from "../../../../../common/types.ts";
 
 // Not a standard event page so don't extend EventPage
 export class ReviewRARequest1Page extends Base {
@@ -20,12 +21,18 @@ export class ReviewRARequest1Page extends Base {
     supportType: string,
     adjustment: string,
     reason: string,
+    caseType: solicitorCaseCreateType,
   ): Promise<void> {
     await expect(this.eventHeading).toBeVisible();
     await expect(this.pageHeading).toBeVisible();
     const caseFlagRadioLabel: string = `${recipient} (${recipientRole}) - ${supportType}, ${adjustment} (${reason})`;
     await expect(this.page.getByText(caseFlagRadioLabel)).toBeVisible();
-    await expect(this.continueButton).toBeVisible();
+    // not sure why the buttons are different for the different case types
+    if (caseType === "C100") {
+      await expect(this.submitButton).toBeVisible();
+    } else {
+      await expect(this.continueButton).toBeVisible();
+    }
   }
 
   async selectSupportRequest(recipient: string): Promise<void> {
