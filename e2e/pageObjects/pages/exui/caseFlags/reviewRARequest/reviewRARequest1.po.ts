@@ -2,6 +2,15 @@ import { Base } from "../../../base.po.ts";
 import { expect, Locator, Page } from "@playwright/test";
 import { solicitorCaseCreateType } from "../../../../../common/types.ts";
 
+interface ContentsParams {
+  recipient: string;
+  recipientRole: string;
+  supportType: string;
+  adjustment: string;
+  reason: string;
+  caseType: solicitorCaseCreateType;
+}
+
 // Not a standard event page so don't extend EventPage
 export class ReviewRARequest1Page extends Base {
   private readonly eventHeading: Locator = this.page.getByRole("heading", {
@@ -15,14 +24,14 @@ export class ReviewRARequest1Page extends Base {
     super(page);
   }
 
-  async assertPageContents(
-    recipient: string,
-    recipientRole: string,
-    supportType: string,
-    adjustment: string,
-    reason: string,
-    caseType: solicitorCaseCreateType,
-  ): Promise<void> {
+  async assertPageContents({
+    recipient,
+    recipientRole,
+    supportType,
+    adjustment,
+    reason,
+    caseType,
+  }: ContentsParams): Promise<void> {
     await expect(this.eventHeading).toBeVisible();
     await expect(this.pageHeading).toBeVisible();
     const caseFlagRadioLabel: string = `${recipient} (${recipientRole}) - ${supportType}, ${adjustment} (${reason})`;

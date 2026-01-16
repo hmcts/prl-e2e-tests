@@ -2,16 +2,38 @@ import Config from "../../../../utils/config.utils.ts";
 import config from "../../../../utils/config.utils.ts";
 import { test } from "../../../fixtures.ts";
 import { SolicitorPagesGroup } from "../../../../pageObjects/roleBasedGroupedPages/solicitorPages.ts";
-import {
-  ReasonableAdjustment,
-  solicitorCaseCreateType,
-} from "../../../../common/types.ts";
+import { solicitorCaseCreateType } from "../../../../common/types.ts";
 import { CaseWorkerPagesGroup } from "../../../../pageObjects/roleBasedGroupedPages/caseWorkerPages.ts";
 import { NavigationUtils } from "../../../../utils/navigation.utils.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
-test.describe("Request Support for DA case tests.", () => {
+interface RequestSupportParams {
+  solicitor: SolicitorPagesGroup;
+  recipient: string;
+  supportType: string;
+  reasonableAdjustment: string;
+  adjustment: string;
+  reason: string;
+  caseNumber: string;
+  caseType: solicitorCaseCreateType;
+}
+
+interface ReviewSupportRequestParams {
+  caseWorker: CaseWorkerPagesGroup;
+  navigationUtils: NavigationUtils;
+  caseNumber: string;
+  recipient: string;
+  recipientRole: string;
+  supportType: string;
+  adjustment: string;
+  reason: string;
+  newStatus: string;
+  changeReason: string;
+  caseType: solicitorCaseCreateType;
+}
+
+test.describe("FL401 case support request tests.", () => {
   let caseNumber: string = "";
 
   test.beforeEach(
@@ -43,17 +65,17 @@ test.describe("Request Support for DA case tests.", () => {
       reasonableAdjustment,
       adjustment,
       reason,
-      recipientRole,
       newStatus,
       changeReason,
+      recipientRole,
     }) => {
-      test("do something @nightly @accessibility @regression", async ({
+      test("Request support as Solicitor and approve support request as HCA @nightly @accessibility @regression", async ({
         solicitor,
         caseWorker,
         navigationUtils,
       }): Promise<void> => {
         // request support as Solicitor
-        await requestSupport(
+        await requestSupport({
           solicitor,
           recipient,
           supportType,
@@ -61,11 +83,11 @@ test.describe("Request Support for DA case tests.", () => {
           adjustment,
           reason,
           caseNumber,
-          "FL401",
-        );
+          caseType: "FL401",
+        });
 
         // activate support request as HCA
-        await reviewSupportRequest(
+        await reviewSupportRequest({
           caseWorker,
           navigationUtils,
           caseNumber,
@@ -76,14 +98,14 @@ test.describe("Request Support for DA case tests.", () => {
           reason,
           newStatus,
           changeReason,
-          "FL401",
-        );
+          caseType: "FL401",
+        });
       });
     },
   );
 });
 
-test.describe("Request Support for CA case tests.", () => {
+test.describe("C100 case support request tests.", () => {
   let caseNumber: string = "";
 
   test.beforeEach(
@@ -120,13 +142,13 @@ test.describe("Request Support for CA case tests.", () => {
       newStatus,
       changeReason,
     }) => {
-      test("do something @nightly @accessibility @regression", async ({
+      test("Request support as Solicitor and approve support request as HCA @nightly @accessibility @regression", async ({
         solicitor,
         caseWorker,
         navigationUtils,
       }): Promise<void> => {
         // request support as Solicitor
-        await requestSupport(
+        await requestSupport({
           solicitor,
           recipient,
           supportType,
@@ -134,11 +156,11 @@ test.describe("Request Support for CA case tests.", () => {
           adjustment,
           reason,
           caseNumber,
-          "C100",
-        );
+          caseType: "C100",
+        });
 
         // activate support request as HCA
-        await reviewSupportRequest(
+        await reviewSupportRequest({
           caseWorker,
           navigationUtils,
           caseNumber,
@@ -149,24 +171,23 @@ test.describe("Request Support for CA case tests.", () => {
           reason,
           newStatus,
           changeReason,
-          "C100",
-        );
+          caseType: "C100",
+        });
       });
     },
   );
 });
 
-async function requestSupport(
-  solicitor: SolicitorPagesGroup,
-  recipient: string,
-  supportType: string,
-  reasonableAdjustment: ReasonableAdjustment,
-  adjustment: string,
-  reason: string,
-  caseNumber: string,
-  caseType: solicitorCaseCreateType,
-): Promise<void> {
-  // TODO: why is the functionality around this so flaky
+async function requestSupport({
+  solicitor,
+  recipient,
+  supportType,
+  reasonableAdjustment,
+  adjustment,
+  reason,
+  caseNumber,
+  caseType,
+}: RequestSupportParams): Promise<void> {
   const { caseFlags, summaryPage, supportPage } = solicitor;
   await summaryPage.chooseEventFromDropdown("Request support");
 
@@ -212,19 +233,19 @@ async function requestSupport(
   );
 }
 
-async function reviewSupportRequest(
-  caseWorker: CaseWorkerPagesGroup,
-  navigationUtils: NavigationUtils,
-  caseNumber: string,
-  recipient: string,
-  recipientRole: string,
-  supportType: string,
-  adjustment: string,
-  reason: string,
-  newStatus: string,
-  changeReason: string,
-  caseType: solicitorCaseCreateType,
-): Promise<void> {
+async function reviewSupportRequest({
+  caseWorker,
+  navigationUtils,
+  caseNumber,
+  recipient,
+  recipientRole,
+  supportType,
+  adjustment,
+  reason,
+  newStatus,
+  changeReason,
+  caseType,
+}: ReviewSupportRequestParams): Promise<void> {
   const { page, tasksPage, caseFlags, summaryPage, caseFlagsPage } = caseWorker;
   await navigationUtils.goToCase(
     page,
@@ -234,14 +255,14 @@ async function reviewSupportRequest(
   await tasksPage.goToPage();
   await tasksPage.chooseEventFromDropdown("Review RA Request");
 
-  await caseFlags.reviewRARequestPage1.assertPageContents(
+  await caseFlags.reviewRARequestPage1.assertPageContents({
     recipient,
     recipientRole,
     supportType,
     adjustment,
     reason,
     caseType,
-  );
+  });
   await caseFlags.reviewRARequestPage1.verifyAccessibility();
   await caseFlags.reviewRARequestPage1.selectSupportRequest(recipient);
   if (caseType === "C100") {

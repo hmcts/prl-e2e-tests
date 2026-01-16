@@ -1,7 +1,6 @@
-import { Base } from "../../../base.po.js";
+import { Base } from "../../../base.po.ts";
 import { expect, Locator, Page } from "@playwright/test";
-import { ReasonableAdjustment } from "../../../../../common/types.js";
-import { PageUtils } from "../../../../../utils/page.utils.js";
+import { PageUtils } from "../../../../../utils/page.utils.ts";
 
 // Not a standard event page so don't extend EventPage
 export class RequestSupport4Page extends Base {
@@ -15,9 +14,7 @@ export class RequestSupport4Page extends Base {
     super(page);
   }
 
-  async assertPageContents(
-    reasonableAdjustment: ReasonableAdjustment,
-  ): Promise<void> {
+  async assertPageContents(reasonableAdjustment: string): Promise<void> {
     await expect(this.eventHeading).toBeVisible();
     await expect(
       this.page.getByRole("heading", { name: reasonableAdjustment }),
@@ -41,7 +38,6 @@ export class RequestSupport4Page extends Base {
     await expect(this.previousButton).toBeVisible();
   }
 
-  // TODO maybe make these adjustments a type/enum??
   async selectAdjustment(adjustment: string): Promise<void> {
     await this.page.getByRole("radio", { name: adjustment }).check();
   }
