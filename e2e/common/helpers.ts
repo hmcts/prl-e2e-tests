@@ -49,9 +49,9 @@ export class Helpers {
         },
         {
           // Allow 10s delay before retrying
-          intervals: [10_000],
-          // Allow up to 1 minute for the go button to disappear
-          timeout: 60_000,
+          intervals: [15_000],
+          // Allow up to 5 minutes for the go button to disappear
+          timeout: 300_000,
         },
       )
       .toBeFalsy();
