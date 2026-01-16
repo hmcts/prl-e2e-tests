@@ -56,7 +56,7 @@ export class DraftAnOrderJourney {
     orderDetails: NonMolestationDraftOrderParams,
   ): Promise<void> {
     const summaryPage: SummaryPage = new SummaryPage(page);
-    await summaryPage.chooseEventFromDropdown("Draft an order");
+    await summaryPage.chooseEventFromDropdown("Create/upload draft order");
     await this.selectOrderAndFillInGenericOrderDetails(page, orderDetails);
 
     const draftAnOrder5Page: DraftAnOrder5Page = new DraftAnOrder5Page(page);
@@ -91,7 +91,7 @@ export class DraftAnOrderJourney {
     await draftAnOrderSubmitPage.clickSubmit();
     await summaryPage.alertBanner.assertEventAlert(
       caseNumber,
-      "Draft an order",
+      "Create/upload draft order",
     );
     await this.assertDraftOrderAsCourtAdmin(
       browser,
@@ -107,7 +107,7 @@ export class DraftAnOrderJourney {
     orderParams: ParentalResponsibilityDraftOrderParams,
   ): Promise<void> {
     const summaryPage: SummaryPage = new SummaryPage(page);
-    await summaryPage.chooseEventFromDropdown("Draft an order");
+    await summaryPage.chooseEventFromDropdown("Create/upload draft order");
     await this.selectOrderAndFillInGenericOrderDetails(page, orderParams);
 
     const draftAnOrder8Page: DraftAnOrder8Page = new DraftAnOrder8Page(page);
@@ -136,7 +136,7 @@ export class DraftAnOrderJourney {
     await draftAnOrderSubmitPage.clickSubmit();
     await summaryPage.alertBanner.assertEventAlert(
       caseNumber,
-      "Draft an order",
+      "Create/upload draft order",
     );
     await this.assertDraftOrderAsCourtAdmin(
       browser,

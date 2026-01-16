@@ -90,7 +90,7 @@ export class UploadDraftAnOrder4Page {
       ),
       Helpers.checkGroup(
         page,
-        19,
+        18,
         UploadDraftAnOrder4Content,
         "label",
         `${Selectors.GovukFormLabel}`,

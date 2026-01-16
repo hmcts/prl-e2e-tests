@@ -56,7 +56,7 @@ export type c100SolicitorEvents =
   | "Submit and pay"
   | "Submit"
   | "Dummy Payment confirmation"
-  | "Draft an order"
+  | "Create/upload draft order"
   | "Delete application"
   | "Add barrister"
   | "Remove barrister"
@@ -104,7 +104,7 @@ export type fl401CaseWorkerActions =
   | "Remove draft order";
 
 export type fl401SubmittedSolicitorEvents =
-  | "Draft an order"
+  | "Create/upload draft order"
   | "Dummy Payment for AwP"
   | "Manage support"
   | "Manage documents"

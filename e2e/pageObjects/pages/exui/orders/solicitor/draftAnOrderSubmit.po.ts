@@ -4,6 +4,6 @@ import { CommonStaticText } from "../../../../../common/commonStaticText.js";
 
 export class DraftAnOrderSubmitPage extends CheckYourAnswersPage {
   constructor(page: Page) {
-    super(page, "Draft an order", CommonStaticText.submit);
+    super(page, "Create/upload draft order", CommonStaticText.submit);
   }
 }

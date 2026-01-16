@@ -1,5 +1,5 @@
 export enum DraftAnOrder1Content {
-  pageTitle = "Draft an order",
+  pageTitle = "Create/upload draft order",
   formLabel1 = "What do you want to do?",
   previous = "Previous",
   continue = "Continue",

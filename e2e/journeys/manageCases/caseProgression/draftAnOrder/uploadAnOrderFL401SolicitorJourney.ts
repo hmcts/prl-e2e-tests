@@ -47,8 +47,8 @@ export class UploadAnOrderFL401SolicitorJourney {
       caseRef,
       "Summary",
     );
-    //Starting the 'Draft an order' event to upload the order
-    await Helpers.chooseEventFromDropdown(page, `Draft an order`);
+    //Starting the 'Create/upload draft order' event to upload the order
+    await Helpers.chooseEventFromDropdown(page, "Create/upload draft order");
     await DraftAnOrder1Page.draftAnOrder1Page(
       page,
       errorMessaging,

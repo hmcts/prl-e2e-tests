@@ -1,5 +1,5 @@
 export enum DraftAnOrder2Content {
-  pageTitle = "Draft an order",
+  pageTitle = "Create/upload draft order",
   insetText = "If the order you need is not on the list, go back to the previous page to upload it.",
   formLabel1 = "Select the type of order",
   formLabel2 = "Standard directions order",
