@@ -1,4 +1,4 @@
-import { test } from "../../../fixtures.ts";
+import { test, expect } from "../../../fixtures.ts";
 import config from "../../../../utils/config.utils.ts";
 
 test.describe("Check Application task for DA Solicitor case tests.", () => {
@@ -40,6 +40,7 @@ test.describe("Check Application task for DA Solicitor case tests.", () => {
         );
         await fl401AddCaseNumber.submitPage.verifyAccessibility();
         await fl401AddCaseNumber.submitPage.clickSaveAndContinue();
+        
 
         await summaryPage.alertBanner.assertEventAlert(
           caseNumber,
@@ -48,7 +49,19 @@ test.describe("Check Application task for DA Solicitor case tests.", () => {
         await summaryPage.caseHeader.assertFamilyManNumberIsVisible(
           familyManNumber,
         );
-      });
+        
+        await page.locator("mat-tab-header").getByText("History", { exact: true }).click();
+        await expect(page.locator("ccd-event-log-details")).toBeVisible();
+        await page.getByRole("link", { name: /Add case number/i }).click();
+        
+        await expect(page.locator("ccd-event-log-details")).toContainText("End state");
+        const endStateValue = page.locator(
+         "//ccd-event-log-details//tr[th[normalize-space()='End state']]/td"
+        );
+        await expect(endStateValue).toBeVisible();
+        await expect(endStateValue).toContainText(/Case issued/i);
     },
+  );
+},
   );
 });
