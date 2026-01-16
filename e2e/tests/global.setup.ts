@@ -75,4 +75,12 @@ setup.describe("Setup users and retrieve tokens", () => {
       config.manageCasesBaseURLCase,
     );
   });
+
+  setup("Setup Legal Advisor user", async ({ page, idamLoginHelper }) => {
+    await idamLoginHelper.signInLongLivedUser(
+      page,
+      "legalAdvisor",
+      config.manageCasesBaseURLCase,
+    );
+  });
 });

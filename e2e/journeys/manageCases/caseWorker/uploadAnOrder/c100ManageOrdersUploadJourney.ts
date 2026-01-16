@@ -22,6 +22,7 @@ interface C100ManageOrdersOptions {
   solicitorCaseCreateType: solicitorCaseCreateType;
   isUploadOrder: boolean;
   serveOrderNow: boolean;
+  hasJudgeNameAndTitle: boolean;
 }
 
 export class C100ManageOrdersUploadJourney {
@@ -34,6 +35,7 @@ export class C100ManageOrdersUploadJourney {
     solicitorCaseCreateType,
     isUploadOrder,
     serveOrderNow,
+    hasJudgeNameAndTitle,
   }: C100ManageOrdersOptions): Promise<void> {
     await Helpers.chooseEventFromDropdown(page, `Manage orders`);
     await ManageOrders1Page.manageOrders1Page({
@@ -73,6 +75,7 @@ export class C100ManageOrdersUploadJourney {
     await C100DraftOrdersTabPage.c100DraftOrdersTabPage(
       page,
       accessibilityTest,
+      hasJudgeNameAndTitle,
     );
   }
 }
