@@ -272,7 +272,7 @@ async function reviewSupportRequest({
   }
 
   await caseFlags.reviewRARequestPage2.assertPageContents(adjustment, caseType);
-  // await caseFlags.reviewRARequestPage2.verifyAccessibility(); // Need to add a ticket - seems to be failing
+  // await caseFlags.reviewRARequestPage2.verifyAccessibility(); // TODO: failing accessibility waiting on FPVTL-1993
   await caseFlags.reviewRARequestPage2.updateFlagStatus(newStatus);
   await caseFlags.reviewRARequestPage2.addReasonForChange(changeReason);
   if (caseType === "C100") {
