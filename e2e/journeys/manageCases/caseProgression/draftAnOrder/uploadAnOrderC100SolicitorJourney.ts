@@ -11,6 +11,7 @@ import { UploadDraftAnOrder3Page } from "../../../../pages/manageCases/caseProgr
 import { UploadDraftAnOrder4Page } from "../../../../pages/manageCases/caseProgression/draftAnOrder/uploadDraftAnOrder4Page.ts";
 import { C100DraftOrdersTabPage } from "../../../../pages/manageCases/caseTabs/C100/c100DraftOrdersTabPage.ts";
 import { UploadDraftAnOrderSubmitPage } from "../../../../pages/manageCases/caseProgression/draftAnOrder/uploadDraftAnOrderSubmitPage.ts";
+import { ManageOrders8PageCA } from "../../../../pages/manageCases/caseWorker/uploadAnOrder/manageOrders8PageCA.ts";
 
 interface C100DraftAnOrderOptions {
   page: Page;
@@ -62,6 +63,10 @@ export class UploadAnOrderC100SolicitorJourney {
       solicitorCaseCreateType,
       hasJudgeNameAndTitle,
     });
+    await ManageOrders8PageCA.manageOrders8PageCA({
+          page,
+          accessibilityTest,
+        })
     await UploadDraftAnOrderSubmitPage.uploadDraftAnOrderSubmitPage({
       page,
       accessibilityTest,
