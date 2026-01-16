@@ -56,7 +56,9 @@ test.describe("Upload additional applications for C100 tests", () => {
         );
         await uploadAdditionalApplications.uploadAdditionalApplications2Page.clickContinue();
       } else {
-        await uploadAdditionalApplications.uploadAdditionalApplications3Page.assertPageContents("C100");
+        await uploadAdditionalApplications.uploadAdditionalApplications3Page.assertPageContents(
+          "C100",
+        );
         await uploadAdditionalApplications.uploadAdditionalApplications3Page.verifyAccessibility();
         await uploadAdditionalApplications.uploadAdditionalApplications3Page.fillInFields(
           "C100",
@@ -87,7 +89,6 @@ test.describe("Upload additional applications for C100 tests", () => {
         caseNumber,
         "Upload additional applications",
       );
-
     });
   });
 });

@@ -4,12 +4,12 @@ import { PageUtils } from "../../../../utils/page.utils.js";
 import { Selectors } from "../../../../common/selectors.js";
 
 export class UploadAdditionalApplications4Page extends EventPage {
-
   readonly nextStepH3: Locator = this.page.locator(Selectors.h2, {
     hasText: "Next step - Submit the application",
   });
   readonly nextStepP: Locator = this.page.locator(Selectors.p, {
-    hasText: " After you have submitted your application, you will be asked to pay the application fee.",
+    hasText:
+      " After you have submitted your application, you will be asked to pay the application fee.",
   });
   readonly withNoticeFeeP: Locator = this.page.locator(Selectors.p, {
     hasText: "£190.00",
@@ -25,12 +25,9 @@ export class UploadAdditionalApplications4Page extends EventPage {
     "#additionalApplicationsHelpWithFees_No",
   );
 
-  readonly formLabel: Locator = this.page.locator(
-    Selectors.GovukFormLabel,
-    {
-      hasText: "Has the applicant applied for Help with Fees?",
-    },
-  );
+  readonly formLabel: Locator = this.page.locator(Selectors.GovukFormLabel, {
+    hasText: "Has the applicant applied for Help with Fees?",
+  });
   readonly yesFormLabel = this.page.getByText("Yes", { exact: true }).first();
   readonly noFormLabel = this.page.getByText("No", { exact: true }).first();
   readonly formHint: Locator = this.page.locator(Selectors.GovukFormHint, {

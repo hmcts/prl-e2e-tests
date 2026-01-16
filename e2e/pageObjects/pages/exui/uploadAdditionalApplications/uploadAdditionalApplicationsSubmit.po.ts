@@ -4,6 +4,10 @@ import { CommonStaticText } from "../../../../common/commonStaticText.js";
 
 export class UploadAdditionalApplicationsSubmitPage extends CheckYourAnswersPage {
   constructor(page: Page) {
-    super(page, "Upload additional applications", CommonStaticText.saveAndContinue);
+    super(
+      page,
+      "Upload additional applications",
+      CommonStaticText.saveAndContinue,
+    );
   }
 }
