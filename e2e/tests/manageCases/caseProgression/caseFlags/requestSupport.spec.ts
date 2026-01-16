@@ -128,7 +128,7 @@ test.describe("C100 case support request tests.", () => {
       adjustment: "Documents in a specified colour",
       reason: "Test reason",
       recipientRole: "Applicant 1",
-      newStatus: "Active",
+      newStatus: "Not approved",
       changeReason: "Test change reason",
     },
   ].forEach(
@@ -292,8 +292,12 @@ async function reviewSupportRequest({
     caseNumber,
     "Review RA Request",
   );
-  await summaryPage.notificationBanner.assertNotificationBannerPresent(1);
-  await summaryPage.notificationBanner.clickViewCaseFlags();
+  if (newStatus === "Active") {
+    await summaryPage.notificationBanner.assertNotificationBannerPresent(1);
+    await summaryPage.notificationBanner.clickViewCaseFlags();
+  } else {
+    await caseFlagsPage.goToPage();
+  }
   await caseFlagsPage.caseFlagSection.assertCaseFlagPresent(
     recipient,
     adjustment,
