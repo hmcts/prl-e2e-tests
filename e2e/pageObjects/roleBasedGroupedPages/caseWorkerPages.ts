@@ -35,6 +35,10 @@ import { SendAndReplyToMessages1Page } from "../pages/exui/sendAndReplyToMessage
 import { SendAndReplyToMessagesSubmitPage } from "../pages/exui/sendAndReplyToMessages/sendAndReplyToMessagesSubmit.po.js";
 import { SendAndReplyToMessages2Page } from "../pages/exui/sendAndReplyToMessages/sendAndReplyToMessages2.po.js";
 import { SendAndReplyToMessages3Page } from "../pages/exui/sendAndReplyToMessages/sendAndReplyToMessages3.po.js";
+import { ReviewRARequest1Page } from "../pages/exui/caseFlags/reviewRARequest/reviewRARequest1.po.js";
+import { ReviewRARequest2Page } from "../pages/exui/caseFlags/reviewRARequest/reviewRARequest2.po.js";
+import { ReviewRARequestSubmitPage } from "../pages/exui/caseFlags/reviewRARequest/reviewRARequestSubmit.po.js";
+import { CaseFlagsPage } from "../pages/exui/caseView/caseFlags.po.js";
 
 export class CaseWorkerPagesGroup {
   constructor(public readonly page: Page) {}
@@ -57,6 +61,10 @@ export class CaseWorkerPagesGroup {
 
   get rolesAndAccessPage() {
     return new RolesAndAccessPage(this.page);
+  }
+
+  get caseFlagsPage() {
+    return new CaseFlagsPage(this.page);
   }
 
   get allocatedJudge() {
@@ -129,6 +137,14 @@ export class CaseWorkerPagesGroup {
       sendAndReplyToMessagesSubmitPage: new SendAndReplyToMessagesSubmitPage(
         this.page,
       ),
+    };
+  }
+
+  get caseFlags() {
+    return {
+      reviewRARequestPage1: new ReviewRARequest1Page(this.page),
+      reviewRARequestPage2: new ReviewRARequest2Page(this.page),
+      reviewRARequestPageSubmit: new ReviewRARequestSubmitPage(this.page),
     };
   }
 }
