@@ -1,5 +1,5 @@
 import { expect, Page } from "@playwright/test";
-import { CaseAccessViewPage } from "./caseAccessView.po.js"; // adjust import path to match your project
+import { CaseAccessViewPage } from "./caseAccessView.po.js"; 
 
 export class HistoryPage extends CaseAccessViewPage {
   constructor(page: Page) {
