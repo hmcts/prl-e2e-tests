@@ -14,7 +14,7 @@ test.describe("Check Application task for DA Solicitor case tests.", () => {
         caseWorker,
         navigationUtils,
       }): Promise<void> => {
-        const { page, tasksPage, fl401AddCaseNumber, summaryPage } = caseWorker;
+        const { page, tasksPage, fl401AddCaseNumber, summaryPage, historyPage } = caseWorker;
 
         await navigationUtils.goToCase(
           page, // accessing the destructured page property
@@ -50,16 +50,20 @@ test.describe("Check Application task for DA Solicitor case tests.", () => {
           familyManNumber,
         );
         
-        await page.locator("mat-tab-header").getByText("History", { exact: true }).click();
-        await expect(page.locator("ccd-event-log-details")).toBeVisible();
-        await page.getByRole("link", { name: /Add case number/i }).click();
+       await historyPage.goToPage();
+       await historyPage.openEvent(/Add case number/i);
+       await historyPage.assertEndState(/Case issued/i);
         
-        await expect(page.locator("ccd-event-log-details")).toContainText("End state");
-        const endStateValue = page.locator(
-         "//ccd-event-log-details//tr[th[normalize-space()='End state']]/td"
-        );
-        await expect(endStateValue).toBeVisible();
-        await expect(endStateValue).toContainText(/Case issued/i);
+//         await page.locator("mat-tab-header").getByText("History", { exact: true }).click();
+//         await expect(page.locator("ccd-event-log-details")).toBeVisible();
+//         await page.getByRole("link", { name: /Add case number/i }).click();
+        
+//         await expect(page.locator("ccd-event-log-details")).toContainText("End state");
+//         const endStateValue = page.locator(
+//          "//ccd-event-log-details//tr[th[normalize-space()='End state']]/td"
+//         );
+//         await expect(endStateValue).toBeVisible();
+//         await expect(endStateValue).toContainText(/Case issued/i);
     },
   );
 },

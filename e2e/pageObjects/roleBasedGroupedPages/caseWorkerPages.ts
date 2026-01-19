@@ -1,6 +1,7 @@
 import { Page } from "@playwright/test";
 import { TasksPage } from "../pages/exui/caseView/tasks.po.ts";
 import { SummaryPage } from "../pages/exui/caseView/summary.po.ts";
+import { HistoryPage } from "../pages/exui/caseView/history.po.ts";
 import { AmendApplicantDetails1 } from "../pages/exui/amendApplicantDetails/amendApplicantDetails1.po.ts";
 import { AmendApplicantDetailsSubmit } from "../pages/exui/amendApplicantDetails/amendApplicantDetailsSubmit.po.ts";
 import { C100AdminAddBarrister1Page } from "../pages/exui/addAndRemoveBarrister/c100AdminAddBarrister1.po.ts";
@@ -46,6 +47,10 @@ export class CaseWorkerPagesGroup {
     return new SummaryPage(this.page);
   }
 
+  get historyPage() {
+  return new HistoryPage(this.page);
+  }
+  
   get partiesPage() {
     return new PartiesPage(this.page);
   }
