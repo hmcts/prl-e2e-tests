@@ -54,16 +54,7 @@ test.describe("Check Application task for DA Solicitor case tests.", () => {
        await historyPage.openEvent(/Add case number/i);
        await historyPage.assertEndState(/Case issued/i);
         
-//         await page.locator("mat-tab-header").getByText("History", { exact: true }).click();
-//         await expect(page.locator("ccd-event-log-details")).toBeVisible();
-//         await page.getByRole("link", { name: /Add case number/i }).click();
-        
-//         await expect(page.locator("ccd-event-log-details")).toContainText("End state");
-//         const endStateValue = page.locator(
-//          "//ccd-event-log-details//tr[th[normalize-space()='End state']]/td"
-//         );
-//         await expect(endStateValue).toBeVisible();
-//         await expect(endStateValue).toContainText(/Case issued/i);
+
     },
   );
 },
