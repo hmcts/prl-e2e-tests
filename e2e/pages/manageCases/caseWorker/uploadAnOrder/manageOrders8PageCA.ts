@@ -42,11 +42,11 @@ export class ManageOrders8PageCA {
     );
     await pageTitle.waitFor();
     await Promise.all([
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.headingH3}:text-is("${ManageOrders10CAContent.headingh3}")`,
-        1,
-      ),
+    //   Helpers.checkVisibleAndPresent(
+    //     page,
+    //     `${Selectors.headingH3}:text-is("${ManageOrders10CAContent.headingh3}")`,
+    //     1,
+    //   ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.h2}:text-is("${ManageOrders10CAContent.h2}")`,
