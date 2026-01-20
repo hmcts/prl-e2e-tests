@@ -58,7 +58,7 @@ export class DraftAnOrder {
       // need to assign the case to Swansea court if we want to allow a Swansea judge to edit & approve the order
       await this.assignCaseToSwanseaCourt(browser, caseRef, accessibilityTest);
     }
-    await Helpers.chooseEventFromDropdown(page, "Draft an order");
+    await Helpers.chooseEventFromDropdown(page, "Create/upload draft order");
     switch (orderType) {
       case "nonMolestation":
         await NonMolestationOrder.nonMolestationOrder({
@@ -100,7 +100,7 @@ export class DraftAnOrder {
     await page.waitForLoadState("domcontentloaded");
     await page
       .locator(".hmcts-banner__message")
-      .getByText("updated with event: Draft an order")
+      .getByText("updated with event: Create/upload draft order")
       .isVisible();
   }
 

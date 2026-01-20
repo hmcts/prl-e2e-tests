@@ -65,7 +65,7 @@ export class DraftAnOrder5Page extends EventPage {
   private readonly pageUtils: PageUtils = new PageUtils(this.page);
 
   constructor(page: Page) {
-    super(page, "Draft an order");
+    super(page, "Create/upload draft order");
   }
 
   async assertPageContents(orderType: OrderTypes): Promise<void> {
