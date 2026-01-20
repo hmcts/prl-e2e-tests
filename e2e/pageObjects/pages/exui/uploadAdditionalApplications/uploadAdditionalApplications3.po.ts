@@ -5,35 +5,51 @@ import { PageUtils } from "../../../../utils/page.utils.js";
 import config from "../../../../utils/config.utils.js";
 
 export class UploadAdditionalApplications3Page extends EventPage {
-  readonly heading2: Locator = this.page.locator(Selectors.h2, {
-    hasText: "C2 application",
+  readonly heading2: Locator = this.page.locator(Selectors.headingH2, {
+    hasText: "Other applications",
   });
-  readonly c2ApplicationFileUpload: Locator = this.page.locator(
-    "#temporaryC2Document_document",
+  readonly applicationFileUpload: Locator = this.page.locator(
+    "#temporaryOtherApplicationsBundle_document",
   );
   readonly yesDocumentRelatesToCaseCheckbox: Locator = this.page.locator(
-    "#temporaryC2Document_documentAcknowledge-ACK_RELATED_TO_CASE",
+    "#temporaryOtherApplicationsBundle_documentAcknowledge-ACK_RELATED_TO_CASE",
   );
-  readonly c100OtherReasonCheckbox: Locator = this.page.locator(
-    "#temporaryC2Document_caReasonsForC2Application-OTHER",
+  readonly daApplicationDropdown: Locator = this.page.locator(
+    "#temporaryOtherApplicationsBundle_daApplicantApplicationType",
   );
-  readonly fl401OtherReasonCheckbox: Locator = this.page.locator(
-    "#temporaryC2Document_daReasonsForC2Application-OTHER",
-  );
-  readonly otherReasonTextbox: Locator = this.page.locator(
-    "#temporaryC2Document_otherReasonsFoC2Application",
+  readonly caApplicationDropdown: Locator = this.page.locator(
+    "#temporaryOtherApplicationsBundle_caApplicantApplicationType",
   );
   readonly sameDayRadio: Locator = this.page.locator(
-    "#temporaryC2Document_urgencyTimeFrameType-SAME_DAY",
+    "#temporaryOtherApplicationsBundle_urgencyTimeFrameType-SAME_DAY",
   );
-  readonly CAheading2: Locator = this.page.locator(Selectors.h2, {
+  readonly twoDayRadio: Locator = this.page.locator(
+    "#temporaryOtherApplicationsBundle_urgencyTimeFrameType-WITHIN_2_DAYS",
+  );
+  readonly fiveDayRadio: Locator = this.page.locator(
+    "#temporaryOtherApplicationsBundle_urgencyTimeFrameType-WITHIN_5_DAYS",
+  );
+  readonly CAheading2: Locator = this.page.locator(Selectors.headingH2, {
     hasText: "Supplements (Optional)",
   });
+  readonly headingH2SupportingDocuments: Locator = this.page.locator(
+    Selectors.headingH2,
+    {
+      hasText: "Supporting Documents (Optional)",
+    },
+  );
 
+  readonly caSelectAppLabel = this.page
+    .locator(
+      'select[id="temporaryOtherApplicationsBundle_caApplicantApplicationType"]:not([disabled])',
+    )
+    .locator("xpath=preceding-sibling::label[1]");
+  readonly daSelectAppLabel = this.page
+    .locator(
+      'select[id="temporaryOtherApplicationsBundle_daApplicantApplicationType"]:not([disabled])',
+    )
+    .locator("xpath=preceding-sibling::label[1]");
   readonly yesFormLabel = this.page.getByText("Yes", { exact: true }).first();
-  readonly formHint: Locator = this.page.locator(Selectors.GovukFormHint, {
-    hasText: "Select all that apply",
-  });
 
   readonly warningText: Locator = this.page.locator(
     Selectors.GovukWarningText,
@@ -42,44 +58,14 @@ export class UploadAdditionalApplications3Page extends EventPage {
     },
   );
 
-  readonly otherReasonFormLabel: Locator = this.page.locator(
-    Selectors.GovukFormLabel,
-    {
-      hasText: "Other reasons for C2 Application",
-    },
-  );
-
   readonly addButton = this.page
     .getByRole("button", { name: "Add new" })
     .first();
 
   readonly uploadFormLabels: string[] = [
-    "Upload C2 application",
+    "Upload application",
     "Tick to confirm this document is related to this case",
-    "Are you using the C2 to apply for any of the below?",
     "Please state how soon you want the judge to consider your application? (Optional)",
-    "On the same day",
-    "Within 2 days",
-    "Within 5 days",
-  ];
-
-  readonly uploadH2: string[] = [
-    "Draft Orders (Optional)",
-    "Supporting Documents (Optional)",
-  ];
-
-  readonly CAFormLabels: string[] = [
-    "Change surname or remove from jurisdiction.",
-    "Appointment of a guardian",
-    "Termination of appointment of a guardian",
-    "Parental responsibility",
-    "Requesting an adjournment for a scheduled hearing",
-    "Other",
-  ];
-
-  readonly DAFormLabels: string[] = [
-    "Requesting an adjournment for a scheduled hearing",
-    "Other",
   ];
 
   constructor(page: Page) {
@@ -90,35 +76,40 @@ export class UploadAdditionalApplications3Page extends EventPage {
 
   async assertPageContents(caseType: string): Promise<void> {
     await this.assertPageHeadings();
-    await expect(this.heading2).toBeVisible();
+    await this.heading2.waitFor();
     await this.pageUtils.assertStrings(this.uploadFormLabels);
+    await this.sameDayRadio.getByText("On the same day").isVisible();
+    await this.twoDayRadio.getByText("Within 2 days").isVisible();
+    await this.fiveDayRadio.getByText("Within 5 days").isVisible();
     await expect(this.warningText).toBeVisible();
-    await expect(this.formHint).toBeVisible();
     await expect(this.yesFormLabel).toBeVisible();
+    await expect(this.headingH2SupportingDocuments).toBeVisible();
     await expect(this.addButton).toBeVisible();
-    await this.pageUtils.assertStrings(this.uploadH2);
     if (caseType === "C100") {
-      await this.pageUtils.assertStrings(this.CAFormLabels);
       await expect(this.CAheading2).toBeVisible();
+      await expect(this.caSelectAppLabel).toBeVisible();
     } else {
-      await this.pageUtils.assertStrings(this.DAFormLabels);
+      await expect(this.daSelectAppLabel).toBeVisible();
     }
   }
 
   async fillInFields(caseType: string): Promise<void> {
-    await this.c2ApplicationFileUpload.setInputFiles(config.testPdfFile);
+    if (caseType === "C100") {
+      await this.caApplicationDropdown.selectOption(
+        "C1 - Apply for certain orders under the Children Act",
+      );
+    } else {
+      await this.daApplicationDropdown.selectOption(
+        "FL403 - Application to vary, discharge or extend an order",
+      );
+    }
+
+    // upload application file
+    await this.applicationFileUpload.setInputFiles(config.testPdfFile);
     await this.page
       .locator(".error-message", { hasText: " Uploading..." })
       .waitFor({ state: "hidden" });
     await this.yesDocumentRelatesToCaseCheckbox.check();
-
-    if (caseType === "C100") {
-      await this.c100OtherReasonCheckbox.check();
-    } else {
-      await this.fl401OtherReasonCheckbox.check();
-    }
-    await expect(this.otherReasonFormLabel).toBeVisible();
-    await this.otherReasonTextbox.fill("test reason");
     await this.sameDayRadio.check();
   }
 }

@@ -4,7 +4,7 @@ import { PageUtils } from "../../../../utils/page.utils.js";
 import { Selectors } from "../../../../common/selectors.js";
 
 export class UploadAdditionalApplications4Page extends EventPage {
-  readonly nextStepH3: Locator = this.page.locator(Selectors.h2, {
+  readonly nextStepH3: Locator = this.page.locator(Selectors.h3, {
     hasText: "Next step - Submit the application",
   });
   readonly nextStepP: Locator = this.page.locator(Selectors.p, {
@@ -52,7 +52,7 @@ export class UploadAdditionalApplications4Page extends EventPage {
     withNotice: boolean,
   ): Promise<void> {
     await this.assertPageHeadings();
-    await expect(this.nextStepH3).toBeVisible();
+    await this.nextStepH3.waitFor();
     await expect(this.nextStepP).toBeVisible();
     await this.pageUtils.assertStrings(this.h3FormLabels);
     await expect(this.formLabel).toBeVisible();

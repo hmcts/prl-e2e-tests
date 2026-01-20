@@ -78,23 +78,16 @@ export class UploadAdditionalApplications1Page extends EventPage {
       await this.otherOrderRadio.check();
     }
 
-    await this.page.locator('input[name="additionalApplicantsList"]').check();
-
-    //await this.selectApplicants();
+    await this.selectApplicants();
   }
 
-  /*  async selectApplicants() {
-
-    const checkboxes: Array<Locator> = await this.page.getByRole(
-      "checkbox",
-      {
-        name: "additionalApplicantsList",
-      },
-    ).all();
-
+  async selectApplicants() {
+    const checkboxes = await this.page
+      .locator("#additionalApplicantsList")
+      .getByRole("checkbox")
+      .all();
     for (const checkbox of checkboxes) {
       await checkbox.check();
     }
-
-  }*/
+  }
 }

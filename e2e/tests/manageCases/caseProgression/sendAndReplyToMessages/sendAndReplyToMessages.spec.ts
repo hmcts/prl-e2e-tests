@@ -13,6 +13,7 @@ import { LegalAdvisorPagesGroup } from "../../../../pageObjects/roleBasedGrouped
 // -------------------------------
 test.describe("C100 Send & Reply to messages scenarios", () => {
   let caseNumber: string;
+
   test.beforeEach(
     async ({ caseWorker, browser, caseEventUtils, navigationUtils }) => {
       caseNumber =

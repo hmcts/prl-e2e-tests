@@ -5,7 +5,7 @@ import { Selectors } from "../../../../common/selectors.js";
 import config from "../../../../utils/config.utils.js";
 
 export class UploadAdditionalApplications2Page extends EventPage {
-  readonly heading2: Locator = this.page.locator(Selectors.h2, {
+  readonly heading2: Locator = this.page.locator(Selectors.headingH2, {
     hasText: "C2 application",
   });
   readonly c2ApplicationFileUpload: Locator = this.page.locator(
@@ -26,15 +26,22 @@ export class UploadAdditionalApplications2Page extends EventPage {
   readonly sameDayRadio: Locator = this.page.locator(
     "#temporaryC2Document_urgencyTimeFrameType-SAME_DAY",
   );
+  readonly twoDayRadio: Locator = this.page.locator(
+    "#temporaryC2Document_urgencyTimeFrameType-WITHIN_2_DAYS",
+  );
+  readonly fiveDayRadio: Locator = this.page.locator(
+    "#temporaryC2Document_urgency_urgencyType-WITHIN_5_DAYS",
+  );
   readonly CAheading2: Locator = this.page.locator(Selectors.h2, {
     hasText: "Supplements (Optional)",
   });
-
+  readonly c100C2Options: Locator = this.page.locator(
+    "#temporaryC2Document_caReasonsForC2Application",
+  );
+  readonly fl401C2Options: Locator = this.page.locator(
+    "#temporaryC2Document_daReasonsForC2Application",
+  );
   readonly yesFormLabel = this.page.getByText("Yes", { exact: true }).first();
-  readonly formHint: Locator = this.page.locator(Selectors.GovukFormHint, {
-    hasText: "Select all that apply",
-  });
-
   readonly warningText: Locator = this.page.locator(
     Selectors.GovukWarningText,
     {
@@ -56,11 +63,7 @@ export class UploadAdditionalApplications2Page extends EventPage {
   readonly uploadFormLabels: string[] = [
     "Upload C2 application",
     "Tick to confirm this document is related to this case",
-    "Are you using the C2 to apply for any of the below?",
     "Please state how soon you want the judge to consider your application? (Optional)",
-    "On the same day",
-    "Within 2 days",
-    "Within 5 days",
   ];
 
   readonly uploadH2: string[] = [
@@ -69,6 +72,7 @@ export class UploadAdditionalApplications2Page extends EventPage {
   ];
 
   readonly CAFormLabels: string[] = [
+    "Select all that apply",
     "Change surname or remove from jurisdiction.",
     "Appointment of a guardian",
     "Termination of appointment of a guardian",
@@ -78,6 +82,7 @@ export class UploadAdditionalApplications2Page extends EventPage {
   ];
 
   readonly DAFormLabels: string[] = [
+    "Select all that apply",
     "Requesting an adjournment for a scheduled hearing",
     "Other",
   ];
@@ -90,18 +95,29 @@ export class UploadAdditionalApplications2Page extends EventPage {
 
   async assertPageContents(caseType: string): Promise<void> {
     await this.assertPageHeadings();
-    await expect(this.heading2).toBeVisible();
+    await this.heading2.waitFor();
     await this.pageUtils.assertStrings(this.uploadFormLabels);
+    await this.sameDayRadio.getByText("On the same day").isVisible();
+    await this.twoDayRadio.getByText("Within 2 days").isVisible();
+    await this.fiveDayRadio.getByText("Within 5 days").isVisible();
     await expect(this.warningText).toBeVisible();
-    await expect(this.formHint).toBeVisible();
     await expect(this.yesFormLabel).toBeVisible();
     await expect(this.addButton).toBeVisible();
     await this.pageUtils.assertStrings(this.uploadH2);
     if (caseType === "C100") {
-      await this.pageUtils.assertStrings(this.CAFormLabels);
+      await this.pageUtils.assertStrings(this.CAFormLabels, this.c100C2Options);
       await expect(this.CAheading2).toBeVisible();
+      await this.c100C2Options
+        .getByText("Are you using the C2 to apply for any of the below?")
+        .isVisible();
     } else {
-      await this.pageUtils.assertStrings(this.DAFormLabels);
+      await this.fl401C2Options
+        .getByText("Are you using the C2 to apply for any of the below?")
+        .isVisible();
+      await this.pageUtils.assertStrings(
+        this.DAFormLabels,
+        this.fl401C2Options,
+      );
     }
   }
 
@@ -117,7 +133,7 @@ export class UploadAdditionalApplications2Page extends EventPage {
     } else {
       await this.fl401OtherReasonCheckbox.check();
     }
-    await expect(this.otherReasonTextbox).toBeVisible();
+    await expect(this.otherReasonFormLabel).toBeVisible();
     await this.otherReasonTextbox.fill("test reason");
     await this.sameDayRadio.check();
   }
