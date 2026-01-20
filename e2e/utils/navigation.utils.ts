@@ -10,7 +10,9 @@ export class NavigationUtils {
     caseTab: string = "summary",
   ): Promise<void> {
     try {
-      await page.goto(this.generateUrl(baseURL, caseNumber, caseTab));
+      await page.goto(this.generateUrl(baseURL, caseNumber, caseTab), {
+        waitUntil: "load",
+      });
     } catch (error) {
       console.error("An error occurred while navigating to the case: ", error);
       throw error;
