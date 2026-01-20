@@ -2,12 +2,13 @@ import { Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { ManageOrders10CAContent } from "../../../../fixtures/manageCases/caseWorker/createAnOrder/orderCA/manageOrders10CAContent.ts";
+import { ManageOrders8CAContent } from "../../../../fixtures/manageCases/caseWorker/createAnOrder/orderCA/manageOrders8CAContent.ts";
 import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 
 interface manageOrders8PageOptions {
   page: Page;
   accessibilityTest: boolean;
+  isUploadOrder: boolean;
 }
 
 enum checkBoxIds {
@@ -33,29 +34,32 @@ export class ManageOrders8PageCA {
   private static async checkPageLoads({
     page,
     accessibilityTest,
+    isUploadOrder,
   }: Partial<manageOrders8PageOptions>): Promise<void> {
     if (!page) {
       throw new Error("Page is not defined");
     }
-    const pageTitle = page.locator(
-      `${Selectors.GovukHeadingL}:text-is("${ManageOrders10CAContent.pageTitle}")`,
-    );
-    await pageTitle.waitFor();
+    if (isUploadOrder) {
+      const pageTitle = page.locator(
+        `${Selectors.GovukHeadingL}:text-is("${ManageOrders8CAContent.pageTitle2}")`,
+      );
+      await pageTitle.waitFor();
+    } else {
+      const pageTitle = page.locator(
+        `${Selectors.GovukHeadingL}:text-is("${ManageOrders8CAContent.pageTitle}")`,
+      );
+      await pageTitle.waitFor();
+    }
     await Promise.all([
-    //   Helpers.checkVisibleAndPresent(
-    //     page,
-    //     `${Selectors.headingH3}:text-is("${ManageOrders10CAContent.headingh3}")`,
-    //     1,
-    //   ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h2}:text-is("${ManageOrders10CAContent.h2}")`,
+        `${Selectors.h2}:text-is("${ManageOrders8CAContent.h2}")`,
         1,
       ),
       Helpers.checkGroup(
         page,
         4,
-        ManageOrders10CAContent,
+        ManageOrders8CAContent,
         "label",
         `${Selectors.GovukFormLabel}`,
       ),
@@ -77,7 +81,7 @@ export class ManageOrders8PageCA {
     await Helpers.checkGroup(
       page,
       4,
-      ManageOrders10CAContent,
+      ManageOrders8CAContent,
       "hiddenLabel",
       `${Selectors.GovukFormLabel}`,
     );

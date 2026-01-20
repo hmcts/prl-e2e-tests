@@ -64,9 +64,10 @@ export class UploadAnOrderC100SolicitorJourney {
       hasJudgeNameAndTitle,
     });
     await ManageOrders8PageCA.manageOrders8PageCA({
-          page,
-          accessibilityTest,
-        })
+      page,
+      accessibilityTest,
+      isUploadOrder,
+    })
     await UploadDraftAnOrderSubmitPage.uploadDraftAnOrderSubmitPage({
       page,
       accessibilityTest,

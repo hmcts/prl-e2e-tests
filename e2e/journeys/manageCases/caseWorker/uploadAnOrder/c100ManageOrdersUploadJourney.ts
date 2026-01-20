@@ -61,6 +61,7 @@ export class C100ManageOrdersUploadJourney {
     await ManageOrders8PageCA.manageOrders8PageCA({
       page,
       accessibilityTest,
+      isUploadOrder,
     })
     await ManageOrders24PageCA.manageOrders24PageCA({
       page,
