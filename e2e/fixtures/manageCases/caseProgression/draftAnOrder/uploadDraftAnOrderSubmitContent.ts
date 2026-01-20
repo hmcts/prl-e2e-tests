@@ -1,5 +1,5 @@
 export enum UploadDraftAnOrderSubmitContent {
-  pageTitle = "Draft an order",
+  pageTitle = "Create/upload draft order",
   headingh2 = "Check your answers",
   strong1 = "Judge or Magistrate's title",
   change = " Change ",

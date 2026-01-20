@@ -9,6 +9,7 @@ export abstract class Base {
   readonly axeUtils: AxeUtils;
   readonly continueButton: Locator;
   readonly previousButton: Locator;
+  readonly submitButton: Locator;
 
   protected constructor(page: Page) {
     this.page = page;
@@ -18,6 +19,9 @@ export abstract class Base {
     this.previousButton = this.page.locator("button", {
       hasText: "Previous",
     });
+    this.submitButton = this.page.locator("button", {
+      hasText: "Submit",
+    });
   }
 
   async clickContinue() {
@@ -26,6 +30,10 @@ export abstract class Base {
 
   async clickPrevious() {
     await this.previousButton.click();
+  }
+
+  async clickSubmit(): Promise<void> {
+    await this.submitButton.click();
   }
 
   async verifyAccessibility(): Promise<void> {
