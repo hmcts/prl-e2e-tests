@@ -24,6 +24,7 @@ interface C100ManageOrdersOptions {
   isUploadOrder: boolean;
   serveOrderNow: boolean;
   hasJudgeNameAndTitle: boolean;
+  isCaseworker: boolean;
 }
 
 export class C100ManageOrdersUploadJourney {
@@ -37,6 +38,7 @@ export class C100ManageOrdersUploadJourney {
     isUploadOrder,
     serveOrderNow,
     hasJudgeNameAndTitle,
+    isCaseworker,
   }: C100ManageOrdersOptions): Promise<void> {
     await Helpers.chooseEventFromDropdown(page, `Manage orders`);
     await ManageOrders1Page.manageOrders1Page({
@@ -61,7 +63,7 @@ export class C100ManageOrdersUploadJourney {
     await ManageOrders8PageCA.manageOrders8PageCA({
       page,
       accessibilityTest,
-      isUploadOrder,
+      isCaseworker,
     });
     await ManageOrders24PageCA.manageOrders24PageCA({
       page,

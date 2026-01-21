@@ -25,6 +25,7 @@ interface C100DraftAnOrderOptions {
   browser: Browser;
   caseRef: string;
   hasJudgeNameAndTitle: boolean;
+  isCaseworker: boolean;
 }
 
 export class UploadAnOrderC100SolicitorJourney {
@@ -40,6 +41,7 @@ export class UploadAnOrderC100SolicitorJourney {
     browser,
     caseRef,
     hasJudgeNameAndTitle,
+    isCaseworker,
   }: C100DraftAnOrderOptions): Promise<void> {
     //Starting the 'Create/upload draft order' event to upload the order
     await Helpers.chooseEventFromDropdown(page, "Create/upload draft order");
@@ -66,7 +68,7 @@ export class UploadAnOrderC100SolicitorJourney {
     await ManageOrders8PageCA.manageOrders8PageCA({
       page,
       accessibilityTest,
-      isUploadOrder,
+      isCaseworker,
     });
     await UploadDraftAnOrderSubmitPage.uploadDraftAnOrderSubmitPage({
       page,

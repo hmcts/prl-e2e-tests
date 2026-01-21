@@ -8,7 +8,7 @@ import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 interface manageOrders8PageOptions {
   page: Page;
   accessibilityTest: boolean;
-  isUploadOrder: boolean;
+  isCaseworker: boolean;
 }
 
 enum checkBoxIds {
@@ -23,33 +23,33 @@ export class ManageOrders8PageCA {
   public static async manageOrders8PageCA({
     page,
     accessibilityTest,
-    isUploadOrder,
+    isCaseworker,
   }: manageOrders8PageOptions): Promise<void> {
     if (!page) {
       throw new Error("Page is not defined");
     }
-    await this.checkPageLoads({ page, accessibilityTest, isUploadOrder });
+    await this.checkPageLoads({ page, accessibilityTest, isCaseworker });
     await this.fillInFields({ page });
   }
 
   private static async checkPageLoads({
     page,
     accessibilityTest,
-    isUploadOrder,
+    isCaseworker,
   }: Partial<manageOrders8PageOptions>): Promise<void> {
     if (!page) {
       throw new Error("Page is not defined");
     }
-    if (isUploadOrder) {
+    if (isCaseworker) {
       await expect(
         page.locator(
-          `${Selectors.GovukHeadingL}:text-is("${ManageOrders8CAContent.pageTitle2}")`,
+          `${Selectors.GovukHeadingL}:text-is("${ManageOrders8CAContent.pageTitle}")`,
         ),
       ).toBeVisible();
     } else {
       await expect(
         page.locator(
-          `${Selectors.GovukHeadingL}:text-is("${ManageOrders8CAContent.pageTitle}")`,
+          `${Selectors.GovukHeadingL}:text-is("${ManageOrders8CAContent.pageTitle2}")`,
         ),
       ).toBeVisible();
     }
