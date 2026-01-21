@@ -62,7 +62,7 @@ export class C100ManageOrdersUploadJourney {
       page,
       accessibilityTest,
       isUploadOrder,
-    })
+    });
     await ManageOrders24PageCA.manageOrders24PageCA({
       page,
       accessibilityTest,

@@ -67,7 +67,7 @@ export class UploadAnOrderC100SolicitorJourney {
       page,
       accessibilityTest,
       isUploadOrder,
-    })
+    });
     await UploadDraftAnOrderSubmitPage.uploadDraftAnOrderSubmitPage({
       page,
       accessibilityTest,

@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test";
+import { Page, expect } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
@@ -20,7 +20,7 @@ enum checkBoxIds {
 const radioId = "#selectChildArrangementsOrder-spendTimeWithOrder";
 
 export class ManageOrders8PageCA {
-    public static async manageOrders8PageCA({
+  public static async manageOrders8PageCA({
     page,
     accessibilityTest,
   }: manageOrders8PageOptions): Promise<void> {
@@ -40,15 +40,17 @@ export class ManageOrders8PageCA {
       throw new Error("Page is not defined");
     }
     if (isUploadOrder) {
-      const pageTitle = page.locator(
-        `${Selectors.GovukHeadingL}:text-is("${ManageOrders8CAContent.pageTitle2}")`,
-      );
-      await pageTitle.waitFor();
+      await expect(
+        page.locator(
+          `${Selectors.GovukHeadingL}:text-is("${ManageOrders8CAContent.pageTitle2}")`,
+        ),
+      ).toBeVisible();
     } else {
-      const pageTitle = page.locator(
-        `${Selectors.GovukHeadingL}:text-is("${ManageOrders8CAContent.pageTitle}")`,
-      );
-      await pageTitle.waitFor();
+      await expect(
+        page.locator(
+          `${Selectors.GovukHeadingL}:text-is("${ManageOrders8CAContent.pageTitle}")`,
+        ),
+      ).toBeVisible();
     }
     await Promise.all([
       Helpers.checkVisibleAndPresent(
