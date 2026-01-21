@@ -23,11 +23,12 @@ export class ManageOrders8PageCA {
   public static async manageOrders8PageCA({
     page,
     accessibilityTest,
+    isUploadOrder,
   }: manageOrders8PageOptions): Promise<void> {
     if (!page) {
       throw new Error("Page is not defined");
     }
-    await this.checkPageLoads({ page, accessibilityTest });
+    await this.checkPageLoads({ page, accessibilityTest, isUploadOrder });
     await this.fillInFields({ page });
   }
 
