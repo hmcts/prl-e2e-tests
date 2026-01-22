@@ -40,6 +40,7 @@ test.describe("'Upload an order' tests", (): void => {
       isUploadOrder: true,
       serveOrderNow: false,
       hasJudgeNameAndTitle: true,
+      isCaseworker: true,
     });
   });
 
@@ -57,6 +58,7 @@ test.describe("'Upload an order' tests", (): void => {
       isUploadOrder: true,
       serveOrderNow: false,
       hasJudgeNameAndTitle: true,
+      isCaseworker: true,
     });
   });
 });

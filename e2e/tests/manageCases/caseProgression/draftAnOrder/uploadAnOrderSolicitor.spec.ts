@@ -5,7 +5,7 @@ import { Helpers } from "../../../../common/helpers.js";
 import { test } from "../../../fixtures.ts";
 
 test.use({ storageState: config.sessionStoragePath + "solicitor.json" });
-test.describe("'Upload an order' by Solicitor via the 'Draft an Order' event tests", (): void => {
+test.describe("'Upload an order' by Solicitor via the 'Create/upload draft order' event tests", (): void => {
   let caseRef: string;
 
   test.beforeEach(async ({ page, browser, caseEventUtils }) => {
@@ -39,6 +39,7 @@ test.describe("'Upload an order' by Solicitor via the 'Draft an Order' event tes
       browser: browser,
       caseRef: caseRef,
       hasJudgeNameAndTitle: true,
+      isCaseworker: false,
     });
   });
 
@@ -63,6 +64,7 @@ test.describe("'Upload an order' by Solicitor via the 'Draft an Order' event tes
       browser: browser,
       caseRef: caseRef,
       hasJudgeNameAndTitle: false,
+      isCaseworker: false,
     });
   });
 
