@@ -1,5 +1,5 @@
 export enum UploadDraftAnOrder3Content {
-  pageTitle = "Draft an order",
+  pageTitle = "Create/upload draft order",
   formLabel1 = "Child arrangement orders (Optional)",
   formLabel2 = "Standard directions order",
   formLabel3 = "Blank order or directions (C21)",
