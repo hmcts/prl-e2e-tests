@@ -51,8 +51,8 @@ test.describe("Check Application task for DA Solicitor case tests.", () => {
         );
         
        await historyPage.goToPage();
-       await historyPage.openEvent(/Add case number/i);
-       await historyPage.assertEndState(/Case issued/i);
+       await historyPage.openEvent();
+       await historyPage.assertEndState();
         
 
     },
