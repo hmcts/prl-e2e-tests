@@ -7,6 +7,7 @@ import {
 } from "../../../../common/types.ts";
 import { ManageOrders1Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/orderCA/manageOrders1Page.ts";
 import { ManageOrders3Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/orderDA/manageOrders3Page.ts";
+import { ManageOrders8PageCA } from "../../../../pages/manageCases/caseWorker/uploadAnOrder/manageOrders8PageCA.ts";
 import { ManageOrders24PageCA } from "../../../../pages/manageCases/caseWorker/uploadAnOrder/manageOrders24PageCA.ts";
 import { ManageOrders26PageCA } from "../../../../pages/manageCases/caseWorker/uploadAnOrder/manageOrders26PageCA.ts";
 import { C100DraftOrdersTabPage } from "../../../../pages/manageCases/caseTabs/C100/c100DraftOrdersTabPage.ts";
@@ -22,6 +23,8 @@ interface C100ManageOrdersOptions {
   solicitorCaseCreateType: solicitorCaseCreateType;
   isUploadOrder: boolean;
   serveOrderNow: boolean;
+  hasJudgeNameAndTitle: boolean;
+  isCaseworker: boolean;
 }
 
 export class C100ManageOrdersUploadJourney {
@@ -34,6 +37,8 @@ export class C100ManageOrdersUploadJourney {
     solicitorCaseCreateType,
     isUploadOrder,
     serveOrderNow,
+    hasJudgeNameAndTitle,
+    isCaseworker,
   }: C100ManageOrdersOptions): Promise<void> {
     await Helpers.chooseEventFromDropdown(page, `Manage orders`);
     await ManageOrders1Page.manageOrders1Page({
@@ -55,6 +60,11 @@ export class C100ManageOrdersUploadJourney {
       isUploadOrder,
       solicitorCaseCreateType,
     });
+    await ManageOrders8PageCA.manageOrders8PageCA({
+      page,
+      accessibilityTest,
+      isCaseworker,
+    });
     await ManageOrders24PageCA.manageOrders24PageCA({
       page,
       accessibilityTest,
@@ -73,6 +83,7 @@ export class C100ManageOrdersUploadJourney {
     await C100DraftOrdersTabPage.c100DraftOrdersTabPage(
       page,
       accessibilityTest,
+      hasJudgeNameAndTitle,
     );
   }
 }

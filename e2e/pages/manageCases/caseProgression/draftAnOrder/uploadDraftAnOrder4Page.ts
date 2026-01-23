@@ -17,6 +17,7 @@ interface UploadDraftAnOrder4PageOptions {
   uploadOrderC100Options?: uploadOrderC100Options;
   uploadOrderFL401Options?: uploadOrderFL401Options;
   solicitorCaseCreateType: solicitorCaseCreateType;
+  hasJudgeNameAndTitle: boolean;
 }
 
 enum radioIds2 {
@@ -49,6 +50,7 @@ export class UploadDraftAnOrder4Page {
     uploadOrderC100Options,
     uploadOrderFL401Options,
     solicitorCaseCreateType,
+    hasJudgeNameAndTitle,
   }: UploadDraftAnOrder4PageOptions): Promise<void> {
     if (!page) {
       throw new Error("Page is not defined");
@@ -61,9 +63,9 @@ export class UploadDraftAnOrder4Page {
       uploadOrderFL401Options,
     });
     if (solicitorCaseCreateType === "C100") {
-      await this.fillInFieldsCA({ page });
+      await this.fillInFieldsCA({ page, hasJudgeNameAndTitle });
     } else {
-      await this.fillInFieldsDA({ page });
+      await this.fillInFieldsDA({ page }); //hasJudgeNameAndTitle not required for DA as code is shared with CA
     }
   }
 
@@ -88,7 +90,7 @@ export class UploadDraftAnOrder4Page {
       ),
       Helpers.checkGroup(
         page,
-        19,
+        18,
         UploadDraftAnOrder4Content,
         "label",
         `${Selectors.GovukFormLabel}`,
@@ -139,6 +141,7 @@ export class UploadDraftAnOrder4Page {
 
   private static async fillInFieldsCA({
     page,
+    hasJudgeNameAndTitle,
   }: Partial<UploadDraftAnOrder4PageOptions>): Promise<void> {
     if (!page) {
       throw new Error("Page is not defined");
@@ -150,10 +153,12 @@ export class UploadDraftAnOrder4Page {
       inputIds.hearingsType,
       UploadDraftAnOrder4Content.hearing,
     );
-    await page.fill(
-      inputIds.judgeOrMagistratesLastName,
-      UploadDraftAnOrder4Content.judgeFullName,
-    );
+    if (hasJudgeNameAndTitle) {
+      await page.fill(
+        inputIds.judgeOrMagistratesLastName,
+        UploadDraftAnOrder4Content.judgeFullName,
+      );
+    }
     await page.waitForTimeout(5000);
     const fileInput = page.locator(`${UniqueSelectors.fileUpload}`);
     await fileInput.setInputFiles(Config.testPdfFile);

@@ -23,6 +23,7 @@ interface FL401DraftAnOrderOptions {
   errorMessaging: boolean;
   browser: Browser;
   isUploadOrder: boolean;
+  hasJudgeNameAndTitle: boolean;
 }
 
 export class UploadAnOrderFL401SolicitorJourney {
@@ -36,6 +37,7 @@ export class UploadAnOrderFL401SolicitorJourney {
     errorMessaging,
     isUploadOrder,
     browser,
+    hasJudgeNameAndTitle,
   }: FL401DraftAnOrderOptions): Promise<void> {
     const caseEventUtils = new CaseEventUtils();
     const caseRef: string = await caseEventUtils.createDACase(browser);
@@ -45,8 +47,8 @@ export class UploadAnOrderFL401SolicitorJourney {
       caseRef,
       "Summary",
     );
-    //Starting the 'Draft an order' event to upload the order
-    await Helpers.chooseEventFromDropdown(page, `Draft an order`);
+    //Starting the 'Create/upload draft order' event to upload the order
+    await Helpers.chooseEventFromDropdown(page, "Create/upload draft order");
     await DraftAnOrder1Page.draftAnOrder1Page(
       page,
       errorMessaging,
@@ -65,11 +67,13 @@ export class UploadAnOrderFL401SolicitorJourney {
       page,
       accessibilityTest,
       solicitorCaseCreateType,
+      hasJudgeNameAndTitle,
     });
     await UploadDraftAnOrderSubmitPage.uploadDraftAnOrderSubmitPage({
       page,
       accessibilityTest,
       solicitorCaseCreateType,
+      hasJudgeNameAndTitle,
     });
     //Switching to CTSC user as Solicitor cannot see the 'Draft orders' tab in the case
     const checkPageCTSC: Page = await Helpers.openNewBrowserWindow(
@@ -87,6 +91,7 @@ export class UploadAnOrderFL401SolicitorJourney {
     await C100DraftOrdersTabPage.c100DraftOrdersTabPage(
       checkPageCTSC,
       accessibilityTest,
+      hasJudgeNameAndTitle,
     );
   }
 }
