@@ -23,9 +23,9 @@ test.describe("Tests create Courtnav cases with lots of docs", (): void => {
     //navigationUtils,
   }): Promise<void> => {
     //AAT
-    //await page.goto("https://uat-courtnav.studiorepublic.com/");
+    await page.goto("https://uat-courtnav.studiorepublic.com/");
     //DEMO
-    await page.goto("https://injunction-courtnav.studiorepublic.com/");
+    //await page.goto("https://injunction-courtnav.studiorepublic.com/");
     await page.getByRole("button", { name: "Continue to CourtNav" }).click();
     const numberOfCases: number = 1;
     //const docComparisonList: Docs[] = [];
