@@ -39,6 +39,7 @@ test.describe("'Upload an order' by Solicitor via the 'Create/upload draft order
       browser: browser,
       caseRef: caseRef,
       hasJudgeNameAndTitle: true,
+      isCaseworker: false,
     });
   });
 
@@ -63,6 +64,7 @@ test.describe("'Upload an order' by Solicitor via the 'Create/upload draft order
       browser: browser,
       caseRef: caseRef,
       hasJudgeNameAndTitle: false,
+      isCaseworker: false,
     });
   });
 

@@ -50,7 +50,7 @@ export class SubmitPageCA {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukText16}:text-is("${SubmitCAContent.change}")`,
-        16,
+        18,
       ),
       Helpers.checkVisibleAndPresent(
         page,

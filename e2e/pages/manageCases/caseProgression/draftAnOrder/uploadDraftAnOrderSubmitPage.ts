@@ -93,13 +93,13 @@ export class UploadDraftAnOrderSubmitPage {
       await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukText16}:text-is("${UploadDraftAnOrderSubmitContent.change}")`,
-        9,
+        11,
       );
     } else
       await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukText16}:text-is("${UploadDraftAnOrderSubmitContent.change}")`,
-        8,
+        10,
       );
     if (accessibilityTest) {
       await new AxeUtils(page).audit();
