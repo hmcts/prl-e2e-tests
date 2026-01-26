@@ -16,12 +16,16 @@ const password: string = "U0Uan95KD/£1"; // add this when required
 
 test.describe("Tests create Courtnav cases with lots of docs", (): void => {
   test.slow();
+  test.use({ ignoreHTTPSErrors: true, }); //demo
   test("the test", async ({
     page,
     //caseWorker,
     //navigationUtils,
   }): Promise<void> => {
-    await page.goto("https://uat-courtnav.studiorepublic.com/");
+    //AAT
+    //await page.goto("https://uat-courtnav.studiorepublic.com/");
+    //DEMO
+    await page.goto("https://injunction-courtnav.studiorepublic.com/");
     await page.getByRole("button", { name: "Continue to CourtNav" }).click();
     const numberOfCases: number = 1;
     //const docComparisonList: Docs[] = [];
@@ -143,7 +147,7 @@ async function completeCourtnavApplication(
 
   // submit
   await infoIsAccurateCheckbox.click();
-  await page.waitForTimeout(3000);
+  //await page.waitForTimeout(3000);
   await submitButton.click();
   await expect(submissionPendingHeading).toBeVisible();
 

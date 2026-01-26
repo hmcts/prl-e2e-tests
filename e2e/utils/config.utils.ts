@@ -49,17 +49,17 @@ export class Config {
   public static readonly citizenFrontendBaseURL: string =
     Config.ensureTrailingSlash(
       process.env.CITIZEN_FRONTEND_BASE_URL ||
-        "https://privatelaw.aat.platform.hmcts.net/",
+        "https://privatelaw.demo.platform.hmcts.net/",
     );
 
   public static readonly manageCasesBaseURLCase: string =
     Config.ensureNoTrailingSlash(
       process.env.MANAGE_CASES_BASE_URL ||
-        "https://manage-case.aat.platform.hmcts.net/cases",
+        "https://manage-case.demo.platform.hmcts.net/cases",
     );
   public static readonly manageCasesBaseURL: string = Config.removeCasesPath(
     process.env.MANAGE_CASES_BASE_URL ||
-      "https://manage-case.aat.platform.hmcts.net",
+      "https://manage-case.demo.platform.hmcts.net",
   );
 
   public static readonly edgeCasesBaseURL: string =
