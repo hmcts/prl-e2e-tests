@@ -14,10 +14,11 @@ test.describe("Check Application task for DA Solicitor case tests.", () => {
         caseWorker,
         navigationUtils,
       }): Promise<void> => {
-        const { page, tasksPage, fl401AddCaseNumber, summaryPage, historyPage } = caseWorker;
+        const { page, tasksPage, fl401AddCaseNumber, summaryPage, historyPage } =
+          caseWorker;
 
         await navigationUtils.goToCase(
-          page, // accessing the destructured page property
+          page,
           config.manageCasesBaseURLCase,
           caseNumber,
           "tasks",
@@ -40,7 +41,6 @@ test.describe("Check Application task for DA Solicitor case tests.", () => {
         );
         await fl401AddCaseNumber.submitPage.verifyAccessibility();
         await fl401AddCaseNumber.submitPage.clickSaveAndContinue();
-        
 
         await summaryPage.alertBanner.assertEventAlert(
           caseNumber,
@@ -49,14 +49,11 @@ test.describe("Check Application task for DA Solicitor case tests.", () => {
         await summaryPage.caseHeader.assertFamilyManNumberIsVisible(
           familyManNumber,
         );
-        
-       await historyPage.goToPage();
-       await historyPage.openEvent();
-       await historyPage.assertEndState();
-        
 
+        await historyPage.goToPage();
+        await historyPage.assertEndStateRowVisible();
+        await historyPage.assertEndState();
+      });
     },
-  );
-},
   );
 });
