@@ -3,6 +3,12 @@ import { WithdrawApplicationEvent1Page } from "../pages/exui/withdrawApplication
 import { WithdrawApplicationEventSubmitPage } from "../pages/exui/withdrawApplication/withdrawApplicationEventSubmit.po.ts";
 import { WithdrawApplicationEventConfirmPage } from "../pages/exui/withdrawApplication/withdrawApplicationEventConfirm.po.ts";
 import { SummaryPage } from "../pages/exui/caseView/summary.po.ts";
+import { UploadAdditionalApplications1Page } from "../pages/exui/uploadAdditionalApplications/uploadAdditionalApplications1.po.js";
+import { UploadAdditionalApplications2Page } from "../pages/exui/uploadAdditionalApplications/uploadAdditionalApplications2.po.js";
+import { UploadAdditionalApplications3Page } from "../pages/exui/uploadAdditionalApplications/uploadAdditionalApplications3.po.js";
+import { UploadAdditionalApplications4Page } from "../pages/exui/uploadAdditionalApplications/uploadAdditionalApplications4.po.js";
+import { UploadAdditionalApplicationsSubmitPage } from "../pages/exui/uploadAdditionalApplications/uploadAdditionalApplicationsSubmit.po.js";
+import { UploadAdditionalApplicationsConfirmPage } from "../pages/exui/uploadAdditionalApplications/uploadAdditionalApplicationsConfirm.po.js";
 import { RequestSupport1Page } from "../pages/exui/caseFlags/requestSupport/requestSupport1.po.ts";
 import { RequestSupport2Page } from "../pages/exui/caseFlags/requestSupport/requestSupport2.po.ts";
 import { RequestSupport3Page } from "../pages/exui/caseFlags/requestSupport/requestSupport3.po.ts";
@@ -26,10 +32,27 @@ export class SolicitorPagesGroup {
     };
   }
 
+  get uploadAdditionalApplications() {
+    return {
+      uploadAdditionalApplications1Page: new UploadAdditionalApplications1Page(
+        this.page,
+      ),
+      uploadAdditionalApplications2Page: new UploadAdditionalApplications2Page(
+        this.page,
+      ),
+      uploadAdditionalApplications3Page: new UploadAdditionalApplications3Page(
+        this.page,
+      ),
+      uploadAdditionalApplications4Page: new UploadAdditionalApplications4Page(
+        this.page,
+      ),
+      submitPage: new UploadAdditionalApplicationsSubmitPage(this.page),
+      confirmPage: new UploadAdditionalApplicationsConfirmPage(this.page),
+    };
+  }
   get supportPage() {
     return new SupportPage(this.page);
   }
-
   get caseFlags() {
     return {
       requestSupport1Page: new RequestSupport1Page(this.page),
