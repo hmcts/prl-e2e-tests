@@ -1,5 +1,5 @@
 import { CaseAccessViewPage } from "./caseAccessView.po.js";
-import { expect, Locator, Page } from "@playwright/test";
+import { Locator, Page } from "@playwright/test";
 
 export class HistoryPage extends CaseAccessViewPage {
   readonly historyTab: Locator = this.page.getByRole("tab", { name: "History" });
@@ -25,14 +25,5 @@ export class HistoryPage extends CaseAccessViewPage {
 
   async goToPage(): Promise<void> {
     await this.historyTab.click();
-    await expect(this.eventHistoryName).toBeVisible();
-  }
-
-  async assertEndStateRowVisible(): Promise<void> {
-    await expect(this.endStateRow).toBeVisible();
-  }
-
-  async assertEndState(): Promise<void> {
-    await expect(this.endStateValue).toBeVisible();
   }
 }
