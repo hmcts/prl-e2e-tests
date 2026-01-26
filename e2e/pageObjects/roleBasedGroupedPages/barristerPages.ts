@@ -8,21 +8,16 @@ import { DraftAnOrder8Page } from "../pages/exui/orders/solicitor/draftAnOrder8.
 import { DraftAnOrder16Page } from "../pages/exui/orders/solicitor/draftAnOrder16.po.ts";
 import { DraftAnOrder20Page } from "../pages/exui/orders/solicitor/draftAnOrder20.po.ts";
 import { DraftAnOrderSubmitPage } from "../pages/exui/orders/solicitor/draftAnOrderSubmit.po.ts";
-import { ManageDocumentsNew1Page } from "../pages/exui/manageDocuments/manageDocumentsNew1.po.ts";
-
-
-import { ManageDocuments}
-
-
-
-
+//import { ManageDocumentsNew1Page } from "../pages/exui/manageDocuments/manageDocumentsNew1.po.ts";
+import { StopRepresenting1Page } from "../pages/exui/stopRepresentingClient/stopRepresentingClient1.po.ts";
+import { StopRepresentingSubmitPage } from "../pages/exui/stopRepresentingClient/stopRepresentingClientSubmit.po.ts";
 
 export class BarristerPagesGroup {
-  constructor(public readonly page: Page) {}
+    constructor(public readonly page: Page) { }
+    
   get summaryPage() {
     return new SummaryPage(this.page);
   }
-
   get draftAnOrderEvent() {
     return {
         page1: new DraftAnOrder1Page(this.page),
@@ -35,24 +30,25 @@ export class BarristerPagesGroup {
         submitPage: new DraftAnOrderSubmitPage(this.page),
     };
   }
-    get manageDocumentsEvent() {
-        return {
-            page1: new ManageDocumentsNew1Page(this.page),
-            submitPage: new ManageDocumentsNewSubmitPage(this.page),
-            confirmPage: new ManageDocumentsNewConfirmPage(this.page),
-        };
-    }
-    //this event needs some pre-requisites to be met, need to be added in the spec file
-    get editAReturnedOrderEvent() {
-        return {
-            page1: new AAA(this.page),
-            submitPage: new WithdAAA(this.page),
-        };
-    }
+    // to fix the below events when the barrister context is ready, or use Solicitor for the common ones!
+    // get manageDocumentsEvent() {
+    //     return {
+    //         page1: new ManageDocumentsNew1Page(this.page),
+    //         submitPage: new ManageDocumentsNewSubmitPage(this.page),
+    //         confirmPage: new ManageDocumentsNewConfirmPage(this.page),
+    //     };
+    // }
+    // //this event needs some pre-requisites to be met, need to be added in the spec file
+    // get editAReturnedOrderEvent() {
+    //     return {
+    //         page1: new AAA(this.page),
+    //         submitPage: new WithdAAA(this.page),
+    //     };
+    // }
     get stopRepresentingClientEvent() {
         return {
-            page1: new BarristerStopRepresenting1Page(this.page),
-            submitPage: new BarristerStopRepresentingSubmitPage(this.page),
+            page1: new StopRepresenting1Page(this.page),
+            submitPage: new StopRepresentingSubmitPage(this.page),
         };
     }
 }
