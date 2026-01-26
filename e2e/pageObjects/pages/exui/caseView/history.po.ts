@@ -2,21 +2,22 @@ import { CaseAccessViewPage } from "./caseAccessView.po.js";
 import { expect, Locator, Page } from "@playwright/test";
 
 export class HistoryPage extends CaseAccessViewPage {
-  readonly historyTab: Locator = this.page.getByRole("tab", {
-    name: "History",
-  });
-  readonly eventLogDetails: Locator = this.page
+  readonly historyTab: Locator = this.page.getByRole("tab", { name: "History" });
+
+  readonly eventHistoryName: Locator = this.page
     .locator("ccd-event-log-details, ccd-case-event-log-details")
-    .first();
-  readonly endStateRow: Locator = this.eventLogDetails
+    .filter({ hasText: "Add case number" });
+
+  readonly endStateRow: Locator = this.page
     .locator("tr")
-    .filter({ hasText: "End state" });
-  // readonly eventHistoryName: Locator = this.page
-    // .locator("ccd-event-log-details, ccd-case-event-log-details")
-  // .first(); hasText "Add case number";
-  
-  //readonly endStateValue: Locator = this.endStateRow.locator("td").last();
-  // hasText: "Case Issued"
+    .filter({ hasText: "End state" })
+    .filter({ hasText: "Case Issued" })
+    .first();
+
+  readonly endStateValue: Locator = this.endStateRow
+    .locator("td")
+    .filter({ hasText: "Case Issued" })
+    .last();
 
   constructor(page: Page) {
     super(page);
@@ -24,18 +25,14 @@ export class HistoryPage extends CaseAccessViewPage {
 
   async goToPage(): Promise<void> {
     await this.historyTab.click();
-    await expect(this.eventLogDetails).toBeVisible();
-    // await expect eventHistoryName toBeVisible();
+    await expect(this.eventHistoryName).toBeVisible();
   }
 
-  async openEvent(): Promise<void> {
-    // not needed?  await this.page.getByRole("link", { name: eventName }).click();
-    // not needed? await expect(this.eventLogDetails).toBeVisible();
+  async assertEndStateRowVisible(): Promise<void> {
     await expect(this.endStateRow).toBeVisible();
   }
 
   async assertEndState(): Promise<void> {
     await expect(this.endStateValue).toBeVisible();
-    // not needed await expect(this.endStateValue).toContainText(expected);
   }
 }
