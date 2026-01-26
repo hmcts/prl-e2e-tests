@@ -52,9 +52,9 @@ export class CaseWorkerPagesGroup {
   }
 
   get historyPage() {
-  return new HistoryPage(this.page);
+    return new HistoryPage(this.page);
   }
-  
+
   get partiesPage() {
     return new PartiesPage(this.page);
   }
