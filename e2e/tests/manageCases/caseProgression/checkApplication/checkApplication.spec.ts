@@ -1,4 +1,4 @@
-import { test } from "../../../fixtures.ts";
+import { test, expect } from "../../../fixtures.ts";
 import config from "../../../../utils/config.utils.ts";
 
 test.describe("Check Application task for DA Solicitor case tests.", () => {
@@ -14,11 +14,16 @@ test.describe("Check Application task for DA Solicitor case tests.", () => {
         caseWorker,
         navigationUtils,
       }): Promise<void> => {
-        const { page, tasksPage, fl401AddCaseNumber, summaryPage, historyPage } =
-          caseWorker;
+        const {
+          page,
+          tasksPage,
+          fl401AddCaseNumber,
+          summaryPage,
+          historyPage,
+        } = caseWorker;
 
         await navigationUtils.goToCase(
-          page,
+          page, // accessing the destructured page property
           config.manageCasesBaseURLCase,
           caseNumber,
           "tasks",
@@ -51,8 +56,9 @@ test.describe("Check Application task for DA Solicitor case tests.", () => {
         );
 
         await historyPage.goToPage();
-        await historyPage.assertEndStateRowVisible();
-        await historyPage.assertEndState();
+        await expect(historyPage.eventHistoryName).toBeVisible();
+        await expect(historyPage.endStateRow).toBeVisible();
+        await expect(historyPage.endStateValue).toBeVisible();
       });
     },
   );
