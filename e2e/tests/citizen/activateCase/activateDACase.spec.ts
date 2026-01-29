@@ -1,6 +1,5 @@
 import { test } from "../../fixtures.ts";
 import { ActivateCase } from "../../../journeys/citizen/activateCase/activateCase.ts";
-import { Helpers } from "../../../common/helpers.ts";
 import config from "../../../utils/config.utils.ts";
 
 test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
@@ -9,17 +8,18 @@ test.describe("Activating case tests", (): void => {
   test.slow();
   let ccdRef: string;
 
-  test.beforeEach(async ({ page, courtNavUtils }) => {
-    ccdRef = await courtNavUtils.createCase(true, false);
-    await Helpers.goToCase(
-      page,
-      config.manageCasesBaseURLCase,
-      ccdRef,
-      "tasks",
-    );
-  });
+  test.beforeEach(
+    async ({ page, browser, caseEventUtils, navigationUtils }) => {
+      ccdRef = await caseEventUtils.createDACase(browser);
+      await navigationUtils.goToCase(
+        page,
+        config.manageCasesBaseURLCase,
+        ccdRef,
+      );
+    },
+  );
 
-  test("Activate case as an applicant and respondent. @regression @accessibility @nightly", async ({
+  test("Activate case as an applicant and respondent. @regression @accessibility", async ({
     page,
     browser,
   }): Promise<void> => {
@@ -29,8 +29,10 @@ test.describe("Activating case tests", (): void => {
       caseRef: ccdRef,
       caseUser: "both",
       accessibilityTest: true,
-      applicationSubmittedBy: "Citizen",
+      applicationSubmittedBy: "Solicitor",
       isManualSOA: true,
+      yesNoServiceOfApplication4: true,
+      confidentialityCheck: true,
     });
   });
 });
