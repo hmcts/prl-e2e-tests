@@ -9,16 +9,17 @@ test.describe("Applicant reasonable adjustments tests", (): void => {
   test.slow();
   let ccdRef: string;
 
-  test.beforeEach(async ({ page, courtNavUtils }) => {
-    ccdRef = await courtNavUtils.createCase(true, false);
-    await Helpers.goToCase(
-      page,
-      config.manageCasesBaseURLCase,
-      ccdRef,
-      "tasks",
-    );
-  });
-
+  test.beforeEach(
+    async ({ page, browser, caseEventUtils, navigationUtils }) => {
+      ccdRef = await caseEventUtils.createDACase(browser);
+      await navigationUtils.goToCase(
+        page,
+        config.manageCasesBaseURLCase,
+        ccdRef,
+        "tasks",
+      );
+    },
+  );
   test("Applicant reasonable adjustments - no reasonable adjustments. @regression @accessibility @nightly", async ({
     page,
     browser,
@@ -30,7 +31,7 @@ test.describe("Applicant reasonable adjustments tests", (): void => {
       needsReasonableAdjustment: false,
       isApplicant: true,
       accessibilityTest: true,
-      applicationSubmittedBy: "Citizen",
+      applicationSubmittedBy: "Solicitor",
     });
   });
 
@@ -45,7 +46,7 @@ test.describe("Applicant reasonable adjustments tests", (): void => {
       needsReasonableAdjustment: true,
       isApplicant: true,
       accessibilityTest: false,
-      applicationSubmittedBy: "Citizen",
+      applicationSubmittedBy: "Solicitor",
     });
   });
 });

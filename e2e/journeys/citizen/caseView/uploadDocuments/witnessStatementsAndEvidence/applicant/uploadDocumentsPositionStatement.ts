@@ -49,7 +49,9 @@ export class UploadDocumentsPositionStatement {
       caseUser: caseUser,
       accessibilityTest: accessibilityTest,
       applicationSubmittedBy: applicationSubmittedBy,
-      isManualSOA: false,
+      isManualSOA: true,
+      yesNoServiceOfApplication4: true,
+      confidentialityCheck: true,
     });
     await page.click(UniqueSelectors.uploadDocumentsPrivateSelector);
     await UploadPage.uploadPage(page, accessibilityTest);

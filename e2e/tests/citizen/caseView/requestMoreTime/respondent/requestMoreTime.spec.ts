@@ -9,15 +9,17 @@ test.describe("Respondent Request more time to do what is required by a court or
   test.slow();
   let ccdRef: string;
 
-  test.beforeEach(async ({ page, courtNavUtils }) => {
-    ccdRef = await courtNavUtils.createCase(true, false);
-    await Helpers.goToCase(
-      page,
-      config.manageCasesBaseURLCase,
-      ccdRef,
-      "tasks",
-    );
-  });
+  test.beforeEach(
+    async ({ page, browser, caseEventUtils, navigationUtils }) => {
+      ccdRef = await caseEventUtils.createDACase(browser);
+      await navigationUtils.goToCase(
+        page,
+        config.manageCasesBaseURLCase,
+        ccdRef,
+        "tasks",
+      );
+    },
+  );
 
   test("Respondent Request more time with fees. @regression @nightly", async ({
     page,
@@ -29,7 +31,7 @@ test.describe("Respondent Request more time to do what is required by a court or
       caseRef: ccdRef,
       accessibilityTest: false,
       isApplicant: false,
-      applicationSubmittedBy: "Citizen",
+      applicationSubmittedBy: "Solicitor",
       completedForm: true,
       agreementForRequest: true,
       helpWithFees: true,

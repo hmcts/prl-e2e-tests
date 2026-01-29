@@ -9,15 +9,17 @@ test.describe("Applicant upload documents tests", (): void => {
   test.slow();
   let ccdRef: string;
 
-  test.beforeEach(async ({ page, courtNavUtils }) => {
-    ccdRef = await courtNavUtils.createCase(true, false);
-    await Helpers.goToCase(
-      page,
-      config.manageCasesBaseURLCase,
-      ccdRef,
-      "tasks",
-    );
-  });
+  test.beforeEach(
+    async ({ page, browser, caseEventUtils, navigationUtils }) => {
+      ccdRef = await caseEventUtils.createDACase(browser);
+      await navigationUtils.goToCase(
+        page,
+        config.manageCasesBaseURLCase,
+        ccdRef,
+        "tasks",
+      );
+    },
+  );
 
   test("Applicant upload documents task page. @regression @accessibility @nightly", async ({
     page,
@@ -29,7 +31,7 @@ test.describe("Applicant upload documents tests", (): void => {
       caseRef: ccdRef,
       accessibilityTest: true,
       isApplicant: true,
-      applicationSubmittedBy: "Citizen",
+      applicationSubmittedBy: "Solicitor",
     });
   });
 });
