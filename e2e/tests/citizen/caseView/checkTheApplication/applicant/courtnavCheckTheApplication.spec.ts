@@ -6,6 +6,11 @@ import { CheckTheApplication } from "../../../../../journeys/citizen/caseView/ch
 test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("Applicant confirm contact details tests", (): void => {
+  test.skip(
+    process.env.MANAGE_CASES_TEST_ENV === "preview",
+    "Doesn't work on preview env - initial Courtnav case creation doesn't work",
+  );
+
   test.slow();
   let ccdRef: string;
 
@@ -19,7 +24,7 @@ test.describe("Applicant confirm contact details tests", (): void => {
     );
   });
 
-  test("Applicant Check The Application. @regression @accessibility", async ({
+  test("Applicant Check The Application. @regression @accessibility @nightly", async ({
     page,
     browser,
   }): Promise<void> => {

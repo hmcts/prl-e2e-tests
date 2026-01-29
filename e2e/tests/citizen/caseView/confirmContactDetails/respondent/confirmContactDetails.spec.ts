@@ -9,15 +9,16 @@ test.describe("Respondent confirm contact details tests", (): void => {
   test.slow();
   let ccdRef: string;
 
-  test.beforeEach(async ({ page, courtNavUtils }) => {
-    ccdRef = await courtNavUtils.createCase(true, false);
-    await Helpers.goToCase(
-      page,
-      config.manageCasesBaseURLCase,
-      ccdRef,
-      "tasks",
-    );
-  });
+  test.beforeEach(
+    async ({ page, browser, caseEventUtils, navigationUtils }) => {
+      ccdRef = await caseEventUtils.createDACase(browser);
+      await navigationUtils.goToCase(
+        page,
+        config.manageCasesBaseURLCase,
+        ccdRef,
+      );
+    },
+  );
 
   test("Respondent confirm contact details. @regression @accessibility @nightly", async ({
     page,
@@ -29,7 +30,7 @@ test.describe("Respondent confirm contact details tests", (): void => {
       caseRef: ccdRef,
       isApplicant: false,
       accessibilityTest: true,
-      applicationSubmittedBy: "Citizen",
+      applicationSubmittedBy: "Solicitor",
     });
   });
 });

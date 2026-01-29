@@ -9,9 +9,9 @@ test.describe("Applicant confirm contact details tests", (): void => {
   test.slow();
   let ccdRef: string;
 
-  test.beforeEach(async ({ page, courtNavUtils }) => {
-    ccdRef = await courtNavUtils.createCase(true, false);
-    await Helpers.goToCase(
+  test.beforeEach(async ({ page, browser, caseEventUtils, navigationUtils }) => {
+    ccdRef = await caseEventUtils.createDACase(browser);
+    await navigationUtils.goToCase(
       page,
       config.manageCasesBaseURLCase,
       ccdRef,
@@ -31,7 +31,7 @@ test.describe("Applicant confirm contact details tests", (): void => {
       isApplicant: false,
       startAlternativeYesNo: true,
       yesNoDontKnow: "yes",
-      applicationSubmittedBy: "Citizen",
+      applicationSubmittedBy: "Solicitor",
     });
   });
 
@@ -47,7 +47,7 @@ test.describe("Applicant confirm contact details tests", (): void => {
       isApplicant: false,
       startAlternativeYesNo: false,
       yesNoDontKnow: "no",
-      applicationSubmittedBy: "Citizen",
+      applicationSubmittedBy: "Solicitor",
     });
   });
 
@@ -63,7 +63,7 @@ test.describe("Applicant confirm contact details tests", (): void => {
       isApplicant: false,
       startAlternativeYesNo: true,
       yesNoDontKnow: "dontKnow",
-      applicationSubmittedBy: "Citizen",
+      applicationSubmittedBy: "Solicitor",
     });
   });
 });
