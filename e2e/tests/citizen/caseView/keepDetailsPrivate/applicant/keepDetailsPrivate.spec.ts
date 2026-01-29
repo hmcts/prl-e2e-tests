@@ -1,6 +1,5 @@
 import { test } from "../../../../fixtures.ts";
 import config from "../../../../../utils/config.utils.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
 import { KeepDetailsPrivate } from "../../../../../journeys/citizen/caseView/keepDetailsPrivate/applicant&Respondent/keepDetailsPrivate.ts";
 
 test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
@@ -9,15 +8,17 @@ test.describe("Applicant keep details private tests", (): void => {
   test.slow();
   let ccdRef: string;
 
-  test.beforeEach(async ({ page, browser, caseEventUtils, navigationUtils }) => {
-    ccdRef = await caseEventUtils.createDACase(browser);
-    await navigationUtils.goToCase(
-      page,
-      config.manageCasesBaseURLCase,
-      ccdRef,
-      "tasks",
-    );
-  });
+  test.beforeEach(
+    async ({ page, browser, caseEventUtils, navigationUtils }) => {
+      ccdRef = await caseEventUtils.createDACase(browser);
+      await navigationUtils.goToCase(
+        page,
+        config.manageCasesBaseURLCase,
+        ccdRef,
+        "tasks",
+      );
+    },
+  );
 
   test("Applicant keep details private with yes response. @regression", async ({
     page,

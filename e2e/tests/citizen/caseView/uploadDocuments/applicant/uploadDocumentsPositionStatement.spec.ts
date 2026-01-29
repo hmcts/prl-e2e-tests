@@ -1,6 +1,5 @@
 import { test } from "../../../../fixtures.ts";
 import config from "../../../../../utils/config.utils.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
 import { UploadDocumentsPositionStatement } from "../../../../../journeys/citizen/caseView/uploadDocuments/witnessStatementsAndEvidence/applicant/uploadDocumentsPositionStatement.ts";
 
 test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });

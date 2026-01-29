@@ -1,7 +1,6 @@
 import { test } from "../../../../fixtures.ts";
 import Config from "../../../../../utils/config.utils.ts";
 import config from "../../../../../utils/config.utils.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
 import { ViewAllDocuments } from "../../../../../journeys/citizen/caseView/viewAllDocuments/viewAllDocuments.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
