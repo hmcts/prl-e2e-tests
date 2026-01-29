@@ -34,6 +34,8 @@ export class CheckTheApplication {
       accessibilityTest,
       applicationSubmittedBy,
       isManualSOA: true,
+      yesNoServiceOfApplication4: true,
+      confidentialityCheck: true,
     });
     if (isApplicant) {
       await page.click(UniqueSelectors.yourApplicationApplicant);
