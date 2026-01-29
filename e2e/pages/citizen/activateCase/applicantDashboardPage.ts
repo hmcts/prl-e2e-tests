@@ -4,6 +4,7 @@ import { Helpers } from "../../../common/helpers.ts";
 import { ApplicantDashboardContent } from "../../../fixtures/citizen/activateCase/applicantDashboardContent.ts";
 import { applicationSubmittedBy } from "../../../common/types.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
+import { DateHelperUtils } from "../../../utils/dateHelpers.utils.js";
 
 export class ApplicantDashboardPage {
   public static async applicantDashboardPage(
@@ -35,25 +36,45 @@ export class ApplicantDashboardPage {
         hasText: heading,
       })
       .waitFor();
-    if (applicationSubmittedBy == "Citizen") {
+    if (applicationSubmittedBy === "Citizen") {
       await Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.NotificationBannerLink}:text-is("${ApplicantDashboardContent.applicationPackLink}")`,
+        `${Selectors.NotificationBannerHeading}:text-is("${ApplicantDashboardContent.applicationNotificationBannerHeading}")`,
         1,
       );
       await Helpers.checkGroup(
         page,
-        3,
+        2,
         ApplicantDashboardContent,
         "applicationP",
         Selectors.p,
       );
       await Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.NotificationBannerHeading}:text-is("${ApplicantDashboardContent.applicationNotificationBannerHeading}")`,
+        `${Selectors.NotificationBannerLink}:text-is("${ApplicantDashboardContent.applicationPackLink}")`,
+        1,
+      );
+
+      //cafcass
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.NotificationBannerHeading}:text-is("${ApplicantDashboardContent.cafcassNotificationBannerHeading}")`,
+        1,
+      );
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${ApplicantDashboardContent.cafcassP1}")`,
+        1,
+      );
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.NotificationBannerLink}:text-is("${ApplicantDashboardContent.cafcassLink}")`,
         1,
       );
     }
+
+    const dateUtils: DateHelperUtils = new DateHelperUtils();
+    const orderDateP: string = `Order made date - ${dateUtils.todayDate(false, false, true)}`;
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
@@ -75,12 +96,15 @@ export class ApplicantDashboardPage {
         `${Selectors.NotificationBannerLink}:text-is("${ApplicantDashboardContent.orderLink}")`,
         1,
       ),
-      Helpers.checkGroup(
+      Helpers.checkVisibleAndPresent(
         page,
-        2,
-        ApplicantDashboardContent,
-        "orderP",
-        Selectors.p,
+        `${Selectors.p}:text-is("${ApplicantDashboardContent.orderP1}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.p}:text-is("${orderDateP}")`,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -94,7 +118,7 @@ export class ApplicantDashboardPage {
       ),
       Helpers.checkGroup(
         page,
-        5,
+        6,
         ApplicantDashboardContent,
         "h2",
         Selectors.h2,

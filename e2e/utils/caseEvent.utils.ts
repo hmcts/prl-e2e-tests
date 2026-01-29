@@ -158,6 +158,47 @@ export class CaseEventUtils {
     return caseRef;
   }
 
+  async caCaseIssueToLocalCourtAndSendToGatekeeper(
+    caseRef: string,
+    browser: Browser,
+  ): Promise<void> {
+    const ctscPage = await Helpers.openNewBrowserWindow(
+      browser,
+      "courtAdminStoke",
+    );
+    await Helpers.goToCase(
+      ctscPage,
+      config.manageCasesBaseURLCase,
+      caseRef,
+      "tasks",
+    );
+    await this.submitEvent(
+      ctscPage,
+      caseRef,
+      "issueAndSendToLocalCourtCallback",
+      jsonDatas.solicitorCACaseData,
+    );
+    await ctscPage.close();
+    const caPage: Page = await Helpers.openNewBrowserWindow(
+      browser,
+      "caseWorker",
+    );
+    await Helpers.goToCase(
+      caPage,
+      config.manageCasesBaseURLCase,
+      caseRef,
+      "tasks",
+    );
+    //CA json data currently sending to judge - "Elizabeth Williams". Need to rework payload strategy to point to LA or different judge as & when required - FPVTL-995
+    await this.submitEvent(
+      caPage,
+      caseRef,
+      "sendToGateKeeper",
+      jsonDatas.solicitorCACaseData,
+    );
+    await caPage.close();
+  }
+
   async createCACaseSubmitAndPayIndividualEvents(page: Page): Promise<string> {
     const solicitorCaseEvents: solicitorCACaseAPIEvent[] = [
       "selectApplicationType",

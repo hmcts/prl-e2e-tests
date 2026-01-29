@@ -119,6 +119,7 @@ export class ServiceOfApplication {
       isUploadOrder,
       serveOrderNow,
       checkOption,
+      applicationSubmittedBy,
     });
     await Helpers.chooseEventFromDropdown(page, "Service of application");
     await C100ServiceOfApplication2Page.c100ServiceOfApplication2Page({
@@ -130,6 +131,7 @@ export class ServiceOfApplication {
       accessibilityTest,
       yesNoServiceOfApplication4,
       responsibleForServing,
+      applicationSubmittedBy,
     });
     await C100ServiceOfApplicationSubmitPage.c100ServiceOfApplicationSubmitPage(
       {
@@ -139,6 +141,7 @@ export class ServiceOfApplication {
         applicationSubmittedBy,
       },
     );
+    // seems to complete without a confirmation page for some reason???
     await ServiceOfApplicationConfirmPage.serviceOfApplicationConfirmPage({
       page,
       yesNoServiceOfApplication4,

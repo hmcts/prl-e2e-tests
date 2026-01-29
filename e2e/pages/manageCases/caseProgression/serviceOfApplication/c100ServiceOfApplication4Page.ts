@@ -5,12 +5,14 @@ import { Helpers } from "../../../../common/helpers.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
 import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 import { C100ServiceOfApplication4Content } from "../../../../fixtures/manageCases/caseProgression/serviceOfApplication/C100ServiceOfApplication4Content.js";
+import { applicationSubmittedBy } from "../../../../common/types.js";
 
 interface C100ServiceOfApplication4Options {
   page: Page;
   accessibilityTest: boolean;
   yesNoServiceOfApplication4: boolean;
   responsibleForServing: responsibleForServing;
+  applicationSubmittedBy: applicationSubmittedBy;
 }
 
 export type responsibleForServing =
@@ -34,6 +36,7 @@ export class C100ServiceOfApplication4Page {
     accessibilityTest,
     yesNoServiceOfApplication4,
     responsibleForServing,
+    applicationSubmittedBy,
   }: C100ServiceOfApplication4Options): Promise<void> {
     await this.checkPageLoads({
       page,
@@ -43,6 +46,7 @@ export class C100ServiceOfApplication4Page {
       page,
       yesNoServiceOfApplication4,
       responsibleForServing,
+      applicationSubmittedBy,
     });
   }
 
@@ -85,13 +89,14 @@ export class C100ServiceOfApplication4Page {
     page,
     yesNoServiceOfApplication4,
     responsibleForServing,
+    applicationSubmittedBy,
   }: Partial<C100ServiceOfApplication4Options>): Promise<void> {
     if (!page) {
       throw new Error("No page found");
     }
     if (yesNoServiceOfApplication4) {
       await page.click(UniqueSelectors.yes);
-      await this.yesHiddenFormLabel1(page);
+      await this.yesHiddenFormLabel1(page, applicationSubmittedBy);
       switch (responsibleForServing) {
         case "courtBailiff":
           const courtBailiff1 = page.locator(
@@ -134,7 +139,10 @@ export class C100ServiceOfApplication4Page {
     );
   }
 
-  private static async yesHiddenFormLabel1(page: Page): Promise<void> {
+  private static async yesHiddenFormLabel1(
+    page: Page,
+    applicationSubmittedBy: applicationSubmittedBy,
+  ): Promise<void> {
     if (!page) {
       throw new Error("No page found");
     }
@@ -154,12 +162,20 @@ export class C100ServiceOfApplication4Page {
         `${Selectors.GovukFormLabel}:text-is("${C100ServiceOfApplication4Content.yesHiddenFormLabel2}"):visible`,
         1,
       ),
-      Helpers.checkVisibleAndPresent(
+    ]);
+    if (applicationSubmittedBy === "Citizen") {
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFormLabel}:text-is("${C100ServiceOfApplication4Content.yesHiddenFormLabelUnrepresentedApplicant}"):visible`,
+        1,
+      );
+    } else {
+      await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukFormLabel}:text-is("${C100ServiceOfApplication4Content.yesHiddenFormLabel3}"):visible`,
         1,
-      ),
-    ]);
+      );
+    }
   }
 
   private static async noHiddenFormLabel1(page: Page): Promise<void> {

@@ -7,6 +7,7 @@ export enum C100ServiceOfApplication4Content {
   yesHiddenFormLabel1 = "Court bailiff",
   yesHiddenFormLabel2 = "Court admin",
   yesHiddenFormLabel3 = "Applicant's legal representative",
+  yesHiddenFormLabelUnrepresentedApplicant = "Unrepresented applicant who is arranging service",
   yesHiddenFormLabelResponsible = "Who is responsible for serving the respondent?",
   noHiddenFormLabel1 = "Confirm Recipients",
 }

@@ -4,21 +4,25 @@ import { Selectors } from "../../../../../common/selectors.js";
 import { Helpers } from "../../../../../common/helpers.js";
 import { CommonStaticText } from "../../../../../common/commonStaticText.js";
 import { ManageOrders28CAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderCA/manageOrders28CAContent.js";
+import { applicationSubmittedBy } from "../../../../../common/types.js";
 
 enum UniqueSelectors {
   respondentOptionYes = "#serveToRespondentOptions-Yes",
   respondentOptionNo = "#serveToRespondentOptions-No",
   respondentsOptionsCourtBailiff = "#personallyServeRespondentsOptions-courtBailiff",
   cafcassCymruServedOptionsNo = "#cafcassCymruServedOptions_No",
+  respondentOptionsLipCaseCourtBailiff = "#servingOptionsForNonLegalRep-courtBailiff",
 }
+
 export class ManageOrders28Page {
   public static async manageOrders28Page(
     page: Page,
     accessibilityTest: boolean,
     personallyServed: boolean,
+    applicationSubmittedBy: applicationSubmittedBy,
   ): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest);
-    await this.fillInFields(page, personallyServed);
+    await this.fillInFields(page, personallyServed, applicationSubmittedBy);
     await this.continue(page);
   }
 
@@ -87,11 +91,18 @@ export class ManageOrders28Page {
   private static async fillInFields(
     page: Page,
     personallyServed: boolean,
+    applicationSubmittedBy: applicationSubmittedBy,
   ): Promise<void> {
     if (personallyServed) {
       await page.check(`${UniqueSelectors.respondentOptionYes}`);
       await this.hiddenFormLabels(page);
-      await page.check(`${UniqueSelectors.respondentsOptionsCourtBailiff}`);
+      if (applicationSubmittedBy === "Citizen") {
+        await page.check(
+          `${UniqueSelectors.respondentOptionsLipCaseCourtBailiff}`,
+        );
+      } else {
+        await page.check(`${UniqueSelectors.respondentsOptionsCourtBailiff}`);
+      }
     } else {
       await page.check(`${UniqueSelectors.respondentOptionNo}`);
       await page.check(`${Selectors.GovukFormLabel}:has-text("(Applicant)")`);
