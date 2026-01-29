@@ -46,7 +46,6 @@ interface C100CompleteTheOrderParams {
   serveOrderNow: boolean;
   personallyServed: boolean;
   solicitorCaseCreateType: solicitorCaseCreateType;
-  applicationSubmittedBy: applicationSubmittedBy;
 }
 
 // ServiceOfApplicationJourney seems to only work when it is put into this file, and not if it
@@ -133,7 +132,6 @@ export class CompleteTheOrder {
     checkOption,
     serveOrderNow,
     personallyServed,
-    applicationSubmittedBy,
   }: C100CompleteTheOrderParams): Promise<void> {
     await Helpers.chooseEventFromDropdown(page, `Manage orders`);
     await ManageOrders1Page.manageOrders1Page({
@@ -179,7 +177,6 @@ export class CompleteTheOrder {
       page,
       accessibilityTest,
       personallyServed,
-      applicationSubmittedBy,
     );
     await c100CompleteOrderSubmitPage.c100CompleteOrdersubmitPage({
       page,

@@ -1,7 +1,7 @@
 import { test } from "../../fixtures.ts";
 import { ActivateCase } from "../../../journeys/citizen/activateCase/activateCase.ts";
+import { Helpers } from "../../../common/helpers.ts";
 import config from "../../../utils/config.utils.ts";
-import { CreateUserUtil } from "../../../utils/createUser.utils.js";
 
 test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 
@@ -9,30 +9,15 @@ test.describe("Activating case tests", (): void => {
   test.slow();
   let ccdRef: string;
 
-  test.beforeEach(
-    async ({
+  test.beforeEach(async ({ page, courtNavUtils }) => {
+    ccdRef = await courtNavUtils.createCase(true, false);
+    await Helpers.goToCase(
       page,
-      browser,
-      citizenCACaseUtils,
-      caseEventUtils,
-      navigationUtils,
-    }) => {
-      const applicantUserInfo = await CreateUserUtil.createUser(
-        process.env.CREATE_USER_BEARER_TOKEN as string,
-        "citizen",
-      );
-      ccdRef = await citizenCACaseUtils.createAndSubmitCase(applicantUserInfo);
-      await caseEventUtils.caCaseIssueToLocalCourtAndSendToGatekeeper(
-        ccdRef,
-        browser,
-      );
-      await navigationUtils.goToCase(
-        page,
-        config.manageCasesBaseURLCase,
-        ccdRef,
-      );
-    },
-  );
+      config.manageCasesBaseURLCase,
+      ccdRef,
+      "tasks",
+    );
+  });
 
   test("Activate case as an applicant and respondent. @regression @accessibility @nightly", async ({
     page,

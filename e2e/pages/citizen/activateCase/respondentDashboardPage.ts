@@ -41,9 +41,25 @@ export class RespondentDashboardPage {
         `${Selectors.p}:text-is("Case number ${caseRef}")`,
         1,
       ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.NotificationBannerTitle}:text-is("${RespondentDashboardContent.notificationBannerTitle}"):visible`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.NotificationBannerHeading}:text-is("${RespondentDashboardContent.notificationBannerHeading}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.NotificationBannerLink}:text-is("${RespondentDashboardContent.notificationBannerLink}")`,
+        1,
+      ),
+      Helpers.checkGroup(page, 2, RespondentDashboardContent, "p", Selectors.p),
       Helpers.checkGroup(
         page,
-        6,
+        5,
         RespondentDashboardContent,
         "h2",
         Selectors.h2,

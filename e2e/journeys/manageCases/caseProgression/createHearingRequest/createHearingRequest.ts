@@ -92,7 +92,6 @@ export class CreateHearingRequest {
       isUploadOrder: false,
       checkOption: "noCheck", //options passed could be either noCheck or judgeOrLegalAdvisorCheck or managerCheck
       serveOrderNow: true, //select to serve order instantly
-      applicationSubmittedBy: "Solicitor",
     });
 
     await Helpers.goToCase(

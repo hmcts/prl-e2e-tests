@@ -11,7 +11,7 @@ import { Selectors } from "../../../common/selectors.ts";
 import { ApplicantDashboardContent } from "../../../fixtures/citizen/activateCase/applicantDashboardContent.ts";
 import { RespondentDashboardContent } from "../../../fixtures/citizen/activateCase/respondentDashboardContent.ts";
 import { ServiceOfApplication } from "../../manageCases/caseProgression/serviceOfApplication/serviceOfApplication.ts";
-import { c100CompleteEventsUpToServiceOfApplication } from "../../../common/caseHelpers/caseEventsHelper.ts";
+import { fl401CompleteEventsUpToServiceOfApplication } from "../../../common/caseHelpers/caseEventsHelper.ts";
 import { applicationSubmittedBy } from "../../../common/types.ts";
 import { ConfidentialityCheck } from "../../manageCases/caseProgression/confidentilityCheck/confidentialityCheck.ts";
 import { IdamUtils, ServiceAuthUtils } from "@hmcts/playwright-common";
@@ -41,29 +41,32 @@ export class ActivateCase {
   }: ActiveCaseParams): Promise<Page> {
     let currentPage: Page = page;
     if (isManualSOA) {
-      await ServiceOfApplication.C100FullServiceOfApplicationJourney({
+      await ServiceOfApplication.FL401FullServiceOfApplicationJourney({
         page: page,
-        accessibilityTest: false,
+        accessibilityTest: accessibilityTest,
         ccdRef: caseRef,
+        createOrderFL401Options: "power of arrest",
+        browser: browser,
         personallyServed: true,
-        isUploadOrder: false,
-        checkOption: "noCheck", //options passed could be either noCheck or judgeOrLegalAdvisorCheck or managerCheck
-        serveOrderNow: true, //select to serve order instantly
-        yesNoServiceOfApplication4: true,
-        applicationSubmittedBy: "Citizen",
-        confidentialityCheck: true,
+        yesNoServiceOfApplication4: false,
+        confidentialityCheck: false,
         responsibleForServing: "courtBailiff",
-        solicitorCaseCreateType: "C100",
+        manageOrderData: jsonDatas.citizenManageOrderDataPowerOfArrest,
+        applicationSubmittedBy: applicationSubmittedBy,
       });
-      // this will have to be conditional
-      await ConfidentialityCheck.confidentialityCheckLite(browser, caseRef);
+      // need to complete C8 confidential details event when it is a solicitor case
+      // this is a cut down version of the confidential details journey
+      if (applicationSubmittedBy == "Solicitor") {
+        await ConfidentialityCheck.confidentialityCheckLite(browser, caseRef);
+      }
     } else {
-      await c100CompleteEventsUpToServiceOfApplication(
+      await fl401CompleteEventsUpToServiceOfApplication(
         page,
-        caseRef,
         browser,
-        jsonDatas.manageOrderDataC43CreateOrder,
-        "Citizen",
+        caseRef,
+        jsonDatas.citizenManageOrderDataPowerOfArrest,
+        "power of arrest",
+        applicationSubmittedBy,
       );
     }
     switch (caseUser) {

@@ -19,7 +19,6 @@ export class DateHelperUtils {
   todayDate(
     longFormat: boolean = false,
     array: boolean = false,
-    unformatted: boolean = false,
   ): string | string[] {
     const now: Date = new Date();
     const options: Intl.DateTimeFormatOptions = {
@@ -27,12 +26,8 @@ export class DateHelperUtils {
       month: "2-digit",
       day: "numeric",
     };
-    const dateString: string = now.toLocaleDateString("en-UK", options);
-    if (unformatted) {
-      // Returns unformatted date e.g. 29/01/2026
-      return dateString;
-    }
-    const [day, month, year] = dateString.split("/");
+    const dateString: string = now.toLocaleDateString("en-US", options);
+    const [month, day, year] = dateString.split("/");
 
     if (array) {
       return [day, month, year];
