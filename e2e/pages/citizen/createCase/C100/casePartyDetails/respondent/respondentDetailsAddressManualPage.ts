@@ -33,7 +33,7 @@ enum UniqueSelectors {
 enum addressText {
   buildingAndStreet = "185 APARTMENT 10, BLOCK A TY NANT, HIGH STREET",
   townAndCity = "SWANSEA",
-  county = "SWANSEA",
+  county = "CITY AND COUNTY OF SWANSEA COUNCIL",
   postcode = "SA1 1AD",
   country = "United Kingdom",
 }
