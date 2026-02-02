@@ -10,6 +10,9 @@ import { PartiesPage } from "../pages/exui/caseView/parties.po.ts";
 import { Fl401RemoveLegalRepresentative1Page } from "../pages/exui/removeLegalRepresentation/fl401RemoveLegalRepresentative1.po.ts";
 import { Fl401RemoveLegalRepresentativeSubmitPage } from "../pages/exui/removeLegalRepresentation/fl401RemoveLegalRepresentativeSubmit.po.ts";
 import { Fl401RemoveLegalRepresentativeConfirmPage } from "../pages/exui/removeLegalRepresentation/fl401RemoveLegalRepresentativeConfirm.po.ts";
+import { TransferToAnotherCourt1Page } from "../pages/exui/transferToAnotherCourt/transferToAnotherCourt1.po.js";
+import { TransferToAnotherCourtSubmitPage } from "../pages/exui/transferToAnotherCourt/transferToAnotherCourtSubmit.po.js";
+import { TransferToAnotherCourtConfirmPage } from "../pages/exui/transferToAnotherCourt/transferToAnotherCourtConfirm.po.js";
 
 export class CourtAdminStokePagesGroup {
   constructor(public readonly page: Page) {}
@@ -43,6 +46,13 @@ export class CourtAdminStokePagesGroup {
       page1: new Fl401RemoveLegalRepresentative1Page(this.page),
       submitPage: new Fl401RemoveLegalRepresentativeSubmitPage(this.page),
       confirmPage: new Fl401RemoveLegalRepresentativeConfirmPage(this.page),
+    };
+  }
+  get transferToAnotherCourt() {
+    return {
+      transferToAnotherCourt1Page: new TransferToAnotherCourt1Page(this.page),
+      submitPage: new TransferToAnotherCourtSubmitPage(this.page),
+      confirmPage: new TransferToAnotherCourtConfirmPage(this.page),
     };
   }
 }
