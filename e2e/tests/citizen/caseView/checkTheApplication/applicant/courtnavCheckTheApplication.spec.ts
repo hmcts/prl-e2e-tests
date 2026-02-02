@@ -11,7 +11,6 @@ test.describe("Applicant confirm contact details tests", (): void => {
     "Doesn't work on preview env - initial Courtnav case creation doesn't work",
   );
 
-  test.slow();
   let ccdRef: string;
 
   test.beforeEach(async ({ page, courtNavUtils }) => {

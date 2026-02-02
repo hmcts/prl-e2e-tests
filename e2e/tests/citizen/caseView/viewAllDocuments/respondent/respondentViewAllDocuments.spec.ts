@@ -6,7 +6,6 @@ import { ViewAllDocuments } from "../../../../../journeys/citizen/caseView/viewA
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("Applicant view all documents tests", (): void => {
-  test.slow();
   let ccdRef: string;
 
   test.beforeEach(

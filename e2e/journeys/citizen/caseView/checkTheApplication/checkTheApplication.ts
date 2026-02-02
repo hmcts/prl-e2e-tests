@@ -35,7 +35,7 @@ export class CheckTheApplication {
       applicationSubmittedBy,
       isManualSOA: true,
       yesNoServiceOfApplication4: true,
-      confidentialityCheck: true,
+      confidentialityCheck: applicationSubmittedBy === "Solicitor",
     });
     if (isApplicant) {
       await page.click(UniqueSelectors.yourApplicationApplicant);

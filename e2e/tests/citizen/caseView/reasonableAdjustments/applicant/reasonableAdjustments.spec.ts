@@ -5,7 +5,6 @@ import { ReasonableAdjustments } from "../../../../../journeys/citizen/caseView/
 test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("Applicant reasonable adjustments tests", (): void => {
-  test.slow();
   let ccdRef: string;
 
   test.beforeEach(

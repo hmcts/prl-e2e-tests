@@ -5,7 +5,6 @@ import { RequestMoreTime } from "../../../../../journeys/citizen/caseView/reques
 test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("Applicant Request more time to do what is required by a court order tests", (): void => {
-  test.slow();
   let ccdRef: string;
 
   test.beforeEach(

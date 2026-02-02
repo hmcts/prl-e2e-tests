@@ -5,7 +5,6 @@ import { UploadDocumentsPositionStatement } from "../../../../../journeys/citize
 test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("Applicant upload documents position statement tests", (): void => {
-  test.slow();
   let ccdRef: string;
 
   test.beforeEach(

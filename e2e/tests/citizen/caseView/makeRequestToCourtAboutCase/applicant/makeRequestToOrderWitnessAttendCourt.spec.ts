@@ -5,7 +5,6 @@ import { RequestToOrderWitnessToAttendCourt } from "../../../../../journeys/citi
 test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("Applicant Make a request to order a witness to attend court tests", (): void => {
-  test.slow();
   let ccdRef: string;
 
   test.beforeEach(

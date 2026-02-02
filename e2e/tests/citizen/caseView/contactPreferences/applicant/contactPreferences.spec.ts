@@ -5,7 +5,6 @@ import { ContactPreferences } from "../../../../../journeys/citizen/caseView/con
 test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("Applicant confirm contact details tests", (): void => {
-  test.slow();
   let ccdRef: string;
 
   test.beforeEach(

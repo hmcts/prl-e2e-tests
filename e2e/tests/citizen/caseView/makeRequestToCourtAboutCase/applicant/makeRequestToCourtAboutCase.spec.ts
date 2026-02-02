@@ -5,7 +5,6 @@ import { MakeRequestToCourtAboutCase } from "../../../../../journeys/citizen/cas
 test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("Applicant Make a request to the court about your case tests", (): void => {
-  test.slow();
   let ccdRef: string;
 
   test.beforeEach(

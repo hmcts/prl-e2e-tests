@@ -6,7 +6,6 @@ import { test } from "../../../../fixtures.ts";
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("Applicant confirm contact details tests - Solicitor created application", (): void => {
-  test.slow();
   let ccdRef: string;
 
   test.beforeEach(async ({ page, browser, caseEventUtils }) => {

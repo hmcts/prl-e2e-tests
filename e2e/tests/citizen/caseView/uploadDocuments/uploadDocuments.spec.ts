@@ -5,7 +5,6 @@ import { Upload } from "../../../../journeys/citizen/caseView/uploadDocuments/up
 test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("Applicant upload documents tests", (): void => {
-  test.slow();
   let ccdRef: string;
 
   test.beforeEach(
