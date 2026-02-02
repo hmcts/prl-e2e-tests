@@ -2,7 +2,9 @@ import { CaseAccessViewPage } from "./caseAccessView.po.js";
 import { Locator, Page } from "@playwright/test";
 
 export class HistoryPage extends CaseAccessViewPage {
-  readonly historyTab: Locator = this.page.getByRole("tab", { name: "History" });
+  readonly historyTab: Locator = this.page.getByRole("tab", {
+    name: "History",
+  });
 
   readonly eventHistoryName: Locator = this.page
     .locator("ccd-event-log-details, ccd-case-event-log-details")
