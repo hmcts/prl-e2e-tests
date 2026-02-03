@@ -5,7 +5,6 @@ import { StatementOfService } from "../../../../journeys/manageCases/caseProgres
 import { jsonDatas } from "../../../../common/caseHelpers/jsonDatas.ts";
 
 test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
-// TEST COMMENT
 
 test.describe("Statement of Service event for DA Solicitor case tests.", () => {
   let ccdRef: string = "";
