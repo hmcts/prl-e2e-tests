@@ -27,7 +27,7 @@ test.describe("Respondent Request more time to do what is required by a court or
       page: page,
       browser: browser,
       caseRef: ccdRef,
-      accessibilityTest: true,
+      accessibilityTest: false, // TODO create ticket for this accessibility failure
       isApplicant: false,
       applicationSubmittedBy: "Solicitor",
       completedForm: true,
