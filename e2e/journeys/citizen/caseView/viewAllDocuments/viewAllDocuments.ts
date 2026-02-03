@@ -36,7 +36,7 @@ export class ViewAllDocuments {
       applicationSubmittedBy: applicationSubmittedBy,
       isManualSOA: true, // power of arrest order is not created properly through the API due to generated IDs,
       yesNoServiceOfApplication4: false,
-      confidentialityCheck: true,
+      confidentialityCheck: applicationSubmittedBy === "Solicitor",
     });
 
     await page.click(UniqueSelectors.viewAllDocuments);
