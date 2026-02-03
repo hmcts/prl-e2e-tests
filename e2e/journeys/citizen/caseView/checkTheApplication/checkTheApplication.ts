@@ -34,7 +34,7 @@ export class CheckTheApplication {
       accessibilityTest,
       applicationSubmittedBy,
       isManualSOA: true,
-      yesNoServiceOfApplication4: true,
+      yesNoServiceOfApplication4: false,
       confidentialityCheck: applicationSubmittedBy === "Solicitor",
     });
     if (isApplicant) {

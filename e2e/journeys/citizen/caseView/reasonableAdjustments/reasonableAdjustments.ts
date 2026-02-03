@@ -45,7 +45,7 @@ export class ReasonableAdjustments {
       accessibilityTest: accessibilityTest,
       applicationSubmittedBy: applicationSubmittedBy,
       isManualSOA: true,
-      yesNoServiceOfApplication4: true,
+      yesNoServiceOfApplication4: false,
       confidentialityCheck: true,
     });
 

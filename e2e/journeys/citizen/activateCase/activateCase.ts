@@ -54,7 +54,6 @@ export class ActivateCase {
         personallyServed: true,
         yesNoServiceOfApplication4: yesNoServiceOfApplication4,
         confidentialityCheck: confidentialityCheck,
-        responsibleForServing: "courtBailiff",
         manageOrderData: jsonDatas.citizenManageOrderDataPowerOfArrest,
         applicationSubmittedBy: applicationSubmittedBy,
       });

@@ -39,7 +39,7 @@ export class ConfirmContactDetails {
       applicationSubmittedBy: applicationSubmittedBy,
       accessibilityTest: accessibilityTest,
       isManualSOA: true,
-      yesNoServiceOfApplication4: true,
+      yesNoServiceOfApplication4: false,
       confidentialityCheck: true,
     });
     await page.click(UniqueSelectors.confirmOrEditYourContactDetailsSelector);

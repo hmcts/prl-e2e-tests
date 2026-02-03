@@ -31,7 +31,7 @@ test.describe("Activating case tests", (): void => {
       accessibilityTest: true,
       applicationSubmittedBy: "Solicitor",
       isManualSOA: true,
-      yesNoServiceOfApplication4: true,
+      yesNoServiceOfApplication4: false,
       confidentialityCheck: true,
     });
   });

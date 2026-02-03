@@ -57,7 +57,7 @@ export class RequestMoreTime {
       accessibilityTest: accessibilityTest,
       applicationSubmittedBy: applicationSubmittedBy,
       isManualSOA: true,
-      yesNoServiceOfApplication4: true,
+      yesNoServiceOfApplication4: false,
       confidentialityCheck: true,
     });
     await page.click(UniqueSelectors.requestToCourtAboutYourCase);
