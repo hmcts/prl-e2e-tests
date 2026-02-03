@@ -3,23 +3,31 @@ import { ApplicationPackDocumentsContent } from "../../../../fixtures/citizen/ca
 import { Selectors } from "../../../../common/selectors.ts";
 import { Page } from "@playwright/test";
 import { Helpers } from "../../../../common/helpers.ts";
+import { applicationSubmittedBy } from "../../../../common/types.js";
 
 interface ApplicationPackDocumentsParams {
   page: Page;
+  applicationSubmittedBy: applicationSubmittedBy;
   accessibilityTest: boolean;
 }
 
 export class ApplicationPackDocumentsPage {
   public static async applicationPackDocumentsPage({
     page,
+    applicationSubmittedBy,
     accessibilityTest,
   }: ApplicationPackDocumentsParams): Promise<void> {
-    await this.checkPageLoads({ page, accessibilityTest });
+    await this.checkPageLoads({
+      page,
+      applicationSubmittedBy,
+      accessibilityTest,
+    });
     await this.fillInFields({ page });
   }
 
   private static async checkPageLoads({
     page,
+    applicationSubmittedBy,
     accessibilityTest,
   }: Partial<ApplicationPackDocumentsParams>): Promise<void> {
     if (!page) {
@@ -46,14 +54,24 @@ export class ApplicationPackDocumentsPage {
         `${Selectors.p}:has-text("${ApplicationPackDocumentsContent.p2}")`,
         1,
       ),
-      Helpers.checkGroup(
+    ]);
+    if (applicationSubmittedBy === "Citizen") {
+      await Helpers.checkGroup(
         page,
         5,
         ApplicationPackDocumentsContent,
         "a",
         Selectors.a,
-      ),
-    ]);
+      );
+    } else {
+      await Helpers.checkGroup(
+        page,
+        11,
+        ApplicationPackDocumentsContent,
+        "solicitorA",
+        Selectors.a,
+      );
+    }
     if (accessibilityTest) {
       await new AxeUtils(page).audit();
     }
@@ -66,7 +84,7 @@ export class ApplicationPackDocumentsPage {
       throw new Error("Page is not defined)");
     }
     await page.click(
-      `${Selectors.a}:text-is("${ApplicationPackDocumentsContent.a1}")`,
+      `${Selectors.a}:text-is("${ApplicationPackDocumentsContent.a4}")`,
     );
     await page.waitForTimeout(2000);
   }

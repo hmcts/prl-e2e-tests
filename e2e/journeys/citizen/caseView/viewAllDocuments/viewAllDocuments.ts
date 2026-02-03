@@ -35,7 +35,7 @@ export class ViewAllDocuments {
       accessibilityTest: accessibilityTest,
       applicationSubmittedBy: applicationSubmittedBy,
       isManualSOA: true, // power of arrest order is not created properly through the API due to generated IDs,
-      yesNoServiceOfApplication4: true,
+      yesNoServiceOfApplication4: false,
       confidentialityCheck: true,
     });
 
@@ -46,6 +46,7 @@ export class ViewAllDocuments {
     });
     await ApplicationPackDocumentsPage.applicationPackDocumentsPage({
       page,
+      applicationSubmittedBy,
       accessibilityTest,
     });
   }
