@@ -28,7 +28,7 @@ test.describe("Applicant Make a request to order a witness to attend court tests
         page: page,
         browser: browser,
         caseRef: ccdRef,
-        accessibilityTest: false,
+        accessibilityTest: true,
         isApplicant: true,
         alreadyCompletedFP25: true,
         haveSupportingDocumentsUpload: true,

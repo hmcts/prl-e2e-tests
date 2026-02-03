@@ -4,7 +4,7 @@ import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
 import { ReviewContent } from "../../../../fixtures/citizen/caseView/contactPreferences/reviewContent.ts";
 import { Helpers } from "../../../../common/helpers.ts";
-import { CaseUser } from "../../../../journeys/citizen/activateCase/activateCase.js";
+import { CaseUser } from "../../../../journeys/citizen/activateCase/activateCase.ts";
 
 export class ReviewPage {
   public static async reviewPage(

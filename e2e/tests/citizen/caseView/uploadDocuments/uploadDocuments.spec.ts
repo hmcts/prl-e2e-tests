@@ -19,7 +19,7 @@ test.describe("Applicant upload documents tests", (): void => {
     },
   );
 
-  test("Applicant upload documents task page. @regression @accessibility @nightly", async ({
+  test("Applicant upload documents task page. @regression @accessibility", async ({
     page,
     browser,
   }): Promise<void> => {

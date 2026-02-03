@@ -27,7 +27,7 @@ test.describe("Applicant upload documents position statement tests", (): void =>
       page: page,
       browser: browser,
       caseRef: ccdRef,
-      accessibilityTest: false,
+      accessibilityTest: true,
       isApplicant: true,
       yesNoNA: "Yes",
       applicationSubmittedBy: "Solicitor",

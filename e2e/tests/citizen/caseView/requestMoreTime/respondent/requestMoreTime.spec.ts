@@ -19,7 +19,7 @@ test.describe("Respondent Request more time to do what is required by a court or
     },
   );
 
-  test("Respondent Request more time with fees. @regression @nightly", async ({
+  test("Respondent Request more time with fees. @regression @accessibility @nightly", async ({
     page,
     browser,
   }): Promise<void> => {
@@ -27,7 +27,7 @@ test.describe("Respondent Request more time to do what is required by a court or
       page: page,
       browser: browser,
       caseRef: ccdRef,
-      accessibilityTest: false,
+      accessibilityTest: true,
       isApplicant: false,
       applicationSubmittedBy: "Solicitor",
       completedForm: true,

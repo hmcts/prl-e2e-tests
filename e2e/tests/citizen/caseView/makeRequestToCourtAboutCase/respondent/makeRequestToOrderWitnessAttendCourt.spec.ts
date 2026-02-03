@@ -29,7 +29,7 @@ test.describe("Respondent Make a request to order a witness to attend court test
           page: page,
           browser: browser,
           caseRef: ccdRef,
-          accessibilityTest: false,
+          accessibilityTest: true,
           isApplicant: false,
           alreadyCompletedFP25: true,
           haveSupportingDocumentsUpload: true,

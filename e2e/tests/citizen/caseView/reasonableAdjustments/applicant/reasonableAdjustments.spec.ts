@@ -18,6 +18,7 @@ test.describe("Applicant reasonable adjustments tests", (): void => {
       );
     },
   );
+
   test("Applicant reasonable adjustments - no reasonable adjustments. @regression @accessibility @nightly", async ({
     page,
     browser,

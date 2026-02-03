@@ -3,7 +3,7 @@ import { ApplicationPackDocumentsContent } from "../../../../fixtures/citizen/ca
 import { Selectors } from "../../../../common/selectors.ts";
 import { Page } from "@playwright/test";
 import { Helpers } from "../../../../common/helpers.ts";
-import { applicationSubmittedBy } from "../../../../common/types.js";
+import { applicationSubmittedBy } from "../../../../common/types.ts";
 
 interface ApplicationPackDocumentsParams {
   page: Page;

@@ -19,7 +19,7 @@ test.describe("Respondent reasonable adjustments tests", (): void => {
     },
   );
 
-  test("Respondent reasonable adjustments - no reasonable adjustments. @regression @accessibility @nightly", async ({
+  test("Respondent reasonable adjustments - no reasonable adjustments. @regression", async ({
     page,
     browser,
   }): Promise<void> => {
@@ -29,12 +29,12 @@ test.describe("Respondent reasonable adjustments tests", (): void => {
       caseRef: ccdRef,
       needsReasonableAdjustment: false,
       isApplicant: false,
-      accessibilityTest: true,
+      accessibilityTest: false,
       applicationSubmittedBy: "Solicitor",
     });
   });
 
-  test("Respondent reasonable adjustments - add reasonable adjustment. @regression", async ({
+  test("Respondent reasonable adjustments - add reasonable adjustment. @regression @nightly @accessibility", async ({
     page,
     browser,
   }): Promise<void> => {
@@ -44,7 +44,7 @@ test.describe("Respondent reasonable adjustments tests", (): void => {
       caseRef: ccdRef,
       needsReasonableAdjustment: true,
       isApplicant: false,
-      accessibilityTest: false,
+      accessibilityTest: true,
       applicationSubmittedBy: "Solicitor",
     });
   });

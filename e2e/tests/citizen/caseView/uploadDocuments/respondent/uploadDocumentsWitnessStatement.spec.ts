@@ -4,7 +4,7 @@ import { UploadDocumentsWitnessStatement } from "../../../../../journeys/citizen
 
 test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 
-test.describe("Applicant upload documents position statement tests", (): void => {
+test.describe("Respondent upload documents position statement tests", (): void => {
   let ccdRef: string;
 
   test.beforeEach(
@@ -19,7 +19,7 @@ test.describe("Applicant upload documents position statement tests", (): void =>
     },
   );
 
-  test("Applicant upload documents position statement page. @regression @accessibility @nightly", async ({
+  test("Respondent upload documents position statement page. @regression @accessibility @nightly", async ({
     page,
     browser,
   }): Promise<void> => {
@@ -27,7 +27,7 @@ test.describe("Applicant upload documents position statement tests", (): void =>
       page: page,
       browser: browser,
       caseRef: ccdRef,
-      accessibilityTest: false,
+      accessibilityTest: true,
       isApplicant: false,
       yesNoNA: "Yes",
       applicationSubmittedBy: "Solicitor",
