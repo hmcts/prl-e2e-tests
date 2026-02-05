@@ -85,6 +85,7 @@ test.describe("Barrister user performing events for a CA case", () => {
     test(`Barrister performing 'next steps' events for a CA case. @regression @accessibility @nightly @test`, async ({
       nocSolicitor,
       navigationUtils,
+      judge,
     }): Promise<void> => {
       const { page, summaryPage, manageBarristerC100, partiesPage } =
         nocSolicitor;
@@ -130,7 +131,6 @@ test.describe("Barrister user performing events for a CA case", () => {
 
 
       // logging in as the Barrister and performing the next steps events
-      //new context here
 
       //draft an order
 
@@ -140,7 +140,32 @@ test.describe("Barrister user performing events for a CA case", () => {
 
       //stop representing client
 
+      //performing the order rejection flow as the Judge
+      const { editAndRejectAnOrder } =
+        judge;
+      //go to case
+      await navigationUtils.goToCase(
+        page,
+        config.manageCasesBaseURLCase,
+        caseNumber,
+        "summary",
+      );
+      //assign and use WA task
+      await editAndRejectAnOrder.editAndApproveAnOrder2Page.assertPageContents();
+      page1
+      page2
+      submit
+      confirm
 
+
+      //back to Barrister user to run the Edit a returned order
+      //THEN Edit and return order event by BARRISTER USER, new pages
+
+
+
+
+      
+// this might not be needed anymore
 
 
 

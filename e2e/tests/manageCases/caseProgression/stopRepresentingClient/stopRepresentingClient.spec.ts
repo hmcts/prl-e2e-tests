@@ -77,7 +77,6 @@ test.describe("Stop representing client event for a CA case", () => {
     }): Promise<void> => {
         const { page, summaryPage, manageBarristerC100, partiesPage } =
             nocSolicitor;
-
       // adding solicitor via NoC to allow Barrister functionality
       await navigationUtils.goToCase(
         page,
@@ -116,15 +115,26 @@ test.describe("Stop representing client event for a CA case", () => {
         data.barrister.email,
         data.barrister.org,
       );
+      //switching to Barrister user and performing the Stop representing client event
         const { stopRepresentingClientEvent } =
             barrister;
-    
+      await navigationUtils.goToCase(
+              page,
+              config.manageCasesBaseURLCase,
+              caseNumber,
+              "summary",
+            );
         await stopRepresentingClientEvent.page1.assertPageContents();
       await stopRepresentingClientEvent.page1.selectParty(
         data.existingRepresentative,
         );
         await stopRepresentingClientEvent.page1.clickContinue();
-        await stopRepresentingClientEvent.submitPage.clickSubmit();
+      await stopRepresentingClientEvent.submitPage.clickSubmit();
+      //asserting event completion
+      await summaryPage.alertBanner.assertEventAlert(
+        caseNumber,
+        "Create/upload draft order",
+      );
     });
   });
 });

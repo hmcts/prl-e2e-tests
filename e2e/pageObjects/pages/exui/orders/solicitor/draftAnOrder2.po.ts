@@ -2,6 +2,7 @@ import { EventPage } from "../../eventPage.po.js";
 import { expect, Locator, Page } from "@playwright/test";
 import { OrderTypes, OrderTypesArray } from "../../../../../common/types.js";
 import { PageUtils } from "../../../../../utils/page.utils.js";
+import { Selectors } from "../../../../../common/selectors.ts";
 
 export class DraftAnOrder2Page extends EventPage {
   private readonly insetText: Locator = this.page.getByText(
@@ -10,6 +11,8 @@ export class DraftAnOrder2Page extends EventPage {
   private readonly orderTypeLabel: Locator = this.page.getByText(
     "Select the type of order",
   );
+  private readonly orderTypeSelection: Locator = this.page.locator("#createSelectOrderOptions-parentalResponsibility");
+
   private readonly pageUtils: PageUtils = new PageUtils(this.page);
 
   constructor(page: Page) {
@@ -27,5 +30,9 @@ export class DraftAnOrder2Page extends EventPage {
 
   async selectOrderType(orderType: OrderTypes): Promise<void> {
     await this.page.getByRole("radio", { name: orderType }).check();
+  }
+
+  async selectOrderCA(): Promise<void> {
+    await this.orderTypeSelection.check();
   }
 }
