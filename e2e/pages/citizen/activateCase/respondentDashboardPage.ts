@@ -30,12 +30,12 @@ export class RespondentDashboardPage {
       applicationSubmittedBy == "Solicitor"
         ? RespondentDashboardContent.respondentGovukHeadingXL
         : RespondentDashboardContent.govukHeadingXL;
-    await page
-      .locator(Selectors.GovukHeadingXL, {
-        hasText: heading,
-      })
-      .waitFor();
     await Promise.all([
+      page
+        .locator(Selectors.GovukHeadingXL, {
+          hasText: heading,
+        })
+        .waitFor(),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.p}:text-is("Case number ${caseRef}")`,

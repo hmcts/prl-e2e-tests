@@ -7,12 +7,12 @@ export enum CheckAnswersContent {
   govukSummaryListKey4 = "Address",
   govukSummaryListKey5 = "Phone number",
   govukSummaryListKey6 = "Email",
-  govukSummaryListValue1 = "Applicant ApplLast",
-  govukSummaryListValue2 = "13 October 1985",
+  govukSummaryListValue1 = "John Smith",
+  govukSummaryListValue2 = "1 January 1980",
   govukSummaryListValue3 = "No",
-  govukSummaryListValue4 = "Heaven 7 Castle Square Swansea SA1 1DW",
-  govukSummaryListValue5 = "(044) 9772047123",
-  govukSummaryListValue6 = "test-appl@hmcts.net",
+  govukSummaryListValue4 = "Ministry Of Justice Seventh Floor 102 Petty France London SW1H 9AJ",
+  govukSummaryListValue5 = "07405123456",
+  govukSummaryListValue6 = "07405123456",
   govukHint2 = "If this information was provided by the applicant it should not be requested to be kept confidential.", // x3
   govukHint3 = "if you do not want to share your contact details with the other person in the case,update the section keep your details private",
 }

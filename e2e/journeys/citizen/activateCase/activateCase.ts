@@ -25,6 +25,8 @@ interface ActiveCaseParams {
   applicationSubmittedBy: applicationSubmittedBy;
   accessibilityTest: boolean;
   isManualSOA: boolean;
+  yesNoServiceOfApplication4: boolean;
+  confidentialityCheck: boolean;
 }
 
 export type CaseUser = "applicant" | "respondent" | "both";
@@ -38,6 +40,8 @@ export class ActivateCase {
     applicationSubmittedBy,
     accessibilityTest,
     isManualSOA,
+    yesNoServiceOfApplication4,
+    confidentialityCheck,
   }: ActiveCaseParams): Promise<Page> {
     let currentPage: Page = page;
     if (isManualSOA) {
@@ -48,9 +52,8 @@ export class ActivateCase {
         createOrderFL401Options: "power of arrest",
         browser: browser,
         personallyServed: true,
-        yesNoServiceOfApplication4: false,
-        confidentialityCheck: false,
-        responsibleForServing: "courtBailiff",
+        yesNoServiceOfApplication4: yesNoServiceOfApplication4,
+        confidentialityCheck: confidentialityCheck,
         manageOrderData: jsonDatas.citizenManageOrderDataPowerOfArrest,
         applicationSubmittedBy: applicationSubmittedBy,
       });
