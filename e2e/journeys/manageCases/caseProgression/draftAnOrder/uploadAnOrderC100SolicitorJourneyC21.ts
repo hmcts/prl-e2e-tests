@@ -12,6 +12,9 @@ import { UploadDraftAnOrder4Page } from "../../../../pages/manageCases/caseProgr
 import { C100DraftOrdersTabPage } from "../../../../pages/manageCases/caseTabs/C100/c100DraftOrdersTabPage.ts";
 import { UploadDraftAnOrderSubmitPage } from "../../../../pages/manageCases/caseProgression/draftAnOrder/uploadDraftAnOrderSubmitPage.ts";
 import { ManageOrders8PageCA } from "../../../../pages/manageCases/caseWorker/uploadAnOrder/manageOrders8PageCA.ts";
+import { DraftAnOrder4PageC21 } from "../../../../pageObjects/pages/exui/orders/draftAnOrder/draftAnOrder4PageC21.po.ts";
+import { DraftAnOrder5PageC21 } from "../../../../pageObjects/pages/exui/orders/draftAnOrder/draftAnOrder5PageC21.po.ts";
+import { SubmitPageC21 } from "../../../../pageObjects/pages/exui/orders/draftAnOrder/submitPageC21.po.ts";
 
 interface C100DraftAnOrderOptions {
   page: Page;
@@ -28,7 +31,7 @@ interface C100DraftAnOrderOptions {
   isCaseworker: boolean;
 }
 
-export class UploadAnOrderC100SolicitorJourney {
+export class UploadAnOrderC100SolicitorJourneyC21 {
   public static async uploadAnOrderC100SolicitorJourney({
     page,
     accessibilityTest,
@@ -59,42 +62,34 @@ export class UploadAnOrderC100SolicitorJourney {
       uploadOrderFL401Options,
       solicitorCaseCreateType,
     });
-    await UploadDraftAnOrder4Page.uploadDraftAnOrder4Page({
-      page,
-      accessibilityTest,
-      solicitorCaseCreateType,
-      hasJudgeNameAndTitle,
+
+   const draftAnOrder4PageC21 = new DraftAnOrder4PageC21(page, accessibilityTest, isUploadOrder);
+    await draftAnOrder4PageC21.assertPageContentsToBeVisible();
+    await draftAnOrder4PageC21.assertPageContentsToContainText();
+    await draftAnOrder4PageC21.selectC21OrderOption("Blank order or directions (C21): application refused");
+    await draftAnOrder4PageC21.clickContinue();
+
+    const draftAnOrder5PageC21 = new DraftAnOrder5PageC21(page, accessibilityTest, isUploadOrder, solicitorCaseCreateType);
+    await draftAnOrder5PageC21.assertPageContentsToBeVisible();
+    await draftAnOrder5PageC21.assertC21RadiosAreSelectable();
+    await draftAnOrder5PageC21.fillOrderDetails({
+      orderApprovedAtHearing: "Yes",
+      hearingApprovedAt: "No hearings available",
+      judgeTitle: "Her Honour Judge",
+      judgeFullName: "Judge PC",
+      legalAdviserFullName: "Legal Adviser PC",
+      dateOrderMade: { day: "10", month: "10", year: "2025" },
+      orderAboutAllChildren: "Yes",
+      uploadOrder: true,
     });
-    await ManageOrders8PageCA.manageOrders8PageCA({
-      page,
-      accessibilityTest,
-      isCaseworker,
-    });
-    await UploadDraftAnOrderSubmitPage.uploadDraftAnOrderSubmitPage({
-      page,
-      accessibilityTest,
-      solicitorCaseCreateType,
-      hasJudgeNameAndTitle,
-    });
-    //Switching to CTSC user as Solicitor cannot see the 'Draft orders' tab in the case
-    await page.waitForResponse(
-      `${Config.manageCasesBaseURL}/data/cases/${caseRef}/events`,
-    );
-    const checkPageCTSC: Page = await Helpers.openNewBrowserWindow(
-      browser,
-      "courtAdminStoke",
-    );
-    await Helpers.goToCase(
-      checkPageCTSC,
-      Config.manageCasesBaseURLCase,
-      caseRef,
-      "Draft orders",
-    );
-    //Validating the correct Judge's Name in the 'Draft orders' tab
-    await C100DraftOrdersTabPage.c100DraftOrdersTabPage(
-      checkPageCTSC,
-      accessibilityTest,
-      hasJudgeNameAndTitle,
-    );
+    await draftAnOrder5PageC21.clickContinue();
+
+    const submitPageC21 = new SubmitPageC21(page, accessibilityTest);
+      await submitPageC21.assertPageContentsToBeVisible();
+      await submitPageC21.assertExpectedLabelValuesPresent();
+      await submitPageC21.assertChangeLinksPresentForLabels();
+      await submitPageC21.validateAccessibility();
+      await submitPageC21.clickSubmit();
+
   }
 }
