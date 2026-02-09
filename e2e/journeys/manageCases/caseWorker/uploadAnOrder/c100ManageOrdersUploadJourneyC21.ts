@@ -12,8 +12,8 @@ import { ManageOrders24PageCA } from "../../../../pages/manageCases/caseWorker/u
 import { ManageOrders26PageCA } from "../../../../pages/manageCases/caseWorker/uploadAnOrder/manageOrders26PageCA.ts";
 import { C100DraftOrdersTabPage } from "../../../../pages/manageCases/caseTabs/C100/c100DraftOrdersTabPage.ts";
 import { ManageOrders4Page } from "../../../../pageObjects/pages/exui/orders/manageOrders/manageOrders4.po.ts";
-import  { ManageOrders5Page } from "../../../../pageObjects/pages/exui/orders/manageOrders/manageOrders5.po.ts";
-import  { SubmitPage } from "../../../../pageObjects/pages/exui/orders/manageOrders/submitPage.po.ts";
+import { ManageOrders5Page } from "../../../../pageObjects/pages/exui/orders/manageOrders/manageOrders5.po.ts";
+import { SubmitPage } from "../../../../pageObjects/pages/exui/orders/manageOrders/submitPage.po.ts";
 
 interface C100ManageOrdersOptions {
   page: Page;
@@ -57,13 +57,24 @@ export class C100ManageOrdersUploadJourneyC21 {
       solicitorCaseCreateType,
     });
 
-    const manageOrders4Page = new ManageOrders4Page(page, accessibilityTest, isUploadOrder);
+    const manageOrders4Page = new ManageOrders4Page(
+      page,
+      accessibilityTest,
+      isUploadOrder,
+    );
     await manageOrders4Page.assertPageContentsToBeVisible();
     await manageOrders4Page.assertPageContentsToContainText();
-    await manageOrders4Page.selectC21OrderOption("Blank order or directions (C21): application refused");
+    await manageOrders4Page.selectC21OrderOption(
+      "Blank order or directions (C21): application refused",
+    );
     await manageOrders4Page.clickContinue();
 
-    const manageOrders5Page = new ManageOrders5Page(page, accessibilityTest, isUploadOrder, solicitorCaseCreateType);
+    const manageOrders5Page = new ManageOrders5Page(
+      page,
+      accessibilityTest,
+      isUploadOrder,
+      solicitorCaseCreateType,
+    );
     await manageOrders5Page.assertPageContentsToBeVisible();
     await manageOrders5Page.assertC21RadiosAreSelectable();
     await manageOrders5Page.fillOrderDetails({
@@ -78,8 +89,15 @@ export class C100ManageOrdersUploadJourneyC21 {
     });
     await manageOrders5Page.clickContinue();
 
-    await ManageOrders24PageCA.manageOrders24PageCA({ page, accessibilityTest });
-    await ManageOrders26PageCA.manageOrders26PageCA({ page, accessibilityTest, serveOrderNow });
+    await ManageOrders24PageCA.manageOrders24PageCA({
+      page,
+      accessibilityTest,
+    });
+    await ManageOrders26PageCA.manageOrders26PageCA({
+      page,
+      accessibilityTest,
+      serveOrderNow,
+    });
 
     const submitPage = new SubmitPage(page, accessibilityTest);
     await submitPage.assertPageContentsToBeVisible();
@@ -89,6 +107,10 @@ export class C100ManageOrdersUploadJourneyC21 {
     await submitPage.clickSubmit();
 
     await Helpers.clickTab(page, "Draft orders");
-    await C100DraftOrdersTabPage.c100DraftOrdersTabPage(page, accessibilityTest, hasJudgeNameAndTitle);
+    await C100DraftOrdersTabPage.c100DraftOrdersTabPage(
+      page,
+      accessibilityTest,
+      hasJudgeNameAndTitle,
+    );
   }
 }

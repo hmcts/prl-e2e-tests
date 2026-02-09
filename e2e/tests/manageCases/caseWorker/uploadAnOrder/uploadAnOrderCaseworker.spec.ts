@@ -63,23 +63,20 @@ test.describe("'Upload an order' tests", (): void => {
     });
   });
 
-   test(
-    `Complete 'Upload an order' as a Caseworker for C21 order with the following options:
+  test(`Complete 'Upload an order' as a Caseworker for C21 order with the following options:
   Case: C100,
   Accessibility testing: yes. 
-  @regression, @nightly`,
-    async ({ page }) => {
-      await C100ManageOrdersUploadJourneyC21.c100ManageOrdersUploadJourneyC21({
-        page,
-        accessibilityTest: true,
-        solicitorCaseCreateType: "C100",
-        yesNoManageOrders: false,
-        uploadOrderC100Options: "Blank order or directions (C21)",
-        isUploadOrder: true,
-        serveOrderNow: false,
-        hasJudgeNameAndTitle: true,
-        isCaseworker: true,
-      });
-    },
-  );
+  @regression, @nightly`, async ({ page }) => {
+    await C100ManageOrdersUploadJourneyC21.c100ManageOrdersUploadJourneyC21({
+      page,
+      accessibilityTest: true,
+      solicitorCaseCreateType: "C100",
+      yesNoManageOrders: false,
+      uploadOrderC100Options: "Blank order or directions (C21)",
+      isUploadOrder: true,
+      serveOrderNow: false,
+      hasJudgeNameAndTitle: true,
+      isCaseworker: true,
+    });
+  });
 });

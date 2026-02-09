@@ -63,13 +63,24 @@ export class UploadAnOrderC100SolicitorJourneyC21 {
       solicitorCaseCreateType,
     });
 
-   const draftAnOrder4PageC21 = new DraftAnOrder4PageC21(page, accessibilityTest, isUploadOrder);
+    const draftAnOrder4PageC21 = new DraftAnOrder4PageC21(
+      page,
+      accessibilityTest,
+      isUploadOrder,
+    );
     await draftAnOrder4PageC21.assertPageContentsToBeVisible();
     await draftAnOrder4PageC21.assertPageContentsToContainText();
-    await draftAnOrder4PageC21.selectC21OrderOption("Blank order or directions (C21): application refused");
+    await draftAnOrder4PageC21.selectC21OrderOption(
+      "Blank order or directions (C21): application refused",
+    );
     await draftAnOrder4PageC21.clickContinue();
 
-    const draftAnOrder5PageC21 = new DraftAnOrder5PageC21(page, accessibilityTest, isUploadOrder, solicitorCaseCreateType);
+    const draftAnOrder5PageC21 = new DraftAnOrder5PageC21(
+      page,
+      accessibilityTest,
+      isUploadOrder,
+      solicitorCaseCreateType,
+    );
     await draftAnOrder5PageC21.assertPageContentsToBeVisible();
     await draftAnOrder5PageC21.assertC21RadiosAreSelectable();
     await draftAnOrder5PageC21.fillOrderDetails({
@@ -85,11 +96,10 @@ export class UploadAnOrderC100SolicitorJourneyC21 {
     await draftAnOrder5PageC21.clickContinue();
 
     const submitPageC21 = new SubmitPageC21(page, accessibilityTest);
-      await submitPageC21.assertPageContentsToBeVisible();
-      await submitPageC21.assertExpectedLabelValuesPresent();
-      await submitPageC21.assertChangeLinksPresentForLabels();
-      await submitPageC21.validateAccessibility();
-      await submitPageC21.clickSubmit();
-
+    await submitPageC21.assertPageContentsToBeVisible();
+    await submitPageC21.assertExpectedLabelValuesPresent();
+    await submitPageC21.assertChangeLinksPresentForLabels();
+    await submitPageC21.validateAccessibility();
+    await submitPageC21.clickSubmit();
   }
 }

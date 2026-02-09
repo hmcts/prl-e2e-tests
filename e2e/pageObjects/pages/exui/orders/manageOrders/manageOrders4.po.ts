@@ -27,7 +27,7 @@ export class ManageOrders4Page extends Base {
   async assertPageContentsToContainText(): Promise<void> {
     for (const option of this.c21Options) {
       await expect(
-        this.page.getByRole("radio", { name: option, exact: true })
+        this.page.getByRole("radio", { name: option, exact: true }),
       ).toBeVisible();
     }
   }
@@ -37,7 +37,9 @@ export class ManageOrders4Page extends Base {
       const radio = this.page.getByRole("radio", { name: option, exact: true });
       await radio.check();
       await expect(radio).toBeChecked();
-      await expect(this.page.getByRole("radio", { checked: true })).toHaveCount(1);
+      await expect(this.page.getByRole("radio", { checked: true })).toHaveCount(
+        1,
+      );
     }
   }
 
