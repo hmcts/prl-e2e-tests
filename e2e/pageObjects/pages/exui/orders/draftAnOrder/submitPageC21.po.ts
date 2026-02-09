@@ -1,8 +1,7 @@
-import { expect, Locator, Page } from "@playwright/test";
+import { expect, Page } from "@playwright/test";
 import { Base } from "../../../base.po.ts";
 import { test } from "../../../../../tests/fixtures.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Upload } from "../../../../../journeys/citizen/caseView/uploadDocuments/upload.ts";
 
 type LabelValuePair = { label: string; value: string };
 

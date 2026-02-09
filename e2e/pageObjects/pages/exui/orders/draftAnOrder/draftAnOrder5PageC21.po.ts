@@ -28,6 +28,10 @@ enum dateOrderMadeInputIds {
 }
 
 export class DraftAnOrder5PageC21 extends Base {
+  private readonly accessibilityTest: boolean;
+  private readonly isUploadOrder: boolean;
+  private readonly solicitorCaseCreateType: string;
+
   private readonly headings: string[] = ["Create/upload draft order"];
   private readonly labelsAndText: string[] = [
     // Case details
@@ -82,6 +86,9 @@ export class DraftAnOrder5PageC21 extends Base {
     solicitorCaseCreateType?: string,
   ) {
     super(page);
+    this.accessibilityTest = accessibilityTest;
+    this.isUploadOrder = isUploadOrder;
+    this.solicitorCaseCreateType = solicitorCaseCreateType ?? "";
   }
 
   async assertPageContentsToBeVisible(): Promise<void> {
@@ -127,7 +134,7 @@ export class DraftAnOrder5PageC21 extends Base {
           this.page.getByRole("radio", { checked: true }),
         ).toHaveCount(1);
       } catch (error) {
-        throw new Error(`Radio option failed: "${option}"`);
+        throw new Error(`Radio option failed: "${option}". Error: ${error}`);
       }
     }
   }
@@ -228,12 +235,6 @@ export class DraftAnOrder5PageC21 extends Base {
     await step(
       `orderAboutAllChildren = "${details.orderAboutAllChildren}"`,
       async () => {
-        const question = this.page.getByText(
-          "Is the order about all the children?",
-          { exact: false },
-        );
-        const container = question.locator("..");
-
         await this.page
           .locator(radioIds.isTheOrderAboutAllChildren_Yes)
           .check();

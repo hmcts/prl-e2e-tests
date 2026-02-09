@@ -5,13 +5,8 @@ import {
   uploadOrderC100Options,
   uploadOrderFL401Options,
 } from "../../../../common/types.ts";
-import Config from "../../../../utils/config.utils.ts";
 import { DraftAnOrder1Page } from "../../../../pages/manageCases/caseWorker/draftAnOrder/draftAnOrder1Page.ts";
 import { UploadDraftAnOrder3Page } from "../../../../pages/manageCases/caseProgression/draftAnOrder/uploadDraftAnOrder3Page.ts";
-import { UploadDraftAnOrder4Page } from "../../../../pages/manageCases/caseProgression/draftAnOrder/uploadDraftAnOrder4Page.ts";
-import { C100DraftOrdersTabPage } from "../../../../pages/manageCases/caseTabs/C100/c100DraftOrdersTabPage.ts";
-import { UploadDraftAnOrderSubmitPage } from "../../../../pages/manageCases/caseProgression/draftAnOrder/uploadDraftAnOrderSubmitPage.ts";
-import { ManageOrders8PageCA } from "../../../../pages/manageCases/caseWorker/uploadAnOrder/manageOrders8PageCA.ts";
 import { DraftAnOrder4PageC21 } from "../../../../pageObjects/pages/exui/orders/draftAnOrder/draftAnOrder4PageC21.po.ts";
 import { DraftAnOrder5PageC21 } from "../../../../pageObjects/pages/exui/orders/draftAnOrder/draftAnOrder5PageC21.po.ts";
 import { SubmitPageC21 } from "../../../../pageObjects/pages/exui/orders/draftAnOrder/submitPageC21.po.ts";
@@ -41,10 +36,6 @@ export class UploadAnOrderC100SolicitorJourneyC21 {
     solicitorCaseCreateType,
     errorMessaging,
     isUploadOrder,
-    browser,
-    caseRef,
-    hasJudgeNameAndTitle,
-    isCaseworker,
   }: C100DraftAnOrderOptions): Promise<void> {
     //Starting the 'Create/upload draft order' event to upload the order
     await Helpers.chooseEventFromDropdown(page, "Create/upload draft order");

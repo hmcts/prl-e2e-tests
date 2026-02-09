@@ -29,6 +29,10 @@ enum dateOrderMadeInputIds {
 }
 
 export class ManageOrders5Page extends Base {
+  private readonly accessibilityTest: boolean;
+  private readonly isUploadOrder: boolean;
+  private readonly solicitorCaseCreateType?: string;
+
   private readonly headings: string[] = ["Manage orders"];
   private readonly labelsAndText: string[] = [
     // Case details
@@ -84,6 +88,9 @@ export class ManageOrders5Page extends Base {
     solicitorCaseCreateType?: string,
   ) {
     super(page);
+    this.accessibilityTest = accessibilityTest;
+    this.isUploadOrder = isUploadOrder;
+    this.solicitorCaseCreateType = solicitorCaseCreateType;
   }
 
   async assertPageContentsToBeVisible(): Promise<void> {
@@ -129,7 +136,11 @@ export class ManageOrders5Page extends Base {
           this.page.getByRole("radio", { checked: true }),
         ).toHaveCount(1);
       } catch (error) {
-        throw new Error(`Radio option failed: "${option}"`);
+        const errorMessage =
+          error instanceof Error ? error.message : String(error);
+        throw new Error(
+          `Radio option failed: "${option}". Details: ${errorMessage}`,
+        );
       }
     }
   }
@@ -228,12 +239,6 @@ export class ManageOrders5Page extends Base {
     await step(
       `orderAboutAllChildren = "${details.orderAboutAllChildren}"`,
       async () => {
-        const question = this.page.getByText(
-          "Is the order about all the children?",
-          { exact: false },
-        );
-        const container = question.locator("..");
-
         await this.page
           .locator(radioIds.isTheOrderAboutAllChildren_Yes)
           .check();

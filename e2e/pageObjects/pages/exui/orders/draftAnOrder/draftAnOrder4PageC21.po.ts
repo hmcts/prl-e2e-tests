@@ -1,8 +1,10 @@
 import { expect, Page } from "@playwright/test";
 import { Base } from "../../../base.po.ts";
-import { TIMEOUT } from "dns/promises";
 
 export class DraftAnOrder4PageC21 extends Base {
+  private readonly accessibilityTest: boolean;
+  private readonly isUploadOrder: boolean;
+
   private readonly c21Options: string[] = [
     "Blank order or directions (C21): application refused",
     "Blank order or directions (C21): to withdraw application",
@@ -12,6 +14,8 @@ export class DraftAnOrder4PageC21 extends Base {
 
   constructor(page: Page, accessibilityTest = false, isUploadOrder = false) {
     super(page);
+    this.accessibilityTest = accessibilityTest;
+    this.isUploadOrder = isUploadOrder;
   }
 
   async assertPageContentsToBeVisible(): Promise<void> {

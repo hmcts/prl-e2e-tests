@@ -1,4 +1,4 @@
-import { expect, Locator, Page } from "@playwright/test";
+import { expect, Page } from "@playwright/test";
 import { Base } from "../../../base.po.ts";
 import { test } from "../../../../../tests/fixtures.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
