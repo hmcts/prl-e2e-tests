@@ -42,6 +42,7 @@ export class C100AttendingTheHearing {
       page: page,
       accessibilityTest: accessibilityTest,
       attendingTheHearingYesNo: c100AttendingTheHearingYesNo,
+      caseType: "C100",
     });
     await C100TasksTabPage.c100TasksTabPage(page, accessibilityTest);
   }

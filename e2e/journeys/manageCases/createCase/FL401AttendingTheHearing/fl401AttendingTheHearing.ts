@@ -42,6 +42,7 @@ export class Fl401AttendingTheHearing {
       page: page,
       accessibilityTest: accessibilityTest,
       attendingTheHearingYesNo: fl401AttendingTheHearingYesNo,
+      caseType: "FL401",
     });
     await Fl401TasksTabPage.fl401TasksTabPage(page, accessibilityTest);
   }
