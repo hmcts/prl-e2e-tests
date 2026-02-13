@@ -1,5 +1,4 @@
 import { expect, Page } from "@playwright/test";
-import { test } from "../../../../../tests/fixtures.ts";
 import config from "../../../../../utils/config.utils.ts";
 import { EventPage } from "../../eventPage.po.ts";
 
@@ -97,10 +96,10 @@ export class ManageOrders5Page extends EventPage {
     }
 
     for (const radioOption of this.radioOptions) {
-        await expect(
-          this.page.getByRole("radio", { name: radioOption, exact: true }),
-          `Radio with accessible name "${radioOption}" was not visible (or not found)`,
-        ).toBeVisible();
+      await expect(
+        this.page.getByRole("radio", { name: radioOption, exact: true }),
+        `Radio with accessible name "${radioOption}" was not visible (or not found)`,
+      ).toBeVisible();
     }
 
     for (const navigationButton of this.navigationButtons) {
@@ -130,11 +129,9 @@ export class ManageOrders5Page extends EventPage {
       }
     }
   }
-async fillOrderDetails(details: OrderDetails): Promise<void> {
+  async fillOrderDetails(details: OrderDetails): Promise<void> {
     // --- 1) Was the order approved at a hearing? ---
-    await this.page
-      .locator(radioIds.wasTheOrderApprovedAtHearing_Yes)
-      .check();
+    await this.page.locator(radioIds.wasTheOrderApprovedAtHearing_Yes).check();
     await expect(
       this.page.locator(radioIds.wasTheOrderApprovedAtHearing_Yes),
     ).toBeChecked();
@@ -191,9 +188,7 @@ async fillOrderDetails(details: OrderDetails): Promise<void> {
     await expect(yearInput).toHaveValue(details.dateOrderMade.year);
 
     // --- 7) Is the order about all the children? ---
-    await this.page
-      .locator(radioIds.isTheOrderAboutAllChildren_Yes)
-      .check();
+    await this.page.locator(radioIds.isTheOrderAboutAllChildren_Yes).check();
     await expect(
       this.page.locator(radioIds.isTheOrderAboutAllChildren_Yes),
     ).toBeChecked();
@@ -206,5 +201,4 @@ async fillOrderDetails(details: OrderDetails): Promise<void> {
       await this.page.waitForTimeout(5000);
     }
   }
-  
 }

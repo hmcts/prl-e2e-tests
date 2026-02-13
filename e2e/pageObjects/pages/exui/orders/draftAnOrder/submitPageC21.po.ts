@@ -7,7 +7,7 @@ export class SubmitPageC21 extends CheckYourAnswersPage {
   accessibilityTest: boolean;
 
   constructor(page: Page, accessibilityTest = false) {
-    super(page, "Create/upload draft order",CommonStaticText.submit);
+    super(page, "Create/upload draft order", CommonStaticText.submit);
     this.accessibilityTest = accessibilityTest;
   }
 

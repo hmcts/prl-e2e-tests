@@ -90,9 +90,9 @@ export class UploadAnOrderC100SolicitorJourneyC21 {
 
     const submitPageC21 = new SubmitPageC21(page, accessibilityTest);
     await submitPageC21.assertPageContents(
-      ["C21", "uploadOrder"],           // folder path for the screenshot
+      ["C21", "uploadOrder"], // folder path for the screenshot
       "solicitor-c21-createUploadDraftOrder-cya.png", // screenshot file name
-      );    
+    );
     await submitPageC21.validateAccessibility();
     await submitPageC21.clickSubmit();
   }

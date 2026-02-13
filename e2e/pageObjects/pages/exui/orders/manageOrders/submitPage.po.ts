@@ -3,7 +3,6 @@ import { AxeUtils } from "@hmcts/playwright-common";
 import { CheckYourAnswersPage } from "../../checkYourAnswers.po.ts";
 import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 
-
 export class SubmitPage extends CheckYourAnswersPage {
   accessibilityTest: boolean;
   constructor(page: Page, accessibilityTest = false) {

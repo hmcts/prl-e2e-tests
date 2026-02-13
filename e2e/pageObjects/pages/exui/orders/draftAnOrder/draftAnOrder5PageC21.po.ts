@@ -1,5 +1,4 @@
 import { expect, Page } from "@playwright/test";
-import { test } from "../../../../../tests/fixtures.ts";
 import config from "../../../../../utils/config.utils.ts";
 import { EventPage } from "../../eventPage.po.ts";
 
@@ -34,7 +33,6 @@ export class DraftAnOrder5PageC21 extends EventPage {
 
   private readonly headings: string[] = ["Create/upload draft order"];
   private readonly labelsAndText: string[] = [
-
     // Questions / sections
     "Was the order approved at a hearing?",
     "Judge or Magistrate's title",
@@ -104,10 +102,10 @@ export class DraftAnOrder5PageC21 extends EventPage {
     }
 
     for (const radioOption of this.radioOptions) {
-        await expect(
-          this.page.getByRole("radio", { name: radioOption, exact: true }),
-          `Radio with accessible name "${radioOption}" was not visible (or not found)`,
-        ).toBeVisible();
+      await expect(
+        this.page.getByRole("radio", { name: radioOption, exact: true }),
+        `Radio with accessible name "${radioOption}" was not visible (or not found)`,
+      ).toBeVisible();
     }
 
     for (const navigationButton of this.navigationButtons) {
@@ -136,9 +134,7 @@ export class DraftAnOrder5PageC21 extends EventPage {
 
   async fillOrderDetails(details: OrderDetails): Promise<void> {
     // --- 1) Was the order approved at a hearing? ---
-    await this.page
-      .locator(radioIds.wasTheOrderApprovedAtHearing_Yes)
-      .check();
+    await this.page.locator(radioIds.wasTheOrderApprovedAtHearing_Yes).check();
     await expect(
       this.page.locator(radioIds.wasTheOrderApprovedAtHearing_Yes),
     ).toBeChecked();
@@ -161,9 +157,12 @@ export class DraftAnOrder5PageC21 extends EventPage {
     await expect(radio).toBeChecked();
 
     // --- 4) Judge's full name ---
-    const judgeNameInput = this.page.getByLabel("Judge's full name (Optional)", {
-      exact: true,
-    });
+    const judgeNameInput = this.page.getByLabel(
+      "Judge's full name (Optional)",
+      {
+        exact: true,
+      },
+    );
     await judgeNameInput.fill(details.judgeFullName);
     await expect(judgeNameInput).toHaveValue(details.judgeFullName);
 
@@ -176,7 +175,9 @@ export class DraftAnOrder5PageC21 extends EventPage {
         },
       );
       await legalAdviserInput.fill(details.legalAdviserFullName ?? "");
-      await expect(legalAdviserInput).toHaveValue(details.legalAdviserFullName ?? "");
+      await expect(legalAdviserInput).toHaveValue(
+        details.legalAdviserFullName ?? "",
+      );
     }
 
     // --- 6) Date order made ---
@@ -193,9 +194,7 @@ export class DraftAnOrder5PageC21 extends EventPage {
     await expect(yearInput).toHaveValue(details.dateOrderMade.year);
 
     // --- 7) Is the order about all the children? ---
-    await this.page
-      .locator(radioIds.isTheOrderAboutAllChildren_Yes)
-      .check();
+    await this.page.locator(radioIds.isTheOrderAboutAllChildren_Yes).check();
     await expect(
       this.page.locator(radioIds.isTheOrderAboutAllChildren_Yes),
     ).toBeChecked();
