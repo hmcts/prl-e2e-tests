@@ -14,8 +14,8 @@ export const ChildArrangementsOrderScenarios: ChildArrangementsOrderParams[] = [
       isOrderByConsent: false,
       wasOrderApprovedAtAHearing: false,
       hearing: undefined,
-      judgeOrMagistratesTitle: undefined,
-      judgeFullName: undefined,
+      judgeOrMagistratesTitle: "His Honour Judge",
+      judgeFullName: "Test judge name",
       justicesLegalAdviserFullName: undefined,
       dateOrderMade: undefined,
       isOrderAboutAllTheChildren: false,
@@ -37,7 +37,6 @@ export const ChildArrangementsOrderScenarios: ChildArrangementsOrderParams[] = [
         "Specific Issue Order",
       ],
     },
-    responsibleParentFullName: "Test Name",
     manageOrder19Params: {
       isDateReservedWithListAssist: true,
       hearingDetails: {
@@ -53,17 +52,25 @@ export const ChildArrangementsOrderScenarios: ChildArrangementsOrderParams[] = [
         additionalHearingInstructions: "Test additional hearing instructions",
       },
     },
+    manageOrder24Params: {
+      checkOption: "judgeOrLegalAdvisorCheck", ////options passed could be either noCheck or judgeOrLegalAdvisorCheck or managerCheck
+      judgeOrLegalAdviser: "judge",
+      judgeName: "Ms Elizabeth Williams",
+    },
     snapshotName: "child-arrangements-order-no-to-all",
     snapshotsPath: ["caseProgression", "orders", "childArrangementsOrder"],
     orderInformation: [
       {
         typeOfOrder:
           "Child arrangements, specific issue or prohibited steps order (C43)",
-        welshDocument: "Welsh_Child_Arrangements_Order_C43_draft.pdf",
-        englishDocument: "Child_Arrangements_Order_C43_draft.pdf",
+        welshDocument:
+          "Welsh_ChildArrangements_Specific_Prohibited_Steps_C43_Draft.pdf",
+        englishDocument:
+          "ChildArrangements_Specific_Prohibited_Steps_C43_Draft.pdf",
         otherDetails: {
-          orderCreatedBy: "AAT Solicitor",
-          status: "Drafted by Solicitor",
+          orderMadeBy: "Test judge name",
+          orderCreatedBy: "PRL AAT AM Swansea HCA",
+          status: "Created by Admin",
         },
         childrenList: [
           "Joe Doe (Child 1)",
@@ -106,7 +113,6 @@ export const ChildArrangementsOrderScenarios: ChildArrangementsOrderParams[] = [
         "Specific Issue Order",
       ],
     },
-    responsibleParentFullName: "Test Name",
     manageOrder19Params: {
       isDateReservedWithListAssist: true,
       hearingDetails: {
@@ -122,19 +128,33 @@ export const ChildArrangementsOrderScenarios: ChildArrangementsOrderParams[] = [
         additionalHearingInstructions: "Test additional hearing instructions",
       },
     },
+    manageOrder24Params: {
+      checkOption: "judgeOrLegalAdvisorCheck", ////options passed could be either noCheck or judgeOrLegalAdvisorCheck or managerCheck
+      judgeOrLegalAdviser: "judge", ///options judge, legalAdvisor
+      judgeName: "Ms Elizabeth Williams",
+    },
     snapshotName: "child-arrangements-order-yes-to-all",
     snapshotsPath: ["caseProgression", "orders", "childArrangementsOrder"],
     orderInformation: [
       {
         typeOfOrder:
           "Child arrangements, specific issue or prohibited steps order (C43)",
-        welshDocument: "Welsh_Child_Arrangements_Order_C43_draft.pdf",
-        englishDocument: "Child_Arrangements_Order_C43_draft.pdf",
+        welshDocument:
+          "Welsh_ChildArrangements_Specific_Prohibited_Steps_C43_Draft.pdf",
+        englishDocument:
+          "ChildArrangements_Specific_Prohibited_Steps_C43_Draft.pdf",
         otherDetails: {
           orderMadeBy: "Test judge name",
-          orderCreatedBy: "AAT Solicitor",
-          status: "Drafted by Solicitor",
+          orderCreatedBy: "PRL AAT AM Swansea HCA",
+          status: "Created by Admin",
         },
+        childrenList: [
+          "Joe Doe (Child 1)",
+          "Simon Anderson (Child 2)",
+          "Lilly Anderson (Child 3)",
+          "Charlotte Saxon (Child 4)",
+          "Selena Lees (Child 5)",
+        ],
         isOrderAboutAllTheChildren: true,
       },
     ],

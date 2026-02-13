@@ -140,6 +140,7 @@ export class OrderDetailsComponent {
 
   async fillInFields(
     caseType: solicitorCaseCreateType,
+    orderJourneyType: string,
     {
       isOrderByConsent,
       wasOrderApprovedAtAHearing,
@@ -173,9 +174,15 @@ export class OrderDetailsComponent {
         .check();
     }
     if (judgeFullName) {
-      await this.page
-        .getByRole("textbox", { name: "Judge's full name (Optional)" })
-        .fill(judgeFullName);
+      if (orderJourneyType === "manageOrder") {
+        await this.page
+          .getByRole("textbox", { name: "Judge's full name" })
+          .fill(judgeFullName);
+      } else {
+        await this.page
+          .getByRole("textbox", { name: "Judge's full name (Optional)" })
+          .fill(judgeFullName);
+      }
     }
     if (justicesLegalAdviserFullName) {
       await this.page

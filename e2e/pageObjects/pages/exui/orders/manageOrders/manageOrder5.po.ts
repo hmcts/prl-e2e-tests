@@ -54,6 +54,10 @@ export class ManageOrder5Page extends EventPage {
     caseType: solicitorCaseCreateType,
     params: ManageOrder5Params,
   ): Promise<void> {
-    await this.orderDetailsComponent.fillInFields(caseType, params);
+    await this.orderDetailsComponent.fillInFields(
+      caseType,
+      "manageOrder",
+      params,
+    );
   }
 }

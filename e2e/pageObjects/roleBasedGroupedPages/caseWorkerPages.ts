@@ -45,6 +45,8 @@ import { ManageOrder5Page } from "../pages/exui/orders/manageOrders/manageOrder5
 import { ManageOrder10Page } from "../pages/exui/orders/manageOrders/manageOrder10.po.js";
 import { ManageOrder19Page } from "../pages/exui/orders/manageOrders/manageOrder19.po.js";
 import { ManageOrder20Page } from "../pages/exui/orders/manageOrders/manageOrder20.po.js";
+import { ManageOrder24Page } from "../pages/exui/orders/manageOrders/manageOrder24.po.js";
+import { ManageOrderSubmitPage } from "../pages/exui/orders/manageOrders/manageOrderSubmit.po.js";
 
 export class CaseWorkerPagesGroup {
   constructor(public readonly page: Page) {}
@@ -162,9 +164,8 @@ export class CaseWorkerPagesGroup {
       manageOrder10Page: new ManageOrder10Page(this.page),
       manageOrder19Page: new ManageOrder19Page(this.page),
       manageOrder20Page: new ManageOrder20Page(this.page),
-      sendAndReplyToMessagesSubmitPage: new SendAndReplyToMessagesSubmitPage(
-        this.page,
-      ),
+      manageOrder24Page: new ManageOrder24Page(this.page),
+      manageOrderSubmitPage: new ManageOrderSubmitPage(this.page),
     };
   }
 }

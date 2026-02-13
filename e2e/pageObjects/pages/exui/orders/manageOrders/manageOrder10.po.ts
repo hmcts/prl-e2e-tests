@@ -19,7 +19,6 @@ export class ManageOrder10Page extends EventPage {
     "Child Arrangements Order",
     "Prohibited Steps Order",
     "Specific Issue Order",
-    "Serve saved orders",
   ];
 
   private readonly hiddenC43orderOptionsFormLabels: string[] = [

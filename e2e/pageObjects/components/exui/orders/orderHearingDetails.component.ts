@@ -87,9 +87,9 @@ export class OrderHearingDetailsComponent {
   private readonly hearingTypeLabel = this.page.getByText(
     "Hearing Type (Optional)",
   );
-  private readonly enterDateAndTimeLabel = this.page.getByText(
-    "Enter date and time",
-  );
+  private readonly enterDateAndTimeLabel = this.page
+    .locator("#hearingDateTimeOption")
+    .getByText("Enter date and time", { exact: true });
   private readonly estimatedTimeLabel = this.page.getByText("Estimated time");
   private readonly dateTimeInputDescriptionLabel = this.page.getByText(
     "A minimum of one input is required",

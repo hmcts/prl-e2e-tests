@@ -101,5 +101,6 @@ export class PreviewOrdersComponent {
       clippingCoords.centeredPageWithoutToolbar,
       [caseRefLocator, dateLocator],
     );
+    await pdfPage.close();
   }
 }
