@@ -1,17 +1,21 @@
-import { test } from "@playwright/test";
-import Config from "../../../../../../../../utils/config.utils.ts";
 import { DummyPaymentAwp } from "../../../../../../../../journeys/manageCases/caseWorker/dummyPayment/dummyPaymentAwp.ts";
-import { DummyC100 } from "../../../../../../../../journeys/manageCases/createCase/dummyCase/dummyC100.ts";
+import { test } from "../../../../../../../fixtures.js";
+import config from "../../../../../../../../utils/config.utils.js";
+import { Helpers } from "../../../../../../../../common/helpers.js";
 
-test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
+test.use({ storageState: config.sessionStoragePath + "solicitor.json" });
 
 test.describe("C100 Dummy payment for AWP tests", (): void => {
-  test.beforeEach(async ({ page }) => {
-    await DummyC100.dummyC100({
-      page: page,
-      applicantLivesInRefuge: false,
-      otherPersonLivesInRefuge: false,
-    });
+  let caseRef: string;
+
+  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
+    caseRef = await caseEventUtils.createCACase(browser);
+    await Helpers.goToCase(
+      page,
+      config.manageCasesBaseURLCase,
+      caseRef,
+      "tasks",
+    );
   });
 
   test(`Complete the Dummy payment for AWP action as a solicitor with the following options:
