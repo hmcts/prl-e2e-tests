@@ -66,7 +66,7 @@ test.describe("'Upload an order' tests", (): void => {
   test(`Complete 'Upload an order' as a Caseworker for C21 order with the following options:
   Case: C100,
   Accessibility testing: yes. 
-  @regression, @nightly`, async ({ page }) => {
+  @regression, @nightly @tp`, async ({ page }) => {
     await C100ManageOrdersUploadJourneyC21.c100ManageOrdersUploadJourneyC21({
       page,
       accessibilityTest: true,

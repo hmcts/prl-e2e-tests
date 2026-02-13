@@ -61,6 +61,7 @@ export class C100ManageOrdersUploadJourneyC21 {
       accessibilityTest,
       isUploadOrder,
     );
+    await manageOrders4Page.assertPageHeadings();
     await manageOrders4Page.assertPageContentsToBeVisible();
     await manageOrders4Page.assertPageContentsToContainText();
     await manageOrders4Page.selectC21OrderOption(
@@ -74,6 +75,7 @@ export class C100ManageOrdersUploadJourneyC21 {
       isUploadOrder,
       solicitorCaseCreateType,
     );
+    await manageOrders5Page.assertPageHeadings();
     await manageOrders5Page.assertPageContentsToBeVisible();
     await manageOrders5Page.assertC21RadiosAreSelectable();
     await manageOrders5Page.fillOrderDetails({
@@ -99,9 +101,10 @@ export class C100ManageOrdersUploadJourneyC21 {
     });
 
     const submitPage = new SubmitPage(page, accessibilityTest);
-    await submitPage.assertPageContentsToBeVisible();
-    await submitPage.assertExpectedLabelValuesPresent();
-    await submitPage.assertChangeLinksPresentForLabels();
+    await submitPage.assertPageContents(
+      ["C21", "uploadOrder"],           // folder path for the screenshot
+      "caseworker-c21-createUploadDraftOrder-cya.png", // screenshot file name
+      );
     await submitPage.validateAccessibility();
     await submitPage.clickSubmit();
 

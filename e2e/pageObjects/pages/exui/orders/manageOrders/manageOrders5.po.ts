@@ -1,7 +1,7 @@
 import { expect, Page } from "@playwright/test";
-import { Base } from "../../../base.po.ts";
 import { test } from "../../../../../tests/fixtures.ts";
 import config from "../../../../../utils/config.utils.ts";
+import { EventPage } from "../../eventPage.po.ts";
 
 type OrderDetails = {
   orderApprovedAtHearing: "Yes" | "No";
@@ -28,17 +28,12 @@ enum dateOrderMadeInputIds {
   year = "#dateOrderMade-year",
 }
 
-export class ManageOrders5Page extends Base {
+export class ManageOrders5Page extends EventPage {
   private readonly accessibilityTest: boolean;
   private readonly isUploadOrder: boolean;
   private readonly solicitorCaseCreateType?: string;
 
-  private readonly headings: string[] = ["Manage orders"];
   private readonly labelsAndText: string[] = [
-    // Case details
-    "FamilyMan ID:",
-    "Casenumber:",
-
     // Questions / sections
     "Was the order approved at a hearing?",
     "Approval Date (Optional)",
@@ -67,7 +62,7 @@ export class ManageOrders5Page extends Base {
     "The Honourable Mr Justice",
   ];
 
-  private readonly dateFields: string[] = ["Day", "Month", "Year"];
+  // private readonly dateFields: string[] = ["Day", "Month", "Year"];
 
   private readonly fileUploadControls: string[] = [
     "Choose file",
@@ -87,20 +82,13 @@ export class ManageOrders5Page extends Base {
     isUploadOrder = false,
     solicitorCaseCreateType?: string,
   ) {
-    super(page);
+    super(page, "Manage orders");
     this.accessibilityTest = accessibilityTest;
     this.isUploadOrder = isUploadOrder;
     this.solicitorCaseCreateType = solicitorCaseCreateType;
   }
 
   async assertPageContentsToBeVisible(): Promise<void> {
-    for (const heading of this.headings) {
-      await expect(
-        this.page.getByRole("heading", { name: heading }),
-        `Expected heading "${heading}" to be visible`,
-      ).toBeVisible();
-    }
-
     for (const labelsAndText of this.labelsAndText) {
       await expect(
         this.page.getByText(labelsAndText),
@@ -109,12 +97,10 @@ export class ManageOrders5Page extends Base {
     }
 
     for (const radioOption of this.radioOptions) {
-      await test.step(`Radio option should be visible: "${radioOption}"`, async () => {
         await expect(
           this.page.getByRole("radio", { name: radioOption, exact: true }),
           `Radio with accessible name "${radioOption}" was not visible (or not found)`,
         ).toBeVisible();
-      });
     }
 
     for (const navigationButton of this.navigationButtons) {
@@ -144,109 +130,74 @@ export class ManageOrders5Page extends Base {
       }
     }
   }
-
-  async fillOrderDetails(details: OrderDetails): Promise<void> {
-    // small helper so every failure tells you EXACTLY which value failed
-    const step = async (label: string, fn: () => Promise<void>) => {
-      try {
-        await fn();
-      } catch (err) {
-        const message = err instanceof Error ? err.message : String(err);
-        throw new Error(`[fillOrderDetails] Failed at: ${label}\n${message}`);
-      }
-    };
-
+async fillOrderDetails(details: OrderDetails): Promise<void> {
     // --- 1) Was the order approved at a hearing? ---
-    await step(
-      `orderApprovedAtHearing = "${details.orderApprovedAtHearing}"`,
-      async () => {
-        await this.page
-          .locator(radioIds.wasTheOrderApprovedAtHearing_Yes)
-          .check();
-        await expect(
-          this.page.locator(radioIds.wasTheOrderApprovedAtHearing_Yes),
-        ).toBeChecked();
-      },
-    );
+    await this.page
+      .locator(radioIds.wasTheOrderApprovedAtHearing_Yes)
+      .check();
+    await expect(
+      this.page.locator(radioIds.wasTheOrderApprovedAtHearing_Yes),
+    ).toBeChecked();
 
     // --- 2) At which hearing was the order approved? (if provided) ---
     if (details.hearingApprovedAt !== undefined) {
-      await step(
-        `hearingApprovedAt = "${details.hearingApprovedAt}"`,
-        async () => {
-          const hearingSelect = this.page.getByRole("combobox").first();
-          await hearingSelect.selectOption({
-            label: details.hearingApprovedAt,
-          });
-          await expect(hearingSelect).toHaveValue(/.*/);
-        },
-      );
+      const hearingSelect = this.page.getByRole("combobox").first();
+      await hearingSelect.selectOption({
+        label: details.hearingApprovedAt,
+      });
+      await expect(hearingSelect).toHaveValue(/.*/);
     }
 
     // --- 3) Select or amend the title of the Judge or magistrate ---
-    await step(`judgeTitle = "${details.judgeTitle}"`, async () => {
-      const radio = this.page.getByRole("radio", {
-        name: details.judgeTitle,
-        exact: true,
-      });
-      await radio.check();
-      await expect(radio).toBeChecked();
+    const radio = this.page.getByRole("radio", {
+      name: details.judgeTitle,
+      exact: true,
     });
+    await radio.check();
+    await expect(radio).toBeChecked();
 
     // --- 4) Judge's full name ---
-    await step(`judgeFullName = "${details.judgeFullName}"`, async () => {
-      const input = this.page.getByLabel("Judge's full name", { exact: true });
-      await input.fill(details.judgeFullName);
-      await expect(input).toHaveValue(details.judgeFullName);
+    const judgeNameInput = this.page.getByLabel("Judge's full name", {
+      exact: true,
     });
+    await judgeNameInput.fill(details.judgeFullName);
+    await expect(judgeNameInput).toHaveValue(details.judgeFullName);
 
     // --- 5) Full name of Justices' Legal Adviser (Optional) ---
     if (details.legalAdviserFullName !== undefined) {
-      await step(
-        `legalAdviserFullName = "${details.legalAdviserFullName}"`,
-        async () => {
-          const input = this.page.getByLabel(
-            "Full name of Justices' Legal Adviser (Optional)",
-            {
-              exact: true,
-            },
-          );
-          await input.fill(details.legalAdviserFullName ?? "");
-          await expect(input).toHaveValue(details.legalAdviserFullName ?? "");
+      const legalAdviserInput = this.page.getByLabel(
+        "Full name of Justices' Legal Adviser (Optional)",
+        {
+          exact: true,
         },
+      );
+      await legalAdviserInput.fill(details.legalAdviserFullName ?? "");
+      await expect(legalAdviserInput).toHaveValue(
+        details.legalAdviserFullName ?? "",
       );
     }
 
     // --- 6) Date order made ---
-    await step(
-      `dateOrderMade = ${details.dateOrderMade.day}/${details.dateOrderMade.month}/${details.dateOrderMade.year}`,
-      async () => {
-        const dayInput = this.page.locator(dateOrderMadeInputIds.day);
-        const monthInput = this.page.locator(dateOrderMadeInputIds.month);
-        const yearInput = this.page.locator(dateOrderMadeInputIds.year);
+    const dayInput = this.page.locator(dateOrderMadeInputIds.day);
+    const monthInput = this.page.locator(dateOrderMadeInputIds.month);
+    const yearInput = this.page.locator(dateOrderMadeInputIds.year);
 
-        await dayInput.fill(details.dateOrderMade.day);
-        await monthInput.fill(details.dateOrderMade.month);
-        await yearInput.fill(details.dateOrderMade.year);
+    await dayInput.fill(details.dateOrderMade.day);
+    await monthInput.fill(details.dateOrderMade.month);
+    await yearInput.fill(details.dateOrderMade.year);
 
-        await expect(dayInput).toHaveValue(details.dateOrderMade.day);
-        await expect(monthInput).toHaveValue(details.dateOrderMade.month);
-        await expect(yearInput).toHaveValue(details.dateOrderMade.year);
-      },
-    );
+    await expect(dayInput).toHaveValue(details.dateOrderMade.day);
+    await expect(monthInput).toHaveValue(details.dateOrderMade.month);
+    await expect(yearInput).toHaveValue(details.dateOrderMade.year);
 
     // --- 7) Is the order about all the children? ---
-    await step(
-      `orderAboutAllChildren = "${details.orderAboutAllChildren}"`,
-      async () => {
-        await this.page
-          .locator(radioIds.isTheOrderAboutAllChildren_Yes)
-          .check();
-        await expect(
-          this.page.locator(radioIds.isTheOrderAboutAllChildren_Yes),
-        ).toBeChecked();
-      },
-    );
+    await this.page
+      .locator(radioIds.isTheOrderAboutAllChildren_Yes)
+      .check();
+    await expect(
+      this.page.locator(radioIds.isTheOrderAboutAllChildren_Yes),
+    ).toBeChecked();
+
     // --- 8) Upload Order (if this is the upload journey) ---
     if (details.uploadOrder) {
       await this.page.waitForTimeout(5000);
@@ -255,4 +206,5 @@ export class ManageOrders5Page extends Base {
       await this.page.waitForTimeout(5000);
     }
   }
+  
 }

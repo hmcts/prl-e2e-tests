@@ -1,7 +1,7 @@
 import { expect, Page } from "@playwright/test";
-import { Base } from "../../../base.po.ts";
+import { EventPage } from "../../eventPage.po.ts";
 
-export class DraftAnOrder4PageC21 extends Base {
+export class DraftAnOrder4PageC21 extends EventPage {
   private readonly accessibilityTest: boolean;
   private readonly isUploadOrder: boolean;
 
@@ -13,7 +13,7 @@ export class DraftAnOrder4PageC21 extends Base {
   ];
 
   constructor(page: Page, accessibilityTest = false, isUploadOrder = false) {
-    super(page);
+    super(page, "Create/upload draft order");
     this.accessibilityTest = accessibilityTest;
     this.isUploadOrder = isUploadOrder;
   }

@@ -1,7 +1,7 @@
 import { expect, Page } from "@playwright/test";
-import { Base } from "../../../base.po.ts";
+import { EventPage } from "../../eventPage.po.ts";
 
-export class ManageOrders4Page extends Base {
+export class ManageOrders4Page extends EventPage {
   private readonly accessibilityTest: boolean;
   private readonly isUploadOrder: boolean;
 
@@ -13,7 +13,7 @@ export class ManageOrders4Page extends Base {
   ];
 
   constructor(page: Page, accessibilityTest = false, isUploadOrder = false) {
-    super(page);
+    super(page, "Manage orders");
     this.accessibilityTest = accessibilityTest;
     this.isUploadOrder = isUploadOrder;
   }

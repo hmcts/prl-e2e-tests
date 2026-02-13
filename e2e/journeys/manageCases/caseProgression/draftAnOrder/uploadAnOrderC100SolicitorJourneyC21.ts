@@ -59,6 +59,7 @@ export class UploadAnOrderC100SolicitorJourneyC21 {
       accessibilityTest,
       isUploadOrder,
     );
+    await draftAnOrder4PageC21.assertPageHeadings();
     await draftAnOrder4PageC21.assertPageContentsToBeVisible();
     await draftAnOrder4PageC21.assertPageContentsToContainText();
     await draftAnOrder4PageC21.selectC21OrderOption(
@@ -72,6 +73,7 @@ export class UploadAnOrderC100SolicitorJourneyC21 {
       isUploadOrder,
       solicitorCaseCreateType,
     );
+    await draftAnOrder5PageC21.assertPageHeadings();
     await draftAnOrder5PageC21.assertPageContentsToBeVisible();
     await draftAnOrder5PageC21.assertC21RadiosAreSelectable();
     await draftAnOrder5PageC21.fillOrderDetails({
@@ -87,9 +89,10 @@ export class UploadAnOrderC100SolicitorJourneyC21 {
     await draftAnOrder5PageC21.clickContinue();
 
     const submitPageC21 = new SubmitPageC21(page, accessibilityTest);
-    await submitPageC21.assertPageContentsToBeVisible();
-    await submitPageC21.assertExpectedLabelValuesPresent();
-    await submitPageC21.assertChangeLinksPresentForLabels();
+    await submitPageC21.assertPageContents(
+      ["C21", "uploadOrder"],           // folder path for the screenshot
+      "solicitor-c21-createUploadDraftOrder-cya.png", // screenshot file name
+      );    
     await submitPageC21.validateAccessibility();
     await submitPageC21.clickSubmit();
   }

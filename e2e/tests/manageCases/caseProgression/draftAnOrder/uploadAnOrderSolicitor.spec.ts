@@ -21,7 +21,7 @@ test.describe("'Upload an order' by Solicitor via the 'Create/upload draft order
   });
 
   // CA - Upload an C21 order with magistrate/judge title selected
-  test(`CA 'Upload an order' as a Solicitor with the following options: Case: C100 Accessibility testing: yes. Judge or Magistrate title: true @regression, @nightly, @accessibility`, async ({
+  test(`CA 'Upload an order' as a Solicitor with the following options: Case: C100 Accessibility testing: yes. Judge or Magistrate title: true @regression, @nightly, @accessibility @tp`, async ({
     page,
     browser,
   }): Promise<void> => {
