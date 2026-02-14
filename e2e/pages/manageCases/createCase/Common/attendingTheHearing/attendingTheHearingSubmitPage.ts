@@ -3,27 +3,32 @@ import { AxeUtils } from "@hmcts/playwright-common";
 import { Selectors } from "../../../../../common/selectors.ts";
 import { AttendingTheHearingSubmitContent } from "../../../../../fixtures/manageCases/createCase/FL401/attendingTheHearing/attendingTheHearingSubmitContent.ts";
 import { Helpers } from "../../../../../common/helpers.ts";
+import { solicitorCaseCreateType } from "../../../../../common/types.ts";
 
 interface AttendingTheHearingSubmitPageOptions {
   page: Page;
   accessibilityTest: boolean;
   attendingTheHearingYesNo: boolean;
+  caseType: solicitorCaseCreateType;
 }
 
 interface CheckPageLoadsOptions {
   page: Page;
   accessibilityTest: boolean;
   attendingTheHearingYesNo: boolean;
+  caseType: solicitorCaseCreateType;
 }
 
 interface CheckStaticContentOptions {
   page: Page;
   attendingTheHearingYesNo: boolean;
+  caseType: solicitorCaseCreateType;
 }
 
 interface CheckFilledInDataOptions {
   page: Page;
   attendingTheHearingYesNo: boolean;
+  caseType: solicitorCaseCreateType;
 }
 
 export class AttendingTheHearingSubmitPage {
@@ -31,11 +36,13 @@ export class AttendingTheHearingSubmitPage {
     page,
     accessibilityTest,
     attendingTheHearingYesNo,
+    caseType,
   }: AttendingTheHearingSubmitPageOptions): Promise<void> {
     await this.checkPageLoads({
       page,
       accessibilityTest,
       attendingTheHearingYesNo,
+      caseType,
     });
     await this.fillInFields(page);
   }
@@ -44,6 +51,7 @@ export class AttendingTheHearingSubmitPage {
     page,
     accessibilityTest,
     attendingTheHearingYesNo,
+    caseType,
   }: CheckPageLoadsOptions): Promise<void> {
     await page.waitForSelector(
       `${Selectors.GovukText16}:text-is("${AttendingTheHearingSubmitContent.checkInfo}")`,
@@ -52,10 +60,12 @@ export class AttendingTheHearingSubmitPage {
       this.checkStaticContent({
         page,
         attendingTheHearingYesNo,
+        caseType,
       }),
       this.checkFilledInData({
         page,
         attendingTheHearingYesNo,
+        caseType,
       }),
     ]);
     if (accessibilityTest) {
@@ -107,6 +117,7 @@ export class AttendingTheHearingSubmitPage {
   private static async checkFilledInData({
     page,
     attendingTheHearingYesNo,
+    caseType,
   }: CheckFilledInDataOptions): Promise<void> {
     const booleanKey: keyof typeof AttendingTheHearingSubmitContent =
       attendingTheHearingYesNo ? "yes" : "no";
@@ -116,20 +127,51 @@ export class AttendingTheHearingSubmitPage {
       5,
     );
     if (attendingTheHearingYesNo) {
-      await Helpers.checkGroup(
-        page,
-        9,
-        AttendingTheHearingSubmitContent,
-        "filledText",
-        `${Selectors.GovukText16}`,
-      );
-      await Helpers.checkGroup(
-        page,
-        2,
-        AttendingTheHearingSubmitContent,
-        "filledSpanText",
-        `${Selectors.Span}`,
-      );
+      if (caseType === "FL401") {
+        await Helpers.checkGroup(
+          page,
+          7,
+          AttendingTheHearingSubmitContent,
+          "filledText",
+          `${Selectors.GovukText16}`,
+        );
+        await Helpers.checkGroup(
+          page,
+          2,
+          AttendingTheHearingSubmitContent,
+          "fl401filledText",
+          `${Selectors.GovukText16}`,
+        );
+        await Helpers.checkGroup(
+          page,
+          2,
+          AttendingTheHearingSubmitContent,
+          "filledSpanText",
+          `${Selectors.Span}`,
+        );
+      } else {
+        await Helpers.checkGroup(
+          page,
+          7,
+          AttendingTheHearingSubmitContent,
+          "filledText",
+          `${Selectors.GovukText16}`,
+        );
+        await Helpers.checkGroup(
+          page,
+          2,
+          AttendingTheHearingSubmitContent,
+          "c100filledText",
+          `${Selectors.GovukText16}`,
+        );
+        await Helpers.checkGroup(
+          page,
+          2,
+          AttendingTheHearingSubmitContent,
+          "filledSpanText",
+          `${Selectors.Span}`,
+        );
+      }
     }
   }
 
