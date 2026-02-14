@@ -170,8 +170,8 @@
         ]
       },
       "noticeOfSafetySupportLetter": {
-        "document_url": "http://dm-store-demo.service.core-compute-demo.internal/documents/1bf0eca8-e35a-43f3-ad2b-b30246af9063",
-        "document_binary_url": "http://dm-store-demo.service.core-compute-demo.internal/documents/1bf0eca8-e35a-43f3-ad2b-b30246af9063/binary",
+        "document_url": "http://dm-store-demo.service.core-compute-demo.internal/documents/41ac9c68-e230-4689-abe8-9dae9ff1b1f5",
+        "document_binary_url": "http://dm-store-demo.service.core-compute-demo.internal/documents/41ac9c68-e230-4689-abe8-9dae9ff1b1f5/binary",
         "document_filename": "Safety Letter.docx"
       },
       "additionalDocumentsList": [],

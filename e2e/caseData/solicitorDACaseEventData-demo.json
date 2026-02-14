@@ -17,7 +17,7 @@
       "confidentialityStatementDisclaimer": [
         "confidentialityStatementUnderstood"
       ],
-      "applicantOrRespondentCaseName": "auto test case 401"
+      "applicantCaseName": "auto test case 401"
     }
   },
   "fl401TypeOfApplication": {
@@ -93,8 +93,8 @@
           "Country": "United Kingdom"
         },
         "solicitorOrg": {
-          "OrganisationID": "QO4A1Q8",
-          "OrganisationName": "FPRL-test-organisation"
+          "OrganisationID": "9SCQJOI",
+          "OrganisationName": "Private law Applicant organisation"
         },
         "otherPersonRelationshipToChildren": [],
         "applicantPreferredContact": [],

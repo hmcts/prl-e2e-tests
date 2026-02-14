@@ -54,7 +54,10 @@ export const NonMolestationDraftOrderScenarios: NonMolestationDraftOrderParams[]
           welshDocument: "welsh_non_molestation_order_fl404a_draft.pdf",
           englishDocument: "non_molestation_order_fl404a_draft.pdf",
           otherDetails: {
-            orderCreatedBy: "AAT Solicitor",
+            orderCreatedBy:
+              process.env.MANAGE_CASES_TEST_ENV === "aat"
+                ? "AAT Solicitor"
+                : "PRL DEMO ORG1 Solicitor 2",
             status: "Drafted by Solicitor",
           },
           isOrderAboutChildren: false,
@@ -151,7 +154,10 @@ export const NonMolestationDraftOrderScenarios: NonMolestationDraftOrderParams[]
           englishDocument: "non_molestation_order_fl404a_draft.pdf",
           otherDetails: {
             orderMadeBy: "Test judge name",
-            orderCreatedBy: "AAT Solicitor",
+            orderCreatedBy:
+              process.env.MANAGE_CASES_TEST_ENV === "aat"
+                ? "AAT Solicitor"
+                : "PRL DEMO ORG1 Solicitor 2",
             status: "Drafted by Solicitor",
           },
           childrenList: ["Joe Doe", "Simon Anderson"],
@@ -201,7 +207,10 @@ export const ParentalResponsibilityOrderScenarios: ParentalResponsibilityDraftOr
           welshDocument: "Welsh_Parental_Responsibility_Order_C45A_draft.pdf",
           englishDocument: "Parental_Responsibility_Order_C45A_draft.pdf",
           otherDetails: {
-            orderCreatedBy: "AAT Solicitor",
+            orderCreatedBy:
+              process.env.MANAGE_CASES_TEST_ENV === "aat"
+                ? "AAT Solicitor"
+                : "PRL DEMO ORG1 Solicitor 2",
             status: "Drafted by Solicitor",
           },
           childrenList: [
@@ -248,7 +257,10 @@ export const ParentalResponsibilityOrderScenarios: ParentalResponsibilityDraftOr
           englishDocument: "Parental_Responsibility_Order_C45A_draft.pdf",
           otherDetails: {
             orderMadeBy: "Test judge name",
-            orderCreatedBy: "AAT Solicitor",
+            orderCreatedBy:
+              process.env.MANAGE_CASES_TEST_ENV === "aat"
+                ? "AAT Solicitor"
+                : "PRL DEMO ORG1 Solicitor 2",
             status: "Drafted by Solicitor",
           },
           isOrderAboutAllTheChildren: true,
@@ -309,7 +321,10 @@ export const RemoveDraftNonMolestationOrderScenarios: RemoveDraftNonMolestationO
             welshDocument: "welsh_non_molestation_order_fl404a_draft.pdf",
             englishDocument: "non_molestation_order_fl404a_draft.pdf",
             otherDetails: {
-              orderCreatedBy: "AAT Solicitor",
+              orderCreatedBy:
+                process.env.MANAGE_CASES_TEST_ENV === "aat"
+                  ? "AAT Solicitor"
+                  : "PRL DEMO ORG1 Solicitor 2",
               status: "Drafted by Solicitor",
             },
             isOrderAboutChildren: false,
@@ -363,7 +378,10 @@ export const RemoveDraftParentalResponsibilityOrderScenarios: RemoveDraftParenta
             welshDocument: "Welsh_Parental_Responsibility_Order_C45A_draft.pdf",
             englishDocument: "Parental_Responsibility_Order_C45A_draft.pdf",
             otherDetails: {
-              orderCreatedBy: "AAT Solicitor",
+              orderCreatedBy:
+                process.env.MANAGE_CASES_TEST_ENV === "aat"
+                  ? "AAT Solicitor"
+                  : "PRL DEMO ORG1 Solicitor 2",
               status: "Drafted by Solicitor",
             },
             childrenList: [
