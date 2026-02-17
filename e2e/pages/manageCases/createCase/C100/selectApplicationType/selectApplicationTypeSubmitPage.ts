@@ -18,11 +18,11 @@ export class selectApplicationTypeSubmitPage {
     page: Page,
     accessibilityTest: boolean,
     yesNo: boolean,
-    selection: radioButtons,
+    permissionSelection: radioButtons,
   ): Promise<void> {
     await Promise.all([
       this.checkPageLoads(page, accessibilityTest, yesNo),
-      this.checkFilledFields(page, yesNo, selection),
+      this.checkFilledFields(page, yesNo, permissionSelection),
     ]);
   }
 
@@ -34,7 +34,7 @@ export class selectApplicationTypeSubmitPage {
     await page.waitForSelector(
       `${Selectors.h2}:text-is("${SelectApplicationTypeSubmitContent.h2}")`,
     );
-    const changeAbleFields: number = yesNo ? 8 : 6;
+    const changeAbleFields: number = yesNo ? 11 : 6;
     await Promise.all([
       Helpers.checkGroup(
         page,
@@ -58,17 +58,17 @@ export class selectApplicationTypeSubmitPage {
       await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukText16}:text-is("${SelectApplicationTypeSubmitContent.text16Yes}")`,
-        2,
+        3,
       );
       await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovLink}:text-is("${path.basename(config.testPdfFile)}")`,
-        1,
+        2,
       );
       await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukText16}:text-is("${SelectApplicationTypeSubmitContent.text16Change}")`,
-        8,
+       11,
       );
     } else {
       await Helpers.checkVisibleAndPresent(
@@ -91,7 +91,7 @@ export class selectApplicationTypeSubmitPage {
   private static async checkFilledFields(
     page: Page,
     yesNo: boolean,
-    selection: radioButtons,
+    permissionSelection: radioButtons,
   ): Promise<void> {
     await Promise.all([
       Helpers.checkGroup(
@@ -105,15 +105,15 @@ export class selectApplicationTypeSubmitPage {
 
     await this.page1RadioButtons(page, "Spend time with order");
 
-    if (yesNo && selection === "Yes") {
+    if (yesNo && permissionSelection === "Yes") {
       await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.Span}:text-is("${SelectApplicationType1Content.loremIpsumText}")`,
         3,
       );
     } else if (
-      (yesNo && selection === "No, permission now sought") ||
-      (yesNo && selection === "No, permission is not required")
+      (yesNo && permissionSelection === "No, permission now sought") ||
+      (yesNo && permissionSelection === "No, permission is not required")
     ) {
       await Helpers.checkVisibleAndPresent(
         page,
