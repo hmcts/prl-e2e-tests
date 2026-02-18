@@ -42,7 +42,7 @@ test.describe("Manage Orders - Create a Child arrangements, specific issue or pr
     },
   );
 
-  ChildArrangementsOrderScenarios.slice(0,1).forEach((manageOrderParams: ChildArrangementsOrderParams) => {
+  ChildArrangementsOrderScenarios.forEach((manageOrderParams: ChildArrangementsOrderParams) => {
     test(`Create child arrangements order C43 as case worker with the following options:${manageOrderParams.name} @regression @nightly @visual`, async ({
       caseWorker,
       navigationUtils,

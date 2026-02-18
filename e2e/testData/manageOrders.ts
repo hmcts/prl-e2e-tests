@@ -69,7 +69,10 @@ export const ChildArrangementsOrderScenarios: ChildArrangementsOrderParams[] = [
           "ChildArrangements_Specific_Prohibited_Steps_C43_Draft.pdf",
         otherDetails: {
           orderMadeBy: "Test judge name",
-          orderCreatedBy: "PRL AAT AM Swansea HCA",
+          orderCreatedBy:
+            process.env.MANAGE_CASES_TEST_ENV === "aat"
+              ? "PRL AAT AM Swansea HCA"
+              : "PRL Demo Swansea HCA",
           status: "Created by Admin",
         },
         childrenList: [
@@ -145,7 +148,10 @@ export const ChildArrangementsOrderScenarios: ChildArrangementsOrderParams[] = [
           "ChildArrangements_Specific_Prohibited_Steps_C43_Draft.pdf",
         otherDetails: {
           orderMadeBy: "Test judge name",
-          orderCreatedBy: "PRL AAT AM Swansea HCA",
+          orderCreatedBy:
+            process.env.MANAGE_CASES_TEST_ENV === "aat"
+              ? "PRL AAT AM Swansea HCA"
+              : "PRL Demo Swansea HCA",
           status: "Created by Admin",
         },
         childrenList: [
