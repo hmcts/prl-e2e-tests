@@ -1,4 +1,4 @@
-import { Browser, Page } from "@playwright/test";
+import { Browser, expect, Page } from "@playwright/test";
 import Config from "../../../../utils/config.utils.js";
 import { NonMolestationDraftOrderParams } from "../../../../tests/manageCases/caseProgression/orders/FL401/createAnOrder/solicitor/draftAnOrderNonMolestation.spec.js";
 import { ParentalResponsibilityDraftOrderParams } from "../../../../tests/manageCases/caseProgression/orders/C100/createAnOrder/solicitor/draftAnOrderParentalResponsibility.spec.js";
@@ -56,6 +56,8 @@ export class DraftAnOrderJourney {
     orderDetails: NonMolestationDraftOrderParams,
   ): Promise<void> {
     const summaryPage: SummaryPage = new SummaryPage(page);
+    // wait for tab heading so make sure page is fully loaded before choosing event
+    await expect(summaryPage.page.getByRole("heading", { name: "Summary" })).toBeVisible();
     await summaryPage.chooseEventFromDropdown("Create/upload draft order");
     await this.selectOrderAndFillInGenericOrderDetails(page, orderDetails);
 

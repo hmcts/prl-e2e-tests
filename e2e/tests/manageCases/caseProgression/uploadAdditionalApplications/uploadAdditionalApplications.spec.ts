@@ -69,17 +69,17 @@ test.describe("Upload additional applications for C100 tests", () => {
 test.describe("Upload additional applications for FL401 tests", () => {
   let caseNumber: string;
 
-  test.beforeEach(
-    async ({ solicitor, browser, caseEventUtils, navigationUtils }) => {
-      caseNumber = await caseEventUtils.createDACase(browser);
-      await navigationUtils.goToCase(
-        solicitor.page,
-        config.manageCasesBaseURLCase,
-        caseNumber,
-        "tasks",
-      );
-    },
-  );
+  test.beforeEach(async ({ solicitor, caseEventUtils, navigationUtils }) => {
+    caseNumber = await caseEventUtils.createDACaseSubmitAndPayIndividualEvents(
+      solicitor.page,
+    );
+    await navigationUtils.goToCase(
+      solicitor.page,
+      config.manageCasesBaseURLCase,
+      caseNumber,
+      "tasks",
+    );
+  });
 
   [
     {
