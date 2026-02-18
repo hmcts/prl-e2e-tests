@@ -237,7 +237,7 @@ export class C100ConfidentialDetailsTabPage {
             .getByRole("cell", {
               name: `${C100ConfidentialDetailsTabContent.refugeSectionDocument} ${C100ConfidentialDetailsTabContent.testPdf} Uploaded by`,
             })
-            .getByRole("link")
+            .locator(Selectors.GovLink)
             .filter({ hasText: C100ConfidentialDetailsTabContent.testPdf }),
         ).toBeVisible(),
         expect(

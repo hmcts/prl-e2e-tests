@@ -34,7 +34,7 @@
       "judgeOrMagistrateTitle": "herHonourJudge",
       "judgeOrMagistratesLastName": "Automated JudgeName",
       "justiceLegalAdviserFullName": "Automated Legal Advisor",
-      "dateOrderMade": "2021-06-05",
+      "dateOrderMade": "2025-12-09",
       "isTheOrderAboutChildren": "No",
       "recitalsOrPreamble": "loremIpsum",
       "orderDirections": "loremIpsum",
@@ -72,7 +72,7 @@
         "fl404bAddAnotherInstructions": null,
         "fl404bIsPowerOfArrest6": null,
         "fl404bDateOrderMade": null,
-        "fl404bDateOrderEnd": "2025-06-10T12:00:00.000",
+        "fl404bDateOrderEnd": "2025-12-31T12:00:00.000",
         "fl404bDateOrderEndTime": null,
         "orderEndDateAndTimeOptions": null,
         "orderSpecifiedDateTime": "",
@@ -142,8 +142,8 @@
         }
       },
       "previewOrderDoc": {
-        "document_url": "http://dm-store-demo.service.core-compute-demo.internal/documents/0448b3bc-8083-447c-a412-bc8d6ac5c5b0",
-        "document_binary_url": "http://dm-store-demo.service.core-compute-demo.internal/documents/0448b3bc-8083-447c-a412-bc8d6ac5c5b0/binary",
+        "document_url": "http://dm-store-demo.service.core-compute-demo.internal/documents/f8fcfb05-441c-498b-a3c6-0b9a7bc5dbb4",
+        "document_binary_url": "http://dm-store-demo.service.core-compute-demo.internal/documents/f8fcfb05-441c-498b-a3c6-0b9a7bc5dbb4/binary",
         "document_filename": "Power_of_arrest_draft.pdf"
       },
       "judgeDirectionsToAdmin": "Lorem Ipsum",
@@ -170,8 +170,8 @@
         ]
       },
       "noticeOfSafetySupportLetter": {
-        "document_url": "http://dm-store-demo.service.core-compute-demo.internal/documents/1bf0eca8-e35a-43f3-ad2b-b30246af9063",
-        "document_binary_url": "http://dm-store-demo.service.core-compute-demo.internal/documents/1bf0eca8-e35a-43f3-ad2b-b30246af9063/binary",
+        "document_url": "http://dm-store-demo.service.core-compute-demo.internal/documents/41ac9c68-e230-4689-abe8-9dae9ff1b1f5",
+        "document_binary_url": "http://dm-store-demo.service.core-compute-demo.internal/documents/41ac9c68-e230-4689-abe8-9dae9ff1b1f5/binary",
         "document_filename": "Safety Letter.docx"
       },
       "additionalDocumentsList": [],

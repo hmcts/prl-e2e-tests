@@ -1,41 +1,52 @@
-import { test } from "../../../fixtures.ts";
+import { test, expect } from "../../../fixtures.ts";
 import config from "../../../../utils/config.utils.ts";
-
-test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("Check Application task for DA Solicitor case tests.", () => {
   let caseNumber: string;
 
-  test.beforeEach(async ({ browser, caseEventUtils, navigationUtils }) => {
+  test.beforeEach(async ({ browser, caseEventUtils }) => {
     caseNumber = await caseEventUtils.createDACase(browser);
-    await navigationUtils.goToCase(
-      config.manageCasesBaseURLCase,
-      caseNumber,
-      "tasks",
-    );
   });
 
   [{ familyManNumber: "1234", snapshotName: "check-application" }].forEach(
     ({ familyManNumber, snapshotName }) => {
       test("Complete Task - Check Application with accessibility test. @nightly @accessibility @regression", async ({
-        summaryPage,
-        tasksPage,
-        fl401AddCaseNumber1Page,
-        fl401AddCaseNumberSubmitPage,
-        axeUtils,
+        caseWorker,
+        navigationUtils,
       }): Promise<void> => {
-        await tasksPage.exuiHeader.checkIsVisible();
+        const {
+          page,
+          tasksPage,
+          fl401AddCaseNumber,
+          summaryPage,
+          historyPage,
+        } = caseWorker;
+
+        await navigationUtils.goToCase(
+          page, // accessing the destructured page property
+          config.manageCasesBaseURLCase,
+          caseNumber,
+          "tasks",
+        );
+
         await tasksPage.assignTaskToMeAndTriggerNextSteps(
           "Check Application",
           "Add Case Number",
+          "caseWorker",
         );
-        await fl401AddCaseNumber1Page.assertPageContents();
-        await axeUtils.audit();
-        await fl401AddCaseNumber1Page.fillInFields(familyManNumber);
-        await fl401AddCaseNumber1Page.clickContinue();
-        await fl401AddCaseNumberSubmitPage.assertPageContents(snapshotName);
-        await axeUtils.audit();
-        await fl401AddCaseNumberSubmitPage.clickSaveAndContinue();
+
+        await fl401AddCaseNumber.page1.assertPageContents();
+        await fl401AddCaseNumber.page1.verifyAccessibility();
+        await fl401AddCaseNumber.page1.fillInFields(familyManNumber);
+        await fl401AddCaseNumber.page1.clickContinue();
+
+        await fl401AddCaseNumber.submitPage.assertPageContents(
+          ["caseProgression", "checkApplication"],
+          snapshotName,
+        );
+        await fl401AddCaseNumber.submitPage.verifyAccessibility();
+        await fl401AddCaseNumber.submitPage.clickSaveAndContinue();
+
         await summaryPage.alertBanner.assertEventAlert(
           caseNumber,
           "Add case number",
@@ -43,6 +54,11 @@ test.describe("Check Application task for DA Solicitor case tests.", () => {
         await summaryPage.caseHeader.assertFamilyManNumberIsVisible(
           familyManNumber,
         );
+
+        await historyPage.goToPage();
+        await expect(historyPage.eventHistoryName).toBeVisible();
+        await expect(historyPage.endStateRow).toBeVisible();
+        await expect(historyPage.endStateValue).toBeVisible();
       });
     },
   );

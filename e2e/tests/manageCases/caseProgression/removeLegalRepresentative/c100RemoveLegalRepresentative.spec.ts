@@ -1,19 +1,19 @@
 import config from "../../../../utils/config.utils.ts";
 import { test } from "../../../fixtures.ts";
 
-test.use({ storageState: config.sessionStoragePath + "courtAdminStoke.json" });
-
 test.describe("Complete Remove legal representative event for C100 case", () => {
   let caseNumber: string;
 
-  test.beforeEach(async ({ browser, caseEventUtils, navigationUtils }) => {
-    caseNumber = await caseEventUtils.createCACase(browser);
-    await navigationUtils.goToCase(
-      config.manageCasesBaseURLCase,
-      caseNumber,
-      "summary",
-    );
-  });
+  test.beforeEach(
+    async ({ courtAdminStoke, browser, caseEventUtils, navigationUtils }) => {
+      caseNumber = await caseEventUtils.createCACase(browser);
+      await navigationUtils.goToCase(
+        courtAdminStoke.page,
+        config.manageCasesBaseURLCase,
+        caseNumber,
+      );
+    },
+  );
 
   [
     {
@@ -31,34 +31,38 @@ test.describe("Complete Remove legal representative event for C100 case", () => 
     },
   ].forEach(({ existingRepresentatives, snapshotName, applicants }) => {
     test(`Remove legal representation from applicants. @regression @accessibility @nightly`, async ({
-      summaryPage,
-      c100RemoveLegalRepresentative1Page,
-      c100RemoveLegalRepresentativeSubmitPage,
-      c100RemoveLegalRepresentativeConfirmPage,
-      partiesPage,
-      axeUtils,
+      courtAdminStoke,
     }) => {
+      const { summaryPage, c100RemoveLegalRepresentative, partiesPage } =
+        courtAdminStoke;
+
       await summaryPage.chooseEventFromDropdown("Remove legal representative");
-      await c100RemoveLegalRepresentative1Page.assertPageContents(
+
+      await c100RemoveLegalRepresentative.page1.assertPageContents(
         existingRepresentatives,
       );
-      await axeUtils.audit();
-      await c100RemoveLegalRepresentative1Page.selectRepresentativesToRemove(
+      await c100RemoveLegalRepresentative.page1.verifyAccessibility();
+      await c100RemoveLegalRepresentative.page1.selectRepresentativesToRemove(
         existingRepresentatives,
       );
-      await c100RemoveLegalRepresentative1Page.clickContinue();
-      await c100RemoveLegalRepresentativeSubmitPage.assertPageContents(
+      await c100RemoveLegalRepresentative.page1.clickContinue();
+
+      await c100RemoveLegalRepresentative.submitPage.assertPageContents(
+        ["caseProgression", "removeLegalRepresentative"],
         snapshotName,
       );
-      await axeUtils.audit();
-      await c100RemoveLegalRepresentativeSubmitPage.clickSubmit();
-      await c100RemoveLegalRepresentativeConfirmPage.assertPageContents();
-      await axeUtils.audit();
-      await c100RemoveLegalRepresentativeConfirmPage.clickCloseAndReturnToCaseDetails();
+      await c100RemoveLegalRepresentative.submitPage.verifyAccessibility();
+      await c100RemoveLegalRepresentative.submitPage.clickSubmit();
+
+      await c100RemoveLegalRepresentative.confirmPage.assertPageContents();
+      await c100RemoveLegalRepresentative.confirmPage.verifyAccessibility();
+      await c100RemoveLegalRepresentative.confirmPage.clickCloseAndReturnToCaseDetails();
+
       await summaryPage.alertBanner.assertEventAlert(
         caseNumber,
         "Remove legal representative",
       );
+
       // assert legal representation is removed on parties tab
       await partiesPage.goToPage();
       await partiesPage.assertC100ApplicantsSolicitorsDetailsRemoved(

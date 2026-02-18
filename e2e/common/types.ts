@@ -27,6 +27,7 @@ const UserRoles = {
   courtAdminStoke: "courtAdminStoke",
   caseManager: "caseManager",
   nocSolicitor: "nocSolicitor",
+  legalAdvisor: "legalAdvisor",
 } as const;
 
 export type UserRole = (typeof UserRoles)[keyof typeof UserRoles];
@@ -55,8 +56,10 @@ export type c100SolicitorEvents =
   | "Submit and pay"
   | "Submit"
   | "Dummy Payment confirmation"
-  | "Draft an order"
+  | "Create/upload draft order"
   | "Delete application"
+  | "Add barrister"
+  | "Remove barrister"
   | "Withdraw application";
 
 export type fl401SolicitorEvents =
@@ -75,7 +78,9 @@ export type fl401SolicitorEvents =
   | "Welsh language requirements"
   | "View PDF application"
   | "Statement of Truth and submit"
-  | "Delete application";
+  | "Delete application"
+  | "Add barrister"
+  | "Remove barrister";
 
 export type WACaseWorkerActions =
   | "Allocated judge"
@@ -86,7 +91,10 @@ export type WACaseWorkerActions =
   | "Statement of service"
   | "Link cases"
   | "Manage case links"
-  | "Return application";
+  | "Return application"
+  | "Add barrister"
+  | "Remove barrister"
+  | "Review RA Request";
 
 export type fl401CaseWorkerActions =
   | "Welsh language requirements"
@@ -96,7 +104,7 @@ export type fl401CaseWorkerActions =
   | "Remove draft order";
 
 export type fl401SubmittedSolicitorEvents =
-  | "Draft an order"
+  | "Create/upload draft order"
   | "Dummy Payment for AwP"
   | "Manage support"
   | "Manage documents"
@@ -216,7 +224,7 @@ export type uploadOrderC100Options =
   | "Order on determination of proceedings for contempt of court (FC603)"
   | "Warrant of committal (FC604)";
 
-export type judgeTitles =
+export type JudgeOrMagistrateTitles =
   | "Her Honour Judge"
   | "His Honour Judge"
   | "Circuit Judge"
@@ -231,10 +239,27 @@ export type judgeTitles =
   | "The Honourable Mrs Justice"
   | "The Honourable Mr Justice";
 
+export const JudgeOrMagistrateTitlesArray: JudgeOrMagistrateTitles[] = [
+  "Her Honour Judge",
+  "His Honour Judge",
+  "Circuit Judge",
+  "Deputy Circuit Judge",
+  "Recorder",
+  "District Judge",
+  "Deputy District Judge",
+  "District Judge Magistrates Court",
+  "Magistrates",
+  "Justices' Legal Adviser",
+  "Justices' Clerk",
+  "The Honourable Mrs Justice",
+  "The Honourable Mr Justice",
+];
+
 export type yesNoNA = "Yes" | "No" | "Not applicable";
 
 export type courtAdminEvents =
   | "Edit and serve an order"
+  | "Send to gatekeeper"
   | "Remove legal representative";
 
 export type contactOption = "Digital" | "Post";
@@ -334,3 +359,66 @@ export interface ClippingCoords {
   width: number;
   height: number;
 }
+
+export type OrderTypes =
+  | "Standard directions order"
+  | "Directions on issue"
+  | "Blank order or directions (C21)"
+  | "Child arrangements, specific issue or prohibited steps order (C43)"
+  | "Parental responsibility order (C45A)"
+  | "Special guardianship order (C43A)"
+  | "Notice of proceedings (C6) (Notice to parties)"
+  | "Notice of proceedings (C6a) (Notice to non-parties)"
+  | "Appointment of a guardian (C47A)"
+  | "Non-molestation order (FL404A)"
+  | "Occupation order (FL404)"
+  | "Power of arrest (FL406)"
+  | "Amended, discharged or varied order (FL404B)"
+  | "Blank order (FL404B)"
+  | "General form of undertaking (N117)"
+  | "Notice of proceedings (FL402)";
+
+export const OrderTypesArray: OrderTypes[] = [
+  "Standard directions order",
+  "Directions on issue",
+  "Blank order or directions (C21)",
+  "Child arrangements, specific issue or prohibited steps order (C43)",
+  "Parental responsibility order (C45A)",
+  "Special guardianship order (C43A)",
+  "Notice of proceedings (C6) (Notice to parties)",
+  "Notice of proceedings (C6a) (Notice to non-parties)",
+  "Appointment of a guardian (C47A)",
+  "Non-molestation order (FL404A)",
+  "Occupation order (FL404)",
+  "Power of arrest (FL406)",
+  "Amended, discharged or varied order (FL404B)",
+  "Blank order (FL404B)",
+  "General form of undertaking (N117)",
+  "Notice of proceedings (FL402)",
+];
+
+export type NonMolestationRespondentMustNotDoOptions =
+  | "use or threaten violence against the applicant, and must not instruct, encourage or in any way suggest that any other person should do so"
+  | "must not intimidate, harass or pester the applicant, and must not instruct, encourage or in any way suggest that any other person should do so"
+  | "must not telephone, text, email or otherwise contact or attempt to contact the applicant"
+  | "must not damage, attempt to damage or threaten to damage any property owned by or in the possession or control of the applicant, and must not instruct, encourage or in any way suggest that any other person should do so"
+  | "must not damage, attempt to damage or threaten to damage the property or contents of the property, and must not instruct, encourage or in any way suggest that any other person should do so"
+  | "must not go to, enter or attempt to enter the property"
+  | "must not use or threaten violence against the relevant children, and must not instruct, encourage or in any way suggest that any other person should do so"
+  | "must not intimidate, harass or pester the relevant children, and must not instruct, encourage or in any way suggest that any other person should do so"
+  | "must not telephone, text, email or otherwise contact or attempt to contact the relevant children"
+  | "must not go to, enter or attempt to enter the school";
+
+export const NonMolestationRespondentMustNotDoOptionsArray: NonMolestationRespondentMustNotDoOptions[] =
+  [
+    "use or threaten violence against the applicant, and must not instruct, encourage or in any way suggest that any other person should do so",
+    "must not intimidate, harass or pester the applicant, and must not instruct, encourage or in any way suggest that any other person should do so",
+    "must not telephone, text, email or otherwise contact or attempt to contact the applicant",
+    "must not damage, attempt to damage or threaten to damage any property owned by or in the possession or control of the applicant, and must not instruct, encourage or in any way suggest that any other person should do so",
+    "must not damage, attempt to damage or threaten to damage the property or contents of the property, and must not instruct, encourage or in any way suggest that any other person should do so",
+    "must not go to, enter or attempt to enter the property",
+    "must not use or threaten violence against the relevant children, and must not instruct, encourage or in any way suggest that any other person should do so",
+    "must not intimidate, harass or pester the relevant children, and must not instruct, encourage or in any way suggest that any other person should do so",
+    "must not telephone, text, email or otherwise contact or attempt to contact the relevant children",
+    "must not go to, enter or attempt to enter the school",
+  ];

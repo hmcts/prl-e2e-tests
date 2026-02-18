@@ -5,7 +5,7 @@ export enum ManageDocumentsNew1Content {
   buttonText = "Add new",
   buttonText2 = "Remove",
   p1 = "Upload a file to the system",
-  p2 = "File size must be under 500MB.", // TODO this should be a form hint but it is a <p>
+  p2 = "File size must be under 1GB.", // TODO this should be a form hint but it is a <p>
   p3 = "Before you add a document, remove any confidential details. You cannot delete or edit a document after you submit it.",
   formHint1 = "Select a party",
   formHint2 = "Select a document category",

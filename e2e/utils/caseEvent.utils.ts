@@ -59,6 +59,27 @@ export class CaseEventUtils {
     return caseRef;
   }
 
+  async createDACaseAddCaseNumber(browser: Browser): Promise<string> {
+    const caseRef: string = await this.createDACase(
+      browser,
+      jsonDatas.solicitorDACaseData,
+    );
+    // open new browser and sign in as court admin user
+    const caPage: Page = await Helpers.openNewBrowserWindow(
+      browser,
+      "caseWorker",
+    );
+    await caPage.goto(`${Config.manageCasesBaseURL}/work/my-work/list`);
+    await this.submitEvent(
+      caPage,
+      caseRef,
+      "fl401AddCaseNumber",
+      jsonDatas.solicitorDACaseData,
+    );
+    await caPage.close();
+    return caseRef;
+  }
+
   async createDACaseSendToGatekeeper(browser: Browser): Promise<string> {
     const caseRef: string = await this.createDACase(
       browser,
@@ -168,6 +189,36 @@ export class CaseEventUtils {
         caseRef,
         event,
         jsonDatas.solicitorCACaseData,
+      );
+    }
+    return caseRef;
+  }
+
+  async createDACaseSubmitAndPayIndividualEvents(page: Page): Promise<string> {
+    const solicitorCaseEvents: solicitorDACaseAPIEvent[] = [
+      "fl401TypeOfApplication",
+      "withoutNoticeOrderDetails",
+      "applicantsDetails",
+      "respondentsDetails",
+      "fl401ApplicantFamilyDetails",
+      "respondentRelationship",
+      "respondentBehaviour",
+      "fl401Home",
+      "welshLanguageRequirements",
+      "fl401StatementOfTruthAndSubmit",
+    ];
+
+    await page.goto(Config.manageCasesBaseURL);
+    const caseRef = await this.createBlankCase(
+      page,
+      jsonDatas.solicitorDACaseData,
+    );
+    for (const event of solicitorCaseEvents) {
+      await this.submitEvent(
+        page,
+        caseRef,
+        event,
+        jsonDatas.solicitorDACaseData,
       );
     }
     return caseRef;

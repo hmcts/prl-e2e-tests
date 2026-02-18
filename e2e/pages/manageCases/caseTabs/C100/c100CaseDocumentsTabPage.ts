@@ -1,5 +1,6 @@
 import { expect, Page } from "@playwright/test";
 import { C100CaseDocumentsTabContent } from "../../../../fixtures/manageCases/caseTabs/C100/c100CaseDocumentsTabContent.js";
+import { Selectors } from "../../../../common/selectors.js";
 
 export class C100CaseDocumentsTabPage {
   public static async c100CaseDocumentsTabPageManageDocuments(
@@ -33,7 +34,7 @@ export class C100CaseDocumentsTabPage {
       ).toBeVisible(),
       expect(
         page
-          .getByRole("link")
+          .locator(Selectors.GovLink)
           .filter({ hasText: C100CaseDocumentsTabContent.link }),
       ).toBeVisible(),
       expect(

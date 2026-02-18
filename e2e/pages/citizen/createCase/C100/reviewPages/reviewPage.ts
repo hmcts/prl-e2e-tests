@@ -85,7 +85,7 @@ export class ReviewPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHeadingM}:text-is("${CommonReviewContent.confirmationHeading}")`,
+        `${Selectors.GovukFieldsetLegend}:text-is("${CommonReviewContent.confirmationHeading}")`,
         1,
       ),
       Helpers.checkGroup(
@@ -145,7 +145,7 @@ export class ReviewPage {
       ),
       Helpers.checkGroup(
         page,
-        10,
+        9,
         CaJourneyWrittenConsentReviewContent,
         "h3_",
         `${Selectors.h3}`,
@@ -156,6 +156,11 @@ export class ReviewPage {
         CaJourneyWrittenConsentReviewContent,
         "dt_",
         `${Selectors.dt}`,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFieldsetLegend}:text-is("${CaJourneyWrittenConsentReviewContent.legendFieldSet}")`,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -601,10 +606,15 @@ export class ReviewPage {
       ),
       Helpers.checkGroup(
         page,
-        11,
+        10,
         CaJourneyEmergencyProtectionReviewContent,
         "h3_",
         Selectors.h3,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFieldsetLegend}:text-is("${CaJourneyEmergencyProtectionReviewContent.legendFieldSet}")`,
+        1,
       ),
       Helpers.checkGroup(
         page,
@@ -1106,10 +1116,15 @@ export class ReviewPage {
       ),
       Helpers.checkGroup(
         page,
-        12,
+        11,
         CaJourneyMIAMHearingUrgencyReviewContent,
         "h3_",
         Selectors.h3,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFieldsetLegend}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.legendFieldSet}")`,
+        1,
       ),
       Helpers.checkGroup(
         page,
@@ -1588,10 +1603,15 @@ export class ReviewPage {
       ),
       Helpers.checkGroupHasText(
         page,
-        8,
+        7,
         CaJourneyExistingMIAMReviewContent,
         "h3_",
         Selectors.h3,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukFieldsetLegend}:text-is("${CaJourneyExistingMIAMReviewContent.legendFieldSet}")`,
+        1,
       ),
       Helpers.checkGroup(
         page,

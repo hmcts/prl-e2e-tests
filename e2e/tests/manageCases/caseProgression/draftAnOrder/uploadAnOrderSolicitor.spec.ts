@@ -5,7 +5,7 @@ import { Helpers } from "../../../../common/helpers.js";
 import { test } from "../../../fixtures.ts";
 
 test.use({ storageState: config.sessionStoragePath + "solicitor.json" });
-test.describe("'Upload an order' by Solicitor via the 'Draft an Order' event tests", (): void => {
+test.describe("'Upload an order' by Solicitor via the 'Create/upload draft order' event tests", (): void => {
   let caseRef: string;
 
   test.beforeEach(async ({ page, browser, caseEventUtils }) => {
@@ -18,9 +18,11 @@ test.describe("'Upload an order' by Solicitor via the 'Draft an Order' event tes
     );
   });
 
+  //CA - Upload an order with magistrate/judge title selected
   test(`CA 'Upload an order' as a Solicitor with the following options:
   Case: C100,
   Accessibility testing: yes.
+  Judge or Magistrate title: true
   @regression, @nightly, @accessibility`, async ({
     page,
     browser,
@@ -36,12 +38,40 @@ test.describe("'Upload an order' by Solicitor via the 'Draft an Order' event tes
       errorMessaging: false,
       browser: browser,
       caseRef: caseRef,
+      hasJudgeNameAndTitle: true,
+      isCaseworker: false,
+    });
+  });
+
+  //CA - Upload an order with no magistrate/judge title selected
+  test(`CA 'Upload an order' as a Solicitor with the following options:
+  Case: C100,
+  Accessibility testing: yes.
+  Judge or Magistrate title: false
+  @regression, @nightly, @accessibility`, async ({
+    page,
+    browser,
+  }): Promise<void> => {
+    await UploadAnOrderC100SolicitorJourney.uploadAnOrderC100SolicitorJourney({
+      page: page,
+      accessibilityTest: true,
+      solicitorCaseCreateType: "C100",
+      yesNoManageOrders: false,
+      uploadOrderC100Options:
+        "Child arrangements, specific issue or prohibited steps order (C43)",
+      isUploadOrder: true,
+      errorMessaging: false,
+      browser: browser,
+      caseRef: caseRef,
+      hasJudgeNameAndTitle: false,
+      isCaseworker: false,
     });
   });
 
   test(`DA 'Upload an order' as a Solicitor with the following options:
   Case: FL401,
   Accessibility testing: yes.
+  Judge or Magistrate title: true.
   @regression, @nightly, @accessibility`, async ({
     page,
     browser,
@@ -56,6 +86,7 @@ test.describe("'Upload an order' by Solicitor via the 'Draft an Order' event tes
         isUploadOrder: true,
         errorMessaging: false,
         browser: browser,
+        hasJudgeNameAndTitle: true,
       },
     );
   });

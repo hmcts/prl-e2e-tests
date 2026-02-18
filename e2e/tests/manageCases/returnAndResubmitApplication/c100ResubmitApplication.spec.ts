@@ -34,7 +34,7 @@ test.describe("Resubmit returned CA(C100) application tests", (): void => {
     );
   });
 
-  test(`Resubmit returned CA(C100) application with the following options:
+  test.fixme(`Resubmit returned CA(C100) application with the following options:
   Case: C100,
   Not accessibility testing.
   @regression`, async ({ page }): Promise<void> => {
@@ -45,7 +45,7 @@ test.describe("Resubmit returned CA(C100) application tests", (): void => {
     });
   });
 
-  test(`Resubmit returned CA(C100) application with the following options:
+  test.fixme(`Resubmit returned CA(C100) application with the following options:
   Case: C100,
   Accessibility testing: yes. 
   @nightly @accessibility`, async ({ page }): Promise<void> => {

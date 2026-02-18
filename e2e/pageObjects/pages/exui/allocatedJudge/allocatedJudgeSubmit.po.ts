@@ -4,9 +4,6 @@ import { CommonStaticText } from "../../../../common/commonStaticText.js";
 
 export class AllocatedJudgeSubmitPage extends CheckYourAnswersPage {
   constructor(page: Page) {
-    super(page, "Allocated judge", {
-      snapshotPath: ["caseProgression", "allocatedJudge"],
-      cyaSubmitButton: CommonStaticText.submit,
-    });
+    super(page, "Allocated judge", CommonStaticText.submit);
   }
 }

@@ -2,22 +2,13 @@ import { EventPage } from "./eventPage.po.js";
 import { expect, Locator, Page } from "@playwright/test";
 import { Selectors } from "../../../common/selectors.js";
 import { CheckYourAnswersTableComponent } from "../../components/exui/checkYourAnswersTable.component.js";
-import { ClippingCoords } from "../../../common/types.js";
 import { CommonStaticText } from "../../../common/commonStaticText.js";
 
 type CyaSubmitButton =
   | CommonStaticText.submit
   | CommonStaticText.saveAndContinue;
 
-interface CyaConstructorParams {
-  snapshotPath: string[];
-  cyaSubmitButton: CyaSubmitButton;
-  customClippingCoords?: ClippingCoords;
-}
-
 export class CheckYourAnswersPage extends EventPage {
-  private readonly snapshotPath: string[];
-  private readonly customClippingCoords: ClippingCoords;
   private readonly headingH2: Locator = this.page.locator(Selectors.headingH2, {
     hasText: "Check your answers",
   });
@@ -31,27 +22,23 @@ export class CheckYourAnswersPage extends EventPage {
   constructor(
     page: Page,
     headingText: string,
-    {
-      snapshotPath,
-      cyaSubmitButton,
-      customClippingCoords,
-    }: CyaConstructorParams,
+    cyaSubmitButton: CyaSubmitButton,
   ) {
     super(page, headingText);
-    this.snapshotPath = snapshotPath;
-    this.customClippingCoords = customClippingCoords;
     this.cyaSubmitButton = cyaSubmitButton;
   }
 
-  // might have to implement new snapshot approach and update all snapshots - looks like there are some banners present on demo
-  async assertPageContents(snapshotName: string): Promise<void> {
+  async assertPageContents(
+    snapshotPath: string[],
+    snapshotName: string,
+  ): Promise<void> {
     await this.assertPageHeadings();
     await expect(this.headingH2).toBeVisible();
     await expect(this.text16).toBeVisible();
-    this.snapshotPath.push(snapshotName);
-    await this.checkYourAnswersTable.runVisualTest(
-      this.snapshotPath,
-      this.customClippingCoords,
+    const snapshotPathCopy: string[] = Array.from(snapshotPath);
+    snapshotPathCopy.push(snapshotName);
+    await this.checkYourAnswersTable.captureFullTableScreenshot(
+      snapshotPathCopy,
     );
     // not all cya pages have the same "submit" button
     if (this.cyaSubmitButton === CommonStaticText.saveAndContinue) {

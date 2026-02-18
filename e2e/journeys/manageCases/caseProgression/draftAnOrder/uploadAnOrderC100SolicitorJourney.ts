@@ -11,6 +11,7 @@ import { UploadDraftAnOrder3Page } from "../../../../pages/manageCases/caseProgr
 import { UploadDraftAnOrder4Page } from "../../../../pages/manageCases/caseProgression/draftAnOrder/uploadDraftAnOrder4Page.ts";
 import { C100DraftOrdersTabPage } from "../../../../pages/manageCases/caseTabs/C100/c100DraftOrdersTabPage.ts";
 import { UploadDraftAnOrderSubmitPage } from "../../../../pages/manageCases/caseProgression/draftAnOrder/uploadDraftAnOrderSubmitPage.ts";
+import { ManageOrders8PageCA } from "../../../../pages/manageCases/caseWorker/uploadAnOrder/manageOrders8PageCA.ts";
 
 interface C100DraftAnOrderOptions {
   page: Page;
@@ -23,6 +24,8 @@ interface C100DraftAnOrderOptions {
   isUploadOrder: boolean;
   browser: Browser;
   caseRef: string;
+  hasJudgeNameAndTitle: boolean;
+  isCaseworker: boolean;
 }
 
 export class UploadAnOrderC100SolicitorJourney {
@@ -37,9 +40,11 @@ export class UploadAnOrderC100SolicitorJourney {
     isUploadOrder,
     browser,
     caseRef,
+    hasJudgeNameAndTitle,
+    isCaseworker,
   }: C100DraftAnOrderOptions): Promise<void> {
-    //Starting the 'Draft an order' event to upload the order
-    await Helpers.chooseEventFromDropdown(page, `Draft an order`);
+    //Starting the 'Create/upload draft order' event to upload the order
+    await Helpers.chooseEventFromDropdown(page, "Create/upload draft order");
     await DraftAnOrder1Page.draftAnOrder1Page(
       page,
       errorMessaging,
@@ -58,11 +63,18 @@ export class UploadAnOrderC100SolicitorJourney {
       page,
       accessibilityTest,
       solicitorCaseCreateType,
+      hasJudgeNameAndTitle,
+    });
+    await ManageOrders8PageCA.manageOrders8PageCA({
+      page,
+      accessibilityTest,
+      isCaseworker,
     });
     await UploadDraftAnOrderSubmitPage.uploadDraftAnOrderSubmitPage({
       page,
       accessibilityTest,
       solicitorCaseCreateType,
+      hasJudgeNameAndTitle,
     });
     //Switching to CTSC user as Solicitor cannot see the 'Draft orders' tab in the case
     await page.waitForResponse(
@@ -82,6 +94,7 @@ export class UploadAnOrderC100SolicitorJourney {
     await C100DraftOrdersTabPage.c100DraftOrdersTabPage(
       checkPageCTSC,
       accessibilityTest,
+      hasJudgeNameAndTitle,
     );
   }
 }

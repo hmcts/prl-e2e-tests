@@ -17,6 +17,9 @@ export class SummaryPage extends CaseAccessViewPage {
   readonly allocatedJudgeDetails: Locator = this.page.locator(
     "#case-viewer-field-read--allocatedJudgeDetails",
   );
+  readonly caseStatusDetails: Locator = this.page.locator(
+    "#case-viewer-field-read--caseStatus",
+  );
 
   constructor(page: Page) {
     super(page);
@@ -76,5 +79,44 @@ export class SummaryPage extends CaseAccessViewPage {
     await expect(
       this.allocatedJudgeDetails.getByText(courtName, { exact: true }),
     ).toBeVisible();
+  }
+
+  async assertCaseStatus(status: string): Promise<void> {
+    await expect(
+      this.caseStatusDetails.getByText("Case status", { exact: true }),
+    ).toBeVisible();
+    await expect(
+      this.caseStatusDetails.getByText(status, { exact: true }),
+    ).toBeVisible();
+  }
+
+  async c100assertCaseNameAfterUpdate(c100newCaseName: string): Promise<void> {
+    await expect(
+      this.page.getByRole("heading", { name: c100newCaseName }),
+    ).toBeVisible({ timeout: 12000 }); // adding timeout due to the Amend event being slow on submission
+  }
+
+  async c100assertCaseNameAfterUpdateRespondent(
+    c100newCaseNameRespondent: string,
+  ): Promise<void> {
+    await expect(
+      this.page.getByRole("heading", { name: c100newCaseNameRespondent }),
+    ).toBeVisible({ timeout: 12000 });
+  }
+
+  async fl401assertCaseNameAfterUpdate(
+    fl401newCaseName: string,
+  ): Promise<void> {
+    await expect(
+      this.page.getByRole("heading", { name: fl401newCaseName }),
+    ).toBeVisible({ timeout: 12000 });
+  }
+
+  async fl401assertCaseNameAfterUpdateRespondent(
+    fl401newCaseNameRespondent: string,
+  ): Promise<void> {
+    await expect(
+      this.page.getByRole("heading", { name: fl401newCaseNameRespondent }),
+    ).toBeVisible({ timeout: 12000 });
   }
 }

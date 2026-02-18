@@ -11,7 +11,6 @@ import Config from "../../../../utils/config.utils.ts";
 import { EditAndApproveAnOrder } from "../editAndApproveAnOrder/editAndApproveAnOrder.ts";
 import { Fl401AddCaseNumber1Page } from "../../../../pageObjects/pages/exui/checkApplication/fl401AddCaseNumber1.po.js";
 import { Fl401AddCaseNumberSubmitPage } from "../../../../pageObjects/pages/exui/checkApplication/fl401AddCaseNumberSubmit.po.js";
-import { AxeUtils } from "@hmcts/playwright-common";
 
 interface AdminEditAndApproveOrderParams {
   page: Page;
@@ -58,23 +57,21 @@ export class AdminEditAndServeAnOrder {
       "Add Case Number",
     );
 
-    let axeUtils: AxeUtils;
-    if (accessibilityTest) {
-      axeUtils = new AxeUtils(page);
-    }
-
     const fl401AddCaseNumber1Page = new Fl401AddCaseNumber1Page(page);
     await fl401AddCaseNumber1Page.assertPageContents();
     if (accessibilityTest) {
-      await axeUtils.audit();
+      await fl401AddCaseNumber1Page.verifyAccessibility();
     }
     await fl401AddCaseNumber1Page.fillInFields("1234");
     await fl401AddCaseNumber1Page.continueButton.click();
 
     const fl401AddCaseNumberSubmitPage = new Fl401AddCaseNumberSubmitPage(page);
-    await fl401AddCaseNumberSubmitPage.assertPageContents("check-application");
+    await fl401AddCaseNumberSubmitPage.assertPageContents(
+      ["caseProgression", "checkApplication"],
+      "check-application",
+    );
     if (accessibilityTest) {
-      await axeUtils.audit();
+      await fl401AddCaseNumberSubmitPage.verifyAccessibility();
     }
     await fl401AddCaseNumberSubmitPage.clickSaveAndContinue();
 

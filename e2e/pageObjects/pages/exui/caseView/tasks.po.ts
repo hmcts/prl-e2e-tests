@@ -2,6 +2,7 @@ import { CaseAccessViewPage } from "./caseAccessView.po.js";
 import { expect, Locator, Page } from "@playwright/test";
 import { ExuiCaseTaskComponent } from "../../../components/exui/exuiCaseTask.component.js";
 import { Selectors } from "../../../../common/selectors.js";
+import { UserRole } from "../../../../common/types.js";
 
 export class TasksPage extends CaseAccessViewPage {
   readonly heading: Locator = this.page.locator(".govuk-heading-m", {
@@ -14,16 +15,26 @@ export class TasksPage extends CaseAccessViewPage {
   }
 
   async goToPage(): Promise<void> {
+    const leftChevron: Locator = this.page.locator(
+      ".mat-tab-header-pagination-before",
+    );
+    const tab: Locator = this.page.getByRole("tab", { name: "Tasks" });
+    if (await tab.isHidden()) {
+      await leftChevron.click();
+    }
+
     await this.page.getByRole("tab", { name: "Tasks" }).click();
   }
 
   async assignTaskToMeAndTriggerNextSteps(
     taskName: string,
     nextStepsActionName: string,
+    userRole: UserRole,
   ): Promise<void> {
     await this.waitForTask(taskName);
     await this.task.assignTaskToMe(taskName);
     await this.alertBanner.assertTaskAssignedAlert();
+    await this.task.assertManageActions(taskName, userRole);
     await this.task.triggerNextSteps(taskName, nextStepsActionName);
   }
 

@@ -12,12 +12,19 @@ import {
   fl401SubmittedSolicitorEvents,
   WACaseWorkerActions,
 } from "../../../../common/types.js";
+import { MatTabHeaderComponent } from "../../../components/exui/matTabHeader.component.js";
+import { NotificationBannerComponent } from "../../../components/exui/notificationBanner.component.js";
 
 export abstract class CaseAccessViewPage extends Base {
   readonly caseHeader: CcdCaseHeaderComponent = new CcdCaseHeaderComponent(
     this.page,
   );
   readonly alertBanner: AlertBannerComponent = new AlertBannerComponent(
+    this.page,
+  );
+  readonly notificationBanner: NotificationBannerComponent =
+    new NotificationBannerComponent(this.page);
+  readonly tabHeader: MatTabHeaderComponent = new MatTabHeaderComponent(
     this.page,
   );
   readonly goButton: Locator = this.page.getByRole("button", { name: "Go" });
@@ -28,7 +35,7 @@ export abstract class CaseAccessViewPage extends Base {
 
   abstract goToPage(): Promise<void>;
 
-  public async chooseEventFromDropdown(
+  async chooseEventFromDropdown(
     chosenEvent:
       | c100SolicitorEvents
       | fl401SolicitorEvents
