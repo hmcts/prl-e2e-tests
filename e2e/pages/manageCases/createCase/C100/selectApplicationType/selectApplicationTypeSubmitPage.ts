@@ -21,7 +21,7 @@ export class selectApplicationTypeSubmitPage {
     permissionSelection: radioButtons,
   ): Promise<void> {
     await Promise.all([
-      this.checkPageLoads(page, accessibilityTest, yesNo),
+      this.checkPageLoads(page, accessibilityTest, yesNo, permissionSelection),
       this.checkFilledFields(page, yesNo, permissionSelection),
     ]);
   }
@@ -30,6 +30,7 @@ export class selectApplicationTypeSubmitPage {
     page: Page,
     accessibilityTest: boolean,
     yesNo: boolean,
+    permissionSelection: radioButtons,
   ): Promise<void> {
     await page.waitForSelector(
       `${Selectors.h2}:text-is("${SelectApplicationTypeSubmitContent.h2}")`,
@@ -42,11 +43,6 @@ export class selectApplicationTypeSubmitPage {
         SelectApplicationTypeSubmitContent,
         "text16",
         `${Selectors.GovukText16}`,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukText16}:text-is("${SelectApplicationTypeSubmitContent.text16Change}")`,
-        changeAbleFields,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -68,7 +64,18 @@ export class selectApplicationTypeSubmitPage {
       await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukText16}:text-is("${SelectApplicationTypeSubmitContent.text16Change}")`,
-       11,
+        11,
+      );
+    } else if (permissionSelection === "No, permission now sought") {
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${SelectApplicationTypeSubmitContent.text16No}")`,
+        1,
+      );
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukText16}:text-is("${SelectApplicationTypeSubmitContent.text16Change}")`,
+        9,
       );
     } else {
       await Helpers.checkVisibleAndPresent(
