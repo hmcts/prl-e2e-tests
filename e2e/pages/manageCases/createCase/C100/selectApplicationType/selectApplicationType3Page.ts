@@ -55,7 +55,13 @@ export class selectApplicationType3Page {
         `${Selectors.GovukFormLabel}`,
       ),
     ]);
-    await expect(page.locator(`${Selectors.GovukFormLabel}:text-is("${SelectApplicationType3Content.yesFormLabel}")`).first()).toBeVisible();
+    await expect(
+      page
+        .locator(
+          `${Selectors.GovukFormLabel}:text-is("${SelectApplicationType3Content.yesFormLabel}")`,
+        )
+        .first(),
+    ).toBeVisible();
     if (accessibilityTest) {
       await new AxeUtils(page).audit();
     }
@@ -117,18 +123,20 @@ export class selectApplicationType3Page {
   ): Promise<void> {
     switch (permissionSelection) {
       case "Yes":
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukFormLabel}:text-is("${SelectApplicationType3Content.giveDetailsTextbox}")`,
-          1,
-        ),
-        Helpers.checkGroup(
-          page,
-          3,
-          SelectApplicationType3Content,
-          "conditionalText",
-          `${Selectors.GovukFormLabel}`,
-        ),
+        await Promise.all([
+          Helpers.checkVisibleAndPresent(
+            page,
+            `${Selectors.GovukFormLabel}:text-is("${SelectApplicationType3Content.giveDetailsTextbox}")`,
+            1,
+          ),
+          Helpers.checkGroup(
+            page,
+            3,
+            SelectApplicationType3Content,
+            "conditionalText",
+            `${Selectors.GovukFormLabel}`,
+          ),
+        ]);
         await page.click(`${PageIDs.yes}`);
         await page.fill(
           `${PageIDs.yesTextbox1}`,
@@ -147,13 +155,15 @@ export class selectApplicationType3Page {
       case "No, permission now sought":
         await page.click(`${PageIDs.noPermissionSought}`);
         await page.click(`${PageIDs.yesFollowingQuestion}`);
-        Helpers.checkGroup(
-          page,
-          3,
-          SelectApplicationType3Content,
-          "conditionalText",
-          `${Selectors.GovukFormLabel}`,
-        ),
+        await Promise.all([
+          Helpers.checkGroup(
+            page,
+            3,
+            SelectApplicationType3Content,
+            "conditionalText",
+            `${Selectors.GovukFormLabel}`,
+          ),
+        ]);
         await page.fill(
           `${PageIDs.yesTextbox2}`,
           `${SelectApplicationType3Content.textbox2}`,
@@ -161,7 +171,9 @@ export class selectApplicationType3Page {
         await this.fileUpload(page);
         break;
       default:
-        throw new Error(`Unexpected permissionSelection: ${permissionSelection}`);
+        throw new Error(
+          `Unexpected permissionSelection: ${permissionSelection}`,
+        );
     }
     await page.click(
       `${Selectors.button}:text-is("${SelectApplicationType3Content.continue}")`,
@@ -171,6 +183,6 @@ export class selectApplicationType3Page {
   private static async fileUpload(page: Page): Promise<void> {
     const fileInput = page.locator(`${PageIDs.fileInputButton}`);
     await fileInput.setInputFiles(config.testPdfFile);
-    await page.waitForTimeout(3000);
+    await page.waitForTimeout(4000);
   }
 }

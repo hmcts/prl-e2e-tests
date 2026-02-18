@@ -6,7 +6,7 @@ export enum SelectApplicationType3Content {
   formLabel3 = "No, permission now sought",
   yesFormLabel = "Yes",
   giveDetailsTextbox = "*Give details of why permission is required from the court.",
-  conditionalText1 = "*Is there an order under section 91(14) Children Act 1989, a limited civil restraint order, a general civil restraint order or an extended civil restraint order in force which means you need permission to make this application?", 
+  conditionalText1 = "*Is there an order under section 91(14) Children Act 1989, a limited civil restraint order, a general civil restraint order or an extended civil restraint order in force which means you need permission to make this application?",
   conditionalText2 = "Provide case number and name of the court (Optional)",
   conditionalText3 = "Upload file (Optional)",
   remove = "Remove",

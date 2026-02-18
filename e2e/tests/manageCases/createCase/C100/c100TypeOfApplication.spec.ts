@@ -43,7 +43,7 @@ test.describe("C100 Create case type of application tests", (): void => {
 test(`C100 type of application event as a solicitor with the following options:
   Accessibility testing,
   Not Error message testing,
-  Saying yes to all options with Yes for permission, @accessibility @luciano`, async ({
+  Saying yes to all options with Yes for permission, @accessibility @nightly`, async ({
   page,
 }): Promise<void> => {
   await C100TypeOfApplication.c100TypeOfApplication({
@@ -61,7 +61,7 @@ test(`C100 type of application event as a solicitor with the following options:
 test(`C100 type of application event as a solicitor with the following options:
   Accessibility testing,
   Not Error message testing,
-  Saying yes to all options and No, permission is not required, @accessibility @luciano`, async ({
+  Saying yes to all options and No, permission is not required, @accessibility @nightly`, async ({
   page,
 }): Promise<void> => {
   await C100TypeOfApplication.c100TypeOfApplication({
@@ -79,7 +79,7 @@ test(`C100 type of application event as a solicitor with the following options:
 test(`C100 type of application event as a solicitor with the following options:
   Accessibility testing,
   Not Error message testing,
-  Saying yes to all options and No, permission now sought, @accessibility @luciano`, async ({
+  Saying yes to all options and No, permission now sought, @accessibility @nightly`, async ({
   page,
 }): Promise<void> => {
   await C100TypeOfApplication.c100TypeOfApplication({
