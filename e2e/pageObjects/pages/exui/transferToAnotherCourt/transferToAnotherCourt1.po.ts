@@ -99,7 +99,11 @@ export class TransferToAnotherCourt1Page extends EventPage {
     await expect(this.previousButton).toBeVisible();
   }
 
-  async selectCourt(caseType: string, courtIsListed: boolean, courtName: string): Promise<void> {
+  async selectCourt(
+    caseType: string,
+    courtIsListed: boolean,
+    courtName: string,
+  ): Promise<void> {
     if (courtIsListed) {
       await this.selectCourtWhenListed(courtName);
     } else {

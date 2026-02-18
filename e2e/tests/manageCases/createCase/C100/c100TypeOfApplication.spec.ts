@@ -18,7 +18,7 @@ test.describe("C100 Create case type of application tests", (): void => {
       errorMessaging: true,
       yesNoC100TypeOfApplication: true,
       typeOfChildArrangementOrder: "Spend time with order",
-      selectionC100TypeOfApplication: "Yes",
+      permissionSelection: "Yes",
       subJourney: true,
     });
   });
@@ -34,7 +34,7 @@ test.describe("C100 Create case type of application tests", (): void => {
       errorMessaging: true,
       yesNoC100TypeOfApplication: false,
       typeOfChildArrangementOrder: "Spend time with order",
-      selectionC100TypeOfApplication: "No, permission now sought",
+      permissionSelection: "No, permission now sought",
       subJourney: true,
     });
   });
@@ -43,7 +43,7 @@ test.describe("C100 Create case type of application tests", (): void => {
 test(`C100 type of application event as a solicitor with the following options:
   Accessibility testing,
   Not Error message testing,
-  Saying yes to all options, @accessibility @nightly`, async ({
+  Saying yes to all options with Yes for permission, @accessibility @nightly`, async ({
   page,
 }): Promise<void> => {
   await C100TypeOfApplication.c100TypeOfApplication({
@@ -53,7 +53,43 @@ test(`C100 type of application event as a solicitor with the following options:
     errorMessaging: false,
     yesNoC100TypeOfApplication: true,
     typeOfChildArrangementOrder: "Spend time with order",
-    selectionC100TypeOfApplication: "Yes",
+    permissionSelection: "Yes",
+    subJourney: true,
+  });
+});
+
+test(`C100 type of application event as a solicitor with the following options:
+  Accessibility testing,
+  Not Error message testing,
+  Saying yes to all options and No, permission is not required, @accessibility @nightly`, async ({
+  page,
+}): Promise<void> => {
+  await C100TypeOfApplication.c100TypeOfApplication({
+    page,
+    user: "solicitor",
+    accessibilityTest: true,
+    errorMessaging: false,
+    yesNoC100TypeOfApplication: false,
+    typeOfChildArrangementOrder: "Spend time with order",
+    permissionSelection: "No, permission is not required",
+    subJourney: true,
+  });
+});
+
+test(`C100 type of application event as a solicitor with the following options:
+  Accessibility testing,
+  Not Error message testing,
+  Saying yes to all options and No, permission now sought, @accessibility @nightly`, async ({
+  page,
+}): Promise<void> => {
+  await C100TypeOfApplication.c100TypeOfApplication({
+    page,
+    user: "solicitor",
+    accessibilityTest: true,
+    errorMessaging: false,
+    yesNoC100TypeOfApplication: false,
+    typeOfChildArrangementOrder: "Spend time with order",
+    permissionSelection: "No, permission now sought",
     subJourney: true,
   });
 });
