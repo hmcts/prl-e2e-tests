@@ -54,6 +54,11 @@ export class InternationalElementsJurisdictionPage {
         `${Selectors.GovukHint}:text-is("${internationalElementsJurisdictionContent.govukHint}")`,
         1,
       ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukHint}:text-is("${internationalElementsJurisdictionContent.govukHint2}")`,
+        1,
+      ),
       Helpers.checkGroup(
         page,
         2,
