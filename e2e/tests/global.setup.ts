@@ -83,4 +83,12 @@ setup.describe("Setup users and retrieve tokens", () => {
       config.manageCasesBaseURLCase,
     );
   });
+
+  setup("Setup Barrister user", async ({ page, idamLoginHelper }) => {
+    await idamLoginHelper.signInLongLivedUser(
+      page,
+      "barrister",
+      config.manageCasesBaseURLCase,
+    );
+  });
 });

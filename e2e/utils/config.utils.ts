@@ -39,6 +39,10 @@ export class Config {
       email: process.env.LEGALADVISOR_USERNAME as string,
       password: process.env.LEGALADVISOR_PASSWORD as string,
     },
+    barrister: {
+      email: process.env.BARRISTER_USERNAME as string,
+      password: process.env.BARRISTER_PASSWORD as string,
+    },
   };
 
   public static readonly sessionStoragePath: string = path.join(
