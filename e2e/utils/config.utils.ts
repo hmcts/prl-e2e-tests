@@ -101,6 +101,10 @@ export class Config {
     import.meta.dirname,
     "../assets/mockFile.pdf",
   );
+  public static readonly testBigTxtFile: string = path.resolve(
+    import.meta.dirname,
+    "../assets/mock10mbFile.pdf",
+  );
   public static readonly testWordFile: string = path.resolve(
     import.meta.dirname,
     "../assets/mockFile.docx",
