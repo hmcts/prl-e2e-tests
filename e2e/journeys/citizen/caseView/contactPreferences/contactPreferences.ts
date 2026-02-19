@@ -40,7 +40,9 @@ export class ContactPreferences {
       caseUser: caseUser,
       accessibilityTest: accessibilityTest,
       applicationSubmittedBy: applicationSubmittedBy,
-      isManualSOA: false,
+      isManualSOA: true,
+      yesNoServiceOfApplication4: false,
+      confidentialityCheck: true,
     });
     await page.click(UniqueSelectors.contactPreferencesPrivateSelector);
     await ContactPreferencesPage.contactPreferencesPage(
@@ -48,7 +50,7 @@ export class ContactPreferences {
       accessibilityTest,
       contactOption,
     );
-    await ReviewPage.reviewPage(page, accessibilityTest);
+    await ReviewPage.reviewPage(page, caseUser, accessibilityTest);
     await ConfirmationPage.confirmationPage(page, accessibilityTest);
   }
 }

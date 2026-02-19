@@ -1,17 +1,20 @@
 import { test } from "../../../../fixtures.ts";
 import config from "../../../../../utils/config.utils.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
 import { ViewAllDocuments } from "../../../../../journeys/citizen/caseView/viewAllDocuments/viewAllDocuments.ts";
 
 test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("Applicant view all documents tests", (): void => {
-  test.slow();
+  test.skip(
+    process.env.MANAGE_CASES_TEST_ENV === "preview",
+    "Doesn't work on preview env - initial Courtnav case creation doesn't work",
+  );
+
   let ccdRef: string;
 
-  test.beforeEach(async ({ page, courtNavUtils }) => {
+  test.beforeEach(async ({ page, courtNavUtils, navigationUtils }) => {
     ccdRef = await courtNavUtils.createCase(true, false);
-    await Helpers.goToCase(
+    await navigationUtils.goToCase(
       page,
       config.manageCasesBaseURLCase,
       ccdRef,
@@ -19,21 +22,7 @@ test.describe("Applicant view all documents tests", (): void => {
     );
   });
 
-  test("Applicant view all documents. @regression @nightly", async ({
-    page,
-    browser,
-  }): Promise<void> => {
-    await ViewAllDocuments.applicantViewAllDocuments({
-      page: page,
-      browser: browser,
-      accessibilityTest: false,
-      caseRef: ccdRef,
-      isApplicant: true,
-      applicationSubmittedBy: "Citizen",
-    });
-  });
-
-  test("Applicant view all documents. @regression @accessibility", async ({
+  test("Applicant view all documents. @regression @nightly @accessibility", async ({
     page,
     browser,
   }): Promise<void> => {
