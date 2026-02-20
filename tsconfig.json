@@ -1,16 +1,15 @@
 {
   "compilerOptions": {
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
     "target": "ES2022",
     "types": ["node", "jest"],
-    "allowImportingTsExtensions": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
     "noEmit": true,
-    "allowJs": true,
+    "allowJs": false,
     "useDefineForClassFields": false,
     "resolveJsonModule": true
   },
