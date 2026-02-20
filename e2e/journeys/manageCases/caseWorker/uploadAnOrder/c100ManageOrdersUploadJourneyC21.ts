@@ -100,12 +100,12 @@ export class C100ManageOrdersUploadJourneyC21 {
       serveOrderNow,
     });
 
-    const submitPage = new SubmitPage(page, accessibilityTest);
+    const submitPage = new SubmitPage(page);
     await submitPage.assertPageContents(
       ["C21", "uploadOrder"], // folder path for the screenshot
       "caseworker-c21-createUploadDraftOrder-cya.png", // screenshot file name
     );
-    await submitPage.validateAccessibility();
+    await submitPage.verifyAccessibility();
     await submitPage.clickSubmit();
 
     await Helpers.clickTab(page, "Draft orders");

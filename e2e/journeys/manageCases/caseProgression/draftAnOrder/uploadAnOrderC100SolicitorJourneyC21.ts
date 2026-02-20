@@ -88,12 +88,12 @@ export class UploadAnOrderC100SolicitorJourneyC21 {
     });
     await draftAnOrder5PageC21.clickContinue();
 
-    const submitPageC21 = new SubmitPageC21(page, accessibilityTest);
+    const submitPageC21 = new SubmitPageC21(page);
     await submitPageC21.assertPageContents(
       ["C21", "uploadOrder"], // folder path for the screenshot
       "solicitor-c21-createUploadDraftOrder-cya.png", // screenshot file name
     );
-    await submitPageC21.validateAccessibility();
+    await submitPageC21.verifyAccessibility();
     await submitPageC21.clickSubmit();
   }
 }

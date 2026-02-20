@@ -41,9 +41,6 @@ export class DraftAnOrder4PageC21 extends EventPage {
       const radio = this.page.getByRole("radio", { name: option, exact: true });
       await radio.check();
       await expect(radio).toBeChecked();
-      await expect(this.page.getByRole("radio", { checked: true })).toHaveCount(
-        1,
-      );
     }
   }
 

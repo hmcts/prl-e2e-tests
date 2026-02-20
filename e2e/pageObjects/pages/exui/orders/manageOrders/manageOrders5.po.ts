@@ -113,20 +113,11 @@ export class ManageOrders5Page extends EventPage {
   async assertC21RadiosAreSelectable(): Promise<void> {
     for (const option of this.radioOptions) {
       const radio = this.page.getByRole("radio", { name: option, exact: true });
-
-      try {
         await radio.check();
         await expect(radio).toBeChecked();
         await expect(
           this.page.getByRole("radio", { checked: true }),
         ).toHaveCount(1);
-      } catch (error) {
-        const errorMessage =
-          error instanceof Error ? error.message : String(error);
-        throw new Error(
-          `Radio option failed: "${option}". Details: ${errorMessage}`,
-        );
-      }
     }
   }
   async fillOrderDetails(details: OrderDetails): Promise<void> {

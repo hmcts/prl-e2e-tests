@@ -1,19 +1,9 @@
 import { Page } from "@playwright/test";
-import { AxeUtils } from "@hmcts/playwright-common";
 import { CheckYourAnswersPage } from "../../checkYourAnswers.po.ts";
 import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 
 export class SubmitPageC21 extends CheckYourAnswersPage {
-  accessibilityTest: boolean;
-
-  constructor(page: Page, accessibilityTest = false) {
+  constructor(page: Page) {
     super(page, "Create/upload draft order", CommonStaticText.submit);
-    this.accessibilityTest = accessibilityTest;
-  }
-
-  async validateAccessibility(): Promise<void> {
-    if (this.accessibilityTest) {
-      await new AxeUtils(this.page).audit();
     }
   }
-}
