@@ -1,6 +1,6 @@
 import { test } from "@playwright/test";
-import Config from "../../../utils/config.utils.ts";
-import { SolicitorCreateInitial } from "../../../journeys/manageCases/createCase/solicitorCreateInitial.ts";
+import Config from "../../../utils/config.utils";
+import { SolicitorCreateInitial } from "../../../journeys/manageCases/createCase/solicitorCreateInitial";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 test.describe("Manage cases case solicitor create case tests.", (): void => {

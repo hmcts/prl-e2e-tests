@@ -1,9 +1,9 @@
 import { Page, expect } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors.ts";
-import { Helpers } from "../../../../common/helpers.ts";
+import { Selectors } from "../../../../common/selectors";
+import { Helpers } from "../../../../common/helpers";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
-import { UploadDraftAnOrderSubmitContent } from "../../../../fixtures/manageCases/caseProgression/draftAnOrder/uploadDraftAnOrderSubmitContent.ts";
+import { CommonStaticText } from "../../../../common/commonStaticText";
+import { UploadDraftAnOrderSubmitContent } from "../../../../fixtures/manageCases/caseProgression/draftAnOrder/uploadDraftAnOrderSubmitContent";
 
 interface submitPageOptions {
   page: Page;

@@ -1,9 +1,9 @@
 import { Page, expect } from "@playwright/test";
 // import { AxeUtils } from "@hmcts/playwright-common";
-import { Selectors } from "../../../../common/selectors.ts";
-import { Helpers } from "../../../../common/helpers.ts";
-import { RestrictedCaseAccessSubmitContent } from "../../../../fixtures/manageCases/caseProgression/restrictedCaseAccess/restrictedCaseAccessSubmitContent.ts";
-import { RestrictedCaseAccess2Content } from "../../../../fixtures/manageCases/caseProgression/restrictedCaseAccess/restrictedCaseAccess2Content.ts";
+import { Selectors } from "../../../../common/selectors";
+import { Helpers } from "../../../../common/helpers";
+import { RestrictedCaseAccessSubmitContent } from "../../../../fixtures/manageCases/caseProgression/restrictedCaseAccess/restrictedCaseAccessSubmitContent";
+import { RestrictedCaseAccess2Content } from "../../../../fixtures/manageCases/caseProgression/restrictedCaseAccess/restrictedCaseAccess2Content";
 
 interface RestrictedCaseAccessSubmitOptions {
   page: Page;

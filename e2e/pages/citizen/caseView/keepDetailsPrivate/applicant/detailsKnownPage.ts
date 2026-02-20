@@ -1,10 +1,10 @@
-import { Selectors } from "../../../../../common/selectors.ts";
+import { Selectors } from "../../../../../common/selectors";
 import { AxeUtils } from "@hmcts/playwright-common";
 import { Page } from "@playwright/test";
-import { Helpers } from "../../../../../common/helpers.ts";
-import { yesNoDontKnow } from "../../../../../common/types.ts";
-import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
-import { DetailsKnownContent } from "../../../../../fixtures/citizen/caseView/keepDetailsPrivate/detailsKnownContent.ts";
+import { Helpers } from "../../../../../common/helpers";
+import { yesNoDontKnow } from "../../../../../common/types";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { DetailsKnownContent } from "../../../../../fixtures/citizen/caseView/keepDetailsPrivate/detailsKnownContent";
 
 enum UniqueSelectors {
   yes = "#detailsKnown",

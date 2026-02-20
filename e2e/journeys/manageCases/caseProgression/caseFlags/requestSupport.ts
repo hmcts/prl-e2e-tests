@@ -1,17 +1,14 @@
 import { Page } from "@playwright/test";
-import { Helpers } from "../../../../common/helpers.ts";
-import {
-  solicitorCaseCreateType,
-  SupportType,
-} from "../../../../common/types.ts";
-import { RequestSupportSupportForPage } from "../../../../pages/manageCases/caseProgression/caseFlags/requestSupportSupportForPage.ts";
-import { RequestSupportSupportTypePage } from "../../../../pages/manageCases/caseProgression/caseFlags/requestSupportSupportTypePage.ts";
-import { RequestSupportReasonableAdjustmentPage } from "../../../../pages/manageCases/caseProgression/caseFlags/requestSupportReasonableAdjustmentPage.ts";
-import { RequestSupportDocumentsInAlternativeFormatPage } from "../../../../pages/manageCases/caseProgression/caseFlags/requestSupportDocumentsInAlternativeFormatPage.ts";
-import { RequestSupportTellUsMoreAboutTheRequestPage } from "../../../../pages/manageCases/caseProgression/caseFlags/requestSupportTellUsMoreAboutTheRequestPage.ts";
-import { RequestSupportSubmitPage } from "../../../../pages/manageCases/caseProgression/caseFlags/requestSupportSubmitPage.ts";
-import { RequestSupportLanguageInterpreterPage } from "../../../../pages/manageCases/caseProgression/caseFlags/requestSupportLanguageInterpreterPage.ts";
-import { Selectors } from "../../../../common/selectors.ts";
+import { Helpers } from "../../../../common/helpers";
+import { solicitorCaseCreateType, SupportType } from "../../../../common/types";
+import { RequestSupportSupportForPage } from "../../../../pages/manageCases/caseProgression/caseFlags/requestSupportSupportForPage";
+import { RequestSupportSupportTypePage } from "../../../../pages/manageCases/caseProgression/caseFlags/requestSupportSupportTypePage";
+import { RequestSupportReasonableAdjustmentPage } from "../../../../pages/manageCases/caseProgression/caseFlags/requestSupportReasonableAdjustmentPage";
+import { RequestSupportDocumentsInAlternativeFormatPage } from "../../../../pages/manageCases/caseProgression/caseFlags/requestSupportDocumentsInAlternativeFormatPage";
+import { RequestSupportTellUsMoreAboutTheRequestPage } from "../../../../pages/manageCases/caseProgression/caseFlags/requestSupportTellUsMoreAboutTheRequestPage";
+import { RequestSupportSubmitPage } from "../../../../pages/manageCases/caseProgression/caseFlags/requestSupportSubmitPage";
+import { RequestSupportLanguageInterpreterPage } from "../../../../pages/manageCases/caseProgression/caseFlags/requestSupportLanguageInterpreterPage";
+import { Selectors } from "../../../../common/selectors";
 
 interface RequestSupportParams {
   page: Page;

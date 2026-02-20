@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../common/selectors.ts";
-import { C100TasksTabContent } from "../../../fixtures/manageCases/caseTabs/C100/c100TasksTabContent.ts";
-import { Helpers } from "../../../common/helpers.ts";
+import { Selectors } from "../../../common/selectors";
+import { C100TasksTabContent } from "../../../fixtures/manageCases/caseTabs/C100/c100TasksTabContent";
+import { Helpers } from "../../../common/helpers";
 import { AxeUtils } from "@hmcts/playwright-common";
 
 enum IndividualSelectors {

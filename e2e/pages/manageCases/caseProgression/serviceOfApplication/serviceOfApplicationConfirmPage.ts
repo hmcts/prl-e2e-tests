@@ -1,10 +1,10 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors.ts";
-import { ServiceOfApplication2Content } from "../../../../fixtures/manageCases/caseProgression/serviceOfApplication/serviceOfApplication2Content.ts";
-import { Helpers } from "../../../../common/helpers.ts";
+import { Selectors } from "../../../../common/selectors";
+import { ServiceOfApplication2Content } from "../../../../fixtures/manageCases/caseProgression/serviceOfApplication/serviceOfApplication2Content";
+import { Helpers } from "../../../../common/helpers";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { ServiceOfApplicationConfirmContent } from "../../../../fixtures/manageCases/caseProgression/serviceOfApplication/serviceOfApplicationConfirmContent.ts";
-import { applicationSubmittedBy } from "../../../../common/types.ts";
+import { ServiceOfApplicationConfirmContent } from "../../../../fixtures/manageCases/caseProgression/serviceOfApplication/serviceOfApplicationConfirmContent";
+import { applicationSubmittedBy } from "../../../../common/types";
 
 interface ServiceOfApplicationConfirmOptions {
   page: Page;

@@ -1,8 +1,8 @@
-import { test } from "../../../fixtures.ts";
+import { test } from "../../../fixtures";
 import { Page } from "@playwright/test";
-import { Helpers } from "../../../../common/helpers.ts";
-import config from "../../../../utils/config.utils.ts";
-import { RestrictedCaseAccess } from "../../../../journeys/manageCases/caseProgression/restrictedCaseAccess/restrictedCaseAccessJourney.ts";
+import { Helpers } from "../../../../common/helpers";
+import config from "../../../../utils/config.utils";
+import { RestrictedCaseAccess } from "../../../../journeys/manageCases/caseProgression/restrictedCaseAccess/restrictedCaseAccessJourney";
 import {
   SendToGateKeeper1Page,
   SendToGateKeeperParams,

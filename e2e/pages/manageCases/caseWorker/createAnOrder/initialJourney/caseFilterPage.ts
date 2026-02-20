@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
 // import { AxeUtils } from "@hmcts/playwright-common";
-import { CaseFilterContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/initialJourney/caseFilterContent.ts";
-import { Selectors } from "../../../../../common/selectors.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
+import { CaseFilterContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/initialJourney/caseFilterContent";
+import { Selectors } from "../../../../../common/selectors";
+import { Helpers } from "../../../../../common/helpers";
 
 interface CaseFilterPageOptions {
   page: Page;

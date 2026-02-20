@@ -1,7 +1,7 @@
-import { Helpers } from "../../../../common/helpers.ts";
-import config from "../../../../utils/config.utils.ts";
-import { Fl401StatementOfTruth } from "../../../../journeys/manageCases/createCase/FL401StatementOfTruth/fl401StatementOfTruth.ts";
-import { test } from "../../../fixtures.ts";
+import { Helpers } from "../../../../common/helpers";
+import config from "../../../../utils/config.utils";
+import { Fl401StatementOfTruth } from "../../../../journeys/manageCases/createCase/FL401StatementOfTruth/fl401StatementOfTruth";
+import { test } from "../../../fixtures";
 
 test.use({ storageState: config.sessionStoragePath + "solicitor.json" });
 

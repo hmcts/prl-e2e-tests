@@ -1,16 +1,16 @@
 import { Browser, Page } from "@playwright/test";
-import { Helpers } from "../../../../common/helpers.ts";
-import { StatementOfService1Page } from "../../../../pages/manageCases/caseProgression/statementOfService/statementOfService1Page.ts";
-import { StatementOfServiceSubmitPage } from "../../../../pages/manageCases/caseProgression/statementOfService/StatementOfServiceSubmitPage.ts";
-import { jsonDatas } from "../../../../common/caseHelpers/jsonDatas.ts";
+import { Helpers } from "../../../../common/helpers";
+import { StatementOfService1Page } from "../../../../pages/manageCases/caseProgression/statementOfService/statementOfService1Page";
+import { StatementOfServiceSubmitPage } from "../../../../pages/manageCases/caseProgression/statementOfService/StatementOfServiceSubmitPage";
+import { jsonDatas } from "../../../../common/caseHelpers/jsonDatas";
 import {
   c100CompleteEventsUpToServiceOfApplication,
   fl401CompleteEventsUpToServiceOfApplication,
-} from "../../../../common/caseHelpers/caseEventsHelper.ts";
+} from "../../../../common/caseHelpers/caseEventsHelper";
 import {
   applicationSubmittedBy,
   createOrderFL401Options,
-} from "../../../../common/types.ts";
+} from "../../../../common/types";
 
 interface fl401StatementOfServiceParams {
   page: Page;

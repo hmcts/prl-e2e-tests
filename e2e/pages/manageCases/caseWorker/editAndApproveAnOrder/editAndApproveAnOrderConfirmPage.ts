@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
-import { JudgeOrderAction } from "../../../../common/types.ts";
-import { Selectors } from "../../../../common/selectors.ts";
-import { EditAndApproveAnOrderConfirmContent } from "../../../../fixtures/manageCases/caseWorker/editAndApproveAnOrder/editAndApproveAnOrderConfirmContent.ts";
-import { Helpers } from "../../../../common/helpers.ts";
+import { JudgeOrderAction } from "../../../../common/types";
+import { Selectors } from "../../../../common/selectors";
+import { EditAndApproveAnOrderConfirmContent } from "../../../../fixtures/manageCases/caseWorker/editAndApproveAnOrder/editAndApproveAnOrderConfirmContent";
+import { Helpers } from "../../../../common/helpers";
 import { AxeUtils } from "@hmcts/playwright-common";
 
 export class EditAndApproveAnOrderConfirmPage {

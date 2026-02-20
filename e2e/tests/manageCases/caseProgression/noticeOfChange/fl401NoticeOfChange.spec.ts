@@ -1,6 +1,6 @@
-import Config from "../../../../utils/config.utils.ts";
-import { NoticeOfChange } from "../../../../journeys/manageCases/caseProgression/noticeOfChange/noticeOfChange.ts";
-import { test } from "../../../fixtures.ts";
+import Config from "../../../../utils/config.utils";
+import { NoticeOfChange } from "../../../../journeys/manageCases/caseProgression/noticeOfChange/noticeOfChange";
+import { test } from "../../../fixtures";
 import { Helpers } from "../../../../common/helpers.js";
 import config from "../../../../utils/config.utils.js";
 import { CommonStaticText } from "../../../../common/commonStaticText.js";

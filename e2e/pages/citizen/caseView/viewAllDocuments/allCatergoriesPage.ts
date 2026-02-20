@@ -1,8 +1,8 @@
-import { Selectors } from "../../../../common/selectors.ts";
+import { Selectors } from "../../../../common/selectors";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { AllCategoriesContent } from "../../../../fixtures/citizen/caseView/viewAllDocuments/allCatergoriesContent.ts";
+import { AllCategoriesContent } from "../../../../fixtures/citizen/caseView/viewAllDocuments/allCatergoriesContent";
 import { Page } from "@playwright/test";
-import { Helpers } from "../../../../common/helpers.ts";
+import { Helpers } from "../../../../common/helpers";
 
 interface AllCategoriesParams {
   page: Page;

@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors.ts";
+import { Selectors } from "../../../../../common/selectors";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { InternationalElementSubmitContent } from "../../../../../fixtures/manageCases/createCase/C100/internationalElement/internationalElementSubmitContent.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
-import { InternationalElement1Content } from "../../../../../fixtures/manageCases/createCase/C100/internationalElement/internationalElement1Content.ts";
+import { InternationalElementSubmitContent } from "../../../../../fixtures/manageCases/createCase/C100/internationalElement/internationalElementSubmitContent";
+import { Helpers } from "../../../../../common/helpers";
+import { InternationalElement1Content } from "../../../../../fixtures/manageCases/createCase/C100/internationalElement/internationalElement1Content";
 
 interface InternationalElementSubmitPageOption {
   page: Page;

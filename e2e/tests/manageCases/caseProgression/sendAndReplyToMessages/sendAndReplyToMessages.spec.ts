@@ -1,10 +1,10 @@
-import config from "../../../../utils/config.utils.ts";
-import { test } from "../../../fixtures.ts";
+import config from "../../../../utils/config.utils";
+import { test } from "../../../fixtures";
 import {
   C100SendAndReplyToMessagesScenarios,
   FL401SendAndReplyToMessagesScenarios,
 } from "../../../../testData/sendAndReplyToMessages.js";
-import { CaseWorkerPagesGroup } from "../../../../pageObjects/roleBasedGroupedPages/caseWorkerPages.ts";
+import { CaseWorkerPagesGroup } from "../../../../pageObjects/roleBasedGroupedPages/caseWorkerPages";
 import { JudgePagesGroup } from "../../../../pageObjects/roleBasedGroupedPages/judgePages.js";
 import { LegalAdvisorPagesGroup } from "../../../../pageObjects/roleBasedGroupedPages/legalAdvisorPages.js";
 

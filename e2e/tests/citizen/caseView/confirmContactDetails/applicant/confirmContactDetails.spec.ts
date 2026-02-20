@@ -1,7 +1,7 @@
-import { test } from "../../../../fixtures.ts";
-import config from "../../../../../utils/config.utils.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
-import { ConfirmContactDetails } from "../../../../../journeys/citizen/caseView/confirmContactDetails/confirmContactDetails.ts";
+import { test } from "../../../../fixtures";
+import config from "../../../../../utils/config.utils";
+import { Helpers } from "../../../../../common/helpers";
+import { ConfirmContactDetails } from "../../../../../journeys/citizen/caseView/confirmContactDetails/confirmContactDetails";
 
 test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 

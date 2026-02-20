@@ -1,10 +1,10 @@
 import { Page } from "@playwright/test";
-import { JudgeOrderAction, OrderType } from "../../../../common/types.ts";
+import { JudgeOrderAction, OrderType } from "../../../../common/types";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Selectors } from "../../../../common/selectors.ts";
-import { EditAndApproveAnOrder2Content } from "../../../../fixtures/manageCases/caseWorker/editAndApproveAnOrder/editAndApproveAnOrder2Content.ts";
-import { Helpers } from "../../../../common/helpers.ts";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { Selectors } from "../../../../common/selectors";
+import { EditAndApproveAnOrder2Content } from "../../../../fixtures/manageCases/caseWorker/editAndApproveAnOrder/editAndApproveAnOrder2Content";
+import { Helpers } from "../../../../common/helpers";
+import { CommonStaticText } from "../../../../common/commonStaticText";
 
 enum UniqueSelectors {
   sendToAdminToServeRadio = "#whatToDoWithOrderSolicitor-sendToAdminToServe",

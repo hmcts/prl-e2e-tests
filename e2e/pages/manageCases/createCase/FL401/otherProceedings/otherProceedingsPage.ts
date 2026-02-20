@@ -1,10 +1,10 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors.ts";
-import { OtherProceedingsContent } from "../../../../../fixtures/manageCases/createCase/FL401/otherProceedings/otherProceedingsContent.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
+import { Selectors } from "../../../../../common/selectors";
+import { OtherProceedingsContent } from "../../../../../fixtures/manageCases/createCase/FL401/otherProceedings/otherProceedingsContent";
+import { Helpers } from "../../../../../common/helpers";
 import { AxeUtils } from "@hmcts/playwright-common";
-import config from "../../../../../utils/config.utils.ts";
-import { otherProceedingsRadios } from "../../../../../common/types.ts";
+import config from "../../../../../utils/config.utils";
+import { otherProceedingsRadios } from "../../../../../common/types";
 
 enum radioIds {
   yes = "#fl401OtherProceedingDetails_hasPrevOrOngoingOtherProceeding-yes",

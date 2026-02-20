@@ -1,16 +1,16 @@
 import { Browser, expect, Page } from "@playwright/test";
-import { Helpers } from "../../../../common/helpers.ts";
-import { CreateBundleSubmitPage } from "../../../../pages/manageCases/caseProgression/createBundle/createBundleSubmitPage.ts";
-import { CreateBundle1Page } from "../../../../pages/manageCases/caseProgression/createBundle/createBundle1Page.ts";
-import { jsonDatas } from "../../../../common/caseHelpers/jsonDatas.ts";
+import { Helpers } from "../../../../common/helpers";
+import { CreateBundleSubmitPage } from "../../../../pages/manageCases/caseProgression/createBundle/createBundleSubmitPage";
+import { CreateBundle1Page } from "../../../../pages/manageCases/caseProgression/createBundle/createBundle1Page";
+import { jsonDatas } from "../../../../common/caseHelpers/jsonDatas";
 import {
   c100CompleteEventsUpToServiceOfApplication,
   fl401CompleteEventsUpToServiceOfApplication,
-} from "../../../../common/caseHelpers/caseEventsHelper.ts";
+} from "../../../../common/caseHelpers/caseEventsHelper";
 import {
   applicationSubmittedBy,
   createOrderFL401Options,
-} from "../../../../common/types.ts";
+} from "../../../../common/types";
 import { Selectors } from "../../../../common/selectors.js";
 
 interface ServiceOfApplicationJourneyParams {

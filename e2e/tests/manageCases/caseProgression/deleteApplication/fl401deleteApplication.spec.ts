@@ -1,8 +1,8 @@
-import Config from "../../../../utils/config.utils.ts";
-import { DeleteApplication } from "../../../../journeys/manageCases/caseProgression/deleteApplication/deleteApplication.ts";
-import config from "../../../../utils/config.utils.ts";
+import Config from "../../../../utils/config.utils";
+import { DeleteApplication } from "../../../../journeys/manageCases/caseProgression/deleteApplication/deleteApplication";
+import config from "../../../../utils/config.utils";
 import { Helpers } from "../../../../common/helpers.js";
-import { test } from "../../../fixtures.ts";
+import { test } from "../../../fixtures";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 

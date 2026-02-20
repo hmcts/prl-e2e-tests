@@ -1,5 +1,5 @@
 import { Page } from "@playwright/test";
-import { CheckYourAnswersPage } from "../checkYourAnswers.po.ts";
+import { CheckYourAnswersPage } from "../checkYourAnswers.po";
 import { CommonStaticText } from "../../../../common/commonStaticText.js";
 
 export class Fl401RemoveLegalRepresentativeSubmitPage extends CheckYourAnswersPage {

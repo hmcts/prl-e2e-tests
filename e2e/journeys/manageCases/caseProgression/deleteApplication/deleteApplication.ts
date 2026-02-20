@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
-import { Helpers } from "../../../../common/helpers.ts";
-import { DeleteApplication1Page } from "../../../../pages/manageCases/caseProgression/deleteApplication/deleteApplication1Page.ts";
-import { DeleteApplicationSubmitPage } from "../../../../pages/manageCases/caseProgression/deleteApplication/deleteApplicationSubmitPage.ts";
+import { Helpers } from "../../../../common/helpers";
+import { DeleteApplication1Page } from "../../../../pages/manageCases/caseProgression/deleteApplication/deleteApplication1Page";
+import { DeleteApplicationSubmitPage } from "../../../../pages/manageCases/caseProgression/deleteApplication/deleteApplicationSubmitPage";
 
 interface DeleteApplicationParams {
   page: Page;

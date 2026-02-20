@@ -1,13 +1,13 @@
-import { Selectors } from "../../../../common/selectors.ts";
-import { ServiceOfApplication2Content } from "../../../../fixtures/manageCases/caseProgression/serviceOfApplication/serviceOfApplication2Content.ts";
+import { Selectors } from "../../../../common/selectors";
+import { ServiceOfApplication2Content } from "../../../../fixtures/manageCases/caseProgression/serviceOfApplication/serviceOfApplication2Content";
 import { AxeUtils } from "@hmcts/playwright-common";
 import { Page } from "@playwright/test";
-import { Helpers } from "../../../../common/helpers.ts";
-import config from "../../../../utils/config.utils.ts";
-import { MiamPolicyUpgrade6Content } from "../../../../fixtures/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade6Content.ts";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
-import { createOrderFL401Options } from "../../../../common/types.ts";
-import { ManageOrders3DAContent } from "../../../../fixtures/manageCases/caseWorker/createAnOrder/orderDA/manageOrders3DAContent.ts";
+import { Helpers } from "../../../../common/helpers";
+import config from "../../../../utils/config.utils";
+import { MiamPolicyUpgrade6Content } from "../../../../fixtures/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade6Content";
+import { CommonStaticText } from "../../../../common/commonStaticText";
+import { createOrderFL401Options } from "../../../../common/types";
+import { ManageOrders3DAContent } from "../../../../fixtures/manageCases/caseWorker/createAnOrder/orderDA/manageOrders3DAContent";
 
 interface ServiceOfApplication2Options {
   page: Page;

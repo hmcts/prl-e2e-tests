@@ -1,10 +1,10 @@
 import { expect, Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors.ts";
-import { Helpers } from "../../../../common/helpers.ts";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { Selectors } from "../../../../common/selectors";
+import { Helpers } from "../../../../common/helpers";
+import { CommonStaticText } from "../../../../common/commonStaticText";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { yesNoNA } from "../../../../common/types.ts";
-import { ServiceOfDocumentsSubmitContent } from "../../../../fixtures/manageCases/caseProgression/serviceOfDocuments/serviceOfDocumentsSubmitContent.ts";
+import { yesNoNA } from "../../../../common/types";
+import { ServiceOfDocumentsSubmitContent } from "../../../../fixtures/manageCases/caseProgression/serviceOfDocuments/serviceOfDocumentsSubmitContent";
 
 interface serviceOfDocumentsSubmitOptions {
   page: Page;

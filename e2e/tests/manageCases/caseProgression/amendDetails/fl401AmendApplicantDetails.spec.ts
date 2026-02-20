@@ -1,7 +1,7 @@
-import { test } from "../../../fixtures.ts";
-import Config from "../../../../utils/config.utils.ts";
-import { Helpers } from "../../../../common/helpers.ts";
-import { AmendApplicantDetails } from "../../../../journeys/manageCases/caseProgression/amendDetails/amendApplicantDetails.ts";
+import { test } from "../../../fixtures";
+import Config from "../../../../utils/config.utils";
+import { Helpers } from "../../../../common/helpers";
+import { AmendApplicantDetails } from "../../../../journeys/manageCases/caseProgression/amendDetails/amendApplicantDetails";
 
 test.use({ storageState: Config.sessionStoragePath + "courtAdminStoke.json" });
 

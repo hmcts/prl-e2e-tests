@@ -1,8 +1,8 @@
-import Config from "../../../../utils/config.utils.ts";
-import { Helpers } from "../../../../common/helpers.ts";
-import config from "../../../../utils/config.utils.ts";
-import { NoticeOfChange } from "../../../../journeys/manageCases/caseProgression/noticeOfChange/noticeOfChange.ts";
-import { test } from "../../../fixtures.ts";
+import Config from "../../../../utils/config.utils";
+import { Helpers } from "../../../../common/helpers";
+import config from "../../../../utils/config.utils";
+import { NoticeOfChange } from "../../../../journeys/manageCases/caseProgression/noticeOfChange/noticeOfChange";
+import { test } from "../../../fixtures";
 
 test.use({ storageState: Config.sessionStoragePath + "nocSolicitor.json" });
 

@@ -1,12 +1,12 @@
-import { Selectors } from "../../../../../common/selectors.ts";
-import { DraftAnOrder5Content } from "../../../../../fixtures/manageCases/caseWorker/draftAnOrder/draftAnOrder5Content.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
+import { Selectors } from "../../../../../common/selectors";
+import { DraftAnOrder5Content } from "../../../../../fixtures/manageCases/caseWorker/draftAnOrder/draftAnOrder5Content";
+import { Helpers } from "../../../../../common/helpers";
 import {
   HowLongWillTheOrderBeInForce,
   orderTypesMap,
-} from "../../../../../journeys/manageCases/caseWorker/draftAnOrder/draftAnOrder.ts";
+} from "../../../../../journeys/manageCases/caseWorker/draftAnOrder/draftAnOrder";
 import { Page } from "@playwright/test";
-import { NonMolestationOrder5Content } from "../../../../../fixtures/manageCases/caseWorker/draftAnOrder/nonMolestationOrder/nonMolestationOrder5Content.ts";
+import { NonMolestationOrder5Content } from "../../../../../fixtures/manageCases/caseWorker/draftAnOrder/nonMolestationOrder/nonMolestationOrder5Content";
 
 enum UniqueSelectors {
   orderMentionsProperty = "#fl404CustomFields_fl404bMentionedProperty_Yes",

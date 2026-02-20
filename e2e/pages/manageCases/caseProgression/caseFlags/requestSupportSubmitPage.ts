@@ -1,13 +1,10 @@
 import { Page } from "@playwright/test";
-import {
-  solicitorCaseCreateType,
-  SupportType,
-} from "../../../../common/types.ts";
-import { Selectors } from "../../../../common/selectors.ts";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { solicitorCaseCreateType, SupportType } from "../../../../common/types";
+import { Selectors } from "../../../../common/selectors";
+import { CommonStaticText } from "../../../../common/commonStaticText";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { RequestSupportSubmitContent } from "../../../../fixtures/manageCases/caseProgression/caseFlags/requestSupportSubmitContent.ts";
-import { Helpers } from "../../../../common/helpers.ts";
+import { RequestSupportSubmitContent } from "../../../../fixtures/manageCases/caseProgression/caseFlags/requestSupportSubmitContent";
+import { Helpers } from "../../../../common/helpers";
 
 export class RequestSupportSubmitPage {
   public static async requestSupportSubmitPage(

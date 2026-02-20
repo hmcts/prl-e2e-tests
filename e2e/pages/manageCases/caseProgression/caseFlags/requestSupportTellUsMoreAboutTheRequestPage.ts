@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors.ts";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
-import { Helpers } from "../../../../common/helpers.ts";
+import { Selectors } from "../../../../common/selectors";
+import { CommonStaticText } from "../../../../common/commonStaticText";
+import { Helpers } from "../../../../common/helpers";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { RequestSupportTellUsMoreAboutTheRequestContent } from "../../../../fixtures/manageCases/caseProgression/caseFlags/requestSupportTellUsMoreAboutTheRequestContent.ts";
+import { RequestSupportTellUsMoreAboutTheRequestContent } from "../../../../fixtures/manageCases/caseProgression/caseFlags/requestSupportTellUsMoreAboutTheRequestContent";
 
 enum UniqueSelectors {
   flagCommentsTextbox = "#flagComments",

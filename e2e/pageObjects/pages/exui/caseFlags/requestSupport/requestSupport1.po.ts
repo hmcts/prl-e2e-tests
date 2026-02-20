@@ -1,4 +1,4 @@
-import { Base } from "../../../base.po.ts";
+import { Base } from "../../../base.po";
 import { expect, Locator, Page } from "@playwright/test";
 
 // Not a standard event page so don't extend EventPage

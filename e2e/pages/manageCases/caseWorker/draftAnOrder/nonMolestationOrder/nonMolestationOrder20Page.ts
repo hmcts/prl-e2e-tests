@@ -1,12 +1,12 @@
 import { Locator, Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
-import { HowLongWillTheOrderBeInForce } from "../../../../../journeys/manageCases/caseWorker/draftAnOrder/draftAnOrder.ts";
-import { NonMolestationOrder20Content } from "../../../../../fixtures/manageCases/caseWorker/draftAnOrder/nonMolestationOrder/nonMolestationOrder20Content.ts";
+import { Selectors } from "../../../../../common/selectors";
+import { Helpers } from "../../../../../common/helpers";
+import { HowLongWillTheOrderBeInForce } from "../../../../../journeys/manageCases/caseWorker/draftAnOrder/draftAnOrder";
+import { NonMolestationOrder20Content } from "../../../../../fixtures/manageCases/caseWorker/draftAnOrder/nonMolestationOrder/nonMolestationOrder20Content";
 import {
   clippingCoords,
   ExuiMediaViewerPage,
-} from "../../../../../pageObjects/pages/exui/exuiMediaViewer.po.ts";
+} from "../../../../../pageObjects/pages/exui/exuiMediaViewer.po";
 
 export class NonMolestationOrder20Page {
   public static async checkPdfLinks(page: Page): Promise<void> {

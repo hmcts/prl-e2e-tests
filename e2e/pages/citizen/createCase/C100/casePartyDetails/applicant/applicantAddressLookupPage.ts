@@ -1,9 +1,9 @@
 import { AxeUtils } from "@hmcts/playwright-common";
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../../common/selectors.ts";
-import { ApplicantAddressLookupContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/applicant/applicantAddressLookupContent.ts";
-import { Helpers } from "../../../../../../common/helpers.ts";
-import { CommonStaticText } from "../../../../../../common/commonStaticText.ts";
+import { Selectors } from "../../../../../../common/selectors";
+import { ApplicantAddressLookupContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/applicant/applicantAddressLookupContent";
+import { Helpers } from "../../../../../../common/helpers";
+import { CommonStaticText } from "../../../../../../common/commonStaticText";
 
 interface applicantAddressLookupOptions {
   page: Page;

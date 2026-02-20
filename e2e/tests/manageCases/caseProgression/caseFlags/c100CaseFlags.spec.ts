@@ -1,8 +1,8 @@
-import Config from "../../../../utils/config.utils.ts";
-import config from "../../../../utils/config.utils.ts";
-import { Helpers } from "../../../../common/helpers.ts";
-import { CaseFlagsCA } from "../../../../journeys/manageCases/caseProgression/caseFlags/caseFlagsCA.ts";
-import { test } from "../../../fixtures.ts";
+import Config from "../../../../utils/config.utils";
+import config from "../../../../utils/config.utils";
+import { Helpers } from "../../../../common/helpers";
+import { CaseFlagsCA } from "../../../../journeys/manageCases/caseProgression/caseFlags/caseFlagsCA";
+import { test } from "../../../fixtures";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 test.slow();

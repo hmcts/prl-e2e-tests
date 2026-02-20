@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors.ts";
-import { SelectApplicationType1Content } from "../../../../../fixtures/manageCases/createCase/C100/selectApplicationType/selectApplicationType1Content.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
+import { Selectors } from "../../../../../common/selectors";
+import { SelectApplicationType1Content } from "../../../../../fixtures/manageCases/createCase/C100/selectApplicationType/selectApplicationType1Content";
+import { Helpers } from "../../../../../common/helpers";
 import { AxeUtils } from "@hmcts/playwright-common";
 
 export type typeOfChildArrangementOrderID =

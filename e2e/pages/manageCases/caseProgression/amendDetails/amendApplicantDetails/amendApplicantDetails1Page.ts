@@ -1,10 +1,10 @@
 import { expect, Page } from "@playwright/test";
-import { Helpers } from "../../../../../common/helpers.ts";
-import { Selectors } from "../../../../../common/selectors.ts";
-import { ApplicantGender } from "../../../../../common/types.ts";
-import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
+import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors";
+import { ApplicantGender } from "../../../../../common/types";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { FileUploadComponent } from "../../../../../pageObjects/components/exui/uploadFile.component.ts";
+import { FileUploadComponent } from "../../../../../pageObjects/components/exui/uploadFile.component";
 import { AmendApplicantDetails1Content } from "../../../../../fixtures/manageCases/caseProgression/amendDetails/amendApplicantDetails/AmendApplicantDetails1Content.js";
 
 interface AmendApplicantDetails1Options {

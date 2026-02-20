@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors.ts";
+import { Selectors } from "../../../../../common/selectors";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { ListOfApplications2Content } from "../../../../../fixtures/citizen/caseView/makeRequestToCourtAboutCase/applicant/listOfApplications2Content.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
+import { ListOfApplications2Content } from "../../../../../fixtures/citizen/caseView/makeRequestToCourtAboutCase/applicant/listOfApplications2Content";
+import { Helpers } from "../../../../../common/helpers";
 
 export class ListOfApplications2Page {
   public static async listOfApplications2Page(

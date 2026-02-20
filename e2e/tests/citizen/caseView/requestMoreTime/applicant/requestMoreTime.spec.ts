@@ -1,7 +1,7 @@
-import { test } from "../../../../fixtures.ts";
-import config from "../../../../../utils/config.utils.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
-import { RequestMoreTime } from "../../../../../journeys/citizen/caseView/requestMoreTime/applicant/requestMoreTime.ts";
+import { test } from "../../../../fixtures";
+import config from "../../../../../utils/config.utils";
+import { Helpers } from "../../../../../common/helpers";
+import { RequestMoreTime } from "../../../../../journeys/citizen/caseView/requestMoreTime/applicant/requestMoreTime";
 
 test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 

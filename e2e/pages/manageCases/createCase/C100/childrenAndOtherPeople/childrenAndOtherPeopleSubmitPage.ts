@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { Helpers } from "../../../../../common/helpers.ts";
-import { Selectors } from "../../../../../common/selectors.ts";
-import { ChildrenAndOtherPeople1Content } from "../../../../../fixtures/manageCases/createCase/C100/childrenAndOtherPeople/childrenAndOtherPeople1Content.ts";
-import { ChildrenAndOtherPeopleSubmitContent } from "../../../../../fixtures/manageCases/createCase/C100/childrenAndOtherPeople/childrenAndOtherPeopleSubmitContent.ts";
-import { ChildrenAndRespondentsSubmitContent } from "../../../../../fixtures/manageCases/createCase/C100/childrenAndRespondents/childrenAndRespondentsSubmitContent.ts";
+import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors";
+import { ChildrenAndOtherPeople1Content } from "../../../../../fixtures/manageCases/createCase/C100/childrenAndOtherPeople/childrenAndOtherPeople1Content";
+import { ChildrenAndOtherPeopleSubmitContent } from "../../../../../fixtures/manageCases/createCase/C100/childrenAndOtherPeople/childrenAndOtherPeopleSubmitContent";
+import { ChildrenAndRespondentsSubmitContent } from "../../../../../fixtures/manageCases/createCase/C100/childrenAndRespondents/childrenAndRespondentsSubmitContent";
 import { AxeUtils } from "@hmcts/playwright-common";
 
 export class ChildrenAndOtherPeopleSubmitPage {

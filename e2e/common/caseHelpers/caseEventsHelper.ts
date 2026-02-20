@@ -1,9 +1,9 @@
 import { Browser, BrowserContext, Page } from "@playwright/test";
-import { jsonDatas } from "./jsonDatas.ts";
-import Config from "../../utils/config.utils.ts";
-import { Helpers } from "../helpers.ts";
-import { CompleteTheOrder } from "../../journeys/manageCases/caseProgression/completeTheOrder/completeTheOrder.ts";
-import { applicationSubmittedBy, createOrderFL401Options } from "../types.ts";
+import { jsonDatas } from "./jsonDatas";
+import Config from "../../utils/config.utils";
+import { Helpers } from "../helpers";
+import { CompleteTheOrder } from "../../journeys/manageCases/caseProgression/completeTheOrder/completeTheOrder";
+import { applicationSubmittedBy, createOrderFL401Options } from "../types";
 import { ConfidentialityCheck } from "../../journeys/manageCases/caseProgression/confidentilityCheck/confidentialityCheck.js";
 import { CaseEventUtils } from "../../utils/caseEvent.utils.js";
 

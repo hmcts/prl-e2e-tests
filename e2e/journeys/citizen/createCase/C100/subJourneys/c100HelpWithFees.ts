@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
-import { NeedHelpWithFeesPage } from "../../../../../pages/citizen/createCase/C100/helpWithFees/needHelpWithFeesPage.ts";
-import { FeesAppliedPage } from "../../../../../pages/citizen/createCase/C100/helpWithFees/feesAppliedPage.ts";
-import { FeeGuidancePage } from "../../../../../pages/citizen/createCase/C100/helpWithFees/feeGuidancePage.ts";
+import { NeedHelpWithFeesPage } from "../../../../../pages/citizen/createCase/C100/helpWithFees/needHelpWithFeesPage";
+import { FeesAppliedPage } from "../../../../../pages/citizen/createCase/C100/helpWithFees/feesAppliedPage";
+import { FeeGuidancePage } from "../../../../../pages/citizen/createCase/C100/helpWithFees/feeGuidancePage";
 
 interface C100HelpWithFeesOptions {
   page: Page;

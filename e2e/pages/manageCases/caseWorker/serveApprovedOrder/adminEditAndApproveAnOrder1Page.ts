@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors.ts";
-import { AdminEditAndApproveAnOrder1Content } from "../../../../fixtures/manageCases/caseWorker/serveApprovedOrder/adminEditAndApproveAnOrder1Content.ts";
-import { Helpers } from "../../../../common/helpers.ts";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { Selectors } from "../../../../common/selectors";
+import { AdminEditAndApproveAnOrder1Content } from "../../../../fixtures/manageCases/caseWorker/serveApprovedOrder/adminEditAndApproveAnOrder1Content";
+import { Helpers } from "../../../../common/helpers";
+import { CommonStaticText } from "../../../../common/commonStaticText";
 
 export class AdminEditAndApproveAnOrder1Page {
   public static async adminEditAndApproveAnOrder1Page(

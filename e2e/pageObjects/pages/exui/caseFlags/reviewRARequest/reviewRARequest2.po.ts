@@ -1,7 +1,7 @@
-import { Base } from "../../../base.po.ts";
+import { Base } from "../../../base.po";
 import { expect, Locator, Page } from "@playwright/test";
-import { PageUtils } from "../../../../../utils/page.utils.ts";
-import { solicitorCaseCreateType } from "../../../../../common/types.ts";
+import { PageUtils } from "../../../../../utils/page.utils";
+import { solicitorCaseCreateType } from "../../../../../common/types";
 
 // Not a standard event page so don't extend EventPage
 export class ReviewRARequest2Page extends Base {

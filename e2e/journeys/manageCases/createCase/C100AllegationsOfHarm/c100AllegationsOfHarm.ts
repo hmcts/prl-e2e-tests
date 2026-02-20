@@ -1,22 +1,22 @@
 import { Page } from "@playwright/test";
-import { C100ChildDetails } from "../C100ChildDetails/c100ChildDetails.ts";
-import { AllegationsOfHarmRevised1Page } from "../../../../pages/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevised1Page.ts";
-import { AllegationsOfHarmRevised2Page } from "../../../../pages/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevised2Page.ts";
+import { C100ChildDetails } from "../C100ChildDetails/c100ChildDetails";
+import { AllegationsOfHarmRevised1Page } from "../../../../pages/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevised1Page";
+import { AllegationsOfHarmRevised2Page } from "../../../../pages/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevised2Page";
 import {
   AllegationsOfHarmRevised3Page,
   C100AllegationsOfHarmTypeOfDomesticAbuse,
-} from "../../../../pages/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevised3Page.ts";
-import { AllegationsOfHarmRevised4Page } from "../../../../pages/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevised4Page.ts";
-import { AllegationsOfHarmRevised5Page } from "../../../../pages/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevised5Page.ts";
-import { AllegationsOfHarmRevised6Page } from "../../../../pages/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevised6Page.ts";
-import { AllegationsOfHarmRevised7Page } from "../../../../pages/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevised7Page.ts";
-import { AllegationsOfHarmRevised8Page } from "../../../../pages/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevised8Page.ts";
-import { AllegationsOfHarmRevised9Page } from "../../../../pages/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevised9Page.ts";
-import { AllegationsOfHarmRevised10Page } from "../../../../pages/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevised10Page.ts";
-import { AllegationsOfHarmRevised11Page } from "../../../../pages/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevised11Page.ts";
-import { AllegationsOfHarmRevisedSubmitPage } from "../../../../pages/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevisedSubmitPage.ts";
-import { Helpers } from "../../../../common/helpers.ts";
-import { C100TasksTabPage } from "../../../../pages/manageCases/caseTabs/c100TasksTabPage.ts";
+} from "../../../../pages/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevised3Page";
+import { AllegationsOfHarmRevised4Page } from "../../../../pages/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevised4Page";
+import { AllegationsOfHarmRevised5Page } from "../../../../pages/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevised5Page";
+import { AllegationsOfHarmRevised6Page } from "../../../../pages/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevised6Page";
+import { AllegationsOfHarmRevised7Page } from "../../../../pages/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevised7Page";
+import { AllegationsOfHarmRevised8Page } from "../../../../pages/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevised8Page";
+import { AllegationsOfHarmRevised9Page } from "../../../../pages/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevised9Page";
+import { AllegationsOfHarmRevised10Page } from "../../../../pages/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevised10Page";
+import { AllegationsOfHarmRevised11Page } from "../../../../pages/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevised11Page";
+import { AllegationsOfHarmRevisedSubmitPage } from "../../../../pages/manageCases/createCase/C100/allegationsOfHarm/allegationsOfHarmRevisedSubmitPage";
+import { Helpers } from "../../../../common/helpers";
+import { C100TasksTabPage } from "../../../../pages/manageCases/caseTabs/c100TasksTabPage";
 
 interface C100AllegationsOfHarmOptions {
   page: Page;

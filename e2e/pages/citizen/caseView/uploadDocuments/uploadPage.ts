@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors.ts";
+import { Selectors } from "../../../../common/selectors";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { UploadContent } from "../../../../fixtures/citizen/caseView/uploadDocuments/uploadContent.ts";
-import { Helpers } from "../../../../common/helpers.ts";
+import { UploadContent } from "../../../../fixtures/citizen/caseView/uploadDocuments/uploadContent";
+import { Helpers } from "../../../../common/helpers";
 
 export class UploadPage {
   public static async uploadPage(

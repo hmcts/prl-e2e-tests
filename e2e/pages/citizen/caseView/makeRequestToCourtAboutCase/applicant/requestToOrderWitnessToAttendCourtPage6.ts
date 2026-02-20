@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
+import { Selectors } from "../../../../../common/selectors";
+import { Helpers } from "../../../../../common/helpers";
 // import { AxeUtils } from "@hmcts/playwright-common";
-import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
-import { RequestToOrderWitnessContent6 } from "../../../../../fixtures/citizen/caseView/makeRequestToCourtAboutCase/applicant/requestToOrderWitnessContent6.ts";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { RequestToOrderWitnessContent6 } from "../../../../../fixtures/citizen/caseView/makeRequestToCourtAboutCase/applicant/requestToOrderWitnessContent6";
 
 enum UniqueSelectors {
   urgentReason_Yes = "#awp_isThereReasonForUrgentRequest",

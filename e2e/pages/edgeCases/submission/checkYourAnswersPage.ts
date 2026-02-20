@@ -1,16 +1,16 @@
 import { expect, Page } from "@playwright/test";
-import { Selectors } from "../../../common/selectors.ts";
+import { Selectors } from "../../../common/selectors";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Helpers } from "../../../common/helpers.ts";
-import config from "../../../utils/config.utils.ts";
+import { Helpers } from "../../../common/helpers";
+import config from "../../../utils/config.utils";
 import path from "path";
-import { CheckYourAnswersContent } from "../../../fixtures/edgeCases/submission/checkYourAnswersContent.ts";
-import { TypeOfApplicationContent } from "../../../fixtures/edgeCases/typeOfApplicationContent.ts";
-import { EdgeCaseApplicationType } from "../../../common/types.ts";
-import { AddressLookupContent } from "../../../fixtures/edgeCases/personalDetails/addressLookupContent.ts";
-import { ContactDetailsContent } from "../../../fixtures/edgeCases/personalDetails/contactDetailsContent.ts";
-import { SelectCourtContent } from "../../../fixtures/edgeCases/selectCourtContent.ts";
-import { FullNameContent } from "../../../fixtures/edgeCases/personalDetails/fullNameContent.ts";
+import { CheckYourAnswersContent } from "../../../fixtures/edgeCases/submission/checkYourAnswersContent";
+import { TypeOfApplicationContent } from "../../../fixtures/edgeCases/typeOfApplicationContent";
+import { EdgeCaseApplicationType } from "../../../common/types";
+import { AddressLookupContent } from "../../../fixtures/edgeCases/personalDetails/addressLookupContent";
+import { ContactDetailsContent } from "../../../fixtures/edgeCases/personalDetails/contactDetailsContent";
+import { SelectCourtContent } from "../../../fixtures/edgeCases/selectCourtContent";
+import { FullNameContent } from "../../../fixtures/edgeCases/personalDetails/fullNameContent";
 
 interface CheckYourAnswersPageOptions {
   page: Page;

@@ -1,5 +1,5 @@
-import config from "../../../../utils/config.utils.ts";
-import { test, expect } from "../../../fixtures.ts";
+import config from "../../../../utils/config.utils";
+import { test, expect } from "../../../fixtures";
 
 test.describe("Validating auto-generated case names for DA case", () => {
   let caseNumber: string;

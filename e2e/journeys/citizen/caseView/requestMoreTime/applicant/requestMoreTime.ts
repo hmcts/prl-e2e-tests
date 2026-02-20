@@ -1,16 +1,16 @@
-import { ActivateCase, CaseUser } from "../../../activateCase/activateCase.ts";
+import { ActivateCase, CaseUser } from "../../../activateCase/activateCase";
 import { Browser, Page } from "@playwright/test";
-import { GuidanceApplicantPage } from "../../../../../pages/citizen/caseView/requestMoreTime/guidanceApplicantPage.ts";
-import { UploadYourApplicationPage } from "../../../../../pages/citizen/caseView/requestMoreTime/uploadYourApplicationPage.ts";
-import { AgreementForRequestPage } from "../../../../../pages/citizen/caseView/requestMoreTime/agreementForRequestPage.ts";
-import { DocumentUploadPage } from "../../../../../pages/citizen/caseView/requestMoreTime/documentUploadPage.ts";
-import { SupportingDocumentsPage } from "../../../../../pages/citizen/caseView/requestMoreTime/supportingDocumentsPage.ts";
-import { SupportingDocumentUploadPage } from "../../../../../pages/citizen/caseView/requestMoreTime/supportingDocumentUploadPage.ts";
-import { UrgentRequestPage } from "../../../../../pages/citizen/caseView/requestMoreTime/urgentRequestPage.ts";
-import { CheckAnswersApplicantPage } from "../../../../../pages/citizen/caseView/requestMoreTime/checkAnswersApplicantPage.ts";
-import { applicationSubmittedBy } from "../../../../../common/types.ts";
-import { Selectors } from "../../../../../common/selectors.ts";
-import { ListOfApplications1Content } from "../../../../../fixtures/citizen/caseView/makeRequestToCourtAboutCase/applicant/listOfApplications1Content.ts";
+import { GuidanceApplicantPage } from "../../../../../pages/citizen/caseView/requestMoreTime/guidanceApplicantPage";
+import { UploadYourApplicationPage } from "../../../../../pages/citizen/caseView/requestMoreTime/uploadYourApplicationPage";
+import { AgreementForRequestPage } from "../../../../../pages/citizen/caseView/requestMoreTime/agreementForRequestPage";
+import { DocumentUploadPage } from "../../../../../pages/citizen/caseView/requestMoreTime/documentUploadPage";
+import { SupportingDocumentsPage } from "../../../../../pages/citizen/caseView/requestMoreTime/supportingDocumentsPage";
+import { SupportingDocumentUploadPage } from "../../../../../pages/citizen/caseView/requestMoreTime/supportingDocumentUploadPage";
+import { UrgentRequestPage } from "../../../../../pages/citizen/caseView/requestMoreTime/urgentRequestPage";
+import { CheckAnswersApplicantPage } from "../../../../../pages/citizen/caseView/requestMoreTime/checkAnswersApplicantPage";
+import { applicationSubmittedBy } from "../../../../../common/types";
+import { Selectors } from "../../../../../common/selectors";
+import { ListOfApplications1Content } from "../../../../../fixtures/citizen/caseView/makeRequestToCourtAboutCase/applicant/listOfApplications1Content";
 
 interface requestMoreTimeParams {
   page: Page;

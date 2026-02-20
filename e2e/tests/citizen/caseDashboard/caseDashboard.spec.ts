@@ -1,6 +1,6 @@
-import { test } from "../../fixtures.ts";
-import Config from "../../../utils/config.utils.ts";
-import { CitizenCreateInitial } from "../../../journeys/citizen/citizenCreateInitial.ts";
+import { test } from "../../fixtures";
+import Config from "../../../utils/config.utils";
+import { CitizenCreateInitial } from "../../../journeys/citizen/citizenCreateInitial";
 
 test.describe("Manage citizen cases case dashboard tests.", (): void => {
   test.beforeEach(async ({ page, idamLoginHelper }) => {

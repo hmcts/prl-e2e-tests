@@ -1,10 +1,10 @@
 import { Page } from "@playwright/test";
 // import { AxeUtils } from "@hmcts/playwright-common";
-import { Selectors } from "../../../../common/selectors.ts";
-import { AdminEditAndApproveAnOrder1Content } from "../../../../fixtures/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrder1Content.ts";
-import { Helpers } from "../../../../common/helpers.ts";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
-import { createOrderFL401Options } from "../../../../common/types.ts";
+import { Selectors } from "../../../../common/selectors";
+import { AdminEditAndApproveAnOrder1Content } from "../../../../fixtures/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrder1Content";
+import { Helpers } from "../../../../common/helpers";
+import { CommonStaticText } from "../../../../common/commonStaticText";
+import { createOrderFL401Options } from "../../../../common/types";
 
 export class AdminEditAndApproveAnOrder1Page {
   public static async adminEditAndApproveAnOrder1Page(

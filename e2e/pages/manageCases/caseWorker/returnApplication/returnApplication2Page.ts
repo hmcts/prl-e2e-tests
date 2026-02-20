@@ -1,10 +1,10 @@
 import { Page, expect } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors.ts";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
-import { ReturnApplication2Content } from "../../../../fixtures/manageCases/caseWorker/returnApplication/returnApplication2Content.ts";
-import { Helpers } from "../../../../common/helpers.ts";
+import { Selectors } from "../../../../common/selectors";
+import { CommonStaticText } from "../../../../common/commonStaticText";
+import { ReturnApplication2Content } from "../../../../fixtures/manageCases/caseWorker/returnApplication/returnApplication2Content";
+import { Helpers } from "../../../../common/helpers";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { solicitorCaseCreateType } from "../../../../common/types.ts";
+import { solicitorCaseCreateType } from "../../../../common/types";
 
 interface ReturnApplication2PageOptions {
   page: Page;

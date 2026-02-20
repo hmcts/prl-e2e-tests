@@ -1,12 +1,12 @@
 import { Page } from "@playwright/test";
-import { CommonStaticText } from "../../../../../../common/commonStaticText.ts";
+import { CommonStaticText } from "../../../../../../common/commonStaticText";
 import {
   reportAbuseCheckboxIDs,
   reportAbuseInputIDs,
-} from "../../../../../../common/commonUniqueSelectors.ts";
-import { Selectors } from "../../../../../../common/selectors.ts";
-import { FinancialAbuseContent } from "../../../../../../fixtures/citizen/createCase/C100/safetyConcerns/childConcerns/financialAbuseContent.ts";
-import { SafetyConcernHelpers } from "../safetyConcernHelpers.ts";
+} from "../../../../../../common/commonUniqueSelectors";
+import { Selectors } from "../../../../../../common/selectors";
+import { FinancialAbuseContent } from "../../../../../../fixtures/citizen/createCase/C100/safetyConcerns/childConcerns/financialAbuseContent";
+import { SafetyConcernHelpers } from "../safetyConcernHelpers";
 import { AxeUtils } from "@hmcts/playwright-common";
 
 interface FinancialAbusePageOptions {

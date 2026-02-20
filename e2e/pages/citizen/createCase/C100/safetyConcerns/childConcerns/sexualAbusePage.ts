@@ -1,12 +1,12 @@
 import { Page } from "@playwright/test";
-import { CommonStaticText } from "../../../../../../common/commonStaticText.ts";
+import { CommonStaticText } from "../../../../../../common/commonStaticText";
 import {
   reportAbuseCheckboxIDs,
   reportAbuseInputIDs,
-} from "../../../../../../common/commonUniqueSelectors.ts";
-import { Selectors } from "../../../../../../common/selectors.ts";
-import { SexualAbuseContent } from "../../../../../../fixtures/citizen/createCase/C100/safetyConcerns/childConcerns/sexualAbuseContent.ts";
-import { SafetyConcernHelpers } from "../safetyConcernHelpers.ts";
+} from "../../../../../../common/commonUniqueSelectors";
+import { Selectors } from "../../../../../../common/selectors";
+import { SexualAbuseContent } from "../../../../../../fixtures/citizen/createCase/C100/safetyConcerns/childConcerns/sexualAbuseContent";
+import { SafetyConcernHelpers } from "../safetyConcernHelpers";
 import { AxeUtils } from "@hmcts/playwright-common";
 
 interface SexualAbusePageOptions {

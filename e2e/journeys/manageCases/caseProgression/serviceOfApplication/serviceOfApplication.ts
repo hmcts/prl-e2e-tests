@@ -1,19 +1,19 @@
 import { Browser, expect, Page } from "@playwright/test";
-import { Helpers } from "../../../../common/helpers.ts";
-import { ServiceOfApplication2Page } from "../../../../pages/manageCases/caseProgression/serviceOfApplication/serviceOfApplication2Page.ts";
+import { Helpers } from "../../../../common/helpers";
+import { ServiceOfApplication2Page } from "../../../../pages/manageCases/caseProgression/serviceOfApplication/serviceOfApplication2Page";
 import {
   responsibleForServing,
   ServiceOfApplication4Page,
-} from "../../../../pages/manageCases/caseProgression/serviceOfApplication/ServiceOfApplication4Page.ts";
-import { ServiceOfApplicationSubmitPage } from "../../../../pages/manageCases/caseProgression/serviceOfApplication/serviceOfApplicationSubmitPage.ts";
-import { ServiceOfApplicationConfirmPage } from "../../../../pages/manageCases/caseProgression/serviceOfApplication/serviceOfApplicationConfirmPage.ts";
+} from "../../../../pages/manageCases/caseProgression/serviceOfApplication/ServiceOfApplication4Page";
+import { ServiceOfApplicationSubmitPage } from "../../../../pages/manageCases/caseProgression/serviceOfApplication/serviceOfApplicationSubmitPage";
+import { ServiceOfApplicationConfirmPage } from "../../../../pages/manageCases/caseProgression/serviceOfApplication/serviceOfApplicationConfirmPage";
 import {
   applicationSubmittedBy,
   createOrderFL401Options,
   solicitorCaseCreateType,
-} from "../../../../common/types.ts";
-import { CompleteTheOrder } from "../completeTheOrder/completeTheOrder.ts";
-import { jsonDatas } from "../../../../common/caseHelpers/jsonDatas.ts";
+} from "../../../../common/types";
+import { CompleteTheOrder } from "../completeTheOrder/completeTheOrder";
+import { jsonDatas } from "../../../../common/caseHelpers/jsonDatas";
 import { C100ServiceOfApplication2Page } from "../../../../pages/manageCases/caseProgression/serviceOfApplication/c100ServiceOfApplication2Page.js";
 import { C100ServiceOfApplication4Page } from "../../../../pages/manageCases/caseProgression/serviceOfApplication/c100ServiceOfApplication4Page.js";
 import { C100ServiceOfApplicationSubmitPage } from "../../../../pages/manageCases/caseProgression/serviceOfApplication/C100ServiceOfApplicationSubmitPage.js";

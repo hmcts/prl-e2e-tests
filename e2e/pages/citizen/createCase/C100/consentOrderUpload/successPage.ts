@@ -1,9 +1,9 @@
 import { AxeUtils } from "@hmcts/playwright-common";
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors.ts";
-import { SuccessPageContent } from "../../../../../fixtures/citizen/createCase/C100/consentOrderUpload/successPageContent.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
-import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
+import { Selectors } from "../../../../../common/selectors";
+import { SuccessPageContent } from "../../../../../fixtures/citizen/createCase/C100/consentOrderUpload/successPageContent";
+import { Helpers } from "../../../../../common/helpers";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
 
 interface SuccessPageOptions {
   page: Page;

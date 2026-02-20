@@ -1,5 +1,5 @@
-import { test, expect } from "../../../fixtures.ts";
-import config from "../../../../utils/config.utils.ts";
+import { test, expect } from "../../../fixtures";
+import config from "../../../../utils/config.utils";
 
 test.describe("Check Application task for DA Solicitor case tests.", () => {
   let caseNumber: string;

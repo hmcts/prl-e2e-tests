@@ -1,5 +1,5 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors.ts";
+import { Selectors } from "../../../../common/selectors";
 import { AxeUtils } from "@hmcts/playwright-common";
 import { FL401DraftOrdersTabContent } from "../../../../fixtures/manageCases/caseTabs/FL401/FL401DraftOrdersTabContent.js";
 

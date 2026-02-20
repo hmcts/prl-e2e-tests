@@ -1,10 +1,10 @@
 import { expect, Page } from "@playwright/test";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Helpers } from "../../../../../common/helpers.ts";
-import { Selectors } from "../../../../../common/selectors.ts";
-import { ApplicantGender } from "../../../../../common/types.ts";
+import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors";
+import { ApplicantGender } from "../../../../../common/types";
 import { OtherPeopleInTheCase1Content } from "../../../../../fixtures/manageCases/createCase/C100/otherPeopleInTheCaseRevised/otherPeopleInTheCaseRevised1Content.js";
-import config from "../../../../../utils/config.utils.ts";
+import config from "../../../../../utils/config.utils";
 
 enum UniqueSelectors {
   applicantFirstNameInput = "#otherPartyInTheCaseRevised_0_firstName",

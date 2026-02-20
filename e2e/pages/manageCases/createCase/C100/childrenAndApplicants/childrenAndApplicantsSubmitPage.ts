@@ -1,12 +1,12 @@
-import { C100ChildrenAndApplicantsRelationship } from "./childrenAndApplicants1Page.ts";
+import { C100ChildrenAndApplicantsRelationship } from "./childrenAndApplicants1Page";
 import { Page } from "@playwright/test";
-import { ChildrenAndApplicantsSubmitContent } from "../../../../../fixtures/manageCases/createCase/C100/childrenAndApplicants/childrenAndApplicantsSubmitContent.ts";
-import { Selectors } from "../../../../../common/selectors.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
+import { ChildrenAndApplicantsSubmitContent } from "../../../../../fixtures/manageCases/createCase/C100/childrenAndApplicants/childrenAndApplicantsSubmitContent";
+import { Selectors } from "../../../../../common/selectors";
+import { Helpers } from "../../../../../common/helpers";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { ApplicantDetails1Content } from "../../../../../fixtures/manageCases/createCase/C100/applicantDetails/applicantDetails1Content.ts";
-import { ChildDetailsRevised1Content } from "../../../../../fixtures/manageCases/createCase/C100/childDetails/childDetailsRevised1Content.ts";
-import { ChildrenAndApplicants1Content } from "../../../../../fixtures/manageCases/createCase/C100/childrenAndApplicants/childrenAndApplicants1Content.ts";
+import { ApplicantDetails1Content } from "../../../../../fixtures/manageCases/createCase/C100/applicantDetails/applicantDetails1Content";
+import { ChildDetailsRevised1Content } from "../../../../../fixtures/manageCases/createCase/C100/childDetails/childDetailsRevised1Content";
+import { ChildrenAndApplicants1Content } from "../../../../../fixtures/manageCases/createCase/C100/childrenAndApplicants/childrenAndApplicants1Content";
 
 interface ChildrenAndApplicantsSubmitPageOptions {
   page: Page;

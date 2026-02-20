@@ -1,16 +1,16 @@
-import { ActivateCase, CaseUser } from "../../activateCase/activateCase.ts";
+import { ActivateCase, CaseUser } from "../../activateCase/activateCase";
 import { Browser, Page } from "@playwright/test";
-import { IntroPage } from "../../../../pages/citizen/caseView/reasonableAdjustments/introPage.ts";
-import { LanguageRequirementsAndSpecialArrangementsPage } from "../../../../pages/citizen/caseView/reasonableAdjustments/languageRequirementsAndSpecialArrangementsPage.ts";
-import { LanguageRequirementsAndSpecialArrangementsReviewPage } from "../../../../pages/citizen/caseView/reasonableAdjustments/languageRequirementsAndSpecialArrangementsReviewPage.ts";
-import { ReasonableAdjustmentsSelectionPage } from "../../../../pages/citizen/caseView/reasonableAdjustments/reasonableAdjustmentsSelectionPage.ts";
-import { HelpCommunicatingAndUnderstandingPage } from "../../../../pages/citizen/caseView/reasonableAdjustments/helpCommunicatingAndUnderstandingPage.ts";
-import { ReasonableAdjustmentsReviewPage } from "../../../../pages/citizen/caseView/reasonableAdjustments/reasonableAdjustmentsReviewPage.ts";
-import { ConfirmationPage } from "../../../../pages/citizen/caseView/reasonableAdjustments/confirmationPage.ts";
-import { Helpers } from "../../../../common/helpers.ts";
-import config from "../../../../utils/config.utils.ts";
-import { Selectors } from "../../../../common/selectors.ts";
-import { applicationSubmittedBy } from "../../../../common/types.ts";
+import { IntroPage } from "../../../../pages/citizen/caseView/reasonableAdjustments/introPage";
+import { LanguageRequirementsAndSpecialArrangementsPage } from "../../../../pages/citizen/caseView/reasonableAdjustments/languageRequirementsAndSpecialArrangementsPage";
+import { LanguageRequirementsAndSpecialArrangementsReviewPage } from "../../../../pages/citizen/caseView/reasonableAdjustments/languageRequirementsAndSpecialArrangementsReviewPage";
+import { ReasonableAdjustmentsSelectionPage } from "../../../../pages/citizen/caseView/reasonableAdjustments/reasonableAdjustmentsSelectionPage";
+import { HelpCommunicatingAndUnderstandingPage } from "../../../../pages/citizen/caseView/reasonableAdjustments/helpCommunicatingAndUnderstandingPage";
+import { ReasonableAdjustmentsReviewPage } from "../../../../pages/citizen/caseView/reasonableAdjustments/reasonableAdjustmentsReviewPage";
+import { ConfirmationPage } from "../../../../pages/citizen/caseView/reasonableAdjustments/confirmationPage";
+import { Helpers } from "../../../../common/helpers";
+import config from "../../../../utils/config.utils";
+import { Selectors } from "../../../../common/selectors";
+import { applicationSubmittedBy } from "../../../../common/types";
 
 interface reasonableAdjustmentsParams {
   page: Page;

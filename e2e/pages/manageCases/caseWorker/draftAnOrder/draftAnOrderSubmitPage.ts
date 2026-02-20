@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { OrderType } from "../../../../common/types.ts";
-import { NonMolestationOrderSubmitPage } from "./nonMolestationOrder/nonMolestationOrderSubmitPage.ts";
-import { Selectors } from "../../../../common/selectors.ts";
-import { HowLongWillTheOrderBeInForce } from "../../../../journeys/manageCases/caseWorker/draftAnOrder/draftAnOrder.ts";
+import { OrderType } from "../../../../common/types";
+import { NonMolestationOrderSubmitPage } from "./nonMolestationOrder/nonMolestationOrderSubmitPage";
+import { Selectors } from "../../../../common/selectors";
+import { HowLongWillTheOrderBeInForce } from "../../../../journeys/manageCases/caseWorker/draftAnOrder/draftAnOrder";
 
 export class DraftAnOrderSubmitPage {
   public static async draftAnOrderSubmitPage(

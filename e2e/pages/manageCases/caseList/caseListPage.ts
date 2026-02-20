@@ -1,10 +1,10 @@
 import { Page, expect } from "@playwright/test";
-import { Helpers } from "../../../common/helpers.ts";
-import { Selectors } from "../../../common/selectors.ts";
-import Config from "../../../utils/config.utils.ts";
-import { CaseListContent } from "../../../fixtures/manageCases/caseList/caseListContent.ts";
-import { CommonContent } from "../../../fixtures/manageCases/commonContent.ts";
-import { CommonPage } from "../commonPage.ts";
+import { Helpers } from "../../../common/helpers";
+import { Selectors } from "../../../common/selectors";
+import Config from "../../../utils/config.utils";
+import { CaseListContent } from "../../../fixtures/manageCases/caseList/caseListContent";
+import { CommonContent } from "../../../fixtures/manageCases/commonContent";
+import { CommonPage } from "../commonPage";
 
 export class CaseListPage extends CommonPage {
   public static async casesListPage(

@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Selectors } from "../../../../common/selectors.ts";
-import { SubmitContent } from "../../../../fixtures/manageCases/createCase/initialJourney/submitContent.ts";
-import { Helpers } from "../../../../common/helpers.ts";
+import { Selectors } from "../../../../common/selectors";
+import { SubmitContent } from "../../../../fixtures/manageCases/createCase/initialJourney/submitContent";
+import { Helpers } from "../../../../common/helpers";
 
 export class SubmitPage {
   public static async submitPage(

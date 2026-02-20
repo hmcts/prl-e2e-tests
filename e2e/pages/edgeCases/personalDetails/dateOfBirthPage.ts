@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../common/selectors.ts";
+import { Selectors } from "../../../common/selectors";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Helpers } from "../../../common/helpers.ts";
-import { DateOfBirthContent } from "../../../fixtures/edgeCases/personalDetails/dateOfBirthContent.ts";
+import { Helpers } from "../../../common/helpers";
+import { DateOfBirthContent } from "../../../fixtures/edgeCases/personalDetails/dateOfBirthContent";
 
 interface DateOfBirthOptions {
   page: Page;

@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors.ts";
-import { Helpers } from "../../../../common/helpers.ts";
+import { Selectors } from "../../../../common/selectors";
+import { Helpers } from "../../../../common/helpers";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { C100SummaryTabContent } from "../../../../fixtures/manageCases/caseTabs/C100/c100SummaryTabContent.ts";
+import { C100SummaryTabContent } from "../../../../fixtures/manageCases/caseTabs/C100/c100SummaryTabContent";
 
 export class C100SummaryTabPage {
   public static async c100SummaryTabPage(

@@ -1,8 +1,8 @@
-import { CommonPage } from "../../commonPage.ts";
+import { CommonPage } from "../../commonPage";
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors.ts";
-import { DummyPaymentConfirmationContent } from "../../../../fixtures/manageCases/caseWorker/dummyPayment/dummyPaymentConfirmationContent.ts";
-import { Helpers } from "../../../../common/helpers.ts";
+import { Selectors } from "../../../../common/selectors";
+import { DummyPaymentConfirmationContent } from "../../../../fixtures/manageCases/caseWorker/dummyPayment/dummyPaymentConfirmationContent";
+import { Helpers } from "../../../../common/helpers";
 
 export class DummyPaymentConfirmationPage extends CommonPage {
   public static async dummyPaymentConfirmationPage(page: Page): Promise<void> {

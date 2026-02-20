@@ -1,9 +1,9 @@
 import { expect, Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors.ts";
-import { UploadDocuments1Content } from "../../../../../fixtures/manageCases/createCase/FL401/uploadDocuments/uploadDocuments1Content.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
+import { Selectors } from "../../../../../common/selectors";
+import { UploadDocuments1Content } from "../../../../../fixtures/manageCases/createCase/FL401/uploadDocuments/uploadDocuments1Content";
+import { Helpers } from "../../../../../common/helpers";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Config } from "../../../../../utils/config.utils.ts";
+import { Config } from "../../../../../utils/config.utils";
 
 type wordOrPdfType = "word" | "pdf";
 

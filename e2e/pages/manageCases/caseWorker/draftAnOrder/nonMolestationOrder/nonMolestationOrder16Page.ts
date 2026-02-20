@@ -1,10 +1,10 @@
-import { Helpers } from "../../../../../common/helpers.ts";
-import { Selectors } from "../../../../../common/selectors.ts";
-import { DraftAnOrder16Content } from "../../../../../fixtures/manageCases/caseWorker/draftAnOrder/draftAnOrder16Content.ts";
-import { orderTypesMap } from "../../../../../journeys/manageCases/caseWorker/draftAnOrder/draftAnOrder.ts";
+import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors";
+import { DraftAnOrder16Content } from "../../../../../fixtures/manageCases/caseWorker/draftAnOrder/draftAnOrder16Content";
+import { orderTypesMap } from "../../../../../journeys/manageCases/caseWorker/draftAnOrder/draftAnOrder";
 import { Page } from "@playwright/test";
-import { NonMolestationOrder16Content } from "../../../../../fixtures/manageCases/caseWorker/draftAnOrder/nonMolestationOrder/nonMolestationOrder16Content.ts";
-import { CommonContent } from "../../../../../fixtures/manageCases/commonContent.ts";
+import { NonMolestationOrder16Content } from "../../../../../fixtures/manageCases/caseWorker/draftAnOrder/nonMolestationOrder/nonMolestationOrder16Content";
+import { CommonContent } from "../../../../../fixtures/manageCases/commonContent";
 
 enum UniqueSelectors {
   judgeHasProvidedHearingDetails = "#hasJudgeProvidedHearingDetails_Yes",

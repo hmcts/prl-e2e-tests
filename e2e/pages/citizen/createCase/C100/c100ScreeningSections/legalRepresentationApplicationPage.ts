@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Selectors } from "../../../../../common/selectors.ts";
-import { LegalRepresentationApplicationContent } from "../../../../../fixtures/citizen/createCase/C100/c100ScreeningSections/legalRepresentationApplicationContent.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
-import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
+import { Selectors } from "../../../../../common/selectors";
+import { LegalRepresentationApplicationContent } from "../../../../../fixtures/citizen/createCase/C100/c100ScreeningSections/legalRepresentationApplicationContent";
+import { Helpers } from "../../../../../common/helpers";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
 
 enum inputIDs {
   radioYes = "#sq_legalRepresentationApplication",

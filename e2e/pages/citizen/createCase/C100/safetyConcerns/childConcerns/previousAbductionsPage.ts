@@ -1,10 +1,10 @@
 import { Page } from "@playwright/test";
-import { CommonStaticText } from "../../../../../../common/commonStaticText.ts";
-import { Helpers } from "../../../../../../common/helpers.ts";
-import { Selectors } from "../../../../../../common/selectors.ts";
-import { PreviousAbductionsContent } from "../../../../../../fixtures/citizen/createCase/C100/safetyConcerns/childConcerns/previousAbductionsContent.ts";
+import { CommonStaticText } from "../../../../../../common/commonStaticText";
+import { Helpers } from "../../../../../../common/helpers";
+import { Selectors } from "../../../../../../common/selectors";
+import { PreviousAbductionsContent } from "../../../../../../fixtures/citizen/createCase/C100/safetyConcerns/childConcerns/previousAbductionsContent";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { reportAbuseInputIDs } from "../../../../../../common/commonUniqueSelectors.ts";
+import { reportAbuseInputIDs } from "../../../../../../common/commonUniqueSelectors";
 enum inputIDs {
   abductionDescription = "#c1A_previousAbductionsShortDesc",
   radioYes = "#c1A_policeOrInvestigatorInvolved",

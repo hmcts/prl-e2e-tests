@@ -1,7 +1,7 @@
 import { Page, expect } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors.ts";
+import { Selectors } from "../../../../common/selectors";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { C100DraftOrdersTabContent } from "../../../../fixtures/manageCases/caseTabs/C100/c100DraftOrdersTabContent.ts";
+import { C100DraftOrdersTabContent } from "../../../../fixtures/manageCases/caseTabs/C100/c100DraftOrdersTabContent";
 
 export class C100DraftOrdersTabPage {
   public static async c100DraftOrdersTabPage(

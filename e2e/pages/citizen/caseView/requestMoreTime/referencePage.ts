@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors.ts";
+import { Selectors } from "../../../../common/selectors";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { ReferenceContent } from "../../../../fixtures/citizen/caseView/requestMoreTime/referenceContent.ts";
-import { Helpers } from "../../../../common/helpers.ts";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { ReferenceContent } from "../../../../fixtures/citizen/caseView/requestMoreTime/referenceContent";
+import { Helpers } from "../../../../common/helpers";
+import { CommonStaticText } from "../../../../common/commonStaticText";
 
 enum UniqueSelectors {
   haveRefNumberYes = "#awp_have_hwfReference",

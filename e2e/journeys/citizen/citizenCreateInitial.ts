@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { ApplicantPage } from "../../pages/citizen/createCase/initialJourney/applicantPage.ts";
+import { ApplicantPage } from "../../pages/citizen/createCase/initialJourney/applicantPage";
 import {
   CaseDashboardPage,
   ChildArrangementsJourneyType,
-} from "../../pages/citizen/createCase/initialJourney/caseDashboardPage.ts";
+} from "../../pages/citizen/createCase/initialJourney/caseDashboardPage";
 
 interface CitizenCreateInitialOptions {
   page: Page;

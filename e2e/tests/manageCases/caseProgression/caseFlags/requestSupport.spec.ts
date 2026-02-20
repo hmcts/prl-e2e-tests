@@ -1,10 +1,10 @@
-import Config from "../../../../utils/config.utils.ts";
-import config from "../../../../utils/config.utils.ts";
-import { test } from "../../../fixtures.ts";
-import { SolicitorPagesGroup } from "../../../../pageObjects/roleBasedGroupedPages/solicitorPages.ts";
-import { solicitorCaseCreateType } from "../../../../common/types.ts";
-import { CaseWorkerPagesGroup } from "../../../../pageObjects/roleBasedGroupedPages/caseWorkerPages.ts";
-import { NavigationUtils } from "../../../../utils/navigation.utils.ts";
+import Config from "../../../../utils/config.utils";
+import config from "../../../../utils/config.utils";
+import { test } from "../../../fixtures";
+import { SolicitorPagesGroup } from "../../../../pageObjects/roleBasedGroupedPages/solicitorPages";
+import { solicitorCaseCreateType } from "../../../../common/types";
+import { CaseWorkerPagesGroup } from "../../../../pageObjects/roleBasedGroupedPages/caseWorkerPages";
+import { NavigationUtils } from "../../../../utils/navigation.utils";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 

@@ -1,5 +1,5 @@
-import Config from "../../../../utils/config.utils.ts";
-import { test } from "../../../fixtures.ts";
+import Config from "../../../../utils/config.utils";
+import { test } from "../../../fixtures";
 import { NonMolestationDraftOrderParams } from "../solicitor/draftAnOrder/draftAnOrderNonMolestation.spec.js";
 import { RemoveDraftNonMolestationOrderScenarios as scenarios } from "../../../../testData/draftOrders.js";
 import { DraftAnOrderJourney } from "../../../../journeys/manageCases/caseProgression/solicitor/draftAnOrderJourney.js";

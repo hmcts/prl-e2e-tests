@@ -1,7 +1,7 @@
-import { test } from "../../../fixtures.ts";
-import config from "../../../../utils/config.utils.ts";
-import { Helpers } from "../../../../common/helpers.ts";
-import { ListWithoutNotice } from "../../../../journeys/manageCases/caseProgression/List/listWithoutNotice.ts";
+import { test } from "../../../fixtures";
+import config from "../../../../utils/config.utils";
+import { Helpers } from "../../../../common/helpers";
+import { ListWithoutNotice } from "../../../../journeys/manageCases/caseProgression/List/listWithoutNotice";
 
 test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 

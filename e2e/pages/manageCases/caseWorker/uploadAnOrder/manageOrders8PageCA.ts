@@ -1,9 +1,9 @@
 import { Page, expect } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors.ts";
-import { Helpers } from "../../../../common/helpers.ts";
+import { Selectors } from "../../../../common/selectors";
+import { Helpers } from "../../../../common/helpers";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { ManageOrders8CAContent } from "../../../../fixtures/manageCases/caseWorker/createAnOrder/orderCA/manageOrders8CAContent.ts";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { ManageOrders8CAContent } from "../../../../fixtures/manageCases/caseWorker/createAnOrder/orderCA/manageOrders8CAContent";
+import { CommonStaticText } from "../../../../common/commonStaticText";
 
 interface manageOrders8PageOptions {
   page: Page;

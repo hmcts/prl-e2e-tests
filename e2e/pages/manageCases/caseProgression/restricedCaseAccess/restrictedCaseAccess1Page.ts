@@ -1,10 +1,10 @@
 import { Page } from "@playwright/test";
 // import { AxeUtils } from "@hmcts/playwright-common";
-import { Selectors } from "../../../../common/selectors.ts";
-import { Helpers } from "../../../../common/helpers.ts";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
-import { RestrictedCaseAccess1Content } from "../../../../fixtures/manageCases/caseProgression/restrictedCaseAccess/restrictedCaseAccess1Content.ts";
-import { CommonContent } from "../../../../fixtures/manageCases/commonContent.ts";
+import { Selectors } from "../../../../common/selectors";
+import { Helpers } from "../../../../common/helpers";
+import { CommonStaticText } from "../../../../common/commonStaticText";
+import { RestrictedCaseAccess1Content } from "../../../../fixtures/manageCases/caseProgression/restrictedCaseAccess/restrictedCaseAccess1Content";
+import { CommonContent } from "../../../../fixtures/manageCases/commonContent";
 
 interface RestrictedCaseAccess1Options {
   page: Page;

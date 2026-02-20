@@ -1,12 +1,12 @@
-import Config from "../../../../../utils/config.utils.ts";
-import { test } from "../../../../fixtures.ts";
+import Config from "../../../../../utils/config.utils";
+import { test } from "../../../../fixtures";
 import {
   OrderTypes,
   solicitorCaseCreateType,
 } from "../../../../../common/types.js";
 import { OrderInformation } from "../../../../../pageObjects/pages/exui/caseView/draftOrders.po.js";
 import { DraftAnOrder4Params } from "../../../../../pageObjects/pages/exui/orders/solicitor/draftAnOrder4.po.js";
-import { ParentalResponsibilityOrderScenarios as scenarios } from "../../../../../testData/draftOrders.ts";
+import { ParentalResponsibilityOrderScenarios as scenarios } from "../../../../../testData/draftOrders";
 import { DraftAnOrderJourney } from "../../../../../journeys/manageCases/caseProgression/solicitor/draftAnOrderJourney.js";
 
 export interface ParentalResponsibilityDraftOrderParams {

@@ -1,10 +1,10 @@
 import { Page } from "@playwright/test";
-import { Noc2Content } from "../../../../fixtures/manageCases/caseProgression/noticeOfChange/noc2Content.ts";
-import { Selectors } from "../../../../common/selectors.ts";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { Noc2Content } from "../../../../fixtures/manageCases/caseProgression/noticeOfChange/noc2Content";
+import { Selectors } from "../../../../common/selectors";
+import { CommonStaticText } from "../../../../common/commonStaticText";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Helpers } from "../../../../common/helpers.ts";
-import { solicitorCaseCreateType } from "../../../../common/types.ts";
+import { Helpers } from "../../../../common/helpers";
+import { solicitorCaseCreateType } from "../../../../common/types";
 
 enum UniqueSelectors {
   nocClientFirstName = "#NoCChallengeQ1",

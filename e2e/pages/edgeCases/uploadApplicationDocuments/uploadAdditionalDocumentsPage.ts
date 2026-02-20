@@ -1,9 +1,9 @@
 import { Page, expect } from "@playwright/test";
-import { Selectors } from "../../../common/selectors.ts";
+import { Selectors } from "../../../common/selectors";
 // import { AxeUtils } from "@hmcts/playwright-common";
-import { Helpers } from "../../../common/helpers.ts";
-import config from "../../../utils/config.utils.ts";
-import { UploadAdditionalDocumentsContent } from "../../../fixtures/edgeCases/uploadApplicationDocuments/uploadAdditionalDocumentsContent.ts";
+import { Helpers } from "../../../common/helpers";
+import config from "../../../utils/config.utils";
+import { UploadAdditionalDocumentsContent } from "../../../fixtures/edgeCases/uploadApplicationDocuments/uploadAdditionalDocumentsContent";
 import path from "path";
 
 interface UploadAdditionalDocumentsPageOptions {

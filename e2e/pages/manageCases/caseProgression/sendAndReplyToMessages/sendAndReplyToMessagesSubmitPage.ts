@@ -1,10 +1,10 @@
 import { Page } from "@playwright/test";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
-import { Helpers } from "../../../../common/helpers.ts";
-import { Selectors } from "../../../../common/selectors.ts";
-import { SendAndReplyToMessagesSubmitContent } from "../../../../fixtures/manageCases/caseProgression/sendAndReplyToMessages/sendAndReplyToMessagesSubmitContent.ts";
-import { CommonContent } from "../../../../fixtures/manageCases/commonContent.ts";
-import { solicitorCaseCreateType } from "../../../../common/types.ts";
+import { CommonStaticText } from "../../../../common/commonStaticText";
+import { Helpers } from "../../../../common/helpers";
+import { Selectors } from "../../../../common/selectors";
+import { SendAndReplyToMessagesSubmitContent } from "../../../../fixtures/manageCases/caseProgression/sendAndReplyToMessages/sendAndReplyToMessagesSubmitContent";
+import { CommonContent } from "../../../../fixtures/manageCases/commonContent";
+import { solicitorCaseCreateType } from "../../../../common/types";
 
 export class SendAndReplyToMessagesSubmitPage {
   public static async sendAndReplyToMessagesSubmitPage(

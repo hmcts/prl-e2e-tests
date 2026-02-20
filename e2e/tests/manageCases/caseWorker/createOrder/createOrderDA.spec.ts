@@ -1,5 +1,5 @@
-import { test } from "../../../fixtures.ts";
-import config from "../../../../utils/config.utils.ts";
+import { test } from "../../../fixtures";
+import config from "../../../../utils/config.utils";
 import { Helpers } from "../../../../common/helpers.js";
 import { Fl401ManageOrderDA } from "../../../../journeys/manageCases/caseWorker/createAnOrder/FL401OrderDA/fl401ManageOrderDA.js";
 

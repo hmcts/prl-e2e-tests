@@ -1,10 +1,10 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors.ts";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { Selectors } from "../../../../common/selectors";
+import { CommonStaticText } from "../../../../common/commonStaticText";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { ContactPreferencesContent } from "../../../../fixtures/citizen/caseView/contactPreferences/contactPreferencesContent.ts";
-import { Helpers } from "../../../../common/helpers.ts";
-import { contactOption } from "../../../../common/types.ts";
+import { ContactPreferencesContent } from "../../../../fixtures/citizen/caseView/contactPreferences/contactPreferencesContent";
+import { Helpers } from "../../../../common/helpers";
+import { contactOption } from "../../../../common/types";
 
 enum UniqueSelectors {
   digital = "#partyContactPreference",

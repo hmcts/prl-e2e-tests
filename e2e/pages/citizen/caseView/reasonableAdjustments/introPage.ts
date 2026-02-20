@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Selectors } from "../../../../common/selectors.ts";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
-import { IntroContent } from "../../../../fixtures/citizen/caseView/reasonableAdjustments/introContent.ts";
-import { Helpers } from "../../../../common/helpers.ts";
+import { Selectors } from "../../../../common/selectors";
+import { CommonStaticText } from "../../../../common/commonStaticText";
+import { IntroContent } from "../../../../fixtures/citizen/caseView/reasonableAdjustments/introContent";
+import { Helpers } from "../../../../common/helpers";
 
 export class IntroPage {
   public static async introPage(

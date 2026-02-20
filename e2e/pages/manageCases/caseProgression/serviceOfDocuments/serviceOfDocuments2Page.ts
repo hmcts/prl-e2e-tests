@@ -1,10 +1,10 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors.ts";
-import { Helpers } from "../../../../common/helpers.ts";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { Selectors } from "../../../../common/selectors";
+import { Helpers } from "../../../../common/helpers";
+import { CommonStaticText } from "../../../../common/commonStaticText";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { ServiceOfDocuments2Content } from "../../../../fixtures/manageCases/caseProgression/serviceOfDocuments/serviceOfDocuments2Content.ts";
-import { yesNoNA } from "../../../../common/types.ts";
+import { ServiceOfDocuments2Content } from "../../../../fixtures/manageCases/caseProgression/serviceOfDocuments/serviceOfDocuments2Content";
+import { yesNoNA } from "../../../../common/types";
 
 interface serviceOfDocuments2Options {
   page: Page;

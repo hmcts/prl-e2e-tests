@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Selectors } from "../../../../../common/selectors.ts";
-import { ConcernAboutContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/concernAboutContent.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
-import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
+import { Selectors } from "../../../../../common/selectors";
+import { ConcernAboutContent } from "../../../../../fixtures/citizen/createCase/C100/safetyConcerns/concernAboutContent";
+import { Helpers } from "../../../../../common/helpers";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
 
 enum inputIDs {
   child = "#c1A_safetyConernAbout",

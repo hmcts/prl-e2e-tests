@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors.ts";
-import { HearingUrgencySubmitContent } from "../../../../../fixtures/manageCases/createCase/C100/hearingUrgency/hearingUrgencySubmitContent.ts";
+import { Selectors } from "../../../../../common/selectors";
+import { HearingUrgencySubmitContent } from "../../../../../fixtures/manageCases/createCase/C100/hearingUrgency/hearingUrgencySubmitContent";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Helpers } from "../../../../../common/helpers.ts";
-import { HearingUrgency1Content } from "../../../../../fixtures/manageCases/createCase/C100/hearingUrgency/hearingUrgency1Content.ts";
+import { Helpers } from "../../../../../common/helpers";
+import { HearingUrgency1Content } from "../../../../../fixtures/manageCases/createCase/C100/hearingUrgency/hearingUrgency1Content";
 
 export class C100HearingUrgencySubmitPage {
   public static async C100HearingUrgencySubmitPage(

@@ -1,8 +1,8 @@
-import Config from "../../../../utils/config.utils.ts";
-import { AdminEditAndServeAnOrder } from "../../../../journeys/manageCases/caseWorker/serveApprovedOrder/adminEditAndServeAnOrder.ts";
-import { Helpers } from "../../../../common/helpers.ts";
-import config from "../../../../utils/config.utils.ts";
-import { test } from "../../../fixtures.ts";
+import Config from "../../../../utils/config.utils";
+import { AdminEditAndServeAnOrder } from "../../../../journeys/manageCases/caseWorker/serveApprovedOrder/adminEditAndServeAnOrder";
+import { Helpers } from "../../../../common/helpers";
+import config from "../../../../utils/config.utils";
+import { test } from "../../../fixtures";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 

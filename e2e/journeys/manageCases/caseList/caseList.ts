@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
-import { UserRole } from "../../../common/types.ts";
-import config from "../../../utils/config.utils.ts";
-import { CaseListPage } from "../../../pages/manageCases/caseList/caseListPage.ts";
+import { UserRole } from "../../../common/types";
+import config from "../../../utils/config.utils";
+import { CaseListPage } from "../../../pages/manageCases/caseList/caseListPage";
 
 export class CaseList {
   public static async caseList(

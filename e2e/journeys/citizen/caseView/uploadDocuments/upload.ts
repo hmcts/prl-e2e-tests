@@ -1,7 +1,7 @@
-import { ActivateCase, CaseUser } from "../../activateCase/activateCase.ts";
+import { ActivateCase, CaseUser } from "../../activateCase/activateCase";
 import { Browser, Page } from "@playwright/test";
-import { UploadPage } from "../../../../pages/citizen/caseView/uploadDocuments/uploadPage.ts";
-import { applicationSubmittedBy } from "../../../../common/types.ts";
+import { UploadPage } from "../../../../pages/citizen/caseView/uploadDocuments/uploadPage";
+import { applicationSubmittedBy } from "../../../../common/types";
 
 interface uploadParams {
   page: Page;

@@ -1,12 +1,12 @@
 import {
   C100OtherChildGender,
   OtherChildNotInTheCase1Page,
-} from "../../../../pages/manageCases/createCase/C100/otherChildrenNotInTheCase/otherChildNotInTheCase1Page.ts";
+} from "../../../../pages/manageCases/createCase/C100/otherChildrenNotInTheCase/otherChildNotInTheCase1Page";
 import { Page } from "@playwright/test";
-import { SolicitorCreateInitial } from "../solicitorCreateInitial.ts";
-import { Helpers } from "../../../../common/helpers.ts";
-import { OtherChildNotInTheCaseSubmitPage } from "../../../../pages/manageCases/createCase/C100/otherChildrenNotInTheCase/otherChildNotInTheCaseSubmitPage.ts";
-import { C100TasksTabPage } from "../../../../pages/manageCases/caseTabs/c100TasksTabPage.ts";
+import { SolicitorCreateInitial } from "../solicitorCreateInitial";
+import { Helpers } from "../../../../common/helpers";
+import { OtherChildNotInTheCaseSubmitPage } from "../../../../pages/manageCases/createCase/C100/otherChildrenNotInTheCase/otherChildNotInTheCaseSubmitPage";
+import { C100TasksTabPage } from "../../../../pages/manageCases/caseTabs/c100TasksTabPage";
 
 interface C100OtherChildrenNotInTheCaseOptions {
   page: Page;

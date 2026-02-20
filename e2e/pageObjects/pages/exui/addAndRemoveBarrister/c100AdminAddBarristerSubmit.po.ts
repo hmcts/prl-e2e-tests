@@ -1,6 +1,6 @@
 import { Page } from "@playwright/test";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
-import { CheckYourAnswersPage } from "../checkYourAnswers.po.ts";
+import { CommonStaticText } from "../../../../common/commonStaticText";
+import { CheckYourAnswersPage } from "../checkYourAnswers.po";
 
 export class C100AdminAddBarristerSubmit extends CheckYourAnswersPage {
   constructor(page: Page) {

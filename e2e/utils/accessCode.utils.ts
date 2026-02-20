@@ -1,5 +1,5 @@
 import { APIRequestContext, request } from "@playwright/test";
-import { TokenUtils } from "./token.utils.ts";
+import { TokenUtils } from "./token.utils";
 import { ServiceAuthUtils } from "@hmcts/playwright-common";
 
 interface CaseInvite {

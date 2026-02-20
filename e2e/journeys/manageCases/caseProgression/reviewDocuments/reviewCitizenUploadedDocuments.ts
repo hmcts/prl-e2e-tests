@@ -1,13 +1,13 @@
 import { Browser, Page } from "@playwright/test";
-import { UploadDocumentsPositionStatement } from "../../../citizen/caseView/uploadDocuments/witnessStatementsAndEvidence/applicant/uploadDocumentsPositionStatement.ts";
+import { UploadDocumentsPositionStatement } from "../../../citizen/caseView/uploadDocuments/witnessStatementsAndEvidence/applicant/uploadDocumentsPositionStatement";
 import {
   applicationSubmittedBy,
   documentCategory,
   yesNoDontKnow,
-} from "../../../../common/types.ts";
-import { ReviewDocuments } from "./reviewDocuments.ts";
-import { Helpers } from "../../../../common/helpers.ts";
-import Config from "../../../../utils/config.utils.ts";
+} from "../../../../common/types";
+import { ReviewDocuments } from "./reviewDocuments";
+import { Helpers } from "../../../../common/helpers";
+import Config from "../../../../utils/config.utils";
 
 interface reviewCitizenUploadedDocumentsParams {
   page: Page;

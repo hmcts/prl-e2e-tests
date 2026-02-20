@@ -1,4 +1,4 @@
-import { CheckYourAnswersPage } from "../../checkYourAnswers.po.ts";
+import { CheckYourAnswersPage } from "../../checkYourAnswers.po";
 import { Page } from "@playwright/test";
 import { CommonStaticText } from "../../../../../common/commonStaticText.js";
 

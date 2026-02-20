@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors.ts";
-import { StartContent } from "../../../../../fixtures/citizen/createCase/C100/c100ScreeningSections/startContent.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
+import { Selectors } from "../../../../../common/selectors";
+import { StartContent } from "../../../../../fixtures/citizen/createCase/C100/c100ScreeningSections/startContent";
+import { Helpers } from "../../../../../common/helpers";
 import { AxeUtils } from "@hmcts/playwright-common";
 
 enum uniqueSelectors {

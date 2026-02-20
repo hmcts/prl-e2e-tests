@@ -1,8 +1,8 @@
 import { Cookie, expect, Page } from "@playwright/test";
 import fs, { existsSync, readFileSync } from "fs";
-import Config from "./config.utils.ts";
-import { CreateUserUtil } from "./createUser.utils.ts";
-import { UserCredentialsLong, UserLoginInfo } from "../common/types.ts";
+import Config from "./config.utils";
+import { CreateUserUtil } from "./createUser.utils";
+import { UserCredentialsLong, UserLoginInfo } from "../common/types";
 import process from "node:process";
 import { IdamUtils } from "@hmcts/playwright-common";
 import { UserInfoParams } from "@hmcts/playwright-common/dist/utils/idam.utils.js";

@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors.ts";
+import { Selectors } from "../../../../../common/selectors";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Helpers } from "../../../../../common/helpers.ts";
-import { SubmitAndPayConfirmContent } from "../../../../../fixtures/manageCases/createCase/C100/submitAndPay/submitAndPayConfirmContent.ts";
-import { SubmitAndPay1Content } from "../../../../../fixtures/manageCases/createCase/C100/submitAndPay/submitAndPay1Content.ts";
+import { Helpers } from "../../../../../common/helpers";
+import { SubmitAndPayConfirmContent } from "../../../../../fixtures/manageCases/createCase/C100/submitAndPay/submitAndPayConfirmContent";
+import { SubmitAndPay1Content } from "../../../../../fixtures/manageCases/createCase/C100/submitAndPay/submitAndPay1Content";
 
 interface SubmitAndPayOptions {
   page: Page;

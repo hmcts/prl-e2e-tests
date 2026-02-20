@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../common/selectors.ts";
+import { Selectors } from "../../../common/selectors";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Helpers } from "../../../common/helpers.ts";
-import { FullNameContent } from "../../../fixtures/edgeCases/personalDetails/fullNameContent.ts";
+import { Helpers } from "../../../common/helpers";
+import { FullNameContent } from "../../../fixtures/edgeCases/personalDetails/fullNameContent";
 
 interface FullNamePageOptions {
   page: Page;

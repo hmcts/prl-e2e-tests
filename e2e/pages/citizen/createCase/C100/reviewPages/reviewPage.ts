@@ -1,20 +1,20 @@
 import { Page } from "@playwright/test";
-import { Helpers } from "../../../../../common/helpers.ts";
-import { Selectors } from "../../../../../common/selectors.ts";
+import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors";
 import {
   CapitalizedRelationship,
   Relationship,
-} from "../../../../../common/types.ts";
-import { CaJourneyEmergencyProtectionReviewContent } from "../../../../../fixtures/citizen/createCase/C100/reviewPages/caJourneyEmergencyProtectionReviewContent.ts";
-import { CaJourneyExistingMIAMReviewContent } from "../../../../../fixtures/citizen/createCase/C100/reviewPages/caJourneyExistingMIAMReviewContent.ts";
-import { CaJourneyMIAMHearingUrgencyReviewContent } from "../../../../../fixtures/citizen/createCase/C100/reviewPages/caJourneyMIAMHearingUrgencyReviewContent.ts";
-import { CaJourneyWrittenConsentReviewContent } from "../../../../../fixtures/citizen/createCase/C100/reviewPages/caJourneyWrittenConsentReviewContent.ts";
-import { CommonReviewContent } from "../../../../../fixtures/citizen/createCase/C100/reviewPages/commonReviewContent.ts";
-import { MiamChildProtectionConcernsType } from "../MIAM/miamChildProtectionPage.ts";
-import { MiamOtherReasonForNotAttending } from "../MIAM/miamMiamOtherPage.ts";
-import { MiamAttendanceType } from "../MIAM/miamPreviousAttendancePage.ts";
-import { MiamUrgencyType } from "../MIAM/miamUrgencyPage.ts";
-import { c100ChildrenSupervisionRadios } from "../safetyConcerns/unsupervisedPage.ts";
+} from "../../../../../common/types";
+import { CaJourneyEmergencyProtectionReviewContent } from "../../../../../fixtures/citizen/createCase/C100/reviewPages/caJourneyEmergencyProtectionReviewContent";
+import { CaJourneyExistingMIAMReviewContent } from "../../../../../fixtures/citizen/createCase/C100/reviewPages/caJourneyExistingMIAMReviewContent";
+import { CaJourneyMIAMHearingUrgencyReviewContent } from "../../../../../fixtures/citizen/createCase/C100/reviewPages/caJourneyMIAMHearingUrgencyReviewContent";
+import { CaJourneyWrittenConsentReviewContent } from "../../../../../fixtures/citizen/createCase/C100/reviewPages/caJourneyWrittenConsentReviewContent";
+import { CommonReviewContent } from "../../../../../fixtures/citizen/createCase/C100/reviewPages/commonReviewContent";
+import { MiamChildProtectionConcernsType } from "../MIAM/miamChildProtectionPage";
+import { MiamOtherReasonForNotAttending } from "../MIAM/miamMiamOtherPage";
+import { MiamAttendanceType } from "../MIAM/miamPreviousAttendancePage";
+import { MiamUrgencyType } from "../MIAM/miamUrgencyPage";
+import { c100ChildrenSupervisionRadios } from "../safetyConcerns/unsupervisedPage";
 
 interface caJourneyEmergencyProtectionOptions {
   page: Page;

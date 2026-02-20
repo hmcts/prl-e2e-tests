@@ -1,7 +1,7 @@
-import { test } from "../../../fixtures.ts";
-import { Helpers } from "../../../../common/helpers.ts";
-import config from "../../../../utils/config.utils.ts";
-import { WelshLanguageRequirements } from "../../../../journeys/manageCases/caseProgression/welshLanguageRequirements/welshLanguageRequirements.ts";
+import { test } from "../../../fixtures";
+import { Helpers } from "../../../../common/helpers";
+import config from "../../../../utils/config.utils";
+import { WelshLanguageRequirements } from "../../../../journeys/manageCases/caseProgression/welshLanguageRequirements/welshLanguageRequirements";
 
 test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 

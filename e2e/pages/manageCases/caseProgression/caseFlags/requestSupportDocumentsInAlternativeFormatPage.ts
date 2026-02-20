@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors.ts";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
-import { Helpers } from "../../../../common/helpers.ts";
+import { Selectors } from "../../../../common/selectors";
+import { CommonStaticText } from "../../../../common/commonStaticText";
+import { Helpers } from "../../../../common/helpers";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { RequestSupportDocumentsInAlternativeFormatContent } from "../../../../fixtures/manageCases/caseProgression/caseFlags/requestSupportDocumentsInAlternativeFormatContent.ts";
+import { RequestSupportDocumentsInAlternativeFormatContent } from "../../../../fixtures/manageCases/caseProgression/caseFlags/requestSupportDocumentsInAlternativeFormatContent";
 
 enum UniqueSelectors {
   documentsInSpecifiedColourRadio = "#flag-type-0",

@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../common/selectors.ts";
+import { Selectors } from "../../../common/selectors";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Helpers } from "../../../common/helpers.ts";
-import { AddressSelectContent } from "../../../fixtures/edgeCases/personalDetails/addressSelectContent.ts";
+import { Helpers } from "../../../common/helpers";
+import { AddressSelectContent } from "../../../fixtures/edgeCases/personalDetails/addressSelectContent";
 
 interface AddressSelectPageOptions {
   page: Page;

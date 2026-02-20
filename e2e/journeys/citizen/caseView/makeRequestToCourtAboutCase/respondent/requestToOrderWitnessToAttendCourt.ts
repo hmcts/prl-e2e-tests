@@ -1,16 +1,16 @@
 import { Browser, Page } from "@playwright/test";
-import { ListOfApplications1Page } from "../../../../../pages/citizen/caseView/makeRequestToCourtAboutCase/respondent/listOfApplications1Page.ts";
-import { ListOfApplications2Page } from "../../../../../pages/citizen/caseView/makeRequestToCourtAboutCase/respondent/listOfApplications2Page.ts";
-import { ActivateCase, CaseUser } from "../../../activateCase/activateCase.ts";
-import { applicationSubmittedBy } from "../../../../../common/types.ts";
-import { RequestToOrderWitnessToAttendCourtPage1 } from "../../../../../pages/citizen/caseView/makeRequestToCourtAboutCase/respondent/requestToOrderWitnessToAttendCourtPage1.ts";
-import { RequestToOrderWitnessToAttendCourtPage2 } from "../../../../../pages/citizen/caseView/makeRequestToCourtAboutCase/respondent/requestToOrderWitnessToAttendCourtPage2.ts";
-import { RequestToOrderWitnessToAttendCourtPage4 } from "../../../../../pages/citizen/caseView/makeRequestToCourtAboutCase/respondent/requestToOrderWitnessToAttendCourtPage4.ts";
-import { RequestToOrderWitnessToAttendCourtPage5 } from "../../../../../pages/citizen/caseView/makeRequestToCourtAboutCase/respondent/requestToOrderWitnessToAttendCourtPage5.ts";
-import { RequestToOrderWitnessToAttendCourtPage6 } from "../../../../../pages/citizen/caseView/makeRequestToCourtAboutCase/respondent/requestToOrderWitnessToAttendCourtPage6.ts";
-import { RequestToOrderWitnessToAttendCourtPage7 } from "../../../../../pages/citizen/caseView/makeRequestToCourtAboutCase/respondent/requestToOrderWitnessToAttendCourtPage7.ts";
-import { RequestToOrderWitnessToAttendCourtCYA } from "../../../../../pages/citizen/caseView/makeRequestToCourtAboutCase/respondent/requestToOrderWitnessToAttendCourtCYA.ts";
-import { RequestToOrderWitnessToAttendCourtPage3 } from "../../../../../pages/citizen/caseView/makeRequestToCourtAboutCase/respondent/requestToOrderWitnessToAttendCourtPage3.ts";
+import { ListOfApplications1Page } from "../../../../../pages/citizen/caseView/makeRequestToCourtAboutCase/respondent/listOfApplications1Page";
+import { ListOfApplications2Page } from "../../../../../pages/citizen/caseView/makeRequestToCourtAboutCase/respondent/listOfApplications2Page";
+import { ActivateCase, CaseUser } from "../../../activateCase/activateCase";
+import { applicationSubmittedBy } from "../../../../../common/types";
+import { RequestToOrderWitnessToAttendCourtPage1 } from "../../../../../pages/citizen/caseView/makeRequestToCourtAboutCase/respondent/requestToOrderWitnessToAttendCourtPage1";
+import { RequestToOrderWitnessToAttendCourtPage2 } from "../../../../../pages/citizen/caseView/makeRequestToCourtAboutCase/respondent/requestToOrderWitnessToAttendCourtPage2";
+import { RequestToOrderWitnessToAttendCourtPage4 } from "../../../../../pages/citizen/caseView/makeRequestToCourtAboutCase/respondent/requestToOrderWitnessToAttendCourtPage4";
+import { RequestToOrderWitnessToAttendCourtPage5 } from "../../../../../pages/citizen/caseView/makeRequestToCourtAboutCase/respondent/requestToOrderWitnessToAttendCourtPage5";
+import { RequestToOrderWitnessToAttendCourtPage6 } from "../../../../../pages/citizen/caseView/makeRequestToCourtAboutCase/respondent/requestToOrderWitnessToAttendCourtPage6";
+import { RequestToOrderWitnessToAttendCourtPage7 } from "../../../../../pages/citizen/caseView/makeRequestToCourtAboutCase/respondent/requestToOrderWitnessToAttendCourtPage7";
+import { RequestToOrderWitnessToAttendCourtCYA } from "../../../../../pages/citizen/caseView/makeRequestToCourtAboutCase/respondent/requestToOrderWitnessToAttendCourtCYA";
+import { RequestToOrderWitnessToAttendCourtPage3 } from "../../../../../pages/citizen/caseView/makeRequestToCourtAboutCase/respondent/requestToOrderWitnessToAttendCourtPage3";
 
 interface requestToOrderWitnessToAttendCourtParams {
   page: Page;

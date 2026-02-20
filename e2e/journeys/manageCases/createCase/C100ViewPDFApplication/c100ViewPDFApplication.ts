@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
-import { Helpers } from "../../../../common/helpers.ts";
-import { Selectors } from "../../../../common/selectors.ts";
-import { ViewPDFApplication1Page } from "../../../../pages/manageCases/createCase/C100/viewPDFApplication/viewPDFApplication1Page.ts";
+import { Helpers } from "../../../../common/helpers";
+import { Selectors } from "../../../../common/selectors";
+import { ViewPDFApplication1Page } from "../../../../pages/manageCases/createCase/C100/viewPDFApplication/viewPDFApplication1Page";
 
 interface C100ViewPDFApplicationOptions {
   page: Page;

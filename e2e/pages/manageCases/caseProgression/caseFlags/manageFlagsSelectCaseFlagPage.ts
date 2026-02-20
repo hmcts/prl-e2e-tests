@@ -1,13 +1,10 @@
 import { Page } from "@playwright/test";
-import {
-  solicitorCaseCreateType,
-  SupportType,
-} from "../../../../common/types.ts";
-import { Selectors } from "../../../../common/selectors.ts";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
-import { Helpers } from "../../../../common/helpers.ts";
+import { solicitorCaseCreateType, SupportType } from "../../../../common/types";
+import { Selectors } from "../../../../common/selectors";
+import { CommonStaticText } from "../../../../common/commonStaticText";
+import { Helpers } from "../../../../common/helpers";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { ManageFlagsSelectCaseFlagContent } from "../../../../fixtures/manageCases/caseProgression/caseFlags/manageFlagsSelectCaseFlagContent.ts";
+import { ManageFlagsSelectCaseFlagContent } from "../../../../fixtures/manageCases/caseProgression/caseFlags/manageFlagsSelectCaseFlagContent";
 
 enum UniqueSelectors {
   caseFlagRadio = "#flag-selection-0",

@@ -1,5 +1,5 @@
 import { expect, Locator, Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors.ts";
+import { Selectors } from "../../../../common/selectors";
 import { EventPage } from "../eventPage.po.js";
 
 export class WithdrawApplicationEvent1Page extends EventPage {

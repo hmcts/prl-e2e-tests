@@ -1,12 +1,12 @@
 import { test as base } from "@playwright/test";
-import { NocSolicitorPagesGroup } from "../pageObjects/roleBasedGroupedPages/nocSolicitorPages.ts";
-import { CaseWorkerPagesGroup } from "../pageObjects/roleBasedGroupedPages/caseWorkerPages.ts";
-import { SolicitorPagesGroup } from "../pageObjects/roleBasedGroupedPages/solicitorPages.ts";
-import { CourtAdminStokePagesGroup } from "../pageObjects/roleBasedGroupedPages/courtAdminStokePages.ts";
-import { CaseManagerPagesGroup } from "../pageObjects/roleBasedGroupedPages/caseManagerPages.ts";
-import { JudgePagesGroup } from "../pageObjects/roleBasedGroupedPages/judgePages.ts";
-import { utilsFixtures, UtilsFixtures } from "../utils/utils.fixtures.ts";
-import Config from "../utils/config.utils.ts";
+import { NocSolicitorPagesGroup } from "../pageObjects/roleBasedGroupedPages/nocSolicitorPages";
+import { CaseWorkerPagesGroup } from "../pageObjects/roleBasedGroupedPages/caseWorkerPages";
+import { SolicitorPagesGroup } from "../pageObjects/roleBasedGroupedPages/solicitorPages";
+import { CourtAdminStokePagesGroup } from "../pageObjects/roleBasedGroupedPages/courtAdminStokePages";
+import { CaseManagerPagesGroup } from "../pageObjects/roleBasedGroupedPages/caseManagerPages";
+import { JudgePagesGroup } from "../pageObjects/roleBasedGroupedPages/judgePages";
+import { utilsFixtures, UtilsFixtures } from "../utils/utils.fixtures";
+import Config from "../utils/config.utils";
 import { LegalAdvisorPagesGroup } from "../pageObjects/roleBasedGroupedPages/legalAdvisorPages.js";
 
 type MyFixtures = UtilsFixtures & {

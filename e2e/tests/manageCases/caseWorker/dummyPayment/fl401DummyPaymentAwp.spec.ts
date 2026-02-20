@@ -1,8 +1,8 @@
-import Config from "../../../../utils/config.utils.ts";
-import { DummyPaymentAwp } from "../../../../journeys/manageCases/caseWorker/dummyPayment/dummyPaymentAwp.ts";
-import { Helpers } from "../../../../common/helpers.ts";
-import config from "../../../../utils/config.utils.ts";
-import { test } from "../../../fixtures.ts";
+import Config from "../../../../utils/config.utils";
+import { DummyPaymentAwp } from "../../../../journeys/manageCases/caseWorker/dummyPayment/dummyPaymentAwp";
+import { Helpers } from "../../../../common/helpers";
+import config from "../../../../utils/config.utils";
+import { test } from "../../../fixtures";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 

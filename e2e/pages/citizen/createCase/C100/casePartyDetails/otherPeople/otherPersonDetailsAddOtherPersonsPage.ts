@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../../common/selectors.ts";
-import { OtherPersonDetailsAddOtherPersonsContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/otherPeople/otherPersonDetailsAddOtherPersonsContent.ts";
-import { Helpers } from "../../../../../../common/helpers.ts";
-import { CommonStaticText } from "../../../../../../common/commonStaticText.ts";
+import { Selectors } from "../../../../../../common/selectors";
+import { OtherPersonDetailsAddOtherPersonsContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/otherPeople/otherPersonDetailsAddOtherPersonsContent";
+import { Helpers } from "../../../../../../common/helpers";
+import { CommonStaticText } from "../../../../../../common/commonStaticText";
 import { AxeUtils } from "@hmcts/playwright-common";
 
 interface OtherPersonDetailsAddOtherPersonsPageOptions {

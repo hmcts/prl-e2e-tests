@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Selectors } from "../../../../common/selectors.ts";
-import { HearingFacilitiesContent } from "../../../../fixtures/manageCases/caseProgression/createHearingRequest/hearingFacilitiesContent.ts";
-import { Helpers } from "../../../../common/helpers.ts";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { Selectors } from "../../../../common/selectors";
+import { HearingFacilitiesContent } from "../../../../fixtures/manageCases/caseProgression/createHearingRequest/hearingFacilitiesContent";
+import { Helpers } from "../../../../common/helpers";
+import { CommonStaticText } from "../../../../common/commonStaticText";
 
 enum UniqueSelectors {
   additionalSecurityYes = "#additionalSecurityYes",

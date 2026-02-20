@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Helpers } from "../../../../common/helpers.ts";
-import { Selectors } from "../../../../common/selectors.ts";
-import { solicitorCaseCreateType } from "../../../../common/types.ts";
-import { SolicitorCreate2Content } from "../../../../fixtures/manageCases/createCase/initialJourney/solicitorCreate2Content.ts";
+import { Helpers } from "../../../../common/helpers";
+import { Selectors } from "../../../../common/selectors";
+import { solicitorCaseCreateType } from "../../../../common/types";
+import { SolicitorCreate2Content } from "../../../../fixtures/manageCases/createCase/initialJourney/solicitorCreate2Content";
 
 enum caseTypeSelectionIds {
   C100 = "#caseTypeOfApplication-C100",

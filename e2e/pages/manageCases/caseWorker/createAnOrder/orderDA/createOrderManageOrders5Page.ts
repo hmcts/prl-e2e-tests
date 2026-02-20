@@ -1,17 +1,17 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors.ts";
-import { ManageOrders1DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderDA/manageOrders1DAContent.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
+import { Selectors } from "../../../../../common/selectors";
+import { ManageOrders1DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderDA/manageOrders1DAContent";
+import { Helpers } from "../../../../../common/helpers";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
 import {
   CreateOrderFL401Options,
   CreateOrderManageOrders5Content,
-} from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderDA/createOrderManageOrders5Content.ts";
+} from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderDA/createOrderManageOrders5Content";
 import {
   createOrderFL401Options,
   JudgeOrMagistrateTitles,
-} from "../../../../../common/types.ts";
+} from "../../../../../common/types";
 
 interface ManageOrders5PageOptions {
   page: Page;

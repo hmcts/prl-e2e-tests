@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors.ts";
-import { Helpers } from "../../../../common/helpers.ts";
+import { Selectors } from "../../../../common/selectors";
+import { Helpers } from "../../../../common/helpers";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { DeleteApplication1Content } from "../../../../fixtures/manageCases/caseProgression/deleteApplication/deleteApplication1Content.ts";
+import { DeleteApplication1Content } from "../../../../fixtures/manageCases/caseProgression/deleteApplication/deleteApplication1Content";
 
 export class DeleteApplication1Page {
   public static async deleteApplication1Page(

@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
-import { Helpers } from "../../../../common/helpers.ts";
-import { AmendApplicantDetails2Page } from "../../../../pages/manageCases/caseProgression/amendDetails/amendApplicantDetails/amendApplicantDetails2Page.ts";
-import { ApplicantGender } from "../../../../common/types.ts";
-import { AmendApplicantDetailsSubmitPage } from "../../../../pages/manageCases/caseProgression/amendDetails/amendApplicantDetails/amendApplicantDetailsSubmitPage.ts";
+import { Helpers } from "../../../../common/helpers";
+import { AmendApplicantDetails2Page } from "../../../../pages/manageCases/caseProgression/amendDetails/amendApplicantDetails/amendApplicantDetails2Page";
+import { ApplicantGender } from "../../../../common/types";
+import { AmendApplicantDetailsSubmitPage } from "../../../../pages/manageCases/caseProgression/amendDetails/amendApplicantDetails/amendApplicantDetailsSubmitPage";
 import { AmendApplicantDetails1Page } from "../../../../pages/manageCases/caseProgression/amendDetails/amendApplicantDetails/amendApplicantDetails1Page.js";
 import { C100AmendApplicantDetailsSubmitPage } from "../../../../pages/manageCases/caseProgression/amendDetails/amendApplicantDetails/c100AmendApplicantDetailsSubmitPage.js";
 

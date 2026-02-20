@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors.ts";
+import { Selectors } from "../../../../common/selectors";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { AgreementForRequestContent } from "../../../../fixtures/citizen/caseView/requestMoreTime/agreementForRequestContent.ts";
-import { Helpers } from "../../../../common/helpers.ts";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { AgreementForRequestContent } from "../../../../fixtures/citizen/caseView/requestMoreTime/agreementForRequestContent";
+import { Helpers } from "../../../../common/helpers";
+import { CommonStaticText } from "../../../../common/commonStaticText";
 
 enum UniqueSelectors {
   agreementForRequestYes = "#awp_agreementForRequest",

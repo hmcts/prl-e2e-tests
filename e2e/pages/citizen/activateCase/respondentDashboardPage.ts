@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../common/selectors.ts";
-import { Helpers } from "../../../common/helpers.ts";
+import { Selectors } from "../../../common/selectors";
+import { Helpers } from "../../../common/helpers";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { RespondentDashboardContent } from "../../../fixtures/citizen/activateCase/respondentDashboardContent.ts";
-import { applicationSubmittedBy } from "../../../common/types.ts";
+import { RespondentDashboardContent } from "../../../fixtures/citizen/activateCase/respondentDashboardContent";
+import { applicationSubmittedBy } from "../../../common/types";
 
 export class RespondentDashboardPage {
   public static async respondentDashboardPage(

@@ -1,5 +1,5 @@
-import Config from "../../utils/config.utils.ts";
-import { EdgeCase } from "../../journeys/edgeCases/edgeCaseJourney.ts";
+import Config from "../../utils/config.utils";
+import { EdgeCase } from "../../journeys/edgeCases/edgeCaseJourney";
 import { test } from "@playwright/test";
 
 //#TODO run in nightly pipeline once code has been deployed to AAT, currently only deployed to ITHC

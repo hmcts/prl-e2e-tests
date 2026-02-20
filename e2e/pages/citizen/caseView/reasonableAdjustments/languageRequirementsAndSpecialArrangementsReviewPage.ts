@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors.ts";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { Selectors } from "../../../../common/selectors";
+import { CommonStaticText } from "../../../../common/commonStaticText";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Helpers } from "../../../../common/helpers.ts";
-import { LanguageRequirementsAndSpecialArrangementsReviewContent } from "../../../../fixtures/citizen/caseView/reasonableAdjustments/languageRequirementsAndSpecialArrangementsReviewContent.ts";
+import { Helpers } from "../../../../common/helpers";
+import { LanguageRequirementsAndSpecialArrangementsReviewContent } from "../../../../fixtures/citizen/caseView/reasonableAdjustments/languageRequirementsAndSpecialArrangementsReviewContent";
 
 export class LanguageRequirementsAndSpecialArrangementsReviewPage {
   public static async languageRequirementsAndSpecialArrangementsReviewPage(

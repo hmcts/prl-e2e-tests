@@ -1,6 +1,6 @@
-import { EventPage } from "../eventPage.po.ts";
+import { EventPage } from "../eventPage.po";
 import { expect, Locator, Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors.ts";
+import { Selectors } from "../../../../common/selectors";
 
 export class C100AdminRemoveBarrister1Page extends EventPage {
   private readonly partyToRemoveBarristerCheckbox: Locator = this.page.locator(

@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors.ts";
-import { Helpers } from "../../../../common/helpers.ts";
+import { Selectors } from "../../../../common/selectors";
+import { Helpers } from "../../../../common/helpers";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { DraftAnOrder1Content } from "../../../../fixtures/manageCases/caseWorker/draftAnOrder/draftAnOrder1Content.ts";
+import { DraftAnOrder1Content } from "../../../../fixtures/manageCases/caseWorker/draftAnOrder/draftAnOrder1Content";
 
 enum UniqueSelectors {
   orderTypeRadio = "#draftOrderOptions-draftAnOrder",

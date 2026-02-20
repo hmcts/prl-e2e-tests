@@ -1,7 +1,7 @@
-import { Base } from "../../../base.po.ts";
+import { Base } from "../../../base.po";
 import { expect, Locator, Page } from "@playwright/test";
-import { CheckYourAnswersTableComponent } from "../../../../components/exui/checkYourAnswersTable.component.ts";
-import { solicitorCaseCreateType } from "../../../../../common/types.ts";
+import { CheckYourAnswersTableComponent } from "../../../../components/exui/checkYourAnswersTable.component";
+import { solicitorCaseCreateType } from "../../../../../common/types";
 
 // Not a standard event page so don't extend EventPage
 export class ReviewRARequestSubmitPage extends Base {

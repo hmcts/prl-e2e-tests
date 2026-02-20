@@ -1,7 +1,7 @@
-import { Helpers } from "../../../../common/helpers.ts";
-import config from "../../../../utils/config.utils.ts";
-import { C100SubmitAndPay } from "../../../../journeys/manageCases/createCase/C100SubmitAndPay/C100SubmitAndPay.ts";
-import { test } from "../../../fixtures.ts";
+import { Helpers } from "../../../../common/helpers";
+import config from "../../../../utils/config.utils";
+import { C100SubmitAndPay } from "../../../../journeys/manageCases/createCase/C100SubmitAndPay/C100SubmitAndPay";
+import { test } from "../../../fixtures";
 
 test.use({ storageState: config.sessionStoragePath + "solicitor.json" });
 

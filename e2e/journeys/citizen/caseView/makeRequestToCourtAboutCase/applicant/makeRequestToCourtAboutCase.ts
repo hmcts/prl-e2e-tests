@@ -1,8 +1,8 @@
-import { ActivateCase, CaseUser } from "../../../activateCase/activateCase.ts";
+import { ActivateCase, CaseUser } from "../../../activateCase/activateCase";
 import { Browser, Page } from "@playwright/test";
-import { ListOfApplications1Page } from "../../../../../pages/citizen/caseView/makeRequestToCourtAboutCase/applicant/listOfApplications1Page.ts";
-import { ListOfApplications2Page } from "../../../../../pages/citizen/caseView/makeRequestToCourtAboutCase/applicant/listOfApplications2Page.ts";
-import { applicationSubmittedBy } from "../../../../../common/types.ts";
+import { ListOfApplications1Page } from "../../../../../pages/citizen/caseView/makeRequestToCourtAboutCase/applicant/listOfApplications1Page";
+import { ListOfApplications2Page } from "../../../../../pages/citizen/caseView/makeRequestToCourtAboutCase/applicant/listOfApplications2Page";
+import { applicationSubmittedBy } from "../../../../../common/types";
 
 interface makeRequestToCourtAboutCaseParams {
   page: Page;

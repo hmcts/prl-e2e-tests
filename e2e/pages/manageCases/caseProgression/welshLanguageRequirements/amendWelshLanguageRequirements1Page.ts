@@ -1,10 +1,10 @@
 import { Page } from "@playwright/test";
-import { Language } from "../../../../common/types.ts";
-import { Selectors } from "../../../../common/selectors.ts";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { Language } from "../../../../common/types";
+import { Selectors } from "../../../../common/selectors";
+import { CommonStaticText } from "../../../../common/commonStaticText";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { AmendWelshLanguageRequirements1Content } from "../../../../fixtures/manageCases/caseProgression/welshLanguagesRequirements/amendWelshLanguageRequirements1Content.ts";
-import { Helpers } from "../../../../common/helpers.ts";
+import { AmendWelshLanguageRequirements1Content } from "../../../../fixtures/manageCases/caseProgression/welshLanguagesRequirements/amendWelshLanguageRequirements1Content";
+import { Helpers } from "../../../../common/helpers";
 
 enum UniqueSelectors {
   welshLanguageRequirementRadioLabels = "#welshLanguageRequirement_radio .form-label",

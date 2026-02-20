@@ -1,13 +1,13 @@
 import { Page } from "@playwright/test";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
-import { Helpers } from "../../../../common/helpers.ts";
-import { Selectors } from "../../../../common/selectors.ts";
+import { CommonStaticText } from "../../../../common/commonStaticText";
+import { Helpers } from "../../../../common/helpers";
+import { Selectors } from "../../../../common/selectors";
 import {
   yesNoDontKnow,
   documentSubmittedBy,
   documentCategory,
-} from "../../../../common/types.ts";
-import { Fl401ReviewDocuments2Content } from "../../../../fixtures/manageCases/caseProgression/reviewDocuments/fl401ReviewDocuments2Content.ts";
+} from "../../../../common/types";
+import { Fl401ReviewDocuments2Content } from "../../../../fixtures/manageCases/caseProgression/reviewDocuments/fl401ReviewDocuments2Content";
 
 interface FL401ReviewDocuments2PageOptions {
   page: Page;

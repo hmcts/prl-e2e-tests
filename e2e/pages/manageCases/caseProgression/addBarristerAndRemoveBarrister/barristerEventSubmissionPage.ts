@@ -1,9 +1,9 @@
 import { Page, expect } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors.ts";
-import { Helpers } from "../../../../common/helpers.ts";
+import { Selectors } from "../../../../common/selectors";
+import { Helpers } from "../../../../common/helpers";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { BarristerEventSubmissionContent } from "../../../../fixtures/manageCases/caseProgression/addBarristerAndRemoveBarrister/barristerEventSubmissionContent.ts";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { BarristerEventSubmissionContent } from "../../../../fixtures/manageCases/caseProgression/addBarristerAndRemoveBarrister/barristerEventSubmissionContent";
+import { CommonStaticText } from "../../../../common/commonStaticText";
 
 interface BarristerEventSubmissionPageOptions {
   page: Page;

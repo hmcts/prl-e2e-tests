@@ -1,14 +1,14 @@
 import { Page } from "@playwright/test";
-import { solicitorCaseCreateType } from "../../../../common/types.ts";
-import { CaseListPage } from "../../../../pages/manageCases/caseList/caseListPage.ts";
-import { SolicitorCreatePage } from "../../../../pages/manageCases/createCase/initialJourney/solicitorCreatePage.ts";
-import { SolicitorCreate2Page } from "../../../../pages/manageCases/createCase/initialJourney/solicitorCreate2Page.ts";
-import { SolicitorCreate4Page } from "../../../../pages/manageCases/createCase/initialJourney/solicitorCreate4Page.ts";
-import { SubmitPage } from "../../../../pages/manageCases/createCase/initialJourney/submitPage.ts";
-import { Selectors } from "../../../../common/selectors.ts";
-import { C100TasksTabPage } from "../../../../pages/manageCases/caseTabs/c100TasksTabPage.ts";
-import { SolicitorCreate5Page } from "../../../../pages/manageCases/createCase/initialJourney/solicitorCreate5Page.ts";
-import { Fl401TasksTabPage } from "../../../../pages/manageCases/caseTabs/fl401TasksTabPage.ts";
+import { solicitorCaseCreateType } from "../../../../common/types";
+import { CaseListPage } from "../../../../pages/manageCases/caseList/caseListPage";
+import { SolicitorCreatePage } from "../../../../pages/manageCases/createCase/initialJourney/solicitorCreatePage";
+import { SolicitorCreate2Page } from "../../../../pages/manageCases/createCase/initialJourney/solicitorCreate2Page";
+import { SolicitorCreate4Page } from "../../../../pages/manageCases/createCase/initialJourney/solicitorCreate4Page";
+import { SubmitPage } from "../../../../pages/manageCases/createCase/initialJourney/submitPage";
+import { Selectors } from "../../../../common/selectors";
+import { C100TasksTabPage } from "../../../../pages/manageCases/caseTabs/c100TasksTabPage";
+import { SolicitorCreate5Page } from "../../../../pages/manageCases/createCase/initialJourney/solicitorCreate5Page";
+import { Fl401TasksTabPage } from "../../../../pages/manageCases/caseTabs/fl401TasksTabPage";
 
 export class DummyCreateInitial {
   public static async createDummyCase({

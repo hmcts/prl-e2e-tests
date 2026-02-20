@@ -1,21 +1,21 @@
 import { Browser, BrowserContext, Page } from "@playwright/test";
-import IdamLoginHelper from "../../../utils/idamLoginHelper.utils.ts";
-import Config from "../../../utils/config.utils.ts";
-import { AccessCodeHelper } from "../../../utils/accessCode.utils.ts";
-import { EnterPinPage } from "../../../pages/citizen/activateCase/enterPinPage.ts";
-import { CaseActivatedPage } from "../../../pages/citizen/activateCase/caseActivatedPage.ts";
-import { ApplicantDashboardPage } from "../../../pages/citizen/activateCase/applicantDashboardPage.ts";
-import { RespondentDashboardPage } from "../../../pages/citizen/activateCase/respondentDashboardPage.ts";
-import { jsonDatas } from "../../../common/caseHelpers/jsonDatas.ts";
-import { Selectors } from "../../../common/selectors.ts";
-import { ApplicantDashboardContent } from "../../../fixtures/citizen/activateCase/applicantDashboardContent.ts";
-import { RespondentDashboardContent } from "../../../fixtures/citizen/activateCase/respondentDashboardContent.ts";
-import { ServiceOfApplication } from "../../manageCases/caseProgression/serviceOfApplication/serviceOfApplication.ts";
-import { fl401CompleteEventsUpToServiceOfApplication } from "../../../common/caseHelpers/caseEventsHelper.ts";
-import { applicationSubmittedBy } from "../../../common/types.ts";
-import { ConfidentialityCheck } from "../../manageCases/caseProgression/confidentilityCheck/confidentialityCheck.ts";
+import IdamLoginHelper from "../../../utils/idamLoginHelper.utils";
+import Config from "../../../utils/config.utils";
+import { AccessCodeHelper } from "../../../utils/accessCode.utils";
+import { EnterPinPage } from "../../../pages/citizen/activateCase/enterPinPage";
+import { CaseActivatedPage } from "../../../pages/citizen/activateCase/caseActivatedPage";
+import { ApplicantDashboardPage } from "../../../pages/citizen/activateCase/applicantDashboardPage";
+import { RespondentDashboardPage } from "../../../pages/citizen/activateCase/respondentDashboardPage";
+import { jsonDatas } from "../../../common/caseHelpers/jsonDatas";
+import { Selectors } from "../../../common/selectors";
+import { ApplicantDashboardContent } from "../../../fixtures/citizen/activateCase/applicantDashboardContent";
+import { RespondentDashboardContent } from "../../../fixtures/citizen/activateCase/respondentDashboardContent";
+import { ServiceOfApplication } from "../../manageCases/caseProgression/serviceOfApplication/serviceOfApplication";
+import { fl401CompleteEventsUpToServiceOfApplication } from "../../../common/caseHelpers/caseEventsHelper";
+import { applicationSubmittedBy } from "../../../common/types";
+import { ConfidentialityCheck } from "../../manageCases/caseProgression/confidentilityCheck/confidentialityCheck";
 import { IdamUtils, ServiceAuthUtils } from "@hmcts/playwright-common";
-import { TokenUtils } from "../../../utils/token.utils.ts";
+import { TokenUtils } from "../../../utils/token.utils";
 
 interface ActiveCaseParams {
   page: Page;

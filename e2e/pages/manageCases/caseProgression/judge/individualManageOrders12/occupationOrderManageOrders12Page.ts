@@ -1,11 +1,11 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors.ts";
-import { ManageOrders1DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderDA/manageOrders1DAContent.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
-import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
+import { Selectors } from "../../../../../common/selectors";
+import { ManageOrders1DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderDA/manageOrders1DAContent";
+import { Helpers } from "../../../../../common/helpers";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { OccupationOrderManageOrders12Content } from "../../../../../fixtures/manageCases/caseProgression/judge/individualManageOrders12/occupationOrderManageOrders12Content.ts";
-import { C100RespondentDetails1Content } from "../../../../../fixtures/manageCases/createCase/C100/respondentDetails/c100RespondentDetails1Content.ts";
+import { OccupationOrderManageOrders12Content } from "../../../../../fixtures/manageCases/caseProgression/judge/individualManageOrders12/occupationOrderManageOrders12Content";
+import { C100RespondentDetails1Content } from "../../../../../fixtures/manageCases/createCase/C100/respondentDetails/c100RespondentDetails1Content";
 
 interface OccupationOrderManageOrders12PageOptions {
   page: Page;

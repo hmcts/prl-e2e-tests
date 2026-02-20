@@ -1,8 +1,8 @@
-import Config from "../../../utils/config.utils.ts";
-import { Helpers } from "../../../common/helpers.ts";
-import { ReturnApplication } from "../../../journeys/manageCases/caseWorker/returnApplication/returnApplication.ts";
-import { ResubmitApplication } from "../../../journeys/manageCases/resubmitApplication/resubmitApplication.ts";
-import { test } from "../../fixtures.ts";
+import Config from "../../../utils/config.utils";
+import { Helpers } from "../../../common/helpers";
+import { ReturnApplication } from "../../../journeys/manageCases/caseWorker/returnApplication/returnApplication";
+import { ResubmitApplication } from "../../../journeys/manageCases/resubmitApplication/resubmitApplication";
+import { test } from "../../fixtures";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 

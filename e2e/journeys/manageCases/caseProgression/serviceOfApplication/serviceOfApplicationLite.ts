@@ -1,10 +1,10 @@
 import { Page } from "@playwright/test";
-import { Helpers } from "../../../../common/helpers.ts";
-import config from "../../../../utils/config.utils.ts";
-import { Selectors } from "../../../../common/selectors.ts";
-import { MiamPolicyUpgrade6Content } from "../../../../fixtures/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade6Content.ts";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
-import { ServiceOfApplication4Content } from "../../../../fixtures/manageCases/caseProgression/serviceOfApplication/serviceOfApplication4Content.ts";
+import { Helpers } from "../../../../common/helpers";
+import config from "../../../../utils/config.utils";
+import { Selectors } from "../../../../common/selectors";
+import { MiamPolicyUpgrade6Content } from "../../../../fixtures/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade6Content";
+import { CommonStaticText } from "../../../../common/commonStaticText";
+import { ServiceOfApplication4Content } from "../../../../fixtures/manageCases/caseProgression/serviceOfApplication/serviceOfApplication4Content";
 
 // complete service of application without all the checks of the actual journey - this should only be used in solicitorDACaseCreatorPOC.ts
 export class ServiceOfApplicationLite {

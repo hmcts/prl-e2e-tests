@@ -1,12 +1,9 @@
 import { Page } from "@playwright/test";
-import {
-  SupportType,
-  solicitorCaseCreateType,
-} from "../../../../common/types.ts";
-import { Selectors } from "../../../../common/selectors.ts";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
-import { ManageFlagsUpdateCaseFlagContent } from "../../../../fixtures/manageCases/caseProgression/caseFlags/manageFlagsUpdateCaseFlagContent.ts";
-import { Helpers } from "../../../../common/helpers.ts";
+import { SupportType, solicitorCaseCreateType } from "../../../../common/types";
+import { Selectors } from "../../../../common/selectors";
+import { CommonStaticText } from "../../../../common/commonStaticText";
+import { ManageFlagsUpdateCaseFlagContent } from "../../../../fixtures/manageCases/caseProgression/caseFlags/manageFlagsUpdateCaseFlagContent";
+import { Helpers } from "../../../../common/helpers";
 
 enum UniqueSelectors {
   activeRadio = "#status_ACTIVE",

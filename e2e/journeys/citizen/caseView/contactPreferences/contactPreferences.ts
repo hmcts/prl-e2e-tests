@@ -1,12 +1,12 @@
-import { ActivateCase, CaseUser } from "../../activateCase/activateCase.ts";
+import { ActivateCase, CaseUser } from "../../activateCase/activateCase";
 import { Browser, Page } from "@playwright/test";
-import { ContactPreferencesPage } from "../../../../pages/citizen/caseView/contactPreferences/contactPreferencesPage.ts";
-import { ReviewPage } from "../../../../pages/citizen/caseView/contactPreferences/reviewPage.ts";
-import { ConfirmationPage } from "../../../../pages/citizen/caseView/contactPreferences/confirmationPage.ts";
+import { ContactPreferencesPage } from "../../../../pages/citizen/caseView/contactPreferences/contactPreferencesPage";
+import { ReviewPage } from "../../../../pages/citizen/caseView/contactPreferences/reviewPage";
+import { ConfirmationPage } from "../../../../pages/citizen/caseView/contactPreferences/confirmationPage";
 import {
   applicationSubmittedBy,
   contactOption,
-} from "../../../../common/types.ts";
+} from "../../../../common/types";
 
 interface contactPreferencesParams {
   page: Page;

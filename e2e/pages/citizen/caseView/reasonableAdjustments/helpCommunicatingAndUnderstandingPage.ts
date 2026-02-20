@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors.ts";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
-import { HelpCommunicatingAndUnderstandingContent } from "../../../../fixtures/citizen/caseView/reasonableAdjustments/helpCommunicatingAndUnderstandingContent.ts";
+import { Selectors } from "../../../../common/selectors";
+import { CommonStaticText } from "../../../../common/commonStaticText";
+import { HelpCommunicatingAndUnderstandingContent } from "../../../../fixtures/citizen/caseView/reasonableAdjustments/helpCommunicatingAndUnderstandingContent";
 
 enum UniqueSelectors {
   lipSpeakerCheckbox = "#_enabled-PF0001-RA0001-RA0008-RA0041",

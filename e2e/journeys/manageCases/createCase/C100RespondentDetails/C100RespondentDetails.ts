@@ -3,13 +3,13 @@ import {
   C100RespondentGender,
   C100RespondentLegalRepresentation,
   RespondentDetails1Page,
-} from "../../../../pages/manageCases/createCase/C100/respondentDetails/respondentDetails1Page.ts";
+} from "../../../../pages/manageCases/createCase/C100/respondentDetails/respondentDetails1Page";
 import { Page } from "@playwright/test";
-import { SolicitorCreateInitial } from "../solicitorCreateInitial.ts";
-import { UserRole } from "../../../../common/types.ts";
-import { Helpers } from "../../../../common/helpers.ts";
-import { RespondentDetailsSubmitPage } from "../../../../pages/manageCases/createCase/C100/respondentDetails/respondentDetailsSubmitPage.ts";
-import { C100TasksTabPage } from "../../../../pages/manageCases/caseTabs/c100TasksTabPage.ts";
+import { SolicitorCreateInitial } from "../solicitorCreateInitial";
+import { UserRole } from "../../../../common/types";
+import { Helpers } from "../../../../common/helpers";
+import { RespondentDetailsSubmitPage } from "../../../../pages/manageCases/createCase/C100/respondentDetails/respondentDetailsSubmitPage";
+import { C100TasksTabPage } from "../../../../pages/manageCases/caseTabs/c100TasksTabPage";
 
 interface C100RespondentDetailsOptions {
   page: Page;

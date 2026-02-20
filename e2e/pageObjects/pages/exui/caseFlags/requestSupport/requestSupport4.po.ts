@@ -1,6 +1,6 @@
-import { Base } from "../../../base.po.ts";
+import { Base } from "../../../base.po";
 import { expect, Locator, Page } from "@playwright/test";
-import { PageUtils } from "../../../../../utils/page.utils.ts";
+import { PageUtils } from "../../../../../utils/page.utils";
 
 // Not a standard event page so don't extend EventPage
 export class RequestSupport4Page extends Base {

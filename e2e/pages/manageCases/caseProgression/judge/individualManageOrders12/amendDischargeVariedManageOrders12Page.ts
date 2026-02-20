@@ -1,10 +1,10 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors.ts";
-import { ManageOrders1DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderDA/manageOrders1DAContent.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
+import { Selectors } from "../../../../../common/selectors";
+import { ManageOrders1DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderDA/manageOrders1DAContent";
+import { Helpers } from "../../../../../common/helpers";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
-import { AmendDischargeVariedManageOrders12Content } from "../../../../../fixtures/manageCases/caseProgression/judge/individualManageOrders12/amendDischargeVariedManageOrders12Content.ts";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { AmendDischargeVariedManageOrders12Content } from "../../../../../fixtures/manageCases/caseProgression/judge/individualManageOrders12/amendDischargeVariedManageOrders12Content";
 
 interface AmendDischargeVariedManageOrders12PageOptions {
   page: Page;

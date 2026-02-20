@@ -1,9 +1,9 @@
-import { Selectors } from "../../../../../common/selectors.ts";
-import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
+import { Selectors } from "../../../../../common/selectors";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { AxeUtils } from "@hmcts/playwright-common";
 import { Page } from "@playwright/test";
-import { Helpers } from "../../../../../common/helpers.ts";
-import { RespondentPrivateDetailsConfirmedContent } from "../../../../../fixtures/citizen/caseView/respondent/keepDetailsPrivate/respondentPrivateDetailsConfirmedContent.ts";
+import { Helpers } from "../../../../../common/helpers";
+import { RespondentPrivateDetailsConfirmedContent } from "../../../../../fixtures/citizen/caseView/respondent/keepDetailsPrivate/respondentPrivateDetailsConfirmedContent";
 
 interface Start_alternativeContent {
   page: Page;

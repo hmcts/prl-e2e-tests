@@ -1,5 +1,5 @@
-import Config from "../utils/config.utils.ts";
-import { test } from "./fixtures.ts";
+import Config from "../utils/config.utils";
+import { test } from "./fixtures";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 

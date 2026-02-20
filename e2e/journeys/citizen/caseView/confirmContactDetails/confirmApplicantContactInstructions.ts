@@ -1,10 +1,10 @@
-import { ActivateCase, CaseUser } from "../../activateCase/activateCase.ts";
+import { ActivateCase, CaseUser } from "../../activateCase/activateCase";
 import { Browser, expect, Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors.ts";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
-import { applicationSubmittedBy } from "../../../../common/types.ts";
-import { Helpers } from "../../../../common/helpers.ts";
-import Config from "../../../../utils/config.utils.ts";
+import { Selectors } from "../../../../common/selectors";
+import { CommonStaticText } from "../../../../common/commonStaticText";
+import { applicationSubmittedBy } from "../../../../common/types";
+import { Helpers } from "../../../../common/helpers";
+import Config from "../../../../utils/config.utils";
 
 interface confirmApplicantContactInstructionsParams {
   page: Page;

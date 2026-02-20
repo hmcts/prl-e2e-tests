@@ -1,9 +1,9 @@
 import { Page, expect } from "@playwright/test";
-import { ReturnApplication1Page } from "../../../../pages/manageCases/caseWorker/returnApplication/returnApplication1Page.ts";
-import { ReturnApplication2Page } from "../../../../pages/manageCases/caseWorker/returnApplication/returnApplication2Page.ts";
-import { ReturnApplicationSubmitPage } from "../../../../pages/manageCases/caseWorker/returnApplication/returnApplicationSubmitPage.ts";
-import { Helpers } from "../../../../common/helpers.ts";
-import { solicitorCaseCreateType } from "../../../../common/types.ts";
+import { ReturnApplication1Page } from "../../../../pages/manageCases/caseWorker/returnApplication/returnApplication1Page";
+import { ReturnApplication2Page } from "../../../../pages/manageCases/caseWorker/returnApplication/returnApplication2Page";
+import { ReturnApplicationSubmitPage } from "../../../../pages/manageCases/caseWorker/returnApplication/returnApplicationSubmitPage";
+import { Helpers } from "../../../../common/helpers";
+import { solicitorCaseCreateType } from "../../../../common/types";
 
 interface ReturnApplicationParams {
   page: Page;

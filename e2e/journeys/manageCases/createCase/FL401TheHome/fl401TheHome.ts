@@ -1,12 +1,12 @@
-import { SolicitorCreateInitial } from "../solicitorCreateInitial.ts";
-import { Helpers } from "../../../../common/helpers.ts";
+import { SolicitorCreateInitial } from "../solicitorCreateInitial";
+import { Helpers } from "../../../../common/helpers";
 import { Page } from "@playwright/test";
-import { Fl401TasksTabPage } from "../../../../pages/manageCases/caseTabs/fl401TasksTabPage.ts";
+import { Fl401TasksTabPage } from "../../../../pages/manageCases/caseTabs/fl401TasksTabPage";
 import {
   addressRadios,
   Fl401TheHome1Page,
-} from "../../../../pages/manageCases/createCase/FL401/theHome/fl401TheHome1Page.ts";
-import { Fl401TheHomeSubmitPage } from "../../../../pages/manageCases/createCase/FL401/theHome/fl401TheHomeSubmitPage.ts";
+} from "../../../../pages/manageCases/createCase/FL401/theHome/fl401TheHome1Page";
+import { Fl401TheHomeSubmitPage } from "../../../../pages/manageCases/createCase/FL401/theHome/fl401TheHomeSubmitPage";
 
 interface FL401TheHomeOptions {
   page: Page;

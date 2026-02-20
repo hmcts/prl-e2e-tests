@@ -1,10 +1,10 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors.ts";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { Selectors } from "../../../../common/selectors";
+import { CommonStaticText } from "../../../../common/commonStaticText";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { DocumentUploadContent } from "../../../../fixtures/citizen/caseView/requestMoreTime/documentUploadContent.ts";
-import { Helpers } from "../../../../common/helpers.ts";
-import config from "../../../../utils/config.utils.ts";
+import { DocumentUploadContent } from "../../../../fixtures/citizen/caseView/requestMoreTime/documentUploadContent";
+import { Helpers } from "../../../../common/helpers";
+import config from "../../../../utils/config.utils";
 
 export enum UniqueSelectors {
   fileUpload = "#awp-doc-form-upload",

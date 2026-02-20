@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors.ts";
-import { ContactRepresentativeContent } from "../../../../../fixtures/citizen/createCase/C100/c100ScreeningSections/contactRepresentativeContent.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
+import { Selectors } from "../../../../../common/selectors";
+import { ContactRepresentativeContent } from "../../../../../fixtures/citizen/createCase/C100/c100ScreeningSections/contactRepresentativeContent";
+import { Helpers } from "../../../../../common/helpers";
 import { AxeUtils } from "@hmcts/playwright-common";
 
 interface ContactRepresentativePageOptions {

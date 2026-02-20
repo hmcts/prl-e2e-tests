@@ -1,14 +1,14 @@
 import { Page, expect } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors.ts";
+import { Selectors } from "../../../../common/selectors";
 import { AxeUtils } from "@hmcts/playwright-common";
 import {
   solicitorCaseCreateType,
   uploadOrderC100Options,
   uploadOrderFL401Options,
-} from "../../../../common/types.ts";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
-import { Helpers } from "../../../../common/helpers.ts";
-import { UploadDraftAnOrder3Content } from "../../../../fixtures/manageCases/caseProgression/draftAnOrder/uploadDraftAnOrder3Content.ts";
+} from "../../../../common/types";
+import { CommonStaticText } from "../../../../common/commonStaticText";
+import { Helpers } from "../../../../common/helpers";
+import { UploadDraftAnOrder3Content } from "../../../../fixtures/manageCases/caseProgression/draftAnOrder/uploadDraftAnOrder3Content";
 
 interface UploadDraftAnOrder3PageOptions {
   page: Page;

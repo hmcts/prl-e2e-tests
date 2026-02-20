@@ -1,6 +1,6 @@
 import { test } from "@playwright/test";
-import { Config } from "../../../utils/config.utils.ts";
-import { CaseList } from "../../../journeys/manageCases/caseList/caseList.ts";
+import { Config } from "../../../utils/config.utils";
+import { CaseList } from "../../../journeys/manageCases/caseList/caseList";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 

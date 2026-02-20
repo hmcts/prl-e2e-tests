@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors.ts";
-import { ReasonableAdjustmentsSelectionContent } from "../../../../fixtures/citizen/caseView/reasonableAdjustments/reasonableAdjustmentsSelectionContent.ts";
-import { Helpers } from "../../../../common/helpers.ts";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { Selectors } from "../../../../common/selectors";
+import { ReasonableAdjustmentsSelectionContent } from "../../../../fixtures/citizen/caseView/reasonableAdjustments/reasonableAdjustmentsSelectionContent";
+import { Helpers } from "../../../../common/helpers";
+import { CommonStaticText } from "../../../../common/commonStaticText";
 
 enum UniqueSelectors {
   helpCommunicatingAndUnderstandingCheckbox = "#_enabled-PF0001-RA0001-RA0008",

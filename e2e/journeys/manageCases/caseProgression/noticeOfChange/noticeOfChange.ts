@@ -1,12 +1,12 @@
 import { Browser, Locator, Page } from "@playwright/test";
-import { Noc2Page } from "../../../../pages/manageCases/caseProgression/noticeOfChange/noc2Page.ts";
-import { NocSubmitPage } from "../../../../pages/manageCases/caseProgression/noticeOfChange/nocSubmitPage.ts";
-import { NocSuccessfulPage } from "../../../../pages/manageCases/caseProgression/noticeOfChange/nocSuccessfulPage.ts";
-import { Helpers } from "../../../../common/helpers.ts";
-import config from "../../../../utils/config.utils.ts";
-import { CreateHearingRequest } from "../createHearingRequest/createHearingRequest.ts";
-import { solicitorCaseCreateType } from "../../../../common/types.ts";
-import { Noc1Page } from "../../../../pages/manageCases/caseProgression/noticeOfChange/noc1Page.ts";
+import { Noc2Page } from "../../../../pages/manageCases/caseProgression/noticeOfChange/noc2Page";
+import { NocSubmitPage } from "../../../../pages/manageCases/caseProgression/noticeOfChange/nocSubmitPage";
+import { NocSuccessfulPage } from "../../../../pages/manageCases/caseProgression/noticeOfChange/nocSuccessfulPage";
+import { Helpers } from "../../../../common/helpers";
+import config from "../../../../utils/config.utils";
+import { CreateHearingRequest } from "../createHearingRequest/createHearingRequest";
+import { solicitorCaseCreateType } from "../../../../common/types";
+import { Noc1Page } from "../../../../pages/manageCases/caseProgression/noticeOfChange/noc1Page";
 
 interface NoticeOfChangeParams {
   page: Page;

@@ -1,6 +1,6 @@
-import { test } from "../../../fixtures.ts";
-import Config from "../../../../utils/config.utils.ts";
-import { C100 } from "../../../../journeys/citizen/createCase/C100/C100.ts";
+import { test } from "../../../fixtures";
+import Config from "../../../../utils/config.utils";
+import { C100 } from "../../../../journeys/citizen/createCase/C100/C100";
 
 test.describe("C100 Citizen Application with Written Consent from other people in the case.", (): void => {
   test.beforeEach(async ({ page, idamLoginHelper }) => {

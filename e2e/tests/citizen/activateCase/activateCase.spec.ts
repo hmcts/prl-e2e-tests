@@ -1,7 +1,7 @@
-import { test } from "../../fixtures.ts";
-import { ActivateCase } from "../../../journeys/citizen/activateCase/activateCase.ts";
-import { Helpers } from "../../../common/helpers.ts";
-import config from "../../../utils/config.utils.ts";
+import { test } from "../../fixtures";
+import { ActivateCase } from "../../../journeys/citizen/activateCase/activateCase";
+import { Helpers } from "../../../common/helpers";
+import config from "../../../utils/config.utils";
 
 test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 

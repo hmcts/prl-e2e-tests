@@ -1,14 +1,14 @@
 import { Browser, BrowserContext, Page } from "@playwright/test";
-import { Helpers } from "../../../../common/helpers.ts";
-import { AdminEditAndApproveAnOrder1Page } from "../../../../pages/manageCases/caseWorker/serveApprovedOrder/adminEditAndApproveAnOrder1Page.ts";
-import { AdminEditAndApproveAnOrder4Page } from "../../../../pages/manageCases/caseWorker/serveApprovedOrder/adminEditAndApproveAnOrder4Page.ts";
-import { AdminEditAndApproveAnOrder21Page } from "../../../../pages/manageCases/caseWorker/serveApprovedOrder/adminEditAndApproveAnOrder21Page.ts";
-import { AdminEditAndApproveAnOrder22Page } from "../../../../pages/manageCases/caseWorker/serveApprovedOrder/adminEditAndApproveAnOrder22Page.ts";
-import { AdminEditAndApproveAnOrder23Page } from "../../../../pages/manageCases/caseWorker/serveApprovedOrder/adminEditAndApproveAnOrder23Page.ts";
-import { AdminEditAndApproveAnOrderSubmitPage } from "../../../../pages/manageCases/caseWorker/serveApprovedOrder/adminEditAndApproveAnOrderSubmitPage.ts";
-import config from "../../../../utils/config.utils.ts";
-import Config from "../../../../utils/config.utils.ts";
-import { EditAndApproveAnOrder } from "../editAndApproveAnOrder/editAndApproveAnOrder.ts";
+import { Helpers } from "../../../../common/helpers";
+import { AdminEditAndApproveAnOrder1Page } from "../../../../pages/manageCases/caseWorker/serveApprovedOrder/adminEditAndApproveAnOrder1Page";
+import { AdminEditAndApproveAnOrder4Page } from "../../../../pages/manageCases/caseWorker/serveApprovedOrder/adminEditAndApproveAnOrder4Page";
+import { AdminEditAndApproveAnOrder21Page } from "../../../../pages/manageCases/caseWorker/serveApprovedOrder/adminEditAndApproveAnOrder21Page";
+import { AdminEditAndApproveAnOrder22Page } from "../../../../pages/manageCases/caseWorker/serveApprovedOrder/adminEditAndApproveAnOrder22Page";
+import { AdminEditAndApproveAnOrder23Page } from "../../../../pages/manageCases/caseWorker/serveApprovedOrder/adminEditAndApproveAnOrder23Page";
+import { AdminEditAndApproveAnOrderSubmitPage } from "../../../../pages/manageCases/caseWorker/serveApprovedOrder/adminEditAndApproveAnOrderSubmitPage";
+import config from "../../../../utils/config.utils";
+import Config from "../../../../utils/config.utils";
+import { EditAndApproveAnOrder } from "../editAndApproveAnOrder/editAndApproveAnOrder";
 import { Fl401AddCaseNumber1Page } from "../../../../pageObjects/pages/exui/checkApplication/fl401AddCaseNumber1.po.js";
 import { Fl401AddCaseNumberSubmitPage } from "../../../../pageObjects/pages/exui/checkApplication/fl401AddCaseNumberSubmit.po.js";
 

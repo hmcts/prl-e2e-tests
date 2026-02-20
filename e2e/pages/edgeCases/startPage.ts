@@ -1,8 +1,8 @@
-import { StartPageContent } from "../../fixtures/edgeCases/startPageContent.ts";
+import { StartPageContent } from "../../fixtures/edgeCases/startPageContent";
 import { Page } from "@playwright/test";
-import { Selectors } from "../../common/selectors.ts";
+import { Selectors } from "../../common/selectors";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Helpers } from "../../common/helpers.ts";
+import { Helpers } from "../../common/helpers";
 
 interface StartPageOptions {
   page: Page;

@@ -1,8 +1,8 @@
 import { AxeUtils } from "@hmcts/playwright-common";
-import { ApplicationPackDocumentsContent } from "../../../../fixtures/citizen/caseView/viewAllDocuments/applicationPackDocumentsContent.ts";
-import { Selectors } from "../../../../common/selectors.ts";
+import { ApplicationPackDocumentsContent } from "../../../../fixtures/citizen/caseView/viewAllDocuments/applicationPackDocumentsContent";
+import { Selectors } from "../../../../common/selectors";
 import { Page } from "@playwright/test";
-import { Helpers } from "../../../../common/helpers.ts";
+import { Helpers } from "../../../../common/helpers";
 
 interface ApplicationPackDocumentsParams {
   page: Page;

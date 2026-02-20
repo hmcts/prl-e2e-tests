@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { ManageDocumentsNew1Page } from "../../../../pages/manageCases/caseProgression/manageDocuments/manageDocumentsNew1Page.ts";
-import { ManageDocumentsNewSubmitPage } from "../../../../pages/manageCases/caseProgression/manageDocuments/manageDocumentsNewSubmit.ts";
-import { Helpers } from "../../../../common/helpers.ts";
-import { ManageDocumentsNewConfirmPage } from "../../../../pages/manageCases/caseProgression/manageDocuments/manageDocumentsNewConfirmPage.ts";
-import { FL401ConfidentialDetailsTabPage } from "../../../../pages/manageCases/caseTabs/FL401/fl401ConfidentialDetailsTabPage.ts";
+import { ManageDocumentsNew1Page } from "../../../../pages/manageCases/caseProgression/manageDocuments/manageDocumentsNew1Page";
+import { ManageDocumentsNewSubmitPage } from "../../../../pages/manageCases/caseProgression/manageDocuments/manageDocumentsNewSubmit";
+import { Helpers } from "../../../../common/helpers";
+import { ManageDocumentsNewConfirmPage } from "../../../../pages/manageCases/caseProgression/manageDocuments/manageDocumentsNewConfirmPage";
+import { FL401ConfidentialDetailsTabPage } from "../../../../pages/manageCases/caseTabs/FL401/fl401ConfidentialDetailsTabPage";
 import { solicitorCaseCreateType } from "../../../../common/types.js";
 import { C100ConfidentialDetailsTabPage } from "../../../../pages/manageCases/caseTabs/C100/c100ConfidentialDetailsTabPage.js";
 import { C100CaseDocumentsTabPage } from "../../../../pages/manageCases/caseTabs/C100/c100CaseDocumentsTabPage.js";

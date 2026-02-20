@@ -1,12 +1,12 @@
 import { Page } from "@playwright/test";
-import { uploadOrderFL401Options } from "../../../../../common/types.ts";
-import { ManageOrders1DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderDA/manageOrders1DAContent.ts";
-import { Selectors } from "../../../../../common/selectors.ts";
+import { uploadOrderFL401Options } from "../../../../../common/types";
+import { ManageOrders1DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderDA/manageOrders1DAContent";
+import { Selectors } from "../../../../../common/selectors";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Helpers } from "../../../../../common/helpers.ts";
-import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
-import { ManageOrders3DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderDA/manageOrders3DAContent.ts";
-import { JudgeUploadOrderDASubmitContent } from "../../../../../fixtures/manageCases/caseProgression/judge/judgeUploadOrder/judgeUploadOrderDASubmitContent.ts";
+import { Helpers } from "../../../../../common/helpers";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { ManageOrders3DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderDA/manageOrders3DAContent";
+import { JudgeUploadOrderDASubmitContent } from "../../../../../fixtures/manageCases/caseProgression/judge/judgeUploadOrder/judgeUploadOrderDASubmitContent";
 
 interface JudgeDACaseProgressionJourneyParams {
   page: Page;

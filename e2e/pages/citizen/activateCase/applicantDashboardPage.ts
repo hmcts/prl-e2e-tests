@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../common/selectors.ts";
-import { Helpers } from "../../../common/helpers.ts";
-import { ApplicantDashboardContent } from "../../../fixtures/citizen/activateCase/applicantDashboardContent.ts";
-import { applicationSubmittedBy } from "../../../common/types.ts";
+import { Selectors } from "../../../common/selectors";
+import { Helpers } from "../../../common/helpers";
+import { ApplicantDashboardContent } from "../../../fixtures/citizen/activateCase/applicantDashboardContent";
+import { applicationSubmittedBy } from "../../../common/types";
 import { AxeUtils } from "@hmcts/playwright-common";
 
 export class ApplicantDashboardPage {

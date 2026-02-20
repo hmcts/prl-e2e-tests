@@ -1,18 +1,18 @@
-import { ActivateCase, CaseUser } from "../../../activateCase/activateCase.ts";
+import { ActivateCase, CaseUser } from "../../../activateCase/activateCase";
 import { Browser, Page } from "@playwright/test";
-import { GuidanceRespondentPage } from "../../../../../pages/citizen/caseView/requestMoreTime/guidanceRespondentPage.ts";
-import { UploadYourApplicationPage } from "../../../../../pages/citizen/caseView/requestMoreTime/uploadYourApplicationPage.ts";
-import { AgreementForRequestPage } from "../../../../../pages/citizen/caseView/requestMoreTime/agreementForRequestPage.ts";
-import { HelpWithFeesPage } from "../../../../../pages/citizen/caseView/requestMoreTime/helpWithFeesPage.ts";
-import { ReferencePage } from "../../../../../pages/citizen/caseView/requestMoreTime/referencePage.ts";
-import { DocumentUploadPage } from "../../../../../pages/citizen/caseView/requestMoreTime/documentUploadPage.ts";
-import { SupportingDocumentsPage } from "../../../../../pages/citizen/caseView/requestMoreTime/supportingDocumentsPage.ts";
-import { SupportingDocumentUploadPage } from "../../../../../pages/citizen/caseView/requestMoreTime/supportingDocumentUploadPage.ts";
-import { UrgentRequestPage } from "../../../../../pages/citizen/caseView/requestMoreTime/urgentRequestPage.ts";
-import { CheckAnswersRespondentPage } from "../../../../../pages/citizen/caseView/requestMoreTime/checkAnswersRespondentPage.ts";
-import { applicationSubmittedBy } from "../../../../../common/types.ts";
-import { Selectors } from "../../../../../common/selectors.ts";
-import { ListOfApplications1Content } from "../../../../../fixtures/citizen/caseView/makeRequestToCourtAboutCase/applicant/listOfApplications1Content.ts";
+import { GuidanceRespondentPage } from "../../../../../pages/citizen/caseView/requestMoreTime/guidanceRespondentPage";
+import { UploadYourApplicationPage } from "../../../../../pages/citizen/caseView/requestMoreTime/uploadYourApplicationPage";
+import { AgreementForRequestPage } from "../../../../../pages/citizen/caseView/requestMoreTime/agreementForRequestPage";
+import { HelpWithFeesPage } from "../../../../../pages/citizen/caseView/requestMoreTime/helpWithFeesPage";
+import { ReferencePage } from "../../../../../pages/citizen/caseView/requestMoreTime/referencePage";
+import { DocumentUploadPage } from "../../../../../pages/citizen/caseView/requestMoreTime/documentUploadPage";
+import { SupportingDocumentsPage } from "../../../../../pages/citizen/caseView/requestMoreTime/supportingDocumentsPage";
+import { SupportingDocumentUploadPage } from "../../../../../pages/citizen/caseView/requestMoreTime/supportingDocumentUploadPage";
+import { UrgentRequestPage } from "../../../../../pages/citizen/caseView/requestMoreTime/urgentRequestPage";
+import { CheckAnswersRespondentPage } from "../../../../../pages/citizen/caseView/requestMoreTime/checkAnswersRespondentPage";
+import { applicationSubmittedBy } from "../../../../../common/types";
+import { Selectors } from "../../../../../common/selectors";
+import { ListOfApplications1Content } from "../../../../../fixtures/citizen/caseView/makeRequestToCourtAboutCase/applicant/listOfApplications1Content";
 
 interface requestMoreTimeParams {
   page: Page;

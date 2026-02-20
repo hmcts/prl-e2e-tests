@@ -3,20 +3,20 @@ import {
   applicationSubmittedBy,
   createOrderFL401Options,
   solicitorCaseCreateType,
-} from "../../../../common/types.ts";
+} from "../../../../common/types";
 import { Browser, Page } from "@playwright/test";
-import { responsibleForServing } from "../../../../pages/manageCases/caseProgression/serviceOfApplication/ServiceOfApplication4Page.ts";
-import { jsonDatas } from "../../../../common/caseHelpers/jsonDatas.ts";
-import { CompleteTheOrder } from "../completeTheOrder/completeTheOrder.ts";
-import { AmendApplicantDetails } from "../amendDetails/amendApplicantDetails.ts";
-import { ServiceOfApplication } from "../serviceOfApplication/serviceOfApplication.ts";
-import { Helpers } from "../../../../common/helpers.ts";
-import config from "../../../../utils/config.utils.ts";
-import { ConfidentialityCheck1Page } from "../../../../pages/manageCases/caseProgression/confidentialityCheck/confidentialityCheck1Page.ts";
-import { ConfidentialityCheckSubmitPage } from "../../../../pages/manageCases/caseProgression/confidentialityCheck/confidentialityCheckSubmitPage.ts";
-import { ConfidentialityCheckConfirmPage } from "../../../../pages/manageCases/caseProgression/confidentialityCheck/confidentialityCheckConfirmPage.ts";
-import { Selectors } from "../../../../common/selectors.ts";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { responsibleForServing } from "../../../../pages/manageCases/caseProgression/serviceOfApplication/ServiceOfApplication4Page";
+import { jsonDatas } from "../../../../common/caseHelpers/jsonDatas";
+import { CompleteTheOrder } from "../completeTheOrder/completeTheOrder";
+import { AmendApplicantDetails } from "../amendDetails/amendApplicantDetails";
+import { ServiceOfApplication } from "../serviceOfApplication/serviceOfApplication";
+import { Helpers } from "../../../../common/helpers";
+import config from "../../../../utils/config.utils";
+import { ConfidentialityCheck1Page } from "../../../../pages/manageCases/caseProgression/confidentialityCheck/confidentialityCheck1Page";
+import { ConfidentialityCheckSubmitPage } from "../../../../pages/manageCases/caseProgression/confidentialityCheck/confidentialityCheckSubmitPage";
+import { ConfidentialityCheckConfirmPage } from "../../../../pages/manageCases/caseProgression/confidentialityCheck/confidentialityCheckConfirmPage";
+import { Selectors } from "../../../../common/selectors";
+import { CommonStaticText } from "../../../../common/commonStaticText";
 import { C100ConfidentialityCheck1Page } from "../../../../pages/manageCases/caseProgression/confidentialityCheck/c100ConfidentialityCheck1Page.js";
 import { C100ConfidentialityCheckConfirmPage } from "../../../../pages/manageCases/caseProgression/confidentialityCheck/c100ConfidentialityCheckConfirmPage.js";
 

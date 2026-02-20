@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../common/selectors.ts";
+import { Selectors } from "../../../common/selectors";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Helpers } from "../../../common/helpers.ts";
-import { ContactDetailsContent } from "../../../fixtures/edgeCases/personalDetails/contactDetailsContent.ts";
+import { Helpers } from "../../../common/helpers";
+import { ContactDetailsContent } from "../../../fixtures/edgeCases/personalDetails/contactDetailsContent";
 
 interface ContactDetailsPageOptions {
   page: Page;

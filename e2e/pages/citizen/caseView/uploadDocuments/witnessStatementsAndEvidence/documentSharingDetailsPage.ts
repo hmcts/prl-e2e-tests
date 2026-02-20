@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors.ts";
-import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
+import { Selectors } from "../../../../../common/selectors";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { DocumentSharingDetailsContent } from "../../../../../fixtures/citizen/caseView/uploadDocuments/witnessStatementsAndEvidence/documentSharingDetailsContent.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
+import { DocumentSharingDetailsContent } from "../../../../../fixtures/citizen/caseView/uploadDocuments/witnessStatementsAndEvidence/documentSharingDetailsContent";
+import { Helpers } from "../../../../../common/helpers";
 
 export class DocumentSharingDetailsPage {
   public static async documentSharingDetailsPage(

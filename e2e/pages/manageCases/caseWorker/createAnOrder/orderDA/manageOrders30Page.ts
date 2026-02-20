@@ -1,10 +1,10 @@
-import { Selectors } from "../../../../../common/selectors.ts";
-import { ManageOrders1DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderDA/manageOrders1DAContent.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
+import { Selectors } from "../../../../../common/selectors";
+import { ManageOrders1DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderDA/manageOrders1DAContent";
+import { Helpers } from "../../../../../common/helpers";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { Page } from "@playwright/test";
-import { ManageOrders30Content } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderDA/manageOrders30Content.ts";
+import { ManageOrders30Content } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderDA/manageOrders30Content";
 
 interface ManageOrders30PageOptions {
   page: Page;

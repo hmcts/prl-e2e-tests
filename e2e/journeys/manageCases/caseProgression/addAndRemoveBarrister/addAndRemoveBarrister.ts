@@ -1,17 +1,17 @@
 import { Browser, Locator, Page, expect } from "@playwright/test";
-import { Noc2Page } from "../../../../pages/manageCases/caseProgression/noticeOfChange/noc2Page.ts";
-import { NocSubmitPage } from "../../../../pages/manageCases/caseProgression/noticeOfChange/nocSubmitPage.ts";
-import { NocSuccessfulPage } from "../../../../pages/manageCases/caseProgression/noticeOfChange/nocSuccessfulPage.ts";
-import { Helpers } from "../../../../common/helpers.ts";
-import config from "../../../../utils/config.utils.ts";
-import { solicitorCaseCreateType } from "../../../../common/types.ts";
-import { Noc1Page } from "../../../../pages/manageCases/caseProgression/noticeOfChange/noc1Page.ts";
-import { SolicitorAddBarrister } from "../../../../pages/manageCases/caseProgression/addBarristerAndRemoveBarrister/solicitorAddBarristerPage.ts";
-import { RemoveBarrister } from "../../../../pages/manageCases/caseProgression/addBarristerAndRemoveBarrister/removeBarristerPage.ts";
-import { Selectors } from "../../../../common/selectors.ts";
-import { BarristerDetailsTabContent } from "../../../../fixtures/manageCases/caseProgression/addBarristerAndRemoveBarrister/barristerDetailsTabContent.ts";
-import { CaseworkerAddBarrister } from "../../../../pages/manageCases/caseProgression/addBarristerAndRemoveBarrister/caseworkerAddBarristerPage.ts";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { Noc2Page } from "../../../../pages/manageCases/caseProgression/noticeOfChange/noc2Page";
+import { NocSubmitPage } from "../../../../pages/manageCases/caseProgression/noticeOfChange/nocSubmitPage";
+import { NocSuccessfulPage } from "../../../../pages/manageCases/caseProgression/noticeOfChange/nocSuccessfulPage";
+import { Helpers } from "../../../../common/helpers";
+import config from "../../../../utils/config.utils";
+import { solicitorCaseCreateType } from "../../../../common/types";
+import { Noc1Page } from "../../../../pages/manageCases/caseProgression/noticeOfChange/noc1Page";
+import { SolicitorAddBarrister } from "../../../../pages/manageCases/caseProgression/addBarristerAndRemoveBarrister/solicitorAddBarristerPage";
+import { RemoveBarrister } from "../../../../pages/manageCases/caseProgression/addBarristerAndRemoveBarrister/removeBarristerPage";
+import { Selectors } from "../../../../common/selectors";
+import { BarristerDetailsTabContent } from "../../../../fixtures/manageCases/caseProgression/addBarristerAndRemoveBarrister/barristerDetailsTabContent";
+import { CaseworkerAddBarrister } from "../../../../pages/manageCases/caseProgression/addBarristerAndRemoveBarrister/caseworkerAddBarristerPage";
+import { CommonStaticText } from "../../../../common/commonStaticText";
 
 interface addBarristerAndRemoveBarristerParams {
   page: Page;

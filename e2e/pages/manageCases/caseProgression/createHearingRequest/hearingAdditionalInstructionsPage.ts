@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Selectors } from "../../../../common/selectors.ts";
-import { HearingAdditionalInstructionsContent } from "../../../../fixtures/manageCases/caseProgression/createHearingRequest/hearingAdditionalInstructionsContent.ts";
-import { Helpers } from "../../../../common/helpers.ts";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { Selectors } from "../../../../common/selectors";
+import { HearingAdditionalInstructionsContent } from "../../../../fixtures/manageCases/caseProgression/createHearingRequest/hearingAdditionalInstructionsContent";
+import { Helpers } from "../../../../common/helpers";
+import { CommonStaticText } from "../../../../common/commonStaticText";
 
 export enum UniqueSelectors {
   addInstructions = "#additionalInstructionsTextarea",

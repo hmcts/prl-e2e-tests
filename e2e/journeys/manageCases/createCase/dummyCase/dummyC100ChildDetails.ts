@@ -1,9 +1,9 @@
-import { Helpers } from "../../../../common/helpers.ts";
+import { Helpers } from "../../../../common/helpers";
 import { Page } from "@playwright/test";
-import { DummyChildDetailsRevised1Page } from "../../../../pages/manageCases/createCase/C100/dummyCase/dummyChildDetailsRevised1Page.ts";
-import { Selectors } from "../../../../common/selectors.ts";
-import { ChildDetailsRevised2Content } from "../../../../fixtures/manageCases/createCase/C100/childDetails/childDetailsRevised2Content.ts";
-import { ChildDetailsSubmitPageContent } from "../../../../fixtures/manageCases/createCase/C100/childDetails/childDetailsSubmitPageContent.ts";
+import { DummyChildDetailsRevised1Page } from "../../../../pages/manageCases/createCase/C100/dummyCase/dummyChildDetailsRevised1Page";
+import { Selectors } from "../../../../common/selectors";
+import { ChildDetailsRevised2Content } from "../../../../fixtures/manageCases/createCase/C100/childDetails/childDetailsRevised2Content";
+import { ChildDetailsSubmitPageContent } from "../../../../fixtures/manageCases/createCase/C100/childDetails/childDetailsSubmitPageContent";
 
 export class DummyC100ChildDetails {
   public static async dummyC100ChildDetails(page: Page): Promise<void> {

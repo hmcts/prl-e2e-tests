@@ -1,9 +1,9 @@
 import { Browser, Page } from "@playwright/test";
-import { C100SummaryTabPage } from "../../../pages/manageCases/caseTabs/C100/c100SummaryTabPage.ts";
-import { Helpers } from "../../../common/helpers.ts";
-import Config from "../../../utils/config.utils.ts";
-import { C100ConfidentialDetailsTabPage } from "../../../pages/manageCases/caseTabs/C100/c100ConfidentialDetailsTabPage.ts";
-import { DummyC100 } from "../createCase/dummyCase/dummyC100.ts";
+import { C100SummaryTabPage } from "../../../pages/manageCases/caseTabs/C100/c100SummaryTabPage";
+import { Helpers } from "../../../common/helpers";
+import Config from "../../../utils/config.utils";
+import { C100ConfidentialDetailsTabPage } from "../../../pages/manageCases/caseTabs/C100/c100ConfidentialDetailsTabPage";
+import { DummyC100 } from "../createCase/dummyCase/dummyC100";
 
 interface C100CaseTabsParams {
   page: Page;

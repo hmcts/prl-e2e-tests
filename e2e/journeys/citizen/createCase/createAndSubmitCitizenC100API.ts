@@ -1,13 +1,13 @@
 import { Page } from "@playwright/test";
-import IdamLoginHelper from "../../../utils/idamLoginHelper.utils.ts";
-import { ApplicantPage } from "../../../pages/citizen/createCase/initialJourney/applicantPage.ts";
-import { CitizenCACaseUtils } from "../../../utils/citizenCACase.utils.ts";
-import { CaseDashboardPage } from "../../../pages/citizen/createCase/initialJourney/caseDashboardPage.ts";
-import { CreateUserUtil } from "../../../utils/createUser.utils.ts";
-import { C100Pay } from "./C100/subJourneys/C100Pay.ts";
-import { EqualityAndDiversityPage } from "../../../pages/citizen/createCase/C100/confirmation/equalityAndDiversityQuestionsPage.ts";
-import { ReviewPage } from "../../../pages/citizen/createCase/C100/reviewPages/reviewPage.ts";
-import { ConfirmationPage } from "../../../pages/citizen/createCase/C100/confirmation/confirmationPage.ts";
+import IdamLoginHelper from "../../../utils/idamLoginHelper.utils";
+import { ApplicantPage } from "../../../pages/citizen/createCase/initialJourney/applicantPage";
+import { CitizenCACaseUtils } from "../../../utils/citizenCACase.utils";
+import { CaseDashboardPage } from "../../../pages/citizen/createCase/initialJourney/caseDashboardPage";
+import { CreateUserUtil } from "../../../utils/createUser.utils";
+import { C100Pay } from "./C100/subJourneys/C100Pay";
+import { EqualityAndDiversityPage } from "../../../pages/citizen/createCase/C100/confirmation/equalityAndDiversityQuestionsPage";
+import { ReviewPage } from "../../../pages/citizen/createCase/C100/reviewPages/reviewPage";
+import { ConfirmationPage } from "../../../pages/citizen/createCase/C100/confirmation/confirmationPage";
 import { IdamUtils, ServiceAuthUtils } from "@hmcts/playwright-common";
 
 interface CitizenC100ApiCaseOptions {

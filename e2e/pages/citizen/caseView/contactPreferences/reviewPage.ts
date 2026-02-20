@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors.ts";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { Selectors } from "../../../../common/selectors";
+import { CommonStaticText } from "../../../../common/commonStaticText";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { ReviewContent } from "../../../../fixtures/citizen/caseView/contactPreferences/reviewContent.ts";
-import { Helpers } from "../../../../common/helpers.ts";
+import { ReviewContent } from "../../../../fixtures/citizen/caseView/contactPreferences/reviewContent";
+import { Helpers } from "../../../../common/helpers";
 
 export class ReviewPage {
   public static async reviewPage(

@@ -1,10 +1,10 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors.ts";
-import { RelationshipToRespondentSubmitContent } from "../../../../../fixtures/manageCases/createCase/FL401/relationshipToRespondent/relationshipToRespondentSubmitContent.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
+import { Selectors } from "../../../../../common/selectors";
+import { RelationshipToRespondentSubmitContent } from "../../../../../fixtures/manageCases/createCase/FL401/relationshipToRespondent/relationshipToRespondentSubmitContent";
+import { Helpers } from "../../../../../common/helpers";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { fl401RelationshipToRespondent } from "./relationshipToRespondent1Page.ts";
-import { fl401RespondentRelationshipOther } from "./relationshipToRespondent2Page.ts";
+import { fl401RelationshipToRespondent } from "./relationshipToRespondent1Page";
+import { fl401RespondentRelationshipOther } from "./relationshipToRespondent2Page";
 
 enum FL401RelationshipToRespondentValues {
   marriedOrCivil = "Married or in a civil partnership",

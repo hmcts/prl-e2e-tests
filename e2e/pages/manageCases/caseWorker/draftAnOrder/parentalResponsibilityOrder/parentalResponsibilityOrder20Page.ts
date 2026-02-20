@@ -1,11 +1,11 @@
 import { Locator, Page } from "@playwright/test";
-import { Helpers } from "../../../../../common/helpers.ts";
-import { Selectors } from "../../../../../common/selectors.ts";
-import { ParentalResponsibilityOrder20Content } from "../../../../../fixtures/manageCases/caseWorker/draftAnOrder/parentalResponsibilityOrder/parentalResponsibilityOrder20Content.ts";
+import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors";
+import { ParentalResponsibilityOrder20Content } from "../../../../../fixtures/manageCases/caseWorker/draftAnOrder/parentalResponsibilityOrder/parentalResponsibilityOrder20Content";
 import {
   clippingCoords,
   ExuiMediaViewerPage,
-} from "../../../../../pageObjects/pages/exui/exuiMediaViewer.po.ts";
+} from "../../../../../pageObjects/pages/exui/exuiMediaViewer.po";
 
 export class ParentalResponsibilityOrder20Page {
   public static async checkPdfLinks(page: Page): Promise<void> {

@@ -1,14 +1,14 @@
 import { Page } from "@playwright/test";
-import { DraftAnOrder1Page } from "../../../../../pages/manageCases/caseWorker/draftAnOrder/draftAnOrder1Page.ts";
-import { DraftAnOrder2Page } from "../../../../../pages/manageCases/caseWorker/draftAnOrder/draftAnOrder2Page.ts";
+import { DraftAnOrder1Page } from "../../../../../pages/manageCases/caseWorker/draftAnOrder/draftAnOrder1Page";
+import { DraftAnOrder2Page } from "../../../../../pages/manageCases/caseWorker/draftAnOrder/draftAnOrder2Page";
 import {
   OrderType,
   solicitorCaseCreateType,
-} from "../../../../../common/types.ts";
-import { DraftAnOrder4Page } from "../../../../../pages/manageCases/caseWorker/draftAnOrder/draftAnOrder4Page.ts";
-import { DraftAnOrder8Page } from "../../../../../pages/manageCases/caseWorker/draftAnOrder/draftAnOrder8Page.ts";
-import { DraftAnOrder20Page } from "../../../../../pages/manageCases/caseWorker/draftAnOrder/draftAnOrder20Page.ts";
-import { DraftAnOrderSubmitPage } from "../../../../../pages/manageCases/caseWorker/draftAnOrder/draftAnOrderSubmitPage.ts";
+} from "../../../../../common/types";
+import { DraftAnOrder4Page } from "../../../../../pages/manageCases/caseWorker/draftAnOrder/draftAnOrder4Page";
+import { DraftAnOrder8Page } from "../../../../../pages/manageCases/caseWorker/draftAnOrder/draftAnOrder8Page";
+import { DraftAnOrder20Page } from "../../../../../pages/manageCases/caseWorker/draftAnOrder/draftAnOrder20Page";
+import { DraftAnOrderSubmitPage } from "../../../../../pages/manageCases/caseWorker/draftAnOrder/draftAnOrderSubmitPage";
 
 interface ParentalResponsibilityOrderParams {
   page: Page;

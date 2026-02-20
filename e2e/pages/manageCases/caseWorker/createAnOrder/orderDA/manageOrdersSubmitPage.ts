@@ -1,13 +1,13 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors.ts";
-import { ManageOrders1DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderDA/manageOrders1DAContent.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
-import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
+import { Selectors } from "../../../../../common/selectors";
+import { ManageOrders1DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderDA/manageOrders1DAContent";
+import { Helpers } from "../../../../../common/helpers";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { ManageOrdersSubmitDAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderDA/manageOrdersSubmitDAContent.ts";
-import { howLongWillOrderBeInForce } from "./manageOrders12Page.ts";
-import { ManageOrders12DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderDA/manageOrders12DAContent.ts";
-import { CommonContent } from "../../../../../fixtures/manageCases/commonContent.ts";
+import { ManageOrdersSubmitDAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderDA/manageOrdersSubmitDAContent";
+import { howLongWillOrderBeInForce } from "./manageOrders12Page";
+import { ManageOrders12DAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderDA/manageOrders12DAContent";
+import { CommonContent } from "../../../../../fixtures/manageCases/commonContent";
 
 interface ManageOrders20PageOptions {
   page: Page;

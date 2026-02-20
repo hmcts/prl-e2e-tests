@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors.ts";
-import { SubmitContent } from "../../../../../fixtures/manageCases/createCase/FL401/applicantsFamily/submitContent.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
+import { Selectors } from "../../../../../common/selectors";
+import { SubmitContent } from "../../../../../fixtures/manageCases/createCase/FL401/applicantsFamily/submitContent";
+import { Helpers } from "../../../../../common/helpers";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { ApplicantsFamilyContent } from "../../../../../fixtures/manageCases/createCase/FL401/applicantsFamily/applicantsFamilyContent.ts";
+import { ApplicantsFamilyContent } from "../../../../../fixtures/manageCases/createCase/FL401/applicantsFamily/applicantsFamilyContent";
 
 export class ApplicantsFamilySubmitPage {
   public static async applicantsFamilySubmitPage(

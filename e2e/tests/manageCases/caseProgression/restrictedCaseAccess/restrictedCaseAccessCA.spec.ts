@@ -1,6 +1,6 @@
-import { Config } from "../../../../utils/config.utils.ts";
-import { RestrictedCaseAccess } from "../../../../journeys/manageCases/caseProgression/restrictedCaseAccess/restrictedCaseAccessJourney.ts";
-import { test } from "../../../fixtures.ts";
+import { Config } from "../../../../utils/config.utils";
+import { RestrictedCaseAccess } from "../../../../journeys/manageCases/caseProgression/restrictedCaseAccess/restrictedCaseAccessJourney";
+import { test } from "../../../fixtures";
 
 test.use({ storageState: Config.sessionStoragePath + "judge.json" });
 

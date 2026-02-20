@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
-import { CommonStaticText } from "../../../../../../common/commonStaticText.ts";
-import { Helpers } from "../../../../../../common/helpers.ts";
-import { Selectors } from "../../../../../../common/selectors.ts";
-import { ApplicantAddressManualContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/applicant/applicantAddressManualContent.ts";
+import { CommonStaticText } from "../../../../../../common/commonStaticText";
+import { Helpers } from "../../../../../../common/helpers";
+import { Selectors } from "../../../../../../common/selectors";
+import { ApplicantAddressManualContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/applicant/applicantAddressManualContent";
 import { AxeUtils } from "@hmcts/playwright-common";
 
 interface applicantAddressManualOptions {

@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Selectors } from "../../../../common/selectors.ts";
-import { HearingConfirmationContent } from "../../../../fixtures/manageCases/caseProgression/createHearingRequest/hearingConfirmationContent.ts";
-import { Helpers } from "../../../../common/helpers.ts";
+import { Selectors } from "../../../../common/selectors";
+import { HearingConfirmationContent } from "../../../../fixtures/manageCases/caseProgression/createHearingRequest/hearingConfirmationContent";
+import { Helpers } from "../../../../common/helpers";
 
 export class HearingConfirmationPage {
   public static async hearingConfirmationPage(

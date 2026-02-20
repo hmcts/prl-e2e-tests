@@ -1,5 +1,5 @@
 import { Page } from "@playwright/test";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { CommonStaticText } from "../../../../common/commonStaticText";
 import { CheckYourAnswersPage } from "../checkYourAnswers.po.js";
 
 export class WithdrawApplicationEventSubmitPage extends CheckYourAnswersPage {

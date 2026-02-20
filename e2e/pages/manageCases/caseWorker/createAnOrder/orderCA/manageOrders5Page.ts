@@ -1,15 +1,15 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
+import { Selectors } from "../../../../../common/selectors";
+import { Helpers } from "../../../../../common/helpers";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { ManageOrders5CAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderCA/manageOrders5CAContent.ts";
-import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
-import config from "../../../../../utils/config.utils.ts";
+import { ManageOrders5CAContent } from "../../../../../fixtures/manageCases/caseWorker/createAnOrder/orderCA/manageOrders5CAContent";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
+import config from "../../../../../utils/config.utils";
 import {
   solicitorCaseCreateType,
   uploadOrderC100Options,
   uploadOrderFL401Options,
-} from "../../../../../common/types.ts";
+} from "../../../../../common/types";
 
 interface manageOrders5PageOptions {
   page: Page;

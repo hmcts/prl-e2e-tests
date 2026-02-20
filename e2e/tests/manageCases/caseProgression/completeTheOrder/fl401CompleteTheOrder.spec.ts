@@ -1,9 +1,9 @@
-import { test } from "../../../fixtures.ts";
-import Config from "../../../../utils/config.utils.ts";
-import config from "../../../../utils/config.utils.ts";
-import { Helpers } from "../../../../common/helpers.ts";
-import { jsonDatas } from "../../../../common/caseHelpers/jsonDatas.ts";
-import { CompleteTheOrder } from "../../../../journeys/manageCases/caseProgression/completeTheOrder/completeTheOrder.ts";
+import { test } from "../../../fixtures";
+import Config from "../../../../utils/config.utils";
+import config from "../../../../utils/config.utils";
+import { Helpers } from "../../../../common/helpers";
+import { jsonDatas } from "../../../../common/caseHelpers/jsonDatas";
+import { CompleteTheOrder } from "../../../../journeys/manageCases/caseProgression/completeTheOrder/completeTheOrder";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 

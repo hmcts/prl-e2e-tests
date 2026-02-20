@@ -1,15 +1,15 @@
-import { Config } from "./config.utils.ts";
+import { Config } from "./config.utils";
 import {
   IdamUtils,
   ServiceAuthUtils,
   AxeUtils,
 } from "@hmcts/playwright-common";
-import { TokenUtils } from "./token.utils.ts";
-import { CitizenCACaseUtils } from "./citizenCACase.utils.ts";
-import { CourtNavUtils } from "./courtNav.utils.ts";
-import { AccessCodeHelper } from "./accessCode.utils.ts";
-import { CreateUserUtil } from "./createUser.utils.ts";
-import { IdamLoginHelper } from "./idamLoginHelper.utils.ts";
+import { TokenUtils } from "./token.utils";
+import { CitizenCACaseUtils } from "./citizenCACase.utils";
+import { CourtNavUtils } from "./courtNav.utils";
+import { AccessCodeHelper } from "./accessCode.utils";
+import { CreateUserUtil } from "./createUser.utils";
+import { IdamLoginHelper } from "./idamLoginHelper.utils";
 import { CaseEventUtils } from "./caseEvent.utils.js";
 import { DateHelperUtils } from "./dateHelpers.utils.js";
 import { NavigationUtils } from "./navigation.utils.js";

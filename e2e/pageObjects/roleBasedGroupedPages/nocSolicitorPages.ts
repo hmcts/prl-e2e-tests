@@ -1,15 +1,15 @@
 import { Page } from "@playwright/test";
-import { TasksPage } from "../pages/exui/caseView/tasks.po.ts";
-import { SummaryPage } from "../pages/exui/caseView/summary.po.ts";
-import { C100Noc1Page } from "../pages/exui/noticeOfChange/c100Noc1Page.po.ts";
-import { C100Noc2Page } from "../pages/exui/noticeOfChange/c100Noc2Page.po.ts";
-import { C100NocSubmitPage } from "../pages/exui/noticeOfChange/c100NocSubmitPage.po.ts";
-import { C100NocConfirmationPage } from "../pages/exui/noticeOfChange/c100NocConfirmationPage.po.ts";
-import { C100AdminAddBarrister1Page } from "../pages/exui/addAndRemoveBarrister/c100AdminAddBarrister1.po.ts";
-import { C100AdminAddBarristerSubmit } from "../pages/exui/addAndRemoveBarrister/c100AdminAddBarristerSubmit.po.ts";
-import { C100AdminRemoveBarrister1Page } from "../pages/exui/addAndRemoveBarrister/c100AdminRemoveBarrister1Page.po.ts";
-import { C100AdminRemoveBarristerSubmit } from "../pages/exui/addAndRemoveBarrister/c100AdminRemoveBarristerSubmit.po.ts";
-import { PartiesPage } from "../pages/exui/caseView/parties.po.ts";
+import { TasksPage } from "../pages/exui/caseView/tasks.po";
+import { SummaryPage } from "../pages/exui/caseView/summary.po";
+import { C100Noc1Page } from "../pages/exui/noticeOfChange/c100Noc1Page.po";
+import { C100Noc2Page } from "../pages/exui/noticeOfChange/c100Noc2Page.po";
+import { C100NocSubmitPage } from "../pages/exui/noticeOfChange/c100NocSubmitPage.po";
+import { C100NocConfirmationPage } from "../pages/exui/noticeOfChange/c100NocConfirmationPage.po";
+import { C100AdminAddBarrister1Page } from "../pages/exui/addAndRemoveBarrister/c100AdminAddBarrister1.po";
+import { C100AdminAddBarristerSubmit } from "../pages/exui/addAndRemoveBarrister/c100AdminAddBarristerSubmit.po";
+import { C100AdminRemoveBarrister1Page } from "../pages/exui/addAndRemoveBarrister/c100AdminRemoveBarrister1Page.po";
+import { C100AdminRemoveBarristerSubmit } from "../pages/exui/addAndRemoveBarrister/c100AdminRemoveBarristerSubmit.po";
+import { PartiesPage } from "../pages/exui/caseView/parties.po";
 
 export class NocSolicitorPagesGroup {
   constructor(public readonly page: Page) {}

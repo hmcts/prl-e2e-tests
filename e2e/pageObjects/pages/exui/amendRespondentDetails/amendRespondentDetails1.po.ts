@@ -1,5 +1,5 @@
 import { Page, Locator } from "@playwright/test";
-import { EventPage } from "../eventPage.po.ts";
+import { EventPage } from "../eventPage.po";
 
 // more details and page asserts to be added as needed in the future
 

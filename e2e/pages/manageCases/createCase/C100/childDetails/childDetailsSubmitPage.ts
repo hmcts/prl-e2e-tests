@@ -1,12 +1,12 @@
-import { C100ChildGender } from "./childDetailsRevised1Page.ts";
-import { yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions } from "./childDetailsRevised2Page.ts";
+import { C100ChildGender } from "./childDetailsRevised1Page";
+import { yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions } from "./childDetailsRevised2Page";
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors.ts";
-import { ChildDetailsSubmitPageContent } from "../../../../../fixtures/manageCases/createCase/C100/childDetails/childDetailsSubmitPageContent.ts";
+import { Selectors } from "../../../../../common/selectors";
+import { ChildDetailsSubmitPageContent } from "../../../../../fixtures/manageCases/createCase/C100/childDetails/childDetailsSubmitPageContent";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Helpers } from "../../../../../common/helpers.ts";
-import { ChildDetailsRevised1Content } from "../../../../../fixtures/manageCases/createCase/C100/childDetails/childDetailsRevised1Content.ts";
-import { ChildDetailsRevised2Content } from "../../../../../fixtures/manageCases/createCase/C100/childDetails/childDetailsRevised2Content.ts";
+import { Helpers } from "../../../../../common/helpers";
+import { ChildDetailsRevised1Content } from "../../../../../fixtures/manageCases/createCase/C100/childDetails/childDetailsRevised1Content";
+import { ChildDetailsRevised2Content } from "../../../../../fixtures/manageCases/createCase/C100/childDetails/childDetailsRevised2Content";
 
 interface c100ChildDetailsSubmitPageOptions {
   page: Page;

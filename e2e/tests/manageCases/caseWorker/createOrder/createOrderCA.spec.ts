@@ -1,5 +1,5 @@
-import { test } from "../../../fixtures.ts";
-import Config from "../../../../utils/config.utils.ts";
+import { test } from "../../../fixtures";
+import Config from "../../../../utils/config.utils";
 import { Helpers } from "../../../../common/helpers.js";
 import { C100ManageOrders } from "../../../../journeys/manageCases/caseWorker/createAnOrder/C100OrderCA/c100ManageOrders.js";
 

@@ -1,19 +1,19 @@
 import { Page } from "@playwright/test";
-import { Helpers } from "../../../../common/helpers.ts";
+import { Helpers } from "../../../../common/helpers";
 import {
   selectApplicationType1Page,
   typeOfChildArrangementOrderID,
-} from "../../../../pages/manageCases/createCase/C100/selectApplicationType/selectApplicationType1Page.ts";
-import { selectApplicationType2Page } from "../../../../pages/manageCases/createCase/C100/selectApplicationType/selectApplicationType2Page.ts";
+} from "../../../../pages/manageCases/createCase/C100/selectApplicationType/selectApplicationType1Page";
+import { selectApplicationType2Page } from "../../../../pages/manageCases/createCase/C100/selectApplicationType/selectApplicationType2Page";
 import {
   radioButtons,
   selectApplicationType3Page,
-} from "../../../../pages/manageCases/createCase/C100/selectApplicationType/selectApplicationType3Page.ts";
-import { selectApplicationType4Page } from "../../../../pages/manageCases/createCase/C100/selectApplicationType/selectApplicationType4Page.ts";
-import { selectApplicationTypeSubmitPage } from "../../../../pages/manageCases/createCase/C100/selectApplicationType/selectApplicationTypeSubmitPage.ts";
-import { C100TasksTabPage } from "../../../../pages/manageCases/caseTabs/c100TasksTabPage.ts";
-import { UserRole } from "../../../../common/types.ts";
-import { SolicitorCreateInitial } from "../solicitorCreateInitial.ts";
+} from "../../../../pages/manageCases/createCase/C100/selectApplicationType/selectApplicationType3Page";
+import { selectApplicationType4Page } from "../../../../pages/manageCases/createCase/C100/selectApplicationType/selectApplicationType4Page";
+import { selectApplicationTypeSubmitPage } from "../../../../pages/manageCases/createCase/C100/selectApplicationType/selectApplicationTypeSubmitPage";
+import { C100TasksTabPage } from "../../../../pages/manageCases/caseTabs/c100TasksTabPage";
+import { UserRole } from "../../../../common/types";
+import { SolicitorCreateInitial } from "../solicitorCreateInitial";
 
 interface C100TypeOfApplicationParams {
   page: Page;

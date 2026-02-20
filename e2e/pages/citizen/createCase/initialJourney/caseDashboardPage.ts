@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors.ts";
-import { CaseDashboardContent } from "../../../../fixtures/citizen/initialJourney/caseDashboardContent.ts";
-import { Helpers } from "../../../../common/helpers.ts";
+import { Selectors } from "../../../../common/selectors";
+import { CaseDashboardContent } from "../../../../fixtures/citizen/initialJourney/caseDashboardContent";
+import { Helpers } from "../../../../common/helpers";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { solicitorCaseCreateType } from "../../../../common/types.ts";
+import { solicitorCaseCreateType } from "../../../../common/types";
 
 export type ChildArrangementsJourneyType =
   | "accessCode"

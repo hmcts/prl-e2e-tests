@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
+import { Selectors } from "../../../../../common/selectors";
+import { Helpers } from "../../../../../common/helpers";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
-import { RequestToOrderWitnessContentCYA } from "../../../../../fixtures/citizen/caseView/makeRequestToCourtAboutCase/applicant/requestToOrderWitnessContentCYA.ts";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { RequestToOrderWitnessContentCYA } from "../../../../../fixtures/citizen/caseView/makeRequestToCourtAboutCase/applicant/requestToOrderWitnessContentCYA";
 
 export class RequestToOrderWitnessToAttendCourtCYA {
   public static async requestToOrderWitnessToAttendCourtCYA(

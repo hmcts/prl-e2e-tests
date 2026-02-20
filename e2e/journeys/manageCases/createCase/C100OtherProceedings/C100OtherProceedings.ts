@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { otherProceedingsRadios } from "../../../../common/types.ts";
-import { OtherProceedings1Page } from "../../../../pages/manageCases/createCase/C100/otherProceedings/otherProceedings1Page.ts";
-import { SolicitorCreateInitial } from "../solicitorCreateInitial.ts";
-import { Helpers } from "../../../../common/helpers.ts";
-import { OtherProceedingsSubmitPage } from "../../../../pages/manageCases/createCase/C100/otherProceedings/otherProceedingsSubmitPage.ts";
+import { otherProceedingsRadios } from "../../../../common/types";
+import { OtherProceedings1Page } from "../../../../pages/manageCases/createCase/C100/otherProceedings/otherProceedings1Page";
+import { SolicitorCreateInitial } from "../solicitorCreateInitial";
+import { Helpers } from "../../../../common/helpers";
+import { OtherProceedingsSubmitPage } from "../../../../pages/manageCases/createCase/C100/otherProceedings/otherProceedingsSubmitPage";
 
 interface C100OtherProceedingsOptions {
   page: Page;

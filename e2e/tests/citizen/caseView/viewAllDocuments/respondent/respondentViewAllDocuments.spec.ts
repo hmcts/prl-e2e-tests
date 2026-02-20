@@ -1,8 +1,8 @@
-import { test } from "../../../../fixtures.ts";
-import Config from "../../../../../utils/config.utils.ts";
-import config from "../../../../../utils/config.utils.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
-import { ViewAllDocuments } from "../../../../../journeys/citizen/caseView/viewAllDocuments/viewAllDocuments.ts";
+import { test } from "../../../../fixtures";
+import Config from "../../../../../utils/config.utils";
+import config from "../../../../../utils/config.utils";
+import { Helpers } from "../../../../../common/helpers";
+import { ViewAllDocuments } from "../../../../../journeys/citizen/caseView/viewAllDocuments/viewAllDocuments";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 

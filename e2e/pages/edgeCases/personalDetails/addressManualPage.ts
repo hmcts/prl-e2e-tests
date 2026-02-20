@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../common/selectors.ts";
+import { Selectors } from "../../../common/selectors";
 // import { AxeUtils } from "@hmcts/playwright-common";
-import { Helpers } from "../../../common/helpers.ts";
-import { AddressManualContent } from "../../../fixtures/edgeCases/personalDetails/addressManualContent.ts";
+import { Helpers } from "../../../common/helpers";
+import { AddressManualContent } from "../../../fixtures/edgeCases/personalDetails/addressManualContent";
 
 interface AddressManualOptions {
   page: Page;

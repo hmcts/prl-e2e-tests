@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors.ts";
-import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
+import { Selectors } from "../../../../../common/selectors";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { CheckAnswersContent } from "../../../../../fixtures/citizen/caseView/confirmContactDetails/applicant/checkAnswersContent.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
+import { CheckAnswersContent } from "../../../../../fixtures/citizen/caseView/confirmContactDetails/applicant/checkAnswersContent";
+import { Helpers } from "../../../../../common/helpers";
 
 export class CheckAnswersPage {
   public static async checkAnswersPage(

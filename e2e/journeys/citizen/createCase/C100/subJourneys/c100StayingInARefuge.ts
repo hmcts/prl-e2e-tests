@@ -1,7 +1,7 @@
-import { ApplicantStayingInRefugePage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicant/applicantStayingInRefugePage.ts";
+import { ApplicantStayingInRefugePage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicant/applicantStayingInRefugePage";
 import { Page } from "@playwright/test";
-import { ApplicantKeepingDetailsSafePage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicant/applicantKeepingDetailsSafePage.ts";
-import { ApplicantUploadC8FormPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicant/applicantUploadC8FormPage.ts";
+import { ApplicantKeepingDetailsSafePage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicant/applicantKeepingDetailsSafePage";
+import { ApplicantUploadC8FormPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/applicant/applicantUploadC8FormPage";
 
 interface c100StayingInARefugeOptions {
   page: Page;

@@ -1,10 +1,10 @@
 import { APIRequestContext, Browser, Page, request } from "@playwright/test";
 import fs from "fs";
 import process from "node:process";
-import { ServiceOfApplicationLite } from "../../journeys/manageCases/caseProgression/serviceOfApplication/serviceOfApplicationLite.ts";
-import config from "../../utils/config.utils.ts";
-import { Helpers } from "../helpers.ts";
-import { TokenUtils } from "../../utils/token.utils.ts";
+import { ServiceOfApplicationLite } from "../../journeys/manageCases/caseProgression/serviceOfApplication/serviceOfApplicationLite";
+import config from "../../utils/config.utils";
+import { Helpers } from "../helpers";
+import { TokenUtils } from "../../utils/token.utils";
 import { IdamUtils, ServiceAuthUtils } from "@hmcts/playwright-common";
 
 const solicitorCaseData = JSON.parse(

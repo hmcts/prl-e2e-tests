@@ -1,11 +1,11 @@
-import { TokenUtils } from "../../utils/token.utils.ts";
+import { TokenUtils } from "../../utils/token.utils";
 import { Browser, request } from "@playwright/test";
 import * as process from "node:process";
 import {
   completeCaseEventWithContext,
   completeServiceOfApplication,
   createBlankCase,
-} from "./solicitorDACaseHelperPOC.ts";
+} from "./solicitorDACaseHelperPOC";
 import { IdamUtils, ServiceAuthUtils } from "@hmcts/playwright-common";
 
 const CaseEvents: string[] = [

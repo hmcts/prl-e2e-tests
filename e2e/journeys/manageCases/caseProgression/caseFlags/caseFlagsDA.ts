@@ -1,10 +1,7 @@
 import { Browser, Page } from "@playwright/test";
-import {
-  solicitorCaseCreateType,
-  SupportType,
-} from "../../../../common/types.ts";
-import { RequestSupport } from "./requestSupport.ts";
-import { ManageFlagsDA } from "./manageFlagsDA.ts";
+import { solicitorCaseCreateType, SupportType } from "../../../../common/types";
+import { RequestSupport } from "./requestSupport";
+import { ManageFlagsDA } from "./manageFlagsDA";
 
 interface CaseFlagsParams {
   page: Page;

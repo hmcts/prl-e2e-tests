@@ -1,5 +1,5 @@
-import config from "../../../../utils/config.utils.ts";
-import { test, expect } from "../../../fixtures.ts";
+import config from "../../../../utils/config.utils";
+import { test, expect } from "../../../fixtures";
 
 async function performNoticeOfChange(nocSolicitor, caseNumber, nocParty) {
   const { summaryPage, noticeOfChangeC100 } = nocSolicitor;

@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Selectors } from "../../../../common/selectors.ts";
-import { HearingCreateEditSummaryContent } from "../../../../fixtures/manageCases/caseProgression/createHearingRequest/hearingCreateEditSummaryContent.ts";
-import { Helpers } from "../../../../common/helpers.ts";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { Selectors } from "../../../../common/selectors";
+import { HearingCreateEditSummaryContent } from "../../../../fixtures/manageCases/caseProgression/createHearingRequest/hearingCreateEditSummaryContent";
+import { Helpers } from "../../../../common/helpers";
+import { CommonStaticText } from "../../../../common/commonStaticText";
 
 export class HearingCreateEditSummaryPage {
   public static async hearingCreateEditSummaryPage(

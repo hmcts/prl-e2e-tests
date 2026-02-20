@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Selectors } from "../../../../common/selectors.ts";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
-import { LanguageRequirementsAndSpecialArrangementsContent } from "../../../../fixtures/citizen/caseView/reasonableAdjustments/languageRequirementsAndSpecialArrangementsContent.ts";
-import { Helpers } from "../../../../common/helpers.ts";
+import { Selectors } from "../../../../common/selectors";
+import { CommonStaticText } from "../../../../common/commonStaticText";
+import { LanguageRequirementsAndSpecialArrangementsContent } from "../../../../fixtures/citizen/caseView/reasonableAdjustments/languageRequirementsAndSpecialArrangementsContent";
+import { Helpers } from "../../../../common/helpers";
 
 enum UniqueSelectors {
   specialArrangementsInput = "#ra_languageReqAndSpecialArrangements",

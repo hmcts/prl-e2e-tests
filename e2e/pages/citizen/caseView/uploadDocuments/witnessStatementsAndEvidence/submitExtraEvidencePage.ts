@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors.ts";
-import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
+import { Selectors } from "../../../../../common/selectors";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { SubmitExtraEvidenceContent } from "../../../../../fixtures/citizen/caseView/uploadDocuments/witnessStatementsAndEvidence/submitExtraEvidenceContent.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
+import { SubmitExtraEvidenceContent } from "../../../../../fixtures/citizen/caseView/uploadDocuments/witnessStatementsAndEvidence/submitExtraEvidenceContent";
+import { Helpers } from "../../../../../common/helpers";
 
 export class SubmitExtraEvidencePage {
   public static async submitExtraEvidencePage(

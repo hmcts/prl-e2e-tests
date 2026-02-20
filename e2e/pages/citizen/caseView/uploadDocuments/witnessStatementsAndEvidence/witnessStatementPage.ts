@@ -1,10 +1,10 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors.ts";
-import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
+import { Selectors } from "../../../../../common/selectors";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { CourtPermissionContent } from "../../../../../fixtures/citizen/caseView/uploadDocuments/witnessStatementsAndEvidence/courtPermissionContent.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
-import { yesNoNA } from "../../../../../common/types.ts";
+import { CourtPermissionContent } from "../../../../../fixtures/citizen/caseView/uploadDocuments/witnessStatementsAndEvidence/courtPermissionContent";
+import { Helpers } from "../../../../../common/helpers";
+import { yesNoNA } from "../../../../../common/types";
 
 enum UniqueSelectors {
   courtHasAskedForDoc = "#hasCourtAskedForThisDoc",

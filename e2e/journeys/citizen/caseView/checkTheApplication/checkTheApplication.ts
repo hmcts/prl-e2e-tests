@@ -1,5 +1,5 @@
-import { applicationSubmittedBy } from "../../../../common/types.ts";
-import { ActivateCase, CaseUser } from "../../activateCase/activateCase.ts";
+import { applicationSubmittedBy } from "../../../../common/types";
+import { ActivateCase, CaseUser } from "../../activateCase/activateCase";
 import { Browser, Page } from "@playwright/test";
 
 interface checkTheApplicationParams {

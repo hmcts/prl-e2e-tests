@@ -1,9 +1,9 @@
-import { TypeOfApplicationContent } from "../../fixtures/edgeCases/typeOfApplicationContent.ts";
+import { TypeOfApplicationContent } from "../../fixtures/edgeCases/typeOfApplicationContent";
 import { Page } from "@playwright/test";
-import { Selectors } from "../../common/selectors.ts";
+import { Selectors } from "../../common/selectors";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Helpers } from "../../common/helpers.ts";
-import { EdgeCaseApplicationType } from "../../common/types.ts";
+import { Helpers } from "../../common/helpers";
+import { EdgeCaseApplicationType } from "../../common/types";
 
 interface TypeOfApplicationOptions {
   page: Page;

@@ -1,10 +1,10 @@
 import { Page } from "@playwright/test";
-import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
-import { Selectors } from "../../../../../common/selectors.ts";
-import { yesNoDontKnow } from "../../../../../common/types.ts";
-import { FurtherInformationContent } from "../../../../../fixtures/citizen/createCase/C100/people/furtherInformationContent.ts";
-import { uniqueSelectors } from "../urgencyAndWithoutNotice/urgentFirstHearingPage.ts";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors";
+import { yesNoDontKnow } from "../../../../../common/types";
+import { FurtherInformationContent } from "../../../../../fixtures/citizen/createCase/C100/people/furtherInformationContent";
+import { uniqueSelectors } from "../urgencyAndWithoutNotice/urgentFirstHearingPage";
 import { AxeUtils } from "@hmcts/playwright-common";
 
 interface FurtherInformationPageOptions {

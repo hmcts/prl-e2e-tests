@@ -1,7 +1,7 @@
-import { test } from "../../../fixtures.ts";
-import Config from "../../../../utils/config.utils.ts";
-import { Helpers } from "../../../../common/helpers.ts";
-import { ManageDocuments } from "../../../../journeys/manageCases/caseProgression/manageDocuments/manageDocuments.ts";
+import { test } from "../../../fixtures";
+import Config from "../../../../utils/config.utils";
+import { Helpers } from "../../../../common/helpers";
+import { ManageDocuments } from "../../../../journeys/manageCases/caseProgression/manageDocuments/manageDocuments";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 

@@ -1,11 +1,11 @@
 import { Browser, Page } from "@playwright/test";
-import { Helpers } from "../../../../common/helpers.ts";
-import config from "../../../../utils/config.utils.ts";
-import { Fl401ListOnNotice2Page } from "../../../../pages/manageCases/caseProgression/list/fl401ListOnNotice2Page.ts";
-import { Fl401ListOnNoticeSubmitPage } from "../../../../pages/manageCases/caseProgression/list/fl401ListOnNoticeSubmitPage.ts";
-import { Fl401ListOnNoticeConfirmPage } from "../../../../pages/manageCases/caseProgression/list/fl401ListOnNoticeConfirmPage.ts";
-import { Selectors } from "../../../../common/selectors.ts";
-import { completeCheckApplicationAndSendToGatekeeper } from "../../../../common/caseHelpers/caseEventsHelper.ts";
+import { Helpers } from "../../../../common/helpers";
+import config from "../../../../utils/config.utils";
+import { Fl401ListOnNotice2Page } from "../../../../pages/manageCases/caseProgression/list/fl401ListOnNotice2Page";
+import { Fl401ListOnNoticeSubmitPage } from "../../../../pages/manageCases/caseProgression/list/fl401ListOnNoticeSubmitPage";
+import { Fl401ListOnNoticeConfirmPage } from "../../../../pages/manageCases/caseProgression/list/fl401ListOnNoticeConfirmPage";
+import { Selectors } from "../../../../common/selectors";
+import { completeCheckApplicationAndSendToGatekeeper } from "../../../../common/caseHelpers/caseEventsHelper";
 import { solicitorCaseCreateType } from "../../../../common/types.js";
 import { C100ListOnNotice1Page } from "../../../../pages/manageCases/caseProgression/list/c100ListOnNotice1Page.js";
 import { C100ListOnNotice2Page } from "../../../../pages/manageCases/caseProgression/list/c100ListOnNotice2Page.js";

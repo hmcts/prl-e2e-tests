@@ -5,8 +5,8 @@ import {
   Locator,
   Page,
 } from "@playwright/test";
-import { IdamLoginHelper } from "../utils/idamLoginHelper.utils.ts";
-import { Selectors } from "./selectors.ts";
+import { IdamLoginHelper } from "../utils/idamLoginHelper.utils";
+import { Selectors } from "./selectors";
 import {
   amendEvents,
   c100SolicitorEvents,
@@ -17,8 +17,8 @@ import {
   fl401SubmittedSolicitorEvents,
   UserRole,
   WACaseWorkerActions,
-} from "./types.ts";
-import Config from "../utils/config.utils.ts";
+} from "./types";
+import Config from "../utils/config.utils";
 
 export class Helpers {
   public static async chooseEventFromDropdown(

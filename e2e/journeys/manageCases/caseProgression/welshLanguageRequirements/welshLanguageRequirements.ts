@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
-import { Helpers } from "../../../../common/helpers.ts";
-import { Language } from "../../../../common/types.ts";
-import { AmendWelshLanguageRequirements1Page } from "../../../../pages/manageCases/caseProgression/welshLanguageRequirements/amendWelshLanguageRequirements1Page.ts";
-import { AmendWelshLanguageRequirementsSubmitPage } from "../../../../pages/manageCases/caseProgression/welshLanguageRequirements/amendWelshLanguageRequirementsSubmitPage.ts";
+import { Helpers } from "../../../../common/helpers";
+import { Language } from "../../../../common/types";
+import { AmendWelshLanguageRequirements1Page } from "../../../../pages/manageCases/caseProgression/welshLanguageRequirements/amendWelshLanguageRequirements1Page";
+import { AmendWelshLanguageRequirementsSubmitPage } from "../../../../pages/manageCases/caseProgression/welshLanguageRequirements/amendWelshLanguageRequirementsSubmitPage";
 
 interface WelshLanguageRequirementsParams {
   page: Page;

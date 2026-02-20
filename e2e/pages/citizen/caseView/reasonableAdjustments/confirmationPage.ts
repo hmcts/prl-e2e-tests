@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Selectors } from "../../../../common/selectors.ts";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
-import { ConfirmationContent } from "../../../../fixtures/citizen/caseView/reasonableAdjustments/confirmationContent.ts";
-import { Helpers } from "../../../../common/helpers.ts";
+import { Selectors } from "../../../../common/selectors";
+import { CommonStaticText } from "../../../../common/commonStaticText";
+import { ConfirmationContent } from "../../../../fixtures/citizen/caseView/reasonableAdjustments/confirmationContent";
+import { Helpers } from "../../../../common/helpers";
 
 export class ConfirmationPage {
   public static async confirmationPage(

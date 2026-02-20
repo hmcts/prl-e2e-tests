@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
-import { ManageDocumentsNewConfirmContent } from "../../../../fixtures/manageCases/caseProgression/manageDocuments/manageDocumentsNewConfirmContent.ts";
-import { Selectors } from "../../../../common/selectors.ts";
-import { Helpers } from "../../../../common/helpers.ts";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { ManageDocumentsNewConfirmContent } from "../../../../fixtures/manageCases/caseProgression/manageDocuments/manageDocumentsNewConfirmContent";
+import { Selectors } from "../../../../common/selectors";
+import { Helpers } from "../../../../common/helpers";
+import { CommonStaticText } from "../../../../common/commonStaticText";
 import { AxeUtils } from "@hmcts/playwright-common";
 
 interface ManageDocumentsNewConfirmPageParams {

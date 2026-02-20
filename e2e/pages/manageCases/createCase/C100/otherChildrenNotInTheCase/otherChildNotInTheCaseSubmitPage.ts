@@ -1,10 +1,10 @@
-import { C100OtherChildGender } from "./otherChildNotInTheCase1Page.ts";
+import { C100OtherChildGender } from "./otherChildNotInTheCase1Page";
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors.ts";
-import { OtherChildNotInTheCaseSubmitContent } from "../../../../../fixtures/manageCases/createCase/C100/otherChildrenNotInTheCase/otherChildNotInTheCaseSubmitContent.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
+import { Selectors } from "../../../../../common/selectors";
+import { OtherChildNotInTheCaseSubmitContent } from "../../../../../fixtures/manageCases/createCase/C100/otherChildrenNotInTheCase/otherChildNotInTheCaseSubmitContent";
+import { Helpers } from "../../../../../common/helpers";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { OtherChildNotInTheCase1Content } from "../../../../../fixtures/manageCases/createCase/C100/otherChildrenNotInTheCase/otherChildNotInTheCase1Content.ts";
+import { OtherChildNotInTheCase1Content } from "../../../../../fixtures/manageCases/createCase/C100/otherChildrenNotInTheCase/otherChildNotInTheCase1Content";
 
 interface C100OtherChildNotInTheCase1PageOptions {
   page: Page;

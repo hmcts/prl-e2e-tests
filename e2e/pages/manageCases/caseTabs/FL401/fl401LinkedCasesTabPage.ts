@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors.ts";
-import { Helpers } from "../../../../common/helpers.ts";
-import { FL401LinkedCasesTabContent } from "../../../../fixtures/manageCases/caseTabs/FL401/fl401LinkedCasesTabContent.ts";
+import { Selectors } from "../../../../common/selectors";
+import { Helpers } from "../../../../common/helpers";
+import { FL401LinkedCasesTabContent } from "../../../../fixtures/manageCases/caseTabs/FL401/fl401LinkedCasesTabContent";
 // import { AxeUtils } from "@hmcts/playwright-common";
 
 export class FL401LinkedCasesTabPage {

@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors.ts";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
-import { Helpers } from "../../../../common/helpers.ts";
+import { Selectors } from "../../../../common/selectors";
+import { CommonStaticText } from "../../../../common/commonStaticText";
+import { Helpers } from "../../../../common/helpers";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { RequestSupportLanguageInterpreterContent } from "../../../../fixtures/manageCases/caseProgression/caseFlags/requestSupportLanguageInterpreterContent.ts";
+import { RequestSupportLanguageInterpreterContent } from "../../../../fixtures/manageCases/caseProgression/caseFlags/requestSupportLanguageInterpreterContent";
 
 enum UniqueSelectors {
   languageSearchBox = "#mat-input-0",

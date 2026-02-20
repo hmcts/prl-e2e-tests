@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../common/selectors.ts";
+import { Selectors } from "../../common/selectors";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Helpers } from "../../common/helpers.ts";
-import { SelectCourtContent } from "../../fixtures/edgeCases/selectCourtContent.ts";
+import { Helpers } from "../../common/helpers";
+import { SelectCourtContent } from "../../fixtures/edgeCases/selectCourtContent";
 
 interface SelectCourtPageOptions {
   page: Page;

@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors.ts";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
-import { ReasonableAdjustmentsReviewContent } from "../../../../fixtures/citizen/caseView/reasonableAdjustments/reasonableAdjustmentsReviewContent.ts";
+import { Selectors } from "../../../../common/selectors";
+import { CommonStaticText } from "../../../../common/commonStaticText";
+import { ReasonableAdjustmentsReviewContent } from "../../../../fixtures/citizen/caseView/reasonableAdjustments/reasonableAdjustmentsReviewContent";
 
 // This page belongs to the CUI Reasonable Adjustments common component (cui ra)
 export class ReasonableAdjustmentsReviewPage {

@@ -1,5 +1,5 @@
-import config from "../../../../utils/config.utils.ts";
-import { test } from "../../../fixtures.ts";
+import config from "../../../../utils/config.utils";
+import { test } from "../../../fixtures";
 import { SolicitorPagesGroup } from "../../../../pageObjects/roleBasedGroupedPages/solicitorPages.js";
 
 // -------------------------------

@@ -1,13 +1,13 @@
 import { Page } from "@playwright/test";
-import { UserRole } from "../../../../common/types.ts";
+import { UserRole } from "../../../../common/types";
 import {
   WelshLanguageRequirements1Page,
   WelshPageRequirementType,
-} from "../../../../pages/manageCases/createCase/C100/welshLanguageRequirements/welshLanguageRequirements1Page.ts";
-import { SolicitorCreateInitial } from "../solicitorCreateInitial.ts";
-import { Helpers } from "../../../../common/helpers.ts";
-import { WelshLanguageRequirementsSubmitPage } from "../../../../pages/manageCases/createCase/C100/welshLanguageRequirements/welshLanguageRequirementsSubmitPage.ts";
-import { C100TasksTabPage } from "../../../../pages/manageCases/caseTabs/c100TasksTabPage.ts";
+} from "../../../../pages/manageCases/createCase/C100/welshLanguageRequirements/welshLanguageRequirements1Page";
+import { SolicitorCreateInitial } from "../solicitorCreateInitial";
+import { Helpers } from "../../../../common/helpers";
+import { WelshLanguageRequirementsSubmitPage } from "../../../../pages/manageCases/createCase/C100/welshLanguageRequirements/welshLanguageRequirementsSubmitPage";
+import { C100TasksTabPage } from "../../../../pages/manageCases/caseTabs/c100TasksTabPage";
 
 interface c100WelshLanguageRequirementsOptions {
   page: Page;

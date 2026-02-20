@@ -1,6 +1,6 @@
-import { test as setup } from "./fixtures.ts";
+import { test as setup } from "./fixtures";
 import dotenv from "dotenv";
-import config from "../utils/config.utils.ts";
+import config from "../utils/config.utils";
 
 dotenv.config();
 

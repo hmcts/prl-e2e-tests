@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors.ts";
+import { Selectors } from "../../../../common/selectors";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { GuidanceContent } from "../../../../fixtures/citizen/caseView/requestMoreTime/guidanceContent.ts";
-import { Helpers } from "../../../../common/helpers.ts";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { GuidanceContent } from "../../../../fixtures/citizen/caseView/requestMoreTime/guidanceContent";
+import { Helpers } from "../../../../common/helpers";
+import { CommonStaticText } from "../../../../common/commonStaticText";
 
 export class GuidanceApplicantPage {
   public static async guidanceApplicantPage(

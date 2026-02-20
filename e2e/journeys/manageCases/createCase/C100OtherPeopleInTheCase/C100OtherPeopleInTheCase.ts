@@ -1,10 +1,10 @@
 import { Page } from "@playwright/test";
-import { ApplicantGender, UserRole } from "../../../../common/types.ts";
-import { Helpers } from "../../../../common/helpers.ts";
-import { OtherPeopleInTheCase1Page } from "../../../../pages/manageCases/createCase/C100/otherPeopleInTheCase/otherPeopleInTheCase1Page.ts";
-import { SolicitorCreateInitial } from "../solicitorCreateInitial.ts";
-import { OtherPeopleInTheCaseSubmitPage } from "../../../../pages/manageCases/createCase/C100/otherPeopleInTheCase/otherPeopleInTheCaseSubmitPage.ts";
-import { C100TasksTabPage } from "../../../../pages/manageCases/caseTabs/c100TasksTabPage.ts";
+import { ApplicantGender, UserRole } from "../../../../common/types";
+import { Helpers } from "../../../../common/helpers";
+import { OtherPeopleInTheCase1Page } from "../../../../pages/manageCases/createCase/C100/otherPeopleInTheCase/otherPeopleInTheCase1Page";
+import { SolicitorCreateInitial } from "../solicitorCreateInitial";
+import { OtherPeopleInTheCaseSubmitPage } from "../../../../pages/manageCases/createCase/C100/otherPeopleInTheCase/otherPeopleInTheCaseSubmitPage";
+import { C100TasksTabPage } from "../../../../pages/manageCases/caseTabs/c100TasksTabPage";
 
 interface c100OtherPeopleInTheCaseOptions {
   page: Page;

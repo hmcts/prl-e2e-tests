@@ -1,5 +1,5 @@
-import { test } from "../../fixtures.ts";
-import config from "../../../utils/config.utils.ts";
+import { test } from "../../fixtures";
+import config from "../../../utils/config.utils";
 
 test.describe("Create and manage linked DA cases as a court admin.", () => {
   let caseNumber: string = "";

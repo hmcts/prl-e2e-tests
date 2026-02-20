@@ -1,12 +1,12 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors.ts";
-import { Helpers } from "../../../../common/helpers.ts";
+import { Selectors } from "../../../../common/selectors";
+import { Helpers } from "../../../../common/helpers";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { CommonStaticText } from "../../../../common/commonStaticText";
 import {
   clippingCoords,
   ExuiMediaViewerPage,
-} from "../../../../pageObjects/pages/exui/exuiMediaViewer.po.ts";
+} from "../../../../pageObjects/pages/exui/exuiMediaViewer.po";
 import { C100ConfidentialityCheck1Content } from "../../../../fixtures/manageCases/caseProgression/confidentialityCheck/C100ConfidentialityCheck1Content.js";
 
 interface C100ConfidentialityCheck1PageParams {

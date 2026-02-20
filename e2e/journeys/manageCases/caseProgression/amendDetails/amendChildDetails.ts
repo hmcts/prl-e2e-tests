@@ -1,11 +1,11 @@
 import { Page } from "@playwright/test";
-import { Helpers } from "../../../../common/helpers.ts";
-import { AmendChildDetailsRevised1Page } from "../../../../pages/manageCases/caseProgression/amendDetails/amendChildDetails/amendChildDetailsRevised1Page.ts";
-import { AmendChildDetailsRevised2Page } from "../../../../pages/manageCases/caseProgression/amendDetails/amendChildDetails/amendChildDetailsRevised2Page.ts";
-import { AmendChildDetailsSubmitPage } from "../../../../pages/manageCases/caseProgression/amendDetails/amendChildDetails/amendChildDetailsSubmitPage.ts";
-import { C100ChildGender } from "../../../../pages/manageCases/createCase/C100/childDetails/childDetailsRevised1Page.ts";
-import { yesNoDontKnow } from "../../../../common/types.ts";
-import config from "../../../../utils/config.utils.ts";
+import { Helpers } from "../../../../common/helpers";
+import { AmendChildDetailsRevised1Page } from "../../../../pages/manageCases/caseProgression/amendDetails/amendChildDetails/amendChildDetailsRevised1Page";
+import { AmendChildDetailsRevised2Page } from "../../../../pages/manageCases/caseProgression/amendDetails/amendChildDetails/amendChildDetailsRevised2Page";
+import { AmendChildDetailsSubmitPage } from "../../../../pages/manageCases/caseProgression/amendDetails/amendChildDetails/amendChildDetailsSubmitPage";
+import { C100ChildGender } from "../../../../pages/manageCases/createCase/C100/childDetails/childDetailsRevised1Page";
+import { yesNoDontKnow } from "../../../../common/types";
+import config from "../../../../utils/config.utils";
 
 interface AmendChildDetailsParams {
   page: Page;

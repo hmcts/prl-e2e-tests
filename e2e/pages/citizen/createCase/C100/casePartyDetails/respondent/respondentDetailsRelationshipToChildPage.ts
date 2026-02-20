@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { CommonStaticText } from "../../../../../../common/commonStaticText.ts";
-import { Helpers } from "../../../../../../common/helpers.ts";
-import { Selectors } from "../../../../../../common/selectors.ts";
-import { Relationship } from "../../../../../../common/types.ts";
-import { RespondentDetailsRelationshipToChildContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/respondent/respondentDetailsRelationshipToChildContent.ts";
+import { CommonStaticText } from "../../../../../../common/commonStaticText";
+import { Helpers } from "../../../../../../common/helpers";
+import { Selectors } from "../../../../../../common/selectors";
+import { Relationship } from "../../../../../../common/types";
+import { RespondentDetailsRelationshipToChildContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/respondent/respondentDetailsRelationshipToChildContent";
 import { AxeUtils } from "@hmcts/playwright-common";
 
 interface respondentDetailsRelationshipToChildPageOptions {

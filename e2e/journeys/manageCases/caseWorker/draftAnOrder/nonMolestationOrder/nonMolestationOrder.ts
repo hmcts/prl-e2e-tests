@@ -1,16 +1,16 @@
-import { DraftAnOrder1Page } from "../../../../../pages/manageCases/caseWorker/draftAnOrder/draftAnOrder1Page.ts";
-import { DraftAnOrder2Page } from "../../../../../pages/manageCases/caseWorker/draftAnOrder/draftAnOrder2Page.ts";
-import { DraftAnOrder4Page } from "../../../../../pages/manageCases/caseWorker/draftAnOrder/draftAnOrder4Page.ts";
-import { DraftAnOrder5Page } from "../../../../../pages/manageCases/caseWorker/draftAnOrder/draftAnOrder5Page.ts";
-import { DraftAnOrder16Page } from "../../../../../pages/manageCases/caseWorker/draftAnOrder/draftAnOrder16Page.ts";
-import { DraftAnOrder20Page } from "../../../../../pages/manageCases/caseWorker/draftAnOrder/draftAnOrder20Page.ts";
+import { DraftAnOrder1Page } from "../../../../../pages/manageCases/caseWorker/draftAnOrder/draftAnOrder1Page";
+import { DraftAnOrder2Page } from "../../../../../pages/manageCases/caseWorker/draftAnOrder/draftAnOrder2Page";
+import { DraftAnOrder4Page } from "../../../../../pages/manageCases/caseWorker/draftAnOrder/draftAnOrder4Page";
+import { DraftAnOrder5Page } from "../../../../../pages/manageCases/caseWorker/draftAnOrder/draftAnOrder5Page";
+import { DraftAnOrder16Page } from "../../../../../pages/manageCases/caseWorker/draftAnOrder/draftAnOrder16Page";
+import { DraftAnOrder20Page } from "../../../../../pages/manageCases/caseWorker/draftAnOrder/draftAnOrder20Page";
 import { Page } from "@playwright/test";
 import {
   OrderType,
   solicitorCaseCreateType,
-} from "../../../../../common/types.ts";
-import { HowLongWillTheOrderBeInForce } from "../draftAnOrder.ts";
-import { DraftAnOrderSubmitPage } from "../../../../../pages/manageCases/caseWorker/draftAnOrder/draftAnOrderSubmitPage.ts";
+} from "../../../../../common/types";
+import { HowLongWillTheOrderBeInForce } from "../draftAnOrder";
+import { DraftAnOrderSubmitPage } from "../../../../../pages/manageCases/caseWorker/draftAnOrder/draftAnOrderSubmitPage";
 
 interface NonMolestationOrderParams {
   page: Page;

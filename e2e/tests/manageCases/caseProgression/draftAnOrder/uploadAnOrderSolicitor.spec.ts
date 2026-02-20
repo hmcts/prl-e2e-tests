@@ -1,8 +1,8 @@
-import config from "../../../../utils/config.utils.ts";
-import { UploadAnOrderC100SolicitorJourney } from "../../../../journeys/manageCases/caseProgression/draftAnOrder/uploadAnOrderC100SolicitorJourney.ts";
-import { UploadAnOrderFL401SolicitorJourney } from "../../../../journeys/manageCases/caseProgression/draftAnOrder/uploadAnOrderFL401SolicitorJourney.ts";
+import config from "../../../../utils/config.utils";
+import { UploadAnOrderC100SolicitorJourney } from "../../../../journeys/manageCases/caseProgression/draftAnOrder/uploadAnOrderC100SolicitorJourney";
+import { UploadAnOrderFL401SolicitorJourney } from "../../../../journeys/manageCases/caseProgression/draftAnOrder/uploadAnOrderFL401SolicitorJourney";
 import { Helpers } from "../../../../common/helpers.js";
-import { test } from "../../../fixtures.ts";
+import { test } from "../../../fixtures";
 
 test.use({ storageState: config.sessionStoragePath + "solicitor.json" });
 test.describe("'Upload an order' by Solicitor via the 'Create/upload draft order' event tests", (): void => {

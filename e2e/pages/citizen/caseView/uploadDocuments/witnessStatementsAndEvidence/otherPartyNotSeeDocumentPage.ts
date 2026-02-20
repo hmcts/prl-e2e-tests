@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors.ts";
-import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
+import { Selectors } from "../../../../../common/selectors";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { OtherPartyNotSeeDocumentContent } from "../../../../../fixtures/citizen/caseView/uploadDocuments/witnessStatementsAndEvidence/otherPartyNotSeeDocumentContent.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
+import { OtherPartyNotSeeDocumentContent } from "../../../../../fixtures/citizen/caseView/uploadDocuments/witnessStatementsAndEvidence/otherPartyNotSeeDocumentContent";
+import { Helpers } from "../../../../../common/helpers";
 
 export enum UniqueSelectors {
   reasonToRestrictDoc = "#reasonsToRestrictDocument",

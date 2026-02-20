@@ -1,11 +1,11 @@
 import { expect, Page } from "@playwright/test";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
-import { CitizenOtherProceedingsDocumentUploadSelectors } from "../../../../../common/commonUniqueSelectors.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
-import { Selectors } from "../../../../../common/selectors.ts";
-import config from "../../../../../utils/config.utils.ts";
-import { NonMolestationOrderDocumentUploadContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/nonMolestationOrderDocumentUploadContent.ts";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { CitizenOtherProceedingsDocumentUploadSelectors } from "../../../../../common/commonUniqueSelectors";
+import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors";
+import config from "../../../../../utils/config.utils";
+import { NonMolestationOrderDocumentUploadContent } from "../../../../../fixtures/citizen/createCase/C100/otherProceedings/nonMolestationOrderDocumentUploadContent";
 
 interface NonMolestationOrderDocumentUploadPageOptions {
   page: Page;

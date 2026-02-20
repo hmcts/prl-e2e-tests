@@ -1,13 +1,13 @@
 import { Page } from "@playwright/test";
-import { Helpers } from "../../../../common/helpers.ts";
-import { FL401ReviewDocuments1Page } from "../../../../pages/manageCases/caseProgression/reviewDocuments/fl401ReviewDocuments1Page.ts";
-import { FL401ReviewDocuments2Page } from "../../../../pages/manageCases/caseProgression/reviewDocuments/fl401ReviewDocuments2Page.ts";
-import { FL401ReviewDocumentsSubmitPage } from "../../../../pages/manageCases/caseProgression/reviewDocuments/fl401ReviewDocumentsSubmitPage.ts";
+import { Helpers } from "../../../../common/helpers";
+import { FL401ReviewDocuments1Page } from "../../../../pages/manageCases/caseProgression/reviewDocuments/fl401ReviewDocuments1Page";
+import { FL401ReviewDocuments2Page } from "../../../../pages/manageCases/caseProgression/reviewDocuments/fl401ReviewDocuments2Page";
+import { FL401ReviewDocumentsSubmitPage } from "../../../../pages/manageCases/caseProgression/reviewDocuments/fl401ReviewDocumentsSubmitPage";
 import {
   yesNoDontKnow,
   documentSubmittedBy,
   documentCategory,
-} from "../../../../common/types.ts";
+} from "../../../../common/types";
 
 interface ReviewDocumentsParams {
   page: Page;

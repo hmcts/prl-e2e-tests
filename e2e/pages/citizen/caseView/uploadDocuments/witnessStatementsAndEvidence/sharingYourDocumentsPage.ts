@@ -1,10 +1,10 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors.ts";
-import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
+import { Selectors } from "../../../../../common/selectors";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { SharingYourDocumentsContent } from "../../../../../fixtures/citizen/caseView/uploadDocuments/witnessStatementsAndEvidence/sharingYourDocumentsContent.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
-import { yesNoNA } from "../../../../../common/types.ts";
+import { SharingYourDocumentsContent } from "../../../../../fixtures/citizen/caseView/uploadDocuments/witnessStatementsAndEvidence/sharingYourDocumentsContent";
+import { Helpers } from "../../../../../common/helpers";
+import { yesNoNA } from "../../../../../common/types";
 
 enum UniqueSelectors {
   docNotShared = "#haveReasonForDocNotToBeShared",

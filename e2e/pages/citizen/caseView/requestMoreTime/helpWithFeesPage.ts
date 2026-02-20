@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors.ts";
+import { Selectors } from "../../../../common/selectors";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { HelpWithFeesContent } from "../../../../fixtures/citizen/caseView/requestMoreTime/helpWithFeesContent.ts";
-import { Helpers } from "../../../../common/helpers.ts";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { HelpWithFeesContent } from "../../../../fixtures/citizen/caseView/requestMoreTime/helpWithFeesContent";
+import { Helpers } from "../../../../common/helpers";
+import { CommonStaticText } from "../../../../common/commonStaticText";
 
 enum UniqueSelectors {
   helpWithFeesYes = "#awp_need_hwf",

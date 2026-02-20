@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors.ts";
-import { SubmitContent } from "../../../../../fixtures/manageCases/createCase/FL401/respondentsBehaviour/submitContent.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
+import { Selectors } from "../../../../../common/selectors";
+import { SubmitContent } from "../../../../../fixtures/manageCases/createCase/FL401/respondentsBehaviour/submitContent";
+import { Helpers } from "../../../../../common/helpers";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { RespondentsBehaviourContent } from "../../../../../fixtures/manageCases/createCase/FL401/respondentsBehaviour/respondentsBehaviourContent.ts";
+import { RespondentsBehaviourContent } from "../../../../../fixtures/manageCases/createCase/FL401/respondentsBehaviour/respondentsBehaviourContent";
 
 export class RespondentsBehaviourSubmitPage {
   public static async respondentsBehaviourSubmitPage(

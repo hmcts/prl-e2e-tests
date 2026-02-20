@@ -1,6 +1,6 @@
 import { test } from "@playwright/test";
-import Config from "../utils/config.utils.ts";
-import { CitizenC100ApiCase } from "../journeys/citizen/createCase/createAndSubmitCitizenC100API.ts";
+import Config from "../utils/config.utils";
+import { CitizenC100ApiCase } from "../journeys/citizen/createCase/createAndSubmitCitizenC100API";
 
 const citizenUrl = Config.citizenFrontendBaseURL as string;
 

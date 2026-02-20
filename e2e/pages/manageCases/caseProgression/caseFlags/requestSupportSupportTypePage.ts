@@ -1,10 +1,10 @@
 import { Page } from "@playwright/test";
-import { SupportType } from "../../../../common/types.ts";
-import { Selectors } from "../../../../common/selectors.ts";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
-import { Helpers } from "../../../../common/helpers.ts";
+import { SupportType } from "../../../../common/types";
+import { Selectors } from "../../../../common/selectors";
+import { CommonStaticText } from "../../../../common/commonStaticText";
+import { Helpers } from "../../../../common/helpers";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { RequestSupportSupportTypeContent } from "../../../../fixtures/manageCases/caseProgression/caseFlags/requestSupportSupportTypeContent.ts";
+import { RequestSupportSupportTypeContent } from "../../../../fixtures/manageCases/caseProgression/caseFlags/requestSupportSupportTypeContent";
 
 enum UniqueSelectors {
   reasonableAdjustmentsRadio = "#flag-type-0",

@@ -1,10 +1,10 @@
-import { Selectors } from "../../../../common/selectors.ts";
-import { ConfidentialityCheck1Content } from "../../../../fixtures/manageCases/caseProgression/confidentialityCheck/confidentialityCheck1Content.ts";
-import { Helpers } from "../../../../common/helpers.ts";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { Selectors } from "../../../../common/selectors";
+import { ConfidentialityCheck1Content } from "../../../../fixtures/manageCases/caseProgression/confidentialityCheck/confidentialityCheck1Content";
+import { Helpers } from "../../../../common/helpers";
+import { CommonStaticText } from "../../../../common/commonStaticText";
 import { AxeUtils } from "@hmcts/playwright-common";
 import { Page } from "@playwright/test";
-import { ConfidentialityCheckSubmitContent } from "../../../../fixtures/manageCases/caseProgression/confidentialityCheck/confidentialityCheckSubmitContent.ts";
+import { ConfidentialityCheckSubmitContent } from "../../../../fixtures/manageCases/caseProgression/confidentialityCheck/confidentialityCheckSubmitContent";
 
 interface ConfidentialityCheckSubmitPageParams {
   page: Page;

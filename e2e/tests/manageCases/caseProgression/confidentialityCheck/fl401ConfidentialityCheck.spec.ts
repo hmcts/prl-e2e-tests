@@ -1,8 +1,8 @@
-import { test } from "../../../fixtures.ts";
-import config from "../../../../utils/config.utils.ts";
-import { Helpers } from "../../../../common/helpers.ts";
-import { jsonDatas } from "../../../../common/caseHelpers/jsonDatas.ts";
-import { ConfidentialityCheck } from "../../../../journeys/manageCases/caseProgression/confidentilityCheck/confidentialityCheck.ts";
+import { test } from "../../../fixtures";
+import config from "../../../../utils/config.utils";
+import { Helpers } from "../../../../common/helpers";
+import { jsonDatas } from "../../../../common/caseHelpers/jsonDatas";
+import { ConfidentialityCheck } from "../../../../journeys/manageCases/caseProgression/confidentilityCheck/confidentialityCheck";
 
 test.use({ storageState: config.sessionStoragePath + "caseManager.json" });
 

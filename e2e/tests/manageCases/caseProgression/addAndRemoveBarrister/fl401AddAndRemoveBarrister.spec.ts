@@ -1,8 +1,8 @@
-import Config from "../../../../utils/config.utils.ts";
-import { Helpers } from "../../../../common/helpers.ts";
-import config from "../../../../utils/config.utils.ts";
-import { test } from "../../../fixtures.ts";
-import { AddAndRemoveBarrister } from "../../../../journeys/manageCases/caseProgression/addAndRemoveBarrister/addAndRemoveBarrister.ts";
+import Config from "../../../../utils/config.utils";
+import { Helpers } from "../../../../common/helpers";
+import config from "../../../../utils/config.utils";
+import { test } from "../../../fixtures";
+import { AddAndRemoveBarrister } from "../../../../journeys/manageCases/caseProgression/addAndRemoveBarrister/addAndRemoveBarrister";
 
 test.use({ storageState: Config.sessionStoragePath + "nocSolicitor.json" });
 

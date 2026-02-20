@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../common/selectors.ts";
+import { Selectors } from "../../../common/selectors";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Helpers } from "../../../common/helpers.ts";
-import { AddressLookupContent } from "../../../fixtures/edgeCases/personalDetails/addressLookupContent.ts";
+import { Helpers } from "../../../common/helpers";
+import { AddressLookupContent } from "../../../fixtures/edgeCases/personalDetails/addressLookupContent";
 interface AddressLookupPageOptions {
   page: Page;
   accessibilityTest: boolean;

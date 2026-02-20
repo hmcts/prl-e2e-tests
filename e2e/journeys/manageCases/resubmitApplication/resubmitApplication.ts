@@ -1,11 +1,11 @@
 import { Page, expect } from "@playwright/test";
-import { Helpers } from "../../../common/helpers.ts";
-import { solicitorCaseCreateType } from "../../../common/types.ts";
-import { StatementOfTruth1Page } from "../../../pages/manageCases/createCase/FL401/statementOfTruth/statementOfTruth1Page.ts";
-import { StatementOfTruth2Page } from "../../../pages/manageCases/createCase/FL401/statementOfTruth/statementOfTruth2Page.ts";
-import { Selectors } from "../../../common/selectors.ts";
-import { Submit1Page } from "../../../pages/manageCases/createCase/C100/submit/submit1Page.ts";
-import { Submit2Page } from "../../../pages/manageCases/createCase/C100/submit/submit2Page.ts";
+import { Helpers } from "../../../common/helpers";
+import { solicitorCaseCreateType } from "../../../common/types";
+import { StatementOfTruth1Page } from "../../../pages/manageCases/createCase/FL401/statementOfTruth/statementOfTruth1Page";
+import { StatementOfTruth2Page } from "../../../pages/manageCases/createCase/FL401/statementOfTruth/statementOfTruth2Page";
+import { Selectors } from "../../../common/selectors";
+import { Submit1Page } from "../../../pages/manageCases/createCase/C100/submit/submit1Page";
+import { Submit2Page } from "../../../pages/manageCases/createCase/C100/submit/submit2Page";
 
 interface ResubmitApplicationParams {
   page: Page;

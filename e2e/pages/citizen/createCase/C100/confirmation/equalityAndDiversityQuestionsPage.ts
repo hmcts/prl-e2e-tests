@@ -1,5 +1,5 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors.ts";
+import { Selectors } from "../../../../../common/selectors";
 
 enum content {
   button = "I don't want to answer these questions",

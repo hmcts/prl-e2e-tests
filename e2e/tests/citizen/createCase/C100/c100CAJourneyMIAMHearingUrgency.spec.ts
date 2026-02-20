@@ -1,6 +1,6 @@
-import Config from "../../../../utils/config.utils.ts";
-import { C100 } from "../../../../journeys/citizen/createCase/C100/C100.ts";
-import { test } from "../../../fixtures.ts";
+import Config from "../../../../utils/config.utils";
+import { C100 } from "../../../../journeys/citizen/createCase/C100/C100";
+import { test } from "../../../fixtures";
 
 test.describe("C100 Citizen Application for the MIAM Hearing Urgency journey.", (): void => {
   test.beforeEach(async ({ page, idamLoginHelper }) => {

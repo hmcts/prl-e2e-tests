@@ -1,4 +1,4 @@
-import { EventPage } from "../eventPage.po.ts";
+import { EventPage } from "../eventPage.po";
 import { expect, Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.js";
 

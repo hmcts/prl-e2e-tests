@@ -1,11 +1,11 @@
 import { test } from "@playwright/test";
-import Config from "../../../../utils/config.utils.ts";
-import { CaseListPage } from "../../../../pages/manageCases/caseList/caseListPage.ts";
-import { CaseFilterPage } from "../../../../pages/manageCases/caseWorker/createAnOrder/initialJourney/caseFilterPage.ts";
-import { TestingSupportDummyAdminCreateNoc2Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/initialJourney/testingSupportDummyAdminCreateNoc2Page.ts";
-import { TestingSupportDummyAdminCreateNoc3Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/initialJourney/testingSupportDummyAdminCreateNoc3Page.ts";
-import { CreateAnOrderSubmitPage } from "../../../../pages/manageCases/caseWorker/createAnOrder/initialJourney/SubmitPage.ts";
-import { C100ManageOrdersUploadJourney } from "../../../../journeys/manageCases/caseWorker/uploadAnOrder/c100ManageOrdersUploadJourney.ts";
+import Config from "../../../../utils/config.utils";
+import { CaseListPage } from "../../../../pages/manageCases/caseList/caseListPage";
+import { CaseFilterPage } from "../../../../pages/manageCases/caseWorker/createAnOrder/initialJourney/caseFilterPage";
+import { TestingSupportDummyAdminCreateNoc2Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/initialJourney/testingSupportDummyAdminCreateNoc2Page";
+import { TestingSupportDummyAdminCreateNoc3Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/initialJourney/testingSupportDummyAdminCreateNoc3Page";
+import { CreateAnOrderSubmitPage } from "../../../../pages/manageCases/caseWorker/createAnOrder/initialJourney/SubmitPage";
+import { C100ManageOrdersUploadJourney } from "../../../../journeys/manageCases/caseWorker/uploadAnOrder/c100ManageOrdersUploadJourney";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 

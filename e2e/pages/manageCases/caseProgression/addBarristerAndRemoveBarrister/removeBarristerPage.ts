@@ -1,10 +1,10 @@
 import { Browser, Page, expect } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors.ts";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { Selectors } from "../../../../common/selectors";
+import { CommonStaticText } from "../../../../common/commonStaticText";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Helpers } from "../../../../common/helpers.ts";
-import { RemoveBarristerContent } from "../../../../fixtures/manageCases/caseProgression/addBarristerAndRemoveBarrister/removeBarristerContent.ts";
-import config from "../../../../utils/config.utils.ts";
+import { Helpers } from "../../../../common/helpers";
+import { RemoveBarristerContent } from "../../../../fixtures/manageCases/caseProgression/addBarristerAndRemoveBarrister/removeBarristerContent";
+import config from "../../../../utils/config.utils";
 
 export class RemoveBarrister {
   public static async removeBarrister(

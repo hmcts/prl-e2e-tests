@@ -1,8 +1,8 @@
 import { Page, expect } from "@playwright/test";
-import { Selectors } from "../../../common/selectors.ts";
+import { Selectors } from "../../../common/selectors";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Helpers } from "../../../common/helpers.ts";
-import { EmailAddressContent } from "../../../fixtures/edgeCases/personalDetails/emailAddressContent.ts";
+import { Helpers } from "../../../common/helpers";
+import { EmailAddressContent } from "../../../fixtures/edgeCases/personalDetails/emailAddressContent";
 
 interface UserInfo {
   email: string;

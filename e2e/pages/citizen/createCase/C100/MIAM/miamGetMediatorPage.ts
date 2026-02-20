@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors.ts";
-import { MiamGetMediatorContent } from "../../../../../fixtures/citizen/createCase/C100/MIAM/miamGetMediatorContent.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
+import { Selectors } from "../../../../../common/selectors";
+import { MiamGetMediatorContent } from "../../../../../fixtures/citizen/createCase/C100/MIAM/miamGetMediatorContent";
+import { Helpers } from "../../../../../common/helpers";
 import { AxeUtils } from "@hmcts/playwright-common";
 
 interface MiamGetMediatorPageOptions {

@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Selectors } from "../../../../../common/selectors.ts";
-import { SubmitContent } from "../../../../../fixtures/manageCases/createCase/FL401/viewPDFApplication/submitContent.ts";
+import { Selectors } from "../../../../../common/selectors";
+import { SubmitContent } from "../../../../../fixtures/manageCases/createCase/FL401/viewPDFApplication/submitContent";
 
 export class ViewPDFApplicationSubmitPage {
   public static async viewPDFApplicationSubmitPage(

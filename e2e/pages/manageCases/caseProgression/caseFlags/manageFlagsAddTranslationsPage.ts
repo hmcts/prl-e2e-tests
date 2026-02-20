@@ -1,10 +1,10 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors.ts";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
-import { ManageFlagsAddTranslationsContent } from "../../../../fixtures/manageCases/caseProgression/caseFlags/manageFlagsAddTranslationsContent.ts";
-import { Helpers } from "../../../../common/helpers.ts";
+import { Selectors } from "../../../../common/selectors";
+import { CommonStaticText } from "../../../../common/commonStaticText";
+import { ManageFlagsAddTranslationsContent } from "../../../../fixtures/manageCases/caseProgression/caseFlags/manageFlagsAddTranslationsContent";
+import { Helpers } from "../../../../common/helpers";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { solicitorCaseCreateType } from "../../../../common/types.ts";
+import { solicitorCaseCreateType } from "../../../../common/types";
 
 enum UniqueSelectors {
   otherDescriptionTextbox = "#otherDescription",

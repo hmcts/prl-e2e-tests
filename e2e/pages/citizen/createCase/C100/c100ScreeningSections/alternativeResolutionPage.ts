@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Selectors } from "../../../../../common/selectors.ts";
-import { AlternativeResolutionContent } from "../../../../../fixtures/citizen/createCase/C100/c100ScreeningSections/alternativeResolutionContent.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
-import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
+import { Selectors } from "../../../../../common/selectors";
+import { AlternativeResolutionContent } from "../../../../../fixtures/citizen/createCase/C100/c100ScreeningSections/alternativeResolutionContent";
+import { Helpers } from "../../../../../common/helpers";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
 
 interface AlternativeResolutionPageOptions {
   page: Page;

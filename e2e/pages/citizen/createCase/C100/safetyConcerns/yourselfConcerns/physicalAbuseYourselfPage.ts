@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { CommonStaticText } from "../../../../../../common/commonStaticText.ts";
-import { reportAbuseInputIDs } from "../../../../../../common/commonUniqueSelectors.ts";
-import { Selectors } from "../../../../../../common/selectors.ts";
-import { PhysicalAbuseContent } from "../../../../../../fixtures/citizen/createCase/C100/safetyConcerns/yourselfConcerns/physicalAbuseContent.ts";
-import { SafetyConcernHelpers } from "../safetyConcernHelpers.ts";
+import { CommonStaticText } from "../../../../../../common/commonStaticText";
+import { reportAbuseInputIDs } from "../../../../../../common/commonUniqueSelectors";
+import { Selectors } from "../../../../../../common/selectors";
+import { PhysicalAbuseContent } from "../../../../../../fixtures/citizen/createCase/C100/safetyConcerns/yourselfConcerns/physicalAbuseContent";
+import { SafetyConcernHelpers } from "../safetyConcernHelpers";
 import { AxeUtils } from "@hmcts/playwright-common";
 
 interface PhysicalAbusePageOptions {

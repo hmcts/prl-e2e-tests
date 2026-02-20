@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
-import { Selectors } from "../../../../../common/selectors.ts";
-import { PayContent } from "../../../../../fixtures/citizen/createCase/C100/pay/payContent.ts";
-import { CommonContent } from "../../../../../fixtures/manageCases/commonContent.ts";
+import { CommonStaticText } from "../../../../../common/commonStaticText";
+import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors";
+import { PayContent } from "../../../../../fixtures/citizen/createCase/C100/pay/payContent";
+import { CommonContent } from "../../../../../fixtures/manageCases/commonContent";
 
 interface PayPageOptions {
   page: Page;

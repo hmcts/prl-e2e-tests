@@ -1,11 +1,11 @@
 import { Page, expect } from "@playwright/test";
-import { Selectors } from "../../../common/selectors.ts";
+import { Selectors } from "../../../common/selectors";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Helpers } from "../../../common/helpers.ts";
-import { PayYourFeeContent } from "../../../fixtures/edgeCases/payment/payYourFeeContent.ts";
-import { NeedHelpWithFeesContent } from "../../../fixtures/edgeCases/payment/needHelpWithFeesContent.ts";
-import { EdgeCaseApplicationType } from "../../../common/types.ts";
-import { CommonContent } from "../../../fixtures/manageCases/commonContent.ts";
+import { Helpers } from "../../../common/helpers";
+import { PayYourFeeContent } from "../../../fixtures/edgeCases/payment/payYourFeeContent";
+import { NeedHelpWithFeesContent } from "../../../fixtures/edgeCases/payment/needHelpWithFeesContent";
+import { EdgeCaseApplicationType } from "../../../common/types";
+import { CommonContent } from "../../../fixtures/manageCases/commonContent";
 
 interface PayYourFeePageOptions {
   page: Page;

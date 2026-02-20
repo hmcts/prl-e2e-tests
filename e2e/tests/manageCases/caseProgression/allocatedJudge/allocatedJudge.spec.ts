@@ -1,5 +1,5 @@
-import { test } from "../../../fixtures.ts";
-import config from "../../../../utils/config.utils.ts";
+import { test } from "../../../fixtures";
+import config from "../../../../utils/config.utils";
 
 test.describe("Allocate a judge to the case", () => {
   test.skip(

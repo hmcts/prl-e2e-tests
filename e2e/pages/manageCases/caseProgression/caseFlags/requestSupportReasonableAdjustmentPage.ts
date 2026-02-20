@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors.ts";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { Selectors } from "../../../../common/selectors";
+import { CommonStaticText } from "../../../../common/commonStaticText";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Helpers } from "../../../../common/helpers.ts";
-import { RequestSupportReasonableAdjustmentContent } from "../../../../fixtures/manageCases/caseProgression/caseFlags/requestSupportReasonableAdjustmentContent.ts";
+import { Helpers } from "../../../../common/helpers";
+import { RequestSupportReasonableAdjustmentContent } from "../../../../fixtures/manageCases/caseProgression/caseFlags/requestSupportReasonableAdjustmentContent";
 
 enum UniqueSelectors {
   documentsInAlternativeFormat = "#flag-type-0",

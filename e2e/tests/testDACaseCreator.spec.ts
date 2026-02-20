@@ -1,8 +1,8 @@
-import { test } from "./fixtures.ts";
+import { test } from "./fixtures";
 import { Page } from "playwright-core";
-import Config from "../utils/config.utils.ts";
-import { Helpers } from "../common/helpers.ts";
-import { completeCheckApplicationAndSendToGatekeeper } from "../common/caseHelpers/caseEventsHelper.ts";
+import Config from "../utils/config.utils";
+import { Helpers } from "../common/helpers";
+import { completeCheckApplicationAndSendToGatekeeper } from "../common/caseHelpers/caseEventsHelper";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 

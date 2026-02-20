@@ -1,7 +1,7 @@
 import { expect, Locator, Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors.ts";
-import config from "../../../../../utils/config.utils.ts";
-import { ApplicantDetails1Content } from "../../../../../fixtures/manageCases/createCase/C100/applicantDetails/applicantDetails1Content.ts";
+import { Selectors } from "../../../../../common/selectors";
+import config from "../../../../../utils/config.utils";
+import { ApplicantDetails1Content } from "../../../../../fixtures/manageCases/createCase/C100/applicantDetails/applicantDetails1Content";
 
 enum UniqueSelectors {
   uploadC8FormLabel = "label[for='applicants_0_refugeConfidentialityC8Form'] .form-label",

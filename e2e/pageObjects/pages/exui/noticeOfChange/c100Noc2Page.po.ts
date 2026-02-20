@@ -1,6 +1,6 @@
 import { Locator, Page, expect } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.js";
-import { EventPage } from "../eventPage.po.ts";
+import { EventPage } from "../eventPage.po";
 
 export class C100Noc2Page extends EventPage {
   private readonly clientFirstNameField: Locator =

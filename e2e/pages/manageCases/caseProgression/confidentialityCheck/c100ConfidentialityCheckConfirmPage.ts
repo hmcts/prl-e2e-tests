@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors.ts";
+import { Selectors } from "../../../../common/selectors";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
-import { Helpers } from "../../../../common/helpers.ts";
+import { CommonStaticText } from "../../../../common/commonStaticText";
+import { Helpers } from "../../../../common/helpers";
 import { C100ConfidentialityCheckConfirmContent } from "../../../../fixtures/manageCases/caseProgression/confidentialityCheck/C100ConfidentialityCheckConfirmContent.js";
 
 export class C100ConfidentialityCheckConfirmPage {

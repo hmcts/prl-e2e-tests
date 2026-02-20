@@ -1,7 +1,7 @@
 import { Page, expect } from "@playwright/test";
-import { Selectors } from "../../../common/selectors.ts";
+import { Selectors } from "../../../common/selectors";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { StatementOfTruthContent } from "../../../fixtures/edgeCases/submission/statementOfTruthContent.ts";
+import { StatementOfTruthContent } from "../../../fixtures/edgeCases/submission/statementOfTruthContent";
 
 interface StatementOfTruthPageOptions {
   page: Page;

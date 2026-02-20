@@ -1,10 +1,10 @@
 import { Page } from "@playwright/test";
-import { Helpers } from "../../../../common/helpers.ts";
-import { SubmitAndPay1Page } from "../../../../pages/manageCases/createCase/C100/submitAndPay/submitAndPay1Page.ts";
-import { SubmitAndPay2Page } from "../../../../pages/manageCases/createCase/C100/submitAndPay/submitAndPay2Page.ts";
-import { SubmitAndPay3Page } from "../../../../pages/manageCases/createCase/C100/submitAndPay/submitAndPay3Page.ts";
-import { SubmitAndPaySubmitPage } from "../../../../pages/manageCases/createCase/C100/submitAndPay/submitAndPaySubmitPage.ts";
-import { SubmitAndPayConfirmPage } from "../../../../pages/manageCases/createCase/C100/submitAndPay/submitAndPayConfirmPage.ts";
+import { Helpers } from "../../../../common/helpers";
+import { SubmitAndPay1Page } from "../../../../pages/manageCases/createCase/C100/submitAndPay/submitAndPay1Page";
+import { SubmitAndPay2Page } from "../../../../pages/manageCases/createCase/C100/submitAndPay/submitAndPay2Page";
+import { SubmitAndPay3Page } from "../../../../pages/manageCases/createCase/C100/submitAndPay/submitAndPay3Page";
+import { SubmitAndPaySubmitPage } from "../../../../pages/manageCases/createCase/C100/submitAndPay/submitAndPaySubmitPage";
+import { SubmitAndPayConfirmPage } from "../../../../pages/manageCases/createCase/C100/submitAndPay/submitAndPayConfirmPage";
 
 interface C100SubmitAndPayOptions {
   page: Page;

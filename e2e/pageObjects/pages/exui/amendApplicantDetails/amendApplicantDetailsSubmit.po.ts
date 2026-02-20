@@ -1,6 +1,6 @@
 import { Page } from "@playwright/test";
-import { CheckYourAnswersPage } from "../checkYourAnswers.po.ts";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { CheckYourAnswersPage } from "../checkYourAnswers.po";
+import { CommonStaticText } from "../../../../common/commonStaticText";
 
 export class AmendApplicantDetailsSubmit extends CheckYourAnswersPage {
   constructor(page: Page) {

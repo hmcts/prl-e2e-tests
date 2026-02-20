@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { yesNoDontKnow } from "../../../../../common/types.ts";
-import { DetailsKnowPage } from "../../../../../pages/citizen/createCase/C100/confidentiality/detailsKnowPage.ts";
-import { StartPage } from "../../../../../pages/citizen/createCase/C100/confidentiality/startPage.ts";
-import { FeedbackPage } from "../../../../../pages/citizen/createCase/C100/confidentiality/feedbackPage.ts";
-import { FeedbackNoPage } from "../../../../../pages/citizen/createCase/C100/confidentiality/feedbackNoPage.ts";
+import { yesNoDontKnow } from "../../../../../common/types";
+import { DetailsKnowPage } from "../../../../../pages/citizen/createCase/C100/confidentiality/detailsKnowPage";
+import { StartPage } from "../../../../../pages/citizen/createCase/C100/confidentiality/startPage";
+import { FeedbackPage } from "../../../../../pages/citizen/createCase/C100/confidentiality/feedbackPage";
+import { FeedbackNoPage } from "../../../../../pages/citizen/createCase/C100/confidentiality/feedbackNoPage";
 
 interface C100ConfidentialityOptions {
   page: Page;

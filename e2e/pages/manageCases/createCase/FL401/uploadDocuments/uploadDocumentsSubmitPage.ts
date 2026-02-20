@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Selectors } from "../../../../../common/selectors.ts";
-import { UploadDocumentsSubmitContent } from "../../../../../fixtures/manageCases/createCase/FL401/uploadDocuments/uploadDocumentsSubmitContent.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
+import { Selectors } from "../../../../../common/selectors";
+import { UploadDocumentsSubmitContent } from "../../../../../fixtures/manageCases/createCase/FL401/uploadDocuments/uploadDocumentsSubmitContent";
+import { Helpers } from "../../../../../common/helpers";
 
 interface UploadDocumentsSubmitPageOptions {
   page: Page;

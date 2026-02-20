@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Selectors } from "../../../../common/selectors.ts";
-import { ApplicantContent } from "../../../../fixtures/citizen/initialJourney/applicantContent.ts";
-import { Helpers } from "../../../../common/helpers.ts";
+import { Selectors } from "../../../../common/selectors";
+import { ApplicantContent } from "../../../../fixtures/citizen/initialJourney/applicantContent";
+import { Helpers } from "../../../../common/helpers";
 
 interface ApplicantPageOptions {
   page: Page;

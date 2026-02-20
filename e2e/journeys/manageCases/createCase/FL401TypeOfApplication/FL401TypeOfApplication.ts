@@ -1,10 +1,10 @@
-import { Helpers } from "../../../../common/helpers.ts";
-import { TypeOfApplication1Page } from "../../../../pages/manageCases/createCase/FL401/typeOfApplication/typeOfApplication1Page.ts";
-import { TypeOfApplication2Page } from "../../../../pages/manageCases/createCase/FL401/typeOfApplication/typeOfApplication2Page.ts";
-import { TypeOfApplicationSubmitPage } from "../../../../pages/manageCases/createCase/FL401/typeOfApplication/typeOfApplicationSubmitPage.ts";
+import { Helpers } from "../../../../common/helpers";
+import { TypeOfApplication1Page } from "../../../../pages/manageCases/createCase/FL401/typeOfApplication/typeOfApplication1Page";
+import { TypeOfApplication2Page } from "../../../../pages/manageCases/createCase/FL401/typeOfApplication/typeOfApplication2Page";
+import { TypeOfApplicationSubmitPage } from "../../../../pages/manageCases/createCase/FL401/typeOfApplication/typeOfApplicationSubmitPage";
 import { Page } from "@playwright/test";
-import { Fl401TasksTabPage } from "../../../../pages/manageCases/caseTabs/fl401TasksTabPage.ts";
-import { SolicitorCreateInitial } from "../solicitorCreateInitial.ts";
+import { Fl401TasksTabPage } from "../../../../pages/manageCases/caseTabs/fl401TasksTabPage";
+import { SolicitorCreateInitial } from "../solicitorCreateInitial";
 
 interface fl401TypeOfApplicationOptions {
   page: Page;

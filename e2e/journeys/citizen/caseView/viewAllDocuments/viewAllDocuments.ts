@@ -1,8 +1,8 @@
-import { ActivateCase, CaseUser } from "../../activateCase/activateCase.ts";
+import { ActivateCase, CaseUser } from "../../activateCase/activateCase";
 import { Browser, Page } from "@playwright/test";
-import { AllCategoriesPage } from "../../../../pages/citizen/caseView/viewAllDocuments/allCatergoriesPage.ts";
-import { ApplicationPackDocumentsPage } from "../../../../pages/citizen/caseView/viewAllDocuments/applicationPackDocumentsPage.ts";
-import { applicationSubmittedBy } from "../../../../common/types.ts";
+import { AllCategoriesPage } from "../../../../pages/citizen/caseView/viewAllDocuments/allCatergoriesPage";
+import { ApplicationPackDocumentsPage } from "../../../../pages/citizen/caseView/viewAllDocuments/applicationPackDocumentsPage";
+import { applicationSubmittedBy } from "../../../../common/types";
 
 interface reasonableAdjustmentsParams {
   page: Page;

@@ -1,12 +1,12 @@
 import {
   C100ChildrenAndApplicantsRelationship,
   ChildrenAndApplicants1Page,
-} from "../../../../pages/manageCases/createCase/C100/childrenAndApplicants/childrenAndApplicants1Page.ts";
+} from "../../../../pages/manageCases/createCase/C100/childrenAndApplicants/childrenAndApplicants1Page";
 import { Page } from "@playwright/test";
-import { C100ChildDetails } from "../C100ChildDetails/c100ChildDetails.ts";
-import { ChildrenAndApplicantsSubmitPage } from "../../../../pages/manageCases/createCase/C100/childrenAndApplicants/childrenAndApplicantsSubmitPage.ts";
-import { C100TasksTabPage } from "../../../../pages/manageCases/caseTabs/c100TasksTabPage.ts";
-import { Helpers } from "../../../../common/helpers.ts";
+import { C100ChildDetails } from "../C100ChildDetails/c100ChildDetails";
+import { ChildrenAndApplicantsSubmitPage } from "../../../../pages/manageCases/createCase/C100/childrenAndApplicants/childrenAndApplicantsSubmitPage";
+import { C100TasksTabPage } from "../../../../pages/manageCases/caseTabs/c100TasksTabPage";
+import { Helpers } from "../../../../common/helpers";
 
 interface C100ChildrenAndApplicantsOptions {
   page: Page;

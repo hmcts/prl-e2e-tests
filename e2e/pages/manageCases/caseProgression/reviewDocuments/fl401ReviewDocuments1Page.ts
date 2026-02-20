@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
-import { Helpers } from "../../../../common/helpers.ts";
-import { Selectors } from "../../../../common/selectors.ts";
-import { Fl401ReviewDocuments1Content } from "../../../../fixtures/manageCases/caseProgression/reviewDocuments/fl401ReviewDocuments1Content.ts";
+import { CommonStaticText } from "../../../../common/commonStaticText";
+import { Helpers } from "../../../../common/helpers";
+import { Selectors } from "../../../../common/selectors";
+import { Fl401ReviewDocuments1Content } from "../../../../fixtures/manageCases/caseProgression/reviewDocuments/fl401ReviewDocuments1Content";
 
 interface FL401ReviewDocuments1PageOptions {
   page: Page;

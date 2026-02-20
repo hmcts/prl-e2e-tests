@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../common/selectors.ts";
+import { Selectors } from "../../../common/selectors";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { UserRoleContent } from "../../../fixtures/edgeCases/personalDetails/userRoleContent.ts";
-import { Helpers } from "../../../common/helpers.ts";
+import { UserRoleContent } from "../../../fixtures/edgeCases/personalDetails/userRoleContent";
+import { Helpers } from "../../../common/helpers";
 
 interface UserRoleOptions {
   page: Page;

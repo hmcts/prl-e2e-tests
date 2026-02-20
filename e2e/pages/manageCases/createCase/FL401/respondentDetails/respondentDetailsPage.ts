@@ -1,11 +1,11 @@
 import { expect, Page } from "@playwright/test";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Helpers } from "../../../../../common/helpers.ts";
-import { Selectors } from "../../../../../common/selectors.ts";
+import { Helpers } from "../../../../../common/helpers";
+import { Selectors } from "../../../../../common/selectors";
 import {
   expectedAddresses,
   RespondentDetailsContent,
-} from "../../../../../fixtures/manageCases/createCase/FL401/respondentDetails/respondentDetailsContent.ts";
+} from "../../../../../fixtures/manageCases/createCase/FL401/respondentDetails/respondentDetailsContent";
 
 enum nameFieldIds {
   firstName = "#respondentsFL401_firstName",

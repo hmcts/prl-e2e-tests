@@ -1,9 +1,9 @@
 import { Page, expect } from "@playwright/test";
-import { Selectors } from "../../../common/selectors.ts";
+import { Selectors } from "../../../common/selectors";
 // import { AxeUtils } from "@hmcts/playwright-common";
-import { Helpers } from "../../../common/helpers.ts";
-import { FeesAppliedContent } from "../../../fixtures/edgeCases/payment/feesAppliedContent.ts";
-import { CommonStaticText } from "../../../common/commonStaticText.ts";
+import { Helpers } from "../../../common/helpers";
+import { FeesAppliedContent } from "../../../fixtures/edgeCases/payment/feesAppliedContent";
+import { CommonStaticText } from "../../../common/commonStaticText";
 
 interface FeesAppliedPageOptions {
   page: Page;

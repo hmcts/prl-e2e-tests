@@ -1,8 +1,8 @@
-import Config from "../../../../utils/config.utils.ts";
-import { ServiceOfDocuments } from "../../../../journeys/manageCases/caseProgression/servceOfDocuments/serviceOfDocuments.ts";
+import Config from "../../../../utils/config.utils";
+import { ServiceOfDocuments } from "../../../../journeys/manageCases/caseProgression/servceOfDocuments/serviceOfDocuments";
 import { Helpers } from "../../../../common/helpers.js";
 import config from "../../../../utils/config.utils.js";
-import { test } from "../../../fixtures.ts";
+import { test } from "../../../fixtures";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 

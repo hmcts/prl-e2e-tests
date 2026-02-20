@@ -1,6 +1,6 @@
-import { Base } from "../../../base.po.ts";
+import { Base } from "../../../base.po";
 import { expect, Locator, Page } from "@playwright/test";
-import { solicitorCaseCreateType } from "../../../../../common/types.ts";
+import { solicitorCaseCreateType } from "../../../../../common/types";
 
 interface ContentsParams {
   recipient: string;
