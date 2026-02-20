@@ -1,21 +1,21 @@
 import { Browser, expect, Page } from "@playwright/test";
 import Config from "../../../../utils/config.utils.js";
+import { NonMolestationDraftOrderParams } from "../../../../tests/manageCases/caseProgression/orders/FL401/createAnOrder/solicitor/draftAnOrderNonMolestation.spec.js";
+import { ParentalResponsibilityDraftOrderParams } from "../../../../tests/manageCases/caseProgression/orders/C100/createAnOrder/solicitor/draftAnOrderParentalResponsibility.spec.js";
+import { SummaryPage } from "../../../../pageObjects/pages/exui/caseView/summary.po.js";
+import { DraftAnOrder5Page } from "../../../../pageObjects/pages/exui/orders/draftOrders/draftAnOrder5.po.js";
+import { DraftAnOrder20Page } from "../../../../pageObjects/pages/exui/orders/draftOrders/draftAnOrder20.po.js";
+import { DraftAnOrderSubmitPage } from "../../../../pageObjects/pages/exui/orders/draftOrders/draftAnOrderSubmit.po.js";
+import { DraftAnOrder1Page } from "../../../../pageObjects/pages/exui/orders/draftOrders/draftAnOrder1.po.js";
+import { DraftAnOrder2Page } from "../../../../pageObjects/pages/exui/orders/draftOrders/draftAnOrder2.po.js";
 import {
   DraftOrdersPage,
   OrderInformation,
 } from "../../../../pageObjects/pages/exui/caseView/draftOrders.po.js";
-import { NonMolestationDraftOrderParams } from "../../../../tests/manageCases/caseProgression/solicitor/draftAnOrder/draftAnOrderNonMolestation.spec.js";
-import { SummaryPage } from "../../../../pageObjects/pages/exui/caseView/summary.po.js";
-import { DraftAnOrder1Page } from "../../../../pageObjects/pages/exui/orders/solicitor/draftAnOrder1.po.js";
-import { DraftAnOrder2Page } from "../../../../pageObjects/pages/exui/orders/solicitor/draftAnOrder2.po.js";
-import { DraftAnOrder4Page } from "../../../../pageObjects/pages/exui/orders/solicitor/draftAnOrder4.po.js";
-import { DraftAnOrder5Page } from "../../../../pageObjects/pages/exui/orders/solicitor/draftAnOrder5.po.js";
-import { DraftAnOrder16Page } from "../../../../pageObjects/pages/exui/orders/solicitor/draftAnOrder16.po.js";
-import { DraftAnOrder20Page } from "../../../../pageObjects/pages/exui/orders/solicitor/draftAnOrder20.po.js";
-import { DraftAnOrderSubmitPage } from "../../../../pageObjects/pages/exui/orders/solicitor/draftAnOrderSubmit.po.js";
 import { NavigationUtils } from "../../../../utils/navigation.utils.js";
-import { DraftAnOrder8Page } from "../../../../pageObjects/pages/exui/orders/solicitor/draftAnOrder8.po.js";
-import { ParentalResponsibilityDraftOrderParams } from "../../../../tests/manageCases/caseProgression/solicitor/draftAnOrder/draftAnOrderParentalResponsibility.spec.js";
+import { DraftAnOrder6Page } from "../../../../pageObjects/pages/exui/orders/draftOrders/draftAnOrder6.po.js";
+import { DraftAnOrder17Page } from "../../../../pageObjects/pages/exui/orders/draftOrders/draftAnOrder17.po.js";
+import { DraftAnOrder9Page } from "../../../../pageObjects/pages/exui/orders/draftOrders/draftAnOrder9.po.js";
 
 type OrderDetails =
   | NonMolestationDraftOrderParams
@@ -57,21 +57,23 @@ export class DraftAnOrderJourney {
   ): Promise<void> {
     const summaryPage: SummaryPage = new SummaryPage(page);
     // wait for tab heading so make sure page is fully loaded before choosing event
-    await expect(summaryPage.page.getByRole("heading", { name: "Summary" })).toBeVisible();
+    await expect(
+      summaryPage.page.getByRole("heading", { name: "Summary" }),
+    ).toBeVisible();
     await summaryPage.chooseEventFromDropdown("Create/upload draft order");
     await this.selectOrderAndFillInGenericOrderDetails(page, orderDetails);
 
-    const draftAnOrder5Page: DraftAnOrder5Page = new DraftAnOrder5Page(page);
-    await draftAnOrder5Page.assertPageContents(orderDetails.orderType);
-    await draftAnOrder5Page.verifyAccessibility();
-    await draftAnOrder5Page.fillInFields(orderDetails.draftAnOrder5Params);
-    await draftAnOrder5Page.clickContinue();
+    const draftAnOrder6Page: DraftAnOrder6Page = new DraftAnOrder6Page(page);
+    await draftAnOrder6Page.assertPageContents(orderDetails.orderType);
+    await draftAnOrder6Page.verifyAccessibility();
+    await draftAnOrder6Page.fillInFields(orderDetails.draftAnOrder6Params);
+    await draftAnOrder6Page.clickContinue();
 
-    const draftAnOrder16Page: DraftAnOrder16Page = new DraftAnOrder16Page(page);
-    await draftAnOrder16Page.assertPageContents(orderDetails.orderType);
-    await draftAnOrder16Page.verifyAccessibility();
-    await draftAnOrder16Page.fillInFields(orderDetails.draftAnOrder16Params);
-    await draftAnOrder16Page.clickContinue();
+    const draftAnOrder17Page: DraftAnOrder17Page = new DraftAnOrder17Page(page);
+    await draftAnOrder17Page.assertPageContents(orderDetails.orderType);
+    await draftAnOrder17Page.verifyAccessibility();
+    await draftAnOrder17Page.fillInFields(orderDetails.draftAnOrder17Params);
+    await draftAnOrder17Page.clickContinue();
 
     const draftAnOrder20Page: DraftAnOrder20Page = new DraftAnOrder20Page(page);
     await draftAnOrder20Page.assertPageContents(
@@ -112,11 +114,11 @@ export class DraftAnOrderJourney {
     await summaryPage.chooseEventFromDropdown("Create/upload draft order");
     await this.selectOrderAndFillInGenericOrderDetails(page, orderParams);
 
-    const draftAnOrder8Page: DraftAnOrder8Page = new DraftAnOrder8Page(page);
-    await draftAnOrder8Page.assertPageContents(orderParams.orderType);
-    await draftAnOrder8Page.verifyAccessibility();
-    await draftAnOrder8Page.fillInFields(orderParams.responsibleParentFullName);
-    await draftAnOrder8Page.clickContinue();
+    const draftAnOrder9Page: DraftAnOrder9Page = new DraftAnOrder9Page(page);
+    await draftAnOrder9Page.assertPageContents(orderParams.orderType);
+    await draftAnOrder9Page.verifyAccessibility();
+    await draftAnOrder9Page.fillInFields(orderParams.responsibleParentFullName);
+    await draftAnOrder9Page.clickContinue();
 
     const draftAnOrder20Page: DraftAnOrder20Page = new DraftAnOrder20Page(page);
     await draftAnOrder20Page.assertPageContents(
@@ -165,17 +167,17 @@ export class DraftAnOrderJourney {
     await draftAnOrder2Page.selectOrderType(draftOrderParams.orderType);
     await draftAnOrder2Page.clickContinue();
 
-    const draftAnOrder4Page: DraftAnOrder4Page = new DraftAnOrder4Page(page);
-    await draftAnOrder4Page.assertPageContents(
+    const draftAnOrder5Page: DraftAnOrder5Page = new DraftAnOrder5Page(page);
+    await draftAnOrder5Page.assertPageContents(
       draftOrderParams.caseType,
       draftOrderParams.orderType,
     );
-    await draftAnOrder4Page.verifyAccessibility();
-    await draftAnOrder4Page.fillInFields(
+    await draftAnOrder5Page.verifyAccessibility();
+    await draftAnOrder5Page.fillInFields(
       draftOrderParams.caseType,
-      draftOrderParams.draftAnOrder4Params,
+      draftOrderParams.draftAnOrder5Params,
     );
-    await draftAnOrder4Page.clickContinue();
+    await draftAnOrder5Page.clickContinue();
   }
 
   private async assertDraftOrderAsCourtAdmin(
