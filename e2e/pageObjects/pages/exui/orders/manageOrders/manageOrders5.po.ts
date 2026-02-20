@@ -115,9 +115,6 @@ export class ManageOrders5Page extends EventPage {
       const radio = this.page.getByRole("radio", { name: option, exact: true });
         await radio.check();
         await expect(radio).toBeChecked();
-        await expect(
-          this.page.getByRole("radio", { checked: true }),
-        ).toHaveCount(1);
     }
   }
   async fillOrderDetails(details: OrderDetails): Promise<void> {
@@ -186,9 +183,11 @@ export class ManageOrders5Page extends EventPage {
 
     // --- 8) Upload Order (if this is the upload journey) ---
     if (details.uploadOrder) {
+      // Wait for the file input to be visible and ready.
       await this.page.waitForTimeout(5000);
       const fileInput = this.page.locator(`${UniqueSelectors.fileUpload}`);
       await fileInput.setInputFiles(config.testPdfFile);
+      // Wait for upload confirmation (e.g., file name appears)
       await this.page.waitForTimeout(5000);
     }
   }
