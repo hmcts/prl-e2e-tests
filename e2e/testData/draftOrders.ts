@@ -51,9 +51,9 @@ export const NonMolestationDraftOrderScenarios: NonMolestationDraftOrderParams[]
           englishDocument: "non_molestation_order_fl404a_draft.pdf",
           otherDetails: {
             orderCreatedBy:
-              process.env.MANAGE_CASES_TEST_ENV === "aat"
-                ? "AAT Solicitor"
-                : "PRL DEMO ORG1 Solicitor 2",
+              process.env.MANAGE_CASES_TEST_ENV === "demo"
+                ? "PRL DEMO ORG1 Solicitor 2"
+                : "AAT Solicitor",
             status: "Drafted by Solicitor",
           },
           isOrderAboutChildren: false,
@@ -147,9 +147,9 @@ export const NonMolestationDraftOrderScenarios: NonMolestationDraftOrderParams[]
           otherDetails: {
             orderMadeBy: "Test judge name",
             orderCreatedBy:
-              process.env.MANAGE_CASES_TEST_ENV === "aat"
-                ? "AAT Solicitor"
-                : "PRL DEMO ORG1 Solicitor 2",
+              process.env.MANAGE_CASES_TEST_ENV === "demo"
+                ? "PRL DEMO ORG1 Solicitor 2"
+                : "AAT Solicitor",
             status: "Drafted by Solicitor",
           },
           childrenList: ["Joe Doe", "Simon Anderson"],
@@ -200,9 +200,9 @@ export const ParentalResponsibilityOrderScenarios: ParentalResponsibilityDraftOr
           englishDocument: "Parental_Responsibility_Order_C45A_draft.pdf",
           otherDetails: {
             orderCreatedBy:
-              process.env.MANAGE_CASES_TEST_ENV === "aat"
-                ? "AAT Solicitor"
-                : "PRL DEMO ORG1 Solicitor 2",
+              process.env.MANAGE_CASES_TEST_ENV === "demo"
+                ? "PRL DEMO ORG1 Solicitor 2"
+                : "AAT Solicitor",
             status: "Drafted by Solicitor",
           },
           childrenList: [
@@ -250,9 +250,9 @@ export const ParentalResponsibilityOrderScenarios: ParentalResponsibilityDraftOr
           otherDetails: {
             orderMadeBy: "Test judge name",
             orderCreatedBy:
-              process.env.MANAGE_CASES_TEST_ENV === "aat"
-                ? "AAT Solicitor"
-                : "PRL DEMO ORG1 Solicitor 2",
+              process.env.MANAGE_CASES_TEST_ENV === "demo"
+                ? "PRL DEMO ORG1 Solicitor 2"
+                : "AAT Solicitor",
             status: "Drafted by Solicitor",
           },
           isOrderAboutAllTheChildren: true,
@@ -314,9 +314,9 @@ export const RemoveDraftNonMolestationOrderScenarios: RemoveDraftNonMolestationO
             englishDocument: "non_molestation_order_fl404a_draft.pdf",
             otherDetails: {
               orderCreatedBy:
-                process.env.MANAGE_CASES_TEST_ENV === "aat"
-                  ? "AAT Solicitor"
-                  : "PRL DEMO ORG1 Solicitor 2",
+                process.env.MANAGE_CASES_TEST_ENV === "demo"
+                  ? "PRL DEMO ORG1 Solicitor 2"
+                  : "AAT Solicitor",
               status: "Drafted by Solicitor",
             },
             isOrderAboutChildren: false,
@@ -371,9 +371,9 @@ export const RemoveDraftParentalResponsibilityOrderScenarios: RemoveDraftParenta
             englishDocument: "Parental_Responsibility_Order_C45A_draft.pdf",
             otherDetails: {
               orderCreatedBy:
-                process.env.MANAGE_CASES_TEST_ENV === "aat"
-                  ? "AAT Solicitor"
-                  : "PRL DEMO ORG1 Solicitor 2",
+                process.env.MANAGE_CASES_TEST_ENV === "demo"
+                  ? "PRL DEMO ORG1 Solicitor 2"
+                  : "AAT Solicitor",
               status: "Drafted by Solicitor",
             },
             childrenList: [

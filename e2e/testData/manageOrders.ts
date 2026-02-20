@@ -70,9 +70,9 @@ export const ChildArrangementsOrderScenarios: ChildArrangementsOrderParams[] = [
         otherDetails: {
           orderMadeBy: "Test judge name",
           orderCreatedBy:
-            process.env.MANAGE_CASES_TEST_ENV === "aat"
-              ? "PRL AAT AM Swansea HCA"
-              : "PRL Demo Swansea HCA",
+            process.env.MANAGE_CASES_TEST_ENV === "demo"
+              ? "PRL Demo Swansea HCA"
+              : "PRL AAT AM Swansea HCA",
           status: "Created by Admin",
         },
         childrenList: [
@@ -149,9 +149,9 @@ export const ChildArrangementsOrderScenarios: ChildArrangementsOrderParams[] = [
         otherDetails: {
           orderMadeBy: "Test judge name",
           orderCreatedBy:
-            process.env.MANAGE_CASES_TEST_ENV === "aat"
-              ? "PRL AAT AM Swansea HCA"
-              : "PRL Demo Swansea HCA",
+            process.env.MANAGE_CASES_TEST_ENV === "demo"
+              ? "PRL Demo Swansea HCA"
+              : "PRL AAT AM Swansea HCA",
           status: "Created by Admin",
         },
         childrenList: [

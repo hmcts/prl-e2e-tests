@@ -57,7 +57,9 @@ export class DraftAnOrderJourney {
   ): Promise<void> {
     const summaryPage: SummaryPage = new SummaryPage(page);
     // wait for tab heading so make sure page is fully loaded before choosing event
-    await expect(summaryPage.page.getByRole("heading", { name: "Summary" })).toBeVisible();
+    await expect(
+      summaryPage.page.getByRole("heading", { name: "Summary" }),
+    ).toBeVisible();
     await summaryPage.chooseEventFromDropdown("Create/upload draft order");
     await this.selectOrderAndFillInGenericOrderDetails(page, orderDetails);
 

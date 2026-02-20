@@ -42,92 +42,94 @@ test.describe("Manage Orders - Create a Child arrangements, specific issue or pr
     },
   );
 
-  ChildArrangementsOrderScenarios.forEach((manageOrderParams: ChildArrangementsOrderParams) => {
-    test(`Create child arrangements order C43 as case worker with the following options:${manageOrderParams.name} @regression @nightly @visual`, async ({
-      caseWorker,
-      navigationUtils,
-    }): Promise<void> => {
-      const { manageOrders, summaryPage } = caseWorker;
+  ChildArrangementsOrderScenarios.forEach(
+    (manageOrderParams: ChildArrangementsOrderParams) => {
+      test(`Create child arrangements order C43 as case worker with the following options:${manageOrderParams.name} @regression @nightly @visual`, async ({
+        caseWorker,
+        navigationUtils,
+      }): Promise<void> => {
+        const { manageOrders, summaryPage } = caseWorker;
 
-      await summaryPage.chooseEventFromDropdown("Manage orders");
-      await manageOrders.manageOrder1Page.assertPageContents();
-      await manageOrders.manageOrder1Page.verifyAccessibility();
-      await manageOrders.manageOrder1Page.selectOrderOption(
-        manageOrderParams.orderOption,
-      );
-      await manageOrders.manageOrder1Page.clickContinue();
+        await summaryPage.chooseEventFromDropdown("Manage orders");
+        await manageOrders.manageOrder1Page.assertPageContents();
+        await manageOrders.manageOrder1Page.verifyAccessibility();
+        await manageOrders.manageOrder1Page.selectOrderOption(
+          manageOrderParams.orderOption,
+        );
+        await manageOrders.manageOrder1Page.clickContinue();
 
-      await manageOrders.manageOrder2Page.assertPageContents();
-      await manageOrders.manageOrder2Page.verifyAccessibility();
-      await manageOrders.manageOrder2Page.selectOrderType(
-        manageOrderParams.orderType,
-      );
-      await manageOrders.manageOrder2Page.clickContinue();
+        await manageOrders.manageOrder2Page.assertPageContents();
+        await manageOrders.manageOrder2Page.verifyAccessibility();
+        await manageOrders.manageOrder2Page.selectOrderType(
+          manageOrderParams.orderType,
+        );
+        await manageOrders.manageOrder2Page.clickContinue();
 
-      await manageOrders.manageOrder5Page.assertPageContents(
-        manageOrderParams.caseType,
-        manageOrderParams.orderType,
-      );
-      await manageOrders.manageOrder5Page.verifyAccessibility();
-      await manageOrders.manageOrder5Page.fillInFields(
-        manageOrderParams.caseType,
-        manageOrderParams.manageOrder5Params,
-      );
-      await manageOrders.manageOrder5Page.clickContinue();
+        await manageOrders.manageOrder5Page.assertPageContents(
+          manageOrderParams.caseType,
+          manageOrderParams.orderType,
+        );
+        await manageOrders.manageOrder5Page.verifyAccessibility();
+        await manageOrders.manageOrder5Page.fillInFields(
+          manageOrderParams.caseType,
+          manageOrderParams.manageOrder5Params,
+        );
+        await manageOrders.manageOrder5Page.clickContinue();
 
-      await manageOrders.manageOrder10Page.assertPageContents(
-        manageOrderParams.orderType,
-      );
-      await manageOrders.manageOrder10Page.verifyAccessibility();
-      await manageOrders.manageOrder10Page.selectC45OrderDetails(
-        manageOrderParams.manageOrder10Params,
-      );
-      await manageOrders.manageOrder10Page.clickContinue();
+        await manageOrders.manageOrder10Page.assertPageContents(
+          manageOrderParams.orderType,
+        );
+        await manageOrders.manageOrder10Page.verifyAccessibility();
+        await manageOrders.manageOrder10Page.selectC45OrderDetails(
+          manageOrderParams.manageOrder10Params,
+        );
+        await manageOrders.manageOrder10Page.clickContinue();
 
-      await manageOrders.manageOrder19Page.assertPageContents(
-        manageOrderParams.orderType,
-      );
-      //await manageOrders.manageOrder19Page.verifyAccessibility();
-      await manageOrders.manageOrder19Page.fillHearingDetails(
-        manageOrderParams.manageOrder19Params,
-      );
-      await manageOrders.manageOrder19Page.clickContinue();
+        await manageOrders.manageOrder19Page.assertPageContents(
+          manageOrderParams.orderType,
+        );
+        //await manageOrders.manageOrder19Page.verifyAccessibility();
+        await manageOrders.manageOrder19Page.fillHearingDetails(
+          manageOrderParams.manageOrder19Params,
+        );
+        await manageOrders.manageOrder19Page.clickContinue();
 
-      await manageOrders.manageOrder20Page.assertPageContents(
-        manageOrderParams.orderType,
-        caseNumber,
-        manageOrderParams.snapshotName,
-        manageOrderParams.snapshotsPath,
-      );
-      await manageOrders.manageOrder20Page.verifyAccessibility();
-      await manageOrders.manageOrder20Page.clickContinue();
+        await manageOrders.manageOrder20Page.assertPageContents(
+          manageOrderParams.orderType,
+          caseNumber,
+          manageOrderParams.snapshotName,
+          manageOrderParams.snapshotsPath,
+        );
+        await manageOrders.manageOrder20Page.verifyAccessibility();
+        await manageOrders.manageOrder20Page.clickContinue();
 
-      await manageOrders.manageOrder24Page.assertPageContents();
-      await manageOrders.manageOrder24Page.verifyAccessibility();
-      await manageOrders.manageOrder24Page.selectCheckOrder(
-        manageOrderParams.manageOrder24Params,
-      );
-      await manageOrders.manageOrder24Page.clickContinue();
+        await manageOrders.manageOrder24Page.assertPageContents();
+        await manageOrders.manageOrder24Page.verifyAccessibility();
+        await manageOrders.manageOrder24Page.selectCheckOrder(
+          manageOrderParams.manageOrder24Params,
+        );
+        await manageOrders.manageOrder24Page.clickContinue();
 
-      await manageOrders.manageOrderSubmitPage.verifyAccessibility();
-      await manageOrders.manageOrderSubmitPage.clickSubmit();
-      await summaryPage.alertBanner.assertEventAlert(
-        caseNumber,
-        "Manage orders",
-      );
+        await manageOrders.manageOrderSubmitPage.verifyAccessibility();
+        await manageOrders.manageOrderSubmitPage.clickSubmit();
+        await summaryPage.alertBanner.assertEventAlert(
+          caseNumber,
+          "Manage orders",
+        );
 
-      // check the draft orders tab as court admin
-      await navigationUtils.goToCase(
-        caseWorker.page,
-        config.manageCasesBaseURLCase,
-        caseNumber,
-      );
+        // check the draft orders tab as court admin
+        await navigationUtils.goToCase(
+          caseWorker.page,
+          config.manageCasesBaseURLCase,
+          caseNumber,
+        );
 
-      const { removeDraftOrders } = caseWorker;
-      await removeDraftOrders.draftOrdersPage.goToPage();
-      await removeDraftOrders.draftOrdersPage.assertDraftOrders(
-        manageOrderParams.orderInformation,
-      );
-    });
-  });
+        const { removeDraftOrders } = caseWorker;
+        await removeDraftOrders.draftOrdersPage.goToPage();
+        await removeDraftOrders.draftOrdersPage.assertDraftOrders(
+          manageOrderParams.orderInformation,
+        );
+      });
+    },
+  );
 });
