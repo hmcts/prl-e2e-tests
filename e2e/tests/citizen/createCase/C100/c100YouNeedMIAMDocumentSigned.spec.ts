@@ -38,7 +38,7 @@ test.describe("Create Citizen Application but you don't have a MIAM document.", 
     "You need to have a signed document journey signed for you, with the following options:" +
       "No error messaging." +
       "Yes accessibility Testing" +
-      "@accessibility @nightly",
+      "@accessibility @smoke @nightly",
     async ({ page }): Promise<void> => {
       await C100.youNeedASignedDocument({
         page: page,

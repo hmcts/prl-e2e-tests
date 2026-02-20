@@ -38,7 +38,7 @@ test.describe("Create Citizen Application but choose to have legal representativ
   test(
     "Application completed for you with the following options:" +
       "No error messaging." +
-      "Yes accessibility Testing @accessibility @nightly",
+      "Yes accessibility Testing @smoke @accessibility @nightly",
     async ({ page }): Promise<void> => {
       await C100.c100ApplicationCompletedForYou({
         page: page,
