@@ -34,7 +34,7 @@ export async function completeCheckApplicationAndSendToGatekeeperAndCreateAnOrde
   manageOrderEventData: typeof jsonDatas,
 ): Promise<void> {
   await completeCheckApplicationAndSendToGatekeeper(page, caseRef);
-  // open new browser context as judge to creat the order
+  // open new browser context as judge to create the order
   const newBrowser = await browser.browserType().launch();
   const newContext: BrowserContext = await newBrowser.newContext({
     storageState: Config.sessionStoragePath + "judge.json",
