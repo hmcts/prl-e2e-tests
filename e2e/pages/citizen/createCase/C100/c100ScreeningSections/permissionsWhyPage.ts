@@ -16,6 +16,9 @@ enum inputIDs {
   parentalResponsibility = "#sq_doNotHaveParentalResponsibility_subfield",
   courtOrder = "#sq_courtOrderPrevent_subfield",
   anotherReason = "#sq_anotherReason_subfield",
+}
+
+enum uploadID {
   chooseFileButton = "#fileupload",
 }
 
@@ -119,23 +122,23 @@ export class PermissionsWhyPage {
       await page.check(checkbox);
     }
     await Promise.all([
-    Helpers.checkGroup(
-      page,
-      3,
-      PermissionsWhyContent,
-      "details",
-      `${Selectors.GovukLabel}`,
-    ),
-    Helpers.checkVisibleAndPresent(
-      page,
-      `${Selectors.GovukHeadingS}:text-is("${PermissionsWhyContent.headingS}")`,
-      1,
-    ),
-    Helpers.checkVisibleAndPresent(
-      page,
-      `${Selectors.GovukHint}:text-is("${PermissionsWhyContent.hintText}")`,
-      1,
-    ),
+      Helpers.checkGroup(
+        page,
+        3,
+        PermissionsWhyContent,
+        "details",
+        `${Selectors.GovukLabel}`,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukHeadingS}:text-is("${PermissionsWhyContent.headingS}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukHint}:text-is("${PermissionsWhyContent.hintText}")`,
+        1,
+      ),
     ]);
     for (const [key, textField] of Object.entries(inputIDs)) {
       const contentKey = key as keyof typeof PermissionsWhyContent;
@@ -148,10 +151,10 @@ export class PermissionsWhyPage {
   }
 
   private static async fileUpload(page: Page): Promise<void> {
-    const fileInput = page.locator(`${inputIDs.chooseFileButton}`);
+    const fileInput = page.locator(`${uploadID.chooseFileButton}`);
     await fileInput.setInputFiles(config.testPdfFile);
     await page.waitForTimeout(4000);
-    await page.getByRole('button', { name: 'Upload file' }).click();
+    await page.getByRole("button", { name: "Upload file" }).click();
     await page.waitForTimeout(3000);
   }
 }

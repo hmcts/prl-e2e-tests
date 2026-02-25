@@ -1,5 +1,5 @@
 export enum PermissionsWhyContent {
-  pageTitle = "Why do you need a permission from the court to make this application? (optional)",
+  pageTitle = "Why do you need a permission from the court to make this application?",
   body1 = "Consult ",
   body2 = " if you are not sure if you need permission to apply",
   govLink = "the CB1 guidance",
