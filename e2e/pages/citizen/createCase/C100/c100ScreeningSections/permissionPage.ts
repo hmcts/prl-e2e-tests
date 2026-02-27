@@ -57,12 +57,12 @@ export class PermissionPage {
     await Promise.all([
       Helpers.checkGroup(
         page,
-        3,
+        2,
         PermissionContent,
         "body",
         `${Selectors.GovukBody}`,
       ),
-      Helpers.checkGroup(page, 3, PermissionContent, "list", `${Selectors.li}`),
+      Helpers.checkGroup(page, 7, PermissionContent, "list", `${Selectors.li}`),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukLabel}:text-is("${CommonStaticText.yes}")`,
@@ -73,11 +73,13 @@ export class PermissionPage {
         `${Selectors.GovukLabel}:text-is("${CommonStaticText.no}")`,
         1,
       ),
+      //TO UPDATE LOCATOR, testing env not ready yet FPVTL-2335
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${PermissionContent.aLink}")`,
+        `${Selectors.GovukHeadingM}:text-is("${PermissionContent.secondHeading}")`,
         1,
       ),
+      Helpers.checkGroup(page, 2, PermissionContent, "aLink", `${Selectors.a}`),
     ]);
     if (accessibilityTest) {
       await new AxeUtils(page).audit();
