@@ -73,13 +73,11 @@ export class PermissionPage {
         `${Selectors.GovukLabel}:text-is("${CommonStaticText.no}")`,
         1,
       ),
-      //TO UPDATE LOCATOR, testing env not ready yet FPVTL-2335
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHeadingM}:text-is("${PermissionContent.secondHeading}")`,
+        `${Selectors.GovukFieldsetLegend}:text-is("${PermissionContent.secondHeading}")`,
         1,
       ),
-      Helpers.checkGroup(page, 2, PermissionContent, "aLink", `${Selectors.a}`),
     ]);
     if (accessibilityTest) {
       await new AxeUtils(page).audit();

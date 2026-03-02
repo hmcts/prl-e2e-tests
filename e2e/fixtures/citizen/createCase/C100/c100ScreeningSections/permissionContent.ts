@@ -1,6 +1,6 @@
 export enum PermissionContent {
   pageTitle = "Permission to apply",
-  body1 = "You will not normally need permission if you are the child's:",
+  body1 = "You will not normally need permission if you are the child’s:",
   body2 = "However, this does not apply if there is an order in place stating that you cannot make an application without the court's permission. For example:",
   list1 = "parent",
   list2 = "guardian",
@@ -10,8 +10,6 @@ export enum PermissionContent {
   list6 = "a general civil restraint order",
   list7 = "an extended civil restraint order",
   secondHeading = "Is there any reason that you would need permission from the court to make this application?",
-  aLink = "Contact us for help",
-  aLink2 = "Save and close",
   errorSummaryList = "Select yes if there is any reason why you would need permission from the court to make this application",
   errorMessage = " Select yes if there is any reason why you would need permission from the court to make this application ",
 }
