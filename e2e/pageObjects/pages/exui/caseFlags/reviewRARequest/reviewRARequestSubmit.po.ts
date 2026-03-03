@@ -21,11 +21,13 @@ export class ReviewRARequestSubmitPage extends Base {
   async assertPageContents(caseType: solicitorCaseCreateType): Promise<void> {
     await expect(this.eventHeading).toBeVisible();
     await expect(this.pageHeading).toBeVisible();
-    await this.table.captureFullTableScreenshot([
-      "caseProgression",
-      "caseFlags",
-      `review-ra-request-${caseType}`,
-    ]);
+    await this.table.captureFullTableScreenshot({
+      screenShotPath: [
+        "caseProgression",
+        "caseFlags",
+        `review-ra-request-${caseType}`,
+      ],
+    });
     await expect(this.submitButton).toBeVisible();
     await expect(this.previousButton).toBeVisible();
   }

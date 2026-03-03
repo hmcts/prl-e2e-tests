@@ -18,14 +18,17 @@ export class CheckYourAnswersPage extends EventPage {
   private readonly checkYourAnswersTable: CheckYourAnswersTableComponent =
     new CheckYourAnswersTableComponent(this.page);
   private readonly cyaSubmitButton: string;
+  private readonly snapshotMask: Locator[];
 
   constructor(
     page: Page,
     headingText: string,
     cyaSubmitButton: CyaSubmitButton,
+    mask: Locator[] = [],
   ) {
     super(page, headingText);
     this.cyaSubmitButton = cyaSubmitButton;
+    this.snapshotMask = mask;
   }
 
   async assertPageContents(
@@ -37,9 +40,10 @@ export class CheckYourAnswersPage extends EventPage {
     await expect(this.text16).toBeVisible();
     const snapshotPathCopy: string[] = Array.from(snapshotPath);
     snapshotPathCopy.push(snapshotName);
-    await this.checkYourAnswersTable.captureFullTableScreenshot(
-      snapshotPathCopy,
-    );
+    await this.checkYourAnswersTable.captureFullTableScreenshot({
+      screenShotPath: snapshotPathCopy,
+      mask: this.snapshotMask,
+    });
     // not all cya pages have the same "submit" button
     if (this.cyaSubmitButton === CommonStaticText.saveAndContinue) {
       await expect(this.saveAndContinueButton).toBeVisible();

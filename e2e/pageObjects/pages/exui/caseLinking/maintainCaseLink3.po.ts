@@ -31,14 +31,14 @@ export class MaintainCaseLink3Page extends Base {
     await expect(this.familyManHeading).toBeVisible();
     await expect(this.caseNumberHeading).toBeVisible();
     await expect(this.sectionHeading).toBeVisible();
-    await this.table.captureFullTableScreenshot(
-      ["caseLinking", "maintain-case-link-unlink-table"],
-      "#cases-to-unlink-table",
-    );
-    await this.table.captureFullTableScreenshot(
-      ["caseLinking", "maintain-case-link-linked-table"],
-      "#linked-cases-table",
-    );
+    await this.table.captureFullTableScreenshot({
+      screenShotPath: ["caseLinking", "maintain-case-link-unlink-table"],
+      tableSelector: "#cases-to-unlink-table",
+    });
+    await this.table.captureFullTableScreenshot({
+      screenShotPath: ["caseLinking", "maintain-case-link-linked-table"],
+      tableSelector: "#linked-cases-table",
+    });
     await expect(this.continueButton).toBeVisible();
     await expect(this.previousButton).toBeVisible();
   }

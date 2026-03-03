@@ -1,14 +1,21 @@
 import { expect, Locator, Page } from "@playwright/test";
 
+interface ScreenshotParams {
+  screenShotPath: string[];
+  tableSelector?: string;
+  mask?: Locator[];
+}
+
 export class CheckYourAnswersTableComponent {
   constructor(private page: Page) {
     this.page = page;
   }
 
-  async captureFullTableScreenshot(
-    screenShotPath: string[],
-    tableSelector?: string,
-  ): Promise<void> {
+  async captureFullTableScreenshot({
+    screenShotPath,
+    tableSelector,
+    mask = [],
+  }: ScreenshotParams): Promise<void> {
     // getByRole returns too many elements so have to use selector
     const defaultCyaTableSelector: string = ".form-table";
     const table: Locator = this.page.locator(
@@ -21,6 +28,7 @@ export class CheckYourAnswersTableComponent {
       `${providedScreenshotName}-cya.png`;
     await expect(table).toHaveScreenshot(screenshotPathCopy, {
       maxDiffPixelRatio: 0.02,
+      mask: mask,
     });
   }
 }
