@@ -57,12 +57,12 @@ export class PermissionPage {
     await Promise.all([
       Helpers.checkGroup(
         page,
-        3,
+        2,
         PermissionContent,
         "body",
         `${Selectors.GovukBody}`,
       ),
-      Helpers.checkGroup(page, 3, PermissionContent, "list", `${Selectors.li}`),
+      Helpers.checkGroup(page, 7, PermissionContent, "list", `${Selectors.li}`),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukLabel}:text-is("${CommonStaticText.yes}")`,
@@ -75,7 +75,7 @@ export class PermissionPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.a}:text-is("${PermissionContent.aLink}")`,
+        `${Selectors.GovukFieldsetLegend}:text-is("${PermissionContent.secondHeading}")`,
         1,
       ),
     ]);
