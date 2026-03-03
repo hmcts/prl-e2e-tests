@@ -85,8 +85,14 @@ test.describe("Add/Remove Barrister for CA case", () => {
           ? "John Doe (Applicant), PRL DEMO ORG4 Solicitor 2, BarristerOneFN BarristerOneLN"
           : "John Doe (Applicant), PRL NOC Respondent Solicitor 1, BarristerOneFN BarristerOneLN",
       ],
-      addBarristerSnapshotName: "c100-add-barrister",
-      removeBarristerSnapshotName: "c100-remove-barrister",
+      addBarristerSnapshotName:
+        process.env.MANAGE_CASES_TEST_ENV === "demo"
+          ? "demo-c100-add-barrister"
+          : "c100-add-barrister",
+      removeBarristerSnapshotName:
+        process.env.MANAGE_CASES_TEST_ENV === "demo"
+          ? "demo-c100-remove-barrister"
+          : "c100-remove-barrister",
       applicants: [{ firstname: "John", surname: "Doe" }],
       nocParty: { firstname: "John", surname: "Doe" },
       barrister: {
