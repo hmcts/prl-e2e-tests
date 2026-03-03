@@ -103,7 +103,7 @@ test.describe("Add/Remove Barrister for CA case", () => {
       },
     },
   ].forEach((data) => {
-    test(`Solicitor adds and removes Barrister for a CA case. @regression @accessibility @nightly @test`, async ({
+    test(`Solicitor adds and removes Barrister for a CA case. @regression @accessibility @nightly`, async ({
       nocSolicitor,
       navigationUtils,
     }): Promise<void> => {
