@@ -14,6 +14,7 @@ interface confirmApplicantContactInstructionsParams {
   accessibilityTest: boolean;
   applicationSubmittedBy: applicationSubmittedBy;
 }
+
 interface FL401CaseConfidentialParams {
   page: Page;
   browser: Browser;
@@ -47,7 +48,9 @@ export class ConfirmApplicantContactInstructions {
       caseUser: caseUser,
       applicationSubmittedBy: applicationSubmittedBy,
       accessibilityTest: accessibilityTest,
-      isManualSOA: false,
+      isManualSOA: true,
+      yesNoServiceOfApplication4: true,
+      confidentialityCheck: true,
     });
     await page.click(UniqueSelectors.confirmOrEditYourContactDetailsSelector);
     await this.updateApplicantContactInstructions(page);
