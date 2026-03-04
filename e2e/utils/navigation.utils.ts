@@ -25,16 +25,14 @@ export class NavigationUtils {
     caseTab: string,
   ): string {
     const caseNumberDigits: string = caseNumber.toString().replace(/\D/g, "");
-    if (
-      caseTab.toLowerCase() === "tasks" ||
-      caseTab.toLowerCase() === "roles and access"
-    ) {
-      return `${baseURL}/case-details/${caseNumberDigits}/${caseTab}`;
-    } else if (caseTab.toLowerCase() === "Draft orders") {
-      return `${baseURL}/case-details/${caseNumberDigits}#Draft%20orders`;
-    } else {
-      return `${baseURL}/case-details/${caseNumberDigits}#${caseTab}`;
+    const base = `${baseURL.replace(/\/$/, "")}/case-details/${caseNumberDigits}`;
+
+    if (!caseTab || !caseTab.trim()) {
+      return baseURL;
     }
+
+    const tab = caseTab.trim();
+    return `${base}#${encodeURIComponent(tab)}`;
   }
 
   async openPdfLink(page: Page, linkLocator: Locator) {
