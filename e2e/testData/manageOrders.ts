@@ -1,4 +1,5 @@
 import { ChildArrangementsOrderParams } from "../tests/manageCases/caseProgression/orders/C100/createAnOrder/caseWorker/createChildArrangementsOrder.spec.js";
+import { AmendedDischargedVariedOrderParams } from "../tests/manageCases/caseProgression/orders/FL401/createAnOrder/caseWorker/createAmendedDischargedOrVariedOrder.spec.js";
 
 export const ChildArrangementsOrderScenarios: ChildArrangementsOrderParams[] = [
   {
@@ -7,7 +8,7 @@ export const ChildArrangementsOrderScenarios: ChildArrangementsOrderParams[] = [
     orderType:
       "Child arrangements, specific issue or prohibited steps order (C43)",
     orderOption: "create order",
-    isUploadAnOrder: true,
+    isUploadAnOrder: false,
     manageOrder5Params: {
       orderType:
         "Child arrangements, specific issue or prohibited steps order (C43)",
@@ -92,7 +93,7 @@ export const ChildArrangementsOrderScenarios: ChildArrangementsOrderParams[] = [
     orderType:
       "Child arrangements, specific issue or prohibited steps order (C43)",
     orderOption: "create order",
-    isUploadAnOrder: true,
+    isUploadAnOrder: false,
     manageOrder5Params: {
       orderType:
         "Child arrangements, specific issue or prohibited steps order (C43)",
@@ -166,3 +167,137 @@ export const ChildArrangementsOrderScenarios: ChildArrangementsOrderParams[] = [
     ],
   },
 ];
+
+export const AmendedDischargedVariedOrderScenarios: AmendedDischargedVariedOrderParams[] =
+  [
+    {
+      name: "No to all",
+      caseType: "FL401",
+      orderType: "Amended, discharged or varied order (FL404B)",
+      orderOption: "create order",
+      isUploadAnOrder: false,
+      manageOrder5Params: {
+        orderType: "Amended, discharged or varied order (FL404B)",
+        isOrderByConsent: false,
+        wasOrderApprovedAtAHearing: false,
+        hearing: undefined,
+        judgeOrMagistratesTitle: "His Honour Judge",
+        judgeFullName: "Test judge name",
+        justicesLegalAdviserFullName: undefined,
+        dateOrderMade: undefined,
+        isOrderAboutTheChildren: false,
+        recitalsAndPreamble: undefined,
+        directions: undefined,
+      },
+      manageOrder19Params: {
+        isDateReservedWithListAssist: true,
+        hearingDetails: {
+          hearingType: "2nd Gatekeeping Appointment",
+          hearingDateAndTime: "14-10-2025 12:00 am",
+          estimatedTime: { days: "1", hours: "1", minutes: "1" },
+          howDoesHearingNeedToTakePlace: "In Person",
+          willAllPartiesAttendTheSameWay: true,
+          hearingLocation: undefined, // hearing location is pre-populated
+          hearingWillBeBefore: "District judge",
+          hearingJudge: "Ms Elizabeth Williams",
+          joiningInstructionsForRemoteHearing: "Test joining instructions",
+          additionalHearingInstructions: "Test additional hearing instructions",
+        },
+      },
+      manageOrder24Params: {
+        checkOption: "judgeOrLegalAdvisorCheck", ////options passed could be either noCheck or judgeOrLegalAdvisorCheck or managerCheck
+        judgeOrLegalAdviser: "judge",
+        judgeName: "Ms Elizabeth Williams",
+      },
+      snapshotName: "amended-dischargedOrVaried-order-no-to-all",
+      snapshotsPath: [
+        "caseProgression",
+        "orders",
+        "amendedDischargedVariedOrder",
+      ],
+      orderInformation: [
+        {
+          typeOfOrder: "Amended, discharged or varied order (FL404B)",
+          welshDocument:
+            "welsh_amended_discharged_or_varied_order_fl404b_draft.pdf",
+          englishDocument:
+            "amended_discharged_or_varied_order_fl404b_draft.pdf",
+          otherDetails: {
+            orderMadeBy: "Test judge name",
+            orderCreatedBy:
+              process.env.MANAGE_CASES_TEST_ENV === "demo"
+                ? "PRL Demo Swansea HCA"
+                : "PRL AAT AM Swansea HCA",
+            status: "Created by Admin",
+          },
+          isOrderAboutChildren: false,
+        },
+      ],
+    },
+    {
+      name: "Yes to all",
+      caseType: "FL401",
+      orderType: "Amended, discharged or varied order (FL404B)",
+      orderOption: "create order",
+      isUploadAnOrder: false,
+      manageOrder5Params: {
+        orderType: "Amended, discharged or varied order (FL404B)",
+        isOrderByConsent: true,
+        wasOrderApprovedAtAHearing: true,
+        hearing: "No hearings available",
+        judgeOrMagistratesTitle: "His Honour Judge",
+        judgeFullName: "Test judge name",
+        justicesLegalAdviserFullName: "Test legal adviser",
+        dateOrderMade: undefined, // already pre-populated
+        isOrderAboutTheChildren: true,
+        allChildrenInOrder: ["Joe Doe", "Simon Anderson"],
+        recitalsAndPreamble: "Test recitals",
+        directions: "Test preamble",
+      },
+      manageOrder19Params: {
+        isDateReservedWithListAssist: true,
+        hearingDetails: {
+          hearingType: "2nd Gatekeeping Appointment",
+          hearingDateAndTime: "14-10-2025 12:00 am",
+          estimatedTime: { days: "1", hours: "1", minutes: "1" },
+          howDoesHearingNeedToTakePlace: "In Person",
+          willAllPartiesAttendTheSameWay: true,
+          hearingLocation: undefined, // hearing location is pre-populated
+          hearingWillBeBefore: "District judge",
+          hearingJudge: "Ms Elizabeth Williams",
+          joiningInstructionsForRemoteHearing: "Test joining instructions",
+          additionalHearingInstructions: "Test additional hearing instructions",
+        },
+      },
+      manageOrder24Params: {
+        checkOption: "judgeOrLegalAdvisorCheck", ////options passed could be either noCheck or judgeOrLegalAdvisorCheck or managerCheck
+        judgeOrLegalAdviser: "judge", ///options judge, legalAdvisor
+        judgeName: "Ms Elizabeth Williams",
+      },
+      snapshotName: "amended-dischargedOrVaried-order-yes-to-all",
+      snapshotsPath: [
+        "caseProgression",
+        "orders",
+        "amendedDischargedVariedOrder",
+      ],
+      orderInformation: [
+        {
+          typeOfOrder: "Amended, discharged or varied order (FL404B)",
+          welshDocument:
+            "welsh_amended_discharged_or_varied_order_fl404b_draft.pdf",
+          englishDocument:
+            "amended_discharged_or_varied_order_fl404b_draft.pdf",
+          otherDetails: {
+            orderMadeBy: "Test judge name",
+            orderCreatedBy:
+              process.env.MANAGE_CASES_TEST_ENV === "demo"
+                ? "PRL Demo Swansea HCA"
+                : "PRL AAT AM Swansea HCA",
+            status: "Created by Admin",
+          },
+          childrenList: ["Joe Doe", "Simon Anderson"],
+          isOrderAboutChildren: true,
+        },
+      ],
+    },
+  ];
