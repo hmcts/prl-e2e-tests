@@ -13,6 +13,7 @@ import { LegalAdvisorPagesGroup } from "../../../../pageObjects/roleBasedGrouped
 // -------------------------------
 test.describe("C100 Send & Reply to messages scenarios", () => {
   let caseNumber: string;
+
   test.beforeEach(
     async ({ caseWorker, browser, caseEventUtils, navigationUtils }) => {
       caseNumber =
@@ -76,6 +77,7 @@ test.describe("C100 Send & Reply to messages scenarios", () => {
 // -------------------------------
 test.describe("FL401 Send & Reply to messages scenarios", () => {
   let caseNumber: string;
+
   test.beforeEach(
     async ({ caseWorker, browser, caseEventUtils, navigationUtils }) => {
       caseNumber = await caseEventUtils.createDACase(browser);

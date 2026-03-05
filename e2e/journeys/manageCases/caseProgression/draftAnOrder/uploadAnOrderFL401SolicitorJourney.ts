@@ -1,4 +1,4 @@
-import { Page, Browser } from "@playwright/test";
+import { Page, Browser, expect } from "@playwright/test";
 import { Helpers } from "../../../../common/helpers.ts";
 import {
   solicitorCaseCreateType,
@@ -47,6 +47,8 @@ export class UploadAnOrderFL401SolicitorJourney {
       caseRef,
       "Summary",
     );
+    // wait for tab heading so make sure page is fully loaded before choosing event
+    await expect(page.getByRole("heading", { name: "Summary" })).toBeVisible();
     //Starting the 'Create/upload draft order' event to upload the order
     await Helpers.chooseEventFromDropdown(page, "Create/upload draft order");
     await DraftAnOrder1Page.draftAnOrder1Page(

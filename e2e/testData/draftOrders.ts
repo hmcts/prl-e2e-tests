@@ -1,7 +1,7 @@
-import { NonMolestationDraftOrderParams } from "../tests/manageCases/caseProgression/solicitor/draftAnOrder/draftAnOrderNonMolestation.spec.js";
-import { ParentalResponsibilityDraftOrderParams } from "../tests/manageCases/caseProgression/solicitor/draftAnOrder/draftAnOrderParentalResponsibility.spec.js";
-import { RemoveDraftNonMolestationOrderParams } from "../tests/manageCases/caseProgression/removeDraftOrder/removeDraftNonMolestationOrder.spec.js";
-import { RemoveDraftParentalResponsibilityOrderParams } from "../tests/manageCases/caseProgression/removeDraftOrder/removeDraftParentalResponsibilityOrder.spec.js";
+import { ParentalResponsibilityDraftOrderParams } from "../tests/manageCases/caseProgression/orders/C100/createAnOrder/solicitor/draftAnOrderParentalResponsibility.spec.js";
+import { RemoveDraftNonMolestationOrderParams } from "../tests/manageCases/caseProgression/orders/FL401/removeDraftOrder/removeDraftNonMolestationOrder.spec.js";
+import { RemoveDraftParentalResponsibilityOrderParams } from "../tests/manageCases/caseProgression/orders/C100/removeDraftOrder/removeDraftParentalResponsibilityOrder.spec.js";
+import { NonMolestationDraftOrderParams } from "../tests/manageCases/caseProgression/orders/FL401/createAnOrder/solicitor/draftAnOrderNonMolestation.spec.js";
 
 export const NonMolestationDraftOrderScenarios: NonMolestationDraftOrderParams[] =
   [
@@ -10,7 +10,7 @@ export const NonMolestationDraftOrderScenarios: NonMolestationDraftOrderParams[]
       caseType: "FL401",
       orderType: "Non-molestation order (FL404A)",
       isDraftAnOrder: true,
-      draftAnOrder4Params: {
+      draftAnOrder5Params: {
         orderType: "Non-molestation order (FL404A)",
         isOrderByConsent: false,
         wasOrderApprovedAtAHearing: false,
@@ -24,7 +24,7 @@ export const NonMolestationDraftOrderScenarios: NonMolestationDraftOrderParams[]
         recitalsAndPreamble: undefined,
         directions: undefined,
       },
-      draftAnOrder5Params: {
+      draftAnOrder6Params: {
         doesOrderMentionProperty: false,
         propertyAddress: undefined,
         respondentMustNotDoOptions: undefined,
@@ -38,23 +38,22 @@ export const NonMolestationDraftOrderScenarios: NonMolestationDraftOrderParams[]
         costsOfApplication: undefined,
         withNotice: false,
       },
-      draftAnOrder16Params: {
+      draftAnOrder17Params: {
         hasJudgeProvidedHearingDetails: false,
         hearingDetails: undefined,
       },
       snapshotName: "draft-order-non-molestation-no-to-all",
-      snapshotsPath: [
-        "caseProgression",
-        "solicitor",
-        "draftNonMolestationOrder",
-      ],
+      snapshotsPath: ["caseProgression", "orders", "draftNonMolestationOrder"],
       orderInformation: [
         {
           typeOfOrder: "Non-molestation order (FL404A)",
           welshDocument: "welsh_non_molestation_order_fl404a_draft.pdf",
           englishDocument: "non_molestation_order_fl404a_draft.pdf",
           otherDetails: {
-            orderCreatedBy: "AAT Solicitor",
+            orderCreatedBy:
+              process.env.MANAGE_CASES_TEST_ENV === "demo"
+                ? "PRL DEMO ORG1 Solicitor 2"
+                : "AAT Solicitor",
             status: "Drafted by Solicitor",
           },
           isOrderAboutChildren: false,
@@ -66,7 +65,7 @@ export const NonMolestationDraftOrderScenarios: NonMolestationDraftOrderParams[]
       caseType: "FL401",
       orderType: "Non-molestation order (FL404A)",
       isDraftAnOrder: true,
-      draftAnOrder4Params: {
+      draftAnOrder5Params: {
         orderType: "Non-molestation order (FL404A)",
         isOrderByConsent: true,
         wasOrderApprovedAtAHearing: true,
@@ -80,7 +79,7 @@ export const NonMolestationDraftOrderScenarios: NonMolestationDraftOrderParams[]
         recitalsAndPreamble: "Test recitals",
         directions: "Test preamble",
       },
-      draftAnOrder5Params: {
+      draftAnOrder6Params: {
         doesOrderMentionProperty: true,
         propertyAddress: "Test property address",
         respondentMustNotDoOptions: [
@@ -105,7 +104,7 @@ export const NonMolestationDraftOrderScenarios: NonMolestationDraftOrderParams[]
         costsOfApplication: "Test costs of application",
         withNotice: true,
       },
-      draftAnOrder16Params: {
+      draftAnOrder17Params: {
         hasJudgeProvidedHearingDetails: true,
         hearingDetails: {
           hearingType: "2nd Gatekeeping Appointment",
@@ -139,11 +138,7 @@ export const NonMolestationDraftOrderScenarios: NonMolestationDraftOrderParams[]
         },
       },
       snapshotName: "draft-order-non-molestation-yes-to-all",
-      snapshotsPath: [
-        "caseProgression",
-        "solicitor",
-        "draftNonMolestationOrder",
-      ],
+      snapshotsPath: ["caseProgression", "orders", "draftNonMolestationOrder"],
       orderInformation: [
         {
           typeOfOrder: "Non-molestation order (FL404A)",
@@ -151,7 +146,10 @@ export const NonMolestationDraftOrderScenarios: NonMolestationDraftOrderParams[]
           englishDocument: "non_molestation_order_fl404a_draft.pdf",
           otherDetails: {
             orderMadeBy: "Test judge name",
-            orderCreatedBy: "AAT Solicitor",
+            orderCreatedBy:
+              process.env.MANAGE_CASES_TEST_ENV === "demo"
+                ? "PRL DEMO ORG1 Solicitor 2"
+                : "AAT Solicitor",
             status: "Drafted by Solicitor",
           },
           childrenList: ["Joe Doe", "Simon Anderson"],
@@ -168,7 +166,7 @@ export const ParentalResponsibilityOrderScenarios: ParentalResponsibilityDraftOr
       caseType: "C100",
       orderType: "Parental responsibility order (C45A)",
       isDraftAnOrder: true,
-      draftAnOrder4Params: {
+      draftAnOrder5Params: {
         orderType: "Parental responsibility order (C45A)",
         isOrderByConsent: false,
         wasOrderApprovedAtAHearing: false,
@@ -192,7 +190,7 @@ export const ParentalResponsibilityOrderScenarios: ParentalResponsibilityDraftOr
       snapshotName: "draft-order-parental-responsibility-no-to-all",
       snapshotsPath: [
         "caseProgression",
-        "solicitor",
+        "orders",
         "draftParentalResponsibilityOrder",
       ],
       orderInformation: [
@@ -201,7 +199,10 @@ export const ParentalResponsibilityOrderScenarios: ParentalResponsibilityDraftOr
           welshDocument: "Welsh_Parental_Responsibility_Order_C45A_draft.pdf",
           englishDocument: "Parental_Responsibility_Order_C45A_draft.pdf",
           otherDetails: {
-            orderCreatedBy: "AAT Solicitor",
+            orderCreatedBy:
+              process.env.MANAGE_CASES_TEST_ENV === "demo"
+                ? "PRL DEMO ORG1 Solicitor 2"
+                : "AAT Solicitor",
             status: "Drafted by Solicitor",
           },
           childrenList: [
@@ -220,7 +221,7 @@ export const ParentalResponsibilityOrderScenarios: ParentalResponsibilityDraftOr
       caseType: "C100",
       orderType: "Parental responsibility order (C45A)",
       isDraftAnOrder: true,
-      draftAnOrder4Params: {
+      draftAnOrder5Params: {
         orderType: "Parental responsibility order (C45A)",
         isOrderByConsent: true,
         wasOrderApprovedAtAHearing: true,
@@ -238,7 +239,7 @@ export const ParentalResponsibilityOrderScenarios: ParentalResponsibilityDraftOr
       snapshotName: "draft-order-parental-responsibility-yes-to-all",
       snapshotsPath: [
         "caseProgression",
-        "solicitor",
+        "orders",
         "draftParentalResponsibilityOrder",
       ],
       orderInformation: [
@@ -248,7 +249,10 @@ export const ParentalResponsibilityOrderScenarios: ParentalResponsibilityDraftOr
           englishDocument: "Parental_Responsibility_Order_C45A_draft.pdf",
           otherDetails: {
             orderMadeBy: "Test judge name",
-            orderCreatedBy: "AAT Solicitor",
+            orderCreatedBy:
+              process.env.MANAGE_CASES_TEST_ENV === "demo"
+                ? "PRL DEMO ORG1 Solicitor 2"
+                : "AAT Solicitor",
             status: "Drafted by Solicitor",
           },
           isOrderAboutAllTheChildren: true,
@@ -265,7 +269,7 @@ export const RemoveDraftNonMolestationOrderScenarios: RemoveDraftNonMolestationO
         caseType: "FL401",
         orderType: "Non-molestation order (FL404A)",
         isDraftAnOrder: true,
-        draftAnOrder4Params: {
+        draftAnOrder5Params: {
           orderType: "Non-molestation order (FL404A)",
           isOrderByConsent: false,
           wasOrderApprovedAtAHearing: false,
@@ -279,7 +283,7 @@ export const RemoveDraftNonMolestationOrderScenarios: RemoveDraftNonMolestationO
           recitalsAndPreamble: undefined,
           directions: undefined,
         },
-        draftAnOrder5Params: {
+        draftAnOrder6Params: {
           doesOrderMentionProperty: false,
           propertyAddress: undefined,
           respondentMustNotDoOptions: undefined,
@@ -293,14 +297,14 @@ export const RemoveDraftNonMolestationOrderScenarios: RemoveDraftNonMolestationO
           costsOfApplication: undefined,
           withNotice: false,
         },
-        draftAnOrder16Params: {
+        draftAnOrder17Params: {
           hasJudgeProvidedHearingDetails: false,
           hearingDetails: undefined,
         },
         snapshotName: "draft-order-non-molestation-no-to-all",
         snapshotsPath: [
           "caseProgression",
-          "solicitor",
+          "orders",
           "draftNonMolestationOrder",
         ],
         orderInformation: [
@@ -309,7 +313,10 @@ export const RemoveDraftNonMolestationOrderScenarios: RemoveDraftNonMolestationO
             welshDocument: "welsh_non_molestation_order_fl404a_draft.pdf",
             englishDocument: "non_molestation_order_fl404a_draft.pdf",
             otherDetails: {
-              orderCreatedBy: "AAT Solicitor",
+              orderCreatedBy:
+                process.env.MANAGE_CASES_TEST_ENV === "demo"
+                  ? "PRL DEMO ORG1 Solicitor 2"
+                  : "AAT Solicitor",
               status: "Drafted by Solicitor",
             },
             isOrderAboutChildren: false,
@@ -317,7 +324,7 @@ export const RemoveDraftNonMolestationOrderScenarios: RemoveDraftNonMolestationO
         ],
       },
       removalReason: "Test removal reason",
-      snapshotsPath: ["caseProgression", "removeDraftOrder"],
+      snapshotsPath: ["caseProgression", "orders", "removeDraftOrder"],
       snapshotName: "remove-draft-non-molestation-order",
     },
   ];
@@ -330,7 +337,7 @@ export const RemoveDraftParentalResponsibilityOrderScenarios: RemoveDraftParenta
         caseType: "C100",
         orderType: "Parental responsibility order (C45A)",
         isDraftAnOrder: true,
-        draftAnOrder4Params: {
+        draftAnOrder5Params: {
           orderType: "Parental responsibility order (C45A)",
           isOrderByConsent: false,
           wasOrderApprovedAtAHearing: false,
@@ -354,7 +361,7 @@ export const RemoveDraftParentalResponsibilityOrderScenarios: RemoveDraftParenta
         snapshotName: "draft-order-parental-responsibility-no-to-all",
         snapshotsPath: [
           "caseProgression",
-          "solicitor",
+          "orders",
           "draftParentalResponsibilityOrder",
         ],
         orderInformation: [
@@ -363,7 +370,10 @@ export const RemoveDraftParentalResponsibilityOrderScenarios: RemoveDraftParenta
             welshDocument: "Welsh_Parental_Responsibility_Order_C45A_draft.pdf",
             englishDocument: "Parental_Responsibility_Order_C45A_draft.pdf",
             otherDetails: {
-              orderCreatedBy: "AAT Solicitor",
+              orderCreatedBy:
+                process.env.MANAGE_CASES_TEST_ENV === "demo"
+                  ? "PRL DEMO ORG1 Solicitor 2"
+                  : "AAT Solicitor",
               status: "Drafted by Solicitor",
             },
             childrenList: [
@@ -378,7 +388,7 @@ export const RemoveDraftParentalResponsibilityOrderScenarios: RemoveDraftParenta
         ],
       },
       removalReason: "Test removal reason",
-      snapshotsPath: ["caseProgression", "removeDraftOrder"],
+      snapshotsPath: ["caseProgression", "orders", "removeDraftOrder"],
       snapshotName: "remove-draft-parental-responsibility-order",
     },
   ];
