@@ -356,25 +356,47 @@ export class AttendingTheHearing1Page {
         `${uniqueSelectors[welshNeedsSelector]}${Selectors.button}:text-is("${AttendingTheHearing1Content.addNew}")`,
       );
     }
-    await Promise.all([
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.h3}:text-is("${AttendingTheHearing1Content.welshNeedsSubHeading}")`,
-        1,
-      ),
-      Helpers.checkGroup(
-        page,
-        2,
-        AttendingTheHearing1Content,
-        "welshLabel",
-        `${uniqueSelectors[welshNeedsFieldsSelector]}${Selectors.GovukFormLabel}`,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukFormLabel}:text-is("${AttendingTheHearing1Content.peopleInvolved}")`,
-        1,
-      ),
-    ]);
+    if (caseType === "FL401") {
+      await Promise.all([
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.h3}:text-is("${AttendingTheHearing1Content.welshNeedsSubHeading}")`,
+          1,
+        ),
+        Helpers.checkGroup(
+          page,
+          2,
+          AttendingTheHearing1Content,
+          "fl401welshLabel",
+          `${uniqueSelectors[welshNeedsFieldsSelector]}${Selectors.GovukFormLabel}`,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukFormLabel}:text-is("${AttendingTheHearing1Content.peopleInvolved}")`,
+          1,
+        ),
+      ]);
+    } else {
+      await Promise.all([
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.h3}:text-is("${AttendingTheHearing1Content.welshNeedsSubHeading}")`,
+          1,
+        ),
+        Helpers.checkGroup(
+          page,
+          2,
+          AttendingTheHearing1Content,
+          "c100welshLabel",
+          `${uniqueSelectors[welshNeedsFieldsSelector]}${Selectors.GovukFormLabel}`,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.GovukFormLabel}:text-is("${AttendingTheHearing1Content.peopleInvolved}")`,
+          1,
+        ),
+      ]);
+    }
     await page.fill(
       `${inputIDs[whoNeedsWelshKey]}`,
       `${AttendingTheHearing1Content.automatedTester}`,
