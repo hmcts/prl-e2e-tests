@@ -34,7 +34,9 @@ export class MakeRequestToCourtAboutCase {
       caseUser: caseUser,
       accessibilityTest: accessibilityTest,
       applicationSubmittedBy: applicationSubmittedBy,
-      isManualSOA: false,
+      isManualSOA: true,
+      yesNoServiceOfApplication4: false,
+      confidentialityCheck: true,
     });
     await page.click(UniqueSelectors.requestToCourtAboutYourCase);
     await ListOfApplications1Page.listOfApplications1Page(
