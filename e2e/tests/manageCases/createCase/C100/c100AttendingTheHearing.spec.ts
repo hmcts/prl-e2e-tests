@@ -51,7 +51,7 @@ test.describe("C100 Create case respondent’s behaviour tests", (): void => {
 test(`C100 Attending The Hearing Journey with the following options:
   Accessibility testing,
   No error Messaging,
-  Yes to All Options, @accessibility @luciano`, async ({
+  Yes to All Options, @accessibility @nightly`, async ({
   page,
 }): Promise<void> => {
   await C100AttendingTheHearing.c100AttendingTheHearing({
