@@ -32,7 +32,6 @@ export class ManageOrder24Page extends EventPage {
 
   async assertPageContents(): Promise<void> {
     await this.assertPageHeadings();
-
     await this.pageUtils.assertStrings(this.checkOptionsFormLabels);
     await expect(this.continueButton).toBeVisible();
     await expect(this.previousButton).toBeVisible();
