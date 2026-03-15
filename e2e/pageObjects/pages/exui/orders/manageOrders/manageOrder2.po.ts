@@ -19,7 +19,7 @@ export class ManageOrder2Page extends EventPage {
   async assertPageContents(): Promise<void> {
     await this.assertPageHeadings();
     await expect(this.heading2).toBeVisible();
-    await this.orderOptionsComponent.assertOrderPageContents();
+    await this.orderOptionsComponent.assertCreateOrderPageContents();
     await expect(this.continueButton).toBeVisible();
     await expect(this.previousButton).toBeVisible();
   }
