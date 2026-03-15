@@ -2,12 +2,12 @@
 
 properties([
   [
-          $class       : 'GithubProjectProperty',
-          displayName  : 'prl e2e tests',
-          projectUrlStr: 'https://github.com/hmcts/prl-e2e-tests'
+    $class       : 'GithubProjectProperty',
+    displayName  : 'prl e2e tests',
+    projectUrlStr: 'https://github.com/hmcts/prl-e2e-tests'
   ],
   pipelineTriggers([
-          [$class: 'GitHubPushTrigger']
+    [$class: 'GitHubPushTrigger']
   ]),
   parameters([
     string(
@@ -45,18 +45,18 @@ def product = "prl"
 def component = "e2e-tests"
 def channel = "#prl-tech-notifications"
 
-static Map < String, Object > secret(String secretName, String envVariable) {
+static Map<String, Object> secret(String secretName, String envVariable) {
   [
-    $class: 'AzureKeyVaultSecret',
+    $class    : 'AzureKeyVaultSecret',
     secretType: 'Secret',
-    name: secretName,
+    name      : secretName,
     envVariable: envVariable
   ]
 }
 
 def matchingEnv = "aat"
 
-if(params.skipManageCasesTests) {
+if (params.skipManageCasesTests) {
   matchingEnv = params.CITIZEN_FRONTEND_BASE_URL.contains("demo") ? "demo" : matchingEnv
 } else {
   matchingEnv = params.MANAGE_CASES_BASE_URL.contains("demo") ? "demo" : matchingEnv
@@ -114,6 +114,7 @@ withNightlyPipeline(type, product, component, 600) {
   env.MANAGE_CASES_BASE_URL = params.MANAGE_CASES_BASE_URL
   env.FUNCTIONAL_TESTS_WORKERS = params.FUNCTIONAL_TESTS_WORKERS
   enableSlackNotifications(channel)
+
   onPR() {
     afterAlways('DependencyCheckNightly') {
       stage('Run changed tests - Chrome') {
@@ -123,18 +124,28 @@ withNightlyPipeline(type, product, component, 600) {
           unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
         } finally {
           publishHTML([
-                  allowMissing         : true,
-                  alwaysLinkToLastBuild: true,
-                  keepAll              : true,
-                  reportDir            : "playwright-report",
-                  reportFiles          : 'index.html',
-                  reportName           : 'Changed Chrome E2E Test Report'
+            allowMissing         : true,
+            alwaysLinkToLastBuild: true,
+            keepAll              : true,
+            reportDir            : "playwright-report",
+            reportFiles          : 'index.html',
+            reportName           : 'Changed Chrome E2E Test Report'
           ])
-          steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/ChangedTests/*'
+          // ── Allure Report ──────────────────────────────────────────
+          allure([
+            includeProperties: false,
+            jdk              : '',
+            results          : [[path: 'allure-results']],
+            reportBuildPolicy: 'ALWAYS',
+            report           : 'allure-report-changed'
+          ])
+          // ───────────────────────────────────────────────────────────
+          steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/ChangedTests/**, allure-results/**'
         }
       }
     }
   }
+
   onMaster() {
     afterAlways('DependencyCheckNightly') {
       if (!params.skipCitizenTests) {
@@ -145,17 +156,27 @@ withNightlyPipeline(type, product, component, 600) {
             unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
           } finally {
             publishHTML([
-                    allowMissing         : true,
-                    alwaysLinkToLastBuild: true,
-                    keepAll              : true,
-                    reportDir            : "playwright-report",
-                    reportFiles          : 'index.html',
-                    reportName           : 'Citizen Chrome E2E Smoke Test Report'
+              allowMissing         : true,
+              alwaysLinkToLastBuild: true,
+              keepAll              : true,
+              reportDir            : "playwright-report",
+              reportFiles          : 'index.html',
+              reportName           : 'Citizen Chrome E2E Smoke Test Report'
             ])
-            steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CitizenFunctional/*'
+            // ── Allure Report ──────────────────────────────────────────
+            allure([
+              includeProperties: false,
+              jdk              : '',
+              results          : [[path: 'allure-results']],
+              reportBuildPolicy: 'ALWAYS',
+              report           : 'allure-report-citizen'
+            ])
+            // ───────────────────────────────────────────────────────────
+            steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CitizenFunctional/**, allure-results/**'
           }
         }
       }
+
       if (!params.skipManageCasesTests) {
         stage('Manage Cases E2E smoke tests - Chrome') {
           try {
@@ -164,14 +185,23 @@ withNightlyPipeline(type, product, component, 600) {
             unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
           } finally {
             publishHTML([
-                    allowMissing         : true,
-                    alwaysLinkToLastBuild: true,
-                    keepAll              : true,
-                    reportDir            : "playwright-report",
-                    reportFiles          : 'index.html',
-                    reportName           : 'Manage Cases Chrome E2E Smoke Test Report'
+              allowMissing         : true,
+              alwaysLinkToLastBuild: true,
+              keepAll              : true,
+              reportDir            : "playwright-report",
+              reportFiles          : 'index.html',
+              reportName           : 'Manage Cases Chrome E2E Smoke Test Report'
             ])
-            steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/ManageCasesFunctional/*'
+            // ── Allure Report ──────────────────────────────────────────
+            allure([
+              includeProperties: false,
+              jdk              : '',
+              results          : [[path: 'allure-results']],
+              reportBuildPolicy: 'ALWAYS',
+              report           : 'allure-report-manage-cases'
+            ])
+            // ───────────────────────────────────────────────────────────
+            steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/ManageCasesFunctional/**, allure-results/**'
           }
         }
       }

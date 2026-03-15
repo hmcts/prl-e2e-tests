@@ -1,0 +1,13 @@
+{
+  "name": "My Test Report",
+  "output": "./allure-report",
+  "historyPath": "./allure-history.jsonl",
+  "appendHistory": true,
+  "plugins": {
+    "awesome": {
+      "options": {
+        "reportName": "Main Regression Suite"
+      }
+    }
+  }
+}

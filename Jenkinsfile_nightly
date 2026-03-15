@@ -149,7 +149,14 @@ withNightlyPipeline(type, product, component, 600) {
                   reportFiles: 'index.html',
                   reportName: "${params.tag} custom tests - ${params.browser}"
           ])
-          steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CitizenFunctional/*'
+          allure([
+            includeProperties: false,
+            jdk              : '',
+            results          : [[path: 'allure-results']],
+            reportBuildPolicy: 'ALWAYS',
+            report           : "allure-report-${params.tag}"
+          ])
+          steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CitizenFunctional/**, allure-results/**'
         }
       }
     } else {
@@ -168,7 +175,14 @@ withNightlyPipeline(type, product, component, 600) {
               reportFiles: 'index.html',
               reportName: 'Citizen Chrome E2E Test Report'
             ])
-            steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CitizenFunctional/*'
+            allure([
+              includeProperties: false,
+              jdk              : '',
+              results          : [[path: 'allure-results']],
+              reportBuildPolicy: 'ALWAYS',
+              report           : 'allure-report-citizen-chrome'
+            ])
+            steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CitizenFunctional/**, allure-results/**'
           }
         }
         stage('Citizen E2E tests Smoke - Firefox') {
@@ -185,7 +199,14 @@ withNightlyPipeline(type, product, component, 600) {
               reportFiles: 'index.html',
               reportName: 'Citizen Firefox E2E Test Report'
             ])
-            steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CitizenFunctional/*'
+            allure([
+              includeProperties: false,
+              jdk              : '',
+              results          : [[path: 'allure-results']],
+              reportBuildPolicy: 'ALWAYS',
+              report           : 'allure-report-citizen-firefox'
+            ])
+            steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CitizenFunctional/**, allure-results/**'
           }
         }
         stage('Citizen E2E tests Smoke - Webkit') {
@@ -202,7 +223,14 @@ withNightlyPipeline(type, product, component, 600) {
               reportFiles: 'index.html',
               reportName: 'Citizen Webkit E2E Test Report'
             ])
-            steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CitizenFunctional/*'
+            allure([
+              includeProperties: false,
+              jdk              : '',
+              results          : [[path: 'allure-results']],
+              reportBuildPolicy: 'ALWAYS',
+              report           : 'allure-report-citizen-webkit'
+            ])
+            steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CitizenFunctional/**, allure-results/**'
           }
         }
       }
@@ -221,7 +249,14 @@ withNightlyPipeline(type, product, component, 600) {
               reportFiles: 'index.html',
               reportName: 'Manage Cases Chrome E2E Test Report'
             ])
-            steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/ManageCasesFunctional/*'
+            allure([
+              includeProperties: false,
+              jdk              : '',
+              results          : [[path: 'allure-results']],
+              reportBuildPolicy: 'ALWAYS',
+              report           : 'allure-report-manage-cases-chrome'
+            ])
+            steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/ManageCasesFunctional/**, allure-results/**'
           }
         }
         stage('Manage Cases E2E tests Smoke - Firefox') {
@@ -238,7 +273,14 @@ withNightlyPipeline(type, product, component, 600) {
               reportFiles: 'index.html',
               reportName: 'Manage Cases Firefox E2E Test Report'
             ])
-            steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/ManageCasesFunctional/*'
+            allure([
+              includeProperties: false,
+              jdk              : '',
+              results          : [[path: 'allure-results']],
+              reportBuildPolicy: 'ALWAYS',
+              report           : 'allure-report-manage-cases-firefox'
+            ])
+            steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/ManageCasesFunctional/**, allure-results/**'
           }
         }
         stage('Manage Cases E2E tests Smoke - Webkit') {
@@ -255,7 +297,14 @@ withNightlyPipeline(type, product, component, 600) {
                     reportFiles: 'index.html',
                     reportName: 'Manage Cases Webkit E2E Test Report'
             ])
-            steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/ManageCasesFunctional/*'
+            allure([
+              includeProperties: false,
+              jdk              : '',
+              results          : [[path: 'allure-results']],
+              reportBuildPolicy: 'ALWAYS',
+              report           : 'allure-report-manage-cases-webkit'
+            ])
+            steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/ManageCasesFunctional/**, allure-results/**'
           }
         }
       }
