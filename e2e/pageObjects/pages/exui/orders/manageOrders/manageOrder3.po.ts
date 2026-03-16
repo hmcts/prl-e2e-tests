@@ -1,9 +1,14 @@
 import { EventPage } from "../../eventPage.po.js";
-import { expect, Page } from "@playwright/test";
+import { expect, Locator, Page } from "@playwright/test";
 import { OrderTypes } from "../../../../../common/types.js";
+import { Selectors } from "../../../../../common/selectors.js";
 import { OrderOptionsComponent } from "../../../../components/exui/orders/orderOptions.component.js";
 
-export class DraftAnOrder2Page extends EventPage {
+export class DraftAnOrder3Page extends EventPage {
+  readonly heading2: Locator = this.page.locator(Selectors.h2, {
+    hasText: "Create/upload draft order",
+  });
+
   private readonly orderOptionsComponent: OrderOptionsComponent =
     new OrderOptionsComponent(this.page);
 
@@ -13,7 +18,8 @@ export class DraftAnOrder2Page extends EventPage {
 
   async assertPageContents(): Promise<void> {
     await this.assertPageHeadings();
-    await this.orderOptionsComponent.assertCreateOrderPageContents();
+    await expect(this.heading2).toBeVisible();
+    await this.orderOptionsComponent.assertUploadOrderPageContents();
     await expect(this.continueButton).toBeVisible();
     await expect(this.previousButton).toBeVisible();
   }
