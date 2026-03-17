@@ -30,6 +30,7 @@ interface CitizenApplicationInfo {
 
 // TODO: what to do about event data rather than keeping it in the methods??
 // TODO: need to enable for demo environment as well
+// TODO: make logging less verbose??
 export class CitizenC100CaseUtils {
   constructor(
     private serviceAuthUtils: ServiceAuthUtils,
