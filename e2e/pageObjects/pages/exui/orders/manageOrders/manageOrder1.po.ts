@@ -15,6 +15,9 @@ export class ManageOrder1Page extends EventPage {
   readonly serveSavedOrdersRadio: Locator = this.page.locator(
     "#manageOrdersOptions-servedSavedOrders",
   );
+  readonly createCustomOrderRadio: Locator = this.page.locator(
+    "#manageOrdersOptions-createCustomOrder",
+  );
 
   private readonly orderOptionsFormLabels: string[] = [
     "What do you want to do?",
@@ -22,6 +25,7 @@ export class ManageOrder1Page extends EventPage {
     "Upload an order",
     "Amend an order",
     "Serve saved orders",
+    "Create a custom order",
   ];
 
   constructor(page: Page) {
@@ -50,6 +54,9 @@ export class ManageOrder1Page extends EventPage {
         break;
       case "serve order":
         await this.serveSavedOrdersRadio.check();
+        break;
+      case "create custom order":
+        await this.createCustomOrderRadio.check();
         break;
     }
   }

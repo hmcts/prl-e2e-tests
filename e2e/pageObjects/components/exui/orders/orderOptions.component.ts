@@ -2,7 +2,7 @@ import { expect, Locator, Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.js";
 import { OrderTypesArray } from "../../../../common/types.js";
 import { PageUtils } from "../../../../utils/page.utils.js";
-
+import { OrderTypes } from "../../../../common/types.js";
 export class OrderOptionsComponent {
   private readonly orderTypeLabel: Locator = this.page.getByText(
     "Select the type of order",
@@ -21,5 +21,9 @@ export class OrderOptionsComponent {
     await expect(this.insetText).toBeVisible();
     await expect(this.orderTypeLabel).toBeVisible();
     await this.pageUtils.assertStrings(OrderTypesArray);
+  }
+
+  async selectOrderType(orderType: OrderTypes): Promise<void> {
+    await this.page.getByRole("radio", { name: orderType }).check();
   }
 }

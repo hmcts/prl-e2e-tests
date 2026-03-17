@@ -178,7 +178,8 @@ export type manageOrdersOptions =
   | "create order"
   | "upload order"
   | "amend order"
-  | "serve order";
+  | "serve order"
+  | "custom order";
 
 export type createOrderC100Options = "C43 order";
 
@@ -426,3 +427,13 @@ export const NonMolestationRespondentMustNotDoOptionsArray: NonMolestationRespon
     "must not telephone, text, email or otherwise contact or attempt to contact the relevant children",
     "must not go to, enter or attempt to enter the school",
   ];
+
+export type c43OrderDetails =
+  | "Child Arrangements Order"
+  | "Prohibited Steps Order"
+  | "Specific Issue Order";
+
+export type c43CAOrderType =
+  | "Spend time with order"
+  | "Live with order"
+  | "Both live with and spend time with order";

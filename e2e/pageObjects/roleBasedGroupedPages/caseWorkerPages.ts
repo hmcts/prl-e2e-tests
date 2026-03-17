@@ -48,6 +48,11 @@ import { ManageOrder20Page } from "../pages/exui/orders/manageOrders/manageOrder
 import { ManageOrder24Page } from "../pages/exui/orders/manageOrders/manageOrder24.po.js";
 import { ManageOrderSubmitPage } from "../pages/exui/orders/manageOrders/manageOrderSubmit.po.js";
 import { ManageOrder12Page } from "../pages/exui/orders/manageOrders/manageOrder12.po.js";
+import { ManageOrder102Page } from "../pages/exui/orders/manageOrders/customOrders/manageOrder102.po.ts";
+import { ManageOrder5CustomOrderPage } from "../pages/exui/orders/manageOrders/customOrders/manageOrder5.po.ts";
+import { ManageOrder26Page } from "../pages/exui/orders/manageOrders/manageOrder26.po.ts";
+import { ManageOrder27Page } from "../pages/exui/orders/manageOrders/manageOrder27.po.ts";
+import { ManageOrder28Page } from "../pages/exui/orders/manageOrders/manageOrder28.po.ts";
 
 export class CaseWorkerPagesGroup {
   constructor(public readonly page: Page) {}
@@ -167,7 +172,17 @@ export class CaseWorkerPagesGroup {
       manageOrder19Page: new ManageOrder19Page(this.page),
       manageOrder20Page: new ManageOrder20Page(this.page),
       manageOrder24Page: new ManageOrder24Page(this.page),
+      manageOrder26Page: new ManageOrder26Page(this.page),
+      manageOrder27Page: new ManageOrder27Page(this.page),
+      manageOrder28Page: new ManageOrder28Page(this.page),
       manageOrderSubmitPage: new ManageOrderSubmitPage(this.page),
+    };
+  }
+
+  get customOrders() {
+    return {
+      manageOrder102Page: new ManageOrder102Page(this.page),
+      manageOrder5Page: new ManageOrder5CustomOrderPage(this.page),
     };
   }
 }

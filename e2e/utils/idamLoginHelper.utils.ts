@@ -30,11 +30,22 @@ export class IdamLoginHelper {
     userType: string,
   ): Promise<void> {
     const sessionPath = `${Config.sessionStoragePath}${userType}.json`;
+
     if (
       userType !== "citizen" &&
       existsSync(sessionPath) &&
       this.isSessionValid(sessionPath)
     ) {
+      if (process.env.PWDEBUG) {
+        console.log(`Valid session found for ${userType}. Skipping login.`);
+      }
+      const state = JSON.parse(readFileSync(sessionPath, "utf-8"));
+      await page.context().addCookies(state.cookies);
+
+      // Navigate if the page is currently empty
+      if (page.url() === "about:blank" || page.url() === "") {
+        await page.goto(application);
+      }
       return;
     } else {
       if (!page.url().includes("idam-web-public.")) {
@@ -135,7 +146,15 @@ export class IdamLoginHelper {
       const cookie = data.cookies.find(
         (cookie: Cookie) => cookie.name === "xui-webapp",
       );
-      if (!cookie) return false; // No session cookie found
+      if (!cookie) return false;
+
+      // Handle Session Cookies (expires: -1)
+      if (cookie.expires === -1) {
+        const stats = fs.statSync(path);
+        const fourHoursAgo = Date.now() - 4 * 60 * 60 * 1000;
+        return stats.mtimeMs > fourHoursAgo;
+      }
+
       const expiry = new Date(cookie.expires * 1000);
       // Check there is at least 4 hours left before the session expires
       return expiry.getTime() - Date.now() > 4 * 60 * 60 * 1000;
@@ -167,7 +186,7 @@ export class IdamLoginHelper {
       let userId: string;
       if (process.env.MANAGE_CASES_TEST_ENV === "preview") {
         const token = process.env.CREATE_USER_BEARER_TOKEN as string;
-        const idamUtils = new IdamUtils(); // Instantiate IdamUtils
+        const idamUtils = new IdamUtils();
         const userDetails: UserInfoParams = await idamUtils.getUserInfo({
           email: username,
           bearerToken: token,
@@ -187,7 +206,7 @@ export class IdamLoginHelper {
           value: "true",
           domain: `${domain}`,
           path: "/",
-          expires: -1, // -1 typically means session cookie or never expires
+          expires: -1,
           httpOnly: false,
           secure: false,
           sameSite: "Lax",

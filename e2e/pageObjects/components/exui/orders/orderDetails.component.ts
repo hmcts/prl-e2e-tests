@@ -34,14 +34,23 @@ export class OrderDetailsComponent {
   private readonly consentLabel: Locator = this.page.getByText(
     "Is the order by consent?",
   );
+  private readonly isOrderByConsentRadio: Locator = this.page.getByRole(
+    "group",
+    {
+      name: "Is the order by consent?",
+    },
+  );
   private readonly yesAndNoLabels: string[] = ["Yes", "No"];
   private readonly approvedAtHearingLabel: Locator = this.page.getByText(
     "Was the order approved at a hearing?",
   );
   private readonly orderMadeByParagraph: Locator =
     this.page.getByText("Order made by");
+
+  private readonly judgeOrMagistratesText: string =
+    "Judge or Magistrate's title";
   private readonly judgeOrMagistratesTitle: Locator = this.page.getByText(
-    "Judge or Magistrate's title",
+    this.judgeOrMagistratesText,
   );
   private readonly amendTitleLabel: Locator = this.page.locator(
     Selectors.GovukFormLabel,
@@ -49,6 +58,10 @@ export class OrderDetailsComponent {
       hasText:
         "Select or amend the title of the Judge or magistrate (Optional)",
     },
+  );
+  private readonly judgeFullNameTextBox: Locator = this.page.getByRole(
+    "textbox",
+    { name: "Judge's full name" },
   );
   private readonly judgeFullNameLabel: Locator = this.page.getByText(
     "Judge's full name (Optional)",
@@ -62,8 +75,10 @@ export class OrderDetailsComponent {
   private readonly orderAboutChildrenLabel: Locator = this.page.getByText(
     "Is the order about the children?",
   );
+  private readonly orderAboutAllTheChildrenText: string =
+    "Is the order about all the children?";
   private readonly orderAboutAllTheChildrenLabel: Locator = this.page.getByText(
-    "Is the order about all the children?",
+    this.orderAboutAllTheChildrenText,
   );
   private readonly recitalsOrPreamblesLabel: Locator = this.page.getByText(
     "Add recitals or preamble (Optional)",
@@ -73,6 +88,8 @@ export class OrderDetailsComponent {
   );
   private readonly whichChildrenAreIncludedInTheOrderLabel: Locator =
     this.page.getByText("Which children are included in the order?");
+  private readonly isOrderAboutAllChildrenRadioGroup: Locator =
+    this.page.getByRole("group", { name: "Is the order about the children?" });
   private readonly whichHearingWasOrderApprovedLabel: Locator =
     this.page.getByText("At which hearing was the order approved?");
 
@@ -88,6 +105,15 @@ export class OrderDetailsComponent {
   private readonly dateOrderMadeLabel1: Locator =
     this.page.getByText("Date order made");
 
+  readonly dayTextBox: Locator = this.page.getByRole("textbox", {
+    name: "Day",
+  });
+  readonly monthTextBox: Locator = this.page.getByRole("textbox", {
+    name: "Month",
+  });
+  readonly yearTextBox: Locator = this.page.getByRole("textbox", {
+    name: "Year",
+  });
   private readonly pageUtils: PageUtils = new PageUtils(this.page);
 
   constructor(private page: Page) {}
@@ -156,10 +182,7 @@ export class OrderDetailsComponent {
       hearing,
     }: Order5Params,
   ): Promise<void> {
-    await this.page
-      .getByRole("group", { name: "Is the order by consent?" })
-      .getByLabel(isOrderByConsent ? "Yes" : "No")
-      .check();
+    await this.isOrderByConsent(isOrderByConsent);
     await this.page
       .getByRole("group", { name: "Was the order approved at a" })
       .getByLabel(wasOrderApprovedAtAHearing ? "Yes" : "No")
@@ -169,102 +192,120 @@ export class OrderDetailsComponent {
       await this.page.getByRole("combobox").selectOption(hearing);
     }
     if (judgeOrMagistratesTitle) {
-      await this.page
-        .getByRole("radio", { name: judgeOrMagistratesTitle })
-        .check();
-    }
-    if (judgeFullName) {
-      if (orderJourneyType === "manageOrder") {
+      await this.selectJudgeOrMagistrateTitle(judgeOrMagistratesTitle);
+      if (judgeFullName) {
+        if (orderJourneyType === "manageOrder") {
+          await this.page
+            .getByRole("textbox", { name: "Judge's full name" })
+            .fill(judgeFullName);
+        } else {
+          await this.page
+            .getByRole("textbox", { name: "Judge's full name (Optional)" })
+            .fill(judgeFullName);
+        }
+      }
+      if (justicesLegalAdviserFullName) {
         await this.page
-          .getByRole("textbox", { name: "Judge's full name" })
-          .fill(judgeFullName);
+          .getByRole("textbox", {
+            name: "Full name of Justices' Legal Adviser (Optional)",
+          })
+          .fill(justicesLegalAdviserFullName);
+      }
+      if (dateOrderMade) {
+        await this.dayTextBox.fill(dateOrderMade.day);
+        await this.monthTextBox.fill(dateOrderMade.month);
+        await this.yearTextBox.fill(dateOrderMade.year);
+      }
+
+      // this section is specific to FL401 or C100 orders
+      if (caseType === "FL401") {
+        await this.page
+          .getByRole("group", { name: "Is the order about the children?" })
+          .getByLabel(isOrderAboutTheChildren ? "Yes" : "No")
+          .check();
+        if (isOrderAboutTheChildren) {
+          await expect(
+            this.whichChildrenAreIncludedInTheOrderLabel,
+          ).toBeVisible();
+          if (allChildrenInOrder) {
+            for (const child of allChildrenInOrder) {
+              const childCheckbox: Locator = this.page.getByRole("checkbox", {
+                name: child,
+              });
+              await expect(this.page.getByText(child)).toBeVisible();
+              await childCheckbox.check();
+            }
+          } else {
+            throw new Error(
+              "If the order is about the children then you need to pass in the children involved",
+            );
+          }
+        }
       } else {
+        await this.isOrderAboutAllChildrenRadioGroup
+          .getByLabel(isOrderAboutAllTheChildren ? "Yes" : "No")
+          .check();
+        if (!isOrderAboutAllTheChildren) {
+          await expect(
+            this.whichChildrenAreIncludedInTheOrderLabel,
+          ).toBeVisible();
+          if (allChildrenInOrder) {
+            for (const child of allChildrenInOrder) {
+              const childCheckbox: Locator = this.page.getByRole("checkbox", {
+                name: child,
+              });
+              await expect(this.page.getByText(child)).toBeVisible();
+              await childCheckbox.check();
+            }
+          } else {
+            throw new Error(
+              "If the order is not about all the children then you need to pass in the children involved",
+            );
+          }
+        }
+      }
+
+      if (recitalsAndPreamble) {
         await this.page
-          .getByRole("textbox", { name: "Judge's full name (Optional)" })
-          .fill(judgeFullName);
+          .getByRole("textbox", {
+            name: "Add recitals or preamble (Optional)",
+          })
+          .fill(recitalsAndPreamble);
+      }
+      if (directions) {
+        await this.page
+          .getByRole("textbox", {
+            name: "Add directions (Optional)",
+          })
+          .fill(directions);
       }
     }
-    if (justicesLegalAdviserFullName) {
-      await this.page
-        .getByRole("textbox", {
-          name: "Full name of Justices' Legal Adviser (Optional)",
-        })
-        .fill(justicesLegalAdviserFullName);
-    }
-    if (dateOrderMade) {
-      await this.page
-        .getByRole("textbox", { name: "Day" })
-        .fill(dateOrderMade.day);
-      await this.page
-        .getByRole("textbox", { name: "Month" })
-        .fill(dateOrderMade.month);
-      await this.page
-        .getByRole("textbox", { name: "Year" })
-        .fill(dateOrderMade.year);
-    }
+  }
+  async isOrderByConsent(isByConsent: boolean): Promise<void> {
+    await expect(this.consentLabel).toBeVisible();
+    await this.isOrderByConsentRadio
+      .getByLabel(isByConsent ? "Yes" : "No")
+      .check();
+  }
 
-    // this section is specific to FL401 or C100 orders
-    if (caseType === "FL401") {
-      await this.page
-        .getByRole("group", { name: "Is the order about the children?" })
-        .getByLabel(isOrderAboutTheChildren ? "Yes" : "No")
-        .check();
-      if (isOrderAboutTheChildren) {
-        await expect(
-          this.whichChildrenAreIncludedInTheOrderLabel,
-        ).toBeVisible();
-        if (allChildrenInOrder) {
-          for (const child of allChildrenInOrder) {
-            const childCheckbox: Locator = this.page.getByRole("checkbox", {
-              name: child,
-            });
-            await expect(this.page.getByText(child)).toBeVisible();
-            await childCheckbox.check();
-          }
-        } else {
-          throw new Error(
-            "If the order is about the children then you need to pass in the children involved",
-          );
-        }
-      }
-    } else {
-      await this.page
-        .getByRole("group", { name: "Is the order about all the children?" })
-        .getByLabel(isOrderAboutAllTheChildren ? "Yes" : "No")
-        .check();
-      if (!isOrderAboutAllTheChildren) {
-        await expect(
-          this.whichChildrenAreIncludedInTheOrderLabel,
-        ).toBeVisible();
-        if (allChildrenInOrder) {
-          for (const child of allChildrenInOrder) {
-            const childCheckbox: Locator = this.page.getByRole("checkbox", {
-              name: child,
-            });
-            await expect(this.page.getByText(child)).toBeVisible();
-            await childCheckbox.check();
-          }
-        } else {
-          throw new Error(
-            "If the order is not about all the children then you need to pass in the children involved",
-          );
-        }
-      }
-    }
+  async selectJudgeOrMagistrateTitle(
+    judgeOrMagistratesTitle: JudgeOrMagistrateTitles,
+  ): Promise<void> {
+    await expect(this.amendTitleLabel1).toBeVisible();
+    await this.page
+      .getByRole("radio", { name: judgeOrMagistratesTitle })
+      .check();
+  }
 
-    if (recitalsAndPreamble) {
-      await this.page
-        .getByRole("textbox", {
-          name: "Add recitals or preamble (Optional)",
-        })
-        .fill(recitalsAndPreamble);
-    }
-    if (directions) {
-      await this.page
-        .getByRole("textbox", {
-          name: "Add directions (Optional)",
-        })
-        .fill(directions);
-    }
+  async inputJudgeFullName(judgeFullName: string) {
+    await expect(this.judgeFullNameLabel1).toBeVisible();
+    await this.judgeFullNameTextBox.fill(judgeFullName);
+  }
+
+  async selectifOrderAboutAllChildren(isOrderAboutTheChildren: boolean) {
+    await this.page
+      .getByRole("group", { name: this.orderAboutAllTheChildrenText })
+      .getByLabel(isOrderAboutTheChildren ? "Yes" : "No")
+      .check();
   }
 }

@@ -19,6 +19,7 @@ import {
   WACaseWorkerActions,
 } from "./types.ts";
 import Config from "../utils/config.utils.ts";
+import { existsSync } from "node:fs";
 
 export class Helpers {
   public static async chooseEventFromDropdown(
@@ -404,11 +405,31 @@ export class Helpers {
     browser: Browser,
     user: UserRole,
   ): Promise<Page> {
-    const newBrowser = await browser.browserType().launch();
-    const newContext: BrowserContext = await newBrowser.newContext({
-      storageState: Config.sessionStoragePath + `${user}.json`,
+    const sessionPath = `${Config.sessionStoragePath}${user}.json`;
+    const userCredentials = Config.getUserCredentials(user);
+    const idamLoginHelper = new IdamLoginHelper();
+
+    // 1. Create context - load existing storage if it exists
+    const newContext: BrowserContext = await browser.newContext({
+      storageState: existsSync(sessionPath) ? sessionPath : undefined,
     });
-    return await newContext.newPage();
+
+    const page = await newContext.newPage();
+
+    /** * 2. Call signIn.
+     * Because of our 'isSessionValid' check inside this method:
+     * - If session is valid: It returns in ~10ms without logging in.
+     * - If session is missing/expired: It performs the login flow.
+     */
+    await idamLoginHelper.signIn(
+      page,
+      userCredentials.email,
+      userCredentials.password,
+      Config.manageCasesBaseURLCase,
+      user,
+    );
+
+    return page;
   }
 
   public static async getCaseNumberFromUrl(page: Page): Promise<string> {

@@ -1,5 +1,5 @@
 import { EventPage } from "../../eventPage.po.js";
-import { expect, Page } from "@playwright/test";
+import { expect, Page, Locator } from "@playwright/test";
 import { PageUtils } from "../../../../../utils/page.utils.js";
 
 export interface ManageOrder24Params {
@@ -23,6 +23,9 @@ export class ManageOrder24Page extends EventPage {
   );
   private readonly judgeNameLabel = this.page.getByText("Name of judge");
   private readonly LANameLabel = this.page.getByText("Name of legal adviser");
+  private readonly noChecksRequired: Locator = this.page.locator(
+    "#amendOrderSelectCheckOptions-noCheck",
+  );
 
   constructor(page: Page) {
     super(page, "Manage orders");
@@ -58,5 +61,9 @@ export class ManageOrder24Page extends EventPage {
     await expect(judgeNameDropdownOption).toBeVisible();
     // Click the option containing the judge name (dynamic value)
     await judgeNameDropdownOption.click();
+  }
+
+  async selectNoChecksRequired() {
+    await this.noChecksRequired.check();
   }
 }
