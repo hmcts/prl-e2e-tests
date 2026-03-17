@@ -5,7 +5,6 @@ import {
   AxeUtils,
 } from "@hmcts/playwright-common";
 import { TokenUtils } from "./token.utils.ts";
-import { CitizenCACaseUtils } from "./citizenCACase.utils.ts";
 import { CourtNavUtils } from "./courtNav.utils.ts";
 import { AccessCodeHelper } from "./accessCode.utils.ts";
 import { CreateUserUtil } from "./createUser.utils.ts";
@@ -20,7 +19,6 @@ export interface UtilsFixtures {
   config: Config;
   idamUtils: IdamUtils;
   tokenUtils: TokenUtils;
-  citizenCACaseUtils: CitizenCACaseUtils;
   courtNavUtils: CourtNavUtils;
   accessCodeHelper: AccessCodeHelper;
   createUserUtil: CreateUserUtil;
@@ -50,9 +48,6 @@ export const utilsFixtures = {
   },
   tokenUtils: async ({ idamUtils }, use) => {
     await use(new TokenUtils(idamUtils));
-  },
-  citizenCACaseUtils: async ({ serviceAuthUtils, idamUtils }, use) => {
-    await use(new CitizenCACaseUtils(serviceAuthUtils, idamUtils));
   },
   courtNavUtils: async ({}, use) => {
     await use(new CourtNavUtils());
