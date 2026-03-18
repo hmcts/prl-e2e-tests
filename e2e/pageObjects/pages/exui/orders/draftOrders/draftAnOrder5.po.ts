@@ -38,11 +38,13 @@ export class DraftAnOrder5Page extends EventPage {
   }
 
   async assertPageContents(
+    isDraftAnOrder: boolean,
     caseType: solicitorCaseCreateType,
     orderType: OrderTypes,
   ): Promise<void> {
     await this.assertPageHeadings();
     await this.orderDetailsComponent.assertOrderPageContents(
+      isDraftAnOrder, //create or upload
       caseType,
       orderType,
       "draftOrder",
@@ -52,12 +54,14 @@ export class DraftAnOrder5Page extends EventPage {
   }
 
   async fillInFields(
+    isDraftAnOrder: boolean,
     caseType: solicitorCaseCreateType,
     params: DraftAnOrder5Params,
   ): Promise<void> {
     await this.orderDetailsComponent.fillInFields(
+      isDraftAnOrder, //create or upload
       caseType,
-      "manageOrder",
+      "draftOrder",
       params,
     );
   }

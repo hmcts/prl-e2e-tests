@@ -6,7 +6,7 @@ import { TestingSupportDummyAdminCreateNoc2Page } from "../../../../../../pages/
 import { TestingSupportDummyAdminCreateNoc3Page } from "../../../../../../pages/manageCases/caseWorker/createAnOrder/initialJourney/testingSupportDummyAdminCreateNoc3Page.ts";
 import { CreateAnOrderSubmitPage } from "../../../../../../pages/manageCases/caseWorker/createAnOrder/initialJourney/SubmitPage.ts";
 import { C100ManageOrdersUploadJourney } from "../../../../../../journeys/manageCases/caseWorker/uploadAnOrder/c100ManageOrdersUploadJourney.ts";
-import { C100ManageOrdersUploadJourneyC21 } from "../../../../../../journeys/manageCases/caseWorker/uploadAnOrder/c100ManageOrdersUploadJourneyC21.ts"; 
+import { C100ManageOrdersUploadJourneyC21 } from "../../../../../../journeys/manageCases/caseWorker/uploadAnOrder/c100ManageOrdersUploadJourneyC21.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 

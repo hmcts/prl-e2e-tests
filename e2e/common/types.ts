@@ -516,9 +516,6 @@ export const FcOrderTypesArray: FcOrderTypes[] = [
   "Order on determination of proceedings for contempt of court (FC603)",
   "Warrant of committal (FC604)",
 ];
-export type AnyOtherOrderTypes =
-  | "Other";
+export type AnyOtherOrderTypes = "Other";
 
-export const AnyOtherOrderTypesArray: AnyOtherOrderTypes[] = [
-  "Other",
-];
+export const AnyOtherOrderTypesArray: AnyOtherOrderTypes[] = ["Other"];

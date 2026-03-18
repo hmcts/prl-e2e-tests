@@ -5,5 +5,5 @@ import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 export class SubmitPageC21 extends CheckYourAnswersPage {
   constructor(page: Page) {
     super(page, "Create/upload draft order", CommonStaticText.submit);
-    }
   }
+}

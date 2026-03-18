@@ -119,9 +119,9 @@ export class DraftAnOrder5PageC21 extends EventPage {
   async assertC21RadiosAreSelectable(): Promise<void> {
     for (const option of this.radioOptions) {
       const radio = this.page.getByRole("radio", { name: option, exact: true });
-        await radio.check();
-        await expect(radio).toBeChecked();
-      } 
+      await radio.check();
+      await expect(radio).toBeChecked();
+    }
   }
 
   async fillOrderDetails(details: OrderDetails): Promise<void> {
@@ -194,7 +194,7 @@ export class DraftAnOrder5PageC21 extends EventPage {
     // --- 8) Upload Order (if this is the upload journey) ---
     if (details.uploadOrder) {
       // Wait for the file input to be visible and ready.
-      await this.page.waitForTimeout(5000); 
+      await this.page.waitForTimeout(5000);
       const fileInput = this.page.locator(`${UniqueSelectors.fileUpload}`);
       await fileInput.setInputFiles(config.testPdfFile);
       // Wait for upload confirmation (e.g., file name appears)
