@@ -34,6 +34,12 @@ export interface CitizenApplicationInfo {
   otherPartyId: string;
 }
 
+export interface CaseFlagInfo {
+  caseFlagName: string;
+  status: string;
+  partyName: string;
+}
+
 // TODO: make logging less verbose??
 export class CitizenC100CaseUtils {
   constructor(
@@ -200,6 +206,21 @@ export class CitizenC100CaseUtils {
         password: process.env.CASEWORKER_PASSWORD as string,
       },
     });
+  }
+
+  public async validateCitizenCreatedCaseFlags(
+    caseId: string,
+    isApplicant: boolean,
+  ): Promise<CaseFlagInfo> {
+    const jsonCaseData = await this.getCaseInfo(caseId);
+    const jsonCaseFlags = isApplicant
+      ? jsonCaseData.data.caApplicant1ExternalFlags
+      : jsonCaseData.data.caRespondent1ExternalFlags;
+    return {
+      caseFlagName: jsonCaseFlags.details[0].value.name,
+      status: jsonCaseFlags.details[0].value.status,
+      partyName: jsonCaseFlags.partyName,
+    };
   }
 
   private async getCaseInfo(caseId: string) {
