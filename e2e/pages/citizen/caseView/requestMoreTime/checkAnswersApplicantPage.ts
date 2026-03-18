@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test";
+import { expect, Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
 import { CheckAnswersContent } from "../../../../fixtures/citizen/caseView/requestMoreTime/checkAnswersContent.ts";
@@ -27,31 +27,32 @@ export class CheckAnswersApplicantPage {
     await Promise.all([
       Helpers.checkGroup(
         page,
-        4,
+        6,
         CheckAnswersContent,
         `GovukSummaryListKey`,
         `${Selectors.GovukSummaryListKey}`,
       ),
-      Helpers.checkGroup(
-        page,
-        2,
-        CheckAnswersContent,
-        `GovukSummaryListValue`,
-        `${Selectors.GovukSummaryListValue}`,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukSummaryListValue}:text-is("${CheckAnswersContent.GovukSummaryListValueYes}")`,
-        2,
-      ),
+      expect(
+        page.getByText(CheckAnswersContent.GovukSummaryListValue1),
+      ).toBeVisible(),
+      expect(
+        page.getByText(CheckAnswersContent.GovukSummaryListValue2),
+      ).toHaveCount(2),
+      expect(
+        page.getByText(CheckAnswersContent.GovukSummaryListValue3),
+      ).toBeVisible(),
+      expect(
+        page.getByText(CheckAnswersContent.GovukSummaryListValueYes),
+      ).toHaveCount(3),
     ]);
     if (accessibilityTest) {
       await new AxeUtils(page).audit();
     }
   }
+
   private static async submitApplication(page: Page): Promise<void> {
-    await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.submitApplication}")`,
-    );
+    await page
+      .getByRole("button", { name: CommonStaticText.submitApplication })
+      .click();
   }
 }
