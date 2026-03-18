@@ -165,6 +165,11 @@ export class Helpers {
     }
   }
 
+  public static getTodaySlashDate(): string {
+    const [day, month, year] = this.todayDate(false, true) as string[];
+    return `${day}/${month}/${year}`;
+  }
+
   public static getCurrentDateFormatted(): string {
     const today = new Date();
     const day = String(today.getDate()).padStart(2, "0");

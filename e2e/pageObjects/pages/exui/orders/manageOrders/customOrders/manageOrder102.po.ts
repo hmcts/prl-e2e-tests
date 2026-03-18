@@ -24,7 +24,7 @@ export class ManageOrder102Page extends EventPage {
   async selectApprovedAtHearing(yesOrNo: "Yes" | "No"): Promise<void> {
     await this.page.getByLabel(yesOrNo, { exact: true }).click();
   }
-  
+
   async selectWhichHearing(): Promise<void> {
     await this.hearingDropdown.selectOption({ index: 0 });
   }

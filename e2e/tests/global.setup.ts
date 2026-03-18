@@ -1,7 +1,6 @@
 import { test as setup } from "./fixtures.ts";
 import dotenv from "dotenv";
 import config from "../utils/config.utils.ts";
-
 dotenv.config();
 
 setup.describe("Setup users and retrieve tokens", () => {
@@ -12,8 +11,6 @@ setup.describe("Setup users and retrieve tokens", () => {
       process.env.CREATE_USER_BEARER_TOKEN = token;
     },
   );
-
-  
 
   setup(
     "Retrieve bearer token for courtNav DA case creation",
@@ -31,59 +28,59 @@ setup.describe("Setup users and retrieve tokens", () => {
   });
 
   //set up long lived users - this can be removed once all tests have migrated to new PO and role-based fixture framework
-  // setup("Setup solicitor user", async ({ page, idamLoginHelper }) => {
-  //     await idamLoginHelper.signInLongLivedUser(
-  //       page,
-  //       "solicitor",
-  //       config.manageCasesBaseURLCase,
-  //     );
-  //   });
+  setup("Setup solicitor user", async ({ page, idamLoginHelper }) => {
+    await idamLoginHelper.signInLongLivedUser(
+      page,
+      "solicitor",
+      config.manageCasesBaseURLCase,
+    );
+  });
 
-  // setup("Setup judge user", async ({ page, idamLoginHelper }) => {
-  //   await idamLoginHelper.signInLongLivedUser(
-  //     page,
-  //     "judge",
-  //     config.manageCasesBaseURLCase,
-  //   );
-  // });
+  setup("Setup judge user", async ({ page, idamLoginHelper }) => {
+    await idamLoginHelper.signInLongLivedUser(
+      page,
+      "judge",
+      config.manageCasesBaseURLCase,
+    );
+  });
 
-  // setup("Setup case manager user", async ({ page, idamLoginHelper }) => {
-  //   await idamLoginHelper.signInLongLivedUser(
-  //     page,
-  //     "caseManager",
-  //     config.manageCasesBaseURLCase,
-  //   );
-  // });
+  setup("Setup case manager user", async ({ page, idamLoginHelper }) => {
+    await idamLoginHelper.signInLongLivedUser(
+      page,
+      "caseManager",
+      config.manageCasesBaseURLCase,
+    );
+  });
 
-  // setup("Setup caseWorker user", async ({ page, idamLoginHelper }) => {
-  //   await idamLoginHelper.signInLongLivedUser(
-  //     page,
-  //     "caseWorker",
-  //     config.manageCasesBaseURLCase,
-  //   );
-  // });
+  setup("Setup caseWorker user", async ({ page, idamLoginHelper }) => {
+    await idamLoginHelper.signInLongLivedUser(
+      page,
+      "caseWorker",
+      config.manageCasesBaseURLCase,
+    );
+  });
 
-  // setup("Setup Stoke court admin user", async ({ page, idamLoginHelper }) => {
-  //   await idamLoginHelper.signInLongLivedUser(
-  //     page,
-  //     "courtAdminStoke",
-  //     config.manageCasesBaseURLCase,
-  //   );
-  // });
+  setup("Setup Stoke court admin user", async ({ page, idamLoginHelper }) => {
+    await idamLoginHelper.signInLongLivedUser(
+      page,
+      "courtAdminStoke",
+      config.manageCasesBaseURLCase,
+    );
+  });
 
-  // setup("Setup NOC Solicitor user", async ({ page, idamLoginHelper }) => {
-  //   await idamLoginHelper.signInLongLivedUser(
-  //     page,
-  //     "nocSolicitor",
-  //     config.manageCasesBaseURLCase,
-  //   );
-  // });
+  setup("Setup NOC Solicitor user", async ({ page, idamLoginHelper }) => {
+    await idamLoginHelper.signInLongLivedUser(
+      page,
+      "nocSolicitor",
+      config.manageCasesBaseURLCase,
+    );
+  });
 
-  // setup("Setup Legal Advisor user", async ({ page, idamLoginHelper }) => {
-  //   await idamLoginHelper.signInLongLivedUser(
-  //     page,
-  //     "legalAdvisor",
-  //     config.manageCasesBaseURLCase,
-  //   );
-  // });
+  setup("Setup Legal Advisor user", async ({ page, idamLoginHelper }) => {
+    await idamLoginHelper.signInLongLivedUser(
+      page,
+      "legalAdvisor",
+      config.manageCasesBaseURLCase,
+    );
+  });
 });

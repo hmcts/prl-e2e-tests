@@ -18,6 +18,7 @@ export class Config {
     judge: {
       email: process.env.JUDGE_USERNAME as string,
       password: process.env.JUDGE_PASSWORD as string,
+      name: "Elizabeth Williams" as string,
     },
     caseWorker: {
       email: process.env.CASEWORKER_USERNAME as string,

@@ -6,6 +6,7 @@ export interface UserLoginInfo {
 export interface UserCredentials {
   readonly email: string;
   readonly password: string;
+  readonly name?: string;
 }
 
 export interface UserCredentialsLong extends UserCredentials {
@@ -437,3 +438,9 @@ export type c43CAOrderType =
   | "Spend time with order"
   | "Live with order"
   | "Both live with and spend time with order";
+
+export type c21OrderDetails =
+  | "Blank order or directions (C21): application refused"
+  | "Blank order or directions (C21): to withdraw application"
+  | "Blank order or directions (C21): no order made"
+  | "Blank order or directions (C21): Other";

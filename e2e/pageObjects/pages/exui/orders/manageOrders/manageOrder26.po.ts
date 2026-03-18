@@ -1,7 +1,7 @@
-import { Locator, Page } from '@playwright/test';
-import { EventPage } from '../../eventPage.po.ts';
+import { Locator, Page } from "@playwright/test";
+import { EventPage } from "../../eventPage.po.ts";
 
-export class ManageOrder26Page extends EventPage{
+export class ManageOrder26Page extends EventPage {
   readonly page: Page;
 
   // --- Selectors ---
@@ -12,7 +12,7 @@ export class ManageOrder26Page extends EventPage{
   readonly continueButton: Locator;
 
   // Dynamic Locators (using functions to handle Yes/No or specific text)
-  readonly genericRadio: (groupName: string, value: 'Yes' | 'No') => Locator;
+  readonly genericRadio: (groupName: string, value: "Yes" | "No") => Locator;
   readonly reportCheckbox: (label: string) => Locator;
   readonly actionRadio: (text: string) => Locator;
 
@@ -20,35 +20,33 @@ export class ManageOrder26Page extends EventPage{
     super(page, "Manage orders");
 
     // Static Locators
-    this.orderTypeSelect = page.getByLabel('What type of order is this?');
-    this.dayInput = page.getByRole('textbox', { name: 'Day' });
-    this.monthInput = page.getByRole('textbox', { name: 'Month' });
-    this.yearInput = page.getByRole('textbox', { name: 'Year' });
-    this.continueButton = page.getByRole('button', { name: 'Continue' });
+    this.orderTypeSelect = page.getByLabel("What type of order is this?");
+    this.dayInput = page.getByRole("textbox", { name: "Day" });
+    this.monthInput = page.getByRole("textbox", { name: "Month" });
+    this.yearInput = page.getByRole("textbox", { name: "Year" });
+    this.continueButton = page.getByRole("button", { name: "Continue" });
 
     // Flexible Locators for Radios and Checkboxes
-    this.genericRadio = (groupName, value) => 
-      page.getByRole('group', { name: groupName }).getByLabel(value);
+    this.genericRadio = (groupName, value) =>
+      page.getByRole("group", { name: groupName }).getByLabel(value);
 
-    this.reportCheckbox = (label) => 
-      page.getByText(label, { exact: true });
+    this.reportCheckbox = (label) => page.getByText(label, { exact: true });
 
-    this.actionRadio = (text) => 
-      page.getByText(text, { exact: false });
+    this.actionRadio = (text) => page.getByText(text, { exact: false });
   }
 
   // --- Individual Action Methods ---
 
-  async selectOrderType(value: '1: interim' | '2: general' | '3: finl') {
+  async selectOrderType(value: "1: interim" | "2: general" | "3: finl") {
     await this.orderTypeSelect.selectOption(value);
   }
 
-  async setClosesCase(choice: 'Yes' | 'No') {
-    await this.genericRadio('Does this order close the', choice).check();
+  async setClosesCase(choice: "Yes" | "No") {
+    await this.genericRadio("Does this order close the", choice).check();
   }
 
-  async setCafcassReportRequired(choice: 'Yes' | 'No') {
-    await this.genericRadio('Does Cafcass or Cafcass Cymru', choice).check();
+  async setCafcassReportRequired(choice: "Yes" | "No") {
+    await this.genericRadio("Does Cafcass or Cafcass Cymru", choice).check();
   }
 
   async selectReports(reportNames: string[]) {
@@ -63,23 +61,27 @@ export class ManageOrder26Page extends EventPage{
     await this.yearInput.fill(y);
   }
 
-  async setEndInvolvement(choice: 'Yes' | 'No') {
-    await this.genericRadio('Does this order end the', choice).check();
+  async setEndInvolvement(choice: "Yes" | "No") {
+    await this.genericRadio("Does this order end the", choice).check();
   }
 
-  async setServeNow(choice: 'Yes' | 'No') {
-    await this.genericRadio('Do you want to serve the', choice).check();
+  async setServeNow(choice: "Yes" | "No") {
+    await this.genericRadio("Do you want to serve the", choice).check();
   }
 
-  async selectFinalAction(action: 'Finalise the order' | 'Save the order as a draft') {
+  async selectFinalAction(
+    action: "Finalise the order" | "Save the order as a draft",
+  ) {
     await this.actionRadio(action).click();
   }
 
-  async completeSimpleOrderFlow(orderType: '1: interim' | '2: general' | '3: finl') {
+  async completeSimpleOrderFlow(
+    orderType: "1: interim" | "2: general" | "3: finl",
+  ) {
     await this.selectOrderType(orderType);
-    await this.setCafcassReportRequired('No');
-    await this.setEndInvolvement('No');
-    await this.setServeNow('Yes');
+    await this.setCafcassReportRequired("No");
+    await this.setEndInvolvement("No");
+    await this.setServeNow("Yes");
     await this.clickContinue();
   }
 }

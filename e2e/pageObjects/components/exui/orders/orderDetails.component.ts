@@ -59,10 +59,13 @@ export class OrderDetailsComponent {
         "Select or amend the title of the Judge or magistrate (Optional)",
     },
   );
-  private readonly judgeFullNameTextBox: Locator = this.page.getByRole(
+
+  // Changed to public for test assertions
+  public readonly judgeFullNameTextBox: Locator = this.page.getByRole(
     "textbox",
     { name: "Judge's full name" },
   );
+
   private readonly judgeFullNameLabel: Locator = this.page.getByText(
     "Judge's full name (Optional)",
   );
@@ -93,7 +96,7 @@ export class OrderDetailsComponent {
   private readonly whichHearingWasOrderApprovedLabel: Locator =
     this.page.getByText("At which hearing was the order approved?");
 
-  //ManageOrders specific labels
+  // ManageOrders specific labels
   private readonly amendTitleLabel1: Locator = this.page.locator(
     Selectors.GovukFormLabel,
     {
@@ -104,6 +107,10 @@ export class OrderDetailsComponent {
     this.page.getByText("Judge's full name");
   private readonly dateOrderMadeLabel1: Locator =
     this.page.getByText("Date order made");
+
+  public readonly judgeTitleRadioGroup: Locator = this.page.getByRole("group", {
+    name: this.judgeOrMagistratesText,
+  });
 
   readonly dayTextBox: Locator = this.page.getByRole("textbox", {
     name: "Day",
@@ -281,6 +288,7 @@ export class OrderDetailsComponent {
       }
     }
   }
+
   async isOrderByConsent(isByConsent: boolean): Promise<void> {
     await expect(this.consentLabel).toBeVisible();
     await this.isOrderByConsentRadio

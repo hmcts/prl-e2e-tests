@@ -1,10 +1,10 @@
-import { Locator, Page, expect } from '@playwright/test';
-import { EventPage } from '../../eventPage.po.ts';
-import { FileUploadComponent } from '../../../../components/exui/uploadFile.component.ts';
+import { Locator, Page, expect } from "@playwright/test";
+import { EventPage } from "../../eventPage.po.ts";
+import { FileUploadComponent } from "../../../../components/exui/uploadFile.component.ts";
 
 export class ManageOrder27Page extends EventPage {
   readonly page: Page;
-  
+
   readonly serveSavedOrdersHeading: Locator;
   readonly addAdditionalDocButton: Locator;
   readonly fileUpload: string;
@@ -14,11 +14,16 @@ export class ManageOrder27Page extends EventPage {
     super(page, "Manage Orders");
     this.page = page;
     this.fileUpload = "#serveOrderAdditionalDocuments_value";
-    this.serveSavedOrdersHeading = page.getByRole('heading', { name: 'Serve saved orders' });
-    this.addAdditionalDocButton = page.getByRole('button', { name: 'Add new' }).first();
+    this.serveSavedOrdersHeading = page.getByRole("heading", {
+      name: "Serve saved orders",
+    });
+    this.addAdditionalDocButton = page
+      .getByRole("button", { name: "Add new" })
+      .first();
 
     // Dynamic locator for the order checkboxes (e.g., "17 Mar 2026")
-    this.orderCheckbox = (orderLabel) => page.getByRole('checkbox', { name: orderLabel });
+    this.orderCheckbox = (orderLabel) =>
+      page.getByRole("checkbox", { name: orderLabel });
   }
 
   async verifyAndSelectOrder(orderLabel: string) {
