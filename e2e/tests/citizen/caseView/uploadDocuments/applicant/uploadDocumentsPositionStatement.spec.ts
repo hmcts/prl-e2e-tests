@@ -1,36 +1,35 @@
 import { test } from "../../../../fixtures.ts";
 import config from "../../../../../utils/config.utils.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
 import { UploadDocumentsPositionStatement } from "../../../../../journeys/citizen/caseView/uploadDocuments/witnessStatementsAndEvidence/applicant/uploadDocumentsPositionStatement.ts";
+import { ActivateCitizenC100Case } from "../../../../../journeys/citizen/activateCase/activateCitizenC100Case.ts";
 
 test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("Applicant upload documents position statement tests", (): void => {
-  test.slow();
-  let ccdRef: string;
-
-  test.beforeEach(async ({ page, courtNavUtils }) => {
-    ccdRef = await courtNavUtils.createCase(true, false);
-    await Helpers.goToCase(
+  test.beforeEach(
+    async ({
       page,
-      config.manageCasesBaseURLCase,
-      ccdRef,
-      "tasks",
-    );
-  });
+      citizenC100CaseUtils,
+      idamLoginHelper,
+      accessCodeHelper,
+    }) => {
+      await ActivateCitizenC100Case.activateCase({
+        page,
+        citizenC100CaseUtils,
+        idamLoginHelper,
+        accessCodeHelper,
+        isApplicant: true,
+      });
+    },
+  );
 
   test("Applicant upload documents position statement page. @regression @accessibility @nightly", async ({
     page,
-    browser,
   }): Promise<void> => {
     await UploadDocumentsPositionStatement.uploadDocumentsPositionStatement({
       page: page,
-      browser: browser,
-      caseRef: ccdRef,
-      accessibilityTest: false,
-      isApplicant: true,
+      accessibilityTest: true,
       yesNoNA: "Yes",
-      applicationSubmittedBy: "Citizen",
     });
   });
 });
