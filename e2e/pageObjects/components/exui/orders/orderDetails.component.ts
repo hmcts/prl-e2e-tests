@@ -88,6 +88,9 @@ export class OrderDetailsComponent {
     this.page.getByText("Judge's full name");
   private readonly dateOrderMadeLabel1: Locator =
     this.page.getByText("Date order made");
+  private readonly approvalDateLabel: Locator = this.page.getByText(
+    "Approval Date (Optional)",
+  );
 
   private readonly pageUtils: PageUtils = new PageUtils(this.page);
 
@@ -129,6 +132,9 @@ export class OrderDetailsComponent {
       await expect(this.amendTitleLabel1).toBeVisible();
       await expect(this.judgeFullNameLabel1).toBeVisible();
       await expect(this.dateOrderMadeLabel1).toBeVisible();
+      if(!createOrder) {
+        await expect(this.approvalDateLabel).toBeVisible();
+      }
     } else {
       await expect(this.amendTitleLabel).toBeVisible();
       await expect(this.judgeFullNameLabel).toBeVisible();

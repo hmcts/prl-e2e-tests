@@ -107,6 +107,10 @@ test.describe("Manage Orders - Create a Amended, Discharged Or varied order (FL4
         );
         await manageOrders.manageOrder24Page.clickContinue();
 
+        await manageOrders.manageOrderSubmitPage.assertPageContents(
+          manageOrderParams.snapshotsPath,
+          manageOrderParams.snapshotName,
+        );
         await manageOrders.manageOrderSubmitPage.verifyAccessibility();
         await manageOrders.manageOrderSubmitPage.clickSubmit();
         await summaryPage.alertBanner.assertEventAlert(
