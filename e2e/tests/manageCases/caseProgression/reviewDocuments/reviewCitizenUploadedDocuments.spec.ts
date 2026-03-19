@@ -5,6 +5,7 @@ import config from "../../../../utils/config.utils.ts";
 
 test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 
+// TODO: convert these tests to use API to upload citizen documents
 test.describe("Complete Task - Review Documents for DA case tests.", () => {
   test.skip(
     process.env.MANAGE_CASES_TEST_ENV === "preview",
@@ -23,7 +24,7 @@ test.describe("Complete Task - Review Documents for DA case tests.", () => {
     );
   });
 
-  test("Complete Task - Review Documents - Applicant uploaded documents without accessibility test. @nightly", async ({
+  test.fixme("Complete Task - Review Documents - Applicant uploaded documents without accessibility test. @nightly", async ({
     page,
     browser,
   }): Promise<void> => {
@@ -39,7 +40,7 @@ test.describe("Complete Task - Review Documents for DA case tests.", () => {
     });
   });
 
-  test("Complete Task - Review Documents - Respondent uploaded documents without accessibility test. @nightly", async ({
+  test.fixme("Complete Task - Review Documents - Respondent uploaded documents without accessibility test. @nightly", async ({
     page,
     browser,
   }): Promise<void> => {

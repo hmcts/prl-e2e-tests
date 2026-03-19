@@ -59,7 +59,10 @@ export class ReasonableAdjustments {
     if (needsReasonableAdjustment) {
       // check case flags added via API request for case data - no need to actually go to ExUI
       const caseFlagInfo: CaseFlagInfo =
-        await citizenC100CaseUtils.validateCitizenCreatedCaseFlags(caseRef, isApplicant);
+        await citizenC100CaseUtils.validateCitizenCreatedCaseFlags(
+          caseRef,
+          isApplicant,
+        );
       expect(caseFlagInfo.caseFlagName).toEqual("Lip speaker");
       expect(caseFlagInfo.status).toEqual("Requested");
       if (isApplicant) {

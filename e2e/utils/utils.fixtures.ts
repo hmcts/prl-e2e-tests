@@ -74,6 +74,8 @@ export const utilsFixtures = {
     await use(new PageUtils(page));
   },
   citizenC100CaseUtils: async ({}, use) => {
-    await use(new CitizenC100CaseUtils(new ServiceAuthUtils(), new IdamUtils()));
+    await use(
+      new CitizenC100CaseUtils(new ServiceAuthUtils(), new IdamUtils()),
+    );
   },
 };

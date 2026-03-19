@@ -26,19 +26,13 @@ export class ReviewCitizenUploadedDocuments {
     browser,
     caseRef,
     accessibilityTest,
-    isApplicant,
     yesNoNotSureRestrictDocs,
     documentType,
-    applicationSubmittedBy,
   }: reviewCitizenUploadedDocumentsParams): Promise<void> {
     await UploadDocumentsPositionStatement.uploadDocumentsPositionStatement({
       page: page,
-      browser: browser,
-      caseRef: caseRef,
       accessibilityTest: accessibilityTest,
-      isApplicant: isApplicant,
       yesNoNA: "Yes",
-      applicationSubmittedBy: applicationSubmittedBy,
     });
     // open new browser and sign in as court admin user
     const courtAdminPage: Page = await Helpers.openNewBrowserWindow(
