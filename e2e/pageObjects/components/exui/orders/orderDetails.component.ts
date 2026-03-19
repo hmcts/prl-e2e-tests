@@ -7,6 +7,7 @@ import {
   solicitorCaseCreateType,
 } from "../../../../common/types.js";
 import { PageUtils } from "../../../../utils/page.utils.js";
+import { FileUploadComponent } from "../uploadFile.component.js";
 
 interface DayMonthYear {
   day: string;
@@ -93,16 +94,22 @@ export class OrderDetailsComponent {
   constructor(private page: Page) {}
 
   async assertOrderPageContents(
+    createOrder: boolean,
     caseType: solicitorCaseCreateType,
     orderType: OrderTypes,
     orderJourneyType: string,
   ): Promise<void> {
-    await expect(this.page.getByText(orderType)).toBeVisible();
-    await expect(this.consentLabel).toBeVisible();
-    await this.pageUtils.assertStrings(
-      this.yesAndNoLabels,
-      this.page.locator(`#isTheOrderByConsent ${Selectors.GovukFormLabel}`),
-    );
+    if (createOrder) {
+      await expect(this.page.getByText(orderType)).toBeVisible();
+      await expect(this.consentLabel).toBeVisible();
+      await this.pageUtils.assertStrings(
+        this.yesAndNoLabels,
+        this.page.locator(`#isTheOrderByConsent ${Selectors.GovukFormLabel}`),
+      );
+      await expect(this.orderMadeByParagraph).toBeVisible();
+      await expect(this.recitalsOrPreamblesLabel).toBeVisible();
+      await expect(this.directionsLabel).toBeVisible();
+    }
     await expect(this.approvedAtHearingLabel).toBeVisible();
     await this.pageUtils.assertStrings(
       this.yesAndNoLabels,
@@ -110,7 +117,6 @@ export class OrderDetailsComponent {
         `#wasTheOrderApprovedAtHearing ${Selectors.GovukFormLabel}`,
       ),
     );
-    await expect(this.orderMadeByParagraph).toBeVisible();
     await expect(this.judgeOrMagistratesTitle).toBeVisible();
     await this.pageUtils.assertStrings(JudgeOrMagistrateTitlesArray);
     await expect(this.justicesLegalAdviserFullNameLabel).toBeVisible();
@@ -134,11 +140,10 @@ export class OrderDetailsComponent {
     } else {
       await expect(this.orderAboutChildrenLabel).toBeVisible();
     }
-    await expect(this.recitalsOrPreamblesLabel).toBeVisible();
-    await expect(this.directionsLabel).toBeVisible();
   }
 
   async fillInFields(
+    createOrder: boolean,
     caseType: solicitorCaseCreateType,
     orderJourneyType: string,
     {
@@ -156,10 +161,33 @@ export class OrderDetailsComponent {
       hearing,
     }: Order5Params,
   ): Promise<void> {
-    await this.page
-      .getByRole("group", { name: "Is the order by consent?" })
-      .getByLabel(isOrderByConsent ? "Yes" : "No")
-      .check();
+    if (createOrder) {
+      await this.page
+        .getByRole("group", { name: "Is the order by consent?" })
+        .getByLabel(isOrderByConsent ? "Yes" : "No")
+        .check();
+
+      if (recitalsAndPreamble) {
+        await this.page
+          .getByRole("textbox", {
+            name: "Add recitals or preamble (Optional)",
+          })
+          .fill(recitalsAndPreamble);
+      }
+      if (directions) {
+        await this.page
+          .getByRole("textbox", {
+            name: "Add directions (Optional)",
+          })
+          .fill(directions);
+      }
+    } else {
+      const fileUpload = new FileUploadComponent(this.page, {
+        uploadLabelText: "Upload Order",
+        chooseFileLocatorID: "#uploadOrderDoc",
+      });
+      await fileUpload.completeUpload();
+    }
     await this.page
       .getByRole("group", { name: "Was the order approved at a" })
       .getByLabel(wasOrderApprovedAtAHearing ? "Yes" : "No")
@@ -250,21 +278,6 @@ export class OrderDetailsComponent {
           );
         }
       }
-    }
-
-    if (recitalsAndPreamble) {
-      await this.page
-        .getByRole("textbox", {
-          name: "Add recitals or preamble (Optional)",
-        })
-        .fill(recitalsAndPreamble);
-    }
-    if (directions) {
-      await this.page
-        .getByRole("textbox", {
-          name: "Add directions (Optional)",
-        })
-        .fill(directions);
     }
   }
 }

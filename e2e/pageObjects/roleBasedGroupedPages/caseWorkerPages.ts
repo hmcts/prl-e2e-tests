@@ -114,9 +114,14 @@ export class CaseWorkerPagesGroup {
     };
   }
 
-  get removeDraftOrders() {
+  get draftedOrders() {
     return {
       draftOrdersPage: new DraftOrdersPage(this.page),
+    };
+  }
+
+  get removeDraftOrders() {
+    return {
       page1: new RemoveDraftOrder1Page(this.page),
       page2: new RemoveDraftOrder2Page(this.page),
       submitPage: new RemoveDraftOrderSubmitPage(this.page),

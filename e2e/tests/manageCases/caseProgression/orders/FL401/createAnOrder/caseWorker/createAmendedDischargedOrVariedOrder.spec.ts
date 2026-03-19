@@ -63,11 +63,13 @@ test.describe("Manage Orders - Create a Amended, Discharged Or varied order (FL4
         await manageOrders.manageOrder2Page.clickContinue();
 
         await manageOrders.manageOrder5Page.assertPageContents(
+          manageOrderParams.isUploadAnOrder,
           manageOrderParams.caseType,
           manageOrderParams.orderType,
         );
         await manageOrders.manageOrder5Page.verifyAccessibility();
         await manageOrders.manageOrder5Page.fillInFields(
+          manageOrderParams.isUploadAnOrder,
           manageOrderParams.caseType,
           manageOrderParams.manageOrder5Params,
         );
@@ -119,9 +121,9 @@ test.describe("Manage Orders - Create a Amended, Discharged Or varied order (FL4
           caseNumber,
         );
 
-        const { removeDraftOrders } = caseWorker;
-        await removeDraftOrders.draftOrdersPage.goToPage();
-        await removeDraftOrders.draftOrdersPage.assertDraftOrders(
+        const { draftedOrders } = caseWorker;
+        await draftedOrders.draftOrdersPage.goToPage();
+        await draftedOrders.draftOrdersPage.assertDraftOrders(
           manageOrderParams.orderInformation,
         );
       });

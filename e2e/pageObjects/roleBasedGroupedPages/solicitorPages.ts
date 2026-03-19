@@ -24,6 +24,9 @@ import { DraftAnOrder17Page } from "../pages/exui/orders/draftOrders/draftAnOrde
 import { DraftAnOrder20Page } from "../pages/exui/orders/draftOrders/draftAnOrder20.po.js";
 import { DraftAnOrderSubmitPage } from "../pages/exui/orders/draftOrders/draftAnOrderSubmit.po.js";
 import { DraftAnOrder5Page } from "../pages/exui/orders/draftOrders/draftAnOrder5.po.js";
+import { DraftAnOrder3Page } from "../pages/exui/orders/draftOrders/draftAnOrder3.po.js";
+import { DraftAnOrder8Page } from "../pages/exui/orders/draftOrders/draftAnOrder8.po.js";
+import { DraftAnOrder4Page } from "../pages/exui/orders/draftOrders/draftAnOrder4.po.js";
 
 export class SolicitorPagesGroup {
   constructor(public readonly page: Page) {}
@@ -75,8 +78,11 @@ export class SolicitorPagesGroup {
     return {
       draftAnOrder1Page: new DraftAnOrder1Page(this.page),
       draftAnOrder2Page: new DraftAnOrder2Page(this.page),
+      draftAnOrder3Page: new DraftAnOrder3Page(this.page),
+      draftAnOrder4Page: new DraftAnOrder4Page(this.page),
       draftAnOrder5Page: new DraftAnOrder5Page(this.page),
       draftAnOrder6Page: new DraftAnOrder6Page(this.page),
+      draftAnOrder8Page: new DraftAnOrder8Page(this.page),
       draftAnOrder9Page: new DraftAnOrder9Page(this.page),
       draftAnOrder17Page: new DraftAnOrder17Page(this.page),
       draftAnOrder20Page: new DraftAnOrder20Page(this.page),

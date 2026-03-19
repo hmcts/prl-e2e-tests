@@ -353,6 +353,7 @@ export class AmendApplicantDetails2Page {
       uploadLabelText: AmendApplicantDetails2Content.formLabelUploadC8Refuge,
       downloadParagraphText: AmendApplicantDetails2Content.pDownloadC8Form,
       chooseFileLocatorID: uniqueSelectors.c8FormFileUpload,
+      requireDownloadParagraph: true,
     });
     await fileUpload.completeUpload();
   }

@@ -3,7 +3,7 @@ import { expect, Page } from "@playwright/test";
 import { OrderTypes } from "../../../../../common/types.js";
 import { OrderOptionsComponent } from "../../../../components/exui/orders/orderOptions.component.js";
 
-export class DraftAnOrder2Page extends EventPage {
+export class DraftAnOrder3Page extends EventPage {
   private readonly orderOptionsComponent: OrderOptionsComponent =
     new OrderOptionsComponent(this.page);
 
@@ -13,12 +13,19 @@ export class DraftAnOrder2Page extends EventPage {
 
   async assertPageContents(): Promise<void> {
     await this.assertPageHeadings();
-    await this.orderOptionsComponent.assertCreateOrderPageContents();
+    await this.orderOptionsComponent.assertUploadOrderPageContents();
     await expect(this.continueButton).toBeVisible();
     await expect(this.previousButton).toBeVisible();
   }
 
-  async selectOrderType(orderType: OrderTypes): Promise<void> {
+  async selectOrderTypeAndConsent(
+    orderType: OrderTypes,
+    isOrderByConsent: boolean,
+  ): Promise<void> {
     await this.page.getByRole("radio", { name: orderType }).check();
+    await this.page
+      .getByRole("group", { name: "Is the order by consent?" })
+      .getByLabel(isOrderByConsent ? "Yes" : "No")
+      .check();
   }
 }
