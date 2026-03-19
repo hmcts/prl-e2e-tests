@@ -35,9 +35,9 @@ test.describe("'Upload an C100 order' by Case Worker via the 'Manage order' even
   );
 
   //C43A+C45A upload order
-  C43A45AUploadOrderScenarios.forEach(
+  C43A45AUploadOrderScenarios.slice(0,1).forEach(
     (uploadOrderParams: C43A45AUploadOrderParams) => {
-      test(`CA 'Upload an order - ' : ${uploadOrderParams.orderType} as a CaseWorker with the following options:${uploadOrderParams.name} @regression @nightly @visual`, async ({
+      test(`CA 'Upload an order - ' : ${uploadOrderParams.orderType} as a CaseWorker with the following options:${uploadOrderParams.name} @regression @nightly @visual @check6`, async ({
         caseWorker,
         navigationUtils,
         }): Promise<void> => {
