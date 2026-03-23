@@ -26,21 +26,21 @@ export class ListOfApplications1Page {
     await Promise.all([
       Helpers.checkGroup(
         page,
-        7,
+        5,
         ListOfApplications1Content,
         `GovukBody`,
         `${Selectors.GovukBody}`,
       ),
       Helpers.checkGroup(
         page,
-        5,
+        4,
         ListOfApplications1Content,
         `GovukAccordionSection`,
         `${Selectors.GovukAccordionSection}`,
       ),
       Helpers.checkGroup(
         page,
-        7,
+        10,
         ListOfApplications1Content,
         `GovukLink`,
         `${Selectors.GovukLink}`,
@@ -55,9 +55,10 @@ export class ListOfApplications1Page {
       await new AxeUtils(page).audit();
     }
   }
+
   private static async next(page: Page): Promise<void> {
-    await page.click(
-      `${Selectors.GovukLink}:has-text("${ListOfApplications1Content.next}")`,
-    );
+    await page
+      .getByRole("link", { name: ListOfApplications1Content.next })
+      .click();
   }
 }

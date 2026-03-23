@@ -1,35 +1,34 @@
 import { test } from "../../../../fixtures.ts";
 import config from "../../../../../utils/config.utils.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
 import { MakeRequestToCourtAboutCase } from "../../../../../journeys/citizen/caseView/makeRequestToCourtAboutCase/applicant/makeRequestToCourtAboutCase.ts";
+import { ActivateCitizenC100Case } from "../../../../../journeys/citizen/activateCase/activateCitizenC100Case.ts";
 
 test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("Applicant Make a request to the court about your case tests", (): void => {
-  test.slow();
-  let ccdRef: string;
-
-  test.beforeEach(async ({ page, courtNavUtils }) => {
-    ccdRef = await courtNavUtils.createCase(true, false);
-    await Helpers.goToCase(
+  test.beforeEach(
+    async ({
       page,
-      config.manageCasesBaseURLCase,
-      ccdRef,
-      "tasks",
-    );
-  });
+      citizenC100CaseUtils,
+      idamLoginHelper,
+      accessCodeHelper,
+    }) => {
+      await ActivateCitizenC100Case.activateCase({
+        page,
+        citizenC100CaseUtils,
+        idamLoginHelper,
+        accessCodeHelper,
+        isApplicant: true,
+      });
+    },
+  );
 
   test("Applicant Make a request to the court about your case page. @regression @accessibility @nightly", async ({
     page,
-    browser,
   }): Promise<void> => {
     await MakeRequestToCourtAboutCase.makeRequestToCourtAboutCase({
       page: page,
-      browser: browser,
-      caseRef: ccdRef,
       accessibilityTest: true,
-      isApplicant: true,
-      applicationSubmittedBy: "Citizen",
     });
   });
 });
