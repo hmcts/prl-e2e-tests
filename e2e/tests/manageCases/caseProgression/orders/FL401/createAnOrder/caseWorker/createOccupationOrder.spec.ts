@@ -111,6 +111,10 @@ test.describe("Manage Orders - Create Occupation Order (FL404) order tests", () 
         );
         await manageOrders.manageOrder24Page.clickContinue();
 
+        await manageOrders.manageOrderSubmitPage.assertPageContents(
+          manageOrderParams.snapshotsPath,
+          manageOrderParams.snapshotName,
+        );
         await manageOrders.manageOrderSubmitPage.verifyAccessibility();
         await manageOrders.manageOrderSubmitPage.clickSubmit();
         await summaryPage.alertBanner.assertEventAlert(

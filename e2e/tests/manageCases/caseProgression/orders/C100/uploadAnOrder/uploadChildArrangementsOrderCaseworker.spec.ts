@@ -1,82 +1,106 @@
-import { test } from "@playwright/test";
-import Config from "../../../../../../utils/config.utils.ts";
-import { CaseListPage } from "../../../../../../pages/manageCases/caseList/caseListPage.ts";
-import { CaseFilterPage } from "../../../../../../pages/manageCases/caseWorker/createAnOrder/initialJourney/caseFilterPage.ts";
-import { TestingSupportDummyAdminCreateNoc2Page } from "../../../../../../pages/manageCases/caseWorker/createAnOrder/initialJourney/testingSupportDummyAdminCreateNoc2Page.ts";
-import { TestingSupportDummyAdminCreateNoc3Page } from "../../../../../../pages/manageCases/caseWorker/createAnOrder/initialJourney/testingSupportDummyAdminCreateNoc3Page.ts";
-import { CreateAnOrderSubmitPage } from "../../../../../../pages/manageCases/caseWorker/createAnOrder/initialJourney/SubmitPage.ts";
-import { C100ManageOrdersUploadJourney } from "../../../../../../journeys/manageCases/caseWorker/uploadAnOrder/c100ManageOrdersUploadJourney.ts";
-import { C100ManageOrdersUploadJourneyC21 } from "../../../../../../journeys/manageCases/caseWorker/uploadAnOrder/c100ManageOrdersUploadJourneyC21.ts";
+import { test } from "../../../../../fixtures.ts";
+import config from "../../../../../../utils/config.utils.js";
+import { C43A45AUploadOrderScenarios } from "../../../../../../testData/manageOrders.js";
+import { manageOrdersOptions, OrderTypes, solicitorCaseCreateType } from "../../../../../../common/types.js";
+import { OrderInformation } from "../../../../../../pageObjects/pages/exui/caseView/draftOrders.po.js";
+import { ManageOrder5Params } from "../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder5.po.js";
+import { ManageOrder24Params } from "../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder24.po.js";
 
-test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
+export interface C43A45AUploadOrderParams {
+  name: string;
+  caseType: solicitorCaseCreateType;
+  orderType: OrderTypes;
+  orderOption: manageOrdersOptions;
+  isUploadAnOrder: boolean;
+  isOrderByConsent: boolean;
+  manageOrder5Params: ManageOrder5Params;
+  manageOrder24Params: ManageOrder24Params;
+  snapshotName: string;
+  snapshotsPath: string[];
+  orderInformation: OrderInformation[];
+}
 
-test.describe("'Upload an order' tests", (): void => {
-  test.beforeEach(async ({ page }) => {
-    //Test setup no accessibility test needed
-    await CaseListPage.navigateToCreateCasePage(page);
-    await CaseFilterPage.caseFilterPage({ page, accessibilityTest: false });
-    await TestingSupportDummyAdminCreateNoc2Page.testingSupportDummyAdminCreateNoc2Page(
-      { page, accessibilityTest: false, solicitorCaseCreateType: "C100" },
-    );
-    await TestingSupportDummyAdminCreateNoc3Page.testingSupportDummyAdminCreateNoc3Page(
-      { page, accessibilityTest: false, solicitorCaseCreateType: "C100" },
-    );
-    await CreateAnOrderSubmitPage.createAnOrderSubmitPage({
-      page,
-      accessibilityTest: false,
-    });
-  });
+test.describe("'Upload an C100 order' by Case Worker via the 'Manage order' event tests", (): void => {
+  let caseNumber: string;
 
-  test(`Complete 'Upload an order' as a Caseworker with the following options:
-  Case: C100,
-  Not accessibility testing. 
-  @regression, @nightly`, async ({ page }): Promise<void> => {
-    await C100ManageOrdersUploadJourney.c100ManageOrdersUploadJourney({
-      page: page,
-      accessibilityTest: false,
-      solicitorCaseCreateType: "C100",
-      yesNoManageOrders: false,
-      uploadOrderC100Options:
-        "Child arrangements, specific issue or prohibited steps order (C43)",
-      isUploadOrder: true,
-      serveOrderNow: false,
-      hasJudgeNameAndTitle: true,
-      isCaseworker: true,
-    });
-  });
+  test.beforeEach(
+    async ({ caseWorker, browser, caseEventUtils, navigationUtils }) => {
+      caseNumber = await caseEventUtils.createCACaseIssueAndSendToLocalCourt(browser);
+      await navigationUtils.goToCase(
+        caseWorker.page,
+        config.manageCasesBaseURLCase,
+        caseNumber,
+      );
+    },
+  );
 
-  test(`Complete 'Upload an order' as a Caseworker with the following options:
-  Case: C100,
-  Accessibility testing: yes. 
-  @regression, @nightly`, async ({ page }): Promise<void> => {
-    await C100ManageOrdersUploadJourney.c100ManageOrdersUploadJourney({
-      page: page,
-      accessibilityTest: true,
-      solicitorCaseCreateType: "C100",
-      yesNoManageOrders: false,
-      uploadOrderC100Options:
-        "Child arrangements, specific issue or prohibited steps order (C43)",
-      isUploadOrder: true,
-      serveOrderNow: false,
-      hasJudgeNameAndTitle: true,
-      isCaseworker: true,
-    });
-  });
+  //C43A+C45A upload order
+  C43A45AUploadOrderScenarios.forEach(
+    (uploadOrderParams: C43A45AUploadOrderParams) => {
+      test(`CA 'Upload an order - ' : ${uploadOrderParams.orderType} as a CaseWorker with the following options:${uploadOrderParams.name} @regression @nightly @visual`, async ({
+        caseWorker,
+        navigationUtils,
+        }): Promise<void> => {
+        const { manageOrders, summaryPage } = caseWorker;
 
-  test(`Complete 'Upload an order' as a Caseworker for C21 order with the following options:
-  Case: C100,
-  Accessibility testing: yes. 
-  @regression, @nightly`, async ({ page }) => {
-    await C100ManageOrdersUploadJourneyC21.c100ManageOrdersUploadJourneyC21({
-      page,
-      accessibilityTest: true,
-      solicitorCaseCreateType: "C100",
-      yesNoManageOrders: false,
-      uploadOrderC100Options: "Blank order or directions (C21)",
-      isUploadOrder: true,
-      serveOrderNow: false,
-      hasJudgeNameAndTitle: true,
-      isCaseworker: true,
-    });
-  });
+        await summaryPage.chooseEventFromDropdown("Manage orders");
+        await manageOrders.manageOrder1Page.assertPageContents();
+        await manageOrders.manageOrder1Page.verifyAccessibility();
+        await manageOrders.manageOrder1Page.selectOrderOption(
+          uploadOrderParams.orderOption,
+        );
+        await manageOrders.manageOrder1Page.clickContinue();
+        await manageOrders.manageOrder3Page.assertPageContents();
+        await manageOrders.manageOrder3Page.verifyAccessibility();
+        await manageOrders.manageOrder3Page.selectOrderTypeAndConsent(
+          uploadOrderParams.orderType,
+          uploadOrderParams.isOrderByConsent,
+        )
+        await manageOrders.manageOrder3Page.clickContinue();
+        await manageOrders.manageOrder5Page.assertPageContents(
+          uploadOrderParams.isUploadAnOrder,
+          uploadOrderParams.caseType,
+          uploadOrderParams.orderType,
+        );
+        await manageOrders.manageOrder5Page.verifyAccessibility();
+        await manageOrders.manageOrder5Page.fillInFields(
+          uploadOrderParams.isUploadAnOrder,
+          uploadOrderParams.caseType,
+          uploadOrderParams.manageOrder5Params,
+        );
+        await manageOrders.manageOrder5Page.clickContinue();
+
+        await manageOrders.manageOrder24Page.assertPageContents();
+        await manageOrders.manageOrder24Page.verifyAccessibility();
+        await manageOrders.manageOrder24Page.selectCheckOrder(
+          uploadOrderParams.manageOrder24Params,
+        );
+        await manageOrders.manageOrder24Page.clickContinue();
+
+        await manageOrders.manageOrderSubmitPage.assertPageContents(
+          uploadOrderParams.snapshotsPath,
+          uploadOrderParams.snapshotName,
+        );
+        await manageOrders.manageOrderSubmitPage.verifyAccessibility();
+        await manageOrders.manageOrderSubmitPage.clickSubmit();
+        await summaryPage.alertBanner.assertEventAlert(
+          caseNumber,
+          "Manage orders",
+        );
+
+        // check the draft orders tab as court admin
+        await navigationUtils.goToCase(
+          caseWorker.page,
+          config.manageCasesBaseURLCase,
+          caseNumber,
+        );
+
+        const { draftedOrders } = caseWorker;
+        await draftedOrders.draftOrdersPage.goToPage();
+        await draftedOrders.draftOrdersPage.assertDraftOrders(
+          uploadOrderParams.orderInformation,
+        );
+      });
+    },
+  );
 });

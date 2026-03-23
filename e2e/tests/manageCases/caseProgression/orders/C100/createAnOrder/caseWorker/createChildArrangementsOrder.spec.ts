@@ -112,6 +112,10 @@ test.describe("Manage Orders - Create a Child arrangements, specific issue or pr
         );
         await manageOrders.manageOrder24Page.clickContinue();
 
+        await manageOrders.manageOrderSubmitPage.assertPageContents(
+          manageOrderParams.snapshotsPath,
+          manageOrderParams.snapshotName,
+        );
         await manageOrders.manageOrderSubmitPage.verifyAccessibility();
         await manageOrders.manageOrderSubmitPage.clickSubmit();
         await summaryPage.alertBanner.assertEventAlert(

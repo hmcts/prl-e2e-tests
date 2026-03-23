@@ -1,6 +1,9 @@
 import { ChildArrangementsCreateOrderParams } from "../tests/manageCases/caseProgression/orders/C100/createAnOrder/caseWorker/createChildArrangementsOrder.spec.js";
 import { AmendedDischargedVariedOrderParams } from "../tests/manageCases/caseProgression/orders/FL401/createAnOrder/caseWorker/createAmendedDischargedOrVariedOrder.spec.js";
 import { OccupationOrderParams } from "../tests/manageCases/caseProgression/orders/FL401/createAnOrder/caseWorker/createOccupationOrder.spec.js";
+import {
+  C43A45AUploadOrderParams
+} from "../tests/manageCases/caseProgression/orders/C100/uploadAnOrder/uploadChildArrangementsOrderCaseworker.spec.js";
 
 export const ChildArrangementsCreateOrderScenarios: ChildArrangementsCreateOrderParams[] =
   [
@@ -436,6 +439,114 @@ export const OccupationOrderScenarios: OccupationOrderParams[] = [
         },
         childrenList: ["Joe Doe", "Simon Anderson"],
         isOrderAboutChildren: true,
+      },
+    ],
+  },
+];
+
+export const C43A45AUploadOrderScenarios: C43A45AUploadOrderParams[] = [
+  {
+    name: "No to all",
+    caseType: "C100",
+    orderType: "Special guardianship order (C43A)",
+    orderOption: "upload order",
+    isUploadAnOrder: true,
+    isOrderByConsent: false,
+    manageOrder5Params: {
+      orderType: "Special guardianship order (C43A)",
+      isOrderByConsent: undefined,
+      wasOrderApprovedAtAHearing: false,
+      hearing: undefined,
+      judgeOrMagistratesTitle: "His Honour Judge",
+      judgeFullName: "Test judge name",
+      justicesLegalAdviserFullName: undefined,
+      dateOrderMade: undefined, // already pre-populated
+      isOrderAboutAllTheChildren: false,
+      allChildrenInOrder: [
+        "Joe Doe",
+        "Simon Anderson",
+        "Lilly Anderson",
+        "Charlotte Saxon",
+        "Selena Lees",
+      ],
+      recitalsAndPreamble: undefined,
+      directions: undefined,
+    },
+    manageOrder24Params: {
+      checkOption: "judgeOrLegalAdvisorCheck", ////options passed could be either noCheck or judgeOrLegalAdvisorCheck or managerCheck
+      judgeOrLegalAdviser: "judge", ///options judge, legalAdvisor
+      judgeName: "Ms Elizabeth Williams",
+    },
+    snapshotName: "C43A-upload-order-no-to-all",
+    snapshotsPath: ["caseProgression", "orders", "childArrangementsOrder"],
+    orderInformation: [
+      {
+        typeOfOrder: "Special guardianship order (C43A)",
+        englishDocument: "mockFile.pdf",
+        otherDetails: {
+          orderMadeBy: "Test judge name",
+          orderCreatedBy:
+            process.env.MANAGE_CASES_TEST_ENV === "demo"
+              ? "PRL Demo Swansea HCA"
+              : "PRL AAT AM Swansea HCA",
+          status: "Created by Admin",
+        },
+        childrenList: [
+          "Joe Doe (Child 1)",
+          "Simon Anderson (Child 2)",
+          "Lilly Anderson (Child 3)",
+          "Charlotte Saxon (Child 4)",
+          "Selena Lees (Child 5)",
+        ],
+        isOrderAboutAllTheChildren: false,
+      },
+    ],
+  },
+  {
+    name: "Yes to all",
+    caseType: "C100",
+    orderType: "Parental responsibility order (C45A)",
+    orderOption: "upload order",
+    isUploadAnOrder: true,
+    isOrderByConsent: true,
+    manageOrder5Params: {
+      orderType: "Parental responsibility order (C45A)",
+      isOrderByConsent: undefined,
+      wasOrderApprovedAtAHearing: true,
+      hearing: "No hearings available",
+      judgeOrMagistratesTitle: "His Honour Judge",
+      judgeFullName: "Test judge name",
+      justicesLegalAdviserFullName: "Test legal adviser",
+      dateOrderMade: undefined, // already pre-populated
+      isOrderAboutAllTheChildren: true,
+    },
+    manageOrder24Params: {
+      checkOption: "judgeOrLegalAdvisorCheck", ////options passed could be either noCheck or judgeOrLegalAdvisorCheck or managerCheck
+      judgeOrLegalAdviser: "judge", ///options judge, legalAdvisor
+      judgeName: "Ms Elizabeth Williams",
+    },
+    snapshotName: "C45A-upload-order-yes-to-all",
+    snapshotsPath: ["caseProgression", "orders", "childArrangementsOrder"],
+    orderInformation: [
+      {
+        typeOfOrder: "Parental responsibility order (C45A)",
+        englishDocument: "mockFile.pdf",
+        otherDetails: {
+          orderMadeBy: "Test judge name",
+          orderCreatedBy:
+            process.env.MANAGE_CASES_TEST_ENV === "demo"
+              ? "PRL Demo Swansea HCA"
+              : "PRL AAT AM Swansea HCA",
+          status: "Created by Admin",
+        },
+        childrenList: [
+          "Joe Doe (Child 1)",
+          "Simon Anderson (Child 2)",
+          "Lilly Anderson (Child 3)",
+          "Charlotte Saxon (Child 4)",
+          "Selena Lees (Child 5)",
+        ],
+        isOrderAboutAllTheChildren: false,
       },
     ],
   },
