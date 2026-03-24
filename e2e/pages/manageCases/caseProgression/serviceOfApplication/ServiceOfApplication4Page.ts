@@ -56,12 +56,10 @@ export class ServiceOfApplication4Page {
     );
     await pageTitle.waitFor();
     await Promise.all([
-      Helpers.checkGroup(
+      Helpers.checkVisibleAndPresent(
         page,
-        2,
-        ServiceOfApplication4Content,
-        "formLabel",
-        `${Selectors.GovukFormLabel}`,
+        `${Selectors.Span}:text-is("${ServiceOfApplication4Content.span}"):visible`,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -88,7 +86,7 @@ export class ServiceOfApplication4Page {
       throw new Error("No page found");
     }
     if (yesNoServiceOfApplication4) {
-      await page.click(UniqueSelectors.yes);
+      await page.getByRole("radio", { name: "Yes" }).check();
       await this.yesHiddenFormLabel1(page);
       switch (responsibleForServing) {
         case "courtBailiff":
@@ -116,7 +114,7 @@ export class ServiceOfApplication4Page {
           break;
       }
     } else {
-      await page.click(UniqueSelectors.no);
+      await page.getByRole("radio", { name: "No" }).check();
       await this.noHiddenFormLabel1(page);
       const recipientsCheckboxes = page.locator(
         "#soaRecipientsOptions .form-control",
