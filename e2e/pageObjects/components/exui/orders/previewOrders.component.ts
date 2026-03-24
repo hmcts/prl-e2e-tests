@@ -67,6 +67,16 @@ export class PreviewOrdersComponent {
         this.welshPdfLink = "welsh_non_molestation_order_fl404a_draft.pdf";
         this.englishPdfLink = "non_molestation_order_fl404a_draft.pdf";
         break;
+      case "Amended, discharged or varied order (FL404B)":
+        this.welshPdfLink =
+          "welsh_amended_discharged_or_varied_order_fl404b_draft.pdf";
+        this.englishPdfLink =
+          "amended_discharged_or_varied_order_fl404b_draft.pdf";
+        break;
+      case "Occupation order (FL404)":
+        this.welshPdfLink = "welsh_occupation_order_FL404_draft.pdf";
+        this.englishPdfLink = "occupation_order_FL404_draft.pdf";
+        break;
       default:
         throw new Error(`Unexpected order type ${orderType}`);
     }

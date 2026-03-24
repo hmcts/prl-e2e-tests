@@ -25,8 +25,7 @@ export class NavigationUtils {
     caseTab: string,
   ): string {
     const caseNumberDigits: string = caseNumber.toString().replace(/\D/g, "");
-    const base =
-      `${baseURL.replace(/\/$/, "")}/case-details/${caseNumberDigits}`;
+    const base = `${baseURL.replace(/\/$/, "")}/case-details/${caseNumberDigits}`;
 
     if (!caseTab || !caseTab.trim()) {
       return baseURL;

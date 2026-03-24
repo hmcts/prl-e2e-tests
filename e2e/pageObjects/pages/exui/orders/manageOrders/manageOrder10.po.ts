@@ -43,7 +43,7 @@ export class ManageOrder10Page extends EventPage {
     await expect(this.previousButton).toBeVisible();
   }
 
-  async selectC45OrderDetails({
+  async selectC43OrderDetails({
     childArrangementOrderType,
     allC43OrdersSubType,
   }: ManageOrder10Params): Promise<void> {
