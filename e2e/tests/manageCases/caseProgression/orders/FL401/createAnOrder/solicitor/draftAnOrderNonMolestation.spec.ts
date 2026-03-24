@@ -65,11 +65,13 @@ test.describe("Draft a non molestation order tests", (): void => {
       await draftOrders.draftAnOrder2Page.clickContinue();
 
       await draftOrders.draftAnOrder5Page.assertPageContents(
+        draftOrderParams.isDraftAnOrder,
         draftOrderParams.caseType,
         draftOrderParams.orderType,
       );
       await draftOrders.draftAnOrder5Page.verifyAccessibility();
       await draftOrders.draftAnOrder5Page.fillInFields(
+        draftOrderParams.isDraftAnOrder,
         draftOrderParams.caseType,
         draftOrderParams.draftAnOrder5Params,
       );
@@ -120,9 +122,9 @@ test.describe("Draft a non molestation order tests", (): void => {
         caseNumber,
       );
 
-      const { removeDraftOrders } = caseWorker;
-      await removeDraftOrders.draftOrdersPage.goToPage();
-      await removeDraftOrders.draftOrdersPage.assertDraftOrders(
+      const { draftedOrders } = caseWorker;
+      await draftedOrders.draftOrdersPage.goToPage();
+      await draftedOrders.draftOrdersPage.assertDraftOrders(
         draftOrderParams.orderInformation,
       );
     });

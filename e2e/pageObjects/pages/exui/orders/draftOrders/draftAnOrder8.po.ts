@@ -2,14 +2,13 @@ import { EventPage } from "../../eventPage.po.js";
 import { expect, Locator, Page } from "@playwright/test";
 import { PageUtils } from "../../../../../utils/page.utils.js";
 import { Selectors } from "../../../../../common/selectors.js";
-import { OrderTypes } from "../../../../../common/types.js";
 
-export interface ManageOrder10Params {
+export interface DraftAnOrder8Params {
   childArrangementOrderType: string;
   allC43OrdersSubType?: string[];
 }
 
-export class ManageOrder10Page extends EventPage {
+export class DraftAnOrder8Page extends EventPage {
   readonly heading2: Locator = this.page.locator(Selectors.h2, {
     hasText: "Add order details",
   });
@@ -29,14 +28,13 @@ export class ManageOrder10Page extends EventPage {
   ];
 
   constructor(page: Page) {
-    super(page, "Manage orders");
+    super(page, "Create/upload draft order");
   }
 
   private readonly pageUtils: PageUtils = new PageUtils(this.page);
 
-  async assertPageContents(orderType: OrderTypes): Promise<void> {
+  async assertPageContents(): Promise<void> {
     await this.assertPageHeadings();
-    await expect(this.page.getByText(orderType)).toBeVisible();
     await expect(this.heading2).toBeVisible();
     await this.pageUtils.assertStrings(this.orderOptionsFormLabels);
     await expect(this.continueButton).toBeVisible();
@@ -46,7 +44,7 @@ export class ManageOrder10Page extends EventPage {
   async selectC43OrderDetails({
     childArrangementOrderType,
     allC43OrdersSubType,
-  }: ManageOrder10Params): Promise<void> {
+  }: DraftAnOrder8Params): Promise<void> {
     for (const orderLabelText of allC43OrdersSubType) {
       await this.page.getByLabel(orderLabelText, { exact: true }).check();
     }

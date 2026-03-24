@@ -169,11 +169,13 @@ export class DraftAnOrderJourney {
 
     const draftAnOrder5Page: DraftAnOrder5Page = new DraftAnOrder5Page(page);
     await draftAnOrder5Page.assertPageContents(
+      draftOrderParams.isDraftAnOrder,
       draftOrderParams.caseType,
       draftOrderParams.orderType,
     );
     await draftAnOrder5Page.verifyAccessibility();
     await draftAnOrder5Page.fillInFields(
+      draftOrderParams.isDraftAnOrder,
       draftOrderParams.caseType,
       draftOrderParams.draftAnOrder5Params,
     );

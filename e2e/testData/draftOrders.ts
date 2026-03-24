@@ -2,6 +2,10 @@ import { ParentalResponsibilityDraftOrderParams } from "../tests/manageCases/cas
 import { RemoveDraftNonMolestationOrderParams } from "../tests/manageCases/caseProgression/orders/FL401/removeDraftOrder/removeDraftNonMolestationOrder.spec.js";
 import { RemoveDraftParentalResponsibilityOrderParams } from "../tests/manageCases/caseProgression/orders/C100/removeDraftOrder/removeDraftParentalResponsibilityOrder.spec.js";
 import { NonMolestationDraftOrderParams } from "../tests/manageCases/caseProgression/orders/FL401/createAnOrder/solicitor/draftAnOrderNonMolestation.spec.js";
+import {
+  C21UploadOrderParams,
+  ChildArrangementsUploadOrderParams,
+} from "../tests/manageCases/caseProgression/orders/C100/uploadAnOrder/uploadChildArrangementsOrderSolicitor.spec.js";
 
 export const NonMolestationDraftOrderScenarios: NonMolestationDraftOrderParams[] =
   [
@@ -392,3 +396,229 @@ export const RemoveDraftParentalResponsibilityOrderScenarios: RemoveDraftParenta
       snapshotName: "remove-draft-parental-responsibility-order",
     },
   ];
+
+export const ChildArrangementsUploadOrderScenarios: ChildArrangementsUploadOrderParams[] =
+  [
+    {
+      name: "No to all",
+      caseType: "C100",
+      orderType:
+        "Child arrangements, specific issue or prohibited steps order (C43)",
+      isDraftAnOrder: false, //true for create order
+      isOrderByConsent: false,
+      draftAnOrder5Params: {
+        orderType:
+          "Child arrangements, specific issue or prohibited steps order (C43)",
+        isOrderByConsent: undefined,
+        wasOrderApprovedAtAHearing: false,
+        hearing: undefined,
+        judgeOrMagistratesTitle: "His Honour Judge",
+        judgeFullName: "Test judge name",
+        justicesLegalAdviserFullName: undefined,
+        dateOrderMade: undefined,
+        isOrderAboutAllTheChildren: false,
+        allChildrenInOrder: [
+          "Joe Doe",
+          "Simon Anderson",
+          "Lilly Anderson",
+          "Charlotte Saxon",
+          "Selena Lees",
+        ],
+        recitalsAndPreamble: undefined,
+        directions: undefined,
+      },
+      draftAnOrder8Params: {
+        childArrangementOrderType: "Spend time with order",
+        allC43OrdersSubType: [
+          "Child Arrangements Order",
+          "Prohibited Steps Order",
+          "Specific Issue Order",
+        ],
+      },
+      snapshotName: "child-arrangements-upload-order-no-to-all",
+      snapshotsPath: ["caseProgression", "orders", "childArrangementsOrder"],
+      orderInformation: [
+        {
+          typeOfOrder:
+            "Child arrangements, specific issue or prohibited steps order (C43)",
+          englishDocument: "mockFile.pdf",
+          otherDetails: {
+            orderMadeBy: "Test judge name",
+            orderCreatedBy:
+              process.env.MANAGE_CASES_TEST_ENV === "demo"
+                ? "PRL DEMO ORG1 Solicitor 2"
+                : "AAT Solicitor",
+            status: "Drafted by Solicitor",
+          },
+          childrenList: [
+            "Joe Doe (Child 1)",
+            "Simon Anderson (Child 2)",
+            "Lilly Anderson (Child 3)",
+            "Charlotte Saxon (Child 4)",
+            "Selena Lees (Child 5)",
+          ],
+          isOrderAboutAllTheChildren: false,
+        },
+      ],
+    },
+    {
+      name: "Yes to all",
+      caseType: "C100",
+      orderType:
+        "Child arrangements, specific issue or prohibited steps order (C43)",
+      isDraftAnOrder: false, //true for create order
+      isOrderByConsent: true,
+      draftAnOrder5Params: {
+        orderType:
+          "Child arrangements, specific issue or prohibited steps order (C43)",
+        isOrderByConsent: undefined,
+        wasOrderApprovedAtAHearing: true,
+        hearing: "No hearings available",
+        judgeOrMagistratesTitle: "His Honour Judge",
+        judgeFullName: "Test judge name",
+        justicesLegalAdviserFullName: "Test legal adviser",
+        dateOrderMade: undefined,
+        isOrderAboutAllTheChildren: true,
+        allChildrenInOrder: undefined,
+        recitalsAndPreamble: undefined,
+        directions: undefined,
+      },
+      draftAnOrder8Params: {
+        childArrangementOrderType: "Spend time with order",
+        allC43OrdersSubType: [
+          "Child Arrangements Order",
+          "Prohibited Steps Order",
+          "Specific Issue Order",
+        ],
+      },
+      snapshotName: "child-arrangements-upload-order-yes-to-all",
+      snapshotsPath: ["caseProgression", "orders", "childArrangementsOrder"],
+      orderInformation: [
+        {
+          typeOfOrder:
+            "Child arrangements, specific issue or prohibited steps order (C43)",
+          englishDocument: "mockFile.pdf",
+          otherDetails: {
+            orderMadeBy: "Test judge name",
+            orderCreatedBy:
+              process.env.MANAGE_CASES_TEST_ENV === "demo"
+                ? "PRL DEMO ORG1 Solicitor 2"
+                : "AAT Solicitor",
+            status: "Drafted by Solicitor",
+          },
+          childrenList: [
+            "Joe Doe (Child 1)",
+            "Simon Anderson (Child 2)",
+            "Lilly Anderson (Child 3)",
+            "Charlotte Saxon (Child 4)",
+            "Selena Lees (Child 5)",
+          ],
+          isOrderAboutAllTheChildren: true,
+        },
+      ],
+    },
+  ];
+export const C21UploadOrderScenarios: C21UploadOrderParams[] = [
+  {
+    name: "No to all",
+    caseType: "C100",
+    orderType: "Blank order or directions (C21)",
+    isDraftAnOrder: false, //true for create order
+    isOrderByConsent: false,
+    draftAnOrder4Params: {
+      C21OrderSubType: "Blank order or directions (C21): application refused",
+    },
+    draftAnOrder5Params: {
+      orderType: "Blank order or directions (C21)",
+      isOrderByConsent: undefined,
+      wasOrderApprovedAtAHearing: false,
+      hearing: undefined,
+      judgeOrMagistratesTitle: "His Honour Judge",
+      judgeFullName: "Test judge name",
+      justicesLegalAdviserFullName: undefined,
+      dateOrderMade: undefined,
+      isOrderAboutAllTheChildren: false,
+      allChildrenInOrder: [
+        "Joe Doe",
+        "Simon Anderson",
+        "Lilly Anderson",
+        "Charlotte Saxon",
+        "Selena Lees",
+      ],
+      recitalsAndPreamble: undefined,
+      directions: undefined,
+    },
+    snapshotName: "C21-upload-order-no-to-all",
+    snapshotsPath: ["caseProgression", "orders", "childArrangementsOrder"],
+    orderInformation: [
+      {
+        typeOfOrder: "Blank order or directions (C21)",
+        englishDocument: "mockFile.pdf",
+        otherDetails: {
+          orderMadeBy: "Test judge name",
+          orderCreatedBy:
+            process.env.MANAGE_CASES_TEST_ENV === "demo"
+              ? "PRL DEMO ORG1 Solicitor 2"
+              : "AAT Solicitor",
+          status: "Drafted by Solicitor",
+        },
+        childrenList: [
+          "Joe Doe (Child 1)",
+          "Simon Anderson (Child 2)",
+          "Lilly Anderson (Child 3)",
+          "Charlotte Saxon (Child 4)",
+          "Selena Lees (Child 5)",
+        ],
+        isOrderAboutAllTheChildren: false,
+      },
+    ],
+  },
+  {
+    name: "Yes to all",
+    caseType: "C100",
+    orderType: "Blank order or directions (C21)",
+    isDraftAnOrder: false, //true for create order
+    isOrderByConsent: true,
+    draftAnOrder4Params: {
+      C21OrderSubType: "Blank order or directions (C21): application refused",
+    },
+    draftAnOrder5Params: {
+      orderType: "Blank order or directions (C21)",
+      isOrderByConsent: undefined,
+      wasOrderApprovedAtAHearing: true,
+      hearing: "No hearings available",
+      judgeOrMagistratesTitle: "His Honour Judge",
+      judgeFullName: "Test judge name",
+      justicesLegalAdviserFullName: "Test legal adviser",
+      dateOrderMade: undefined,
+      isOrderAboutAllTheChildren: true,
+      allChildrenInOrder: undefined,
+      recitalsAndPreamble: undefined,
+      directions: undefined,
+    },
+    snapshotName: "C21-upload-order-yes-to-all",
+    snapshotsPath: ["caseProgression", "orders", "childArrangementsOrder"],
+    orderInformation: [
+      {
+        typeOfOrder: "Blank order or directions (C21)",
+        englishDocument: "mockFile.pdf",
+        otherDetails: {
+          orderMadeBy: "Test judge name",
+          orderCreatedBy:
+            process.env.MANAGE_CASES_TEST_ENV === "demo"
+              ? "PRL DEMO ORG1 Solicitor 2"
+              : "AAT Solicitor",
+          status: "Drafted by Solicitor",
+        },
+        childrenList: [
+          "Joe Doe (Child 1)",
+          "Simon Anderson (Child 2)",
+          "Lilly Anderson (Child 3)",
+          "Charlotte Saxon (Child 4)",
+          "Selena Lees (Child 5)",
+        ],
+        isOrderAboutAllTheChildren: true,
+      },
+    ],
+  },
+];
