@@ -2,15 +2,13 @@ import { EventPage } from "../eventPage.po.js";
 import { expect, Locator, Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.js";
 import { OrderTypes } from "../../../../common/types.js";
-import {
-  HearingDetailsParams,
-  OrderHearingDetailsComponent,
-} from "../../../components/exui/orderHearingDetails.component.js";
+import { OrderHearingDetailsComponent, HearingDetailsParams } from "../../../components/exui/orders/orderHearingDetails.component.ts";
 import { PageUtils } from "../../../../utils/page.utils.js";
 
 export interface EditReturnedOrder12PageParams {
   hasJudgeProvidedHearingDetails: boolean;
   hearingDetails?: HearingDetailsParams;
+  orderJourneyType: string,
 }
 
 export class EditReturnedOrder12Page extends EventPage {
@@ -48,6 +46,7 @@ export class EditReturnedOrder12Page extends EventPage {
   async fillInFields({
     hasJudgeProvidedHearingDetails,
     hearingDetails,
+    orderJourneyType,
   }: EditReturnedOrder12PageParams): Promise<void> {
     await this.page
       .getByRole("group", { name: "Has the judge provided you" })
@@ -56,7 +55,7 @@ export class EditReturnedOrder12Page extends EventPage {
     if (hasJudgeProvidedHearingDetails) {
       await expect(this.optionalHearingHeading).toBeVisible();
       await expect(this.optionalHearingDescription).toBeVisible();
-      await this.hearingDetails.assertHearingDetailsContents();
+      await this.hearingDetails.assertHearingDetailsContentsForOrderPages(orderJourneyType);
       await this.hearingDetails.fillInHearingDetails(hearingDetails);
     }
     await expect(this.continueButton).toBeVisible();

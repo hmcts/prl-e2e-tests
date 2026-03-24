@@ -16,7 +16,6 @@ interface DayMonthYear {
 }
 
 export interface EditReturnedOrder3Params {
-  orderType: OrderTypes;
   isOrderByConsent: boolean;
   wasOrderApprovedAtAHearing: boolean;
   hearing?: string; // No hearings available is a valid hearing

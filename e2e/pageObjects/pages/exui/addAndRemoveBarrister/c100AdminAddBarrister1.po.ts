@@ -2,6 +2,13 @@ import { EventPage } from "../eventPage.po.ts";
 import { expect, Locator, Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.ts";
 
+export interface barristerInfo {
+  firstnames: string;
+  lastname: string;
+  email: string;
+  org: string;
+}
+
 export class C100AdminAddBarrister1Page extends EventPage {
   private readonly partyToAddBarristerCheckbox: Locator = this.page.locator(
     "#allocatedBarrister_partyList_",
@@ -62,10 +69,10 @@ export class C100AdminAddBarrister1Page extends EventPage {
   }
 
   async selectPartyAndFillInBarristerDetails(
-    firstnames: string,
-    lastname: string,
-    email: string,
-    org: string,
+    firstnames,
+    lastname,
+    email,
+    org,
     existingRepresentative: string[],
   ): Promise<void> {
     await this.page
