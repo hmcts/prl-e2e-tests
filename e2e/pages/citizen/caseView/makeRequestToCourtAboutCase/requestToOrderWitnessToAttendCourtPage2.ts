@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
+import { Selectors } from "../../../../common/selectors.ts";
+import { Helpers } from "../../../../common/helpers.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { RequestToOrderWitnessContent2 } from "../../../../../fixtures/citizen/caseView/makeRequestToCourtAboutCase/respondent/requestToOrderWitnessContent2.ts";
-import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
+import { RequestToOrderWitnessContent2 } from "../../../../fixtures/citizen/caseView/makeRequestToCourtAboutCase/requestToOrderWitnessContent2.ts";
+import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 
 enum UniqueSelectors {
   alreadyCompletedFP25_Yes = "#awp_completedForm",

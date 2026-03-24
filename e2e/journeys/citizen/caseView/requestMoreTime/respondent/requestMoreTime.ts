@@ -9,7 +9,7 @@ import { SupportingDocumentsPage } from "../../../../../pages/citizen/caseView/r
 import { SupportingDocumentUploadPage } from "../../../../../pages/citizen/caseView/requestMoreTime/supportingDocumentUploadPage.ts";
 import { UrgentRequestPage } from "../../../../../pages/citizen/caseView/requestMoreTime/urgentRequestPage.ts";
 import { CheckAnswersRespondentPage } from "../../../../../pages/citizen/caseView/requestMoreTime/checkAnswersRespondentPage.ts";
-import { ListOfApplications1Content } from "../../../../../fixtures/citizen/caseView/makeRequestToCourtAboutCase/applicant/listOfApplications1Content.ts";
+import { ListOfApplications1Content } from "../../../../../fixtures/citizen/caseView/makeRequestToCourtAboutCase/listOfApplications1Content.ts";
 import { ApplicationSubmittedPage } from "../../../../../pages/citizen/caseView/requestMoreTime/applicationSubmittedPage.ts";
 
 interface requestMoreTimeParams {

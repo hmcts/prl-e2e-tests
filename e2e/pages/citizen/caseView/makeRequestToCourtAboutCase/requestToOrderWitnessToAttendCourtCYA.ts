@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
+import { Selectors } from "../../../../common/selectors.ts";
+import { Helpers } from "../../../../common/helpers.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
-import { RequestToOrderWitnessContentCYA } from "../../../../../fixtures/citizen/caseView/makeRequestToCourtAboutCase/applicant/requestToOrderWitnessContentCYA.ts";
+import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { RequestToOrderWitnessContentCYA } from "../../../../fixtures/citizen/caseView/makeRequestToCourtAboutCase/requestToOrderWitnessContentCYA.ts";
 
 export class RequestToOrderWitnessToAttendCourtCYA {
   public static async requestToOrderWitnessToAttendCourtCYA(
@@ -26,14 +26,14 @@ export class RequestToOrderWitnessToAttendCourtCYA {
     await Promise.all([
       Helpers.checkGroup(
         page,
-        3,
+        4,
         RequestToOrderWitnessContentCYA,
         `GovukSummaryListKey`,
         `${Selectors.GovukSummaryListKey}`,
       ),
       Helpers.checkGroup(
         page,
-        3,
+        4,
         RequestToOrderWitnessContentCYA,
         `GovukSummaryListValue`,
         `${Selectors.GovukSummaryListValue}`,
@@ -41,7 +41,7 @@ export class RequestToOrderWitnessToAttendCourtCYA {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukLink}:text-is("${RequestToOrderWitnessContentCYA.GovukLink}")`,
-        3,
+        4,
       ),
     ]);
     if (accessibilityTest) {
@@ -50,8 +50,8 @@ export class RequestToOrderWitnessToAttendCourtCYA {
   }
 
   private static async submitApplication(page: Page): Promise<void> {
-    await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.submitApplication}")`,
-    );
+    await page
+      .getByRole("button", { name: CommonStaticText.submitApplication })
+      .click();
   }
 }

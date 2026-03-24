@@ -7,7 +7,7 @@ import { SupportingDocumentsPage } from "../../../../../pages/citizen/caseView/r
 import { SupportingDocumentUploadPage } from "../../../../../pages/citizen/caseView/requestMoreTime/supportingDocumentUploadPage.ts";
 import { UrgentRequestPage } from "../../../../../pages/citizen/caseView/requestMoreTime/urgentRequestPage.ts";
 import { CheckAnswersApplicantPage } from "../../../../../pages/citizen/caseView/requestMoreTime/checkAnswersApplicantPage.ts";
-import { ListOfApplications1Content } from "../../../../../fixtures/citizen/caseView/makeRequestToCourtAboutCase/applicant/listOfApplications1Content.ts";
+import { ListOfApplications1Content } from "../../../../../fixtures/citizen/caseView/makeRequestToCourtAboutCase/listOfApplications1Content.ts";
 import { HelpWithFeesPage } from "../../../../../pages/citizen/caseView/requestMoreTime/helpWithFeesPage.ts";
 import { ReferencePage } from "../../../../../pages/citizen/caseView/requestMoreTime/referencePage.ts";
 import { ApplicationSubmittedPage } from "../../../../../pages/citizen/caseView/requestMoreTime/applicationSubmittedPage.ts";

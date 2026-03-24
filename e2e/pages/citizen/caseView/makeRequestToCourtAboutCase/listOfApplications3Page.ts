@@ -1,6 +1,6 @@
 import { expect, Page } from "@playwright/test";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { ListOfApplications2Content } from "../../../../../fixtures/citizen/caseView/makeRequestToCourtAboutCase/applicant/listOfApplications2Content.ts";
+import { ListOfApplications2Content } from "../../../../fixtures/citizen/caseView/makeRequestToCourtAboutCase/listOfApplications2Content.ts";
 
 export class ListOfApplications3Page {
   public static async listOfApplications3Page(

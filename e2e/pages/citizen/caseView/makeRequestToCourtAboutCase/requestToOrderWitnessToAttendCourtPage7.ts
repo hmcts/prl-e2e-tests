@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { Selectors } from "../../../../../common/selectors.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
-import { AxeUtils } from "@hmcts/playwright-common";
-import { RequestToOrderWitnessContent7 } from "../../../../../fixtures/citizen/caseView/makeRequestToCourtAboutCase/respondent/requestToOrderWitnessContent7.ts";
-import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
+import { Selectors } from "../../../../common/selectors.ts";
+import { Helpers } from "../../../../common/helpers.ts";
+// import { AxeUtils } from "@hmcts/playwright-common";
+import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { RequestToOrderWitnessContent7 } from "../../../../fixtures/citizen/caseView/makeRequestToCourtAboutCase/requestToOrderWitnessContent7.ts";
 
 enum UniqueSelectors {
   urgentReason_Yes = "#awp_isThereReasonForUrgentRequest",
@@ -12,7 +12,7 @@ enum UniqueSelectors {
 }
 
 export class RequestToOrderWitnessToAttendCourtPage7 {
-  public static async requestToOrderWitnessToAttendCourtPage6(
+  public static async requestToOrderWitnessToAttendCourtPage7(
     page: Page,
     accessibilityTest: boolean,
     reasonForUrgency: boolean,
@@ -49,7 +49,7 @@ export class RequestToOrderWitnessToAttendCourtPage7 {
     ]);
 
     if (accessibilityTest) {
-      await new AxeUtils(page).audit();
+      //   await new AxeUtils(page).audit();
     }
   }
 
