@@ -132,7 +132,7 @@ export class OrderDetailsComponent {
       await expect(this.amendTitleLabel1).toBeVisible();
       await expect(this.judgeFullNameLabel1).toBeVisible();
       await expect(this.dateOrderMadeLabel1).toBeVisible();
-      if(!createOrder) {
+      if (!createOrder) {
         await expect(this.approvalDateLabel).toBeVisible();
       }
     } else {

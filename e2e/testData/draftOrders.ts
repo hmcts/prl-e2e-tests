@@ -6,6 +6,7 @@ import {
   C21UploadOrderParams,
   ChildArrangementsUploadOrderParams,
 } from "../tests/manageCases/caseProgression/orders/C100/uploadAnOrder/uploadChildArrangementsOrderSolicitor.spec.js";
+import { DomesticAbuseUploadOrderParams } from "../tests/manageCases/caseProgression/orders/FL401/uploadAnOrder/uploadDomesticAbuseOrderSolicitor.spec.js";
 
 export const NonMolestationDraftOrderScenarios: NonMolestationDraftOrderParams[] =
   [
@@ -622,3 +623,83 @@ export const C21UploadOrderScenarios: C21UploadOrderParams[] = [
     ],
   },
 ];
+export const FL404BFL404UploadOrderScenarios: DomesticAbuseUploadOrderParams[] =
+  [
+    {
+      name: "No to all",
+      caseType: "FL401",
+      orderType: "Amended, discharged or varied order (FL404B)",
+      isDraftAnOrder: false, //true for create order
+      isOrderByConsent: false,
+      draftAnOrder5Params: {
+        orderType: "Amended, discharged or varied order (FL404B)",
+        isOrderByConsent: undefined,
+        wasOrderApprovedAtAHearing: false,
+        hearing: undefined,
+        judgeOrMagistratesTitle: "His Honour Judge",
+        judgeFullName: "Test judge name",
+        justicesLegalAdviserFullName: undefined,
+        dateOrderMade: undefined,
+        isOrderAboutTheChildren: false,
+        allChildrenInOrder: undefined,
+        recitalsAndPreamble: undefined,
+        directions: undefined,
+      },
+      snapshotName: "FL404B-upload-order-no-to-all",
+      snapshotsPath: ["caseProgression", "orders", "domesticAbuseUploadOrders"],
+      orderInformation: [
+        {
+          typeOfOrder: "Amended, discharged or varied order (FL404B)",
+          englishDocument: "mockFile.pdf",
+          otherDetails: {
+            orderMadeBy: "Test judge name",
+            orderCreatedBy:
+              process.env.MANAGE_CASES_TEST_ENV === "demo"
+                ? "PRL DEMO ORG1 Solicitor 2"
+                : "AAT Solicitor",
+            status: "Drafted by Solicitor",
+          },
+          isOrderAboutChildren: false,
+        },
+      ],
+    },
+    {
+      name: "Yes to all",
+      caseType: "FL401",
+      orderType: "Occupation order (FL404)",
+      isDraftAnOrder: false, //true for create order
+      isOrderByConsent: true,
+      draftAnOrder5Params: {
+        orderType: "Occupation order (FL404)",
+        isOrderByConsent: undefined,
+        wasOrderApprovedAtAHearing: true,
+        hearing: "No hearings available",
+        judgeOrMagistratesTitle: "His Honour Judge",
+        judgeFullName: "Test judge name",
+        justicesLegalAdviserFullName: "Test legal adviser",
+        dateOrderMade: undefined,
+        isOrderAboutTheChildren: true,
+        allChildrenInOrder: ["Joe Doe", "Simon Anderson"],
+        recitalsAndPreamble: undefined,
+        directions: undefined,
+      },
+      snapshotName: "FL404-upload-order-yes-to-all",
+      snapshotsPath: ["caseProgression", "orders", "domesticAbuseUploadOrders"],
+      orderInformation: [
+        {
+          typeOfOrder: "Occupation order (FL404)",
+          englishDocument: "mockFile.pdf",
+          otherDetails: {
+            orderMadeBy: "Test judge name",
+            orderCreatedBy:
+              process.env.MANAGE_CASES_TEST_ENV === "demo"
+                ? "PRL DEMO ORG1 Solicitor 2"
+                : "AAT Solicitor",
+            status: "Drafted by Solicitor",
+          },
+          childrenList: ["Joe Doe", "Simon Anderson"],
+          isOrderAboutChildren: true,
+        },
+      ],
+    },
+  ];

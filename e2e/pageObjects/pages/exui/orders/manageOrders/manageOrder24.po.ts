@@ -43,20 +43,23 @@ export class ManageOrder24Page extends EventPage {
     judgeName,
   }: ManageOrder24Params): Promise<void> {
     await this.page.click(`${baseCheckSelector}${checkOption}`);
-    await expect(this.judgeOrLAOptionsLabel).toBeVisible();
-    await this.page.click(
-      `${judgeOrLAbaseCheckSelector}${judgeOrLegalAdviser}`,
-    );
-    await expect(this.judgeNameLabel).toBeVisible();
-    await this.page
-      .getByRole("combobox", { name: "Name of judge" })
-      .fill(judgeName);
-    // Wait for the judge option in the dropdown to become visible using dynamic content
-    const judgeNameDropdownOption = this.page.locator(".mat-option-text", {
-      hasText: judgeName,
-    });
-    await expect(judgeNameDropdownOption).toBeVisible();
-    // Click the option containing the judge name (dynamic value)
-    await judgeNameDropdownOption.click();
+
+    if (checkOption === "judgeOrLegalAdvisorCheck") {
+      await expect(this.judgeOrLAOptionsLabel).toBeVisible();
+      await this.page.click(
+        `${judgeOrLAbaseCheckSelector}${judgeOrLegalAdviser}`,
+      );
+      await expect(this.judgeNameLabel).toBeVisible();
+      await this.page
+        .getByRole("combobox", { name: "Name of judge" })
+        .fill(judgeName);
+      // Wait for the judge option in the dropdown to become visible using dynamic content
+      const judgeNameDropdownOption = this.page.locator(".mat-option-text", {
+        hasText: judgeName,
+      });
+      await expect(judgeNameDropdownOption).toBeVisible();
+      // Click the option containing the judge name (dynamic value)
+      await judgeNameDropdownOption.click();
+    }
   }
 }
