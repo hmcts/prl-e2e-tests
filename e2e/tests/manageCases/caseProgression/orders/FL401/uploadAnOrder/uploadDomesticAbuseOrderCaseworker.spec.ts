@@ -1,6 +1,5 @@
-import { test } from "../../../../../fixtures.ts";
+import { test } from "../../../../../fixtures.js";
 import config from "../../../../../../utils/config.utils.js";
-import { C43A45AUploadOrderScenarios } from "../../../../../../testData/manageOrders.js";
 import {
   manageOrdersOptions,
   OrderTypes,
@@ -9,8 +8,10 @@ import {
 import { OrderInformation } from "../../../../../../pageObjects/pages/exui/caseView/draftOrders.po.js";
 import { ManageOrder5Params } from "../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder5.po.js";
 import { ManageOrder24Params } from "../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder24.po.js";
+import { FL404AFL406UploadOrderScenarios } from "../../../../../../testData/manageOrders.js";
+import { ManageOrder26Params } from "../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder26.po.js";
 
-export interface C43A45AUploadOrderParams {
+export interface DomesticAbuseUploadOrderParams {
   name: string;
   caseType: solicitorCaseCreateType;
   orderType: OrderTypes;
@@ -19,18 +20,18 @@ export interface C43A45AUploadOrderParams {
   isOrderByConsent: boolean;
   manageOrder5Params: ManageOrder5Params;
   manageOrder24Params: ManageOrder24Params;
+  manageOrder26Params: ManageOrder26Params;
   snapshotName: string;
   snapshotsPath: string[];
   orderInformation: OrderInformation[];
 }
 
-test.describe("'Upload an C100 order' by Case Worker via the 'Manage order' event tests", (): void => {
+test.describe("'Upload an order' by Case Worker via the 'Create/upload draft order' event tests", (): void => {
   let caseNumber: string;
 
   test.beforeEach(
     async ({ caseWorker, browser, caseEventUtils, navigationUtils }) => {
-      caseNumber =
-        await caseEventUtils.createCACaseIssueAndSendToLocalCourt(browser);
+      caseNumber = await caseEventUtils.createDACaseAddCaseNumber(browser);
       await navigationUtils.goToCase(
         caseWorker.page,
         config.manageCasesBaseURLCase,
@@ -39,10 +40,10 @@ test.describe("'Upload an C100 order' by Case Worker via the 'Manage order' even
     },
   );
 
-  //C43A+C45A upload order
-  C43A45AUploadOrderScenarios.forEach(
-    (uploadOrderParams: C43A45AUploadOrderParams) => {
-      test(`CA 'Upload an order - ' : ${uploadOrderParams.orderType} as a CaseWorker with the following options:${uploadOrderParams.name} @regression @nightly @visual`, async ({
+  //FL404A+FL406 upload order
+  FL404AFL406UploadOrderScenarios.forEach(
+    (uploadOrderParams: DomesticAbuseUploadOrderParams) => {
+      test(`DA 'Upload an  order - ' : ${uploadOrderParams.orderType} as a Case Worker with the following options:${uploadOrderParams.name} @regression @nightly @visual`, async ({
         caseWorker,
       }): Promise<void> => {
         const { manageOrders, summaryPage, draftedOrders } = caseWorker;
@@ -81,6 +82,14 @@ test.describe("'Upload an C100 order' by Case Worker via the 'Manage order' even
         );
         await manageOrders.manageOrder24Page.clickContinue();
 
+        if (uploadOrderParams.manageOrder24Params.checkOption === "noCheck") {
+          await manageOrders.manageOrder26Page.assertPageContents();
+          await manageOrders.manageOrder26Page.verifyAccessibility();
+          await manageOrders.manageOrder26Page.selectServeOrderOptions(
+            uploadOrderParams.manageOrder26Params,
+          );
+          await manageOrders.manageOrder26Page.clickContinue();
+        }
         await manageOrders.manageOrderSubmitPage.assertPageContents(
           uploadOrderParams.snapshotsPath,
           uploadOrderParams.snapshotName,
