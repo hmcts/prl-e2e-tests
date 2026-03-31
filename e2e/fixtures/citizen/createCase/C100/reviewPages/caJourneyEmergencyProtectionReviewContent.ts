@@ -239,7 +239,7 @@ export enum CaJourneyEmergencyProtectionReviewContent {
   span_dateOfBirth = "Date of birth", // 5 occurrences
   span_gender = "Gender", // 5 occurrences
   li_1 = "I do not have parental responsibility for the children: Automated Parental Responsibility",
-  li_2 = "There is a court order preventing me from making an application without first getting the permission of the court: Automated Court Order",
+  li_2 = "There is an order under section 91(14) Children Act 1989, a limited civil restraint order, a general civil restraint order or an extended civil restraint order in force which means you need permission to make this application: Automated Court Order",
   li_3 = "Another reason: Automated Another Reason",
   li_4 = "Child Arrangements Order",
   li_5 = "Emergency Protection Order",
