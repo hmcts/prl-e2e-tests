@@ -794,9 +794,9 @@
         ]
       },
       "specialArrangementsLetter": {
-        "document_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/1428c359-a163-4cd0-9181-759c54ccda2f",
-        "document_binary_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/1428c359-a163-4cd0-9181-759c54ccda2f/binary",
-        "document_filename": "testPdf.pdf"
+        "document_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/6241e79b-f732-487b-b3ab-3145e64bd798",
+        "document_binary_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/6241e79b-f732-487b-b3ab-3145e64bd798/binary",
+        "document_filename": "test.docx"
       },
       "additionalDocumentsList": [],
       "caseTypeOfApplication": "C100",

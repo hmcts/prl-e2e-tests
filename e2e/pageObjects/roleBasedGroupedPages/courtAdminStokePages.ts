@@ -13,6 +13,7 @@ import { Fl401RemoveLegalRepresentativeConfirmPage } from "../pages/exui/removeL
 import { TransferToAnotherCourt1Page } from "../pages/exui/transferToAnotherCourt/transferToAnotherCourt1.po.js";
 import { TransferToAnotherCourtSubmitPage } from "../pages/exui/transferToAnotherCourt/transferToAnotherCourtSubmit.po.js";
 import { TransferToAnotherCourtConfirmPage } from "../pages/exui/transferToAnotherCourt/transferToAnotherCourtConfirm.po.js";
+import { DraftOrdersPage } from "../pages/exui/caseView/draftOrders.po.js";
 
 export class CourtAdminStokePagesGroup {
   constructor(public readonly page: Page) {}
@@ -48,11 +49,18 @@ export class CourtAdminStokePagesGroup {
       confirmPage: new Fl401RemoveLegalRepresentativeConfirmPage(this.page),
     };
   }
+
   get transferToAnotherCourt() {
     return {
       transferToAnotherCourt1Page: new TransferToAnotherCourt1Page(this.page),
       submitPage: new TransferToAnotherCourtSubmitPage(this.page),
       confirmPage: new TransferToAnotherCourtConfirmPage(this.page),
+    };
+  }
+
+  get draftedOrders() {
+    return {
+      draftOrdersPage: new DraftOrdersPage(this.page),
     };
   }
 }

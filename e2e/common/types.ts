@@ -174,7 +174,11 @@ export type JudgeOrderAction =
 
 export type Language = "English" | "Welsh";
 
-export type manageOrdersOptions = "create order" | "upload order";
+export type manageOrdersOptions =
+  | "create order"
+  | "upload order"
+  | "amend order"
+  | "serve order";
 
 export type createOrderC100Options = "C43 order";
 
@@ -422,3 +426,96 @@ export const NonMolestationRespondentMustNotDoOptionsArray: NonMolestationRespon
     "must not telephone, text, email or otherwise contact or attempt to contact the relevant children",
     "must not go to, enter or attempt to enter the school",
   ];
+export type ChildArrangementOrderTypes =
+  | "Standard directions order"
+  | "Blank order or directions (C21)"
+  | "Child arrangements, specific issue or prohibited steps order (C43)"
+  | "Parental responsibility order (C45A)"
+  | "Special guardianship order (C43A)"
+  | "Declaration of parentage order (C63A)"
+  | "Order to disclose information about whereabouts of a child (C30)"
+  | "Authority for search, taking charge and delivery of a child (C31)"
+  | "Family assistance order (C42)"
+  | "Leave to change a child's surname or remove from the jurisdiction (C44)"
+  | "Appointment of a guardian (C47A)"
+  | "Appointment of a solicitor for the child (C48A)"
+  | "Enforcement of a child arrangements order (C80)"
+  | "Financial compensation order following C79 enforcement application (C82)"
+  | "Summons to appear at court for directions in contempt proceedings (FC601)"
+  | "Warrant to secure attendance at court (FC602)"
+  | "Order on determination of proceedings for contempt of court (FC603)"
+  | "Warrant of committal (FC604)";
+
+export const ChildArrangementOrderTypesArray: ChildArrangementOrderTypes[] = [
+  "Standard directions order",
+  "Blank order or directions (C21)",
+  "Child arrangements, specific issue or prohibited steps order (C43)",
+  "Parental responsibility order (C45A)",
+  "Special guardianship order (C43A)",
+  "Declaration of parentage order (C63A)",
+  "Order to disclose information about whereabouts of a child (C30)",
+  "Authority for search, taking charge and delivery of a child (C31)",
+  "Family assistance order (C42)",
+  "Leave to change a child's surname or remove from the jurisdiction (C44)",
+  "Appointment of a guardian (C47A)",
+  "Appointment of a solicitor for the child (C48A)",
+  "Enforcement of a child arrangements order (C80)",
+  "Financial compensation order following C79 enforcement application (C82)",
+  "Summons to appear at court for directions in contempt proceedings (FC601)",
+  "Warrant to secure attendance at court (FC602)",
+  "Order on determination of proceedings for contempt of court (FC603)",
+  "Warrant of committal (FC604)",
+];
+export type DomesticAbuseOrderTypes =
+  | "Non-molestation order (FL404A)"
+  | "Occupation order (FL404)"
+  | "Power of arrest (FL406)"
+  | "Blank order (FL404B)"
+  | "Amended, discharged or varied order (FL404B)"
+  | "General form of undertaking (N117)"
+  | "Warrant of arrest (FL408)"
+  | "Remand order (FL409)"
+  | "Form for taking of recognizance (FL410)"
+  | "Form for taking of surety (FL411)"
+  | "Bail notice (FL412)"
+  | "Hospital order (FL413)"
+  | "Guardianship order (FL414)"
+  | "Statement of service (FL415)"
+  | "Blank order (FL415)"
+  | "Notice to landlord or mortgage company (FL416)";
+
+export const DomesticAbuseOrderTypesArray: DomesticAbuseOrderTypes[] = [
+  "Non-molestation order (FL404A)",
+  "Occupation order (FL404)",
+  "Power of arrest (FL406)",
+  "Blank order (FL404B)",
+  "Amended, discharged or varied order (FL404B)",
+  "General form of undertaking (N117)",
+  "Warrant of arrest (FL408)",
+  "Remand order (FL409)",
+  "Form for taking of recognizance (FL410)",
+  "Form for taking of surety (FL411)",
+  "Bail notice (FL412)",
+  "Hospital order (FL413)",
+  "Guardianship order (FL414)",
+  "Statement of service (FL415)",
+  "Blank order (FL415)",
+  "Notice to landlord or mortgage company (FL416)",
+];
+export type FcOrderTypes =
+  | "Contempt notice (FC600)"
+  | "Summons to appear at court (FC601)"
+  | "Warrant to secure attendance at court (FC602)"
+  | "Order on determination of proceedings for contempt of court (FC603)"
+  | "Warrant of committal (FC604)";
+
+export const FcOrderTypesArray: FcOrderTypes[] = [
+  "Contempt notice (FC600)",
+  "Summons to appear at court (FC601)",
+  "Warrant to secure attendance at court (FC602)",
+  "Order on determination of proceedings for contempt of court (FC603)",
+  "Warrant of committal (FC604)",
+];
+export type AnyOtherOrderTypes = "Other";
+
+export const AnyOtherOrderTypesArray: AnyOtherOrderTypes[] = ["Other"];
