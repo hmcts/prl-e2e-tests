@@ -55,6 +55,11 @@ export class InternationalElementsParentsPage {
         `${Selectors.GovukHint}:text-is("${internationalElementsParentsContent.govukHint}")`,
         1,
       ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukHint}:text-is("${internationalElementsParentsContent.govukHint2}")`,
+        1,
+      ),
       Helpers.checkGroup(
         page,
         2,
