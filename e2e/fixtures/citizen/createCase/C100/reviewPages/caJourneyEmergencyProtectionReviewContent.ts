@@ -29,7 +29,7 @@ export enum CaJourneyEmergencyProtectionReviewContent {
   dt_3 = "Will you be using a legal representative in these proceedings?",
   dt_4 = "Do you want your legal representative to complete the application for you?",
   dt_5 = "Is there any reason that you would need permission from the court to make this application?",
-  dt_6 = "Why do you need a permission from the court to make this application? (optional)",
+  dt_6 = "Why do you need a permission from the court to make this application?",
   dt_7 = "Explain why the court should grant you permission to submit this application",
   dt_8 = "Has any application been made for a care order, a supervision order, an emergency protection order or an order requiring someone to disclose where a child is or to deliver the child to another person and which: a) is still going on? or b) has finished but the order is still in place?",
   dt_9 = "Have the children been involved in a court case?",
@@ -150,7 +150,7 @@ export enum CaJourneyEmergencyProtectionReviewContent {
   span_3 = "Will you be using a legal representative in these proceedings?",
   span_4 = "Do you want your legal representative to complete the application for you?",
   span_5 = "Is there any reason that you would need permission from the court to make this application?",
-  span_6 = "Why do you need a permission from the court to make this application? (optional)",
+  span_6 = "Why do you need a permission from the court to make this application?",
   span_7 = "Explain why the court should grant you permission to submit this application",
   span_8 = "Has any application been made for a care order, a supervision order, an emergency protection order or an order requiring someone to disclose where a child is or to deliver the child to another person and which: a) is still going on? or b) has finished but the order is still in place?",
   span_9 = "Have the children been involved in a court case?",
@@ -239,7 +239,7 @@ export enum CaJourneyEmergencyProtectionReviewContent {
   span_dateOfBirth = "Date of birth", // 5 occurrences
   span_gender = "Gender", // 5 occurrences
   li_1 = "I do not have parental responsibility for the children: Automated Parental Responsibility",
-  li_2 = "There is a court order preventing me from making an application without first getting the permission of the court: Automated Court Order",
+  li_2 = "There is an order under section 91(14) Children Act 1989, a limited civil restraint order, a general civil restraint order or an extended civil restraint order in force which means you need permission to make this application: Automated Court Order",
   li_3 = "Another reason: Automated Another Reason",
   li_4 = "Child Arrangements Order",
   li_5 = "Emergency Protection Order",
