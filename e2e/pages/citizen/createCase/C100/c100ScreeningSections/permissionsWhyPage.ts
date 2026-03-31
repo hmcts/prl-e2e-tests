@@ -4,6 +4,7 @@ import { Selectors } from "../../../../../common/selectors.ts";
 import { PermissionsWhyContent } from "../../../../../fixtures/citizen/createCase/C100/c100ScreeningSections/permissionsWhyContent.ts";
 import { Helpers } from "../../../../../common/helpers.ts";
 import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
+import config from "../../../../../utils/config.utils.ts";
 
 enum checkboxIDs {
   permission1 = "#sq_permissionsWhy",
@@ -15,6 +16,10 @@ enum inputIDs {
   parentalResponsibility = "#sq_doNotHaveParentalResponsibility_subfield",
   courtOrder = "#sq_courtOrderPrevent_subfield",
   anotherReason = "#sq_anotherReason_subfield",
+}
+
+enum uploadID {
+  chooseFileButton = "#fileupload",
 }
 
 interface PermissionsWhyPageOptions {
@@ -73,11 +78,6 @@ export class PermissionsWhyPage {
         "formLabel",
         `${Selectors.GovukLabel}`,
       ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukLink}:text-is("${PermissionsWhyContent.govLink}")`,
-        1,
-      ),
     ]);
     if (accessibilityTest) {
       await new AxeUtils(page).audit();
@@ -99,14 +99,14 @@ export class PermissionsWhyPage {
       ),
       Helpers.checkGroup(
         page,
-        3,
+        2,
         PermissionsWhyContent,
         "errorMessage",
         `${Selectors.GovukErrorMessageCitizen}`,
       ),
       Helpers.checkGroup(
         page,
-        3,
+        2,
         PermissionsWhyContent,
         "errorSummaryList",
         `${Selectors.a}`,
@@ -121,19 +121,40 @@ export class PermissionsWhyPage {
     for (const checkbox of Object.values(checkboxIDs)) {
       await page.check(checkbox);
     }
-    await Helpers.checkGroup(
-      page,
-      3,
-      PermissionsWhyContent,
-      "details",
-      `${Selectors.GovukLabel}`,
-    );
+    await Promise.all([
+      Helpers.checkGroup(
+        page,
+        3,
+        PermissionsWhyContent,
+        "details",
+        `${Selectors.GovukLabel}`,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukHeadingS}:text-is("${PermissionsWhyContent.headingS}")`,
+        1,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukHint}:text-is("${PermissionsWhyContent.hintText}")`,
+        1,
+      ),
+    ]);
     for (const [key, textField] of Object.entries(inputIDs)) {
       const contentKey = key as keyof typeof PermissionsWhyContent;
       await page.fill(textField, PermissionsWhyContent[contentKey]);
     }
+    await this.fileUpload(page);
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
+  }
+
+  private static async fileUpload(page: Page): Promise<void> {
+    const fileInput = page.locator(`${uploadID.chooseFileButton}`);
+    await fileInput.setInputFiles(config.testPdfFile);
+    await page.waitForTimeout(4000);
+    await page.getByRole("button", { name: "Upload file" }).click();
+    await page.waitForTimeout(3000);
   }
 }
