@@ -19,6 +19,7 @@ export class AlertBannerComponent {
     caseNumber: string,
     alertMessage: string,
   ): Promise<void> {
+    await this.page.waitForLoadState("domcontentloaded");
     const formattedCaseNumber =
       this.caseNumberUtils.getHyphenatedCaseReference(caseNumber);
     await expect(
