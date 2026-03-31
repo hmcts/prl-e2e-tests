@@ -13,7 +13,7 @@ export class DraftAnOrder2Page extends EventPage {
 
   async assertPageContents(): Promise<void> {
     await this.assertPageHeadings();
-    await this.orderOptionsComponent.assertOrderPageContents();
+    await this.orderOptionsComponent.assertCreateOrderPageContents();
     await expect(this.continueButton).toBeVisible();
     await expect(this.previousButton).toBeVisible();
   }

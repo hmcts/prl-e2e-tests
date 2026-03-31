@@ -47,6 +47,10 @@ import { ManageOrder19Page } from "../pages/exui/orders/manageOrders/manageOrder
 import { ManageOrder20Page } from "../pages/exui/orders/manageOrders/manageOrder20.po.js";
 import { ManageOrder24Page } from "../pages/exui/orders/manageOrders/manageOrder24.po.js";
 import { ManageOrderSubmitPage } from "../pages/exui/orders/manageOrders/manageOrderSubmit.po.js";
+import { ManageOrder12Page } from "../pages/exui/orders/manageOrders/manageOrder12.po.js";
+import { OccupationOrderManageOrders12Page } from "../pages/exui/orders/manageOrders/occupationOrderManageOrder12.po.js";
+import { ManageOrder3Page } from "../pages/exui/orders/manageOrders/manageOrder3.po.js";
+import { ManageOrder26Page } from "../pages/exui/orders/manageOrders/manageOrder26.po.js";
 
 export class CaseWorkerPagesGroup {
   constructor(public readonly page: Page) {}
@@ -112,9 +116,14 @@ export class CaseWorkerPagesGroup {
     };
   }
 
-  get removeDraftOrders() {
+  get draftedOrders() {
     return {
       draftOrdersPage: new DraftOrdersPage(this.page),
+    };
+  }
+
+  get removeDraftOrders() {
+    return {
       page1: new RemoveDraftOrder1Page(this.page),
       page2: new RemoveDraftOrder2Page(this.page),
       submitPage: new RemoveDraftOrderSubmitPage(this.page),
@@ -160,11 +169,17 @@ export class CaseWorkerPagesGroup {
     return {
       manageOrder1Page: new ManageOrder1Page(this.page),
       manageOrder2Page: new ManageOrder2Page(this.page),
+      manageOrder3Page: new ManageOrder3Page(this.page),
       manageOrder5Page: new ManageOrder5Page(this.page),
       manageOrder10Page: new ManageOrder10Page(this.page),
+      manageOrder12Page: new ManageOrder12Page(this.page),
+      occupationOrderManageOrders12Page: new OccupationOrderManageOrders12Page(
+        this.page,
+      ),
       manageOrder19Page: new ManageOrder19Page(this.page),
       manageOrder20Page: new ManageOrder20Page(this.page),
       manageOrder24Page: new ManageOrder24Page(this.page),
+      manageOrder26Page: new ManageOrder26Page(this.page),
       manageOrderSubmitPage: new ManageOrderSubmitPage(this.page),
     };
   }

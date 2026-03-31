@@ -1,5 +1,6 @@
 import config from "../../../../utils/config.utils.ts";
 import { test, expect } from "../../../fixtures.ts";
+import { jsonDatas } from "../../../../common/caseHelpers/jsonDatas.js";
 
 async function performNoticeOfChange(nocSolicitor, caseNumber, nocParty) {
   const { summaryPage, noticeOfChangeC100 } = nocSolicitor;
@@ -29,9 +30,32 @@ test.describe("Add/Remove Barrister for CA case", () => {
   let caseNumber: string;
 
   test.beforeEach(
-    async ({ browser, caseEventUtils, navigationUtils, caseWorker }) => {
+    async ({
+      caseEventUtils,
+      navigationUtils,
+      solicitor,
+      caseWorker,
+      courtAdminStoke,
+    }) => {
+      /*
+      create case via individual events so that we can control the solicitor organisation between AAT and Demo
+      to enable notice of change to work
+      */
       caseNumber =
-        await caseEventUtils.createCACaseIssueAndSendToLocalCourt(browser);
+        await caseEventUtils.createCACaseSubmitAndPayIndividualEvents(
+          solicitor.page,
+        );
+      await navigationUtils.goToCase(
+        courtAdminStoke.page,
+        config.manageCasesBaseURLCase,
+        caseNumber,
+      );
+      await caseEventUtils.submitEvent(
+        courtAdminStoke.page,
+        caseNumber,
+        "issueAndSendToLocalCourtCallback",
+        jsonDatas.solicitorCACaseData,
+      );
 
       const { page, summaryPage, amendDetails } = caseWorker;
       // running Amend appl details event to allow Noc (if Noc gets fixed in the future, this bit can be removed)
@@ -39,7 +63,6 @@ test.describe("Add/Remove Barrister for CA case", () => {
         page,
         config.manageCasesBaseURLCase,
         caseNumber,
-        "summary",
       );
       await summaryPage.chooseEventFromDropdown("Amend applicant details");
       await expect(
@@ -53,13 +76,23 @@ test.describe("Add/Remove Barrister for CA case", () => {
   [
     {
       existingRepresentative: [
-        "John Doe (Applicant), PRL NOC Respondent Solicitor 1, Private law NOC solution",
+        process.env.MANAGE_CASES_TEST_ENV === "demo"
+          ? "John Doe (Applicant), PRL DEMO ORG4 Solicitor 2, Private law NOC respondent organisation"
+          : "John Doe (Applicant), PRL NOC Respondent Solicitor 1, Private law NOC solution",
       ],
       existingRepresentativeRemoval: [
-        "John Doe (Applicant), PRL NOC Respondent Solicitor 1, BarristerOneFN BarristerOneLN",
+        process.env.MANAGE_CASES_TEST_ENV === "demo"
+          ? "John Doe (Applicant), PRL DEMO ORG4 Solicitor 2, BarristerOneFN BarristerOneLN"
+          : "John Doe (Applicant), PRL NOC Respondent Solicitor 1, BarristerOneFN BarristerOneLN",
       ],
-      addBarristerSnapshotName: "c100-add-barrister",
-      removeBarristerSnapshotName: "c100-remove-barrister",
+      addBarristerSnapshotName:
+        process.env.MANAGE_CASES_TEST_ENV === "demo"
+          ? "demo-c100-add-barrister"
+          : "c100-add-barrister",
+      removeBarristerSnapshotName:
+        process.env.MANAGE_CASES_TEST_ENV === "demo"
+          ? "demo-c100-remove-barrister"
+          : "c100-remove-barrister",
       applicants: [{ firstname: "John", surname: "Doe" }],
       nocParty: { firstname: "John", surname: "Doe" },
       barrister: {
@@ -70,7 +103,7 @@ test.describe("Add/Remove Barrister for CA case", () => {
       },
     },
   ].forEach((data) => {
-    test(`Solicitor adds and removes Barrister for a CA case. @regression @accessibility @nightly @test`, async ({
+    test(`Solicitor adds and removes Barrister for a CA case. @regression @accessibility @nightly`, async ({
       nocSolicitor,
       navigationUtils,
     }): Promise<void> => {
