@@ -37,11 +37,13 @@ export class ManageOrder5Page extends EventPage {
     super(page, "Manage orders");
   }
   async assertPageContents(
+    isUploadAnOrder: boolean,
     caseType: solicitorCaseCreateType,
     orderType: OrderTypes,
   ): Promise<void> {
     await this.assertPageHeadings();
     await this.orderDetailsComponent.assertOrderPageContents(
+      !isUploadAnOrder,
       caseType,
       orderType,
       "manageOrder",
@@ -51,10 +53,12 @@ export class ManageOrder5Page extends EventPage {
   }
 
   async fillInFields(
+    isUploadAnOrder: boolean,
     caseType: solicitorCaseCreateType,
     params: ManageOrder5Params,
   ): Promise<void> {
     await this.orderDetailsComponent.fillInFields(
+      !isUploadAnOrder,
       caseType,
       "manageOrder",
       params,

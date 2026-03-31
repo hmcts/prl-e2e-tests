@@ -1,6 +1,6 @@
 import { test } from "../../../../../../fixtures.ts";
 import config from "../../../../../../../utils/config.utils.js";
-import { ChildArrangementsOrderScenarios } from "../../../../../../../testData/manageOrders.js";
+import { ChildArrangementsCreateOrderScenarios } from "../../../../../../../testData/manageOrders.js";
 import {
   manageOrdersOptions,
   OrderTypes,
@@ -13,7 +13,7 @@ import { ManageOrder10Params } from "../../../../../../../pageObjects/pages/exui
 import { ManageOrder19Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder19.po.js";
 import { ManageOrder24Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder24.po.js";
 
-export interface ChildArrangementsOrderParams {
+export interface ChildArrangementsCreateOrderParams {
   name: string;
   caseType: solicitorCaseCreateType;
   orderType: OrderTypes;
@@ -42,8 +42,8 @@ test.describe("Manage Orders - Create a Child arrangements, specific issue or pr
     },
   );
 
-  ChildArrangementsOrderScenarios.forEach(
-    (manageOrderParams: ChildArrangementsOrderParams) => {
+  ChildArrangementsCreateOrderScenarios.forEach(
+    (manageOrderParams: ChildArrangementsCreateOrderParams) => {
       test(`Create child arrangements order C43 as case worker with the following options:${manageOrderParams.name} @regression @nightly @visual`, async ({
         caseWorker,
         navigationUtils,
@@ -66,11 +66,13 @@ test.describe("Manage Orders - Create a Child arrangements, specific issue or pr
         await manageOrders.manageOrder2Page.clickContinue();
 
         await manageOrders.manageOrder5Page.assertPageContents(
+          manageOrderParams.isUploadAnOrder,
           manageOrderParams.caseType,
           manageOrderParams.orderType,
         );
         await manageOrders.manageOrder5Page.verifyAccessibility();
         await manageOrders.manageOrder5Page.fillInFields(
+          manageOrderParams.isUploadAnOrder,
           manageOrderParams.caseType,
           manageOrderParams.manageOrder5Params,
         );
@@ -80,7 +82,7 @@ test.describe("Manage Orders - Create a Child arrangements, specific issue or pr
           manageOrderParams.orderType,
         );
         await manageOrders.manageOrder10Page.verifyAccessibility();
-        await manageOrders.manageOrder10Page.selectC45OrderDetails(
+        await manageOrders.manageOrder10Page.selectC43OrderDetails(
           manageOrderParams.manageOrder10Params,
         );
         await manageOrders.manageOrder10Page.clickContinue();
@@ -110,6 +112,10 @@ test.describe("Manage Orders - Create a Child arrangements, specific issue or pr
         );
         await manageOrders.manageOrder24Page.clickContinue();
 
+        await manageOrders.manageOrderSubmitPage.assertPageContents(
+          manageOrderParams.snapshotsPath,
+          manageOrderParams.snapshotName,
+        );
         await manageOrders.manageOrderSubmitPage.verifyAccessibility();
         await manageOrders.manageOrderSubmitPage.clickSubmit();
         await summaryPage.alertBanner.assertEventAlert(
@@ -124,9 +130,9 @@ test.describe("Manage Orders - Create a Child arrangements, specific issue or pr
           caseNumber,
         );
 
-        const { removeDraftOrders } = caseWorker;
-        await removeDraftOrders.draftOrdersPage.goToPage();
-        await removeDraftOrders.draftOrdersPage.assertDraftOrders(
+        const { draftedOrders } = caseWorker;
+        await draftedOrders.draftOrdersPage.goToPage();
+        await draftedOrders.draftOrdersPage.assertDraftOrders(
           manageOrderParams.orderInformation,
         );
       });
