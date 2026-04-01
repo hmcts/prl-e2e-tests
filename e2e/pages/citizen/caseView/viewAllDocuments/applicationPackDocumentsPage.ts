@@ -72,6 +72,4 @@ export class ApplicationPackDocumentsPage {
       await new AxeUtils(page).audit();
     }
   }
-
-  // TODO: actually check a document's contents??
 }

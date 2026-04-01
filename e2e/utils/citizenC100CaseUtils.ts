@@ -40,7 +40,6 @@ export interface CaseFlagInfo {
   partyName: string;
 }
 
-// TODO: make logging less verbose??
 export class CitizenC100CaseUtils {
   constructor(
     private serviceAuthUtils: ServiceAuthUtils,

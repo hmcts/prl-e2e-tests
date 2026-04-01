@@ -1,14 +1,8 @@
-import { applicationSubmittedBy } from "../../../../common/types.ts";
-import { ActivateCase, CaseUser } from "../../activateCase/activateCase.ts";
-import { Browser, Page } from "@playwright/test";
+import { Page } from "@playwright/test";
 
 interface checkTheApplicationParams {
   page: Page;
-  browser: Browser;
-  caseRef: string;
-  accessibilityTest: boolean;
   isApplicant: boolean;
-  applicationSubmittedBy: applicationSubmittedBy;
 }
 
 enum UniqueSelectors {
@@ -19,22 +13,8 @@ enum UniqueSelectors {
 export class CheckTheApplication {
   public static async checkTheApplication({
     page,
-    browser,
-    caseRef,
-    accessibilityTest,
     isApplicant,
-    applicationSubmittedBy,
   }: checkTheApplicationParams): Promise<void> {
-    const caseUser: CaseUser = isApplicant ? "applicant" : "respondent";
-    page = await ActivateCase.activateCase({
-      page,
-      browser,
-      caseRef,
-      caseUser,
-      accessibilityTest,
-      applicationSubmittedBy,
-      isManualSOA: true,
-    });
     if (isApplicant) {
       await page.click(UniqueSelectors.yourApplicationApplicant);
     } else {
