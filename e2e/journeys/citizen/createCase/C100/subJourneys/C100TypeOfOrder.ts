@@ -15,6 +15,7 @@ export class C100TypeOfOrder {
     accessibilityTest,
     errorMessaging,
   }: C100TypeOfOrderOptions): Promise<void> {
+    //REMOVED AS PART OF 1712 - TO BE RAN AGAINST ALL THE FACT CHANGES COMBINED
     await SelectCourtOrderPage.selectCourtOrderPage({
       page: page,
       accessibilityTest: accessibilityTest,
