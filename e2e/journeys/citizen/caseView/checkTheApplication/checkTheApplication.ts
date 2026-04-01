@@ -38,7 +38,7 @@ export class CheckTheApplication {
         ).toBeVisible();
         await expect(page.getByText("Date order made")).toBeVisible();
         await expect(
-          page.getByRole("link", { name: "Power_of_arrest.pdf" }),
+          page.getByRole("link", { name: "Power_of_arrest.pdf", exact: true }),
         ).toBeVisible();
         await expect(
           page.getByRole("link", { name: "Welsh_Power_of_arrest.pdf" }),
@@ -79,9 +79,7 @@ export class CheckTheApplication {
     await expect(
       page.getByText("View all documents", { exact: true }),
     ).toBeVisible();
-    await expect(
-      page.getByRole("heading", { name: "Your served application pack" }),
-    ).toBeVisible();
+    await expect(page.getByText("Your served application pack")).toBeVisible();
     await expect(
       page.getByText(
         "You should read the cover letter first as this tells you what to do next. The cover letter also gives you more information on the other documents in your pack and what you need to do with them.",
