@@ -2,19 +2,19 @@ import Config from "../../../../../utils/config.utils.ts";
 import { Helpers } from "../../../../../common/helpers.ts";
 import { CheckTheApplication } from "../../../../../journeys/citizen/caseView/checkTheApplication/checkTheApplication.ts";
 import { test } from "../../../../fixtures.ts";
+import { ActivateCase } from "../../../../../journeys/citizen/activateCase/activateCase.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("Respondent confirm contact details tests - Solicitor created application", (): void => {
-  test.slow();
-  let ccdRef: string;
+  let caseRef: string;
 
   test.beforeEach(async ({ page, browser, caseEventUtils }) => {
-    ccdRef = await caseEventUtils.createDACase(browser);
+    caseRef = await caseEventUtils.createDACase(browser);
     await Helpers.goToCase(
       page,
       Config.manageCasesBaseURLCase,
-      ccdRef,
+      caseRef,
       "tasks",
     );
   });
@@ -23,11 +23,19 @@ test.describe("Respondent confirm contact details tests - Solicitor created appl
     page,
     browser,
   }): Promise<void> => {
-    await CheckTheApplication.checkTheApplication({
+    // activate case
+    await ActivateCase.activateCase({
       page,
       browser,
-      caseRef: ccdRef,
-      accessibilityTest: true,
+      caseRef,
+      caseUser: "respondent",
+      accessibilityTest: false,
+      applicationSubmittedBy: "Solicitor",
+      isManualSOA: true,
+    });
+
+    await CheckTheApplication.checkTheApplication({
+      page,
       isApplicant: false,
       applicationSubmittedBy: "Solicitor",
     });

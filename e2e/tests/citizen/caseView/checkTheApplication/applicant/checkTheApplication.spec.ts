@@ -29,6 +29,7 @@ test.describe("Applicant confirm contact details tests", (): void => {
     await CheckTheApplication.checkTheApplication({
       page,
       isApplicant: true,
+      applicationSubmittedBy: "Citizen",
     });
   });
 });
