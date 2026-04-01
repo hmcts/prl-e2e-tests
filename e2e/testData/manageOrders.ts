@@ -1,9 +1,8 @@
 import { ChildArrangementsCreateOrderParams } from "../tests/manageCases/caseProgression/orders/C100/createAnOrder/caseWorker/createChildArrangementsOrder.spec.js";
 import { AmendedDischargedVariedOrderParams } from "../tests/manageCases/caseProgression/orders/FL401/createAnOrder/caseWorker/createAmendedDischargedOrVariedOrder.spec.js";
 import { OccupationOrderParams } from "../tests/manageCases/caseProgression/orders/FL401/createAnOrder/caseWorker/createOccupationOrder.spec.js";
-import {
-  C43A45AUploadOrderParams
-} from "../tests/manageCases/caseProgression/orders/C100/uploadAnOrder/uploadChildArrangementsOrderCaseworker.spec.js";
+import { C43A45AUploadOrderParams } from "../tests/manageCases/caseProgression/orders/C100/uploadAnOrder/uploadChildArrangementsOrderCaseworker.spec.js";
+import { DomesticAbuseUploadOrderParams } from "../tests/manageCases/caseProgression/orders/FL401/uploadAnOrder/uploadDomesticAbuseOrderCaseworker.spec.ts";
 
 export const ChildArrangementsCreateOrderScenarios: ChildArrangementsCreateOrderParams[] =
   [
@@ -551,3 +550,102 @@ export const C43A45AUploadOrderScenarios: C43A45AUploadOrderParams[] = [
     ],
   },
 ];
+export const FL404AFL406UploadOrderScenarios: DomesticAbuseUploadOrderParams[] =
+  [
+    {
+      name: "No to all",
+      caseType: "FL401",
+      orderType: "Non-molestation order (FL404A)",
+      orderOption: "upload order",
+      isUploadAnOrder: true,
+      isOrderByConsent: false,
+      manageOrder5Params: {
+        orderType: "Non-molestation order (FL404A)",
+        isOrderByConsent: undefined,
+        wasOrderApprovedAtAHearing: false,
+        hearing: undefined,
+        judgeOrMagistratesTitle: "His Honour Judge",
+        judgeFullName: "Test judge name",
+        justicesLegalAdviserFullName: undefined,
+        dateOrderMade: undefined, // already pre-populated
+        isOrderAboutTheChildren: false,
+        recitalsAndPreamble: undefined,
+        directions: undefined,
+      },
+      manageOrder24Params: {
+        checkOption: "managerCheck", ////options passed could be either noCheck or judgeOrLegalAdvisorCheck or managerCheck
+        judgeOrLegalAdviser: undefined, ///options judge, legalAdvisor
+        judgeName: undefined,
+      },
+      manageOrder26Params: {
+        orderType: undefined, ////options passed could be either Interim, General or Final
+        serveOrderNow: false,
+        whatToDoWithOrder: undefined, ////finalizeSaveToServeLater or saveAsDraft
+      },
+      snapshotName: "FL404A-upload-order-no-to-all",
+      snapshotsPath: ["caseProgression", "orders", "domesticAbuseUploadOrders"],
+      orderInformation: [
+        {
+          typeOfOrder: "Non-molestation order (FL404A)",
+          englishDocument: "mockFile.pdf",
+          otherDetails: {
+            orderMadeBy: "Test judge name",
+            orderCreatedBy:
+              process.env.MANAGE_CASES_TEST_ENV === "demo"
+                ? "PRL Demo Swansea HCA"
+                : "PRL AAT AM Swansea HCA",
+            status: "Created by Admin",
+          },
+          isOrderAboutChildren: false,
+        },
+      ],
+    },
+    {
+      name: "Yes to all",
+      caseType: "FL401",
+      orderType: "Power of arrest (FL406)",
+      orderOption: "upload order",
+      isUploadAnOrder: true,
+      isOrderByConsent: true,
+      manageOrder5Params: {
+        orderType: "Power of arrest (FL406)",
+        isOrderByConsent: undefined,
+        wasOrderApprovedAtAHearing: true,
+        hearing: "No hearings available",
+        judgeOrMagistratesTitle: "His Honour Judge",
+        judgeFullName: "Test judge name",
+        justicesLegalAdviserFullName: "Test legal adviser",
+        dateOrderMade: undefined, // already pre-populated
+        isOrderAboutTheChildren: true,
+        allChildrenInOrder: ["Joe Doe", "Simon Anderson"],
+      },
+      manageOrder24Params: {
+        checkOption: "noCheck", ////options passed could be either noCheck or judgeOrLegalAdvisorCheck or managerCheck
+        judgeOrLegalAdviser: undefined, ///options judge, legalAdvisor
+        judgeName: undefined,
+      },
+      manageOrder26Params: {
+        orderType: "Interim", ////options passed could be either Interim, General or Final
+        serveOrderNow: false,
+        whatToDoWithOrder: "Save the order as a draft", ////"Finalise the order, and save to serve later" or "Save the order as a draft"
+      },
+      snapshotName: "FL406-upload-order-yes-to-all",
+      snapshotsPath: ["caseProgression", "orders", "domesticAbuseUploadOrders"],
+      orderInformation: [
+        {
+          typeOfOrder: "Power of arrest (FL406)",
+          englishDocument: "mockFile.pdf",
+          otherDetails: {
+            orderMadeBy: "Test judge name",
+            orderCreatedBy:
+              process.env.MANAGE_CASES_TEST_ENV === "demo"
+                ? "PRL Demo Swansea HCA"
+                : "PRL AAT AM Swansea HCA",
+            status: "Created by Admin",
+          },
+          childrenList: ["Joe Doe", "Simon Anderson"],
+          isOrderAboutChildren: true,
+        },
+      ],
+    },
+  ];
