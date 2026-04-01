@@ -24,7 +24,7 @@ test.describe("Respondent confirm contact details tests - Solicitor created appl
     browser,
   }): Promise<void> => {
     // activate case
-    await ActivateCase.activateCase({
+    page = await ActivateCase.activateCase({
       page,
       browser,
       caseRef,
