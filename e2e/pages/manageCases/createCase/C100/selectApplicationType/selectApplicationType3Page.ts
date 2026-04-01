@@ -123,26 +123,26 @@ export class selectApplicationType3Page {
   ): Promise<void> {
     switch (permissionSelection) {
       case "Yes":
+        await page.click(`${PageIDs.yes}`);
+        await page.click(`${PageIDs.yesFollowingQuestion}`);
         await Promise.all([
-          Helpers.checkVisibleAndPresent(
-            page,
-            `${Selectors.GovukFormLabel}:text-is("${SelectApplicationType3Content.giveDetailsTextbox}")`,
-            1,
-          ),
           Helpers.checkGroup(
             page,
             3,
             SelectApplicationType3Content,
             "conditionalText",
-            `${Selectors.GovukFormLabel}`,
+            `${Selectors.Span}`,
+          ),
+          Helpers.checkVisibleAndPresent(
+            page,
+            `${Selectors.GovukFormLabel}:text-is("${SelectApplicationType3Content.giveDetailsTextbox}")`,
+            1,
           ),
         ]);
-        await page.click(`${PageIDs.yes}`);
         await page.fill(
           `${PageIDs.yesTextbox1}`,
           `${SelectApplicationType3Content.textbox1}`,
         );
-        await page.click(`${PageIDs.yesFollowingQuestion}`);
         await page.fill(
           `${PageIDs.yesTextbox2}`,
           `${SelectApplicationType3Content.textbox2}`,
@@ -161,7 +161,7 @@ export class selectApplicationType3Page {
             3,
             SelectApplicationType3Content,
             "conditionalText",
-            `${Selectors.GovukFormLabel}`,
+            `${Selectors.Span}`,
           ),
         ]);
         await page.fill(

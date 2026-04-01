@@ -39,7 +39,7 @@ export class selectApplicationTypeSubmitPage {
     await Promise.all([
       Helpers.checkGroup(
         page,
-        changeAbleFields,
+        6,
         SelectApplicationTypeSubmitContent,
         "text16",
         `${Selectors.GovukText16}`,
