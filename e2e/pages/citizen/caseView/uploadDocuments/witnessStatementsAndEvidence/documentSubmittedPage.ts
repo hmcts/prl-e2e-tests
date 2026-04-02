@@ -33,6 +33,4 @@ export class DocumentSubmittedPage {
       .getByRole("button", { name: DocumentSubmittedContent.button })
       .click();
   }
-
-  // TODO: validate doc has been uploaded via API request??
 }

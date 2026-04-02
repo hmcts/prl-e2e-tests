@@ -40,6 +40,12 @@ export interface CaseFlagInfo {
   partyName: string;
 }
 
+export interface CitizenUploadedDocument {
+  uploader: string;
+  category: string;
+  fileName: string;
+}
+
 export class CitizenC100CaseUtils {
   constructor(
     private serviceAuthUtils: ServiceAuthUtils,
@@ -207,7 +213,7 @@ export class CitizenC100CaseUtils {
     });
   }
 
-  public async validateCitizenCreatedCaseFlags(
+  public async fetchCitizenCreatedCaseFlags(
     caseId: string,
     isApplicant: boolean,
   ): Promise<CaseFlagInfo> {
@@ -219,6 +225,20 @@ export class CitizenC100CaseUtils {
       caseFlagName: jsonCaseFlags.details[0].value.name,
       status: jsonCaseFlags.details[0].value.status,
       partyName: jsonCaseFlags.partyName,
+    };
+  }
+
+  public async fetchCitizenUploadedDocuments(
+    caseId: string,
+  ): Promise<CitizenUploadedDocument> {
+    const jsonCaseData = await this.getCaseInfo(caseId);
+    return {
+      uploader: jsonCaseData.data.citizenQuarantineDocsList[0].value.uploadedBy,
+      category:
+        jsonCaseData.data.citizenQuarantineDocsList[0].value.categoryName,
+      fileName:
+        jsonCaseData.data.citizenQuarantineDocsList[0].value
+          .citizenQuarantineDocument.document_filename,
     };
   }
 

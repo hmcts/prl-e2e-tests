@@ -59,7 +59,7 @@ export class ReasonableAdjustments {
     if (needsReasonableAdjustment) {
       // check case flags added via API request for case data - no need to actually go to ExUI
       const caseFlagInfo: CaseFlagInfo =
-        await citizenC100CaseUtils.validateCitizenCreatedCaseFlags(
+        await citizenC100CaseUtils.fetchCitizenCreatedCaseFlags(
           caseRef,
           isApplicant,
         );

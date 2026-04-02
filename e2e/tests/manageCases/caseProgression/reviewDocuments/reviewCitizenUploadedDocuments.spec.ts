@@ -27,6 +27,7 @@ test.describe("Complete Task - Review Documents for DA case tests.", () => {
   test.fixme("Complete Task - Review Documents - Applicant uploaded documents without accessibility test. @nightly", async ({
     page,
     browser,
+    citizenC100CaseUtils,
   }): Promise<void> => {
     await ReviewCitizenUploadedDocuments.reviewCitizenUploadedDocuments({
       page: page,
@@ -37,12 +38,14 @@ test.describe("Complete Task - Review Documents for DA case tests.", () => {
       yesNoNotSureRestrictDocs: "no",
       documentType: "Position statements",
       applicationSubmittedBy: "Citizen",
+      citizenC100CaseUtils: citizenC100CaseUtils,
     });
   });
 
   test.fixme("Complete Task - Review Documents - Respondent uploaded documents without accessibility test. @nightly", async ({
     page,
     browser,
+    citizenC100CaseUtils,
   }): Promise<void> => {
     await ReviewCitizenUploadedDocuments.reviewCitizenUploadedDocuments({
       page: page,
@@ -53,6 +56,7 @@ test.describe("Complete Task - Review Documents for DA case tests.", () => {
       yesNoNotSureRestrictDocs: "no",
       documentType: "Position statements",
       applicationSubmittedBy: "Citizen",
+      citizenC100CaseUtils: citizenC100CaseUtils,
     });
   });
 });

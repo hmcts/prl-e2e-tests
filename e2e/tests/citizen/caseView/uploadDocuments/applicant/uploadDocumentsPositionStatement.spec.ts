@@ -6,6 +6,8 @@ import { ActivateCitizenC100Case } from "../../../../../journeys/citizen/activat
 test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("Applicant upload documents position statement tests", (): void => {
+  let caseRef: string;
+
   test.beforeEach(
     async ({
       page,
@@ -13,7 +15,7 @@ test.describe("Applicant upload documents position statement tests", (): void =>
       idamLoginHelper,
       accessCodeHelper,
     }) => {
-      await ActivateCitizenC100Case.activateCase({
+      caseRef = await ActivateCitizenC100Case.activateCase({
         page,
         citizenC100CaseUtils,
         idamLoginHelper,
@@ -25,11 +27,14 @@ test.describe("Applicant upload documents position statement tests", (): void =>
 
   test("Applicant upload documents position statement page. @regression @accessibility @nightly", async ({
     page,
+    citizenC100CaseUtils,
   }): Promise<void> => {
     await UploadDocumentsPositionStatement.uploadDocumentsPositionStatement({
       page: page,
       accessibilityTest: true,
       yesNoNA: "Yes",
+      citizenC100CaseUtils,
+      caseRef,
     });
   });
 });
