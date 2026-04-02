@@ -1,6 +1,6 @@
 import { CitizenApplicationInfo } from "../utils/citizenC100CaseUtils.js";
 
-// TODO: need to enable for demo environment as well
+// TODO: need to enable data for demo environment as well [TICKET_NUMBER]
 
 export const issueAndSendToLocalCourtEventData = {
   data: {
