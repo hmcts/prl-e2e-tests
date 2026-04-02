@@ -4,6 +4,7 @@ import { defineConfig } from "@playwright/test";
 export default defineConfig({
   testDir: "./e2e/tests",
   ...CommonConfig.recommended,
+  reporter: [["line"], ["allure-playwright"]],
   timeout: 6 * 60 * 1000,
   expect: {
     timeout: 20000,

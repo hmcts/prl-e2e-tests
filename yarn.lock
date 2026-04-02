@@ -1957,7 +1957,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@playwright/test@npm:^1.57.0":
+"@playwright/test@npm:^1.58.2":
   version: 1.58.2
   resolution: "@playwright/test@npm:1.58.2"
   dependencies:
@@ -2834,6 +2834,31 @@ __metadata:
   languageName: node
   linkType: hard
 
+"allure-js-commons@npm:3.5.0, allure-js-commons@npm:^3.5.0":
+  version: 3.5.0
+  resolution: "allure-js-commons@npm:3.5.0"
+  dependencies:
+    md5: "npm:^2.3.0"
+  peerDependencies:
+    allure-playwright: 3.5.0
+  peerDependenciesMeta:
+    allure-playwright:
+      optional: true
+  checksum: 10c0/8fba36778dcaeda142701b0ce75b12333c23f6baf595386779d73bc8199c31a2c7d805bb38d22be7821e009727bfa6c2b313466e979f76834e1ffd0e3ebc4f7f
+  languageName: node
+  linkType: hard
+
+"allure-playwright@npm:^3.5.0":
+  version: 3.5.0
+  resolution: "allure-playwright@npm:3.5.0"
+  dependencies:
+    allure-js-commons: "npm:3.5.0"
+  peerDependencies:
+    "@playwright/test": ">=1.53.0"
+  checksum: 10c0/e095b66e119a7cd6b339d1f96d528e243799076831f1a6b6c89fac658b04a62e78f91fdc36b3c0f333662c5eafe0350288e366b5173b6f610a572d32f6864037
+  languageName: node
+  linkType: hard
+
 "ansi-colors@npm:^4.1.1":
   version: 4.1.3
   resolution: "ansi-colors@npm:4.1.3"
@@ -3275,6 +3300,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"charenc@npm:0.0.2":
+  version: 0.0.2
+  resolution: "charenc@npm:0.0.2"
+  checksum: 10c0/a45ec39363a16799d0f9365c8dd0c78e711415113c6f14787a22462ef451f5013efae8a28f1c058f81fc01f2a6a16955f7a5fd0cd56247ce94a45349c89877d8
+  languageName: node
+  linkType: hard
+
 "chownr@npm:^3.0.0":
   version: 3.0.0
   resolution: "chownr@npm:3.0.0"
@@ -3455,6 +3487,13 @@ __metadata:
     shebang-command: "npm:^2.0.0"
     which: "npm:^2.0.1"
   checksum: 10c0/053ea8b2135caff68a9e81470e845613e374e7309a47731e81639de3eaeb90c3d01af0e0b44d2ab9d50b43467223b88567dfeb3262db942dc063b9976718ffc1
+  languageName: node
+  linkType: hard
+
+"crypt@npm:0.0.2":
+  version: 0.0.2
+  resolution: "crypt@npm:0.0.2"
+  checksum: 10c0/adbf263441dd801665d5425f044647533f39f4612544071b1471962209d235042fb703c27eea2795c7c53e1dfc242405173003f83cf4f4761a633d11f9653f18
   languageName: node
   linkType: hard
 
@@ -4807,6 +4846,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"is-buffer@npm:~1.1.6":
+  version: 1.1.6
+  resolution: "is-buffer@npm:1.1.6"
+  checksum: 10c0/ae18aa0b6e113d6c490ad1db5e8df9bdb57758382b313f5a22c9c61084875c6396d50bbf49315f5b1926d142d74dfb8d31b40d993a383e0a158b15fea7a82234
+  languageName: node
+  linkType: hard
+
 "is-core-module@npm:^2.16.1":
   version: 2.16.1
   resolution: "is-core-module@npm:2.16.1"
@@ -5722,6 +5768,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"md5@npm:^2.3.0":
+  version: 2.3.0
+  resolution: "md5@npm:2.3.0"
+  dependencies:
+    charenc: "npm:0.0.2"
+    crypt: "npm:0.0.2"
+    is-buffer: "npm:~1.1.6"
+  checksum: 10c0/14a21d597d92e5b738255fbe7fe379905b8cb97e0a49d44a20b58526a646ec5518c337b817ce0094ca94d3e81a3313879c4c7b510d250c282d53afbbdede9110
+  languageName: node
+  linkType: hard
+
 "merge-stream@npm:^2.0.0":
   version: 2.0.0
   resolution: "merge-stream@npm:2.0.0"
@@ -6396,8 +6453,10 @@ __metadata:
     "@axe-core/playwright": "npm:^4.10.0"
     "@eslint/js": "npm:^10.0.0"
     "@hmcts/playwright-common": "npm:^1.0.39"
-    "@playwright/test": "npm:^1.57.0"
+    "@playwright/test": "npm:^1.58.2"
     "@types/node": "npm:^24.0.0"
+    allure-js-commons: "npm:^3.5.0"
+    allure-playwright: "npm:^3.5.0"
     axios: "npm:^1.7.4"
     dotenv: "npm:^17.0.0"
     eslint: "npm:^10.0.0"
