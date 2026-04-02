@@ -79,6 +79,18 @@ export class CheckTheApplication {
     await expect(
       page.getByText("View all documents", { exact: true }),
     ).toBeVisible();
+    if (!isApplicant && applicationSubmittedBy === "Solicitor") {
+      // solicitor application respondents title is in a different structure for some reason
+      await expect(
+        page.getByRole("heading", {
+          name: "View all documents Your served application pack",
+        }),
+      ).toBeVisible();
+    } else {
+      await expect(
+        page.getByRole("heading", { name: "Your served application pack" }),
+      ).toBeVisible();
+    }
     await expect(page.getByText("Your served application pack")).toBeVisible();
     await expect(
       page.getByText(
