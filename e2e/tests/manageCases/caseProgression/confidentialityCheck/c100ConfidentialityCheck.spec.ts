@@ -4,7 +4,7 @@ import { Helpers } from "../../../../common/helpers.ts";
 import { ConfidentialityCheck } from "../../../../journeys/manageCases/caseProgression/confidentilityCheck/confidentialityCheck.ts";
 
 test.use({ storageState: config.sessionStoragePath + "caseManager.json" });
-// TEST COMMENT
+
 test.describe("Confidentiality check task for CA Solicitor case tests.", () => {
   let ccdRef: string = "";
   test.beforeEach(async ({ page, browser, caseEventUtils }) => {
