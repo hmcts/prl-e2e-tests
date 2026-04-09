@@ -104,7 +104,8 @@ export async function c100CompleteEventsUpToServiceOfApplication(
     solicitorCaseCreateType: "C100",
     isUploadOrder: false,
     checkOption: "noCheck", //options passed could be either noCheck or judgeOrLegalAdvisorCheck or managerCheck
-    serveOrderNow: true, //select to serve order instantly
+    serveOrderNow: true, //select to serve order instantly,
+    caseNumber: caseRef,
   });
 
   const caseEventUtils = new CaseEventUtils();

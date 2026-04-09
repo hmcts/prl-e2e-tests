@@ -1,7 +1,11 @@
 import { test } from "../../../../../fixtures.ts";
 import config from "../../../../../../utils/config.utils.js";
 import { C43A45AUploadOrderScenarios } from "../../../../../../testData/manageOrders.js";
-import { manageOrdersOptions, OrderTypes, solicitorCaseCreateType } from "../../../../../../common/types.js";
+import {
+  manageOrdersOptions,
+  OrderTypes,
+  solicitorCaseCreateType,
+} from "../../../../../../common/types.js";
 import { OrderInformation } from "../../../../../../pageObjects/pages/exui/caseView/draftOrders.po.js";
 import { ManageOrder5Params } from "../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder5.po.js";
 import { ManageOrder24Params } from "../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder24.po.js";
@@ -25,7 +29,8 @@ test.describe("'Upload an C100 order' by Case Worker via the 'Manage order' even
 
   test.beforeEach(
     async ({ caseWorker, browser, caseEventUtils, navigationUtils }) => {
-      caseNumber = await caseEventUtils.createCACaseIssueAndSendToLocalCourt(browser);
+      caseNumber =
+        await caseEventUtils.createCACaseIssueAndSendToLocalCourt(browser);
       await navigationUtils.goToCase(
         caseWorker.page,
         config.manageCasesBaseURLCase,
@@ -39,9 +44,8 @@ test.describe("'Upload an C100 order' by Case Worker via the 'Manage order' even
     (uploadOrderParams: C43A45AUploadOrderParams) => {
       test(`CA 'Upload an order - ' : ${uploadOrderParams.orderType} as a CaseWorker with the following options:${uploadOrderParams.name} @regression @nightly @visual`, async ({
         caseWorker,
-        navigationUtils,
-        }): Promise<void> => {
-        const { manageOrders, summaryPage } = caseWorker;
+      }): Promise<void> => {
+        const { manageOrders, summaryPage, draftedOrders } = caseWorker;
 
         await summaryPage.chooseEventFromDropdown("Manage orders");
         await manageOrders.manageOrder1Page.assertPageContents();
@@ -55,7 +59,7 @@ test.describe("'Upload an C100 order' by Case Worker via the 'Manage order' even
         await manageOrders.manageOrder3Page.selectOrderTypeAndConsent(
           uploadOrderParams.orderType,
           uploadOrderParams.isOrderByConsent,
-        )
+        );
         await manageOrders.manageOrder3Page.clickContinue();
         await manageOrders.manageOrder5Page.assertPageContents(
           uploadOrderParams.isUploadAnOrder,
@@ -89,13 +93,6 @@ test.describe("'Upload an C100 order' by Case Worker via the 'Manage order' even
         );
 
         // check the draft orders tab as court admin
-        await navigationUtils.goToCase(
-          caseWorker.page,
-          config.manageCasesBaseURLCase,
-          caseNumber,
-        );
-
-        const { draftedOrders } = caseWorker;
         await draftedOrders.draftOrdersPage.goToPage();
         await draftedOrders.draftOrdersPage.assertDraftOrders(
           uploadOrderParams.orderInformation,

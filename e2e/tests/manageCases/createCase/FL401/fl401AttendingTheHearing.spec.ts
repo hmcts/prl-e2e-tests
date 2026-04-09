@@ -50,7 +50,7 @@ test.describe("FL401 Create case respondent’s behaviour tests", (): void => {
 test(`FL401 Attending The Hearing Journey with the following options:
   Accessibility testing,
   No error Messaging,
-  Yes to All Options, @accessibility @nightly`, async ({
+  Yes to All Options, @accessibility @luciano`, async ({
   page,
 }): Promise<void> => {
   await Fl401AttendingTheHearing.fl401AttendingTheHearing({

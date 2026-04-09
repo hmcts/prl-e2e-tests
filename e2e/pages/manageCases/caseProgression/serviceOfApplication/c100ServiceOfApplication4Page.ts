@@ -58,9 +58,14 @@ export class C100ServiceOfApplication4Page {
     );
     await pageTitle.waitFor();
     await Promise.all([
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.Span}:text-is("${C100ServiceOfApplication4Content.span}"):visible`,
+        1,
+      ),
       Helpers.checkGroup(
         page,
-        5,
+        4,
         C100ServiceOfApplication4Content,
         "formLabel",
         `${Selectors.GovukFormLabel}`,
