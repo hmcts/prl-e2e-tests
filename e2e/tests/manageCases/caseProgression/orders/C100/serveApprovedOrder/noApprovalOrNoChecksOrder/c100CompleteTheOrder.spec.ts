@@ -29,6 +29,7 @@ test.describe("Complete the Order task for C100 case tests.", () => {
       checkOption: "noCheck", //options passed could be either noCheck or judgeOrLegalAdvisorCheck or managerCheck
       serveOrderNow: true, //select to serve order instantly
       personallyServed: true,
+      caseNumber: ccdRef,
     });
   });
 });
