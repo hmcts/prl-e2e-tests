@@ -1,7 +1,5 @@
 import { CitizenApplicationInfo } from "../utils/citizenC100CaseUtils.js";
 
-// TODO: need to enable data for demo environment as well [TICKET_NUMBER]
-
 export const issueAndSendToLocalCourtEventData = {
   data: {
     courtList: {
@@ -186,16 +184,24 @@ export const manageOrdersEventData = {
     parentName: "John Doe",
     previewOrderDocWelsh: {
       document_url:
-        "http://dm-store-aat.service.core-compute-aat.internal/documents/e964841f-a497-4f3d-af8c-67ff183f8f18",
+        process.env.MANAGE_CASES_TEST_ENV === "demo"
+          ? "http://dm-store-demo.service.core-compute-demo.internal/documents/d9ee0fa9-23fc-4ce7-80e9-1f1716fa1550"
+          : "http://dm-store-aat.service.core-compute-aat.internal/documents/e964841f-a497-4f3d-af8c-67ff183f8f18",
       document_binary_url:
-        "http://dm-store-aat.service.core-compute-aat.internal/documents/e964841f-a497-4f3d-af8c-67ff183f8f18/binary",
+        process.env.MANAGE_CASES_TEST_ENV === "demo"
+          ? "http://dm-store-demo.service.core-compute-demo.internal/documents/d9ee0fa9-23fc-4ce7-80e9-1f1716fa1550/binary"
+          : "http://dm-store-aat.service.core-compute-aat.internal/documents/e964841f-a497-4f3d-af8c-67ff183f8f18/binary",
       document_filename: "Welsh_Parental_Responsibility_Order_C45A_draft.pdf",
     },
     previewOrderDoc: {
       document_url:
-        "http://dm-store-aat.service.core-compute-aat.internal/documents/c5a50165-fbfe-4400-9bae-48111b82a75f",
+        process.env.MANAGE_CASES_TEST_ENV === "demo"
+          ? "http://dm-store-demo.service.core-compute-demo.internal/documents/206b1f5f-1034-4a4c-ac6f-d3862814b36b"
+          : "http://dm-store-aat.service.core-compute-aat.internal/documents/c5a50165-fbfe-4400-9bae-48111b82a75f",
       document_binary_url:
-        "http://dm-store-aat.service.core-compute-aat.internal/documents/c5a50165-fbfe-4400-9bae-48111b82a75f/binary",
+        process.env.MANAGE_CASES_TEST_ENV === "demo"
+          ? "http://dm-store-demo.service.core-compute-demo.internal/documents/206b1f5f-1034-4a4c-ac6f-d3862814b36b/binary"
+          : "http://dm-store-aat.service.core-compute-aat.internal/documents/c5a50165-fbfe-4400-9bae-48111b82a75f/binary",
       document_filename: "Parental_Responsibility_Order_C45A_draft.pdf",
     },
     amendOrderSelectCheckOptions: "noCheck",
@@ -230,9 +236,13 @@ export function buildSOAEventData(citizenSOACaseInfo: CitizenApplicationInfo) {
       },
       specialArrangementsLetter: {
         document_url:
-          "http://dm-store-aat.service.core-compute-aat.internal/documents/5417e28b-d4a0-4c41-8194-d133c50e2297",
+          process.env.MANAGE_CASES_TEST_ENV === "demo"
+            ? "http://dm-store-demo.service.core-compute-demo.internal/documents/da240bb3-848a-4ab9-8eeb-938e195e922d"
+            : "http://dm-store-aat.service.core-compute-aat.internal/documents/5417e28b-d4a0-4c41-8194-d133c50e2297",
         document_binary_url:
-          "http://dm-store-aat.service.core-compute-aat.internal/documents/5417e28b-d4a0-4c41-8194-d133c50e2297/binary",
+          process.env.MANAGE_CASES_TEST_ENV === "demo"
+            ? "http://dm-store-demo.service.core-compute-demo.internal/documents/da240bb3-848a-4ab9-8eeb-938e195e922d/binary"
+            : "http://dm-store-aat.service.core-compute-aat.internal/documents/5417e28b-d4a0-4c41-8194-d133c50e2297/binary",
         document_filename: "Special arrangements letter.docx",
       },
       additionalDocumentsList: [],
