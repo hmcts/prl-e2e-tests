@@ -1,34 +1,34 @@
 import { test } from "../../../../../../fixtures.ts";
 import config from "../../../../../../../utils/config.utils.js";
-import { ChildArrangementsCreateOrderScenarios } from "../../../../../../../testData/manageOrders.js";
+import { SpecialGuardianshipCreateOrderScenarios } from "../../../../../../../testData/manageOrders.js";
 import {
   manageOrdersOptions,
   OrderTypes,
   solicitorCaseCreateType,
 } from "../../../../../../../common/types.js";
 
-import { OrderInformation } from "../../../../../../../pageObjects/pages/exui/caseView/draftOrders.po.js";
+import { OrderInformation } from "../../../../../../../pageObjects/pages/exui/caseView/Orders.po.js";
 import { ManageOrder5Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder5.po.js";
-import { ManageOrder10Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder10.po.js";
-import { ManageOrder19Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder19.po.js";
 import { ManageOrder24Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder24.po.js";
+import { ManageOrder26Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder26.po.js";
+import { ManageOrder28Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder28.po.js";
 
-export interface ChildArrangementsCreateOrderParams {
+export interface SpecialGuardianshipCreateOrderParams {
   name: string;
   caseType: solicitorCaseCreateType;
   orderType: OrderTypes;
   orderOption: manageOrdersOptions;
   isUploadAnOrder: boolean;
   manageOrder5Params: ManageOrder5Params;
-  manageOrder10Params: ManageOrder10Params;
-  manageOrder19Params: ManageOrder19Params;
   manageOrder24Params: ManageOrder24Params;
+  manageOrder26Params: ManageOrder26Params;
+  manageOrder28Params: ManageOrder28Params;
   snapshotName: string;
   snapshotsPath: string[];
   orderInformation: OrderInformation[];
 }
 
-test.describe("Manage Orders - Create a Child arrangements, specific issue or prohibited steps order (C43) order tests", () => {
+test.describe("Manage Orders - Create a Special Guardianship order tests", () => {
   let caseNumber: string = "";
 
   test.beforeEach(
@@ -42,12 +42,12 @@ test.describe("Manage Orders - Create a Child arrangements, specific issue or pr
     },
   );
 
-  ChildArrangementsCreateOrderScenarios.forEach(
-    (manageOrderParams: ChildArrangementsCreateOrderParams) => {
-      test(`Create child arrangements order C43 as case worker with the following options:${manageOrderParams.name} @regression @nightly @visual`, async ({
+  SpecialGuardianshipCreateOrderScenarios.forEach(
+    (manageOrderParams: SpecialGuardianshipCreateOrderParams) => {
+      test(`Create Special Guardianship C43A as case worker with the following options:${manageOrderParams.name} @regression @nightly @visual @check`, async ({
         caseWorker,
       }): Promise<void> => {
-        const { manageOrders, summaryPage, draftedOrders } = caseWorker;
+        const { manageOrders, summaryPage, Orders } = caseWorker;
 
         await summaryPage.chooseEventFromDropdown("Manage orders");
         await manageOrders.manageOrder1Page.assertPageContents();
@@ -77,23 +77,12 @@ test.describe("Manage Orders - Create a Child arrangements, specific issue or pr
         );
         await manageOrders.manageOrder5Page.clickContinue();
 
-        await manageOrders.manageOrder10Page.assertPageContents(
+        await manageOrders.manageOrder11Page.assertPageContents(
           manageOrderParams.orderType,
         );
-        await manageOrders.manageOrder10Page.verifyAccessibility();
-        await manageOrders.manageOrder10Page.selectC43OrderDetails(
-          manageOrderParams.manageOrder10Params,
-        );
-        await manageOrders.manageOrder10Page.clickContinue();
-
-        await manageOrders.manageOrder19Page.assertPageContents(
-          manageOrderParams.orderType,
-        );
-        //await manageOrders.manageOrder19Page.verifyAccessibility();
-        await manageOrders.manageOrder19Page.fillHearingDetails(
-          manageOrderParams.manageOrder19Params,
-        );
-        await manageOrders.manageOrder19Page.clickContinue();
+        await manageOrders.manageOrder11Page.verifyAccessibility();
+        await manageOrders.manageOrder11Page.fillOrderDetails();
+        await manageOrders.manageOrder11Page.clickContinue();
 
         await manageOrders.manageOrder20Page.assertPageContents(
           manageOrderParams.orderType,
@@ -110,6 +99,27 @@ test.describe("Manage Orders - Create a Child arrangements, specific issue or pr
           manageOrderParams.manageOrder24Params,
         );
         await manageOrders.manageOrder24Page.clickContinue();
+        await manageOrders.manageOrder26Page.assertPageContents("C100");
+        await manageOrders.manageOrder26Page.verifyAccessibility();
+        await manageOrders.manageOrder26Page.selectServeOrderOptions(
+          "C100",
+          manageOrderParams.manageOrder26Params,
+        );
+        await manageOrders.manageOrder26Page.clickContinue();
+
+        await manageOrders.manageOrder27Page.assertPageContents(
+          manageOrderParams.orderType,
+        );
+        await manageOrders.manageOrder27Page.verifyAccessibility();
+        await manageOrders.manageOrder27Page.clickContinue();
+
+        await manageOrders.manageOrder28Page.assertPageContents("C100");
+        await manageOrders.manageOrder28Page.verifyAccessibility();
+        await manageOrders.manageOrder28Page.serveOrderDetails(
+          "C100",
+          manageOrderParams.manageOrder28Params,
+        );
+        await manageOrders.manageOrder28Page.clickContinue();
 
         await manageOrders.manageOrderSubmitPage.assertPageContents(
           manageOrderParams.snapshotsPath,
@@ -122,9 +132,9 @@ test.describe("Manage Orders - Create a Child arrangements, specific issue or pr
           "Manage orders",
         );
 
-        // check the draft orders tab as court admin
-        await draftedOrders.draftOrdersPage.goToPage();
-        await draftedOrders.draftOrdersPage.assertDraftOrders(
+        // check the served orders tab as court admin
+        await Orders.OrdersPage.goToPage();
+        await Orders.OrdersPage.assertOrders(
           manageOrderParams.orderInformation,
         );
       });

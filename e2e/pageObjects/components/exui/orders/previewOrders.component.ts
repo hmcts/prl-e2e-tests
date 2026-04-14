@@ -63,6 +63,10 @@ export class PreviewOrdersComponent {
           "Welsh_Parental_Responsibility_Order_C45A_draft.pdf";
         this.englishPdfLink = "Parental_Responsibility_Order_C45A_draft.pdf";
         break;
+      case "Special guardianship order (C43A)":
+        this.welshPdfLink = "Welsh_Special_Guardianship_Order_C43A_Draft.pdf";
+        this.englishPdfLink = "Special_Guardianship_Order_C43A_Draft.pdf";
+        break;
       case "Non-molestation order (FL404A)":
         this.welshPdfLink = "welsh_non_molestation_order_fl404a_draft.pdf";
         this.englishPdfLink = "non_molestation_order_fl404a_draft.pdf";

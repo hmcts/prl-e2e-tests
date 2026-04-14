@@ -1,7 +1,7 @@
 import { Browser, expect, Page } from "@playwright/test";
 import Config from "../../../../utils/config.utils.js";
 import { NonMolestationDraftOrderParams } from "../../../../tests/manageCases/caseProgression/orders/FL401/createAnOrder/solicitor/draftAnOrderNonMolestation.spec.js";
-import { ParentalResponsibilityDraftOrderParams } from "../../../../tests/manageCases/caseProgression/orders/C100/createAnOrder/solicitor/draftAnOrderParentalResponsibility.spec.js";
+import { ParentalResponsibilityDraftOrderParams } from "../../../../tests/manageCases/caseProgression/orders/C100/createAnOrder/solicitor/draftAnParentalResponsibilityOrder.spec.js";
 import { SummaryPage } from "../../../../pageObjects/pages/exui/caseView/summary.po.js";
 import { DraftAnOrder5Page } from "../../../../pageObjects/pages/exui/orders/draftOrders/draftAnOrder5.po.js";
 import { DraftAnOrder20Page } from "../../../../pageObjects/pages/exui/orders/draftOrders/draftAnOrder20.po.js";
