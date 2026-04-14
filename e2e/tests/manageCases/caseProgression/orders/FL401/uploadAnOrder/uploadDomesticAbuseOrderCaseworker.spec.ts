@@ -83,9 +83,10 @@ test.describe("'Upload an order' by Case Worker via the 'Create/upload draft ord
         await manageOrders.manageOrder24Page.clickContinue();
 
         if (uploadOrderParams.manageOrder24Params.checkOption === "noCheck") {
-          await manageOrders.manageOrder26Page.assertPageContents();
+          await manageOrders.manageOrder26Page.assertPageContents("FL401");
           await manageOrders.manageOrder26Page.verifyAccessibility();
           await manageOrders.manageOrder26Page.selectServeOrderOptions(
+            "FL401",
             uploadOrderParams.manageOrder26Params,
           );
           await manageOrders.manageOrder26Page.clickContinue();

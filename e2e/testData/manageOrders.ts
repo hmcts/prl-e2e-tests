@@ -3,6 +3,7 @@ import { AmendedDischargedVariedOrderParams } from "../tests/manageCases/casePro
 import { OccupationOrderParams } from "../tests/manageCases/caseProgression/orders/FL401/createAnOrder/caseWorker/createOccupationOrder.spec.js";
 import { C43A45AUploadOrderParams } from "../tests/manageCases/caseProgression/orders/C100/uploadAnOrder/uploadChildArrangementsOrderCaseworker.spec.js";
 import { DomesticAbuseUploadOrderParams } from "../tests/manageCases/caseProgression/orders/FL401/uploadAnOrder/uploadDomesticAbuseOrderCaseworker.spec.ts";
+import { SpecialGuardianshipCreateOrderParams } from "../tests/manageCases/caseProgression/orders/C100/createAnOrder/caseWorker/createSpecialGuardianshipOrder.spec.js";
 
 export const ChildArrangementsCreateOrderScenarios: ChildArrangementsCreateOrderParams[] =
   [
@@ -579,6 +580,8 @@ export const FL404AFL406UploadOrderScenarios: DomesticAbuseUploadOrderParams[] =
       },
       manageOrder26Params: {
         orderType: undefined, ////options passed could be either Interim, General or Final
+        cafcassReport: undefined,
+        cafcassInvolvement: undefined,
         serveOrderNow: false,
         whatToDoWithOrder: undefined, ////finalizeSaveToServeLater or saveAsDraft
       },
@@ -626,6 +629,8 @@ export const FL404AFL406UploadOrderScenarios: DomesticAbuseUploadOrderParams[] =
       },
       manageOrder26Params: {
         orderType: "Interim", ////options passed could be either Interim, General or Final
+        cafcassReport: undefined,
+        cafcassInvolvement: undefined,
         serveOrderNow: false,
         whatToDoWithOrder: "Save the order as a draft", ////"Finalise the order, and save to serve later" or "Save the order as a draft"
       },
@@ -645,6 +650,151 @@ export const FL404AFL406UploadOrderScenarios: DomesticAbuseUploadOrderParams[] =
           },
           childrenList: ["Joe Doe", "Simon Anderson"],
           isOrderAboutChildren: true,
+        },
+      ],
+    },
+  ];
+export const SpecialGuardianshipCreateOrderScenarios: SpecialGuardianshipCreateOrderParams[] =
+  [
+    {
+      name: "No to all",
+      caseType: "C100",
+      orderType: "Special guardianship order (C43A)",
+      orderOption: "create order",
+      isUploadAnOrder: false,
+      manageOrder5Params: {
+        orderType: "Special guardianship order (C43A)",
+        isOrderByConsent: false,
+        wasOrderApprovedAtAHearing: false,
+        hearing: undefined,
+        judgeOrMagistratesTitle: "His Honour Judge",
+        judgeFullName: "Test judge name",
+        justicesLegalAdviserFullName: undefined,
+        dateOrderMade: undefined,
+        isOrderAboutAllTheChildren: false,
+        allChildrenInOrder: [
+          "Joe Doe",
+          "Simon Anderson",
+          "Lilly Anderson",
+          "Charlotte Saxon",
+          "Selena Lees",
+        ],
+        recitalsAndPreamble: undefined,
+        directions: undefined,
+      },
+      manageOrder24Params: {
+        checkOption: "noCheck", ////options passed could be either noCheck or judgeOrLegalAdvisorCheck or managerCheck
+        judgeOrLegalAdviser: undefined,
+        judgeName: undefined,
+      },
+      manageOrder26Params: {
+        orderType: "Interim", ////options passed could be either Interim, General or Final
+        cafcassReport: false,
+        cafcassInvolvement: false,
+        serveOrderNow: true,
+        whatToDoWithOrder: undefined, ////"Finalise the order, and save to serve later" or "Save the order as a draft"
+      },
+      manageOrder28Params: {
+        servePersonally: false,
+        responsibleToServeRespondent: undefined,
+        serveCafcass: false,
+        recipients: ["John Doe (Applicant 1)", "Jeremy Anderson (Applicant 2)"],
+      },
+      snapshotName: "create-order-special-guardianship-no-to-all",
+      snapshotsPath: ["caseProgression", "orders", "specialGuardianshipOrder"],
+      orderInformation: [
+        {
+          Order: "Special guardianship order (C43A)",
+          typeOfOrder: "Interim",
+          welshDocument: "Welsh_Special_Guardianship_Order_C43A.pdf",
+          childrenList: [
+            "Joe Doe",
+            "Simon Anderson",
+            "Lilly Anderson",
+            "Charlotte Saxon",
+            "Selena Lees",
+          ],
+          isOrderAboutAllTheChildren: false,
+          englishDocument: "Special_Guardianship_Order_C43A.pdf",
+          otherDetails: {
+            orderMadeBy: "Test judge name",
+            orderCreatedBy:
+              process.env.MANAGE_CASES_TEST_ENV === "demo"
+                ? "PRL Demo Swansea HCA"
+                : "PRL AAT AM Swansea HCA",
+          },
+          serveOrderDetails: {
+            recipients: ["John Doe", "Jeremy Anderson"],
+            serveCafcass: false,
+          },
+        },
+      ],
+    },
+    {
+      name: "Yes to all",
+      caseType: "C100",
+      orderType: "Special guardianship order (C43A)",
+      orderOption: "create order",
+      isUploadAnOrder: false,
+      manageOrder5Params: {
+        orderType: "Special guardianship order (C43A)",
+        isOrderByConsent: true,
+        wasOrderApprovedAtAHearing: true,
+        hearing: "No hearings available",
+        judgeOrMagistratesTitle: "His Honour Judge",
+        judgeFullName: "Test judge name",
+        justicesLegalAdviserFullName: "Test legal adviser",
+        dateOrderMade: undefined, // already pre-populated
+        isOrderAboutAllTheChildren: true,
+        allChildrenInOrder: undefined,
+        recitalsAndPreamble: "Test recitals",
+        directions: "Test preamble",
+      },
+      manageOrder24Params: {
+        checkOption: "noCheck", ////options passed could be either noCheck or judgeOrLegalAdvisorCheck or managerCheck
+        judgeOrLegalAdviser: undefined, ///options judge, legalAdvisor
+        judgeName: undefined,
+      },
+      manageOrder26Params: {
+        orderType: "Interim", ////options passed could be either Interim, General or Final
+        cafcassReport: true,
+        cafcassInvolvement: true,
+        serveOrderNow: true,
+        whatToDoWithOrder: undefined, ////"Finalise the order, and save to serve later" or "Save the order as a draft"
+      },
+      manageOrder28Params: {
+        servePersonally: true,
+        responsibleToServeRespondent: "Court bailiff",
+        serveCafcass: true,
+        recipients: undefined,
+      },
+      snapshotName: "create-order-special-guardianship-yes-to-all",
+      snapshotsPath: ["caseProgression", "orders", "specialGuardianshipOrder"],
+      orderInformation: [
+        {
+          Order: "Special guardianship order (C43A)",
+          typeOfOrder: "Interim",
+          welshDocument: "Welsh_Special_Guardianship_Order_C43A.pdf",
+          childrenList: [
+            "Joe Doe",
+            "Simon Anderson",
+            "Lilly Anderson",
+            "Charlotte Saxon",
+            "Selena Lees",
+          ],
+          isOrderAboutAllTheChildren: true,
+          englishDocument: "Special_Guardianship_Order_C43A.pdf",
+          otherDetails: {
+            orderMadeBy: "Test judge name",
+            orderCreatedBy:
+              process.env.MANAGE_CASES_TEST_ENV === "demo"
+                ? "PRL Demo Swansea HCA"
+                : "PRL AAT AM Swansea HCA",
+          },
+          serveOrderDetails: {
+            recipients: ["Legal Solicitor (Applicant's legal representative)"],
+            serveCafcass: true,
+          },
         },
       ],
     },
