@@ -94,7 +94,7 @@ export class DraftOrdersPage extends CaseAccessViewPage {
       if (draftOrder.otherDetails.orderMadeBy) {
         await this.assertTableRow(
           draftOrderTable,
-          "Type of order",
+          "Order made by",
           draftOrder.otherDetails.orderMadeBy,
         );
       }
