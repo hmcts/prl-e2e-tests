@@ -42,7 +42,7 @@ test.describe("'Upload an C100 order' by Case Worker via the 'Manage order' even
   //C43A+C45A upload order
   C43A45AUploadOrderScenarios.forEach(
     (uploadOrderParams: C43A45AUploadOrderParams) => {
-      test(`CA 'Upload an order - ' : ${uploadOrderParams.orderType} as a CaseWorker with the following options:${uploadOrderParams.name} @regression @nightly @visual`, async ({
+      test(`CA 'Upload an order - ' : ${uploadOrderParams.orderType} as a CaseWorker with the following options:${uploadOrderParams.name} @regression @nightly @visual @customRun`, async ({
         caseWorker,
       }): Promise<void> => {
         const { manageOrders, summaryPage, draftedOrders } = caseWorker;

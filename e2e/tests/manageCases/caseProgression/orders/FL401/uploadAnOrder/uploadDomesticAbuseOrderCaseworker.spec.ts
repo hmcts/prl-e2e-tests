@@ -43,7 +43,7 @@ test.describe("'Upload an order' by Case Worker via the 'Create/upload draft ord
   //FL404A+FL406 upload order
   FL404AFL406UploadOrderScenarios.forEach(
     (uploadOrderParams: DomesticAbuseUploadOrderParams) => {
-      test(`DA 'Upload an  order - ' : ${uploadOrderParams.orderType} as a Case Worker with the following options:${uploadOrderParams.name} @regression @nightly @visual`, async ({
+      test(`DA 'Upload an  order - ' : ${uploadOrderParams.orderType} as a Case Worker with the following options:${uploadOrderParams.name} @regression @nightly @visual @customRun`, async ({
         caseWorker,
       }): Promise<void> => {
         const { manageOrders, summaryPage, draftedOrders } = caseWorker;

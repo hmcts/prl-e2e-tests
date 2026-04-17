@@ -37,7 +37,7 @@ test.describe("'Upload an order' by Solicitor via the 'Create/upload draft order
   //FL404B+FL404 upload order
   FL404BFL404UploadOrderScenarios.forEach(
     (uploadOrderParams: DomesticAbuseUploadOrderParams) => {
-      test(`DA 'Upload an  order - ' : ${uploadOrderParams.orderType} as a Solicitor with the following options:${uploadOrderParams.name} @regression @nightly @visual`, async ({
+      test(`DA 'Upload an  order - ' : ${uploadOrderParams.orderType} as a Solicitor with the following options:${uploadOrderParams.name} @regression @nightly @visual @customRun`, async ({
         solicitor,
         courtAdminStoke,
         navigationUtils,

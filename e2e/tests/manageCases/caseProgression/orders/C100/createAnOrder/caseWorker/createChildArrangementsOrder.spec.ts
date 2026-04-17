@@ -44,7 +44,7 @@ test.describe("Manage Orders - Create a Child arrangements, specific issue or pr
 
   ChildArrangementsCreateOrderScenarios.forEach(
     (manageOrderParams: ChildArrangementsCreateOrderParams) => {
-      test(`Create child arrangements order C43 as case worker with the following options:${manageOrderParams.name} @regression @nightly @visual`, async ({
+      test(`Create child arrangements order C43 as case worker with the following options:${manageOrderParams.name} @regression @nightly @visual @customRun`, async ({
         caseWorker,
       }): Promise<void> => {
         const { manageOrders, summaryPage, draftedOrders } = caseWorker;

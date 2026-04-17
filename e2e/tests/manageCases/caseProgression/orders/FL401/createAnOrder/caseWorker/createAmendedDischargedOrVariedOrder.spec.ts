@@ -41,7 +41,7 @@ test.describe("Manage Orders - Create a Amended, Discharged Or varied order (FL4
 
   AmendedDischargedVariedOrderScenarios.forEach(
     (manageOrderParams: AmendedDischargedVariedOrderParams) => {
-      test(`Create Amended, Discharged Or varied order (FL404B) as case worker with the following options:${manageOrderParams.name} @regression @nightly @visual`, async ({
+      test(`Create Amended, Discharged Or varied order (FL404B) as case worker with the following options:${manageOrderParams.name} @regression @nightly @visual @customRun`, async ({
         caseWorker,
         navigationUtils,
       }): Promise<void> => {

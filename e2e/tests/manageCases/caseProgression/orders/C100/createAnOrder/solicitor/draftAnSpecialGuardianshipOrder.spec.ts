@@ -36,7 +36,7 @@ test.describe("Draft a special guardianship order tests", (): void => {
   );
 
   SpecialGuardianshipDraftOrderScenarios.forEach((draftOrderParams) => {
-    test(`Complete drafting Special Guardianship order as solicitor with the following options: ${draftOrderParams.name} @accessibility @regression @nightly @visual`, async ({
+    test(`Complete drafting Special Guardianship order as solicitor with the following options: ${draftOrderParams.name} @accessibility @regression @nightly @visual @customRun`, async ({
       solicitor,
       caseWorker,
       navigationUtils,
