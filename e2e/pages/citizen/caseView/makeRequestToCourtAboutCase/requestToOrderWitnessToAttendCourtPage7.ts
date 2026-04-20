@@ -1,7 +1,6 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.ts";
 import { Helpers } from "../../../../common/helpers.ts";
-// import { AxeUtils } from "@hmcts/playwright-common";
 import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 import { RequestToOrderWitnessContent7 } from "../../../../fixtures/citizen/caseView/makeRequestToCourtAboutCase/requestToOrderWitnessContent7.ts";
 
@@ -49,7 +48,7 @@ export class RequestToOrderWitnessToAttendCourtPage7 {
     ]);
 
     if (accessibilityTest) {
-      //   await new AxeUtils(page).audit();
+        // await new AxeUtils(page).audit();  TODO Disabled pending ticket FPVTL-2686
     }
   }
 
