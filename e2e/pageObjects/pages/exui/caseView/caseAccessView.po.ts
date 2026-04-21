@@ -14,6 +14,7 @@ import {
 } from "../../../../common/types.js";
 import { MatTabHeaderComponent } from "../../../components/exui/matTabHeader.component.js";
 import { NotificationBannerComponent } from "../../../components/exui/notificationBanner.component.js";
+import { Selectors } from "../../../../common/selectors.js";
 
 export abstract class CaseAccessViewPage extends Base {
   readonly caseHeader: CcdCaseHeaderComponent = new CcdCaseHeaderComponent(
@@ -46,9 +47,15 @@ export abstract class CaseAccessViewPage extends Base {
       | courtAdminEvents
       | amendEvents,
   ) {
+    await expect(this.page.locator(Selectors.h2, {
+      hasText: "FamilyMan ID",
+    })).toBeVisible();
+    await expect(this.page.locator(Selectors.h2, {
+      hasText: "Casenumber",
+    })).toBeVisible();
     await this.page.waitForLoadState("domcontentloaded");
     await expect(this.page.locator("#next-step")).toBeVisible();
-
+    await this.page.locator("#next-step").click();
     await this.page.selectOption("#next-step", chosenEvent);
 
     await expect(this.goButton).toBeEnabled();
