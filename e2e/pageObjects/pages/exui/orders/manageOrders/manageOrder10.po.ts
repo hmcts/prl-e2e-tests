@@ -36,7 +36,7 @@ export class ManageOrder10Page extends EventPage {
 
   async assertPageContents(orderType: OrderTypes): Promise<void> {
     await this.assertPageHeadings();
-    await expect(this.page.getByText(orderType)).toBeVisible();
+    await expect(this.page.getByText(orderType).first()).toBeVisible();
     await expect(this.heading2).toBeVisible();
     await this.pageUtils.assertStrings(this.orderOptionsFormLabels);
     await expect(this.continueButton).toBeVisible();
