@@ -20,7 +20,7 @@ test.describe("Complete the Order task for CA Solicitor case tests.", () => {
     );
   });
 
-  test("Complete Task - Create a Bundle - Child arrangements, specific issue or prohibited steps order (C43) with accessibility test. @nightly @regression @accessibility @customRun", async ({
+  test("Complete Task - Create a Bundle - Child arrangements, specific issue or prohibited steps order (C43) with accessibility test. @nightly @regression @accessibility", async ({
     page,
     browser,
   }): Promise<void> => {

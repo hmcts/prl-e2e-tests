@@ -44,7 +44,7 @@ test.describe("Manage Orders - Create a Special Guardianship order tests", () =>
 
   SpecialGuardianshipCreateOrderScenarios.forEach(
     (manageOrderParams: SpecialGuardianshipCreateOrderParams) => {
-      test(`Create Special Guardianship C43A as case worker with the following options:${manageOrderParams.name} @regression @nightly @visual @customRun`, async ({
+      test(`Create Special Guardianship C43A as case worker with the following options:${manageOrderParams.name} @regression @nightly @visual`, async ({
         caseWorker,
       }): Promise<void> => {
         const { manageOrders, summaryPage, Orders } = caseWorker;

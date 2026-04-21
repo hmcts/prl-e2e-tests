@@ -43,7 +43,7 @@ test.describe("Manage Orders - Create Occupation Order (FL404) order tests", () 
 
   OccupationOrderScenarios.forEach(
     (manageOrderParams: OccupationOrderParams) => {
-      test(`Create Occupation order (FL404) as case worker with the following options:${manageOrderParams.name} @regression @nightly @visual @customRun`, async ({
+      test(`Create Occupation order (FL404) as case worker with the following options:${manageOrderParams.name} @regression @nightly @visual`, async ({
         caseWorker,
         navigationUtils,
       }): Promise<void> => {

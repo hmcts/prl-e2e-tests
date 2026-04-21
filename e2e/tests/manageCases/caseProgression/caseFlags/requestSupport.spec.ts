@@ -69,7 +69,7 @@ test.describe("FL401 case support request tests.", () => {
       changeReason,
       recipientRole,
     }) => {
-      test("Request support as Solicitor and approve support request as HCA @nightly @accessibility @regression @customRun", async ({
+      test("Request support as Solicitor and approve support request as HCA @nightly @accessibility @regression", async ({
         solicitor,
         caseWorker,
         navigationUtils,

@@ -19,7 +19,7 @@ test.describe("Statement of Service event for CA Solicitor case tests.", () => {
     );
   });
 
-  test("Complete Task - statement of Service - Child arrangements, specific issue or prohibited steps order (C43) with accessibility test. @nightly @regression @accessibility @customRun", async ({
+  test("Complete Task - statement of Service - Child arrangements, specific issue or prohibited steps order (C43) with accessibility test. @nightly @regression @accessibility", async ({
     page,
     browser,
   }): Promise<void> => {

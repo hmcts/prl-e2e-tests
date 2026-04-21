@@ -57,7 +57,7 @@ test.describe("'Upload an order' by Solicitor via the 'Create/upload draft order
   //C43 upload order
   ChildArrangementsUploadOrderScenarios.forEach(
     (uploadOrderParams: ChildArrangementsUploadOrderParams) => {
-      test(`CA 'Upload an C43 order' as a Solicitor with the following options:${uploadOrderParams.name} @regression @nightly @visual @customRun`, async ({
+      test(`CA 'Upload an C43 order' as a Solicitor with the following options:${uploadOrderParams.name} @regression @nightly @visual`, async ({
         solicitor,
         courtAdminStoke,
         navigationUtils,
