@@ -60,7 +60,7 @@ export class C100ServiceOfApplication4Page {
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${ServiceOfApplication2Content.span}"):visible`,
+        `${Selectors.Span}:text-is("${C100ServiceOfApplication4Content.span}"):visible`,
         1,
       ),
       Helpers.checkGroup(

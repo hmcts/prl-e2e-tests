@@ -1221,10 +1221,15 @@ export class ReviewPage {
       ),
       Helpers.checkGroup(
         page,
-        40,
+        39,
         CaJourneyMIAMHearingUrgencyReviewContent,
         "li_",
         Selectors.li,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.updatedLi}")`,
+        2,
       ),
       // Using Selectors.Span for span_ prefixed items
       Helpers.checkVisibleAndPresent(
@@ -1266,10 +1271,15 @@ export class ReviewPage {
       ),
       Helpers.checkGroup(
         page,
-        5,
+        4,
         CaJourneyMIAMHearingUrgencyReviewContent,
         "ul_",
         Selectors.li,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.updatedUl}")`,
+        2,
       ),
       Helpers.checkGroup(
         page,
@@ -1581,10 +1591,15 @@ export class ReviewPage {
         ),
         Helpers.checkGroup(
           page,
-          26,
+          25,
           CaJourneyExistingMIAMReviewContent,
           "li_miam_",
           Selectors.li,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.li}:has-text("${CaJourneyExistingMIAMReviewContent.updatedLi_miam}")`,
+          2,
         ),
         Helpers.checkVisibleAndPresent(
           page,

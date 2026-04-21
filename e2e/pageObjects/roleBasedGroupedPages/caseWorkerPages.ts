@@ -51,6 +51,10 @@ import { ManageOrder12Page } from "../pages/exui/orders/manageOrders/manageOrder
 import { OccupationOrderManageOrders12Page } from "../pages/exui/orders/manageOrders/occupationOrderManageOrder12.po.js";
 import { ManageOrder3Page } from "../pages/exui/orders/manageOrders/manageOrder3.po.js";
 import { ManageOrder26Page } from "../pages/exui/orders/manageOrders/manageOrder26.po.js";
+import { ManageOrder11Page } from "../pages/exui/orders/manageOrders/manageOrder11.po.js";
+import { ManageOrder27Page } from "../pages/exui/orders/manageOrders/manageOrder27.po.js";
+import { ManageOrder28Page } from "../pages/exui/orders/manageOrders/manageOrder28.po.js";
+import { OrdersPage } from "../pages/exui/caseView/Orders.po.js";
 
 export class CaseWorkerPagesGroup {
   constructor(public readonly page: Page) {}
@@ -121,6 +125,11 @@ export class CaseWorkerPagesGroup {
       draftOrdersPage: new DraftOrdersPage(this.page),
     };
   }
+  get Orders() {
+    return {
+      OrdersPage: new OrdersPage(this.page),
+    };
+  }
 
   get removeDraftOrders() {
     return {
@@ -172,6 +181,7 @@ export class CaseWorkerPagesGroup {
       manageOrder3Page: new ManageOrder3Page(this.page),
       manageOrder5Page: new ManageOrder5Page(this.page),
       manageOrder10Page: new ManageOrder10Page(this.page),
+      manageOrder11Page: new ManageOrder11Page(this.page),
       manageOrder12Page: new ManageOrder12Page(this.page),
       occupationOrderManageOrders12Page: new OccupationOrderManageOrders12Page(
         this.page,
@@ -180,6 +190,8 @@ export class CaseWorkerPagesGroup {
       manageOrder20Page: new ManageOrder20Page(this.page),
       manageOrder24Page: new ManageOrder24Page(this.page),
       manageOrder26Page: new ManageOrder26Page(this.page),
+      manageOrder27Page: new ManageOrder27Page(this.page),
+      manageOrder28Page: new ManageOrder28Page(this.page),
       manageOrderSubmitPage: new ManageOrderSubmitPage(this.page),
     };
   }

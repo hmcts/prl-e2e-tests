@@ -50,7 +50,7 @@ interface c100Options {
   applicantGender: ApplicantGender;
   yesNoC100TypeOfApplication: boolean;
   typeOfChildArrangementOrder: typeOfChildArrangementOrderID;
-  selectionC100TypeOfApplication: radioButtons;
+  permissionSelection: radioButtons;
   yesNoRespondentDetails: boolean;
   respondentGender: C100RespondentGender;
   respondentAddress5Years: C100RespondentAddress5Years;
@@ -95,7 +95,7 @@ export class C100 {
     otherPersonLivesInRefuge,
     yesNoC100TypeOfApplication,
     typeOfChildArrangementOrder,
-    selectionC100TypeOfApplication,
+    permissionSelection,
     yesNoRespondentDetails,
     respondentGender,
     respondentAddress5Years,
@@ -138,7 +138,7 @@ export class C100 {
       errorMessaging: errorMessaging,
       yesNoC100TypeOfApplication: yesNoC100TypeOfApplication,
       typeOfChildArrangementOrder: typeOfChildArrangementOrder,
-      selectionC100TypeOfApplication: selectionC100TypeOfApplication,
+      permissionSelection: permissionSelection,
       subJourney: false,
     });
     await C100HearingUrgency.c100HearingUrgency({
@@ -313,7 +313,7 @@ export class C100 {
     otherPersonLivesInRefuge,
     yesNoC100TypeOfApplication,
     typeOfChildArrangementOrder,
-    selectionC100TypeOfApplication,
+    permissionSelection,
     yesNoRespondentDetails,
     respondentGender,
     respondentAddress5Years,
@@ -349,7 +349,7 @@ export class C100 {
       errorMessaging: errorMessaging,
       yesNoC100TypeOfApplication: yesNoC100TypeOfApplication,
       typeOfChildArrangementOrder: typeOfChildArrangementOrder,
-      selectionC100TypeOfApplication: selectionC100TypeOfApplication,
+      permissionSelection: permissionSelection,
       subJourney: false,
     });
     await C100HearingUrgency.c100HearingUrgency({

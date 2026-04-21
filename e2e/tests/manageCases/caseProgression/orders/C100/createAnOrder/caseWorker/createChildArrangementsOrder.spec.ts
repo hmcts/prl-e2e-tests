@@ -46,9 +46,8 @@ test.describe("Manage Orders - Create a Child arrangements, specific issue or pr
     (manageOrderParams: ChildArrangementsCreateOrderParams) => {
       test(`Create child arrangements order C43 as case worker with the following options:${manageOrderParams.name} @regression @nightly @visual`, async ({
         caseWorker,
-        navigationUtils,
       }): Promise<void> => {
-        const { manageOrders, summaryPage } = caseWorker;
+        const { manageOrders, summaryPage, draftedOrders } = caseWorker;
 
         await summaryPage.chooseEventFromDropdown("Manage orders");
         await manageOrders.manageOrder1Page.assertPageContents();
@@ -124,13 +123,6 @@ test.describe("Manage Orders - Create a Child arrangements, specific issue or pr
         );
 
         // check the draft orders tab as court admin
-        await navigationUtils.goToCase(
-          caseWorker.page,
-          config.manageCasesBaseURLCase,
-          caseNumber,
-        );
-
-        const { draftedOrders } = caseWorker;
         await draftedOrders.draftOrdersPage.goToPage();
         await draftedOrders.draftOrdersPage.assertDraftOrders(
           manageOrderParams.orderInformation,

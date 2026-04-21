@@ -110,6 +110,7 @@ export class ServiceOfApplication {
     isUploadOrder,
     serveOrderNow,
     checkOption,
+    ccdRef,
   }: C100ServiceOfApplicationJourneyParams): Promise<void> {
     await CompleteTheOrder.C100completeTheOrder({
       page: page,
@@ -119,6 +120,7 @@ export class ServiceOfApplication {
       isUploadOrder,
       serveOrderNow,
       checkOption,
+      caseNumber: ccdRef,
     });
     await Helpers.chooseEventFromDropdown(page, "Service of application");
     await C100ServiceOfApplication2Page.c100ServiceOfApplication2Page({
