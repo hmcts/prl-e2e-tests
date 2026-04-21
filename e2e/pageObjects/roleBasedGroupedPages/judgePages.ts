@@ -5,6 +5,16 @@ import { SendAndReplyToMessages5Page } from "../pages/exui/sendAndReplyToMessage
 import { SendAndReplyToMessagesConfirmPage } from "../pages/exui/sendAndReplyToMessages/sendAndReplyToMessagesConfirm.po.js";
 import { SendAndReplyToMessagesSubmitPage } from "../pages/exui/sendAndReplyToMessages/sendAndReplyToMessagesSubmit.po.js";
 import { SummaryPage } from "../pages/exui/caseView/summary.po.js";
+import { ManageOrder1Page } from "../pages/exui/orders/manageOrders/manageOrder1.po.js";
+import { ManageOrder2Page } from "../pages/exui/orders/manageOrders/manageOrder2.po.js";
+import { ManageOrder5Page } from "../pages/exui/orders/manageOrders/manageOrder5.po.js";
+import { ManageOrder10Page } from "../pages/exui/orders/manageOrders/manageOrder10.po.js";
+import { ManageOrder20Page } from "../pages/exui/orders/manageOrders/manageOrder20.po.js";
+import { ManageOrderSubmitPage } from "../pages/exui/orders/manageOrders/manageOrderSubmit.po.js";
+import { DraftOrdersPage } from "../pages/exui/caseView/draftOrders.po.js";
+import { ManageOrder4Page } from "../pages/exui/orders/manageOrders/manageOrder4.po.js";
+import { ManageOrder30Page } from "../pages/exui/orders/manageOrders/manageOrder30.po.js";
+import { ManageOrder3Page } from "../pages/exui/orders/manageOrders/manageOrder3.po.js";
 
 export class JudgePagesGroup {
   constructor(public readonly page: Page) {}
@@ -24,6 +34,25 @@ export class JudgePagesGroup {
       sendAndReplyToMessagesSubmitPage: new SendAndReplyToMessagesSubmitPage(
         this.page,
       ),
+    };
+  }
+  get manageOrders() {
+    return {
+      manageOrder1Page: new ManageOrder1Page(this.page),
+      manageOrder2Page: new ManageOrder2Page(this.page),
+      manageOrder3Page: new ManageOrder3Page(this.page),
+      manageOrder4Page: new ManageOrder4Page(this.page),
+      manageOrder5Page: new ManageOrder5Page(this.page),
+      manageOrder10Page: new ManageOrder10Page(this.page),
+      manageOrder20Page: new ManageOrder20Page(this.page),
+      manageOrder30Page: new ManageOrder30Page(this.page),
+
+      manageOrderSubmitPage: new ManageOrderSubmitPage(this.page),
+    };
+  }
+  get draftedOrders() {
+    return {
+      draftOrdersPage: new DraftOrdersPage(this.page),
     };
   }
 }

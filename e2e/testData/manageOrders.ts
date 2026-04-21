@@ -4,6 +4,8 @@ import { OccupationOrderParams } from "../tests/manageCases/caseProgression/orde
 import { C43A45AUploadOrderParams } from "../tests/manageCases/caseProgression/orders/C100/uploadAnOrder/uploadChildArrangementsOrderCaseworker.spec.js";
 import { DomesticAbuseUploadOrderParams } from "../tests/manageCases/caseProgression/orders/FL401/uploadAnOrder/uploadDomesticAbuseOrderCaseworker.spec.ts";
 import { SpecialGuardianshipCreateOrderParams } from "../tests/manageCases/caseProgression/orders/C100/createAnOrder/caseWorker/createSpecialGuardianshipOrder.spec.js";
+import { C21CreateOrderParams } from "../tests/manageCases/caseProgression/orders/C100/createAnOrder/judge/createBlankOrderOrDirectionsOrder.spec.js";
+import { C43UploadOrderParams } from "../tests/manageCases/caseProgression/orders/C100/uploadAnOrder/uploadChildArrangementsOrderJudge.spec.js";
 
 export const ChildArrangementsCreateOrderScenarios: ChildArrangementsCreateOrderParams[] =
   [
@@ -210,9 +212,22 @@ export const AmendedDischargedVariedOrderScenarios: AmendedDischargedVariedOrder
         },
       },
       manageOrder24Params: {
-        checkOption: "judgeOrLegalAdvisorCheck", ////options passed could be either noCheck or judgeOrLegalAdvisorCheck or managerCheck
-        judgeOrLegalAdviser: "judge",
-        judgeName: "Ms Elizabeth Williams",
+        checkOption: "noCheck", ////options passed could be either noCheck or judgeOrLegalAdvisorCheck or managerCheck
+        judgeOrLegalAdviser: undefined,
+        judgeName: undefined,
+      },
+      manageOrder26Params: {
+        orderType: "Interim", ////options passed could be either Interim, General or Final
+        cafcassReport: undefined,
+        cafcassInvolvement: undefined,
+        serveOrderNow: true,
+        whatToDoWithOrder: undefined, ////"Finalise the order, and save to serve later" or "Save the order as a draft"
+      },
+      manageOrder28Params: {
+        servePersonally: false,
+        responsibleToServeRespondent: undefined,
+        serveCafcass: undefined,
+        recipients: ["John Smith(Applicant)", "Elise Lynn (Respondent)"],
       },
       snapshotName: "amended-dischargedOrVaried-order-no-to-all",
       snapshotsPath: [
@@ -222,20 +237,26 @@ export const AmendedDischargedVariedOrderScenarios: AmendedDischargedVariedOrder
       ],
       orderInformation: [
         {
-          typeOfOrder: "Amended, discharged or varied order (FL404B)",
+          Order: "Amended, discharged or varied order (FL404B)",
+          typeOfOrder: "Interim",
           welshDocument:
-            "welsh_amended_discharged_or_varied_order_fl404b_draft.pdf",
+            "welsh_amended_discharged_or_varied_order_fl404b_final.pdf",
+          childrenList: undefined,
+          isOrderAboutChildren: false,
           englishDocument:
-            "amended_discharged_or_varied_order_fl404b_draft.pdf",
+            "amended_discharged_or_varied_order_fl404b_final.pdf",
           otherDetails: {
             orderMadeBy: "Test judge name",
             orderCreatedBy:
               process.env.MANAGE_CASES_TEST_ENV === "demo"
                 ? "PRL Demo Swansea HCA"
                 : "PRL AAT AM Swansea HCA",
-            status: "Created by Admin",
           },
-          isOrderAboutChildren: false,
+          serveOrderDetails: {
+            recipients: ["John Smith", "Elise Lynn"],
+            serveCafcass: undefined,
+            responsibleToServe: undefined,
+          },
         },
       ],
     },
@@ -275,9 +296,22 @@ export const AmendedDischargedVariedOrderScenarios: AmendedDischargedVariedOrder
         },
       },
       manageOrder24Params: {
-        checkOption: "judgeOrLegalAdvisorCheck", ////options passed could be either noCheck or judgeOrLegalAdvisorCheck or managerCheck
-        judgeOrLegalAdviser: "judge", ///options judge, legalAdvisor
-        judgeName: "Ms Elizabeth Williams",
+        checkOption: "noCheck", ////options passed could be either noCheck or judgeOrLegalAdvisorCheck or managerCheck
+        judgeOrLegalAdviser: undefined,
+        judgeName: undefined,
+      },
+      manageOrder26Params: {
+        orderType: "Interim", ////options passed could be either Interim, General or Final
+        cafcassReport: undefined,
+        cafcassInvolvement: undefined,
+        serveOrderNow: true,
+        whatToDoWithOrder: undefined, ////"Finalise the order, and save to serve later" or "Save the order as a draft"
+      },
+      manageOrder28Params: {
+        servePersonally: true,
+        responsibleToServeRespondent: "Court bailiff",
+        serveCafcass: undefined,
+        recipients: undefined,
       },
       snapshotName: "amended-dischargedOrVaried-order-yes-to-all",
       snapshotsPath: [
@@ -287,21 +321,26 @@ export const AmendedDischargedVariedOrderScenarios: AmendedDischargedVariedOrder
       ],
       orderInformation: [
         {
-          typeOfOrder: "Amended, discharged or varied order (FL404B)",
+          Order: "Amended, discharged or varied order (FL404B)",
+          typeOfOrder: "Interim",
           welshDocument:
-            "welsh_amended_discharged_or_varied_order_fl404b_draft.pdf",
+            "welsh_amended_discharged_or_varied_order_fl404b_final.pdf",
+          childrenList: ["Joe Doe", "Simon Anderson"],
+          isOrderAboutChildren: true,
           englishDocument:
-            "amended_discharged_or_varied_order_fl404b_draft.pdf",
+            "amended_discharged_or_varied_order_fl404b_final.pdf",
           otherDetails: {
             orderMadeBy: "Test judge name",
             orderCreatedBy:
               process.env.MANAGE_CASES_TEST_ENV === "demo"
                 ? "PRL Demo Swansea HCA"
                 : "PRL AAT AM Swansea HCA",
-            status: "Created by Admin",
           },
-          childrenList: ["Joe Doe", "Simon Anderson"],
-          isOrderAboutChildren: true,
+          serveOrderDetails: {
+            recipients: ["Legal Solicitor (Applicant's legal representative)"],
+            serveCafcass: undefined,
+            responsibleToServe: "Court bailiff",
+          },
         },
       ],
     },
@@ -726,6 +765,7 @@ export const SpecialGuardianshipCreateOrderScenarios: SpecialGuardianshipCreateO
           serveOrderDetails: {
             recipients: ["John Doe", "Jeremy Anderson"],
             serveCafcass: false,
+            responsibleToServe: undefined,
           },
         },
       ],
@@ -794,8 +834,234 @@ export const SpecialGuardianshipCreateOrderScenarios: SpecialGuardianshipCreateO
           serveOrderDetails: {
             recipients: ["Legal Solicitor (Applicant's legal representative)"],
             serveCafcass: true,
+            responsibleToServe: "Court bailiff",
           },
         },
       ],
     },
   ];
+export const C21CreateOrderScenarios: C21CreateOrderParams[] = [
+  {
+    name: "No to all",
+    caseType: "C100",
+    orderType: "Blank order or directions (C21)",
+    orderOption: "create order",
+    isUploadAnOrder: false,
+    manageOrder4Params: {
+      C21OrderSubType: "Blank order or directions (C21): application refused",
+    },
+    manageOrder5Params: {
+      orderType: "Blank order or directions (C21)",
+      isOrderByConsent: false,
+      wasOrderApprovedAtAHearing: false,
+      hearing: undefined,
+      judgeOrMagistratesTitle: "His Honour Judge",
+      judgeFullName: "Test judge name",
+      justicesLegalAdviserFullName: undefined,
+      dateOrderMade: undefined,
+      isOrderAboutAllTheChildren: false,
+      allChildrenInOrder: [
+        "Joe Doe",
+        "Simon Anderson",
+        "Lilly Anderson",
+        "Charlotte Saxon",
+        "Selena Lees",
+      ],
+      recitalsAndPreamble: undefined,
+      directions: undefined,
+    },
+    manageOrder30Params: {
+      serveApplication: false,
+    },
+    snapshotName: "C21-create-order-no-to-all",
+    snapshotsPath: ["caseProgression", "orders", "childArrangementsOrder"],
+    orderInformation: [
+      {
+        typeOfOrder: "Blank order or directions (C21)",
+        welshDocument: "Welsh_Blank_Order_Directions_C21_Draft.pdf",
+        englishDocument: "Blank_Order_Directions_C21_Draft.pdf",
+        otherDetails: {
+          orderMadeBy: "Test judge name",
+          orderCreatedBy: "Elizabeth Williams",
+          status: "Created by Judge",
+        },
+        childrenList: [
+          "Joe Doe (Child 1)",
+          "Simon Anderson (Child 2)",
+          "Lilly Anderson (Child 3)",
+          "Charlotte Saxon (Child 4)",
+          "Selena Lees (Child 5)",
+        ],
+        isOrderAboutAllTheChildren: false,
+      },
+    ],
+  },
+  {
+    name: "Yes to all",
+    caseType: "C100",
+    orderType: "Blank order or directions (C21)",
+    orderOption: "create order",
+    isUploadAnOrder: false,
+    manageOrder4Params: {
+      C21OrderSubType: "Blank order or directions (C21): application refused",
+    },
+    manageOrder5Params: {
+      orderType: "Blank order or directions (C21)",
+      isOrderByConsent: true,
+      wasOrderApprovedAtAHearing: true,
+      hearing: "No hearings available",
+      judgeOrMagistratesTitle: "His Honour Judge",
+      judgeFullName: "Test judge name",
+      justicesLegalAdviserFullName: "Test legal adviser",
+      dateOrderMade: undefined, // already pre-populated
+      isOrderAboutAllTheChildren: true,
+      allChildrenInOrder: undefined,
+      recitalsAndPreamble: "Test recitals",
+      directions: "Test preamble",
+    },
+    manageOrder30Params: {
+      serveApplication: true,
+    },
+    snapshotName: "C21-create-order-yes-to-all",
+    snapshotsPath: ["caseProgression", "orders", "childArrangementsOrder"],
+    orderInformation: [
+      {
+        typeOfOrder: "Blank order or directions (C21)",
+        welshDocument: "Welsh_Blank_Order_Directions_C21_Draft.pdf",
+        englishDocument: "Blank_Order_Directions_C21_Draft.pdf",
+        otherDetails: {
+          orderMadeBy: "Test judge name",
+          orderCreatedBy: "Elizabeth Williams",
+          status: "Created by Judge",
+        },
+        childrenList: [
+          "Joe Doe (Child 1)",
+          "Simon Anderson (Child 2)",
+          "Lilly Anderson (Child 3)",
+          "Charlotte Saxon (Child 4)",
+          "Selena Lees (Child 5)",
+        ],
+        isOrderAboutAllTheChildren: true,
+      },
+    ],
+  },
+];
+export const C43UploadOrderScenarios: C43UploadOrderParams[] = [
+  {
+    name: "No to all",
+    caseType: "C100",
+    orderType:
+      "Child arrangements, specific issue or prohibited steps order (C43)",
+    orderOption: "upload order",
+    isUploadAnOrder: true,
+    isOrderByConsent: false,
+    manageOrder5Params: {
+      orderType:
+        "Child arrangements, specific issue or prohibited steps order (C43)",
+      isOrderByConsent: undefined,
+      wasOrderApprovedAtAHearing: false,
+      hearing: undefined,
+      judgeOrMagistratesTitle: "His Honour Judge",
+      judgeFullName: "Test judge name",
+      justicesLegalAdviserFullName: undefined,
+      dateOrderMade: undefined, // already pre-populated
+      isOrderAboutAllTheChildren: false,
+      allChildrenInOrder: [
+        "Joe Doe",
+        "Simon Anderson",
+        "Lilly Anderson",
+        "Charlotte Saxon",
+        "Selena Lees",
+      ],
+      recitalsAndPreamble: undefined,
+      directions: undefined,
+    },
+    manageOrder10Params: {
+      childArrangementOrderType: "Spend time with order",
+      allC43OrdersSubType: [
+        "Child Arrangements Order",
+        "Prohibited Steps Order",
+        "Specific Issue Order",
+      ],
+    },
+    manageOrder30Params: {
+      serveApplication: false,
+    },
+    snapshotName: "C43-upload-order-no-to-all",
+    snapshotsPath: ["caseProgression", "orders", "childArrangementsOrder"],
+    orderInformation: [
+      {
+        typeOfOrder:
+          "Child arrangements, specific issue or prohibited steps order (C43)",
+        englishDocument: "mockFile.pdf",
+        otherDetails: {
+          orderMadeBy: "Test judge name",
+          orderCreatedBy: "Elizabeth Williams",
+          status: "Created by Judge",
+        },
+        childrenList: [
+          "Joe Doe (Child 1)",
+          "Simon Anderson (Child 2)",
+          "Lilly Anderson (Child 3)",
+          "Charlotte Saxon (Child 4)",
+          "Selena Lees (Child 5)",
+        ],
+        isOrderAboutAllTheChildren: false,
+      },
+    ],
+  },
+  {
+    name: "Yes to all",
+    caseType: "C100",
+    orderType:
+      "Child arrangements, specific issue or prohibited steps order (C43)",
+    orderOption: "upload order",
+    isUploadAnOrder: true,
+    isOrderByConsent: true,
+    manageOrder5Params: {
+      orderType:
+        "Child arrangements, specific issue or prohibited steps order (C43)",
+      isOrderByConsent: undefined,
+      wasOrderApprovedAtAHearing: true,
+      hearing: "No hearings available",
+      judgeOrMagistratesTitle: "His Honour Judge",
+      judgeFullName: "Test judge name",
+      justicesLegalAdviserFullName: "Test legal adviser",
+      dateOrderMade: undefined, // already pre-populated
+      isOrderAboutAllTheChildren: true,
+    },
+    manageOrder10Params: {
+      childArrangementOrderType: "Spend time with order",
+      allC43OrdersSubType: [
+        "Child Arrangements Order",
+        "Prohibited Steps Order",
+        "Specific Issue Order",
+      ],
+    },
+    manageOrder30Params: {
+      serveApplication: false,
+    },
+    snapshotName: "C45A-upload-order-yes-to-all",
+    snapshotsPath: ["caseProgression", "orders", "childArrangementsOrder"],
+    orderInformation: [
+      {
+        typeOfOrder:
+          "Child arrangements, specific issue or prohibited steps order (C43)",
+        englishDocument: "mockFile.pdf",
+        otherDetails: {
+          orderMadeBy: "Test judge name",
+          orderCreatedBy: "Elizabeth Williams",
+          status: "Created by Judge",
+        },
+        childrenList: [
+          "Joe Doe (Child 1)",
+          "Simon Anderson (Child 2)",
+          "Lilly Anderson (Child 3)",
+          "Charlotte Saxon (Child 4)",
+          "Selena Lees (Child 5)",
+        ],
+        isOrderAboutAllTheChildren: false,
+      },
+    ],
+  },
+];

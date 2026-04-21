@@ -78,6 +78,7 @@ test.describe("Manage Orders - Create a Child arrangements, specific issue or pr
         await manageOrders.manageOrder5Page.clickContinue();
 
         await manageOrders.manageOrder10Page.assertPageContents(
+          manageOrderParams.isUploadAnOrder,
           manageOrderParams.orderType,
         );
         await manageOrders.manageOrder10Page.verifyAccessibility();

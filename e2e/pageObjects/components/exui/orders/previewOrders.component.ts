@@ -30,8 +30,11 @@ export class PreviewOrdersComponent {
   ): Promise<void> {
     await expect(this.previewOrderHeading).toBeVisible();
     await expect(this.paragraph).toBeVisible();
-    await expect(this.page.getByText(orderType)).toBeVisible();
-
+    if (orderType.includes("C21")) {
+      await expect(this.page.locator("#selectedC21OrderLabel2")).toBeVisible();
+    } else {
+      await expect(this.page.getByText(orderType)).toBeVisible();
+    }
     await expect(
       this.page.getByRole("button", {
         name: this.getOrderNameFromOrderType(orderType, true),
@@ -66,6 +69,10 @@ export class PreviewOrdersComponent {
       case "Special guardianship order (C43A)":
         this.welshPdfLink = "Welsh_Special_Guardianship_Order_C43A_Draft.pdf";
         this.englishPdfLink = "Special_Guardianship_Order_C43A_Draft.pdf";
+        break;
+      case "Blank order or directions (C21)":
+        this.welshPdfLink = "Welsh_Blank_Order_Directions_C21_Draft.pdf";
+        this.englishPdfLink = "Blank_Order_Directions_C21_Draft.pdf";
         break;
       case "Non-molestation order (FL404A)":
         this.welshPdfLink = "welsh_non_molestation_order_fl404a_draft.pdf";
