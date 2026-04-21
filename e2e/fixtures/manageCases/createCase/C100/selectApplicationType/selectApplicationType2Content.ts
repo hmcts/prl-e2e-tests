@@ -12,5 +12,5 @@ export enum SelectApplicationType2Content {
   errorBanner = "There is a problem",
   errorMessage1 = "*Do you have a draft consent order? is required",
   errorMessage2 = "Select or fill the required *Draft Consent Order field ",
-  errorMessage3 = "Error Uploading File",
+  errorMessage3 = "Document format is not supported",
 }

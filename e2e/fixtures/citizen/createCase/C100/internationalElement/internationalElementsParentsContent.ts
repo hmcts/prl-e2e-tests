@@ -1,6 +1,7 @@
 export enum internationalElementsParentsContent {
   pageTitle = "Are the children's parents (or anyone significant to the children) mainly based outside of England and Wales?",
   govukHint = "For example, this could include a grandparent or another close relative. They may have work, property or school arrangements that are mainly based outside of England and Wales.",
+  govukHint2 = "This includes Scotland and Northern Ireland.",
   govukLabel1 = "Yes",
   govukLabel2 = "No",
   govukProvideDetails = "Provide details",

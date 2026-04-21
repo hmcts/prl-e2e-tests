@@ -22,7 +22,7 @@ interface C100TypeOfApplicationParams {
   accessibilityTest: boolean;
   yesNoC100TypeOfApplication: boolean;
   typeOfChildArrangementOrder: typeOfChildArrangementOrderID;
-  selectionC100TypeOfApplication: radioButtons;
+  permissionSelection: radioButtons;
   subJourney: boolean;
 }
 
@@ -34,7 +34,7 @@ export class C100TypeOfApplication {
     accessibilityTest,
     yesNoC100TypeOfApplication,
     typeOfChildArrangementOrder,
-    selectionC100TypeOfApplication,
+    permissionSelection,
     subJourney,
   }: C100TypeOfApplicationParams): Promise<void> {
     if (subJourney) {
@@ -63,7 +63,7 @@ export class C100TypeOfApplication {
       page,
       errorMessaging,
       accessibilityTest,
-      selectionC100TypeOfApplication,
+      permissionSelection,
     );
     await selectApplicationType4Page.selectApplicationType4Page(
       page,
@@ -74,7 +74,7 @@ export class C100TypeOfApplication {
       page,
       accessibilityTest,
       yesNoC100TypeOfApplication,
-      selectionC100TypeOfApplication,
+      permissionSelection,
     );
     await C100TasksTabPage.c100TasksTabPage(page, accessibilityTest);
   }

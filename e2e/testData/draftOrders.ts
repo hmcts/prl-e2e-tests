@@ -1,4 +1,4 @@
-import { ParentalResponsibilityDraftOrderParams } from "../tests/manageCases/caseProgression/orders/C100/createAnOrder/solicitor/draftAnOrderParentalResponsibility.spec.js";
+import { ParentalResponsibilityDraftOrderParams } from "../tests/manageCases/caseProgression/orders/C100/createAnOrder/solicitor/draftAnParentalResponsibilityOrder.spec.js";
 import { RemoveDraftNonMolestationOrderParams } from "../tests/manageCases/caseProgression/orders/FL401/removeDraftOrder/removeDraftNonMolestationOrder.spec.js";
 import { RemoveDraftParentalResponsibilityOrderParams } from "../tests/manageCases/caseProgression/orders/C100/removeDraftOrder/removeDraftParentalResponsibilityOrder.spec.js";
 import { NonMolestationDraftOrderParams } from "../tests/manageCases/caseProgression/orders/FL401/createAnOrder/solicitor/draftAnOrderNonMolestation.spec.js";
@@ -7,6 +7,7 @@ import {
   ChildArrangementsUploadOrderParams,
 } from "../tests/manageCases/caseProgression/orders/C100/uploadAnOrder/uploadChildArrangementsOrderSolicitor.spec.js";
 import { DomesticAbuseUploadOrderParams } from "../tests/manageCases/caseProgression/orders/FL401/uploadAnOrder/uploadDomesticAbuseOrderSolicitor.spec.js";
+import { SpecialGuardianshipDraftOrderParams } from "../tests/manageCases/caseProgression/orders/C100/createAnOrder/solicitor/draftAnSpecialGuardianshipOrder.spec.js";
 
 export const NonMolestationDraftOrderScenarios: NonMolestationDraftOrderParams[] =
   [
@@ -699,6 +700,97 @@ export const FL404BFL404UploadOrderScenarios: DomesticAbuseUploadOrderParams[] =
           },
           childrenList: ["Joe Doe", "Simon Anderson"],
           isOrderAboutChildren: true,
+        },
+      ],
+    },
+  ];
+export const SpecialGuardianshipDraftOrderScenarios: SpecialGuardianshipDraftOrderParams[] =
+  [
+    {
+      name: "No to all",
+      caseType: "C100",
+      orderType: "Special guardianship order (C43A)",
+      isDraftAnOrder: true,
+      draftAnOrder5Params: {
+        orderType: "Special guardianship order (C43A)",
+        isOrderByConsent: false,
+        wasOrderApprovedAtAHearing: false,
+        hearing: undefined,
+        judgeOrMagistratesTitle: undefined,
+        judgeFullName: undefined,
+        justicesLegalAdviserFullName: undefined,
+        dateOrderMade: undefined,
+        isOrderAboutAllTheChildren: false,
+        allChildrenInOrder: [
+          "Joe Doe",
+          "Simon Anderson",
+          "Lilly Anderson",
+          "Charlotte Saxon",
+          "Selena Lees",
+        ],
+        recitalsAndPreamble: undefined,
+        directions: undefined,
+      },
+      snapshotName: "draft-order-special-guardianship-no-to-all",
+      snapshotsPath: ["caseProgression", "orders", "specialGuardianshipOrder"],
+      orderInformation: [
+        {
+          typeOfOrder: "Special guardianship order (C43A)",
+          welshDocument: "Welsh_Special_Guardianship_Order_C43A_Draft.pdf",
+          englishDocument: "Special_Guardianship_Order_C43A_Draft.pdf",
+          otherDetails: {
+            orderCreatedBy:
+              process.env.MANAGE_CASES_TEST_ENV === "demo"
+                ? "PRL DEMO ORG1 Solicitor 2"
+                : "AAT Solicitor",
+            status: "Drafted by Solicitor",
+          },
+          childrenList: [
+            "Joe Doe (Child 1)",
+            "Simon Anderson (Child 2)",
+            "Lilly Anderson (Child 3)",
+            "Charlotte Saxon (Child 4)",
+            "Selena Lees (Child 5)",
+          ],
+          isOrderAboutAllTheChildren: false,
+        },
+      ],
+    },
+    {
+      name: "Yes to all",
+      caseType: "C100",
+      orderType: "Special guardianship order (C43A)",
+      isDraftAnOrder: true,
+      draftAnOrder5Params: {
+        orderType: "Special guardianship order (C43A)",
+        isOrderByConsent: true,
+        wasOrderApprovedAtAHearing: true,
+        hearing: "No hearings available",
+        judgeOrMagistratesTitle: "His Honour Judge",
+        judgeFullName: "Test judge name",
+        justicesLegalAdviserFullName: "Test legal adviser",
+        dateOrderMade: undefined, // already pre-populated
+        isOrderAboutAllTheChildren: true,
+        allChildrenInOrder: undefined,
+        recitalsAndPreamble: "Test recitals",
+        directions: "Test preamble",
+      },
+      snapshotName: "draft-order-special-guardianship-yes-to-all",
+      snapshotsPath: ["caseProgression", "orders", "specialGuardianshipOrder"],
+      orderInformation: [
+        {
+          typeOfOrder: "Special guardianship order (C43A)",
+          welshDocument: "Welsh_Special_Guardianship_Order_C43A_Draft.pdf",
+          englishDocument: "Special_Guardianship_Order_C43A_Draft.pdf",
+          otherDetails: {
+            orderMadeBy: "Test judge name",
+            orderCreatedBy:
+              process.env.MANAGE_CASES_TEST_ENV === "demo"
+                ? "PRL DEMO ORG1 Solicitor 2"
+                : "AAT Solicitor",
+            status: "Drafted by Solicitor",
+          },
+          isOrderAboutAllTheChildren: true,
         },
       ],
     },

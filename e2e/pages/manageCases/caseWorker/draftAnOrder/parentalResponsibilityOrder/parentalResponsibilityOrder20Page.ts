@@ -29,7 +29,7 @@ export class ParentalResponsibilityOrder20Page {
     caseRef: string,
   ): Promise<void> {
     let pdfName = "parental-responsibility-";
-    // if statements based on the parameters passed into the tests from draftAnOrderParentalResponsibility.spec.ts
+    // if statements based on the parameters passed into the tests from draftAnParentalResponsibilityOrder.spec.ts
     if (yesNoToAll) {
       pdfName += "yes-to-all";
     } else {
