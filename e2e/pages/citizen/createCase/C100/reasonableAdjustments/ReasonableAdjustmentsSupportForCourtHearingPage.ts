@@ -14,9 +14,9 @@ export interface ReasonableAdjustmentsSupportForCourtHearingPageOptions {
 
 enum ChecklistUniqueSelectors {
   supportWorkerCarer = "#ra_supportCourt",
-  assistanceGuidDog = "#ra_supportCourt-3",
-  therapyAnimal = "#ra_supportCourt-4",
-  other = "#ra_supportCourt-5",
+  assistanceGuidDog = "#ra_supportCourt-2",
+  therapyAnimal = "#ra_supportCourt-3",
+  other = "#ra_supportCourt-4",
 }
 
 enum TextBoxUniqueSelectors {
@@ -25,7 +25,7 @@ enum TextBoxUniqueSelectors {
   otherInput = "#ra_supportCourtOther_subfield",
 }
 
-const noToAll: string = "#ra_supportCourt-7";
+const noToAll: string = "#ra_supportCourt-5";
 
 export class ReasonableAdjustmentsSupportForCourtHearingPage {
   public static async reasonableAdjustmentsSupportForCourtHearingPage({
