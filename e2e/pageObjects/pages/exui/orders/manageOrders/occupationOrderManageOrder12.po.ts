@@ -125,7 +125,7 @@ export class OccupationOrderManageOrders12Page extends EventPage {
 
   async assertPageContents(orderType: OrderTypes): Promise<void> {
     await this.assertPageHeadings();
-    await expect(this.page.getByText(orderType)).toBeVisible();
+    await expect(this.page.getByText(orderType).first()).toBeVisible();
     await expect(this.addressHeading).toBeVisible();
     await expect(this.postcodeInputLabel).toBeVisible();
     await expect(this.strong1).toBeVisible();
