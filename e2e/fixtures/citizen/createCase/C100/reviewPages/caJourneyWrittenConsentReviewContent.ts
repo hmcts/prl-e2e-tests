@@ -289,7 +289,6 @@ export enum CaJourneyWrittenConsentReviewContent {
   li_65 = "Explanation of the court and who's in the room at the hearing",
   li_66 = "Intermediary",
   li_67 = "A support worker or carer : Lorem Ipsum Support Worker",
-  li_68 = "A friend or family member : Lorem Ipsum Friend Or family",
   li_69 = "Assistance / guide dog",
   li_70 = "Therapy animal : Lorem Ipsum Therapy Animal",
   li_71 = "Appropriate lighting : lorem Ipsum Appropriate Lighting",
