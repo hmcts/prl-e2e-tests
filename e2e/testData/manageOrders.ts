@@ -6,6 +6,7 @@ import { DomesticAbuseUploadOrderParams } from "../tests/manageCases/caseProgres
 import { SpecialGuardianshipCreateOrderParams } from "../tests/manageCases/caseProgression/orders/C100/createAnOrder/caseWorker/createSpecialGuardianshipOrder.spec.js";
 import { C21CreateOrderParams } from "../tests/manageCases/caseProgression/orders/C100/createAnOrder/judge/createBlankOrderOrDirectionsOrder.spec.js";
 import { C43UploadOrderParams } from "../tests/manageCases/caseProgression/orders/C100/uploadAnOrder/uploadChildArrangementsOrderJudge.spec.js";
+import { FL404B2FL406CreateOrderParams } from "../tests/manageCases/caseProgression/orders/FL401/createAnOrder/judge/createDomesticAbuseOrderJudge.spec.js";
 
 export const ChildArrangementsCreateOrderScenarios: ChildArrangementsCreateOrderParams[] =
   [
@@ -229,12 +230,8 @@ export const AmendedDischargedVariedOrderScenarios: AmendedDischargedVariedOrder
         serveCafcass: undefined,
         recipients: ["John Smith(Applicant)", "Elise Lynn (Respondent)"],
       },
-      snapshotName: "amended-dischargedOrVaried-order-no-to-all",
-      snapshotsPath: [
-        "caseProgression",
-        "orders",
-        "amendedDischargedVariedOrder",
-      ],
+      snapshotName: "FL404B-amended-dischargedOrVaried-create-order-no-to-all",
+      snapshotsPath: ["caseProgression", "orders", "domesticAbuseCreateOrders"],
       orderInformation: [
         {
           Order: "Amended, discharged or varied order (FL404B)",
@@ -313,12 +310,8 @@ export const AmendedDischargedVariedOrderScenarios: AmendedDischargedVariedOrder
         serveCafcass: undefined,
         recipients: undefined,
       },
-      snapshotName: "amended-dischargedOrVaried-order-yes-to-all",
-      snapshotsPath: [
-        "caseProgression",
-        "orders",
-        "amendedDischargedVariedOrder",
-      ],
+      snapshotName: "FL404B-amended-dischargedOrVaried-create-order-yes-to-all",
+      snapshotsPath: ["caseProgression", "orders", "domesticAbuseCreateOrders"],
       orderInformation: [
         {
           Order: "Amended, discharged or varied order (FL404B)",
@@ -394,8 +387,8 @@ export const OccupationOrderScenarios: OccupationOrderParams[] = [
       judgeOrLegalAdviser: "judge",
       judgeName: "Ms Elizabeth Williams",
     },
-    snapshotName: "occupation-order-no-to-all",
-    snapshotsPath: ["caseProgression", "orders", "occupationOrder"],
+    snapshotName: "FL404-occupation-create-order-no-to-all",
+    snapshotsPath: ["caseProgression", "orders", "domesticAbuseCreateOrders"],
     orderInformation: [
       {
         typeOfOrder: "Occupation order (FL404)",
@@ -461,8 +454,8 @@ export const OccupationOrderScenarios: OccupationOrderParams[] = [
       judgeOrLegalAdviser: "judge", ///options judge, legalAdvisor
       judgeName: "Ms Elizabeth Williams",
     },
-    snapshotName: "occupation-order-yes-to-all",
-    snapshotsPath: ["caseProgression", "orders", "occupationOrder"],
+    snapshotName: "FL404-occupation-create-order-yes-to-all",
+    snapshotsPath: ["caseProgression", "orders", "domesticAbuseCreateOrders"],
     orderInformation: [
       {
         typeOfOrder: "Occupation order (FL404)",
@@ -1061,6 +1054,106 @@ export const C43UploadOrderScenarios: C43UploadOrderParams[] = [
           "Selena Lees (Child 5)",
         ],
         isOrderAboutAllTheChildren: false,
+      },
+    ],
+  },
+];
+export const FL404B2Fl406OrderScenarios: FL404B2FL406CreateOrderParams[] = [
+  {
+    name: "No to all",
+    caseType: "FL401",
+    orderType: "Blank order (FL404B)",
+    orderOption: "create order",
+    isUploadAnOrder: false,
+    manageOrder5Params: {
+      orderType: "Blank order (FL404B)",
+      isOrderByConsent: false,
+      wasOrderApprovedAtAHearing: false,
+      hearing: undefined,
+      judgeOrMagistratesTitle: undefined,
+      judgeFullName: undefined,
+      justicesLegalAdviserFullName: undefined,
+      dateOrderMade: undefined,
+      isOrderAboutTheChildren: false,
+      recitalsAndPreamble: undefined,
+      directions: undefined,
+    },
+    manageOrder19Params: {
+      isDateReservedWithListAssist: true,
+      hearingDetails: {
+        hearingType: "2nd Gatekeeping Appointment",
+        hearingDateAndTime: "14-10-2025 12:00 am",
+        estimatedTime: { days: "1", hours: "1", minutes: "1" },
+        howDoesHearingNeedToTakePlace: "In Person",
+        willAllPartiesAttendTheSameWay: true,
+        hearingLocation: undefined, // hearing location is pre-populated
+        hearingWillBeBefore: "District judge",
+        hearingJudge: "Ms Elizabeth Williams",
+        joiningInstructionsForRemoteHearing: "Test joining instructions",
+        additionalHearingInstructions: "Test additional hearing instructions",
+      },
+    },
+    manageOrder30Params: {
+      serveApplication: false,
+    },
+    snapshotName: "FL404B2-blank-create-order-no-to-all",
+    snapshotsPath: ["caseProgression", "orders", "domesticAbuseCreateOrders"],
+    orderInformation: [
+      {
+        typeOfOrder: "Blank order (FL404B)",
+        welshDocument: "welsh_blank_order_fl404b_draft.pdf",
+        englishDocument: "blank_order_fl404b_draft.pdf",
+        otherDetails: {
+          orderMadeBy: "Elizabeth Williams",
+          orderCreatedBy: "Elizabeth Williams",
+          status: "Created by Judge",
+        },
+        isOrderAboutChildren: false,
+      },
+    ],
+  },
+  {
+    name: "Yes to all",
+    caseType: "FL401",
+    orderType: "Power of arrest (FL406)",
+    orderOption: "create order",
+    isUploadAnOrder: false,
+    manageOrder5Params: {
+      orderType: "Power of arrest (FL406)",
+      isOrderByConsent: true,
+      wasOrderApprovedAtAHearing: true,
+      hearing: "No hearings available",
+      judgeOrMagistratesTitle: undefined,
+      judgeFullName: undefined,
+      justicesLegalAdviserFullName: "Test legal adviser",
+      dateOrderMade: undefined, // already pre-populated
+      isOrderAboutTheChildren: true,
+      allChildrenInOrder: ["Joe Doe", "Simon Anderson"],
+      recitalsAndPreamble: "Test recitals",
+      directions: "Test preamble",
+    },
+    manageOrder12Params: {
+      loremIpsum: "loremIpsum",
+      riskInvolved: true,
+      date1: "10-06-2025 12:00 am",
+    },
+    manageOrder30Params: {
+      serveApplication: true,
+    },
+    snapshotName: "FL406-powerOfArrest-create-order-yes-to-all",
+    snapshotsPath: ["caseProgression", "orders", "domesticAbuseCreateOrders"],
+    orderInformation: [
+      {
+        typeOfOrder: "Power of arrest (FL406)",
+        welshDocument: "Welsh_Power_of_arrest_draft.pdf",
+        englishDocument: "Power_of_arrest_draft.pdf",
+        otherDetails: {
+          orderMadeBy: "Elizabeth Williams",
+          orderCreatedBy: "Elizabeth Williams",
+          status: "Created by Judge",
+        },
+        childrenList: ["Joe Doe", "Simon Anderson"],
+        isOrderAboutChildren: true,
       },
     ],
   },

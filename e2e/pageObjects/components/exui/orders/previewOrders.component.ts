@@ -88,6 +88,14 @@ export class PreviewOrdersComponent {
         this.welshPdfLink = "welsh_occupation_order_FL404_draft.pdf";
         this.englishPdfLink = "occupation_order_FL404_draft.pdf";
         break;
+      case "Blank order (FL404B)":
+        this.welshPdfLink = "welsh_blank_order_fl404b_draft.pdf";
+        this.englishPdfLink = "blank_order_fl404b_draft.pdf";
+        break;
+      case "Power of arrest (FL406)":
+        this.welshPdfLink = "Welsh_Power_of_arrest_draft.pdf";
+        this.englishPdfLink = "Power_of_arrest_draft.pdf";
+        break;
       default:
         throw new Error(`Unexpected order type ${orderType}`);
     }
