@@ -40,7 +40,7 @@ export class ManageOrder10Page extends EventPage {
   ): Promise<void> {
     await this.assertPageHeadings();
     if (!isUploadAnOrder) {
-      await expect(this.page.getByText(orderType)).toBeVisible();
+      await expect(this.page.getByText(orderType).first()).toBeVisible();
     }
     await expect(this.heading2).toBeVisible();
     await this.pageUtils.assertStrings(this.orderOptionsFormLabels);
