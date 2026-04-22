@@ -1041,7 +1041,7 @@ export const C43UploadOrderScenarios: C43UploadOrderParams[] = [
     manageOrder30Params: {
       serveApplication: false,
     },
-    snapshotName: "C45A-upload-order-yes-to-all",
+    snapshotName: "C43-upload-order-yes-to-all",
     snapshotsPath: ["caseProgression", "orders", "childArrangementsOrder"],
     orderInformation: [
       {
