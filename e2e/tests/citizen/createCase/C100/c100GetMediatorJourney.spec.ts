@@ -167,7 +167,7 @@ test.describe("Create Citizen Application but you must get a mediator", (): void
     But accessing a mediator with no valid reason
     not error message testing,
     accessibility Testing
-    @accessibility @nightly`, async ({ page }): Promise<void> => {
+    @accessibility @smoke @nightly`, async ({ page }): Promise<void> => {
     await C100.getMediatorJourney({
       page: page,
       accessibilityTest: true,
