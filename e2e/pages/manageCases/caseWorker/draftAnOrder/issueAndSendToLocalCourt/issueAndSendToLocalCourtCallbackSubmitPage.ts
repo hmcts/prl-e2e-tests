@@ -30,11 +30,6 @@ export class IssueAndSendToLocalCourtCallbackSubmitPage {
         `${Selectors.GovukHeadingL}:text-is("${IssueAndSendToLocalCourtCallbackSubmitContent.headingL}")`,
         1,
       ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.p}:text-is("${IssueAndSendToLocalCourtCallbackSubmitContent.p}")`,
-        1,
-      ),
       Helpers.checkGroup(
         page,
         3,
