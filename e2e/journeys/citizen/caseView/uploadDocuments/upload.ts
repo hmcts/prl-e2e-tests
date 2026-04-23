@@ -33,7 +33,9 @@ export class Upload {
       caseUser: caseUser,
       accessibilityTest: accessibilityTest,
       applicationSubmittedBy: applicationSubmittedBy,
-      isManualSOA: false,
+      isManualSOA: true,
+      yesNoServiceOfApplication4: false,
+      confidentialityCheck: true,
     });
     await page.click(UniqueSelectors.uploadDocumentsPrivateSelector);
     await UploadPage.uploadPage(page, accessibilityTest);

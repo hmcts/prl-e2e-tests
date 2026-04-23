@@ -39,15 +39,20 @@ export class CheckAnswersPage {
       ),
       Helpers.checkGroup(
         page,
-        6,
+        2,
         CheckAnswersContent,
         `govukSummaryListValue`,
         `${Selectors.GovukSummaryListValue}`,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${CheckAnswersContent.govukHint2}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${CheckAnswersContent.errorMissingDetails}")`,
         3,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukHint}:text-is("${CheckAnswersContent.govukHint2}")`,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,

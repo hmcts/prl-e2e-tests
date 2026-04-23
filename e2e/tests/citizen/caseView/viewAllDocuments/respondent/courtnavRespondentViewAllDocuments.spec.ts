@@ -6,19 +6,22 @@ import { ViewAllDocuments } from "../../../../../journeys/citizen/caseView/viewA
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("Respondent view all documents tests", (): void => {
+  test.skip(
+    process.env.MANAGE_CASES_TEST_ENV === "preview",
+    "Doesn't work on preview env - initial Courtnav case creation doesn't work",
+  );
+
   let ccdRef: string;
 
-  test.beforeEach(
-    async ({ page, browser, caseEventUtils, navigationUtils }) => {
-      ccdRef = await caseEventUtils.createDACase(browser);
-      await navigationUtils.goToCase(
-        page,
-        config.manageCasesBaseURLCase,
-        ccdRef,
-        "tasks",
-      );
-    },
-  );
+  test.beforeEach(async ({ page, courtNavUtils, navigationUtils }) => {
+    ccdRef = await courtNavUtils.createCase(true, false);
+    await navigationUtils.goToCase(
+      page,
+      config.manageCasesBaseURLCase,
+      ccdRef,
+      "tasks",
+    );
+  });
 
   test("Respondent view all documents. @regression @nightly @accessibility", async ({
     page,
@@ -30,7 +33,7 @@ test.describe("Respondent view all documents tests", (): void => {
       accessibilityTest: true,
       caseRef: ccdRef,
       isApplicant: false,
-      applicationSubmittedBy: "Solicitor",
+      applicationSubmittedBy: "Citizen",
     });
   });
 });

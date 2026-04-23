@@ -35,6 +35,8 @@ export class ApplicantDashboardPage {
         hasText: heading,
       })
       .waitFor();
+
+    // an application pack is only shown to the applicant if they are an LiP if not the applicant solicitor would handle it
     if (applicationSubmittedBy == "Citizen") {
       await Helpers.checkVisibleAndPresent(
         page,

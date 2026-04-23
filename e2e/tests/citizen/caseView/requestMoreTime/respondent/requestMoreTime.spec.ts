@@ -1,25 +1,25 @@
 import { test } from "../../../../fixtures.ts";
 import config from "../../../../../utils/config.utils.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
 import { RequestMoreTime } from "../../../../../journeys/citizen/caseView/requestMoreTime/respondent/requestMoreTime.ts";
 
 test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("Respondent Request more time to do what is required by a court order tests", (): void => {
-  test.slow();
   let ccdRef: string;
 
-  test.beforeEach(async ({ page, courtNavUtils }) => {
-    ccdRef = await courtNavUtils.createCase(true, false);
-    await Helpers.goToCase(
-      page,
-      config.manageCasesBaseURLCase,
-      ccdRef,
-      "tasks",
-    );
-  });
+  test.beforeEach(
+    async ({ page, browser, caseEventUtils, navigationUtils }) => {
+      ccdRef = await caseEventUtils.createDACase(browser);
+      await navigationUtils.goToCase(
+        page,
+        config.manageCasesBaseURLCase,
+        ccdRef,
+        "tasks",
+      );
+    },
+  );
 
-  test("Respondent Request more time with fees. @regression @nightly", async ({
+  test("Respondent Request more time with fees. @regression @accessibility @nightly", async ({
     page,
     browser,
   }): Promise<void> => {
@@ -27,9 +27,9 @@ test.describe("Respondent Request more time to do what is required by a court or
       page: page,
       browser: browser,
       caseRef: ccdRef,
-      accessibilityTest: false,
+      accessibilityTest: false, // TODO create ticket for this accessibility failure
       isApplicant: false,
-      applicationSubmittedBy: "Citizen",
+      applicationSubmittedBy: "Solicitor",
       completedForm: true,
       agreementForRequest: true,
       helpWithFees: true,

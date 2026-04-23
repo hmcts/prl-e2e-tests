@@ -26,7 +26,7 @@ interface FL401ServiceOfApplicationJourneyParams {
   browser: Browser;
   personallyServed: boolean;
   yesNoServiceOfApplication4: boolean;
-  responsibleForServing: responsibleForServing;
+  responsibleForServing?: responsibleForServing;
   manageOrderData: typeof jsonDatas;
   applicationSubmittedBy: applicationSubmittedBy;
   confidentialityCheck: boolean;
