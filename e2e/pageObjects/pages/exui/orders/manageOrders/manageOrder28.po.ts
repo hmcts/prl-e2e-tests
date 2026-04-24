@@ -11,11 +11,9 @@ export interface ManageOrder28Params {
 }
 
 export class ManageOrder28Page extends EventPage {
-  readonly heading2: Locator = this.page
-    .locator(Selectors.h2, {
-      hasText: "Serve the order",
-    })
-    .first();
+  readonly heading2: Locator = this.page.locator(Selectors.h2, {
+    hasText: "Serve the order",
+  });
   private readonly personallyServeText = this.page.getByText(
     "Does this order need to be personally served on the respondent?",
   );
@@ -63,15 +61,16 @@ export class ManageOrder28Page extends EventPage {
 
   async assertPageContents(caseType: solicitorCaseCreateType): Promise<void> {
     await this.assertPageHeadings();
-    await expect(this.heading2).toBeVisible();
     await expect(this.personallyServeText).toBeVisible();
     await expect(this.hint).toBeVisible();
 
     if (caseType === "C100") {
+      await expect(this.heading2.nth(0)).toBeVisible();
       await expect(this.otherPeopleText).toBeVisible();
       await expect(this.serveCafcassText).toBeVisible();
       await expect(this.anotherText).toBeVisible();
     } else {
+      await expect(this.heading2.nth(1)).toBeVisible();
       await expect(this.daOtherPartyText).toBeVisible();
       await expect(this.daAnotherText).toBeVisible();
     }

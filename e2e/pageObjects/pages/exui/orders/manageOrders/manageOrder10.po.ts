@@ -34,9 +34,14 @@ export class ManageOrder10Page extends EventPage {
 
   private readonly pageUtils: PageUtils = new PageUtils(this.page);
 
-  async assertPageContents(orderType: OrderTypes): Promise<void> {
+  async assertPageContents(
+    isUploadAnOrder: boolean,
+    orderType: OrderTypes,
+  ): Promise<void> {
     await this.assertPageHeadings();
-    await expect(this.page.getByText(orderType).first()).toBeVisible();
+    if (!isUploadAnOrder) {
+      await expect(this.page.getByText(orderType).first()).toBeVisible();
+    }
     await expect(this.heading2).toBeVisible();
     await this.pageUtils.assertStrings(this.orderOptionsFormLabels);
     await expect(this.continueButton).toBeVisible();

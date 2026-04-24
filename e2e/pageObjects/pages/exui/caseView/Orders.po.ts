@@ -26,6 +26,7 @@ interface OtherDetails {
 interface ServeOrderDetails {
   recipients?: string[];
   serveCafcass?: boolean;
+  responsibleToServe: string;
 }
 
 export class OrdersPage extends CaseAccessViewPage {
@@ -87,6 +88,19 @@ export class OrdersPage extends CaseAccessViewPage {
           `${Order.childrenList.join(", ")}`,
         );
       }
+
+      //serve order details
+      const serveOrderDetailsHeading: Locator = OrderTable.getByText(
+        "Serve order details",
+      );
+      await expect(serveOrderDetailsHeading).toBeVisible();
+      if (Order.serveOrderDetails.recipients) {
+        await this.assertTableRow(
+          OrderTable,
+          "Recipients",
+          `${Order.serveOrderDetails.recipients.join(", ")}`,
+        );
+      }
       if (Order.serveOrderDetails.serveCafcass) {
         await this.assertTableRow(
           OrderTable,
@@ -94,11 +108,11 @@ export class OrdersPage extends CaseAccessViewPage {
           `${Order.serveOrderDetails.serveCafcass ? "Yes" : "No"}`,
         );
       }
-      if (Order.serveOrderDetails.recipients) {
+      if (Order.serveOrderDetails.responsibleToServe) {
         await this.assertTableRow(
           OrderTable,
-          "Recipients",
-          `${Order.serveOrderDetails.recipients.join(", ")}`,
+          "Who is responsible for serving the respondent?",
+          Order.serveOrderDetails.responsibleToServe,
         );
       }
 
