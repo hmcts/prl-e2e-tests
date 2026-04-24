@@ -64,22 +64,7 @@ export class Helpers {
     const eventSelector = `${Selectors.markdown} > ${Selectors.div} > ${Selectors.p} > ${Selectors.a}:has-text("${event}")`;
     await page.waitForSelector(`.mat-tab-label-content:text-is("Tasks")`);
     await page.locator(eventSelector).waitFor();
-    //retry until element is clicked or task heading is no longer visible
-    await expect
-      .poll(
-        async () => {
-          const taskTitleStillVisible = await page
-            .locator('.mat-tab-label-content:text-is("Tasks")')
-            .isVisible();
-          if (taskTitleStillVisible) await page.click(eventSelector);
-          return taskTitleStillVisible;
-        },
-        {
-          intervals: [1_000, 2_000, 10_000],
-          timeout: 100_000,
-        },
-      )
-      .toBeFalsy();
+    await page.click(eventSelector);
   }
 
   public static async checkVisibleAndPresent(
