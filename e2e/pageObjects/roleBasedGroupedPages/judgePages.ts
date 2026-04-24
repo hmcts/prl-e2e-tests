@@ -15,6 +15,9 @@ import { DraftOrdersPage } from "../pages/exui/caseView/draftOrders.po.js";
 import { ManageOrder4Page } from "../pages/exui/orders/manageOrders/manageOrder4.po.js";
 import { ManageOrder30Page } from "../pages/exui/orders/manageOrders/manageOrder30.po.js";
 import { ManageOrder3Page } from "../pages/exui/orders/manageOrders/manageOrder3.po.js";
+import { ManageOrder19Page } from "../pages/exui/orders/manageOrders/manageOrder19.po.js";
+import { PowerOfArrestManageOrders12Page } from "../pages/exui/orders/manageOrders/powerOfArrestOrderManageOrder12.po.js";
+import { ManageOrder12Page } from "../pages/exui/orders/manageOrders/manageOrder12.po.js";
 
 export class JudgePagesGroup {
   constructor(public readonly page: Page) {}
@@ -44,6 +47,11 @@ export class JudgePagesGroup {
       manageOrder4Page: new ManageOrder4Page(this.page),
       manageOrder5Page: new ManageOrder5Page(this.page),
       manageOrder10Page: new ManageOrder10Page(this.page),
+      manageOrder12Page: new ManageOrder12Page(this.page),
+      powerOfArrestManageOrder12Page: new PowerOfArrestManageOrders12Page(
+        this.page,
+      ),
+      manageOrder19Page: new ManageOrder19Page(this.page),
       manageOrder20Page: new ManageOrder20Page(this.page),
       manageOrder30Page: new ManageOrder30Page(this.page),
 
