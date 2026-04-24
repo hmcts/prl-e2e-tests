@@ -47,12 +47,16 @@ export abstract class CaseAccessViewPage extends Base {
       | courtAdminEvents
       | amendEvents,
   ) {
-    await expect(this.page.locator(Selectors.h2, {
-      hasText: "FamilyMan ID",
-    })).toBeVisible();
-    await expect(this.page.locator(Selectors.h2, {
-      hasText: "Casenumber",
-    })).toBeVisible();
+    await expect(
+      this.page.locator(Selectors.h2, {
+        hasText: "FamilyMan ID",
+      }),
+    ).toBeVisible();
+    await expect(
+      this.page.locator(Selectors.h2, {
+        hasText: "Casenumber",
+      }),
+    ).toBeVisible();
     await this.page.waitForLoadState("domcontentloaded");
     await expect(this.page.locator("#next-step")).toBeVisible();
     await this.page.locator("#next-step").click();
