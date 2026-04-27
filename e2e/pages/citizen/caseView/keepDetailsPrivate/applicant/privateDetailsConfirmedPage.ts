@@ -1,5 +1,5 @@
 import { Helpers } from "../../../../../common/helpers.ts";
-import { Page } from "@playwright/test";
+import { expect, Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors.ts";
 import { PrivateDetailsConfirmedContent } from "../../../../../fixtures/citizen/caseView/keepDetailsPrivate/privateDetailsConfirmedContent.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
@@ -111,13 +111,19 @@ export class ApplicantPrivateDetailsConfirmedPage {
       throw new Error("Page is not defined");
     }
     if (isApplicant) {
-      await page.click(
-        `${Selectors.GovukButton}:text-is("${CommonStaticText.saveAndContinue}")`,
-      );
+      await page
+        .getByRole("button", { name: CommonStaticText.saveAndContinue })
+        .click();
+      await expect(
+        page.locator("#keepYourDetailsPrivate-status"),
+      ).toContainText("Submitted");
     } else {
-      await page.click(
-        `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
-      );
+      await page
+        .getByRole("button", { name: CommonStaticText.continue })
+        .click();
+      await expect(
+        page.locator("#keepYourDetailsPrivate-status"),
+      ).toContainText("Completed");
     }
   }
 }

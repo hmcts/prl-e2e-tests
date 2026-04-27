@@ -7,7 +7,7 @@ export enum CheckAnswersContent {
   GovukSummaryListKey5 = "Will you be using help with fees to pay for this application?",
   GovukSummaryListKey6 = "Help with fees reference number",
   GovukSummaryListValue1 = "C2 application",
-  GovukSummaryListValueYes = "Yes",
   GovukSummaryListValue2 = "mockFile.pdf",
   GovukSummaryListValue3 = "Test123",
+  GovukSummaryListValueYes = "Yes",
 }

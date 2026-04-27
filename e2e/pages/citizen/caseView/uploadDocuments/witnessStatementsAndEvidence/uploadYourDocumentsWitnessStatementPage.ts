@@ -79,9 +79,7 @@ export class UploadYourDocumentsWitnessStatementPage {
         1,
       ),
     ]);
-    await page.click(
-      `${Selectors.GovukSummaryText}:text-is("${UploadYourDocumentsContent.GovukSummaryText}")`,
-    );
+    await page.getByText(UploadYourDocumentsContent.GovukSummaryText).click();
     await Promise.all([
       Helpers.checkGroup(
         page,
@@ -100,16 +98,19 @@ export class UploadYourDocumentsWitnessStatementPage {
     const fileInput = page.locator(UniqueSelectors.fileUpload);
     await fileInput.setInputFiles(config.testPdfFile);
     await page.check('input[type="checkbox"][value="declaration"]');
-    await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.uploadFile}")`,
-    );
+    await page
+      .getByRole("button", { name: CommonStaticText.uploadFile })
+      .click();
     await Helpers.checkVisibleAndPresent(
       page,
       `${Selectors.GovukSummaryListValue}:text-is("${UploadYourDocumentsContent.GovukSummaryListValue}")`,
       1,
     );
-    await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.submit}")`,
-    );
+    await page
+      .getByRole("checkbox", {
+        name: "I believe that the facts stated in these documents are true",
+      })
+      .check();
+    await page.getByRole("button", { name: CommonStaticText.submit }).click();
   }
 }

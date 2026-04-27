@@ -1,5 +1,4 @@
-import { ActivateCase, CaseUser } from "../../activateCase/activateCase.ts";
-import { Browser, Page } from "@playwright/test";
+import { expect, Page } from "@playwright/test";
 import { IntroPage } from "../../../../pages/citizen/caseView/reasonableAdjustments/introPage.ts";
 import { LanguageRequirementsAndSpecialArrangementsPage } from "../../../../pages/citizen/caseView/reasonableAdjustments/languageRequirementsAndSpecialArrangementsPage.ts";
 import { LanguageRequirementsAndSpecialArrangementsReviewPage } from "../../../../pages/citizen/caseView/reasonableAdjustments/languageRequirementsAndSpecialArrangementsReviewPage.ts";
@@ -7,19 +6,18 @@ import { ReasonableAdjustmentsSelectionPage } from "../../../../pages/citizen/ca
 import { HelpCommunicatingAndUnderstandingPage } from "../../../../pages/citizen/caseView/reasonableAdjustments/helpCommunicatingAndUnderstandingPage.ts";
 import { ReasonableAdjustmentsReviewPage } from "../../../../pages/citizen/caseView/reasonableAdjustments/reasonableAdjustmentsReviewPage.ts";
 import { ConfirmationPage } from "../../../../pages/citizen/caseView/reasonableAdjustments/confirmationPage.ts";
-import { Helpers } from "../../../../common/helpers.ts";
-import config from "../../../../utils/config.utils.ts";
-import { Selectors } from "../../../../common/selectors.ts";
-import { applicationSubmittedBy } from "../../../../common/types.ts";
+import {
+  CaseFlagInfo,
+  CitizenC100CaseUtils,
+} from "../../../../utils/citizenC100CaseUtils.js";
 
 interface reasonableAdjustmentsParams {
   page: Page;
-  browser: Browser;
-  caseRef: string;
   needsReasonableAdjustment: boolean;
-  isApplicant: boolean;
   accessibilityTest: boolean;
-  applicationSubmittedBy: applicationSubmittedBy;
+  isApplicant: boolean;
+  citizenC100CaseUtils: CitizenC100CaseUtils;
+  caseRef: string;
 }
 
 enum UniqueSelectors {
@@ -29,25 +27,15 @@ enum UniqueSelectors {
 export class ReasonableAdjustments {
   public static async reasonableAdjustments({
     page,
-    browser,
-    caseRef,
     needsReasonableAdjustment,
-    isApplicant,
     accessibilityTest,
-    applicationSubmittedBy,
+    isApplicant,
+    citizenC100CaseUtils,
+    caseRef,
   }: reasonableAdjustmentsParams): Promise<void> {
-    const caseUser: CaseUser = isApplicant ? "applicant" : "respondent";
-    page = await ActivateCase.activateCase({
-      page: page,
-      browser: browser,
-      caseRef: caseRef,
-      caseUser: caseUser,
-      accessibilityTest: accessibilityTest,
-      applicationSubmittedBy: applicationSubmittedBy,
-      isManualSOA: false,
-    });
-
-    await page.click(UniqueSelectors.supportYouNeedDuringYourCaseSelector);
+    await page
+      .locator(UniqueSelectors.supportYouNeedDuringYourCaseSelector)
+      .click();
     await IntroPage.introPage(page, accessibilityTest);
     await LanguageRequirementsAndSpecialArrangementsPage.languageRequirementsAndSpecialArrangementsPage(
       page,
@@ -69,31 +57,19 @@ export class ReasonableAdjustments {
     await ReasonableAdjustmentsReviewPage.reasonableAdjustmentsReviewPage(page);
     await ConfirmationPage.confirmationPage(page, accessibilityTest);
     if (needsReasonableAdjustment) {
-      // login as court admin and check Case Flags are updated with correct reasonable adjustment
-      page = await Helpers.openNewBrowserWindow(browser, "caseWorker");
-      await Helpers.goToCase(
-        page,
-        config.manageCasesBaseURLCase,
-        caseRef,
-        "tasks",
-      );
-      await page
-        .locator(Selectors.tab, {
-          hasText: "Case Flags",
-        })
-        .click();
-      // heck correct party has correct flag
-      const applicantOrRespondentName: string = isApplicant
-        ? "Applicant ApplLast"
-        : "Dolores Smith";
-      const caseFlagsLocator = page.locator("ccd-case-flag-table", {
-        hasText: applicantOrRespondentName,
-      });
-      await caseFlagsLocator
-        .locator(Selectors.div, {
-          hasText: "Lip speaker",
-        })
-        .isVisible();
+      // check case flags added via API request for case data - no need to actually go to ExUI
+      const caseFlagInfo: CaseFlagInfo =
+        await citizenC100CaseUtils.fetchCitizenCreatedCaseFlags(
+          caseRef,
+          isApplicant,
+        );
+      expect(caseFlagInfo.caseFlagName).toEqual("Lip speaker");
+      expect(caseFlagInfo.status).toEqual("Requested");
+      if (isApplicant) {
+        expect(caseFlagInfo.partyName).toEqual("John Doe");
+      } else {
+        expect(caseFlagInfo.partyName).toEqual("Mary Richards");
+      }
     }
   }
 }

@@ -1,8 +1,4 @@
-import {
-  ActivateCase,
-  CaseUser,
-} from "../../../../activateCase/activateCase.ts";
-import { Browser, Page } from "@playwright/test";
+import { expect, Page } from "@playwright/test";
 import { UploadPage } from "../../../../../../pages/citizen/caseView/uploadDocuments/uploadPage.ts";
 import { PositionStatementPage } from "../../../../../../pages/citizen/caseView/uploadDocuments/witnessStatementsAndEvidence/positionStatementPage.ts";
 import { DocumentSharingDetailsPage } from "../../../../../../pages/citizen/caseView/uploadDocuments/witnessStatementsAndEvidence/documentSharingDetailsPage.ts";
@@ -10,21 +6,20 @@ import { SharingYourDocumentsPage } from "../../../../../../pages/citizen/caseVi
 import { OtherPartyNotSeeDocumentPage } from "../../../../../../pages/citizen/caseView/uploadDocuments/witnessStatementsAndEvidence/otherPartyNotSeeDocumentPage.ts";
 import { UploadYourDocumentsPositionStatementPage } from "../../../../../../pages/citizen/caseView/uploadDocuments/witnessStatementsAndEvidence/uploadYourDocumentsPositionStatementPage.ts";
 import { SubmitExtraEvidencePage } from "../../../../../../pages/citizen/caseView/uploadDocuments/witnessStatementsAndEvidence/submitExtraEvidencePage.ts";
-import {
-  applicationSubmittedBy,
-  yesNoNA,
-} from "../../../../../../common/types.ts";
+import { yesNoNA } from "../../../../../../common/types.ts";
 import { UploadContent } from "../../../../../../fixtures/citizen/caseView/uploadDocuments/uploadContent.ts";
-import { Selectors } from "../../../../../../common/selectors.ts";
+import { DocumentSubmittedPage } from "../../../../../../pages/citizen/caseView/uploadDocuments/witnessStatementsAndEvidence/documentSubmittedPage.ts";
+import {
+  CitizenC100CaseUtils,
+  CitizenUploadedDocument,
+} from "../../../../../../utils/citizenC100CaseUtils.ts";
 
 interface uploadDocumentsPositionStatementParams {
   page: Page;
-  browser: Browser;
-  caseRef: string;
   accessibilityTest: boolean;
-  isApplicant: boolean;
   yesNoNA: yesNoNA;
-  applicationSubmittedBy: applicationSubmittedBy;
+  citizenC100CaseUtils: CitizenC100CaseUtils;
+  caseRef: string;
 }
 
 enum UniqueSelectors {
@@ -34,28 +29,16 @@ enum UniqueSelectors {
 export class UploadDocumentsPositionStatement {
   public static async uploadDocumentsPositionStatement({
     page,
-    browser,
-    caseRef,
     accessibilityTest,
-    isApplicant,
     yesNoNA,
-    applicationSubmittedBy,
+    citizenC100CaseUtils,
+    caseRef,
   }: uploadDocumentsPositionStatementParams): Promise<void> {
-    const caseUser: CaseUser = isApplicant ? "applicant" : "respondent";
-    page = await ActivateCase.activateCase({
-      page: page,
-      browser: browser,
-      caseRef: caseRef,
-      caseUser: caseUser,
-      accessibilityTest: accessibilityTest,
-      applicationSubmittedBy: applicationSubmittedBy,
-      isManualSOA: false,
-    });
-    await page.click(UniqueSelectors.uploadDocumentsPrivateSelector);
+    await page.locator(UniqueSelectors.uploadDocumentsPrivateSelector).click();
     await UploadPage.uploadPage(page, accessibilityTest);
-    await page.click(
-      `${Selectors.GovukLink}:has-text("${UploadContent.positionStatementLink}")`,
-    );
+    await page
+      .getByRole("link", { name: UploadContent.positionStatementLink })
+      .click();
     if (yesNoNA == "Yes") {
       await PositionStatementPage.positionStatementPage(
         page,
@@ -79,6 +62,17 @@ export class UploadDocumentsPositionStatement {
         page,
         accessibilityTest,
       );
+      await DocumentSubmittedPage.documentSubmittedPage(
+        page,
+        accessibilityTest,
+      );
+
+      // validate uploaded document in case data
+      const citizenUploadedDocuments: CitizenUploadedDocument =
+        await citizenC100CaseUtils.fetchCitizenUploadedDocuments(caseRef);
+      expect(citizenUploadedDocuments.uploader).toEqual("John Doe");
+      expect(citizenUploadedDocuments.category).toEqual("Position statements");
+      expect(citizenUploadedDocuments.fileName).toEqual("mockFile.pdf");
     } else {
       await SubmitExtraEvidencePage.submitExtraEvidencePage(
         page,

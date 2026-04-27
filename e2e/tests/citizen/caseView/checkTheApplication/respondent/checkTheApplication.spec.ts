@@ -1,34 +1,34 @@
 import { test } from "../../../../fixtures.ts";
 import config from "../../../../../utils/config.utils.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
 import { CheckTheApplication } from "../../../../../journeys/citizen/caseView/checkTheApplication/checkTheApplication.ts";
+import { ActivateCitizenC100Case } from "../../../../../journeys/citizen/activateCase/activateCitizenC100Case.ts";
 
 test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("Respondent confirm contact details tests", (): void => {
-  let ccdRef: string;
-
-  test.beforeEach(async ({ page, courtNavUtils }) => {
-    ccdRef = await courtNavUtils.createCase(true, false);
-    await Helpers.goToCase(
+  test.beforeEach(
+    async ({
       page,
-      config.manageCasesBaseURLCase,
-      ccdRef,
-      "tasks",
-    );
-  });
+      citizenC100CaseUtils,
+      idamLoginHelper,
+      accessCodeHelper,
+    }) => {
+      await ActivateCitizenC100Case.activateCase({
+        page,
+        citizenC100CaseUtils,
+        idamLoginHelper,
+        accessCodeHelper,
+        isApplicant: false,
+      });
+    },
+  );
 
   test("Respondent Check The Application. @regression @accessibility", async ({
     page,
-    browser,
   }): Promise<void> => {
     await CheckTheApplication.checkTheApplication({
       page,
-      browser,
-      caseRef: ccdRef,
-      accessibilityTest: true,
       isApplicant: false,
-      applicationSubmittedBy: "Citizen",
     });
   });
 });

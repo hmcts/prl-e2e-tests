@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test";
+import { expect, Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors.ts";
 import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
@@ -32,14 +32,14 @@ export class CheckAnswersPage {
       ),
       Helpers.checkGroup(
         page,
-        6,
+        8,
         CheckAnswersContent,
         `govukSummaryListKey`,
         `${Selectors.GovukSummaryListKey}`,
       ),
       Helpers.checkGroup(
         page,
-        6,
+        7,
         CheckAnswersContent,
         `govukSummaryListValue`,
         `${Selectors.GovukSummaryListValue}`,
@@ -61,8 +61,11 @@ export class CheckAnswersPage {
   }
 
   private static async saveAndContinue(page: Page): Promise<void> {
-    await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.saveAndContinue}")`,
+    await page
+      .getByRole("button", { name: CommonStaticText.saveAndContinue })
+      .click();
+    await expect(page.locator("#editYouContactDetails-status")).toContainText(
+      "Completed",
     );
   }
 }

@@ -1,22 +1,15 @@
-import {
-  applicationSubmittedBy,
-  yesNoDontKnow,
-} from "../../../../../common/types.ts";
-import { Browser, Page } from "@playwright/test";
-import { ActivateCase, CaseUser } from "../../../activateCase/activateCase.ts";
+import { yesNoDontKnow } from "../../../../../common/types.ts";
+import { Page } from "@playwright/test";
 import { DetailsKnownPage } from "../../../../../pages/citizen/caseView/keepDetailsPrivate/applicant/detailsKnownPage.ts";
 import { ApplicantStartAlternativePage } from "../../../../../pages/citizen/caseView/keepDetailsPrivate/applicant/startAlternativePage.ts";
 import { ApplicantPrivateDetailsConfirmedPage } from "../../../../../pages/citizen/caseView/keepDetailsPrivate/applicant/privateDetailsConfirmedPage.ts";
 
 interface keepDetailsPrivateParams {
   page: Page;
-  browser: Browser;
-  caseRef: string;
   accessibilityTest: boolean;
   startAlternativeYesNo: boolean;
   yesNoDontKnow: yesNoDontKnow;
   isApplicant: boolean;
-  applicationSubmittedBy: applicationSubmittedBy;
 }
 
 enum UniqueSelectors {
@@ -26,25 +19,12 @@ enum UniqueSelectors {
 export class KeepDetailsPrivate {
   public static async keepDetailsPrivate({
     page,
-    browser,
-    caseRef,
     accessibilityTest,
     startAlternativeYesNo,
     yesNoDontKnow,
     isApplicant,
-    applicationSubmittedBy,
   }: keepDetailsPrivateParams): Promise<void> {
-    const caseUser: CaseUser = isApplicant ? "applicant" : "respondent";
-    page = await ActivateCase.activateCase({
-      page: page,
-      browser: browser,
-      caseRef: caseRef,
-      caseUser: caseUser,
-      accessibilityTest: accessibilityTest,
-      applicationSubmittedBy: applicationSubmittedBy,
-      isManualSOA: false,
-    });
-    await page.click(UniqueSelectors.keepDetailsPrivateSelector);
+    await page.locator(UniqueSelectors.keepDetailsPrivateSelector).click();
     if (isApplicant) {
       await DetailsKnownPage.ApplicantDetailsKnownPage(
         page,

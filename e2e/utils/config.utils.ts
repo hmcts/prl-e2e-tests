@@ -69,10 +69,12 @@ export class Config {
   private static removeCasesPath(url: string): string {
     return url.replace(/\/cases$/, ""); // Removes `/cases` only if it's at the end
   }
+
   //ensures url is in the correct format (with a trailing slash for citizenFrontendBaseURL, and without trailing slash for manageCasesBaseURLCase)
   private static ensureTrailingSlash(url: string): string {
     return url.endsWith("/") ? url : `${url}/`;
   }
+
   private static ensureNoTrailingSlash(url: string): string {
     return url.endsWith("/") ? url.slice(0, -1) : url;
   }
@@ -91,6 +93,14 @@ export class Config {
     process.env.MANAGE_CASES_TEST_ENV = this.getEnvironment(
       this.manageCasesBaseURLCase,
     );
+
+    // override environment variables to point to preview cos-api and ccd-definitions urls
+    if (process.env.MANAGE_CASES_TEST_ENV === "preview") {
+      process.env.PRL_COS_API_URL = this.manageCasesBaseURL.replace("xui-", "");
+      const prNumber: string =
+        this.manageCasesBaseURL.match(/-pr-(\d+)\b/)?.[1] ?? "unknown";
+      process.env.CCD_DATA_STORE_URL = `https://ccd-data-store-api-prl-ccd-definitions-pr-${prNumber}.preview.platform.hmcts.net`;
+    }
   }
 
   public static readonly testFile: string = path.resolve(

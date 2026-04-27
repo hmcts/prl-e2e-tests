@@ -57,9 +57,8 @@ export class GuidanceApplicantPage {
       await new AxeUtils(page).audit();
     }
   }
+
   private static async startNow(page: Page): Promise<void> {
-    await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.startNow}")`,
-    );
+    await page.getByRole("button", { name: CommonStaticText.startNow }).click();
   }
 }

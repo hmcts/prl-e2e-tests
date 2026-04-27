@@ -8,6 +8,7 @@ import {
 import { ReviewDocuments } from "./reviewDocuments.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import Config from "../../../../utils/config.utils.ts";
+import { CitizenC100CaseUtils } from "../../../../utils/citizenC100CaseUtils.ts";
 
 interface reviewCitizenUploadedDocumentsParams {
   page: Page;
@@ -18,6 +19,7 @@ interface reviewCitizenUploadedDocumentsParams {
   yesNoNotSureRestrictDocs: yesNoDontKnow;
   documentType: documentCategory;
   applicationSubmittedBy: applicationSubmittedBy;
+  citizenC100CaseUtils: CitizenC100CaseUtils;
 }
 
 export class ReviewCitizenUploadedDocuments {
@@ -26,19 +28,16 @@ export class ReviewCitizenUploadedDocuments {
     browser,
     caseRef,
     accessibilityTest,
-    isApplicant,
     yesNoNotSureRestrictDocs,
     documentType,
-    applicationSubmittedBy,
+    citizenC100CaseUtils,
   }: reviewCitizenUploadedDocumentsParams): Promise<void> {
     await UploadDocumentsPositionStatement.uploadDocumentsPositionStatement({
       page: page,
-      browser: browser,
-      caseRef: caseRef,
       accessibilityTest: accessibilityTest,
-      isApplicant: isApplicant,
       yesNoNA: "Yes",
-      applicationSubmittedBy: applicationSubmittedBy,
+      citizenC100CaseUtils: citizenC100CaseUtils,
+      caseRef: caseRef,
     });
     // open new browser and sign in as court admin user
     const courtAdminPage: Page = await Helpers.openNewBrowserWindow(

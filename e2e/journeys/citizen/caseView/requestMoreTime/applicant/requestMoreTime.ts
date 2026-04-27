@@ -1,5 +1,4 @@
-import { ActivateCase, CaseUser } from "../../../activateCase/activateCase.ts";
-import { Browser, Page } from "@playwright/test";
+import { Page } from "@playwright/test";
 import { GuidanceApplicantPage } from "../../../../../pages/citizen/caseView/requestMoreTime/guidanceApplicantPage.ts";
 import { UploadYourApplicationPage } from "../../../../../pages/citizen/caseView/requestMoreTime/uploadYourApplicationPage.ts";
 import { AgreementForRequestPage } from "../../../../../pages/citizen/caseView/requestMoreTime/agreementForRequestPage.ts";
@@ -8,56 +7,42 @@ import { SupportingDocumentsPage } from "../../../../../pages/citizen/caseView/r
 import { SupportingDocumentUploadPage } from "../../../../../pages/citizen/caseView/requestMoreTime/supportingDocumentUploadPage.ts";
 import { UrgentRequestPage } from "../../../../../pages/citizen/caseView/requestMoreTime/urgentRequestPage.ts";
 import { CheckAnswersApplicantPage } from "../../../../../pages/citizen/caseView/requestMoreTime/checkAnswersApplicantPage.ts";
-import { applicationSubmittedBy } from "../../../../../common/types.ts";
-import { Selectors } from "../../../../../common/selectors.ts";
-import { ListOfApplications1Content } from "../../../../../fixtures/citizen/caseView/makeRequestToCourtAboutCase/applicant/listOfApplications1Content.ts";
+import { ListOfApplications1Content } from "../../../../../fixtures/citizen/caseView/makeRequestToCourtAboutCase/listOfApplications1Content.ts";
+import { HelpWithFeesPage } from "../../../../../pages/citizen/caseView/requestMoreTime/helpWithFeesPage.ts";
+import { ReferencePage } from "../../../../../pages/citizen/caseView/requestMoreTime/referencePage.ts";
+import { ApplicationSubmittedPage } from "../../../../../pages/citizen/caseView/requestMoreTime/applicationSubmittedPage.ts";
 
 interface requestMoreTimeParams {
   page: Page;
-  browser: Browser;
-  caseRef: string;
   accessibilityTest: boolean;
-  isApplicant: boolean;
-  applicationSubmittedBy: applicationSubmittedBy;
   completedForm: boolean;
   agreementForRequest: boolean;
   supportingDocuments: boolean;
   reasonUrgentRequest: boolean;
+  helpWithFees: boolean;
+  hasHelpWithFeesRefNumber: true;
 }
 
 enum UniqueSelectors {
   requestToCourtAboutYourCase = "#requestToCourtAboutYourCase",
+  requestMoreTimeC2ApplicationLink = "#accordion-default-content-2",
 }
 
 export class RequestMoreTime {
   public static async requestMoreTime({
     page,
-    browser,
-    caseRef,
     accessibilityTest,
-    isApplicant,
-    applicationSubmittedBy,
     completedForm,
     agreementForRequest,
     supportingDocuments,
     reasonUrgentRequest,
+    helpWithFees,
+    hasHelpWithFeesRefNumber,
   }: requestMoreTimeParams): Promise<void> {
-    const caseUser: CaseUser = isApplicant ? "applicant" : "respondent";
-    page = await ActivateCase.activateCase({
-      page: page,
-      browser: browser,
-      caseRef: caseRef,
-      caseUser: caseUser,
-      accessibilityTest: accessibilityTest,
-      applicationSubmittedBy: applicationSubmittedBy,
-      isManualSOA: false,
-    });
-    await page.click(UniqueSelectors.requestToCourtAboutYourCase);
+    await page.locator(UniqueSelectors.requestToCourtAboutYourCase).click();
     await page
-      .locator(
-        `${Selectors.GovukLink}:has-text("${ListOfApplications1Content.formLink}")`,
-      )
-      .nth(1)
+      .locator(UniqueSelectors.requestMoreTimeC2ApplicationLink)
+      .getByRole("link", { name: ListOfApplications1Content.formLink })
       .click();
     await GuidanceApplicantPage.guidanceApplicantPage(page, accessibilityTest);
     await UploadYourApplicationPage.uploadYourApplicationPage(
@@ -69,6 +54,16 @@ export class RequestMoreTime {
       page,
       accessibilityTest,
       agreementForRequest,
+    );
+    await HelpWithFeesPage.helpWithFeesPage(
+      page,
+      accessibilityTest,
+      helpWithFees,
+    );
+    await ReferencePage.referencePage(
+      page,
+      accessibilityTest,
+      hasHelpWithFeesRefNumber,
     );
     await DocumentUploadPage.documentUploadPage(page, accessibilityTest);
     await SupportingDocumentsPage.supportingDocumentsPage(
@@ -86,6 +81,10 @@ export class RequestMoreTime {
       reasonUrgentRequest,
     );
     await CheckAnswersApplicantPage.checkAnswersApplicantPage(
+      page,
+      accessibilityTest,
+    );
+    await ApplicationSubmittedPage.applicationSubmittedPage(
       page,
       accessibilityTest,
     );

@@ -1,49 +1,35 @@
 import { test } from "../../../../fixtures.ts";
 import config from "../../../../../utils/config.utils.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
 import { ViewAllDocuments } from "../../../../../journeys/citizen/caseView/viewAllDocuments/viewAllDocuments.ts";
+import { ActivateCitizenC100Case } from "../../../../../journeys/citizen/activateCase/activateCitizenC100Case.ts";
 
 test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("Applicant view all documents tests", (): void => {
-  test.slow();
-  let ccdRef: string;
-
-  test.beforeEach(async ({ page, courtNavUtils }) => {
-    ccdRef = await courtNavUtils.createCase(true, false);
-    await Helpers.goToCase(
+  test.beforeEach(
+    async ({
       page,
-      config.manageCasesBaseURLCase,
-      ccdRef,
-      "tasks",
-    );
-  });
+      citizenC100CaseUtils,
+      idamLoginHelper,
+      accessCodeHelper,
+    }) => {
+      await ActivateCitizenC100Case.activateCase({
+        page,
+        citizenC100CaseUtils,
+        idamLoginHelper,
+        accessCodeHelper,
+        isApplicant: true,
+      });
+    },
+  );
 
-  test("Applicant view all documents. @regression @nightly", async ({
+  test("Applicant view all documents. @nightly @regression @accessibility", async ({
     page,
-    browser,
   }): Promise<void> => {
-    await ViewAllDocuments.applicantViewAllDocuments({
+    await ViewAllDocuments.viewAllDocuments({
       page: page,
-      browser: browser,
-      accessibilityTest: false,
-      caseRef: ccdRef,
-      isApplicant: true,
-      applicationSubmittedBy: "Citizen",
-    });
-  });
-
-  test("Applicant view all documents. @regression @accessibility", async ({
-    page,
-    browser,
-  }): Promise<void> => {
-    await ViewAllDocuments.applicantViewAllDocuments({
-      page: page,
-      browser: browser,
       accessibilityTest: true,
-      caseRef: ccdRef,
       isApplicant: true,
-      applicationSubmittedBy: "Citizen",
     });
   });
 });

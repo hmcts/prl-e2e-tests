@@ -1,36 +1,37 @@
 import { test } from "../../fixtures.ts";
-import { ActivateCase } from "../../../journeys/citizen/activateCase/activateCase.ts";
-import { Helpers } from "../../../common/helpers.ts";
 import config from "../../../utils/config.utils.ts";
+import { ActivateCitizenC100Case } from "../../../journeys/citizen/activateCase/activateCitizenC100Case.ts";
 
 test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("Activating case tests", (): void => {
-  test.slow();
-  let ccdRef: string;
-
-  test.beforeEach(async ({ page, courtNavUtils }) => {
-    ccdRef = await courtNavUtils.createCase(true, false);
-    await Helpers.goToCase(
-      page,
-      config.manageCasesBaseURLCase,
-      ccdRef,
-      "tasks",
-    );
+  test("Activate case as an applicant. @regression", async ({
+    page,
+    citizenC100CaseUtils,
+    idamLoginHelper,
+    accessCodeHelper,
+  }): Promise<void> => {
+    await ActivateCitizenC100Case.activateCase({
+      page: page,
+      citizenC100CaseUtils: citizenC100CaseUtils,
+      idamLoginHelper: idamLoginHelper,
+      accessCodeHelper: accessCodeHelper,
+      isApplicant: true,
+    });
   });
 
-  test("Activate case as an applicant and respondent. @regression @accessibility @nightly", async ({
+  test("Activate case as an respondent. @regression", async ({
     page,
-    browser,
+    citizenC100CaseUtils,
+    idamLoginHelper,
+    accessCodeHelper,
   }): Promise<void> => {
-    await ActivateCase.activateCase({
+    await ActivateCitizenC100Case.activateCase({
       page: page,
-      browser: browser,
-      caseRef: ccdRef,
-      caseUser: "both",
-      accessibilityTest: true,
-      applicationSubmittedBy: "Citizen",
-      isManualSOA: true,
+      citizenC100CaseUtils: citizenC100CaseUtils,
+      idamLoginHelper: idamLoginHelper,
+      accessCodeHelper: accessCodeHelper,
+      isApplicant: false,
     });
   });
 });

@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test";
+import { expect, Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.ts";
 import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
@@ -37,8 +37,9 @@ export class ConfirmationPage {
   }
 
   private static async saveAndContinue(page: Page): Promise<void> {
-    await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
+    await page.getByRole("button", { name: CommonStaticText.continue }).click();
+    await expect(page.locator("#contactPreferences-status")).toContainText(
+      "Completed",
     );
   }
 }
