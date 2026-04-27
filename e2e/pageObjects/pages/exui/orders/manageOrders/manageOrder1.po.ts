@@ -1,6 +1,7 @@
 import { EventPage } from "../../eventPage.po.js";
 import { expect, Locator, Page } from "@playwright/test";
 import { PageUtils } from "../../../../../utils/page.utils.js";
+import { manageOrdersOptions } from "../../../../../common/types.ts";
 
 export class ManageOrder1Page extends EventPage {
   readonly createOrderRadio: Locator = this.page.locator(
@@ -14,6 +15,9 @@ export class ManageOrder1Page extends EventPage {
   );
   readonly serveSavedOrdersRadio: Locator = this.page.locator(
     "#manageOrdersOptions-servedSavedOrders",
+  );
+  readonly createCustomOrderRadio: Locator = this.page.locator(
+    "#manageOrdersOptions-createCustomOrder",
   );
 
   private readonly orderOptionsFormLabels: string[] = [
@@ -37,7 +41,9 @@ export class ManageOrder1Page extends EventPage {
     await expect(this.previousButton).toBeVisible();
   }
 
-  async selectOrderOption(manageOrderOptions: string): Promise<void> {
+  async selectOrderOption(
+    manageOrderOptions: manageOrdersOptions,
+  ): Promise<void> {
     switch (manageOrderOptions) {
       case "create order":
         await this.createOrderRadio.check();
@@ -50,6 +56,9 @@ export class ManageOrder1Page extends EventPage {
         break;
       case "serve order":
         await this.serveSavedOrdersRadio.check();
+        break;
+      case "create custom order":
+        await this.createCustomOrderRadio.check();
         break;
     }
   }

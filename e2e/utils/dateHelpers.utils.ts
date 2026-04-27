@@ -68,4 +68,14 @@ export class DateHelperUtils {
     }
     return this.months[index - 1];
   }
+
+  todayDateUK(): string {
+    const now: Date = new Date();
+    const options: Intl.DateTimeFormatOptions = {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    };
+    return now.toLocaleDateString("en-GB", options);
+  }
 }
