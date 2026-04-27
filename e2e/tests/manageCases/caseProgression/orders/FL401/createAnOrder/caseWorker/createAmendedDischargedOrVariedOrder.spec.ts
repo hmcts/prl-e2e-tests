@@ -8,8 +8,10 @@ import {
 import { ManageOrder5Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder5.po.js";
 import { ManageOrder19Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder19.po.js";
 import { ManageOrder24Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder24.po.js";
-import { OrderInformation } from "../../../../../../../pageObjects/pages/exui/caseView/draftOrders.po.js";
+import { OrderInformation } from "../../../../../../../pageObjects/pages/exui/caseView/Orders.po.js";
 import { AmendedDischargedVariedOrderScenarios } from "../../../../../../../testData/manageOrders.js";
+import { ManageOrder26Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder26.po.js";
+import { ManageOrder28Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder28.po.js";
 
 export interface AmendedDischargedVariedOrderParams {
   name: string;
@@ -20,6 +22,8 @@ export interface AmendedDischargedVariedOrderParams {
   manageOrder5Params: ManageOrder5Params;
   manageOrder19Params: ManageOrder19Params;
   manageOrder24Params: ManageOrder24Params;
+  manageOrder26Params: ManageOrder26Params;
+  manageOrder28Params: ManageOrder28Params;
   snapshotName: string;
   snapshotsPath: string[];
   orderInformation: OrderInformation[];
@@ -43,9 +47,8 @@ test.describe("Manage Orders - Create a Amended, Discharged Or varied order (FL4
     (manageOrderParams: AmendedDischargedVariedOrderParams) => {
       test(`Create Amended, Discharged Or varied order (FL404B) as case worker with the following options:${manageOrderParams.name} @regression @nightly @visual`, async ({
         caseWorker,
-        navigationUtils,
       }): Promise<void> => {
-        const { manageOrders, summaryPage } = caseWorker;
+        const { manageOrders, summaryPage, Orders } = caseWorker;
 
         await summaryPage.chooseEventFromDropdown("Manage orders");
         await manageOrders.manageOrder1Page.assertPageContents();
@@ -106,7 +109,27 @@ test.describe("Manage Orders - Create a Amended, Discharged Or varied order (FL4
           manageOrderParams.manageOrder24Params,
         );
         await manageOrders.manageOrder24Page.clickContinue();
+        await manageOrders.manageOrder26Page.assertPageContents("FL401");
+        await manageOrders.manageOrder26Page.verifyAccessibility();
+        await manageOrders.manageOrder26Page.selectServeOrderOptions(
+          "FL401",
+          manageOrderParams.manageOrder26Params,
+        );
+        await manageOrders.manageOrder26Page.clickContinue();
 
+        await manageOrders.manageOrder27Page.assertPageContents(
+          manageOrderParams.orderType,
+        );
+        await manageOrders.manageOrder27Page.verifyAccessibility();
+        await manageOrders.manageOrder27Page.clickContinue();
+
+        await manageOrders.manageOrder28Page.assertPageContents("FL401");
+        await manageOrders.manageOrder28Page.verifyAccessibility();
+        await manageOrders.manageOrder28Page.serveOrderDetails(
+          "FL401",
+          manageOrderParams.manageOrder28Params,
+        );
+        await manageOrders.manageOrder28Page.clickContinue();
         await manageOrders.manageOrderSubmitPage.assertPageContents(
           manageOrderParams.snapshotsPath,
           manageOrderParams.snapshotName,
@@ -118,16 +141,10 @@ test.describe("Manage Orders - Create a Amended, Discharged Or varied order (FL4
           "Manage orders",
         );
 
-        // check the draft orders tab as court admin
-        await navigationUtils.goToCase(
-          caseWorker.page,
-          config.manageCasesBaseURLCase,
-          caseNumber,
-        );
+        // check the orders tab as court admin
 
-        const { draftedOrders } = caseWorker;
-        await draftedOrders.draftOrdersPage.goToPage();
-        await draftedOrders.draftOrdersPage.assertDraftOrders(
+        await Orders.OrdersPage.goToPage();
+        await Orders.OrdersPage.assertOrders(
           manageOrderParams.orderInformation,
         );
       });

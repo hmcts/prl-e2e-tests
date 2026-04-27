@@ -103,7 +103,12 @@ export class OrderDetailsComponent {
     orderJourneyType: string,
   ): Promise<void> {
     if (createOrder) {
-      await expect(this.page.getByText(orderType)).toBeVisible();
+      if (orderType.includes("C21")) {
+        await expect(this.page.locator("#typeOfC21OrderLabel")).toBeVisible();
+      } else {
+        await expect(this.page.getByText(orderType)).toBeVisible();
+      }
+
       await expect(this.consentLabel).toBeVisible();
       await this.pageUtils.assertStrings(
         this.yesAndNoLabels,

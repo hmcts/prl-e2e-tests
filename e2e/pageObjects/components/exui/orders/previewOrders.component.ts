@@ -30,8 +30,11 @@ export class PreviewOrdersComponent {
   ): Promise<void> {
     await expect(this.previewOrderHeading).toBeVisible();
     await expect(this.paragraph).toBeVisible();
-    await expect(this.page.getByText(orderType)).toBeVisible();
-
+    if (orderType.includes("C21")) {
+      await expect(this.page.locator("#selectedC21OrderLabel2")).toBeVisible();
+    } else {
+      await expect(this.page.getByText(orderType)).toBeVisible();
+    }
     await expect(
       this.page.getByRole("button", {
         name: this.getOrderNameFromOrderType(orderType, true),
@@ -67,6 +70,10 @@ export class PreviewOrdersComponent {
         this.welshPdfLink = "Welsh_Special_Guardianship_Order_C43A_Draft.pdf";
         this.englishPdfLink = "Special_Guardianship_Order_C43A_Draft.pdf";
         break;
+      case "Blank order or directions (C21)":
+        this.welshPdfLink = "Welsh_Blank_Order_Directions_C21_Draft.pdf";
+        this.englishPdfLink = "Blank_Order_Directions_C21_Draft.pdf";
+        break;
       case "Non-molestation order (FL404A)":
         this.welshPdfLink = "welsh_non_molestation_order_fl404a_draft.pdf";
         this.englishPdfLink = "non_molestation_order_fl404a_draft.pdf";
@@ -80,6 +87,14 @@ export class PreviewOrdersComponent {
       case "Occupation order (FL404)":
         this.welshPdfLink = "welsh_occupation_order_FL404_draft.pdf";
         this.englishPdfLink = "occupation_order_FL404_draft.pdf";
+        break;
+      case "Blank order (FL404B)":
+        this.welshPdfLink = "welsh_blank_order_fl404b_draft.pdf";
+        this.englishPdfLink = "blank_order_fl404b_draft.pdf";
+        break;
+      case "Power of arrest (FL406)":
+        this.welshPdfLink = "Welsh_Power_of_arrest_draft.pdf";
+        this.englishPdfLink = "Power_of_arrest_draft.pdf";
         break;
       default:
         throw new Error(`Unexpected order type ${orderType}`);
