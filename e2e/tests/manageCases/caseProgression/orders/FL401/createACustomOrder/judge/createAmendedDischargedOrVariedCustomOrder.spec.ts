@@ -28,6 +28,7 @@ test.describe("Manage Orders - Create custom order tests", () => {
       orderType: "Amended, discharged or varied order (FL404B)" as OrderTypes,
       page5Params: {
         isOrderByConsent: true,
+        legalAdviserName: "Test Legal Adviser Name",
         isOrderAboutChildren: false,
       },
       page19Params: {
@@ -49,7 +50,7 @@ test.describe("Manage Orders - Create custom order tests", () => {
       test(`Create a an Amended, discharged or varied custom order test @regression @nightly @visual`, async ({
         judge,
       }): Promise<void> => {
-        const { manageOrders, summaryPage } = judge;
+        const { manageOrders, summaryPage, draftedOrders } = judge;
 
         await summaryPage.chooseEventFromDropdown("Manage orders");
         await manageOrders.manageOrder1Page.assertPageContents();
@@ -69,6 +70,7 @@ test.describe("Manage Orders - Create custom order tests", () => {
         await manageOrders.customOrderManageOrder5Page.fillInFields({
           orderType: orderType,
           isOrderByConsent: page5Params.isOrderByConsent,
+          legalAdviserName: page5Params.legalAdviserName,
           isOrderAboutChildren: page5Params.isOrderAboutChildren,
         });
         await manageOrders.customOrderManageOrder5Page.clickContinue();
@@ -106,7 +108,26 @@ test.describe("Manage Orders - Create custom order tests", () => {
           "Manage orders",
         );
 
-        // TODO: check draft orders tab
+        // TODO: tidy this up - move into test data
+        await draftedOrders.draftOrdersPage.goToPage();
+        await draftedOrders.draftOrdersPage.assertDraftOrders([
+          {
+            typeOfOrder: orderType,
+            englishDocument: `${orderType.replace(/[(),]/g, "")}_${caseNumber}.docx`,
+            otherDetails: {
+              orderMadeBy: "Elizabeth Williams",
+              orderCreatedBy: "Elizabeth Williams",
+              status: "Created by Judge",
+            },
+            isOrderAboutChildren: false,
+          },
+        ]);
+        await draftedOrders.draftOrdersPage.assertDraftOrderDocument(
+          snapshotsPath,
+          caseNumber,
+          `${orderType.replace(/[(),]/g, "")}_${caseNumber}.docx`,
+          "amended-discharged-or-varied-custom-order-draft-order",
+        );
       });
     },
   );
