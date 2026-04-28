@@ -45,11 +45,16 @@ export class ChangedTestsRunner {
   }
 
   private static async runPlaywrightTests(testFiles: string[]): Promise<void> {
-    if (testFiles.length === 0) {
-      console.log("No test files changed, skipping tests.");
-      return;
-    }
     try {
+      if (testFiles.length === 0) {
+        const fallbackCommand = "yarn test:smoke:chromium";
+        console.log(
+          "No .spec.ts files changed; running fallback smoke suite on chromium.",
+        );
+        await this.execCommand(fallbackCommand);
+        return;
+      }
+
       const command: string = `yarn playwright test ${testFiles.join(" ")} --project chromium`;
       console.log(`Running Playwright tests on: ${testFiles.join(", ")}`);
       await this.execCommand(command);
