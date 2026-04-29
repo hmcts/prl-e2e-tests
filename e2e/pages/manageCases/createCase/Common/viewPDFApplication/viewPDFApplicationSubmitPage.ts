@@ -1,6 +1,5 @@
-import { Page } from "@playwright/test";
+import { expect, Page } from "@playwright/test";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { Selectors } from "../../../../../common/selectors.ts";
 import { SubmitContent } from "../../../../../fixtures/manageCases/createCase/FL401/viewPDFApplication/submitContent.ts";
 
 export class ViewPDFApplicationSubmitPage {
@@ -23,14 +22,14 @@ export class ViewPDFApplicationSubmitPage {
   }
 
   private static async checkPageLoads(page: Page): Promise<void> {
-    await page.waitForSelector(
-      `${Selectors.GovukHeadingL}:text-is("${SubmitContent.pageTitle}")`,
-    );
+    await expect(
+      page.getByRole("heading", { name: SubmitContent.pageTitle }),
+    ).toBeVisible();
   }
 
   private static async fillInFields(page: Page): Promise<void> {
-    await page.click(
-      `${Selectors.button}:text-is("${SubmitContent.saveAndContinue}")`,
-    );
+    await page
+      .getByRole("button", { name: SubmitContent.saveAndContinue })
+      .click();
   }
 }
