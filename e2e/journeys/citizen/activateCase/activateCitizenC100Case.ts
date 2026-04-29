@@ -99,7 +99,12 @@ export class ActivateCitizenC100Case {
       ).toBeVisible();
       await expect(
         notificationBanner.getByText(
-          "You must also bring any papers that you need for your hearing as the court will not provide you with electronic devices to view them. For final hearings only, the court can print any bundle it provides if you do not have access to printing facilities.",
+          "You must bring all the papers you need for your hearing. The court will not give you an electronic device to read your documents, and it will not print your papers for you. Papers will only be printed if a judge gives specific permission, and only when you cannot print them yourself.",
+        ),
+      ).toBeVisible();
+      await expect(
+        notificationBanner.getByText(
+          "You may bring your own electronic device to court to view case papers during the hearing. The device should have a suitably sized screen, such as a laptop rather than a mobile phone. You must be familiar with the device and ensure it is fully charged. The court cannot guarantee access to power points, and staff cannot assist with your device. Security staff may inspect or temporarily remove any device if required. Recording or filming any part of the hearing without permission is contempt of court, which means you can be fined or sent to prison.",
         ),
       ).toBeVisible();
     } else {
@@ -109,7 +114,6 @@ export class ActivateCitizenC100Case {
         })
         .waitFor();
 
-      // check notification banner
       // check notification banner
       const notificationBanner: Locator = page.locator(
         ".govuk-notification-banner",
@@ -151,7 +155,12 @@ export class ActivateCitizenC100Case {
       ).toBeVisible();
       await expect(
         notificationBanner.getByText(
-          "You must also bring any papers that you need for your hearing as the court will not provide you with electronic devices to view them. For final hearings only, the court can print any bundle it provides if you do not have access to printing facilities.",
+          "You must bring all the papers you need for your hearing. The court will not give you an electronic device to read your documents, and it will not print your papers for you. Papers will only be printed if a judge gives specific permission, and only when you cannot print them yourself.",
+        ),
+      ).toBeVisible();
+      await expect(
+        notificationBanner.getByText(
+          "You may bring your own electronic device to court to view case papers during the hearing. The device should have a suitably sized screen, such as a laptop rather than a mobile phone. You must be familiar with the device and ensure it is fully charged. The court cannot guarantee access to power points, and staff cannot assist with your device. Security staff may inspect or temporarily remove any device if required. Recording or filming any part of the hearing without permission is contempt of court, which means you can be fined or sent to prison.",
         ),
       ).toBeVisible();
     }
