@@ -2,7 +2,10 @@ import { EventPage } from "../../eventPage.po.ts";
 import { expect, Locator, Page } from "@playwright/test";
 import { DateHelperUtils } from "../../../../../utils/dateHelpers.utils.ts";
 import { PageUtils } from "../../../../../utils/page.utils.ts";
-import { OrderTypes } from "../../../../../common/types.ts";
+import {
+  OrderTypes,
+  solicitorCaseCreateType,
+} from "../../../../../common/types.ts";
 import config from "../../../../../utils/config.utils.ts";
 
 interface CustomOrdersManageOrder5PageParams {
@@ -11,7 +14,9 @@ interface CustomOrdersManageOrder5PageParams {
   judgeOrMagistratesTitle?: string;
   judgeName?: string;
   legalAdviserName?: string;
-  isOrderAboutChildren: boolean;
+  isOrderAboutChildren?: boolean;
+  isOrderAboutAllTheChildren?: boolean;
+  caseType: solicitorCaseCreateType;
 }
 
 // this page does use the same ManageOrders5 page in the backend but is significantly different so is a separate page
@@ -125,12 +130,20 @@ export class CustomOrdersManageOrder5Page extends EventPage {
   private readonly isOrderAboutChildrenNoLabel: Locator = this.page
     .locator("#isTheOrderAboutChildren_radio")
     .getByText("No");
+  private readonly isOrderAboutAllTheChildrenLabel: Locator =
+    this.page.getByText("Is the order about all the children?");
+  private readonly isOrderAboutAllTheChildrenYesLabel: Locator = this.page
+    .locator("#isTheOrderAboutAllChildren_radio")
+    .getByText("Yes");
+  private readonly isOrderAboutAllTheChildrenNoLabel: Locator = this.page
+    .locator("#isTheOrderAboutAllChildren_radio")
+    .getByText("No");
 
   constructor(page: Page) {
     super(page, "Manage orders");
   }
 
-  async assertPageContents(): Promise<void> {
+  async assertPageContents(caseType: solicitorCaseCreateType): Promise<void> {
     await this.assertPageHeadings();
     await expect(this.selectOrderNameLabel).toBeVisible();
     await this.pageUtils.assertStrings(this.orderNames);
@@ -164,9 +177,15 @@ export class CustomOrdersManageOrder5Page extends EventPage {
     await expect(this.dayInput).toHaveValue(todayDate[0]);
     await expect(this.monthInput).toHaveValue(todayDate[1]);
     await expect(this.yearInput).toHaveValue(todayDate[2]);
-    await expect(this.isOrderAboutChildrenLabel).toBeVisible();
-    await expect(this.isOrderAboutChildrenYesLabel).toBeVisible();
-    await expect(this.isOrderAboutChildrenNoLabel).toBeVisible();
+    if (caseType === "C100") {
+      await expect(this.isOrderAboutAllTheChildrenLabel).toBeVisible();
+      await expect(this.isOrderAboutAllTheChildrenYesLabel).toBeVisible();
+      await expect(this.isOrderAboutAllTheChildrenNoLabel).toBeVisible();
+    } else {
+      await expect(this.isOrderAboutChildrenLabel).toBeVisible();
+      await expect(this.isOrderAboutChildrenYesLabel).toBeVisible();
+      await expect(this.isOrderAboutChildrenNoLabel).toBeVisible();
+    }
     await expect(this.continueButton).toBeVisible();
     await expect(this.previousButton).toBeVisible();
   }
@@ -196,9 +215,24 @@ export class CustomOrdersManageOrder5Page extends EventPage {
     if (params.legalAdviserName) {
       await this.legalAdviserNameInput.fill(params.legalAdviserName);
     }
-    await this.page
-      .getByRole("group", { name: "Is the order about the" })
-      .getByLabel(params.isOrderAboutChildren ? "Yes" : "No", { exact: true })
-      .check();
+    if (params.caseType === "C100") {
+      if (typeof params.isOrderAboutAllTheChildren !== "undefined") {
+        await this.page
+          .getByRole("group", { name: "Is the order about all the children" })
+          .getByLabel(params.isOrderAboutAllTheChildren ? "Yes" : "No", {
+            exact: true,
+          })
+          .check();
+      }
+    } else {
+      if (typeof params.isOrderAboutChildren !== "undefined") {
+        await this.page
+          .getByRole("group", { name: "Is the order about the children" })
+          .getByLabel(params.isOrderAboutChildren ? "Yes" : "No", {
+            exact: true,
+          })
+          .check();
+      }
+    }
   }
 }

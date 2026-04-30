@@ -83,6 +83,9 @@ export class CustomOrderManageOrder20Page extends EventPage {
       case "Amended, discharged or varied order (FL404B)":
         snapshotName = "amended-discharged-or-varied-custom-order-draft-header";
         break;
+      case "Parental responsibility order (C45A)":
+        snapshotName = "parental-responsibility-custom-order-draft-header";
+        break;
     }
     return snapshotName;
   }

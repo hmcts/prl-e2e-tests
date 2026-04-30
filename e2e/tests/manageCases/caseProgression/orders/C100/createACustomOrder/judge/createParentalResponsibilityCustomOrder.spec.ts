@@ -6,12 +6,12 @@ import {
 } from "../../../../../../../common/types.ts";
 import { ManageOrder19Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder19.po.ts";
 
-test.describe("Manage Orders - Create custom amended, discharged or varied custom order tests", () => {
+test.describe("Manage Orders - Create parental responsibility custom order tests", () => {
   let caseNumber: string = "";
 
   test.beforeEach(
     async ({ judge, browser, caseEventUtils, navigationUtils }) => {
-      caseNumber = await caseEventUtils.createDACaseSendToGatekeeper(browser);
+      caseNumber = await caseEventUtils.createCACaseSendToGatekeeper(browser);
       await navigationUtils.goToCase(
         judge.page,
         config.manageCasesBaseURLCase,
@@ -24,19 +24,18 @@ test.describe("Manage Orders - Create custom amended, discharged or varied custo
     {
       orderOption: "create custom order" as manageOrdersOptions,
       isApprovedAtAHearing: false,
-      orderType: "Amended, discharged or varied order (FL404B)" as OrderTypes,
+      orderType: "Parental responsibility order (C45A)" as OrderTypes,
       page5Params: {
         isOrderByConsent: true,
         legalAdviserName: "Test Legal Adviser Name",
-        isOrderAboutChildren: false,
+        isOrderAboutAllTheChildren: false,
       },
       page19Params: {
         isDateReservedWithListAssist: false,
       } as ManageOrder19Params,
       snapshotsPath: ["caseProgression", "orders", "customOrders"],
-      cyaSnapshotName: "amended-discharged-or-varied-custom-order-cya",
-      orderSnapshotName:
-        "amended-discharged-or-varied-custom-order-draft-order",
+      cyaSnapshotName: "parental-responsibility-custom-order-cya",
+      orderSnapshotName: "parental-responsibility-custom-order-draft-order",
     },
   ].forEach(
     ({
@@ -49,7 +48,7 @@ test.describe("Manage Orders - Create custom amended, discharged or varied custo
       cyaSnapshotName,
       orderSnapshotName,
     }) => {
-      test(`Create a an Amended, discharged or varied custom order @regression @nightly @visual`, async ({
+      test(`Create a an parental responsibility custom order @regression @nightly @visual`, async ({
         judge,
       }): Promise<void> => {
         const { manageOrders, summaryPage, draftedOrders } = judge;
@@ -68,15 +67,15 @@ test.describe("Manage Orders - Create custom amended, discharged or varied custo
         await manageOrders.manageOrder102Page.clickContinue();
 
         await manageOrders.customOrderManageOrder5Page.assertPageContents(
-          "FL401",
+          "C100",
         );
         await manageOrders.customOrderManageOrder5Page.verifyAccessibility();
         await manageOrders.customOrderManageOrder5Page.fillInFields({
           orderType: orderType,
           isOrderByConsent: page5Params.isOrderByConsent,
           legalAdviserName: page5Params.legalAdviserName,
-          isOrderAboutChildren: page5Params.isOrderAboutChildren,
-          caseType: "FL401",
+          isOrderAboutAllTheChildren: page5Params.isOrderAboutAllTheChildren,
+          caseType: "C100",
         });
         await manageOrders.customOrderManageOrder5Page.clickContinue();
 
@@ -124,7 +123,7 @@ test.describe("Manage Orders - Create custom amended, discharged or varied custo
               orderCreatedBy: "Elizabeth Williams",
               status: "Created by Judge",
             },
-            isOrderAboutChildren: page5Params.isOrderAboutChildren,
+            isOrderAboutAllTheChildren: page5Params.isOrderAboutAllTheChildren,
           },
         ]);
         await draftedOrders.draftOrdersPage.assertDraftOrderDocument(
