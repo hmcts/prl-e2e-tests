@@ -55,6 +55,8 @@ static Map < String, Object > secret(String secretName, String envVariable) {
 }
 
 def matchingEnv = "aat"
+def playwrightImage = "mcr.microsoft.com/playwright:v1.59.1-noble"
+def playwrightDockerOptions = "--ipc=host"
 
 if(params.skipManageCasesTests) {
   matchingEnv = params.CITIZEN_FRONTEND_BASE_URL.contains("demo") ? "demo" : matchingEnv
@@ -106,7 +108,11 @@ def secrets = [
   ]
 ]
 
-def yarnBuilder = new uk.gov.hmcts.contino.YarnBuilder(this)
+def runInPlaywrightContainer = { Closure body ->
+  withDocker(playwrightImage, playwrightDockerOptions) {
+    body()
+  }
+}
 
 withNightlyPipeline(type, product, component, 600) {
   loadVaultSecrets(secrets)
@@ -116,9 +122,43 @@ withNightlyPipeline(type, product, component, 600) {
   enableSlackNotifications(channel)
   onPR() {
     afterAlways('DependencyCheckNightly') {
+      stage('Diag: Playwright container evidence') {
+        runInPlaywrightContainer {
+          sh(
+            script: '''#!/usr/bin/env bash
+              set -euxo pipefail
+              echo "=== diagnostic:start ==="
+              echo "HOSTNAME=$(hostname)"
+              echo "WHOAMI=$(whoami)"
+              echo "PWD=$(pwd)"
+              echo "PLAYWRIGHT_BROWSERS_PATH=${PLAYWRIGHT_BROWSERS_PATH:-<unset>}"
+              echo "--- /etc/os-release ---"
+              cat /etc/os-release || true
+              echo "--- playwright image marker (/ms-playwright) ---"
+              ls -la /ms-playwright || true
+              echo "--- node + playwright package version ---"
+              node -v
+              node -e 'try { console.log(require("@playwright/test/package.json").version) } catch (e) { console.log("NO_PLAYWRIGHT_PACKAGE", e.message) }'
+              echo "--- playwright CLI version ---"
+              npx playwright --version || true
+              echo "=== diagnostic:end ==="
+            '''.stripIndent()
+          )
+        }
+      }
       stage('Run changed tests - Chrome') {
         try {
-          yarnBuilder.yarn('test:changes')
+          runInPlaywrightContainer {
+            sh(
+              script: '''#!/usr/bin/env bash
+                set -euxo pipefail
+                ls -la ./ci
+                test -f ./ci/pwinstall.sh
+                chmod +x ./ci/pwinstall.sh
+                yarn test:changes
+              '''.stripIndent()
+            )
+          }
         } catch (Error) {
           unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
         } finally {
@@ -130,17 +170,51 @@ withNightlyPipeline(type, product, component, 600) {
                   reportFiles          : 'index.html',
                   reportName           : 'Changed Chrome E2E Test Report'
           ])
-          steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/ChangedTests/*'
+          steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'playwright-report/**, test-results/**, reports/tests-results/**'
         }
       }
     }
   }
   onMaster() {
     afterAlways('DependencyCheckNightly') {
+      stage('Diag: Playwright container evidence') {
+        runInPlaywrightContainer {
+          sh(
+            script: '''#!/usr/bin/env bash
+              set -euxo pipefail
+              echo "=== diagnostic:start ==="
+              echo "HOSTNAME=$(hostname)"
+              echo "WHOAMI=$(whoami)"
+              echo "PWD=$(pwd)"
+              echo "PLAYWRIGHT_BROWSERS_PATH=${PLAYWRIGHT_BROWSERS_PATH:-<unset>}"
+              echo "--- /etc/os-release ---"
+              cat /etc/os-release || true
+              echo "--- playwright image marker (/ms-playwright) ---"
+              ls -la /ms-playwright || true
+              echo "--- node + playwright package version ---"
+              node -v
+              node -e 'try { console.log(require("@playwright/test/package.json").version) } catch (e) { console.log("NO_PLAYWRIGHT_PACKAGE", e.message) }'
+              echo "--- playwright CLI version ---"
+              npx playwright --version || true
+              echo "=== diagnostic:end ==="
+            '''.stripIndent()
+          )
+        }
+      }
       if (!params.skipCitizenTests) {
         stage('Citizen E2E smoke tests - Chrome') {
           try {
-            yarnBuilder.yarn('test:citizenSmoke')
+            runInPlaywrightContainer {
+              sh(
+                script: '''#!/usr/bin/env bash
+                  set -euxo pipefail
+                  ls -la ./ci
+                  test -f ./ci/pwinstall.sh
+                  chmod +x ./ci/pwinstall.sh
+                  yarn test:citizenSmoke
+                '''.stripIndent()
+              )
+            }
           } catch (Error) {
             unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
           } finally {
@@ -152,14 +226,24 @@ withNightlyPipeline(type, product, component, 600) {
                     reportFiles          : 'index.html',
                     reportName           : 'Citizen Chrome E2E Smoke Test Report'
             ])
-            steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CitizenFunctional/*'
+            steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'playwright-report/**, test-results/**, reports/tests-results/**'
           }
         }
       }
       if (!params.skipManageCasesTests) {
         stage('Manage Cases E2E smoke tests - Chrome') {
           try {
-            yarnBuilder.yarn('test:manageCasesSmoke')
+            runInPlaywrightContainer {
+              sh(
+                script: '''#!/usr/bin/env bash
+                  set -euxo pipefail
+                  ls -la ./ci
+                  test -f ./ci/pwinstall.sh
+                  chmod +x ./ci/pwinstall.sh
+                  yarn test:manageCasesSmoke
+                '''.stripIndent()
+              )
+            }
           } catch (Error) {
             unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
           } finally {
@@ -171,7 +255,7 @@ withNightlyPipeline(type, product, component, 600) {
                     reportFiles          : 'index.html',
                     reportName           : 'Manage Cases Chrome E2E Smoke Test Report'
             ])
-            steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/ManageCasesFunctional/*'
+            steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'playwright-report/**, test-results/**, reports/tests-results/**'
           }
         }
       }
