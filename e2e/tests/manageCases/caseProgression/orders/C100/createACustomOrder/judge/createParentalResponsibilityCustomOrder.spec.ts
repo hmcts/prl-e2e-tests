@@ -28,7 +28,7 @@ test.describe("Manage Orders - Create parental responsibility custom order tests
       page5Params: {
         isOrderByConsent: true,
         legalAdviserName: "Test Legal Adviser Name",
-        isOrderAboutAllTheChildren: false,
+        isOrderAboutAllTheChildren: true,
       },
       page19Params: {
         isDateReservedWithListAssist: false,
