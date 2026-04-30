@@ -300,7 +300,7 @@ export class ReviewPage {
       ),
       Helpers.checkGroup(
         page,
-        80,
+        79,
         CaJourneyWrittenConsentReviewContent,
         "li_",
         Selectors.li,
@@ -784,7 +784,7 @@ export class ReviewPage {
       ),
       Helpers.checkGroup(
         page,
-        80,
+        79,
         CaJourneyEmergencyProtectionReviewContent,
         "li_",
         Selectors.li,
@@ -1784,7 +1784,7 @@ export class ReviewPage {
       ),
       Helpers.checkGroup(
         page,
-        80,
+        79,
         CaJourneyExistingMIAMReviewContent,
         "li_",
         Selectors.li,
