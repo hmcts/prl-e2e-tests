@@ -3,6 +3,8 @@ import Config from "../../../../utils/config.utils.ts";
 import { C100 } from "../../../../journeys/citizen/createCase/C100/C100.ts";
 
 test.describe("C100 Citizen Application with an existing MIAM document.", (): void => {
+  test.setTimeout(480_000) // Set timeout to 8 mins because these test sometimes takes slightly longer than default 6 mins
+
   test.beforeEach(async ({ page, idamLoginHelper }) => {
     await idamLoginHelper.setupAndSignInUser(
       page,
