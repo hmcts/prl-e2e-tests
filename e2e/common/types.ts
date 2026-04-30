@@ -178,7 +178,8 @@ export type manageOrdersOptions =
   | "create order"
   | "upload order"
   | "amend order"
-  | "serve order";
+  | "serve order"
+  | "create custom order";
 
 export type createOrderC100Options = "C43 order";
 

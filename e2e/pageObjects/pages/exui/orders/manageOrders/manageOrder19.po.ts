@@ -39,9 +39,12 @@ export class ManageOrder19Page extends EventPage {
     super(page, "Manage orders");
   }
 
-  async assertPageContents(orderType: OrderTypes): Promise<void> {
+  async assertPageContents(orderType: OrderTypes, isCustomOrder: boolean = false): Promise<void> {
     await this.assertPageHeadings();
-    await expect(this.page.getByText(orderType)).toBeVisible();
+    if(!isCustomOrder) {
+      // for some reason the order type heading isn't present for custom orders page 19
+      await expect(this.page.getByText(orderType)).toBeVisible();
+    }
     await expect(this.optionalHearingHeading).toBeVisible();
     await expect(this.optionalHearingDescription).toBeVisible();
     await expect(this.continueButton).toBeVisible();

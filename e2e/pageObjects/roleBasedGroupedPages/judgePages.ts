@@ -18,6 +18,9 @@ import { ManageOrder3Page } from "../pages/exui/orders/manageOrders/manageOrder3
 import { ManageOrder19Page } from "../pages/exui/orders/manageOrders/manageOrder19.po.js";
 import { PowerOfArrestManageOrders12Page } from "../pages/exui/orders/manageOrders/powerOfArrestOrderManageOrder12.po.js";
 import { ManageOrder12Page } from "../pages/exui/orders/manageOrders/manageOrder12.po.js";
+import { ManageOrder102Page } from "../pages/exui/orders/manageOrders/manageOrder102.po.ts";
+import { CustomOrdersManageOrder5Page } from "../pages/exui/orders/manageOrders/customOrderManageOrder5.po.ts";
+import { CustomOrderManageOrder20Page } from "../pages/exui/orders/manageOrders/customOrderManageOrder20.po.ts";
 
 export class JudgePagesGroup {
   constructor(public readonly page: Page) {}
@@ -39,13 +42,16 @@ export class JudgePagesGroup {
       ),
     };
   }
+
   get manageOrders() {
     return {
       manageOrder1Page: new ManageOrder1Page(this.page),
+      manageOrder102Page: new ManageOrder102Page(this.page),
       manageOrder2Page: new ManageOrder2Page(this.page),
       manageOrder3Page: new ManageOrder3Page(this.page),
       manageOrder4Page: new ManageOrder4Page(this.page),
       manageOrder5Page: new ManageOrder5Page(this.page),
+      customOrderManageOrder5Page: new CustomOrdersManageOrder5Page(this.page),
       manageOrder10Page: new ManageOrder10Page(this.page),
       manageOrder12Page: new ManageOrder12Page(this.page),
       powerOfArrestManageOrder12Page: new PowerOfArrestManageOrders12Page(
@@ -53,11 +59,13 @@ export class JudgePagesGroup {
       ),
       manageOrder19Page: new ManageOrder19Page(this.page),
       manageOrder20Page: new ManageOrder20Page(this.page),
+      customOrderManageOrder20Page: new CustomOrderManageOrder20Page(this.page),
       manageOrder30Page: new ManageOrder30Page(this.page),
 
       manageOrderSubmitPage: new ManageOrderSubmitPage(this.page),
     };
   }
+
   get draftedOrders() {
     return {
       draftOrdersPage: new DraftOrdersPage(this.page),
