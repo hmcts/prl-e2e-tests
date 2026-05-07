@@ -768,6 +768,7 @@ export class C100 {
     });
     await EqualityAndDiversityPage.equalityAndDiversityPage({
       page,
+      c100YesNoNeedHelpWithFees,
     });
     if (!c100YesNoNeedHelpWithFees) {
       await C100Pay.c100Pay({
@@ -986,6 +987,7 @@ export class C100 {
     });
     await EqualityAndDiversityPage.equalityAndDiversityPage({
       page,
+      c100YesNoNeedHelpWithFees,
     });
     if (!c100YesNoNeedHelpWithFees) {
       await C100Pay.c100Pay({
@@ -1208,6 +1210,7 @@ export class C100 {
     });
     await EqualityAndDiversityPage.equalityAndDiversityPage({
       page,
+      c100YesNoNeedHelpWithFees,
     });
     await ConfirmationPage.confirmationPage({
       page: page,
