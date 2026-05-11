@@ -6,10 +6,12 @@ import {
 } from "../../exuiMediaViewer.po.ts";
 import { NavigationUtils } from "../../../../../utils/navigation.utils.ts";
 import { OrderTypes } from "../../../../../common/types.ts";
+import { DateHelperUtils } from "../../../../../utils/dateHelpers.utils.js";
 
 // this page does use the same ManageOrders5 page in the backend but is significantly different so is a separate page
 export class CustomOrderManageOrder20Page extends EventPage {
   private readonly navigationUtils: NavigationUtils = new NavigationUtils();
+  private readonly dateUtils: DateHelperUtils = new DateHelperUtils();
 
   private readonly previewOrderHeading: Locator = this.page.getByRole(
     "heading",
@@ -60,6 +62,8 @@ export class CustomOrderManageOrder20Page extends EventPage {
       this.page,
       customOrderHeaderPreviewLink,
     );
+    // check the correct date is present
+    await expect(docPage.getByText(this.dateUtils.todayDateUK())).toBeVisible();
     // locators to mask in screenshot
     const formattedCaseNumber: string = `${caseNumber.slice(0, 4)}-${caseNumber.slice(4, 8)}-${caseNumber.slice(8, 12)}-${caseNumber.slice(12, 16)}`;
     const caseNumberLocator: Locator = docPage.getByText(formattedCaseNumber);
