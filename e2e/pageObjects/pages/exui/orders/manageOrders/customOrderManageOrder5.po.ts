@@ -8,7 +8,7 @@ import {
 } from "../../../../../common/types.ts";
 import config from "../../../../../utils/config.utils.ts";
 
-interface CustomOrdersManageOrder5PageParams {
+export interface CustomOrdersManageOrder5PageParams {
   orderType: OrderTypes;
   isOrderByConsent: boolean;
   judgeOrMagistratesTitle?: string;
@@ -16,7 +16,6 @@ interface CustomOrdersManageOrder5PageParams {
   legalAdviserName?: string;
   isOrderAboutChildren?: boolean;
   isOrderAboutAllTheChildren?: boolean;
-  caseType: solicitorCaseCreateType;
 }
 
 // this page does use the same ManageOrders5 page in the backend but is significantly different so is a separate page
@@ -215,24 +214,21 @@ export class CustomOrdersManageOrder5Page extends EventPage {
     if (params.legalAdviserName) {
       await this.legalAdviserNameInput.fill(params.legalAdviserName);
     }
-    if (params.caseType === "C100") {
-      if (typeof params.isOrderAboutAllTheChildren !== "undefined") {
-        await this.page
-          .getByRole("group", { name: "Is the order about all the children" })
-          .getByLabel(params.isOrderAboutAllTheChildren ? "Yes" : "No", {
-            exact: true,
-          })
-          .check();
-      }
-    } else {
-      if (typeof params.isOrderAboutChildren !== "undefined") {
-        await this.page
-          .getByRole("group", { name: "Is the order about the children" })
-          .getByLabel(params.isOrderAboutChildren ? "Yes" : "No", {
-            exact: true,
-          })
-          .check();
-      }
+    if (typeof params.isOrderAboutAllTheChildren !== "undefined") {
+      await this.page
+        .getByRole("group", { name: "Is the order about all the children" })
+        .getByLabel(params.isOrderAboutAllTheChildren ? "Yes" : "No", {
+          exact: true,
+        })
+        .check();
+    }
+    if (typeof params.isOrderAboutChildren !== "undefined") {
+      await this.page
+        .getByRole("group", { name: "Is the order about the children" })
+        .getByLabel(params.isOrderAboutChildren ? "Yes" : "No", {
+          exact: true,
+        })
+        .check();
     }
   }
 }

@@ -5,6 +5,19 @@ import {
   OrderTypes,
 } from "../../../../../../../common/types.ts";
 import { ManageOrder19Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder19.po.ts";
+import { CustomOrdersManageOrder5PageParams } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/customOrderManageOrder5.po.js";
+import { CreateParentalResponsibilityCustomOrderScenarios } from "../../../../../../../testData/draftOrders.js";
+
+export interface CustomOrderParams {
+  orderOption: manageOrdersOptions;
+  isApprovedAtAHearing: boolean;
+  orderType: OrderTypes;
+  page5Params: CustomOrdersManageOrder5PageParams;
+  page19Params: ManageOrder19Params;
+  snapshotsPath: string[];
+  cyaSnapshotName: string;
+  orderSnapshotName: string;
+}
 
 test.describe("Manage Orders - Create parental responsibility custom order tests", () => {
   let caseNumber: string = "";
@@ -20,34 +33,8 @@ test.describe("Manage Orders - Create parental responsibility custom order tests
     },
   );
 
-  [
-    {
-      orderOption: "create custom order" as manageOrdersOptions,
-      isApprovedAtAHearing: false,
-      orderType: "Parental responsibility order (C45A)" as OrderTypes,
-      page5Params: {
-        isOrderByConsent: true,
-        legalAdviserName: "Test Legal Adviser Name",
-        isOrderAboutAllTheChildren: true,
-      },
-      page19Params: {
-        isDateReservedWithListAssist: false,
-      } as ManageOrder19Params,
-      snapshotsPath: ["caseProgression", "orders", "customOrders"],
-      cyaSnapshotName: "parental-responsibility-custom-order-cya",
-      orderSnapshotName: "parental-responsibility-custom-order-draft-order",
-    },
-  ].forEach(
-    ({
-      orderOption,
-      isApprovedAtAHearing,
-      orderType,
-      page5Params,
-      page19Params,
-      snapshotsPath,
-      cyaSnapshotName,
-      orderSnapshotName,
-    }) => {
+  CreateParentalResponsibilityCustomOrderScenarios.forEach(
+    (customOrderParams: CustomOrderParams) => {
       test(`Create a an parental responsibility custom order @regression @nightly @visual`, async ({
         judge,
       }): Promise<void> => {
@@ -56,13 +43,15 @@ test.describe("Manage Orders - Create parental responsibility custom order tests
         await summaryPage.chooseEventFromDropdown("Manage orders");
         await manageOrders.manageOrder1Page.assertPageContents();
         await manageOrders.manageOrder1Page.verifyAccessibility();
-        await manageOrders.manageOrder1Page.selectOrderOption(orderOption);
+        await manageOrders.manageOrder1Page.selectOrderOption(
+          customOrderParams.orderOption,
+        );
         await manageOrders.manageOrder1Page.clickContinue();
 
         await manageOrders.manageOrder102Page.assertPageContents();
         await manageOrders.manageOrder102Page.verifyAccessibility();
         await manageOrders.manageOrder102Page.selectWasTheOrderApprovedAtAHearing(
-          isApprovedAtAHearing,
+          customOrderParams.isApprovedAtAHearing,
         );
         await manageOrders.manageOrder102Page.clickContinue();
 
@@ -70,27 +59,25 @@ test.describe("Manage Orders - Create parental responsibility custom order tests
           "C100",
         );
         await manageOrders.customOrderManageOrder5Page.verifyAccessibility();
-        await manageOrders.customOrderManageOrder5Page.fillInFields({
-          orderType: orderType,
-          isOrderByConsent: page5Params.isOrderByConsent,
-          legalAdviserName: page5Params.legalAdviserName,
-          isOrderAboutAllTheChildren: page5Params.isOrderAboutAllTheChildren,
-          caseType: "C100",
-        });
+        await manageOrders.customOrderManageOrder5Page.fillInFields(
+          customOrderParams.page5Params,
+        );
         await manageOrders.customOrderManageOrder5Page.clickContinue();
 
         await manageOrders.manageOrder19Page.assertPageContents(
-          orderType,
+          customOrderParams.orderType,
           true,
         );
         await manageOrders.manageOrder19Page.verifyAccessibility();
-        await manageOrders.manageOrder19Page.fillHearingDetails(page19Params);
+        await manageOrders.manageOrder19Page.fillHearingDetails(
+          customOrderParams.page19Params,
+        );
         await manageOrders.manageOrder19Page.clickContinue();
 
         await manageOrders.customOrderManageOrder20Page.assertPageContents(
           caseNumber,
-          snapshotsPath,
-          orderType,
+          customOrderParams.snapshotsPath,
+          customOrderParams.orderType,
         );
         await manageOrders.customOrderManageOrder20Page.verifyAccessibility();
         await manageOrders.customOrderManageOrder20Page.clickContinue();
@@ -101,8 +88,8 @@ test.describe("Manage Orders - Create parental responsibility custom order tests
         await manageOrders.manageOrder30Page.clickContinue();
 
         await manageOrders.manageOrderSubmitPage.assertPageContents(
-          snapshotsPath,
-          cyaSnapshotName,
+          customOrderParams.snapshotsPath,
+          customOrderParams.cyaSnapshotName,
         );
         await manageOrders.manageOrderSubmitPage.verifyAccessibility();
         await manageOrders.manageOrderSubmitPage.clickSubmit();
@@ -116,21 +103,22 @@ test.describe("Manage Orders - Create parental responsibility custom order tests
         await draftedOrders.draftOrdersPage.goToPage();
         await draftedOrders.draftOrdersPage.assertDraftOrders([
           {
-            typeOfOrder: orderType,
-            englishDocument: `${orderType.replace(/[(),]/g, "")}_${caseNumber}.docx`,
+            typeOfOrder: customOrderParams.orderType,
+            englishDocument: `${customOrderParams.orderType.replace(/[(),]/g, "")}_${caseNumber}.docx`,
             otherDetails: {
               orderMadeBy: "Elizabeth Williams",
               orderCreatedBy: "Elizabeth Williams",
               status: "Created by Judge",
             },
-            isOrderAboutAllTheChildren: page5Params.isOrderAboutAllTheChildren,
+            isOrderAboutAllTheChildren:
+              customOrderParams.page5Params.isOrderAboutAllTheChildren,
           },
         ]);
         await draftedOrders.draftOrdersPage.assertDraftOrderDocument(
-          snapshotsPath,
+          customOrderParams.snapshotsPath,
           caseNumber,
-          `${orderType.replace(/[(),]/g, "")}_${caseNumber}.docx`,
-          orderSnapshotName,
+          `${customOrderParams.orderType.replace(/[(),]/g, "")}_${caseNumber}.docx`,
+          customOrderParams.orderSnapshotName,
         );
       });
     },
