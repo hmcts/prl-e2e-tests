@@ -2,6 +2,8 @@ import { CaseAccessViewPage } from "./caseAccessView.po.js";
 import { expect, Locator, Page } from "@playwright/test";
 import { OrderTypes } from "../../../../common/types.js";
 import { DateHelperUtils } from "../../../../utils/dateHelpers.utils.js";
+import { clippingCoords, ExuiMediaViewerPage } from "../exuiMediaViewer.po.js";
+import { NavigationUtils } from "../../../../utils/navigation.utils.js";
 
 export interface OrderInformation {
   typeOfOrder: OrderTypes;
@@ -26,6 +28,8 @@ export class DraftOrdersPage extends CaseAccessViewPage {
   );
 
   private dateHelper: DateHelperUtils = new DateHelperUtils();
+
+  private navigationUtils: NavigationUtils = new NavigationUtils();
 
   constructor(page: Page) {
     super(page);
@@ -64,7 +68,7 @@ export class DraftOrdersPage extends CaseAccessViewPage {
         draftOrder.englishDocument,
       );
       // specific to FL401
-      if (draftOrder.isOrderAboutChildren) {
+      if (typeof draftOrder.isOrderAboutChildren !== "undefined") {
         await this.assertTableRow(
           draftOrderTable,
           "Is the order about the children?",
@@ -72,7 +76,7 @@ export class DraftOrdersPage extends CaseAccessViewPage {
         );
       }
       // specific to C100
-      if (draftOrder.isOrderAboutAllTheChildren) {
+      if (typeof draftOrder.isOrderAboutAllTheChildren !== "undefined") {
         await this.assertTableRow(
           draftOrderTable,
           "Is the order about all the children?",
@@ -122,6 +126,32 @@ export class DraftOrdersPage extends CaseAccessViewPage {
         draftOrder.otherDetails.status,
       );
     }
+  }
+
+  // open doc and check contents in media viewer
+  async assertDraftOrderDocument(
+    snapshotsPath: string[],
+    caseNumber: string,
+    orderName: string,
+    snapshotName: string,
+  ): Promise<void> {
+    const link: Locator = this.page.getByRole("button", { name: orderName });
+    const docPage: Page = await this.navigationUtils.openPdfLink(
+      this.page,
+      link,
+    );
+    // locators to mask in screenshot
+    const formattedCaseNumber: string = `${caseNumber.slice(0, 4)}-${caseNumber.slice(4, 8)}-${caseNumber.slice(8, 12)}-${caseNumber.slice(12, 16)}`;
+    const caseNumberLocator: Locator = docPage.getByText(formattedCaseNumber);
+    const snapshotPath: string[] = [...snapshotsPath, snapshotName];
+    const mediaViewerPage = new ExuiMediaViewerPage(docPage);
+    await mediaViewerPage.runVisualTestOnAllPages(
+      docPage,
+      snapshotPath,
+      clippingCoords.centeredPageWithoutToolbar,
+      [caseNumberLocator],
+    );
+    await docPage.close();
   }
 
   private async assertTableRow(

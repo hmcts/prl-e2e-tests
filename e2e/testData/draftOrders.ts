@@ -8,6 +8,9 @@ import {
 } from "../tests/manageCases/caseProgression/orders/C100/uploadAnOrder/uploadChildArrangementsOrderSolicitor.spec.js";
 import { DomesticAbuseUploadOrderParams } from "../tests/manageCases/caseProgression/orders/FL401/uploadAnOrder/uploadDomesticAbuseOrderSolicitor.spec.js";
 import { SpecialGuardianshipDraftOrderParams } from "../tests/manageCases/caseProgression/orders/C100/createAnOrder/solicitor/draftAnSpecialGuardianshipOrder.spec.js";
+import { CustomOrderParams } from "../tests/manageCases/caseProgression/orders/C100/createACustomOrder/judge/createParentalResponsibilityCustomOrder.spec.js";
+import { manageOrdersOptions, OrderTypes } from "../common/types.js";
+import { ManageOrder19Params } from "../pageObjects/pages/exui/orders/manageOrders/manageOrder19.po.js";
 
 export const NonMolestationDraftOrderScenarios: NonMolestationDraftOrderParams[] =
   [
@@ -793,5 +796,46 @@ export const SpecialGuardianshipDraftOrderScenarios: SpecialGuardianshipDraftOrd
           isOrderAboutAllTheChildren: true,
         },
       ],
+    },
+  ];
+export const CreateParentalResponsibilityCustomOrderScenarios: CustomOrderParams[] =
+  [
+    {
+      orderOption: "create custom order" as manageOrdersOptions,
+      isApprovedAtAHearing: false,
+      orderType: "Parental responsibility order (C45A)" as OrderTypes,
+      page5Params: {
+        orderType: "Parental responsibility order (C45A)" as OrderTypes,
+        isOrderByConsent: true,
+        legalAdviserName: "Test Legal Adviser Name",
+        isOrderAboutAllTheChildren: true,
+      },
+      page19Params: {
+        isDateReservedWithListAssist: false,
+      } as ManageOrder19Params,
+      snapshotsPath: ["caseProgression", "orders", "customOrders"],
+      cyaSnapshotName: "parental-responsibility-custom-order-cya",
+      orderSnapshotName: "parental-responsibility-custom-order-draft-order",
+    },
+  ];
+export const CreateAmendedDischargedOrVariedCustomOrderScenarios: CustomOrderParams[] =
+  [
+    {
+      orderOption: "create custom order" as manageOrdersOptions,
+      isApprovedAtAHearing: false,
+      orderType: "Amended, discharged or varied order (FL404B)" as OrderTypes,
+      page5Params: {
+        orderType: "Amended, discharged or varied order (FL404B)" as OrderTypes,
+        isOrderByConsent: true,
+        legalAdviserName: "Test Legal Adviser Name",
+        isOrderAboutChildren: false,
+      },
+      page19Params: {
+        isDateReservedWithListAssist: false,
+      } as ManageOrder19Params,
+      snapshotsPath: ["caseProgression", "orders", "customOrders"],
+      cyaSnapshotName: "amended-discharged-or-varied-custom-order-cya",
+      orderSnapshotName:
+        "amended-discharged-or-varied-custom-order-draft-order",
     },
   ];
