@@ -70,7 +70,7 @@ export class ManageDocumentsNew1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.button}:text-is("${ManageDocumentsNew1Content.buttonText}")`,
+        `${Selectors.button}:text-is("${ManageDocumentsNew1Content.buttonText}"):visible`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
