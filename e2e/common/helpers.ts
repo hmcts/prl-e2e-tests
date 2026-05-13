@@ -61,10 +61,26 @@ export class Helpers {
     page: Page,
     event: c100SolicitorEvents | fl401SolicitorEvents,
   ): Promise<void> {
-    const eventSelector = `${Selectors.markdown} > ${Selectors.div} > ${Selectors.p} > ${Selectors.a}:has-text("${event}")`;
-    await page.waitForSelector(`.mat-tab-label-content:text-is("Tasks")`);
-    await page.locator(eventSelector).waitFor();
-    await page.click(eventSelector);
+    const eventLink = page.getByRole("link", { name: event });
+    await page.waitForSelector('.mat-tab-label-content:text-is("Tasks")');
+    await expect(eventLink).toBeVisible();
+    await expect(eventLink).toBeEnabled();
+    //retry until element is clicked or task heading is no longer visible
+    await expect
+      .poll(
+        async () => {
+          const headingVisible = await page
+            .getByRole("heading", { name: event })
+            .isVisible();
+          if (!headingVisible) await eventLink.click();
+          return headingVisible;
+        },
+        {
+          intervals: [1_000, 2_000, 10_000],
+          timeout: 100_000,
+        },
+      )
+      .toBeTruthy();
   }
 
   public static async checkVisibleAndPresent(
@@ -548,12 +564,5 @@ export class Helpers {
     return await page
       .locator("//tr[th/span[contains(text(), 'Court name')]]/td")
       .innerText();
-  }
-
-  public static async waitForRolesAccessRequest(page: Page): Promise<void> {
-    // wait for role access call before progressing - required when creating a solicitor case
-    await page.waitForResponse(
-      /\/api\/role-access\/roles\/manageLabellingRoleAssignment\/\d+$/,
-    );
   }
 }

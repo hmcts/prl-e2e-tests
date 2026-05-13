@@ -12,7 +12,6 @@ import { SolicitorCreate6Page } from "../../../pages/manageCases/createCase/init
 import { SolicitorCreate7Page } from "../../../pages/manageCases/createCase/initialJourney/solicitorCreate7Page.ts";
 import { SolicitorCreatePage } from "../../../pages/manageCases/createCase/initialJourney/solicitorCreatePage.ts";
 import { SubmitPage } from "../../../pages/manageCases/createCase/initialJourney/submitPage.ts";
-import { Helpers } from "../../../common/helpers.js";
 
 export class SolicitorCreateInitial {
   public static async createInitialCase({
@@ -92,6 +91,5 @@ export class SolicitorCreateInitial {
         await SubmitPage.submitPage(page, accessibilityTest, caseName);
     }
 
-    await Helpers.waitForRolesAccessRequest(page);
   }
 }
