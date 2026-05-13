@@ -64,6 +64,10 @@ export class Helpers {
     const eventSelector = `${Selectors.markdown} > ${Selectors.div} > ${Selectors.p} > ${Selectors.a}:has-text("${event}")`;
     await page.waitForSelector(`.mat-tab-label-content:text-is("Tasks")`);
     await page.locator(eventSelector).waitFor();
+    // wait for role access call before selecting event
+    await page.waitForResponse(
+      /\/api\/role-access\/roles\/manageLabellingRoleAssignment\/\d+$/
+    );
     await page.click(eventSelector);
   }
 
