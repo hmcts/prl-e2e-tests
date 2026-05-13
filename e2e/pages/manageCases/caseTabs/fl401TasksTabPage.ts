@@ -14,6 +14,7 @@ export class Fl401TasksTabPage {
     accessibilityTest: boolean,
   ): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest);
+    await Helpers.waitForRolesAccessRequest(page);
   }
 
   private static async checkPageLoads(
