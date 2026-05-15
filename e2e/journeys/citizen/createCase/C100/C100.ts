@@ -548,12 +548,20 @@ export class C100 {
       errorMessaging: errorMessaging,
       yesNoInternationalElements: yesNoInternationalElements,
     });
-    await C100ReasonableAdjustments.c100ReasonableAdjustments({
-      page: page,
-      accessibilityTest: accessibilityTest,
-      errorMessaging: errorMessaging,
-      yesNoReasonableAdjustments: yesNoReasonableAdjustments,
-    });
+    // THIS WHOLE SECTION WAS REMOVED
+    // await C100ReasonableAdjustments.c100ReasonableAdjustments({
+    //   page: page,
+    //   accessibilityTest: accessibilityTest,
+    //   errorMessaging: errorMessaging,
+    //   yesNoReasonableAdjustments: yesNoReasonableAdjustments,
+    // });
+
+
+
+    //ADD NEW FOR INTERMEDIARY
+
+
+
     await C100HelpWithFees.c100HelpWithFees({
       page: page,
       accessibilityTest: accessibilityTest,

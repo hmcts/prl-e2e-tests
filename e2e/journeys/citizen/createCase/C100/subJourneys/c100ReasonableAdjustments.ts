@@ -56,79 +56,81 @@ export class C100ReasonableAdjustments {
           yesNoReasonableAdjustments: yesNoReasonableAdjustments,
         },
       );
-      await ReasonableAdjustmentsDocumentSupportPage.reasonableAdjustmentsDocumentSupportPageOptions(
-        {
-          page: page,
-          accessibilityTest: accessibilityTest,
-          errorMessaging: errorMessaging,
-          yesNoReasonableAdjustments: yesNoReasonableAdjustments,
-        },
-      );
-      await ReasonableAdjustmentsCommunicationHelpPage.reasonableAdjustmentsCommunicationHelpPage(
-        {
-          page: page,
-          accessibilityTest: accessibilityTest,
-          errorMessaging: errorMessaging,
-          yesNoReasonableAdjustments: yesNoReasonableAdjustments,
-        },
-      );
-      await ReasonableAdjustmentsSupportForCourtHearingPage.reasonableAdjustmentsSupportForCourtHearingPage(
-        {
-          page: page,
-          accessibilityTest: accessibilityTest,
-          errorMessaging: errorMessaging,
-          yesNoReasonableAdjustments: yesNoReasonableAdjustments,
-        },
-      );
-      await ReasonableAdjustmentsNeedsDuringCourtHearingPage.reasonableAdjustmentsNeedsDuringCourtHearingPage(
-        {
-          page: page,
-          accessibilityTest: accessibilityTest,
-          errorMessaging: errorMessaging,
-          yesNoReasonableAdjustments: yesNoReasonableAdjustments,
-        },
-      );
-      await ReasonableAdjustmentsNeedsInCourtPage.reasonableAdjustmentsNeedsInCourtPage(
-        {
-          page: page,
-          accessibilityTest: accessibilityTest,
-          errorMessaging: errorMessaging,
-          yesNoReasonableAdjustments: yesNoReasonableAdjustments,
-        },
-      );
-    } else {
-      await ReasonableAdjustmentsAttendingCourtPage.reasonableAdjustmentsAttendingCourtPage(
-        {
-          page: page,
-          accessibilityTest: accessibilityTest,
-          errorMessaging: errorMessaging,
-          yesNoReasonableAdjustments: yesNoReasonableAdjustments,
-        },
-      );
-      await ReasonableAdjustmentsLanguageRequirementsPage.reasonableAdjustmentsAttendingCourtPage(
-        {
-          page: page,
-          accessibilityTest: accessibilityTest,
-          errorMessaging: errorMessaging,
-          yesNoReasonableAdjustments: yesNoReasonableAdjustments,
-        },
-      );
-      await ReasonableAdjustmentsSpecialArrangementsPage.reasonableAdjustmentsSpecialArrangementsPage(
-        {
-          page: page,
-          accessibilityTest: accessibilityTest,
-          errorMessaging: errorMessaging,
-          yesNoReasonableAdjustments: yesNoReasonableAdjustments,
-        },
-      );
-      await ReasonableAdjustmentsSupportDuringYourCasePage.reasonableAdjustmentsSupportDuringYourCasePage(
-        {
-          page: page,
-          accessibilityTest: accessibilityTest,
-          errorMessaging: errorMessaging,
-          yesNoReasonableAdjustments: yesNoReasonableAdjustments,
-        },
-      );
+      // THIS PAGE WAS REMOVED
+      // await ReasonableAdjustmentsDocumentSupportPage.reasonableAdjustmentsDocumentSupportPageOptions(
+      //   {
+      //     page: page,
+      //     accessibilityTest: accessibilityTest,
+      //     errorMessaging: errorMessaging,
+      //     yesNoReasonableAdjustments: yesNoReasonableAdjustments,
+      //   },
+      // );
+      // THIS PAGE WAS REMOVED
+      // await ReasonableAdjustmentsCommunicationHelpPage.reasonableAdjustmentsCommunicationHelpPage(
+      //   {
+      //     page: page,
+      //     accessibilityTest: accessibilityTest,
+      //     errorMessaging: errorMessaging,
+      //     yesNoReasonableAdjustments: yesNoReasonableAdjustments,
+      //   },
+      // );
+    //   await ReasonableAdjustmentsSupportForCourtHearingPage.reasonableAdjustmentsSupportForCourtHearingPage(
+    //     {
+    //       page: page,
+    //       accessibilityTest: accessibilityTest,
+    //       errorMessaging: errorMessaging,
+    //       yesNoReasonableAdjustments: yesNoReasonableAdjustments,
+    //     },
+    //   );
+    //   await ReasonableAdjustmentsNeedsDuringCourtHearingPage.reasonableAdjustmentsNeedsDuringCourtHearingPage(
+    //     {
+    //       page: page,
+    //       accessibilityTest: accessibilityTest,
+    //       errorMessaging: errorMessaging,
+    //       yesNoReasonableAdjustments: yesNoReasonableAdjustments,
+    //     },
+    //   );
+    //   await ReasonableAdjustmentsNeedsInCourtPage.reasonableAdjustmentsNeedsInCourtPage(
+    //     {
+    //       page: page,
+    //       accessibilityTest: accessibilityTest,
+    //       errorMessaging: errorMessaging,
+    //       yesNoReasonableAdjustments: yesNoReasonableAdjustments,
+    //     },
+    //   );
+    // } else {
+    //   await ReasonableAdjustmentsAttendingCourtPage.reasonableAdjustmentsAttendingCourtPage(
+    //     {
+    //       page: page,
+    //       accessibilityTest: accessibilityTest,
+    //       errorMessaging: errorMessaging,
+    //       yesNoReasonableAdjustments: yesNoReasonableAdjustments,
+    //     },
+    //   );
+    //   await ReasonableAdjustmentsLanguageRequirementsPage.reasonableAdjustmentsAttendingCourtPage(
+    //     {
+    //       page: page,
+    //       accessibilityTest: accessibilityTest,
+    //       errorMessaging: errorMessaging,
+    //       yesNoReasonableAdjustments: yesNoReasonableAdjustments,
+    //     },
+    //   );
+    //   await ReasonableAdjustmentsSpecialArrangementsPage.reasonableAdjustmentsSpecialArrangementsPage(
+    //     {
+    //       page: page,
+    //       accessibilityTest: accessibilityTest,
+    //       errorMessaging: errorMessaging,
+    //       yesNoReasonableAdjustments: yesNoReasonableAdjustments,
+    //     },
+    //   );
+    //   await ReasonableAdjustmentsSupportDuringYourCasePage.reasonableAdjustmentsSupportDuringYourCasePage(
+    //     {
+    //       page: page,
+    //       accessibilityTest: accessibilityTest,
+    //       errorMessaging: errorMessaging,
+    //       yesNoReasonableAdjustments: yesNoReasonableAdjustments,
+    //     },
+    //   );
     }
   }
 }

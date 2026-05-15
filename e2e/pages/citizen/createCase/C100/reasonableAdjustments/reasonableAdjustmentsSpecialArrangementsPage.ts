@@ -89,6 +89,11 @@ export class ReasonableAdjustmentsSpecialArrangementsPage {
         `${Selectors.GovukCheckboxesDivider}:text-is("${ReasonableAdjustmentsSpecialArrangementsContent.or}")`,
         1,
       ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukLabel}:text-is("${ReasonableAdjustmentsSpecialArrangementsContent.boldLabel}")`,
+        1,
+      ),
     ]);
     if (accessibilityTest) {
       await new AxeUtils(page).audit();
