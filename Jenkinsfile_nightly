@@ -64,8 +64,6 @@ static Map < String, Object > secret(String secretName, String envVariable) {
 }
 
 def matchingEnv = "aat"
-def playwrightImage = "mcr.microsoft.com/playwright:v1.59.1-noble"
-def playwrightDockerOptions = "--ipc=host"
 
 if(params.skipManageCasesTests) {
   matchingEnv = params.CITIZEN_FRONTEND_BASE_URL.contains("demo") ? "demo" : matchingEnv
@@ -118,11 +116,7 @@ def secrets = [
   ]
 ]
 
-def runInPlaywrightContainer = { Closure body ->
-  withDocker(playwrightImage, playwrightDockerOptions) {
-    body()
-  }
-}
+def yarnBuilder = new uk.gov.hmcts.contino.YarnBuilder(this)
 
 withNightlyPipeline(type, product, component, 600) {
   loadVaultSecrets(secrets)
@@ -134,55 +128,16 @@ withNightlyPipeline(type, product, component, 600) {
   afterAlways('DependencyCheckNightly') {
     stage('Delete nightly dev branch') {
       try {
-        sh(
-          script: '''#!/usr/bin/env bash
-            set -euxo pipefail
-            yarn delete-nightly-dev-branch prl-e2e-tests
-          '''.stripIndent()
-        )
+        yarnBuilder.yarn('delete-nightly-dev-branch prl-e2e-tests')
       } catch (Error) {
         unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
-      }
-    }
-    stage('Diag: Playwright container evidence') {
-      runInPlaywrightContainer {
-        sh(
-          script: '''#!/usr/bin/env bash
-            set -euxo pipefail
-            echo "=== diagnostic:start ==="
-            echo "HOSTNAME=$(hostname)"
-            echo "WHOAMI=$(whoami)"
-            echo "PWD=$(pwd)"
-            echo "PLAYWRIGHT_BROWSERS_PATH=${PLAYWRIGHT_BROWSERS_PATH:-<unset>}"
-            echo "--- /etc/os-release ---"
-            cat /etc/os-release || true
-            echo "--- playwright image marker (/ms-playwright) ---"
-            ls -la /ms-playwright || true
-            echo "--- node + playwright package version ---"
-            node -v
-            node -e 'try { console.log(require("@playwright/test/package.json").version) } catch (e) { console.log("NO_PLAYWRIGHT_PACKAGE", e.message) }'
-            echo "--- playwright CLI version ---"
-            npx playwright --version || true
-            echo "=== diagnostic:end ==="
-          '''.stripIndent()
-        )
       }
     }
     if(params.tests || params.tag) {
       stage("${params.tag} ${params.tests ? "custom" : ""} tests - ${params.browser}") {
         try {
-          runInPlaywrightContainer {
-            sh(
-              script: """#!/usr/bin/env bash
-                set -euxo pipefail
-                ls -la ./ci
-                test -f ./ci/pwinstall.sh
-                chmod +x ./ci/pwinstall.sh
-                yarn pwinstall
-                yarn playwright test ${params.tests} ${params.tag ? "--grep ${params.tag}": ""} --project ${params.browser}
-              """.stripIndent()
-            )
-          }
+          yarnBuilder.yarn('playwright install --with-deps')
+          yarnBuilder.yarn("playwright test ${params.tests} ${params.tag ? "--grep ${params.tag}": ""} --project ${params.browser}")
         } catch (Error) {
           unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
         } finally {
@@ -194,24 +149,14 @@ withNightlyPipeline(type, product, component, 600) {
                   reportFiles: 'index.html',
                   reportName: "${params.tag} custom tests - ${params.browser}"
           ])
-          steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'playwright-report/**, test-results/**, reports/tests-results/**'
+          steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CitizenFunctional/*'
         }
       }
     } else {
       if (!params.skipCitizenTests) {
         stage('Citizen E2E tests - Chrome with accessibility') {
           try {
-            runInPlaywrightContainer {
-              sh(
-                script: '''#!/usr/bin/env bash
-                  set -euxo pipefail
-                  ls -la ./ci
-                  test -f ./ci/pwinstall.sh
-                  chmod +x ./ci/pwinstall.sh
-                  yarn test:citizenFrontendChrome
-                '''.stripIndent()
-              )
-            }
+            yarnBuilder.yarn('test:citizenFrontendChrome')
           } catch (Error) {
             unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
           } finally {
@@ -223,22 +168,12 @@ withNightlyPipeline(type, product, component, 600) {
               reportFiles: 'index.html',
               reportName: 'Citizen Chrome E2E Test Report'
             ])
-            steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'playwright-report/**, test-results/**, reports/tests-results/**'
+            steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CitizenFunctional/*'
           }
         }
         stage('Citizen E2E tests Smoke - Firefox') {
           try {
-            runInPlaywrightContainer {
-              sh(
-                script: '''#!/usr/bin/env bash
-                  set -euxo pipefail
-                  ls -la ./ci
-                  test -f ./ci/pwinstall.sh
-                  chmod +x ./ci/pwinstall.sh
-                  yarn test:citizenFrontendFirefox
-                '''.stripIndent()
-              )
-            }
+            yarnBuilder.yarn('test:citizenFrontendFirefox')
           } catch (Error) {
             unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
           } finally {
@@ -250,22 +185,12 @@ withNightlyPipeline(type, product, component, 600) {
               reportFiles: 'index.html',
               reportName: 'Citizen Firefox E2E Test Report'
             ])
-            steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'playwright-report/**, test-results/**, reports/tests-results/**'
+            steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CitizenFunctional/*'
           }
         }
         stage('Citizen E2E tests Smoke - Webkit') {
           try {
-            runInPlaywrightContainer {
-              sh(
-                script: '''#!/usr/bin/env bash
-                  set -euxo pipefail
-                  ls -la ./ci
-                  test -f ./ci/pwinstall.sh
-                  chmod +x ./ci/pwinstall.sh
-                  yarn test:citizenFrontendSafari
-                '''.stripIndent()
-              )
-            }
+            yarnBuilder.yarn('test:citizenFrontendSafari')
           } catch (Error) {
             unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
           } finally {
@@ -277,24 +202,14 @@ withNightlyPipeline(type, product, component, 600) {
               reportFiles: 'index.html',
               reportName: 'Citizen Webkit E2E Test Report'
             ])
-            steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'playwright-report/**, test-results/**, reports/tests-results/**'
+            steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CitizenFunctional/*'
           }
         }
       }
       if (!params.skipManageCasesTests) {
         stage('Manage Cases E2E tests - Chrome with accessibility') {
           try {
-            runInPlaywrightContainer {
-              sh(
-                script: '''#!/usr/bin/env bash
-                  set -euxo pipefail
-                  ls -la ./ci
-                  test -f ./ci/pwinstall.sh
-                  chmod +x ./ci/pwinstall.sh
-                  yarn test:manageCasesChrome
-                '''.stripIndent()
-              )
-            }
+            yarnBuilder.yarn('test:manageCasesChrome')
           } catch (Error) {
             unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
           } finally {
@@ -306,22 +221,12 @@ withNightlyPipeline(type, product, component, 600) {
               reportFiles: 'index.html',
               reportName: 'Manage Cases Chrome E2E Test Report'
             ])
-            steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'playwright-report/**, test-results/**, reports/tests-results/**'
+            steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/ManageCasesFunctional/*'
           }
         }
         stage('Manage Cases E2E tests Smoke - Firefox') {
           try {
-            runInPlaywrightContainer {
-              sh(
-                script: '''#!/usr/bin/env bash
-                  set -euxo pipefail
-                  ls -la ./ci
-                  test -f ./ci/pwinstall.sh
-                  chmod +x ./ci/pwinstall.sh
-                  yarn test:manageCasesFirefox
-                '''.stripIndent()
-              )
-            }
+            yarnBuilder.yarn('test:manageCasesFirefox')
           } catch (Error) {
             unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
           } finally {
@@ -333,22 +238,12 @@ withNightlyPipeline(type, product, component, 600) {
               reportFiles: 'index.html',
               reportName: 'Manage Cases Firefox E2E Test Report'
             ])
-            steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'playwright-report/**, test-results/**, reports/tests-results/**'
+            steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/ManageCasesFunctional/*'
           }
         }
         stage('Manage Cases E2E tests Smoke - Webkit') {
           try {
-            runInPlaywrightContainer {
-              sh(
-                script: '''#!/usr/bin/env bash
-                  set -euxo pipefail
-                  ls -la ./ci
-                  test -f ./ci/pwinstall.sh
-                  chmod +x ./ci/pwinstall.sh
-                  yarn test:manageCasesSafari
-                '''.stripIndent()
-              )
-            }
+            yarnBuilder.yarn('test:manageCasesSafari')
           } catch (Error) {
             unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
           } finally {
@@ -360,7 +255,7 @@ withNightlyPipeline(type, product, component, 600) {
                     reportFiles: 'index.html',
                     reportName: 'Manage Cases Webkit E2E Test Report'
             ])
-            steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'playwright-report/**, test-results/**, reports/tests-results/**'
+            steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/ManageCasesFunctional/*'
           }
         }
       }
