@@ -3926,13 +3926,13 @@ __metadata:
   linkType: hard
 
 "eslint-plugin-playwright@npm:^2.1.0, eslint-plugin-playwright@npm:^2.5.1":
-  version: 2.10.3
-  resolution: "eslint-plugin-playwright@npm:2.10.3"
+  version: 2.10.4
+  resolution: "eslint-plugin-playwright@npm:2.10.4"
   dependencies:
     globals: "npm:^17.3.0"
   peerDependencies:
     eslint: ">=8.40.0"
-  checksum: 10c0/15892bfd4352e72ce832a3953b4f45877c6f3275c43682d863619329994980060d8358b1e3478a922f67f28e68dbb36b860341e4c24998314789fc9bc946faba
+  checksum: 10c0/515aac2a870b217f23637bfdab26b9125e47cff91625dbafe20617b3522430fdee8961780f6b7dc9fcfcdbec8235ccd30eafd0ac871088cf3af4d70b8f9b7e29
   languageName: node
   linkType: hard
 
