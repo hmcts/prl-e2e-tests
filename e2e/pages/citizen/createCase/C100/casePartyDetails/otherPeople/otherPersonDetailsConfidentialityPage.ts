@@ -1,9 +1,8 @@
-import { Page } from "@playwright/test";
+import { expect, Page } from "@playwright/test";
 import { Selectors } from "../../../../../../common/selectors.ts";
-import { OtherPersonDetailsConfidentialityContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/otherPeople/otherPersonDetailsConfidentialityContent.ts";
-import { Helpers } from "../../../../../../common/helpers.ts";
 import { CommonStaticText } from "../../../../../../common/commonStaticText.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
+
 interface otherPersonDetailsConfidentialityOptions {
   page: Page;
   accessibilityTest: boolean;
@@ -30,6 +29,7 @@ export class OtherPersonDetailsConfidentiality {
       C100YesNoConfidentiality: C100YesNoConfidentiality,
     });
   }
+
   private static async checkPageLoads({
     page: page,
     accessibilityTest: accessibilityTest,
@@ -37,33 +37,26 @@ export class OtherPersonDetailsConfidentiality {
     if (!page) {
       throw new Error("Missing the page object.");
     }
-    await Promise.all([
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukHeadingXL}:has-text("${OtherPersonDetailsConfidentialityContent.pageTitle1}")`,
-        1,
+    await expect(
+      page.getByRole("heading", {
+        name: /Keeping .* identity private/,
+      }),
+    ).toBeVisible();
+    await expect(
+      page.getByText(
+        "The information you give us will be shared with the other people named in this application.",
       ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukHeadingXL}:has-text("${OtherPersonDetailsConfidentialityContent.pageTitle2}")`,
-        1,
+    ).toBeVisible();
+    await expect(
+      page.getByText(
+        /As you have told us that .* lives with .*, you can choose to keep .* identity private. This includes their address./,
       ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.p}:text-is("${OtherPersonDetailsConfidentialityContent.hint}")`,
-        1,
+    ).toBeVisible();
+    await expect(
+      page.getByText(
+        /Do you want to keep .* identity private from the other people named in the application\?/,
       ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukFieldsetLegend}:has-text("${OtherPersonDetailsConfidentialityContent.formLabel1}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukFieldsetLegend}:has-text("${OtherPersonDetailsConfidentialityContent.formLabel2}")`,
-        1,
-      ),
-    ]);
+    ).toBeVisible();
     if (accessibilityTest) {
       await new AxeUtils(page).audit();
     }
