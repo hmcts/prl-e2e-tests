@@ -10,14 +10,14 @@
     "@axe-core/playwright": "^4.10.0",
     "@eslint/js": "^10.0.0",
     "@hmcts/playwright-common": "^1.0.39",
-    "@playwright/test": "^1.57.0",
+    "@playwright/test": "^1.60.0",
     "@types/node": "^24.0.0",
     "axios": "^1.7.4",
     "dotenv": "^17.0.0",
     "eslint": "^10.0.0",
     "eslint-plugin-playwright": "^2.1.0",
     "jest": "^30.0.0",
-    "playwright-core": "^1.56.1",
+    "playwright-core": "^1.60.0",
     "prettier": "^3.3.3",
     "simple-git": "^3.27.0",
     "tsx": "^4.19.4",
@@ -41,7 +41,7 @@
     "test:citizenFrontendFirefox": "yarn pwinstall firefox && yarn playwright test e2e/tests/citizen --project firefox --grep @smoke",
     "test:citizenFrontendSafari": "yarn pwinstall webkit && yarn playwright test e2e/tests/citizen --project webkit --grep @smoke",
     "test:citizenFrontendAccessibility": "yarn pwinstall && yarn playwright test e2e/tests/citizen --project chromium --grep @accessibility",
-    "start-visual-container": "docker compose run --rm playwright"
+    "start-visual-container": "docker compose run --build --rm playwright"
   },
   "packageManager": "yarn@4.15.0"
 }
