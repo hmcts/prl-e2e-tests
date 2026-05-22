@@ -32,7 +32,9 @@ export class RespondentStayingInRefugePage {
       ),
     ).toBeVisible();
     await expect(
-      page.getByText("Find out more about refuges at Citizen's Advice (opens in a new tab)."),
+      page.getByText(
+        "Find out more about refuges at Citizen's Advice (opens in a new tab).",
+      ),
     ).toBeVisible();
     await expect(
       page.getByText(/Does .* currently live in a refuge\?/),

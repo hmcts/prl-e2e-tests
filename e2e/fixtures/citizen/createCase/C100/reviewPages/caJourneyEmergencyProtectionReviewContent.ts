@@ -67,7 +67,7 @@ export enum CaJourneyEmergencyProtectionReviewContent {
   dt_41 = "E-mail",
   dt_42 = "Telephone number",
   dt_43 = "Is there anyone else who should know about your application?",
-  dt_44 ="Do you want to request to keep Other Person First Name Other Person Last Name’s address private from the other people named in this application?",
+  dt_44 = "Do you want to request to keep Other Person First Name Other Person Last Name’s address private from the other people named in this application?",
   dt_45 = "Who does exampleText exampleText mainly live with?",
   dt_46 = "exampleText exampleText's living arrangements",
   dt_47 = "Do you have any concerns for your safety or the safety of the children?",

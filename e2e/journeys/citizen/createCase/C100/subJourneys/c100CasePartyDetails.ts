@@ -285,7 +285,7 @@ export class C100CasePartyDetails {
       }
     }
     // Only ask this question if the other person is not living in a refuge
-    if(!c100OtherPersonLivesInRefuge && yesNoOtherPersonDetails) {
+    if (!c100OtherPersonLivesInRefuge && yesNoOtherPersonDetails) {
       await OtherPersonKeepingAddressPrivatePage.otherPersonKeepingAddressPrivatePage(
         {
           page,
