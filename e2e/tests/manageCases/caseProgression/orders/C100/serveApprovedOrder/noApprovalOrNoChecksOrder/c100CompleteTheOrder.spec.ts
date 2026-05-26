@@ -7,6 +7,7 @@ test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("Complete the Order task for C100 case tests.", () => {
   let ccdRef: string = "";
+
   test.beforeEach(async ({ page, browser, caseEventUtils }) => {
     ccdRef = await caseEventUtils.createCACaseSendToGatekeeper(browser);
     await Helpers.goToCase(

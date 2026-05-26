@@ -7,6 +7,7 @@ test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("List without notice tests for DA cases", () => {
   let ccdRef: string;
+
   test.beforeEach(async ({ page, browser, caseEventUtils }) => {
     ccdRef = await caseEventUtils.createDACase(browser);
     await Helpers.goToCase(

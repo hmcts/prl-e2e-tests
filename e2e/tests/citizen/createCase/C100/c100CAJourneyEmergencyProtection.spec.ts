@@ -4,6 +4,7 @@ import { C100 } from "../../../../journeys/citizen/createCase/C100/C100.ts";
 
 test.describe("C100 Citizen Application tests on the second MIRO set.", (): void => {
   test.slow();
+
   test.beforeEach(async ({ page, idamLoginHelper }) => {
     await idamLoginHelper.setupAndSignInUser(
       page,
@@ -11,6 +12,7 @@ test.describe("C100 Citizen Application tests on the second MIRO set.", (): void
       "citizen",
     );
   });
+
   test(`Second row of the second row c100 citizen journey with the following options:
     Not Accessibility Testing, 
     Not Error Messaging,

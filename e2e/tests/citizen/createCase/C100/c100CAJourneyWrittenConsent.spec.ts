@@ -302,6 +302,7 @@ test.describe("Test the accessibility of the CA C100 Citizen Journey", (): void 
       "citizen",
     );
   });
+
   test(`C100 of the citizen journey with the following options:
     Accessibility Testing,
     Not Error Messaging,

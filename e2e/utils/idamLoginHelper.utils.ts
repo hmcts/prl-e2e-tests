@@ -40,7 +40,9 @@ export class IdamLoginHelper {
       if (!page.url().includes("idam-web-public.")) {
         const response = await page.goto(application);
         if (response?.status() === 502) {
-          throw new Error(`Received 502 error from ${application}. Aborting setup.`);
+          throw new Error(
+            `Received 502 error from ${application}. Aborting setup.`,
+          );
         }
       }
       if (page.url().includes("demo")) {

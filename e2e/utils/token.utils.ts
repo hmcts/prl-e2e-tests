@@ -77,7 +77,9 @@ export class TokenUtils {
       return await this.idamUtils.generateIdamToken(data);
     } catch (error) {
       if (error.message?.includes("502")) {
-        throw new Error("Received 502 error during token retrieval. Aborting setup.");
+        throw new Error(
+          "Received 502 error during token retrieval. Aborting setup.",
+        );
       }
       throw error;
     }
