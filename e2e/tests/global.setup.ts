@@ -1,10 +1,21 @@
 import { test as setup } from "./fixtures.ts";
 import dotenv from "dotenv";
 import config from "../utils/config.utils.ts";
+import process from "node:process";
 
 dotenv.config();
 
 setup.describe("Setup users and retrieve tokens", () => {
+  setup.beforeEach(async ({ page }) => {
+    page.on("response", (response) => {
+      if (response.status() === 502) {
+        throw new Error(
+          `Received 502 error from ${response.url()}. Aborting setup.`,
+        );
+      }
+    });
+  });
+
   setup.beforeAll(
     "Retrieve IDAM token for citizen user creation",
     async ({ tokenUtils }) => {
@@ -30,10 +41,19 @@ setup.describe("Setup users and retrieve tokens", () => {
   );
 
   setup("Retrieve s2s token", async ({ serviceAuthUtils }) => {
-    const s2sToken = await serviceAuthUtils.retrieveToken({
-      microservice: "prl_cos_api",
-    });
-    process.env.S2S_TOKEN = s2sToken;
+    try {
+      const s2sToken = await serviceAuthUtils.retrieveToken({
+        microservice: "prl_cos_api",
+      });
+      process.env.S2S_TOKEN = s2sToken;
+    } catch (error) {
+      if (error.message?.includes("502")) {
+        throw new Error(
+          "Received 502 error during S2S token retrieval. Aborting setup.",
+        );
+      }
+      throw error;
+    }
   });
 
   setup("Setup judge user", async ({ page, idamLoginHelper }) => {

@@ -1,4 +1,5 @@
 import { IdamUtils } from "@hmcts/playwright-common";
+import process from "node:process";
 
 /**
  * Utility class for managing authentication tokens (IDAM and S2S).
@@ -72,6 +73,13 @@ export class TokenUtils {
         );
     }
 
-    return this.idamUtils.generateIdamToken(data);
+    try {
+      return await this.idamUtils.generateIdamToken(data);
+    } catch (error) {
+      if (error.message?.includes("502")) {
+        throw new Error("Received 502 error during token retrieval. Aborting setup.");
+      }
+      throw error;
+    }
   }
 }
