@@ -18,6 +18,8 @@ enum UniqueSelectors {
 enum radioIds {
   cafcassReport = "#cafcassOrCymruNeedToProvideReport_No",
   cafcassInvolvement = "#orderEndsInvolvementOfCafcassOrCymru_No",
+  localAuthorityReportYes = "#localAuthorityNeedToProvideReport_Yes",
+  localAuthorityReportNo = "#localAuthorityNeedToProvideReport_No",
   readyToServe = "#doYouWantToServeOrder_No",
   saveOrderAsDraft = "#whatDoWithOrder-saveAsDraft",
 }
@@ -46,6 +48,7 @@ export class ManageOrders26PageCA {
         hasText: ManageOrders26CAContent.pageTitle,
       }),
     ).toBeVisible();
+    
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
@@ -85,6 +88,7 @@ export class ManageOrders26PageCA {
       UniqueSelectors.selectTypeOfOrder,
       ManageOrders26CAContent.orderType,
     );
+    await page.check(radioIds.localAuthorityReportNo);
     await page.click(
       `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
     );

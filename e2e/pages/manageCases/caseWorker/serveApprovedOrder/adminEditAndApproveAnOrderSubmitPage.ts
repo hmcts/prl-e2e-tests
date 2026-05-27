@@ -99,7 +99,7 @@ export class AdminEditAndApproveAnOrderSubmitPage {
       await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukText16}:text-is("${AdminEditAndApproveAnOrderSubmitContent.No}"):visible`,
-        2,
+        3,
       );
       await Helpers.checkVisibleAndPresent(
         page,
