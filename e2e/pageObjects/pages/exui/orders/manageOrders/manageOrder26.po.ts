@@ -8,6 +8,7 @@ export interface ManageOrder26Params {
   orderType: string;
   cafcassReport: boolean;
   cafcassInvolvement: boolean;
+  localAuthorityReport: boolean;
   serveOrderNow: boolean;
   whatToDoWithOrder: string;
 }
@@ -45,13 +46,52 @@ export class ManageOrder26Page extends EventPage {
     "Other reports",
   ];
 
-  private readonly reportDurationText = this.page.getByText(
-    "When must the reports be filed?",
+  // Cafcass date fields
+  private readonly reportDurationText = this.page
+    .locator("#whenReportsMustBeFiled")
+    .getByText("When must the reports be filed?", { exact: true });
+  private readonly cafcassDateSection = this.page.locator(
+    "#whenReportsMustBeFiled",
   );
   private readonly timeOptions: string[] = ["Day", "Month", "Year"];
   private readonly day = this.page.locator("#whenReportsMustBeFiled-day");
   private readonly month = this.page.locator("#whenReportsMustBeFiled-month");
   private readonly year = this.page.locator("#whenReportsMustBeFiled-year");
+
+  // Local Authority section
+  private readonly localAuthorityReportText = this.page.getByText(
+    "Does local authority need to provide a report?",
+  );
+  private readonly localAuthorityDocText = this.page.getByText(
+    "Local authority needs to produce the following documentation:",
+  );
+  private readonly localAuthorityDocOptions: string[] = [
+    "Child Impact Report 1",
+    "Child Impact Report 2",
+    "Section 37 Report",
+    "Section 7 Report",
+    "Section 7 Addendum",
+    "Local Authority Involvement Letter",
+    "Section 47 Enquiry",
+    "Other",
+  ];
+
+  // Local Authority date fields
+  private readonly laReportDurationText = this.page
+    .locator("#whenReportsMustBeFiledByLocalAuthority")
+    .getByText("When must the reports be filed?", { exact: true });
+  private readonly laDateSection = this.page.locator(
+    "#whenReportsMustBeFiledByLocalAuthority",
+  );
+  private readonly laDay = this.page.locator(
+    "#whenReportsMustBeFiledByLocalAuthority-day",
+  );
+  private readonly laMonth = this.page.locator(
+    "#whenReportsMustBeFiledByLocalAuthority-month",
+  );
+  private readonly laYear = this.page.locator(
+    "#whenReportsMustBeFiledByLocalAuthority-year",
+  );
 
   private readonly orderOptionsFormLabels: string[] = [
     "What would you like to do with the order?",
@@ -75,9 +115,15 @@ export class ManageOrder26Page extends EventPage {
     if (caseType === "C100") {
       await expect(this.cafcassReportText).toBeVisible();
       await expect(this.cafcassDocText).toBeVisible();
-      await this.pageUtils.assertStrings(this.cafcassDocOptions);
+      await this.pageUtils.assertStrings(
+        this.cafcassDocOptions,
+        this.page.locator("#cafcassCymruDocuments"),
+      );
       await expect(this.reportDurationText).toBeVisible();
-      await this.pageUtils.assertStrings(this.timeOptions);
+      await this.pageUtils.assertStrings(
+        this.timeOptions,
+        this.cafcassDateSection,
+      );
       await expect(this.cafcassInvolvementText).toBeVisible();
 
       await this.pageUtils.assertStrings(
@@ -95,6 +141,16 @@ export class ManageOrder26Page extends EventPage {
       await this.pageUtils.assertStrings(
         this.yesAndNoLabels,
         this.page.locator(`#doYouWantToServeOrder ${Selectors.GovukFormLabel}`),
+      );
+
+      // Local Authority section assertions — only assert always-visible elements;
+      // the doc list and date fields are hidden until Yes is selected
+      await expect(this.localAuthorityReportText).toBeVisible();
+      await this.pageUtils.assertStrings(
+        this.yesAndNoLabels,
+        this.page.locator(
+          `#localAuthorityNeedToProvideReport ${Selectors.GovukFormLabel}`,
+        ),
       );
     }
     await expect(this.serveOrderNowText).toBeVisible();
@@ -118,8 +174,9 @@ export class ManageOrder26Page extends EventPage {
         .check();
 
       if (params.cafcassReport) {
+        const cafcassCymruSection = this.page.locator("#cafcassCymruDocuments");
         for (const cafcassReportName of this.cafcassDocOptions) {
-          const cafcassReportCheckbox: Locator = this.page.getByRole(
+          const cafcassReportCheckbox: Locator = cafcassCymruSection.getByRole(
             "checkbox",
             {
               name: cafcassReportName,
@@ -132,6 +189,36 @@ export class ManageOrder26Page extends EventPage {
         await this.month.fill("12");
         await this.year.fill("2026");
       }
+      // Local Authority section
+      await this.page
+        .getByRole("group", {
+          name: "Does local authority need to provide a report?",
+        })
+        .getByLabel(params.localAuthorityReport ? "Yes" : "No")
+        .check();
+
+      if (params.localAuthorityReport) {
+        const localAuthoritySection = this.page.locator(
+          "#localAuthorityMultipleDocuments",
+        );
+        for (const laDocName of this.localAuthorityDocOptions) {
+          const laCheckbox: Locator = localAuthoritySection.getByRole(
+            "checkbox",
+            {
+              name: laDocName,
+              exact: true,
+            },
+          );
+          await laCheckbox.check();
+        }
+        await this.laDay.fill("12");
+        await this.laMonth.fill("12");
+        await this.laYear.fill("2026");
+      }
+
+      // Set cafcass involvement last — selecting LA Yes above can trigger
+      // an Angular re-render that resets this radio, so it must be set after
+      // all other interactions are complete
       await this.selectRadioById(
         "orderEndsInvolvementOfCafcassOrCymru",
         params.cafcassInvolvement,
