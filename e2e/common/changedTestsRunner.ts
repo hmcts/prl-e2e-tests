@@ -1,6 +1,6 @@
 import { exec, ExecException } from "child_process";
 import { SimpleGit, simpleGit } from "simple-git";
-import fs from 'fs';
+import fs from "fs";
 
 export class ChangedTestsRunner {
   public static async run(): Promise<void> {
@@ -38,7 +38,9 @@ export class ChangedTestsRunner {
         "FETCH_HEAD...HEAD",
       ]);
       const changedFiles: string[] = diff.split("\n").filter(Boolean);
-      return changedFiles.filter((file) => file.endsWith(".spec.ts") && fs.existsSync(file));
+      return changedFiles.filter(
+        (file) => file.endsWith(".spec.ts") && fs.existsSync(file),
+      );
     } catch (error) {
       console.error("Error detecting changed test files: ", error);
       process.exit(1);
