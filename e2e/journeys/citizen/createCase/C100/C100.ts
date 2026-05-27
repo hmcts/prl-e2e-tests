@@ -96,6 +96,7 @@ interface C100TopMiroJourneyOptions {
   c100OtherPeopleChangedName: yesNoDontKnow;
   c100OtherPeopleDoBKnown: boolean;
   c100OtherPersonLivesInRefuge: boolean;
+  c100OtherPersonKeepingAddressPrivate: boolean;
   c100ChildMainlyLivesWith: typeOfPerson;
   C100YesNoConfidentiality: boolean;
   yesNoOtherProceedings: boolean;
@@ -112,6 +113,7 @@ interface C100TopMiroJourneyOptions {
   c100YesNoFeesApplied: boolean;
   reviewPageTopJourneyMotherFather: reviewPageTopJourneyMotherFather;
   relationshipType: Relationship;
+  respondentStayingInRefuge: boolean;
 }
 
 interface C100EmergencyProtectionJourneyOptions {
@@ -151,6 +153,7 @@ interface C100EmergencyProtectionJourneyOptions {
   c100OtherPeopleDoBKnown: boolean;
   c100OtherPersonRelationship: Relationship;
   c100OtherPersonLivesInRefuge: boolean;
+  c100OtherPersonKeepingAddressPrivate: boolean;
   c100ChildMainlyLivesWith: typeOfPerson;
   c100ChildrenSafetyConcerns: boolean;
   c100SafetyConcernsYesNoToAll: boolean; // Applies to all booleans that don't affect the journey
@@ -164,6 +167,7 @@ interface C100EmergencyProtectionJourneyOptions {
   c100YesNoNeedHelpWithFees: boolean;
   c100YesNoFeesApplied: boolean;
   relationshipType: CapitalizedRelationship;
+  respondentStayingInRefuge: boolean;
 }
 
 interface C100ExistingMIAMDocumentOptions {
@@ -204,6 +208,7 @@ interface C100ExistingMIAMDocumentOptions {
   respondentChangedName: yesNoDontKnow;
   respAddress5Years: yesNoDontKnow;
   respondentRelationship: Relationship;
+  respondentStayingInRefuge: boolean;
   respAddressLookup: boolean;
   respAddressLookupSuccessful: boolean;
   respKnownEmailAndPhone: boolean;
@@ -213,6 +218,7 @@ interface C100ExistingMIAMDocumentOptions {
   c100OtherPeopleDoBKnown: boolean;
   c100OtherPersonRelationship: Relationship;
   c100OtherPersonLivesInRefuge: boolean;
+  c100OtherPersonKeepingAddressPrivate: boolean;
   c100ChildMainlyLivesWith: typeOfPerson;
   yesNoChildArrangementOrderDetails: boolean;
   C100YesNoConfidentiality: boolean;
@@ -268,6 +274,7 @@ interface C100FourthRowMiroJourneyOptions {
   respondentChangedName: yesNoDontKnow;
   respAddress5Years: yesNoDontKnow;
   respondentRelationship: Relationship;
+  respondentStayingInRefuge: boolean;
   respAddressLookup: boolean;
   respAddressLookupSuccessful: boolean;
   respKnownEmailAndPhone: boolean;
@@ -277,6 +284,7 @@ interface C100FourthRowMiroJourneyOptions {
   c100OtherPeopleDoBKnown: boolean;
   c100OtherPersonRelationship: Relationship;
   c100OtherPersonLivesInRefuge: boolean;
+  c100OtherPersonKeepingAddressPrivate: boolean;
   c100ChildMainlyLivesWith: typeOfPerson;
   yesNoOtherProceedings: boolean;
   c100ChildrenSafetyConcerns: boolean;
@@ -425,6 +433,7 @@ export class C100 {
     c100OtherPeopleChangedName,
     c100OtherPeopleDoBKnown,
     c100OtherPersonLivesInRefuge,
+    c100OtherPersonKeepingAddressPrivate,
     C100YesNoConfidentiality,
     c100ChildMainlyLivesWith,
     yesNoOtherProceedings,
@@ -441,6 +450,7 @@ export class C100 {
     c100YesNoFeesApplied,
     reviewPageTopJourneyMotherFather,
     relationshipType,
+    respondentStayingInRefuge,
   }: C100TopMiroJourneyOptions): Promise<void> {
     await CitizenCreateInitial.citizenCreateInitial({
       page: page,
@@ -512,6 +522,7 @@ export class C100 {
       respondentChangedName: respondentChangedName,
       respAddress5Years: respAddress5Years,
       respondentRelationship: relationshipType,
+      respondentStayingInRefuge: respondentStayingInRefuge,
       respAddressLookup: respAddressLookup,
       respAddressLookupSuccessful: respAddressLookupSuccessful,
       respKnownEmailAndPhone: respKnownEmailAndPhone,
@@ -522,6 +533,8 @@ export class C100 {
       c100OtherPersonRelationship: relationshipType,
       c100OtherPersonLivesInRefuge: c100OtherPersonLivesInRefuge,
       c100ChildMainlyLivesWith: c100ChildMainlyLivesWith,
+      c100OtherPersonKeepingAddressPrivate:
+        c100OtherPersonKeepingAddressPrivate,
       C100YesNoConfidentiality: C100YesNoConfidentiality,
     });
     await C100OtherProceedings.c100OtherProceedings1({
@@ -568,6 +581,10 @@ export class C100 {
       relationshipType: relationshipType,
       c100YesNoNeedHelpWithFees: c100YesNoNeedHelpWithFees,
     });
+    await EqualityAndDiversityPage.equalityAndDiversityPage({
+      page,
+      c100YesNoNeedHelpWithFees,
+    });
     if (!c100YesNoNeedHelpWithFees) {
       await C100Pay.c100Pay({
         page: page,
@@ -575,6 +592,10 @@ export class C100 {
         errorMessaging: errorMessaging,
       });
     }
+    await ConfirmationPage.confirmationPage({
+      page: page,
+      accessibilityTest: accessibilityTest,
+    });
   }
 
   public static async c100CAEmergencyProtectionJourney({
@@ -604,6 +625,7 @@ export class C100 {
     respondentGender,
     respAddress5Years,
     respondentRelationship,
+    respondentStayingInRefuge,
     respAddressLookup,
     respAddressLookupSuccessful,
     respKnownEmailAndPhone,
@@ -613,6 +635,7 @@ export class C100 {
     c100OtherPeopleDoBKnown,
     c100OtherPersonRelationship,
     c100OtherPersonLivesInRefuge,
+    c100OtherPersonKeepingAddressPrivate,
     C100YesNoConfidentiality,
     c100ChildMainlyLivesWith,
     c100ChildrenSafetyConcerns,
@@ -717,6 +740,7 @@ export class C100 {
       respondentChangedName: respondentChangedName,
       respAddress5Years: respAddress5Years,
       respondentRelationship: respondentRelationship,
+      respondentStayingInRefuge: respondentStayingInRefuge,
       respAddressLookup: respAddressLookup,
       respAddressLookupSuccessful: respAddressLookupSuccessful,
       respKnownEmailAndPhone: respKnownEmailAndPhone,
@@ -726,6 +750,8 @@ export class C100 {
       c100OtherPeopleDoBKnown: c100OtherPeopleDoBKnown,
       c100OtherPersonRelationship: c100OtherPersonRelationship,
       c100OtherPersonLivesInRefuge: c100OtherPersonLivesInRefuge,
+      c100OtherPersonKeepingAddressPrivate:
+        c100OtherPersonKeepingAddressPrivate,
       c100ChildMainlyLivesWith: c100ChildMainlyLivesWith,
       C100YesNoConfidentiality: C100YesNoConfidentiality,
     });
@@ -821,6 +847,7 @@ export class C100 {
     respondentChangedName,
     respAddress5Years,
     respondentRelationship,
+    respondentStayingInRefuge,
     respAddressLookup,
     respAddressLookupSuccessful,
     respKnownEmailAndPhone,
@@ -830,6 +857,7 @@ export class C100 {
     c100OtherPeopleDoBKnown,
     c100OtherPersonRelationship,
     c100OtherPersonLivesInRefuge,
+    c100OtherPersonKeepingAddressPrivate,
     C100YesNoConfidentiality,
     c100ChildMainlyLivesWith,
     yesNoOtherProceedings,
@@ -929,6 +957,7 @@ export class C100 {
       respondentChangedName: respondentChangedName,
       respAddress5Years: respAddress5Years,
       respondentRelationship: respondentRelationship,
+      respondentStayingInRefuge: respondentStayingInRefuge,
       respAddressLookup: respAddressLookup,
       respAddressLookupSuccessful: respAddressLookupSuccessful,
       respKnownEmailAndPhone: respKnownEmailAndPhone,
@@ -938,6 +967,8 @@ export class C100 {
       c100OtherPeopleDoBKnown: c100OtherPeopleDoBKnown,
       c100OtherPersonRelationship: c100OtherPersonRelationship,
       c100OtherPersonLivesInRefuge: c100OtherPersonLivesInRefuge,
+      c100OtherPersonKeepingAddressPrivate:
+        c100OtherPersonKeepingAddressPrivate,
       c100ChildMainlyLivesWith: c100ChildMainlyLivesWith,
       C100YesNoConfidentiality: C100YesNoConfidentiality,
     });
@@ -1040,6 +1071,7 @@ export class C100 {
     respondentGender,
     respAddress5Years,
     respondentRelationship,
+    respondentStayingInRefuge,
     respAddressLookup,
     respAddressLookupSuccessful,
     respKnownEmailAndPhone,
@@ -1049,6 +1081,7 @@ export class C100 {
     c100OtherPeopleDoBKnown,
     c100OtherPersonRelationship,
     c100OtherPersonLivesInRefuge,
+    c100OtherPersonKeepingAddressPrivate,
     c100ChildMainlyLivesWith,
     C100YesNoConfidentiality,
     yesNoOtherProceedings,
@@ -1148,6 +1181,7 @@ export class C100 {
       respondentChangedName: respondentChangedName,
       respAddress5Years: respAddress5Years,
       respondentRelationship: respondentRelationship,
+      respondentStayingInRefuge: respondentStayingInRefuge,
       respAddressLookup: respAddressLookup,
       respAddressLookupSuccessful: respAddressLookupSuccessful,
       respKnownEmailAndPhone: respKnownEmailAndPhone,
@@ -1157,6 +1191,8 @@ export class C100 {
       c100OtherPeopleDoBKnown: c100OtherPeopleDoBKnown,
       c100OtherPersonRelationship: c100OtherPersonRelationship,
       c100OtherPersonLivesInRefuge: c100OtherPersonLivesInRefuge,
+      c100OtherPersonKeepingAddressPrivate:
+        c100OtherPersonKeepingAddressPrivate,
       c100ChildMainlyLivesWith: c100ChildMainlyLivesWith,
       C100YesNoConfidentiality: C100YesNoConfidentiality,
     });
