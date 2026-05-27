@@ -50,12 +50,12 @@ export class ManageOrders26PageCA {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukFormLabel}:text-is("${CommonStaticText.yes}"):visible`,
-        3,
+        4,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukFormLabel}:text-is("${CommonStaticText.no}"):visible`,
-        3,
+        4,
       ),
     ]);
     if (accessibilityTest) {

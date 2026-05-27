@@ -223,6 +223,7 @@ export const AmendedDischargedVariedOrderScenarios: AmendedDischargedVariedOrder
         cafcassInvolvement: undefined,
         serveOrderNow: true,
         whatToDoWithOrder: undefined, ////"Finalise the order, and save to serve later" or "Save the order as a draft"
+        localAuthorityReport: undefined,
       },
       manageOrder28Params: {
         servePersonally: false,
@@ -303,6 +304,7 @@ export const AmendedDischargedVariedOrderScenarios: AmendedDischargedVariedOrder
         cafcassInvolvement: undefined,
         serveOrderNow: true,
         whatToDoWithOrder: undefined, ////"Finalise the order, and save to serve later" or "Save the order as a draft"
+        localAuthorityReport: undefined,
       },
       manageOrder28Params: {
         servePersonally: true,
@@ -616,6 +618,7 @@ export const FL404AFL406UploadOrderScenarios: DomesticAbuseUploadOrderParams[] =
         cafcassInvolvement: undefined,
         serveOrderNow: false,
         whatToDoWithOrder: undefined, ////finalizeSaveToServeLater or saveAsDraft
+        localAuthorityReport: undefined,
       },
       snapshotName: "FL404A-upload-order-no-to-all",
       snapshotsPath: ["caseProgression", "orders", "domesticAbuseUploadOrders"],
@@ -665,6 +668,7 @@ export const FL404AFL406UploadOrderScenarios: DomesticAbuseUploadOrderParams[] =
         cafcassInvolvement: undefined,
         serveOrderNow: false,
         whatToDoWithOrder: "Save the order as a draft", ////"Finalise the order, and save to serve later" or "Save the order as a draft"
+        localAuthorityReport: undefined,
       },
       snapshotName: "FL406-upload-order-yes-to-all",
       snapshotsPath: ["caseProgression", "orders", "domesticAbuseUploadOrders"],
@@ -725,6 +729,7 @@ export const SpecialGuardianshipCreateOrderScenarios: SpecialGuardianshipCreateO
         cafcassInvolvement: false,
         serveOrderNow: true,
         whatToDoWithOrder: undefined, ////"Finalise the order, and save to serve later" or "Save the order as a draft"
+        localAuthorityReport: false,
       },
       manageOrder28Params: {
         servePersonally: false,
@@ -794,6 +799,7 @@ export const SpecialGuardianshipCreateOrderScenarios: SpecialGuardianshipCreateO
         cafcassInvolvement: true,
         serveOrderNow: true,
         whatToDoWithOrder: undefined, ////"Finalise the order, and save to serve later" or "Save the order as a draft"
+        localAuthorityReport: true,
       },
       manageOrder28Params: {
         servePersonally: true,

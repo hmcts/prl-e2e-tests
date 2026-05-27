@@ -4,12 +4,21 @@ import { solicitorCaseCreateType } from "../../../../../common/types.js";
 import { Selectors } from "../../../../../common/selectors.js";
 import { PageUtils } from "../../../../../utils/page.utils.js";
 
+export interface DateParams {
+  day: string;
+  month: string;
+  year: string;
+}
+
 export interface ManageOrder26Params {
   orderType: string;
-  cafcassReport: boolean;
-  cafcassInvolvement: boolean;
+  cafcassReport: boolean | undefined;
+  cafcassInvolvement: boolean | undefined;
   serveOrderNow: boolean;
-  whatToDoWithOrder: string;
+  whatToDoWithOrder: string | undefined;
+  localAuthorityReport: boolean | undefined;
+  cafcassReportDate?: DateParams;
+  localAuthorityReportDate?: DateParams;
 }
 
 export class ManageOrder26Page extends EventPage {
@@ -17,9 +26,9 @@ export class ManageOrder26Page extends EventPage {
     name: "When do you want to serve the order?",
   });
 
-  private readonly orderTypeText = this.page.getByText(
-    "What type of order is this?",
-  );
+  private readonly orderTypeLabel = "What type of order is this?";
+  private readonly orderTypeText = this.page.getByText(this.orderTypeLabel);
+
   private readonly serveOrderNowText = this.page.getByText(
     "Do you want to serve the order now?",
   );
@@ -45,13 +54,69 @@ export class ManageOrder26Page extends EventPage {
     "Other reports",
   ];
 
-  private readonly reportDurationText = this.page.getByText(
-    "When must the reports be filed?",
+  private readonly cafcassCymruDocumentsContainer = this.page.locator(
+    "#cafcassCymruDocuments",
   );
+
+  private readonly localAuthorityReportNeededText = this.page.getByText(
+    "Does local authority need to provide a report?",
+  );
+
+  private readonly localAuthorityReportText = this.page.getByText(
+    "Local authority needs to produce the following documentation:",
+  );
+
+  private readonly localAuthorityReportOptions: string[] = [
+    "Child Impact Report 1",
+    "Child Impact Report 2",
+    "Section 37 Report",
+    "Section 7 Report",
+    "Section 7 Addendum",
+    "Local Authority Involvement Letter",
+    "Section 47 Enquiry",
+    "Other",
+  ];
+
+  private readonly localAuthorityDocumentsContainer = this.page.locator(
+    "#localAuthorityMultipleDocuments",
+  );
+
+  private readonly cafcassReportDurationText = this.page
+    .locator("#whenReportsMustBeFiled")
+    .getByText("When must the reports be filed?");
+
+  private readonly laReportDurationText = this.page
+    .locator("#whenReportsMustBeFiledByLocalAuthority")
+    .getByText("When must the reports be filed?");
+
+  private readonly cafcassReportContainer = this.page.locator(
+    "#whenReportsMustBeFiled",
+  );
+
+  private readonly laReportContainer = this.page.locator(
+    "#whenReportsMustBeFiledByLocalAuthority",
+  );
+
   private readonly timeOptions: string[] = ["Day", "Month", "Year"];
-  private readonly day = this.page.locator("#whenReportsMustBeFiled-day");
-  private readonly month = this.page.locator("#whenReportsMustBeFiled-month");
-  private readonly year = this.page.locator("#whenReportsMustBeFiled-year");
+  private readonly cafcassDay = this.page.locator(
+    "#whenReportsMustBeFiled-day",
+  );
+  private readonly cafcassMonth = this.page.locator(
+    "#whenReportsMustBeFiled-month",
+  );
+  private readonly cafcassYear = this.page.locator(
+    "#whenReportsMustBeFiled-year",
+  );
+
+  private readonly laDay = this.page.locator(
+    "#whenReportsMustBeFiledByLocalAuthority-day",
+  );
+  private readonly laMonth = this.page.locator(
+    "#whenReportsMustBeFiledByLocalAuthority-month",
+  );
+  private readonly laYear = this.page.locator(
+    "#whenReportsMustBeFiledByLocalAuthority-year",
+  );
 
   private readonly orderOptionsFormLabels: string[] = [
     "What would you like to do with the order?",
@@ -74,10 +139,7 @@ export class ManageOrder26Page extends EventPage {
 
     if (caseType === "C100") {
       await expect(this.cafcassReportText).toBeVisible();
-      await expect(this.cafcassDocText).toBeVisible();
-      await this.pageUtils.assertStrings(this.cafcassDocOptions);
-      await expect(this.reportDurationText).toBeVisible();
-      await this.pageUtils.assertStrings(this.timeOptions);
+      await expect(this.localAuthorityReportNeededText).toBeVisible();
       await expect(this.cafcassInvolvementText).toBeVisible();
 
       await this.pageUtils.assertStrings(
@@ -106,39 +168,92 @@ export class ManageOrder26Page extends EventPage {
     caseType: solicitorCaseCreateType,
     params: ManageOrder26Params,
   ): Promise<void> {
-    await this.page.getByRole("combobox").selectOption(params.orderType);
+    await this.page
+      .getByLabel(this.orderTypeLabel)
+      .selectOption(params.orderType);
     await this.selectRadioById("doYouWantToServeOrder", params.serveOrderNow);
 
     if (caseType === "C100") {
-      await this.page
-        .getByRole("group", {
-          name: "Does Cafcass or Cafcass Cymru need to provide a report?",
-        })
-        .getByLabel(params.cafcassReport ? "Yes" : "No")
-        .check();
+      if (params.cafcassReport !== undefined) {
+        await this.page
+          .getByRole("group", {
+            name: "Does Cafcass or Cafcass Cymru need to provide a report?",
+          })
+          .getByLabel(params.cafcassReport ? "Yes" : "No")
+          .check();
 
-      if (params.cafcassReport) {
-        for (const cafcassReportName of this.cafcassDocOptions) {
-          const cafcassReportCheckbox: Locator = this.page.getByRole(
-            "checkbox",
-            {
-              name: cafcassReportName,
-              exact: true,
-            },
+        if (params.cafcassReport) {
+          await expect(this.cafcassDocText).toBeVisible();
+          await expect(this.cafcassReportDurationText).toBeVisible();
+          await this.pageUtils.assertStrings(
+            this.timeOptions,
+            this.cafcassReportContainer,
           );
-          await cafcassReportCheckbox.check();
+          for (const cafcassReportName of this.cafcassDocOptions) {
+            const cafcassReportCheckbox: Locator =
+              this.cafcassCymruDocumentsContainer.getByRole("checkbox", {
+                name: cafcassReportName,
+                exact: true,
+              });
+            await cafcassReportCheckbox.check();
+          }
+          const date = params.cafcassReportDate || {
+            day: "01",
+            month: "01",
+            year: "2035",
+          };
+          await this.cafcassDay.fill(date.day);
+          await this.cafcassMonth.fill(date.month);
+          await this.cafcassYear.fill(date.year);
         }
-        await this.day.fill("12");
-        await this.month.fill("12");
-        await this.year.fill("2026");
       }
-      await this.selectRadioById(
-        "orderEndsInvolvementOfCafcassOrCymru",
-        params.cafcassInvolvement,
-      );
+
+      if (params.localAuthorityReport !== undefined) {
+        await this.page
+          .getByRole("group", {
+            name: "Does local authority need to provide a report?",
+          })
+          .getByLabel(params.localAuthorityReport ? "Yes" : "No")
+          .check();
+
+        if (params.localAuthorityReport) {
+          await expect(this.localAuthorityReportText).toBeVisible();
+          await expect(this.laReportDurationText).toBeVisible();
+          await this.pageUtils.assertStrings(
+            this.timeOptions,
+            this.laReportContainer,
+          );
+          for (const localAuthorityReportName of this
+            .localAuthorityReportOptions) {
+            const localAuthorityReportCheckbox: Locator =
+              this.localAuthorityDocumentsContainer.getByRole("checkbox", {
+                name: localAuthorityReportName,
+                exact: true,
+              });
+            await localAuthorityReportCheckbox.check();
+          }
+
+          // Parameterized dates with fallback
+          const date = params.localAuthorityReportDate || {
+            day: "01",
+            month: "01",
+            year: "2035",
+          };
+          await this.laDay.fill(date.day);
+          await this.laMonth.fill(date.month);
+          await this.laYear.fill(date.year);
+        }
+      }
+
+      if (params.cafcassInvolvement !== undefined) {
+        await this.selectRadioById(
+          "orderEndsInvolvementOfCafcassOrCymru",
+          params.cafcassInvolvement,
+        );
+      }
     }
 
-    if (!params.serveOrderNow) {
+    if (!params.serveOrderNow && params.whatToDoWithOrder) {
       await this.pageUtils.assertStrings(this.orderOptionsFormLabels);
       await this.page
         .getByRole("radio", { name: params.whatToDoWithOrder })
@@ -152,11 +267,9 @@ export class ManageOrder26Page extends EventPage {
     const input = this.page.locator(`#${optionId}`);
     const label = this.page.locator(`label[for="${optionId}"]`);
 
-    // Wait for the actual option to exist and be interactable
     await expect(input).toBeVisible();
     await expect(label).toBeVisible();
 
-    // Click label (more reliable than clicking input in your DOM)
     await label.click();
   }
 }

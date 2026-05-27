@@ -7,8 +7,11 @@ test.use({ storageState: config.sessionStoragePath + "caseManager.json" });
 
 test.describe("Confidentiality check task for CA Solicitor case tests.", () => {
   let ccdRef: string = "";
+
   test.beforeEach(async ({ page, browser, caseEventUtils }) => {
+
     ccdRef = await caseEventUtils.createCACaseSendToGatekeeper(browser);
+    
     await Helpers.goToCase(
       page,
       config.manageCasesBaseURLCase,
