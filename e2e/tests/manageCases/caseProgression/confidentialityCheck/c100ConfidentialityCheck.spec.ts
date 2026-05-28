@@ -10,6 +10,7 @@ test.describe("Confidentiality check task for CA Solicitor case tests.", () => {
 
   test.beforeEach(async ({ page, browser, caseEventUtils }) => {
     ccdRef = await caseEventUtils.createCACaseSendToGatekeeper(browser);
+
     await Helpers.goToCase(
       page,
       config.manageCasesBaseURLCase,
