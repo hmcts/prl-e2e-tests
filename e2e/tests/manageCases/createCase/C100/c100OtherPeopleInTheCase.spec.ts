@@ -23,6 +23,7 @@ test.describe("C100 Create case Other people in the case Tests", (): void => {
       subJourney: true,
     });
   });
+
   test(`Complete the C100 Create case Other people in the case as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
@@ -41,6 +42,7 @@ test.describe("C100 Create case Other people in the case Tests", (): void => {
       subJourney: true,
     });
   });
+
   test(`Complete the C100 Create case Other people in the case as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
@@ -59,6 +61,7 @@ test.describe("C100 Create case Other people in the case Tests", (): void => {
       subJourney: true,
     });
   });
+
   test(`Complete the C100 Create case Other people in the case as a solicitor with the following options:
     Not Accessibility testing,
     Not Error message testing,

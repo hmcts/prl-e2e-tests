@@ -10,6 +10,7 @@ test.describe("Create Citizen Application but choose to have legal representativ
       "citizen",
     );
   });
+
   test(
     "Application completed for you with the following options:" +
       "No error messaging." +
@@ -22,6 +23,7 @@ test.describe("Create Citizen Application but choose to have legal representativ
       });
     },
   );
+
   test(
     "Application completed for you with the following options:" +
       "Yes error messaging." +
