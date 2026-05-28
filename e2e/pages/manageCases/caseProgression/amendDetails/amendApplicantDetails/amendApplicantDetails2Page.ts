@@ -5,7 +5,6 @@ import { ApplicantGender } from "../../../../../common/types.ts";
 import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
 import { AmendApplicantDetails2Content } from "../../../../../fixtures/manageCases/caseProgression/amendDetails/amendApplicantDetails/AmendApplicantDetails2Content.ts";
-import { FileUploadComponent } from "../../../../../pageObjects/components/exui/uploadFile.component.ts";
 
 interface AmendApplicantDetails2Options {
   page: Page;
@@ -91,7 +90,7 @@ export class AmendApplicantDetails2Page {
     await Promise.all([
       Helpers.checkGroup(
         page,
-        21,
+        16,
         AmendApplicantDetails2Content,
         "formLabel",
         `${Selectors.GovukFormLabel}`,
@@ -349,13 +348,6 @@ export class AmendApplicantDetails2Page {
 
   private static async liveInRefugeFillFields(page: Page): Promise<void> {
     await page.click(uniqueSelectors.applicantInRefugeYes);
-    const fileUpload = new FileUploadComponent(page, {
-      uploadLabelText: AmendApplicantDetails2Content.formLabelUploadC8Refuge,
-      downloadParagraphText: AmendApplicantDetails2Content.pDownloadC8Form,
-      chooseFileLocatorID: uniqueSelectors.c8FormFileUpload,
-      requireDownloadParagraph: true,
-    });
-    await fileUpload.completeUpload();
   }
 
   private static async changeApplicantAddressFillFields(

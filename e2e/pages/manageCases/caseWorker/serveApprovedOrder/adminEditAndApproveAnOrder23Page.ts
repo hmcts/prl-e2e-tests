@@ -9,6 +9,7 @@ enum UniqueSelectors {
   respondentOptionYes = "#serveToRespondentOptions-Yes",
   respondentOptionNo = "#serveToRespondentOptions-No",
   respondentsOptionsCourtBailiff = "#personallyServeRespondentsOptions-courtBailiff",
+  localAuthorityReportNo = "#localAuthorityNeedToProvideReport_No",
 }
 export class AdminEditAndApproveAnOrder23Page {
   public static async adminEditAndApproveAnOrder23Page(
@@ -89,6 +90,7 @@ export class AdminEditAndApproveAnOrder23Page {
         1,
       );
     }
+    localAuthorityNeedToProvideReport_No
   }
 
   private static async continue(page: Page): Promise<void> {

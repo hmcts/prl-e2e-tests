@@ -42,6 +42,8 @@ interface FL401ConfidentialityCheckParams {
   confidentialityCheck: boolean;
   isApplicationServedAfterConfidentialityCheck: boolean;
   browserName: string;
+  snapshotPath: string[];
+  snapshotName: string;
 }
 
 interface C100ConfidentialityCheckParams {
@@ -91,6 +93,8 @@ export class ConfidentialityCheck {
     confidentialityCheck,
     isApplicationServedAfterConfidentialityCheck,
     browserName,
+    snapshotPath,
+    snapshotName,
   }: FL401ConfidentialityCheckParams): Promise<void> {
     await CompleteTheOrder.FL401completeTheOrder({
       page,
@@ -114,6 +118,8 @@ export class ConfidentialityCheck {
       changeApplicantAddress,
       keepDetailsConfidential,
       solicitorDetailsChange,
+      snapshotPath,
+      snapshotName,
     });
     await ServiceOfApplication.FL401ServiceOfApplicationJourney({
       page,

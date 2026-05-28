@@ -36,6 +36,8 @@ test.describe("Complete amend applicant details event as a court admin for a DA 
       changeApplicantAddress: true,
       keepDetailsConfidential: true,
       solicitorDetailsChange: true,
+      snapshotPath: ["caseProgression", "amendDetails", "FL401"],
+      snapshotName: "fl401-amend-applicant-details",
     });
   });
 });
