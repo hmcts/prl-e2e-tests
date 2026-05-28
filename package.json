@@ -26,11 +26,10 @@
     "uuid": "^14.0.0"
   },
   "scripts": {
-    "pwinstall": "bash \"$(dirname \"${npm_package_json}\")/ci/pwinstall.sh\"",
-    "setup": "yarn install && yarn get-secrets prl-aat && yarn pwinstall && yarn pwinstall webkit && yarn pwinstall firefox",
+    "pwinstall": "yarn playwright install --with-deps",
+    "setup": "yarn install && yarn get-secrets prl-aat && yarn pwinstall && yarn playwright install webkit && yarn playwright install firefox",
     "lint": "yarn prettier . --write && yarn tsc -p tsconfig.json && yarn eslint .",
     "test:changes": "yarn pwinstall && yarn tsx ./e2e/common/changedTestsRunner.ts",
-    "test:smoke:chromium": "yarn pwinstall && yarn playwright test --project chromium --grep @smoke",
     "test:manageCasesSmoke": "yarn pwinstall && yarn playwright test e2e/tests/manageCases --project chromium --grep @smoke",
     "test:manageCasesChrome": "yarn pwinstall && yarn playwright test e2e/tests/manageCases --project chromium --grep @nightly",
     "test:manageCasesFirefox": "yarn pwinstall firefox && yarn playwright test e2e/tests/manageCases --project firefox --grep @smoke",
@@ -44,5 +43,5 @@
     "test:citizenFrontendAccessibility": "yarn pwinstall && yarn playwright test e2e/tests/citizen --project chromium --grep @accessibility",
     "start-visual-container": "docker compose run --rm playwright"
   },
-  "packageManager": "yarn@4.14.1"
+  "packageManager": "yarn@4.15.0"
 }

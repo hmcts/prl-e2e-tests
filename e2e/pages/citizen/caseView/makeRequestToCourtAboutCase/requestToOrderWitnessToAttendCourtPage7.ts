@@ -48,7 +48,7 @@ export class RequestToOrderWitnessToAttendCourtPage7 {
     ]);
 
     if (accessibilityTest) {
-        // await new AxeUtils(page).audit();  TODO Disabled pending ticket FPVTL-2686
+      // await new AxeUtils(page).audit();  TODO Disabled pending ticket FPVTL-2686
     }
   }
 
