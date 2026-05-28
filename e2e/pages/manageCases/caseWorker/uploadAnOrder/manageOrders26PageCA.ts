@@ -48,7 +48,7 @@ export class ManageOrders26PageCA {
         hasText: ManageOrders26CAContent.pageTitle,
       }),
     ).toBeVisible();
-    
+
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
