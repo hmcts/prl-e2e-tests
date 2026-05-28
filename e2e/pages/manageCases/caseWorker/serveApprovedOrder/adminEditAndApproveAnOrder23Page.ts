@@ -90,7 +90,6 @@ export class AdminEditAndApproveAnOrder23Page {
         1,
       );
     }
-    localAuthorityNeedToProvideReport_No
   }
 
   private static async continue(page: Page): Promise<void> {
