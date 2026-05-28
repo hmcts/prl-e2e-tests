@@ -8,6 +8,8 @@ import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 enum UniqueSelectors {
   orderCloseCaseYes = "#doesOrderClosesCase_Yes",
   serveOrderNowYes = "#doYouWantToServeOrder_Yes",
+  localAuthorityReportYes = "#localAuthorityNeedToProvideReport_Yes",
+  localAuthorityReportNo = "#localAuthorityNeedToProvideReport_No",
 }
 
 export class AdminEditAndApproveAnOrder21Page {
@@ -59,6 +61,7 @@ export class AdminEditAndApproveAnOrder21Page {
   private static async fillInFields(page: Page): Promise<void> {
     await page.locator("#selectTypeOfOrder").selectOption({ label: "General" });
     await page.check(`${UniqueSelectors.serveOrderNowYes}`);
+    await page.check(`${UniqueSelectors.localAuthorityReportNo}`);
   }
 
   private static async continue(page: Page): Promise<void> {
