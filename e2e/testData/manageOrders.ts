@@ -221,6 +221,7 @@ export const AmendedDischargedVariedOrderScenarios: AmendedDischargedVariedOrder
         orderType: "Interim", ////options passed could be either Interim, General or Final
         cafcassReport: undefined,
         cafcassInvolvement: undefined,
+        localAuthorityReport: undefined,
         serveOrderNow: true,
         whatToDoWithOrder: undefined, ////"Finalise the order, and save to serve later" or "Save the order as a draft"
         localAuthorityReport: undefined,
@@ -302,6 +303,7 @@ export const AmendedDischargedVariedOrderScenarios: AmendedDischargedVariedOrder
         orderType: "Interim", ////options passed could be either Interim, General or Final
         cafcassReport: undefined,
         cafcassInvolvement: undefined,
+        localAuthorityReport: undefined,
         serveOrderNow: true,
         whatToDoWithOrder: undefined, ////"Finalise the order, and save to serve later" or "Save the order as a draft"
         localAuthorityReport: undefined,
@@ -616,6 +618,7 @@ export const FL404AFL406UploadOrderScenarios: DomesticAbuseUploadOrderParams[] =
         orderType: undefined, ////options passed could be either Interim, General or Final
         cafcassReport: undefined,
         cafcassInvolvement: undefined,
+        localAuthorityReport: undefined,
         serveOrderNow: false,
         whatToDoWithOrder: undefined, ////finalizeSaveToServeLater or saveAsDraft
         localAuthorityReport: undefined,
@@ -666,6 +669,7 @@ export const FL404AFL406UploadOrderScenarios: DomesticAbuseUploadOrderParams[] =
         orderType: "Interim", ////options passed could be either Interim, General or Final
         cafcassReport: undefined,
         cafcassInvolvement: undefined,
+        localAuthorityReport: undefined,
         serveOrderNow: false,
         whatToDoWithOrder: "Save the order as a draft", ////"Finalise the order, and save to serve later" or "Save the order as a draft"
         localAuthorityReport: undefined,
@@ -727,6 +731,7 @@ export const SpecialGuardianshipCreateOrderScenarios: SpecialGuardianshipCreateO
         orderType: "Interim", ////options passed could be either Interim, General or Final
         cafcassReport: false,
         cafcassInvolvement: false,
+        localAuthorityReport: false,
         serveOrderNow: true,
         whatToDoWithOrder: undefined, ////"Finalise the order, and save to serve later" or "Save the order as a draft"
         localAuthorityReport: false,
@@ -797,6 +802,7 @@ export const SpecialGuardianshipCreateOrderScenarios: SpecialGuardianshipCreateO
         orderType: "Interim", ////options passed could be either Interim, General or Final
         cafcassReport: true,
         cafcassInvolvement: true,
+        localAuthorityReport: true,
         serveOrderNow: true,
         whatToDoWithOrder: undefined, ////"Finalise the order, and save to serve later" or "Save the order as a draft"
         localAuthorityReport: true,

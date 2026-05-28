@@ -24,7 +24,6 @@ import { PersonalDetailsPage } from "../../../../../pages/citizen/createCase/C10
 import { OtherPersonRelationshipPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/otherPeople/otherPersonRelationshipPage.ts";
 import { OtherPersonStayingInRefugePage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/otherPeople/otherPersonStayingInRefugePage.ts";
 import { OtherPersonKeepingDetailsSafePage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/otherPeople/otherPersonKeepingDetailsSafePage.ts";
-import { OtherPersonUploadC8FormPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/otherPeople/otherPersonUploadC8FormPage.ts";
 import { OtherPersonAddressLookupPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/otherPeople/otherPersonAddressLookupPage.ts";
 import { OtherPersonSelectPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/otherPeople/otherPersonSelectPage.ts";
 import { OtherPersonManualPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/otherPeople/otherPersonManualPage.ts";
@@ -32,6 +31,10 @@ import { MainlyLiveWithPage } from "../../../../../pages/citizen/createCase/C100
 import { LivingArrangementsPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/otherPeople/livingArrangementsPage.ts";
 import { RespondentRelationshipToChildPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/respondent/respondentDetailsRelationshipToChildPage.ts";
 import { OtherPersonDetailsConfidentiality } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/otherPeople/otherPersonDetailsConfidentialityPage.ts";
+import { RespondentStayingInRefugePage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/respondent/respondentStayingInRefugePage.ts";
+import { RespondentKeepingDetailsSafePage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/respondent/respondentKeepingDetailsSafePage.ts";
+import { OtherPersonKeepingAddressPrivatePage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/otherPeople/otherPersonKeepingAddressPrivatePage.ts";
+import { OtherPersonKeepingAddressPrivateFeedbackPage } from "../../../../../pages/citizen/createCase/C100/casePartyDetails/otherPeople/otherPersonKeepingAddressPrivateFeedbackPage.ts";
 
 interface c100CasePartyDetailsOptions {
   page: Page;
@@ -51,6 +54,7 @@ interface c100CasePartyDetailsOptions {
   respondentChangedName: yesNoDontKnow;
   respAddress5Years: yesNoDontKnow;
   respondentRelationship: Relationship;
+  respondentStayingInRefuge: boolean;
   respAddressLookup: boolean;
   respAddressLookupSuccessful: boolean;
   respKnownEmailAndPhone: boolean;
@@ -60,6 +64,7 @@ interface c100CasePartyDetailsOptions {
   c100OtherPeopleDoBKnown: boolean;
   c100OtherPersonRelationship: Relationship;
   c100OtherPersonLivesInRefuge: boolean;
+  c100OtherPersonKeepingAddressPrivate: boolean;
   c100ChildMainlyLivesWith: typeOfPerson;
   C100YesNoConfidentiality: boolean;
 }
@@ -83,6 +88,7 @@ export class C100CasePartyDetails {
     respondentGender,
     respAddress5Years,
     respondentRelationship,
+    respondentStayingInRefuge,
     respAddressLookup,
     respAddressLookupSuccessful,
     respKnownEmailAndPhone,
@@ -92,6 +98,7 @@ export class C100CasePartyDetails {
     c100OtherPeopleDoBKnown,
     c100OtherPersonRelationship,
     c100OtherPersonLivesInRefuge,
+    c100OtherPersonKeepingAddressPrivate,
     c100ChildMainlyLivesWith,
     C100YesNoConfidentiality,
   }: c100CasePartyDetailsOptions): Promise<void> {
@@ -165,6 +172,18 @@ export class C100CasePartyDetails {
       errorMessaging: errorMessaging,
       respondentRelationship: respondentRelationship,
     });
+    await RespondentStayingInRefugePage.respondentStayingInRefugePage({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      respondentStayingInRefuge: respondentStayingInRefuge,
+    });
+    if (respondentStayingInRefuge) {
+      await RespondentKeepingDetailsSafePage.respondentKeepingDetailsSafePage({
+        page: page,
+        accessibilityTest: accessibilityTest,
+      });
+    }
     await RespondentDetailsAddressLookupPage.respondentDetailsAddressLookupPage(
       {
         page: page,
@@ -173,6 +192,7 @@ export class C100CasePartyDetails {
         addressLookup: respAddressLookup,
       },
     );
+
     if (respAddressLookup) {
       await RespondentDetailsAddressSelectPage.respondentDetailsAddressSelectPage(
         {
@@ -198,6 +218,7 @@ export class C100CasePartyDetails {
         errorMessaging: errorMessaging,
         dontKnowEmailAndTelephone: respKnownEmailAndPhone,
       },
+      // Would need to add keeping contact details private if there is more than 1 respondent
     );
     await OtherPersonDetailsCheckPage.otherPersonDetailsCheckPage({
       page: page,
@@ -240,11 +261,6 @@ export class C100CasePartyDetails {
             accessibilityTest: accessibilityTest,
           },
         );
-        await OtherPersonUploadC8FormPage.otherPersonUploadC8FormPage({
-          page: page,
-          accessibilityTest: accessibilityTest,
-          errorMessaging: errorMessaging,
-        });
       }
       await OtherPersonAddressLookupPage.otherPersonAddressLookupPage({
         page: page,
@@ -267,6 +283,25 @@ export class C100CasePartyDetails {
           `c100ChildMainlyLivesWith cannot be 'otherPerson' if yesNoOtherPersonDetails is set to false`,
         );
       }
+    }
+    // Only ask this question if the other person is not living in a refuge
+    if (!c100OtherPersonLivesInRefuge && yesNoOtherPersonDetails) {
+      await OtherPersonKeepingAddressPrivatePage.otherPersonKeepingAddressPrivatePage(
+        {
+          page,
+          accessibilityTest,
+          errorMessaging,
+          keepingAddressPrivate: c100OtherPersonKeepingAddressPrivate,
+        },
+      );
+      await OtherPersonKeepingAddressPrivateFeedbackPage.otherPersonKeepingAddressPrivateFeedbackPage(
+        {
+          page,
+          accessibilityTest,
+          errorMessaging,
+          keepingAddressPrivate: c100OtherPersonKeepingAddressPrivate,
+        },
+      );
     }
     await MainlyLiveWithPage.mainlyLiveWithPage({
       page: page,

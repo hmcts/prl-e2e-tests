@@ -185,12 +185,7 @@ export class ReviewPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.dt}:text-is("${CaJourneyWrittenConsentReviewContent.dt_livingInRefuge}")`,
-        2,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.dt}:text-is("${CaJourneyWrittenConsentReviewContent.dt_c8RefugeDocument}")`,
-        1,
+        3,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -218,11 +213,6 @@ export class ReviewPage {
         CaJourneyWrittenConsentReviewContent,
         "dd_",
         `${Selectors.dd}`,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.dd}:text-is("${CaJourneyWrittenConsentReviewContent.dd_c8RefugeDocument}")`,
-        1,
       ),
       // Using Selectors.dd for dd_ prefixed items in CaJourneyWrittenConsentReviewContent
       Helpers.checkVisibleAndPresent(
@@ -618,7 +608,7 @@ export class ReviewPage {
       ),
       Helpers.checkGroup(
         page,
-        84,
+        86,
         CaJourneyEmergencyProtectionReviewContent,
         "dt_",
         Selectors.dt,
@@ -646,12 +636,7 @@ export class ReviewPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.dt}:text-is("${CaJourneyEmergencyProtectionReviewContent.dt_livingInRefuge}")`,
-        2,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.dt}:text-is("${CaJourneyEmergencyProtectionReviewContent.dt_c8RefugeDocument}")`,
-        1,
+        3,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -679,11 +664,6 @@ export class ReviewPage {
         CaJourneyEmergencyProtectionReviewContent,
         "dd_",
         Selectors.dd,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.dd}:text-is("${CaJourneyEmergencyProtectionReviewContent.dd_c8RefugeDocument}")`,
-        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -728,7 +708,7 @@ export class ReviewPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.dd}:text-is("${CaJourneyEmergencyProtectionReviewContent.dd_no}")`,
-        c100YesNoNeedHelpWithFees ? 3 : 4,
+        c100YesNoNeedHelpWithFees ? 5 : 6,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -784,10 +764,15 @@ export class ReviewPage {
       ),
       Helpers.checkGroup(
         page,
-        80,
+        79,
         CaJourneyEmergencyProtectionReviewContent,
         "li_",
         Selectors.li,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${CaJourneyEmergencyProtectionReviewContent.li_livingArrangements}")`,
+        2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -1176,7 +1161,7 @@ export class ReviewPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.dt}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.dt_livingInRefuge}")`,
-        1,
+        2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -1217,14 +1202,19 @@ export class ReviewPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.dd}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.dd_no}"):visible`,
-        43,
+        44,
       ),
       Helpers.checkGroup(
         page,
-        39,
+        38,
         CaJourneyMIAMHearingUrgencyReviewContent,
         "li_",
         Selectors.li,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${CaJourneyMIAMHearingUrgencyReviewContent.li_livingArrangements}")`,
+        2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -1564,16 +1554,16 @@ export class ReviewPage {
     });
     let ddNoCount: number;
     if (miamAlreadyAttended) {
-      ddNoCount = 7;
+      ddNoCount = 9;
     } else {
       ddNoCount =
         miamAttendanceType === "Application made in existing proceedings"
           ? c100YesNoNeedHelpWithFees
-            ? 8
-            : 9
+            ? 10
+            : 11
           : c100YesNoNeedHelpWithFees
-            ? 7
-            : 8;
+            ? 9
+            : 10;
       await Promise.all([
         Helpers.checkGroup(
           page,
@@ -1630,7 +1620,7 @@ export class ReviewPage {
       ),
       Helpers.checkGroup(
         page,
-        c100YesNoNeedHelpWithFees ? 87 : 86,
+        c100YesNoNeedHelpWithFees ? 88 : 87,
         CaJourneyExistingMIAMReviewContent,
         "dt_",
         Selectors.dt,
@@ -1681,7 +1671,7 @@ export class ReviewPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.dt}:text-is("${CaJourneyExistingMIAMReviewContent.dt_livingInRefuge}")`,
-        2,
+        3,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -1784,12 +1774,17 @@ export class ReviewPage {
       ),
       Helpers.checkGroup(
         page,
-        80,
+        79,
         CaJourneyExistingMIAMReviewContent,
         "li_",
         Selectors.li,
       ),
       // Using Selectors.li for li_ prefixed items
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.li}:text-is("${CaJourneyExistingMIAMReviewContent.li_livingArrangements}")`,
+        2,
+      ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.li}:text-is("${CaJourneyExistingMIAMReviewContent.li_somethingElse}")`,
